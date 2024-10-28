@@ -1,137 +1,168 @@
-Return-Path: <devicetree+bounces-116414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D079B2CC2
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:25:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F26689B2CC5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:26:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C938B1C21CD5
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:25:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D965B207F1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B26C51D5CCD;
-	Mon, 28 Oct 2024 10:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A592C1D222B;
+	Mon, 28 Oct 2024 10:26:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GmShF6Px"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="HLTpS552"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF5011D0E38
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 10:24:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 543AC187876
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 10:26:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730111100; cv=none; b=Nt9JOKzaVJfAvyzHoRl+SGoYBBV+NY/+TBVia/LAHKheWl0uMB2cb/6RK42l/SNYMNqnhS/1g9bVHm8P8UTIOAXJpkzL4cT/Sr8RSq3LC+47w8bVLYA/K/n41CjUSveyDXiipd2A8Y1sPSeN27UzMFS/Sgny4VYGLjbCLixMMEM=
+	t=1730111173; cv=none; b=FeT26WJ8luvMb6Rybp/BSJ3pkmM4PtNJ1ntf/Ndvzc7Iae+wvFEQtHHOnG3ef59lMXw/odqm8fwozVUUJwe0DML2OyNa7hHCYg3uDwpXYjFmJ4z6MN+F3TEVQKc5xqzjRbr7bdS5+VX9Oqp1P8RZXpdVqgFK4Iu3p/HNtpGLSJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730111100; c=relaxed/simple;
-	bh=fbtunhKLM67bLa2qu23S88glusv6bfpysmOgMaktmbQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S5fQ1PEGj0bwVmX8siQHgjyYE+qKnU7Uzxfrb7ZQnReXeFo4I4Yql+HAIHmQpTUuQyHJnGf9CQnmkAhlaxuEwBH3NCR0H9yJN+pbZXJlnisIHWRQriT0ESGFX/7qV/DSh2CS8QgEzEvyMglaF1d/k+yAvQqvXrF5YgxO1k1OSk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GmShF6Px; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49RLjqLq025858
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 10:24:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fg9jSsM2x5+eCKxffj8Vjk5A547zvvC9R2DqGq/9wok=; b=GmShF6Pxdex6D+XI
-	Q7uD8E9NN8lBbja18R1/MeSvfBWP7oK5FjzhaKc8l/isGDj439YMBrBzaOuQtG9B
-	9LFRXsWIZys/bcI9idwyiElDDL0ED92m5J7g+c73BNrBI+g7zTK+68+U3t8Aiepu
-	Dnuy7Y88czX3pZ/+6Eu+CGKpCFeoVmiDP7aDUKEc7D41fZNA8VMYQpOYatRuCfaL
-	O1R+xdsNFNEJa17TBVwZmgTxTBSdd5Y7Uys2v00hUnNQXmZgGAd5W2Khzn5ZF2Jd
-	HGVaBFtiZ3LIoHN3m9a2HdEYjhqKMMJvbmWGUiirnv55XtTrd1X/X5Cnww7Pwl4S
-	q/i3yg==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gsq8cetw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 10:24:57 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6cbe40565feso13161456d6.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 03:24:56 -0700 (PDT)
+	s=arc-20240116; t=1730111173; c=relaxed/simple;
+	bh=Je0XRsrSlkfhC1gNXF4h9w/Pw1MLL8ees5oNHb91sd8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fgUZvozJ+oRyoOJMxOqhKv8p7L1xvBR/3lf4m+YhfVNVQCywSoHRUXCttgVjmi/C62njD9f3e7tglaIE0Sm5DiBMwSqqn+xrlPzXam2MvaJI/dHVCyXYc46s26/kVawbc07pCF/CBwsRw0ByBoq0agbjAzXs+A64kOsoyCFiYvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=HLTpS552; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a9a850270e2so687330066b.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 03:26:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1730111170; x=1730715970; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tjf17nGxadGEosYCdQe1mRaeFLEYOHfj3xwJxxS9C4Y=;
+        b=HLTpS552jQkZZB10vKPKMtLZRZXGk/NFO8+BWun9DuiUqfXtI82pTgpqH3ebDic1qH
+         V+df77KeC51u72QCPrh+DTCO8ROAaB1TmfvRF7PAGBLvHof7d82dCPIhqD7z8e8zbDCz
+         09ADarA9UYfCdRw4UePh5RD5r5oQ1ETM04Q54=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730111096; x=1730715896;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fg9jSsM2x5+eCKxffj8Vjk5A547zvvC9R2DqGq/9wok=;
-        b=bPobNQJHRHJ/Pj3115u1kMMADgvN1vox+HXk+tcR3DznvVplniq4jXbQmwb86L6en2
-         kYQClnl8Cku30MO4lNXaYsYTJwict3+5i9tXhrOp1HqSZzuqZCOagOhBdHD5qebonPLa
-         wrD2tz06SSEa9e3FKGIRHCSF7GM2Hgt4qO99/QTVvp55IXOvMzX5TO6DeDCUeF1bCv/2
-         AJx7gMiMTCAbCs5zGMtA/hhZ1PG/KuObQG2bASdNMczpZaBEcBFTxS69BqKnl7tQgui+
-         CELIVdhWv6XmPAHsDuA0C9gZRZP/AmUrZWFskHweNiiYANRwVsIX75xkPYRpXYZvZ4T8
-         GTsg==
-X-Forwarded-Encrypted: i=1; AJvYcCWIH6ZpnGvcIUbh/zmrkmpvXEC0gol91uvIyGZGocr5C1tgnkBr0/TCVj7rFDUiUO9Bn1fNLtzkfiLi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6zzXm9ydzW4u8Ly4xTTIA8oG9PUy9aDbCI62MetBpXKeFfEc3
-	AV0m8um3H68/zMOiOe5o5ahqZhOFmhgJ16ECrnAuUADeue9H9wJkDtr602o4VtjoSvMlZCg8qPo
-	jDv4EYC1hWUfT99DXFPIou5lJ6hJ1RjCHIYDaGvCRZYaAb5WSrVjiAPkSeiZZ
-X-Received: by 2002:ad4:5bc1:0:b0:6c3:6d25:2578 with SMTP id 6a1803df08f44-6d185816bf1mr54129636d6.8.1730111095779;
-        Mon, 28 Oct 2024 03:24:55 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE1LCyhTsx+s4J7iCqfSqv0uRemX/kPrSPNh3ahugTm/b+6Nqx8Iut8S7BU/6LdyG6nwn7IXA==
-X-Received: by 2002:ad4:5bc1:0:b0:6c3:6d25:2578 with SMTP id 6a1803df08f44-6d185816bf1mr54129576d6.8.1730111095455;
-        Mon, 28 Oct 2024 03:24:55 -0700 (PDT)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f298ef6sm363536566b.136.2024.10.28.03.24.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Oct 2024 03:24:54 -0700 (PDT)
-Message-ID: <465ee5c1-2fca-4099-b618-f80484445dac@oss.qualcomm.com>
-Date: Mon, 28 Oct 2024 11:24:51 +0100
+        d=1e100.net; s=20230601; t=1730111170; x=1730715970;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Tjf17nGxadGEosYCdQe1mRaeFLEYOHfj3xwJxxS9C4Y=;
+        b=NKYbBW1HSUN3H2OmInm7gJZOacfJvILM2BdFBmxmCFI9mtGuxVMvJaM/JLMxbGaQrC
+         VfSpYk+eZWYTb5OOHnNJFWES1QVJNLmet2nx5uEKXLPL0TQ1wwr8vRnmC5hxmgeNwzQC
+         tME46y0zGE9lSGZ5xyAxXrXC+5I2GexGslhdaur5I/pF4Z00PKx3vs1tey03smfHj6L1
+         TkMC/ofbRnhAkwW5EyRFh9R8b7pUPbXeyw1F/XzttvccRkq8jqzxG6ETHZF31ouJU7Xh
+         KyV6vZXlzFE1I5qeIcACj/hwSOrIAtJwGbZFnYWQCu8KaNdMnYSW5n/PIYr85MIQv1j9
+         4+EA==
+X-Forwarded-Encrypted: i=1; AJvYcCWwMXzXQZfpPFH48N5fuGqjxKqA+uyk71V5hRi06FiRXNgv9gFbYSVlsyfwi3sP9ldgwd9GmpfO6Ggk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRMBDRByjTdS5EsnZVkZdUjUwVR/qU35rF9Z7DT7M5H76xhSKX
+	S6tsICHSUGl5syKZbr3nM3XLSQBymrLLRHttLIVwelr/91BUbGoS9KL4dY4cUzo=
+X-Google-Smtp-Source: AGHT+IH1B0ko3VIpWkPI4RC1oi+MD1rEEYyYDNnVuUIYAatTCka4T6be6wD1IPac0B/RcE+iH3t9Yg==
+X-Received: by 2002:a17:907:3f23:b0:a8a:8d81:97ac with SMTP id a640c23a62f3a-a9de5c9f5f9mr669847666b.4.1730111169568;
+        Mon, 28 Oct 2024 03:26:09 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.amarulasolutions.com ([2.196.41.121])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f297b04sm363613966b.134.2024.10.28.03.26.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Oct 2024 03:26:09 -0700 (PDT)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Andrey Smirnov <andrew.smirnov@gmail.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Inki Dae <inki.dae@samsung.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Marek Vasut <marex@denx.de>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michael Trimarchi <michael@amarulasolutions.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Stefan Agner <stefan@agner.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org
+Subject: [RFC PATCH 00/10] Support simple-framebuffer on imx8m
+Date: Mon, 28 Oct 2024 11:25:23 +0100
+Message-ID: <20241028102559.1451383-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/5] arm: dts: qcom-ipq5018-linksys-jamaica: Include
- dts from arm64
-To: Sricharan Ramabadhran <quic_srichara@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Karl Chan <exxxxkc@getgoogleoff.me>,
-        Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        linus.walleij@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-References: <20241002232804.3867-1-exxxxkc@getgoogleoff.me>
- <20241002232804.3867-6-exxxxkc@getgoogleoff.me>
- <f2eck3tudqoqyylcknfvz77wj52fornxevp6po3y7sov7swikt@asez6wepyl6h>
- <768a1c92-6e1d-4d6c-90f6-efe66f68dd0e@oss.qualcomm.com>
- <c154d164-57c8-4407-8b07-543676d21206@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <c154d164-57c8-4407-8b07-543676d21206@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: k0Y686EvvT8rmflm-id3Qnbr7mFT_mQm
-X-Proofpoint-ORIG-GUID: k0Y686EvvT8rmflm-id3Qnbr7mFT_mQm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- adultscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=721 impostorscore=0
- lowpriorityscore=0 malwarescore=0 clxscore=1015 spamscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410280085
+Content-Transfer-Encoding: 8bit
 
-On 28.10.2024 7:33 AM, Sricharan Ramabadhran wrote:
-> 
-> 
-> On 10/26/2024 5:08 PM, Konrad Dybcio wrote:
->> Would you folks know anything about it? Do we have an open source
->> U-Boot release that could be sideloaded as a secondary bootloader to
->> kick it into 64-bit mode
-> 
-> Yes slightly older u-boot release [1] supports booting both 32/64 bit
-> kernels.
-> 
-> [1] https://git.codelinaro.org/clo/qsdk/oss/boot/u-boot-2016/-/tree/win.coretech.1.0?ref_type=heads
+This series is the Linux counterpart of what was sent to U-Boot [1]
+for the support of the simple-framebuffer for the BSH SMM S2Pro board.
 
-Thank you!
+The need to avoid re-initializing the hardware (power domains,
+controllers, bridges, display panels) that has already been initialized
+and kept powered on by the bootloader has required updating more than
+one YAML file, with the addition of boolean properties to inform the
+driver that the corresponding hardware has been initialized and left
+on by the bootloader. All these properties are added on the fly by the
+bootloader to the various relevant nodes.
 
-Konrad
+Support for the simple framebuffer for the dts of imx8mn-bsh-smm-s2/pro
+board has been sent with a separate patch from this series [2].
+
+[1] https://lore.kernel.org/all/20240913095622.72377-18-dario.binacchi@amarulasolutions.com/T/
+[2] https://lore.kernel.org/imx/20241024102800.3481574-1-dario.binacchi@amarulasolutions.com/T/
+
+
+Dario Binacchi (10):
+  dt-bindings: soc: imx-blk-ctrl: add 'fsl,power-domains-boot-on'
+    property
+  pmdomain: imx8m-blk-ctrl: don't turn on a power domain already on
+  dt-bindings: power: gpcv2: add 'fsl,boot-on' property
+  pmdomain: imx: gpcv2: don't turn on a power domain already on
+  dt-bindings: display: panel: add 'syna,boot-on' property
+  drm/panel: synaptics-r63353: don't re-activate the panel if already
+    setup
+  dt-bindings: bridge: samsung-dsim: add 'samsung,boot-on' property
+  drm: bridge: samsung-dsim: don't re-activate the bridge if already
+    setup
+  dt-bindings: lcdif: add 'fsl,boot-on' property
+  drm/mxsfb: stop controller and drain FIFOs if already initialized
+
+ .../display/bridge/samsung,mipi-dsim.yaml     |  5 ++
+ .../bindings/display/fsl,lcdif.yaml           |  5 ++
+ .../display/panel/synaptics,r63353.yaml       |  5 ++
+ .../bindings/power/fsl,imx-gpcv2.yaml         |  6 +++
+ .../soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml     |  9 ++++
+ drivers/gpu/drm/bridge/samsung-dsim.c         | 13 ++++-
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c             |  3 ++
+ drivers/gpu/drm/mxsfb/mxsfb_drv.h             |  1 +
+ drivers/gpu/drm/mxsfb/mxsfb_kms.c             | 14 ++++-
+ .../gpu/drm/panel/panel-synaptics-r63353.c    | 10 +++-
+ drivers/pmdomain/imx/gpcv2.c                  | 32 +++++++++++-
+ drivers/pmdomain/imx/imx8m-blk-ctrl.c         | 51 ++++++++++++++++++-
+ 12 files changed, 148 insertions(+), 6 deletions(-)
+
+-- 
+2.43.0
+
 
