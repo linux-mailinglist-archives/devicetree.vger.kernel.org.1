@@ -1,68 +1,89 @@
-Return-Path: <devicetree+bounces-116557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98C409B33A4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:35:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F619B33C5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:38:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA75E1C22941
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:35:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 110041F22587
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5F441DDC04;
-	Mon, 28 Oct 2024 14:35:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CAE11DDC36;
+	Mon, 28 Oct 2024 14:38:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bmfzCuF5"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ox2ej3l3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 847F71DD87D;
-	Mon, 28 Oct 2024 14:35:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F181DDA14;
+	Mon, 28 Oct 2024 14:38:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730126117; cv=none; b=tjlYtZ1qYIFjmH14A8VZeh6Afl7AmyAjwSpn9gjlqE/8MU5uJzjAtAOZVBCGyqoHZmNu3D/+HaDrgGEGavX32qrkt0bI9KAYQeA/9Ew+ecOWHWziaVvgMwGPCfD1WRlOSEIHmyKfVRewSOn90jsXHladAmo+p3SuGrEjKRm2/RE=
+	t=1730126329; cv=none; b=C0+Y9TWTYqaubZ/2pBuUwLMFPk+7i7t5AmokrFUuKpO6OWmRHAR4Q0QbjMtUCsYqSSFCTxOJeI3/Q13LUuYAnSTi92UoyxqY/LWBnKvXpNCd1iHL4ESeXrg9aZXndbO5pQMsvOH15Ynkct8OXN1kH42fcSO7vDMt/Zf9dVYD5rU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730126117; c=relaxed/simple;
-	bh=sURJvKknHSgjTV+4lsbwxGEcIobcXzLf+Y5XDBTzmAs=;
+	s=arc-20240116; t=1730126329; c=relaxed/simple;
+	bh=VnKHNq/LVYhXDEEst8PtAj0P/TxTkAgJaUiIvrCxnO8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X03OQjFZ6kvCSHC7mJDuh/jP4sey8a2haeZ0ixsMiF8nx29J/4dCM/fo37VmabbJJstf3aBREouRdcySwIhQU9uDvKcaMAlLQacd5g0E4JwZHnPkQUXEmA3trVPcDzeOwRr+jKMSUHHe41kv18ZwWGj5Q7ooU+9w9ssIYio8MC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bmfzCuF5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D48F7C4CEC3;
-	Mon, 28 Oct 2024 14:35:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730126117;
-	bh=sURJvKknHSgjTV+4lsbwxGEcIobcXzLf+Y5XDBTzmAs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bmfzCuF5/wJDXD530OXqnm3m6xoZv6gru82OZAGmdxFz3pPFg1Qndpns4xDdTbli7
-	 aZSMnOqPMLeWB9GmtE8l/RtdRch1JLAX+hn2Do9N70l5QkPsdYg9Cqcf/M3xSluy+r
-	 lVzKt9dpdDM1aqZlDrm2TulhuyI8+ypcJzV2C5S6NK2x0qtrQ6NsfGSiwg6BtaqRC/
-	 1JsYUK2ZabFQSGsGKoWUHWOMZKTQSVLiwhQglBeGGLbJh6sAB6u5EtC7nelP8LP2u5
-	 SsVPmKeCwvk4G+YWQNm8ZGgKYWJoMROzp5LN1N04J8t++tUkow7ciMnbh77Bp0KNcr
-	 kE8z0zCRnXUNg==
-Date: Mon, 28 Oct 2024 09:35:15 -0500
-From: Rob Herring <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=CXn9dJ4ZJwkO9oMRnQTdC5xxOJVuLU3sAiqwr7UTTKvDVEl881AgIzfA3RFZPBdh9mTii/nQZxwXdxy9YMEupYFo+4ch1eTJ8jqXYMNMd4W5HIcYsZtbpmdfe9V9ipo8TE3xqFp/rAyZzcpmpiEmeWLMlCho3HRPR4wEGC9/1ug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ox2ej3l3; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1730126327; x=1761662327;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VnKHNq/LVYhXDEEst8PtAj0P/TxTkAgJaUiIvrCxnO8=;
+  b=Ox2ej3l3gYiuNqwFYqfrGzWQ754v3TkHvi/fFc/0oHYUEg6V43KscZ5s
+   +3Mv84PvgpzX8hDYfTPE61gzplhb2calRp6s2Bh/tbU7V8S7kLymTCd3u
+   kbseSDgFubkaIoDMehkFdPB9NGUKgezEinKOS4dL1j4/pxB6mHdU/btc1
+   z/Y107ho/+b1JfEgh2bmqC7O8n297UH7CoEBRBmZceuQRjPOBuekw7Y8c
+   vjPRcslqhHjz76ZBkrfoBaor6Z0ceF3TZ7X/mO4ADjP4uo2P+4RBP7MNc
+   xZk0Dee6d+dLstwLQ8qMYNgFQQn6JUz6RpLDczJ4GcUTP64WV4O2LDfxO
+   g==;
+X-CSE-ConnectionGUID: BI/hltz7TLOAFTd31KLATg==
+X-CSE-MsgGUID: DHP7+XRCRHqo2o0vOwN0eQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="52277500"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="52277500"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Oct 2024 07:38:46 -0700
+X-CSE-ConnectionGUID: Zv0JGberReG955Uff7Y88g==
+X-CSE-MsgGUID: X4oBG17qSt+qqfke9r9MQg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; 
+   d="scan'208";a="86424632"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Oct 2024 07:38:41 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1t5QtB-000000085dP-42c5;
+	Mon, 28 Oct 2024 16:38:37 +0200
+Date: Mon, 28 Oct 2024 16:38:37 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Aren Moynihan <aren@peacevolution.org>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Antoine Tenart <atenart@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev, upstream@airoha.com
-Subject: Re: [PATCH v5 2/3] dt-bindings: crypto: Add Inside Secure SafeXcel
- EIP-93 crypto engine
-Message-ID: <20241028143515.GA792452-robh@kernel.org>
-References: <20241028124206.24321-1-ansuelsmth@gmail.com>
- <20241028124206.24321-2-ansuelsmth@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Kaustabh Chakraborty <kauschluss@disroot.org>,
+	=?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <trabarni@gmail.com>,
+	Ondrej Jirman <megi@xff.cz>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, Dragan Simic <dsimic@manjaro.org>,
+	phone-devel@vger.kernel.org
+Subject: Re: [PATCH v3 3/6] iio: light: stk3310: Implement vdd and leda
+ supplies
+Message-ID: <Zx-h7QUnCKwtu8iC@smile.fi.intel.com>
+References: <20241028142000.1058149-1-aren@peacevolution.org>
+ <20241028142000.1058149-4-aren@peacevolution.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,89 +92,77 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241028124206.24321-2-ansuelsmth@gmail.com>
+In-Reply-To: <20241028142000.1058149-4-aren@peacevolution.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Mon, Oct 28, 2024 at 01:41:42PM +0100, Christian Marangi wrote:
-> Add bindings for the Inside Secure SafeXcel EIP-93 crypto engine.
+On Mon, Oct 28, 2024 at 10:19:57AM -0400, Aren Moynihan wrote:
+> The vdd and leda supplies must be powered on for the chip to function
+> and can be powered off during system suspend.
 > 
-> The IP is present on Airoha SoC and on various Mediatek devices and
-> other SoC under different names like mtk-eip93 or PKTE.
-> 
-> All the compatible that currently doesn't have any user are left there
-> commented for reference.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
-> Changes v5:
-> - Comment out compatible with no current user
-> Changes v4:
-> - Out of RFC
-> Changes v3:
-> - Add SoC compatible with generic one
-> Changes v2:
-> - Change to better compatible
-> - Add description for EIP93 models
-> 
->  .../crypto/inside-secure,safexcel-eip93.yaml  | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
-> new file mode 100644
-> index 000000000000..188240b74110
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/inside-secure,safexcel-eip93.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Inside Secure SafeXcel EIP-93 cryptographic engine
-> +
-> +maintainers:
-> +  - Christian Marangi <ansuelsmth@gmail.com>
-> +
-> +description: |
-> +  The Inside Secure SafeXcel EIP-93 is a cryptographic engine IP block
-> +  integrated in varios devices with very different and generic name from
-> +  PKTE to simply vendor+EIP93. The real IP under the hood is actually
-> +  developed by Inside Secure and given to license to vendors.
-> +
-> +  The IP block is sold with different model based on what feature are
-> +  needed and are identified with the final letter. Each letter correspond
-> +  to a specific set of feature and multiple letter reflect the sum of the
-> +  feature set.
-> +
-> +  EIP-93 models:
-> +    - EIP-93i: (basic) DES/Triple DES, AES, PRNG, IPsec ESP, SRTP, SHA1
-> +    - EIP-93ie: i + SHA224/256, AES-192/256
-> +    - EIP-93is: i + SSL/DTLS/DTLS, MD5, ARC4
-> +    - EIP-93ies: i + e + s
-> +    - EIP-93iw: i + AES-XCB-MAC, AES-CCM
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: airoha,crypto-eip93
+> Co-developed-by: Ondrej Jirman <megi@xff.cz>
 
-Still doesn't look SoC specific...
+Missing SoB. Please, read Submitting Patches documentation for understanding
+what has to be done here.
 
-> +          - const: inside-secure,safexcel-eip93ies
-> +      # Compatible that doesn't have any current user.
-> +      # - items:
-> +      #     - const: SoC specific compatible
-> +      #     - enum:
-> +      #         - inside-secure,safexcel-eip93i
-> +      #         - inside-secure,safexcel-eip93ie
-> +      #         - inside-secure,safexcel-eip93is
-> +      #         - inside-secure,safexcel-eip93iw
+> Signed-off-by: Aren Moynihan <aren@peacevolution.org>
 
-I should have looked at the driver before commenting before, but since 
-you are using these compatibles, you should go with my other suggestion 
-or these will be listed as undocumented.
+...
 
-Rob
+> Notes:
+>     I'm not sure what the proper way to handle attribution for this patch
+>     is. It was origionally based on a patch by Ondrej Jirman[1], but I have
+>     rewritten a large portion if it. I have included a Co-developed-by tag
+>     to indicate this, but haven't sent him this patch, so I'm not sure what
+>     to do about a Signed-off-by.
+
+Ah, seems you already aware of this issue. So, either drop Co-developed-by
+(and if you wish you may give a credit in a free form inside commit message)
+or make sure you get his SoB tag.
+
+...
+
+>  	mutex_init(&data->lock);
+
+Somewhere (in the previous patch?) you want to switch to devm_mutex_init().
+
+...
+
+> +	ret = devm_regulator_bulk_get(&client->dev, ARRAY_SIZE(data->supplies),
+> +				      data->supplies);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret, "get regulators failed\n");
+
+> +		return dev_err_probe(&client->dev, ret,
+> +				     "regulator enable failed\n");
+
+> +	ret = devm_add_action_or_reset(&client->dev, stk3310_regulators_disable, data);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret,
+> +				     "failed to register regulator cleanup\n");
+
+With
+
+	struct devuce *dev = &client->dev;
+
+at the top of the function makes these and more lines neater.
+
+...
+
+>  static int stk3310_resume(struct device *dev)
+>  {
+> -	u8 state = 0;
+>  	struct stk3310_data *data;
+> +	u8 state = 0;
+> +	int ret;
+
+While changing to RCT order here, it seems you have inconsistent approach
+elsewhere (in your own patches!). Please, be consistent with chosen style.
+
+>  	data = iio_priv(i2c_get_clientdata(to_i2c_client(dev)));
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
