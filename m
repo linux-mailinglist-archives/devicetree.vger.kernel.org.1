@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-116459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5531E9B2F97
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:04:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDE8A9B2F9C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:04:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CED91F22E2E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:04:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59286B23857
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:04:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E00631DAC8C;
-	Mon, 28 Oct 2024 12:02:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F951DA636;
+	Mon, 28 Oct 2024 12:02:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D35581DA0E0;
-	Mon, 28 Oct 2024 12:02:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD4021DB92C;
+	Mon, 28 Oct 2024 12:02:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730116935; cv=none; b=K3jm1US3XxpaQPfOz0gE6QoYdLIMphjzrDrz/Z7oP8txuxJWBCjKrXfPTTrYbbBsnbBnFJRzZ0CxBZ2Xiwb5ifLn7ZZ/bhs92dGIFvjHtttUCwZ7DpnRp+2g8MtMUgajU2/Ofwtsjwqv6Q84XibPJYq7imiLIMJhVtTaTCwgNAk=
+	t=1730116942; cv=none; b=jr8f5VE65iiCNjhZ80jSvY303yLckUzP5iGTS2pax4lLgGxQ3webSCOjGLwCfxElv5fPinG5TMQ9gffqLVNQ4Z6yInmgRpIJUfZriM+XA0sMXKTytA0Q+uMpS4meuy6y3p1RGBdccDqKcgeig0+NMMAew1rBG5qU0jjjxqOdCAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730116935; c=relaxed/simple;
-	bh=H8xDAOMKrpAJvrKiMXiQPJzeOxCEpqKKUU2Hu9rg+zs=;
+	s=arc-20240116; t=1730116942; c=relaxed/simple;
+	bh=YFSoil/wyoPbsUOnERejF91RTgrdSIFDhVBcGJK0dE4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mLtJhfs1gPseph1YBeo1iGS73+Mu+W25V3JNvIiUZWyD/oV+9BsfUAkQPp5a7mUq11P1Q+5ae80ySzl7QSINo+3b/E7AJziJKxAKlG4lOSN5cgG4tndHwWey0hYiGAT5EjbwYuCULH2VG85L3V46ioRvlB6vy9alBvDp2gWJYes=
+	 MIME-Version; b=U9CtNy+2z8+jl4sEW9ykAJ1GkDKpIrPMmQ8h+xBR1f8KSMeirAqvWEmnk+5RzWtUNNk5eeZryoIKUj3UEgU2mobzImPAjE8Rakne7P0KQBdYNSpeVnJO7TAeE/QsYp8RAeuM7Dr8WkNJc7+EbTtzJ1ZpFQ8UVXmIliLfyxSkSxQ=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 137ED497;
-	Mon, 28 Oct 2024 05:02:43 -0700 (PDT)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D9CFA13D5;
+	Mon, 28 Oct 2024 05:02:49 -0700 (PDT)
 Received: from pluto.fritz.box (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 499FA3F73B;
-	Mon, 28 Oct 2024 05:02:11 -0700 (PDT)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BC5A93F73B;
+	Mon, 28 Oct 2024 05:02:17 -0700 (PDT)
 From: Cristian Marussi <cristian.marussi@arm.com>
 To: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -48,11 +48,14 @@ Cc: sudeep.holla@arm.com,
 	quic_nkela@quicinc.com,
 	dan.carpenter@linaro.org,
 	Cristian Marussi <cristian.marussi@arm.com>,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 3/7] dt-bindings: firmware: arm,scmi: Introduce more transport properties
-Date: Mon, 28 Oct 2024 12:01:47 +0000
-Message-ID: <20241028120151.1301177-4-cristian.marussi@arm.com>
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH v3 6/7] dt-bindings: firmware: arm,scmi: Add missing vendor string
+Date: Mon, 28 Oct 2024 12:01:50 +0000
+Message-ID: <20241028120151.1301177-7-cristian.marussi@arm.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241028120151.1301177-1-cristian.marussi@arm.com>
 References: <20241028120151.1301177-1-cristian.marussi@arm.com>
@@ -64,53 +67,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Depending on specific hardware and firmware design choices, it may be
-possible for different platforms to end up having different requirements
-regarding the same transport characteristics.
+Recently introduced max-rx-timeout-ms optionao property is missing a
+vendor prefix.
 
-Introduce max-msg-size and max-msg properties to describe such platform
-specific transport constraints, since they cannot be discovered otherwise.
+Add the vendor prefix from the original committer.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Fixes: 3a5e6ab06eab ("dt-bindings: firmware: arm,scmi: Introduce property max-rx-timeout-ms")
 Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
 ---
+Note that this fixes a commit that has been merged in v6.12-rc1...so it
+should not present any backward compatibility issue.
+---
+Cc: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
 Cc: devicetree@vger.kernel.org
+Cc: Peng Fan <peng.fan@nxp.com>
 ---
-v1 --> v2
-- added vendor prefix
-- dropped warnings about resonable minimum max-msg-size
-- clarified the intended usage of max-msg
-- fixed Cc to include all maintainers and using correct e-mails
----
- .../devicetree/bindings/firmware/arm,scmi.yaml    | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 54d7d11bfed4..9d6e1147f9e9 100644
+index 9d6e1147f9e9..e331da4d606b 100644
 --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
 +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -131,6 +131,21 @@ properties:
-       be a non-zero value if set.
-     minimum: 1
+@@ -124,7 +124,7 @@ properties:
+       atomic mode of operation, even if requested.
+     default: 0
  
-+  arm,max-msg-size:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      An optional value, expressed in bytes, representing the maximum size
-+      allowed for the payload of messages transmitted on this transport.
-+
-+  arm,max-msg:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      An optional value representing the maximum number of concurrent in-flight
-+      messages allowed by this transport; this number represents the maximum
-+      number of concurrently outstanding messages that the server can handle on
-+      this platform. If set, the value should be non-zero.
-+    minimum: 1
-+
-   arm,smc-id:
-     $ref: /schemas/types.yaml#/definitions/uint32
+-  max-rx-timeout-ms:
++  nxp,max-rx-timeout-ms:
      description:
+       An optional time value, expressed in milliseconds, representing the
+       transport maximum timeout value for the receive channel. The value should
 -- 
 2.47.0
 
