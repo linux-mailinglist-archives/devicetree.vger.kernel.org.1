@@ -1,205 +1,183 @@
-Return-Path: <devicetree+bounces-116648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D27859B385D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 18:58:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ACD19B3874
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 18:59:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F07D21C22444
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 17:57:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AC9D2837DF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 17:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CA6A1DF27A;
-	Mon, 28 Oct 2024 17:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58191DF985;
+	Mon, 28 Oct 2024 17:59:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mv+S12iB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE5C021106;
-	Mon, 28 Oct 2024 17:57:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8019B1DF75E;
+	Mon, 28 Oct 2024 17:59:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730138272; cv=none; b=gGUgxlGmGbSzly/809vuPd9I8232OBfOf1YLoY2HK3mwCtIXQZMjNvT0rrhn0LoYjiSk94JTnUU2ck4nWoJGqROjErZxlhE3pye++om/uTaid1u6lbbymA/GMZm7q89C6boUdZy4JzyUBaZI19kqYaXPH3F0Gjf8vdpiu6Xk5Sk=
+	t=1730138383; cv=none; b=d2ixP7NywGDtjZvHKnQADqFXhhbzyCIEYeYxiUX4yk8btBXTiMnwdmY0j3yGaH1RukVyvfDIK6AUuh5djXkgr1M5emjHoW+TRH5m5uSgB+0uXTOoA46z4loL6IZ3kHXmxgi5LBHXjN96RjuSuVfUz8zFhxTTx7qXxH+xoAxr0dE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730138272; c=relaxed/simple;
-	bh=9n2kql9SOdKu6PRWDOsoEfPHOf5PZ6YTER7Rby7nT7w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=l21Dv8pBgsp74uwYpoVG2kdHS4UXEo7NVJJHR5VyDOkl67bXIaP9lGhebpZGf63YSPMesZ6jMvASZ7W9SZSUPL3lpyoUzVYx/3yCNA30H6HYSHubF0k/Rbrbi/thvIqyjcgdiFLkdo9tbNEzkBeGRkrLKFT1LxZ9iI61/BM8kns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1730138383; c=relaxed/simple;
+	bh=g/1ApDou+MUUyNEHqOoygo6PYzuXo+hPEGPlqFa/bXI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=dkoC5Lp4Kkj7hdYmuTcZpJwSaLMJgQudmTHV05/diYEKdheO4QXUouZMx4snjI001vH23P2DCVf0DeyRFlUWBrzo63bJF7TCqYtMpE0Zb8rU0qgxPJlnVQA0X4gB5jwo23gPZSQM8NDxijeqxK/je/GcAoZkM4/MzBET23zQp6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mv+S12iB; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6e39bf12830so33479927b3.1;
-        Mon, 28 Oct 2024 10:57:49 -0700 (PDT)
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2fb4af0b6beso68637951fa.3;
+        Mon, 28 Oct 2024 10:59:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730138379; x=1730743179; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nWL0ijAA/7luWmJ6xP8UZoU8tUf5IZQXPW2EFiLZpL8=;
+        b=mv+S12iBV8pZx3DgrjU8NtAg3yKDwFoMY4fnqV2DdsccHxOHZ9IM/sxwMSTV0Mc4uz
+         SSV3vR2Vg2TzlW5wlRUUwr7jbwDs0iEkxNSdXMAUAO461PVuYEgnJa1sWLtHnfPbcjS4
+         FLMqz1idoNOi7AQm3iFOb9V+iYRLad7hVNL4AE+qEbd/TaLSD0ScKlCnqSGLd2xjJ2Dq
+         G+OtrMsGubN9m+nSFZydFttWO8XwomnAbs3eQqyLT587XIXUqWdergkdt7Y0QL59uI14
+         wV+lm/VDqUyCcmjaz37Tu/oUx8T5/zR7MgrvPWyDbp/p3ALQBOGzHjGDsbM6bRsHQmyj
+         3nWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730138269; x=1730743069;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KLLFa6WS4xfeiEtOHxziXZIgc98NLKWXcmokIkVFE5s=;
-        b=HD4f62auDOV6tIoIc3VNKjQ0SvnFTSgeL8Sbfk8E8faCxY+ZEP2diithaH7ewUMElf
-         HSujJYwuSVk/FNPOJ5FdLPd8DaQZsNgDSKg4yEsa7Kyex9D+5SR+pvf4Rd55Qh2qCsGa
-         p+YeCoDXgPSfk4rhuhfbogZ14+xkJflH6ln/Uc3m55XJQnYgWOBIVuBcGISoTExlFnDC
-         vorOkOHa/TYx3iWtkww06A/s0Pl3aPsgsZ5co9gJKyDjVo9Dyiovf6UHvi+w2iaamg0r
-         ASphSPwBXxUSD/WIf3dPEqIC39OBTW7UvKT1eRyuKvnRVg9kXyZw9Muj1e9vcv3LbYQQ
-         NI+A==
-X-Forwarded-Encrypted: i=1; AJvYcCWdjY6wJhtL/6vGNxrjW7S7Jr3WQMC2loUkeJnN5NDxc5T4EwHP27GA6lwHAUsR1T10SX1CywNuf7xrL7E+@vger.kernel.org, AJvYcCXM9lzVz5o854fS3Kfkv9kziqFLu6YSa3N/+Tj/wb7FKDAnUa3bL4QtxfFv8m4Q3K4fTnatQYnEZ3bC@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAegJCWiGgy8CWxLbJI83GQXWXFjl0PrQRc4JsAS3NI090Z1OI
-	jURLWKr1S9S1MpfL+9Id2yBOtgUgOChZ2m+pePDdjq+sFbJgpmz5mIo8Gks+
-X-Google-Smtp-Source: AGHT+IHsa1ltsWOZLCvylljjjxP+724mRZ7QqT/iP5IFvx09mgnH+ZSgO6WfTgWDk5eFoEN18icaxA==
-X-Received: by 2002:a05:690c:60c3:b0:64b:b7e:3313 with SMTP id 00721157ae682-6ea22daffadmr7117777b3.13.1730138268569;
-        Mon, 28 Oct 2024 10:57:48 -0700 (PDT)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e9c6c18650sm15121487b3.64.2024.10.28.10.57.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Oct 2024 10:57:48 -0700 (PDT)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6e330b7752cso39391987b3.1;
-        Mon, 28 Oct 2024 10:57:48 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVpbrxBHHgkOc9OvGBOWH/Qu4Uk2bclOQWt6t/bnwVj/uaHdFBkVHD55KPJqkDIFB+afiBP60353PMOkUN3@vger.kernel.org, AJvYcCWvrNJSuxIK85dKmKerlWQuoyMRWBBuSJsqqpZ7Y3vVwhFq9XqTp5jZQAeXFUmZUL20u4C9/nh4DIC7@vger.kernel.org
-X-Received: by 2002:a05:690c:9a06:b0:6e3:1d8c:1224 with SMTP id
- 00721157ae682-6ea22e5e851mr6027417b3.20.1730138268189; Mon, 28 Oct 2024
- 10:57:48 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1730138379; x=1730743179;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nWL0ijAA/7luWmJ6xP8UZoU8tUf5IZQXPW2EFiLZpL8=;
+        b=n8cToRu4h4n3nx7mVKBEEDJ4qL3CNC8IyTYRml15ScurCnggqareeuh3W4ONVjAFgy
+         0xONo61EllcBfxUkEiLocOzgQAITQDfGtUFe4kyDGfAhWwbDURrNWfT9icTploWb6lir
+         8S1tCtMGJ3biPetdCRBCx/xe9J8Gq1P1g1yVR9DBpcOsLhcLVWWz736OhpDRQEFjBDCO
+         w7Msk/8ObD/ifpOSqobz13OfkpXZWbmldBjfC2EfegOr8CWOWrK8CdPs8MENJG1Ij7kJ
+         GJPPYuNCQ9qT0a/81GYXNzXg3i07XMLtVNhYNxYBC3fOVC6zzrSWbE2eXBtrqjLm/uBd
+         VOWw==
+X-Forwarded-Encrypted: i=1; AJvYcCVjV+He0WFAGiphCVXKyugMLN/SIhKyaUh5tAjEI3asDM5+RDzuGgGPD+/YhwfXDaqw4m7tkSph0qSB@vger.kernel.org, AJvYcCW+yAuNvnkscNILdfyad21/VWCaB2vpl8FDfaRfMLoXq/3r9Gq49Wnaj+rfCpy6v34y4x4x6o5r3x4Axlic@vger.kernel.org, AJvYcCX2CEidoKOf5powxV7Ys/KC5etrYZOypzlBC6G5mLVZQ7Aa61Me6uFay4S7O4PkqztjYDQCbGH6dpYC0Q==@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVDqylu1kJvlpRyrIjnDBkXZhFKF5QYue1afHzYMVqQ0OM1RNy
+	UpKnru2QjPQSm6izgzfPLVeaD6u6nzT0cfYV6ghqCsMLu4gecdF7
+X-Google-Smtp-Source: AGHT+IE4wZOrxBGDczr6W+gTxkO6LW+u/+0VFfkJ/WAb0XKbP4UU4zd224H+MxBcDhYNo+LAhLsCBw==
+X-Received: by 2002:a2e:2403:0:b0:2fb:357a:be4d with SMTP id 38308e7fff4ca-2fcbe0a35aemr48417031fa.43.1730138378952;
+        Mon, 28 Oct 2024 10:59:38 -0700 (PDT)
+Received: from localhost.localdomain ([79.175.114.8])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1dfbdfe2sm396990766b.36.2024.10.28.10.59.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Oct 2024 10:59:38 -0700 (PDT)
+From: Aleksandar Rikalo <arikalo@gmail.com>
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Theo Lebrun <theo.lebrun@bootlin.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	devicetree@vger.kernel.org,
+	Djordje Todorovic <djordje.todorovic@htecgroup.com>,
+	Chao-ying Fu <cfu@wavecomp.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Greg Ungerer <gerg@kernel.org>,
+	Hauke Mehrtens <hauke@hauke-m.de>,
+	Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+	linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	Marc Zyngier <maz@kernel.org>,
+	Paul Burton <paulburton@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Tiezhu Yang <yangtiezhu@loongson.cn>,
+	Aleksandar Rikalo <arikalo@gmail.com>
+Subject: [PATCH v8 00/13] MIPS: Support I6500 multi-cluster configuration
+Date: Mon, 28 Oct 2024 18:59:22 +0100
+Message-Id: <20241028175935.51250-1-arikalo@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240219-add-am64-som-v7-0-0e6e95b0a05d@solid-run.com>
- <20240219-add-am64-som-v7-4-0e6e95b0a05d@solid-run.com> <CAMuHMdXTgpTnJ9U7egC2XjFXXNZ5uiY1O+WxNd6LPJW5Rs5KTw@mail.gmail.com>
- <a65e17e9-0055-4e5a-902f-8ee2807a86df@ti.com> <299b6b75-beef-46aa-9203-b96009226677@solid-run.com>
-In-Reply-To: <299b6b75-beef-46aa-9203-b96009226677@solid-run.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 28 Oct 2024 18:57:35 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW6p-xp96rXqt_dhSNkJSmyQCrh+EOmHv9vgiAWyioMOQ@mail.gmail.com>
-Message-ID: <CAMuHMdW6p-xp96rXqt_dhSNkJSmyQCrh+EOmHv9vgiAWyioMOQ@mail.gmail.com>
-Subject: Re: [PATCH v7 4/4] arm64: dts: ti: hummingboard-t: add overlays for
- m.2 pci-e and usb-3
-To: Josua Mayer <josua@solid-run.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yazan Shhady <yazan.shhady@solid-run.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Josua,
+Taken from Paul Burton MIPS repo with minor changes from Chao-ying Fu.
+Tested with 64r6el_defconfig on Boston board in 2 cluster/2 VPU and
+1 cluster/4 VPU configurations.
 
-On Mon, Oct 28, 2024 at 6:19=E2=80=AFPM Josua Mayer <josua@solid-run.com> w=
-rote:
-> Am 28.10.24 um 16:31 schrieb Vignesh Raghavendra:
-> > On 25/10/24 19:27, Geert Uytterhoeven wrote:
-> >> On Mon, Feb 19, 2024 at 4:05=E2=80=AFPM Josua Mayer <josua@solid-run.c=
-om> wrote:
-> >>> HummingBoard-T features two M.2 connectors labeled "M1" and "M2".
-> >>> The single SerDes lane of the SoC can be routed to either M1 pci-e
-> >>> signals, or M2 usb-3 signals by a gpio-controlled mux.
-> >>>
-> >>> Add overlays for each configuration.
-> >>>
-> >>> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> >> Thanks for your patch, which is now commit bbef42084cc170cb ("arm64:
-> >> dts: ti: hummingboard-t: add overlays for m.2 pci-e and usb-3") in v6.=
-9.
-> >>
-> >>> --- /dev/null
-> >>> +++ b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dtso
-> >>> @@ -0,0 +1,44 @@
-> >>> +// SPDX-License-Identifier: GPL-2.0+
-> >>> +/*
-> >>> + * Copyright (C) 2023 Josua Mayer <josua@solid-run.com>
-> >>> + *
-> >>> + * Overlay for SolidRun AM642 HummingBoard-T to enable USB-3.1.
-> >>> + */
-> >>> +
-> >>> +/dts-v1/;
-> >>> +/plugin/;
-> >>> +
-> >>> +#include <dt-bindings/phy/phy.h>
-> >>> +
-> >>> +#include "k3-serdes.h"
-> >>> +
-> >>> +&serdes0 {
-> >>> +       #address-cells =3D <1>;
-> >>> +       #size-cells =3D <0>;
-> >>> +
-> >>> +       serdes0_link: phy@0 {
-> >>> +               reg =3D <0>;
-> >>> +               cdns,num-lanes =3D <1>;
-> >>> +               cdns,phy-type =3D <PHY_TYPE_USB3>;
-> >>> +               #phy-cells =3D <0>;
-> >>> +               resets =3D <&serdes_wiz0 1>;
-> >>> +       };
-> >>> +};
-> >>> +
-> >>> +&serdes_ln_ctrl {
-> >>> +       idle-states =3D <AM64_SERDES0_LANE0_USB>;
-> >>> +};
-> >>> +
-> >>> +&serdes_mux {
-> >>> +       idle-state =3D <0>;
-> >>> +};
-> >>> +
-> >>> +&usbss0 {
-> >>> +       /delete-property/ ti,usb2-only;
-> >> /delete-property/ (and /delete-node/) to delete something in the base =
-DTS
-> >> does not work.
->
-> My understanding is that flags are equivalent to boolean, i.e:
->
-> ti,usb2-only =3D <true>;
-> ti,usb2-only;
->
-> are equivalent.
->
-> If so, can we assign <false> within the overlay?
+v8:
+ - irqchip: mips-gic: Handle case with cluster without CPU cores.
+ - Add Tested-by: Gregory CLEMENT <gregory.clement@bootlin.com> for the entire series.
+ - Re-base onto the master branch, with no functionality impact.
 
-Unfortunately not. My first thought was "it depends on the actual code
-in the driver", but that turns out to be wrong:
+v7:
+ - Add fixes for specific CM3.5 which is used in EyeQ6H SoCs, suggested by Gregory Clement.
+ - Re-base onto the master branch, with no functionality impact.
 
-    static inline bool of_property_read_bool(const struct device_node *np,
-                                             const char *propname)
-    {
-            const struct property *prop =3D of_find_property(np, propname, =
-NULL);
+v6:
+ - Re-base onto the master branch, with no functionality impact.
+ - Correct the issue reported by the kernel test robot.
 
-            return prop ? true : false;
-    }
+v5:
+ - Drop FDC related changes (patches 12, 13, and 14).
+ - Apply changes suggested by Thomas Gleixner (patches 3 and 4).
+ - Add #include <linux/cpumask.h> to patch 1, suggested by Thomas Bogendoerfer.
+ - Add Reviewed-by: Philippe Mathieu-Daudé <philmd@linaro.org> for the patch 08/11.
+ - Add Tested-by: Serge Semin <fancer.lancer@gmail.com> for the entire series.
+ - Correct some commit messages.
 
-    static inline bool of_property_present(const struct device_node
-*np, const char *propname)
-    {
-            return of_property_read_bool(np, propname);
-    }
+v4:
+ - Re-base onto the master branch, with no functionality impact.
+ - Refactor MIPS FDC driver in the context of multicluster support.
 
-So both methods just check if the property is present, and do not use
-its value, when present (i.e. the former does not "read" the bool).
+v3:
+ - Add Reviewed-by: Jiaxun Yang <jiaxun.yang@flygoat.com> for the patch 02/12.
+ - Add the changes requested by Marc Zyngier for the 3/12 patch.
+ - Remove the patch 11/12 (a consequence of a discussion between Jiaxun Yang
+   and Marc Zyngier.
+ - Re-base onto the master branch, with no functionality impact.
 
-drivers/usb/cdns3/cdns3-ti.c uses device_property_read_bool:
+v2:
+ - Apply correct Signed-off-by to avoid confusion.
 
-    static inline bool device_property_read_bool(const struct device *dev,
-                                                 const char *propname)
-    {
-            return device_property_present(dev, propname);
-    }
+Chao-ying Fu (1):
+  irqchip/mips-gic: Setup defaults in each cluster
 
-so (at least for DT) that should map to the above.
+Gregory CLEMENT (4):
+  dt-bindings: mips: cpu: Add property for broken HCI information
+  MIPS: CPS: Support broken HCI for multicluster
+  MIPS: mobileye: dts: eyeq6h: Enable cluster support
+  irqchip: mips-gic: Handle case with cluster without CPU cores
 
-Gr{oetje,eeting}s,
+Paul Burton (8):
+  irqchip/mips-gic: Introduce for_each_online_cpu_gic()
+  irqchip/mips-gic: Support multi-cluster in for_each_online_cpu_gic()
+  irqchip/mips-gic: Multi-cluster support
+  clocksource: mips-gic-timer: Always use cluster 0 counter as
+    clocksource
+  clocksource: mips-gic-timer: Enable counter when CPUs start
+  MIPS: pm-cps: Use per-CPU variables as per-CPU, not per-core
+  MIPS: CPS: Introduce struct cluster_boot_config
+  MIPS: CPS: Boot CPUs in secondary clusters
 
-                        Geert
+ .../devicetree/bindings/mips/cpus.yaml        |   6 +
+ arch/mips/boot/dts/mobileye/eyeq6h.dtsi       |   1 +
+ arch/mips/include/asm/mips-cm.h               |  18 ++
+ arch/mips/include/asm/smp-cps.h               |   7 +-
+ arch/mips/kernel/asm-offsets.c                |   3 +
+ arch/mips/kernel/cps-vec.S                    |  19 +-
+ arch/mips/kernel/mips-cm.c                    |   4 +-
+ arch/mips/kernel/pm-cps.c                     |  35 +-
+ arch/mips/kernel/smp-cps.c                    | 305 +++++++++++++++---
+ drivers/clocksource/mips-gic-timer.c          |  45 ++-
+ drivers/irqchip/Kconfig                       |   1 +
+ drivers/irqchip/irq-mips-gic.c                | 269 ++++++++++++---
+ 12 files changed, 599 insertions(+), 114 deletions(-)
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+-- 
+2.25.1
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
