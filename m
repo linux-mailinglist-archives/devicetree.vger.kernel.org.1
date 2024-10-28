@@ -1,242 +1,188 @@
-Return-Path: <devicetree+bounces-116438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF58C9B2E8B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:19:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4726D9B2E94
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:20:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D2D3282472
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:19:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3DA0280EBC
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:20:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B7F1DB527;
-	Mon, 28 Oct 2024 11:09:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A7431D63E4;
+	Mon, 28 Oct 2024 11:11:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W13JUlpX"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="XEeMnEnu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0628C1DA633;
-	Mon, 28 Oct 2024 11:08:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D886F1D416E
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 11:11:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730113740; cv=none; b=p3dT/mbZLjY66nh30dtBGn2dQMdLfwweRTu7of94lJY7Yb4b8lTdy+S94pq1NoWlwGmtdGJi9tz/72AU5RPRmJ+BSzX/QoMRIlJn3dEZhw3RCQq9z4lTDA+T+WL7h4R0ngvzH3mWZ1jFXUnhQFybV1PP5hnmO0EhBNaTguVcjtQ=
+	t=1730113870; cv=none; b=bQzfuM1X8SqtFJHvq1CRmVH5yKCqvig0fSwaobe9P30uz6EdMA0j2YeQRMaEQj45snl2ty2BE+J2f7A1gMCx/Hf7mBiDJn8XyD31zCgwMk349rTgpc85RAExYvyfwtcPPP45w1gTwJhWTXFgFlHHKlDL9hhjA7M/Iizm29/FEzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730113740; c=relaxed/simple;
-	bh=k+C2WEQ5miw0ZOJlHBxDIswiKkg40rsya70jjvsVg78=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=pGYTn4Y6kx2xeIDSUGOs7ljz9pXQoXwLKMjPjAIQ3l1BY9uzECy5Uw6WO8UsVGrIQxib3qp6jAh2MQEWZGIHfseqEvyZlhFBz7FvjWAG9T+JT/uJJZMqVTyOG2yr6Ut0cXeTDxEKebmkRpIlJBYbMS7cshj2tI/OhEK8F8lo3gI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W13JUlpX; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-539f72c8fc1so4980135e87.1;
-        Mon, 28 Oct 2024 04:08:57 -0700 (PDT)
+	s=arc-20240116; t=1730113870; c=relaxed/simple;
+	bh=ZgTV9zpZbKQQXLQ5wQfQWN0K4yKV8OzqkCwsGVG8/BA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CXTY8fwUC39u99kOtl2y9bo+0pbbOri6xDhLFctgC3xa6bONCA0FUTvNHFByEIZybLmdLRGqkb9/5kwPMa48RvC0kYspH+0REaXFF1c6gg5d+3ed8KBp+2K/4jTSA7PZM3FvCfBN3pYJ8kmXJxRveJFxvjHPN+z+ggKyrwKFWyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=XEeMnEnu; arc=none smtp.client-ip=209.85.217.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-4a4789662c1so1158405137.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 04:11:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730113736; x=1730718536; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=k+C2WEQ5miw0ZOJlHBxDIswiKkg40rsya70jjvsVg78=;
-        b=W13JUlpXv2PTxfnnMhQqrCGtFKlNiZusRqO/1jhOwxAy5kodPjG5BY+sK527mZLPPM
-         jdBT5iZuofKiuiJuaMHm8F5LXsjd53eQhR2itwJRwfSAmggqORJ4a4z/eHNasYDYcGxs
-         iu5/GVgj9Iv7MP8amqPFNkmC3px6reofBqpeyV4Xg6m4a0c0TxgonrDG6CGWq8o3vcal
-         8leIYqjTRARfLMTO62XDFWZQT//EmMde7Q5O7KZwAeDeCrgohnyZCu8DgYbyaBm9/bS1
-         /+PCfynfunXkmhSXdGYADwD+OoYp00OB7HeSkXC9R4r0/wPeMVNX2VelzptctEJQcnEZ
-         pmIw==
+        d=chromium.org; s=google; t=1730113866; x=1730718666; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wVZy5IrMKfr30Sb+HXmGpWXo6EuG4COK1gDvgq9aZn8=;
+        b=XEeMnEnulr64ndPI4xdutkSZubgv/iQvdX4a2+reazuy0m3jJmQkyunxWTt4ppMNPR
+         MW07MXPm2OWprCcfEPEV2H+YNJTjBUUhyz/Rd6tZGiSjcWO2Tp8+6Ry3ojSJR0ZCzHCG
+         F0+jo3MGW9X3vGKSw6VLLv7d09xP+XFEIHSxI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730113736; x=1730718536;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=k+C2WEQ5miw0ZOJlHBxDIswiKkg40rsya70jjvsVg78=;
-        b=UzHD7dIpd7ytAa1D8soGjRP7cgHNye9Q2H45sx0b8e1ub99/HgxuEqq5zyUh+ZuwoJ
-         gs1DyX/ICrWaa4Bm60w3xjc6uJahXxm4e9H/KsRNUPb5BU+wLwjmTD3YMnbCv0GtkQD9
-         4neWrHtd5pnWMy9ZFGmwbUfOeVqNds5dGt89fGtaCcXzS0w4QOxGQ+jZB2GZKwWT6fl1
-         fDofUZ4C3sngyyBJL6pfUNaYuaeDOsDrS2MrK/nK+uoeKsCcpOGqw+uc5pfcuQnrlILR
-         8BZwSIGS1zjcmHQCdUJ2I1P4M7CIk3E+51PkWa6YeanCkzuLxQ22peb3hQZeMkdJjdPf
-         u2kg==
-X-Forwarded-Encrypted: i=1; AJvYcCUYeYd7WH4nD73ytPFZr0SHM1v71T31N65TDJ9fSIk1758dUukdyUvbjBDmtqTZeHZIU2dWErLE+ErKsbvP@vger.kernel.org, AJvYcCV2L4/BFfNpEHv+1sQC/UAUYsP7tgzC0UtPu6cSaa/P605jyU9Y5pZH1V8FZiw4EsviTyaYE+p0wCg6@vger.kernel.org, AJvYcCV32XCcPMEpRDlWEKWjFosw8SozC/VI6f7zVoNoDqh9g31UQPgy/Pi8zfjk503C0x/tRmo7JeBjTvSp@vger.kernel.org, AJvYcCVUUoF61OIkIm/TxkUL3f2IKBIygbyFgDQpjFSIk2nI/0bP7l4IWKq2vn+tmIK6r5GkI31Ky0RiSCwr@vger.kernel.org, AJvYcCWwoPoO3/xWTiXI1miTKadQ/VPM7GTfF32tSHQAiBm2hdIRbRnNIxN/Gt/DCRjykdSgwgm8svom9Xey@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5owo/qpHMEivKeT1fOauzAvKxrHPcHuaR4s9B/kX+gDFpVFVO
-	S/fVYK7RjQsk5MYzsGZamllpTVXX8ZsJO7U9DCmUqsEX5Q66Tcl7
-X-Google-Smtp-Source: AGHT+IGZpPN97FmnyWE/T+gJ2ZjvwPkNgyBqurU5ktqqaJQQzU19h97yUjKm5xmwPCG6wWVrGQL4vQ==
-X-Received: by 2002:a05:6512:3c90:b0:536:55ef:69e8 with SMTP id 2adb3069b0e04-53b347266cfmr3003689e87.0.1730113735688;
-        Mon, 28 Oct 2024 04:08:55 -0700 (PDT)
-Received: from ?IPv6:2001:a61:34c9:ea01:14b4:7ed9:5135:9381? ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b1c65dsm9242201f8f.8.2024.10.28.04.08.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 04:08:55 -0700 (PDT)
-Message-ID: <6671d95514e39e59dfda04a7a7ed1b83df001477.camel@gmail.com>
-Subject: Re: [PATCH RFC v4 11/15] iio: buffer-dmaengine: add
- devm_iio_dmaengine_buffer_setup_ext2()
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,  Nuno =?ISO-8859-1?Q?S=E1?=
- <nuno.sa@analog.com>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
- <ukleinek@kernel.org>,  Michael Hennerich <Michael.Hennerich@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>, 
- Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org,  linux-pwm@vger.kernel.org
-Date: Mon, 28 Oct 2024 12:08:49 +0100
-In-Reply-To: <20241026164815.47de1ffa@jic23-huawei>
-References: <dc52cda0-47d9-4cbf-a68e-0af304edc32e@gmail.com>
-	 <20241026164815.47de1ffa@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
+        d=1e100.net; s=20230601; t=1730113866; x=1730718666;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wVZy5IrMKfr30Sb+HXmGpWXo6EuG4COK1gDvgq9aZn8=;
+        b=Ij4YQEapI2WnTTqBRV8uE1zMD3FSIvfyauu+YlQ7SOqOQE64GADIUXP+KaBKHtgFi3
+         uv+D2xiPR5RlhCFs+9/i9JOcivwQKML83mVTvNpGjXrQJOw4f+6SKHM0m//q//gz/OQL
+         bu/RB5hRRS0xHMCQjsTk5AysyVJr9Jr6oItV5vTufsuwjvmoB3lS8kp9QdKOcyh5WN6H
+         ITgJedkOlkDU5ojoKKPt/NVaQigfrJAWJO2q6EWAXZPHzU2DWXAAiCJXL51SwDUYQtj3
+         5vNKgBUUuUoHp1nyu72u74e8OxyHI5ESCSvgmqHFnLsnAPIrJ9Ct/UlYPmwgeDihJvHk
+         pEmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVCmtgdoA5rMYhUWa/WflsNCa7VCDdE7C0Ez6gzrDf/wunEM2HScZN1WNSs+p1M4ZlT6y87JAC5QCS0@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywp704tsLZZcKlv8zMvZ/nydbUhZ9U+WT5cSgJlEsRLStkC3TuQ
+	yr1TEWKs5b52Lxo3jrEgktbMiROsjGpvYgllI2+k8+rf23VTXKudgWyLYEDAGoU7bIn76Ny0Ykw
+	=
+X-Google-Smtp-Source: AGHT+IE5z/OivRmM2ONPbLMq6LimT32S0fmPPJyJg/wSMvmfC7jcEUH/zBRp2A1J2HS2v7uQapcoBw==
+X-Received: by 2002:a05:6102:38cb:b0:4a4:7ddc:6972 with SMTP id ada2fe7eead31-4a8cfd6d225mr5703753137.26.1730113866213;
+        Mon, 28 Oct 2024 04:11:06 -0700 (PDT)
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com. [209.85.221.181])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85580a7bce8sm905016241.7.2024.10.28.04.11.04
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Oct 2024 04:11:04 -0700 (PDT)
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-50d525be53eso1072184e0c.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 04:11:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVyHexdQSTFZAJmp3PSkvsF/frAGo4a8xWUycx62IGK8HImgYUvcAWyuuWb/YagoLDzp1b2PYDzmaDw@vger.kernel.org
+X-Received: by 2002:a05:6122:3d01:b0:50d:99e4:dea6 with SMTP id
+ 71dfb90a1353d-51015055166mr3900796e0c.7.1730113863969; Mon, 28 Oct 2024
+ 04:11:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20241025104548.1220076-1-fshao@chromium.org> <20241025104548.1220076-2-fshao@chromium.org>
+ <5vmfh2nkxtpzt2vk4j6ghro7z5stoyvry3enzoqepg6hjxqrho@fofs5cwa2iqq>
+In-Reply-To: <5vmfh2nkxtpzt2vk4j6ghro7z5stoyvry3enzoqepg6hjxqrho@fofs5cwa2iqq>
+From: Fei Shao <fshao@chromium.org>
+Date: Mon, 28 Oct 2024 19:10:27 +0800
+X-Gmail-Original-Message-ID: <CAC=S1njPjtvhsc+voNK447wbQmRiN0xVDi-jgOmba4NLRiNi0Q@mail.gmail.com>
+Message-ID: <CAC=S1njPjtvhsc+voNK447wbQmRiN0xVDi-jgOmba4NLRiNi0Q@mail.gmail.com>
+Subject: Re: [PATCH 1/4] ASoC: dt-bindings: mediatek,mt8188-mt6359: Add adsp
+ and dai-link properties
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Trevor Wu <trevor.wu@mediatek.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, 2024-10-26 at 16:48 +0100, Jonathan Cameron wrote:
-> On Fri, 25 Oct 2024 20:40:42 +0200 (GMT+02:00)
-> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
->=20
-> > Oct 25, 2024 18:42:02 David Lechner <dlechner@baylibre.com>:
-> >=20
-> > > On 10/25/24 8:24 AM, Nuno S=C3=A1 wrote:=C2=A0=20
-> > > > I still need to look better at this but I do have one though alread=
-y=20
-> > > > :)
-> > > >=20
-> > > > On Wed, 2024-10-23 at 15:59 -0500, David Lechner wrote:=C2=A0=20
-> > > > > Add a new devm_iio_dmaengine_buffer_setup_ext2() function to hand=
-le
-> > > > > cases where the DMA channel is managed by the caller rather than=
-=20
-> > > > > being
-> > > > > requested and released by the iio_dmaengine module.
-> > > > >=20
-> > > > > Signed-off-by: David Lechner <dlechner@baylibre.com>
-> > > > > ---
-> > > > >=20
-> > > > > v4 changes:
-> > > > > * This replaces "iio: buffer-dmaengine: generalize requesting DMA=
-=20
-> > > > > channel"
-> > > > > ---=C2=A0=20
-> > >=20
-> > > ...
-> > > =C2=A0
-> > > > > @@ -282,12 +281,38 @@ void iio_dmaengine_buffer_free(struct=20
-> > > > > iio_buffer *buffer)
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iio_buffer_to_dmaengin=
-e_buffer(buffer);
-> > > > > =C2=A0
-> > > > > =C2=A0=C2=A0=C2=A0 iio_dma_buffer_exit(&dmaengine_buffer->queue);
-> > > > > -=C2=A0=C2=A0 dma_release_channel(dmaengine_buffer->chan);
-> > > > > -
-> > > > > =C2=A0=C2=A0=C2=A0 iio_buffer_put(buffer);
-> > > > > +
-> > > > > +=C2=A0=C2=A0 if (dmaengine_buffer->owns_chan)
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma_release_channel(dmaengi=
-ne_buffer->chan);=C2=A0=20
-> > > >=20
-> > > > Not sure if I agree much with this owns_chan flag. The way I see it=
-,=20
-> > > > we should always
-> > > > handover the lifetime of the DMA channel to the IIO DMA framework.=
-=20
-> > > > Note that even the
-> > > > device you pass in for both requesting the channel of the spi_offlo=
-ad=C2=A0=20
-> > > > and for
-> > > > setting up the DMA buffer is the same (and i suspect it will always=
-=20
-> > > > be) so I would
-> > > > not go with the trouble. And with this assumption we could simplify=
- a=20
-> > > > bit more the
-> > > > spi implementation.=C2=A0=20
-> > >=20
-> > > I tried something like this in v3 but Jonathan didn't seem to like it=
-.
-> > >=20
-> > > https://lore.kernel.org/all/20240727144303.4a8604cb@jic23-huawei/
-> > > =C2=A0
-> > > >=20
-> > > > And not even related but I even suspect the current implementation=
-=20
-> > > > could be
-> > > > problematic. Basically I'm suspecting that the lifetime of the DMA=
-=20
-> > > > channel should be
-> > > > attached to the lifetime of the iio_buffer. IOW, we should only=20
-> > > > release the channel
-> > > > in iio_dmaengine_buffer_release() - in which case the current=20
-> > > > implementation with the
-> > > > spi_offload would also be buggy.=C2=A0=20
-> > >=20
-> > > The buffer can outlive the iio device driver that created the buffer?=
-=C2=A0=20
-> >=20
-> > Yes, it can as the IIO device itself. In case a userspace app has an op=
-en=20
-> > FD for the buffer chardev, we get a reference that is only released whe=
-n=20
-> > the FD is closed (which can outlive the device behind bound to its=20
-> > driver). That is why we nullify indio_dev->info and check for it on the=
-=20
-> > read() and write() fops.
-> >=20
-> > FWIW, I raised concerns about this in the past (as we don't have any lo=
-ck=20
-> > in those paths) but Jonathan rightfully wanted to see a real race. And =
-I=20
-> > was too lazy to try and reproduce one but I'm still fairly sure we have=
-=20
-> > theoretical (at least) races in those paths. And one of them could be (=
-I=20
-> > think) concurrently hitting a DMA submit block while the device is bein=
-g=20
-> > unbound. In that case the DMA chan would be already released and we cou=
-ld=20
-> > still try to initiate a transfer. I did not check if that would crash o=
-r=20
-> > something but it should still not happen.
-> >=20
-> There are a few places where I've been meaning to have another look
-> at our protections during unregister. May well be problems hiding here
-> and in general the thinking on how to do this in the kernel has slowly
-> been changing so we might be able to clean things up in general.
->=20
+On Mon, Oct 28, 2024 at 4:54=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Fri, Oct 25, 2024 at 06:44:41PM +0800, Fei Shao wrote:
+> > Add "mediatek,adsp" property for the ADSP handle if ADSP is enabled on
+> > the platform.
+>
+> We see this from the diff.
+>
+> > Add "mediatek,dai-link" property for the required DAI links to configur=
+e
+> > sound card.
+>
+> We see this from the diff.
+>
+> >
+> > Both properties are commonly used in the MediaTek sound card driver.
+>
+> If they are used, why suddenly they are needed? What changed?
 
-Yeah, I'm fairly sure things like [1] are not enough in preventing potentia=
-l nasty
-races (though they should be hard to trigger). OTOH, in [2], we do have pro=
-per
-locking.
+Nothing has changed. These should have been added altogether when the
+binding was first introduced. This patch is to fill the gaps and fix
+dtbs_check warnings, like I mentioned in the cover letter.
+I can add a line in the commit message saying it's to fix the warning
+in addition to the cover letter, if that's preferred.
 
-Simple solution would be to use the info lock in the buffer read() and writ=
-e() paths.
-I do realize that's a fastpath but I don't think that would be such a conte=
-nded lock.
-But we can surely do better and RCU could be a good candidate for this (we =
-could do
-something similar to what gpiolib is doing) and I wouldn't expect it to be =
-that
-complicated to implement. Biggest issue by making info a __rcu pointer woul=
-d be to
-change all IIO drivers to set the pointer with rcu_assign_pointer(). Though=
- during
-probe there's no potential race so what we have today should be fine (just =
-not sure
-if things like sparse would not complain about the "raw" assignment).
+>
+> >
+> > Signed-off-by: Fei Shao <fshao@chromium.org>
+> > ---
+> >
+> >  .../bindings/sound/mediatek,mt8188-mt6359.yaml         | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt=
+6359.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.=
+yaml
+> > index f94ad0715e32..701cedfa38d2 100644
+> > --- a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.ya=
+ml
+> > +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.ya=
+ml
+> > @@ -29,6 +29,16 @@ properties:
+> >      $ref: /schemas/types.yaml#/definitions/phandle
+> >      description: The phandle of MT8188 ASoC platform.
+> >
+> > +  mediatek,adsp:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: The phandle of MT8188 ADSP platform.
+>
+> And what is the difference between ASoC and ADSP platforms? What are
+> they used for?
 
-[1]: https://elixir.bootlin.com/linux/v6.12-rc4/source/drivers/iio/industri=
-alio-buffer.c#L176
-[2]: https://elixir.bootlin.com/linux/v6.12-rc4/source/drivers/iio/industri=
-alio-core.c#L1825
+I'm not a MediaTek or audio folks, and I'm afraid that I'm not the
+best person to explain the details accurately in front of experts on
+the list... I know it's an audio DSP but that explains nothing.
+MediaTek didn't provide a meaningful explanation in the tree or
+commits, and I want to avoid adding additional but likely misleading
+descriptions from someone who doesn't have enough knowledge,
+potentially causing even more confusing situations in the future.
+Plus, the same changes were accepted as-is in the past, so I assumed
+they might be self-explanatory to people who are familiar with the
+matter.
 
+>
+> > +
+> > +  mediatek,dai-link:
+> > +    $ref: /schemas/types.yaml#/definitions/string-array
+> > +    description:
+> > +      A list of the desired dai-links in the sound card. Each entry is=
+ a
+> > +      name defined in the machine driver.
+>
+> The list is provided below. I don't understand why do you need it. Your
+> msg is pretty useless - you describe what you do, instead of why.
 
-- Nuno S=C3=A1
+I think this is used to explicitly list the intermediate but hidden
+DAIs, but again, there's not much info about them unless MediaTek can
+explain more details and why they need a vendor property for this.
 
+Regards,
+Fei
 
+>
+> Best regards,
+> Krzysztof
+>
 
