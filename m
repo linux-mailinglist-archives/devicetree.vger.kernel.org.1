@@ -1,188 +1,175 @@
-Return-Path: <devicetree+bounces-116263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1B6D9B2323
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 03:49:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57AFF9B2347
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 03:54:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4F31AB217A6
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 02:49:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE1C8B21B16
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 02:54:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38FC8156F3C;
-	Mon, 28 Oct 2024 02:49:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0159B18801A;
+	Mon, 28 Oct 2024 02:54:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Qserw/KS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62D152C697;
-	Mon, 28 Oct 2024 02:49:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC3B9178CC5;
+	Mon, 28 Oct 2024 02:54:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730083768; cv=none; b=oM3kI/+OGgitW7H+g4wJmwUtOmK6CTHj6rUezC2jYs3vMl/gAyQvym5bMg9US5byQLWLJt8xlrRxFivaarYiJfs3YduvazFRzoPsoDvSutAbpiOPfWS7o+eVuG5Icgs5V/4KbdvZQtsk9ugsaEBkdltZk2z9pIZsTjSLKQGxnyw=
+	t=1730084049; cv=none; b=Ze6cs8aCI91v5Oj8gHwx4gaYplcDmf7jthzSm0kov7oZIweQMDXAzTfeVkUNxrrvGM5uUowJO3/EMEGLzSF3zlLsUOPY8tYzpCw8BiqrtNxgUmRZiZGsPIkj573Iy14tnIhsoSge+P9vk9677I/ofQm2MEbqpG0noOc+PDUl6xg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730083768; c=relaxed/simple;
-	bh=+W8rOujOB1poCvpXN2Vb6ocoev2Qu24//WYZBN1Lx6Q=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=m+rXkycNNS+F+sX3HDH5HWnwqyoJgr6sPL0UmgBmpMZnXtAuzZWuAsMZ6OC1ADk37QeFns9ZCfCNIxmyht6xzlg7HIncnkTGWV8beINeNn7XZ2TAoKLbJ7e6a9gCrlmy3e86UWNDKWZdvUPuvU8Rw/KB7YrrhpbZ9auttYe8WA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Mon, 28 Oct
- 2024 10:48:13 +0800
-Received: from aspeedtech.com (192.168.10.152) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
- Transport; Mon, 28 Oct 2024 10:48:13 +0800
-From: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-To: <patrick@stwcx.xyz>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
-	<wim@linux-watchdog.org>, <linux@roeck-us.net>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
-	<linux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>
-CC: <Peter.Yin@quantatw.com>, <Patrick_NC_Lin@wiwynn.com>,
-	<Bonnie_Lo@wiwynn.com>, <DELPHINE_CHIU@wiwynn.com>, <bmc-sw@aspeedtech.com>,
-	<chnguyen@amperecomputing.com>
-Subject: [PATCH v2 3/3] watchdog: aspeed: Add support for SW restart
-Date: Mon, 28 Oct 2024 10:48:13 +0800
-Message-ID: <20241028024813.2416962-4-chin-ting_kuo@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241028024813.2416962-1-chin-ting_kuo@aspeedtech.com>
-References: <20241028024813.2416962-1-chin-ting_kuo@aspeedtech.com>
+	s=arc-20240116; t=1730084049; c=relaxed/simple;
+	bh=K8HHtVVsRmVmZcZaYQUht+3NWbzZllIb2/axIpXkKyQ=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=hARI7RkSpJT1T7yWZiMCC5TPyQanygg8omTvPfX/P0XJhpHtomWi+Zp10zXliaW6QJfqBWAod8rVZLQ9SwuryRIWZY28xzPeP7JHs1PVpvj4dFujREjvcdQWLQqMSnkar/jlUZPnHdc8vHYN3nZgUS/pxfZgiUJwFMkKAHfdJV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Qserw/KS; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49RNpLGo031126;
+	Mon, 28 Oct 2024 02:54:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5zN10JdhAIAKuyeOLdvbGAXdgY1Y+VOJbyGob/tjS3A=; b=Qserw/KST6S3KzwA
+	iVrBOggXDNlmNEvOn0NGaSo+LUIFysn0ADcSOCJCyVM8VWKb+CA7Mk7rtwO1mNRJ
+	7XIm5Zt3yXhEuupgGu85by34E/Gu1WvCyK67hVqC1Hfbs6khVSFrYUAJJNs2LAyS
+	Jrz0PGA/r1oQ9IExwJxboMCYPu362dQnJitlsSLhBS41loAwItx5JHL8m04bJO1f
+	rYtvnfUrlkJzpmh9gmHY/Vo9//wRxhY8W6V6FzTAgAutFbuSfDsSg+vP1gOl1YHl
+	ZCrYsVN0h3R//h0cDzEHK+5zJEkfnClzAtetmzWVz/9F9y6lyL54sQ2PR5Cr9C1o
+	QwtDJg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gskjucvg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 02:54:00 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49S2rxgZ023044
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 02:53:59 GMT
+Received: from [10.64.68.153] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 27 Oct
+ 2024 19:53:55 -0700
+Message-ID: <e263d461-9e2b-4ffe-8221-cd9ecdd142c9@quicinc.com>
+Date: Mon, 28 Oct 2024 10:53:52 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: Add coresight nodes for QCS615
+From: Jie Gan <quic_jiegan@quicinc.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao
+	<quic_jinlmao@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>
+References: <20241017030005.893203-1-quic_jiegan@quicinc.com>
+ <69be09ec-e9a5-4fb6-890e-74a65f3ce404@oss.qualcomm.com>
+ <3f90b3d6-9637-47b7-ad8a-ff43cb28ad32@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <3f90b3d6-9637-47b7-ad8a-ff43cb28ad32@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: G65cGfCj_fY372rmIK411cIbN-yhb_Yz
+X-Proofpoint-ORIG-GUID: G65cGfCj_fY372rmIK411cIbN-yhb_Yz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ impostorscore=0 suspectscore=0 phishscore=0 priorityscore=1501
+ mlxlogscore=999 bulkscore=0 mlxscore=0 malwarescore=0 lowpriorityscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410280023
 
-Since AST2600, except for HW WDT counter timeout, HW WDT
-reset can also be triggered by just cinfiguring some
-HW registers by SW directly. We named it "SW restart".
-Although it is "SW" restart, its mechanism is implemented
-by HW.
 
-Originally, system can only know it is reset by WDT
-through a reset flag. However, since AST2600, SW can
-trigger the reset event consciously and directly without
-wait for WDT timeout. WDT counter is not enabled when
-SW restart is adopted. After that, an independent reset
-event flag will be set after systemis reset by SW.
 
-Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
----
- drivers/watchdog/aspeed_wdt.c | 40 +++++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+On 10/28/2024 8:54 AM, Jie Gan wrote:
+> 
+> 
+> On 10/26/2024 2:47 AM, Konrad Dybcio wrote:
+>> On 17.10.2024 5:00 AM, Jie Gan wrote:
+>>> Add following coresight components on QCS615, EUD, TMC/ETF, TPDM, 
+>>> dynamic
+>>> Funnel, TPDA, Replicator and ETM.
+>>>
+>>> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+>>> ---
+>>> Already checked by command:dtbs_check W=1.
+>>>
+>>> Dependencies:
+>>> 1. Depends on qcs615 base dtsi change:
+>>> https://lore.kernel.org/all/20240926-add_initial_support_for_qcs615- 
+>>> v3-5-e37617e91c62@quicinc.com/
+>>> 2. Depends on qcs615 AOSS_QMP change:
+>>> https://lore.kernel.org/linux-arm-msm/20241017025313.2028120-4- 
+>>> quic_chunkaid@quicinc.com/
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/qcs615.dtsi | 1632 ++++++++++++++++++++++++++
+>>>   1 file changed, 1632 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/ 
+>>> dts/qcom/qcs615.dtsi
+>>> index 856b40e20cf3..87cca5de018e 100644
+>>> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>>> @@ -202,6 +202,18 @@ l3_0: l3-cache {
+>>>           };
+>>>       };
+>>> +    dummy_eud: dummy_sink {
+>>
+>> Node names (after the ':' and before the '{' signs) can't contain
+>> underscores, use '-' instead.
+> Sure, will fix it.
+> 
+>>
+>> [...]
+>>
+>>> +        stm@6002000 {
+>>> +            compatible = "arm,coresight-stm", "arm,primecell";
+>>> +            reg = <0x0 0x6002000 0x0 0x1000>,
+>>
+>> Please pad the non-zero address part to 8 hex digits with leading
+>> zeroes, across the board
+> Will fix it.
+> 
+>>
+>> This looks like a lot of nodes, all enabled by default. Will this run
+>> on a production-fused device?
+> Yes, usually Coresight nodes are enabled by default. Those nodes can run 
+> on the commercial devices.
+Sorry, my last clarification is not clearly. The Coresight nodes are 
+enabled by default for commercial devices(fused), but only part of 
+functions can run with commercial devices because it needs check fuse 
+data before running.
 
-diff --git a/drivers/watchdog/aspeed_wdt.c b/drivers/watchdog/aspeed_wdt.c
-index a0c03a949173..9ba9b7346d44 100644
---- a/drivers/watchdog/aspeed_wdt.c
-+++ b/drivers/watchdog/aspeed_wdt.c
-@@ -40,6 +40,9 @@ MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
- #define   AST2600_SCU_SYS_RESET_WDT_SW_MASK	0x8
- #define   AST2600_SCU_SYS_RESET_WDT_MASK_SHIFT	16
- 
-+/* WDT behavior control flag */
-+#define WDT_RESTART_SYSTEM_SW_SUPPORT	0x00000001
-+
- struct aspeed_wdt_scu {
- 	const char *compatible;
- 	u32 reset_status_reg;
-@@ -53,6 +56,7 @@ struct aspeed_wdt_config {
- 	u32 irq_shift;
- 	u32 irq_mask;
- 	struct aspeed_wdt_scu scu;
-+	u32 flags;
- };
- 
- struct aspeed_wdt {
-@@ -67,6 +71,7 @@ static const struct aspeed_wdt_config ast2400_config = {
- 	.ext_pulse_width_mask = 0xff,
- 	.irq_shift = 0,
- 	.irq_mask = 0,
-+	.flags = 0,
- 	.scu = {
- 		.compatible = "aspeed,ast2400-scu",
- 		.reset_status_reg = AST2400_SCU_SYS_RESET_STATUS,
-@@ -80,6 +85,7 @@ static const struct aspeed_wdt_config ast2500_config = {
- 	.ext_pulse_width_mask = 0xfffff,
- 	.irq_shift = 12,
- 	.irq_mask = GENMASK(31, 12),
-+	.flags = 0,
- 	.scu = {
- 		.compatible = "aspeed,ast2500-scu",
- 		.reset_status_reg = AST2400_SCU_SYS_RESET_STATUS,
-@@ -93,6 +99,7 @@ static const struct aspeed_wdt_config ast2600_config = {
- 	.ext_pulse_width_mask = 0xfffff,
- 	.irq_shift = 0,
- 	.irq_mask = GENMASK(31, 10),
-+	.flags = WDT_RESTART_SYSTEM_SW_SUPPORT,
- 	.scu = {
- 		.compatible = "aspeed,ast2600-scu",
- 		.reset_status_reg = AST2600_SCU_SYS_RESET_STATUS,
-@@ -130,6 +137,11 @@ MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
- #define   WDT_CLEAR_TIMEOUT_AND_BOOT_CODE_SELECTION	BIT(0)
- #define WDT_RESET_MASK1		0x1c
- #define WDT_RESET_MASK2		0x20
-+#define WDT_SW_RESET_CTRL	0x24
-+#define   WDT_SW_RESET_COUNT_CLEAR	0xDEADDEAD
-+#define   WDT_SW_RESET_ENABLE	0xAEEDF123
-+#define WDT_SW_RESET_MASK1	0x28
-+#define WDT_SW_RESET_MASK2	0x2c
- 
- /*
-  * WDT_RESET_WIDTH controls the characteristics of the external pulse (if
-@@ -249,10 +261,31 @@ static int aspeed_wdt_set_pretimeout(struct watchdog_device *wdd,
- 	return 0;
- }
- 
-+static void aspeed_wdt_sw_reset(struct watchdog_device *wdd)
-+{
-+	struct aspeed_wdt *wdt = to_aspeed_wdt(wdd);
-+	u32 ctrl = WDT_CTRL_RESET_MODE_SOC |
-+		   WDT_CTRL_RESET_SYSTEM;
-+
-+	writel(ctrl, wdt->base + WDT_CTRL);
-+	writel(WDT_SW_RESET_COUNT_CLEAR,
-+	       wdt->base + WDT_SW_RESET_CTRL);
-+	writel(WDT_SW_RESET_ENABLE, wdt->base + WDT_SW_RESET_CTRL);
-+
-+	/* system must be reset immediately */
-+	mdelay(1000);
-+}
-+
- static int aspeed_wdt_restart(struct watchdog_device *wdd,
- 			      unsigned long action, void *data)
- {
- 	struct aspeed_wdt *wdt = to_aspeed_wdt(wdd);
-+	struct aspeed_wdt_config *cfg = wdt->cfg;
-+
-+	if (cfg->flags & WDT_RESTART_SYSTEM_SW_SUPPORT) {
-+		aspeed_wdt_sw_reset(wdd);
-+		return 0;
-+	}
- 
- 	wdt->ctrl &= ~WDT_CTRL_BOOT_SECONDARY;
- 	aspeed_wdt_enable(wdt, 128 * WDT_RATE_1MHZ / 1000);
-@@ -524,6 +557,13 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
- 			if (nrstmask > 1)
- 				writel(reset_mask[1], wdt->base + WDT_RESET_MASK2);
- 		}
-+
-+		if (wdt->cfg->flags & WDT_RESTART_SYSTEM_SW_SUPPORT) {
-+			reg = readl(wdt->base + WDT_RESET_MASK1);
-+			writel(reg, wdt->base + WDT_SW_RESET_MASK1);
-+			reg = readl(wdt->base + WDT_RESET_MASK2);
-+			writel(reg, wdt->base + WDT_SW_RESET_MASK2);
-+		}
- 	}
- 
- 	if (!of_property_read_u32(np, "aspeed,ext-pulse-duration", &duration)) {
--- 
-2.34.1
+If we want enable all debug functions related to coresight nodes on 
+commercial devices, we need APDP override(APPS debug policy override) 
+procedure first. The APDP override procedure will override some fuse 
+data to allow debug sessions.
+
+Thanks,
+Jie
 
 
