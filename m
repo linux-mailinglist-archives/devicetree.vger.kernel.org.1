@@ -1,132 +1,186 @@
-Return-Path: <devicetree+bounces-116665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3FE09B38C0
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 19:09:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3CE79B38DB
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 19:13:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9761A28265B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 18:09:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83619283423
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 18:13:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B33EB1DF73B;
-	Mon, 28 Oct 2024 18:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B19961DF738;
+	Mon, 28 Oct 2024 18:12:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XS0Eqiqi"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SZRcYieq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7F0C1534E9
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 18:09:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3B31DF749;
+	Mon, 28 Oct 2024 18:12:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730138969; cv=none; b=fTIjdAkWOO49p36LTw3wbbPPZvj+wl3QUqu3EsrrdsOAtjQqiwYXfhqsUrQ8I6liFvs512+gRIguJ2WJPWyAuhxe++Ku7ta1zZ5zk3zDwbzxZoAtJiFKbuf1v/61YG4M4Luf1lZq/jwkhEPcU2U60loD2wy2bDA3yvUEnkDFkto=
+	t=1730139157; cv=none; b=hr9TfUuu7LCB9J+N9ZHqziRY0N5XhvfrasVqX+G+eum7Ou8G3Kkt3w472Vdgm/kooZi7VVdzhywNSHtnABHjTOoqViqn5+dmW3v1AqFqNIVKL1xu0t7ycrkO96JPBq6tjeyp+IcuozGbEbcTWZAG8IybDRC8krQbZ0XbryMbaHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730138969; c=relaxed/simple;
-	bh=dMJuO+qu4mpCrDNRKJhLtNNK5f0JM9Q1jWozG+IgfM4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=JfrC6sk1MiyAQXVEqKjucpLoDcJO8AOv9j/JEeooaUIGoddW7MeDTqm2WQDOnLZadMOUaPg63iIk4sT1bPhaQhl9qtI2yOHfaL7TaMFJluOSMhZ60bKU0R9ucFVR7poJLfIRZhWWoUlrBHZqS2SaHsq2vHXgtuZIIzAcWztzr/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XS0Eqiqi; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2e5a0177531so3489350a91.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 11:09:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730138965; x=1730743765; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Eoe5fq9cwx8Acx4SnxJBzM/rUpD7RA4Aod7FbAKZ16A=;
-        b=XS0EqiqiyGOh3d2u4pbhnV+SEULIDB/cWuwtV88nBU4PAGXBngeOMJNDk7D+W+jOFf
-         qW19sN/fBeB4OWqtDk9FhXrq+etg01r8SEAMtqM13RgsN0EXgdKz4TR9N3DcLJTPIgw8
-         57M4wjipwvt1GvBGXV7wPGT8wdnfS6K0B3g9c9+14XHfgLP5YrLpblPvpV7AdAq8RUJ7
-         TbPOQvRa+TtFjagmTm0st9khBInky61QdeKQAONACxGba9RioEQzubOzXJTrb2Fu0Zqe
-         NXd6cbL2e84Mo0bThvRF6N/uvirPKDK1bToEWBEvrIglJAdxlHgtcwDlQTGQYJhwwgMR
-         9dzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730138965; x=1730743765;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Eoe5fq9cwx8Acx4SnxJBzM/rUpD7RA4Aod7FbAKZ16A=;
-        b=VPeI89VmYQeSjRYUWehCwNuICEaCQmr2HWvPImVE7zxTHJfnZP3QyV+v57G36PV+1m
-         hW59D1uEwpmV6SLknm+fBoXXp0VodZiyAQmb8M4S8TuTHkRAFdUWTQAUiBF2drNWE6Kd
-         i9ze5sWIVj2gSjlMZb+lG/1bMaEwqHqkjKOppsqS+K1loAnvN6i4k5o0Czm1KNNwBk7d
-         lcb/O6zywE1CSkCWlkWaWAuWxT5VFVQ/oTDEvn2jaIzq4OjKtquO4D4DLWdFZqs48PwA
-         Bg0f/xxPQSIUiGVQlsaLy6S2aeIGplvNGYZKBL+uRRxVb2N6TNUiYbeyAJBQMf+/xxsy
-         PEqg==
-X-Forwarded-Encrypted: i=1; AJvYcCUFkCamN7kK0r3iYrkaP+XgsaTG57gVeD0uzZ3NUzEEihHRg23MhwTmJIP6w5griIMBCr26Duqf71HH@vger.kernel.org
-X-Gm-Message-State: AOJu0YwO3ZHYHyyzP1XsVu2a/adPFT1c/08b+CzkeihBgwbtppr7AKPu
-	1M24zqMI6amHW5YzziTxBthPpl6bs/IHq3iQbLCW0M1+zXXxydZB
-X-Google-Smtp-Source: AGHT+IHSVF2TnOsPfO2+2FQhmWlLkKWH1RrgNcPWEjH8nM80YwzMmdGX1r3fDq6rR7zvn3hmH2wXaw==
-X-Received: by 2002:a17:90a:6d26:b0:2e2:bf7f:3363 with SMTP id 98e67ed59e1d1-2e8f104c90amr9424883a91.6.1730138965152;
-        Mon, 28 Oct 2024 11:09:25 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:325c:8d87:ee5c:f04e])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e8e3572efbsm7690441a91.22.2024.10.28.11.09.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 11:09:24 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	andreas@kemnade.info,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 2/2] ARM: dts: imx6sx: Remove fsl,imx6sx-lcdif fallback
-Date: Mon, 28 Oct 2024 15:08:44 -0300
-Message-Id: <20241028180844.154349-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241028180844.154349-1-festevam@gmail.com>
-References: <20241028180844.154349-1-festevam@gmail.com>
+	s=arc-20240116; t=1730139157; c=relaxed/simple;
+	bh=sEUoxC02iCpTxcYJhl7YWFX1HCD6NzBw0eWUjpJiVwg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=sKCeEubkksHf8hNBZ2PXE5tnDu33GGCN1VlKiZPUyUVJAJFqUC23J6yB9tRoaL5oOTy8labF863NY5NMxBr7e20RU3Q6VcCd94j5pNfNL2GFG1hGqI85ubNE15dXUMzp8qUFSh8rtjJRIu5hbZeOzm8Cy9s7W4voZP2p7wl9qBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SZRcYieq; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49SAv1pG005093;
+	Mon, 28 Oct 2024 18:12:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	sEUoxC02iCpTxcYJhl7YWFX1HCD6NzBw0eWUjpJiVwg=; b=SZRcYieqr1duO6jN
+	yNPU+IPfmU5epd+/o81r40LC4ldLZCIxxkZjlAkUm0IpqlMxvPWXcCU1XBkzNRaC
+	TP7nTfoabSBoIEFd9oUJxyH8ssxT3RMVVy6b1jtpFrGzR4Qr9S53G356VCRfaWGR
+	e0AnvtjH6VYpYYPfGf1XC09U3+7KSWJYNeVHPyXSb/F5vqb519sM99cu5UY56mKi
+	nLQWpX+LNtMePMDN4WQu5efqc5IUJX7MFL7F5AKVFzVhpOnpRjh5Yo1iOH3bw7nE
+	D/KHDSkVLNE3b5W37aYUqFwulXlJTuqei1PCdAs0SH8ah1ZumWVhoYwIz0PpMB8r
+	sMF64w==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gsq8dw7k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 18:12:09 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49SIC861013622
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 18:12:08 GMT
+Received: from [10.110.31.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Oct
+ 2024 11:12:07 -0700
+Message-ID: <8f6e35c0-8cd6-495d-92ad-21d76a726785@quicinc.com>
+Date: Mon, 28 Oct 2024 11:12:07 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v29 01/33] xhci: support setting interrupt moderation IMOD
+ for secondary interrupters
+To: =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
+	<amadeuszx.slawinski@linux.intel.com>,
+        Greg KH <gregkh@linuxfoundation.org>, Takashi Iwai <tiwai@suse.de>
+CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
+        <corbet@lwn.net>, <lgirdwood@gmail.com>, <tiwai@suse.com>,
+        <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.com>,
+        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
+        <bgoswami@quicinc.com>, <robh@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>
+References: <20241015212915.1206789-1-quic_wcheng@quicinc.com>
+ <20241015212915.1206789-2-quic_wcheng@quicinc.com>
+ <2024101747-defog-squiggly-ef54@gregkh>
+ <5847c380-75ce-492a-9a30-0899b7ebe98c@quicinc.com>
+ <2024101824-hammock-elastic-8d38@gregkh> <87wmi02qcj.wl-tiwai@suse.de>
+ <2024102240-gag-famished-245c@gregkh>
+ <8795c4ad-e3ac-47aa-92dd-f899042cefc0@linux.intel.com>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <8795c4ad-e3ac-47aa-92dd-f899042cefc0@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3VvqAHZW17ni7Z9fnrpLfG7y2SqeBCje
+X-Proofpoint-ORIG-GUID: 3VvqAHZW17ni7Z9fnrpLfG7y2SqeBCje
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
+ adultscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=999 impostorscore=0
+ lowpriorityscore=0 malwarescore=0 clxscore=1011 spamscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410280143
 
-From: Fabio Estevam <festevam@denx.de>
 
-According to fsl,lcdif.yaml, "fsl,imx6sx-lcdif" does not have any fallback.
+On 10/22/2024 8:04 AM, Amadeusz Sławiński wrote:
+> On 10/22/2024 4:02 PM, Greg KH wrote:
+>> On Tue, Oct 22, 2024 at 03:56:44PM +0200, Takashi Iwai wrote:
+>>> On Fri, 18 Oct 2024 07:52:35 +0200,
+>>> Greg KH wrote:
+>>>>
+>>>> On Thu, Oct 17, 2024 at 05:07:12PM -0700, Wesley Cheng wrote:
+>>>>> Hi Greg,
+>>>>>
+>>>>> On 10/16/2024 11:40 PM, Greg KH wrote:
+>>>>>> On Tue, Oct 15, 2024 at 02:28:43PM -0700, Wesley Cheng wrote:
+>>>>>>> From: Mathias Nyman <mathias.nyman@linux.intel.com>
+>>>>>>>
+>>>>>>> Allow creators of xHCI secondary interrupters to specify the interrupt
+>>>>>>> moderation interval value in nanoseconds when creating the interrupter.
+>>>>>>>
+>>>>>>> If not sure what value to use then use the xhci driver default
+>>>>>>> xhci->imod_interval
+>>>>>>>
+>>>>>>> Suggested-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>>>>>>> Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
+>>>>>>> Link: https://lore.kernel.org/r/20240905143300.1959279-13-mathias.nyman@linux.intel.com
+>>>>>>> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+>>>>>>> ---
+>>>>>>>   drivers/usb/host/xhci-mem.c | 8 +++++++-
+>>>>>>>   drivers/usb/host/xhci.c     | 4 ++--
+>>>>>>>   drivers/usb/host/xhci.h     | 5 ++++-
+>>>>>>>   3 files changed, 13 insertions(+), 4 deletions(-)
+>>>>>> This is already in 6.12-rc1, which makes me confused as to what tree you
+>>>>>> made this series against.
+>>>>>
+>>>>> Sorry, I didn't fetch the latest changes from usb-next.
+>>>>
+>>>> It wasn't even usb-next, it was 6.12-rc1, so I don't know what tree you
+>>>> based this on :(
+>>>>
+>>>>> In this case, should I rebase and resbumit?
+>>>>
+>>>> As the series can't be applied as-is, probably.  But I think you might
+>>>> want to collect some acks from the sound people and xhci developers, as
+>>>> I can't do anything with this until they look at the changes.
+>>>
+>>> Honestly speaking, I couldn't follow fully the discussions about the
+>>> fundamental design -- IIRC, Pierre and others had concerns to the way
+>>> to manage the offload device via kcontrols.  Did we get consensus?
+>>
+>> I don't think so.
 
-Change it accordingly to fix the following dt-schema warnings:
+As mentioned by Amadeusz, the overall USB offload concept hasn't changed significantly since the initial series, and will rely on having two sounds cards, ie leaving the one created by USB SND untouched (and still usable), while creating a path to an ASoC based platform card, which handles the offload path.
 
-['fsl,imx6sx-lcdif', 'fsl,imx28-lcdif'] is too long
+The follow ups that I've had with Pierre was more towards how the offload parameters are going to be exposed to userspace, so that it can be properly utilized.  I think for the most part, we've agreed that the set of kcontrols we have now are sufficient, and there is proper controls for userspace to know which devices to use.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm/boot/dts/nxp/imx/imx6sx.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>>> I believe that's the biggest obstacle in the audio side, i.e. what's
+>>> visible to users.  The kernel internals can be corrected at any time
+>>> later.
+>>
+>> I would like to see that agreed on before I even look at the usb side.
+>
+> My main concern is still that one USB audio device can be accessed via two different cards exposed in userspace. Usual USB one, and the one from device which does "offload". Suggested implementation achieves it by adding additional controls, which need to be set in specific way to achieve offload. Overall while I understand the mechanism, I'm not exactly convinced that it is the best way from end user point of view.
+>
+> "Implementation" part in Documentation added in patch 19 shows how it looks in userspace now.
+>
+> If you don't mind two sound cards being used to access same piece of HW, current implementation looks ok to me.
+>
+@Takashi, this was something we discussed really early on, even before the series was made, and I think it was agreed upon to avoid doing this with a single card.  I remember putting in the initial work to scope out this path, but it was going to require significant/major modifications to USB SND core, hence why we decided on the path to have two sound cards. (USB SND legacy path still usable)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sx.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sx.dtsi
-index b386448486df..e56fcd9ee6f9 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sx.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sx.dtsi
-@@ -1301,7 +1301,7 @@ csi2: csi@221c000 {
- 				};
- 
- 				lcdif1: lcdif@2220000 {
--					compatible = "fsl,imx6sx-lcdif", "fsl,imx28-lcdif";
-+					compatible = "fsl,imx6sx-lcdif";
- 					reg = <0x02220000 0x4000>;
- 					interrupts = <GIC_SPI 5 IRQ_TYPE_EDGE_RISING>;
- 					clocks = <&clks IMX6SX_CLK_LCDIF1_PIX>,
-@@ -1322,7 +1322,7 @@ lcdif1_to_ldb: endpoint {
- 				};
- 
- 				lcdif2: lcdif@2224000 {
--					compatible = "fsl,imx6sx-lcdif", "fsl,imx28-lcdif";
-+					compatible = "fsl,imx6sx-lcdif";
- 					reg = <0x02224000 0x4000>;
- 					interrupts = <GIC_SPI 6 IRQ_TYPE_EDGE_RISING>;
- 					clocks = <&clks IMX6SX_CLK_LCDIF2_PIX>,
--- 
-2.34.1
+Thanks
 
+Wesley Cheng 
+
+> See also:
+> https://lore.kernel.org/linux-sound/75ffde3a-7fef-4c15-bfc8-87756e1c3f11@linux.intel.com/
+> where I described how I would prefer it to look.
 
