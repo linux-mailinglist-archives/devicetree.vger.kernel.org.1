@@ -1,226 +1,146 @@
-Return-Path: <devicetree+bounces-116508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DA569B3198
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:23:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8617D9B31B1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:30:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80DC51C213B3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:23:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BBDB1F22B22
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72FAC1DACB4;
-	Mon, 28 Oct 2024 13:23:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9501DC054;
+	Mon, 28 Oct 2024 13:29:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PudSzRtk"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="B6w6wwQL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F8538396;
-	Mon, 28 Oct 2024 13:23:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4DBD1DD0D4;
+	Mon, 28 Oct 2024 13:29:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730121784; cv=none; b=QHpNzAjF+L/ZxrA1jUNi+hIG3HwOOe0vVKDyhnt9D/IaeazejB1HYlG73HlXS61i7aKFP8GgmwoTc8Dhuca60nfyJsuzsroCh+7G9Vo3iGU8lnLdwNfWDKFC3BkR+0W5ECccnMKeAJBoYAYOnTtWsw622INXeDSXvO04VxAZ/ME=
+	t=1730122157; cv=none; b=g+EdyZt7yXxCZBVaQmbv358e30EdG3fQXa8ygmrQX9Er/asMDo5fchi/JFbLYYmQNwo3HmjxGzDBxBNE+lT4kYcPIUjRWOX6Gv+zWucl9qAEFZmpH6SneWFbADWd8fKS0Xmv0m7WfE3jfrDaQk0GW0Xw39fiE5DHpaKJDXd+CHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730121784; c=relaxed/simple;
-	bh=9tECmQTWRmCrctZx1DA72M0oCUbizMBPA+xl+7zZJYo=;
+	s=arc-20240116; t=1730122157; c=relaxed/simple;
+	bh=DMmxlKMEdktOdfKpfuiQaifeYi5aarkRCjz9qJVIe9Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a7iPZFw1JBZbxyzidJOQjssUfxgBGmWu8TtTx2jjbFxJ0+q39wjHLfUwTzVb4gr9mvtS73KccDfZJ6YLKb3+eXMxGl2GU1qNXuH8GX8znxtMshl4kqi+CYdhi3PD3XmzOVIbMcRS8eE9BPXHRk7G7XmUM7tv22taRnwBxqq4mVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PudSzRtk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED931C4CEC3;
-	Mon, 28 Oct 2024 13:22:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730121783;
-	bh=9tECmQTWRmCrctZx1DA72M0oCUbizMBPA+xl+7zZJYo=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=U4J07SJ8QBO47GXcAbYl8H2N3/9ijBJFqZx0ifFXpKv6cE+dhVU/QzFRmLDXi+IbyVzlwpFpqnPpp3/njwrCBsbFkOvCgOdDDAsdmanPjVnVquc2s9NpimyGQk++aR6yXcP+1MCyXplzD7uLpCqsK/gtmyI3kCJjoPkUadViZmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=B6w6wwQL; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DEE4A10C4;
+	Mon, 28 Oct 2024 14:29:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1730122145;
+	bh=DMmxlKMEdktOdfKpfuiQaifeYi5aarkRCjz9qJVIe9Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PudSzRtksSiVNKwGVRWY+Dv/cjY6o52UJ0NnBF7zVDLApZAd+3k1U+8KEOalpOQSz
-	 POD/7Kbnv5zzk76wsCPMIf0GzShT7MPuShwXhOmvrxsYnXj/H/8UMUCSnH8fHWrJz8
-	 fqBbtiavtPcg2WMEWraY9Vozjtw5ejFDYzr62CACQtyvybrbMMo28MQtnYVd4S7Vu/
-	 gFF4y9CUyjwEyQXnBnNs+gniZG0KiyXqY+D55Gcivzne0KfVo0RRDyw8lWaxqlrPJV
-	 UTO4rZjPzhelBMLEhjQBnbfbQPc0JrbawU9rmefiYtL8ehhGebUyH4kPGwkxWcpUA+
-	 JQiK+GV53c/3g==
-Date: Mon, 28 Oct 2024 14:22:56 +0100
-From: Danilo Krummrich <dakr@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 13/16] samples: rust: add Rust PCI sample driver
-Message-ID: <Zx-QMBHtWSFkLiKm@pollux>
-References: <20241022213221.2383-1-dakr@kernel.org>
- <20241022213221.2383-14-dakr@kernel.org>
- <20241023155737.GB1064929-robh@kernel.org>
+	b=B6w6wwQLc0E4rqMCWKkKZ7Dca5bKw8TjNqztrfipdQMc54WB1levWCjgVTV3ySv8l
+	 6BBx19QErgZeCCOlrIXHBRPqUL+ibZBMqwsX50P0H84nSGF3s3KrhKeJCqAhJ5DNAH
+	 5yJoELKr+vtw6pW8WLP/pgor+D0mO6cSuTH4DjNM=
+Date: Mon, 28 Oct 2024 15:28:58 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Herve Codina <herve.codina@bootlin.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+Message-ID: <20241028132858.GE6081@pendragon.ideasonboard.com>
+References: <20241024095539.1637280-1-herve.codina@bootlin.com>
+ <20241024095539.1637280-3-herve.codina@bootlin.com>
+ <20241027162350.GA15853@pendragon.ideasonboard.com>
+ <20241028091331.6f67e29e@bootlin.com>
+ <20241028112857.GF24052@pendragon.ideasonboard.com>
+ <20241028-nebulous-yellow-dragon-2cfb5f@houat>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241023155737.GB1064929-robh@kernel.org>
+In-Reply-To: <20241028-nebulous-yellow-dragon-2cfb5f@houat>
 
-On Wed, Oct 23, 2024 at 10:57:37AM -0500, Rob Herring wrote:
-> On Tue, Oct 22, 2024 at 11:31:50PM +0200, Danilo Krummrich wrote:
-> > This commit adds a sample Rust PCI driver for QEMU's "pci-testdev"
-> > device. To enable this device QEMU has to be called with
-> > `-device pci-testdev`.
-> 
-> Note that the DT unittests also use this device. So this means we have 2 
-> drivers that bind to the device. Probably it's okay, but does make 
-> them somewhat mutually-exclusive.
->  
-> > The same driver shows how to use the PCI device / driver abstractions,
-> > as well as how to request and map PCI BARs, including a short sequence of
-> > MMIO operations.
+On Mon, Oct 28, 2024 at 01:21:45PM +0100, Maxime Ripard wrote:
+> On Mon, Oct 28, 2024 at 01:28:57PM +0200, Laurent Pinchart wrote:
+> > On Mon, Oct 28, 2024 at 09:13:31AM +0100, Herve Codina wrote:
+> > > On Sun, 27 Oct 2024 18:23:50 +0200 Laurent Pinchart wrote:
+> > > 
+> > > [...]
+> > > > > +static int sn65dsi83_reset_pipeline(struct sn65dsi83 *sn65dsi83)
+> > > > > +{
+> > > > > +	struct drm_device *dev = sn65dsi83->bridge.dev;
+> > > > > +	struct drm_modeset_acquire_ctx ctx;
+> > > > > +	struct drm_atomic_state *state;
+> > > > > +	int err;
+> > > > > +
+> > > > > +	/* Use operation done in drm_atomic_helper_suspend() followed by
+> > > > > +	 * operation done in drm_atomic_helper_resume() but without releasing
+> > > > > +	 * the lock between suspend()/resume()
+> > > > > +	 */
+> > > > > +
+> > > > > +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
+> > > > > +
+> > > > > +	state = drm_atomic_helper_duplicate_state(dev, &ctx);
+> > > > > +	if (IS_ERR(state)) {
+> > > > > +		err = PTR_ERR(state);
+> > > > > +		goto unlock;
+> > > > > +	}
+> > > > > +
+> > > > > +	err = drm_atomic_helper_disable_all(dev, &ctx);
+> > > > > +	if (err < 0)
+> > > > > +		goto unlock;
+> > > > > +
+> > > > > +	drm_mode_config_reset(dev);
+> > > > > +
+> > > > > +	err = drm_atomic_helper_commit_duplicated_state(state, &ctx);  
+> > > > 
+> > > > Committing a full atomic state from a bridge driver in an asynchronous
+> > > > way seems quite uncharted territory, and it worries me. It's also a very
+> > > > heavyweight, you disable all outputs here, instead of focussing on the
+> > > > output connected to the bridge. Can you either implement something more
+> > > > local, resetting the bridge only, or create a core helper to handle this
+> > > > kind of situation, on a per-output basis ?
+> > > 
+> > > A full restart of the bridge (power off/on) is needed and so we need to
+> > > redo the initialization sequence. This initialization sequence has to be
+> > > done with the DSI data lanes (bridge inputs) driven in LP11 state and so
+> > > without any video stream. Only focussing on bridge outputs will not be
+> > > sufficient. That's why I brought the pipeline down and restarted it.
 > > 
-> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> > ---
-> >  MAINTAINERS                     |   1 +
-> >  samples/rust/Kconfig            |  11 ++++
-> >  samples/rust/Makefile           |   1 +
-> >  samples/rust/rust_driver_pci.rs | 109 ++++++++++++++++++++++++++++++++
-> >  4 files changed, 122 insertions(+)
-> >  create mode 100644 samples/rust/rust_driver_pci.rs
+> > Fair point.
 > > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 2d00d3845b4a..d9c512a3e72b 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -17940,6 +17940,7 @@ F:	include/linux/of_pci.h
-> >  F:	include/linux/pci*
-> >  F:	include/uapi/linux/pci*
-> >  F:	rust/kernel/pci.rs
-> > +F:	samples/rust/rust_driver_pci.rs
-> >  
-> >  PCIE DRIVER FOR AMAZON ANNAPURNA LABS
-> >  M:	Jonathan Chocron <jonnyc@amazon.com>
-> > diff --git a/samples/rust/Kconfig b/samples/rust/Kconfig
-> > index b0f74a81c8f9..6d468193cdd8 100644
-> > --- a/samples/rust/Kconfig
-> > +++ b/samples/rust/Kconfig
-> > @@ -30,6 +30,17 @@ config SAMPLE_RUST_PRINT
-> >  
-> >  	  If unsure, say N.
-> >  
-> > +config SAMPLE_RUST_DRIVER_PCI
-> > +	tristate "PCI Driver"
-> > +	depends on PCI
-> > +	help
-> > +	  This option builds the Rust PCI driver sample.
-> > +
-> > +	  To compile this as a module, choose M here:
-> > +	  the module will be called driver_pci.
-> > +
-> > +	  If unsure, say N.
-> > +
-> >  config SAMPLE_RUST_HOSTPROGS
-> >  	bool "Host programs"
-> >  	help
-> > diff --git a/samples/rust/Makefile b/samples/rust/Makefile
-> > index 03086dabbea4..b66767f4a62a 100644
-> > --- a/samples/rust/Makefile
-> > +++ b/samples/rust/Makefile
-> > @@ -2,5 +2,6 @@
-> >  
-> >  obj-$(CONFIG_SAMPLE_RUST_MINIMAL)		+= rust_minimal.o
-> >  obj-$(CONFIG_SAMPLE_RUST_PRINT)			+= rust_print.o
-> > +obj-$(CONFIG_SAMPLE_RUST_DRIVER_PCI)		+= rust_driver_pci.o
-> >  
-> >  subdir-$(CONFIG_SAMPLE_RUST_HOSTPROGS)		+= hostprogs
-> > diff --git a/samples/rust/rust_driver_pci.rs b/samples/rust/rust_driver_pci.rs
-> > new file mode 100644
-> > index 000000000000..d24dc1fde9e8
-> > --- /dev/null
-> > +++ b/samples/rust/rust_driver_pci.rs
-> > @@ -0,0 +1,109 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +//! Rust PCI driver sample (based on QEMU's `pci-testdev`).
-> > +//!
-> > +//! To make this driver probe, QEMU must be run with `-device pci-testdev`.
-> > +
-> > +use kernel::{bindings, c_str, devres::Devres, pci, prelude::*};
-> > +
-> > +struct Regs;
-> > +
-> > +impl Regs {
-> > +    const TEST: usize = 0x0;
-> > +    const OFFSET: usize = 0x4;
-> > +    const DATA: usize = 0x8;
-> > +    const COUNT: usize = 0xC;
-> > +    const END: usize = 0x10;
-> > +}
-> > +
-> > +type Bar0 = pci::Bar<{ Regs::END }>;
-> > +
-> > +#[derive(Debug)]
-> > +struct TestIndex(u8);
-> > +
-> > +impl TestIndex {
-> > +    const NO_EVENTFD: Self = Self(0);
-> > +}
-> > +
-> > +struct SampleDriver {
-> > +    pdev: pci::Device,
-> > +    bar: Devres<Bar0>,
-> > +}
-> > +
-> > +kernel::pci_device_table!(
-> > +    PCI_TABLE,
-> > +    MODULE_PCI_TABLE,
-> > +    <SampleDriver as pci::Driver>::IdInfo,
-> > +    [(
-> > +        pci::DeviceId::new(bindings::PCI_VENDOR_ID_REDHAT, 0x5),
-> > +        TestIndex::NO_EVENTFD
-> > +    )]
-> > +);
-> > +
-> > +impl SampleDriver {
-> > +    fn testdev(index: &TestIndex, bar: &Bar0) -> Result<u32> {
-> > +        // Select the test.
-> > +        bar.writeb(index.0, Regs::TEST);
-> > +
-> > +        let offset = u32::from_le(bar.readl(Regs::OFFSET)) as usize;
+> > > Of course, I can copy/paste sn65dsi83_reset_pipeline() to a core helper
+> > > function. Is drm_atomic_helper_reset_all() could be a good candidate?
+> > 
+> > The helper should operate on a single output, unrelated outputs should
+> > not be affected.
 > 
-> The C version of readl takes care of from_le for you. Why not here?
+> Also, you don't want to reset anything, you just want the last commit to
+> be replayed.
 
-It's just an abstraction around the C readl(), so it does -- good catch.
+I'm not sure about that. If the last commit is just a page flip, that
+won't help, will it ?
 
-> 
-> Also, can't we do better with rust and make this a generic:
-> 
-> let offset = bar.read::<u32>(Regs::OFFSET)) as usize;
+-- 
+Regards,
 
-I think we probably could, but we'd still need to handle the special cases for 1
-to 8 bytes type size (always using memcopy_{to,from}io() would lead to
-unnecessary overhead). Hence, there's probably not much benefit in that.
-
-Also, what would be the logic for a generic `{read, write}::<T>` in terms of
-memory barriers? I think memcopy_{to,from}io() is always "relaxed", isn't it?
-
-I think it's probably best to keep the two separate, the b,w,l,q variants and
-a generic one that maps to memcopy_{to,from}io().
-
-> 
-> 
-> > +        let data = bar.readb(Regs::DATA);
-> > +
-> > +        // Write `data` to `offset` to increase `count` by one.
-> > +        //
-> > +        // Note that we need `try_writeb`, since `offset` can't be checked at compile-time.
-> > +        bar.try_writeb(data, offset)?;
-> > +
-> > +        Ok(u32::from_le(bar.readl(Regs::COUNT)))
-> > +    }
-> > +}
-> 
+Laurent Pinchart
 
