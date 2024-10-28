@@ -1,134 +1,106 @@
-Return-Path: <devicetree+bounces-116457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B41B79B2F0F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:39:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 865919B303E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:28:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D8181F21ABD
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:39:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AF75281C2B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:28:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 840901D619E;
-	Mon, 28 Oct 2024 11:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37E381DA103;
+	Mon, 28 Oct 2024 12:28:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yo/Lu7Iu"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="orzRqYij"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE26143888;
-	Mon, 28 Oct 2024 11:39:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36C801990DB;
+	Mon, 28 Oct 2024 12:28:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730115588; cv=none; b=MNcX6zq4SyOWzIne12L4b3TqcD2ctKnDOXtjrIbf/kv5bGm4i/txx5zUGOIrzWBi4SRrAK+uBM4q+WYbQIP4ETDMsNNB0k944UuOTK+2DZjsFfjdti6EyPIwNzl5+K0cGXGH5qs8pyRPbIAfYc3Nr7dx0jOB0254+89feYXEpgU=
+	t=1730118523; cv=none; b=pLXSmBBCwKqENwpxyuzaXbQjsmJmfnT2Vwz/bBOzBM9n4vNgeFjdeC4ZOYDPak1AXLpi95goxram3MBzanccGgJ29e9tP8xlYhey6aFlH6nZkMgZmX+ZLrjzkEZr9e15aFL77wPmTvXQQmXsJQd0WOwteO9eO8AD7dwL+svySq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730115588; c=relaxed/simple;
-	bh=SnA2owK3Wh51XGmITR8PBTFZ5GSTlL47esiUlTgErgk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q/0lDsoB91T2dkxKfwXCqqsoZdjPAehYwbv2Qf9LsCASlibOtCxCemQx/glfhKnO/JTA7O54W0/zjEn64TVdSNEH7LddDnQNjKvau4q1E2khyceF+2IlVuYN8W8+5esnDPaQ6TFiPFdNVY7c5CUy/0N/qUiUqW9L3fO/m/lcV14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yo/Lu7Iu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19A17C4CEE8;
-	Mon, 28 Oct 2024 11:39:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730115588;
-	bh=SnA2owK3Wh51XGmITR8PBTFZ5GSTlL47esiUlTgErgk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Yo/Lu7IuDlYQgr3bDqc6QyInFOtBotCnOnf0q1Layoh3Cw7xKSPNxg9GbTxuzXr1O
-	 c9AiPEPsweAssaX1KPch6+yfL77tWOSCJ9sBZ7wWO3zoaEaW0ogNlsHvM70ecTuev9
-	 bcRlxF64fhXp7jnHzJgqAvrijxQWT3v6OqD/YuLjYPZEGzDJseIHO7o8kBfON1rFYi
-	 QSdOPfmDqZEQAQ+fW1xGHPOI2zON6uoqx1DFnZ+LMCdzfAp1UqMR7hkLF2i5Fvm8a+
-	 CUTb6lFv3lOAC73bE5LFF/XNnNV4luKDflqeyrzwCTTCcIif/Qh0BIuMmw21MrCpyB
-	 81s4LCPtP8jxA==
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-28c7f207806so1816441fac.3;
-        Mon, 28 Oct 2024 04:39:48 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUrHFzR+IoELb6B7jd/L2Y10cbl7+qC17EFE/coJJsjoPTLXR2ppNkZWp1uwMTMuUqWpMLHhH9Wz5A0ijaE@vger.kernel.org, AJvYcCWXD2T1DsQD0C9ek5BVvXkG5OxwW8oKl+5GLTM0eZsJ6/THppwNFP9tmevvbCKIUjYLIFgQk/MjpNjR@vger.kernel.org, AJvYcCXnRzXuxVJXc9xVLS/b1wu6DDKHLvFg+yqH0z359Ca5HKVCuJSGPkM4FLPcXo4I/V8p1rqJ/bTdtgU=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxl2qwCTL7B31LioJG2lLxdIpbJbJum6Sy6Lzt1AfMyq0ayiAQT
-	PT93f03la8Zo7oppcq5YPLG6slAkWepqOwrSzwup/z2tbihwFXuXNietixzGIOlzyGGKIQ0XoXa
-	OxzfL6k7zq3ynaoFWYuzqfePAKCc=
-X-Google-Smtp-Source: AGHT+IFpYNi0n2+EpwfJw+aYg1SZVLsAaWJ0o1EJSLnlNBvj6WIP7nhfCWI+y6q/QZiT/At+3/RZ5OUb5Tw59F2BoTc=
-X-Received: by 2002:a05:6870:8186:b0:278:222c:98c4 with SMTP id
- 586e51a60fabf-29051bccd06mr6661783fac.21.1730115587412; Mon, 28 Oct 2024
- 04:39:47 -0700 (PDT)
+	s=arc-20240116; t=1730118523; c=relaxed/simple;
+	bh=4YG+OVSeA4mlq2U5cqcvd/Vzi8/jYXpepKYMRqW8Qk0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uSPEb7vTtCVx5lg4JjZ6RUVkLOEVXlQfvOoY6b9e1+N6p0y/eL4XOl4QLE9mm+MMu41429eRQrGcNKhXmcLGyBtWAy4fxPeA4leCX8suthbi92hkTrO5B7JBczY3DVgOCdYK2Tm4l9Khm2z6WkB67OIKeREcl2vrcdk9OofUnBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=orzRqYij; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 0A47B87CF8;
+	Mon, 28 Oct 2024 13:28:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1730118509;
+	bh=lbIBJtNPtwzKp6VYJYAkIeGvwBMCtVZsgtDqZb/GSJo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=orzRqYij4JYCILKsboGT3VaiovSla6EKxN5eRq5zBc03tH3V+ShkUUdC/fNTvonLN
+	 EnHsTwk4S7nPSh/guflDdIKiPHYilE/OudfMrGKzlt2SKQr2mYz/WImtan3HVkkJQp
+	 faW5mQoZeTUOeESygsaxojQYThdbi+k69mKkSFNijuU9CMGGlaHLEWiIg+dBcerSU+
+	 wlBP6z0NcJmlMC01DfGEmnkcXGrNa5bVQmy1tylU79YXp26Oup9B3lReJ4TZcWwPda
+	 yXSUUnxKXB6QeDSe1TNAxjHabTTT66RQR/gkoai2xRLZY0XMF/YdLOMqwHovAgAo3M
+	 SgQ6k5sKEsYsw==
+Message-ID: <16edb769-a608-4b6a-9391-a63a69df8c8d@denx.de>
+Date: Mon, 28 Oct 2024 12:47:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240919000837.1004642-1-davidai@google.com> <20241001092544.2tlydouyyc7jwuja@vireshk-i7>
- <CAGETcx8GomM0znaYKsS412dRvnUQd7_78pKuV82t2b14VBvKVQ@mail.gmail.com>
-In-Reply-To: <CAGETcx8GomM0znaYKsS412dRvnUQd7_78pKuV82t2b14VBvKVQ@mail.gmail.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Mon, 28 Oct 2024 12:39:31 +0100
-X-Gmail-Original-Message-ID: <CAJZ5v0iTLX9NAT0PN804QahQ7D=+=D1uJ7PVnZfk5UrpP5uXpg@mail.gmail.com>
-Message-ID: <CAJZ5v0iTLX9NAT0PN804QahQ7D=+=D1uJ7PVnZfk5UrpP5uXpg@mail.gmail.com>
-Subject: Re: [PATCH v7 0/2] Improve VM CPUfreq and task placement behavior
-To: Saravana Kannan <saravanak@google.com>, Viresh Kumar <viresh.kumar@linaro.org>
-Cc: David Dai <davidai@google.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Quentin Perret <qperret@google.com>, 
-	Masami Hiramatsu <mhiramat@google.com>, Will Deacon <will@kernel.org>, 
-	Peter Zijlstra <peterz@infradead.org>, Vincent Guittot <vincent.guittot@linaro.org>, 
-	Marc Zyngier <maz@kernel.org>, Oliver Upton <oliver.upton@linux.dev>, 
-	Dietmar Eggemann <dietmar.eggemann@arm.com>, Pavan Kondeti <quic_pkondeti@quicinc.com>, 
-	Gupta Pankaj <pankaj.gupta@amd.com>, Mel Gorman <mgorman@suse.de>, kernel-team@android.com, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20241024095539.1637280-1-herve.codina@bootlin.com>
+ <20241024095539.1637280-3-herve.codina@bootlin.com>
+ <78a09625-6bad-4fda-8ee5-92b8dd0de381@denx.de>
+ <20241028090220.1fd803ff@bootlin.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <20241028090220.1fd803ff@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Sat, Oct 26, 2024 at 12:26=E2=80=AFAM Saravana Kannan <saravanak@google.=
-com> wrote:
->
-> On Tue, Oct 1, 2024 at 2:25=E2=80=AFAM Viresh Kumar <viresh.kumar@linaro.=
-org> wrote:
-> >
-> > On 18-09-24, 17:08, David Dai wrote:
-> > > Hi,
-> > >
-> > > This patch series is a continuation of the talk Saravana gave at LPC =
-2022
-> > > titled "CPUfreq/sched and VM guest workload problems" [1][2][3]. The =
-gist
-> > > of the talk is that workloads running in a guest VM get terrible task
-> > > placement and CPUfreq behavior when compared to running the same work=
-load
-> > > in the host. Effectively, no EAS(Energy Aware Scheduling) for threads
-> > > inside VMs. This would make power and performance terrible just by ru=
-nning
-> > > the workload in a VM even if we assume there is zero virtualization
-> > > overhead.
-> >
-> > > David Dai (2):
-> > >   dt-bindings: cpufreq: add virtual cpufreq device
-> > >   cpufreq: add virtual-cpufreq driver
-> > >
-> > >  .../cpufreq/qemu,virtual-cpufreq.yaml         |  48 +++
-> > >  drivers/cpufreq/Kconfig                       |  14 +
-> > >  drivers/cpufreq/Makefile                      |   1 +
-> > >  drivers/cpufreq/virtual-cpufreq.c             | 333 ++++++++++++++++=
-++
-> > >  include/linux/arch_topology.h                 |   1 +
-> > >  5 files changed, 397 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/cpufreq/qemu,vi=
-rtual-cpufreq.yaml
-> > >  create mode 100644 drivers/cpufreq/virtual-cpufreq.c
-> >
-> > LGTM.
-> >
-> > Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
->
-> Rafael/Viresh,
->
-> Nudge... Any chance this will get pulled into 6.12?
+On 10/28/24 9:02 AM, Herve Codina wrote:
+> Hi Marek,
 
-This is not a fix AFAICS, so 6.12 is out of the question.
+Hi,
 
-As for 6.13, Viresh thinks that this change is a good idea (or he
-wouldn't have ACKed it), so it's up to him.  I'm still not convinced
-that it will work on x86 or anything that doesn't use DT.
-
-Viresh, I think that this falls into your bucket.
+> On Sat, 26 Oct 2024 00:53:51 +0200
+> Marek Vasut <marex@denx.de> wrote:
+> 
+>> On 10/24/24 11:55 AM, Herve Codina wrote:
+>>> In some cases observed during ESD tests, the TI SN65DSI83 cannot recover
+>>> from errors by itself. A full restart of the bridge is needed in those
+>>> cases to have the bridge output LVDS signals again.
+>>
+>> I have seen the bridge being flaky sometimes, do you have any more
+>> details of what is going on when this irrecoverable error occurs ?
+> 
+> The panel attached to the bridge goes and stays black. That's the behavior.
+> A full reset brings the panel back displaying frames.
+Is there some noticeable change in 0xe0/0xe1/0xe5 registers, esp. 0xe5, 
+do they indicate the error occurred somehow ?
 
