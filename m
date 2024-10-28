@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-116332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BD199B297F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:01:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 332839B2990
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:02:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D3882B20CA5
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:01:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 649531C21597
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:02:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42B5A1DBB11;
-	Mon, 28 Oct 2024 07:42:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E24051DD55A;
+	Mon, 28 Oct 2024 07:43:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MupB10g9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vE8Lst3C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 150541DB951;
-	Mon, 28 Oct 2024 07:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84321DCB06;
+	Mon, 28 Oct 2024 07:43:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730101341; cv=none; b=r2GbpWKFpw94E7CTtllP6DsGMdrswKNVLV3vsFyXf+Hfw674viSjkbHjaiAeRRTHaNRDokETMEVPjutGch+JFhhBwB6/XI/SboEnA7lADpgCWm7TmzAmecpTggQj3Hg3qi16rygQOQ4o1ZV/PiOVJKVy0XGv777pMNqlq+/01KQ=
+	t=1730101381; cv=none; b=pZVCxXn8az5dlKQ1o7U4K+oj/UKlSZd1/a3ZUmuUL0LkhzHQRn9qQLq5Djctc9yStv+n5+rVLnRJ89lhxoh7J6q88kV/qniZdgeVQJqejqNGzrfYWLH7RMqN9MDdFwW48ys0HdgCRTlldgS9dLPy51uDjnT6KHmWwk7Foa8VMmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730101341; c=relaxed/simple;
-	bh=EWJQDD7obHTMVklwOprn4LOtstavOuKcai/H4EXO3xQ=;
+	s=arc-20240116; t=1730101381; c=relaxed/simple;
+	bh=1eDgzVcTXWc1NZbaVnSW+JVBR5kRN32nfImppOd7MVc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j34ck28LR9eQJkmU8vleQoK6Idu7R+3qWHJNvxbGWE69y8LRaafE6MLBRX2/Q4k0DPkr1tTwQttWRkDeTIOiMP60LLUn4FpvyUn2SBCj0DGx+N4VB34v+w7PDHqL7javXRjVGDbUwupvhiNyZbIySj64dH8yjm+hr6xks6O0E4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MupB10g9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD510C4CEC3;
-	Mon, 28 Oct 2024 07:42:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oOjl6HCvwzTYrq54k804ThYAgPWmostBLNDdrzi08rQm+stBZ6hFKSKyB5BdQLEUhuPHKotdoivptq6AhEL5zwKyDM9snLSF2cNFThWEXsXs0vPrJMHK283H20RITaUv3Swk68v9kSxBAw6t+TjnqEt3L7lDcQmec3rK7pMqIjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vE8Lst3C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2128C4CEC3;
+	Mon, 28 Oct 2024 07:43:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730101340;
-	bh=EWJQDD7obHTMVklwOprn4LOtstavOuKcai/H4EXO3xQ=;
+	s=k20201202; t=1730101381;
+	bh=1eDgzVcTXWc1NZbaVnSW+JVBR5kRN32nfImppOd7MVc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MupB10g9s5uE7FnsWht3D3JW07DASnhSjQMXk/eIKeUiLjoNB3nO7ZU+I9Q5+S7EW
-	 N64+vwYpmPwTPy1zLGilVR14kIOQ0VKz9BzqzZMPS883iTPgGmBepUHOf+47in15t+
-	 Ee9ysRPHKdlUUk2LvVf5S+5XvO5TZJ3MjxGtrXNDj/uHUQnf0jyfxrcScWl/B3cbJT
-	 OG6p7/v3KjnejT/iF0kod8PTohS+T2KbbMW7ECAh6xci6tfPDeSS6rJw69o4h4MrW5
-	 EAkKPKAGL88tANdPPhabKSwMW9Bln8BFGQvDsq+pIEknTL94F3RxwzVv6oaZyShryD
-	 Uv8Jp4haIB4Kg==
-Date: Mon, 28 Oct 2024 08:42:17 +0100
+	b=vE8Lst3CufJY1jtdyKFMFFgihk9hVsAA4yAkx2+961RfDuZq4bVmp3Vl/cwc56kct
+	 uAhqV8lLW0dyDPFhTl2mCM7MUbLltGFm0MbROZZIwBc1Q3CjmfcMWrDOpNvuMADNUb
+	 Z/2U/kg9/I/peueNB8DYVUt+wF0EQAgqHJA2SILYrm9m9FxYiHNw2HU+Z9K2lGTGVK
+	 BD4Vgs9KfHdhjFKA116FxLDqAo+bCQ40dOQ7Mx3C3KuHkSM0Nh/k5dP9hfcTgSA8WT
+	 DN51Ha8Dgwq9oqgn8oPHWCXvOWI4sMVY7nQbUpX/rVq4fsoohcPMZekt1zA8slJZri
+	 dG9oScX6d5X3g==
+Date: Mon, 28 Oct 2024 08:42:58 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+To: ahaslam@baylibre.com
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, nuno.sa@analog.com, 
+	dlechner@baylibre.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: add ltc4296-1 support
-Message-ID: <3n65dk5apiscbsibv7va6eie2xpx5epwewzkewrf7pzjctjpwz@vuikaxmzicmu>
-References: <20241025115624.21835-1-antoniu.miclaus@analog.com>
- <20241025115624.21835-2-antoniu.miclaus@analog.com>
+Subject: Re: [PATCH 1/6] dt-bindings: iio: dac: ad5791: Add optional reset,
+ clr and ldac gpios
+Message-ID: <kq3lylhjgpozyp2ts35dntoflx4skx2znysjljmgbm7qz62vvf@42oyeum2un54>
+References: <20241028071118.699951-1-ahaslam@baylibre.com>
+ <20241028071118.699951-2-ahaslam@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,134 +61,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241025115624.21835-2-antoniu.miclaus@analog.com>
+In-Reply-To: <20241028071118.699951-2-ahaslam@baylibre.com>
 
-On Fri, Oct 25, 2024 at 02:56:10PM +0300, Antoniu Miclaus wrote:
-> Add devicetree bindings for the ltc4296-1 device.
+On Mon, Oct 28, 2024 at 08:11:13AM +0100, ahaslam@baylibre.com wrote:
+> From: Axel Haslam <ahaslam@baylibre.com>
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Depending on board layout, the ad57xx may need control of reset, clear,
+> and ldac pins by the host driver. Add optional bindings for these gpios.
+> 
+> Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
 > ---
->  .../bindings/hwmon/adi,ltc4296-1.yaml         | 105 ++++++++++++++++++
->  1 file changed, 105 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc4296-1.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc4296-1.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc4296-1.yaml
-> new file mode 100644
-> index 000000000000..be73d59a7d65
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc4296-1.yaml
-> @@ -0,0 +1,105 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
+>  .../devicetree/bindings/iio/dac/adi,ad5791.yaml   | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 
-If there is going to be new posting: drop blank line.
-
-> +$id: http://devicetree.org/schemas/hwmon/adi,ltc4296-1.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LTC4296-1 5-Port SPoE PSE Controller
-> +
-> +maintainers:
-> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> +
-> +description: |
-> +  The LTC4296-1 is an IEEE 802.3cg-compliant, five port, single-pair
-> +  power over Ethernet (SPoE), power sourcing equipment (PSE)
-> +  controller. SPoE simplifies system design and installation with
-> +  standardized power and Ethernet data over a single-pair cable.
-> +
-> +  Datasheet:
-> +    https://www.analog.com/en/products/ltc4296-1.html
-> +
-> +$ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: adi,ltc4296-1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells'
-
-If there is going to be new posting: use consistent quotes, either ' or
-".
-
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  vin-supply: true
-> +
-> +patternProperties:
-> +  "^channel@[0-3]$":
-> +    type: object
-> +    description:
-> +      Represents the current monitoring channels.
-> +
-> +    properties:
-> +      reg:
-> +        description:
-> +          The channel number. ltc4296-1 can monitor 5 currents.
-> +        items:
-> +          minimum: 0
-> +          maximum: 4
-
-maximum is 3, right?
-
-> +
-> +      shunt-resistor-micro-ohms:
-> +        description:
-> +          The value of curent sense resistor in micro ohms.
-> +
-> +    required:
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vin-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        hwmon@0 {
-> +            compatible = "adi,ltc4296-1";
-> +            reg = <0x0>;
-> +            vin-supply = <&vcc>;
-
-Why no channels here? What's the point of such node if you do not
-monitor any channels?
-
-> +        };
-> +    };
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        hwmon@0 {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            compatible = "adi,ltc4296-1";
-> +            reg = <0x0>;
-> +            vin-supply = <&vin>;
-> +
-> +            channel@0 {
-> +                    reg = <0x0>;
-
-Use 4 spaces for example indentation.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
