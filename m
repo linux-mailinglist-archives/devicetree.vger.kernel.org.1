@@ -1,289 +1,237 @@
-Return-Path: <devicetree+bounces-116622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 325E29B36E1
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 17:43:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 246E39B36F1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 17:44:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6294BB228BF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:43:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9684282163
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:44:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863B11DEFF7;
-	Mon, 28 Oct 2024 16:43:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4689F1DEFE0;
+	Mon, 28 Oct 2024 16:44:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=epochal.quest header.i=@epochal.quest header.b="CCktmkk5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jjoRu3Yd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from thales.epochal.quest (thales.epochal.quest [51.222.15.28])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 446C41DE3C4;
-	Mon, 28 Oct 2024 16:43:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.222.15.28
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F97F189F58;
+	Mon, 28 Oct 2024 16:44:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730133784; cv=none; b=V1hCeV94W8QAFDnYhsHA40OfbaN4AK/v6xPNCaVqVp2UlH4HhfalmqmSNuboV8LA9H5FskZoyIRb11F52de2d+lQt8Fjzd3VWDpXESidjbrn1aeZXmCX+Gg2nFcXM72RDmWZTASeB8hq8ld/f/jC6gmLV2+33K+KLYVmdoooCnE=
+	t=1730133871; cv=none; b=RH5JOEG96yn05UwI4eN7nDjQhRx+1gQqU1yc1ciO0GMyz+NdPzBRqOzXoTWzorG6cEmzYv6wunA1opzdzev6GyrT9rZdcEBdT8uvsKAWXx/aP3Pd0R4p+1ekAmGIyKsT6leE2TZWVpd8yuan43n0qRgyBu6zQEG9ucEQAqp3ta4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730133784; c=relaxed/simple;
-	bh=hfxfnDn52geDLFQ8Mw1FoWnOKLtSrLItsMKH3nc3vSM=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=tIBQ3ndfaIYa6z6IMhECzog0llWcVBvGWW04n7dKIXAuIO1PGjvdsJKlmrzT6hXUHnC7shbvITNmUZ57/kt6OFaFFBgSR4iy0s/7MkonzJ+40UAGo+58BtOHk3T7uHN8oznmsLXbVV2bGga6x1xY1bNwufvgVr1ngDah3YrEhqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=epochal.quest; spf=pass smtp.mailfrom=epochal.quest; dkim=pass (2048-bit key) header.d=epochal.quest header.i=@epochal.quest header.b=CCktmkk5; arc=none smtp.client-ip=51.222.15.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=epochal.quest
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=epochal.quest
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=epochal.quest;
-	s=default; t=1730133780;
-	bh=hfxfnDn52geDLFQ8Mw1FoWnOKLtSrLItsMKH3nc3vSM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=CCktmkk5ETNhFgJVayeiuWBBvWFtz9i2eH85Alx5ONZZGx7Xh9lUvO6YnDWdqVAA4
-	 J6Mhc7juRyZ5fekUyNi+P0zPsmzohLXHJSMMfuDzcwNeaBqSQ0bTFLMWsXLc/gGCEP
-	 wXOwVta/0ETlbhN+6yQaut26MFDKtzmaXIK0bOP3uN/Qa5XhNaS5QyVON5vx0ja0Zj
-	 wJP3uGsZqYa0SSNdFlvzCO4/HCUyhBMR6Dizwx67IhuoYiN4RTsGazv5eQwpy+pH+I
-	 KwpBUonnE9W0iPT1J2Lssw/4S+QWxKI52C+11V02kRmPIubHaYeWZVH81DcEW+5lk4
-	 0GL6aKp3te/xg==
-X-Virus-Scanned: by epochal.quest
+	s=arc-20240116; t=1730133871; c=relaxed/simple;
+	bh=VYXYBYtZZtmYHYEH++bEHUARDCjOd5EUg4f7Zg6dWOE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=hxV4MDhHGKIVNojKJ4vpnE3h4HuVqY7DnNf/lUIrk9ZZDXH2kWzcdA9HcUocnMsu8MfLUrD1tjDDGSFSBWtzy9J0mEDxzIkvQnL7cO6IDb3zfLN1Gci03w9v78xIWMyUqRHI81rmdG4+lmfkWa5YqqEPfJzr+WMpAuT6P29UNZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jjoRu3Yd; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-20cf6eea3c0so35795695ad.0;
+        Mon, 28 Oct 2024 09:44:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730133868; x=1730738668; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dXjXaMc1+NjmQK/N1YVEu7l1Gn/kANyJvtlcEB9iCKI=;
+        b=jjoRu3Yd1f1nhoC/HyO8GNekD7wv24PsAjn4p1y9EMiwONKvs+C2hm3cvGf8n/DRm9
+         Awt3jcJm7BiIzCfqi3sW6qTYenloLw/TYLeB+m85YelldaFYZXN6H5LWtOWG3of+g8OI
+         imE26W/0VogCoTy7NEEtKyOGvneU7IOFwa+tvJWJRyc+PxpEvOpD5T0isYrwnSxGq7oa
+         hwnwWXvGLhBGJCMvPVuUnG3d3eH+8F9O8umnLgKQ9x2UCv+FxzCa5qMO1HGRR7nBZT+F
+         +ZPesxdrN2scA/9aYDZBG/g1eQBy4ss2OQ9ls4wpZ4yk9j+E09XDV+ZEwbLZyRz2eAXX
+         IdBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730133868; x=1730738668;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dXjXaMc1+NjmQK/N1YVEu7l1Gn/kANyJvtlcEB9iCKI=;
+        b=P9E+Z7o0ClR89x33UQ9bMrUjpTJIGdP7LmZ5GJSvGYsQmJPsAdIdeTvxBrtEi1nwyz
+         wcPDGebUp80o5gsI5Y509CYpxHmExTorIY7ocNV76P/93tOdx67/h0f25A2xPDCJzjTt
+         XP3AXe+4z7S44SqKZz4azlj4AS70B+umQIjGZDwV85tyxDCNq+kmvdBBKkgbi3j6FmvT
+         gf/mfdzilAcnidgcEdRgouxCLLSp5jSflQCHFDxB1IKqKPvjLWmMv1Zi3s/hVMz6xsQc
+         Vq1Cb5p3eOYNWa/1Tgvhx34l+cXySoDK6uNrTuMvc3zAZTF3K/D8weoPEaZeIvk/F883
+         f+Eg==
+X-Forwarded-Encrypted: i=1; AJvYcCWnJgYiW1IlTW6b7Sa15G/phehdRxvcVB1ttz8cYWuZa3EQhCTc+0pBBsF1Co4jJIm1GT8Z72ltiEn4SbU=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAIuut7xEKn4f1YcPNvswng9GBNc5c3boKXjjCR0Chs46gcHLl
+	kf+7IDbZS/fIuOPR24b/kb5pWrFS7NbEhgNGYlc700FwOjUqv6nWgRRDQM14mcM=
+X-Google-Smtp-Source: AGHT+IEoqZmHqm6VAVqxfSwuXHWEddFHtQFD30kf+K8fdWv/AuPsHvUw8j0J5Wk9KXaGWw2byK+M7g==
+X-Received: by 2002:a17:902:ecc3:b0:20c:f292:3a21 with SMTP id d9443c01a7336-210c6892a36mr128561235ad.15.1730133868261;
+        Mon, 28 Oct 2024 09:44:28 -0700 (PDT)
+Received: from Emma ([2401:4900:1c96:f151:5054:ff:fe53:2787])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-210bc044f82sm52646685ad.258.2024.10.28.09.44.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Oct 2024 09:44:27 -0700 (PDT)
+From: Karan Sanghavi <karansanghvi98@gmail.com>
+Date: Mon, 28 Oct 2024 16:44:12 +0000
+Subject: [PATCH v4] dt-bindings: power: Convert raspberrypi,bcm2835-power
+ to Dt schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 28 Oct 2024 13:42:59 -0300
-From: Cody Eksal <masterr3c0rd@epochal.quest>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-usb@vger.kernel.org, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu
- Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
- Holland <samuel@sholland.org>, Parthiban <parthiban@linumiz.com>, Yangtao Li
- <frank@allwinnertech.com>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Vinod Koul <vkoul@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Thierry Reding <treding@nvidia.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, Maxime Ripard <mripard@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Yangtao Li
- <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>, Nishanth Menon
- <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Shuosheng
- Huang <huangshuosheng@allwinnertech.com>
-Subject: Re: [PATCH 13/13] arm64: dts: allwinner: a100: Add CPU Operating
- Performance Points table
-In-Reply-To: <20241025132739.3d0f116d@donnerap.manchester.arm.com>
-References: <20241024170540.2721307-1-masterr3c0rd@epochal.quest>
- <20241024170540.2721307-14-masterr3c0rd@epochal.quest>
- <20241025132739.3d0f116d@donnerap.manchester.arm.com>
-Message-ID: <b0fdfffd6b840eeabd2c9ab748915dd8@epochal.quest>
-X-Sender: masterr3c0rd@epochal.quest
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20241028-raspberrypi-bcm2835-power-v4-1-acf44abd45ff@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAFy/H2cC/43NwQ6DIAyA4VdZOI9FCojstPdYdkCsSjLFwOJmj
+ O8+9GR2MEtPf5N+nUnE4DCS62kmAUcXne9TiPOJ2Nb0DVJXpSaQgWAZ0zSYOJQYwjQ4WtoOCi7
+ p4N8YqDQCOCux0FKTdD8ErN1ns++P1K2LLx+m7dXI1u0/6sgoo0qiBlFZroS8NZ1xz4v1HVnVE
+ XYSwJEESWJGmCKNVFz9Snwv5UcST1KeA8NMyYrzei8ty/IFyppN2FYBAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>
+Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Shuah Khan <skhan@linuxfoundation.org>, 
+ Alexander Aring <alex.aring@gmail.com>, Eric Anholt <eric@anholt.net>, 
+ Karan Sanghavi <karansanghvi98@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730133864; l=4072;
+ i=karansanghvi98@gmail.com; s=20241017; h=from:subject:message-id;
+ bh=VYXYBYtZZtmYHYEH++bEHUARDCjOd5EUg4f7Zg6dWOE=;
+ b=SxiVf23KimpjOkVKsF4/k3vHDNwyubJt+SdtqEl7+QYLfn+WnZ0z2mrcRUCInTQ/sC8RBJm50
+ fs/4Yjc4BBWCgAMHKe+CjF7l09yo6bUvg0LyIpivuqZfq1Xbmumrsu8
+X-Developer-Key: i=karansanghvi98@gmail.com; a=ed25519;
+ pk=UAcbefT1C06npNVDJHdgpPqTm4WE9IhaA1fmJb3A37Y=
 
-On 2024/10/25 9:27 am, Andre Przywara wrote:
-> On Thu, 24 Oct 2024 14:05:31 -0300
-> Cody Eksal <masterr3c0rd@epochal.quest> wrote:
-> 
->> From: Shuosheng Huang <huangshuosheng@allwinnertech.com>
->> 
->> Add an Operating Performance Points table for the CPU cores to
->> enable Dynamic Voltage & Frequency Scaling on the A100.
->> 
->> Signed-off-by: Shuosheng Huang <huangshuosheng@allwinnertech.com>
->> [masterr3c0rd@epochal.quest: fix typos in -cpu-opp, use compatible]
->> Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
->> ---
->>  .../allwinner/sun50i-a100-allwinner-perf1.dts |  5 ++
->>  .../dts/allwinner/sun50i-a100-cpu-opp.dtsi    | 90 
->> +++++++++++++++++++
->>  .../arm64/boot/dts/allwinner/sun50i-a100.dtsi |  8 ++
->>  3 files changed, 103 insertions(+)
->>  create mode 100644 
->> arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi
->> 
->> diff --git 
->> a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts 
->> b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
->> index 29e9d24da8b6..99b1b2f7b92a 100644
->> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
->> @@ -6,6 +6,7 @@
->>  /dts-v1/;
->> 
->>  #include "sun50i-a100.dtsi"
->> +#include "sun50i-a100-cpu-opp.dtsi"
->> 
->>  #include <dt-bindings/gpio/gpio.h>
->> 
->> @@ -67,6 +68,10 @@ &usb_otg {
->>  	status = "okay";
->>  };
->> 
->> +&cpu0 {
->> +	cpu-supply = <&reg_dcdc2>;
->> +};
->> +
->>  &pio {
->>  	vcc-pb-supply = <&reg_dcdc1>;
->>  	vcc-pc-supply = <&reg_eldo1>;
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi 
->> b/arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi
->> new file mode 100644
->> index 000000000000..eeb8d20f3fb4
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi
->> @@ -0,0 +1,90 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +// Copyright (c) 2020 Yangtao Li <frank@allwinnertech.com>
->> +// Copyright (c) 2020 ShuoSheng Huang 
->> <huangshuosheng@allwinnertech.com>
->> +
->> +/ {
->> +	cpu_opp_table: cpu-opp-table {
->> +		compatible = "allwinner,sun50i-a100-operating-points";
->> +		nvmem-cells = <&cpu_speed_grade>;
->> +		opp-shared;
->> +
->> +		opp@408000000 {
->> +			clock-latency-ns = <244144>; /* 8 32k periods */
->> +			opp-hz = /bits/ 64 <408000000>;
->> +
->> +			opp-microvolt-speed0 = <900000 900000 1200000>;
->> +			opp-microvolt-speed1 = <900000 900000 1200000>;
->> +			opp-microvolt-speed2 = <900000 900000 1200000>;
-> 
-> Is there actually an advantage when using the three cells version?
-> I wonder if we should go with just the target voltage (the first cell
-> here), as done for the H616.
-It probably makes sense to follow precedent; I've updated V2 to make 
-these single-cell.
-> Apart from that it looks fine to me.
-I did get a comment from Rob's bot that picked up some issues with the 
-namings of these nodes; I've updated that as well.
+Convert the raspberrypi,bcm2835-power binding to Dt schema
 
-Thanks!
-- Cody
-> Cheers,
-> Andre.
-> 
->> +		};
->> +
->> +		opp@600000000 {
->> +			clock-latency-ns = <244144>; /* 8 32k periods */
->> +			opp-hz = /bits/ 64 <600000000>;
->> +
->> +			opp-microvolt-speed0 = <900000 900000 1200000>;
->> +			opp-microvolt-speed1 = <900000 900000 1200000>;
->> +			opp-microvolt-speed2 = <900000 900000 1200000>;
->> +		};
->> +
->> +		opp@816000000 {
->> +			clock-latency-ns = <244144>; /* 8 32k periods */
->> +			opp-hz = /bits/ 64 <816000000>;
->> +
->> +			opp-microvolt-speed0 = <940000 940000 1200000>;
->> +			opp-microvolt-speed1 = <900000 900000 1200000>;
->> +			opp-microvolt-speed2 = <900000 900000 1200000>;
->> +		};
->> +
->> +		opp@1080000000 {
->> +			clock-latency-ns = <244144>; /* 8 32k periods */
->> +			opp-hz = /bits/ 64 <1080000000>;
->> +
->> +			opp-microvolt-speed0 = <1020000 1020000 1200000>;
->> +			opp-microvolt-speed1 = <980000 980000 1200000>;
->> +			opp-microvolt-speed2 = <950000 950000 1200000>;
->> +		};
->> +
->> +		opp@1200000000 {
->> +			clock-latency-ns = <244144>; /* 8 32k periods */
->> +			opp-hz = /bits/ 64 <1200000000>;
->> +
->> +			opp-microvolt-speed0 = <1100000 1100000 1200000>;
->> +			opp-microvolt-speed1 = <1020000 1020000 1200000>;
->> +			opp-microvolt-speed2 = <1000000 1000000 1200000>;
->> +		};
->> +
->> +		opp@1320000000 {
->> +			clock-latency-ns = <244144>; /* 8 32k periods */
->> +			opp-hz = /bits/ 64 <1320000000>;
->> +
->> +			opp-microvolt-speed0 = <1160000 1160000 1200000>;
->> +			opp-microvolt-speed1 = <1060000 1060000 1200000>;
->> +			opp-microvolt-speed2 = <1030000 1030000 1200000>;
->> +		};
->> +
->> +		opp@1464000000 {
->> +			clock-latency-ns = <244144>; /* 8 32k periods */
->> +			opp-hz = /bits/ 64 <1464000000>;
->> +
->> +			opp-microvolt-speed0 = <1180000 1180000 1200000>;
->> +			opp-microvolt-speed1 = <1180000 1180000 1200000>;
->> +			opp-microvolt-speed2 = <1130000 1130000 1200000>;
->> +		};
->> +	};
->> +};
->> +
->> +&cpu0 {
->> +	operating-points-v2 = <&cpu_opp_table>;
->> +};
->> +
->> +&cpu1 {
->> +	operating-points-v2 = <&cpu_opp_table>;
->> +};
->> +
->> +&cpu2 {
->> +	operating-points-v2 = <&cpu_opp_table>;
->> +};
->> +
->> +&cpu3 {
->> +	operating-points-v2 = <&cpu_opp_table>;
->> +};
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi 
->> b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
->> index 6dca766ea222..747a0292ef98 100644
->> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
->> @@ -23,6 +23,7 @@ cpu0: cpu@0 {
->>  			device_type = "cpu";
->>  			reg = <0x0>;
->>  			enable-method = "psci";
->> +			clocks = <&ccu CLK_CPUX>;
->>  		};
->> 
->>  		cpu1: cpu@1 {
->> @@ -30,6 +31,7 @@ cpu1: cpu@1 {
->>  			device_type = "cpu";
->>  			reg = <0x1>;
->>  			enable-method = "psci";
->> +			clocks = <&ccu CLK_CPUX>;
->>  		};
->> 
->>  		cpu2: cpu@2 {
->> @@ -37,6 +39,7 @@ cpu2: cpu@2 {
->>  			device_type = "cpu";
->>  			reg = <0x2>;
->>  			enable-method = "psci";
->> +			clocks = <&ccu CLK_CPUX>;
->>  		};
->> 
->>  		cpu3: cpu@3 {
->> @@ -44,6 +47,7 @@ cpu3: cpu@3 {
->>  			device_type = "cpu";
->>  			reg = <0x3>;
->>  			enable-method = "psci";
->> +			clocks = <&ccu CLK_CPUX>;
->>  		};
->>  	};
->> 
->> @@ -142,6 +146,10 @@ efuse@3006000 {
->>  			ths_calibration: calib@14 {
->>  				reg = <0x14 8>;
->>  			};
->> +
->> +			cpu_speed_grade: cpu-speed-grade@1c {
->> +				reg = <0x1c 0x2>;
->> +			};
->>  		};
->> 
->>  		watchdog@30090a0 {
+Signed-off-by: Karan Sanghavi <karansanghvi98@gmail.com>
+---
+Changes in v4:
+- Corrected misindentations and random differences.
+- Link to v3: https://lore.kernel.org/r/20241026-raspberrypi-bcm2835-power-v3-1-6621e075d33f@gmail.com
+
+Changes in v3:
+- Applied changes as per the feedback received for title and description
+- Removed power label and renamed node to power-controller	
+- Moved the file from bindings/soc/bcm to bindings/power
+- Link to v2: https://lore.kernel.org/r/20241022-raspberrypi-bcm2835-power-v2-1-1a4a8a8a5737@gmail.com
+
+Changes in v2:
+- Added original file maintainers
+- Removed unnecessary headers from example and formating from description 
+- Link to v1: https://lore.kernel.org/r/20241019-raspberrypi-bcm2835-power-v1-1-75e924dc3745@gmail.com
+---
+ .../bindings/power/raspberrypi,bcm2835-power.yaml  | 42 +++++++++++++++++++
+ .../bindings/soc/bcm/raspberrypi,bcm2835-power.txt | 47 ----------------------
+ 2 files changed, 42 insertions(+), 47 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/power/raspberrypi,bcm2835-power.yaml b/Documentation/devicetree/bindings/power/raspberrypi,bcm2835-power.yaml
+new file mode 100644
+index 000000000000..259e1d9b3fab
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/raspberrypi,bcm2835-power.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/raspberrypi,bcm2835-power.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom BCM2835 power domain
++
++maintainers:
++  - Alexander Aring <alex.aring@gmail.com>
++  - Eric Anholt <eric@anholt.net>
++
++description:
++  The Raspberry Pi power domain manages power for various subsystems
++  in the Raspberry Pi BCM2835 SoC.
++
++properties:
++  compatible:
++    enum:
++      - raspberrypi,bcm2835-power
++
++  firmware:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: Reference to the RPi firmware device node
++
++  "#power-domain-cells":
++    const: 1
++
++required:
++  - compatible
++  - firmware
++  - "#power-domain-cells"
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    power-controller {
++      compatible = "raspberrypi,bcm2835-power";
++      firmware = <&firmware>;
++      #power-domain-cells = <1>;
++    };
+diff --git a/Documentation/devicetree/bindings/soc/bcm/raspberrypi,bcm2835-power.txt b/Documentation/devicetree/bindings/soc/bcm/raspberrypi,bcm2835-power.txt
+deleted file mode 100644
+index 30942cf7992b..000000000000
+--- a/Documentation/devicetree/bindings/soc/bcm/raspberrypi,bcm2835-power.txt
++++ /dev/null
+@@ -1,47 +0,0 @@
+-Raspberry Pi power domain driver
+-
+-Required properties:
+-
+-- compatible:		Should be "raspberrypi,bcm2835-power".
+-- firmware:		Reference to the RPi firmware device node.
+-- #power-domain-cells:	Should be <1>, we providing multiple power domains.
+-
+-The valid defines for power domain are:
+-
+- RPI_POWER_DOMAIN_I2C0
+- RPI_POWER_DOMAIN_I2C1
+- RPI_POWER_DOMAIN_I2C2
+- RPI_POWER_DOMAIN_VIDEO_SCALER
+- RPI_POWER_DOMAIN_VPU1
+- RPI_POWER_DOMAIN_HDMI
+- RPI_POWER_DOMAIN_USB
+- RPI_POWER_DOMAIN_VEC
+- RPI_POWER_DOMAIN_JPEG
+- RPI_POWER_DOMAIN_H264
+- RPI_POWER_DOMAIN_V3D
+- RPI_POWER_DOMAIN_ISP
+- RPI_POWER_DOMAIN_UNICAM0
+- RPI_POWER_DOMAIN_UNICAM1
+- RPI_POWER_DOMAIN_CCP2RX
+- RPI_POWER_DOMAIN_CSI2
+- RPI_POWER_DOMAIN_CPI
+- RPI_POWER_DOMAIN_DSI0
+- RPI_POWER_DOMAIN_DSI1
+- RPI_POWER_DOMAIN_TRANSPOSER
+- RPI_POWER_DOMAIN_CCP2TX
+- RPI_POWER_DOMAIN_CDP
+- RPI_POWER_DOMAIN_ARM
+-
+-Example:
+-
+-power: power {
+-	compatible = "raspberrypi,bcm2835-power";
+-	firmware = <&firmware>;
+-	#power-domain-cells = <1>;
+-};
+-
+-Example for using power domain:
+-
+-&usb {
+-       power-domains = <&power RPI_POWER_DOMAIN_USB>;
+-};
+
+---
+base-commit: 8e929cb546ee42c9a61d24fae60605e9e3192354
+change-id: 20241019-raspberrypi-bcm2835-power-5a4231be8959
+
+Best regards,
+-- 
+Karan Sanghavi <karansanghvi98@gmail.com>
+
 
