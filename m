@@ -1,72 +1,85 @@
-Return-Path: <devicetree+bounces-116572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BABF9B3472
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:08:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D069B3470
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:08:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 148941F228AF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:08:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A65141C21F04
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:08:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F267C1DE2AB;
-	Mon, 28 Oct 2024 15:08:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 978D81DD88F;
+	Mon, 28 Oct 2024 15:08:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hoiUXP12"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yg+IIvk9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB95615E5B8;
-	Mon, 28 Oct 2024 15:08:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6702418FDB0;
+	Mon, 28 Oct 2024 15:08:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730128119; cv=none; b=Dgq4iV0ui21Yz1Tw4WbGxDFKjkLUvykpHp9L66wWB6jBzXIhjNDlKm9TvCYTS++FpkPViTSClOChmiTY0ruCUF/k3nrehpzZp4l9OuI7TRXxjk9r6KIzQDFVhPPWIjLdtH+JKq1ovBWhTsIrq81yZgNkT0PM8dQ74AWp3Q0Im6Q=
+	t=1730128112; cv=none; b=jHuQ0Vcg+LWnIg+obqQDetgZUZ+e7gDamaF3NPXSC59WJW15WowvwSthZQAqMlqSE1KIYOvwkN7iL9kRvt/roPe5vM2f9MI0/bQDoame8wxkjChrlOvzs8dYkfpmLSQPN0UeBaQpML2ZaTT3hEwSYOkzfGYKAX6wgxS1yDIef3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730128119; c=relaxed/simple;
-	bh=26+cZqrw+8QZ80a1WVWhlt2dmB4sZlUyh6HWEMIJmDI=;
+	s=arc-20240116; t=1730128112; c=relaxed/simple;
+	bh=jiVKQ57hi7A062XHeQCcuk0VcgebYgwGxpIVbT11fb4=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OC64PfqK5+BGDYcOM/08sjF6Pwj0wNDtXweLjceFFQwPOmeIVJ+GmeTxDsf1atu7/tjfNOHnDy4N9zLdqldsnzgZtLGHX89sIYGAbASFucMUvfJ463HdKGJwTFe/AS6+xVvItpaOl7ZEaev4GkBi3ghKey5XLpeOAtkztlIKaB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hoiUXP12; arc=none smtp.client-ip=198.47.19.141
+	 MIME-Version:Content-Type; b=Cmoib8lR8T93EEGY0MfEg/KRZ2D3ljhprDjRSDTXvH21H8rIrIan/fsz+YifivCMkB4TDyS5gmO9O85u52DZNOw3st0K0fufhO1nfaE+Ksnbi4lIYFN9bK8xXBGo/I50uSmJUT4vQQbzP13uIQbDwu8o7iy2lXwF2j4kDkYEsXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=yg+IIvk9; arc=none smtp.client-ip=198.47.23.248
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49SF8BvA005538;
-	Mon, 28 Oct 2024 10:08:11 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49SF8Ox3024829;
+	Mon, 28 Oct 2024 10:08:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1730128091;
-	bh=zkTdVlTW/i5WYDBFKyKCfHptSPFJOKhP2+osqRe1mCQ=;
+	s=ti-com-17Q1; t=1730128104;
+	bh=Gx1ESAmVytH8Um5rIC3OkBCktJHLJF3/Z1qDATXgXjE=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=hoiUXP12Iw5adaChwA91jtMELvdxpDsOM2+iSm7FSNrB+6BmQvQgoWLenokxVBWFJ
-	 Rsz9I/+eR2N8zDkUna4m/SrXPlBReTmtftxvp3ye0jMS49Y82ShdKVPZ6G5KqoWukS
-	 lSNx3e+A88u5EFQkul2GVUICJl5vxn268njtl4pg=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49SF8BPs057680;
-	Mon, 28 Oct 2024 10:08:11 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	b=yg+IIvk9jmGlq6ZRDfVy0theDCtSnN/eqJ4zLfPaxhIcI2lmQE4Cn5Ud8nOFcPYdg
+	 Jw1fj+k60mCPcsAosOC7yhvjzjcoznIY9HSes5K4fVUADWz8XuGWxL9CChSEQDdAET
+	 xfS5VaLLAvhAycPpMj05KxjXIf6LOBmr5BGVYRDM=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49SF8Ofj052100
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 28 Oct 2024 10:08:24 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 28
- Oct 2024 10:08:11 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2024 10:08:23 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 28 Oct 2024 10:08:11 -0500
+ Frontend Transport; Mon, 28 Oct 2024 10:08:23 -0500
 Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49SF5tcr129665;
-	Mon, 28 Oct 2024 10:08:08 -0500
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49SF5tct129665;
+	Mon, 28 Oct 2024 10:08:19 -0500
 From: Vignesh Raghavendra <vigneshr@ti.com>
-To: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <w.egorov@phytec.de>, Garrett Giordano <ggiordano@phytec.com>
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Manorit Chawdhry <m-chawdhry@ti.com>
 CC: Vignesh Raghavendra <vigneshr@ti.com>,
         <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
-Subject: Re: [PATCH v2 0/2] Reconfigure 1.4GHz in AM62 PHYCORE SoM
-Date: Mon, 28 Oct 2024 20:35:23 +0530
-Message-ID: <173012710988.558239.17362858553590828268.b4-ty@ti.com>
+        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>,
+        Neha Malcom
+ Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi
+	<b-padhi@ti.com>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v6 0/5] Introduce J742S2 SoC and EVM
+Date: Mon, 28 Oct 2024 20:35:25 +0530
+Message-ID: <173012710987.558239.1177036960002400473.b4-ty@ti.com>
 X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241001071916.1362213-1-ggiordano@phytec.com>
-References: <20241001071916.1362213-1-ggiordano@phytec.com>
+In-Reply-To: <20240902-b4-upstream-j742s2-v6-0-6a7aa2736797@ti.com>
+References: <20240902-b4-upstream-j742s2-v6-0-6a7aa2736797@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,28 +90,32 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Garrett Giordano,
+Hi Manorit Chawdhry,
 
-On Tue, 01 Oct 2024 00:19:14 -0700, Garrett Giordano wrote:
-> This patch set moves our 1.4GHz opp table definition out of our overlay
-> and into our som dtsi. This change goes along with our updated PMIC, which
-> is now configured to output 0.85v by default.
+On Mon, 02 Sep 2024 17:56:48 +0530, Manorit Chawdhry wrote:
+> The series adds support for J742S2 family of SoCs. Also adds J742S2 EVM
+> Support and re-uses most of the stuff from the superset device J784s4.
 > 
-> We drop the overlay as it is no longer needed.
-> 
-> Changes in v2:
->   - Use git revert to revert the overlay patch
->   - Update commit message to reflect revert adding the device tree overlay
+> It initially cleans up the J784s4 SoC files so that they can be
+> re-usable for j742s2 by introducing -common files. Next it cleans up the
+> EVM files for j784s4 in a similar way and then goes about adding the
+> support for j742s2.
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/2] arm64: dts: ti: am62-phycore-som: Increase cpu frequency to 1.4 GHz
-      commit: bc3552d675537be111148d9614f4f02f31e30de3
-[2/2] Revert "arm64: dts: ti: am62-phyboard-lyra: Add overlay to increase cpu frequency to 1.4 GHz"
-      commit: 151ed40a4f204e8786a2573e3f8083ffd29f3b1e
+[1/5] arm64: dts: ti: Refactor J784s4 SoC files to a common file
+      commit: 9cc161a4509c2fda7cbe35b4858b496cec03c5d0
+[2/5] arm64: dts: ti: Refactor J784s4-evm to a common file
+      commit: 39b623c05c4652f2ec450a07cee3d179a283733b
+[3/5] dt-bindings: arm: ti: Add bindings for J742S2 SoCs and Boards
+      commit: 9c65033884bfec836fe45f21d079de40fc7c7bda
+[4/5] arm64: dts: ti: Introduce J742S2 SoC family
+      commit: 38fd90a3e1ac7e948081cf168cf10f0a20febc21
+[5/5] arm64: dts: ti: Add support for J742S2 EVM board
+      commit: 13dc96a52712053cfad59b0d11cab694ed5bc5ef
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
