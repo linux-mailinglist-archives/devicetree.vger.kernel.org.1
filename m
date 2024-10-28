@@ -1,145 +1,117 @@
-Return-Path: <devicetree+bounces-116458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A85969B2F49
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:52:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5531E9B2F97
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:04:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA2791C21821
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:52:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CED91F22E2E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C2F1D3648;
-	Mon, 28 Oct 2024 11:51:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E00631DAC8C;
+	Mon, 28 Oct 2024 12:02:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79CA92C697
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 11:51:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D35581DA0E0;
+	Mon, 28 Oct 2024 12:02:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730116318; cv=none; b=qLEGbkozqaM180MB9A48FWEl+MukPatCMdyJmSnWLxA8Vb6bS1xcGbbOm9NxY5Om1FsFvxiaZkt5daZFWkTXmz+4uHZ9DB3IwR1RcPMSZEdejbBWstvjxSd/x1dIp+7Vci7VGPwpDFL9m77o4dH5zBzDHTuJZanxhyWvc41aFLM=
+	t=1730116935; cv=none; b=K3jm1US3XxpaQPfOz0gE6QoYdLIMphjzrDrz/Z7oP8txuxJWBCjKrXfPTTrYbbBsnbBnFJRzZ0CxBZ2Xiwb5ifLn7ZZ/bhs92dGIFvjHtttUCwZ7DpnRp+2g8MtMUgajU2/Ofwtsjwqv6Q84XibPJYq7imiLIMJhVtTaTCwgNAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730116318; c=relaxed/simple;
-	bh=ockJI5gQqJl3+aKvbH6g8LQa7g/Ahc7oUF9YmohijpU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uGG2DSIzNMpV3zyuzQI+Kqb6HqEGMqmbnScu6ep6Z49ilVGr+yvmIS5w6TaT0Oy0usq8ar4ExImWNqdMM9USyeJb9bnqj2hcoR7L7PjJEQC45iOYDSLOEQAhbMLhT17d7V/4JP2ug0LioVqhDatytBpauKRlFrH8ES5QR0yFVYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1t5OHm-0004LV-MX; Mon, 28 Oct 2024 12:51:50 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1t5OHm-000qGG-0g;
-	Mon, 28 Oct 2024 12:51:50 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1t5OHm-000jgu-0J;
-	Mon, 28 Oct 2024 12:51:50 +0100
-Date: Mon, 28 Oct 2024 12:51:50 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Sherry Sun <sherry.sun@nxp.com>
-Cc: POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
-	Amitkumar Karwar <amitkumar.karwar@nxp.com>,
-	Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
-	"marcel@holtmann.org" <marcel@holtmann.org>,
-	"luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
- supply and reset
-Message-ID: <20241028115150.fgvqaem36lwxwvjh@pengutronix.de>
-References: <20241022072311.ubh2sia5lwgvebsg@pengutronix.de>
- <DB9PR04MB8429657FCB48ACAD74FDD471924C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
- <20241022082256.nzfxqp67tdaxtn56@pengutronix.de>
- <DB9PR04MB84292445D0FEDB8211ED52C3924C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
- <9b09774e-d0ed-4c97-b6a0-e976580b5bb5@leica-geosystems.com>
- <DB9PR04MB8429CF700571FE42C997FB9C924D2@DB9PR04MB8429.eurprd04.prod.outlook.com>
- <1b8864e5-0ec7-49c4-932a-89cfbaeacc9f@leica-geosystems.com>
- <DB9PR04MB842929186683C1DF13DCBD92924A2@DB9PR04MB8429.eurprd04.prod.outlook.com>
- <20241028090028.x6rzopvpcdvgouqv@pengutronix.de>
- <DB9PR04MB842960A18BB8570B04A64BEA924A2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1730116935; c=relaxed/simple;
+	bh=H8xDAOMKrpAJvrKiMXiQPJzeOxCEpqKKUU2Hu9rg+zs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=mLtJhfs1gPseph1YBeo1iGS73+Mu+W25V3JNvIiUZWyD/oV+9BsfUAkQPp5a7mUq11P1Q+5ae80ySzl7QSINo+3b/E7AJziJKxAKlG4lOSN5cgG4tndHwWey0hYiGAT5EjbwYuCULH2VG85L3V46ioRvlB6vy9alBvDp2gWJYes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 137ED497;
+	Mon, 28 Oct 2024 05:02:43 -0700 (PDT)
+Received: from pluto.fritz.box (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 499FA3F73B;
+	Mon, 28 Oct 2024 05:02:11 -0700 (PDT)
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org
+Cc: sudeep.holla@arm.com,
+	james.quinlan@broadcom.com,
+	f.fainelli@gmail.com,
+	vincent.guittot@linaro.org,
+	etienne.carriere@st.com,
+	peng.fan@oss.nxp.com,
+	michal.simek@amd.com,
+	quic_sibis@quicinc.com,
+	quic_nkela@quicinc.com,
+	dan.carpenter@linaro.org,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	"Rob Herring (Arm)" <robh@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v3 3/7] dt-bindings: firmware: arm,scmi: Introduce more transport properties
+Date: Mon, 28 Oct 2024 12:01:47 +0000
+Message-ID: <20241028120151.1301177-4-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241028120151.1301177-1-cristian.marussi@arm.com>
+References: <20241028120151.1301177-1-cristian.marussi@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DB9PR04MB842960A18BB8570B04A64BEA924A2@DB9PR04MB8429.eurprd04.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
-On 24-10-28, Sherry Sun wrote:
-> 
-> > From: Marco Felsch <m.felsch@pengutronix.de>
-> > 
-> > Hi,
-> > 
-> > On 24-10-28, Sherry Sun wrote:
-> > >
-> > > > From: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
-> > > >
-> > > > We use the NXP downstream driver mwifiex which doesn't have support
-> > > > for regulator or PDn.
-> > > >
-> > > > However, regulator is already supported by the MMC core (vmmc-supply).
-> > > >
-> > > > For PDn, we use mmc pwrseq simple driver that has been patched to
-> > > > add support for reset-control.
-> > >
-> > > Ok, thanks, the mmc change looks good for me, so there is no problem
-> > > with the NXP SDIO wifi.
-> > >
-> > > But how do you plan to handle the NXP PCIe wifi? We also need to make
-> > > sure the BT patch won't break the PCIe wifi function.
-> > 
-> > Can you please elaborate how this could break the PCIe use-case?
-> 
-> Similar to the SDIO wifi, if no corresponding reset control for the
-> PDn pin in PCIe wifi driver, the wifi part will be unexpectedly
-> powered off when removing the BT driver.
+Depending on specific hardware and firmware design choices, it may be
+possible for different platforms to end up having different requirements
+regarding the same transport characteristics.
 
-Nope it's not that easy for PCIe case since the phy + link layer
-handling is much more complex compared to the MMC case. For the PCIe
-case the intial handling is very strict according to the PCIe spec and
-we can't handle the BT device independently.
+Introduce max-msg-size and max-msg properties to describe such platform
+specific transport constraints, since they cannot be discovered otherwise.
 
-_BUT_ this patch doesn't cause any regression for the PCIe use-case
-since the support added by Catalin is optional which means that the user
-don't have to use these options.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+---
+Cc: devicetree@vger.kernel.org
+---
+v1 --> v2
+- added vendor prefix
+- dropped warnings about resonable minimum max-msg-size
+- clarified the intended usage of max-msg
+- fixed Cc to include all maintainers and using correct e-mails
+---
+ .../devicetree/bindings/firmware/arm,scmi.yaml    | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-To sum up:
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index 54d7d11bfed4..9d6e1147f9e9 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -131,6 +131,21 @@ properties:
+       be a non-zero value if set.
+     minimum: 1
+ 
++  arm,max-msg-size:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      An optional value, expressed in bytes, representing the maximum size
++      allowed for the payload of messages transmitted on this transport.
++
++  arm,max-msg:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      An optional value representing the maximum number of concurrent in-flight
++      messages allowed by this transport; this number represents the maximum
++      number of concurrently outstanding messages that the server can handle on
++      this platform. If set, the value should be non-zero.
++    minimum: 1
++
+   arm,smc-id:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+-- 
+2.47.0
 
-WLAN (PCIe) used + BT (UART) used -> no independent handling
-                                     possible. BT depends on WLAN.
-
-WLAN (PCIe) not used + BT (UART) used -> This patchset allow us to
-                                         handle BT. Without the patchset
-					 this is not possible.
-
-WLAN (SDIO) + BT (UART) -> This patchset and the mmc-power-seq patchset
-                           allow us to handle WLAN and BT independently
-			   regardless if BT or WLAN is used or not.
-
-Regards,
-  Marco
 
