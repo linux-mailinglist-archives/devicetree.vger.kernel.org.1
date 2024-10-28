@@ -1,226 +1,197 @@
-Return-Path: <devicetree+bounces-116668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 389249B3935
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 19:33:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69E2D9B3963
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 19:45:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 852EDB20A85
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 18:33:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED90B1F226F1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 18:45:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDE41DF96A;
-	Mon, 28 Oct 2024 18:33:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E46731DF990;
+	Mon, 28 Oct 2024 18:45:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BeFodYZk"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="B/vdsh1S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDEAD1DF26E;
-	Mon, 28 Oct 2024 18:33:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25EF11DF997;
+	Mon, 28 Oct 2024 18:45:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730140403; cv=none; b=VtT49yd2GDfQ0aGPwLqClq8+iWYtXvWZ5qGCrJUXRH0DV3Pl/HxtaKvWw6z60jIrf62+JAq5Hfsy6zIvwrNwfonUALwp+u+UmEcE0En6Bo9LXs7tgIw1ZFLg9a7HGSV6iDCw50VDJhqxyLcYMZUbLVVuOF3rK+9aXqqpjZewN/s=
+	t=1730141105; cv=none; b=nNC0GqP+NEkA7dLky8b7HRDqUfGy6yCF7vLM+63fLTsj2dEPs6Z+CVu+2BFKsuPzx28TsCVOqGg4GWSH+hzSuidULptqfprdE4C9yA7psA2e/xGMvroP7sbRhmFfWHiOM5GFQ7O0GViJaCYlpxebJAPimcU3EASTWdt1FAsHAMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730140403; c=relaxed/simple;
-	bh=RtUxlckr7u4gCJmgfzIvJNSXpB/tzLCL+dbysnbd5fQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ixSYaemU+Oi+ERXl9+iACdEDBJ/W0QISuKQ2hwDzp8tXEYt1x60XNdxon7jolSD/O6/lQkLxwPQ1LVZCgcxC2O24+ZqQDTYquBhPDdFjqgvjbvZbgWChKhWj8kwV9gRviMOmLyyIgSvzkuazUgB+XlFkyHokzVb6XgX5wBJ1W4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BeFodYZk; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730140401; x=1761676401;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RtUxlckr7u4gCJmgfzIvJNSXpB/tzLCL+dbysnbd5fQ=;
-  b=BeFodYZkfAxrNKuR4aC/u1GQuucEsQqdtzV5zvH/mAHyE9JPcuDypVP6
-   D8HsyLyqi/He3Dmm2OzUozq18NmRaRdtCtrXY+6O/0tvPz3JXIdNFuawo
-   Z4pqRbhGVBf5BDyAExZFqZK36HYEiqaviLq7OSd9mU7fylLznilJ6UwVO
-   QZuegigzfnwc82MSWmqsdHS40UZKl/aTENltPXAoHrBLDwtEpZ624Lyh2
-   1AuZvewa1hCdbTLBtyN4IQe4qsRvO9f9F4jthsp1JDM0jm9s/fTjSIbjG
-   aXf/olUqtMKYrY/o/60nebnE/dGp9TM0LW8wUo5rmZ98PFsXBZuWjfiEE
-   A==;
-X-CSE-ConnectionGUID: 9B5WwuwkQjmGHNsrjaoehw==
-X-CSE-MsgGUID: QPr6b7hnT02BBQcAHAzh5Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="29961072"
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; 
-   d="scan'208";a="29961072"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Oct 2024 11:33:20 -0700
-X-CSE-ConnectionGUID: lDCXmLHRQu2g+UIZpN/LIQ==
-X-CSE-MsgGUID: P8gHA8XbQiOZM5tj8p3DUA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; 
-   d="scan'208";a="81269452"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 28 Oct 2024 11:33:17 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t5UYF-000ckW-0F;
-	Mon, 28 Oct 2024 18:33:15 +0000
-Date: Tue, 29 Oct 2024 02:32:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: ahaslam@baylibre.com, lars@metafoo.de, Michael.Hennerich@analog.com,
-	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Axel Haslam <ahaslam@baylibre.com>
-Subject: Re: [PATCH 5/6] iio: dac: ad5791: Use
- devm_regulator_get_enable_read_voltage
-Message-ID: <202410290245.0RC0cDV4-lkp@intel.com>
-References: <20241028071118.699951-6-ahaslam@baylibre.com>
+	s=arc-20240116; t=1730141105; c=relaxed/simple;
+	bh=dChFts2/7a2fBHU+v3doi2oXmZFDxoByWrmt5KOQZf0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bcBr0uDjFCbS9YoWuyt2Vb1hoRi3DQSv+WDgUg3AjI7nFGTXgr8CdSF4OCh9RTDWxt5rPa854Yp3h7XyIzqEitog/VNw7vFs7Yjl6fdbEMDx5Lz2kS7Tw0LCBkugC/2zNUykzz6avvv2KSEuNMUMy3r1jUZwOhyMeZlIEZ10hgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=B/vdsh1S; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49SIimNl054286;
+	Mon, 28 Oct 2024 13:44:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1730141088;
+	bh=3xYgYe0OlHKa5EeZMU5xT/sJGAiMZdG0VMyPo/JHxaU=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=B/vdsh1ScMPdMTZEbP98n/vyaALNHCox9IvSBd2RsME9FFx2oOuZft9qajQh5Mmtx
+	 RuUcokp331qiquhm1H9BDRTkplu24zANK/9aECiML565JEavJ8JhfpfdymZughVso4
+	 F4BkUk/1/M2zIogx4IPAbp/h0MM01kRuXL0ugrbE=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49SIimaA017613
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 28 Oct 2024 13:44:48 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 28
+ Oct 2024 13:44:48 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 28 Oct 2024 13:44:48 -0500
+Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49SIiir6044459;
+	Mon, 28 Oct 2024 13:44:45 -0500
+Message-ID: <cd02e760-54c6-4a92-af4e-e786d80cfbbd@ti.com>
+Date: Tue, 29 Oct 2024 00:14:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241028071118.699951-6-ahaslam@baylibre.com>
-
-Hi,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on linus/master v6.12-rc5 next-20241028]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/ahaslam-baylibre-com/dt-bindings-iio-dac-ad5791-Add-optional-reset-clr-and-ldac-gpios/20241028-151319
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20241028071118.699951-6-ahaslam%40baylibre.com
-patch subject: [PATCH 5/6] iio: dac: ad5791: Use devm_regulator_get_enable_read_voltage
-config: x86_64-buildonly-randconfig-004-20241028 (https://download.01.org/0day-ci/archive/20241029/202410290245.0RC0cDV4-lkp@intel.com/config)
-compiler: clang version 19.1.2 (https://github.com/llvm/llvm-project 7ba7d8e2f7b6445b60679da826210cdde29eaf8b)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241029/202410290245.0RC0cDV4-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410290245.0RC0cDV4-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/iio/dac/ad5791.c:14:
-   In file included from include/linux/spi/spi.h:17:
-   In file included from include/linux/scatterlist.h:8:
-   In file included from include/linux/mm.h:2213:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/iio/dac/ad5791.c:370:35: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
-     370 |                 return dev_err_probe(&spi->dev, ret, "failed to get vdd voltage\n");
-         |                                                 ^~~
-   drivers/iio/dac/ad5791.c:336:9: note: initialize the variable 'ret' to silence this warning
-     336 |         int ret, pos_voltage_uv = 0, neg_voltage_uv = 0;
-         |                ^
-         |                 = 0
-   2 warnings generated.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 4/4] arm64: dts: ti: hummingboard-t: add overlays for
+ m.2 pci-e and usb-3
+To: Josua Mayer <josua@solid-run.com>,
+        Geert Uytterhoeven
+	<geert@linux-m68k.org>
+CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Yazan Shhady <yazan.shhady@solid-run.com>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+References: <20240219-add-am64-som-v7-0-0e6e95b0a05d@solid-run.com>
+ <20240219-add-am64-som-v7-4-0e6e95b0a05d@solid-run.com>
+ <CAMuHMdXTgpTnJ9U7egC2XjFXXNZ5uiY1O+WxNd6LPJW5Rs5KTw@mail.gmail.com>
+ <a65e17e9-0055-4e5a-902f-8ee2807a86df@ti.com>
+ <299b6b75-beef-46aa-9203-b96009226677@solid-run.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+Content-Language: en-US
+In-Reply-To: <299b6b75-beef-46aa-9203-b96009226677@solid-run.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 
-vim +/ret +370 drivers/iio/dac/ad5791.c
 
-   330	
-   331	static int ad5791_probe(struct spi_device *spi)
-   332	{
-   333		const struct ad5791_platform_data *pdata = dev_get_platdata(&spi->dev);
-   334		struct iio_dev *indio_dev;
-   335		struct ad5791_state *st;
-   336		int ret, pos_voltage_uv = 0, neg_voltage_uv = 0;
-   337		bool use_rbuf_gain2;
-   338	
-   339		indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-   340		if (!indio_dev)
-   341			return -ENOMEM;
-   342		st = iio_priv(indio_dev);
-   343	
-   344		st->gpio_reset = devm_gpiod_get_optional(&spi->dev, "reset",
-   345							 GPIOD_OUT_HIGH);
-   346		if (IS_ERR(st->gpio_reset))
-   347			return PTR_ERR(st->gpio_reset);
-   348	
-   349		st->gpio_clear = devm_gpiod_get_optional(&spi->dev, "clear",
-   350							 GPIOD_OUT_LOW);
-   351		if (IS_ERR(st->gpio_clear))
-   352			return PTR_ERR(st->gpio_clear);
-   353	
-   354		st->gpio_ldac = devm_gpiod_get_optional(&spi->dev, "ldac",
-   355							GPIOD_OUT_HIGH);
-   356		if (IS_ERR(st->gpio_ldac))
-   357			return PTR_ERR(st->gpio_ldac);
-   358	
-   359		st->pwr_down = true;
-   360		st->spi = spi;
-   361	
-   362		if (pdata)
-   363			use_rbuf_gain2 = pdata->use_rbuf_gain2;
-   364		else
-   365			use_rbuf_gain2 = device_property_read_bool(&spi->dev,
-   366								   "adi,rbuf-gain2-en");
-   367	
-   368		pos_voltage_uv = devm_regulator_get_enable_read_voltage(&spi->dev, "vdd");
-   369		if (pos_voltage_uv < 0 && pos_voltage_uv != -ENODEV)
- > 370			return dev_err_probe(&spi->dev, ret, "failed to get vdd voltage\n");
-   371	
-   372		neg_voltage_uv = devm_regulator_get_enable_read_voltage(&spi->dev, "vss");
-   373		if (neg_voltage_uv < 0 && neg_voltage_uv != -ENODEV)
-   374			return dev_err_probe(&spi->dev, ret, "failed to get vss voltage\n");
-   375	
-   376		if (neg_voltage_uv >= 0 && pos_voltage_uv >= 0) {
-   377			st->vref_mv = (pos_voltage_uv + neg_voltage_uv) / 1000;
-   378			st->vref_neg_mv = neg_voltage_uv / 1000;
-   379		} else if (pdata) {
-   380			st->vref_mv = pdata->vref_pos_mv + pdata->vref_neg_mv;
-   381			st->vref_neg_mv = pdata->vref_neg_mv;
-   382		} else {
-   383			dev_warn(&spi->dev, "reference voltage unspecified\n");
-   384		}
-   385	
-   386		if (st->gpio_reset) {
-   387			fsleep(20);
-   388			gpiod_set_value_cansleep(st->gpio_reset, 0);
-   389		} else {
-   390			ret = ad5791_spi_write(st, AD5791_ADDR_SW_CTRL, AD5791_SWCTRL_RESET);
-   391			if (ret)
-   392				return dev_err_probe(&spi->dev, ret, "fail to reset\n");
-   393		}
-   394	
-   395		st->chip_info = spi_get_device_match_data(spi);
-   396		if (!st->chip_info)
-   397			return dev_err_probe(&spi->dev, -EINVAL, "no chip info\n");
-   398	
-   399		st->ctrl = AD5761_CTRL_LINCOMP(st->chip_info->get_lin_comp(st->vref_mv))
-   400			  | (use_rbuf_gain2 ? 0 : AD5791_CTRL_RBUF) |
-   401			  AD5791_CTRL_BIN2SC;
-   402	
-   403		ret = ad5791_spi_write(st, AD5791_ADDR_CTRL, st->ctrl |
-   404			AD5791_CTRL_OPGND | AD5791_CTRL_DACTRI);
-   405		if (ret)
-   406			return dev_err_probe(&spi->dev, ret, "fail to write ctrl register\n");
-   407	
-   408		spi_set_drvdata(spi, indio_dev);
-   409		indio_dev->info = &ad5791_info;
-   410		indio_dev->modes = INDIO_DIRECT_MODE;
-   411		indio_dev->channels = &st->chip_info->channel;
-   412		indio_dev->num_channels = 1;
-   413		indio_dev->name = st->chip_info->name;
-   414		ret = iio_device_register(indio_dev);
-   415		if (ret)
-   416			return dev_err_probe(&spi->dev, ret, "unable to register iio device\n");
-   417	
-   418		return 0;
-   419	}
-   420	
+On 28/10/24 22:49, Josua Mayer wrote:
+> Hi Geert, Vignesh,
+> 
+> Am 28.10.24 um 16:31 schrieb Vignesh Raghavendra:
+>>
+>> On 25/10/24 19:27, Geert Uytterhoeven wrote:
+>>> Hi Josua,
+>>>
+>>> On Mon, Feb 19, 2024 at 4:05 PM Josua Mayer <josua@solid-run.com> wrote:
+>>>> HummingBoard-T features two M.2 connectors labeled "M1" and "M2".
+>>>> The single SerDes lane of the SoC can be routed to either M1 pci-e
+>>>> signals, or M2 usb-3 signals by a gpio-controlled mux.
+>>>>
+>>>> Add overlays for each configuration.
+>>>>
+>>>> Signed-off-by: Josua Mayer <josua@solid-run.com>
+>>> Thanks for your patch, which is now commit bbef42084cc170cb ("arm64:
+>>> dts: ti: hummingboard-t: add overlays for m.2 pci-e and usb-3") in v6.9.
+>>>
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dtso
+>>>> @@ -0,0 +1,44 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0+
+>>>> +/*
+>>>> + * Copyright (C) 2023 Josua Mayer <josua@solid-run.com>
+>>>> + *
+>>>> + * Overlay for SolidRun AM642 HummingBoard-T to enable USB-3.1.
+>>>> + */
+>>>> +
+>>>> +/dts-v1/;
+>>>> +/plugin/;
+>>>> +
+>>>> +#include <dt-bindings/phy/phy.h>
+>>>> +
+>>>> +#include "k3-serdes.h"
+>>>> +
+>>>> +&serdes0 {
+>>>> +       #address-cells = <1>;
+>>>> +       #size-cells = <0>;
+>>>> +
+>>>> +       serdes0_link: phy@0 {
+>>>> +               reg = <0>;
+>>>> +               cdns,num-lanes = <1>;
+>>>> +               cdns,phy-type = <PHY_TYPE_USB3>;
+>>>> +               #phy-cells = <0>;
+>>>> +               resets = <&serdes_wiz0 1>;
+>>>> +       };
+>>>> +};
+>>>> +
+>>>> +&serdes_ln_ctrl {
+>>>> +       idle-states = <AM64_SERDES0_LANE0_USB>;
+>>>> +};
+>>>> +
+>>>> +&serdes_mux {
+>>>> +       idle-state = <0>;
+>>>> +};
+>>>> +
+>>>> +&usbss0 {
+>>>> +       /delete-property/ ti,usb2-only;
+>>> /delete-property/ (and /delete-node/) to delete something in the base DTS
+>>> does not work.
+> 
+> My understanding is that flags are equivalent to boolean, i.e:
+> 
+> ti,usb2-only = <true>;
+> ti,usb2-only;
+> 
+> are equivalent.
+> 
+> If so, can we assign <false> within the overlay?
+> 
+>> Geert,
+>>
+>> Thanks for the catching
+> Excellent spotting indeed.
+> I noticed this in passing about a week ago when I requested
+> Debian enable the necessary drivers in their distro kernel
+> (without understanding the root cause).
+>>
+>> Joshua,
+>>
+>> This overlay is pretty useless in light of above issue.  I intend to
+>> just drop this file unless you convince me otherwise?
+>>
+> I would really prefer to fix it, or somehow replace with equivalent functionality.
+> 
+> My original proposal was having the board a dtsi, and the pci and usb3
+> variants as standalone dts.
+> 
+
+
+Yeah, you would need a separate board dts for this profile. Please
+propose a patch
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards
+Vignesh
 
