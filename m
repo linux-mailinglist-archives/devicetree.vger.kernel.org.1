@@ -1,58 +1,68 @@
-Return-Path: <devicetree+bounces-116721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F043A9B3B9C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 21:29:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFEBE9B3BFD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 21:38:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B124B20CEA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 20:29:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94741285E65
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 20:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB0A20124E;
-	Mon, 28 Oct 2024 20:25:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7C7B1DE4DC;
+	Mon, 28 Oct 2024 20:38:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NzHAzrEh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oMIV7ouo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78D1201105;
-	Mon, 28 Oct 2024 20:25:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC49148300;
+	Mon, 28 Oct 2024 20:38:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730147132; cv=none; b=bqqMhBKA8kciwJw114E975MIHTHI4ciATTlrxOO06a1O8p4Ci96zeQbUosXZ7nnN7Bv56mKvjkOPFzbrEVBR2mXai6Dvy7NWI/AqZFmYlglNAeJvOYuFQLQnsBEZDFaLBpC3P/eLoDv0vOy+bSIWaYfuFsAg/OOBwPVC2ThTrsU=
+	t=1730147930; cv=none; b=Tc70MdybFNtnloEmIR3AeLLO0dteUGtDQHmoez16ke8OzK7jS7f+dJXzQfdRG4N4EQrlwEc1eRFSBsFuQPJGJWJm0xdNK9K/xXhqgKfHIgo13sYetxkS7wiB5JcrQv5tzG8AMQrAE+GzHyskSkIWquMLD1JB/csTZXL+PdNzjdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730147132; c=relaxed/simple;
-	bh=rnjL8n+F/4v2n2O6orIt130j6FPaOE/7lllW+0hIfX8=;
+	s=arc-20240116; t=1730147930; c=relaxed/simple;
+	bh=m3PZAoWfta+ZnN37Ke0OPKpW1qTjsH1pXd/rg1xGge8=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T/uH0N4UcSuZsZmMohxTxZI+yJdixudcsk1VnkkMehMuR/ourSCHfA/UbSkNYyX6F05f+8++RNspbY5n9qhV1VXXnng0rTXBNcxkLtR4T2KSwucNzwTyDFMh9KaQqRL5jqrQ9eHs0tUFmTdHefp8W/uCjuYwoTaE5dGqhqz9tWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NzHAzrEh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40147C4CEE4;
-	Mon, 28 Oct 2024 20:25:27 +0000 (UTC)
+	 MIME-Version:Content-Type; b=qt0yXYBIg4X0qiX0Pp5dlHtsfL/U4sgrLRjhbRuFewfk9wAYSncIQ/ZKTBhcCrRGhJ8d3L/6WgN/t1XXnUff1NgxpNnsxHexNCMGsW19GQlzyk/i+Kh9quYK4IMmjztkElbJfAtBgpXFDEQ1qFggGYgFiUjJ0F4x6d4d0414wOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oMIV7ouo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99932C4CEC3;
+	Mon, 28 Oct 2024 20:38:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730147132;
-	bh=rnjL8n+F/4v2n2O6orIt130j6FPaOE/7lllW+0hIfX8=;
+	s=k20201202; t=1730147930;
+	bh=m3PZAoWfta+ZnN37Ke0OPKpW1qTjsH1pXd/rg1xGge8=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=NzHAzrEh8IT+ZzT4RZDDB7mz2M3do9Md0mZc/l6A4fYPgznaFDnxSSWk6aCS+WR4x
-	 K/j42/PRnZ1f3TQ5WritR5lOizr6SihIYpx2eaLAIQd1w1Kb9OLAPcV/rI726/9Bw0
-	 HGyX6Wu7gHQUQZ7qf6dyXzY9XkSWtHLl9K5mAJ6DwqPV1HYrXV+a0y8Qk/nQTKmjle
-	 xmMoNaALMZsKebxz+R4jdGbABBGykq/7AWN/dfvvDGjrhBd28YyWx1Ym42sD5/x0zD
-	 +3X5Fn9GvJWK+ft22fsvXB5Q2VKB/fxMFD69QeTC5iqbBB8x8Temo4xR+0IlqUKhfy
-	 Q12qGVY8etvDg==
-Date: Mon, 28 Oct 2024 20:25:23 +0000
+	b=oMIV7ouoNxO1A4ULnqqb+zD3y3ho0clS8GBIBs9qHMH/dskaNgIq+bZz1RhmTW+DE
+	 SdERiwUKLf/JmJS73kqRx3/PkieSIliCACITTT85+ZwQcUoI1m4mnZR2cD4eGCc3O5
+	 DnKK7yMH+cuPax9jnFOtaF0Loz/0flFGLZJWwepSNIQAT8Cg7Kmr4liSyVojS5UznI
+	 3JHumZdHCyFHX/xpTUN6XW06BesrhaH7FMdfjfSl3K4hMRUump6ly9ZSFMU54gRSiV
+	 HJO6jwiYGeUjG9em0maWV5mqGxa0K2xPhFnz5ulbFyTuX2kLo1eg1TnyrnoTAmZnnb
+	 wz3rU2IKfHlCA==
+Date: Mon, 28 Oct 2024 20:38:39 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: ahaslam@baylibre.com
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nuno.sa@analog.com,
- dlechner@baylibre.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/6] iio: dac: ad5791: Use devm_iio_device_register
-Message-ID: <20241028202523.5c876f99@jic23-huawei>
-In-Reply-To: <20241028071118.699951-7-ahaslam@baylibre.com>
-References: <20241028071118.699951-1-ahaslam@baylibre.com>
-	<20241028071118.699951-7-ahaslam@baylibre.com>
+To: Aren Moynihan <aren@peacevolution.org>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai
+ <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
+ <samuel@sholland.org>, Kaustabh Chakraborty <kauschluss@disroot.org>,
+ =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>, Ondrej Jirman
+ <megi@xff.cz>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
+ <u.kleine-koenig@pengutronix.de>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, Dragan
+ Simic <dsimic@manjaro.org>, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v3 3/6] iio: light: stk3310: Implement vdd and leda
+ supplies
+Message-ID: <20241028203839.65debe2b@jic23-huawei>
+In-Reply-To: <ggpxs4mlkobdkvqxbzroeogqe2kxlixne7ly4njb5ynnszvvkv@3gusj5w53bbj>
+References: <20241028142000.1058149-1-aren@peacevolution.org>
+	<20241028142000.1058149-4-aren@peacevolution.org>
+	<Zx-h7QUnCKwtu8iC@smile.fi.intel.com>
+	<ggpxs4mlkobdkvqxbzroeogqe2kxlixne7ly4njb5ynnszvvkv@3gusj5w53bbj>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -63,66 +73,76 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Mon, 28 Oct 2024 08:11:18 +0100
-ahaslam@baylibre.com wrote:
+On Mon, 28 Oct 2024 12:37:14 -0400
+Aren Moynihan <aren@peacevolution.org> wrote:
 
-> From: Axel Haslam <ahaslam@baylibre.com>
+> On Mon, Oct 28, 2024 at 04:38:37PM +0200, Andy Shevchenko wrote:
+> > On Mon, Oct 28, 2024 at 10:19:57AM -0400, Aren Moynihan wrote:  
+> > > The vdd and leda supplies must be powered on for the chip to function
+> > > and can be powered off during system suspend.
+> > > 
+> > > Co-developed-by: Ondrej Jirman <megi@xff.cz>  
+> > 
+> > Missing SoB. Please, read Submitting Patches documentation for understanding
+> > what has to be done here.
+> >   
+> > > Signed-off-by: Aren Moynihan <aren@peacevolution.org>  
+> > 
+> > ...
+> >   
+> > > Notes:
+> > >     I'm not sure what the proper way to handle attribution for this patch
+> > >     is. It was origionally based on a patch by Ondrej Jirman[1], but I have
+> > >     rewritten a large portion if it. I have included a Co-developed-by tag
+> > >     to indicate this, but haven't sent him this patch, so I'm not sure what
+> > >     to do about a Signed-off-by.  
+> > 
+> > Ah, seems you already aware of this issue. So, either drop Co-developed-by
+> > (and if you wish you may give a credit in a free form inside commit message)
+> > or make sure you get his SoB tag.  
 > 
-> Use devm_iio_device_register to automatically free the iio device.
-> since this is the last remaining resource that was not automatically
-> freed, we can drop the ".remove" callback.
+> Alright, thanks for clarifying that.
 > 
-> Suggested-by: David Lechner <dlechner@baylibre.com>
-> Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
-Hi Axel,
-
-The bot did a much better review job than me this time.
-Other than the obvious solutions to the things it pointed out,
-this series looks fine to me.
-
-Jonathan
-
-> ---
->  drivers/iio/dac/ad5791.c | 15 +--------------
->  1 file changed, 1 insertion(+), 14 deletions(-)
+> > >  	mutex_init(&data->lock);  
+> > 
+> > Somewhere (in the previous patch?) you want to switch to devm_mutex_init().  
 > 
-> diff --git a/drivers/iio/dac/ad5791.c b/drivers/iio/dac/ad5791.c
-> index cf3d41a10c20..21332c9aca5d 100644
-> --- a/drivers/iio/dac/ad5791.c
-> +++ b/drivers/iio/dac/ad5791.c
-> @@ -405,24 +405,12 @@ static int ad5791_probe(struct spi_device *spi)
->  	if (ret)
->  		return dev_err_probe(&spi->dev, ret, "fail to write ctrl register\n");
->  
-> -	spi_set_drvdata(spi, indio_dev);
->  	indio_dev->info = &ad5791_info;
->  	indio_dev->modes = INDIO_DIRECT_MODE;
->  	indio_dev->channels = &st->chip_info->channel;
->  	indio_dev->num_channels = 1;
->  	indio_dev->name = st->chip_info->name;
-> -	ret = iio_device_register(indio_dev);
-> -	if (ret)
-> -		return dev_err_probe(&spi->dev, ret, "unable to register iio device\n");
-> -
-> -	return 0;
-> -}
-> -
-> -static void ad5791_remove(struct spi_device *spi)
-> -{
-> -	struct iio_dev *indio_dev = spi_get_drvdata(spi);
-> -
-> -	iio_device_unregister(indio_dev);
-> +	return devm_iio_device_register(&spi->dev, indio_dev);
->  }
->  
->  static const struct of_device_id ad5791_of_match[] = {
-> @@ -451,7 +439,6 @@ static struct spi_driver ad5791_driver = {
->  		   .of_match_table = ad5791_of_match,
->  		   },
->  	.probe = ad5791_probe,
-> -	.remove = ad5791_remove,
->  	.id_table = ad5791_id,
->  };
->  module_spi_driver(ad5791_driver);
+> Good catch, it looks like that was being leaked before this refactor.
+> Yeah that sounds like the right place, I'll include it in v4.
+Not really on the leaking.  Take a look at the cleanup for devm_mutex_init().
+It's debug only and not all that useful in most cases.
+
+However, it is good to not assume that now we have a devm_mutex_init()
+available that is easy to use.
+
+> 
+> > > +	ret = devm_regulator_bulk_get(&client->dev, ARRAY_SIZE(data->supplies),
+> > > +				      data->supplies);
+> > > +	if (ret)
+> > > +		return dev_err_probe(&client->dev, ret, "get regulators failed\n");  
+> >   
+> > > +		return dev_err_probe(&client->dev, ret,
+> > > +				     "regulator enable failed\n");  
+> >   
+> > > +	ret = devm_add_action_or_reset(&client->dev, stk3310_regulators_disable, data);
+> > > +	if (ret)
+> > > +		return dev_err_probe(&client->dev, ret,
+> > > +				     "failed to register regulator cleanup\n");  
+> > 
+> > With
+> > 
+> > 	struct devuce *dev = &client->dev;
+> > 
+> > at the top of the function makes these and more lines neater.
+> >   
+> [snip]
+> > 
+> > While changing to RCT order here, it seems you have inconsistent approach
+> > elsewhere (in your own patches!). Please, be consistent with chosen style.  
+> 
+> Sounds easy enough to fix, I'll include these in v4.
+> 
+> Thanks taking the time to review
+>  - Aren
 
 
