@@ -1,87 +1,61 @@
-Return-Path: <devicetree+bounces-116583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5080A9B3518
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:39:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AA779B351F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:41:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D45D11F219FC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:39:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBE351C2159B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:41:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C45D01DE4C8;
-	Mon, 28 Oct 2024 15:39:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 709DD1DE3B5;
+	Mon, 28 Oct 2024 15:41:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X+mzZXHc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p+bslp5n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58BB51DE3C7
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 15:39:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F82F12F585;
+	Mon, 28 Oct 2024 15:41:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730129978; cv=none; b=rvCTWyAGg/8fI/9alYeRtay+P60h3c0Iw1ozBmq8SuzwjCwM/OEgVEIPa3wBirJBO/ypi/HmgGaJFXInxceZLhPPUNVoQ14q5c3JajkIwfm6ES0RZrmOC961iZIV8mj7hLWhr04OAerF1LVTw9PfBuW34jxCoS4ifOt+JFd4zf0=
+	t=1730130063; cv=none; b=ljsHalExoS3ZoyL33m3WSkpNbww62ki3gJ49+O+hFM2F2smoFazctpA3pdUNbjKlZn87C45pJKzvvuWMQeDlS70126g5npN3kCLKr/GuPbyvFxY/xoQxM4ST6HfSjtpWUN5S2yHcVcGCNO0znFOeVaStxciMTziRX4bgTWGQBj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730129978; c=relaxed/simple;
-	bh=5Zl9G4AszNflo7us4pbB6lyR2ecBGbMh9TGpu/QHrCU=;
+	s=arc-20240116; t=1730130063; c=relaxed/simple;
+	bh=1OnKnskO1uPXHT57ko80fWNSrAKlqsEB3xePdsqM5Vs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nq5mSXtmIM06fE/Oa2NloFSa0c/Z0+xsmf4htSKofU4wueO8429SxLkDRmO4YMoEgIwcBnZ01WUdG3zFDW8AMCo/MLOVah5KpJi64qYiQ+YFqRonOngV/a88TNirc/5fVUmJwq5f52JJugLHXiEg/MAw17IED6n/HgSDGV48qxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=X+mzZXHc; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-539f2b95775so5166020e87.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 08:39:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730129973; x=1730734773; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=W1txbax2anf/FU/2wUye/OvBFVJa+xv11X9TALtaA18=;
-        b=X+mzZXHc8QcgLWRuP8j6ouMCxaCeIPPwqbAjsBCj4XxuWqRClRHXJZW7F8MSp6Drxa
-         w8OFdxnrEhL3uWtug/n1cyVhQ/8QB+r5476UkLd9np2wyThqdS/7eAP06mA/FFZrqNEl
-         Fp6XRnOYYT7vhBsUmp8U9j1/uB5pXenhRy9bN9pnALgRy6z3/YCxdqC7upg0odVQT6NZ
-         FMGDeU+Y+Q/h29Tn7qoA4RorltpbKOiXDU+rzlYqmCXr7PV8jipKrCPXX24bi5n681uB
-         xL3luonI1LDbCTX0UotQZrC07HHo0pGIwqyMB2cW5KXsqo8bhvSojuNvaonQ8xEh/pwE
-         B+yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730129973; x=1730734773;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W1txbax2anf/FU/2wUye/OvBFVJa+xv11X9TALtaA18=;
-        b=HfqhuvdWwWVp/AeC9/Z1FbWTlGuIQiqWKc8NR8eUdc+SS4jaaLQtOhdjxqtLqgQDIi
-         q5MtkQHJSECQVA+kmp6vAI7Y+hIdr3u5r3L7N2FZQlykLDrtmQBd6pH4wB0MupMPLP8Z
-         sarhLIKL+URolmWCbXAV4UozI1hgQ1U8xmUbpoBnrZdVRBgP3Wqqr9nXaWVNMQ5tUaFz
-         mXQ7vBZTfdzyV7AztYRdflrxemMF9NP7wUcZwonsiX1F0uJYvE8h88e79EPH2vCwqXIF
-         eKhlgJjYU2F60A4XN9fhVMnjpKa7Y4WlLxIrbOQGBPDZ/qsvW+RCM7UKgFuN1gl7VFm5
-         djAw==
-X-Forwarded-Encrypted: i=1; AJvYcCXvPlibCx6dm5JeKZzqPy2tlmlU2GCMi4XhLVmvTNdpvP/anY3O+LeWrbCfyR4Q8G74iYf2zEkoCiLl@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMPh3CpjSls/1kzXjfs9k4b6HCUuo3xNv/lDNnaW30nnpBa5eZ
-	wGvmeG88qy2qvnjSDvGgfnM+Q/+WIojTlp967EbgR4Mdp4M4icIE4y3Rc7JEJVs=
-X-Google-Smtp-Source: AGHT+IHyyRIHr8OLjFlezCBWy1i7uaYCwcnuB6xG6+YWBdjYuluL2KW9ciORdLVKXl6EVMW5IHAxGA==
-X-Received: by 2002:a05:6512:3049:b0:53b:1fc6:3d18 with SMTP id 2adb3069b0e04-53b348da845mr5494533e87.26.1730129972972;
-        Mon, 28 Oct 2024 08:39:32 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53b2e10a52fsm1092723e87.27.2024.10.28.08.39.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 08:39:31 -0700 (PDT)
-Date: Mon, 28 Oct 2024 17:39:29 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com, 
-	quic_pavir@quicinc.com, quic_linchen@quicinc.com, quic_leiwei@quicinc.com, 
-	bartosz.golaszewski@linaro.org, srinivas.kandagatla@linaro.org
-Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: Add CMN PLL node for IPQ9574 SoC
-Message-ID: <crcbzpxjnbceilqccbwr7uyak6z6zdwr7mhfcyaw6vvpcce6ko@zrojbtqi4st4>
-References: <20241028-qcom_ipq_cmnpll-v5-0-339994b0388d@quicinc.com>
- <20241028-qcom_ipq_cmnpll-v5-4-339994b0388d@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AKcn13sfdS4+xNGnuEme45qOqXjiEKCMETHBc6rdXeHtcq8F4FMnc2oz1hsmFR5XSoj66q61nyIn0GxmJtRrI5EjE6ohaZAwqCv8+NPyJL5c5FcAggOIuRfijG7DNR+4lsbKpVHcgnhoY5ZAJwwKJUhIolJ8aTRuhbytefNUvRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p+bslp5n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F0E1C4CEC3;
+	Mon, 28 Oct 2024 15:40:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730130062;
+	bh=1OnKnskO1uPXHT57ko80fWNSrAKlqsEB3xePdsqM5Vs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p+bslp5nYFB5IdzYlqcPXUe0Deg2tPLvvs4TWlciZJnyPqj4C7msUDWod/mZ74Wbi
+	 V+npdeWkLAM2YaCU68ORi88AWKUdk+SexkhRmxohs3rLk/42hVRfWw3lmcgEXhKfmW
+	 l+9bfe1QEI3TUsTCQUmiCfe1cOZzdBeIsDmI24fTFiyKZwDu9f4TeXEh9Tmi9Z7A4g
+	 RQuSC3lG7y94YkqEIK4qkURF8Scn98uwTY1D6XvZn72zlsfH7cHelHDCN5wkvgpceU
+	 yWqXIdxX1dAjLGXoC7cRczTCjM1LzpGhlbBh2ntrVJVtMMwopnozbfMsplC2SfLpCE
+	 /bnM2cMZeJadg==
+Date: Mon, 28 Oct 2024 15:40:55 +0000
+From: Will Deacon <will@kernel.org>
+To: Usama Arif <usamaarif642@gmail.com>
+Cc: robh@kernel.org, mark.rutland@arm.com, leitao@debian.org,
+	catalin.marinas@arm.com, tglx@linutronix.de, chris@zankel.net,
+	saravanak@google.com, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	kexec@lists.infradead.org, loongarch@lists.linux.dev,
+	linux-sh@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linuxppc-dev@lists.ozlabs.org, linux-openrisc@vger.kernel.org,
+	linux-mips@vger.kernel.org, linux-csky@vger.kernel.org
+Subject: Re: [PATCH v2] of/fdt: add dt_phys arg to early_init_dt_scan and
+ early_init_dt_verify
+Message-ID: <20241028154054.GE2484@willie-the-truck>
+References: <20241023171426.452688-1-usamaarif642@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,113 +64,91 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241028-qcom_ipq_cmnpll-v5-4-339994b0388d@quicinc.com>
+In-Reply-To: <20241023171426.452688-1-usamaarif642@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-On Mon, Oct 28, 2024 at 10:04:11PM +0800, Luo Jie wrote:
-> The CMN PLL clock controller allows selection of an input clock rate
-> from a defined set of input clock rates. It in-turn supplies fixed
-> rate output clocks to the hardware blocks that provide the ethernet
-> functions such as PPE (Packet Process Engine) and connected switch or
-> PHY, and to GCC.
+On Wed, Oct 23, 2024 at 06:14:26PM +0100, Usama Arif wrote:
+>  __pa() is only intended to be used for linear map addresses and using
+> it for initial_boot_params which is in fixmap for arm64 will give an
+> incorrect value. Hence save the physical address when it is known at
+> boot time when calling early_init_dt_scan for arm64 and use it at kexec
+> time instead of converting the virtual address using __pa().
 > 
-> The reference clock of CMN PLL is routed from XO to the CMN PLL through
-> the internal WiFi block.
-> .XO (48 MHZ or 96 MHZ)-->WiFi (multiplier/divider)-->48 MHZ to CMN PLL.
-> 
-> The reference input clock from WiFi to CMN PLL is fully controlled by
-> the bootstrap pins which select the XO frequency (48 MHZ or 96 MHZ).
-> Based on this frequency, the divider in the internal Wi-Fi block is
-> automatically configured by hardware (1 for 48 MHZ, 2 for 96 MHZ), to
-> ensure output clock to CMN PLL is 48 MHZ.
-> 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> Reported-by: Breno Leitao <leitao@debian.org>
+> Suggested-by: Mark Rutland <mark.rutland@arm.com>
+> Signed-off-by: Usama Arif <usamaarif642@gmail.com>
+> Fixes: ac10be5cdbfa ("arm64: Use common of_kexec_alloc_and_setup_fdt()")
 > ---
->  arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi | 16 ++++++++++++++-
->  arch/arm64/boot/dts/qcom/ipq9574.dtsi            | 26 +++++++++++++++++++++++-
->  2 files changed, 40 insertions(+), 2 deletions(-)
+> v1 -> 2:
+> - pass dt_phys in early_init_dt_scan instead of creating
+>   anorther arch->dt function (Rob Herring)
+> ---
+>  arch/arc/kernel/devtree.c              |  2 +-
+>  arch/arm/kernel/devtree.c              |  2 +-
+>  arch/arm64/kernel/setup.c              |  6 +++++-
+>  arch/csky/kernel/setup.c               |  4 ++--
+>  arch/loongarch/kernel/setup.c          |  2 +-
+>  arch/microblaze/kernel/prom.c          |  2 +-
+>  arch/mips/kernel/prom.c                |  2 +-
+>  arch/mips/kernel/relocate.c            |  2 +-
+>  arch/nios2/kernel/prom.c               |  4 ++--
+>  arch/openrisc/kernel/prom.c            |  2 +-
+>  arch/powerpc/kernel/dt_cpu_ftrs.c      |  2 +-
+>  arch/powerpc/kernel/prom.c             |  2 +-
+>  arch/powerpc/platforms/pseries/plpks.c |  2 +-
+>  arch/riscv/kernel/setup.c              |  2 +-
+>  arch/sh/kernel/setup.c                 |  2 +-
+>  arch/um/kernel/dtb.c                   |  2 +-
+>  arch/x86/kernel/devicetree.c           |  2 +-
+>  arch/xtensa/kernel/setup.c             |  2 +-
+>  drivers/of/fdt.c                       | 14 ++++++++------
+>  drivers/of/kexec.c                     |  2 +-
+>  include/linux/of_fdt.h                 |  5 +++--
+>  21 files changed, 36 insertions(+), 29 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> index 91e104b0f865..f026c2a9d0c0 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> @@ -3,7 +3,7 @@
->   * IPQ9574 RDP board common device tree source
->   *
->   * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
-> - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
->   */
+> diff --git a/arch/arc/kernel/devtree.c b/arch/arc/kernel/devtree.c
+> index 4c9e61457b2f..cc6ac7d128aa 100644
+> --- a/arch/arc/kernel/devtree.c
+> +++ b/arch/arc/kernel/devtree.c
+> @@ -62,7 +62,7 @@ const struct machine_desc * __init setup_machine_fdt(void *dt)
+>  	const struct machine_desc *mdesc;
+>  	unsigned long dt_root;
 >  
->  /dts-v1/;
-> @@ -164,6 +164,20 @@ &usb3 {
->  	status = "okay";
->  };
+> -	if (!early_init_dt_scan(dt))
+> +	if (!early_init_dt_scan(dt, __pa(dt)))
+>  		return NULL;
 >  
-> +/*
-> + * The bootstrap pins for the board select the XO clock frequency,
-> + * which automatically enables the right dividers to ensure the
-> + * reference clock output to CMNPLL is 48 MHZ.
-> + */
-> +&cmn_pll_ref_clk {
-> +	clock-div = <1>;
-> +	clock-mult = <1>;
-> +};
-> +
->  &xo_board_clk {
->  	clock-frequency = <24000000>;
->  };
-> +
-> +&xo_clk {
-> +	clock-frequency = <48000000>;
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> index 14c7b3a78442..ad9cdb1f76db 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> @@ -3,10 +3,11 @@
->   * IPQ9574 SoC device tree source
->   *
->   * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
-> - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
->   */
+>  	mdesc = of_flat_dt_match_machine(NULL, arch_get_next_mach);
+> diff --git a/arch/arm/kernel/devtree.c b/arch/arm/kernel/devtree.c
+> index fdb74e64206a..3b78966e750a 100644
+> --- a/arch/arm/kernel/devtree.c
+> +++ b/arch/arm/kernel/devtree.c
+> @@ -200,7 +200,7 @@ const struct machine_desc * __init setup_machine_fdt(void *dt_virt)
 >  
->  #include <dt-bindings/clock/qcom,apss-ipq.h>
-> +#include <dt-bindings/clock/qcom,ipq-cmn-pll.h>
->  #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
->  #include <dt-bindings/interconnect/qcom,ipq9574.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> @@ -19,6 +20,12 @@ / {
->  	#size-cells = <2>;
+>  	mdesc_best = &__mach_desc_GENERIC_DT;
 >  
->  	clocks {
-> +		cmn_pll_ref_clk: cmn-pll-ref-clk {
-> +			compatible = "fixed-factor-clock";
-> +			clocks = <&xo_clk>;
-> +			#clock-cells = <0>;
-> +		};
-> +
->  		sleep_clk: sleep-clk {
->  			compatible = "fixed-clock";
->  			#clock-cells = <0>;
-> @@ -28,6 +35,11 @@ xo_board_clk: xo-board-clk {
->  			compatible = "fixed-clock";
->  			#clock-cells = <0>;
->  		};
-> +
-> +		xo_clk: xo-clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +		};
+> -	if (!dt_virt || !early_init_dt_verify(dt_virt))
+> +	if (!dt_virt || !early_init_dt_verify(dt_virt, __pa(dt_virt)))
+>  		return NULL;
+>  
+>  	mdesc = of_flat_dt_match_machine(mdesc_best, arch_get_next_mach);
+> diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
+> index b22d28ec8028..177262739c49 100644
+> --- a/arch/arm64/kernel/setup.c
+> +++ b/arch/arm64/kernel/setup.c
+> @@ -175,7 +175,11 @@ static void __init setup_machine_fdt(phys_addr_t dt_phys)
+>  	if (dt_virt)
+>  		memblock_reserve(dt_phys, size);
+>  
+> -	if (!dt_virt || !early_init_dt_scan(dt_virt)) {
+> +	/*
+> +	 * dt_virt is a fixmap address, hence __pa(dt_virt) can't be used.
+> +	 * Pass dt_phys directly.
+> +	 */
+> +	if (!dt_virt || !early_init_dt_scan(dt_virt, dt_phys)) {
 
-What is the difference between xo_clk and xo_board_clk? Are there two
-different crystals?
+nit: It looks like early_init_dt_verify() will now return false if
+!dt_virt, so we can drop the additional check here.
 
->  	};
->  
->  	cpus {
-
--- 
-With best wishes
-Dmitry
+Will
 
