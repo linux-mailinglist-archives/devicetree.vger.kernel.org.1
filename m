@@ -1,214 +1,168 @@
-Return-Path: <devicetree+bounces-116405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13E2D9B2C64
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:11:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B4599B2C88
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:14:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36C701C219A8
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:11:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 982A71F21074
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:14:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 811A51D0DF7;
-	Mon, 28 Oct 2024 10:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17B781D358C;
+	Mon, 28 Oct 2024 10:14:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EDB018B46E;
-	Mon, 28 Oct 2024 10:11:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B78C717C228;
+	Mon, 28 Oct 2024 10:14:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730110283; cv=none; b=RT+y4wWLZ6jJG/uvvscfbS9YVssTdJ4ycAeC8q/t9WJuaUDKh5jN8XWEKOJWhAKe/2B6dxQGYooDPbMhNSRLxxJhrOAt+HGavucSJOCnJCL4EhGMTA69n6VYHwkmbn+fKT3AN2O4XjTrdbmEpnUHgTeoV8hqiYQgpyE6I58Qe/M=
+	t=1730110454; cv=none; b=rG7/QCXpKG2jq6zQRhRlFiu/GC3k8GgVRcYuVZ4tAuwSFcmAW9lb75tPzeW7sBh00FX6iFUqM8Xkt8SxJNOzPepp63Pk3OW/qmDs9FdTJKl9BZ83gSZUO9tgIy6kOeVo/OX/mqG1adTHP03BF27qpoOKBwhdumONuiL4f15f5mU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730110283; c=relaxed/simple;
-	bh=nzaM905Zku2L1M7nrY8HwDpXuPpzA2I6DeNK/YQ9IGA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fgp6WbVQZpb/LFbHVSOWTezFfqOLzUpAB4Yn29LFyE3MlEgotVdeZOBQ/JdmPu4siK7FR6jjd4Oq93XbBYnn+pwfip50Vf89NP3AhEv9TKteX2rVf+YN4rnNzwUd/LWS6u63b8+piTTLkBBXd61C5M3A02QVbNF8qJGBHqXuEKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF0C2C4CEC3;
-	Mon, 28 Oct 2024 10:11:18 +0000 (UTC)
-Message-ID: <74286a86-51b9-4742-bb0c-583d70b1b0a7@xs4all.nl>
-Date: Mon, 28 Oct 2024 11:11:17 +0100
+	s=arc-20240116; t=1730110454; c=relaxed/simple;
+	bh=88Ec241n+L9Smv42jzOgrXuaM8DlAkJ1QBbKqGzpaIs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LYFVE/OIbx2J+u3sXq3yWQ+EkoR7CsRQAnKjzDEswi2qFssAo7Zp0CcGtP1kcI4WC5QTtU8hlSPHm2rY6N6ZOx9zb4lGC/rflFGe46kvYvs/JLJHII5885VSZFZDQ9WOieBqCp9u7RLqGwRsCKBZX0azdqecBqN4QDoJJQ62byc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6e59a9496f9so43576237b3.0;
+        Mon, 28 Oct 2024 03:14:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730110450; x=1730715250;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1eV9vOAyreIHhOU/6r4fcoru4VyFAxcI+tjp3Z8Sjng=;
+        b=hcUo0eH251w1cVDXAKJ+xLDWfBwheO8FOB8ggQBc9PUK1iXVfxXd9xP32b3E/mqVvx
+         YbOLqk8KW1xD4GKsEpRmsPdaqUyDTAsOh+p6MVBplTVOgtGYF+sMKR8CAjY5yFz/uYFS
+         PyYaofwV7CLVXSxAC47ZJRQTdqKASaa9Dfc0OV7S+DCrrpfTDZMh+Vp4+dYf4uGl6ebg
+         riW+VngfcH3VfDL87gbZYOqsshrTseFCkaROzFYBXqTzlZy+bXBnvuSuhmQx+IvYpuBp
+         DVw5Y5ZWzW0KrPeKkpUMwrM2tnf5hZ7yqe65rjg0asq3ekqFs+f+eA8BFe+eosh/q3gh
+         XIIg==
+X-Forwarded-Encrypted: i=1; AJvYcCWL7IVOfxcdpRomqp20ojH9NAm1VCTyxUex3GRXeumFcrDfjuNPAhgrcl45y/WYsLCbnhHKNhOtvTPyeljGK40sPus=@vger.kernel.org, AJvYcCXD+0+C56QHvcqULKhk1G8BS7xoZsjPIP7woVdR4MjTmpF4XwfERogFHF3ptgiCYevdbYCtRbduhm/w@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyufe6lYfykTC1u9yGQEf8NH+xuED5Xo5cG9+FcYlReUfYwQhjA
+	En+so6ei+z4WAeW0MVSpLKROCPJ/bL0th5FK57KwTNt9rSrxqEZptQ+xA4cO
+X-Google-Smtp-Source: AGHT+IFqjqVCjYtkQaTDCn49C81ORMF42HHAXASPER3cNeSZh1zLN9ubk0wpD+VISbh+2t6+zClg3Q==
+X-Received: by 2002:a05:690c:94:b0:6e2:f61e:c53 with SMTP id 00721157ae682-6e9d8ab3cd6mr54993837b3.29.1730110449711;
+        Mon, 28 Oct 2024 03:14:09 -0700 (PDT)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e9c6c769fcsm13450877b3.78.2024.10.28.03.14.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Oct 2024 03:14:08 -0700 (PDT)
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e291cbbf05bso4116333276.2;
+        Mon, 28 Oct 2024 03:14:08 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUU3cjimdYXL5UBg1gW56W7s6lh3z3aOM7z31H1hxCJNIoT7kXLy0UoeZIrG7z9ol+7TGROsCaQmKPY@vger.kernel.org, AJvYcCUwrziozT4CdPyM1Qr9std5YHV5Ifx3tqkXsFheFxNrbpQsJPFcbC8agqUOANF9bJUIohnWKmA22tD1wx35zEkEPiE=@vger.kernel.org
+X-Received: by 2002:a05:690c:2502:b0:6e5:a8ce:dd0a with SMTP id
+ 00721157ae682-6e9d8ab9a94mr69559197b3.35.1730110448580; Mon, 28 Oct 2024
+ 03:14:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/4] media: raspberrypi: Add support for RP1-CFE
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Naushir Patuck
- <naush@raspberrypi.com>, Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-References: <20241003-rp1-cfe-v6-0-d6762edd98a8@ideasonboard.com>
- <20241003-rp1-cfe-v6-3-d6762edd98a8@ideasonboard.com>
- <4d9e340e-2ae7-495b-8623-0d10398e1c3d@xs4all.nl>
- <02f05b61-08e7-45f8-8d59-f79bc20d076f@ideasonboard.com>
-Content-Language: en-US, nl
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- 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
-In-Reply-To: <02f05b61-08e7-45f8-8d59-f79bc20d076f@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240704152610.1345709-1-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdUZAVAkPVus2T_O3sWT7f1PciRYjxm6ecLy0QUyh50OEw@mail.gmail.com>
+ <d1b36858-da21-4e2a-bc54-175524a7d3b4@denx.de> <CAMuHMdXRhUr1My-w0+hoAhQKgOq9iwecjow4iZTh82ED5DEfdA@mail.gmail.com>
+ <50b37c36-643c-4307-9d4e-ad49b306ba8a@denx.de> <20241015144810.GD2838422@ragnatech.se>
+ <825e3b22-340c-4618-8d80-5d1b004fc0e4@denx.de> <CAMuHMdV9XoJHHUM42YFwackdM+oRgP4k-SwZOTwqg0RJGETViw@mail.gmail.com>
+ <d6b35a1b-3f42-4071-99c1-dc87999c5cce@denx.de> <CAMuHMdXW332YZahLw=vzfB6fZwc_9jL8uY-Uxj=Qyfov5vYQFw@mail.gmail.com>
+ <2f9df6fa-2474-4f35-af29-a1c280d5fe6f@denx.de>
+In-Reply-To: <2f9df6fa-2474-4f35-af29-a1c280d5fe6f@denx.de>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 28 Oct 2024 11:13:56 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUH32upHwwY7dXqk085LDWzkOz9cBv83FezVUbi27Ygpw@mail.gmail.com>
+Message-ID: <CAMuHMdUH32upHwwY7dXqk085LDWzkOz9cBv83FezVUbi27Ygpw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset gpio
+ to mdio node
+To: Marek Vasut <marex@denx.de>
+Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 28/10/2024 10:21, Tomi Valkeinen wrote:
-> Hi,
-> 
-> On 24/10/2024 11:20, Hans Verkuil wrote:
->> Hi Tomi,
->>
->> I know this driver is already merged, but while checking for drivers that use
->> q->max_num_buffers I stumbled on this cfe code:
->>
->> <snip>
->>
->>> +/*
->>> + * vb2 ops
->>> + */
->>> +
->>> +static int cfe_queue_setup(struct vb2_queue *vq, unsigned int *nbuffers,
->>> +               unsigned int *nplanes, unsigned int sizes[],
->>> +               struct device *alloc_devs[])
->>> +{
->>> +    struct cfe_node *node = vb2_get_drv_priv(vq);
->>> +    struct cfe_device *cfe = node->cfe;
->>> +    unsigned int size = is_image_node(node) ?
->>> +                    node->vid_fmt.fmt.pix.sizeimage :
->>> +                    node->meta_fmt.fmt.meta.buffersize;
->>> +
->>> +    cfe_dbg(cfe, "%s: [%s] type:%u\n", __func__, node_desc[node->id].name,
->>> +        node->buffer_queue.type);
->>> +
->>> +    if (vq->max_num_buffers + *nbuffers < 3)
->>> +        *nbuffers = 3 - vq->max_num_buffers;
->>
->> This makes no sense: max_num_buffers is 32, unless explicitly set when vb2_queue_init
->> is called. So 32 + *nbuffers is never < 3.
->>
->> If the idea is that at least 3 buffers should be allocated by REQBUFS, then set
->> q->min_reqbufs_allocation = 3; before calling vb2_queue_init and vb2 will handle this
->> for you.
->>
->> Drivers shouldn't modify *nbuffers, except in very rare circumstances, especially
->> since the code is almost always wrong.
-> 
-> Looking at this, the original code in the old BSP tree was, which somehow, along the long way, got turned into the above:
-> 
-> if (vq->num_buffers + *nbuffers < 3)
->         *nbuffers = 3 - vq->num_buffers;
-> 
-> So... I think that is the same as "q->min_reqbufs_allocation = 3"?
-> 
-> The distinction between min_queued_buffers and min_reqbufs_allocation, or rather the need for the latter, still escapes me. If the HW/SW requires N buffers to be queued, why would we require
-> allocating more than N buffers?
+Hi Marek,
 
-min_queued_buffers is easiest to explain: that represents the requirements of the DMA
-engine, i.e. how many buffers much be queued before the DMA engine can be started.
-Typically it is 0, 1 or 2.
+On Sun, Oct 27, 2024 at 5:09=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+> On 10/22/24 9:38 AM, Geert Uytterhoeven wrote:
+> >>>> I was hoping Geert would comment on this first, but seems like maybe=
+ no.
+> >>>> I think, since the PHY node does have a compatible string AND the re=
+set
+> >>>> is connected to the PHY, I would keep the reset property in the PHY
+> >>>> node. Sorry.
+> >>>
+> >>> You are inverting the reasoning ;-) The compatible strings were added
+> >>> because otherwise the PHY core can not identify the PHY when the
+> >>> reset is asserted (e.g. after kexec).
+> >>
+> >> ... or because the PHY requires some complex sequence to bring it up, =
+it
+> >> is not just reset.
+> >
+> > That is your hypothetical case, but not the reason behind commit
+> > 722d55f3a9bd810f ("arm64: dts: renesas: Add compatible properties to
+> > KSZ9031 Ethernet PHYs").
+>
+> We can stick to the "reset line in unknown state" here for the sake of
+> this argument, it makes no difference.
+>
+> >>> If possible, I'd rather remove
+> >>> the compatible strings again, as different PHYs may be mounted on
+> >>> different PHY revisions, causing a headache for DTB management.
+> >>
+> >> Will that ever be the case with this hardware ?
+> >
+> > Dunno. It did happen with the Beacon boards.
+>
+> Let's cross that bridge when we come to it ?
+>
+> >>> So, what would you suggest when the PHY nodes would not have compatib=
+le
+> >>> strings?
+> >> I would suggest keep the PHY compatible strings, because that is the
+> >> most accurate method to describe the hardware and fulfill the PHY brin=
+g
+> >> up requirements. If the PHY changes on this hardware in some future
+> >
+> > That issue is moot for KSZ9031.
+>
+> If the PHY won't change, then we can keep the compatible strings ?
 
-min_reqbufs_allocation is the minimum number of buffers that will be allocated when
-calling VIDIOC_REQBUFS in order for userspace to be able to stream without blocking
-or dropping frames.
+Sorry for being unclear. I should have written "the PHY bring-up
+requirements are moot for KSZ9031".
 
-Typically this is 3 for video capture: one buffer is being DMAed, another is queued up
-and the third is being processed by userspace. But sometimes drivers have other
-requirements.
+> >> revision, we can revisit this discussion ? Maybe bootloader-applied DT=
+Os
+> >> could work then ?
+> >
+> > So, what would you suggest when the PHY nodes would not have compatible
+> > strings?
+> I hope I already answered that question before.
 
-The reason is that some applications will just call VIDIOC_REQBUFS with count=1 and
-expect it to be rounded up to whatever makes sense. See the VIDIOC_REQBUFS doc in
-https://hverkuil.home.xs4all.nl/spec/userspace-api/v4l/vidioc-reqbufs.html
+Sorry, I may have missed that?
 
-"It can be smaller than the number requested, even zero, when the driver runs out of
- free memory. A larger number is also possible when the driver requires more buffers
- to function correctly."
+I really prefer not having the PHY compatible strings, as DT should
+describe only what cannot be auto-detected.
 
-How drivers implement this is a mess, and usually the code in the driver is wrong as
-well. In particular they often did not take VIDIOC_CREATE_BUFS into account, i.e.
-instead of 'if (vq->num_buffers + *nbuffers < 3)' they would do 'if (*nbuffers < 3)'.
+Thanks!
 
-When we worked on the support for more than 32 buffers we added min_reqbufs_allocation
-to let the core take care of this. In addition, this only applies to VIDIOC_REQBUFS,
-if you want full control over the number of allocated buffers, then use VIDIOC_CREATE_BUFS,
-with this ioctl the number of buffers will never be more than requested, although it
-may be less if you run out of memory.
+Gr{oetje,eeting}s,
 
-I really should go through all existing drivers and fix them up if they try to
-handle this in the queue_setup function, I suspect a lot of them are quite messy.
+                        Geert
 
-One thing that is missing in the V4L2 uAPI is a way to report the minimum number of
-buffers that need to be allocated, i.e. min_queued_buffers + 1. Since if you want
-to use CREATE_BUFS you need that information so you know that you have to create
-at least that number of buffers. We have the V4L2_CID_MIN_BUFFERS_FOR_CAPTURE control,
-but it is effectively codec specific. This probably should be clarified.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-I wonder if it wouldn't be better to add a min_num_buffers field to
-struct v4l2_create_buffers and set it to min_queued_buffers + 1.
-
-Regards,
-
-	Hans
-
-> 
->  Tomi
-> 
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
