@@ -1,177 +1,160 @@
-Return-Path: <devicetree+bounces-116355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBAA49B2A40
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:29:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB8B49B2A4F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:31:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C09E728294A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:29:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FEFC1F21BD3
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:31:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 637F81922CD;
-	Mon, 28 Oct 2024 08:28:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6249F191F88;
+	Mon, 28 Oct 2024 08:30:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VYnUt+y2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IxCf3ste"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7ED3192D61
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 08:28:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B471C187FE0
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 08:30:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730104110; cv=none; b=a3Yer1qVe8mAXdLqr86PQJPbXgO0F5TkxSaCYJruv6SvDofNzGRu9u2QchqGD6E1oGZznIGTpNpBnFtvO2vs00CV7Kgb0piSXfqHLOBNiTASNO78us58mNFDZnUOdERAflXl9DXoR43pnZrkJrTCUupwtWxPidl59KCUqCesve8=
+	t=1730104234; cv=none; b=KzhQzppgTNPVMgp+Cbnku89AtGBcIScIeuSqc7qS1sv0mIkr7m7LfMx4MqUDWT+1/SiLaqSJ0k2SA/oiQUn8N3IdU7gsR1ytpwqQr/tqXQ0w45ZfWLMjs9bKiyp7z297CaqOWDrwa8rhABNUmpLGDxlp3TEorVsG/b6SuAhzQsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730104110; c=relaxed/simple;
-	bh=NVqXPS/L5BH4Gj7hbSyrhwDNjVwxjaH3REBBB+8AaVI=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=p+jPu6wKDEYbQ+bLxlZL4ohwH2upFe+SaTV+to719Az5jiLN438shuYN84ZV2UYvpOhqFiayuHuaQ5b5GGkzbOkj+OieBYf0MxziCcPR37GnJl0Vz1hzT3c0b0wJzzXQBdRUFlLsARUYtMIflPyoj2XSEou0ZDb/8dx89t+5Qpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VYnUt+y2; arc=none smtp.client-ip=209.85.128.45
+	s=arc-20240116; t=1730104234; c=relaxed/simple;
+	bh=b22lpaZwQiZeRfSjo3PUIdP3+liqMITYadt/5xhXlm0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=cKgJ6IK1UGG0I1hZ0NeFLNBeim3WdjJ95TOwfNxBd06OF5ic3CUTDoz6odTxPtNW3FaTAHH155+Lj8dayVBOZUYFRJuz4SInTDy82UNfzb3Odzh50Cvb66ahhx8dLZbS78tG3EpkGBHwDRKjFCzXU3pzVFd6d0PlFHskIoZlqd8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IxCf3ste; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-431481433bdso40673725e9.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 01:28:26 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4315e9e9642so37788635e9.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 01:30:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730104105; x=1730708905; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ed5R3HTvhdD4zg/QXCYj0XYDAVw0ReLkpicM5ODvyHk=;
-        b=VYnUt+y2J2UqCd3KEGC2bKFxEHJykiYChANRNLcSWGIU+8xKi1TFAAAD0JXLMIk+ZB
-         399v9ivPFwk+lZ7vFXeisuYRUAuLHbSrWRaqKsQ3Po61xdZUmuijWPd2zbeSc5EBM9o+
-         pzbUrmAwWnDdClJhl0ty1ap7Sb7RW4v4yQE/Er6ZfDKpmKOcGPHbC886hQpkMh5i0NP+
-         f4BMcID62bhRUfOKIGTT0OowVjs/zAjTcaR+VfSj22QogqrNKgOTHj0PtGF95WH39UPJ
-         bqZSjfxZzdcDhohzS/eMqdyTVRivo7NUHNHJzUI6GE4gf4LX3Fh2vPUJZ8Md+zqABQV9
-         nBEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730104105; x=1730708905;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1730104229; x=1730709029; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ed5R3HTvhdD4zg/QXCYj0XYDAVw0ReLkpicM5ODvyHk=;
-        b=N+AxourGnHeg9anEPGYkoB/ZYu3KZLyHS/6ZujUDwNVFLRNMXwZ3VSQlKdDTP6cWZr
-         pRby+s180jz2yLsX+i4JaDBa0w6IpKJaYK+6VaiFi1ZytUGFkD3w1yMbKzAqTi/fhvBg
-         8ECV9NsRTTLDY9vba3eR8u+HoNWdfXPM6x/Kkr9KyPwSPJwotlKxtnC6uEeHQernYZ0B
-         b8LZia90ayekYvgO2gbKpcEY5QPOk6b/um/t7IawsmgZYqn+Ngd2mSmgUhujI4SmNji1
-         L+ReT4pBPInxQMRj1bNr5oLrJMk20GNDtHlcj68x1HCEdpfIwFDuhhhnntDRfy+ZZbLs
-         CrcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWfn32dP3vqrsEo0rtygk/XrtZw9P2uG0PNts96X4yKDkOAp3z4En8gNwmZIKRpuRhhk2LuRXovsvb9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKxhYS34cmll7jzTzq1QsRZt2QizF34Gbxk/A3p64h9rvJ1YZ8
-	QrHSPgLY5TFsP8d7/AY7iKvvP3f3iMM6aYjqXeQ7SBO1zUOUrIY41OAh03ViLrI=
-X-Google-Smtp-Source: AGHT+IEYWIsUxoaKX8/fpnoCrdG/jrvGQXwhIqgHw0yNtoMJow/Z0Cqr6QdJVulUYioxSRFShPxQEA==
-X-Received: by 2002:a05:6000:10d0:b0:37d:30e7:3865 with SMTP id ffacd0b85a97d-380611a3e4amr5808602f8f.34.1730104105211;
-        Mon, 28 Oct 2024 01:28:25 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b1c4cdsm8808039f8f.24.2024.10.28.01.28.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 01:28:24 -0700 (PDT)
-Date: Mon, 28 Oct 2024 11:28:20 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Herve Codina <herve.codina@bootlin.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: Re: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery
- mechanism
-Message-ID: <9a16ee73-cdc9-47bc-88f7-2fed5fdad2ff@stanley.mountain>
+        bh=73g/0+gUgeDCUsnUF3fGVV3ByR3GRRyQwDQ4Lqj2ePg=;
+        b=IxCf3steuL1ijh92perQ/BAZZWRx/hL+9Cg4V080UWB8wEHZWRqGG56JzmxqH34oVX
+         N6VL0TJHY0LoEwDHUuiS0/52VBAgqbgfGVCpbjVfm832IbBNYhFo6J5cMXcv8j14J50I
+         /QT2iVWPEC5wU44jEIq99mPkypqfR5taHTCjL8QHGzmyfT32OYVjCvVnqbp1VFJ93cWP
+         Bp9Z6LmEj7nzqbf+fosXyxXd/pp83iiST+X0u7u9V4Bme6HtzzGZi1zUUGFjzrgf7mm9
+         4+QPNtfoeG5wmqw1Qj3qORpeUMhHm0imCydkmjhEdtFSjYkAoj9oCoWviF92Z/z8hOqQ
+         gEAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730104229; x=1730709029;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=73g/0+gUgeDCUsnUF3fGVV3ByR3GRRyQwDQ4Lqj2ePg=;
+        b=vdmT+oLDmRLzVDlrTqiZVgar3Jp4wvjEMZ93L9k2cofduMZvgjwAqkTqGL9rgcmBiI
+         DYnCbSP1CDl+tCc9hurJadJoBcq5gX8//LQOZ8jHOXnW74c2Wdn7zNgL9cb0ncXzcffv
+         TZRNmngRQTz02UXrS645GuPQQRvN62ewAka4Fv6b1HH7R5uL0rAQyeXFPG8mhprHVVQ5
+         iOtvoTuhAybOkXu3b5qqYYWmgleoUu6MqVKY+6PSSDartSho6gN52iWAPEmUi3IKw8qV
+         ZxsEd0kPRXxsPRmZX4DY9RF85NxvDccHj8FJePEYvQ/wFT7LqJ5bxv8DXkq+EaZJNtwg
+         L6YQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUQK1KE7OJeTE0UiYCwEk5Vvg5IcyVTUJ5sMCzO+9nGoHTLdBBq6pcjjMPTEZ0X9h7GiIiYVyDXjGUw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAIitcqnkURglwLwICSxcD+W6msFTbYgoYl9Hn+hWvfr4JblKK
+	PQOUo9BHzDZsl0/5gjYRe+V8WqF/w3MBTq2yJkscJMOLTEcZMuqSQnZA25whZew=
+X-Google-Smtp-Source: AGHT+IFMNl7wjLjMXP2uoBDuMSo97549a4E58NbpIteSsy1yxx8bvOMqVrJeKpHQpR1Vr/uDGWI2QA==
+X-Received: by 2002:a05:600c:314a:b0:431:5aea:964 with SMTP id 5b1f17b1804b1-4319acb12e3mr61888985e9.19.1730104228909;
+        Mon, 28 Oct 2024 01:30:28 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:c11d:e163:200e:8a5d? ([2a01:e0a:982:cbb0:c11d:e163:200e:8a5d])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4318b55f39fsm131747095e9.12.2024.10.28.01.30.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Oct 2024 01:30:28 -0700 (PDT)
+Message-ID: <c266daa5-c8a5-4832-b85a-783c92b10bb2@linaro.org>
+Date: Mon, 28 Oct 2024 09:30:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241024095539.1637280-3-herve.codina@bootlin.com>
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/3] remoteproc: qcom: pas: add minidump_id to SM8350
+ resources
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241027-sar2130p-adsp-v1-0-bd204e39d24e@linaro.org>
+ <20241027-sar2130p-adsp-v1-2-bd204e39d24e@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20241027-sar2130p-adsp-v1-2-bd204e39d24e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Herve,
+On 27/10/2024 00:09, Dmitry Baryshkov wrote:
+> Specify minidump_id for the SM8350 DSPs. It was omitted for in the
+> original commit e8b4e9a21af7 ("remoteproc: qcom: pas: Add SM8350 PAS
+> remoteprocs").
+> 
+> Fixes: e8b4e9a21af7 ("remoteproc: qcom: pas: Add SM8350 PAS remoteprocs")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   drivers/remoteproc/qcom_q6v5_pas.c | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+> index ef82835e98a4efd4bc603cff604d531a51fe9f9c..b10b4fc84f14eb40d64b278a339f2ceb45250a62 100644
+> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+> @@ -923,6 +923,7 @@ static const struct adsp_data sm8350_adsp_resource = {
+>   	.crash_reason_smem = 423,
+>   	.firmware_name = "adsp.mdt",
+>   	.pas_id = 1,
+> +	.minidump_id = 5,
+>   	.auto_boot = true,
+>   	.proxy_pd_names = (char*[]){
+>   		"lcx",
+> @@ -1124,6 +1125,7 @@ static const struct adsp_data sm8350_cdsp_resource = {
+>   	.crash_reason_smem = 601,
+>   	.firmware_name = "cdsp.mdt",
+>   	.pas_id = 18,
+> +	.minidump_id = 7,
+>   	.auto_boot = true,
+>   	.proxy_pd_names = (char*[]){
+>   		"cx",
+> 
 
-kernel test robot noticed the following build warnings:
-
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina/dt-bindings-display-bridge-sn65dsi83-Add-interrupt/20241024-175758
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20241024095539.1637280-3-herve.codina%40bootlin.com
-patch subject: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery mechanism
-config: csky-randconfig-r073-20241026 (https://download.01.org/0day-ci/archive/20241026/202410262052.CRR7XezU-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 14.1.0
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202410262052.CRR7XezU-lkp@intel.com/
-
-smatch warnings:
-drivers/gpu/drm/bridge/ti-sn65dsi83.c:360 sn65dsi83_reset_pipeline() error: uninitialized symbol 'state'.
-
-vim +/state +360 drivers/gpu/drm/bridge/ti-sn65dsi83.c
-
-caeb909b9ed830 Herve Codina 2024-10-24  330  static int sn65dsi83_reset_pipeline(struct sn65dsi83 *sn65dsi83)
-caeb909b9ed830 Herve Codina 2024-10-24  331  {
-caeb909b9ed830 Herve Codina 2024-10-24  332  	struct drm_device *dev = sn65dsi83->bridge.dev;
-caeb909b9ed830 Herve Codina 2024-10-24  333  	struct drm_modeset_acquire_ctx ctx;
-caeb909b9ed830 Herve Codina 2024-10-24  334  	struct drm_atomic_state *state;
-
-Almost everyone has their compiler set to zero out stack variables these days.
-You should set this to struct drm_atomic_state *state = ERR_PTR(-EINVAL);.
-
-caeb909b9ed830 Herve Codina 2024-10-24  335  	int err;
-caeb909b9ed830 Herve Codina 2024-10-24  336  
-caeb909b9ed830 Herve Codina 2024-10-24  337  	/* Use operation done in drm_atomic_helper_suspend() followed by
-caeb909b9ed830 Herve Codina 2024-10-24  338  	 * operation done in drm_atomic_helper_resume() but without releasing
-caeb909b9ed830 Herve Codina 2024-10-24  339  	 * the lock between suspend()/resume()
-caeb909b9ed830 Herve Codina 2024-10-24  340  	 */
-caeb909b9ed830 Herve Codina 2024-10-24  341  
-caeb909b9ed830 Herve Codina 2024-10-24  342  	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
-
-This macro has a goto in it.
-
-caeb909b9ed830 Herve Codina 2024-10-24  343  
-caeb909b9ed830 Herve Codina 2024-10-24  344  	state = drm_atomic_helper_duplicate_state(dev, &ctx);
-caeb909b9ed830 Herve Codina 2024-10-24  345  	if (IS_ERR(state)) {
-caeb909b9ed830 Herve Codina 2024-10-24  346  		err = PTR_ERR(state);
-caeb909b9ed830 Herve Codina 2024-10-24  347  		goto unlock;
-caeb909b9ed830 Herve Codina 2024-10-24  348  	}
-caeb909b9ed830 Herve Codina 2024-10-24  349  
-caeb909b9ed830 Herve Codina 2024-10-24  350  	err = drm_atomic_helper_disable_all(dev, &ctx);
-caeb909b9ed830 Herve Codina 2024-10-24  351  	if (err < 0)
-caeb909b9ed830 Herve Codina 2024-10-24  352  		goto unlock;
-caeb909b9ed830 Herve Codina 2024-10-24  353  
-caeb909b9ed830 Herve Codina 2024-10-24  354  	drm_mode_config_reset(dev);
-caeb909b9ed830 Herve Codina 2024-10-24  355  
-caeb909b9ed830 Herve Codina 2024-10-24  356  	err = drm_atomic_helper_commit_duplicated_state(state, &ctx);
-caeb909b9ed830 Herve Codina 2024-10-24  357  
-caeb909b9ed830 Herve Codina 2024-10-24  358  unlock:
-caeb909b9ed830 Herve Codina 2024-10-24  359  	DRM_MODESET_LOCK_ALL_END(dev, ctx, err);
-caeb909b9ed830 Herve Codina 2024-10-24 @360  	if (!IS_ERR(state))
-caeb909b9ed830 Herve Codina 2024-10-24  361  		drm_atomic_state_put(state);
-
-Calling drm_atomic_state_put(NULL) leads to an Oops.
-
-caeb909b9ed830 Herve Codina 2024-10-24  362  	return err;
-caeb909b9ed830 Herve Codina 2024-10-24  363  }
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
