@@ -1,63 +1,54 @@
-Return-Path: <devicetree+bounces-116666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3CE79B38DB
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 19:13:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FE949B39CF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 19:59:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83619283423
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 18:13:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF65D1C21FF8
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 18:59:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B19961DF738;
-	Mon, 28 Oct 2024 18:12:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394911DF990;
+	Mon, 28 Oct 2024 18:59:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SZRcYieq"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ptkJApp2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3B31DF749;
-	Mon, 28 Oct 2024 18:12:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD28D155A52;
+	Mon, 28 Oct 2024 18:58:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730139157; cv=none; b=hr9TfUuu7LCB9J+N9ZHqziRY0N5XhvfrasVqX+G+eum7Ou8G3Kkt3w472Vdgm/kooZi7VVdzhywNSHtnABHjTOoqViqn5+dmW3v1AqFqNIVKL1xu0t7ycrkO96JPBq6tjeyp+IcuozGbEbcTWZAG8IybDRC8krQbZ0XbryMbaHI=
+	t=1730141941; cv=none; b=YlDll3Nbs2vW0weDbf+1FK4aAhjYIPLbTxCq+aiY9zpZjnwFllFaLQX6LmJrTTggGqs8LITG4Mg7D1haBuYJaLm2sQsK9YX4jGUkGcHo25v1CtOaecNYEi8TcRAGP5A8XuGln7Yto66Af4waYRyLZWPEhR4K8S490HHWst0AlvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730139157; c=relaxed/simple;
-	bh=sEUoxC02iCpTxcYJhl7YWFX1HCD6NzBw0eWUjpJiVwg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sKCeEubkksHf8hNBZ2PXE5tnDu33GGCN1VlKiZPUyUVJAJFqUC23J6yB9tRoaL5oOTy8labF863NY5NMxBr7e20RU3Q6VcCd94j5pNfNL2GFG1hGqI85ubNE15dXUMzp8qUFSh8rtjJRIu5hbZeOzm8Cy9s7W4voZP2p7wl9qBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SZRcYieq; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49SAv1pG005093;
-	Mon, 28 Oct 2024 18:12:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	sEUoxC02iCpTxcYJhl7YWFX1HCD6NzBw0eWUjpJiVwg=; b=SZRcYieqr1duO6jN
-	yNPU+IPfmU5epd+/o81r40LC4ldLZCIxxkZjlAkUm0IpqlMxvPWXcCU1XBkzNRaC
-	TP7nTfoabSBoIEFd9oUJxyH8ssxT3RMVVy6b1jtpFrGzR4Qr9S53G356VCRfaWGR
-	e0AnvtjH6VYpYYPfGf1XC09U3+7KSWJYNeVHPyXSb/F5vqb519sM99cu5UY56mKi
-	nLQWpX+LNtMePMDN4WQu5efqc5IUJX7MFL7F5AKVFzVhpOnpRjh5Yo1iOH3bw7nE
-	D/KHDSkVLNE3b5W37aYUqFwulXlJTuqei1PCdAs0SH8ah1ZumWVhoYwIz0PpMB8r
-	sMF64w==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gsq8dw7k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Oct 2024 18:12:09 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49SIC861013622
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Oct 2024 18:12:08 GMT
-Received: from [10.110.31.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Oct
- 2024 11:12:07 -0700
-Message-ID: <8f6e35c0-8cd6-495d-92ad-21d76a726785@quicinc.com>
-Date: Mon, 28 Oct 2024 11:12:07 -0700
+	s=arc-20240116; t=1730141941; c=relaxed/simple;
+	bh=IHbyLhkCtNTuR+x6GPSqHsMn/QWFSVYk2YCENClOhJk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IPOdjZRudkVOTZ10cu/w72qRqurkdsi7HoxPmMkxYrdVaSQfeKExqjIF3u7yyRLt14zvrphImjo8C1k7cLLZmfGdbkLd/ZSoE8ovViJCFN+UhdvUXdv9hfLxB66t41tTzzjQwlyaVjJBNMzqOYqAlbTLqed0n2qkwOdwhSZPVRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ptkJApp2; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 4E6C3890F6;
+	Mon, 28 Oct 2024 19:58:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1730141930;
+	bh=NlgNP6cg/A4M6No0PkF2AHlBLOKMxjV9Z0JaeWFDKHQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ptkJApp2qXE3ryESPPZcb0dcF0YKALRxzhGobEhMuXKqJPESuNKWfK4bmGhthDfv3
+	 KwoeGq+I+FvrbmQ7WtUZtjuKibqM+Fx2AQn5aNd+p3ojbqoRjHX9RPOQD/9jLxEUqN
+	 YtGWKS3RQRsr5FhFadHwRuZRhYyWDToo70ONSCpds7ZtSHe4qfNNDmpEjBQ+aSNd7v
+	 hK6cI9Wz2mgQpJ861GsM40UiqN+tXGnrLVFwmj2I2aPKdvMsAdT7RCTVma2GMUpn4v
+	 Qb9XlaNgYX3OCHWDnQ9HcdqFcc36yrrBnJSuS67rHZlz7KioU5kVfQP8syWpATXNW1
+	 AZ4b+dBUedr4A==
+Message-ID: <4d7d6a7d-cbe8-4cbf-9fb1-2cdec0f11ce2@denx.de>
+Date: Mon, 28 Oct 2024 19:18:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,122 +56,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v29 01/33] xhci: support setting interrupt moderation IMOD
- for secondary interrupters
-To: =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
-	<amadeuszx.slawinski@linux.intel.com>,
-        Greg KH <gregkh@linuxfoundation.org>, Takashi Iwai <tiwai@suse.de>
-CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
-        <corbet@lwn.net>, <lgirdwood@gmail.com>, <tiwai@suse.com>,
-        <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.com>,
-        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
-        <bgoswami@quicinc.com>, <robh@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>
-References: <20241015212915.1206789-1-quic_wcheng@quicinc.com>
- <20241015212915.1206789-2-quic_wcheng@quicinc.com>
- <2024101747-defog-squiggly-ef54@gregkh>
- <5847c380-75ce-492a-9a30-0899b7ebe98c@quicinc.com>
- <2024101824-hammock-elastic-8d38@gregkh> <87wmi02qcj.wl-tiwai@suse.de>
- <2024102240-gag-famished-245c@gregkh>
- <8795c4ad-e3ac-47aa-92dd-f899042cefc0@linux.intel.com>
+Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset gpio
+ to mdio node
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
+ <niklas.soderlund+renesas@ragnatech.se>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240704152610.1345709-1-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdUZAVAkPVus2T_O3sWT7f1PciRYjxm6ecLy0QUyh50OEw@mail.gmail.com>
+ <d1b36858-da21-4e2a-bc54-175524a7d3b4@denx.de>
+ <CAMuHMdXRhUr1My-w0+hoAhQKgOq9iwecjow4iZTh82ED5DEfdA@mail.gmail.com>
+ <50b37c36-643c-4307-9d4e-ad49b306ba8a@denx.de>
+ <20241015144810.GD2838422@ragnatech.se>
+ <825e3b22-340c-4618-8d80-5d1b004fc0e4@denx.de>
+ <CAMuHMdV9XoJHHUM42YFwackdM+oRgP4k-SwZOTwqg0RJGETViw@mail.gmail.com>
+ <d6b35a1b-3f42-4071-99c1-dc87999c5cce@denx.de>
+ <CAMuHMdXW332YZahLw=vzfB6fZwc_9jL8uY-Uxj=Qyfov5vYQFw@mail.gmail.com>
+ <2f9df6fa-2474-4f35-af29-a1c280d5fe6f@denx.de>
+ <CAMuHMdUH32upHwwY7dXqk085LDWzkOz9cBv83FezVUbi27Ygpw@mail.gmail.com>
 Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <8795c4ad-e3ac-47aa-92dd-f899042cefc0@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 3VvqAHZW17ni7Z9fnrpLfG7y2SqeBCje
-X-Proofpoint-ORIG-GUID: 3VvqAHZW17ni7Z9fnrpLfG7y2SqeBCje
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- adultscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=999 impostorscore=0
- lowpriorityscore=0 malwarescore=0 clxscore=1011 spamscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410280143
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <CAMuHMdUH32upHwwY7dXqk085LDWzkOz9cBv83FezVUbi27Ygpw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
+On 10/28/24 11:13 AM, Geert Uytterhoeven wrote:
+> Hi Marek,
 
-On 10/22/2024 8:04 AM, Amadeusz Sławiński wrote:
-> On 10/22/2024 4:02 PM, Greg KH wrote:
->> On Tue, Oct 22, 2024 at 03:56:44PM +0200, Takashi Iwai wrote:
->>> On Fri, 18 Oct 2024 07:52:35 +0200,
->>> Greg KH wrote:
->>>>
->>>> On Thu, Oct 17, 2024 at 05:07:12PM -0700, Wesley Cheng wrote:
->>>>> Hi Greg,
->>>>>
->>>>> On 10/16/2024 11:40 PM, Greg KH wrote:
->>>>>> On Tue, Oct 15, 2024 at 02:28:43PM -0700, Wesley Cheng wrote:
->>>>>>> From: Mathias Nyman <mathias.nyman@linux.intel.com>
->>>>>>>
->>>>>>> Allow creators of xHCI secondary interrupters to specify the interrupt
->>>>>>> moderation interval value in nanoseconds when creating the interrupter.
->>>>>>>
->>>>>>> If not sure what value to use then use the xhci driver default
->>>>>>> xhci->imod_interval
->>>>>>>
->>>>>>> Suggested-by: Wesley Cheng <quic_wcheng@quicinc.com>
->>>>>>> Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
->>>>>>> Link: https://lore.kernel.org/r/20240905143300.1959279-13-mathias.nyman@linux.intel.com
->>>>>>> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->>>>>>> ---
->>>>>>>   drivers/usb/host/xhci-mem.c | 8 +++++++-
->>>>>>>   drivers/usb/host/xhci.c     | 4 ++--
->>>>>>>   drivers/usb/host/xhci.h     | 5 ++++-
->>>>>>>   3 files changed, 13 insertions(+), 4 deletions(-)
->>>>>> This is already in 6.12-rc1, which makes me confused as to what tree you
->>>>>> made this series against.
->>>>>
->>>>> Sorry, I didn't fetch the latest changes from usb-next.
->>>>
->>>> It wasn't even usb-next, it was 6.12-rc1, so I don't know what tree you
->>>> based this on :(
->>>>
->>>>> In this case, should I rebase and resbumit?
->>>>
->>>> As the series can't be applied as-is, probably.  But I think you might
->>>> want to collect some acks from the sound people and xhci developers, as
->>>> I can't do anything with this until they look at the changes.
+Hello Geert,
+
+>>>>> So, what would you suggest when the PHY nodes would not have compatible
+>>>>> strings?
+>>>> I would suggest keep the PHY compatible strings, because that is the
+>>>> most accurate method to describe the hardware and fulfill the PHY bring
+>>>> up requirements. If the PHY changes on this hardware in some future
 >>>
->>> Honestly speaking, I couldn't follow fully the discussions about the
->>> fundamental design -- IIRC, Pierre and others had concerns to the way
->>> to manage the offload device via kcontrols.  Did we get consensus?
+>>> That issue is moot for KSZ9031.
 >>
->> I don't think so.
+>> If the PHY won't change, then we can keep the compatible strings ?
+> 
+> Sorry for being unclear. I should have written "the PHY bring-up
+> requirements are moot for KSZ9031".
 
-As mentioned by Amadeusz, the overall USB offload concept hasn't changed significantly since the initial series, and will rely on having two sounds cards, ie leaving the one created by USB SND untouched (and still usable), while creating a path to an ASoC based platform card, which handles the offload path.
+Perhaps, (*) but odd erratas do show up every once in a while, so unless 
+you can surely say no such errata will show up for the KSZ9031, can you 
+really dismiss the bring up requirements ?
 
-The follow ups that I've had with Pierre was more towards how the offload parameters are going to be exposed to userspace, so that it can be properly utilized.  I think for the most part, we've agreed that the set of kcontrols we have now are sufficient, and there is proper controls for userspace to know which devices to use.
+>>>> revision, we can revisit this discussion ? Maybe bootloader-applied DTOs
+>>>> could work then ?
+>>>
+>>> So, what would you suggest when the PHY nodes would not have compatible
+>>> strings?
+>> I hope I already answered that question before.
+> 
+> Sorry, I may have missed that?
+> 
+> I really prefer not having the PHY compatible strings, as DT should
+> describe only what cannot be auto-detected.
+See paragraph above (*). My take on this is the exact opposite, better 
+describe the PHY in DT fully, including compatible strings, so that if 
+the PHY driver needs to do some sort of bring up tweak/fix/errata 
+workaround/... , it can do so by matching on the compatible string 
+without trying to bring the PHY up in some generic and potentially 
+problematic way.
 
->>
->>> I believe that's the biggest obstacle in the audio side, i.e. what's
->>> visible to users.  The kernel internals can be corrected at any time
->>> later.
->>
->> I would like to see that agreed on before I even look at the usb side.
->
-> My main concern is still that one USB audio device can be accessed via two different cards exposed in userspace. Usual USB one, and the one from device which does "offload". Suggested implementation achieves it by adding additional controls, which need to be set in specific way to achieve offload. Overall while I understand the mechanism, I'm not exactly convinced that it is the best way from end user point of view.
->
-> "Implementation" part in Documentation added in patch 19 shows how it looks in userspace now.
->
-> If you don't mind two sound cards being used to access same piece of HW, current implementation looks ok to me.
->
-@Takashi, this was something we discussed really early on, even before the series was made, and I think it was agreed upon to avoid doing this with a single card.  I remember putting in the initial work to scope out this path, but it was going to require significant/major modifications to USB SND core, hence why we decided on the path to have two sound cards. (USB SND legacy path still usable)
-
-Thanks
-
-Wesley Cheng 
-
-> See also:
-> https://lore.kernel.org/linux-sound/75ffde3a-7fef-4c15-bfc8-87756e1c3f11@linux.intel.com/
-> where I described how I would prefer it to look.
+The MDIO bus is not discoverable the same way as PCIe or USB is, so I 
+don't think the "DT should describe only what cannot be detected" is 
+really applicable to MDIO bus the same way it applies to PCIe or USB.
 
