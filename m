@@ -1,206 +1,218 @@
-Return-Path: <devicetree+bounces-116742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A5E49B3D5C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 23:02:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CBA59B3D35
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 22:59:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A09F71C21204
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 22:02:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E429287FF6
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 21:59:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1089420370B;
-	Mon, 28 Oct 2024 21:53:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=kernel-space.org header.i=@kernel-space.org header.b="xtSMFOXj";
-	dkim=pass (1024-bit key) header.d=kernel-space.org header.i=@kernel-space.org header.b="HlYtwajC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9EE1FF5EE;
+	Mon, 28 Oct 2024 21:50:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.kernel-space.org (mail.kernel-space.org [195.201.34.187])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13FD1202F85;
-	Mon, 28 Oct 2024 21:53:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.201.34.187
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D4F01E0DA7
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 21:50:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730152432; cv=none; b=a7bXwi0zdIas+m3RhMskOZEyoLT4MmnE2fnbcexWQsGJCs7b4xMokX7itX8ySd2qLSQ0Km5wl2QnkDrwsHWUr+sPFy6Rafa7VqO4dVnKqNTc6bwze0W/l0Db7yyJEx6iPJDRaOwWbgLEYSWqY9X9+8Nm42WPVdIVnQI+AxeiaLw=
+	t=1730152224; cv=none; b=nHFpHiQfwW//uANBNJxvk/iT7kA6IjMCjuhVsM0dQHaKtXVSfK6mENQI90rEjrsJy0sThDCWInf2tgk4emJcic5cmbm/oY3KVN+6eieIUYjef89c9GBNXwg3HqXrGKuKdc/nHkslgudfjxA8LDEuv2H+nD7k5nhoW3qPvkbb3KM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730152432; c=relaxed/simple;
-	bh=s14ugGZfEyGqRUlsV5I338Zk51rUFMYI7CfMxdkb6dI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IdZZzDw15ksKVrCd+5YBjen2LsqWaKNm8XyuyHQ7PbAD28IMnJKMMkuHxdo7036Dp6aQl4tI3uRgaR7NyE42eR9RTAeLpru2RLp5EXK2bqVL2gXqllFfBe36JdMm4TphzfvDT6QMPDIDOGAu8RnhmhA0aaXsd90b1Pf7cjNLwdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=kernel-space.org; spf=pass smtp.mailfrom=kernel-space.org; dkim=pass (1024-bit key) header.d=kernel-space.org header.i=@kernel-space.org header.b=xtSMFOXj; dkim=pass (1024-bit key) header.d=kernel-space.org header.i=@kernel-space.org header.b=HlYtwajC; arc=none smtp.client-ip=195.201.34.187
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=kernel-space.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kernel-space.org
-Received: from kernel-space.org (localhost [127.0.0.1])
-	by kernel-space.org (OpenSMTPD) with ESMTP id 3fe57925;
-	Mon, 28 Oct 2024 21:37:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=kernel-space.org; h=from
-	:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=s1; bh=JSO1PW7olavWA0V+FiTgaMcUZLY=; b=xtSMFOXjzKNPg4s8Tf
-	K1/lYSPKxtpfrymd1gj6gzgjGdKFFpujACrmg34FKpNGXCtDl4NlyTOxzYnjBBUC
-	/3WO8wbKNsGmTc/axj1pqLuh1OsTDawRcj2xeYBUDnYXkZahKEW4MD4EaBy6K8/D
-	QpYUtoifZS9eK2upSoAkbvZ5k=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=kernel-space.org; h=from
-	:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; q=dns; s=s1; b=tYU+s5wbA2aA3HdpO4wm0OLM4wl8Go0vA5exv2K3ZU/K
-	Chg0zpR278J/Y+pcgJgCb5iXcUy5AYbuo9Ii9oYW2b1ZOG0m7NQqMEgl/DLzmJ4w
-	94+wjpu0zwiUnAttOoyUk1RioNdozRVlYGz7zJo2M82rXSp21+ieQRUvg1aIMTM=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel-space.org;
-	s=s1; t=1730151478;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+Ysn+2jFOQ1hXNVhHri93TEH3r/t9aAnVbCCxjgU648=;
-	b=HlYtwajCzdIrC6A/vzu5iIDRvP/BPYSdWzY4GMcPz4VO/orzvk/b3ceZxeWY8VrNiAKSO+
-	8CKTYz3ZYQ8ef9006QbaJVRRNhoALbJPAWY0xW9a9ZiP+vIDAXwfxe3TRHa9wi6XKAGiMt
-	SORjHk+/apowGRnUvdmV4wqgHLVxL58=
-Received: from [127.0.1.1] (host-95-245-34-85.retail.telecomitalia.it [95.245.34.85])
-	by kernel-space.org (OpenSMTPD) with ESMTPSA id 59439acb (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
-	Mon, 28 Oct 2024 21:37:58 +0000 (UTC)
-From: Angelo Dureghello <angelo@kernel-space.org>
-Date: Mon, 28 Oct 2024 22:45:35 +0100
-Subject: [PATCH v9 8/8] iio: dac: adi-axi-dac: add registering of child fdt
- node
+	s=arc-20240116; t=1730152224; c=relaxed/simple;
+	bh=V6Qcj3tOIGcSu35JwGeNx9+xFqxPBD8uIH+zjysOBNk=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZQQwu0gU/+d6EGk9pyofku1m8AVMFsT3AOD0CP9k3tPs7+hWAtXIJHuOFV/hJ2V3Iw3S31Cu6fJtaUbExckzVjw3Yhod7OFN92DMI7am399UXegH2Ft4YdhVMRx1A8tc8n3GljN0Djv+obBfUtmXr5JaFJzyHrqUitniah2K1O0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1t5Xcc-0000Lv-3Y; Mon, 28 Oct 2024 22:49:58 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1t5Xca-000vCY-2y;
+	Mon, 28 Oct 2024 22:49:56 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1t5Xca-000sqw-2d;
+	Mon, 28 Oct 2024 22:49:56 +0100
+Date: Mon, 28 Oct 2024 22:49:56 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Matthias Kaehlcke <matthias@kaehlcke.net>,
+	kernel test robot <lkp@intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Matthias Kaehlcke <mka@chromium.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, oe-kbuild-all@lists.linux.dev,
+	kernel@pengutronix.de, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] usb: hub: add infrastructure to pass onboard_dev
+ port features
+Message-ID: <20241028214956.gmefpvcvm3zrfout@pengutronix.de>
+References: <20240807-b4-v6-10-topic-usb-onboard-dev-v1-1-f33ce21353c9@pengutronix.de>
+ <202408081557.FiEe9Tzz-lkp@intel.com>
+ <20240809093313.xn3x2p3st2b32g27@pengutronix.de>
+ <wtvhsdo2zefehkgfcp2cfdl2uht4lcrytyjyhwjhnpcyvx4kd2@iurrw554aegh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241028-wip-bl-ad3552r-axi-v0-iio-testing-v9-8-f6960b4f9719@kernel-space.org>
-References: <20241028-wip-bl-ad3552r-axi-v0-iio-testing-v9-0-f6960b4f9719@kernel-space.org>
-In-Reply-To: <20241028-wip-bl-ad3552r-axi-v0-iio-testing-v9-0-f6960b4f9719@kernel-space.org>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, dlechner@baylibre.com, 
- Mark Brown <broonie@kernel.org>, 
- Angelo Dureghello <angelo@kernel-space.org>, 
- Angelo Dureghello <adureghello@baylibre.com>
-X-Mailer: b4 0.14.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <wtvhsdo2zefehkgfcp2cfdl2uht4lcrytyjyhwjhnpcyvx4kd2@iurrw554aegh>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Angelo Dureghello <adureghello@baylibre.com>
+Hi,
 
-Change to obtain the fdt use case as reported in the
-adi,ad3552r.yaml file in this patchset.
+I found two mistakes I made in my v1. I would send a v2 if this series
+is interesting for upstream. The remaining open question is how the
+driver dependencies should be handled (see idea-1,2,3).
 
-The DAC device is defined as a child node of the backend.
-Registering the child fdt node as a platform devices.
+Regards,
+  Marco
 
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
----
- drivers/iio/dac/adi-axi-dac.c | 56 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
-
-diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-dac.c
-index 155d04ca2315..a49d233c28c0 100644
---- a/drivers/iio/dac/adi-axi-dac.c
-+++ b/drivers/iio/dac/adi-axi-dac.c
-@@ -29,6 +29,8 @@
- #include <linux/iio/buffer.h>
- #include <linux/iio/iio.h>
- 
-+#include "ad3552r-hs.h"
-+
- /*
-  * Register definitions:
-  *   https://wiki.analog.com/resources/fpga/docs/axi_dac_ip#register_map
-@@ -97,6 +99,7 @@ struct axi_dac_info {
- 	unsigned int version;
- 	const struct iio_backend_info *backend_info;
- 	bool has_dac_clk;
-+	bool has_child_nodes;
- };
- 
- struct axi_dac_state {
-@@ -711,6 +714,36 @@ static int axi_dac_bus_reg_read(struct iio_backend *back, u32 reg, u32 *val,
- 	return regmap_read(st->regmap, AXI_DAC_CUSTOM_RD_REG, val);
- }
- 
-+static void axi_dac_child_remove(void *data)
-+{
-+	platform_device_unregister(data);
-+}
-+
-+static int axi_dac_create_platform_device(struct axi_dac_state *st,
-+					  struct fwnode_handle *child)
-+{
-+	struct ad3552r_hs_platform_data pdata = {
-+		.bus_reg_read = axi_dac_bus_reg_read,
-+		.bus_reg_write = axi_dac_bus_reg_write,
-+		.bus_sample_data_clock_hz = st->dac_clk_rate,
-+	};
-+	struct platform_device_info pi = {
-+		.parent = st->dev,
-+		.name = fwnode_get_name(child),
-+		.id = PLATFORM_DEVID_AUTO,
-+		.fwnode = child,
-+		.data = &pdata,
-+		.size_data = sizeof(pdata),
-+	};
-+	struct platform_device *pdev;
-+
-+	pdev = platform_device_register_full(&pi);
-+	if (IS_ERR(pdev))
-+		return PTR_ERR(pdev);
-+
-+	return devm_add_action_or_reset(st->dev, axi_dac_child_remove, pdev);
-+}
-+
- static const struct iio_backend_ops axi_dac_generic_ops = {
- 	.enable = axi_dac_enable,
- 	.disable = axi_dac_disable,
-@@ -852,6 +885,28 @@ static int axi_dac_probe(struct platform_device *pdev)
- 		return dev_err_probe(&pdev->dev, ret,
- 				     "failed to register iio backend\n");
- 
-+	device_for_each_child_node_scoped(&pdev->dev, child) {
-+		int val;
-+
-+		if (!st->info->has_child_nodes)
-+			return dev_err_probe(&pdev->dev, -EINVAL,
-+					     "invalid fdt axi-dac compatible.");
-+
-+		/* Processing only reg 0 node */
-+		ret = fwnode_property_read_u32(child, "reg", &val);
-+		if (ret)
-+			return dev_err_probe(&pdev->dev, ret,
-+						"invalid reg property.");
-+		if (val != 0)
-+			return dev_err_probe(&pdev->dev, -EINVAL,
-+						"invalid node address.");
-+
-+		ret = axi_dac_create_platform_device(st, child);
-+		if (ret)
-+			return dev_err_probe(&pdev->dev, -EINVAL,
-+						"cannot create device.");
-+	}
-+
- 	dev_info(&pdev->dev, "AXI DAC IP core (%d.%.2d.%c) probed\n",
- 		 ADI_AXI_PCORE_VER_MAJOR(ver),
- 		 ADI_AXI_PCORE_VER_MINOR(ver),
-@@ -869,6 +924,7 @@ static const struct axi_dac_info dac_ad3552r = {
- 	.version = ADI_AXI_PCORE_VER(9, 1, 'b'),
- 	.backend_info = &axi_ad3552r,
- 	.has_dac_clk = true,
-+	.has_child_nodes = true,
- };
- 
- static const struct of_device_id axi_dac_of_match[] = {
-
--- 
-2.45.0.rc1
-
+On 24-09-23, Matthias Kaehlcke wrote:
+> El Fri, Aug 09, 2024 at 11:33:13AM GMT Marco Felsch ha dit:
+> 
+> > Hi all,
+> > 
+> > On 24-08-08, kernel test robot wrote:
+> > > Hi Marco,
+> > > 
+> > > kernel test robot noticed the following build errors:
+> > > 
+> > > [auto build test ERROR on 0c3836482481200ead7b416ca80c68a29cfdaabd]
+> > > 
+> > > url:    https://github.com/intel-lab-lkp/linux/commits/Marco-Felsch/usb-hub-add-infrastructure-to-pass-onboard_dev-port-features/20240807-224100
+> > > base:   0c3836482481200ead7b416ca80c68a29cfdaabd
+> > > patch link:    https://lore.kernel.org/r/20240807-b4-v6-10-topic-usb-onboard-dev-v1-1-f33ce21353c9%40pengutronix.de
+> > > patch subject: [PATCH 1/3] usb: hub: add infrastructure to pass onboard_dev port features
+> > > config: i386-randconfig-141-20240808 (https://download.01.org/0day-ci/archive/20240808/202408081557.FiEe9Tzz-lkp@intel.com/config)
+> > > compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+> > > reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240808/202408081557.FiEe9Tzz-lkp@intel.com/reproduce)
+> > > 
+> > > If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> > > the same patch/commit), kindly add following tags
+> > > | Reported-by: kernel test robot <lkp@intel.com>
+> > > | Closes: https://lore.kernel.org/oe-kbuild-all/202408081557.FiEe9Tzz-lkp@intel.com/
+> > > 
+> > > All errors (new ones prefixed by >>):
+> > > 
+> > >    ld: drivers/usb/core/hub.o: in function `set_port_feature':
+> > > >> drivers/usb/core/hub.c:481: undefined reference to `onboard_dev_port_feature'
+> > >    ld: drivers/usb/core/hub.o: in function `usb_clear_port_feature':
+> > >    drivers/usb/core/hub.c:462: undefined reference to `onboard_dev_port_feature'
+> > 
+> > I understood the isse but have a few questions. Before continue the work
+> > on this topic I would like to ask if the patchset is okay in general?
+> > I'm open for alternatives if the patchset approach is not okay.
+> 
+> From the perspective of the onboard_usb_dev driver it seems sound to me.
+> 
+> So far the USB maintainers haven't raised objections, so I would say move
+> forward and we'll see if concerns arise and deal with them if needed.
+> 
+> > I have a few ideas in mind (see below) to fix the 0day build issue which
+> > was caused by the Kconfig selection:
+> > 
+> >  - CONFIG_USB=y
+> >  - CONFIG_USB_ONBOARD_DEV=m.
+> > 
+> > Idea-1:
+> > -------
+> > 
+> > Dropping the module support for CONFIG_USB_ONBOARD_DEV.
+> 
+> With that CONFIG_USB could not be 'm' when CONFIG_USB_ONBOARD_DEV
+> is set, which wouldn't be great.
+> 
+> > Idea-2:
+> > -------
+> > 
+> > CONFIG_USB_ONBOARD_DEV follows CONFIG_USB:
+> > 
+> > CONFIG_USB=y -> CONFIG_USB_ONBOARD_DEV=y,
+> > CONFIG_USB=m -> CONFIG_USB_ONBOARD_DEV=m.
+> > 
+> > and exporting usb_clear_port_feature().
+> > 
+> > I don't know to add such Kconfig dependency and also this idea require
+> > that the usbcore have to load the usb_onboard_dev module always,
+> > regardless if used.
+> > 
+> > So this idea is rather suboptimal.
+> > 
+> > Idea-3:
+> > -------
+> > 
+> > Adding a function to the hub.c usbcore which can be used by the
+> > usb-onboard-dev driver to register this function as hook. This removes
+> > the dependency from the core and the usb-onboard-dev module is only
+> > pulled if really required. Of course this require that the hub.c usbcore
+> > driver allows custom hooks.
+> 
+> This seems like the best approach IMO, if USB maintainers are onboard with
+> it.
+> 
+> Since this is about port features (only applicable to hubs) the function
+> should be associated with struct usb_hub, not struct usb_device. And we
+> probably want two functions, onboard_hub_set_port_feature() and
+> onboard_hub_clear_port_feature(), whose implementations may use shared
+> code.
+> 
+> > Idea-X:
+> > -------
+> > 
+> > I'm open for your input :)
+> > 
+> > 
+> > Regards,
+> >   Marco
+> > 
+> > PS: My favourite is Idea-3 followed by Idea-1.
+> > 
+> > > vim +481 drivers/usb/core/hub.c
+> > > 
+> > >    466	
+> > >    467	/*
+> > >    468	 * USB 2.0 spec Section 11.24.2.13
+> > >    469	 */
+> > >    470	static int set_port_feature(struct usb_device *hdev, int port1, int feature)
+> > >    471	{
+> > >    472		int ret;
+> > >    473	
+> > >    474		ret = usb_control_msg(hdev, usb_sndctrlpipe(hdev, 0),
+> > >    475			USB_REQ_SET_FEATURE, USB_RT_PORT, feature, port1,
+> > >    476			NULL, 0, 1000);
+> > >    477		if (ret)
+> > >    478			return ret;
+> > >    479	
+> > >    480		if (!is_root_hub(hdev))
+> > >  > 481			ret = onboard_dev_port_feature(hdev, true, feature, port1);
+> > >    482	
+> > >    483		return ret;
+> > >    484	}
+> > >    485	
+> > > 
+> > > -- 
+> > > 0-DAY CI Kernel Test Service
+> > > https://github.com/intel/lkp-tests/wiki
+> > > 
+> 
 
