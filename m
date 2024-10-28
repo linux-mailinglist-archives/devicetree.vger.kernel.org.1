@@ -1,141 +1,107 @@
-Return-Path: <devicetree+bounces-116408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBDD89B2C97
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:18:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C169B2C99
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:19:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B040E282272
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:18:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 787ED1C21D26
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:19:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC3D7193091;
-	Mon, 28 Oct 2024 10:18:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F6F81CC890;
+	Mon, 28 Oct 2024 10:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sIauviEn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD0ECA59;
-	Mon, 28 Oct 2024 10:18:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BDB952F9B;
+	Mon, 28 Oct 2024 10:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730110735; cv=none; b=sPm+rvPkJEhkm1TiP4KCrDPNb11w49qnpZRg1SxHqxf3VMjY9UzfPMv/MQAMQN3b0gphdSnBlI7twaHZsYquDHTaeOK3vEkmdkA9iDdJr+iJPMQOTmuNHWo2H1H4Qqp+UilaK7ICWRqqslptfShoXEfkdjvWOeQNrnIHI3dgA80=
+	t=1730110748; cv=none; b=MPtbx8zsstTFUhf8UPQ7GxVfDKoMLDnxFyKDz3wo7sKQA1H+SkBW6Ux/xawOBdU/arxaTXA2p6Uas8l4k2tQdJXdzYN+Gg0kqERqoio+Jg3fAPaF4RP0YPU02xDeEiiDO3f65yE6YwUHGKEIyOXMoRe7zVyo/e2Ev60/csQAm90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730110735; c=relaxed/simple;
-	bh=CvcmwJx68ibSr1FgYSs0BYn4vbK2dH2bI1Id4paFMiQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Y8W2zKJGcPeHtmRGjrbeW7+VrEx2XhfgeAu4lF+p9KB4BnKXHQ3BDaFtGPzgQTznmctz8Nr2t9TkebjGalPm0rkKC6IaV7QjJJKHbYFWLRlhIRL4bbj7S1uLeUXOM1cuV7lREF0eZ9gpjZ9fhfNVQuiMvDKbeVhmwyLPwNYZxT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6e3cdbc25a0so43690717b3.2;
-        Mon, 28 Oct 2024 03:18:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730110732; x=1730715532;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3p3W4EQbrJIJC/nea0IOGVy7gYy/irssqjHdBTm9iqU=;
-        b=os25eig5cyD3qUrFsqZdIfrjq+tkcftU2Q15ieWOJlj2xX0Lxvg2MCxfb5UdTUYudh
-         4gKz2v0pG4NTF6V5CTzW7zfFVHNb+ugDs7PQFogvtzW/4rJsENCFh6E98/VkKZSq67db
-         TDNa8kM3YxQBRjicmVLgkTpVU6ro8d+l7x3EIAPBFQJHJg2xgQUDTF2X+W68OX3Gzhxc
-         cgKb1pBhCQpR4iRswJAfp2mzToRh4DErdiU5W1PzamrnKbbvnNc/sDLvSACm530MweAf
-         dFqpRldFJRX4QwE/htSQh58UrAJJXoY5ZAlMyZ4fWgjIjK7LZAOn08O08GXgsPDA0F1P
-         Agdw==
-X-Forwarded-Encrypted: i=1; AJvYcCVHkosU+dzMcnvsWPDy4/r3taQjaBUIrbW4BFkTgl8akTI+fgMo/mtJv3ikqNXDcckyqfuGTsCzMipJ@vger.kernel.org, AJvYcCVKUwU7ckhtoS/V3+OhjT3qUlfhQXlZJNOP9sZwQKvWGTIGMuKQPj2fmt/JatGGoeBHKhxd6qqoTNj/1U4=@vger.kernel.org, AJvYcCVSd3T+HgxXo4kfoNAFG0FQXuVOPTS3L5TMzEqWxquA6pf+wikQ0EEnlWvgRP5Jm9QiqPiH8tUGzop3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKTvY/Cz7j1dl3t5d+zFRXfTaEOZrtgIR1dEmEkR8qeikZ3A8Y
-	ddAXWDbqWjAzr3ziZaL3Y3T+m9pf+o60RWU1OMfsVrOb0BE2IyzDS8CWoz/B
-X-Google-Smtp-Source: AGHT+IHRQoFMZd7V8eMC6qtdDgsQ8w4+UFvpb2pTlzvSiEyPWT27T6iQbZxxk4VRPGNJ0+IbuFOszg==
-X-Received: by 2002:a05:690c:87:b0:6c3:7d68:b400 with SMTP id 00721157ae682-6e9d892546dmr60202167b3.10.1730110732434;
-        Mon, 28 Oct 2024 03:18:52 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e9c6bafebbsm13456837b3.15.2024.10.28.03.18.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Oct 2024 03:18:52 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6e3b7b3e9acso37026847b3.1;
-        Mon, 28 Oct 2024 03:18:52 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUCWYUN0AGOXcPfe8BPOahj1WLkIFaH6EirnxJdP18HnETCfM9xq80jn97u8Dsb/Noj5Ih2Zwh8ffNV@vger.kernel.org, AJvYcCVRLfUN/Bh+4CONzJWe02yuIn6px8Mse20wbxdCZEJ3BN0ryoVuTE4ThqD3pKkpaGCd1dg0cFEZwtMr@vger.kernel.org, AJvYcCXA1dZYkZfTzExgzG8eUzlTVHkHqvDQ0GCWw1awjBlIH+8rWu9GG+BTkoRJLlXbPIA4z81UWcB9Wnhn2MQ=@vger.kernel.org
-X-Received: by 2002:a05:690c:2508:b0:6e3:153a:ff62 with SMTP id
- 00721157ae682-6e9d897c8damr57542137b3.23.1730110731964; Mon, 28 Oct 2024
- 03:18:51 -0700 (PDT)
+	s=arc-20240116; t=1730110748; c=relaxed/simple;
+	bh=0st3IhjfB70U77+O5BtVgJMTEQ3ZsfyA5ALl+OrRE8w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G3K5xpHUGoSK6sA5qRqHB9i7vp5oXKcILAE7TvJl1hrdRkc5QtuFZkD7NLvUzCmAfp8zIKWc6Oja17/CySuZIhLlZhIp2YOFEEN4JkINR0xYYveOT1k0enX1rJ+95ruyIBC/NKrl6NJnNfm2fgvkL3LB0dkuCpj4Z/JFg9CFL1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sIauviEn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA2B5C4CEC3;
+	Mon, 28 Oct 2024 10:19:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730110748;
+	bh=0st3IhjfB70U77+O5BtVgJMTEQ3ZsfyA5ALl+OrRE8w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sIauviEnga5Wdy0UAY8v8zHhbuFk2VC9QclBcfWIFMi+/RzqSxMt+0OKbzlKaCpoK
+	 ASN0aShyKEUicqMXYJxB537RAwb/fvuVc38kTYRrr27zGhBMOB6yS9Z2iLz8ek4Fpj
+	 omkAelGeqoLfsGiytScPkhaj0sipM4B+xUqWcu0Foe1lhLbLuUkSdI/3nxdtROGpI9
+	 5hvV5+xyRwrU6qLZ8kOtii1xr5MQ0EUtO/Ap6K8v68rCkkoZ1/4ucsbn6MW3pIoWq9
+	 lNdLUuc3/SVocqDxFhBbE9I94fHJbRvcWteQffGVX8JblWbkeklxHkIBpbO4R0Itwi
+	 TwiQ8UAYb2YYw==
+Date: Mon, 28 Oct 2024 11:19:00 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Dirk Behme <dirk.behme@de.bosch.com>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	robh@kernel.org, daniel.almeida@collabora.com, saravanak@google.com,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
+ driver abstractions
+Message-ID: <Zx9lFG1XKnC_WaG0@pollux>
+References: <20241022213221.2383-1-dakr@kernel.org>
+ <20241022213221.2383-16-dakr@kernel.org>
+ <42a5af26-8b86-45ce-8432-d7980a185bde@de.bosch.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1729874904.git.grantpeltier93@gmail.com>
-In-Reply-To: <cover.1729874904.git.grantpeltier93@gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 28 Oct 2024 11:18:39 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWHZR9pN3h=Jdsqs5Qb0mi_4CobBtu82PRgzrm5TRgE4A@mail.gmail.com>
-Message-ID: <CAMuHMdWHZR9pN3h=Jdsqs5Qb0mi_4CobBtu82PRgzrm5TRgE4A@mail.gmail.com>
-Subject: Re: [PATCH v5 0/2] dt-bindings: hwmon: pmbus: add bindings for isl68137
-To: Grant Peltier <grantpeltier93@gmail.com>
-Cc: robh@kernel.org, linux@roeck-us.net, magnus.damm@gmail.com, 
-	grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com, 
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <42a5af26-8b86-45ce-8432-d7980a185bde@de.bosch.com>
 
-Hi Grant,
+On Thu, Oct 24, 2024 at 11:11:50AM +0200, Dirk Behme wrote:
+> > +/// IdTable type for platform drivers.
+> > +pub type IdTable<T> = &'static dyn kernel::device_id::IdTable<of::DeviceId, T>;
+> > +
+> > +/// The platform driver trait.
+> > +///
+> > +/// # Example
+> > +///
+> > +///```
+> > +/// # use kernel::{bindings, c_str, of, platform};
+> > +///
+> > +/// struct MyDriver;
+> > +///
+> > +/// kernel::of_device_table!(
+> > +///     OF_TABLE,
+> > +///     MODULE_OF_TABLE,
+> 
+> It looks to me that OF_TABLE and MODULE_OF_TABLE are quite generic names
+> used here. Shouldn't they be somehow driver specific, e.g. OF_TABLE_MYDRIVER
+> and MODULE_OF_TABLE_MYDRIVER or whatever? Same for the other
+> examples/samples in this patch series. Found that while using the *same*
+> somewhere else ;)
 
-On Fri, Oct 25, 2024 at 7:16=E2=80=AFPM Grant Peltier <grantpeltier93@gmail=
-.com> wrote:
-> Renesas digital multiphase voltage regulators are capable of regulating
-> output voltages that exceed the range that their Vsense pins can detect.
-> In such applications, users may place a voltage divider between Vout and
-> the Vsense pin for a given rail. However, the driver currently has no
-> way of knowing if a voltage divider is being used which results in
-> erroneous telemetry being reported over hwmon.
->
-> This patch set defines a devicetree bindings schema for Renesas digital
-> multiphase voltage regulators that are supported by the isl68137 driver
-> to allow users to add voltage divider definitions for any rail powered
-> by the device. This patch set also includes the required changes to the
-> isl68137 driver to enable scaling Vout/Pout telemetry for rails with a
-> defined voltage divider.
->
-> v5:
-> - Fix clang compilation errors related to C23 syntax
+I think the names by themselves are fine. They're local to the module. However,
+we stringify `OF_TABLE` in `module_device_table` to build the export name, i.e.
+"__mod_of__OF_TABLE_device_table". Hence the potential duplicate symbols.
 
-Thanks for the update!
+I think we somehow need to build the module name into the symbol name as well.
 
-> v4:
-> - Revert devicetree property name to "vout-voltage-divider" and refactor
->   property description and driver implementation to match existing
->   vout-voltage-divider implementation in max20730 as no suitable generic
->   voltage divider schema exists.
-
-Can you please elaborate (or point to the email that did so, in case
-I missed it)?
-
-In reply to v2, G=C3=BCnter wrote:
-
-   "I would prefer, in the order of preference,
-
-    1) an applicable generic property definition
-    2) a definition that is already used elsewhere
-    3) a new chips specific definition"
-
-https://lore.kernel.org/all/3f460b62-4cd1-49dd-a98b-1fbcfdbd3af0@roeck-us.n=
-et
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> 
+> Best regards
+> 
+> Dirk
+> 
+> 
 
