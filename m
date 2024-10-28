@@ -1,230 +1,168 @@
-Return-Path: <devicetree+bounces-116372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 563929B2B0A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:10:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED4069B2B14
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:12:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B63CE1C21CC4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:09:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CBB1281A39
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:12:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5597219308C;
-	Mon, 28 Oct 2024 09:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CA73192B7A;
+	Mon, 28 Oct 2024 09:12:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M4+AWkEL"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="mSCOkdUs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2071.outbound.protection.outlook.com [40.107.236.71])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A17192D6B
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 09:09:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730106593; cv=none; b=lnTRjhzeKYEyBvRndfXeQWg2L0R3NBqt/vOChyf+evcDawV6lxWHjyKfIxIkZrJ6mTcRlx2o58NMLNH+XAhWqnbv2IuwfhEH2iH65qig4NEJeJjae/8nc4h6lbszDYp1u6hGHZCllswm18wQKyq9Ry7pbmTM4DatWCx5tx2It5g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730106593; c=relaxed/simple;
-	bh=+FR30plpVuMT0J3GI+z+RTFhwP4FLf/M4kpD0l3LUm0=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=nuiGcdnr9oXm5rotc+tkF/sjmF46JiKR5fQiHJBtr5y5DfOJuQ1qVxRrjcgVVMMBV1I4EYux/1lCnAL+kk5TqaF5amDYGOoamcavjq7NIKNVZM28L01vgolBchksMJM1ASWwyWWhKPwgcgVVbWNfNu8NTONI47RQFm9XHwGf/oI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M4+AWkEL; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-37d5aedd177so2743333f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 02:09:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730106589; x=1730711389; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6WSoUlcilR10/7Zye998C2La39OrksNIeUhu2dsusHQ=;
-        b=M4+AWkELN6mtT+WvG9L2KgAJoUpvvjkX+p9sbmaCU90gYTAVKcrRWMsdm2tewa0kOI
-         +6yaiWV77qrXs3RxG9suNL6vRWE1M8qChuX0rl1ntcYCKf13PAnYEbuXHbNcAWSesnGQ
-         2J20NBPfEvYEULWCGx/Y7F35FEiNb+olmgROExeBQojq1NMmVpI1uXYNz9TekOACusIP
-         paVNm6WrG8lxmUIie5OAt5nj6JLwOdnOs2JoOBnARK55bZjlBQZo1GVocyOxQLD2lDKA
-         Xad0p2qrHqvgvUc722/HBw52uFtRaw6hVEeHwwZrBnUC0A2/1QExMdbZTcjVhEo4l3Cj
-         JoXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730106589; x=1730711389;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=6WSoUlcilR10/7Zye998C2La39OrksNIeUhu2dsusHQ=;
-        b=uVFBWka9zbhN0Le//+063RV8WXjvZrv09EtVmOqfSXYF0lYbgOC/v5AH6dZ2jK0DjT
-         qw4NNtG4fBkxPRFVnHKxH/V94NdHA5tMoRcEmeqFROeJNZjPUVN3UB2Jocx9AJqThU9b
-         wxVs2lMUhY/UFkoDtdX7AhNPDfG9ovNXnKP3fLL68a8Evm40aDv8HRn/hcB2BoHic5Nt
-         cc7bamUEHPHLM4h9Lv5zM+jxdwaFaMWGNKDCOZNKDzPn22bdZ5zVcf/d/QhfXFZosE/E
-         TF/DYVJZ4ANU4QkCbR1qREwE2P3WFjUf6LGnpQd2j5fWgoyZwhvRixiNOyX9FxMWKxB5
-         qj5A==
-X-Forwarded-Encrypted: i=1; AJvYcCXCyEy7d13nu7PdIqtyKzi2ePIv+JWopMIKjKaCSQDANOUb0DuXf/pnl5L11861FFC12Dk6xjBeai+I@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWt+zquPyXfH5qo8Q7mQRyvhkxAzVxaMNkmuV5OOsTi+43M3tG
-	OaZMyQEnpodWg2hDOBOY3vdhxX8T7d7fHBFEei+YFxZPfz+8X2tsDFCNKp3XDTU=
-X-Google-Smtp-Source: AGHT+IGbPSgHOd+5IoVfmKyOdhPyi6YNnIbge2Mu4Zhd8I9c7qhNtGSN9F6GBe245KWWr9fvZyKAoA==
-X-Received: by 2002:adf:fb92:0:b0:37d:2e78:8875 with SMTP id ffacd0b85a97d-38061224176mr5337702f8f.56.1730106589096;
-        Mon, 28 Oct 2024 02:09:49 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c11d:e163:200e:8a5d? ([2a01:e0a:982:cbb0:c11d:e163:200e:8a5d])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b91d36sm8849790f8f.95.2024.10.28.02.09.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Oct 2024 02:09:48 -0700 (PDT)
-Message-ID: <78e6ca30-9fd6-4384-9583-440c485fb8ed@linaro.org>
-Date: Mon, 28 Oct 2024 10:09:45 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6272318C929;
+	Mon, 28 Oct 2024 09:12:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.71
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730106747; cv=fail; b=cxiTU2tC4OvMai2vJCu+EpG0x4WHCSbqP5r+K9CBCYjnVU1Ggs4uy+qh+iWsgO/nRG+EmF9CZUOu+2TvRmnS6gufHG6+sIkjZxHL+FQmCmkPps+0CDfJBFcz9rKQu7iIeq8IdGSYfH2mDarSxG7U2imD/VLsyeUyZurROiUf34k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730106747; c=relaxed/simple;
+	bh=FV4Tr9bUI7hiSZWxJeyZUf3lX7D4Irtugaeaj/eVrbQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gt2HPk607lDy9v4gUUYm5+ENDWqrqSzmnZ+O87199WWyl+U17bMq2uyfX9aoOumnB8LH3UgvgLtIKZRBhBQKyepXBnI0tGcjXazgDsjlqf5RjdqmKtWRZpKX5y2THxB4CNmD1NHHR+ACbL9mFb98vijkkWq5puWXC6l+Q1bGQn8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=mSCOkdUs; arc=fail smtp.client-ip=40.107.236.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UBX+MCGZKumF0PqTIhtY6hbXeF017ldcvY3ZK6SdQ487Sk6WAIV11eLfYVzZllUq/nf+2lb4LBKCddY9Bfhj7LJA5itxHvAfBZZg/NKgJpyGaP8i7rsaCwISu/E4l0x8weZEpIVqFiLxK4/QS2jNO0vLJTxC/jRY0jOi4zl/uZYy95LVJAGM2ejHNshxEbE4JDtnZfLL8zZpchcWaEk70pV9wW5/RySXdzROHCdqWEJP36zrOr9lBaQkgka1gNzIcyK3ysu4i5Zau2jAQU9j0yfzoq3qwv6mKrVL6qzYDxYCEtcNZg9GBTUUASI0tTDglMoGYJ+/2A1m4IdTbuh+KQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0AuR8X18923nEMkF2ZRoiT0KiluUbKk0CdZyiLWFLp0=;
+ b=zQ6leJJFfFS7+JJrNkCDf4dR6FShVeCbSpthTiU3GFtxEJwnWOl76OGYbP14gbXaOCVYETnU0M2qV76Jh1rcGAy+InQ8n28NbBkqd2JemuvUC3G9APSuREQdT7o5UwQTdqXCcImRvy+hvbsRN/FoKWCTFIGxkf7Ooj2MmLynRI4yVTR0UYEmi6HmgLdKTumfx5PgsTfWQVCKPO4bbcazVUa2QrDtC0qisSt+BQivAEfDfS4mBwi1f/PV5DBpg7FPPWqphHT5f2NBtfQCdk1JbWtKwhD4pX0OaomrvRXSCkEYFGRzEIoPYwXDpXYXbGDYf5UuIeh7atyYj3rM7Dr4Hw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lunn.ch smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0AuR8X18923nEMkF2ZRoiT0KiluUbKk0CdZyiLWFLp0=;
+ b=mSCOkdUsbmQ5XUgkHjH+OAHSavNNawdGuQHPLb4dGvU2wZdApRiFNe7cq7bstQpZ5xrQcwZIw2thiL+Qm2bhRVOh1FFUfXrvcsxnAzqloMzdZqcP1xU4gJaF7isQ9urgtpWj1YQEqrH5fAUyb1K4KqbO1TxafeNOWYbCwuPeWSA=
+Received: from CH0PR03CA0435.namprd03.prod.outlook.com (2603:10b6:610:10e::9)
+ by PH7PR12MB6809.namprd12.prod.outlook.com (2603:10b6:510:1af::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.17; Mon, 28 Oct
+ 2024 09:12:21 +0000
+Received: from CH2PEPF0000014A.namprd02.prod.outlook.com
+ (2603:10b6:610:10e:cafe::30) by CH0PR03CA0435.outlook.office365.com
+ (2603:10b6:610:10e::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.26 via Frontend
+ Transport; Mon, 28 Oct 2024 09:12:21 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH2PEPF0000014A.mail.protection.outlook.com (10.167.244.107) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8114.16 via Frontend Transport; Mon, 28 Oct 2024 09:12:21 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 28 Oct
+ 2024 04:12:18 -0500
+Received: from xhdsuragupt40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Mon, 28 Oct 2024 04:12:15 -0500
+From: Suraj Gupta <suraj.gupta2@amd.com>
+To: <radhey.shyam.pandey@amd.com>, <andrew+netdev@lunn.ch>,
+	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <git@amd.com>, <harini.katakam@amd.com>
+Subject: [PATCH net] dt-bindings: net: xlnx,axi-ethernet: Correct phy-mode property value
+Date: Mon, 28 Oct 2024 14:42:14 +0530
+Message-ID: <20241028091214.2078726-1-suraj.gupta2@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add support for Amlogic A4
- SoCs
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com>
- <20241018-a4_pinctrl-v3-1-e76fd1cf01d7@amlogic.com>
- <4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org>
- <1jttd9rein.fsf@starbuckisacylon.baylibre.com>
- <4127b448-a914-4c69-b938-29512995326f@amlogic.com>
- <1jmsj1rclh.fsf@starbuckisacylon.baylibre.com>
- <d654d2b2-977b-44c0-8b01-b26f5eb0a3fe@kernel.org>
- <5ad8f396-84a5-486d-b90d-98fbf8882d1b@linaro.org>
- <e6cd13b5-2f7a-4ab1-899c-5867bc0ea64f@kernel.org>
- <fdb4d0eb-a5e5-4061-b3cc-14958473baf3@linaro.org>
- <c8a03fa6-9ac5-434f-ba13-78e47ad341b8@kernel.org>
- <f6c4cee8-dd22-4b30-a3b2-aee48e2c3611@linaro.org>
- <91bcc765-2e56-433d-a629-c5255fc8d256@kernel.org>
- <24acd645-4094-48aa-82e3-42d30a340884@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <24acd645-4094-48aa-82e3-42d30a340884@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: suraj.gupta2@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PEPF0000014A:EE_|PH7PR12MB6809:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3415daa8-7ec7-47d4-d0af-08dcf730a0fe
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|7416014|376014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?+898IQ2KM5u0KXp6H6Do9gHkS7zOTDNtrtQvQ7Jqii7XzesoVR0v4G114jw5?=
+ =?us-ascii?Q?6yArINWY+rFXvfGeg/mamTuM3oyOCGjw9Ii1+uuvmTg0hY39gngK5WFOcRG9?=
+ =?us-ascii?Q?ClDG3lz5EfTx912XqZDNPsn6N3DZbsCo+vhKhRIYMxJI4KFARicKd4Lwd6Vx?=
+ =?us-ascii?Q?NPFCPu8TQWTNIq6hIWkxgR8GpmhLqm0Wzr5LatDsoBiEKtPRMPie7ew18oG8?=
+ =?us-ascii?Q?HHrAchxe1w4ierVI0yiyq2H/5c1xTe2FyRjsg579//JWopqhuDIRrCDXj06a?=
+ =?us-ascii?Q?mmwfwU5u+V1TfiFV/sat+FhaUERoEqMciAgKLvr+XcShXt2Ajnwo+Dz/2JSV?=
+ =?us-ascii?Q?q4+5EmGWT+MoFPGPGgNQzD2lA0+2QWT9UiPKlVe/K/hLEkIuvZ4uWX8wMPxJ?=
+ =?us-ascii?Q?MYh9mzu2B8rnU/vRnpkn30FIsgKNiIz9CeOt9OH1Bmp7LhVgOeL2IDvqYlIf?=
+ =?us-ascii?Q?kDSY2QjhzhicD05PEOuUFcyV6V70C45/O8P0w/2EO739kFXOEWT3BTwWh4Nl?=
+ =?us-ascii?Q?usNEFmQOkfCluTX9vWAGmTFKR7r+rk/n9ol9JZH3KnmT88bGJoPpqmjOrFmZ?=
+ =?us-ascii?Q?BAshq2FOzovmxjb3ztOLQ8/NhsM7HXLFOIUDJYacmyJsFUe1PC2nhjgXlNZ4?=
+ =?us-ascii?Q?SwQXacOdJMLArQdgR127zbBJijwWMemRyGMm4xDoxbA4KCUZSLZ4j1T0Tnmg?=
+ =?us-ascii?Q?coJWeC1j1GOdYbFAPO7reVlVUSq3/mEjlChQY5OisT+eYPOmL6loM/BbZD/D?=
+ =?us-ascii?Q?e1UUyADncKaLvpUlBpOPVTBN/kM7IboR2HUpfjY5AIl9ou2j/ezbixDYwMBs?=
+ =?us-ascii?Q?POcgOgmHb7hGBD2rJaJz2vg5vzMDw2a32JBZlP/qdQsxXqFktTsgCvOvDmmL?=
+ =?us-ascii?Q?gCgDv0QLJNXUTn9UdfZd8HkaHPVC27dWljlkd4yvSKyMB7Ul2V07KHoE4sRP?=
+ =?us-ascii?Q?2fBqKZqunbnu1VYmJgDIQ8hTPgTH8cO2GqP88ZoC6aEDrZrBEdCB4iYFRM3G?=
+ =?us-ascii?Q?VvsBv5C2uEpVCQ4x7T2imzuQtXBBHbhEf4mDOCg56TwcD1XRPkb47Umi2g5u?=
+ =?us-ascii?Q?fqFTPKLDC68FwoUojCofQUKD3bE2F2cIjNb/zLHxqPe0hq1779g+ktilkS06?=
+ =?us-ascii?Q?quF3ZuS1RAiJlGIaGF6EZEOPUfwiveanHX0hdu1iheoStp3k9KLK/kmlj5PL?=
+ =?us-ascii?Q?KKnbvTt72BL6hfz+34rQRGSAQ4Y8suUMGd2v15xJ7EwaauQsOpJlj8klpdc/?=
+ =?us-ascii?Q?hcCU+/s+wrBds2Yck3/EG/qIgUTYgxzNQLLd83asCQk4Yr3SaHO+0LGxeuj9?=
+ =?us-ascii?Q?cD2v/+zsUbXo6YfZXp8L2CzFwxYKo725x0a/zjjasqvaNeyFMmscUmEHm3u8?=
+ =?us-ascii?Q?Kw7BNof5YsQY4xFZtXhKJ63w+ZjmG49875EsDFTmGRbkZB7PTHPfQjzrp8VN?=
+ =?us-ascii?Q?bFIo3akPYNY=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(7416014)(376014)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2024 09:12:21.0375
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3415daa8-7ec7-47d4-d0af-08dcf730a0fe
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH2PEPF0000014A.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6809
 
-On 28/10/2024 10:07, Xianwei Zhao wrote:
-> Hi Neil,
->      Based on the current discussion results, GPIO index macro definition does not belong to bindings. If so, the pinctrl driver keeps the existing architecture, and use numbers instead in dts file.  Or the pinctrl driver use bank mode acess, this may not be compatible with existing frameworks. This is done by adding of_xlate hook functions in pinctrl_chip struct.
-> 
-> What is your advice that I can implement in the next version. Thanks!
+Correct phy-mode property value to 1000base-x.
 
-Keep the driver as-is, but move the header file into arch/arm64/boot/dts/amlogic like it was done for the last reset controller support:
-arch/arm64/boot/dts/amlogic/amlogic-t7-reset.h
+Fixes: cbb1ca6d5f9a ("dt-bindings: net: xlnx,axi-ethernet: convert bindings document to yaml")
+Signed-off-by: Suraj Gupta <suraj.gupta2@amd.com>
+---
+ Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Neil
-
-> 
-> On 2024/10/21 23:27, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On 21/10/2024 12:38, neil.armstrong@linaro.org wrote:
->>>>> ====><=================
->>>>> +/* Standard port */
->>>>> +#define GPIOB_START        0
->>>>> +#define GPIOB_NUM  14
->>>>> +
->>>>> +#define GPIOD_START        (GPIOB_START + GPIOB_NUM)
->>>>> +#define GPIOD_NUM  16
->>>>> +
->>>>> +#define GPIOE_START        (GPIOD_START + GPIOD_NUM)
->>>>> +#define GPIOE_NUM  2
->>>>> +
->>>>> +#define GPIOT_START        (GPIOE_START + GPIOE_NUM)
->>>>> +#define GPIOT_NUM  23
->>>>> +
->>>>> +#define GPIOX_START        (GPIOT_START + GPIOT_NUM)
->>>>> +#define GPIOX_NUM  18
->>>>> +
->>>>> +#define PERIPHS_PIN_NUM    (GPIOX_START + GPIOX_NUM)
->>>>> +
->>>>> +/* Aobus port */
->>>>> +#define GPIOAO_START       0
->>>>> +#define GPIOAO_NUM 7
->>>>> +
->>>>> +/* It's a special definition, put at the end, just 1 num */
->>>>> +#define    GPIO_TEST_N     (GPIOAO_START +  GPIOAO_NUM)
->>>>> +#define    AOBUS_PIN_NUM   (GPIO_TEST_N + 1)
->>>>> +
->>>>> +#define AMLOGIC_GPIO(port, offset) (port##_START + (offset))
->>>>> ====><=================
->>>>>
->>>>> is exactly what rob asked for, and you nacked it.
->>>>
->>>> No, this is not what was asked, at least according to my understanding.
->>>> Number of GPIOs is not an ABI. Neither is their relationship, where one
->>>> starts and other ends.
->>>
->>> I confirm this need some work, but it moved the per-pin define to start
->>> and ranges, so what did rob expect ?
->>>
->>>>
->>>> Maybe I missed something, but I could not find any users of these in the
->>>> DTS. Look:
->>>>
->>>> https://lore.kernel.org/all/20241014-a4_pinctrl-v2-3-3e74a65c285e@amlogic.com/
->>>
->>> So you want consumers before the bindings ? strange argument
->>>
->>>>
->>>> Where is any of above defines?
->>>>
->>>> Maybe they will be visible in the consumer code, but I did not imagine
->>>> such use. You expect:
->>>> reset-gpios = <&ctrl GPIOAO_START 1>???
->>>
->>> No I expect:
->>> reset-gpios = <&ctrl AMLOGIC_GPIO(B, 0) 1>;
->>>
->>> but the macro should go along the dts like we did for the reset defines,
->>> so perhaps this is the solution ?
->>
->> OK, so I said it was not a binding:
->> https://lore.kernel.org/all/u4afxqc3ludsic4n3hs3r3drg3ftmsbcwfjltic2mb66foo47x@xe57gltl77hq/
->>
->> and you here confirm, if I understood you correctly, that it goes with
->> the DTS like reset defines (I assume non-ID like defines?), so also not
->> a binding?
->>
->> What are we disagreeing with?
->>
->> Just to recall, Jerome asked whether you have to now use arbitrary
->> numbers in DTS and my answer was: not. It's still the same answer.
->>
->> Best regards,
->> Krzysztof
->>
+diff --git a/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
+index e95c21628281..fb02e579463c 100644
+--- a/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
++++ b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
+@@ -61,7 +61,7 @@ properties:
+       - gmii
+       - rgmii
+       - sgmii
+-      - 1000BaseX
++      - 1000base-x
+ 
+   xlnx,phy-type:
+     description:
+-- 
+2.25.1
 
 
