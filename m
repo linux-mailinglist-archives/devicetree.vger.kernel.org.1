@@ -1,129 +1,117 @@
-Return-Path: <devicetree+bounces-116728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FF059B3CA3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 22:28:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ABD09B3CC5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 22:33:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F4851C221FB
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 21:28:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 311FCB21282
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 21:33:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 925871E1325;
-	Mon, 28 Oct 2024 21:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262CA1E25F8;
+	Mon, 28 Oct 2024 21:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="V7D1P5K2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SGY9+Nnf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71A2A1D2796;
-	Mon, 28 Oct 2024 21:28:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBB1C1E22EF;
+	Mon, 28 Oct 2024 21:33:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730150920; cv=none; b=oWU8j28XfrI07tsA1Z9v9hhbzwU4VP6bl8ASAenlDTi9UtP0KomZXJuUtoD2Ijm2mom3rQHLc7+8CjUuFzrzTvtFgIB4xo4MUAuKzpfs9lJ2OU0YSh40TxtaICKp93TBIDu25xqHSMU8XrVWALl67Cx5j8pm3wxhMUm9soTdxmA=
+	t=1730151226; cv=none; b=bTQYv82bWUyG8DqLMpmbxlYtLEpd58ZM26+BvIlmO4MmjB8RMgISWKrsIq2QwPuTvVYyypyq4xhhbSxw6NPV/ugsU9LzRA3nKtiwRW/usCiq4XcH3E0tJceFlRK/sXC9fclEZnubkDoT1leMS/mJu7ZvBtDkutz02bvf6WxRzGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730150920; c=relaxed/simple;
-	bh=pZl/OipmerZ/kw65LGJ1ltdtMT7Ev+2LBkbXBAg7OV0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=IS5DY8YF1uKHcO+StwZW+eHgZBOqjhq0hFE+DJMhkf+uFsSPHOSodJo51rC7Uty8YBuEvzHCpbuKeUgmz+hkvFXZWDfGMJOiIMlNZzf4JGNfaJ8JkqD8+I54Cu/hRtvF306tCJsxRT32WnZv0mekwtmXIajMTjGO07fnzycshwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=V7D1P5K2; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49SKC7NY004258;
-	Mon, 28 Oct 2024 21:28:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zW9169RiM5OkNJr0FHvW3DYj/eA0YgE4Jk0bIKf0aWU=; b=V7D1P5K2nsgZPgN4
-	VuH6qK5EHPV2i50a94LCyvARbHPCN030LsJQqLcf4iNSdfiuE6U2UpWkhPeFGrCR
-	5bLZyJ35yn4Wd263ZnbfxhEg8xqERcDgMVlj5KVyIZgj2+JSKVAeZvoL+WsbIcnn
-	EYxL3BUNd4a8My4icoJoNz7MQVbCyfxe4APUxyH9otiswKNj8oTB4QNeo/r5rddf
-	Nr6Ve2ZP+cYh9D+mBGP2lLCZWQl17/A1eRGK9PY+vlxvBl0HOCTXbyHFNS+ujtyQ
-	iYEkMP7KVV+kmvbWYvOUYeTaM01gDTU4KvYltDfEGhN5hmPoJdAgauqAy+FxCHL5
-	15CJrg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gqrgpa74-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Oct 2024 21:28:33 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49SLSVsT030155
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Oct 2024 21:28:31 GMT
-Received: from [10.71.108.63] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Oct
- 2024 14:28:31 -0700
-Message-ID: <b18028d1-43cc-4106-b33e-37480979eb97@quicinc.com>
-Date: Mon, 28 Oct 2024 14:28:31 -0700
+	s=arc-20240116; t=1730151226; c=relaxed/simple;
+	bh=STa130djmrgKfV31Y9bvm8ZICR75RZ40uDFiej2FfV4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Z853IdcweHLz8ImT7kSTFOtJrrQY4ENcrz/Ic1saiwmzNUBvZjoF4XvGJencsi8uH0qDs9iTyKF0obOWQiFhp72CIhiXifSPeVyhzN/6MeAUh9SrxOQsQjQ/8gJqlqPRZMeSj8nixlT7+Ay0VtqYANXCByhFz9NoLdum5GnpHRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SGY9+Nnf; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-539f4d8ef84so5502163e87.0;
+        Mon, 28 Oct 2024 14:33:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730151222; x=1730756022; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=P3jhy7g92HAelJpeRVsKB0qQVe3H+zDTlj5MJNUzblc=;
+        b=SGY9+Nnfyi0MArb8sZ86RX0txbEeLOvF6Gg2pj680hIpUXb7Ii16r4Cx+G9BKPvTD6
+         yX+jYeSzjvQC1rXn1v30nwUe2vuHprg42qnMG9yTsXMFijpWb33OasZWluLojCdqb3XO
+         0/CuaDyQM+6flZ+ZAqghgVnzSd0JtUa5PF2TP1Gmy1p+clFk8HbXxVjygVr1KrK/SzYL
+         OJKRjJ36/P3lrjgaxqjVOn/HDRMM5NSPCIllup6tjmCh34LfaP7dq6y+Lup4hJ4Ombxu
+         BYPa/Mt4Qt/qKpjZcr7Qs60o2FGLTpq9BXvoIDD06ktUhhhWkJBV/ZCeZW36/u83lqsS
+         wLJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730151222; x=1730756022;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P3jhy7g92HAelJpeRVsKB0qQVe3H+zDTlj5MJNUzblc=;
+        b=SYubkjqKvypfLcH0W/EDnLNCTd1+II2RstOvl9hH/J5SUHy2KD6qq4HQSTXea0JIwQ
+         XyvSawceKzIdwKUQ3vGv1+yfo8lIiGv3VNAvNoWIYCtg1+c7ipHz7hc7cySATc0a8gyk
+         CDfGtr5WClcqLk5nf6OqrJquSTS3EDf+2MKE425egL6gmJDhFktJbVzBYrEX4WHuceJX
+         b91PY8y4JJnAs4W8vW+T1FDFN1fGoGryVr7QxTfbPLbNSE/gyilyzQSAlPPzNPojmuKW
+         3PjiyOYa0ZDtxZyxFGRBuHB1SgYr15YgatdgRq9Giv5oeX3SiRkt2ey4aeT43bwwbl+s
+         VNCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVeb1AAPxVaTw1/gthL7ZOQjNmhdMS5RMty/dggVsoEuE6zVA2trlbft5nNo9on3abWKodM90Mefm7u8q3i@vger.kernel.org, AJvYcCXKE3lrfCIn4cMl8XPRujS0f8+B/qNltKGEcKuF7SJGKhvsiTrKwHGuEGAhzJSRN8LjH5eosP9j7dIh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNvBAjq/PNBY/OTjOVSr6IKYiS7ixDUET9Ziy9OIiKAgvWD/sA
+	vMpJjlqv1OJRw0syAcb7YZZ7cKW3EiGmCIIgUapxvmKBmwW8+TaZJYGdmA==
+X-Google-Smtp-Source: AGHT+IH8QWe0UkauZn2bm3eeSh3k+dWuXtsVQf4Au1Nx9JEZxSU0NN5Ic64IUzcAKVKuVoc6QI2zug==
+X-Received: by 2002:a05:6512:3d22:b0:539:f6c4:c29d with SMTP id 2adb3069b0e04-53b34b39798mr4508983e87.54.1730151221818;
+        Mon, 28 Oct 2024 14:33:41 -0700 (PDT)
+Received: from localhost.localdomain ([91.90.219.38])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53b2e1c98b9sm1204625e87.224.2024.10.28.14.33.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Oct 2024 14:33:41 -0700 (PDT)
+From: Dmitry Yashin <dmt.yashin@gmail.com>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Dmitry Yashin <dmt.yashin@gmail.com>
+Subject: [PATCH 0/3] arm64: dts: rockchip: add Banana Pi BPI-P2 Pro board
+Date: Tue, 29 Oct 2024 02:33:11 +0500
+Message-ID: <20241028213314.476776-1-dmt.yashin@gmail.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] pinctrl: qcom: Add sm8750 pinctrl driver
-To: Linus Walleij <linus.walleij@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Satya Durga Srinivasu Prabhala
-	<quic_satyap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20241021230414.2632428-1-quic_molvera@quicinc.com>
- <20241021230414.2632428-3-quic_molvera@quicinc.com>
- <dnri3nqq2una3atjwl437ujzrl2txl2zdyb2ima5qeeudqotxn@5zdxizip6mhb>
- <d21b259a-1f04-4108-a201-254b44f07529@quicinc.com>
- <CACRpkdZX1qrMDR-6LuUtc0nqLK3MwrUYQm9bsRZL376Qj6x8XQ@mail.gmail.com>
-Content-Language: en-US
-From: Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <CACRpkdZX1qrMDR-6LuUtc0nqLK3MwrUYQm9bsRZL376Qj6x8XQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: jkXGcmOrbVbYwJmEvCff4ihoOCp04txX
-X-Proofpoint-GUID: jkXGcmOrbVbYwJmEvCff4ihoOCp04txX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
- clxscore=1015 impostorscore=0 suspectscore=0 spamscore=0 mlxscore=0
- adultscore=0 priorityscore=1501 mlxlogscore=802 phishscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410280167
+
+This series add support for Banana Pi BPI-P2 Pro based on Rockchip RK3308
+(RK3308B-S variant) made by Shenzhen SINOVOIP.
+
+Patch 1 fixes rk3308-codec DTB warning.
+Patch 2-3 adds binding and dts for the board.
+
+Dmitry Yashin (3):
+  ASoC: dt-bindings: rockchip,rk3308-codec: add port property
+  dt-bindings: arm: rockchip: add Banana Pi BPI-P2 Pro board
+  arm64: dts: rockchip: add Banana Pi BPI-P2 Pro board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../bindings/sound/rockchip,rk3308-codec.yaml |   4 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3308-bpi-p2-pro.dts   | 362 ++++++++++++++++++
+ 4 files changed, 372 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3308-bpi-p2-pro.dts
 
 
+base-commit: 9220a541da2bc49ac79e0475843048ba29e4d076
+-- 
+2.39.5
 
-On 10/25/2024 1:43 AM, Linus Walleij wrote:
-> On Wed, Oct 23, 2024 at 8:18 PM Melody Olvera <quic_molvera@quicinc.com> wrote:
->> On 10/22/2024 8:27 PM, Bjorn Andersson wrote:
->>> On Mon, Oct 21, 2024 at 04:04:14PM GMT, Melody Olvera wrote:
->>> [..]
->>>> +static const int sm8750_reserved_gpios[] = {
->>>> +    36, 37, 38, 39, 74, -1
->>> Any particular reason why these are not gpio-reserved-ranges in
->>> DeviceTree?
->>>
->> Not particularly; I wasn't sure whether or not to include in the initial
->> dt patch.
->> Will add.
-> Can we also write (as a comment in the device tree) *why* they
-> are reserved? Such as "used by BIOS/ACPI/secure world"?
-> Just a minor nit but it's very helpful for newcomers reading the
-> DTS.
->
-
-For sure; yeah these are reserved for secure world, but I'll make note 
-of that in the tree.
-
-Thanks,
-Melody
 
