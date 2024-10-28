@@ -1,220 +1,226 @@
-Return-Path: <devicetree+bounces-116507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14E299B3192
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:22:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DA569B3198
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:23:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BE9D282CF3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:22:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80DC51C213B3
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:23:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEB4E1DB92A;
-	Mon, 28 Oct 2024 13:21:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72FAC1DACB4;
+	Mon, 28 Oct 2024 13:23:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fBxmVBIE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PudSzRtk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96FE538396;
-	Mon, 28 Oct 2024 13:21:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F8538396;
+	Mon, 28 Oct 2024 13:23:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730121705; cv=none; b=fIncyFq2vGXs5o7ztXmkVIvKJ85nMD6AuLtMEvKPsgVi2a2TCFxVNnfBktOCWQZIkvusZvE4E/Ugfq2WaqcC4o5+eEMt1ch9Oo9+Kw3kvPOOTpFr6wdApZA0za/9GguqgwTA5dNqcnGZLcWTua+Nd47DfzTvIkQ041QRTWGq964=
+	t=1730121784; cv=none; b=QHpNzAjF+L/ZxrA1jUNi+hIG3HwOOe0vVKDyhnt9D/IaeazejB1HYlG73HlXS61i7aKFP8GgmwoTc8Dhuca60nfyJsuzsroCh+7G9Vo3iGU8lnLdwNfWDKFC3BkR+0W5ECccnMKeAJBoYAYOnTtWsw622INXeDSXvO04VxAZ/ME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730121705; c=relaxed/simple;
-	bh=7TuPc3feWSvvQhQIz+bxMMlQTvI0FsbZ2ScG8u6EvtQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ugn5Ejn6SQbe15xOE6liNLmBP2wWSBybwFKxqqYl9u3ey9/FClWTJVHPBug4x2rQ9LKPFUBAMIj1gTw7dRAD8hV01GqlFpbqB+t45kVzwwjDcFOSXLCMKdvDXvYtIYix15ldzKcxpSASlAYNRFCJUTm5pAssP9ua3BfaEl4upgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fBxmVBIE; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-37d63a79bb6so3053508f8f.0;
-        Mon, 28 Oct 2024 06:21:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730121702; x=1730726502; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=BG3wkrWSDrRhF05VtR0jwHgzIBr9FFDY8I+sNxfXSRM=;
-        b=fBxmVBIEhd3daO2x+Y81QlDxI+/wavNQXuLJg9NJ8ls8w/I0xXqNAF5kv5kTx0y3h2
-         PzwjwB2WE/TUPYf3D0FKIjr5wjidmuznNkzaj4hRFXF5+Kw3udo1lmUw23KMXZtpiN9c
-         RzgX6w8YvLsH+GtEiyUlGcmSouI55Eb2LXfhicrJLnW/7949nuh5LBAdOsz7x2tWEN9g
-         u1jOl0bwhgMxYbujmOJuOjg7QXX4+WhEVI3YR7XkmwVEQhXoo0omnMlRKsPA+jMZ1psL
-         e6v8UiEj4wWeAVNJInmreFgap48L0M+Wbzj49ssM0I6JOMjOj0Vk4jB3op4GFMJrin2n
-         LacA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730121702; x=1730726502;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BG3wkrWSDrRhF05VtR0jwHgzIBr9FFDY8I+sNxfXSRM=;
-        b=bLPERYZWNB0eapeHHwhLyhr+Zo2HZn+vuLmK+KsDu5iYmryAWfl9u2q0WbBeDwRPCC
-         hd1Xv7UL8Ut5E7B02pOOk5x9hE/d1Vy9kp1tm4OkoJTORH/Jq0nnqa5qhzkSeCw1TLgS
-         BL+jhu0UyD33uMbGupmZTaFPbys2TcKWyUkSsCXurDTHgbBb4bjP8XX1YY27GE0bB+hZ
-         eWy8jC5VXMUgoqQOhV6DNjcHErUBs8ZetkZuba9yolOG6a1+sRlxm/5tIy9QUrgKuLdd
-         QC3GbkNSbtjMKR5li5QGy8wuia0VHEpLjZQaeC/bw64EfYUIwS+n+CDZLbsD7tKLpWbe
-         zRPw==
-X-Forwarded-Encrypted: i=1; AJvYcCUFv/gQCduph3CsjMrdYGsw9N6FmagJxuWNiGPMrvIjUAJp8mAUoThij2CVnV5KotAdA2X4ZXPwZImR@vger.kernel.org, AJvYcCUbPoJcV3dFbb3MssfuiRtvS5882KqeHantBZaVFo9G6u6eYE6pr1VJTaLTNbZY4S54rZl44a8Oby0cHh0/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwE+nHXuQIVwj4/6PcSAPStbLDNr+Qv/aYX4oy2F6S/cwhVPZet
-	U/yds6/tZhA8BX0cdZoMt2x2qtYIdjjGZhBy/tbDnTp1GQnNnd0m
-X-Google-Smtp-Source: AGHT+IEhEFClPDRnkTjmfTmB9xrTyx/+XWTKThHdsI0L2SWzd7xQqvlFSqgTaQWb1mU8t9ZBhNOwqw==
-X-Received: by 2002:adf:f18d:0:b0:37d:4821:fa0 with SMTP id ffacd0b85a97d-3806120b2c5mr6374380f8f.48.1730121701671;
-        Mon, 28 Oct 2024 06:21:41 -0700 (PDT)
-Received: from ?IPv6:2001:a61:34c9:ea01:14b4:7ed9:5135:9381? ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b49d20sm9413128f8f.62.2024.10.28.06.21.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 06:21:41 -0700 (PDT)
-Message-ID: <90be82063f25f703a9a813122e08eb156843d981.camel@gmail.com>
-Subject: Re: [PATCH v8 8/8] iio: dac: adi-axi-dac: add registering of child
- fdt node
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Angelo Dureghello <adureghello@baylibre.com>, Lars-Peter Clausen
-	 <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- =?ISO-8859-1?Q?S=E1?=
-	 <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	 <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
-	dlechner@baylibre.com
-Date: Mon, 28 Oct 2024 14:21:40 +0100
-In-Reply-To: <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-8-74ca7dd60567@baylibre.com>
-References: 
-	<20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-0-74ca7dd60567@baylibre.com>
-	 <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-8-74ca7dd60567@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
+	s=arc-20240116; t=1730121784; c=relaxed/simple;
+	bh=9tECmQTWRmCrctZx1DA72M0oCUbizMBPA+xl+7zZJYo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a7iPZFw1JBZbxyzidJOQjssUfxgBGmWu8TtTx2jjbFxJ0+q39wjHLfUwTzVb4gr9mvtS73KccDfZJ6YLKb3+eXMxGl2GU1qNXuH8GX8znxtMshl4kqi+CYdhi3PD3XmzOVIbMcRS8eE9BPXHRk7G7XmUM7tv22taRnwBxqq4mVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PudSzRtk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED931C4CEC3;
+	Mon, 28 Oct 2024 13:22:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730121783;
+	bh=9tECmQTWRmCrctZx1DA72M0oCUbizMBPA+xl+7zZJYo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PudSzRtksSiVNKwGVRWY+Dv/cjY6o52UJ0NnBF7zVDLApZAd+3k1U+8KEOalpOQSz
+	 POD/7Kbnv5zzk76wsCPMIf0GzShT7MPuShwXhOmvrxsYnXj/H/8UMUCSnH8fHWrJz8
+	 fqBbtiavtPcg2WMEWraY9Vozjtw5ejFDYzr62CACQtyvybrbMMo28MQtnYVd4S7Vu/
+	 gFF4y9CUyjwEyQXnBnNs+gniZG0KiyXqY+D55Gcivzne0KfVo0RRDyw8lWaxqlrPJV
+	 UTO4rZjPzhelBMLEhjQBnbfbQPc0JrbawU9rmefiYtL8ehhGebUyH4kPGwkxWcpUA+
+	 JQiK+GV53c/3g==
+Date: Mon, 28 Oct 2024 14:22:56 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 13/16] samples: rust: add Rust PCI sample driver
+Message-ID: <Zx-QMBHtWSFkLiKm@pollux>
+References: <20241022213221.2383-1-dakr@kernel.org>
+ <20241022213221.2383-14-dakr@kernel.org>
+ <20241023155737.GB1064929-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241023155737.GB1064929-robh@kernel.org>
 
-On Fri, 2024-10-25 at 11:49 +0200, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
->=20
-> Change to obtain the fdt use case as reported in the
-> adi,ad3552r.yaml file in this patchset.
->=20
-> The DAC device is defined as a child node of the backend.
-> Registering the child fdt node as a platform devices.
->=20
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> ---
+On Wed, Oct 23, 2024 at 10:57:37AM -0500, Rob Herring wrote:
+> On Tue, Oct 22, 2024 at 11:31:50PM +0200, Danilo Krummrich wrote:
+> > This commit adds a sample Rust PCI driver for QEMU's "pci-testdev"
+> > device. To enable this device QEMU has to be called with
+> > `-device pci-testdev`.
+> 
+> Note that the DT unittests also use this device. So this means we have 2 
+> drivers that bind to the device. Probably it's okay, but does make 
+> them somewhat mutually-exclusive.
+>  
+> > The same driver shows how to use the PCI device / driver abstractions,
+> > as well as how to request and map PCI BARs, including a short sequence of
+> > MMIO operations.
+> > 
+> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> > ---
+> >  MAINTAINERS                     |   1 +
+> >  samples/rust/Kconfig            |  11 ++++
+> >  samples/rust/Makefile           |   1 +
+> >  samples/rust/rust_driver_pci.rs | 109 ++++++++++++++++++++++++++++++++
+> >  4 files changed, 122 insertions(+)
+> >  create mode 100644 samples/rust/rust_driver_pci.rs
+> > 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 2d00d3845b4a..d9c512a3e72b 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -17940,6 +17940,7 @@ F:	include/linux/of_pci.h
+> >  F:	include/linux/pci*
+> >  F:	include/uapi/linux/pci*
+> >  F:	rust/kernel/pci.rs
+> > +F:	samples/rust/rust_driver_pci.rs
+> >  
+> >  PCIE DRIVER FOR AMAZON ANNAPURNA LABS
+> >  M:	Jonathan Chocron <jonnyc@amazon.com>
+> > diff --git a/samples/rust/Kconfig b/samples/rust/Kconfig
+> > index b0f74a81c8f9..6d468193cdd8 100644
+> > --- a/samples/rust/Kconfig
+> > +++ b/samples/rust/Kconfig
+> > @@ -30,6 +30,17 @@ config SAMPLE_RUST_PRINT
+> >  
+> >  	  If unsure, say N.
+> >  
+> > +config SAMPLE_RUST_DRIVER_PCI
+> > +	tristate "PCI Driver"
+> > +	depends on PCI
+> > +	help
+> > +	  This option builds the Rust PCI driver sample.
+> > +
+> > +	  To compile this as a module, choose M here:
+> > +	  the module will be called driver_pci.
+> > +
+> > +	  If unsure, say N.
+> > +
+> >  config SAMPLE_RUST_HOSTPROGS
+> >  	bool "Host programs"
+> >  	help
+> > diff --git a/samples/rust/Makefile b/samples/rust/Makefile
+> > index 03086dabbea4..b66767f4a62a 100644
+> > --- a/samples/rust/Makefile
+> > +++ b/samples/rust/Makefile
+> > @@ -2,5 +2,6 @@
+> >  
+> >  obj-$(CONFIG_SAMPLE_RUST_MINIMAL)		+= rust_minimal.o
+> >  obj-$(CONFIG_SAMPLE_RUST_PRINT)			+= rust_print.o
+> > +obj-$(CONFIG_SAMPLE_RUST_DRIVER_PCI)		+= rust_driver_pci.o
+> >  
+> >  subdir-$(CONFIG_SAMPLE_RUST_HOSTPROGS)		+= hostprogs
+> > diff --git a/samples/rust/rust_driver_pci.rs b/samples/rust/rust_driver_pci.rs
+> > new file mode 100644
+> > index 000000000000..d24dc1fde9e8
+> > --- /dev/null
+> > +++ b/samples/rust/rust_driver_pci.rs
+> > @@ -0,0 +1,109 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +//! Rust PCI driver sample (based on QEMU's `pci-testdev`).
+> > +//!
+> > +//! To make this driver probe, QEMU must be run with `-device pci-testdev`.
+> > +
+> > +use kernel::{bindings, c_str, devres::Devres, pci, prelude::*};
+> > +
+> > +struct Regs;
+> > +
+> > +impl Regs {
+> > +    const TEST: usize = 0x0;
+> > +    const OFFSET: usize = 0x4;
+> > +    const DATA: usize = 0x8;
+> > +    const COUNT: usize = 0xC;
+> > +    const END: usize = 0x10;
+> > +}
+> > +
+> > +type Bar0 = pci::Bar<{ Regs::END }>;
+> > +
+> > +#[derive(Debug)]
+> > +struct TestIndex(u8);
+> > +
+> > +impl TestIndex {
+> > +    const NO_EVENTFD: Self = Self(0);
+> > +}
+> > +
+> > +struct SampleDriver {
+> > +    pdev: pci::Device,
+> > +    bar: Devres<Bar0>,
+> > +}
+> > +
+> > +kernel::pci_device_table!(
+> > +    PCI_TABLE,
+> > +    MODULE_PCI_TABLE,
+> > +    <SampleDriver as pci::Driver>::IdInfo,
+> > +    [(
+> > +        pci::DeviceId::new(bindings::PCI_VENDOR_ID_REDHAT, 0x5),
+> > +        TestIndex::NO_EVENTFD
+> > +    )]
+> > +);
+> > +
+> > +impl SampleDriver {
+> > +    fn testdev(index: &TestIndex, bar: &Bar0) -> Result<u32> {
+> > +        // Select the test.
+> > +        bar.writeb(index.0, Regs::TEST);
+> > +
+> > +        let offset = u32::from_le(bar.readl(Regs::OFFSET)) as usize;
+> 
+> The C version of readl takes care of from_le for you. Why not here?
 
-LGTM,
+It's just an abstraction around the C readl(), so it does -- good catch.
 
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+> 
+> Also, can't we do better with rust and make this a generic:
+> 
+> let offset = bar.read::<u32>(Regs::OFFSET)) as usize;
 
-> =C2=A0drivers/iio/dac/adi-axi-dac.c | 56 ++++++++++++++++++++++++++++++++=
-+++++++++++
-> =C2=A01 file changed, 56 insertions(+)
->=20
-> diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-dac.=
-c
-> index 148e40a8ab2a..dc9f881bf9ce 100644
-> --- a/drivers/iio/dac/adi-axi-dac.c
-> +++ b/drivers/iio/dac/adi-axi-dac.c
-> @@ -29,6 +29,8 @@
-> =C2=A0#include <linux/iio/buffer.h>
-> =C2=A0#include <linux/iio/iio.h>
-> =C2=A0
-> +#include "ad3552r-hs.h"
-> +
-> =C2=A0/*
-> =C2=A0 * Register definitions:
-> =C2=A0 *=C2=A0=C2=A0 https://wiki.analog.com/resources/fpga/docs/axi_dac_=
-ip#register_map
-> @@ -97,6 +99,7 @@ struct axi_dac_info {
-> =C2=A0	unsigned int version;
-> =C2=A0	const struct iio_backend_info *backend_info;
-> =C2=A0	bool has_dac_clk;
-> +	bool has_child_nodes;
-> =C2=A0};
-> =C2=A0
-> =C2=A0struct axi_dac_state {
-> @@ -699,6 +702,36 @@ static int axi_dac_bus_reg_read(struct iio_backend *=
-back, u32
-> reg, u32 *val,
-> =C2=A0	return regmap_read(st->regmap, AXI_DAC_CUSTOM_RD_REG, val);
-> =C2=A0}
-> =C2=A0
-> +static void axi_dac_child_remove(void *data)
-> +{
-> +	platform_device_unregister(data);
-> +}
-> +
-> +static int axi_dac_create_platform_device(struct axi_dac_state *st,
-> +					=C2=A0 struct fwnode_handle *child)
-> +{
-> +	struct ad3552r_hs_platform_data pdata =3D {
-> +		.bus_reg_read =3D axi_dac_bus_reg_read,
-> +		.bus_reg_write =3D axi_dac_bus_reg_write,
-> +		.bus_sample_data_clock_hz =3D st->dac_clk_rate,
-> +	};
-> +	struct platform_device_info pi =3D {
-> +		.parent =3D st->dev,
-> +		.name =3D fwnode_get_name(child),
-> +		.id =3D PLATFORM_DEVID_AUTO,
-> +		.fwnode =3D child,
-> +		.data =3D &pdata,
-> +		.size_data =3D sizeof(pdata),
-> +	};
-> +	struct platform_device *pdev;
-> +
-> +	pdev =3D platform_device_register_full(&pi);
-> +	if (IS_ERR(pdev))
-> +		return PTR_ERR(pdev);
-> +
-> +	return devm_add_action_or_reset(st->dev, axi_dac_child_remove, pdev);
-> +}
-> +
-> =C2=A0static const struct iio_backend_ops axi_dac_generic_ops =3D {
-> =C2=A0	.enable =3D axi_dac_enable,
-> =C2=A0	.disable =3D axi_dac_disable,
-> @@ -840,6 +873,28 @@ static int axi_dac_probe(struct platform_device *pde=
-v)
-> =C2=A0		return dev_err_probe(&pdev->dev, ret,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 "failed to register iio backend\n");
-> =C2=A0
-> +	device_for_each_child_node_scoped(&pdev->dev, child) {
-> +		int val;
-> +
-> +		if (!st->info->has_child_nodes)
-> +			return dev_err_probe(&pdev->dev, -EINVAL,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0 "invalid fdt axi-dac compatible.");
-> +
-> +		/* Processing only reg 0 node */
-> +		ret =3D fwnode_property_read_u32(child, "reg", &val);
-> +		if (ret)
-> +			return dev_err_probe(&pdev->dev, ret,
-> +						"invalid reg property.");
-> +		if (val !=3D 0)
-> +			return dev_err_probe(&pdev->dev, -EINVAL,
-> +						"invalid node address.");
-> +
-> +		ret =3D axi_dac_create_platform_device(st, child);
-> +		if (ret)
-> +			return dev_err_probe(&pdev->dev, -EINVAL,
-> +						"cannot create device.");
-> +	}
-> +
-> =C2=A0	dev_info(&pdev->dev, "AXI DAC IP core (%d.%.2d.%c) probed\n",
-> =C2=A0		 ADI_AXI_PCORE_VER_MAJOR(ver),
-> =C2=A0		 ADI_AXI_PCORE_VER_MINOR(ver),
-> @@ -857,6 +912,7 @@ static const struct axi_dac_info dac_ad3552r =3D {
-> =C2=A0	.version =3D ADI_AXI_PCORE_VER(9, 1, 'b'),
-> =C2=A0	.backend_info =3D &axi_ad3552r,
-> =C2=A0	.has_dac_clk =3D true,
-> +	.has_child_nodes =3D true,
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const struct of_device_id axi_dac_of_match[] =3D {
->=20
+I think we probably could, but we'd still need to handle the special cases for 1
+to 8 bytes type size (always using memcopy_{to,from}io() would lead to
+unnecessary overhead). Hence, there's probably not much benefit in that.
 
+Also, what would be the logic for a generic `{read, write}::<T>` in terms of
+memory barriers? I think memcopy_{to,from}io() is always "relaxed", isn't it?
+
+I think it's probably best to keep the two separate, the b,w,l,q variants and
+a generic one that maps to memcopy_{to,from}io().
+
+> 
+> 
+> > +        let data = bar.readb(Regs::DATA);
+> > +
+> > +        // Write `data` to `offset` to increase `count` by one.
+> > +        //
+> > +        // Note that we need `try_writeb`, since `offset` can't be checked at compile-time.
+> > +        bar.try_writeb(data, offset)?;
+> > +
+> > +        Ok(u32::from_le(bar.readl(Regs::COUNT)))
+> > +    }
+> > +}
+> 
 
