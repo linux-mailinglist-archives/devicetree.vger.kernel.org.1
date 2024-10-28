@@ -1,155 +1,141 @@
-Return-Path: <devicetree+bounces-116407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 335259B2C8B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:15:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBDD89B2C97
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:18:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB32B281660
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:15:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B040E282272
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:18:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A42192D95;
-	Mon, 28 Oct 2024 10:15:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OuokBvtN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC3D7193091;
+	Mon, 28 Oct 2024 10:18:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 088ECA59;
-	Mon, 28 Oct 2024 10:15:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD0ECA59;
+	Mon, 28 Oct 2024 10:18:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730110544; cv=none; b=N9zxfN0AtivIcytmLYIIg8RHiCXatg5Tprjt+M6fjPDfnL728KOWV9reDtzcJIq6H5WJkKNVUVPMIajyDz8MN6cSr3rbw57nijjJKCAiX9/BY2WQJGiQZOMYc81l/YxMP5saAq4Lwv+ooJFogyrw9Rnaif9cV6+WFyoTbmTsSJA=
+	t=1730110735; cv=none; b=sPm+rvPkJEhkm1TiP4KCrDPNb11w49qnpZRg1SxHqxf3VMjY9UzfPMv/MQAMQN3b0gphdSnBlI7twaHZsYquDHTaeOK3vEkmdkA9iDdJr+iJPMQOTmuNHWo2H1H4Qqp+UilaK7ICWRqqslptfShoXEfkdjvWOeQNrnIHI3dgA80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730110544; c=relaxed/simple;
-	bh=FNlGLpo7ThFgdkXFr0K2A7/imjFw4XYgmYXIs27D2C0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m0CK+Mbwe4gdKWOxk6j7oh4gQMfnr9nbYl5UQrafctEmALMFDupehoAD3gPZqOc2izE2Bort0uB+Db+C/j1faLi1aQtydGfGkTsqISnjxwPhsYqd1KR6ZLjnyBtDey/uEi5kmy12lFYKFHXx2+ELfOwHtmGyG1+GxdvmB3kLDes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OuokBvtN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFD2BC4CEC3;
-	Mon, 28 Oct 2024 10:15:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730110543;
-	bh=FNlGLpo7ThFgdkXFr0K2A7/imjFw4XYgmYXIs27D2C0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OuokBvtNFNZMki3pSHIjGzx63J/7nixUiryJ3SYdiBZD5oG7tzDC/rbcQ+K66/9KQ
-	 nM+ngcqiMRKxpTeSbP+FJzn03qqie8T6mTKojTU+sviDw2hcKkJHgDvhaNxNDkFJ0f
-	 JwRlE48oJNkINFvUXwkLjOY2cfq7ucMA4AhW7D2N6wf+Xnag5hqnXlJl6+5bt3F0K9
-	 Uwlj9bgIwZuqyogtOxiTOAFz7gtVwq9KYSfVfpEavk34jBHo7GgHyY14e3kkwmxL3I
-	 TJSWQLKLcqyjQpnS0PCLRrCxvxhZXX2aFvNr7/V1wV9jmuakzbIX1uiCkE6t5k5fwq
-	 OJ7fUY80ShSyQ==
-Date: Mon, 28 Oct 2024 11:15:35 +0100
-From: Danilo Krummrich <dakr@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
- driver abstractions
-Message-ID: <Zx9kR4OhT1pErzEk@pollux>
-References: <20241022213221.2383-1-dakr@kernel.org>
- <20241022213221.2383-16-dakr@kernel.org>
- <20241022234712.GB1848992-robh@kernel.org>
- <ZxibWpcswZxz5A07@pollux>
- <20241023142355.GA623906-robh@kernel.org>
+	s=arc-20240116; t=1730110735; c=relaxed/simple;
+	bh=CvcmwJx68ibSr1FgYSs0BYn4vbK2dH2bI1Id4paFMiQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y8W2zKJGcPeHtmRGjrbeW7+VrEx2XhfgeAu4lF+p9KB4BnKXHQ3BDaFtGPzgQTznmctz8Nr2t9TkebjGalPm0rkKC6IaV7QjJJKHbYFWLRlhIRL4bbj7S1uLeUXOM1cuV7lREF0eZ9gpjZ9fhfNVQuiMvDKbeVhmwyLPwNYZxT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6e3cdbc25a0so43690717b3.2;
+        Mon, 28 Oct 2024 03:18:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730110732; x=1730715532;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3p3W4EQbrJIJC/nea0IOGVy7gYy/irssqjHdBTm9iqU=;
+        b=os25eig5cyD3qUrFsqZdIfrjq+tkcftU2Q15ieWOJlj2xX0Lxvg2MCxfb5UdTUYudh
+         4gKz2v0pG4NTF6V5CTzW7zfFVHNb+ugDs7PQFogvtzW/4rJsENCFh6E98/VkKZSq67db
+         TDNa8kM3YxQBRjicmVLgkTpVU6ro8d+l7x3EIAPBFQJHJg2xgQUDTF2X+W68OX3Gzhxc
+         cgKb1pBhCQpR4iRswJAfp2mzToRh4DErdiU5W1PzamrnKbbvnNc/sDLvSACm530MweAf
+         dFqpRldFJRX4QwE/htSQh58UrAJJXoY5ZAlMyZ4fWgjIjK7LZAOn08O08GXgsPDA0F1P
+         Agdw==
+X-Forwarded-Encrypted: i=1; AJvYcCVHkosU+dzMcnvsWPDy4/r3taQjaBUIrbW4BFkTgl8akTI+fgMo/mtJv3ikqNXDcckyqfuGTsCzMipJ@vger.kernel.org, AJvYcCVKUwU7ckhtoS/V3+OhjT3qUlfhQXlZJNOP9sZwQKvWGTIGMuKQPj2fmt/JatGGoeBHKhxd6qqoTNj/1U4=@vger.kernel.org, AJvYcCVSd3T+HgxXo4kfoNAFG0FQXuVOPTS3L5TMzEqWxquA6pf+wikQ0EEnlWvgRP5Jm9QiqPiH8tUGzop3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKTvY/Cz7j1dl3t5d+zFRXfTaEOZrtgIR1dEmEkR8qeikZ3A8Y
+	ddAXWDbqWjAzr3ziZaL3Y3T+m9pf+o60RWU1OMfsVrOb0BE2IyzDS8CWoz/B
+X-Google-Smtp-Source: AGHT+IHRQoFMZd7V8eMC6qtdDgsQ8w4+UFvpb2pTlzvSiEyPWT27T6iQbZxxk4VRPGNJ0+IbuFOszg==
+X-Received: by 2002:a05:690c:87:b0:6c3:7d68:b400 with SMTP id 00721157ae682-6e9d892546dmr60202167b3.10.1730110732434;
+        Mon, 28 Oct 2024 03:18:52 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e9c6bafebbsm13456837b3.15.2024.10.28.03.18.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Oct 2024 03:18:52 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6e3b7b3e9acso37026847b3.1;
+        Mon, 28 Oct 2024 03:18:52 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUCWYUN0AGOXcPfe8BPOahj1WLkIFaH6EirnxJdP18HnETCfM9xq80jn97u8Dsb/Noj5Ih2Zwh8ffNV@vger.kernel.org, AJvYcCVRLfUN/Bh+4CONzJWe02yuIn6px8Mse20wbxdCZEJ3BN0ryoVuTE4ThqD3pKkpaGCd1dg0cFEZwtMr@vger.kernel.org, AJvYcCXA1dZYkZfTzExgzG8eUzlTVHkHqvDQ0GCWw1awjBlIH+8rWu9GG+BTkoRJLlXbPIA4z81UWcB9Wnhn2MQ=@vger.kernel.org
+X-Received: by 2002:a05:690c:2508:b0:6e3:153a:ff62 with SMTP id
+ 00721157ae682-6e9d897c8damr57542137b3.23.1730110731964; Mon, 28 Oct 2024
+ 03:18:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241023142355.GA623906-robh@kernel.org>
+References: <cover.1729874904.git.grantpeltier93@gmail.com>
+In-Reply-To: <cover.1729874904.git.grantpeltier93@gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 28 Oct 2024 11:18:39 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWHZR9pN3h=Jdsqs5Qb0mi_4CobBtu82PRgzrm5TRgE4A@mail.gmail.com>
+Message-ID: <CAMuHMdWHZR9pN3h=Jdsqs5Qb0mi_4CobBtu82PRgzrm5TRgE4A@mail.gmail.com>
+Subject: Re: [PATCH v5 0/2] dt-bindings: hwmon: pmbus: add bindings for isl68137
+To: Grant Peltier <grantpeltier93@gmail.com>
+Cc: robh@kernel.org, linux@roeck-us.net, magnus.damm@gmail.com, 
+	grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com, 
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-doc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 23, 2024 at 09:23:55AM -0500, Rob Herring wrote:
-> On Wed, Oct 23, 2024 at 08:44:42AM +0200, Danilo Krummrich wrote:
-> > On Tue, Oct 22, 2024 at 06:47:12PM -0500, Rob Herring wrote:
-> > > On Tue, Oct 22, 2024 at 11:31:52PM +0200, Danilo Krummrich wrote:
-> > > > +///     ]
-> > > > +/// );
-> > > > +///
-> > > > +/// impl platform::Driver for MyDriver {
-> > > > +///     type IdInfo = ();
-> > > > +///     const ID_TABLE: platform::IdTable<Self::IdInfo> = &OF_TABLE;
-> > > > +///
-> > > > +///     fn probe(
-> > > > +///         _pdev: &mut platform::Device,
-> > > > +///         _id_info: Option<&Self::IdInfo>,
-> > > > +///     ) -> Result<Pin<KBox<Self>>> {
-> > > > +///         Err(ENODEV)
-> > > > +///     }
-> > > > +/// }
-> > > > +///```
-> > > > +/// Drivers must implement this trait in order to get a platform driver registered. Please refer to
-> > > > +/// the `Adapter` documentation for an example.
-> > > > +pub trait Driver {
-> > > > +    /// The type holding information about each device id supported by the driver.
-> > > > +    ///
-> > > > +    /// TODO: Use associated_type_defaults once stabilized:
-> > > > +    ///
-> > > > +    /// type IdInfo: 'static = ();
-> > > > +    type IdInfo: 'static;
-> > > > +
-> > > > +    /// The table of device ids supported by the driver.
-> > > > +    const ID_TABLE: IdTable<Self::IdInfo>;
-> 
-> Another thing. I don't think this is quite right. Well, this part is 
-> fine, but assigning the DT table to it is not. The underlying C code has 
-> 2 id tables in struct device_driver (DT and ACPI) and then the bus 
-> specific one in the struct ${bus}_driver.
+Hi Grant,
 
-The assignment of this table in `Adapter::register` looks like this:
+On Fri, Oct 25, 2024 at 7:16=E2=80=AFPM Grant Peltier <grantpeltier93@gmail=
+.com> wrote:
+> Renesas digital multiphase voltage regulators are capable of regulating
+> output voltages that exceed the range that their Vsense pins can detect.
+> In such applications, users may place a voltage divider between Vout and
+> the Vsense pin for a given rail. However, the driver currently has no
+> way of knowing if a voltage divider is being used which results in
+> erroneous telemetry being reported over hwmon.
+>
+> This patch set defines a devicetree bindings schema for Renesas digital
+> multiphase voltage regulators that are supported by the isl68137 driver
+> to allow users to add voltage divider definitions for any rail powered
+> by the device. This patch set also includes the required changes to the
+> isl68137 driver to enable scaling Vout/Pout telemetry for rails with a
+> defined voltage divider.
+>
+> v5:
+> - Fix clang compilation errors related to C23 syntax
 
-`pdrv.driver.of_match_table = T::ID_TABLE.as_ptr();`
+Thanks for the update!
 
-What do you think is wrong with this assignment?
+> v4:
+> - Revert devicetree property name to "vout-voltage-divider" and refactor
+>   property description and driver implementation to match existing
+>   vout-voltage-divider implementation in max20730 as no suitable generic
+>   voltage divider schema exists.
 
-> 
-> > > > +
-> > > > +    /// Platform driver probe.
-> > > > +    ///
-> > > > +    /// Called when a new platform device is added or discovered.
-> > > > +    /// Implementers should attempt to initialize the device here.
-> > > > +    fn probe(dev: &mut Device, id_info: Option<&Self::IdInfo>) -> Result<Pin<KBox<Self>>>;
-> > > > +
-> > > > +    /// Find the [`of::DeviceId`] within [`Driver::ID_TABLE`] matching the given [`Device`], if any.
-> > > > +    fn of_match_device(pdev: &Device) -> Option<&of::DeviceId> {
-> > > 
-> > > Is this visible to drivers? It shouldn't be.
-> > 
-> > Yeah, I think we should just remove it. Looking at struct of_device_id, it
-> > doesn't contain any useful information for a driver. I think when I added this I
-> > was a bit in "autopilot" mode from the PCI stuff, where struct pci_device_id is
-> > useful to drivers.
-> 
-> TBC, you mean other than *data, right? If so, I agree. 
+Can you please elaborate (or point to the email that did so, in case
+I missed it)?
 
-Yes.
+In reply to v2, G=C3=BCnter wrote:
 
-> 
-> The DT type and name fields are pretty much legacy, so I don't think the 
-> rust bindings need to worry about them until someone converts Sparc and 
-> PowerMac drivers to rust (i.e. never).
-> 
-> I would guess the PCI cases might be questionable, too. Like DT, drivers 
-> may be accessing the table fields, but that's not best practice. All the 
-> match fields are stored in pci_dev, so why get them from the match 
-> table?
+   "I would prefer, in the order of preference,
 
-Fair question, I'd like to forward it to Greg. IIRC, he explicitly requested to
-make the corresponding struct pci_device_id available in probe() at Kangrejos.
+    1) an applicable generic property definition
+    2) a definition that is already used elsewhere
+    3) a new chips specific definition"
 
-> 
-> Rob
-> 
+https://lore.kernel.org/all/3f460b62-4cd1-49dd-a98b-1fbcfdbd3af0@roeck-us.n=
+et
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
