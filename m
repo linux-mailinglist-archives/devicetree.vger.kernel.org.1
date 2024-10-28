@@ -1,175 +1,90 @@
-Return-Path: <devicetree+bounces-116267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57AFF9B2347
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 03:54:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3E419B235C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 04:02:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE1C8B21B16
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 02:54:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AC9D2812F8
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 03:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0159B18801A;
-	Mon, 28 Oct 2024 02:54:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D507C13AD11;
+	Mon, 28 Oct 2024 03:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Qserw/KS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kaHtZEXP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC3B9178CC5;
-	Mon, 28 Oct 2024 02:54:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23285CA5B
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 03:02:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730084049; cv=none; b=Ze6cs8aCI91v5Oj8gHwx4gaYplcDmf7jthzSm0kov7oZIweQMDXAzTfeVkUNxrrvGM5uUowJO3/EMEGLzSF3zlLsUOPY8tYzpCw8BiqrtNxgUmRZiZGsPIkj573Iy14tnIhsoSge+P9vk9677I/ofQm2MEbqpG0noOc+PDUl6xg=
+	t=1730084557; cv=none; b=p1Bu1vTEszqkZxXgL9ul++sYaVUCgYX4fBfFGlaUYGL3mUvRqnaf6irr6DzN361nLt6TO0ip04pjVD3ZEsz1wdx/+nQRPLz4YEzPKSe6rr+DfV4kdpD+zc1izyCjCHAWa8n8Qj5+okipCIP2XyVt3KfzpvIWNPZRqBm1eMUukqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730084049; c=relaxed/simple;
-	bh=K8HHtVVsRmVmZcZaYQUht+3NWbzZllIb2/axIpXkKyQ=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=hARI7RkSpJT1T7yWZiMCC5TPyQanygg8omTvPfX/P0XJhpHtomWi+Zp10zXliaW6QJfqBWAod8rVZLQ9SwuryRIWZY28xzPeP7JHs1PVpvj4dFujREjvcdQWLQqMSnkar/jlUZPnHdc8vHYN3nZgUS/pxfZgiUJwFMkKAHfdJV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Qserw/KS; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49RNpLGo031126;
-	Mon, 28 Oct 2024 02:54:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5zN10JdhAIAKuyeOLdvbGAXdgY1Y+VOJbyGob/tjS3A=; b=Qserw/KST6S3KzwA
-	iVrBOggXDNlmNEvOn0NGaSo+LUIFysn0ADcSOCJCyVM8VWKb+CA7Mk7rtwO1mNRJ
-	7XIm5Zt3yXhEuupgGu85by34E/Gu1WvCyK67hVqC1Hfbs6khVSFrYUAJJNs2LAyS
-	Jrz0PGA/r1oQ9IExwJxboMCYPu362dQnJitlsSLhBS41loAwItx5JHL8m04bJO1f
-	rYtvnfUrlkJzpmh9gmHY/Vo9//wRxhY8W6V6FzTAgAutFbuSfDsSg+vP1gOl1YHl
-	ZCrYsVN0h3R//h0cDzEHK+5zJEkfnClzAtetmzWVz/9F9y6lyL54sQ2PR5Cr9C1o
-	QwtDJg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gskjucvg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Oct 2024 02:54:00 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49S2rxgZ023044
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Oct 2024 02:53:59 GMT
-Received: from [10.64.68.153] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 27 Oct
- 2024 19:53:55 -0700
-Message-ID: <e263d461-9e2b-4ffe-8221-cd9ecdd142c9@quicinc.com>
-Date: Mon, 28 Oct 2024 10:53:52 +0800
+	s=arc-20240116; t=1730084557; c=relaxed/simple;
+	bh=+cAB7lYbG14eIGFvJSVo0spfAoqiu7swxdEuhNILMxc=;
+	h=From:Message-ID:To:Subject:Date:MIME-Version:Content-Type; b=A+pMV6nzMFPkTqlZC15ILTLZPey5hWUyzxl/QxRJGm0+tocdDNDeMfNlDTwWCvu1igzoJ2jZ+u8gm69EbHuWeuSJW68Jnc9JaGiAxDpgH5KedlJNA2k1Ew/G7f3OcPs4cuaAnBUiS4P0WOLtfrSp1VIJB169OhspMZGoYBPlSec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kaHtZEXP; arc=none smtp.client-ip=209.85.214.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f196.google.com with SMTP id d9443c01a7336-20cdda5cfb6so35367505ad.3
+        for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 20:02:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730084555; x=1730689355; darn=vger.kernel.org;
+        h=mime-version:date:subject:to:reply-to:message-id:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZR9IATytCCgOYZ4mB1XO864armHT1L223q4In16prlA=;
+        b=kaHtZEXPX8hfgYlmcqsEbm6KoXDE/2c9cKmtfHxyBf7Z4yt6zBuiKk/ly7Y4wqE93f
+         VO0sZUOBcV10nclW0vHWK3Z4RSvWFo7rQ3AnDxr7nS0xdhKs6TwKHowv253832SbTFqT
+         BWgvjyLXKdBPnRS5ffL5OAkHuvrslpEy/5q/F7ybt8B8SlGVdUJ/v1JX//g0FGJQkq70
+         5qK3mKNuZU64Fg7klnb5Akc6wMvM4PAYzM9r8Ok5GPS3nNS3iQ/Fxn2xSac2/DlriBnu
+         a8VRuhO73aKz5cJZUgyknophOv9LfwHCSO3wWEenY82AN11LkDM55K7EouSneumw5WFk
+         vjrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730084555; x=1730689355;
+        h=mime-version:date:subject:to:reply-to:message-id:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZR9IATytCCgOYZ4mB1XO864armHT1L223q4In16prlA=;
+        b=P2sqfoKiF+yZPYVnClB7/2oSUx9N3+yZis4oAn6G5tk8UdyXHybR8gXDeIK7DlAgsn
+         9/+lI1JmuOzo7rXFQJpUkkNhQGDB97rkoJqs8KnCz2kS0U4QQ0m6oJ9ALy4xmsbvA8C1
+         amV4hOVoPqXb1ngiMhlmlrg2KRvos3EMfBfa/zr2N50uiLUm6A9/7CYHU3BvaUIL0u/9
+         ONJJZSmeYDj9bZ9zYnYimOfbUUXjn+UOlddTk1jr2aF4npXcO9p/h1P8N2t1jun8Kr6R
+         aHQ/FQf/hc/CFL9m9n4x8vto07hsIdgdvrQHpSYlLCBNVuFZMAVy9fGj689xzeS74W3g
+         KInA==
+X-Gm-Message-State: AOJu0Yw+wIS5IUxy+JUzJA9Mj6qXIeZw0A1xSkQX5GheFsSh18df1eZt
+	FDHzh7j3XRODOZw/czp/VcSyFsSJOdZzt8xpiJd18saFWP5XLIheun6Au44/1H8=
+X-Google-Smtp-Source: AGHT+IEqukKEUsSeoRkxKibo5tCQXzwRm3YCd/jYJfyl4uwVvgDrwYR+bScPW9UUKANTb/QcVWP8Wg==
+X-Received: by 2002:a17:903:2302:b0:207:1675:6709 with SMTP id d9443c01a7336-210c6731076mr96399825ad.0.1730084555039;
+        Sun, 27 Oct 2024 20:02:35 -0700 (PDT)
+Received: from [103.67.163.162] ([103.67.163.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-210bc044c23sm41428585ad.245.2024.10.27.20.02.34
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 27 Oct 2024 20:02:34 -0700 (PDT)
+From: Van Esource <muffiekay@gmail.com>
+X-Google-Original-From: Van Esource <helpdesk@information.com>
+Message-ID: <cc1732b45fa9339d4179d75518d3417e26e2f061aaa176a7652414d1100d032e@mx.google.com>
+Reply-To: dirofdptvancollin@gmail.com
+To: devicetree@vger.kernel.org
+Subject: Info
+Date: Sun, 27 Oct 2024 23:02:31 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: Add coresight nodes for QCS615
-From: Jie Gan <quic_jiegan@quicinc.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao
-	<quic_jinlmao@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>
-References: <20241017030005.893203-1-quic_jiegan@quicinc.com>
- <69be09ec-e9a5-4fb6-890e-74a65f3ce404@oss.qualcomm.com>
- <3f90b3d6-9637-47b7-ad8a-ff43cb28ad32@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <3f90b3d6-9637-47b7-ad8a-ff43cb28ad32@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: G65cGfCj_fY372rmIK411cIbN-yhb_Yz
-X-Proofpoint-ORIG-GUID: G65cGfCj_fY372rmIK411cIbN-yhb_Yz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- impostorscore=0 suspectscore=0 phishscore=0 priorityscore=1501
- mlxlogscore=999 bulkscore=0 mlxscore=0 malwarescore=0 lowpriorityscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410280023
+Content-Type: text/plain; charset=us-ascii
 
+Hello,
+I am a private investment consultant representing the interest of a multinational  conglomerate that wishes to place funds into a trust management portfolio.
 
+Please indicate your interest for additional information.
 
-On 10/28/2024 8:54 AM, Jie Gan wrote:
-> 
-> 
-> On 10/26/2024 2:47 AM, Konrad Dybcio wrote:
->> On 17.10.2024 5:00 AM, Jie Gan wrote:
->>> Add following coresight components on QCS615, EUD, TMC/ETF, TPDM, 
->>> dynamic
->>> Funnel, TPDA, Replicator and ETM.
->>>
->>> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
->>> ---
->>> Already checked by command:dtbs_check W=1.
->>>
->>> Dependencies:
->>> 1. Depends on qcs615 base dtsi change:
->>> https://lore.kernel.org/all/20240926-add_initial_support_for_qcs615- 
->>> v3-5-e37617e91c62@quicinc.com/
->>> 2. Depends on qcs615 AOSS_QMP change:
->>> https://lore.kernel.org/linux-arm-msm/20241017025313.2028120-4- 
->>> quic_chunkaid@quicinc.com/
->>> ---
->>>   arch/arm64/boot/dts/qcom/qcs615.dtsi | 1632 ++++++++++++++++++++++++++
->>>   1 file changed, 1632 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/ 
->>> dts/qcom/qcs615.dtsi
->>> index 856b40e20cf3..87cca5de018e 100644
->>> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->>> @@ -202,6 +202,18 @@ l3_0: l3-cache {
->>>           };
->>>       };
->>> +    dummy_eud: dummy_sink {
->>
->> Node names (after the ':' and before the '{' signs) can't contain
->> underscores, use '-' instead.
-> Sure, will fix it.
-> 
->>
->> [...]
->>
->>> +        stm@6002000 {
->>> +            compatible = "arm,coresight-stm", "arm,primecell";
->>> +            reg = <0x0 0x6002000 0x0 0x1000>,
->>
->> Please pad the non-zero address part to 8 hex digits with leading
->> zeroes, across the board
-> Will fix it.
-> 
->>
->> This looks like a lot of nodes, all enabled by default. Will this run
->> on a production-fused device?
-> Yes, usually Coresight nodes are enabled by default. Those nodes can run 
-> on the commercial devices.
-Sorry, my last clarification is not clearly. The Coresight nodes are 
-enabled by default for commercial devices(fused), but only part of 
-functions can run with commercial devices because it needs check fuse 
-data before running.
+Regards,
 
-If we want enable all debug functions related to coresight nodes on 
-commercial devices, we need APDP override(APPS debug policy override) 
-procedure first. The APDP override procedure will override some fuse 
-data to allow debug sessions.
-
-Thanks,
-Jie
-
+Van
 
