@@ -1,110 +1,232 @@
-Return-Path: <devicetree+bounces-116696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD1B79B3AEA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 21:00:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67A639B3AF6
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 21:01:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9478A1F221C2
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 20:00:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE00D1F226FB
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 20:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA1F91DE8BE;
-	Mon, 28 Oct 2024 20:00:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 745061E0084;
+	Mon, 28 Oct 2024 20:01:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bN4fG2rp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BWnlG4zE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F6BF1534E9;
-	Mon, 28 Oct 2024 20:00:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480471DFE2F;
+	Mon, 28 Oct 2024 20:01:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730145636; cv=none; b=oj+lZFBPYy6nqt45YTHrSa6zQTrWXEI2rcPyA4emVMegWfXPKkLiRQv3as1MXPjWNumsHoKtJIzu+PUMnYbdVcDVWvChWjGngjN7m8Ww36z6qyMn2CRiGkV06iLBq653t7GfeyE/ZEgP3e9baPzW2ybnFwjDWWRZlBNuC+PUYcY=
+	t=1730145665; cv=none; b=KpnjVa9dcd8GTlFn1aJSdZpU8N8Sn8KD+lGG6yNwnTANOa6BOBbhQAk5dMOk2katEJJ6GzM7BCgLfsnVXm416GfoqQgWtZquenO90KnYp9AzgKbvEaARMS3Zte3BLM7Hk4CB8RZbxFoqUdHWDKDKL7SLg/E8s/qGhpj+Zge4gzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730145636; c=relaxed/simple;
-	bh=iy6cHdmKo7wCiSyYpGY1RBRuKgRlluXl0frCJL21vbs=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=W+shYpKUkFLbd0rjPgfj4P6uWkavHglMOn1CqUNCMKFVBm9OSmU/wmB67LRdOWGA9u/qRT8GxljW+X/xA7huGhY2F6GyAqnUqq9VXXEF1beN+bjmf3qgKtTjpQ2RtEyB/92gKBeKtsXdF2RQ0hWHOUNifem6mWAwXyTUds+vJU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bN4fG2rp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10A00C4CEC3;
-	Mon, 28 Oct 2024 20:00:35 +0000 (UTC)
+	s=arc-20240116; t=1730145665; c=relaxed/simple;
+	bh=Y5Rde23G8yjiBQKn9oafKKfUVhQw22BUSq1r1LdQQ+Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rdse8Fcf8qCXBkpngxdodvBAPuStMrPtOaZ43MBeFcqAPSYEgTfRKastdi0114nYyJKgDPlcfOhwU3mqW1Q5oYac7r0ed/1AVUKJH94TWgz/HEWqh5OKpBcFgsgPcLjWFcft4QUqWtLx+sP8aKMApq1gKtkKaGUpqJ5i1sR9Swc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BWnlG4zE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB0B0C4CEE4;
+	Mon, 28 Oct 2024 20:01:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730145635;
-	bh=iy6cHdmKo7wCiSyYpGY1RBRuKgRlluXl0frCJL21vbs=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=bN4fG2rpJm3/sOEiT84DBZqoW1a3L15EBPRGqoZxQhtP0cGEBcXJ3MVZsyZHua2Aa
-	 rAAK06mcvnVQAhfgXeiE+6hOGbp9rF8gRZnUnNExRm7IZyNthurcr+SUyY3LEBRLIB
-	 JK/FN58IshAykaHjkuNFqIJjp0JQ3CFN7rLf/5T0O2pWqMPZmh1w3a4Nmh4txZSSxd
-	 h5ZcKExekp/IC72vQcPoweFunKlC2ixtXtzxfvTGNRMJg8IZO1UhB3m7wgW1ndv+L2
-	 c4hxcBF7QRUYLP5LHv1f5bl3Sx4B81fVGOyQmvVQ2oIfhayG3lJjqzRmbTErq68iyv
-	 X+fBHX5SDNatw==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id AE370380AC1C;
-	Mon, 28 Oct 2024 20:00:43 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1730145664;
+	bh=Y5Rde23G8yjiBQKn9oafKKfUVhQw22BUSq1r1LdQQ+Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=BWnlG4zEZEDIYp1V7ESkLALzehM8gtIg1N5svgVLmK100cBNdEZg0uk+Szp/CyTwm
+	 VfHJURNJuMqO+8Cn/xIyYqDxnZcT5/VRkJeXfjX5Pn3GXZJ9MrGoW/LW2FUP4bPI1I
+	 cI5SW8gLj0yxcA3mD/ckqUD63UL3gghif0YvM0BpBmuykCF6YDmrwRmiyfnRJwn4A8
+	 q0/2vSzS1OpB48B7jrUcfd2ObeJLa8jx+JUkVOG6QE6FRJ5j9gHgdP6movbPtry2BE
+	 dsoypyb7HA/rV8IiEt5k+oNWgvJdkgUa06+tL87m7TC7RInYBl8dY1Eiw+kzP487Dj
+	 BkBWM5mLHjS3Q==
+Date: Mon, 28 Oct 2024 20:00:57 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Angelo Dureghello <adureghello@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
+ <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Mark Brown
+ <broonie@kernel.org>, dlechner@baylibre.com
+Subject: Re: [PATCH v8 7/8] iio: dac: ad3552r: add high-speed platform
+ driver
+Message-ID: <20241028200057.369dcd58@jic23-huawei>
+In-Reply-To: <3boluky2zvz6n4u3gjgxuzlo2cm3a4xcbfq5sjmzoz3i5lfsml@j3wikyf74xyj>
+References: <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-0-74ca7dd60567@baylibre.com>
+	<20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-7-74ca7dd60567@baylibre.com>
+	<20241026185740.4144f6c8@jic23-huawei>
+	<3boluky2zvz6n4u3gjgxuzlo2cm3a4xcbfq5sjmzoz3i5lfsml@j3wikyf74xyj>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 0/6] Add Nothing Phone (1) support
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <173014564250.163218.2856395815785502378.git-patchwork-notify@kernel.org>
-Date: Mon, 28 Oct 2024 20:00:42 +0000
-References: <20241020205615.211256-1-danila@jiaxyga.com>
-In-Reply-To: <20241020205615.211256-1-danila@jiaxyga.com>
-To: Danila Tikhonov <danila@jiaxyga.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- kees@kernel.org, tony.luck@intel.com, gpiccoli@igalia.com,
- quic_rjendra@quicinc.com, andre.przywara@arm.com, quic_sibis@quicinc.com,
- igor.belwon@mentallysanemainliners.org, davidwronek@gmail.com,
- ivo.ivanov.ivanov1@gmail.com, neil.armstrong@linaro.org,
- heiko.stuebner@cherry.de, rafal@milecki.pl, lpieralisi@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
- linux-hardening@vger.kernel.org, linux@mainlining.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hello:
+On Mon, 28 Oct 2024 10:14:25 +0100
+Angelo Dureghello <adureghello@baylibre.com> wrote:
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Sun, 20 Oct 2024 23:56:08 +0300 you wrote:
-> This series of patches adds support for the Nothing Phone (1), identified
-> as nothing,spacewar. The Nothing Phone (1) is built on the Qualcomm
-> Snapdragon 778G+ (SM7325-AE, also known as yupik).
+> Hi Jonathan,
 > 
-> SM7325 is identical to SC7280 just as SM7125 is identical to SC7180, so
-> SM7325 devicetree imports SC7280 devicetree as a base.
+> On 26.10.2024 18:57, Jonathan Cameron wrote:
+> > On Fri, 25 Oct 2024 11:49:40 +0200
+> > Angelo Dureghello <adureghello@baylibre.com> wrote:
+> >   
+> > > From: Angelo Dureghello <adureghello@baylibre.com>
+> > > 
+> > > Add High Speed ad3552r platform driver.
+> > > 
+> > > The ad3552r DAC is controlled by a custom (fpga-based) DAC IP
+> > > through the current AXI backend, or similar alternative IIO backend.
+> > > 
+> > > Compared to the existing driver (ad3552r.c), that is a simple SPI
+> > > driver, this driver is coupled with a DAC IIO backend that finally
+> > > controls the ad3552r by a fpga-based "QSPI+DDR" interface, to reach
+> > > maximum transfer rate of 33MUPS using dma stream capabilities.
+> > > 
+> > > All commands involving QSPI bus read/write are delegated to the backend
+> > > through the provided APIs for bus read/write.
+> > > 
+> > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > > ---  
+> > Hi Angelo,
+> > 
+> > I'd missed a build issue in previous reviews. :(
+> >   
+> > >  drivers/iio/dac/Kconfig      |  14 ++
+> > >  drivers/iio/dac/Makefile     |   1 +
+> > >  drivers/iio/dac/ad3552r-hs.c | 530 +++++++++++++++++++++++++++++++++++++++++++
+> > >  drivers/iio/dac/ad3552r-hs.h |  19 ++
+> > >  drivers/iio/dac/ad3552r.h    |   4 +
+> > >  5 files changed, 568 insertions(+)
+> > > 
+> > > diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
+> > > index 26f9de55b79f..f76eaba140d8 100644
+> > > --- a/drivers/iio/dac/Kconfig
+> > > +++ b/drivers/iio/dac/Kconfig
+> > > @@ -6,6 +6,20 @@
+> > >  
+> > >  menu "Digital to analog converters"
+> > >  
+> > > +config AD3552R_HS
+> > > +	tristate "Analog Devices AD3552R DAC High Speed driver"
+> > > +	select ADI_AXI_DAC
+> > > +	help
+> > > +	  Say yes here to build support for Analog Devices AD3552R
+> > > +	  Digital to Analog Converter High Speed driver.
+> > > +
+> > > +          The driver requires the assistance of an IP core to operate,
+> > > +          since data is streamed into target device via DMA, sent over a
+> > > +	  QSPI + DDR (Double Data Rate) bus.  
+> > 
+> > Tabs and space mix that needs fixing.
+> >   
+> > > +
+> > > +	  To compile this driver as a module, choose M here: the
+> > > +	  module will be called ad3552r-hs.
+> > > +
+> > >  config AD3552R
+> > >  	tristate "Analog Devices AD3552R DAC driver"
+> > >  	depends on SPI_MASTER
+> > > diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
+> > > index c92de0366238..d92e08ca93ca 100644
+> > > --- a/drivers/iio/dac/Makefile
+> > > +++ b/drivers/iio/dac/Makefile
+> > > @@ -4,6 +4,7 @@
+> > >  #
+> > >  
+> > >  # When adding new entries keep the list in alphabetical order
+> > > +obj-$(CONFIG_AD3552R_HS) += ad3552r-hs.o ad3552r-common.o
+> > >  obj-$(CONFIG_AD3552R) += ad3552r.o ad3552r-common.o  
+> > 
+> > This causes all sorts of issues. The same code should not be linked into two
+> > separate drivers.  Try building one as a module and one built in.
+> >   
+> right now, seems i cannot catch any issue, nor building or in runtime:
 > 
-> [...]
+> ad3552r     [M]
+> ad3552r-hs  [*]
+> (ad3552r-common stays built in), ad3552r visible in lsmod, ad3552r-hs works
+> 
+> ad3552r     [*]
+> ad3552r-hs  [M]
+> (ad3552r-common stays built in), ad3552r-hs visible in lsmod, ad3552r-hs works
+> 
+> ad3552r     [M]
+> ad3552r-hs  [M]
+> (ad3552r-common.ko), ad3552r, ad3552r-hs and ad3552r-common are visible in lsmod,
+> ad3552r-hs works, probe and removal, and also link/unlink tested).
+> 
+> Please let me know, i can proceed modifying as you require, if it's the case.
+Hi Angelo,
 
-Here is the summary with links:
-  - [v3,1/6] dt-bindings: nfc: nxp,nci: Document PN553 compatible
-    https://git.kernel.org/netdev/net-next/c/05c9afb9bfa3
-  - [v3,2/6] dt-bindings: arm: cpus: Add qcom kryo670 compatible
-    (no matching commit)
-  - [v3,3/6] arm64: dts: qcom: Add SM7325 device tree
-    (no matching commit)
-  - [v3,4/6] dt-bindings: vendor-prefixes: Add Nothing Technology Limited
-    (no matching commit)
-  - [v3,5/6] dt-bindings: arm: qcom: Add SM7325 Nothing Phone 1
-    (no matching commit)
-  - [v3,6/6] arm64: dts: qcom: sm7325: Add device-tree for Nothing Phone 1
-    (no matching commit)
+I can't remember exactly what triggers this; maybe it's no longer a problem.
+However, if nothing else it is a waste to end up with two copies in the
+drivers. Hence switch to a common library module still a good idea.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Also this is missing includes for bitfield.h in ad3352r.c and ad3552r-common.c
+so doesn't build for me at all.
 
+Jonathan
+
+> 
+> 
+> > The trick is a hidden symbol in Kconfig and an extra line in here
+> > obj-$(CONFIG_AD3352R_LIB) += ad3552-common.o
+> > 
+> > and 
+> > //note no text as we don't want this to be user selectable
+> > 
+> > config AD3352R_LIB
+> > 	tristate
+> > 
+> > config AD3552R_HS
+> > 	tristate "Analog Devices AD3552R DAC High Speed driver"
+> > 	select ADI_AXI_DAC
+> > 	select AD3352R_LIB
+> > 	help
+> > 	  Say yes here to build support for Analog Devices AD3552R
+> > 	  Digital to Analog Converter High Speed driver.
+> > 
+> > 	  The driver requires the assistance of an IP core to operate,
+> > 	  since data is streamed into target device via DMA, sent over a
+> > 	  QSPI + DDR (Double Data Rate) bus.
+> > 
+> > 	  To compile this driver as a module, choose M here: the
+> > 	  module will be called ad3552r-hs.
+> > 
+> > 
+> > config AD3552R
+> >  	tristate "Analog Devices AD3552R DAC driver"
+> >  	depends on SPI_MASTER
+> > 	select AD3352R_LIB
+> > 	help
+> > 	  ...
+> > 
+> > The pressure/mpl115 is done like this.
+> > 
+> >   
+> > >  obj-$(CONFIG_AD5360) += ad5360.o
+> > >  obj-$(CONFIG_AD5380) += ad5380.o  
+> > 
+> > Anyhow, to me the code looks ready to go subject to this.
+> > 
+> > If nothing else comes up I'm almost confident enough of the fix to just
+> > do it (and the few trivial things in previous review), but probably quicker
+> > and less prone to error if you have time to spin a v9, perhaps after letting others
+> > have a day or two to review v8 next week.
+> > 
+> > rc5 is tomorrow, so we have a little time left this cycle.
+> > 
+> > Jonathan  
+> 
+> Regards,
+>   angelo
 
 
