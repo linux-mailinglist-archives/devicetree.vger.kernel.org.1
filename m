@@ -1,121 +1,105 @@
-Return-Path: <devicetree+bounces-116691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A24D9B3AA3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 20:45:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D6A19B3AAE
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 20:48:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 595B81C217E4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 19:45:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DBB41C21338
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 19:48:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A9918EFEC;
-	Mon, 28 Oct 2024 19:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E18818F2DF;
+	Mon, 28 Oct 2024 19:48:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="OREgAOIl";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ZoO2GHdk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZPp8NgXB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5A1524C;
-	Mon, 28 Oct 2024 19:45:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42267524C
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 19:48:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730144746; cv=none; b=NjU4RzT3CyTtt85C6vdrbw4to7loqQmO+iKUMvCvOinNRBBrgnRTi+cUZesjs3OtNj0uEnFWTRevHkr8VYutow8cb4DiacNbt/Fdnca2bizmNn4uBgiNeMCCrRpNPgC78enWWQ0KXNYONDZlMapP6NY+rLg2NNjO9mc1kCz/I0A=
+	t=1730144912; cv=none; b=TlDw8xK0y/C2/vjec2n5k/yIUUzybD2nKaO/3Yql41rOtsp+m3SJrrvfS3Bhh22lB8sWQh3Chn2K+juppvNenPm0jVmOoItHyMeMTUQGFWt72kyWnJIYwWTNRJb3BPA2GqI3SS/TMykpZYvpuzRUZxCoiOVyas0mvgox2ewia3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730144746; c=relaxed/simple;
-	bh=dWXzW9OdAxNBOpcuUtYAZ0dy5OTXyQn4DEo0G3cfyQU=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Jiq1jyR2bwUhWTLuKD+cx08mWlZ/g7nRxNV3j/CWmh7wSjL10p6p7aalhJ/FYpVXTAuvqf0Tqlml7kfvsiVD0nY41UeZ6mwct74Jp0muhtaWO/Lcs8FUXXuVQXl5PEgDN4NFjafs3g8St6aovB2fzDwdoVw6SrPRGE1iHEAA8yI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=OREgAOIl; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ZoO2GHdk; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1730144740;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LV/cJW54bEOUypztN5jc6/PScSgJuPuoFS6xeGBV3qs=;
-	b=OREgAOIl9y6wwE9tgf7xAw4Geho4bcPa2u4Omhe/BTnyy38qwRKdJVvCPfeHLhJfxU7glS
-	0amdyRwyckY88mn/DXFw0l4dWt7ZqG8vRxgYcO/4YMfZLvk1TZEdEZniTPXnS7gQziLiYy
-	oOrQ7HqKmdlyAj4iHzQ3a3iAAHG+GuFVj61LNeAdbbnG/EHpAlflwye8H9K6j6c8uAih9F
-	6I4cHzc+MAcKWhKwd6tIMa0DzqG+F980B5IDe/PIEzxI0hCuwJQXHYSG/uee9Lcypj6NFC
-	gVqBSSVgMYMcm16tVd68/925DVSpkA4e/0IiRBvv/46durTOyEBl0C1RJKWonQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1730144740;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LV/cJW54bEOUypztN5jc6/PScSgJuPuoFS6xeGBV3qs=;
-	b=ZoO2GHdkjqw95wk537vluVEpeKIP9VcwkuaQHRo1hUQCCxUYap7pU4+Svf920Fl3fzhefV
-	oZOHYtzsiySBemDg==
-To: Aleksandar Rikalo <arikalo@gmail.com>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vladimir Kondratiev
- <vladimir.kondratiev@mobileye.com>, Gregory CLEMENT
- <gregory.clement@bootlin.com>, Theo Lebrun <theo.lebrun@bootlin.com>, Arnd
- Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org, Djordje Todorovic
- <djordje.todorovic@htecgroup.com>, Chao-ying Fu <cfu@wavecomp.com>, Daniel
- Lezcano <daniel.lezcano@linaro.org>, Geert Uytterhoeven
- <geert@linux-m68k.org>, Greg Ungerer <gerg@kernel.org>, Hauke Mehrtens
- <hauke@hauke-m.de>, Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>, Jiaxun
- Yang <jiaxun.yang@flygoat.com>, linux-kernel@vger.kernel.org,
- linux-mips@vger.kernel.org, Marc Zyngier <maz@kernel.org>, Paul Burton
- <paulburton@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Serge
- Semin <fancer.lancer@gmail.com>, Tiezhu Yang <yangtiezhu@loongson.cn>,
- Aleksandar Rikalo <arikalo@gmail.com>
-Subject: Re: [PATCH v8 04/13] irqchip/mips-gic: Multi-cluster support
-In-Reply-To: <20241028175935.51250-5-arikalo@gmail.com>
-References: <20241028175935.51250-1-arikalo@gmail.com>
- <20241028175935.51250-5-arikalo@gmail.com>
-Date: Mon, 28 Oct 2024 20:45:40 +0100
-Message-ID: <87wmhs1063.ffs@tglx>
+	s=arc-20240116; t=1730144912; c=relaxed/simple;
+	bh=7xLNu9FrVeKEDKB+XHpFWkkAlgiJSL8q8QyE+irsgoU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cKHgJIBwd1KYwHRiaVPkkaNLS3j8Xqh6peKp8xeYJ3dqeQKl2GSoKTFnGOvOXjdbRS1FTlIMRK4owplpy3ZRumHpHWeMy6TZ0s8RXwU9P9G3duKpFZlWrdJcMgp161xT5MpM0MZAdY07uxYvnFRiPLXCJUDWGhKb++sruANs8ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZPp8NgXB; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2fb5111747cso43113811fa.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 12:48:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730144908; x=1730749708; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/kvSrQqqbLNQTUVRHoadSzM2dB0+MrpOREbt1fRDUeo=;
+        b=ZPp8NgXB5FICMUpQJdCknsA2w637NoJEbgqsuR9hq42h9F10vzXYAC/9ovw7Dq2yuS
+         SkaOVbFTRUS0n+MdYviFOSMnTkV49x8ALi1qmzvo3bdQL1RC/b4blmIjijWNefBRPBqM
+         uSMczeyXa+uuM3t2zMgjhqMj2mx60ZoTiSRm27Wpw++qxg6T5gihtR6Yv0HanpSySPOS
+         7lTjl5Yxo+8D0WRIYCj9vgwGSXcLMemN+s0SXnnlzMFlauZseXVH4Jje00cN8KZWZMeQ
+         Wlgz0LAxeM1CvH/mRExWFK3TeL4ihwt6mBeJcWHvmaXNbOnoJkdHR5PmMdCFn/rV46cQ
+         J9XA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730144908; x=1730749708;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/kvSrQqqbLNQTUVRHoadSzM2dB0+MrpOREbt1fRDUeo=;
+        b=oYx7AiSwlnFWZo45liOyRmisP3Hs5smTbORO1jtKqMqKUJNl0Se2DZx2e7YtDzOgxe
+         S/OKxzAkL/BsJq51pGungCE9KrWnPsEuEyUwbSbvk8+F+3CLa9ad5bRI+PI+AkcdHGqC
+         gEMlsJuMshIZgY0C4r09WNqyKJNedCUln/zgTSrh0/2OJHMgSJPmMzCKXsJQCMGV2GfR
+         aL6bgg9XQZvf02CwNczI8NnDSWQRLndHweweZivJMIhVNSJTBNOXg+IYZi+lpYr+8cbe
+         xCbNGk2w/RWbD/aoYYFBrguFEL8t3jlCH1GfjX0AMurqwNnjkiJRu7kniM9q3VYVroJT
+         HgTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX0wkJTLnXP4txjGk97Ux0I83JYYF/7l+nDHPd3rgi2FS7yqj/OaqZdpljFNJ3p0uajEAKEi44Rm5Ni@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxLyZLyFIT3xRuT11ygG55a5IhkJCLMumGXyIcgk6k7BI1VcAI
+	BuMcv805tUfsMEsOBAUh57TBUt54SCyhJF2yv8RrcrIJ5aQg2R359nun7rkmcaWWDDKk6+2YhS5
+	WtnA5FSl5ASwONWts2HaLMnHVXc8=
+X-Google-Smtp-Source: AGHT+IELGhB95rG+9fE7ziAngeTj3KV9sBRB/cO1X2UqxH738DKa/nlaAv3YXumbQYQm4kl2IZm04mlWo9msT3Gf+zU=
+X-Received: by 2002:a05:651c:2115:b0:2ef:2490:46fb with SMTP id
+ 38308e7fff4ca-2fcbe08973dmr38305511fa.37.1730144908053; Mon, 28 Oct 2024
+ 12:48:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20241028180844.154349-1-festevam@gmail.com> <20241028180844.154349-2-festevam@gmail.com>
+ <20241028194728.0655edd3@akair>
+In-Reply-To: <20241028194728.0655edd3@akair>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Mon, 28 Oct 2024 16:48:16 -0300
+Message-ID: <CAOMZO5APJM57_ixBiRFZSZex3AiawA=mtqMszdGezVoajaXYhA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: imx6sx: Remove fsl,imx6sx-lcdif fallback
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 28 2024 at 18:59, Aleksandar Rikalo wrote:
-> + * In summary, if this function returns true then the caller should access GIC
-> + * registers using redirect register block accessors & then call
-> + * mips_cm_unlock_other() when done. If this function returns false then the
-> + * caller should trivially access GIC registers in the local cluster.
-> + *
-> + * Returns true if locking performed, else false.
-> + */
-> +static bool gic_irq_lock_cluster(struct irq_data *d)
-> +{
-> +	unsigned int cpu, cl;
-> +
-> +	cpu = cpumask_first(irq_data_get_effective_affinity_mask(d));
-> +	BUG_ON(cpu >= NR_CPUS);
-> +
-> +	cl = cpu_cluster(&cpu_data[cpu]);
-> +	if (cl == cpu_cluster(&current_cpu_data))
-> +		return false;
+Hi Andreas,
 
-Not that I personally care much about the performance of this. But why
-aren't you caching the cluster or at least the target CPU in irq_data
-somewhere? cpumask_first() is not cheap on a large system when the cpu
-is at the very end of the bitmask. AFAICT nothing here uses chip_data,
-so you can do:
+On Mon, Oct 28, 2024 at 3:47=E2=80=AFPM Andreas Kemnade <andreas@kemnade.in=
+fo> wrote:
 
-       unsigned long cl = (unsigned long)irq_data_get_irq_chip_data(d);
+> As the devicetree might also be used with other software (e.g. u-boot),
+> this might break something.  So if u-boot (or any other software) does
+> work with fsl,imx28-lcdif because it only uses a subset of features of
+> fsl,imx6sx, it might be worth changing the binding instead.
+>
+> Same for Patch 1. But I cannot test that and do not have a strong
+> opinion here.
 
-which is a single load operation and you can update it in the
-set_affinity() callback and during setup. No?
+U-Boot would not be broken after these series:
 
-I'll take the irqchip bits as is if nobody complains within the next
-days and you can optimize on top if you care.
-
-Thanks,
-
-        tglx
+https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/video/mxsfb.c?re=
+f_type=3Dheads#L388
 
