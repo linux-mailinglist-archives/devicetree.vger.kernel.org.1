@@ -1,192 +1,233 @@
-Return-Path: <devicetree+bounces-116455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D9169B2EFA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:34:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 474949B2F0D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:38:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C4F5281D2B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:34:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA3201F23653
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:38:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B8721D5CC6;
-	Mon, 28 Oct 2024 11:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D5FB1D6199;
+	Mon, 28 Oct 2024 11:38:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="G3A/CT5D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 927B21D416E;
-	Mon, 28 Oct 2024 11:34:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FC31D54CF
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 11:38:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730115267; cv=none; b=qwzv8SLLpic8nvWNkHoUH6gCLXkp9JYRgvXiPsYReGfzNXPNzOMKbjUXQbBrA8/EAfoWEdq4+fzERMnG8GjF5dqdKMy/aBD0om6OLTPYm+Yc5SEdOGaEDrkqwOsEu02vuo8QMnGkT48bKUkBAzczVJ1tzY20rjiVs54KZmE75sc=
+	t=1730115522; cv=none; b=AqDLAgsy+WWc+9F4zQ5MATQi/5h29SkIyRvBU60pHiClMLGpxZ3DCGDt1aXAOPNs7NbC/4b5BJLtwayUwlB31dKyqV5SRC+dFMBROlcs1AhX1wchB/vRTpOHtFIBzAPISlYO3/8bj7vVFgZhUJlRQUbYc8BJnNEMik+d/Y7iEtg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730115267; c=relaxed/simple;
-	bh=KrH6+eJQySVsEhrWkWFPrMNDivVyXqOIftdLXt1wFAU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=awIIolqadUqn2RGuVvEIA9KBAW2rde2jFF/5hpcyjE1xsBxLoPQH7KdFiTpid5d9KQZLa2xiqQPjwzej/gKsIVSHQOCuygRh6yEJ/BIXlLlzwukUI2vkmmsdqVHtK5+SfRmuLQrK+W09l4wS/7mv3tgYymmF9TQPIoplmqlAOKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6e9f69cc576so7492757b3.0;
-        Mon, 28 Oct 2024 04:34:24 -0700 (PDT)
+	s=arc-20240116; t=1730115522; c=relaxed/simple;
+	bh=IglqgVGUjmZfVdVL8l6vynVp9FHSWvs1YdSaxF9N1XQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JiR+LJKRA+acupPYsC/NSLBb4WOrss8ZLq+rIyUziD5f0V8w1NkPj2QBrw2Jo7vGEK75cC5Vid2ZhfDPwxIOjaxuP37rbSXKhDeaG6ZotQrMlSKl0cnlNL7B7RgrvRCIrbhMQq0jYf+wi0bB6PmSburj7NJJjCnOhuV69h4p8fc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=G3A/CT5D; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49SAonkd010250
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 11:38:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	CFOb/Mz8MxTSzhoQdxnw/yVybKGRopSmpFc7FewOgSg=; b=G3A/CT5DTSh/tyx+
+	qRiCMc9PIzJi6r2yGsY9kNUTLNlzBnwsojhjKQAevc+BdexTKJzzrGNscUQMN2dW
+	oEQvn9sRzoEFOQQbAp8+wjS/VMrrsdm51lH//RrhzRRPEOGGXRdBIdHjVirCYLky
+	Q+muHsiTnfN6Z1VTKP1G35i8mlpXyPIoEsSX6PgHVSTXESAJZZNRtnndvWIIHTuV
+	UDHGCtNUf3fkFLTyLKq3N8hyBQqZY0xlTAclxc9CTeMW67vGM4NF2NRGwA7wMXej
+	pG/gz7KQWjuO2+JmqqbgfxX3Gd4eXpffkK69exPd8hvMRHhlweXn5JvnG0EbJtvh
+	vi5/xw==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grn4vs1f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 11:38:39 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6cbe91571easo15384456d6.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 04:38:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730115262; x=1730720062;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=69mkGzGWZ4HjcxbU9YnVxGfvuhB+rVcGc1RChpmV04w=;
-        b=IG5DTCov6igFWZ208MGlbjjG2+/H400sMuIhaqKk4YC0eURkXM9d5XDvbDWHcjemha
-         pDr/W+MpztYszKyBoJSBrn625LOH06VYgBzOtjXWxUAPtXjuF6FLyePcrwcEvdOBG9Sp
-         f1T5D1CSpyl5k7cbQlqmHrPCPIKfq6emr18F9avYQzavYGJdkm0jtjjWniqI+yXaMWd2
-         5zki0f0kpREPP52jmBglIbc4DE/mjKKeVeicaGF8rjqZXqQ55Y7Ii8b00h+l4q8VOIIO
-         H9r7K1L+jegwRDdm0i2qk+Ri9t4/YnHFIZKAjeUQbnzyTZDz3igqiPDGIHyxQyYtEYie
-         8byQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVT6IBUv/awjmwCaTj4L8+vk3L+BA+xlEoK0V5NkT2rCO6diUPlePu0pEvSXeGIbXtsWOkwzqhc8lZj6wEKh2AGiuE=@vger.kernel.org, AJvYcCWtkWUxebb+8Kx/7Bsi72tsWLzq/zo6F73vbWmWoKmVXc9IH5uO88eA6IbLh/EziGeUOySn2jL7lvA=@vger.kernel.org, AJvYcCXbQOKiTNAcnPI7BrlTueF4PvbMFe0YyoT4b3sWCdT7TullN5StQ08Qa/jbtdzBQWOpkreTvTL7YvxD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxabY9W9ISxZblvd9NXymew6G6pvK0AIKxaMmCO3mQiHZwMxP2W
-	wiE2WI90ao2Pt8adXh3H/hVCf8GbKdnD2lrMNMxcL2Gj50tiEjRvihHIhtK5
-X-Google-Smtp-Source: AGHT+IEbhblhQj7oheoKut8SttryfCh9TQx6Sk4rdw5ZGkSSnWTznjtJYFS5VIo0gWtYaElawM8Y2Q==
-X-Received: by 2002:a05:690c:6209:b0:6de:b23:f2a1 with SMTP id 00721157ae682-6e9d89b9719mr71664187b3.15.1730115262492;
-        Mon, 28 Oct 2024 04:34:22 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e9c6c7ac1bsm13505017b3.102.2024.10.28.04.34.22
+        d=1e100.net; s=20230601; t=1730115518; x=1730720318;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CFOb/Mz8MxTSzhoQdxnw/yVybKGRopSmpFc7FewOgSg=;
+        b=sjNMuVvvMu4+8YfjRGXuhNYrZl4YKnXdxHgP00YB5I47fwlPT0brkqXAghWzqXHf41
+         ojuyKnsCIajGf9TdDoEtqLxZSR+TpjmDogF2aOBwjfkn/EBdi1c0h1JBEzlfUippNqEN
+         otUuQnlwJ/EQ5l8Fsy0ZQ2ZbWONvzj1hKguGbOYLcKyGb73jsXmgbe5RaeItulrGGUlM
+         /JKlcywe7iYIdLgtWOQjPp/N9HA8scCGUoxMgxd8rpUfjMPDRcmnZgrsicFoEOktTHLo
+         2XsblxLEjWV+HJRHuVHp4rqfBsqXlsvFtJCNjJvv6DmbxexuLleU9EwCuZIhaTlZeG4s
+         qJHg==
+X-Forwarded-Encrypted: i=1; AJvYcCWWVmeyKxioad18y4n24ayOs0NQgRa3rTVXGHrIHJiI+FNx5AeB0I4v21HeDBOuKenqXjCF9/4Ip3KQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOyYWANFrA9TVuoWYhNT+N+Vc8kwLTDPWQ6X5XTo49Wxz0+Gns
+	67rIk/1X8ywlV271aB9uoVQahSCR9m3LBwItsG87Xw3oY1VnS8z1hBTsx3445bzl06leYVTs01q
+	xz+O7s8LrqhO1nph9pg+/29ka/WutTcwJeF7+XkZmG6NfdlvnJpnWKNTqwEUc
+X-Received: by 2002:a0c:fc48:0:b0:6cc:2295:8724 with SMTP id 6a1803df08f44-6d185682eafmr57631496d6.5.1730115518325;
+        Mon, 28 Oct 2024 04:38:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEnqfUTdtr4QAm4sLjp+J3omyuIbuUB+MzUfKqr5h0k1AsTjgm8AtwXYb8zh9q+f7xKQUx06w==
+X-Received: by 2002:a0c:fc48:0:b0:6cc:2295:8724 with SMTP id 6a1803df08f44-6d185682eafmr57631266d6.5.1730115517880;
+        Mon, 28 Oct 2024 04:38:37 -0700 (PDT)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cbb629c250sm3134494a12.27.2024.10.28.04.38.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Oct 2024 04:34:22 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6e35f08e23eso37582157b3.2;
-        Mon, 28 Oct 2024 04:34:22 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUQjA5EzJxrFwIhdpRnXjrWLCtih9yM9SxS2fHrM4FJfe/33bxBMSFwetntyZU87w4CgncIAWL5tVhCCH6iDg/syuA=@vger.kernel.org, AJvYcCW+GjDvWTSna/z5aLElbS25r8DL1CitAgjgFLV+Rbr+ZGyKu+8t0giZANSbouAYO4T4l4mSPuzLsMI=@vger.kernel.org, AJvYcCXJBxslq8GbWykTkN8QG6TSF2ldBcM5dMe61wEGkYrwXtKK2+1cqeH2xV1f/P3DX4E8H3ePUasFcGh+@vger.kernel.org
-X-Received: by 2002:a05:690c:660a:b0:6e7:e009:183e with SMTP id
- 00721157ae682-6e9d8961fffmr65940387b3.8.1730115261774; Mon, 28 Oct 2024
- 04:34:21 -0700 (PDT)
+        Mon, 28 Oct 2024 04:38:37 -0700 (PDT)
+Message-ID: <5800abe0-19e6-4364-a305-1be63c28c6d9@oss.qualcomm.com>
+Date: Mon, 28 Oct 2024 12:38:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1728377971.git.geert+renesas@glider.be> <CAMuHMdXsmAqQL+2+D_y+u1z4nn8JO+xF-mq6wWJ0pAH58n5Wiw@mail.gmail.com>
- <b273599f-8653-4e98-ac64-09c91b0a1592@arm.com>
-In-Reply-To: <b273599f-8653-4e98-ac64-09c91b0a1592@arm.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 28 Oct 2024 12:34:09 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUYnTRDHRdWYHBdJ3hNBKOXBtRMOsu1NiJFET7P-+zc4g@mail.gmail.com>
-Message-ID: <CAMuHMdUYnTRDHRdWYHBdJ3hNBKOXBtRMOsu1NiJFET7P-+zc4g@mail.gmail.com>
-Subject: Re: [PATCH/RFC 0/2] arm64: dts: renesas: Re-add voltages to OPP tables
-To: Lukasz Luba <lukasz.luba@arm.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-pm@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: Add support for usb nodes on
+ QCS8300
+To: Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>, quic_ppratap@quicinc.com,
+        quic_jackp@quicinc.com
+References: <20241011074619.796580-1-quic_kriskura@quicinc.com>
+ <20241011074619.796580-2-quic_kriskura@quicinc.com>
+ <297dbc48-4c34-4bac-822c-be3ae2d00d32@oss.qualcomm.com>
+ <2da5e869-ae44-45b1-a751-8b5edfcdbd30@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <2da5e869-ae44-45b1-a751-8b5edfcdbd30@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: cKrylj7dAeZ_AhHlMHvqrX1kCX-R9mHW
+X-Proofpoint-ORIG-GUID: cKrylj7dAeZ_AhHlMHvqrX1kCX-R9mHW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ impostorscore=0 lowpriorityscore=0 priorityscore=1501 mlxlogscore=999
+ malwarescore=0 clxscore=1015 bulkscore=0 suspectscore=0 adultscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410280094
 
-Hi Lukasz,
+On 26.10.2024 6:56 PM, Krishna Kurapati wrote:
+> 
+> 
+> On 10/25/2024 11:58 PM, Konrad Dybcio wrote:
+>> On 11.10.2024 9:46 AM, Krishna Kurapati wrote:
+>>
+>> The commit title should include a `qcs8300: ` part, like others in
+>> the directory (see git log --oneline arch/arm64/boot/dts/qcom).
+>>
+>>> Add support for USB controllers on QCS8300. The second
+>>> controller is only High Speed capable.
+>>>
+>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 168 ++++++++++++++++++++++++++
+>>>   1 file changed, 168 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>>> index 2c35f96c3f28..4e6ba9f49b95 100644
+>>> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>>> @@ -1363,6 +1363,174 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+>>>                   qcom,remote-pid = <5>;
+>>>               };
+>>>           };
+>>> +
+>>> +        usb_1_hsphy: phy@8904000 {
+>>> +            compatible = "qcom,qcs8300-usb-hs-phy",
+>>> +                     "qcom,usb-snps-hs-7nm-phy";
+>>> +            reg = <0x0 0x8904000 0x0 0x400>;
+>>
+>> Please pad the address parts to 8 hex digits with leading zeroes.
+>>
+>>> +
+>>> +            clocks = <&rpmhcc RPMH_CXO_CLK>;
+>>> +            clock-names = "ref";
+>>> +
+>>> +            resets = <&gcc GCC_USB2_PHY_PRIM_BCR>;
+>>> +
+>>> +            #phy-cells = <0>;
+>>> +
+>>> +            status = "disabled";
+>>> +        };
+>>> +
+>>> +        usb_2_hsphy: phy@8906000 {
+>>> +            compatible = "qcom,qcs8300-usb-hs-phy",
+>>> +                     "qcom,usb-snps-hs-7nm-phy";
+>>> +            reg = <0x0 0x08906000 0x0 0x400>;
+>>> +
+>>> +            clocks = <&rpmhcc RPMH_CXO_CLK>;
+>>> +            clock-names = "ref";
+>>> +
+>>> +            resets = <&gcc GCC_USB2_PHY_SEC_BCR>;
+>>> +
+>>> +            #phy-cells = <0>;
+>>> +
+>>> +            status = "disabled";
+>>> +        };
+>>> +
+>>> +        usb_qmpphy: phy@8907000 {
+>>> +            compatible = "qcom,qcs8300-qmp-usb3-uni-phy";
+>>> +            reg = <0x0 0x8907000 0x0 0x2000>;
+>>> +
+>>> +            clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+>>> +                 <&gcc GCC_USB_CLKREF_EN>,
+>>> +                 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+>>> +                 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+>>> +            clock-names = "aux", "ref", "com_aux", "pipe";
+>>
+>> Please make this a vertical list like in the node below.
+>>
+>> [...]
+>>
+>>> +            interconnects = <&aggre1_noc MASTER_USB3_0 0 &mc_virt SLAVE_EBI1 0>,
+>>
+>> QCOM_ICC_TAG_ALWAYS, see x1e80100.dtsi
+>>
+>>> +                    <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
+>>> +            interconnect-names = "usb-ddr", "apps-usb";
+>>> +
+>>> +            wakeup-source;
+>>> +
+>>> +            status = "disabled";
+>>> +
+>>> +            usb_1_dwc3: usb@a600000 {
+>>> +                compatible = "snps,dwc3";
+>>> +                reg = <0x0 0x0a600000 0x0 0xe000>;
+>>> +                interrupts = <GIC_SPI 292 IRQ_TYPE_LEVEL_HIGH>;
+>>> +                iommus = <&apps_smmu 0x80 0x0>;
+>>> +                phys = <&usb_1_hsphy>, <&usb_qmpphy>;
+>>> +                phy-names = "usb2-phy", "usb3-phy";
+>>> +                snps,dis_u2_susphy_quirk;
+>>> +                snps,dis_enblslpm_quirk;
+>>
+>> That's a very low number of quirks.. Should we have some more?
+>>
+> 
+> snps,dis-u1-entry-quirk;
+> snps,dis-u2-entry-quirk;
+> snps,dis_u2_susphy_quirk;
+> snps,ssp-u3-u0-quirk;
+> 
+> I would actually like to add these as well, but there is no precedent in upstream as to what quirks to add for usb nodes
 
-On Fri, Oct 25, 2024 at 5:40=E2=80=AFPM Lukasz Luba <lukasz.luba@arm.com> w=
-rote:
-> On 10/22/24 14:36, Geert Uytterhoeven wrote:
-> > On Tue, Oct 8, 2024 at 11:14=E2=80=AFAM Geert Uytterhoeven
-> > <geert+renesas@glider.be> wrote:
-> >> When CONFIG_ENERGY_MODEL=3Dy, an error is printed on RZ/G2E and R-Car =
-E3:
-> >>
-> >>      cpu cpu0: EM: invalid perf. state: -22
-> >>
-> >> This happens because the Operating Points Parameters tables do not lis=
-t
-> >> voltages, as they are all identical.  Previously, it was assumed they
-> >> were optional, and unused, when none of the CPU nodes is tied to a
-> >> regulator using the "cpu-supply" property.  This assumption turned out
-> >> to be incorrect, causing the reported error message.
-> >>
-> >> This RFC patch series fixes this by adding the missing voltages.
-> >>
-> >> Note that the Energy Model calculates energy efficiency by dividing th=
-e
-> >> (estimated) CPU power consumption by CPU core clock frequency.  When a=
-ll
-> >> voltages have the same value, the former is proportional to clock
-> >> frequency, and energy efficiency becomes a constant.  Hence all
-> >> operating points are considered to have the same efficiency, and the
-> >> Energy Model always picks the one with the highest clock rate (see als=
-o
-> >> [1]).
-> >>
-> >> Alternatively, the Energy Model could be changed to silently ignore OP=
-P
-> >> tables with missing frequencies.  IMHO this is not an unusual case.
-> >>
-> >> Which approach should be taken?
-> >> Thanks for your comments!
-> >
-> > Any comments from the Energy Model and PM people?
->
-> My apologies for delay.
->
-> So you had issue with bogus Voltage values and removed them.
->
-> There is another way to setup EM properly, via DT:
-> "opp-microwatt" [1].
->
-> That micro watt value won't confuse other subsystems, like
-> your regulator fwk. It will only be used by the EM fwk.
->
-> This would be an alternative to your voltage values.
-> Sounds better to you?
+Every single one that applies to the hardware ;)
 
-For opp-microwatt, I do need to know the actual power consumption
-of the core, right?
+> , so I kept only a couple of them. Ideally downstream we disable u1u2 for almost all targets because of some issues in the past. (atleast during tethering use cases, but I need to double check though).
 
-Full system power consumption while running the in-kernel
-Dhrystones benchmark:
+Does
 
-800 MHz: avg 4972,55 mW, stdef 20,474 mW
-1000 MHz: avg 5025,93 mW, stdef 18,644 mW
-1200 MHz: avg 5059,63 mW, stdef 15,425 mW
+5b8baed4b881 ("arm64: dts: qcom: sc7180: Disable SuperSpeed instances in park mode")
 
-The system also has test points across a 0.005 Ohm sense resistor in
-the DVFS power supply line, but no on-board measurement sensor (like
-the MAX9611 on Salvator-X(S)), so I haven't measured anything
-there yet.
+apply here too?
 
-> Do you know from /sys/kernel/debug/energy_model/
-> the current power values?
-
-With this series applied:
-
-root@ebisu:~# grep -r . /sys/kernel/debug/energy_model/
-/sys/kernel/debug/energy_model/cpu0/ps:1200000/inefficient:0
-/sys/kernel/debug/energy_model/cpu0/ps:1200000/performance:1024
-/sys/kernel/debug/energy_model/cpu0/ps:1200000/cost:3443
-/sys/kernel/debug/energy_model/cpu0/ps:1200000/power:352643
-/sys/kernel/debug/energy_model/cpu0/ps:1200000/frequency:1200000
-/sys/kernel/debug/energy_model/cpu0/ps:1000000/inefficient:1
-/sys/kernel/debug/energy_model/cpu0/ps:1000000/performance:853
-/sys/kernel/debug/energy_model/cpu0/ps:1000000/cost:3445
-/sys/kernel/debug/energy_model/cpu0/ps:1000000/power:293869
-/sys/kernel/debug/energy_model/cpu0/ps:1000000/frequency:1000000
-/sys/kernel/debug/energy_model/cpu0/ps:800000/inefficient:1
-/sys/kernel/debug/energy_model/cpu0/ps:800000/performance:682
-/sys/kernel/debug/energy_model/cpu0/ps:800000/cost:3447
-/sys/kernel/debug/energy_model/cpu0/ps:800000/power:235095
-/sys/kernel/debug/energy_model/cpu0/ps:800000/frequency:800000
-/sys/kernel/debug/energy_model/cpu0/flags:0x3
-/sys/kernel/debug/energy_model/cpu0/cpus:0-1
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Konrad
 
