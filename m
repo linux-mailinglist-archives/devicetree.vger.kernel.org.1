@@ -1,205 +1,278 @@
-Return-Path: <devicetree+bounces-116564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E7979B33FB
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:49:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 036329B3412
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:54:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6729C1C2176A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:49:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25FAF1C215F5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCD081DE2AA;
-	Mon, 28 Oct 2024 14:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BBDC1DE2AF;
+	Mon, 28 Oct 2024 14:54:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jvxL9o2g"
+	dkim=pass (1024-bit key) header.d=kunbus.com header.i=@kunbus.com header.b="TMNjdtQ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2097.outbound.protection.outlook.com [40.107.20.97])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33EEA1DDC3C
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 14:49:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730126959; cv=none; b=SJbh87Kc9aKbQsp/kzYx4+aKUnEQsLNdUb/r+zmU2C8BnQJCQxqHluR+6T+GNKrh6NbSe6PEpj1XRI0p0gifzeT6KsGLXrDprUtmxs0yiTqHj9nTd1CU8O1p+U3cmrHEpwGQj4K/3pQwKY+s/7jZO9NkdoLOP8rUZD4dn0GBQv8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730126959; c=relaxed/simple;
-	bh=Lj5qeQvfVSYPijoJ8KXf22qOzE58rJTQ+nvgoPDQIa4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PrJOlcoZMK1IXaIEILF89d2eTIO7uDBKlAO2aCKd96gmGvn9gctTBKPgfuDhOxseqwlh1o4zYdOaCI1Js1v9ziHqXgUp/FwBTfuZ9Hz+Z1tZrBWGX+qOUMy+c//lwLc532QrpQgevHgfuR9qI5Po0wy3Ujm45wOEHoG1CG59FIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jvxL9o2g; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4314fa33a35so42896915e9.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 07:49:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730126955; x=1730731755; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CaPYz53ew2gx95k4ULY/j8X206olAgthkt9FCNBp5/o=;
-        b=jvxL9o2g2pABUkfB4f9ynx2fp+wRALi7GdU3tQojGKoJ+vAnbnHQLFkXmoXMBS8Sic
-         DEiE2lIE0Zt1FODRMwyvJleyNDuZkWQrpH1MoUYcrQWmdfn4Gr0qdBVKjvF85SntRkJn
-         lrWcRabN3h1OSUJBKRfhfjFHo+Pi3neODDXtRSt51IqQ3UCJXdKxlXnNMup9rEDKOlqf
-         3/PBidkYI2y3J/ITUY/aaC8UKvgUKAQraA+3D/SPdrXeOhpJV/aGZ9evmn4j4Ox1c1vP
-         IofesmOcLvi1kCc3w3mIWrzwz93OVbKWt2tbourwe0Q+BGlpw+DpcJ4Edu+Oe9eK5fdF
-         NOpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730126955; x=1730731755;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CaPYz53ew2gx95k4ULY/j8X206olAgthkt9FCNBp5/o=;
-        b=MUCqKQ8aWTTVbktJj0bSpAlgWt/gXWwoUf9TJ1RZkRkF/cG4gGkywJ2G54O+P9k4ZG
-         q54v9VyjSdnahOlTjRkCwPEjkJQjcPDQNQvpA6qpKuD0Oby7uI8b930QcIqoqGOrv+dD
-         V0Vky9A1ta8wr3NugjsUpNplO6s5Oa+FXE3uGnStaBKPRHw56s89gTNA17yHqzsyt4XQ
-         8/c0mLAuJM142cxZ3TP7FZ+fk6JnzCX2ZCWfaxNREKI1QfFAYUfU4dbmXAiW+llZvQzN
-         FKEiPms8MGhtcz3IWpDJfH3LEQOD2IFYaPF9W71kxmd5i50UfOjwxtIyCaZjptsg5POO
-         RBWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVJmwfwpDUchLYt7ab5seuR2HmNKSlP9o9iId8GkZyIXpuTRe9xB+WQntEtpnohvVcOxI/XVAoMDxNy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyj3wjDMBmrBdbz3Ipip3eJjiwghhC4g+1YBJtaNgpZlAtuVWkS
-	epUATAd2EeLFVzdypD+3EXPU2HphiFubcYOQiKBlVF5Ijmj8o76j6phki2qGxm4=
-X-Google-Smtp-Source: AGHT+IFxXNoJjvvEWI7EdoBlBRxvjVqId7VO2o8bkZtwJXZ2oUgS7llQBk2awnVf3u386gmvAmYDFA==
-X-Received: by 2002:a05:600c:4ec7:b0:431:5459:33c2 with SMTP id 5b1f17b1804b1-4319acacb31mr91712715e9.17.1730126955302;
-        Mon, 28 Oct 2024 07:49:15 -0700 (PDT)
-Received: from localhost ([2001:4091:a245:81f4:9c1b:19fb:62cb:cfc9])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4318b55f689sm142187985e9.16.2024.10.28.07.49.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 07:49:14 -0700 (PDT)
-Date: Mon, 28 Oct 2024 15:49:13 +0100
-From: Markus Schneider-Pargmann <msp@baylibre.com>
-To: Nishanth Menon <nm@ti.com>
-Cc: Tero Kristo <kristo@kernel.org>, 
-	Santosh Shilimkar <ssantosh@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Anand Gadiyar <gadiyar@ti.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>
-Subject: Re: [PATCH v3 2/6] firmware: ti_sci: Partial-IO support
-Message-ID: <7l5ok4bufvewoimrecm5pajlqqmqg75rjthivdufoqhphfgiy5@xo7f3rrdr3zs>
-References: <20241012-topic-am62-partialio-v6-12-b4-v3-0-f7c6c2739681@baylibre.com>
- <20241012-topic-am62-partialio-v6-12-b4-v3-2-f7c6c2739681@baylibre.com>
- <20241025174204.xwmsn2arcy4q63xu@reaction>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1DD61DDA1B;
+	Mon, 28 Oct 2024 14:54:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.97
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730127293; cv=fail; b=iaaTK+ePwWkfEeDLB5U/mly+Zp2iCBdnkIinji1FRYAXMq/z+dztvg0AXJENIgwuLWU3s7cbTFcGiA4JUGAa2QItKG0EUbwU5j2BYHiU/2irTuYWjGQ4dJBeLqHxgON6kvtADYGn6QG1D3PZnrtp/OllD4TTWhN1dr+wa68L1tI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730127293; c=relaxed/simple;
+	bh=+tqpwiIu5qjdc8gQnBCY3PEUcf7rUA9+E3VS/z9dzIs=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=ZIKskl9hXTjfnhrzyMZhqC4RJnuWy+isaa79554OnX4FThkqTAo3PTdwiAdA40W3abHAt/aBK+uGbXOUb6NYivNlUR1uxCs5/Tr9GIUVo/yEr1xT/rOni2uR74ctHvnJtdWDYFVMfae4PaKuxHY8GrMB5srK1n4tJWGHBtREK+o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kunbus.com; spf=pass smtp.mailfrom=kunbus.com; dkim=pass (1024-bit key) header.d=kunbus.com header.i=@kunbus.com header.b=TMNjdtQ2; arc=fail smtp.client-ip=40.107.20.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kunbus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kunbus.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ylOvvg2bAHsHp20zWuLzkV5lhf646M5PYR5gc1CPPMaeVQp4HviOvH+syT46xkReOuz424Y/NmkM3inVQOWtTP93YmH9nbxOwF9UgghSwxnlUS2SZZMKNvFfPjAMVxFGmZLLB1FrUO2TWTf0m7/TNJgpcV2pVF7iqcbDH3MwrS7qys2y8OgrRCYujYeQaM6NLjNOGsmCklpsu+Sh+n93+IB2vanuUnO6H7KReTd1+iQhp8fp9ZOQtViiwEtehOs6qOVraWSDsJEkNGT0RDnrA3+eHVD+BJk5HbRm505sDcbm6DNeqAjmzacYw1E0SSqT+00B/VNzpRLQX3Mo2DyrVA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jmcCMJT6yLxVPwe1FvDRJ9vm8Yhc2Qfa5iILgBiv7go=;
+ b=Nu7N2FFSVfC92UcLqfufXBTbCd+/KZq4jPVrUi1ZixMMeHYkyetjk9CkekNIgL95pBSxrXRDhFMcKt5fEUMgLSgbR08nt5a2SQ5B1KcFufTevDm2FU/O3EZUM7kDOTE3jTm0TwcAOo4SNJD5SN9SFA5sxiQiJhqw2/LynPs5KW4VanQdtPHTdoYO1p2IFF8rUuuo8/LFKeLX6qc8IhAcfzStOskru3jx/v5j0xQ1mic6GGXXfpHEja/QH+H7PdKbgrkmpF/sPNPsVZhAZH08vp01ivwfVEl5+ldE+LFDS9C5dabfOqfiZ++TRPyaZXTNHzg3r3fv92+K5RGRKrQG+Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kunbus.com; dmarc=pass action=none header.from=kunbus.com;
+ dkim=pass header.d=kunbus.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kunbus.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jmcCMJT6yLxVPwe1FvDRJ9vm8Yhc2Qfa5iILgBiv7go=;
+ b=TMNjdtQ27xAJ9Gh2dIRRYKPfYGBB39jdIY7w4ZUAylU95fesWlsz3SvSUyG5N3qCN1ON0yoXzu7P0aBoly1eV+ci6irfj8zib2pi9FjcRFxzDFCY5EFqsw+x/AY90uSK+WfmXyBmMjLFngvhGxP2XMTFvem3Oeu9VpckZUGKD0Y=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kunbus.com;
+Received: from AM0P193MB0738.EURP193.PROD.OUTLOOK.COM (2603:10a6:20b:160::8)
+ by DBAP193MB0970.EURP193.PROD.OUTLOOK.COM (2603:10a6:10:1cf::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.23; Mon, 28 Oct
+ 2024 14:54:45 +0000
+Received: from AM0P193MB0738.EURP193.PROD.OUTLOOK.COM
+ ([fe80::2398:d74:da85:f90]) by AM0P193MB0738.EURP193.PROD.OUTLOOK.COM
+ ([fe80::2398:d74:da85:f90%3]) with mapi id 15.20.8093.024; Mon, 28 Oct 2024
+ 14:54:45 +0000
+Message-ID: <b8c28db1-11b2-498d-a2d8-0302c7081251@kunbus.com>
+Date: Mon, 28 Oct 2024 15:54:43 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: pcf2127: Add
+ nxp,battery-switch-over property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Lino Sanfilippo <l.sanfilippo@kunbus.com>
+References: <20241022092855.1609427-1-p.rosenberger@kunbus.com>
+ <20241022092855.1609427-2-p.rosenberger@kunbus.com>
+ <20241022-radiator-blemish-3819dd4d94e0@spud>
+ <36f46d44-8852-4988-9ff9-5b8bf49e2aa8@kunbus.com>
+ <pj3tgtsdsjsqqznxgzzmxrcozibqie6ubtythou7t23tfgde5w@t6nwxob4rjah>
+Content-Language: en-US
+From: Philipp Rosenberger <p.rosenberger@kunbus.com>
+In-Reply-To: <pj3tgtsdsjsqqznxgzzmxrcozibqie6ubtythou7t23tfgde5w@t6nwxob4rjah>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0003.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:c8::14) To AM0P193MB0738.EURP193.PROD.OUTLOOK.COM
+ (2603:10a6:20b:160::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xq2jo632shlb63xp"
-Content-Disposition: inline
-In-Reply-To: <20241025174204.xwmsn2arcy4q63xu@reaction>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0P193MB0738:EE_|DBAP193MB0970:EE_
+X-MS-Office365-Filtering-Correlation-Id: ce604c3a-e02d-4706-81fa-08dcf7607627
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RVlwMjJlU1VPV1NBWmtZdGpPUWFZaUlSeExCSFczSEdsNUE0a1hKMVNtN0wv?=
+ =?utf-8?B?ZG9JNzZ4N2lTMlZMMFhCaU5GdkhqYjdENjBLME54TTdOc3ZCcUtKREFocXRH?=
+ =?utf-8?B?QUFYSUgrNGJEZy8wVXJ3NFNJdXQ2ckR3MW8rTC9QZzVrVXIxUWhIOXAwTmZO?=
+ =?utf-8?B?RGZHS09lY0owVVJTSGcrU05Tci9kN1RldWhWcGh4RzNBTlFDRm1uMm5ERERE?=
+ =?utf-8?B?WjBCaTBFYWF3T0dVMTRoUTgxUzlTejZNc0lxYXVRV1B2dVFXRG1YSENmU0ZS?=
+ =?utf-8?B?QmFxVDFSUkNzNTR6R0gxc2VxRG9BTE5QRWdXbk05WFZXUXdZa2hTdmFPanN5?=
+ =?utf-8?B?YkpxQTdvTnh2REZHblR3RlJobEpwTEgzMWowQzdoMnBuZmhMazg4TzNDMTNm?=
+ =?utf-8?B?YkRpWS96WUFjUm0rMnR4MlFPdlZOUFdycEdubExReWx5VUk5eUlUYUo2Z0NQ?=
+ =?utf-8?B?ODExa0tWL29aYUVCQitHZFNCa0dLLzFLbitkUm9IUTV2ZXI5aXpVbVBHeDgr?=
+ =?utf-8?B?UkxDemZEVEpYbk1tZEphVGhxUDByL1RoSEY3Ry85VnpQUEpxeEVsd2JobGdo?=
+ =?utf-8?B?dHQ0ajEwTmgzV21KTlA1RFJYQmZNUGtrbyt6c3Y3eTNaSjdMZFFEYXRJUVlm?=
+ =?utf-8?B?WWN2L3FRdjJqUHk3TXdRZFlsQ0d0TmdjZU0vbGNFdTNGTjcySWl4ckRVVTh4?=
+ =?utf-8?B?aEMxanA4WjU3ditNMzBTUVQ0YmFaUk8vcndrQURKV1dwU1hxV0x4RHJxZ21t?=
+ =?utf-8?B?RlEvUzU4SnpXenZFclprcll0em05YlhHZTF5Z2NKUTRGTk9RMjFQYS9LM253?=
+ =?utf-8?B?UFBBQUVMNk5WZGQyWGFUVHM3dUgybVdoRkdRSUlZNHU0bVhyYlBka3dDM0l0?=
+ =?utf-8?B?QVA0SFU0bUQxSDBTdHFUbDlZLzh0a1BGeUlybmd3VGhzM3ZIekJKVnp5N2ll?=
+ =?utf-8?B?SnZnR3VZWWJOblBNUm1QT00wTnlyWFVDbGZTZzE4Q0Rtd2dsVnFsa2hiY1pW?=
+ =?utf-8?B?aVVQcEtBNTlXY3RZcmQ2UnBacXg5VVRxdTBWVFN3ZE5rQ3k0VDBOMGxMeW9i?=
+ =?utf-8?B?Vk4vTy9IMXVrc1owbVZtc3dQbTNqU3pFc0FxOHNDNVY3Qms2ankrNTFnSmZX?=
+ =?utf-8?B?OGJyK3FRUG9ORFpSM2g1V2VHRHBwdHRrZkp3K0xaY1lZSW56SE1TRFJaVzlT?=
+ =?utf-8?B?VFk1T1d5bmx5MDJ1enpjVC9sU3RPVmZtVVJFNHQzUFY2VFFUSDdmeXFEZEZm?=
+ =?utf-8?B?Z0hGRVNRNkZWOGo0VVhSejVvQTlmUHIzbDVtakJpL255NjA3anZZVmhsSG9F?=
+ =?utf-8?B?VU9sK0p3dm90YXFBMFdlcWI0ZjEwdmR5UERLVXJxT0N3THRmdWlab21aU2NO?=
+ =?utf-8?B?aVkvU3NXYXQrLy84dzdINnRLS2RhdFFvRXdSdkg3b0ptYnNJTmo1UjQyc0lI?=
+ =?utf-8?B?M3c1T2NCc0JVNG1UUFNaTFNoZUtrdnpMbS9IM1g2UGdHOXN1eG1WUFNBQzdC?=
+ =?utf-8?B?UTZGYWFaL2UzR0JzdS9RYldLRGJTeVRnVk5VcS9XczFqTXVUTElpVHhlcVZQ?=
+ =?utf-8?B?TWI5eUp4TGY5K2NsUHE2ckxNaVQ0eHZOeW1xMkxBSE54RTNvTG95MEpJamRj?=
+ =?utf-8?B?OVBaZUJraDVrdStiZ0JRSVlZWnlmS1RseHRqVC82RDNQZnNmWU9GakJMQ3ZE?=
+ =?utf-8?B?R3BqaFRNR25mYXpJZ3AwZnhoZzZzeGhzdk1ycktYbGhsYXhTc0p0OWpjRGZN?=
+ =?utf-8?Q?RP41BPLdoNQ1R3qyaOSf7gyZN8DNbLTFD9xA/5w?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0P193MB0738.EURP193.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ZU5vMXk2UlBrdlBncy9kMTJ4V2dvNUpmVjdTQzR6WUNHTDYyKy9xK1lnT1Vr?=
+ =?utf-8?B?NitRRGJ6bmZqVWVTVWhZTnNaNVlnQWVqY2VrL3dFYUlQSHdub1N5dkpzY3E5?=
+ =?utf-8?B?aFljTWFKZUxNRm9DVHpMS1ZpdS9BQ3JrMndGeEMvL3UybEN6aVllN2xURWFG?=
+ =?utf-8?B?Qy9jdVY5ZHhtNkY3dDJES3N1WHhqTllnTlpndVVPYlBmQ0Q2NjgwMWRuVDJm?=
+ =?utf-8?B?VkNNY1ZHOS9jNjFqKzNaWXJtT0NLRnBBb0pUMVk1SHVUbFRyOFhsVldNM1VC?=
+ =?utf-8?B?QTZhVzd3cFhpYlFOZmJKc2dWMFlVVm0zYjJHWUF5VS9vWlRva2NSVEhlSDU0?=
+ =?utf-8?B?VngxTVRJSTg5OWJKU2V3Yk5QMk9hRWdWV2h0c0tZbzBNb0VHZGE5eHBoRko4?=
+ =?utf-8?B?RGVNMFBwdmpCL2xveEExTVBrcE1KbER3T2FqMjNlLzVoWEF5aUVoN0NWNk01?=
+ =?utf-8?B?czR3V2s4MnhIemE3aUk2MFpZQTdpdHFVWlBDT1NvOTFUeitsVUpjOGkvbUlU?=
+ =?utf-8?B?dkR1MDlLY0laazlJMzNHRzZESFloNG1qaXpDbVp3Y2pDRUtEQ014dWM5QSs4?=
+ =?utf-8?B?TG41ejlxb3Y3Q3h4VG1qczVlOXZEV2RQZ3hlS2lOVlpra2dlcVdYUDlyTWUz?=
+ =?utf-8?B?a1ZxNHhva2JDZVUwZlBGMlNPM2hFUzEyTDRZZFQwK3FFRDV6c3hBdkV3cmFJ?=
+ =?utf-8?B?aHpWZ3RzSFExSHN4Lzl6WHNzZ3F3N1EwRGZjdUFHakNqWll6d2ZZUWw3Q21w?=
+ =?utf-8?B?L2ZZemw5cjc3UFBDeHRPMkN5NjVyYTBxRUdCVWkvYUtTZWZGRUxWaFhCSWFq?=
+ =?utf-8?B?WWx1Q2gwYWtFbldpM3haTnVhWUs2RVJHYk1lcXEzY1loODFWRmFtc2VIZHI0?=
+ =?utf-8?B?bXE5TndVMzZGSXM3bW8vUEwrcHVGL05aMGhTbW1sbjNqRjZldWpML3FtWHNK?=
+ =?utf-8?B?NzBxVU51T1QyTHZpNGthWHN5UTl2aTQrOHZGNWdCeExudURTaEJJVExURmdx?=
+ =?utf-8?B?TEtQeEF2ZWFWc1paNUFOUFprYXFCbHVzczdSMGJ2QXhOUnF5Tm1FUFBrYW9I?=
+ =?utf-8?B?KzZXQTloaDBCdTRieXhRY1VUazZmL3NzZnNtNlAyYk9MMzJqNWJZWVFCRng3?=
+ =?utf-8?B?MVNiV3NpZFI0cEUrR3dkSWxYU3JCSVgxamFsMjNDbG9EMHNEOXE0anNLdWtL?=
+ =?utf-8?B?c2tGcHZNcEUvVTBlMjVmeGlOcHk5NVRuejYzRlpIa0VlOEhYVDBsRnZ1VFZ6?=
+ =?utf-8?B?ZTI4dlkyWjVBQm9HUnpoZkgvenI2Z09ReHB1YjJaQWgzNEdYcFp0amNWSUZu?=
+ =?utf-8?B?QVF4WlBTNjdoRGxVU3MzR0luS25tczczNG5MRDVNVXlkV0tFMnIyelRuQXNW?=
+ =?utf-8?B?NHFWR1IwZUF4dE5jaGVKZWFmUDhORFd4RG9lRVhJTFdlaUpmVERCV2xtNkJw?=
+ =?utf-8?B?NEw3ZWltamlyR25Dd0hya3pDck80Q0FWaGdMNlM2b0lFZDAwVTRaM3hjaFVr?=
+ =?utf-8?B?S21hQk04dlFYN1grL0FNV3ZiQ0VPT2V6SlpSaVNLUkx6K09neVpJZmRSTFVa?=
+ =?utf-8?B?L2Y2dE1SNGlrckFlN1lHM1JoN1dZL3ZSNjd4eUlER3RRbTljV0NQVk9nT0hW?=
+ =?utf-8?B?U2VNZUxvUGg1NUh2RjFOOTIvWXZPdkZXWTU4OStxODBVWWRITUV3MlJkdDBX?=
+ =?utf-8?B?WDdpbStvRmZDYkMxeDFpcWQzOTd1QUI4a2ZueTVVaXdIdno0VVRqOVp0Z0ZZ?=
+ =?utf-8?B?b1YrODAzYnZvdlZhazQ4QkpidTdTUVMrU2tRNmtyNFJ5dUo1azVBMDI3LzA4?=
+ =?utf-8?B?dU84eGtIcllLWjRBUndXak90MHBHWUc5SVhEaDNKbWdBMGo3YzdjUkJPUnY5?=
+ =?utf-8?B?TEFDZkRiUURNbmpTdFVJVUNyek5Qa1M3Nzg3K2pHVTM1czJNUmIxN2ZTVkxk?=
+ =?utf-8?B?K0dQODJsUFdVMjhuelRRU2lISGM5U0tVRVVnRDZGSXhWbXZGMlVNeTlIbnNm?=
+ =?utf-8?B?ZS9nL3pkSDdwdXE2ZVZSMmdTOXpzM3krN3lvcmwvNTRKZC96Ny81V3Q5amdq?=
+ =?utf-8?B?c0NQZVpCVGFQUWZoZ1NJSXJwRHJpbkxmQWw4VnA5bkxtNWFueTNtbjVLS3NB?=
+ =?utf-8?B?ei9mZUJId2dPWEt5ZTQxOHF3d2hXUG05QjR1RHZLY2FTdWRLaWtLMjEvTkpI?=
+ =?utf-8?B?VXc9PQ==?=
+X-OriginatorOrg: kunbus.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ce604c3a-e02d-4706-81fa-08dcf7607627
+X-MS-Exchange-CrossTenant-AuthSource: AM0P193MB0738.EURP193.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2024 14:54:45.2242
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: aaa4d814-e659-4b0a-9698-1c671f11520b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RnnCjoqQkGBB8leYiVhj6ghyvjErlFNv6pvwhCoMGbr68SW1lU7Tj+pSQYmfk3SZ0KbtRHU+RF3bnH0lrdHutn9FBxRuLsBKVsbjMJaFxCc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAP193MB0970
 
+On 24.10.24 09:25, Krzysztof Kozlowski wrote:
+> On Thu, Oct 24, 2024 at 09:11:04AM +0200, Philipp Rosenberger wrote:
+>> On 22.10.24 18:35, Conor Dooley wrote:
+>>> On Tue, Oct 22, 2024 at 11:28:54AM +0200, Philipp Rosenberger wrote:
+>>>> The nxp,battery-switch-over property is used to control the switch-over,
+>>>> battery low detection and extra power fail detection functions.
+>>>>
+>>>> The PCF2131 has a different default value for the PWRMNG bits. It is set
+>>>> to 0x7: battery switch-over function is disabled, only one power supply
+>>>> (VDD); battery low detection function is disabled.
+>>>> This is the opposite of the default of the PCF2127/PCA2129 and PCF2129.
+>>>> With the nxp,battery-switch-over the behavior can be controlled through
+>>>> the device tree.
+>>>>
+>>>> Signed-off-by: Philipp Rosenberger <p.rosenberger@kunbus.com>
+>>>> ---
+>>>>    Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml | 10 ++++++++++
+>>>>    1 file changed, 10 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+>>>> index 2d9fe5a75b06..5739c3e371e7 100644
+>>>> --- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+>>>> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+>>>> @@ -30,6 +30,16 @@ properties:
+>>>>      reset-source: true
+>>>> +  nxp,battery-switch-over:
+>>>> +    description:
+>>>> +      Battery and power related configuration. This property is used to set the
+>>>> +      PWRMNG bits of the Control_3 register to control the battery switch-over,
+>>>> +      battery low detection and extra power fail detection functions.
+>>>> +      The actual supported functions depend on the device capabilities.
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint8
+>>>> +    minimum: 0
+>>>> +    maximum: 7
+>>>
+>>> Beyond the fact that I dislike register-content properties like this, where
+>>> it is not possible to grok the meaning by reading the property, what
+>>
+>> Yes, I'm not satisfied with this solution myself.
+>> There are three different functions, which can be configured in the
+>> register:
+>> - battery switch-over mode: standard; direct; disabled
+>> - battery low detection: enabled; disabled
+>> - extra power fail detection: enabled; disabled
+>>
+>> I'm not sure what a proper way is to implement this in the devicetree.
+>>
+>>> even makes this suitable for DT in the first place? Reading the commit
+>>> message this sounds like software policy, and that different users of
+>>> the same board might want to configure these register bits in different
+>>> ways.
+>>
+>> It is less a software policy, but a configuration how the hardware is
+>> implemented. If the device has no battery, it is possible to disable the
+>> battery switch-over function. In this case the V_BAT must be connected to
+>> ground.
+> 
+> monitored-battery property already tells you this.
 
---xq2jo632shlb63xp
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+If I understand this correctly, the monitored-battery property is meant 
+for rechargeable batteries, not for a simple button cell to back up an RTC.
 
-Hi Nishanth,
+> 
+>> If a battery is connected, the battery switchover will only work if the
+>> battery switch-over function is in standard mode or direct switching mode.
+>> Until now the driver has just ignored the PWRMNG bits. As the default was
+>> battery switching in standard mode. Thus all use cases worked good enough.
+>> Battery switching was working if a battery was connected. If no battery was
+>> connected it did no real harm (the rtc may have used a tiny bit more power
+>> then needed, I guess).
+> 
+> Why driver cannot use standard mode always? Or other way?
 
-On Fri, Oct 25, 2024 at 12:42:04PM GMT, Nishanth Menon wrote:
-> On 16:39-20241012, Markus Schneider-Pargmann wrote:
-> [...]
-> >=20
-> > The possible wakeup devices are found by checking which devices are
-> > powered by the regulator supplying the "vddshv_canuart" line. These are
-> > considered possible wakeup sources. Only wakeup sources that are
-> > actually enabled by the user will be considered as a an active wakeup
-> > source. If none of the wakeup sources are enabled the system will do a
-> > normal poweroff. If at least one wakeup source is enabled it will
-> > instead send a TI_SCI_MSG_PREPARE_SLEEP message from the sys_off
-> > handler. Sending this message will result in an immediate shutdown of
-> > the system. No execution is expected after this point. The code will
-> > wait for 5s and do an emergency_restart afterwards if Partial-IO wasn't
-> > entered at that point.
-> >=20
-> [...]
->=20
-> > +static bool tisci_canuart_wakeup_enabled(struct ti_sci_info *info)
-> > +{
-> > +	static const char canuart_name[] =3D "vddshv_canuart";
-> > +	struct device_node *wakeup_node =3D NULL;
-> > +
-> > +	for (wakeup_node =3D of_find_node_with_property(NULL, "vio-supply");
-> > +	     wakeup_node;
-> > +	     wakeup_node =3D of_find_node_with_property(wakeup_node, "vio-sup=
-ply")) {
-> > +		struct device_node *supply_node;
-> > +		const char *supply_name;
-> > +		struct platform_device *pdev;
-> > +		int ret;
-> > +
-> > +		supply_node =3D of_parse_phandle(wakeup_node, "vio-supply", 0);
-> > +		if (!supply_node)
-> > +			continue;
-> > +
-> > +		ret =3D of_property_read_string(supply_node, "regulator-name", &supp=
-ly_name);
-> > +		of_node_put(supply_node);
-> > +		if (ret) {
-> > +			dev_warn(info->dev, "Failed to parse vio-supply phandle at %pOF %d\=
-n",
-> > +				 wakeup_node, ret);
-> > +			continue;
-> > +		}
-> > +
-> > +		if (strncmp(canuart_name, supply_name, strlen(canuart_name)))
-> > +			continue;
-> > +
-> > +		pdev =3D of_find_device_by_node(wakeup_node);
-> > +		if (!pdev)
-> > +			continue;
-> > +
-> > +		if (device_may_wakeup(&pdev->dev)) {
-> > +			dev_dbg(info->dev, "%pOF identified as wakeup source for Partial-IO=
-\n",
-> > +				wakeup_node);
-> > +			put_device(&pdev->dev);
-> > +			of_node_put(wakeup_node);
-> > +			return true;
-> > +		}
-> > +		put_device(&pdev->dev);
-> > +	}
-> > +
-> > +	return false;
-> > +}
-> > +
->=20
-> What is the binding that supports this? I just do not think that
-> scanning the entire tree for vio-supply implies you will get thr right
-> property here.
->=20
-> Just giving an example to illustrate this point:
-> Documentation/devicetree/bindings/net/wireless/ti,wl1251.txt says it
-> needs vio-supply -> so i have a node with the wireless supply as
-> vio-supply -> Since we are scanning from NULL for vio-supply, we hit
-> that, that is a bad choice for enabling io-retention.
+This would overwrite any configuration set by a bootloader/firmware. For 
+the older chips (pre PCF2131) this was no problem. As the reset default, 
+was "battery switch-over in standard mode". The driver just left the 
+whole battery switch-over configuration untouched.
+If we decide to change the battery switch-over configuration 
+unconditionally, this could overwrite any third-party configuration.
 
-There is no bining that specifically supports this as I think it is not
-needed. The devices that are capable to wakeup the system from
-Partial-IO are all powered through one supply line that is always-on. It
-is called 'vddshv_canuart' and the name of this supply is checked
-in the above code as well. Yes I am using 'vio-supply', but only to
-search for the potential consumers of this supply.
-So wl1251 will be skipped in above code at
+>> With the new PCF2131 the default has changed to battery switch-over
+>> disabled. Now even with a battery attached, the rtc will lose time after a
+>> power cycle.
+>> I guess I should describe this better in the commit message.
+> 
+> In any case this is pcf2131 related, right? So compatible implies it.
 
-  if (strncmp(canuart_name, supply_name, strlen(canuart_name)))
+The reason, why this property is necessary for our devices is the new 
+PCF2131. But the function is not limited to this device.
 
-Best
-Markus
+I’m considering simplifying this to just a property that informs the 
+driver that a backup battery is available. If the property is available, 
+the driver will enable the battery switch-over function; otherwise, it 
+will not touch the configuration.
 
---xq2jo632shlb63xp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTd8KHufh7XoFiu4kEkjLTi1BWuPwUCZx+kYwAKCRAkjLTi1BWu
-P5akAPkBBA8XP72OHJ8p/zMDU3gXL2huEO4vEwmxe1IyxQoJxgD+JMD6nnbu+xSY
-BpaZm8rb1PNiiWmGX4Nzl30WM0rIrQM=
-=ak4k
------END PGP SIGNATURE-----
-
---xq2jo632shlb63xp--
+Best regards,
+Philipp
 
