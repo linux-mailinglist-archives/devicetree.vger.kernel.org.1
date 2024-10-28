@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-116353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4489B2A3A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:28:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5918D9B2A3E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:29:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C06A6282831
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:28:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 188DB2829C1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:29:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2794B1922F0;
-	Mon, 28 Oct 2024 08:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3714A192B8F;
+	Mon, 28 Oct 2024 08:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="ebdtlP9V"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="nrl8l10x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 127351A00FE
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 08:27:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37813191F88
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 08:28:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730104079; cv=none; b=PJX2anG9lsZEATj5x6ptY03avaH5U22jP7aF5jCQjLdAIqdhyWoZ7YI77UyUhSo4YvCKFeNTS6RN2CooxNO+oBXRaWMlLqjn0mmQ7y8pGrc0nt4mvlId8mgPsuSfUmvVDt0b/MM6OjEZyf+R5pVL5fCb5JpBKQLTeMZDN5rScDc=
+	t=1730104098; cv=none; b=pR75m3q0WXyd5KAlC76GWPU8Rc22aLhhG7cAimwFaVektkQ2uUMwn6NlAY1fSvx5lcS/sbLtYeJKG4KElAMp8o3RholnFHHugopY30j6S4xhGsgc1Dm/UcaBP2KtA1+OX0RsCwGYfssnx4A1ztyCHjno+vmHx0S75XMqQh4Gers=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730104079; c=relaxed/simple;
-	bh=HDqZu8uxgmXtRzu66gskW5so05dlOyOY3GbK8gYbC3c=;
+	s=arc-20240116; t=1730104098; c=relaxed/simple;
+	bh=0pfJecxT1M0oO1SppP48VH3pXQdKQ2tBolbB4llt/iA=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=N5qJJogMKbjIKLSyM93PZPtJ/gFQ9sN3+3KYH+/cB1CkQCxEwh33tinj/LR868c9zlGwfoejSZmzQ7nYAZtaCeKgu9a7RlXSmeC7EdRuR8O9TanXudMsgnYvQU/MRKtTDGIjAFNfX1IxhrQVcwLInilB4dACa4B7CSUccLrXH+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=ebdtlP9V; arc=none smtp.client-ip=209.85.215.169
+	 MIME-Version; b=rLfntQZQl6Py+2PIgwnrnZI2odHJpjTWl4k9ESNpDQlROnW1YQK9OQDdZK6ivM+7OaGU8Gb7E1cUhyxzmRyBwe3tG/T9FWKEYtX1cj1TU5uneOsLkzffGn4vdCVziymVouehQwIJ/YA+mjSb7EZbOGv11YtenbQyQdHIAVQ3eIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=nrl8l10x; arc=none smtp.client-ip=209.85.210.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-7edb6879196so2420871a12.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 01:27:56 -0700 (PDT)
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-7206304f93aso1527861b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 01:28:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1730104076; x=1730708876; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1730104095; x=1730708895; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=48dfn7mu6W2OgtVA3beq5tOxjI4KGJ1Pme7qMOmIz6I=;
-        b=ebdtlP9VsYqp+6C1Hi/b/CFDfYShYA5cTXQlblGx3tB+bnzSbCtTA44Rd449SrYeGu
-         CwFwlD3dGI6afkQdMbCZvHEjKBHTSS1seKkDzTFknbc6DKikHnADJNUfE/whTfCZ9jUg
-         nSMal4kMfaoDoVgxkEORQO+FB1vJMUEN/YwQirNf2BypCMi/8XjuIGRVOsHCvtp3vCXw
-         Hy3TxkUPf5mUgFKhMbxyRhLLBDko+1zUOXbEw6QRYnPWgCQDQ/JEt4Kq2J79+G9jHDic
-         D2LY4jdv03oHTzmj9U1RNalxYXKglRke3DP16M1Remxc/9+zTzX7r4a0izorDimSNc71
-         v0Qg==
+        bh=HqXCN/PxPQRRYnCXep+m11qCzkhu9vZNihUxCEwHTfg=;
+        b=nrl8l10xCePPHGK7aVKUvrQSzTa57nMNiB/pqakWZDF6v/Qf3SQGsS5cwbgHwldbgx
+         US3Q+iW3MBgwaw2aT/j1zqNj5tQZAx4ccoBK5hZxFLP3l5G/B7/l/uFvZfx700v3zUL7
+         rtNk3rxX3IV1ClmPmpzp3LHLRYAuV9aGF6rn9v558PXH/hG1ba1RBjkiruEZRd44gJKF
+         X2670mZpDlibtcb0mWQpCwkSy84qjSr1x+pgcxthUgG6H/ARKGyNavYot1vHSgDbtITn
+         TfO0QWcTf1ws58aoYqPBlUflAnjn5RjHymzEphvDkHjOf/+H/5bTajqU5KcRGE/MRXD7
+         XO7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730104076; x=1730708876;
+        d=1e100.net; s=20230601; t=1730104095; x=1730708895;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=48dfn7mu6W2OgtVA3beq5tOxjI4KGJ1Pme7qMOmIz6I=;
-        b=tCuyKh9eaN4Vki5PmEoIHFFvGh/bieO3r96A3wEHW7J5zZwc/Nx5lZob0L8Ou/f3G5
-         x6AHfIyW7eZOojgnTLZkifFCb32mRwGoL/5h+ef9qhRA7voHj29wYGzkJQfWj2uW4ksP
-         jWMnQlsXzFsnjGNw243s6aAb1K1xNQw7kFTGji2GTI/EIWQqCqnhnrYIm0wEeGCEtOjb
-         CGNDS5WLvT+8F+I1XwJ/EQn4csRTSSdu0EaqCjyEbacRDLNSb23RQes2Wx7WhoQGy+4q
-         DWU0htpDLYK2mHG1g7kWK9lppSQ/o/qf8bEnZIiUUpslw1JLlwJTfSxhPZcpCsIIEt+c
-         yC9g==
-X-Forwarded-Encrypted: i=1; AJvYcCW5J9sZBkntB2nd44wbrw6WVDvJfdHu2R9fNqAaRmOV2gnDO7oK8zuyQGU550VaFr58XKCtIu26QYRu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzumevvVKQdf1O8evifddLUcuoFJvl0Q4OPPWzv6ViV4Bdq1uiJ
-	lCuYuWa9ncs1quqYY1rzI+uAXAUcdJ8mwvRRvHKiLpUofBRmqVrw9xcLAkedKyQ=
-X-Google-Smtp-Source: AGHT+IE8wn9dwa54k3OBS56nEWQqTVNnYe9nbyioaN5RXlYbjJE50o6vpy5ntxzVz9U0L90dN0x4Gg==
-X-Received: by 2002:a05:6a20:d809:b0:1d9:2659:5db1 with SMTP id adf61e73a8af0-1d9a83da862mr10079042637.19.1730104076321;
-        Mon, 28 Oct 2024 01:27:56 -0700 (PDT)
+        bh=HqXCN/PxPQRRYnCXep+m11qCzkhu9vZNihUxCEwHTfg=;
+        b=tGfiirBOZ//balArPzzEk++W/GEyGnEXsIsWAwZM8NqpDdDmS+lHec9E7RB6hcwGE1
+         mTFVfb1rbEZX1ciBkiov9448wTzYFl2tTXx5PgmJlfRdqi6l3ZFBF48eK1RcedDXLEji
+         xrj5DSa5vNXRgFLNHEnmMAIZqOUcu+OfJv+L5Wc+GKxpwT6+IPrTwvd5gQ8LfQ/GHstu
+         2vgzZZeeaUnIcqoTP4gZmY8sWGVJIYJko0+YmPGZlSNZjfvbcy2FRPejRQ2oRHqlyIn6
+         AH0ot86cSadkCmxDQpF2UqWwSRTvPbNOXOtdYV9fQlvNtAvvutRJ/9Px818v1LBTw/SV
+         uYvg==
+X-Forwarded-Encrypted: i=1; AJvYcCVv7sNu355ZLphzh4TAWMfz/ZUVu2mYB7eveEWGKlMDo0lW04Stdr05oq2Yu5DKYVjVslLW0tGy0q78@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmOCY56exqxUo/flNh68FSYE5dV9+t1Q1b+HPMPli9KqSY9bvu
+	vU8Ew4OxbzCGXehTLC4Ch3yywM89mGFA+4dvrZzIWY3U+xVysVNLney/TYzIlGs=
+X-Google-Smtp-Source: AGHT+IHZq0hWR04lWWSn4VEvShFoeXQ4WUdujwmai4DH9ODyeYFBL8qZVtGaYzDQnQwGj4MtLa5Yhw==
+X-Received: by 2002:a05:6a00:84a:b0:71e:3eed:95c9 with SMTP id d2e1a72fcca58-7206306d443mr9996199b3a.22.1730104095411;
+        Mon, 28 Oct 2024 01:28:15 -0700 (PDT)
 Received: from localhost.localdomain ([2a11:3:200::401b])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7205791e451sm5195419b3a.24.2024.10.28.01.27.39
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7205791e451sm5195419b3a.24.2024.10.28.01.28.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 01:27:56 -0700 (PDT)
+        Mon, 28 Oct 2024 01:28:15 -0700 (PDT)
 From: Guodong Xu <guodong@riscstar.com>
 To: Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -91,11 +91,11 @@ Cc: Paul Walmsley <paul.walmsley@sifive.com>,
 	devicetree@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Guodong Xu <guodong@riscstar.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Subject: [PATCH v7 2/5] riscv: dts: starfive: jh7110-common: move usb0 config to board dts
-Date: Mon, 28 Oct 2024 16:25:50 +0800
-Message-Id: <20241028082553.1989797-3-guodong@riscstar.com>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Guodong Xu <guodong@riscstar.com>
+Subject: [PATCH v7 3/5] dt-bindings: vendor: add deepcomputing
+Date: Mon, 28 Oct 2024 16:25:51 +0800
+Message-Id: <20241028082553.1989797-4-guodong@riscstar.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241028082553.1989797-1-guodong@riscstar.com>
 References: <20241028082553.1989797-1-guodong@riscstar.com>
@@ -107,82 +107,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The JH7110 USB0 can operate as a dual-role USB device.  Different
-boards can have different configuration.
+From: Sandie Cao <sandie.cao@deepcomputing.io>
 
-For all current boards this device operates in peripheral mode, but
-on a new board this operates in host mode.  This property will no
-longer be common, so define the "dr_mode" property in the board files
-rather than in the common DTSI file.
+Add "deepcomputing" to the Devicetree Vendor Prefix Registry.
 
+Signed-off-by: Sandie Cao <sandie.cao@deepcomputing.io>
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+[elder@riscstar.com: revised the description]
 Signed-off-by: Alex Elder <elder@riscstar.com>
 Signed-off-by: Guodong Xu <guodong@riscstar.com>
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 ---
-v7: Add Emil's Reviewed-by
-v6: New patch
+v7: No change
+v6: No change
+v5: Removed extra "From:" line in the commit message
+v4: Updated description
+v3: Add Krzysztof's Ack
+v2: Add deepcomputing into Vendor Prefix Registery
 
- arch/riscv/boot/dts/starfive/jh7110-common.dtsi              | 5 -----
- arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts           | 5 +++++
- arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts        | 5 +++++
- .../boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi      | 5 +++++
- 4 files changed, 15 insertions(+), 5 deletions(-)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-index 9e77f79ec162..87ea81e9fed4 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-@@ -637,11 +637,6 @@ &uart0 {
- 	status = "okay";
- };
- 
--&usb0 {
--	dr_mode = "peripheral";
--	status = "okay";
--};
--
- &U74_1 {
- 	cpu-supply = <&vdd_cpu>;
- };
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-index 66ad3eb2fd66..0d248b671d4b 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-+++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-@@ -52,3 +52,8 @@ &pwmdac {
- &spi0 {
- 	status = "okay";
- };
-+
-+&usb0 {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-index dbc8612b8464..d5180c67ac55 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-+++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-@@ -80,3 +80,8 @@ &pwmdac {
- &spi0 {
- 	status = "okay";
- };
-+
-+&usb0 {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index ef93a394bb2f..5f14afb2c24d 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -60,3 +60,8 @@ &pwmdac {
- &spi0 {
- 	status = "okay";
- };
-+
-+&usb0 {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index b320a39de7fe..f8bb3df65797 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -356,6 +356,8 @@ patternProperties:
+     description: DataImage, Inc.
+   "^davicom,.*":
+     description: DAVICOM Semiconductor, Inc.
++  "^deepcomputing,.*":
++    description: DeepComputing (HK) Limited
+   "^dell,.*":
+     description: Dell Inc.
+   "^delta,.*":
 -- 
 2.34.1
 
