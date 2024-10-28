@@ -1,197 +1,279 @@
-Return-Path: <devicetree+bounces-116515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E60E99B321D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:47:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D119B323D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:54:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F3E4B22C23
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:47:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A20F1C21AB1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:54:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4D131D88B1;
-	Mon, 28 Oct 2024 13:47:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD31A1DC06D;
+	Mon, 28 Oct 2024 13:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PPQ9SFnX"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="qdLA6Oiz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB021D54CF;
-	Mon, 28 Oct 2024 13:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD8761DBB36;
+	Mon, 28 Oct 2024 13:54:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730123238; cv=none; b=j0YrSjrR0FoWC7FcOhnYysZvZGzL+jGL3oRihvYPIgDCeHe5OfnhqbLnQG6So6wnH4FgztFhA+BE91zuGr6kCRFarCk+1CRadHyCBI1qlAWJJNYupa22xU8Vrs/GDutCPDuCkQT6gEFF6BF+WAj/70oHUKoLVJ/LUTvWyA280vA=
+	t=1730123667; cv=none; b=kcB65mYHA/z4legWR4YXBioeTnXm9zZpQB2nP6UpVKuHsYawZnsY10prWuAWdHsh7DcIhXYe1ugY3MGfz0dRsDoN6GF92Wri0nOl84/m8WEAI4HVFYfk7u45YvktengSmOsCJ44XGIJRks05t7d7r0HZoDHlgIwoVlRHrxUMAb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730123238; c=relaxed/simple;
-	bh=8s/mZf1L6/y/OYJYKbZFRk1Snr0ZeY+NM9BdafdPHs0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=rXYCLIig3MCEVg8MStRa/fTzk7zuhUwRHLBKqYfiKNUNFEJXJKoa0onnmkBUsWhliAHgkB+18yZjYjXgRtO876HPC1YMlgjR90d+BI/+cOu+ih5nliCkgCB+wr0oN/pc6WJmyWG4yV2Zayyac7ocry5z7hDiEloHuZTafDPrq2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PPQ9SFnX; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4315839a7c9so45392175e9.3;
-        Mon, 28 Oct 2024 06:47:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730123235; x=1730728035; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ZsxyqRGblyfBnN2T5zskhfYxekR5jpDhOYENtex4m50=;
-        b=PPQ9SFnXbareFKF3M4CZDlBTAdAS/DElFpC/dyq6SLKwU5YWm0SkO84o/kUdUNiPWs
-         S+oQEZpJ4JEtBIR7l87G2nmWb8r7ejLboxnghRcG1Fi/19oQU14EcEan4oeZUhcI0XFF
-         Gs/ckpha98z8YsiwWMbrwuXFIBnPgzZ7UioPGv2duwYS+WH7V8wkrO1J5oHEYIHO39IF
-         X+iEOgrvATcsR7lxKT5KujNQMB24vWAU9x6pb/BhRQopJ6ePsA+Rm68Mraej2JOSxO5h
-         vfsK9WN+hMmK5Wp2QaU5p3N7ZxrJMF5A8ieolJKDPkPlT14mFYvzrYqAICjIiXZ6UjK8
-         Z2NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730123235; x=1730728035;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZsxyqRGblyfBnN2T5zskhfYxekR5jpDhOYENtex4m50=;
-        b=dtXiWSxqE+RZ1n+rzLoTfjQncjuQvUInTCCVzZDNILao7tiCNE8iWeSQA9MOy03oWc
-         5ZMsO1dgIQGrif3aTyf/NK7qFk5BducsSyqjozOI/28tbB2Ppt3IbeFD3RDCL4rqHpmo
-         EO3H+XEBTcp6zu4/49NDYBHpO/e5peQJ9AgvcT2ODGOl2ZFxbiHlJkw4K7TClataxOqW
-         rjiqovTTHCQhFVolKaxAbe3pLr+saK4X/gPp+P82nCaxckSnPZcsSKzpfE/7JHtqRhlS
-         1abdc2KLj2IXEzfEoJz5dRYAIXppLWdtCuGMuhrOZ+8Ni2FiDVkcSYUmk1qBBH04dWoB
-         ZIhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU/VkfOSuMmf7jRNGIM8b4fh9pNfMlxTempikSITs4I4eksq8UNjUxDVO4HRyNjX9CHBvWd3D9+P6Tv@vger.kernel.org, AJvYcCVRFzRPq1VLBylw5WJu6es0Aeo1WCqEk69nT9hQXMnx4hN91DYTFgO2gtzJJfBb3AKMsB6/fNnglwR2@vger.kernel.org, AJvYcCVw3cQn4UKvrTasTfwC8nzzTynCXAt1KoL1vD7m8UWiBEKxsQPpSseW8gHsMU90ySd8Ld3k3k9dSrrc@vger.kernel.org, AJvYcCWNrJXIb6ViU7PosioOrk0niP7jF9SocMTp1SWIy5OOmzz38NaqVsHiiXxjWtzGjNLAvR/eslSc14Kz@vger.kernel.org, AJvYcCXG1MH511Jk4M/3Q15K8CIUcsbkgmKt7FRuMkrvgRogx1s9LE8jXvjrQi+OPjzolrWmUYuP8X0+UXxrEMAV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzbx63+zffjH7fUPWQkqAKhuAvrYGAXoTf3VmZ2jB1kSOR0Fck3
-	VuuHC6ekpMcUkb0cyEKESleW/HFaiSsv3s3eoleHFtCEtKh3d4l+
-X-Google-Smtp-Source: AGHT+IEaMnX9f99M5juFDdQtCZlSuDbzfix/UTewKGazKULpgnC6R/ClJ2JcKzAb86RtdywHgYeaMQ==
-X-Received: by 2002:a05:600c:4694:b0:42c:b7f9:4bbd with SMTP id 5b1f17b1804b1-4319ad0aefbmr82631875e9.26.1730123234546;
-        Mon, 28 Oct 2024 06:47:14 -0700 (PDT)
-Received: from ?IPv6:2001:a61:34c9:ea01:14b4:7ed9:5135:9381? ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058bb1bc3sm9429291f8f.110.2024.10.28.06.47.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 06:47:14 -0700 (PDT)
-Message-ID: <3c37f4bf94e0e85c9ecea93b487b7e49a81096a1.camel@gmail.com>
-Subject: Re: [PATCH RFC v4 06/15] spi: offload-trigger: add PWM trigger
- driver
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen
-	 <lars@metafoo.de>, David Jander <david@protonic.nl>, Martin Sperl
-	 <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
-Date: Mon, 28 Oct 2024 14:47:13 +0100
-In-Reply-To: <85184d56-b0c5-449a-9b69-cd141b186d6f@baylibre.com>
-References: 
-	<20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
-	 <20241023-dlech-mainline-spi-engine-offload-2-v4-6-f8125b99f5a1@baylibre.com>
-	 <b47e7168a58e840f65c1ef150c914c077905fabf.camel@gmail.com>
-	 <85184d56-b0c5-449a-9b69-cd141b186d6f@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
+	s=arc-20240116; t=1730123667; c=relaxed/simple;
+	bh=H99f3p4qX9EVaxdGuMBSaEz3ekUYdlAtzwtoUDwYR1o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hHv5FOwwVysV9WvNXo7u6z6rsqd2z+oBFMbxqiZpVYxLCcPDJiHb7e0jw6I7xoqm/qKW0AXnhvr9neHrfO6Kyw6uxi1skdjjhVhS3lYpcuP6HGKvr2XxgDqmjPA/NP6RneTMel+5pAJjZT/gdZPH4VIcQ+4zri0KeNb7TswsEHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=qdLA6Oiz; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [192.168.1.107] (89-186-114-4.pool.digikabel.hu [89.186.114.4])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: hs@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 44FAA89096;
+	Mon, 28 Oct 2024 14:54:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1730123663;
+	bh=MxSnneJC/TTer2gSb39YhX53sQyQGUnhBsNeZfoSnaU=;
+	h=Date:Subject:To:Cc:References:From:Reply-To:In-Reply-To:From;
+	b=qdLA6OizJoTdRst0oJmWGXoOm5yswhuwjs9ms5U/tziZEcxVqUwVjdmQtZ9lI4aZN
+	 bjGLYYd3ZPgLOkkOblS26Hct68M5QGLAMDm1BMn8VsIAE82GL5dVItu7vezWsT+gGg
+	 MOR9q0SqVIIXAYIMNmbnboeAnmVFhW5cUsBqfSqyHc6SsGG0gCISZJBVkE8WkRjXod
+	 pou+P8CBGQSeQksqylzh7sabKIPOgugrHEOIZ+U+fs43F1vTlt6fFIo29SFsDVER9h
+	 LxVZjNecC0UhWrLWj+7Rwn6zGQTD6hQWZdyMT/NnE1+lnRKYIT4GQN6IIn7trii1xD
+	 NWgNUK5QptGWw==
+Message-ID: <5aa9265e-4e93-b221-2cf4-8344b8a0a4b3@denx.de>
+Date: Mon, 28 Oct 2024 14:52:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH v1 2/2] arm64: dts: imx8mp: add aristainetos3 board
+ support
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20241028082332.21672-1-hs@denx.de>
+ <20241028082332.21672-3-hs@denx.de>
+ <f4150aa3-4c0e-45fa-9c9c-879ac04c4364@kernel.org>
+ <bf2c81e1-4e97-cfa2-326f-0a6125b2cff9@denx.de>
+ <fd4fffb3-44d3-4efb-8c74-4d94e1f26298@kernel.org>
+ <1c21a636-5778-03c0-85b0-a4b3710b8f3d@denx.de>
+ <0b3ea279-bdbd-4608-94d8-5f53fdd12024@kernel.org>
+From: Heiko Schocher <hs@denx.de>
+Reply-To: hs@denx.de
+In-Reply-To: <0b3ea279-bdbd-4608-94d8-5f53fdd12024@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Fri, 2024-10-25 at 11:28 -0500, David Lechner wrote:
-> On 10/25/24 7:07 AM, Nuno S=C3=A1 wrote:
-> > Hi David,
-> >=20
-> > Looks mostly good... Just one minor comments from me.
-> >=20
-> > On Wed, 2024-10-23 at 15:59 -0500, David Lechner wrote:
-> > > Add a new driver for a generic PWM trigger for SPI offloads.
-> > >=20
-> > > Signed-off-by: David Lechner <dlechner@baylibre.com>
-> > > ---
-> > >=20
->=20
-> ...
->=20
-> > > +static bool spi_offload_trigger_pwm_match(void *priv,
-> > > +					=C2=A0 enum spi_offload_trigger_type type,
-> > > +					=C2=A0 u64 *args, u32 nargs)
-> > > +{
-> > > +	if (nargs)
-> > > +		return false;
-> > > +
-> > > +	return type =3D=3D SPI_OFFLOAD_TRIGGER_PERIODIC;
-> >=20
-> > Hmm will we ever be in a place where a trigger provide might have multi=
-ple types?
-> > If
-> > so, then I'm mostly fine with this match() callback. But we could still=
- avoid it
-> > if
-> > we use a bitmask for trigger types and having any trigger provider to g=
-ive the
-> > supported types. Then the core could pretty much do the match between t=
-he
-> > requested
-> > trigger type and what the provider supports.
->=20
-> We will still need some callback though to handle drivers that use
-> phandle args.
+Hello Krzysztof,
 
-Hmmm true.
->=20
-> >=20
-> > > +}
-> > > +
-> > > +static int spi_offload_trigger_pwm_validate(void *priv,
-> > > +					=C2=A0=C2=A0=C2=A0 struct spi_offload_trigger_config
-> > > *config)
-> > > +{
-> > > +	struct spi_offload_trigger_pwm_state *st =3D priv;
-> > > +	struct spi_offload_trigger_periodic *periodic =3D &config->periodic=
-;
-> > > +	struct pwm_waveform wf =3D { };
-> > > +	int ret;
-> > > +
-> > > +	if (config->type !=3D SPI_OFFLOAD_TRIGGER_PERIODIC)
-> > > +		return -EINVAL;
-> >=20
-> > Checking the above every time seems redundant to me. We should match it=
- once
-> > during
-> > the trigger request and then just use that trigger type. Otherwise I'm =
-not seeing
-> > the
-> > point of the match() callback.
-> >=20
->=20
-> Here it is validating struct spi_offload_trigger_config has the right
-> type, which is needed before we can safely trust that the correct
-> union member was used in that struct. So it has a different purpose from
-> the match check.
->=20
+On 28.10.24 13:44, Krzysztof Kozlowski wrote:
+> On 28/10/2024 12:21, Heiko Schocher wrote:
+>> Hello Krzysztof,
+>>
+>> On 28.10.24 11:49, Krzysztof Kozlowski wrote:
+>>> On 28/10/2024 11:41, Heiko Schocher wrote:
+>>>> Hello Krzysztof,
+>>>>
+>>>> On 28.10.24 11:24, Krzysztof Kozlowski wrote:
+>>>>> On 28/10/2024 09:23, Heiko Schocher wrote:
+>>>>>> Add support for the i.MX8MP based aristainetos3 boards from ABB.
+>>>>>>
+>>>>>> The board uses a ABB specific SoM from ADLink, based on NXP
+>>>>>> i.MX8MP SoC. The SoM is used on 3 different carrier boards,
+>>>>>> with small differences, which are all catched up in
+>>>>>> devicetree overlays. The kernel image, the basic dtb
+>>>>>> and all dtbos are collected in a fitimage. As bootloader
+>>>>>> is used U-Boot which detects in his SPL stage the carrier
+>>>>>> board by probing some i2c devices. When the correct
+>>>>>> carrier is probed, the SPL applies all needed dtbos to
+>>>>>> the dtb with which U-Boot gets loaded. Same principle
+>>>>>> later before linux image boot, U-Boot applies the dtbos
+>>>>>> needed for the carrier board before booting Linux.
+>>>>>>
+>>>>>> Signed-off-by: Heiko Schocher <hs@denx.de>
+>>>>>> ---
+>>>>>> checkpatch dropped the following warnings:
+>>>>>> arch/arm64/boot/dts/freescale/imx8mp-aristainetos3a-som-v1.dtsi:248: warning: DT compatible string "ethernet-phy-id2000.a231" appears un-documented -- check ./Documentation/devicetree/bindings/
+>>>>>>
+>>>>>> ignored, as this compatible string is usedin other dts too, for example in
+>>>>>>
+>>>>>> arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+>>>>>>
+>>>>>>     arch/arm64/boot/dts/freescale/Makefile        |    5 +
+>>>>>>     .../imx8mp-aristainetos3-adpismarc.dtsi       |   64 +
+>>>>>>     .../imx8mp-aristainetos3-adpismarc.dtso       |   14 +
+>>>>>>     .../imx8mp-aristainetos3-helios-lvds.dtsi     |   89 ++
+>>>>>>     .../imx8mp-aristainetos3-helios-lvds.dtso     |   13 +
+>>>>>>     .../imx8mp-aristainetos3-helios.dtsi          |  103 ++
+>>>>>>     .../imx8mp-aristainetos3-helios.dtso          |   13 +
+>>>>>>     .../imx8mp-aristainetos3-proton2s.dtsi        |  176 +++
+>>>>>>     .../imx8mp-aristainetos3-proton2s.dtso        |   13 +
+>>>>>>     .../imx8mp-aristainetos3a-som-v1.dts          |   18 +
+>>>>>>     .../imx8mp-aristainetos3a-som-v1.dtsi         | 1210 +++++++++++++++++
+>>>>>>     11 files changed, 1718 insertions(+)
+>>>>>>     create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-adpismarc.dtsi
+>>>>>>     create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-adpismarc.dtso
+>>>>>>     create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-helios-lvds.dtsi
+>>>>>>     create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-helios-lvds.dtso
+>>>>>>     create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-helios.dtsi
+>>>>>>     create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-helios.dtso
+>>>>>>     create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-proton2s.dtsi
+>>>>>>     create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-proton2s.dtso
+>>>>>>     create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3a-som-v1.dts
+>>>>>>     create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3a-som-v1.dtsi
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+>>>>>> index 9d3df8b218a2..7c3586509b8b 100644
+>>>>>> --- a/arch/arm64/boot/dts/freescale/Makefile
+>>>>>> +++ b/arch/arm64/boot/dts/freescale/Makefile
+>>>>>> @@ -163,6 +163,11 @@ imx8mn-tqma8mqnl-mba8mx-usbotg-dtbs += imx8mn-tqma8mqnl-mba8mx.dtb imx8mn-tqma8m
+>>>>>>     dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtb
+>>>>>>     dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx-usbotg.dtb
+>>>>>>     
+>>>>>> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-aristainetos3a-som-v1.dtb \
+>>>>>> +			  imx8mp-aristainetos3-adpismarc.dtbo \
+>>>>>> +			  imx8mp-aristainetos3-proton2s.dtbo \
+>>>>>> +			  imx8mp-aristainetos3-helios.dtbo \
+>>>>>> +			  imx8mp-aristainetos3-helios-lvds.dtbo
+>>>>>>     dtb-$(CONFIG_ARCH_MXC) += imx8mp-beacon-kit.dtb
+>>>>>>     dtb-$(CONFIG_ARCH_MXC) += imx8mp-data-modul-edm-sbc.dtb
+>>>>>>     dtb-$(CONFIG_ARCH_MXC) += imx8mp-debix-model-a.dtb
+>>>>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-adpismarc.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-adpismarc.dtsi
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..cc0cddaa33ea
+>>>>>> --- /dev/null
+>>>>>> +++ b/arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-adpismarc.dtsi
+>>>>>> @@ -0,0 +1,64 @@
+>>>>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>>>>> +/*
+>>>>>> + * Copyright (C) 2024 Heiko Schocher <hs@denx.de>
+>>>>>> + */
+>>>>>> +
+>>>>>> +#include <dt-bindings/gpio/gpio.h>
+>>>>>> +#include <dt-bindings/interrupt-controller/irq.h>
+>>>>>> +
+>>>>>> +&ecspi1 {
+>>>>>> +	spidev0: spi@0 {
+>>>>>> +		reg = <0>;
+>>>>>> +		compatible = "rohm,dh2228fv";
+>>>>>
+>>>>> Hm? I have some doubts, what device is here?
+>>>>
+>>>> $ grep -lr dh2228fv drivers/
+>>>> drivers/spi/spidev.c
+>>>>
+>>>> Customer uses an userspace implementation...
+>>>
+>>> That's not the question. I asked what device is here.
+>>
+>> I do not know, as on carrier boards there are only connectors,
+>> to which a spi device can be attached. So may I need to use here
+>> a more generic entry?
+> 
+> So this description is just not true. You have here nothing connected
+> and this cannot be in the DTS.
 
-I'm still not convinced tbh. We already pass in the type for the match() ca=
-llback
-which is done when we get the trigger. I don't expect (at least at this poi=
-nt) for a
-given offload trigger to dynamically change. And if we do allow that, we sh=
-ould still
-need a new API to change between triggers (which could then be another vali=
-dation
-point). But key point is that at any given time, only one trigger should be=
- "in use".
-For this first simple case It really feels that passing around the trigger =
-type (and
-validating on every API) is redundant. We could do it once in the match() c=
-allback
-and the pwm driver could then assume the periodic trigger is the one being =
-use.
+Okay, I try to find out, what devices are connected else I remove them.
 
-Having said the above, this really does not matter that much so I'm not arg=
-uing more.
-If you prefer to be extra cautious, fair enough :)
+>>>>
+>>>>>
+>>>>>> +		spi-max-frequency = <500000>;
+>>>>>> +	};
+>>>>>> +};
+>>>>>> +
+>>>>>> +&ecspi2 {
+>>>>>> +	spidev1: spi@0 {
+>>>>>> +		reg = <0>;
+>>>>>> +		compatible = "rohm,dh2228fv";
+>>>>>> +		spi-max-frequency = <500000>;
+>>>>>> +	};
+>>>>>> +};
+>>>>>> +
+>>>>>> +&i2c2 {
+>>>>>> +	/* SX1509(2) U1001@IPi SMARC Plus */
+>>>>>> +	gpio8: i2c2_gpioext0@3e {
+>>>>>
+>>>>> Uh, no, please never send us downstream code.
+>>>>>
+>>>>> Please follow DTS coding style in all upstream submissions.
+>>>>
+>>>> driver is in here:
+>>>>
+>>>> $ grep -lr probe-reset drivers/pinctrl/
+>>>> drivers/pinctrl/pinctrl-sx150x.c
+>>>
+>>> This so not related... Your driver does not matter. You send us poor
+>>> quality downstream code.
+>>
+>> The driver is upstream... see:
+>>
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pinctrl/pinctrl-sx150x.c
+>>
+>> or may I misunderstood you here too?
+>>
+>> Poor is my dts, checks are running and I fix them.
+> 
+> My comment was that I see this as you sent DTS code which is taken
+> straight from some downstream code.
 
-- Nuno S=C3=A1
+Hmm.. I made this based on linux-stable 6.6 and yes, comments
+I have from adlink sources.
 
+Again sorry... I was too fast sending my patch after local rebase
+to v6.12
+
+>>>>> And why this is DTSO, I have no clue...
+>>>
+>>> Why is this a DTSO, not a DTS?
+>>
+>> Hmm... the idea is, that the bootloader applies the dtbo on runtime,
+>> when it has detected the carrier board it runs on, I tried to explain
+>> in cover letter.
+> 
+> Then there is some mess here. First, SoM cannot be DTS, because it
+> cannot be booted. Second, specific board/carrier is the DTS. Third,
+> overlays bring some subset of features, not new board.
+
+I see, and will rework!
+
+BTW: I now finished running
+
+make W=1 O=$BDIR dt_binding_check
+make W=1 O=$BDIR dtbs_check
+
+and there are tons of warnings .. yes, a lot come from my changes
+(because I wasn't aware of the checks and I made stuff based on linux 6.6
+  stable and simply just rebased my work with 6.12-rc5 so I have to
+  apologize!)
+
+But not all warnings come from my files...
+
+I will check, fix, rework my patchset!
+
+Thanks for your comments and patience!
+
+bye,
+Heiko
+-- 
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
 
