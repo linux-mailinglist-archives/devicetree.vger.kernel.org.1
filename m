@@ -1,164 +1,114 @@
-Return-Path: <devicetree+bounces-116468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B3469B3007
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:22:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E12A9B300D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:23:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AFA25B2352F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:22:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 027402827C4
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:23:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB83E1D8A04;
-	Mon, 28 Oct 2024 12:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q0aUbagg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0EFD1D7E3E;
+	Mon, 28 Oct 2024 12:23:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B30DD1922DD;
-	Mon, 28 Oct 2024 12:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A3DD1922DD;
+	Mon, 28 Oct 2024 12:23:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730118108; cv=none; b=Tj7yGejJoX2qt/iU6GzPxldXApH/+kjlSM2alsygMxHe1Qr8GNxLUyLdM9iIAb5AhSqu2NOkGfoBzfpxf2Gi8/xnGdDhENv0QfsNfbVEWQHeppFYF7977VpjewGKhuXIgni9UTAEAuTsP/y+8XNHaxf52YxNDe/puUS3qq5I1lg=
+	t=1730118182; cv=none; b=RygrKmL+gtv2ouEhPki4VKbwvsmwbhhznvSPY/qkHNE85fxNg1NfXAV6+7rmrvYaGY3poBMugfDfcsQagzxlUUsLItau9dbmyhYfLil+byzZLuUvJVy73lPmaDCRt0+MHnd0JakT/roxmKdt1xYevIt75B398x8ga4pWUu9FkXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730118108; c=relaxed/simple;
-	bh=MlbLQb+KBwj20dusYA7M3Xo173dioqX9FKeduYVGkGs=;
+	s=arc-20240116; t=1730118182; c=relaxed/simple;
+	bh=aTCttCQyWU7h26tjaP5swvu62Isc7fQ5Wy+v6hYZyHw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qrvbxeimM0UGH3aMOVzGb95IAo4EEb2KYv7wT8TQNkibCQgtUCWZtvXpidggWt2qiQ8tRzsoKB2yMRxWOniFp7hmwt91mk4v9bulw4J8IOlosnhTAwlcxeWW8/sKxqJCcqoctrSbz/xn+sBBhKxO77fNz+eOAZGxZCHEGKqd4fI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q0aUbagg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B292AC4CEC3;
-	Mon, 28 Oct 2024 12:21:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730118108;
-	bh=MlbLQb+KBwj20dusYA7M3Xo173dioqX9FKeduYVGkGs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=q0aUbaggBYH62yrig6yRJLdIvroG9ttfp6TO6McWCjE5OmmfaUCI2mWO+UdqIP4/z
-	 gGvDepSh3H9fBcyyxM8y0GRZaC36LzlEsmCpI203aKI2iMhN8K93twlwTvnyAT+ges
-	 YTzKiH0cya7YJ1XFXIGBJFh50Pnf2YaX7yTmjtyyHPkRIM9xvpKPDEe1gl0nv5Gfy+
-	 xKLJ5WZWTXkGZYKL6+ANR+Z/b2Mufn9taKDZsh5dNWInOFVQM3hN/8PMwmevFso3+d
-	 bjRtJBOyLg/5iUnP6e9A0c9t0nFCrzkNu4XqkxLhvLLqxcAOzCMw7TiflqRW8i3IaR
-	 55duWcUYTlIPA==
-Date: Mon, 28 Oct 2024 13:21:45 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Herve Codina <herve.codina@bootlin.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery
- mechanism
-Message-ID: <20241028-nebulous-yellow-dragon-2cfb5f@houat>
-References: <20241024095539.1637280-1-herve.codina@bootlin.com>
- <20241024095539.1637280-3-herve.codina@bootlin.com>
- <20241027162350.GA15853@pendragon.ideasonboard.com>
- <20241028091331.6f67e29e@bootlin.com>
- <20241028112857.GF24052@pendragon.ideasonboard.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=U7dJ6obr/QUf4byM7D7DMMdyyEKnlx9/u6A6M7nw5ZDGZwr8qIfBaMtyc1BtN2T8s/VHmzYXPPS+bAFyBB+lLqvmnsKnS/rHlbQATxv7bFFuve26A7L4ZWzdmRB/2zHPGIjlaUl4iic/7MUZ/4X/H+Odpu/8rv/TJtfC/p806C4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BB68213D5;
+	Mon, 28 Oct 2024 05:23:29 -0700 (PDT)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5FA963F73B;
+	Mon, 28 Oct 2024 05:22:57 -0700 (PDT)
+Date: Mon, 28 Oct 2024 12:22:54 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Cristian Marussi <cristian.marussi@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org, james.quinlan@broadcom.com,
+	f.fainelli@gmail.com, vincent.guittot@linaro.org,
+	etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
+	quic_sibis@quicinc.com, quic_nkela@quicinc.com,
+	dan.carpenter@linaro.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Sudeep Holla <sudeep.holla@arm.com>, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v3 6/7] dt-bindings: firmware: arm,scmi: Add missing
+ vendor string
+Message-ID: <Zx-CHlAb61FWdzkA@bogus>
+References: <20241028120151.1301177-1-cristian.marussi@arm.com>
+ <20241028120151.1301177-7-cristian.marussi@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="r7g5pyau5d4sslae"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241028112857.GF24052@pendragon.ideasonboard.com>
+In-Reply-To: <20241028120151.1301177-7-cristian.marussi@arm.com>
 
+On Mon, Oct 28, 2024 at 12:01:50PM +0000, Cristian Marussi wrote:
+> Recently introduced max-rx-timeout-ms optionao property is missing a
+> vendor prefix.
+>
+> Add the vendor prefix from the original committer.
+>
 
---r7g5pyau5d4sslae
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery
- mechanism
-MIME-Version: 1.0
+It should be "arm," not "nxp," just because NXP happens to introduce that.
+It just highlight that the property is X vendor specific and here it is
+associated with SCMI and specifically Arm SCMI, so "arm,". If for some
+reason nxp or any other vendor overrides this definition and need to add
+additional property then they can add their own vendor name into that
+property.
 
-On Mon, Oct 28, 2024 at 01:28:57PM +0200, Laurent Pinchart wrote:
-> On Mon, Oct 28, 2024 at 09:13:31AM +0100, Herve Codina wrote:
-> > Hi Laurent,
-> >=20
-> > On Sun, 27 Oct 2024 18:23:50 +0200
-> > Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
-> >=20
-> > [...]
-> > > > +static int sn65dsi83_reset_pipeline(struct sn65dsi83 *sn65dsi83)
-> > > > +{
-> > > > +	struct drm_device *dev =3D sn65dsi83->bridge.dev;
-> > > > +	struct drm_modeset_acquire_ctx ctx;
-> > > > +	struct drm_atomic_state *state;
-> > > > +	int err;
-> > > > +
-> > > > +	/* Use operation done in drm_atomic_helper_suspend() followed by
-> > > > +	 * operation done in drm_atomic_helper_resume() but without relea=
-sing
-> > > > +	 * the lock between suspend()/resume()
-> > > > +	 */
-> > > > +
-> > > > +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
-> > > > +
-> > > > +	state =3D drm_atomic_helper_duplicate_state(dev, &ctx);
-> > > > +	if (IS_ERR(state)) {
-> > > > +		err =3D PTR_ERR(state);
-> > > > +		goto unlock;
-> > > > +	}
-> > > > +
-> > > > +	err =3D drm_atomic_helper_disable_all(dev, &ctx);
-> > > > +	if (err < 0)
-> > > > +		goto unlock;
-> > > > +
-> > > > +	drm_mode_config_reset(dev);
-> > > > +
-> > > > +	err =3D drm_atomic_helper_commit_duplicated_state(state, &ctx); =
-=20
-> > >=20
-> > > Committing a full atomic state from a bridge driver in an asynchronous
-> > > way seems quite uncharted territory, and it worries me. It's also a v=
-ery
-> > > heavyweight, you disable all outputs here, instead of focussing on the
-> > > output connected to the bridge. Can you either implement something mo=
-re
-> > > local, resetting the bridge only, or create a core helper to handle t=
-his
-> > > kind of situation, on a per-output basis ?
-> >=20
-> > A full restart of the bridge (power off/on) is needed and so we need to
-> > redo the initialization sequence. This initialization sequence has to be
-> > done with the DSI data lanes (bridge inputs) driven in LP11 state and so
-> > without any video stream. Only focussing on bridge outputs will not be
-> > sufficient. That's why I brought the pipeline down and restarted it.
->=20
-> Fair point.
->=20
-> > Of course, I can copy/paste sn65dsi83_reset_pipeline() to a core helper
-> > function. Is drm_atomic_helper_reset_all() could be a good candidate?
->=20
-> The helper should operate on a single output, unrelated outputs should
-> not be affected.
+If there are no objections, I can fix it up when applying.
 
-Also, you don't want to reset anything, you just want the last commit to
-be replayed.
+> Fixes: 3a5e6ab06eab ("dt-bindings: firmware: arm,scmi: Introduce property max-rx-timeout-ms")
+> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+> ---
+> Note that this fixes a commit that has been merged in v6.12-rc1...so it
+> should not present any backward compatibility issue.
+> ---
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: Peng Fan <peng.fan@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> index 9d6e1147f9e9..e331da4d606b 100644
+> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> @@ -124,7 +124,7 @@ properties:
+>        atomic mode of operation, even if requested.
+>      default: 0
+>  
+> -  max-rx-timeout-ms:
+> +  nxp,max-rx-timeout-ms:
+>      description:
+>        An optional time value, expressed in milliseconds, representing the
+>        transport maximum timeout value for the receive channel. The value should
+> -- 
+> 2.47.0
+> 
 
-Maxime
-
---r7g5pyau5d4sslae
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZx+B1AAKCRAnX84Zoj2+
-dm9CAYCqEi3yerFbAJ3P7ZJw1A7SZJbfZG7IERHg95sH2IFq3z/wA4bfn8Syz3JT
-NlxnchcBfR7/CbJL+XJP6dzID9Lqh3k4pduwiQB/zVB6lQg34+KWwk4BrhPPavXO
-OwTzZeDQNw==
-=+iI0
------END PGP SIGNATURE-----
-
---r7g5pyau5d4sslae--
+--
+Regards,
+Sudeep
 
