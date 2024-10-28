@@ -1,176 +1,118 @@
-Return-Path: <devicetree+bounces-116586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62D909B352B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:43:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAC239B352E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:43:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 235E9282A81
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:43:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E798282B82
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:43:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B19E91DE4C6;
-	Mon, 28 Oct 2024 15:43:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 641611DE4D7;
+	Mon, 28 Oct 2024 15:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="mkow0958"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DsWvbA7u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E91B1DE4F1
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 15:43:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C63F1DE3DD;
+	Mon, 28 Oct 2024 15:43:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730130199; cv=none; b=rFtpcI76JzhttJP6wj2M0WJkQoHgclW5GW3j3hR0IWYMNAj0izAfLApQDo7n8NpRqI/xYEagcZkhJGFFTNGPBx98F9VgQZFc1DQkj9yX6qCryUltViu2tlMWJU+rhvVR61TysjU3FX2gP/UbE2WNvPaA+x+/Up+kWzCP2oLqHsY=
+	t=1730130221; cv=none; b=f1nXvVKZmdFtC2DlP1vHu+DngiGW6Ncgb1dTNUAcda7QAMzPTtXk2GLhWKQlbcvyZx0eM/TToQRWp7roTigoRMp1C8lNzQiiNhZYMAkIZrBDTplS368M5dRxrq5xOqfyeK8FCkI7PtTMgKWZTOuXZbbdVKPLa+bFNHHLMB/CAtE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730130199; c=relaxed/simple;
-	bh=IlBBjm72DKIw/XuEiNkxw4eSSDZpdFL6BcX9NUOV1OE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Lu5KnSmXNNPACZD01XHb3RKntP8/5beTkprfZoXkqhSBv+uC9LrNcIySSTqq4UiAEYREJ+jw/lmK+O+JxCCkCmpzxdRvG98AxC/xmcNH+PdNmcUgbuga9zCXJ0JFyYSNFQHpcPuYfti+aYnGipQEEi3DzM5iApv1kRbuuWuvT+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=mkow0958; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-37d49ffaba6so3127618f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 08:43:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1730130196; x=1730734996; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vkB8rijGowJHc7ApNinf8Nlc0DfdTCUjppLIF5zI/v4=;
-        b=mkow0958oktCIrrTjGyr3hnD0lTpQEUklSATUtyaN240yUEIDZSd27f+Nq+4RPzd/L
-         RlysOy/6jKuzeQeftrbrCmCIv0fIpVtd/2kuqbt/1OGc/TxTblPNdyzhBmIHWW+Tgdrw
-         gk2Nt2o8mSxNPT78F01LsPCFeCQ9syjfbEhkqkxlv3wFBkbUlj+16xv8srJWeTkfCFmJ
-         M87jIn2vF2X6cPSmn0xZYjN078jP4ogjAIwfH7IcG08iNq3+P0s7FreuzQKRyF4d2pq4
-         6mp/Ppu11GAt0LuM4v7BX3IGTG+HQlIsLa42OZ97cxOoKM3E5DgDQgJTbHARE3ctJEF6
-         q9qA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730130196; x=1730734996;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vkB8rijGowJHc7ApNinf8Nlc0DfdTCUjppLIF5zI/v4=;
-        b=OFlgjftIpuuVL3iN7yRRVxxpd0O2Lne6EiWILRJ5byrmxqQb/sGEKwN2jMuZrTznVg
-         XSdU2+3720gIUr4rhUSd3z++YQyhZTqlHgLrO8F9h+tSZyT3eGBmHcPLaDwjnblzPCBa
-         uEu04ONR/vOllou85NgAnSfifyaRW4OjRitlpsjr94iS42csue963iEXERfqQLvRiglN
-         qHe0a0INz7Fw+8b1hQma98nDxJ12EoD+R6WfzASLHlNVt1xdXBCVNtlTXc6x64CWWirS
-         zjyFy9tectajU8MjuvyN7trxbZwuvubjAAVv2ccAmy8wy72nPHqJTRhM2vJMQofVHE4N
-         afCw==
-X-Forwarded-Encrypted: i=1; AJvYcCUnuD8cWELLtV3wDDRgR8WfsQHE+jaDMDo+cXTyxwGumthftfmpcYdztjVWuSa1cR5aeJJchdil+iTo@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhG+7E1v+UTU+7lbUydRSoLbNkYT1ShupUqyaiUj3G2TSitWTm
-	dEcda2ihwI4F0rX4LheDuoJ6Kd153EmLONOZuX0sFru5yxDHCgtkB41Aou/toE/6EbfBhAg7aDV
-	p2M6lgge0kLgMfE+uTc3e+4yl2Efusxn48rmJ
-X-Google-Smtp-Source: AGHT+IE1qO2/N5gbw3WcB8+fHdcuKTaKJxDuV5TxTMiR2W6fNk9ELaoYbYNgwfXegVSEMJJPvVjvp/JEygeFXanRY/8=
-X-Received: by 2002:a5d:4c46:0:b0:378:89be:1825 with SMTP id
- ffacd0b85a97d-380611f55a1mr5497562f8f.49.1730130195719; Mon, 28 Oct 2024
- 08:43:15 -0700 (PDT)
+	s=arc-20240116; t=1730130221; c=relaxed/simple;
+	bh=hG904Ejk14QzUK5GUCqREAtgpqylEPSsrKPmrN/RinA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HxsWwwtMuoCZO12EewGiowJnTci89JhbJ3DL6M8NXvAbdQdeQnY5t6NsfcO7R+S+SLX5aq/AsdKnvQKYSuIiehSEK1EwDMCf6j7yCMZoB0hqAseCMSmKFkvug2993WFdrPWI3huv8Dhm8BWT1JNvfuobnu8E3OOyP/FNdhOYNWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DsWvbA7u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D4ACDC4CEC3;
+	Mon, 28 Oct 2024 15:43:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730130220;
+	bh=hG904Ejk14QzUK5GUCqREAtgpqylEPSsrKPmrN/RinA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=DsWvbA7uJoQUd2XlRSYQ4LHAZFFtAE9EheIJqV7DZuRjttnxV69Wat+LU03HGpp4q
+	 J7+NMtfIGdNTJwuZX+FLsOvAlSedQsi6kopCcLqNtVey0I/UuNcs2aVlKW9y2lFqcj
+	 Hfo98zDgWd4On/eBD1XhqpBmUNw92tK8O+na7WF6yrJvidaMLN0QtPgsHJCCRH12bz
+	 YdoVU37LDNmJm4uKwFSfaKpEMuv4rwKfyCiHXJS2+fWFd9LqOqtuKVNB/u1gLOPcoA
+	 6ASibOa/7lrfptbhSI17cxWZQDbM7ArjIxW9CFb9NuIQtbWBmhrSGeWgx4X06qrj6V
+	 2tiLncXvuaUbw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B9497D33999;
+	Mon, 28 Oct 2024 15:43:40 +0000 (UTC)
+From: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v2 0/4] ASoC: codecs: adau1373: drop platform data
+Date: Mon, 28 Oct 2024 16:43:37 +0100
+Message-Id: <20241028-adau1373-shutdown-v2-0-647f56bbd182@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-10-dakr@kernel.org>
-In-Reply-To: <20241022213221.2383-10-dakr@kernel.org>
-From: Alice Ryhl <aliceryhl@google.com>
-Date: Mon, 28 Oct 2024 16:43:02 +0100
-Message-ID: <CAH5fLggFD7pq0WCfMPYTZcFkvrXajPbxTBtkvSeh-N2isT1Ryw@mail.gmail.com>
-Subject: Re: [PATCH v3 09/16] rust: add `io::Io` base type
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
-	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com, 
-	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com, 
-	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
-	daniel.almeida@collabora.com, saravanak@google.com, 
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIACmxH2cC/x2MuwqAMAwAf0UyWzCpUPRXxKHa1Gap0voC8d8tD
+ jfccPdA5iScoa8eSHxKljUWobqCOdi4sBJXHKihFgvKOnugNlrlcOxuvaLqkNiT1zihgdJtib3
+ c/3MY3/cDn9cZ2GMAAAA=
+To: linux-sound@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730130219; l=1126;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=hG904Ejk14QzUK5GUCqREAtgpqylEPSsrKPmrN/RinA=;
+ b=Mioo4Du/EgbgNIZY5irudzwOi/1vAN5HzRIrCZc6P+J950jCVzehd6biTY+6nGthqQnSl4z+I
+ CtWSydD+XJvDVzKfPFLTsxnnYz1vUAbGTmN8epWRqDX12JFuTZXv06w
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
+ auth_id=100
+X-Original-From: Nuno Sa <nuno.sa@analog.com>
+Reply-To: nuno.sa@analog.com
 
-On Tue, Oct 22, 2024 at 11:33=E2=80=AFPM Danilo Krummrich <dakr@kernel.org>=
- wrote:
->
-> I/O memory is typically either mapped through direct calls to ioremap()
-> or subsystem / bus specific ones such as pci_iomap().
->
-> Even though subsystem / bus specific functions to map I/O memory are
-> based on ioremap() / iounmap() it is not desirable to re-implement them
-> in Rust.
->
-> Instead, implement a base type for I/O mapped memory, which generically
-> provides the corresponding accessors, such as `Io::readb` or
-> `Io:try_readb`.
->
-> `Io` supports an optional const generic, such that a driver can indicate
-> the minimal expected and required size of the mapping at compile time.
-> Correspondingly, calls to the 'non-try' accessors, support compile time
-> checks of the I/O memory offset to read / write, while the 'try'
-> accessors, provide boundary checks on runtime.
+Hi Mark,
 
-And using zero works because the user then statically knows that zero
-bytes are available ... ?
+Here it goes v2...
 
-> `Io` is meant to be embedded into a structure (e.g. pci::Bar or
-> io::IoMem) which creates the actual I/O memory mapping and initializes
-> `Io` accordingly.
->
-> To ensure that I/O mapped memory can't out-live the device it may be
-> bound to, subsystems should embedd the corresponding I/O memory type
-> (e.g. pci::Bar) into a `Devres` container, such that it gets revoked
-> once the device is unbound.
+v1:
+ * https://lore.kernel.org/all/20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com/ 
 
-I wonder if `Io` should be a reference type instead. That is:
+v2:
+ - Patch 2 (Bindings):
+   * Removed extra blank line;
+   * Fixed example messed indentation;
+   * Added more properties to the example;
+   * Add maxItems.
+ - Patch 4 (Powerdown gpio):
+   * Powerdown the chip when unbound.
 
-struct Io<'a, const SIZE: usize> {
-    addr: usize,
-    maxsize: usize,
-    _lifetime: PhantomData<&'a ()>,
-}
+---
+Nuno Sa (4):
+      ASoC: codecs: adau1373: add some kconfig text
+      ASoC: dt-bindings: document the adau1373 Codec
+      ASoC: codecs: adau1373: drop patform_data
+      ASoC: codecs: adau1373: add powerdown gpio
 
-and then the constructor requires "addr must be valid I/O mapped
-memory for maxsize bytes for the duration of 'a". And instead of
-embedding it in another struct, the other struct creates an `Io` on
-each access?
+ .../devicetree/bindings/sound/adi,adau1373.yaml    | 111 +++++++++++
+ MAINTAINERS                                        |   1 +
+ include/sound/adau1373.h                           |  33 ----
+ sound/soc/codecs/Kconfig                           |   2 +-
+ sound/soc/codecs/adau1373.c                        | 208 ++++++++++++++++-----
+ 5 files changed, 272 insertions(+), 83 deletions(-)
+---
+base-commit: e25169fb5a8c37e8f7d1da3d1427dee938f15f07
+change-id: 20241024-adau1373-shutdown-912ef2f31b17
+--
 
-> Co-developed-by: Philipp Stanner <pstanner@redhat.com>
-> Signed-off-by: Philipp Stanner <pstanner@redhat.com>
-> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+Thanks!
+- Nuno Sá
 
-[...]
 
-> diff --git a/rust/kernel/io.rs b/rust/kernel/io.rs
-> new file mode 100644
-> index 000000000000..750af938f83e
-> --- /dev/null
-> +++ b/rust/kernel/io.rs
-> @@ -0,0 +1,234 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! Memory-mapped IO.
-> +//!
-> +//! C header: [`include/asm-generic/io.h`](srctree/include/asm-generic/i=
-o.h)
-> +
-> +use crate::error::{code::EINVAL, Result};
-> +use crate::{bindings, build_assert};
-> +
-> +/// IO-mapped memory, starting at the base address @addr and spanning @m=
-axlen bytes.
-> +///
-> +/// The creator (usually a subsystem / bus such as PCI) is responsible f=
-or creating the
-> +/// mapping, performing an additional region request etc.
-> +///
-> +/// # Invariant
-> +///
-> +/// `addr` is the start and `maxsize` the length of valid I/O mapped mem=
-ory region of size
-> +/// `maxsize`.
-
-Do you not also need an invariant that `SIZE <=3D maxsize`?
-
-Alice
 
