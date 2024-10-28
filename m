@@ -1,69 +1,98 @@
-Return-Path: <devicetree+bounces-116350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92DDB9B2A24
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:24:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31FCD9B2A29
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:26:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C421A1C2194A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:24:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D947D1C21B06
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97E251917D7;
-	Mon, 28 Oct 2024 08:24:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E968F191F79;
+	Mon, 28 Oct 2024 08:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hHa1cZzd"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="rfKpSGQi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB77C18871E;
-	Mon, 28 Oct 2024 08:24:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C02719048A
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 08:26:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730103891; cv=none; b=anrGoX5MJ2dBN3L5auOSEYHP4C9uvOFbTzIr8b/ja4L+crt9pW0DASrlI0rcukd+8j/tODQS4naVvJeWivMbH7BjnjP+o5I0fe9tAoYfFL7YQ9YhvaAEq7KkOsXbzq1a6SBxvETHyvzFGV2z9MfmSXnDP5dojQHdfD2z5W89rNE=
+	t=1730103994; cv=none; b=Adsz4AX8iBRR50UMahvQDEyRsL28/Y2GIsKXEeuo/+iQupUp49TBXMOiMXg3mS+kTNPUyBYoPieLithLc9n2YUkZ5mRVKwuIndWPZ65f52EjzTdCrinpjBWw2UJ2g1x+/K5sTYQnT1inIckWpm95/Af61KEbDRy/jBeh7o1VxFc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730103891; c=relaxed/simple;
-	bh=SNQ+CvL3Rbu1loYvuLiWy4yMfP1pvFISH+yattD7W1A=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uuXHKFApLRaft2iGKjv/n73ezSKc84Y9RMdKHJmQU16ojPXhCQ5aISTGQMz99yar+d/8R+CkSJxp6NDJcEo01xVsIlaH9+0OL27vBLuFlmm5aA+czULeuAQg20JwC0/VBZPG1yHApBmR9YPPo3dF1KBsSxt3ibBRpqMbG10gzzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hHa1cZzd; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49S8OSaE039569;
-	Mon, 28 Oct 2024 03:24:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1730103868;
-	bh=Ixb85Zg1wi33Ybq/Oj9u83ymgLGI30K4HkUvDy4gHrc=;
-	h=From:To:CC:Subject:Date;
-	b=hHa1cZzdwrdWrevZCDnMaqsVv9WP/0Pus+/mOBLji3MK2jfO1FYTaomlXJLDY39lo
-	 AiLDIaJ++dXRQjih8DSY2n9dc/aQEc4BdJ3ebuTYvOyjrQYp3Kqw0r7QhfQ75j05wl
-	 YvJ8ACn2r3Yxlye+8VOZItQt7gPt6d9p5Mz4WRQE=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49S8OSAa030888
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 28 Oct 2024 03:24:28 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 28
- Oct 2024 03:24:28 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 28 Oct 2024 03:24:28 -0500
-Received: from localhost (a0498981-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.216])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49S8ORXL038840;
-	Mon, 28 Oct 2024 03:24:27 -0500
-From: Bhavya Kapoor <b-kapoor@ti.com>
-To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <s-sinha@ti.com>, <ankurbaranwal@ti.com>, <b-kapoor@ti.com>,
-        <u-kumar1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j722s-evm: Add pinmux for RPi Header
-Date: Mon, 28 Oct 2024 13:54:26 +0530
-Message-ID: <20241028082426.1551816-1-b-kapoor@ti.com>
+	s=arc-20240116; t=1730103994; c=relaxed/simple;
+	bh=YC/5jTqP5+C7i+RgBSivmCgEJIMxago/+BGYk3KCf4g=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HBcS7xz59S9SyWJUHS0EloQshkeTW+G04ofSd89g0oQr9fsh4185bTj4rvlhbif8sm31vgweW3l40+MyC14LfpSQ1/86sZ38/LCXXQgQjqnp1YP+0Na/EUKCgDuANnB7AZmvNZpz8bHyyplmqbfORKGUDJExjKO3xfotLYqEi8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=rfKpSGQi; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7206304f93aso1526958b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 01:26:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1730103991; x=1730708791; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MwNPF7Xr5meifwUXJRYWBlzUxnsK/tjPyZKH5q5KIa0=;
+        b=rfKpSGQiM7j3X4gu3ATDkKIY+ldEtIrkkODwlEMv23zmwlSq/4wFdiJOFejtKNoTZY
+         UAnqvs0N93IwhxadPHDc16EVdWCHKY1BuV5CKBKbzIb4v7iFdhZm/0LojlGYhXRmw/GL
+         eHiPYH7Tu00c61//SC435Wy6oNXnGsq2QFfgMWExKF1D/YGOe+PxIXUeTXCM5M6Tzn2/
+         bZQ4Bx9hiLF1sqJPtA5n+oEfFQuEB7lcOPCXO6VyWDQVgvCRRDP17LNUo5DNJeVhcL1A
+         wOwnyjln0zdwrNwkaQf4gdrqPjzWD9tT9nkF7iKfb09o+NnZ79+S7AscMj4notpKcHD/
+         CZ5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730103991; x=1730708791;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MwNPF7Xr5meifwUXJRYWBlzUxnsK/tjPyZKH5q5KIa0=;
+        b=WJM1ra3/ISkQGX4jEW9pXYFMvYC/DA/kKg6plMHgHDJKcuqGeQ1ty9krsx9V0r8HU7
+         O4A27FMr4XqkYIDYAu7qUSzj01nz8BBCE8sAbOTqMEW3tv+3eZeD+hiJX6PWLkcwS3BC
+         Zfyi2Cpay0HvMoGQmDmiTOEXVGzfQLS8s3ab74DwtJvXlQKg+OgM2Tq80sN3/Vho6KQe
+         nJr3bczBoYgHH0qjgMzG/w1EuDE8WUy4meBWNkXunRtN2xSjhuZwjTpN/axAvGxa3PL0
+         MEPSIfQsDrzhnCvNPYRKc3rwDRxAZ17M3xRSNnuw2RiiW92Q1sfCMHqJjBXV/yUKpWEM
+         YzNw==
+X-Forwarded-Encrypted: i=1; AJvYcCUkQ97/BeH5G5w+U6h5ECtN00AztjCkgGIktEX7QJ2w3IYhcHYg7fJnqtH3uqxwu9fuymVWFLLxgV+L@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4pJp9aMcOb9eThIykBQ6CWZaNEcbsXX/8iTgP6NVk5SMqq4AC
+	7aRBRL9rugN3mnYGaHMFvbel5FDnT8cWSGxq1oBxXpRKsv6X8/TdPp04eaQVj6g=
+X-Google-Smtp-Source: AGHT+IHju2H63ovx35vxWV3fakzOEuWmj1RtH9OyMmVpZRFGzW4IXwophE/GQPM7KmpSabJGej9FZg==
+X-Received: by 2002:a05:6a00:b83:b0:710:9d5d:f532 with SMTP id d2e1a72fcca58-7206306d438mr10332340b3a.19.1730103990736;
+        Mon, 28 Oct 2024 01:26:30 -0700 (PDT)
+Received: from localhost.localdomain ([2a11:3:200::401b])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7205791e451sm5195419b3a.24.2024.10.28.01.26.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Oct 2024 01:26:30 -0700 (PDT)
+From: Guodong Xu <guodong@riscstar.com>
+To: Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	rafal@milecki.pl,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Michael Zhu <michael.zhu@starfivetech.com>,
+	Drew Fustini <drew@beagleboard.org>,
+	Alexandru Stan <ams@frame.work>,
+	Daniel Schaefer <dhs@frame.work>,
+	Sandie Cao <sandie.cao@deepcomputing.io>,
+	Yuning Liang <yuning.liang@deepcomputing.io>,
+	Huiming Qiu <huiming.qiu@deepcomputing.io>,
+	Alex Elder <elder@riscstar.com>,
+	linux@frame.work,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Guodong Xu <guodong@riscstar.com>
+Subject: [PATCH v7 0/5] Add DeepComputing FML13V01 board dts
+Date: Mon, 28 Oct 2024 16:25:48 +0800
+Message-Id: <20241028082553.1989797-1-guodong@riscstar.com>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -72,114 +101,121 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Add pinmux required to bring out the i2c and gpios on
-40-pin RPi expansion header on the J722S EVM.
+This series updates Device Tree related files to introduce the
+FML13V10 board from DeepComputing, which incorporates a StarFive
+JH7110 SoC.  This board is designed for use on the Framework Laptop 13
+Chassis, which has (Framework) SKU FRANHQ0001.
 
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
-Signed-off-by: Shreyash Sinha <s-sinha@ti.com>
----
+The original three versions of this series were posted by Sandie Cao
+from DeepComputing.  Her mailer configuration caused mail threading
+errors, which led to some confusion.  After some discussion, we have
+agreed to take over moving this series toward acceptance.
 
-Rebased To - next-20241025
+In the original series (v1 to v5), the FML13V10 board DTS file
+disabled some nodes that had been enabled in a common included DTSI
+file.  We proposed fixing this in a follow-on series.  However there
+was some disagreement about the right way to do this.  In the end,
+Emil requested that we resolve this by adding two changes to the next
+version of the patch series:
+- Do not enable any nodes in the common DTSI file that would need
+  to be disabled in a board DTS (or DTSI) file.  (Note that there
+  still might be nodes enabled in the common file.)
+- Because it will differ dependent on board, do not define the
+  "dr_mode" (dual-role mode) property in the common DTSI file,
+  defining it in the board files instead.
 
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 62 +++++++++++++++++++++++++
- 1 file changed, 62 insertions(+)
+To address this, starting from v6 of the series, two new patches had
+been added to the beginning of the patchset.  The first patch no
+longer enables nodes that would need to be disabled for the new
+FML13V01 board, and enables them instead in the existing boardas
+that need them enabled.  The second patch moves the definition of
+the "dr_mode" property for the usb0 node out of the common file and
+into the board files.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index a00f4a7d20d9..7dce021a8a3c 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -359,6 +359,32 @@ audio_ext_refclk1_pins_default: audio-ext-refclk1-default-pins {
- 			J722S_IOPAD(0x00a0, PIN_OUTPUT, 1) /* (N24) GPMC0_WPn.AUDIO_EXT_REFCLK1 */
- 		>;
- 	};
-+
-+	rpi_header_gpio0_pins_default: rpi-header-gpio0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x094, PIN_INPUT, 7) /* (P26) GPIO0_36 */
-+			J722S_IOPAD(0x088, PIN_INPUT, 7) /* (N22) GPIO0_33 */
-+			J722S_IOPAD(0x0ac, PIN_INPUT, 7) /* (P21) GPIO0_42 */
-+			J722S_IOPAD(0x0a8, PIN_INPUT, 7) /* (R27) GPIO0_41 */
-+		>;
-+	};
-+
-+	rpi_header_gpio1_pins_default: rpi-header-gpio1-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x1b0, PIN_INPUT, 7) /* (F24) GPIO1_14 */
-+			J722S_IOPAD(0x1ac, PIN_INPUT, 7) /* (C27) GPIO1_13 */
-+			J722S_IOPAD(0x198, PIN_INPUT, 7) /* (A26) GPIO1_8 */
-+			J722S_IOPAD(0x1a4, PIN_INPUT, 7) /* (D25) GPIO1_11 */
-+			J722S_IOPAD(0x194, PIN_INPUT, 7) /* (A25) GPIO1_7 */
-+			J722S_IOPAD(0x1b8, PIN_INPUT, 7) /* (C20) GPIO1_16 */
-+			J722S_IOPAD(0x1a8, PIN_INPUT, 7) /* (C26) GPIO1_12 */
-+			J722S_IOPAD(0x1a0, PIN_INPUT, 7) /* (F23) GPIO1_10 */
-+			J722S_IOPAD(0x19c, PIN_INPUT, 7) /* (B25) GPIO1_9 */
-+			J722S_IOPAD(0x1b4, PIN_INPUT, 7) /* (B20) GPIO1_15 */
-+			J722S_IOPAD(0x1bc, PIN_INPUT, 7) /* (D20) GPIO1_17 */
-+			J722S_IOPAD(0x1c0, PIN_INPUT, 7) /* (E19) GPIO1_18 */
-+		>;
-+	};
- };
- 
- &cpsw3g {
-@@ -387,6 +413,8 @@ &cpsw_port1 {
- };
- 
- &main_gpio1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_gpio1_pins_default>;
- 	status = "okay";
- };
- 
-@@ -443,6 +471,25 @@ J722S_MCU_IOPAD(0x050, PIN_INPUT_PULLUP, 0)	/* (C6) WKUP_I2C1_SDA */
- 		>;
- 		bootph-all;
- 	};
-+
-+	mcu_rpi_header_gpio0_pins_default: mcu-rpi-header-gpio0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_MCU_IOPAD(0x01c, PIN_INPUT, 7) /* (B5) MCU_GPIO0_7 */
-+			J722S_MCU_IOPAD(0x020, PIN_INPUT, 7) /* (C5) MCU_GPIO0_8 */
-+			J722S_MCU_IOPAD(0x00c, PIN_INPUT, 7) /* (B12) MCU_GPIO0_3 */
-+			J722S_MCU_IOPAD(0x010, PIN_INPUT, 7) /* (C11) MCU_GPIO0_4 */
-+			J722S_MCU_IOPAD(0x008, PIN_INPUT, 7) /* (A9) MCU_GPIO0_2 */
-+			J722S_MCU_IOPAD(0x000, PIN_INPUT, 7) /* (C12) MCU_GPIO0_0 */
-+			J722S_MCU_IOPAD(0x004, PIN_INPUT, 7) /* (A10) MCU_GPIO0_1 */
-+		>;
-+	};
-+
-+	mcu_i2c0_pins_default: mcu-i2c0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_MCU_IOPAD(0x048, PIN_INPUT, 0) /* (E11) MCU_I2C0_SDA */
-+			J722S_MCU_IOPAD(0x044, PIN_INPUT, 0) /* (B13) MCU_I2C0_SCL */
-+		>;
-+	};
- };
- 
- &wkup_uart0 {
-@@ -810,5 +857,20 @@ &main_mcan0 {
- };
- 
- &mcu_gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_rpi_header_gpio0_pins_default>;
-+	status = "okay";
-+};
-+
-+&main_gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_gpio0_pins_default>;
-+	status = "okay";
-+};
-+
-+&mcu_i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_i2c0_pins_default>;
-+	clock-frequency = <400000>;
- 	status = "okay";
- };
+The remaining three patches are roughly the same as the three
+patches in the previous version of this series.  The final
+patch has been modified, because it no longer needs to disable
+certain nodes that had previously been enabled.
+
+Below is a version history, including direct links to all of the
+patches (note: in v1, v2 and v3, a single link to each series
+doesn't work).
+
+Best regards,
+Guodong, Alex
+
+v7:
+- Add Emil's reviewed-by on patch 1, 2 and 5
+- Corrected commit description typo in patch 1
+
+v6:
+- Updated to apply to the latest version of riscv/for-next
+- Move nodes enablement from jh7110-common.dtsi into board dts/dtsi
+- Do not specify the USB "dr_mode" property in the common file
+- Add Emil's reviewed-by on patch 4 (previously patch 2)
+
+https://lore.kernel.org/all/20241027144448.1813611-1-guodong@riscstar.com/
+
+v5:
+- Remove the extra "From:" line in commit messages of patch 1 and 2
+
+https://lore.kernel.org/all/20241020134959.519462-1-guodong@riscstar.com/
+
+v4:
+- Board name was changed from FM7110 to FML13V10
+- Descriptions for all patches in this series were updated slightly
+- Add Rob's ack on patch 2
+- In patch 3, device nodes were updated to reflect their proper status
+
+https://lore.kernel.org/all/20241019162605.308475-1-guodong@riscstar.com/
+
+v3:
+- Update board features into description
+- Add Krzysztof's ack on patch 1
+
+https://lore.kernel.org/all/20240925053123.1364574-1-sandie.cao@deepcomputing.io/
+https://lore.kernel.org/all/20240925053123.1364574-2-sandie.cao@deepcomputing.io/
+https://lore.kernel.org/all/20240925053123.1364574-3-sandie.cao@deepcomputing.io/
+https://lore.kernel.org/all/20240925053123.1364574-4-sandie.cao@deepcomputing.io/
+
+v2:
+- Add deepcomputing into vendor list.
+- Add deepcomputing,fm7110 into model compatible list.
+- Framework Config will be included in later a patch.
+
+https://lore.kernel.org/all/20240924080650.1345485-1-sandie.cao@deepcomputing.io/
+https://lore.kernel.org/all/20240924080650.1345485-2-sandie.cao@deepcomputing.io/
+https://lore.kernel.org/all/20240924080650.1345485-3-sandie.cao@deepcomputing.io/
+https://lore.kernel.org/all/20240924080650.1345485-4-sandie.cao@deepcomputing.io/
+
+v1:
+- Add framework dts and config.
+
+https://lore.kernel.org/all/20240923053621.1585972-1-sandie.cao@deepcomputing.io/
+https://lore.kernel.org/all/20240923053621.1585972-2-sandie.cao@deepcomputing.io/
+https://lore.kernel.org/all/20240923053806.1586080-1-sandie.cao@deepcomputing.io/
+
+Guodong Xu (3):
+  riscv: dts: starfive: jh7110-common: revised device node
+  riscv: dts: starfive: jh7110-common: move usb0 config to board dts
+  riscv: dts: starfive: add DeepComputing FML13V01 board device tree
+
+Sandie Cao (2):
+  dt-bindings: vendor: add deepcomputing
+  dt-bindings: riscv: starfive: add deepcomputing,fml13v01
+
+ .../devicetree/bindings/riscv/starfive.yaml   |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
+ arch/riscv/boot/dts/starfive/Makefile         |  1 +
+ .../boot/dts/starfive/jh7110-common.dtsi      | 10 --------
+ .../jh7110-deepcomputing-fml13v01.dts         | 17 +++++++++++++
+ .../boot/dts/starfive/jh7110-milkv-mars.dts   | 22 ++++++++++++++++
+ .../dts/starfive/jh7110-pine64-star64.dts     | 22 ++++++++++++++++
+ .../jh7110-starfive-visionfive-2.dtsi         | 25 +++++++++++++++++++
+ 8 files changed, 90 insertions(+), 10 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+
 -- 
 2.34.1
 
