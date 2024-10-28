@@ -1,189 +1,124 @@
-Return-Path: <devicetree+bounces-116512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 880979B31E4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:41:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96AAB9B31FD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:44:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB1151C21B0B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:41:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CFEF1F2295A
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:44:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3091DBB2C;
-	Mon, 28 Oct 2024 13:41:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E99D1DD88E;
+	Mon, 28 Oct 2024 13:43:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 296A31DB92A;
-	Mon, 28 Oct 2024 13:41:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D391DD537
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 13:43:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730122870; cv=none; b=Pvuk9/xGHDxjKJZjxk6Md8lBLoOU0bLHc/m2pHctZTaC+Hbgba0v415lgubDOsgNLvS7QpiAlfNgc3N3dpPe55UIToaRoPogV7ejcQY1gadinJukM7/XcSGZ7LrNjZ/djlR59kcq+kipT0umdeZf1Q7DFAHk+pfuZYYJuMgn/70=
+	t=1730123013; cv=none; b=fyKq3byF3cyYHVM4U3AmwShMX0smbWE7PjaN6NR3kSFHiCbM/K8YLz3vPso8Lfr/7YDRRNA6pnZc2D2EQcJEJa/xGPRFztZEhQibrOvgdxgJrANkajROIOl1eySkW3tvVr3Wgbr8SH3HhrNREvzX9CDM0nRWKLNsm5bwSSdYYoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730122870; c=relaxed/simple;
-	bh=1kpE9N/yLjsniPNUsDc3/KUTxIkiLgOuR1PoRUVV0F4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=njmx/JeefXkHstKEoBIcAgrALrZIU77bOKwyjOeTB/vdhaVeq5DVKiexDqQXwyx8dgZG+l7xOk/GiB4wz8eC5uJVfLW6+U8v8Mx/ZVozZfhT1V12RGCdzFfVTpyh1hhe7eXFzSl5FmZUKy6FcYgL05KudVSG5y4Cz6O0ILbK/Ck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 56087497;
-	Mon, 28 Oct 2024 06:41:37 -0700 (PDT)
-Received: from [10.57.57.215] (unknown [10.57.57.215])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 49CC93F66E;
-	Mon, 28 Oct 2024 06:41:06 -0700 (PDT)
-Message-ID: <96d1f356-b36b-4c14-bdd5-c38836bac418@arm.com>
-Date: Mon, 28 Oct 2024 13:42:19 +0000
+	s=arc-20240116; t=1730123013; c=relaxed/simple;
+	bh=XjkxwnG5qWOvNS8h3k0ZgKe8C6m+oboJq5TSRUggfhU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iZ9kphYwb6fiW6u3lz1LpdmPTy/Tr/iKJ5OX/kCmX03JUpSk46I/9ImX17De4BpyHZTujbdl0q9ZV/9bgLToTNfXVQAzGeFQ+CfUKobCQ0Wmxh1ojSP9BamR33qqOgNLD44EwtjA9ujGozbJRpk+JIOUy5ZoCC3BOjggMqL7Acc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1t5Q1V-0007ns-10; Mon, 28 Oct 2024 14:43:09 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1t5Q1T-000rZ5-1f;
+	Mon, 28 Oct 2024 14:43:07 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1t5Q1T-000lon-1I;
+	Mon, 28 Oct 2024 14:43:07 +0100
+Date: Mon, 28 Oct 2024 14:43:07 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Arun Ramadoss <arun.ramadoss@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	UNGLinuxDriver@microchip.com,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v1 5/5] net: dsa: microchip: add support for
+ side MDIO interface in LAN937x
+Message-ID: <Zx-U69erLsPBmtLw@pengutronix.de>
+References: <20241026063538.2506143-1-o.rempel@pengutronix.de>
+ <20241026063538.2506143-6-o.rempel@pengutronix.de>
+ <20c0ed0f-712d-46d4-8a49-e92835f47f9e@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH/RFC 0/2] arm64: dts: renesas: Re-add voltages to OPP
- tables
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <cover.1728377971.git.geert+renesas@glider.be>
- <CAMuHMdXsmAqQL+2+D_y+u1z4nn8JO+xF-mq6wWJ0pAH58n5Wiw@mail.gmail.com>
- <b273599f-8653-4e98-ac64-09c91b0a1592@arm.com>
- <CAMuHMdUYnTRDHRdWYHBdJ3hNBKOXBtRMOsu1NiJFET7P-+zc4g@mail.gmail.com>
-Content-Language: en-US
-From: Lukasz Luba <lukasz.luba@arm.com>
-In-Reply-To: <CAMuHMdUYnTRDHRdWYHBdJ3hNBKOXBtRMOsu1NiJFET7P-+zc4g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20c0ed0f-712d-46d4-8a49-e92835f47f9e@lunn.ch>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-
-
-On 10/28/24 11:34, Geert Uytterhoeven wrote:
-> Hi Lukasz,
+On Mon, Oct 28, 2024 at 01:15:42PM +0100, Andrew Lunn wrote:
+> > +static const u8 lan9370_phy_addr[] = {
+> > +	[0] = 2, /* Port 1, T1 AFE0 */
+> > +	[1] = 3, /* Port 2, T1 AFE1 */
+> > +	[2] = 5, /* Port 3, T1 AFE3 */
+> > +	[3] = 6, /* Port 4, T1 AFE4 */
+> > +	[4] = U8_MAX, /* Port 5, RGMII 2 */
+> > +};
 > 
-> On Fri, Oct 25, 2024 at 5:40 PM Lukasz Luba <lukasz.luba@arm.com> wrote:
->> On 10/22/24 14:36, Geert Uytterhoeven wrote:
->>> On Tue, Oct 8, 2024 at 11:14 AM Geert Uytterhoeven
->>> <geert+renesas@glider.be> wrote:
->>>> When CONFIG_ENERGY_MODEL=y, an error is printed on RZ/G2E and R-Car E3:
->>>>
->>>>       cpu cpu0: EM: invalid perf. state: -22
->>>>
->>>> This happens because the Operating Points Parameters tables do not list
->>>> voltages, as they are all identical.  Previously, it was assumed they
->>>> were optional, and unused, when none of the CPU nodes is tied to a
->>>> regulator using the "cpu-supply" property.  This assumption turned out
->>>> to be incorrect, causing the reported error message.
->>>>
->>>> This RFC patch series fixes this by adding the missing voltages.
->>>>
->>>> Note that the Energy Model calculates energy efficiency by dividing the
->>>> (estimated) CPU power consumption by CPU core clock frequency.  When all
->>>> voltages have the same value, the former is proportional to clock
->>>> frequency, and energy efficiency becomes a constant.  Hence all
->>>> operating points are considered to have the same efficiency, and the
->>>> Energy Model always picks the one with the highest clock rate (see also
->>>> [1]).
->>>>
->>>> Alternatively, the Energy Model could be changed to silently ignore OPP
->>>> tables with missing frequencies.  IMHO this is not an unusual case.
->>>>
->>>> Which approach should be taken?
->>>> Thanks for your comments!
->>>
->>> Any comments from the Energy Model and PM people?
->>
->> My apologies for delay.
->>
->> So you had issue with bogus Voltage values and removed them.
->>
->> There is another way to setup EM properly, via DT:
->> "opp-microwatt" [1].
->>
->> That micro watt value won't confuse other subsystems, like
->> your regulator fwk. It will only be used by the EM fwk.
->>
->> This would be an alternative to your voltage values.
->> Sounds better to you?
+> I think it would be good to add a #define for U8_MAX which gives a
+> hint at its meaning.
+
+ack
+ 
+> > +	for (i = 0; i < dev->info->port_cnt; i++) {
+> > +		if (phy_addr_map[i] == U8_MAX)
+> > +			dev->phy_addr_map[i] = phy_addr_map[i];
+> > +		else
+> > +			dev->phy_addr_map[i] = phy_addr_map[i] + offset;
+> > +	}
 > 
-> For opp-microwatt, I do need to know the actual power consumption
-> of the core, right?
+> My first guess was that U8_MAX means the PHY is external, so could be
+> on any address depending on strapping. Looking at this code, i'm not
+> sure it does actually mean that.
 
-Correct. You can try to derived that in a way you did and put below.
-Although, Dhrystone is a synthetic micro-benchmark with small
-impact to data caches, so it will not use much power.
+Yes, the U8_MAX for ports without integrated PHYs. This code calculates address
+for integrated PHYs, which can be different depending on strap
+configuration.
 
-> 
-> Full system power consumption while running the in-kernel
-> Dhrystones benchmark:
-> 
-> 800 MHz: avg 4972,55 mW, stdef 20,474 mW
-> 1000 MHz: avg 5025,93 mW, stdef 18,644 mW
-> 1200 MHz: avg 5059,63 mW, stdef 15,425 mW
+I'll use some different define.
 
-Right. From those power values can be try to derive the
-'CPU only power' values - assuming only one core was
-running the test.
-
-AFAIU you don't have proper DVFS due to missing voltage scaling.
-
-Therefore...
-Out of that I got these CPU power values:
-800MHz -> 174mW
-1000MHz -> 212mW
-1200MHz -> 261mW
-
-> 
-> The system also has test points across a 0.005 Ohm sense resistor in
-> the DVFS power supply line, but no on-board measurement sensor (like
-> the MAX9611 on Salvator-X(S)), so I haven't measured anything
-> there yet.
-> 
->> Do you know from /sys/kernel/debug/energy_model/
->> the current power values?
-> 
-> With this series applied:
-> 
-> root@ebisu:~# grep -r . /sys/kernel/debug/energy_model/
-> /sys/kernel/debug/energy_model/cpu0/ps:1200000/inefficient:0
-> /sys/kernel/debug/energy_model/cpu0/ps:1200000/performance:1024
-> /sys/kernel/debug/energy_model/cpu0/ps:1200000/cost:3443
-> /sys/kernel/debug/energy_model/cpu0/ps:1200000/power:352643
-> /sys/kernel/debug/energy_model/cpu0/ps:1200000/frequency:1200000
-> /sys/kernel/debug/energy_model/cpu0/ps:1000000/inefficient:1
-> /sys/kernel/debug/energy_model/cpu0/ps:1000000/performance:853
-> /sys/kernel/debug/energy_model/cpu0/ps:1000000/cost:3445
-> /sys/kernel/debug/energy_model/cpu0/ps:1000000/power:293869
-> /sys/kernel/debug/energy_model/cpu0/ps:1000000/frequency:1000000
-> /sys/kernel/debug/energy_model/cpu0/ps:800000/inefficient:1
-> /sys/kernel/debug/energy_model/cpu0/ps:800000/performance:682
-> /sys/kernel/debug/energy_model/cpu0/ps:800000/cost:3447
-> /sys/kernel/debug/energy_model/cpu0/ps:800000/power:235095
-> /sys/kernel/debug/energy_model/cpu0/ps:800000/frequency:800000
-> /sys/kernel/debug/energy_model/cpu0/flags:0x3
-> /sys/kernel/debug/energy_model/cpu0/cpus:0-1
-
-Those power values listed above look a bit higher, but they
-could be more related to a benchmark which utilized caches
-and more parts of the CPU. I don't know if you had chance to
-see some of my presentations on Linux conferences, where
-I show how much power can vary in different scenarios at
-the same frequency...
-TLDR; it can be even 1.8x comparing to Dhrystone.
-
-So would say it's OK for you to put either your Dhrystone
-power results, or these one from EM dump (probably from
-some more heavy benchmark then set into DT coefficient
-to derive them in OPP fwk).
-
-Your platform AFAIK is not Heterogeneous, so it won't be used
-in EAS w/ that EM. It will be only used for thermal governor
-IPA or PowerCap DTPM, which require EM to work.
-
-Regards,
-Lukasz
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
