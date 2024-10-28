@@ -1,305 +1,225 @@
-Return-Path: <devicetree+bounces-116446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CFB79B2EBB
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:23:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ABF89B2EC7
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:24:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF187285020
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:23:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E21C1F21EA2
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:24:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B771DE3B3;
-	Mon, 28 Oct 2024 11:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46F141DB527;
+	Mon, 28 Oct 2024 11:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="RH8c7k9Q"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LHLch3/z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D901DA0FE
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 11:17:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 018711D63EF;
+	Mon, 28 Oct 2024 11:20:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730114245; cv=none; b=oI/jc8yV0+TRDTQE/oUan4MZ140klVptXYeJJkJJnFdn2G1dvf2lxuwp5Gp9yW9A7EDBrOQpaPW8szqMLtyz2llbjIFYtmfGUOJb3s+oIJyb2jtXBJLIDsOmh9KFetxaa+MWh3/66Dm8XAJMdkxpJOOjStJ4ZgbQeWxzltpJqeY=
+	t=1730114418; cv=none; b=n9isqwZe8AU9BYW0PoGrKRkKS/wTSUEHwZZj+UDgkoz+lY9mj0MFPUCyh98aiEeMT782XhllIqASAerXoTugBHuysBbBX3CF4BTqPpzGzoQywb5ZxfwXKrc4Y9aydvF++t0eRRZ10KrheykAHCEqyTSIxHd5exs2hNiaC5EDv1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730114245; c=relaxed/simple;
-	bh=Q+Izx9CUJhJ7KmTt+C+xoI5zATsydey1cYfMDV4wNKU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LgpYNCuRZSiU8hHI9Zfnxkf4WbsfKfXP5bP+TZKVtbVh5U01SxgRaMUBpuhMG7MqmOA5xlgIilsg5d4dKDr99cPHUmp/yB5qR9IqblgdmAWhrfpa1aJmq1qGKBUE7n2TTwZ7ZgTGhV1J2STUz8pTKSr+3KvizWB50IjUT6IHju4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RH8c7k9Q; arc=none smtp.client-ip=209.85.222.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-84fe06fbdc6so1143932241.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 04:17:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1730114241; x=1730719041; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9g6YjlVbvnFbuJwRrpmbG7D+MwzdvrH5uhaL6ujW6ig=;
-        b=RH8c7k9QDJoNv0wVvQcfcpEfTuqOnnE6YXxw3JYkjSyWSQGXkXCJwADsVzCqUKxp1R
-         s1vHExy1VtQIHHjydQqJ8/cr4tFL/el/pq9jf9PRlov4uYuXKVq3JStyrJ4nLK0yWiw9
-         EM4G5qHpYOW/rOvUfttDAtaQXd4ieRWIwIWWc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730114241; x=1730719041;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9g6YjlVbvnFbuJwRrpmbG7D+MwzdvrH5uhaL6ujW6ig=;
-        b=TDkKsb3YDdpcRrAVKf8p5VF2RKba0yU2bXD0aBdrBAwg3cyqdL2qCIIkx/K133uLTd
-         LVy131RseNEu027qL6yX3lNfxktOE4ydnEgUyl5nXAziWe9TqTL9ws6KARYj8vkiYdgm
-         UPcnwK8rZ37esSxvtc7UnNu2ZIB7NiZ+irreYGm7ND3qXGIsqiXtZIyw48cGt2T3nNHW
-         UqNUacma+NCoeZc0gd9EcQLIQgkzX41pMQPRCDpkdecQZPgEFSqWX+1hNjj1RZxnBaI3
-         gGXcO+XgfQgw99Jgn3qx0914RHHIEdYH8rpopzQgUq93zCcLenjPypFMsAFsC9pgsBvD
-         y7tg==
-X-Forwarded-Encrypted: i=1; AJvYcCXSxxGdMaCQjeYM/XQxw6FlnZH9r7y1UQLmdIkPC4opV1Cpk8vjOAwEfc4cbRKNPg06FJZ9uaLQdguX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxE0ferhWwAd7HXT27dRdADL6mT5Xv1OwT1LCagVMMR90kdiyMu
-	F3EFTvnEasP0AGl66alX8hYJ+hIAf7Wh1e0pAStMSV69EZC7Epxdh+tqXEbxuxng55S1ZEpjxpU
-	=
-X-Google-Smtp-Source: AGHT+IFNGJo8N7/kVIAsBOjJdf+jF+hGmEgOVJ4oCtIeh87AnqRmxsRO2O8Z3DHgwQeaYOlIZ2/oRA==
-X-Received: by 2002:a05:6102:dd0:b0:4a5:e5b6:25d1 with SMTP id ada2fe7eead31-4a8cfb83185mr5094974137.15.1730114240985;
-        Mon, 28 Oct 2024 04:17:20 -0700 (PDT)
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85580b180e0sm895337241.28.2024.10.28.04.17.19
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Oct 2024 04:17:19 -0700 (PDT)
-Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4a46b6affeaso1458203137.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 04:17:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWIF8ZEwG+9E040ngpb0IKbKxhqAH2yuHP4wmhofLfOfZfPXXXRyy47netH5xALSiOcLa00plSzTiKG@vger.kernel.org
-X-Received: by 2002:a05:6102:3049:b0:4a3:d2e5:f097 with SMTP id
- ada2fe7eead31-4a8cfd6d0d4mr4759861137.24.1730114238879; Mon, 28 Oct 2024
- 04:17:18 -0700 (PDT)
+	s=arc-20240116; t=1730114418; c=relaxed/simple;
+	bh=0ZafXriFWVOAraQDr8DnSpyYoG7hvuIEriyiLkH7NIw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=BEmc8WmSVuc49tmjsY1J0A4VXmjL8fybJHMoAcc2FL7iAKrLYCsAkk8Tsq80G7eNL9MtiMzYgsV4XsKy3J+pp3fBno09b7CT+5HdH85oel+fo/sJXNcedDLd6jCr4WsjQHXy2hdyJDtFbj9YuV1uG9e7vmkGyjZ42sTEErm67A0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LHLch3/z; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49S0eU3b003847;
+	Mon, 28 Oct 2024 11:20:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	GnZv6D2nKcqRaWU/DOiT94tZc0b1DBdGz5AijBN1Ppc=; b=LHLch3/zgPZOeD2J
+	Zg+NS3/i3Ol7c1e7pPAfGqlkrWvdCdLKCXNQDg7Hyi8oilRVDfdsmMYAVfQ+8DEB
+	l3yDse9wGA5oDG4ThmgEG0W8lnUu/7IP9P4t3ZtyvuJ+aCFu0fhq1Hmse7m0TNOO
+	tbEKL7cPDBloldtjaidpgGcoOQzDT49ZVkSUobe0xgFuuFGuXXNPtyYL23m8Q7g6
+	PSZqgcZRQEvv4JCo1nUatRlMyZ/ph27xaDBQX6H+eR5iF+/ds00upaHfty75/+Bp
+	2rj36qUOy+VGcOtKWGjlrBOIyFVT5rpu6Q3Hb3mM0k+n6c0L5PH7YW09XiC3pFm0
+	SNnWCA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grt6vkch-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 11:20:12 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49SBKAUh010155
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 11:20:10 GMT
+Received: from [10.216.24.163] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Oct
+ 2024 04:20:05 -0700
+Message-ID: <332f7a0a-d9df-49bd-81d5-cc04c50183b9@quicinc.com>
+Date: Mon, 28 Oct 2024 16:49:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241025110111.1321704-1-fshao@chromium.org> <20241025110111.1321704-3-fshao@chromium.org>
- <iupuwxxslb3t76mzy3ufsruwwpd47fuop7y6tfcbwkosdagkxf@fnklbp6t6au2>
-In-Reply-To: <iupuwxxslb3t76mzy3ufsruwwpd47fuop7y6tfcbwkosdagkxf@fnklbp6t6au2>
-From: Fei Shao <fshao@chromium.org>
-Date: Mon, 28 Oct 2024 19:16:43 +0800
-X-Gmail-Original-Message-ID: <CAC=S1nic3HgEGeS6up_MsYh3UoM_piHC6=uuRep5bne4zOWbxQ@mail.gmail.com>
-Message-ID: <CAC=S1nic3HgEGeS6up_MsYh3UoM_piHC6=uuRep5bne4zOWbxQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: Introduce MT8188 Geralt
- platform based Ciri
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] arm64: dts: qcom: qcs615: Add QUPv3 configuration
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <quic_msavaliy@quicinc.com>, <quic_anupkulk@quicinc.com>
+References: <20241011103346.22925-1-quic_vdadhani@quicinc.com>
+ <15238992-4ede-4b85-9947-391baaa4c8a9@oss.qualcomm.com>
+Content-Language: en-US
+From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+In-Reply-To: <15238992-4ede-4b85-9947-391baaa4c8a9@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ayywVNBjchDtmUck01fqGR4yk1Xwr0Kh
+X-Proofpoint-GUID: ayywVNBjchDtmUck01fqGR4yk1Xwr0Kh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ adultscore=0 clxscore=1011 impostorscore=0 malwarescore=0
+ priorityscore=1501 phishscore=0 mlxscore=0 suspectscore=0 mlxlogscore=999
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410280092
 
-On Mon, Oct 28, 2024 at 5:02=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Fri, Oct 25, 2024 at 06:59:36PM +0800, Fei Shao wrote:
-> > Introduce MT8188-based Chromebook Ciri, also known commercially as
-> > Lenovo Chromebook Duet (11", 9).
-> >
-> > Ciri is a detachable device based on the Geralt design, where Geralt is
-> > the codename for the MT8188 platform. Ciri offers 8 SKUs to accommodate
-> > different combinations of second-source components, including:
-> > - audio codecs (RT5682S and ES8326)
-> > - speaker amps (TAS2563 and MAX98390)
-> > - MIPI-DSI panels (BOE NV110WUM-L60 and IVO t109nw41)
-> >
-> > Signed-off-by: Fei Shao <fshao@chromium.org>
-> > ---
-> >
-> >  arch/arm64/boot/dts/mediatek/Makefile         |    8 +
-> >  .../dts/mediatek/mt8188-geralt-ciri-sku0.dts  |   11 +
-> >  .../dts/mediatek/mt8188-geralt-ciri-sku1.dts  |   63 +
-> >  .../dts/mediatek/mt8188-geralt-ciri-sku2.dts  |   54 +
-> >  .../dts/mediatek/mt8188-geralt-ciri-sku3.dts  |   20 +
-> >  .../dts/mediatek/mt8188-geralt-ciri-sku4.dts  |   43 +
-> >  .../dts/mediatek/mt8188-geralt-ciri-sku5.dts  |   76 +
-> >  .../dts/mediatek/mt8188-geralt-ciri-sku6.dts  |   67 +
-> >  .../dts/mediatek/mt8188-geralt-ciri-sku7.dts  |   52 +
-> >  .../boot/dts/mediatek/mt8188-geralt-ciri.dtsi |  413 +++++
-> >  .../boot/dts/mediatek/mt8188-geralt.dtsi      | 1497 +++++++++++++++++
-> >  11 files changed, 2304 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku=
-0.dts
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku=
-1.dts
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku=
-2.dts
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku=
-3.dts
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku=
-4.dts
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku=
-5.dts
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku=
-6.dts
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku=
-7.dts
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri.dts=
-i
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dt=
-s/mediatek/Makefile
-> > index 8fd7b2bb7a15..c6c34d99316b 100644
-> > --- a/arch/arm64/boot/dts/mediatek/Makefile
-> > +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> > @@ -69,6 +69,14 @@ dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-corsola-volt=
-orb-sku589824.dtb
-> >  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-corsola-voltorb-sku589825.dtb
-> >  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-evb.dtb
-> >  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8188-evb.dtb
-> > +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8188-geralt-ciri-sku0.dtb
-> > +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8188-geralt-ciri-sku1.dtb
-> > +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8188-geralt-ciri-sku2.dtb
-> > +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8188-geralt-ciri-sku3.dtb
-> > +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8188-geralt-ciri-sku4.dtb
-> > +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8188-geralt-ciri-sku5.dtb
-> > +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8188-geralt-ciri-sku6.dtb
-> > +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8188-geralt-ciri-sku7.dtb
-> >  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8192-asurada-hayato-r1.dtb
-> >  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8192-asurada-hayato-r5-sku2.dtb
-> >  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8192-asurada-spherion-r0.dtb
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dts b=
-/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dts
-> > new file mode 100644
-> > index 000000000000..7a2edbaa74f1
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dts
-> > @@ -0,0 +1,11 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright 2023 Google LLC
-> > + */
-> > +/dts-v1/;
-> > +#include "mt8188-geralt-ciri.dtsi"
-> > +
-> > +/ {
-> > +     model =3D "Google Ciri sku0 board";
-> > +     compatible =3D "google,ciri-sku0", "google,ciri", "mediatek,mt818=
-8";
-> > +};
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dts b=
-/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dts
-> > new file mode 100644
-> > index 000000000000..53fdd5acaa3f
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dts
-> > @@ -0,0 +1,63 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright 2023 Google LLC
-> > + */
-> > +/dts-v1/;
-> > +#include "mt8188-geralt-ciri.dtsi"
-> > +
-> > +/ {
-> > +     model =3D "Google Ciri sku1 board";
-> > +     compatible =3D "google,ciri-sku1", "google,ciri", "mediatek,mt818=
-8";
-> > +};
-> > +
-> > +&dsi_panel {
-> > +     compatible =3D "ivo,t109nw41", "himax,hx83102";
-> > +};
-> > +
-> > +&touchscreen {
-> > +     himax,pid =3D <0x1003>;
->
-> Why do you add more of undocumented properties?
 
-I think I'll drop the Himax related thing until Himax finishes
-upstreaming their drivers, so there's a standardized binding to
-follow.
 
->
-> > +     firmware-name =3D "himax_i2chid_1003.bin";
-> > +};
-> > +
-> > +&i2c0 {
-> > +     /delete-node/ audio-codec@1a;
-> > +
-> > +     es8326: audio-codec@19 {
-> > +             compatible =3D "everest,es8326";
-> > +             reg =3D <0x19>;
-> > +             interrupts-extended =3D <&pio 108 IRQ_TYPE_LEVEL_LOW>;
-> > +             #sound-dai-cells =3D <0>;
-> > +             everest,jack-pol =3D [0e];
-> > +             everest,interrupt-clk =3D [00];
-> > +     };
-> > +};
-> > +
-> > +&sound {
-> > +     compatible =3D "mediatek,mt8188-es8326";
-> > +     model =3D "mt8188_m98390_8326";
-> > +
-> > +     audio-routing =3D
-> > +             "ETDM1_OUT", "ETDM_SPK_PIN",
-> > +             "ETDM2_OUT", "ETDM_HP_PIN",
-> > +             "ETDM1_IN", "ETDM_SPK_PIN",
-> > +             "ETDM2_IN", "ETDM_HP_PIN",
-> > +             "ADDA Capture", "MTKAIF_PIN",
-> > +             "Headphone Jack", "HPOL",
-> > +             "Headphone Jack", "HPOR",
-> > +             "MIC1", "Headset Mic",
-> > +             "Left Spk", "Front Left BE_OUT",
-> > +             "Right Spk", "Front Right BE_OUT";
-> > +     status =3D "okay";
-> > +
-> > +     hs-capture-dai-link {
->
-> Nope, that's not how DAI links are called.
+On 10/26/2024 1:10 AM, Konrad Dybcio wrote:
+> On 11.10.2024 12:33 PM, Viken Dadhaniya wrote:
+>> Add DT support for QUPv3 Serial Engines.
+>>
+>> Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+>> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+>> ---
+> 
+> [...]
+> 
+>> +	qup_opp_table: opp-table-qup {
+>> +		compatible = "operating-points-v2";
+> 
+> opp-shared;
 
-Acknowledged, but I'm still figuring out what you want to suggest here
-- does the `^dai-link@[0-9]+$` pattern sound okay?
+Added in v2.
 
->
-> > +             codec {
-> > +                     sound-dai =3D <&es8326>;
-> > +             };
-> > +     };
->
-> ...
->
-> > +&i2c2 {
-> > +     status =3D "disabled";
-> > +};
-> > +
-> > +&i2c_tunnel {
-> > +     /delete-node/ sbs-battery@b;
-> > +
-> > +     battery: sbs-battery@f {
-> > +             compatible =3D "sbs,sbs-battery";
-> > +             reg =3D <0xf>;
-> > +             sbs,i2c-retry-count =3D <2>;
-> > +             sbs,poll-retry-count =3D <1>;
-> > +     };
-> > +};
-> > +
-> > +&max98390_38 {
-> > +     sound-name-prefix =3D "Front Right";
-> > +     maxim,dsm_param_name =3D "dsm_param.bin";
->
-> NAK. Not a DT property. You cannot send us ACPI stuff.
->
-> Go through internal review first, which should tell you that ACPI is not
-> accepted into DT. There are just few exceptions and codecs do not
-> qualify.
+> 
+>> +
+>> +		opp-75000000 {
+>> +			opp-hz = /bits/ 64 <75000000>;
+>> +			required-opps = <&rpmhpd_opp_low_svs>;
+>> +		};
+>> +
+>> +		opp-100000000 {
+>> +			opp-hz = /bits/ 64 <100000000>;
+>> +			required-opps = <&rpmhpd_opp_svs>;
+>> +		};
+>> +
+>> +		opp-128000000 {
+>> +			opp-hz = /bits/ 64 <128000000>;
+>> +			required-opps = <&rpmhpd_opp_nom>;
+>> +		};
+>> +	};
+>> +
+>>   	psci {
+>>   		compatible = "arm,psci-1.0";
+>>   		method = "smc";
+>> @@ -392,6 +427,24 @@
+>>   			#size-cells = <1>;
+>>   		};
+>>   
+>> +		gpi_dma0: qcom,gpi-dma@800000  {
+>> +			compatible = "qcom,sdm845-gpi-dma";
+> 
+> You must define a new compatible for qcs615, sdm845 is used as a fallback
+> (so that we don't have to add new driver entries). You will however need
+> to submit a separate dt-bindings change.
 
-I'll drop all these invalid lines. It was likely a misunderstanding
-when the lines were added. Thanks for clarifying.
+We have added sdm845 in compatible due to below comment in driver file
 
-Regards,
-Fei
+File: 
+https://github.com/torvalds/linux/blob/81983758430957d9a5cb3333fe324fd70cf63e7e/drivers/dma/qcom/gpi.c#L2284
 
->
-> Best regards,
-> Krzysztof
->
+   /*
+    * Do not grow the list for compatible devices. Instead use
+    * qcom,sdm845-gpi-dma (for ee_offset = 0x0) or qcom,sm6350-gpi-dma
+    * (for ee_offset = 0x10000).
+    */
+
+Do we still require new compatible for qcs615 ?
+
+> 
+>> +			reg = <0x0 0x800000 0x0 0x60000>;
+>> +			#dma-cells = <3>;
+>> +			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>;
+>> +			dma-channels = <8>;
+>> +			dma-channel-mask = <0xf>;
+>> +			iommus = <&apps_smmu 0xd6 0x0>;
+>> +			status = "disabled";
+> 
+> Any reason?
+
+By default, we are disabling all nodes. In the target-specific file, we 
+will update them based on the required use case.
+
+> 
+>> +		};
+>> +
+>>   		qupv3_id_0: geniqup@8c0000 {
+>>   			compatible = "qcom,geni-se-qup";
+>>   			reg = <0x0 0x8c0000 0x0 0x6000>;
+>> @@ -400,6 +453,7 @@
+>>   				 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
+>>   			clock-names = "m-ahb",
+>>   				      "s-ahb";
+>> +			iommus = <&apps_smmu 0xc3 0x0>;
+> 
+> This looks like a separate fix
+
+One QUP and UART (console) related change has been added as part of the 
+base DTSI. Now, we are adding all remaining QUP and I2C/SPI/UART 
+configurations with IOMMUs and other properties.
+
+Is there any specific reason to make this a separate fix?
+
+> 
+>>   			#address-cells = <2>;
+>>   			#size-cells = <2>;
+>>   			status = "disabled";
+>> @@ -412,13 +466,377 @@
+>>   				pinctrl-0 = <&qup_uart0_tx>, <&qup_uart0_rx>;
+>>   				pinctrl-names = "default";
+>>   				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
+>> -				interconnects = <&aggre1_noc MASTER_QUP_0 0
+>> -						 &mc_virt SLAVE_EBI1 0>,
+>> -						<&gem_noc MASTER_APPSS_PROC 0
+>> -						 &config_noc SLAVE_QUP_0 0>;
+>> +				interconnects = <&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>,
+>> +						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>;
+> 
+> Why?
+> 
+> Also, please use QCOM_ICC_TAG_ALWAYS instead of zeroes
+
+Updated in v2.
+
+> 
+> Konrad
 
