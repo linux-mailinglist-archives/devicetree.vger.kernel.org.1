@@ -1,128 +1,97 @@
-Return-Path: <devicetree+bounces-116477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B6889B3053
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:33:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 110879B3055
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:34:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 161DA1F221A5
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:33:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA0622816A2
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:34:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E43C1D9663;
-	Mon, 28 Oct 2024 12:33:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE381D966A;
+	Mon, 28 Oct 2024 12:33:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PE5ZTt43"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D07D1D5CE0;
-	Mon, 28 Oct 2024 12:33:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5DAD1D6DAA
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 12:33:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730118811; cv=none; b=ZxKeAUO/vamOtnOCP/9rqEoq5BxBOlprg5+Bn8aJqvjvH59UyG6WIBACWxXy7kFPkVcuk31Aa+kVpbpLDiKhDwVKslphCJYQ/7Nwr/4/1vNr/uVI8xjFvG5GKJrY23g4WL5M29CIPHykybwmqnbz+3mlKgRe7s8gxASJjyDEMd0=
+	t=1730118839; cv=none; b=sCOTZGAyKZSMHQRw6WL4tToIv4wIrDgwv/sbBFMKhrQGjoaRWZ1vxMyCxhYIvIMxJErGPyDf0hwyynt6lre5uclHL4sc347NOqalduIz9veJnJDx3TvK8wUwMequNJJ7gkmGDWO+KMdgnuSXbvc2PrmXJARI9Ru20y71diiGUCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730118811; c=relaxed/simple;
-	bh=LUo/4DSAgdM5mhdfwOOB3FQxw3+m/5EaS5mwXq28miw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cn/t2QA62dsNGZJzjT05uGCafhHbstZSoQGBVMz8BKYfdPm5tjuCC69ZVj8scfN/Vom3Svuc5/Mriji1+DyXLhCvZjtoGMtni0XR9HF6zKSc8FeCSy+05dVIbcBSMQIGfZ/lBmPo/ETCePVcTwbyqTqiUGTYcWcqFlezq7rI55U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5F574497;
-	Mon, 28 Oct 2024 05:33:58 -0700 (PDT)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F20B43F73B;
-	Mon, 28 Oct 2024 05:33:25 -0700 (PDT)
-Date: Mon, 28 Oct 2024 12:33:23 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	David Dai <davidai@google.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Quentin Perret <qperret@google.com>,
-	Masami Hiramatsu <mhiramat@google.com>,
-	Will Deacon <will@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Vincent Guittot <vincent.guittot@linaro.org>,
-	Marc Zyngier <maz@kernel.org>,
-	Oliver Upton <oliver.upton@linux.dev>,
-	Dietmar Eggemann <dietmar.eggemann@arm.com>,
-	Pavan Kondeti <quic_pkondeti@quicinc.com>,
-	Gupta Pankaj <pankaj.gupta@amd.com>, Mel Gorman <mgorman@suse.de>,
-	kernel-team@android.com, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 0/2] Improve VM CPUfreq and task placement behavior
-Message-ID: <Zx-Ek7IbpYNDbG9D@bogus>
-References: <20240919000837.1004642-1-davidai@google.com>
- <20241001092544.2tlydouyyc7jwuja@vireshk-i7>
- <CAGETcx8GomM0znaYKsS412dRvnUQd7_78pKuV82t2b14VBvKVQ@mail.gmail.com>
- <CAJZ5v0iTLX9NAT0PN804QahQ7D=+=D1uJ7PVnZfk5UrpP5uXpg@mail.gmail.com>
+	s=arc-20240116; t=1730118839; c=relaxed/simple;
+	bh=HDLQY3qQ6e13iwTfkGPYuIXPQSA/x/amsdqW39bGlDw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Tkhs08jZXrz2rxxsxlNBk4ENxy48SVTwAwP7vNH4aa2Fh/rSLS9uD1/r1YzrnXVopHjv+vJVj1mrPhao6lKR59t976nfPfUjDaFg7SHSvEojiyBjMrQAVRyVzKh3pVspfT+U4CLkXloRNs/z55Dcj9/jFL6TUgVr4lW+qmfguCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PE5ZTt43; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2fb4ec17f5cso37927831fa.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 05:33:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730118836; x=1730723636; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HDLQY3qQ6e13iwTfkGPYuIXPQSA/x/amsdqW39bGlDw=;
+        b=PE5ZTt43gh8cA/nB+oCeTmhjICOl31/hJhkwvxczmBTQBS6uekZyDxysX1n1Yqgaw9
+         Dcx3LA3AcI2qoJ3s3EEGK7X0E4AbiIv9GgJ1F9LZ+pV3DZextBjcNq8OGuVY73sY+r2u
+         eqBm7ycgWV4/3uZZMch1pp47aHZa9+ZSlKSYMnm7OZgb3ckPexIHYagBvD7FbVDL0gAh
+         p8c5RjM1W5tj0/iOkoybOtxFz48yhIwYiEy5s4aYJ3My9xJ5prnw9ZudzqTB5rPtkY+m
+         2cZQXdMZVaormdv4VfFJIWu3qvUtgvpFdCVU3Cw+e5M+F2h/xs05zIUCtfWCbzkkiPAV
+         U1Ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730118836; x=1730723636;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HDLQY3qQ6e13iwTfkGPYuIXPQSA/x/amsdqW39bGlDw=;
+        b=ulkidTgm+mjunGwZtr5uQFx1A5Ue2eLvlWssz0HA5SqKYSByqJXaritpzvO7fJ/bPu
+         6vcMzxgaxcCT07fsMFIqNLgDdmjfHCOMV0/B+V9gQaDp6IaaBeC9EzzZBXhvMf1Fp85l
+         sXALBRYduJD5ekPbq6ByJAeb3UhMx6PNMGf3+6ADuoR1UEIdepAIL7foMWGi5FFvaTtD
+         OiV1sG6BBNePSnPfzcBCPhmA0kmg5U7rMjKpQkncSZxszkzl7JzcLDNXvwbHHIv0sAR1
+         P86h9iCAYS23i96dhZJCxB3ny+RYXcZ0V3SjDn9W3dQr1ozvz7sBXTopRuMYtl/6vLqY
+         nZbg==
+X-Forwarded-Encrypted: i=1; AJvYcCXRiHAxxTBZmaVDlZzlHYNmAaGr1ZC+C7+qR28tmboZIn8e8TpxD+HAwazYlNRw7k6BLo6ckV4HqJHt@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIqAnLPX6fTBLfbmrb4MKWxkRtCR6daAobY/l7hvraTmjcAwwI
+	7FCewpTRZWjUmkDWhM+oUu1N97JLYuWoGaSQTy0W48rsD2ZcpYrD6Evjeba3rtLhzOrv8Ml3HbL
+	m8v+DHUA8s399tO73Vm3RNXVd7R2kZg==
+X-Google-Smtp-Source: AGHT+IHZj/V8KLGee6BNlI6LrtJfPAxAxG9OQGWFq92wsn4uuuFerhAkdyRsDdmrgpr6My5eZvNh+rg/W6QZpCi0EqE=
+X-Received: by 2002:a05:651c:222a:b0:2fc:9759:4e3d with SMTP id
+ 38308e7fff4ca-2fcbdfc57bdmr30593791fa.19.1730118835677; Mon, 28 Oct 2024
+ 05:33:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJZ5v0iTLX9NAT0PN804QahQ7D=+=D1uJ7PVnZfk5UrpP5uXpg@mail.gmail.com>
+References: <20241027225408.195475-1-gilles.talis@gmail.com>
+In-Reply-To: <20241027225408.195475-1-gilles.talis@gmail.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Mon, 28 Oct 2024 09:33:44 -0300
+Message-ID: <CAOMZO5CR0=Vqd6v=N=Ymtsfw5F1M54tEYACpzk1HcMcP3tgAHA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp-navqp: Add HDMI support
+To: Gilles Talis <gilles.talis@gmail.com>
+Cc: conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
+	shawnguo@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 28, 2024 at 12:39:31PM +0100, Rafael J. Wysocki wrote:
-> On Sat, Oct 26, 2024 at 12:26 AM Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > On Tue, Oct 1, 2024 at 2:25 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > >
-> > > On 18-09-24, 17:08, David Dai wrote:
-> > > > Hi,
-> > > >
-> > > > This patch series is a continuation of the talk Saravana gave at LPC 2022
-> > > > titled "CPUfreq/sched and VM guest workload problems" [1][2][3]. The gist
-> > > > of the talk is that workloads running in a guest VM get terrible task
-> > > > placement and CPUfreq behavior when compared to running the same workload
-> > > > in the host. Effectively, no EAS(Energy Aware Scheduling) for threads
-> > > > inside VMs. This would make power and performance terrible just by running
-> > > > the workload in a VM even if we assume there is zero virtualization
-> > > > overhead.
-> > >
-> > > > David Dai (2):
-> > > >   dt-bindings: cpufreq: add virtual cpufreq device
-> > > >   cpufreq: add virtual-cpufreq driver
-> > > >
-> > > >  .../cpufreq/qemu,virtual-cpufreq.yaml         |  48 +++
-> > > >  drivers/cpufreq/Kconfig                       |  14 +
-> > > >  drivers/cpufreq/Makefile                      |   1 +
-> > > >  drivers/cpufreq/virtual-cpufreq.c             | 333 ++++++++++++++++++
-> > > >  include/linux/arch_topology.h                 |   1 +
-> > > >  5 files changed, 397 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/cpufreq/qemu,virtual-cpufreq.yaml
-> > > >  create mode 100644 drivers/cpufreq/virtual-cpufreq.c
-> > >
-> > > LGTM.
-> > >
-> > > Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
-> >
-> > Rafael/Viresh,
-> >
-> > Nudge... Any chance this will get pulled into 6.12?
->
-> This is not a fix AFAICS, so 6.12 is out of the question.
->
-> As for 6.13, Viresh thinks that this change is a good idea (or he
-> wouldn't have ACKed it), so it's up to him.  I'm still not convinced
-> that it will work on x86 or anything that doesn't use DT.
->
+Hi Gilles,
 
-+1, I was about to comment on DT bindings patch, but then I assumed it is
-accepted to have a device object with similar CID and CRS(for register address)
-in ACPI for example. But yes, the patch itself is not adding support for that
-yet. If not is not the way, then we need to come up with a way that works
-for both ACPI and DT.
+On Sun, Oct 27, 2024 at 7:57=E2=80=AFPM Gilles Talis <gilles.talis@gmail.co=
+m> wrote:
+>
+> The HDMI connector on the board is a micro-HDMI (type "d")
+>
+> Signed-off-by: Gilles Talis <gilles.talis@gmail.com>
 
---
-Regards,
-Sudeep
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
 
