@@ -1,159 +1,162 @@
-Return-Path: <devicetree+bounces-116537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84FF99B32CE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:10:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E78DB9B32DE
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:12:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 103DDB22F86
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:10:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5490EB247DC
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F371DEFEC;
-	Mon, 28 Oct 2024 14:07:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7441D1DDC02;
+	Mon, 28 Oct 2024 14:09:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="OAydYTtx"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="goLHCIdE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A40401DE882
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 14:07:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C0B51DD547;
+	Mon, 28 Oct 2024 14:09:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730124456; cv=none; b=UFoRB+AS4Lv4dBUWCoLlCmWPxNnUlNPyzmUNWpNwHbUg4y2mU2R0LyQeF5f6ZqrZdCHEeTvJhXdA+pgfmuoPyrtujSAxjCapUiDW+h1jBD47UHiYIFoJw7jzk9QSaxTj8oeBekXFA1g6jye0OaEv4GDNkIBFtrXn618H6gCH0Og=
+	t=1730124564; cv=none; b=fbC4/NO7UnrGw349eM1hDaLM2JUopRe2xRHuj9/z0hhNTV26GxuWY+xhkX3UJtACj1p0J23nuwNi9H/oPOcSuzO6D9+l72jgBWx8qmmIu4wM2wWgQBHNUS2AzzWNDdYwfCVQ8AnUCKD405tB3s5DJ64HrUx3+me/gYoRaN++rTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730124456; c=relaxed/simple;
-	bh=mkLhLwSMHZ/hO35qXKlv3paIFazWoum0UehyHiC/QB0=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=To0OXzROSyinnfGdljb4kHdhTqkMjpPn4u4DADI4C6NAs+Plr4nn/Nr4wEHt1SbvUtvAdedg3JkSh5HMB7a99/3AWvIAyPNTIf+bxzGzXWeT2SxQDFlr18bhgliFnlapZ47lVe5pfc6J4slCsiKBgc9Ohj57nUCwysZkUnxEuaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=OAydYTtx; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a9a68480164so603345066b.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 07:07:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1730124449; x=1730729249; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XxqlkITvdCM/QWIQix/9plieOyS0wK2Vm/r1GXcM7hA=;
-        b=OAydYTtxT6dF0EJD6oJ2Gfci6sL/wr3lJitPSXu3cOeLjqixfX2bMIw3u6T6bVOdkc
-         IXzif3HHy8MK82ptdUmZUBQftf1Mpr9y207rjJTvxzYGXHaSUmA3/4b7S24lVWGwq1Z4
-         gB+dNI94oZMOz2hvgNStNuzB1Il5SvO0jQFKrprX7BGZSZcTnfcp6wdLnB0tmbTMNK3H
-         MYEFi2fJPlG+RY3tMmKoiWteE87gUntHgMGnTLXL/SwCFAeiOTFSXhxN0pm4I/LqlNws
-         Er6+pC7IHlzpMxvrDdSVRg858gOWkr8ZfkrWTuxG0Dg3p7xkDd2Lni9rnypPFNe8tLNd
-         nZGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730124449; x=1730729249;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XxqlkITvdCM/QWIQix/9plieOyS0wK2Vm/r1GXcM7hA=;
-        b=iHOWC+Cr1Byfux6DTxrFV3W2Aef90hn8r3pi6Ci8/eYF5EXbIdv655+sNKvOZl39o0
-         E3j0uSjJPKWhnQc+6BNSEKFcc/uMoV4zpU6DBdcwBjWfwSF2XaB8GFhBOo5wZwDVIoqr
-         I7JvrKRI+us+1R6PS4LLvffmcdHYXnyrNHCAJ1Dh8RhwKVf1WCSY2F4qfjB4nMgsPm/e
-         S2rtIMb/wtX/gLgQY/0wcf5siw7Fpf5Ij9giLEjMHYV+G8yz1EXpceMiX940zY4nGcNP
-         d7lslN7inCji+/UUXXga3ZH981JY+0B+aTz4qCjehweuGd4F9Xswm22FTQNr3AJMF0oo
-         g7WQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWe+x1UrAe0v8A3sO8VD9K4s3Ya9UmhGpMSHJcfmbf7DAOoxTt8gPooIJziqM1fr/toxtFJkMIYq1nx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxjohutcfJujdfjwOvNUwAKjneP/mer5fwLAPyFvJuEdJbbt9r
-	vsOqLozKCXPGIpjbtCF6Q03aBjDfA+PTtYxYSl1EmIuiHKnAZeUsMnSQOyC1dXI=
-X-Google-Smtp-Source: AGHT+IGqxvdjrDjtQcNnn4jWGuT849mWymPdjWEdlc16+0LL2sooJ9QKroNYPN94MhkXvqI/l5IquA==
-X-Received: by 2002:a17:907:970a:b0:a9a:4a:284a with SMTP id a640c23a62f3a-a9de5d8690amr826616066b.26.1730124449033;
-        Mon, 28 Oct 2024 07:07:29 -0700 (PDT)
-Received: from localhost (host-79-35-211-193.retail.telecomitalia.it. [79.35.211.193])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f297a9csm374074266b.126.2024.10.28.07.07.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 07:07:28 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+	s=arc-20240116; t=1730124564; c=relaxed/simple;
+	bh=vqoGhruWTddXwQFCpV5QRmAXabpqZ3gPLxSq+7FzWno=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MJBmeidQTV+6Ka9TxpBBJuY/G4QrJ1h52CbLEAuWDg8vgHmZdk/ArVUzvJyCgEWv6I19XEOUtSWdoDtUjALHxzOaBIY+g9X8aijV0WycjJ52sYbg/IMQwAnPHxaEQTrCyOBuajV76FCcd3Ef1MBRSYCWKtdQf+6kKTOFy8Vko6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=goLHCIdE; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 32267641;
+	Mon, 28 Oct 2024 15:09:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1730124558;
+	bh=vqoGhruWTddXwQFCpV5QRmAXabpqZ3gPLxSq+7FzWno=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=goLHCIdEdCsBdmeSZl7qwr/YqJu/7JtfBcobv/GiIqDsGCbrAwhLBPHyz8QybfMl/
+	 C7bNNHkd0nOoETAJWTWcplKOQg0DuFFAYViFJHzui38tGrPUj+fiuzj5N+uwfPwLti
+	 hRWefLjrLIRrp10ala3tn8FurjJwA7B2NqUnfTLU=
+Date: Mon, 28 Oct 2024 16:09:13 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Herve Codina <herve.codina@bootlin.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH v3 12/12] arm64: defconfig: Enable RP1 misc/clock/gpio drivers
-Date: Mon, 28 Oct 2024 15:07:29 +0100
-Message-ID: <53f9c2cc91403070475ce01e2f1491e09abea72e.1730123575.git.andrea.porta@suse.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <cover.1730123575.git.andrea.porta@suse.com>
-References: <cover.1730123575.git.andrea.porta@suse.com>
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+Message-ID: <20241028140913.GG6081@pendragon.ideasonboard.com>
+References: <20241024095539.1637280-1-herve.codina@bootlin.com>
+ <20241024095539.1637280-3-herve.codina@bootlin.com>
+ <20241027162350.GA15853@pendragon.ideasonboard.com>
+ <20241028091331.6f67e29e@bootlin.com>
+ <20241028112857.GF24052@pendragon.ideasonboard.com>
+ <20241028-nebulous-yellow-dragon-2cfb5f@houat>
+ <20241028132858.GE6081@pendragon.ideasonboard.com>
+ <20241028-great-charming-flounder-23fc9b@houat>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241028-great-charming-flounder-23fc9b@houat>
 
-Select the RP1 drivers needed to operate the PCI endpoint containing
-several peripherals such as Ethernet and USB Controller. This chip is
-present on RaspberryPi 5.
+On Mon, Oct 28, 2024 at 02:55:47PM +0100, Maxime Ripard wrote:
+> On Mon, Oct 28, 2024 at 03:28:58PM +0200, Laurent Pinchart wrote:
+> > On Mon, Oct 28, 2024 at 01:21:45PM +0100, Maxime Ripard wrote:
+> > > On Mon, Oct 28, 2024 at 01:28:57PM +0200, Laurent Pinchart wrote:
+> > > > On Mon, Oct 28, 2024 at 09:13:31AM +0100, Herve Codina wrote:
+> > > > > On Sun, 27 Oct 2024 18:23:50 +0200 Laurent Pinchart wrote:
+> > > > > 
+> > > > > [...]
+> > > > > > > +static int sn65dsi83_reset_pipeline(struct sn65dsi83 *sn65dsi83)
+> > > > > > > +{
+> > > > > > > +	struct drm_device *dev = sn65dsi83->bridge.dev;
+> > > > > > > +	struct drm_modeset_acquire_ctx ctx;
+> > > > > > > +	struct drm_atomic_state *state;
+> > > > > > > +	int err;
+> > > > > > > +
+> > > > > > > +	/* Use operation done in drm_atomic_helper_suspend() followed by
+> > > > > > > +	 * operation done in drm_atomic_helper_resume() but without releasing
+> > > > > > > +	 * the lock between suspend()/resume()
+> > > > > > > +	 */
+> > > > > > > +
+> > > > > > > +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
+> > > > > > > +
+> > > > > > > +	state = drm_atomic_helper_duplicate_state(dev, &ctx);
+> > > > > > > +	if (IS_ERR(state)) {
+> > > > > > > +		err = PTR_ERR(state);
+> > > > > > > +		goto unlock;
+> > > > > > > +	}
+> > > > > > > +
+> > > > > > > +	err = drm_atomic_helper_disable_all(dev, &ctx);
+> > > > > > > +	if (err < 0)
+> > > > > > > +		goto unlock;
+> > > > > > > +
+> > > > > > > +	drm_mode_config_reset(dev);
+> > > > > > > +
+> > > > > > > +	err = drm_atomic_helper_commit_duplicated_state(state, &ctx);  
+> > > > > > 
+> > > > > > Committing a full atomic state from a bridge driver in an asynchronous
+> > > > > > way seems quite uncharted territory, and it worries me. It's also a very
+> > > > > > heavyweight, you disable all outputs here, instead of focussing on the
+> > > > > > output connected to the bridge. Can you either implement something more
+> > > > > > local, resetting the bridge only, or create a core helper to handle this
+> > > > > > kind of situation, on a per-output basis ?
+> > > > > 
+> > > > > A full restart of the bridge (power off/on) is needed and so we need to
+> > > > > redo the initialization sequence. This initialization sequence has to be
+> > > > > done with the DSI data lanes (bridge inputs) driven in LP11 state and so
+> > > > > without any video stream. Only focussing on bridge outputs will not be
+> > > > > sufficient. That's why I brought the pipeline down and restarted it.
+> > > > 
+> > > > Fair point.
+> > > > 
+> > > > > Of course, I can copy/paste sn65dsi83_reset_pipeline() to a core helper
+> > > > > function. Is drm_atomic_helper_reset_all() could be a good candidate?
+> > > > 
+> > > > The helper should operate on a single output, unrelated outputs should
+> > > > not be affected.
+> > > 
+> > > Also, you don't want to reset anything, you just want the last commit to
+> > > be replayed.
+> > 
+> > I'm not sure about that. If the last commit is just a page flip, that
+> > won't help, will it ?
+> 
+> The alternative would be that you start anew with a blank state, which
+> effectively drops every configuration that has been done by userspace.
+> This is terrible.
+> 
+> And a page flip wouldn't have affected the connector and
+> connector->state would still be to the last state that affected it, so
+> it would work.
 
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
----
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+Ah right, you didn't mean replaying the last commit then, but first
+disabling the output and then restoring the current state ? That should
+work.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5fdbfea7a5b2..5fcd9ae0d373 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -609,6 +609,7 @@ CONFIG_PINCTRL_QCM2290=y
- CONFIG_PINCTRL_QCS404=y
- CONFIG_PINCTRL_QDF2XXX=y
- CONFIG_PINCTRL_QDU1000=y
-+CONFIG_PINCTRL_RP1=y
- CONFIG_PINCTRL_SA8775P=y
- CONFIG_PINCTRL_SC7180=y
- CONFIG_PINCTRL_SC7280=y
-@@ -689,6 +690,7 @@ CONFIG_SENSORS_RASPBERRYPI_HWMON=m
- CONFIG_SENSORS_SL28CPLD=m
- CONFIG_SENSORS_INA2XX=m
- CONFIG_SENSORS_INA3221=m
-+CONFIG_MISC_RP1=m
- CONFIG_THERMAL_GOV_POWER_ALLOCATOR=y
- CONFIG_CPU_THERMAL=y
- CONFIG_DEVFREQ_THERMAL=y
-@@ -1270,6 +1272,7 @@ CONFIG_COMMON_CLK_CS2000_CP=y
- CONFIG_COMMON_CLK_FSL_SAI=y
- CONFIG_COMMON_CLK_S2MPS11=y
- CONFIG_COMMON_CLK_PWM=y
-+CONFIG_COMMON_CLK_RP1=m
- CONFIG_COMMON_CLK_RS9_PCIE=y
- CONFIG_COMMON_CLK_VC3=y
- CONFIG_COMMON_CLK_VC5=y
 -- 
-2.35.3
+Regards,
 
+Laurent Pinchart
 
