@@ -1,82 +1,83 @@
-Return-Path: <devicetree+bounces-116491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CD049B30D5
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:47:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04B859B30D9
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:47:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4015B282B3B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:47:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5CBBCB23F98
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:47:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41E91DA0EB;
-	Mon, 28 Oct 2024 12:46:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D4A61D9A52;
+	Mon, 28 Oct 2024 12:47:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pnm9cACf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J5IkQnBJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B80891D9320
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 12:46:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1C638DD8
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 12:47:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730119587; cv=none; b=UtBYY2+PQ2+6kvZdC4TiruvsD6SfQ6G2S7bUeIoY/KPoj0rgzfhv5uuN9bSclaYtBnFILf5BmmwjPL0nvc5TeaQzbNI5YHiCh28g0u6OVqDceUGSc2NKzz5gRtes+bOvBAnDkNOGKljuY7fQrGO/JDEuRpYj8KwPWwMInEOT15c=
+	t=1730119644; cv=none; b=QEuQycNAsMq8KJgFMYksS8MZxhZP4TB3yLFliIhORKBY4b/CIZGtAKlAyVp3oVOOj4RKDvZ3AHbYlzcUavdGFyx45zCNQSznh360sU80eRDCPFJ7efF3k/zZHP4I1+p8uVbNFKJ1eXylOFj8b3vU0N+hpk2qCt+v1d+K8ttnLQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730119587; c=relaxed/simple;
-	bh=+AitCXjKq04W7cgcQoh9oz7Gk+0bO2Nu1FQBG5LO1zE=;
+	s=arc-20240116; t=1730119644; c=relaxed/simple;
+	bh=DeYQ+dNxtG99x0aQLlVj5mjHlCA8mn9SpdtFx66tefw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ScPsefN8oHc06buCHFOTh9l4+QPxXeZobqdwoWp/+yW+Rj5rsHh+pI9a+1GpftQgaTBozOJQ10wIfjWf2egJNjRVZoZos4hnqYFGn8Rh8gTiK0GQfc/+9osVUK6GK+Oaql0xQhEoPGy032NZ08+XhutsN2t4iSrysE3q/6McvZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pnm9cACf; arc=none smtp.client-ip=209.85.167.45
+	 To:Cc:Content-Type; b=DUuAiGJATF/lUDMck3TtMKYPWT41AJjA/C7V8xArFFuRAxMn+ZDYcmmkGpgmixjKFdYgfcuv4EtPiNqq2oewsXo/XwhDq32OT5qdTQxxT08dp9LaXVGwHMazNZEHOoooG+h/13xdN3RoHraKF1UtxWw9EwDgK32hOi6kjC0lnjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J5IkQnBJ; arc=none smtp.client-ip=209.85.208.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-539fbe22ac0so4218452e87.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 05:46:25 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2f75c56f16aso38997821fa.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 05:47:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730119584; x=1730724384; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1730119640; x=1730724440; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+aSTTKcsEues9Slud5u2I4oUCfkMRIvmSj7eb96RQ74=;
-        b=Pnm9cACf0iOoVU40zZmmphsUqrD5CybLxo0O3rfC/DyG0LoGwbLFSyaNR6XlT+/dBL
-         XOQajbOLN42d5A4hd5aJQUv2gLGf+YzQ9eHYRzt1KTSoNwCp8O5dwjbQLHTSg3qEkvKu
-         5WYABkz35HIOBttURkEfxl4bIpy+6Ur9CSty3NuS8Zwpx5e7q+rKwt4Cr792whTc9fgc
-         eyqW4Il7WhrQKG+vB5W79v09QVW/SSPjAB987UCcRZCMhJjdFa3z9IEcreDQ4o9h9Elj
-         juUr5YFjJ8rJuJrV6cFiU/Qi3UJHO01JFRUxbB8p79u+WbCsxvQDt0upFFhbjMrqunKF
-         Hynw==
+        bh=DeYQ+dNxtG99x0aQLlVj5mjHlCA8mn9SpdtFx66tefw=;
+        b=J5IkQnBJDPZvBpq3sDebMM2lVFr3xaNVqqDGAwdh+8gCWO7KBb9BLiA7iMiUbjYj6U
+         HC7+yoe6OcTDwDrv0kTiUlg+mKshF7n96lksvF6AkFpgyL6OhjvOTuEVf+/t2BrmqiTQ
+         +Utxvs8xa4rR4Iymg/+hfw5EcX7mr8Bat/p8PBaYaZGibJ+kXP7S2tF3ZlGj+I1EqXzw
+         mxPi0ALq7dJuw/t+gvJ1M8WusGgNFbXnAElE9XALtNDJ7st1qOiaj9bKxOj45tVgF6f2
+         tHSSFiN3KAhI/HYNngucM8l9782e1299uTmFfA+yeXwY8iqATz/6Z8EMtONergQwvcCQ
+         fhfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730119584; x=1730724384;
+        d=1e100.net; s=20230601; t=1730119640; x=1730724440;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+aSTTKcsEues9Slud5u2I4oUCfkMRIvmSj7eb96RQ74=;
-        b=Y1xmMBPs4itMIqmtLpDNGOOThEPJgbhnEa4E6i24+ZY3olqjiHeOxNpUw5tKtjlWcy
-         bliSvyse2AUtNQaVCF1fQx2It7ef2JtZBEyPKYrP17EtVgtAcbVRlGaoz26m/R5NkJbj
-         b34G3sW3m2X5oNnpxsZ2D9t25NFm0zP7zIFniED8j/ZceLsDjR9JoQnVAVFy9bBDLHhJ
-         LgaS0ZrHGcbXhBXTgW4UNFstEYPdPyIiYiExLDxOa7FB/mvOyFUmt0ehz6yIqgsbtOiY
-         UmKA6E99ElAnqBvvNPqVtpXi8oXThIQFFBVshfoR3iOuGuCDXq+d5dFrOC5YffR4074B
-         Fc2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWIo9WfVdcmKYV9htGXlBQ8StLGiVuOgwxhaRS6ccD7DdClOiie9r/eDbAEI5/2/88WrNX68WVbSni/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWgtpnyFLN4OR3IMdiVXtxIjf87xMpIqhi8MBenS6Z3lxJHn+s
-	zysL7KAIvdJ0/RdExqcPyEHvm3PpMnNwusJnApo8cZnOjKlsm6TFj3DZofXBxqgzGSJ/mlJaQ+D
-	c9Wj5fjjWjfWSPiK1pDj9TmuzzjHuEmFsHxVsiw==
-X-Google-Smtp-Source: AGHT+IHKBOt7btwvvrMi093N8L0HSsxQd++C6ep3baxxUYVZr5QdfiIpCSS/MoaRNRGceN2TTToscxI5mPA8SlKe6OY=
-X-Received: by 2002:a05:6512:318d:b0:539:f65b:401 with SMTP id
- 2adb3069b0e04-53b34c463d9mr2861815e87.57.1730119583728; Mon, 28 Oct 2024
- 05:46:23 -0700 (PDT)
+        bh=DeYQ+dNxtG99x0aQLlVj5mjHlCA8mn9SpdtFx66tefw=;
+        b=Lcdaz7IuG5uzbcjpClo4lcITnU6ETBwJJ6uUtNdLUfE/YwSDBhKZMADUQCL4KgBZ6r
+         pcIyt6atNUINMqPIqKYbi/IrrcWa5TjziQIrYWYZ+rrm9CzTrGrIQ87zEhyzusIEjy7q
+         R+May0SRdL9nNSNFPR6Ualgz6ICMcFKC/hzto3rMVrT0JAJtr8KHQ20wWTXh3gpXza4j
+         fmKW76fLWyaDRlVr3pTK2e1MpCjGKxw9qztKntHNlD04iLI52qPeAJhOLhf9dG3mHaD8
+         OPkcrorCt2lBej3CTe2ehbf5mb+2kbHMG74WcvJ9wzl2CybxM+4RYKO2T+1K0TNN1v0Y
+         SIcw==
+X-Forwarded-Encrypted: i=1; AJvYcCW3rgMtHt3VufFk4El9UzL9ZBbVbSRP+daHJyGZz8J0TKJj6JCE1pbPai83D/wPEhPxPbAYuSpwqWGa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw26I7x8VE8W3ZhBIzG3MWBH9pGEch/qSleBTl0JsrS2GgRwI3e
+	iTrJBpSip3QS8lF3uaOm7l3QFVzsJieyoqjHdvgwvAkMzauJj0fUzFQwdtt0SxWHBhqcSiFytKL
+	UgvTqYaBOLChhdJdpqz/EcDFx+vLWm4TM7Mh4MQ==
+X-Google-Smtp-Source: AGHT+IHOLCFQLPNhZz+uFzdwwXch/oc0CkWdrvmLFctGLdK8llDYUMinPepdGvS7x3K/TdVsln9gijrEdwd/6GxRpNo=
+X-Received: by 2002:a2e:1319:0:b0:2fb:60a0:f4e1 with SMTP id
+ 38308e7fff4ca-2fcbdfe8db2mr27240591fa.24.1730119640455; Mon, 28 Oct 2024
+ 05:47:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1730070570.git.jahau@rocketmail.com> <d92ef0036b66520bb6d1ec908165e776cf30c303.1730070570.git.jahau@rocketmail.com>
-In-Reply-To: <d92ef0036b66520bb6d1ec908165e776cf30c303.1730070570.git.jahau@rocketmail.com>
+References: <cover.1730070570.git.jahau@rocketmail.com> <30c154954a4e0f75d90f6ef6f393a5ba8b3ffea9.1730070570.git.jahau@rocketmail.com>
+In-Reply-To: <30c154954a4e0f75d90f6ef6f393a5ba8b3ffea9.1730070570.git.jahau@rocketmail.com>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 28 Oct 2024 13:46:11 +0100
-Message-ID: <CACRpkdZSxvLri-9CQQMuFP-Q4UswoJq4YDySWR0GXz0=+xcLiw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] drm/panel: samsung-s6e88a0-ams427ap24: Add initial driver
+Date: Mon, 28 Oct 2024 13:47:09 +0100
+Message-ID: <CACRpkdZfJqhUFrpv7BmMiuQYJJ8dveJyaKVh9dpVYbz-QDnKGg@mail.gmail.com>
+Subject: Re: [PATCH v4 4/5] drm/panel: samsung-s6e88a0-ams427ap24: Add
+ brightness control
 To: Jakob Hauser <jahau@rocketmail.com>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -91,48 +92,61 @@ Content-Transfer-Encoding: quoted-printable
 On Mon, Oct 28, 2024 at 12:42=E2=80=AFAM Jakob Hauser <jahau@rocketmail.com=
 > wrote:
 
-> This initial part of the panel driver was mostly generated by the
-> "linux-mdss-dsi-panel-driver-generator" tool [1], reading downstream
-> Android kernel file "dsi_panel_S6E88A0_AMS427AP24_qhd_octa_video.dtsi" [2=
-].
+> The tables for brightness to candela, aid and elvss were taken from downs=
+tream
+> kernel file "dsi_panel_S6E88A0_AMS427AP24_qhd_octa_video.dtsi" [1][2][3].
 >
-> On top of the generic output of the tool, there were a couple of changes
-> applied:
-> - Added mipi_dsi_dcs_set_display_on() to function s6e88a0_ams427ap24_on()=
-,
->   otherwise the display does not show up.
-> - In functions s6e88a0_ams427ap24_on() and s6e88a0_ams427ap24_off()
->   changed DSI commands to multi context and used "accum_err" returns.
-> - In functions s6e88a0_ams427ap24_on() and s6e88a0_ams427ap24_off() repla=
-ced
->   msleep() by mipi_dsi_msleep().
-> - The function s6e88a0_ams427ap24_get_modes() was changed to make use of
->   drm_connector_helper_get_modes_fixed(). This also required to include
->   drm/drm_probe_helper.h.
-> - In function s6e88a0_ams427ap24_probe() registring the regulators was ch=
-anged
->   to devm_regulator_bulk_get_const(). This required to change supplies in=
- struct
->   s6e88a0_ams427ap24 to a pointer.
-> - Removed bool "prepared" from struct s6e88a0_ams427ap24 and according pa=
-rts in
->   functions s6e88a0_ams427ap24_prepare() and s6e88a0_ams427ap24_unprepare=
-().
-> - Removed include <linux/of.h>, it's not needed.
-> - Added comments to the mipi_dsi_dcs_write_seq_multi() lines in function
->   s6e88a0_ams427ap24_on().
+> The gamma table gets generated in "ss_dsi_smart_dimming_S6E88A0_AMS427AP2=
+4.c" [4]
+> with hard-coded starting values. The function smart_dimming_init() [5] go=
+es
+> through the v{*}_adjustments, generate_gray_scale and gamma_init procedur=
+e.
+> Instead of calculating it manually, it's easier to compile a custom downs=
+tream
+> kernel with SMART_DIMMING_DEBUG enabled and read out dmesg early at boot.
 >
-> [1] https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-gener=
-ator
+> Selection of the values for aid and elvss are again according to downstre=
+am
+> file "dsi_panel_S6E88A0_AMS427AP24_qhd_octa_video.dtsi" [6][7].
+>
+> The set of write commands is guided by downstream file "ss_dsi_panel_comm=
+on.c" [8]
+> followed by "ss_dsi_panel_S6E88A0_AMS427AP24.c" [9].
+>
+> The dsi mode flag MIPI_DSI_MODE_VIDEO_NO_HFP prevents screen flickering w=
+hile
+> changing the brightness.
+>
+> [1] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/d=
+rivers/video/msm/mdss/samsung/S6E88A0_AMS427AP24/dsi_panel_S6E88A0_AMS427AP=
+24_qhd_octa_video.dtsi#L341-L397
 > [2] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/d=
 rivers/video/msm/mdss/samsung/S6E88A0_AMS427AP24/dsi_panel_S6E88A0_AMS427AP=
-24_qhd_octa_video.dtsi
+24_qhd_octa_video.dtsi#L214-L254
+> [3] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/d=
+rivers/video/msm/mdss/samsung/S6E88A0_AMS427AP24/dsi_panel_S6E88A0_AMS427AP=
+24_qhd_octa_video.dtsi#L301-L320
+> [4] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/d=
+rivers/video/msm/mdss/samsung/S6E88A0_AMS427AP24/ss_dsi_smart_dimming_S6E88=
+A0_AMS427AP24.c
+> [5] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/d=
+rivers/video/msm/mdss/samsung/S6E88A0_AMS427AP24/ss_dsi_smart_dimming_S6E88=
+A0_AMS427AP24.c#L1816-L1900
+> [6] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/d=
+rivers/video/msm/mdss/samsung/S6E88A0_AMS427AP24/dsi_panel_S6E88A0_AMS427AP=
+24_qhd_octa_video.dtsi#L256-L268
+> [7] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/d=
+rivers/video/msm/mdss/samsung/S6E88A0_AMS427AP24/dsi_panel_S6E88A0_AMS427AP=
+24_qhd_octa_video.dtsi#L322-L334
+> [8] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/d=
+rivers/video/msm/mdss/samsung/ss_dsi_panel_common.c#L1389-L1517
+> [9] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/d=
+rivers/video/msm/mdss/samsung/S6E88A0_AMS427AP24/ss_dsi_panel_S6E88A0_AMS42=
+7AP24.c#L666-L678
 >
 > Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
-
-Comments instead of #defines?
-
-OK then, it's readable too.
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
