@@ -1,95 +1,165 @@
-Return-Path: <devicetree+bounces-116579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C69029B34E8
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:30:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC7EE9B34F3
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:31:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0235F1C22566
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:30:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91FA6280ED1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:31:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B11291DE4CC;
-	Mon, 28 Oct 2024 15:29:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC3501DDC05;
+	Mon, 28 Oct 2024 15:31:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b="jVywxTyH"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="m+Z7inx1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a.peacevolution.org (a.peacevolution.org [206.189.193.133])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA6A71DE4C5;
-	Mon, 28 Oct 2024 15:29:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.193.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74E351DB92A;
+	Mon, 28 Oct 2024 15:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730129387; cv=none; b=ambMu5vQeAsbmoz7qIckmztQHDuDX/eiah9XYUwo98sAKpatl4RZQ6qeDRi4GM1KO7r09qezLIa6KCa83Dx/QtWArcrCaaxWV8xPL4r3Lp/7GxXy28Tr24u80urDVBaaQjThR1ysHhfYj8rfsUrX4GtDvuP5TMt3LmA96oq7lOA=
+	t=1730129501; cv=none; b=UvYFZ8CNDZzmiid5Qz9Dg/+AhjWOA/Ixkn5h0yybeVJLVu/1pTnUm6HN/KgWkqJ2aKhRuqYNGoRaNeRFV7LNdvBzqSEGNR8tDW2haEVjFU81Cd/TztPbT4fpGZNcSWhWa5vrhoheo3imQ1+0uosb7QHO6hVgRNkGRdDg+qVviNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730129387; c=relaxed/simple;
-	bh=wifIcVMtJD+gpqhF+iFfePB5DyfuLONbv5qlebYjHGw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xt6lssRLREkp6nn+CaVK6vy+Rj87zf511gBRTJDL0vAwPXtDhuiR8Vigi/r/wqIwCCFELsINMlBZo+6/e45T23thdUJ7GZfqAoY9FneU4ZWft0+JlhS3QLkZrbEYA5ln/J64qgH+ptudcVrsPOOLPx8hX+CGqJbQieCyqMBGc/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org; spf=pass smtp.mailfrom=peacevolution.org; dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b=jVywxTyH; arc=none smtp.client-ip=206.189.193.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=peacevolution.org
-Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
-	by a.peacevolution.org (Postfix) with ESMTPA id 3538F4C76F;
-	Mon, 28 Oct 2024 15:29:43 +0000 (UTC)
-Date: Mon, 28 Oct 2024 11:29:35 -0400
-From: Aren <aren@peacevolution.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Kaustabh Chakraborty <kauschluss@disroot.org>, =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>, 
-	Ondrej Jirman <megi@xff.cz>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, Dragan Simic <dsimic@manjaro.org>, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v3 5/6] iio: light: stk3310: log error if reading the
- chip id fails
-Message-ID: <xcavh66uxpl2orehtlzsy4g4udr3p2yqsq5pyhmxdqdmnegsvq@jpomr2uuwspz>
-References: <20241028142000.1058149-1-aren@peacevolution.org>
- <20241028142000.1058149-6-aren@peacevolution.org>
- <Zx-jj8FEldW6sG55@smile.fi.intel.com>
+	s=arc-20240116; t=1730129501; c=relaxed/simple;
+	bh=GlCl4suOZi31bbHo/epOIkCtwpVuotPZe5F4SCoPlFc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=T703sOSfp50bhAf3Qqn5vRDxIN0zdQJSLhQpTn/pa+W0CQmK1pp6qNmpzVHUbuAWqDzITKwe9IovY3a+wLgYHtybp0hzcKbh1PTnpVRqfrfxGXsf0b7GyRT//8DOO+NP+1tUERJkMn8Ry0//IniE5U/BtZ+kms5nZpwS1cht2U4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=m+Z7inx1; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49SFVO3v106856;
+	Mon, 28 Oct 2024 10:31:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1730129484;
+	bh=odVGvLxAl1AqjQa5uRzsIceJRPumkwebyiUsBzFhSws=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=m+Z7inx1xYlR2uujDEcD4QYPvats6tsStuVo1G0Z27T5TkZWsND+1qU6dJ/pHBVXJ
+	 O59oB6iU4xYXMtPqZpTj3QrKi3jqJGdHtfr2k6kLMS1Avtu+NudT529ycwbz1Qo+PS
+	 95iYz1SE/tk+qQI0LXoQR8YByVbAaPpwzZfUwOjM=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49SFVOC5073202;
+	Mon, 28 Oct 2024 10:31:24 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 28
+ Oct 2024 10:31:24 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 28 Oct 2024 10:31:24 -0500
+Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49SFVKSq031040;
+	Mon, 28 Oct 2024 10:31:21 -0500
+Message-ID: <a65e17e9-0055-4e5a-902f-8ee2807a86df@ti.com>
+Date: Mon, 28 Oct 2024 21:01:20 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zx-jj8FEldW6sG55@smile.fi.intel.com>
-X-Spamd-Bar: /
-Authentication-Results: auth=pass smtp.auth=aren@peacevolution.org smtp.mailfrom=aren@peacevolution.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=peacevolution.org;
-	s=dkim; t=1730129384;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:references;
-	bh=waIkFoDc9o8tfquUd+Jq31IwxgRT/dvr5qXaHNOIhWo=;
-	b=jVywxTyHeY6lKYwG8i5PTfRP/7qZwmdlQe7GjZlWL0oBVH5yipYwH0z6jwVEfzm6YjPqk8
-	gD+QZ9a2OSgNOTu0Ydxk0hym7qiQlZM7vBDKXI2RHM2VSizmYwd/IrLHHRl+jsFlfB392V
-	/MbvO8kGCGYKOPs6UdalfnYcS8tHJYM=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 4/4] arm64: dts: ti: hummingboard-t: add overlays for
+ m.2 pci-e and usb-3
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+        Josua Mayer
+	<josua@solid-run.com>
+CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Yazan Shhady <yazan.shhady@solid-run.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240219-add-am64-som-v7-0-0e6e95b0a05d@solid-run.com>
+ <20240219-add-am64-som-v7-4-0e6e95b0a05d@solid-run.com>
+ <CAMuHMdXTgpTnJ9U7egC2XjFXXNZ5uiY1O+WxNd6LPJW5Rs5KTw@mail.gmail.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+Content-Language: en-US
+In-Reply-To: <CAMuHMdXTgpTnJ9U7egC2XjFXXNZ5uiY1O+WxNd6LPJW5Rs5KTw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, Oct 28, 2024 at 04:45:35PM +0200, Andy Shevchenko wrote:
-> On Mon, Oct 28, 2024 at 10:19:59AM -0400, Aren Moynihan wrote:
-> > If the chip isn't powered, this call is likely to return an error.
-> > Without a log here the driver will silently fail to probe. Common errors
-> > are ENXIO (when the chip isn't powered) and ETIMEDOUT (when the i2c bus
-> > isn't powered).
+
+
+On 25/10/24 19:27, Geert Uytterhoeven wrote:
+> Hi Josua,
 > 
-> The commit message does not explain why dev_err_probe() has been chosen
-> and not simple dev_err().
+> On Mon, Feb 19, 2024 at 4:05 PM Josua Mayer <josua@solid-run.com> wrote:
+>> HummingBoard-T features two M.2 connectors labeled "M1" and "M2".
+>> The single SerDes lane of the SoC can be routed to either M1 pci-e
+>> signals, or M2 usb-3 signals by a gpio-controlled mux.
+>>
+>> Add overlays for each configuration.
+>>
+>> Signed-off-by: Josua Mayer <josua@solid-run.com>
+> 
+> Thanks for your patch, which is now commit bbef42084cc170cb ("arm64:
+> dts: ti: hummingboard-t: add overlays for m.2 pci-e and usb-3") in v6.9.
+> 
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dtso
+>> @@ -0,0 +1,44 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Copyright (C) 2023 Josua Mayer <josua@solid-run.com>
+>> + *
+>> + * Overlay for SolidRun AM642 HummingBoard-T to enable USB-3.1.
+>> + */
+>> +
+>> +/dts-v1/;
+>> +/plugin/;
+>> +
+>> +#include <dt-bindings/phy/phy.h>
+>> +
+>> +#include "k3-serdes.h"
+>> +
+>> +&serdes0 {
+>> +       #address-cells = <1>;
+>> +       #size-cells = <0>;
+>> +
+>> +       serdes0_link: phy@0 {
+>> +               reg = <0>;
+>> +               cdns,num-lanes = <1>;
+>> +               cdns,phy-type = <PHY_TYPE_USB3>;
+>> +               #phy-cells = <0>;
+>> +               resets = <&serdes_wiz0 1>;
+>> +       };
+>> +};
+>> +
+>> +&serdes_ln_ctrl {
+>> +       idle-states = <AM64_SERDES0_LANE0_USB>;
+>> +};
+>> +
+>> +&serdes_mux {
+>> +       idle-state = <0>;
+>> +};
+>> +
+>> +&usbss0 {
+>> +       /delete-property/ ti,usb2-only;
+> 
+> /delete-property/ (and /delete-node/) to delete something in the base DTS
+> does not work.
 
-This function is only called from stk3310_probe, and this condition
-should propagate it's error, so it fits what dev_err_probe is designed
-for. dev_err would be pretty much equivalent just longer, like this:
+Geert,
 
-if (ret < 0) {
-	dev_err(&client->dev, "failed to read chip it: %d\n", ret);
-	return ret;
-}
+Thanks for the catching
 
+Joshua,
+
+This overlay is pretty useless in light of above issue.  I intend to
+just drop this file unless you convince me otherwise?
+
+
+-- 
 Regards
- - Aren
+Vignesh
 
