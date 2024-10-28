@@ -1,82 +1,141 @@
-Return-Path: <devicetree+bounces-116334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 332839B2990
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:02:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 476239B299C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:03:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 649531C21597
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:02:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A7E42815F7
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:03:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E24051DD55A;
-	Mon, 28 Oct 2024 07:43:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A58501D0E10;
+	Mon, 28 Oct 2024 07:46:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vE8Lst3C"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Bi3RkSbD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84321DCB06;
-	Mon, 28 Oct 2024 07:43:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B96F1CCEE5;
+	Mon, 28 Oct 2024 07:46:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730101381; cv=none; b=pZVCxXn8az5dlKQ1o7U4K+oj/UKlSZd1/a3ZUmuUL0LkhzHQRn9qQLq5Djctc9yStv+n5+rVLnRJ89lhxoh7J6q88kV/qniZdgeVQJqejqNGzrfYWLH7RMqN9MDdFwW48ys0HdgCRTlldgS9dLPy51uDjnT6KHmWwk7Foa8VMmw=
+	t=1730101587; cv=none; b=Y7mmIiSCubXZWkEUkLN/9eoLXbvkqXhObbrBjwl15EQAkbP8Y0Rih80XVhO40WE2AS2D81M/r7RbX8W6jSx4JG044VK8tjyW7TYYiCNemCRRLHaHfBvdX0c2oEQ4ZUmR2/thVgUTFlCVIC1UX9wrTqGBNlG+KLY6/1wMdw+6Zs4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730101381; c=relaxed/simple;
-	bh=1eDgzVcTXWc1NZbaVnSW+JVBR5kRN32nfImppOd7MVc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oOjl6HCvwzTYrq54k804ThYAgPWmostBLNDdrzi08rQm+stBZ6hFKSKyB5BdQLEUhuPHKotdoivptq6AhEL5zwKyDM9snLSF2cNFThWEXsXs0vPrJMHK283H20RITaUv3Swk68v9kSxBAw6t+TjnqEt3L7lDcQmec3rK7pMqIjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vE8Lst3C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2128C4CEC3;
-	Mon, 28 Oct 2024 07:43:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730101381;
-	bh=1eDgzVcTXWc1NZbaVnSW+JVBR5kRN32nfImppOd7MVc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vE8Lst3CufJY1jtdyKFMFFgihk9hVsAA4yAkx2+961RfDuZq4bVmp3Vl/cwc56kct
-	 uAhqV8lLW0dyDPFhTl2mCM7MUbLltGFm0MbROZZIwBc1Q3CjmfcMWrDOpNvuMADNUb
-	 Z/2U/kg9/I/peueNB8DYVUt+wF0EQAgqHJA2SILYrm9m9FxYiHNw2HU+Z9K2lGTGVK
-	 BD4Vgs9KfHdhjFKA116FxLDqAo+bCQ40dOQ7Mx3C3KuHkSM0Nh/k5dP9hfcTgSA8WT
-	 DN51Ha8Dgwq9oqgn8oPHWCXvOWI4sMVY7nQbUpX/rVq4fsoohcPMZekt1zA8slJZri
-	 dG9oScX6d5X3g==
-Date: Mon, 28 Oct 2024 08:42:58 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: ahaslam@baylibre.com
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, nuno.sa@analog.com, 
-	dlechner@baylibre.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: iio: dac: ad5791: Add optional reset,
- clr and ldac gpios
-Message-ID: <kq3lylhjgpozyp2ts35dntoflx4skx2znysjljmgbm7qz62vvf@42oyeum2un54>
-References: <20241028071118.699951-1-ahaslam@baylibre.com>
- <20241028071118.699951-2-ahaslam@baylibre.com>
+	s=arc-20240116; t=1730101587; c=relaxed/simple;
+	bh=0nzgBNDrmE7kW4KbM11lBzWym2g/ZRqGgQBcfHojSFM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GXHq02gkMUZWCAkWcKVLljHOSob7+V3nbZ7yJSwZmLkW5htDjjUet4iTGpYq33R8d3lyOWYYysWC6VKcIamWO6APoDQGjXw4DB4EkOaIwrM8UfArY1u/UQsYIQDnp617snzZcnbtd0H1Do6iCdMc2qyUbjJ7OsTMg+/kHKmNgzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Bi3RkSbD; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49RN0OG6010456;
+	Mon, 28 Oct 2024 07:45:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PobXzPGGnjLtxgHS3B4nk270t4SMrzqU1Y+YvIFP7Vw=; b=Bi3RkSbDc7A892gc
+	pyMeJPC3Hob/hxOxDhrNLvf1wvhb8uFzE0CkC8DKjY6+zEr9acONf12+AXYH9NmC
+	PBReXXGYoOBT5wIneCkKCZU6LmP7nm3HtN/CbA3yESqUsHbLTlPNyY1KZ5x0iOZh
+	XkZJ1VyWT8XbEdLtpsWRJ4JxbQpqdSIVidTC3umUgEI1n+lMX0I+CG3DXLUQjCHq
+	/Rb7bTnM/5d8cyRJDgX+8Okm1X6c5pLW4RBnwkgos8oNvs6mGubIO+2q21qBJlXK
+	0KIYFAKCuB6JLAdnC7JgRuehPmNDNmtQLnc+1gqYsbCiZI3cj2qSfohcNOpDT/Iz
+	fauHuQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gr0x40xn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 07:45:54 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49S7jqO9014587
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 07:45:52 GMT
+Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Oct
+ 2024 00:45:43 -0700
+Message-ID: <5862062c-8c52-421d-94b3-6b6000b53616@quicinc.com>
+Date: Mon, 28 Oct 2024 13:15:40 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241028071118.699951-2-ahaslam@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 4/7] dt-bindings: clock: Add ipq9574 NSSCC clock and
+ reset definitions
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <konradybcio@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
+        <p.zabel@pengutronix.de>, <richardcochran@gmail.com>,
+        <geert+renesas@glider.be>, <dmitry.baryshkov@linaro.org>,
+        <angelogioacchino.delregno@collabora.com>, <neil.armstrong@linaro.org>,
+        <arnd@arndb.de>, <nfraprado@collabora.com>, <quic_anusha@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+References: <20241025035520.1841792-1-quic_mmanikan@quicinc.com>
+ <20241025035520.1841792-5-quic_mmanikan@quicinc.com>
+ <lyafg7jwbwoe3j7voecgd5tnhrb65utc3vkc5qqxoqug3qd47m@iudkp4w2mrso>
+Content-Language: en-US
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <lyafg7jwbwoe3j7voecgd5tnhrb65utc3vkc5qqxoqug3qd47m@iudkp4w2mrso>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 2B14fMh6JTJ678YrLvHL2MnvQnTUs5Ax
+X-Proofpoint-GUID: 2B14fMh6JTJ678YrLvHL2MnvQnTUs5Ax
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
+ clxscore=1011 bulkscore=0 adultscore=0 impostorscore=0 mlxscore=0
+ malwarescore=0 mlxlogscore=703 priorityscore=1501 spamscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410280063
 
-On Mon, Oct 28, 2024 at 08:11:13AM +0100, ahaslam@baylibre.com wrote:
-> From: Axel Haslam <ahaslam@baylibre.com>
+
+
+On 10/25/2024 5:30 PM, Krzysztof Kozlowski wrote:
+> On Fri, Oct 25, 2024 at 09:25:17AM +0530, Manikanta Mylavarapu wrote:
+>> From: Devi Priya <quic_devipriy@quicinc.com>
+>>
+>> Add NSSCC clock and reset definitions for ipq9574.
+>>
+>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>> ---
+>> Changes in V8:
+>> 	- Replace bias_pll_cc_clk, bias_pll_ubi_nc_clk with CMN_PLL
+>> 	  NSS_1200MHZ_CLK and PPE_353MHZ_CLK
+>> 	- Remove bias_pll_nss_noc_clk because it's not required.
+>> 	- Drop R-b tag
 > 
-> Depending on board layout, the ad57xx may need control of reset, clear,
-> and ldac pins by the host driver. Add optional bindings for these gpios.
+> That's not really a change waranting re-review.
 > 
-> Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
-> ---
->  .../devicetree/bindings/iio/dac/adi,ad5791.yaml   | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+> I wished you did not create here dependency, skipped the header and just
+> use some number for the clock. Having dependencies does not help anyone:
+> neither you to get this merged, nor us to see that it was tested.
+> 
+> Please confirm that this patch was fully tested.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes, it's fully tested.
 
-Best regards,
-Krzysztof
-
+Thanks & Regards,
+Manikanta.
 
