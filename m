@@ -1,141 +1,100 @@
-Return-Path: <devicetree+bounces-116335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 476239B299C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:03:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC6B39B29CA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:06:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A7E42815F7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:03:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A65D1C2145B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A58501D0E10;
-	Mon, 28 Oct 2024 07:46:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B744192B7A;
+	Mon, 28 Oct 2024 08:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Bi3RkSbD"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NId5SLoO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B96F1CCEE5;
-	Mon, 28 Oct 2024 07:46:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FAD419005F;
+	Mon, 28 Oct 2024 08:02:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730101587; cv=none; b=Y7mmIiSCubXZWkEUkLN/9eoLXbvkqXhObbrBjwl15EQAkbP8Y0Rih80XVhO40WE2AS2D81M/r7RbX8W6jSx4JG044VK8tjyW7TYYiCNemCRRLHaHfBvdX0c2oEQ4ZUmR2/thVgUTFlCVIC1UX9wrTqGBNlG+KLY6/1wMdw+6Zs4=
+	t=1730102553; cv=none; b=W30jl9+IgKIWRWD/Wi8+kyUllk941rCfeu6nYlbFtbjoiJYwUdE+yP7YHRnQxgs99dYmxItHmUO++mz8ZbId6YTEM14Xzcq3+YQGHWs2P/xqlTMk3OO3Ur9KLShCF+/irLsY5ZwkuwnpkQgW4mmu10eDR7ltIpd3svX0TxDzXfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730101587; c=relaxed/simple;
-	bh=0nzgBNDrmE7kW4KbM11lBzWym2g/ZRqGgQBcfHojSFM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GXHq02gkMUZWCAkWcKVLljHOSob7+V3nbZ7yJSwZmLkW5htDjjUet4iTGpYq33R8d3lyOWYYysWC6VKcIamWO6APoDQGjXw4DB4EkOaIwrM8UfArY1u/UQsYIQDnp617snzZcnbtd0H1Do6iCdMc2qyUbjJ7OsTMg+/kHKmNgzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Bi3RkSbD; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49RN0OG6010456;
-	Mon, 28 Oct 2024 07:45:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PobXzPGGnjLtxgHS3B4nk270t4SMrzqU1Y+YvIFP7Vw=; b=Bi3RkSbDc7A892gc
-	pyMeJPC3Hob/hxOxDhrNLvf1wvhb8uFzE0CkC8DKjY6+zEr9acONf12+AXYH9NmC
-	PBReXXGYoOBT5wIneCkKCZU6LmP7nm3HtN/CbA3yESqUsHbLTlPNyY1KZ5x0iOZh
-	XkZJ1VyWT8XbEdLtpsWRJ4JxbQpqdSIVidTC3umUgEI1n+lMX0I+CG3DXLUQjCHq
-	/Rb7bTnM/5d8cyRJDgX+8Okm1X6c5pLW4RBnwkgos8oNvs6mGubIO+2q21qBJlXK
-	0KIYFAKCuB6JLAdnC7JgRuehPmNDNmtQLnc+1gqYsbCiZI3cj2qSfohcNOpDT/Iz
-	fauHuQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gr0x40xn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Oct 2024 07:45:54 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49S7jqO9014587
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Oct 2024 07:45:52 GMT
-Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Oct
- 2024 00:45:43 -0700
-Message-ID: <5862062c-8c52-421d-94b3-6b6000b53616@quicinc.com>
-Date: Mon, 28 Oct 2024 13:15:40 +0530
+	s=arc-20240116; t=1730102553; c=relaxed/simple;
+	bh=VFyDsvMJP6XxTZGDsHO7Fk7q/AiTFp3vQW+cD/emrW4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Mck4XDU3Dmkl5GWKeF1W70tgsSrJhxm4f4Dd7NTiGx8g//euuVLvm+qqXkcqRC2yOFQgf9Ip6VshIOgnASKRDZUaOq+TBVAV2Kf85HcAO7I4CanhEpg4OCXZmd1rECOHt08HlNIkR0A8OEoYsf+VBfEPxX0zbAYoXsEvSFAiGkY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NId5SLoO; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id CF9131BF209;
+	Mon, 28 Oct 2024 08:02:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1730102543;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sMdiMphrDVa/6WG8AanOiRAHLQzTBE/3PK643L9hPJ4=;
+	b=NId5SLoO5WQXKd5a1otqq2vpVAAhxGahPioxT21lCSi3VIM/jsNDRCtcGVVojv2prUmPCf
+	o67wuBKsTOTBaUdCjAZPkK+av73f0yVoNWkMfx7tV0DJkXw3aBPavgULEROsZ5d8BDyLv1
+	n39yty4ucmTC8D4BKYjODoil2Y5Q59Gch63hHuuzAHlBiaINn2207epgExQrk0e27zwrb+
+	PPQAthe51DupxtM1TSBnNnOH+RkZcYAzQsl37n7pbkCrDWk2nsRJCdw/PTH9eOT1pQ+rer
+	qdZ3KRsDw6cw2XsS1DfTP8C3bzkX24C6QmwNspwU64S7dnLOfo/5hrgWBwK1AA==
+Date: Mon, 28 Oct 2024 09:02:20 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Marek Vasut <marex@denx.de>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+Message-ID: <20241028090220.1fd803ff@bootlin.com>
+In-Reply-To: <78a09625-6bad-4fda-8ee5-92b8dd0de381@denx.de>
+References: <20241024095539.1637280-1-herve.codina@bootlin.com>
+	<20241024095539.1637280-3-herve.codina@bootlin.com>
+	<78a09625-6bad-4fda-8ee5-92b8dd0de381@denx.de>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 4/7] dt-bindings: clock: Add ipq9574 NSSCC clock and
- reset definitions
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <konradybcio@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <richardcochran@gmail.com>,
-        <geert+renesas@glider.be>, <dmitry.baryshkov@linaro.org>,
-        <angelogioacchino.delregno@collabora.com>, <neil.armstrong@linaro.org>,
-        <arnd@arndb.de>, <nfraprado@collabora.com>, <quic_anusha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20241025035520.1841792-1-quic_mmanikan@quicinc.com>
- <20241025035520.1841792-5-quic_mmanikan@quicinc.com>
- <lyafg7jwbwoe3j7voecgd5tnhrb65utc3vkc5qqxoqug3qd47m@iudkp4w2mrso>
-Content-Language: en-US
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <lyafg7jwbwoe3j7voecgd5tnhrb65utc3vkc5qqxoqug3qd47m@iudkp4w2mrso>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 2B14fMh6JTJ678YrLvHL2MnvQnTUs5Ax
-X-Proofpoint-GUID: 2B14fMh6JTJ678YrLvHL2MnvQnTUs5Ax
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
- clxscore=1011 bulkscore=0 adultscore=0 impostorscore=0 mlxscore=0
- malwarescore=0 mlxlogscore=703 priorityscore=1501 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410280063
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
+Hi Marek,
 
+On Sat, 26 Oct 2024 00:53:51 +0200
+Marek Vasut <marex@denx.de> wrote:
 
-On 10/25/2024 5:30 PM, Krzysztof Kozlowski wrote:
-> On Fri, Oct 25, 2024 at 09:25:17AM +0530, Manikanta Mylavarapu wrote:
->> From: Devi Priya <quic_devipriy@quicinc.com>
->>
->> Add NSSCC clock and reset definitions for ipq9574.
->>
->> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->> ---
->> Changes in V8:
->> 	- Replace bias_pll_cc_clk, bias_pll_ubi_nc_clk with CMN_PLL
->> 	  NSS_1200MHZ_CLK and PPE_353MHZ_CLK
->> 	- Remove bias_pll_nss_noc_clk because it's not required.
->> 	- Drop R-b tag
+> On 10/24/24 11:55 AM, Herve Codina wrote:
+> > In some cases observed during ESD tests, the TI SN65DSI83 cannot recover
+> > from errors by itself. A full restart of the bridge is needed in those
+> > cases to have the bridge output LVDS signals again.  
 > 
-> That's not really a change waranting re-review.
-> 
-> I wished you did not create here dependency, skipped the header and just
-> use some number for the clock. Having dependencies does not help anyone:
-> neither you to get this merged, nor us to see that it was tested.
-> 
-> Please confirm that this patch was fully tested.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+> I have seen the bridge being flaky sometimes, do you have any more 
+> details of what is going on when this irrecoverable error occurs ?
 
-Yes, it's fully tested.
+The panel attached to the bridge goes and stays black. That's the behavior.
+A full reset brings the panel back displaying frames.
 
-Thanks & Regards,
-Manikanta.
+Best regards,
+Hervé
 
