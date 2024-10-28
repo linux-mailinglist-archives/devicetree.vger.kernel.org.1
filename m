@@ -1,55 +1,63 @@
-Return-Path: <devicetree+bounces-116554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812799B336D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:25:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 684649B33A1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:35:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DE101F24AC8
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:25:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25E18282E34
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:35:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE5E1DD55F;
-	Mon, 28 Oct 2024 14:25:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8875B1DE2B1;
+	Mon, 28 Oct 2024 14:34:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="psHnpBDl"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LU3HipJZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9FBE13D539;
-	Mon, 28 Oct 2024 14:25:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B66F13D539;
+	Mon, 28 Oct 2024 14:34:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730125555; cv=none; b=jmK1B/Zr5xy650IClaP+Eg2uHRCKU32ONBHuMvhSDnTN5tiSXfRo6dQ2xEr9QCuAg3qC1iBFjVv1aq1h86qf5fT52gWLQ13z9TBeFcoMrGZomIU021gZupp7z7egCqaZAsPWNKxj112HbiF51NS4AICvlBF2vkKcfwf+4uedvGg=
+	t=1730126097; cv=none; b=buA3G+XdQeHbh3NI8+JS2LyPaGUKI2d1JuyrRMmwgzGUN+yntqeO96Zn7n8YhbzkT6rKl9jfnJTtxIjFf2qbx2CvnNHjVguqKqzsFIOOh1Uor++3yEk6H7BkTumJjz9piPAr32QuwPIKpa191maNqcx0nYGZsraGxgQIfhMamC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730125555; c=relaxed/simple;
-	bh=nzbeRC8p1ugu2E5p8U1ZLC9i2WJ4DpBmxiovMdzFjB0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=soswuaU1dR9rKKV7V5NsDihXDa6Bu51xcjbmJV+5OUcdbmjJBDpm67L/7+kcioXHSbOmJ+jksfpNud13Jgbv0ISEj0rjNXwkz7mDWTYK4mW6/Dw3/18h1aGE0Ph3MG84qP9ZoqOXadsH7ZIJov8gHe6ssb9/FftRAvrU8ktrFNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=psHnpBDl; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1730125551;
-	bh=nzbeRC8p1ugu2E5p8U1ZLC9i2WJ4DpBmxiovMdzFjB0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=psHnpBDlyIoBue1qxNZAsRNdEq3/bomzXLFpsQqv596QTFtpBWUyraULO2IdN96QB
-	 cCbtO1QYndaTTUmE8lIYyBkkuFT9wpBKp5LRdmqGrJCLzbC5P7701Lx2nTBxYq57NK
-	 +UbFvMsaciTgHHdCMFY11UxXlG09/t8oG5WFyYfbEoBwL6g07cztXCk/WYL1AllBnp
-	 NSoq6ptWRSCoSG8Q7l2MkvL17MfjaG4b8j2IDslzbVq6wYS55TARY+rpvnjuFj66aO
-	 29uOmaPygiFgSw4cdh5F9zW5MXeczWQmEFCdIFniBcLsuyLOFFs27Bvg41wGh9S0S7
-	 YonAhjR0T++3g==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 899EB17E35FC;
-	Mon, 28 Oct 2024 15:25:50 +0100 (CET)
-Message-ID: <20c793fb-cfdf-4c05-a421-3eb623ff6df0@collabora.com>
-Date: Mon, 28 Oct 2024 15:25:49 +0100
+	s=arc-20240116; t=1730126097; c=relaxed/simple;
+	bh=KWJaUoA49CGHQv05XYzL7sDq9qbauKoD5an8wjO5Tlg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fU/jLFRK44pG46tPy0TLAUSijsasip75/1BA/AV9K+Ph+pVhhUzYyCpCUQR9zv9Cr+aHvBXdbp5nZ8kmLFFtWRIEiDVmOwS2LOUtb0g/q1KEiHSZz8CNUVIjCB9mtBmcxaxga786nbf0MeEd8Z6rEYxn+sDeP3olEWe1f1xdECA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LU3HipJZ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49SAYBt9025437;
+	Mon, 28 Oct 2024 14:34:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	I6wvD3Z4DjzJ28mwsHba6DMGJM7Ky+JcjbXWQQCpDSw=; b=LU3HipJZyEScHE44
+	o+frYguUpe7vrS2kkryCschOBRUIczPaShmuuWYhfn4pJlIiFDPqT0SgDvVbh0q3
+	Tcn+FYKTyOIDMt6XbDB6e+HOtaCr7wr66sFsAXSoPvGDxt2Sc2mGvXGN+MMHzUGv
+	ilUw6zTOzwA41dXlHm6x5F4j2yWVNd2c0BYPcHBMG+KunBZ0VuJd2xySK0ni/Gfu
+	1dNW5wobiUIvxqTIHCJ7a4Lg5Ds4uU8lan85qdT0jTvQIKIXdBeA7xYzqxIK1Zze
+	yC1r4L03sK9fAe+qDP4SUzK76M4pI7Se/PupMo6F5prOTVEjtqthEVjy5W1z08+u
+	ZwIPaA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gsq8da2y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 14:34:50 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49SEYoJO013335
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 14:34:50 GMT
+Received: from [10.216.58.214] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Oct
+ 2024 07:34:46 -0700
+Message-ID: <16b78c39-c2a0-423f-8849-8b4c93e7ce84@quicinc.com>
+Date: Mon, 28 Oct 2024 20:04:41 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,150 +65,165 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] ASoC: dt-bindings: mediatek,mt8188-mt6359: Add adsp
- and dai-link properties
-To: Fei Shao <fshao@chromium.org>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Matthias Brugger <matthias.bgg@gmail.com>,
- Rob Herring <robh@kernel.org>, Trevor Wu <trevor.wu@mediatek.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-sound@vger.kernel.org
-References: <20241025104548.1220076-1-fshao@chromium.org>
- <20241025104548.1220076-2-fshao@chromium.org>
- <5vmfh2nkxtpzt2vk4j6ghro7z5stoyvry3enzoqepg6hjxqrho@fofs5cwa2iqq>
- <CAC=S1njPjtvhsc+voNK447wbQmRiN0xVDi-jgOmba4NLRiNi0Q@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: Add support for usb nodes on
+ QCS8300
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
+References: <20241011074619.796580-1-quic_kriskura@quicinc.com>
+ <20241011074619.796580-2-quic_kriskura@quicinc.com>
+ <297dbc48-4c34-4bac-822c-be3ae2d00d32@oss.qualcomm.com>
+ <2da5e869-ae44-45b1-a751-8b5edfcdbd30@quicinc.com>
+ <5800abe0-19e6-4364-a305-1be63c28c6d9@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <CAC=S1njPjtvhsc+voNK447wbQmRiN0xVDi-jgOmba4NLRiNi0Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+In-Reply-To: <5800abe0-19e6-4364-a305-1be63c28c6d9@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: FTk8_24BM-Bi4YKXMQEbw9XPkIdwzAR5
+X-Proofpoint-ORIG-GUID: FTk8_24BM-Bi4YKXMQEbw9XPkIdwzAR5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
+ adultscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=999 impostorscore=0
+ lowpriorityscore=0 malwarescore=0 clxscore=1015 spamscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410280117
 
-Il 28/10/24 12:10, Fei Shao ha scritto:
-> On Mon, Oct 28, 2024 at 4:54 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+
+
+On 10/28/2024 5:08 PM, Konrad Dybcio wrote:
+> On 26.10.2024 6:56 PM, Krishna Kurapati wrote:
 >>
->> On Fri, Oct 25, 2024 at 06:44:41PM +0800, Fei Shao wrote:
->>> Add "mediatek,adsp" property for the ADSP handle if ADSP is enabled on
->>> the platform.
 >>
->> We see this from the diff.
->>
->>> Add "mediatek,dai-link" property for the required DAI links to configure
->>> sound card.
->>
->> We see this from the diff.
->>
+>> On 10/25/2024 11:58 PM, Konrad Dybcio wrote:
+>>> On 11.10.2024 9:46 AM, Krishna Kurapati wrote:
 >>>
->>> Both properties are commonly used in the MediaTek sound card driver.
->>
->> If they are used, why suddenly they are needed? What changed?
-> 
-> Nothing has changed. These should have been added altogether when the
-> binding was first introduced. This patch is to fill the gaps and fix
-> dtbs_check warnings, like I mentioned in the cover letter.
-> I can add a line in the commit message saying it's to fix the warning
-> in addition to the cover letter, if that's preferred.
-> 
->>
+>>> The commit title should include a `qcs8300: ` part, like others in
+>>> the directory (see git log --oneline arch/arm64/boot/dts/qcom).
 >>>
->>> Signed-off-by: Fei Shao <fshao@chromium.org>
->>> ---
+>>>> Add support for USB controllers on QCS8300. The second
+>>>> controller is only High Speed capable.
+>>>>
+>>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/qcom/qcs8300.dtsi | 168 ++++++++++++++++++++++++++
+>>>>    1 file changed, 168 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>>>> index 2c35f96c3f28..4e6ba9f49b95 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>>>> @@ -1363,6 +1363,174 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+>>>>                    qcom,remote-pid = <5>;
+>>>>                };
+>>>>            };
+>>>> +
+>>>> +        usb_1_hsphy: phy@8904000 {
+>>>> +            compatible = "qcom,qcs8300-usb-hs-phy",
+>>>> +                     "qcom,usb-snps-hs-7nm-phy";
+>>>> +            reg = <0x0 0x8904000 0x0 0x400>;
 >>>
->>>   .../bindings/sound/mediatek,mt8188-mt6359.yaml         | 10 ++++++++++
->>>   1 file changed, 10 insertions(+)
+>>> Please pad the address parts to 8 hex digits with leading zeroes.
 >>>
->>> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
->>> index f94ad0715e32..701cedfa38d2 100644
->>> --- a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
->>> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
->>> @@ -29,6 +29,16 @@ properties:
->>>       $ref: /schemas/types.yaml#/definitions/phandle
->>>       description: The phandle of MT8188 ASoC platform.
+>>>> +
+>>>> +            clocks = <&rpmhcc RPMH_CXO_CLK>;
+>>>> +            clock-names = "ref";
+>>>> +
+>>>> +            resets = <&gcc GCC_USB2_PHY_PRIM_BCR>;
+>>>> +
+>>>> +            #phy-cells = <0>;
+>>>> +
+>>>> +            status = "disabled";
+>>>> +        };
+>>>> +
+>>>> +        usb_2_hsphy: phy@8906000 {
+>>>> +            compatible = "qcom,qcs8300-usb-hs-phy",
+>>>> +                     "qcom,usb-snps-hs-7nm-phy";
+>>>> +            reg = <0x0 0x08906000 0x0 0x400>;
+>>>> +
+>>>> +            clocks = <&rpmhcc RPMH_CXO_CLK>;
+>>>> +            clock-names = "ref";
+>>>> +
+>>>> +            resets = <&gcc GCC_USB2_PHY_SEC_BCR>;
+>>>> +
+>>>> +            #phy-cells = <0>;
+>>>> +
+>>>> +            status = "disabled";
+>>>> +        };
+>>>> +
+>>>> +        usb_qmpphy: phy@8907000 {
+>>>> +            compatible = "qcom,qcs8300-qmp-usb3-uni-phy";
+>>>> +            reg = <0x0 0x8907000 0x0 0x2000>;
+>>>> +
+>>>> +            clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+>>>> +                 <&gcc GCC_USB_CLKREF_EN>,
+>>>> +                 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+>>>> +                 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+>>>> +            clock-names = "aux", "ref", "com_aux", "pipe";
 >>>
->>> +  mediatek,adsp:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description: The phandle of MT8188 ADSP platform.
+>>> Please make this a vertical list like in the node below.
+>>>
+>>> [...]
+>>>
+>>>> +            interconnects = <&aggre1_noc MASTER_USB3_0 0 &mc_virt SLAVE_EBI1 0>,
+>>>
+>>> QCOM_ICC_TAG_ALWAYS, see x1e80100.dtsi
+>>>
+>>>> +                    <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
+>>>> +            interconnect-names = "usb-ddr", "apps-usb";
+>>>> +
+>>>> +            wakeup-source;
+>>>> +
+>>>> +            status = "disabled";
+>>>> +
+>>>> +            usb_1_dwc3: usb@a600000 {
+>>>> +                compatible = "snps,dwc3";
+>>>> +                reg = <0x0 0x0a600000 0x0 0xe000>;
+>>>> +                interrupts = <GIC_SPI 292 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +                iommus = <&apps_smmu 0x80 0x0>;
+>>>> +                phys = <&usb_1_hsphy>, <&usb_qmpphy>;
+>>>> +                phy-names = "usb2-phy", "usb3-phy";
+>>>> +                snps,dis_u2_susphy_quirk;
+>>>> +                snps,dis_enblslpm_quirk;
+>>>
+>>> That's a very low number of quirks.. Should we have some more?
+>>>
 >>
->> And what is the difference between ASoC and ADSP platforms? What are
->> they used for?
-> 
-> I'm not a MediaTek or audio folks, and I'm afraid that I'm not the
-> best person to explain the details accurately in front of experts on
-> the list... I know it's an audio DSP but that explains nothing.
-> MediaTek didn't provide a meaningful explanation in the tree or
-> commits, and I want to avoid adding additional but likely misleading
-> descriptions from someone who doesn't have enough knowledge,
-> potentially causing even more confusing situations in the future.
-> Plus, the same changes were accepted as-is in the past, so I assumed
-> they might be self-explanatory to people who are familiar with the
-> matter.
-> 
-
-The Audio DSP is a Tensilica HiFi-5 DSP, and it's a block that is - hardware
-speaking - separated from the rest of the Audio interfaces of the SoC.
-
-The whole sound subsystem can work either with or without the DSP, in the sense
-that the DSP itself can remain unpowered and completely unconfigured if its
-functionality is not desired - hence, this is a board specific configuration:
-if the board wants to use the DSP, we use the DSP - otherwise, we just don't.
-
-Regarding the two "platforms", in short:
-"mediatek,platform" -> Audio Front End (AFE)
-"mediatek,adsp" -> Audio DSP
-
-Now, you can either link the AFE DAIs to the I2S
-
-As for "mediatek,platform" - that's used to link the Analog Front End (AFE) as
-the DAI Link platform (so the path is direct to/from DL/UL DAIs to AFE) or the
-ADSP one as the DAI Link platform (so that the path is to/from DL/UL DAIs to
-DSP to AFE), but that - of course - still requires an AFE, otherwise you cannot
-get the audio out of the speakers or in from the mic anyway.
-
+>> snps,dis-u1-entry-quirk;
+>> snps,dis-u2-entry-quirk;
+>> snps,dis_u2_susphy_quirk;
+>> snps,ssp-u3-u0-quirk;
 >>
->>> +
->>> +  mediatek,dai-link:
->>> +    $ref: /schemas/types.yaml#/definitions/string-array
->>> +    description:
->>> +      A list of the desired dai-links in the sound card. Each entry is a
->>> +      name defined in the machine driver.
->>
->> The list is provided below. I don't understand why do you need it. Your
->> msg is pretty useless - you describe what you do, instead of why.
+>> I would actually like to add these as well, but there is no precedent in upstream as to what quirks to add for usb nodes
 > 
-> I think this is used to explicitly list the intermediate but hidden
-> DAIs, but again, there's not much info about them unless MediaTek can
-> explain more details and why they need a vendor property for this.
+> Every single one that applies to the hardware ;)
+> 
+>> , so I kept only a couple of them. Ideally downstream we disable u1u2 for almost all targets because of some issues in the past. (atleast during tethering use cases, but I need to double check though).
+> 
+> Does
+> 
+> 5b8baed4b881 ("arm64: dts: qcom: sc7180: Disable SuperSpeed instances in park mode")
+> 
+> apply here too?
 > 
 
-Yes, this is used for exactly that... but I believe that we can deprecate this
-now that we have support for the "standard" `audio-routing` property and for the
-DAI Link nodes (examples that you can find in current device trees are mm-dai-link,
-hs-playback-dai-link, or any other subnode of the sound card).
+QCS8300 is Gen-2, so that quirk is not needed.
 
-Specifically, those subnodes *do* require a "link-name" property, which *does*
-effectively contain the same DAI Link names as the ones that are inside of the
-"mediatek,dai-link" property.
-
-On MT8195, you can find both the subnodes and the mediatek,dai-link - yes - but
-that was done to retain compatibility of the device tree with old drivers (so,
-an unusual case of new device tree on old kernel).
-
-Finally, I believe that we can avoid adding that "mediatek,dai-link" property
-to the MT8188 binding, and rely on:
-  1. Whatever is provided in struct snd_soc_card for that device; and
-  2. Whatever is provided in device trees as dai link subnodes, which would
-     restrict N.1 as that's anyway describing card prelinks.
-
-Cheers,
-Angelo
-
-> Regards,
-> Fei
-> 
->>
->> Best regards,
->> Krzysztof
->>
-
+Regards,
+Krishna,
 
