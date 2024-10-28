@@ -1,123 +1,178 @@
-Return-Path: <devicetree+bounces-116540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC3BF9B32E0
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:12:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DF619B3329
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:18:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62B8B1F2180D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:12:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CC601F22A45
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 14:18:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D4131DDA3C;
-	Mon, 28 Oct 2024 14:10:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NG/e0v0Q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 083D61DD54A;
+	Mon, 28 Oct 2024 14:18:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39A831DD0C0;
-	Mon, 28 Oct 2024 14:10:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBFE01DA631
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 14:18:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730124614; cv=none; b=jWJ/DpHlHeBupw6itX5Rh7fi0saXX+GjCU8AIVIeZLcZZImAlrY7D/eqahwF5lbZhUJlMUNKPVqCb5b5TrTgoKUF4tf0SEailL6GUjJx6UyRAy81LmpGDo3hQJ+9y5Mu6rRBfcSpCBcP7bGMFgRDEgLZApt/dsvlv67KzFBfEdc=
+	t=1730125111; cv=none; b=gyEH1HS1/DgPbLfgcKtwnzz1yd+8CJbBeWbeYMmWFJCf0dqLHvqx906qQG0cEtd5WC670Ov2h0ArKASrA0+yzanbyTrt7dDJ+buLZD1uK+NQjTxHqpmQNKp/R7I9xUozLJUthSy5+n9B8zBkj0zKGngkbU3jwFZ1aYAX2y1Vtn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730124614; c=relaxed/simple;
-	bh=w9NzcAMM+iN61OPg0k1xFjEljUX4mN8FHC7aBjxP3C4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Te/lks7ib4vt6dIJTNUBtPXu+HFrB9OfLimbNweYHF463BHbmv1y2tMMBfdc1UDkIQEiqhfR5QZrmVjJx81+i5nlin6cpIIQubHkRdbHI9nzI4VyRIPgmG6jLKFTE3Pymc3+LFeSwDJQApPFGa9VuLay1wpJrZCywZ772cHyP/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NG/e0v0Q; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-37d6ff1cbe1so3254457f8f.3;
-        Mon, 28 Oct 2024 07:10:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730124610; x=1730729410; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=w9NzcAMM+iN61OPg0k1xFjEljUX4mN8FHC7aBjxP3C4=;
-        b=NG/e0v0QLSbBACbN727KWI653d9p0V32kakB+/TLJnUT+8Vb2NxXLnwu8q0sXi3cvR
-         ipcjhMEnCx5pOMfEO7FzmloaiPn71MuH7WEVuCFewbE7GYgDORRlxnxWytLxGkxnt3Pe
-         qg2HPGpt/xwafulSMFSTqaNEic9R6UZuqM8KN5oDXC1JRp8WzEPwYWQ7J2AaD69a0YQg
-         Sx3jYuNjD+FN1NqMJ8RTgAOW9EG8y+qWDMDOjRsKVHvGVGsj+idPZKlELDQ7wd//HZE5
-         BWa6lVhoxMWnM0WRwfX4+/sYKFUXJvklj6CaEaFuJWEvzDY+BL5zMyRsSJChuBQQM9pc
-         wA8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730124610; x=1730729410;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=w9NzcAMM+iN61OPg0k1xFjEljUX4mN8FHC7aBjxP3C4=;
-        b=hFfUFuI8DkIWKIzsBwgJMH4LJGgHhpueBwm6fEcpwN1ocz/eSqrdIklDUYCVQ//NkH
-         pjHUsGmeU/Q7DEyRcFbAFo0tDMiFJHhQQrM3zYpvdHYvel8Nsam80MgeKQxAmptav0it
-         /fjblekfiupwyM8ACINJKzW/7mjjXXLhKNUSEmU1BhN1uc4GGjETewDmZdaQMlMF9UGF
-         P7dITt43+ZbVamF6lu7d/pVNBUl9gK/75tesIwAMXXZ7e0vKvhdp0wL9iwUFFYjLjkjd
-         s+9BM4aBHQIfBdp9MwSEyShXoABY5QvxiuQr+wKkjOOBh00L14YkXZd40eYlio1UprzD
-         Us5w==
-X-Forwarded-Encrypted: i=1; AJvYcCVfFenyAhJGSP+3xEY/DYTmqEGgJasvmy0kx0QRJoWJEQjt5lNefodj5RtU+hvnZKx8sTCXgQTJvXTb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBrCGYRQJ0v7+7CKqFIATrPUg+Di1E0OLOwUUIHf7BIOw9KTL0
-	OR65f5Vfi/NOCNAaGobpHqpqjZuBYjPf8tEFuZkeNOpdVftchf/e
-X-Google-Smtp-Source: AGHT+IECBIlBzaCqDV5M3+pRddxYcdHuT/BVEKJjvvfRuH8KNfTEkKqQEPXpvfVhfSVxvkXdky34tQ==
-X-Received: by 2002:a5d:434a:0:b0:37d:518f:995d with SMTP id ffacd0b85a97d-3806120ebddmr6436506f8f.56.1730124610516;
-        Mon, 28 Oct 2024 07:10:10 -0700 (PDT)
-Received: from ?IPv6:2001:a61:34c9:ea01:14b4:7ed9:5135:9381? ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b3c236sm9545164f8f.35.2024.10.28.07.10.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 07:10:10 -0700 (PDT)
-Message-ID: <a7690fa0841ad1091f8d761e4eb940f3058ef970.camel@gmail.com>
-Subject: Re: [PATCH 2/4] ASoC: dt-bindings: document the adau1373 Codec
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Nuno Sa <nuno.sa@analog.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, Liam Girdwood
-	 <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
-	 <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Lars-Peter Clausen
-	 <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Date: Mon, 28 Oct 2024 15:10:09 +0100
-In-Reply-To: <e6f4b1b9-f860-4625-9f77-ee475235e958@kernel.org>
-References: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
-	 <20241021-adau1373-shutdown-v1-2-bec4ff9dfa16@analog.com>
-	 <pj5clifybfwljpq3usfgca7cy54xpmzngdckyb53wc3u4lts53@gtm2mbuiiudw>
-	 <a38c5d3e4f1cdf90f53b8c17ef7508faaf760f89.camel@gmail.com>
-	 <e6f4b1b9-f860-4625-9f77-ee475235e958@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
+	s=arc-20240116; t=1730125111; c=relaxed/simple;
+	bh=GDxeko3+Dn9RuaYdTtgwmg1aQ7/CFFrKZY1eCCjQzsI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qjIOdMrrB9CI7wizr4ASKDpY1LuT7jDNLMHx7YKq2mZZgbOH9Evli6+iuUDO2+dzB3bSkwlB/fBxCIltTIYG/lFXFHraN/8w55SiPp1ZV1wKi6ZT9ctv+3O6IwNvpFDoLWhmj1zv1emnri21XFWkRak4UwED7C2rbF0CeM90VCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1t5QZN-0002bl-NX; Mon, 28 Oct 2024 15:18:09 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1t5QZK-000s76-0y;
+	Mon, 28 Oct 2024 15:18:06 +0100
+Received: from pengutronix.de (pd9e595f8.dip0.t-ipconnect.de [217.229.149.248])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id D06AA360975;
+	Mon, 28 Oct 2024 14:18:05 +0000 (UTC)
+Date: Mon, 28 Oct 2024 15:18:05 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Hal Feng <hal.feng@starfivetech.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
+	William Qiu <william.qiu@starfivetech.com>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>, 
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: RE: [PATCH v2 3/4] can: Add driver for CAST CAN Bus Controller
+Message-ID: <20241028-great-worm-of-snow-494fa0-mkl@pengutronix.de>
+References: <20240922145151.130999-1-hal.feng@starfivetech.com>
+ <20240922145151.130999-4-hal.feng@starfivetech.com>
+ <cf17f15b-cbd7-4692-b3b2-065e549cb21e@lunn.ch>
+ <ZQ2PR01MB13071A093EB33F48340F753EE66F2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="d6ye2orfo4iuw6ou"
+Content-Disposition: inline
+In-Reply-To: <ZQ2PR01MB13071A093EB33F48340F753EE66F2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Sat, 2024-10-26 at 20:14 +0200, Krzysztof Kozlowski wrote:
-> On 22/10/2024 08:42, Nuno S=C3=A1 wrote:
-> > > > +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/uint8-ar=
-ray
-> > > > +=C2=A0=C2=A0=C2=A0 oneOf:
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - minItems: 13
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - minItems: 26
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - minItems: 39
-> > >=20
-> > > and maxItems?
+
+--d6ye2orfo4iuw6ou
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: RE: [PATCH v2 3/4] can: Add driver for CAST CAN Bus Controller
+MIME-Version: 1.0
+
+On 23.09.2024 07:53:24, Hal Feng wrote:
+> > > +static inline u8 ccan_read_reg_8bit(const struct ccan_priv *priv,
+> > > +				    enum ccan_reg reg)
+> > > +{
+> > > +	u8 reg_down;
+> > > +	union val {
+> > > +		u8 val_8[4];
+> > > +		u32 val_32;
+> > > +	} val;
+> > > +
+> > > +	reg_down =3D ALIGN_DOWN(reg, 4);
+> > > +	val.val_32 =3D ccan_read_reg(priv, reg_down);
+> > > +	return val.val_8[reg - reg_down];
 > >=20
-> > Hmm, I had the idea that if maxItems was omitted, then it's the same as
-> > minItems? Because that's the intent... We can either have an array of 1=
-3, 26 or
-> > 39 entries.
+> > There is an ioread8(). Is it invalid to do a byte read for this hardwar=
+e? If so, it is
+> > probably worth a comment.
 >=20
-> That's not the case and none of the files follow such logic. If you
-> manage to find one file, please correct or report it.
+> The hardware has been initially developed as peripheral component for 8 b=
+it systems
+> and therefore control and status registers defined as 8 bit groups. Never=
+theless
+> the hardware is designed as a 32 bit component finally. It prefers 32-bit=
+ read/write
+> interfaces. I will add a comment later.
+
+As mentioned in my v1 review, you are doing proper u32 accesses.
+
+> > > +static int ccan_bittime_configuration(struct net_device *ndev) {
+> > > +	struct ccan_priv *priv =3D netdev_priv(ndev);
+> > > +	struct can_bittiming *bt =3D &priv->can.bittiming;
+> > > +	struct can_bittiming *dbt =3D &priv->can.data_bittiming;
+> > > +	u32 bittiming, data_bittiming;
+> > > +	u8 reset_test;
+> > > +
+> > > +	reset_test =3D ccan_read_reg_8bit(priv, CCAN_CFG_STAT);
+> > > +
+> > > +	if (!(reset_test & CCAN_RST_MASK)) {
+> > > +		netdev_alert(ndev, "Not in reset mode, cannot set bit
+> > timing\n");
+> > > +		return -EPERM;
+> > > +	}
+> >=20
+> >=20
+> > You don't see nedev_alert() used very often. If this is fatal then netd=
+ev_err().
+> >=20
+> > Also, EPERM? man 3 errno say:
+> >=20
+> >        EPERM           Operation not permitted (POSIX.1-2001).
+> >=20
+> > Why is this a permission issue?
 >=20
+> Will use netdev_err() and return -EWOULDBLOCK instead.
 
-Okay...=C2=A0will add maxItems
+You have a dedicated function to put the IP core into reset
+"ccan_set_reset_mode()". If you don't trust you IP core or it needs some
+time, add a poll to that function and return an error.
 
-FWIW, playing with the DT example and validating the bindings works (and fa=
-ils) as
-expected when omitting maxItems.
+Then there's no need on ccan_bittime_configuration() to check for reset
+mode.
 
-- Nuno S=C3=A1
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--d6ye2orfo4iuw6ou
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmcfnRsACgkQKDiiPnot
+vG+52Qf9EYytqiZDcw1r+TVbTIDJoUzjC6e0XKFkbT2/IBKG1usCbI8BwlKdXwu+
+uIU8xA7v62V41WBLyNHAXgeQTnjy1aNsMRUi8pJxVADI/PS91RzdWQXcHb1h6HPQ
+HfhJvmk0/nz6CFOXoIlPg9bwm2uB7MxPIS3y/aZ7Mo0e6vW5ChjtcmMXW9Ma/u08
+CrOsC92UX2ERW3o9nVhGqTgeKAFxiagUZMYFFMkqCDn1Pzas1EhixcpMmgbtff/q
+4cesN3k0tY37qg279JvVVBZhCDcbE2ueHSxjHwITsVxKvsL8HdWp+4c5o48EP3kD
+QQd+hao+9llKWOEpwduz8XmDjq3W5g==
+=TefK
+-----END PGP SIGNATURE-----
+
+--d6ye2orfo4iuw6ou--
 
