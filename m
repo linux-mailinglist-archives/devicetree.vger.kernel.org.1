@@ -1,132 +1,97 @@
-Return-Path: <devicetree+bounces-116604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2ADF9B35D9
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 17:08:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A929B35DD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 17:09:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44B45B21E49
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:08:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD44D2825CA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439571DED6F;
-	Mon, 28 Oct 2024 16:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD6071DED5A;
+	Mon, 28 Oct 2024 16:09:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cNeDHi49"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LnP7lfOS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0080D1DED6C
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 16:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20EAC15C13A;
+	Mon, 28 Oct 2024 16:08:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730131702; cv=none; b=PK9DpLMV/TkHaAFb7NvSae+yk6bEYHN4oECSXWditgjkK/sf08Sqxy+I6q+wiD43Zxu8Fm8eHqbUxLZpRtBs1yTgmFsiOR9Xy2ren3LdkxfoF5bx7v9G+eGZNJ8RjM52h8EB2M+PLmgF2cBX53CFb5cOQfbJBEcAEgInJ1qW2LE=
+	t=1730131741; cv=none; b=HLXqPXSH8LrTvLaQPALdLtzB5W6dQhzeDxMHsHz3wzFTtzxiLiPAaGdAsJIFwC8gue0/FXopJ74PokMEdqobcb/VqKvexmQmfyuiOXBz0CCPE1Jsfeo7rj//nzMQ/zU74iS2eTX4KzQvd0Mey8kX4oKQuroDYqZKBXNhW63Sjms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730131702; c=relaxed/simple;
-	bh=0N01AvBl0uJvKMTxgBJP6kgP/tEGMfe142ivUmjogG8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SqGLztPu8gag+uqS4XclOcjIW+KNTgU2oKBxzwIvkjbx0XHKh0ZWtqvuUy+URkH1MY8/ZqBhPkU1yjbU7fLcfEvIlNaSRbZN0MM2WAtZLrKnFuoCDP5tfX4aolo6dhwbbX1jqDweh1uzAa1o4+m0oafckHnemPkg3FKVraz5CQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cNeDHi49; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-431ac30d379so8817185e9.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 09:08:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730131698; x=1730736498; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yDqZMtYQ911IVoh44LgqSLk8tfAEAk1LjxbYN8N2FQM=;
-        b=cNeDHi49IuT3K9ROnYwPOhod8/HZIf7GrQmLs8r4P0t/inI5Konvxqx2idsVwYUKUO
-         KGkPQYPc7mqJcdpXshzd6+M+A3e8rg/1reGn1qj2SSC23i9VqMUF7Ww1EioxW99CPH73
-         Mw7lCW1OKMprKrG/tCZuFNT+ce3JdG+MttvyDEpaMJndjQyNibqp6dswkgdtkn74nKWV
-         8MPVx9Hgac6XVnISA8OJGafEDaCO1wW6adzxkInKD0ObxRpnY2qSZNwwV02Z2oA6uocx
-         fgwJxZwv1i01fcQ/tyvnw1oezfDnqsA/vNaXc5I4pjCAKdDWSBxyBPiTFFicWyyjQdMz
-         6UVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730131698; x=1730736498;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yDqZMtYQ911IVoh44LgqSLk8tfAEAk1LjxbYN8N2FQM=;
-        b=WAd1Ep1TCTAB0N8PJzA3QyMikRE1xuXLaHUmTINWVb8rgo3hghdFJ6D3vYaqmkGEaV
-         Prla5RUKBRBpCFHWbUeANAwVxCdXWnWXJJrpZMPOoPPBSlY65TX003BI5VkuEsRHXDvT
-         9VEV0h9dNDi1YnTT8iWRx1RvxCGOrSBjU970S1FfpgNciNBUB/MQm28JcwaLIhG5/B4D
-         PK12owo58J06eZ9ri/Uy79Ei6aCSdtpREaE/cD6NSnMmQiPwJzshfxeFgHgPx2+diY2m
-         jU/IL5xUlC0rFmFMZFNm++Z+/UIiSVAQo7+K4ifcipKNzxwYR1NjRAIgcY4YRgfgtbsB
-         uuqg==
-X-Gm-Message-State: AOJu0YyMxhgOv9fxI2vl+rkWAsOywptIm7+mfYdLw8c3VnXyFHJp7fr3
-	S6yAQW2Nzml/MA0sX5qsfLrPy7kkXxOm19Qzu6tj1rPcgoI4cwxQJhgszBTu+LY=
-X-Google-Smtp-Source: AGHT+IE9MmEjtbzZdsfKj2QOyaCwDFePwJfeeepNxFHDAUu5yysG0Dm6iQx0/6I+8sAZYGhDKuaavw==
-X-Received: by 2002:a05:600c:1c82:b0:430:699b:7d22 with SMTP id 5b1f17b1804b1-4319ad14d14mr85589385e9.26.1730131698361;
-        Mon, 28 Oct 2024 09:08:18 -0700 (PDT)
-Received: from localhost (p200300f65f0c3200f401bf2b6011cd64.dip0.t-ipconnect.de. [2003:f6:5f0c:3200:f401:bf2b:6011:cd64])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43193594fffsm113281335e9.13.2024.10.28.09.08.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 09:08:18 -0700 (PDT)
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Dumitru Ceclan <dumitru.ceclan@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno Sa <nuno.sa@analog.com>,
-	Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: [PATCH v2 4/4] iio: adc: ad7124: Disable all channels at probe time
-Date: Mon, 28 Oct 2024 17:07:53 +0100
-Message-ID: <20241028160748.489596-10-u.kleine-koenig@baylibre.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241028160748.489596-6-u.kleine-koenig@baylibre.com>
-References: <20241028160748.489596-6-u.kleine-koenig@baylibre.com>
+	s=arc-20240116; t=1730131741; c=relaxed/simple;
+	bh=RFIuHkEL9QlURGA8odJLQx+5TzCk9F/XU/g4Ze+ayaY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e0RnLbNDTIPOYnTiZBHm2E2Fw3qshNrpAPwLytMs2sbsda+7cY0tyDYnrWu96W1iBWqtgXgnVfYQ++MvXvkANNCwIPagji/sPY3kSKg4Hqlo+XYnKfyXPO/Plx+abPU9z6ebIfkauVY/TtY1BSaBqa+LEhTv0WZOdKn0KhzK47g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=LnP7lfOS; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1730131737;
+	bh=RFIuHkEL9QlURGA8odJLQx+5TzCk9F/XU/g4Ze+ayaY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LnP7lfOS/ZKF0gdhu6J4yKLLyvp6/z6MZnb8GwOvInLDSODHuT4wcS3dC36ZFWSKM
+	 oUMo6abWT5nc69ETfNHy0ZTItIvwU1ZjooRzCz+Hh3PoBNanqgrlbV3/5v+kPRdU9h
+	 xEc1vCOOm1ysf/9jwW6gUZl5AunFMwPuCE6RE4SjsmWHSkmbIZm/fPvIzUw/gWIdMz
+	 1GqSGykSd5VCOjWf0c7pCksRO/yjQKJF78jnY0xAfLcLWow1xgPgAzfjH77o8xz5WV
+	 iW6u9KiYfsn35uS+sVN/lCVBHdYllJt48fAnq1qjV8pqqIW0Ldk6vxEJ0rmbAeMZxP
+	 1p1Ry3c1FgwGA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A783217E3663;
+	Mon, 28 Oct 2024 17:08:56 +0100 (CET)
+Message-ID: <006dfe88-25fd-47a1-a57c-3345af2bff21@collabora.com>
+Date: Mon, 28 Oct 2024 17:08:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1375; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=0N01AvBl0uJvKMTxgBJP6kgP/tEGMfe142ivUmjogG8=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBnH7bgOE7iGbMylKJAJvbiBOX3hRV9bssr11z64 7939T0xdzKJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZx+24AAKCRCPgPtYfRL+ TgC+B/44r6pWumnFJVv8sIK1/jyHfPZCcQ7yuo9dHdXU3Xs0gWCaZOI30gRKb/nCh2Na4w8TUEL GIJ/fERJXDUhc9+Xp2z+lrhKkb/Sbg8ztcG2QcAHSZfVDewE2+kCM3/bdOecr96lLvQHzM59x4B ba5NEVL7gOuzgEQpjxUwWX3kewz2leypkjDfd4ejD/PGKrmkv7123qE5CMDobb2s3w6Z7x1FQO9 NoTOAKiI9R/YF8KYZlGuRLvhtDcN+Tt9oFKcDyctDE7b3Yj96eFdRmMQVVt7NA3pyKBku4UMHFe uZntXo5tLoaBzWBx37E50DuxLjsriVZmmItgEU7MPcGY3mqx
-X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: mediatek: mt6397: add adc, codec
+ and regulators for mt6359
+To: Macpaul Lin <macpaul.lin@mediatek.com>, Sen Chu <sen.chu@mediatek.com>,
+ Sean Wang <sean.wang@mediatek.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Alexandre Mergnat <amergnat@baylibre.com>
+Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+ Macpaul Lin <macpaul@gmail.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
+ MediaTek Chromebook Upstream
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ Chen-Yu Tsai <wenst@chromium.org>
+References: <20241004030148.13366-1-macpaul.lin@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20241004030148.13366-1-macpaul.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-When during a measurement two channels are enabled, two measurements are
-done that are reported sequencially in the DATA register. As the code
-triggered by reading one of the sysfs properties expects that only one
-channel is enabled it only reads the first data set which might or might
-not belong to the intended channel.
+Il 04/10/24 05:01, Macpaul Lin ha scritto:
+> Since MT6359 PMIC has been added as one of the compatibles of
+> "mediatek,mt6397.yaml", the sub-device node of "MT6359 PMIC AUXADC",
+> "MT6359 Audio Codec"  and "MT6359 PMIC Regulators" should also be
+> contained in this DT Schema as well.
+> 
+> This patch includes:
+>   - add 'adc' property and $ref for 'mediatek,mt6359-auxadc'.
+>   - add 'mt6359-regulator' to the compatibles of regulators.
+>   - add 'mt6359-codec' to the compatibles of audio-codec.
+> 
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 
-To prevent this situation disable all channels during probe. This fixes
-a problem in practise because the reset default for channel 0 is
-enabled. So all measurements before the first measurement on channel 0
-(which disables channel 0 at the end) might report wrong values.
-
-Fixes: 7b8d045e497a ("iio: adc: ad7124: allow more than 8 channels")
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
----
- drivers/iio/adc/ad7124.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/iio/adc/ad7124.c b/drivers/iio/adc/ad7124.c
-index a5d91933f505..749304d38415 100644
---- a/drivers/iio/adc/ad7124.c
-+++ b/drivers/iio/adc/ad7124.c
-@@ -917,6 +917,9 @@ static int ad7124_setup(struct ad7124_state *st)
- 		 * set all channels to this default value.
- 		 */
- 		ad7124_set_channel_odr(st, i, 10);
-+
-+		/* Disable all channels to prevent unintended conversions. */
-+		ad_sd_write_reg(&st->sd, AD7124_CHANNEL(i), 2, 0);
- 	}
- 
- 	ret = ad_sd_write_reg(&st->sd, AD7124_ADC_CONTROL, 2, st->adc_control);
--- 
-2.45.2
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com
 
 
