@@ -1,239 +1,202 @@
-Return-Path: <devicetree+bounces-116375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4914F9B2B1C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:15:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 314D59B2B22
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:16:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07C6A2814B7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:15:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A95DE1F21FD8
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 759CC181CE1;
-	Mon, 28 Oct 2024 09:15:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39EAE19066B;
+	Mon, 28 Oct 2024 09:16:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="dbWt5/vc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="liRLP6S8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0824291E
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 09:15:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11E8E8472;
+	Mon, 28 Oct 2024 09:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730106949; cv=none; b=UMYK+2icPkFIk8HMgs0tdgrQbVcM8bs3PNfUoeVRLg6N2RWFoz92uoS88PdvDoPZgJgD53+318cLiF+xHR9MiX2QfKaRzllyztIeuL2E9I8nFvoyKaP8GT6QN8XUAjPo0Ty6Cneye8qL8DH6bmDuOxylZjO8el3gHbHTgfwcfUw=
+	t=1730107007; cv=none; b=Mqiu/e0H6XjyNbRx30zvhcACGizcwOdVG5vXkIS7Te6fgHrYANO4HnnwjkvOzCN7LPj0tIVwsMHzYUNca7MroIsKcLh2QQR1fPE9Akx+4nMipHfUUZsBLfCDyd6wB6I7wEXVFrPlK220ORzCVL+16jEUjmMDK0p+cRpEuSiIxQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730106949; c=relaxed/simple;
-	bh=oZyLRnaQSadJQweLa9GSaQLcuK9wRKBQ+f0KBLvZ3Q8=;
+	s=arc-20240116; t=1730107007; c=relaxed/simple;
+	bh=cpowFjQL5ac0sI9lTiCKHPvqkdNL5V66GtX0gY1Wto4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WTDLnBnjT80JzrHfaIBUen77/7DowH+SqiWn0TARfhnSj6HGpe9+h9RbGvqXQbrb0k21l54/53cPeZBUXRCKGMQ2Jz5zd5zpBxq94CzwWaVpE1lVT5+sroM5xZRyFDHyT9gB6OXJ9x29E7pIEZY4EnT01Zmz3cEORSYKzawpkFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=dbWt5/vc; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43152b79d25so38092135e9.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 02:15:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730106945; x=1730711745; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=aFl7hG9APtv3+aifN3HCuVVr9QjPzn9re0x6vzwqTPw=;
-        b=dbWt5/vc7DSRMBLNOjB19esujSFl62vS41nxE0xFxna04mIq+t7aeEzgX3zAPEwvCt
-         g54cqkV0SknwtFitv1GYhq9YFilKu2qKRZyxXeeRkNty9u9dz2MT8bPRuP9yqxiVNvZf
-         lxKXjBbgAuCHNZFhMl329f7kmvLGEhHYfzhytYDJq11usEf9yb3L7SpzFYVPIFemU5e5
-         PCW85YZdbFy9S4+ANYfJ7nouiftRjzkCNZeeNkxEzOOg9Rera9JGrfDXn5ZNa4dOSVlA
-         wn1i3ygQkrzZcTVhGZxkfsvrPiSVXAPwFQRZTZyU7zfa7pncBzUsKWmssGNjVc+3Mx7E
-         K8UQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730106945; x=1730711745;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aFl7hG9APtv3+aifN3HCuVVr9QjPzn9re0x6vzwqTPw=;
-        b=Lo1/gbO79p7ksOdeGLnv6uVLidjdN3M1tJqJaB4QDt5Zou3R5Lq+/G3et9fQsJCH09
-         u8IwObXFoPzjsKTPJ/9RBbCWcMqTLIlCK3olYYS3WlUfEatxex3Hj7oQuWTMmsj3xF1p
-         2wSYNqt36xij8S7rTPPerK0j9a/bjlGjYosgXGVraA7rfY4FIGTMyD7wye/4Tbt7Fm1M
-         vTspHTeLj8/ip9YMt1uYN6E3Eszah/T3+ijzV/tCsyPl4SeooWf51HCGdZ8d1IXS9Dfq
-         kauT43S3XouGS6K17TSPR15c3Ms8/qZ1HYJW0w6vFphYAlSsHXH3Tb0iVjR8WrOt+b4M
-         gXDg==
-X-Forwarded-Encrypted: i=1; AJvYcCVUfx71rpqpK1+72uIUIs4Tn7aV9378MzRdPRVcibsYcje3Iz1voDOSWSmCVc0LQnlCq/1i7hwBSBz6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHW4Zjszj7GCz9fBUqds3XV+nasCcUoS2+5T56HpbMeUTfhjOE
-	4nIggh9RkrBV5sLqnNMNrdyJ3BEQ7wNwWe6JkJAIYsvAQJb4wOe7pX8nQ5fmlo51O8yMYuWq6IV
-	Iynxktg==
-X-Google-Smtp-Source: AGHT+IFdLvrC+MErOR++5DexXxcgqyL1Q7tYBy5PcHkbh3y1oxzE1IWhdO6YoyYcmx448jkYqA49lg==
-X-Received: by 2002:a7b:cd8e:0:b0:42c:bd27:4c12 with SMTP id 5b1f17b1804b1-431a0c394b6mr48163875e9.10.1730106944878;
-        Mon, 28 Oct 2024 02:15:44 -0700 (PDT)
-Received: from dfj (host-95-245-34-85.retail.telecomitalia.it. [95.245.34.85])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43193595c51sm101439625e9.20.2024.10.28.02.15.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 02:15:43 -0700 (PDT)
-Date: Mon, 28 Oct 2024 10:14:25 +0100
-From: Angelo Dureghello <adureghello@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Mark Brown <broonie@kernel.org>, dlechner@baylibre.com
-Subject: Re: [PATCH v8 7/8] iio: dac: ad3552r: add high-speed platform driver
-Message-ID: <3boluky2zvz6n4u3gjgxuzlo2cm3a4xcbfq5sjmzoz3i5lfsml@j3wikyf74xyj>
-References: <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-0-74ca7dd60567@baylibre.com>
- <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-7-74ca7dd60567@baylibre.com>
- <20241026185740.4144f6c8@jic23-huawei>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JySexRBgTVV0Iew9hmq7+jZbzYS5RfaumQbhTwJRbWXCquMOQJ8O/axDaZLlagSwG+Q76Pl4j5AEv7aimy64odh3gtLVViVTnaKH9MpqLDObGssP7GGfoWrluK5JChLgwNQxRScruL2Qb27N5KhxpdHYHdQ2gZ6L8E0pgCBKOJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=liRLP6S8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49488C4CEC7;
+	Mon, 28 Oct 2024 09:16:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730107006;
+	bh=cpowFjQL5ac0sI9lTiCKHPvqkdNL5V66GtX0gY1Wto4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=liRLP6S8dPdHMGGezPquS547M4OGL/QwBBDlg0wvtvrvnMg9YuA9Sib/paBHb/0cZ
+	 qm+K+Po8enANPOgYX+p5ZzTbmLr87O8PInA4VXydND4SaeZwg5QBETzAkWtTXsIdMI
+	 WPNZ3g/fv5PbVuZ79mMnc9UOzsQ3G3+NcfJ/OFxU82xe95Uvw0Asgs9ELApW/qPD2y
+	 ybgGosJ+J1rpXG0ioE79UQV+cE0CUe2YssJHgYO2kHoqvD3up/s/X7CdJUzX6zQ1kk
+	 wWv9W4u+h6vg9l+LSLZRmAKkPq/DVkwQD6RlS08KiXPtMmPZjokXw4ADwdaF28EPGv
+	 RorCDQdgiwMgA==
+Date: Mon, 28 Oct 2024 10:16:38 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Herve Codina <herve.codina@bootlin.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+Message-ID: <20241028-thankful-boar-of-camouflage-3de96c@houat>
+References: <20241024095539.1637280-1-herve.codina@bootlin.com>
+ <20241024095539.1637280-3-herve.codina@bootlin.com>
+ <20241027162350.GA15853@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="3wpjo5aswujp76pt"
 Content-Disposition: inline
-In-Reply-To: <20241026185740.4144f6c8@jic23-huawei>
+In-Reply-To: <20241027162350.GA15853@pendragon.ideasonboard.com>
 
-Hi Jonathan,
 
-On 26.10.2024 18:57, Jonathan Cameron wrote:
-> On Fri, 25 Oct 2024 11:49:40 +0200
-> Angelo Dureghello <adureghello@baylibre.com> wrote:
-> 
-> > From: Angelo Dureghello <adureghello@baylibre.com>
-> > 
-> > Add High Speed ad3552r platform driver.
-> > 
-> > The ad3552r DAC is controlled by a custom (fpga-based) DAC IP
-> > through the current AXI backend, or similar alternative IIO backend.
-> > 
-> > Compared to the existing driver (ad3552r.c), that is a simple SPI
-> > driver, this driver is coupled with a DAC IIO backend that finally
-> > controls the ad3552r by a fpga-based "QSPI+DDR" interface, to reach
-> > maximum transfer rate of 33MUPS using dma stream capabilities.
-> > 
-> > All commands involving QSPI bus read/write are delegated to the backend
-> > through the provided APIs for bus read/write.
-> > 
-> > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+--3wpjo5aswujp76pt
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+MIME-Version: 1.0
+
+On Sun, Oct 27, 2024 at 06:23:50PM +0200, Laurent Pinchart wrote:
+> On Thu, Oct 24, 2024 at 11:55:38AM +0200, Herve Codina wrote:
+> > In some cases observed during ESD tests, the TI SN65DSI83 cannot recover
+> > from errors by itself. A full restart of the bridge is needed in those
+> > cases to have the bridge output LVDS signals again.
+> >=20
+> > The TI SN65DSI83 has some error detection capabilities. Introduce an
+> > error recovery mechanism based on this detection.
+> >=20
+> > The errors detected are signaled through an interrupt. On system where
+> > this interrupt is not available, the driver uses a polling monitoring
+> > fallback to check for errors. When an error is present, the recovery
+> > process is launched.
+> >=20
+> > Restarting the bridge needs to redo the initialization sequence. This
+> > initialization sequence has to be done with the DSI data lanes driven in
+> > LP11 state. In order to do that, the recovery process resets the entire
+> > pipeline.
+> >=20
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > > ---
-> Hi Angelo,
-> 
-> I'd missed a build issue in previous reviews. :(
-> 
-> >  drivers/iio/dac/Kconfig      |  14 ++
-> >  drivers/iio/dac/Makefile     |   1 +
-> >  drivers/iio/dac/ad3552r-hs.c | 530 +++++++++++++++++++++++++++++++++++++++++++
-> >  drivers/iio/dac/ad3552r-hs.h |  19 ++
-> >  drivers/iio/dac/ad3552r.h    |   4 +
-> >  5 files changed, 568 insertions(+)
-> > 
-> > diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
-> > index 26f9de55b79f..f76eaba140d8 100644
-> > --- a/drivers/iio/dac/Kconfig
-> > +++ b/drivers/iio/dac/Kconfig
-> > @@ -6,6 +6,20 @@
-> >  
-> >  menu "Digital to analog converters"
-> >  
-> > +config AD3552R_HS
-> > +	tristate "Analog Devices AD3552R DAC High Speed driver"
-> > +	select ADI_AXI_DAC
-> > +	help
-> > +	  Say yes here to build support for Analog Devices AD3552R
-> > +	  Digital to Analog Converter High Speed driver.
+> >  drivers/gpu/drm/bridge/ti-sn65dsi83.c | 128 ++++++++++++++++++++++++++
+> >  1 file changed, 128 insertions(+)
+> >=20
+> > diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/br=
+idge/ti-sn65dsi83.c
+> > index 96e829163d87..22975b60e80f 100644
+> > --- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> > +++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> > @@ -35,9 +35,12 @@
+> >  #include <linux/of_graph.h>
+> >  #include <linux/regmap.h>
+> >  #include <linux/regulator/consumer.h>
+> > +#include <linux/timer.h>
+> > +#include <linux/workqueue.h>
+> > =20
+> >  #include <drm/drm_atomic_helper.h>
+> >  #include <drm/drm_bridge.h>
+> > +#include <drm/drm_drv.h> /* DRM_MODESET_LOCK_ALL_BEGIN() need drm_drv_=
+uses_atomic_modeset() */
+> >  #include <drm/drm_mipi_dsi.h>
+> >  #include <drm/drm_of.h>
+> >  #include <drm/drm_panel.h>
+> > @@ -147,6 +150,9 @@ struct sn65dsi83 {
+> >  	struct regulator		*vcc;
+> >  	bool				lvds_dual_link;
+> >  	bool				lvds_dual_link_even_odd_swap;
+> > +	bool				use_irq;
+> > +	struct delayed_work		monitor_work;
+> > +	struct work_struct		reset_work;
+> >  };
+> > =20
+> >  static const struct regmap_range sn65dsi83_readable_ranges[] =3D {
+> > @@ -321,6 +327,92 @@ static u8 sn65dsi83_get_dsi_div(struct sn65dsi83 *=
+ctx)
+> >  	return dsi_div - 1;
+> >  }
+> > =20
+> > +static int sn65dsi83_reset_pipeline(struct sn65dsi83 *sn65dsi83)
+> > +{
+> > +	struct drm_device *dev =3D sn65dsi83->bridge.dev;
+> > +	struct drm_modeset_acquire_ctx ctx;
+> > +	struct drm_atomic_state *state;
+> > +	int err;
 > > +
-> > +          The driver requires the assistance of an IP core to operate,
-> > +          since data is streamed into target device via DMA, sent over a
-> > +	  QSPI + DDR (Double Data Rate) bus.
-> 
-> Tabs and space mix that needs fixing.
-> 
+> > +	/* Use operation done in drm_atomic_helper_suspend() followed by
+> > +	 * operation done in drm_atomic_helper_resume() but without releasing
+> > +	 * the lock between suspend()/resume()
+> > +	 */
 > > +
-> > +	  To compile this driver as a module, choose M here: the
-> > +	  module will be called ad3552r-hs.
+> > +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
 > > +
-> >  config AD3552R
-> >  	tristate "Analog Devices AD3552R DAC driver"
-> >  	depends on SPI_MASTER
-> > diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
-> > index c92de0366238..d92e08ca93ca 100644
-> > --- a/drivers/iio/dac/Makefile
-> > +++ b/drivers/iio/dac/Makefile
-> > @@ -4,6 +4,7 @@
-> >  #
-> >  
-> >  # When adding new entries keep the list in alphabetical order
-> > +obj-$(CONFIG_AD3552R_HS) += ad3552r-hs.o ad3552r-common.o
-> >  obj-$(CONFIG_AD3552R) += ad3552r.o ad3552r-common.o
-> 
-> This causes all sorts of issues. The same code should not be linked into two
-> separate drivers.  Try building one as a module and one built in.
-> 
-right now, seems i cannot catch any issue, nor building or in runtime:
+> > +	state =3D drm_atomic_helper_duplicate_state(dev, &ctx);
+> > +	if (IS_ERR(state)) {
+> > +		err =3D PTR_ERR(state);
+> > +		goto unlock;
+> > +	}
+> > +
+> > +	err =3D drm_atomic_helper_disable_all(dev, &ctx);
+> > +	if (err < 0)
+> > +		goto unlock;
+> > +
+> > +	drm_mode_config_reset(dev);
+> > +
+> > +	err =3D drm_atomic_helper_commit_duplicated_state(state, &ctx);
+>=20
+> Committing a full atomic state from a bridge driver in an asynchronous
+> way seems quite uncharted territory, and it worries me. It's also a very
+> heavyweight, you disable all outputs here, instead of focussing on the
+> output connected to the bridge. Can you either implement something more
+> local, resetting the bridge only, or create a core helper to handle this
+> kind of situation, on a per-output basis ?
 
-ad3552r     [M]
-ad3552r-hs  [*]
-(ad3552r-common stays built in), ad3552r visible in lsmod, ad3552r-hs works
+I think you can't just shut down the bridge and restart it, since some
+require particular power sequences that will only occur if you also shut
+down the upstream controller.
 
-ad3552r     [*]
-ad3552r-hs  [M]
-(ad3552r-common stays built in), ad3552r-hs visible in lsmod, ad3552r-hs works
+So I think we'd need to tear down the CRTC, connector and everything
+in between.
 
-ad3552r     [M]
-ad3552r-hs  [M]
-(ad3552r-common.ko), ad3552r, ad3552r-hs and ad3552r-common are visible in lsmod,
-ad3552r-hs works, probe and removal, and also link/unlink tested).
+I do agree that it needs to be a generic helper though. In fact, it
+looks awfully similar to what vc4 and i915 are doing in reset_pipe and
+and intel_modeset_commit_pipes, respectively. It looks like a good
+opportunity to make it a helper.
 
-Please let me know, i can proceed modifying as you require, if it's the case.
+Maxime
 
+--3wpjo5aswujp76pt
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> The trick is a hidden symbol in Kconfig and an extra line in here
-> obj-$(CONFIG_AD3352R_LIB) += ad3552-common.o
-> 
-> and 
-> //note no text as we don't want this to be user selectable
-> 
-> config AD3352R_LIB
-> 	tristate
-> 
-> config AD3552R_HS
-> 	tristate "Analog Devices AD3552R DAC High Speed driver"
-> 	select ADI_AXI_DAC
-> 	select AD3352R_LIB
-> 	help
-> 	  Say yes here to build support for Analog Devices AD3552R
-> 	  Digital to Analog Converter High Speed driver.
-> 
-> 	  The driver requires the assistance of an IP core to operate,
-> 	  since data is streamed into target device via DMA, sent over a
-> 	  QSPI + DDR (Double Data Rate) bus.
-> 
-> 	  To compile this driver as a module, choose M here: the
-> 	  module will be called ad3552r-hs.
-> 
-> 
-> config AD3552R
->  	tristate "Analog Devices AD3552R DAC driver"
->  	depends on SPI_MASTER
-> 	select AD3352R_LIB
-> 	help
-> 	  ...
-> 
-> The pressure/mpl115 is done like this.
-> 
-> 
-> >  obj-$(CONFIG_AD5360) += ad5360.o
-> >  obj-$(CONFIG_AD5380) += ad5380.o
-> 
-> Anyhow, to me the code looks ready to go subject to this.
-> 
-> If nothing else comes up I'm almost confident enough of the fix to just
-> do it (and the few trivial things in previous review), but probably quicker
-> and less prone to error if you have time to spin a v9, perhaps after letting others
-> have a day or two to review v8 next week.
-> 
-> rc5 is tomorrow, so we have a little time left this cycle.
-> 
-> Jonathan
+-----BEGIN PGP SIGNATURE-----
 
-Regards,
-  angelo
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZx9WdQAKCRAnX84Zoj2+
+dlU0AX9oM8QWND/c5jJedY7GC5KGs5tPBWxgQdpkaDgCAkA2xDZe1sujWA6/BpOi
+AKivYFIBgOk6f4fkqoalxTQNntOLqoMyo+UGX3d5x7hLpOIfGbWxp9sYQUhuwJEm
+WZEELz9SOQ==
+=Tvr/
+-----END PGP SIGNATURE-----
+
+--3wpjo5aswujp76pt--
 
