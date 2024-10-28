@@ -1,106 +1,103 @@
-Return-Path: <devicetree+bounces-116460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDE8A9B2F9C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:04:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE5E9B2FCA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:10:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59286B23857
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:04:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DDD62B20E78
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:10:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F951DA636;
-	Mon, 28 Oct 2024 12:02:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 922FE1D7E5F;
+	Mon, 28 Oct 2024 12:09:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ChkjRBZe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD4021DB92C;
-	Mon, 28 Oct 2024 12:02:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE5CE1D2B1B;
+	Mon, 28 Oct 2024 12:09:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730116942; cv=none; b=jr8f5VE65iiCNjhZ80jSvY303yLckUzP5iGTS2pax4lLgGxQ3webSCOjGLwCfxElv5fPinG5TMQ9gffqLVNQ4Z6yInmgRpIJUfZriM+XA0sMXKTytA0Q+uMpS4meuy6y3p1RGBdccDqKcgeig0+NMMAew1rBG5qU0jjjxqOdCAE=
+	t=1730117354; cv=none; b=ofnuiywetFdBNXi/cBSMKDZoXetUCOONeL46SbO0M39RawJbSaAitcYYBf2w7I6OPzQyte0G5O4fIANj/XLvKDokN6FN9QlHnM+54jtgFK5vr58HiFN2+3mCmzw9poiEjT/BLMHFoHhfUjk5Dzq0UkjwYyJqm7S4YL85krIbD3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730116942; c=relaxed/simple;
-	bh=YFSoil/wyoPbsUOnERejF91RTgrdSIFDhVBcGJK0dE4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=U9CtNy+2z8+jl4sEW9ykAJ1GkDKpIrPMmQ8h+xBR1f8KSMeirAqvWEmnk+5RzWtUNNk5eeZryoIKUj3UEgU2mobzImPAjE8Rakne7P0KQBdYNSpeVnJO7TAeE/QsYp8RAeuM7Dr8WkNJc7+EbTtzJ1ZpFQ8UVXmIliLfyxSkSxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D9CFA13D5;
-	Mon, 28 Oct 2024 05:02:49 -0700 (PDT)
-Received: from pluto.fritz.box (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BC5A93F73B;
-	Mon, 28 Oct 2024 05:02:17 -0700 (PDT)
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	arm-scmi@vger.kernel.org
-Cc: sudeep.holla@arm.com,
-	james.quinlan@broadcom.com,
-	f.fainelli@gmail.com,
-	vincent.guittot@linaro.org,
-	etienne.carriere@st.com,
-	peng.fan@oss.nxp.com,
-	michal.simek@amd.com,
-	quic_sibis@quicinc.com,
-	quic_nkela@quicinc.com,
-	dan.carpenter@linaro.org,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1730117354; c=relaxed/simple;
+	bh=HrqkcnS8K0reyGHjGl5rW2kINv0fidWpSi7vYMFo9u8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pT3f7CDfhWui6gFknzpW8kuudfA4KZJ7KFDGEp3HcGpfGHniIYm80dcvas+xLvWDg3FK0S3IMUniTFUdgPBptcuoJJtOIwxQQ9JMDZlZNzUusxIl4dXOmsMfmwGnlKwnze0tWR981CJHtJnl2J4dnyyaiIuqDDJ5bNwA3W3+8Ts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ChkjRBZe; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=aqf2XUK3JGfMkS9238PqKD3f8BtXyktl6yHI/B0ObdQ=; b=ChkjRBZef4/Xsg0ZJa71WtVmRh
+	kP7PvJCw9BhdUmI1wTlitPTpDr9In9G/a+U+AlSkwa7jLV0Jl0i8yb27weMYjGQ1Hz5fgE3s1lSIh
+	HuUU5VM15Rp3YmQsnD8bi7su8FSHeTc8HaYENXhw/uK1W91iP26fD8Znerdu+69MDcGY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1t5OYB-00BRNc-UL; Mon, 28 Oct 2024 13:08:47 +0100
+Date: Mon, 28 Oct 2024 13:08:47 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Arun Ramadoss <arun.ramadoss@microchip.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH v3 6/7] dt-bindings: firmware: arm,scmi: Add missing vendor string
-Date: Mon, 28 Oct 2024 12:01:50 +0000
-Message-ID: <20241028120151.1301177-7-cristian.marussi@arm.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241028120151.1301177-1-cristian.marussi@arm.com>
-References: <20241028120151.1301177-1-cristian.marussi@arm.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	UNGLinuxDriver@microchip.com,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v1 3/5] net: dsa: microchip: Refactor MDIO
+ handling for side MDIO access
+Message-ID: <7738e272-b0ee-4a8c-8501-7030798c4e9c@lunn.ch>
+References: <20241026063538.2506143-1-o.rempel@pengutronix.de>
+ <20241026063538.2506143-4-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241026063538.2506143-4-o.rempel@pengutronix.de>
 
-Recently introduced max-rx-timeout-ms optionao property is missing a
-vendor prefix.
+>  static int ksz_mdio_register(struct ksz_device *dev)
+>  {
+> +	struct device_node *parent_bus_node;
+> +	struct mii_bus *parent_bus = NULL;
+>  	struct dsa_switch *ds = dev->ds;
+>  	struct device_node *mdio_np;
+>  	struct mii_bus *bus;
+> -	int ret;
+> +	struct dsa_port *dp;
+> +	int ret, i;
+>  
+>  	mdio_np = of_get_child_by_name(dev->dev->of_node, "mdio");
+>  	if (!mdio_np)
+>  		return 0;
+>  
+> +	parent_bus_node = of_parse_phandle(mdio_np, "mdio-parent-bus", 0);
+> +	if (parent_bus_node && !dev->info->phy_side_mdio_supported) {
+> +		dev_warn(dev->dev, "Side MDIO bus is not supported for this HW, ignoring 'mdio-parent-bus' property.\n");
 
-Add the vendor prefix from the original committer.
+I think dev_err() and return -EINVAL. It is an error in the DT.
 
-Fixes: 3a5e6ab06eab ("dt-bindings: firmware: arm,scmi: Introduce property max-rx-timeout-ms")
-Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+
+    Andrew
+
 ---
-Note that this fixes a commit that has been merged in v6.12-rc1...so it
-should not present any backward compatibility issue.
----
-Cc: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: Peng Fan <peng.fan@nxp.com>
----
- Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 9d6e1147f9e9..e331da4d606b 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -124,7 +124,7 @@ properties:
-       atomic mode of operation, even if requested.
-     default: 0
- 
--  max-rx-timeout-ms:
-+  nxp,max-rx-timeout-ms:
-     description:
-       An optional time value, expressed in milliseconds, representing the
-       transport maximum timeout value for the receive channel. The value should
--- 
-2.47.0
-
+pw-bot: cr
 
