@@ -1,333 +1,278 @@
-Return-Path: <devicetree+bounces-116576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F4A19B3481
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:13:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D97659B3496
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:18:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4015BB210D8
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:13:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07D1E1C21D43
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:18:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADAF41DD88F;
-	Mon, 28 Oct 2024 15:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A14BA1DE4F0;
+	Mon, 28 Oct 2024 15:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="Jo61nPDb"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="K4GdptCM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from msa.smtpout.orange.fr (msa-209.smtpout.orange.fr [193.252.23.209])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECEAC54769;
-	Mon, 28 Oct 2024 15:12:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.252.23.209
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 018761DE4E4;
+	Mon, 28 Oct 2024 15:17:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730128375; cv=none; b=ko0BfpIZvCi5Ryj+Zp1oDhblwh2B6rm/0IoSMF5uKteumz75Zr61vr6cHbYpmFQ1OwI/K1NVr69+sZJlEHF8cb7PuRsot2nL6pwCggyj31ORVHwRmmy24wtaYaRKnsnqrC6JwSlCu8M9mUWHzSWikjlTekBns6jazS2XoSu6xdk=
+	t=1730128657; cv=none; b=rZ1Zw8yRUB6Prse2ic7cgDLVE/kbDKoWXCUsrDN+F6uUr8k4WmTUHQFKk6xbSMcdzsOHAPGFDFeh+1XkrFyudIudvIcUOpgVl4HnXFyjWkErs2snqrmo2merk7DnCH2iC14rjh6xtifKu9JKx57Y5tOwOkcOOQws+wTx1Q3Bhpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730128375; c=relaxed/simple;
-	bh=7MqD3icugQngzAQ2Q7MgjC4Ss1IizgUGID5EmAQwFbI=;
-	h=Message-ID:Date:MIME-Version:Subject:Cc:References:From:To:
-	 In-Reply-To:Content-Type; b=fGa18Gr66rdev7s98azyw1pd0Bg9M0GD3BqkOT2t8dhuZFGcqb+Ky0p75JGjGH9FLE7ddxjL3efzkGy3rpey+hXB42B9hludQw95RMtB2K5ZSYRuJkmHgfYCD0ykWzAYwh/CqJrhK1rvW1BNc1EjDaTybk2cgxRmMlqyJrP1gWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=Jo61nPDb; arc=none smtp.client-ip=193.252.23.209
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id 5RP2tiD1igeRP5RP2t8WlI; Mon, 28 Oct 2024 16:11:34 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1730128294;
-	bh=fjqDdQt+XNPED4eC5c7Ufv/q0r2FByiZMWuGovsyH5A=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To;
-	b=Jo61nPDboyWDeo5o+6HGmwAAbry/cUoEn6xA9BF5TW3FJkos/TC6Zn9sjO4+qDAv9
-	 P5bK6oUhDotl5Jy5NCOivlcjRBTcyItDIqxUVbpny0lVz2os+KbUTUT5WRPDZp7cC1
-	 TaTExCIo64NtDn68wNltIDU5Papf1a8vdC5KHgJWLRAUlVRRvuIs+o1t2FM9yZ3SjX
-	 qkuGQdD1FczP1LJTOABY1Yv0Wn4MBxRBHhyvf1hU8tBw1pThK61ZxGp2hJGJ0uyIag
-	 lXRCe/PvlX59mCakfGOR6pmoHQQsO4XRrR5dylgnWynv3pYYorM2J+0A2iR/S7DeMV
-	 g62guAX8L6Jhw==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Mon, 28 Oct 2024 16:11:34 +0100
-X-ME-IP: 90.11.132.44
-Message-ID: <f5454f83-4af2-419b-b0ca-7309fa96f264@wanadoo.fr>
-Date: Mon, 28 Oct 2024 16:11:28 +0100
+	s=arc-20240116; t=1730128657; c=relaxed/simple;
+	bh=yYxrrxNDqZORz7yT6Jph9ERuNkQw4h4v3G14JotVmmA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NNRLv2vL0EP3tbemP1HHXmGbCgKHR9GnKA5sA+carkne4sEMYa0FsXEm5NOCuCqhJVXKUJFf6TdaABYr7oaFQ4SMeyhsLwFhxUpqmU0nKCx06entlfEP3mZ1YYSMIoAkyet/zJiNt6F3FFTTD6LglKnLhQXts8VdD/5/g1dL0Yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=K4GdptCM; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A74351AFB;
+	Mon, 28 Oct 2024 16:17:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1730128642;
+	bh=yYxrrxNDqZORz7yT6Jph9ERuNkQw4h4v3G14JotVmmA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K4GdptCM/TunBzQMs84myRbDidtT1kc9obvfNlcy/fZKmjZMWhbAcHCjxXNudEw1z
+	 ic0WGqVLI/gp8wFgvzwjdTK73sDRulz5VmNt6WwPAkP8nfmh8fExXbRuUn8gSqREvh
+	 FEOb45RyZoAo/kRLxNTIArFXH67gPXfBf0Sa1Ocg=
+Date: Mon, 28 Oct 2024 17:17:13 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Hans Verkuil <hverkuil@xs4all.nl>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v6 3/4] media: raspberrypi: Add support for RP1-CFE
+Message-ID: <20241028151713.GI24052@pendragon.ideasonboard.com>
+References: <20241003-rp1-cfe-v6-0-d6762edd98a8@ideasonboard.com>
+ <20241003-rp1-cfe-v6-3-d6762edd98a8@ideasonboard.com>
+ <4d9e340e-2ae7-495b-8623-0d10398e1c3d@xs4all.nl>
+ <02f05b61-08e7-45f8-8d59-f79bc20d076f@ideasonboard.com>
+ <74286a86-51b9-4742-bb0c-583d70b1b0a7@xs4all.nl>
+ <505c502e-b67a-4dca-8420-eb87eae4e170@ideasonboard.com>
+ <59cf95be-fb53-4a94-bc6e-f9dca322749d@xs4all.nl>
+ <5832a2f9-c908-4f5a-a3ee-9cb7d23ddab4@ideasonboard.com>
+ <563347aa-4155-47e1-b71a-0107aed83eb6@xs4all.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] iio: imu: adis16550: add adis16550 support
-Cc: Nuno Sa <nuno.sa@analog.com>,
- Ramona Gradinariu <ramona.gradinariu@analog.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Robert Budai <robert.budai@analog.com>,
- Jagath Jog J <jagathjog1996@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, robi_budai@yahoo.com
-References: <20241028123550.9128-1-robert.budai@analog.com>
- <20241028123550.9128-3-robert.budai@analog.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: Robert Budai <robert.budai@analog.com>
-In-Reply-To: <20241028123550.9128-3-robert.budai@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <563347aa-4155-47e1-b71a-0107aed83eb6@xs4all.nl>
 
-Le 28/10/2024 à 13:35, Robert Budai a écrit :
-> From: Nuno Sá <nuno.sa-OyLXuOCK7orQT0dZR+AlfA@public.gmane.org>
+On Mon, Oct 28, 2024 at 12:30:45PM +0100, Hans Verkuil wrote:
+> On 28/10/2024 12:25, Tomi Valkeinen wrote:
+> > On 28/10/2024 13:13, Hans Verkuil wrote:
+> >> On 28/10/2024 12:05, Tomi Valkeinen wrote:
+> >>> On 28/10/2024 12:11, Hans Verkuil wrote:
+> >>>> On 28/10/2024 10:21, Tomi Valkeinen wrote:
+> >>>>> On 24/10/2024 11:20, Hans Verkuil wrote:
+> >>>>>> Hi Tomi,
+> >>>>>>
+> >>>>>> I know this driver is already merged, but while checking for drivers that use
+> >>>>>> q->max_num_buffers I stumbled on this cfe code:
+> >>>>>>
+> >>>>>> <snip>
+> >>>>>>
+> >>>>>>> +/*
+> >>>>>>> + * vb2 ops
+> >>>>>>> + */
+> >>>>>>> +
+> >>>>>>> +static int cfe_queue_setup(struct vb2_queue *vq, unsigned int *nbuffers,
+> >>>>>>> +               unsigned int *nplanes, unsigned int sizes[],
+> >>>>>>> +               struct device *alloc_devs[])
+> >>>>>>> +{
+> >>>>>>> +    struct cfe_node *node = vb2_get_drv_priv(vq);
+> >>>>>>> +    struct cfe_device *cfe = node->cfe;
+> >>>>>>> +    unsigned int size = is_image_node(node) ?
+> >>>>>>> +                    node->vid_fmt.fmt.pix.sizeimage :
+> >>>>>>> +                    node->meta_fmt.fmt.meta.buffersize;
+> >>>>>>> +
+> >>>>>>> +    cfe_dbg(cfe, "%s: [%s] type:%u\n", __func__, node_desc[node->id].name,
+> >>>>>>> +        node->buffer_queue.type);
+> >>>>>>> +
+> >>>>>>> +    if (vq->max_num_buffers + *nbuffers < 3)
+> >>>>>>> +        *nbuffers = 3 - vq->max_num_buffers;
+> >>>>>>
+> >>>>>> This makes no sense: max_num_buffers is 32, unless explicitly set when vb2_queue_init
+> >>>>>> is called. So 32 + *nbuffers is never < 3.
+> >>>>>>
+> >>>>>> If the idea is that at least 3 buffers should be allocated by REQBUFS, then set
+> >>>>>> q->min_reqbufs_allocation = 3; before calling vb2_queue_init and vb2 will handle this
+> >>>>>> for you.
+> >>>>>>
+> >>>>>> Drivers shouldn't modify *nbuffers, except in very rare circumstances, especially
+> >>>>>> since the code is almost always wrong.
+> >>>>>
+> >>>>> Looking at this, the original code in the old BSP tree was, which somehow, along the long way, got turned into the above:
+> >>>>>
+> >>>>> if (vq->num_buffers + *nbuffers < 3)
+> >>>>>           *nbuffers = 3 - vq->num_buffers;
+> >>>>>
+> >>>>> So... I think that is the same as "q->min_reqbufs_allocation = 3"?
+> >>>>>
+> >>>>> The distinction between min_queued_buffers and
+> >>>>> min_reqbufs_allocation, or rather the need for the latter, still
+> >>>>> escapes me. If the HW/SW requires N buffers to be queued, why
+> >>>>> would we require allocating more than N buffers?
+> >>>>
+> >>>> min_queued_buffers is easiest to explain: that represents the requirements of the DMA
+> >>>> engine, i.e. how many buffers much be queued before the DMA engine can be started.
+> >>>> Typically it is 0, 1 or 2.
+
+That's partly true only. Even if the hardware requires 2 buffers, a
+driver can allocate scratch buffers to lower the requirement for
+userspace. Setting min_queued_buffers to 1 is usually fine, as there are
+few use cases for userspace to start the hardware before a buffer is
+available to capture a frame to. A value of 2 is much more problematic,
+as it prevents operating with a single buffer. I know using a single
+buffer results in frame drops, but there are resource-constrained
+systems where application don't always need all the frames (such as the
+Raspberry Pi Zero for instance). I very strongly encourage drivers to
+never set a min_queued_buffers value higher than 1.
+
+> >>>>
+> >>>> min_reqbufs_allocation is the minimum number of buffers that will be allocated when
+> >>>> calling VIDIOC_REQBUFS in order for userspace to be able to stream without blocking
+> >>>> or dropping frames.
+> >>>>
+> >>>> Typically this is 3 for video capture: one buffer is being DMAed, another is queued up
+> >>>> and the third is being processed by userspace. But sometimes drivers have other
+> >>>> requirements.
+
+This is exactly why I dislike min_reqbufs_allocation when set based on
+this logic, it encodes assumption on userspace use cases that a capture
+driver really shouldn't make.
+
+> >>>>
+> >>>> The reason is that some applications will just call VIDIOC_REQBUFS with count=1 and
+> >>>> expect it to be rounded up to whatever makes sense. See the VIDIOC_REQBUFS doc in
+> >>>> https://hverkuil.home.xs4all.nl/spec/userspace-api/v4l/vidioc-reqbufs.html
+> >>>>
+> >>>> "It can be smaller than the number requested, even zero, when the driver runs out of
+> >>>>    free memory. A larger number is also possible when the driver requires more buffers
+> >>>>    to function correctly."
+> >>>>
+> >>>> How drivers implement this is a mess, and usually the code in the driver is wrong as
+> >>>> well. In particular they often did not take VIDIOC_CREATE_BUFS into account, i.e.
+> >>>> instead of 'if (vq->num_buffers + *nbuffers < 3)' they would do 'if (*nbuffers < 3)'.
+> >>>
+> >>> Thanks, this was educational!
+> >>>
+> >>> So. If I have a driver that has min_queued_buffers = 1, I can use
+> >>> VIDIOC_CREATE_BUFS to allocate a single buffer, and then capture
+> >>> just one buffer, right? Whereas VIDIOC_REQBUFS would give me
+> >>> (probably) three (or two, if the driver does not set
+> >>> min_reqbufs_allocation). Three buffers makes sense for full
+> >>> streaming, of course.
+> >>>
+> >>>> When we worked on the support for more than 32 buffers we added min_reqbufs_allocation
+> >>>> to let the core take care of this. In addition, this only applies to VIDIOC_REQBUFS,
+
+I agree it's better to handle it in the core than in drivers, even if I
+dislike the feature in the first place.
+
+> >>>> if you want full control over the number of allocated buffers, then use VIDIOC_CREATE_BUFS,
+> >>>> with this ioctl the number of buffers will never be more than requested, although it
+> >>>> may be less if you run out of memory.
+
+On a side note, we should transition libcamera to use VIDIOC_CREATE_BUFS
+unconditionally.
+
+> >>>>
+> >>>> I really should go through all existing drivers and fix them up if they try to
+> >>>> handle this in the queue_setup function, I suspect a lot of them are quite messy.
+> >>>>
+> >>>> One thing that is missing in the V4L2 uAPI is a way to report the minimum number of
+> >>>> buffers that need to be allocated, i.e. min_queued_buffers + 1. Since if you want
+> >>>
+> >>> Hmm, so what I wrote above is not correct? One needs min_queued_buffers + 1? Why is that?
+> >>
+> >> The DMA engine always uses min_queued_buffers, so if there are only that many buffers,
+> >> then it can never return a buffer to userspace! So you need one more. That's the absolute
+> >> minimum. For smooth capture you need two more to allow time for userspace to process the
+> >> buffer.
+> > 
+> > Hmm, ok, I see. Well, I guess my "I want to capture just a single frame" is not a very common case.
+
+It's not that uncommon, see above.
+
+> > 
+> > Can I queue one buffer, start streaming, stop streaming, and get the
+> > filled buffer? But then I guess I don't when the buffer has been
+> > filled, i.e. when to call stop streaming.
 > 
-> The ADIS16550 is a complete inertial system that includes a triaxis
-> gyroscope and a triaxis accelerometer. Each inertial sensor in
-> the ADIS16550 combines industry leading MEMS only technology
-> with signal conditioning that optimizes dynamic performance. The
-> factory calibration characterizes each sensor for sensitivity, bias,
-> and alignment. As a result, each sensor has its own dynamic com-
-> pensation formulas that provide accurate sensor measurements
+> Exactly. If you really want that, then the driver has to be adapted in the way that Laurent
+> suggested, i.e. with one or more scratch buffers. But that is not always possible, esp. with
+> older hardware without an IOMMU.
 
-Hi,
+Drivers can always allocate a full-frame scratch buffer in the worst
+case. That can waste memory though, which is less than ideal.
 
-...
+> > So, never mind, I don't actually have any use case for this, just wondering.
+> > 
+> >>>
+> >>>> to use CREATE_BUFS you need that information so you know that you have to create
+> >>>> at least that number of buffers. We have the V4L2_CID_MIN_BUFFERS_FOR_CAPTURE control,
+> >>>> but it is effectively codec specific. This probably should be clarified.
+> >>>>
+> >>>> I wonder if it wouldn't be better to add a min_num_buffers field to
+> >>>> struct v4l2_create_buffers and set it to min_queued_buffers + 1.
 
-> +static ssize_t adis16550_show_firmware_date(struct file *file,
-> +					    char __user *userbuf,
-> +					    size_t count, loff_t *ppos)
-> +{
-> +	struct adis16550 *st = file->private_data;
-> +	u32 date;
-> +	char buf[12];
-> +	size_t len;
-> +	int ret;
-> +
-> +	ret = adis_read_reg_32(&st->adis, ADIS16550_REG_FW_DATE, &date);
-> +	if (ret)
-> +		return ret;
-> +
-> +	len = snprintf(buf, sizeof(buf), "%.2x-%.2x-%.4x\n", date & 0xff,
-> +		       (date >> 8) & 0xff, date >> 16);
+Don't add the +1. We should give userspace the information it needs to
+make informed decisions, not make decisions on its behalf.
 
-scnprintf() ?
+> >>>
+> >>> I think this makes sense (although I still don't get the +1).
+> >>>
+> >>> However, based on the experiences from adding the streams features
+> >>> to various ioctls, let's be very careful =). The new
+> >>> 'min_num_buffers' can be filled with garbage by the userspace. If
+> >>> we define the 'min_num_buffers' field to be always filled by the
+> >>> kernel, and any value provided from the userspace to be ignored, I
+> >>> think it should work.
+> >>
+> >> I've posted an RFC for this.
+> > 
+> > Thanks, I'll check it out.
+> > 
+> > For the original issue in this thread, I think the correct fix is to
+> > remove the lines from cfe_queue_setup(), and add
+> > "q->min_reqbufs_allocation = 3".
 
-> +
-> +	return simple_read_from_buffer(userbuf, count, ppos, buf, len);
-> +}
+Or just don't set min_reqbufs_allocation ? This is a new driver, and it
+requires a device-specific userspace to operate the ISP. I don't think
+we need to care about applications blindly calling VIDIOC_REQBUFS(1) and
+expecting to get more buffers.
 
-...
+> > 
+> > I'll send a patch for that.
 
-> +static void adis16550_debugfs_init(struct iio_dev *indio_dev)
-> +{
-> +	struct adis16550 *st = iio_priv(indio_dev);
-> +	struct dentry *d = iio_get_debugfs_dentry(indio_dev);
-> +
-> +	if (!IS_ENABLED(CONFIG_DEBUG_FS))
-> +		return;
+-- 
+Regards,
 
-I don't think that this is needed.
-Functions below should ahndle it already.
-
-> +
-> +	debugfs_create_file_unsafe("serial_number", 0400,
-> +				   d, st, &adis16550_serial_number_fops);
-> +	debugfs_create_file_unsafe("product_id", 0400,
-> +				   d, st, &adis16550_product_id_fops);
-> +	debugfs_create_file("firmware_revision", 0400,
-> +			    d, st, &adis16550_firmware_revision_fops);
-> +	debugfs_create_file("firmware_date", 0400, d,
-> +			    st, &adis16550_firmware_date_fops);
-> +	debugfs_create_file_unsafe("flash_count", 0400,
-> +				   d, st, &adis16550_flash_count_fops);
-> +}
-
-...
-
-> +static int adis16550_set_freq(struct adis16550 *st, u32 freq)
-> +{
-> +	u16 dec;
-> +	int ret;
-> +	u32 sample_rate = st->clk_freq;
-> +	/*
-> +	 * The optimal sample rate for the supported IMUs is between
-> +	 * int_clk - 1000 and int_clk + 500.
-> +	 */
-> +	u32 max_sample_rate =  st->info->int_clk * 1000 + 500000;
-> +	u32 min_sample_rate =  st->info->int_clk * 1000 - 1000000;
-
-Nitpick: 2 spaces after =
-
-> +
-> +	if (!freq)
-> +		return -EINVAL;
-> +
-> +	adis_dev_lock(&st->adis);
-> +
-> +	if (st->sync_mode == ADIS16550_SYNC_MODE_SCALED) {
-> +		unsigned long scaled_rate = lcm(st->clk_freq, freq);
-> +		int sync_scale;
-> +
-> +		if (scaled_rate > max_sample_rate)
-> +			scaled_rate = max_sample_rate / st->clk_freq * st->clk_freq;
-> +		else
-> +			scaled_rate = max_sample_rate / scaled_rate * scaled_rate;
-> +
-> +		if (scaled_rate < min_sample_rate)
-> +			scaled_rate = roundup(min_sample_rate, st->clk_freq);
-> +
-> +		sync_scale = scaled_rate / st->clk_freq;
-> +		ret = __adis_write_reg_16(&st->adis, ADIS16550_REG_SYNC_SCALE,
-> +					  sync_scale);
-> +		if (ret)
-> +			goto error;
-> +
-> +		sample_rate = scaled_rate;
-> +	}
-> +
-> +	dec = DIV_ROUND_CLOSEST(sample_rate, freq);
-> +
-> +	if (dec)
-> +		dec--;
-> +
-> +	if (dec > st->info->max_dec)
-> +		dec = st->info->max_dec;
-> +
-> +	ret = __adis_write_reg_16(&st->adis, ADIS16550_REG_DEC_RATE, dec);
-> +	if (ret)
-> +		goto error;
-> +
-> +	adis_dev_unlock(&st->adis);
-> +
-> +	return 0;
-> +
-> +error:
-> +	adis_dev_unlock(&st->adis);
-> +	return ret;
-> +}
-
-...
-
-> +static const struct adis16550_chip_info adis16550_chip_info[] = {
-> +	[ADIS16550] =
-> +		ADIS16550_CHIP_INFO(adis16550),
-
-This fits on the previous line.
-
-> +	[ADIS16550W] =
-> +		ADIS16550_CHIP_INFO(adis16550w),
-> +};
-> +
-> +static u32 adis16550_validate_crc(const u32 *buf, const u8 n_elem,
-> +				  const u32 crc)
-> +{
-> +	u32 crc_calc;
-> +	u32 crc_buf[ADIS16550_BURST_N_ELEM - 2];
-> +	int j;
-
-Nitpick: i is more usual than j.
-There also should be a newline here.
-
-> +	/*
-> +	 * The crc calculation of the data is done in little endian. Hence, we
-> +	 * always swap the 32bit elements making sure that the data LSB is
-> +	 * always on address 0...
-> +	 */
-> +	for (j = 0; j < n_elem; j++)
-> +		crc_buf[j] = swab32(buf[j]);
-> +
-> +	crc_calc = crc32(~0, crc_buf, n_elem * 4);
-> +	crc_calc ^= ~0;
-> +
-> +	return (crc_calc == crc);
-> +}
-
-...
-
-> +static int adis16550_probe(struct spi_device *spi)
-> +{
-> +	struct iio_dev *indio_dev;
-> +	struct adis16550 *st;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +
-> +	st->info =  device_get_match_data(&spi->dev);
-
-Nitpick: 2 spaces after =
-
-> +	if (!st->info)
-> +		return -EINVAL;
-> +
-> +	indio_dev->name = st->info->name;
-> +	indio_dev->channels = st->info->channels;
-> +	indio_dev->num_channels = st->info->num_channels;
-> +	indio_dev->available_scan_masks = adis16550_channel_masks;
-> +	indio_dev->info = &adis16550_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	st->adis.ops = &adis16550_ops;
-> +
-> +	ret = devm_regulator_get_enable(&spi->dev, "vdd");
-> +	if (ret)
-> +		return dev_err_probe(&spi->dev, ret,
-> +				     "Failed to get vdd regulator\n");
-> +
-> +	ret = adis_init(&st->adis, indio_dev, spi, &adis16550_data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = __adis_initial_startup(&st->adis);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = adis16550_config_sync(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_adis_setup_buffer_and_trigger(&st->adis, indio_dev,
-> +						 adis16550_trigger_handler);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_iio_device_register(&spi->dev, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	adis16550_debugfs_init(indio_dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct spi_device_id adis16550_id[] = {
-> +	{ "adis16550", (kernel_ulong_t)&adis16550_chip_info[ADIS16550]  },
-
-Nitpick: extra space before ending }
-
-> +	{ "adis16550w",  (kernel_ulong_t)&adis16550_chip_info[ADIS16550W] },
-
-Nitpick: 2 spaces after first ,
-
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(spi, adis16550_id);
-> +
-> +static const struct of_device_id adis16550_of_match[] = {
-> +	{ .compatible = "adi,adis16550", .data = &adis16550_chip_info[ADIS16550]},
-
-Nitpick: missing space before ending }
-
-> +	{ .compatible = "adi,adis16550w", .data = &adis16550_chip_info[ADIS16550W] },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, adis16550_of_match);
-
-...
-
-CJ
+Laurent Pinchart
 
