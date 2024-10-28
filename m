@@ -1,132 +1,157 @@
-Return-Path: <devicetree+bounces-116483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B03D79B30AA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:45:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1F6F9B30CC
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:46:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66CA91F21DC6
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:45:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84F00281B7C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:46:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09FD81DC19A;
-	Mon, 28 Oct 2024 12:42:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DAF11DDA17;
+	Mon, 28 Oct 2024 12:43:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mRgn8+Qd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CL0y63KZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E88DE1DA2E0;
-	Mon, 28 Oct 2024 12:42:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F3A21DB53A;
+	Mon, 28 Oct 2024 12:43:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730119340; cv=none; b=ddef5CQKJaaH9iP6epJO5NHkZM8UKcp/6K0PO5LGDPyYk0sYQ3sUacR8ZSQNi/wVn/lDGFcBL8Maay8WxTQm9s3xEiIzhDeEH2N9fAZn06IKdze46B2IQ6JVSUst70VY0o7L8Mz5DZUhw8LldrgNT+hzY1PyxrYygCHdI3v06J0=
+	t=1730119435; cv=none; b=undA9YNhONiO0v72M26glXiSz3vdjJUGxOxAWi8twZMuDzKPonKUNMU9d2aGF/BtHw6ZjkrscN11H+Y9Yx1RTOvGPWpT8WRS56NLVOqXW/rNmx3UoQ8VZdMdzJy8Atc21qmhGizTerA/nzBF4025f1Pc0bd3rm8+hkgascbe2sw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730119340; c=relaxed/simple;
-	bh=2z2vAZJSINxFgk04FZyyCBPQt6tnf3YvM+5pNdERrCs=;
+	s=arc-20240116; t=1730119435; c=relaxed/simple;
+	bh=PmzRzCwShNmL4Avnj7jpxfgOTY0mlM0j8+YfSm+8k3Q=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aOGPh9xzE0/xUyTWTKi1iy9EvpAGhiHUx+0l/obl9w4MLzXdogzm26FMSk2R+JVFyeg0/LEzsSp5gUR6oW5247/1qRNXdY86SrJuY88HCEjCL5gYYAcH4f8ckXu1jEtN0qSn7VX5govFlbZoxX8vl22dhp+ApPJF2rwQWohNSN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mRgn8+Qd; arc=none smtp.client-ip=209.85.219.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6d18cdab29dso12999456d6.0;
-        Mon, 28 Oct 2024 05:42:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730119338; x=1730724138; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UPDTP6OcnSRUiLPs44+AfRECa7TiYhhPi6crVGIBcxE=;
-        b=mRgn8+Qdi9pknUBFVxKjx3xsjIMKXWO5ZY7Fj9tV4BBlJQprmLl5nEqRCZYvlOGeoN
-         WFVjmwItRjglEGqAKUK1WWaIRJLGBnJg8wOTmzfbU+fllfYvjf9QfUB/1aTYMmjyEbSU
-         WjAPFjbz7bxuIaQHxB98azHcX0SwP46dPej6xUpZrSuwN7Tzbd8dRQfjECgtkxbdw7C3
-         rGAmkV8XPd/9r/ZWrCC0pH3rj7bAGjom74iOjp1l4LBt+9UCuF/5qcU+FAHZReG9CWUg
-         zsPfMkf38MaBVugaDkcfSrnVigggKN/cf3A/dYccbETDNzJOWu7kGhxiU2ukbdj32Hre
-         6hkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730119338; x=1730724138;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UPDTP6OcnSRUiLPs44+AfRECa7TiYhhPi6crVGIBcxE=;
-        b=phayPrGPVSUhLILQnW68F/LNaBvy1uh098LaBqlS0obYPIs0OD7eI59lAwnmp3cOnZ
-         DNL3tPKmuMy49GKb1RrEdnqWMcSEhvzWkfkAw2iLxbBY62yLK+fNzA4+nIagY1rKgWFl
-         UJH71Kc2BvQtg9k3N41dPUsMw0sBGlxLF/4WYYLW11pKQwIZnBMjIMT1QcBPSbQ1pvCl
-         Q3LaKzVwUotid8XZis9w2/p/svQykZlXWNKPQ43rOHxjgd++0vf9Kp6CXC/q0yv2q7Vv
-         yFQqLFJE5SrdNje4+22RjBDUsAyGo7MR3CJIm7UOAuHzx+mz9lbD1Er7a2nu9AHhX5DY
-         RGsA==
-X-Forwarded-Encrypted: i=1; AJvYcCUhsN9Gl0+umx47Jg8cWPO9uFmr9dtqW3oNBFFNVSJH2AJHRly4vD/vUdCb3lvVse0RgTJcMQ6PKf1hVBA=@vger.kernel.org, AJvYcCVL1NsMPwuYUMHHs2hN2lK2Bc07CxvxaE6UYP8KIisvR65bNnzJqAhs+q2pS4gGytB5jrZ4iUH6p/5D@vger.kernel.org
-X-Gm-Message-State: AOJu0YyT0luxNwDltb4rUvrgxicmSCu7e+E9D/fjaaCX2HcikzLUiIxZ
-	v9rTfoM6IpRP0PlVkTVWXAh7mSVzs5TxHr5f9Q5r7zlReLa6sIjwkjR3OpiaU/Th+csjVJneldF
-	pV06qvncRUq1Y82CKW43JKWvWO88=
-X-Google-Smtp-Source: AGHT+IFu30iVXKwfWOcaOmTLg0tzryyCqD5zvDtTitfx78e0NqXH+jxdsHIG/Ij1k8Kyf7CVM6WHH5Ee3xjuLN4KbnA=
-X-Received: by 2002:a05:6214:3292:b0:6cc:74e0:4fef with SMTP id
- 6a1803df08f44-6d1856744efmr108892196d6.1.1730119337611; Mon, 28 Oct 2024
- 05:42:17 -0700 (PDT)
+	 To:Cc:Content-Type; b=Wx236uv9Ry/RVjtHQNsHipZF5Oi/Fa/I2qWCIeIxkxHLPcxC1BiB2RbNWi5jI6TIXBultqzXfD4BwJEZSqi1nIJ5cWti6oIBvkqXnSZbVtjo4EEfFw/EXMIXbXD7mfgOSRTFpnSF2+TyyR/1AJu2EwiSPaiurBfXOWcWxkiJUNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CL0y63KZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 052A9C4CEC3;
+	Mon, 28 Oct 2024 12:43:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730119435;
+	bh=PmzRzCwShNmL4Avnj7jpxfgOTY0mlM0j8+YfSm+8k3Q=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=CL0y63KZWnW5uiINPni9CYwGJpGhLr1fmW9pkIJmQYc0pAWUr9ylHRVLJwS0eG6j7
+	 CRSVIEeTilc4kdUSs8LDMoRescbQBC9K7jpSJ9VNf8y9r3wvfBwYVZJVFrnt1P56W7
+	 FO08XuKxkM8Ju9UuneHwCTXopZfMVNP101H+MZMYR4kCZY8G7UJwTfxMNSTBXU8eOg
+	 XmHU/AiuIgpGeuesyQxYaj9s/f4CEJfQnHuOte2BlIyuWQ5PfVZUi62MLgV/Ozr7Yi
+	 nICP1PniuHXy4S4xbSpA35v9W5x8s3FqQJpnRym7feJzYZ2RP466HRc/Mn7CKq2Zi+
+	 LRhcLI+GSJ9Wg==
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-7180e07185bso1861746a34.3;
+        Mon, 28 Oct 2024 05:43:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU6XUgKdgG6SqE1b3ZRduow27socNnGMXZpnaJANg+7kjW66zDwdMZuimbY9UzWgCYA53cIuSNmo03H@vger.kernel.org, AJvYcCVRrQ4FupE1CbchrFTt/5rOnnoacfBwhIw2haWlMDzvaCB4r51uIqfYO5itgQGSesTlwUmWOaYL32biGLbG@vger.kernel.org, AJvYcCX0y41OeC3T0dm/0aWJLYIIR9z4rGNsV0GLU8sAIKHF6LTLJt4YES5+Cs5qy2hYrPfauznvFnZYpoE=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSJc4Nm3ZwxjRxIiyxh89M49UcllWFts0hECfP/CT/poOeK/+z
+	MdFdIK1kB2A7vDooEkA3dwSm+tSpPYI4lOpFWhVX+dtgp/Fi3u2gzSl2FaFvT/YYfdrmB9Fm29r
+	PCnoR4sJLMI8P8xHjxzrdYUoNQ7k=
+X-Google-Smtp-Source: AGHT+IGQ9MyGzhtRLH4m8r7Cm5t2pkfk+XvoRhtqYm8hb4hBlseZb94+kKXybee7Jx19YthZkIopo/JaDENPDcdROZ8=
+X-Received: by 2002:a05:6870:9507:b0:277:e6f6:b383 with SMTP id
+ 586e51a60fabf-29051c04017mr6683115fac.24.1730119434391; Mon, 28 Oct 2024
+ 05:43:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241026080535.444903-1-akinobu.mita@gmail.com>
- <20241026080535.444903-3-akinobu.mita@gmail.com> <ijdk5uuurnfd2shnwwj2nm64bno6lmrhdyqp42pzjc3i2e5cyh@v5ljkrsgo6ac>
-In-Reply-To: <ijdk5uuurnfd2shnwwj2nm64bno6lmrhdyqp42pzjc3i2e5cyh@v5ljkrsgo6ac>
-From: Akinobu Mita <akinobu.mita@gmail.com>
-Date: Mon, 28 Oct 2024 21:42:06 +0900
-Message-ID: <CAC5umyitFp7oGR-eYXMVaS8bY1AGe3QwEuSPoEz3DxWwH=dUsA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: hwmon: pwm-fan: add
- retain-state-shutdown property
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, 
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Billy Tsai <billy_tsai@aspeedtech.com>
+References: <20240919000837.1004642-1-davidai@google.com> <20241001092544.2tlydouyyc7jwuja@vireshk-i7>
+ <CAGETcx8GomM0znaYKsS412dRvnUQd7_78pKuV82t2b14VBvKVQ@mail.gmail.com>
+ <CAJZ5v0iTLX9NAT0PN804QahQ7D=+=D1uJ7PVnZfk5UrpP5uXpg@mail.gmail.com> <Zx-Ek7IbpYNDbG9D@bogus>
+In-Reply-To: <Zx-Ek7IbpYNDbG9D@bogus>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Mon, 28 Oct 2024 13:43:38 +0100
+X-Gmail-Original-Message-ID: <CAJZ5v0iWX6B9hVP4nZKhKJPpO+Fm+ktNHaX1hAhMV_UAPYp33w@mail.gmail.com>
+Message-ID: <CAJZ5v0iWX6B9hVP4nZKhKJPpO+Fm+ktNHaX1hAhMV_UAPYp33w@mail.gmail.com>
+Subject: Re: [PATCH v7 0/2] Improve VM CPUfreq and task placement behavior
+To: Sudeep Holla <sudeep.holla@arm.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, David Dai <davidai@google.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Quentin Perret <qperret@google.com>, Masami Hiramatsu <mhiramat@google.com>, Will Deacon <will@kernel.org>, 
+	Peter Zijlstra <peterz@infradead.org>, Vincent Guittot <vincent.guittot@linaro.org>, 
+	Marc Zyngier <maz@kernel.org>, Oliver Upton <oliver.upton@linux.dev>, 
+	Dietmar Eggemann <dietmar.eggemann@arm.com>, Pavan Kondeti <quic_pkondeti@quicinc.com>, 
+	Gupta Pankaj <pankaj.gupta@amd.com>, Mel Gorman <mgorman@suse.de>, kernel-team@android.com, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-2024=E5=B9=B410=E6=9C=8828=E6=97=A5(=E6=9C=88) 5:38 Krzysztof Kozlowski <kr=
-zk@kernel.org>:
+On Mon, Oct 28, 2024 at 1:33=E2=80=AFPM Sudeep Holla <sudeep.holla@arm.com>=
+ wrote:
 >
-> On Sat, Oct 26, 2024 at 05:05:35PM +0900, Akinobu Mita wrote:
-> > Document new retain-state-shutdown property.
+> On Mon, Oct 28, 2024 at 12:39:31PM +0100, Rafael J. Wysocki wrote:
+> > On Sat, Oct 26, 2024 at 12:26=E2=80=AFAM Saravana Kannan <saravanak@goo=
+gle.com> wrote:
+> > >
+> > > On Tue, Oct 1, 2024 at 2:25=E2=80=AFAM Viresh Kumar <viresh.kumar@lin=
+aro.org> wrote:
+> > > >
+> > > > On 18-09-24, 17:08, David Dai wrote:
+> > > > > Hi,
+> > > > >
+> > > > > This patch series is a continuation of the talk Saravana gave at =
+LPC 2022
+> > > > > titled "CPUfreq/sched and VM guest workload problems" [1][2][3]. =
+The gist
+> > > > > of the talk is that workloads running in a guest VM get terrible =
+task
+> > > > > placement and CPUfreq behavior when compared to running the same =
+workload
+> > > > > in the host. Effectively, no EAS(Energy Aware Scheduling) for thr=
+eads
+> > > > > inside VMs. This would make power and performance terrible just b=
+y running
+> > > > > the workload in a VM even if we assume there is zero virtualizati=
+on
+> > > > > overhead.
+> > > >
+> > > > > David Dai (2):
+> > > > >   dt-bindings: cpufreq: add virtual cpufreq device
+> > > > >   cpufreq: add virtual-cpufreq driver
+> > > > >
+> > > > >  .../cpufreq/qemu,virtual-cpufreq.yaml         |  48 +++
+> > > > >  drivers/cpufreq/Kconfig                       |  14 +
+> > > > >  drivers/cpufreq/Makefile                      |   1 +
+> > > > >  drivers/cpufreq/virtual-cpufreq.c             | 333 ++++++++++++=
+++++++
+> > > > >  include/linux/arch_topology.h                 |   1 +
+> > > > >  5 files changed, 397 insertions(+)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/cpufreq/qem=
+u,virtual-cpufreq.yaml
+> > > > >  create mode 100644 drivers/cpufreq/virtual-cpufreq.c
+> > > >
+> > > > LGTM.
+> > > >
+> > > > Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+> > >
+> > > Rafael/Viresh,
+> > >
+> > > Nudge... Any chance this will get pulled into 6.12?
 > >
-> > Cc: Jean Delvare <jdelvare@suse.com>
-> > Cc: Guenter Roeck <linux@roeck-us.net>
-> > Cc: Rob Herring <robh@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> > Cc: Conor Dooley <conor+dt@kernel.org>
-> > Cc: Billy Tsai <billy_tsai@aspeedtech.com>
-> > Signed-off-by: Akinobu Mita <akinobu.mita@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
+> > This is not a fix AFAICS, so 6.12 is out of the question.
 > >
-> > diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Doc=
-umentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> > index 4e5abf7580cc..86a069969e29 100644
-> > --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> > +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> > @@ -40,6 +40,10 @@ properties:
-> >      maximum: 4
-> >      default: 2
+> > As for 6.13, Viresh thinks that this change is a good idea (or he
+> > wouldn't have ACKed it), so it's up to him.  I'm still not convinced
+> > that it will work on x86 or anything that doesn't use DT.
 > >
-> > +  retain-state-shutdown:
-> > +    description: Retain the state of the PWM on shutdown.
 >
-> You described the desired Linux feature or behavior, not the actual
-> hardware. The bindings are about the latter, so instead you need to
-> rephrase the property and its description to match actual hardware
-> capabilities/features/configuration etc.
+> +1, I was about to comment on DT bindings patch, but then I assumed it is
+> accepted to have a device object with similar CID and CRS(for register ad=
+dress)
+> in ACPI for example.
 
-Is this description okay?
-(Reused the description of retain-state-shutdown in leds-gpio.yaml)
+Well, where would the device ID be defined for this?  The spec or
+somewhere else?  If the latter, then where again?
 
-description:
-  Retain the state of the PWM on shutdown. Useful in BMC systems, for
-  example, when the BMC is rebooted while the host remains up, the fan
-  will not stop.
+> But yes, the patch itself is not adding support for that
+> yet. If not is not the way, then we need to come up with a way that works
+> for both ACPI and DT.
+
+The DT use case is there I think and so I don't want to block it just
+because there is no ACPI counterpart.  It can be added later if the
+use case is relevant enough.
 
