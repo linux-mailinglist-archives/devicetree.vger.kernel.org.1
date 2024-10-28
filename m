@@ -1,83 +1,65 @@
-Return-Path: <devicetree+bounces-116392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97E4A9B2B86
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:27:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55ACD9B2B8E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:32:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B0E81F228C0
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:27:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 197E52821CA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:32:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 855A01D356C;
-	Mon, 28 Oct 2024 09:25:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8843F186E59;
+	Mon, 28 Oct 2024 09:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L2iiNKoX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GQbbWfAD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E504199247;
-	Mon, 28 Oct 2024 09:25:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 522A1762E0;
+	Mon, 28 Oct 2024 09:32:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730107514; cv=none; b=BMBGaz+EwzG8bO29pphyVd3OkGaISzk27qgazPwFMWPuY9pqVoOZHVn68fcavxDqbUai4ULzT1ulVDePL+5v8AiZwgOqqoNAqScACklBiflCA5uWXLqsGdBzW0pxBG1lx9pDCeM4jMPIYoPOPB+7iP+P3UQXzk5h0OUXA9hme6c=
+	t=1730107963; cv=none; b=To8kxv5if613Qd4kj2QOxoG47P526flwsodckIBC5+KDe9nG3dmQRYEzUinruANZOh+y+c3RyKLrH9oxiiinP7cgGgVj+NtV2IoXEH8q5ZbRnIi/HilSqqpb9yuqv44ElD3sIKWlyBcg+FpxWLljyA8DGpjnGKFBbyqA8z47r+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730107514; c=relaxed/simple;
-	bh=gx2yYIkWM9jtAvPqskr0+UVLgMAwVE0IFBV/L1j3rqc=;
+	s=arc-20240116; t=1730107963; c=relaxed/simple;
+	bh=jHYX6x1sSyIZMS3Ae4dRPqlmWRl9NIWGJ6MG3Ic6j6s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZEPJ+WnABcSTRI2r+5zQ3Z11dsITZF76D0O0uMmHL0JBzatEWt1kQGoEipAsJj/vqKCN3/2cywMXpqBe/hZaFXRJqxMRivIIfGoxWbikSk5kEfe9Vom1byx/gggCK8ZWKyzO0JrpNLjykl9ugUOzEfcfWPJIuSFu+hpVnAXyziQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L2iiNKoX; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730107513; x=1761643513;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gx2yYIkWM9jtAvPqskr0+UVLgMAwVE0IFBV/L1j3rqc=;
-  b=L2iiNKoXlPTJ2Ajubu//+ADrA7Kl7LAqGV34UXMGmJrUZAxssYc/+twd
-   EUZ4WP+18rTanhH7p8bN4201+ESmZ0BNAYDTCZSYTOQPJfRs2pATG+UoN
-   8pG2J6FRN+3Ci6B7jRrFSNr7T0QnnHp1KCUm9WspLE8fX4cZy+a+FekDv
-   XVK4PWGEy7/PoffAyYpDNmRzWmfGJKpTxIab3TLNFjsV3K6gyZ3aG8eNB
-   EyRhtoBNlg6dLJAUfA06/8e+ruVEAcNfyzl8pkZrSIxTZ3APX/L1NZkPN
-   wLFi/P6x4+kwejoOfR34FOD0Sjo5o0Y7Bm3r6Zzjh9TUzVYfz0fI3acZO
-   w==;
-X-CSE-ConnectionGUID: VMjBm2+VQ++Hwc4ar7z+Lg==
-X-CSE-MsgGUID: SeQ7V0gEQSiCPNxA8vt/Wg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="47155742"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="47155742"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Oct 2024 02:25:13 -0700
-X-CSE-ConnectionGUID: feGTaYEgRlGEDMqJtZw6sw==
-X-CSE-MsgGUID: TOv+Z8rrRhSc5w0Ro7A9dw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,238,1725346800"; 
-   d="scan'208";a="86171955"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Oct 2024 02:25:09 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1t5Lzm-00000007tLO-2twS;
-	Mon, 28 Oct 2024 11:25:06 +0200
-Date: Mon, 28 Oct 2024 11:25:06 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Justin Weiss <justin@justinweiss.com>
-Cc: Alex Lanzano <lanzano.alex@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	"Derek J . Clark" <derekjohn.clark@gmail.com>,
-	Philip =?iso-8859-1?Q?M=FCller?= <philm@manjaro.org>
-Subject: Re: [PATCH v4 1/4] iio: imu: bmi270: Add triggered buffer for Bosch
- BMI270 IMU
-Message-ID: <Zx9Ycjnlef1RJfGf@smile.fi.intel.com>
-References: <20241027172029.160134-1-justin@justinweiss.com>
- <20241027172029.160134-2-justin@justinweiss.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ll/yMwegyJW5nZzVLZqu8zBP377E6/NXQM2SVjPK2DQ17/ovtl2PgxmoN1FJkO2+Y87BC0sK/CCIDeGlMGtN/DP62hb2dEH7D/vjr2LQP7rv8oTU92HbQ52A2xB2p9euuGmNg8oVQOKaOAAzal9/5WuMe5Td4Ajt5zTU2PZgq7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GQbbWfAD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CA3FC4CEC3;
+	Mon, 28 Oct 2024 09:32:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730107962;
+	bh=jHYX6x1sSyIZMS3Ae4dRPqlmWRl9NIWGJ6MG3Ic6j6s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GQbbWfAD7Zn4qd90donpPj898f9FGSqhmY+Su2xiXClSOj/RhCNCqstfRDiMaj8Il
+	 /OLvJ/CN0V6wvSOgoQRrJmtYDPZBIsk6KI1WAuh2D/CtWJ6SXliDz0kWkFr0L+lcer
+	 cuKarAMEEB51ul3/UKCed5DaoBMdFFpDUZNJHS5wG9/VPkR3J2umx1exfkhZwn0mbc
+	 WuZd53s1rii8deBpfG/HQvl1XXF6lqXgemMKe1W+X5rG7xJrwduJSFBIa0UprAe8dN
+	 ccw3DyqR6TclORq2HD4F/oPPmuBmmXyv3d6pI0x17ejzBZfWkx7wiqNfI3dpkrnF3p
+	 m8SDho1PfdJGQ==
+Date: Mon, 28 Oct 2024 10:32:34 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 16/16] samples: rust: add Rust platform sample driver
+Message-ID: <Zx9aMguDJWqDVnJf@pollux>
+References: <20241022213221.2383-1-dakr@kernel.org>
+ <20241022213221.2383-17-dakr@kernel.org>
+ <20241023000408.GC1848992-robh@kernel.org>
+ <Zxie5Lu2z_Xc_RXM@pollux>
+ <20241023153703.GA1064929-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,45 +68,79 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241027172029.160134-2-justin@justinweiss.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20241023153703.GA1064929-robh@kernel.org>
 
-On Sun, Oct 27, 2024 at 10:20:22AM -0700, Justin Weiss wrote:
-> Set up a triggered buffer for the accel and angl_vel values.
+On Wed, Oct 23, 2024 at 10:37:03AM -0500, Rob Herring wrote:
+> On Wed, Oct 23, 2024 at 08:59:48AM +0200, Danilo Krummrich wrote:
+> > On Tue, Oct 22, 2024 at 07:04:08PM -0500, Rob Herring wrote:
+> > > On Tue, Oct 22, 2024 at 11:31:53PM +0200, Danilo Krummrich wrote:
+> > > > Add a sample Rust platform driver illustrating the usage of the platform
+> > > > bus abstractions.
+> > > > 
+> > > > This driver probes through either a match of device / driver name or a
+> > > > match within the OF ID table.
+> > > 
+> > > I know if rust compiles it works, but how does one actually use/test 
+> > > this? (I know ways, but I might be in the minority. :) )
+> > 
+> > For testing a name match I just used platform_device_register_simple() in a
+> > separate module.
+> > 
+> > Probing through the OF table is indeed a bit more tricky. Since I was too lazy
+> > to pull out a random ARM device of my cupboard I just used QEMU on x86 and did
+> > what drivers/of/unittest.c does. If you're smart you can also just enable those
+> > unit tests and change the compatible string to "unittest". :)
+> > 
+> > > 
+> > > The DT unittests already define test platform devices. I'd be happy to 
+> > > add a device node there. Then you don't have to muck with the DT on some 
+> > > device and it even works on x86 or UML.
+> > 
+> > Sounds good, I'll add one in there for this sample driver -- any preferences?
+> 
+> I gave this a spin and added the patch below in. Feel free to squash it 
+> into this one.
 
-...
+Looks good -- it only works if the sample driver is built-in though, but I think
+that should be fine.
 
->  	.channel2 = IIO_MOD_##_axis,				\
->  	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-> +	.scan_index = BMI270_SCAN_ACCEL_##_axis,		\
-> +	.scan_type = {						\
-> +		.sign = 's',					\
-> +		.realbits = 16,					\
-> +		.storagebits = 16,				\
-> +		.endianness = IIO_LE				\
-
-Leave trailing comma here.
-
-> +	},	                                                \
-
-...
-
->  	.channel2 = IIO_MOD_##_axis,				\
->  	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-> +	.scan_index = BMI270_SCAN_GYRO_##_axis,			\
-> +	.scan_type = {						\
-> +		.sign = 's',					\
-> +		.realbits = 16,					\
-> +		.storagebits = 16,				\
-> +		.endianness = IIO_LE				\
-
-Ditto.
-
-> +	},	                                                \
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> 
+> 8<----------------------------------------------------------------
+> From: "Rob Herring (Arm)" <robh@kernel.org>
+> Date: Wed, 23 Oct 2024 10:29:47 -0500
+> Subject: [PATCH] of: unittest: Add a platform device node for rust platform
+>  driver sample
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> 
+> diff --git a/drivers/of/unittest-data/tests-platform.dtsi b/drivers/of/unittest-data/tests-platform.dtsi
+> index fa39611071b3..575ea260a877 100644
+> --- a/drivers/of/unittest-data/tests-platform.dtsi
+> +++ b/drivers/of/unittest-data/tests-platform.dtsi
+> @@ -33,6 +33,11 @@ dev@100 {
+>                                         reg = <0x100>;
+>                                 };
+>                         };
+> +
+> +                       test-device@2 {
+> +                               compatible = "test,rust-device";
+> +                               reg = <0x2>;
+> +                       };
+>                 };
+>         };
+>  };
+> diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
+> index 55caaaa4f216..5cf4a8f86c13 100644
+> --- a/samples/rust/rust_driver_platform.rs
+> +++ b/samples/rust/rust_driver_platform.rs
+> @@ -15,7 +15,7 @@ struct SampleDriver {
+>      MODULE_OF_TABLE,
+>      <SampleDriver as platform::Driver>::IdInfo,
+>      [(
+> -        of::DeviceId::new(c_str!("redhat,rust-sample-platform-driver")),
+> +        of::DeviceId::new(c_str!("test,rust-device")),
+>          Info(42)
+>      )]
+>  );
+> 
 
