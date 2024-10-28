@@ -1,330 +1,555 @@
-Return-Path: <devicetree+bounces-116298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 596E99B250E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 07:08:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ED189B2525
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 07:16:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C2361C21253
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 06:08:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C31F71F2162F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 06:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 427EF18DF9E;
-	Mon, 28 Oct 2024 06:07:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 961B6185B75;
+	Mon, 28 Oct 2024 06:16:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pYDfGL39"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="QJDbHblW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A541918DF84;
-	Mon, 28 Oct 2024 06:07:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D56142E86
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 06:16:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730095646; cv=none; b=lmweBiN0nqeqOhMbDezQUnDNX/obpvfgSsRncPGxpFsD767BQeEI/r6rCvn6WL7kiPIFixuxIUyg+FIxjsr0qzhxtL/Q9WVZ+TjMU442grhOUp9vouLGgF6D6R6tIJPI8Bmq8uv1Vz6FPt5p1gUuXViyK9b5Y2kFvgtHPx9IldI=
+	t=1730096196; cv=none; b=R3k+JiyGSK6H2K9ImXZSwhY+Ljs3u/xMrmK/+nZujQURJ3VMB65IiYNBEDRHKhMiywOwfz08Gkx7zfiGGXXc0e6PwojSHHJ8/2LjXOfg/ZDrf6Xh4eLirEdEujGDkcAn1qhEeaD+nv6DpEmy2Gu3xE61Q3WrddB2qFK7Reb6ZRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730095646; c=relaxed/simple;
-	bh=gBXNYcfzuL1+TOm6GW8YcL0Y1gBiJy/HmjEnY6NCbt4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GNJkhXZ6rXr7AKDmYHzhT1wDz9HKZhi0IzAQIZU3Zdd0+M6r8Q7pwCAKZm9GNzbMmMdDtZQPvNdW/NKD6ZySYjs7ngsVQOcEWQ8r/RAJnbMW/iKnUp/M0DATItO91RUBSk5zNrjnFT04HeUVnkaJ+7IBl1WMRMA1MuMZ3mOrYfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pYDfGL39; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49RNukGH004754;
-	Mon, 28 Oct 2024 06:07:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jJ+7e7uLxKm1G1ZudNv4chOldlM2pFTeP8L9J0w6oGg=; b=pYDfGL39TLEqGlTk
-	Q8EmD21F6h45XDlNhuZMSMiwFOzsGkWKplSlwXYTCA3j3EPhn9YKjD2TVdKCUA9Q
-	PQ6Of4ub8ZfS5prmaaSFO0oZFDb9h2ACXxmOKLQpTa/ATgw7jyT0jRShvmyrtq6O
-	a+ZHxHb7qDqP4eQryNkUNgzVTwaBnILIEtg1MdPubF5oo0G858qLK1pKmW2hjmxv
-	ov2udT8+xJQMpAGIlIoQz+HfyBBb6cqPrJ5mi28dU5Kha6nAX1Qi+pwvPh3bxrZN
-	DBzeX8JdaVKTYdSeGoRikxsvwRoAUaX89Jgj4HLSJEFN+Qj41Aiwry80D7ba3Tpz
-	6ypXiw==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gr0x3sf4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Oct 2024 06:07:14 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49S67DI4004525
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Oct 2024 06:07:13 GMT
-Received: from [10.217.219.62] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 27 Oct
- 2024 23:07:07 -0700
-Message-ID: <be5ecd90-040b-4853-9ffa-6512f16e64bc@quicinc.com>
-Date: Mon, 28 Oct 2024 11:37:04 +0530
+	s=arc-20240116; t=1730096196; c=relaxed/simple;
+	bh=QemdPL9Ii8ZtPyQ79XyD8RE9z4FFaZ8XSJamAMKMJ94=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=i35nmn2xU5c8RQa4Jy8KP1NRgeR70Z9xQ0LxtduVQc+z9e3wNW2/f5ZNvnvx1iGIrRnU+woQOxe3pWlybjXgCOXVga177A5SggID/+6EoD5ApDNL10L6eeKis74/VbOHbuSLeubUSgb/FThIVWemGhCav9dmuipMmI5BHa9dGnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=QJDbHblW; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-539e63c8678so3804959e87.0
+        for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 23:16:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1730096191; x=1730700991; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ce0zNBQeVdRQ8Ne1/EW2HUiLxw/YLpcNrQUx0YR1py8=;
+        b=QJDbHblWH0vqSv4mYx4rr85bDVT6n6Er/Yb3XoaGx1UNkLFiGXqUmby3Si58AZLxqY
+         R3BE/gPTx22Tpj9DvEbiVmA87OhjgTeYfayB7iAdC0X2pn16eO9BC7d1XOXK+DVS9mPi
+         h34Cb8pV1e1jihDm4lXerzgZWgiZIyVa0Kh7A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730096191; x=1730700991;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ce0zNBQeVdRQ8Ne1/EW2HUiLxw/YLpcNrQUx0YR1py8=;
+        b=FL/b4WhOWbuIhdJiY9Q90qghA/6lqz901ldv//fpuef0svGHui/XR93jlHDLFHkUcl
+         d5YxmcN2rAwN7uxKKwcnandkGB+joeBF4KMH/21H+VfwPHU3zahPE0ZCqliGO061KrKy
+         uAj0HSyYij0FN3zrjLhzsALHs4Vo0i8X9Do3yHEsr3aHf2CXsKqCWYYvebG4jKvwms8A
+         mctohAvyQ7HDhsEh4xuq1mU8Oe9YioWWsW1j81pWVIzqyipPqayTtbfMdrUCzAw+0sRl
+         h3VFLl/WaJJovR4L3rVHIfm7GitVa5PbSmrI/Oke++AhiEX4DvBiLIMCJ2FDfP4Q0OCN
+         TOnA==
+X-Forwarded-Encrypted: i=1; AJvYcCXj6gTAUe/ZfDPURNISBAEG2CryixvsOdRWqaW588LySysTaIW5WdDxUU4hMp0mcFIwei67aElEPFD8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2Pic9xY+k2VDNRMogPvaLQc+Q8d084rJWTSZ2Bxg4LHcAoLxg
+	X4bQ/aSANn9RVvhVWlw/JpokvXumOVm/jWZro4MExo8A67FBMA25ba6ch/9ocSkMFgqRvsgilKG
+	8fFt9CcgaXbVwlWYuNGY9tL04OyiAZoPrXEco
+X-Google-Smtp-Source: AGHT+IHecNhW/jutuL0nvEERsRSalPbI5tTsLoadKR/QpcprzkyZd5Vj5cqxvO8NeO94kw/nockw3+sBHAAyshfpxAA=
+X-Received: by 2002:a05:6512:3e25:b0:536:7b74:ef50 with SMTP id
+ 2adb3069b0e04-53b348cfa43mr2434156e87.18.1730096191168; Sun, 27 Oct 2024
+ 23:16:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 5/5] i2c: i2c-qcom-geni: Add Block event interrupt
- support
-To: kernel test robot <lkp@intel.com>, Vinod Koul <vkoul@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konradybcio@kernel.org>,
-        Andi Shyti <andi.shyti@kernel.org>,
-        "Sumit Semwal" <sumit.semwal@linaro.org>,
-        =?UTF-8?Q?Christian_K=C3=B6nig?=
-	<christian.koenig@amd.com>
-CC: <llvm@lists.linux.dev>, <oe-kbuild-all@lists.linux.dev>,
-        <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <linaro-mm-sig@lists.linaro.org>, <quic_msavaliy@quicinc.com>,
-        <quic_vtanuku@quicinc.com>
-References: <20241015120750.21217-6-quic_jseerapu@quicinc.com>
- <202410190549.hGAfByqg-lkp@intel.com>
-Content-Language: en-US
-From: Jyothi Kumar Seerapu <quic_jseerapu@quicinc.com>
-In-Reply-To: <202410190549.hGAfByqg-lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: oHeYzPZ4zvwZEKTYVwMbzBXzxD5G4-Gq
-X-Proofpoint-GUID: oHeYzPZ4zvwZEKTYVwMbzBXzxD5G4-Gq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
- clxscore=1011 bulkscore=0 adultscore=0 impostorscore=0 mlxscore=0
- malwarescore=0 mlxlogscore=999 priorityscore=1501 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410280050
+References: <20241024092608.431581-1-karl.li@mediatek.com> <20241024092608.431581-4-karl.li@mediatek.com>
+ <083c8f7b-0969-4ca3-8a91-35f5767c5f32@collabora.com>
+In-Reply-To: <083c8f7b-0969-4ca3-8a91-35f5767c5f32@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Mon, 28 Oct 2024 14:16:19 +0800
+Message-ID: <CAGXv+5Fw+qZhTTgJq0QdiQHgiQP2ByR1tgae2+k4erx+0fp61g@mail.gmail.com>
+Subject: Re: [PATCH 3/3] mailbox: mediatek: Add mtk-apu-mailbox driver
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: "Karl.Li" <karl.li@mediatek.com>, Jassi Brar <jassisinghbrar@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, Chungying Lu <chungying.lu@mediatek.com>, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Oct 24, 2024 at 7:13=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 24/10/24 11:25, Karl.Li ha scritto:
+> > From: Karl Li <karl.li@mediatek.com>
+> >
+> > Add mtk-apu-mailbox driver to support the communication with
+> > APU remote microprocessor.
+> >
+> > Also, the mailbox hardware contains extra spare (scratch) registers
+> > that other hardware blocks use to communicate through.
+> > Expose these with custom mtk_apu_mbox_(read|write)() functions.
+> >
+> > Signed-off-by: Karl Li <karl.li@mediatek.com>
+> > ---
+> >   drivers/mailbox/Kconfig                 |   9 +
+> >   drivers/mailbox/Makefile                |   2 +
+> >   drivers/mailbox/mtk-apu-mailbox.c       | 222 +++++++++++++++++++++++=
++
+> >   include/linux/mailbox/mtk-apu-mailbox.h |  20 +++
+> >   4 files changed, 253 insertions(+)
+> >   create mode 100644 drivers/mailbox/mtk-apu-mailbox.c
+> >   create mode 100644 include/linux/mailbox/mtk-apu-mailbox.h
+> >
+> > diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
+> > index 6fb995778636..2338e08a110a 100644
+> > --- a/drivers/mailbox/Kconfig
+> > +++ b/drivers/mailbox/Kconfig
+> > @@ -240,6 +240,15 @@ config MTK_ADSP_MBOX
+> >             between processors with ADSP. It will place the message to =
+share
+> >         buffer and will access the ipc control.
+> >
+> > +config MTK_APU_MBOX
+> > +     tristate "MediaTek APU Mailbox Support"
+> > +     depends on ARCH_MEDIATEK || COMPILE_TEST
+> > +     help
+> > +       Say yes here to add support for the MediaTek APU Mailbox
+> > +       driver. The mailbox implementation provides access from the
+> > +       application processor to the MediaTek AI Processing Unit.
+> > +       If unsure say N.
+> > +
+> >   config MTK_CMDQ_MBOX
+> >       tristate "MediaTek CMDQ Mailbox Support"
+> >       depends on ARCH_MEDIATEK || COMPILE_TEST
+> > diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+> > index 3c3c27d54c13..6b6dcc78d644 100644
+> > --- a/drivers/mailbox/Makefile
+> > +++ b/drivers/mailbox/Makefile
+> > @@ -53,6 +53,8 @@ obj-$(CONFIG_STM32_IPCC)    +=3D stm32-ipcc.o
+> >
+> >   obj-$(CONFIG_MTK_ADSP_MBOX) +=3D mtk-adsp-mailbox.o
+> >
+> > +obj-$(CONFIG_MTK_APU_MBOX)   +=3D mtk-apu-mailbox.o
+> > +
+> >   obj-$(CONFIG_MTK_CMDQ_MBOX) +=3D mtk-cmdq-mailbox.o
+> >
+> >   obj-$(CONFIG_ZYNQMP_IPI_MBOX)       +=3D zynqmp-ipi-mailbox.o
+> > diff --git a/drivers/mailbox/mtk-apu-mailbox.c b/drivers/mailbox/mtk-ap=
+u-mailbox.c
+> > new file mode 100644
+> > index 000000000000..b347ebd34ef7
+> > --- /dev/null
+> > +++ b/drivers/mailbox/mtk-apu-mailbox.c
+> > @@ -0,0 +1,222 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (c) 2024 MediaTek Inc.
+> > + */
+> > +
+> > +#include <asm/io.h>
+> > +#include <linux/bits.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/mailbox_controller.h>
+> > +#include <linux/mailbox/mtk-apu-mailbox.h>
+> > +#include <linux/platform_device.h>
+> > +
+> > +#define INBOX                (0x0)
+> > +#define OUTBOX               (0x20)
+> > +#define INBOX_IRQ    (0xc0)
+> > +#define OUTBOX_IRQ   (0xc4)
+> > +#define INBOX_IRQ_MASK       (0xd0)
+> > +
+> > +#define SPARE_OFF_START      (0x40)
+> > +#define SPARE_OFF_END        (0xB0)
+> > +
+> > +struct mtk_apu_mailbox {
+> > +     struct device *dev;
+> > +     void __iomem *regs;
+> > +     struct mbox_controller controller;
+>
+> struct mbox_controller mbox;
+>
+> ...it's shorter and consistent with at least other MTK mailbox drivers.
+>
+> > +     u32 msgs[MSG_MBOX_SLOTS];
+>
+> Just reuse struct mtk_apu_mailbox_msg instead.....
+>
+> > +};
+> > +
+> > +struct mtk_apu_mailbox *g_mbox;
+>
+> That global struct must disappear - and if you use the mailbox API correc=
+tly
+> it's even simple.
+>
+> Also, you want something like....
+>
+> static inline struct mtk_apu_mailbox *get_mtk_apu_mailbox(struct mbox_con=
+troller *mbox)
+> {
+>         return container_of(mbox, struct mtk_apu_mailbox, mbox);
+> }
+>
+> > +
+> > +static irqreturn_t mtk_apu_mailbox_irq_top_half(int irq, void *dev_id)
+> > +{
+> static irqreturn_t mtk_apu_mailbox_irq(int irq, void *data)
+> {
+>         struct mbox_chan *chan =3D data;
+>         struct mtk_apu_mailbox =3D get_mtk_apu_mailbox(chan->mbox);
+>
+> > +     struct mtk_apu_mailbox *mbox =3D dev_id;
+> > +     struct mbox_chan *link =3D &mbox->controller.chans[0];
+> > +     int i;
+> > +
+> > +     for (i =3D 0; i < MSG_MBOX_SLOTS; i++)
+> > +             mbox->msgs[i] =3D readl(mbox->regs + OUTBOX + i * sizeof(=
+u32));
+> > +
+> > +     mbox_chan_received_data(link, &mbox->msgs);
+> > +
+> > +     return IRQ_WAKE_THREAD;
+> > +}
+> > +
+> > +static irqreturn_t mtk_apu_mailbox_irq_btm_half(int irq, void *dev_id)
+>
+> ....mtk_apu_mailbox_irq_thread(...)
+>
+> > +{
+> > +     struct mtk_apu_mailbox *mbox =3D dev_id;
+> > +     struct mbox_chan *link =3D &mbox->controller.chans[0];
+> > +
+> > +     mbox_chan_received_data_bh(link, &mbox->msgs);
+>
+> I don't think that you really need this _bh variant, looks more like you =
+wanted
+> to have two callbacks instead of one.
+>
+> You can instead have one callback and vary functionality based based on r=
+eading
+> a variable to decide what to actually do inside. Not a big deal.
+
+The problem is that they need something with different semantics.
+mbox_chan_received_data() is atomic only.
+
+> > +     writel(readl(mbox->regs + OUTBOX_IRQ), mbox->regs + OUTBOX_IRQ);
+> > +
+> > +     return IRQ_HANDLED;
+> > +}
+> > +
+> > +static int mtk_apu_mailbox_send_data(struct mbox_chan *chan, void *dat=
+a)
+> > +{
+> > +     struct mtk_apu_mailbox *mbox =3D container_of(chan->mbox,
+> > +                                                 struct mtk_apu_mailbo=
+x,
+> > +                                                 controller);
+> > +     struct mtk_apu_mailbox_msg *msg =3D data;
+> > +     int i;
+> > +
+> > +     if (msg->send_cnt <=3D 0 || msg->send_cnt > MSG_MBOX_SLOTS) {
+> > +             dev_err(mbox->dev, "%s: invalid send_cnt %d\n", __func__,=
+ msg->send_cnt);
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     /*
+> > +      *      Mask lowest "send_cnt-1" interrupts bits, so the interrup=
+t on the other side
+> > +      *      triggers only after the last data slot is written (sent).
+> > +      */
+> > +     writel(GENMASK(msg->send_cnt - 2, 0), mbox->regs + INBOX_IRQ_MASK=
+);
+> > +     for (i =3D 0; i < msg->send_cnt; i++)
+> > +             writel(msg->data[i], mbox->regs + INBOX + i * sizeof(u32)=
+);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static bool mtk_apu_mailbox_last_tx_done(struct mbox_chan *chan)
+> > +{
+> > +     struct mtk_apu_mailbox *mbox =3D container_of(chan->mbox,
+> > +                                                 struct mtk_apu_mailbo=
+x,
+> > +                                                 controller);
+> > +
+> > +     return readl(mbox->regs + INBOX_IRQ) =3D=3D 0;
+> > +}
+> > +
+> > +static const struct mbox_chan_ops mtk_apu_mailbox_ops =3D {
+> > +     .send_data =3D mtk_apu_mailbox_send_data,
+> > +     .last_tx_done =3D mtk_apu_mailbox_last_tx_done,
+> > +};
+> > +
+> > +/**
+> > + * mtk_apu_mbox_write - Write value to specifice mtk_apu_mbox spare re=
+gister.
+> > + * @val: Value to be written.
+> > + * @offset: Offset of the spare register.
+> > + *
+> > + * Return: 0 if successful
+> > + *      negative value if error happened
+> > + */
+> > +int mtk_apu_mbox_write(u32 val, u32 offset)
+> > +{
+> > +     if (!g_mbox) {
+> > +             pr_err("mtk apu mbox was not initialized, stop writing re=
+gister\n");
+> > +             return -ENODEV;
+> > +     }
+> > +
+> > +     if (offset < SPARE_OFF_START || offset >=3D SPARE_OFF_END) {
+> > +             dev_err(g_mbox->dev, "Invalid offset %d for mtk apu mbox =
+spare register\n", offset);
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     writel(val, g_mbox->regs + offset);
+>
+> There's something odd in what you're doing here, why would you ever need
+> a function that performs a writel just like that? What's the purpose?
+>
+> What are you writing to the spare registers?
+> For which reason?
+
+I'll leave the explaining to Karl, but based on internal reviews for the
+previous generation, it looked like passing values to/from the MCU.
+
+> I think you can avoid (read this as: you *have to* avoid) having such a
+> function around.
+
+Again, during the previous round of internal reviews, I had thought
+about modeling these as extra mbox channels. I may have even asked
+about this on IRC.
+
+The problem is that it doesn't really have mbox semantics. They are
+just shared registers with no send/receive notification. So at the
+very least, there's nothing that will trigger a reception. I suppose
+we could make the .peek_data op trigger RX, but that's a really
+convoluted way to read just a register.
+
+The other option would be to have a syscon / custom exported regmap?
+
+> > +     return 0;
+> > +}
+> > +EXPORT_SYMBOL_NS(mtk_apu_mbox_write, MTK_APU_MAILBOX);
+> > +
+> > +/**
+> > + * mtk_apu_mbox_read - Read value to specifice mtk_apu_mbox spare regi=
+ster.
+> > + * @offset: Offset of the spare register.
+> > + * @val: Pointer to store read value.
+> > + *
+> > + * Return: 0 if successful
+> > + *      negative value if error happened
+> > + */
+> > +int mtk_apu_mbox_read(u32 offset, u32 *val)
+> > +{
+> > +     if (!g_mbox) {
+> > +             pr_err("mtk apu mbox was not initialized, stop reading re=
+gister\n");
+> > +             return -ENODEV;
+> > +     }
+> > +
+> > +     if (offset < SPARE_OFF_START || offset >=3D SPARE_OFF_END) {
+> > +             dev_err(g_mbox->dev, "Invalid offset %d for mtk apu mbox =
+spare register\n", offset);
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     *val =3D readl(g_mbox->regs + offset);
+> > +
+>
+> Same goes for this one.
+>
+> > +     return 0;
+> > +}
+> > +EXPORT_SYMBOL_NS(mtk_apu_mbox_read, MTK_APU_MAILBOX);
+> > +
+> > +static int mtk_apu_mailbox_probe(struct platform_device *pdev)
+> > +{
+> > +     struct device *dev =3D &pdev->dev;
+> > +     struct mtk_apu_mailbox *mbox;
+> > +     int irq =3D -1, ret =3D 0;
+> > +
+> > +     mbox =3D devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
+> > +     if (!mbox)
+> > +             return -ENOMEM;
+> > +
+> > +     mbox->dev =3D dev;
+> > +     platform_set_drvdata(pdev, mbox);
+> > +
+>
+> Please move the platform_get_irq call here or anyway before registering t=
+he
+> mbox controller: in case anything goes wrong, devm won't have to unregist=
+er
+> the mbox afterwards because it never got registered in the first place.
+
+To clarify, you mean _just_ platform_get_irq() and not request_irq as
+well.
+
+> > +     mbox->regs =3D devm_platform_ioremap_resource(pdev, 0);
+> > +     if (IS_ERR(mbox->regs))
+> > +             return PTR_ERR(mbox->regs);
+> > +
+> > +     mbox->controller.txdone_irq =3D false;
+> > +     mbox->controller.txdone_poll =3D true;
+> > +     mbox->controller.txpoll_period =3D 1;
+> > +     mbox->controller.ops =3D &mtk_apu_mailbox_ops;
+> > +     mbox->controller.dev =3D dev;
+> > +     /*
+> > +      * Here we only register 1 mbox channel.
+> > +      * The remaining channels are used by other modules.
+>
+> What other modules? I don't really see any - so please at least explain t=
+hat in the
+> commit description.
+>
+> > +      */
+> > +     mbox->controller.num_chans =3D 1;
+> > +     mbox->controller.chans =3D devm_kcalloc(dev, mbox->controller.num=
+_chans,
+> > +                                           sizeof(*mbox->controller.ch=
+ans),
+> > +                                           GFP_KERNEL);
+> > +     if (!mbox->controller.chans)
+> > +             return -ENOMEM;
+> > +
+> > +     ret =3D devm_mbox_controller_register(dev, &mbox->controller);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     irq =3D platform_get_irq(pdev, 0);
+> > +     if (irq < 0)
+> > +             return irq;
+> > +
+> > +     ret =3D devm_request_threaded_irq(dev, irq, mtk_apu_mailbox_irq_t=
+op_half,
+> > +                                     mtk_apu_mailbox_irq_btm_half, IRQ=
+F_ONESHOT,
+> > +                                     dev_name(dev), mbox);
+>
+> pass mbox->chans to the isr
+>
+> > +     if (ret)
+> > +             return dev_err_probe(dev, ret, "Failed to request IRQ\n")=
+;
+> > +
+> > +     g_mbox =3D mbox;
+> > +
+> > +     dev_dbg(dev, "registered mtk apu mailbox\n");
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static void mtk_apu_mailbox_remove(struct platform_device *pdev)
+> > +{
+> > +     g_mbox =3D NULL;
+> > +}
+> > +
+> > +static const struct of_device_id mtk_apu_mailbox_of_match[] =3D {
+> > +     { .compatible =3D "mediatek,mt8188-apu-mailbox" },
+> > +     { .compatible =3D "mediatek,mt8196-apu-mailbox" },
+>
+> Just mediatek,mt8188-apu-mailbox is fine; you can allow mt8196=3D=3Dmt818=
+8 in the
+> binding instead.
+>
+> > +     {}
+> > +};
+> > +MODULE_DEVICE_TABLE(of, mtk_apu_mailbox_of_match);
+> > +
+> > +static struct platform_driver mtk_apu_mailbox_driver =3D {
+> > +     .probe =3D mtk_apu_mailbox_probe,
+> > +     .remove =3D mtk_apu_mailbox_remove,
+>
+> You don't need this remove callback, since g_mbox has to disappear :-)
+>
+> > +     .driver =3D {
+> > +             .name =3D "mtk-apu-mailbox",
+> > +             .of_match_table =3D mtk_apu_mailbox_of_match,
+> > +     },
+> > +};
+> > +
+> > +module_platform_driver(mtk_apu_mailbox_driver);
+> > +MODULE_LICENSE("GPL");
+> > +MODULE_DESCRIPTION("MediaTek APU Mailbox Driver");
+> > diff --git a/include/linux/mailbox/mtk-apu-mailbox.h b/include/linux/ma=
+ilbox/mtk-apu-mailbox.h
+> > new file mode 100644
+> > index 000000000000..d1457d16ce9b
+> > --- /dev/null
+> > +++ b/include/linux/mailbox/mtk-apu-mailbox.h
+> > @@ -0,0 +1,20 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * Copyright (c) 2024 MediaTek Inc.
+> > + *
+> > + */
+> > +
+> > +#ifndef __MTK_APU_MAILBOX_H__
+> > +#define __MTK_APU_MAILBOX_H__
+> > +
+> > +#define MSG_MBOX_SLOTS       (8)
+> > +
+> > +struct mtk_apu_mailbox_msg {
+> > +     int send_cnt;
+>
+> u8 data_cnt;
+>
+> > +     u32 data[MSG_MBOX_SLOTS];
+>
+> With hardcoded slots, what happens when we get a new chip in the future t=
+hat
+> supports more slots?
+
+Seems like we can make it a flexible array member? But the problem then
+becomes how does the client know what the maximum length is. Or maybe
+it should already know given it's tied to a particular platform.
+
+In any case it becomes:
+
+    struct mtk_apu_mailbox_msg {
+        u8 data_size;
+        u8 data[] __counted_by(data_size);
+    };
+
+This can't be allocated on the stack if `data_size` isn't a compile
+time constant though; but again it shouldn't be a problem given the
+message size is tied to the client & its platform and should be
+constant anyway.
+
+The controller should just error out if the message is larger than
+what it can atomically send.
 
 
+ChenYu
 
-On 10/19/2024 3:41 AM, kernel test robot wrote:
-> Hi Jyothi,
-> 
-> kernel test robot noticed the following build errors:
-> 
-> [auto build test ERROR on 55bcd2e0d04c1171d382badef1def1fd04ef66c5]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Jyothi-Kumar-Seerapu/dt-bindings-dmaengine-qcom-gpi-Add-additional-arg-to-dma-cell-property/20241015-202637
-> base:   55bcd2e0d04c1171d382badef1def1fd04ef66c5
-> patch link:    https://lore.kernel.org/r/20241015120750.21217-6-quic_jseerapu%40quicinc.com
-> patch subject: [PATCH v1 5/5] i2c: i2c-qcom-geni: Add Block event interrupt support
-> config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20241019/202410190549.hGAfByqg-lkp@intel.com/config)
-> compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241019/202410190549.hGAfByqg-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202410190549.hGAfByqg-lkp@intel.com/
-> 
-> All errors (new ones prefixed by >>):
-> 
->>> drivers/i2c/busses/i2c-qcom-geni.c:562:8: error: incompatible pointer to integer conversion passing 'dma_addr_t *' (aka 'unsigned long long *') to parameter of type 'dma_addr_t' (aka 'unsigned long long'); dereference with * [-Wint-conversion]
->       562 |                                    tx_multi_xfer->dma_addr[wr_idx], NULL, NULL);
->           |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->           |                                    *
->     drivers/i2c/busses/i2c-qcom-geni.c:519:36: note: passing argument to parameter 'tx_addr' here
->       519 |                                void *tx_buf, dma_addr_t tx_addr,
->           |                                                         ^
->>> drivers/i2c/busses/i2c-qcom-geni.c:562:47: error: incompatible pointer to integer conversion passing 'void *' to parameter of type 'dma_addr_t' (aka 'unsigned long long') [-Wint-conversion]
->       562 |                                    tx_multi_xfer->dma_addr[wr_idx], NULL, NULL);
->           |                                                                           ^~~~
->     include/linux/stddef.h:8:14: note: expanded from macro 'NULL'
->         8 | #define NULL ((void *)0)
->           |              ^~~~~~~~~~~
->     drivers/i2c/busses/i2c-qcom-geni.c:520:36: note: passing argument to parameter 'rx_addr' here
->       520 |                                void *rx_buf, dma_addr_t rx_addr)
->           |                                                         ^
->>> drivers/i2c/busses/i2c-qcom-geni.c:586:7: error: incompatible pointer to integer conversion assigning to 'dma_addr_t' (aka 'unsigned long long') from 'dma_addr_t *' (aka 'unsigned long long *'); dereference with * [-Wint-conversion]
->       586 |         addr = gi2c_gpi_xfer->dma_addr[gi2c_gpi_xfer->buf_idx];
->           |              ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->           |                *
->     3 errors generated.
-
-Fixed the reported issues which are comiltation warnings in V2 patch.
-
-> 
-> Kconfig warnings: (for reference only)
->     WARNING: unmet direct dependencies detected for OMAP2PLUS_MBOX
->     Depends on [n]: MAILBOX [=y] && (ARCH_OMAP2PLUS || ARCH_K3)
->     Selected by [y]:
->     - TI_K3_M4_REMOTEPROC [=y] && REMOTEPROC [=y] && (ARCH_K3 || COMPILE_TEST [=y])
-> 
-> 
-> vim +562 drivers/i2c/busses/i2c-qcom-geni.c
-> 
->     532	
->     533	/**
->     534	 * gpi_i2c_multi_desc_unmap() - unmaps the buffers post multi message TX transfers
->     535	 * @dev: pointer to the corresponding dev node
->     536	 * @gi2c: i2c dev handle
->     537	 * @msgs: i2c messages array
->     538	 * @peripheral: pointer to the gpi_i2c_config
->     539	 */
->     540	static void gpi_i2c_multi_desc_unmap(struct geni_i2c_dev *gi2c, struct i2c_msg msgs[],
->     541					     struct gpi_i2c_config *peripheral)
->     542	{
->     543		u32 msg_xfer_cnt, wr_idx = 0;
->     544		struct gpi_multi_xfer *tx_multi_xfer = &peripheral->multi_xfer;
->     545	
->     546		/*
->     547		 * In error case, need to unmap all messages based on the msg_idx_cnt.
->     548		 * Non-error case unmap all the processed messages.
->     549		 */
->     550		if (gi2c->err)
->     551			msg_xfer_cnt = tx_multi_xfer->msg_idx_cnt;
->     552		else
->     553			msg_xfer_cnt = tx_multi_xfer->irq_cnt * NUM_MSGS_PER_IRQ;
->     554	
->     555		/* Unmap the processed DMA buffers based on the received interrupt count */
->     556		for (; tx_multi_xfer->unmap_msg_cnt < msg_xfer_cnt; tx_multi_xfer->unmap_msg_cnt++) {
->     557			if (tx_multi_xfer->unmap_msg_cnt == gi2c->num_msgs)
->     558				break;
->     559			wr_idx = tx_multi_xfer->unmap_msg_cnt % QCOM_GPI_MAX_NUM_MSGS;
->     560			geni_i2c_gpi_unmap(gi2c, &msgs[tx_multi_xfer->unmap_msg_cnt],
->     561					   tx_multi_xfer->dma_buf[wr_idx],
->   > 562					   tx_multi_xfer->dma_addr[wr_idx], NULL, NULL);
->     563			tx_multi_xfer->freed_msg_cnt++;
->     564		}
->     565	}
->     566	
->     567	static int geni_i2c_gpi(struct geni_i2c_dev *gi2c, struct i2c_msg msgs[], int cur_msg_idx,
->     568				struct dma_slave_config *config, dma_addr_t *dma_addr_p,
->     569				void **buf, unsigned int op, struct dma_chan *dma_chan)
->     570	{
->     571		struct gpi_i2c_config *peripheral;
->     572		unsigned int flags;
->     573		void *dma_buf;
->     574		dma_addr_t addr;
->     575		enum dma_data_direction map_dirn;
->     576		enum dma_transfer_direction dma_dirn;
->     577		struct dma_async_tx_descriptor *desc;
->     578		int ret;
->     579		struct gpi_multi_xfer *gi2c_gpi_xfer;
->     580		dma_cookie_t cookie;
->     581	
->     582		peripheral = config->peripheral_config;
->     583		gi2c_gpi_xfer = &peripheral->multi_xfer;
->     584		gi2c_gpi_xfer->msg_idx_cnt = cur_msg_idx;
->     585		dma_buf = gi2c_gpi_xfer->dma_buf[gi2c_gpi_xfer->buf_idx];
->   > 586		addr = gi2c_gpi_xfer->dma_addr[gi2c_gpi_xfer->buf_idx];
->     587	
->     588		dma_buf = i2c_get_dma_safe_msg_buf(&msgs[gi2c_gpi_xfer->msg_idx_cnt], 1);
->     589		if (!dma_buf) {
->     590			gi2c->err = -ENOMEM;
->     591			return -ENOMEM;
->     592		}
->     593	
->     594		if (op == I2C_WRITE)
->     595			map_dirn = DMA_TO_DEVICE;
->     596		else
->     597			map_dirn = DMA_FROM_DEVICE;
->     598	
->     599		addr = dma_map_single(gi2c->se.dev->parent,
->     600				      dma_buf, msgs[gi2c_gpi_xfer->msg_idx_cnt].len,
->     601				      map_dirn);
->     602		if (dma_mapping_error(gi2c->se.dev->parent, addr)) {
->     603			i2c_put_dma_safe_msg_buf(dma_buf, &msgs[gi2c_gpi_xfer->msg_idx_cnt],
->     604						 false);
->     605			gi2c->err = -ENOMEM;
->     606			return -ENOMEM;
->     607		}
->     608	
->     609		if (gi2c->is_tx_multi_xfer) {
->     610			if (((gi2c_gpi_xfer->msg_idx_cnt + 1) % NUM_MSGS_PER_IRQ))
->     611				peripheral->flags |= QCOM_GPI_BLOCK_EVENT_IRQ;
->     612			else
->     613				peripheral->flags &= ~QCOM_GPI_BLOCK_EVENT_IRQ;
->     614	
->     615			/* BEI bit to be cleared for last TRE */
->     616			if (gi2c_gpi_xfer->msg_idx_cnt == gi2c->num_msgs - 1)
->     617				peripheral->flags &= ~QCOM_GPI_BLOCK_EVENT_IRQ;
->     618		}
->     619	
->     620		/* set the length as message for rx txn */
->     621		peripheral->rx_len = msgs[gi2c_gpi_xfer->msg_idx_cnt].len;
->     622		peripheral->op = op;
->     623	
->     624		ret = dmaengine_slave_config(dma_chan, config);
->     625		if (ret) {
->     626			dev_err(gi2c->se.dev, "dma config error: %d for op:%d\n", ret, op);
->     627			goto err_config;
->     628		}
->     629	
->     630		peripheral->set_config = 0;
->     631		peripheral->multi_msg = true;
->     632		flags = DMA_PREP_INTERRUPT | DMA_CTRL_ACK;
->     633	
->     634		if (op == I2C_WRITE)
->     635			dma_dirn = DMA_MEM_TO_DEV;
->     636		else
->     637			dma_dirn = DMA_DEV_TO_MEM;
->     638	
->     639		desc = dmaengine_prep_slave_single(dma_chan, addr,
->     640						   msgs[gi2c_gpi_xfer->msg_idx_cnt].len,
->     641						   dma_dirn, flags);
->     642		if (!desc) {
->     643			dev_err(gi2c->se.dev, "prep_slave_sg failed\n");
->     644			gi2c->err = -EIO;
->     645			goto err_config;
->     646		}
->     647	
->     648		desc->callback_result = i2c_gpi_cb_result;
->     649		desc->callback_param = gi2c;
->     650	
->     651		if (!((msgs[cur_msg_idx].flags & I2C_M_RD) && op == I2C_WRITE)) {
->     652			gi2c_gpi_xfer->msg_idx_cnt++;
->     653			gi2c_gpi_xfer->buf_idx = (cur_msg_idx + 1) % QCOM_GPI_MAX_NUM_MSGS;
->     654		}
->     655		cookie = dmaengine_submit(desc);
->     656		if (dma_submit_error(cookie)) {
->     657			dev_err(gi2c->se.dev,
->     658				"%s: dmaengine_submit failed (%d)\n", __func__, cookie);
->     659			return -EINVAL;
->     660		}
->     661	
->     662		if (gi2c->is_tx_multi_xfer) {
->     663			dma_async_issue_pending(gi2c->tx_c);
->     664			if ((cur_msg_idx == (gi2c->num_msgs - 1)) ||
->     665			    (gi2c_gpi_xfer->msg_idx_cnt >=
->     666			     QCOM_GPI_MAX_NUM_MSGS + gi2c_gpi_xfer->freed_msg_cnt)) {
->     667				ret = gpi_multi_desc_process(gi2c->se.dev, gi2c_gpi_xfer,
->     668							     gi2c->num_msgs, XFER_TIMEOUT,
->     669							     &gi2c->done);
->     670				if (ret) {
->     671					dev_dbg(gi2c->se.dev,
->     672						"I2C multi write msg transfer timeout: %d\n",
->     673						ret);
->     674					gi2c->err = -ETIMEDOUT;
->     675					goto err_config;
->     676				}
->     677			}
->     678		} else {
->     679			/* Non multi descriptor message transfer */
->     680			*buf = dma_buf;
->     681			*dma_addr_p = addr;
->     682		}
->     683		return 0;
->     684	
->     685	err_config:
->     686		dma_unmap_single(gi2c->se.dev->parent, addr,
->     687				 msgs[cur_msg_idx].len, map_dirn);
->     688		i2c_put_dma_safe_msg_buf(dma_buf, &msgs[cur_msg_idx], false);
->     689		return ret;
->     690	}
->     691	
-> 
+> Please think about this now and make the implementation flexible before t=
+hat
+> happens because, at a later time, it'll be harder.
+>
+> Regards,
+> Angelo
+>
+> > +};
+> > +
+> > +int mtk_apu_mbox_write(u32 val, u32 offset);
+> > +int mtk_apu_mbox_read(u32 offset, u32 *val);
+> > +
+> > +#endif /* __MTK_APU_MAILBOX_H__ */
+>
+>
 
