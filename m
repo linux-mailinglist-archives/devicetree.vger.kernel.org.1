@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-116307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 370439B27B7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 07:50:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F1CF9B2851
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:04:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D67921F22532
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 06:50:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D51BE1F217D4
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 07:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CB2E18EFC8;
-	Mon, 28 Oct 2024 06:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B3C718E047;
+	Mon, 28 Oct 2024 07:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tdBsYj7K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s4JENpki"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD462AF07;
-	Mon, 28 Oct 2024 06:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD77156960;
+	Mon, 28 Oct 2024 07:04:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730098238; cv=none; b=V4jBUQRQ8QnO8YCdW8FjI0JLcccgAGcLYSUWRomgM2TBt46TRl6D+bZNPnCPh0+sa32QDrn+OC4s+k10QdRkAzMMbPFm3fG4Ze26HMVOXUiuiIGzqG5PqOOd6+mcspp04XDYRNAbYgalJVi/R+HVIm63yJAEWklwmk75J/ZVlWM=
+	t=1730099057; cv=none; b=Ot5x8nBE2tSzv9zV/VeQW92bK6zXoRfv2HYwE1J8rONTG3bK/iqVPXdXCivaEJGYBCThSvLxfVOooFpI1qjBNvJcOhX0eaC1z6HWhmF9q3wGWobFB4NChQtlQn7e7ulekZVjYrFYXgw4WZu9bLf2LlIsDk4xuGZYChO0+OubmiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730098238; c=relaxed/simple;
-	bh=ni619cXwCzLTyrFsihCnbnrFye9SRN6upl7nSIDyVaU=;
+	s=arc-20240116; t=1730099057; c=relaxed/simple;
+	bh=IFtzioYoMCrWC81G9MYTULX0ymqOZQrC+0Er2G6w02s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E9PVWpnttgA0H8yocezO9lpWgEWGMM1Nk7jyNUV1Ij+O+v5yADXb39Sb0LCB0m2ryrg4yAEv6dXDbTgPjVoupCZh3ctj8O34UU0hrcgMAWHiYMatBLNVDUZOCp/kK5tbN1NtZU9uxbPrscZUpbuLymxOGOOJ9lk+k9wikq18WM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tdBsYj7K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD0B4C4CEC3;
-	Mon, 28 Oct 2024 06:50:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IuApfcckmZbGloVzkzSGMlPqOTxnIuQwMCDlDx7IfZ4MQr+NajTCyo9HLre0giE2G1I6LapJxrEdehdDQAQH9qxhGnggdBcza7AHM3T/2kMRba1rYrvVAkQVr5t9r2kvWnwJIXZuOyRfLbU5epcT12cwG9vGwTx7DgjHTCd5qoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s4JENpki; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B18AC4CEC3;
+	Mon, 28 Oct 2024 07:04:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730098237;
-	bh=ni619cXwCzLTyrFsihCnbnrFye9SRN6upl7nSIDyVaU=;
+	s=k20201202; t=1730099056;
+	bh=IFtzioYoMCrWC81G9MYTULX0ymqOZQrC+0Er2G6w02s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tdBsYj7KKqUklaIlnBWweMs6yvTVfUkDzAGdTKkIJndWY1cWp0hoDYtUBxZilC0Mq
-	 J4UMXxwaiCxcyKs9Ow4V3c6bedhb25Cv/A38vW1cU3B1Kirx3R+mGtB4QcPOQ/3+TW
-	 MJzmFxu5esKl72DS0okpgzOkkrjnRX64RHSNPVB3sl0QC9nl65G5GejmXD0CFZHWjk
-	 ksQ+NsvLKu8QNA/vi4hwQmy/jlJPK031cjy5vXQ1puDFLOIe0FAIdZ9/fb71rVomut
-	 9zjdzoSoJLdgw17HbJFAB+/1OiRp5IWmJioe+M4R1UTiB13LLPWEh9qm+cuLVDPJDe
-	 hzEIbhMDuYk5Q==
-Message-ID: <c3b757c9-3232-4429-9f3c-d57ec76fb26b@kernel.org>
-Date: Mon, 28 Oct 2024 07:50:30 +0100
+	b=s4JENpkiaVagP4ja3lR3I/+eQ6q0RnPMxEF0weztAm4glUbkwNhX6ODVee7gm34aB
+	 54k/A7nxVQjMkDPBsRrWLzBXwZ8Lq7ZcTULRvGwBe5tHuDSdyZLS201prRhaTVauoM
+	 VY8SuVXmzHbZVK/pjChwG4MYIFPfKGP5fZcXkgTEIfftnd1KBUUOkPpmOrfmn+FtgR
+	 Z+6zw/ioIE92FHeeVxNdS/f6z13dclVmSOAKOV/9ICygTPBwOzVJ2W5OZ2VRTiV2SE
+	 cBFGFdtFy4H0f5sbmbLuhS1cJQd0oifmfnNJe749lULfjkHFwvEhgJwg/7smM4nmvL
+	 aK54ya6O5Pe0A==
+Message-ID: <9b0a508e-d9ae-45ab-882f-5bc1f03e13db@kernel.org>
+Date: Mon, 28 Oct 2024 08:04:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 10/10] arm64: dts: exynos: Add initial support for
- Samsung Galaxy S9 (SM-G960F)
-To: Markuss Broks <markuss.broks@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Linus Walleij <linus.walleij@linaro.org>, Tomasz Figa
- <tomasz.figa@gmail.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-gpio@vger.kernel.org, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Maksym Holovach <nergzd@nergzd723.xyz>
-References: <20241026-exynos9810-v3-0-b89de9441ea8@gmail.com>
- <20241026-exynos9810-v3-10-b89de9441ea8@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
+To: Ming-Jen Chen <mjchen0829@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ mjchen@nuvoton.com, peng.fan@nxp.com, sudeep.holla@arm.com, arnd@arndb.de,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ dmitry.torokhov@gmail.com
+References: <20241022063158.5910-1-mjchen0829@gmail.com>
+ <20241022063158.5910-2-mjchen0829@gmail.com>
+ <csbechg6iarxx52z2gqidszhvgjdvaraoumpfcsozelhuuhmtb@ec7es3txuzxc>
+ <871e9a4c-7a3c-4a24-8829-a079983033da@gmail.com>
+ <ef407e89-950f-4874-9dca-474d107f6a52@kernel.org>
+ <984781ba-9f4c-4179-84d5-4ab8bbe4c3c6@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,23 +108,97 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241026-exynos9810-v3-10-b89de9441ea8@gmail.com>
+In-Reply-To: <984781ba-9f4c-4179-84d5-4ab8bbe4c3c6@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 26/10/2024 22:32, Markuss Broks wrote:
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x80000000 0x3c800000>,
-> +		      <0x0 0xc0000000 0x20000000>,
-> +		      <0x0 0xe1900000 0x1e700000>;
-> +		      <0x8 0x80000000 0x80000000>,
+On 28/10/2024 02:15, Ming-Jen Chen wrote:
+> 
+> On 2024/10/25 下午 07:42, Krzysztof Kozlowski wrote:
+>> On 25/10/2024 07:36, Ming-Jen Chen wrote:
+>>>>> +      0  = 0 clock
+>>>>> +      1  = 0 clock
+>>>>> +      2  = 0 clock
+>>>> Heh? So this is just 0
+>>>>
+>>>>> +      3  = 8 clocks
+>>>> This is 8
+>>>>
+>>>>> +      4  = 16 clocks
+>>>> 16, not 4
+>>>>
+>>>>> +      5  = 32 clocks
+>>>>> +      6  = 64 clocks
+>>>>> +      7  = 128 clocks
+>>>>> +      8  = 256 clocks
+>>>>> +      9  = 512 clocks
+>>>>> +      10 = 1024 clocks
+>>>>> +      11 = 2048 clocks
+>>>>> +      12 = 4096 clocks
+>>>>> +      13 = 8192 clocks
+>>>> Use proper enum
+>>> I will update the definition to specify the debounce period in terms of
+>>> keypad IP clock cycles, as follow:
+>>>
+>>> nuvoton,debounce-period:
+>>>       type: integer
+>>>       enum: [0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+>>>       description: |
+>>>           Key debounce period select, specified in terms of keypad IP
+>>> clock cycles.
+>>>           This value corresponds to the register setting for the keypad
+>>> interface.
+>>>           The following values indicate the debounce time:
+>>>           - 0 = 0 clock cycles (no debounce)
+>>>           - 3 = 8 clock cycles
+>>>           - 4 = 16 clock cycles
+>>>           - 5 = 32 clock cycles
+>>>           - 6 = 64 clock cycles
+>>>           - 7 = 128 clock cycles
+>>>           - 8 = 256 clock cycles
+>>>           - 9 = 512 clock cycles
+>>>           - 10 = 1024 clock cycles
+>>>           - 11 = 2048 clock cycles
+>>>           - 12 = 4096 clock cycles
+>>>           - 13 = 8192 clock cycles
+>> No. 0, 8, 16, 32 , 64 etc.
+> 
+> I will change it to the following content:
+> 
+> nuvoton,debounce-period:
+>    type:  integer
+>    enum:  [0,8,16,32,64,128,256,512,1024,2048,4096,8192]
+>    description:  | Key debounce period select, specified in terms of keypad IP clock 
+> cycles. Valid values include 0 (no debounce) and specific clock cycle 
+> values: 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, and 8192.
+> 
+>>>>
+>>>>> +
+>>>>> +  per-scale:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    description: Row Scan Cycle Pre-scale Value (1 to 256).
+>>>> Missing constraints
+>>>>
+>>>>> +
+>>>>> +  per-scalediv:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    description: Per-scale divider (1 to 256).
+>>>> Missing constraints
+>>>>
+>>>> Both properties are unexpected... aren't you duplicating existing
+>>>> properties?
+>>> pre-scale:
+>>> This value configures the IC register for the row scan cycle
+>>> pre-scaling, with valid values ranging from 1 to 256
+>>> per-scalediv:(I will change pre-scalediv to pre-scale-div)
+>> Please look for matching existing properties first.
+> 
+> I will change it to the following content:
+> 
+> nuvoton,scan-time:
 
-This patch was absolutely never even built. You must never sent code
-without at least building it. It is not maintainers task to build the
-code for you.
+Why? What about my request?
+
 
 Best regards,
 Krzysztof
