@@ -1,228 +1,214 @@
-Return-Path: <devicetree+bounces-116404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8DA39B2C2E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:59:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E2D9B2C64
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 11:11:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A687B282CFD
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:59:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36C701C219A8
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:11:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4649186E59;
-	Mon, 28 Oct 2024 09:59:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ZgymGrqA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 811A51D0DF7;
+	Mon, 28 Oct 2024 10:11:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2073.outbound.protection.outlook.com [40.107.249.73])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 658F81D0E38;
-	Mon, 28 Oct 2024 09:59:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.73
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730109560; cv=fail; b=BXaO9divW7A8zb51HSNXCshgoo2cmGeD+daumUn7OYsjf8GusWF/78AI9vxUI1I54ln37/CDugMD4D6rjGa/N/iEgANw5JT4EUjBFQGJ3jobistj5AuFPEGB28h1ooZvOJxMaY6YE5+Ck4d+KEIv/hPPMUFwt8UIgKp744PfhQo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730109560; c=relaxed/simple;
-	bh=I/0GwzO9fAvB6jiNuzHq+5n3vuYnOt4OeJOedK8vru4=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=czM+wUKqtEG6k4uRMQXqFsSfaSlcn1Gy6Z+gf1kIYhN2zmNqmo/KpwxynbCpn2K+VK6I4gzMcLixU2sKR4EYQgQOh/keoH1PK0JQTSIvaYf0xrP8Idx/ce/hRBVr5kdaNa0daQUN/31y2JbrKH7XRBqScBrw+u7Co4V4yIe8W7U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ZgymGrqA; arc=fail smtp.client-ip=40.107.249.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PyQGQztnZm5t2lBYPmFpMaF7yYPR6VbYcEZw9HaswQ2MGAT9qkrml884pCCglabkZIhE5cRArWYt/AC7kAUztH7im4iQug54aXjIv3I5lvb+88Ag+4D04qdPuhFvak4QixkeYwxrWCEat4B/Gal0nZJCUqVzjKr8QO3TC30O9ay546ZBGDlZ71GkuM6FWP5iJ0Kkh1svTbyPWkgJyP8oFkSUjntNuaxIXDn8OnXpHwr/AiX2Lh67szd4skTPJAcIF5qfbnP1Z9s24xz5SjMn2rGJjNnr8bLavMXKMVc8bLfDw69hYrbwhwQG6pDahOXVy/GBSm/LzqUtuPYq7F6VBA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I/0GwzO9fAvB6jiNuzHq+5n3vuYnOt4OeJOedK8vru4=;
- b=PbWUP9lrVZhqM1e97flvaVtjHuqwbpP1GRRRoHNrIC+pa2uE/LFOyhbwzipcKaAZVBkuE8KUBD6kVXMamVGTco+f45EyIOjcENBsc9IJXMnYZ9OPOx5h/Y7IRCiipzvDSmKNuQEwtQd61S00ZiuCHKcHya/VBMZS5Rh4rox5ZaaZP8XRWdSNDEhh4Mu71EzOSbmYTVC/j69DPyHreCL7fKyeNVlmwAdztjtdT0P0lNg5B9kJpv6JhJnZwFK5Yp3aa40j2g88/ySYxpQ/7oKnaMnAjP+ejMoqTKd6TPRuvylbrigkZt8s/2vQ9LGuMjxz1sqk2kjwpYfyoY83knDkBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I/0GwzO9fAvB6jiNuzHq+5n3vuYnOt4OeJOedK8vru4=;
- b=ZgymGrqA8cVvyEfJzRWEntmlebloCC6JarNtrM8Xf1WlCeM6lnmQTdFOCqTZp7S/Z5A8AUc7Lga95d0HrYKTK8E9fSoDnmz18y4N1DrRQvoyXtKtSWuqAHEzH2Gt/d+EaHQ21+1SHXaeOKd4STW8kGV4PVnjIxa3eVuHUk0rfEJh3JXLwiDsL0tUgexcoo3Y3bpOAZxvSWnXXTYR8AiXHIfm2vLJg4APjgI5Zbkdq5pP65YFm+BNIDuZj5Y9SMomJAa19SI5sRLVWC47QRADacXeU7mje0zP8Pg/oSvY1z8zZFHyBTHrwxh/KeT44JYzkuvMCQnrSf3ilYOrJDon9A==
-Received: from DB9PR04MB8429.eurprd04.prod.outlook.com (2603:10a6:10:242::19)
- by PA4PR04MB7536.eurprd04.prod.outlook.com (2603:10a6:102:e1::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.23; Mon, 28 Oct
- 2024 09:59:13 +0000
-Received: from DB9PR04MB8429.eurprd04.prod.outlook.com
- ([fe80::2edf:edc4:794f:4e37]) by DB9PR04MB8429.eurprd04.prod.outlook.com
- ([fe80::2edf:edc4:794f:4e37%5]) with mapi id 15.20.8093.024; Mon, 28 Oct 2024
- 09:59:12 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: Marco Felsch <m.felsch@pengutronix.de>
-CC: POPESCU Catalin <catalin.popescu@leica-geosystems.com>, Amitkumar Karwar
-	<amitkumar.karwar@nxp.com>, Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
-	"marcel@holtmann.org" <marcel@holtmann.org>, "luiz.dentz@gmail.com"
-	<luiz.dentz@gmail.com>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: RE: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
- supply and reset
-Thread-Topic: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
- supply and reset
-Thread-Index:
- AQHbFlGi4L5ELajEYECFBoJDru1aa7J5aBLQgAAySQCAAao9AIAAIGOAgBV25oCAABNWAIAAK2IAgAE1RoCAACn9gIAACuYQgAAFzACAAF/eYIAAHNsAgAF25gCAAAeCgIAHLv0AgABOWwCAAA5OQA==
-Date: Mon, 28 Oct 2024 09:59:12 +0000
-Message-ID:
- <DB9PR04MB842960A18BB8570B04A64BEA924A2@DB9PR04MB8429.eurprd04.prod.outlook.com>
-References: <20241021102558.rfnz7nxcg5knibxs@pengutronix.de>
- <DB9PR04MB842939900805C080F2CC32B2924C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
- <20241022072311.ubh2sia5lwgvebsg@pengutronix.de>
- <DB9PR04MB8429657FCB48ACAD74FDD471924C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
- <20241022082256.nzfxqp67tdaxtn56@pengutronix.de>
- <DB9PR04MB84292445D0FEDB8211ED52C3924C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
- <9b09774e-d0ed-4c97-b6a0-e976580b5bb5@leica-geosystems.com>
- <DB9PR04MB8429CF700571FE42C997FB9C924D2@DB9PR04MB8429.eurprd04.prod.outlook.com>
- <1b8864e5-0ec7-49c4-932a-89cfbaeacc9f@leica-geosystems.com>
- <DB9PR04MB842929186683C1DF13DCBD92924A2@DB9PR04MB8429.eurprd04.prod.outlook.com>
- <20241028090028.x6rzopvpcdvgouqv@pengutronix.de>
-In-Reply-To: <20241028090028.x6rzopvpcdvgouqv@pengutronix.de>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB9PR04MB8429:EE_|PA4PR04MB7536:EE_
-x-ms-office365-filtering-correlation-id: add0684b-c4ed-4015-a44b-08dcf7372ce7
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?ceYZ2ylrb9yFvUCF88tkGSrMybAriCdZFakF+h0DR2e+UUo85MdtXA/h6c//?=
- =?us-ascii?Q?HiE/m/ARmX4H39vpvL1OCgptNeCpTBAg2N3TZMOmfFQwAGO6D5h3ycv0j++w?=
- =?us-ascii?Q?W/abF9phFORfQeqoEJfDpqdMXO80VvOOO3X1YWGUMYydnj3ohIwFKMBX3z33?=
- =?us-ascii?Q?7MZ7O/ca6TjursJzMxLPsg/7jsrpedS7v7Dk0R0Wgn2xQOEKqCbnZX6j5aF4?=
- =?us-ascii?Q?K1VOJ0HK/e5kCxfcf8pdO3kgd0+xeIFVWqq5yAoQost47HtjSWsB5PH6t/f+?=
- =?us-ascii?Q?sAJwyK+Z0I/kwknYqHv3iqoFNS+7yo5Gr1tuHkUyJWbRlC8QYS5sut+6B0Ul?=
- =?us-ascii?Q?CgPvZMb3aD6P56edtLJvY1Ilff7GMhI4g9tCFuU36ZTuFGHdH60NfNevMc9p?=
- =?us-ascii?Q?RCOJrh8m7IiUeR17clwL52ytOQAumfZ624kBvY09eeHvpnAdJgRuhi2lbA8B?=
- =?us-ascii?Q?1xaDuflNnR5jAFPOKs562Mzj/IbLvOzSXeq/4Uf0md9J+VUtnO4aUP6lV5IZ?=
- =?us-ascii?Q?iD8VVA3aSog8FviaaYMds4gxbMMVyQXHAR0ckT1oGTQWQU/E7qgC7a4Fy7az?=
- =?us-ascii?Q?xvpWO2TOgJNPnMi+7ESgAaTfydZgPey3mneXkC1ZpYF+4MTdlcQfIK8Wn36i?=
- =?us-ascii?Q?wg49SyydojPOx2Oej1gOyQz1HBA+J06MF6gS1OPC1hUUL/s0cp8Gsawt2Xl/?=
- =?us-ascii?Q?ob9QA0C1Cu4Hae2RpJPbc9jz7Dr69TpFt6ilfIxYChqTQyxWivPAYpTRGmlo?=
- =?us-ascii?Q?+ol0b+GLByai2wtjgMy3vvkToMxvMK7MwLJRozwmsPT6XBjobtU86QHE2OOy?=
- =?us-ascii?Q?VdfHkH0+HmGio3GbpdQVVEhviq/303Pk/tNbE2uVgKxz0+YOfE+lh2bogKKy?=
- =?us-ascii?Q?m7N8430O64PPaXz/y5M9O08dOOo9+ofoCsgMq2dNAyZP0MU4gL3r3Kh+HuNv?=
- =?us-ascii?Q?4Rgt2QOhK1PVcXXDGKK1zk3RRzqmfag/E/uAS5lJaEatVC7av0rPgBwRGy9J?=
- =?us-ascii?Q?eEDHzcGGnDCOv5rrJ6eBAofZq84ISDPynvzqeCCZy2TrGD5hHRiTtNtuir9V?=
- =?us-ascii?Q?ac+PL7PKODm2tLN3RQn5x2cCnCOUVdmJpTCDHwzo6o3JsJ7T0Z6QooTABGX0?=
- =?us-ascii?Q?fCN5NQTUf/0d2JzykYak5riGzmM2BSIB8n37sTvRVgXQOXfCCFTLVPoiNa7j?=
- =?us-ascii?Q?ZiCNrqHvfXBFHccSswRb2HMo2ZP8cGp5edISkfqU4Kh5Xxf8iobhIkETcAKl?=
- =?us-ascii?Q?tetnHrVWpbcwY1WEcPpmJH8+WtyaPj+faz/A9in9r266CQqgsUsPxD+gllMq?=
- =?us-ascii?Q?HMRhKW/ZRpD+LbjGkm81r1Nv0yp2IVEZWPvAyje1/C/MJxgc5JlZvwzu6JKz?=
- =?us-ascii?Q?ZPy8voI=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8429.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?8fUG/blby0mVLXLzvXUZTwNFieqXhz/Gbr4SVzGOri3ymeLN1/na21c0wCMX?=
- =?us-ascii?Q?yA2i2Is4vO+NgjMAisYDfVJ+ZHlL9cI/JcPzGj3w/4kA/x3v08JjRQ927ZV3?=
- =?us-ascii?Q?3YDAIq7csOP1tBVpdqILqjTQ3pZDGdDp7T8OcG0Wr5Lc0xwOvk7HWBhNJHbK?=
- =?us-ascii?Q?EiBIkbdgQSgU4sIfRgiIT6ugbs+flYJ8PMfTZZnrXMS6mw88OQU7SgYOEAFr?=
- =?us-ascii?Q?Vi4eXEPq8o11v1enPRtFZQ1pvCZGO28MQT0GmcQvZFxAa5SgS3eDtt1unmuP?=
- =?us-ascii?Q?E6RMw9+4buQVykvpX3uA5OFEYwi/cQotgnhhKucRalUClqlcmP13Oe548oPt?=
- =?us-ascii?Q?Ir0guCrO9y/mnwvFwMG9Tg2mjwn49LGuSNNu6ChzFcWqgH9BdJxiG3rvDIdr?=
- =?us-ascii?Q?HOUub7hN2nZdHJn6ROElEFSbQGgGCdzmiBh+8Y4m0Dvd0EQmtdi9kDFas3B7?=
- =?us-ascii?Q?QroZGiAopMKq9ReMd/SNTwohqkIia79qcD0Us5XjHaJJn1I3MmEM+bp5C4ob?=
- =?us-ascii?Q?Mv/keJ0UTsVkoLBmF/Q9+ByUwDAz3wlM5X5qlGLy2jnmEVtnkL10VS5DynVb?=
- =?us-ascii?Q?4t+PTYKllI0O7LgBAWhOb9YyIDsk81by/q5eVEDlsEy5cYHOCgpgc98e0Q63?=
- =?us-ascii?Q?NAViEulouRfIGjEVN5FiejWcbM/+DObDUbXHfKP4xX1yB3X/GLzXki+tZJnX?=
- =?us-ascii?Q?VZj/q/e5ewmGRN7Qa3jPwNrv9cXVVSNlz5Sw/iRtMrYYDYxgFQTZUAUCtjF8?=
- =?us-ascii?Q?2LwoR5eKqRX8FOnxQp3UGHJmJ+SWY2hDc9cEIlJUq4SwPuWWxfqPlQ+Xg8Uw?=
- =?us-ascii?Q?AmJET7/km0hBly3g2A6x9WdjqRocsswqmers2Ksa7VRjH2f96GDUoH9IfEZ6?=
- =?us-ascii?Q?57ms3rAPYcqOY3DZ49lc0lEXiI2NFwYPG0TD2vKTgG/EBauS0qYpxQRhgEkM?=
- =?us-ascii?Q?TSpueVJ9tMeR0qSRAslxNexY6587zgZysEFqhgv5+bxYSb2SkMSsZ5ICbltf?=
- =?us-ascii?Q?6ScneUnD92zjUVNcOPRSBWLNG7qF4KCeW6OSakDySi4Ui+uWNxtGbBSFZ93L?=
- =?us-ascii?Q?9CNy9tRTivDIJPRSlUi+nlZ64QdrWNDkeTkLzhLKnEw2c7du6FbgEDUQ+9MN?=
- =?us-ascii?Q?Nc7I7U8WMXO6hl43NsDv+qWGY5PjcGxGxjbY47v8LTj0HJBbfKvlKtWIKd7G?=
- =?us-ascii?Q?aLhgFvoezSc8QApfbg57XgkO0ICQMIDmnf64/oz6NAm8KJkqgJdDz6Rj/UkE?=
- =?us-ascii?Q?144gYcd3TiKBST9wsP4BdFMemcuJHubAj23jS2gnGJktitmesbFZk7xjirFX?=
- =?us-ascii?Q?4bHXECNBuGuoVuBMLnxVMyUkhISSjOASWbXDke9odt1d1wXyLuCBA6dnM4pY?=
- =?us-ascii?Q?FhWsqaCrK0UDPztV0TxhiKYFPLHo8FFt42PasSQD0cqE3ssoQ1/5ChAXghic?=
- =?us-ascii?Q?IajF8gRj5edYGjzUtG4xn4GeWakxU6p/z9KUdapXDO0AS7X+93JqSYAUg03D?=
- =?us-ascii?Q?Nhe1yrzx80ovDOgqhOJWKw3kgHzt+V/3+w/Spkazf4jP8u1O23G73KtvQ//U?=
- =?us-ascii?Q?K4dg0gTHzdkyhmNMxKADNm4Vyaj+xBCLbD67AFtr?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EDB018B46E;
+	Mon, 28 Oct 2024 10:11:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730110283; cv=none; b=RT+y4wWLZ6jJG/uvvscfbS9YVssTdJ4ycAeC8q/t9WJuaUDKh5jN8XWEKOJWhAKe/2B6dxQGYooDPbMhNSRLxxJhrOAt+HGavucSJOCnJCL4EhGMTA69n6VYHwkmbn+fKT3AN2O4XjTrdbmEpnUHgTeoV8hqiYQgpyE6I58Qe/M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730110283; c=relaxed/simple;
+	bh=nzaM905Zku2L1M7nrY8HwDpXuPpzA2I6DeNK/YQ9IGA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Fgp6WbVQZpb/LFbHVSOWTezFfqOLzUpAB4Yn29LFyE3MlEgotVdeZOBQ/JdmPu4siK7FR6jjd4Oq93XbBYnn+pwfip50Vf89NP3AhEv9TKteX2rVf+YN4rnNzwUd/LWS6u63b8+piTTLkBBXd61C5M3A02QVbNF8qJGBHqXuEKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF0C2C4CEC3;
+	Mon, 28 Oct 2024 10:11:18 +0000 (UTC)
+Message-ID: <74286a86-51b9-4742-bb0c-583d70b1b0a7@xs4all.nl>
+Date: Mon, 28 Oct 2024 11:11:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB8429.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: add0684b-c4ed-4015-a44b-08dcf7372ce7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Oct 2024 09:59:12.8066
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: MGFDDVP90qjkUbXiAQwy+HSls8oVDNu8FS+aZAztyeRX8sOiRrZhIuCN2GvphSKhZ0PSSj+1kQcjVvQ/m2EcoA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7536
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/4] media: raspberrypi: Add support for RP1-CFE
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Naushir Patuck
+ <naush@raspberrypi.com>, Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20241003-rp1-cfe-v6-0-d6762edd98a8@ideasonboard.com>
+ <20241003-rp1-cfe-v6-3-d6762edd98a8@ideasonboard.com>
+ <4d9e340e-2ae7-495b-8623-0d10398e1c3d@xs4all.nl>
+ <02f05b61-08e7-45f8-8d59-f79bc20d076f@ideasonboard.com>
+Content-Language: en-US, nl
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Autocrypt: addr=hverkuil@xs4all.nl; keydata=
+ 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
+In-Reply-To: <02f05b61-08e7-45f8-8d59-f79bc20d076f@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-
-
-> -----Original Message-----
-> From: Marco Felsch <m.felsch@pengutronix.de>
-> Sent: Monday, October 28, 2024 5:00 PM
-> To: Sherry Sun <sherry.sun@nxp.com>
-> Cc: POPESCU Catalin <catalin.popescu@leica-geosystems.com>; Amitkumar
-> Karwar <amitkumar.karwar@nxp.com>; Neeraj Sanjay Kale
-> <neeraj.sanjaykale@nxp.com>; marcel@holtmann.org;
-> luiz.dentz@gmail.com; robh@kernel.org; krzk+dt@kernel.org;
-> conor+dt@kernel.org; p.zabel@pengutronix.de; linux-
-> bluetooth@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; GEO-CHHER-bsp-development <bsp-
-> development.geo@leica-geosystems.com>; Krzysztof Kozlowski
-> <krzk@kernel.org>
-> Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support fo=
-r
-> supply and reset
->=20
+On 28/10/2024 10:21, Tomi Valkeinen wrote:
 > Hi,
->=20
-> On 24-10-28, Sherry Sun wrote:
-> >
-> > > From: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
-> > >
-> > > We use the NXP downstream driver mwifiex which doesn't have support
-> > > for regulator or PDn.
-> > >
-> > > However, regulator is already supported by the MMC core (vmmc-supply)=
-.
-> > >
-> > > For PDn, we use mmc pwrseq simple driver that has been patched to
-> > > add support for reset-control.
-> >
-> > Ok, thanks, the mmc change looks good for me, so there is no problem
-> > with the NXP SDIO wifi.
-> >
-> > But how do you plan to handle the NXP PCIe wifi? We also need to make
-> > sure the BT patch won't break the PCIe wifi function.
->=20
-> Can you please elaborate how this could break the PCIe use-case?
+> 
+> On 24/10/2024 11:20, Hans Verkuil wrote:
+>> Hi Tomi,
+>>
+>> I know this driver is already merged, but while checking for drivers that use
+>> q->max_num_buffers I stumbled on this cfe code:
+>>
+>> <snip>
+>>
+>>> +/*
+>>> + * vb2 ops
+>>> + */
+>>> +
+>>> +static int cfe_queue_setup(struct vb2_queue *vq, unsigned int *nbuffers,
+>>> +               unsigned int *nplanes, unsigned int sizes[],
+>>> +               struct device *alloc_devs[])
+>>> +{
+>>> +    struct cfe_node *node = vb2_get_drv_priv(vq);
+>>> +    struct cfe_device *cfe = node->cfe;
+>>> +    unsigned int size = is_image_node(node) ?
+>>> +                    node->vid_fmt.fmt.pix.sizeimage :
+>>> +                    node->meta_fmt.fmt.meta.buffersize;
+>>> +
+>>> +    cfe_dbg(cfe, "%s: [%s] type:%u\n", __func__, node_desc[node->id].name,
+>>> +        node->buffer_queue.type);
+>>> +
+>>> +    if (vq->max_num_buffers + *nbuffers < 3)
+>>> +        *nbuffers = 3 - vq->max_num_buffers;
+>>
+>> This makes no sense: max_num_buffers is 32, unless explicitly set when vb2_queue_init
+>> is called. So 32 + *nbuffers is never < 3.
+>>
+>> If the idea is that at least 3 buffers should be allocated by REQBUFS, then set
+>> q->min_reqbufs_allocation = 3; before calling vb2_queue_init and vb2 will handle this
+>> for you.
+>>
+>> Drivers shouldn't modify *nbuffers, except in very rare circumstances, especially
+>> since the code is almost always wrong.
+> 
+> Looking at this, the original code in the old BSP tree was, which somehow, along the long way, got turned into the above:
+> 
+> if (vq->num_buffers + *nbuffers < 3)
+>         *nbuffers = 3 - vq->num_buffers;
+> 
+> So... I think that is the same as "q->min_reqbufs_allocation = 3"?
+> 
+> The distinction between min_queued_buffers and min_reqbufs_allocation, or rather the need for the latter, still escapes me. If the HW/SW requires N buffers to be queued, why would we require
+> allocating more than N buffers?
 
-Similar to the SDIO wifi, if no corresponding reset control for the PDn pin=
- in PCIe wifi driver, the wifi part will be unexpectedly powered off when r=
-emoving the BT driver.
+min_queued_buffers is easiest to explain: that represents the requirements of the DMA
+engine, i.e. how many buffers much be queued before the DMA engine can be started.
+Typically it is 0, 1 or 2.
 
-Best Regards
-Sherry
+min_reqbufs_allocation is the minimum number of buffers that will be allocated when
+calling VIDIOC_REQBUFS in order for userspace to be able to stream without blocking
+or dropping frames.
+
+Typically this is 3 for video capture: one buffer is being DMAed, another is queued up
+and the third is being processed by userspace. But sometimes drivers have other
+requirements.
+
+The reason is that some applications will just call VIDIOC_REQBUFS with count=1 and
+expect it to be rounded up to whatever makes sense. See the VIDIOC_REQBUFS doc in
+https://hverkuil.home.xs4all.nl/spec/userspace-api/v4l/vidioc-reqbufs.html
+
+"It can be smaller than the number requested, even zero, when the driver runs out of
+ free memory. A larger number is also possible when the driver requires more buffers
+ to function correctly."
+
+How drivers implement this is a mess, and usually the code in the driver is wrong as
+well. In particular they often did not take VIDIOC_CREATE_BUFS into account, i.e.
+instead of 'if (vq->num_buffers + *nbuffers < 3)' they would do 'if (*nbuffers < 3)'.
+
+When we worked on the support for more than 32 buffers we added min_reqbufs_allocation
+to let the core take care of this. In addition, this only applies to VIDIOC_REQBUFS,
+if you want full control over the number of allocated buffers, then use VIDIOC_CREATE_BUFS,
+with this ioctl the number of buffers will never be more than requested, although it
+may be less if you run out of memory.
+
+I really should go through all existing drivers and fix them up if they try to
+handle this in the queue_setup function, I suspect a lot of them are quite messy.
+
+One thing that is missing in the V4L2 uAPI is a way to report the minimum number of
+buffers that need to be allocated, i.e. min_queued_buffers + 1. Since if you want
+to use CREATE_BUFS you need that information so you know that you have to create
+at least that number of buffers. We have the V4L2_CID_MIN_BUFFERS_FOR_CAPTURE control,
+but it is effectively codec specific. This probably should be clarified.
+
+I wonder if it wouldn't be better to add a min_num_buffers field to
+struct v4l2_create_buffers and set it to min_queued_buffers + 1.
+
+Regards,
+
+	Hans
+
+> 
+>  Tomi
+> 
+
 
