@@ -1,150 +1,158 @@
-Return-Path: <devicetree+bounces-116246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2669C9B2296
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 03:10:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34B139B22A8
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 03:23:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2B4D1F21FCE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 02:10:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8963F1F21C03
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 02:23:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D510F15C15E;
-	Mon, 28 Oct 2024 02:08:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC98A7E765;
+	Mon, 28 Oct 2024 02:23:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O/ROTBZN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hCwlZrya"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5A701EA73;
-	Mon, 28 Oct 2024 02:07:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3420BA2E;
+	Mon, 28 Oct 2024 02:22:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730081281; cv=none; b=YfTLRVT/w5x7IgbEP39PNSELVpK0Sujh5SZRHqed7En41Ua5PCZR1CTaW0NMbL3mVEDmTDWB2RXSZjB/IxJUdU9s3xuIAEP/A9BF+CARHMOGOzEfYI5ozyBRT+V/s20pwei2GrFHopUFzJQj+EuUHqJjFYXQ2khNKTiZL7l+A0M=
+	t=1730082180; cv=none; b=Ci0Pm9fRvClqa6/Tyu1QSQB7GZlAXhUEo/8SWh7u6TefUkgJBHCM43IDOPtQ+6FJAxl2KxiRrQak+LFVMxYGL3KNGONaOoTOoKcovlAGQpZXmf5DZvXNK7smZd56UwQVKUixIOf3lL4bXj81fZEfIWiz6Dz1RbuMIzxKr9W+cRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730081281; c=relaxed/simple;
-	bh=DDzcKEwVvpSnUSWxmUWS620xmgFnXRbRZhpaQkLfqUY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VPQ6Zsbj/SX8G0zERIgtlgaVX5l7vTO6Mmqbi5AkK7SpG81b3xfMCgtEQTJ9qr6/D7R1FVieHOVoVsFxhNKOyOer7CdznbscDcbAB0zSaPSxGSXdn0OckI01wlsXxuRrQ0zrb6Lmj1rJt2OAOdybTogEH8yQS071NIPxMkrWf+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O/ROTBZN; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-71e5a62031aso2704219b3a.1;
-        Sun, 27 Oct 2024 19:07:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730081279; x=1730686079; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=tW061ObRfZIWi7DR9Xc1M5Q9grYUYarkg71hQPlzY9w=;
-        b=O/ROTBZNo/l+431Gqd8dmN+1926M0B7KLUcwxZBNTK18dtSSkE6vlhKtxA3XUYVmqo
-         thPOncZW6fizesFzkn5036r0JVta3MH/reoVYX1TM4TDn5AHkizDjP0WTV5KT/aUaQrY
-         jcLfQ73aIUqg+av3Ek7GgI1B/cbBCPHMCpwp25odTywxTprrDcB54g6U7TNEgr1i8t+b
-         dfkuDBeUW51ggx/tdxBTD0Eg+tJxLKJMzaG9vbIB1B9bkX6NdLuCZU6ZL8RcHcC0NOTh
-         BCEXDUFtuJm1XRZU93hToq8ArdkyV0F2FueMOHktcxtLfAd7Gs58mHlFSpsFjT7FDvMQ
-         H7Sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730081279; x=1730686079;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tW061ObRfZIWi7DR9Xc1M5Q9grYUYarkg71hQPlzY9w=;
-        b=gaWoSthcf6MrNFPO7tI4syotrmtGziAW5q6E1Cku/i6mQ13GSR7fG2qot8Mra1fYaK
-         d4ttwkM8MrGN0yvP6UZhltD+kspJOTViC3ODR4PHmAL0qvS3ngCTffD2nHQ+PtiVLwj9
-         3Irb4flqUebQWKmpX3tlO0rh++k/bnKcSW4IGpPEkKqxwo79KVYJ56NLCNV0yztllKcY
-         jHNd2vDzVdAkPZZWwIb7QaKnXLh+PZethj9fd4gzxbucoEQt5AnzGs6b6adV0V2Dp1qE
-         3R5JpVL+43x6uPyz2Hhx5D+Ti1U41tUlXdLdJXTSaiVtu29fpGlHYvGpi7RBmJ6eVrw3
-         sueQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUaTehDDNYx9sFl2nF5ko6uyJ/MwbLvq9/+hotsXwWX/5GFvPO4v99UVstHKNv1DTIBeN9+rFEmyVwO@vger.kernel.org, AJvYcCVy2RpUxwwDbtE34Zy4BVxDWAMd+VFcFZeWGlFIvP6cf4geMhGHNYlblG/62yKUAlCiOx1xwt4owvnAHeM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHw8qQzIYd5Gi57+ZyLZdZ/Pdtdy4T+VrwaBWlsX+SYKQUiDbi
-	cwHfxobWtaGBK80VlEeyllYL4kSHAFuFycKGdkhLE51VygYcMDLa
-X-Google-Smtp-Source: AGHT+IGaUq80uvaE9YNO3O0HDRZJUuV8KshQyYfqu4ZpY5sgRdAZupK8syvvTreJsG9IWzUBeR8pPQ==
-X-Received: by 2002:a05:6a00:3d55:b0:71e:3b8f:92e with SMTP id d2e1a72fcca58-72062f4bdc7mr10306306b3a.3.1730081279090;
-        Sun, 27 Oct 2024 19:07:59 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:374e:7a0d:309f:9643])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720579356f1sm4633227b3a.79.2024.10.27.19.07.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Oct 2024 19:07:58 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: broonie@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shengjiu.wang@nxp.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2] ASoC: dt-bindings: fsl_spdif: Document imx6sl/sx compatible fallback
-Date: Sun, 27 Oct 2024 23:07:49 -0300
-Message-Id: <20241028020749.36972-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1730082180; c=relaxed/simple;
+	bh=4Cb0Uz9yDAx0qUk8WJJgsrAPvs/AGZQr34EqcVw7jRo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=BmhOPIVDQSWu/gRbKV91AbhXGYrjsNaU+E1GEY1+Y2FZsNqLY6JIllCLyd5OXlsosukAwt/DdA5XmKaBkKZqWtoc2KNbG3yq5G1oStMBj8TRXwsyI2InrkqhGrkzz+Hu2nSJO4ExorksOhM13Jdowf9AAFfRmv7pjo1LdvsLKYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hCwlZrya; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49RMrq8G009480;
+	Mon, 28 Oct 2024 02:22:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	W6dHfwb8MHs9adbndSIVkXvifgbrBFRDFCo/tHA7NSc=; b=hCwlZryanqs/GiZy
+	ryaW2kAzqSVDDbgH+b+32PUf13XMqgG30jx/qptb4TwFtCWKp7FXYTsGX3kqHWh2
+	7TrbWl8k7klP9mQaG4ljdfaoyFHkbAIpyrDo8lSjOxweebt68c7MnQUo1Gb+vDms
+	b7v4fHvPF7gVs3neGCXbzxRrl3Pg0gS0zJauOB+rOWnv++CfIJxrd9rCjEY4r657
+	IGUg5C+zjOukp+QGyHvCbNRF8mibRePk03zu2O4qiflefDqAKvyFk/ObrSMVIqro
+	3NsQbU5nWnNZHXH7kTzuayvxYDUrtDgL/xz6/Zob3CEGrwHoOLxXsm2LcrBdTYGD
+	R7teCw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gp4duk5x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 02:22:54 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49S2Mrqv020809
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 02:22:53 GMT
+Received: from [10.233.21.53] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 27 Oct
+ 2024 19:22:49 -0700
+Message-ID: <b914945e-4de2-436e-afdf-3c3ce07f4073@quicinc.com>
+Date: Mon, 28 Oct 2024 10:22:47 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] soc: qcom: llcc: Add LLCC configuration for the
+ QCS8300 platform
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Conor Dooley <conor@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <quic_tengfan@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_tingweiz@quicinc.com>,
+        <quic_aiquny@quicinc.com>
+References: <20241010-qcs8300_llcc-v2-0-d4123a241db2@quicinc.com>
+ <20241010-qcs8300_llcc-v2-2-d4123a241db2@quicinc.com>
+ <v73v4qniygxvqgdjcuydgpir2fgxmnltqaxcexoktzesnqfxod@55k43u2gmqqt>
+Content-Language: en-US
+From: Jingyi Wang <quic_jingyw@quicinc.com>
+In-Reply-To: <v73v4qniygxvqgdjcuydgpir2fgxmnltqaxcexoktzesnqfxod@55k43u2gmqqt>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: JoLX0gpvhuwoy2ClGUIsWANAOfZDDYXf
+X-Proofpoint-GUID: JoLX0gpvhuwoy2ClGUIsWANAOfZDDYXf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 mlxlogscore=959 clxscore=1015 spamscore=0
+ lowpriorityscore=0 malwarescore=0 bulkscore=0 adultscore=0 phishscore=0
+ mlxscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410280019
 
-From: Fabio Estevam <festevam@denx.de>
 
-i.MX6SL and i.MX6SX SPDIF blocks are compatible with i.MX35.
 
-Document 'fsl,imx35-spdif' as a fallback compatible for these two
-chip variants.
+On 10/20/2024 12:29 AM, Dmitry Baryshkov wrote:
+> On Thu, Oct 10, 2024 at 06:08:47PM +0800, Jingyi Wang wrote:
+>> Add LLCC configuration for the QCS8300 platform. There is an errata on
+>> LB_CNT information on QCS8300 platform, override the value to get the
+>> right number of banks.
+>>
+>> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+>> ---
+>>  drivers/soc/qcom/llcc-qcom.c | 72 ++++++++++++++++++++++++++++++++++++++++++++
+>>  1 file changed, 72 insertions(+)
+>>
+>> @@ -3391,6 +3456,12 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>>  	num_banks >>= LLCC_LB_CNT_SHIFT;
+>>  	drv_data->num_banks = num_banks;
+>>  
+>> +	/* LB_CNT information is wrong on QCS8300, override the value */
+>> +	if (of_device_is_compatible(dev->of_node, "qcom,qcs8300-llcc")) {
+>> +		num_banks = 4;
+>> +		drv_data->num_banks = 4;
+>> +	}
+> 
+> Nit: I think it might be better to skip reading LLCC_COMMON_STATUS0
+> register completely and just set num_banks instead. See [1]
+> 
+> [1] https://lore.kernel.org/linux-arm-msm/20241019-sar2130p-llcc-v1-2-4e09063d04f2@linaro.org/
+> 
 
-This fixes the following dt-schema warnings:
+Just went through the series and the follow up sereies, I think it is a good idea to
+add the property in the config. Thanks!
 
-compatible: ['fsl,imx6sl-spdif', 'fsl,imx35-spdif'] is too long
-compatible: ['fsl,imx6sx-spdif', 'fsl,imx35-spdif'] is too long
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v1:
-- Keep the entries as one enum. (Rob)
-
- .../devicetree/bindings/sound/fsl,spdif.yaml  | 27 ++++++++++++-------
- 1 file changed, 17 insertions(+), 10 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-index 204f361cea27..5654e9f61aba 100644
---- a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-+++ b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-@@ -16,16 +16,23 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - fsl,imx35-spdif
--      - fsl,vf610-spdif
--      - fsl,imx6sx-spdif
--      - fsl,imx8qm-spdif
--      - fsl,imx8qxp-spdif
--      - fsl,imx8mq-spdif
--      - fsl,imx8mm-spdif
--      - fsl,imx8mn-spdif
--      - fsl,imx8ulp-spdif
-+    oneOf:
-+      - items:
-+          - enum:
-+              - fsl,imx35-spdif
-+              - fsl,imx6sx-spdif
-+              - fsl,imx8mm-spdif
-+              - fsl,imx8mn-spdif
-+              - fsl,imx8mq-spdif
-+              - fsl,imx8qm-spdif
-+              - fsl,imx8qxp-spdif
-+              - fsl,imx8ulp-spdif
-+              - fsl,vf610-spdif
-+      - items:
-+          - enum:
-+              - fsl,imx6sl-spdif
-+              - fsl,imx6sx-spdif
-+          - const: fsl,imx35-spdif
- 
-   reg:
-     maxItems: 1
--- 
-2.34.1
+>> +
+>>  	drv_data->regmaps = devm_kcalloc(dev, num_banks, sizeof(*drv_data->regmaps), GFP_KERNEL);
+>>  	if (!drv_data->regmaps) {
+>>  		ret = -ENOMEM;
+>> @@ -3484,6 +3555,7 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>>  }
+>>  
+>>  static const struct of_device_id qcom_llcc_of_match[] = {
+>> +	{ .compatible = "qcom,qcs8300-llcc", .data = &qcs8300_cfgs},
+>>  	{ .compatible = "qcom,qdu1000-llcc", .data = &qdu1000_cfgs},
+>>  	{ .compatible = "qcom,sa8775p-llcc", .data = &sa8775p_cfgs },
+>>  	{ .compatible = "qcom,sc7180-llcc", .data = &sc7180_cfgs },
+>>
+>> -- 
+>> 2.25.1
+>>
+> 
+Thanks，
+Jingyi
 
 
