@@ -1,130 +1,130 @@
-Return-Path: <devicetree+bounces-116681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FE949B39CF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 19:59:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAFBB9B38F9
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 19:19:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF65D1C21FF8
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 18:59:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 276901C2231D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 18:19:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394911DF990;
-	Mon, 28 Oct 2024 18:59:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1EC61DF254;
+	Mon, 28 Oct 2024 18:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ptkJApp2"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nDF74+/0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD28D155A52;
-	Mon, 28 Oct 2024 18:58:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3558B1CF2A3;
+	Mon, 28 Oct 2024 18:19:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730141941; cv=none; b=YlDll3Nbs2vW0weDbf+1FK4aAhjYIPLbTxCq+aiY9zpZjnwFllFaLQX6LmJrTTggGqs8LITG4Mg7D1haBuYJaLm2sQsK9YX4jGUkGcHo25v1CtOaecNYEi8TcRAGP5A8XuGln7Yto66Af4waYRyLZWPEhR4K8S490HHWst0AlvM=
+	t=1730139595; cv=none; b=lxIewszRX7VaBdQixqD5sXlzJWR8rHy7xawnmJBG9J2Es9UkzqvhEcHB3B3za+bhGQxzyxymv6gtunleX6b5TCiaUPLHfXHu6G6wHme+aWrAXbAKZb57ag5uLkWx2tRbHygdmaGAZ6lfBqPNVdIaeyk8XlQsbj2X62fVGmegsTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730141941; c=relaxed/simple;
-	bh=IHbyLhkCtNTuR+x6GPSqHsMn/QWFSVYk2YCENClOhJk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IPOdjZRudkVOTZ10cu/w72qRqurkdsi7HoxPmMkxYrdVaSQfeKExqjIF3u7yyRLt14zvrphImjo8C1k7cLLZmfGdbkLd/ZSoE8ovViJCFN+UhdvUXdv9hfLxB66t41tTzzjQwlyaVjJBNMzqOYqAlbTLqed0n2qkwOdwhSZPVRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ptkJApp2; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 4E6C3890F6;
-	Mon, 28 Oct 2024 19:58:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1730141930;
-	bh=NlgNP6cg/A4M6No0PkF2AHlBLOKMxjV9Z0JaeWFDKHQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ptkJApp2qXE3ryESPPZcb0dcF0YKALRxzhGobEhMuXKqJPESuNKWfK4bmGhthDfv3
-	 KwoeGq+I+FvrbmQ7WtUZtjuKibqM+Fx2AQn5aNd+p3ojbqoRjHX9RPOQD/9jLxEUqN
-	 YtGWKS3RQRsr5FhFadHwRuZRhYyWDToo70ONSCpds7ZtSHe4qfNNDmpEjBQ+aSNd7v
-	 hK6cI9Wz2mgQpJ861GsM40UiqN+tXGnrLVFwmj2I2aPKdvMsAdT7RCTVma2GMUpn4v
-	 Qb9XlaNgYX3OCHWDnQ9HcdqFcc36yrrBnJSuS67rHZlz7KioU5kVfQP8syWpATXNW1
-	 AZ4b+dBUedr4A==
-Message-ID: <4d7d6a7d-cbe8-4cbf-9fb1-2cdec0f11ce2@denx.de>
-Date: Mon, 28 Oct 2024 19:18:41 +0100
+	s=arc-20240116; t=1730139595; c=relaxed/simple;
+	bh=qqgKXSXOsxtg94W88L+CbsZDdVta0JNoA9jWPD/KOSE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=t1A37F+qcUowaDhnZpDdQTgx9y65Ny/VPXSZLEhtvdOtPp7su241Ypa2eVIOkOSLWokEnH6KltAARMDifDmn7XfDWrAYuphvaSmmY6LSwEhPuRcwkR8hFEodtPf6cfss9jqBRuy3wAVhlmCz8NSlqc4JNZPJ1kJ/+bLGnWtO1zE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nDF74+/0; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E565B1C0004;
+	Mon, 28 Oct 2024 18:19:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1730139591;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=b/kO4kEXCHHF3kJ5Bu3ijehycRJX0SWC+3a8OLL3WQ8=;
+	b=nDF74+/0gi1F49A5sbYDgWy8Q/KuHjQwDnQsNkE7mBITemNslObdEXWgXlD603+Umh48Hs
+	glP6DmvnjHLdFFfyPigYgyFHxGMgE9kLTFW2i8oqrqEXae+CE6kLfsNOXECLKzWnHJwfrM
+	92hl2sMAfXuzi8qH9foB+qhB1RGT8MDTu0WdjcErJKWbFwz6zDqLTpIpZxfvUyNsn/2BlG
+	qJNBBqbNfr1DqiYuu+biLD218A4EsBrOmJEVl5nhFhPLRKZgwlu9dhXVUeQ3y3iqSHW7IU
+	6W1OSHfOi836/w0GQ2M2RUKLCWk5K2slZqPiV7aJ9e+WV6AD92Mby8dq4TvL3g==
+Date: Mon, 28 Oct 2024 19:19:48 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Marek Vasut <marex@denx.de>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+Message-ID: <20241028191948.5fd1bd6d@bootlin.com>
+In-Reply-To: <c9c5064e-e780-4bfe-b85d-7930df7a5443@denx.de>
+References: <20241024095539.1637280-1-herve.codina@bootlin.com>
+	<20241024095539.1637280-3-herve.codina@bootlin.com>
+	<78a09625-6bad-4fda-8ee5-92b8dd0de381@denx.de>
+	<20241028090220.1fd803ff@bootlin.com>
+	<16edb769-a608-4b6a-9391-a63a69df8c8d@denx.de>
+	<20241028145259.5d520445@bootlin.com>
+	<c9c5064e-e780-4bfe-b85d-7930df7a5443@denx.de>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset gpio
- to mdio node
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
- <niklas.soderlund+renesas@ragnatech.se>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240704152610.1345709-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdUZAVAkPVus2T_O3sWT7f1PciRYjxm6ecLy0QUyh50OEw@mail.gmail.com>
- <d1b36858-da21-4e2a-bc54-175524a7d3b4@denx.de>
- <CAMuHMdXRhUr1My-w0+hoAhQKgOq9iwecjow4iZTh82ED5DEfdA@mail.gmail.com>
- <50b37c36-643c-4307-9d4e-ad49b306ba8a@denx.de>
- <20241015144810.GD2838422@ragnatech.se>
- <825e3b22-340c-4618-8d80-5d1b004fc0e4@denx.de>
- <CAMuHMdV9XoJHHUM42YFwackdM+oRgP4k-SwZOTwqg0RJGETViw@mail.gmail.com>
- <d6b35a1b-3f42-4071-99c1-dc87999c5cce@denx.de>
- <CAMuHMdXW332YZahLw=vzfB6fZwc_9jL8uY-Uxj=Qyfov5vYQFw@mail.gmail.com>
- <2f9df6fa-2474-4f35-af29-a1c280d5fe6f@denx.de>
- <CAMuHMdUH32upHwwY7dXqk085LDWzkOz9cBv83FezVUbi27Ygpw@mail.gmail.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <CAMuHMdUH32upHwwY7dXqk085LDWzkOz9cBv83FezVUbi27Ygpw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 10/28/24 11:13 AM, Geert Uytterhoeven wrote:
-> Hi Marek,
+On Mon, 28 Oct 2024 15:47:25 +0100
+Marek Vasut <marex@denx.de> wrote:
 
-Hello Geert,
-
->>>>> So, what would you suggest when the PHY nodes would not have compatible
->>>>> strings?
->>>> I would suggest keep the PHY compatible strings, because that is the
->>>> most accurate method to describe the hardware and fulfill the PHY bring
->>>> up requirements. If the PHY changes on this hardware in some future
->>>
->>> That issue is moot for KSZ9031.
->>
->> If the PHY won't change, then we can keep the compatible strings ?
+> On 10/28/24 2:52 PM, Herve Codina wrote:
+> > Hi Marek,  
 > 
-> Sorry for being unclear. I should have written "the PHY bring-up
-> requirements are moot for KSZ9031".
-
-Perhaps, (*) but odd erratas do show up every once in a while, so unless 
-you can surely say no such errata will show up for the KSZ9031, can you 
-really dismiss the bring up requirements ?
-
->>>> revision, we can revisit this discussion ? Maybe bootloader-applied DTOs
->>>> could work then ?
->>>
->>> So, what would you suggest when the PHY nodes would not have compatible
->>> strings?
->> I hope I already answered that question before.
+> Hi,
 > 
-> Sorry, I may have missed that?
-> 
-> I really prefer not having the PHY compatible strings, as DT should
-> describe only what cannot be auto-detected.
-See paragraph above (*). My take on this is the exact opposite, better 
-describe the PHY in DT fully, including compatible strings, so that if 
-the PHY driver needs to do some sort of bring up tweak/fix/errata 
-workaround/... , it can do so by matching on the compatible string 
-without trying to bring the PHY up in some generic and potentially 
-problematic way.
+> >>> On Sat, 26 Oct 2024 00:53:51 +0200
+> >>> Marek Vasut <marex@denx.de> wrote:
+> >>>      
+> >>>> On 10/24/24 11:55 AM, Herve Codina wrote:  
+> >>>>> In some cases observed during ESD tests, the TI SN65DSI83 cannot recover
+> >>>>> from errors by itself. A full restart of the bridge is needed in those
+> >>>>> cases to have the bridge output LVDS signals again.  
+> >>>>
+> >>>> I have seen the bridge being flaky sometimes, do you have any more
+> >>>> details of what is going on when this irrecoverable error occurs ?  
+> >>>
+> >>> The panel attached to the bridge goes and stays black. That's the behavior.
+> >>> A full reset brings the panel back displaying frames.  
+> >> Is there some noticeable change in 0xe0/0xe1/0xe5 registers, esp. 0xe5,
+> >> do they indicate the error occurred somehow ?  
+> > 
+> > 0xe5 register can signal any DSI errors (depending on when the ESD affects
+> > the DSI bus) even PLL unlock bit was observed set but we didn't see any
+> > relationship between the bits set in 0xe5 register and the recoverable or
+> > unrecoverable behavior.
+> > 
+> > Also, in some cases, reading the register was not even possible (i2c
+> > transaction nacked).  
+> Oh, wow, I haven't seen that one before. But this is really useful 
+> information, can you please add it into the commit message for V2 ?
 
-The MDIO bus is not discoverable the same way as PCIe or USB is, so I 
-don't think the "DT should describe only what cannot be detected" is 
-really applicable to MDIO bus the same way it applies to PCIe or USB.
+Yes, I will add this information in v2.
+
+Best regards,
+Hervé
+
+
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
