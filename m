@@ -1,192 +1,117 @@
-Return-Path: <devicetree+bounces-119907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C66ED9C06EE
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 14:09:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 843EA9C083A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 14:56:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57E061F235A6
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 13:09:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FC0CB20FF7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 13:56:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100D0212164;
-	Thu,  7 Nov 2024 13:06:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="T7/4SHIN";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="pRwh6o2k"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A74621219D;
+	Thu,  7 Nov 2024 13:56:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF2F20F5B1;
-	Thu,  7 Nov 2024 13:06:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6552F20F5AA;
+	Thu,  7 Nov 2024 13:56:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730984801; cv=none; b=jRH3tYvHLRrX5QBgeqwGsXrvg0f+6yjm4xgVUDJghjKdE2rGK8UTTZap+YxU9B4PRQFz7kp6HhKwN7sQUcIMeqQUKCmzzvE1515pAs6tahMAST6gxzze85Af9SeSOVbLzyu0GLP2PR8X3pCRUbauy/eO1cSmhj6Tf+F6I7/0RR4=
+	t=1730987811; cv=none; b=JrC8PiAaxFINzymortJjSjk9uCVqie7c44YFo0hEiv1zUghJepPTqlxdbpZfx666Zaff/rMFHD+ozTAzQR2LIfJiyqiZ5VXOGdC214XU3dBrpWZv1Y0yUqFkV320d1xrQYxNqeJ5hFpo0MjT7rNi+l6dXXmUjmo1aFv4Z9W5TUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730984801; c=relaxed/simple;
-	bh=Jx1nSyDIfhBUi9FQg/o/hfd5mS6yoA8D+2mJPDtz2qM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CCcDT9e3MuNzBegh+ocSBI2wvXK6arF1o8D+UCLMY1D91P1f0N0UKqPDFRpqx13tzvKJN+S1QFlVDKHWz2djp72bTcdJArrFndlYqdNbqRpXBiV0kDTMyC22iEooDhG7+eK5LXfuSTdEBiDYeLD5HaxsHMLMRN4PgZ2LzhoDnzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=T7/4SHIN; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=pRwh6o2k reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1730984797; x=1762520797;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Br6j9tCD7gey4qn/vnRgBNealpC4+9i3aXfalCeYdjY=;
-  b=T7/4SHINqPDUGpKL4DJc29LTCSL5KlcXvKurvUQuNzVzcFFxiuo0aN/v
-   MqVHvE/6xWZ1KWKNjebLe+Ncn9oWsNwQxg+/0xuA10hWARj0kWk/LAcAu
-   XoPzOG/1ASgs0GsrmboLGE8NDOZDmvLfjIk2AyH5jAxvyVGExaJue0Q6v
-   FrFxHvDJYTR5hatMIGM7Pnx2UiaBJLoBDW2nuT72w9gRVQJJ5rhEILsNP
-   7IexXnsO3OFmJR9Sv3mB9SqGW4J8s721Jm2cUw2zoAv9HqYPlX5nMdsuO
-   cg4bBNRr6FUW9CKBgLd7CLV6K+GyUi2/pIAj3+4XNyhEh9QFn78Ulzr6Q
-   Q==;
-X-CSE-ConnectionGUID: +ng6v8WES5qSaYqsyOTeLw==
-X-CSE-MsgGUID: BSiAM4hKRbeF+0LucP8ebQ==
-X-IronPort-AV: E=Sophos;i="6.12,266,1728943200"; 
-   d="scan'208";a="39912117"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 07 Nov 2024 14:06:34 +0100
-X-CheckPoint: {672CBB5A-B-F5DC7025-F79421CB}
-X-MAIL-CPID: A4A1CF9EA10526AAB45BE20D0F4302DB_0
-X-Control-Analysis: str=0001.0A682F25.672CBB5A.007A,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 98D5B16486F;
-	Thu,  7 Nov 2024 14:06:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1730984789;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Br6j9tCD7gey4qn/vnRgBNealpC4+9i3aXfalCeYdjY=;
-	b=pRwh6o2kI6cs3FUXrpAfae/cn1kML4uB1wFP/V33+GJenfaOoEtobo7UGticUQfXOXt6Wh
-	9ZJE7ZJzg+Jc/Z/4B/9eHs+rFsR9PnY6sj2d4A4NBiMF4ce7wK/ceN9fGPWjC/0KOChEVd
-	i45m2u/SkVU4ViBeNvRtNC68sIVG9Xfu8ATyVFdCGLZImpqcrQohirSWRgysbrH8ecbA8f
-	B+Xzsp5K0/qahF3rA2wqxCg2+DkPpnBLKo/86MyfeHWSvpVdodB1tVw2WZIw4Qe3zPPzy3
-	/ZeEHruT+KsdIqmm5AaYo2aFBapIBwCZLNB5lX7X1+RH414Msi5pAhyqYVBgCA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, Pengfei Li <pengfei.li_1@nxp.com>, linux-arm-kernel@lists.infradead.org
-Cc: joao.goncalves@toradex.com, frieder.schrempf@kontron.de, marex@denx.de, hvilleneuve@dimonoff.com, peng.fan@nxp.com, m.othacehe@gmail.com, mwalle@kernel.org, Max.Merchel@ew.tq-group.com, hiago.franco@toradex.com, tharvey@gateworks.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, ping.bai@nxp.com, ye.li@nxp.com, aisheng.dong@nxp.com, frank.li@nxp.com, Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: Re: [PATCH 2/3] arm64: dts: freescale: Add i.MX91 dtsi support
-Date: Thu, 07 Nov 2024 14:06:27 +0100
-Message-ID: <1907807.tdWV9SEqCh@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <2350046.ElGaqSPkdT@steina-w>
-References: <20241108022703.1877171-1-pengfei.li_1@nxp.com> <20241108022703.1877171-3-pengfei.li_1@nxp.com> <2350046.ElGaqSPkdT@steina-w>
+	s=arc-20240116; t=1730987811; c=relaxed/simple;
+	bh=7v/jldVNPehBirnoJkZk0fUgltTH/iaWGYa4s4Cqmj0=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Mk4McP2LNQeX9YVta3Ttp+buwVB1UlNMuilIvD4C3UQpSrs4+UxBM16JHSTW05EmQh0yycMNqFUQUAwF6jOCkvb4gewyblesLvCJwd7NUHpeHVKbjeDSmEV+9DrGs+bNhAwsRKuSaxLeAIH0yN1kwAjhMCLLWh4nc3yB+5P6bAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.31])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Xkk952JS5z6K99D;
+	Thu,  7 Nov 2024 21:55:05 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id A05BF140856;
+	Thu,  7 Nov 2024 21:56:45 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 7 Nov
+ 2024 14:56:44 +0100
+Date: Mon, 28 Oct 2024 17:05:21 +0000
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Robert Budai <robert.budai@analog.com>
+CC: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+	<Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, "Ramona
+ Gradinariu" <ramona.gradinariu@analog.com>, Antoniu Miclaus
+	<antoniu.miclaus@analog.com>, Jonathan Cameron <jic23@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Jagath Jog J
+	<jagathjog1996@gmail.com>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>, <robi_budai@yahoo.com>
+Subject: Re: [PATCH 0/5] Add support for ADIS16550 and ADIS16550W
+Message-ID: <20241028170521.0000325c@Huawei.com>
+In-Reply-To: <20241028123550.9128-1-robert.budai@analog.com>
+References: <20241028123550.9128-1-robert.budai@analog.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+X-ClientProxiedBy: lhrpeml100001.china.huawei.com (7.191.160.183) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-Am Donnerstag, 7. November 2024, 13:49:50 CET schrieb Alexander Stein:
-> > diff --git a/arch/arm64/boot/dts/freescale/imx91.dtsi b/arch/arm64/boot=
-/dts/freescale/imx91.dtsi
-> > new file mode 100644
-> > index 000000000000..a9f4c1fe61cc
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/freescale/imx91.dtsi
-> > @@ -0,0 +1,66 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright 2024 NXP
-> > + */
-> > +
-> > +#include "imx91-pinfunc.h"
-> > +#include "imx93.dtsi"
-> > +
-> > +&{/thermal-zones/cpu-thermal/cooling-maps/map0} {
-> > +	cooling-device =3D
-> > +		<&A55_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> > +};
-> > +
-> > +&clk {
-> > +	compatible =3D "fsl,imx91-ccm";
-> > +};
-> > +
-> > +&eqos {
-> > +	clocks =3D <&clk IMX91_CLK_ENET1_QOS_TSN_GATE>,
-> > +			<&clk IMX91_CLK_ENET1_QOS_TSN_GATE>,
-> > +			<&clk IMX91_CLK_ENET_TIMER>,
-> > +			<&clk IMX91_CLK_ENET1_QOS_TSN>,
-> > +			<&clk IMX91_CLK_ENET1_QOS_TSN_GATE>;
-> > +	assigned-clocks =3D <&clk IMX91_CLK_ENET_TIMER>,
-> > +				<&clk IMX91_CLK_ENET1_QOS_TSN>;
-> > +	assigned-clock-parents =3D <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>,
-> > +					<&clk IMX93_CLK_SYS_PLL_PFD0_DIV2>;
->=20
-> Is it just me or is the alignment of new lines not matching?
->=20
->=20
-> > +};
-> > +
-> > +&fec {
-> > +	clocks =3D <&clk IMX91_CLK_ENET2_REGULAR_GATE>,
-> > +			<&clk IMX91_CLK_ENET2_REGULAR_GATE>,
-> > +			<&clk IMX91_CLK_ENET_TIMER>,
-> > +			<&clk IMX91_CLK_ENET2_REGULAR>,
-> > +			<&clk IMX93_CLK_DUMMY>;
-> > +	assigned-clocks =3D <&clk IMX91_CLK_ENET_TIMER>,
-> > +				<&clk IMX91_CLK_ENET2_REGULAR>;
-> > +	assigned-clock-parents =3D <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>,
-> > +					<&clk IMX93_CLK_SYS_PLL_PFD0_DIV2>;
->=20
-> Here as well: Is it just me or is the alignment of new lines not matching?
->=20
-> > +	assigned-clock-rates =3D <100000000>, <250000000>;
-> > +};
-> > +
-> > +&i3c1 {
-> > +	clocks =3D <&clk IMX93_CLK_BUS_AON>,
-> > +			<&clk IMX93_CLK_I3C1_GATE>,
-> > +			<&clk IMX93_CLK_DUMMY>;
-> > +};
-> > +
-> > +&i3c2 {
-> > +	clocks =3D <&clk IMX93_CLK_BUS_WAKEUP>,
-> > +			<&clk IMX93_CLK_I3C2_GATE>,
-> > +			<&clk IMX93_CLK_DUMMY>;
-> > +};
-> > +
-> > +&tmu {
-> > +	status =3D "disabled";
->=20
-> Why does the TMU needs to be disabled instead of deleted?
->=20
-> > +};
-> > +
-> > +/* i.MX91 only has one A core */
-> > +/delete-node/ &A55_1;
-> > +
-> > +/* i.MX91 not has cm33 */
-> > +/delete-node/ &cm33;
-> > +
-> > +/* i.MX91 not has power-domain@44461800 */
-> > +/delete-node/ &mlmix;
-> >=20
->=20
-> Shouldn't the following node also be removed?
-> * mipi_csi
-> * dsi
-> * lvds_bridge
-> * lcdif_to_dsi
-> * lcdif_to_ldb
+On Mon, 28 Oct 2024 14:35:42 +0200
+Robert Budai <robert.budai@analog.com> wrote:
 
-Add mu1 and mu2 to that list.
+> The ADIS16550 is a complete inertial system that includes a triaxis gyros=
+cope
+> and a triaxis accelerometer. Each inertial sensor in the ADIS16550 combin=
+es
+> industry leading MEMS only technology with signal conditioning that optim=
+izes
+> dynamic performance. The factory calibration characterizes each sensor fo=
+r
+> sensitivity, bias, and alignment. As a result, each sensor has its own dy=
+namic
+> compensation formulas that provide accurate sensor measurements.
 
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
 
+Dropping the more marketing parts of this preferred.  Second
+sentence doesn't add much that we care about.
+The rest is fine.
+
+>=20
+> Nuno S=E1 (3):
+>   iio: imu: adis: Add custom ops struct
+>   iio: imu: adis: Add DIAG_STAT register size
+>   iio: imu: adis16550: add adis16550 support
+>=20
+> Ramona Gradinariu (2):
+>   dt-bindings: iio: Add adis16550 bindings
+>   docs: iio: add documentation for adis16550 driver
+>=20
+>  .../bindings/iio/imu/adi,adis16550.yaml       |   95 ++
+>  Documentation/iio/adis16550.rst               |  389 ++++++
+>  Documentation/iio/index.rst                   |    1 +
+>  MAINTAINERS                                   |   10 +
+>  drivers/iio/imu/Kconfig                       |   13 +
+>  drivers/iio/imu/Makefile                      |    1 +
+>  drivers/iio/imu/adis.c                        |   33 +-
+>  drivers/iio/imu/adis16550.c                   | 1228 +++++++++++++++++
+>  include/linux/iio/imu/adis.h                  |   33 +-
+>  9 files changed, 1788 insertions(+), 15 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis165=
+50.yaml
+>  create mode 100644 Documentation/iio/adis16550.rst
+>  create mode 100644 drivers/iio/imu/adis16550.c
+>=20
 
 
