@@ -1,114 +1,140 @@
-Return-Path: <devicetree+bounces-116469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E12A9B300D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:23:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5490C9B301F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:26:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 027402827C4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:23:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1417B281518
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:26:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0EFD1D7E3E;
-	Mon, 28 Oct 2024 12:23:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6FB1D90B9;
+	Mon, 28 Oct 2024 12:26:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="CFzMFMAJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A3DD1922DD;
-	Mon, 28 Oct 2024 12:23:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D1C717C61;
+	Mon, 28 Oct 2024 12:26:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730118182; cv=none; b=RygrKmL+gtv2ouEhPki4VKbwvsmwbhhznvSPY/qkHNE85fxNg1NfXAV6+7rmrvYaGY3poBMugfDfcsQagzxlUUsLItau9dbmyhYfLil+byzZLuUvJVy73lPmaDCRt0+MHnd0JakT/roxmKdt1xYevIt75B398x8ga4pWUu9FkXg=
+	t=1730118404; cv=none; b=VVlx5xshWzG0I8xSI4EFLCtur5tzfvhk5Nq9gBRYnxMhOxfUIs6CYNZTT7opFGbL8OulbwFGBSY6KE1H6NKRBfsq/X7TQWqJf0WFlKbGpKg7FoBvTv5MCud/OxdW2bHgZyYnEoPVMeNB6EElO70xrR6IAJKg1EfHwLu9CHqLGCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730118182; c=relaxed/simple;
-	bh=aTCttCQyWU7h26tjaP5swvu62Isc7fQ5Wy+v6hYZyHw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U7dJ6obr/QUf4byM7D7DMMdyyEKnlx9/u6A6M7nw5ZDGZwr8qIfBaMtyc1BtN2T8s/VHmzYXPPS+bAFyBB+lLqvmnsKnS/rHlbQATxv7bFFuve26A7L4ZWzdmRB/2zHPGIjlaUl4iic/7MUZ/4X/H+Odpu/8rv/TJtfC/p806C4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BB68213D5;
-	Mon, 28 Oct 2024 05:23:29 -0700 (PDT)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5FA963F73B;
-	Mon, 28 Oct 2024 05:22:57 -0700 (PDT)
-Date: Mon, 28 Oct 2024 12:22:54 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	arm-scmi@vger.kernel.org, james.quinlan@broadcom.com,
-	f.fainelli@gmail.com, vincent.guittot@linaro.org,
-	etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
-	quic_sibis@quicinc.com, quic_nkela@quicinc.com,
-	dan.carpenter@linaro.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Sudeep Holla <sudeep.holla@arm.com>, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v3 6/7] dt-bindings: firmware: arm,scmi: Add missing
- vendor string
-Message-ID: <Zx-CHlAb61FWdzkA@bogus>
-References: <20241028120151.1301177-1-cristian.marussi@arm.com>
- <20241028120151.1301177-7-cristian.marussi@arm.com>
+	s=arc-20240116; t=1730118404; c=relaxed/simple;
+	bh=rMSa2GblHCzLvcvkl4pyYdF3B9UzPJexGxowAWH/Rfg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uCM3bsVtrOB9ikr1ExWWuICRu0FRNKv/ZB/dPIqNwjdFypZaMl1At5FL5W40chWr2122F50Ku+k+idHJv97IKp64his0hj205LG/eGMZDhq7aIBDyddZujaIvsFv/pXT/K+eHJtsDzYZdFqU5V3pNHsPUFJqRq/42eU9gi78ZRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=CFzMFMAJ; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49SB3aeB027558;
+	Mon, 28 Oct 2024 08:26:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=B2yzXic/ytcByJ2vquRJuUQRg1/
+	c6Qn9AbDplfhz4Q0=; b=CFzMFMAJhonGDRJuZ8aMKm9qmgak6cXXGqSEJ4m4juB
+	JVzs/SRLXZalv6STli3h5715InjyRIeb2pZferxipv/0bhjNOGEPSffCEOWZtLbw
+	NpPIDqWziM4nDm+zcpkSlfQTEyHFTaXZI78A4UKOUW96smlaY4UFwiZf/txcDOtB
+	0wbT7oGEZBNT2pmRLYC3DNoNgSY5s6jrq8A77LpKsaal/QAeTpXQRr77TO8Gcxaz
+	iRYudEHYfYoCRKEXlxzfTk3i6OxYTzFXqrpdAbdmkmzOv+pzE4OawjGiAfnMPZHS
+	ARwu5y8/jsETjfSE6a6/s6K2X95avjcGYNfg5UQ1moA==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 42gt92reva-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 08:26:15 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 49SCQEnJ024341
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 28 Oct 2024 08:26:14 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 28 Oct
+ 2024 08:26:14 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 28 Oct 2024 08:26:14 -0400
+Received: from dell-precision-robert.ad.analog.com ([10.48.65.123])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 49SCQ0aK026080;
+	Mon, 28 Oct 2024 08:26:02 -0400
+From: Robert Budai <robert.budai@analog.com>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Nuno Sa <nuno.sa@analog.com>,
+        Ramona
+ Gradinariu <ramona.gradinariu@analog.com>,
+        Antoniu Miclaus
+	<antoniu.miclaus@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>, Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Jagath Jog J
+	<jagathjog1996@gmail.com>,
+        Robert Budai <robert.budai@analog.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+CC: <robi_budai@yahoo.com>
+Subject: [PATCH 0/5] Add support for ADIS16550 and ADIS16550W
+Date: Mon, 28 Oct 2024 14:25:32 +0200
+Message-ID: <20241028122543.8078-1-robert.budai@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241028120151.1301177-7-cristian.marussi@arm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: 84cTicoNzj_1Vyn_LX_pcCrvYCq6x8Cl
+X-Proofpoint-ORIG-GUID: 84cTicoNzj_1Vyn_LX_pcCrvYCq6x8Cl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ phishscore=0 mlxlogscore=999 priorityscore=1501 clxscore=1011 adultscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410280100
 
-On Mon, Oct 28, 2024 at 12:01:50PM +0000, Cristian Marussi wrote:
-> Recently introduced max-rx-timeout-ms optionao property is missing a
-> vendor prefix.
->
-> Add the vendor prefix from the original committer.
->
+The ADIS16550 is a complete inertial system that includes a triaxis gyroscope
+and a triaxis accelerometer. Each inertial sensor in the ADIS16550 combines
+industry leading MEMS only technology with signal conditioning that optimizes
+dynamic performance. The factory calibration characterizes each sensor for
+sensitivity, bias, and alignment. As a result, each sensor has its own dynamic
+compensation formulas that provide accurate sensor measurements.
 
-It should be "arm," not "nxp," just because NXP happens to introduce that.
-It just highlight that the property is X vendor specific and here it is
-associated with SCMI and specifically Arm SCMI, so "arm,". If for some
-reason nxp or any other vendor overrides this definition and need to add
-additional property then they can add their own vendor name into that
-property.
+Nuno Sá (3):
+  iio: imu: adis: Add custom ops struct
+  iio: imu: adis: Add DIAG_STAT register size
+  iio: imu: adis16550: add adis16550 support
 
-If there are no objections, I can fix it up when applying.
+Ramona Gradinariu (2):
+  dt-bindings: iio: Add adis16550 bindings
+  docs: iio: add documentation for adis16550 driver
 
-> Fixes: 3a5e6ab06eab ("dt-bindings: firmware: arm,scmi: Introduce property max-rx-timeout-ms")
-> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-> ---
-> Note that this fixes a commit that has been merged in v6.12-rc1...so it
-> should not present any backward compatibility issue.
-> ---
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: Peng Fan <peng.fan@nxp.com>
-> ---
->  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> index 9d6e1147f9e9..e331da4d606b 100644
-> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -124,7 +124,7 @@ properties:
->        atomic mode of operation, even if requested.
->      default: 0
->  
-> -  max-rx-timeout-ms:
-> +  nxp,max-rx-timeout-ms:
->      description:
->        An optional time value, expressed in milliseconds, representing the
->        transport maximum timeout value for the receive channel. The value should
-> -- 
-> 2.47.0
-> 
+ .../bindings/iio/imu/adi,adis16550.yaml       |   95 ++
+ Documentation/iio/adis16550.rst               |  389 ++++++
+ Documentation/iio/index.rst                   |    1 +
+ MAINTAINERS                                   |   10 +
+ drivers/iio/imu/Kconfig                       |   13 +
+ drivers/iio/imu/Makefile                      |    1 +
+ drivers/iio/imu/adis.c                        |   33 +-
+ drivers/iio/imu/adis16550.c                   | 1228 +++++++++++++++++
+ include/linux/iio/imu/adis.h                  |   33 +-
+ 9 files changed, 1788 insertions(+), 15 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
+ create mode 100644 Documentation/iio/adis16550.rst
+ create mode 100644 drivers/iio/imu/adis16550.c
 
---
-Regards,
-Sudeep
+-- 
+2.34.1
+
 
