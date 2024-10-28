@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-116330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B8C29B2968
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:00:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA8539B2978
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:01:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2AED6B20F78
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:00:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F49C282417
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 08:01:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C5871925AD;
-	Mon, 28 Oct 2024 07:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E5CB1DA63C;
+	Mon, 28 Oct 2024 07:38:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LtcYpO0a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f10JEsuc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C321922CD;
-	Mon, 28 Oct 2024 07:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FCEB190497;
+	Mon, 28 Oct 2024 07:38:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730101017; cv=none; b=ACIJSikRMg5qFbShOR0TZz4AONX/g3Ota/Besj2bMLZy/UvjWByFrULSIxhhOCeN8tVGG/tX4xeeFLOthNaAee74aqjPnE/S8zA6/114wgJpIYd6uYnnf2Cx6IKYWMLF70pFjVB8rZLJMp9o5P15/x/dZ1GOsdPDiU91kT58VBo=
+	t=1730101135; cv=none; b=O7K3FABHvIqX9OXfAxGJJGXy8vh2GkIklEhNpZuKx8YMDfj1L/xW77joDTw+GyB7TsxU7yFPnacwSVNTYX05HidJ5O3f1P9FGZlF7fGoUCdNUy/MRjew1hldY3ZONIl/ygt67Wc/UvsjCmrzfaNOxKkDlJD9DAs4aO0VWikfWkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730101017; c=relaxed/simple;
-	bh=C8jzd03PT7TBnleSW2b3mkmpjRFkk1JQWJOGmJ6JBHU=;
+	s=arc-20240116; t=1730101135; c=relaxed/simple;
+	bh=JuicChqAxrZATICnsbGhsPkuOFQw8eOyMB5wZTaLbds=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P55nBMVcQ0RCtB0HeuWG4EI8F8552atLicPomCPsrMXanYGronum+XeNUTBRuElDkDe4Bh113xmKpJ47tBsDtK1Unl2H+nVK7KrLgW61OCamF198Dn5EIJ0YA69sZajPT27qH719zBZuS4maxVL/Vsttu8eTmp6w39aR+hq3S+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LtcYpO0a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 809DAC4CEC3;
-	Mon, 28 Oct 2024 07:36:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FUcaAB0tNckQnhpTuVeYHCm3L6e4Tk65miTeI8SH/IBZseVX+nFfNHpoetbn2i1ts+FafSklETaYG8NNcKCg9z5UqQzfJ4ztnZibMKAYDwl/TOnB8Ovmx/W+8QAtUaR4evdQajgMXOYIf+gMCSfcMu5h5BPVf7FsnlWLw/rR35o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f10JEsuc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0DCFC4CEC3;
+	Mon, 28 Oct 2024 07:38:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730101017;
-	bh=C8jzd03PT7TBnleSW2b3mkmpjRFkk1JQWJOGmJ6JBHU=;
+	s=k20201202; t=1730101134;
+	bh=JuicChqAxrZATICnsbGhsPkuOFQw8eOyMB5wZTaLbds=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LtcYpO0aHbfPPpU6JOxrB0QOqE7WkvgEvHsDBvWGuIQWZb74ZXs2m7PXcvWcW/pCQ
-	 SOtK++YJLVOs28akn0bliE2QXHR2lUBwJ7x0bT8eeUwKufL+X5utlWVsPakegAMhOd
-	 cizfcDzQjgxSJ45YlNAa9K33QgQF7tDbCDuAd23uqjBhg1OgrrrYRb6U9UgaxNGeo9
-	 YPXRwMfvnEC/RmWgga+sSV//YS4j9TG9onTGDeZGZl97PP/86f21alkTnt2noXde0D
-	 15CLRsHEG0rzvZi30a+Plsp5GhNEceBHSOtaA+mSBBTJ/kWt3fm6ibPP/w3QZ8aqyI
-	 CGoMNbNDOI4mQ==
-Date: Mon, 28 Oct 2024 08:36:53 +0100
+	b=f10JEsucxU7RFGwNbz89W7LzTXTOmDvvby2TiNbe0GJMt8T/lMlrtP9Fm3RMJx+un
+	 MndPr8oIb4/tpYIOELIzySjZMq3s0VBT/cPRX3UcgzvL4/QlVrGMlFDYVaCVY2FMwC
+	 gb6l7yfMJEkJ4FFLDrHd2dkyzzBLwLoWkDV0DUPdUWgoAzHFuj67gzt+Qhd6xFBThx
+	 MPuT7YNxnQGhz+E18N5OufyOAU1T7YhY+Vf4d3ZLG6/i6aym1Fv23QRPPOI3qMhvst
+	 gs5ICkgKRecsyp2NbyrgU2/0kyIiLWaZOzNiYjkhgXTelDFfo41bYJSoQV3giIT9iq
+	 jCjV5WLLHN4uQ==
+Date: Mon, 28 Oct 2024 08:38:50 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
-	tarang.raval@siliconsignals.io, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: pinctrl: convert pinctrl-mcp23s08.txt to
- yaml format
-Message-ID: <h2trxxyutkkbubjz572e57widjfce7y3n2dixnkciavbtw3isx@cmuc5y6yqrrt>
-References: <20241028063939.6276-1-himanshu.bhavani@siliconsignals.io>
+To: Troy Mitchell <troymitchell988@gmail.com>
+Cc: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: spacemit: add support for K1 SoC
+Message-ID: <6zx3tqdc5bma2vutexwigzlir6nr6adp7arg4qwl5ieyd3avbu@5yyhv57ttwcl>
+References: <20241028053220.346283-1-TroyMitchell988@gmail.com>
+ <20241028053220.346283-2-TroyMitchell988@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,42 +59,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241028063939.6276-1-himanshu.bhavani@siliconsignals.io>
+In-Reply-To: <20241028053220.346283-2-TroyMitchell988@gmail.com>
 
-On Mon, Oct 28, 2024 at 12:09:11PM +0530, Himanshu Bhavani wrote:
-> YAML binding file provides the conversion of the original text-based
-> binding for the pinctrl-mcp23s08 to microchip,mcp23s08.yaml.
+On Mon, Oct 28, 2024 at 01:32:19PM +0800, Troy Mitchell wrote:
+> The I2C of K1 supports fast-speed-mode and high-speed-mode,
+> and supports FIFO transmission.
 > 
-> following compatible strings using the deprecated mcp prefix have been
-> removed from this binding:
-> 
-> - mcp,mcp23s08
-> - mcp,mcp23s17
-> - mcp,mcp23008
-> - mcp,mcp23017
-> 
-> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
 > ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Where is the changelog? Nothing here, nothing in cover letter.
 
----
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
+I asked for several changes, so now I don't know if you implemented
+them.
 
 Best regards,
 Krzysztof
