@@ -1,117 +1,333 @@
-Return-Path: <devicetree+bounces-116574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD37D9B3477
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:09:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F4A19B3481
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:13:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27C74281AA3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:09:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4015BB210D8
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:13:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A69161DE3CB;
-	Mon, 28 Oct 2024 15:08:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADAF41DD88F;
+	Mon, 28 Oct 2024 15:12:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="SlColhrz"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="Jo61nPDb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from msa.smtpout.orange.fr (msa-209.smtpout.orange.fr [193.252.23.209])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84F871DE3C5;
-	Mon, 28 Oct 2024 15:08:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECEAC54769;
+	Mon, 28 Oct 2024 15:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.252.23.209
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730128129; cv=none; b=FeKZMuRCqvtMYBOjKPrjkfM7DNxpfF7ZQTin8DPqLnuepVWqqVXI8aV78JVIUE2DRQ6aXDPhxB4F85GQhY+tiW7EjfzmbJ+Euxkl/x49l14OyzEvEIGtFdhq5WKqxzFhLGw7eYzX3sQTiTwrXoX5zVf1hcT2F/JPBQ/d0PR5G0U=
+	t=1730128375; cv=none; b=ko0BfpIZvCi5Ryj+Zp1oDhblwh2B6rm/0IoSMF5uKteumz75Zr61vr6cHbYpmFQ1OwI/K1NVr69+sZJlEHF8cb7PuRsot2nL6pwCggyj31ORVHwRmmy24wtaYaRKnsnqrC6JwSlCu8M9mUWHzSWikjlTekBns6jazS2XoSu6xdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730128129; c=relaxed/simple;
-	bh=SifQlyZ7KikgP1IQCzpuW3tmcYNWYp20rVd/HUkpN0A=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AlE7RlpKe/uadlLwVxY42+nPZvYiXZJqMNHHaDtozr1fiODs6z/s+q+3cr+VaLyzQyuXbbV9LPpUR+3g9a6fk3sMqtNy+IoG6FKzM0fn0rcCJNZ8BKs47evsYY+kQ2WoVXZJlYbB7v8La99jEWFJ++Ry43nkHAIjVGXmnVfiUC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=SlColhrz; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49SF8Xuc005602;
-	Mon, 28 Oct 2024 10:08:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1730128113;
-	bh=b96FhIf/5C/V7LXfZZc3vpon5alrJPDglX3GKmrmGOg=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=SlColhrzavdXadcC4OHy0lcvheX5cmsXanoTknJyygvCmoZUfkEYIjvIPma7O/lUN
-	 TXR8q26q2K6lDAOz7qPmCGjhbkAsSn8TW9awFgsaHBhFBxV3NYkSNaibRvV4H3pQsB
-	 01gQemWotwB1CDF3vu8FpqkpKemdsxe+OVvjYYGM=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49SF8XnE057827;
-	Mon, 28 Oct 2024 10:08:33 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 28
- Oct 2024 10:08:32 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 28 Oct 2024 10:08:32 -0500
-Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49SF5tcv129665;
-	Mon, 28 Oct 2024 10:08:29 -0500
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <j-luthra@ti.com>,
-        Nathan Morrisson
-	<nmorrisson@phytec.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>,
-        <w.egorov@phytec.de>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62x-phyboard-lyra: Drop unnecessary McASP AFIFOs
-Date: Mon, 28 Oct 2024 20:35:27 +0530
-Message-ID: <173012710989.558239.9145851807780794840.b4-ty@ti.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241002224754.2917895-1-nmorrisson@phytec.com>
-References: <20241002224754.2917895-1-nmorrisson@phytec.com>
+	s=arc-20240116; t=1730128375; c=relaxed/simple;
+	bh=7MqD3icugQngzAQ2Q7MgjC4Ss1IizgUGID5EmAQwFbI=;
+	h=Message-ID:Date:MIME-Version:Subject:Cc:References:From:To:
+	 In-Reply-To:Content-Type; b=fGa18Gr66rdev7s98azyw1pd0Bg9M0GD3BqkOT2t8dhuZFGcqb+Ky0p75JGjGH9FLE7ddxjL3efzkGy3rpey+hXB42B9hludQw95RMtB2K5ZSYRuJkmHgfYCD0ykWzAYwh/CqJrhK1rvW1BNc1EjDaTybk2cgxRmMlqyJrP1gWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=Jo61nPDb; arc=none smtp.client-ip=193.252.23.209
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id 5RP2tiD1igeRP5RP2t8WlI; Mon, 28 Oct 2024 16:11:34 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1730128294;
+	bh=fjqDdQt+XNPED4eC5c7Ufv/q0r2FByiZMWuGovsyH5A=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To;
+	b=Jo61nPDboyWDeo5o+6HGmwAAbry/cUoEn6xA9BF5TW3FJkos/TC6Zn9sjO4+qDAv9
+	 P5bK6oUhDotl5Jy5NCOivlcjRBTcyItDIqxUVbpny0lVz2os+KbUTUT5WRPDZp7cC1
+	 TaTExCIo64NtDn68wNltIDU5Papf1a8vdC5KHgJWLRAUlVRRvuIs+o1t2FM9yZ3SjX
+	 qkuGQdD1FczP1LJTOABY1Yv0Wn4MBxRBHhyvf1hU8tBw1pThK61ZxGp2hJGJ0uyIag
+	 lXRCe/PvlX59mCakfGOR6pmoHQQsO4XRrR5dylgnWynv3pYYorM2J+0A2iR/S7DeMV
+	 g62guAX8L6Jhw==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Mon, 28 Oct 2024 16:11:34 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <f5454f83-4af2-419b-b0ca-7309fa96f264@wanadoo.fr>
+Date: Mon, 28 Oct 2024 16:11:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] iio: imu: adis16550: add adis16550 support
+Cc: Nuno Sa <nuno.sa@analog.com>,
+ Ramona Gradinariu <ramona.gradinariu@analog.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Robert Budai <robert.budai@analog.com>,
+ Jagath Jog J <jagathjog1996@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, robi_budai@yahoo.com
+References: <20241028123550.9128-1-robert.budai@analog.com>
+ <20241028123550.9128-3-robert.budai@analog.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: Robert Budai <robert.budai@analog.com>
+In-Reply-To: <20241028123550.9128-3-robert.budai@analog.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Nathan Morrisson,
-
-On Wed, 02 Oct 2024 15:47:54 -0700, Nathan Morrisson wrote:
-> Drop the McASP AFIFOs for better audio latency. This adds back a
-> change that was lost while refactoring the device tree.
+Le 28/10/2024 à 13:35, Robert Budai a écrit :
+> From: Nuno Sá <nuno.sa-OyLXuOCK7orQT0dZR+AlfA@public.gmane.org>
 > 
-> 
+> The ADIS16550 is a complete inertial system that includes a triaxis
+> gyroscope and a triaxis accelerometer. Each inertial sensor in
+> the ADIS16550 combines industry leading MEMS only technology
+> with signal conditioning that optimizes dynamic performance. The
+> factory calibration characterizes each sensor for sensitivity, bias,
+> and alignment. As a result, each sensor has its own dynamic com-
+> pensation formulas that provide accurate sensor measurements
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Hi,
 
-[1/1] arm64: dts: ti: k3-am62x-phyboard-lyra: Drop unnecessary McASP AFIFOs
-      commit: c33a0a02a29bde53a85407f86f332ac4bbc5ab87
+...
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> +static ssize_t adis16550_show_firmware_date(struct file *file,
+> +					    char __user *userbuf,
+> +					    size_t count, loff_t *ppos)
+> +{
+> +	struct adis16550 *st = file->private_data;
+> +	u32 date;
+> +	char buf[12];
+> +	size_t len;
+> +	int ret;
+> +
+> +	ret = adis_read_reg_32(&st->adis, ADIS16550_REG_FW_DATE, &date);
+> +	if (ret)
+> +		return ret;
+> +
+> +	len = snprintf(buf, sizeof(buf), "%.2x-%.2x-%.4x\n", date & 0xff,
+> +		       (date >> 8) & 0xff, date >> 16);
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+scnprintf() ?
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> +
+> +	return simple_read_from_buffer(userbuf, count, ppos, buf, len);
+> +}
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+...
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+> +static void adis16550_debugfs_init(struct iio_dev *indio_dev)
+> +{
+> +	struct adis16550 *st = iio_priv(indio_dev);
+> +	struct dentry *d = iio_get_debugfs_dentry(indio_dev);
+> +
+> +	if (!IS_ENABLED(CONFIG_DEBUG_FS))
+> +		return;
 
+I don't think that this is needed.
+Functions below should ahndle it already.
+
+> +
+> +	debugfs_create_file_unsafe("serial_number", 0400,
+> +				   d, st, &adis16550_serial_number_fops);
+> +	debugfs_create_file_unsafe("product_id", 0400,
+> +				   d, st, &adis16550_product_id_fops);
+> +	debugfs_create_file("firmware_revision", 0400,
+> +			    d, st, &adis16550_firmware_revision_fops);
+> +	debugfs_create_file("firmware_date", 0400, d,
+> +			    st, &adis16550_firmware_date_fops);
+> +	debugfs_create_file_unsafe("flash_count", 0400,
+> +				   d, st, &adis16550_flash_count_fops);
+> +}
+
+...
+
+> +static int adis16550_set_freq(struct adis16550 *st, u32 freq)
+> +{
+> +	u16 dec;
+> +	int ret;
+> +	u32 sample_rate = st->clk_freq;
+> +	/*
+> +	 * The optimal sample rate for the supported IMUs is between
+> +	 * int_clk - 1000 and int_clk + 500.
+> +	 */
+> +	u32 max_sample_rate =  st->info->int_clk * 1000 + 500000;
+> +	u32 min_sample_rate =  st->info->int_clk * 1000 - 1000000;
+
+Nitpick: 2 spaces after =
+
+> +
+> +	if (!freq)
+> +		return -EINVAL;
+> +
+> +	adis_dev_lock(&st->adis);
+> +
+> +	if (st->sync_mode == ADIS16550_SYNC_MODE_SCALED) {
+> +		unsigned long scaled_rate = lcm(st->clk_freq, freq);
+> +		int sync_scale;
+> +
+> +		if (scaled_rate > max_sample_rate)
+> +			scaled_rate = max_sample_rate / st->clk_freq * st->clk_freq;
+> +		else
+> +			scaled_rate = max_sample_rate / scaled_rate * scaled_rate;
+> +
+> +		if (scaled_rate < min_sample_rate)
+> +			scaled_rate = roundup(min_sample_rate, st->clk_freq);
+> +
+> +		sync_scale = scaled_rate / st->clk_freq;
+> +		ret = __adis_write_reg_16(&st->adis, ADIS16550_REG_SYNC_SCALE,
+> +					  sync_scale);
+> +		if (ret)
+> +			goto error;
+> +
+> +		sample_rate = scaled_rate;
+> +	}
+> +
+> +	dec = DIV_ROUND_CLOSEST(sample_rate, freq);
+> +
+> +	if (dec)
+> +		dec--;
+> +
+> +	if (dec > st->info->max_dec)
+> +		dec = st->info->max_dec;
+> +
+> +	ret = __adis_write_reg_16(&st->adis, ADIS16550_REG_DEC_RATE, dec);
+> +	if (ret)
+> +		goto error;
+> +
+> +	adis_dev_unlock(&st->adis);
+> +
+> +	return 0;
+> +
+> +error:
+> +	adis_dev_unlock(&st->adis);
+> +	return ret;
+> +}
+
+...
+
+> +static const struct adis16550_chip_info adis16550_chip_info[] = {
+> +	[ADIS16550] =
+> +		ADIS16550_CHIP_INFO(adis16550),
+
+This fits on the previous line.
+
+> +	[ADIS16550W] =
+> +		ADIS16550_CHIP_INFO(adis16550w),
+> +};
+> +
+> +static u32 adis16550_validate_crc(const u32 *buf, const u8 n_elem,
+> +				  const u32 crc)
+> +{
+> +	u32 crc_calc;
+> +	u32 crc_buf[ADIS16550_BURST_N_ELEM - 2];
+> +	int j;
+
+Nitpick: i is more usual than j.
+There also should be a newline here.
+
+> +	/*
+> +	 * The crc calculation of the data is done in little endian. Hence, we
+> +	 * always swap the 32bit elements making sure that the data LSB is
+> +	 * always on address 0...
+> +	 */
+> +	for (j = 0; j < n_elem; j++)
+> +		crc_buf[j] = swab32(buf[j]);
+> +
+> +	crc_calc = crc32(~0, crc_buf, n_elem * 4);
+> +	crc_calc ^= ~0;
+> +
+> +	return (crc_calc == crc);
+> +}
+
+...
+
+> +static int adis16550_probe(struct spi_device *spi)
+> +{
+> +	struct iio_dev *indio_dev;
+> +	struct adis16550 *st;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +
+> +	st->info =  device_get_match_data(&spi->dev);
+
+Nitpick: 2 spaces after =
+
+> +	if (!st->info)
+> +		return -EINVAL;
+> +
+> +	indio_dev->name = st->info->name;
+> +	indio_dev->channels = st->info->channels;
+> +	indio_dev->num_channels = st->info->num_channels;
+> +	indio_dev->available_scan_masks = adis16550_channel_masks;
+> +	indio_dev->info = &adis16550_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +
+> +	st->adis.ops = &adis16550_ops;
+> +
+> +	ret = devm_regulator_get_enable(&spi->dev, "vdd");
+> +	if (ret)
+> +		return dev_err_probe(&spi->dev, ret,
+> +				     "Failed to get vdd regulator\n");
+> +
+> +	ret = adis_init(&st->adis, indio_dev, spi, &adis16550_data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = __adis_initial_startup(&st->adis);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = adis16550_config_sync(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_adis_setup_buffer_and_trigger(&st->adis, indio_dev,
+> +						 adis16550_trigger_handler);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_iio_device_register(&spi->dev, indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	adis16550_debugfs_init(indio_dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct spi_device_id adis16550_id[] = {
+> +	{ "adis16550", (kernel_ulong_t)&adis16550_chip_info[ADIS16550]  },
+
+Nitpick: extra space before ending }
+
+> +	{ "adis16550w",  (kernel_ulong_t)&adis16550_chip_info[ADIS16550W] },
+
+Nitpick: 2 spaces after first ,
+
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(spi, adis16550_id);
+> +
+> +static const struct of_device_id adis16550_of_match[] = {
+> +	{ .compatible = "adi,adis16550", .data = &adis16550_chip_info[ADIS16550]},
+
+Nitpick: missing space before ending }
+
+> +	{ .compatible = "adi,adis16550w", .data = &adis16550_chip_info[ADIS16550W] },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, adis16550_of_match);
+
+...
+
+CJ
 
