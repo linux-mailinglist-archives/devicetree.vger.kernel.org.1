@@ -1,186 +1,374 @@
-Return-Path: <devicetree+bounces-116874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B34019B438F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:53:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 749929B43CA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 09:09:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 107ABB21471
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 07:53:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 978081C21385
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:09:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03459202F71;
-	Tue, 29 Oct 2024 07:53:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F9BF202F97;
+	Tue, 29 Oct 2024 08:09:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e8vBIsQj"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="p71lbg8S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B196A2022EA;
-	Tue, 29 Oct 2024 07:53:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D5EF2036F4
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 08:08:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730188420; cv=none; b=TC/M5uB1mA2hqXZTmw1+jtwAxdjPFIyMDlkNKQMf4c6RWlxlDYeP9UcXO4Rxx+MmRNxdaktudbM625aGQs3J2v+z5xBStElYpb1hVot1s+DAOIG9FTiYNTdJoJXBLtKV6BwiB4wzSTiKkuz2XuBunC7iWODKfgRdGxIm9CZz76k=
+	t=1730189341; cv=none; b=GKXjTrEIqYnw7989ouZAYfKuG4bkeL9ia8QSK5oWgv4YCEvkxiKWjlkG/+s62UH67E9xZY//5BwBLFDfSxISK47LM6aojAr1BcgByD+B/te3w02EUheYvb1h/uBoMKIhUZbRTPlrWjc53+ChLsS8sOD3wNjmwfmB8yq7GVRiI94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730188420; c=relaxed/simple;
-	bh=HOCb3f9hLfDS0KMvOMasmmI2vyK/m+oTMPg+Aa8Oy5E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=NEMp1G3oi7vbev1PLq28NLZmq9rqmlWeFD1qqTzV/jHxpQe3B3T7UIPkoFyMaTgnHIg7EjXL1EGaA6iyb0PnwC729V5e82b8/zirWGPbq6oYuYWFDdL9UKJR24Qvk14zf0Oz/cUNq3XQ7PaTRrupEmVo2Lco+UsqV5Kht9att7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e8vBIsQj; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-539ee1acb86so5120957e87.0;
-        Tue, 29 Oct 2024 00:53:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730188417; x=1730793217; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=4C1nIRdVvB18ebQ3for2XC65VIyhOskwKvhIjCaNvVI=;
-        b=e8vBIsQj1mfhc/Ls+oSUMEVVWG9aXSci5JjwjKgCTjgOmAnDaqb3n2IKcWbbwskKPw
-         vgsDhRUL1qCC5HGQGflWp2YHnPROP0n5dNunBZJOa/LDz8ORnK49qBWuXXgAQ9AS8Ufw
-         y5shPaxB5Jy+o+lcwEnIOhSp8IIHc4KV1/nBu2ui7sPAdS1YO0wTpqzR5oEOm3GmL46G
-         tWInO8i5yKe8ue0RFb0wWqD9OGYqCp2wNT51fNoOLTL+8z33g8NGDFw+ssX4q/PAcniP
-         FXN/uLki99wo+hwYv0lXVOgy7nekZpaVrKIL5CusAofsC6o/kuXzQIgjaAagJ0L2q/39
-         QFEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730188417; x=1730793217;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4C1nIRdVvB18ebQ3for2XC65VIyhOskwKvhIjCaNvVI=;
-        b=SVkS84jjOFt7iv1vQth0em+iyJqlfu5rsTQPMAERpwvUi34gcy3JBfroc8ZnYNXcQF
-         UzNhDPwR6Zd2UPRgbyWbC2bW/CIy5JAoGUyVho/alD3n15LG96YQfWPp/9ESi6tMh+Mi
-         xcclxt1VDAwp4mf0eAGJf6P1sX9Gpyd8B05Z33dWUcoHQLLV3GDemAnfD5tc8ponIZ6B
-         8Nut+x8enZnExIsT5AmBbnA7oX89VxMhAGIbNAC8wnAYf29wshJPbq1O+tOTF53qnjvE
-         +TDgQOqGEO1umNOfsd6eKgattSM720tWbFO1OWNixXA3qXwNE7tCnxkXWq4wLsp1sMv4
-         WgtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXj/Udjq/vvmmPKjRcxT+a2o5LgfG0fNMCbRX0DbAY02gy8LokyToGTbCvBhy8fJW0dXwxB6Pv1z5wn@vger.kernel.org, AJvYcCXpYNdstGsThZEJGzYl0XapAIheaLM2w3J+qrjClxesUI9zIL/Xj4Ho9WO/TPgNtazESZmKLIF8f8nywkuG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAdXH5FNBZ5lJKr+uVT8AS8gVMihziehdTcqP8hqsJgsANIuRP
-	CWfcdPY6/StHD2XlRVaEoftRpHqU91/hHao7Pe/9nyHtJeF0JIdN
-X-Google-Smtp-Source: AGHT+IFX3omEHoD4JMYIBlaDhHQFN4sNVOKfMjc39GiZe38I9QMTzCKzecpErYGK0y+EHQaRGeWtVg==
-X-Received: by 2002:ac2:5683:0:b0:539:8fcd:51f with SMTP id 2adb3069b0e04-53b348deb3bmr5368808e87.30.1730188416343;
-        Tue, 29 Oct 2024 00:53:36 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53b2e1de04bsm1296446e87.247.2024.10.29.00.53.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Oct 2024 00:53:35 -0700 (PDT)
-Message-ID: <f2bb661d-8ef5-43d4-aece-c7fec01ff9fe@gmail.com>
-Date: Tue, 29 Oct 2024 09:53:33 +0200
+	s=arc-20240116; t=1730189341; c=relaxed/simple;
+	bh=vJzCAvK3M1+hlJ4gIxzpgr/HkjubV4j2rsSZF2eWxqo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Fw0d8mGKkLaEU7tVQnF1JQgxp/JvdQizjynPbuYgL+c37iTgOktJLYppcp8+suvrpV/RUuT83griXTJoAcS6PfMo7i1foE4moqJWcwS0fJ08sMddXEaBsgm5p0l7fHi/t62VIDOG8ELFk6mNmpKDxtew/ywVzjP1B4bF0H9rNzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=p71lbg8S; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 5F951240027
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 09:00:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
+	t=1730188828; bh=vJzCAvK3M1+hlJ4gIxzpgr/HkjubV4j2rsSZF2eWxqo=;
+	h=Message-ID:Subject:From:To:Cc:Date:Content-Type:
+	 Content-Transfer-Encoding:MIME-Version:From;
+	b=p71lbg8S5del9NTis6FfIXYzRYQl3pmxEQ0a9gAGDviIipPL5CG2eybaeFL5TbJgz
+	 smn8Z2hVprDBWWGYj/yrO2x6DJ0HnbaCUJPxq9XeGc2q2jrTwpIZB57FVniGjnzjOO
+	 5uwxRj6xPjeT6D6sP1tBXVq+g9zmWAmP6EWkZd4I7FvkCOWXD+Fu22RTPd2V9OB9et
+	 kPbBK2fXS2hfjbYIx4SL1WPruZUNPyN2AZrIMXa2VjYRyBNE4SD1MvbVwPC2nCZVgA
+	 FMeqfJTdOmXBUzIx0CCphRPxXYHyLLg1AwH6IYmqUlA+pCDKOThPPR9PwUB/fipx2m
+	 nHZ0lZ8gyIU7Q==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4Xd2jz4Flqz9rxD;
+	Tue, 29 Oct 2024 09:00:23 +0100 (CET)
+Message-ID: <3b247041c89791c80a69b16f3f3b80c3b8bbeefd.camel@posteo.de>
+Subject: Re: [PATCH v16 0/8] Initial support Cadence MHDP8501(HDMI/DP) for
+ i.MX8MQ
+From: Martin Kepplinger-Novakovic <martink@posteo.de>
+To: Sandor Yu <Sandor.yu@nxp.com>, dmitry.baryshkov@linaro.org, 
+ andrzej.hajda@intel.com, neil.armstrong@linaro.org, 
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com,  airlied@gmail.com, daniel@ffwll.ch,
+ robh+dt@kernel.org,  krzysztof.kozlowski+dt@linaro.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de,  festevam@gmail.com,
+ vkoul@kernel.org, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ mripard@kernel.org
+Cc: kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com, 
+	alexander.stein@ew.tq-group.com, sam@ravnborg.org
+Date: Tue, 29 Oct 2024 08:00:22 +0000
+In-Reply-To: <cover.1719903904.git.Sandor.yu@nxp.com>
+References: <cover.1719903904.git.Sandor.yu@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] ARM: dts: imx: Add devicetree for Kobo Clara 2E
-To: Andreas Kemnade <andreas@kemnade.info>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- linux-kernel@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
- devicetree@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Sascha Hauer <s.hauer@pengutronix.de>,
- Alexander Stein <alexander.stein@ew.tq-group.com>, imx@lists.linux.dev
-References: <20241024142206.411336-1-andreas@kemnade.info>
- <20241024142206.411336-3-andreas@kemnade.info>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20241024142206.411336-3-andreas@kemnade.info>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-On 24/10/2024 17:22, Andreas Kemnade wrote:
-> Adds a devicetree for the Kobo Clara 2E Ebook reader. It is based
-> on boards marked with "37NB-E60K2M+4A2" or "37NB-E60K2M+4B0". It is
-> equipped with an i.MX6SLL SoC.
-> 
-> Expected to work:
->    - Buttons
->    - Wifi
->    - Bluetooth
->      (if Wifi is initialized first, driver does not handle regulators
->       yet)
->    - LED
->    - uSD
->    - USB
->    - RTC
->    - Touchscreen
-> 
-> Add human-readable comments for devices without mainlined driver and
-> binding. Such comments can e.g. be help to find testers if someone
-> starts to work on the missing drivers.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+Am Dienstag, dem 02.07.2024 um 20:22 +0800 schrieb Sandor Yu:
+> This patchset sits on top
+> Dmitry's 'make use of the HDMI connector infrastructure' patchset
+> ([2]).
+>=20
+> The patch set initial support Cadence MHDP8501(HDMI/DP) DRM bridge
+> driver and Cadence HDP-TX PHY(HDMI/DP) driver for Freescale i.MX8MQ.
+>=20
+> The patch set compose of DRM bridge drivers and PHY driver.
+>=20
+> Both of them need by patch #1 and #2 to pass build.
+>=20
+> DRM bridges driver patches:
+> =C2=A0 #1: drm: bridge: Cadence: Creat mhdp helper driver
+> =C2=A0 #2: phy: Add HDMI configuration options
+> =C2=A0 #3: dt-bindings: display: bridge: Add Cadence MHDP8501
+> =C2=A0 #4: drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
+>=20
+> PHY driver patches:
+> =C2=A0 #1: drm: bridge: Cadence: Creat mhdp helper driver
+> =C2=A0 #2: phy: Add HDMI configuration options
+> =C2=A0 #5: dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
+> =C2=A0 #6: phy: freescale: Add DisplayPort/HDMI Combo-PHY driver for
+> i.MX8MQ
+>=20
+> i.MX8M/TQMa8Mx DT patches:
+> =C2=A0 #7: Add DT nodes for DCSS/HDMI pipeline
+> =C2=A0 #8: Enable HDMI for TQMa8Mx/MBa8Mx
+>=20
+> [2] https://patchwork.freedesktop.org/series/130888/
+>=20
+> v15->v16:
+> Patch #2:
+> - Remove pixel_clk_rate, bpc and color_space fields from struct
+> =C2=A0 phy_configure_opts_hdmi, they were replaced by
+> =C2=A0 unsigned long long tmds_char_rate.
+> - Remove r-b and a-c tags because this patch have important change.
+> Patch #4:
+> - Add DRM_BRIDGE_OP_HDMI flags for HDMI driver,
+> - Introduce the hdmi info frame helper functions,
+> =C2=A0 added hdmi_clear_infoframe(), hdmi_write_infoframe() and
+> =C2=A0 hdmi_tmds_char_rate_valid() according Dmitry's patch
+> =C2=A0 'make use of the HDMI connector infrastructure' patchset ([2]).
+> - mode_fixup() is replaced by atomic_check().
+> - Fix video mode 4Kp30 did not work on some displays that support
+> =C2=A0 LTE_340Mcsc_scramble.
+> - updated for tmds_char_rate added in patch #2.=20
+> Patch #6:
+> - updated for tmds_char_rate added in patch #2.=20
+>=20
+> v14->v15:
+> Patch #6 + #7:
+> -=C2=A0 Merged PHY driver into a single combo PHY driver
+> Patch #7 + #8:
+> - Add DT patches for a running HDMI setup
+>=20
+> v13->v14:
+> Patch #4:
+> - Rebase to next-20240219, replace get_edid function by edid_read
+> =C2=A0 function as commits d807ad80d811b ("drm/bridge: add ->edid_read
+> =C2=A0 hook and drm_bridge_edid_read()") and 27b8f91c08d99 ("drm/bridge:
+> =C2=A0 remove ->get_edid callback") had change the API.
+>=20
+> v12->v13:
+> Patch #4:
+> - Explicitly include linux/platform_device.h for cdns-mhdp8501-core.c
+> - Fix build warning
+> - Order bit bpc and color_space in descending shit.=20
+> Patch #7:
+> - Fix build warning
+>=20
+> v11->v12:
+> Patch #1:=20
+> - Move status initialize out of mbox_mutex.
+> - Reorder API functions in alphabetical.
+> - Add notes for malibox access functions.
+> - Add year 2024 to copyright.
+> Patch #4:
+> - Replace DRM_INFO with dev_info or dev_warn.
+> - Replace DRM_ERROR with dev_err.
+> - Return ret when cdns_mhdp_dpcd_read failed in function
+> cdns_dp_aux_transferi().
+> - Remove unused parmeter in function cdns_dp_get_msa_misc
+> =C2=A0 and use two separate variables for color space and bpc.
+> - Add year 2024 to copyright.
+> Patch #6:
+> - Return error code to replace -1 for function wait_for_ack().
+> - Set cdns_phy->power_up =3D false in phy_power_down function.
+> - Remove "RATE_8_1 =3D 810000", it is not used in driver.
+> - Add year 2024 to copyright.
+> Patch #7:
+> - Adjust clk disable order.
+> - Return error code to replace -1 for function wait_for_ack().
+> - Use bool for variable pclk_in.
+> - Add year 2024 to copyright.
+>=20
+> v10->v11:
+> - rewrite cdns_mhdp_set_firmware_active() in mhdp8546 core driver,
+> use cdns_mhdp_mailbox_send() to replace cdns_mhdp_mailbox_write()
+> same as the other mailbox access functions.
+> - use static for cdns_mhdp_mailbox_write() and
+> cdns_mhdp_mailbox_read()
+> and remove them from EXPORT_SYMBOL_GPL().
+> - remove MODULE_ALIAS() from mhdp8501 driver.
+>=20
+> v9->v10:
+> - Create mhdp helper driver to replace macro functions,
+> move all mhdp mailbox access functions and common functions
+> into the helper driver.
+> Patch #1:drm: bridge: Cadence: Creat mhdp helper driver
+> it is totaly different with v9.
+>=20
+> v8->v9:
+> - Remove compatible string "cdns,mhdp8501" that had removed
+> =C2=A0 from dt-bindings file in v8.
+> - Add Dmitry's R-b tag to patch #2
+> - Add Krzysztof's R-b tag to patch #3
+>=20
+> v7->v8:
+> MHDP8501 HDMI/DP:
+> - Correct DT node name to "display-bridge".
+> - Remove "cdns,mhdp8501" from mhdp8501 dt-binding doc.
+>=20
+> HDMI/DP PHY:
+> - Introduced functions `wait_for_ack` and `wait_for_ack_clear` to
+> handle
+> =C2=A0 waiting with acknowledgment bits set and cleared respectively.
+> - Use FIELD_PRE() to set bitfields for both HDMI and DP PHY.
+>=20
+> v6->v7:
+> MHDP8501 HDMI/DP:
+> - Combine HDMI and DP driver into one mhdp8501 driver.
+> =C2=A0 Use the connector type to load the corresponding functions.
+> - Remove connector init functions.
+> - Add <linux/hdmi.h> in phy_hdmi.h to reuse 'enum hdmi_colorspace'.
+>=20
+> HDMI/DP PHY:
+> - Lowercase hex values
+> - Fix parameters indent issue on some functions
+> - Replace 'udelay' with 'usleep_range'
+>=20
+> v5->v6:
+> HDMI/DP bridge driver
+> - 8501 is the part number of Cadence MHDP on i.MX8MQ.
+> =C2=A0 Use MHDP8501 to name hdmi/dp drivers and files.=20
+> - Add compatible "fsl,imx8mq-mhdp8501-dp" for i.MX8MQ DP driver
+> - Add compatible "fsl,imx8mq-mhdp8501-hdmi" for i.MX8MQ HDMI driver
+> - Combine HDMI and DP dt-bindings into one file cdns,mhdp8501.yaml
+> - Fix HDMI scrambling is not enable issue when driver working in
+> 4Kp60
+> =C2=A0 mode.
+> - Add HDMI/DP PHY API mailbox protect.
+>=20
+> HDMI/DP PHY driver:
+> - Rename DP and HDMI PHY files and move to folder phy/freescale/
+> - Remove properties num_lanes and link_rate from DP PHY driver.
+> - Combine HDMI and DP dt-bindings into one file fsl,imx8mq-dp-hdmi-
+> phy.yaml
+> - Update compatible string to "fsl,imx8mq-dp-phy".
+> - Update compatible string to "fsl,imx8mq-hdmi-phy".
+>=20
+> v4->v5:
+> - Drop "clk" suffix in clock name.
+> - Add output port property in the example of hdmi/dp.
+>=20
+> v3->v4:
+> dt-bindings:
+> - Correct dt-bindings coding style and address review comments.
+> - Add apb_clk description.
+> - Add output port for HDMI/DP connector
+> PHY:
+> - Alphabetically sorted in Kconfig and Makefile for DP and HDMI PHY
+> - Remove unused registers define from HDMI and DP PHY drivers.
+> - More description in phy_hdmi.h.
+> - Add apb_clk to HDMI and DP phy driver.
+> HDMI/DP:
+> - Use get_unaligned_le32() to replace hardcode type conversion
+> =C2=A0 in HDMI AVI infoframe data fill function.
+> - Add mailbox mutex lock in HDMI/DP driver for phy functions
+> =C2=A0 to reslove race conditions between HDMI/DP and PHY drivers.
+> - Add apb_clk to both HDMI and DP driver.
+> - Rename some function names and add prefix with "cdns_hdmi/cdns_dp".
+> - Remove bpc 12 and 16 optional that not supported.
+>=20
+> v2->v3:
+> Address comments for dt-bindings files.
+> - Correct dts-bindings file names=20
+> =C2=A0 Rename phy-cadence-hdptx-dp.yaml to cdns,mhdp-imx8mq-dp.yaml
+> =C2=A0 Rename phy-cadence-hdptx-hdmi.yaml to cdns,mhdp-imx8mq-hdmi.yaml
+> - Drop redundant words and descriptions.
+> - Correct hdmi/dp node name.
+>=20
+> v2 is a completely different version compared to v1.
+> Previous v1 can be available here [1].
+>=20
+> v1->v2:
+> - Reuse Cadence mailbox access functions from mhdp8546 instead of
+> =C2=A0 rockchip DP.
+> - Mailbox access functions be convert to marco functions
+> =C2=A0 that will be referenced by HDP-TX PHY(HDMI/DP) driver too.
+> - Plain bridge instead of component driver.
+> - Standalone Cadence HDP-TX PHY(HDMI/DP) driver.
+> - Audio driver are removed from the patch set, it will be add in
+> another
+> =C2=A0 patch set later.
+>=20
+> [1]
+> https://patchwork.kernel.org/project/linux-rockchip/cover/cover.159098288=
+1.git.Sandor.yu@nxp.com/
+>=20
+> Alexander Stein (2):
+> =C2=A0 arm64: dts: imx8mq: Add DCSS + HDMI/DP display pipeline
+> =C2=A0 arm64: dts: imx8mq: tqma8mq-mba8mx: Enable HDMI support
+>=20
+> Sandor Yu (6):
+> =C2=A0 drm: bridge: Cadence: Create mhdp helper driver
+> =C2=A0 phy: Add HDMI configuration options
+> =C2=A0 dt-bindings: display: bridge: Add Cadence MHDP8501
+> =C2=A0 drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
+> =C2=A0 dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
+> =C2=A0 phy: freescale: Add DisplayPort/HDMI Combo-PHY driver for i.MX8MQ
+>=20
+> =C2=A0.../display/bridge/cdns,mhdp8501.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0 104 ++
+> =C2=A0.../bindings/phy/fsl,imx8mq-dp-hdmi-phy.yaml=C2=A0 |=C2=A0=C2=A0 51=
+ +
+> =C2=A0.../dts/freescale/imx8mq-tqma8mq-mba8mx.dts=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 20 +
+> =C2=A0arch/arm64/boot/dts/freescale/imx8mq.dtsi=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0=C2=A0 68 +
+> =C2=A0arch/arm64/boot/dts/freescale/mba8mx.dtsi=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0=C2=A0 11 +
+> =C2=A0drivers/gpu/drm/bridge/cadence/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 20 +
+> =C2=A0drivers/gpu/drm/bridge/cadence/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 3 +
+> =C2=A0.../gpu/drm/bridge/cadence/cdns-mhdp-helper.c |=C2=A0 304 ++++
+> =C2=A0.../drm/bridge/cadence/cdns-mhdp8501-core.c=C2=A0=C2=A0 |=C2=A0 330=
+ ++++
+> =C2=A0.../drm/bridge/cadence/cdns-mhdp8501-core.h=C2=A0=C2=A0 |=C2=A0 367=
+ +++++
+> =C2=A0.../gpu/drm/bridge/cadence/cdns-mhdp8501-dp.c |=C2=A0 700 +++++++++
+> =C2=A0.../drm/bridge/cadence/cdns-mhdp8501-hdmi.c=C2=A0=C2=A0 |=C2=A0 595=
+ ++++++++
+> =C2=A0.../drm/bridge/cadence/cdns-mhdp8546-core.c=C2=A0=C2=A0 |=C2=A0 403=
+ +----
+> =C2=A0.../drm/bridge/cadence/cdns-mhdp8546-core.h=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 44 +-
+> =C2=A0drivers/phy/freescale/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 =
+10 +
+> =C2=A0drivers/phy/freescale/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 =
+1 +
+> =C2=A0drivers/phy/freescale/phy-fsl-imx8mq-hdptx.c=C2=A0 | 1340
+> +++++++++++++++++
+> =C2=A0include/drm/bridge/cdns-mhdp-helper.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 97 ++
+> =C2=A0include/linux/phy/phy-hdmi.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 20 +
+> =C2=A0include/linux/phy/phy.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 7 +-
+> =C2=A020 files changed, 4120 insertions(+), 375 deletions(-)
+> =C2=A0create mode 100644
+> Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
+> =C2=A0create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8mq=
+-
+> dp-hdmi-phy.yaml
+> =C2=A0create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp-helper.=
+c
+> =C2=A0create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-
+> core.c
+> =C2=A0create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-
+> core.h
+> =C2=A0create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-dp.=
+c
+> =C2=A0create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-
+> hdmi.c
+> =C2=A0create mode 100644 drivers/phy/freescale/phy-fsl-imx8mq-hdptx.c
+> =C2=A0create mode 100644 include/drm/bridge/cdns-mhdp-helper.h
+> =C2=A0create mode 100644 include/linux/phy/phy-hdmi.h
+>=20
 
-...
+I ran this on top of a v6.11 kernel on imx8mq (type-c dp) and got -22
+at the link-training command.
 
-> +
-> +	pmic@4b {
-> +		compatible = "rohm,bd71879", "rohm,bd71828";
-> +		reg = <0x4b>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_bd71828>;
-> +
-> +		interrupt-parent = <&gpio4>;
-> +		interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
-> +		system-power-controller;
-> +
-> +		clocks = <&clks 0>;
-> +		#clock-cells = <0>;
-> +		clock-output-names = "bd71828-32k-out";
-> +
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		gpio-reserved-ranges = <0 1>, <2 1>;
-> +
-> +		rohm,charger-sense-resistor-ohms = <30000000>;
+I'll try to test v18 later and can post my tree, but wanted to drop
+this here in case any bell rings already and so that you are aware that
+I want to test this.
 
-I am afraid that this one is _my_ very much terrible brainfart. Yeah, 
-pile up the stones and start casting ;)
+thanks for keeping so patient with this,
 
-I am fairly sure the sense resistor is 30 mOhm (0,030 Ohm), not 30 MOhm 
-(30 000 000 Ohm). (And I am the one who misinterpreted the M in some 
-email/data-sheet in the past - and never questioned the sanity).
-
-In short, AFAICS the sense resistor is added "in series" to the system 
-load. Eg:
-
-           --------
-       ---| Rsense |-----
-      |    --------      |
-  ---------           -------
-| VSupply |         | Rload |
-  ---------           -------
-      |                  |
-       ------------------
-
-Hence, by measuring the voltage drop on the Rsense gives us the current 
-flowing through the system ( good old U = RI ).
-
-I believe having 30 Mohm (30 000 000 Ohm) resistor there would not make 
-much of sense... With a Fermi estimate that the system works with 
-voltage magnitude of 1V and current magnitude of 1A and then applying 
-good old P = UI and U = RI would give us wonderful results :) Quite a 
-battery on poor Kobo, right? You'd better to not touch the battery 
-termninals ;) Oh, and looking the driver code I've written for handling 
-this property... Sometimes I really don't like mirrors :)
-
-Well, now that I got this out - I suppose this could be
-rohm,charger-sense-resistor-milli-ohms = <30>;
-or
-rohm,charger-sense-resistor-micro-ohms = <30000>;
-
-I further guess there is no upstreamn binding doc for this property. I 
-think there is also no upstream charger driver for the BD71828/BD71879 - 
-only an early RFC and some downstream mess - but stil it'd be nice to 
-have the property in place as the size of the sense resistor is needed 
-when converting coulomb counter register values to current.
-
-
-Yours,
-	-- Matti
+                              martin
 
 
