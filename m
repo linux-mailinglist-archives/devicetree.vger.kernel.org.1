@@ -1,78 +1,83 @@
-Return-Path: <devicetree+bounces-117068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AB279B4E66
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 16:47:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26A7C9B4E6D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 16:48:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C994DB248CF
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 15:47:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF98E2865B5
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 15:48:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77C26196D8F;
-	Tue, 29 Oct 2024 15:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C71198E89;
+	Tue, 29 Oct 2024 15:47:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TLm6H5hs"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="AEFOVmUc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35FAE194A44;
-	Tue, 29 Oct 2024 15:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B859197548;
+	Tue, 29 Oct 2024 15:47:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730216837; cv=none; b=pNHWFVsHQU1aGY0iUl5NBMJ3xEJGZXf/tUr8UHFBkN8TkqhQaeWmBEwkZp6rrCtiugbBPWHyNJITdd2lbTna8se14XbUHSqWdeRq8yp3cyMGFMdpqLl11afzTWudD2uhR6gk2PHlP9dgM7oEktmnEI+PzIb0IEdSteLFD0+xcPs=
+	t=1730216859; cv=none; b=q82P5IKoWvJsif0bwMhdzAQ2sSOIVP0yDatBI2Rgk05cSr9kuZstQRXgmwFyeLW3SVFRbYzxgHj1F8y3VVeFFIiS9LFfY6RIev0qhNeoWA6pw8AT9APFdCNrPYSNCMF8fuQgflGaYXjncCOPrQyV/gwsXlSOoqoqrRyQpT885SQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730216837; c=relaxed/simple;
-	bh=MzRLhMitdAfNa6d1w+4rK7xhp0DzHBeyQBQ4Cj83fG8=;
+	s=arc-20240116; t=1730216859; c=relaxed/simple;
+	bh=yVXHfBrbbaMXj3e62dKxzjQmsfQa7PGzMdwwnxU0A18=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BFKm6b32RHVZV7dMNbmv+3vqy4B+IJbjh+JfbZYMrfY6pbIQgrencKgoDgk9WyZa2w9P3/pbW8xQFYGjzGGdiVqcot9iTO2ajozsZlcVGMqtovBFYgVkzwB0pYZ14mYkiip/elS55kIpHF/HL9s8W4Bu4RRhYWsyVGc6CcgWZaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TLm6H5hs; arc=none smtp.client-ip=198.47.23.248
+	 MIME-Version:Content-Type; b=GUQp9RhRDY6W6ciMS9LPQYSvbgOygeHMCh/a1zrfsSpmiwrCaUz2UpCEIRQawvMquTHNsF3cBWwibXts2cZKvqbpsiAfPd/qPgQ0bWubYScMzOTyT5TcztlPP3FStSjvx2fNmMOH/tbHd4I+yw/X6HJzOybaAkrNbEQeFej/mGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=AEFOVmUc; arc=none smtp.client-ip=198.47.23.248
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49TFl3ie017388;
-	Tue, 29 Oct 2024 10:47:03 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49TFlSn3017443;
+	Tue, 29 Oct 2024 10:47:28 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1730216823;
-	bh=sfiQdLTsM4V8BHphb5DQhMwvFatwHGMvvsgf3NLzPQI=;
+	s=ti-com-17Q1; t=1730216848;
+	bh=GLjfUODQODOaRX/d1s4wSCIi5iG+h1DU0f5TSsQNgoo=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=TLm6H5hssuGhsb5EOrHm1dSzGe222cwCNim5S2xlzlKu5OB+7Uc00jLgNhdN0WVbe
-	 nEzYzUeFH4l20SIq4PI9+frK5WIw6x+gBhvEDgBY+BlnwP8tmnq2YzA/Sr8A9h3LT4
-	 I52kZ0jFj/sBko1HDXlvUJF/h83EQ4D5tjmk8QJA=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49TFl379018252
+	b=AEFOVmUcKQGazhaNrxs1IP+Dp4izBj4Ac0XDnDHza307aHm2DrLVssyk0b5K1SvQv
+	 MbvnpQhoYdcSC4s3I9NmfZfEGqFbB40zAJMV4hCHPtz2+VmfPB5zuSJFVt5KZXUOCm
+	 moeTiOrKVgl6W7n40r9epXgrqmJ+4Pjla4iPIl3U=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49TFlSbg010235
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 29 Oct 2024 10:47:03 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 29 Oct 2024 10:47:28 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
- Oct 2024 10:47:00 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2024 10:47:28 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 29 Oct 2024 10:47:00 -0500
+ Frontend Transport; Tue, 29 Oct 2024 10:47:28 -0500
 Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49TFkufT082870;
-	Tue, 29 Oct 2024 10:46:56 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49TFlNKE083333;
+	Tue, 29 Oct 2024 10:47:24 -0500
 From: Vignesh Raghavendra <vigneshr@ti.com>
-To: <d-gole@ti.com>, <lorforlinux@beagleboard.org>, <jkridner@beagleboard.org>,
-        <robertcnelson@beagleboard.org>, Nishanth Menon
-	<nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ayush Singh <ayush@beagleboard.org>
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Manorit Chawdhry <m-chawdhry@ti.com>
 CC: Vignesh Raghavendra <vigneshr@ti.com>,
         <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH RESEND] arm64: dts: ti: k3-am625-beagleplay: Enable MikroBUS PWM
-Date: Tue, 29 Oct 2024 21:16:53 +0530
-Message-ID: <173021674666.3859929.3387135730934868690.b4-ty@ti.com>
+        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+        Beleswar Padhi
+	<b-padhi@ti.com>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>, Andrew Davis
+	<afd@ti.com>
+Subject: Re: [PATCH v6 00/12] Add bootph-all property for J7 boards
+Date: Tue, 29 Oct 2024 21:17:21 +0530
+Message-ID: <173021674661.3859929.13298221281337904627.b4-ty@ti.com>
 X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241016-beagleplay-pwm-v1-1-245ae88859bc@beagleboard.org>
-References: <20241016-beagleplay-pwm-v1-1-245ae88859bc@beagleboard.org>
+In-Reply-To: <20241024-b4-upstream-bootph-all-v6-0-2af90e3a4fe7@ti.com>
+References: <20241024-b4-upstream-bootph-all-v6-0-2af90e3a4fe7@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,19 +88,43 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Ayush Singh,
+Hi Manorit Chawdhry,
 
-On Wed, 16 Oct 2024 20:41:15 +0530, Ayush Singh wrote:
-> Add pinmux for PWM functionality of MikroBUS PWM pin and enable the pwm
-> controller.
+On Thu, 24 Oct 2024 10:50:57 +0530, Manorit Chawdhry wrote:
+> The idea of this series is to add bootph-all and bootph-pre-ram property
+> in all the leaf nodes wherever required and cleanup any other places where
+> bootph-all/bootph-pre-ram exist in the parent nodes as well since now
+> the bootloaders can handle it.
 > 
 > 
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-am625-beagleplay: Enable MikroBUS PWM
-      commit: 1e5e2ff46294d3a712a4a54ede7910a193ef2c35
+[01/12] arm64: dts: ti: k3-j784s4-j742s2-mcu-wakeup: Move bootph from mcu_timer1 to mcu_timer0
+        commit: 1d381865ad86b05328a3c4d841d2f0d2c07a8b6b
+[02/12] arm64: dts: ti: k3-j784s4-j742s2-mcu-wakeup: Remove parent nodes bootph-*
+        commit: c4fbee5eb6fa5212e9e6285b9116e0e2fae42c52
+[03/12] arm64: dts: ti: k3-j784s4: Add bootph-* properties
+        commit: f54d577df4a06c8e075ba9c1bd8fd6c18167d47e
+[04/12] arm64: dts: ti: k3-j721s2: Add bootph-* properties
+        commit: 83ab86a4412f6143acdf75fd315c196d255a0089
+[05/12] arm64: dts: ti: k3-j721e: Add bootph-* properties
+        commit: dd2c7aeca3ece4ab78a9d87fe2dcce365b5ce87d
+[06/12] arm64: dts: ti: k3-j7200: Add bootph-* properties
+        commit: b903ab269e67ce5788b0b2a39db4bd11fd19359b
+[07/12] arm64: dts: ti: k3-j784s4-j742s2-evm-common: Remove parent nodes bootph-*
+        commit: 49b0b706af963424decf4b6c67b09a83af91a067
+[08/12] arm64: dts: ti: k3-j721s2-evm*: Add bootph-* properties
+        commit: 15a432a4a0d2a6b79fdb798539e6fdbc87ed526c
+[09/12] arm64: dts: ti: k3-am68-sk*: Add bootph-* properties
+        commit: 781cb8f1ad769c7999ef3b35f216ff150130f3ee
+[10/12] arm64: dts: ti: k3-j721e-evm*: Add bootph-* properties
+        commit: fbdb8aa4eab8405c8709aab9e3bba48b5a955cbc
+[11/12] arm64: dts: ti: k3-j721e-sk*: Add bootph-* properties
+        commit: e45355835c40eb96fe92ec98cc9a9e9e60df0845
+[12/12] arm64: dts: ti: k3-j7200-evm*: Add bootph-* properties
+        commit: bdb543b1664bb4a54edf6ab651a36915d037220b
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
