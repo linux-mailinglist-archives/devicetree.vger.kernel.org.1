@@ -1,138 +1,121 @@
-Return-Path: <devicetree+bounces-117184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1425E9B540B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 21:40:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBC5A9B544B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 21:46:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42A971C227EA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:40:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90B802857E0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:46:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E55320E008;
-	Tue, 29 Oct 2024 20:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FBF120C025;
+	Tue, 29 Oct 2024 20:42:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="QZcROyti"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fbUjgBv4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A27620CCE8;
-	Tue, 29 Oct 2024 20:36:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754662076DE;
+	Tue, 29 Oct 2024 20:42:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730234166; cv=none; b=NXJzddqsndMAbcpj0fb7tak59LI0b87iP63zNqpWOZz5MrgXsdkPFU/SI/aHldag6x5UbZOecbbXVeo8NAERjjS4/cAE9mKYrrAeVtxIIxBAWlzux8fxQ0F/8IbsRotZlFEq/JsfdT3KhVeo371KPTLwoeRAh9qCfueRHp5cysU=
+	t=1730234560; cv=none; b=ryj33mhuZ31Xsdh74lOt43RJIJSGOhAd7TT57kxeuJn+LxE1DE8euoePDINsPKSAfBB8KssTRwtmqy5t3i65OewtYYmb+VVWVOe4FGmZjw+oCQsE53SLYPMgMvZXJtOAbWi4e0V1GQQwg3+oOxGZ9chw1BVC4KXLWtHtF6onYV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730234166; c=relaxed/simple;
-	bh=BZmrs4S9k39IJJULoU81FPP8LRG2DOiE5NO6ktXbR1o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GihkUxtSE+d321DjlBXgyMhaD/EOe4Upx4gbH+lT+xg4MqaetywthTC2wcmXG2K7Uq+IqbrbbO/G1Tm9tWMJ/32GTcvO8bo7w5PZ8qEbMrZ92CCq8oTirfeV6kuooXa5cF6lxQWh/UxMJM1bD2Mr52Dc/H6KpbTiJUWrFuFlRzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=QZcROyti; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=TGIE8EDbEDiCSNt9NYlYRAJD3YqeUTSIjpPX0liXfr0=; b=QZcROytiBRWYnrJR+BgvG0nRyQ
-	jGUHXyIKLEehXwEYUVq2wGr/edkRUv2vZ+OhjnkDOzONDFey6nf6/z+RtjeL3irxiH6N7/CY3fcnD
-	HFSI7nMBmiVCVgEXNz26NXwUMR2/knlYHNqPf2/bTY4od1KduCFIf26NxL4AefAXVNNw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t5swO-00Bcqh-Q0; Tue, 29 Oct 2024 21:35:48 +0100
-Date: Tue, 29 Oct 2024 21:35:48 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Arun Ramadoss <arun.ramadoss@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH net-next v2 2/5] dt-bindings: net: dsa: ksz: add
- mdio-parent-bus property for internal MDIO
-Message-ID: <2b03f429-9ae2-4c7a-9cec-0bc2f3c6e816@lunn.ch>
-References: <20241029110732.1977064-1-o.rempel@pengutronix.de>
- <20241029110732.1977064-3-o.rempel@pengutronix.de>
- <20241029123107.ssvggsn2b5w3ehoy@skbuf>
- <ZyDe_ObZ-laVk8c2@pengutronix.de>
+	s=arc-20240116; t=1730234560; c=relaxed/simple;
+	bh=HcHPYKJzVMGol5SkJjwz2YHmnwXp2odjeLVoF6z6SOA=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=cDkWlqfFuY2vm+NE5P/x9f/4i27WhSEizIjDTDFnBQbW1eEdN6u9TLwt4dfejpMEJd/5L9ysqvbkIjSJnNZLn/nSbhCNgWY8qbm3PduzgpZxeSyxM+vojCxqtPY/4pHAorCuUewDcDO8cVlRujkcf5lKcAJTQRjzD37BQcXHX1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fbUjgBv4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6A4AC4CECD;
+	Tue, 29 Oct 2024 20:42:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730234558;
+	bh=HcHPYKJzVMGol5SkJjwz2YHmnwXp2odjeLVoF6z6SOA=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=fbUjgBv4L9WFnFZv7YvkOF/T3zEeCiZXonMSPGkUYJ/WZQUmR9GIzW/QOS8lDUADN
+	 TynNTbWg2K8NOnDu2wG6TOvi3UiFs5uRTsu/UebmGWSfWDOV1TZ+wV5b1Y/PREkJIO
+	 yIsFkshMc/2gWzcmQjT/SAK9Bv2O2xE2WKVAWv4tot8RBRBpjSycxQcD7jA6re25nJ
+	 XF4gw1jeo4mHM6EYERVjMu1fG9VPtFgKrJvkZvRRuVzip/qdwugfNyMNLulNW6nRqk
+	 2UjIWIQpmv25aZYQtXznwlcbx+yIEipw5IJt5aYoZDvAbedZ8wwukGgcAcWdPFapjJ
+	 YHg7fiBBU2jgA==
+Date: Tue, 29 Oct 2024 15:42:36 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZyDe_ObZ-laVk8c2@pengutronix.de>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, 
+ linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20241029-axi-dma-dt-yaml-v2-1-52a6ec7df251@baylibre.com>
+References: <20241029-axi-dma-dt-yaml-v2-0-52a6ec7df251@baylibre.com>
+ <20241029-axi-dma-dt-yaml-v2-1-52a6ec7df251@baylibre.com>
+Message-Id: <173023455539.1620834.4844843662866954288.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: dma: adi,axi-dmac: convert to yaml
+ schema
 
-> > I'm not saying whether this is good or bad, I'm just worried about
-> > mixing quantities having different measurement units into the same
-> > address space.
-> > 
-> > Just like in the case of an mdio-mux, there is no address space isolation
-> > between the parent bus and the child bus. AKA you can't have this,
-> > because there would be clashes:
-> > 
-> > 	host_bus: mdio@abcd {
-> > 		ethernet-phy@2 {
-> > 			reg = <2>;
-> > 		};
-> > 	};
-> > 
-> > 	child_bus: mdio@efgh {
-> > 		mdio-parent-bus = <&host_bus>;
-> > 
-> > 		ethernet-phy@2 {
-> > 			reg = <2>;
-> > 		};
-> > 	};
-> > 
-> > But there is a big difference. With an mdio-mux, you could statically
-> > detect address space clashes by inspecting the PHY addresses on the 2
-> > buses. But with the lan937x child MDIO bus, in this design, you can't,
-> > because the "reg" values don't represent MDIO addresses, but switch port
-> > numbers (this is kind of important, but I don't see it mentioned in the
-> > dt-binding).
+
+On Tue, 29 Oct 2024 14:29:14 -0500, David Lechner wrote:
+> Convert the AXI DMAC bindings from .txt to .yaml.
 > 
-> In current state, the driver still require properly configured addresses
-> in the devicetree. So, it will be visible in the DT.
-
-This is not what i was expecting, especially from mv88e6xxx
-perspective. The older generation of devices had the PHYs available on
-the 'host bus', as well as the 'child bus', using a 1:1 address
-mapping. You could in theory even skip the 'child bus' and list the
-PHYs on the 'host bus' and phy-handle would make it work. However i
-see from a later comment that does not work here, you need some
-configuration done over SPI, which mv88e6xx does not need. 
-
+> Acked-by: Nuno Sa <nuno.sa@analog.com>
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
 > 
-> > These are translated by lan937x_create_phy_addr_map() using
-> > the CASCADE_ID/VPHY_ADD pin strapping information read over SPI.
-> > I.e. with the same device tree, you may or may not have address space
-> > clashes depending on pin strapping. No way to tell.
+> For the maintainer, Lars is the original author, but isn't really
+> active with ADI anymore, so I have added Nuno instead since he is the
+> most active ADI representative currently and is knowledgeable about this
+> hardware.
 > 
-> The PHY address to port mapping in the driver is needed to make the
-> internal switch interrupt controller assign interrupts to proper PHYs.
+> As in v1, the rob-bot is likely to complain with the following:
+> 
+> 	Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml: properties:adi,channels:type: 'boolean' was expected
+> 		hint: A vendor boolean property can use "type: boolean"
+> 		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+> 	DTC [C] Documentation/devicetree/bindings/dma/adi,axi-dmac.example.dtb
+> 
+> This is due to the fact that we have a vendor prefix on an object node.
+> We can't change that since it is an existing binding. Rob said he will
+> fix this in dtschema.
+> ---
+>  .../devicetree/bindings/dma/adi,axi-dmac.txt       |  61 ---------
+>  .../devicetree/bindings/dma/adi,axi-dmac.yaml      | 139 +++++++++++++++++++++
+>  2 files changed, 139 insertions(+), 61 deletions(-)
+> 
 
-You are talking about:
+My bot found errors running 'make dt_binding_check' on your patch:
 
-			ds->user_mii_bus->irq[phy] = irq;
+yamllint warnings/errors:
 
-in ksz_irq_phy_setup.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml: properties:adi,channels:type: 'boolean' was expected
+	hint: A vendor boolean property can use "type: boolean"
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
 
-I naively expect 'phy' to be the 'reg' value in DT, and the 'dev'
-value which passed to mdiobus_read_nested(bus, dev, reg) ?
+doc reference errors (make refcheckdocs):
 
-	Andrew
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241029-axi-dma-dt-yaml-v2-1-52a6ec7df251@baylibre.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
