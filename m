@@ -1,181 +1,130 @@
-Return-Path: <devicetree+bounces-117056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 369849B4C78
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 15:48:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 563909B4D5C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 16:16:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2FC8281415
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:48:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5A50B24939
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 15:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241D618C936;
-	Tue, 29 Oct 2024 14:48:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA09A18D65C;
+	Tue, 29 Oct 2024 15:16:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pyG/7oDp"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="eOD9XPL0";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="MDnpa8n3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3AC10F9;
-	Tue, 29 Oct 2024 14:48:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F3BB1925AA
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 15:16:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730213333; cv=none; b=pqVZqTADmqRTN/IyA03vdgNioMaDuZewYuldVg/353mm3QJ+yTjfB0+RQzvhQACVsYLQyMoCRspzLBCGJgACrU3YnOTbGImPU2d7bWGlMJBW4HiUyhkNdZTYv2gSqM5ikt3DSDVe2rw134BvDp42gQsapjPuC365ltg1e4dIcC4=
+	t=1730214965; cv=none; b=pmZd3kym1hYZ5CEAuLaqwcD81qy5AjuW7NY5UXcmLTHVCzmZ7pwv8CqxcOBAaQ5VbSkqkhUwdzWDd4SS4AjWAgU8Y9AKdDCYu5vjViyN7fM+xQHYWcR1vvOVa/P0h3Ell93dcbsZd6aVx9zzUgn4TM9wtfBo1MC3jhoysJAIz44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730213333; c=relaxed/simple;
-	bh=aq0smJWMoF0urEfEydYW6lBnfnX5/GErqTGpobBR4xc=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=oiEJkUrtMzXHx9ICPWK1MmgJQxN5xJSs4ZJxliUkAGL96Sh+PKVb1zVcWv1xiR/3e/VlIt/qgVW6lwof4fKtNvCLuBIcvpuqsXQatJbaRYJw177vfgpdqTaPkPvcEdR3fueLtYwtZM3i+78s/ZF/kDYR5Ox6VFupVJcxN2iZG/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pyG/7oDp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BE50C4CECD;
-	Tue, 29 Oct 2024 14:48:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730213332;
-	bh=aq0smJWMoF0urEfEydYW6lBnfnX5/GErqTGpobBR4xc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=pyG/7oDpoNHQOlZXjTIso0HTpbhVzqWqUQDZz4VW6Gce0vrjNBG7uiZy/h7N7FHfV
-	 GxdlLxD74xGzmWAFpS3Z1fEPbxHRVxN1S8t3zzitVrT+IhbkZsvcX/xD141sZt43fJ
-	 CZnkVgb40tkv7rhPOT0SfObRy1yw6dlqnjZciPsEAjhYJCzwTK4GsM5CavflbcAnlK
-	 9coYysIgtuuAZMA5GAyBEk5LDGBiaVtmXGD33/HEfs1SLWmqhotu6j36dq33PrTR2o
-	 xf5+JIyf+EcpWdkGntkA6zXSxdSdjazxHR0a1YuSkQDfvaKozScrGB3brD1iHd4Fzx
-	 WVcZ2fJWa9klA==
-Date: Tue, 29 Oct 2024 09:48:50 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Jim Quinlan <james.quinlan@broadcom.com>
-Cc: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
-	Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-	bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] RFC: dt bindings: Add property "brcm,gen3-eq-presets"
-Message-ID: <20241029144850.GA1152694@bhelgaas>
+	s=arc-20240116; t=1730214965; c=relaxed/simple;
+	bh=4grcFeJFMJkjfJV4QWMs+mwuoyc4z7UGXsc3aS2uiqM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DZTOQUoyOLUOGPH6LwchoU8AAVV6WODlYspLU1sjJynqcGf/QVHnunBGldRGkDzeYq4lZhKd5RILT0EgUMQh473LlEkOSTdwa5OCmj6TK+0oF7jBE9CaV/IZ+sTzCfrnBLfW+atRVcbI8vHLG0nw+MEn4GZmNOJ9gHmbA/T5WHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=eOD9XPL0; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=MDnpa8n3 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1730214962; x=1761750962;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Xnnhu6qFH7VFwsOlKt17qfnRuMYYX2PS9PBpQlWCIPI=;
+  b=eOD9XPL01m5xUNfRWEQ8UultqEfjPOtFB/xPUEgAPKj+O+uNTh9HsyyN
+   oCqq8qVIW7YRWB4hVB2vNvRBUktfrvJIFlaTpb4va+C2YpaLpKmzNlg8Q
+   wxhNskF5srwvA0ghqtzTnpiFGZqCIM3DDm7dhB0hu2+/RuXO3BP7ToOFJ
+   zRIywru4eVGuXsmX/kkP93v1nYu3NtLWB6KUnotqW45dh8mVXVJCayGjP
+   aENRQJB49eHncfYVE7q+3Sver1qqMRWAkfJjWhcCmZz8aKGeD9+BT1MY7
+   IK67eRmorr/NqMDb6OD/nhhgIpUds7Y29/51LGGYhRwxo1ul4jSqZlmoW
+   A==;
+X-CSE-ConnectionGUID: PlA3dqpiQhaNVhgQyoJqPQ==
+X-CSE-MsgGUID: JmlQCz2uRPK2dCFOZprfYQ==
+X-IronPort-AV: E=Sophos;i="6.11,241,1725314400"; 
+   d="scan'208";a="39740542"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 29 Oct 2024 16:16:00 +0100
+X-CheckPoint: {6720FC30-B-86C05612-CA75E1CA}
+X-MAIL-CPID: 1CB2DB3660D5383FF40F679AE29068E5_1
+X-Control-Analysis: str=0001.0A682F2A.6720FC30.006D,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DD503168B60;
+	Tue, 29 Oct 2024 16:15:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1730214955;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=Xnnhu6qFH7VFwsOlKt17qfnRuMYYX2PS9PBpQlWCIPI=;
+	b=MDnpa8n3IBHUOrIcd+jECea1KhhY6bp+B2dALBwARYqkeHJOrWutlx+gYBZLOlPY9cXyy9
+	y6+XUfjIoQOyd/aTFFedW1ym7GbNogHvTPJ9nmGA8SfOCDS9YStKYXqmUaQ3h5Kk3CwXcJ
+	ZlUbORR9urvdR+DNMrfGS5PhZoUd8iPCOgPZy2gIqhymGfUsh6IViued5A7U/CYzXNOesB
+	NESV1WsNiv2kBamH/C6nUF41hr5zUSYKt5/3MRspDr/OJ40GiB+YUjTUBJ4QzWKHZjelNX
+	nMSzeMf+GBB3qyUoRtbysfyz8JuPdst+uRww5M8yBk8aII7EweswwpFAHU/Iyw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Vinod Koul <vkoul@kernel.org>
+Cc: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, Xu Yang <xu.yang_2@nxp.com>, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/5] dtbs_check warning clean up against fsl,mxs-usbphy.yaml
+Date: Tue, 29 Oct 2024 16:15:54 +0100
+Message-ID: <6099458.lOV4Wx5bFT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <172917937246.288841.15901592420939223719.b4-ty@kernel.org>
+References: <20240926073951.783869-1-xu.yang_2@nxp.com> <172917937246.288841.15901592420939223719.b4-ty@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+-6iNx1SA9iiECS1O=cwkcu2KWcPvvB7Zvm7=SR3F5m9nv+fg@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, Oct 29, 2024 at 10:22:36AM -0400, Jim Quinlan wrote:
-> On Tue, Oct 29, 2024 at 1:17 AM Krishna Chaitanya Chundru
-> <quic_krichai@quicinc.com> wrote:
-> > On 10/29/2024 12:21 AM, James Quinlan wrote:
-> > > On 10/24/24 21:08, Krishna Chaitanya Chundru wrote:
-> > >> On 10/22/2024 12:33 AM, Rob Herring wrote:
-> > >>> On Fri, Oct 18, 2024 at 02:22:45PM -0400, Jim Quinlan wrote:
-> > >>>> Support configuration of the GEN3 preset equalization settings, aka the
-> > >>>> Lane Equalization Control Register(s) of the Secondary PCI Express
-> > >>>> Extended Capability.  These registers are of type HwInit/RsvdP and
-> > >>>> typically set by FW.  In our case they are set by our RC host bridge
-> > >>>> driver using internal registers.
-> > >>>>
-> > >>>> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
-> > >>>> ---
-> > >>>>   .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12
-> > >>>> ++++++++++++
-> > >>>>   1 file changed, 12 insertions(+)
-> > >>>>
-> > >>>> diff --git
-> > >>>> a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > >>>> b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > >>>> index 0925c520195a..f965ad57f32f 100644
-> > >>>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > >>>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > >>>> @@ -104,6 +104,18 @@ properties:
-> > >>>>       minItems: 1
-> > >>>>       maxItems: 3
-> > >>>>   +  brcm,gen3-eq-presets:
-> > >>>> +    description: |
-> > >>>> +      A u16 array giving the GEN3 equilization presets, one for
-> > >>>> each lane.
-> > >>>> +      These values are destined for the 16bit registers known as the
-> > >>>> +      Lane Equalization Control Register(s) of the Secondary PCI
-> > >>>> Express
-> > >>>> +      Extended Capability.  In the array, lane 0 is first term,
-> > >>>> lane 1 next,
-> > >>>> +      etc. The contents of the entries reflect what is necessary for
-> > >>>> +      the current board and SoC, and the details of each preset are
-> > >>>> +      described in Section 7.27.4 of the PCI base spec, Revision 3.0.
-> > >>>
-> > >>> If these are defined by the PCIe spec, then why is it Broadcom specific
-> > >>> property?
-> > > Yes, I will remove the "brcm," prefix.
-> > >>>
-> > >> Hi Rob,
-> > >>
-> > >> qcom pcie driver also needs to program these presets as you suggested
-> > >> this can go to common pci bridge binding.
-> > >>
-> > >> from PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4.2 for data rates
-> > >> of  8.0 GT/s, 16.0 GT/s, and 32.0 GT/s uses one class of preset (P0
-> > >> through P10) and where as data rates of 64.0 GT/s use different class of
-> > >> presets (Q0 through Q10) (Table 4-23). And data rates of 8.0 GT/s also
-> > >> have optional preset hints (Table 4-24).
-> > >>
-> > >> And there is possibility that for each data rate we may require
-> > >> different preset configuration.
-> > >>
-> > >> Can we have a dt binding for each data rate of 16 byte array.
-> > >> like gen3-eq-preset array, gen4-eq-preset array etc.
-> > >
-> > > Yes, that was the idea when using "genX-eq-preset", for X in {3,4...}.
-> > >
-> > > Keep in mind that this is an RFC; I have a backlog of commit submissions
-> > > before I can submit the code that uses this DT property.  If you
-> > > (Krishna) want to submit something now I'd be quite happy to go with
-> > > that.  I don't believe it is acceptable to submit a bindings commit w/o
-> > > code that uses it (if I'm incorrect I'll be glad to do a V2).
-> > >
-> > I submitted a pull request for this. if you have any other suggestions
-> > or if we need to have any other details we can update this pull request.
-> > https://github.com/devicetree-org/dt-schema/pull/146
-> 
-> Thanks for doing this.   However, why a u8 array?  The registers are
-> defined as u16 so it would be more natural to use a u16 array, each
-> entry giving
-> all of the data for a single lane.  In our implementation we read a
-> u16 and we write it to the register -- what advantage is there by
-> using a u8 array?
-> 
-> Also if there are 16 lanes, you will need 32 maxItems, correct?
+Hi Vinod,
 
-I added these questions to the github PR.
+Am Donnerstag, 17. Oktober 2024, 17:36:12 CET schrieb Vinod Koul:
+>=20
+> On Thu, 26 Sep 2024 15:39:46 +0800, Xu Yang wrote:
+> > Some changes to clean up dtbs_check warning against fsl,mxs-usbphy.yaml.
+> >=20
+> > The first 4 patches are used to fix below warning, "nxp,sim" is only
+> > needed by i.MX7ULP:
+> >  - 'nxp,sim' is a required property
+> >=20
+> > The last patch is used to fix below warning:
+> >  - fsl,tx-d-cal: 5 is less than the minimum of 79
+> >=20
+> > [...]
+>=20
+> Applied, thanks!
+>=20
+> [1/5] dt-bindings: phy: mxs-usb-phy: add imx8qxp compatible
+>       commit: 76b4f2a5cec59e842de4b5989eb990a2ee8cedf3
+> [2/5] arm64: dts: imx8dxl-ss-conn: change usbphy1 compatible
+>       (no commit info)
+> [3/5] arm64: dts: imx8qm: change usbphy1 compatible
+>       (no commit info)
+> [4/5] arm64: dts: imx8qxp: change usbphy1 compatible
+>       (no commit info)
+> [5/5] ARM: dts: imx6qdl: convert fsl,tx-d-cal to correct value
+>       (no commit info)
 
-Also, why does it define gen3-eq-presets, gen4-eq-presets,
-gen5-eq-presets, and gen6-eq-presets?  I think there's only a single
-place to write these values (the Lane Equalization Control registers,
-PCIe r6.0, sec 7.7.3.4), isn't here?  How would software choose the
-correct values to use?
+Did maybe something go wrong while merging? Only patch 1 has a commit SHA1
+in this mail.
+Also only patch 1 is available in linux-next
 
-> > >> - Krishna Chaitanya
-> > >>>> +
-> > >>>> +    $ref: /schemas/types.yaml#/definitions/uint16-array
-> > >>>
-> > >>> minItems: 1
-> > >>> maxItems: 16
-> > >>>
-> > >>> Last I saw, you can only have up to 16 lanes.
-> > >>>
-> > >>> Rob
-> > >>>
-> > >
+Thanks and best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
 
 
