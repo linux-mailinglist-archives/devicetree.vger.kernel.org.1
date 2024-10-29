@@ -1,76 +1,85 @@
-Return-Path: <devicetree+bounces-117208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 712AE9B5745
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 00:45:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 415819B572A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 00:44:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EDEF2817D7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 23:45:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB623B216A7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 23:44:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1009020D4F6;
-	Tue, 29 Oct 2024 23:44:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB41620B21E;
+	Tue, 29 Oct 2024 23:44:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="gA56lXzy"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PFiC9ELJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7A720C02E
-	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 23:44:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF5EE20B1FF
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 23:44:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730245469; cv=none; b=Kjex5dk19vfCkU9H0ZZYvbTI5cYuv4KqIgYhhL+hrCjFQkZJPJycclX4N/v33Ts19vRaUvu6SLcWI8jnelqf9haJWfgtgP96xZbZYVbnsPNf7Vh4QZ1L1zRsxAuJ2Q/IUR2nzV1Te7ozow6jgMPqQVMpvknOYSadTEkTbed+DQI=
+	t=1730245448; cv=none; b=p5dGP8rVbzqsCL2BGP1CaS1t5HtdbTvmhPZqXRjQ+F+SLFXo2jMuASAcPRdX60D8o+8JQID1JrjlJP25iHReRhiSzAi6o4rhXspZLHvoL4u/aV0lgJgInppvrvUsEMlQQhtN5Bat13IQ6tT9ktbMLDxZ+hvl02gjbm7daXKkgZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730245469; c=relaxed/simple;
-	bh=8irZdyfpIFMqPeGtNroHPDaMK0kMqN29j/A6L9BAyRY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KxiJH9ZWS3aHF/+7PyXV7Z9sp34Hhn4fiBtzWm55f4+/X2/LrguGUzxqVnQj3m361GqXsA74LtaU1Lxna+oU6PIFkCrsrZIBMeCngqy2E7zXewfmH4AaLZm//sicVOVGLegw+fIcNzm5fyAEDwG3Sxj9lVdHipLwcTGiIFGayBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=gA56lXzy; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-718e9c8bd83so291838b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 16:44:26 -0700 (PDT)
+	s=arc-20240116; t=1730245448; c=relaxed/simple;
+	bh=ysyVo0n5FvDl2lFjAzreUSoTNfvC5B1zkPO87Gt5vhE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ssRtx3XWmTUGKM+4KgJ23pGFrekI56ir8wkWUTFAUg0ni35UvzBDZxIFLU/Hmp0w8A2w2/sSLBgQpoKuxupMvsdAxVKwLbl++XfJ3+UBodJrjYN/3a/wkqIM4nEQKWfnRrNq0qStl0Sn1OZyWSz2UNqugPSIk2YZRdvTVxdBXyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=PFiC9ELJ; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-718e9c8bd83so291716b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 16:44:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1730245466; x=1730850266; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CCKzg74NjcYHO/B30bowh1owAHwLHbAhOOOeEQpeDk4=;
-        b=gA56lXzy0tBx7RM1tw7QA1kp/ORko6+v4TwwLa45Yn0ZPYkxiEjUSorr+1zurtvQMU
-         wiXIU9zgdaIvJe7GLO3y9xHKZBlJArWLiLEo/5OpN22QnyOb5E/PDaKX/x8nDbHMB1DF
-         F27tbk0WWm4k4VL64lJroP5V/uwbBVLxsspRpRSYkKEDgxkNidTTNtl0icD7BJCGeFGr
-         dgHdq4ElX5ac4sO+dBrCDTKgmV81LIgh4b8nP4hMxcoTg4FnhnCXHI/MG/1Kwlsw+vn/
-         A2b+pbtYJsVlVk3rfKtsfFCFgfQ4SmXCtsi3Bwp3j876Sbm9wV1OCNpf31lTxqr/uHkS
-         69RA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730245446; x=1730850246; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=igJJeog43E/zfN61FrtJEPhQv110hxetbVpL1KXxqXE=;
+        b=PFiC9ELJgfL+AzOwg1D1Nj9y1beHINUc6koJEFFonmoCnH/BaeZSUY86c6Lay5RZDr
+         HAzpm2qzpD4iZ3QByEXSYAUamynmePIgSQO3O5I041JA/jj5N6vp/72//g9ZrDlb3GuQ
+         KKetea6TPb1XL0CQF+2eFgk4shR1Gm5JvoGXkFoV+YpFg/HwnZZfNUz3p3iipQdHCvvJ
+         HH+DyDYMjWFKaq/muKAdVRgp1vOvIVevw5++Wh/u6Z6yTr3O04QXb+hFXqyJW34ZsqR4
+         hy2sm2hTAkTJf55szXxfLQYMMyKEpOIbKTj5BseDK79qVNWW+mJkZoWdYfI1Stv6IifG
+         Gezg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730245466; x=1730850266;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1730245446; x=1730850246;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CCKzg74NjcYHO/B30bowh1owAHwLHbAhOOOeEQpeDk4=;
-        b=TtqKY5qlHerghqOXbH8gRWtdwjupKL0ttHLc/fh6/jGvaJJmpoWr/YN96pt0Mcr3Ct
-         Nq7BOf9LmOzBhZowo4tGVT2JQD2RyL/zj9YZMjsuJ9iWDghclGwGbh9HLu5Y+emC28kC
-         ZUYdPggGxiCTk9IW7UsGC4aQrd2QTyQn/OHZ8To0hppnPjFejBJCz5mwpyAbqspWaKb4
-         /YR6L+q2Kbx6V6GlyN/+/SAHnBCDeQJL53EYZ9jNbIPxcZYn1nhIot7OvYVsQyVNdTY0
-         MnghOk+uBNQEDfy41XQAmGbxesMJPNxOrIyKWsAqb53JQOA9164akChUboY7bHHvXPNX
-         LMZw==
-X-Forwarded-Encrypted: i=1; AJvYcCX1ukrNqpVL6zh7h4xuP/6pHYjnLo8VkVFLKi8o8WYF7OiCqKCOItJILQWZTFqd5Qx7g7hFb4MlmLLP@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwXUTTKMzIq9sMoNueysYcXUqpaozYinju28Q/yYfvWvyWQ42/
-	2zYNw6Qs1UAvBgFeANFb46vsSxi/Hqh5ibSuM8Q+n03CKSezaH0ULPFrabexnrs=
-X-Google-Smtp-Source: AGHT+IHJh+1ZXsYwxslZQeQFaVaIosIBJ9byAeINs1Cby21LH+tx3YEEJESgsOz7GEIKZ2P3AAXg4A==
-X-Received: by 2002:a05:6a21:99a0:b0:1d4:f7b7:f20 with SMTP id adf61e73a8af0-1db7ff5e5e7mr749841637.21.1730245465983;
-        Tue, 29 Oct 2024 16:44:25 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057921863sm8157643b3a.33.2024.10.29.16.44.23
+        bh=igJJeog43E/zfN61FrtJEPhQv110hxetbVpL1KXxqXE=;
+        b=lIA9E78gK+wTuuZRvSjsf3s6x0OVPBRiG/4zg5Bka5cvcHoYxnqtYIcPtqhGw89GYj
+         9R04OocCeVfVG3v02l/ZjJ/ehQbH9kLgFUgkzfpFyRd6PKJqmeddwLMnpBBsN2X71FJl
+         UP1Lx60sf8NxTcH7f4pONIUjIS5z5HDpCYwimbWfXNp+naSDkraRmfJwU0bhp8+UD6b9
+         t/L5Y61j2WBwkfiXSPGjexHnAJoE6tMZ0+G0hE2Z1+1VA378eIO+QW4/ajqUPKmfDRV+
+         VhFy+3T8DksMZy+69VrMeunIE2ei/wymx6n9xhZTJCXjWK2Zm7oajuTUDSN6+WFrLGjz
+         t9FA==
+X-Forwarded-Encrypted: i=1; AJvYcCXdCVZcEkjOzcR4eae4o5Cyaqhlnscw7AV8++00OFK3gHV7+RtF9WVmE+7bW4+3s5jT2h43WWM1qE9z@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo6e7IQsIDAU7r+/bc4Ue6KZnylCGst/opOpP77NEXPfcTKi5b
+	ywFZ3tkNb2tW6K1jIEwMhK6A6E7xPSxsgmHeQ2i9QPy/+ImmNTKmGOHEOlq4Shc=
+X-Google-Smtp-Source: AGHT+IEtGLy8A0+FtzyHgXO/orCTN0LXYfjYWute/5tFYb2ns9hvuTiQzl4BZqgnmD2XcibkujilHw==
+X-Received: by 2002:a05:6a20:6a10:b0:1d4:f7e9:172a with SMTP id adf61e73a8af0-1db7ff61c9dmr597015637.23.1730245446276;
+        Tue, 29 Oct 2024 16:44:06 -0700 (PDT)
+Received: from localhost ([97.126.177.194])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7205791dde3sm8167490b3a.29.2024.10.29.16.44.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 16:44:25 -0700 (PDT)
-From: Deepak Gupta <debug@rivosinc.com>
+        Tue, 29 Oct 2024 16:44:05 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: tony@atomide.com, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Roger Quadros <rogerq@kernel.org>, 
+ Aaro Koskinen <aaro.koskinen@iki.fi>, 
+ Andreas Kemnade <andreas@kemnade.info>
+Cc: kernel test robot <lkp@intel.com>
+In-Reply-To: <20241025164622.431146-1-andreas@kemnade.info>
+References: <20241025164622.431146-1-andreas@kemnade.info>
+Subject: Re: [PATCH] ARM: dts: ti/omap: dra7: fix redundant clock divider
+ definition
+Message-Id: <173024544474.1258780.10487507771077792076.b4-ty@baylibre.com>
 Date: Tue, 29 Oct 2024 16:44:04 -0700
-Subject: [PATCH v7 04/32] riscv: Add support for per-thread envcfg CSR
- values
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,113 +88,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241029-v5_user_cfi_series-v7-4-2727ce9936cb@rivosinc.com>
-References: <20241029-v5_user_cfi_series-v7-0-2727ce9936cb@rivosinc.com>
-In-Reply-To: <20241029-v5_user_cfi_series-v7-0-2727ce9936cb@rivosinc.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, 
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>, 
- x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>, 
- Andrew Morton <akpm@linux-foundation.org>, 
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Vlastimil Babka <vbabka@suse.cz>, 
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
- Christian Brauner <brauner@kernel.org>, 
- Peter Zijlstra <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>, 
- Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
- linux-mm@kvack.org, linux-riscv@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-arch@vger.kernel.org, 
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com, 
- andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com, 
- atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com, 
- alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org, 
- rick.p.edgecombe@intel.com, Samuel Holland <samuel.holland@sifive.com>, 
- Andrew Jones <ajones@ventanamicro.com>, Deepak Gupta <debug@rivosinc.com>
-X-Mailer: b4 0.14.0
+X-Mailer: b4 0.15-dev-cb14d
 
-From: Samuel Holland <samuel.holland@sifive.com>
 
-Some bits in the [ms]envcfg CSR, such as the CFI state and pointer
-masking mode, need to be controlled on a per-thread basis. Support this
-by keeping a copy of the CSR value in struct thread_struct and writing
-it during context switches. It is safe to discard the old CSR value
-during the context switch because the CSR is modified only by software,
-so the CSR will remain in sync with the copy in thread_struct.
+On Fri, 25 Oct 2024 18:46:22 +0200, Andreas Kemnade wrote:
+> Clock specifies ti,dividers as well as ti,max-div. That is in this case
+> redundant and not allowed by schema. Both specify possible dividers of
+> 1 or 2. Remove redundant definition.
+> 
+> 
 
-Use ALTERNATIVE directly instead of riscv_has_extension_unlikely() to
-minimize branchiness in the context switching code.
+Applied, thanks!
 
-Since thread_struct is copied during fork(), setting the value for the
-init task sets the default value for all other threads.
+[1/1] ARM: dts: ti/omap: dra7: fix redundant clock divider definition
+      commit: d0bdd8bb7f35a2b4434a3ef665f9cfc3aba886c7
 
-Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
-Reviewed-by: Deepak Gupta <debug@rivosinc.com>
-Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
----
- arch/riscv/include/asm/processor.h | 1 +
- arch/riscv/include/asm/switch_to.h | 8 ++++++++
- arch/riscv/kernel/cpufeature.c     | 2 +-
- 3 files changed, 10 insertions(+), 1 deletion(-)
-
-diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
-index efa1b3519b23..c1a492508835 100644
---- a/arch/riscv/include/asm/processor.h
-+++ b/arch/riscv/include/asm/processor.h
-@@ -102,6 +102,7 @@ struct thread_struct {
- 	unsigned long s[12];	/* s[0]: frame pointer */
- 	struct __riscv_d_ext_state fstate;
- 	unsigned long bad_cause;
-+	unsigned long envcfg;
- 	u32 riscv_v_flags;
- 	u32 vstate_ctrl;
- 	struct __riscv_v_ext_state vstate;
-diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/switch_to.h
-index 7594df37cc9f..9685cd85e57c 100644
---- a/arch/riscv/include/asm/switch_to.h
-+++ b/arch/riscv/include/asm/switch_to.h
-@@ -70,6 +70,13 @@ static __always_inline bool has_fpu(void) { return false; }
- #define __switch_to_fpu(__prev, __next) do { } while (0)
- #endif
- 
-+static inline void __switch_to_envcfg(struct task_struct *next)
-+{
-+	asm volatile (ALTERNATIVE("nop", "csrw " __stringify(CSR_ENVCFG) ", %0",
-+				  0, RISCV_ISA_EXT_XLINUXENVCFG, 1)
-+			:: "r" (next->thread.envcfg) : "memory");
-+}
-+
- extern struct task_struct *__switch_to(struct task_struct *,
- 				       struct task_struct *);
- 
-@@ -103,6 +110,7 @@ do {							\
- 		__switch_to_vector(__prev, __next);	\
- 	if (switch_to_should_flush_icache(__next))	\
- 		local_flush_icache_all();		\
-+	__switch_to_envcfg(__next);			\
- 	((last) = __switch_to(__prev, __next));		\
- } while (0)
- 
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index e560a253e99b..27bafc5dd62d 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -923,7 +923,7 @@ unsigned long riscv_get_elf_hwcap(void)
- void riscv_user_isa_enable(void)
- {
- 	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_ZICBOZ))
--		csr_set(CSR_ENVCFG, ENVCFG_CBZE);
-+		current->thread.envcfg |= ENVCFG_CBZE;
- 	else if (any_cpu_has_zicboz)
- 		pr_warn_once("Zicboz disabled as it is unavailable on some harts\n");
- }
-
+Best regards,
 -- 
-2.34.1
+Kevin Hilman <khilman@baylibre.com>
 
 
