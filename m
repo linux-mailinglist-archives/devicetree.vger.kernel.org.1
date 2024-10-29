@@ -1,130 +1,177 @@
-Return-Path: <devicetree+bounces-116998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B789B4994
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:22:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A89579B49B6
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:31:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F03C2834D3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:22:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 678522810A2
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:31:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30ED4206068;
-	Tue, 29 Oct 2024 12:22:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045814C7D;
+	Tue, 29 Oct 2024 12:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L7DDiZ2r"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K8Dhtz41"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F870206065;
-	Tue, 29 Oct 2024 12:22:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ACD9621;
+	Tue, 29 Oct 2024 12:31:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730204528; cv=none; b=S6El1kGq9YgiQk2cTrmbhhw+tE0wdRX7gL5C7nldhWjZ79hsVDFmC1rv44p0jVXDvBn716K12AsQQO1uUt0qI6C6HMz2O96z7/f9Jpqh45Y4zPUYwMnPesMsNFPXgvTreTnC7YV5wcew1x7bmBQ3p+n0sLTczwQD9gsa+H54kPA=
+	t=1730205074; cv=none; b=osRv0YenbzrkmYYVERy7TTJbJkkDTwXRBpflp0SN+KLxiX2LZJgllcc8JYQ6wHr3zKpqRsLc8LPEFiKKqGTi4f/qufxLo9lLEnrTGnJlbizmN6szQ8ToMd3PwHLBCazrxMlWDba44uPjmuoRH0oLInG3k6yxehKn6qbJWXYiUQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730204528; c=relaxed/simple;
-	bh=vSB6u8bogveL7SZrgC/L5ESJfDxg+XPv+xcOu04Lp9Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eQU8j8SOondt8yz+JcSZ988oT3xFFdErb3fVRsaWHW38tdkGB/kjiUe27Qw90KewoiMtMzz8fS+qQflREuhIgDJ+yIf1Sutgc/M1XC5SQ2iKuiE2Z6OxLlNm0kyV8ZRIONQVhjQA34h78c60KqaayFfam1ljiQgE9iNGyWqnq8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L7DDiZ2r; arc=none smtp.client-ip=209.85.215.171
+	s=arc-20240116; t=1730205074; c=relaxed/simple;
+	bh=TYPIu0SfR+TN4j062E5hryA9cXK0q/3ENU8V6QOjjVE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HuwFqM9DOhEFGICpuBrjVIRIckbOEmUMTotpmAReIgu/pHFf3isFN7OmELOYp4e9/eqeuesK6F5xUJg44J+p8f98+zo6YhX76kNwGr879oIFDJArl51EUYsjBtNDiHZPkflORB43ptAmghyjVkl4dpXJ9y8SD1b2KUjJCL9mQak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K8Dhtz41; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7ea6a4f287bso3427529a12.3;
-        Tue, 29 Oct 2024 05:22:06 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-37d5045987dso430846f8f.1;
+        Tue, 29 Oct 2024 05:31:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730204525; x=1730809325; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZHV7QBVD7QIIPlsLZ6YjaWzT16mKG/opBrn7w7p5NbM=;
-        b=L7DDiZ2ryjeuoNBjWfHPYp5KEb78w7Sg1ZNrVk6W5BeOLBxE39qwFqdW8z9QiwDM1+
-         xwlRyMg/7QUjBtqWiqRuUfpRnglUndf1mXMUTvfpWTNMaCCaX0Sk5uZnurGGfzIW1lbr
-         8Fr2DZkaGkffP1/9fS073snQhwqfBb6MgDCkqT7REnTtUwceBJGJEJCm6qDIMloSW4X5
-         wWVOB/qWcz0eooZ555uyJmij6NVFAj+ySPTD+v4KMNr+ha+/f4kmcxLwAZ5IxKXAO/Zj
-         glESHmU6pIt/2WCVYSl3yNEm2IRK2tuwUDilw2Wmq/5arqVG7t2H51dVIg7QeWKdGVG1
-         28fg==
+        d=gmail.com; s=20230601; t=1730205071; x=1730809871; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=fZ7aKdVifpnHdKeUSiwbE32Nz4syIUyUTJuxzmlVQkM=;
+        b=K8Dhtz41Am2MrURjHvRYI7lNcxMk3/iQp2f0loxvcS0uGzO97NKDhOS07Ubdqysz1L
+         46sItM7UJVNYA2BZortNNrGVfiPVrcKMeoQeQ6E0XWzc4L16HQzfcGmn33xsZDdeGriV
+         3YBMwC6yu+sF0zH8UkFs5wqIJt0DUnLxgGHGeok2gx25I9xzFkyZBmzGAA5p6vyf19eE
+         20MUJvuUkt07xqCC8rBEJ7nw1JhmAqI9m8bjff2lxKdk3aHwQ4QMJ417FkxU48XWeEUP
+         3hyrSi1EuYgIO8aXBv6lpTBezEd/04oggDIfenVoNokkm0KmZ9TbQwMZGrWXVG9d1Ls8
+         PASQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730204525; x=1730809325;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZHV7QBVD7QIIPlsLZ6YjaWzT16mKG/opBrn7w7p5NbM=;
-        b=DGcz6jK0i+nqDWt1nGBwjIvrNcjwytECZ2Y/4mu1KBEXmEY/LQZMHC38aXZWZtsaM5
-         PTPUemQEKPVrY6Cu9ZhPjJ9KLgoXZ0retFaDaC3FchMx6gPKTg6x+hdy0y/wxhkFC6tr
-         B7pcBbPr0P8TR2HmdqfmK0N+45qha2BXrmyKQ+Ypefb0Kv5/bzJon3C1VQ69H/WgJJaq
-         xg4ldDyusY9yXbAFl4ua+Fi4Lhf9Q2wlulTCJvTii9o9z3slUs7nBVdgDNOaNjsiVpKE
-         oAt+p31C9EFEbBn/HCK7PIZgcgpRe5HjJdHbRfEa6pyKMDwD/0nAnz3B9ECBkEXfj52v
-         8JsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUbq9qBUoYG5CEJjnFLD2fqNpMsTpL/xhP9eWbBtvzCjQ7Ep8C+ZKZ8Ei4luLL5xYHA9m5jHwoNxxUbKJHm@vger.kernel.org, AJvYcCVcVosy3qcwTp6C6P6eBNBLAb8AN//2bFLMwNLRTDGuhPPP+j/G/zz47zshmc2Y6UmTLQc2KVGh1QPJ@vger.kernel.org, AJvYcCWbBm2ndO4AJkZ3dJYl/vT6d00ZCuDdzykc1nNSeDVLqO6gaiH5h4BBKpX4+ujCWjCiBtnciixmyTzSow==@vger.kernel.org
-X-Gm-Message-State: AOJu0YyodholkqmBOSvpzQBIlRDCWvfEW8Z2wE902c97DzvEK+aVRvsZ
-	CvVmEUm79zlnFd3DBCD2GRkDeR66TeEbIIOcQ7PVFhcsDA/ohPjv3suTVWf8y4usvDLtRLeCb4j
-	A92E2dMijIQ41mxLe8qEL4Vvz8hk=
-X-Google-Smtp-Source: AGHT+IHLIndC2lOUKpJmDfcwYz6ihXRGTPUV9yyYVkIsLE/O6iP/CZ2Hhr2+BylMbsHP2hzM0mXo+TV3dR466se5jdM=
-X-Received: by 2002:a05:6a20:1594:b0:1d9:c56c:4a0b with SMTP id
- adf61e73a8af0-1d9c56c4aa7mr8579387637.1.1730204525421; Tue, 29 Oct 2024
- 05:22:05 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1730205071; x=1730809871;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fZ7aKdVifpnHdKeUSiwbE32Nz4syIUyUTJuxzmlVQkM=;
+        b=k+3HTZ1OVrMwWAUpNFAwP/cEOHmyfJblEc4vivAKYhS/Ui14oVDkE8dGQB2ihrMq2k
+         XGj/F41uIlv3cTUcoFihEG5eUJQTiv6tXBT5XHU5DwlKreMejC51h4FxVRAd7++dq+Qk
+         pq2mzzWg15sqKe4ZMxvd9beZq58yUo7OPcALUTzZS2rijFBjIHLd1paydmFfDZuEQHnf
+         ixI6Hu/YcLL3X+p36qRJpYVlZNYkLaSe4+oH+Z2I8l6F6y/GX7T+JyW0FZt4hdrS8rVn
+         UEKUVcEERWwFP58NdFMsaxA6Wg2T1QhVUr8Z2lyAyZKhHqAswP6zPS0aAtlZnF39QorC
+         c6CQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0KXc705xJuiUUcuRAQ0xcQ6mlR1tTWxx03QQfJGEQEa+nVo/0kucqRI2zJos0EIAKXvRO9YQqkV+w@vger.kernel.org, AJvYcCUhkKYct+tOazFadxZvYdYZKk9Mk1fM8bVASGV8bmM61DVJwCmr0EgWN0VvRTfp6i98RvEgHLDN@vger.kernel.org, AJvYcCX664/cqDnpBogC2Fj1uul4EOI4JXQWePNDydDz/9brxEhZK/DzPHQF8EhmJ5UtLTZE9Ixc9nrxFKy2hjvB@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVNCtqkDs49ogEHkBNFkfqs/H7mhI5vb265xYOujXTm5Teg5nj
+	p6gpSbqzQrIvNplZ/UTe8sJffDlY92zWo4FRLV8K1pRua1Fsgit0
+X-Google-Smtp-Source: AGHT+IF7v8Sw+x2Tqh2kJZeOySvkxMSlwOCzePbp5aDIKfhNrRB639HqLFpTiwIN88Ct1hVS15JJnQ==
+X-Received: by 2002:a05:6000:401f:b0:37d:4517:acfb with SMTP id ffacd0b85a97d-380610eed1amr4037086f8f.2.1730205070555;
+        Tue, 29 Oct 2024 05:31:10 -0700 (PDT)
+Received: from skbuf ([188.25.134.29])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b1c3absm12446497f8f.21.2024.10.29.05.31.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Oct 2024 05:31:09 -0700 (PDT)
+Date: Tue, 29 Oct 2024 14:31:07 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Arun Ramadoss <arun.ramadoss@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH net-next v2 2/5] dt-bindings: net: dsa: ksz: add
+ mdio-parent-bus property for internal MDIO
+Message-ID: <20241029123107.ssvggsn2b5w3ehoy@skbuf>
+References: <20241029110732.1977064-1-o.rempel@pengutronix.de>
+ <20241029110732.1977064-3-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241028175935.51250-1-arikalo@gmail.com> <20241028175935.51250-11-arikalo@gmail.com>
- <avz4crm2yrk3fg7r4qxkgkt3ka5hmk54v2wtcms453tsnewu5w@jzjxmyd4b7yg>
-In-Reply-To: <avz4crm2yrk3fg7r4qxkgkt3ka5hmk54v2wtcms453tsnewu5w@jzjxmyd4b7yg>
-From: Aleksandar Rikalo <arikalo@gmail.com>
-Date: Tue, 29 Oct 2024 13:21:54 +0100
-Message-ID: <CAGQJe6p6QgSQKByVQ8G+HpWbdEHnfNb8vRureOrS2VZa6Lk74A@mail.gmail.com>
-Subject: Re: [PATCH v8 10/13] dt-bindings: mips: cpu: Add property for broken
- HCI information
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Gregory CLEMENT <gregory.clement@bootlin.com>, Theo Lebrun <theo.lebrun@bootlin.com>, 
-	Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org, 
-	Djordje Todorovic <djordje.todorovic@htecgroup.com>, Chao-ying Fu <cfu@wavecomp.com>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Geert Uytterhoeven <geert@linux-m68k.org>, 
-	Greg Ungerer <gerg@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, 
-	Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
-	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
-	Marc Zyngier <maz@kernel.org>, Paul Burton <paulburton@kernel.org>, 
-	Peter Zijlstra <peterz@infradead.org>, Serge Semin <fancer.lancer@gmail.com>, 
-	Tiezhu Yang <yangtiezhu@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241029110732.1977064-3-o.rempel@pengutronix.de>
 
-On Tue, Oct 29, 2024 at 8:03=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
+On Tue, Oct 29, 2024 at 12:07:29PM +0100, Oleksij Rempel wrote:
+> Introduce `mdio-parent-bus` property in the ksz DSA bindings to
+> reference the parent MDIO bus when the internal MDIO bus is attached to
+> it, bypassing the main management interface.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> ---
+>  .../devicetree/bindings/net/dsa/microchip,ksz.yaml       | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> index a4e463819d4d7..121a4bbd147be 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> @@ -84,6 +84,15 @@ properties:
+>    mdio:
+>      $ref: /schemas/net/mdio.yaml#
+>      unevaluatedProperties: false
+> +    properties:
+> +      mdio-parent-bus:
+> +        $ref: /schemas/types.yaml#/definitions/phandle
+> +        description:
+> +          Phandle pointing to the MDIO bus controller connected to the
+> +          secondary MDIO interface. This property should be used when
+> +          the internal MDIO bus is accessed via a secondary MDIO
+> +          interface rather than the primary management interface.
+> +
+>      patternProperties:
+>        "^ethernet-phy@[0-9a-f]$":
+>          type: object
+> -- 
+> 2.39.5
+> 
 
-> > diff --git a/Documentation/devicetree/bindings/mips/cpus.yaml b/Documen=
-tation/devicetree/bindings/mips/cpus.yaml
-> > index a85137add668..57e93c07ab1b 100644
-> > --- a/Documentation/devicetree/bindings/mips/cpus.yaml
-> > +++ b/Documentation/devicetree/bindings/mips/cpus.yaml
-> > @@ -47,6 +47,12 @@ properties:
-> >    clocks:
-> >      maxItems: 1
-> >
-> > +  cm3-l2-config-hci-broken:
->
-> Are these names - cm3, l2, hci - obvious and known in MIPS? HCI usually
-> means something else - see drivers/bluetooth/ and drivers/nfc/
+I'm not saying whether this is good or bad, I'm just worried about
+mixing quantities having different measurement units into the same
+address space.
 
-I would say yes. At least the name "CM3" (Coherence Manager 3) is
-common knowledge.
-L2 HCI (L2 Hardware Cache Initialization) is a feature of CM3 that is
-non-functional on some systems.
+Just like in the case of an mdio-mux, there is no address space isolation
+between the parent bus and the child bus. AKA you can't have this,
+because there would be clashes:
 
-> Is this property applicable for all MIPS vendors? There is no vendor
-> prefix here, so this is generic for this architecture, right?
+	host_bus: mdio@abcd {
+		ethernet-phy@2 {
+			reg = <2>;
+		};
+	};
 
-I'm honestly not sure if this is something that only one vendor will use.
-Theoretically, there could be more. Perhaps Gregory CLEMENT can give a
-more precise answer.
+	child_bus: mdio@efgh {
+		mdio-parent-bus = <&host_bus>;
 
-Best Regards,
-Aleksandar
+		ethernet-phy@2 {
+			reg = <2>;
+		};
+	};
+
+But there is a big difference. With an mdio-mux, you could statically
+detect address space clashes by inspecting the PHY addresses on the 2
+buses. But with the lan937x child MDIO bus, in this design, you can't,
+because the "reg" values don't represent MDIO addresses, but switch port
+numbers (this is kind of important, but I don't see it mentioned in the
+dt-binding). These are translated by lan937x_create_phy_addr_map() using
+the CASCADE_ID/VPHY_ADD pin strapping information read over SPI.
+I.e. with the same device tree, you may or may not have address space
+clashes depending on pin strapping. No way to tell.
+
+Have you considered putting the switch's internal PHYs directly under
+the host MDIO bus node, with their 'real' MDIO bus computed statically
+by the DT writer based on the pin straps? Yes, I'm aware that this means
+different pin straps mean different device trees.
+
+Under certain circumstances I could understand this dt-binding design
+with an mdio-parent-bus, like for example if the MDIO addresses at which
+the internal PHYs respond would be configurable over SPI, from the switch
+registers. But I'm not led to believe that here, this is the case.
 
