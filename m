@@ -1,153 +1,214 @@
-Return-Path: <devicetree+bounces-117063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B8839B4E09
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 16:31:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 895EB9B4DF8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 16:29:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BC53B25483
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 15:31:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD0B31C21CF3
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 15:29:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 489351946B1;
-	Tue, 29 Oct 2024 15:31:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 456FF194137;
+	Tue, 29 Oct 2024 15:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="OVNmKCRk"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="YAI5Sg5l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013070.outbound.protection.outlook.com [52.101.67.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3F4A194AE2;
-	Tue, 29 Oct 2024 15:31:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730215874; cv=none; b=Bjyg2CaGYMfk3cGsqabD5JLZcGBHstiJ48QxvK6cETKVzAdBWwqJ9/JSWg3xYbFl6OxMhdjwMzK0I4oaHwQXVWn42Lj+XeHYYfzmW19QxJP3W1aaFDyqlqXJtoh9YPrlWBARLSGwwWSCDp2xdelOV6AXPvJOrid9994mEavooe0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730215874; c=relaxed/simple;
-	bh=u0a3xitznGjPe3Siy+gZjTTUWi1lTkXvONBb6XAU1Cw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ApOSu4Od8oqB/vxFbiiX8TiVxHqxsjUMYVCWwHoDpdgVCSF1LX2me6299WfCD9MG1dAs5RI0ZLxpRMQykv1VlBlhichEUCnZamUxNmst7TIchi7OjDJA91HYoWSJ3Afa7JtlsKQw7mxAxe/3vkgS6xYnQZoGQ9Xs0LspFy4ARss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=OVNmKCRk; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49TCRjnj014244;
-	Tue, 29 Oct 2024 16:30:44 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	R+/H3pqYnfyIgN4uUTX5uKa1/8V4zVKPQSaYRI/UZRA=; b=OVNmKCRko1YzY2kL
-	5Z4zEd9acvr9AXfrhBP3j4XJ3vOlg+SkFkMqjbC+p1GB9ZRKKothnz5GqlN3nfJn
-	t/lqY+G/f7lpgiWsV7KBtugZaU3rM+eUeqqNA1IOLhTo9WNP+SEgCADKeHTPuR16
-	5soEjoVxw5N7CB9ARbgnYVP+md1s4/N6hgsNbCsVHRT32l2l5kfTCXzZGEHgxm75
-	tQgg4K3mfTDS1mReIuphJvwgxKfEUKSPcwLNzBONVDEx+dboffGGBRrFnRTZq2qe
-	Py9bM3Ptf6tXUgobwCmE7/kDZEgvdWca6f3nqIMMdxRubBEIqEv3jd6Y0a6SLUXB
-	aPdH5A==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42hbchmh24-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 16:30:44 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 10C8540044;
-	Tue, 29 Oct 2024 16:29:33 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2CB95263877;
-	Tue, 29 Oct 2024 16:28:47 +0100 (CET)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 29 Oct
- 2024 16:28:46 +0100
-Message-ID: <b616628b-f9e3-42dd-b5dd-e7aa0235daae@foss.st.com>
-Date: Tue, 29 Oct 2024 16:28:45 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D353619309C
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 15:29:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730215763; cv=fail; b=L/qMEhb/CJsPBoVyJOFjKfnAl2oTipvyEIQf69AzsVvL53LxiR+bAVl6LfJkSdjFqdSp0x73bFme8ZBn2mVEHwYpTqpHHa8rSFrY3ZU7r8Pw+hbEtIVkHFmhLy73lLd7Ie7Xs7c2ccjEWtoNNyPq0cSGqDqqCu8NCm+w15chMFU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730215763; c=relaxed/simple;
+	bh=1cgHWRT/KROfICvjMP2YGpeunTfyoO/J6i6q1yu0JQE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=KaWWi3jaCVwUtDems/onUsWz51rWAnJcSCGk77/1VLmkSnje6KFtiQFX+rJpzl1dqKIVxcS8TnIXKHE/Hmv+FBA+3iNn273ibscm9z3FgxY8Wo24zMxC5k732Wj/Ylftw650ofpqjHpqmrYV5VDiRUXv069bbywCrWOCWyINQBA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=fail (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=YAI5Sg5l reason="signature verification failed"; arc=fail smtp.client-ip=52.101.67.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vDde32vS/vy8SGwaF57mFkFsNRkz7x59ftxgxR5dNnVA6BdFIn+dxghTRrmLSfnFn7cFk6dcJ7PTPh5tMfOagPMsVqXtHdrlNyCcEGiS117LVm4utt6BIicTR6swCdjHNsBmPFpHQ15dMl/giQheUW6K7W+HGEHzOBsPZrNw3+2rmw+9ABXK9MEqrhZcWD7ihyd8+YflcB/MY47MkpSoiq7+J7Mb45pJPEHD1WQ8Uc6SpU08Px8NueS3L7nGzTADiVtwgCvKxzq9I83n3xO/w2RAIl1BdgcqWnsXjO+epypN725mGdyhnHXrBmwKJFJBnWgUeQrB4tMua+zQF06JfQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gVCWYpn0PR3BAGmDpI5pA8fwFnoMasdqcwCegHpQiVA=;
+ b=DHltA9pqs+gpJjWNAaHgw+1nDOcXujtHQEtHpe/ErQykvzJhQ3VAkdktSJexyji1mtv4iU/5KCp9TGGCWPC4zw9SW8dRtuyw2N4ZzwVmvmE6E8LR+EzRlAK2LE3QnUMr4bkS+sOATJwZkjGTOV5UadQKqy2kCxI/nAQLr2BmIc8L4M1YAeZjLGyYwnxBKRGovziczWzKk3huyzqYSqNPncflaApxvX/etbIZOU7LZzX5TAe3/XJ2CBZwsOOla2iHXhrmwMLCQcyw/03Kaysy1lALOXqqM3IiTAIZoVOfW2q1TFJmWTKEBzt5JM6tRlA4S/DfExg9V+sfHyjG4EXFeA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gVCWYpn0PR3BAGmDpI5pA8fwFnoMasdqcwCegHpQiVA=;
+ b=YAI5Sg5lXysUFduJBOtFtb4KKCqUvdh57E/+Yq2XxX02O9TqXGc1RQBbFgJNz0j7dHhqiHTYzCP6I3wnxk6rWyHVTcDr6aEhTpPgA2zI2w+qRnz8KVDVmUO8xcZQ85Ymu4q+lTV+8h0MAKlg6cABkloLTMOz0JBVXfVNsHDhNF/71XSjsu5UEkLsDRf5lWYfHDyxwmM35UfLLVUFI73Tb+GUxRHc8AJIXDgEiAY/pYFx6g/cP2Qp0bbfqWCjikdHxXAIroDlZ8qNPBz6nSzxVzzMx+GgJSRI5OisdrOoc3ZQEIveInq0wpsVXr8Zn9jW6+J/4xEqHqn0vs9uG8TqDA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by GVXPR04MB10407.eurprd04.prod.outlook.com (2603:10a6:150:1e9::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.20; Tue, 29 Oct
+ 2024 15:29:16 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::e81:b393:ebc5:bc3d]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::e81:b393:ebc5:bc3d%3]) with mapi id 15.20.8093.027; Tue, 29 Oct 2024
+ 15:29:16 +0000
+Date: Tue, 29 Oct 2024 11:29:07 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Vinod Koul <vkoul@kernel.org>, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	Xu Yang <xu.yang_2@nxp.com>, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/5] dtbs_check warning clean up against
+ fsl,mxs-usbphy.yaml
+Message-ID: <ZyD/QzKS7xqQ2QF8@lizhi-Precision-Tower-5810>
+References: <20240926073951.783869-1-xu.yang_2@nxp.com>
+ <172917937246.288841.15901592420939223719.b4-ty@kernel.org>
+ <6099458.lOV4Wx5bFT@steina-w>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6099458.lOV4Wx5bFT@steina-w>
+X-ClientProxiedBy: BYAPR08CA0015.namprd08.prod.outlook.com
+ (2603:10b6:a03:100::28) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ARM: dts: stm32: Describe M24256E write-lockable page
- in DH STM32MP13xx DHCOR SoM DT
-To: Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
-CC: Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
-        <kernel@dh-electronics.com>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20241017190933.131441-1-marex@denx.de>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20241017190933.131441-1-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|GVXPR04MB10407:EE_
+X-MS-Office365-Filtering-Correlation-Id: c3c99c27-dca2-4c72-9f61-08dcf82e7324
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|7416014|52116014|376014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?iso-8859-1?Q?nfwqJKWh20wJ/UflonCQqGSnw+Z+MvHyzm7eg1vBItEQi4olYrvKYBu7g+?=
+ =?iso-8859-1?Q?0XtbjSCsAX9IVw+fqgVGmCl+NwdMPza97btJgqjSV/STjzDneClBOiTrFP?=
+ =?iso-8859-1?Q?D0zWESQdg3CEJe3P//fC+qKgTvZD1HgqEfE0xuQrroIHSWtPYgvL0Np/cQ?=
+ =?iso-8859-1?Q?zwEr1aAvhhZ0BVWukOL5DouSEQpueR2xThsa4bOgHljO839CXOfT+3OVh0?=
+ =?iso-8859-1?Q?zRXg0KeddGahHkjVrbk99RxPemT66Vx32PkGwkLAL/jJDMyo7AX/CAsKPo?=
+ =?iso-8859-1?Q?nfCnpxhhV14yBs3ZffCaN0YTItmRysTH/zTGYwENlhfNuET9bT/EBb0j62?=
+ =?iso-8859-1?Q?37Bg5slYCX1ZYDBpm6VAA37624y5fluZbBrFXBp5kwGVR1uokmc47TDYKt?=
+ =?iso-8859-1?Q?JPMP3n1+wCqOZ4OLg8Ov/9EvPe/vRf6ro7GESqXEbGrF4Ynr+5cMbDumyQ?=
+ =?iso-8859-1?Q?l6TMzrMm0GO0w+dZWoGoSKqsOOx6g478LGMoV4K29uqMf0/dWS101lE7gq?=
+ =?iso-8859-1?Q?AZirRtF7RWizImOQWMmsLJgZ1HoOx88dvTHOByBSvUvGS0fgXK1UhTFnyI?=
+ =?iso-8859-1?Q?92ZqZ9x70cMe7kMjTid8vY5BfqwqtrhCgz7UfjILttLNhFVjIm/tDU8UHO?=
+ =?iso-8859-1?Q?t/mghiDyfQMRP5x+8n9HNOX1beNVmO9tSBsh076ak38+jPTt14Stw9Fdtp?=
+ =?iso-8859-1?Q?jMuJEfZ54Qe3m4fmIFjxnTr4P8teJyDyaS57T5hK8+IpXX7WqCnf7HgVR4?=
+ =?iso-8859-1?Q?Hj0eCYX6AOT1Q4o71f9cWVoi4Yo4Ed6pL2WlPXIWMUlEaPN4E+0fAo6CEi?=
+ =?iso-8859-1?Q?PqPHtsY0X0rXHqI8SExP6hQZTJJCs4NVCtwKLWoT0AXqiDrQgTQmGotLzl?=
+ =?iso-8859-1?Q?3dedyXFHM5hcBNEBaP9f6+wysA0v4wUHQFyNynF3P8FmpPmXmgE1xHsO79?=
+ =?iso-8859-1?Q?1vZ5dNG4EYSJPCDK8OgrdqEAcnro4Z0+dmGsyhX7Dj045zFzSru+iBUeX9?=
+ =?iso-8859-1?Q?EXClT+qMFZDdOfPWKJamBd4A+GEMbkyoytI6gNZb+kI2dLYqJKFn8MYf9f?=
+ =?iso-8859-1?Q?9sh1+PH9H/fU87bw/AGuRAUuE18J6zfvahXFGYb9i8c02UrM2EUwcJy4w4?=
+ =?iso-8859-1?Q?lIU1cAgKa6L6uG35iNJOFT0j9kaST2uZFoJo6umLR/fXse5MuFFnzfZDAD?=
+ =?iso-8859-1?Q?58HRkZUrC4v0ttTEAlPFyicRSZwhRRXUn5rRABIQPHLgyFvmSGE/wfObP8?=
+ =?iso-8859-1?Q?9XM3zo8eSoFHtBceraH0ihVQ+i4QFOi0a1X1R6y7ToEgeiweREx6xhZ1cb?=
+ =?iso-8859-1?Q?1jWw3DfSsyCGzh2xC/uQKf3oUtXyHs7+NktT2BtWH+J6zn6E/LrFI8atsB?=
+ =?iso-8859-1?Q?ADJyrhujYu?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(52116014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?iso-8859-1?Q?/Cz8oN0t4jVV/d9kXGmj458Hjrx/apAVRQSyBsb6rlwsUxrAMEv1wMKnT9?=
+ =?iso-8859-1?Q?OTM3MrIQlLKB7C07cAEcgH5nf04mHdu0EoEXSljVJwjlsdm+vhfmu+rGat?=
+ =?iso-8859-1?Q?GXmJLpG/uVuPcD6cBReZsbfmNCz9YsIDXqDREJdWWp2w7iGvZ0/CukJhY/?=
+ =?iso-8859-1?Q?c4jB0/eDMsQbSV+tCRRI9aGJZqCG6LZcnQLjCdt1Ocf1N5oq+DW4j2YxbP?=
+ =?iso-8859-1?Q?1sFbZTwtbWn07hOJXrSqm9MobPqfLVJdJyNhYZ9KqLeZwyhW+ZK9aqn38k?=
+ =?iso-8859-1?Q?PGJErnF0z9RYrSzV86v7if/sYEUOp/EA22BfSHymj2A8wc/IEWNb++yKNh?=
+ =?iso-8859-1?Q?/Q8AY5LRdLfm+5OS+hJ1TamfPAw1JUpaCEd+JydsPJo3L7YX54CG4mTR17?=
+ =?iso-8859-1?Q?Z5/keoUSBIW/xGHdFYiZ41al4v8+jNipcOSWgUgRL13iJd/w/9CDSsrBIB?=
+ =?iso-8859-1?Q?pUzDv2MNV4uEDJ+4YB5H0GrLPUeiMrVSLKi8nyQcuJUOd/4CUlUcBq29Fg?=
+ =?iso-8859-1?Q?afHtl8fDqRGiI+fIGPY+WFLv4wjvwWxr0pSb22tvrMLSrT6LHtEWwcmb4+?=
+ =?iso-8859-1?Q?To+SfGOV451OLGA/LX0UPYqrL9AGcTXc2SAdRMTJjXfEriC2zqiz1Kopqk?=
+ =?iso-8859-1?Q?O5pPzNJECQRNyV9DTraHG9o8RKknsypu6xghQNJZZHyVux5gvGBxr/ZQ8c?=
+ =?iso-8859-1?Q?BV0VV/Xy5fM7I+ItLY6ykhOjtaMfAYwnlSfIOPDZU5ZkxXkPK81QzTWp0t?=
+ =?iso-8859-1?Q?yH5hAW92CFIwocIzvFfwvPCpCQmc1dZkvN0gED4kG0yVQi9KsHPA5OwM7/?=
+ =?iso-8859-1?Q?KUv+Z6cz0hCo9qR1JUPJJw/jk5Vf2bTj+lOprTDEu7VQDsQVny+rdYm5MU?=
+ =?iso-8859-1?Q?dynsQ8v39q25kRFa3gwFIXA2hxF5ddqNode/IzPmFdexx/B+BR+TMEpRTh?=
+ =?iso-8859-1?Q?FRZgRZVRpyBHi/+OnvT3IntzEiRXapM42sIiLvcutMFzIlhNreo06VN4OM?=
+ =?iso-8859-1?Q?ORM6phAJO2VhVjZVtbNbQzDx/Tq1clWbJHvHj7Hc+QhJdAtdxBvLw7/M9C?=
+ =?iso-8859-1?Q?5NlHT/5k9q6jXa9oGAABOXF3IYVarIeiyY5MfDiTwfs+ij9di1NjRz1ePo?=
+ =?iso-8859-1?Q?FaAqQ6FTGv7HG5X1w69BZVniuPsNOriICWtad+CaeLJBO5KDxifmB/YxDT?=
+ =?iso-8859-1?Q?7wrcU2qOMKZ6Iwd/D+xDXO7wHwa20wfWCrKUPDfqwe8DDOFYgjG9+jkpdL?=
+ =?iso-8859-1?Q?0BoH0qBgyGcN1K7TfSsGLcM8ykn+Opzm5B1qp1rVmZsKFou/DFqegIzOlN?=
+ =?iso-8859-1?Q?KawxswZ2PK8jkzsPw+wW49nZy91N2TtlggSFhvqQS7U/3h+YJgw8JHe6Z1?=
+ =?iso-8859-1?Q?g6+1Ng4svOS1TvfzLOpa+FDacI1sET+wV903rqDn0bsrJzx6a1EKvw0evL?=
+ =?iso-8859-1?Q?YXZZnRek6WYPiTVInBGyHYV2fv67kHYl8+mGzMTdhLILuhP9nzLmo7qhF6?=
+ =?iso-8859-1?Q?1LHl3vNCV17R+3xSmCLkB8E+X7lX4gmZ7D+lBEDXNXbrLJYbroWCev4ofU?=
+ =?iso-8859-1?Q?ER7xevp79qouYpJKoN40wLVxyPnGkz5gIRJ5RgzlKlSAdO5kAAFIGu1ChA?=
+ =?iso-8859-1?Q?iy3VOH214svwxccMAFu4OYVxy4OBiP7pFU?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3c99c27-dca2-4c72-9f61-08dcf82e7324
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2024 15:29:16.5172
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lu4C0G2LkvmkzvOgVMW3v6M2Cg+hlCCqwsr5XjvMHbZyFWC2jtwmhLp3dsdsbQx7wZ5mHdoxHV7vQS25DbNYzQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10407
 
-Hi Marek
+On Tue, Oct 29, 2024 at 04:15:54PM +0100, Alexander Stein wrote:
+> Hi Vinod,
+>
+> Am Donnerstag, 17. Oktober 2024, 17:36:12 CET schrieb Vinod Koul:
+> >
+> > On Thu, 26 Sep 2024 15:39:46 +0800, Xu Yang wrote:
+> > > Some changes to clean up dtbs_check warning against fsl,mxs-usbphy.yaml.
+> > >
+> > > The first 4 patches are used to fix below warning, "nxp,sim" is only
+> > > needed by i.MX7ULP:
+> > >  - 'nxp,sim' is a required property
+> > >
+> > > The last patch is used to fix below warning:
+> > >  - fsl,tx-d-cal: 5 is less than the minimum of 79
+> > >
+> > > [...]
+> >
+> > Applied, thanks!
+> >
+> > [1/5] dt-bindings: phy: mxs-usb-phy: add imx8qxp compatible
+> >       commit: 76b4f2a5cec59e842de4b5989eb990a2ee8cedf3
+> > [2/5] arm64: dts: imx8dxl-ss-conn: change usbphy1 compatible
+> >       (no commit info)
+> > [3/5] arm64: dts: imx8qm: change usbphy1 compatible
+> >       (no commit info)
+> > [4/5] arm64: dts: imx8qxp: change usbphy1 compatible
+> >       (no commit info)
+> > [5/5] ARM: dts: imx6qdl: convert fsl,tx-d-cal to correct value
+> >       (no commit info)
+>
+> Did maybe something go wrong while merging? Only patch 1 has a commit SHA1
+> in this mail.
+> Also only patch 1 is available in linux-next
 
-On 10/17/24 21:09, Marek Vasut wrote:
-> The STM32MP13xx DHCOR SoM is populated with M24256E EEPROM which has
-> Additional Write lockable page at separate I2C address. Describe the
-> page in DT to make it available.
-> 
-> Note that the WLP page on this device is hardware write-protected by
-> R37 which pulls the nWC signal high to VDD_3V3_1V8 power rail.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> ---
-> V2: Fix up the M25256E in Subject
-> ---
-> DEPENDS:
-> - https://lore.kernel.org/linux-i2c/20241017184152.128395-1-marex@denx.de/
-> - https://lore.kernel.org/linux-i2c/20241017184152.128395-2-marex@denx.de/
-> ---
->   arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi b/arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi
-> index 5c633ed548f37..07133bd82efa6 100644
-> --- a/arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi
-> +++ b/arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi
-> @@ -202,6 +202,12 @@ eeprom0: eeprom@50 {
->   		pagesize = <64>;
->   	};
->   
-> +	eeprom0wl: eeprom@58 {
-> +		compatible = "st,24256e-wl";	/* ST M24256E WL page of 0x50 */
-> +		pagesize = <64>;
-> +		reg = <0x58>;
-> +	};
-> +
+Supposed script report issue. Only dt-bindings go to through DMA tree.
+Other dts should go through shawn's tree.
 
-You could have sorted nodes by I2C addresses.
-Anyway, applied on stm32-next (as dependencies have been applied by 
-Bartosz).
+Still wait for shawn pick dts patches.
 
-Cheers
-Alex
+Frank
 
-
->   	rv3032: rtc@51 {
->   		compatible = "microcrystal,rv3032";
->   		reg = <0x51>;
+>
+> Thanks and best regards,
+> Alexander
+> --
+> TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+> Amtsgericht München, HRB 105018
+> Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+> http://www.tq-group.com/
+>
+>
 
