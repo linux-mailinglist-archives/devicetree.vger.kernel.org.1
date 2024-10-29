@@ -1,198 +1,124 @@
-Return-Path: <devicetree+bounces-117020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CCC79B4AA6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:12:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87DC69B4AB1
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:16:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B91B28402B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:12:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 036A0B22E82
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:16:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C0CC206508;
-	Tue, 29 Oct 2024 13:11:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16C55205E3F;
+	Tue, 29 Oct 2024 13:16:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ogG0of+B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B3D20606A
-	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 13:11:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40FCC204013
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 13:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730207515; cv=none; b=epfFVfxX4kTO43wkJ/u0OaSDlPhccIcjepT1N8/kE3TYc4Gw5hiarvosI/O6mxlRrsSy89U22Olu0+QPbCr8ShxglNAuykMZM4NHCBI5fyJN/MtELOBSG+4v+/7RZGOAPioA7ZpWdifw8W8oEbHd3lqC5bYul5Hew24bXWJx7Y0=
+	t=1730207792; cv=none; b=Bq8/XSYwrn9qq1RnQmqT793sud3KoL0lf8wp5fge3t/b/2OKW0cO7NZvS+t4frLZ7PBp2oUM5pwAC0lW3rM6iAZqxm9Bhbp7Af8SvQP5+suvnIozv2Pkf1RQfn3WOtkXBdEgJ5TwsRTFBUkXC4AeBu6rot+DSPxpyUwziOBLGaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730207515; c=relaxed/simple;
-	bh=XzgorTedaw2znQGGv24V6WZlw0DFo07D2KZBoPXv/LQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F7EfFv6Pf0JdmXr0V0KVq6DnQ+pFpwwp57E6m9YNzifYbzVdH6Utcx/CS0uQePQnWVR9LA28/J2zZ2bv/wzdu8fStMiBMxCEcbyosOFHxxtRrsNMiiIDsm32+qDNPZZZnk8G1tJKt1yE06QDw9aazGLsIGYHZ6IgHsfTAfrAWkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1t5m0M-000489-C2; Tue, 29 Oct 2024 14:11:26 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1t5m0K-00120t-1M;
-	Tue, 29 Oct 2024 14:11:24 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1t5m0K-002aPG-0y;
-	Tue, 29 Oct 2024 14:11:24 +0100
-Date: Tue, 29 Oct 2024 14:11:24 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Arun Ramadoss <arun.ramadoss@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH net-next v2 2/5] dt-bindings: net: dsa: ksz: add
- mdio-parent-bus property for internal MDIO
-Message-ID: <ZyDe_ObZ-laVk8c2@pengutronix.de>
-References: <20241029110732.1977064-1-o.rempel@pengutronix.de>
- <20241029110732.1977064-3-o.rempel@pengutronix.de>
- <20241029123107.ssvggsn2b5w3ehoy@skbuf>
+	s=arc-20240116; t=1730207792; c=relaxed/simple;
+	bh=ORScFiiSj6DBWVhn8Ip6edyJLDCC004uaKK2dEp4X1g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IiNkTbAP89Gt2Xv2L0eJ5B+jVGSxa185ojs+p77LHMCTCI9hkP8VnGQ1qHUmMKmDNtYZh4POmckDAJRY9hJxPcDzX4YiNZtc0yEQM8c8Dt2aAmkeGqY0tVkSUOsMuda/MCPAcfWf1f54AHwenBGzjpG41OKmQSYIyDdzWA2ro14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ogG0of+B; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-208cf673b8dso50822685ad.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 06:16:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1730207789; x=1730812589; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=G4FgCQ6GkthTlMOY7Hwmvw1LED0yrWV2Of7OG03sNbg=;
+        b=ogG0of+Bgo8R4elC2gdsau+roG160QzUNvRJF+l8FYhN6C+6f/yCSqPvHuI3DYybXf
+         e9zun2XeDN2QAb3xiauDaqFLlxGC0luC30X47Q9s9vz0UJrqkBCDUQxlMAkYG6pcyvaD
+         bsDfLyKaJ5mKdDfL4aTXohFz+ywzYuE4EFVKf+sy3QU6NCQM+KfePC9ECtECRskG7lP7
+         wDSr2h6Yfy4WOUnRhizfobsqLx/p4bIOv9GeJUABS0RIZDJpsK4vh2XzZ4ASe4KYWXvz
+         Iw7AY8bbZ3YPl06EaIYRlI+ZqDk2/Bxw4r1J/yriK6i96vLcYLhr7yh7liNiM/7tolUK
+         PHEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730207789; x=1730812589;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=G4FgCQ6GkthTlMOY7Hwmvw1LED0yrWV2Of7OG03sNbg=;
+        b=ZfSk8EP2BRlQOmLJJFE/E8f3jbaEigUQhHWnouRBuWCrY5mLI8hYVwCKeKNyLI/ah1
+         0zx2jE4L2GluJ9fY0QZgXsgCi1ZwMVk1/TbzxGCrDxlS7TUgwrIBe3tywEn/Zkxmfb93
+         Cgv4UCHz/okQJdVaNtVK6HFDJLAEXKyjj3Imli625wDrvUhtoRY26mjeNA6nGIlxic46
+         0K0i0AbKVMH6bLbgtT8Bx1odrsc87oS8MCI30rwpDwaLXUG/CrTO90/Zx15U+BmpOuRH
+         Seeo2QaTQHLSPCH05W/uQD646BVeROmFPin7Rm5yONXF/YVz9BVDNEd6ExEMQnbERlq6
+         GH1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXFXfX0f1uyhBndTC+7o9qW6dQ7E6GvmxlZW0B2WbCozJlfcR4b59NgtRDNfUjtml4u3mETbCpAnsd+@vger.kernel.org
+X-Gm-Message-State: AOJu0YysLAPXszmZVYOYOMwILRFoSF9EgVE5QVHXp6E3/jgGITqyO4Eh
+	mMrtFMk3/q8R2KgKyhnHRLXDzYq7dRTOOnfTdDWdQO9ORnyQJS/GsN/xTawNSipC8kSwN6UN/2w
+	qI/KcYb/6zOZTUls8E4YDKfhGjYYhos1uX2LC
+X-Google-Smtp-Source: AGHT+IG7aPEWXrKU2oQ6UttFO6K5zHHkqze1cQRhd6cCywBZr/BAJUMAwKfw3MVUjRift3AdGsm8Yxujz0XZfRoELXY=
+X-Received: by 2002:a17:902:d4c3:b0:20b:b0ab:4fc3 with SMTP id
+ d9443c01a7336-210c6c934c1mr173443635ad.49.1730207789184; Tue, 29 Oct 2024
+ 06:16:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241029123107.ssvggsn2b5w3ehoy@skbuf>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-16-dakr@kernel.org>
+In-Reply-To: <20241022213221.2383-16-dakr@kernel.org>
+From: Alice Ryhl <aliceryhl@google.com>
+Date: Tue, 29 Oct 2024 14:16:14 +0100
+Message-ID: <CAH5fLgiab5vssuQ2CO4kuKHhhWma=17858w8wbtmYUOXA-Cd1Q@mail.gmail.com>
+Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
+ driver abstractions
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
+	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com, 
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com, 
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
+	daniel.almeida@collabora.com, saravanak@google.com, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 29, 2024 at 02:31:07PM +0200, Vladimir Oltean wrote:
-> On Tue, Oct 29, 2024 at 12:07:29PM +0100, Oleksij Rempel wrote:
-> > Introduce `mdio-parent-bus` property in the ksz DSA bindings to
-> > reference the parent MDIO bus when the internal MDIO bus is attached to
-> > it, bypassing the main management interface.
-> > 
-> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> > ---
-> >  .../devicetree/bindings/net/dsa/microchip,ksz.yaml       | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> > index a4e463819d4d7..121a4bbd147be 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> > +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> > @@ -84,6 +84,15 @@ properties:
-> >    mdio:
-> >      $ref: /schemas/net/mdio.yaml#
-> >      unevaluatedProperties: false
-> > +    properties:
-> > +      mdio-parent-bus:
-> > +        $ref: /schemas/types.yaml#/definitions/phandle
-> > +        description:
-> > +          Phandle pointing to the MDIO bus controller connected to the
-> > +          secondary MDIO interface. This property should be used when
-> > +          the internal MDIO bus is accessed via a secondary MDIO
-> > +          interface rather than the primary management interface.
-> > +
-> >      patternProperties:
-> >        "^ethernet-phy@[0-9a-f]$":
-> >          type: object
-> > -- 
-> > 2.39.5
-> > 
-> 
-> I'm not saying whether this is good or bad, I'm just worried about
-> mixing quantities having different measurement units into the same
-> address space.
-> 
-> Just like in the case of an mdio-mux, there is no address space isolation
-> between the parent bus and the child bus. AKA you can't have this,
-> because there would be clashes:
-> 
-> 	host_bus: mdio@abcd {
-> 		ethernet-phy@2 {
-> 			reg = <2>;
-> 		};
-> 	};
-> 
-> 	child_bus: mdio@efgh {
-> 		mdio-parent-bus = <&host_bus>;
-> 
-> 		ethernet-phy@2 {
-> 			reg = <2>;
-> 		};
-> 	};
-> 
-> But there is a big difference. With an mdio-mux, you could statically
-> detect address space clashes by inspecting the PHY addresses on the 2
-> buses. But with the lan937x child MDIO bus, in this design, you can't,
-> because the "reg" values don't represent MDIO addresses, but switch port
-> numbers (this is kind of important, but I don't see it mentioned in the
-> dt-binding).
+On Tue, Oct 22, 2024 at 11:33=E2=80=AFPM Danilo Krummrich <dakr@kernel.org>=
+ wrote:
+> +    /// Find the [`of::DeviceId`] within [`Driver::ID_TABLE`] matching t=
+he given [`Device`], if any.
+> +    fn of_match_device(pdev: &Device) -> Option<&of::DeviceId> {
+> +        let table =3D Self::ID_TABLE;
+> +
+> +        // SAFETY:
+> +        // - `table` has static lifetime, hence it's valid for read,
+> +        // - `dev` is guaranteed to be valid while it's alive, and so is
+> +        //   `pdev.as_dev().as_raw()`.
+> +        let raw_id =3D unsafe { bindings::of_match_device(table.as_ptr()=
+, pdev.as_dev().as_raw()) };
+> +
+> +        if raw_id.is_null() {
+> +            None
+> +        } else {
+> +            // SAFETY: `DeviceId` is a `#[repr(transparent)` wrapper of =
+`struct of_device_id` and
+> +            // does not add additional invariants, so it's safe to trans=
+mute.
+> +            Some(unsafe { &*raw_id.cast::<of::DeviceId>() })
+> +        }
+> +    }
 
-In current state, the driver still require properly configured addresses
-in the devicetree. So, it will be visible in the DT.
+Sorry if this has already been mentioned, but this method should
+probably be marked #[cfg(CONFIG_OF)] so that you can use these
+abstractions even if OF is disabled.
 
-> These are translated by lan937x_create_phy_addr_map() using
-> the CASCADE_ID/VPHY_ADD pin strapping information read over SPI.
-> I.e. with the same device tree, you may or may not have address space
-> clashes depending on pin strapping. No way to tell.
-
-The PHY address to port mapping in the driver is needed to make the
-internal switch interrupt controller assign interrupts to proper PHYs.
-
-It would be possible to assign interrupts per devicetree, but the driver
-was previously implemented to not need it, so i decided to follow this
-design pattern.
-
-The driver can be extended to validate DT addresses, but I was not sure
-that my current decisions are the way to go.
-
-> Have you considered putting the switch's internal PHYs directly under
-> the host MDIO bus node, with their 'real' MDIO bus computed statically
-> by the DT writer based on the pin straps? Yes, I'm aware that this means
-> different pin straps mean different device trees.
-
-Yes, i tried this. In this case, the host MDIO registration procedure
-will fail to find the PHYs, because they are not accessible before
-switch driver initialization. I had in mind some different variants to
-handle it, like:
-- use compatible property in the PHY nodes in the host MDIO node.
-- trigger MDIO re-scan from the switch
-- mimic the MDIO mux. 
-
-The last variant seems to be more or less better fit for this use case.
-
-> Under certain circumstances I could understand this dt-binding design
-> with an mdio-parent-bus, like for example if the MDIO addresses at which
-> the internal PHYs respond would be configurable over SPI, from the switch
-> registers. But I'm not led to believe that here, this is the case.
-
-ack.
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Alice
 
