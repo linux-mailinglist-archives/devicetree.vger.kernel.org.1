@@ -1,238 +1,144 @@
-Return-Path: <devicetree+bounces-116775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8BEA9B4023
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 03:09:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A7FD9B4048
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 03:17:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB8CD1C2112A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 02:09:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 790541C2119A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 02:17:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BF0B82876;
-	Tue, 29 Oct 2024 02:09:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D181CD2B;
+	Tue, 29 Oct 2024 02:17:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bdohM4aS"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AdYbSrOD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B33F31863F;
-	Tue, 29 Oct 2024 02:08:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F36D2B661;
+	Tue, 29 Oct 2024 02:17:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730167741; cv=none; b=P1R/gkKUgCeV9EBKdbj5n1K6do0ev4ZStXu71cF6BQ+AVOAYSEPxZ/63anorjFYprwWq1y1xzAlphGfU+4HjPcJjwkcvWmNnbthaTLCmvJbC8JoZtdk8FpvFX03AXgSSAlYsA3rGiHJQApP7O4NAjFKZb5im6nBe8ZfC1u9ZbUY=
+	t=1730168252; cv=none; b=elvSs0Qk28FtXDvnuCsdvjb2D+i8kCtLFjL1fyoLi0+cb/tKctnk1qQcSdITOPTYUHsGM2ClW++0GS52vrLz3/ereFNSa3DxIc3ZdB6CZ9do8g1vuwLddqpYTlHhZb7PhQ417Pp7IM44QojvgKZVcDQlgNvtglpFxHAHKZavYug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730167741; c=relaxed/simple;
-	bh=LKgbyEk4LMPGGHytb6lDuy0msQtdn+V7JOF1z1aqpzo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jezFoc+j8DgeNYA6w2jstv+ozmS63DgLm2L2H7PNn7zk4NhjJlcDtMFYFkDVCFtcSZR+bPWeS/CHULtB0Z/xDFM49CMP8aD3X/M+/i1oPiVbbsCxN7wGxP6oBN20fqnKuc0nZZH37wu0VnoQq3wXeqDauPf02xWHbLYzpsWLzjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bdohM4aS; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6e8063533b5so48780027b3.1;
-        Mon, 28 Oct 2024 19:08:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730167739; x=1730772539; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=POAC9Eq7jdy/DJpHixlYJQgZCur0l0rG31IXlnXpLtM=;
-        b=bdohM4aSnftZhPNW8958CWRKuS0w0dkOz8rDh+a25HY6wKfLqiFxBr8AD2MZWjf5V2
-         DSls6RDOitd5PPf9ugHFdFyqBtC58n/KTgkQ7anqd/Lzfazfb8ResQK7bijY9VfkD85a
-         TDyrYI8TXcjA9eagHoSknO1YCrCwm6Z50Szd6V6y9xUHAlWczDFNtHWm7PcYEIHF6HZ8
-         SWsyKwU7SmjJ8wzUcQ8F5qdASh82dI891Pj+XWnXU74ZtzXQQWHtHPPwcJLMIQQ/o4t+
-         zkSJPF78srDjXKdZEP372EgYAxXJQ5g67NSamZ4aNHWYvkhYQ0qkPBRV2piFP5EwGUXt
-         fULw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730167739; x=1730772539;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=POAC9Eq7jdy/DJpHixlYJQgZCur0l0rG31IXlnXpLtM=;
-        b=IEBTuGZmjtuvSEv9BSEt8sqOy3QqISf9HgTyLaC9VeV+CYTdmwewVsAKBKooXtnHN5
-         r6sesuXI4CNZ1mhTRw2XtyFDVlKve+DVl7nbTn+spBaDBGoglA1PnCHUwrs8wRvxjWrB
-         u8byKJZz7DIOilj3h24jzq08PjAgUcoQBz5ebQBF1asbx32C6kNsMDevIISZIeAnIHc7
-         hi/HG3xGfvSbsw2O8L1/YkevCiOxbFHGQdi/wdo19teaTN0dnThGMRgUi+wCybLWzj7Z
-         xTbJlQHTAghWsYsleyf48pDu3V9titSYvTqct3PaJLgye51FNut8IXIprH5sl9KRU/EH
-         EMqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWuuwowntkDWY7AnwfwVcee1KQNK/wsTk6lTsQ+Qw8lODcdbVMM4DSJmUN0PvhLv+s791x8YwvJjvw4@vger.kernel.org, AJvYcCXRCcClk2IzQeLkm1R1LfxAUjgjZY9GUOFlYl3HaocF2rZxr/2Kzfg2P97SXIIQuc79dEPkY8OMlvIQ6Htqdns=@vger.kernel.org, AJvYcCXtKzncY1SVNDHNWXw0L5WsZgWwd1c3KAx5QjhS1D9Hkc//3XRgkQdFHdxykTW5Rq4AysCz70k1uaiz+7O8@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKnP+rUqRHJlALKuZh5kwb87+l4wABSjKbLnmIsZACsp5uIAdA
-	IclXVq1WisjcxOZKY8W6grbPNiIStSFKJ6x3npkmrFWb1GicOC8r5LxglFJtuhNBP8uO5J7QYaJ
-	Fa1UfDYS20Qe0262LWunzHJSt0S8=
-X-Google-Smtp-Source: AGHT+IH3AL1fkYF6LSyP8vCdNdSLgOV4hnxcwTXlF52COLGQOKSPrf1hHMCfLjfbbEolB8g5RoeGTXXIJbBX5v0jH9s=
-X-Received: by 2002:a05:690c:4b93:b0:6e3:2630:2a0c with SMTP id
- 00721157ae682-6e9d8a6ffe0mr111101187b3.26.1730167738560; Mon, 28 Oct 2024
- 19:08:58 -0700 (PDT)
+	s=arc-20240116; t=1730168252; c=relaxed/simple;
+	bh=WOnSUIQBuKzoLwrYxUnZ9DsMMoO3e7npDC5vAp/163o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=qtU50EY4X2t4JaTyWz7cstlcxQg2p3vWuUM4mt2lGgsWpQPzHCIhfXUZGe4rE+yvx4x9fKV6foF2hshPOLskGPK4xI7FMxjyXYObOL6ELOvXLsmaGfNDByV1XNSM9WYejbmiepzRfYlE80EhzIJHXaLOMdVwh8JB7w639a2+CCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AdYbSrOD; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49SIfaK7022936;
+	Tue, 29 Oct 2024 02:17:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	DlKmic9dACLOMQPRMfL+5WmhlfgUgYve9EN1vzHwzxQ=; b=AdYbSrODo7mPPIJm
+	j7M7oC9uEVphz2GLWjswi1TD9qIkRkKCQMrs478DHo9nga8I1nO1eWQxiqQYu8uM
+	RzN+P/pANTorjmk0NSH/S8of2+UZ9sdFwiMx6ECHO3GqoYT5liB5P2vgrFP94DQl
+	XOoY+Bt7HzV3p1vamlAlsWAxHHFfItbitW8vYPWUYT2VR3z2XEl7KlIQWJxYFNr7
+	eaO0QlkPhkZfxaYBmoKGBCZ0KtW/TweHuZWiqLl6NRE4zFMezeihVIJajfNUf9lQ
+	H2OmsJvMB8XK907ApDFOCFKTEugVvbDiLfAQN52iLBUsaFK0alP7cfmFnqPL1myi
+	v7a8+Q==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grn4xxh3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Oct 2024 02:17:18 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49T2HId1021983
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Oct 2024 02:17:18 GMT
+Received: from [10.253.11.110] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Oct
+ 2024 19:17:12 -0700
+Message-ID: <3d717bdc-4b8a-4e85-9bcf-e25b75d9fecf@quicinc.com>
+Date: Tue, 29 Oct 2024 10:17:09 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241025-rust-platform-dev-v1-0-0df8dcf7c20b@kernel.org>
- <20241025-rust-platform-dev-v1-2-0df8dcf7c20b@kernel.org> <CAFRnB2WPEQaa6X6LqMk+JTxprguakNqFXvjaUGQ0QazxKH=z4Q@mail.gmail.com>
- <CAL_Jsq+nqFgK4D6ua+Kx8SiqCZFYaD-nse7vjPLqOLvP0hfo7A@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+nqFgK4D6ua+Kx8SiqCZFYaD-nse7vjPLqOLvP0hfo7A@mail.gmail.com>
-From: Alex Gaynor <alex.gaynor@gmail.com>
-Date: Mon, 28 Oct 2024 22:08:46 -0400
-Message-ID: <CAFRnB2XO4hS7RTeNCzxXc4cSNF-XGsUy4yZuYWjKJ1MSvd0gHw@mail.gmail.com>
-Subject: Re: [PATCH RFC 2/3] rust: Add bindings for device properties
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
-	Danilo Krummrich <dakr@kernel.org>, Dirk Behme <dirk.behme@gmail.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] Add ethernet dts schema for qcs615/qcs8300
+To: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>
+CC: <netdev@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <quic_tingweiz@quicinc.com>,
+        <quic_aiquny@quicinc.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+References: <20241017-schema-v2-0-2320f68dc126@quicinc.com>
+ <132a8e29-3be7-422a-bc83-d6be00fac3e8@kernel.org>
+Content-Language: en-US
+From: Yijie Yang <quic_yijiyang@quicinc.com>
+In-Reply-To: <132a8e29-3be7-422a-bc83-d6be00fac3e8@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: cXPft-qHqazelOYVa8i5wIudbMRB9Q1I
+X-Proofpoint-ORIG-GUID: cXPft-qHqazelOYVa8i5wIudbMRB9Q1I
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ impostorscore=0 lowpriorityscore=0 priorityscore=1501 mlxlogscore=999
+ malwarescore=0 clxscore=1015 bulkscore=0 suspectscore=0 adultscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410290016
 
-On Mon, Oct 28, 2024 at 6:24=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Fri, Oct 25, 2024 at 4:12=E2=80=AFPM Alex Gaynor <alex.gaynor@gmail.co=
-m> wrote:
-> >
-> > On Fri, Oct 25, 2024 at 5:06=E2=80=AFPM Rob Herring (Arm) <robh@kernel.=
-org> wrote:
-> > >
-> > > The device property API is a firmware agnostic API for reading
-> > > properties from firmware (DT/ACPI) devices nodes and swnodes.
-> > >
-> > > While the C API takes a pointer to a caller allocated variable/buffer=
-,
-> > > the rust API is designed to return a value and can be used in struct
-> > > initialization. Rust generics are also utilized to support different
-> > > sizes of properties (e.g. u8, u16, u32).
-> > >
-> > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > > ---
-> > > Not sure if we need the KVec variant, but I kept it as that was my fi=
-rst
-> > > pass attempt. Most callers are filling in some value in a driver data
-> > > struct. Sometimes the number of elements is not known, so the caller
-> > > calls to get the array size, allocs the correct size buffer, and then
-> > > reads the property again to fill in the buffer.
-> > >
-> > > I have not implemented a wrapper for device_property_read_string(_arr=
-ay)
-> > > because that API is problematic for dynamic DT nodes. The API just
-> > > returns pointer(s) into the raw DT data. We probably need to return a
-> > > copy of the string(s) instead for rust.
-> > >
-> > > After property accessors, next up is child node accessors/iterators.
-> > > ---
-> > >  rust/bindings/bindings_helper.h |   1 +
-> > >  rust/kernel/device.rs           | 145 ++++++++++++++++++++++++++++++=
-+++++++++-
-> > >  2 files changed, 145 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings=
-_helper.h
-> > > index 217c776615b9..65717cc20a23 100644
-> > > --- a/rust/bindings/bindings_helper.h
-> > > +++ b/rust/bindings/bindings_helper.h
-> > > @@ -19,6 +19,7 @@
-> > >  #include <linux/pci.h>
-> > >  #include <linux/phy.h>
-> > >  #include <linux/platform_device.h>
-> > > +#include <linux/property.h>
-> > >  #include <linux/refcount.h>
-> > >  #include <linux/sched.h>
-> > >  #include <linux/slab.h>
-> > > diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
-> > > index 0c28b1e6b004..bb66a28df890 100644
-> > > --- a/rust/kernel/device.rs
-> > > +++ b/rust/kernel/device.rs
-> > > @@ -5,10 +5,14 @@
-> > >  //! C header: [`include/linux/device.h`](srctree/include/linux/devic=
-e.h)
-> > >
-> > >  use crate::{
-> > > +    alloc::KVec,
-> > >      bindings,
-> > > +    error::{to_result, Result},
-> > > +    prelude::*,
-> > > +    str::CStr,
-> > >      types::{ARef, Opaque},
-> > >  };
-> > > -use core::{fmt, ptr};
-> > > +use core::{fmt, mem::size_of, ptr};
-> > >
-> > >  #[cfg(CONFIG_PRINTK)]
-> > >  use crate::c_str;
-> > > @@ -189,6 +193,145 @@ unsafe fn printk(&self, klevel: &[u8], msg: fmt=
-::Arguments<'_>) {
-> > >              )
-> > >          };
-> > >      }
-> > > +
-> > > +    /// Returns if a firmware property `name` is true or false
-> > > +    pub fn property_read_bool(&self, name: &CStr) -> bool {
-> > > +        unsafe { bindings::device_property_present(self.as_raw(), na=
-me.as_ptr() as *const i8) }
-> > > +    }
-> > > +
-> > > +    /// Returns if a firmware string property `name` has match for `=
-match_str`
-> > > +    pub fn property_match_string(&self, name: &CStr, match_str: &CSt=
-r) -> Result<usize> {
-> > > +        let ret =3D unsafe {
-> > > +            bindings::device_property_match_string(
-> > > +                self.as_raw(),
-> > > +                name.as_ptr() as *const i8,
-> > > +                match_str.as_ptr() as *const i8,
-> > > +            )
-> > > +        };
-> > > +        to_result(ret)?;
-> > > +        Ok(ret as usize)
-> > > +    }
-> > > +
-> > > +    /// Returns firmware property `name` scalar value
-> > > +    ///
-> > > +    /// Valid types are i8, u8, i16, u16, i32, u32, i64, u64
-> > > +    pub fn property_read<T: Copy>(&self, name: &CStr) -> Result<T> {
-> > > +        let mut val: [T; 1] =3D unsafe { core::mem::zeroed() };
-> > > +
-> > > +        Self::_property_read_array(&self, name, &mut val)?;
-> > > +        Ok(val[0])
-> > > +    }
-> > > +
-> >
-> > This, and several of the other methods are unsound, because they can
-> > be used to construct arbitrary types for which may not allow all bit
-> > patterns. You can use:
-> > https://rust.docs.kernel.org/kernel/types/trait.FromBytes.html as the
-> > bound to ensure only valid types are used.
-> >
-> > Also, instead of using mem::zeroed(), you should use MaybeUnininit
-> > (https://doc.rust-lang.org/stable/core/mem/union.MaybeUninit.html)
-> > which allows you to avoid needing to zero initialize.
->
-> Something like this what you had in mind?:
->
-> pub fn property_read_array<T, const N: usize>(&self, name: &CStr) ->
-> Result<[T; N]> {
->     let mut val: [MaybeUninit<T>; N] =3D [const { MaybeUninit::uninit() }=
-; N];
->
->     Self::_property_read_array(self, name, &mut val)?;
->
->     // SAFETY: On success, _property_read_array has filled in the array
->     let val =3D unsafe { mem::transmute_copy(&val) };
->     Ok(val)
-> }
 
-Yes, that's right. Ideally you could use
-https://doc.rust-lang.org/stable/core/mem/union.MaybeUninit.html#method.arr=
-ay_assume_init
-instead of transmute, but it's not yet stable.
 
-Alex
+On 2024-10-28 19:04, Krzysztof Kozlowski wrote:
+> On 17/10/2024 11:52, Yijie Yang wrote:
+>> Document the ethernet and SerDes compatible for qcs8300. This platform
+>> shares the same EMAC and SerDes as sa8775p, so the compatible fallback to
+>> it.
+>> Document the ethernet compatible for qcs615. This platform shares the
+>> same EMAC as sm8150, so the compatible fallback to it.
+>> Document the compatible for revision 2 of the qcs8300-ride board.
+>>
+>> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+>> ---
+>> This patch series depends on below patch series:
+>> https://lore.kernel.org/all/20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com/
+>> https://lore.kernel.org/all/20240926-add_initial_support_for_qcs615-v3-0-e37617e91c62@quicinc.com/
+> 
+> So it cannot be merged...
+> 
+> Instead please decouple your works. I don't get why do you claim there
+> is dependency in the first place, but anyway. Fix up your patchsets to
+> fix that (if there is something to fix).
+> 
 
---=20
-All that is necessary for evil to succeed is for good people to do nothing.
+Actually, the dependency is unnecessary here. I will remove it together 
+with the merged patch in the upcoming version.
+
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+Best Regards,
+Yijie
+
 
