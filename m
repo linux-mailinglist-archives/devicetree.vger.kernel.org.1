@@ -1,110 +1,193 @@
-Return-Path: <devicetree+bounces-116849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D22D9B4308
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:25:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9010B9B4315
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:27:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 855431F23380
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 07:25:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B437D1C2163B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 07:27:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B692022FD;
-	Tue, 29 Oct 2024 07:24:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 984FF202657;
+	Tue, 29 Oct 2024 07:26:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="PxiYcBfN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fpEzVPO+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4751D2022DF;
-	Tue, 29 Oct 2024 07:24:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6305C202647;
+	Tue, 29 Oct 2024 07:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730186695; cv=none; b=Yhus12AoHIlPPf55yKvZsRy8lXK8fma2e7uC7lk0QkuUHBXfHKpmLDHa3UHWTWfCQ+1Po4SIOTVJf15rp6spExfEdp+j1AO4+Hwqsj7g573OYnbxSx5O4nKX2U9nejG/0oIu+AEhYQNMgKh0a4lQKpZLI+qWkhXG8lTFzZv/olI=
+	t=1730186811; cv=none; b=g6m4Pu2DR9vs9ACRqVyiTw2wbGUcIybqda6+YrUQD5jnMGxO53smS2+gUNjyoOlYGJ6FXS4WpbUfYNu2pDnhmTOh8jw92Dp/dG5hiW8BVIXn+CKKKSVmptQMSyad05sKKBZSgcGNSkHeUHxQjPPPUZ/rkLzIsqZ4oSr3SYcbZKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730186695; c=relaxed/simple;
-	bh=bujN33g16oHNeeyO3ZGbViJYxBOYuYTm+DxN3be+hS4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=YGmZ7Z36nrLF2CmVpNBaS8QfnXFNTWLrkVfhQRAN4It/iTkZfhDEQLR5s2JGKOt7e8IRHIbSbdXnlBSfGjXDUeMXPoBthazFCNooEcFZBXHKPgiSpHdc9yng+c6wOoxELHeGLKpu6kiliu/tV7dOGmePMZ4btLr080kBIfDin0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=PxiYcBfN; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id EDDC91FA13;
-	Tue, 29 Oct 2024 08:24:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1730186690;
-	bh=y6XwsU0U/5vhJTZLKZbpSfkUbG50QcLapUoV17QlMjw=; h=From:To:Subject;
-	b=PxiYcBfN5S2vXfEE5CaOZ3S/wt/jww6iSYozhth0QP0jxRRQxJFgek6C7my4O14wf
-	 jcn5FgjCe7cik5V4cb7b0SPhsKoY9bz254AzsqndPLwC98EQxdwnTKGMII7v24YTbz
-	 ixPGNpoIUmDWmwhuIqIU6nca1Ss+FgqhjLWYsuM/B+Orz0z6X8SMMsFke5Pt+hlOWR
-	 GuUAMIe+YEhQ2472j3BAejkXMDkrsEbrIurp3ar9Gstk96A+aPY/WKvChjAwCuEFer
-	 I+omolGMhgoDD+i57vYLTaKy2o94hIqKiePsOMoPfhHvQdie4j90c3JmgGuezcR40x
-	 WV4bknbTrVCIw==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mathias Nyman <mathias.nyman@intel.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc: Parth Pancholi <parth.pancholi@toradex.com>,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 2/2] USB: xhci: add support for PWRON active high
-Date: Tue, 29 Oct 2024 08:24:44 +0100
-Message-Id: <20241029072444.8827-3-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241029072444.8827-1-francesco@dolcini.it>
-References: <20241029072444.8827-1-francesco@dolcini.it>
+	s=arc-20240116; t=1730186811; c=relaxed/simple;
+	bh=OfDy3pu7lk5H7BVJLspV4tRTcIWQiqXeWKLmXffr99s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ueXXTtC6dnAMGXPgAKWH14g13MqNIJnj07C7W92W9Tzlyf1Pdetvb9OV+ZvRxcaRQqgBbSwkf8HF6yYrKDzF20AKMeRTIfvhWj8hEaVBZmae0Ahmspui53lI3XIpual+LvolZ094tEWjqVUZ5SWxaebjlOb4SeY+h7kg0lS3DDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fpEzVPO+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C6EAC4CEE7;
+	Tue, 29 Oct 2024 07:26:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730186810;
+	bh=OfDy3pu7lk5H7BVJLspV4tRTcIWQiqXeWKLmXffr99s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fpEzVPO+fGFz1o7Vs7hWwLW001fSFaUmtVqLscRnWiot5CiFdlMexcLiWb+iAA6gZ
+	 oDRIgjitMnHux1JGrNYlDqGUOX4yJ1OyJXAPoy8zFmjHlMBveqimfzVNjmA0jjXquE
+	 m3o4S4RPq3aagvWQl93cGXvtsytwUiD0H1pwFHNheeBukbzcxJzKMN8nFH3DkhCNLx
+	 sbq+/ci1hqDbPsBaarw2bBfK2LC5u7fWMK11+5oWOQaPtA5z2ykWBeAeU9tyPQURm1
+	 Y7CzoAUrlkfrTDYWgO2T8yOL86WyuMt2e2N0opMCxKVSX95lw78C5/41tYOWdQTJrr
+	 7/ROJ5aaSAQew==
+Date: Tue, 29 Oct 2024 08:26:47 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof Wilczynski <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Derek Kiernan <derek.kiernan@amd.com>, 
+	Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>, 
+	Stefan Wahren <wahrenst@gmx.net>, Herve Codina <herve.codina@bootlin.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v3 02/12] dt-bindings: pinctrl: Add RaspberryPi RP1
+ gpio/pinctrl/pinmux bindings
+Message-ID: <mjhopgkrjahaxydn3ckianqnvjn55kxrldulvjkpqivlz72uyi@57l5vhydpzc2>
+References: <cover.1730123575.git.andrea.porta@suse.com>
+ <9a02498e0fbc135dcbe94adc7fc2d743cf190fac.1730123575.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <9a02498e0fbc135dcbe94adc7fc2d743cf190fac.1730123575.git.andrea.porta@suse.com>
 
-From: Parth Pancholi <parth.pancholi@toradex.com>
+On Mon, Oct 28, 2024 at 03:07:19PM +0100, Andrea della Porta wrote:
+> Add device tree bindings for the gpio/pin/mux controller that is part of
+> the RP1 multi function device, and relative entries in MAINTAINERS file.
+> 
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>  .../pinctrl/raspberrypi,rp1-gpio.yaml         | 163 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +
+>  2 files changed, 165 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
+> new file mode 100644
+> index 000000000000..465a53a6d84f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
+> @@ -0,0 +1,163 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/raspberrypi,rp1-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RaspberryPi RP1 GPIO/Pinconf/Pinmux Controller submodule
+> +
+> +maintainers:
+> +  - Andrea della Porta <andrea.porta@suse.com>
+> +
+> +description:
+> +  The RP1 chipset is a Multi Function Device containing, among other sub-peripherals,
+> +  a gpio/pinconf/mux controller whose 54 pins are grouped into 3 banks. It works also
 
-Some PCIe-to-USB controllers such as TI's TUSB73x0 3.0 xHCI host
-controller supports controlling the PWRONx polarity via the USB control
-register (E0h). Add support for device tree property
-ti,pwron-active-high which indicates PWRONx to be active high and
-configure the E0h register accordingly.  This enables the software
-control for the TUSB73x0's PWRONx outputs with an inverted polarity from
-the default configuration which could be used as USB EN signals for the
-other hubs or devices.
+Please wrap code according to coding style (checkpatch is not a coding
+style description but only a tool).
 
-Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
-v5:s/ti,tusb7320-pwron-active-high/ti,pwron-active-high/
-v4: no changes
-v3: no changes
-v2: s/polarity-invert/active-high
----
- drivers/usb/host/xhci-pci.c | 3 +++
- 1 file changed, 3 insertions(+)
+> +  as an interrupt controller for those gpios.
+> +
+> +properties:
+> +  compatible:
+> +    const: raspberrypi,rp1-gpio
+> +
+> +  reg:
+> +    maxItems: 3
+> +    description: One reg specifier for each one of the 3 pin banks.
+> +
+> +  '#gpio-cells':
+> +    description: The first cell is the pin number and the second cell is used
+> +      to specify the flags (see include/dt-bindings/gpio/gpio.h).
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +
+> +  gpio-ranges:
+> +    maxItems: 1
+> +
+> +  gpio-line-names:
+> +    maxItems: 54
+> +
+> +  interrupts:
+> +    maxItems: 3
+> +    description: One interrupt specifier for each one of the 3 pin banks.
+> +
+> +  '#interrupt-cells':
+> +    description:
+> +      Specifies the Bank number [0, 1, 2] and Flags as defined in
+> +      include/dt-bindings/interrupt-controller/irq.h.
+> +    const: 2
+> +
+> +  interrupt-controller: true
+> +
+> +additionalProperties:
 
-diff --git a/drivers/usb/host/xhci-pci.c b/drivers/usb/host/xhci-pci.c
-index 91dccd25a551..39456ec268f5 100644
---- a/drivers/usb/host/xhci-pci.c
-+++ b/drivers/usb/host/xhci-pci.c
-@@ -641,6 +641,9 @@ int xhci_pci_common_probe(struct pci_dev *dev, const struct pci_device_id *id)
- 
- 	dma_set_max_seg_size(&dev->dev, UINT_MAX);
- 
-+	if (device_property_read_bool(&dev->dev, "ti,pwron-active-high"))
-+		pci_clear_and_set_config_dword(dev, 0xE0, 0, 1 << 22);
-+
- 	return 0;
- 
- put_usb3_hcd:
--- 
-2.39.5
+Not much improved. You are supposed to have here pattern, just like
+other bindings. I asked for this last time.
+
+And there are examples using it - almost all or most of pinctrl
+bindings, including bindings having subnodes (but you do not use such
+case here).
+
+> +  anyOf:
+> +    - type: object
+> +      additionalProperties: false
+> +      allOf:
+> +        - $ref: pincfg-node.yaml#
+> +        - $ref: pinmux-node.yaml#
+> +
+> +      description:
+> +        Pin controller client devices use pin configuration subnodes (children
+> +        and grandchildren) for desired pin configuration.
+> +        Client device subnodes use below standard properties.
+> +
+> +      properties:
+> +        pins:
+> +          description:
+> +            A string (or list of strings) adhering to the pattern 'gpio[0-5][0-9]'
+> +        function: true
+> +        bias-disable: true
+> +        bias-pull-down: true
+> +        bias-pull-up: true
+> +        slew-rate:
+> +          description: 0 is slow slew rate, 1 is fast slew rate
+> +          enum: [ 0, 1 ]
+> +        drive-strength:
+> +          enum: [ 2, 4, 8, 12 ]
+> +
+> +    - type: object
+> +      additionalProperties:
+> +        $ref: "#/additionalProperties/anyOf/0"
+
+Your example does not use any subnodes, so this looks not needed.
+
+Best regards,
+Krzysztof
 
 
