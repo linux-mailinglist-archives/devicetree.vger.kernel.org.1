@@ -1,219 +1,433 @@
-Return-Path: <devicetree+bounces-117026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81B609B4B0A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:37:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B8699B4B1C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:44:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41193283BC7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:37:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 282DC1F2197E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:44:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D28206060;
-	Tue, 29 Oct 2024 13:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9AB8206067;
+	Tue, 29 Oct 2024 13:44:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="y6GVf+WK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tT3ZBBwD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1671EBA50
-	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 13:37:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D918679F5
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 13:44:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730209072; cv=none; b=roTXJRx3m5yJzAdKNuxwXbMDXbYK0tyU4v4d3MnWJfEEYMDBzWgTveLRfPzfkPPq2Ll0Ax6WLACszxTea1slIULjPZOAi+0ht8ZlZf5l0MbZ6vhogvoP/MrBMCeHSP3hs9bUm/wXZGh+EWaWgin53Ou9VXrfOMF/haEvsnr/SU8=
+	t=1730209491; cv=none; b=srKmNvpl3CDtdTK/Y+akZdbDe1moSQLlFkGZUUJq1WOn6geCSChz4T2Exho9Cf+B1C6eFrsoojHubqP7K2MZp0Fu+V0QfuCB3X69H9QJ1RscJrQvvjvxOVZynotnzoPvVF4XpOLQfM+jWhY1jYo5/iiLoXoRUMREXxZrrPnaVTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730209072; c=relaxed/simple;
-	bh=GND/WorrV9FkOhia0bvZDFHolTvInRwiHCzjYuesh8E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BGJ80waK3w61UMke2rTJv5DMpBCPMl66V6j12e4glhqpRlMniHhgjfJG5blKLzvCJQpgjVOLTlBISwhYcrjjVeQ2kK/EXjd4j9lIAqDAR05Za9qmGgz9lBaTS5Ga+QIvGQL2P9IfrfA2J0o/WI+iHQGxqM/wcwZPZqORB9DXtC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=y6GVf+WK; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-37d4d1b48f3so4032315f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 06:37:49 -0700 (PDT)
+	s=arc-20240116; t=1730209491; c=relaxed/simple;
+	bh=Cl6yKtIrMqwFX31VzUc3nCh1DF3ekW0wrnkOLP3ye+k=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ea6MehU7gwzxTmp69Ocf4koh3QNi0KnQQXj0mC6A6w9hJ/s3VWgCV6FOznAuLBdkBl8iSdcw/CvVdrz3/gkPnVfrKtlbq2YjNBiEqyXVKPK5zIYSlC0SPup4rTLI5btTb3JaLecRQKwKpfOHzu62bllF4j0cFlMV2CKFQYuNfb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tT3ZBBwD; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43161e7bb25so52406305e9.2
+        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 06:44:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1730209068; x=1730813868; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xHjXQ7SseZStdWtp4M3yo7TikmtScrCLnios0Konpt0=;
-        b=y6GVf+WKeLUVPTpwiGlQQ6R+yhdRPnsV5/+HeM3TQGRTqLF9UCitNC2a6ZDqw69Nbk
-         R2nGvB4QA+Kn+Io5bR3yU7Bvx07RrVuI3El2S5Uefn6hiw89kh0MU5bkzEs4Depy5GRg
-         2MUlFloxnwitAHIHmzOibukP8RmAiB4FpS6mn8ANlcNAAmX8fqBecnEuMM1YK+i+vgbb
-         aB6EqrOGdk0ov9nZb2sn7svE6wgvHXwbFHC62HV/pcobNsx62QaAE0AcmruhRlRsHSLV
-         bNBWSqt942BDKoyC7qWFiM/+d+rnwMIppZRGpW2uZkkJO1Du3a6hoOIbi9XC9Oe8QkiO
-         Evfg==
+        d=linaro.org; s=google; t=1730209487; x=1730814287; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pUJkphEStzwJO4O1NIR8Po6mdkROYaBayKSF41nasT0=;
+        b=tT3ZBBwDhsYe6cdAhc1G/R3c7knaNNVT1q2o8AQg1zmXF0Ra6Jb5IqJfvH2R/SBhrI
+         AOVf1gYISknXtMQ15EmcrXnGzY4i+G2rMj8wpXs0BXQfU3dA6RGueQrzo/mV9RjJGDYa
+         xH4vMN+zIIE17XE8mXeUiMWaIPJSpc22zkkg034cmgdCrvvg7kDP/tf9QhEzrmZxHU2o
+         xM9ymCZ1yze+V08uf0nlcjGhEFObUtBIiSIhmhu4zxgKnI4msW0QuhGnXfXuRnMlk7WJ
+         2cD3S+iTulL3KkSs6iryEdDsWRe3cuU62TbYCjSBKJhnxnpNLc7KpxBtK7mH2mhFCPwx
+         iX9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730209068; x=1730813868;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xHjXQ7SseZStdWtp4M3yo7TikmtScrCLnios0Konpt0=;
-        b=e7x0+jpRBtXmc7TgJHHS/6+6VIwYU4ePw7EE8Mx8rL3bG+ntMwHi3djnBJM0lHf26V
-         8UxvqL4fCeyfMboHB/GYQgJdN/usI4yWgA2X3w7OW4B9a0fQb4EAeoCCmctZJq4GjarD
-         V6DMyr23iOOp+Ig3f541BlkOZODq4le4zryYm1D8RxAz6ja+f2+Lp4vva5f5/BrgG8HR
-         xCNJ+ggRJzMpbIJjbjknxjWKBdxnobHivqyOwkQl/8EACXj9ZrYPyiIpk4n+owQAMhW3
-         A8A4FhZEihlPzVYz4rDEKwirB250U+kPh0x+vmJJ9b24ji3cXsG9XlBM0f9iwCLv4VCL
-         qm1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXqhSIaAGxkEX2l5Ayx/I8Fvg8f7lfkTcznMtObYoEQ2as38CnbGrXeNZyRS/o4obX/s/Vz+KkxeD4y@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVKIsNWtm4IEn3uU3mz3Mhdxa3eN6tqn8q8r/bdFToLyjxpwBs
-	PLvZaxo+yqsuJ3U/Tk8HNBNcabOXxZLXxzELTOwEr43jV6AkZyeQGTJpSbBVZ01MiaYAvKVCAsr
-	pyBwbHDlD+3vNBT8sF7ZdnVCD5tN6qPd9cWlH
-X-Google-Smtp-Source: AGHT+IGoJLMwFKqdGVQYxgqNckaKkLJooLVh1zvBc4VOiRWEyfKZ5Pk6g1m3IKME2AkWQnzefHEhe6i0eTPL5cS8P9g=
-X-Received: by 2002:a05:6000:1:b0:37c:cca1:b1e3 with SMTP id
- ffacd0b85a97d-380611dcb75mr7778568f8f.41.1730209068300; Tue, 29 Oct 2024
- 06:37:48 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1730209487; x=1730814287;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pUJkphEStzwJO4O1NIR8Po6mdkROYaBayKSF41nasT0=;
+        b=NtzQYAHVX4kS6IoqO/cjMLJRZvzrlaHFSK/y9R6pTMKQNsFLNJriOnytJOzQQRzVcL
+         96NacQuz7z/Xpk8yeI1SkAAH8C2wz6IY4vSjLZhnoHdnpXCCiui7QyeSydivQitvydsu
+         3jgvENrjbjFsBXKzhK+d6UoEGfwh4sHjCbDoWBRGrFMNIiGZwp+h8ILjUytWSuktgp93
+         s7v4H/UdmG5A4OLwPgf24h8U1p2ycu84WhJZD6DSVEak3YbHIRztld0odHFlZ0ZXAIuZ
+         JCZaTroJHFZ85Vl4phKs+XUQeWI5Oguu/EsCrhNEpacDI9QYx6vdx7dhRFugSDUrgVGa
+         4Xtg==
+X-Forwarded-Encrypted: i=1; AJvYcCWUZdGHP6FQGc42JEbYTPMedFjfbHoZMaY1gR/rE6de3+wF1lP0OOqalMxaglSgyLaTCOMrTNnF4NvQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyI6W8hI/hQ9oLx5qqxGMlHj4aaL93mJQJQGgvgdPprkZNzJmAk
+	A9HsKtBpBxqolVkdo3ioDrwvwzCSlNUmTc4OXouR52adbhYPoJXqvC5Mk35fvlY=
+X-Google-Smtp-Source: AGHT+IEpQAtL43zFwgfi4A77StpEjcj+SqwLbhpPLDV4ePBgEgPNwUCUrxojCxlDLVwcaj06TFFy4Q==
+X-Received: by 2002:a05:600c:3512:b0:431:588a:4498 with SMTP id 5b1f17b1804b1-4319ac9ad1bmr117291015e9.14.1730209487142;
+        Tue, 29 Oct 2024 06:44:47 -0700 (PDT)
+Received: from [127.0.0.1] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43193594fffsm143668855e9.13.2024.10.29.06.44.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Oct 2024 06:44:46 -0700 (PDT)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Date: Tue, 29 Oct 2024 13:44:45 +0000
+Subject: [PATCH v3] media: dt-bindings: Remove assigned-clock-* from
+ various schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-15-dakr@kernel.org>
-In-Reply-To: <20241022213221.2383-15-dakr@kernel.org>
-From: Alice Ryhl <aliceryhl@google.com>
-Date: Tue, 29 Oct 2024 14:37:35 +0100
-Message-ID: <CAH5fLgh-CyMeRMm4OK-iNMP0n2UBu9_Qj6M0ch0t6wpaSEi6mw@mail.gmail.com>
-Subject: Re: [PATCH v3 14/16] rust: of: add `of::DeviceId` abstraction
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
-	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com, 
-	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com, 
-	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
-	daniel.almeida@collabora.com, saravanak@google.com, 
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241029-b4-linux-next-202041004-i2c-media-yaml-fixes-v3-1-f2eb07615f30@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAMzmIGcC/5WPSw7CMAxEr1JljVHsJvxW3AOxSFMXLJUWJSVqh
+ Xp3UsQClixnrHlPfqrIQTiqQ/FUgZNE6bscylWh/NV1Fwapc1akyaDWFioDrXSPEToeB8i1Xno
+ DQh5uXIuDyd1aaGTkCI1vrNceWe9qlZH3wO9DJp7OOV8lDn2Y3vaES/sRIf0nSggaHFUVksPtf
+ lMf89aFft2Hi1pMib7o9OcbiQABK2NLi1vjrPuhz/P8AilP6M9HAQAA
+X-Change-ID: 20241005-b4-linux-next-202041004-i2c-media-yaml-fixes-fcf5c0c1e08d
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Martin Kepplinger <martink@posteo.de>, 
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>, 
+ "Paul J. Murphy" <paul.j.murphy@intel.com>, 
+ Daniele Alessandrelli <daniele.alessandrelli@intel.com>, 
+ Tommaso Merciai <tomm.merciai@gmail.com>, 
+ Martin Hecht <martin.hecht@avnet.eu>, Zhi Mao <zhi.mao@mediatek.com>, 
+ Alain Volmat <alain.volmat@foss.st.com>, 
+ Mikhail Rudenko <mike.rudenko@gmail.com>, 
+ Ricardo Ribalda <ribalda@kernel.org>, 
+ Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ Umang Jain <umang.jain@ideasonboard.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Dongchun Zhu <dongchun.zhu@mediatek.com>, 
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>, 
+ Todor Tomov <todor.too@gmail.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+X-Mailer: b4 0.15-dev-dedf8
 
-On Tue, Oct 22, 2024 at 11:33=E2=80=AFPM Danilo Krummrich <dakr@kernel.org>=
- wrote:
->
-> `of::DeviceId` is an abstraction around `struct of_device_id`.
->
-> This is used by subsequent patches, in particular the platform bus
-> abstractions, to create OF device ID tables.
->
-> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> ---
->  MAINTAINERS                     |  1 +
->  rust/bindings/bindings_helper.h |  1 +
->  rust/kernel/lib.rs              |  1 +
->  rust/kernel/of.rs               | 63 +++++++++++++++++++++++++++++++++
->  4 files changed, 66 insertions(+)
->  create mode 100644 rust/kernel/of.rs
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d9c512a3e72b..87eb9a7869eb 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17340,6 +17340,7 @@ T:      git git://git.kernel.org/pub/scm/linux/ke=
-rnel/git/robh/linux.git
->  F:     Documentation/ABI/testing/sysfs-firmware-ofw
->  F:     drivers/of/
->  F:     include/linux/of*.h
-> +F:     rust/kernel/of.rs
->  F:     scripts/dtc/
->  F:     tools/testing/selftests/dt/
->  K:     of_overlay_notifier_
-> diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_hel=
-per.h
-> index cd4edd6496ae..312f03cbdce9 100644
-> --- a/rust/bindings/bindings_helper.h
-> +++ b/rust/bindings/bindings_helper.h
-> @@ -15,6 +15,7 @@
->  #include <linux/firmware.h>
->  #include <linux/jiffies.h>
->  #include <linux/mdio.h>
-> +#include <linux/of_device.h>
->  #include <linux/pci.h>
->  #include <linux/phy.h>
->  #include <linux/refcount.h>
-> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-> index 3ec690eb6d43..5946f59f1688 100644
-> --- a/rust/kernel/lib.rs
-> +++ b/rust/kernel/lib.rs
-> @@ -51,6 +51,7 @@
->  pub mod list;
->  #[cfg(CONFIG_NET)]
->  pub mod net;
-> +pub mod of;
->  pub mod page;
->  pub mod prelude;
->  pub mod print;
-> diff --git a/rust/kernel/of.rs b/rust/kernel/of.rs
-> new file mode 100644
-> index 000000000000..a37629997974
-> --- /dev/null
-> +++ b/rust/kernel/of.rs
-> @@ -0,0 +1,63 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! Open Firmware abstractions.
-> +//!
-> +//! C header: [`include/linux/of_*.h`](srctree/include/linux/of_*.h)
-> +
-> +use crate::{bindings, device_id::RawDeviceId, prelude::*};
-> +
-> +/// An open firmware device id.
-> +#[derive(Clone, Copy)]
-> +pub struct DeviceId(bindings::of_device_id);
-> +
-> +// SAFETY:
-> +// * `DeviceId` is a `#[repr(transparent)` wrapper of `struct of_device_=
-id` and does not add
-> +//   additional invariants, so it's safe to transmute to `RawType`.
+Remove extraneous assigned-clock* from media/i2c/* schemas.
 
-Your #[repr(transparent)] marker is missing.
+assigned-clock and assigned-clock-parent assume that there is a clock that
+can be assigned and/or a clock parent that similarly can be assigned by
+firmware which may not always be the case.
 
-> +// * `DRIVER_DATA_OFFSET` is the offset to the `data` field.
-> +unsafe impl RawDeviceId for DeviceId {
-> +    type RawType =3D bindings::of_device_id;
-> +
-> +    const DRIVER_DATA_OFFSET: usize =3D core::mem::offset_of!(bindings::=
-of_device_id, data);
-> +
-> +    fn index(&self) -> usize {
-> +        self.0.data as _
-> +    }
-> +}
-> +
-> +impl DeviceId {
-> +    /// Create a new device id from an OF 'compatible' string.
-> +    pub const fn new(compatible: &'static CStr) -> Self {
+The sensor properties themselves should not mandate assigned-clock* as a
+result.
 
-Since you make a copy of `compatible`, you don't need 'static.
+Link: https://lore.kernel.org/linux-media/j7kgz2lyxnler5qwd7yiazdq6fmsv77kyozdrxf33h54ydakjz@uqjhwhoyv6re
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+Changes in v3:
+- Updates commit log with more description of why we are removing
+  assigned-clock from the properties - Laurent
+- Drops assigned-clocks from the examples too.
+  assigned-clock in examples has the example quality as status="okay" - Laurent
+- Link to v2: https://lore.kernel.org/r/20241025-b4-linux-next-202041004-i2c-media-yaml-fixes-v2-1-1b4535174a5a@linaro.org
 
-> +        let src =3D compatible.as_bytes_with_nul();
-> +        // Replace with `bindings::of_device_id::default()` once stabili=
-zed for `const`.
-> +        // SAFETY: FFI type is valid to be zero-initialized.
-> +        let mut of: bindings::of_device_id =3D unsafe { core::mem::zeroe=
-d() };
-> +
-> +        let mut i =3D 0;
-> +        while i < src.len() {
-> +            of.compatible[i] =3D src[i] as _;
-> +            i +=3D 1;
-> +        }
-> +
-> +        Self(of)
-> +    }
-> +
-> +    /// The compatible string of the embedded `struct bindings::of_devic=
-e_id` as `&CStr`.
-> +    pub fn compatible<'a>(&self) -> &'a CStr {
+v2:
 
-This should probably be:
+- Changes series name was: media: i2c: Cleanup assigned-clocks and endpoint: properties: unevaluatedProperties: false
+  Dropping the second patch in the series means the title changes too - bod
+- Drops unevaluatedProperties -> additionalProperties change
+  There is no clear consensus on this right now.
+- Adds Reviewed-by and Acked-by as indicated to patch #1 Laurent, Krzysztof 
+- Link to v1: https://lore.kernel.org/r/20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-0-a2bb12a1796d@linaro.org
 
-pub fn compatible(&self) -> &CStr {
+v1:
 
-Right now, the returned CStr is not tied to self at all, even though
-it points inside `self`.
+On a recent schema submission I did what most well adjusted schema writers
+do and tried to find a base file to work from to copy/paste and forget.
 
-Alice
+Confusingly/predictably I received feedback to remove or alter several of
+the properties included in my devious copy/paste plan.
+
+The first bit of feedback was that assigned-clock-* was to be dropped.
+Removing assigned-clock-* as assigned-clock-* is a core property which
+doesn't need to be listed in a schema.
+
+The second bit of feedback landed on use of additionalProperties:false
+along with enumeration of all required endpoint properties instead of an
+implied list of valid properties from unevaluatedProperties:false.
+
+Link: https://lore.kernel.org/linux-media/20241010-b4-master-24-11-25-ov08x40-v6-0-cf966e34e685@linaro.org
+
+This series removes the assigned-clock-* from upstream sensor property
+schemas and applies additionalProperities:false to properties: endpoint:.
+
+A few missing properties: or required: are added to the schemas based on
+output of DT checkers.
+
+The one new DT complaint I didn't fix with the move to
+additionalProperties: false is:
+
+/home/deckard/Development/qualcomm/qlt-kernel-tools/qlt-kernel/build/x1e80100-crd_qlt_integration/arch/arm64/boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dtb: imx219@10: port:endpoint: 'remote-endpoint' is a required property
+
+Since this appears to be some sort of temporary/commented thing upstream
+which I don't know the provenance of.
+---
+ Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml | 10 ----------
+ Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml | 11 -----------
+ Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml | 10 ----------
+ Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml |  8 --------
+ Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml |  7 -------
+ Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml |  8 --------
+ Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml |  8 --------
+ Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml |  8 --------
+ 8 files changed, 70 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+index 60f19e1152b33128cf3baa15b8c70a874ca6d52e..1a57f2aa198228dff784aad25c2c0e39b6c32a9a 100644
+--- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+@@ -28,12 +28,6 @@ properties:
+     items:
+       - description: Reference to the mclk clock.
+ 
+-  assigned-clocks:
+-    maxItems: 1
+-
+-  assigned-clock-rates:
+-    maxItems: 1
+-
+   reset-gpios:
+     description: Reference to the GPIO connected to the RESETB pin. Active low.
+     maxItems: 1
+@@ -82,8 +76,6 @@ required:
+   - compatible
+   - reg
+   - clocks
+-  - assigned-clocks
+-  - assigned-clock-rates
+   - vddio-supply
+   - vdda-supply
+   - vddd-supply
+@@ -105,8 +97,6 @@ examples:
+             pinctrl-names = "default";
+             pinctrl-0 = <&pinctrl_csi1>;
+             clocks = <&clk 0>;
+-            assigned-clocks = <&clk 0>;
+-            assigned-clock-rates = <25000000>;
+             vdda-supply = <&reg_camera_vdda>;
+             vddd-supply = <&reg_camera_vddd>;
+             vddio-supply = <&reg_camera_vddio>;
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
+index 1f497679168c8395a94b3867beb49b251ef621fc..8028c8b107c46cc69ebadac637904f9917fb0f0a 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
+@@ -20,12 +20,6 @@ properties:
+     items:
+       - description: XVCLK Clock
+ 
+-  assigned-clocks:
+-    maxItems: 1
+-
+-  assigned-clock-rates:
+-    maxItems: 1
+-
+   dvdd-supply:
+     description: Digital Domain Power Supply
+ 
+@@ -68,8 +62,6 @@ required:
+   - compatible
+   - reg
+   - clocks
+-  - assigned-clocks
+-  - assigned-clock-rates
+   - dvdd-supply
+   - dovdd-supply
+   - port
+@@ -93,9 +85,6 @@ examples:
+             avdd-supply = <&ov5648_avdd>;
+             dovdd-supply = <&ov5648_dovdd>;
+             clocks = <&ov5648_xvclk 0>;
+-            assigned-clocks = <&ov5648_xvclk 0>;
+-            assigned-clock-rates = <24000000>;
+-
+ 
+             ov5648_out: port {
+                 ov5648_out_mipi_csi2: endpoint {
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+index 8a70e23ba6abed67d8b61c33bd7a261089bddda2..320b9aacbb8bf08e6d06c927ee198c468def4642 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+@@ -20,12 +20,6 @@ properties:
+     items:
+       - description: EXTCLK Clock
+ 
+-  assigned-clocks:
+-    maxItems: 1
+-
+-  assigned-clock-rates:
+-    maxItems: 1
+-
+   dvdd-supply:
+     description: Digital Domain Power Supply
+ 
+@@ -68,8 +62,6 @@ required:
+   - compatible
+   - reg
+   - clocks
+-  - assigned-clocks
+-  - assigned-clock-rates
+   - dvdd-supply
+   - avdd-supply
+   - dovdd-supply
+@@ -94,8 +86,6 @@ examples:
+             pinctrl-0 = <&csi_mclk_pin>;
+ 
+             clocks = <&ccu CLK_CSI_MCLK>;
+-            assigned-clocks = <&ccu CLK_CSI_MCLK>;
+-            assigned-clock-rates = <24000000>;
+ 
+             avdd-supply = <&reg_ov8865_avdd>;
+             dovdd-supply = <&reg_ov8865_dovdd>;
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
+index 79a7658f6d0547e4d6fb2267e5757eedf49fd416..401c8613f84038451b90d244021a1388f32c91da 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
+@@ -27,10 +27,6 @@ properties:
+     description: I2C address
+     maxItems: 1
+ 
+-  assigned-clocks: true
+-  assigned-clock-parents: true
+-  assigned-clock-rates: true
+-
+   clocks:
+     description: Clock frequency from 6 to 27MHz
+     maxItems: 1
+@@ -87,10 +83,6 @@ examples:
+             reg = <0x60>;
+             clocks = <&ov9282_clk>;
+ 
+-            assigned-clocks = <&ov9282_clk>;
+-            assigned-clock-parents = <&ov9282_clk_parent>;
+-            assigned-clock-rates = <24000000>;
+-
+             port {
+                 ov9282: endpoint {
+                     remote-endpoint = <&cam>;
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+index c978abc0cdb35cfe2b85069946cf1be435a58cb8..975c1d77c8e5d24179e9cb8d92fe7b6798c4d2ec 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+@@ -24,10 +24,6 @@ properties:
+       - sony,imx258
+       - sony,imx258-pdaf
+ 
+-  assigned-clocks: true
+-  assigned-clock-parents: true
+-  assigned-clock-rates: true
+-
+   clocks:
+     description:
+       Clock frequency from 6 to 27 MHz.
+@@ -125,9 +121,6 @@ examples:
+             reg = <0x6c>;
+             clocks = <&imx258_clk>;
+ 
+-            assigned-clocks = <&imx258_clk>;
+-            assigned-clock-rates = <19200000>;
+-
+             port {
+                 endpoint {
+                     remote-endpoint = <&csi1_ep>;
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+index bce57b22f7b63bd73f08d8831d9bb04858ef03e0..3842e5130463491e833cbadcdc3a07c55f766c27 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+@@ -24,10 +24,6 @@ properties:
+     description: I2C address
+     maxItems: 1
+ 
+-  assigned-clocks: true
+-  assigned-clock-parents: true
+-  assigned-clock-rates: true
+-
+   clocks:
+     description: Clock frequency from 6 to 27 MHz, 37.125MHz, 74.25MHz
+     maxItems: 1
+@@ -74,10 +70,6 @@ examples:
+             reg = <0x1a>;
+             clocks = <&imx334_clk>;
+ 
+-            assigned-clocks = <&imx334_clk>;
+-            assigned-clock-parents = <&imx334_clk_parent>;
+-            assigned-clock-rates = <24000000>;
+-
+             port {
+                 imx334: endpoint {
+                     remote-endpoint = <&cam>;
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+index 77bf3a4ee89db3b5d16149470c0380ef8f1aeac1..80f879b6bd01bf6ce81eb9b6c1451448509ca74e 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+@@ -24,10 +24,6 @@ properties:
+     description: I2C address
+     maxItems: 1
+ 
+-  assigned-clocks: true
+-  assigned-clock-parents: true
+-  assigned-clock-rates: true
+-
+   clocks:
+     description: Clock frequency from 6 to 27 MHz, 37.125MHz, 74.25MHz
+     maxItems: 1
+@@ -86,10 +82,6 @@ examples:
+             reg = <0x1a>;
+             clocks = <&imx335_clk>;
+ 
+-            assigned-clocks = <&imx335_clk>;
+-            assigned-clock-parents = <&imx335_clk_parent>;
+-            assigned-clock-rates = <24000000>;
+-
+             avdd-supply = <&camera_vdda_2v9>;
+             ovdd-supply = <&camera_vddo_1v8>;
+             dvdd-supply = <&camera_vddd_1v2>;
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+index d9b7815650fdb890418fc96c828acc9147dfb6e8..5447ab0768a66afaf665f155d1f5bf90210eacc6 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+@@ -26,10 +26,6 @@ properties:
+     description: I2C address
+     maxItems: 1
+ 
+-  assigned-clocks: true
+-  assigned-clock-parents: true
+-  assigned-clock-rates: true
+-
+   clocks:
+     description: Clock frequency 6MHz, 12MHz, 18MHz, 24MHz or 27MHz
+     maxItems: 1
+@@ -86,10 +82,6 @@ examples:
+             reg = <0x1a>;
+             clocks = <&imx412_clk>;
+ 
+-            assigned-clocks = <&imx412_clk>;
+-            assigned-clock-parents = <&imx412_clk_parent>;
+-            assigned-clock-rates = <24000000>;
+-
+             port {
+                 imx412: endpoint {
+                     remote-endpoint = <&cam>;
+
+---
+base-commit: 58ca61c1a866bfdaa5e19fb19a2416764f847d75
+change-id: 20241005-b4-linux-next-202041004-i2c-media-yaml-fixes-fcf5c0c1e08d
+
+Best regards,
+-- 
+Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
 
