@@ -1,135 +1,94 @@
-Return-Path: <devicetree+bounces-116871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44EE19B435F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:44:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01C789B436A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:46:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0468728382B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 07:44:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA13328321C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 07:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E364202F60;
-	Tue, 29 Oct 2024 07:44:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3710A1DF960;
+	Tue, 29 Oct 2024 07:46:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cUzuYE7G"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="cjjF4eRg";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="7jVzdxDg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EBE618FDDF;
-	Tue, 29 Oct 2024 07:44:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65BD81DE3C5;
+	Tue, 29 Oct 2024 07:46:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730187873; cv=none; b=mTtf33T712z7TboKPm4qYTvsXsgqIYXzvI7BmvkBpAxHu2y9IKrW3/cXNATRdMmqkwhmPfnhAsGA5x/6DMavw5CHE1HA53uDWl+e41xo6khoj/a2dat6Oih/k5IRD5CUOda6M3RJK3Y0eDvGGAznrgy6cOtOhXA/UJhwsKi10Pg=
+	t=1730187966; cv=none; b=KmC6G2TYiVtuqSgZiXeAHDoAJuxLJUdFPAo/oa2FJ9BP2SxQyb8BgswFaWuYZxJ2+lZUv5XJCvaRCB6CbRKHZZrc2i2HZK7KdjOglTRnBJ75x3ZASHgZuWv6c/rqR/+/Tm3ijWTEQPhYjZqOBZ9/6sW7PBaTLvL+VQMCAKSdlWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730187873; c=relaxed/simple;
-	bh=Ow0Z2H8OIf8QKQdRNJUse7xIsQLu5LMw1RBfto7/LDs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oIJ0P5x++bxo+6UT2cm04W/OcL/RA1FBvbLTJWmGbigT6JLdXDflIBAxsKe5gP6+A4rPYvkPrghGYbFuFf9wmLZLErsEJmTAurIzodNJG84UlFDuC8G6VeKjhtc3Md8EYcDyWK71+kVKQI2x7RcRrSL7eklFGnJxue4WIlZbolg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cUzuYE7G; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4316a44d1bbso47300785e9.3;
-        Tue, 29 Oct 2024 00:44:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730187870; x=1730792670; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3IzZTViTRuzvh/XGxXwPwAKPNmcWKWyaW4QSWFJA7bs=;
-        b=cUzuYE7G/9r1ksFja7Gk2oRebosTznjdEfF93EkC18kVb/QKs0Bc4Lewriecf/etk2
-         10cMNB6Ge6V2oHAtzUCVnmSVT0rGV9lzPrSLEN3H6TynGCK3TJLwLBXmQOFb18pvWAGJ
-         DTxHo2D77eYhMpWOXIhja37asEsqoN5AgwmQG5LfX9ZYDBqOtWcCicFM2HneFff6oN8G
-         axJS0VxygeLTIhRO1XSCZGaSdjZT+WieJlIzIJgEv0C43Lyruvx7bbIDxEswm/upf1LM
-         lhoQacZfW0hyQsm6QwXnENCGs6BoIr1YQQmt0sYGAJNW4I8wKRZEcitrkzNc0SnFsejZ
-         1mXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730187870; x=1730792670;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3IzZTViTRuzvh/XGxXwPwAKPNmcWKWyaW4QSWFJA7bs=;
-        b=uQN8dARcAQG7s+MqXibTKvItq+v4DB2nlhcLmkfXAJ1cj4c6jsEnp1P+OqHh5fsYXq
-         7ifTn4bMiUCkt1EDboouCAg4luU4j/zaiEB++bMc/FEEDytfsTte/sT4lmSBP7b2Bazz
-         JM/+wKMr6qKr3Nhb9rFzP+OizIZlZrpDhTZd2r9Cw/hZA2/gMQhNsQdxFyy3LgWEg7/q
-         StU10B6bw2OmuVKiR8kX2mpNMXhwZlIBqvR+0kqPfNofIWY+PO0fquFqRMUC+u735gcD
-         fuOZxMIA7sd8HrCark+agjBuNueuydZlS5nq6jAzvP749HAZ6HlwI2t3u188QWUEdB4u
-         JM+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVbanXrAa7e/SmntmeRYiwKF/PTsvIzwYzlh1vwAFf2B92FSqtAbj+XZ0+3TTdFvpGpDFChbi5CsnTl@vger.kernel.org, AJvYcCW2TREJTRpgJgASfoRb8r7F5L0Fn/np6pZtxgJedm7dIZwxhEVZ2n2+JvZJvzvNEtSM8wVEsyWqgb5C0eI3@vger.kernel.org, AJvYcCX5P4MDhBbd3NGY5zRMJJ8PXCsk9mrgMKzuyKb6/j9ObJkHC/hT/ByIUckZq+emjXlqNhlg0xTAoP7D@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyx5TKYQ3xRqldyjuR240VqO0cMuTSSJTt29vXmGoKlOyEbXZHT
-	L+Lc04TnV1GL6mAcM/gKCqvckg05xpV9jXiWB2dhw3lMiUcssr1oytQu3uGj
-X-Google-Smtp-Source: AGHT+IHLrib7A3Ego7aSJC/MyAU9AOHPz/GF1IiWCH3p5s3lvTsDqDbPyqaKF5XwfeuJImDZtIVagg==
-X-Received: by 2002:a05:600c:4510:b0:42c:c401:6d67 with SMTP id 5b1f17b1804b1-4319ac742fcmr76400545e9.6.1730187869508;
-        Tue, 29 Oct 2024 00:44:29 -0700 (PDT)
-Received: from ?IPV6:2a02:8389:41cf:e200:25be:13a3:48ca:cad0? (2a02-8389-41cf-e200-25be-13a3-48ca-cad0.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:25be:13a3:48ca:cad0])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431935962acsm133309485e9.19.2024.10.29.00.44.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Oct 2024 00:44:29 -0700 (PDT)
-Message-ID: <efc88c4b-42e0-43fe-9e33-b6c1ca9c2914@gmail.com>
-Date: Tue, 29 Oct 2024 08:44:27 +0100
+	s=arc-20240116; t=1730187966; c=relaxed/simple;
+	bh=dp97rlroyRB/zeuGmGOsQg6ZrHeImmvKZEPuUVrYK4I=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=eAZXqQ+cUl9XpQrTmSKj/UEOmqhppvBTRwK0iYrvw0HYUAb4o3y1zm4TXhvCbDxooZGw+ojerZ1gQ9cSsA0yovgUqzX+fZWNbJlYTCreMtle0mYUbQO/P9wpcs3v9kqNi2S1rlIzipvczT3FY/mx0SxRjreqLqA42fL9BugR7fI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=cjjF4eRg; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=7jVzdxDg; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1730187960;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8ocksU4RpVjVurxFAx+JTZsKtC/IfAmmtb1MA+uZcAo=;
+	b=cjjF4eRg2GOvVf6wvheFfn4WnNcXE7pBA/yTUbkb5/0+f1w1E9JgPmB5BgeTrirHqeGw5s
+	o6edotnjAfJGGT7NayRxbP9rbd0P19ubVvb1LZlOg0cEmpZyMPHRmNIKCynB5mqq9V9Skr
+	2mm+783Ob8qCw6bEKrcNhAM8hqwAFB2hYT7UeYizARgCrar0CON1jjhWWsG+LbC4qYcMBJ
+	xiaGdtnddI/QxwOPRlylBjYFHqBucgbY5Hlyx+5c1iYDmreWC+mBVFp+RRzLr3YbGICTe3
+	UOLo0f8PpJ14jASC9FOJdTM/0kd8wtcZHuFSqqxxtGEhpM5tapmauJ7HOXRqOQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1730187960;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8ocksU4RpVjVurxFAx+JTZsKtC/IfAmmtb1MA+uZcAo=;
+	b=7jVzdxDg/7sUfxRa0SpbynMf/6HBZ6o3TVpLElNB3+/Hkj50ji1N0JZjF0ZDBx7c1z/cn8
+	WcxB2PVbuwjnjWBw==
+To: Inochi Amaoto <inochiama@gmail.com>, Chen Wang
+ <unicorn_wang@outlook.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Peter Zijlstra <peterz@infradead.org>,
+ Inochi Amaoto <inochiama@outlook.com>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>, Yangyu Chen <cyy@cyyself.name>,
+ Hal Feng <hal.feng@starfivetech.com>
+Cc: Yixun Lan <dlan@gentoo.org>, Inochi Amaoto <inochiama@gmail.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 2/3] irqchip: add T-HEAD C900 ACLINT SSWI driver
+In-Reply-To: <20241022040218.450573-3-inochiama@gmail.com>
+References: <20241022040218.450573-1-inochiama@gmail.com>
+ <20241022040218.450573-3-inochiama@gmail.com>
+Date: Tue, 29 Oct 2024 08:45:59 +0100
+Message-ID: <87jzdr2vyg.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: light: veml6075: document
- rset-ohms
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20241028-veml6070-integration-time-v3-0-dd7ace62f480@gmail.com>
- <20241028-veml6070-integration-time-v3-1-dd7ace62f480@gmail.com>
- <kguuixqw73fjzfdnmwapfm4tpq25c33mmdkifbx4h6taoqmzx4@yp3soq2n5d3n>
-Content-Language: en-US, de-AT
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <kguuixqw73fjzfdnmwapfm4tpq25c33mmdkifbx4h6taoqmzx4@yp3soq2n5d3n>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 
-On 29/10/2024 08:33, Krzysztof Kozlowski wrote:
-> On Mon, Oct 28, 2024 at 06:14:01PM +0100, Javier Carrasco wrote:
->> The veml6070 provides a configurable integration time by means of an
->> external resistor (Rset in the datasheet) with values between 75 and
->> 1200 kohms.
->>
->> Document rset-ohms to select the integration time.
->>
->> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
->> ---
->>  .../devicetree/bindings/iio/light/vishay,veml6075.yaml | 18 ++++++++++++++++++
->>  1 file changed, 18 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml b/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml
->> index 96c1317541fa..5381a90f7f7e 100644
->> --- a/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml
->> +++ b/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml
->> @@ -22,6 +22,13 @@ properties:
->>    reg:
->>      maxItems: 1
->>  
->> +  rset-ohms:
-> 
-> I missed last time this, sorry:
-> This looks specific to this device, so missing vendor prefix. Otherwise
-> you should use an existing property or make it a generic, IIO property
-> in common schema.
-> 
-> Best regards,
-> Krzysztof
-> 
+On Tue, Oct 22 2024 at 12:02, Inochi Amaoto wrote:
+> Add a driver for the T-HEAD C900 ACLINT SSWI device, which is an
+> enhanced implementation of the RISC-V ACLINT SSWI specification.
+> This device allows the system to send ipi via fast device interface.
+>
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
 
-This is a device-specific property, so I will rename to
+Can someone from the RISCV folks please confirm that thtis is good to
+go?
 
-vishay,reset-ohms
+Thanks,
 
-Thanks and best regards,
-Javier Carrasco
-
+        tglx
 
