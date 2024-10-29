@@ -1,179 +1,134 @@
-Return-Path: <devicetree+bounces-116782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A3E69B409C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 03:46:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CB289B40A3
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 03:51:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDE2E282DF6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 02:46:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 326FE2833B4
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 02:51:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0730E192B62;
-	Tue, 29 Oct 2024 02:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B54F81E0B80;
+	Tue, 29 Oct 2024 02:50:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UC5tjaAL"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="dvKgnwL+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163A54400;
-	Tue, 29 Oct 2024 02:45:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 824294400;
+	Tue, 29 Oct 2024 02:50:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730169960; cv=none; b=pXP95DC68pHzsNd8rNjCHi8Hjav8CAWGF1sgXNYtEcjnAp3yC82CRtHz1ysseJpnGl6ndc2mrXeBvPsXOKW6wexRI9dwgRSH7d7OruYUR09BqrWJBC5lcKa+KlUyPuvrmbaS+iU6CAhMDbqIA8sT1qPed85+IlVOhqn7tHmE4es=
+	t=1730170257; cv=none; b=qOp7o1XTnUeX4j09bZ+ocCTLs9YhMCL3bmqxVX+ISekuUS+JojlrD9PDpkzQ3ELilayVMEsgaCUY377KJnxUuMAeJwgMQfa7+VqcGz7pBLUjPyuL3qJ5bmh6iAZSr+hfHYc6Xwqu8ZxMDOAwK10Tx0qnoY0dOHpiOhmATRQ6n1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730169960; c=relaxed/simple;
-	bh=Rhbj1OgP302OYjYV7huk6lVZrw9UJiOO7DW75hr8k4U=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=G1gMdcDerY4kLyCAR9JnRLC4V7S1QKA0dqvW/fAcMumIWUuHZfVSuGe1GE/h1FBUlBzbVhrMiIfWSOumT5m9UM1USIKM4zLzYE/JCQp0HyNXCKl3s4tp1CAOVlQtURFdR57b1bFUo+MRoB8ONMLxSW5rRVP4DYFpQ+gMrgP6hsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UC5tjaAL; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49SJTR74028698;
-	Tue, 29 Oct 2024 02:45:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9iaOY4VG65QMG8PRCx1ATtiN3Adp53NdMTM2RfHDf2M=; b=UC5tjaALk/N+9crS
-	e9B5iV/6WaYAvl55yXr9ErgB/NrGp7E0tFifml7E6s4oi9JD1kmAWt3o2hc6QDXf
-	5RqN7O2cgGM4+IRhMiOwXcH7+OKbTbqksBm00G0j09Dsz0M0WhJBxgNXepojg6j0
-	NI24//5am+tcDtKR6KdAWO11DP/LcArSDo/fNbia1mO2oGfS76Kk9byl4iLDR0yI
-	Dutb1YHINoXtEFvz0yuE88taqY4+Q2Biljd0Y2B7ja50CXxrUvqH6NVGz7gHhrPT
-	hTa2qByIu/yqzYyJuybgz6azynCQNOCtclKvxsy01snfrr/Y6vBCjgLTOiRuhjEx
-	CZ+SHg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gsq8exnx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 02:45:33 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49T2jWxT026906
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 02:45:32 GMT
-Received: from [10.64.68.153] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Oct
- 2024 19:45:26 -0700
-Message-ID: <a1400acb-e9e9-4233-8c0c-573be3e3370d@quicinc.com>
-Date: Tue, 29 Oct 2024 10:45:23 +0800
+	s=arc-20240116; t=1730170257; c=relaxed/simple;
+	bh=rbs6zdmlmEO16BukbbW/kX6BRAgAHqPcAzpnhOyj4wA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pozc/dF0p6jWSRMTvj78GQhtV3BlssBl79YnVQlClRcb0dBLjD84sUdbWflqfv2HZhjYd+k28Fv39+PFQH5nMCIzaAk9dSZXwCkttaEGCrNqcmsSXvvU8IKPfE+AuXcHrvhr4wN5BSP/ZBef3aqGJ9w3LrTLpBGy83h2AzNiJYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=dvKgnwL+; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=4x7+NMYuwtDNvuiXxIkan9s38gNFO7jrlobgIQdg9wI=; b=dvKgnwL+xlxDZYgcteGPA7b1b7
+	mLcb/Toa8r1YLBarjgVedww/AUh/e93nYKxJn0MCiIuXh1j8B+aBur60A4HEBBxqIfiLMvlt4rF0O
+	7jPcAv+gcq+yNAuTKebC5HnZ9CB2ptTJoX+sj2mDMLGrqaP5KDvKrRk1CSAhwJWRWCDY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1t5cJd-00BWHU-42; Tue, 29 Oct 2024 03:50:41 +0100
+Date: Tue, 29 Oct 2024 03:50:41 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Chen Wang <unicorn_wang@outlook.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Liu Gui <kenneth.liu@sophgo.com>, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH] riscv: dts: sophgo: Add ethernet configuration for cv18xx
+Message-ID: <ab0ed945-07ff-4aff-9763-e31f156df25f@lunn.ch>
+References: <20241028011312.274938-1-inochiama@gmail.com>
+ <87e215a7-0b27-4336-9f9c-e63ade0772ef@lunn.ch>
+ <wgggariprpp2wczsljy3vw6kp7vhnrifg6soxdgiio2seyctym@4owbzlg3ngum>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/5] Coresight: Add Coresight TMC Control Unit driver
-From: Jie Gan <quic_jiegan@quicinc.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>,
-        "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-CC: "Jinlong Mao (QUIC)" <quic_jinlmao@quicinc.com>,
-        "coresight@lists.linaro.org" <coresight@lists.linaro.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "Tingwei Zhang (QUIC)"
-	<quic_tingweiz@quicinc.com>,
-        "Yuanfang Zhang (QUIC)"
-	<quic_yuanfang@quicinc.com>,
-        "Tao Zhang (QUIC)" <quic_taozha@quicinc.com>,
-        "Sam Chai (QUIC)" <quic_songchai@quicinc.com>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com"
-	<linux-stm32@st-md-mailman.stormreply.com>
-References: <20241009112503.1851585-1-quic_jiegan@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <20241009112503.1851585-1-quic_jiegan@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: cfX0vtSWIY70l6YS3EqTq8FbRAvJm3jm
-X-Proofpoint-ORIG-GUID: cfX0vtSWIY70l6YS3EqTq8FbRAvJm3jm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- adultscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=991 impostorscore=0
- lowpriorityscore=0 malwarescore=0 clxscore=1011 spamscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410290020
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <wgggariprpp2wczsljy3vw6kp7vhnrifg6soxdgiio2seyctym@4owbzlg3ngum>
 
+On Tue, Oct 29, 2024 at 06:43:03AM +0800, Inochi Amaoto wrote:
+> On Mon, Oct 28, 2024 at 02:09:06PM +0100, Andrew Lunn wrote:
+> > > +++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+> > > @@ -210,6 +210,55 @@ i2c4: i2c@4040000 {
+> > >  			status = "disabled";
+> > >  		};
+> > >  
+> > > +		gmac0: ethernet@4070000 {
+> > > +			compatible = "snps,dwmac-3.70a";
+> > > +			reg = <0x04070000 0x10000>;
+> > > +			clocks = <&clk CLK_AXI4_ETH0>, <&clk CLK_ETH0_500M>;
+> > > +			clock-names = "stmmaceth", "ptp_ref";
+> > > +			interrupts = <31 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			interrupt-names = "macirq";
+> > > +			phy-handle = <&phy0>;
+> > > +			phy-mode = "rmii";
+> > > +			rx-fifo-depth = <8192>;
+> > > +			tx-fifo-depth = <8192>;
+> > > +			snps,multicast-filter-bins = <0>;
+> > > +			snps,perfect-filter-entries = <1>;
+> > > +			snps,aal;
+> > > +			snps,txpbl = <8>;
+> > > +			snps,rxpbl = <8>;
+> > > +			snps,mtl-rx-config = <&gmac0_mtl_rx_setup>;
+> > > +			snps,mtl-tx-config = <&gmac0_mtl_tx_setup>;
+> > > +			snps,axi-config = <&gmac0_stmmac_axi_setup>;
+> > > +			status = "disabled";
+> > > +
+> > > +			mdio {
+> > > +				compatible = "snps,dwmac-mdio";
+> > > +				#address-cells = <1>;
+> > > +				#size-cells = <0>;
+> > > +
+> > > +				phy0: phy@0 {
+> > > +					compatible = "ethernet-phy-ieee802.3-c22";
+> > > +					reg = <0>;
+> > > +				};
+> > > +			};
+> > 
+> > It is not clear to me what cv18xx.dtsi represents, 
+> 
+> This is a include file to define common ip for the whole
+> cv18xx series SoCs (cv1800b, cv1812h, sg2000, sg2000).
+> 
+> > and where the PHY node should be, here, or in a .dts file. 
+> > Is this a SOM, and the PHY is on the SOM? 
+> 
+> The phy is on the SoC, it is embedded, and no external phy
+> is supported. So I think the phy node should stay here, not 
+> in the dts file.
 
+So this is correct when the PHY is internal. However, this is normally
+expressed by setting phy-mode to "internal". The stmmac driver might
+however not allow that? If not, please put a comment indicating the
+PHY is part of the SoC.
 
-On 10/9/2024 7:24 PM, Jie Gan wrote:
-> The Coresight TMC Control Unit(CTCU) device hosts miscellaneous configuration
-> registers to control various features related to TMC ETR device.
-> 
-> The CTCU device works as a helper device physically connected to the TMC ETR device.
-> ---------------------------------------------------------
->               |ETR0|             |ETR1|
->                . \                 / .
->                .  \               /  .
->                .   \             /   .
->                .    \           /    .
-> ---------------------------------------------------
-> ETR0ATID0-ETR0ATID3     CTCU    ETR1ATID0-ETR1ATID3
-> ---------------------------------------------------
-> Each ETR has four ATID registers with 128 bits long in total.
-> e.g. ETR0ATID0-ETR0ATID3 registers are used by ETR0 device.
-> 
-> Based on the trace id which is programed in CTCU ATID register of
-> specific ETR, trace data with that trace id can get into ETR's buffer
-> while other trace data gets ignored. The number of CTCU ATID registers
-> depends on the number of defined TMC ETR devices. For example, two TMC
-> ETR devices need eight ATID registers. ETR0 with ETR0ATID0-ETR0ATID3
-> and ETR1 with ETR1ATID0-ETRATID3.
-> 
-> The significant challenge in enabling the data filter function is how
-> to collect the trace ID of the source device. The introduction of
-> trace_id callback function addresses this challenge. The callback function
-> collects trace ID of the device and return it back. The trace ID will be
-> stored in the structure called cs_sink_data and transmitted to helper
-> and sink devices.
-> 
-> The cs_sink_data structure is created to address how to transmit
-> parameters needs by coresight_enable_path/coresight_disbale_path
-> functions.
-> 
-> Here is an example of the struct cs_sink_data:
-> struct cs_sink_data {
->          struct perf_output_handle  *handle; //used by perf mode
->          struct coresight_device    *sink;   //used to retrieve atid_offset
->          u32                        traceid; //traceid needed by CTCU
-> };
-> 
-> The atid_offset mentioned before is the offset to ATID register in CTCU
-> device.
-> 
-> Enabling the source device will configure one bit in the ATID register based
-> on its trace ID.
-> Disabling the source devices will reset the bit in the AITD register
-> based on its trace ID.
-> 
-[...]
-
-Kindly remainder, Please help to review the patch series.
-
-Thanks,
-Jie
-
+	Andrew
 
