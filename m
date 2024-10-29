@@ -1,116 +1,187 @@
-Return-Path: <devicetree+bounces-116891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A37CB9B4452
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 09:36:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18DD39B4463
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 09:41:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6373728375C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:36:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C14BA1F235FF
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:41:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90FB320370F;
-	Tue, 29 Oct 2024 08:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09DE72038C4;
+	Tue, 29 Oct 2024 08:41:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YLQG3eo7"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="C8PH7V93"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f194.google.com (mail-pg1-f194.google.com [209.85.215.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3F71F7565;
-	Tue, 29 Oct 2024 08:36:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91ABA1F7565;
+	Tue, 29 Oct 2024 08:41:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730190970; cv=none; b=cvEfh7TOc4e2NEBsABbhIm+Ey1u+lnQRNzPUu94M78OVOW8j6dxEBrWHBU/rubBM1lCrfChUVivyOT8J+GlnODjyliw3g0Ge8mh2AzSLPD7Oh2eavEh1I9djPiRu4Rk2XDIV7kGtsXHE6DZTQsSEcWG/thQ+KypkPC9YqoXdAJE=
+	t=1730191309; cv=none; b=VD0smTqhTZowXvmZrl5HgNDrzM90ouQuTvaYzjeIKcBKwT9A5p8sGH1WUtOr/6brqnY1BERaOp7p/c5M2qm7LPg8nZRyudNhlMFR0yULsN6AELOuYLv3kOWFgcQICF1G3bl4Qhkv4C86D1rxfQ0Y4ysx6SCjNU0UEyG+OM8Ekl4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730190970; c=relaxed/simple;
-	bh=fGKUqwVOOnFLbG89wMtYJqLDlQo4wwQpAOCeJx3ljtw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ISNCBrUh0Th0KEyYlbxUI132jhDE5RmyxDUlLftse+kmFskRLzIr274+PrzrpZEb6yVnd3DtUfirRYWlzwnfxptsxV4mijEGGJ+Q0aFJmYtT0oBS9zNB63SE/25HZn1iKdnb3d26F3IS8aUZtPEiYSIpB8jNGM9twhKBQYo9vVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YLQG3eo7; arc=none smtp.client-ip=209.85.215.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f194.google.com with SMTP id 41be03b00d2f7-656d8b346d2so3454630a12.2;
-        Tue, 29 Oct 2024 01:36:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730190968; x=1730795768; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/8NSLt5gROai5eNjRnyzeHIXUrIA3Ff+xSmUEHde5ls=;
-        b=YLQG3eo7C4WSsRViTBlp1AfaTXrIXncroof1mrfq1NXD6/1kNKHFL1ME0tsLiCgsPr
-         QA+tql6KOkygPCfyrSx2Sv2xJh+vb2eF+HkbxfnjWNx5VWcLSUe4VINO0synVQqatysO
-         WJjGjOPnfYt5bZH1OZ97tLamKvbXlj+cwdK/mxR4+YrCKA+q/LfPTtfdAEHwLHNXFDW1
-         vFTHn/K15op3s9TGTCJ7ESwwg8cvAoeews2v51bDqtiLETePKln1V3CnF72Cx8VN4sbT
-         Wg8Pq8Z62kEYb7GQnDCpLcGdK8FZxYzFPpLEx+qOD/988qw18EVRBthetcyRpokerdUr
-         46CA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730190968; x=1730795768;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/8NSLt5gROai5eNjRnyzeHIXUrIA3Ff+xSmUEHde5ls=;
-        b=hwpBk7dycdZYolmF9ybnQ+pA491tFZOJO8Xbm9hyISZ2GlcRL+MQBZr2b4gQB+3z7I
-         kFuFgTbp6NHejqXwkH24zPDXAyUeRruGXu8BVcVGO4zQsbm1GsZeT6bY+x2x7gdssffs
-         7AwLgejjMD7RWkDGDDoYJQoTcMOvK2axDspAMGxGDqCh8uBfks3VXwFyC+FATrjtwgu+
-         7N6BblM5tn5a2+19SbyMTNV7Fw03jG4fvikQjzjLINCBjFZo5f0F3nkFjwrzUWxTeeXq
-         GFYQVIVFxueWTzjRhrc0XRxs7O8PI1DTUc9Yn2mUXvfsKyrUWduczL45gckdiGe9j3+i
-         eHqw==
-X-Forwarded-Encrypted: i=1; AJvYcCUroq8+If4URmjOB2Q8DmSedDwNpuvtFq8V+xxTNKrXQxw7vFrzwMqkFCHuFcQsO9LMIShTIMlUJRpv@vger.kernel.org, AJvYcCVkMVVsUdE1daC7ZQlUIN9mI2zpfexO6J0JYRoTeA+hbB9uIr+HbDS9LNJ0FtoMw7QJtHnIUW2Jfkr628DX@vger.kernel.org, AJvYcCVmbQfCsaakNMr49yieN00ChrBjjYHe81PdVBbJv8qvhSLcAzJ0BgAYu26461epKZhYTOjOF9CSumdJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXgJvax6WwUdbl3C8FFnd3Tvg//3fIiBlc00UF1WH/CKKUaiKG
-	pMryIG7SzDrY5x1Zz4iodJvwOTeOCJ6aiVjo+8rMYAspdwfHfPSz
-X-Google-Smtp-Source: AGHT+IHBlSsRarPjE08Y8GtoBvAeCWe8nYN7P9fMO3ywfLAmEctgr9vvRZpfDmJHAhNB1E9ogzoalQ==
-X-Received: by 2002:a05:6a21:390:b0:1d9:83cc:fd48 with SMTP id adf61e73a8af0-1d9a83ca001mr14773602637.17.1730190967861;
-        Tue, 29 Oct 2024 01:36:07 -0700 (PDT)
-Received: from [127.0.0.1] ([2602:f919:106::1b8])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-210bbf6d605sm62414185ad.93.2024.10.29.01.36.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Oct 2024 01:36:07 -0700 (PDT)
-Message-ID: <dbeea869-54cd-43fe-9021-783d641f1278@gmail.com>
-Date: Tue, 29 Oct 2024 16:36:00 +0800
+	s=arc-20240116; t=1730191309; c=relaxed/simple;
+	bh=29GtuOb78Tq1qYNR/nE/cnVHgRQpd26VnE8XbAtvsAY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tF0pMoApkcDqha2aVz01BtkD/VmWTmPWBynFXmLpybp7BSY9LwS+fdf8bFBnkfBmVmLMa9l5UmZSqRRaJw/svtbUDmtSAn2Iocj0N0+tAUYu3As1FKOW8qE0xZiLbhY/h/NOc27/pBNm4WweXv8L00Va/XXhV+24SlJ+IKtUi9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=C8PH7V93; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=q9tbeX7y+zJgZuAb/cGAaZ6MuCs4CQFq8FQvgssvj5E=; b=C8PH7V936k7jSRlqWNh/9IP9kq
+	2lMBc9oVA6BILyiZI4TvY/qs23GQNfOWpQipGokmPTcvgTR+8AsdYx/mQol5PQ4B9Q3BXKcA5vwL0
+	qaWWQBolR7aLKV1lPlDpe5qo7inNYIGy9fBvYgJYW28sCoV0QHkz/H9sBYaDd6geVj06rE866fs0k
+	9UGEXv8I8JgXoDP8Bf/Zrom5MoisZ/iRJSIfZoFwauhEu2WhjwMcdPpDRhJu/D0pWBQAcH+Kqw8RX
+	8FaYwoKRFjv4uv4cIaJd4NoZ2rZD6+W6BKaJdpB5qf6LUGoYxilHQ2YT+yj+/Ga7ZYy4IJ77fJWEx
+	lRU3k4KQ==;
+Date: Tue, 29 Oct 2024 09:41:41 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ linux-kernel@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+ devicetree@vger.kernel.org, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, Sascha Hauer
+ <s.hauer@pengutronix.de>, Alexander Stein
+ <alexander.stein@ew.tq-group.com>, imx@lists.linux.dev, sre@kernel.org
+Subject: Re: [PATCH v2 2/3] ARM: dts: imx: Add devicetree for Kobo Clara 2E
+Message-ID: <20241029094141.04540d91@akair>
+In-Reply-To: <f2bb661d-8ef5-43d4-aece-c7fec01ff9fe@gmail.com>
+References: <20241024142206.411336-1-andreas@kemnade.info>
+	<20241024142206.411336-3-andreas@kemnade.info>
+	<f2bb661d-8ef5-43d4-aece-c7fec01ff9fe@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: spacemit: add support for K1 SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20241028053220.346283-1-TroyMitchell988@gmail.com>
- <20241028053220.346283-2-TroyMitchell988@gmail.com>
- <6zx3tqdc5bma2vutexwigzlir6nr6adp7arg4qwl5ieyd3avbu@5yyhv57ttwcl>
-Content-Language: en-US
-From: Troy Mitchell <troymitchell988@gmail.com>
-In-Reply-To: <6zx3tqdc5bma2vutexwigzlir6nr6adp7arg4qwl5ieyd3avbu@5yyhv57ttwcl>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 2024/10/28 15:38, Krzysztof Kozlowski wrote:
-> On Mon, Oct 28, 2024 at 01:32:19PM +0800, Troy Mitchell wrote:
->> The I2C of K1 supports fast-speed-mode and high-speed-mode,
->> and supports FIFO transmission.
->>
->> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
->> ---
-> 
-> Where is the changelog? Nothing here, nothing in cover letter.
-> 
-> I asked for several changes, so now I don't know if you implemented
-> them.
+Am Tue, 29 Oct 2024 09:53:33 +0200
+schrieb Matti Vaittinen <mazziesaccount@gmail.com>:
 
-I deleted the FIFO property because I believe your suggestion is correct.
-this should be decided by the driver, even though the FIFO is provided
-by the hardware.
+> On 24/10/2024 17:22, Andreas Kemnade wrote:
+> > Adds a devicetree for the Kobo Clara 2E Ebook reader. It is based
+> > on boards marked with "37NB-E60K2M+4A2" or "37NB-E60K2M+4B0". It is
+> > equipped with an i.MX6SLL SoC.
+> > 
+> > Expected to work:
+> >    - Buttons
+> >    - Wifi
+> >    - Bluetooth
+> >      (if Wifi is initialized first, driver does not handle
+> > regulators yet)
+> >    - LED
+> >    - uSD
+> >    - USB
+> >    - RTC
+> >    - Touchscreen
+> > 
+> > Add human-readable comments for devices without mainlined driver and
+> > binding. Such comments can e.g. be help to find testers if someone
+> > starts to work on the missing drivers.
+> > 
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>  
+> 
+> ...
+> 
+> > +
+> > +	pmic@4b {
+> > +		compatible = "rohm,bd71879", "rohm,bd71828";
+> > +		reg = <0x4b>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_bd71828>;
+> > +
+> > +		interrupt-parent = <&gpio4>;
+> > +		interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
+> > +		system-power-controller;
+> > +
+> > +		clocks = <&clks 0>;
+> > +		#clock-cells = <0>;
+> > +		clock-output-names = "bd71828-32k-out";
+> > +
+> > +		gpio-controller;
+> > +		#gpio-cells = <2>;
+> > +		gpio-reserved-ranges = <0 1>, <2 1>;
+> > +
+> > +		rohm,charger-sense-resistor-ohms = <30000000>;  
+> 
+> I am afraid that this one is _my_ very much terrible brainfart. Yeah, 
+> pile up the stones and start casting ;)
+>
+... at everyone who had looked at this and did not question it ;-)
+ 
+> I am fairly sure the sense resistor is 30 mOhm (0,030 Ohm), not 30
+> MOhm (30 000 000 Ohm). (And I am the one who misinterpreted the M in
+> some email/data-sheet in the past - and never questioned the sanity).
+> 
+Well, I did question it, but then thought, ok there might be some
+current mirror to scale things down so that the massive rsense might
+make sense. Well, no schematics here.
 
-Apologies for missing the changelog. To correct this, should I send a v3 
-version with the changelog or resend v2?
+> In short, AFAICS the sense resistor is added "in series" to the
+> system load. Eg:
 > 
-> Best regards,
-> Krzysztof
+>            --------
+>        ---| Rsense |-----
+>       |    --------      |
+>   ---------           -------
+> | VSupply |         | Rload |
+>   ---------           -------
+>       |                  |
+>        ------------------
 > 
+> Hence, by measuring the voltage drop on the Rsense gives us the
+> current flowing through the system ( good old U = RI ).
+> 
+Yes, that is the way I did know how these things are usually done.
+So I am still on track.
+
+> I believe having 30 Mohm (30 000 000 Ohm) resistor there would not
+> make much of sense... With a Fermi estimate that the system works
+> with voltage magnitude of 1V and current magnitude of 1A and then
+> applying good old P = UI and U = RI would give us wonderful results
+> :) Quite a battery on poor Kobo, right? You'd better to not touch the
+> battery termninals ;) Oh, and looking the driver code I've written
+> for handling this property... Sometimes I really don't like mirrors :)
+> 
+
+> Well, now that I got this out - I suppose this could be
+> rohm,charger-sense-resistor-milli-ohms = <30>;
+> or
+> rohm,charger-sense-resistor-micro-ohms = <30000>;
+> 
+> I further guess there is no upstreamn binding doc for this property.
+
+The binding doc is upstream. So an impressive amount of maintainers
+had a look at it...
+
+Well, everyone seem to entrust Rohm Semiconductors to do magic...
+wonderful reputation.
+
+So how to proceed? As this property is not required, I can simply
+remove it and add a comment.
+
+> I think there is also no upstream charger driver for the
+> BD71828/BD71879 - only an early RFC and some downstream mess - but
+> stil it'd be nice to have the property in place as the size of the
+> sense resistor is needed when converting coulomb counter register
+> values to current.
+> 
+What are you upstreaming plans here? For all:
+I rebased the charger stuff to v6.11 on
+https://github.com/akemnade/linux branch kobo/power-6.11
+
+Regards,
+Andreas
 
