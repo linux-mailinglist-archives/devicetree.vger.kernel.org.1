@@ -1,106 +1,130 @@
-Return-Path: <devicetree+bounces-116997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFC029B4984
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:19:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49B789B4994
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:22:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 117841C2242D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:19:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F03C2834D3
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:22:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42D17206061;
-	Tue, 29 Oct 2024 12:19:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30ED4206068;
+	Tue, 29 Oct 2024 12:22:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="hgnZALp1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L7DDiZ2r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 655EE205E08;
-	Tue, 29 Oct 2024 12:19:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F870206065;
+	Tue, 29 Oct 2024 12:22:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730204349; cv=none; b=hZWmDa2ltZGDrwn974E6WWvnWTtbl9GogqnrYEv2eQp9Veume8UqWfDtvdaUPKxMOmHNDxGb4q7hIZN02POVjlh3VLYoP+EGyM5xTxmc6qAA64/c6MQsm7lxCii+pmt1x9qRVCGP4ZFlfmYndkFCjVfNAPvCucZdEobKxxriw60=
+	t=1730204528; cv=none; b=S6El1kGq9YgiQk2cTrmbhhw+tE0wdRX7gL5C7nldhWjZ79hsVDFmC1rv44p0jVXDvBn716K12AsQQO1uUt0qI6C6HMz2O96z7/f9Jpqh45Y4zPUYwMnPesMsNFPXgvTreTnC7YV5wcew1x7bmBQ3p+n0sLTczwQD9gsa+H54kPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730204349; c=relaxed/simple;
-	bh=MAAeXKa/2Ts6pTym+TPupzG+OR33ZFevQVxOgUuwQdk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FwspM8LpdnHcT7RfPrXBsim9eamM0ZyGo2rxfBU8LR/ERnSWPTccppmniK8gFM35IC4r634eEXPhs4RR/Dg/TQumE71j7S6Ache5f+3f+NT0+QkqgeDLf5mUeqFlmTap4APujmSi2NdqRkyFoVJ2YYvDJ3PvKqinGez41w3j6Xk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=hgnZALp1; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=6jVzrS/dv8I737x17bUvfsxtTXmLoqjV6On8HBWDM70=; b=hgnZALp1rshuOUnKj9DMO1vbGc
-	X7BAH5/T9P0tgk5BXqbHmpQ0KDFVgI94gf74+iYr4PcgfrXdRz4AtwH8kUce84V0KbqwA7Lrx4gHc
-	lynpQoYesEIit/bM+G8CldhXzpd8zoDn4VvmmlCccLeP/a+mQnG8fRBaThxNaBqagxb8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t5lBL-00BZUT-Hm; Tue, 29 Oct 2024 13:18:43 +0100
-Date: Tue, 29 Oct 2024 13:18:43 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: jan.petrous@oss.nxp.com
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-	Keyur Chudgar <keyur@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Andrei Botila <andrei.botila@nxp.org>,
-	Jacob Keller <jacob.e.keller@intel.com>
-Subject: Re: [PATCH v4 16/16] net: stmmac: dwmac-s32: Read PTP clock rate
- when ready
-Message-ID: <9154cc5f-a330-4f6d-b161-827e64231e35@lunn.ch>
-References: <20241028-upstream_s32cc_gmac-v4-0-03618f10e3e2@oss.nxp.com>
- <20241028-upstream_s32cc_gmac-v4-16-03618f10e3e2@oss.nxp.com>
+	s=arc-20240116; t=1730204528; c=relaxed/simple;
+	bh=vSB6u8bogveL7SZrgC/L5ESJfDxg+XPv+xcOu04Lp9Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eQU8j8SOondt8yz+JcSZ988oT3xFFdErb3fVRsaWHW38tdkGB/kjiUe27Qw90KewoiMtMzz8fS+qQflREuhIgDJ+yIf1Sutgc/M1XC5SQ2iKuiE2Z6OxLlNm0kyV8ZRIONQVhjQA34h78c60KqaayFfam1ljiQgE9iNGyWqnq8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L7DDiZ2r; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7ea6a4f287bso3427529a12.3;
+        Tue, 29 Oct 2024 05:22:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730204525; x=1730809325; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZHV7QBVD7QIIPlsLZ6YjaWzT16mKG/opBrn7w7p5NbM=;
+        b=L7DDiZ2ryjeuoNBjWfHPYp5KEb78w7Sg1ZNrVk6W5BeOLBxE39qwFqdW8z9QiwDM1+
+         xwlRyMg/7QUjBtqWiqRuUfpRnglUndf1mXMUTvfpWTNMaCCaX0Sk5uZnurGGfzIW1lbr
+         8Fr2DZkaGkffP1/9fS073snQhwqfBb6MgDCkqT7REnTtUwceBJGJEJCm6qDIMloSW4X5
+         wWVOB/qWcz0eooZ555uyJmij6NVFAj+ySPTD+v4KMNr+ha+/f4kmcxLwAZ5IxKXAO/Zj
+         glESHmU6pIt/2WCVYSl3yNEm2IRK2tuwUDilw2Wmq/5arqVG7t2H51dVIg7QeWKdGVG1
+         28fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730204525; x=1730809325;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZHV7QBVD7QIIPlsLZ6YjaWzT16mKG/opBrn7w7p5NbM=;
+        b=DGcz6jK0i+nqDWt1nGBwjIvrNcjwytECZ2Y/4mu1KBEXmEY/LQZMHC38aXZWZtsaM5
+         PTPUemQEKPVrY6Cu9ZhPjJ9KLgoXZ0retFaDaC3FchMx6gPKTg6x+hdy0y/wxhkFC6tr
+         B7pcBbPr0P8TR2HmdqfmK0N+45qha2BXrmyKQ+Ypefb0Kv5/bzJon3C1VQ69H/WgJJaq
+         xg4ldDyusY9yXbAFl4ua+Fi4Lhf9Q2wlulTCJvTii9o9z3slUs7nBVdgDNOaNjsiVpKE
+         oAt+p31C9EFEbBn/HCK7PIZgcgpRe5HjJdHbRfEa6pyKMDwD/0nAnz3B9ECBkEXfj52v
+         8JsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUbq9qBUoYG5CEJjnFLD2fqNpMsTpL/xhP9eWbBtvzCjQ7Ep8C+ZKZ8Ei4luLL5xYHA9m5jHwoNxxUbKJHm@vger.kernel.org, AJvYcCVcVosy3qcwTp6C6P6eBNBLAb8AN//2bFLMwNLRTDGuhPPP+j/G/zz47zshmc2Y6UmTLQc2KVGh1QPJ@vger.kernel.org, AJvYcCWbBm2ndO4AJkZ3dJYl/vT6d00ZCuDdzykc1nNSeDVLqO6gaiH5h4BBKpX4+ujCWjCiBtnciixmyTzSow==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyodholkqmBOSvpzQBIlRDCWvfEW8Z2wE902c97DzvEK+aVRvsZ
+	CvVmEUm79zlnFd3DBCD2GRkDeR66TeEbIIOcQ7PVFhcsDA/ohPjv3suTVWf8y4usvDLtRLeCb4j
+	A92E2dMijIQ41mxLe8qEL4Vvz8hk=
+X-Google-Smtp-Source: AGHT+IHLIndC2lOUKpJmDfcwYz6ihXRGTPUV9yyYVkIsLE/O6iP/CZ2Hhr2+BylMbsHP2hzM0mXo+TV3dR466se5jdM=
+X-Received: by 2002:a05:6a20:1594:b0:1d9:c56c:4a0b with SMTP id
+ adf61e73a8af0-1d9c56c4aa7mr8579387637.1.1730204525421; Tue, 29 Oct 2024
+ 05:22:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241028-upstream_s32cc_gmac-v4-16-03618f10e3e2@oss.nxp.com>
+References: <20241028175935.51250-1-arikalo@gmail.com> <20241028175935.51250-11-arikalo@gmail.com>
+ <avz4crm2yrk3fg7r4qxkgkt3ka5hmk54v2wtcms453tsnewu5w@jzjxmyd4b7yg>
+In-Reply-To: <avz4crm2yrk3fg7r4qxkgkt3ka5hmk54v2wtcms453tsnewu5w@jzjxmyd4b7yg>
+From: Aleksandar Rikalo <arikalo@gmail.com>
+Date: Tue, 29 Oct 2024 13:21:54 +0100
+Message-ID: <CAGQJe6p6QgSQKByVQ8G+HpWbdEHnfNb8vRureOrS2VZa6Lk74A@mail.gmail.com>
+Subject: Re: [PATCH v8 10/13] dt-bindings: mips: cpu: Add property for broken
+ HCI information
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+	Gregory CLEMENT <gregory.clement@bootlin.com>, Theo Lebrun <theo.lebrun@bootlin.com>, 
+	Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org, 
+	Djordje Todorovic <djordje.todorovic@htecgroup.com>, Chao-ying Fu <cfu@wavecomp.com>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Geert Uytterhoeven <geert@linux-m68k.org>, 
+	Greg Ungerer <gerg@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, 
+	Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
+	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
+	Marc Zyngier <maz@kernel.org>, Paul Burton <paulburton@kernel.org>, 
+	Peter Zijlstra <peterz@infradead.org>, Serge Semin <fancer.lancer@gmail.com>, 
+	Tiezhu Yang <yangtiezhu@loongson.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 28, 2024 at 09:24:58PM +0100, Jan Petrous via B4 Relay wrote:
-> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-> 
-> The PTP clock is read by stmmac_platform during DT parse.
-> On S32G/R the clock is not ready and returns 0. Postpone
-> reading of the clock on PTP init.
+On Tue, Oct 29, 2024 at 8:03=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
 
-This needs more explanation as to why this is a feature, not a bug,
-for the PTP clock.
+> > diff --git a/Documentation/devicetree/bindings/mips/cpus.yaml b/Documen=
+tation/devicetree/bindings/mips/cpus.yaml
+> > index a85137add668..57e93c07ab1b 100644
+> > --- a/Documentation/devicetree/bindings/mips/cpus.yaml
+> > +++ b/Documentation/devicetree/bindings/mips/cpus.yaml
+> > @@ -47,6 +47,12 @@ properties:
+> >    clocks:
+> >      maxItems: 1
+> >
+> > +  cm3-l2-config-hci-broken:
+>
+> Are these names - cm3, l2, hci - obvious and known in MIPS? HCI usually
+> means something else - see drivers/bluetooth/ and drivers/nfc/
 
-	Andrew
+I would say yes. At least the name "CM3" (Coherence Manager 3) is
+common knowledge.
+L2 HCI (L2 Hardware Cache Initialization) is a feature of CM3 that is
+non-functional on some systems.
+
+> Is this property applicable for all MIPS vendors? There is no vendor
+> prefix here, so this is generic for this architecture, right?
+
+I'm honestly not sure if this is something that only one vendor will use.
+Theoretically, there could be more. Perhaps Gregory CLEMENT can give a
+more precise answer.
+
+Best Regards,
+Aleksandar
 
