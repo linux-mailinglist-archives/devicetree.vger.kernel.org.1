@@ -1,243 +1,228 @@
-Return-Path: <devicetree+bounces-117093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79AE29B4FDE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 17:55:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0009B5074
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 18:25:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38423282D86
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 16:55:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB5002868BF
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 17:25:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ADC61D6194;
-	Tue, 29 Oct 2024 16:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C041DC05F;
+	Tue, 29 Oct 2024 17:24:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ORjacSq3"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yJdP1jFu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC8E419995A;
-	Tue, 29 Oct 2024 16:55:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7341DC04A;
+	Tue, 29 Oct 2024 17:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730220927; cv=none; b=SYp4AwGpnkFBFDlwBaskPqa0JvliVJIzdfHTIJBt5xpb7VSMNvFsGhy8cCDcV6DLgwDddAQKoyHdc7Wqc0KpmudDR6qd8MDWFe6DPxXDuQDn36ZL3c6RNsjCDUUFSaxdu/S9PjNKo9UPryxatl9/DgAtm9QkLt01GdIh9+CVsaM=
+	t=1730222672; cv=none; b=OdMm140a/Xw76EbSVys/GipPdUWmW3N7oxn+keVCL28Rk+8gdZ7lgC1qIwdOdQWBvPBSniIIuF1bUwpNZarWKig4oUDq/n5MDgyy0CnYalWylmqaokyrinebY3CzUB0EdJDJx7DBsdS/KsVt+f7GN5JbtmehV8tboSas+vaXZls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730220927; c=relaxed/simple;
-	bh=pkXIRdIs/jZR3TXb+O6bD4IKMKSCJczdWSHEHc96lSc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mXBX5LKUNDC459q/VMha6pFJGguIIU6KgppzYx5c0gLl3vzqkpL5kv2WnmFy/WYn8L5jcAHpG+xeEmuMu5IxzJdWDUHqUdzMjGw8neQnAhdCtKVKE2ZMhS7RcnOfmmtycrYfMaEjoCJUz+qxA502L4hQnhS47GKX/E3YuR89kQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ORjacSq3; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49T909MB010250;
-	Tue, 29 Oct 2024 16:55:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PDl2iRxwvVar6fxWCNmum7s4lN+Zxn4SBV0GVrlZ2VU=; b=ORjacSq3Vcelm5XJ
-	P7cZha6rFAgWIhzhVNV8UzOMlXGDmkqud2mYF4/8MKEoG61z67ZV0OiWiFzQl7Jn
-	NTJi7UViqa43vnDmRXO9ACszQOiuv/znGY9oW/Se+a62wbK5uUQ7pBcvCDnYyy4h
-	m3Myhf8BFwGYtOg5FGHzdgw/ypOVdgtN/NYhldUUuxiy+DCNRGFay+sM2MIzdoCK
-	qlZ61hi/jbqZMgZLMIp+9kqm3IaEZEcd3xKX/WY/sdi0ccp8S3tFWNgfhis8SK+Y
-	CdD8DVtzfD9K/xChAKhj39tATyn7QJ++AQz7cLO56dGmbH7SWICaCykzg/1bOiBk
-	tHUw5w==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grn515u6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 16:55:01 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49TGt0qA006858
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 16:55:00 GMT
-Received: from [10.216.61.9] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
- 2024 09:54:53 -0700
-Message-ID: <d63f16ac-c5ed-35cd-ec75-0bf6d7dab9ca@quicinc.com>
-Date: Tue, 29 Oct 2024 22:24:48 +0530
+	s=arc-20240116; t=1730222672; c=relaxed/simple;
+	bh=Dx4YYRhL4Lf8ercZPaTWdof6s3DfvtavTZQBUAFt4CU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=r+e+tjea1gxi9q+Z6Ta9LRwx0rE5XFj4RNgUHFji89y4Kr/Z5AcLHhTb+eGdL2+nuZAOtBfbES1rRyQy+SCH+32sdf2uW8NY1mK9IrcIkzXvCaq/k+5sm7pkMePY0DWnpZ8Au0hSPjZ43lzx9QuIsY0CSpN8f7U6RNQvPMHldFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=yJdP1jFu; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49THOLnT014489;
+	Tue, 29 Oct 2024 12:24:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1730222661;
+	bh=DYo5+KZZMTowwgFKQttLBPNWQ8brI9bPcbi9Aj8e2MA=;
+	h=From:To:CC:Subject:Date;
+	b=yJdP1jFuu1FqhLtRSnJUAzhb3fqn7R2y3uMyOYhBjLD4OToKVx1NPPBGs9OXOMLKf
+	 ePbWEmxytXqBiWQ0I2gty/8xcBuNLD3MSUafaTprytF7XHqgzJ+a1OJu6An/iD8zgD
+	 01+kuaBwStuhRkuDXPRwp6+THYJ6qxo0cGj7yDAo=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49THOLWS072485
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 29 Oct 2024 12:24:21 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
+ Oct 2024 12:24:21 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 29 Oct 2024 12:24:21 -0500
+Received: from localhost (udb0389739.dhcp.ti.com [137.167.1.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49THOKHt065600;
+	Tue, 29 Oct 2024 12:24:20 -0500
+From: Michael Nemanov <michael.nemanov@ti.com>
+To: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Sabeeh Khan <sabeeh-khan@ti.com>, Michael Nemanov <michael.nemanov@ti.com>
+Subject: [PATCH v4 00/17] wifi: cc33xx: Add driver for new TI CC33xx wireless device family
+Date: Tue, 29 Oct 2024 19:23:37 +0200
+Message-ID: <20241029172354.4027886-1-michael.nemanov@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 1/1] RFC: dt bindings: Add property "brcm,gen3-eq-presets"
-Content-Language: en-US
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: Jim Quinlan <james.quinlan@broadcom.com>, Rob Herring <robh@kernel.org>,
-        <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi
-	<lorenzo.pieralisi@arm.com>,
-        <bcm-kernel-feedback-list@broadcom.com>, <jim2101024@gmail.com>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "moderated list:BROADCOM BCM7XXX ARM
- ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-        "moderated
- list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
-	<linux-rpi-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND
- FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        open list
-	<linux-kernel@vger.kernel.org>,
-        Veerabhadrarao Badiganti
-	<quic_vbadigan@quicinc.com>,
-        Mayank Rana <quic_mrana@quicinc.com>
-References: <20241029155538.GA1157681@bhelgaas>
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <20241029155538.GA1157681@bhelgaas>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fTatBQxwIDrKlTzbenOJYgld54KnJrsF
-X-Proofpoint-ORIG-GUID: fTatBQxwIDrKlTzbenOJYgld54KnJrsF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 mlxlogscore=999
- malwarescore=0 clxscore=1015 bulkscore=0 suspectscore=0 adultscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410290129
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+
+Hello everyone,
+
+This series adds support for CC33xx which is a new family of WLAN IEEE802.11 a/b/g/n/ax
+and BLE 5.4 transceivers by Texas Instruments. These devices are 20MHz single spatial stream
+enabling STA (IEEE802.11ax) and AP (IEEE802.11n only) roles as well as both roles simultaneously.
+Communication to the CC33xx is done via 4-bit SDIO with two extra GPIOs: Enable and Interrupt.
+
+This driver's architecture is a soft-MAC and derivative of existing wl18xx + wlcore code [1].
+It has been tested with the AM335x, AM625x, and i.MX8-MP evaluation kits.
+
+Data sheet: https://www.ti.com/lit/gpn/cc3301
+
+All code passes sparse, smatch, coccicheck and checkpatch with very few pragmatic exceptions.
+
+Driver is split on file boundary as required by Linux-wireless wiki:
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches#new_driver
 
 
+Change log:
+v4:
+* Fixed DT compatibility for all CC33xx variants. Improved general formatting
+* Refactored sdio.c to better align with other SDIO drivers
+* Removed multiple debug traces
 
-On 10/29/2024 9:25 PM, Bjorn Helgaas wrote:
-> On Tue, Oct 29, 2024 at 10:40:32AM -0500, Bjorn Helgaas wrote:
->> On Tue, Oct 29, 2024 at 08:52:15PM +0530, Krishna Chaitanya Chundru wrote:
->>> On 10/29/2024 8:18 PM, Bjorn Helgaas wrote:
->>>> On Tue, Oct 29, 2024 at 10:22:36AM -0400, Jim Quinlan wrote:
->>>>> On Tue, Oct 29, 2024 at 1:17 AM Krishna Chaitanya Chundru
->>>>> <quic_krichai@quicinc.com> wrote:
->>>>>> On 10/29/2024 12:21 AM, James Quinlan wrote:
->>>>>>> On 10/24/24 21:08, Krishna Chaitanya Chundru wrote:
->>>>>>>> On 10/22/2024 12:33 AM, Rob Herring wrote:
->>>>>>>>> On Fri, Oct 18, 2024 at 02:22:45PM -0400, Jim Quinlan wrote:
->>>>>>>>>> Support configuration of the GEN3 preset equalization settings, aka the
->>>>>>>>>> Lane Equalization Control Register(s) of the Secondary PCI Express
->>>>>>>>>> Extended Capability.  These registers are of type HwInit/RsvdP and
->>>>>>>>>> typically set by FW.  In our case they are set by our RC host bridge
->>>>>>>>>> driver using internal registers.
->>>>>>>>>>
->>>>>>>>>> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
->>>>>>>>>> ---
->>>>>>>>>>     .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12
->>>>>>>>>> ++++++++++++
->>>>>>>>>>     1 file changed, 12 insertions(+)
->>>>>>>>>>
->>>>>>>>>> diff --git
->>>>>>>>>> a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
->>>>>>>>>> b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
->>>>>>>>>> index 0925c520195a..f965ad57f32f 100644
->>>>>>>>>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
->>>>>>>>>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
->>>>>>>>>> @@ -104,6 +104,18 @@ properties:
->>>>>>>>>>         minItems: 1
->>>>>>>>>>         maxItems: 3
->>>>>>>>>>     +  brcm,gen3-eq-presets:
->>>>>>>>>> +    description: |
->>>>>>>>>> +      A u16 array giving the GEN3 equilization presets, one for
->>>>>>>>>> each lane.
->>>>>>>>>> +      These values are destined for the 16bit registers known as the
->>>>>>>>>> +      Lane Equalization Control Register(s) of the Secondary PCI
->>>>>>>>>> Express
->>>>>>>>>> +      Extended Capability.  In the array, lane 0 is first term,
->>>>>>>>>> lane 1 next,
->>>>>>>>>> +      etc. The contents of the entries reflect what is necessary for
->>>>>>>>>> +      the current board and SoC, and the details of each preset are
->>>>>>>>>> +      described in Section 7.27.4 of the PCI base spec, Revision 3.0.
->>>>>>>>>
->>>>>>>>> If these are defined by the PCIe spec, then why is it Broadcom specific
->>>>>>>>> property?
->>>>>>> Yes, I will remove the "brcm," prefix.
->>>>>>>>>
->>>>>>>> Hi Rob,
->>>>>>>>
->>>>>>>> qcom pcie driver also needs to program these presets as you suggested
->>>>>>>> this can go to common pci bridge binding.
->>>>>>>>
->>>>>>>> from PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4.2 for data rates
->>>>>>>> of  8.0 GT/s, 16.0 GT/s, and 32.0 GT/s uses one class of preset (P0
->>>>>>>> through P10) and where as data rates of 64.0 GT/s use different class of
->>>>>>>> presets (Q0 through Q10) (Table 4-23). And data rates of 8.0 GT/s also
->>>>>>>> have optional preset hints (Table 4-24).
->>>>>>>>
->>>>>>>> And there is possibility that for each data rate we may require
->>>>>>>> different preset configuration.
->>>>>>>>
->>>>>>>> Can we have a dt binding for each data rate of 16 byte array.
->>>>>>>> like gen3-eq-preset array, gen4-eq-preset array etc.
->>>>>>>
->>>>>>> Yes, that was the idea when using "genX-eq-preset", for X in {3,4...}.
->>>>>>>
->>>>>>> Keep in mind that this is an RFC; I have a backlog of commit submissions
->>>>>>> before I can submit the code that uses this DT property.  If you
->>>>>>> (Krishna) want to submit something now I'd be quite happy to go with
->>>>>>> that.  I don't believe it is acceptable to submit a bindings commit w/o
->>>>>>> code that uses it (if I'm incorrect I'll be glad to do a V2).
->>>>>>>
->>>>>> I submitted a pull request for this. if you have any other suggestions
->>>>>> or if we need to have any other details we can update this pull request.
->>>>>> https://github.com/devicetree-org/dt-schema/pull/146
->>>>>
->>>>> Thanks for doing this.   However, why a u8 array?  The registers are
->>>>> defined as u16 so it would be more natural to use a u16 array, each
->>>>> entry giving
->>>>> all of the data for a single lane.  In our implementation we read a
->>>>> u16 and we write it to the register -- what advantage is there by
->>>>> using a u8 array?
->>>>>
->>>>> Also if there are 16 lanes, you will need 32 maxItems, correct?
->>>>
->>>> I added these questions to the github PR.
->>>>
->>>> Also, why does it define gen3-eq-presets, gen4-eq-presets,
->>>> gen5-eq-presets, and gen6-eq-presets?  I think there's only a single
->>>> place to write these values (the Lane Equalization Control registers,
->>>> PCIe r6.0, sec 7.7.3.4), isn't here?  How would software choose the
->>>> correct values to use?
->> ...
-> 
-> Oh, one more thing: I guess "gen3", "gen4", etc. are well-entrenched
-> terms in the industry, and they're probably fine in marketing
-> materials.
-> 
-> But I really don't like them in device trees or drivers because the
-> spec doesn't use those terms.  In fact, the spec specifically advises
-> *avoiding* them (PCIe r6.0, sec 1.2 footnote):
-> 
->    Terms like “PCIe Gen3” are ambiguous and should be avoided. For
->    example, “gen3” could mean (1) compliant with Base 3.0, (2)
->    compliant with Base 3.1 (last revision of 3.x), (3) compliant with
->    Base 3.0 and supporting 8.0 GT/s, (4) compliant with Base 3.0 or
->    later and supporting 8.0 GT/s, ....
-> 
-> As a practical matter, those terms make it hard to use the spec: where
-> do I go to learn how to use "gen4-eq-presets"?  There's no instance of
-> "gen4" in the PCIe spec.  AFAICT, all I can do is look up the PCIe
-> r4.0 spec and try to figure out what was added in that revision, which
-> is a real hassle.
-> 
-is it fine if I change names from gen3-eq-presets, gen4-eq-presets etc
-to 8gts-eq-presets, 16gts-eq-presets  etc.
+v3:
+* Added missing sign-offs
+* Fixed multiple warnings for memcpy overflow
+* Fixed commit message and description of device-tree bindings
+Link: https://lore.kernel.org/linux-wireless/20240806170018.638585-1-michael.nemanov@ti.com/
 
-If above names are fine I will update the patch.
+v2:
+* Fixed build bug on non-ARM architectures
+* Removed driver version
+* Removed trivial debug traces
+* Removed debug parameters for cc33xx module
+* Fixed multiple type compatibility warnings
+* Minor fixes
+Link: https://lore.kernel.org/linux-wireless/20240609182102.2950457-1-michael.nemanov@ti.com/
 
-- Krishna Chaitanya.
-> Bjorn
+v1:
+* Added dt-bindings
+* Removed debugfs to ease review
+* Fix build issue with CONFIG_CFG80211_CERTIFICATION_ONUS
+* Fix multiple build warnings found with Clang 18 and W=12
+Link: https://lore.kernel.org/linux-wireless/20240521171841.884576-1-michael.nemanov@ti.com/
+
+
+Test log:
+https://0x0.st/X0gn.log
+
+[1] It was considered implementing CC33xx as another user of wlcore but The
+differences in HW, host interface, IRQ functionality, Rx/Tx behavior and supported features
+were too significant so this was abandoned.
+
+Michael Nemanov
+Texas Instruments
+
+Michael Nemanov (17):
+  dt-bindings: net: wireless: cc33xx: Add ti,cc33xx.yaml
+  wifi: cc33xx: Add cc33xx.h, cc33xx_i.h
+  wifi: cc33xx: Add debug.h
+  wifi: cc33xx: Add sdio.c, io.c, io.h
+  wifi: cc33xx: Add cmd.c, cmd.h
+  wifi: cc33xx: Add acx.c, acx.h
+  wifi: cc33xx: Add event.c, event.h
+  wifi: cc33xx: Add boot.c, boot.h
+  wifi: cc33xx: Add main.c
+  wifi: cc33xx: Add rx.c, rx.h
+  wifi: cc33xx: Add tx.c, tx.h
+  wifi: cc33xx: Add init.c, init.h
+  wifi: cc33xx: Add scan.c, scan.h
+  wifi: cc33xx: Add conf.h
+  wifi: cc33xx: Add ps.c, ps.h
+  wifi: cc33xx: Add testmode.c, testmode.h
+  wifi: cc33xx: Add Kconfig, Makefile
+
+ .../bindings/net/wireless/ti,cc33xx.yaml      |   59 +
+ drivers/net/wireless/ti/Kconfig               |    1 +
+ drivers/net/wireless/ti/Makefile              |    1 +
+ drivers/net/wireless/ti/cc33xx/Kconfig        |   24 +
+ drivers/net/wireless/ti/cc33xx/Makefile       |   10 +
+ drivers/net/wireless/ti/cc33xx/acx.c          |  931 +++
+ drivers/net/wireless/ti/cc33xx/acx.h          |  835 +++
+ drivers/net/wireless/ti/cc33xx/boot.c         |  345 +
+ drivers/net/wireless/ti/cc33xx/boot.h         |   24 +
+ drivers/net/wireless/ti/cc33xx/cc33xx.h       |  483 ++
+ drivers/net/wireless/ti/cc33xx/cc33xx_i.h     |  459 ++
+ drivers/net/wireless/ti/cc33xx/cmd.c          | 1920 ++++++
+ drivers/net/wireless/ti/cc33xx/cmd.h          |  700 ++
+ drivers/net/wireless/ti/cc33xx/conf.h         | 1246 ++++
+ drivers/net/wireless/ti/cc33xx/debug.h        |   92 +
+ drivers/net/wireless/ti/cc33xx/event.c        |  363 ++
+ drivers/net/wireless/ti/cc33xx/event.h        |   71 +
+ drivers/net/wireless/ti/cc33xx/init.c         |  231 +
+ drivers/net/wireless/ti/cc33xx/init.h         |   15 +
+ drivers/net/wireless/ti/cc33xx/io.c           |  129 +
+ drivers/net/wireless/ti/cc33xx/io.h           |   26 +
+ drivers/net/wireless/ti/cc33xx/main.c         | 5689 +++++++++++++++++
+ drivers/net/wireless/ti/cc33xx/ps.c           |  108 +
+ drivers/net/wireless/ti/cc33xx/ps.h           |   16 +
+ drivers/net/wireless/ti/cc33xx/rx.c           |  388 ++
+ drivers/net/wireless/ti/cc33xx/rx.h           |   86 +
+ drivers/net/wireless/ti/cc33xx/scan.c         |  735 +++
+ drivers/net/wireless/ti/cc33xx/scan.h         |  385 ++
+ drivers/net/wireless/ti/cc33xx/sdio.c         |  530 ++
+ drivers/net/wireless/ti/cc33xx/testmode.c     |  349 +
+ drivers/net/wireless/ti/cc33xx/testmode.h     |   12 +
+ drivers/net/wireless/ti/cc33xx/tx.c           | 1409 ++++
+ drivers/net/wireless/ti/cc33xx/tx.h           |  160 +
+ 33 files changed, 17832 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
+ create mode 100644 drivers/net/wireless/ti/cc33xx/Kconfig
+ create mode 100644 drivers/net/wireless/ti/cc33xx/Makefile
+ create mode 100644 drivers/net/wireless/ti/cc33xx/acx.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/acx.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/boot.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/boot.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/cc33xx.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/cc33xx_i.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/cmd.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/cmd.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/conf.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/debug.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/event.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/event.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/init.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/init.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/io.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/io.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/main.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/ps.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/ps.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/rx.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/rx.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/scan.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/scan.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/sdio.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/testmode.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/testmode.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/tx.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/tx.h
+
+-- 
+2.34.1
+
 
