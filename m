@@ -1,160 +1,108 @@
-Return-Path: <devicetree+bounces-116962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EF079B47D2
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:07:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F17B79B47E4
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:09:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE2B91F22A86
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 11:07:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9ABB51F24320
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 11:09:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CA2D203708;
-	Tue, 29 Oct 2024 11:07:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FbtjQ9MF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F30206510;
+	Tue, 29 Oct 2024 11:07:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BECB1DF753;
-	Tue, 29 Oct 2024 11:07:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81AFE205ADF
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 11:07:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730200029; cv=none; b=ZPumVlpLdEtxksspyqfn6hsTerakRTdlliQ+574nXZZBhnkv4UsM4VjVRNP3vafeR+gtQYFBqPgevvVvqd7plLo/bEZl+Th0+PD4oCcrWUzn+u8D13qsV/r6k1V4M6N3hsgoADxYVr0q6GlqWEjqlaU/kMR5CCWBiq1yDpenhAU=
+	t=1730200079; cv=none; b=LBkOUugkDV2Z42FdVFBBks4UwqeK3aXVAALOUH2+o4Q4QNSl9SXS7+GBEXzyt+YJ38RhlAzP3QMN1LudX7zuLEbGVwtIu8L7GEkW6M5l9mbuiJqZIde9OW4IQuVGi6k+wiZWu6P6t0JxLn8DXHeQii+LZStKNzjVsc7aQJKjVxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730200029; c=relaxed/simple;
-	bh=JVHgsgLpf4vjbEvcbEAaNHu5W6OoFfO3Y2fLYfnFZ7k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=h2RW49FS3XBZ2rwtycOKnkDb3jld/qnXFGDYd5TDLJANRf9Tx6Z2TVpuzA37lpUVEA4e13JMsHv0+VktAXSJ4fvgpzRgB2CuQ+fPYO3N9UrTEAs8HC+UXpvDTrg4nteBLtvcnbopM4Ns3tJWZPuBoM2hFG2PoEwQQLB3BkLlhTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FbtjQ9MF; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49T9Lcjk004586;
-	Tue, 29 Oct 2024 11:06:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1LuXf9jYuiVYJdyPLwQTVsJnJJdP0P/j5ARC3WFPmX8=; b=FbtjQ9MFSG0V7P9N
-	H7cI1x6Ox99l5qPjvjni6QNr+x3MSSbJjtRzTkuF7Z315wzS1AwNMvCJzWrH+93i
-	NGrg3sJEnPAU8YanUK12XCsi9M0YCV/cz9vDvuseDY58h0hnFKnZ+NnSWJin+tzH
-	ZFBD/uxzlKvT8/PuM7AOHrIgbG/5vQEB+MJfWU9mVHSW+MdBBDtbpJLdWWpkd/O0
-	aZccgUR77DPQzKLvUX+Mqg5tUxtZkQVuVx36w38UEa4CTgbqtsp6y20Q8Pqh+erW
-	65/8Ta84pmWK9BAGNeR8kxYCt76vMxYbujw9wrrsARa57M/0lu/e0ve8QzKbQjw3
-	n0E1bQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gr0x859s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 11:06:43 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49TB6gs3029772
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 11:06:42 GMT
-Received: from [10.216.3.156] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
- 2024 04:06:35 -0700
-Message-ID: <75589588-ed41-42f6-b7fa-c6f0359ba4cd@quicinc.com>
-Date: Tue, 29 Oct 2024 16:36:31 +0530
+	s=arc-20240116; t=1730200079; c=relaxed/simple;
+	bh=nne9ECk0gMlTRKihMz4/HQ1nubsmnQnQKzaX9Y5yncw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rC06gl+zPJnlvvME2ta9BbH58VJnaAP8Kct28aUm27hN2iaejETL4jXOiRh42hPw9URjF4Sca+oFZW3cvzOcnRaBg9mspRK+Ft3nKo9dkanHHiQsJeKVrbIl+AzvVkyBVcjrcQyum46DWEaHnApmuSti9tbaAcb0q6WEWRKSPig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1t5k4V-0008Eq-BW; Tue, 29 Oct 2024 12:07:35 +0100
+Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1t5k4T-0010yo-27;
+	Tue, 29 Oct 2024 12:07:33 +0100
+Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1t5k4T-008IKg-1r;
+	Tue, 29 Oct 2024 12:07:33 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: "David S. Miller" <davem@davemloft.net>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Arun Ramadoss <arun.ramadoss@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	UNGLinuxDriver@microchip.com,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org,
+	Marek Vasut <marex@denx.de>
+Subject: [PATCH net-next v2 0/5] Side MDIO Support for LAN937x Switches
+Date: Tue, 29 Oct 2024 12:07:27 +0100
+Message-Id: <20241029110732.1977064-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 2/3] arm64: dts: qcom: sm8650: Add ICE algorithm
- entries
-To: Krzysztof Kozlowski <krzk@kernel.org>, <manivannan.sadhasivam@linaro.org>,
-        <alim.akhtar@samsung.com>, <avri.altman@wdc.com>, <bvanassche@acm.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>,
-        <agross@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_narepall@quicinc.com>, <quic_nitirawa@quicinc.com>
-References: <20241005064307.18972-1-quic_rdwivedi@quicinc.com>
- <20241005064307.18972-3-quic_rdwivedi@quicinc.com>
- <070bd760-9095-496b-8f46-1825c592754c@kernel.org>
-Content-Language: en-US
-From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-In-Reply-To: <070bd760-9095-496b-8f46-1825c592754c@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: KaS_AwvqOTb_1vuyQ--Sn0N5liSx3Ehv
-X-Proofpoint-GUID: KaS_AwvqOTb_1vuyQ--Sn0N5liSx3Ehv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
- clxscore=1011 bulkscore=0 adultscore=0 impostorscore=0 mlxscore=0
- malwarescore=0 mlxlogscore=999 priorityscore=1501 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410290086
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+This patch set introduces support for an internal MDIO bus in LAN937x
+switches, enabling the use of a side MDIO channel for PHY management
+while keeping SPI as the main interface for switch configuration.
 
+changelogs are added to separate patches.
 
-On 06-Oct-24 2:02 PM, Krzysztof Kozlowski wrote:
-> On 05/10/2024 08:43, Ram Kumar Dwivedi wrote:
->> There are three algorithms supported for inline crypto engine:
->> Floor based, Static and Instantaneous algorithm.
->>
->> Add ice algorithm entries and enable instantaneous algorithm
->> by default.
->>
->> Co-developed-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
->> Signed-off-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
->> Co-developed-by: Nitin Rawat <quic_nitirawa@quicinc.com>
->> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
->> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 19 +++++++++++++++++++
->>  1 file changed, 19 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> index 9d9bbb9aca64..56a7ca6a3af4 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> @@ -2590,6 +2590,25 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->>  			#reset-cells = <1>;
->>  
->>  			status = "disabled";
->> +
->> +			ice_cfg: ice-config {
->> +				alg1 {
->> +					alg-name = "alg1";
->> +					rx-alloc-percent = <60>;
->> +					status = "disabled";
->> +				};
->> +
->> +				alg2 {
->> +					alg-name = "alg2";
->> +					status = "disabled";
->> +				};
->> +
->> +				alg3 {
->> +					alg-name = "alg3";
->> +					num-core = <28 28 15 13>;
->> +					status = "ok";
-> 
-> NAK. This has so many issues... First, describes OS policy. Second,
-> there is no "ok".
-> 
-Hi Krzysztof,
-	I have updated the status to "okay" in latest patchset and updated the alg-name with actual allocator name.
-	I have already mentioned default allocator as instantaneous. Sorry, I did not understand OS policy comment, could you please explain?
-Thanks,
-Ram.
+Oleksij Rempel (5):
+  dt-bindings: net: dsa: ksz: add internal MDIO bus description
+  dt-bindings: net: dsa: ksz: add mdio-parent-bus property for internal
+    MDIO
+  net: dsa: microchip: Refactor MDIO handling for side MDIO access
+  net: dsa: microchip: cleanup error handling in ksz_mdio_register
+  net: dsa: microchip: add support for side MDIO interface in LAN937x
 
-> Best regards,
-> Krzysztof
-> 
+ .../bindings/net/dsa/microchip,ksz.yaml       |  20 ++
+ drivers/net/dsa/microchip/ksz_common.c        | 192 +++++++++++++--
+ drivers/net/dsa/microchip/ksz_common.h        |  59 +++++
+ drivers/net/dsa/microchip/lan937x.h           |   2 +
+ drivers/net/dsa/microchip/lan937x_main.c      | 226 ++++++++++++++++--
+ drivers/net/dsa/microchip/lan937x_reg.h       |   4 +
+ 6 files changed, 471 insertions(+), 32 deletions(-)
+
+--
+2.39.5
 
 
