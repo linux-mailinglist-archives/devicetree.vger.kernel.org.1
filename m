@@ -1,166 +1,146 @@
-Return-Path: <devicetree+bounces-116950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAFC99B4716
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 11:41:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 653379B471E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 11:42:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25F41B229CB
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 10:41:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 189181F23F3B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 10:42:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0676E205E10;
-	Tue, 29 Oct 2024 10:39:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8CCC204F70;
+	Tue, 29 Oct 2024 10:41:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="DdGus3Q3"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="g6Deb+Ph"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout1.routing.net (mxout1.routing.net [134.0.28.11])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9182205147;
-	Tue, 29 Oct 2024 10:39:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF205204934;
+	Tue, 29 Oct 2024 10:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730198398; cv=none; b=MBitMXbtnJNET7tKperzKEDtdkCdafyDKa+OOnW03DM+tZYj/5eC7IeV/LAL9tEvdm5HkEZOpvwaKT0UbaNd1O6Rglk5IX5WhvMGmfbM+RcY2XGc/SC7UW1yo4gfB/767+smYjYMw3hMYCE6t8NVaFzX+lIxm6xoh1xFwtmmdaQ=
+	t=1730198495; cv=none; b=aX5bbFOoQO9yJZ/HVbnCm90jq5hUB3S3ptD8NE2MhiMbFLFph4ySCjsr7+w8VZcAJxbJxTJcdrqeBWdVPw2okqvxq/XOMACY94DMz/DgXllhkYL2CZYcoYv09j+ijY/3jAA9fA+NzX4j/jRU/OqTnDD3nBA5x2hxWJTEqT4JXJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730198398; c=relaxed/simple;
-	bh=fYqMVYDiz9oOKhL3cqeIHsxYcUtuK9DoE2PMWL2Lc+Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=A9BXYVdAcs/GsQrPlrkQHYEe1SSZArw4rpnd8ICmzjRELghmvt94X/3SfUXEK1uJJSJdELiMQlhg/+BtLIj0tDz15tPIilsl2XHqbxtpPNlrTy0+mHBLO0lwiglt+IJXMaw7WN8CmM2gcqGqCOp8FWAFMti+Yh0pwTVT8VM28vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=DdGus3Q3; arc=none smtp.client-ip=134.0.28.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-	by mxout1.routing.net (Postfix) with ESMTP id C62984070F;
-	Tue, 29 Oct 2024 10:39:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1730198391;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CkpUh/XPSwiAqciWUfYgDTDUp1kYHTLS66y+Kq607kQ=;
-	b=DdGus3Q3+7b7nRhcxiapQHFi9SiYsFuppqE5lcCPIJte2EFFmye6Kiuut6MfiYzJ/ew/iZ
-	nQN2FCFfQOSENatE2fEZTsHmEQagyl2E/wq290kUOCiIt8YV+TgdqgFtg3MDeMar0RP469
-	RHOLWWLpcoH23Onh4hSkpopH0Z5PFE0=
-Received: from frank-u24.. (fttx-pool-80.245.73.173.bambit.de [80.245.73.173])
-	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 327F136037C;
-	Tue, 29 Oct 2024 10:39:51 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [RFC v1 14/14] arm64: dts: mediatek: mt7988: add operating-points
-Date: Tue, 29 Oct 2024 11:39:33 +0100
-Message-ID: <20241029103937.45852-15-linux@fw-web.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241029103937.45852-1-linux@fw-web.de>
-References: <20241029103937.45852-1-linux@fw-web.de>
+	s=arc-20240116; t=1730198495; c=relaxed/simple;
+	bh=CDxDPheZuIShbTxvGcnHynCpCSV2PBe5TGcpJ6O4hxw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=LtvZnoi3PRg3QAjfbIiHYIrgfx/K+Gd2A9fQaRqhBFsJCPy+kCxYidhR9psm/7xTCUHQv2SpCxqmtVDlBfMrAZ37MGLU9fftSTbblbGBzo7F0AmbU5uC7yntkhsNiLnMNPDAfUcOKQgUJ/KOjGla7ZXx/0ol/nkNwmW3XEtybtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=g6Deb+Ph; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49T9QgvS004569;
+	Tue, 29 Oct 2024 10:41:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Hw0jxCeBaOwpy4JuP/bVGCjHkrcw66Z/6+sqZuhTue4=; b=g6Deb+Phxt14ZxHr
+	RrA2Tx7gOxMtj4Iv8v83XBsATdCwgVUJ+Z8VLL/4l91kIHNAb8n1ZMQz+yItDQ5x
+	bpRTkOdU+DB6r2P6AlPFhKHGiIPE8AGlTDzjIy38eLZTQryEtkLwSy2/zyK0hJAO
+	1KdXqfwzdbNZy8Jkx8J7wFr2EFTbZ24MaWtQYAc+zzcyMD9Z6MUs89t9dh64Uynw
+	QlGEyDrHWKc7AZscTKFKttz1YmiovGSU1BeyaSxZzfTPu5OFMER3v2ILhamdKzJl
+	ySJg80R2cc5U9hnDa4di3tuy5F4yU5wPTvjtGiILFoSBF/Y01MerSPiGLn3fjaNu
+	1eop/w==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gs6e81nt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Oct 2024 10:41:30 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49TAfUFf027210
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Oct 2024 10:41:30 GMT
+Received: from [10.239.133.118] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
+ 2024 03:41:25 -0700
+Message-ID: <4d5d3c4d-098f-48ca-ba3a-289f5447e63a@quicinc.com>
+Date: Tue, 29 Oct 2024 18:41:22 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: 72750c8e-3dcc-4bb0-bbdf-e9206e8bffeb
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: qcs615: Add LLCC support for QCS615
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241011-add_llcc_dts_node_for_qcs615-v1-1-e7aa45244c36@quicinc.com>
+ <c81b26dc-1c52-42b6-ba68-95906b9c524c@oss.qualcomm.com>
+Content-Language: en-US
+From: Song Xue <quic_songxue@quicinc.com>
+In-Reply-To: <c81b26dc-1c52-42b6-ba68-95906b9c524c@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 6kdHWveVhken_w6xJ8NvfNRpP8SuBgJ-
+X-Proofpoint-GUID: 6kdHWveVhken_w6xJ8NvfNRpP8SuBgJ-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxscore=0
+ priorityscore=1501 lowpriorityscore=0 mlxlogscore=999 phishscore=0
+ malwarescore=0 impostorscore=0 adultscore=0 spamscore=0 suspectscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410290083
 
-From: Frank Wunderlich <frank-w@public-files.de>
 
-Add operating points defining frequency/voltages of cpu cores.
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 45 +++++++++++++++++++++--
- 1 file changed, 41 insertions(+), 4 deletions(-)
+On 10/26/2024 1:46 AM, Konrad Dybcio wrote:
+> On 11.10.2024 12:41 PM, Song Xue wrote:
+>> The QCS615 platform has LLCC(Last Level Cache Controller) as the system
+>> cache controller. It includes 1 LLCC instance and 1 LLCC broadcast
+>> interface.
+>>
+>> Add LLCC node support for the QCS615 platform.
+>>
+>> Signed-off-by: Song Xue <quic_songxue@quicinc.com>
+>> ---
+>> This patch series depends on below patch series:
+>> https://lore.kernel.org/all/20240926-add_initial_support_for_qcs615-v3-0-e37617e91c62@quicinc.com/
+>> https://lore.kernel.org/linux-arm-msm/20241010-add_llcc_support_for_qcs615-v2-1-044432450a75@quicinc.com/
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs615.dtsi | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>> index ac4c4c751da1fbb28865877555ba317677bc6bd2..b718a4d2270d64ed43c2eca078bfe52b78ff680c 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>> @@ -495,6 +495,14 @@ dc_noc: interconnect@9160000 {
+>>   			qcom,bcm-voters = <&apps_bcm_voter>;
+>>   		};
+>>   
+>> +		llcc: system-cache-controller@9200000 {
+>> +			compatible = "qcom,qcs615-llcc";
+>> +			reg = <0x0 0x9200000 0x0 0x50000>,
+>> +			      <0x0 0x9600000 0x0 0x50000>;
+> 
+> Please pad both addresses to 8 hex digits (e.g. 0x09200000)
+> 
+> With that:
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> Konrad
+> 
+let me fix it.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-index e037854666c1..25669d498617 100644
---- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-@@ -16,32 +16,69 @@ cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		cpu@0 {
-+		cpu0: cpu@0 {
- 			compatible = "arm,cortex-a73";
- 			reg = <0x0>;
- 			device_type = "cpu";
- 			enable-method = "psci";
-+			clocks = <&mcusys CLK_MCU_ARM_DIV_SEL>,
-+				 <&topckgen CLK_TOP_XTAL>;
-+			clock-names = "cpu", "intermediate";
-+			operating-points-v2 = <&cluster0_opp>;
- 		};
- 
--		cpu@1 {
-+		cpu1: cpu@1 {
- 			compatible = "arm,cortex-a73";
- 			reg = <0x1>;
- 			device_type = "cpu";
- 			enable-method = "psci";
-+			clocks = <&mcusys CLK_MCU_ARM_DIV_SEL>,
-+				 <&topckgen CLK_TOP_XTAL>;
-+			clock-names = "cpu", "intermediate";
-+			operating-points-v2 = <&cluster0_opp>;
- 		};
- 
--		cpu@2 {
-+		cpu2: cpu@2 {
- 			compatible = "arm,cortex-a73";
- 			reg = <0x2>;
- 			device_type = "cpu";
- 			enable-method = "psci";
-+			clocks = <&mcusys CLK_MCU_ARM_DIV_SEL>,
-+				 <&topckgen CLK_TOP_XTAL>;
-+			clock-names = "cpu", "intermediate";
-+			operating-points-v2 = <&cluster0_opp>;
- 		};
- 
--		cpu@3 {
-+		cpu3: cpu@3 {
- 			compatible = "arm,cortex-a73";
- 			reg = <0x3>;
- 			device_type = "cpu";
- 			enable-method = "psci";
-+			clocks = <&mcusys CLK_MCU_ARM_DIV_SEL>,
-+				 <&topckgen CLK_TOP_XTAL>;
-+			clock-names = "cpu", "intermediate";
-+			operating-points-v2 = <&cluster0_opp>;
-+		};
-+
-+		cluster0_opp: opp-table-0 {
-+			compatible = "operating-points-v2";
-+			opp-shared;
-+			opp00 {
-+				opp-hz = /bits/ 64 <800000000>;
-+				opp-microvolt = <850000>;
-+			};
-+			opp01 {
-+				opp-hz = /bits/ 64 <1100000000>;
-+				opp-microvolt = <850000>;
-+			};
-+			opp02 {
-+				opp-hz = /bits/ 64 <1500000000>;
-+				opp-microvolt = <850000>;
-+			};
-+			opp03 {
-+				opp-hz = /bits/ 64 <1800000000>;
-+				opp-microvolt = <900000>;
-+			};
- 		};
- 	};
- 
--- 
-2.43.0
+Thanks,
+Song
 
 
