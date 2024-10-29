@@ -1,117 +1,138 @@
-Return-Path: <devicetree+bounces-117183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8709A9B53EB
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 21:38:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1425E9B540B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 21:40:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8BDD1C20F9A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:38:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42A971C227EA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:40:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A708020B219;
-	Tue, 29 Oct 2024 20:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E55320E008;
+	Tue, 29 Oct 2024 20:36:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KYvIRtAm"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="QZcROyti"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EF1F20B20F;
-	Tue, 29 Oct 2024 20:35:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A27620CCE8;
+	Tue, 29 Oct 2024 20:36:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730234146; cv=none; b=I45HVHJpK4KwUZ58mwZWyPrjeo7nj3ISvFEjPwJtrS6LKXaQ7Yyc6PdGTfM8vmDB+pJ54xHLC/rl32WHGIRXvQ0yCOZ7hiGbPW134YdAJFE0xiBNJc/+qPToJtQAD/EO1kqoqN0K7tbzD0T2Sc0qUdiGLCjTJtJ79378MYd0pac=
+	t=1730234166; cv=none; b=NXJzddqsndMAbcpj0fb7tak59LI0b87iP63zNqpWOZz5MrgXsdkPFU/SI/aHldag6x5UbZOecbbXVeo8NAERjjS4/cAE9mKYrrAeVtxIIxBAWlzux8fxQ0F/8IbsRotZlFEq/JsfdT3KhVeo371KPTLwoeRAh9qCfueRHp5cysU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730234146; c=relaxed/simple;
-	bh=EH49fBcg1xnPZSv8CjBUPDLHZTVEnhL92w20nPZLvxw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=GfdnQWdiW+lyzXxcwUAGA/uCNRIZoRU+OjwmilPHNdp/K1LtP9hw3zqy8hnazi4YwGJEd1ASzTaHR+eDvEgwt+BsjxLZcUkvfyJKy2e34IcZKrvupbh+eEDkyjG/r/iBxdrbNaEoyxKhZMSwRya+TCt8+pUSUp91Q+ZrIEwA71w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KYvIRtAm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3892BC4CEE4;
-	Tue, 29 Oct 2024 20:35:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730234146;
-	bh=EH49fBcg1xnPZSv8CjBUPDLHZTVEnhL92w20nPZLvxw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=KYvIRtAmtoixygMz+a2XxHt6DkPRuQjciy2Xm03E3wMqsbV3tLs50qwpWQSrnjm41
-	 /MIoS9Fuxx5hp4+7WME89l48G9pESX/ygwqTaUF5InHJp0UH2sLjuLu5Z8AKOSg8iw
-	 iEnqog0g283e1ktePYZYYacZ6aWje6Ao90HsXZV8aTnC0r4N6PTlnqBlWfJX46Hqz0
-	 CBNMK2nwjeL+VIvg0tDdWQymmT/n97hx+R2K2cb9cGE0+n6R2Vd7PHJHZhEQsVVOKH
-	 fn+9Axqa+oo5ObCVIHCjNBrH2fMoBfjO6t1z67WwnUm4+U8TqsEAhD66rq0Nfjnxee
-	 PqUmSF7gB92hA==
-From: Mark Brown <broonie@kernel.org>
-To: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- Nuno Sa <nuno.sa@analog.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Lars-Peter Clausen <lars@metafoo.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20241028-adau1373-shutdown-v2-0-647f56bbd182@analog.com>
-References: <20241028-adau1373-shutdown-v2-0-647f56bbd182@analog.com>
-Subject: Re: [PATCH v2 0/4] ASoC: codecs: adau1373: drop platform data
-Message-Id: <173023414396.174179.15867147846547510289.b4-ty@kernel.org>
-Date: Tue, 29 Oct 2024 20:35:43 +0000
+	s=arc-20240116; t=1730234166; c=relaxed/simple;
+	bh=BZmrs4S9k39IJJULoU81FPP8LRG2DOiE5NO6ktXbR1o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GihkUxtSE+d321DjlBXgyMhaD/EOe4Upx4gbH+lT+xg4MqaetywthTC2wcmXG2K7Uq+IqbrbbO/G1Tm9tWMJ/32GTcvO8bo7w5PZ8qEbMrZ92CCq8oTirfeV6kuooXa5cF6lxQWh/UxMJM1bD2Mr52Dc/H6KpbTiJUWrFuFlRzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=QZcROyti; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=TGIE8EDbEDiCSNt9NYlYRAJD3YqeUTSIjpPX0liXfr0=; b=QZcROytiBRWYnrJR+BgvG0nRyQ
+	jGUHXyIKLEehXwEYUVq2wGr/edkRUv2vZ+OhjnkDOzONDFey6nf6/z+RtjeL3irxiH6N7/CY3fcnD
+	HFSI7nMBmiVCVgEXNz26NXwUMR2/knlYHNqPf2/bTY4od1KduCFIf26NxL4AefAXVNNw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1t5swO-00Bcqh-Q0; Tue, 29 Oct 2024 21:35:48 +0100
+Date: Tue, 29 Oct 2024 21:35:48 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Arun Ramadoss <arun.ramadoss@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH net-next v2 2/5] dt-bindings: net: dsa: ksz: add
+ mdio-parent-bus property for internal MDIO
+Message-ID: <2b03f429-9ae2-4c7a-9cec-0bc2f3c6e816@lunn.ch>
+References: <20241029110732.1977064-1-o.rempel@pengutronix.de>
+ <20241029110732.1977064-3-o.rempel@pengutronix.de>
+ <20241029123107.ssvggsn2b5w3ehoy@skbuf>
+ <ZyDe_ObZ-laVk8c2@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-9b746
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZyDe_ObZ-laVk8c2@pengutronix.de>
 
-On Mon, 28 Oct 2024 16:43:37 +0100, Nuno Sa wrote:
-> Here it goes v2...
+> > I'm not saying whether this is good or bad, I'm just worried about
+> > mixing quantities having different measurement units into the same
+> > address space.
+> > 
+> > Just like in the case of an mdio-mux, there is no address space isolation
+> > between the parent bus and the child bus. AKA you can't have this,
+> > because there would be clashes:
+> > 
+> > 	host_bus: mdio@abcd {
+> > 		ethernet-phy@2 {
+> > 			reg = <2>;
+> > 		};
+> > 	};
+> > 
+> > 	child_bus: mdio@efgh {
+> > 		mdio-parent-bus = <&host_bus>;
+> > 
+> > 		ethernet-phy@2 {
+> > 			reg = <2>;
+> > 		};
+> > 	};
+> > 
+> > But there is a big difference. With an mdio-mux, you could statically
+> > detect address space clashes by inspecting the PHY addresses on the 2
+> > buses. But with the lan937x child MDIO bus, in this design, you can't,
+> > because the "reg" values don't represent MDIO addresses, but switch port
+> > numbers (this is kind of important, but I don't see it mentioned in the
+> > dt-binding).
 > 
-> v1:
->  * https://lore.kernel.org/all/20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com/
+> In current state, the driver still require properly configured addresses
+> in the devicetree. So, it will be visible in the DT.
+
+This is not what i was expecting, especially from mv88e6xxx
+perspective. The older generation of devices had the PHYs available on
+the 'host bus', as well as the 'child bus', using a 1:1 address
+mapping. You could in theory even skip the 'child bus' and list the
+PHYs on the 'host bus' and phy-handle would make it work. However i
+see from a later comment that does not work here, you need some
+configuration done over SPI, which mv88e6xx does not need. 
+
 > 
-> v2:
->  - Patch 2 (Bindings):
->    * Removed extra blank line;
->    * Fixed example messed indentation;
->    * Added more properties to the example;
->    * Add maxItems.
->  - Patch 4 (Powerdown gpio):
->    * Powerdown the chip when unbound.
+> > These are translated by lan937x_create_phy_addr_map() using
+> > the CASCADE_ID/VPHY_ADD pin strapping information read over SPI.
+> > I.e. with the same device tree, you may or may not have address space
+> > clashes depending on pin strapping. No way to tell.
 > 
-> [...]
+> The PHY address to port mapping in the driver is needed to make the
+> internal switch interrupt controller assign interrupts to proper PHYs.
 
-Applied to
+You are talking about:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+			ds->user_mii_bus->irq[phy] = irq;
 
-Thanks!
+in ksz_irq_phy_setup.
 
-[1/4] ASoC: codecs: adau1373: add some kconfig text
-      commit: bebf0f45326e6cbb6f96e405e4179962a5675aaf
-[2/4] ASoC: dt-bindings: document the adau1373 Codec
-      commit: 6b26a56fc035971951299dc1330e1fc5d49866c9
-[3/4] ASoC: codecs: adau1373: drop patform_data
-      commit: 71743cbe28cf1d1f845a30bc9664c3b6a08f0d30
-[4/4] ASoC: codecs: adau1373: add powerdown gpio
-      commit: ba79bca407d3b7e6f5be209d9b3f73f81ee8d460
+I naively expect 'phy' to be the 'reg' value in DT, and the 'dev'
+value which passed to mdiobus_read_nested(bus, dev, reg) ?
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+	Andrew
 
