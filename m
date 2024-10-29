@@ -1,180 +1,194 @@
-Return-Path: <devicetree+bounces-117031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 706629B4B68
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:56:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A659C9B4BB1
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 15:04:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9FD4B23265
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:55:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9F0B1C2360E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:04:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1297206961;
-	Tue, 29 Oct 2024 13:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82077206E7B;
+	Tue, 29 Oct 2024 14:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="nZVhtmK9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ipb9Fkmu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A0E20607F;
-	Tue, 29 Oct 2024 13:55:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CAE342A92;
+	Tue, 29 Oct 2024 14:04:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730210154; cv=none; b=MFtVTyp6hw44e59nmio/IKuunbPEQFno4DQVJMP00/H1I+4Vo3yBTXimXgtNnaCOeGa6cBF3C7ymM1zUEvPr4J4+zxKBF0jTXUADZKochr1UECK79fgKk2L7myDnmmhRrYNeyEh2FpTtKnfUt+iPEAcrdoIh0A9rlpNk/Xwz1xk=
+	t=1730210657; cv=none; b=BxfH+8X55rKqhxSj5S4IwtTUJsINwIZCxs+g/yWuMdtKA5cfICXhh/T34fJYRTQfoMxsNrnu/yFCSOUmXPwD/Hm8ngt0W0ilkT2C4WUUuZDQcSh6pUIM+uxwHIjIBwbajOoGZ6c8GDtBdA1JfLMdf6j3rnvwHy76fXJvX3IQjh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730210154; c=relaxed/simple;
-	bh=cTQEBBPSNRnIlg/4ys81fdjrLdKegaOWHm80+cLrox8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=ukP3JkHMxHaPXSPqv5T43QGcZihU0nDlr9tprXZyYNjMSoCP13BhprY1h2MmDlM7OaTkfOOCD59Z18BJ+RHKkRzSH1EIO4nBXdWcBHpIUvg0erQsP3/22Zk51E+zUv6w153JVpNKH49lHh4SVfoVl7PVQSsZAdB5C2zaoN0AjgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=nZVhtmK9; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49TCfZVF007171;
-	Tue, 29 Oct 2024 09:55:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=kSsle
-	5m4DxmGqkNpW2RLzALANUIXEmTrya/BGF90s64=; b=nZVhtmK9LIWNMOx82YJ1T
-	nB5RxVDs2zZAZq+sAbAge2jaZs6sHDWmPBXSH0j7BYdr5hbUNrKT5EvDDCf8qWRa
-	8D96+BoWmpg6mpVZZiEdT5DpUt070ZCczCzSzsbOG8/LfyWkx9iPcd+p2kSam9y8
-	urJBRIePGYUgKyU53RxThU+Q7nHiIHaXkcIethA8XRwBFxbF0H3xtIlFsV3xZ8Ty
-	Rpc3jSeTmHjXJuFxcSw9LFzyqT0GuKi4RQZNfkIYcplrMOarDDRKvNagTYCXQ1Am
-	FfgNB3ZEm0yNTdTkxp3uwvHFo8sW0sPasOEqhe6I6ChbICFEeOPoCC7t2j9KpwLV
-	w==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 42gwb2p425-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 09:55:37 -0400 (EDT)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 49TDtavV055179
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 29 Oct 2024 09:55:36 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 29 Oct
- 2024 09:55:36 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Tue, 29 Oct 2024 09:55:36 -0400
-Received: from [127.0.0.1] ([10.44.3.54])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 49TDtMVp021546;
-	Tue, 29 Oct 2024 09:55:31 -0400
-From: Nuno Sa <nuno.sa@analog.com>
-Date: Tue, 29 Oct 2024 14:59:42 +0100
-Subject: [PATCH v2 2/2] clk: clk-axi-clkgen: make sure to enable the AXI
- bus clock
+	s=arc-20240116; t=1730210657; c=relaxed/simple;
+	bh=TvuNTL7SyBUr5XzYcYROeWUrQug9uWaIiBGaGzcweKg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kdSDSMCUuSwTJ8lCf/zz3DVrtyNcTa4Xozyk3amS/000KMauYanGI1ekPxGhqw6oUKnMRGGkTcKrv17NcZK/8L80znYgWJPBaY6byRkJqXxw5WKJhZsU3DEpo/ZZUCLqRgo6Kb0zQ3zy768fWRZH7dnJ4/QILeINd1b3dJ4df8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ipb9Fkmu; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2e2b549799eso4128133a91.3;
+        Tue, 29 Oct 2024 07:04:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730210653; x=1730815453; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=mbJq4aynNBIlp+QtSqztsSxSToGTnBQw+OLXV0uvZxU=;
+        b=ipb9FkmutTOgn282bIcDG29oteNuW9wGcbxGt/xeicxJEco2vxaXElZwNxmFC73UNW
+         uKK0rSMbmxRiXVVrtzJn4JK7im3uFJ7LlatPTvyE35HIuKT9CQ5SdQhevnGiOHMgabyh
+         m+m4vwOA8moI6wAG8t2DuOzCwbd/hkzW2CLuOmNyo18MDpBNd+AONot66yniemwGWtYd
+         qGIMfhLLo+vDYTzuqTSi1rcfESnOSPJYhjAtLSTaUdM89kFJfCn/n6eaL8d2TtDjnlBS
+         voMpLUtXNC5lOv22amGCjugJdqN1i6W+aKesa2veJWg50eZ9D7VhAMEKqfbsusua3z4K
+         lMww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730210653; x=1730815453;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mbJq4aynNBIlp+QtSqztsSxSToGTnBQw+OLXV0uvZxU=;
+        b=cGpXXg27KjzJRnBaiHNwbfl6XJVsl/CRf3MTDXy63uBTXlU7bqV5+FN8c92PATxa2N
+         mqfX1pzGh0n3x4MT/+ptDhHbxOZ56JueUU/2SMRr7Uws3dCh2gtgmTF1+EdKsbylIpaw
+         8w4eNGWI2QOm0iKD+hyLmiUDQJEZgZXr4WOjcQc4Ush38y0DiaWrrdF0USvRcahcog2C
+         rhbZg3g8oAhIOUC0tfpy6oo/awKzS16gIy8rvBniF3Y7qUg/4z6jVkIkyoc2YVKGO6CX
+         pkfJUNIPvJH7arS9MAbqOEX8DrxG2TNgCCmPlsKbrDcUQfjNxbcQLBHAWM68JJJFjWVd
+         Ovdg==
+X-Forwarded-Encrypted: i=1; AJvYcCUu5y3lU0lb5YiMgkedFYNySDg3xgHdlYoJcJWqPMjJotAksaOCbX6w+dB/LRpKJIHedWy5V5YddK/wbvA=@vger.kernel.org, AJvYcCUzS0dPrJLNOZlGxavBANJT7DU5Uo5PlgbrjZQMoIEWI97EK3e0LcjgaoOpmC5JkA24ojwR2te2Y6EK@vger.kernel.org, AJvYcCWlK1E1zvcr812AICdzuuEVXlzuwBMvRnE5MPTBjEPDUUh8FNWj9o7OH5XIja9BdMNDuMksJ9Hx5qjHXp9c@vger.kernel.org, AJvYcCX/OvLOZ/kikawvlSryyGKQOTDeIfYbf0sCZrrbbaELGJSqMWQzUS1UtKtOBnHFQANfVsLQilthWjsH@vger.kernel.org, AJvYcCXp1SFTTBkCtV4f35Xn/KO7Dh/jUv7Yg5OH2oFZO35sm/4ca7yf60RImAMnmo3Fc0eYVgtUtl1/3F6G@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmDgWahLEiumbBAnzOgSe0HVhSYs8vvPjygvuXrPuNGvzct7uo
+	YlxY8yQg6+9YvufkRsC0qnCt9NS/P+s0iex0AgZ/oX19AjBp2YxC
+X-Google-Smtp-Source: AGHT+IEb1muRy0bzGGld0pHfL8s4Rd+CUSYo+Pjgo2ZFtcvZbZa4DodmpxNdighfGVGCfMUGDSePAw==
+X-Received: by 2002:a17:90a:468c:b0:2e2:d3e9:eb33 with SMTP id 98e67ed59e1d1-2e8f106f579mr14573261a91.11.1730210653345;
+        Tue, 29 Oct 2024 07:04:13 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e77e4c08a4sm11477398a91.12.2024.10.29.07.04.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Oct 2024 07:04:12 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <85afa3f3-1e6b-4f05-87f4-24c3aa309b66@roeck-us.net>
+Date: Tue, 29 Oct 2024 07:04:09 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241029-axi-clkgen-fix-axiclk-v2-2-bc5e0733ad76@analog.com>
-References: <20241029-axi-clkgen-fix-axiclk-v2-0-bc5e0733ad76@analog.com>
-In-Reply-To: <20241029-axi-clkgen-fix-axiclk-v2-0-bc5e0733ad76@analog.com>
-To: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Lars-Peter Clausen
-	<lars@metafoo.de>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1730210382; l=2435;
- i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
- bh=cTQEBBPSNRnIlg/4ys81fdjrLdKegaOWHm80+cLrox8=;
- b=wK/zOGCx6E4bPNEj/sdyx17NavQDA187ImJLiwBGQDZZ8ynjmxqw6L6MeJQeRIjiVvqFphtlS
- U78XZQGuQfnDlbp/Ot+BnoiCAMXfHiGCVfOWKeiommEGh+d/qzqavRr
-X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
- pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: VcEYVmT13SLYRA1IJTiP0MfALb0UyxW8
-X-Proofpoint-GUID: VcEYVmT13SLYRA1IJTiP0MfALb0UyxW8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- priorityscore=1501 mlxlogscore=808 adultscore=0 suspectscore=0 mlxscore=0
- lowpriorityscore=0 bulkscore=0 clxscore=1015 malwarescore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410290106
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: trivial-devices: add ltp8800
+To: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-hwmon@vger.kernel.org
+Cc: Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+ Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Peter Yin <peteryin.openbmc@gmail.com>,
+ Noah Wang <noahwang.wang@outlook.com>, Marek Vasut <marex@denx.de>,
+ Lukas Wunner <lukas@wunner.de>
+References: <20241029130137.31284-1-cedricjustine.encarnacion@analog.com>
+ <20241029130137.31284-2-cedricjustine.encarnacion@analog.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20241029130137.31284-2-cedricjustine.encarnacion@analog.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-In order to access the registers of the HW, we need to make sure that
-the AXI bus clock is enabled. Hence let's increase the number of clocks
-by one.
+On 10/29/24 06:01, Cedric Encarnacion wrote:
+> Add Analog Devices LTP8800-1A, LTP8800-2, and LTP8800-4A DC/DC μModule
+> regulator.
+> 
+> Signed-off-by: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+> ---
+>   Documentation/devicetree/bindings/trivial-devices.yaml | 6 ++++++
+>   MAINTAINERS                                            | 5 +++++
+>   2 files changed, 11 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index bd784f6bb38b..efd959708c75 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -43,6 +43,12 @@ properties:
+>             - adi,adp5589
+>               # Analog Devices LT7182S Dual Channel 6A, 20V PolyPhase Step-Down Silent Switcher
+>             - adi,lt7182s
+> +            # Analog Devices LTP8800-1A 150A, 54V DC/DC μModule regulator
+> +          - adi,ltp8800-1a
+> +            # Analog Devices LTP8800-2 135A, 54V DC/DC μModule regulator
+> +          - adi,ltp8800-2
+> +            # Analog Devices LTP8800-4A 200A, 54V DC/DC μModule regulator
+> +          - adi,ltp8800-4a
 
-In order to keep backward compatibility and make sure old DTs still work
-we check if clock-names is available or not. If it is, then we can
-disambiguate between really having the AXI clock or a parent clock and
-so we can enable the bus clock. If not, we fallback to what was done
-before and don't explicitly enable the AXI bus clock.
+I don't immediately see why this chip would warrant three entries instead of just
+"adi,ltp8800". Programming for all chips is the same. The only difference is
+the power rating.
 
-Note that if clock-names is given, the axi clock must be the last one in
-the phandle array (also enforced in the DT bindings) so that we can reuse
-as much code as possible.
+Guenter
 
-Fixes: 0e646c52cf0e ("clk: Add axi-clkgen driver")
-Signed-off-by: Nuno Sa <nuno.sa@analog.com>
----
- drivers/clk/clk-axi-clkgen.c | 22 ++++++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/clk/clk-axi-clkgen.c b/drivers/clk/clk-axi-clkgen.c
-index bf4d8ddc93aea1d4509a9ae50fa69fdb3f707a29..934e53a96dddac8ed61dd109cfc188f3a2a0539a 100644
---- a/drivers/clk/clk-axi-clkgen.c
-+++ b/drivers/clk/clk-axi-clkgen.c
-@@ -7,6 +7,7 @@
-  */
- 
- #include <linux/platform_device.h>
-+#include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/slab.h>
- #include <linux/io.h>
-@@ -512,6 +513,7 @@ static int axi_clkgen_probe(struct platform_device *pdev)
- 	struct clk_init_data init;
- 	const char *parent_names[2];
- 	const char *clk_name;
-+	struct clk *axi_clk;
- 	unsigned int i;
- 	int ret;
- 
-@@ -528,8 +530,24 @@ static int axi_clkgen_probe(struct platform_device *pdev)
- 		return PTR_ERR(axi_clkgen->base);
- 
- 	init.num_parents = of_clk_get_parent_count(pdev->dev.of_node);
--	if (init.num_parents < 1 || init.num_parents > 2)
--		return -EINVAL;
-+
-+	axi_clk = devm_clk_get_enabled(&pdev->dev, "s_axi_aclk");
-+	if (!IS_ERR(axi_clk)) {
-+		if (init.num_parents < 2 || init.num_parents > 3)
-+			return -EINVAL;
-+
-+		init.num_parents -= 1;
-+	} else {
-+		/*
-+		 * Legacy... So that old DTs which do not have clock-names still
-+		 * work. In this case we don't explicitly enable the AXI bus
-+		 * clock.
-+		 */
-+		if (PTR_ERR(axi_clk) != -ENOENT)
-+			return PTR_ERR(axi_clk);
-+		if (init.num_parents < 1 || init.num_parents > 2)
-+			return -EINVAL;
-+	}
- 
- 	for (i = 0; i < init.num_parents; i++) {
- 		parent_names[i] = of_clk_get_parent_name(pdev->dev.of_node, i);
-
--- 
-2.47.0
+>               # AMS iAQ-Core VOC Sensor
+>             - ams,iaq-core
+>               # Temperature monitoring of Astera Labs PT5161L PCIe retimer
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ca7e827da33e..a6abf7243b94 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -13555,6 +13555,11 @@ S:	Maintained
+>   F:	Documentation/devicetree/bindings/iio/light/liteon,ltr390.yaml
+>   F:	drivers/iio/light/ltr390.c
+>   
+> +LTP8800 HARDWARE MONITOR DRIVER
+> +M:	Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+> +L:	linux-hwmon@vger.kernel.org
+> +S:	Supported
+> +
+>   LYNX 28G SERDES PHY DRIVER
+>   M:	Ioana Ciornei <ioana.ciornei@nxp.com>
+>   L:	netdev@vger.kernel.org
 
 
