@@ -1,364 +1,348 @@
-Return-Path: <devicetree+bounces-116882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E6B29B43D6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 09:09:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CCED9B4419
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 09:23:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F17C281B5B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:09:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01AD9B21AFC
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:23:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04B25203710;
-	Tue, 29 Oct 2024 08:09:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bKuUal75"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 843E02038B0;
+	Tue, 29 Oct 2024 08:23:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A214C6E;
-	Tue, 29 Oct 2024 08:09:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C802038A5;
+	Tue, 29 Oct 2024 08:23:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730189367; cv=none; b=ClnpOggbgcR2UYWuyDz3W0Bm4oRNHhT0X49iAH4ESgSoVhBxFP+FUmb0SOKoue9dvdkTTvU97cPUw63rNLRwaQ7/HMZQfb17DX/q2FjJaILNfzRt8ArCuz3a4/2fhOpNbJ5nqpGE7mniNb5xVV4dIw43FMmm5drSCGx5CKOKIAw=
+	t=1730190221; cv=none; b=T5p7j8SwhjDpCB/4iUaE+YQOC/I9/D9waBrVZDQznKOyQMDB4TTpFtgvaDAYUVUWtBJ4AQbx3Si3Ns/Iy5PqaD1wZ3itkFmP6k45NG7g/C3Y7Ci2kvXVDxC48fIUf3WZv999HGmsD/wuBKF9LwHUtoEuAdfNadGl+4Pm9ERAnPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730189367; c=relaxed/simple;
-	bh=V4fdTt6VacxZNGOQPnJSy2fLiLBr121Jm3kT5IiBJ8A=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HuxhUOebGO9GqmsuYlG/gsX+fDdy869fqsroYOJwaTtQJwLrab+dp1iVvhxeaOQx+qXM74ouIkhRg7M6MQ/McpJ5frSl2miAvZCDmIybNOoEwh+rl+ANORqn9PZrgcSpo3jTnHvfNjee7U/RI+9tZM56HCmdBKJX+rlN90qCSYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bKuUal75; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-539e7e73740so4284605e87.3;
-        Tue, 29 Oct 2024 01:09:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730189363; x=1730794163; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=qpj1ugOlxEm9ZQsDOX+HXJiuvcM3PHjiPDoWtSR/0xo=;
-        b=bKuUal755uINR/AwxTSYS/adYJkRqBgzy5WWEFkbRb3LGXW1jjdUJSjFoXcC51XRzS
-         oVyn8qHEuyP4uoR625tqKBsGv/YklalXwzwa765Jp1WQHXQ1ReHIkolVATwQKOpdB3Xd
-         /eJ3MGB+kKxG6wx3yIM/k1kIoYlobgY3HQYoDdCb8N7zmVqLygqnKhrl53b5Ccdbe2sh
-         cdaLEh6IBSULeHhmGQl5Cray6hGjtyzFkKEZI6Lu11fW2aklp0T2S/ZyZC+lwybPRrow
-         oqHnbI3xCtKW/8KVuqDylrQVq7NkIc5MH0G4khvbdjbuRV0eVe/+JXnyAcpmZqRrsHKJ
-         NiSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730189363; x=1730794163;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qpj1ugOlxEm9ZQsDOX+HXJiuvcM3PHjiPDoWtSR/0xo=;
-        b=jXkZfzKo55iKKwWHVGg8JmRCB0jOYsM7bYYcOEZxnNG+C07HvLxAftMS1ucf+QeSTL
-         ufeL5fcvC7/PfyfTq07Ih9zG1UitOieeE7HmzeVUr84cZokWAJZrLamzGyCZ5GU7pgcm
-         zYFcv6Dp8HePn9S1JRnpbgbdbwkkwOUiIOI2wGpxk7tZSROOwXePXlBdB4DxVqknJsZ2
-         Qz2WHGC5/+D8KIFhFV27IOqwbe+HRyo5WjbEU3KsVfBG8Md/cYV9isUXRSUUqt2MbzZU
-         RBZoCCh5EimqS5vV+DXux/NzwhPTVxwEIvMF6jPx8tntztGtoOsfSVQBKEZb+oGaqpJz
-         iL5A==
-X-Forwarded-Encrypted: i=1; AJvYcCUtdvE8S/OfznNsxAa6hbhNKuBXRIKeE2RcfNTvgxQ1SWVEgCw+wB00B8qmT9GaqeI2uGrlRrwoWdXwXcop@vger.kernel.org, AJvYcCWJ7ceI0+PjRl8Xu877ylIM1GUdKFlJYv8wokhYfArD3DsOkWxvFiqZRlPwiZ6zs1g1JxYxsMsHOrS4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+eZvuNiRkl05GArYWfsNXr2/FdqFve6z/k7L2jTGZarVPF2EG
-	TxfMZw5TOeyvW9mtdZC6M7D+al1UcVL2dGgZUFS75V2bwyCfEnva
-X-Google-Smtp-Source: AGHT+IGlAuOy5Ee+KlPIjyI5zGA34QpYY9um2MLp/eOjFZjLm6TIr3sdgpdBqjzdQDG2YD8UAx5R4Q==
-X-Received: by 2002:ac2:4c55:0:b0:53a:40e:d54e with SMTP id 2adb3069b0e04-53b348b97b6mr5562259e87.4.1730189362732;
-        Tue, 29 Oct 2024 01:09:22 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef15:2100:2c2b:bcc5:835e:c2dd? (p200300f6ef1521002c2bbcc5835ec2dd.dip0.t-ipconnect.de. [2003:f6:ef15:2100:2c2b:bcc5:835e:c2dd])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431b437d362sm18232865e9.0.2024.10.29.01.09.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 01:09:22 -0700 (PDT)
-Message-ID: <51afb385d291d27ea4e5d8b1f5f3389573b119d5.camel@gmail.com>
-Subject: Re: [PATCH v9 4/8] iio: dac: adi-axi-dac: extend features
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Angelo Dureghello <angelo@kernel-space.org>, Lars-Peter Clausen
-	 <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- =?ISO-8859-1?Q?S=E1?=
-	 <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	 <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dlechner@baylibre.com, Mark Brown
-	 <broonie@kernel.org>, Angelo Dureghello <adureghello@baylibre.com>
-Date: Tue, 29 Oct 2024 09:13:42 +0100
-In-Reply-To: <20241028-wip-bl-ad3552r-axi-v0-iio-testing-v9-4-f6960b4f9719@kernel-space.org>
-References: 
-	<20241028-wip-bl-ad3552r-axi-v0-iio-testing-v9-0-f6960b4f9719@kernel-space.org>
-	 <20241028-wip-bl-ad3552r-axi-v0-iio-testing-v9-4-f6960b4f9719@kernel-space.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.1 
+	s=arc-20240116; t=1730190221; c=relaxed/simple;
+	bh=TgaKXL3c0JpFuVYw9xFgwAmKSwJ4djKdrDT/4zx0SqE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t7+7Flzw4LTxCra5CdShOW2Qr3zIWgw2rt63EUwFxMs8ilUz3kc19oAhFM9h4J9QTb8WWkC9dy/8mh+iNDxOBftRozn+Iut/VgPZ8FAC6ixtyclRiO1jqXXO6Y/UBdNFaqaOluoNiKjKB6GaqRhEf6UDFG9MyVc0qJpx24vgA4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB63FC4CEE6;
+	Tue, 29 Oct 2024 08:23:36 +0000 (UTC)
+Message-ID: <3f48495c-77bb-4f26-b51f-8b2d44a4ec96@xs4all.nl>
+Date: Tue, 29 Oct 2024 09:23:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/4] media: raspberrypi: Add support for RP1-CFE
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Naushir Patuck
+ <naush@raspberrypi.com>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20241003-rp1-cfe-v6-3-d6762edd98a8@ideasonboard.com>
+ <4d9e340e-2ae7-495b-8623-0d10398e1c3d@xs4all.nl>
+ <02f05b61-08e7-45f8-8d59-f79bc20d076f@ideasonboard.com>
+ <74286a86-51b9-4742-bb0c-583d70b1b0a7@xs4all.nl>
+ <505c502e-b67a-4dca-8420-eb87eae4e170@ideasonboard.com>
+ <59cf95be-fb53-4a94-bc6e-f9dca322749d@xs4all.nl>
+ <5832a2f9-c908-4f5a-a3ee-9cb7d23ddab4@ideasonboard.com>
+ <563347aa-4155-47e1-b71a-0107aed83eb6@xs4all.nl>
+ <20241028151713.GI24052@pendragon.ideasonboard.com>
+ <62073d7a-0a4b-4440-90e5-dcce0dec72d7@ideasonboard.com>
+ <20241028163243.GB26852@pendragon.ideasonboard.com>
+Content-Language: en-US, nl
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Autocrypt: addr=hverkuil@xs4all.nl; keydata=
+ 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
+In-Reply-To: <20241028163243.GB26852@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, 2024-10-28 at 22:45 +0100, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
->=20
-> Extend AXI-DAC backend with new features required to interface
-> to the ad3552r DAC. Mainly, a new compatible string is added to
-> support the ad3552r-axi DAC IP, very similar to the generic DAC
-> IP but with some customizations to work with the ad3552r.
->=20
-> Then, a series of generic functions has been added to match with
-> ad3552r needs. Function names has been kept generic as much as
-> possible, to allow re-utilization from other frontend drivers.
->=20
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> ---
+On 28/10/2024 17:32, Laurent Pinchart wrote:
+> On Mon, Oct 28, 2024 at 05:32:27PM +0200, Tomi Valkeinen wrote:
+>> On 28/10/2024 17:17, Laurent Pinchart wrote:
+>>> On Mon, Oct 28, 2024 at 12:30:45PM +0100, Hans Verkuil wrote:
+>>>> On 28/10/2024 12:25, Tomi Valkeinen wrote:
+>>>>> On 28/10/2024 13:13, Hans Verkuil wrote:
+>>>>>> On 28/10/2024 12:05, Tomi Valkeinen wrote:
+>>>>>>> On 28/10/2024 12:11, Hans Verkuil wrote:
+>>>>>>>> On 28/10/2024 10:21, Tomi Valkeinen wrote:
+>>>>>>>>> On 24/10/2024 11:20, Hans Verkuil wrote:
+>>>>>>>>>> Hi Tomi,
+>>>>>>>>>>
+>>>>>>>>>> I know this driver is already merged, but while checking for drivers that use
+>>>>>>>>>> q->max_num_buffers I stumbled on this cfe code:
+>>>>>>>>>>
+>>>>>>>>>> <snip>
+>>>>>>>>>>
+>>>>>>>>>>> +/*
+>>>>>>>>>>> + * vb2 ops
+>>>>>>>>>>> + */
+>>>>>>>>>>> +
+>>>>>>>>>>> +static int cfe_queue_setup(struct vb2_queue *vq, unsigned int *nbuffers,
+>>>>>>>>>>> +               unsigned int *nplanes, unsigned int sizes[],
+>>>>>>>>>>> +               struct device *alloc_devs[])
+>>>>>>>>>>> +{
+>>>>>>>>>>> +    struct cfe_node *node = vb2_get_drv_priv(vq);
+>>>>>>>>>>> +    struct cfe_device *cfe = node->cfe;
+>>>>>>>>>>> +    unsigned int size = is_image_node(node) ?
+>>>>>>>>>>> +                    node->vid_fmt.fmt.pix.sizeimage :
+>>>>>>>>>>> +                    node->meta_fmt.fmt.meta.buffersize;
+>>>>>>>>>>> +
+>>>>>>>>>>> +    cfe_dbg(cfe, "%s: [%s] type:%u\n", __func__, node_desc[node->id].name,
+>>>>>>>>>>> +        node->buffer_queue.type);
+>>>>>>>>>>> +
+>>>>>>>>>>> +    if (vq->max_num_buffers + *nbuffers < 3)
+>>>>>>>>>>> +        *nbuffers = 3 - vq->max_num_buffers;
+>>>>>>>>>>
+>>>>>>>>>> This makes no sense: max_num_buffers is 32, unless explicitly set when vb2_queue_init
+>>>>>>>>>> is called. So 32 + *nbuffers is never < 3.
+>>>>>>>>>>
+>>>>>>>>>> If the idea is that at least 3 buffers should be allocated by REQBUFS, then set
+>>>>>>>>>> q->min_reqbufs_allocation = 3; before calling vb2_queue_init and vb2 will handle this
+>>>>>>>>>> for you.
+>>>>>>>>>>
+>>>>>>>>>> Drivers shouldn't modify *nbuffers, except in very rare circumstances, especially
+>>>>>>>>>> since the code is almost always wrong.
+>>>>>>>>>
+>>>>>>>>> Looking at this, the original code in the old BSP tree was, which somehow, along the long way, got turned into the above:
+>>>>>>>>>
+>>>>>>>>> if (vq->num_buffers + *nbuffers < 3)
+>>>>>>>>>            *nbuffers = 3 - vq->num_buffers;
+>>>>>>>>>
+>>>>>>>>> So... I think that is the same as "q->min_reqbufs_allocation = 3"?
+>>>>>>>>>
+>>>>>>>>> The distinction between min_queued_buffers and
+>>>>>>>>> min_reqbufs_allocation, or rather the need for the latter, still
+>>>>>>>>> escapes me. If the HW/SW requires N buffers to be queued, why
+>>>>>>>>> would we require allocating more than N buffers?
+>>>>>>>>
+>>>>>>>> min_queued_buffers is easiest to explain: that represents the requirements of the DMA
+>>>>>>>> engine, i.e. how many buffers much be queued before the DMA engine can be started.
+>>>>>>>> Typically it is 0, 1 or 2.
+>>>
+>>> That's partly true only. Even if the hardware requires 2 buffers, a
+>>> driver can allocate scratch buffers to lower the requirement for
+>>> userspace. Setting min_queued_buffers to 1 is usually fine, as there are
+>>> few use cases for userspace to start the hardware before a buffer is
+>>> available to capture a frame to. A value of 2 is much more problematic,
+>>> as it prevents operating with a single buffer. I know using a single
+>>> buffer results in frame drops, but there are resource-constrained
+>>> systems where application don't always need all the frames (such as the
+>>> Raspberry Pi Zero for instance). I very strongly encourage drivers to
+>>> never set a min_queued_buffers value higher than 1.
+>>>
+>>>>>>>>
+>>>>>>>> min_reqbufs_allocation is the minimum number of buffers that will be allocated when
+>>>>>>>> calling VIDIOC_REQBUFS in order for userspace to be able to stream without blocking
+>>>>>>>> or dropping frames.
+>>>>>>>>
+>>>>>>>> Typically this is 3 for video capture: one buffer is being DMAed, another is queued up
+>>>>>>>> and the third is being processed by userspace. But sometimes drivers have other
+>>>>>>>> requirements.
+>>>
+>>> This is exactly why I dislike min_reqbufs_allocation when set based on
+>>> this logic, it encodes assumption on userspace use cases that a capture
+>>> driver really shouldn't make.
+>>>
+>>>>>>>>
+>>>>>>>> The reason is that some applications will just call VIDIOC_REQBUFS with count=1 and
+>>>>>>>> expect it to be rounded up to whatever makes sense. See the VIDIOC_REQBUFS doc in
+>>>>>>>> https://hverkuil.home.xs4all.nl/spec/userspace-api/v4l/vidioc-reqbufs.html
+>>>>>>>>
+>>>>>>>> "It can be smaller than the number requested, even zero, when the driver runs out of
+>>>>>>>>     free memory. A larger number is also possible when the driver requires more buffers
+>>>>>>>>     to function correctly."
+>>>>>>>>
+>>>>>>>> How drivers implement this is a mess, and usually the code in the driver is wrong as
+>>>>>>>> well. In particular they often did not take VIDIOC_CREATE_BUFS into account, i.e.
+>>>>>>>> instead of 'if (vq->num_buffers + *nbuffers < 3)' they would do 'if (*nbuffers < 3)'.
+>>>>>>>
+>>>>>>> Thanks, this was educational!
+>>>>>>>
+>>>>>>> So. If I have a driver that has min_queued_buffers = 1, I can use
+>>>>>>> VIDIOC_CREATE_BUFS to allocate a single buffer, and then capture
+>>>>>>> just one buffer, right? Whereas VIDIOC_REQBUFS would give me
+>>>>>>> (probably) three (or two, if the driver does not set
+>>>>>>> min_reqbufs_allocation). Three buffers makes sense for full
+>>>>>>> streaming, of course.
+>>>>>>>
+>>>>>>>> When we worked on the support for more than 32 buffers we added min_reqbufs_allocation
+>>>>>>>> to let the core take care of this. In addition, this only applies to VIDIOC_REQBUFS,
+>>>
+>>> I agree it's better to handle it in the core than in drivers, even if I
+>>> dislike the feature in the first place.
+>>>
+>>>>>>>> if you want full control over the number of allocated buffers, then use VIDIOC_CREATE_BUFS,
+>>>>>>>> with this ioctl the number of buffers will never be more than requested, although it
+>>>>>>>> may be less if you run out of memory.
+>>>
+>>> On a side note, we should transition libcamera to use VIDIOC_CREATE_BUFS
+>>> unconditionally.
+>>>
+>>>>>>>>
+>>>>>>>> I really should go through all existing drivers and fix them up if they try to
+>>>>>>>> handle this in the queue_setup function, I suspect a lot of them are quite messy.
+>>>>>>>>
+>>>>>>>> One thing that is missing in the V4L2 uAPI is a way to report the minimum number of
+>>>>>>>> buffers that need to be allocated, i.e. min_queued_buffers + 1. Since if you want
+>>>>>>>
+>>>>>>> Hmm, so what I wrote above is not correct? One needs min_queued_buffers + 1? Why is that?
+>>>>>>
+>>>>>> The DMA engine always uses min_queued_buffers, so if there are only that many buffers,
+>>>>>> then it can never return a buffer to userspace! So you need one more. That's the absolute
+>>>>>> minimum. For smooth capture you need two more to allow time for userspace to process the
+>>>>>> buffer.
+>>>>>
+>>>>> Hmm, ok, I see. Well, I guess my "I want to capture just a single frame" is not a very common case.
+>>>
+>>> It's not that uncommon, see above.
+>>>
+>>>>>
+>>>>> Can I queue one buffer, start streaming, stop streaming, and get the
+>>>>> filled buffer? But then I guess I don't when the buffer has been
+>>>>> filled, i.e. when to call stop streaming.
+>>>>
+>>>> Exactly. If you really want that, then the driver has to be adapted in the way that Laurent
+>>>> suggested, i.e. with one or more scratch buffers. But that is not always possible, esp. with
+>>>> older hardware without an IOMMU.
+>>>
+>>> Drivers can always allocate a full-frame scratch buffer in the worst
+>>> case. That can waste memory though, which is less than ideal.
+>>>
+>>>>> So, never mind, I don't actually have any use case for this, just wondering.
+>>>>>
+>>>>>>>
+>>>>>>>> to use CREATE_BUFS you need that information so you know that you have to create
+>>>>>>>> at least that number of buffers. We have the V4L2_CID_MIN_BUFFERS_FOR_CAPTURE control,
+>>>>>>>> but it is effectively codec specific. This probably should be clarified.
+>>>>>>>>
+>>>>>>>> I wonder if it wouldn't be better to add a min_num_buffers field to
+>>>>>>>> struct v4l2_create_buffers and set it to min_queued_buffers + 1.
+>>>
+>>> Don't add the +1. We should give userspace the information it needs to
+>>> make informed decisions, not make decisions on its behalf.
+>>>
+>>>>>>>
+>>>>>>> I think this makes sense (although I still don't get the +1).
+>>>>>>>
+>>>>>>> However, based on the experiences from adding the streams features
+>>>>>>> to various ioctls, let's be very careful =). The new
+>>>>>>> 'min_num_buffers' can be filled with garbage by the userspace. If
+>>>>>>> we define the 'min_num_buffers' field to be always filled by the
+>>>>>>> kernel, and any value provided from the userspace to be ignored, I
+>>>>>>> think it should work.
+>>>>>>
+>>>>>> I've posted an RFC for this.
+>>>>>
+>>>>> Thanks, I'll check it out.
+>>>>>
+>>>>> For the original issue in this thread, I think the correct fix is to
+>>>>> remove the lines from cfe_queue_setup(), and add
+>>>>> "q->min_reqbufs_allocation = 3".
+>>>
+>>> Or just don't set min_reqbufs_allocation ? This is a new driver, and it
+>>> requires a device-specific userspace to operate the ISP. I don't think
+>>> we need to care about applications blindly calling VIDIOC_REQBUFS(1) and
+>>> expecting to get more buffers.
+>>
+>> It doesn't require a device-specific userspace for plain CSI-2 capture.
+>>
+>> If I understood right, the expected behavior for VIDIOC_REQBUFS is to 
+>> return enough buffers for "smooth streaming". So even if device-specific 
+>> userspace would be required, doesn't it still make sense to have 
+>> min_reqbufs_allocation = 3?
+> 
+> "Smooth streaming" is use case-dependent, you will need different number
+> of buffers for different use cases. That's why I don't like hardcoding
+> this in a video capture driver. I'd rather expose information about the
+> driver behaviour (in particular, how many buffers it will hold on
+> without returning anything to userspace until a new buffer gets queued)
+> and let applications make a decision. I don't expect applications
+> relying on VIDIOC_REQBUFS(1) to work out-of-the-box on Pi 5 anyway, as
+> the media graph needs to be configured.
+> 
+>> Or is your point that even a device-specific userspace, which knows 
+>> exactly what it's doing, would use VIDIOC_REQBUFS, instead of 
+>> VIDIOC_CREATE_BUFS?
+> 
+> I expect a device-specific userspace not to require drivers to make
+> policy decisions on its behalf.
 
-Hi Angelo,
+Remember that libcamera is a specialized library that indeed wants to
+make policy decisions itself. But many other drivers for much simpler
+pipelines (typically for video receivers) don't need this and can use
+the standard V4L2 API.
 
-Small stuff that Jonathan might be able to change while applying... With th=
-at:
+My goal is to have the standard V4L2 API behave in a well-defined manner,
+while giving enough information to specialized userspace code like libcamera
+to do their own thing.
 
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+Regards,
 
-> =C2=A0drivers/iio/dac/adi-axi-dac.c | 256 +++++++++++++++++++++++++++++++=
-++++++++--
-> -
-> =C2=A01 file changed, 242 insertions(+), 14 deletions(-)
->=20
-> diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-dac.=
-c
-> index 04193a98616e..155d04ca2315 100644
-> --- a/drivers/iio/dac/adi-axi-dac.c
-> +++ b/drivers/iio/dac/adi-axi-dac.c
-> @@ -46,9 +46,28 @@
-> =C2=A0#define AXI_DAC_CNTRL_1_REG			0x0044
-> =C2=A0#define=C2=A0=C2=A0 AXI_DAC_CNTRL_1_SYNC			BIT(0)
-> =C2=A0#define AXI_DAC_CNTRL_2_REG			0x0048
-> +#define=C2=A0=C2=A0 AXI_DAC_CNTRL_2_SDR_DDR_N		BIT(16)
-> +#define=C2=A0=C2=A0 AXI_DAC_CNTRL_2_SYMB_8B		BIT(14)
-> =C2=A0#define=C2=A0=C2=A0 ADI_DAC_CNTRL_2_R1_MODE		BIT(5)
-> +#define=C2=A0=C2=A0 AXI_DAC_CNTRL_2_UNSIGNED_DATA		BIT(4)
-> +#define AXI_DAC_STATUS_1_REG			0x0054
-> +#define AXI_DAC_STATUS_2_REG			0x0058
-> =C2=A0#define AXI_DAC_DRP_STATUS_REG			0x0074
-> =C2=A0#define=C2=A0=C2=A0 AXI_DAC_DRP_STATUS_DRP_LOCKED		BIT(17)
-> +#define AXI_DAC_CUSTOM_RD_REG			0x0080
-> +#define AXI_DAC_CUSTOM_WR_REG			0x0084
-> +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_WR_DATA_8		GENMASK(23, 16)
-> +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_WR_DATA_16		GENMASK(23, 8)
-> +#define AXI_DAC_UI_STATUS_REG			0x0088
-> +#define=C2=A0=C2=A0 AXI_DAC_UI_STATUS_IF_BUSY		BIT(4)
-> +#define AXI_DAC_CUSTOM_CTRL_REG			0x008C
-> +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_ADDRESS		GENMASK(31, 24)
-> +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_SYNCED_TRANSFER	BIT(2)
-> +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_STREAM		BIT(1)
-> +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA	BIT(0)
-> +
-> +#define
-> AXI_DAC_CUSTOM_CTRL_STREAM_ENABLE	(AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA | \
-> +						 AXI_DAC_CUSTOM_CTRL_STREAM)
-> =C2=A0
-> =C2=A0/* DAC Channel controls */
-> =C2=A0#define AXI_DAC_CHAN_CNTRL_1_REG(c)		(0x0400 + (c) * 0x40)
-> @@ -63,12 +82,21 @@
-> =C2=A0#define AXI_DAC_CHAN_CNTRL_7_REG(c)		(0x0418 + (c) * 0x40)
-> =C2=A0#define=C2=A0=C2=A0 AXI_DAC_CHAN_CNTRL_7_DATA_SEL		GENMASK(3, 0)
-> =C2=A0
-> +#define AXI_DAC_RD_ADDR(x)			(BIT(7) | (x))
-> +
-> =C2=A0/* 360 degrees in rad */
-> =C2=A0#define AXI_DAC_2_PI_MEGA			6283190
-> =C2=A0
-> =C2=A0enum {
-> =C2=A0	AXI_DAC_DATA_INTERNAL_TONE,
-> =C2=A0	AXI_DAC_DATA_DMA =3D 2,
-> +	AXI_DAC_DATA_INTERNAL_RAMP_16BIT =3D 11,
-> +};
-> +
-> +struct axi_dac_info {
-> +	unsigned int version;
-> +	const struct iio_backend_info *backend_info;
-> +	bool has_dac_clk;
-> =C2=A0};
-> =C2=A0
-> =C2=A0struct axi_dac_state {
-> @@ -79,9 +107,11 @@ struct axi_dac_state {
-> =C2=A0	 * data/variables.
-> =C2=A0	 */
-> =C2=A0	struct mutex lock;
-> +	const struct axi_dac_info *info;
-> =C2=A0	u64 dac_clk;
-> =C2=A0	u32 reg_config;
-> =C2=A0	bool int_tone;
-> +	int dac_clk_rate;
-> =C2=A0};
-> =C2=A0
-> =C2=A0static int axi_dac_enable(struct iio_backend *back)
-> @@ -471,6 +501,11 @@ static int axi_dac_data_source_set(struct iio_backen=
-d
-> *back, unsigned int chan,
-> =C2=A0					=C2=A0 AXI_DAC_CHAN_CNTRL_7_REG(chan),
-> =C2=A0					=C2=A0 AXI_DAC_CHAN_CNTRL_7_DATA_SEL,
-> =C2=A0					=C2=A0 AXI_DAC_DATA_DMA);
-> +	case IIO_BACKEND_INTERNAL_RAMP_16BIT:
-> +		return regmap_update_bits(st->regmap,
-> +					=C2=A0 AXI_DAC_CHAN_CNTRL_7_REG(chan),
-> +					=C2=A0 AXI_DAC_CHAN_CNTRL_7_DATA_SEL,
-> +					=C2=A0 AXI_DAC_DATA_INTERNAL_RAMP_16BIT);
-> =C2=A0	default:
-> =C2=A0		return -EINVAL;
-> =C2=A0	}
-> @@ -528,6 +563,154 @@ static int axi_dac_reg_access(struct iio_backend *b=
-ack,
-> unsigned int reg,
-> =C2=A0	return regmap_write(st->regmap, reg, writeval);
-> =C2=A0}
-> =C2=A0
-> +static int axi_dac_ddr_enable(struct iio_backend *back)
-> +{
-> +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> +
-> +	return regmap_clear_bits(st->regmap, AXI_DAC_CNTRL_2_REG,
-> +				 AXI_DAC_CNTRL_2_SDR_DDR_N);
-> +}
-> +
-> +static int axi_dac_ddr_disable(struct iio_backend *back)
-> +{
-> +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> +
-> +	return regmap_set_bits(st->regmap, AXI_DAC_CNTRL_2_REG,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AXI_DAC_CNTRL_2_SDR_DDR_N);
-> +}
-> +
-> +static int axi_dac_data_stream_enable(struct iio_backend *back)
-> +{
-> +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> +
-> +	return regmap_set_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_STREAM_ENABL=
-E);
-> +}
-> +
-> +static int axi_dac_data_stream_disable(struct iio_backend *back)
-> +{
-> +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> +
-> +	return regmap_clear_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
-> +				 AXI_DAC_CUSTOM_CTRL_STREAM_ENABLE);
-> +}
-> +
-> +static int axi_dac_data_transfer_addr(struct iio_backend *back, u32 addr=
-ess)
-> +{
-> +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> +
-> +	if (address > FIELD_MAX(AXI_DAC_CUSTOM_CTRL_ADDRESS))
-> +		return -EINVAL;
-> +
-> +	/*
-> +	 * Sample register address, when the DAC is configured, or stream
-> +	 * start address when the FSM is in stream state.
-> +	 */
-> +	return regmap_update_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
-> +				=C2=A0 AXI_DAC_CUSTOM_CTRL_ADDRESS,
-> +				=C2=A0 FIELD_PREP(AXI_DAC_CUSTOM_CTRL_ADDRESS,
-> +				=C2=A0 address));
-> +}
-> +
-> +static int axi_dac_data_format_set(struct iio_backend *back, unsigned in=
-t ch,
-> +				=C2=A0=C2=A0 const struct iio_backend_data_fmt *data)
-> +{
-> +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> +
-> +	switch (data->type) {
-> +	case IIO_BACKEND_DATA_UNSIGNED:
-> +		return regmap_clear_bits(st->regmap, AXI_DAC_CNTRL_2_REG,
-> +					 AXI_DAC_CNTRL_2_UNSIGNED_DATA);
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int axi_dac_bus_reg_write_locked(struct iio_backend *back, u32 re=
-g,
-> +					u32 val, size_t data_size)
+	Hans
 
-nit: this is actually unlocked and needs to be locked from the outside. So,
-unlocked could be a better suffix. But more importantly is the extra call t=
-o
-iio_backend_get_priv(). We can just pass *st directly from the outer functi=
-on.
-
-> +{
-> +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> +	int ret;
-> +	u32 ival;
-> +
-> +	/*
-> +	 * Both AXI_DAC_CNTRL_2_REG and AXI_DAC_CUSTOM_WR_REG need to know
-> +	 * the data size. So keeping data size control here only,
-> +	 * since data size is mandatory for the current transfer.
-> +	 * DDR state handled separately by specific backend calls,
-> +	 * generally all raw register writes are SDR.
-> +	 */
-> +	if (data_size =3D=3D sizeof(u16))
-> +		ival =3D FIELD_PREP(AXI_DAC_CUSTOM_WR_DATA_16, val);
-> +	else
-> +		ival =3D FIELD_PREP(AXI_DAC_CUSTOM_WR_DATA_8, val);
-> +
-> +	ret =3D regmap_write(st->regmap, AXI_DAC_CUSTOM_WR_REG, ival);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (data_size =3D=3D sizeof(u8))
-> +		ret =3D regmap_set_bits(st->regmap, AXI_DAC_CNTRL_2_REG,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AXI_DAC_CNTRL_2_SYMB_8B);
-> +	else
-> +		ret =3D regmap_clear_bits(st->regmap, AXI_DAC_CNTRL_2_REG,
-> +					AXI_DAC_CNTRL_2_SYMB_8B);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D regmap_update_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
-> +				 AXI_DAC_CUSTOM_CTRL_ADDRESS,
-> +				 FIELD_PREP(AXI_DAC_CUSTOM_CTRL_ADDRESS,
-> reg));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D regmap_update_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
-> +				 AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA,
-> +				 AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D regmap_read_poll_timeout(st->regmap,
-> +				AXI_DAC_UI_STATUS_REG, ival,
-> +				FIELD_GET(AXI_DAC_UI_STATUS_IF_BUSY, ival) =3D=3D
-> 0,
-> +				10, 100 * KILO);
-> +	if (ret =3D=3D -ETIMEDOUT)
-> +		dev_err(st->dev, "AXI read timeout\n");
-> +
-> +	/* Cleaning always AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA */
-> +	return regmap_clear_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
-> +				 AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA);
-> +}
-> +
-> +static int axi_dac_bus_reg_write(struct iio_backend *back, u32 reg,
-> +					u32 val, size_t data_size)
-> +{
-> +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> +
-> +	guard(mutex)(&st->lock);
-> +	return axi_dac_bus_reg_write_locked(back, reg, val, data_size);
-> +}
-> +
-
-Also just realized that the above read()/write() functions could make more =
-sense
-in the patch making the device a "bus controller". But well, not that impor=
-tant
-I guess.
-
-- Nuno S=C3=A1
-
+> 
+>> Also, if I don't set min_reqbufs_allocation, VIDIOC_REQBUFS(1) would 
+>> still allocate two buffers, not one.
+> 
 
 
