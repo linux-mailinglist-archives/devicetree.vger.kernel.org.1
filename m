@@ -1,102 +1,193 @@
-Return-Path: <devicetree+bounces-116984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB2239B48E8
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:03:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6F449B48EB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:03:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E62B280ED9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:03:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DBA51F23DD7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:03:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F45E205AC2;
-	Tue, 29 Oct 2024 12:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4DD5206041;
+	Tue, 29 Oct 2024 12:03:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="1oJV8saT"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BzmFzRRZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62DFE205AB6;
-	Tue, 29 Oct 2024 12:03:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F12D3205E0B;
+	Tue, 29 Oct 2024 12:03:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730203403; cv=none; b=OmeiCEneJAsj3OTDyXyDHatf/D5Upy660H1LjT5gHhHuGnx/n9FHQNrarGjGdJA1hBYpoauuuExRXx4i93nitpJFIVdHaLwS/C0npKiM+KPjSJIzjtxgGTct6IjQXnQ42cPVtRYk+TYWw7STj5f3USvrTFoP2HfkClQMTjgIHsg=
+	t=1730203406; cv=none; b=S+0odphbdiMEijqTDmX4gC3x2ddAasvUDEp5HegDe3cyheOU5nAvJo6mRgc/zMKQkQi9ODD9eL4AWM8epPhWcg7wku4UvSCruzIYLNS3Gi6Tim+JYnA9VT182lmmYIuMC8nB5ksBTiZLs5Gvo5qOZiJEzVDDuhG0FAN2GZ4zXLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730203403; c=relaxed/simple;
-	bh=Lf5hWvaIbDJuMOM5f4CIt8+nTmCx6ktFO/jL4SbVPwo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fi7MP0+DY3D0aIjEZFQyX2QxPNkBD6mfbBaVGrsnZGzirIDxeMhh9Xwnoa2lwO1Wcj0racYUfXCk1w+EnhL1fHD1ZUnl32oVdeuLvluM50P75qF8FcJFoKvvEkeBgkoHL9eWnG/j5sLf+RDck6tYIzzkkCQk0afkoxRRGpq2k9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=1oJV8saT; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=28P+nO6+7LRY7tiN18rzw6ddnXEFrM5ez8f38EAhSdo=; b=1oJV8saTVv87A+m+V5gWXuiUpH
-	Dwzrq09LUqTJAkRfeOW3SogL96ZdPvEFFksgX/EPw1EUa7wTndoU+zYQUvsri3FTLP9soXhVkoQ1z
-	eC/YxqcpbHmWw45Re5APhTb+QRpavTtIbb/6515gY919BH1odXF/dczA1l4+uVIvVJH8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t5kw8-00BZBh-JF; Tue, 29 Oct 2024 13:03:00 +0100
-Date: Tue, 29 Oct 2024 13:03:00 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: jan.petrous@oss.nxp.com
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-	Keyur Chudgar <keyur@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	NXP S32 Linux Team <s32@nxp.com>
-Subject: Re: [PATCH v4 06/16] net: dwmac-imx: Use helper rgmii_clock
-Message-ID: <af44d346-d2dc-465e-b6cb-6c40802b77b7@lunn.ch>
-References: <20241028-upstream_s32cc_gmac-v4-0-03618f10e3e2@oss.nxp.com>
- <20241028-upstream_s32cc_gmac-v4-6-03618f10e3e2@oss.nxp.com>
+	s=arc-20240116; t=1730203406; c=relaxed/simple;
+	bh=SWx1corgWtFur7oJJLiz8Jr77EEohngVXxqWbvx+oDs=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MVLYXObyxwUdsx+u7Hdo+Kp44Grkt1227dUgOPs2o8DqOAeW8SAQc98KPWxmlW3z/cpOq9TDi6vhk1znyNEdLzxiRFSoexgTqFlN4S8ud/+zP4KEUhFvE94njaoyp+f1ll43LUEwJFuitnSCt5pGcTWnKHBibRLVyaavpUDZLJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BzmFzRRZ; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49TC34TI030901;
+	Tue, 29 Oct 2024 07:03:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1730203384;
+	bh=hicrTkVtQs2t7bpDq9lM+vtUFPXqZg58LQfBivaXaRI=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=BzmFzRRZD7a5aewcirj2Iju6Iug22YxIZRB99C0wnwBNuYEiajDkuO8zEMuAbVoIy
+	 2z8V+FqX6kq/UMNqkLrm+sL2hkdMpkCE1HTHK46meiEKElduAQmb01sJsDzVq2gj1i
+	 sWM72v25TUis5ifXg40YgcBIRAgj+0ematoSJhs4=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49TC343c129935
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 29 Oct 2024 07:03:04 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
+ Oct 2024 07:03:02 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 29 Oct 2024 07:03:02 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49TC32U5125998;
+	Tue, 29 Oct 2024 07:03:02 -0500
+Date: Tue, 29 Oct 2024 07:03:02 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+CC: Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Anand Gadiyar <gadiyar@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Vishal Mahaveer
+	<vishalm@ti.com>,
+        Kevin Hilman <khilman@baylibre.com>, Dhruva Gole
+	<d-gole@ti.com>
+Subject: Re: [PATCH v3 2/6] firmware: ti_sci: Partial-IO support
+Message-ID: <20241029120302.3twkliytrn5hjufi@sleek>
+References: <20241012-topic-am62-partialio-v6-12-b4-v3-0-f7c6c2739681@baylibre.com>
+ <20241012-topic-am62-partialio-v6-12-b4-v3-2-f7c6c2739681@baylibre.com>
+ <20241025174204.xwmsn2arcy4q63xu@reaction>
+ <7l5ok4bufvewoimrecm5pajlqqmqg75rjthivdufoqhphfgiy5@xo7f3rrdr3zs>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20241028-upstream_s32cc_gmac-v4-6-03618f10e3e2@oss.nxp.com>
+In-Reply-To: <7l5ok4bufvewoimrecm5pajlqqmqg75rjthivdufoqhphfgiy5@xo7f3rrdr3zs>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, Oct 28, 2024 at 09:24:48PM +0100, Jan Petrous via B4 Relay wrote:
-> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+On 15:49-20241028, Markus Schneider-Pargmann wrote:
+> Hi Nishanth,
 > 
-> Utilize a new helper function rgmii_clock().
+> On Fri, Oct 25, 2024 at 12:42:04PM GMT, Nishanth Menon wrote:
+> > On 16:39-20241012, Markus Schneider-Pargmann wrote:
+> > [...]
+> > > 
+> > > The possible wakeup devices are found by checking which devices are
+> > > powered by the regulator supplying the "vddshv_canuart" line. These are
+> > > considered possible wakeup sources. Only wakeup sources that are
+> > > actually enabled by the user will be considered as a an active wakeup
+> > > source. If none of the wakeup sources are enabled the system will do a
+> > > normal poweroff. If at least one wakeup source is enabled it will
+> > > instead send a TI_SCI_MSG_PREPARE_SLEEP message from the sys_off
+> > > handler. Sending this message will result in an immediate shutdown of
+> > > the system. No execution is expected after this point. The code will
+> > > wait for 5s and do an emergency_restart afterwards if Partial-IO wasn't
+> > > entered at that point.
+> > > 
+> > [...]
+> > 
+> > > +static bool tisci_canuart_wakeup_enabled(struct ti_sci_info *info)
+> > > +{
+> > > +	static const char canuart_name[] = "vddshv_canuart";
+> > > +	struct device_node *wakeup_node = NULL;
+> > > +
+> > > +	for (wakeup_node = of_find_node_with_property(NULL, "vio-supply");
+> > > +	     wakeup_node;
+> > > +	     wakeup_node = of_find_node_with_property(wakeup_node, "vio-supply")) {
+> > > +		struct device_node *supply_node;
+> > > +		const char *supply_name;
+> > > +		struct platform_device *pdev;
+> > > +		int ret;
+> > > +
+> > > +		supply_node = of_parse_phandle(wakeup_node, "vio-supply", 0);
+> > > +		if (!supply_node)
+> > > +			continue;
+> > > +
+> > > +		ret = of_property_read_string(supply_node, "regulator-name", &supply_name);
+> > > +		of_node_put(supply_node);
+> > > +		if (ret) {
+> > > +			dev_warn(info->dev, "Failed to parse vio-supply phandle at %pOF %d\n",
+> > > +				 wakeup_node, ret);
+> > > +			continue;
+> > > +		}
+> > > +
+> > > +		if (strncmp(canuart_name, supply_name, strlen(canuart_name)))
+> > > +			continue;
+> > > +
+> > > +		pdev = of_find_device_by_node(wakeup_node);
+> > > +		if (!pdev)
+> > > +			continue;
+> > > +
+> > > +		if (device_may_wakeup(&pdev->dev)) {
+> > > +			dev_dbg(info->dev, "%pOF identified as wakeup source for Partial-IO\n",
+> > > +				wakeup_node);
+> > > +			put_device(&pdev->dev);
+> > > +			of_node_put(wakeup_node);
+> > > +			return true;
+> > > +		}
+> > > +		put_device(&pdev->dev);
+> > > +	}
+> > > +
+> > > +	return false;
+> > > +}
+> > > +
+> > 
+> > What is the binding that supports this? I just do not think that
+> > scanning the entire tree for vio-supply implies you will get thr right
+> > property here.
+> > 
+> > Just giving an example to illustrate this point:
+> > Documentation/devicetree/bindings/net/wireless/ti,wl1251.txt says it
+> > needs vio-supply -> so i have a node with the wireless supply as
+> > vio-supply -> Since we are scanning from NULL for vio-supply, we hit
+> > that, that is a bad choice for enabling io-retention.
 > 
-> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> There is no bining that specifically supports this as I think it is not
+> needed. The devices that are capable to wakeup the system from
+> Partial-IO are all powered through one supply line that is always-on. It
+> is called 'vddshv_canuart' and the name of this supply is checked
+> in the above code as well. Yes I am using 'vio-supply', but only to
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+In effect, you are looking for nodes that have vio-supply pointing to
+a regulator called vddshv_canuart. Not only is it too specific to a
+device, but a board as well. Without documentation in binding, users
+who don't have sufficient information is bound to mess this up. Further,
+vddshv_canuart may not even be a regulator - there will need to be
+checks for that on top of just a strncmp.
 
-    Andrew
+
+> search for the potential consumers of this supply.
+> So wl1251 will be skipped in above code at
+> 
+>   if (strncmp(canuart_name, supply_name, strlen(canuart_name)))
+
+Aah, thanks, but sorry, but I would prefer the drivers handle the
+specifics. If a new peripheral comes on to the list for a different
+device, or a different regulator name appears for can, we would be
+dealing with name mapping etc.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
