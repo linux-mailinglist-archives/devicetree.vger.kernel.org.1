@@ -1,101 +1,117 @@
-Return-Path: <devicetree+bounces-117182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6EBA9B53BA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 21:33:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8709A9B53EB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 21:38:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F08AB22597
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:33:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8BDD1C20F9A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C847206E9D;
-	Tue, 29 Oct 2024 20:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A708020B219;
+	Tue, 29 Oct 2024 20:35:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Et+rln8p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KYvIRtAm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6323A2076C6;
-	Tue, 29 Oct 2024 20:30:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EF1F20B20F;
+	Tue, 29 Oct 2024 20:35:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730233825; cv=none; b=anYoktfJEEjeL1RsaruCH/LLmAUKpEEmIq9DYQhWcsQLe3GKgL2tbfrvE2bi7CB1NibMXIkGUTK1JuWIcmjpLyz9dJM1PzPO8UzZsF1cN5mAgbo6Vmp9NQ+nAXA3tGzpFLivghXBEfowaSzT+lNMVvSyvoROCNmHbfWaFeWoGYg=
+	t=1730234146; cv=none; b=I45HVHJpK4KwUZ58mwZWyPrjeo7nj3ISvFEjPwJtrS6LKXaQ7Yyc6PdGTfM8vmDB+pJ54xHLC/rl32WHGIRXvQ0yCOZ7hiGbPW134YdAJFE0xiBNJc/+qPToJtQAD/EO1kqoqN0K7tbzD0T2Sc0qUdiGLCjTJtJ79378MYd0pac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730233825; c=relaxed/simple;
-	bh=LCPuPHxmcheRjCZu/CCyo9lhHWSqEy8+gxzMZANtv8I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=X+yajf73bE4tBPV1vpnIG338B6L1ivBO8vjaCSbK0K8+Ytrk3FLY0auinrcYfXx7a2kNbeQX3IfOJWVNx7X+BcQirrG82FqwC1KEerNRoB1TG0dsBPEUvTROoDRXqQ3peEQUMkt/qWbrKZxTiVSN2ANtk59yLc/k1/IG9QFdKP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Et+rln8p; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-20bb39d97d1so49577815ad.2;
-        Tue, 29 Oct 2024 13:30:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730233822; x=1730838622; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LCPuPHxmcheRjCZu/CCyo9lhHWSqEy8+gxzMZANtv8I=;
-        b=Et+rln8p0CydBo2vWmqYnosQY2ldjHldXuPrChtomqjvi1cPgeUIi02aB+6DaGut8y
-         28g5TA90LuFteiYeNT4+cIbILtXGHGhie0RmqLugxMwSJpJFcTZGq/LKscAhpla5+OnM
-         gCIJ4lhNX6ZyBE2OfzfoXk9Iwzoe6SqDjeUu8e1T+nIfLaIQOguOPrjBYKo60qWo23ko
-         xH5WEJKNbPzUncHiticfY/Ng9oKT89/WFpz2xs7CoziDMa3Z275gf5jIZN/3bQJqHrga
-         Bwb3IvqhYjfHSnTzzOR8buldll+KjIJkvjL6DRxuq+JZIdYuCqe6kzTsIpOi7LrgyS+A
-         99zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730233822; x=1730838622;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LCPuPHxmcheRjCZu/CCyo9lhHWSqEy8+gxzMZANtv8I=;
-        b=ZYXmNFT5spDpgy5LmR5nWd9hU4qS/ijAGaDi/HEqHzNFaP78c8heYuMdhkSOBn7dmm
-         vcEM+d4irDeBufA3g2ERIqsBAeaLHWb0s3Ntv2pWyVZKSmWJXPtlF+8jy26JrAbGau+M
-         ZzP6W9//2WB+48Vzv2SYW2mNNiGoNloXforyYruavAeMkWowFQ4ysJ5Y5dfuTTMAv35b
-         184lksCR0pSaG91htOXymZLLG1OeijbJY2Ch/B6DkzgqAdRWaxFnV+mBpIWGTbKvLp1S
-         f2UizqZaL8QCdnTLmm+S77SGHdW7RDN/sgel9dJvD7X81WuYaFue6wDoEZX+pSc0A78X
-         ST7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWQzbLQUukn1u0nJ6niQBupNd4jM0crHWymaJSTNdpRA1/jb2Px7Kzl/lcG+P2zP1Yc6EsENhEDg+pOIA==@vger.kernel.org, AJvYcCWedKaE21uDMbtb4OLoXZ3J2F6WkpLJm3E5uQBZok7SoZFdBTjQ6b4WumRQm7dQtL08TJfG5aujyrlKWRVG@vger.kernel.org, AJvYcCWyj8EYFvJtKRqehq0nkaAD05koUZCuduAZpUN19rKV7+0EPt84zCcKmzj+YtqYykEpF6nfsh9+d9/G@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpJjEfGrbjPMqV0/QoZBEdgnpoYxH8572Q/RWunwLEpJ+Pbcrx
-	ZkMS8lJ2iG7T62Y2qiKQXq+NNnuh4pF/irh4z3aJd7kt1pn2EqKr
-X-Google-Smtp-Source: AGHT+IFroEW9to+PrSxVxxL7EaDXV3zy0R6mpiRww0wu/Ae6aYY9Rv/dMYht+3SI/+mmV80Zf6dDdw==
-X-Received: by 2002:a17:902:cf02:b0:20c:f648:e39e with SMTP id d9443c01a7336-210f770091amr9100505ad.58.1730233821672;
-        Tue, 29 Oct 2024 13:30:21 -0700 (PDT)
-Received: from mighty.kangaroo-insen.ts.net ([45.64.12.145])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-210bbf46373sm70351915ad.54.2024.10.29.13.30.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 13:30:21 -0700 (PDT)
-From: MightyM17 <bavishimithil@gmail.com>
-To: bavishimithil@gmail.com
-Cc: andreas@kemnade.info,
-	bcousson@baylibre.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	robh@kernel.org,
-	tony@atomide.com
-Subject: Re: [PATCH v2] ARM: dts: twl6032: Add DTS file for TWL6032 PMIC
-Date: Tue, 29 Oct 2024 20:30:14 +0000
-Message-ID: <20241029203014.399-1-bavishimithil@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240626095056.12607-1-bavishimithil@gmail.com>
-References: <20240626095056.12607-1-bavishimithil@gmail.com>
+	s=arc-20240116; t=1730234146; c=relaxed/simple;
+	bh=EH49fBcg1xnPZSv8CjBUPDLHZTVEnhL92w20nPZLvxw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=GfdnQWdiW+lyzXxcwUAGA/uCNRIZoRU+OjwmilPHNdp/K1LtP9hw3zqy8hnazi4YwGJEd1ASzTaHR+eDvEgwt+BsjxLZcUkvfyJKy2e34IcZKrvupbh+eEDkyjG/r/iBxdrbNaEoyxKhZMSwRya+TCt8+pUSUp91Q+ZrIEwA71w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KYvIRtAm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3892BC4CEE4;
+	Tue, 29 Oct 2024 20:35:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730234146;
+	bh=EH49fBcg1xnPZSv8CjBUPDLHZTVEnhL92w20nPZLvxw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=KYvIRtAmtoixygMz+a2XxHt6DkPRuQjciy2Xm03E3wMqsbV3tLs50qwpWQSrnjm41
+	 /MIoS9Fuxx5hp4+7WME89l48G9pESX/ygwqTaUF5InHJp0UH2sLjuLu5Z8AKOSg8iw
+	 iEnqog0g283e1ktePYZYYacZ6aWje6Ao90HsXZV8aTnC0r4N6PTlnqBlWfJX46Hqz0
+	 CBNMK2nwjeL+VIvg0tDdWQymmT/n97hx+R2K2cb9cGE0+n6R2Vd7PHJHZhEQsVVOKH
+	 fn+9Axqa+oo5ObCVIHCjNBrH2fMoBfjO6t1z67WwnUm4+U8TqsEAhD66rq0Nfjnxee
+	 PqUmSF7gB92hA==
+From: Mark Brown <broonie@kernel.org>
+To: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ Nuno Sa <nuno.sa@analog.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20241028-adau1373-shutdown-v2-0-647f56bbd182@analog.com>
+References: <20241028-adau1373-shutdown-v2-0-647f56bbd182@analog.com>
+Subject: Re: [PATCH v2 0/4] ASoC: codecs: adau1373: drop platform data
+Message-Id: <173023414396.174179.15867147846547510289.b4-ty@kernel.org>
+Date: Tue, 29 Oct 2024 20:35:43 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-9b746
 
-> Well, no, the file is not used at the moment, I do not think it makes sense to have it in without an actual in-tree user.
+On Mon, 28 Oct 2024 16:43:37 +0100, Nuno Sa wrote:
+> Here it goes v2...
+> 
+> v1:
+>  * https://lore.kernel.org/all/20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com/
+> 
+> v2:
+>  - Patch 2 (Bindings):
+>    * Removed extra blank line;
+>    * Fixed example messed indentation;
+>    * Added more properties to the example;
+>    * Add maxItems.
+>  - Patch 4 (Powerdown gpio):
+>    * Powerdown the chip when unbound.
+> 
+> [...]
 
-So, I am planning to merge espresso dts (https://gitlab.postmarketos.org/postmarketOS/pmaports/-/blob/master/device/community/linux-postmarketos-omap/0002-arm-dts-Add-common-dtsi-for-espresso.patch?ref_type=heads) once this gets merged, plus it can be later used on epson-embt2ws as well.
+Applied to
 
-Best Regards,
-Mithil
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/4] ASoC: codecs: adau1373: add some kconfig text
+      commit: bebf0f45326e6cbb6f96e405e4179962a5675aaf
+[2/4] ASoC: dt-bindings: document the adau1373 Codec
+      commit: 6b26a56fc035971951299dc1330e1fc5d49866c9
+[3/4] ASoC: codecs: adau1373: drop patform_data
+      commit: 71743cbe28cf1d1f845a30bc9664c3b6a08f0d30
+[4/4] ASoC: codecs: adau1373: add powerdown gpio
+      commit: ba79bca407d3b7e6f5be209d9b3f73f81ee8d460
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
