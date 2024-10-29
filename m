@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-117024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F25D9B4AE6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:27:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CAC69B4AF2
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:31:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92B1F1F23D8C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:27:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 407E31C229DB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F50206961;
-	Tue, 29 Oct 2024 13:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44217206956;
+	Tue, 29 Oct 2024 13:31:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kVFxTY2/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mAt5fIy0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8857620607F;
-	Tue, 29 Oct 2024 13:27:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D977021345;
+	Tue, 29 Oct 2024 13:31:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730208450; cv=none; b=PpU/Ej5mO6WZAY6So5exLyTo/g4TZqwCO8dn95J6YCH+6wsA7Y0S0jwmLE4FsMBsfAtTXIUjWbxM+lp0xegVV2PH+xG0emTCFfHgKIWw4NMTzqp84Gap/o42yFDtx6M+bFK5nXefF4TZISwfGW0cM33iz6P04U708uieyzK3+XQ=
+	t=1730208690; cv=none; b=NiVFhLCpZoBiMFQf86ANDtLvnRlWXlP1dSWBl2nLcc44azT+jIEXLbmYumkoCr8FUi0iUYFXF3OP00k5OhOIW7S60jUN/Ovj5KnfZ+EA3n1aMsbxCqiW01aj0oNcbUjcixwxGRHGpcsVtLOsocG8K0lF1YrH1UUZFHCE1BhdRAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730208450; c=relaxed/simple;
-	bh=bmkKt0GxS/D8qfpTpd3Zd9bJQThQKbbNZIThKzLdY2Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FOneVrX6b8WNZNGIVyuWIRPg+t+mLgG6JlDzmn/oygtgji9oaxi5wXfaKTlX0EdwBL3AlDGh4eozCvLgj7O7WZggwS4c7W/jLJHd7MD8k7XAo5DQXluJIs87XHJl71qC7o/idtetkp8ES/TE4LLeDApnfrxk2/CZI7w1frpGYxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kVFxTY2/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BABEC4CEE9;
-	Tue, 29 Oct 2024 13:27:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730208450;
-	bh=bmkKt0GxS/D8qfpTpd3Zd9bJQThQKbbNZIThKzLdY2Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kVFxTY2/85sYNdCDqT9VYkJUtbKpSDveyq3CfYFDGJpnmUljwYUAnRnBxcxDzaaNm
-	 5F7IdqI4ZsusqOEoa/+TCVBPT6gPdbnklMdTuD3bbuO3f/2oNv6NV/AfFdZ+nZvYE6
-	 n8MRQcEl0W2lKKs2WDQqjj2IYwW0wrrj5Xf+x6N8HPwyKxZkhzZCPBQFAG352mugMd
-	 mmUWrcKW+be6iSDOrpgeSgZiwhIG0NlPSWmGFmOvzEOuLROMhBbwSOqjh33hsmVUAK
-	 RVEnObI5vP8Oi1qmHxy2X3v7cXXVyKqWYiskYr4JqcSw/rnoCihG5JM6rdK/rmMy7f
-	 4f8/bWe87CnJA==
-Message-ID: <e134b98f-5a57-4a37-b46b-8b4017f050a6@kernel.org>
-Date: Tue, 29 Oct 2024 14:27:20 +0100
+	s=arc-20240116; t=1730208690; c=relaxed/simple;
+	bh=uG1+oDKMhuGOs6drp2Td4rHlVKHHhe/KwxJBXxoeDwg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XWhlRikqPyyVCl9Cdn7bUua04E7SDD2IHgrHEfa3X6m6c4maf8XMzIW3Y0qpPwVU29x422EanqAO7x4mYYCO9dDdTNcJ9iUUcVZ5qBdsb8Arh6ky/WZzHwDmUbHlKo77EOKtbHZb3MNnVukdW0J7hxrcZnsgNDJtwFF+dXDW4Ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mAt5fIy0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49T9PT2s007682;
+	Tue, 29 Oct 2024 13:31:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TjNHLSsUGuFmGlERPGDh+LCYmNQGD33Ek78v1YDjssc=; b=mAt5fIy0NEQ9tWLk
+	sY8gQ2lZ1Bm9KGukV6aBh2zEo/BWcYTkqbV7yIPSHv6OByrEdQXu72tkqSO5YxLm
+	FfVe0cdjlTUbteSWQoahuOXPjpnF2i59xOo+DhxB4v2DZgkYXzbPZomGSeo8LH+4
+	wIYCuqBjYpz0ONvp9Ok1oLc4bs5aJ1flx3Ghr3SmqiOVcKntc/6oBLoFmqNee5nt
+	HNmDh/LfEO1SShbAq6eMDj8vyzqSWZHfIadDM9vK03FDgKvWRjvfKaNhoinate9E
+	zHaxRPZhqo7ZMfOekQo57cjHADfaH/Y6g54vAdUNrOjtmlIwznsCDnaL1tF3PyN3
+	i7+8+w==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grt70f8v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Oct 2024 13:31:15 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49TDVEHD014690
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Oct 2024 13:31:14 GMT
+Received: from [10.253.37.153] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
+ 2024 06:31:08 -0700
+Message-ID: <b5e6e81e-dab2-43d8-b52e-85b6cb0d0209@quicinc.com>
+Date: Tue, 29 Oct 2024 21:31:05 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,126 +65,166 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: net: Add support for Sophgo SG2044
- dwmac
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Inochi Amaoto <inochiama@outlook.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>, Yixun Lan <dlan@gentoo.org>,
- Longbin Li <looong.bin@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org
-References: <20241025011000.244350-1-inochiama@gmail.com>
- <20241025011000.244350-3-inochiama@gmail.com>
- <4avwff7m4puralnaoh6pat62nzpovre2usqkmp3q4r4bk5ujjf@j3jzr4p74v4a>
- <mwlbdxw7yh5cqqi5mnbhelf4ihqihup4zkzppkxm7ggsb5itbb@mcbyevoat76d>
- <8eeb1f7c-3198-45ac-be9a-c3d4e5174f1f@kernel.org>
- <gcur4pgotkwp6nd557ftkvlzh5xv3shxvvl3ofictlie2hlxua@f4zxljrgzvke>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: Add CMN PLL node for IPQ9574 SoC
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <quic_kkumarcs@quicinc.com>,
+        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>,
+        <bartosz.golaszewski@linaro.org>, <srinivas.kandagatla@linaro.org>
+References: <20241028-qcom_ipq_cmnpll-v5-0-339994b0388d@quicinc.com>
+ <20241028-qcom_ipq_cmnpll-v5-4-339994b0388d@quicinc.com>
+ <crcbzpxjnbceilqccbwr7uyak6z6zdwr7mhfcyaw6vvpcce6ko@zrojbtqi4st4>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <gcur4pgotkwp6nd557ftkvlzh5xv3shxvvl3ofictlie2hlxua@f4zxljrgzvke>
-Content-Type: text/plain; charset=UTF-8
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <crcbzpxjnbceilqccbwr7uyak6z6zdwr7mhfcyaw6vvpcce6ko@zrojbtqi4st4>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: nWv7Wst7ajudcR5l84aK1YXFfY-RmoFz
+X-Proofpoint-GUID: nWv7Wst7ajudcR5l84aK1YXFfY-RmoFz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ adultscore=0 clxscore=1015 impostorscore=0 malwarescore=0
+ priorityscore=1501 phishscore=0 mlxscore=0 suspectscore=0 mlxlogscore=999
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410290103
 
-On 28/10/2024 08:16, Inochi Amaoto wrote:
-> On Mon, Oct 28, 2024 at 08:06:25AM +0100, Krzysztof Kozlowski wrote:
->> On 28/10/2024 00:32, Inochi Amaoto wrote:
->>> On Sun, Oct 27, 2024 at 09:38:00PM +0100, Krzysztof Kozlowski wrote:
->>>> On Fri, Oct 25, 2024 at 09:09:58AM +0800, Inochi Amaoto wrote:
->>>>> The GMAC IP on SG2044 is almost a standard Synopsys DesignWare MAC
->>>>> with some extra clock.
->>>>>
->>>>> Add necessary compatible string for this device.
->>>>>
->>>>> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
->>>>> ---
->>>>
->>>> This should be squashed with a corrected previous patch 
->>>
->>> Good, I will.
->>>
->>>> (why do you need to select snps,dwmac-5.30a?), 
->>>
->>> The is because the driver use the fallback versioned compatible 
->>> string to set up some common arguments. (This is what the patch
+
+
+On 10/28/2024 11:39 PM, Dmitry Baryshkov wrote:
+> On Mon, Oct 28, 2024 at 10:04:11PM +0800, Luo Jie wrote:
+>> The CMN PLL clock controller allows selection of an input clock rate
+>> from a defined set of input clock rates. It in-turn supplies fixed
+>> rate output clocks to the hardware blocks that provide the ethernet
+>> functions such as PPE (Packet Process Engine) and connected switch or
+>> PHY, and to GCC.
 >>
->> Nope. Driver never relies on schema doing select. That's just incorrect.
+>> The reference clock of CMN PLL is routed from XO to the CMN PLL through
+>> the internal WiFi block.
+>> .XO (48 MHZ or 96 MHZ)-->WiFi (multiplier/divider)-->48 MHZ to CMN PLL.
 >>
+>> The reference input clock from WiFi to CMN PLL is fully controlled by
+>> the bootstrap pins which select the XO frequency (48 MHZ or 96 MHZ).
+>> Based on this frequency, the divider in the internal Wi-Fi block is
+>> automatically configured by hardware (1 for 48 MHZ, 2 for 96 MHZ), to
+>> ensure output clock to CMN PLL is 48 MHZ.
+>>
+>> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi | 16 ++++++++++++++-
+>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi            | 26 +++++++++++++++++++++++-
+>>   2 files changed, 40 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
+>> index 91e104b0f865..f026c2a9d0c0 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
+>> @@ -3,7 +3,7 @@
+>>    * IPQ9574 RDP board common device tree source
+>>    *
+>>    * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
+>> - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
+>>    */
+>>   
+>>   /dts-v1/;
+>> @@ -164,6 +164,20 @@ &usb3 {
+>>   	status = "okay";
+>>   };
+>>   
+>> +/*
+>> + * The bootstrap pins for the board select the XO clock frequency,
+>> + * which automatically enables the right dividers to ensure the
+>> + * reference clock output to CMNPLL is 48 MHZ.
+>> + */
+>> +&cmn_pll_ref_clk {
+>> +	clock-div = <1>;
+>> +	clock-mult = <1>;
+>> +};
+>> +
+>>   &xo_board_clk {
+>>   	clock-frequency = <24000000>;
+>>   };
+>> +
+>> +&xo_clk {
+>> +	clock-frequency = <48000000>;
+>> +};
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> index 14c7b3a78442..ad9cdb1f76db 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> @@ -3,10 +3,11 @@
+>>    * IPQ9574 SoC device tree source
+>>    *
+>>    * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
+>> - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
+>>    */
+>>   
+>>   #include <dt-bindings/clock/qcom,apss-ipq.h>
+>> +#include <dt-bindings/clock/qcom,ipq-cmn-pll.h>
+>>   #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
+>>   #include <dt-bindings/interconnect/qcom,ipq9574.h>
+>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> @@ -19,6 +20,12 @@ / {
+>>   	#size-cells = <2>;
+>>   
+>>   	clocks {
+>> +		cmn_pll_ref_clk: cmn-pll-ref-clk {
+>> +			compatible = "fixed-factor-clock";
+>> +			clocks = <&xo_clk>;
+>> +			#clock-cells = <0>;
+>> +		};
+>> +
+>>   		sleep_clk: sleep-clk {
+>>   			compatible = "fixed-clock";
+>>   			#clock-cells = <0>;
+>> @@ -28,6 +35,11 @@ xo_board_clk: xo-board-clk {
+>>   			compatible = "fixed-clock";
+>>   			#clock-cells = <0>;
+>>   		};
+>> +
+>> +		xo_clk: xo-clk {
+>> +			compatible = "fixed-clock";
+>> +			#clock-cells = <0>;
+>> +		};
 > 
-> Yeah, I make a mistake on understanding you. For me, I just followed
-> what others do. But there is a comment before this select.
+> What is the difference between xo_clk and xo_board_clk? Are there two
+> different crystals?
+
+The xo_board_clk of 24 MHZ is generated by applying another divider in
+HW (by 2), on top of the same 48 MHZ clock output from internal Wi-Fi.
+
+XO (48 MHZ or 96 MHZ)-->WiFi (mul/div)-->48 MHZ-->fixed factor divider 2 
+by HW ---> xo_board_clk (24 MHZ)
+
+We may need to correct its clock chain representation. We will update
+xo_board_clk as a fixed factor (div by 2) clock, and refer to the 48 MHZ
+input clock, using a separate patch after the CMN PLL patch series
+review is concluded. Hope this approach is fine.
+
 > 
-> """
-> Select every compatible, including the deprecated ones. This way, we
-> will be able to report a warning when we have that compatible, since
-> we will validate the node thanks to the select, but won't report it
-> as a valid value in the compatible property description
-> """
+>>   	};
+>>   
+>>   	cpus {
 > 
-> By reading this, I think there may be some historical reason? Maybe
-> someone can explain this.
-
-I think this is left-over from older times before all specific
-compatibles were added here and in their bindings. This binding has been
-waiting for some cleanup for a while now, so this is fine.
-
-I still think the patches should be merged, though.
-
-Best regards,
-Krzysztof
 
 
