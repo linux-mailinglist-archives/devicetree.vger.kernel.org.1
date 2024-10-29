@@ -1,112 +1,163 @@
-Return-Path: <devicetree+bounces-117008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 930199B4A03
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:46:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB6409B4A05
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:46:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C67091C2279A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:46:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 130ABB23CF2
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:46:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E808205ADF;
-	Tue, 29 Oct 2024 12:45:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0AFD205126;
+	Tue, 29 Oct 2024 12:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="wr6DQDzV"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ucSnCxdD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB5720262B
-	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 12:45:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4343F1E2301;
+	Tue, 29 Oct 2024 12:46:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730205953; cv=none; b=p8/80oYUqjjgJ4WbMHOlH0mJtTBvEIJvP3nPCfoIzXvIuKfMF2BS3zeAnwM9r4DuRAiw3ixTHwar1SehhN0AeHeWlW5hF6GjEjxjaTpY6wU/8PnyhGMvNgHKz5Qi0TAROxicvfuekHI/Ftvej8bYLnpnukKOcIFQmQ/nNx5EaHU=
+	t=1730205980; cv=none; b=pv7RVXHFu5rIjNoDSVpS5mYtisQz0CfsrWacb3u1fWF+iSNicPnAKLiQXUIFDPTKrXxbI3SKnw8r3zEubX3hENOyPblRvkOP5o7MM3d7VsKwHfa/Cl+ZM7oeFuq887iSFw3MHRhvJ6yibQJF44jcXAiiwkHFXWjBSPqM/cEv9y8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730205953; c=relaxed/simple;
-	bh=GtzJ47n0bMGIC3fQwXJAU5Hmzy0ocBZhCDRYOCRmxZU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZLIowuJx5mV/CjEPOjSgOzMexbWZVp7xqkZeQCn//p4hpoZ7DQO7uvH28oCe5PUTGlfWNHZZZuZwhlQ1I2AzE0BR6DwGfeX73QN5ywGr49VElMq+JK5sLbV0Vav4zw4WqtA6yl9Eqh+4d7P6f+Q4F9JTAmvD2FxbvdbU+3OtE/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=wr6DQDzV; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4316cce103dso70931075e9.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 05:45:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1730205949; x=1730810749; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GtzJ47n0bMGIC3fQwXJAU5Hmzy0ocBZhCDRYOCRmxZU=;
-        b=wr6DQDzVgsxzoBfN0tOEWhKrDMMy2lq+MYC5dZCB9175P8C/HW975PcOeeAOB9/Oep
-         WhwYf//UYIuPF+YWVT/Zsi3xHElNMHr3AaatzUdRw5npggTaV2CUpXVy2W8La1FzWn25
-         gJ4L372teJDi8wISFxQKpBjxM8PUmwl42/i2tplU0Upi8HkqDy4iwOWb+bIYcT1EarQK
-         0uiaYjSc7+zHFbD9JIbfA76MiYu6SR9J/hYzukeo9h1QzZ0xls4hSlPUBUVoaps4YxOy
-         HVuVUPg6iX0hFqsTXbZDNG7aEQ2uvjF9jebQRZ9OfPe90ZLENK048af0b8ioNal40vW3
-         2oKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730205949; x=1730810749;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GtzJ47n0bMGIC3fQwXJAU5Hmzy0ocBZhCDRYOCRmxZU=;
-        b=p1O3tVOH/hz5WHa2yREjU/R4mZ9QftDLIKHi5m69zay25mABp9yLUIFatcY90zE7P7
-         31yp7Xze+0BkLH56rcfo/YMmMa1jHPV2dDm+9Q3xwlQ/5qxzpN1Sg7BJn4Go7eUw85gl
-         CTvEL0YNFfpoy4ftCVGSzuijqImKpzc7SK9NDwe/dugmkvwbLRCCfGnlMOZ8zVQM4C0h
-         TURE9n0B2aARmwgKxrIZIZU3+KcJFEEisXe8HQDL33i4EsT7KgCBe9+de1+aIO8B1aQw
-         hGpneFW7g21aDwT91qPDtJXWBOVWbCO1ym5pMgxxO6A5GKW3+/bjI7j/Lp+3Hi4b8a64
-         dx7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV9KQeyB8XXi4vRznF+0NOsJdmuSfXFZ7QF9gyFAXpoJ3WzKKvDJTcD4YjBiD0G2iv8m46dqAPhzRTV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOlqEE8mAp7MjrfXUUvd1oObJaHTDSZbfJayjhHZSCJ6mL5bP0
-	WAKrX9yfXTdw9oWDlWtDOBUNbO9QityaVa9zxdlzHmZpQy0Ojma3tAHJk25Gbgpz0J8rEddBtHJ
-	+ZccJUFwA5VUADLIqPSRKSYLGPenAp06q7gSG
-X-Google-Smtp-Source: AGHT+IGeiowj3zMHJ3YR03nzzPGzLm/Rxvr4HwKwchMRBnozZXVzhVD6hnCcZcIEs7fKbrQEswkrjJ+oz3BaJydpoLA=
-X-Received: by 2002:a05:600c:1ca1:b0:431:518a:6826 with SMTP id
- 5b1f17b1804b1-4319acadb66mr124917775e9.19.1730205949075; Tue, 29 Oct 2024
- 05:45:49 -0700 (PDT)
+	s=arc-20240116; t=1730205980; c=relaxed/simple;
+	bh=OLil04WAdDwUQiUnyBgo68CgowQVLkwEN+Pc80r2GOo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MEwJsIm0SyahJPzRKrAvghnilgkKshOGSLHS+fK87iFwlObXwfHWeRhI8Pyz1be4AP04GpfV4NDEoUIOVneKXq2//hcqW93c4otx3jCrJUZwh2BwfqlKjIsxpatUVoRiuQTQvDdpDAIEGsWvvbI9WMp7m3pnC+woT+38kiQB7FU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ucSnCxdD; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 56CAE4D4;
+	Tue, 29 Oct 2024 13:46:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1730205973;
+	bh=OLil04WAdDwUQiUnyBgo68CgowQVLkwEN+Pc80r2GOo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ucSnCxdDdpntMwXNJ28N3XAxZ/O5S44Eheqyt0429yfbjXnt22/Vw/J70MUfahUFs
+	 hfqB0pC/Rnpl5UwEtPYILpB21BN0+8n0FI1AgZLnqlMzRNfSvvcwPpuu01TNyOcxh+
+	 O9TjDRkyZ2f3k1FodWSvjsaLDMFi6Mi+81MatNK4=
+Date: Tue, 29 Oct 2024 14:46:09 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mirela Rabulea <mirela.rabulea@nxp.com>, mchehab@kernel.org,
+	sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
+	laurentiu.palcu@nxp.com, robert.chiras@nxp.com,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	LnxRevLi@nxp.com, kieran.bingham@ideasonboard.com,
+	hdegoede@redhat.com, dave.stevenson@raspberrypi.com,
+	mike.rudenko@gmail.com, alain.volmat@foss.st.com,
+	julien.vuillaumier@nxp.com, alice.yuan@nxp.com,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: media: i2c: Add bindings for OX05B1S
+ sensor driver
+Message-ID: <20241029124609.GP22600@pendragon.ideasonboard.com>
+References: <20241028190628.257249-1-mirela.rabulea@nxp.com>
+ <20241028190628.257249-2-mirela.rabulea@nxp.com>
+ <216a2728-ab62-4b76-aca5-8d911687dfbe@kernel.org>
+ <20241029121039.GM22600@pendragon.ideasonboard.com>
+ <eeaa92c0-fed6-408b-8471-47acf0ca394d@kernel.org>
+ <20241029122150.GN22600@pendragon.ideasonboard.com>
+ <3ff55dc3-c6a9-40a8-8e21-2e3e43cfd614@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-3-dakr@kernel.org>
-In-Reply-To: <20241022213221.2383-3-dakr@kernel.org>
-From: Alice Ryhl <aliceryhl@google.com>
-Date: Tue, 29 Oct 2024 13:45:36 +0100
-Message-ID: <CAH5fLghQ3Rdgk+xzz9RzNzTs4vYLMO0q-SkDOrnb1u4TkPQVUA@mail.gmail.com>
-Subject: Re: [PATCH v3 02/16] rust: introduce `InPlaceModule`
-To: Danilo Krummrich <dakr@kernel.org>, ojeda@kernel.org
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
-	alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net, 
-	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu, 
-	a.hindborg@samsung.com, airlied@gmail.com, fujita.tomonori@gmail.com, 
-	lina@asahilina.net, pstanner@redhat.com, ajanulgu@redhat.com, 
-	lyude@redhat.com, robh@kernel.org, daniel.almeida@collabora.com, 
-	saravanak@google.com, rust-for-linux@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, Wedson Almeida Filho <walmeida@microsoft.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <3ff55dc3-c6a9-40a8-8e21-2e3e43cfd614@kernel.org>
 
-On Tue, Oct 22, 2024 at 11:32=E2=80=AFPM Danilo Krummrich <dakr@kernel.org>=
- wrote:
+(CC'ing the devicetree mailing list)
+
+On Tue, Oct 29, 2024 at 01:28:51PM +0100, Krzysztof Kozlowski wrote:
+> On 29/10/2024 13:21, Laurent Pinchart wrote:
+> > On Tue, Oct 29, 2024 at 01:15:46PM +0100, Krzysztof Kozlowski wrote:
+> >> On 29/10/2024 13:10, Laurent Pinchart wrote:
+> >>> On Tue, Oct 29, 2024 at 07:14:28AM +0100, Krzysztof Kozlowski wrote:
+> >>>> On 28/10/2024 20:06, Mirela Rabulea wrote:
+> >>>>> Add bindings for OX05B1S sensor driver
+> >>>>>
+> >>>>> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+> >>>>
+> >>>> <form letter>
+> >>>> Please use scripts/get_maintainers.pl to get a list of necessary people
+> >>>> and lists to CC. It might happen, that command when run on an older
+> >>>> kernel, gives you outdated entries. Therefore please be sure you base
+> >>>> your patches on recent Linux kernel.
+> >>>>
+> >>>> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+> >>>> people, so fix your workflow. Tools might also fail if you work on some
+> >>>> ancient tree (don't, instead use mainline) or work on fork of kernel
+> >>>> (don't, instead use mainline). Just use b4 and everything should be
+> >>>> fine, although remember about `b4 prep --auto-to-cc` if you added new
+> >>>> patches to the patchset.
+> >>>>
+> >>>> You missed at least devicetree list (maybe more), so this won't be
+> >>>> tested by automated tooling. Performing review on untested code might be
+> >>>> a waste of time.
+> >>>>
+> >>>> Please kindly resend and include all necessary To/Cc entries.
+> >>>> </form letter>
+> >>>>
+> >>>> Binding also looks very different than all other devices, so re-write it
+> >>>> starting from EXISTING GOOD bindings. Not some downstream stuff.
+> >>>
+> >>> Krzysztof, please point to a good example when making this kind of
+> >>> comment.
+> >>
+> >> Anything recently added. Git log tells which files were recently added.
+> > 
+> > If the review comment is a copy&paste (given that you review lots of
+> > bindings and constantly have to repeat the same things, that would make
+> > sense), expanding it with that information for future reviews could help
+> > patch authors. Thanks for considering it, it would be much appreciated.
+> 
+> Sorry, but that's not the point. You do not take 10 yo, unmaintained
+> driver and use it as template for your new one. Instead you rather take
+> something recent or something which you know is correct. Same with bindings.
+
+I wouldn't know for sure which driver or binding was used as a starting
+point. My point was unrelated to this particular patch series. I think
+that including clear information in ready-made answers will help
+everybody. It will tell the submitters what they need to know, it will
+avoid this kind of conversation being repeated, and it could even in the
+end increase the quality of submissions. Even better, it won't cost
+anything to add it to answer templates.
+
+> NXP is not a small company which does not know how to use Linux or how
+> to upstream stuff. This is not individual's contribution, where one does
+> not have colleagues or 3 billions USD of revenue behind, to be able to
+> get some internal help prior sending something downstream.
+> 
+> They can spend something out of these 3 billions of revenue or 700
+> millions of net income to hire you guys or any other open-source
+> company, if basics of upstreaming are unknown.
 >
-> From: Wedson Almeida Filho <walmeida@microsoft.com>
->
-> This allows modules to be initialised in-place in pinned memory, which
-> enables the usage of pinned types (e.g., mutexes, spinlocks, driver
-> registrations, etc.) in modules without any extra allocations.
->
-> Signed-off-by: Wedson Almeida Filho <walmeida@microsoft.com>
-> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> That's the comment I was giving about NXP since a year. Some things
+> around SoC improved, some things from this unit of NXP here did not
+> change at all.
 
-Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+If I were on the receiving end of this, as an individual developer, I
+would consider it very patronizing and insulting. Treating the authors
+of contributions you don't consider as good enough in such a harsh way
+will not improve the situation, and will drive people away. You may be
+frustrated by some companies, but this kind of comment will not help.
+Please soften your tone towards individual developers, they're not
+punching balls on which to dump frustration and anger. Firm and polite
+will work better than lashing out.
 
-Miguel: I think this patch would be good to land in 6.13. I'd like to
-submit a miscdevice sample once 6.14 comes around, and having this
-already in will make the miscdevice sample nicer.
+> So again, it's not about me giving them more things. They will keep
+> ignoring it over and over, because that's how big companies sometimes
+> behave. You know, community people work for free, right?
 
-Alice
+-- 
+Regards,
+
+Laurent Pinchart
 
