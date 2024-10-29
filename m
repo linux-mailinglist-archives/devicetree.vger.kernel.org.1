@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-117141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B87B29B5295
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:17:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D9D9B5296
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:17:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C4CE283C2B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 19:17:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEAF0B22CF4
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 19:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E92DA206979;
-	Tue, 29 Oct 2024 19:16:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07E8D1FF7C2;
+	Tue, 29 Oct 2024 19:16:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nj7i/Gcf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RwRquPkB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A9D2076A5
-	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 19:16:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28ACA207205
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 19:16:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730229413; cv=none; b=Cmk1zHWBNF+BWghpsmlzR0pIR+Yp3X2XHRNFP5kMi/9YSyBijhnt5QZc4WjFpvgJa1RKU5Ru/Qi/fBHvKXVWu0ULIFtPkiQEBeLVZdyCpRjYwW60Ynaq3ozSPffAUNmFFJmTUMXST1hIggDdftItkXYxERenRvnr1AAuXjAVvqU=
+	t=1730229417; cv=none; b=SLkthxlvlAJ3V3oWBvKyBV8B+yXfiki6VucbQtTU728P/V+LhXfmVCrhKIgNkgn2zvEWgVeg4Ds4LiTur63zkanuxAADH1a73NFxDZrY0tIWzwbIMzQAk8xboLYylELaq/+zYjzpD44gDQZagBtOhxc2W9YbTCxrmiG3yTqj+Yg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730229413; c=relaxed/simple;
-	bh=gUJIZGPrG1eoF8g+IJQZdm5bRftguLy/j6J6cRJX5ZA=;
+	s=arc-20240116; t=1730229417; c=relaxed/simple;
+	bh=cgnkI4FnhVgTOOOFoFrXelz+SmIgd2L/bkdD960A0So=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=K3SS0PEG2OH815ZzNu++LJPHzwGQoSLq1YEEN0yLh3POa7HLwRNixVFHtbLiEO9N3QYb/pmMWdsML2p9EcxD2CmIAubxSO9yqFDmfqC9ypTVsXEZOMK2U8Iluo3d3/NCY1Im7bwCy5P3ebN6/SjWFiA7ckX7V422MxWcV/YO+P8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nj7i/Gcf; arc=none smtp.client-ip=209.85.215.172
+	 MIME-Version; b=WrkGKTLW67PWlVsL/rxCF0yQA/XyXwUZPOn9Pb+21dx3qLy0uD2hhuoq5xZDbpYDkTSM2nwRZ9q+CgK5QLUMMtcAhmBHVLJxmH75tyQjUY/n+rTh3PPs5ABiciE3dWbcZVmd+fOtmGoaAleyJLGYGUeim7TlFYN85Cyqx9znqT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RwRquPkB; arc=none smtp.client-ip=209.85.215.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-7ea8c4ce232so4918308a12.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 12:16:51 -0700 (PDT)
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7e6ed072cdaso4180948a12.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 12:16:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730229411; x=1730834211; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1730229415; x=1730834215; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Go75F5WGin7Ix/MZ1KEJuNCfk0dx2TFxpmOXy5zXdWs=;
-        b=Nj7i/GcftGGoFRm6+iyJltwcgngTOFTocf+8X4M07ABTuMKuLNGq18zcd+Q2CQBTcD
-         YPGxAb4MI7oTuaTQY8MoamVh63+OooqTlIXTZ1odrrEDBPouhk2Zjr4Ace4Ur42z9yYz
-         ZKr4iGPKP3nz9vbhJLgTqI2URy/Pqrak0/en2pVxHPL9wVR2qMhySVFc/xgk8mWCYMvV
-         EaX/T5qbid91Vt17YEu3PBWYudIh9yLcThS6gFm1Gvo9MECz+a2EMc9VN+kquLYZexzc
-         qwfqIyzr4NHTrRwWldPFJeZs56znQG75hSs8EIPjI7G71DmVijhJZFqAhRXuE+nSuyzM
-         M5AA==
+        bh=zYKmKtE2fVCas74ElHJ9fhZLrtmW93dELAHBPhCA8b0=;
+        b=RwRquPkBCG6qxGQH+3Q17JpKe/UYxaZiF4H+EH96YHA06xCr2IK8IjrasSAEWKm0rd
+         O039jM8Un5oaYKSrJ/NhZas59qAc2pTy+DoCD2+hdC5eTLAkZ98A2hOjgLDKg3cpiQIe
+         KYH7rshNJr/Lv3nQi8CYbOfJygNbrKe9pbzKNKZeYlSI/HwAvIxALnQ6ERo+RrUc/hC1
+         SOZ+7j8+WeUlgm+T1BgRc6v5cRMR1UHmOnPtelBhe74Ex4fd2XZvIzQKmY1NGOA28OjE
+         h7998l7bZ/wDaiQHN31+OOT5PCm9WNH2eUusdGAMpewt60usUHUS8uYwXllXSedZt812
+         Nptw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730229411; x=1730834211;
+        d=1e100.net; s=20230601; t=1730229415; x=1730834215;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Go75F5WGin7Ix/MZ1KEJuNCfk0dx2TFxpmOXy5zXdWs=;
-        b=wAeS615aBNN1RJPsT2uWCYbQIOZbkggN/aUSTTHMkF0gUOi9m3MhX6fSbjOsxWOuBu
-         bCpJbMsX1FrlkJ5Bzo0by6OrX2X5GGPfUfUHqYaIDpjXarsCYq9I4z4fGlJKUAgjYMPc
-         KGR9vGHL+Qmte5jXjWMzB2Ka3k7kWXBjNAQapStIlOpRbwKEh/SZFSU+uWcOCWbJVamd
-         VEq3qn3V8HlaBvv2g94lM+aemObdKMWTUnc9tGlYaXI84Ynl7Xz0rNOh6ssDTCeireJM
-         SfcIRr7hNSCLFDaQetnFiesTgtv6xxLEfNfQ+TduKAhh5hclS92yt+c3kWJmhWdad/vr
-         LRyw==
-X-Forwarded-Encrypted: i=1; AJvYcCURGaQWW1JUQdWfKNfrFwMOuMAWuF71J4/dFmL0JZXtidL3agOqmCzGMfhucj37hw3KoaubFz6/1j5d@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxk4vh1g42g+KhXa2icneKoG8J+proliHSudPPxZCUSsQAfEa/d
-	y2z9OetxKxDMY/+u4+Cgil4bKj9nUsZH5aifZqdGGScUBmkHKtQi/RRHRw==
-X-Google-Smtp-Source: AGHT+IFenngeaT6t8iIEBhKoMZoPByKBmWfPEehMYTOwuzAHWbQ1Z6ZF1XwcmALtKo2mLUrDVAj/Zw==
-X-Received: by 2002:a05:6a21:3a41:b0:1d9:237a:2d56 with SMTP id adf61e73a8af0-1d9a8512cedmr15070567637.48.1730229411268;
-        Tue, 29 Oct 2024 12:16:51 -0700 (PDT)
+        bh=zYKmKtE2fVCas74ElHJ9fhZLrtmW93dELAHBPhCA8b0=;
+        b=ZqbFVxpB8fnPIs2NqaMwHpwGrK7TG/gtXbxnXfpqIDYBHfTwmIwy+5LJ5pY61volg+
+         2qUOucGC/9+SghpjSDVqTYeoDWKZ22YvJ7SO2iM5vgR0eWtOrel1CBGBlWbb9aPYzBAx
+         UbRp3snhXitta0YLAWTxEh/3WCCYgARmp5Iz/s4tF1v9Ps2A3ibqACGezTD8CKx/9WWF
+         Wx0c5ZjqFgX7FVP10YBsCzpCqPjJWObWOnRMDmZdq5jvKCvEiWU3gV6XbimfaZM7ke8V
+         U7q4Rkcf94XRvOlL7smscmNGDdoPcAoiwjSI+D60bHJSQGEzMJuJC8LQSlYaHCs0mUcd
+         J+dA==
+X-Forwarded-Encrypted: i=1; AJvYcCUXsRNETxdnILzo4fdYBS6+VaLoysaU5aMnNnB5hM5nl8s+B52NUJEkP8us4W2o0KMFV+FVoNJxivRD@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwFtpwaNAoktFntaaKkJddRQZ+27OiM8CO+D/QGbgBeN7potFd
+	45Pqwm4IAUWrtIT5I30I1b+NplQ+KJhJEtAudAl1dtAnbuXK2J7K
+X-Google-Smtp-Source: AGHT+IFTWq5E2+C67K9DtUnmc5ZutA88kE0YA5e/SigUzJXK7DIsERXz99OcPpiFqA+Gv4FpUe17bA==
+X-Received: by 2002:a05:6a21:58b:b0:1d9:762a:98ba with SMTP id adf61e73a8af0-1d9a83c9c31mr17108740637.16.1730229415320;
+        Tue, 29 Oct 2024 12:16:55 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:190a:1425:254d:1e7a])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7edc8661061sm7842346a12.17.2024.10.29.12.16.47
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7edc8661061sm7842346a12.17.2024.10.29.12.16.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 12:16:50 -0700 (PDT)
+        Tue, 29 Oct 2024 12:16:54 -0700 (PDT)
 From: Fabio Estevam <festevam@gmail.com>
 To: shawnguo@kernel.org
 Cc: marex@denx.de,
@@ -81,9 +81,9 @@ Cc: marex@denx.de,
 	linux-arm-kernel@lists.infradead.org,
 	dri-devel@lists.freedesktop.org,
 	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v3 2/3] dt-bindings: lcdif: Expand the imx6sl/imx6sll fallbacks
-Date: Tue, 29 Oct 2024 16:16:39 -0300
-Message-Id: <20241029191640.379315-2-festevam@gmail.com>
+Subject: [PATCH v3 3/3] ARM: dts: imx6sl: Provide a more specific lcdif compatible
+Date: Tue, 29 Oct 2024 16:16:40 -0300
+Message-Id: <20241029191640.379315-3-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241029191640.379315-1-festevam@gmail.com>
 References: <20241029191640.379315-1-festevam@gmail.com>
@@ -97,61 +97,48 @@ Content-Transfer-Encoding: 8bit
 
 From: Fabio Estevam <festevam@denx.de>
 
-mx6sl.dtsi and imx6sll.dtsi have the following lcdif entries:
+The LCDIF IP on i.MX6SL and i.MX6SLL is compatible with i.MX6SX.
 
-compatible = "fsl,imx6sl-lcdif", "fsl,imx28-lcdif";
-
-This causes dt-schema warnings as the current binding only
-allow 'fsl,imx6sx-lcdif' as fallback.
-
-['fsl,imx6sl-lcdif', 'fsl,imx28-lcdif'] is too long
-['fsl,imx6sll-lcdif', 'fsl,imx28-lcdif'] is too long
-
-The imx6sx-lcdif programming model has more advanced features, such
-as overlay plane and the CRC32 support than the imx28-lcdif IP.
-
-Expand the imx6sl/imx6sll lcdif fallbacks to accept a less specific
-fsl,imx28-lcdif fallback:
-
-compatible = "fsl,imx6sl-lcdif", "fsl,imx6sx-lcdif", "fsl,imx28-lcdif";
-
-This helps keeping DT compatibility as well as using the more advanced
-lcdif features found on imx6sl and imx6sll.
+Provide a more specific "fsl,imx6sx-lcdif" compatible and still keep
+"fsl,imx28-lcdif" for DT compatibility.
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
 Changes since v2:
-- Make the three compatible entres the only valid combination
-for imx6sl and imx6sll (Andreas).
+- None.
 
- Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/nxp/imx/imx6sl.dtsi  | 3 ++-
+ arch/arm/boot/dts/nxp/imx/imx6sll.dtsi | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-index ad0cca562463..72e509bc975b 100644
---- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-+++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-@@ -23,14 +23,18 @@ properties:
-           - fsl,imx93-lcdif
-       - items:
-           - enum:
--              - fsl,imx6sl-lcdif
--              - fsl,imx6sll-lcdif
-               - fsl,imx6ul-lcdif
-               - fsl,imx7d-lcdif
-               - fsl,imx8mm-lcdif
-               - fsl,imx8mn-lcdif
-               - fsl,imx8mq-lcdif
-           - const: fsl,imx6sx-lcdif
-+      - items:
-+          - enum:
-+              - fsl,imx6sl-lcdif
-+              - fsl,imx6sll-lcdif
-+          - const: fsl,imx6sx-lcdif
-+          - const: fsl,imx28-lcdif
-       - items:
-           - enum:
-               - fsl,imx6sx-lcdif
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi
+index 6aa61235e39e..840e19b2ca0f 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi
+@@ -773,7 +773,8 @@ epdc: epdc@20f4000 {
+ 			};
+ 
+ 			lcdif: lcdif@20f8000 {
+-				compatible = "fsl,imx6sl-lcdif", "fsl,imx28-lcdif";
++				compatible = "fsl,imx6sl-lcdif", "fsl,imx6sx-lcdif",
++					     "fsl,imx28-lcdif";
+ 				reg = <0x020f8000 0x4000>;
+ 				interrupts = <0 39 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clks IMX6SL_CLK_LCDIF_PIX>,
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
+index 85fe2a4ab97a..eff83f5e5535 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
+@@ -648,7 +648,8 @@ pxp: pxp@20f0000 {
+ 			};
+ 
+ 			lcdif: lcd-controller@20f8000 {
+-				compatible = "fsl,imx6sll-lcdif", "fsl,imx28-lcdif";
++				compatible = "fsl,imx6sll-lcdif", "fsl,imx6sx-lcdif",
++					     "fsl,imx28-lcdif";
+ 				reg = <0x020f8000 0x4000>;
+ 				interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clks IMX6SLL_CLK_LCDIF_PIX>,
 -- 
 2.34.1
 
