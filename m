@@ -1,194 +1,118 @@
-Return-Path: <devicetree+bounces-117200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96A8F9B56EA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 00:29:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF749B5706
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 00:35:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5DD6B2277E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 23:29:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C86D1282549
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 23:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F5420C00C;
-	Tue, 29 Oct 2024 23:28:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A93EF20ADE7;
+	Tue, 29 Oct 2024 23:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RZ7Rsd6b"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zlEOiyBI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D2F920ADDC;
-	Tue, 29 Oct 2024 23:28:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90E652076C0
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 23:35:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730244489; cv=none; b=jCNnV2m26FI6x5NJUaDcXFkCfVZi09OVBLlaGIKWG6qLNmDOTrMF/NG6bdnEp0WLKzPG+KYG6pk1JW6eaAO1DDa3GBu67RiBxvn68aCz1EJ1xxaC6t1TjRg9Nch6V50iVlugAZ8w9TqVpiP2ba8uQyRgNpJOLVYe7HC7pWoRDcs=
+	t=1730244925; cv=none; b=QgvVLobMZv9TJX0X1B4opJYBeum9eOMIIEYWeQQqLPdKBAterHAtRd3FjcBW6rj+0x+rp9LehycdIDWmtu5ftW6dPamvlK/EUfly2sHgSdnUXIWYzE1wwaqgjoMAL4d5QuQzdeU+8iskzWX+G3kje6DZcun/3lyUijQ00i1Dexo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730244489; c=relaxed/simple;
-	bh=dJ360g6wR0oB3al1wCLc2vvKC50BXvkFxNqeLxsxMOw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U1NyXWJJL2NiU0sX3oErBeZAWo/THCDdn7fYaGmrtBhrG/ZHDhuJCkDrzPqtvmEKidn+Idf7viSVn0F3CMgxBR6/UFSZWEn15ooJ6K6i2gqsZyiwNcT3c9nbyA/8yVt46/4elNTofOVSl328to1go5ameet7JCxj7toLYCeCAoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RZ7Rsd6b; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a9a6acac4c3so941078166b.0;
-        Tue, 29 Oct 2024 16:28:07 -0700 (PDT)
+	s=arc-20240116; t=1730244925; c=relaxed/simple;
+	bh=dkInJiy2PBliCY0aq+a3ScB8fzx4PnLNym9BwLfQynU=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=r5Ix7Sa+ltPGAGmZ+LUtTfUSK42dY6TqtmeC7QG1PWmjzd+PO40Dw7yK2BBnFlVBs1k4Vrx0chnezZf4RQ9YWe4jfji9jd4I5HySAmpy3eP1bhMCzWELYGBLPNGtRZAkqS6QEySpe2hrKNJcgxtXdFTeQQMfwtg7OMMlQ2wiYo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zlEOiyBI; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-71e625b00bcso4515054b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 16:35:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730244486; x=1730849286; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qzIxLUOYaE3vMGtIdY0G5UqFA4HTz9FjS4uuJtpOC/0=;
-        b=RZ7Rsd6bWQWwjoE2D2MUPtt6Rsx9uK0uS12zjpvMQ3jexbsObB5ZYN54HzWM7A8xOr
-         f1zyUuB4TislhLq91ASrqCnCpAzHbuz1hLZ8CBNCoFgOPAgnq/hXQtZhD20qDKqFMdrI
-         wxQ1oY2qJ/2iWcYRizZffeR0mHoLs+lHH/7/m0TTuM3RO8TI5qQaoQ7LWGCiYRu0/c5O
-         fBS8LwobKz9DRSH+iPUGLh78C6z9ugw5hAAmNIv4XS8CUlDVYKVU3xeTxVs99FNnRDgO
-         PEdbPDzqZKbeH4c/3PtBlDO5wnyJYwIpCkKv2vXTGKjefxEI8MPe8NpuCcqhJ7kvk1v3
-         5oDQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730244923; x=1730849723; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LuC93Wp/k34096m4FNfcl7QdGtm3HPvDqEomN2Uuvys=;
+        b=zlEOiyBIqGy+jBBFRfxGxGfH60kKaYNxTZ/munm8X8ZieVf0+7jbtjUUgrW7x4i6hb
+         ZOyXUPrOtZtdTf+vYIILLI4qmDZ06z5SjZsiXSZ7RSnJWbfcnsrEBZp5/0rAqpHPcbpE
+         7lTvfJ7HdY/r+OE29H6drliEnf2yFjYWnxNsC5QoESzknTdJ7539cWs5oqnz95QeNIEf
+         oPBA6KWiGUjoqme2iwrQYhU1ULcPW0NyeQyTFu2r19XhDy6748mLw8kb+7OjkI/+2ARb
+         5ppXmZUNgTTXVMIQCYxuW5/7PxKHdRNv3hc9MBatjT9fpL2awsomBhNXs7EGEq+oAM/+
+         BKwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730244486; x=1730849286;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qzIxLUOYaE3vMGtIdY0G5UqFA4HTz9FjS4uuJtpOC/0=;
-        b=TjxodcvW7Bpj6pgkxNsHkdPcWRnKJv3Epoo8HDTlPOb322cAC8v9bLhHFzVnP0Dp0M
-         1Ef3L9kenN0Dh13h/R2vcyagTuYBrXKAEq9cx78SWJeOCpLBs8o/RNYO017tdX/Rwy/7
-         M6EVYijdkNaw/XhI+KouKzYImHeg/M6FoHq4E7UirELp6IldWq8TTypEch5rdgGezqLD
-         QXboN6oMLN8+Jkm8BMJcnTRjTf7UMwKcS9pEP2g+rEVJktHjSzituke7USKgdoA0nOS/
-         NQcmAihRd0xCKiVkFWv6E+SujCBJHL2GAMNJiokJCHHnm3NYMXJN5Z+zWHx3MV5j5V0U
-         5uow==
-X-Forwarded-Encrypted: i=1; AJvYcCUBoTzL8oT+A8WwFKAxkw6dbmWVpaQdYPC5ohrJ60gT8z5CVW0evLRGNgr20JRl6Dcy+/TR9OvquynK@vger.kernel.org, AJvYcCV7f9vEdOrxa+bPwPwAPHJ6jms/vVEJCujrywgCbsUmLBYmPtuwvtbg+a92lAs+Nvs52mtI//IKe54UaH6f@vger.kernel.org, AJvYcCWAk2SocXC8bMuf++r37QocolmG5cRMwF6Mi27tkyMwLGjvUcT0rrdGtv7ieiRxB24CbdwRPwfDgeUe@vger.kernel.org
-X-Gm-Message-State: AOJu0YzY7R+NBZpv0UvptWdXKIWLeyjtr9XlA/Q0G0wP6ir7xse+OFe8
-	BPeqjl9AKfLnJJkXrryCwVCC4fBKpYZR3l67hzxiWCmjTawfa9Wp
-X-Google-Smtp-Source: AGHT+IENOuf55S7BPSy+6UBBkR0PUVAFo5/qztlIUA5f3Xh/wyAfuDl0DXdRgwTzNReTidfTZkKNSA==
-X-Received: by 2002:a17:907:7289:b0:a99:fa4e:ba97 with SMTP id a640c23a62f3a-a9de5ff9192mr1243038566b.39.1730244485596;
-        Tue, 29 Oct 2024 16:28:05 -0700 (PDT)
-Received: from vamoirid-laptop ([2a04:ee41:82:7577:89e7:cc9d:3a72:92f3])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f2982e1sm517969166b.99.2024.10.29.16.28.04
+        d=1e100.net; s=20230601; t=1730244923; x=1730849723;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LuC93Wp/k34096m4FNfcl7QdGtm3HPvDqEomN2Uuvys=;
+        b=JZEE4tpivXYNtjqaaYVETVLNHluxHOhQRUrwfpEnYYs5TrJJIKS//ceW0jRu+qonM9
+         SZgK+W91pPFo13zRUYbeXX92guCME31p5U1YR2CaYD3mXb0uTKIaPO0ZFf+qMZjWMZwU
+         mfmCYID6kT2/BYHQVei8jqNdD0hD82zcuSS5GyJeOnerOX2yyM831NF0cAJW04utIZRS
+         B5kkrN4pj7NfMAHkupyiOy7gEUhbFeAflHwXpw6al3qS57qaPueWQEtmGiNn4ci6DqKE
+         l3BrtwcxGE8bQWJO8YofgUIQ28sV2/cnHtx4A4MNN9fPG6iODC72VVB6vwYUohtNduJT
+         nUVg==
+X-Forwarded-Encrypted: i=1; AJvYcCUxhFd5HWik+5oVnK4o4xZvXuMYAOaP+xzaibj4L0N6gGSdwrtU7Q1FoNyZyiMk46GPUwuJ80+UfM1F@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbjQBRTBXuiIZiu1FhwHC0SnT3PUI24UOxWGXRVuFHOFHwjh0x
+	EiJSO1adLVYhv3ZpWiVv5sRlv8lbEclTRNjdDDHXMvJYtonklZjkvJfmii7N0Ds=
+X-Google-Smtp-Source: AGHT+IEg8cGYug/egvhXAj5QGE9Z0f2pGnwuXP0ECo+RYa5HgVgF8z+rufzIs9vVD0U8Lqbxtb8L5w==
+X-Received: by 2002:a05:6a20:d74d:b0:1d9:cc2:2c00 with SMTP id adf61e73a8af0-1d9a83c9ff4mr18135785637.14.1730244922844;
+        Tue, 29 Oct 2024 16:35:22 -0700 (PDT)
+Received: from localhost ([97.126.177.194])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7edc869c596sm8096291a12.54.2024.10.29.16.35.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 16:28:05 -0700 (PDT)
-Date: Wed, 30 Oct 2024 00:28:03 +0100
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andriy.shevchenko@linux.intel.com,
-	anshulusr@gmail.com, gustavograzs@gmail.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 04/13] iio: chemical: bme680: refactorize set_mode()
- mode
-Message-ID: <ZyFvg5JyA2IJp4v0@vamoirid-laptop>
-References: <20241021195316.58911-1-vassilisamir@gmail.com>
- <20241021195316.58911-5-vassilisamir@gmail.com>
- <20241027095939.5ad376ad@jic23-huawei>
+        Tue, 29 Oct 2024 16:35:22 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+ rogerq@kernel.org, linux-omap@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, tony@atomide.com, 
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ aaro.koskinen@iki.fi, Andreas Kemnade <andreas@kemnade.info>
+In-Reply-To: <20241010122957.85164-1-andreas@kemnade.info>
+References: <20241010122957.85164-1-andreas@kemnade.info>
+Subject: Re: [PATCH v2 0/4] ARM: dts: omap: omap4-epson-embt2ws: misc gpio
+ definitions
+Message-Id: <173024492215.1248872.10940829053391150955.b4-ty@baylibre.com>
+Date: Tue, 29 Oct 2024 16:35:22 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241027095939.5ad376ad@jic23-huawei>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-cb14d
 
-On Sun, Oct 27, 2024 at 09:59:39AM +0000, Jonathan Cameron wrote:
-> On Mon, 21 Oct 2024 21:53:07 +0200
-> Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
-> 
-> > Refactorize the set_mode() function to use an external enum that
-> > describes the possible modes of the BME680 device instead of using
-> > true/false variables for selecting SLEEPING/FORCED mode.
-> > 
-> > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
-> I changed my mind on this one...
-> 
-> > ---
-> >  drivers/iio/chemical/bme680_core.c | 30 +++++++++++++-----------------
-> >  1 file changed, 13 insertions(+), 17 deletions(-)
-> > 
-> > diff --git a/drivers/iio/chemical/bme680_core.c b/drivers/iio/chemical/bme680_core.c
-> > index d228f90b4dc6..9002519d2c33 100644
-> > --- a/drivers/iio/chemical/bme680_core.c
-> > +++ b/drivers/iio/chemical/bme680_core.c
-> > @@ -95,6 +95,11 @@ struct bme680_calib {
-> >  	s8  range_sw_err;
-> >  };
-> >  
-> > +enum bme680_op_mode {
-> > +	BME680_SLEEP,
-> > +	BME680_FORCED,
-> Use this enum to replace the existing BME680_MODE_SLEEP etc definitions
-> rather than adding another one.
-> Also assign explicit values as you are going to write this into a register
-> so they matter.
-> 
-> 
 
-Hi Jonathan,
-
-Thank you very much once again for the review! I totally understand what
-you mean and I will fix it for next version.
-
-Cheers,
-Vasilis
-
-> > +};
-> > +
-> >  struct bme680_data {
-> >  	struct regmap *regmap;
-> >  	struct bme680_calib bme680;
-> > @@ -502,23 +507,16 @@ static u8 bme680_calc_heater_dur(u16 dur)
-> >  	return durval;
-> >  }
-> >  
-> > -static int bme680_set_mode(struct bme680_data *data, bool mode)
-> > +static int bme680_set_mode(struct bme680_data *data, enum bme680_op_mode mode)
-> >  {
-> >  	struct device *dev = regmap_get_device(data->regmap);
-> >  	int ret;
-> >  
-> > -	if (mode) {
-> > -		ret = regmap_write_bits(data->regmap, BME680_REG_CTRL_MEAS,
-> > -					BME680_MODE_MASK, BME680_MODE_FORCED);
-> > -		if (ret < 0)
-> > -			dev_err(dev, "failed to set forced mode\n");
-> > -
-> > -	} else {
-> > -		ret = regmap_write_bits(data->regmap, BME680_REG_CTRL_MEAS,
-> > -					BME680_MODE_MASK, BME680_MODE_SLEEP);
-> > -		if (ret < 0)
-> > -			dev_err(dev, "failed to set sleep mode\n");
-> > -
-> > +	ret = regmap_write_bits(data->regmap, BME680_REG_CTRL_MEAS,
-> > +				BME680_MODE_MASK, mode);
-> This is the problematic code.  No obvious reason the enum should match the original
-> values. It does, but that should be made true by only having an enum, not definitions
-> and an enum.
+On Thu, 10 Oct 2024 14:29:53 +0200, Andreas Kemnade wrote:
+> Bring the system into a more defined state and do not rely
+> on things being initialized by bootloader.
 > 
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "failed to set ctrl_meas register\n");
-> > +		return ret;
-> >  	}
-> >  
-> >  	return ret;
-> > @@ -615,8 +613,7 @@ static int bme680_gas_config(struct bme680_data *data)
-> >  	int ret;
-> >  	u8 heatr_res, heatr_dur;
-> >  
-> > -	/* Go to sleep */
-> > -	ret = bme680_set_mode(data, false);
-> > +	ret = bme680_set_mode(data, BME680_SLEEP);
-> >  	if (ret < 0)
-> >  		return ret;
-> >  
-> > @@ -756,8 +753,7 @@ static int bme680_read_raw(struct iio_dev *indio_dev,
-> >  
-> >  	guard(mutex)(&data->lock);
-> >  
-> > -	/* set forced mode to trigger measurement */
-> > -	ret = bme680_set_mode(data, true);
-> > +	ret = bme680_set_mode(data, BME680_FORCED);
-> >  	if (ret < 0)
-> >  		return ret;
-> >  
+> Changes in V2:
+> - better comment strange GPIOs
+> - proper names for regulator nodes
 > 
+> [...]
+
+Applied, thanks!
+
+[1/4] ARM: dts: omap: omap4-epson-embt2ws: define GPIO regulators
+      commit: c14655b6dffd9ca93276f630d2c9a5973711d33b
+[2/4] ARM: dts: omap: omap4-epson-embt2ws: wire up regulators
+      commit: e84bc0f34f708f3c58e5268cb53f451af97fe1d3
+[3/4] ARM: dts: omap: omap4-epson-embt2ws: add unknown gpio outputs
+      commit: b5a041ea0bfb2eb8ab5e19f61e2772faa8110a2d
+[4/4] ARM: dts: omap: omap4-epson-embt2ws: add GPIO expander
+      commit: 0b96b3f1d01486e836d01d18c2f8e3f01b046cb5
+
+Best regards,
+-- 
+Kevin Hilman <khilman@baylibre.com>
+
 
