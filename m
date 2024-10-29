@@ -1,116 +1,102 @@
-Return-Path: <devicetree+bounces-116971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 145CC9B480A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:12:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2D5A9B481B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:17:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 444261C26649
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 11:12:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96A60280E16
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 11:17:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E14D205AAF;
-	Tue, 29 Oct 2024 11:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEF2204938;
+	Tue, 29 Oct 2024 11:17:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="fqHzAleV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jrK6bIFb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C1A205ABB;
-	Tue, 29 Oct 2024 11:11:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E341204943
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 11:17:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730200288; cv=none; b=GD5iSH1Q24T+al7PUKjVaCmQOQxeScUNdsFN4pTlYwFa+ufr/Tvzu/ES/u7B7wad0Ibjdc139+zdz80p+svucqUIMlpcLX2bPjjZbU0qLdNsbQTYJOABTXC59AkFy/NB5EGIDDbg7q7SzdSLSOQoI8LDDwPCvvBj/NJOV8di04s=
+	t=1730200648; cv=none; b=rX/gqPunXcPvW1f3CfzXj7m5mdMLX6drqnHb/1kri2XPALwaPJHuOc5haz/h4KNobCCCQ888Hqzlf0apAUbV5perMUG+52SRMsBPwyn8eQ3xSZjP2b8F7xaScIvTGu/ktBbl+dPLfPzgnzina4nC9/SCSgBOrK2IhVrU+bkXCg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730200288; c=relaxed/simple;
-	bh=urUDoiCfGTanskrpk/nVfLsAwra9Azo71xlx8jBbmLQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=SmSu4D5XNx5wgQ60W9RP10ZntP5Lul78lHw0SI3qmg521VF9H56wwfemW9uj6zI5I62vVAjGnJYAzTNUTG1NqK1oLxPn4h+h1eKJ0TxmcqfkV1LhK4NkiYsHVtKlyQ7Il8i5Zn+HRXoZxFEmlJOlaj+9S2WlBETfRd15/chXDNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=fqHzAleV; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References;
-	bh=2mw6wIsgNp3nO1sAu93Wf091/AE6UwJyrSXnTj9zaeU=; b=fqHzAleV/stfMIIbiD3N63c1sf
-	yzq7GY9AxvXpEb+o4IGxW2t5oQupYfLZ5xLw4xscqp42iPsKu6ag+YZbpjQhVoBLh+SLlZvNW93mv
-	GAZd32b6xvCMV2U4YojyKb2MUY/oivKBAOleHqbv7KDTNqt9dE1wpPbzox/005QufZoUhjuynQI2U
-	amNK1E08EEttq+BIuZ52SMa6MvkapWkwE8vCojubAVq5HNF0khtQWEwwJ++BeBLEB91r/l0tTpjXj
-	6qkOy2PrZHsjqgutKsSD5X02/Gn4wHrgHkf5d3/KetD65+fG1McwA4QX7lnLnyrFF0ihg9lRa4+kV
-	nqkNrETQ==;
-From: Andreas Kemnade <andreas@kemnade.info>
-To: lee@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mazziesaccount@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Andreas Kemnade <andreas@kemnade.info>,
-	sre@kernel.org
-Subject: [PATCH] dt-bindings: mfd: bd71828: Use charger resistor in mOhm instead of MOhm
-Date: Tue, 29 Oct 2024 12:11:12 +0100
-Message-Id: <20241029111112.33386-1-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1730200648; c=relaxed/simple;
+	bh=0Y3lWwBLaNSuSrYHVXg8RSL1GdlpeH3OKXRkXftMX10=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kOeslM7OEzwPTDkvSvey875vnrCHQdvH1iU/9zeYchYiKiJ6e2iYNmS5034wdH2fmW0Q9ejhEi0XJ1V+xHqGJlt0xkrc2JoZfVTtsAvvFtDVDSVRbIT97wqerX/9sTsWvLdeX1DxA9+a4CAi7eNVHAIISWfahNUK+26NldgahpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jrK6bIFb; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2fb58980711so47465921fa.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 04:17:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730200644; x=1730805444; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0Y3lWwBLaNSuSrYHVXg8RSL1GdlpeH3OKXRkXftMX10=;
+        b=jrK6bIFbrG6THuLda4M9ypppUpLR83DrD+985S2+t8jl7gE3Bb7C+hQ7QgWgv35TP7
+         cnKVTX+oBeFx+kNPY9EoNw2vatnv7vvqztH+fJUz0XO7OSCA1Uhy2jhkzpSOJI8OofHc
+         yIN+rk33UdmH9O1ZPIPQtXjWmvA4VEvZrMycDWCMOixjyNy9Q36pv6girm0/JGb5pbNk
+         xZFgP4S6tUVQCt7CHtpp/zADlKcAuZpnhHuPZosGzaT88wDZ50CaNxxHv13hw+kRTQrA
+         YwUbTAzQptUdf1SGLFC366CRlFRDKiRlIWsrxx1MGGuoSmHLJEpUHYwLawdViMNRB6O0
+         7l5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730200644; x=1730805444;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0Y3lWwBLaNSuSrYHVXg8RSL1GdlpeH3OKXRkXftMX10=;
+        b=qnIHIKxiH1cfVY+gUL46tP4ONNeMkpSgtH04vHdllmX0IWkBXvA4jVzqyG6aH9ddW9
+         G2YI7Npi/55fO2YX9Sds846cpm6r+M9EcGXTIRbGo24cj04KkxQcyI2JJCiqaEx0i1Zg
+         NVBm1KtTSsvc/KZQ0xH0SCL9gJOrhFi+Ff8WhnVb0HF8ZBY3slvHtMHnSeWddk1PM2UB
+         2jL04CadZdKcEv5I50PUPIP2IV8cf5mOaIQ6tKvmsrtdPHejG1SyMJI781Gbb6czFBH2
+         A/iHLbwpyrkWE5NUy4/OnztA6lMSrfon5lwDGBpTmKhbry5zeBcGA4UuDFIfirfdTX39
+         p2oQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWOO+fZwz5do9pbNf0NFj9rS6sGzgjtNjAYGCV+/EFGF8VnuMjIRX4TCrgHvrV8b+IW8ffZfF3gbGob@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4NHScMAJI0SA2lLMeMjDJ3Eu9MUkw3B/EIKN4e9PofpKIdl+9
+	EW9jNIEY28B94LsNHezbygm71KzX3qVTkXG3zWBAb+XQ/uWvzFQyvitZ5ApkBoIn72xwjyZWDlK
+	9O6GD4gv1/nAJYqLMvDEnN2CkqnE=
+X-Google-Smtp-Source: AGHT+IGsU6uHMBv+O6e4BbQ7UJDSfYHHZAkZqCwn67mMrBXMiocwqn/285jyQOio3gIiF1T/G3/0V4DT4isdy5AAHHY=
+X-Received: by 2002:a2e:f12:0:b0:2fa:dc24:a346 with SMTP id
+ 38308e7fff4ca-2fcbdfbab66mr39852531fa.21.1730200643976; Tue, 29 Oct 2024
+ 04:17:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20241028180844.154349-1-festevam@gmail.com> <20241028180844.154349-2-festevam@gmail.com>
+ <20241028194728.0655edd3@akair> <CAOMZO5APJM57_ixBiRFZSZex3AiawA=mtqMszdGezVoajaXYhA@mail.gmail.com>
+ <4addc413-dd13-4867-8c49-45539af7b45b@pengutronix.de>
+In-Reply-To: <4addc413-dd13-4867-8c49-45539af7b45b@pengutronix.de>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Tue, 29 Oct 2024 08:17:11 -0300
+Message-ID: <CAOMZO5Bu5U=MGq3gzOjaeWuhnowJ-TN=ktCtw_eXDO2Q6Kxbmw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: imx6sx: Remove fsl,imx6sx-lcdif fallback
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: Andreas Kemnade <andreas@kemnade.info>, shawnguo@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	Fabio Estevam <festevam@denx.de>, Marek Vasut <marex@denx.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Apparently there was some confusion regarding milliohm vs. megaohm.
-(m/M). Use microohms to be able to properly specify the charger
-resistor like other drivers do. This is not used yet by mainline code
-yet. Specify a current sense resistor in milliohms range rathes then
-megaohms range in the examples.
+Hi Ahmad,
 
-CC: sre@kernel.org
-Reported-by: Matti Vaittinen <mazziesaccount@gmail.com>
-Closes: https://lore.kernel.org/imx/6dcd724a-a55c-4cba-a45b-21e76b1973b0@gmail.com/T/#mf590875a9f4d3955cd1041d7196ff0c65c0a7e9d
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml  | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+On Tue, Oct 29, 2024 at 6:50=E2=80=AFAM Ahmad Fatoum <a.fatoum@pengutronix.=
+de> wrote:
 
-diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-index fa17686a64f7..09e7d68e92bf 100644
---- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-+++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-@@ -55,14 +55,15 @@ properties:
-     minimum: 0
-     maximum: 1
- 
--  rohm,charger-sense-resistor-ohms:
--    minimum: 10000000
--    maximum: 50000000
-+  rohm,charger-sense-resistor-micro-ohms:
-+    minimum: 10000
-+    maximum: 50000
-+    default: 30000
-     description: |
-       BD71827 and BD71828 have SAR ADC for measuring charging currents.
-       External sense resistor (RSENSE in data sheet) should be used. If some
--      other but 30MOhm resistor is used the resistance value should be given
--      here in Ohms.
-+      other but 30mOhm resistor is used the resistance value should be given
-+      here in microohms.
- 
-   regulators:
-     $ref: /schemas/regulator/rohm,bd71828-regulator.yaml
-@@ -114,7 +115,7 @@ examples:
-             #gpio-cells = <2>;
-             gpio-reserved-ranges = <0 1>, <2 1>;
- 
--            rohm,charger-sense-resistor-ohms = <10000000>;
-+            rohm,charger-sense-resistor-micro-ohms = <10000>;
- 
-             regulators {
-                 buck1: BUCK1 {
--- 
-2.39.5
+> With an eye towards improving device tree stability, I think it's more
+> appropriate to adjust the binding to have three compatibles instead.
 
+Yes, this makes sense. I will adjust the bindings accordingly.
+
+Thanks
 
