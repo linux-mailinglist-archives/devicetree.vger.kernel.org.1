@@ -1,107 +1,296 @@
-Return-Path: <devicetree+bounces-117148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B81229B52CE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:35:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE0EC9B52F6
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:49:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9C161C22945
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 19:35:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E14151C226C7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 19:49:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B16702071E8;
-	Tue, 29 Oct 2024 19:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 759472071ED;
+	Tue, 29 Oct 2024 19:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WF44hvjf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fIb6z4VN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80EB1190486;
-	Tue, 29 Oct 2024 19:35:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 035BE205ACD;
+	Tue, 29 Oct 2024 19:49:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730230546; cv=none; b=FZ9QW7UjzpbM6ZnaVg49zUMZVVoTJmhoN8p2RHuNOaTvxs+4yGuvLKA3vtISuJlfxfgD1dNcAym6ZTPrtbUhjhgpNNyDZOssdM9ZlIxY6VIIHtTg9aKNo3rfJTbOJewzoJj4GhjaYGXfstNkhd5U4+wGkgABgzPBlho7tdhGUa8=
+	t=1730231364; cv=none; b=obWtuPgimUBzFPcl65srqRj3pjvZY90ESQrFUE+FJiKzR4SCVLWiPJIzb0cQMwNQJzUpfsLW2A72MX7YwBzzuvRtH3SmszteyPEVckX79wWs+5GmZtsGhxysSyoKyhF/H/Wpiyx9x8wthMCriZ2ZmurHcMcueuDdouQwYB02hUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730230546; c=relaxed/simple;
-	bh=5KQbaA+O7BsA/JA0J1T6fbaSAGxHI5cW1PQ5/cTrGuY=;
+	s=arc-20240116; t=1730231364; c=relaxed/simple;
+	bh=awdoH5rFFbiqcZock4aM2tIsTeFivVpQfSVpnLjh0kE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eb099/7UlCLanjHlJXf9QsvM+KTa9hlu7RpdMT283kf6jTM0MQ1CSSBHbO+fysJ0Gnrk5JC7gEcyJaDIbyuP6OIaod+HB2fMzzwPbjKQnq6f1ob48Jxy86kjbnjTxki8nfYxU6Oh2qwqcFgQ7vDKNbjx5Egkc+h/Bcc8bxT1Hc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WF44hvjf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B52BC4CECD;
-	Tue, 29 Oct 2024 19:35:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730230546;
-	bh=5KQbaA+O7BsA/JA0J1T6fbaSAGxHI5cW1PQ5/cTrGuY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=WF44hvjfVsOy9QH0lokqppbf52+iVfI4qe+h0ERxoOQpWnFl5wtUniBjt9TS0am7z
-	 TjM1JlOPueujGXP5g6til6XH9RIHmPeRwnSXyYNSe2H/wElFIpSsGPtG0DGEa5xKmv
-	 sGw3nb4sv2l9cKB+DiJEFKwIlbVopxiag95TtOzSvLgGCpYbduP2pREgoSZITayFO0
-	 MnQww53c+BYB4iLRmSjY4aL9h9p3lc488tOKVBNlb2BkdX4AiW/hTEICV2nc7ylaJu
-	 rV6D34Xd162dixrhEjKO3s/aDeg4bbxnsVXkKDa3YP73kOZA3QadFHplTZlujJGvD5
-	 jO6HdLJp1v1jA==
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539e5c15fd3so5174562e87.3;
-        Tue, 29 Oct 2024 12:35:44 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUgieVhC+tB0c9qjMaf+XVnY7E2vwmLyEqqx+9oLhwve9xfyCZZxaeiaqKyVP4qdy7aPTOOzhDzr259uJDW5yA=@vger.kernel.org, AJvYcCVS2sZ/qZh1KjiGdz4PA/UmWN/ijXCbwWHL1nS6l6UyuGZBMLfRDOF2IrQQTf7L154o4f5tedSY3Yd+i5ge@vger.kernel.org, AJvYcCXXkEYPv9FGB4LEqa3VI4LHooe4Oen3REGJfTCctW/ltc6coCHvrmplhbS0sJNlNfW3aGebuur4oRWC@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQLzohTqvA+RK5yewyecUqWPR6HbKsF07h/1b2ljaaXg9lq7MN
-	aZhkXG6rDd5GaopJxR8a2ziRrfvisCWTTguavOWugkm+lgmazD193uRUwWXce9e1djNqV8oD5uS
-	YCFkTtfdhHn8ySXCLY+B/RamnxA==
-X-Google-Smtp-Source: AGHT+IFe9PFqt+n8Vs6QpequE7rsrw365RDFEY3bYDcLHyZ8EyQZTv5AB4GWHhbd1GDB4ZBkz78jJbxqGvlOMrcJxas=
-X-Received: by 2002:a05:6512:3f1c:b0:539:e761:c21a with SMTP id
- 2adb3069b0e04-53b34a365c7mr7068570e87.48.1730230543434; Tue, 29 Oct 2024
- 12:35:43 -0700 (PDT)
+	 To:Cc:Content-Type; b=soT28yoesXeJuGdG19XIVAe3atk9lp0NdXHC/kr8MOmUPivj3qS4MXYbvb7yzGvjM69mJBWBXYhLRTJ76Ov5UgH+RaeyoO3RDsa9Mv4/JtI+43FOgocQOSlOl6qvUZHCSU2lWhXvGfBPfo9JfsOi6HpUux8txAkUTBoR1tT/Pc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fIb6z4VN; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a99f646ff1bso739415066b.2;
+        Tue, 29 Oct 2024 12:49:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730231360; x=1730836160; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Gvu3soGzeUup65TCa4YHvz4LZhITDevElDnbRUoM1J8=;
+        b=fIb6z4VN44K5stPurnpzi53g0foWukPQ0b0YcoH3n2BO8MzMT2y6E7h2vlMiUXB99+
+         v7HgYLlVZwS2TcnckCUQosn41W0eVoEiv9wppZT/S65n5cWkN8jb/YdLSX191KMNxowL
+         oPo3tvH/wAwfpF/B36XW9jWP09EFaRxdfhc++d/StefWi5K1e1MPs5ndrE/+noQOlTWe
+         +JOYEgMl90OxA4qopRrUk/Lo/FdwZZpqCfpdt8AwTP07AoLlprxJqSw+4E9ycWWhskyR
+         nOu1oLPRZrejWPdSZfhCpz2vUrQfz5TZLynRgSnUGGT1iR77INKPzrKzoDnA1zkazHbk
+         wYJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730231360; x=1730836160;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Gvu3soGzeUup65TCa4YHvz4LZhITDevElDnbRUoM1J8=;
+        b=Gnw8IN0NK5Yr6bHs2qnbVQRAjBaQ5tOj2VriLAUKjVf8qe2ItHaCOLQU9yuoePhD88
+         Ds3yV427GJ/n0K2h/pOK3aJ8oAjvCGdYJuZBewz4um6bWAxqSsof8GEe1qzePpThATGA
+         6YwR7LEaKxW8P6+Ksh5Fe3+oTtIfxnfz8HJ8cmlXBDojRvI6p8UVY5gBPe3ZYzAn8MFF
+         BO5ceO4DIkvsGUI3bj1YN9rCLBxaCbYjBUoscaerEjjwrbqEaSE0H0sN79XAsVEj5Kix
+         teBNgFYFMVXI09okfcebs0RcE+la2h/AdeMlJnV1b8foBANWvRgSr6HIHsluG6rPpDV5
+         z33w==
+X-Forwarded-Encrypted: i=1; AJvYcCVh/w1JVjJjgGJue5/FnJ5jkhDr1Tp2KTaaelVKLm9M9pQZuPHYv5PLn6f/vuomCC+KJpv84s52zN8qvcPu@vger.kernel.org, AJvYcCWSsAj3pfCNTTI2/NJeF3LnhYNgLCZVmopgDU+V2KgWOCy2cjBSr38sJPI9wU8ZRyy8yJoEqOF0n1wU@vger.kernel.org, AJvYcCX106WMubYhVYT3fdzB6h1pXSwCiBvXbZ/4mwqJlkrCGL/BJxED4TYDzM6BhRqOgIKvIhLc16k9nq4i@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1fYztg6QkHjj6fkYH0pYIDvpJwVgiQyXxzCET6lhW0dhmOsbo
+	DG+i+MnGK0Ha2Cs026UvLRfCSapuZluwwN4GohGhvV60NjalkCkBTjPOwj1eOgLr8OzjRIyyfV0
+	GCnuet5y+NAFZOoYaUVThAijWrcsxZsod
+X-Google-Smtp-Source: AGHT+IFkl/d3NegynTrjcdaD7515ZshkwvuLCJzsB7qoiisnKif/TjKlae2JUVKHozBuT0llM79ZvOjdmNOuPhJ9Iyg=
+X-Received: by 2002:a17:907:970e:b0:a9a:2a56:91e with SMTP id
+ a640c23a62f3a-a9e3a574f2cmr74443566b.6.1730231360049; Tue, 29 Oct 2024
+ 12:49:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241025-rust-platform-dev-v1-0-0df8dcf7c20b@kernel.org>
- <20241025-rust-platform-dev-v1-2-0df8dcf7c20b@kernel.org> <CAH5fLgjhiLUYPgTt_Ks+L-zhWaQG5-Yjm-Y3tfh2b2+PzT=bLg@mail.gmail.com>
- <CAL_JsqJWPR-Q=vsxSvD7V9_v=+om5mRuW9yYNqfavVRUwH9JFw@mail.gmail.com>
- <CAH5fLgiXPZqKpWSSNdx-Ww-E9h2tOLcF3_8Y4C_JQ0eU8EMwFw@mail.gmail.com> <CANiq72kaidDJ=81+kibMNr9jNxg467HjOm9C_4G7WRvaiddGvg@mail.gmail.com>
-In-Reply-To: <CANiq72kaidDJ=81+kibMNr9jNxg467HjOm9C_4G7WRvaiddGvg@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 29 Oct 2024 14:35:29 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+T6T_3p2C62U3v4aSjm_oc-Ycjxi_ckF0ufh=JJDz=rg@mail.gmail.com>
-Message-ID: <CAL_Jsq+T6T_3p2C62U3v4aSjm_oc-Ycjxi_ckF0ufh=JJDz=rg@mail.gmail.com>
-Subject: Re: [PATCH RFC 2/3] rust: Add bindings for device properties
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc: Alice Ryhl <aliceryhl@google.com>, Saravana Kannan <saravanak@google.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Dirk Behme <dirk.behme@gmail.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	rust-for-linux@vger.kernel.org
+References: <20241029-topic-input-upstream-als31300-v3-0-147926dd63b3@linaro.org>
+ <20241029-topic-input-upstream-als31300-v3-3-147926dd63b3@linaro.org>
+In-Reply-To: <20241029-topic-input-upstream-als31300-v3-3-147926dd63b3@linaro.org>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 29 Oct 2024 21:48:42 +0200
+Message-ID: <CAHp75VdH7bxuPW6Fx4Mcq18hQfr1sDhBYDwGn8OeurQOAar2kg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] iio: magnetometer: add Allegro MicroSystems
+ ALS31300 3-D Linear Hall Effect driver
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 29, 2024 at 1:57=E2=80=AFPM Miguel Ojeda
-<miguel.ojeda.sandonis@gmail.com> wrote:
+On Tue, Oct 29, 2024 at 4:13=E2=80=AFPM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
 >
-> On Tue, Oct 29, 2024 at 7:48=E2=80=AFPM Alice Ryhl <aliceryhl@google.com>=
- wrote:
-> >
-> > One option is to define a trait for integers:
-
-Yeah, but that doesn't feel like something I should do here. I imagine
-other things might need the same thing. Perhaps the bindings for
-readb/readw/readl for example. And essentially the crate:num already
-has the trait I need. Shouldn't the kernel mirror that? I recall
-seeing some topic of including crates in the kernel?
-
-> +1, one more thing to consider is whether it makes sense to define a
-> DT-only trait that holds all the types that can be a device property
-> (like `bool` too, not just the `Integer`s).
+> The Allegro MicroSystems ALS31300 is a 3-D Linear Hall Effect Sensor
+> mainly used for 3D head-on motion sensing applications.
 >
-> Then we can avoid e.g. `property_read_bool` and simply do it in `property=
-_read`.
+> The device is configured over I2C, and as part of the Sensor data the
+> temperature core is also provided.
+>
+> While the device provides an IRQ gpio, it depends on a configuration
+> programmed into the internal EEPROM, thus only the default mode is
+> supported and buffered input via trigger is also supported to allow
+> streaming values with the same sensing timestamp.
+>
+> The device can be configured with different sensitivities in factory,
+> but the sensitivity value used to calculate value into the Gauss
+> unit is not available from registers, thus the sensitivity is provided
+> by the compatible/device-id string which is based on the part number
+> as described in the datasheet page 2.
 
-Is there no way to say must have traitA or traitB?
+Thank you for an update, this looks more or less good. I have a few
+nit-picks below. With them addressed,
+Reviewed-by: Andy Shevchenko <andy@kernel.org>
 
-Rob
+...
+
+> +#include <linux/types.h>
+> +#include <linux/units.h>
+
+It's a bit of an unusual order. Do you mean to put them after the
+regulator/*.h one?
+
+> +#include <linux/bits.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/delay.h>
+> +#include <linux/module.h>
+> +#include <linux/i2c.h>
+> +#include <linux/regmap.h>
+> +#include <linux/pm.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+
+...
+
+> +#define ALS31300_DATA_X_GET(b)         \
+> +               sign_extend32(FIELD_GET(ALS31300_VOL_MSB_X_AXIS, b[0]) <<=
+ 4 | \
+> +                             FIELD_GET(ALS31300_VOL_LSB_X_AXIS, b[1]), 1=
+1)
+> +#define ALS31300_DATA_Y_GET(b)         \
+> +               sign_extend32(FIELD_GET(ALS31300_VOL_MSB_Y_AXIS, b[0]) <<=
+ 4 | \
+> +                             FIELD_GET(ALS31300_VOL_LSB_Y_AXIS, b[1]), 1=
+1)
+> +#define ALS31300_DATA_Z_GET(b)         \
+> +               sign_extend32(FIELD_GET(ALS31300_VOL_MSB_Z_AXIS, b[0]) <<=
+ 4 | \
+> +                             FIELD_GET(ALS31300_VOL_LSB_Z_AXIS, b[1]), 1=
+1)
+> +#define ALS31300_TEMPERATURE_GET(b)    \
+> +               (FIELD_GET(ALS31300_VOL_MSB_TEMPERATURE, b[0]) << 6 | \
+> +                FIELD_GET(ALS31300_VOL_LSB_TEMPERATURE, b[1]))
+
+Yeah, I have got that the data is interlaced, and it's still possible
+to use the __be64, but the resulting code might be too overengineered
+for this simple case (as it would require bitmap operations to remap
+interlaced bits and an additional churn on top of u64 to be
+represented as set of unsigned long:s).
+
+...
+
+> +/* The whole measure is split into 2x32bit registers, we need to read th=
+em both at once */
+
+32-bit
+
+...
+
+> +       /*
+> +        * Loop until data is valid, new data should have the
+> +        * ALS31300_VOL_MSB_NEW_DATA bit set to 1.
+> +        * Max update rate is 2KHz, wait up to 1ms
+
+Missing period at the end.
+
+> +        */
+
+...
+
+> +       switch (mask) {
+> +       case IIO_CHAN_INFO_PROCESSED:
+> +       case IIO_CHAN_INFO_RAW:
+> +               ret =3D als31300_get_measure(data, &t, &x, &y, &z);
+> +               if (ret)
+> +                       return ret;
+> +
+> +               switch (chan->address) {
+> +               case TEMPERATURE:
+> +                       *val =3D t;
+> +                       return IIO_VAL_INT;
+> +               case AXIS_X:
+> +                       *val =3D x;
+> +                       return IIO_VAL_INT;
+> +               case AXIS_Y:
+> +                       *val =3D y;
+> +                       return IIO_VAL_INT;
+> +               case AXIS_Z:
+> +                       *val =3D z;
+> +                       return IIO_VAL_INT;
+> +               default:
+> +                       return -EINVAL;
+> +               }
+> +       case IIO_CHAN_INFO_SCALE:
+> +               switch (chan->type) {
+> +               case IIO_TEMP:
+> +                       /*
+> +                        * Fractional part of:
+> +                        *         1000 * 302 * (value - 1708)
+> +                        * temp =3D ----------------------------
+> +                        *             4096
+> +                        * to convert temperature in millicelcius
+
+ Missing period at the end.
+
+> +                        */
+> +                       *val =3D MILLI * 302;
+> +                       *val2 =3D 4096;
+> +                       return IIO_VAL_FRACTIONAL;
+> +               case IIO_MAGN:
+> +                       /*
+> +                        * Devices are configured in factory
+> +                        * with different sensitivities:
+> +                        * - 500 GAUSS <-> 4 LSB/Gauss
+> +                        * - 1000 GAUSS <-> 2 LSB/Gauss
+> +                        * - 2000 GAUSS <-> 1 LSB/Gauss
+> +                        * with translates by a division of the returned
+> +                        * value to get Gauss value.
+> +                        * The sensisitivity cannot be read at runtime
+
+sensitivity
+
+> +                        * so the value depends on the model compatible
+> +                        * or device id.
+> +                        */
+> +                       *val =3D 1;
+> +                       *val2 =3D data->variant_info->sensitivity;
+> +                       return IIO_VAL_FRACTIONAL;
+> +               default:
+> +                       return -EINVAL;
+> +               }
+> +       case IIO_CHAN_INFO_OFFSET:
+> +               switch (chan->type) {
+> +               case IIO_TEMP:
+> +                       *val =3D -1708;
+> +                       return IIO_VAL_INT;
+> +               default:
+> +                       return -EINVAL;
+> +               }
+
+> +
+
+Seems like a stray blank line here.
+
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +}
+
+...
+
+> +static int als31300_set_operating_mode(struct als31300_data *data,
+> +                                      unsigned int val)
+> +{
+> +       int ret;
+> +
+> +       ret =3D regmap_update_bits(data->map, ALS31300_VOL_MODE,
+> +                                ALS31300_VOL_MODE_SLEEP, val);
+> +       if (ret) {
+> +               dev_err(data->dev, "failed to set operating mode (%pe)\n"=
+, ERR_PTR(ret));
+> +               return ret;
+> +       }
+> +
+> +       /* The time it takes to exit sleep mode is equivalent to Power-On=
+ Delay Time */
+> +       if (val =3D=3D ALS31300_VOL_MODE_ACTIVE_MODE)
+> +               usleep_range(600, 650);
+
+fsleep() ?
+
+> +       return 0;
+> +}
+
+...
+
+> +       devm_mutex_init(dev, &data->mutex);
+
+Hmm... While not critical, this may still return an error. There were
+only two (out of ~15) users that ignored the error code, in v6.12
+there are two more in IIO, while one is checking for it. I would like
+to check for an error and bail out (and maybe I'll update the other
+drivers in IIO to follow, including one GPIO module that ignores it).
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
