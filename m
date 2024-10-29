@@ -1,101 +1,133 @@
-Return-Path: <devicetree+bounces-117083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 748689B4F14
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 17:16:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A6BD9B4F62
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 17:33:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27EAD1F25194
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 16:16:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5BF4B21CA2
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 16:33:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1706A1D356C;
-	Tue, 29 Oct 2024 16:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C7E199E84;
+	Tue, 29 Oct 2024 16:33:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XIdFo/xm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A2kyqAII"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA26D1993B5;
-	Tue, 29 Oct 2024 16:15:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F4F8198831;
+	Tue, 29 Oct 2024 16:32:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730218532; cv=none; b=VClDhaLMgwuDSu+3ubggbur7M9LjDai8b86XzSCQqsQty+HePi8L0JAOvgoM7wv9bxfYxJdER3GnSGxGZKe5vRDC5Y3JQp4JJdAKsfUq30ns0PA9blTBF3y+fXSWnzikQe76usDFFE9xVrqa1LvZR8YDyi/V+uXRAuFq0gCkt2s=
+	t=1730219580; cv=none; b=YJXsocGETgaPCfx1VUs7sC6IF6zZIT7vRA1aen0tzwkc3IplGvvx6USQE2OlQWx++3fBLYx1D4vE08l6EbvFslyq4aI6lQRyCV0K7nhhX4fJk4YGqQvKkEq/CAkSb4YNmwp4ERpotJ24BDOaee3kM6iQ1ga5rBQfi1tBwsBAekc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730218532; c=relaxed/simple;
-	bh=kMKc10j7VGxeNAMb2m4ny2C5ZWH83LXpdQnxhHidR+o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=reEOIil5VwBkEHbtY/A3G55b9QgSBm2otGF5VzquMo9z5I1s2GoOP4SF+tXzh0nl+WVwRfWbpEby58m87Uy8Z9lgpPkFwQiSe7wxZfaNAcK8P4D8BCjCCMTRwBMUxLmWHsiHNTgK6bWNRm+qXaIp+DSiwRUAxVt9D+oRw55C6/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XIdFo/xm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9752BC4CEE8;
-	Tue, 29 Oct 2024 16:15:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730218531;
-	bh=kMKc10j7VGxeNAMb2m4ny2C5ZWH83LXpdQnxhHidR+o=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=XIdFo/xmjJ/A5CqRYVA7v9r9UUp1/0vm8UzP2PZyPD1gXfJNYrja7Xv1b17rVD9Pv
-	 t98DbS0wAJN3988GoAvvJisJYvO+IaLbCJasI5dI5fR7pkumiiq0tmiEbfMoM2Ls3c
-	 otQJyl3tPZgN1ylyNfEMLyzrMN60XmMpj1Y5bSdruUlC05qh+YT/roLWGDGz8UqpS8
-	 TzZpropxMC0LTFXvukXPC7xMzswCuTG1vdqbiMCWjfulbiRo6I49WNsctUueOuhm46
-	 Mz81OZQfQUao6e7CzZbG0YXQKEP5PFTFUHgUCJuo379LAMa/q6IK+schDut7EdJBzx
-	 h7UeGnsCYovBA==
-From: Will Deacon <will@kernel.org>
-To: andersson@kernel.org,
-	konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	robimarko@gmail.com,
-	robin.murphy@arm.com,
-	joro@8bytes.org,
-	Qingqing Zhou <quic_qqzhou@quicinc.com>
-Cc: catalin.marinas@arm.com,
-	kernel-team@android.com,
-	Will Deacon <will@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev
-Subject: Re: [PATCH v3 0/4] Add support for APPS SMMU on QCS615
-Date: Tue, 29 Oct 2024 16:15:14 +0000
-Message-Id: <173021813714.1137827.1103662832817907135.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20241025030732.29743-1-quic_qqzhou@quicinc.com>
-References: <20241025030732.29743-1-quic_qqzhou@quicinc.com>
+	s=arc-20240116; t=1730219580; c=relaxed/simple;
+	bh=gZzvj1L1Uurkf/PTmqTauqG1geMqfWBB82+zNmPrqjk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qSpiGU4VgY9yTAuGZgNCcu5qXVLN7xF+R019KFrsmvOSEEmX8VsN3sOLjydnZ369rqSRtvfZdowvnGp7rV1lbg0yiMFU1Ex3bE3cggMw/hkHEJHhtSpwc9bf5VjZXE4OrsmNykg/AeFZ3cIYBpSncYp8P6dlp5FAK0yRhdO1xNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A2kyqAII; arc=none smtp.client-ip=209.85.161.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-5ebc1af8e91so2847529eaf.1;
+        Tue, 29 Oct 2024 09:32:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730219577; x=1730824377; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=S/lGGqEKgUEddXZiGrZ4jfunD0Qbhe5FARK/pNKY1l4=;
+        b=A2kyqAIInAg0La0SdCgbfJykVC5hqzDq+HfLIExp8u5YAyEglMVQEAFyRRB5oZSTlF
+         wa7eh+nylJph/saC8YUmj1eJu871IcuqM7Bb0h4foKIjDCdVU9vre0dEtixdFCoofVc/
+         xEfD/wGCPaAkcJcL+f/WXicQ3Jo51QrsKc6PlYhbKnuDnEeIdWcSdTqb2jbGS+iB80Ea
+         xpn3h3MYoj23Fw0rDiOon+4ysfvo1VqNuesQMbBpuC4WqaNhkwOFmJrsivzJF0LHSHjf
+         NvkeXX85+ty7PIjnmXU89RbxbyHeEec+cJmP8WQzNKn4ymiw/clrE3X9aVKvexoDrxsu
+         5VAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730219577; x=1730824377;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S/lGGqEKgUEddXZiGrZ4jfunD0Qbhe5FARK/pNKY1l4=;
+        b=maHSP5tdFp5M6LtosnIf48P0K62fERkgHvK2D+iXoBGoyjIb3HSWIyyWB4PBhXN5q4
+         l+a0GhWNEvzroguGihi9mvKC8JJiWSHkZhHCbmq9x4rT/7ej/pRmdrqGBt/WfgbqT5S5
+         RYAMJaIlFj0aKGNN4Jpg/IvW2GcNbnu+DXHLEJY+g8lDmRmSMo/UATQMnXuyeM7Rt3ay
+         YCaaPFikhqsR6+BW9JgqbcU3aBF2NFrFfA0JXFqwjGImcEhXolg46kU6Fawzpsna92Bp
+         jERpbBaX9LUnluS+5ZZqeIWr1vxFPlaAcdupNXZXllK/loGSRClSc2kaZnUVNYBjyqm9
+         u9zA==
+X-Forwarded-Encrypted: i=1; AJvYcCVZcRE/K8QRYq48sEyc4uqcZydP6ASZ7YqmfKCZb7X6k7Mm1s/yJDADNhCK3jHFpWt5XBSTxxXhxdak@vger.kernel.org, AJvYcCW3Amb75wlTFuQYWwdVNiZ1ySxICqb2AFvGStyzSN7teR0ataEEwVOAm7OqB7Ig11hIzU3HAqa8775c@vger.kernel.org, AJvYcCWV3PqQ+UFC+KJ0KWulbpvA75fEoJ4oLBkOitqnDAIIlXp6ytUsKns8rFHXgPbpk/WITrKURdPz7qEjqYo=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxgu7pD3jqng4Bnq1GcLh6wWAmAc+zs0qtF2CwPeFRANUD0rUVE
+	u7kf5Da9GQtttV2LOiZnDJwnWUdwXSaLUWGKrGPhCg8sqkeLXt9WIxyYAJuO
+X-Google-Smtp-Source: AGHT+IEinLyHOA1cU8O4mla2g+CTLD0/kpM9fr/Cvhw5KUFrWs0dqZE3hQDgF3DFEKEzSCm3sqc6BA==
+X-Received: by 2002:a05:6820:808:b0:5e1:ba38:86e7 with SMTP id 006d021491bc7-5ec23970a84mr7743542eaf.5.1730219577179;
+        Tue, 29 Oct 2024 09:32:57 -0700 (PDT)
+Received: from raspberrypi ([2600:1700:90:4c80::3b])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ec185d2da8sm2397806eaf.23.2024.10.29.09.32.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Oct 2024 09:32:55 -0700 (PDT)
+Date: Tue, 29 Oct 2024 11:32:53 -0500
+From: Grant Peltier <grantpeltier93@gmail.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: robh@kernel.org, linux@roeck-us.net, magnus.damm@gmail.com,
+	grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v5 0/2] dt-bindings: hwmon: pmbus: add bindings for
+ isl68137
+Message-ID: <ZyEONRFoooymFcfJ@raspberrypi>
+References: <cover.1729874904.git.grantpeltier93@gmail.com>
+ <CAMuHMdWHZR9pN3h=Jdsqs5Qb0mi_4CobBtu82PRgzrm5TRgE4A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdWHZR9pN3h=Jdsqs5Qb0mi_4CobBtu82PRgzrm5TRgE4A@mail.gmail.com>
 
-On Fri, 25 Oct 2024 08:37:28 +0530, Qingqing Zhou wrote:
-> Enable APPS SMMU function on QCS615 platform. APPS SMMU is required
-> for address translation in devices including Ethernet/UFS/USB and
-> so on.
+On Mon, Oct 28, 2024 at 11:18:39AM +0100, Geert Uytterhoeven wrote:
+> > v4:
+> > - Revert devicetree property name to "vout-voltage-divider" and refactor
+> >   property description and driver implementation to match existing
+> >   vout-voltage-divider implementation in max20730 as no suitable generic
+> >   voltage divider schema exists.
 > 
-> Add the SCM node for SMMU probing normally. SMMU driver probe will
-> check qcom_scm ready or not, without SCM node, SMMU driver probe will
-> defer.
-> The dmesg log without SCM node:
-> platform 15000000.iommu: deferred probe pending: arm-smmu: qcom_scm not ready
+> Can you please elaborate (or point to the email that did so, in case
+> I missed it)?
 > 
-> [...]
+> In reply to v2, Günter wrote:
+> 
+>    "I would prefer, in the order of preference,
+> 
+>     1) an applicable generic property definition
+>     2) a definition that is already used elsewhere
+>     3) a new chips specific definition"
+> 
+> https://lore.kernel.org/all/3f460b62-4cd1-49dd-a98b-1fbcfdbd3af0@roeck-us.net
+> 
+> Thanks!
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+>
 
-Applied SMMU bindings change to will (for-joerg/arm-smmu/bindings), thanks!
+Hi Geert,
 
-[2/4] dt-bindings: arm-smmu: document QCS615 APPS SMMU
-      https://git.kernel.org/will/c/515c8ff024ba
+After looking through existing bindings definitions, the only generic
+voltage divider property that I found was one that is intended to scale
+voltages for IIO io-channels. However, the use case here is to scale
+particular hwmon PMBus telemetry, which most closely matches the existing
+implementation of the vout-voltage-divider property in the max20730
+driver so I opted to copy that implementation based on Guenter's
+preferences. Is there something that I missed or more information that
+you are looking for?
 
-Cheers,
--- 
-Will
-
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
+Thanks,
+Grant
 
