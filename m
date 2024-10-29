@@ -1,88 +1,187 @@
-Return-Path: <devicetree+bounces-116894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66FE99B4473
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 09:43:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B53E19B4489
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 09:44:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F10EFB2247A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:43:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E64E71C2246D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:44:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49500204003;
-	Tue, 29 Oct 2024 08:43:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96E742038DA;
+	Tue, 29 Oct 2024 08:44:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b="DLdPx2b4"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="C8PH7V93"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.8bytes.org (mail.8bytes.org [85.214.250.239])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F522038D6;
-	Tue, 29 Oct 2024 08:43:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.250.239
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730191386; cv=none; b=Z4hkAnvdH6qJKBarsKDhi/48fQnJoe+UEi7WSXJWdWIvJP9OqePOjJ5X21rZt1//df9wiZAJ3mAUX+uY7JjrQG/6yCJRzPijDQERl18kSf+If6YPkfdAfJB27gD/X4h3QvylHCo3v+/0nKJ49adbs+vJ/JU6P1Io+ysJflVjQNk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730191386; c=relaxed/simple;
-	bh=3obJMxT/iLNG5zmbZLIIDYwv1bCDqT29YPV4LLHT0D0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GwtMuNR0AAIWnXJFP79E7cnoIHeDwHqdMOA/vKLq+acEtIBZ+0XlVJj4LL7GJrbeAMGpaqPl2hMY54NiIjXZ0fROZZuYhd50HdasLrmMkcHpnYQApIUFBNflXOhyQT+Fi0fLfDeKQ5HO9gEnm3N2DVwDR3PUx469rGIPNXqDPfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org; spf=pass smtp.mailfrom=8bytes.org; dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b=DLdPx2b4; arc=none smtp.client-ip=85.214.250.239
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=8bytes.org
-Received: from 8bytes.org (p549219d2.dip0.t-ipconnect.de [84.146.25.210])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.8bytes.org (Postfix) with ESMTPSA id C9F922A8D55;
-	Tue, 29 Oct 2024 09:42:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
-	s=default; t=1730191377;
-	bh=3obJMxT/iLNG5zmbZLIIDYwv1bCDqT29YPV4LLHT0D0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DLdPx2b4pXUOpdWcGGiZXG7u3OzXLN6XCbArTH3FfOyophisj9GPCdqyxU09urIbD
-	 59hcffdqEwheqtSj3u1GTs2Qd+456uO9RnH6OQvFu7DgPzmlX2MgA8ImPV3W+hIAuK
-	 7uMRhfbNmJ0AxIrWe+NaPCM+Q/uuCcMiSlfmQJqKNiiQYtRWn2nSO/yWhwWgpvoBDG
-	 NxEU3qLL1UtEOuAnBr1ElB45c02hIG2ZlsnLEOeFem3W+eWn5HA5iMsGjhi0uPeQuV
-	 gWgi7t1m9kHJEyy62z/4KMd55SOZ8BN+ZQuCFTsOryjHLi/JgOb4VS9tfWNw58y/t5
-	 BrCJJnxD7LU7A==
-Date: Tue, 29 Oct 2024 09:42:55 +0100
-From: Joerg Roedel <joro@8bytes.org>
-To: Tomasz Jeznach <tjeznach@rivosinc.com>
-Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Nick Kossifidis <mick@ics.forth.gr>,
-	Sebastien Boeuf <seb@rivosinc.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux@rivosinc.com
-Subject: Re: [PATCH v10 0/7] Linux RISC-V IOMMU Support
-Message-ID: <ZyCgD__VeR4LJj_a@8bytes.org>
-References: <cover.1729059707.git.tjeznach@rivosinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57AC62038D7;
+	Tue, 29 Oct 2024 08:44:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730191447; cv=none; b=ARhyIItv5+COxupa9GQ2HviwcIHCpQcbre/WgjwkK4x8vNmOqYZOhnZdvOKvVN+k3gpp3oL2blPKevfeCQJH8Zwivj5jVJ6bF88HJ/fVsaQ7rI18p0uQzp25/obtx0CUjxVvAOn8eYnPSd7LHk/C3j7FHryepR0qyzBx/3rYzhc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730191447; c=relaxed/simple;
+	bh=29GtuOb78Tq1qYNR/nE/cnVHgRQpd26VnE8XbAtvsAY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=p1V5IJ7apsJTC4CG/VxMRWdnRu5y5O3AhYkBRPMN4jdkH/x9Ca6dDCjsOksYr5Rg+vREwrmfe5eedCsthvIsIkuUwreQvrORb6l4nG4gnrcwCzxH2Jzyzn7HYJZ2QitnCnj2EhHLAT7lyZ5KWMsxMgDsVEmYjbt/d7LKzNZbk24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=C8PH7V93; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=q9tbeX7y+zJgZuAb/cGAaZ6MuCs4CQFq8FQvgssvj5E=; b=C8PH7V936k7jSRlqWNh/9IP9kq
+	2lMBc9oVA6BILyiZI4TvY/qs23GQNfOWpQipGokmPTcvgTR+8AsdYx/mQol5PQ4B9Q3BXKcA5vwL0
+	qaWWQBolR7aLKV1lPlDpe5qo7inNYIGy9fBvYgJYW28sCoV0QHkz/H9sBYaDd6geVj06rE866fs0k
+	9UGEXv8I8JgXoDP8Bf/Zrom5MoisZ/iRJSIfZoFwauhEu2WhjwMcdPpDRhJu/D0pWBQAcH+Kqw8RX
+	8FaYwoKRFjv4uv4cIaJd4NoZ2rZD6+W6BKaJdpB5qf6LUGoYxilHQ2YT+yj+/Ga7ZYy4IJ77fJWEx
+	lRU3k4KQ==;
+Date: Tue, 29 Oct 2024 09:44:02 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ linux-kernel@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+ devicetree@vger.kernel.org, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, Sascha Hauer
+ <s.hauer@pengutronix.de>, Alexander Stein
+ <alexander.stein@ew.tq-group.com>, imx@lists.linux.dev, sre@kernel.org
+Subject: Re: [PATCH v2 2/3] ARM: dts: imx: Add devicetree for Kobo Clara 2E
+Message-ID: <20241029094402.382594c5@akair>
+In-Reply-To: <f2bb661d-8ef5-43d4-aece-c7fec01ff9fe@gmail.com>
+References: <20241024142206.411336-1-andreas@kemnade.info>
+ <20241024142206.411336-3-andreas@kemnade.info>
+ <f2bb661d-8ef5-43d4-aece-c7fec01ff9fe@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1729059707.git.tjeznach@rivosinc.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, Oct 15, 2024 at 11:52:12PM -0700, Tomasz Jeznach wrote:
-> Tomasz Jeznach (7):
->   dt-bindings: iommu: riscv: Add bindings for RISC-V IOMMU
->   iommu/riscv: Add RISC-V IOMMU platform device driver
->   iommu/riscv: Add RISC-V IOMMU PCIe device driver
->   iommu/riscv: Enable IOMMU registration and device probe.
->   iommu/riscv: Device directory management.
->   iommu/riscv: Command and fault queue support
->   iommu/riscv: Paging domain support
+Am Tue, 29 Oct 2024 09:53:33 +0200
+schrieb Matti Vaittinen <mazziesaccount@gmail.com>:
 
-Applied, thanks.
+> On 24/10/2024 17:22, Andreas Kemnade wrote:
+> > Adds a devicetree for the Kobo Clara 2E Ebook reader. It is based
+> > on boards marked with "37NB-E60K2M+4A2" or "37NB-E60K2M+4B0". It is
+> > equipped with an i.MX6SLL SoC.
+> > 
+> > Expected to work:
+> >    - Buttons
+> >    - Wifi
+> >    - Bluetooth
+> >      (if Wifi is initialized first, driver does not handle
+> > regulators yet)
+> >    - LED
+> >    - uSD
+> >    - USB
+> >    - RTC
+> >    - Touchscreen
+> > 
+> > Add human-readable comments for devices without mainlined driver and
+> > binding. Such comments can e.g. be help to find testers if someone
+> > starts to work on the missing drivers.
+> > 
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>  
+> 
+> ...
+> 
+> > +
+> > +	pmic@4b {
+> > +		compatible = "rohm,bd71879", "rohm,bd71828";
+> > +		reg = <0x4b>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_bd71828>;
+> > +
+> > +		interrupt-parent = <&gpio4>;
+> > +		interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
+> > +		system-power-controller;
+> > +
+> > +		clocks = <&clks 0>;
+> > +		#clock-cells = <0>;
+> > +		clock-output-names = "bd71828-32k-out";
+> > +
+> > +		gpio-controller;
+> > +		#gpio-cells = <2>;
+> > +		gpio-reserved-ranges = <0 1>, <2 1>;
+> > +
+> > +		rohm,charger-sense-resistor-ohms = <30000000>;  
+> 
+> I am afraid that this one is _my_ very much terrible brainfart. Yeah, 
+> pile up the stones and start casting ;)
+>
+... at everyone who had looked at this and did not question it ;-)
+ 
+> I am fairly sure the sense resistor is 30 mOhm (0,030 Ohm), not 30
+> MOhm (30 000 000 Ohm). (And I am the one who misinterpreted the M in
+> some email/data-sheet in the past - and never questioned the sanity).
+> 
+Well, I did question it, but then thought, ok there might be some
+current mirror to scale things down so that the massive rsense might
+make sense. Well, no schematics here.
+
+> In short, AFAICS the sense resistor is added "in series" to the
+> system load. Eg:
+> 
+>            --------
+>        ---| Rsense |-----
+>       |    --------      |
+>   ---------           -------
+> | VSupply |         | Rload |
+>   ---------           -------
+>       |                  |
+>        ------------------
+> 
+> Hence, by measuring the voltage drop on the Rsense gives us the
+> current flowing through the system ( good old U = RI ).
+> 
+Yes, that is the way I did know how these things are usually done.
+So I am still on track.
+
+> I believe having 30 Mohm (30 000 000 Ohm) resistor there would not
+> make much of sense... With a Fermi estimate that the system works
+> with voltage magnitude of 1V and current magnitude of 1A and then
+> applying good old P = UI and U = RI would give us wonderful results
+> :) Quite a battery on poor Kobo, right? You'd better to not touch the
+> battery termninals ;) Oh, and looking the driver code I've written
+> for handling this property... Sometimes I really don't like mirrors :)
+> 
+
+> Well, now that I got this out - I suppose this could be
+> rohm,charger-sense-resistor-milli-ohms = <30>;
+> or
+> rohm,charger-sense-resistor-micro-ohms = <30000>;
+> 
+> I further guess there is no upstreamn binding doc for this property.
+
+The binding doc is upstream. So an impressive amount of maintainers
+had a look at it...
+
+Well, everyone seem to entrust Rohm Semiconductors to do magic...
+wonderful reputation.
+
+So how to proceed? As this property is not required, I can simply
+remove it and add a comment.
+
+> I think there is also no upstream charger driver for the
+> BD71828/BD71879 - only an early RFC and some downstream mess - but
+> stil it'd be nice to have the property in place as the size of the
+> sense resistor is needed when converting coulomb counter register
+> values to current.
+> 
+What are you upstreaming plans here? For all:
+I rebased the charger stuff to v6.11 on
+https://github.com/akemnade/linux branch kobo/power-6.11
+
+Regards,
+Andreas
 
