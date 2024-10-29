@@ -1,126 +1,107 @@
-Return-Path: <devicetree+bounces-117147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC63B9B52BE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:30:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B81229B52CE
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:35:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0628D28176C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 19:30:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9C161C22945
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 19:35:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1165F207218;
-	Tue, 29 Oct 2024 19:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B16702071E8;
+	Tue, 29 Oct 2024 19:35:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="RnIs3Kpn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WF44hvjf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1637320720A
-	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 19:30:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80EB1190486;
+	Tue, 29 Oct 2024 19:35:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730230227; cv=none; b=tNsIZe/Fa0DErKU0kG5pJWKLSd3BTzgSkz4pwyvlHXZeCy+FKw5TUImJ82QTmC5NqOWyDtJUVRTsca8r9GB2EsxEVBOVx0gn5Le3Bzij7rAf6M3nyorpp/xh7AQm3obVyMGef7gToFuojV9sAbDT6WJsV0ImRBTEqhTRZVIrAFk=
+	t=1730230546; cv=none; b=FZ9QW7UjzpbM6ZnaVg49zUMZVVoTJmhoN8p2RHuNOaTvxs+4yGuvLKA3vtISuJlfxfgD1dNcAym6ZTPrtbUhjhgpNNyDZOssdM9ZlIxY6VIIHtTg9aKNo3rfJTbOJewzoJj4GhjaYGXfstNkhd5U4+wGkgABgzPBlho7tdhGUa8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730230227; c=relaxed/simple;
-	bh=UZqxfxGhhDijKNFqX9Nf1gDfRDmnMbrN717VYuDwDKg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nnGLAn7jnOhVJDV8n28BrOh0UyJECY9kCk6TDRo4xz+PdeYDd0tatJcNzmDiAqFk4Zv9XIMgP9IMC6M2deNPwoTNKdQqArFkwy1p0Rwxjd9H6oJ/kPu6KeYbfJyr7eOVWVWBUMTQ7pKqzojfBQT9d6sPBFe3ZVDBT1LhIvZ2GTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=RnIs3Kpn; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-20cbca51687so54615915ad.1
-        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 12:30:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1730230224; x=1730835024; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=eZYty5iLNq618ev8kgFv2jOkN8cQs9inuPb0s+iDRZs=;
-        b=RnIs3KpnhAhdaw72QWOHsnDArY1U4ueQHuO698SmE7CIddokHXSanrLxlUPwA7K3b5
-         hhGVnXa5InCXF+yUktBVby5G2IZI4tw+9kPOPBZstkm4pHn4aUqlL1/+shG2gY7jQRpx
-         PIG3SukBmxhJySX8zXHWC/s7pEumpfHSuFiPaUGDVXCzgprtdBJSIYZvv9pKRS/gqoSh
-         YndAjPvvwNeqPCeiSFy7FdDZPAeBuSTC70jlka1+Ja6pOPSXz+LDRauK1Nqxxa0JC0RR
-         1N96xOHO42loWAiwTAeLiQtyOucJI3uFwN32FpDmOnoYNFk5BRUEMxXwXPdYErPkoDVQ
-         JUbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730230224; x=1730835024;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eZYty5iLNq618ev8kgFv2jOkN8cQs9inuPb0s+iDRZs=;
-        b=m9O8CxtJELUUufkREHu7glq3yTXYvlfNTEkKaApDkVuoe+NF0Rl/JsLpdLjOqnmvx/
-         J7eWCLishzbuRWKV4fIN8ZGMkX9ngwiEedRC/3qAfwLbjg2qCHWRr0qbQY+P1RRUG5i5
-         txmHlmKmUkFpopsqf7wlCTbrMljQbp/t41h6g3m8fiM7JHrEIojMK2OQGjjgrbxhVe+D
-         +1+HXpf6ALArnXq0jDbkAtA6Lkm//gOaIYueVzepWcFeV1Cyvhj+HotRPW04wRd0aR1y
-         N9niRynDDPu20qdcSLtzB+dTT2i25kgKXo6XGr1HQCNatbHrVx/mCBPcKY4TRcSHafU8
-         faHw==
-X-Forwarded-Encrypted: i=1; AJvYcCW6r0O0ZdNfGSoL0RR/5YRpxOEV0Cnou6eqt3bj257+0KK7srv9/U0WgtGRw1yOjY8txabWWqSP9BZa@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywm2tpwWfLt+syuiCwqLfXNKvNoiJCbdvIkIryISV3O7edNaNLM
-	sovTl00GPeXmVk2EjM4QvXd/V0EqF2+96I4MI+0nvY69DpWZqqvvoMw7PG/jpU0=
-X-Google-Smtp-Source: AGHT+IFCGTXJ0m+b8aQG2NJq1Sf6l4nGmP7i3RBj87u6UaZGMbHBTkMdEXBC+/iHz1GLrMqpotUaBw==
-X-Received: by 2002:a17:902:f70f:b0:20e:57c8:6abd with SMTP id d9443c01a7336-210c6c95ac5mr165995575ad.52.1730230224422;
-        Tue, 29 Oct 2024 12:30:24 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-210bbf88490sm69587645ad.114.2024.10.29.12.30.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 12:30:24 -0700 (PDT)
-Date: Tue, 29 Oct 2024 12:30:21 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Max Hsu <max.hsu@sifive.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Anup Patel <anup@brainfault.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
-	Samuel Holland <samuel.holland@sifive.com>
-Subject: Re: [PATCH RFC 1/3] dt-bindings: riscv: Add Svukte entry
-Message-ID: <ZyE3zSNnc9qxUPly@debug.ba.rivosinc.com>
-References: <20240920-dev-maxh-svukte-rebase-v1-0-7864a88a62bd@sifive.com>
- <20240920-dev-maxh-svukte-rebase-v1-1-7864a88a62bd@sifive.com>
+	s=arc-20240116; t=1730230546; c=relaxed/simple;
+	bh=5KQbaA+O7BsA/JA0J1T6fbaSAGxHI5cW1PQ5/cTrGuY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eb099/7UlCLanjHlJXf9QsvM+KTa9hlu7RpdMT283kf6jTM0MQ1CSSBHbO+fysJ0Gnrk5JC7gEcyJaDIbyuP6OIaod+HB2fMzzwPbjKQnq6f1ob48Jxy86kjbnjTxki8nfYxU6Oh2qwqcFgQ7vDKNbjx5Egkc+h/Bcc8bxT1Hc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WF44hvjf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B52BC4CECD;
+	Tue, 29 Oct 2024 19:35:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730230546;
+	bh=5KQbaA+O7BsA/JA0J1T6fbaSAGxHI5cW1PQ5/cTrGuY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=WF44hvjfVsOy9QH0lokqppbf52+iVfI4qe+h0ERxoOQpWnFl5wtUniBjt9TS0am7z
+	 TjM1JlOPueujGXP5g6til6XH9RIHmPeRwnSXyYNSe2H/wElFIpSsGPtG0DGEa5xKmv
+	 sGw3nb4sv2l9cKB+DiJEFKwIlbVopxiag95TtOzSvLgGCpYbduP2pREgoSZITayFO0
+	 MnQww53c+BYB4iLRmSjY4aL9h9p3lc488tOKVBNlb2BkdX4AiW/hTEICV2nc7ylaJu
+	 rV6D34Xd162dixrhEjKO3s/aDeg4bbxnsVXkKDa3YP73kOZA3QadFHplTZlujJGvD5
+	 jO6HdLJp1v1jA==
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539e5c15fd3so5174562e87.3;
+        Tue, 29 Oct 2024 12:35:44 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUgieVhC+tB0c9qjMaf+XVnY7E2vwmLyEqqx+9oLhwve9xfyCZZxaeiaqKyVP4qdy7aPTOOzhDzr259uJDW5yA=@vger.kernel.org, AJvYcCVS2sZ/qZh1KjiGdz4PA/UmWN/ijXCbwWHL1nS6l6UyuGZBMLfRDOF2IrQQTf7L154o4f5tedSY3Yd+i5ge@vger.kernel.org, AJvYcCXXkEYPv9FGB4LEqa3VI4LHooe4Oen3REGJfTCctW/ltc6coCHvrmplhbS0sJNlNfW3aGebuur4oRWC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQLzohTqvA+RK5yewyecUqWPR6HbKsF07h/1b2ljaaXg9lq7MN
+	aZhkXG6rDd5GaopJxR8a2ziRrfvisCWTTguavOWugkm+lgmazD193uRUwWXce9e1djNqV8oD5uS
+	YCFkTtfdhHn8ySXCLY+B/RamnxA==
+X-Google-Smtp-Source: AGHT+IFe9PFqt+n8Vs6QpequE7rsrw365RDFEY3bYDcLHyZ8EyQZTv5AB4GWHhbd1GDB4ZBkz78jJbxqGvlOMrcJxas=
+X-Received: by 2002:a05:6512:3f1c:b0:539:e761:c21a with SMTP id
+ 2adb3069b0e04-53b34a365c7mr7068570e87.48.1730230543434; Tue, 29 Oct 2024
+ 12:35:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20240920-dev-maxh-svukte-rebase-v1-1-7864a88a62bd@sifive.com>
+References: <20241025-rust-platform-dev-v1-0-0df8dcf7c20b@kernel.org>
+ <20241025-rust-platform-dev-v1-2-0df8dcf7c20b@kernel.org> <CAH5fLgjhiLUYPgTt_Ks+L-zhWaQG5-Yjm-Y3tfh2b2+PzT=bLg@mail.gmail.com>
+ <CAL_JsqJWPR-Q=vsxSvD7V9_v=+om5mRuW9yYNqfavVRUwH9JFw@mail.gmail.com>
+ <CAH5fLgiXPZqKpWSSNdx-Ww-E9h2tOLcF3_8Y4C_JQ0eU8EMwFw@mail.gmail.com> <CANiq72kaidDJ=81+kibMNr9jNxg467HjOm9C_4G7WRvaiddGvg@mail.gmail.com>
+In-Reply-To: <CANiq72kaidDJ=81+kibMNr9jNxg467HjOm9C_4G7WRvaiddGvg@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 29 Oct 2024 14:35:29 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+T6T_3p2C62U3v4aSjm_oc-Ycjxi_ckF0ufh=JJDz=rg@mail.gmail.com>
+Message-ID: <CAL_Jsq+T6T_3p2C62U3v4aSjm_oc-Ycjxi_ckF0ufh=JJDz=rg@mail.gmail.com>
+Subject: Re: [PATCH RFC 2/3] rust: Add bindings for device properties
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc: Alice Ryhl <aliceryhl@google.com>, Saravana Kannan <saravanak@google.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Dirk Behme <dirk.behme@gmail.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 20, 2024 at 03:39:03PM +0800, Max Hsu wrote:
->Add an entry for the Svukte extension to the riscv,isa-extensions
->property.
+On Tue, Oct 29, 2024 at 1:57=E2=80=AFPM Miguel Ojeda
+<miguel.ojeda.sandonis@gmail.com> wrote:
 >
->Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
->Signed-off-by: Max Hsu <max.hsu@sifive.com>
->---
-> Documentation/devicetree/bindings/riscv/extensions.yaml | 7 +++++++
-> 1 file changed, 7 insertions(+)
->
->diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
->index a06dbc6b4928958704855c8993291b036e3d1a63..df96aea5e53a70b0cb8905332464a42a264e56e6 100644
->--- a/Documentation/devicetree/bindings/riscv/extensions.yaml
->+++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
->@@ -171,6 +171,13 @@ properties:
->             memory types as ratified in the 20191213 version of the privileged
->             ISA specification.
->
->+        - const: svukte
->+          description:
->+            The standard Svukte supervisor-level extensions for making user-mode
->+            accesses to supervisor memory raise page faults in constant time,
->+            mitigating attacks that attempt to discover the supervisor
->+            software's address-space layout, as PR#1564 of riscv-isa-manual.
->+
+> On Tue, Oct 29, 2024 at 7:48=E2=80=AFPM Alice Ryhl <aliceryhl@google.com>=
+ wrote:
+> >
+> > One option is to define a trait for integers:
 
+Yeah, but that doesn't feel like something I should do here. I imagine
+other things might need the same thing. Perhaps the bindings for
+readb/readw/readl for example. And essentially the crate:num already
+has the trait I need. Shouldn't the kernel mirror that? I recall
+seeing some topic of including crates in the kernel?
 
-Reviewed-by: Deepak Gupta <debug@rivosinc.com>
+> +1, one more thing to consider is whether it makes sense to define a
+> DT-only trait that holds all the types that can be a device property
+> (like `bool` too, not just the `Integer`s).
 >
->
+> Then we can avoid e.g. `property_read_bool` and simply do it in `property=
+_read`.
+
+Is there no way to say must have traitA or traitB?
+
+Rob
 
