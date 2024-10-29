@@ -1,121 +1,189 @@
-Return-Path: <devicetree+bounces-116792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019D69B40E2
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 04:14:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD2939B410D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 04:34:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA5952837B3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 03:14:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CA4C1F22D59
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 03:34:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D215E201030;
-	Tue, 29 Oct 2024 03:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB9E619596F;
+	Tue, 29 Oct 2024 03:34:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HijA2jIp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QiDXsbfU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E51E22003D8;
-	Tue, 29 Oct 2024 03:13:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6C884400;
+	Tue, 29 Oct 2024 03:34:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730171611; cv=none; b=KNUtDS+9biXYZjC/08cAGPxxICuo6g0ckVo5EoosP5JcmHTEWFWEtlawFDWT9gM9vAOhZ5s+Pk3A9xDkOsveepdYqfcXuNZxXYBTGw3nDX+s9p+1p5Di7zfaOkMwueX/X/2ZlUZwbvwe3fi258d1CyyIoUGweDkTLiiYb3dq8xY=
+	t=1730172883; cv=none; b=r7W5b/x+8s/Zb+Cdv+N/wIC+2GqerAq0LHHXNiBvtNu5ezdyfFmDpJUn8i+P+FWlxQ0Tqj++mHg9RVOaY/ek9Yg/au13MxSmdnk8l+UiKQnhpgExL4/SIoNmO8s+YjOLijwOmXoKZ7d+Ea4GSyo2esxetB//00JEm2qwrP7TJ3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730171611; c=relaxed/simple;
-	bh=WtH/AOLyIefJgIAKyQQxmk4EQtRLGA5Wgd3LL6Qs8P0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VSJ0ngw44KQQolrx4oPXH4t3RcJatuz2fMGLi3NEU2fB8ueL0/E9Ytyolqtl6Ct+57axI33KS3S7zoyb0vku2RYSRI6RvEoER5W9a2u7KzCheXtwa3nRzGOVNLH1vNS1fm9NLRpgOj3LGwrlIkEy68pYXS/Q2yJnXA2MyGjq5lE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HijA2jIp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49SMXEWc002147;
-	Tue, 29 Oct 2024 03:13:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Uv2ct2JHe+QZqcpCM9oG+MFjV4JAzM+z/RYkVHIh1lw=; b=HijA2jIpxv1lHoBR
-	di/LNNlnvUyAMF4rCmRUONaoJr4epFS2xWeeG8/BjF48efXb0poeKQoV5hU82mZ5
-	JsfBezl9KYjNehTrxFFkC3dzpNXlzIXlJSw/ohFDD2SARr/rxhr9uMSewCRABnIg
-	MU33g9sVaJx4AyFupCtmLPqQrVOa0FEZMD26hKqgDPdI/ym0GufAskEwBs3dkgCS
-	uMjuEHQ6CFDwm4BBuSXJSdpEHFBYGJ1TU03YmLXOL8KwKf+xPqLye5bcRXI9aFlR
-	OawJ3G9w/LY+rwmcLpYOz/hy7bPEi4WtIa0IkVOIZSQC7SSvGvYUYblRYZ6ed530
-	wDN/+w==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gr0x6yg7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 03:13:26 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49T3DPHg031738
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 03:13:25 GMT
-Received: from liuxin-gv.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 28 Oct 2024 20:13:18 -0700
-From: Xin Liu <quic_liuxin@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_jiegan@quicinc.com>, <quic_aiquny@quicinc.com>,
-        <quic_tingweiz@quicinc.com>
-Subject: [PATCH v1 3/3] arm64: dts: qcom: qcs8300-ride: Add watchdog node
-Date: Tue, 29 Oct 2024 11:12:22 +0800
-Message-ID: <20241029031222.1653123-4-quic_liuxin@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241029031222.1653123-1-quic_liuxin@quicinc.com>
-References: <20241029031222.1653123-1-quic_liuxin@quicinc.com>
+	s=arc-20240116; t=1730172883; c=relaxed/simple;
+	bh=VuyoKFAcDtnQ4PpGjHCCGhSvnc0JWzo5gDQoSbB4d9I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fkIEMbmMmO3uVuxkJoOGFH7IXxd48Js03clrvPb2Pfps822a8pObyxMmYwJ7V6E1G3L9n4Uxt35zVG7zFDcO45vb8EV8gFfGVeT9VbeTfL+b3f9rR8YKBxl/z/tHHbUbDJsaTi7nIWvmdFtqB3j+ygcp4WJgU5mP1mOKgeUVB0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QiDXsbfU; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-20cdb889222so46941385ad.3;
+        Mon, 28 Oct 2024 20:34:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730172880; x=1730777680; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=hSg6iwg6m8H/oTxICMnvBDVJFOncGQFLnOpMpcMDaOM=;
+        b=QiDXsbfU2RfpNx59HWUB/u8uEev8HGnlws9SbiV3ZnAt0XJCdK2Zc1f2KBEsOX+jOE
+         Ct0x76COC4kzRDQ5nx10x7XZCrUVuanpg8GEF2KrnT77LF3UBSJpDo6Sd01ZX2k9du68
+         hHyNJzL9uTMRmU4dr90zpYjQ5ZbdQh8G0OPehck9yP2EVYGk/uIuOIKewUwsnhKMbiGR
+         qxjhgjdWorRQ9Ukplyv4upAZqZ4Q5uqsX/Hmuw2YnVsmJTXh+TCQmeeR4xwXAn+hEe7i
+         GVyLPxGXV46VPwyKUD5F6RvDG95e1uGokfpK9rx8vmpKZt6UINgjq+knc5W78u3TSmHo
+         ckqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730172880; x=1730777680;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hSg6iwg6m8H/oTxICMnvBDVJFOncGQFLnOpMpcMDaOM=;
+        b=JofN7an7YXl56JDsLb3L3JrCnmwF3HJUzVkh8irzWocC/ZY7upEOvcge5cAolipzET
+         BQNQiSpDqAhggo3FUj1x3kSWr8Liipzue56mK75Ehyf1WDvcFUAdexDQqGwseNW9S3pd
+         DAKx2d6NHCLF0Pi3MX1rt4zXQvbYdLy8Yz07F7uUsooWAGOj1VJ9L5oD36ooJZZZPUki
+         LMRLt8VpXDHIuGbzQqMk304t6rnOZlJ0vdC+rTK66u6ZJc2nLthB4rEgmo+pYZ2Qqu8f
+         y4K88ErT2UaEAnqi7GgPFgA0SVXwFRREACwLK8B+sJkQJ6BuAON/7GFBDWi4TuTAy0JP
+         WNwg==
+X-Forwarded-Encrypted: i=1; AJvYcCWWmqSWn1lspJpgV/1THNsWUNelqrCu2I687qIUmz4WuKV63z2bWvVS288mZqi0+ShzVPTJLunhwV3b/w==@vger.kernel.org, AJvYcCWq8E/Kn6Ak2eQ+XfDCHdpxkSGnkaxKBWB8KkDkTVzUIkQVFi+jO7I2btozjgjwWjIH12ES9v9HhuaE@vger.kernel.org, AJvYcCXdsyRtg8L0ml6QmjsAm5xxznvh+i9yWTWBm0kJLc+pNOxXgBa70NFdpxv4FrrAeGqbn2KeIhNDV92qNg1H@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSKvocnxTQak9fhJ835/ZbCVURAwy6nPRYyyyHHTUB3yLllVh9
+	orfaEZmNRibfVZBDZRobvGTU2sQwRPRAEH+mosk+UkpUCmGZVVIK
+X-Google-Smtp-Source: AGHT+IHRfJL20TOTFufsIiVQ2aqDX8rcEhb5BS+f95mlHBX7cYDc6ZdYndIcZMOVGpfkVOvMZ60Pug==
+X-Received: by 2002:a17:902:d507:b0:20e:986a:6e72 with SMTP id d9443c01a7336-210c6c0906bmr151590325ad.30.1730172880132;
+        Mon, 28 Oct 2024 20:34:40 -0700 (PDT)
+Received: from localhost ([121.250.214.124])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-210bc02ebcdsm57394395ad.223.2024.10.28.20.34.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Oct 2024 20:34:39 -0700 (PDT)
+Date: Tue, 29 Oct 2024 11:34:14 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Chen Wang <unicorn_wang@outlook.com>, 
+	Inochi Amaoto <inochiama@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@outlook.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc: Yixun Lan <dlan@gentoo.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 2/3] pinctrl: sophgo: add support for SG2042 SoC
+Message-ID: <dza57u6svlsbi7tmxujb4z4b5iqvzthjhyjybt2sklys6ovnpi@kcefsrcevr2h>
+References: <20241024064356.865055-1-inochiama@gmail.com>
+ <20241024064356.865055-3-inochiama@gmail.com>
+ <MA0P287MB28228810469B6A46D26CAF51FE4B2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: HtTGqQOVXBYSDK7rK4-S994CO67n6_eo
-X-Proofpoint-GUID: HtTGqQOVXBYSDK7rK4-S994CO67n6_eo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
- clxscore=1015 bulkscore=0 adultscore=0 impostorscore=0 mlxscore=0
- malwarescore=0 mlxlogscore=944 priorityscore=1501 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410290023
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MA0P287MB28228810469B6A46D26CAF51FE4B2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
 
-Add watchdog clock on the Qualcomm QCS615 Ride platform.
+On Tue, Oct 29, 2024 at 10:59:04AM +0800, Chen Wang wrote:
+> 
+> On 2024/10/24 14:43, Inochi Amaoto wrote:
+> [......]
+> > diff --git a/drivers/pinctrl/sophgo/pinctrl-sg2042-ops.c b/drivers/pinctrl/sophgo/pinctrl-sg2042-ops.c
+> > new file mode 100644
+> > index 000000000000..f1c33b166d01
+> > --- /dev/null
+> > +++ b/drivers/pinctrl/sophgo/pinctrl-sg2042-ops.c
+> > @@ -0,0 +1,583 @@
+> [......]
+> > +int sg2042_pinctrl_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct sg2042_pinctrl *pctrl;
+> > +	const struct sg2042_pinctrl_data *pctrl_data;
+> > +	int ret;
+> > +
+> > +	pctrl_data = device_get_match_data(dev);
+> > +	if (!pctrl_data)
+> > +		return -ENODEV;
+> > +
+> > +	if (pctrl_data->npins == 0)
+> > +		return dev_err_probe(dev, -EINVAL, "invalid pin data\n");
+> > +
+> > +	pctrl = devm_kzalloc(dev, sizeof(*pctrl), GFP_KERNEL);
+> > +	if (!pctrl)
+> > +		return -ENOMEM;
+> > +
+> > +	pctrl->regs = devm_platform_ioremap_resource(pdev, 0);
+> > +	if (IS_ERR(pctrl->regs))
+> > +		return PTR_ERR(pctrl->regs);
+> > +
+> > +	pctrl->pdesc.name = dev_name(dev);
+> > +	pctrl->pdesc.pins = pctrl_data->pins;
+> > +	pctrl->pdesc.npins = pctrl_data->npins;
+> > +	pctrl->pdesc.pctlops = &sg2042_pctrl_ops;
+> > +	pctrl->pdesc.pmxops = &sg2042_pmx_ops;
+> > +	pctrl->pdesc.confops = &sg2042_pconf_ops;
+> > +	pctrl->pdesc.owner = THIS_MODULE;
+> > +
+> > +	pctrl->data = pctrl_data;
+> > +	pctrl->dev = dev;
+> > +	raw_spin_lock_init(&pctrl->lock);
+> > +	mutex_init(&pctrl->mutex);
+> > +
+> > +	platform_set_drvdata(pdev, pctrl);
+> > +
+> > +	ret = devm_pinctrl_register_and_init(dev, &pctrl->pdesc,
+> > +					     pctrl, &pctrl->pctl_dev);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret,
+> > +				     "fail to register pinctrl driver\n");
+> > +
+> > +	return pinctrl_enable(pctrl->pctl_dev);
+> > +}
+> > +EXPORT_SYMBOL_GPL(sg2042_pinctrl_probe);
+> Why EXPORT_SYMBOL_GPL? sg2042_pinctrl_probe looks like just a global
+> function should be enough.
 
-Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+See below for why declare it as a module.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-index 7eed19a694c3..bcdc97b4097d 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-@@ -265,3 +265,7 @@ &ufs_mem_phy {
- 	vdda-pll-supply = <&vreg_l5a>;
- 	status = "okay";
- };
-+
-+&watchdog {
-+	clocks = <&sleep_clk>;
-+};
--- 
-2.34.1
+> > +
+> > +MODULE_DESCRIPTION("Pinctrl OPs for the SG2042 SoC");
+> > +MODULE_LICENSE("GPL");
+> 
+> pinctrl-sg2042-ops.c is just a common file built together with
+> pinctrl-sg2042.c, right? Why you declare it as a module?
+> 
 
+This is for sg2044, which has the same pinctrl ops. Build this as
+module could save some space for the final image. 
+
+> > diff --git a/drivers/pinctrl/sophgo/pinctrl-sg2042.c b/drivers/pinctrl/sophgo/pinctrl-sg2042.c
+> > new file mode 100644
+> > index 000000000000..81411670f855
+> > --- /dev/null
+> > +++ b/drivers/pinctrl/sophgo/pinctrl-sg2042.c
+> > @@ -0,0 +1,642 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Sophgo SG2042 SoC pinctrl driver.
+> > + *
+> > + * Copyright (C) 2024 Inochi Amaoto <inochiama@outlook.com>
+> > + */
+> > +
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/of.h>
+> 
+> Sort in alphabetic.
+> 
+> [......]
+> 
+> 
 
