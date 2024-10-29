@@ -1,72 +1,97 @@
-Return-Path: <devicetree+bounces-117151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED1279B530F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 21:07:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE72F9B5306
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 21:02:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B20C12844AB
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:07:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7908DB223D7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 20:02:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABCE2205ADF;
-	Tue, 29 Oct 2024 20:07:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BC141DBB36;
+	Tue, 29 Oct 2024 20:02:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="tDYgHkvG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-n07.wc1.phx1.stabletransit.com (mx-n07.wc1.phx1.stabletransit.com [207.246.241.253])
-	by smtp.subspace.kernel.org (Postfix) with SMTP id B7A491940B3
-	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 20:07:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.246.241.253
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57BDE1940B3;
+	Tue, 29 Oct 2024 20:02:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730232435; cv=none; b=Kk6Ld648x0f87DzRSzJfgqToAAgJRzBTm/nVW/JCK2HH5FX/bhXMuORA4rjxPir/uAr8FT6mutXaClvfrAYHLP+KDLXohf7mseodLVVvNJsTvCzWALQYDDbVlwK0ymnTFg+dJr2zY+oJTQNMxnbjkb3r5jLF5qtgiUalZtDxIpU=
+	t=1730232162; cv=none; b=CBBWNMIe7PRUgWTIXeUdJAyFr9A+heOqQDoJd3MEeJZU+hOCOI5c56zNRra90RnuP/2/a/cAEFk4VBBNLHpK5JGzY6pf3bSOtApbAKoBDOrK2w/8+OaZoGzrScwRCfmcu9ESapGZ1aISGC+7y+FDbZERmXn2LK8RVaRzPftwbbo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730232435; c=relaxed/simple;
-	bh=tSkRrDKIi4EBVAo3UJpMj5bMjkv8BWT9AWooChtCVQw=;
-	h=To:Subject:Date:From:Message-ID:MIME-Version:Content-Type; b=khSKx7Smvn3XZ0NG7K2PNqbL4s5aF6eZ+wx3fJaDIcCbyy15uv/azNFzK2YwihPC/IMkJMf6ztWkhpPJIpmFkyJ1TM7q2MAlfCMFVf/Envhn6XVInd++Fp8xC/ISex+ZobqF/4HlcJI2zeczyye4LO+iuG1rB5cZGIc9g8QjAAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=yoursiteworks.net; spf=none smtp.mailfrom=yoursiteworks.net; arc=none smtp.client-ip=207.246.241.253
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=yoursiteworks.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=yoursiteworks.net
-Received: by mx-n07.wc1.phx1.stabletransit.com (Postfix, from userid 115)
-	id D89261ACCE6; Tue, 29 Oct 2024 15:00:43 -0500 (CDT)
-X-Spam-Level: *
-X-Spam-Virus: No
-Received: from php-v418.wc1.phx1.stabletransit.com (unknown [10.40.206.44])
-	by mx-n07.wc1.phx1.stabletransit.com (Postfix) with ESMTP id 907A31ACCA8
-	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 15:00:42 -0500 (CDT)
-Received: from cs_web_edvpc8ymwqu9 (uid 3167726)
-	(envelope-from marc.cornish@yoursiteworks.net)
-	id 6037d
-	by php-v418.wc1.phx1.stabletransit.com (DragonFly Mail Agent v0.13);
-	Tue, 29 Oct 2024 15:00:42 -0500
-To: devicetree@vger.kernel.org
-Subject: =?us-ascii?Q?Welcome_to_yoursiteworks.net_You're_moments_awa?=
- =?us-ascii?Q?y_from_making_your_site_work_for_you.?=
-X-PHP-Originating-Script: 3167727:PHPMailer.php
-Date: Tue, 29 Oct 2024 20:00:42 +0000
-From: "Marc C - yoursiteworks.net" <marc.cornish@yoursiteworks.net>
-Reply-To: marc.cornish@yoursiteworks.net
-Message-ID: <FUlZgKxdxlyk6YuH5dG76uygs8ONHoifWHkcc5mtloE@www.yoursiteworks.net>
-X-Mailer: WPMailSMTP/Mailer/mail 3.10.0
+	s=arc-20240116; t=1730232162; c=relaxed/simple;
+	bh=f3UuPOeTZD4/EqjwCyUXIfeYlRaYApjvPjNvGd90k78=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ItWE5WKAVQ6zkibFS4lPoyeup1vtCoNR36J0IxroNy3vJXkF1b3glORxqLMAnyvD84oLRF7hEvDA0Lv/NoGgE8Pp4Jzt/6ZPMkE03FNgGfpZgdvo6aEmw0kHgOGt2SvQn1EEFA2viHp+38V0D4juIVIXBTwKlvJ+UTPF5O/us10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=tDYgHkvG; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=4OcGl0KWTU3dE20CCOU72pTkjwMEmHgpOFmz9ZwbjCY=; b=tDYgHkvGew+c1P8rkg5Y4/g87J
+	GKZJMUOHNPhJdKvoD5vcYEBCk1tGPcwqxE7F7w2NTv7cVN/eFG6on0e57m74Mng1wvl47OkS3lNkx
+	N5r92+cpnoNTN1BJ76ssekUmXkyOzoDWb5BxdkTodlBoOKjgBK2dubX2eskLC426EpPGTH1C35Y5u
+	HrNSaqAF1Zni7609ZB0Ko4fj3JMOcg9rNtg0PiDbGNAwSNubOIJ+Qr1KaZ7RKJt40FQ4gWKpBHdIg
+	9bF1CqPB90k3F2qzqKKZRWYj3Ntlrv/kcZc7p7xoSma7e8lT+Osciwet4VeFQ/oZDbHXY/VT3/Nrb
+	UtGDVw9A==;
+Date: Tue, 29 Oct 2024 21:02:28 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Mighty <bavishimithil@gmail.com>
+Cc: =?UTF-8?B?QmVub8OudA==?= Cousson <bcousson@baylibre.com>, Tony Lindgren
+ <tony@atomide.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: twl6032: Add DTS file for TWL6032 PMIC
+Message-ID: <20241029210228.3c517751@akair>
+In-Reply-To: <20240626095056.12607-1-bavishimithil@gmail.com>
+References: <20240626095056.12607-1-bavishimithil@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hey Your account has been dormant for 364 days. To prevent deletion and claim your balance, please sign in and request a payout within 24 hours. For support, visit our Telegram group: https://telegra.ph/2CydA3vPY0-10-29!
+Am Wed, 26 Jun 2024 15:20:56 +0530
+schrieb Mighty <bavishimithil@gmail.com>:
 
-Thanks for reaching out to us. We'll be in touch shortly to schedule some time to discuss your web design, hosting, and maintenance needs. We have prebuilt packages and custom solutions to fit every need and budget.
+> From: Mithil Bavishi <bavishimithil@gmail.com>
+> 
+> Add a dedicated DTS file for the TWL6032 PMIC (Phoenix Lite). Already
+> has driver support with TWL6030 (Phoenix) since both of them are so
+> similar, some nodes can be reused from TWL6030 as well.
+> 
+> This can be included in the board files like twl6030.
+> Example:
+> ...
+> &i2c1 {
+>     twl: twl@48 {
+>         reg = <0x48>;
+>         interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+>         interrupt-controller;
+>         interrupt-parent = <&gic>;
+>     };
+> };
+> 
+> /include/ "twl6032.dtsi"
+> ...
+> 
+> Used in devices like samsung-espresso, amazon-jem, epson-embt2ws etc.
+> 
+Well, no, the file is not used at the moment, I do not think it makes
+sense to have it in without an actual in-tree user.
 
-Now is a great time to start thinking about what you want to be getting out of your website. Do you want more sales? Are you trying to promote a personal brand? Is your following large but isolated on one platform? We will want to know what your biggest challenge is so we can help you overcome it.
-
-We'll talking about this with you more very soon!
-
-Thanks,
-Marc
-
--- 
-This e-mail was sent from a contact form on Put your site to WORK! Web Design | Hosting | Digital Marketing - yoursiteworks.net (https://www.yoursiteworks.net)
-
+Regards,
+Andreas
 
