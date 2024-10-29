@@ -1,117 +1,181 @@
-Return-Path: <devicetree+bounces-117055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 219939B4C70
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 15:46:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 369849B4C78
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 15:48:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DEF1B235EE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:46:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2FC8281415
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99E5518FC9D;
-	Tue, 29 Oct 2024 14:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241D618C936;
+	Tue, 29 Oct 2024 14:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DajKmhy4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pyG/7oDp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90D2E18787F;
-	Tue, 29 Oct 2024 14:46:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3AC10F9;
+	Tue, 29 Oct 2024 14:48:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730213170; cv=none; b=ZhVQPZTUk6cNH5WkhdjRwL+xCEMJkuHLqGi9AS1LqM7jJUTlN+FniUMFWAAYmKkC97vIUtfQTQ/gB8tKIV3yYTIhLGnMmOnsquYwwK/z/SWtDfJ5+4E89/GSc8zEngnYtb7PVJzqTW7rz9H1DTDlMt3tKqO/9KFdy0+Tfx2DE8Q=
+	t=1730213333; cv=none; b=pqVZqTADmqRTN/IyA03vdgNioMaDuZewYuldVg/353mm3QJ+yTjfB0+RQzvhQACVsYLQyMoCRspzLBCGJgACrU3YnOTbGImPU2d7bWGlMJBW4HiUyhkNdZTYv2gSqM5ikt3DSDVe2rw134BvDp42gQsapjPuC365ltg1e4dIcC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730213170; c=relaxed/simple;
-	bh=z9/PAFrKjs56x5xBh+utIKnj5bxjIYhNcsNJqIgpVgc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FN680fh0DeIhv5tCuzVx01Zy/DJEEY+gAEfUbXMjLgsMoMGsF2G2edGvxmcCLf9ndl1Y20eJZziXPQjwbrBGOoIKfR40lNXiZKVOYmiE4B9GpE9VX+hzPYhgnN7fxwAebKx0kX3PRdicwSEroiGz0TDJbFHQiQU9z7KZY7HQQ3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DajKmhy4; arc=none smtp.client-ip=209.85.222.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-84fcfe29e09so1513034241.2;
-        Tue, 29 Oct 2024 07:46:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730213167; x=1730817967; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z9/PAFrKjs56x5xBh+utIKnj5bxjIYhNcsNJqIgpVgc=;
-        b=DajKmhy4i+f9SdfWncTbdgmm+A2HcsoAwp8SZfUvNESe/qdc0P89YiZyHQWVO9r51y
-         xsJyphL8N7SDK1rQTJRqft0V7TKsbURYjzziTJEPkUrFZg3qbRNVjIq0DqBtJhrmF7pW
-         7nEBtkMdCo2Hj3d2uRCS3ltO5luAs5zJbmffZPE7oWJEhRdazF3L3qEmUcK6VP0cvApT
-         AJPo7VlOuyt6FLew1JIdsSgzc8/gRsF0wyw2vrnfoI/E+fFkoYhcUltF9v+VwD+bPeBh
-         4PmO9umIMYudoX6AJbzpZnusddh/bz/rJw0BFPgJPvJlgF7ySrUjpVHzs1dbr9ranUcZ
-         TMJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730213167; x=1730817967;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=z9/PAFrKjs56x5xBh+utIKnj5bxjIYhNcsNJqIgpVgc=;
-        b=wy44izXyFWr+QsLxmmMWdTrh33vA9U851fGxbdFsyPqsaYEawau5fim4rScqY0NgfL
-         Qk0+txoZnrcR3Z0m37DxQ4UGgwDAMAzYLcgPa7BWvmqgFsbixa9Ofkv5aOe3oM0y3qon
-         jLNEbNeWomgTRiVESR8UrEyb0RYlbnT2CcGGYgc3tvJ5XEX85WdQtXTYqFCYFX763gbB
-         XI5ghTWI5HrpCOvcPbwjwpMIBmqFhU0d8w/G/y0YPeW1HTw15VS8u4doDJ4ZJMi0FIC6
-         d7iGUh3YOgM71chVRNE4cBUb9dx//vThWFMQloiYgEBtlJdV9yC5TxvpcFgm8lx4TBck
-         nBvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV0rbn8YRn+AGWyHypjKsx6uHgHUzD8vGaoPaRY+zQHTOrpecsWQ86OZRu3lQMxGJBdUhFlp3eRvFeACc6HyoYaCN8=@vger.kernel.org, AJvYcCVHFLgWiDdjdE/Dr6FLV9CetaxpnSZJKBvwVs0Me6pB6/w7fS4rHF93QFLXT35UsKTu7Zam0xGlqwSF2meP@vger.kernel.org, AJvYcCVgRI/x7c+qAARBgcNtMYy56gEB4DmNkLo6ObEspJtLGMosuCJ7ooI8mymkBB5IUGtnqvbT5eVA8uGuLg==@vger.kernel.org, AJvYcCXxRfn53dJgQwKv8WTEuAfHbpgTmSkSCxOnoyXFaKyEd07OuC5KSeYOOIseD2qUIJriCCRucIgxzJoh@vger.kernel.org
-X-Gm-Message-State: AOJu0YznS25uiUvhX2Qn8AOblMsXJwKsdplsTyps75taL8jffKqtyq33
-	2YGuznhwY7IeuWwtnxyGhlGZrbIFVQ/f2RkW3arkynEYJnXyOQ2dE+xnynTOlNjcvA1eRKFYfDL
-	qdQV8ylngEUIOvahdqeyg4aJ2hWE=
-X-Google-Smtp-Source: AGHT+IFgAm+Gj69QV8yDPvOm9jQHfY/PanPH41xd8pyiyekJrATHL/AQwttx7j2NsE9p/1nZPlW3HSoe8KCFEsmS/1s=
-X-Received: by 2002:a05:6122:7cc:b0:50f:fe39:a508 with SMTP id
- 71dfb90a1353d-5101523f155mr9806883e0c.11.1730213167346; Tue, 29 Oct 2024
- 07:46:07 -0700 (PDT)
+	s=arc-20240116; t=1730213333; c=relaxed/simple;
+	bh=aq0smJWMoF0urEfEydYW6lBnfnX5/GErqTGpobBR4xc=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=oiEJkUrtMzXHx9ICPWK1MmgJQxN5xJSs4ZJxliUkAGL96Sh+PKVb1zVcWv1xiR/3e/VlIt/qgVW6lwof4fKtNvCLuBIcvpuqsXQatJbaRYJw177vfgpdqTaPkPvcEdR3fueLtYwtZM3i+78s/ZF/kDYR5Ox6VFupVJcxN2iZG/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pyG/7oDp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BE50C4CECD;
+	Tue, 29 Oct 2024 14:48:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730213332;
+	bh=aq0smJWMoF0urEfEydYW6lBnfnX5/GErqTGpobBR4xc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=pyG/7oDpoNHQOlZXjTIso0HTpbhVzqWqUQDZz4VW6Gce0vrjNBG7uiZy/h7N7FHfV
+	 GxdlLxD74xGzmWAFpS3Z1fEPbxHRVxN1S8t3zzitVrT+IhbkZsvcX/xD141sZt43fJ
+	 CZnkVgb40tkv7rhPOT0SfObRy1yw6dlqnjZciPsEAjhYJCzwTK4GsM5CavflbcAnlK
+	 9coYysIgtuuAZMA5GAyBEk5LDGBiaVtmXGD33/HEfs1SLWmqhotu6j36dq33PrTR2o
+	 xf5+JIyf+EcpWdkGntkA6zXSxdSdjazxHR0a1YuSkQDfvaKozScrGB3brD1iHd4Fzx
+	 WVcZ2fJWa9klA==
+Date: Tue, 29 Oct 2024 09:48:50 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Jim Quinlan <james.quinlan@broadcom.com>
+Cc: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
+	Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+	bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] RFC: dt bindings: Add property "brcm,gen3-eq-presets"
+Message-ID: <20241029144850.GA1152694@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241025114914.714597-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <1b5f9e16-4c82-4093-8950-12188b662c39@tuxon.dev>
-In-Reply-To: <1b5f9e16-4c82-4093-8950-12188b662c39@tuxon.dev>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 29 Oct 2024 14:45:41 +0000
-Message-ID: <CA+V-a8tDwa3ZYAwZi=-cDH1f5cuJJ0EHP3Z9W1o0adKHsxLEnw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/6] pinctrl: rzg2l: Fix releasing of IRQ and status
- reported in pinmux-pins
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+-6iNx1SA9iiECS1O=cwkcu2KWcPvvB7Zvm7=SR3F5m9nv+fg@mail.gmail.com>
 
-Hi Claudiu,
+On Tue, Oct 29, 2024 at 10:22:36AM -0400, Jim Quinlan wrote:
+> On Tue, Oct 29, 2024 at 1:17 AM Krishna Chaitanya Chundru
+> <quic_krichai@quicinc.com> wrote:
+> > On 10/29/2024 12:21 AM, James Quinlan wrote:
+> > > On 10/24/24 21:08, Krishna Chaitanya Chundru wrote:
+> > >> On 10/22/2024 12:33 AM, Rob Herring wrote:
+> > >>> On Fri, Oct 18, 2024 at 02:22:45PM -0400, Jim Quinlan wrote:
+> > >>>> Support configuration of the GEN3 preset equalization settings, aka the
+> > >>>> Lane Equalization Control Register(s) of the Secondary PCI Express
+> > >>>> Extended Capability.  These registers are of type HwInit/RsvdP and
+> > >>>> typically set by FW.  In our case they are set by our RC host bridge
+> > >>>> driver using internal registers.
+> > >>>>
+> > >>>> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+> > >>>> ---
+> > >>>>   .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12
+> > >>>> ++++++++++++
+> > >>>>   1 file changed, 12 insertions(+)
+> > >>>>
+> > >>>> diff --git
+> > >>>> a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > >>>> b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > >>>> index 0925c520195a..f965ad57f32f 100644
+> > >>>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > >>>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > >>>> @@ -104,6 +104,18 @@ properties:
+> > >>>>       minItems: 1
+> > >>>>       maxItems: 3
+> > >>>>   +  brcm,gen3-eq-presets:
+> > >>>> +    description: |
+> > >>>> +      A u16 array giving the GEN3 equilization presets, one for
+> > >>>> each lane.
+> > >>>> +      These values are destined for the 16bit registers known as the
+> > >>>> +      Lane Equalization Control Register(s) of the Secondary PCI
+> > >>>> Express
+> > >>>> +      Extended Capability.  In the array, lane 0 is first term,
+> > >>>> lane 1 next,
+> > >>>> +      etc. The contents of the entries reflect what is necessary for
+> > >>>> +      the current board and SoC, and the details of each preset are
+> > >>>> +      described in Section 7.27.4 of the PCI base spec, Revision 3.0.
+> > >>>
+> > >>> If these are defined by the PCIe spec, then why is it Broadcom specific
+> > >>> property?
+> > > Yes, I will remove the "brcm," prefix.
+> > >>>
+> > >> Hi Rob,
+> > >>
+> > >> qcom pcie driver also needs to program these presets as you suggested
+> > >> this can go to common pci bridge binding.
+> > >>
+> > >> from PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4.2 for data rates
+> > >> of  8.0 GT/s, 16.0 GT/s, and 32.0 GT/s uses one class of preset (P0
+> > >> through P10) and where as data rates of 64.0 GT/s use different class of
+> > >> presets (Q0 through Q10) (Table 4-23). And data rates of 8.0 GT/s also
+> > >> have optional preset hints (Table 4-24).
+> > >>
+> > >> And there is possibility that for each data rate we may require
+> > >> different preset configuration.
+> > >>
+> > >> Can we have a dt binding for each data rate of 16 byte array.
+> > >> like gen3-eq-preset array, gen4-eq-preset array etc.
+> > >
+> > > Yes, that was the idea when using "genX-eq-preset", for X in {3,4...}.
+> > >
+> > > Keep in mind that this is an RFC; I have a backlog of commit submissions
+> > > before I can submit the code that uses this DT property.  If you
+> > > (Krishna) want to submit something now I'd be quite happy to go with
+> > > that.  I don't believe it is acceptable to submit a bindings commit w/o
+> > > code that uses it (if I'm incorrect I'll be glad to do a V2).
+> > >
+> > I submitted a pull request for this. if you have any other suggestions
+> > or if we need to have any other details we can update this pull request.
+> > https://github.com/devicetree-org/dt-schema/pull/146
+> 
+> Thanks for doing this.   However, why a u8 array?  The registers are
+> defined as u16 so it would be more natural to use a u16 array, each
+> entry giving
+> all of the data for a single lane.  In our implementation we read a
+> u16 and we write it to the register -- what advantage is there by
+> using a u8 array?
+> 
+> Also if there are 16 lanes, you will need 32 maxItems, correct?
 
-On Tue, Oct 29, 2024 at 12:37=E2=80=AFPM Claudiu Beznea
-<claudiu.beznea@tuxon.dev> wrote:
->
-> Hi, Prabhakar,
->
-> On 25.10.2024 14:49, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Hi All,
-> >
-> > This patch series aims to fix the reporting of pin status in the
-> > `pinmux-pins` file and properly free up the IRQ line when using a GPIO
-> > pin as an interrupt via the `interrupts`/`interrupts-extended` property=
-.
->
-> With this series, the Ethernet PHYs IRQs switch to poll mode after a
-> suspend to RAM cycle. I've added the logs here:
-> https://p.fr33tux.org/3e8193
->
-Thank you for testing it on RZ/G3S, I'll investigate it further.
+I added these questions to the github PR.
 
-Cheers,
-Prabhakar
+Also, why does it define gen3-eq-presets, gen4-eq-presets,
+gen5-eq-presets, and gen6-eq-presets?  I think there's only a single
+place to write these values (the Lane Equalization Control registers,
+PCIe r6.0, sec 7.7.3.4), isn't here?  How would software choose the
+correct values to use?
+
+> > >> - Krishna Chaitanya
+> > >>>> +
+> > >>>> +    $ref: /schemas/types.yaml#/definitions/uint16-array
+> > >>>
+> > >>> minItems: 1
+> > >>> maxItems: 16
+> > >>>
+> > >>> Last I saw, you can only have up to 16 lanes.
+> > >>>
+> > >>> Rob
+> > >>>
+> > >
+
+
 
