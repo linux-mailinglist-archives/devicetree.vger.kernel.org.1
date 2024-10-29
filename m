@@ -1,191 +1,145 @@
-Return-Path: <devicetree+bounces-117045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AC639B4B94
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:59:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD4EB9B4B66
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:55:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E19D11F23CBA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:59:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81DB0283E74
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD0020696B;
-	Tue, 29 Oct 2024 13:59:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53CE520695B;
+	Tue, 29 Oct 2024 13:55:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="s/1PBN+O"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="uiERj//w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA4661EB9E6
-	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 13:59:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CDAD206051;
+	Tue, 29 Oct 2024 13:55:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730210368; cv=none; b=lf+95Gswij/LGeUIgtZ57BeEZf/IcondA7zdWU3l2tY3MtXpzCadG02nD9T/r7D6pxokfdQtSJiCpxy80VXEnYg4BSHpODAt7dtqEkqA14a4IU0Vaut+1X4yxre4sTKswc/1LjscsVH4Zdo/JukQa7Qr1Du025KGlQEihzZBfew=
+	t=1730210153; cv=none; b=UGt/ta+3nd42kClPJSvVcklq8YLiOYfdJpxDo33rYP5qT1yUiPRRkUtHSCZXbrcHMta3UVJvYsqaD9vI/4he5uNwT09AAY4uYL4rMBPovFZHMc9TS1Jajx55U/CVMMWq49at/X3S8swuYppC3MIT+Qg2lUe+XnbrPkP1ULVEuGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730210368; c=relaxed/simple;
-	bh=HWBADJXnoh2NUNrdZ4R8VuuNYl1bmNxvyx9KhUtUxEA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=C5HieV4mnPY0WH6M21JadOgVCDaJzy1sq+yCK0ePXc2mKO2/rV815a1KdT1BwZ/uSwdtsjlrKvcIjlnQXONktN5H2vNbipdDal74Rtp/oE6b3ZkXPlB5tzdwYwsmHCT9dJ7gkrVykja0H5r8YQvHbkXiif+zDmzf0pMTj/I1/uI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=s/1PBN+O; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3807dd08cfcso1294987f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 06:59:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1730210364; x=1730815164; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=N0+r5DXauPWMBo80TC003d10oYhw7X04leDKPh0fruY=;
-        b=s/1PBN+O4ssMce33ShcFRDVxgnF0bzyFMTPkXBQD+CHNpuVcPuUuWVIeFbSTQ2RKAX
-         SzyfVCwgP9Gr6Pg6PF4WkcbBPDkpqXzHpLIp+XaOAZKHslD9yMLSO8njq8gWrrtDp20b
-         FJBYhxAFMCe6o1QLNfDMRgaa51ritTL6O1Exth+2EPQ75ob8OOZ39+RqdTFbpYWkXjsv
-         ZSMABo/ZMKJ4IFg+lSI2eA6UqEQQr2UI6VrBgva2iMmHufjp57xL/PCEJz4jkhV1HKFE
-         5F4IVQrn3D0tk7wvtLul1Cti40IuvA1GDUxOTxTDsuBu0cdPxSfHiCAT3PZ6BvJNCBS0
-         I59g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730210364; x=1730815164;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=N0+r5DXauPWMBo80TC003d10oYhw7X04leDKPh0fruY=;
-        b=g8c2X+O1kB7ZMMH0F5EAT85/vTqp7VsrtjwODd7k6+h0xfSf3tO0T2UD100wI9wuDt
-         0a+RmY/dib5g5jtP8YXmmv4o1Svgf+NTz0pQDsY67jk/N2Ad4mIh4QtkRTvgB3hY+LxU
-         anDpdkI7tOWaZKfAWEYnirb5aiknYW4kivjFybvC2yKYkWUp4WSdp2A7ZJyJnfcrFCzj
-         hnqw3FTaNGO9SRTlTnCEsyEDD21jIp8xNQ0h1KGF+KLH5A2IhA6eeGXcoJvdyNXwpfD5
-         iy+xabWQ6x2ymRPG0BF5vQnkW0KUV++Px2OS1sbBwiNlIGe3aQ/eGniB7tGyaUfM951f
-         v2QA==
-X-Forwarded-Encrypted: i=1; AJvYcCXr/sSwnPJBmL3mHqlmjDl9fkjypOyBGPcP/ct8wotuTbRFRDYJnUQmZGlKqu7IozlHaCINjIFD2/pG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkDASQYvBzq3BBs7Xp5YxML3fVHxclo/MglBhDDmwLoUu/2+5T
-	sCQYPgnPcVoBmh+Cyz8nq7sDbIlN1IW/w/fs3hyQs6DeLcYojHKA3e0GB34erUdbM6998knH8aX
-	Ifqa9cx7cCyILU1T3gA88AZhbWx0kPMF1CuBY
-X-Google-Smtp-Source: AGHT+IHKguE544j9cYCAx/GnN3x2cBIU4yFs+FD0nSAsUtdOZzL/B0VKKdtS72gv2gH4vafJAmdHPLNGHnEY0QP/rKg=
-X-Received: by 2002:a5d:56d2:0:b0:37e:f4a1:2b58 with SMTP id
- ffacd0b85a97d-38061172aa9mr11280347f8f.16.1730210364034; Tue, 29 Oct 2024
- 06:59:24 -0700 (PDT)
+	s=arc-20240116; t=1730210153; c=relaxed/simple;
+	bh=WWGKcQlEKlB3mLe7xMyRPUx6cijy/4QMsSjKf4DvAyg=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=qvJnLTVn1Io58N7CWTtJskFfHpyZwmLGeQ29LwQSSy1LV29042OgbHwE3SfPZ4AHp9ibVu+BaNWh6YBrs6E8RdNDY6KR7SJ+tDUEtUP8+HM0uZfCQI+jmNP0pKuU9+VI1do6019tZUMpdoR0cLrVSQDpjEJssaY1f/WVc6aKFOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=uiERj//w; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49TCfZVE007171;
+	Tue, 29 Oct 2024 09:55:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=yE4CupEowLtP6izoasbECl7opcz
+	2ALXuT/n+/Ternq0=; b=uiERj//wrxph8+k5PR6AhKbEA7KddM6+UZjPfApQVat
+	0Z+X9dTTcMFwoma8Wd1fBz/l2CZzbUhNIP/1GvMpZADt6qPoS9d4pgN+JKrhs6Oq
+	4/U1QTs0HRm6TzPEmHu6Ess62Ij3hINj86RY2DUyo4PwkVbziEsEjUY9qtEKt7PV
+	Htjjm3tiUqkEq5ayUHvnR0C7+k+K+krO6k84GaoGS1iboeJ6kkTQ0SOoi1Xxck/R
+	SBcMvRkMtmJMJtDQDJC5iEGInwCMs/twNf1ljvGUlLM7ziaa7A0D960YdEB0eZjb
+	CzlDxV3YT/IxUtjHvX2SHguLp6WGKYvYwc4bEPuLj+g==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 42gwb2p420-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Oct 2024 09:55:35 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 49TDtXHH022162
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 29 Oct 2024 09:55:33 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 29 Oct 2024 09:55:33 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 29 Oct 2024 09:55:33 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 29 Oct 2024 09:55:33 -0400
+Received: from [127.0.0.1] ([10.44.3.54])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 49TDtMVn021546;
+	Tue, 29 Oct 2024 09:55:24 -0400
+From: Nuno Sa <nuno.sa@analog.com>
+Subject: [PATCH v2 0/2] clk: clk-axi-clkgen: make sure to enable the AXI
+ bus clock
+Date: Tue, 29 Oct 2024 14:59:40 +0100
+Message-ID: <20241029-axi-clkgen-fix-axiclk-v2-0-bc5e0733ad76@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-7-dakr@kernel.org>
-In-Reply-To: <20241022213221.2383-7-dakr@kernel.org>
-From: Alice Ryhl <aliceryhl@google.com>
-Date: Tue, 29 Oct 2024 14:59:10 +0100
-Message-ID: <CAH5fLgji5SozS2Y+G16pPS3iiKnee-p94xO+uZZykTd_7EBOpQ@mail.gmail.com>
-Subject: Re: [PATCH v3 06/16] rust: add rcu abstraction
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
-	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com, 
-	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com, 
-	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
-	daniel.almeida@collabora.com, saravanak@google.com, 
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	Wedson Almeida Filho <wedsonaf@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAEzqIGcC/3XNwQ6CMAyA4VchPVuzDkzAk+9hOIxRoRE3shmCI
+ Xt3B4lHj1+b/t0gchCOcC02CLxIFO8y9KkAOxo3MEqfDVrpipQmNKugnZ4DO3zIujMLe+pr1dm
+ uYSbIt3PgvD269zZ7lPj24XO8WWif/orln+JCqLCplal0Zy5ky5txZvLD2foXtCmlL2geZ8O7A
+ AAA
+X-Change-ID: 20241021-axi-clkgen-fix-axiclk-d1d80bcb9ee1
+To: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Lars-Peter Clausen
+	<lars@metafoo.de>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730210382; l=991;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=WWGKcQlEKlB3mLe7xMyRPUx6cijy/4QMsSjKf4DvAyg=;
+ b=bPV4gKnBiME+vrxMzfWtw+V0TPw6PQN5dYBFKrnpQ0IYvkMSi7u7Cs+vs/1FC9tz1VfQO3ONH
+ 0Y+PzNseI6uAOCJ86DCNjLthGKlSHAAiS7h2HesOfxi8BSirfirVP6Q
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: O6aVAYtHOHpdh-P-CYGU7WH_pXXts7zE
+X-Proofpoint-GUID: O6aVAYtHOHpdh-P-CYGU7WH_pXXts7zE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
+ priorityscore=1501 mlxlogscore=741 adultscore=0 suspectscore=0 mlxscore=0
+ lowpriorityscore=0 bulkscore=0 clxscore=1015 malwarescore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410290106
 
-On Tue, Oct 22, 2024 at 11:33=E2=80=AFPM Danilo Krummrich <dakr@kernel.org>=
- wrote:
->
-> From: Wedson Almeida Filho <wedsonaf@gmail.com>
->
-> Add a simple abstraction to guard critical code sections with an rcu
-> read lock.
->
-> Signed-off-by: Wedson Almeida Filho <wedsonaf@gmail.com>
-> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+Hi,
 
-Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+Here it goes v2. Main difference comes from my discussion with Conor. We
+now keep the same old behavior if clock-names is not given and only
+enabled the bus clock if provided via clock-names. The goal is to make
+sure that old DTs still work.
 
->  rust/helpers/helpers.c  |  1 +
->  rust/helpers/rcu.c      | 13 +++++++++++
->  rust/kernel/sync.rs     |  1 +
->  rust/kernel/sync/rcu.rs | 52 +++++++++++++++++++++++++++++++++++++++++
->  4 files changed, 67 insertions(+)
->  create mode 100644 rust/helpers/rcu.c
->  create mode 100644 rust/kernel/sync/rcu.rs
->
-> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
-> index 20a0c69d5cc7..0720debccdd4 100644
-> --- a/rust/helpers/helpers.c
-> +++ b/rust/helpers/helpers.c
-> @@ -16,6 +16,7 @@
->  #include "mutex.c"
->  #include "page.c"
->  #include "rbtree.c"
-> +#include "rcu.c"
->  #include "refcount.c"
->  #include "signal.c"
->  #include "slab.c"
-> diff --git a/rust/helpers/rcu.c b/rust/helpers/rcu.c
-> new file mode 100644
-> index 000000000000..f1cec6583513
-> --- /dev/null
-> +++ b/rust/helpers/rcu.c
-> @@ -0,0 +1,13 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include <linux/rcupdate.h>
-> +
-> +void rust_helper_rcu_read_lock(void)
-> +{
-> +       rcu_read_lock();
-> +}
-> +
-> +void rust_helper_rcu_read_unlock(void)
-> +{
-> +       rcu_read_unlock();
-> +}
-> diff --git a/rust/kernel/sync.rs b/rust/kernel/sync.rs
-> index 0ab20975a3b5..1806767359fe 100644
-> --- a/rust/kernel/sync.rs
-> +++ b/rust/kernel/sync.rs
-> @@ -11,6 +11,7 @@
->  mod condvar;
->  pub mod lock;
->  mod locked_by;
-> +pub mod rcu;
->
->  pub use arc::{Arc, ArcBorrow, UniqueArc};
->  pub use condvar::{new_condvar, CondVar, CondVarTimeoutResult};
-> diff --git a/rust/kernel/sync/rcu.rs b/rust/kernel/sync/rcu.rs
-> new file mode 100644
-> index 000000000000..5a35495f69a4
-> --- /dev/null
-> +++ b/rust/kernel/sync/rcu.rs
-> @@ -0,0 +1,52 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! RCU support.
-> +//!
-> +//! C header: [`include/linux/rcupdate.h`](srctree/include/linux/rcupdat=
-e.h)
-> +
-> +use crate::bindings;
-> +use core::marker::PhantomData;
-> +
-> +/// Evidence that the RCU read side lock is held on the current thread/C=
-PU.
-> +///
-> +/// The type is explicitly not `Send` because this property is per-threa=
-d/CPU.
-> +///
-> +/// # Invariants
-> +///
-> +/// The RCU read side lock is actually held while instances of this guar=
-d exist.
-> +pub struct Guard {
-> +    _not_send: PhantomData<*mut ()>,
+---
+Changes in v2:
+- Link to v1: https://lore.kernel.org/r/20241023-axi-clkgen-fix-axiclk-v1-0-980a42ba51c3@analog.com
+- Patch 1
+  * Make clock-names required.
+- Patch 2
+  * Only enable the axi clock if clock-names is provided.
 
-Once 6.13 is released, you'll want to use NotThreadSafe here instead
-of PhantomData. It's landing upstream through vfs.rust.file.
+---
+Nuno Sa (2):
+      dt-bindings: clock: axi-clkgen: include AXI clk
+      clk: clk-axi-clkgen: make sure to enable the AXI bus clock
 
-Alice
+ .../devicetree/bindings/clock/adi,axi-clkgen.yaml  | 22 ++++++++++++++++++----
+ drivers/clk/clk-axi-clkgen.c                       | 22 ++++++++++++++++++++--
+ 2 files changed, 38 insertions(+), 6 deletions(-)
+---
+base-commit: 94be1620fb60ea542170779915917443cda9bba7
+change-id: 20241021-axi-clkgen-fix-axiclk-d1d80bcb9ee1
+--
+
+Thanks!
+- Nuno Sá
+
 
