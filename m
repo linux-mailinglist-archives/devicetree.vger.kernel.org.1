@@ -1,200 +1,160 @@
-Return-Path: <devicetree+bounces-117120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22CE79B510D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 18:38:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBB249B5110
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 18:38:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4EDF284A5C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 17:38:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FE83281E65
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 17:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC23E2071E8;
-	Tue, 29 Oct 2024 17:34:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BD86199924;
+	Tue, 29 Oct 2024 17:35:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ak+9NkxN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Meu/Qdua"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEBB51D5CD6;
-	Tue, 29 Oct 2024 17:34:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EBDBBE49;
+	Tue, 29 Oct 2024 17:35:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730223285; cv=none; b=cwylYo8dOmw0qmdbF86YfajTLW5bRMDQ66x1qGhdR4wBAOxp1++hpoXoEiTiamF3vK4Z7cJujN1kTFyQDn0sTNXM1IhxpVv08cslxN0FTyIAxdxRDiFLnWWOH1bVQrGwAaC82OhxqB7TCMN0bl5sht/ccqBkiIGneYZaLiEun9U=
+	t=1730223346; cv=none; b=WiGjo9qE/X5u+UzAuh9s7HZxKw6cDJLcsKjnAfA+fbhkjz7olCuiJpDOfzVJhcDKuy6Y0xbfRRT6SBqbb/OrjruIur7HUF1bHkMfHNDumocn5yyVm6FTK2R+CX8FPeoWmBzV/sfDMuzeqR3IzlbVkJf5WKIR0mFIUOcdzksXrjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730223285; c=relaxed/simple;
-	bh=ZHnpIHQ+J8HOssHQ5IPGz+tNjWCdkyKzKzgKZXxB1Ks=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=oTvcQNJkJ1T5Yp/nSRRIBavZsIu4UWd35XMcCJUi9RPSBe1r8DyrVW7FygZySjwkBcCRZdKlXpx4jHZ/+bv9ukQgDog1ZYo7ShZiEEXNcTciVGjzSOj6CAxLEG3FiZArLF1fITyoMovGCZg9cZv6/Da/2nbOK+3k9Q3P8UI+3aY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ak+9NkxN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B3F3C4CECD;
-	Tue, 29 Oct 2024 17:34:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730223285;
-	bh=ZHnpIHQ+J8HOssHQ5IPGz+tNjWCdkyKzKzgKZXxB1Ks=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=ak+9NkxNn2HgunkI0eVl+316kJFKadFn5Jn2pViRpAtdn+kZH1RbHy0ZvxHyna9sH
-	 +04kx1Ydf7WoE36kCDKXSqL0AvDKtlczjxb/lQQqtWHdDbxr/Xe4XNKlaVB4mJzcqs
-	 gZZHLngzUTs0c8yi53AxbXLw+cKYYjjBVRWhK2U+KxhFT0jdB6THgKtdg9cQSzlPhe
-	 9XFG1AoEfgFzurc1V1f0sSR1LdMVqrlWRJLy2SEhAWCUXu5pjwYRkWaeiYrpAreqLH
-	 FqXqSHYQdOnlEiNWd/5Lq+VMKEKWV+YTG9DS31SHOij49GaYKduffBUUueobhIo9S6
-	 gnjbZ8+AUeoLQ==
-Date: Tue, 29 Oct 2024 12:34:42 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-Cc: Jim Quinlan <james.quinlan@broadcom.com>, Rob Herring <robh@kernel.org>,
-	linux-pci@vger.kernel.org,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-	bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	Veerabhadrarao Badiganti <quic_vbadigan@quicinc.com>,
-	Mayank Rana <quic_mrana@quicinc.com>
-Subject: Re: [PATCH 1/1] RFC: dt bindings: Add property "brcm,gen3-eq-presets"
-Message-ID: <20241029173442.GA1164705@bhelgaas>
+	s=arc-20240116; t=1730223346; c=relaxed/simple;
+	bh=q337UQ+5fn07O8t9Oo/LgWv7EqNRCq7x9dx5kSfuPXM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=uNUuClQ5hsIaa9GevIKt3MWvX1b2c2BIzDWFE/OhueTJjzmYCgFCLGhK8vt8pPLggwWgEcgJsy66yKuDUz8fyzq46vBem/4apzREaPyY3BdsIRKjCpsU4We10KPxra/r1oFbmnFzd4vLz6O07gAp9uG+JOVLG7I4xo7DrQhct0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Meu/Qdua; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a9a0cee600aso753373066b.1;
+        Tue, 29 Oct 2024 10:35:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730223342; x=1730828142; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=E4gGnuoXPKV45GDjQremf8Qgi8IsdD9t8fMoHQgmFo0=;
+        b=Meu/Qduazr6IztqdGBSBmaDNFBwLeeI/sYMU+V4yTdxyY5V/qetLipDiviP7GFWgFk
+         wG1h8345kDovH3aeBm1sCVjRS4LVBRwPoLb10PiGljOdwy7KwMe5sQv96ug3kebjd4aA
+         /zAHSdDQL8FehqvSd5Ns5ZwmCqsmknp/8G+56BvpK+17c2M1EnUzhrgdUD6/F0LVTPOO
+         Jr+DMbR5iBY4fgt58hRN47Lhp671iA4R9YUKaHwJFGPfWpUiQP599HZufChHJW5RqaxF
+         eI+wzyKXI3drr9uZ42uvRbZkGk4hm3ppbuNe107kLvisMQGW6xOy7oei4xHAdWYCUrI8
+         EFPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730223342; x=1730828142;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E4gGnuoXPKV45GDjQremf8Qgi8IsdD9t8fMoHQgmFo0=;
+        b=ALoy6bSFnhw/ZdAMKWP7X4SQBOFuL3EYckWHOc0pqvx+MgXlIHYLvT1lYxuv8DSuHo
+         9k0LPrjKp8fwRXldnsqK8qbdq8NujNHgjsBozr8lNzxft43rC7SWrYwvztwkdE8Acy5W
+         ioVQDWiPFue8CMhS+XGXGf4hlgrb24oQ12CdABWRugH+8LnHtlmMY6+QTZCul5lhZtfi
+         lNR2dVsonraZ4XKd5LL4u7Gg3LYbST7c/DqsA62UgHVrq3KENDFnXQOGK0RY1ulPrdv3
+         HM2w/mxmbMr4iof8JVRZ3Pzmeoa/QkRMz3Dnf3HG3hxUtpif0dXiJZkaBOECxOAAYuSu
+         wGOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUYYNL2BEPPQvkRe9jH66eC5WSbWmxhZ30mwQv9v3a9amwke+Cs/XkFhTI+Xqbe21zD1xYJ7VpihZH+nucq@vger.kernel.org, AJvYcCUh02dCsA0EJ6O9fJFr6+XqUvK8kQX2PqgIPee/2GqNB5629SB7aKeWqXaYiR1MCI2gIsjBm1UayK1s@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyg0zj4uw6MZGONRMaIODU2aghO+Kq+ceh7etAt/2OnSsqxEsxZ
+	vrS20+JsJVwpJewRf/OxJ9sAJcki2e9RIYrnGz0Z71hC4IyIw26ZlS7OaQ==
+X-Google-Smtp-Source: AGHT+IG5sFsRSZNnIAKTRq9xZSDdUw2KLvf7Pw3IEPd1bDzTIyhuwm4Mg0vxkYeeltc5Rc/YWaiSZA==
+X-Received: by 2002:a17:907:980e:b0:a9a:7f34:351b with SMTP id a640c23a62f3a-a9de5cfd5d1mr1146256266b.3.1730223342242;
+        Tue, 29 Oct 2024 10:35:42 -0700 (PDT)
+Received: from [192.168.0.2] (5D59A51C.catv.pool.telekom.hu. [93.89.165.28])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-a9b1dec802csm500555466b.13.2024.10.29.10.35.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Oct 2024 10:35:41 -0700 (PDT)
+From: Gabor Juhos <j4g8y7@gmail.com>
+Date: Tue, 29 Oct 2024 18:35:25 +0100
+Subject: [PATCH] dt-bindings: arm: qcom: add missing elements to the SoC
+ list
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d63f16ac-c5ed-35cd-ec75-0bf6d7dab9ca@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241029-qcom-missing-socs-v1-1-c5bf587b0afc@gmail.com>
+X-B4-Tracking: v=1; b=H4sIANwcIWcC/x3MTQqAIBBA4avErBtQEfq5SrRIm2oWajkQgXT3p
+ OW3eK+AUGYSGJsCmW4WTrFCtw34Y4k7Ia/VYJSxWpkBL58CBhbhuKMkL2hXQ7a3m3PUQe3OTBs
+ //3Oa3/cDVOGRomMAAAA=
+X-Change-ID: 20241029-qcom-missing-socs-4d2e484fbbe7
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Gabor Juhos <j4g8y7@gmail.com>
+X-Mailer: b4 0.14.2
 
-On Tue, Oct 29, 2024 at 10:24:48PM +0530, Krishna Chaitanya Chundru wrote:
-> On 10/29/2024 9:25 PM, Bjorn Helgaas wrote:
-> > On Tue, Oct 29, 2024 at 10:40:32AM -0500, Bjorn Helgaas wrote:
-> > > On Tue, Oct 29, 2024 at 08:52:15PM +0530, Krishna Chaitanya Chundru wrote:
-> > > > On 10/29/2024 8:18 PM, Bjorn Helgaas wrote:
-> > > > > On Tue, Oct 29, 2024 at 10:22:36AM -0400, Jim Quinlan wrote:
-> > > > > > On Tue, Oct 29, 2024 at 1:17 AM Krishna Chaitanya Chundru
-> > > > > > <quic_krichai@quicinc.com> wrote:
-> > > > > > > On 10/29/2024 12:21 AM, James Quinlan wrote:
-> > > > > > > > On 10/24/24 21:08, Krishna Chaitanya Chundru wrote:
-> > > > > > > > > On 10/22/2024 12:33 AM, Rob Herring wrote:
-> > > > > > > > > > On Fri, Oct 18, 2024 at 02:22:45PM -0400, Jim Quinlan wrote:
-> > > > > > > > > > > Support configuration of the GEN3 preset equalization settings, aka the
-> > > > > > > > > > > Lane Equalization Control Register(s) of the Secondary PCI Express
-> > > > > > > > > > > Extended Capability.  These registers are of type HwInit/RsvdP and
-> > > > > > > > > > > typically set by FW.  In our case they are set by our RC host bridge
-> > > > > > > > > > > driver using internal registers.
-> > > > > > > > > > > 
-> > > > > > > > > > > Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
-> > > > > > > > > > > ---
-> > > > > > > > > > >     .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12
-> > > > > > > > > > > ++++++++++++
-> > > > > > > > > > >     1 file changed, 12 insertions(+)
-> > > > > > > > > > > 
-> > > > > > > > > > > diff --git
-> > > > > > > > > > > a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > > > > > > > > > > b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > > > > > > > > > > index 0925c520195a..f965ad57f32f 100644
-> > > > > > > > > > > --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > > > > > > > > > > +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > > > > > > > > > > @@ -104,6 +104,18 @@ properties:
-> > > > > > > > > > >         minItems: 1
-> > > > > > > > > > >         maxItems: 3
-> > > > > > > > > > >     +  brcm,gen3-eq-presets:
-> > > > > > > > > > > +    description: |
-> > > > > > > > > > > +      A u16 array giving the GEN3 equilization presets, one for
-> > > > > > > > > > > each lane.
-> > > > > > > > > > > +      These values are destined for the 16bit registers known as the
-> > > > > > > > > > > +      Lane Equalization Control Register(s) of the Secondary PCI
-> > > > > > > > > > > Express
-> > > > > > > > > > > +      Extended Capability.  In the array, lane 0 is first term,
-> > > > > > > > > > > lane 1 next,
-> > > > > > > > > > > +      etc. The contents of the entries reflect what is necessary for
-> > > > > > > > > > > +      the current board and SoC, and the details of each preset are
-> > > > > > > > > > > +      described in Section 7.27.4 of the PCI base spec, Revision 3.0.
-> > > > > > > > > > 
-> > > > > > > > > > If these are defined by the PCIe spec, then why is it Broadcom specific
-> > > > > > > > > > property?
-> > > > > > > > Yes, I will remove the "brcm," prefix.
-> > > > > > > > > > 
-> > > > > > > > > Hi Rob,
-> > > > > > > > > 
-> > > > > > > > > qcom pcie driver also needs to program these presets as you suggested
-> > > > > > > > > this can go to common pci bridge binding.
-> > > > > > > > > 
-> > > > > > > > > from PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4.2 for data rates
-> > > > > > > > > of  8.0 GT/s, 16.0 GT/s, and 32.0 GT/s uses one class of preset (P0
-> > > > > > > > > through P10) and where as data rates of 64.0 GT/s use different class of
-> > > > > > > > > presets (Q0 through Q10) (Table 4-23). And data rates of 8.0 GT/s also
-> > > > > > > > > have optional preset hints (Table 4-24).
-> > > > > > > > > 
-> > > > > > > > > And there is possibility that for each data rate we may require
-> > > > > > > > > different preset configuration.
-> > > > > > > > > 
-> > > > > > > > > Can we have a dt binding for each data rate of 16 byte array.
-> > > > > > > > > like gen3-eq-preset array, gen4-eq-preset array etc.
-> > > > > > > > 
-> > > > > > > > Yes, that was the idea when using "genX-eq-preset", for X in {3,4...}.
-> > > > > > > > 
-> > > > > > > > Keep in mind that this is an RFC; I have a backlog of commit submissions
-> > > > > > > > before I can submit the code that uses this DT property.  If you
-> > > > > > > > (Krishna) want to submit something now I'd be quite happy to go with
-> > > > > > > > that.  I don't believe it is acceptable to submit a bindings commit w/o
-> > > > > > > > code that uses it (if I'm incorrect I'll be glad to do a V2).
-> > > > > > > > 
-> > > > > > > I submitted a pull request for this. if you have any other suggestions
-> > > > > > > or if we need to have any other details we can update this pull request.
-> > > > > > > https://github.com/devicetree-org/dt-schema/pull/146
-> > > > > > 
-> > > > > > Thanks for doing this.   However, why a u8 array?  The registers are
-> > > > > > defined as u16 so it would be more natural to use a u16 array, each
-> > > > > > entry giving
-> > > > > > all of the data for a single lane.  In our implementation we read a
-> > > > > > u16 and we write it to the register -- what advantage is there by
-> > > > > > using a u8 array?
-> > > > > > 
-> > > > > > Also if there are 16 lanes, you will need 32 maxItems, correct?
-> > > > > 
-> > > > > I added these questions to the github PR.
-> > > > > 
-> > > > > Also, why does it define gen3-eq-presets, gen4-eq-presets,
-> > > > > gen5-eq-presets, and gen6-eq-presets?  I think there's only a single
-> > > > > place to write these values (the Lane Equalization Control registers,
-> > > > > PCIe r6.0, sec 7.7.3.4), isn't here?  How would software choose the
-> > > > > correct values to use?
-> > > ...
-> > 
-> > Oh, one more thing: I guess "gen3", "gen4", etc. are well-entrenched
-> > terms in the industry, and they're probably fine in marketing
-> > materials.
-> > 
-> > But I really don't like them in device trees or drivers because the
-> > spec doesn't use those terms.  In fact, the spec specifically advises
-> > *avoiding* them (PCIe r6.0, sec 1.2 footnote):
-> > 
-> >    Terms like “PCIe Gen3” are ambiguous and should be avoided. For
-> >    example, “gen3” could mean (1) compliant with Base 3.0, (2)
-> >    compliant with Base 3.1 (last revision of 3.x), (3) compliant with
-> >    Base 3.0 and supporting 8.0 GT/s, (4) compliant with Base 3.0 or
-> >    later and supporting 8.0 GT/s, ....
-> > 
-> > As a practical matter, those terms make it hard to use the spec: where
-> > do I go to learn how to use "gen4-eq-presets"?  There's no instance of
-> > "gen4" in the PCIe spec.  AFAICT, all I can do is look up the PCIe
-> > r4.0 spec and try to figure out what was added in that revision, which
-> > is a real hassle.
-> > 
-> is it fine if I change names from gen3-eq-presets, gen4-eq-presets etc
-> to 8gts-eq-presets, 16gts-eq-presets  etc.
+There are multiple compatible strings defined in the json schema
+for SoCs which are not included in the SoC elements list. Extend
+the list with those items for completeness.
 
-Those would be fine with me.  If names starting with digits don't
-work, things like "eq-presets-8gts" would also be fine.
+Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 5cb54d69af0b7206e0f6a66023a203b8d7087696..ccca140e16e3151b689bfa66c3bb84cc226b2fde 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -19,27 +19,36 @@ description: |
+ 
+         apq8016
+         apq8026
++        apq8064
+         apq8074
+         apq8084
++        apq8094
+         apq8096
+         ipq4018
++        ipq4019
+         ipq5018
+         ipq5332
+         ipq6018
++        ipq8064
+         ipq8074
+         ipq9574
+         mdm9615
+         msm8226
++        msm8660
+         msm8916
++        msm8926
++        msm8929
+         msm8939
+         msm8953
+         msm8956
+         msm8960
+         msm8974
++        msm8974pro
+         msm8976
+         msm8992
+         msm8994
+         msm8996
++        msm8996pro
+         msm8998
+         qcs404
+         qcs8550
+@@ -82,6 +91,7 @@ description: |
+         sm8450
+         sm8550
+         sm8650
++        x1e78100
+         x1e80100
+ 
+   There are many devices in the list below that run the standard ChromeOS
+
+---
+base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+change-id: 20241029-qcom-missing-socs-4d2e484fbbe7
+
+Best regards,
+-- 
+Gabor Juhos <j4g8y7@gmail.com>
+
 
