@@ -1,283 +1,309 @@
-Return-Path: <devicetree+bounces-116896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF6E9B44E0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 09:51:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D170E9B44E6
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 09:51:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D076F1C2226E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:51:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54DE41F21B08
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:51:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3760E2040A1;
-	Tue, 29 Oct 2024 08:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A26A92038D6;
+	Tue, 29 Oct 2024 08:51:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sVA6647f"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="i1wtDLMD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010058.outbound.protection.outlook.com [52.101.228.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01C95204091;
-	Tue, 29 Oct 2024 08:50:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730191852; cv=none; b=rgE66PVXi2PrjSeYDlhETlP0x4CyL1UcuLFQsDDJ+hXi9q6SfrzxB0juwaYpdQH12wbF0Q90CAGH8XCgVi2DZpNiEquQOl+gwGWJiLWYt6WwZ3IsOaa5GJgogBc7okAeppvkCt0hohCKDo5TptyK0vbrB6nOJv3rOiGcL223Usc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730191852; c=relaxed/simple;
-	bh=W5rqZ6tX1MxtmhXIMLhi2lKSnRqfo6Db9jRER9ZOPyo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Do4/mR4tVwe8NuoXXMIvVJuePsEW8lRKHXA9HpJ0YSQDO5zOi1LiaVZLHfLx5WAPYGx9jtnenL8F4ONLxiQWQlYrNk3ayUWIa+PTGD0VgQZpbHEMjd0UQlI2jzM29/xkm4a+3XosgXunAG3wnT7tlCx8Im/xwa6nYk77LigtlFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sVA6647f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7490EC4CEE4;
-	Tue, 29 Oct 2024 08:50:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730191851;
-	bh=W5rqZ6tX1MxtmhXIMLhi2lKSnRqfo6Db9jRER9ZOPyo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sVA6647f8jsVVS/EBPiL4UabKzSoJHcWMVtg3lHdmISN4XotY7i60/5uD6Y/lIYXR
-	 wBIySdLP2nfpmsHxdi5Kuln0s1Bugqol3C2CUZ+m3QfaO40Wufvh17CVtzCNyhWjYD
-	 7MsvaXjKf4JCwtYDUZgv2xPwGRckv+DJ5TCmw3FJ8EfHPRtDg9zwnRjoaGUeey4QR7
-	 4MP/9PfR2ysd9bvj+CTQTZWK/sRakYvsEyhBKyxFcqeFfhVDL+iCMGUYINITHlLeDP
-	 Dxn14HPC71IrHPs/7ZaosbP/qXyJukGidJO7JdN/UVde15tyg427pV3aWhhdwiVtmh
-	 VkWUb7Y78KWrQ==
-Date: Tue, 29 Oct 2024 09:50:43 +0100
-From: Danilo Krummrich <dakr@kernel.org>
-To: Dirk Behme <dirk.behme@de.bosch.com>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
-	robh@kernel.org, daniel.almeida@collabora.com, saravanak@google.com,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
- driver abstractions
-Message-ID: <ZyCh4_hcr6qJJ8jw@pollux>
-References: <20241022213221.2383-1-dakr@kernel.org>
- <20241022213221.2383-16-dakr@kernel.org>
- <42a5af26-8b86-45ce-8432-d7980a185bde@de.bosch.com>
- <Zx9lFG1XKnC_WaG0@pollux>
- <fd9f5a0e-b2d4-4b72-9f34-9d8fcc74c00c@de.bosch.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A0491DFE3C;
+	Tue, 29 Oct 2024 08:51:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730191912; cv=fail; b=Cyfl9mLJziqFXuUtfhjwaRZdimWXuSmnHBW8/jIMaDlR8/82XHDb6u3dVWlw0dbmMT3HC3jdwEAcKY2Ss6CKP58SXb9bXOK6Lv34qkjotE98X9hWwOMYKLtFchMYG8cXgeq0Rja8+yLxHAi7TxmtVdJikyRk8AEEyEDCNmokc18=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730191912; c=relaxed/simple;
+	bh=64keAG72pFrpgpzyc2TF9hwCJoCQRf0G+c8Zljx7z8s=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=W/FpwWeDPk+GdUdO5ffO5U7QxGjPRVly6L0tn8etqUnu9AYNgy+M2x/IbKjM6menzvfC6n/Dr5XJ+cTHYCZUubSfckMJDNWZhAwP8GPF8m9npptngHmK9f3okpVU57ZY9Gg2BrKXVcux8i81DpQ9x0oPvpXqOTh1sX8SeARXNto=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=i1wtDLMD; arc=fail smtp.client-ip=52.101.228.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UxKaNw7ByCUOdRdmTCFsmv9REBsfKmhKvXMLzxoC/7ycl0Djjx4QNN/4f+CADgF8bAPE+XgZN1JxC8EbB6Qdf58TX6+N9lSc55o9rSWG6zjE/eB9cIOU1rYp9FgjGCX94m/9JBrVprHvttJfiKuswJZ9i9NfgK28m/W5aUPsgyVwO8ybAf1lCo8Sj2LazKvRBm9OCtZiyO5aPg10nBiNDndk2k4owMkCxTEroS+MgKVOdL3TmWTDyQHtUv+uFT3S46qH7C8Sv9d56P5OIBElYNbYJQmdYOEwWtURJ2DbKhPXZNhUwoZk6jPMAvvcSqgie9NU5aqpglhZUs9waugrAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=64keAG72pFrpgpzyc2TF9hwCJoCQRf0G+c8Zljx7z8s=;
+ b=bZdwhYHn9EyMyRnA3VAW7fqlZfdB0TsubTG47TNKu9tWqeharqeTr5sOq0/YBAZWk/3jX6Jl1/qHhAjD7cPq1pOOnsg3Oingd+ocQAmwRFe5CZockWksqh02AwL42lqS7u+a6MA2OQEkAT91w/FyM5ukmuKxeTgTCjDubRRmAmuNVEDjcxMBSHhIx1Tv59iLvuWe3u35fjlAR7DBwLwByx0hvnh9dsRV1B93aFARQ1/M0Fli9wqH1PetbiNox0q9LaRH289nZ3M7B3A9PorL43vErna0/V9G0GRXBRX9RDHeqQ+VtjLJbc0TJKjkO9GxuSbUOtyBtgQmdC4XbJLQDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=64keAG72pFrpgpzyc2TF9hwCJoCQRf0G+c8Zljx7z8s=;
+ b=i1wtDLMDekazz/AW5FWLhdRPr3VqQpEirZmOG/jKwQq6NQ0j8YPNY9mDYxfsEsaDMlowO7i079Mz9IlA7xlTTertDi8B9fu92k1XM5OLuJXYDPtzYLkww9lrHg/zHQBuJL1osDOL+kdICf/xZoz1FIAjsGmPl+99jqjyMMGRN70=
+Received: from TYCPR01MB11332.jpnprd01.prod.outlook.com (2603:1096:400:3c0::7)
+ by OSRPR01MB11859.jpnprd01.prod.outlook.com (2603:1096:604:235::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.29; Tue, 29 Oct
+ 2024 08:51:39 +0000
+Received: from TYCPR01MB11332.jpnprd01.prod.outlook.com
+ ([fe80::7497:30af:3081:1479]) by TYCPR01MB11332.jpnprd01.prod.outlook.com
+ ([fe80::7497:30af:3081:1479%7]) with mapi id 15.20.8093.024; Tue, 29 Oct 2024
+ 08:51:38 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Liu Ying <victor.liu@nxp.com>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-media@vger.kernel.org"
+	<linux-media@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+CC: "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, "rfoss@kernel.org"
+	<rfoss@kernel.org>, laurent.pinchart <laurent.pinchart@ideasonboard.com>,
+	"jonas@kwiboo.se" <jonas@kwiboo.se>, "jernej.skrabec@gmail.com"
+	<jernej.skrabec@gmail.com>, "maarten.lankhorst@linux.intel.com"
+	<maarten.lankhorst@linux.intel.com>, "mripard@kernel.org"
+	<mripard@kernel.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
+	"airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch" <simona@ffwll.ch>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"quic_jesszhan@quicinc.com" <quic_jesszhan@quicinc.com>, "mchehab@kernel.org"
+	<mchehab@kernel.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "kernel@pengutronix.de"
+	<kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>,
+	"catalin.marinas@arm.com" <catalin.marinas@arm.com>, "will@kernel.org"
+	<will@kernel.org>, "sakari.ailus@linux.intel.com"
+	<sakari.ailus@linux.intel.com>, "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
+	"tomi.valkeinen@ideasonboard.com" <tomi.valkeinen@ideasonboard.com>,
+	"quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>,
+	"geert+renesas@glider.be" <geert+renesas@glider.be>,
+	"dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>, "arnd@arndb.de"
+	<arnd@arndb.de>, "nfraprado@collabora.com" <nfraprado@collabora.com>,
+	"thierry.reding@gmail.com" <thierry.reding@gmail.com>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, "sam@ravnborg.org"
+	<sam@ravnborg.org>, "marex@denx.de" <marex@denx.de>
+Subject: RE: [PATCH v4 08/13] dt-bindings: display: Document dual-link LVDS
+ display common properties
+Thread-Topic: [PATCH v4 08/13] dt-bindings: display: Document dual-link LVDS
+ display common properties
+Thread-Index: AQHbKOKZPN4b66+xp0G7h8Y65TjgzbKdVYDggAAKTwCAAA0QUA==
+Date: Tue, 29 Oct 2024 08:51:38 +0000
+Message-ID:
+ <TYCPR01MB11332FF433F4E10E4D0B7FE2B864B2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
+References: <20241028023740.19732-1-victor.liu@nxp.com>
+ <20241028023740.19732-9-victor.liu@nxp.com>
+ <TY3PR01MB11346FDF74840ADF7273A218D864B2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <69cfeb75-696e-43c4-ad27-aaf9ad3c6c78@nxp.com>
+In-Reply-To: <69cfeb75-696e-43c4-ad27-aaf9ad3c6c78@nxp.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYCPR01MB11332:EE_|OSRPR01MB11859:EE_
+x-ms-office365-filtering-correlation-id: 98aca624-1cd5-4b70-1aef-08dcf7f6e6e4
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?aFV1THZWMWxyNVZZNmVYQlB0Nk82ZzhlVzRtejU2SjhQSmRBOXI0M21FcXA0?=
+ =?utf-8?B?dzJLeEwxUFVSNSs2SVpBUERvb0pBVWZqaHgxTVBBdHBJS1RrbFVqaWRQQ2ZB?=
+ =?utf-8?B?cWRDNTVxd3dkYXpYTXNnc2VBS0R5SG0ycWpkTFFwOU5DbVlXTVJnblVmZ0hn?=
+ =?utf-8?B?eU1HcVptei8yOVgwSXUrZXNkamJXY244ZHZzZ2ZGS2hrYWhDOUlIb1hrWmFE?=
+ =?utf-8?B?WDIrU2hiY20xTjlidE9ZaE00UXJVTnZLUXVmRU9RS0picjVtb0t2b2k5cUlH?=
+ =?utf-8?B?MjV4bFkvUDg4S1hROEhLK2RMQ0pZT0w0c2JSZHUwTTRYajFtMlpYeXNxSnFK?=
+ =?utf-8?B?bGJ6eWlzeWdEOHB5cWpsZDB4UHkyaUJNcEg1Ym9jZUhUc1RubWN0dTZ1U3ls?=
+ =?utf-8?B?SUwyRk9SZEVtSnRiNFJvb2FraXViYjVZbzd0S01jWXppSm8wY2xEd2NhNWNG?=
+ =?utf-8?B?WDFTa05Qb0RaK2xDQTJaaXVvZzc1dlMvRmY0b0tOZWUwc1pwKzZvTWZnNDcr?=
+ =?utf-8?B?Q3hxSWYrOGdHQjhoZEtkNHlTNmFIR2N4QW9OU3Y3QmFSdEZCMGttMkVrUnFz?=
+ =?utf-8?B?em93dWNITExHRVJlNDQyb1YwK01IRllvTU5DVTJ5ZlZqMksyL1NJbGpRdENW?=
+ =?utf-8?B?eUh1QThaTE4xOHdTdnd2TVd3USszQlR1STU1cWNzVkFFaHRTVnRzWStMcU9p?=
+ =?utf-8?B?VURNYjdtbkJCdit0THQ4NjVEMjdGMjJ2MnE0WGo2Zkl5ei85WTljUS9ZUU8y?=
+ =?utf-8?B?OHVYQ1psSzV5R2RjZy92UWZVKzQ3OGdObTV6cHo3NUlYeU95UlIrbEdWRVFh?=
+ =?utf-8?B?SS81cFd3eGpxU2MxL0p0TGVRY3FnUXZWaWpqV00wdDdTWjlVbTVaY01tdlZn?=
+ =?utf-8?B?eFo5ajVSaVBEd2JNR0dGMi9vM0hxVTFmMEtmbXJaWGduZ3QybUVzTnowMDU4?=
+ =?utf-8?B?NGZuS2gzM2hlWUJnOUJFVkVGRFNqdmZ5b0xyMmFuWGl2Vk1UWklDU3VURnN6?=
+ =?utf-8?B?RWdFM05zY29BTDlVRnorcWQ4WTNOR285QnA5RjVKOWRGV0JUUWJDR2l3R0M1?=
+ =?utf-8?B?V09reXhlNmRSV2h2Qm1SdEZuZHBQeHA0bHkxNHNqY1M4Mk9YNTNyenNScXh0?=
+ =?utf-8?B?aXBKQWZUTjlHeWFucERPNzNESGNad2NXQ012MFJJWE1zWExheVZlaUoreDQ2?=
+ =?utf-8?B?WmJpNEtGL3JLaHVFd2lsQmwxS1ovTkdJaittTDZTQk5Db0VobE5sY1JuNVVV?=
+ =?utf-8?B?a2ZzZURib2F3WHJ5ZHpqWk5vS29peERBVEkxYmN4SlUwMnNmQmRVbFZPeC9P?=
+ =?utf-8?B?NVpVeXJZRXpkTkVPbW9EMXNYRzBmOTZ4L1A0dU42S09ETTlFU24yMkJkZmwv?=
+ =?utf-8?B?WjJRUWdNcFk5RUlLVnJNUDlaQytNTlFLZ0pFbXhmd3dZSFU2dmtEdDhHYXF1?=
+ =?utf-8?B?bXZ5ZEpkUE8rUWdGRkNEMEJad3l3MWhRR3VzcXRXWHRqQ2hwOGdrSXZNaVRB?=
+ =?utf-8?B?cXM2OS9ETDdjWEpkNHFTVEhENHdFTnJhZlh3bHNSMndySXpaWkVJSXRHb2VH?=
+ =?utf-8?B?NlBaamQ3Mnp0cGtVYjg5Qys2SUUxb0M4YjBhSnFBRSs3bVVqVWdCR1M2NHNp?=
+ =?utf-8?B?bXdEWW1jajR5RFZrTUIzRm1yMzFkL3RWUk1NTW9LWDFBVWh0UlFZMHRLSzFF?=
+ =?utf-8?B?R3dvQmRZL1BOMnREMEgzM0xiK1FQK1ZNMXpFbG5rV3ljVTF6SEtzdzVMVXNh?=
+ =?utf-8?Q?8WiSuTAuThXVPIW/au4tMRbwwnurM5CgH/pqUC8?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11332.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?NlROVE5KalB4RWVWZkdQaXFmb1NROGZDWi9TZkYzOEpxUjF2OUpqcE1QSmZ6?=
+ =?utf-8?B?ZWt1eHgwNXRpZWlFV3B0Zmc3UktaMFlObmR2bGU4L1hZTExmSWJHNEh1VGJu?=
+ =?utf-8?B?SDJuNWtsa2pCRGNqeXg5M1FhMmx5MDdqOFA0VDhiTHlWaFlUOW9nOEFzaWRa?=
+ =?utf-8?B?bCtUcXhmRUM3YWg0YXoyZ2tvY08vakZaL3Z2OEhUcFp5OGppOTV1aVNaSEt0?=
+ =?utf-8?B?QnBCSkZmMWtia0YyQ0J2aHhBSEdVbWlFQmJGU0kyV0xXRVNvaDY0QkREa294?=
+ =?utf-8?B?em5GNW1UYkQyVDhQMDlQakxLMVlDb3Q4cHo2TFgzekYwVUVzRVZxOW9uMW93?=
+ =?utf-8?B?TWtwRS8yUUNIVE93c1BLV05CWFdWRDlHUjNkenNUbTBCY1ZZOHRCSEdxeUhX?=
+ =?utf-8?B?M2ZqZC9wVEQ0U2VSMXord0s5UXJNZVR0NmVNNURrbUQ3UmdRaDN5UU5JR3NQ?=
+ =?utf-8?B?QnFOVDBTS1Q5ejlRaGRiOXBCNkR6ZXM2UENEQzVUT1g5cjladEtvdi9ENTNV?=
+ =?utf-8?B?VWlidDJOQkwrbENoTFBQeFkvMTRNOC9ac1FzVHdkTFFpRHJweDRJOHcxNHBu?=
+ =?utf-8?B?cWtENXhERHpYZGZXYXVLanMwd01PQUlDR3lURFZ1N0RkN3ZiTER5S21jY0xj?=
+ =?utf-8?B?MWp4YkQ1VENtZUNJZUNGbndYOUtxTGZhWGFHSDNWRHZQTHhqV0ViNi9BQkdV?=
+ =?utf-8?B?WEpsVEpMaXFUamtpclJPYjZ0ZDF6cWhMUjRXc2dyd2R0RkMyR3JmVU9lUFpF?=
+ =?utf-8?B?aDF3WHkxZE1XZjN4MUhoOGlDNno4OU9razVNR3g1R0psSkIyTnowNEd0SlhQ?=
+ =?utf-8?B?dUdBQlNVYXU1M292V3lXSGpXOHVaWVZwdnpBdmN1QnZXSXYwL3BNTENrRGVD?=
+ =?utf-8?B?TWpNM0dyTmg3K1FveFJUekRtWitBVXBtd05iUGhTeWE4Z1dkZ2RYOHozTjVt?=
+ =?utf-8?B?eVRsWDhUUnVSMm1FTnpDVkVjTWpUUmZmTTBjMWlFK0RwWmJaQ28rOThwd1RP?=
+ =?utf-8?B?NEhzQTdxcW05NUd5T21pVGpRSms2WklZRGpzOVU0ZE5GaDNwZmh1ZHYvSFQx?=
+ =?utf-8?B?SndHSXQ3MjY5Y1FiZlRZMXBZMUpvemxLMUp5bFZDY1hVRm9rQ0ZxRkVoV1Nm?=
+ =?utf-8?B?WDVMclZNQ3gxN0pxSktBZ1dPYjRSM3NLMTFJL0M5S3MrRmNLMXhsNDhSVHov?=
+ =?utf-8?B?cVBIKzc2TVJRWTJ0a3lVSkcyY25wRlFjOEZhQk1DUWIyU1hCdUZKZm42NCs3?=
+ =?utf-8?B?N1R3ZjBUeEVmN1JweFdxYmEyZmQ3MGNlN0NIWk9zSmZGd0xybXN5NHg1ZlFi?=
+ =?utf-8?B?UkFLd3NTeFowVFVZU2NZTkNjSkdRYnlycnl1cHF0Z0FvNHgxcVZWUFVNbXcw?=
+ =?utf-8?B?UXJDdVB1U2xEQTB1NlhGQVVlRkZNSjhiWkNNekZUVnhZMjFLdll4Y3d3M3RF?=
+ =?utf-8?B?ZGoyeFU0YU1pSVErZm1Hc3JRREhqaC9ydEtJSElpODhnVW5oRU00eUVaam9p?=
+ =?utf-8?B?aHdBUVpBNkRiMzhWd2lEYjNQSjgvRjNhNE5wb1Vockl3YVk2N0FHSXg4Y0FS?=
+ =?utf-8?B?Nmx3RTdVRnB1ZXppa0oxTzhKZ3huMXRqbFF2M2xjQmh5ZlViNGxxZ3VUUVRM?=
+ =?utf-8?B?TTYxQmtBV3F3Tm8rQ2J1OUF5K3FPd09DUFlhTnh1MVBLZXRCRVM4bkpNTU9E?=
+ =?utf-8?B?L1J1WFFaWjlOQndxRXYyRVhBZ1Y3dGhUbmplUktHNEoyUndlRzh0TVkyelFr?=
+ =?utf-8?B?N0VtdnljQVlsa1ZSYU5RSUYvejZOZHEyYzR5TlRIU1F2RGNpMEthWEk1UXJ1?=
+ =?utf-8?B?NmpCQ0xaZVZPbjlPVXlHMzhDaVh4dmFIZG5FK0gyWUZUNWk2Znl3cFRubXpB?=
+ =?utf-8?B?OG9rblUzNzB3Y3R4WE5Mcy8yWXJSVWJGZlMxRkZPSEFSRkJhMzdISitBaUtl?=
+ =?utf-8?B?czBsNU1lTUNaUzdZdFZleU12UW8vVXJzSWFqTzZVd1hPYUtlb01GUTIwWkpI?=
+ =?utf-8?B?a3haZ2lTeFpxVEtMQkpENXJnaitEZFF5ZjhnRXhGQ0tKTThTZ3IvVHhlTkUy?=
+ =?utf-8?B?ZDlpNmx3UmttWnlBNVZVVUhWQ3UySVlaUGkvUThGUVk0MlpnU21FRy95M0h6?=
+ =?utf-8?B?clVxVHFHbk9PR2xheVVGQUIxUkdPbGY0ZmFkUUs2eU53RitQLzBqdlhnSWc3?=
+ =?utf-8?B?L2c9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fd9f5a0e-b2d4-4b72-9f34-9d8fcc74c00c@de.bosch.com>
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11332.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98aca624-1cd5-4b70-1aef-08dcf7f6e6e4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Oct 2024 08:51:38.7401
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: UL3haZHSmaXfU0WRqQNJsKN7MrNkpxyca9vyizOUgIMJIJMvzii1Qfm7sg02HAgU3yiRinZrm6aGFtKyDJQSGVRT7QFfIssdXmhldDrNYkE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSRPR01MB11859
 
-On Tue, Oct 29, 2024 at 08:20:55AM +0100, Dirk Behme wrote:
-> On 28.10.2024 11:19, Danilo Krummrich wrote:
-> > On Thu, Oct 24, 2024 at 11:11:50AM +0200, Dirk Behme wrote:
-> > > > +/// IdTable type for platform drivers.
-> > > > +pub type IdTable<T> = &'static dyn kernel::device_id::IdTable<of::DeviceId, T>;
-> > > > +
-> > > > +/// The platform driver trait.
-> > > > +///
-> > > > +/// # Example
-> > > > +///
-> > > > +///```
-> > > > +/// # use kernel::{bindings, c_str, of, platform};
-> > > > +///
-> > > > +/// struct MyDriver;
-> > > > +///
-> > > > +/// kernel::of_device_table!(
-> > > > +///     OF_TABLE,
-> > > > +///     MODULE_OF_TABLE,
-> > > 
-> > > It looks to me that OF_TABLE and MODULE_OF_TABLE are quite generic names
-> > > used here. Shouldn't they be somehow driver specific, e.g. OF_TABLE_MYDRIVER
-> > > and MODULE_OF_TABLE_MYDRIVER or whatever? Same for the other
-> > > examples/samples in this patch series. Found that while using the *same*
-> > > somewhere else ;)
-> > 
-> > I think the names by themselves are fine. They're local to the module. However,
-> > we stringify `OF_TABLE` in `module_device_table` to build the export name, i.e.
-> > "__mod_of__OF_TABLE_device_table". Hence the potential duplicate symbols.
-> > 
-> > I think we somehow need to build the module name into the symbol name as well.
-> 
-> Something like this?
-
-No, I think we should just encode the Rust module name / path, which should make
-this a unique symbol name.
-
-diff --git a/rust/kernel/device_id.rs b/rust/kernel/device_id.rs
-index 5b1329fba528..63e81ec2d6fd 100644
---- a/rust/kernel/device_id.rs
-+++ b/rust/kernel/device_id.rs
-@@ -154,7 +154,7 @@ macro_rules! module_device_table {
-     ($table_type: literal, $module_table_name:ident, $table_name:ident) => {
-         #[rustfmt::skip]
-         #[export_name =
--            concat!("__mod_", $table_type, "__", stringify!($table_name), "_device_table")
-+            concat!("__mod_", $table_type, "__", module_path!(), "_", stringify!($table_name), "_device_table")
-         ]
-         static $module_table_name: [core::mem::MaybeUninit<u8>; $table_name.raw_ids().size()] =
-             unsafe { core::mem::transmute_copy($table_name.raw_ids()) };
-
-For the doctests for instance this
-
-  "__mod_of__OF_TABLE_device_table"
-
-becomes
-
-  "__mod_of__doctests_kernel_generated_OF_TABLE_device_table".
-
-> 
-> 
-> Subject: [PATCH] rust: device: Add the module name to the symbol name
-> 
-> Make the symbol name unique by adding the module name to avoid
-> duplicate symbol errors like
-> 
-> ld.lld: error: duplicate symbol: __mod_of__OF_TABLE_device_table
-> >>> defined at doctests_kernel_generated.ff18649a828ae8c4-cgu.0
-> >>> rust/doctests_kernel_generated.o:(__mod_of__OF_TABLE_device_table) in
-> archive vmlinux.a
-> >>> defined at rust_driver_platform.2308c4225c4e08b3-cgu.0
-> >>>            samples/rust/rust_driver_platform.o:(.rodata+0x5A8) in
-> archive vmlinux.a
-> make[2]: *** [scripts/Makefile.vmlinux_o:65: vmlinux.o] Error 1
-> make[1]: *** [Makefile:1154: vmlinux_o] Error 2
-> 
-> __mod_of__OF_TABLE_device_table is too generic. Add the module name.
-> 
-> Proposed-by: Danilo Krummrich <dakr@kernel.org>
-> Link: https://lore.kernel.org/rust-for-linux/Zx9lFG1XKnC_WaG0@pollux/
-> Signed-off-by: Dirk Behme <dirk.behme@de.bosch.com>
-> ---
->  rust/kernel/device_id.rs             | 4 ++--
->  rust/kernel/of.rs                    | 4 ++--
->  rust/kernel/pci.rs                   | 5 +++--
->  rust/kernel/platform.rs              | 1 +
->  samples/rust/rust_driver_pci.rs      | 1 +
->  samples/rust/rust_driver_platform.rs | 1 +
->  6 files changed, 10 insertions(+), 6 deletions(-)
-> 
-> diff --git a/rust/kernel/device_id.rs b/rust/kernel/device_id.rs
-> index 5b1329fba528..231f34362da9 100644
-> --- a/rust/kernel/device_id.rs
-> +++ b/rust/kernel/device_id.rs
-> @@ -151,10 +151,10 @@ fn info(&self, index: usize) -> &U {
->  /// Create device table alias for modpost.
->  #[macro_export]
->  macro_rules! module_device_table {
-> -    ($table_type: literal, $module_table_name:ident, $table_name:ident) =>
-> {
-> +    ($table_type: literal, $device_name: literal, $module_table_name:ident,
-> $table_name:ident) => {
->          #[rustfmt::skip]
->          #[export_name =
-> -            concat!("__mod_", $table_type, "__", stringify!($table_name),
-> "_device_table")
-> +            concat!("__mod_", $table_type, "__", stringify!($table_name),
-> "_", $device_name, "_device_table")
->          ]
->          static $module_table_name: [core::mem::MaybeUninit<u8>;
-> $table_name.raw_ids().size()] =
->              unsafe { core::mem::transmute_copy($table_name.raw_ids()) };
-> diff --git a/rust/kernel/of.rs b/rust/kernel/of.rs
-> index a37629997974..77679c30638c 100644
-> --- a/rust/kernel/of.rs
-> +++ b/rust/kernel/of.rs
-> @@ -51,13 +51,13 @@ pub fn compatible<'a>(&self) -> &'a CStr {
->  /// Create an OF `IdTable` with an "alias" for modpost.
->  #[macro_export]
->  macro_rules! of_device_table {
-> -    ($table_name:ident, $module_table_name:ident, $id_info_type: ty,
-> $table_data: expr) => {
-> +    ($device_name: literal, $table_name:ident, $module_table_name:ident,
-> $id_info_type: ty, $table_data: expr) => {
->          const $table_name: $crate::device_id::IdArray<
->              $crate::of::DeviceId,
->              $id_info_type,
->              { $table_data.len() },
->          > = $crate::device_id::IdArray::new($table_data);
-> 
-> -        $crate::module_device_table!("of", $module_table_name,
-> $table_name);
-> +        $crate::module_device_table!("of", $device_name,
-> $module_table_name, $table_name);
->      };
->  }
-> diff --git a/rust/kernel/pci.rs b/rust/kernel/pci.rs
-> index 58f7d9c0045b..806d192b9600 100644
-> --- a/rust/kernel/pci.rs
-> +++ b/rust/kernel/pci.rs
-> @@ -176,14 +176,14 @@ fn index(&self) -> usize {
->  /// Create a PCI `IdTable` with its alias for modpost.
->  #[macro_export]
->  macro_rules! pci_device_table {
-> -    ($table_name:ident, $module_table_name:ident, $id_info_type: ty,
-> $table_data: expr) => {
-> +    ($device_name: literal, $table_name:ident, $module_table_name:ident,
-> $id_info_type: ty, $table_data: expr) => {
->          const $table_name: $crate::device_id::IdArray<
->              $crate::pci::DeviceId,
->              $id_info_type,
->              { $table_data.len() },
->          > = $crate::device_id::IdArray::new($table_data);
-> 
-> -        $crate::module_device_table!("pci", $module_table_name,
-> $table_name);
-> +        $crate::module_device_table!("pci", $device_name,
-> $module_table_name, $table_name);
->      };
->  }
-> 
-> @@ -197,6 +197,7 @@ macro_rules! pci_device_table {
->  /// struct MyDriver;
->  ///
->  /// kernel::pci_device_table!(
-> +///     "MyDriver",
->  ///     PCI_TABLE,
->  ///     MODULE_PCI_TABLE,
->  ///     <MyDriver as pci::Driver>::IdInfo,
-> diff --git a/rust/kernel/platform.rs b/rust/kernel/platform.rs
-> index a926233a789f..fcdd3c5da0e5 100644
-> --- a/rust/kernel/platform.rs
-> +++ b/rust/kernel/platform.rs
-> @@ -118,6 +118,7 @@ macro_rules! module_platform_driver {
->  /// struct MyDriver;
->  ///
->  /// kernel::of_device_table!(
-> +///     "MyDriver",
->  ///     OF_TABLE,
->  ///     MODULE_OF_TABLE,
->  ///     <MyDriver as platform::Driver>::IdInfo,
-> diff --git a/samples/rust/rust_driver_pci.rs
-> b/samples/rust/rust_driver_pci.rs
-> index d24dc1fde9e8..6ee570b59233 100644
-> --- a/samples/rust/rust_driver_pci.rs
-> +++ b/samples/rust/rust_driver_pci.rs
-> @@ -31,6 +31,7 @@ struct SampleDriver {
->  }
-> 
->  kernel::pci_device_table!(
-> +    "SampleDriver",
->      PCI_TABLE,
->      MODULE_PCI_TABLE,
->      <SampleDriver as pci::Driver>::IdInfo,
-> diff --git a/samples/rust/rust_driver_platform.rs
-> b/samples/rust/rust_driver_platform.rs
-> index fd7a5ad669fe..9dfbe3b9932b 100644
-> --- a/samples/rust/rust_driver_platform.rs
-> +++ b/samples/rust/rust_driver_platform.rs
-> @@ -11,6 +11,7 @@ struct SampleDriver {
->  struct Info(u32);
-> 
->  kernel::of_device_table!(
-> +    "SampleDriver",
->      OF_TABLE,
->      MODULE_OF_TABLE,
->      <SampleDriver as platform::Driver>::IdInfo,
-> -- 
-> 2.46.2
-> 
+SGkgTGl1IFlpbmcsDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogZHJp
+LWRldmVsIDxkcmktZGV2ZWwtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFs
+ZiBPZiBMaXUgWWluZw0KPiBTZW50OiAyOSBPY3RvYmVyIDIwMjQgMDg6MDINCj4gU3ViamVjdDog
+UmU6IFtQQVRDSCB2NCAwOC8xM10gZHQtYmluZGluZ3M6IGRpc3BsYXk6IERvY3VtZW50IGR1YWwt
+bGluayBMVkRTIGRpc3BsYXkgY29tbW9uIHByb3BlcnRpZXMNCj4gDQo+IE9uIDEwLzI5LzIwMjQs
+IEJpanUgRGFzIHdyb3RlOg0KPiA+IEhpIExpdSBZaW5nLA0KPiANCj4gSGkgQmlqdSwNCj4gDQo+
+ID4NCj4gPj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPj4gRnJvbTogTGl1IFlpbmcg
+PHZpY3Rvci5saXVAbnhwLmNvbT4NCj4gPj4gU2VudDogMjggT2N0b2JlciAyMDI0IDAyOjM4DQo+
+ID4+IFN1YmplY3Q6IFtQQVRDSCB2NCAwOC8xM10gZHQtYmluZGluZ3M6IGRpc3BsYXk6IERvY3Vt
+ZW50IGR1YWwtbGluaw0KPiA+PiBMVkRTIGRpc3BsYXkgY29tbW9uIHByb3BlcnRpZXMNCj4gPj4N
+Cj4gPj4gRHVhbC1saW5rIExWRFMgZGlzcGxheXMgcmVjZWl2ZSBvZGQgcGl4ZWxzIGFuZCBldmVu
+IHBpeGVscyBzZXBhcmF0ZWx5DQo+ID4+IGZyb20gZHVhbCBMVkRTIGxpbmtzLiAgT25lIGxpbmsg
+cmVjZWl2ZXMgb2RkIHBpeGVscyBhbmQgdGhlIG90aGVyDQo+ID4+IHJlY2VpdmVzIGV2ZW4gcGl4
+ZWxzLiAgU29tZSBvZiB0aG9zZSBkaXNwbGF5cyBtYXkgYWxzbyB1c2Ugb25seSBvbmUNCj4gPj4g
+TFZEUyBsaW5rIHRvIHJlY2VpdmUgYWxsIHBpeGVscywgYmVpbmcgb2RkIGFuZCBldmVuIGFnbm9z
+dGljLiAgRG9jdW1lbnQgY29tbW9uIHByb3BlcnRpZXMgZm9yIHRob3NlDQo+IGRpc3BsYXlzIGJ5
+IGV4dGVuZGluZyBMVkRTIGRpc3BsYXkgY29tbW9uIHByb3BlcnRpZXMgZGVmaW5lZCBpbiBsdmRz
+LnlhbWwuDQo+ID4+DQo+ID4+IFN1Z2dlc3RlZC1ieTogRG1pdHJ5IEJhcnlzaGtvdiA8ZG1pdHJ5
+LmJhcnlzaGtvdkBsaW5hcm8ub3JnPg0KPiA+PiBTaWduZWQtb2ZmLWJ5OiBMaXUgWWluZyA8dmlj
+dG9yLmxpdUBueHAuY29tPg0KPiA+PiAtLS0NCj4gPj4gdjQ6DQo+ID4+ICogU3F1YXNoIGNoYW5n
+ZSBmb3IgYWR2YW50ZWNoLGlkay0yMTIxd3IueWFtbCBhbmQNCj4gPj4gICBwYW5lbC1zaW1wbGUt
+bHZkcy1kdWFsLXBvcnRzLnlhbWwgd2l0aCBsdmRzLWR1YWwtcG9ydHMueWFtbC4gIChSb2IpDQo+
+ID4+ICogSW1wcm92ZSBkZXNjcmlwdGlvbiBpbiBsdmRzLWR1YWwtcG9ydHMueWFtbC4gIChLcnp5
+c3p0b2YpDQo+ID4+DQo+ID4+IHYzOg0KPiA+PiAqIE5ldyBwYXRjaC4gIChEbWl0cnkpDQo+ID4+
+DQo+ID4+ICAuLi4vYmluZGluZ3MvZGlzcGxheS9sdmRzLWR1YWwtcG9ydHMueWFtbCAgICAgfCA3
+NiArKysrKysrKysrKysrKysrKysrDQo+ID4+ICAuLi4vZGlzcGxheS9wYW5lbC9hZHZhbnRlY2gs
+aWRrLTIxMjF3ci55YW1sICAgfCAxNCArLS0tDQo+ID4+ICAuLi4vcGFuZWwvcGFuZWwtc2ltcGxl
+LWx2ZHMtZHVhbC1wb3J0cy55YW1sICAgfCAyMCArLS0tLQ0KPiA+PiAgMyBmaWxlcyBjaGFuZ2Vk
+LCA3OCBpbnNlcnRpb25zKCspLCAzMiBkZWxldGlvbnMoLSkgIGNyZWF0ZSBtb2RlDQo+ID4+IDEw
+MDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9sdmRzLWR1YWwt
+cG9ydHMueWFtbA0KPiA+Pg0KPiA+PiBkaWZmIC0tZ2l0DQo+ID4+IGEvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbHZkcy1kdWFsLXBvcnRzLnlhbWwNCj4gPj4gYi9E
+b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9sdmRzLWR1YWwtcG9ydHMu
+eWFtbA0KPiA+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+PiBpbmRleCAwMDAwMDAwMDAwMDAu
+LjVmN2EzMDY0MDQwNA0KPiA+PiAtLS0gL2Rldi9udWxsDQo+ID4+ICsrKyBiL0RvY3VtZW50YXRp
+b24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L2x2ZHMtZHVhbC1wb3J0cy55YW1sDQo+ID4+
+IEBAIC0wLDAgKzEsNzYgQEANCj4gPj4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwt
+Mi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKSAlWUFNTCAxLjINCj4gPj4gKy0tLQ0KPiA+PiArJGlk
+OiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9kaXNwbGF5L2x2ZHMtZHVhbC1wb3J0cy55
+YW1sIw0KPiA+PiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9j
+b3JlLnlhbWwjDQo+ID4+ICsNCj4gPj4gK3RpdGxlOiBEdWFsLWxpbmsgTFZEUyBEaXNwbGF5IENv
+bW1vbiBQcm9wZXJ0aWVzDQo+ID4+ICsNCj4gPj4gK21haW50YWluZXJzOg0KPiA+PiArICAtIExp
+dSBZaW5nIDx2aWN0b3IubGl1QG54cC5jb20+DQo+ID4+ICsNCj4gPj4gK2Rlc2NyaXB0aW9uOiB8
+DQo+ID4+ICsgIENvbW1vbiBwcm9wZXJ0aWVzIGZvciBMVkRTIGRpc3BsYXlzIHdpdGggZHVhbCBM
+VkRTIGxpbmtzLiBFeHRlbmQNCj4gPj4gK0xWRFMgZGlzcGxheQ0KPiA+PiArICBjb21tb24gcHJv
+cGVydGllcyBkZWZpbmVkIGluIGx2ZHMueWFtbC4NCj4gPj4gKw0KPiA+PiArICBEdWFsLWxpbmsg
+TFZEUyBkaXNwbGF5cyByZWNlaXZlIG9kZCBwaXhlbHMgYW5kIGV2ZW4gcGl4ZWxzDQo+ID4+ICsg
+c2VwYXJhdGVseSBmcm9tICB0aGUgZHVhbCBMVkRTIGxpbmtzLiBPbmUgbGluayByZWNlaXZlcyBv
+ZGQgcGl4ZWxzDQo+ID4+ICsgYW5kIHRoZSBvdGhlciByZWNlaXZlcyAgZXZlbiBwaXhlbHMuIFNv
+bWUgb2YgdGhvc2UgZGlzcGxheXMgbWF5DQo+ID4+ICsgYWxzbyB1c2Ugb25seSBvbmUgTFZEUyBs
+aW5rIHRvICByZWNlaXZlIGFsbCBwaXhlbHMsIGJlaW5nIG9kZCBhbmQgZXZlbiBhZ25vc3RpYy4N
+Cj4gPj4gKw0KPiA+PiArYWxsT2Y6DQo+ID4+ICsgIC0gJHJlZjogbHZkcy55YW1sIw0KPiA+PiAr
+DQo+ID4+ICtwcm9wZXJ0aWVzOg0KPiA+PiArICBwb3J0czoNCj4gPj4gKyAgICAkcmVmOiAvc2No
+ZW1hcy9ncmFwaC55YW1sIy9wcm9wZXJ0aWVzL3BvcnRzDQo+ID4+ICsNCj4gPj4gKyAgICBwcm9w
+ZXJ0aWVzOg0KPiA+PiArICAgICAgcG9ydEAwOg0KPiA+PiArICAgICAgICAkcmVmOiAvc2NoZW1h
+cy9ncmFwaC55YW1sIy8kZGVmcy9wb3J0LWJhc2UNCj4gPj4gKyAgICAgICAgdW5ldmFsdWF0ZWRQ
+cm9wZXJ0aWVzOiBmYWxzZQ0KPiA+PiArICAgICAgICBkZXNjcmlwdGlvbjogdGhlIGZpcnN0IExW
+RFMgaW5wdXQgbGluaw0KPiA+PiArDQo+ID4+ICsgICAgICAgIHByb3BlcnRpZXM6DQo+ID4+ICsg
+ICAgICAgICAgZHVhbC1sdmRzLW9kZC1waXhlbHM6DQo+ID4+ICsgICAgICAgICAgICB0eXBlOiBi
+b29sZWFuDQo+ID4+ICsgICAgICAgICAgICBkZXNjcmlwdGlvbjogdGhlIGZpcnN0IExWRFMgaW5w
+dXQgbGluayBmb3Igb2RkIHBpeGVscw0KPiA+PiArDQo+ID4+ICsgICAgICAgICAgZHVhbC1sdmRz
+LWV2ZW4tcGl4ZWxzOg0KPiA+PiArICAgICAgICAgICAgdHlwZTogYm9vbGVhbg0KPiA+PiArICAg
+ICAgICAgICAgZGVzY3JpcHRpb246IHRoZSBmaXJzdCBMVkRTIGlucHV0IGxpbmsgZm9yIGV2ZW4g
+cGl4ZWxzDQo+ID4NCj4gPg0KPiA+IHBvcnRAMCB3ZSBrbm93IGl0IGlzIGZpcnN0IGxpbmsNCj4g
+PiBwb3J0QDEgd2Uga25vdyBpdCBpcyBzZWNvbmQgbGluay4NCj4gPiBkdWFsLWx2ZHMtb2RkLXBp
+eGVsczogV2Uga25vdyBpdCBpcyBmb3Igb2RkIHBpeGVscy4NCj4gPiBkdWFsLWx2ZHMtZXZlbi1w
+aXhlbHM6IFdlIGtub3cgaXQgaXMgZm9yIG9kZCBwaXhlbHMuDQo+ID4NCj4gPiBOb3Qgc3VyZSwg
+d2hldGhlciB3ZSBjYW4gZ2l2ZSBjb21tb24gZGVzY3JpcHRpb24gYW5kIGF2b2lkIHRoZQ0KPiA+
+IGR1cGxpY2F0ZSBmcm9tIHBvcnRAMSA/Pw0KPiANCj4gWWVzLCBpdCdkIGJldHRlciB0byB1c2Ug
+cGF0dGVyblByb3BlcnRpZXMuIFRoYW5rcy4NCj4gDQo+IC0tODwtLQ0KPiAgICAgcGF0dGVyblBy
+b3BlcnRpZXM6DQo+ICAgICAgICdecG9ydEBbMDFdJCc6DQo+ICAgICAgICAgJHJlZjogL3NjaGVt
+YXMvZ3JhcGgueWFtbCMvJGRlZnMvcG9ydC1iYXNlDQo+ICAgICAgICAgdW5ldmFsdWF0ZWRQcm9w
+ZXJ0aWVzOiBmYWxzZQ0KPiAgICAgICAgIGRlc2NyaXB0aW9uOiB8DQo+ICAgICAgICAgICBwb3J0
+QDAgaXMgZm9yIHRoZSBmaXJzdCBMVkRTIGlucHV0IGxpbmsuDQo+ICAgICAgICAgICBwb3J0QDEg
+aXMgZm9yIHRoZSBzZWNvbmQgTFZEUyBpbnB1dCBsaW5rLg0KPiANCj4gICAgICAgICBwcm9wZXJ0
+aWVzOg0KPiAgICAgICAgICAgZHVhbC1sdmRzLW9kZC1waXhlbHM6DQo+ICAgICAgICAgICAgIHR5
+cGU6IGJvb2xlYW4NCj4gICAgICAgICAgICAgZGVzY3JpcHRpb246IExWRFMgaW5wdXQgbGluayBm
+b3Igb2RkIHBpeGVscw0KPiANCj4gICAgICAgICAgIGR1YWwtbHZkcy1ldmVuLXBpeGVsczoNCj4g
+ICAgICAgICAgICAgdHlwZTogYm9vbGVhbg0KPiAgICAgICAgICAgICBkZXNjcmlwdGlvbjogTFZE
+UyBpbnB1dCBsaW5rIGZvciBldmVuIHBpeGVscw0KPiANCj4gICAgICAgICBvbmVPZjoNCj4gICAg
+ICAgICAgIC0gcmVxdWlyZWQ6IFtkdWFsLWx2ZHMtb2RkLXBpeGVsc10NCj4gICAgICAgICAgIC0g
+cmVxdWlyZWQ6IFtkdWFsLWx2ZHMtZXZlbi1waXhlbHNdDQo+ICAgICAgICAgICAtIHByb3BlcnRp
+ZXM6DQo+ICAgICAgICAgICAgICAgZHVhbC1sdmRzLW9kZC1waXhlbHM6IGZhbHNlDQo+ICAgICAg
+ICAgICAgICAgZHVhbC1sdmRzLWV2ZW4tcGl4ZWxzOiBmYWxzZQ0KPiANCj4gICAgIGFueU9mOg0K
+PiAgICAgICAtIHJlcXVpcmVkOg0KPiAgICAgICAgICAgLSBwb3J0QDANCj4gICAgICAgLSByZXF1
+aXJlZDoNCj4gICAgICAgICAgIC0gcG9ydEAxDQo+IC0tODwtLQ0KPiANCj4gPg0KPiA+DQo+ID4+
+ICsNCj4gPj4gKyAgICAgICAgb25lT2Y6DQo+ID4+ICsgICAgICAgICAgLSByZXF1aXJlZDogW2R1
+YWwtbHZkcy1vZGQtcGl4ZWxzXQ0KPiA+PiArICAgICAgICAgIC0gcmVxdWlyZWQ6IFtkdWFsLWx2
+ZHMtZXZlbi1waXhlbHNdDQo+ID4+ICsgICAgICAgICAgLSBwcm9wZXJ0aWVzOg0KPiA+PiArICAg
+ICAgICAgICAgICBkdWFsLWx2ZHMtb2RkLXBpeGVsczogZmFsc2UNCj4gPj4gKyAgICAgICAgICAg
+ICAgZHVhbC1sdmRzLWV2ZW4tcGl4ZWxzOiBmYWxzZQ0KPiA+DQo+ID4gV2h5IHRoaXMgaXMgZmFs
+c2UgaGVyZT8gb25lT2YgaXMgbm90IHN1ZmZpY2llbnQ/DQo+IA0KPiBUaGUgJ2ZhbHNlJyBpcyB1
+c2VkIHdoZW4gdGhpcyBMVkRTIGxpbmsgd29ya3MgYWxvbmUgYXMgYSBzaW5nbGUgTFZEUyBsaW5r
+LCBiZWluZyBvZGQgYW5kIGV2ZW4NCj4gYWdub3N0aWMuDQo+IA0KPiBUaGUgJ29uZU9mJyBhbGxv
+d3MgYSBMVkRTIGxpbmsgdG8gYmUgZGVmaW5lZCBhcyBhIHNpbmdsZSBMVkRTIGxpbmsgb3Igb25l
+IGxpbmsgb2YgZHVhbCBMVkRTIGxpbmtzLg0KDQpPaywgaXQgbWFrZXMgc2Vuc2UgZm9yIHNpbmds
+ZSBMVkRTIGxpbmsuIE1heWJlIHJlbmFtZSB0aGUgZmlsZSB0byBsdmRzLWR1YWwtcG9ydHMueWFt
+bC0+bHZkcy1wb3J0cy55YW1sDQp0byBtYWtlIGl0IGNsZWFyLCBpdCBpcyBmb3IgYWxsIExWRFMg
+cG9ydHMsIGlmIGl0IGlzIGdvaW5nIHRvIGFkZHJlc3Mgc2luZ2xlIGxpbmsgY2FzZSBhc3dlbGw/
+Pw0KDQpDaGVlcnMsDQpCaWp1DQoNCg==
 
