@@ -1,174 +1,374 @@
-Return-Path: <devicetree+bounces-117022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181E39B4AC5
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:19:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0F979B4AE0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:27:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBA55283E59
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:19:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FF251F2395C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:27:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 533CE204013;
-	Tue, 29 Oct 2024 13:19:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A57BB206051;
+	Tue, 29 Oct 2024 13:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jupVmOOT"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="T+uupmNB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A7E7FD;
-	Tue, 29 Oct 2024 13:19:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B3B205E1C
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 13:27:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730207982; cv=none; b=d8SRU2dm5RJjE7dCvrGhX0EhgNi86PU5XIED77MUvGs6MMO92BnUkZMJ92NhRZJ41XzLdwcdOUIGqoTmQNfzW52sKwTy6Ed+3f7kF3sBhDq/bLJ8CZ0xm0G6Ha9FXfWXUVKh4biyJqeyPgDu7SY/SNPXHYnbU2fADMJikPS4igQ=
+	t=1730208432; cv=none; b=EswZ0+BUruRtVm8rn1XJhRqcVEZPUl6qUQ/9inj+eFkc72XSqPZw7DMaZU0J9sWFEnOLkMNva3V88Y4GauD33hj0cTR8V9y17kTqGDAl/4SDSCU7QhQbXM3q7fH2br9HTgf6voepXubT2SeacThnEZiW6LCSSLrMTuNFTk6loo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730207982; c=relaxed/simple;
-	bh=yg/o1pe2Ydem/63Sibmmgle3CvzHEGCl6k/yPdISXbk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dw5H3HHIGkPmvdoLA7UIIe+KCAETGXq3Qm5pnkY1Rd3I7Y+xW4Y/dVack6VOAxe9Z55ecEQZZVRqUxyaAwI4whs8XZQUo0EdamOCUPPVPXSFnNumaHGQWYjKxWsPz+IozrNqlHUHbnqqjNlDWRhA+Ea7KZT03SMzKfUteyOtxO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jupVmOOT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADA34C4CECD;
-	Tue, 29 Oct 2024 13:19:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730207980;
-	bh=yg/o1pe2Ydem/63Sibmmgle3CvzHEGCl6k/yPdISXbk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jupVmOOT8viCJlgqgUFEUb27OtVVigrZ2pJhd9iKCvB/10zyWTxrrzIb7njfq6/vf
-	 MQllhg/MbOysT8NMUtBOTqR/2Ek9G+MVnJEYWk/kpnr5soxAKqnskqAZGrxT1o39ew
-	 HY5urIBcjDWGtW0+mZ9Tkvwu3iJrf+l+kxt5McLseuj5Pc0OpSdOo4YAqB7xU4Cjsk
-	 lww0ry/GuIG7t7bp6z7pMeghTQ9KhXKt3usVje54KSXG6sbmK2TLj12eDOyMq5o+kF
-	 RNUVGU5Yva+wybnFnxXYd/1wUpugFZhfHVhpddH4UKJnz9pNkkXv6ypdT83PhmBS1h
-	 Tph6H33g14mMQ==
-Message-ID: <844798ab-2910-458e-a9c5-dc69f5c8e368@kernel.org>
-Date: Tue, 29 Oct 2024 14:19:34 +0100
+	s=arc-20240116; t=1730208432; c=relaxed/simple;
+	bh=0l0pGwPPXUKryR0mqg/2ZJbi/yLW7k9MKNg+xvqxwtM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kX69GVBgziNd8ze2imSI2fZqZ+e364dvMXop8kfaeunxloHpIexXxL9YOQH6lD2ZJn3offWQ+8LpgxQ3O6wo3fbiETPEYKcO5tDV4wtf83S6Fap5UxOljbEWVfUctsGTfXQIVda8emXftLBIriB7jDjLgYqfD8Pz7Fqyvn2noWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=T+uupmNB; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-20c9978a221so58787125ad.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 06:27:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1730208429; x=1730813229; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bPmbbkDdlgj5tS54qzNXga3fylyvP9KnhhI/PLfNTwk=;
+        b=T+uupmNBwuy7DtS9taEVtLVI0AaS6djVyFZpHnp8393T7J6qiOekGT+JsXSam1rWd8
+         H1tYiM77b9Dil/vAvZ78BGje04zfDaLWypOK0PjOUAnIub58sse3F7oSd3UnLD2D2zQp
+         QIeOewYELo9NDcBGqcEYKfnz5FJKYleG3HJBT/0lv9l/4t+/0+a4+7BCwgtV50AdF+qg
+         HZ2RenjBotNCzPAQTqNEtgGhsyjWZP2TapfEYYRlKLFbkJBUacz3r0B8DM03XjJQQUjm
+         421MRAJEZPLo9remtyPcA0mroR28W6Qgtk2pTLIC4IltDEONgTTb8KVM651nNC73bS6S
+         dC8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730208429; x=1730813229;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bPmbbkDdlgj5tS54qzNXga3fylyvP9KnhhI/PLfNTwk=;
+        b=O73+img0ETYo5hWj6Zl+cNTnCkoCNM/MTn9oAo5B+RpxHLeMN87PetP3WBRyLAy3eW
+         gsVbm20LWWE0g9xIlyHvCWkak+R/4lmJucbTOyb+pIiQlQSpAFAeJ1aiv3fEZ4TZjHr+
+         i5ygC6X6fbW8qLsOly4hvO6UG79MJBx3tjtrMRys7ThVmWghsaOJby+qT4T1emBumFRG
+         rgn3rqVMULrjzLnIN9wge0BOU1j7E1c4H5VPlVkaacmZuqyUEWQLhtGrHNS5XAHhQjta
+         xelWXtqvngDZQwMQMLnq4P8HrMUwWfEVE06KbmLv2badxrokd5hROGlb4Rb/CTpz7YdK
+         nQgw==
+X-Forwarded-Encrypted: i=1; AJvYcCWLuMrKDgAiekM1IP3GT5humnZTJAz90+gZB29+vywem0fQ+mFHd+ITiTQRZMAG3aJLdLRc2KH/sPMT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzO9/+ByrNz08odpYE660C0NqjKJs5IM58ODiiZV0Fp7sO8V1Md
+	2ehF5duDMic2mqJzW8zUvAGAejr2Kq8KoKYxl6LeFtRiWasEbCQcCzp/zBOucKbTdIWviSZP/hF
+	s+hg2aA+cJ2A0fC1lJlKjO5NGDPQlrPs3r/02
+X-Google-Smtp-Source: AGHT+IEUNZ/udRp7n1cUowspy1x3Bn3BLvEgiqcEq2EHGavw+WCKwCDiifwnii7tkTSakAD08lG9y4jmuYIdK6y3Srw=
+X-Received: by 2002:a17:903:2b08:b0:20c:ceb4:aa7f with SMTP id
+ d9443c01a7336-210c68a1acdmr163437405ad.11.1730208428942; Tue, 29 Oct 2024
+ 06:27:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
-To: Ming-Jen Chen <mjchen0829@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- mjchen@nuvoton.com, peng.fan@nxp.com, sudeep.holla@arm.com, arnd@arndb.de,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- dmitry.torokhov@gmail.com
-References: <20241022063158.5910-1-mjchen0829@gmail.com>
- <20241022063158.5910-2-mjchen0829@gmail.com>
- <csbechg6iarxx52z2gqidszhvgjdvaraoumpfcsozelhuuhmtb@ec7es3txuzxc>
- <871e9a4c-7a3c-4a24-8829-a079983033da@gmail.com>
- <ef407e89-950f-4874-9dca-474d107f6a52@kernel.org>
- <984781ba-9f4c-4179-84d5-4ab8bbe4c3c6@gmail.com>
- <9b0a508e-d9ae-45ab-882f-5bc1f03e13db@kernel.org>
- <5d9e89aa-db10-4367-8417-9fcc1a3bb37a@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <5d9e89aa-db10-4367-8417-9fcc1a3bb37a@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-8-dakr@kernel.org>
+In-Reply-To: <20241022213221.2383-8-dakr@kernel.org>
+From: Alice Ryhl <aliceryhl@google.com>
+Date: Tue, 29 Oct 2024 14:26:55 +0100
+Message-ID: <CAH5fLgjcy=DQrCYt-k40D4_NcwgdrykUW9d74srGn5hxxo2Xmw@mail.gmail.com>
+Subject: Re: [PATCH v3 07/16] rust: add `Revocable` type
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
+	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com, 
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com, 
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
+	daniel.almeida@collabora.com, saravanak@google.com, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	Wedson Almeida Filho <wedsonaf@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 29/10/2024 03:00, Ming-Jen Chen wrote:
->>>>>>> +
->>>>>>> +  per-scale:
->>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>>>> +    description: Row Scan Cycle Pre-scale Value (1 to 256).
->>>>>> Missing constraints
->>>>>>
->>>>>>> +
->>>>>>> +  per-scalediv:
->>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>>>> +    description: Per-scale divider (1 to 256).
->>>>>> Missing constraints
->>>>>>
->>>>>> Both properties are unexpected... aren't you duplicating existing
->>>>>> properties?
->>>>> pre-scale:
->>>>> This value configures the IC register for the row scan cycle
->>>>> pre-scaling, with valid values ranging from 1 to 256
->>>>> per-scalediv:(I will change pre-scalediv to pre-scale-div)
->>>> Please look for matching existing properties first.
->>> I will change it to the following content:
->>>
->>> nuvoton,scan-time:
->> Why? What about my request?
-> 
-> I utilized|grep|  to search for relevant properties in the|input/|  folder using keywords such as|scan|,|time|,|period|,|freq|, and|interval|.
-> While I found some similar properties, I did not locate any that completely meet my requirements.
-> 
-> For example, I found|"scanning_period"|, which is described as "Time between scans. Each step is 1024 us. Valid 1-256."
-> I would like to confirm if you are suggesting that I use|scanning_period|  and explain my specific use case in the description,
-> for example:
+On Tue, Oct 22, 2024 at 11:33=E2=80=AFPM Danilo Krummrich <dakr@kernel.org>=
+ wrote:
+>
+> From: Wedson Almeida Filho <wedsonaf@gmail.com>
+>
+> Revocable allows access to objects to be safely revoked at run time.
+>
+> This is useful, for example, for resources allocated during device probe;
+> when the device is removed, the driver should stop accessing the device
+> resources even if another state is kept in memory due to existing
+> references (i.e., device context data is ref-counted and has a non-zero
+> refcount after removal of the device).
+>
+> Signed-off-by: Wedson Almeida Filho <wedsonaf@gmail.com>
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> ---
+>  rust/kernel/lib.rs       |   1 +
+>  rust/kernel/revocable.rs | 211 +++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 212 insertions(+)
+>  create mode 100644 rust/kernel/revocable.rs
+>
+> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+> index 89f6bd2efcc0..b603b67dcd71 100644
+> --- a/rust/kernel/lib.rs
+> +++ b/rust/kernel/lib.rs
+> @@ -54,6 +54,7 @@
+>  pub mod prelude;
+>  pub mod print;
+>  pub mod rbtree;
+> +pub mod revocable;
+>  pub mod sizes;
+>  mod static_assert;
+>  #[doc(hidden)]
+> diff --git a/rust/kernel/revocable.rs b/rust/kernel/revocable.rs
+> new file mode 100644
+> index 000000000000..83455558d795
+> --- /dev/null
+> +++ b/rust/kernel/revocable.rs
+> @@ -0,0 +1,211 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! Revocable objects.
+> +//!
+> +//! The [`Revocable`] type wraps other types and allows access to them t=
+o be revoked. The existence
+> +//! of a [`RevocableGuard`] ensures that objects remain valid.
+> +
+> +use crate::{
+> +    bindings,
+> +    init::{self},
+> +    prelude::*,
+> +    sync::rcu,
+> +};
+> +use core::{
+> +    cell::UnsafeCell,
+> +    marker::PhantomData,
+> +    mem::MaybeUninit,
+> +    ops::Deref,
+> +    ptr::drop_in_place,
+> +    sync::atomic::{AtomicBool, Ordering},
+> +};
+> +
+> +/// An object that can become inaccessible at runtime.
+> +///
+> +/// Once access is revoked and all concurrent users complete (i.e., all =
+existing instances of
+> +/// [`RevocableGuard`] are dropped), the wrapped object is also dropped.
+> +///
+> +/// # Examples
+> +///
+> +/// ```
+> +/// # use kernel::revocable::Revocable;
+> +///
+> +/// struct Example {
+> +///     a: u32,
+> +///     b: u32,
+> +/// }
+> +///
+> +/// fn add_two(v: &Revocable<Example>) -> Option<u32> {
+> +///     let guard =3D v.try_access()?;
+> +///     Some(guard.a + guard.b)
+> +/// }
+> +///
+> +/// let v =3D KBox::pin_init(Revocable::new(Example { a: 10, b: 20 }), G=
+FP_KERNEL).unwrap();
+> +/// assert_eq!(add_two(&v), Some(30));
+> +/// v.revoke();
+> +/// assert_eq!(add_two(&v), None);
+> +/// ```
+> +///
+> +/// Sample example as above, but explicitly using the rcu read side lock=
+.
+> +///
+> +/// ```
+> +/// # use kernel::revocable::Revocable;
+> +/// use kernel::sync::rcu;
+> +///
+> +/// struct Example {
+> +///     a: u32,
+> +///     b: u32,
+> +/// }
+> +///
+> +/// fn add_two(v: &Revocable<Example>) -> Option<u32> {
+> +///     let guard =3D rcu::read_lock();
+> +///     let e =3D v.try_access_with_guard(&guard)?;
+> +///     Some(e.a + e.b)
+> +/// }
+> +///
+> +/// let v =3D KBox::pin_init(Revocable::new(Example { a: 10, b: 20 }), G=
+FP_KERNEL).unwrap();
+> +/// assert_eq!(add_two(&v), Some(30));
+> +/// v.revoke();
+> +/// assert_eq!(add_two(&v), None);
+> +/// ```
+> +#[pin_data(PinnedDrop)]
+> +pub struct Revocable<T> {
+> +    is_available: AtomicBool,
+> +    #[pin]
+> +    data: MaybeUninit<UnsafeCell<T>>,
+> +}
+> +
+> +// SAFETY: `Revocable` is `Send` if the wrapped object is also `Send`. T=
+his is because while the
+> +// functionality exposed by `Revocable` can be accessed from any thread/=
+CPU, it is possible that
+> +// this isn't supported by the wrapped object.
+> +unsafe impl<T: Send> Send for Revocable<T> {}
+> +
+> +// SAFETY: `Revocable` is `Sync` if the wrapped object is both `Send` an=
+d `Sync`. We require `Send`
+> +// from the wrapped object as well because  of `Revocable::revoke`, whic=
+h can trigger the `Drop`
+> +// implementation of the wrapped object from an arbitrary thread.
+> +unsafe impl<T: Sync + Send> Sync for Revocable<T> {}
+> +
+> +impl<T> Revocable<T> {
+> +    /// Creates a new revocable instance of the given data.
+> +    pub fn new(data: impl PinInit<T>) -> impl PinInit<Self> {
+> +        pin_init!(Self {
+> +            is_available: AtomicBool::new(true),
+> +            // SAFETY: The closure only returns `Ok(())` if `slot` is fu=
+lly initialized; on error
+> +            // `slot` is not partially initialized and does not need to =
+be dropped.
+> +            data <- unsafe {
+> +                init::pin_init_from_closure(move |slot: *mut MaybeUninit=
+<UnsafeCell<T>>| {
+> +                    init::PinInit::<T, core::convert::Infallible>::__pin=
+ned_init(data,
+> +                                                                        =
+         slot as *mut T)?;
+> +                    Ok::<(), core::convert::Infallible>(())
+> +                })
 
-Description of these properties did not tell me much about their purpose
-and underlying hardware, so I don't know which fits here. It looks like
-you want to configure clock... but then wording confuses me -
-"per-scale". What is "per"? Isn't it usually "pre"?
+If you change `data` to be `Opaque`, then this can just be
 
-So in general I don't know what to recommend you because your patch is
-really unclear.
+data <- Opaque::ffi_init(data)
 
-Please also wrap emails according to mailing lists standards. And use
-proper line separation of sentences. It's really hard to understand your
-email.
+(or maybe you need try_ffi_init)
 
-> 
-> nuvoton,scanning-period:
->      type:  uint32
->      description:  | Set the scan time for each key, specified in terms of keypad IP clock 
-> cycles. The valid range is from 1 to 256.      minimum:  1
->      maximum:  256 Could you please confirm if this approach aligns with your suggestion,
->   or if you have any other recommended existing properties?
+> +
+> +    /// Tries to access the \[revocable\] wrapped object.
+> +    ///
+> +    /// Returns `None` if the object has been revoked and is therefore n=
+o longer accessible.
+> +    ///
+> +    /// Returns a guard that gives access to the object otherwise; the o=
+bject is guaranteed to
+> +    /// remain accessible while the guard is alive. In such cases, calle=
+rs are not allowed to sleep
+> +    /// because another CPU may be waiting to complete the revocation of=
+ this object.
+> +    pub fn try_access(&self) -> Option<RevocableGuard<'_, T>> {
+> +        let guard =3D rcu::read_lock();
+> +        if self.is_available.load(Ordering::Relaxed) {
+> +            // SAFETY: Since `self.is_available` is true, data is initia=
+lised and has to remain
+> +            // valid because the RCU read side lock prevents it from bei=
+ng dropped.
+> +            Some(unsafe { RevocableGuard::new(self.data.assume_init_ref(=
+).get(), guard) })
+> +        } else {
+> +            None
+> +        }
+> +    }
+> +
+> +    /// Tries to access the \[revocable\] wrapped object.
 
-Why this would be board dependent?
+These backslashes seem wrong.
 
-Best regards,
-Krzysztof
+> +    /// Returns `None` if the object has been revoked and is therefore n=
+o longer accessible.
+> +    ///
+> +    /// Returns a shared reference to the object otherwise; the object i=
+s guaranteed to
+> +    /// remain accessible while the rcu read side guard is alive. In suc=
+h cases, callers are not
+> +    /// allowed to sleep because another CPU may be waiting to complete =
+the revocation of this
+> +    /// object.
+> +    pub fn try_access_with_guard<'a>(&'a self, _guard: &'a rcu::Guard) -=
+> Option<&'a T> {
+> +        if self.is_available.load(Ordering::Relaxed) {
+> +            // SAFETY: Since `self.is_available` is true, data is initia=
+lised and has to remain
+> +            // valid because the RCU read side lock prevents it from bei=
+ng dropped.
+> +            Some(unsafe { &*self.data.assume_init_ref().get() })
+> +        } else {
+> +            None
+> +        }
+> +    }
+> +
+> +    /// Revokes access to and drops the wrapped object.
+> +    ///
+> +    /// Access to the object is revoked immediately to new callers of [`=
+Revocable::try_access`]. If
+> +    /// there are concurrent users of the object (i.e., ones that called=
+ [`Revocable::try_access`]
+> +    /// beforehand and still haven't dropped the returned guard), this f=
+unction waits for the
+> +    /// concurrent access to complete before dropping the wrapped object=
+.
+> +    pub fn revoke(&self) {
+> +        if self
+> +            .is_available
+> +            .compare_exchange(true, false, Ordering::Relaxed, Ordering::=
+Relaxed)
+> +            .is_ok()
+> +        {
+> +            // SAFETY: Just an FFI call, there are no further requiremen=
+ts.
+> +            unsafe { bindings::synchronize_rcu() };
+> +
+> +            // SAFETY: We know `self.data` is valid because only one CPU=
+ can succeed the
+> +            // `compare_exchange` above that takes `is_available` from `=
+true` to `false`.
+> +            unsafe { drop_in_place(self.data.assume_init_ref().get()) };
+> +        }
+> +    }
+> +}
+> +
+> +#[pinned_drop]
+> +impl<T> PinnedDrop for Revocable<T> {
+> +    fn drop(self: Pin<&mut Self>) {
+> +        // Drop only if the data hasn't been revoked yet (in which case =
+it has already been
+> +        // dropped).
+> +        // SAFETY: We are not moving out of `p`, only dropping in place
+> +        let p =3D unsafe { self.get_unchecked_mut() };
+> +        if *p.is_available.get_mut() {
+> +            // SAFETY: We know `self.data` is valid because no other CPU=
+ has changed
+> +            // `is_available` to `false` yet, and no other CPU can do it=
+ anymore because this CPU
+> +            // holds the only reference (mutable) to `self` now.
+> +            unsafe { drop_in_place(p.data.assume_init_ref().get()) };
+> +        }
+> +    }
+> +}
+> +
+> +/// A guard that allows access to a revocable object and keeps it alive.
+> +///
+> +/// CPUs may not sleep while holding on to [`RevocableGuard`] because it=
+'s in atomic context
+> +/// holding the RCU read-side lock.
+> +///
+> +/// # Invariants
+> +///
+> +/// The RCU read-side lock is held while the guard is alive.
+> +pub struct RevocableGuard<'a, T> {
+> +    data_ref: *const T,
+> +    _rcu_guard: rcu::Guard,
+> +    _p: PhantomData<&'a ()>,
+> +}
 
+Is this needed? Can't all users just use `try_access_with_guard`?
+
+Alice
 
