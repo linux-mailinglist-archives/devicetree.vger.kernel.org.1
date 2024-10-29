@@ -1,673 +1,438 @@
-Return-Path: <devicetree+bounces-117050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 163BB9B4BD6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 15:14:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAC8B9B4BE3
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 15:15:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C99A728428A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:14:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25DEB285940
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:15:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8DC72076B5;
-	Tue, 29 Oct 2024 14:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997FB206510;
+	Tue, 29 Oct 2024 14:15:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tzxIMJcE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AzBmX/Fb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A618206E98
-	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 14:13:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE7731E507;
+	Tue, 29 Oct 2024 14:15:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730211229; cv=none; b=PgUmyPkmumfENICKVwAat09tmYa+OxUOWg283HcwvuDQgU90lqnyNtpyx+tshcrstTf1RmuL3CNFd/V+oV0b4ir7F5fv0emItxiZh3cW7LrIxKLFxEBCEj5AaNjcF++DfPMH3orsJr6mGUZMMzh6II20Fr0HsCyOHDijxbIWiSE=
+	t=1730211317; cv=none; b=lyb/2ZKY7032St2OuDzxRgthxalBID4I3oSJfiG5CxUaq4v8PrehW5+7YfApj0D1IPytMoW7W4o90lt2hHqKs2kDsk/7J5bIgiqlwTKeRqdBKclNjxYHCayCwIfpgAzRi5zBo7liC6CNu5O6o3FGPAktZ30EehrikpMZSurKG9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730211229; c=relaxed/simple;
-	bh=BXdjI2YlKCR7g+MKVbJZnNL02lIFvK1zn+GNQyze4Qk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uJYV0bWRAi34sPjReQ9E8lAvU0dZCWj5g0N5D9K6QLpKd4cvGy5KG9DPlD0kdUQzbimpTR0M3XkxKM7JQsPx0DWz7yFCbe+7GDEuCt2r0YLBEnO29xOWag/ThagJ4By3xtxyUWK/MtHwuS8NVbfo/HckvsNePq0OaJuHRFYERl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tzxIMJcE; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43161e7bb25so52675045e9.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 07:13:44 -0700 (PDT)
+	s=arc-20240116; t=1730211317; c=relaxed/simple;
+	bh=fkeqd7qH5btrz26K3wAZytSwT9RyjyEn6M6D0sk1In0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eUBmSoiLkTQ+3pnqvobyYPSmW7BW8lzAbk2rSoGXxfvcwgmQDLI8WFCi7le8Fs8xxjo9cEBUO2u9JDmcHUZbUNuXsz7+BIvI1y/Ix+zvvs0C3xvVn+aYq/j0GDqH+gdRkVIy1GGKN8OO+AmkB0I4tB5vSGytfP32JMcdb5EoVD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AzBmX/Fb; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-71e953f4e7cso4005690b3a.3;
+        Tue, 29 Oct 2024 07:15:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730211223; x=1730816023; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RxIS8WnfphWdKVLUFiCF93GyflCiZBVANXevZugUg+g=;
-        b=tzxIMJcEvg+6YfJPRCR/bcEhcXlfCUn7rGLSCfjCB3mseXiPg/WV85xfPqLizLRpW6
-         vLHiaVLpp+5NlDi2mbbpCJuha/DXmKDO91AF/PQKuVrN1Z3rhGjt8j7s1ucq6Qs4h1gv
-         Qu0G5dkruZoDdTzJEqei9DcenV8Ys3HVB+2Yp9OxcmMOSOqaAzuGlYNgoyfVsvWEIAej
-         7luT0MAyAp4lOAMXTKg1G5vEsjq2fj5hrpStuOv5ylhCUNuMv7qskVc9+lfJgqmwpdHv
-         YSlZ9Q5Ol+s9sr+YGophC/CMA9ANGUCIRrIqnjPXztsx4hytYV3PPnSiqhDbb6EWr7fK
-         dqwA==
+        d=gmail.com; s=20230601; t=1730211314; x=1730816114; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y0sZd7PGlqJXS8FByyi1P8j06DF+rR8hldenn8JBP8w=;
+        b=AzBmX/FbVLWGrLcUoM14aOZiEzPdYlE2Eb0Hh+6cjUWgSFp+SkhE1Io86nehOma7h0
+         MkdMYU0/AuYlBrSnabeJrQgljp55otGeDrRU/OA9pT2dlzFkm8Vru8Wt4PlFMIBkMbDo
+         +AtbiZli85Zg2IXVcnvZCgWH8LHzCLbAzDCH8KeUxXI3oRyFe/5OzTLNdfmUgisOFPNA
+         bS3hWDGoykYwT0XqHyQ31tfIJapSA8Kv3FgkQZOtNK9MRbWXHHqD8J7OqcJfbFoh4LHG
+         NS7doKceA4GjWcWY8H6pwZiXElcMRd7Q/Rh/VAGANczX3b0P9XjmUR0YD+ewPvSrLoiM
+         lkQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730211223; x=1730816023;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RxIS8WnfphWdKVLUFiCF93GyflCiZBVANXevZugUg+g=;
-        b=F9kiWDrZsUyj+7cbO7NngxGRt9zwJcM9IgDWNwSeja7tj7J0asQzzZOH+9vqsRw68F
-         haSlU4Pxn0MuBgSQkju6hVd50URe6W7I1TPBRgfhC2d904e2bD0VoQ5W7f7LNpGisrlV
-         MIjNkFxidDLqYVkECt7CrixkCna8COYlh8EP0n9yLahFStUtPXTcOHA7wm9g9i6Om1D5
-         OLSxgCla6qVX9gSV9v2gFEtNgXcwLhBKpPWJ5Vvmf75USQaLTRXBzMZVnZCOVqS3EWs6
-         rkZlSXxXYhWA+J/nnwCdRJSGR1CylkeCDR0F7AfF3v0OloYthH3PgT/4A6j6Y8qQlWSQ
-         Otjg==
-X-Forwarded-Encrypted: i=1; AJvYcCW94+mCgU72WQBoazZkgSGobUTfWRsQ1ieuY7L0K6cnh08TcK198fnFj24Pm4Zi2v2PL5WbKPTIwBQm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXeBsWR/c0Hel2iKCAf2mDDcjCHM1Y9/pxg3OU++/TOEbLt+no
-	0x+SPgykrYcL5R7cf0wbfMzvbqJg2zRXFzpHw3z6t1JB5S8V0er181/TnU1aEPnrq23Yog3WhgO
-	hLts=
-X-Google-Smtp-Source: AGHT+IFf89MRh/3FsABXLHVZ5TiIgJ7DTf+gOc2x1sK1H0Yy5yRS3BDP+K9+vtPRc1vT92s5uOaJ7Q==
-X-Received: by 2002:a05:6000:149:b0:37c:d23a:1e4 with SMTP id ffacd0b85a97d-380611515eemr8852096f8f.30.1730211223364;
-        Tue, 29 Oct 2024 07:13:43 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b714fesm12645871f8f.71.2024.10.29.07.13.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 07:13:42 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 29 Oct 2024 15:13:39 +0100
-Subject: [PATCH v3 3/3] iio: magnetometer: add Allegro MicroSystems
- ALS31300 3-D Linear Hall Effect driver
+        d=1e100.net; s=20230601; t=1730211314; x=1730816114;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y0sZd7PGlqJXS8FByyi1P8j06DF+rR8hldenn8JBP8w=;
+        b=kB9OirVfgdus4bMqF9T3xgY+23F2kw46ZbhPwJ6SCefh1LqU3YiAe1Cc3fL0zPJ0ce
+         WrEkpA+qRt8/Crif+riKVYFUfsM3EO3J2mQqwa4I8jePHf6Uks8WMa7/YLoWgc/sS+qE
+         RJu6ris4I2AaMveSPuhgj90i1kMhvsSresWD9cd2SH4MkLgcBpiDmblwn3a/zSE6LEOo
+         7CYRNx5CIjk7CrALWeqaGBs3CNBQ51u5sB6A4iV9C/rDOF4VtWJu/iJLjbamOE2kV7fs
+         O2+PiKEaFaU9KOQGAXWfOcUeDO9G8z0apTMFzsw2XZOsyHzWvGRY/E5/fRijp+OItA1W
+         jqpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVHuNDfWHTATGXtOao7LVVo+V337NquKlQxbVOCik8V2WHQiN1x1ohmY9LoRqoiuBJ3DH8chnY0gGdc@vger.kernel.org, AJvYcCWTENqPqJja0KpnOKlYVXsT3IWAb6Ztcbv3IfZOQyGVSzaJNkw2cmn0uS5rXmeKpxQwymQ/vnkwtgnz@vger.kernel.org, AJvYcCWTaBbIDCew2MRk2DB+MTJlmYZL+EUcxa/NGV6jF/KbSfbhN77e7W6aPdhb/HqE7ij/1MvYQwKRWCLy@vger.kernel.org, AJvYcCWgHdsUwtIEM35Rkldyz7ZoCg1RixRpKAWZPQiLfJ0urCEbs9/iLwPvlEWVsSjk00ir1SC5kmVWX/o5ks4=@vger.kernel.org, AJvYcCWh3U2pNwZl7V74TpW260XFsuXm/dAQnH/sD82N2QTUq/6xEH8h6H2zmD4NraJstwjAwUELlEssKjlqvPvM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxb5uQ8KgfvYo3BTUEIi22866pRcycIR/AHFMOyupd0dBydmUos
+	0fMBE4c5IkpsS/YKDNU0pTIqA41A49vv1DP0C0fI3/OlEHnda1+w
+X-Google-Smtp-Source: AGHT+IHG/3iB06S92mFXMiBK35+WwOj7rfTxpzyV6piA1djjeAQ9U4OVAI701QasEgbN1z6Ar4vjPA==
+X-Received: by 2002:a05:6a21:e89:b0:1d9:130e:fee4 with SMTP id adf61e73a8af0-1d9a841b5e4mr15075897637.30.1730211313827;
+        Tue, 29 Oct 2024 07:15:13 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057950457sm7804844b3a.95.2024.10.29.07.15.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Oct 2024 07:15:13 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <cab86814-4ab9-4c52-86b5-c35c4f5ed590@roeck-us.net>
+Date: Tue, 29 Oct 2024 07:15:11 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241029-topic-input-upstream-als31300-v3-3-147926dd63b3@linaro.org>
-References: <20241029-topic-input-upstream-als31300-v3-0-147926dd63b3@linaro.org>
-In-Reply-To: <20241029-topic-input-upstream-als31300-v3-0-147926dd63b3@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=16824;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=BXdjI2YlKCR7g+MKVbJZnNL02lIFvK1zn+GNQyze4Qk=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnIO2TkBX1s2PysOZmats1WfQMhwafBeS39Q2OvNch
- S6RPHumJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZyDtkwAKCRB33NvayMhJ0cC0D/
- wIOJ9nejJtnakWtv9gr+RkwjXLtvQ6oRa+gwzNbYcyt6/EQRl+8REkLxWl5Azk+Wm657uEDAUYFcLj
- n8Tk2CfYtL8bx1AfLbIXLViA7lhacwtI/zzXXJnXUC1vqYDQ59BgX/5j/U4DP28w/J7ZwOfKlE65U8
- oDFwQaA4crkj7rgh6MjGCCqA6mghf61zGUF/h5c4NLTzPSr/5JxaOnC4m0qKXlIaE2vZ8TG+ufI1sD
- 8xS+v2bUx9A/RMJ7NwhB8OD9pW1XMvMRcTvSYOWwdYWeC0tSbfqsgwGA3mjyhiqYP4X4PT46ddQPjY
- 3xVEQZQaxd03Tvafs9bfMonQdhCKnlBhFSPxRCegngS15GU0e/4H6SV/3lTiu45D4c1Oty2e3YhElY
- D+iuhXD6AaERSZohv5CVSZId3vAQw0mCMG+srSHZ6uW/PUcHnf1IOpiWlZVTmEjfSCbr0oYgWdjasy
- dppTLnJZejR5OhMpxY5knxcGCJt1PhjIhWfAM7dtJT4YWQVVCbFmSmXtAraQQHY/rTFn/5FSn5MCVD
- Ma/8yVOkRxFXuo+95LXpckK8p2T9/TXoNl3yiEEwdnac9w3UyTofr42z5ul3DN9CpRBsKA4l79zYqW
- 9+OcigvDtRkTn60octrO34AywZ8xmLBs913+TnhMR5f7tbygFe3gHS2EFbwg==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] hwmon: pmbus: add driver for ltp8800-1a, ltp8800-4a,
+ and ltp8800-2
+To: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-hwmon@vger.kernel.org
+Cc: Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+ Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Peter Yin <peteryin.openbmc@gmail.com>,
+ Noah Wang <noahwang.wang@outlook.com>, Marek Vasut <marex@denx.de>,
+ Lukas Wunner <lukas@wunner.de>
+References: <20241029130137.31284-1-cedricjustine.encarnacion@analog.com>
+ <20241029130137.31284-3-cedricjustine.encarnacion@analog.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20241029130137.31284-3-cedricjustine.encarnacion@analog.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-The Allegro MicroSystems ALS31300 is a 3-D Linear Hall Effect Sensor
-mainly used for 3D head-on motion sensing applications.
+On 10/29/24 06:01, Cedric Encarnacion wrote:
+> LTP8800-1A 54V, 150A DC/DC µModule Regulator with PMBus Interface
+> LTP8800-4A 54V, 200A DC/DC µModule Regulator with PMBus Interface
+> LTP8800-2 54V, 135A DC/DC μModule Regulator with PMBus Interface
+> 
 
-The device is configured over I2C, and as part of the Sensor data the
-temperature core is also provided.
+Please provide a short description.
 
-While the device provides an IRQ gpio, it depends on a configuration
-programmed into the internal EEPROM, thus only the default mode is
-supported and buffered input via trigger is also supported to allow
-streaming values with the same sensing timestamp.
+> Signed-off-by: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+> ---
+>   Documentation/hwmon/index.rst   |   1 +
+>   Documentation/hwmon/ltp8800.rst | 103 ++++++++++++++++++++++++++++++++
+>   MAINTAINERS                     |   2 +
+>   drivers/hwmon/pmbus/Kconfig     |  18 ++++++
+>   drivers/hwmon/pmbus/Makefile    |   1 +
+>   drivers/hwmon/pmbus/ltp8800.c   |  74 +++++++++++++++++++++++
+>   6 files changed, 199 insertions(+)
+>   create mode 100644 Documentation/hwmon/ltp8800.rst
+>   create mode 100644 drivers/hwmon/pmbus/ltp8800.c
+> 
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index 4d15664bc41e..d51960f58e43 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -136,6 +136,7 @@ Hardware Monitoring Kernel Drivers
+>      ltc4261
+>      ltc4282
+>      ltc4286
+> +   ltp8800
+>      max127
+>      max15301
+>      max16064
+> diff --git a/Documentation/hwmon/ltp8800.rst b/Documentation/hwmon/ltp8800.rst
+> new file mode 100644
+> index 000000000000..dea73f60c3d7
+> --- /dev/null
+> +++ b/Documentation/hwmon/ltp8800.rst
+> @@ -0,0 +1,103 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +Kernel driver ltp8800
+> +=====================
+> +
+> +Supported chips:
+> +
+> +	* Analog Devices LTP8800-1A
+> +
+> +		Prefix: 'ltp8800-1a'
+> +
+> +		Addresses scanned: I2C 0x40 - 0x4F
+> +
 
-The device can be configured with different sensitivities in factory,
-but the sensitivity value used to calculate value into the Gauss
-unit is not available from registers, thus the sensitivity is provided
-by the compatible/device-id string which is based on the part number
-as described in the datasheet page 2.
+No, the chips are not scanned.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/iio/magnetometer/Kconfig    |  13 +
- drivers/iio/magnetometer/Makefile   |   1 +
- drivers/iio/magnetometer/als31300.c | 493 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 507 insertions(+)
+> +		Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ltp8800-1a.pdf
+> +
+> +	* Analog Devices LTP8800-4A
+> +
+> +		Prefix: 'ltp8800-4a'
+> +
+> +		Addresses scanned: I2C 0x40 - 0x4F
+> +
+> +		Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ltp8800-4a.pdf
+> +
+> +	* Analog Devices LTP8800-2
+> +
+> +		Prefix: 'ltp8800-2'
+> +
+> +		Addresses scanned: I2C 0x40 - 0x4F
+> +
+> +		Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ltp8800-2.pdf
+> +
+> +Authors:
+> +		- Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+> +
+> +
+> +Description
+> +-----------
+> +
+> +The LTP8800 is a family of step-down μModule regulators that provides
+> +microprocessor core voltage from 54V power distribution architecture. LTP8800
+> +features telemetry monitoring of input/output voltage, input current, output
+> +power, and temperature over PMBus.
+> +
+> +The driver is a client driver to the core PMBus driver. Please see
+> +Documentation/hwmon/pmbus.rst for details on PMBus client drivers.
+> +
+> +Usage Notes
+> +-----------
+> +
+> +This driver does not auto-detect devices. You will have to instantiate the
+> +devices explicitly. Please see Documentation/i2c/instantiating-devices.rst for
+> +details.
+> +
+> +Platform data support
+> +---------------------
+> +
+> +The driver supports standard PMBus driver platform data. Please see
+> +Documentation/hwmon/pmbus.rst for details.
+> +
+> +Sysfs Attributes
+> +----------------
+> +
+> +======================= ===========================
+> +curr1_label		"iin"
+> +curr1_input		Measured input current
+> +curr1_crit		Critical maximum current
+> +curr1_crit_alarm	Current critical high alarm
+> +
+> +curr2_label		"iout1"
+> +curr2_input		Measured output current
+> +curr2_lcrit		Critical minimum current
+> +curr2_crit		Critical maximum current
+> +curr2_max		Maximum output current
+> +curr2_alarm		Current alarm
+> +
+> +in1_label		"vin"
+> +in1_input		Measured input voltage
+> +in1_lcrit		Critical minimum input voltage
+> +in1_lcrit_alarm		Input voltage critical low alarm
+> +in1_crit		Critical maximum input voltage
+> +in1_crit_alarm		Input voltage critical high alarm
+> +
+> +in2_label		"vout1"
+> +in2_input		Measured output voltage
+> +in2_lcrit		Critical minimum output voltage
+> +in2_lcrit_alarm		Output voltage critical low alarm
+> +in2_crit		Critical maximum output voltage
+> +in2_crit_alarm		Output voltage critical high alarm
+> +in2_max			Maximum output voltage
+> +in2_max_alarm		Output voltage high alarm
+> +in2_min			Minimum output voltage
+> +in2_min_alarm		Output voltage low alarm
+> +
+> +power1_label		"pout1"
+> +power1_input		Measured output power
+> +power1_crit		Critical maximum output power
+> +
+> +temp1_input		Measured temperature
+> +temp1_lcrit		Critical low temperature
+> +temp1_lcrit_alarm		Chip temperature critical low alarm
+> +temp1_crit		Critical high temperature
+> +temp1_crit_alarm		Chip temperature critical high alarm
+> +======================= ===========================
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index a6abf7243b94..5e7df53eb4a0 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -13559,6 +13559,8 @@ LTP8800 HARDWARE MONITOR DRIVER
+>   M:	Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+>   L:	linux-hwmon@vger.kernel.org
+>   S:	Supported
+> +F:	Documentation/hwmon/ltp8800.rst
+> +F:	drivers/hwmon/pmbus/ltp8800.c
+>   
+>   LYNX 28G SERDES PHY DRIVER
+>   M:	Ioana Ciornei <ioana.ciornei@nxp.com>
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index a4f02cad92fd..33e6da249ac8 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -247,6 +247,24 @@ config SENSORS_LTC4286
+>   	  If you say yes here you get hardware monitoring support for Analog
+>   	  Devices LTC4286.
+>   
+> +config SENSORS_LTP8800
+> +	tristate "Analog Devices LTP8800 and compatibles"
+> +	help
+> +	  If you say yes here you get hardware monitoring support for Analog
+> +	  Devices LTP8800-1A, LTP8800-4A, and LTP8800-2.
+> +
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called ltp8800.
+> +
+> +config SENSORS_LTP8800_REGULATOR
+> +	bool "Regulator support for LTP8800 and compatibles"
+> +	depends on SENSORS_LTP8800 && REGULATOR
+> +	help
+> +	  If you say yes here you get regulator support for Analog Devices
+> +	  LTP8800-1A, LTP8800-4A, and LTP8800-2. LTP8800 is a family of DC/DC
+> +	  µModule regulators that can provide microprocessor power from 54V
+> +	  power distribution architecture.
+> +
+>   config SENSORS_MAX15301
+>   	tristate "Maxim MAX15301"
+>   	help
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index d00bcc758b97..aa5bbdb4a806 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -26,6 +26,7 @@ obj-$(CONFIG_SENSORS_LT7182S)	+= lt7182s.o
+>   obj-$(CONFIG_SENSORS_LTC2978)	+= ltc2978.o
+>   obj-$(CONFIG_SENSORS_LTC3815)	+= ltc3815.o
+>   obj-$(CONFIG_SENSORS_LTC4286)	+= ltc4286.o
+> +obj-$(CONFIG_SENSORS_LTP8800)	+= ltp8800.o
+>   obj-$(CONFIG_SENSORS_MAX15301)	+= max15301.o
+>   obj-$(CONFIG_SENSORS_MAX16064)	+= max16064.o
+>   obj-$(CONFIG_SENSORS_MAX16601)	+= max16601.o
+> diff --git a/drivers/hwmon/pmbus/ltp8800.c b/drivers/hwmon/pmbus/ltp8800.c
+> new file mode 100644
+> index 000000000000..a377f2e2b001
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/ltp8800.c
+> @@ -0,0 +1,74 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Hardware monitoring driver for Analog Devices LTP8800
+> + *
+> + * Copyright (C) 2024 Analog Devices, Inc.
+> + */
+> +#include <linux/bits.h>
 
-diff --git a/drivers/iio/magnetometer/Kconfig b/drivers/iio/magnetometer/Kconfig
-index 8eb718f5e50f3591082d33618b680ea22608fde8..e7adc11049d6f71b76da4569be4756e65f9dfd28 100644
---- a/drivers/iio/magnetometer/Kconfig
-+++ b/drivers/iio/magnetometer/Kconfig
-@@ -52,6 +52,19 @@ config AK09911
- 	help
- 	  Deprecated: AK09911 is now supported by AK8975 driver.
- 
-+config ALS31300
-+	tristate "Allegro MicroSystems ALS31300 3-D Linear Hall Effect Sensor"
-+	depends on I2C
-+	select REGMAP_I2C
-+	select IIO_BUFFER
-+	select IIO_TRIGGERED_BUFFER
-+	help
-+	  Say yes here to build support for the Allegro MicroSystems
-+	  ALS31300 Hall Effect Sensor through its I2C interface.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called als31300.
-+
- config BMC150_MAGN
- 	tristate
- 	select IIO_BUFFER
-diff --git a/drivers/iio/magnetometer/Makefile b/drivers/iio/magnetometer/Makefile
-index ec5c46fbf999b6403593de2c425079cf69a29cac..3e4c2ecd9adf865025d169a0d1d5feffd012e2f3 100644
---- a/drivers/iio/magnetometer/Makefile
-+++ b/drivers/iio/magnetometer/Makefile
-@@ -7,6 +7,7 @@
- obj-$(CONFIG_AF8133J)	+= af8133j.o
- obj-$(CONFIG_AK8974)	+= ak8974.o
- obj-$(CONFIG_AK8975)	+= ak8975.o
-+obj-$(CONFIG_ALS31300)	+= als31300.o
- obj-$(CONFIG_BMC150_MAGN) += bmc150_magn.o
- obj-$(CONFIG_BMC150_MAGN_I2C) += bmc150_magn_i2c.o
- obj-$(CONFIG_BMC150_MAGN_SPI) += bmc150_magn_spi.o
-diff --git a/drivers/iio/magnetometer/als31300.c b/drivers/iio/magnetometer/als31300.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..1cceac18c5ddd05ab8c81a541c0e9dc30e404ab2
---- /dev/null
-+++ b/drivers/iio/magnetometer/als31300.c
-@@ -0,0 +1,493 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Driver for the Allegro MicroSystems ALS31300 3-D Linear Hall Effect Sensor
-+ *
-+ * Copyright (c) 2024 Linaro Limited
-+ */
-+
-+#include <linux/types.h>
-+#include <linux/units.h>
-+#include <linux/bits.h>
-+#include <linux/bitfield.h>
-+#include <linux/delay.h>
-+#include <linux/module.h>
-+#include <linux/i2c.h>
-+#include <linux/regmap.h>
-+#include <linux/pm.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <linux/iio/buffer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/trigger_consumer.h>
-+#include <linux/iio/triggered_buffer.h>
-+
-+/*
-+ * The Allegro MicroSystems ALS31300 has an EEPROM space to configure how
-+ * the device works and how the interrupt line behaves.
-+ * Only the default setup with external trigger is supported.
-+ *
-+ * While the bindings supports declaring an interrupt line, those
-+ * events are not supported.
-+ *
-+ * It should be possible to adapt the driver to the current
-+ * device EEPROM setup at runtime.
-+ */
-+
-+#define ALS31300_EEPROM_CONFIG		0x02
-+#define ALS31300_EEPROM_INTERRUPT	0x03
-+#define ALS31300_EEPROM_CUSTOMER_1	0x0d
-+#define ALS31300_EEPROM_CUSTOMER_2	0x0e
-+#define ALS31300_EEPROM_CUSTOMER_3	0x0f
-+#define ALS31300_VOL_MODE		0x27
-+#define ALS31300_VOL_MODE_LPDCM			GENMASK(6, 4)
-+#define	  ALS31300_LPDCM_INACTIVE_0_5_MS	0
-+#define   ALS31300_LPDCM_INACTIVE_1_0_MS	1
-+#define   ALS31300_LPDCM_INACTIVE_5_0_MS	2
-+#define   ALS31300_LPDCM_INACTIVE_10_0_MS	3
-+#define   ALS31300_LPDCM_INACTIVE_50_0_MS	4
-+#define   ALS31300_LPDCM_INACTIVE_100_0_MS	5
-+#define   ALS31300_LPDCM_INACTIVE_500_0_MS	6
-+#define   ALS31300_LPDCM_INACTIVE_1000_0_MS	7
-+#define ALS31300_VOL_MODE_SLEEP			GENMASK(1, 0)
-+#define   ALS31300_VOL_MODE_ACTIVE_MODE		0
-+#define   ALS31300_VOL_MODE_SLEEP_MODE		1
-+#define   ALS31300_VOL_MODE_LPDCM_MODE		2
-+#define ALS31300_VOL_MSB		0x28
-+#define ALS31300_VOL_MSB_TEMPERATURE		GENMASK(5, 0)
-+#define ALS31300_VOL_MSB_INTERRUPT		BIT(6)
-+#define ALS31300_VOL_MSB_NEW_DATA		BIT(7)
-+#define ALS31300_VOL_MSB_Z_AXIS			GENMASK(15, 8)
-+#define ALS31300_VOL_MSB_Y_AXIS			GENMASK(23, 16)
-+#define ALS31300_VOL_MSB_X_AXIS			GENMASK(31, 24)
-+#define ALS31300_VOL_LSB		0x29
-+#define ALS31300_VOL_LSB_TEMPERATURE		GENMASK(5, 0)
-+#define ALS31300_VOL_LSB_HALL_STATUS		GENMASK(7, 7)
-+#define ALS31300_VOL_LSB_Z_AXIS			GENMASK(11, 8)
-+#define ALS31300_VOL_LSB_Y_AXIS			GENMASK(15, 12)
-+#define ALS31300_VOL_LSB_X_AXIS			GENMASK(19, 16)
-+#define ALS31300_VOL_LSB_INTERRUPT_WRITE	BIT(20)
-+#define ALS31300_CUSTOMER_ACCESS	0x35
-+
-+#define ALS31300_DATA_X_GET(b)		\
-+		sign_extend32(FIELD_GET(ALS31300_VOL_MSB_X_AXIS, b[0]) << 4 | \
-+			      FIELD_GET(ALS31300_VOL_LSB_X_AXIS, b[1]), 11)
-+#define ALS31300_DATA_Y_GET(b)		\
-+		sign_extend32(FIELD_GET(ALS31300_VOL_MSB_Y_AXIS, b[0]) << 4 | \
-+			      FIELD_GET(ALS31300_VOL_LSB_Y_AXIS, b[1]), 11)
-+#define ALS31300_DATA_Z_GET(b)		\
-+		sign_extend32(FIELD_GET(ALS31300_VOL_MSB_Z_AXIS, b[0]) << 4 | \
-+			      FIELD_GET(ALS31300_VOL_LSB_Z_AXIS, b[1]), 11)
-+#define ALS31300_TEMPERATURE_GET(b)	\
-+		(FIELD_GET(ALS31300_VOL_MSB_TEMPERATURE, b[0]) << 6 | \
-+		 FIELD_GET(ALS31300_VOL_LSB_TEMPERATURE, b[1]))
-+
-+enum als31300_channels {
-+	TEMPERATURE = 0,
-+	AXIS_X,
-+	AXIS_Y,
-+	AXIS_Z,
-+};
-+
-+struct als31300_variant_info {
-+	u8 sensitivity;
-+};
-+
-+struct als31300_data {
-+	struct device *dev;
-+	/* protects power on/off the device and access HW */
-+	struct mutex mutex;
-+	const struct als31300_variant_info *variant_info;
-+	struct regmap *map;
-+};
-+
-+/* The whole measure is split into 2x32bit registers, we need to read them both at once */
-+static int als31300_get_measure(struct als31300_data *data,
-+				u16 *t, s16 *x, s16 *y, s16 *z)
-+{
-+	u32 buf[2];
-+	int ret, err;
-+
-+	guard(mutex)(&data->mutex);
-+
-+	ret = pm_runtime_resume_and_get(data->dev);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Loop until data is valid, new data should have the
-+	 * ALS31300_VOL_MSB_NEW_DATA bit set to 1.
-+	 * Max update rate is 2KHz, wait up to 1ms
-+	 */
-+	ret = read_poll_timeout(regmap_bulk_read, err,
-+				err || FIELD_GET(ALS31300_VOL_MSB_NEW_DATA, buf[0]),
-+				20, USEC_PER_MSEC, false,
-+				data->map, ALS31300_VOL_MSB, buf, ARRAY_SIZE(buf));
-+	/* Bail out on read_poll_timeout() error */
-+	if (ret)
-+		goto out;
-+
-+	/* Bail out on regmap_bulk_read() error */
-+	if (err) {
-+		dev_err(data->dev, "read data failed, error %d\n", ret);
-+		ret = err;
-+		goto out;
-+	}
-+
-+	*t = ALS31300_TEMPERATURE_GET(buf);
-+	*x = ALS31300_DATA_X_GET(buf);
-+	*y = ALS31300_DATA_Y_GET(buf);
-+	*z = ALS31300_DATA_Z_GET(buf);
-+
-+out:
-+	pm_runtime_mark_last_busy(data->dev);
-+	pm_runtime_put_autosuspend(data->dev);
-+
-+	return ret;
-+}
-+
-+static int als31300_read_raw(struct iio_dev *indio_dev,
-+			     const struct iio_chan_spec *chan, int *val,
-+			     int *val2, long mask)
-+{
-+	struct als31300_data *data = iio_priv(indio_dev);
-+	s16 x, y, z;
-+	u16 t;
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_PROCESSED:
-+	case IIO_CHAN_INFO_RAW:
-+		ret = als31300_get_measure(data, &t, &x, &y, &z);
-+		if (ret)
-+			return ret;
-+
-+		switch (chan->address) {
-+		case TEMPERATURE:
-+			*val = t;
-+			return IIO_VAL_INT;
-+		case AXIS_X:
-+			*val = x;
-+			return IIO_VAL_INT;
-+		case AXIS_Y:
-+			*val = y;
-+			return IIO_VAL_INT;
-+		case AXIS_Z:
-+			*val = z;
-+			return IIO_VAL_INT;
-+		default:
-+			return -EINVAL;
-+		}
-+	case IIO_CHAN_INFO_SCALE:
-+		switch (chan->type) {
-+		case IIO_TEMP:
-+			/*
-+			 * Fractional part of:
-+			 *         1000 * 302 * (value - 1708)
-+			 * temp = ----------------------------
-+			 *             4096
-+			 * to convert temperature in millicelcius
-+			 */
-+			*val = MILLI * 302;
-+			*val2 = 4096;
-+			return IIO_VAL_FRACTIONAL;
-+		case IIO_MAGN:
-+			/*
-+			 * Devices are configured in factory
-+			 * with different sensitivities:
-+			 * - 500 GAUSS <-> 4 LSB/Gauss
-+			 * - 1000 GAUSS <-> 2 LSB/Gauss
-+			 * - 2000 GAUSS <-> 1 LSB/Gauss
-+			 * with translates by a division of the returned
-+			 * value to get Gauss value.
-+			 * The sensisitivity cannot be read at runtime
-+			 * so the value depends on the model compatible
-+			 * or device id.
-+			 */
-+			*val = 1;
-+			*val2 = data->variant_info->sensitivity;
-+			return IIO_VAL_FRACTIONAL;
-+		default:
-+			return -EINVAL;
-+		}
-+	case IIO_CHAN_INFO_OFFSET:
-+		switch (chan->type) {
-+		case IIO_TEMP:
-+			*val = -1708;
-+			return IIO_VAL_INT;
-+		default:
-+			return -EINVAL;
-+		}
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static irqreturn_t als31300_trigger_handler(int irq, void *p)
-+{
-+	struct iio_poll_func *pf = p;
-+	struct iio_dev *indio_dev = pf->indio_dev;
-+	struct als31300_data *data = iio_priv(indio_dev);
-+	struct {
-+		u16 temperature;
-+		s16 channels[3];
-+		aligned_s64 timestamp;
-+	} scan;
-+	s16 x, y, z;
-+	int ret;
-+	u16 t;
-+
-+	ret = als31300_get_measure(data, &t, &x, &y, &z);
-+	if (ret)
-+		goto trigger_out;
-+
-+	scan.temperature = t;
-+	scan.channels[0] = x;
-+	scan.channels[1] = y;
-+	scan.channels[2] = z;
-+	iio_push_to_buffers_with_timestamp(indio_dev, &scan,
-+					   pf->timestamp);
-+
-+trigger_out:
-+	iio_trigger_notify_done(indio_dev->trig);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+#define ALS31300_AXIS_CHANNEL(axis, index)				     \
-+	{								     \
-+		.type = IIO_MAGN,					     \
-+		.modified = 1,						     \
-+		.channel2 = IIO_MOD_##axis,				     \
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		     \
-+				      BIT(IIO_CHAN_INFO_SCALE),		     \
-+		.address = index,					     \
-+		.scan_index = index,					     \
-+		.scan_type = {						     \
-+			.sign = 's',					     \
-+			.realbits = 12,					     \
-+			.storagebits = 16,				     \
-+			.endianness = IIO_CPU,				     \
-+		},							     \
-+	}
-+
-+static const struct iio_chan_spec als31300_channels[] = {
-+	{
-+		.type = IIO_TEMP,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE) |
-+				      BIT(IIO_CHAN_INFO_OFFSET),
-+		.address = TEMPERATURE,
-+		.scan_index = TEMPERATURE,
-+		.scan_type = {
-+			.sign = 'u',
-+			.realbits = 16,
-+			.storagebits = 16,
-+			.endianness = IIO_CPU,
-+		},
-+	},
-+	ALS31300_AXIS_CHANNEL(X, AXIS_X),
-+	ALS31300_AXIS_CHANNEL(Y, AXIS_Y),
-+	ALS31300_AXIS_CHANNEL(Z, AXIS_Z),
-+	IIO_CHAN_SOFT_TIMESTAMP(4),
-+};
-+
-+static const struct iio_info als31300_info = {
-+	.read_raw = als31300_read_raw,
-+};
-+
-+static int als31300_set_operating_mode(struct als31300_data *data,
-+				       unsigned int val)
-+{
-+	int ret;
-+
-+	ret = regmap_update_bits(data->map, ALS31300_VOL_MODE,
-+				 ALS31300_VOL_MODE_SLEEP, val);
-+	if (ret) {
-+		dev_err(data->dev, "failed to set operating mode (%pe)\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	/* The time it takes to exit sleep mode is equivalent to Power-On Delay Time */
-+	if (val == ALS31300_VOL_MODE_ACTIVE_MODE)
-+		usleep_range(600, 650);
-+
-+	return 0;
-+}
-+
-+static void als31300_power_down(void *data)
-+{
-+	als31300_set_operating_mode(data, ALS31300_VOL_MODE_SLEEP_MODE);
-+}
-+
-+static const struct iio_buffer_setup_ops als31300_setup_ops = {};
-+
-+static const unsigned long als31300_scan_masks[] = { GENMASK(3, 0), 0 };
-+
-+static bool als31300_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	return reg == ALS31300_VOL_MSB || reg == ALS31300_VOL_LSB;
-+}
-+
-+static const struct regmap_config als31300_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 32,
-+	.max_register = ALS31300_CUSTOMER_ACCESS,
-+	.volatile_reg = als31300_volatile_reg,
-+};
-+
-+static int als31300_probe(struct i2c_client *i2c)
-+{
-+	struct device *dev = &i2c->dev;
-+	struct als31300_data *data;
-+	struct iio_dev *indio_dev;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+	data->dev = dev;
-+	i2c_set_clientdata(i2c, indio_dev);
-+
-+	devm_mutex_init(dev, &data->mutex);
-+
-+	data->variant_info = i2c_get_match_data(i2c);
-+	if (!data->variant_info)
-+		return -EINVAL;
-+
-+	data->map = devm_regmap_init_i2c(i2c, &als31300_regmap_config);
-+	if (IS_ERR(data->map))
-+		return dev_err_probe(dev, PTR_ERR(data->map),
-+				     "failed to allocate register map\n");
-+
-+	ret = devm_regulator_get_enable(dev, "vcc");
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to enable regulator\n");
-+
-+	ret = als31300_set_operating_mode(data, ALS31300_VOL_MODE_ACTIVE_MODE);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to power on device\n");
-+
-+	ret = devm_add_action_or_reset(dev, als31300_power_down, data);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to add powerdown action\n");
-+
-+	indio_dev->info = &als31300_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->name = i2c->name;
-+	indio_dev->channels = als31300_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(als31300_channels);
-+	indio_dev->available_scan_masks = als31300_scan_masks;
-+
-+	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
-+					      iio_pollfunc_store_time,
-+					      als31300_trigger_handler,
-+					      &als31300_setup_ops);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "iio triggered buffer setup failed\n");
-+
-+	ret = pm_runtime_set_active(dev);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = devm_pm_runtime_enable(dev);
-+	if (ret)
-+		return ret;
-+
-+	pm_runtime_get_noresume(dev);
-+	pm_runtime_set_autosuspend_delay(dev, 200);
-+	pm_runtime_use_autosuspend(dev);
-+
-+	pm_runtime_mark_last_busy(dev);
-+	pm_runtime_put_autosuspend(dev);
-+
-+	ret = devm_iio_device_register(dev, indio_dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "device register failed\n");
-+
-+	return 0;
-+}
-+
-+static int als31300_runtime_suspend(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-+	struct als31300_data *data = iio_priv(indio_dev);
-+
-+	return als31300_set_operating_mode(data, ALS31300_VOL_MODE_SLEEP_MODE);
-+}
-+
-+static int als31300_runtime_resume(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-+	struct als31300_data *data = iio_priv(indio_dev);
-+
-+	return als31300_set_operating_mode(data, ALS31300_VOL_MODE_ACTIVE_MODE);
-+}
-+
-+static DEFINE_RUNTIME_DEV_PM_OPS(als31300_pm_ops,
-+				 als31300_runtime_suspend, als31300_runtime_resume,
-+				 NULL);
-+
-+static const struct als31300_variant_info al31300_variant_500 = {
-+	.sensitivity = 4,
-+};
-+
-+static const struct als31300_variant_info al31300_variant_1000 = {
-+	.sensitivity = 2,
-+};
-+
-+static const struct als31300_variant_info al31300_variant_2000 = {
-+	.sensitivity = 1,
-+};
-+
-+static const struct i2c_device_id als31300_id[] = {
-+	{
-+		.name = "als31300-500",
-+		.driver_data = (kernel_ulong_t)&al31300_variant_500,
-+	},
-+	{
-+		.name = "als31300-1000",
-+		.driver_data = (kernel_ulong_t)&al31300_variant_1000,
-+	},
-+	{
-+		.name = "als31300-2000",
-+		.driver_data = (kernel_ulong_t)&al31300_variant_2000,
-+	},
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(i2c, als31300_id);
-+
-+static const struct of_device_id als31300_of_match[] = {
-+	{
-+		.compatible = "allegromicro,als31300-500",
-+		.data = &al31300_variant_500,
-+	},
-+	{
-+		.compatible = "allegromicro,als31300-1000",
-+		.data = &al31300_variant_1000,
-+	},
-+	{
-+		.compatible = "allegromicro,als31300-2000",
-+		.data = &al31300_variant_2000,
-+	},
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, als31300_of_match);
-+
-+static struct i2c_driver als31300_driver = {
-+	.driver	 = {
-+		.name = "als31300",
-+		.of_match_table = als31300_of_match,
-+		.pm = pm_ptr(&als31300_pm_ops),
-+	},
-+	.probe = als31300_probe,
-+	.id_table = als31300_id,
-+};
-+module_i2c_driver(als31300_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("ALS31300 3-D Linear Hall Effect Driver");
-+MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
+Is this used anywhere ? I don''t immediately see it.
 
--- 
-2.34.1
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include "pmbus.h"
+> +
+> +static const struct regulator_desc ltp8800_reg_desc[] = {
+> +	PMBUS_REGULATOR("vout", 0),
+> +};
+> +
+> +static struct pmbus_driver_info ltp8800_info = {
+> +	.pages = 1,
+> +	.format[PSC_VOLTAGE_IN] = linear,
+> +	.format[PSC_VOLTAGE_OUT] = linear,
+> +	.format[PSC_CURRENT_IN] = linear,
+> +	.format[PSC_TEMPERATURE] = linear,
+> +	.func[0] = PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
+> +		   PMBUS_HAVE_VIN | PMBUS_HAVE_STATUS_INPUT |
+> +		   PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT |
+> +		   PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP |
+> +		   PMBUS_HAVE_POUT,
+> +};
+> +
+> +static int ltp8800_probe(struct i2c_client *client)
+> +{
+> +	if (!i2c_check_functionality(client->adapter,
+> +				     I2C_FUNC_SMBUS_READ_BYTE_DATA |
+> +				     I2C_FUNC_SMBUS_READ_WORD_DATA))
+> +		return -ENODEV;
+> +
+
+This is also checked in pmbus_do_probe().
+
+> +	if (IS_ENABLED(CONFIG_SENSORS_LTP8800_REGULATOR)) {
+> +		ltp8800_info.num_regulators = 1;
+> +		ltp8800_info.reg_desc = ltp8800_reg_desc;
+> +	}
+
+This can be set directly in ltp8800_info.
+
+> +
+> +	return pmbus_do_probe(client, &ltp8800_info);
+> +}
+> +
+> +static const struct i2c_device_id ltp8800_id[] = {
+> +	{"ltp8800-1a", 0},
+> +	{"ltp8800-2", 0},
+> +	{"ltp8800-4a", 0},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(i2c, ltp8800_id);
+> +
+> +static const struct of_device_id ltp8800_of_match[] = {
+> +	{ .compatible = "adi,ltp8800-1a"},
+> +	{ .compatible = "adi,ltp8800-2"},
+> +	{ .compatible = "adi,ltp8800-4a"},
+
+As mentioned in the other patch, I don't see the point of having three
+compatible entries and three device IDs.
+
+Guenter
+
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, ltp8800_of_match);
+> +
+> +static struct i2c_driver ltp8800_driver = {
+> +	.driver = {
+> +		.name = "ltp8800",
+> +		.of_match_table = ltp8800_of_match,
+> +	},
+> +	.probe = ltp8800_probe,
+> +	.id_table = ltp8800_id,
+> +};
+> +module_i2c_driver(ltp8800_driver);
+> +
+> +MODULE_AUTHOR("Cedric Encarnacion <cedricjustine.encarnacion@analog.com>");
+> +MODULE_DESCRIPTION("Analog Devices LTP8800 HWMON PMBus Driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS(PMBUS);
 
 
