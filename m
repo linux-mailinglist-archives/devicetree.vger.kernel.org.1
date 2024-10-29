@@ -1,84 +1,82 @@
-Return-Path: <devicetree+bounces-116768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 846F49B3FAF
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 02:23:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC9B9B3FD8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 02:38:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7C60282CE3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 01:23:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37EB1B21960
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 01:38:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C44022338;
-	Tue, 29 Oct 2024 01:23:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D264B7BB0A;
+	Tue, 29 Oct 2024 01:38:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JOYVcn1b"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="y/uSos0b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CC6B28E7;
-	Tue, 29 Oct 2024 01:23:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7078F507;
+	Tue, 29 Oct 2024 01:38:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730165009; cv=none; b=rMlvoXRq4DZwmSAhyH3ncYvQpaEiFAdtMdzpUl1+9EMBvV24QgmThCDYUvSDRvpR9s16JP7HM1yCyrw1LqKXiArGZQhXGhkq1Rm9LVxI6s3xtsqLbQqbl4hvBiXetcV0ydEnXxwWAh+IgiGaopRnHuJAsDtZQzWx7BE3F0Rhi0A=
+	t=1730165898; cv=none; b=Op+QyKtOd/osDtkcJpsZtTKFvyB00ZVrOogwvShmzFsi5S9D5vCab6rPeMFsJaTKlnX/k2/Axw5M8dweCPabHovST8cjgyYeyr2hWJrqDUPi9JV8eo/AyBLzbcfmIUwv266JCcDUIAQKaw+5FD4Bs3YjKixZ9d7qc4EzxXDAxwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730165009; c=relaxed/simple;
-	bh=QEfibKuizgvY52dQkaX6PJdG13PMDH4fxQ+Iq/k73KU=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=P3qxo0mFNiDw2F87VegfH0ufFQNs4un5+wit6GENlL4heim+FvmZJqWtDWsw/oK0u4NZHawJ+AczS6DOEDs2E0Wk0dioRsB1ID7zpNOkxNtJs1hjo5G/4ampYtSaZ6gpRxGRkxsSW8J/dFCMj55FjSVaa3tfXjsd0Ag0YMdpK/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JOYVcn1b; arc=none smtp.client-ip=209.85.160.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-288a90e4394so2417781fac.0;
-        Mon, 28 Oct 2024 18:23:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730165006; x=1730769806; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=sk1dZREUQVGIecYh311eheCmxNasMewq/5f/DZTF0Vs=;
-        b=JOYVcn1btBP9Iv28SNEQOikXkvheW6NtQ0UdSC2MeBsDQ5LD3oi5Vma/97ppx7qi1u
-         K9ZH3k5FBoprIwNx5mO2EGT+9dO5imOtvrfFSxlKKpYY/qiQE4RUNaNy1F09O91sDpQM
-         INeG9ourQmGF4JbWubSyKjUe85xaY7EVrPg+Uo1fGIoUvhMC78n7K1Jr58ShjI0Soq8s
-         PaXy5afXZ1DOy5ZSTECDKlNw+R8kX8OzkpgpLa5e14wXZ0+w2LqK01AhzgSdYlmJh9Lo
-         ilBDcp24f2xlIwAys4ihGNS4/lRbuWIGel02aFpE2bSm91Ulq2SYvZH3Rkf6WXLCJOEm
-         I23A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730165006; x=1730769806;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sk1dZREUQVGIecYh311eheCmxNasMewq/5f/DZTF0Vs=;
-        b=GdqldLWbkjM1tOIrN6e8nBxnCXgoPVDblfHaPYRp3F/iMjsYT7mFUqvKfE49w49lI7
-         /xRCTwyOwf2fFtaMqu2+COf+dWPsYR2WCcWjluKImp0VLeWmpGqnLPwRoaeg0U4mB57M
-         bKvFR2Ce8QdmHA6xKVTQDoAuv1VBwLIsel4feEV8XMRg9w/YlKTgBt6rdxKc5hUPPr2r
-         2XRvE2IHjc6c/uS9slL8lfea2L13AZR0GHCBqiFAk+dzCB3nv7xD17PzYcnc6+XCi0sh
-         jf44fRAU1Lw86ATdpl8BYaplHYLaquLpGZ+vMRSrxNW1Su3ed1BQIsTLW4/IdQYZSQnf
-         qy8g==
-X-Forwarded-Encrypted: i=1; AJvYcCUmWNIeEOlD7PUh5PNlrpc1H8Cy0oOlYqN8T1yzrR4FVmhtt4HoqZB+JoLVVznLWBeTakDvGP5jx/+f@vger.kernel.org, AJvYcCUu++3XPbytKPbowy/kPRXxoUc4cCCYuMV1GlwWP7XVZ8x5TXHJ/EXxreLRO2W0/ex9+ZB0X2bhncDx2DVY@vger.kernel.org, AJvYcCXJO0b9NfO8/EX76HzK30TrWrhZzNYAeK8PbpgI4erbqYO1YHEltfpic4Gen84OPOlSHIKbBn8dCfskqQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxw9xERumQ9XxxRdgEj1b8ID/h36Uu9iKkjpnVMVsWMryuWklkS
-	uhZvYfAfbB3+RqDiJVeOmhMFYtNomDm+UejE4gTisU3bg9DtFP+bRK/1SOsX
-X-Google-Smtp-Source: AGHT+IHWlqEV6BxbZIE4WDegspeRBJZliX4tFPnZbewy2MWHbK07FHcV9Rw3Pe924sDNMakmCs4aYQ==
-X-Received: by 2002:a05:6870:912a:b0:288:6d23:5f24 with SMTP id 586e51a60fabf-29051d493d3mr9099606fac.31.1730165006551;
-        Mon, 28 Oct 2024 18:23:26 -0700 (PDT)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2903824c853sm2494682fac.51.2024.10.28.18.23.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 18:23:25 -0700 (PDT)
-From: Chen Wang <unicornxw@gmail.com>
-To: linus.walleij@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	inochiama@outlook.com,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Cc: Chen Wang <unicorn_wang@outlook.com>
-Subject: [PATCH] dt-bindings: pinctrl: correct typo of description for cv1800
-Date: Tue, 29 Oct 2024 09:23:12 +0800
-Message-Id: <20241029012312.3448287-1-unicornxw@gmail.com>
+	s=arc-20240116; t=1730165898; c=relaxed/simple;
+	bh=ZfgDtqjTJM7obDP0PVtyUkoytuC1DCtPqoiOxJo3YAU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=U3eEHQt3wF0sEtSmMf/U7Ur4/L3Cy77bkkfiR3qVBSipjob4/r1niGDbuKVhC0Szmo/PQQDx2jxX46mV/k4mj2WbSbiq5R55t+W4bhHBn9Q72ZmPGvNkoyhiwc98fcWrFj2tamoKY6YhD2rpRsoj7drCGw+YwGIgTOiVVWhDYu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=y/uSos0b; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49SMhOl8027753;
+	Mon, 28 Oct 2024 21:37:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=z0VtlkEwdCs5fd8WORv1aiQ5gs1
+	jtMK386ByPpjQQTo=; b=y/uSos0b3+aGS9W/hTmr85jdydIdgPHuutqCHoHVqfu
+	CtJW0nuKtvWjv072DTAsOY/HWa++HVb/DcHSdAm22ktKCjGxbLKjgdQmOftt6h9H
+	cpEDuL31MqRWfGMio8PS8dz0Dvx3UtV2cMonaWnmXnBxw0zG0p9UutgwDks4uMba
+	LDTrxytvjMTz6RODOnbg3KSt1SoaJXPQV2kE9dFiEpriQs8i2DAQOA9YCtQQ0PlR
+	aiXftUreKTXBMIDWEOnrfhdfwgTZYHT/SC+lMKVogHYPftdPOBhKzf2J+UbDT21b
+	XHW3gpBXH43FF1eFUELOWgTrrR+wx3pvtEX3OtGvOaQ==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 42gt92ukhv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 21:37:58 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 49T1bvD7018872
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 28 Oct 2024 21:37:57 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 28 Oct
+ 2024 21:37:57 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 28 Oct 2024 21:37:57 -0400
+Received: from MTINACO-L03.ad.analog.com (MTINACO-L03.ad.analog.com [10.117.223.14])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 49T1bgJO031384;
+	Mon, 28 Oct 2024 21:37:44 -0400
+From: Mariel Tinaco <Mariel.Tinaco@analog.com>
+To: <linux-kernel@vger.kernel.org>, <linux-hwmon@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare
+	<jdelvare@suse.com>,
+        Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>,
+        Jonathan
+ Corbet <corbet@lwn.net>, <linux-doc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Frank Li <Frank.Li@nxp.com>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>
+Subject: [PATCH 0/3] add support for LTC7841 boost controller
+Date: Tue, 29 Oct 2024 09:37:31 +0800
+Message-ID: <20241029013734.293024-1-Mariel.Tinaco@analog.com>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -86,34 +84,38 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: CCroGj3O9P6jWmPLOzpIRCQsNn_YmwLo
+X-Proofpoint-ORIG-GUID: CCroGj3O9P6jWmPLOzpIRCQsNn_YmwLo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ phishscore=0 mlxlogscore=999 priorityscore=1501 clxscore=1011 adultscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410290011
 
-From: Chen Wang <unicorn_wang@outlook.com>
+This series introduces support for LTC7841 boost controller. 
+The LTC7841 is similar to LTC7880, which is already supported
+under LTC2978. It has reduced PMBUS registers as that of the LTC7880,
+similar voltage range, and has only one channel. 
 
-It should be PINMUX/PINMUX2, not GPIOMUX/GPIOMUX2, see
-<dt-bindings/pinctrl/pinctrl-cv1800b.h>.
+Mariel Tinaco (3):
+  dt-bindings: hwmon: ltc2978: add support for ltc7841
+  hwmon: (pmbus/ltc7841) add support for LTC7841 - docs
+  hwmon: (pmbus/ltc2978) add support for ltc7841
 
-Fixes: 64aa494de6fa ("dt-bindings: pinctrl: Add pinctrl for Sophgo CV1800 series SoC.")
-Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
----
- .../devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml      | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/hwmon/lltc,ltc2978.yaml          |  2 ++
+ Documentation/hwmon/ltc2978.rst               | 12 +++++++++++
+ drivers/hwmon/pmbus/Kconfig                   |  6 +++---
+ drivers/hwmon/pmbus/ltc2978.c                 | 20 +++++++++++++++++--
+ 4 files changed, 35 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml
-index 1e6a55afe26a..feb4785a3fac 100644
---- a/Documentation/devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml
-@@ -58,7 +58,7 @@ patternProperties:
-           pinmux:
-             description: |
-               The list of GPIOs and their mux settings that properties in the
--              node apply to. This should be set using the GPIOMUX or GPIOMUX2
-+              node apply to. This should be set using the PINMUX or PINMUX2
-               macro.
- 
-           bias-pull-up:
 
-base-commit: 81983758430957d9a5cb3333fe324fd70cf63e7e
+base-commit: eabb03810194b75417b09cff8a526d26939736ac
 -- 
 2.34.1
 
