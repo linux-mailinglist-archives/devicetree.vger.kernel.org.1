@@ -1,204 +1,132 @@
-Return-Path: <devicetree+bounces-117126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF86E9B5180
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 19:00:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08FE29B5193
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 19:09:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E0B9B21430
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 18:00:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A922A1F22EA7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 18:09:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BA221DACB4;
-	Tue, 29 Oct 2024 18:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 605EC1DD9A8;
+	Tue, 29 Oct 2024 18:09:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c/rpdIJR"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="OtcjIpzE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 181FE1CC17A;
-	Tue, 29 Oct 2024 18:00:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B47D1DD539
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 18:09:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730224840; cv=none; b=Ik9/uFYpQH1P0OSozycSqYZ6cwMC5rP2zoIPEoCuX4qUOtxtqJSM2WYe1u3PLPmp4EQsI+L5D0KsNEclnvfQ0+BlZpslnXz+Yhrw2XAVa8OeGw9zkyW+nkPrwlD6F2Mn2W1RTvaMkuN7ARGwRtO+p6vCVSmJL2isQ33rQ5aOeXw=
+	t=1730225367; cv=none; b=WkJg9i3O4iQO/ekbCN49tOlw2dxP9PxwqA7zmaVJ7CuK6ONmSgHlfrPcgyrX4xYTTT38PJK6NjJLemQuW4RE5MSTVmqmeQlENqzD/9YwSEUpVpSMONTiWe80RZXPJVsQ2YFhHknRiw3f38OyZHkVaGCrMAeLk3FWAoGFmaBS1og=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730224840; c=relaxed/simple;
-	bh=ZpeWn1jEQld5+c/YoVQnwITPf0G5TEZAddNZ+6K+VlU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bXHDoTVATSpTZStrkBjqKTtL2/VvkzsMrDWPBUqSrLzyZtoMFU7NBKOpa23peg0TBZOwLEeAh71YOVo5APk0PW9wMMENizmufseP8QD5d+npgxVwtS3lE/8Nf4uzJndFo0Y7uBhq5OlM37b471SG+QCh17Ww5htoWgUP/F/Fz7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c/rpdIJR; arc=none smtp.client-ip=209.85.216.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2e2ad9825a7so4128376a91.0;
-        Tue, 29 Oct 2024 11:00:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730224837; x=1730829637; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=vjSI6ju39bZ4wN1ALmGofXwzNf4jwsk44A6Vq/tqAaM=;
-        b=c/rpdIJRr9W5ItL6KYU2tcFw3QGrrg6YjgSBOfelDf7e6OQJ+9jP0vvC9SaA3aSvCl
-         ZR+DeKTKnpYVHLZlwfwXz59bmPHRr/lCrYN/QDV48y5JLiiIdFgINPiSRX5GY/90cKyR
-         jAfvZoqpqAbZ2zFyCxEsUUBK7bXpKeyK8mml0hez94nIvHhAJtbJg99jG/1kcfV1wyJL
-         ug1ntqL5/4sONM86XuLpwrKScJAKfZ5KwQTsgw53N/Hg6oD5YT420RDBZcOzKl4l53up
-         Guo4smTlUj22O5u8Hl2pAkcM+W2ycUebL82GqAwgLoCR5ONdeKmlc9T0RK03CcMeVchg
-         aVHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730224837; x=1730829637;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vjSI6ju39bZ4wN1ALmGofXwzNf4jwsk44A6Vq/tqAaM=;
-        b=tE8Zqi+R3cXj4MR9LFjQEgBldhrcbF9IRbcrhUk/AGXzw5BxTxzu5DHmY9hDtONBVf
-         GoniOx5R2C59R9jAAjSe0QgC83aGfQ79kbnB9jRiqSyjkH2vtDuKnU+W/W1LyXh5I7tG
-         8ynZM9KMk/ywXgTGvebEYCH5sa7Vwk/nCKNq1sLQJvnCv2kCsUH+FOhOxbbtceVmPP3+
-         znu3QYh6TqIh1zZVhQEUzpxVAy6c1IWntXbQAKFvIcav0hzpy4iWJrLJ2t8CWCQJRuxk
-         13VM8wIj/N3948O6+UhI6TM7T36SpfVLP+U1Z41zsWmKVg9PvMB8wVZdRlduhPsH4+kE
-         7bnw==
-X-Forwarded-Encrypted: i=1; AJvYcCVZVhClAckDB3cR9NpOkFnX2WEGCxpxQPACqWXJ2VezmaM5akDc5+PjOzR975cTR/MvNnh86OW5UwzO@vger.kernel.org, AJvYcCVkDiQdBYI4Crz9nPV9yw0QCGw7iy2udMCYrH+uwccu+G4Ss0caBBS+LSo4wMQbofwcMZu/xPzga9LcDTg=@vger.kernel.org, AJvYcCXP+1ur7giMJkziOr/q1v26tL/rvhHxQtnk1RkU5fYDncONn9DGsCaxASlPR3OetwJvdR8LrEWe+iAn@vger.kernel.org
-X-Gm-Message-State: AOJu0YzD0uX7O8t5OiHXOuYbVsmGBOcLzHAgz5+Z5FNm+tDHCqLADqeY
-	D5elKymbt+Lt7NI75AJdsnxvfkHzbOOpOFHXY4VNuPG5OQuqin1E
-X-Google-Smtp-Source: AGHT+IENRdeMaZ7gv1ITNsni7lDpM2otM2pMXUVWV3T2QruMuq+FU3SuF2swQ/2yKajrURDRsaTPMQ==
-X-Received: by 2002:a17:90a:9a8d:b0:2c9:a3ca:cc98 with SMTP id 98e67ed59e1d1-2e8f1057e99mr15352259a91.7.1730224837099;
-        Tue, 29 Oct 2024 11:00:37 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e77e57f74asm11793166a91.46.2024.10.29.11.00.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Oct 2024 11:00:36 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <871caf63-daa4-4383-829e-28d7cb6f2959@roeck-us.net>
-Date: Tue, 29 Oct 2024 11:00:34 -0700
+	s=arc-20240116; t=1730225367; c=relaxed/simple;
+	bh=vw0Pt+medcj+GLfv1om7aoP7ESB7kx3zfNjJJ7hN2zo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FQxeagJAZEcnYajk3cEM3r7PHelDVsN8qIWUcLh+W81I8qMGEJQjmZFM/8IqAMWjndBKATHXLWznrtGgRvyKp9jzxvDLBUun+dTZC3imEMbtb43B35lshe2+AnWMy+Fpnof6UoySajzcDcYDC+gql5w3Kqj/Z6Kk52q8BIZ7Syk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=OtcjIpzE; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=iT1KZstrKnsyqYo4dg3x0+KOMpIG9DHct4TKVU+Hs3Y=; b=OtcjIpzEOO5bIe4gAfLT5afCNt
+	8vvMDAm8BhZplOlA4E5itIHKdRjAhF95wte24BJT6A97atK3LXtUcgH+h7egt+YrexjOfKhEh+PbL
+	wDFJLiAo7RJKAIKUm32mfdkLNpKQmqee2ckHjJNcrQ946OZqMvgiOcLkGYY7zIAfu3yygi9+lRGt2
+	YEpMFibNW6QuQzMXWMwK0bejU1V/EG0rKbXmhruHQHDEu8lRDafJLVAxq+rbXE8jZMzcN9X88ti9J
+	RuhSK2FwjrnhDctFLQb9JaCFeEara1/zXkwqUsUT4O+rHwFm1UuFCK6B/89W6Lg41/M6kvsADya+H
+	KuqqEptw==;
+Date: Tue, 29 Oct 2024 19:09:19 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: shawnguo@kernel.org, marex@denx.de, a.fatoum@pengutronix.de,
+ kernel@pengutronix.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v2 2/3] dt-bindings: lcdif: Expand the imx6sl/imx6sll
+ fallbacks
+Message-ID: <20241029190919.4c615621@akair>
+In-Reply-To: <20241029120236.299040-2-festevam@gmail.com>
+References: <20241029120236.299040-1-festevam@gmail.com>
+	<20241029120236.299040-2-festevam@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/2] dt-bindings: hwmon: pmbus: add bindings for
- isl68137
-To: Grant Peltier <grantpeltier93@gmail.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: robh@kernel.org, magnus.damm@gmail.com, grant.peltier.jg@renesas.com,
- brandon.howell.jg@renesas.com, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-References: <cover.1729874904.git.grantpeltier93@gmail.com>
- <CAMuHMdWHZR9pN3h=Jdsqs5Qb0mi_4CobBtu82PRgzrm5TRgE4A@mail.gmail.com>
- <ZyEONRFoooymFcfJ@raspberrypi>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <ZyEONRFoooymFcfJ@raspberrypi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 10/29/24 09:32, Grant Peltier wrote:
-> On Mon, Oct 28, 2024 at 11:18:39AM +0100, Geert Uytterhoeven wrote:
->>> v4:
->>> - Revert devicetree property name to "vout-voltage-divider" and refactor
->>>    property description and driver implementation to match existing
->>>    vout-voltage-divider implementation in max20730 as no suitable generic
->>>    voltage divider schema exists.
->>
->> Can you please elaborate (or point to the email that did so, in case
->> I missed it)?
->>
->> In reply to v2, Günter wrote:
->>
->>     "I would prefer, in the order of preference,
->>
->>      1) an applicable generic property definition
->>      2) a definition that is already used elsewhere
->>      3) a new chips specific definition"
->>
->> https://lore.kernel.org/all/3f460b62-4cd1-49dd-a98b-1fbcfdbd3af0@roeck-us.net
->>
->> Thanks!
->>
->> Gr{oetje,eeting}s,
->>
->>                          Geert
->>
+Am Tue, 29 Oct 2024 09:02:35 -0300
+schrieb Fabio Estevam <festevam@gmail.com>:
+
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Hi Geert,
+> imx6sl.dtsi and imx6sll.dtsi have the following lcdif entries:
 > 
-> After looking through existing bindings definitions, the only generic
-> voltage divider property that I found was one that is intended to scale
-> voltages for IIO io-channels. However, the use case here is to scale
-> particular hwmon PMBus telemetry, which most closely matches the existing
-> implementation of the vout-voltage-divider property in the max20730
-> driver so I opted to copy that implementation based on Guenter's
-> preferences. Is there something that I missed or more information that
-> you are looking for?
+> compatible = "fsl,imx6sl-lcdif", "fsl,imx28-lcdif";
 > 
+> This causes dt-schema warnings as the current binding only
+> allow 'fsl,imx6sx-lcdif' as fallback.
+> 
+> ['fsl,imx6sl-lcdif', 'fsl,imx28-lcdif'] is too long
+> ['fsl,imx6sll-lcdif', 'fsl,imx28-lcdif'] is too long
+> 
+> The imx6sx-lcdif programming model has more advanced features, such
+> as overlay plane and the CRC32 support than the imx28-lcdif IP.
+> 
+> Expand the imx6sl/imx6sll lcdif fallbacks to accept a less specific
+> fsl,imx28-lcdif fallback:
+> 
+> compatible = "fsl,imx6sl-lcdif", "fsl,imx6sx-lcdif",
+> "fsl,imx28-lcdif";
+> 
+> This helps keeping DT compatibility as well as using the more advanced
+> lcdif features found on imx6sl and imx6sll. 
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+> Changes since v1:
+> - Newly introduced.
+> 
+>  .../devicetree/bindings/display/fsl,lcdif.yaml     | 14
+> +++++++++++++- 1 file changed, 13 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml index
+> 836955de3bc9..08ce19638fbd 100644 ---
+> a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml +++
+> b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml @@ -32,11
+> +32,23 @@ properties:
+>                - fsl,imx8mn-lcdif
+>                - fsl,imx8mq-lcdif
+>            - const: fsl,imx6sx-lcdif
+> +      - items:
+> +          - const: fsl,imx6sl-lcdif
+> +          - const: fsl,imx6sx-lcdif
+> +          - const: fsl,imx28-lcdif
+> +      - items:
+> +          - const: fsl,imx6sll-lcdif
+> +          - const: fsl,imx6sx-lcdif
+> +          - const: fsl,imx28-lcdif
+> +      - items:
+> +          - enum:
+> +              - fsl,imx6sl-lcdif
+> +              - fsl,imx6sll-lcdif
+> +          - const: fsl,imx28-lcdif
 
-I had a look myself. I agree with Grant, the existing bindings are really
-not a good match. They are directly tied to iio, the implementation in
-drivers/iio/afe/iio-rescale.c is completely iio specific, and I see
-no means to use it for anything but iio. The problem is that it is
-a "compatible" property, not parameter property (or set of properties)
-as I would have expected [sorry if I use the wrong terminology].
+What do we need this for? Either imx6sx-lcdif is a useful fallback
+compatible or not.  But not sometimes. Looking at the kernel driver: It
+is. So IMHO only the three element variants should be allowed.
 
-We could possibly use the actual properties, "output-ohms" and "full-ohms",
-but I am not really sure if that makes too much sense.
-
-Note that there are a variety of voltage divider properties.
-
-gw,voltage-divider-ohms
-lltc,fb-voltage-divider
-mps,fb-voltage-divider
-vout-voltage-divider
-
-All those specify a pair of resistors. I think that model is much better
-suited to the problem at hand than a "compatible".
-
-I agree though that this should be explained in the patch description.
-
-Guenter
-
+Regards,
+Andreas
 
