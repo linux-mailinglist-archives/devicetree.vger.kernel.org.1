@@ -1,224 +1,214 @@
-Return-Path: <devicetree+bounces-116877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D64B9B43B6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 09:04:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40B499B43BA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 09:05:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5111C1C20C66
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:03:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 647001C20E77
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:05:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A62D3202F80;
-	Tue, 29 Oct 2024 08:03:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A9E4202F93;
+	Tue, 29 Oct 2024 08:05:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="P6AbcodS"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="vfalQd62"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1A1A1DF243;
-	Tue, 29 Oct 2024 08:03:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B649201246
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 08:05:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730189035; cv=none; b=unITtANjuUF2rqWAjRAkBvqI+6A4GF1KyhZJqjp8mK2QhIm41o5WmaJV9XBFomLe0EpzVTY1Mhw7J+0AVEzabZiBNsC7P9R2t/jExIy0kSsx2GLjHpMC1CfSN0v3h0hHdqr0O8KB1GnVE079bG4ikeWRF5y9IPWQLXueutMpIV0=
+	t=1730189127; cv=none; b=LvkVWrtS4hcTgamOAT6/r1CGeuM27iMDnie53a6OBFPwpBp8YP5g64TxxllIffBtGX+vqRG8RbNmyAMBURBnerwdBC7LfI1NnXBa5kY/oPYvlMT/5rIupVXmlxxioEJYUJf3aUw3fzbOmiVuf2/5kjFxUThsQ8T9SJG5jpzxdRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730189035; c=relaxed/simple;
-	bh=blGyczNcjsj9UvEEvGHuifaW1otIFBBTjO/ovINgxjg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=dDgwjkMGN4SSwzy0AGfeYgik8A8w08qiTYdSpVtlehu4ys25KVw1hu82LjF63k2QowEPiVL/CHb/1d9G1+XUxmghPZGR9BIJKhdlhCGXfGh3zFypYC2WGTF1Hz3MPCjT2JoTb4YyfzJKrSTgSfPMhcB/+o96PhOZIWO/ocMtFOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=P6AbcodS reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=W7fl6tPKUP3PNS39xplVVTQNOAUHDu587Ad1ST5tRwc=; b=P
-	6AbcodSv8Gi9j9eM2qtewc+EDzp+pJ6WwzIC5MuIZAT7YWgyk0pZAf7qBHGqcXwJ
-	X3q4AqRKCtGvRawp/0blHcmEmA+n6cov2AEwTqBtAO0UxZM50E2GPnJVecpCcT+l
-	YNU6p5glYNBY/KVBFQzBrageC/KjYTbYmQ13IlkkWc=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by
- ajax-webmail-wmsvr-40-117 (Coremail) ; Tue, 29 Oct 2024 16:02:33 +0800
- (CST)
-Date: Tue, 29 Oct 2024 16:02:33 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>
-Cc: "Herve Codina" <herve.codina@bootlin.com>, 
-	"Andrzej Hajda" <andrzej.hajda@intel.com>, 
-	"Neil Armstrong" <neil.armstrong@linaro.org>, 
-	"Robert Foss" <rfoss@kernel.org>, "Jonas Karlman" <jonas@kwiboo.se>, 
-	"Jernej Skrabec" <jernej.skrabec@gmail.com>, 
-	"David Airlie" <airlied@gmail.com>, 
-	"Simona Vetter" <simona@ffwll.ch>, 
-	"Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, 
-	"Maxime Ripard" <mripard@kernel.org>, 
-	"Thomas Zimmermann" <tzimmermann@suse.de>, 
-	"Rob Herring" <robh@kernel.org>, 
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
-	"Conor Dooley" <conor+dt@kernel.org>, "Marek Vasut" <marex@denx.de>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	"Luca Ceresoli" <luca.ceresoli@bootlin.com>, 
-	"Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
-Subject: Re:Re: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery
- mechanism
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
- Copyright (c) 2002-2024 www.mailtech.cn 163com
-In-Reply-To: <20241027162350.GA15853@pendragon.ideasonboard.com>
-References: <20241024095539.1637280-1-herve.codina@bootlin.com>
- <20241024095539.1637280-3-herve.codina@bootlin.com>
- <20241027162350.GA15853@pendragon.ideasonboard.com>
-X-NTES-SC: AL_Qu2YAv2Tt0Eu5SSdbOlS/DNR+6hBMKv32aNaoMQOZ8UqqTHC6CwvbV1SBFDxyvp1VsZNkGpbVTLN9+eLJobj
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1730189127; c=relaxed/simple;
+	bh=Wgu4Q3YZ64aWSqvWoqqloTsZbrePlNg2P6R61VqI7S4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g9PYVXkc77Uyea1bDoXv0HT42SF6XheyfF7NgylgbMjldpLHukYrRYgu4wOTGqCzZsyVPsvSFFyOdiQMQ/B1O6K1vq4j+FmkhAsrybjllHdDlYrx8GtQGcZ7JlgGd6NhQDE1MnaS5AqIRKslBuX4ykqoMEBKywRB/mGLEPkdtCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=vfalQd62; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-431688d5127so50216205e9.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 01:05:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730189123; x=1730793923; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3lN2eRb6bl0eRsqhdld34k6abaNSa22uP0f7TfgqVgM=;
+        b=vfalQd62VFx9TyfFbm23aog8MWNlyilO7c+TXVpv/WyeQiZc5C1AddMIV8VL5J5sEx
+         qg/0DpK2AsAMon+bogO1Ez2RgCe+VOerS0m8Z9uLqgb2NB45VV6mP4vEVZsUiovcalBQ
+         3dJPiUCP+h8meYBsDjK29m4JXEjVwhvSIMxrpub6ERXJy1bLxhMzAa/sSWufKKGQhYBL
+         wTgx7o+wvbIjJSesxRcmgflIdH6RQOgm1QDif+sODDobRFWtwroXLPgVirLcJB+W38h9
+         NGa4Se6XB1nllE/e1useaOv8R0S+6wlJjUMTjCjZ7P3cyT99MjCazMDmESEdyyiuiQ9A
+         Fh8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730189123; x=1730793923;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3lN2eRb6bl0eRsqhdld34k6abaNSa22uP0f7TfgqVgM=;
+        b=G68X+z4wNl08Zc1cCY6ORmeuxRwhHiEEml8G/rQmOCIHnVRuwEMb+d9o30vd4AHKOK
+         D8CbDn+LKIcaftMYIV9aC6rPpAuklfTblYGfn+c9sfd8Vnf0m3meyx4huegFr5OtLaoZ
+         R7/8eLtBIoSOYPnJZ3fZ14KxPyeMo41+8ZuKwXx8ehavNvKd9HYX2AmhC6QJxF35WS/r
+         ZMkAZKbUD9N/TqexiqT2xqOQmWL40yiTq3zPFy0DAL8C5nFes4gwwTfpthSGmnYNFOGW
+         G/tuZ6U8vMP3EHMxS0w9pEgre/nzRGE4+hI6zQyOsBqBIaB3S8zBYYwdHeL5qDltsw8E
+         ahvw==
+X-Forwarded-Encrypted: i=1; AJvYcCW2FADqSMEaykg2IqChVWV9E+abkKFyat47clXebSKZpWfS/6VkV96j8l1nSCh3mBXK7GFhjgk2x1GH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZlm0O0TnLKyN418MrYsWTcu68A7+Ke+3Ur7Wr4Ua2r9mcLdd8
+	0Lo3pIY/HPOlKXEPdXzwj/aardC94Dj9hpnjh5+A7W1mnpC+0TDoqFYS4shalKU=
+X-Google-Smtp-Source: AGHT+IFSjfQXCa5GW1Npbhe93OduAXI4SGUOVExv2PPgkmuE8+77dW4spir8TRXtu2Ia2kzTS2IFQA==
+X-Received: by 2002:a05:600c:46d4:b0:427:ff3b:7a20 with SMTP id 5b1f17b1804b1-4319ad049a8mr79735435e9.27.1730189123296;
+        Tue, 29 Oct 2024 01:05:23 -0700 (PDT)
+Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4318b5433f2sm167003775e9.1.2024.10.29.01.05.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Oct 2024 01:05:22 -0700 (PDT)
+Date: Tue, 29 Oct 2024 09:05:21 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	David Jander <david@protonic.nl>, Martin Sperl <kernel@martin.sperl.org>, 
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH RFC v4 01/15] pwm: core: export pwm_get_state_hw()
+Message-ID: <mavlxxjza7ud7ylgoewz6fz3chtuwljvcjjf6o3kcv555iolwa@wdnrsiow5u5w>
+References: <20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
+ <20241023-dlech-mainline-spi-engine-offload-2-v4-1-f8125b99f5a1@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <2ee13136.7f7c.192d74c4778.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:dSgvCgD3X5uZliBn5d4ZAA--.2172W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0gOHXmcgkQp5kAABs8
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="j43zmgztsm2qmibl"
+Content-Disposition: inline
+In-Reply-To: <20241023-dlech-mainline-spi-engine-offload-2-v4-1-f8125b99f5a1@baylibre.com>
 
-CkhpIGFsbO+8jAoKQXQgMjAyNC0xMC0yOCAwMDoyMzo1MCwgIkxhdXJlbnQgUGluY2hhcnQiIDxs
-YXVyZW50LnBpbmNoYXJ0QGlkZWFzb25ib2FyZC5jb20+IHdyb3RlOgo+T24gVGh1LCBPY3QgMjQs
-IDIwMjQgYXQgMTE6NTU6MzhBTSArMDIwMCwgSGVydmUgQ29kaW5hIHdyb3RlOgo+PiBJbiBzb21l
-IGNhc2VzIG9ic2VydmVkIGR1cmluZyBFU0QgdGVzdHMsIHRoZSBUSSBTTjY1RFNJODMgY2Fubm90
-IHJlY292ZXIKPj4gZnJvbSBlcnJvcnMgYnkgaXRzZWxmLiBBIGZ1bGwgcmVzdGFydCBvZiB0aGUg
-YnJpZGdlIGlzIG5lZWRlZCBpbiB0aG9zZQo+PiBjYXNlcyB0byBoYXZlIHRoZSBicmlkZ2Ugb3V0
-cHV0IExWRFMgc2lnbmFscyBhZ2Fpbi4KPj4gCj4+IFRoZSBUSSBTTjY1RFNJODMgaGFzIHNvbWUg
-ZXJyb3IgZGV0ZWN0aW9uIGNhcGFiaWxpdGllcy4gSW50cm9kdWNlIGFuCj4+IGVycm9yIHJlY292
-ZXJ5IG1lY2hhbmlzbSBiYXNlZCBvbiB0aGlzIGRldGVjdGlvbi4KPj4gCj4+IFRoZSBlcnJvcnMg
-ZGV0ZWN0ZWQgYXJlIHNpZ25hbGVkIHRocm91Z2ggYW4gaW50ZXJydXB0LiBPbiBzeXN0ZW0gd2hl
-cmUKPj4gdGhpcyBpbnRlcnJ1cHQgaXMgbm90IGF2YWlsYWJsZSwgdGhlIGRyaXZlciB1c2VzIGEg
-cG9sbGluZyBtb25pdG9yaW5nCj4+IGZhbGxiYWNrIHRvIGNoZWNrIGZvciBlcnJvcnMuIFdoZW4g
-YW4gZXJyb3IgaXMgcHJlc2VudCwgdGhlIHJlY292ZXJ5Cj4+IHByb2Nlc3MgaXMgbGF1bmNoZWQu
-Cj4+IAo+PiBSZXN0YXJ0aW5nIHRoZSBicmlkZ2UgbmVlZHMgdG8gcmVkbyB0aGUgaW5pdGlhbGl6
-YXRpb24gc2VxdWVuY2UuIFRoaXMKPj4gaW5pdGlhbGl6YXRpb24gc2VxdWVuY2UgaGFzIHRvIGJl
-IGRvbmUgd2l0aCB0aGUgRFNJIGRhdGEgbGFuZXMgZHJpdmVuIGluCj4+IExQMTEgc3RhdGUuIElu
-IG9yZGVyIHRvIGRvIHRoYXQsIHRoZSByZWNvdmVyeSBwcm9jZXNzIHJlc2V0cyB0aGUgZW50aXJl
-Cj4+IHBpcGVsaW5lLgo+PiAKPj4gU2lnbmVkLW9mZi1ieTogSGVydmUgQ29kaW5hIDxoZXJ2ZS5j
-b2RpbmFAYm9vdGxpbi5jb20+Cj4+IC0tLQo+PiAgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS90aS1z
-bjY1ZHNpODMuYyB8IDEyOCArKysrKysrKysrKysrKysrKysrKysrKysrKwo+PiAgMSBmaWxlIGNo
-YW5nZWQsIDEyOCBpbnNlcnRpb25zKCspCj4+IAo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2JyaWRnZS90aS1zbjY1ZHNpODMuYyBiL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2UvdGktc242
-NWRzaTgzLmMKPj4gaW5kZXggOTZlODI5MTYzZDg3Li4yMjk3NWI2MGU4MGYgMTAwNjQ0Cj4+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2UvdGktc242NWRzaTgzLmMKPj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2JyaWRnZS90aS1zbjY1ZHNpODMuYwo+PiBAQCAtMzUsOSArMzUsMTIgQEAKPj4g
-ICNpbmNsdWRlIDxsaW51eC9vZl9ncmFwaC5oPgo+PiAgI2luY2x1ZGUgPGxpbnV4L3JlZ21hcC5o
-Pgo+PiAgI2luY2x1ZGUgPGxpbnV4L3JlZ3VsYXRvci9jb25zdW1lci5oPgo+PiArI2luY2x1ZGUg
-PGxpbnV4L3RpbWVyLmg+Cj4+ICsjaW5jbHVkZSA8bGludXgvd29ya3F1ZXVlLmg+Cj4+ICAKPj4g
-ICNpbmNsdWRlIDxkcm0vZHJtX2F0b21pY19oZWxwZXIuaD4KPj4gICNpbmNsdWRlIDxkcm0vZHJt
-X2JyaWRnZS5oPgo+PiArI2luY2x1ZGUgPGRybS9kcm1fZHJ2Lmg+IC8qIERSTV9NT0RFU0VUX0xP
-Q0tfQUxMX0JFR0lOKCkgbmVlZCBkcm1fZHJ2X3VzZXNfYXRvbWljX21vZGVzZXQoKSAqLwo+PiAg
-I2luY2x1ZGUgPGRybS9kcm1fbWlwaV9kc2kuaD4KPj4gICNpbmNsdWRlIDxkcm0vZHJtX29mLmg+
-Cj4+ICAjaW5jbHVkZSA8ZHJtL2RybV9wYW5lbC5oPgo+PiBAQCAtMTQ3LDYgKzE1MCw5IEBAIHN0
-cnVjdCBzbjY1ZHNpODMgewo+PiAgCXN0cnVjdCByZWd1bGF0b3IJCSp2Y2M7Cj4+ICAJYm9vbAkJ
-CQlsdmRzX2R1YWxfbGluazsKPj4gIAlib29sCQkJCWx2ZHNfZHVhbF9saW5rX2V2ZW5fb2RkX3N3
-YXA7Cj4+ICsJYm9vbAkJCQl1c2VfaXJxOwo+PiArCXN0cnVjdCBkZWxheWVkX3dvcmsJCW1vbml0
-b3Jfd29yazsKPj4gKwlzdHJ1Y3Qgd29ya19zdHJ1Y3QJCXJlc2V0X3dvcms7Cj4+ICB9Owo+PiAg
-Cj4+ICBzdGF0aWMgY29uc3Qgc3RydWN0IHJlZ21hcF9yYW5nZSBzbjY1ZHNpODNfcmVhZGFibGVf
-cmFuZ2VzW10gPSB7Cj4+IEBAIC0zMjEsNiArMzI3LDkyIEBAIHN0YXRpYyB1OCBzbjY1ZHNpODNf
-Z2V0X2RzaV9kaXYoc3RydWN0IHNuNjVkc2k4MyAqY3R4KQo+PiAgCXJldHVybiBkc2lfZGl2IC0g
-MTsKPj4gIH0KPj4gIAo+PiArc3RhdGljIGludCBzbjY1ZHNpODNfcmVzZXRfcGlwZWxpbmUoc3Ry
-dWN0IHNuNjVkc2k4MyAqc242NWRzaTgzKQo+PiArewo+PiArCXN0cnVjdCBkcm1fZGV2aWNlICpk
-ZXYgPSBzbjY1ZHNpODMtPmJyaWRnZS5kZXY7Cj4+ICsJc3RydWN0IGRybV9tb2Rlc2V0X2FjcXVp
-cmVfY3R4IGN0eDsKPj4gKwlzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGU7Cj4+ICsJaW50
-IGVycjsKPj4gKwo+PiArCS8qIFVzZSBvcGVyYXRpb24gZG9uZSBpbiBkcm1fYXRvbWljX2hlbHBl
-cl9zdXNwZW5kKCkgZm9sbG93ZWQgYnkKPj4gKwkgKiBvcGVyYXRpb24gZG9uZSBpbiBkcm1fYXRv
-bWljX2hlbHBlcl9yZXN1bWUoKSBidXQgd2l0aG91dCByZWxlYXNpbmcKPj4gKwkgKiB0aGUgbG9j
-ayBiZXR3ZWVuIHN1c3BlbmQoKS9yZXN1bWUoKQo+PiArCSAqLwo+PiArCj4+ICsJRFJNX01PREVT
-RVRfTE9DS19BTExfQkVHSU4oZGV2LCBjdHgsIDAsIGVycik7Cj4+ICsKPj4gKwlzdGF0ZSA9IGRy
-bV9hdG9taWNfaGVscGVyX2R1cGxpY2F0ZV9zdGF0ZShkZXYsICZjdHgpOwo+PiArCWlmIChJU19F
-UlIoc3RhdGUpKSB7Cj4+ICsJCWVyciA9IFBUUl9FUlIoc3RhdGUpOwo+PiArCQlnb3RvIHVubG9j
-azsKPj4gKwl9Cj4+ICsKPj4gKwllcnIgPSBkcm1fYXRvbWljX2hlbHBlcl9kaXNhYmxlX2FsbChk
-ZXYsICZjdHgpOwo+PiArCWlmIChlcnIgPCAwKQo+PiArCQlnb3RvIHVubG9jazsKPj4gKwo+PiAr
-CWRybV9tb2RlX2NvbmZpZ19yZXNldChkZXYpOwo+PiArCj4+ICsJZXJyID0gZHJtX2F0b21pY19o
-ZWxwZXJfY29tbWl0X2R1cGxpY2F0ZWRfc3RhdGUoc3RhdGUsICZjdHgpOwo+Cj5Db21taXR0aW5n
-IGEgZnVsbCBhdG9taWMgc3RhdGUgZnJvbSBhIGJyaWRnZSBkcml2ZXIgaW4gYW4gYXN5bmNocm9u
-b3VzCj53YXkgc2VlbXMgcXVpdGUgdW5jaGFydGVkIHRlcnJpdG9yeSwgYW5kIGl0IHdvcnJpZXMg
-bWUuIEl0J3MgYWxzbyBhIHZlcnkKPmhlYXZ5d2VpZ2h0LCB5b3UgZGlzYWJsZSBhbGwgb3V0cHV0
-cyBoZXJlLCBpbnN0ZWFkIG9mIGZvY3Vzc2luZyBvbiB0aGUKPm91dHB1dCBjb25uZWN0ZWQgdG8g
-dGhlIGJyaWRnZS4gQ2FuIHlvdSBlaXRoZXIgaW1wbGVtZW50IHNvbWV0aGluZyBtb3JlCj5sb2Nh
-bCwgcmVzZXR0aW5nIHRoZSBicmlkZ2Ugb25seSwgb3IgY3JlYXRlIGEgY29yZSBoZWxwZXIgdG8g
-aGFuZGxlIHRoaXMKPmtpbmQgb2Ygc2l0dWF0aW9uLCBvbiBhIHBlci1vdXRwdXQgYmFzaXMgPwoK
-SWYgd2UgY291bGQgc2ltdWxhdGUgYSBob3RwbHVn77yIZGlzY29ubmVjdGVkIHRoZW4gY29ubmVj
-dGVk77yJIGV2ZW50IHRvIHVzZXIgc3BhY2UgYW5kCmxldCB1c2Vyc3BhY2UgZG8gdGhlIGRpc2Fi
-bGUvZW5hYmxlIG9mIHRoZSBvdXRwdXQgcGlwZWxpbmUsICB3b3VsZCB0aGluZ3MgYmUgc2ltcGxl
-cj8KCgo+Cj4+ICsKPj4gK3VubG9jazoKPj4gKwlEUk1fTU9ERVNFVF9MT0NLX0FMTF9FTkQoZGV2
-LCBjdHgsIGVycik7Cj4+ICsJaWYgKCFJU19FUlIoc3RhdGUpKQo+PiArCQlkcm1fYXRvbWljX3N0
-YXRlX3B1dChzdGF0ZSk7Cj4+ICsJcmV0dXJuIGVycjsKPj4gK30KPj4gKwo+PiArc3RhdGljIHZv
-aWQgc242NWRzaTgzX3Jlc2V0X3dvcmsoc3RydWN0IHdvcmtfc3RydWN0ICp3cykKPj4gK3sKPj4g
-KwlzdHJ1Y3Qgc242NWRzaTgzICpjdHggPSBjb250YWluZXJfb2Yod3MsIHN0cnVjdCBzbjY1ZHNp
-ODMsIHJlc2V0X3dvcmspOwo+PiArCWludCByZXQ7Cj4+ICsKPj4gKwlkZXZfd2FybihjdHgtPmRl
-diwgInJlc2V0IHBpcGVsaW5lXG4iKTsKPj4gKwo+PiArCS8qIFJlc2V0IHRoZSBwaXBlbGluZSAq
-Lwo+PiArCXJldCA9IHNuNjVkc2k4M19yZXNldF9waXBlbGluZShjdHgpOwo+PiArCWlmIChyZXQp
-IHsKPj4gKwkJZGV2X2VycihjdHgtPmRldiwgInJlc2V0IHBpcGVsaW5lIGZhaWxlZCAlcGVcbiIs
-IEVSUl9QVFIocmV0KSk7Cj4+ICsJCXJldHVybjsKPj4gKwl9Cj4+ICt9Cj4+ICsKPj4gK3N0YXRp
-YyB2b2lkIHNuNjVkc2k4M19oYW5kbGVfZXJyb3JzKHN0cnVjdCBzbjY1ZHNpODMgKmN0eCkKPj4g
-K3sKPj4gKwl1bnNpZ25lZCBpbnQgaXJxX3N0YXQ7Cj4+ICsJaW50IHJldDsKPj4gKwo+PiArCS8q
-Cj4+ICsJICogU2NoZWR1bGUgYSByZXNldCBpbiBjYXNlIG9mOgo+PiArCSAqICAtIHRoZSBicmlk
-Z2UgZG9lc24ndCBhbnN3ZXIKPj4gKwkgKiAgLSB0aGUgYnJpZGdlIHNpZ25hbHMgYW4gZXJyb3IK
-Pj4gKwkgKi8KPj4gKwo+PiArCXJldCA9IHJlZ21hcF9yZWFkKGN0eC0+cmVnbWFwLCBSRUdfSVJR
-X1NUQVQsICZpcnFfc3RhdCk7Cj4+ICsJaWYgKHJldCB8fCBpcnFfc3RhdCkKPj4gKwkJc2NoZWR1
-bGVfd29yaygmY3R4LT5yZXNldF93b3JrKTsKPj4gK30KPj4gKwo+PiArc3RhdGljIHZvaWQgc242
-NWRzaTgzX21vbml0b3Jfd29yayhzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndvcmspCj4+ICt7Cj4+ICsJ
-c3RydWN0IHNuNjVkc2k4MyAqY3R4ID0gY29udGFpbmVyX29mKHRvX2RlbGF5ZWRfd29yayh3b3Jr
-KSwKPj4gKwkJCQkJICAgICBzdHJ1Y3Qgc242NWRzaTgzLCBtb25pdG9yX3dvcmspOwo+PiArCj4+
-ICsJc242NWRzaTgzX2hhbmRsZV9lcnJvcnMoY3R4KTsKPj4gKwo+PiArCXNjaGVkdWxlX2RlbGF5
-ZWRfd29yaygmY3R4LT5tb25pdG9yX3dvcmssIG1zZWNzX3RvX2ppZmZpZXMoMTAwMCkpOwo+PiAr
-fQo+PiArCj4+ICtzdGF0aWMgdm9pZCBzbjY1ZHNpODNfbW9uaXRvcl9zdGFydChzdHJ1Y3Qgc242
-NWRzaTgzICpjdHgpCj4+ICt7Cj4+ICsJc2NoZWR1bGVfZGVsYXllZF93b3JrKCZjdHgtPm1vbml0
-b3Jfd29yaywgbXNlY3NfdG9famlmZmllcygxMDAwKSk7Cj4+ICt9Cj4+ICsKPj4gK3N0YXRpYyB2
-b2lkIHNuNjVkc2k4M19tb25pdG9yX3N0b3Aoc3RydWN0IHNuNjVkc2k4MyAqY3R4KQo+PiArewo+
-PiArCWNhbmNlbF9kZWxheWVkX3dvcmtfc3luYygmY3R4LT5tb25pdG9yX3dvcmspOwo+PiArfQo+
-PiArCj4+ICBzdGF0aWMgdm9pZCBzbjY1ZHNpODNfYXRvbWljX3ByZV9lbmFibGUoc3RydWN0IGRy
-bV9icmlkZ2UgKmJyaWRnZSwKPj4gIAkJCQkJc3RydWN0IGRybV9icmlkZ2Vfc3RhdGUgKm9sZF9i
-cmlkZ2Vfc3RhdGUpCj4+ICB7Cj4+IEBAIC01MDksNiArNjAxLDE1IEBAIHN0YXRpYyB2b2lkIHNu
-NjVkc2k4M19hdG9taWNfZW5hYmxlKHN0cnVjdCBkcm1fYnJpZGdlICpicmlkZ2UsCj4+ICAJcmVn
-bWFwX3JlYWQoY3R4LT5yZWdtYXAsIFJFR19JUlFfU1RBVCwgJnB2YWwpOwo+PiAgCWlmIChwdmFs
-KQo+PiAgCQlkZXZfZXJyKGN0eC0+ZGV2LCAiVW5leHBlY3RlZCBsaW5rIHN0YXR1cyAweCUwMnhc
-biIsIHB2YWwpOwo+PiArCj4+ICsJaWYgKGN0eC0+dXNlX2lycSkgewo+PiArCQkvKiBFbmFibGUg
-aXJxIHRvIGRldGVjdCBlcnJvcnMgKi8KPj4gKwkJcmVnbWFwX3dyaXRlKGN0eC0+cmVnbWFwLCBS
-RUdfSVJRX0dMT0JBTCwgUkVHX0lSUV9HTE9CQUxfSVJRX0VOKTsKPj4gKwkJcmVnbWFwX3dyaXRl
-KGN0eC0+cmVnbWFwLCBSRUdfSVJRX0VOLCAweGZmKTsKPj4gKwl9IGVsc2Ugewo+PiArCQkvKiBV
-c2UgdGhlIHBvbGxpbmcgdGFzayAqLwo+PiArCQlzbjY1ZHNpODNfbW9uaXRvcl9zdGFydChjdHgp
-Owo+PiArCX0KPj4gIH0KPj4gIAo+PiAgc3RhdGljIHZvaWQgc242NWRzaTgzX2F0b21pY19kaXNh
-YmxlKHN0cnVjdCBkcm1fYnJpZGdlICpicmlkZ2UsCj4+IEBAIC01MTcsNiArNjE4LDE1IEBAIHN0
-YXRpYyB2b2lkIHNuNjVkc2k4M19hdG9taWNfZGlzYWJsZShzdHJ1Y3QgZHJtX2JyaWRnZSAqYnJp
-ZGdlLAo+PiAgCXN0cnVjdCBzbjY1ZHNpODMgKmN0eCA9IGJyaWRnZV90b19zbjY1ZHNpODMoYnJp
-ZGdlKTsKPj4gIAlpbnQgcmV0Owo+PiAgCj4+ICsJaWYgKGN0eC0+dXNlX2lycSkgewo+PiArCQkv
-KiBEaXNhYmxlIGlycSAqLwo+PiArCQlyZWdtYXBfd3JpdGUoY3R4LT5yZWdtYXAsIFJFR19JUlFf
-RU4sIDB4MCk7Cj4+ICsJCXJlZ21hcF93cml0ZShjdHgtPnJlZ21hcCwgUkVHX0lSUV9HTE9CQUws
-IDB4MCk7Cj4+ICsJfSBlbHNlIHsKPj4gKwkJLyogU3RvcCB0aGUgcG9sbGluZyB0YXNrICovCj4+
-ICsJCXNuNjVkc2k4M19tb25pdG9yX3N0b3AoY3R4KTsKPj4gKwl9Cj4+ICsKPj4gIAkvKiBQdXQg
-dGhlIGNoaXAgaW4gcmVzZXQsIHB1bGwgRU4gbGluZSBsb3csIGFuZCBhc3N1cmUgMTBtcyByZXNl
-dCBsb3cgdGltaW5nLiAqLwo+PiAgCWdwaW9kX3NldF92YWx1ZV9jYW5zbGVlcChjdHgtPmVuYWJs
-ZV9ncGlvLCAwKTsKPj4gIAl1c2xlZXBfcmFuZ2UoMTAwMDAsIDExMDAwKTsKPj4gQEAgLTY3Myw2
-ICs3ODMsMTQgQEAgc3RhdGljIGludCBzbjY1ZHNpODNfaG9zdF9hdHRhY2goc3RydWN0IHNuNjVk
-c2k4MyAqY3R4KQo+PiAgCXJldHVybiAwOwo+PiAgfQo+PiAgCj4+ICtzdGF0aWMgaXJxcmV0dXJu
-X3Qgc242NWRzaTgzX2lycShpbnQgaXJxLCB2b2lkICpkYXRhKQo+PiArewo+PiArCXN0cnVjdCBz
-bjY1ZHNpODMgKmN0eCA9IGRhdGE7Cj4+ICsKPj4gKwlzbjY1ZHNpODNfaGFuZGxlX2Vycm9ycyhj
-dHgpOwo+PiArCXJldHVybiBJUlFfSEFORExFRDsKPj4gK30KPj4gKwo+PiAgc3RhdGljIGludCBz
-bjY1ZHNpODNfcHJvYmUoc3RydWN0IGkyY19jbGllbnQgKmNsaWVudCkKPj4gIHsKPj4gIAljb25z
-dCBzdHJ1Y3QgaTJjX2RldmljZV9pZCAqaWQgPSBpMmNfY2xpZW50X2dldF9kZXZpY2VfaWQoY2xp
-ZW50KTsKPj4gQEAgLTY4Niw2ICs4MDQsOCBAQCBzdGF0aWMgaW50IHNuNjVkc2k4M19wcm9iZShz
-dHJ1Y3QgaTJjX2NsaWVudCAqY2xpZW50KQo+PiAgCQlyZXR1cm4gLUVOT01FTTsKPj4gIAo+PiAg
-CWN0eC0+ZGV2ID0gZGV2Owo+PiArCUlOSVRfV09SSygmY3R4LT5yZXNldF93b3JrLCBzbjY1ZHNp
-ODNfcmVzZXRfd29yayk7Cj4+ICsJSU5JVF9ERUxBWUVEX1dPUksoJmN0eC0+bW9uaXRvcl93b3Jr
-LCBzbjY1ZHNpODNfbW9uaXRvcl93b3JrKTsKPj4gIAo+PiAgCWlmIChkZXYtPm9mX25vZGUpIHsK
-Pj4gIAkJbW9kZWwgPSAoZW51bSBzbjY1ZHNpODNfbW9kZWwpKHVpbnRwdHJfdCkKPj4gQEAgLTcx
-MCw2ICs4MzAsMTQgQEAgc3RhdGljIGludCBzbjY1ZHNpODNfcHJvYmUoc3RydWN0IGkyY19jbGll
-bnQgKmNsaWVudCkKPj4gIAlpZiAoSVNfRVJSKGN0eC0+cmVnbWFwKSkKPj4gIAkJcmV0dXJuIGRl
-dl9lcnJfcHJvYmUoZGV2LCBQVFJfRVJSKGN0eC0+cmVnbWFwKSwgImZhaWxlZCB0byBnZXQgcmVn
-bWFwXG4iKTsKPj4gIAo+PiArCWlmIChjbGllbnQtPmlycSkgewo+PiArCQlyZXQgPSBkZXZtX3Jl
-cXVlc3RfdGhyZWFkZWRfaXJxKGN0eC0+ZGV2LCBjbGllbnQtPmlycSwgTlVMTCwgc242NWRzaTgz
-X2lycSwKPj4gKwkJCQkJCUlSUUZfT05FU0hPVCwgZGV2X25hbWUoY3R4LT5kZXYpLCBjdHgpOwo+
-PiArCQlpZiAocmV0KQo+PiArCQkJcmV0dXJuIGRldl9lcnJfcHJvYmUoZGV2LCByZXQsICJmYWls
-ZWQgdG8gcmVxdWVzdCBpcnFcbiIpOwo+PiArCQljdHgtPnVzZV9pcnEgPSB0cnVlOwo+PiArCX0K
-Pj4gKwo+PiAgCWRldl9zZXRfZHJ2ZGF0YShkZXYsIGN0eCk7Cj4+ICAJaTJjX3NldF9jbGllbnRk
-YXRhKGNsaWVudCwgY3R4KTsKPj4gIAo+Cj4tLSAKPlJlZ2FyZHMsCj4KPkxhdXJlbnQgUGluY2hh
-cnQK
+
+--j43zmgztsm2qmibl
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH RFC v4 01/15] pwm: core: export pwm_get_state_hw()
+MIME-Version: 1.0
+
+Hello David,
+
+On Wed, Oct 23, 2024 at 03:59:08PM -0500, David Lechner wrote:
+> Export the pwm_get_state_hw() function. This is useful in cases where
+> we want to know what the hardware is actually doing, rather than what
+> what we requested it should do.
+>=20
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+>=20
+> v4 changes: new patch in v4
+>=20
+> And FYI for Uwe and Jonathan, there are a couple of other series
+> introducing PWM conversion triggers that could make use of this
+> so that the sampling_frequency attribute can return the actual rate
+> rather than the requested rate.
+>=20
+> Already applied:
+> https://lore.kernel.org/linux-iio/20241015-ad7606_add_iio_backend_support=
+-v5-4-654faf1ae08c@baylibre.com/
+>=20
+> Under review:
+> https://lore.kernel.org/linux-iio/aea7f92b-3d12-4ced-b1c8-90bcf1d992d3@ba=
+ylibre.com/T/#m1377d5acd7e996acd1f59038bdd09f0742d3ac35
+> ---
+>  drivers/pwm/core.c  | 55 +++++++++++++++++++++++++++++++++++++----------=
+------
+>  include/linux/pwm.h |  1 +
+>  2 files changed, 40 insertions(+), 16 deletions(-)
+>=20
+> diff --git a/drivers/pwm/core.c b/drivers/pwm/core.c
+> index 634be56e204b..a214d0165d09 100644
+> --- a/drivers/pwm/core.c
+> +++ b/drivers/pwm/core.c
+> @@ -718,7 +718,7 @@ int pwm_apply_atomic(struct pwm_device *pwm, const st=
+ruct pwm_state *state)
+>  }
+>  EXPORT_SYMBOL_GPL(pwm_apply_atomic);
+> =20
+> -static int pwm_get_state_hw(struct pwm_device *pwm, struct pwm_state *st=
+ate)
+> +static int __pwm_get_state_hw(struct pwm_device *pwm, struct pwm_state *=
+state)
+>  {
+>  	struct pwm_chip *chip =3D pwm->chip;
+>  	const struct pwm_ops *ops =3D chip->ops;
+> @@ -730,29 +730,50 @@ static int pwm_get_state_hw(struct pwm_device *pwm,=
+ struct pwm_state *state)
+> =20
+>  		BUG_ON(WFHWSIZE < ops->sizeof_wfhw);
+> =20
+> -		scoped_guard(pwmchip, chip) {
+> -
+> -			ret =3D __pwm_read_waveform(chip, pwm, &wfhw);
+> -			if (ret)
+> -				return ret;
+> +		ret =3D __pwm_read_waveform(chip, pwm, &wfhw);
+> +		if (ret)
+> +			return ret;
+> =20
+> -			ret =3D __pwm_round_waveform_fromhw(chip, pwm, &wfhw, &wf);
+> -			if (ret)
+> -				return ret;
+> -		}
+> +		ret =3D __pwm_round_waveform_fromhw(chip, pwm, &wfhw, &wf);
+> +		if (ret)
+> +			return ret;
+> =20
+>  		pwm_wf2state(&wf, state);
+> =20
+>  	} else if (ops->get_state) {
+> -		scoped_guard(pwmchip, chip)
+> -			ret =3D ops->get_state(chip, pwm, state);
+> -
+> +		ret =3D ops->get_state(chip, pwm, state);
+>  		trace_pwm_get(pwm, state, ret);
+>  	}
+> =20
+>  	return ret;
+>  }
+
+I don't understand why you introduce __pwm_get_state_hw() (a variant of
+pwm_get_state_hw() that expects the caller to hold the chip lock) when the
+single caller (apart from plain pwm_get_state_hw()) could just continue
+to use pwm_get_state_hw().
+
+In principle I'm open to such a patch and wonder if there is already a
+merge plan for this series. If you send a simpler patch soon with the
+same objective, I'll make sure it goes into v6.13-rc1 in the assumption
+that it's to late for the whole series to go in then. Or do you still
+target 6.13-rc1 for the spi bits? Then it would probably better to let
+this patch go in with the rest via the spi tree.
+
+Best regards
+Uwe
+
+--j43zmgztsm2qmibl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcglz8ACgkQj4D7WH0S
+/k4VNgf/SnQ3FDnC2c7bg2CyahKuEnbI1V+Mh1n4mLdEhbjuD3kDrXmP8S8QoYN3
+UPKt/DB95LNR4rW23vH6A/VwT0Z2pxGUFkWUc+rph/XLlHGSlTHA24wqcAUFmv9U
+LrdFn6se1JD/0iqekbIgSw4Z1wmMUyDgVf5qPhCr0T8q/5xMfRnOnDRot9OLxHAE
+2wthItMXrD74GNxg7hYr+Egp9RNtEj+V8CUqOriJuHx3HDEgx+tPFT5zaBKAFOnf
+tNIEHM9s2IYxsbR97SmlSVnOdVHutuGAEsgaPGjzynuoLYqT5Wi39UbZc0Z4wCoP
+RnMNIRjxMCTHTibMjVPASVQRLwvN6g==
+=MQGh
+-----END PGP SIGNATURE-----
+
+--j43zmgztsm2qmibl--
 
