@@ -1,104 +1,122 @@
-Return-Path: <devicetree+bounces-116824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B662C9B427A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 07:40:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32F539B428D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 07:48:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2391AB20976
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 06:40:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC2391F23567
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 06:48:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1708201255;
-	Tue, 29 Oct 2024 06:40:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 334EE2022D0;
+	Tue, 29 Oct 2024 06:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="faX/GEw1"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="LioQFgSr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE5F120111B
-	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 06:40:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8969E20127F;
+	Tue, 29 Oct 2024 06:47:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730184002; cv=none; b=VLG0yLUm2C79TBifWBRzgSDV4ENisDXlL0NeJnuIC4lCoAfHqPcSEwwwTRJFdC00wKYAcyErnGunhuRceWSDNjYVfTKQHe/QN0nr6am9zdQB/+arhM1YK4IdlkkM/KTXHqv7l+Cu6rQPH2y/oHHSQ2gVNroWlv/lcEVoWzQr26k=
+	t=1730184464; cv=none; b=UZdLT8M09Lp244iFswLW95KV9tMVwL/bIMub9fpqGmBG2q7FqUWh+kUbw9dQm3YNK+dkAwU/zBfc60T1+lbPaAnOQOxibTE9MUfQYRe0yUxuVhC94AATA0w603EFO6VHiUuU4/GtQnWEYZEPZIgBswMHfhYegHAbMCEEcJI2Bww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730184002; c=relaxed/simple;
-	bh=H58uJcpRDNvTax+VL+0+fCFLwZ31eZ9H75SsdG6oUmM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pax7w6qa/FEsMvLDNX4MzP3wdbmmgO9wza0p8tBJSCIhduzyE6rH9XW/i44ANy5zfes6SoCvE4DD/J1t8BE0V6b7MLBXoJ/2Xzv27B2RgA0wdkdcDT28RHleU59K3p9V4DeYdZ80WJ9llZ6udQ5egHtYk0V1sFu7dBIJ2jsN12w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=faX/GEw1; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-20c70abba48so40116595ad.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 23:40:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730184000; x=1730788800; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=SmrD8WpF/OdMMrOZMzCUFVQhEI48ibTQY3atQcEu4nM=;
-        b=faX/GEw1CkTrGuA1atfeUO4bC2e6YNdTUbeYFgX5adAKHofUoHzocz0HGqw1UvrPfB
-         v3jz42lb2BJ2BUHyLVCHJI/I/zIDNzkyJ9SGPHwbDijTKwFhhTlpnYwh6e+5djHQzcmg
-         9LAM+Rx82aEOFenuFe6MGKcJDuC59d9WH31O4GspuXz1RtnFijXmtQ8hqYsdzxa3rCW/
-         CTPzozQk2Fp/GyZPq6ixLlvs4DgJ5brMadrNBjtmcaQCmSOiyl+0Hi7FvnBi2b2VwlrY
-         xVeeiH6whM8dDOq+xu9IBwBQ9h8ojwW0YmN+kkvx3iujLVEODrq/kNpFXSZdCliBrniI
-         qfKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730184000; x=1730788800;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SmrD8WpF/OdMMrOZMzCUFVQhEI48ibTQY3atQcEu4nM=;
-        b=mnCNFD7gQgoY/uBpeynMqjiNjxg8EtzJrMbrvd1yvDWAsKqIC4eWWaMdwEiK7i0wcV
-         IQWhLg9/g1xp9+uuKEHqjnzZaar5fvWnJt/7spiPFLHr5XaEHfA5u1Q9eC8bBkOwUg8D
-         tFrTqnverZhE4y6l8vZMNVoQsLSakCcfHJ7qEYYgUj2eQ7wT3NAWBB8LxS+jFASTAL9V
-         vQSgT5oxGIs0+PplGAzIYVTcu6fu88Qv0o4TJ4A+7gmV0ivp3zZweO8v6PmqLwfj5/j7
-         bDb0E1YMKIxkubX5djtpmzAXQN6ZiDZwtJJUje1rsZDVgr0lXRFY1XNWQzvb0lEvVXjH
-         nAZw==
-X-Forwarded-Encrypted: i=1; AJvYcCWxKUmGY1X7XHYvkCgx879L92gZZ1eYu4SwZjVk+fRMxAibkQ/Z7i4SYjF/8LzMcIMyZ2JoJIsAC0eq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvtiUAD5saC3bEpYFTaCINtAztxMEXfw5zzcqtxKLITneMudW4
-	j/hrRkA8pYjTr/3OYkVSJPawRrEuOruOwB8w7scrwS85FkwhEOU/iOYXfTUx1jw=
-X-Google-Smtp-Source: AGHT+IHvk9izIj+ZzjpdpqRGra6iF3H8KqUafcsWoWKS9IkQRHB1fwTjnsmShJ064C6yw8jOpQQVmA==
-X-Received: by 2002:a17:903:244d:b0:20c:5d05:69b4 with SMTP id d9443c01a7336-210c6c06351mr149504975ad.26.1730184000220;
-        Mon, 28 Oct 2024 23:40:00 -0700 (PDT)
-Received: from localhost ([122.172.85.97])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-210bc066488sm59857175ad.277.2024.10.28.23.39.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 23:39:59 -0700 (PDT)
-Date: Tue, 29 Oct 2024 12:09:57 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: cpufreq: cpufreq-qcom-hw: Add SAR2130P
- compatible
-Message-ID: <20241029063957.dszyl27kh52te73f@vireshk-i7>
-References: <20241018-sar2130p-cpufreq-v1-1-822e00b9a663@linaro.org>
+	s=arc-20240116; t=1730184464; c=relaxed/simple;
+	bh=YOll/96wrr9RUA21PMbMhIHf4EcPrRWMT5Cc9IxNAiU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=aBAmKeFLp+m5P5rLGwwh0dYdu3n81lQLdpYwQYvhgwg+aHDE9VjqfKYmHSR89fwnhCpCt9GJYyuaA2xuh2HkRwImSMOMMoGV8SZlxyLrz2IG8KI1uE3UQxrNPtQxZh3tMrQAP1OcjXmcx9HjsoqScf/CcLUr9ZAsodrL5JZcxhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=LioQFgSr; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: aee0fd8e95c111efbd192953cf12861f-20241029
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=z9PfcigL0s6ErQW2/uQSzc8G0q1UY40BYkcQHjk4dgM=;
+	b=LioQFgSrL3GOPfR9Y875WyX+S7rNSE0pJawryv4ZU91MQDKFjb0q4wkdDGuzHvZjKwumIRP9z5s4y+m3mJ66k0h9TTBMNZ12YktK2V0R0SA0+lwSlRLOCi0tdjvLpd30U4Sv+trNC/MtpLpddRnn6b/VxoiIGTsZcywCBj/ALnk=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.42,REQID:3669efd2-ae70-4754-876e-1a8f2d701e72,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:b0fcdc3,CLOUDID:4fdf3407-7990-429c-b1a0-768435f03014,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: aee0fd8e95c111efbd192953cf12861f-20241029
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 766132258; Tue, 29 Oct 2024 14:47:36 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 29 Oct 2024 14:47:35 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Tue, 29 Oct 2024 14:47:35 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Hsin-Hsiung Wang
+	<hsin-hsiung.wang@mediatek.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, Alexandre Mergnat
+	<amergnat@baylibre.com>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<linux-usb@vger.kernel.org>, Chris-qj chen <chris-qj.chen@mediatek.com>
+Subject: [PATCH] arm64: dts: mediatek: mt6358: fix dtbs_check error
+Date: Tue, 29 Oct 2024 14:46:47 +0800
+Message-ID: <20241029064647.13370-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241018-sar2130p-cpufreq-v1-1-822e00b9a663@linaro.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On 18-10-24, 19:41, Dmitry Baryshkov wrote:
-> Document compatible for cpufreq hardware on Qualcomm SAR2130P platform.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+Fix DTBS check errors for 'mt6358codec' and 'mt6358regulator':
 
-Applied. Thanks.
+Error message is:
+pmic: 'mt6358codec' and 'mt6358regulator' does not match any of the
+regexes: 'pinctrl-[0-9]+'.
+Rename these two device node to generic 'audio-codec' and 'regulators'.
 
+Fixes: 9f8872221674 ("arm64: dts: mt6358: add PMIC MT6358 related nodes")
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+---
+ arch/arm64/boot/dts/mediatek/mt6358.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt6358.dtsi b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
+index 641d452fbc08..e23672a2eea4 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6358.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
+@@ -15,12 +15,12 @@ pmic_adc: adc {
+ 			#io-channel-cells = <1>;
+ 		};
+ 
+-		mt6358codec: mt6358codec {
++		mt6358codec: audio-codec {
+ 			compatible = "mediatek,mt6358-sound";
+ 			mediatek,dmic-mode = <0>; /* two-wires */
+ 		};
+ 
+-		mt6358regulator: mt6358regulator {
++		mt6358regulator: regulators {
+ 			compatible = "mediatek,mt6358-regulator";
+ 
+ 			mt6358_vdram1_reg: buck_vdram1 {
 -- 
-viresh
+2.45.2
+
 
