@@ -1,55 +1,58 @@
-Return-Path: <devicetree+bounces-116860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBC499B433C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:39:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 893089B4353
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 08:41:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0887283931
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 07:39:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20E31B21590
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 07:41:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F6AB202657;
-	Tue, 29 Oct 2024 07:39:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9182120265C;
+	Tue, 29 Oct 2024 07:41:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CGswHJok"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ez6nP3iq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4687520264A;
-	Tue, 29 Oct 2024 07:39:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FFE718FDDF;
+	Tue, 29 Oct 2024 07:41:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730187542; cv=none; b=C47dwGkpajtsJ4+db8fKJUedgbN6wgROXbKarJisYpsDsl1babj4qGytyQzIZW3sk1EVNAUcsfiyApGkN4ulV/y+WWjSAExX9rOi4T9FlCJwtPTrXcqO6fyDiPzj3di2GMk/favist9/1bonU7MizbKkxbiRYe7Ed90A7QcBlT8=
+	t=1730187688; cv=none; b=HFcFNj2isRqJyxAyPFjbC/tQB+D1EWIpCZcCSNYSWsG0nmRall98l2ljvs2F30QjqR4lkRdk+BQmcjNZmlor9bIogVJpIjhorRVCMogf0y+4OAlrFlLFh/3o3/yrt5CLAVjFikhPtSSiS4IceBr2Z8EW0Y3AuC3CbFhAW4dkzNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730187542; c=relaxed/simple;
-	bh=lvRF6OQNxK4XvjtKLyh5uUXjztm7duAnqUDnMK2nn3s=;
+	s=arc-20240116; t=1730187688; c=relaxed/simple;
+	bh=dQdoHjYKix9NxkdsPSPIypxxVG1/H8SfWBxYkXryDjY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fhcBfv51d4sBfGGyvoGSKTwRPVjRBR2L1ZkHGz9r6Mp/sSQBmTXngD5CsWV7lQWgPIyRmOM6/vfRygThi3Bn7c+C8EzGYSIrdmX4923iJNonru3o1CBQearRmYn8DOBt2AgwJnLLRpVtra6H+f4IAK93ZmqgOWVflP91tyKFPfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CGswHJok; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EDCFC4CECD;
-	Tue, 29 Oct 2024 07:39:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PTAg3qUYx96XBAPVPAbczj4jpL2WVYfIHeWkdY6SzuIQp763KDd8JLpKoP5uhV2rVDPGybVUgGS9Fcos/U0zzq8BCWUz4Ro3KggjpTIQsCBDEE/bDLoVvOPFFsqjg3//48L0p38TuZl6yWC5S948pvDraSzde5wendffWjn5z4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ez6nP3iq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC1BAC4CECD;
+	Tue, 29 Oct 2024 07:41:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730187541;
-	bh=lvRF6OQNxK4XvjtKLyh5uUXjztm7duAnqUDnMK2nn3s=;
+	s=k20201202; t=1730187687;
+	bh=dQdoHjYKix9NxkdsPSPIypxxVG1/H8SfWBxYkXryDjY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CGswHJokD3l5cEDdtfhJaBrDXZfvGMq4lXn5lpOOf4IhN4VbvXt95/NWrBGxJ8nNx
-	 tmAfKWtNKpRAA0Z8cABsKXY/XpAWqQWIFQ0ZitZYPNPwJPukqgpevj77gwwib5zOOx
-	 igXipatVXqw8D/dYnfYT8RIVFdE6lRtGYHKktmAU6j2q7nDwYBlc6X7Dop52uowtm3
-	 ZLfbdiJxwog/45x92BLzPRKN3l5fIGW6wIg609PsP+uimLfJMw3csS8q4bWhbE8qVU
-	 sUO15H0XKWNMXqr72QqDtbZAWN1JN1uqmbsaVaH8KJ2qSGWKbq6wT+bUZbsTp8e0jT
-	 52lra3wFltg6w==
-Date: Tue, 29 Oct 2024 08:38:58 +0100
+	b=ez6nP3iqZQTsPf241ir7dtSE9lL1vmhYLvrdkYP+OCvwE3erGeV3qQ6ZU/zYjDd2M
+	 jqN17iLPTy87YUwpgJdosY5TqlHxxXJKV8LW2+16UtkNl4p/bmMyKJxwm9ikEjH3Tu
+	 U8OPnDoHEmL8bMgxAHQ+CjKd8lSFn2rSghtsEr3c51t9cNE8yllOahMCHi7UFXXFOa
+	 Io0nCb9Io5dSOWYJIVX0BXDYbA9ztsmxl8OYBIOJzb2PXxO8arx9DdHWBNUVVxA8oe
+	 Dv9YKpZ3XYwmLbfwXWantWblaQOZdaBaZsnTKGIJuei98V5QO29TfvHxP9SgWLyq85
+	 b4Gxv3qclmd5w==
+Date: Tue, 29 Oct 2024 08:41:23 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] dt-bindings: power: fsl,imx-gpc: Document fsl,imx6sll-gpc
-Message-ID: <fc5wzr4uzoutpxwc6itabcdtbn72ele3mki7or6luomhtg4muw@4merpns2rwrq>
-References: <20241028124518.72576-1-festevam@gmail.com>
+To: Nick Chan <towinchenmi@gmail.com>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH asahi-soc/dt 01/10] dt-bindings: arm: apple: apple,pmgr:
+ Add A7-A11 compatibles
+Message-ID: <wpwa22u5z5hamvme7za7dqe7kjl5bap2a254w32yyqrohz235g@hk3izcckbdqn>
+References: <20241029010526.42052-1-towinchenmi@gmail.com>
+ <20241029010526.42052-2-towinchenmi@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,19 +61,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241028124518.72576-1-festevam@gmail.com>
+In-Reply-To: <20241029010526.42052-2-towinchenmi@gmail.com>
 
-On Mon, Oct 28, 2024 at 09:45:18AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On Tue, Oct 29, 2024 at 09:03:59AM +0800, Nick Chan wrote:
+> The blocks found on Apple A7-A11 SoCs are compatible with the existing
+> driver so add their per-SoC compatibles.
 > 
-> Document the existing fsl,imx6sll-gpc compatible used with fsl,imx6q-gpc
-> fallback.
+> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> This fixes the following dt-schema warning:
-> 
-> ['fsl,imx6sll-gpc', 'fsl,imx6q-gpc'] is too long
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> diff --git a/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml b/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+> index 673277a7a224..5001f4d5a0dc 100644
+> --- a/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+> +++ b/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+> @@ -22,6 +22,11 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> +          - apple,s5l8960x-pmgr
+> +          - apple,t7000-pmgr
+> +          - apple,s8000-pmgr
+> +          - apple,t8010-pmgr
+> +          - apple,t8015-pmgr
+
+Assuming you keep the existing order of entries in this file, which is
+different than usually expected: alphanumeric.
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
