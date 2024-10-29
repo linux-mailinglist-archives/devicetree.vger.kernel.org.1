@@ -1,220 +1,116 @@
-Return-Path: <devicetree+bounces-116970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CDB79B4807
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:12:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 145CC9B480A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 12:12:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9056D1C263F7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 11:12:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 444261C26649
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 11:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B802205149;
-	Tue, 29 Oct 2024 11:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E14D205AAF;
+	Tue, 29 Oct 2024 11:11:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QRy5WAJK"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="fqHzAleV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D36E187FE0;
-	Tue, 29 Oct 2024 11:10:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C1A205ABB;
+	Tue, 29 Oct 2024 11:11:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730200258; cv=none; b=jK7AjNGrDYBw44Xnmp9zO51W/Wzfz9Tg5sCIzZCUbtrBXCMwVIgXzkUqCbSkEqd9UGBskm2ooosUR7HshrWZSViClTFJmlhh+ausNaypShHEzaHFYeA3uGzP9eVPjjEJOo2GNvoBPqnuOuqlU4QYC9I/70Fzl8sdtqCSGb/zGQI=
+	t=1730200288; cv=none; b=GD5iSH1Q24T+al7PUKjVaCmQOQxeScUNdsFN4pTlYwFa+ufr/Tvzu/ES/u7B7wad0Ibjdc139+zdz80p+svucqUIMlpcLX2bPjjZbU0qLdNsbQTYJOABTXC59AkFy/NB5EGIDDbg7q7SzdSLSOQoI8LDDwPCvvBj/NJOV8di04s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730200258; c=relaxed/simple;
-	bh=yt47M43WyMYlEnC7UAALHEEIK9uCfLcbuK0JvelkRZI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EBKNF+R6cmGol19qKLtgKxWkdz6U0TpLhzXXLmXe0Wb1byMWecQSDM3LTE3iC7f+plbElLjMvtL2dZXcrtVQPxh3zKhL9NECXpi3mjDx/+Adh69L/vMH9NVuO/CLvofIEpWak/w8nDdWaMsc6/mOxLNftFA+6a1iJXxMo33A6PI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QRy5WAJK; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49TAp491009977;
-	Tue, 29 Oct 2024 11:10:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	436gstbPCkPlj4d3w0TEgski1t5UL/d1n+5YYqP/jL0=; b=QRy5WAJKAkoHJ8US
-	8P2qxS1pt4gpZ6T72S65WjcjgmpRVOlFCmlKiUwcUx99q6M3+1rdCaZ1paXoyslZ
-	SDtdeEIzf/Vkit0U29df6x8VAjSmZgfeq5u9mMeMh6KVuBjEn+ueJj5c7KzPkbLU
-	dpJEd6mrY3lFMvHNl3IR/zWDUx+uSOcZUkTISLvosF6g4NT6+lxfaF20wYOpyksO
-	Ij37KcQQFNGqBikw6rIbqz+IZ6gqLDEgwXFzLj1V9tSW41hoR6sw/nClq6tttUnX
-	oBuZc124y9E1aTjsXrmQUBhCw4Oh2N1Jgo85Qr8XSpo1xU8Vkf3KdlcczX0MieT8
-	x8pzvg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42jxa881mq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 11:10:35 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49TBAYTj023982
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 11:10:34 GMT
-Received: from [10.216.3.156] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
- 2024 04:10:27 -0700
-Message-ID: <cb2ecd04-ae0b-40c3-ac3c-9bcb1bf46e7d@quicinc.com>
-Date: Tue, 29 Oct 2024 16:40:23 +0530
+	s=arc-20240116; t=1730200288; c=relaxed/simple;
+	bh=urUDoiCfGTanskrpk/nVfLsAwra9Azo71xlx8jBbmLQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=SmSu4D5XNx5wgQ60W9RP10ZntP5Lul78lHw0SI3qmg521VF9H56wwfemW9uj6zI5I62vVAjGnJYAzTNUTG1NqK1oLxPn4h+h1eKJ0TxmcqfkV1LhK4NkiYsHVtKlyQ7Il8i5Zn+HRXoZxFEmlJOlaj+9S2WlBETfRd15/chXDNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=fqHzAleV; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=2mw6wIsgNp3nO1sAu93Wf091/AE6UwJyrSXnTj9zaeU=; b=fqHzAleV/stfMIIbiD3N63c1sf
+	yzq7GY9AxvXpEb+o4IGxW2t5oQupYfLZ5xLw4xscqp42iPsKu6ag+YZbpjQhVoBLh+SLlZvNW93mv
+	GAZd32b6xvCMV2U4YojyKb2MUY/oivKBAOleHqbv7KDTNqt9dE1wpPbzox/005QufZoUhjuynQI2U
+	amNK1E08EEttq+BIuZ52SMa6MvkapWkwE8vCojubAVq5HNF0khtQWEwwJ++BeBLEB91r/l0tTpjXj
+	6qkOy2PrZHsjqgutKsSD5X02/Gn4wHrgHkf5d3/KetD65+fG1McwA4QX7lnLnyrFF0ihg9lRa4+kV
+	nqkNrETQ==;
+From: Andreas Kemnade <andreas@kemnade.info>
+To: lee@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mazziesaccount@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Andreas Kemnade <andreas@kemnade.info>,
+	sre@kernel.org
+Subject: [PATCH] dt-bindings: mfd: bd71828: Use charger resistor in mOhm instead of MOhm
+Date: Tue, 29 Oct 2024 12:11:12 +0100
+Message-Id: <20241029111112.33386-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 3/3] scsi: ufs: qcom: Add support for multiple ICE
- algorithms
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        <manivannan.sadhasivam@linaro.org>, <alim.akhtar@samsung.com>,
-        <avri.altman@wdc.com>, <bvanassche@acm.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <James.Bottomley@HansenPartnership.com>,
-        <martin.petersen@oracle.com>, <agross@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_narepall@quicinc.com>, <quic_nitirawa@quicinc.com>,
-        Can Guo
-	<quic_cang@quicinc.com>
-References: <20241005064307.18972-1-quic_rdwivedi@quicinc.com>
- <20241005064307.18972-4-quic_rdwivedi@quicinc.com>
- <517d5373-592a-4a79-8c79-14226ceacbce@wanadoo.fr>
-Content-Language: en-US
-From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-In-Reply-To: <517d5373-592a-4a79-8c79-14226ceacbce@wanadoo.fr>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: eDgxb5ywVO5CFyIqyxmJjQJHptkvzKvk
-X-Proofpoint-ORIG-GUID: eDgxb5ywVO5CFyIqyxmJjQJHptkvzKvk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
- bulkscore=0 priorityscore=1501 lowpriorityscore=0 spamscore=0
- malwarescore=0 impostorscore=0 phishscore=0 mlxlogscore=999 mlxscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410290087
 
+Apparently there was some confusion regarding milliohm vs. megaohm.
+(m/M). Use microohms to be able to properly specify the charger
+resistor like other drivers do. This is not used yet by mainline code
+yet. Specify a current sense resistor in milliohms range rathes then
+megaohms range in the examples.
 
+CC: sre@kernel.org
+Reported-by: Matti Vaittinen <mazziesaccount@gmail.com>
+Closes: https://lore.kernel.org/imx/6dcd724a-a55c-4cba-a45b-21e76b1973b0@gmail.com/T/#mf590875a9f4d3955cd1041d7196ff0c65c0a7e9d
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+ .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml  | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
-On 06-Oct-24 1:03 AM, Christophe JAILLET wrote:
-> Le 05/10/2024 à 08:43, Ram Kumar Dwivedi a écrit :
->> Add support for ICE algorithms for Qualcomm UFS V5.0 and above which
->> uses a pool of crypto cores for TX stream (UFS Write – Encryption)
->> and RX stream (UFS Read – Decryption).
->>
->> Using these algorithms, crypto cores can be dynamically allocated
->> to either RX stream or TX stream based on algorithm selected.
->> Qualcomm UFS controller supports three ICE algorithms:
->> Floor based algorithm, Static Algorithm and Instantaneous algorithm
->> to share crypto cores between TX and RX stream.
->>
->> Floor Based allocation is selected by default after power On or Reset.
->>
->> Co-developed-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
->> Signed-off-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
->> Co-developed-by: Nitin Rawat <quic_nitirawa@quicinc.com>
->> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
->> Co-developed-by: Can Guo <quic_cang@quicinc.com>
->> Signed-off-by: Can Guo <quic_cang@quicinc.com>
->> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
->> ---
->>   drivers/ufs/host/ufs-qcom.c | 232 ++++++++++++++++++++++++++++++++++++
->>   drivers/ufs/host/ufs-qcom.h |  38 +++++-
->>   2 files changed, 269 insertions(+), 1 deletion(-)
-> 
-> Hi,
-> 
-> a few nitpicks below.
-> 
->>
->> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
->> index 810e637047d0..c0ca835f13f3 100644
->> --- a/drivers/ufs/host/ufs-qcom.c
->> +++ b/drivers/ufs/host/ufs-qcom.c
->> @@ -105,6 +105,217 @@ static struct ufs_qcom_host *rcdev_to_ufs_host(struct reset_controller_dev *rcd)
->>   }
->>     #ifdef CONFIG_SCSI_UFS_CRYPTO
->> +/*
->> + * Default overrides:
->> + * There're 10 sets of settings for floor-based algorithm
->> + */
->> +static struct ice_alg2_config alg2_config[] = {
-> 
-> I think that this could easily be a const struct.
-> 
->> +    {"G0", {5, 12, 0, 0, 32, 0}},
->> +    {"G1", {12, 5, 32, 0, 0, 0}},
->> +    {"G2", {6, 11, 4, 1, 32, 1}},
->> +    {"G3", {6, 11, 7, 1, 32, 1}},
->> +    {"G4", {7, 10, 11, 1, 32, 1}},
->> +    {"G5", {7, 10, 14, 1, 32, 1}},
->> +    {"G6", {8, 9, 18, 1, 32, 1}},
->> +    {"G7", {9, 8, 21, 1, 32, 1}},
->> +    {"G8", {10, 7, 24, 1, 32, 1}},
->> +    {"G9", {10, 7, 32, 1, 32, 1}},
->> +};
->> +
->> +/**
-> 
-> This does nor look like a kernel-doc. Just /* ?
-> 
->> + * Refer struct ice_alg2_config
->> + */
->> +static inline void __get_alg2_grp_params(unsigned int *val, int *c, int *t)
->> +{
->> +    *c = ((val[0] << 8) | val[1] | (1 << 31));
->> +    *t = ((val[2] << 24) | (val[3] << 16) | (val[4] << 8) | val[5]);
->> +}
-> 
-> ...
-> 
->> +/**
->> + * ufs_qcom_ice_config_alg2 - Floor based ICE algorithm
->> + *
->> + * @hba: host controller instance
->> + * Return: zero for success and non-zero in case of a failure.
->> + */
->> +static int ufs_qcom_ice_config_alg2(struct ufs_hba *hba)
->> +{
->> +    struct ufs_qcom_host *host = ufshcd_get_variant(hba);
->> +    unsigned int reg = REG_UFS_MEM_ICE_ALG2_NUM_CORE_0;
->> +    /* 6 values for each group, refer struct ice_alg2_config */
->> +    unsigned int override_val[ICE_ALG2_NUM_PARAMS];
->> +    char name[8] = {0};
->> +    int i, ret;
->> +
->> +    ufshcd_writel(hba, FLOOR_BASED_ALG2, REG_UFS_MEM_ICE_CONFIG);
->> +    for (i = 0; i < ARRAY_SIZE(alg2_config); i++) {
->> +        int core = 0, task = 0;
->> +
->> +        if (host->ice_conf) {
->> +            snprintf(name, sizeof(name), "%s%d", "g", i);
-> 
-> Why not just "g%d"?
-> 
->> +            ret = of_property_read_variable_u32_array(host->ice_conf,
->> +                                  name,
->> +                                  override_val,
->> +                                  ICE_ALG2_NUM_PARAMS,
->> +                                  ICE_ALG2_NUM_PARAMS);
-> 
-> ...
-> 
-> CJ
-> 
+diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+index fa17686a64f7..09e7d68e92bf 100644
+--- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
++++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+@@ -55,14 +55,15 @@ properties:
+     minimum: 0
+     maximum: 1
+ 
+-  rohm,charger-sense-resistor-ohms:
+-    minimum: 10000000
+-    maximum: 50000000
++  rohm,charger-sense-resistor-micro-ohms:
++    minimum: 10000
++    maximum: 50000
++    default: 30000
+     description: |
+       BD71827 and BD71828 have SAR ADC for measuring charging currents.
+       External sense resistor (RSENSE in data sheet) should be used. If some
+-      other but 30MOhm resistor is used the resistance value should be given
+-      here in Ohms.
++      other but 30mOhm resistor is used the resistance value should be given
++      here in microohms.
+ 
+   regulators:
+     $ref: /schemas/regulator/rohm,bd71828-regulator.yaml
+@@ -114,7 +115,7 @@ examples:
+             #gpio-cells = <2>;
+             gpio-reserved-ranges = <0 1>, <2 1>;
+ 
+-            rohm,charger-sense-resistor-ohms = <10000000>;
++            rohm,charger-sense-resistor-micro-ohms = <10000>;
+ 
+             regulators {
+                 buck1: BUCK1 {
+-- 
+2.39.5
 
-
-Hi Christophe,
-
-I have addressed your comments in latest patchset.
-
-Thanks,
-Ram.
 
