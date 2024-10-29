@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-117048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 012269B4BD0
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEA039B4BD2
 	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 15:13:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A27511F243CB
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE9551C22343
 	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:13:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C822071F2;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BE7D2071F5;
 	Tue, 29 Oct 2024 14:13:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CCuA58Og"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w0B6H6gr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF9F206E85
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14B0C206E90
 	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 14:13:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730211226; cv=none; b=k9eqCYyzTeHnMoZV3aqttEALncKWv7AY3cfpI29Y2p0VAzQhZMnub3xow/7A43+OuqPMa5IbDekZWaKUNpDasvvdarMx6u1J01Ka6iBOUkvB0syR7mGFOCASiRZ9OhDWngUaExS0kd6vH0KbkPE/40Z4WQ56/dUK2++qvonDrDo=
+	t=1730211226; cv=none; b=SpJaneBrXT6TZ/44lnIQQ/Er4vaNuR2CxKEqyCAIzNu+O9Yt1NzPkh0hzBbkkzXbCKD7Ss2xliagZKFMyEf9m5hqdtFm0WicRwZashdOnOlWMB83lQhYjSgYJ+D8oHIDej/UZkDPRyWXHUbq+TupR+afeXFDd5hKFTqunSQTLDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1730211226; c=relaxed/simple;
-	bh=AXp9R9SIchOWcn52tYxCXMRJHbP1cxB3uaJJrIOcnfc=;
+	bh=VCywuuwYQzUwDiW7Kdz78e0AbhF/gpt3Et+zeQEyoQ0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JQheDU67XF6A8OYU2Knh3TnI04AhT2R9Sir8iqqlSPM2vgPRhdpLOvy4NnWL2Fq4r7N+YJ4UliWwN4Z2fAteY6BFmJdi3W7asxsRyiKztC32O0bVS+uL7I0upfyAUxwaPYReHDVLHKZu46/XKay/t1DzE1F5bISOsYIpOyQp0lA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CCuA58Og; arc=none smtp.client-ip=209.85.221.50
+	 In-Reply-To:To:Cc; b=o/g59CBRpkmIkiIjQ5te6zZKhARHEaev0Q2fgBxvKgzNAwuavjujSEe4Z/E4yIpPp74//wV64oDWMu6SXODOIyd+ZJUSP3cHxIleqUZRs6XK25dwK95uWm9Z/mH1ajnll4lPVX2mIG52S+JbBNbbrs5+EnSbveabv2xyc1Zbuf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w0B6H6gr; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37d447de11dso3964842f8f.1
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-37ed3bd6114so3534864f8f.2
         for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 07:13:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1730211222; x=1730816022; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zRMi/UaCb3Fk6BdW82ihmAT7XSEnqkfXgGS7TLc7snw=;
-        b=CCuA58OgDYBbBjFyh1CAqzNsQhoEVgojZpWroDbROB/7Q9LpVU2I8kHNO+jpwjnisv
-         p/otTc2QcmtWD2fsHoLZjjagSpa8Igzr5zAKRO6fslZZGLil1lTn/n9PGZUVfNJAe1l2
-         rZmVCsUYzw/6UFqDsRoTdrh1aWHm4PVYJRWFpB/INILZudckrrLAuNsm1kfDd6I8w98f
-         eehTfQuEX9f0QzsFDAJ6CkC+9j7u7E+Do2X50QXIbBD7IWTcl6UDgXwmvec4KSxiyyKy
-         qtWz+PTO0/cCk/EuWmYtNosTKW5/RkI5iLVO82+sDqLUoUWBpYKo0kd/DsZ0iTr6nFhZ
-         K2uQ==
+        bh=7Ouv8MfLcp6Kh4uX/Oe/HUpjciTuIWZJObxnGJ4zstA=;
+        b=w0B6H6grrZTf9LYuCqniN7K+4zleCPWAo8pBC/Bx9lvRcRH37WOrSUi+zr4Pj+RGzI
+         f5Ixd4iQZcWDVfTcmy78cPa9Vlniiua9X6uBDq6oULFFKp2dW7vRJKmh8h24YFUjCdWo
+         clTSZqGQFof7sXOQ3+Y2A7MIiQFQOmPMIx485HK2U6a0Zr7L0UFK8uxyLovMdiqeyExj
+         Bi297J+9QhyMPj7jluMhzl/xewqp9s7+EcZmoTaDdLWtytPnW6ju7AIHRLR96LKNDyD/
+         iAreSzeBkDKcvAuYSfBp77oNMAiF8dZcbtUXkMMUsKN0lUWklEDLU7JzP65LGN8WzgO9
+         82iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1730211222; x=1730816022;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zRMi/UaCb3Fk6BdW82ihmAT7XSEnqkfXgGS7TLc7snw=;
-        b=IWCPVc9XZgeOWsMwojF/TnrU15wc03MvMRLYMDWgLk0t2D/YZM5+v9TYqr7uqgvmAG
-         VlDqT02hx9PyReTOWnZY5ckWJwOPThVBq7NVdGxQZikoIs5ebcZQTb+Fr2mZi9sdms+S
-         leaqPKmZRjG8utQjzEPGsVMU5D+luRRY2b3Oy6JT3yNt2/C5BzE1svMYewWngHQ/X9jt
-         BBAHNyicEe0LCqqEjeDulgqxkxfWLMxj+keNVTp0JsbaJlVfNjK660sHhbczKCZmv0xi
-         GahAJ8R75DhTFyVLENFRHlrAmaT/yeupoMV7DBREAykx//tyYMXKIV0AdF3M7EG45NHd
-         BMEA==
-X-Forwarded-Encrypted: i=1; AJvYcCWPDVNiur5DAFigS09sqBrur3LmRdR105fpM5OWcL5cFtxAt6DBi/v0rEmdYPGMr7+j+Z+InweKJ5tP@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmKGTOCqAQ6APXw5z+9Of6xpyq8K0dypdYu7QG4NA/AUEPSK/k
-	Mtx1veCXmvVjBn7PFMtJ3rCMCNedlvdXSZS+Nvk0nTQjF4To25hOWvLHY8+v084KjWa+5VqOqyw
-	FTZQ=
-X-Google-Smtp-Source: AGHT+IG/hANPxkI3R9mBrqcqUgKe6T1qP2N9UPHnkqj3K1X9544Fi2caie3EUqjCpOM1e1Zz2xCWIQ==
-X-Received: by 2002:adf:e84f:0:b0:37c:cbd4:ec9 with SMTP id ffacd0b85a97d-3806110a2d1mr8704442f8f.5.1730211221583;
-        Tue, 29 Oct 2024 07:13:41 -0700 (PDT)
+        bh=7Ouv8MfLcp6Kh4uX/Oe/HUpjciTuIWZJObxnGJ4zstA=;
+        b=h5kvBtpcudMvL8OL7KS9nljVBtu67M8buvAx1gArKJDLZ5jkMs+KfMOue5gjvTdDkq
+         SHA84H3GrqGHCbmP9dLj3qu9WT+doQY3a0rGP9YolaoqkFSfMdcYNjLju7FuJ+/TpHs9
+         xu6WXebj1F8l78iw5n+9ylENaU9kig9BSV913Rf0DcIrMlNq4kO8neS7QIbJvIzucBZn
+         MbrwPE7v9jpaK/auHBlt1FfsNqXFLo4LtsVLL4VXgovfx8REYJdn8k58Ef5FZ3cH/puZ
+         vezv8pmNkfzuV2PPxP7PyvYNEmeH3oiZk2fO3TWthw67sFSxMRZLXx3Q4g0iPsUuMaKW
+         R2YQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV56yIkj1l61iIX6/acvUrRPiLDF8v/pnwrT4oVUvdaOEkLyR/B0tAUGzE2HPWdJjxFBMxE+vvPyvwg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqbHRfiRejAGuNTLUdoixjUyMNW7Fn/T+bRUjtVU6NlaezxPP0
+	WYjvz4MB1Fz7SFUtOrmzh/7a07VAvaRWwtXAKNqVp6VPSVpS3s6L3stmRFDVoKULy5L2jMqwWgc
+	F1Vc=
+X-Google-Smtp-Source: AGHT+IEhSzI6MkzwuSBStylVFC99ApyDudmpuZxswYmr9kO8wAK54bjE2YK9NngMaJuM8w1OYco1Aw==
+X-Received: by 2002:adf:ff87:0:b0:37d:4dcc:7fb4 with SMTP id ffacd0b85a97d-380610f4425mr8604397f8f.10.1730211222424;
+        Tue, 29 Oct 2024 07:13:42 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b714fesm12645871f8f.71.2024.10.29.07.13.40
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b714fesm12645871f8f.71.2024.10.29.07.13.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 07:13:41 -0700 (PDT)
+        Tue, 29 Oct 2024 07:13:42 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 29 Oct 2024 15:13:37 +0100
-Subject: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add Allegro
- MicroSystems, Inc
+Date: Tue, 29 Oct 2024 15:13:38 +0100
+Subject: [PATCH v3 2/3] dt-bindings: iio: magnetometer: document the
+ Allegro MicroSystems ALS31300 3-D Linear Hall Effect Sensor
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,7 +80,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241029-topic-input-upstream-als31300-v3-1-147926dd63b3@linaro.org>
+Message-Id: <20241029-topic-input-upstream-als31300-v3-2-147926dd63b3@linaro.org>
 References: <20241029-topic-input-upstream-als31300-v3-0-147926dd63b3@linaro.org>
 In-Reply-To: <20241029-topic-input-upstream-als31300-v3-0-147926dd63b3@linaro.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -90,43 +90,92 @@ Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=912;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2381;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=AXp9R9SIchOWcn52tYxCXMRJHbP1cxB3uaJJrIOcnfc=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnIO2SZASliDAzrjxamRLhdEuyRSBI+fHNaTvToFWt
- tSqwr2KJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZyDtkgAKCRB33NvayMhJ0eHAD/
- 9RjQH7h0Oyev8CZhPUhsgRTdRv56Wwh1n3zN7PK6GSARAU1V5O6e22pkrwe5vVD/dNJ0AnLnqC+UM/
- CR2fF6o1mh2K8wXYREBQRlsRt8s96ATSIzjGyZT3sLtGogcRY2nJf8an5SqlqCm8A2ff3or2vt24Fg
- HsD2F7RKMbeyBcWpmjpTLcYBuG6H63Uz0PE6vr+nQIuEtW012FFMrrNDwcPRghA/S1i750wxp4J7RS
- zIVzqH/AOxzR9758J9FGM3xECG27opGfmBsMfB7Ol1JYD1Utzd+cBG7l1pn/ccG39oDvZK4XrpIIKH
- fhYQMXLRlaZ62fl8Yh9e3BeHAls2Azm93wbvvEItw6B5dFdlqj0ylbeuUqHgGjsW09YlY0nkDMaAYo
- YBXURLYxATu2UBH/WofqvRpeO8cCUkXTXb+ClAi5d4PK95HzzqaV/07Z/DYz/Mteen6vWLYPUubAbZ
- AWBie9SQs+A6JznwFTfLU9TuejHMIcSKazY84DHW0HBp1nv75e4KDJojLdB1R5Axhoj5glktu1W0tR
- 7VApgDIeHQjMvTOuZ40WDxp68qeQO9RbMpp0IF2OFHwbJgDR6mMjv5ixYkKOeWnnBzuX7QlB61jGu8
- ou0yVbBM5r/v7ogI+qqxdRnRVaXfwHBklkLaNqMFSiYazPYDUohUP7lZUjrg==
+ bh=VCywuuwYQzUwDiW7Kdz78e0AbhF/gpt3Et+zeQEyoQ0=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnIO2Tl/Vg2+ITYFpFcJV1+DuC8PrAmVDuyChXwu1/
+ hvWYioSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZyDtkwAKCRB33NvayMhJ0WxKEA
+ CLoWyTN9jcuu4PtCNp7x468keVemyG4Goe59+9t+JRbNQvh3mavFYoB5rWhZJQnlmGK5C2H0ZrhmYK
+ UDm+zC3ziHxJzc3UK3Oi0gSZ3U9RRW6cL9zwG2SiZFasblB2xK2rpmAw/4wyHqp1XbHOfpquV3uLbc
+ zXxyvY4WXhmW1jPk8RXIzNgMsp7zkWlI6lp6HiEoB7Qfz8bETrCvwTAp+LnmYHr3k63TfYuEuMRFwF
+ eAUkQyI/WtCdwT2IYKNOETxdqYCDFSntOOWMSzATnWWRWTpwkZk92M6A7QZ0BtjNpcao8y9lVFPtYo
+ FAUVbRZa/Eh+dwQtZB/59E73blGeD3tg1S8rydHsKms7XK+Au4lf2QWqCydh01HJk+QsfmN3vet/Yx
+ gSHPrc62Q8D7fpyAZ9gt+Td03t9WjgDqUF6y/JugYoGPnm4JXkydtBklNX+FdAym4SF7Y6xu1Q27rR
+ qCVpz7pCjEJcmuCrLZC13qYAcYjxe3BZqd6TBX/t2pGIX4nlnxFbkKQhHN5baVhvsxhP1gZuCjYRu6
+ sHAF4K0pTsHzHX3g8rxjNQdnhkJ7Y0qZCueXBYynR2v1KHjHwzSwxE7V2eDADSVT5gDb4A6up5QMAO
+ xe27VY5Zdi1Taxmdmv/j7btsYDXVePzh1Lv/gvG1C0PJKS6/D8S9HK+5AsPQ==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Link: https://www.allegromicro.com/en/about-allegro
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Document the bindings for the Allegro MicroSystems ALS31300 3-D Linear
+Hall Effect Sensor controller by an I2C interface, mainly used in 3D
+head-on motion sensing applications.
+
+The device can be configured with different sensitivities in factory,
+but the sensitivity value used to calculate value into the Gauss unit
+is not available from registers, thus the sensitivity is provided by
+the compatible/device-id string which is based on the part number as
+described in the datasheet page 2.
+
+Datasheet: https://www.allegromicro.com/-/media/files/datasheets/als31300-datasheet.pdf
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../iio/magnetometer/allegromicro,als31300.yaml    | 46 ++++++++++++++++++++++
+ 1 file changed, 46 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 15877574a4172cbd9395bed531555cfb009ff010..b90355c2b45ada6e20335cd5bb2aace9410e4d3a 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -83,6 +83,8 @@ patternProperties:
-     description: ALFA Network Inc.
-   "^allegro,.*":
-     description: Allegro DVT
-+  "^allegromicro,.*":
-+    description: Allegro MicroSystems, Inc.
-   "^alliedvision,.*":
-     description: Allied Vision Technologies GmbH
-   "^allo,.*":
+diff --git a/Documentation/devicetree/bindings/iio/magnetometer/allegromicro,als31300.yaml b/Documentation/devicetree/bindings/iio/magnetometer/allegromicro,als31300.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..52e3781834ee9d98aa84c5d340ae75ffbf76f925
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/magnetometer/allegromicro,als31300.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/magnetometer/allegromicro,als31300.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Allegro MicroSystems ALS31300 3-D Linear Hall Effect sensor
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++properties:
++  $nodename:
++    pattern: '^magnetometer@[0-9a-f]+$'
++
++  compatible:
++    enum:
++      - allegromicro,als31300-500 # Factory configured at 500 Gauss input range
++      - allegromicro,als31300-1000 # Factory configured at 1000 Gauss input range
++      - allegromicro,als31300-2000 # Factory configured at 2000 Gauss input range
++
++  reg:
++    maxItems: 1
++
++  vcc-supply:
++    description: 5.5V supply
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      magnetometer@61 {
++        compatible = "allegromicro,als31300-500";
++        reg = <0x61>;
++        vcc-supply = <&hall_vcc>;
++      };
++    };
 
 -- 
 2.34.1
