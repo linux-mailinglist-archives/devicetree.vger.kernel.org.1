@@ -1,313 +1,345 @@
-Return-Path: <devicetree+bounces-117125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00AD09B5173
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 18:58:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE3329B51A0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 19:14:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8485D1F2263E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 17:58:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CA81283E8E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 18:14:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672581DC05F;
-	Tue, 29 Oct 2024 17:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9F61DD539;
+	Tue, 29 Oct 2024 18:14:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ahA57cS7"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="kDzdEMgG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from xmbghk7.mail.qq.com (xmbghk7.mail.qq.com [43.163.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 372FC19A298;
-	Tue, 29 Oct 2024 17:58:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 129941DC739;
+	Tue, 29 Oct 2024 18:13:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=43.163.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730224689; cv=none; b=hXhCBevG/EuqD5JaZJ0FByX8eEiXW0VeqfYn2CPc1SpPVD6X26E/N5OCM49RvzkqKIbqdF16pJvhsGRVUcJ8D0H7MGpIe7lF/bOTNauNI1ya2EbbmEsXakWl4mVKamPYLUJoGjH3S1rB7TOVewTxhlkkhqIGfnzAozFaQQC59As=
+	t=1730225645; cv=none; b=EA5qkZKQJj9ycd+eU5URskj8CxuyrLTh55S4wA+WOs+Edovrx4Fgn6nqVfKjUlqlXZaJt1PgVlduHO9SpbrO9aG6uYcd/SNDEyD1NfhjfcJbGHR6T3IwyyZKPm9+ScHkRXELI1kkyHgUVS93NEQFJuhEKztbrnDmMCdzpRnTcUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730224689; c=relaxed/simple;
-	bh=FPDxeLe4JaaLb+HIRdyNzCgnenNG860ENQPe0grj9Rk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BQkLEhAPz9lemQTlBggT1LmvE3qG26H6/rk8X7oLoyGDteX+P4noFGdkgBRK8ILwfMx88BE8ZZ2n6WnzBkX2TH/1Cr/hDzJxSZYf1xcMT6qf9LTfGo027cDVA1XV1x8/38uOThjFmYI5nr78+TMgSfK+dx8bii9gBUuSlSf2urc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ahA57cS7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCC45C4CEEB;
-	Tue, 29 Oct 2024 17:58:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730224688;
-	bh=FPDxeLe4JaaLb+HIRdyNzCgnenNG860ENQPe0grj9Rk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ahA57cS7nneGtTneCZbhxQP4ct/T28YRkAkVekmOA6zzwLKhnk6slUk+Ms7ozbfb1
-	 oNpab7jmQjID36i/EFZmSzXwngRINayIvYJOZigkaNPEJxhSD8vNUACVqhzc5ZlK89
-	 9VfglZdYNltLEaIvQEk2SBkeuh1xy+Az27UWzxkgjwfilYJztE6hGklybREekBmb9c
-	 LMyPpMvmqAFzu9f8vmKQW4GYvfhAWMogIl1S3vcPeiwCzEAOtqFzbsEivJo8IbS5uk
-	 NtAg9iHlfPC1EuZWDrpGOII6GeA4kIgJfiTObBjY+/kbVDC300JVLZwgv2DSiGMOUP
-	 Ppth6h+DoYN5A==
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-539f4d8ef66so7550369e87.1;
-        Tue, 29 Oct 2024 10:58:08 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVjQy7GfNbxlN9cDqe8r8RkgGbOhfv5+NliW74kd/bOPCXmVc763gfxzM+JKSdM8Z9spi51asK9LpdsMUYUylo=@vger.kernel.org, AJvYcCWp4wn3pi63l/RReviqtr5iBLpxfbNL+FcWglJAAaLAYXCxOTML8WdkVysmtQHQCAiis2L6nhtRWXLL6P4s@vger.kernel.org, AJvYcCXvmT1rz8tZgRyJ+RfAhAEPDppTctnnSEtGA8feuFKQ55UocGyPHEMYCQWh/XEDHmB95ANMsCCuhF/y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3sCisG2NXJE2scOVOCPrnw50m/9SD/M1oiNiyttVw+rw4DbU/
-	JHS6rssGZr4h2Bs1Xxb7sNiIlNBcr/mGkFLPxlu6yg119FBT9MqHfMViJp9SrqQjMYWibnrzEqU
-	yB6qMSHexrgF685uPIUA8PcXDGQ==
-X-Google-Smtp-Source: AGHT+IHg25TDFYt6OEynRIkQQ43FelFAD0Wdd033FZRak63+Mubc9FOluOHqGWY4csHjtryvOUM8L9d7dl8lvFhZZ/4=
-X-Received: by 2002:a05:6512:1304:b0:53b:1f77:e95e with SMTP id
- 2adb3069b0e04-53b34c5f595mr5799901e87.44.1730224686962; Tue, 29 Oct 2024
- 10:58:06 -0700 (PDT)
+	s=arc-20240116; t=1730225645; c=relaxed/simple;
+	bh=QCT6puWGo6Vk4tKrB2zmhFnVH4w2WVXlwIuR/KWT7pE=;
+	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
+	 Date:Cc:References:To; b=nL0grMn6PVWQ8Mkr1iy4VWZENAU09Ke4jeKPa7LtCUqr6zLtUToz8WSLp2ntJzhT1s36qUkVK7vQVv/8wPT6h84OfgBgbBDuCZuERrkhOhAU1jBt3P40sLPN7qrH4Y/wRJ1cb3mOY8o/eT6DcQHCEpo4RdBmbaujvmcwp1n/IvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=pass smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=kDzdEMgG; arc=none smtp.client-ip=43.163.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cyyself.name
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1730225635; bh=BoW6s+rUCxUCpZyfIxwEwxTIMi7q9DopWXIdFHkjBrE=;
+	h=Subject:From:In-Reply-To:Date:Cc:References:To;
+	b=kDzdEMgGLnGudJ4p2qDlXaP2aa74LsuU/PtvOR3MdxaAmgPsgS+7CZ4Q2R/ybiBE4
+	 V2ivEza5MJdDE0zyBN5MCTQ5In2lpZ/JKQQz1piZlOL3pKesDcT8qPRkn/xpgGbZsl
+	 xb4agPsU0POL5fKLjhS/EzkfwiwPTfUR/PJel5zU=
+Received: from smtpclient.apple ([2408:8207:18a1:fd20:752a:71a:7814:8c66])
+	by newxmesmtplogicsvrszc25-0.qq.com (NewEsmtp) with SMTP
+	id 250884F; Wed, 30 Oct 2024 02:00:37 +0800
+X-QQ-mid: xmsmtpt1730224837t1sqy8vre
+Message-ID: <tencent_B953631642161A5BF9B004D1B4931C2D7109@qq.com>
+X-QQ-XMAILINFO: M3cUO7vMX4chu1q7adTHRfrbAh6OiaqnsY91xlCkkq6QmsjwEojYKsEQB+6Ory
+	 FWqX+3YSQqfTF1NE6Dr3UxffZuUlExaE/jTqRIUSVh6b834awdrxZAlCBkWN9WmSLfo85eoDPNua
+	 xSvN1Uc71y6MIwlLQUDdJechzgXcBLF4SpehjEbgSTSG/nv2jk3fgjEJUBBt6RPxkO9UulvQ9d23
+	 hTP53I6auLoCc2J3gNvOhGksS9+IScNYIVuZQJMwe9tnxssqE1YUnLh2KiHfYDzFmTPxzRijTQeX
+	 7q4AHZsaYZD1q0Kt+4b2VmHNY8yQRx9SEXWGBce2Klqs77m3p6A7oCUPFZbUfHJD87shOsE5orhV
+	 dVkdufvv61ZK5lfmAGSgUG/p2uogr4xDySgMZGh/41qVzAwVgyGE7Smu0OkG6z8NGWOM6JgrK4dd
+	 TM7YU78HSogBmdMvRFG1TIrIl17UE090SMQHwJZPpHDfWbc3qCupVcZ8HTZoc6N281DTA2FuTeII
+	 /gWijiIp6mx+K1RrOnvOD3SqYu8gYXq1u4BmYLbHAzEfc2Otr+fls8bEzHbWPavqtDIl+v2uv7eP
+	 PI/f7zbvnpEmy7FRARb0V72PC+F+jLxInhkjZwU3/JgZfOAlbYFrZxXRQniZZ6yAdDBhI11KMGy6
+	 Tk8ayl6U9z5Sfk8aGp/IbVobm9SifxFnDa56qS5sOc2VCUxjgCSpe2S89rpQSjiG90IHzhZPqnry
+	 AjWdVwSHgF2qIk7gzdvxs1ed2rGxBRG5Lm63ZEYOzCVMrJYfqiIrSOkLnK9iuoneWJoyufZ7riHs
+	 fL6U4QK/0fPv9ktofUkzKYumo2Lzp99bzKcQV1GxnIKfQSxBSlk3uuxZXTZlgcNZ0Y2r/Gg8bPkJ
+	 PMZYvfA8k1bQFneDMIIEKAvKOzfpSfRY3o4XVYK5U80dWRB6pgyMkTNoDfkCgY06mp6wY8QT7Bx+
+	 /zQCC9fVTmJKwelKTpUGELPaQx2xqGrJ+rXuSN0+43GyOTYOFtQj0JtmbO+kohwxdxe6BCFSRKrx
+	 PzIKir29jqrNXU7ZfA
+X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20241025-rust-platform-dev-v1-0-0df8dcf7c20b@kernel.org>
- <20241025-rust-platform-dev-v1-2-0df8dcf7c20b@kernel.org> <CAH5fLgjhiLUYPgTt_Ks+L-zhWaQG5-Yjm-Y3tfh2b2+PzT=bLg@mail.gmail.com>
-In-Reply-To: <CAH5fLgjhiLUYPgTt_Ks+L-zhWaQG5-Yjm-Y3tfh2b2+PzT=bLg@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 29 Oct 2024 12:57:53 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJWPR-Q=vsxSvD7V9_v=+om5mRuW9yYNqfavVRUwH9JFw@mail.gmail.com>
-Message-ID: <CAL_JsqJWPR-Q=vsxSvD7V9_v=+om5mRuW9yYNqfavVRUwH9JFw@mail.gmail.com>
-Subject: Re: [PATCH RFC 2/3] rust: Add bindings for device properties
-To: Alice Ryhl <aliceryhl@google.com>
-Cc: Saravana Kannan <saravanak@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Dirk Behme <dirk.behme@gmail.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	rust-for-linux@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.200.121\))
+Subject: Re: [PATCH v10 10/14] riscv: hwprobe: Add thead vendor extension
+ probing
+From: Yangyu Chen <cyy@cyyself.name>
+In-Reply-To: <20240911-xtheadvector-v10-10-8d3930091246@rivosinc.com>
+Date: Wed, 30 Oct 2024 02:00:26 +0800
+Cc: linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-sunxi@lists.linux.dev,
+ linux-doc@vger.kernel.org,
+ linux-kselftest@vger.kernel.org
 Content-Transfer-Encoding: quoted-printable
-
-On Tue, Oct 29, 2024 at 9:16=E2=80=AFAM Alice Ryhl <aliceryhl@google.com> w=
-rote:
->
-> On Fri, Oct 25, 2024 at 11:06=E2=80=AFPM Rob Herring (Arm) <robh@kernel.o=
-rg> wrote:
-> >
-> > The device property API is a firmware agnostic API for reading
-> > properties from firmware (DT/ACPI) devices nodes and swnodes.
-> >
-> > While the C API takes a pointer to a caller allocated variable/buffer,
-> > the rust API is designed to return a value and can be used in struct
-> > initialization. Rust generics are also utilized to support different
-> > sizes of properties (e.g. u8, u16, u32).
-> >
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > ---
-> > Not sure if we need the KVec variant, but I kept it as that was my firs=
-t
-> > pass attempt. Most callers are filling in some value in a driver data
-> > struct. Sometimes the number of elements is not known, so the caller
-> > calls to get the array size, allocs the correct size buffer, and then
-> > reads the property again to fill in the buffer.
-> >
-> > I have not implemented a wrapper for device_property_read_string(_array=
-)
-> > because that API is problematic for dynamic DT nodes. The API just
-> > returns pointer(s) into the raw DT data. We probably need to return a
-> > copy of the string(s) instead for rust.
-> >
-> > After property accessors, next up is child node accessors/iterators.
-> > ---
-> >  rust/bindings/bindings_helper.h |   1 +
-> >  rust/kernel/device.rs           | 145 ++++++++++++++++++++++++++++++++=
-+++++++-
-> >  2 files changed, 145 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_h=
-elper.h
-> > index 217c776615b9..65717cc20a23 100644
-> > --- a/rust/bindings/bindings_helper.h
-> > +++ b/rust/bindings/bindings_helper.h
-> > @@ -19,6 +19,7 @@
-> >  #include <linux/pci.h>
-> >  #include <linux/phy.h>
-> >  #include <linux/platform_device.h>
-> > +#include <linux/property.h>
-> >  #include <linux/refcount.h>
-> >  #include <linux/sched.h>
-> >  #include <linux/slab.h>
-> > diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
-> > index 0c28b1e6b004..bb66a28df890 100644
-> > --- a/rust/kernel/device.rs
-> > +++ b/rust/kernel/device.rs
-> > @@ -5,10 +5,14 @@
-> >  //! C header: [`include/linux/device.h`](srctree/include/linux/device.=
-h)
-> >
-> >  use crate::{
-> > +    alloc::KVec,
-> >      bindings,
-> > +    error::{to_result, Result},
-> > +    prelude::*,
-> > +    str::CStr,
-> >      types::{ARef, Opaque},
-> >  };
-> > -use core::{fmt, ptr};
-> > +use core::{fmt, mem::size_of, ptr};
-> >
-> >  #[cfg(CONFIG_PRINTK)]
-> >  use crate::c_str;
-> > @@ -189,6 +193,145 @@ unsafe fn printk(&self, klevel: &[u8], msg: fmt::=
-Arguments<'_>) {
-> >              )
-> >          };
-> >      }
-> > +
-> > +    /// Returns if a firmware property `name` is true or false
-> > +    pub fn property_read_bool(&self, name: &CStr) -> bool {
-> > +        unsafe { bindings::device_property_present(self.as_raw(), name=
-.as_ptr() as *const i8) }
-> > +    }
-> > +
-> > +    /// Returns if a firmware string property `name` has match for `ma=
-tch_str`
-> > +    pub fn property_match_string(&self, name: &CStr, match_str: &CStr)=
- -> Result<usize> {
-> > +        let ret =3D unsafe {
-> > +            bindings::device_property_match_string(
-> > +                self.as_raw(),
-> > +                name.as_ptr() as *const i8,
-> > +                match_str.as_ptr() as *const i8,
-> > +            )
-> > +        };
-> > +        to_result(ret)?;
-> > +        Ok(ret as usize)
-> > +    }
-> > +
-> > +    /// Returns firmware property `name` scalar value
-> > +    ///
-> > +    /// Valid types are i8, u8, i16, u16, i32, u32, i64, u64
-> > +    pub fn property_read<T: Copy>(&self, name: &CStr) -> Result<T> {
-> > +        let mut val: [T; 1] =3D unsafe { core::mem::zeroed() };
-> > +
-> > +        Self::_property_read_array(&self, name, &mut val)?;
-> > +        Ok(val[0])
-> > +    }
-> > +
-> > +    /// Returns firmware property `name` array values
-> > +    ///
-> > +    /// Valid types are i8, u8, i16, u16, i32, u32, i64, u64
-> > +    pub fn property_read_array<T, const N: usize>(&self, name: &CStr) =
--> Result<[T; N]> {
-> > +        let mut val: [T; N] =3D unsafe { core::mem::zeroed() };
-> > +
-> > +        Self::_property_read_array(self, name, &mut val)?;
-> > +        Ok(val)
-> > +    }
-> > +
-> > +    fn _property_read_array<T>(&self, name: &CStr, val: &mut [T]) -> R=
-esult {
-> > +        match size_of::<T>() {
-> > +            1 =3D> to_result(unsafe {
-> > +                bindings::device_property_read_u8_array(
-> > +                    self.as_raw(),
-> > +                    name.as_ptr() as *const i8,
-> > +                    val.as_ptr() as *mut u8,
-> > +                    val.len(),
-> > +                )
-> > +            })?,
-> > +            2 =3D> to_result(unsafe {
-> > +                bindings::device_property_read_u16_array(
-> > +                    self.as_raw(),
-> > +                    name.as_ptr() as *const i8,
-> > +                    val.as_ptr() as *mut u16,
-> > +                    val.len(),
-> > +                )
-> > +            })?,
-> > +            4 =3D> to_result(unsafe {
-> > +                bindings::device_property_read_u32_array(
-> > +                    self.as_raw(),
-> > +                    name.as_ptr() as *const i8,
-> > +                    val.as_ptr() as *mut u32,
-> > +                    val.len(),
-> > +                )
-> > +            })?,
-> > +            8 =3D> to_result(unsafe {
-> > +                bindings::device_property_read_u64_array(
-> > +                    self.as_raw(),
-> > +                    name.as_ptr() as *const i8,
-> > +                    val.as_ptr() as *mut u64,
-> > +                    val.len(),
-> > +                )
-> > +            })?,
-> > +            _ =3D> return Err(EINVAL),
-> > +        }
-> > +        Ok(())
-> > +    }
-> > +
-> > +    pub fn property_read_array_vec<T>(&self, name: &CStr, len: usize) =
--> Result<KVec<T>> {
-> > +        let mut val: KVec<T> =3D KVec::with_capacity(len, GFP_KERNEL)?=
-;
-> > +
-> > +        // SAFETY: len always matches capacity
-> > +        unsafe { val.set_len(len) }
-> > +        Self::_property_read_array::<T>(&self, name, val.as_mut_slice(=
-))?;
-> > +        Ok(val)
-> > +    }
-> > +
-> > +    /// Returns array length for firmware property `name`
-> > +    ///
-> > +    /// Valid types are i8, u8, i16, u16, i32, u32, i64, u64
-> > +    pub fn property_count_elem<T>(&self, name: &CStr) -> Result<usize>=
- {
->
-> This always returns usize? I'm a bit confused ...
-
-The C version returned an int so we could return an errno or positive
-count. With Result, we don't need negative values and isn't usize
-generally used for counts of things like size_t in C?
+X-OQ-MSGID: <F7EC0D4B-419A-400B-BB28-CB0CC709DB6C@cyyself.name>
+References: <20240911-xtheadvector-v10-0-8d3930091246@rivosinc.com>
+ <20240911-xtheadvector-v10-10-8d3930091246@rivosinc.com>
+To: Charlie Jenkins <charlie@rivosinc.com>,
+ Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ Jisheng Zhang <jszhang@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <shuah@kernel.org>,
+ Guo Ren <guoren@kernel.org>,
+ Evan Green <evan@rivosinc.com>,
+ Andy Chiu <andy.chiu@sifive.com>,
+ Jessica Clarke <jrtc27@jrtc27.com>,
+ Andrew Jones <ajones@ventanamicro.com>
+X-Mailer: Apple Mail (2.3826.200.121)
 
 
-> > +        match size_of::<T>() {
-> > +            1 =3D> {
-> > +                ret =3D unsafe {
-> > +                    bindings::device_property_read_u8_array(
-> > +                        self.as_raw(),
-> > +                        name.as_ptr() as *const i8,
-> > +                        ptr::null_mut(),
-> > +                        0,
-> > +                    )
-> > +                }
-> > +            }
-> > +            2 =3D> {
-> > +                ret =3D unsafe {
-> > +                    bindings::device_property_read_u16_array(
-> > +                        self.as_raw(),
-> > +                        name.as_ptr() as *const i8,
-> > +                        ptr::null_mut(),
-> > +                        0,
-> > +                    )
-> > +                }
-> > +            }
-> > +            4 =3D> {
-> > +                ret =3D unsafe {
-> > +                    bindings::device_property_read_u32_array(
-> > +                        self.as_raw(),
-> > +                        name.as_ptr() as *const i8,
-> > +                        ptr::null_mut(),
-> > +                        0,
-> > +                    )
-> > +                }
-> > +            }
-> > +            8 =3D> {
-> > +                ret =3D unsafe {
-> > +                    bindings::device_property_read_u64_array(
-> > +                        self.as_raw(),
-> > +                        name.as_ptr() as *const i8,
-> > +                        ptr::null_mut(),
-> > +                        0,
-> > +                    )
-> > +                }
-> > +            }
-> > +            _ =3D> return Err(EINVAL),
->
-> You can use `kernel::build_error!` here to trigger a build failure if
-> the size is wrong.
+On 9/12/24 13:55, Charlie Jenkins wrote:
+> Add a new hwprobe key "RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0" which
+> allows userspace to probe for the new =
+RISCV_ISA_VENDOR_EXT_XTHEADVECTOR
+> vendor extension.
 
-I really want a build error if the type is wrong, then the _ case
-would be unreachable. No way to do that?
+I believe it's more advantageous to use RISCV_HWPROBE_KEY_VENDOR_EXT_0
+to ensure that this key is shared with all vendors. Subsequently,
+mhartid can select the specific vendor. Each vendor can allocate
+its own extension space within the bitmask.
 
-Rob
+Therefore, we won't require the addition of a new hardware probe
+key for a new vendor in the future.
+
+RISC-V C-API chooses a similar design.
+
+Link: =
+https://github.com/riscv-non-isa/riscv-c-api-doc/blob/main/src/c-api.adoc#=
+extension-bitmask
+
+> This new key will allow userspace code to probe for which thead vendor
+> extensions are supported. This API is modeled to be consistent with
+> RISCV_HWPROBE_KEY_IMA_EXT_0. The bitmask returned will have each bit
+> corresponding to a supported thead vendor extension of the cpumask =
+set.
+> Just like RISCV_HWPROBE_KEY_IMA_EXT_0, this allows a userspace program
+> to determine all of the supported thead vendor extensions in one call.
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> Reviewed-by: Evan Green <evan@rivosinc.com>
+> ---
+>  arch/riscv/include/asm/hwprobe.h                   |  3 +-
+>  .../include/asm/vendor_extensions/thead_hwprobe.h  | 19 +++++++++++
+>  .../include/asm/vendor_extensions/vendor_hwprobe.h | 37 =
+++++++++++++++++++++++
+>  arch/riscv/include/uapi/asm/hwprobe.h              |  3 +-
+>  arch/riscv/include/uapi/asm/vendor/thead.h         |  3 ++
+>  arch/riscv/kernel/sys_hwprobe.c                    |  5 +++
+>  arch/riscv/kernel/vendor_extensions/Makefile       |  1 +
+>  .../riscv/kernel/vendor_extensions/thead_hwprobe.c | 19 +++++++++++
+>  8 files changed, 88 insertions(+), 2 deletions(-)
+> diff --git a/arch/riscv/include/asm/hwprobe.h =
+b/arch/riscv/include/asm/hwprobe.h
+> index ef01c182af2b..6148e1eab64c 100644
+> --- a/arch/riscv/include/asm/hwprobe.h
+> +++ b/arch/riscv/include/asm/hwprobe.h
+> @@ -1,6 +1,6 @@
+>  /* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+>  /*
+> - * Copyright 2023 Rivos, Inc
+> + * Copyright 2023-2024 Rivos, Inc
+>   */
+>    #ifndef _ASM_HWPROBE_H
+> @@ -21,6 +21,7 @@ static inline bool hwprobe_key_is_bitmask(__s64 key)
+>  	case RISCV_HWPROBE_KEY_BASE_BEHAVIOR:
+>  	case RISCV_HWPROBE_KEY_IMA_EXT_0:
+>  	case RISCV_HWPROBE_KEY_CPUPERF_0:
+> +	case RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0:
+>  		return true;
+>  	}
+>  diff --git a/arch/riscv/include/asm/vendor_extensions/thead_hwprobe.h =
+b/arch/riscv/include/asm/vendor_extensions/thead_hwprobe.h
+> new file mode 100644
+> index 000000000000..65a9c5612466
+> --- /dev/null
+> +++ b/arch/riscv/include/asm/vendor_extensions/thead_hwprobe.h
+> @@ -0,0 +1,19 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef _ASM_RISCV_VENDOR_EXTENSIONS_THEAD_HWPROBE_H
+> +#define _ASM_RISCV_VENDOR_EXTENSIONS_THEAD_HWPROBE_H
+> +
+> +#include <linux/cpumask.h>
+> +
+> +#include <uapi/asm/hwprobe.h>
+> +
+> +#ifdef CONFIG_RISCV_ISA_VENDOR_EXT_THEAD
+> +void hwprobe_isa_vendor_ext_thead_0(struct riscv_hwprobe *pair, const =
+struct cpumask *cpus);
+> +#else
+> +static inline void hwprobe_isa_vendor_ext_thead_0(struct =
+riscv_hwprobe *pair,
+> +						  const struct cpumask =
+*cpus)
+> +{
+> +	pair->value =3D 0;
+> +}
+> +#endif
+> +
+> +#endif
+> diff --git a/arch/riscv/include/asm/vendor_extensions/vendor_hwprobe.h =
+b/arch/riscv/include/asm/vendor_extensions/vendor_hwprobe.h
+> new file mode 100644
+> index 000000000000..6b9293e984a9
+> --- /dev/null
+> +++ b/arch/riscv/include/asm/vendor_extensions/vendor_hwprobe.h
+> @@ -0,0 +1,37 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright 2024 Rivos, Inc
+> + */
+> +
+> +#ifndef _ASM_RISCV_SYS_HWPROBE_H
+> +#define _ASM_RISCV_SYS_HWPROBE_H
+> +
+> +#include <asm/cpufeature.h>
+> +
+> +#define VENDOR_EXT_KEY(ext)							=
+	\
+> +	do {									=
+	\
+> +		if (__riscv_isa_extension_available(isainfo->isa, =
+RISCV_ISA_VENDOR_EXT_##ext)) \
+> +			pair->value |=3D RISCV_HWPROBE_VENDOR_EXT_##ext;	=
+		\
+> +		else								=
+	\
+> +			missing |=3D RISCV_HWPROBE_VENDOR_EXT_##ext;		=
+	\
+> +	} while (false)
+> +
+> +/*
+> + * Loop through and record extensions that 1) anyone has, and 2) =
+anyone
+> + * doesn't have.
+> + *
+> + * _extension_checks is an arbitrary C block to set the values of =
+pair->value
+> + * and missing. It should be filled with VENDOR_EXT_KEY expressions.
+> + */
+> +#define VENDOR_EXTENSION_SUPPORTED(pair, cpus, =
+per_hart_vendor_bitmap, _extension_checks)	\
+> +	do {									=
+		\
+> +		int cpu;							=
+		\
+> +		u64 missing =3D 0;						=
+		\
+> +		for_each_cpu(cpu, (cpus)) {					=
+		\
+> +			struct riscv_isavendorinfo *isainfo =3D =
+&(per_hart_vendor_bitmap)[cpu];	\
+> +			_extension_checks					=
+		\
+> +		}								=
+		\
+> +		(pair)->value &=3D ~missing;					=
+		\
+> +	} while (false)								=
+		\
+> +
+> +#endif /* _ASM_RISCV_SYS_HWPROBE_H */
+> diff --git a/arch/riscv/include/uapi/asm/hwprobe.h =
+b/arch/riscv/include/uapi/asm/hwprobe.h
+> index b706c8e47b02..452d0b84f17f 100644
+> --- a/arch/riscv/include/uapi/asm/hwprobe.h
+> +++ b/arch/riscv/include/uapi/asm/hwprobe.h
+> @@ -1,6 +1,6 @@
+>  /* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+>  /*
+> - * Copyright 2023 Rivos, Inc
+> + * Copyright 2023-2024 Rivos, Inc
+>   */
+>    #ifndef _UAPI_ASM_HWPROBE_H
+> @@ -82,6 +82,7 @@ struct riscv_hwprobe {
+>  #define RISCV_HWPROBE_KEY_ZICBOZ_BLOCK_SIZE	6
+>  #define RISCV_HWPROBE_KEY_HIGHEST_VIRT_ADDRESS	7
+>  #define RISCV_HWPROBE_KEY_TIME_CSR_FREQ	8
+> +#define RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0	9
+>  /* Increase RISCV_HWPROBE_MAX_KEY when adding items. */
+>    /* Flags */
+> diff --git a/arch/riscv/include/uapi/asm/vendor/thead.h =
+b/arch/riscv/include/uapi/asm/vendor/thead.h
+> new file mode 100644
+> index 000000000000..43790ebe5faf
+> --- /dev/null
+> +++ b/arch/riscv/include/uapi/asm/vendor/thead.h
+> @@ -0,0 +1,3 @@
+> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+> +
+> +#define		RISCV_HWPROBE_VENDOR_EXT_XTHEADVECTOR	(1 << 0)
+> diff --git a/arch/riscv/kernel/sys_hwprobe.c =
+b/arch/riscv/kernel/sys_hwprobe.c
+> index 8d1b5c35d2a7..5a3dc8e66c85 100644
+> --- a/arch/riscv/kernel/sys_hwprobe.c
+> +++ b/arch/riscv/kernel/sys_hwprobe.c
+> @@ -15,6 +15,7 @@
+>  #include <asm/uaccess.h>
+>  #include <asm/unistd.h>
+>  #include <asm/vector.h>
+> +#include <asm/vendor_extensions/thead_hwprobe.h>
+>  #include <vdso/vsyscall.h>
+>    @@ -241,6 +242,10 @@ static void hwprobe_one_pair(struct =
+riscv_hwprobe *pair,
+>  		pair->value =3D riscv_timebase;
+>  		break;
+>  +	case RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0:
+> +		hwprobe_isa_vendor_ext_thead_0(pair, cpus);
+> +		break;
+> +
+>  	/*
+>  	 * For forward compatibility, unknown keys don't fail the whole
+>  	 * call, but get their element key set to -1 and value set to 0
+> diff --git a/arch/riscv/kernel/vendor_extensions/Makefile =
+b/arch/riscv/kernel/vendor_extensions/Makefile
+> index 353522cb3bf0..866414c81a9f 100644
+> --- a/arch/riscv/kernel/vendor_extensions/Makefile
+> +++ b/arch/riscv/kernel/vendor_extensions/Makefile
+> @@ -2,3 +2,4 @@
+>    obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_ANDES)	+=3D andes.o
+>  obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_THEAD)	+=3D thead.o
+> +obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_THEAD)	+=3D thead_hwprobe.o
+> diff --git a/arch/riscv/kernel/vendor_extensions/thead_hwprobe.c =
+b/arch/riscv/kernel/vendor_extensions/thead_hwprobe.c
+> new file mode 100644
+> index 000000000000..2eba34011786
+> --- /dev/null
+> +++ b/arch/riscv/kernel/vendor_extensions/thead_hwprobe.c
+> @@ -0,0 +1,19 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +
+> +#include <asm/vendor_extensions/thead.h>
+> +#include <asm/vendor_extensions/thead_hwprobe.h>
+> +#include <asm/vendor_extensions/vendor_hwprobe.h>
+> +
+> +#include <linux/cpumask.h>
+> +#include <linux/types.h>
+> +
+> +#include <uapi/asm/hwprobe.h>
+> +#include <uapi/asm/vendor/thead.h>
+> +
+> +void hwprobe_isa_vendor_ext_thead_0(struct riscv_hwprobe *pair, const =
+struct cpumask *cpus)
+> +{
+> +	VENDOR_EXTENSION_SUPPORTED(pair, cpus,
+> +				   =
+riscv_isa_vendor_ext_list_thead.per_hart_isa_bitmap, {
+> +		VENDOR_EXT_KEY(XTHEADVECTOR);
+> +	});
+> +}
+
 
