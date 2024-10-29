@@ -1,149 +1,159 @@
-Return-Path: <devicetree+bounces-116942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AB8C9B46D5
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 11:28:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 014699B46FA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 11:35:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BB821C2263E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 10:28:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78B8A1F23C7D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 10:35:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090BA204F75;
-	Tue, 29 Oct 2024 10:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76871DF985;
+	Tue, 29 Oct 2024 10:35:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QrTtYg3K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lINJNvTY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF3920495C;
-	Tue, 29 Oct 2024 10:28:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC74E17A58F;
+	Tue, 29 Oct 2024 10:35:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730197719; cv=none; b=n3nxv3UdmN2PXwUkTYYe2ExS+scq7jGRSQoGUHTqBWk2Ojb7uX6+ChML4xh3EA82Yu8jXTHEDKw/sCqfmntOSdWAMdKG4VHgsb9GzzM6qYiKINyqn0gvQu505SR/vOMpdXhb07G6jECzQhdU3Ed9DiCiEIxIbb8F05CUX6btZcE=
+	t=1730198150; cv=none; b=Qp0LKYMq6hlriJ0QbDZk19nK3sieUEFOiSOTge0dzk6whfsrXAbPckY9PD2vvSSlsllRsVX0Mk+M/GcOUTDykr7yQ9jJkAygmtr2G+KybtpaDIIYc4hlnHvt5EJAIlgDl7oGY+97FS16iFn+3pzL81ZFVvMPsiRJvgP7s2giimQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730197719; c=relaxed/simple;
-	bh=1TC7htUT37EbsEzqzjfbayZWwxcj3FrgfGFtHN64S5U=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ddgdIJGFNxnIp2kx+Kp/JIOQyJOYapABSoQPobfY9DXtalrYk90DsczKLociT50BvlRuRRDMM1XNKc6T55gEYTP4aWMDIK8cybqGKea5skEo41ODNacIoWHHtSRYt41PA/FJEFLyDJbrLP+P7V/6x7+QgmYqHe0ZvJOAIw5SZc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QrTtYg3K; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49TASRji005328;
-	Tue, 29 Oct 2024 05:28:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1730197707;
-	bh=OkmyWd+WEFnErbPoKlztVMnzbLGAaFnM1My2qYl8+jw=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=QrTtYg3KN1nyWkN/J7RMszFEcK82Ad9TORSrBHrCa9xBobCmGofUPDJoAAfJz8HLO
-	 FvQxxMr5h19x4dpzMqqBv6Po68iorEN1tk9X4qpPJUfwrQ2xlqRFR5A6bZbfRBHu1x
-	 bjGAYnMwLkorSCr0IeWirhYkYslwn82qssAwELE0=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49TASRdZ005531
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 29 Oct 2024 05:28:27 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
- Oct 2024 05:28:27 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 29 Oct 2024 05:28:26 -0500
-Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49TASQLY015477;
-	Tue, 29 Oct 2024 05:28:26 -0500
-Date: Tue, 29 Oct 2024 15:58:25 +0530
-From: Manorit Chawdhry <m-chawdhry@ti.com>
-To: Andrew Halaney <ahalaney@redhat.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Keerthy
-	<j-keerthy@ti.com>,
-        Neha Malcom Francis <n-francis@ti.com>,
-        Eric Chanudet
-	<echanude@redhat.com>,
-        Enric Balletbo <eballetb@redhat.com>, Udit Kumar
-	<u-kumar1@ti.com>,
-        Beleswar Prasad Padhi <b-padhi@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/2] arm64: dts: ti: k3-j784s4: Mark tps659413
- regulators as bootph-all
-Message-ID: <20241029102825.fhyuk2rrjusysy7i@uda0497581>
-References: <20240916-j784s4-tps6594-bootph-v3-0-ab70da0de7bd@redhat.com>
- <wl6ri2djky2rkfuaj6hhotzgie6el7leno2qupze6geshp6j4i@g7q5a2rt2cmr>
+	s=arc-20240116; t=1730198150; c=relaxed/simple;
+	bh=aq++cbQ+5AGHbOH23ddxpmmWU7ItL0ozXF/spT1zIqQ=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=M0CMAjr7LdbpXomCE3Aq7UH50LoHU4+IlW5pZl4Llu4zkamKFNXeQz8exoYDYnOAewqubyguREl3CMsRkqLFgFnI8sLVNKcD08K5UUovwdL3dzlt2n3KeFq6TjxTjkRbRgHqJjtc4L3568HmkCPg+zXqruJVjN9F9RTfvUVnaa8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lINJNvTY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51E27C4CECD;
+	Tue, 29 Oct 2024 10:35:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730198150;
+	bh=aq++cbQ+5AGHbOH23ddxpmmWU7ItL0ozXF/spT1zIqQ=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=lINJNvTYE/MQA+aEHXCGgvKMbjanAAMEmvibck+ZDLWf7GCTVNos9nUh6XhCQX8oj
+	 vcEJC/aGe6jDQEF9ZzNx5I9QPt08llSlb89dJafrUro3j5hznLe3GcCm6C2OQYW6Fs
+	 uhiMzKZQG+Z2If/7pJ+5k8OggaUo/wWTxnSK4lErmJVn6K4TJCGsMy6YrOxRCW7QC+
+	 5iNvZeTAfFq9vTToVnvkkMN9mm4lKwIggbGztau5AjJxynLzus1FjjbrjFK6FvNY7+
+	 BzJEzn/nREkS2lhQ0AtuivJbdw+H9aJ3QuNOg+coF7bu2wPUMT1gWWPeW00u2NrFlk
+	 CrQNz84M6ySFg==
+Message-ID: <117828c6-92c4-4af4-b47e-f049f9c2cb7b@kernel.org>
+Date: Tue, 29 Oct 2024 19:35:47 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <wl6ri2djky2rkfuaj6hhotzgie6el7leno2qupze6geshp6j4i@g7q5a2rt2cmr>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 00/14] Fix and improve the Rockchip endpoint driver
+From: Damien Le Moal <dlemoal@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ linux-pci@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org
+Cc: linux-rockchip@lists.infradead.org,
+ Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+ Niklas Cassel <cassel@kernel.org>
+References: <20241017015849.190271-1-dlemoal@kernel.org>
+Content-Language: en-US
+Organization: Western Digital Research
+In-Reply-To: <20241017015849.190271-1-dlemoal@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Andrew,
+On 10/17/24 10:58, Damien Le Moal wrote:
+> This patch series fix the PCI address mapping handling of the Rockchip
+> PCI endpoint driver, refactor some of its code, improves link training
+> and adds handling of the PERST# signal.
+> 
+> This series is organized as follows:
+>  - Patch 1 fixes the rockchip ATU programming
+>  - Patch 2, 3 and 4 introduce small code improvments
+>  - Patch 5 implements the .align_addr() operation to make the RK3399
+>    endpoint controller driver fully functional with the new
+>    pci_epc_mem_map() function
+>  - Patch 6 uses the new align_addr operation function to fix the ATU
+>    programming for MSI IRQ data mapping
+>  - Patch 7, 8, 9 and 10 refactor the driver code to make it more
+>    readable
+>  - Patch 11 introduces the .stop() endpoint controller operation to
+>    correctly disable the endpopint controller after use
+>  - Patch 12 improves link training
+>  - Patch 13 implements handling of the #PERST signal
+>  - Patch 14 adds a DT overlay file to enable EP mode and define the
+>    PERST# GPIO (reset-gpios) property.
+> 
+> These patches were tested using a Pine Rockpro64 board used as an
+> endpoint with the test endpoint function driver and a prototype nvme
+> endpoint function driver.
 
-On 09:56-20241010, Andrew Halaney wrote:
-> On Mon, Sep 16, 2024 at 12:14:50PM GMT, Andrew Halaney wrote:
-> > This series marks tps659413's regulators as bootph-all in order for
-> > the nodes (and parent nodes) to be accessible during MCU's u-boot SPL.
-> > 
-> > This in turn is desired since the tps659413 needs its MCU ESM
-> > state machine setup in order for the watchdog to reset the board.
-> > 
-> > This took me a little while to track down, as enabling the ESM, TPS6594,
-> > etc in u-boot would result in the below boot failure:
-> > 
-> >     U-Boot SPL 2024.10-rc4-00007-g44b12cbcd1b3-dirty (Sep 06 2024 - 14:25:52 -0500)
-> >     SYSFW ABI: 3.1 (firmware rev 0x0009 '9.2.4--v09.02.04 (Kool Koala)')
-> >     Initialized 4 DRAM controllers
-> >     SPL initial stack usage: 13408 bytes
-> >     ### ERROR ### Please RESET the board ###
-> > 
-> > Which turns out to actually have failed far earlier in spl_early_init(),
-> > due to these nodes not being accessible in u-boot. That's hard to tell
-> > though since console isn't setup until later (and for that reason I
-> > think spl_early_init()'s return value in j784s4_init.c isn't
-> > evaluated since a panic() at that point would leave a user with *no*
-> > information at all).
-> > 
-> > I've tested this in conjunction with a u-boot series which I'll link in
-> > a follow-up response on the k3-j784s4-evm. I'd appreciate someone testing
-> > on the k3-am69-sk at a minimum, as it should suffer the same fate if things
-> > aren't setup appropriately.
-> > 
-> > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-> > ---
-> > Changes in v3:
-> > - Added Udit's Tested-by tags
-> > - Reordered bootph-all to align with dts-coding-style (Beleswar)
-> > - Link to v2: https://lore.kernel.org/r/20240911-j784s4-tps6594-bootph-v2-0-a83526264ab1@redhat.com
-> 
-> This applies fine still on linux-next, any chance this could be picked
-> up?
+Ping ? If there are no issues, can we get this queued up ?
 
-You might've to re-spin the series, I saw that [0] got merged and you
-might've to put j784s4 related changes in k3-j784s4-j742s2-evm-common.dtsi
-now instead.
+> 
+> Changes from v4:
+>  - Added patch 6
+>  - Added comments to patch 12 and 13 to clarify link training handling
+>    and PERST# GPIO use.
+>  - Added patch 14
+> 
+> Changes from v3:
+>  - Addressed Mani's comments (see mailing list for details).
+>  - Removed old patch 11 (dt-binding changes) and instead use in patch 12
+>    the already defined reset_gpios property.
+>  - Added patch 6
+>  - Added review tags
+> 
+> Changes from v2:
+>  - Split the patch series
+>  - Corrected patch 11 to add the missing "maxItem"
+> 
+> Changes from v1:
+>  - Changed pci_epc_check_func() to pci_epc_function_is_valid() in patch
+>    1.
+>  - Removed patch "PCI: endpoint: Improve pci_epc_mem_alloc_addr()"
+>    (former patch 2 of v1)
+>  - Various typos cleanups all over. Also fixed some blank space
+>    indentation.
+>  - Added review tags
+> 
+> Damien Le Moal (14):
+>   PCI: rockchip-ep: Fix address translation unit programming
+>   PCI: rockchip-ep: Use a macro to define EP controller .align feature
+>   PCI: rockchip-ep: Improve rockchip_pcie_ep_unmap_addr()
+>   PCI: rockchip-ep: Improve rockchip_pcie_ep_map_addr()
+>   PCI: rockchip-ep: Implement the pci_epc_ops::align_addr() operation
+>   PCI: rockchip-ep: Fix MSI IRQ data mapping
+>   PCI: rockchip-ep: Rename rockchip_pcie_parse_ep_dt()
+>   PCI: rockchip-ep: Refactor rockchip_pcie_ep_probe() memory allocations
+>   PCI: rockchip-ep: Refactor rockchip_pcie_ep_probe() MSI-X hiding
+>   PCI: rockchip-ep: Refactor endpoint link training enable
+>   PCI: rockship-ep: Implement the pci_epc_ops::stop_link() operation
+>   PCI: rockchip-ep: Improve link training
+>   PCI: rockchip-ep: Handle PERST# signal in endpoint mode
+>   arm64: dts: rockchip: Add rockpro64 overlay for PCIe endpoint mode
+> 
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../rockchip/rk3399-rockpro64-pcie-ep.dtso    |  20 +
+>  drivers/pci/controller/pcie-rockchip-ep.c     | 432 ++++++++++++++----
+>  drivers/pci/controller/pcie-rockchip-host.c   |   4 +-
+>  drivers/pci/controller/pcie-rockchip.c        |  21 +-
+>  drivers/pci/controller/pcie-rockchip.h        |  24 +-
+>  6 files changed, 406 insertions(+), 96 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rockpro64-pcie-ep.dtso
+> 
 
-Regards,
-Manorit
 
-[0]: https://lore.kernel.org/linux-arm-kernel/20240902-b4-upstream-j742s2-v6-0-6a7aa2736797@ti.com/
-> 
-> The associated[0] u-boot change is dependent on this and it would be
-> nice to get the wdog working on mainline u-boot + linux.
-> 
-> [0] https://lore.kernel.org/all/3bf2177d-178f-46bf-abfe-6f00a52c623b@ti.com/
-> 
-> 
+-- 
+Damien Le Moal
+Western Digital Research
 
