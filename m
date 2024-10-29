@@ -1,66 +1,69 @@
-Return-Path: <devicetree+bounces-117082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C5889B4F0F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 17:15:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 748689B4F14
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 17:16:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4286228336E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 16:15:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27EAD1F25194
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 16:16:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 475CB19992C;
-	Tue, 29 Oct 2024 16:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1706A1D356C;
+	Tue, 29 Oct 2024 16:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GbmcWUgr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XIdFo/xm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CFCF1993B5;
-	Tue, 29 Oct 2024 16:15:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA26D1993B5;
+	Tue, 29 Oct 2024 16:15:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730218525; cv=none; b=adgyyxUk1eEG+t3JIsmYeIg4MIrov8fxgtg7TZirEwWPwNPQ1DDHccyoF3anefFGLvUwT7xhWQV39AvYh8yFU8jN4vhZCKPpFqY/UuPtB/LvfyAgC8p8SbBiQY6+K+GMMhCwByIfk3Yf3ax/nN/wjCRricLgFEDDsiACwogWfIQ=
+	t=1730218532; cv=none; b=VClDhaLMgwuDSu+3ubggbur7M9LjDai8b86XzSCQqsQty+HePi8L0JAOvgoM7wv9bxfYxJdER3GnSGxGZKe5vRDC5Y3JQp4JJdAKsfUq30ns0PA9blTBF3y+fXSWnzikQe76usDFFE9xVrqa1LvZR8YDyi/V+uXRAuFq0gCkt2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730218525; c=relaxed/simple;
-	bh=zEPDtk5TnMn87cqOQA+7VFLwOc6B9MRUG+kIZzLuyKE=;
+	s=arc-20240116; t=1730218532; c=relaxed/simple;
+	bh=kMKc10j7VGxeNAMb2m4ny2C5ZWH83LXpdQnxhHidR+o=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kI2wcuT98aAgA8ulRpiFUaLNkDJOjTouy7xgQBFfTPGw+GGwGMy2OxCoORgZDDFEucO6e5ug5iVZZJGD+ACIcscU1CjkRZrlfPhSljenRFNLeDIcxLADMT23E2HrQsRu7sYYqil+XjhwMBW2cpoxtl22WSajRLW/7sOJ7cHGXP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GbmcWUgr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B4A0C4CEE5;
-	Tue, 29 Oct 2024 16:15:22 +0000 (UTC)
+	 MIME-Version:Content-Type; b=reEOIil5VwBkEHbtY/A3G55b9QgSBm2otGF5VzquMo9z5I1s2GoOP4SF+tXzh0nl+WVwRfWbpEby58m87Uy8Z9lgpPkFwQiSe7wxZfaNAcK8P4D8BCjCCMTRwBMUxLmWHsiHNTgK6bWNRm+qXaIp+DSiwRUAxVt9D+oRw55C6/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XIdFo/xm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9752BC4CEE8;
+	Tue, 29 Oct 2024 16:15:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730218524;
-	bh=zEPDtk5TnMn87cqOQA+7VFLwOc6B9MRUG+kIZzLuyKE=;
+	s=k20201202; t=1730218531;
+	bh=kMKc10j7VGxeNAMb2m4ny2C5ZWH83LXpdQnxhHidR+o=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=GbmcWUgrknm0c514v50ZvjGrH4ut/pbtRj42Na6lROTN0QW662wkdQhF5yllsmfin
-	 /PMvYnv3psjJVXDFey0547QZp3zU/YthaLkDvqeRTXopuYK9y2P9MN7/XXtgIhZ9SG
-	 5NPUZix1hpVFUZKlfmvwj0QoQRysPGcngyKzojspn2/bOg8oZSJte/jyz+GNxHIJQD
-	 56BOx0x/6uakdcUciMRBk+5ZzEwtXAAHXBlIrA7XdO9HTdr/XDkibH3OeHFyUO/FVn
-	 jWSZnRvVUqJFPCO6sTSTDFKxwgVbPp4Zqdetv2PW+v4F/T6mpXGxVBVukEd6Wqz+/2
-	 qsQ+VnuO7q8dA==
+	b=XIdFo/xmjJ/A5CqRYVA7v9r9UUp1/0vm8UzP2PZyPD1gXfJNYrja7Xv1b17rVD9Pv
+	 t98DbS0wAJN3988GoAvvJisJYvO+IaLbCJasI5dI5fR7pkumiiq0tmiEbfMoM2Ls3c
+	 otQJyl3tPZgN1ylyNfEMLyzrMN60XmMpj1Y5bSdruUlC05qh+YT/roLWGDGz8UqpS8
+	 TzZpropxMC0LTFXvukXPC7xMzswCuTG1vdqbiMCWjfulbiRo6I49WNsctUueOuhm46
+	 Mz81OZQfQUao6e7CzZbG0YXQKEP5PFTFUHgUCJuo379LAMa/q6IK+schDut7EdJBzx
+	 h7UeGnsCYovBA==
 From: Will Deacon <will@kernel.org>
-To: Mark Rutland <mark.rutland@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Markuss Broks <markuss.broks@gmail.com>
+To: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	robimarko@gmail.com,
+	robin.murphy@arm.com,
+	joro@8bytes.org,
+	Qingqing Zhou <quic_qqzhou@quicinc.com>
 Cc: catalin.marinas@arm.com,
 	kernel-team@android.com,
 	Will Deacon <will@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
-	Maksym Holovach <nergzd@nergzd723.xyz>
-Subject: Re: [PATCH 0/2] arm_pmuv3: Add support for Samsung Mongoose PMU
-Date: Tue, 29 Oct 2024 16:15:12 +0000
-Message-Id: <173020820622.2331895.8950833346976223210.b4-ty@kernel.org>
+	iommu@lists.linux.dev
+Subject: Re: [PATCH v3 0/4] Add support for APPS SMMU on QCS615
+Date: Tue, 29 Oct 2024 16:15:14 +0000
+Message-Id: <173021813714.1137827.1103662832817907135.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20241026-mongoose-pmu-v1-0-f1a7448054be@gmail.com>
-References: <20241026-mongoose-pmu-v1-0-f1a7448054be@gmail.com>
+In-Reply-To: <20241025030732.29743-1-quic_qqzhou@quicinc.com>
+References: <20241025030732.29743-1-quic_qqzhou@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,22 +73,23 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Sat, 26 Oct 2024 23:28:07 +0300, Markuss Broks wrote:
-> This series adds support to performance monitoring unit of
-> the Samsung Mongoose CPU cores. They were released between
-> 2016 and 2020, and they were used in Samsung Exynos SoCs,
-> such as Exynos 8890, 8895, 9810, 9820 and 990 (9830).
-> They implement ARMv8.2-A ISA and they are used as a fast
-> cluster (big in the big.little scheme).
+On Fri, 25 Oct 2024 08:37:28 +0530, Qingqing Zhou wrote:
+> Enable APPS SMMU function on QCS615 platform. APPS SMMU is required
+> for address translation in devices including Ethernet/UFS/USB and
+> so on.
+> 
+> Add the SCM node for SMMU probing normally. SMMU driver probe will
+> check qcom_scm ready or not, without SCM node, SMMU driver probe will
+> defer.
+> The dmesg log without SCM node:
+> platform 15000000.iommu: deferred probe pending: arm-smmu: qcom_scm not ready
 > 
 > [...]
 
-Applied to will (for-next/perf), thanks!
+Applied SMMU bindings change to will (for-joerg/arm-smmu/bindings), thanks!
 
-[1/2] dt-bindings: arm: pmu: Add Samsung Mongoose core compatible
-      https://git.kernel.org/will/c/3930c88ad0a5
-[2/2] perf: arm_pmuv3: Add support for Samsung Mongoose PMU
-      https://git.kernel.org/will/c/9643aaa19473
+[2/4] dt-bindings: arm-smmu: document QCS615 APPS SMMU
+      https://git.kernel.org/will/c/515c8ff024ba
 
 Cheers,
 -- 
