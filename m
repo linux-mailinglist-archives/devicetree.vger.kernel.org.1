@@ -1,230 +1,219 @@
-Return-Path: <devicetree+bounces-117025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CAC69B4AF2
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:31:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81B609B4B0A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 14:37:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 407E31C229DB
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:31:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41193283BC7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2024 13:37:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44217206956;
-	Tue, 29 Oct 2024 13:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D28206060;
+	Tue, 29 Oct 2024 13:37:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mAt5fIy0"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="y6GVf+WK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D977021345;
-	Tue, 29 Oct 2024 13:31:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1671EBA50
+	for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 13:37:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730208690; cv=none; b=NiVFhLCpZoBiMFQf86ANDtLvnRlWXlP1dSWBl2nLcc44azT+jIEXLbmYumkoCr8FUi0iUYFXF3OP00k5OhOIW7S60jUN/Ovj5KnfZ+EA3n1aMsbxCqiW01aj0oNcbUjcixwxGRHGpcsVtLOsocG8K0lF1YrH1UUZFHCE1BhdRAw=
+	t=1730209072; cv=none; b=roTXJRx3m5yJzAdKNuxwXbMDXbYK0tyU4v4d3MnWJfEEYMDBzWgTveLRfPzfkPPq2Ll0Ax6WLACszxTea1slIULjPZOAi+0ht8ZlZf5l0MbZ6vhogvoP/MrBMCeHSP3hs9bUm/wXZGh+EWaWgin53Ou9VXrfOMF/haEvsnr/SU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730208690; c=relaxed/simple;
-	bh=uG1+oDKMhuGOs6drp2Td4rHlVKHHhe/KwxJBXxoeDwg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XWhlRikqPyyVCl9Cdn7bUua04E7SDD2IHgrHEfa3X6m6c4maf8XMzIW3Y0qpPwVU29x422EanqAO7x4mYYCO9dDdTNcJ9iUUcVZ5qBdsb8Arh6ky/WZzHwDmUbHlKo77EOKtbHZb3MNnVukdW0J7hxrcZnsgNDJtwFF+dXDW4Ns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mAt5fIy0; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49T9PT2s007682;
-	Tue, 29 Oct 2024 13:31:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	TjNHLSsUGuFmGlERPGDh+LCYmNQGD33Ek78v1YDjssc=; b=mAt5fIy0NEQ9tWLk
-	sY8gQ2lZ1Bm9KGukV6aBh2zEo/BWcYTkqbV7yIPSHv6OByrEdQXu72tkqSO5YxLm
-	FfVe0cdjlTUbteSWQoahuOXPjpnF2i59xOo+DhxB4v2DZgkYXzbPZomGSeo8LH+4
-	wIYCuqBjYpz0ONvp9Ok1oLc4bs5aJ1flx3Ghr3SmqiOVcKntc/6oBLoFmqNee5nt
-	HNmDh/LfEO1SShbAq6eMDj8vyzqSWZHfIadDM9vK03FDgKvWRjvfKaNhoinate9E
-	zHaxRPZhqo7ZMfOekQo57cjHADfaH/Y6g54vAdUNrOjtmlIwznsCDnaL1tF3PyN3
-	i7+8+w==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grt70f8v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 13:31:15 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49TDVEHD014690
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Oct 2024 13:31:14 GMT
-Received: from [10.253.37.153] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
- 2024 06:31:08 -0700
-Message-ID: <b5e6e81e-dab2-43d8-b52e-85b6cb0d0209@quicinc.com>
-Date: Tue, 29 Oct 2024 21:31:05 +0800
+	s=arc-20240116; t=1730209072; c=relaxed/simple;
+	bh=GND/WorrV9FkOhia0bvZDFHolTvInRwiHCzjYuesh8E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BGJ80waK3w61UMke2rTJv5DMpBCPMl66V6j12e4glhqpRlMniHhgjfJG5blKLzvCJQpgjVOLTlBISwhYcrjjVeQ2kK/EXjd4j9lIAqDAR05Za9qmGgz9lBaTS5Ga+QIvGQL2P9IfrfA2J0o/WI+iHQGxqM/wcwZPZqORB9DXtC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=y6GVf+WK; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-37d4d1b48f3so4032315f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 06:37:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1730209068; x=1730813868; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xHjXQ7SseZStdWtp4M3yo7TikmtScrCLnios0Konpt0=;
+        b=y6GVf+WKeLUVPTpwiGlQQ6R+yhdRPnsV5/+HeM3TQGRTqLF9UCitNC2a6ZDqw69Nbk
+         R2nGvB4QA+Kn+Io5bR3yU7Bvx07RrVuI3El2S5Uefn6hiw89kh0MU5bkzEs4Depy5GRg
+         2MUlFloxnwitAHIHmzOibukP8RmAiB4FpS6mn8ANlcNAAmX8fqBecnEuMM1YK+i+vgbb
+         aB6EqrOGdk0ov9nZb2sn7svE6wgvHXwbFHC62HV/pcobNsx62QaAE0AcmruhRlRsHSLV
+         bNBWSqt942BDKoyC7qWFiM/+d+rnwMIppZRGpW2uZkkJO1Du3a6hoOIbi9XC9Oe8QkiO
+         Evfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730209068; x=1730813868;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xHjXQ7SseZStdWtp4M3yo7TikmtScrCLnios0Konpt0=;
+        b=e7x0+jpRBtXmc7TgJHHS/6+6VIwYU4ePw7EE8Mx8rL3bG+ntMwHi3djnBJM0lHf26V
+         8UxvqL4fCeyfMboHB/GYQgJdN/usI4yWgA2X3w7OW4B9a0fQb4EAeoCCmctZJq4GjarD
+         V6DMyr23iOOp+Ig3f541BlkOZODq4le4zryYm1D8RxAz6ja+f2+Lp4vva5f5/BrgG8HR
+         xCNJ+ggRJzMpbIJjbjknxjWKBdxnobHivqyOwkQl/8EACXj9ZrYPyiIpk4n+owQAMhW3
+         A8A4FhZEihlPzVYz4rDEKwirB250U+kPh0x+vmJJ9b24ji3cXsG9XlBM0f9iwCLv4VCL
+         qm1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXqhSIaAGxkEX2l5Ayx/I8Fvg8f7lfkTcznMtObYoEQ2as38CnbGrXeNZyRS/o4obX/s/Vz+KkxeD4y@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVKIsNWtm4IEn3uU3mz3Mhdxa3eN6tqn8q8r/bdFToLyjxpwBs
+	PLvZaxo+yqsuJ3U/Tk8HNBNcabOXxZLXxzELTOwEr43jV6AkZyeQGTJpSbBVZ01MiaYAvKVCAsr
+	pyBwbHDlD+3vNBT8sF7ZdnVCD5tN6qPd9cWlH
+X-Google-Smtp-Source: AGHT+IGoJLMwFKqdGVQYxgqNckaKkLJooLVh1zvBc4VOiRWEyfKZ5Pk6g1m3IKME2AkWQnzefHEhe6i0eTPL5cS8P9g=
+X-Received: by 2002:a05:6000:1:b0:37c:cca1:b1e3 with SMTP id
+ ffacd0b85a97d-380611dcb75mr7778568f8f.41.1730209068300; Tue, 29 Oct 2024
+ 06:37:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: Add CMN PLL node for IPQ9574 SoC
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon
-	<will@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_kkumarcs@quicinc.com>,
-        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>,
-        <bartosz.golaszewski@linaro.org>, <srinivas.kandagatla@linaro.org>
-References: <20241028-qcom_ipq_cmnpll-v5-0-339994b0388d@quicinc.com>
- <20241028-qcom_ipq_cmnpll-v5-4-339994b0388d@quicinc.com>
- <crcbzpxjnbceilqccbwr7uyak6z6zdwr7mhfcyaw6vvpcce6ko@zrojbtqi4st4>
-Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <crcbzpxjnbceilqccbwr7uyak6z6zdwr7mhfcyaw6vvpcce6ko@zrojbtqi4st4>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: nWv7Wst7ajudcR5l84aK1YXFfY-RmoFz
-X-Proofpoint-GUID: nWv7Wst7ajudcR5l84aK1YXFfY-RmoFz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- adultscore=0 clxscore=1015 impostorscore=0 malwarescore=0
- priorityscore=1501 phishscore=0 mlxscore=0 suspectscore=0 mlxlogscore=999
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410290103
+References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-15-dakr@kernel.org>
+In-Reply-To: <20241022213221.2383-15-dakr@kernel.org>
+From: Alice Ryhl <aliceryhl@google.com>
+Date: Tue, 29 Oct 2024 14:37:35 +0100
+Message-ID: <CAH5fLgh-CyMeRMm4OK-iNMP0n2UBu9_Qj6M0ch0t6wpaSEi6mw@mail.gmail.com>
+Subject: Re: [PATCH v3 14/16] rust: of: add `of::DeviceId` abstraction
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
+	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com, 
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com, 
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
+	daniel.almeida@collabora.com, saravanak@google.com, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Oct 22, 2024 at 11:33=E2=80=AFPM Danilo Krummrich <dakr@kernel.org>=
+ wrote:
+>
+> `of::DeviceId` is an abstraction around `struct of_device_id`.
+>
+> This is used by subsequent patches, in particular the platform bus
+> abstractions, to create OF device ID tables.
+>
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> ---
+>  MAINTAINERS                     |  1 +
+>  rust/bindings/bindings_helper.h |  1 +
+>  rust/kernel/lib.rs              |  1 +
+>  rust/kernel/of.rs               | 63 +++++++++++++++++++++++++++++++++
+>  4 files changed, 66 insertions(+)
+>  create mode 100644 rust/kernel/of.rs
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d9c512a3e72b..87eb9a7869eb 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -17340,6 +17340,7 @@ T:      git git://git.kernel.org/pub/scm/linux/ke=
+rnel/git/robh/linux.git
+>  F:     Documentation/ABI/testing/sysfs-firmware-ofw
+>  F:     drivers/of/
+>  F:     include/linux/of*.h
+> +F:     rust/kernel/of.rs
+>  F:     scripts/dtc/
+>  F:     tools/testing/selftests/dt/
+>  K:     of_overlay_notifier_
+> diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_hel=
+per.h
+> index cd4edd6496ae..312f03cbdce9 100644
+> --- a/rust/bindings/bindings_helper.h
+> +++ b/rust/bindings/bindings_helper.h
+> @@ -15,6 +15,7 @@
+>  #include <linux/firmware.h>
+>  #include <linux/jiffies.h>
+>  #include <linux/mdio.h>
+> +#include <linux/of_device.h>
+>  #include <linux/pci.h>
+>  #include <linux/phy.h>
+>  #include <linux/refcount.h>
+> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+> index 3ec690eb6d43..5946f59f1688 100644
+> --- a/rust/kernel/lib.rs
+> +++ b/rust/kernel/lib.rs
+> @@ -51,6 +51,7 @@
+>  pub mod list;
+>  #[cfg(CONFIG_NET)]
+>  pub mod net;
+> +pub mod of;
+>  pub mod page;
+>  pub mod prelude;
+>  pub mod print;
+> diff --git a/rust/kernel/of.rs b/rust/kernel/of.rs
+> new file mode 100644
+> index 000000000000..a37629997974
+> --- /dev/null
+> +++ b/rust/kernel/of.rs
+> @@ -0,0 +1,63 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! Open Firmware abstractions.
+> +//!
+> +//! C header: [`include/linux/of_*.h`](srctree/include/linux/of_*.h)
+> +
+> +use crate::{bindings, device_id::RawDeviceId, prelude::*};
+> +
+> +/// An open firmware device id.
+> +#[derive(Clone, Copy)]
+> +pub struct DeviceId(bindings::of_device_id);
+> +
+> +// SAFETY:
+> +// * `DeviceId` is a `#[repr(transparent)` wrapper of `struct of_device_=
+id` and does not add
+> +//   additional invariants, so it's safe to transmute to `RawType`.
 
+Your #[repr(transparent)] marker is missing.
 
-On 10/28/2024 11:39 PM, Dmitry Baryshkov wrote:
-> On Mon, Oct 28, 2024 at 10:04:11PM +0800, Luo Jie wrote:
->> The CMN PLL clock controller allows selection of an input clock rate
->> from a defined set of input clock rates. It in-turn supplies fixed
->> rate output clocks to the hardware blocks that provide the ethernet
->> functions such as PPE (Packet Process Engine) and connected switch or
->> PHY, and to GCC.
->>
->> The reference clock of CMN PLL is routed from XO to the CMN PLL through
->> the internal WiFi block.
->> .XO (48 MHZ or 96 MHZ)-->WiFi (multiplier/divider)-->48 MHZ to CMN PLL.
->>
->> The reference input clock from WiFi to CMN PLL is fully controlled by
->> the bootstrap pins which select the XO frequency (48 MHZ or 96 MHZ).
->> Based on this frequency, the divider in the internal Wi-Fi block is
->> automatically configured by hardware (1 for 48 MHZ, 2 for 96 MHZ), to
->> ensure output clock to CMN PLL is 48 MHZ.
->>
->> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi | 16 ++++++++++++++-
->>   arch/arm64/boot/dts/qcom/ipq9574.dtsi            | 26 +++++++++++++++++++++++-
->>   2 files changed, 40 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
->> index 91e104b0f865..f026c2a9d0c0 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
->> @@ -3,7 +3,7 @@
->>    * IPQ9574 RDP board common device tree source
->>    *
->>    * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
->> - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
->> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
->>    */
->>   
->>   /dts-v1/;
->> @@ -164,6 +164,20 @@ &usb3 {
->>   	status = "okay";
->>   };
->>   
->> +/*
->> + * The bootstrap pins for the board select the XO clock frequency,
->> + * which automatically enables the right dividers to ensure the
->> + * reference clock output to CMNPLL is 48 MHZ.
->> + */
->> +&cmn_pll_ref_clk {
->> +	clock-div = <1>;
->> +	clock-mult = <1>;
->> +};
->> +
->>   &xo_board_clk {
->>   	clock-frequency = <24000000>;
->>   };
->> +
->> +&xo_clk {
->> +	clock-frequency = <48000000>;
->> +};
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> index 14c7b3a78442..ad9cdb1f76db 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> @@ -3,10 +3,11 @@
->>    * IPQ9574 SoC device tree source
->>    *
->>    * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
->> - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
->> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
->>    */
->>   
->>   #include <dt-bindings/clock/qcom,apss-ipq.h>
->> +#include <dt-bindings/clock/qcom,ipq-cmn-pll.h>
->>   #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
->>   #include <dt-bindings/interconnect/qcom,ipq9574.h>
->>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->> @@ -19,6 +20,12 @@ / {
->>   	#size-cells = <2>;
->>   
->>   	clocks {
->> +		cmn_pll_ref_clk: cmn-pll-ref-clk {
->> +			compatible = "fixed-factor-clock";
->> +			clocks = <&xo_clk>;
->> +			#clock-cells = <0>;
->> +		};
->> +
->>   		sleep_clk: sleep-clk {
->>   			compatible = "fixed-clock";
->>   			#clock-cells = <0>;
->> @@ -28,6 +35,11 @@ xo_board_clk: xo-board-clk {
->>   			compatible = "fixed-clock";
->>   			#clock-cells = <0>;
->>   		};
->> +
->> +		xo_clk: xo-clk {
->> +			compatible = "fixed-clock";
->> +			#clock-cells = <0>;
->> +		};
-> 
-> What is the difference between xo_clk and xo_board_clk? Are there two
-> different crystals?
+> +// * `DRIVER_DATA_OFFSET` is the offset to the `data` field.
+> +unsafe impl RawDeviceId for DeviceId {
+> +    type RawType =3D bindings::of_device_id;
+> +
+> +    const DRIVER_DATA_OFFSET: usize =3D core::mem::offset_of!(bindings::=
+of_device_id, data);
+> +
+> +    fn index(&self) -> usize {
+> +        self.0.data as _
+> +    }
+> +}
+> +
+> +impl DeviceId {
+> +    /// Create a new device id from an OF 'compatible' string.
+> +    pub const fn new(compatible: &'static CStr) -> Self {
 
-The xo_board_clk of 24 MHZ is generated by applying another divider in
-HW (by 2), on top of the same 48 MHZ clock output from internal Wi-Fi.
+Since you make a copy of `compatible`, you don't need 'static.
 
-XO (48 MHZ or 96 MHZ)-->WiFi (mul/div)-->48 MHZ-->fixed factor divider 2 
-by HW ---> xo_board_clk (24 MHZ)
+> +        let src =3D compatible.as_bytes_with_nul();
+> +        // Replace with `bindings::of_device_id::default()` once stabili=
+zed for `const`.
+> +        // SAFETY: FFI type is valid to be zero-initialized.
+> +        let mut of: bindings::of_device_id =3D unsafe { core::mem::zeroe=
+d() };
+> +
+> +        let mut i =3D 0;
+> +        while i < src.len() {
+> +            of.compatible[i] =3D src[i] as _;
+> +            i +=3D 1;
+> +        }
+> +
+> +        Self(of)
+> +    }
+> +
+> +    /// The compatible string of the embedded `struct bindings::of_devic=
+e_id` as `&CStr`.
+> +    pub fn compatible<'a>(&self) -> &'a CStr {
 
-We may need to correct its clock chain representation. We will update
-xo_board_clk as a fixed factor (div by 2) clock, and refer to the 48 MHZ
-input clock, using a separate patch after the CMN PLL patch series
-review is concluded. Hope this approach is fine.
+This should probably be:
 
-> 
->>   	};
->>   
->>   	cpus {
-> 
+pub fn compatible(&self) -> &CStr {
 
+Right now, the returned CStr is not tied to self at all, even though
+it points inside `self`.
+
+Alice
 
