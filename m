@@ -1,208 +1,128 @@
-Return-Path: <devicetree+bounces-117306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A65C09B5D1D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 08:42:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DFC69B5D23
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 08:42:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65A6A2846CC
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:42:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0B02284704
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:42:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB3881DFE1D;
-	Wed, 30 Oct 2024 07:42:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE1461E0DAA;
+	Wed, 30 Oct 2024 07:42:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dJc0+u+d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g5FIz6fJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A530C54BD4;
-	Wed, 30 Oct 2024 07:42:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7D441DFD8E;
+	Wed, 30 Oct 2024 07:42:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730274145; cv=none; b=Zvc5Z30WYK5kPD5qAFCY05QkUuP5SUXJYHEhDl2t/TfX0YhZnaEh++tWFkS9kiySi62Z8fCXEg1yjrocXVGxVxyNLZwJwRK8zEiDyJbbZ16YvuCvtkysB9t0o87klAGDO9IGRa5miKdih5j4tjho7Q+pYr6fi3AqYZKztF2vZGA=
+	t=1730274147; cv=none; b=n8019ZGPCemp/DWqce5E3FuN9DTa8wjIK1FrjNl/uGoskGPo2ray0GEK0n2fygz0PjTnsJ/5l3v2GHguFAfP/Kfc6LjFBSRoSM4D1urOVLHnDBLb487eCFkwSv/IMDRLjGHQ4L6mRl2JL7aJ1ZvKBhAwTJNSfH6j5Zvwq29BSDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730274145; c=relaxed/simple;
-	bh=M8z5hdbn3Ka8QgQTdv5JIS7S/Ed/ldsVvtl6z5TvSpg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=abGDKtzaXqmIfiUrp+Llw+XiCXmoiC+V9lbcppWJHwAwI19GpZCCdveLufNPvT6KFAh9IN3eLo5JCdfPGdSs+SUiNfw83eBIZSIQD5efc2T2/53O+OglqgX8UpvJxlYVY/HZE0sjA49cIXOyNVRGpWLdW1E6vaDE+YNXSH0iDXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dJc0+u+d; arc=none smtp.client-ip=209.85.218.45
+	s=arc-20240116; t=1730274147; c=relaxed/simple;
+	bh=vBPcXotyGZ/i5JXyF/OdPr9Pqo7sjFrngRcld4peje8=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uRMFi9PI6MFSt2NDD+tOMiE6WmqkYoFk2Ar82prlQkhaUY1ixsodnJJWV4vA/cIQfZLs1Fq45+OLd8ruamHsK8nbPXi4MhRMzSpvfozthMfm4cpvxWqzAJiE5SzOCtpnA+uAGFe2UekdcrM+kUft2XL0r39gvvkLAw7SppU65r0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g5FIz6fJ; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a99f1fd20c4so899321966b.0;
-        Wed, 30 Oct 2024 00:42:23 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4315f24a6bbso59398325e9.1;
+        Wed, 30 Oct 2024 00:42:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730274142; x=1730878942; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4EebOx+/e8mI1SCUD1S2Qk0Ovrk0A6p43GTOE5dek2s=;
-        b=dJc0+u+dXdz/KxYDtl6hWv2Y2lYSKcE86r2POVQkWEzNAdLjXAoZKvGiwv/m/nLi/S
-         8YinF2cBMDgxllBtsweKI79PgNEPVyW15nYSI7UoXU2/5vKZZIzzxleUnyWsd8YOLvrr
-         U+7yWYmqGDHkkKIJEwae6O4Z3VZZTPtCcFeiRBLGJG4P248F4fei/GDFdYH65j5LATmP
-         HfYvnASGisGk09opTWFUpfoWxdvS9TDv/NMYJQnboFwh8EHnIyKdvHqdXqiExiAqbFyb
-         WlL/oK7L4FopcKUiDEnoF88Yfk86HLNaPt74m1Xt7rFBtvbEGLBEmW2+R2foSHEOgzPc
-         d+xQ==
+        d=gmail.com; s=20230601; t=1730274144; x=1730878944; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:subject:cc:to:from:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=F/obSxVgLXYAZ3S4bATKBujgO8U8oWR6WSGb4BNz1Rc=;
+        b=g5FIz6fJTW0gjCBWvAg7rj+Qe5PVTzyIBgX7WLvy+lTnoZR2VpU0BoruRAwDJ+Y1kp
+         /vrt/o1qKRZyUxp52ZkidoKJhh/jdmPRQV7PuGDyjEZzxed3PmdLbdMR7ry7FucIoZtY
+         RClT1ESCbsN3OrB/QWUcmrPlrxikZaQlxhtzJhhsdvXxYU0/ZiZC1hI8k3RAhymTMk1j
+         MXOiqXB3LmXYTiihe9sqoqdVbEuT0CaNyAbG8eWB/p2VvyFzp8loO32SdV8oBeTbb10K
+         eJZGLwEK7xbq7MeXhrSQwLL8wZSwTKzCK5LZUrNJGOAF6b3CNqix76TQxBYd0Vx7Xx33
+         KqdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730274142; x=1730878942;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4EebOx+/e8mI1SCUD1S2Qk0Ovrk0A6p43GTOE5dek2s=;
-        b=VS0iZpZkre6ocuqmRYs9dG9SYVaeNlMbBpGq6U8p0oevYkFtEnNkOhv2/qeBooXOgE
-         hlr4XVdJspDLCejw2WKf/ZXt02YmEoYaxHmn0G1vypBt9Du+Lwar7GvEuY0hkD4o92G5
-         u1nwppungkWmWfCO+oy8i0AQ9cT3lCau6sud2bQcjE6VjPKOIr4cQ7fzpu5kshsmZuIW
-         z4vizrfszX8Dl1/JFljmfdCwM+YYEkJR1kInXdDDONqno4YI137gQ4NDO1+NP590c5ND
-         0Xyylpj4u8xYcoVjnXpsELWVlgjpZxLpnwgJ8vrXT2o4ZT/LigcrMA/CWP/4RF79maw+
-         39ig==
-X-Forwarded-Encrypted: i=1; AJvYcCUfCqV8edMhwil69NeJHgxIebMVIlMg4ybeQr10bMys2K4Q9E4ndla6LFzJusClfgjAYWx+RfU5qDI=@vger.kernel.org, AJvYcCUz/HQrwupzeFNJ/QirMv8bpl7rb6zahlUwsI0M3kB/6YKzwJivGYxUGYT3s+xu3kkHLKYDrKa/1h6Q@vger.kernel.org, AJvYcCVvlhXo4pUG6rgKTg6PEtiJZYhWGSjZ41kExlXETI1gtbzcu8p5gAI1PtMAONWqIB4Wy4XT18OaBZmH@vger.kernel.org, AJvYcCWaG6/tOME7CVjRziMU4q1tKIArIIy/nq986C7eUI+Psv7qNsXs93IZhhOT8YNrfMnvy9uhX7bz4V3n@vger.kernel.org, AJvYcCWd8Dvv9daYYL2jT0Q4ByEl8vYxkb9qs/IhZIC26YB4FJuSWCK0VqXGUyPcQNRMiclj/PnMs1Ammhy34vEO@vger.kernel.org, AJvYcCX5OxsJvOujhfzGSr6e0GgejQrHSZIaOZg7oHsYyH/+RSu0SrzQRXOX7NZX/DH1QUvhrXDfLvq5v8pmKw==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5CGGNZFZuyH+B3xKswzIjd9Ky3DmK3Z3Ew9Iyhs7/MutUM+48
-	PeoZjn2ZtrAAqv8mLeVse2OeMjZsjhmh3Lmr7W17LYO2q93lO/3F
-X-Google-Smtp-Source: AGHT+IH0KCi9ViE98z9rjG/9J5QoWfEcBypXV6u/kyAK2QOc1v3oArj8ECG/6I2AJnY/LtLid0mf1w==
-X-Received: by 2002:a17:907:9715:b0:a9a:522a:eddd with SMTP id a640c23a62f3a-a9de5c91c2bmr1459786066b.11.1730274141676;
-        Wed, 30 Oct 2024 00:42:21 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f0298e7sm546512966b.75.2024.10.30.00.42.20
+        d=1e100.net; s=20230601; t=1730274144; x=1730878944;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:subject:cc:to:from:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=F/obSxVgLXYAZ3S4bATKBujgO8U8oWR6WSGb4BNz1Rc=;
+        b=O9UviuLrAWyd2YHs3ZoWHgROxNkMjAmA0eJou24yT0DMXuyOSOeLwuDt/wqYmciNcL
+         O3yqebdzhJ5aj9a+oiTUtUNZbl2Kx0MDhsAe1FU/5i8SOYQ4xjQt77nyBtz7CV50q/M7
+         uIfisVIDb4Ce7nSHcrM7v8GkFV1DoQJeqcA4CO8/Kt/KFYfJ7m6FPhgKgQtj77IrunC6
+         I22d54upLwoLHhxdp7RTIaxxzi0vtHUprm2AnxUs4Wdyk7IFrHqPjd9Kjr3K/naGYJD9
+         UpWxRNUIjD2qE/cCvnp0yyFjNIb+1A2Zo711RU2l8njBZXFem1f9kMO9QnY7C3Pd5xQx
+         kG/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUC7+iI0zyEu+6CcLCdUwahutecIBoZlfQsOjbnYjcfSzC+rsLVskgVFWEE6eAgmG53PYE9rq4Wdbx4@vger.kernel.org, AJvYcCVS+MKL1UraOQ1D+jURzZpi6FNUZUZZdtAROwnWB6bl8yS1TfihAzTMS+F1wGAmvhBwhzVN22PewgY9jw==@vger.kernel.org, AJvYcCWWeiLYmvXaXiMAe8JpDs0gm/+/es2xYNrhxaE1FuGK9iyOipg7HUA9IP6WgTD+6gr8v0RahYJS9t7l@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxhp4785s+WAP/qOH3PZTD53lMYsiTr4SBuvgmq9+qsE0DxIZbR
+	yXf544/2FAgp75pH27F1N/uZTL5407ut3KkGW+1SyVvkCRdQ5uSO
+X-Google-Smtp-Source: AGHT+IETsV7UXMLp399BinpD0w900qG3hOgbxpUxgRBwxez5FYrcNIGJm85eQ9FYoXQ64YlW1Wx4Ow==
+X-Received: by 2002:a05:600c:4fd3:b0:431:60d0:9088 with SMTP id 5b1f17b1804b1-4319ac9acedmr136064005e9.13.1730274143634;
+        Wed, 30 Oct 2024 00:42:23 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431bd91096asm12658425e9.13.2024.10.30.00.42.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Oct 2024 00:42:21 -0700 (PDT)
-Date: Wed, 30 Oct 2024 08:42:19 +0100
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+        Wed, 30 Oct 2024 00:42:23 -0700 (PDT)
+Message-ID: <6721e35f.050a0220.b8d65.2cd0@mx.google.com>
+X-Google-Original-Message-ID: <ZyHjXKFEqqbkJkHz@Ansuel-XPS.>
+Date: Wed, 30 Oct 2024 08:42:20 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: mfd: sprd,sc2731: convert to YAML
-Message-ID: <ZyHjW86v9Y59-TJQ@standask-GA-A55M-S2HP>
-References: <ZyExK01iprBHhGm6@standask-GA-A55M-S2HP>
- <ki4wvjslncrngwpz7qukknzgdsjkxvrhitem7i5lof6ggyhu4e@tviovrd2wi77>
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Lee Jones <lee@kernel.org>, linux-mediatek@lists.infradead.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
+	benjamin.larsson@genexis.eu, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v9 0/6] Add mfd, pinctrl and pwm support to EN7581 SoC
+References: <20241023-en7581-pinctrl-v9-0-afb0cbcab0ec@kernel.org>
+ <CACRpkdaEQYBim8TuDCCw15QDUWhHC-VqhGq1Le7eOd76k56zwQ@mail.gmail.com>
+ <t7i6lkx5oedjma6uauiygnvbgzixnsqmolmkse3j2qiy5znf7t@kfozote6mm2k>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ki4wvjslncrngwpz7qukknzgdsjkxvrhitem7i5lof6ggyhu4e@tviovrd2wi77>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <t7i6lkx5oedjma6uauiygnvbgzixnsqmolmkse3j2qiy5znf7t@kfozote6mm2k>
 
-On Wed, Oct 30, 2024 at 07:43:04AM +0100, Krzysztof Kozlowski wrote:
-> On Tue, Oct 29, 2024 at 08:02:03PM +0100, Stanislav Jakubek wrote:
+On Wed, Oct 30, 2024 at 08:34:01AM +0100, Uwe Kleine-König wrote:
+> Hello Linus,
 > 
-> Thank you for your patch. There is something to discuss/improve.
+> On Tue, Oct 29, 2024 at 11:03:14PM +0100, Linus Walleij wrote:
+> > On Wed, Oct 23, 2024 at 1:21 AM Lorenzo Bianconi <lorenzo@kernel.org> wrote:
+> > 
+> > > Introduce airoha-mfd driver in order to load pinctrl and pwm drivers for
+> > > EN7581 SoC. airoha-mfd is needed since both pinctrl and pwm drivers
+> > > needs to access the same memory block (gpio memory region) to configure
+> > > {gio,irq}_chip and pwm functionalities respectively, so model them as
+> > > childs of a parent mfd driver.
+> > 
+> > OK someone has to merge this and I suggest that I merge patches 1-5
+> > (all bindings and the pinctrl driver) since the different bindings have
+> > dependencies between them.
 > 
-> > +  interrupt-controller: true
-> > +  spi-max-frequency: true
+> Fine for me.
 > 
-> This means:
-> 1. You forgot to ref spi-peripheral-props
-> 2. This is not needed and use use unevaluatedProperties: false.
+> > Then Uwe can merge patch 6/6 (the pwm driver).
+> 
+> The pwm patch needs some more love, we can handle that separately then.
+> 
 
-Ack, will reference spi-peripheral-props.
+Thanks for the feedback, so I assume we will detach the DT and PWM
+driver from this driver and handle it separately.
 
-> 
-> Just like all SPI devices.
-> 
-> Unless this is not SPI?
-
-As far as I understand it, it kind of is SPI and kind of isn't.
-See /schemas/spi/sprd,spi-adi.yaml.
-
-> 
-> 
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#interrupt-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +  regulators:
-> > +    type: object
-> > +    $ref: /schemas/regulator/sprd,sc2731-regulator.yaml#
-> > +
-> > +patternProperties:
-> > +  "^adc@[0-9a-f]+$":
-> > +    type: object
-> > +    $ref: /schemas/iio/adc/sprd,sc2720-adc.yaml#
-> > +
-> > +  "^charger@[0-9a-f]+$":
-> > +    type: object
-> > +    $ref: /schemas/power/supply/sc2731-charger.yaml#
-> > +
-> > +  "^efuse@[0-9a-f]+$":
-> > +    type: object
-> > +    $ref: /schemas/nvmem/sprd,sc2731-efuse.yaml#
-> 
-> I don't think this was merged. You still have dependency.
-
-This is in next-20241029, which this patch is based on.
-
-> 
-> Try yourself - apply this patch on the maintainers tree and test it.
-> 
-> You can solve it by listing here compatibles and additionalProperties:
-> true (see Qcom mdss bindings)
-> 
-> 
-> 
-> > +
-> > +  "^fuel-gauge@[0-9a-f]+$":
-> > +    type: object
-> > +    $ref: /schemas/power/supply/sc27xx-fg.yaml#
-> > +
-> > +  "^gpio@[0-9a-f]+$":
-> > +    type: object
-> > +    $ref: /schemas/gpio/sprd,gpio-eic.yaml#
-> > +
-> > +  "^led-controller@[0-9a-f]+$":
-> > +    type: object
-> > +    $ref: /schemas/leds/sprd,sc2731-bltc.yaml#
-> > +
-> > +  "^rtc@[0-9a-f]+$":
-> > +    type: object
-> > +    $ref: /schemas/rtc/sprd,sc2731-rtc.yaml#
-> > +
-> > +  "^vibrator@[0-9a-f]+$":
-> > +    type: object
-> > +    $ref: /schemas/input/sprd,sc27xx-vibrator.yaml#
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - interrupt-controller
-> > +  - spi-max-frequency
-> > +  - '#address-cells'
-> 
-> Keep consistent quotes, either ' or ".
-
-Ack.
-
-Thanks for the review,
-Stanislav
-
-> 
-> > +  - '#interrupt-cells'
-> > +  - '#size-cells'
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+	Ansuel
 
