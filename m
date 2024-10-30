@@ -1,84 +1,91 @@
-Return-Path: <devicetree+bounces-117447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D82859B645B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 14:40:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E20159B6460
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 14:41:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F7511F23119
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:40:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 819D21F223EB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:41:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 246301EB9EF;
-	Wed, 30 Oct 2024 13:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EAAD1EABDC;
+	Wed, 30 Oct 2024 13:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="HkDSIqJ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C1CE1E570E;
-	Wed, 30 Oct 2024 13:40:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8230D1EABBE;
+	Wed, 30 Oct 2024 13:41:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730295651; cv=none; b=QZe+to5tqUxpQRHqLsdakRFDN8HJCKSRPQ2cKO63oFxPsPnFxb1BIxu73/5zszTryTUOy/mZTGfgkddp9s2wt8QdBJIgS5mWhAXG60kwwSBWbmoJC983eVJ+gf9CIFF2phRwZp/50e+UpKlhGLuRDaHTilzN9wEFTI9X6B97Lwg=
+	t=1730295686; cv=none; b=Mj16zx0YkhVwKISZfPcLtIBCk5FoVrjAYTR7/7il7zENvh8WkykA7hgoLNRouUsD/uZluAe+k0asvAacolm+EaEbQtg4X4LVtL1PI0YustJIR+/zNqGcoqS6FSoPZV77GCd4gaKd+hTn+3qunBqf0bMmrbsy88kYb9NP8VQw7GU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730295651; c=relaxed/simple;
-	bh=3CF5SW17LqX7ufLrQVAuxlnJAC1vVC/NA66X+hKZa1M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=RfJMzzRmuBVwR3JNHuAIfZughykf9+TIAVLHYHyvXqX8lOXFTTckYWaDicoNzq4lkZ03pMLm+PK6MWZ82tU+zqx29nLlvO115WDfxr8p0+BjA9c6GpaSbkneOwVArTdXXNyjSsoIQxgL/M3gctWpx9lm7mUb8DcokhvCBw5so9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [116.25.95.211])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1515cd61;
-	Wed, 30 Oct 2024 21:40:42 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: amadeus@jmu.edu.cn
-Cc: andersson@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dmitry.baryshkov@linaro.org,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH v3 2/4] arm64: dts: qcom: ipq6018: add 1.5GHz CPU Frequency
-Date: Wed, 30 Oct 2024 21:40:39 +0800
-Message-Id: <20241030134039.488706-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241030133015.487183-1-amadeus@jmu.edu.cn>
-References: <20241030133015.487183-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1730295686; c=relaxed/simple;
+	bh=js8OWuVfc+6P59q7r8A9v9QkZPXDdmK4FIK6J0rwO1E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bVRE0P+GrCPDEZn8PeEU0KYWtrdveLkAXSqeKPV3hm/7mPcdbiIEUirceKRm3jBPwE6tXRoGe49NJrEJ06vgbHGvvHKF596zNsH4eECE0J6RDEobeburMVJMRunF+5IUp7wY2gaVG0xzkZathNKMAuGFr3Nn1sO25gjLCJ/X2lM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=HkDSIqJ5; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=HfgxdgiUAQiWmL2DptAL0OS3pzfCdOrkZKQvGdoq9to=; b=HkDSIqJ553XUcVw4+XDX8gX1qO
+	DgV/OjplWvp5ldDWJr/skwTJJ9AlLGwoMCLYctTP5Mzh3a6HLZpLuGU2IwGFVf6FXnzgx6o4FCZG+
+	Fzs6ck6OKrRd01kJfc1/bp4WIscY1Q5y8oD33ekdn/xUVKexvBAKrm7va/SVFbAN4GTk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1t68wr-00Bh2o-NW; Wed, 30 Oct 2024 14:41:21 +0100
+Date: Wed, 30 Oct 2024 14:41:21 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	linux-clk@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH 4/4] arm64: dts: agilex5: initial support for Arrow
+ AXE5-Eagle
+Message-ID: <3f55a225-7d09-486a-818f-307c1f1ba806@lunn.ch>
+References: <20241030-v6-12-topic-socfpga-agilex5-v1-0-b2b67780e60e@pengutronix.de>
+ <20241030-v6-12-topic-socfpga-agilex5-v1-4-b2b67780e60e@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCTUoaVklMSE9KHU1JTkNDTlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk5VSUpKWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09LVUpLS1VLWQ
-	Y+
-X-HM-Tid: 0a92dda83b5e03a2kunm1515cd61
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OD46Dhw*NTIoHwFWGjgMLiEL
-	PgswCjZVSlVKTEhLSUJOTU9ITU9JVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	TVVJTlVCTlVJSkpZV1kIAVlBSENINwY+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241030-v6-12-topic-socfpga-agilex5-v1-4-b2b67780e60e@pengutronix.de>
 
->    arm64: dts: qcom: ipq6018: add 1.5GHz CPU Frequency
->
->        The early version of IPQ6000 (soc id: IPQ6018, SBL version:
->        BOOT.XF.0.3-00086-IPQ60xxLZB-1) and IPQ6005 SoCs can reach
->        a max frequency of 1.5GHz, so add this CPU frequency.
+> +&gmac2 {
+> +	status = "okay";
+> +	phy-mode = "rgmii-id";
+> +	phy-handle = <&emac2_phy0>;
+> +
+> +	max-frame-size = <9000>;
+> +
+> +	mdio0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		compatible = "snps,dwmac-mdio";
+> +		emac2_phy0: ethernet-phy@1 {
+> +			reg = <0x1>;
+> +			adi,rx-internal-delay-ps = <2000>;
+> +			adi,tx-internal-delay-ps = <2000>;
 
-SBL version: BOOT.XF.0.3-00077-IPQ60xxLZB-2
-Sorry, I made the wrong typo here.
+You have rgmii-id and 2000ps delay? Are these two lines actually
+required?
 
-Thanks,
-Chukun
-
--- 
-2.25.1
-
+	Andrew
 
