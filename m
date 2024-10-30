@@ -1,185 +1,168 @@
-Return-Path: <devicetree+bounces-117500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1DC49B6B4E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:49:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA0169B6B5C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:53:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 832271F221DC
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 17:49:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 693B9281C48
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 17:53:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0C9199385;
-	Wed, 30 Oct 2024 17:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3B4199E9D;
+	Wed, 30 Oct 2024 17:52:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UtdRKT0o"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IvOfUXPN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E2D51BD9DD;
-	Wed, 30 Oct 2024 17:49:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 100491BD9DD;
+	Wed, 30 Oct 2024 17:52:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730310569; cv=none; b=rsDzn7hHm7eiyXuA18sGTYKtcPA9sGUMAbr+bYDjOG3v3riKNugNZed+SrQByPKEj7KJYue3/t5J06LUFEYqT/4pNqvt8BmfP+/fm9DaeDQ36ivPOYTDJ6lzFlpDxMMwP9sKAF7owzFE/JvTFx0FyK7pnwkS3JEpuVP0mXSz87k=
+	t=1730310779; cv=none; b=aj8eaOputKQtxwZeHB0GgIUnBf3cxG66DCJX5G7dTu3OO8zha7L0t1xLM4Ax29QLJfE2JDdJM0rjbV4Ltesx8kkj7Sbf575MSnAEnp7O68CV6qbaEmxWwBfJJ8UqVqgNIVvgl9AkC6OyTDA3U6u2QTkStP43m0vBPu+ugKw72/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730310569; c=relaxed/simple;
-	bh=GAZfApuun/WBM9hWKbBWrJplY1pQnpd5AbvrAfACmCE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AxpJVc2ukrenoa0v7ISrCEmpT2S8A32ybxT74ewOvMOBXgmUoe7TbwtdKvI6ldo4SEb/G4z3KB+DSbVqy1CNnh4IitzFAZ/bi7tfTIF/qxvCGxq/O7A3q9awCYmhQHXWGU05Uvt0XVw/WjM7SRvjwn5XYdCViZBv0wPDTvtuvTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UtdRKT0o; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a99f1fd20c4so9476266b.0;
-        Wed, 30 Oct 2024 10:49:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730310565; x=1730915365; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cs3z5H8OfPpGCjxObwmP+XcGRDtkoeJFhbDKmfanh24=;
-        b=UtdRKT0onUUSijzHSMKz2Sl1OtWKSGIJZhLKYVo3/b8q+G6XHOumQ9xGAoWiW5vloD
-         CVcbDzvHiiMgr0qvtmH07HO01agA2rhmtYkNXK6La8PNxBJLD+Ki3OKleC5ziIDJStug
-         cGV4FPdesYvC/KgpzXzQDKaVTgCXY2A8kK2vVrkpXEFJ039FbSRyOjNqX8Zn38V7Cy5e
-         Jr2xkUIGZ+dj0ghrJCuXODaLmNFIEBABbsL2Pfd11GJpUYUF8c5kg5JEA48BwlQmxmFu
-         Jj4YWPF6Ata7JgnM70RfHpmf8bCuAd9Zdn1HUrYzzZPq+XfLg1Hwtl0O3syNU9MQR9pK
-         tG4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730310565; x=1730915365;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cs3z5H8OfPpGCjxObwmP+XcGRDtkoeJFhbDKmfanh24=;
-        b=L0Vrs7rPbUAYQkA3xdzf4LelX7qIN0X/EhxmLHDCRT3tVNOmd7QgIzPpD+4XrorfFt
-         M1txx5cTpTccQEn2VSBDD6wDIirUADUhKjucPfhj+xI2GPYbr/jKfTI6WaiEHSD+dIAa
-         GCMuJkNWVOkDJV+H4mxnpixFJjzboqCPzgP8WPtQjrGY/tkr4hDMCz9CwzmuSEsTRy9a
-         bn5lOuA4tfVCbuxOUC1zHN8RGlEe3Cf2uHNrIYDb8bCaU6gd/3FobVdv0Vl7YNJKkRfH
-         kYDXK7GWDS9CMp8/HjcpStOsw+GV09vQrkRkKIg1v/RFMDfRPpO/f+hvQsRcETL28sw7
-         pUAA==
-X-Forwarded-Encrypted: i=1; AJvYcCUJJbkICM/WymSZcPYjeIidZ+5hFOZjArBNNn6+iJFwmpSh18AYGOz/8zkP1Jukt67kQceghHwxiFDLQgG6@vger.kernel.org, AJvYcCVzKZXvoQn2YGbyRxvMFB4n8YoLDhv7ATcMWauZax/Lk7p1lT63s9rPeaVw+pH/GCgUVy/E+u3/piI4@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNDVn3ul5VUK7j9L+FfAKqSHtMkZlNC40RtePF2hOCKW8uxoYE
-	idesE+I7f4PYWa8MwaGjUFAur68nnkOsl70DvoDkTDJGouVNNGcZ
-X-Google-Smtp-Source: AGHT+IHD5f1I0hVjw4pIe4XnGiwCH5azKiu1sv5qB8tVdjTSV8ZEo9Du6ea9XN4bKxBsUPhREn/cNg==
-X-Received: by 2002:a17:906:f58a:b0:a99:6036:90a with SMTP id a640c23a62f3a-a9e508cf502mr31698866b.14.1730310565004;
-        Wed, 30 Oct 2024 10:49:25 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f29950asm582718866b.122.2024.10.30.10.49.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Oct 2024 10:49:24 -0700 (PDT)
-Date: Wed, 30 Oct 2024 18:49:22 +0100
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: sound: sprd,sc9860-mcdt: convert to YAML
-Message-ID: <140ee384c1c351ffa3abefa8dd3246d1625dda8d.1730310275.git.stano.jakubek@gmail.com>
-References: <9fc646b70a73e7a6c513771d69b0edcd140f09d7.1730310275.git.stano.jakubek@gmail.com>
+	s=arc-20240116; t=1730310779; c=relaxed/simple;
+	bh=wpy2zs+vyKoPzcsJP8EV44v4Vm34XzUjqdBgP7ZPjvA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=DlveRMwfkErZ/xREsdsgyaKt39PmjgnyrJITI+R+khsba+FL3nonUcif+gUN+gtvRJmuTubcsAqk2HqPE4m1ZFyJz5OsNQF3bSMWmFN4HvEb2/43QRaHdUJ+xdzQxRjyR3rSSXwvAoNiD80NiHM0NMEe2pd7SX70stbxzMqdfbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IvOfUXPN; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49UCHO4Y020417;
+	Wed, 30 Oct 2024 17:52:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	k7vaGGF0ZQrdZ7T28DJe6eUEwES7PAilGNP9n7e2Pvk=; b=IvOfUXPNyWHiHEmk
+	F0hhAOVfy3G2/LgOBHDctw0mdpH/FNyr57DmUrHHTD+6NaHJadBy8cUNjgs44lKi
+	h4UdXa4LYRggh9khKx+tWRkLzsL2nA/b8an7AsrqNraHr724gU0mpdIkT6UB87JR
+	ECaMGRdnAHcd4v2g8sTJX9sTn4CZNLPCXrp1dTQuFfpKbEndLMq7KdpHgsflMQ/S
+	4QaS4PmU0xiIsHqJQsXodV9dxR8i4i5HMevXh5tOzSAN++iDzP1CJktKxvHzrQ88
+	PCPJNaEP2ArTV3ukGGetEkYN3bz6MUqJm8q7F7gNoXJGyv3cLgqgle07CoMPo9IH
+	zHO+Dw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42kmp0gxta-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 17:52:17 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49UHqGi1015906
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 17:52:16 GMT
+Received: from [10.216.35.255] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 30 Oct
+ 2024 10:52:11 -0700
+Message-ID: <b1e9f8ce-b8cb-40a8-a69f-9433073922f3@quicinc.com>
+Date: Wed, 30 Oct 2024 23:22:08 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9fc646b70a73e7a6c513771d69b0edcd140f09d7.1730310275.git.stano.jakubek@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/11] clk: qcom: clk-alpha-pll: Add support for dynamic
+ update for slewing PLLs
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>,
+        Abhishek Sahu <absahu@codeaurora.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        "Stephen Boyd" <sboyd@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20241019-qcs615-mm-clockcontroller-v1-0-4cfb96d779ae@quicinc.com>
+ <20241019-qcs615-mm-clockcontroller-v1-2-4cfb96d779ae@quicinc.com>
+ <f78c5fce-4d7e-429b-945a-8e62cb9a2350@wanadoo.fr>
+Content-Language: en-US
+From: Taniya Das <quic_tdas@quicinc.com>
+In-Reply-To: <f78c5fce-4d7e-429b-945a-8e62cb9a2350@wanadoo.fr>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 2NVBuc5c9uwG282KIp6GcXxW4_gTJ8KA
+X-Proofpoint-ORIG-GUID: 2NVBuc5c9uwG282KIp6GcXxW4_gTJ8KA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 malwarescore=0 impostorscore=0 mlxscore=0 suspectscore=0
+ adultscore=0 clxscore=1011 phishscore=0 spamscore=0 mlxlogscore=999
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410300140
 
-Convert the Spreadtrum Multi-Channel Data Transfer controller bindings
-to DT schema. Adjust filename to match compatible.
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
- .../bindings/sound/sprd,sc9860-mcdt.yaml      | 47 +++++++++++++++++++
- .../devicetree/bindings/sound/sprd-mcdt.txt   | 19 --------
- 2 files changed, 47 insertions(+), 19 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/sprd,sc9860-mcdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/sprd-mcdt.txt
 
-diff --git a/Documentation/devicetree/bindings/sound/sprd,sc9860-mcdt.yaml b/Documentation/devicetree/bindings/sound/sprd,sc9860-mcdt.yaml
-new file mode 100644
-index 000000000000..3b66bedeff97
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/sprd,sc9860-mcdt.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/sprd,sc9860-mcdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Spreadtrum Multi-Channel Data Transfer controller
-+
-+description:
-+  The Multi-channel data transfer controller is used for sound stream
-+  transmission between the audio subsystem and other AP/CP subsystem. It
-+  supports 10 DAC channels and 10 ADC channels, and each channel can be
-+  configured with DMA mode or interrupt mode.
-+
-+maintainers:
-+  - Orson Zhai <orsonzhai@gmail.com>
-+  - Baolin Wang <baolin.wang7@gmail.com>
-+  - Chunyan Zhang <zhang.lyra@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: sprd,sc9860-mcdt
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    mcdt@41490000 {
-+      compatible = "sprd,sc9860-mcdt";
-+      reg = <0x41490000 0x170>;
-+      interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/sound/sprd-mcdt.txt b/Documentation/devicetree/bindings/sound/sprd-mcdt.txt
-deleted file mode 100644
-index 274ba0acbfd6..000000000000
---- a/Documentation/devicetree/bindings/sound/sprd-mcdt.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--Spreadtrum Multi-Channel Data Transfer Binding
--
--The Multi-channel data transfer controller is used for sound stream
--transmission between audio subsystem and other AP/CP subsystem. It
--supports 10 DAC channel and 10 ADC channel, and each channel can be
--configured with DMA mode or interrupt mode.
--
--Required properties:
--- compatible: Should be "sprd,sc9860-mcdt".
--- reg: Should contain registers address and length.
--- interrupts: Should contain one interrupt shared by all channel.
--
--Example:
--
--mcdt@41490000 {
--	compatible = "sprd,sc9860-mcdt";
--	reg = <0 0x41490000 0 0x170>;
--	interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
--};
+On 10/19/2024 1:50 AM, Christophe JAILLET wrote:
+>> +
+>> +static int clk_alpha_pll_slew_update(struct clk_alpha_pll *pll)
+>> +{
+>> +    int ret = 0;
+> 
+> Nitpick: unneeded initialisation
+> 
+
+Will fix in the next patch.
+
+>> +    u32 val;
+>> +
+>> +    regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_UPDATE, 
+>> PLL_UPDATE);
+>> +    regmap_read(pll->clkr.regmap, PLL_MODE(pll), &val);
+>> +
+>> +    ret = wait_for_pll_update(pll);
+>> +    if (ret)
+>> +        return ret;
+>> +    /*
+>> +     * Hardware programming mandates a wait of at least 570ns before 
+>> polling the LOCK
+>> +     * detect bit. Have a delay of 1us just to be safe.
+>> +     */
+>> +    mb();
+>> +    udelay(1);
+>> +
+>> +    return wait_for_pll_enable_lock(pll);
+>> +}
+> 
+> ...
+> 
+>> +static int clk_alpha_pll_slew_enable(struct clk_hw *hw)
+>> +{
+>> +    int rc;
+>> +
+>> +    rc = clk_alpha_pll_calibrate(hw);
+>> +    if (rc)
+>> +        return rc;
+>> +
+>> +    rc = clk_alpha_pll_enable(hw);
+>> +
+>> +    return rc;
+> 
+> Nitpick: return clk_alpha_pll_enable(hw);
+
+Will fix in the next patch.
+
 -- 
-2.43.0
-
+Thanks & Regards,
+Taniya Das.
 
