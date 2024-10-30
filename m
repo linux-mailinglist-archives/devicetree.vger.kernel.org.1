@@ -1,127 +1,98 @@
-Return-Path: <devicetree+bounces-117509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBFA69B6BA2
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 19:05:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C9D59B6BA5
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 19:06:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8147F28132A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:05:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E660C2811E9
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:06:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1F2F1C3308;
-	Wed, 30 Oct 2024 18:05:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 662D41C3F00;
+	Wed, 30 Oct 2024 18:06:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pB+JALZh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XbGCzYOP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21AD91A2631;
-	Wed, 30 Oct 2024 18:05:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 643851A2631;
+	Wed, 30 Oct 2024 18:06:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730311548; cv=none; b=WhYfF85abS0c0lMl3b7oH+1fmuSnNaye+gu9m9+OnpG24ga32AKNSt642lHGYGhh9nqoyQllc/f5NBHAmN4Zt9cAIXFoKJr2SVaaHn0UPWRWFLA7R+82IBJwTEJ1YX2k9RRaVKaqH8O/dEiHpDa5/yWzVpzjIgggDTjC+zy2GFs=
+	t=1730311576; cv=none; b=jBlwoZvsuX/3b97/qf/6OAzUgPL9ST/8ONLX6lMBNr4dAq1XtqYFd/XzfT14/NIPxqZly/vfUfOnLqDmFhexw/a8BIh41B1s0nAD7fHXED/SVHpO2V8tlg9rfirpAln5rHUF1N/7+3G7K87HzjhOHmlaC4iqD541z82AQV8oQQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730311548; c=relaxed/simple;
-	bh=YOZPTsTF7TsVm2VGEg9PWV8F8hJruDTWv/J4qiqqY0g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=blbtZ6gdGmNqyd5RCQ9M8/9BnFlQxFuhPF2Tg6SgP7IAz3QHjSwAPJeUkXusS/02rcjKqnw2sVzeSWIuqKuRJiUY0rx2zOQFofkWaQ2X437gi4ESS74y0by6MW6QvdcmxEkkiOdcR7Z1xd2yy9EmmwZ21rhrg3eUh+8iGxTBjVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pB+JALZh; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49UDq4VF032007;
-	Wed, 30 Oct 2024 18:05:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Wg6iW5B0te6AyYNCFKTR1rnb/HaJc1WsC2nIBBwB0SM=; b=pB+JALZhrwSkqHax
-	S39AqV3HAxugV1AxBaHwcPkKuIFO1X/HvW1/WsPyOeNm8Ql5ODDEquRM4PGe31T6
-	/SzkaglJN7yG0M2i9+tEQAcwEPraimV4w9uu6DIrfb1wJ7dPgcXxMha3Aih8XAc/
-	pOgI8D+e6c9LbWuR+s1o5yPXNvlhI6HwpZZwnuClbYpLc0UqLV9xkt0SjrPZjB9x
-	KygOlXm67/6Fm2/GnsdrLspkdRwhKYZ4SefLDtWqvX0at+KwdiKgOsO1Ee1teOAN
-	Akip3DutP7Y/WkSYsfBdXCIwdtMQkrpDnU62jpiuJCmEW8A6auRaKz1oeCZQ0EJg
-	ZgMtng==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42kp2g8q4n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 18:05:14 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49UI5EsC024501
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 18:05:14 GMT
-Received: from [10.216.35.255] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 30 Oct
- 2024 11:05:08 -0700
-Message-ID: <91d0089f-93b3-4d1d-a6da-8af2cf47046a@quicinc.com>
-Date: Wed, 30 Oct 2024 23:35:05 +0530
+	s=arc-20240116; t=1730311576; c=relaxed/simple;
+	bh=LF9noeTji2b7N8JqoErVzO0xyU0Yhb3GiDpnpvg1GoY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=twJFvm7dX89aT8ayxAQMW24jwdrqvKOszQOf0/ui1DsSFIIvOqxbTaKRZW5uXd6V+G1D2PIGAhLgqj5Ccx8XXe9rYGWjvf0lor7qhHLHnhDx9+alyaQ/bGDCc2puKKdTAHt2aKiH0eREFrdrofM4/9jN/NydsDyVazfKSxYGRPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XbGCzYOP; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2fb49510250so870121fa.0;
+        Wed, 30 Oct 2024 11:06:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730311572; x=1730916372; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LF9noeTji2b7N8JqoErVzO0xyU0Yhb3GiDpnpvg1GoY=;
+        b=XbGCzYOPxc+o8Z408htylZ0mBgGBvcg0+zf9Dtjp8h7B/y5yUfY/S4z9p2+5oklPig
+         wqwKQuufBGCKTvxKO10uKDIlQOuoBp0MXXwe3wo7MM8IUZIWnVrGTWgxBmeasC1Nn2kA
+         Wt/wDO+kFcIEDeRVLi0UPS6qi7OQrm/9dffW9nIIN0gijqskW1Y+X8NrUIR6GaukvlVM
+         9d7de/L39bLjLyD7q3znds7oTbr2fiTwnLnE9GESqQIHraNeRvjfKGciM8fmCgVYRtPV
+         L6ZlxjweCNEo9LY5wBVrOuKH+Ycsao8rh2PfB09tEVQv6AJa9Nh+5B0SAQMTPy53RDMI
+         RrhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730311572; x=1730916372;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LF9noeTji2b7N8JqoErVzO0xyU0Yhb3GiDpnpvg1GoY=;
+        b=WcFibNvYx+ZuXQfo8AZ7O3S+AdiCmadECf8ZT+7vEAGFym/pK+rBbTg9pZZLuzmhF2
+         fJPerwKlWsq+cagJp+awcF8UR+J6Fk0yJw9/8jcAzW3ZlAh6jOGI+QH++OTiGNg3bycN
+         ePdnfAnmFq6dZ/1TGNDEpn2FSXgoavTXM5GJcaqpi5I5A2CDg3F2MFTWv5Zi9vZrqA8T
+         WuLzSzLJcvBczs8gvGhcmXnl+EGkwdReUe4IXztbrRl6DsFt8WbRGGgqbobXKy+QDGsB
+         dzWZzLw65BW3KC1c7WR1qK+6gKznhnkK3uN2r1IiKaA59s1Xbc8DYkxyw8G5DiLkE7K+
+         OLYw==
+X-Forwarded-Encrypted: i=1; AJvYcCXsYwIy6q+8PWGTsgdplR2BZmIZRJR6NBEZI1+qCHDLYKh7r0qBRX6hqrmuMoBjEW7/N6NQ02FwQPMD6yY=@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywj1KFF56SsKXe3znvXc/I70vgbOayZDW5NIN2bqZGFz7ql7l4n
+	NEeK3SO5aSoLyGzzdKlCLVhcEHUVCA/QeqdZIjHmlSaEGSF8E2UDcVaLzQ==
+X-Google-Smtp-Source: AGHT+IHayk77MRC4z7nR2NME3N5ImHKRJYje2Pp2ODSwtTF/mqu+oMiZahVSN8lWYtzUTFV/l8joWQ==
+X-Received: by 2002:a2e:743:0:b0:2fb:587d:310 with SMTP id 38308e7fff4ca-2fdecbf82eemr2635661fa.30.1730311572328;
+        Wed, 30 Oct 2024 11:06:12 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cbb629d8c2sm4901115a12.29.2024.10.30.11.06.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Oct 2024 11:06:11 -0700 (PDT)
+Date: Wed, 30 Oct 2024 19:06:09 +0100
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] Cleanup Spreadtrum/Unisoc ARM64 DT (part 2)
+Message-ID: <ZyJ1keHD-neTNZ2J@standask-GA-A55M-S2HP>
+References: <cover.1723716331.git.stano.jakubek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/11] arm64: defconfig: Enable QCS615 clock controllers
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Abhishek Sahu
-	<absahu@codeaurora.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
-        Stephen Boyd
-	<sboyd@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20241019-qcs615-mm-clockcontroller-v1-0-4cfb96d779ae@quicinc.com>
- <20241019-qcs615-mm-clockcontroller-v1-11-4cfb96d779ae@quicinc.com>
- <zbkqqweb6e6sw6cic3klg4pauxoi5wkcq5js5g4axp64ghpank@7q7jowwrwp5x>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <zbkqqweb6e6sw6cic3klg4pauxoi5wkcq5js5g4axp64ghpank@7q7jowwrwp5x>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 96QpCYqI2PhHPJViIWw3Of681fkBhEdn
-X-Proofpoint-GUID: 96QpCYqI2PhHPJViIWw3Of681fkBhEdn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- mlxscore=0 priorityscore=1501 clxscore=1015 suspectscore=0 impostorscore=0
- mlxlogscore=629 adultscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410300143
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1723716331.git.stano.jakubek@gmail.com>
 
+Hi all,
 
+not sure which tree this should go through, but could someone pick this up?
+It's been sitting for ~2.5 months.
 
-On 10/19/2024 2:02 AM, Dmitry Baryshkov wrote:
->> Enable the QCS615 display, video, camera and graphics clock
->> controller for their respective functionalities on Qualcomm QCS615.
-> .... used on Qualcomm ABCDEF board, please.
-
-Yes, I missed that, will fix it in the next patch.
-
-> 
-
-
--- 
-Thanks & Regards,
-Taniya Das.
+Thanks,
+Stanislav
 
