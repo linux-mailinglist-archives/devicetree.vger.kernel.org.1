@@ -1,174 +1,172 @@
-Return-Path: <devicetree+bounces-117279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E14E9B5C34
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 08:03:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22FDC9B5C41
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 08:05:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6A73B21F64
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:03:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0EB41F21405
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:05:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E491E0DB8;
-	Wed, 30 Oct 2024 07:02:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F14BA1DC07D;
+	Wed, 30 Oct 2024 07:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="jSDHncvM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W3I5MJ1Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712461E00A6
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 07:02:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA40A1DB55C;
+	Wed, 30 Oct 2024 07:05:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730271759; cv=none; b=s31L88U6lFOWqpu6mwoaYYCnZsFzVYbUx6KnNAWGWKAvdppOiURN8sF1/ynFOXVM48yg2xSjMSiVz2z16FOxipUymxMnGLAulTIZDWoAmUI7aMt5vR4dKjd41C1gURMEAG3D5yqcpjSraj/5sJzm60nxpXTDB8asQ2Q1rLMr14w=
+	t=1730271943; cv=none; b=rVxg0EsSZg1riYTGHqQFS0S0W6aQqGZLsRs4vnHY10vKy81cIYF7psjSRwsoU1OaoghWnj82rzBv1l/+05mkg5MSj1e4zPryhI183nn5XQ+60qUew2IOJge1raX/PryxbCT+iodJXeva+qRKJ917oiu432QqXaWVf/YVH1ALJG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730271759; c=relaxed/simple;
-	bh=rTCt2wTAlVnLiAKVA+zZLqsLFleae4+yewzhmiLwef8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KjbgmWZ+FWaa977/7RpBLbMkgB5Nq47w351+68iPpAJioEBZeT7GprkGyrvtmkl7h3xcwMWpzjkYT15mzGb++emjrPES++D7I2XMbbJybzLqU6za6JQOArnMXBCUYpHYiMkt2CWsOVBhfWl9JVG4AAQaiPGirDgyiS8z8xFG9FU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=jSDHncvM; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7ea9739647bso4513551a12.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 00:02:37 -0700 (PDT)
+	s=arc-20240116; t=1730271943; c=relaxed/simple;
+	bh=FKvWML6egPeSPy565IJ4UiPLQrgY18N5I5wVQKj/WmE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZmCO0U36rYmpKQaoN2N1jg6TXF63PtgTuVszrLhMe5hU6DE5IEJ7aVA69e0XyZWOobSBagFTx5Qp5ch1VaXqK9m6ndtitKnRtFL4KmocTr+TTXPaP0seWRfllmkIvvfznd2Z6vcE555HVG7xfxiJwyaRCvKwuFwcoZQ4+Gq8BOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W3I5MJ1Z; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5c903f5bd0eso12316640a12.3;
+        Wed, 30 Oct 2024 00:05:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1730271757; x=1730876557; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lij+PC1fLvJixrLcoV9Z1Urjyzf4HaJGb+O+EycfkvQ=;
-        b=jSDHncvMUYkzvTDO1VfqEP2w3cHI86Ca7SUwWZF3+ylQqpizrgq9UksgzufQfiSg4p
-         RBTMn3VKpMXWzZ03zcSheklrZkpNKBYBZxrnvunGkE0u54tZak4g+RSS+LKctOu7yocR
-         3gLajpno3i/a+VC6gUxnSCZVv7nq+eRD/z9IY=
+        d=gmail.com; s=20230601; t=1730271940; x=1730876740; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=a94qWPo/eAj/4+7JSY/BQUfRtKOaj2dvP/UkphqzYiA=;
+        b=W3I5MJ1ZrMjjwfMZ+mcR4g+2/NEJxH2cTQ+m4YAMcKLn4CpmjVEoeLP4KRbSRmBttU
+         /Y0b4IvHMPXZKWcsuytUOZiBqbaDkaOUgk2jyTPzavlqaE3bHVJMb/XObLYdS7OAv1Oz
+         t4CfCLaAprPsDuyBmkgHcO0DLQAGQl1uOD9fblfeerJ7qAsi0TISXeOWS0rXizd4gzIu
+         c7WfMSh8zpY9LgNQOiIszobaDRNkAunJK8r4JQoBym0edB4CElZQToJrzwTv8bTLp1j6
+         h3IY10LNg7MUje6EJhnLu94CUAEu0R4CzDMHJ1v5Er1oVJ64n0TMZUC07WpGeOlheRJm
+         tcpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730271757; x=1730876557;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lij+PC1fLvJixrLcoV9Z1Urjyzf4HaJGb+O+EycfkvQ=;
-        b=tJ/AecjgYXHaRy1gZav9cJJh7LeSarWmLiMRj9aaAncXib16kj2yehH75i738TjH0r
-         THSalHwr4thLXYpLmh5Iwz769NeMYFYJzvvzYVhMUsTFAxSyj0pR757SapdH8OucOZJY
-         lpIListFihbTC1s0Ru+9aDfNvhfSk0d8EohSrkurtGAVMaQ2/MkNJjzCHECu4wM0dAOB
-         WXRjOOmCMoxA2grRcvAyjU1L5GY7KSpJRzUQ58exvmQyvGN1T3095k4WiBlDuU7r0IFW
-         DRyOjP5Hj7mlA3DF15gMKSSSiNGmcTaoDfDFDEDW7hyTMaRd1nh8mW4dI2F1InFiYti1
-         v63A==
-X-Forwarded-Encrypted: i=1; AJvYcCXngob7/HjwBe+o0qVSxmLm0Tucnv1CmUQRnftyxT9zFWaCy9FWI+iSCQrTeUtJF6DG5IEXfXrBFeuS@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywg3199JJpMjfFu1Rp6fCtN71jvRFDv6jdLZ87aP76d6gbhlbMj
-	PnGLndpHX2DTYHK6peeeOWfGve5dDSmNU5wWF+gbPn/l7bNI1IpZOrBA3uYXvg==
-X-Google-Smtp-Source: AGHT+IEMIHQ8npyjfU/99fAX2NsP9PaKHpba5mfPSOR0IqSW7YKOpbx3Zp8jaGt7KFeqZbuG5u4Y4w==
-X-Received: by 2002:a05:6a20:e605:b0:1d9:69cb:9f90 with SMTP id adf61e73a8af0-1d9a83d10bdmr20483336637.19.1730271756808;
-        Wed, 30 Oct 2024 00:02:36 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:d1f3:aa64:657f:d8a8])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057931a94sm8635848b3a.68.2024.10.30.00.02.35
+        d=1e100.net; s=20230601; t=1730271940; x=1730876740;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a94qWPo/eAj/4+7JSY/BQUfRtKOaj2dvP/UkphqzYiA=;
+        b=VMqvQ9fzxuqBcyO2aCxvem5Da40b1yyFf018j+rv2Ah9evUZj5rfhd9P4iU+m9nIAt
+         cJortGDlWO4U2gK6lF8HC8jVNRwqNHYgZNqp7VuLT6GKcqd5iB5SpnBMKGtTavoGm4fY
+         h0ogQ28K8g1jdtdHCOzinVBs+xyt/a1Aa0PL9wBh4xgnpgvpzRMUkLBDMNpSLEybWq/J
+         d29hFjCt/iPBPRa5dIWaUls0q6a+8pm6VL7SZ/VqQKhdixe3iZrqJlbmQXtYoX7j2oF1
+         01R2ouSxYGzfEsJv8wCJhTSnUKsS6dVeaEytKHIUFgOqZX+p9UBCZ/ahnP6oVDoNoORt
+         bUFA==
+X-Forwarded-Encrypted: i=1; AJvYcCU1oAZ/+qU4ztzfO/Rh+dJFNpxev90Do1JdKlIOBqVCj8NwuuMnTnAbVJkK5uwLR5xI/TCnaDeT3UFIgwc=@vger.kernel.org, AJvYcCUAq32B4+ylHJSqN3w6fmtYejN9PHgk+Ix8I0kFH9+Qh5yfTKeaRzbgt32kLgMsvSdTtBYZGPOzdsEV+uTv@vger.kernel.org, AJvYcCVdpLrPfdGmr8rwGG+GGIByR17z4MtIi1CGT2mfyVtYdL9laGAsrXzOwAjYuKqv90Us7cJGVM16p9gD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4em6UHj5+1BkHkfxImtmBm0a3PnsRnNsazRhp5uhQrHR+35kX
+	SWoLwBLOjN3AIkTgT/yAVSv5P3HQxU+qeAXBAFPDaI0PFf+tKteXYEhhPORg
+X-Google-Smtp-Source: AGHT+IFkKTzxTFviTyT3AvCyKj11fatcdAAE9wC0mDGf13f1RPqfDUGvrI6ZQ7KnPipMs8yS4CiOhg==
+X-Received: by 2002:a17:906:c14a:b0:a9a:80bd:2920 with SMTP id a640c23a62f3a-a9de61990b1mr1400793566b.53.1730271939651;
+        Wed, 30 Oct 2024 00:05:39 -0700 (PDT)
+Received: from ux-UP-WHL01 (mailgw01.goodix.com. [45.117.96.243])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b3a08906dsm532838766b.209.2024.10.30.00.05.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Oct 2024 00:02:36 -0700 (PDT)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: mediatek: mt8183-kukui: Drop bogus fixed regulators
-Date: Wed, 30 Oct 2024 15:02:23 +0800
-Message-ID: <20241030070224.1006331-5-wenst@chromium.org>
-X-Mailer: git-send-email 2.47.0.163.g1226f6d8fa-goog
-In-Reply-To: <20241030070224.1006331-1-wenst@chromium.org>
-References: <20241030070224.1006331-1-wenst@chromium.org>
+        Wed, 30 Oct 2024 00:05:38 -0700 (PDT)
+Date: Wed, 30 Oct 2024 15:05:30 +0800
+From: Charles Wang <charles.goodix@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Charles Wang <charles.goodix@gmail.com>,
+	hbarnor@chromium.org, conor.dooley@microchip.com, jikos@kernel.org,
+	bentiss@kernel.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+Message-ID: <ZyHaugCcAW8E10pG@ux-UP-WHL01>
+References: <20241025114642.40793-2-charles.goodix@gmail.com>
+ <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3>
+ <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
+ <CAL_JsqLwOekE1mz+3g8NTE3o4GhE9PWwR1Jfk_tL0RYKQmCg-A@mail.gmail.com>
+ <CAD=FV=VHMfc2kJo2N3jkB9BR0H7SN2g9JqoDkZuZOOuq0OV6gw@mail.gmail.com>
+ <ZxvSDJkBOozkp87d@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZxvSDJkBOozkp87d@google.com>
 
-A couple of the fixed regulators in the Kukui dtsi do not actually
-exist in the hardware design; they are simply power rails connected
-together with 0 ohm bridges.
+Hi Dmitry,
 
-Drop them and assign their upstream supplies to their consumers instead.
+On Fri, Oct 25, 2024 at 10:14:52AM -0700, Dmitry Torokhov wrote:
+> On Fri, Oct 25, 2024 at 09:19:14AM -0700, Doug Anderson wrote:
+> > Hi,
+> > 
+> > On Fri, Oct 25, 2024 at 8:59 AM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Fri, Oct 25, 2024 at 10:29 AM Doug Anderson <dianders@chromium.org> wrote:
+> > > >
+> > > > Charles,
+> > > >
+> > > > On Fri, Oct 25, 2024 at 5:03 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > > >
+> > > > > > +properties:
+> > > > > > +  compatible:
+> > > > > > +    enum:
+> > > > > > +      - goodix,gt7986u-spi
+> > > > >
+> > > > > Compatible is already documented and nothing here explains why we should
+> > > > > spi variant.
+> > > > >
+> > > > > > +
+> > > > > > +  reg:
+> > > > > > +    maxItems: 1
+> > > > > > +
+> > > > > > +  interrupts:
+> > > > > > +    maxItems: 1
+> > > > > > +
+> > > > > > +  reset-gpios:
+> > > > > > +    maxItems: 1
+> > > > > > +
+> > > > > > +  goodix,hid-report-addr:
+> > > > >
+> > > > > I do not see this patch addressing previous review. Sending something
+> > > > > like this as v1 after long discussions also does not help.
+> > > >
+> > > > Krzysztof is right that it's better to wait until we get consensus on
+> > > > the previous discussion before sending a new patch. I know you were
+> > > > just trying to help move things forward, but because of the way the
+> > > > email workflow works, sending a new version tends to fork the
+> > > > discussion into two threads and adds confusion.
+> > > >
+> > > > I know Krzysztof and Rob have been silent during our recent
+> > > > discussion, but it's also a long discussion. I've been assuming that
+> > > > they will take some time to digest and reply in a little bit. If they
+> > > > didn't, IMO it would have been reasonable to explicitly ask them for
+> > > > feedback in the other thread after giving a bit of time.
+> > >
+> > > If the firmware creates fundamentally different interfaces, then
+> > > different compatibles makes sense. If the same driver handles both bus
+> > > interfaces, then 1 compatible should be fine. The addition of '-spi'
+> > > to the compatible doesn't give any indication of a different
+> > > programming model. I wouldn't care except for folks who will see it
+> > > and just copy it when their only difference is the bus interface and
+> > > we get to have the same discussion all over again. So if appending
+> > > '-spi' is the only thing you can come up with, make it abundantly
+> > > clear so that others don't blindly copy it. The commit msg is useful
+> > > for convincing us, but not for that purpose.
+> > 
+> > OK, makes sense. Charles: Can you think of any better description for
+> > this interface than "goodix,gt7986u-spi"? I suppose you could make it
+> > super obvious that it's running different firmware with
+> > "goodix,gt7986u-spifw" and maybe that would be a little better.
+> 
+> Is there any chance for Microsoft-compatible HID-over-SPI versions of
+> the firmware for this chip? Will this require new compatible string? Or
+> it will be a different chip ID and the issue will be moot?
+> 
+No, the SPI hardware design of this chip does not meet the requirements for
+the Microsoft HID-over-SPI protocol. A new chip with a new ID will be
+developed to support the Microsoft HID-over-SPI protocol.
 
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
- .../dts/mediatek/mt8183-kukui-katsu-sku32.dts |  2 +-
- .../dts/mediatek/mt8183-kukui-katsu-sku38.dts |  2 +-
- .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 25 ++-----------------
- 3 files changed, 4 insertions(+), 25 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dts
-index 05361008e8ac..2b5a8d1f900e 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dts
-@@ -23,7 +23,7 @@ touchscreen1: touchscreen@5d {
- 		interrupts-extended = <&pio 155 IRQ_TYPE_LEVEL_LOW>;
- 
- 		reset-gpios = <&pio 156 GPIO_ACTIVE_LOW>;
--		vdd-supply = <&lcd_pp3300>;
-+		vdd-supply = <&pp3300_alw>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dts
-index cf008ed82878..75fadf2c7059 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dts
-@@ -23,7 +23,7 @@ touchscreen1: touchscreen@5d {
- 		interrupts-extended = <&pio 155 IRQ_TYPE_LEVEL_LOW>;
- 
- 		reset-gpios = <&pio 156 GPIO_ACTIVE_LOW>;
--		vdd-supply = <&lcd_pp3300>;
-+		vdd-supply = <&pp3300_alw>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index e9e6253141c6..0cf50b1f59c8 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -52,27 +52,6 @@ it6505_pp18_reg: regulator0 {
- 		vin-supply = <&pp1800_alw>;
- 	};
- 
--	lcd_pp3300: regulator1 {
--		compatible = "regulator-fixed";
--		regulator-name = "lcd_pp3300";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		regulator-always-on;
--		regulator-boot-on;
--	};
--
--	mmc1_fixed_power: regulator3 {
--		compatible = "regulator-fixed";
--		regulator-name = "mmc1_power";
--		vin-supply = <&pp3300_alw>;
--	};
--
--	mmc1_fixed_io: regulator4 {
--		compatible = "regulator-fixed";
--		regulator-name = "mmc1_io";
--		vin-supply = <&pp1800_alw>;
--	};
--
- 	pp1800_alw: regulator5 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "pp1800_alw";
-@@ -373,8 +352,8 @@ &mmc1 {
- 	pinctrl-names = "default", "state_uhs";
- 	pinctrl-0 = <&mmc1_pins_default>;
- 	pinctrl-1 = <&mmc1_pins_uhs>;
--	vmmc-supply = <&mmc1_fixed_power>;
--	vqmmc-supply = <&mmc1_fixed_io>;
-+	vmmc-supply = <&pp3300_alw>;
-+	vqmmc-supply = <&pp1800_alw>;
- 	mmc-pwrseq = <&wifi_pwrseq>;
- 	bus-width = <4>;
- 	max-frequency = <200000000>;
--- 
-2.47.0.163.g1226f6d8fa-goog
-
+Thanks,
+Charles
 
