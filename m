@@ -1,95 +1,84 @@
-Return-Path: <devicetree+bounces-117445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2607A9B6439
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 14:35:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D82859B645B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 14:40:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56E891C213C2
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:35:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F7511F23119
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:40:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 227E51E570E;
-	Wed, 30 Oct 2024 13:35:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ooR9oXz4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 246301EB9EF;
+	Wed, 30 Oct 2024 13:40:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD0A3185B62;
-	Wed, 30 Oct 2024 13:35:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C1CE1E570E;
+	Wed, 30 Oct 2024 13:40:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730295337; cv=none; b=ZdGC9hVIS80E0vNiKstt9yBKihxq14mJM61VtKPlj9+FQxxUniAiTqfsPskZAvVDt+Sc8gJjlwZuQXcR9kVvwjiOmuKPaWF9qXgmkXp/uCdfGWcPvCJfe9Nu1s3T6AOL4L7zz1BFLCueD1cJGzJexiT1moVgIwSzkF+F6ueSHak=
+	t=1730295651; cv=none; b=QZe+to5tqUxpQRHqLsdakRFDN8HJCKSRPQ2cKO63oFxPsPnFxb1BIxu73/5zszTryTUOy/mZTGfgkddp9s2wt8QdBJIgS5mWhAXG60kwwSBWbmoJC983eVJ+gf9CIFF2phRwZp/50e+UpKlhGLuRDaHTilzN9wEFTI9X6B97Lwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730295337; c=relaxed/simple;
-	bh=q0+2bsG1gRSPhvpYprB+IAG8xeuM/DVRZ6H3+S4xmGQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dXxdp05g+xhPRyvYfESpFvf0Xo0hOK34e+3Alt+IbGMxnoz+8OddeHFKj/oYZ1xziJJ8j8pM3s9V7BcLFX8LX8P/OTWMaubAwW63slWbD5syySpYhhJ7otio9nlukiWFKM9A/ZeyJ6EL8Tznd3K0Q7+eSpp4exKqETektIgNel0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ooR9oXz4; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Q/3yOnbAAYgurf+C+eCBdRRuc1aeP4zqVtwXMl6zbys=; b=ooR9oXz4Ia58Wc5ZleJG1mkXW8
-	hSOeOcdYurwLwLvenD/zFFbS3NugdL74o7f1gWJL73KUdkbvj3/otUa4u+onWqOlaIXM3u6EzhGQ2
-	LcMJWbdzUetNevvOLuRujQKCRwmCPDOR9xhU5wcYXWBg4/4QftMbpuelJsa1Pfmww7es=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t68r7-00BgzV-E7; Wed, 30 Oct 2024 14:35:25 +0100
-Date: Wed, 30 Oct 2024 14:35:25 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
-Cc: "Gupta, Suraj" <Suraj.Gupta2@amd.com>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"git (AMD-Xilinx)" <git@amd.com>,
-	"Katakam, Harini" <harini.katakam@amd.com>
-Subject: Re: [PATCH net] dt-bindings: net: xlnx,axi-ethernet: Correct
- phy-mode property value
-Message-ID: <b078780a-4afd-43af-afcf-309707614b0a@lunn.ch>
-References: <20241028091214.2078726-1-suraj.gupta2@amd.com>
- <MN0PR12MB59539234124DEF1B37FAB220B7542@MN0PR12MB5953.namprd12.prod.outlook.com>
+	s=arc-20240116; t=1730295651; c=relaxed/simple;
+	bh=3CF5SW17LqX7ufLrQVAuxlnJAC1vVC/NA66X+hKZa1M=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=RfJMzzRmuBVwR3JNHuAIfZughykf9+TIAVLHYHyvXqX8lOXFTTckYWaDicoNzq4lkZ03pMLm+PK6MWZ82tU+zqx29nLlvO115WDfxr8p0+BjA9c6GpaSbkneOwVArTdXXNyjSsoIQxgL/M3gctWpx9lm7mUb8DcokhvCBw5so9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [116.25.95.211])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1515cd61;
+	Wed, 30 Oct 2024 21:40:42 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: amadeus@jmu.edu.cn
+Cc: andersson@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dmitry.baryshkov@linaro.org,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org
+Subject: Re: [PATCH v3 2/4] arm64: dts: qcom: ipq6018: add 1.5GHz CPU Frequency
+Date: Wed, 30 Oct 2024 21:40:39 +0800
+Message-Id: <20241030134039.488706-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20241030133015.487183-1-amadeus@jmu.edu.cn>
+References: <20241030133015.487183-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MN0PR12MB59539234124DEF1B37FAB220B7542@MN0PR12MB5953.namprd12.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCTUoaVklMSE9KHU1JTkNDTlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk5VSUpKWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09LVUpLS1VLWQ
+	Y+
+X-HM-Tid: 0a92dda83b5e03a2kunm1515cd61
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OD46Dhw*NTIoHwFWGjgMLiEL
+	PgswCjZVSlVKTEhLSUJOTU9ITU9JVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	TVVJTlVCTlVJSkpZV1kIAVlBSENINwY+
 
-On Wed, Oct 30, 2024 at 06:12:37AM +0000, Pandey, Radhey Shyam wrote:
-> > -----Original Message-----
-> > From: Suraj Gupta <suraj.gupta2@amd.com>
-> > Sent: Monday, October 28, 2024 2:42 PM
-> > To: Pandey, Radhey Shyam <radhey.shyam.pandey@amd.com>;
-> > andrew+netdev@lunn.ch; davem@davemloft.net; edumazet@google.com;
-> > kuba@kernel.org; pabeni@redhat.com; robh@kernel.org; krzk+dt@kernel.org;
-> > conor+dt@kernel.org; netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> > kernel@vger.kernel.org
-> > Cc: git (AMD-Xilinx) <git@amd.com>; Katakam, Harini <harini.katakam@amd.com>
-> > Subject: [PATCH net] dt-bindings: net: xlnx,axi-ethernet: Correct phy-mode property
-> > value
-> > 
-> > Correct phy-mode property value to 1000base-x.
+>    arm64: dts: qcom: ipq6018: add 1.5GHz CPU Frequency
+>
+>        The early version of IPQ6000 (soc id: IPQ6018, SBL version:
+>        BOOT.XF.0.3-00086-IPQ60xxLZB-1) and IPQ6005 SoCs can reach
+>        a max frequency of 1.5GHz, so add this CPU frequency.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+SBL version: BOOT.XF.0.3-00077-IPQ60xxLZB-2
+Sorry, I made the wrong typo here.
 
-    Andrew
+Thanks,
+Chukun
+
+-- 
+2.25.1
+
 
