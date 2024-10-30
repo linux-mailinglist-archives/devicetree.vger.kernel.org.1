@@ -1,98 +1,125 @@
-Return-Path: <devicetree+bounces-117510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C9D59B6BA5
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 19:06:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8622B9B6BAA
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 19:08:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E660C2811E9
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:06:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53A011C225B5
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 662D41C3F00;
-	Wed, 30 Oct 2024 18:06:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A98F1C3308;
+	Wed, 30 Oct 2024 18:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XbGCzYOP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Th2/OQfg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 643851A2631;
-	Wed, 30 Oct 2024 18:06:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17E1A19E99F;
+	Wed, 30 Oct 2024 18:07:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730311576; cv=none; b=jBlwoZvsuX/3b97/qf/6OAzUgPL9ST/8ONLX6lMBNr4dAq1XtqYFd/XzfT14/NIPxqZly/vfUfOnLqDmFhexw/a8BIh41B1s0nAD7fHXED/SVHpO2V8tlg9rfirpAln5rHUF1N/7+3G7K87HzjhOHmlaC4iqD541z82AQV8oQQI=
+	t=1730311677; cv=none; b=nOFfkk11NC6dFhyFK8RVrPs2VkhlIoIZ3ndpQxkBjzgrXH4UDoAFrv4LTfsB9ATLcaRaarLMdPK3VialW61UvcHFniuZYCWC51wAzaoaPVI/FX4R6vBFhYKpuNkbUBe/ae6TTQIlU+Fjic6nta2ZOBirdvQ71k0OhRXtE2axhpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730311576; c=relaxed/simple;
-	bh=LF9noeTji2b7N8JqoErVzO0xyU0Yhb3GiDpnpvg1GoY=;
+	s=arc-20240116; t=1730311677; c=relaxed/simple;
+	bh=DacE1b7YBHxbFapNdObTjtI7fWH1r3sD6tkMcvfimYc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=twJFvm7dX89aT8ayxAQMW24jwdrqvKOszQOf0/ui1DsSFIIvOqxbTaKRZW5uXd6V+G1D2PIGAhLgqj5Ccx8XXe9rYGWjvf0lor7qhHLHnhDx9+alyaQ/bGDCc2puKKdTAHt2aKiH0eREFrdrofM4/9jN/NydsDyVazfKSxYGRPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XbGCzYOP; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2fb49510250so870121fa.0;
-        Wed, 30 Oct 2024 11:06:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730311572; x=1730916372; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LF9noeTji2b7N8JqoErVzO0xyU0Yhb3GiDpnpvg1GoY=;
-        b=XbGCzYOPxc+o8Z408htylZ0mBgGBvcg0+zf9Dtjp8h7B/y5yUfY/S4z9p2+5oklPig
-         wqwKQuufBGCKTvxKO10uKDIlQOuoBp0MXXwe3wo7MM8IUZIWnVrGTWgxBmeasC1Nn2kA
-         Wt/wDO+kFcIEDeRVLi0UPS6qi7OQrm/9dffW9nIIN0gijqskW1Y+X8NrUIR6GaukvlVM
-         9d7de/L39bLjLyD7q3znds7oTbr2fiTwnLnE9GESqQIHraNeRvjfKGciM8fmCgVYRtPV
-         L6ZlxjweCNEo9LY5wBVrOuKH+Ycsao8rh2PfB09tEVQv6AJa9Nh+5B0SAQMTPy53RDMI
-         RrhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730311572; x=1730916372;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LF9noeTji2b7N8JqoErVzO0xyU0Yhb3GiDpnpvg1GoY=;
-        b=WcFibNvYx+ZuXQfo8AZ7O3S+AdiCmadECf8ZT+7vEAGFym/pK+rBbTg9pZZLuzmhF2
-         fJPerwKlWsq+cagJp+awcF8UR+J6Fk0yJw9/8jcAzW3ZlAh6jOGI+QH++OTiGNg3bycN
-         ePdnfAnmFq6dZ/1TGNDEpn2FSXgoavTXM5GJcaqpi5I5A2CDg3F2MFTWv5Zi9vZrqA8T
-         WuLzSzLJcvBczs8gvGhcmXnl+EGkwdReUe4IXztbrRl6DsFt8WbRGGgqbobXKy+QDGsB
-         dzWZzLw65BW3KC1c7WR1qK+6gKznhnkK3uN2r1IiKaA59s1Xbc8DYkxyw8G5DiLkE7K+
-         OLYw==
-X-Forwarded-Encrypted: i=1; AJvYcCXsYwIy6q+8PWGTsgdplR2BZmIZRJR6NBEZI1+qCHDLYKh7r0qBRX6hqrmuMoBjEW7/N6NQ02FwQPMD6yY=@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywj1KFF56SsKXe3znvXc/I70vgbOayZDW5NIN2bqZGFz7ql7l4n
-	NEeK3SO5aSoLyGzzdKlCLVhcEHUVCA/QeqdZIjHmlSaEGSF8E2UDcVaLzQ==
-X-Google-Smtp-Source: AGHT+IHayk77MRC4z7nR2NME3N5ImHKRJYje2Pp2ODSwtTF/mqu+oMiZahVSN8lWYtzUTFV/l8joWQ==
-X-Received: by 2002:a2e:743:0:b0:2fb:587d:310 with SMTP id 38308e7fff4ca-2fdecbf82eemr2635661fa.30.1730311572328;
-        Wed, 30 Oct 2024 11:06:12 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cbb629d8c2sm4901115a12.29.2024.10.30.11.06.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Oct 2024 11:06:11 -0700 (PDT)
-Date: Wed, 30 Oct 2024 19:06:09 +0100
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] Cleanup Spreadtrum/Unisoc ARM64 DT (part 2)
-Message-ID: <ZyJ1keHD-neTNZ2J@standask-GA-A55M-S2HP>
-References: <cover.1723716331.git.stano.jakubek@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LQANE8NsXrLZFgYPTkYaA5tW4nz0fMBl0IM+mEiURSwKBhE+2lQT/OrEzMM4CiOeRor72pQHadsbYLFL3sAaTub0FPDgtGZIZP0T6ptybIpyVL7hb38Dy42eN9mZ9TnWtiM++Tb4Nl5XrKVpScQ+PGPIgXDj9ChgI3VOAN889Nc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Th2/OQfg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9F5EC4CED2;
+	Wed, 30 Oct 2024 18:07:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730311676;
+	bh=DacE1b7YBHxbFapNdObTjtI7fWH1r3sD6tkMcvfimYc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Th2/OQfge7Cqb5FSvk4tgbZgUOx/XFaqwtFDnx7Na4WLRcSFpDC5YfkBqoNsXIkdE
+	 FeZAA2bNDZnLgebiYO1Z8Rw6relTq2lWLOpQtFH8HUNIWDVKgZjsNHFvmOXTPYO3yH
+	 Nh9cuArCAA8zc4efk+R/0kdcFR1AQPG42SHqggBqPyIUxp21fOLjdmB9Pb7Zw048Ff
+	 sXpF51GnDccvIrxGQHVw3njuZvS7nUUGMTge4EWjwBjDIHy0FjyeM13chZ1dX2NRiH
+	 6ROUWEWDciA/OI3Bc0CFLJHLEH3W6kx9URVlNLZZMo12G+Yn0JLksUocfe0Hwo3mzt
+	 Kdkw+BoC157Wg==
+Date: Wed, 30 Oct 2024 19:07:48 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Alice Ryhl <aliceryhl@google.com>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com,
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
+ driver abstractions
+Message-ID: <ZyJ19GDyVrGPbSEM@pollux>
+References: <20241022213221.2383-1-dakr@kernel.org>
+ <20241022213221.2383-16-dakr@kernel.org>
+ <CAH5fLghVDqWiWfi2WKsNi3n=2pR_Hy3ZLwY8q2xfjAvpHuDx=w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cover.1723716331.git.stano.jakubek@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAH5fLghVDqWiWfi2WKsNi3n=2pR_Hy3ZLwY8q2xfjAvpHuDx=w@mail.gmail.com>
 
-Hi all,
+On Wed, Oct 30, 2024 at 04:50:43PM +0100, Alice Ryhl wrote:
+> On Tue, Oct 22, 2024 at 11:33 PM Danilo Krummrich <dakr@kernel.org> wrote:
+> > +/// Drivers must implement this trait in order to get a platform driver registered. Please refer to
+> > +/// the `Adapter` documentation for an example.
+> > +pub trait Driver {
+> > +    /// The type holding information about each device id supported by the driver.
+> > +    ///
+> > +    /// TODO: Use associated_type_defaults once stabilized:
+> > +    ///
+> > +    /// type IdInfo: 'static = ();
+> > +    type IdInfo: 'static;
+> > +
+> > +    /// The table of device ids supported by the driver.
+> > +    const ID_TABLE: IdTable<Self::IdInfo>;
+> > +
+> > +    /// Platform driver probe.
+> > +    ///
+> > +    /// Called when a new platform device is added or discovered.
+> > +    /// Implementers should attempt to initialize the device here.
+> > +    fn probe(dev: &mut Device, id_info: Option<&Self::IdInfo>) -> Result<Pin<KBox<Self>>>;
+> 
+> This forces the user to put their driver data in a KBox, but they
+> might want to use an Arc instead. You don't actually *need* a KBox -
+> any ForeignOwnable seems to fit your purposes.
 
-not sure which tree this should go through, but could someone pick this up?
-It's been sitting for ~2.5 months.
+This is intentional, I do need a `KBox` here.
 
-Thanks,
-Stanislav
+The reason is that I want to enforce that the returned `Pin<KBox<Self>>` has
+exactly the lifetime of the binding of the device and driver, i.e. from probe()
+until remove(). This is the lifetime the structure should actually represent.
+
+This way we can attach things like `Registration` objects to this structure, or
+anything else that should only exist from probe() until remove().
+
+If a driver needs some private driver data that needs to be reference counted,
+it is usually attached to the class representation of the driver.
+
+For instance, in Nova the reference counted stuff is attached to the DRM device
+and then I just have the DRM device (which itself is reference counted) embedded
+in the `Driver` structure.
+
+In any case, drivers can always embed a separate `Arc` in their `Driver`
+structure if they really have a need for that.
+
+- Danilo
+
+> 
+> Please see my miscdevice and shrinker patchsets for examples of how
+> you can extend this to allow any ForeignOwnable.
+> 
+> Alice
+> 
 
