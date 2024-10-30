@@ -1,188 +1,146 @@
-Return-Path: <devicetree+bounces-117268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9483C9B5BE0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:43:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 025889B5C0E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:54:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42F341F21E6A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 06:43:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33C6E1C20E87
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 06:54:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB1FF1D26E9;
-	Wed, 30 Oct 2024 06:43:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 970E71D7E33;
+	Wed, 30 Oct 2024 06:54:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PHvLtR4J"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XzPhvnul"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FFDC63CB;
-	Wed, 30 Oct 2024 06:43:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 488E61865E0;
+	Wed, 30 Oct 2024 06:54:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730270588; cv=none; b=h9pCCITEGyZB5lXK4fyIrVTgYpLKlTGDvJ9q+o6WsJ7r2GgUtabK0KwQXMcp8yT6ZCKBVxM6yJyPip32ibksaLBWFT5+d/GM96WCa8rNLZRts46L9XNIxKPGiO1Jhhu/tHthXQPnQ4urDgztY+hgBw3sxDZpvkMgXXJorFFwkWc=
+	t=1730271253; cv=none; b=TNpiGJ+WkLu12DSRGYZul1jVhuherfVxRq/Lr4z0BtdC9DkY9NBIUr3G3rndwqAjZ5ycW8qpzvTSDgsWIWkCzrPc/XlnBBJPx3U3VTzA2maezZ+BNC/AAz5zg65Z5dZRBP1hjPCHQYXRCGNRYCzZd5QAXkKiccnpxCgZNJBskgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730270588; c=relaxed/simple;
-	bh=q/reVklIgQGFIN5gh6Xfpd1rZQ23cRzXzBo6YAM+4BU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TGo9qx+bSie75HYJ3aaoBcj24RzqUPWQMHkiqQ+7ZFmPMgbOabtVnSYj1cun9opil/imIxfI+6MXrFLV/WqAzVTJyanbNfC6CMXTHPNLs9kip6WM8GzUHFbx8Bu6mH3kSyN6M5Ep6UOyfgI9yHmDLeTH8XqU9j95XkPqHyFIfGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PHvLtR4J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48443C4CEE4;
-	Wed, 30 Oct 2024 06:43:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730270587;
-	bh=q/reVklIgQGFIN5gh6Xfpd1rZQ23cRzXzBo6YAM+4BU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PHvLtR4JnFkSFnYQx+ny7SWEbD2MrQGvhhHC9dRJTfNj6daBH02g0flC1sJLgM256
-	 KXviE+dIWXqIaTteoEa9SJKXYH8xylcRaRN23+hyMi8lSBp84yFU6vGno2LjEYEooW
-	 tSSCSVU+KktdSrHZJXoKfobvhNeowdBRD0hEjwjqzaM+Tx+Q94LN5f6dbwVdFS4au2
-	 bmCcl2vpGp1j/ZapyWoPkoS+CfyAahcFRxQJ+Q0XGyhJHaw9Qv2prKJOCTgGeckwwa
-	 EDMqoN9aYq+yKMt5UCbYI+lzJ7lMhljGfdODmFtCVbvtHF8SWoVqmAN3QF2pSqOmtn
-	 UOv8zb7HyKzfw==
-Date: Wed, 30 Oct 2024 07:43:04 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
-	Chunyan Zhang <zhang.lyra@gmail.com>, Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Sebastian Reichel <sre@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, devicetree@vger.kernel.org, linux-iio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: mfd: sprd,sc2731: convert to YAML
-Message-ID: <ki4wvjslncrngwpz7qukknzgdsjkxvrhitem7i5lof6ggyhu4e@tviovrd2wi77>
-References: <ZyExK01iprBHhGm6@standask-GA-A55M-S2HP>
+	s=arc-20240116; t=1730271253; c=relaxed/simple;
+	bh=vl6mPTl8AyI0KWC0zPhPBaFqm0CNVVoTslplmpYy+Xk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Ch88RmlCoOjdpTRL4yINWPzfpwBBbSAeekt7LYCBRCYgWuVbR9xbAnW0xmaWdOr0o04gm7fAiHca+cYt2vvZjRuW42ZSrUQo7NGdmOnlGmem4u5wyO/NAYcDFamCVLC062gWpzeqP2C2yx1XeJgM+0yq+0oa3QLaT4Iz6PWvI9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XzPhvnul; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49U53IQZ027434;
+	Wed, 30 Oct 2024 06:54:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7Bed41nFljZxsryZu4KWbgURJ48E0zcqMvdyiCc3zhg=; b=XzPhvnulsW2BYLz0
+	vxzDR62v7uc8iqQut7/p9CeNpKoDEssv7MXNXFWqnmkzagKb6BkSCvS/AtcOmAyz
+	CkuZYXhGjw3hfsr0c7KryF0BoVVk9xYPkeQXpvQMymQI/TrxHi5pOnjPCEcqSeYr
+	y+WOu1QzHfGGPg9LkVzrQHt0xFhlisnMFdDWwlwbYtl/YukkVVYo+cqyqI2NR+pz
+	mYZkGQe7n9ELT0bgZGzKhiKe47ydkV549E9DVLM9sP121Sy8zX68z7bTVd1DUhLA
+	E5eGp4IohWWYKfcLS9UsNJNkScT1EUAOxNrY7hUqma26caHEgnNFFHFRfJSbB6n0
+	IQISmQ==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42k1p3295x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 06:54:06 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49U6s5oA028371
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 06:54:05 GMT
+Received: from [10.216.56.67] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
+ 2024 23:54:00 -0700
+Message-ID: <2ac4604c-a765-48b1-84b2-8979f18c29a7@quicinc.com>
+Date: Wed, 30 Oct 2024 12:23:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <ZyExK01iprBHhGm6@standask-GA-A55M-S2HP>
-
-On Tue, Oct 29, 2024 at 08:02:03PM +0100, Stanislav Jakubek wrote:
-
-Thank you for your patch. There is something to discuss/improve.
-
-> +description: |
-> +  Spreadtrum PMICs belonging to the SC27xx series integrate all mobile handset
-> +  power management, audio codec, battery management and user interface support
-> +  functions in a single chip. They have 6 major functional blocks:
-> +    - DCDCs to support CPU, memory
-> +    - LDOs to support both internal and external requirements
-> +    - Battery management system, such as charger, fuel gauge
-> +    - Audio codec
-> +    - User interface functions, such as indicator, flash LED and so on
-> +    - IC level interface, such as power on/off control, RTC, typec and so on
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: '^pmic@[0-9a-f]+$'
-> +
-> +  compatible:
-> +    enum:
-> +      - sprd,sc2720
-> +      - sprd,sc2721
-> +      - sprd,sc2723
-> +      - sprd,sc2730
-> +      - sprd,sc2731
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +  spi-max-frequency: true
-
-This means:
-1. You forgot to ref spi-peripheral-props
-2. This is not needed and use use unevaluatedProperties: false.
-
-Just like all SPI devices.
-
-Unless this is not SPI?
-
-
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  regulators:
-> +    type: object
-> +    $ref: /schemas/regulator/sprd,sc2731-regulator.yaml#
-> +
-> +patternProperties:
-> +  "^adc@[0-9a-f]+$":
-> +    type: object
-> +    $ref: /schemas/iio/adc/sprd,sc2720-adc.yaml#
-> +
-> +  "^charger@[0-9a-f]+$":
-> +    type: object
-> +    $ref: /schemas/power/supply/sc2731-charger.yaml#
-> +
-> +  "^efuse@[0-9a-f]+$":
-> +    type: object
-> +    $ref: /schemas/nvmem/sprd,sc2731-efuse.yaml#
-
-I don't think this was merged. You still have dependency.
-
-Try yourself - apply this patch on the maintainers tree and test it.
-
-You can solve it by listing here compatibles and additionalProperties:
-true (see Qcom mdss bindings)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 1/3] dt-bindings: interconnect: Add EPSS L3 compatible
+ for SA8775P
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Odelu Kukatla
+	<quic_okukatla@quicinc.com>,
+        Mike Tipton <quic_mdtipton@quicinc.com>
+References: <20241026123058.28258-1-quic_rlaggysh@quicinc.com>
+ <20241026123058.28258-2-quic_rlaggysh@quicinc.com>
+ <7k2vnjop6xyshquqlbe22gm7o5empeluvsohfmq5ulnaas3keb@yzomhzi4w7vf>
+Content-Language: en-US
+From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+In-Reply-To: <7k2vnjop6xyshquqlbe22gm7o5empeluvsohfmq5ulnaas3keb@yzomhzi4w7vf>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 9av_cSIHK9y2bkx_taKcP9ulY1WI181_
+X-Proofpoint-ORIG-GUID: 9av_cSIHK9y2bkx_taKcP9ulY1WI181_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 spamscore=0 lowpriorityscore=0 mlxscore=0 malwarescore=0
+ phishscore=0 clxscore=1011 impostorscore=0 mlxlogscore=999 suspectscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410300052
 
 
 
-> +
-> +  "^fuel-gauge@[0-9a-f]+$":
-> +    type: object
-> +    $ref: /schemas/power/supply/sc27xx-fg.yaml#
-> +
-> +  "^gpio@[0-9a-f]+$":
-> +    type: object
-> +    $ref: /schemas/gpio/sprd,gpio-eic.yaml#
-> +
-> +  "^led-controller@[0-9a-f]+$":
-> +    type: object
-> +    $ref: /schemas/leds/sprd,sc2731-bltc.yaml#
-> +
-> +  "^rtc@[0-9a-f]+$":
-> +    type: object
-> +    $ref: /schemas/rtc/sprd,sc2731-rtc.yaml#
-> +
-> +  "^vibrator@[0-9a-f]+$":
-> +    type: object
-> +    $ref: /schemas/input/sprd,sc27xx-vibrator.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - spi-max-frequency
-> +  - '#address-cells'
+On 10/26/2024 8:15 PM, Dmitry Baryshkov wrote:
+> On Sat, Oct 26, 2024 at 12:30:56PM +0000, Raviteja Laggyshetty wrote:
+>> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on
+>> SA8775P SoCs.
+>>
+>> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+>> ---
+>>  .../devicetree/bindings/interconnect/qcom,osm-l3.yaml         | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+>> index 21dae0b92819..042ca44c32ec 100644
+>> --- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+>> @@ -34,6 +34,10 @@ properties:
+>>                - qcom,sm8250-epss-l3
+>>                - qcom,sm8350-epss-l3
+>>            - const: qcom,epss-l3
+>> +      - items:
+>> +          - enum:
+>> +              - qcom,sa8775p-epss-l3
+>> +          - const: qcom,epss-l3-perf
+> 
+> Why is it -perf? What's so different about it?
 
-Keep consistent quotes, either ' or ".
+The EPSS instance in SA8775P uses PERF_STATE register instead of REG_L3_VOTE to scale L3 clocks.
+So adding new generic compatible "qcom,epss-l3-perf" for PERF_STATE register based l3 scaling.
 
-> +  - '#interrupt-cells'
-> +  - '#size-cells'
 
-Best regards,
-Krzysztof
+> 
+>>  
+>>    reg:
+>>      maxItems: 1
+>> -- 
+>> 2.39.2
+>>
+> 
 
 
