@@ -1,106 +1,269 @@
-Return-Path: <devicetree+bounces-117239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BFDA9B5852
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 01:10:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 095C49B588B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 01:24:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 226AF284853
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 00:10:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90F88283641
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 00:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CA49440C;
-	Wed, 30 Oct 2024 00:10:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF3F11CA0;
+	Wed, 30 Oct 2024 00:24:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ycniE6Fh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KgMH5OhM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 298C31C36
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 00:10:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B50DDCD;
+	Wed, 30 Oct 2024 00:24:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730247029; cv=none; b=hxuKdb2bouxEoX2JVmY7WErRJTAhmoWW0WGf+Pz/A1XuUEsBSPScQzPNn4Q5nkOFMXOp7F3jNIyp5gui/3h6YkNHsVnwpx1E7xwlIeEMNr0oZ7Qw4DfJXH8mw3FFN1b3lv+qSZwsV4xlmrkMwuHzj0pGQJeZSgngWHKZyUCYMgI=
+	t=1730247878; cv=none; b=K/AVNyx2BJY1l/0JmFRCvBWDq1exVM0Svjc0RjPzw5KiSJcwUCRt04cVYoI+Nmv7suIfuBcPZaH6j4ckQzTRxwB+lFTp0zDFYTtFP+A3M6IdGyUCj+ihoJOxNtwL1lAxEJpUXenmwQKibEM4pXd7Jkgi+wVeziJqJvoUyr/HlBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730247029; c=relaxed/simple;
-	bh=zYsGfe1kZFBMeiGdhUwqicj9fZZIGo5QoZwVvvTXXP4=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=bvXYoYIzacq41pZkudcLmxzR5EyIUbMWXsAGtCWPnlTzIBDKKleOvIVLxRHh0Aian3CybQXtoSnhE68HWNGSP1DH9/28043FlvLGHU+quM+KWXVUVnI9qxZZ4iKcI3Xd5Vvq5i1Yy5zmdtx7ITlijKe28KJke1rJq+Q5/VYEfsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ycniE6Fh; arc=none smtp.client-ip=209.85.216.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-2e3d523a24dso4689646a91.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 17:10:26 -0700 (PDT)
+	s=arc-20240116; t=1730247878; c=relaxed/simple;
+	bh=PrElOmEssvK26oznLQMInvfhKRnqn8lwkgHhxR6Go9g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RUB83UfBscmLut3NPR6AC626AUn7lQpUH0Va5WKaEzl+UyQX14/6DdLmFDacA/agCGYDWpgoD5rMgNm622iShcYOjqNv6s9/vVWXtZWMurjrEL8ZLui8xfU7jXUqShxXlyW0ob4RRqIT9bkoDVHiqCPhJjAI1tBMzqDN/S48Gws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KgMH5OhM; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a99ea294480so421785066b.2;
+        Tue, 29 Oct 2024 17:24:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730247026; x=1730851826; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Pmtq/3EE6GjAiWTciWb2wYikOcfKtyFxI4NJtsXKhOs=;
-        b=ycniE6FhnR+ZajIKk9NCfOBO/guud0K7MOQXym3WJfkdrKigjbqxHmolfrIkk7yZe5
-         kbmWOA/iJamYADQECeetAaT27JHSEO2usM7N/iUbE/WQMNUNmDx1tidMqxcdKeP13v49
-         c4yQQ4dhGaqY5YGWi/3TehKycxpcsZ8H5gDYNVl5ZAORDuljOnC0YZSjRDe7+VtT8vRd
-         zyLAAGSKg2opvTlTVTbxPFa0e4SorJGBTNF5VCvtW/Z7c3GRdoFcasXnfvSEHDnb/zez
-         5wIt1ODKQp7h05s8iW+cNFsajGHMEfAXQ72/xYiQtkpyzFMY1cOrE5fdFlsHuxb93pGr
-         9dgQ==
+        d=gmail.com; s=20230601; t=1730247874; x=1730852674; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MZpksF7f/yfbrJdjziEbXmkVW9JxR3yvcKKkC3H24NQ=;
+        b=KgMH5OhM5kgNTMd6uswwhWaEN3CgGO/VKLYaKgs6CWInhfKG3WVGEoWndA+8VOWHF9
+         lXZRbN0lFsLd8yYteer3B5piPEW3I2fjUgMzR/tAkh9lJS7shbmZVxgvTzOcl9gxOJ2K
+         xh8oSouj+oVhJyu86FenLO1qZplOCNn4NEpzv1K1pWV+F4bG8sWadZSjLf2glVO6Booe
+         bYLke/00uhdb+plbJnCjpeNYAKOEr5wR38NiK0g8YlL7ZDqnPVFkWwCnfNSCbNlBVr74
+         0jdcIrqGArYYQCFKLAgh6Ovzi4hDsU0CUHebPkb0ByT7DDyLp+5zncSxWpbFrS96hUgk
+         iCvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730247026; x=1730851826;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Pmtq/3EE6GjAiWTciWb2wYikOcfKtyFxI4NJtsXKhOs=;
-        b=qV9gZ43NxDyO4AReUyilF6aeU2cnyyXENFnSGxHdv2VgzJsLgSEgup0NxnXMOqyOlV
-         XVr5kC2r6metedctWm3nSVTNniCH+jVEZrT+KRLKHyC4h2xfCWvxkVrzWjqaZXRI6ULj
-         be7ArAAbjDE2rlpBjc+aHMnx3hE4ZmxmhqUDZy8dZJLjfwXXAqt7KHeMvlzU9JZpErSX
-         +z6AxdaaYBwVVicy0eOFMvHqtjTR6mh3wJ4uo0ZoQYJ4QsJPX8NqT477CqcdrO1qX5Gz
-         jra3ZAPk4oKVGQWcMa2+pcJjZGk8kjJlWiZMu3ioXRCHVIqCkfFjkgH1AB5IJZkn4z4z
-         TS0A==
-X-Forwarded-Encrypted: i=1; AJvYcCVdqVq+pDoZWc7eYvNbWNmHXm3ikXwe7CVyTuUMGKW2i4We2NyQMsaeSD2+Dvyoq8q5l0D7nthTDT/s@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVhhldwIzqhpRRgmKVeEt9NGlJ37HKO7C/25NjmQyPuhyqIqRL
-	OIzUm8sUTyfOXON2aaHPYKQ9uyAYVRE48KNm9GYhmhv/gsWfITLg3Gx1jObVgM0=
-X-Google-Smtp-Source: AGHT+IGe+0wqPyiUIokgz/5CRPtLXJj7VeshgbK754z1j+tqbLtUEbbHozEAedadsH1Xf0UUpjEl3A==
-X-Received: by 2002:a17:90b:3848:b0:2e0:5748:6ea1 with SMTP id 98e67ed59e1d1-2e8f11dcec5mr15615895a91.37.1730247026503;
-        Tue, 29 Oct 2024 17:10:26 -0700 (PDT)
-Received: from localhost ([97.126.177.194])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e92fa5f70fsm285345a91.33.2024.10.29.17.10.25
+        d=1e100.net; s=20230601; t=1730247874; x=1730852674;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MZpksF7f/yfbrJdjziEbXmkVW9JxR3yvcKKkC3H24NQ=;
+        b=AW+4EzcrK9Cr6BHFOW+twHAxYwtPuzl+esDqnQaKzSEMu7TRCOoglq2Mjcv5M6HpC+
+         edp/NcEYzcr1J+mA4ZV4k4FsXRs6A9Okl/lnh0CP3oB7uZFVrmFxT7nVqtU5BkHfwPM4
+         nFYjiQmFOlJVyuMYiLIlpswpZ+pONHv+vSNHU+JV/kD+vgpuyBv9DMzMCLviC2JSjBeq
+         TVuTp9e8oXimOBy/obEnGHGFthpAuow/jz1qju77rIOTWoMBMbojXP7Qbz1EGxGZzssf
+         hYvn7DjbnfG+PheLZEyahqz9gGT80uO20TNW1/L2RrGOI+FoBm9632YOw15p5JdYYKOn
+         x2/w==
+X-Forwarded-Encrypted: i=1; AJvYcCU0U8xyWzZHY5/f8AQl2VQi1p3kaFTwunJEcN+kclRsRl6Yy0hBMJ/fPl4+6uL5xbwNp2B/BVH4rPeq@vger.kernel.org, AJvYcCWgnbL7cd9MI5SIndZSLd4Sob1b3SOVAX7X12oWsrFgcPExTh2u6GkVK2dUC0RqdNC3+k71FloFfnDr@vger.kernel.org, AJvYcCWq0LFTaRKQb4HQx5y0FBUE+vul9hFfCcUtspKA/qe+nOJMLC5gVjqNo+tQVUYLJfPiuWthn5HXAG7ssItR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+bH4d4hkOrdIvhz8kfQpSDOnKKTYRalLGTrCE3xOyHup5QU1d
+	pfaBaHlplNPoe9F2MuLmer0Ev/vL5NC4vyyoTPr4/zTgKU+ZO2yQlexy6A==
+X-Google-Smtp-Source: AGHT+IEj5xqVmWcWQW4+UVsLcEMosfXnQ35TQdWIrCkiMIpaIqL+uVtw/O5bGLbqlp5wckOVIfX0AQ==
+X-Received: by 2002:a05:6402:2345:b0:5ca:1598:15ad with SMTP id 4fb4d7f45d1cf-5cbbf8899ccmr12723651a12.3.1730247874289;
+        Tue, 29 Oct 2024 17:24:34 -0700 (PDT)
+Received: from vamoirid-laptop ([2a04:ee41:82:7577:89e7:cc9d:3a72:92f3])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1dec81adsm519159366b.27.2024.10.29.17.24.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 17:10:25 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: tony@atomide.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, aaro.koskinen@iki.fi, 
- Roger Quadros <rogerq@kernel.org>, Andreas Kemnade <andreas@kemnade.info>
-In-Reply-To: <20241019111121.331477-1-andreas@kemnade.info>
-References: <20241019111121.331477-1-andreas@kemnade.info>
-Subject: Re: [PATCH] ARM: dts: ti/omap: omap4-epson-embt2ws: add charger
-Message-Id: <173024702514.1375433.8282990784679677297.b4-ty@baylibre.com>
-Date: Tue, 29 Oct 2024 17:10:25 -0700
+        Tue, 29 Oct 2024 17:24:33 -0700 (PDT)
+Date: Wed, 30 Oct 2024 01:24:30 +0100
+From: Vasileios Amoiridis <vassilisamir@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, andriy.shevchenko@linux.intel.com,
+	anshulusr@gmail.com, gustavograzs@gmail.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 13/13] iio: chemical: bme680: add power management
+Message-ID: <ZyF8vtLiVUEHojl4@vamoirid-laptop>
+References: <20241021195316.58911-1-vassilisamir@gmail.com>
+ <20241021195316.58911-14-vassilisamir@gmail.com>
+ <20241027103013.06daac42@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-cb14d
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241027103013.06daac42@jic23-huawei>
 
-
-On Sat, 19 Oct 2024 13:11:21 +0200, Andreas Kemnade wrote:
-> Add charger and battery definition for the Epson Moverio BT-200 to make
-> charging working.
+On Sun, Oct 27, 2024 at 10:30:13AM +0000, Jonathan Cameron wrote:
+> On Mon, 21 Oct 2024 21:53:16 +0200
+> Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
+> 
+> > Add runtime power management to the device. To facilitate this, add also
+> > a struct dev* inside the bme680_data structure to have the device
+> > accesible from the data structure.
+> 
+> Needs an update as you are now getting that from the regmap.
 > 
 > 
 
-Applied, thanks!
+Hi Jonathan,
 
-[1/1] ARM: dts: ti/omap: omap4-epson-embt2ws: add charger
-      commit: a2c06140b92a0fde8587e7a413014701cf121836
+Thanks for noticing, I will fix it for next version.
 
-Best regards,
--- 
-Kevin Hilman <khilman@baylibre.com>
+> > 
+> > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> > ---
+> >  drivers/iio/chemical/bme680.h      |   2 +
+> >  drivers/iio/chemical/bme680_core.c | 126 +++++++++++++++++++++++++++--
+> >  2 files changed, 121 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/drivers/iio/chemical/bme680.h b/drivers/iio/chemical/bme680.h
+> > index e5d82a6d5b59..74e97e35e35a 100644
+> > --- a/drivers/iio/chemical/bme680.h
+> > +++ b/drivers/iio/chemical/bme680.h
+> > @@ -2,6 +2,7 @@
+> >  #ifndef BME680_H_
+> >  #define BME680_H_
+> >  
+> > +#include <linux/pm.h>
+> >  #include <linux/regmap.h>
+> >  
+> >  #define BME680_REG_CHIP_ID			0xD0
+> > @@ -82,6 +83,7 @@
+> >  #define BME680_CALIB_RANGE_3_LEN               5
+> >  
+> >  extern const struct regmap_config bme680_regmap_config;
+> > +extern const struct dev_pm_ops bme680_dev_pm_ops;
+> 
+> You seem to have missed the changes that use this in the i2c and spi drivers.
+> 
+> 
 
+You are totally right.
+
+> >  static const char bme680_oversampling_ratio_show[] = "1 2 4 8 16";
+> >  
+> >  static IIO_CONST_ATTR(oversampling_ratio_available,
+> > @@ -1091,6 +1125,39 @@ static irqreturn_t bme680_trigger_handler(int irq, void *p)
+> >  	return IRQ_HANDLED;
+> >  }
+> >  
+> > +static int bme680_buffer_preenable(struct iio_dev *indio_dev)
+> > +{
+> > +	struct bme680_data *data = iio_priv(indio_dev);
+> > +	struct device *dev = regmap_get_device(data->regmap);
+> > +
+> > +	pm_runtime_get_sync(dev);
+> > +	return 0;
+> > +}
+> > +
+> > +static int bme680_buffer_postdisable(struct iio_dev *indio_dev)
+> > +{
+> > +	struct bme680_data *data = iio_priv(indio_dev);
+> > +	struct device *dev = regmap_get_device(data->regmap);
+> > +
+> > +	pm_runtime_mark_last_busy(dev);
+> > +	pm_runtime_put_autosuspend(dev);
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct iio_buffer_setup_ops bme680_buffer_setup_ops = {
+> > +	.preenable = bme680_buffer_preenable,
+> > +	.postdisable = bme680_buffer_postdisable,
+> > +};
+> > +
+> > +static void bme680_pm_disable(void *data)
+> > +{
+> > +	struct device *dev = data;
+> > +
+> > +	pm_runtime_get_sync(dev);
+> > +	pm_runtime_put_noidle(dev);
+> This dance is to get the device powered up on runtime pm tear down
+> I think?  Whilst we sometimes do this, why is it needed in this particular driver?
+> 
+
+Actually this one is not needed indeed, I was using it to test that the
+device was coming up but it is not really needed. And the whole disable
+sequence is perfectly handled by the devm_pm_runtime_enable so it is not
+even needed at all actually.
+
+> > +	pm_runtime_disable(dev);
+> > +}
+> > +
+> >  int bme680_core_probe(struct device *dev, struct regmap *regmap,
+> >  		      const char *name)
+> >  {
+> > @@ -1164,15 +1231,60 @@ int bme680_core_probe(struct device *dev, struct regmap *regmap,
+> >  	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
+> >  					      iio_pollfunc_store_time,
+> >  					      bme680_trigger_handler,
+> > -					      NULL);
+> > +					      &bme680_buffer_setup_ops);
+> >  	if (ret)
+> >  		return dev_err_probe(dev, ret,
+> >  				     "iio triggered buffer setup failed\n");
+> >  
+> > +	/* Enable runtime PM */
+> > +	pm_runtime_get_noresume(dev);
+> > +	pm_runtime_set_autosuspend_delay(dev, BME680_STARTUP_TIME_US * 100);
+> > +	pm_runtime_use_autosuspend(dev);
+> > +	pm_runtime_set_active(dev);
+> > +	ret = devm_pm_runtime_enable(dev);
+> 
+> Take a look at what this unwinds in the devm handler. You don't need to do
+> as much (or possibly anything) yourself.
+> 
+> 
+
+Well, in general what I see that could probably be dropped here is the
+extra add_action_or_reset because of the devm_*. About the functions
+get_noresume() and put(), I feel that they could be dropped as well
+because the device registration will happen well before the autosuspend
+delay, but does it make sense to depend on something like this?
+
+Cheers,
+Vasilis
+
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	pm_runtime_put(dev);
+> > +
+> > +	ret = devm_add_action_or_reset(dev, bme680_pm_disable, dev);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> >  	return devm_iio_device_register(dev, indio_dev);
+> >  }
+> >  EXPORT_SYMBOL_NS_GPL(bme680_core_probe, IIO_BME680);
+> >  
+> > +static int bme680_runtime_suspend(struct device *dev)
+> > +{
+> > +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> > +	struct bme680_data *data = iio_priv(indio_dev);
+> > +
+> > +	return regulator_bulk_disable(BME680_NUM_SUPPLIES, data->supplies);
+> > +}
+> > +
+> > +static int bme680_runtime_resume(struct device *dev)
+> > +{
+> > +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> > +	struct bme680_data *data = iio_priv(indio_dev);
+> > +	int ret;
+> > +
+> > +	ret = regulator_bulk_enable(BME680_NUM_SUPPLIES, data->supplies);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	fsleep(BME680_STARTUP_TIME_US);
+> > +
+> > +	ret = bme680_chip_config(data);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return bme680_gas_config(data);
+> > +}
+> > +
+> > +EXPORT_RUNTIME_DEV_PM_OPS(bme680_dev_pm_ops, bme680_runtime_suspend,
+> > +			  bme680_runtime_resume, NULL);
+> > +
+> >  MODULE_AUTHOR("Himanshu Jha <himanshujha199640@gmail.com>");
+> >  MODULE_DESCRIPTION("Bosch BME680 Driver");
+> >  MODULE_LICENSE("GPL v2");
+> 
 
