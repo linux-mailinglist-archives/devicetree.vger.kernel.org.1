@@ -1,133 +1,108 @@
-Return-Path: <devicetree+bounces-117505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7CE09B6B82
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:59:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A460D9B6B90
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 19:02:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E5E82811A3
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 17:59:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C27DB1C2385A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E595B1C9B77;
-	Wed, 30 Oct 2024 17:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71D2519E99F;
+	Wed, 30 Oct 2024 18:02:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="c4OH0NE7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TgGnQw5O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E01DB19AD8C;
-	Wed, 30 Oct 2024 17:59:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 779641BD9F6;
+	Wed, 30 Oct 2024 18:02:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730311163; cv=none; b=YiXtkbnQPgcYfnqE2KKeOZEX5nJj3HrClsymNrlrxtuZD9vez916gOHc+ByqLXnhry845cPadBAomUzcBmime7eC3x05DzVLJsuRuvLmVl+K5KUIPueZZ6vNb/xZ1W9GtvDZKs7JyxCfZdp6JLEV0D+4+XiDUewwuYx8WM0nRD8=
+	t=1730311360; cv=none; b=PUdGUOZkNCY7rdaZjd82bNgXCilcri+mS+t+3hVHSqHRHkloUJxnTyhG74EJnjdSlu6mJ4RLAUNWdnd4K+p0iulvS+pDk1oybxVsJGqlz1L9tr7N8nymeE2YldhbWvfNsPdUJgqmAUwS5J0ZTQMf/1oaEKC3qEljs/RH1zSH++o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730311163; c=relaxed/simple;
-	bh=HjspFJyfORtw7Am9zyPXQfQhhYAFDcdlGMom+Q4+a3Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EJs1JdQhs1Y1Nn7Q7Wz3D8t+8phoc3DhGX2bjXanYdLdhQ1l4C6bB1IdMKrE/eln6MvPeU6TkDY5z90KWeSvujmC7Ylo7XxR2ITDoV3K2Ys8vVP8a8kndTaI56jw5zdv5t2xvvbj3iryuV8gBmDstQEC3hOMP4nxc6Wfg9I86T8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=c4OH0NE7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49U9uSm1009596;
-	Wed, 30 Oct 2024 17:58:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uO6Q4T6rjS1nVyPhf9wOxisTJI/dPMDhT0F4zHWicHg=; b=c4OH0NE7CAVj+LcP
-	DEu3F8Gy2C4HquxxQyiZChvz2vw93PD8/ecif0Q21hf0wWVKF3QYL4t/CWvXbEOT
-	BZY4pIYqB0oGcLc9rYHPtiBrzHHMaUMNYlDA5cgCUnPepEupbz7JB6WdM4wZ9y7Z
-	zPhVSnW8emOHIUn4Ml+TqWeUm3tknLuQKi3WcUcb7HVCC9ySmEx7IzYmFlGsSTef
-	1umN9WMwM0TMRQy0p2LekJkMc8Jg2tWw58bDAdjwh7rE/h6g5Bzpdy5L5AWpvU3N
-	pfha14ItZCU+k5Du5KRQjZorvLRSINckSgNZMzgWKg8Vl0aMagpxsejoKk2zuuVg
-	w0JkMg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42kjm19b5k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 17:58:45 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49UHwiLq032079
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 17:58:44 GMT
-Received: from [10.216.35.255] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 30 Oct
- 2024 10:58:39 -0700
-Message-ID: <1eaa1fc6-721c-46fd-bcc8-9b575d083dea@quicinc.com>
-Date: Wed, 30 Oct 2024 23:28:36 +0530
+	s=arc-20240116; t=1730311360; c=relaxed/simple;
+	bh=VJQ/ae3Mkm9u4W2mXTamHVBG9ReQzeVjbtwnNX/s1bA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tEvOsqIN8fXsOmXOPAPpvUc7j2uDsqEWQccNpaWT34K+bIuAyyc70MYwSTBsMKEmpWSBpLv3ZSjobyQ9FEWRqC+P23UCySrBdM0yGhRQNJNC1fY2QZxaLTxrA/g1SEmQJlWgUwqZLuwyV/tciwQmLVsvmSkcRoGRq9UqktcOJ6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TgGnQw5O; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a99ebb390a5so223098066b.1;
+        Wed, 30 Oct 2024 11:02:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730311357; x=1730916157; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VJQ/ae3Mkm9u4W2mXTamHVBG9ReQzeVjbtwnNX/s1bA=;
+        b=TgGnQw5OlOBqhPrBJntHRNZ1ZNAmKWybucs91k+LWLtmpWa88XE1iS10QxPeuwfaA/
+         FaPVqK2YZZcqeJgoyY41YhcqP7elf9fqx7rog1wycSbuzII7qBsuKs14NO7j2eKTLO4s
+         gM2yoWTP2+MUdIeAoSSTi5l71lzCeq0kOpDmqzlCz500T7YgN27cdN7oYMiQdqsKQEHv
+         um/WByjP0ih0j0I6Z9XywEHirr348rRj3dmA05k6Q5MAiUA4/aFSTzhRym9pNfAPrVSY
+         aCjPWDFYwHUufdLr1a7srxM8w4rLhzW03gqmSDgQg9revbGdDg8KIKCrsLdZG2dR8b9E
+         MsIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730311357; x=1730916157;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VJQ/ae3Mkm9u4W2mXTamHVBG9ReQzeVjbtwnNX/s1bA=;
+        b=PpjV18NbR5Z3KBd/oe+Qw2uoc/sbV6TgyozOScle6cedWKM9I3ipJUIPyB2irh5Hz1
+         gWii2rPANkKsBhQIH+Pxitkkyp5yr/3L1xikvZwmCJAqlGvYFX1kheWlJWJY9ZU4RdKr
+         zgE/7V+uonCXW0psOEnw4SSXhWAFj6saVFHYU4pPsUnWOSe+ClTYJc4MRdURshtAk20x
+         j+2oh5q8XGbutUGrqHQ1SpI4EVpCjvTr6SYXKqVI1UOTCoZXwbamO+hlBeThoAM9sFwf
+         Ly+eAgY0xs00h2FqGHcDQGgXPVweGqf0HupJw0WyUmLmzx/VgkywMzcEc40JG/0Wqarg
+         mZ/A==
+X-Forwarded-Encrypted: i=1; AJvYcCW7pwMY7bE/iWfnvV+mIXjvJu2TJYVTtJd/QPNJCQzRJdrMEO84RCgEw3y5xKlVXCwrrAg0QFSRn3wt@vger.kernel.org, AJvYcCXZtvNb5ScdiCRfkE03uWCPqmeCVXw0PkjqAMn98fCM5t2FdpY2iNZh+vrpPkcYgNx/tFavzWlQq8lAYRnZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqoAzEHazVaGQPKDF+GDrt1UwQtW+cXFJLd7ex51iRLNINqebV
+	rQ/f8N3WRTqG66dHsncD2z1BVhjqn2Jopa4HtLahpW/lQIlWpyoS
+X-Google-Smtp-Source: AGHT+IF+mYI8VI7ar3ka2bquEPNqWDRXFq5nmJD1BFj5bnn2DHWR0Vq2CYNy5B+wSmVbI6T2f/gyXQ==
+X-Received: by 2002:a17:907:3f9d:b0:a9a:1d85:9d31 with SMTP id a640c23a62f3a-a9e2b5a4bf2mr579117466b.21.1730311356572;
+        Wed, 30 Oct 2024 11:02:36 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f298d8fsm588258366b.112.2024.10.30.11.02.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Oct 2024 11:02:36 -0700 (PDT)
+Date: Wed, 30 Oct 2024 19:02:34 +0100
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Wenhua Lin <wenhua.lin1994@gmail.com>,
+	Wenhua Lin <Wenhua.Lin@unisoc.com>,
+	Xiongpeng Wu <xiongpeng.wu@unisoc.com>,
+	Zhaochen Su <zhaochen.su29@gmail.com>,
+	Zhaochen Su <Zhaochen.Su@unisoc.com>,
+	Xiaolong Wang <Xiaolong.Wang@unisoc.com>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: sprd,ums512-pwm: convert to YAML
+Message-ID: <ZyJ0urvkMZVzZa7S@standask-GA-A55M-S2HP>
+References: <ZyH-JASRcpMXYsmH@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/11] clk: qcom: dispcc-qcs615: Add QCS615 display clock
- controller driver
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Abhishek Sahu
-	<absahu@codeaurora.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
-        Stephen Boyd
-	<sboyd@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20241019-qcs615-mm-clockcontroller-v1-0-4cfb96d779ae@quicinc.com>
- <20241019-qcs615-mm-clockcontroller-v1-6-4cfb96d779ae@quicinc.com>
- <zsgdwc6klccdbytdysgl342zllgmb7ttatjh4tnug3unyl7vl3@tlptei23yozn>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <zsgdwc6klccdbytdysgl342zllgmb7ttatjh4tnug3unyl7vl3@tlptei23yozn>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ptSG9c7ZCnY463oVvu7ibpeg_0jTBYJ5
-X-Proofpoint-ORIG-GUID: ptSG9c7ZCnY463oVvu7ibpeg_0jTBYJ5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 adultscore=0
- mlxscore=0 mlxlogscore=924 spamscore=0 suspectscore=0 clxscore=1015
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410300141
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZyH-JASRcpMXYsmH@standask-GA-A55M-S2HP>
 
+Hi all,
 
+just noticed this older patch [1] doing the same conversion, so I've also
+CC'd other people from that patch series.
 
-On 10/19/2024 1:55 AM, Dmitry Baryshkov wrote:
->> #include "common.h"
->> +#include "gdsc.h"
->> +#include "reset.h"
->> +
->> +enum {
->> +	DT_BI_TCXO,
->> +	DT_GPLL0,
->> +	DT_DSI0_PHY_PLL_OUT_BYTECLK,
->> +	DT_DSI0_PHY_PLL_OUT_DSICLK,
->> +	DT_DSI1_PHY_PLL_OUT_DSICLK,
-> Is there a DSI 1 PLL on this platform?
+[1] https://lore.kernel.org/lkml/20240125025533.10315-5-Wenhua.Lin@unisoc.com/
 
-As per the design of the clock controller it has a DSI1 port.
-
--- 
-Thanks & Regards,
-Taniya Das.
+Sorry for the noise,
+Stanislav
 
