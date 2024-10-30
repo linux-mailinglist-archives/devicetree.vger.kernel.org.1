@@ -1,63 +1,44 @@
-Return-Path: <devicetree+bounces-117270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94D49B5C13
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:55:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E35289B5C1A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:57:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55A5C1F24079
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 06:55:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6872281836
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 06:57:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA7FD1D9595;
-	Wed, 30 Oct 2024 06:55:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SxpkTfvz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E88EB1DA617;
+	Wed, 30 Oct 2024 06:57:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF3631D12E1;
-	Wed, 30 Oct 2024 06:55:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7141D9A47
+	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 06:57:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730271345; cv=none; b=uXNND1Czft4YztbcmEPRXcp0w0SYo9bvPQCvlonw92BFC5fENPuuYyILZpG/dnfOoXAf2jVOgjT0SyR6IZQp/5bvJFnvMdcdtlPpq0q2qDe61Y+4a5qHMLuSIQrY/BpDrz+Am/jZ0JifYPTZ+PObtWAFeT1CLXo9tYRjnf1iWOM=
+	t=1730271467; cv=none; b=N4D2gq4Fsj/COjgqbWWYj0DUQ5E9bFUaFVHJHcrWFJ0HXoykhOK06kISyIvWHbZsOvZ/R6NjQZ5vT6hdTWp/Bbkmo0O1oAI4HUobsTsD1RWp0kH1PDOw2jf+QmrTEdforS+TBxDA2TipxyGaJUkymCYTu4ooICGvtwXrMLpajtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730271345; c=relaxed/simple;
-	bh=7S8TPBzTY5FDsY1UePUmnz8EhhSoOAUEfWt0PP/9U4s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=upQF+cAsMCmSUuR+ap6xhU4ZQlsNzaw9ewRchacOj03ahBXqIkRZvby7jzAkh3+Wlb6Aabx1JVbMQZecFTVmZ+puQ7s1Y0XRnEsH3VBCOSI7b1Bs8htrztd9bXLKWm+ok2CSuKUWtVtI/hY9ccXFHTDuX4raseLHcuYvMaxYHys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SxpkTfvz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49TNZGMP028094;
-	Wed, 30 Oct 2024 06:55:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HtScq1HpW8xIJiKwDGs61vmLypGB+vbNoMU/4GJDXXE=; b=SxpkTfvzo+7kzvyj
-	frsqvIiRv+k9VlWwQ45D092SonMzHKJ2frY07791yMwz1eY7jPCRO3Xn4HbamI19
-	igeCMMX8/Uzaai95qp7vrqg1ukgF9Mz5GhQIRHqyP7wfot/1HlF3sxQe1AHHRuJI
-	ecYWlJcYWbEg8QJHPZTFPddG0hJ1otWdJWUWIRj4lqp/cmaMQOStCnq/vSdvWDC2
-	Bv8MKbFn2OIkiKqtRjjdxgkZ9UDLt+NrXi3L4cIv46KsjMVPW7Ifr7NVF9Oym9lQ
-	b3xOt1u05HAGb4I7IWZq1AIIgHLmhFDzbowdpEchT61ufccIs3vo1hJyDonFlthk
-	33Bkzw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grt72vab-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 06:55:39 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49U6tcRY030609
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 06:55:38 GMT
-Received: from [10.216.56.67] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
- 2024 23:55:33 -0700
-Message-ID: <61302a71-45d3-4314-b22a-ba51e4c2c49d@quicinc.com>
-Date: Wed, 30 Oct 2024 12:25:30 +0530
+	s=arc-20240116; t=1730271467; c=relaxed/simple;
+	bh=Af+rYfRl0w6Rw7eMsd4LGgSDqqts23t4L4nxVVDGSu0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hgAasL2UrTLCRr3+te4y4Z0lJYtrp/Bw8I6G80eVfygZDkamKII7418HaQ6/7IkI8pDfHnSG3RLse8tZbVP5KEvMf8trp/I/5zUoGZtvYaOjgI1yXTUkYd0jXNr1rurF9jec11nlT2r6s/r9TOY+FPd7mipBavZNPn9lmbLOVjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=15.184.224.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: bizesmtpip3t1730271398tosmee8
+X-QQ-Originating-IP: HYPucG35j92Rx/gYRVc91fYMW7X2Dz/rbJNQGFnK5tA=
+Received: from [IPV6:240f:10b:7440:1:2231:c46: ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 30 Oct 2024 14:56:33 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 207981743245967855
+Message-ID: <C05BCF5E4F84451F+e29f0311-b245-4c3a-a9eb-0f8a7ef3c3d6@radxa.com>
+Date: Wed, 30 Oct 2024 15:56:33 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,66 +46,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 3/3] interconnect: qcom: Add EPSS L3 support on SA8775P
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Odelu Kukatla
-	<quic_okukatla@quicinc.com>,
-        Mike Tipton <quic_mdtipton@quicinc.com>
-References: <20241026123058.28258-1-quic_rlaggysh@quicinc.com>
- <20241026123058.28258-4-quic_rlaggysh@quicinc.com>
- <bhnh2xcptccepv2sdyowmre6tm26klnfk5gunmy4lvc76pcfr6@lt7myqju77d6>
+Subject: Re: [PATCH] arm64: dts: rockchip: use "pwm-leds" for multicolor PWM
+ LEDs on Radxa E25
+To: Krzysztof Kozlowski <krzk@kernel.org>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20240816110402.840-1-naoki@radxa.com> <2335200.ElGaqSPkdT@diego>
+ <5667DC6446CBC344+3d442915-f28d-4d50-85e3-3863e3c7092a@radxa.com>
+ <6f9994b3-d16a-4bfa-aaf8-ce1c5abde91b@kernel.org>
 Content-Language: en-US
-From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-In-Reply-To: <bhnh2xcptccepv2sdyowmre6tm26klnfk5gunmy4lvc76pcfr6@lt7myqju77d6>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Exqrpw15QYwBEas1gl6-ctbdOjgSAWy7
-X-Proofpoint-GUID: Exqrpw15QYwBEas1gl6-ctbdOjgSAWy7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- adultscore=0 clxscore=1015 impostorscore=0 malwarescore=0
- priorityscore=1501 phishscore=0 mlxscore=0 suspectscore=0 mlxlogscore=968
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410300053
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <6f9994b3-d16a-4bfa-aaf8-ce1c5abde91b@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: Nwz8Cs33/LprWeYpsbhHmuJX5rMTG6YZq25lhNA7P9Hzqgqedwh77bPb
+	X8SzO5oA7I7xQ3VBicEMZGR7X4zV+NTyuQUCJy/+Impg2TE9LobvWTV0obpwN8TPeHxJYPk
+	5xpHqQA4uuwo1Hat7FRcNFO0LE3Vda0uBdsGjXW37jJWLT87xJML9G4GPbVVsXNnfDssNnM
+	DR3XAgTTeg78NX9B1iTYE0wsos/muOd61wCjW81UsZr1/Tl2/AbKeInaERqaDF0j6mN2eAX
+	UXipjFK1CtZeWvG6cbNnCWb6fZhifyeuvFk0PeEPrOPeKwUhzk02icVt3ko6KhlnWAF39/D
+	fhYSzNSftiGfl4PA82jtYHIGYAm8Qtz7/1mT3AfhVGguMxrPe/whpHLF/o406xJ5RsmBpJ4
+	V/3CZytRFQw0JMe2nGV9qvJn1WDhUlPulZ/VxSfVICEbhY4vdKl0xZ8mEhxmg2IALP9cx7A
+	N/uFTK32GhZLKuaVYZRdXpKOWbvPolvYDFGW1ff3eqTqPFkSOs4JSoJkYRvr+o2+UrG5uwV
+	bgjnl6PwGjtzS4lgletrTQyjGLG+KZ83Zr93Wth45juJvR+jJhfhpQuAB6uK/YCmgLRUdgS
+	0osNWNgXk+iPuz/a1r2+H/RN5GgpRabgpTzxsNr2LcHXrbMJDPiIP4IR/GQ9YcQBRKfaxPl
+	FDeGRf+Ha6kkqYQHEu9vO+ZEbaFs7qOMqJQ3b+UZxlHfJjbNPktkLbUoU5TQLPVc8comsic
+	IAPL+bK5TxfpHbQa+f7IY+G6xmwV6DaalgNmYjYygxwGzWYPb0gM1lb0SP+nkZQOFwVLF2M
+	H189RfNYl5szF3aePvBE7qcZRAeulYB8zXNUVQFqXLEnXtMV0sMX5H3dpCKYNAwE1/3K4Na
+	M65dXFgWSek5Xb3bX6y9B4xhSTCjJpVOI4Qf/LPphvqxqploax998fF9TalWjmtCHvTmx1+
+	b0bk=
+X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
+X-QQ-RECHKSPAM: 0
 
+Hi,
 
-
-On 10/26/2024 9:05 PM, Dmitry Baryshkov wrote:
-> On Sat, Oct 26, 2024 at 12:30:58PM +0000, Raviteja Laggyshetty wrote:
->> Add Epoch Subsystem (EPSS) L3 interconnect provider support on
->> SA8775P SoCs.
-> 
-> Please describe the reason for your changes. In its current form the
-> patch doesn't provide enough details.
-> 
-I will update the commit text in next revision of patch.
-> Moreover I don't think it's a correct solution. Using a single ID space
-> for an interconnects doesn't really scale. In the longer term we should
-> follow CCF approach and switch to using the icc_node pointers when they
-> are known.
-> 
-That's correct, We will take it as separate patch series.
+On 8/16/24 21:25, Krzysztof Kozlowski wrote:
+> On 16/08/2024 13:57, FUKAUMI Naoki wrote:
+>> Hi,
 >>
->> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
->> ---
->>  drivers/interconnect/qcom/osm-l3.c | 86 ++++++++++++++++++++++--------
->>  1 file changed, 64 insertions(+), 22 deletions(-)
+>> On 8/16/24 20:26, Heiko Stübner wrote:
+>>> Am Freitag, 16. August 2024, 13:04:02 CEST schrieb FUKAUMI Naoki:
+>>>> to make multicolor PWM LEDs behavior more consistent with vendor
+>>>> kernel[1], use "pwm-leds" for it on Radxa E25.
+>>>
+>>> sorry, but that is definitly not a valid reason.
 >>
+>> I see. I'll not change it.
+>>
+>>> A devicetree does describe actual hardware and is not a space for
+>>> configuration choices. So that whole notion to "match a kernel"
+>>> is not correct.
+>>>
+>>> Looking at
+>>> https://wiki.radxa.com/Rock3/CM/CM3I/E25/getting_started
+>>> the specification table clearly designates the board's LED as
+>>> "RGB LED" - so one LED and multicolor .
+>>
+>> I understand following behavior is not possible on mainline.
+>>
+>> https://github.com/radxa-pkg/rsetup/blob/main/config/00-rgb0-rainbow.conf
+>>
+>> this is not what we(Radxa) want, but we need to follow the rule.
+>>
+>> (btw wiki.radxa.com is outdated, it's not used anymore)
 > 
+> Your Radxa vendor kernel and whatever you have *MUST* align to the
+> upstream, not the other way. The upstream is the correct source of doing
+> things, not the other way.
+
+could you tell me how to make rainbow color effect with 
+"pwm-leds-multicolor" driver?
+
+as far as I know, "pattern" trigger can change (only) brightness, not color.
+
+Best regards,
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+> Best regards,
+> Krzysztof
 
 
