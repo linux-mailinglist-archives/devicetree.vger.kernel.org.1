@@ -1,185 +1,112 @@
-Return-Path: <devicetree+bounces-117539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E1DD9B6D8A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 21:21:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 133F89B6D91
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 21:25:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5C4E1F22B40
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 20:21:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD0C91F21CFC
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 20:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8DAE1D1E69;
-	Wed, 30 Oct 2024 20:21:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33DE01D1519;
+	Wed, 30 Oct 2024 20:25:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="f8Tcu1AX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XICBmOKz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B6AE1DF759
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 20:21:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FCE81BD9D4;
+	Wed, 30 Oct 2024 20:25:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730319674; cv=none; b=bX1JkseXNR4Cd/ca1DWk2ML1oncYlEPYnjG5CXVFL0bDm+RhkCip2+Tqdtr+smp342v8G7dKSVMPl92KLFyMrgbk0tUJtBjDIcV73s5DQfr//Q7AqIicaDXm1H+Gvbe0J5cY/QUDcnIs78dJtKaC+rHJhoKS5Xf7Z9dkAlDAzrQ=
+	t=1730319927; cv=none; b=qRqvRk9b4p0Tibff2f9IqEhPn0470rhe5nJlUJ8B486HYdpxRBNgtzLwpsOW5Qlql+j45Shj5turyR+80vgMJyBdN63gAmVgVA2iWK5Hw+WYTb457G0+uyBM3tMIcSHL3nZ/sLT1g/rQLEnEZ2/wdGq41OJoKOnM8yyzq4tvdC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730319674; c=relaxed/simple;
-	bh=dMSieHhlLhjVhgnJbukKlpTIcZHhL33WPNnPyYGF7H0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dUkcDBSC1NUzgKAdx3UAaZJIJM0DbtuLva9M2shTVbMLw+nhLP9WyEVJmJLTX2Fnbsb4IFN8mdtCIKZeurEcMDBi/KqL5RLagA4Fa6cj/d+JuSe5h7sz+hUoy+9MzW+B7VEQ3kjHVIc22qLwyekZ0mnVCetXwuwSv9Dk0hBInAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=f8Tcu1AX; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2e2eb9dde40so180714a91.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 13:21:12 -0700 (PDT)
+	s=arc-20240116; t=1730319927; c=relaxed/simple;
+	bh=QN6MSFbSt0yh8czUjSmnBq1ueDBBwxCetA52nbnP29k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=f3IHrpHeKNQS0Ey9SJ5wyvfswEm6umXLl9bb7K9kH14XZOhXCRFTaR9ONFTEW8hPp3Ch/5t0d4Nz8RpzL5AWFv8Bm+uL+dne/11h5EnA4ZXV0PYdga7zUEBCcYw+EmTszoGrzPcHZcyLN7SG2xhOWiJIiGyUGvThWFEiImL1ZQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XICBmOKz; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-539f53973fdso210617e87.1;
+        Wed, 30 Oct 2024 13:25:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1730319672; x=1730924472; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VxptXU8oKSlVF2fvRzkZip9fG/KS/MTrvVI6j9ReCRo=;
-        b=f8Tcu1AXhQqYPUGm43zkUTFCzO0HPNKSXDyWk0BHHXSkvXLhUez7jR+xvncLyLMCq/
-         Wv7r6KArzkp8+IYWFh7TNi/G17lL5PA2TnyXwQ8Vxz/qm2YD1ihBrPIumIowG4ZJCq8x
-         qEts+saBYMSfha/HW059ZK1G033pBtIvnA3HbJJlMimgYgm4CKQFY6jTNq3JMlRYl56y
-         CBC/qFMb19Lw5kvPE2lJ6WhyUPKNpBiNZkpD80GGMmgo518ES25sgndUMw50/xq3pvsj
-         27bX/ls9F6ItDZBjnDcUeiJ2lLNgx7ZGqpCqN57ZPfFHpjckkRyjBMrM938SuxULirmf
-         HagQ==
+        d=gmail.com; s=20230601; t=1730319923; x=1730924723; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=d/u+gOzoI/Ju0naSJU7xEVGZdDUGJ7r27JpshygR/dg=;
+        b=XICBmOKzhvCj/OJH5QlFXU326yjPEDVVyV7uK4PMFVE++9oV4LmzZYWEoBN537ceLL
+         wDD8o8ABmJ7OB5eFZH689LrsOYAz+7Xf9QwH2e8t4NtLp75yvRGVWusuwMbgDXE0FF3i
+         tVr9ysUPnyRPRRZoqeGBvb43GmVoCRqjZSvnGAWXbAhBupoxG0juHrGm0RJpCwXhsEjc
+         G5ZaSHGLZ3HBm0RQxd0vSWHkxiB1oTE66VHRAAJqa7iNVhqS07LotjCaF4GEF0sEYcve
+         KET8b5OzFM4SIjIiZ0OUwKhoOOStVRkKNv/0sOkaugtEb+icgeKeoH8p2SO0pwr/ZlM4
+         ziTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730319672; x=1730924472;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VxptXU8oKSlVF2fvRzkZip9fG/KS/MTrvVI6j9ReCRo=;
-        b=VwUGRYvk2PtbIgFRvExs/1686yA1406xmL5z5Y8Hhek6upH9zbNkEr90hdZb8MF9EV
-         3LRN8ZJ9TehTbkNQBkZMkTbkaQHGS5bMcs4W05RcMlE75wYAajGgx/R4k/JEYtvx4fJ0
-         TI8p7RKOS4OaBtUapvhg92zvsfajrv/U/mAkWzvPeta90NjUVESR4C3n5A0mzOxZ4rkw
-         BQLgBuSgUE201W30LnTgQqwEO+ARLP5QotQHTJK95MgNffhGZs7Ik21AOFfzHKElS5Q6
-         Z+aJtH2xkpeUJnZdJh30s4GW6E6rVRIURQjBheNVw4cqFb8RPY9Gj1vQEP6WreK52x5i
-         IfKw==
-X-Forwarded-Encrypted: i=1; AJvYcCX9sXdCQM8yN8UEiWodxQUjjwKpV1tObczgAfn2ay0CisWtQtXRRTFEdBulPY7Eyt6Z/8xWTGfFneUW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGn5g2nopdxvjKMJu8SPzBc1I8IhmiDVwj4gyMNFJ8frKTNnIF
-	QZOGYqntExTyo+dwxvvzei0kcPKi1MMLC4Ai0kqFS0AKZeIHng/y1X3UL6Mx29FpLNlJ4IqxRM2
-	9RkwVIXMQVn2+llWRWKxbXnIu80OIuUNCGyQw
-X-Google-Smtp-Source: AGHT+IEP9wXNWXu2pk9j6AVVN/5LTlwN5rgVci/DlwsY/hQHHrt79TYJSPQXM7eBts4e9mwGpTVwOvfM4MoIEhR+9sI=
-X-Received: by 2002:a17:90b:1c84:b0:2e2:b6ef:1611 with SMTP id
- 98e67ed59e1d1-2e93c1710afmr870053a91.18.1730319671512; Wed, 30 Oct 2024
- 13:21:11 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1730319923; x=1730924723;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d/u+gOzoI/Ju0naSJU7xEVGZdDUGJ7r27JpshygR/dg=;
+        b=voStTaIRdV5l+eddoo2iUu6LLw2lk0HfjPXkUws8/JNxhgcvDPuWlagp37CjMpHov8
+         vFW1dWllp+mDuZgB4EHbFXVL36vNYvb8B2a5mRsTMFNHpyPvsm5u05wG9S6ZqSfHkSIx
+         Q5uJNEetm+oZZQHYayqkCtWRp2CyebZHmG6Ey3etD3bvHwKm/IjJ0tTt/Ur3/lK2di/b
+         NXXg+7zPYCA+fAWkS1FZ11F0DgczPHOmMGd5OgQEGIu4aid0tjZxxJYyvCAhb3YALJTt
+         gOS7KvbgHiv1WqzwJXsrDWdDNNQCJN7iupG5ssZ+fJXFUg0RBwwn0McqdNupsX7rM32p
+         Yo8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUaeq9GjWnpvXhiDa7vzqF9YBlBRKD87NUg25FuuTlhXoouIHjPUWwBmC/pTwBZrjr8KoVdkPnfc9Qf+Og=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxs5pE+mMy8Tm6XItGLe7qa/hSVpvQBMD/OtgJygbPs7H0gHsXO
+	fV14uOCYX0KK26rBiXc5VcKGEut2U4uIC9P6a+TZMYFEoWAKklxw
+X-Google-Smtp-Source: AGHT+IGkxRIrT29z+dGSuMPxqZG2brU8VM3Jmu4a2uWHhYJfat89wSUyA2Q2OF2Gvtb67PHFl+cwZQ==
+X-Received: by 2002:a05:6512:2808:b0:539:fcaa:d0ca with SMTP id 2adb3069b0e04-53c7bbe0907mr966e87.13.1730319922783;
+        Wed, 30 Oct 2024 13:25:22 -0700 (PDT)
+Received: from localhost.localdomain ([91.90.219.38])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53bc0d6ff10sm334644e87.269.2024.10.30.13.25.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Oct 2024 13:25:22 -0700 (PDT)
+From: Dmitry Yashin <dmt.yashin@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Dmitry Yashin <dmt.yashin@gmail.com>
+Subject: [PATCH v2 0/2] arm64: dts: rockchip: add Banana Pi P2 Pro board
+Date: Thu, 31 Oct 2024 01:21:42 +0500
+Message-ID: <20241030202144.629956-1-dmt.yashin@gmail.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240203165307.7806-1-aford173@gmail.com> <20241025080544.136280-1-mailinglist1@johanneskirchmair.de>
- <6d039ecf-0e48-415a-afd8-6bfce60081ae@kontron.de> <CAHCN7xKevGWipBSch6gKVeJRT9Zb8QTchhxg3c=96XhnAvnjZw@mail.gmail.com>
-In-Reply-To: <CAHCN7xKevGWipBSch6gKVeJRT9Zb8QTchhxg3c=96XhnAvnjZw@mail.gmail.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Wed, 30 Oct 2024 13:20:32 -0700
-Message-ID: <CAGETcx-LGZ1k-seh4LkvCobsxUk67QK40swiQvH6Wrzs0Log0A@mail.gmail.com>
-Subject: Re: imx8mp: HDMI display blank/black problems
-To: Adam Ford <aford173@gmail.com>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>, mailinglist1@johanneskirchmair.de, 
-	johannes.kirchmair@skidata.com, Laurent.pinchart@ideasonboard.com, 
-	airlied@gmail.com, alexander.stein@ew.tq-group.com, andrzej.hajda@intel.com, 
-	catalin.marinas@arm.com, conor+dt@kernel.org, daniel@ffwll.ch, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	festevam@gmail.com, jernej.skrabec@gmail.com, jonas@kwiboo.se, 
-	kernel@pengutronix.de, kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	l.stach@pengutronix.de, linux-arm-kernel@lists.infradead.org, 
-	linux-imx@nxp.com, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-pm@vger.kernel.org, 
-	maarten.lankhorst@linux.intel.com, marex@denx.de, mripard@kernel.org, 
-	neil.armstrong@linaro.org, p.zabel@pengutronix.de, rfoss@kernel.org, 
-	robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org, 
-	tzimmermann@suse.de, ulf.hansson@linaro.org, victor.liu@nxp.com, 
-	vkoul@kernel.org, will@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 30, 2024 at 10:28=E2=80=AFAM Adam Ford <aford173@gmail.com> wro=
-te:
->
-> On Wed, Oct 30, 2024 at 4:01=E2=80=AFAM Frieder Schrempf
-> <frieder.schrempf@kontron.de> wrote:
-> >
-> > Hi Johannes,
-> >
-> > On 25.10.24 10:05 AM, mailinglist1@johanneskirchmair.de wrote:
-> > > [Sie erhalten nicht h=C3=A4ufig E-Mails von mailinglist1@johanneskirc=
-hmair.de. Weitere Informationen, warum dies wichtig ist, finden Sie unter h=
-ttps://aka.ms/LearnAboutSenderIdentification ]
-> > >
-> > > Hey,
-> > > We had some problems with the hdmi on the imx8mp and wanted to leave,=
- what we found out about it, somewhere for others to find it.
-> > >
-> > > The problem was that our hdmi display sometimes stayed blank after ho=
-t plugging and sometimes at startup. On older kernel versions 6.6 we did no=
-t have the problem with the not mainlined hdmi patches.
-> > > We tracked the commit down that introduced the problem for us. It was=
- the following =E2=80=9Cdriver core: Enable fw_devlink=3Drpm by default=E2=
-=80=9D  https://lore.kernel.org/lkml/20231113220948.80089-1-saravanak@googl=
-e.com/
-> > > So we switched back to FW_DEVLINK_FLAGS_ON via kernel parameter. Don=
-=E2=80=99t really understand what the problem with RPM is.
-> > >
-> > > So, this information is just for reference. Maybe someone has an idea=
- what is going on here. And how to fix the problem in a more proper way.
-> >
-> > Thanks for investigating and sharing your results!
-> >
-> > I'm seeing the same symptoms and previously found out that this is
-> > related to LCDIF underrun errors. See [1] for more information.
-> >
-> > Adam has also started this thread: [2].
-> >
-> > Anyway, knowing that this is related to fw_devlink=3Drpm is really
-> > helpful. I just tried with fw_devlink=3Don and wasn't able to see any
-> > issues anymore. So this confirms your findings.
->
-> I was off in the weeds thinking there was something wrong in timing
-> and/or a race condition around the PLL or something.  This is good
-> news.
-> Please forgive my ignorance, what does fw_devlink do?  Is there
-> something we can do in the driver itself to force its behavior?
+This series add support for Banana Pi P2 Pro based on Rockchip RK3308
+(RK3308B-S variant) made by Shenzhen SINOVOIP.
 
-fw_devlink figures out supplier/consumer dependencies between devices
-and creates device links between them. This ensures proper
-probe/suspend/resume/shutdown/runtime PM ordering.
+v1 Link: https://lore.kernel.org/all/20241028213314.476776-1-dmt.yashin@gmail.com/
 
-fw_devlink=3Drpm vs on means "enforce all of these" vs "enforce all of
-these except runtime PM".
+Changes in v2:
+- Drop ASoC dt-bindings patch (applied)
+- Fix excessive board naming by matching to other Banana Pi boards (Heiko)
 
-> adam
-> >
-> > I hope that some of the driver framework and runtime PM experts can hel=
-p
-> > to find out what is actually wrong and how the correct fix might look l=
-ike.
-> >
-> > I'm also CC-ing Saravana who authored the change from fw_devlink=3Don t=
-o
-> > fw_devlink=3Drpm to see if they have anything to add.
+Dmitry Yashin (2):
+  dt-bindings: arm: rockchip: add Banana Pi P2 Pro board
+  arm64: dts: rockchip: add Banana Pi P2 Pro board
 
-When fw_devlink=3Drpm, you'll have device links created between
-consumers and suppliers with the DL_FLAG_PM_RUNTIME flag set. So
-before your device is runtime resumed, it'll make sure all your
-suppliers are resumed first.
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3308-bpi-p2-pro.dts   | 362 ++++++++++++++++++
+ 3 files changed, 368 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3308-bpi-p2-pro.dts
 
-My guess is that there is some issue in the runtime PM handling in
-these drivers. I don't have enough context to provide further insight.
+-- 
+2.39.5
 
--Saravana
-
-> >
-> > Thanks
-> > Frieder
-> >
-> > [1]
-> > https://patchwork.kernel.org/project/linux-phy/cover/20240904233100.114=
-611-1-aford173@gmail.com/#26014057
-> > [2]
-> > https://lore.kernel.org/imx/8cfd3052-c85a-4235-b9b8-6d2929e9e455@kontro=
-n.de/T/
 
