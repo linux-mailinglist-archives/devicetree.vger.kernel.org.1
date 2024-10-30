@@ -1,161 +1,113 @@
-Return-Path: <devicetree+bounces-117398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA3289B6162
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 12:23:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B02AA9B6169
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 12:26:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EFFE1F21C73
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 11:23:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D7A92843D5
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 11:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C33A41E47D0;
-	Wed, 30 Oct 2024 11:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1C21E47B9;
+	Wed, 30 Oct 2024 11:25:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CeBC6LFB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nSg/orIa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56C321E3DCE
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 11:23:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13DA01E25EB
+	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 11:25:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730287416; cv=none; b=P/TN728pcHX0XmKZfowfEUwrEpf2PpOwGq5lwYPF6BLUaHr5BPxpSAQPuCQVXDHsUZ07fNIZHW3yL/QNY0oO6ZxFzeFjXnNHJbx+HDTZM3Ifl1+Pzq1yD/dLqwHJjxsnz8VL54HkfPFytDVG/MufknBG0froKmWfQFi9nukWmFY=
+	t=1730287554; cv=none; b=HPOexOf6Cs0qLitW9MvCEW838CndN+EB4/mUlcgFxbltwxIYo7cKUzSee/mOPmLkDoSw+YHxRdEjsXsIbB2NLeFeLmVdARnf/4a1Ax1GEo0IlhmoBvVbP1/DebqhstPDgMKIjVyOZOFza+8wzz0gOl2I9fXsEidL46p2Ogzg8fE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730287416; c=relaxed/simple;
-	bh=zHgIwEWfPk4yyvPCEPt5Azic6gPbJHaNqF2Poifr9rs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kr26c8Q7NMZNudWT4cs18zi6tp20qzZ2JA/DDg5w3pvZ26NOxLE+oJgDhzLGS9f/RwI1iFodWMQWliOwb/KRZ0QXWRjiByT+AtqVS9BagKZ1WpXv9dAwy15OHazjCsGUcfQVbU5hyFsTbgktfj1FggW5rXiw2l/Byl72HQlOs64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CeBC6LFB; arc=none smtp.client-ip=209.85.167.45
+	s=arc-20240116; t=1730287554; c=relaxed/simple;
+	bh=i/1lFAiCUmr8MozzsQANkNXi63EHwNpndZyFrvfM+q4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VFo+uI/3vVEi/gOk1zyZm2kQabLZo+J00XzjudWlr/wNINMh2m5ytfcmcsG3uNE24ItA7pgKXNAeRTets1yuEfbF2q1j4Xc2hQheGuxomgTD3jVhlFRdLE7PvSSnIQBM8COuJ1Rit5yVz4lsjeGxGcE7YSK7uy1/Kwia88J9djs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nSg/orIa; arc=none smtp.client-ip=209.85.208.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-539f8490856so6077305e87.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 04:23:34 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2fb5111747cso61559981fa.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 04:25:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730287412; x=1730892212; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=wfR1CwiWgHND2Gsj8zReFr51weqymmRbQbInKm0uI9k=;
-        b=CeBC6LFBKaJ16PRXHNyrCq1BiV7k2jdIqjNpUvt0+xk2lXbhNBbQeicoQR2sbSdtwo
-         MHip/VwLfxhU4kdlDjjZA1LWw0BQGbaIGVy/OC2/o9sjIca/wXj4eb2v+Gc+tujc4nN6
-         YoV7csrSVTaVGMp6hfmMm3LluRqMlXQ7eW3KU0eHI69Voha8dTB8tpFhrV1QukUeMsvi
-         25dB32IgY4t162i9kKVXzB3qbUKkADQiP9Y9NTssfrr51ApcbCE8m3EecNFtjrHUDH9m
-         OCp4+x/KVaqArdraXk+yJDmA9imnjU05p3+zQ0szJXh/0WyPVDoV4aiSNUoLhBYFJx/0
-         jCzg==
+        d=linaro.org; s=google; t=1730287550; x=1730892350; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bMES1QAhfgu7bIQDYk1EUlu+RGSHNt1/K65I4mR80e4=;
+        b=nSg/orIadb2AFsxHM/8a2bnuVpIJtpt1I/jLdUgXg0ikJ2Zb0/6vlOCt6wm3RwxvBd
+         qp6Y8NKmPvGa3Ecd2LaIsO+9hiuVcCvgyreLqivSq0BASgz1nhVgR+DTxNyGp+fLDCGE
+         oBWSaimrzi4dY04qOAjL91JsC6l79yiVc2g8sDy0VBDzcHCxp1H0krMx+++MW2zcT2Kw
+         F7RNKOle20XqbBP8YeZHblRDncG6VgqgjSjTlN3kEPMAwFXHkySUjA0Aftj1nFiqJYp9
+         NONH3uUgLzsXeJpm2Pf/hGsBwu770BsavmjDpF0L/9ecMmfwqZ8NiDRMXeTwYdwC6NUU
+         2D/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730287412; x=1730892212;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1730287550; x=1730892350;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wfR1CwiWgHND2Gsj8zReFr51weqymmRbQbInKm0uI9k=;
-        b=I7B7DpJFZ7paafd1PxCG7sqjFhgPgohHfS/SxFBchWHrG/2XDonSGDdKJcmS4FqV+p
-         Krjwub+vL7L2Ty/SSDjpCxUYVLmCRp1pwyxd9viIPab5/mj2r88dtm9wumqW/KogQXoq
-         1XX7YKOZjI1VNUFr5zoP3llm002j3qo6gbZ8rluRCj13cqNWQoVPeb/+Nm5pD1mJ6K73
-         3mP/FDvfBaTyu0U0YRQ2ztpeBgzhyYpOvD1crvzgebvA0OPL3toQi3ZFPcsoOYa4mpyV
-         bIHwISYRM9r30Wg5FepIwK2+KWUsveBcDh52RrQNpYKB78DjcyqFvzRKGefim71oOSxj
-         Te5w==
-X-Forwarded-Encrypted: i=1; AJvYcCWiHKVF9bV+kC3WKojgJ0CBU6YWh7fn0zOpwEv9fYa4e1lTcLBYLylww3pRJfKIu/NAwBdwEQRSwrew@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWkI/ZFUzTHalS3H5WUyFiO4PrruGI+r/+CvncKb07c3QvmhQk
-	b5eVCyu5o+6gWCF9BEcvCGTt+VtOaebrVMXrN516cqNNdNXMB1mGMqOoxHWn2rc=
-X-Google-Smtp-Source: AGHT+IHFi2VTNyFiaZV+LcQXM7FIAG/G39oW0UZ1SN9GGWF/bKTG4Q4CtRRvHoAZoaRoZWs4e3EpGA==
-X-Received: by 2002:a05:6512:ba1:b0:539:fd33:abd2 with SMTP id 2adb3069b0e04-53b348d6148mr6291979e87.25.1730287412407;
-        Wed, 30 Oct 2024 04:23:32 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53bb838e351sm224601e87.99.2024.10.30.04.23.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Oct 2024 04:23:31 -0700 (PDT)
-Date: Wed, 30 Oct 2024 13:23:30 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Imran Shaik <quic_imrashai@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ajit Pandey <quic_ajipan@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: clock: qcom: Add GPU clocks for
- QCS8300
-Message-ID: <ixnqjfb6l7cz4qp23zevtbwws72rjo25cfgvntyiauzdg2yisw@vr2t4qy4k6iq>
-References: <20241024-qcs8300-mm-patches-v2-0-76c905060d0a@quicinc.com>
- <20241024-qcs8300-mm-patches-v2-1-76c905060d0a@quicinc.com>
- <jhwf2slcwvkpxggqt42mfmnyiibhbnvwtqk3to7ueq3ppla7q7@23qrl2z56ygu>
- <0487791a-f31b-4427-b13b-b7ab6a80378b@quicinc.com>
- <ae61b485-d3af-4226-b2f8-e89ef5b4ed71@kernel.org>
- <fff416f9-4ea7-4117-87b0-986087f8e142@quicinc.com>
- <9bd4c63b-7c68-4e40-9995-9d569eed15b5@kernel.org>
- <f7551a7a-885c-4f74-8f74-10f1c0ebe6ad@quicinc.com>
- <46c19729-b31e-42e3-a6dd-6b43b27348d8@kernel.org>
+        bh=bMES1QAhfgu7bIQDYk1EUlu+RGSHNt1/K65I4mR80e4=;
+        b=fQ6jNdGpIQTOM9K1NiOM7jEqTSmSRFrLOA+LvOOGVgx38TiQdl7LS2CG9dF8x/Ei5K
+         7rNFxzS8UPaYrWQ8zsHxH2e29ZPl7VSqhk9P6IX6QXHFNhWqr07DKQLwjapoOTfWR6fY
+         fzp/kkodwn9euIrmo+asiJgqvxJAT8lfHz8BmoKOsa6WLSu+dPU96hWvBtL9HyEIJ/CR
+         4iCUByKeyNBd6bduXQObrmjIPSfMJ38gi7OajSY+hD2i3hkVzk4Z6gjgIXeR720j0d21
+         a2juuBDmS7MIaBdgNwHJNnMF+LjjU9WU9Bx60HK9GkawlU+eovhd8pRBmaPIFOFlwhH/
+         YERw==
+X-Forwarded-Encrypted: i=1; AJvYcCWPzxgd6JuCBWzMFDh+Q05gOODfQaME5IKvG8RX7a4YAtDP3Lgb83fR929+Mmr4hQZuKEsEzvbN1qpu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbrJ5V/43AMDNT3DQcdXxD6xy2hU/pKq0o++OmY7vRYlCRZqha
+	32RcukknHS4mwffvUeYRzMRWxezu75l/EBQbTM+gzz2jJVYd3bLGk32RP3ab3wU=
+X-Google-Smtp-Source: AGHT+IGY4OdrV2g1gR/OZMrvjE/lAI6jJHYq/NY61VEtXYCuq6a/kfZIDfbwe86CLVK3+WjNbtSP5w==
+X-Received: by 2002:a05:651c:1508:b0:2fb:6465:3198 with SMTP id 38308e7fff4ca-2fcbdf60348mr75079871fa.5.1730287550241;
+        Wed, 30 Oct 2024 04:25:50 -0700 (PDT)
+Received: from [192.168.0.157] ([79.115.63.43])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431bd9207d4sm18412585e9.20.2024.10.30.04.25.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Oct 2024 04:25:49 -0700 (PDT)
+Message-ID: <436b02c6-a262-4015-92e3-454d444e877f@linaro.org>
+Date: Wed, 30 Oct 2024 11:25:48 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <46c19729-b31e-42e3-a6dd-6b43b27348d8@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 08/11] scsi: ufs: exynos: enable write line unique
+ transactions on gs101
+To: Peter Griffin <peter.griffin@linaro.org>, alim.akhtar@samsung.com,
+ James.Bottomley@HansenPartnership.com, martin.petersen@oracle.com,
+ avri.altman@wdc.com, bvanassche@acm.org, krzk@kernel.org
+Cc: andre.draszik@linaro.org, kernel-team@android.com,
+ willmcvicker@google.com, linux-scsi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ebiggers@kernel.org
+References: <20241025131442.112862-1-peter.griffin@linaro.org>
+ <20241025131442.112862-9-peter.griffin@linaro.org>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20241025131442.112862-9-peter.griffin@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 30, 2024 at 08:30:59AM +0100, Krzysztof Kozlowski wrote:
-> On 30/10/2024 07:59, Imran Shaik wrote:
-> > 
-> > 
-> > On 10/29/2024 3:06 PM, Krzysztof Kozlowski wrote:
-> >> On 29/10/2024 10:23, Imran Shaik wrote:
-> >>>
-> >>>
-> >>> On 10/28/2024 12:35 PM, Krzysztof Kozlowski wrote:
-> >>>> On 28/10/2024 06:15, Imran Shaik wrote:
-> >>>>>
-> >>>>>
-> >>>>> On 10/26/2024 5:50 PM, Krzysztof Kozlowski wrote:
-> >>>>>> On Thu, Oct 24, 2024 at 07:01:14PM +0530, Imran Shaik wrote:
-> >>>>>>> The QCS8300 GPU clock controller is mostly identical to SA8775P, but
-> >>>>>>> QCS8300 has few additional clocks and minor differences. Hence, reuse
-> >>>>>>> SA8775P gpucc bindings and add additional clocks required for QCS8300.
-> >>>>>>
-> >>>>>> IIUC, these clocks are not valid for SA8775p. How do we deal with such
-> >>>>>> cases for other Qualcomm SoCs?
-> >>>>>>
-> >>>>>
-> >>>>> These newly added clocks are not applicable to SA8755P. In the
-> >>>>> gpucc-sa8775p driver, these clocks are marked to NULL for the SA8755P,
-> >>>>> ensuring they are not registered to the CCF.
-> >>>>
-> >>>> I meant bindings. And existing practice.
-> >>>>
-> >>>
-> >>> In the bindings, the same approach is followed in other Qualcomm SoCs as
-> >>> well, where additional clocks are added to the existing identical SoC’s
-> >>> bindings.
-> >>>
-> >>> https://lore.kernel.org/r/20240818204348.197788-2-danila@jiaxyga.com
-> >>
-> >> Exactly, defines are very different, so no, it is not the same approach.
-> >>
-> > 
-> > I believe the QCS8300 approach is same as that of SM8475. In the SM8475 
-> > SoC, GPLL2 and GPLL3 are the additional clock bindings compared to the 
-> > SM8450. Similarly, in the QCS8300, the GPU_CC_*_ACCU_SHIFT_CLK clock 
-> > bindings are additional to the SA8775P.
-> > 
-> > We are also following this approach across all SoCs in the downstream 
-> > msm-kernel as well.
-> > 
-> > Please let me know if I am missing anything here.
+
+
+On 10/25/24 2:14 PM, Peter Griffin wrote:
+> Previously just AXIDMA_RWDATA_BURST_LEN[3:0] field was set to 8.
+
+where was this set?
+
 > 
-> Not sure, please take the same approach as SM8475, not a different one.
+> To enable WLU transaction additionally we need to set Write Line
+> Unique enable [31], Write Line Unique Burst Length [30:27] and
+> AXIDMA_RWDATA_BURST_LEN[3:0].
+> 
+> To support WLU transaction, both burth length fields need to be 0x3.
+> 
 
-Just for my understanding, are you proposing to prefix the
-platform-specific defines with platform name (like it was done for
-SM8475)?
-
--- 
-With best wishes
-Dmitry
+typo, s/burth/burst
 
