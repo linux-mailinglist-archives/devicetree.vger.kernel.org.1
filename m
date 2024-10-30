@@ -1,183 +1,167 @@
-Return-Path: <devicetree+bounces-117271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2DC59B5C18
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:57:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BCCE9B5C21
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:59:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E201B21DDA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 06:57:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDE9A284599
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 06:59:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F19F41D9A47;
-	Wed, 30 Oct 2024 06:57:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DB611DC195;
+	Wed, 30 Oct 2024 06:59:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KUdUB5M5"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="caMjyRok"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B221865E0;
-	Wed, 30 Oct 2024 06:57:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87BE31CFEA0;
+	Wed, 30 Oct 2024 06:59:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730271439; cv=none; b=NfAeLxSxNa7dv1t/MxOLdM+2VW9slbW4Fz6ilDMncKtwF1p3DFSkULheqBjKS7yMTIXAVrQv9+YB41ycYjPiAlIYavBcPYoRd7jbWHfCRPW8WaUgZk9lWhjl13zTMrgWuaUK6J6bSO2x9+PdiOfFX/xugGOzRMhQ/K8WPMefi7g=
+	t=1730271580; cv=none; b=tDK96ZIWMU0+1NnwiB7vSZpXJP56IEZDCnZlKMpmPBLiryQmiypEFAY7wRJnR0E55UahTl4pkR7OpCrWS8ADSlnuW2aJ83+4UrAXhcy0Oent7zgiRxNtDVCcyHNkpc4yv1IYkfSlMZ9DYEilEczrY8XeLJmF+ta8Pp/fFlOUCwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730271439; c=relaxed/simple;
-	bh=LKGwHh0BFEdIgbVWglg/WXDn9wwNB2S1krhabVnAQ1E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QrOQfS0EuKzqPzWKiEaTqCHXEOLrGDi4BN8BSmJ5KfzyFjnOp/067S0JBXzJMrwnSeZfEy4J04A+4ea4xxhuo6WSpOCGp/eIJQNRi66QafEMLCqR1MR+wUx7a8KfwrsRD3dcI3safK6FGznim84aWZfg4zYsefz6APsWTLsgoTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KUdUB5M5; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5c903f5bd0eso12306451a12.3;
-        Tue, 29 Oct 2024 23:57:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730271436; x=1730876236; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=7uUm0aeOry/s+B1yaF21vBZ5QgCEzbZhQViRgGI83yM=;
-        b=KUdUB5M5kordIP5iZOzdcH3ju21IJtz7WMkSHX4nELkSqP+cyRXyaubxKTvsKu7Yp6
-         y4BYpDRWy8UuqFdjiU3lx9hSgV1nWEwbo1AXZ2d8rXnnWSOomu4jOxxnyYorYOl51ZiH
-         2r+5k+22yLPhOfhmNoIjchIsox2Pa22x/r54Irf/7fYYcGhU6ONUAafDzx3OYl/HJxnO
-         kBuKQzGxy0TdEozSt2wkkIzNkxnbRCJyDxuRr9S2A+Vn7RjbT7W1BGmiak/v6qFMkCpU
-         zLWNPcs72vrZxmRCLzJAgMJnEHVNnA6w1zPmC7TlwKIcWkLXPNuvnuXLEfQD9B5qn2JI
-         USnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730271436; x=1730876236;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7uUm0aeOry/s+B1yaF21vBZ5QgCEzbZhQViRgGI83yM=;
-        b=IAhrb8JPGV4FA3tkgnyIOkh36F2bTlGNSTJIFpjbUV8Lf7XBcb24CEUbjlQyWOx4YU
-         NO1v8hoBvN3OgVOqfr76x0e16MSG+p6Us5rZadwS4LAFPp09oN7yRndKyc8jwHmSVH2O
-         OkA7EsBa5bLy0G2a3jrVHeBtVnMgBJw5LAAWMahHz/6BJHpgN69q1oOfFNwhubUp6Stt
-         G4ne2Epny0TfNfsILCjDaZDA1EKNhK2d0ubF6aEpF+ZAy1+r2/H6z0wrbjqqiZnDmFOP
-         /qb5CnwfVzTzZXvsshrKf3n5ZhpwAQAXE1/2oTRzKNSI2KONbSuYP4loI4KwLlS+yFcn
-         +aqA==
-X-Forwarded-Encrypted: i=1; AJvYcCUnVGjcvirvEUCaCrRX5ebDl8Cqjaa3JXJ6iTDeSMPt1H+EqS8e6S1MvFsviesyU3+HdBrZ/J8m8/ecPoxH@vger.kernel.org, AJvYcCX93QsBW0vRoY9VCbg1t/CbOv/Z7cXLdVqxUqItMTPuANilPRLM2BUVOsKAJmL7CVOWZUVufEVbTbUm@vger.kernel.org, AJvYcCXUOAW2vkN+/+vErfuDfP/DuEjG46bhO5o1OaPG7m7hEqksFVmHxm3oofXYM4SWS3xOH/yeWnwWoyUaWF8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIuoRUxoUPLO9/wNtgi7tN9kLjZppwrmAKDLo4mJgCTDCzxiv1
-	zdKgqUTqin2i52QVShR0xMKOOwX3AWTwSYyWtdbEgIv9yXHqVzBI
-X-Google-Smtp-Source: AGHT+IEspBs33RogwkJx37UgWAkcoVEx/D0maB02IAVcNSTs16SJxZeo5MNVrvQBVAlV5LHRyzbH5w==
-X-Received: by 2002:a17:907:1c24:b0:a9a:7f84:940b with SMTP id a640c23a62f3a-a9de5c91b71mr1178124866b.10.1730271435595;
-        Tue, 29 Oct 2024 23:57:15 -0700 (PDT)
-Received: from ux-UP-WHL01 (mailgw01.goodix.com. [45.117.96.243])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f02706asm536290566b.47.2024.10.29.23.57.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 23:57:15 -0700 (PDT)
-Date: Wed, 30 Oct 2024 14:57:07 +0800
-From: Charles Wang <charles.goodix@gmail.com>
-To: Doug Anderson <dianders@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, dmitry.torokhov@gmail.com,
-	hbarnor@chromium.org, conor.dooley@microchip.com, jikos@kernel.org,
-	bentiss@kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
-Message-ID: <ZyHYw40duPrm0ZeF@ux-UP-WHL01>
-References: <20241025114642.40793-2-charles.goodix@gmail.com>
- <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3>
- <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
- <CAL_JsqLwOekE1mz+3g8NTE3o4GhE9PWwR1Jfk_tL0RYKQmCg-A@mail.gmail.com>
- <CAD=FV=VHMfc2kJo2N3jkB9BR0H7SN2g9JqoDkZuZOOuq0OV6gw@mail.gmail.com>
+	s=arc-20240116; t=1730271580; c=relaxed/simple;
+	bh=hYef1UAdkNfUtjKckYGh47Zsrm0EAjXPBUz8fPcgNaU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=p45u77GHRuLKE4lof+aEl85x1thoiCeJEIqaTvgoBkM0Bc8hnKeehUHKaFKHseZ5ugrDw3ecQac+qJ/CdWRV/YRSL2dBceK5JoVpSp5NV8NgelLeLwjgCA7ip/1noBwZVnsegwuKM4m7pb/YaaN5mAGpo13jzbC6U2VnXCLSyn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=caMjyRok; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49TLJumd017530;
+	Wed, 30 Oct 2024 06:59:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5ljvihIfFExUH52EvOk/obUHsk368hEW128UZHcAR3c=; b=caMjyRokjvNvwT2V
+	v833STgrm7pXwfDWZ2+hZDBbRKbBelnyS3KW+DOwJn36fQDSRr8MrB+RiWCclbPr
+	//Fcjld+8aIOitCXuNRtsFs8GLclS3i5JeuiMaNYGVKpMl6eIbzoW4JELIIQZq5R
+	7BZUv9MZuA03AduMVyptWX5TpIappm2wrYqPi7EkBiJEueK8fpbaCsZda5FBL/hi
+	ceQagn6PuVcrXWoU5D7YUP5i7HYMPSckNrS3dqjn6tCFx79GSb35D26ZUGuK3pdG
+	F4iefR7TEbiEwfLJi7u6zX5rzKORb1fk1F5+OErAlh7d1IyTLjDVoiJxcLbtRETb
+	tVvdlw==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grt72vh0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 06:59:34 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49U6xXJo003223
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 06:59:33 GMT
+Received: from [10.216.48.13] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
+ 2024 23:59:28 -0700
+Message-ID: <f7551a7a-885c-4f74-8f74-10f1c0ebe6ad@quicinc.com>
+Date: Wed, 30 Oct 2024 12:29:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] dt-bindings: clock: qcom: Add GPU clocks for
+ QCS8300
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Taniya Das
+	<quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        "Satya
+ Priya Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241024-qcs8300-mm-patches-v2-0-76c905060d0a@quicinc.com>
+ <20241024-qcs8300-mm-patches-v2-1-76c905060d0a@quicinc.com>
+ <jhwf2slcwvkpxggqt42mfmnyiibhbnvwtqk3to7ueq3ppla7q7@23qrl2z56ygu>
+ <0487791a-f31b-4427-b13b-b7ab6a80378b@quicinc.com>
+ <ae61b485-d3af-4226-b2f8-e89ef5b4ed71@kernel.org>
+ <fff416f9-4ea7-4117-87b0-986087f8e142@quicinc.com>
+ <9bd4c63b-7c68-4e40-9995-9d569eed15b5@kernel.org>
+Content-Language: en-US
+From: Imran Shaik <quic_imrashai@quicinc.com>
+In-Reply-To: <9bd4c63b-7c68-4e40-9995-9d569eed15b5@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=VHMfc2kJo2N3jkB9BR0H7SN2g9JqoDkZuZOOuq0OV6gw@mail.gmail.com>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: k1kK1gxglV9b29xdG4fiIjcCcTKNzPeP
+X-Proofpoint-GUID: k1kK1gxglV9b29xdG4fiIjcCcTKNzPeP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ adultscore=0 clxscore=1011 impostorscore=0 malwarescore=0
+ priorityscore=1501 phishscore=0 mlxscore=0 suspectscore=0 mlxlogscore=554
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410300053
 
-On Fri, Oct 25, 2024 at 09:19:14AM -0700, Doug Anderson wrote:
-> Hi,
+
+
+On 10/29/2024 3:06 PM, Krzysztof Kozlowski wrote:
+> On 29/10/2024 10:23, Imran Shaik wrote:
+>>
+>>
+>> On 10/28/2024 12:35 PM, Krzysztof Kozlowski wrote:
+>>> On 28/10/2024 06:15, Imran Shaik wrote:
+>>>>
+>>>>
+>>>> On 10/26/2024 5:50 PM, Krzysztof Kozlowski wrote:
+>>>>> On Thu, Oct 24, 2024 at 07:01:14PM +0530, Imran Shaik wrote:
+>>>>>> The QCS8300 GPU clock controller is mostly identical to SA8775P, but
+>>>>>> QCS8300 has few additional clocks and minor differences. Hence, reuse
+>>>>>> SA8775P gpucc bindings and add additional clocks required for QCS8300.
+>>>>>
+>>>>> IIUC, these clocks are not valid for SA8775p. How do we deal with such
+>>>>> cases for other Qualcomm SoCs?
+>>>>>
+>>>>
+>>>> These newly added clocks are not applicable to SA8755P. In the
+>>>> gpucc-sa8775p driver, these clocks are marked to NULL for the SA8755P,
+>>>> ensuring they are not registered to the CCF.
+>>>
+>>> I meant bindings. And existing practice.
+>>>
+>>
+>> In the bindings, the same approach is followed in other Qualcomm SoCs as
+>> well, where additional clocks are added to the existing identical SoC’s
+>> bindings.
+>>
+>> https://lore.kernel.org/r/20240818204348.197788-2-danila@jiaxyga.com
 > 
-> On Fri, Oct 25, 2024 at 8:59 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Fri, Oct 25, 2024 at 10:29 AM Doug Anderson <dianders@chromium.org> wrote:
-> > >
-> > > Charles,
-> > >
-> > > On Fri, Oct 25, 2024 at 5:03 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > > >
-> > > > > +properties:
-> > > > > +  compatible:
-> > > > > +    enum:
-> > > > > +      - goodix,gt7986u-spi
-> > > >
-> > > > Compatible is already documented and nothing here explains why we should
-> > > > spi variant.
-> > > >
-> > > > > +
-> > > > > +  reg:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  interrupts:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  reset-gpios:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  goodix,hid-report-addr:
-> > > >
-> > > > I do not see this patch addressing previous review. Sending something
-> > > > like this as v1 after long discussions also does not help.
-> > >
-> > > Krzysztof is right that it's better to wait until we get consensus on
-> > > the previous discussion before sending a new patch. I know you were
-> > > just trying to help move things forward, but because of the way the
-> > > email workflow works, sending a new version tends to fork the
-> > > discussion into two threads and adds confusion.
-> > >
-> > > I know Krzysztof and Rob have been silent during our recent
-> > > discussion, but it's also a long discussion. I've been assuming that
-> > > they will take some time to digest and reply in a little bit. If they
-> > > didn't, IMO it would have been reasonable to explicitly ask them for
-> > > feedback in the other thread after giving a bit of time.
-> >
-> > If the firmware creates fundamentally different interfaces, then
-> > different compatibles makes sense. If the same driver handles both bus
-> > interfaces, then 1 compatible should be fine. The addition of '-spi'
-> > to the compatible doesn't give any indication of a different
-> > programming model. I wouldn't care except for folks who will see it
-> > and just copy it when their only difference is the bus interface and
-> > we get to have the same discussion all over again. So if appending
-> > '-spi' is the only thing you can come up with, make it abundantly
-> > clear so that others don't blindly copy it. The commit msg is useful
-> > for convincing us, but not for that purpose.
-> 
-> OK, makes sense. Charles: Can you think of any better description for
-> this interface than "goodix,gt7986u-spi"? I suppose you could make it
-> super obvious that it's running different firmware with
-> "goodix,gt7986u-spifw" and maybe that would be a little better.
-> 
-> I think what Rob is asking for to make it super obvious is that in the
-> "description" of the binding you mention that in this case we're
-> running a substantially different firmware than GT7986U touchscreens
-> represented by the "goodix,gt7986u" binding and thus is considered a
-> distinct device.
-> 
-> At this point, IMO you could wait until Monday in case Krzysztof wants
-> to add his $0.02 worth and then you could send a "v2" patch addressing
-> the comments so far, though of course you could continue to reply to
-> this thread if you have further questions / comments.
+> Exactly, defines are very different, so no, it is not the same approach.
 > 
 
-Thank you for your explanation, I understand your point. I want to clarify
-that the gt7986u-spi and gt7986u indeed use two entirely different drivers
-and two distinct firmware.
+I believe the QCS8300 approach is same as that of SM8475. In the SM8475 
+SoC, GPLL2 and GPLL3 are the additional clock bindings compared to the 
+SM8450. Similarly, in the QCS8300, the GPU_CC_*_ACCU_SHIFT_CLK clock 
+bindings are additional to the SA8775P.
 
-Using "goodix,gt7986u-spi" could indeed cause confusion. How about modifying
-it to "goodix,gt7986u-losto" by adding a special code?
+We are also following this approach across all SoCs in the downstream 
+msm-kernel as well.
 
-Additionally, I would like to confirm: when submitting the v2 patch, should
-it be based on this thread or the previous discussion thread?
+Please let me know if I am missing anything here.
 
-Best regards,
-Charles
- 
+Thanks,
+Imran
+
+> Best regards,
+> Krzysztof
+> 
+
 
