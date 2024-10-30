@@ -1,166 +1,162 @@
-Return-Path: <devicetree+bounces-117497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AB819B6A9A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:15:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93BF89B6AFF
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:28:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD6D8281A25
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 17:15:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2512A1F2148C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 17:28:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD86922CC42;
-	Wed, 30 Oct 2024 17:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB331BD9DB;
+	Wed, 30 Oct 2024 17:28:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QPnvIuuT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HIzn2okU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE1EF22ADFD;
-	Wed, 30 Oct 2024 17:04:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE201BD9CB;
+	Wed, 30 Oct 2024 17:28:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730307891; cv=none; b=kdFoMWMWXUXMgZQMp1vAytyuUk8tLeAzzYed6lAl5bH/kAFQeGM+7k8rGa02pn5TMCuSTymeiJVq5iOtuCrS5wDscj6l4zuzCvjlEFoYolQKsWCTjxG/AUjeHMN9kWvodxOJ0d3+xu05P9EBi2Cqk4HkRwdKXEZ3mjJzaHhEWTA=
+	t=1730309306; cv=none; b=ZkVqbjY+g9lwzoPSpD5zX9I+TzvuW8L+t0aTjTcxJid2VwQIqbMVUJDxAr8Ktg7QyMM2A19R5P84hJQcjNpOGPYk/ZrZaXRW+CLW9Xmm3ihgu5xHZNYENkfgXzFypRI3ngc4zNr/KmjiArO+gBVr95nLM+hxIIsuHeQ+G6vHt/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730307891; c=relaxed/simple;
-	bh=F9Pr/Oo+xoM6rBNWj4TUXotKSeXlLKjDZ0TcVUnAkZk=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=I8/cSLdYqcjl+4JlxQi/mSglEOuYIfSF3UG+o3a2M4tO+AnwDXG1USCNaRmD6TyfQxtIigTE/xECMAdSPq8QH1cKEldsvZfmLYnrhkJI8NNGDu4WBi/TxoYqGOB2/dTHp/X52RpGfvOjtJMT8jsCQxqHmrLrRrA+I84R64am3mw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QPnvIuuT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2707BC4CED2;
-	Wed, 30 Oct 2024 17:04:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730307891;
-	bh=F9Pr/Oo+xoM6rBNWj4TUXotKSeXlLKjDZ0TcVUnAkZk=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=QPnvIuuTQIPej4r3eeYpF52cq2e7H1rX9pCQNfZl+LOKTAqY2dqepCh0c22gWfmdf
-	 8aDUkUZEwVMevTt2G2hab/ftEIBTN2XHMHprfXXgkQIEIrpy0DPUKNJK16QKNDdRCt
-	 Zm0i0zCW4jCPBF8fwSdYFGDmS6xLPXLlzVhvsSdCcp0TpbM8C4X+pdAPIGKWI3mAff
-	 RXdam7q2IsjC/YnOItE7WJJar9/4GRhdptKsqi0NxU8IcPVjkDwyL/7JoHIesy6lnm
-	 w8nXiNTJ8QHhAFlMRhiW2s6ZNPrVPHLTJwcf5TE64yTp0rUVCEPDKMqFuQd6O742kR
-	 OFEjZNKihxaiA==
-Date: Wed, 30 Oct 2024 12:04:50 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1730309306; c=relaxed/simple;
+	bh=I+pOOGHMZI2SP6OFUnOB4ImhG03P+O3foWEohCD03YA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y0Ob+bj4r66vxUFgsszBy7xtopFjq22ZXSVqBBjK09VYQBLlsMF0bR5Zc3HwFQob4tMhdANKN1Kd0InTYalvWLZ+/JnUCsuJXdQUSLCadR9geSkYtNgQQ3Cf4scKJIaVz+AShmS4O4vFqSnVBDbnQ9oefZaAwDyxUuWJNJvNJNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HIzn2okU; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-720b173a9ebso54451b3a.0;
+        Wed, 30 Oct 2024 10:28:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730309304; x=1730914104; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MnkN8ptr3KGmpx2Uv+pp+uUkuHBCH11BckHc8GqWeDg=;
+        b=HIzn2okUNsJGA1yDQ62T5nhFz8JXJli5zSBbK/vxVBdYceEHL0ZPEVYhuVu29XSpi8
+         4pr4XBLwTdD72d4oYy1rXrRJkfjeHZl5p0IQjXVTOdvP95Yl9XD5Wz82FLUEjVMpGqwD
+         vl7IavGpluS/8tAu7s028/NKeLJRiJniS8VRYDQPMCKYUQadhl6/Lr+bsbg+Ywfkq0R/
+         MYExAnJv4ytgAK7gVKAZq/aNP5rArJEK0AR2ff04yWhuysCGLqiaal14jDcaekrAktNb
+         UgQfjUiKcEW0AfgrANK5ZRSSsQtKWF5NqSzlu35yozYtRAeETfcUHa8HG0d8DK3ZTC7o
+         2iTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730309304; x=1730914104;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MnkN8ptr3KGmpx2Uv+pp+uUkuHBCH11BckHc8GqWeDg=;
+        b=ERz/FPS/zkKswIz7WzXMP9Whfc4c68PBlhQ9FgjdjPWPID9IycRCLt3OdCzUg3sCML
+         1RfceAMw6eZeaESDYtiL0GDvRVx7uATUlrZ9lgpeKz8eOoYUls+wQWS4DxaEDhuOzq3g
+         AmGq0rS8N7+6RqGWIOt8xyHtMvwNyIyuzFWjGZXb70nM1k/icDClHlgJyWbfjKp9/Jc9
+         n3MaG6q5af9XCsbrhDiOTjidYio27yCQTYIDVKORbdpcT+SL9z5MvmIIO8I5zNHAXNkZ
+         1CoHNYDiaPiWAMkq7g/eZItIHN/2Dx5ALByeLzFEbtSHOGByOCcFfXisuC2zYVeV4vIs
+         lLQw==
+X-Forwarded-Encrypted: i=1; AJvYcCUt+WbiBbEJSzutStsa7f5kUYbvyPd+5h4aMJT6gxu4YF5SkhL4VGlgOBnAjtavC2Qzryz6Aj0iJWHD@vger.kernel.org, AJvYcCW37a84R/O+kc7JORiR92oG+B2Oo3qu48yRbN5t4knCbuOzzqIiAfVzKNBOdcZdlmzX0HlCuvOjPN+a0S/1@vger.kernel.org, AJvYcCXNZS0Pntqsqw/1Z0JiLH8nDErRXkleKyZj6MvC4KXAzV9ks5AWq/C8m94gYYlIbqiLBsaoMLy99Gw=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBM/PKxtxjHDWGfE8wltK6QaWMibQWXGzIVDQcItpAykeDSRzE
+	FKQ0SYK32D47zMPg4AVioqSbrWuJKrbOsIw61jJSwjiKfEKsZOixzucvr8+C7Utmj60CqcDN7Li
+	df6gCBhuVOo62QugBgd25ZUZ9LlbtjQ==
+X-Google-Smtp-Source: AGHT+IHW4Ei/MHebO474qYJ4FnNy3KOOcESKnX+HK1imXciZaQOAIYn479DmypH3MHAeRnnMNdgGnRLoV9bhVu1WXCI=
+X-Received: by 2002:a05:6a00:3c96:b0:71d:f4ef:6b3a with SMTP id
+ d2e1a72fcca58-720b9db22bfmr624360b3a.21.1730309303938; Wed, 30 Oct 2024
+ 10:28:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Cc: netdev@vger.kernel.org, Richard Cochran <richardcochran@gmail.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- linux-clk@vger.kernel.org, Dinh Nguyen <dinguyen@kernel.org>, 
- Stephen Boyd <sboyd@kernel.org>, kernel@pengutronix.de, 
- devicetree@vger.kernel.org
-In-Reply-To: <20241030-v6-12-topic-socfpga-agilex5-v1-0-b2b67780e60e@pengutronix.de>
-References: <20241030-v6-12-topic-socfpga-agilex5-v1-0-b2b67780e60e@pengutronix.de>
-Message-Id: <173030775265.1269185.10225063190371444924.robh@kernel.org>
-Subject: Re: [PATCH 0/4] ARM64: dts: intel: agilex5: add nodes and new
- board
+References: <20240203165307.7806-1-aford173@gmail.com> <20241025080544.136280-1-mailinglist1@johanneskirchmair.de>
+ <6d039ecf-0e48-415a-afd8-6bfce60081ae@kontron.de>
+In-Reply-To: <6d039ecf-0e48-415a-afd8-6bfce60081ae@kontron.de>
+From: Adam Ford <aford173@gmail.com>
+Date: Wed, 30 Oct 2024 12:28:12 -0500
+Message-ID: <CAHCN7xKevGWipBSch6gKVeJRT9Zb8QTchhxg3c=96XhnAvnjZw@mail.gmail.com>
+Subject: Re: imx8mp: HDMI display blank/black problems
+To: Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc: mailinglist1@johanneskirchmair.de, johannes.kirchmair@skidata.com, 
+	Laurent.pinchart@ideasonboard.com, airlied@gmail.com, 
+	alexander.stein@ew.tq-group.com, andrzej.hajda@intel.com, 
+	catalin.marinas@arm.com, conor+dt@kernel.org, daniel@ffwll.ch, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	festevam@gmail.com, jernej.skrabec@gmail.com, jonas@kwiboo.se, 
+	kernel@pengutronix.de, kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	l.stach@pengutronix.de, linux-arm-kernel@lists.infradead.org, 
+	linux-imx@nxp.com, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-pm@vger.kernel.org, 
+	maarten.lankhorst@linux.intel.com, marex@denx.de, mripard@kernel.org, 
+	neil.armstrong@linaro.org, p.zabel@pengutronix.de, rfoss@kernel.org, 
+	robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org, 
+	tzimmermann@suse.de, ulf.hansson@linaro.org, victor.liu@nxp.com, 
+	vkoul@kernel.org, will@kernel.org, Saravana Kannan <saravanak@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Oct 30, 2024 at 4:01=E2=80=AFAM Frieder Schrempf
+<frieder.schrempf@kontron.de> wrote:
+>
+> Hi Johannes,
+>
+> On 25.10.24 10:05 AM, mailinglist1@johanneskirchmair.de wrote:
+> > [Sie erhalten nicht h=C3=A4ufig E-Mails von mailinglist1@johanneskirchm=
+air.de. Weitere Informationen, warum dies wichtig ist, finden Sie unter htt=
+ps://aka.ms/LearnAboutSenderIdentification ]
+> >
+> > Hey,
+> > We had some problems with the hdmi on the imx8mp and wanted to leave, w=
+hat we found out about it, somewhere for others to find it.
+> >
+> > The problem was that our hdmi display sometimes stayed blank after hot =
+plugging and sometimes at startup. On older kernel versions 6.6 we did not =
+have the problem with the not mainlined hdmi patches.
+> > We tracked the commit down that introduced the problem for us. It was t=
+he following =E2=80=9Cdriver core: Enable fw_devlink=3Drpm by default=E2=80=
+=9D  https://lore.kernel.org/lkml/20231113220948.80089-1-saravanak@google.c=
+om/
+> > So we switched back to FW_DEVLINK_FLAGS_ON via kernel parameter. Don=E2=
+=80=99t really understand what the problem with RPM is.
+> >
+> > So, this information is just for reference. Maybe someone has an idea w=
+hat is going on here. And how to fix the problem in a more proper way.
+>
+> Thanks for investigating and sharing your results!
+>
+> I'm seeing the same symptoms and previously found out that this is
+> related to LCDIF underrun errors. See [1] for more information.
+>
+> Adam has also started this thread: [2].
+>
+> Anyway, knowing that this is related to fw_devlink=3Drpm is really
+> helpful. I just tried with fw_devlink=3Don and wasn't able to see any
+> issues anymore. So this confirms your findings.
 
-On Wed, 30 Oct 2024 13:10:11 +0100, Steffen Trumtrar wrote:
-> This series adds the gpio0 and gmac nodes to the socfpga_agilex5.dtsi.
-> 
-> An initial devicetree for a new board (Arrow AXE5-Eagle) is also added.
-> Currently only QSPI and network are functional as all other hardware
-> currently lacks mainline support.
-> 
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> ---
-> Steffen Trumtrar (4):
->       arm64: dts: agilex5: add gpio0
->       arm64: dts: agilex5: add gmac nodes
->       dt-bindings: intel: add agilex5-based Arrow AXE5-Eagle
->       arm64: dts: agilex5: initial support for Arrow AXE5-Eagle
-> 
->  .../devicetree/bindings/arm/intel,socfpga.yaml     |   1 +
->  arch/arm64/boot/dts/intel/Makefile                 |   1 +
->  arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi     | 341 +++++++++++++++++++++
->  .../boot/dts/intel/socfpga_agilex5_axe5_eagle.dts  | 146 +++++++++
->  4 files changed, 489 insertions(+)
-> ---
-> base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
-> change-id: 20241030-v6-12-topic-socfpga-agilex5-90fd3d8f980c
-> 
-> Best regards,
-> --
-> Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> 
-> 
-> 
+I was off in the weeds thinking there was something wrong in timing
+and/or a race condition around the PLL or something.  This is good
+news.
+Please forgive my ignorance, what does fw_devlink do?  Is there
+something we can do in the driver itself to force its behavior?
 
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y intel/socfpga_agilex5_axe5_eagle.dtb' for 20241030-v6-12-topic-socfpga-agilex5-v1-0-b2b67780e60e@pengutronix.de:
-
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
-	'arrow,socfpga-agilex5-axe5-eagle' is not one of ['intel,n5x-socdk', 'intel,socfpga-agilex-n6000', 'intel,socfpga-agilex-socdk']
-	'intel,socfpga-agilex5' was expected
-	from schema $id: http://devicetree.org/schemas/arm/intel,socfpga.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: ethernet@10810000: reset-names: 'oneOf' conditional failed, one must be fixed:
-	['stmmaceth', 'stmmaceth-ocp'] is too long
-	'ahb' was expected
-	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: ethernet@10810000: tx-queues-config:queue6: 'snps,tbs-enable' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: ethernet@10810000: tx-queues-config:queue7: 'snps,tbs-enable' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: /soc@0/ethernet@10810000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwxgmac-2.10', 'snps,dwxgmac']
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: ethernet@10820000: reset-names: 'oneOf' conditional failed, one must be fixed:
-	['stmmaceth', 'stmmaceth-ocp'] is too long
-	'ahb' was expected
-	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: ethernet@10820000: tx-queues-config:queue6: 'snps,tbs-enable' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: ethernet@10820000: tx-queues-config:queue7: 'snps,tbs-enable' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: /soc@0/ethernet@10820000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwxgmac-2.10', 'snps,dwxgmac']
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: ethernet@10830000: reset-names: 'oneOf' conditional failed, one must be fixed:
-	['stmmaceth', 'stmmaceth-ocp'] is too long
-	'ahb' was expected
-	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: ethernet@10830000: tx-queues-config:queue6: 'snps,tbs-enable' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: ethernet@10830000: tx-queues-config:queue7: 'snps,tbs-enable' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: /soc@0/ethernet@10830000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwxgmac-2.10', 'snps,dwxgmac']
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: tca9544@70: $nodename:0: 'tca9544@70' does not match '^(i2c-?)?mux'
-	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: tca9544@70: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
-	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: /soc@0/nand-controller@10b80000: failed to match any schema with compatible: ['cdns,hp-nfc']
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: /soc@0/sysmgr@10d12000: failed to match any schema with compatible: ['altr,sys-mgr-s10', 'altr,sys-mgr']
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: /soc@0/sysmgr@10d12000: failed to match any schema with compatible: ['altr,sys-mgr-s10', 'altr,sys-mgr']
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: flash@0: Unevaluated properties are not allowed ('cdns,block-size', 'cdns,page-size' were unexpected)
-	from schema $id: http://devicetree.org/schemas/mtd/jedec,spi-nor.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: leds: 'hps0', 'hps1' do not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dtb: gpio-keys: 'hps_pb0', 'hps_pb1', 'hps_sw0', 'hps_sw1' do not match any of the regexes: '^(button|event|key|switch|(button|event|key|switch)-[a-z0-9-]+|[a-z0-9-]+-(button|event|key|switch))$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/input/gpio-keys.yaml#
-
-
-
-
-
+adam
+>
+> I hope that some of the driver framework and runtime PM experts can help
+> to find out what is actually wrong and how the correct fix might look lik=
+e.
+>
+> I'm also CC-ing Saravana who authored the change from fw_devlink=3Don to
+> fw_devlink=3Drpm to see if they have anything to add.
+>
+> Thanks
+> Frieder
+>
+> [1]
+> https://patchwork.kernel.org/project/linux-phy/cover/20240904233100.11461=
+1-1-aford173@gmail.com/#26014057
+> [2]
+> https://lore.kernel.org/imx/8cfd3052-c85a-4235-b9b8-6d2929e9e455@kontron.=
+de/T/
 
