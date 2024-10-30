@@ -1,173 +1,122 @@
-Return-Path: <devicetree+bounces-117547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A64BE9B6DFB
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 21:44:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 979F99B6E11
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 21:49:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59CF91F21EB8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 20:44:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB6781C23310
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 20:49:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B111EF940;
-	Wed, 30 Oct 2024 20:44:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D83F21500A;
+	Wed, 30 Oct 2024 20:48:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i852va25"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="e2OzAGta"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B04EF1EB9FD;
-	Wed, 30 Oct 2024 20:44:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F1501EC016;
+	Wed, 30 Oct 2024 20:48:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730321077; cv=none; b=q62rNPp6atQUdTV/bETuQvPc0w8E03ts8j0LuZTxhykMSkPdlHs0W/zOzYexwQ31bLaRQRf+m6mAoKG0Tf4xSb0dIh2PVLfnKxsySdRm3sYeOSXXjAxPhIpGcYAOjwUxbY+Mkzhr33bjG8RL5TBnKKCoUCgPs50HzLEM0bT+pSQ=
+	t=1730321323; cv=none; b=MPZu1YCWOdEaVOfkYDbfkiEC3KApyoSWMY+8au5aDgF1xYKCVdnJBWrIVshcfb0Psh/uDNPbR7JHdrUpYV/Xqa63nhboyCJL/G1BRSOQnB4/xunv8EO1JfJYInbhEYfTD+vb2rF1HmeLQ8ZWe3D21p9w7UZj6zMOagWW7t1Cb9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730321077; c=relaxed/simple;
-	bh=cgo0duRBfUwMyZzBD2j7irRNNvnjmyH23pGtMEZlfRI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JfGKlKLMSSuDFLjSo+qurx776jFssFt6kGvDZTb2xqxsXmzOfJFgPsdR9l1zgP95gXokpCqqVUqCQaDGXtCOitV3D23CARE4uhqBxkIL8p/lmw0Md7pMZw4UzN0+zsG4esU0reGf4+Y9GMSdqx/1wUwbOIyAmtoCUMACtPB9bdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i852va25; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D772C4CECE;
-	Wed, 30 Oct 2024 20:44:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730321077;
-	bh=cgo0duRBfUwMyZzBD2j7irRNNvnjmyH23pGtMEZlfRI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=i852va25qG679TqiwpPh1rVUaNL/V9OVxtlP458tievnRbJDD3cT1caRY0mgPYaqB
-	 Q8/fmIbQbUt7yaBQJ/IIEvFnHJMPrMONDEjpNTU2H10oAOVMeL31v1AOwVUWRdt2GJ
-	 YKF3JH4HEIR7HIgG4xEHKQEgX+OpA9xeH16IfQt2zN7a8vhBJKaABGnyOzB3NwfqdB
-	 PwzJwW/IZD32ejxO5gbgRNShxhWht9gc4Uw+YBm/SLQ+z+EC6FjYHD0YlG0ThXea+e
-	 lspFQpUiGgb6ownJoae8t4NSf3Wqgz2oE1sg0EjDR3gGEXsFkE35o562wTtmnJsh/l
-	 KKESxVksnnfQA==
-Date: Wed, 30 Oct 2024 20:44:29 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>,
- Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
- Dumitru Ceclan <dumitru.ceclan@analog.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob
- Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v2 3/4] iio: adc: ad_sigma_delta: Add support for
- reading irq status using a GPIO
-Message-ID: <20241030204429.70cdcf35@jic23-huawei>
-In-Reply-To: <a575430a74a7825a2df9fad1a8e073ad0507b0e7.camel@gmail.com>
-References: <20241028160748.489596-6-u.kleine-koenig@baylibre.com>
-	<20241028160748.489596-9-u.kleine-koenig@baylibre.com>
-	<a575430a74a7825a2df9fad1a8e073ad0507b0e7.camel@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1730321323; c=relaxed/simple;
+	bh=dQZjc7y8gqIlBQhCFx4XdLHsvRVBdaQFmbtnY4ikP9k=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=eDrGb94qCGNfy7ZZ3aUvtZIvS6LtLAM11wFNsuMtSq0n6WcdmWIrApZvNXMHre0ycU7X0qRGfVLy/qc+yuyw2F7DOmONSwariwomH7rmFU5E/YiwEMYXCt+MZAmMaUzIw42QdVDb/XMcg/9fBS0zkJ4q8DUvhgh9kMh5mgNrCV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=e2OzAGta; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49UJDuh5007329;
+	Wed, 30 Oct 2024 20:48:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	BdPiftZCGikrsqw0/qKY5H5erpVvYTx3MSTxwYAodRs=; b=e2OzAGtaMD9+PYr9
+	9ze+VoTOIdq82fgm4ygcs0EMeiYxOUwH/qHfV3PP3moPM1xUUA/EoKlqg31zJbW/
+	YR9goLkVeiqSwgHuCUjUNVZazM7qeISmc78ZAvLN+s7WMJEv/yRFA3/0WlO2xHYd
+	IGjK0ArzV3H8FImmViyaTE5n1Cnjj5WLYVpbrLPCvnHfhzHzfOMaBcYRUYBpnxEY
+	4v0UWHlg5E3GqiHolj2QLr3YP8HwSXV4bqmLVSQ+jvBPJssiLWQEhpEowHsHnogm
+	YxcMOIYFxoY46v5Ob+2Qg7C62GfrAqcwaRVpFvjm31p1TsfceksOjSU5DkF32+Pd
+	SqDg2Q==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42khqbsxb3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 20:48:33 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49UKmWEV032026
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 20:48:32 GMT
+Received: from [10.48.242.156] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 30 Oct
+ 2024 13:48:31 -0700
+Message-ID: <d3f1b608-8549-4846-866e-81f785ee5a59@quicinc.com>
+Date: Wed, 30 Oct 2024 13:48:30 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 1/5] dt-bindings: net: wireless: ath12k: describe
+ WSI properties for QCN9274
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, <ath12k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20241029173050.2188150-1-quic_rajkbhag@quicinc.com>
+ <20241029173050.2188150-2-quic_rajkbhag@quicinc.com>
+ <4d273cac-8955-4850-bd8a-0bad318c1e4f@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <4d273cac-8955-4850-bd8a-0bad318c1e4f@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: mRYVMkxKpQp7PA2ctfUAP0fhLQ3TBN2d
+X-Proofpoint-ORIG-GUID: mRYVMkxKpQp7PA2ctfUAP0fhLQ3TBN2d
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=848
+ lowpriorityscore=0 bulkscore=0 adultscore=0 mlxscore=0 suspectscore=0
+ malwarescore=0 spamscore=0 impostorscore=0 clxscore=1015
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410300163
 
-On Wed, 30 Oct 2024 14:04:58 +0100
-Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+On 10/30/2024 12:04 PM, Jeff Johnson wrote:
+> in the description above you have two different diagrams:
+> - one that shows 3 pcie* devices in a single group with apparently one port
+> per device
+> - one that shows 4 pcie* devices split into two groups of two, again with
+> apparently one port per device
+> 
+> but in the representation that follows you describe three pcie* devices, each
+> with two distinct ports, all 6 of which are part of group 0.
+> 
+> can we have diagrams that match the actual bindings. does the real product
+> actually have 6 ports in one group?
 
-> On Mon, 2024-10-28 at 17:07 +0100, Uwe Kleine-K=C3=B6nig wrote:
-> > Some of the ADCs by Analog signal their irq condition on the MISO line.
-> > So typically that line is connected to an SPI controller and a GPIO. The
-> > GPIO is used as input and the respective interrupt is enabled when the
-> > last SPI transfer is completed.
-> >=20
-> > Depending on the GPIO controller the toggling MISO line might make the
-> > interrupt pending even while it's masked. In that case the irq handler
-> > is called immediately after irq_enable() and so before the device
-> > actually pulls that line low which results in non-sense values being
-> > reported to the upper layers.
-> >=20
-> > The only way to find out if the line was actually pulled low is to read
-> > the GPIO. (There is a flag in AD7124's status register that also signals
-> > if an interrupt was asserted, but reading that register toggles the MISO
-> > line and so might trigger another spurious interrupt.)
-> >=20
-> > Add the possibility to specify an interrupt GPIO in the machine
-> > description instead of a plain interrupt. This GPIO is used as interrupt
-> > source and to check if the irq line is actually active in the irq
-> > handler.
-> >=20
-> > Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com>
-> > --- =20
->=20
-> Hi all,
->=20
-> Regarding this, I do share some of the concerns already raised by Jonatha=
-n. I fear
-> that we're papering around an issue with the IRQ controller rather than b=
-eing an
-> issue with the device. When I look at irq_disable() docs [1], it feels th=
-at we're
-> already doing what we're supposed to do. IOW, we disable the lazy approac=
-h so we
-> *should* not get any pending IRQ. Also looking at drivers as the xilinx g=
-pio
-> controller, it seems some are careful about this [2] and make sure to cle=
-ar all
-> pending IRQs when unmasking.
-Your links are both to the same place.
->=20
-> Jonathan also said this:
->=20
-> "True enough - that race is a possibility, but not all interrupt inputs
-> are capable of gpio usage whilst setup to received interrupts."
-Race should be easy to avoid using a level interrupt now I think more on th=
-at:
-can't miss a level.
->=20
-> To my understanding this also means this is doomed to fail for some devic=
-es or am I
-> not following it?
+After stepping away and then coming back and reading the dts change I now
+understand that each device has two ports, a tx and an rx port.
 
-If you were wired to one of those, you couldn't use the GPIO trick, but then
-don't have a GPIO in your DT in that case.
-
->=20
-> All that said, my naive feeling would be for a masked line to not get any=
- pending IRQ
-> and if it does, the driver should make sure to clean all outstanding inte=
-rrupts when
-> unmasking. But I'm far from being an expert of the IRQ subsystem. Maybe i=
-t would be
-> interesting to get some inputs about someone who actually knows better?
-+CC Thomas Gleixner,
-
-Hi Thomas,
-
-Annoying case where a wire is both the interrupt source for dataready and t=
-he
-SPI data line (if separate clock signal is toggling)  So currently the driv=
-er
-masks interrupts at the host end, but we have at least one interrupt contro=
-ller
-where they end up pending and fire on reenabling the interrupt.  Querying t=
-he
-device to check the status register then ends up causing it to happen again,
-so that doesn't help.
-
-Proposal is to query it as a GPIO (or maybe a separate GPIO wired to the sa=
-me
-pin) to check the level when an interrupt comes in.
-
-Any thoughts on this nasty hardware and what is responsiblity of the device
-driver vs the interrupt controller driver in this case?
-
-Jonathan
-
->=20
-> [1]: https://elixir.bootlin.com/linux/v6.11.5/source/kernel/irq/chip.c#L3=
-66
-> [2]: https://elixir.bootlin.com/linux/v6.11.5/source/kernel/irq/chip.c#L3=
-66
->=20
-> - Nuno S=C3=A1
->=20
->=20
-
+/jeff
 
