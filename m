@@ -1,117 +1,109 @@
-Return-Path: <devicetree+bounces-117484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 640039B687C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 16:54:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2549B6885
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 16:55:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18F511F23069
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 15:54:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C036F285A05
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 15:55:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93A3C21764E;
-	Wed, 30 Oct 2024 15:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB65C2141BA;
+	Wed, 30 Oct 2024 15:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d2+snP6u"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="II0PQP69"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 639CB217649;
-	Wed, 30 Oct 2024 15:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842502141B5;
+	Wed, 30 Oct 2024 15:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730303559; cv=none; b=Bp4yz08ejMH1f/XD0ZwYGeTk7c3XTW8G/4zJhJbMtfP7o2ijZWtE1U/k5W9kVeEXZ04Arw2f+/R/LLTufkWam00owjoGs1WqYPYZijFFwUzyBiQsTVRpSPSVPdbBn0noiZEJQB12+zX7waH+OaE8j7BLo3ivBNaJmfrT56+nY+M=
+	t=1730303730; cv=none; b=QRMEUOS+A9MdoeKLfbG9E0TV/Us4eCzQUTJPz/9iYEy+wkADMqB2aItynUALOOAPAJMwvBmSlfz9XyCAXfczyq1JrxlUZVMUgeQdVCNZsOJVyKqZeGPY5WrDBlyQjyyhHcwujTsLczEegytmMuVbI6zXqWMQYlpghIf4Tc/8e9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730303559; c=relaxed/simple;
-	bh=bBAnLBh3UuZFA7fRyGRPAdxcc+khwrsua63VHHiyl/c=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QFsgy5Y/4ZUs/asXg7xmR48mqma2MdyoQSgYlS4sZnv+1knUV+CeO/Ct21eMLRYvO/EJNrviRs6bMFYyhzqsLs6zQVzBd3ZlZYgCzMXa2yIjwolE+wd5Fw+wWwhIQF+WSu0h5yXu1Lphfy2q3R31617vHtnTR87savgF28w895I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d2+snP6u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E42FEC4CECE;
-	Wed, 30 Oct 2024 15:52:38 +0000 (UTC)
+	s=arc-20240116; t=1730303730; c=relaxed/simple;
+	bh=3yyLl30TQjYKD071Dpap+W12aDnptjFmDQr9KsgJj4U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WAYXw3vMHugbSbXEJk300/OkuDToPYQv/eQGwvPTKIeyuVRVQVFOAZpu824VAxRi5MXhA2yAqX9LXksqX1BkVMggT2YkpHL+N03nXERqWKPL4RNL8FqF/6K3t9diiaW6gj/rgKT7au+8wocsIfyOgL21kqXf5VqxlWYRw+kczxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=II0PQP69; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03BDEC4CECE;
+	Wed, 30 Oct 2024 15:55:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730303559;
-	bh=bBAnLBh3UuZFA7fRyGRPAdxcc+khwrsua63VHHiyl/c=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=d2+snP6usiu6L/44YutUXLj+oEPXKyjFSLw70w9Q9snTdT6smYkhwQrXW+EvwIPiq
-	 ZKmpeTwhep/k7f5iM4Bwnr4X2ZK7LoQFtcsNETVQc7Z8SrB3sw+eyE/XuE0Rzm/h6E
-	 sunI1GCARTq7tAD0mwySsmGbRlrAFXGcGHBB5O0FNB07yUl/RT05hN7ulQRvlNESIm
-	 PNzTO0nYkDmaQDEdAlWkgRL2L9mCpJLDK0y2o6/gxbo+2YR6J7+4N2PxsinO1xaP1w
-	 A1tuCAXP8Rv6DSUYRFM8DPJiTF99fq1PhN+mDDNfLfGy4Fd6VVQbQWdbN4TzmNr+yT
-	 /cHKihHNf6YyQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1t6Azs-008JLH-S2;
-	Wed, 30 Oct 2024 15:52:36 +0000
-Date: Wed, 30 Oct 2024 15:52:36 +0000
-Message-ID: <86zfml1tbv.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: <andersson@kernel.org>,
-	<konradybcio@kernel.org>,
-	<krzk+dt@kernel.org>,
-	<robh+dt@kernel.org>,
-	<dmitry.baryshkov@linaro.org>,
-	<linux-kernel@vger.kernel.org>,
-	<linux-arm-msm@vger.kernel.org>,
-	<devicetree@vger.kernel.org>,
-	<conor+dt@kernel.org>,
-	<abel.vesa@linaro.org>,
-	<srinivas.kandagatla@linaro.org>,
-	<quic_jjohnson@quicinc.com>,
-	<jens.glathe@oldschoolsolutions.biz>
-Subject: Re: [PATCH V1 2/3] arm64: dts: qcom: x1e001de-devkit: Enable SD card support
-In-Reply-To: <20241025123551.3528206-3-quic_sibis@quicinc.com>
-References: <20241025123551.3528206-1-quic_sibis@quicinc.com>
-	<20241025123551.3528206-3-quic_sibis@quicinc.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20201202; t=1730303730;
+	bh=3yyLl30TQjYKD071Dpap+W12aDnptjFmDQr9KsgJj4U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=II0PQP69uWeP8lH2TXSIqUAQTe8WyNMJpjFfn+2Ctqok/d+umG4MHgWALYdMPIzVY
+	 mCKwu5o+4F+M0RaJEHnflVbiau/dHaakOVDDWkC2gejogLJ3G3UFyb65te+GHzG8LP
+	 09bMmB/73rZFHV7tiJS9uTCZh7nqqsam6un7bSc2ygu25rAoUPD785aZHTMA/tSYYa
+	 FZbCf6ZRYSopkB5ThsQNKWjF+5kmXV1j/+cWRSX3yxE3zU03j/r8TC1+9bdLCBFmsZ
+	 zHJWnFjAUtwG+smzYdbgEPbqgk+ujO4X5KRB8q9jZjBSWYo9oEeqdaaLo3J+MhKlJj
+	 /9Dh9N2CvzTEQ==
+Date: Wed, 30 Oct 2024 15:55:24 +0000
+From: Mark Brown <broonie@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	David Jander <david@protonic.nl>,
+	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH RFC v4 02/15] spi: add basic support for SPI offloading
+Message-ID: <e1b4f91a-ac94-4939-90eb-fc10e9a72ee9@sirena.org.uk>
+References: <20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
+ <20241023-dlech-mainline-spi-engine-offload-2-v4-2-f8125b99f5a1@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: quic_sibis@quicinc.com, andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, robh+dt@kernel.org, dmitry.baryshkov@linaro.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, abel.vesa@linaro.org, srinivas.kandagatla@linaro.org, quic_jjohnson@quicinc.com, jens.glathe@oldschoolsolutions.biz
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wIB7CppBQdb9BVMQ"
+Content-Disposition: inline
+In-Reply-To: <20241023-dlech-mainline-spi-engine-offload-2-v4-2-f8125b99f5a1@baylibre.com>
+X-Cookie: I feel partially hydrogenated!
 
-On Fri, 25 Oct 2024 13:35:50 +0100,
-Sibi Sankar <quic_sibis@quicinc.com> wrote:
-> 
-> The SD card slot found on the X1E001DE Snapdragon Devkit for windows
-> board is controlled by SDC2 instance, so enable it.
-> 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/x1e001de-devkit.dts | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-> index 432ffefc525a..f169714abcd3 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-> @@ -672,6 +672,19 @@ &remoteproc_cdsp {
->  	status = "okay";
->  };
->  
-> +&sdhc_2 {
 
-It doesn't look like this path exists in the upstream dtsi. I guess
-this applies on top of another series that isn't exclusively
-targeting the devkit?
+--wIB7CppBQdb9BVMQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks,
+On Wed, Oct 23, 2024 at 03:59:09PM -0500, David Lechner wrote:
 
-	M.
+> +struct spi_offload *devm_spi_offload_alloc(struct device *dev,
+> +					   size_t num_offloads,
+> +					   size_t priv_size)
 
--- 
-Without deviation from the norm, progress is not possible.
+> +	privs = (void *)(offloads + num_offloads);
+
+Casting to or from void * is generally suspicious.
+
+> +		void *priv = privs + i * priv_size;
+
+Can we have some brackets here for clarity please?
+
+--wIB7CppBQdb9BVMQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmciVusACgkQJNaLcl1U
+h9Chqgf8DW8de4pnIgIUw/jsiKAtu3L5MxZFUkpBXjxY07ECczmWImt2iWoseFYJ
+rILRHF01ca8kZn1PRVsO9CFoP89a+jkwZgvXjYT7A+9jy3yBgGSddeOkrrvgOUBD
+1R5JngdpYU4IesCQWUopjqKJw61zFZvwmKboQR38z3Yxnfb88Ea1+XkwE/sCofPp
+KB7Z918mA4iyn5L9p8nrA1t8ivRc/KC0zBzH3smen+WzAqsLz5HfIJke5UzbTN6I
+zsYQP0gBHr0SDkivg9dKJ3oCcTwGpQ8iZySndgpLOHbBVEUxMTTmKetyOGldmpKF
+1MR7dfo/8rpKErN0COB/DbEgmN2RBQ==
+=NEXq
+-----END PGP SIGNATURE-----
+
+--wIB7CppBQdb9BVMQ--
 
