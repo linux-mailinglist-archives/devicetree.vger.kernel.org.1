@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-117546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BB579B6DCA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 21:37:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A64BE9B6DFB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 21:44:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F5FC282DC9
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 20:37:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59CF91F21EB8
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 20:44:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6415C1E8850;
-	Wed, 30 Oct 2024 20:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B111EF940;
+	Wed, 30 Oct 2024 20:44:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="sQv71v5s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i852va25"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F5CD1DE3BD;
-	Wed, 30 Oct 2024 20:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B04EF1EB9FD;
+	Wed, 30 Oct 2024 20:44:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730320651; cv=none; b=NZ+xEhcsbiapItsJPPOprmGCD5G10FYOm8t0DvKWH210OK0bhSNZldm9yiKN/2iXVSDQ1q3GfRIbVumhkDOqpunXkAx8Mcod7K5GYg+mHSZRLFTzez0U4vmgN0IoZXIltK9c+rBIvAk5FSKLL6Z5bP48H+tt+r2u7ArNwJOyO7A=
+	t=1730321077; cv=none; b=q62rNPp6atQUdTV/bETuQvPc0w8E03ts8j0LuZTxhykMSkPdlHs0W/zOzYexwQ31bLaRQRf+m6mAoKG0Tf4xSb0dIh2PVLfnKxsySdRm3sYeOSXXjAxPhIpGcYAOjwUxbY+Mkzhr33bjG8RL5TBnKKCoUCgPs50HzLEM0bT+pSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730320651; c=relaxed/simple;
-	bh=2/1ioMZjr5MSZefM6ixUjSp6domEpY+fUhQGJH2J0VU=;
+	s=arc-20240116; t=1730321077; c=relaxed/simple;
+	bh=cgo0duRBfUwMyZzBD2j7irRNNvnjmyH23pGtMEZlfRI=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=e64scmFtZdp/lPA1G6W1cLwxd4bGyeloynz+Wo2aJaFLqwPm2UNBX9FqpMUjKMfiz1f5s9ZUGmmrUehcvGOyN4VHllBrdmfsrVu8HSkZUKRzzcv1apfQpng8NlKngpx3f7nJZweLWjMtj7m0L9vfH1MJQycMBfq51CuhRa9ZD1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=sQv71v5s; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=DpNcxLmfCPp/1kR/oU+eyuV4/OGMKcYGghtRFeKEkdI=; b=sQv71v5sC8eeEUXCosVVVskwYk
-	oWLhHYAXgXJ1NGT/tsIxFxT/r+93g1VmGgC2ubey1jk/n/iUbYJ3C5LdybY5Yn8OdKyyF2+mCqpVO
-	3Fddtz4RVRmiha8GXMY2/j5RIUMj/OSpnjdTP9pBHNnBEAXaMEkXK10vES/na5KJFrU0XLcVrzg0X
-	7afL85pjxYQjRsckFqqszJJOytKCwG7PvO7lFjmJUX3q5bGXIzPrj42eOg5rLAOz3oFzqbodlOxs/
-	f85VPIGrAtW5goaxqmDYXkIWBszy6XfgQuAcWdm0r2K5Rw9tJQJKZyVqvfC2xfiVpeAWRQIU6S3Fs
-	CahACanw==;
-Date: Wed, 30 Oct 2024 21:37:13 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Mithil Bavishi <bavishimithil@gmail.com>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman
- <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
- <tony@atomide.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v1 4/6] arm/dts: Add initial support for Galaxy Tab 2
- 7.0
-Message-ID: <20241030213713.45223f64@akair>
-In-Reply-To: <20241030194136.297648-5-bavishimithil@gmail.com>
-References: <20241030194136.297648-1-bavishimithil@gmail.com>
-	<20241030194136.297648-5-bavishimithil@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	 MIME-Version:Content-Type; b=JfGKlKLMSSuDFLjSo+qurx776jFssFt6kGvDZTb2xqxsXmzOfJFgPsdR9l1zgP95gXokpCqqVUqCQaDGXtCOitV3D23CARE4uhqBxkIL8p/lmw0Md7pMZw4UzN0+zsG4esU0reGf4+Y9GMSdqx/1wUwbOIyAmtoCUMACtPB9bdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i852va25; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D772C4CECE;
+	Wed, 30 Oct 2024 20:44:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730321077;
+	bh=cgo0duRBfUwMyZzBD2j7irRNNvnjmyH23pGtMEZlfRI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=i852va25qG679TqiwpPh1rVUaNL/V9OVxtlP458tievnRbJDD3cT1caRY0mgPYaqB
+	 Q8/fmIbQbUt7yaBQJ/IIEvFnHJMPrMONDEjpNTU2H10oAOVMeL31v1AOwVUWRdt2GJ
+	 YKF3JH4HEIR7HIgG4xEHKQEgX+OpA9xeH16IfQt2zN7a8vhBJKaABGnyOzB3NwfqdB
+	 PwzJwW/IZD32ejxO5gbgRNShxhWht9gc4Uw+YBm/SLQ+z+EC6FjYHD0YlG0ThXea+e
+	 lspFQpUiGgb6ownJoae8t4NSf3Wqgz2oE1sg0EjDR3gGEXsFkE35o562wTtmnJsh/l
+	 KKESxVksnnfQA==
+Date: Wed, 30 Oct 2024 20:44:29 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ Dumitru Ceclan <dumitru.ceclan@analog.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob
+ Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH v2 3/4] iio: adc: ad_sigma_delta: Add support for
+ reading irq status using a GPIO
+Message-ID: <20241030204429.70cdcf35@jic23-huawei>
+In-Reply-To: <a575430a74a7825a2df9fad1a8e073ad0507b0e7.camel@gmail.com>
+References: <20241028160748.489596-6-u.kleine-koenig@baylibre.com>
+	<20241028160748.489596-9-u.kleine-koenig@baylibre.com>
+	<a575430a74a7825a2df9fad1a8e073ad0507b0e7.camel@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,47 +68,106 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Am Wed, 30 Oct 2024 19:41:34 +0000
-schrieb Mithil Bavishi <bavishimithil@gmail.com>:
+On Wed, 30 Oct 2024 14:04:58 +0100
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-> Create a device tree for the 3 inch variants (P3100, P3110, P3113)
+> On Mon, 2024-10-28 at 17:07 +0100, Uwe Kleine-K=C3=B6nig wrote:
+> > Some of the ADCs by Analog signal their irq condition on the MISO line.
+> > So typically that line is connected to an SPI controller and a GPIO. The
+> > GPIO is used as input and the respective interrupt is enabled when the
+> > last SPI transfer is completed.
+> >=20
+> > Depending on the GPIO controller the toggling MISO line might make the
+> > interrupt pending even while it's masked. In that case the irq handler
+> > is called immediately after irq_enable() and so before the device
+> > actually pulls that line low which results in non-sense values being
+> > reported to the upper layers.
+> >=20
+> > The only way to find out if the line was actually pulled low is to read
+> > the GPIO. (There is a flag in AD7124's status register that also signals
+> > if an interrupt was asserted, but reading that register toggles the MISO
+> > line and so might trigger another spurious interrupt.)
+> >=20
+> > Add the possibility to specify an interrupt GPIO in the machine
+> > description instead of a plain interrupt. This GPIO is used as interrupt
+> > source and to check if the irq line is actually active in the irq
+> > handler.
+> >=20
+> > Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com>
+> > --- =20
 >=20
-> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
-> ---
->  arch/arm/boot/dts/ti/omap/Makefile            |  1 +
->  .../dts/ti/omap/omap4-samsung-espresso7.dts   | 70
-> +++++++++++++++++++ 2 files changed, 71 insertions(+)
->  create mode 100644
-> arch/arm/boot/dts/ti/omap/omap4-samsung-espresso7.dts
+> Hi all,
 >=20
-  DTC     arch/arm/boot/dts/ti/omap/omap4-samsung-espresso7.dtb
-arch/arm/boot/dts/ti/omap/twl6032.dtsi:67.37-70.4: ERROR
-(phandle_references):
-/ocp/interconnect@48000000/segment@0/target-module@70000/i2c@0/twl@48/usb-c=
-omparator:
-Reference to non-existent node or label "ldosb"
+> Regarding this, I do share some of the concerns already raised by Jonatha=
+n. I fear
+> that we're papering around an issue with the IRQ controller rather than b=
+eing an
+> issue with the device. When I look at irq_disable() docs [1], it feels th=
+at we're
+> already doing what we're supposed to do. IOW, we disable the lazy approac=
+h so we
+> *should* not get any pending IRQ. Also looking at drivers as the xilinx g=
+pio
+> controller, it seems some are careful about this [2] and make sure to cle=
+ar all
+> pending IRQs when unmasking.
+Your links are both to the same place.
+>=20
+> Jonathan also said this:
+>=20
+> "True enough - that race is a possibility, but not all interrupt inputs
+> are capable of gpio usage whilst setup to received interrupts."
+Race should be easy to avoid using a level interrupt now I think more on th=
+at:
+can't miss a level.
+>=20
+> To my understanding this also means this is doomed to fail for some devic=
+es or am I
+> not following it?
 
-  also defined at arch/arm/boot/dts/ti/omap/twl6030.dtsi:83.37-86.4
-  also defined at
-  arch/arm/boot/dts/ti/omap/omap4-samsung-espresso-common.dtsi:616.21-618.3
-  ERROR: Input tree has errors, aborting (use -f to force output)
+If you were wired to one of those, you couldn't use the GPIO trick, but then
+don't have a GPIO in your DT in that case.
 
-I think you accidently submitted a wrong/outdated version. You had
-removed the twl6030.dtsi include in pmOS after I pointed that out to
-you in an issue there. Any further review is futile.
+>=20
+> All that said, my naive feeling would be for a masked line to not get any=
+ pending IRQ
+> and if it does, the driver should make sure to clean all outstanding inte=
+rrupts when
+> unmasking. But I'm far from being an expert of the IRQ subsystem. Maybe i=
+t would be
+> interesting to get some inputs about someone who actually knows better?
++CC Thomas Gleixner,
 
-From:
-https://gitlab.com/postmarketOS/pmaports/-/issues/2825:
->Mighty
->@MightyM17
->=C2=B7 4 months ago
->Reporter
->Oh, there's a hanging include "twl6030.dtsi" thats causing us trouble,
->I'll port the usb regs and comparator to twl6032.dtsi and it should
->work fine.
+Hi Thomas,
 
-that is a clear sign that somehow an old version seems to pop up.
+Annoying case where a wire is both the interrupt source for dataready and t=
+he
+SPI data line (if separate clock signal is toggling)  So currently the driv=
+er
+masks interrupts at the host end, but we have at least one interrupt contro=
+ller
+where they end up pending and fire on reenabling the interrupt.  Querying t=
+he
+device to check the status register then ends up causing it to happen again,
+so that doesn't help.
 
-Regards,
-Andreas
+Proposal is to query it as a GPIO (or maybe a separate GPIO wired to the sa=
+me
+pin) to check the level when an interrupt comes in.
+
+Any thoughts on this nasty hardware and what is responsiblity of the device
+driver vs the interrupt controller driver in this case?
+
+Jonathan
+
+>=20
+> [1]: https://elixir.bootlin.com/linux/v6.11.5/source/kernel/irq/chip.c#L3=
+66
+> [2]: https://elixir.bootlin.com/linux/v6.11.5/source/kernel/irq/chip.c#L3=
+66
+>=20
+> - Nuno S=C3=A1
+>=20
+>=20
+
 
