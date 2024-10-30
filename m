@@ -1,125 +1,101 @@
-Return-Path: <devicetree+bounces-117511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8622B9B6BAA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 19:08:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B687F9B6BE5
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 19:14:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53A011C225B5
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:08:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 358C3B21CCB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:14:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A98F1C3308;
-	Wed, 30 Oct 2024 18:07:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425F41CBEB0;
+	Wed, 30 Oct 2024 18:14:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Th2/OQfg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lrtg4v2F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17E1A19E99F;
-	Wed, 30 Oct 2024 18:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12A9982899;
+	Wed, 30 Oct 2024 18:14:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730311677; cv=none; b=nOFfkk11NC6dFhyFK8RVrPs2VkhlIoIZ3ndpQxkBjzgrXH4UDoAFrv4LTfsB9ATLcaRaarLMdPK3VialW61UvcHFniuZYCWC51wAzaoaPVI/FX4R6vBFhYKpuNkbUBe/ae6TTQIlU+Fjic6nta2ZOBirdvQ71k0OhRXtE2axhpU=
+	t=1730312049; cv=none; b=ZuAY5WC5bpvxnEEX8P7q8WslCnyze1P9JBMQDMYTyaAbqhFMVt1cbKzq3MoL/t2Tlxd1v9WPWcP0mphSVdxlKWhjOat6nxTlqTXv7nnHF85cykFxuNcq4xSkhHATD0LP9EDddv6pcebtKffE0ebIh22BNLfVJ/V8+iuQ+pB/sLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730311677; c=relaxed/simple;
-	bh=DacE1b7YBHxbFapNdObTjtI7fWH1r3sD6tkMcvfimYc=;
+	s=arc-20240116; t=1730312049; c=relaxed/simple;
+	bh=gPom55NrJIdbKpm1OIV8sl9jUaW8THjT/W08qytNduY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LQANE8NsXrLZFgYPTkYaA5tW4nz0fMBl0IM+mEiURSwKBhE+2lQT/OrEzMM4CiOeRor72pQHadsbYLFL3sAaTub0FPDgtGZIZP0T6ptybIpyVL7hb38Dy42eN9mZ9TnWtiM++Tb4Nl5XrKVpScQ+PGPIgXDj9ChgI3VOAN889Nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Th2/OQfg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9F5EC4CED2;
-	Wed, 30 Oct 2024 18:07:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RiQqfpZQb0Dp4CRn6NRdVdVLUP/pzBcvJgLeQRjBDRV620PmM6YjqcejU3+AZV017xZOLdqDOUvhuolZ0X9Si4dwR84L5keZLCKIJpzpxyqBZPd6/Y5R79SVWrW5AzGLfvQvtQUp7pCDbeKSvfS2bWYsYfMr/3E+iEZbz14DeaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lrtg4v2F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FF14C4CED2;
+	Wed, 30 Oct 2024 18:14:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730311676;
-	bh=DacE1b7YBHxbFapNdObTjtI7fWH1r3sD6tkMcvfimYc=;
+	s=k20201202; t=1730312048;
+	bh=gPom55NrJIdbKpm1OIV8sl9jUaW8THjT/W08qytNduY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Th2/OQfge7Cqb5FSvk4tgbZgUOx/XFaqwtFDnx7Na4WLRcSFpDC5YfkBqoNsXIkdE
-	 FeZAA2bNDZnLgebiYO1Z8Rw6relTq2lWLOpQtFH8HUNIWDVKgZjsNHFvmOXTPYO3yH
-	 Nh9cuArCAA8zc4efk+R/0kdcFR1AQPG42SHqggBqPyIUxp21fOLjdmB9Pb7Zw048Ff
-	 sXpF51GnDccvIrxGQHVw3njuZvS7nUUGMTge4EWjwBjDIHy0FjyeM13chZ1dX2NRiH
-	 6ROUWEWDciA/OI3Bc0CFLJHLEH3W6kx9URVlNLZZMo12G+Yn0JLksUocfe0Hwo3mzt
-	 Kdkw+BoC157Wg==
-Date: Wed, 30 Oct 2024 19:07:48 +0100
-From: Danilo Krummrich <dakr@kernel.org>
-To: Alice Ryhl <aliceryhl@google.com>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
-	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com,
-	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
-	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
- driver abstractions
-Message-ID: <ZyJ19GDyVrGPbSEM@pollux>
-References: <20241022213221.2383-1-dakr@kernel.org>
- <20241022213221.2383-16-dakr@kernel.org>
- <CAH5fLghVDqWiWfi2WKsNi3n=2pR_Hy3ZLwY8q2xfjAvpHuDx=w@mail.gmail.com>
+	b=lrtg4v2F6vLvgHtFFIiNEK8+MjINfH8XZyiQKGsB9f2m4CdhP5wbSNPOBOdGFjF6s
+	 q9x8cw+TXo3Tt/72B2PYAbDnWOiGISanNNE24eUH1FbuCwReCBW/CHLK/Us4OqRJzw
+	 BjX4vItTnYSgXIbrMaSV5T+ni9z44y8jlvTmeWJBy4hza7/EEeQn8AqP8ckO68mNDA
+	 53YiMRdvzcsFDL58KaPXEyMYIQ5/O1KV7l1edIgNr88UksVk5vGsNBpM9FFetq5jD5
+	 56Pf7WqdyDmlrex0iiLGoTcXZbR9dmjIF+QYCdxyGczP+A95eS9oAmztbNbvNp9MC0
+	 7dXjUVU8zFIgQ==
+Date: Wed, 30 Oct 2024 18:14:03 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: sound: sprd,pcm-platform: convert to
+ YAML
+Message-ID: <97cb13bf-b1b8-4a8e-bb6e-7662ed28bde1@sirena.org.uk>
+References: <9fc646b70a73e7a6c513771d69b0edcd140f09d7.1730310275.git.stano.jakubek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gOI4wYstUM9HsCLk"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAH5fLghVDqWiWfi2WKsNi3n=2pR_Hy3ZLwY8q2xfjAvpHuDx=w@mail.gmail.com>
+In-Reply-To: <9fc646b70a73e7a6c513771d69b0edcd140f09d7.1730310275.git.stano.jakubek@gmail.com>
+X-Cookie: I feel partially hydrogenated!
 
-On Wed, Oct 30, 2024 at 04:50:43PM +0100, Alice Ryhl wrote:
-> On Tue, Oct 22, 2024 at 11:33 PM Danilo Krummrich <dakr@kernel.org> wrote:
-> > +/// Drivers must implement this trait in order to get a platform driver registered. Please refer to
-> > +/// the `Adapter` documentation for an example.
-> > +pub trait Driver {
-> > +    /// The type holding information about each device id supported by the driver.
-> > +    ///
-> > +    /// TODO: Use associated_type_defaults once stabilized:
-> > +    ///
-> > +    /// type IdInfo: 'static = ();
-> > +    type IdInfo: 'static;
-> > +
-> > +    /// The table of device ids supported by the driver.
-> > +    const ID_TABLE: IdTable<Self::IdInfo>;
-> > +
-> > +    /// Platform driver probe.
-> > +    ///
-> > +    /// Called when a new platform device is added or discovered.
-> > +    /// Implementers should attempt to initialize the device here.
-> > +    fn probe(dev: &mut Device, id_info: Option<&Self::IdInfo>) -> Result<Pin<KBox<Self>>>;
-> 
-> This forces the user to put their driver data in a KBox, but they
-> might want to use an Arc instead. You don't actually *need* a KBox -
-> any ForeignOwnable seems to fit your purposes.
 
-This is intentional, I do need a `KBox` here.
+--gOI4wYstUM9HsCLk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-The reason is that I want to enforce that the returned `Pin<KBox<Self>>` has
-exactly the lifetime of the binding of the device and driver, i.e. from probe()
-until remove(). This is the lifetime the structure should actually represent.
+On Wed, Oct 30, 2024 at 06:48:38PM +0100, Stanislav Jakubek wrote:
+> Convert the Spreadtrum DMA plaform bindings to DT schema.
+> Adjust filename to match compatible.
 
-This way we can attach things like `Registration` objects to this structure, or
-anything else that should only exist from probe() until remove().
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
-If a driver needs some private driver data that needs to be reference counted,
-it is usually attached to the class representation of the driver.
+--gOI4wYstUM9HsCLk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-For instance, in Nova the reference counted stuff is attached to the DRM device
-and then I just have the DRM device (which itself is reference counted) embedded
-in the `Driver` structure.
+-----BEGIN PGP SIGNATURE-----
 
-In any case, drivers can always embed a separate `Arc` in their `Driver`
-structure if they really have a need for that.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcid2oACgkQJNaLcl1U
+h9BOkgf+JtiwxnUsmi1LQ1DAbES3Mn8VD56Dkoe8ji5V7KVMAMP3JMqXUZBHWhMT
+shdLHUEY9d8H1gmLZfZcE59NYdfPATsN56Ck/arp3pFX8cJTn+xX0vSSixfdw1fn
+LSf4Mraf+yS8567FB7RTYxhFFWAKogO/SAIYt2iETRFmCCO8RSm0MlwhTC/XEd9I
+ke7aLn7qWciXVR7rtTb9mrdHEAV9rUnylyJ+6rt4EsK07CPPvJaLoj7UBJ/csAG4
+SLhaVP+pQrXeIp/plSpXKNUUUA5id5CrtfrzuEmIPIHuvHX4WUzuQ+ljkHJxddHI
+pfZRoXRWVWDYHwBRswcRA/gRdmCzgA==
+=uAbo
+-----END PGP SIGNATURE-----
 
-- Danilo
-
-> 
-> Please see my miscdevice and shrinker patchsets for examples of how
-> you can extend this to allow any ForeignOwnable.
-> 
-> Alice
-> 
+--gOI4wYstUM9HsCLk--
 
