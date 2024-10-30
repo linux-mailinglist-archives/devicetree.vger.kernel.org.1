@@ -1,179 +1,175 @@
-Return-Path: <devicetree+bounces-117366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2177E9B603B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 11:34:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 228FE9B608E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 11:54:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB2EC284CA3
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 10:34:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7BA31F239DB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 10:54:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 561D91E32C7;
-	Wed, 30 Oct 2024 10:33:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6E4A1E3793;
+	Wed, 30 Oct 2024 10:54:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="j0O2LsEN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LdXOC2cY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1900D1E377A;
-	Wed, 30 Oct 2024 10:33:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C31C11E3787;
+	Wed, 30 Oct 2024 10:54:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730284436; cv=none; b=TpgH7VUJHXf69dqR3ylodJOA74hp8uifV5krOPVhiRpKQAYFrD0Iy3Mt97rvhLwHflDamcb10jt9CByb6lwbyEajSktdG10n/wFnqDyDfKMWoTKystBiIOspj4uAgOK+a9FSTJMqsOYQTyRaaW1ls+FuHR+uFmzLdU+0RioJdr8=
+	t=1730285673; cv=none; b=ulqgnF/pZZJRQZu0ckLdC7Nd5ZfAp2sDoXTXiDqVYsrIWUXg2VtzHnTKpr/0OexNuorV2yDDQLgTGz/Npkeem9ktl/bCu8dHT8Bsg/Q8YfThzOUMKi4WfA49viLHKEBZPGVc7ugAHBBu622G2UzuAvOSDAFBm0IxOex4K3tRqK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730284436; c=relaxed/simple;
-	bh=jw62Z5cUSu57Xnh9KUwNg9pJ+iuHmClIUEj6+M2N+3g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tfPmKObY2ZMZc7TjdmtpIIWxpEcX0O4/FjdJgJU0+gA0kZu8CNk/zttN5W5DjW74Clzz8nHNMErTkRhOuarGhNZ0ARBIn2EsXISJC1KFxW+tSBO9aCI/8u3q98ftO8yExRJlJfsoaNudbJMAzdWIxGMX4vEq0S6YuQ1qvB9G1zM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=j0O2LsEN; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1730285673; c=relaxed/simple;
+	bh=1Da0IDiPucHNSI+CXCcEtNg/UlUipsEqhvsHqz5CZgU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NbHiPfwYxdJIuE9rAVjvYTq7iclCitvzZvlqHgIQz5w2dKtchl4GOnztDbuAZ9ZDdcdudzd+IssRYucfROoB2H80FHmQYC3HYm8WPVNkAbCgrSp4E3qPdLEwwQeXxywIgKS+/p5SciTPRt+tumlb1DJqFDJS1HA7hdwNzIXB9OE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LdXOC2cY; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49UAXbXY020894;
-	Wed, 30 Oct 2024 10:33:50 GMT
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49UATGCj028362;
+	Wed, 30 Oct 2024 10:54:19 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zLzBMv0Rkg00i7HVkcGGnpFFmL3Ph5CdG9HHpzdsPC4=; b=j0O2LsENzTEjp7m3
-	OwX6S2hKeYxiK2offq9t934pksLOkwuX4aLUx4FdW6rc9G3aeyTORkygr3DXl5w9
-	gBhMLl1c73OreqBpsPSnn8g2JpUsPQRVNXqiooy43FkeKMLVDlAevS2uRKaC41VI
-	sYSsz/R3ICb6dDcJrk8LbGg/2gbxV/esj/SnYT98cduIXldDxIQzg7MPm6aQMp+x
-	SAtcyILngIusdeAShVpOyOdTKo5XLUU9EoMoHeb0URmktMxBkfxGhD01JyvKPNTS
-	7tKkGxegtPW6124PW4i0k4yuudInNwHwUtdXfoRhiv3NaRItmUH+Zj5kwt5DEO3X
-	ipKu5g==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gqcquq4r-1
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=4nneJZ/tkv5Wps64EEwbuc
+	C9EgRrZX1VyDoag3u69ow=; b=LdXOC2cY5DeZ4pF7eapKIG3AT6rcs++nKdfP29
+	OxDz1w7t/TdHHIvos/wAedDdQSHQMEmpI0M8V7Uucnb0e6MHGFEFgDSjT+uv5pgs
+	F4uJmn3x5IUoPwK3Suv5wp0YdwCMUl5YzZkqwPEZBrhvvvJ3hHJ6XqgDCKVntqHq
+	h4UKYoxJ/0061dvsGX6kDQrb8p6B0dt8qC/rJVkWrqhw106JQEo7NcwLjWMCV8Hk
+	rmT6qf/lAzeeznnA4d+/+WfxFEImqTFndesUHYBPzEW+4lwE3zuc6KGdI9mkJqrp
+	+NDdtHfoO6nq+LD28KJX79N7VkNZH6g5Tf8KCkkyH3GYzIRQ==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grt73k97-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 10:33:49 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49UAXnuM005413
+	Wed, 30 Oct 2024 10:54:19 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49UAsIET015340
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 10:33:49 GMT
-Received: from [10.231.207.28] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 30 Oct
- 2024 03:33:43 -0700
-Message-ID: <563e7080-68a9-4735-995a-72baf2e35d49@quicinc.com>
-Date: Wed, 30 Oct 2024 18:33:41 +0800
+	Wed, 30 Oct 2024 10:54:18 GMT
+Received: from hu-vikramsa-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 30 Oct 2024 03:54:08 -0700
+From: Vikram Sharma <quic_vikramsa@quicinc.com>
+To: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <akapatra@quicinc.com>, <hariramp@quicinc.com>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <hverkuil-cisco@xs4all.nl>, <cros-qcom-dts-watchers@chromium.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <quic_vikramsa@quicinc.com>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+Subject: [PATCH v4 0/6] media: qcom: camss: Add sc7280 support
+Date: Wed, 30 Oct 2024 16:23:41 +0530
+Message-ID: <20241030105347.2117034-1-quic_vikramsa@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs615-ride: Enable PMIC
- peripherals
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <quic_fenglinw@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        <kernel@quicinc.com>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20241028-adds-spmi-pmic-peripherals-for-qcs615-v3-0-f0778572ee41@quicinc.com>
- <20241028-adds-spmi-pmic-peripherals-for-qcs615-v3-2-f0778572ee41@quicinc.com>
- <j4ggfrynyoriseef5r5x6uwgo6cespll2np7uitc64yagoa6pz@r3ro2cpqrrry>
- <38cceae8-5203-4057-bd8b-f20fe3656474@quicinc.com>
- <CAA8EJprYHjYVM58e7i7Sxj64DSth4hhW_cUZ3hGqX7u0ecZFQg@mail.gmail.com>
-Content-Language: en-US
-From: Tingguo Cheng <quic_tingguoc@quicinc.com>
-In-Reply-To: <CAA8EJprYHjYVM58e7i7Sxj64DSth4hhW_cUZ3hGqX7u0ecZFQg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
+ nasanex01b.na.qualcomm.com (10.46.141.250)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: MwRTFt_cmggySsdospp3lmrcLuCNDEnP
-X-Proofpoint-GUID: MwRTFt_cmggySsdospp3lmrcLuCNDEnP
+X-Proofpoint-ORIG-GUID: fp7mfYV_mEXXm3OuCViUAq4uXaITKw0E
+X-Proofpoint-GUID: fp7mfYV_mEXXm3OuCViUAq4uXaITKw0E
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 suspectscore=0 bulkscore=0 adultscore=0 spamscore=0
- phishscore=0 impostorscore=0 clxscore=1015 priorityscore=1501 mlxscore=0
- mlxlogscore=976 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410300080
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ adultscore=0 clxscore=1015 impostorscore=0 malwarescore=0
+ priorityscore=1501 phishscore=0 mlxscore=0 suspectscore=0 mlxlogscore=999
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410300084
 
+SC7280 is a Qualcomm SoC. This series adds support to bring up the CSIPHY,
+CSID, VFE/RDI interfaces in SC7280.
 
+SC7280 provides
 
-On 10/28/2024 5:41 PM, Dmitry Baryshkov wrote:
-> On Mon, 28 Oct 2024 at 10:40, Tingguo Cheng <quic_tingguoc@quicinc.com> wrote:
->>
->>
->>
->> On 10/28/2024 4:23 PM, Dmitry Baryshkov wrote:
->>> On Mon, Oct 28, 2024 at 04:03:25PM +0800, Tingguo Cheng wrote:
->>>> Enable PMIC and PMIC peripherals for qcs615-ride board.
->>>>
->>>> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/qcs615-ride.dts | 15 +++++++++++++++
->>>>    1 file changed, 15 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->>>> index ee6cab3924a6d71f29934a8debba3a832882abdd..37358f080827bbe4484c14c5f159e813810c2119 100644
->>>> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->>>> @@ -6,6 +6,7 @@
->>>>
->>>>    #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->>>>    #include "qcs615.dtsi"
->>>> +#include "pm8150.dtsi"
->>>>    / {
->>>>       model = "Qualcomm Technologies, Inc. QCS615 Ride";
->>>>       compatible = "qcom,qcs615-ride", "qcom,qcs615";
->>>> @@ -210,6 +211,20 @@ &rpmhcc {
->>>>       clocks = <&xo_board_clk>;
->>>>    };
->>>>
->>>> +&pon {
->>>> +    /delete-property/ mode-bootloader;
->>>> +    /delete-property/ mode-recovery;
->>>
->>> Why?
->> Because boot modes will be supported on PSCI module from another patch,
->> reboot-modes are required to remove from PMIC side.
-> 
-> => commit message, please.
-> 
-okay, will upload v4 with other comments fixing together.
->>>
->>>> +};
->>>> +
->>>> +&pon_pwrkey {
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>> +&pon_resin {
->>>> +    linux,code = <KEY_VOLUMEDOWN>;
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>>    &uart0 {
->>>>       status = "okay";
->>>>    };
->>>>
->>>> --
->>>> 2.34.1
->>>>
->>>
->>
->> --
->> Thank you & BRs
->> Tingguo
->>
-> 
-> 
+- 3 x VFE, 3 RDI per VFE
+- 2 x VFE Lite, 4 RDI per VFE
+- 3 x CSID
+- 2 x CSID Lite
+- 5 x CSI PHY
+
+The changes are verified on SC7280 qcs6490-rb3gen2 board, with attached vision mezzanine
+the base dts for qcs6490-rb3gen2 is:
+https://lore.kernel.org/all/20231103184655.23555-1-quic_kbajaj@quicinc.com/
+
+Changes in V4:
+- V3 had 8 patches and V4 is reduced to 6.
+- Removed [Patch v3 2/8] as binding change is not required for dtso.
+- Removed [Patch v3 3/8] as the fix is already taken care in latest
+  kernel tip. 
+- Updated alignment for dtsi and dt-bindings.
+- Adding qcs6490-rb3gen2-vision-mezzanine as overlay. 
+- Link to v3: https://lore.kernel.org/linux-arm-msm/20241011140932.1744124-1-quic_vikramsa@quicinc.com/
+
+Changes in V3:
+- Added missed subject line for cover letter of V2.
+- Updated Alignment, indentation and properties order.
+- edit commit text for [PATCH 02/10] and [PATCH 03/10].
+- Refactor camss_link_entities.
+- Removed camcc enablement changes as it already done.
+- Link to v2: https://lore.kernel.org/linux-arm-msm/20240904-camss_on_sc7280_rb3gen2_vision_v2_patches-v1-0-b18ddcd7d9df@quicinc.com/
+
+Changes in V2:
+- Improved indentation/formatting.
+- Removed _src clocks and misleading code comments.
+- Added name fields for power domains and csid register offset in DTSI.
+- Dropped minItems field from YAML file.
+- Listed changes in alphabetical order.
+- Updated description and commit text to reflect changes
+- Changed the compatible string from imx412 to imx577.
+- Added board-specific enablement changes in the newly created vision
+  board DTSI file.
+- Fixed bug encountered during testing.
+- Moved logically independent changes to a new/seprate patch.
+- Removed cci0 as no sensor is on this port and MCLK2, which was a
+  copy-paste error from the RB5 board reference.
+- Added power rails, referencing the RB5 board.
+- Discarded Patch 5/6 completely (not required).
+- Removed unused enums.
+- Link to v1: https://lore.kernel.org/linux-arm-msm/20240629-camss_first_post_linux_next-v1-0-bc798edabc3a@quicinc.com/
+
+Suresh Vankadara (1):
+  media: qcom: camss: Add support for camss driver on SC7280
+
+Vikram Sharma (5):
+  media: dt-bindings: media: camss: Add qcom,sc7280-camss binding
+  media: qcom: camss: Sort CAMSS version enums and compatible strings
+  media: qcom: camss: Restructure camss_link_entities
+  arm64: dts: qcom: sc7280: Add support for camss
+  arm64: dts: qcom: qcs6490-rb3gen2-vision-mezzanine: Add vision
+    mezzanine
+
+ .../bindings/media/qcom,sc7280-camss.yaml     | 439 +++++++++++++++
+ arch/arm64/boot/dts/qcom/Makefile             |   4 +
+ .../qcs6490-rb3gen2-vision-mezzanine.dtso     |  73 +++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          | 208 ++++++++
+ .../media/platform/qcom/camss/camss-csid.c    |   1 -
+ .../qcom/camss/camss-csiphy-3ph-1-0.c         |  13 +-
+ .../media/platform/qcom/camss/camss-csiphy.c  |   5 +
+ .../media/platform/qcom/camss/camss-csiphy.h  |   1 +
+ drivers/media/platform/qcom/camss/camss-vfe.c |   8 +-
+ drivers/media/platform/qcom/camss/camss.c     | 500 ++++++++++++++++--
+ drivers/media/platform/qcom/camss/camss.h     |   1 +
+ 11 files changed, 1190 insertions(+), 63 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dtso
 
 -- 
-Thank you & BRs
-Tingguo
+2.25.1
 
 
