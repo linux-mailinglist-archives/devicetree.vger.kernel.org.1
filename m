@@ -1,166 +1,233 @@
-Return-Path: <devicetree+bounces-117311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FC999B5D53
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 09:04:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1F79B5D5E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 09:09:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92404284100
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 08:04:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B27701F23B2D
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 08:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 696101E00A1;
-	Wed, 30 Oct 2024 08:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B84D61DE8B9;
+	Wed, 30 Oct 2024 08:09:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l3IIUoYc"
+	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="FCqK6955"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2336A194C69
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 08:04:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B915B1990B3;
+	Wed, 30 Oct 2024 08:09:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730275470; cv=none; b=FG1H8O5QQ/EXSbKfRLUz2Iqvu5g02guBzR9M87H9cN4ZzulPczb/OEmYo4SCg63Jv5xouC3SDxSWVekTrd+WIvEHw2XqiV2CruwUmDY9zvKXsXDo5uF7QET+oeAduJDZIhYPU/BH2YUg9UzpLNrJI9np4KH5PrpQRjbGRxkehrk=
+	t=1730275773; cv=none; b=t/JUoXRfPODnGs+y/s7jFSxvS95hSJAjOA1MrMTq3IpnFN4zKof5xUMLeIHiuvT88MnyiEnLvshWav7CFR29wGRd970Wb3yfoVI56iJkGva1pE4Kzp7eglswFHqs/Ep7cUDZkIGSMevoikqRHeMIaujThHXLFYH4Vv1HCrtpcaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730275470; c=relaxed/simple;
-	bh=B+cw9PA/7VZt/fohppn2aNdkGFc4L/28zmOip6XYSe0=;
+	s=arc-20240116; t=1730275773; c=relaxed/simple;
+	bh=Hgq90Mi2xq1WygdUx6Jv674dZqV4mLdTkACqF5QjQmw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Pug4SzumiSerqBhoHSSstqyHuH+lQLlMBN6jwMxTaDYOUc454JY+XnDRTEIUnb4Vr8qe1RN9ZPkv9u6j7tP/MFqvBG5Tge4X5Tet8Wx0bUJ+vC5zuMhtcCFGf3CIlVCq2Gy0ZgurggnMbWo/3r7u69nkrlonu8029wSk8i839AU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=l3IIUoYc; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-539983beb19so7477312e87.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 01:04:26 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=gU+TO28FMv8GLSSyJck5qegv7688naCO9hoVxQbvvSnq/XN80n5UvDvvASkH3oRraUnypII9X9SgjCdgH7RvkWJdBh5ClesHSk76254R01Api+nS9XhlgpSfFhybWVegnELztt69ntOPzdyQ4IN9qN4I6J2h6XQIas99X5s+RVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=FCqK6955; arc=none smtp.client-ip=212.227.126.187
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730275465; x=1730880265; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=H93KKVpJbQ9UgwbZgl1kdPifbCt7HKUU//i7YU4EaJY=;
-        b=l3IIUoYc7aPorQTgtEhf4hz3dyiHjXE9Y+obwFQGgd3pXDYinfWdFFjnpphWHee05v
-         d+4Ke9Ly7VDhqo3LRk0UFpZTnM/1DoHjsCVI0wtmGa24BhXtmtXT9AfOSciavrgL2vWU
-         XsNsdALDkx/626X5fFhtI8JpTAnb9EXccUjngMo+KGGu8kkU7gAZz1E3D7wfiRHDZD5O
-         paEXXN5Q1e+CE+rRbXYMv3xf+3WimTO+30iGLArrN771aEsM1l6JKz5lOzuFDk5G9nHd
-         HTYmOFjXpqrKFh+uju3uYRdxTwIdEC7lBIIuua277DjjYnpjROVYVJN/5ZaFFoX05LCB
-         63Zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730275465; x=1730880265;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H93KKVpJbQ9UgwbZgl1kdPifbCt7HKUU//i7YU4EaJY=;
-        b=pTvVdlutakB4XMiLc607L9UmhZxXjyN1wgdy2/E1v1CxzqIMoszIVCipe4CxPrDzSq
-         5Ruz40K8HNgqJ15AQP2RICvSkT7KDhJr1TPr8vE/BhcDqV8k+2Hml8crpmhqk5tQocfW
-         LvlErgJ/Jrg8qp/jsV57iBQBD+0N1/PZliHvEoD0gv6c3cBuc/ZylLHU8hZuwwo/oTMX
-         Ve2PL309Qk5BgPKnsoLYIcSsBeHs8SMgDr8BCbRS7206CwwJ5b6ZFP5cOZxEDQSP2oPy
-         anD8lyD/cECZNcT4okh9cPAbFlIq0DkmX2uBeiA3ycrbkYd+UwZTtqDeGQhFW2WbXU6P
-         cdLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVWHEo3AIilQ+3IsYZhet5eAm/XpQOUOoUbY724Eu3O+bWmKR9KRoAV871qax/hD0sodeUqOpBtJjZm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3m1yiiPr2ihx2RcoXu8bkk7SfSMuPxA5MU0Pp5j/LGDOJpaIj
-	rKVebMfrpAS9cjphGrvLjosR+pzaCk16pQyJEEPca7NDMnW7fcAQuMPYsvin/HQ=
-X-Google-Smtp-Source: AGHT+IEZj9cR0ATu/JOPSB5irJVr/RnXyRQtlMK8w5XGhoTtI+E9S/Awq23Np24Aq1OO/+nXkl58yg==
-X-Received: by 2002:ac2:4c41:0:b0:539:f65b:3f9 with SMTP id 2adb3069b0e04-53b347c0b08mr8580322e87.10.1730275464885;
-        Wed, 30 Oct 2024 01:04:24 -0700 (PDT)
-Received: from [192.168.0.157] ([79.115.63.43])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b3bf85sm14792889f8f.42.2024.10.30.01.04.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Oct 2024 01:04:24 -0700 (PDT)
-Message-ID: <74458ba4-af0f-4c41-92f5-c6c0cb79e930@linaro.org>
-Date: Wed, 30 Oct 2024 08:04:22 +0000
+	d=oldschoolsolutions.biz; s=s1-ionos; t=1730275754; x=1730880554;
+	i=jens.glathe@oldschoolsolutions.biz;
+	bh=ggSRrICdiwdMr2YdL9EDtoZ4FIhVMjh2oL4+lZPbHP8=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=FCqK6955Ea2BQ75YwkUJwx7ap05g0iSXVyUCtlu6TQKpjSESPJ4jCW4pJ1Vfydlf
+	 e8ixDVGQj/5QTvpCZWHmJouAjIWt4k+Oc55LenZ8EX15vzN9AFfq808y2bfoW1/AM
+	 oewiYDorv2GHPX1vqvkZyzpb61T2c/yrEx+s2w+ksDizmFWf3doN+0tC5JK7o3YOJ
+	 yDfMH85WGFC3cQOsORfBXTHHG6dutLCpq6oP5H2EjbEB55tiMciZnd+w8NYOk1oKQ
+	 TntwJFOO9Au6TKBQwT6LD93A/BvOAJAY9G5nl6e90Y0ROtup+Cy7SKo06KnxgS603
+	 F0RjRL9Lb74T6g7Ugw==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.0.174] ([62.226.38.42]) by mrelayeu.kundenserver.de
+ (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1M9Wqa-1tBa4z46fk-00BOop; Wed, 30 Oct 2024 09:09:14 +0100
+Message-ID: <1546c4f8-7d4e-41db-9ac6-ddb6284697e4@oldschoolsolutions.biz>
+Date: Wed, 30 Oct 2024 09:09:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/11] scsi: ufs: exynos: Allow UFS Gear 4
-To: Peter Griffin <peter.griffin@linaro.org>, alim.akhtar@samsung.com,
- James.Bottomley@HansenPartnership.com, martin.petersen@oracle.com,
- avri.altman@wdc.com, bvanassche@acm.org, krzk@kernel.org
-Cc: andre.draszik@linaro.org, kernel-team@android.com,
- willmcvicker@google.com, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- ebiggers@kernel.org
-References: <20241025131442.112862-1-peter.griffin@linaro.org>
- <20241025131442.112862-2-peter.griffin@linaro.org>
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: sc8280xp-blackrock: dt
+ definition for WDK2023
+To: Johan Hovold <johan@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Merck Hung <merckhung@gmail.com>
+References: <20241030-jg-blackrock-for-upstream-v5-0-830c938437ad@oldschoolsolutions.biz>
+ <20241030-jg-blackrock-for-upstream-v5-3-830c938437ad@oldschoolsolutions.biz>
+ <ZyHiGlDnC8uqk_LG@hovoldconsulting.com>
 Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20241025131442.112862-2-peter.griffin@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+In-Reply-To: <ZyHiGlDnC8uqk_LG@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:yCLLEEpQSYb4eJnXYvApfEHM6Md1lRr0/Nag0EeEeiGFDrAp/Gx
+ OS9Im6qOndFpBgmGgfEDYlHn49Sc06VW3WW+cVcTmo2Tic9dEgNZQ1XYNS6je/YsYBJoLz4
+ kX74pKOeZKltAs83hFa/gyjoy+49x2cgQry6MOaBwkIJEhU7jEYXmySc68Glc9f9Sro8DXp
+ /BPpv3Ec33sDK4WiNiNVA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:eo97IPTglpI=;QBvD+X1rSjgWzZzjntt/vUwQQbf
+ yCzB6qm/Av9i4XShcqbLHNX3KoPtQ3IwIP6Gr6yP3DNHwY6puPK5/Gh+wajj4r2dtqHM9CeVr
+ nmFrAcq7ajj79mVwbbiKatmsNjiNjv16fHO/rdY0lq/Uc5OvFPbuFwLQlIPGbNZWOagjwVw0b
+ foGwCTY3fRBzkpGzBsY5Tca3+nrk9m13M3loQmKJLENfoedWkIXNZemuxhqDfhp9NSQhxJvrT
+ Y1EHBuzBUUpNla0+flN5K8LHeohyakD+Y1sWidu2l+R0SVDkphAAAPI8/TxMIFvG06KxnqqAH
+ rbby4ueVXz/Hz2vhsUnYsf7IaMdFjQgT0y8TzxfMT2Q5gxT+zgYiAdGud1Jl5Eep1DqqxC5zK
+ rx5ngG8z96J3lTKBkDdeOaX1p/+dG5fCYLq9NL7cQFOMhrVTVR1WJz9fgrf8iKar3FWRZgX25
+ A8Kh7ofehMy8amoP2eC6CsIMs8a+cdbJvc2j086+JL3wYtuh9oyUM0JupUxF59f2buDH9ye9M
+ R0YKFS7sMGxFe3JPj1rOKzTFOoWVZUZSAN5DCMSLqFTLF0k5WrUMPKMljLjfH8oGxbaFcgmSQ
+ KVkeotydCg6gBdy7iOAXF1XKVg8shGFvSfsVks5ORUnxM2iE2dxxZsHHA0dAwbyP8RpSW2nLc
+ H/vM0e0rpxeYuweXZ1yeXyGcaie1V2whYEEQ2Bel8aBIB/rTSkb/lOpUoel94r+VPMoVhy/4M
+ ooI1gmBpfv/2MAaa+ySc5qVTUPW5z9V4Q==
 
+On 30.10.24 08:36, Johan Hovold wrote:
+> On Wed, Oct 30, 2024 at 08:09:21AM +0100, Jens Glathe via B4 Relay wrote=
+:
+>
+>> +&pcie2a {
+>> +	aspm-no-l0s;
+> There is no such property in the binding (or driver) and L0s is disabled
+> for all controllers on sc8280xp.
+>
+> (I think I used a property like this in an early version of the patches
+> that ultimately disabled L0s however).
 
+will remove (all of them)
 
-On 10/25/24 2:14 PM, Peter Griffin wrote:
-> UFS Gear 4 offers faster speeds, and better power usage so lets
-> enable it.
-> 
-> Currently ufshcd_init_host_params() sets UFS_HS_G3 as a default,
-> so even if the device supports G4 we end up negotiating down to
-> G3.
-> 
-> For SoCs like gs101 which have a UFS major controller version
-> of 3 or above advertise Gear 4. This then allows a Gear 4 link
-> on Pixel 6.
-> 
-> For earlier controller versions keep the current default behaviour
-> of reporting G3.
-> 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+>> +	max-link-speed =3D <16>;
+> That's pretty fast. And not supported as this would indicate PCIe
+> Gen16...
 
-Reviewed-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+oh oops. Future-oriented ;) Will change to <4>
 
-some nits/personal preferences below, no need to address them
+>> +
+>> +	perst-gpios =3D <&tlmm 143 GPIO_ACTIVE_LOW>;
+>> +	wake-gpios =3D <&tlmm 145 GPIO_ACTIVE_LOW>;
+>> +
+>> +	vddpe-3v3-supply =3D <&vreg_nvme>;
+>> +	vdda-supply =3D <&vreg_l7d>;
+>> +
+>> +	pinctrl-0 =3D <&pcie2a_default>;
+>> +	pinctrl-names =3D "default";
+>> +
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pcie2a_phy {
+>> +	vdda-phy-supply =3D <&vreg_l4d>;
+>> +	vdda-pll-supply =3D <&vreg_l6d>;
+>> +
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pcie4 {
+>> +	aspm-no-l0s;
+> As above.
+>
+>> +	max-link-speed =3D <2>;
+>> +
+>> +	perst-gpios =3D <&tlmm 141 GPIO_ACTIVE_LOW>;
+>> +	wake-gpios =3D <&tlmm 139 GPIO_ACTIVE_LOW>;
+>> +
+>> +	vddpe-3v3-supply =3D <&vreg_wlan>;
+>> +	vdda-supply =3D <&vreg_l7d>;
+>> +
+>> +	pinctrl-0 =3D <&pcie4_default>;
+>> +	pinctrl-names =3D "default";
+>> +
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pcie4_port0 {
+>> +	wifi@0 {
+>> +		compatible =3D "pci17cb,1103";
+>> +		reg =3D <0x10000 0x0 0x0 0x0 0x0>;
+>> +
+>> +		vddrfacmn-supply =3D <&vreg_pmu_rfa_cmn_0p8>;
+>> +		vddaon-supply =3D <&vreg_pmu_aon_0p8>;
+>> +		vddwlcx-supply =3D <&vreg_pmu_wlcx_0p8>;
+>> +		vddwlmx-supply =3D <&vreg_pmu_wlmx_0p8>;
+>> +		vddpcie1p8-supply =3D <&vreg_pmu_pcie_1p8>;
+>> +		vddpcie0p9-supply =3D <&vreg_pmu_pcie_0p9>;
+>> +		vddrfa0p8-supply =3D <&vreg_pmu_rfa_0p8>;
+>> +		vddrfa1p2-supply =3D <&vreg_pmu_rfa_1p2>;
+>> +		vddrfa1p8-supply =3D <&vreg_pmu_rfa_1p7>;
+>> +
+>> +		qcom,ath11k-calibration-variant =3D "volterra";
+> IIRC the other calibration variants use all upper case here. And is
+> Volterra sufficient? No vendor prefix or similar needed?
 
-> ---
->  drivers/ufs/host/ufs-exynos.c | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/drivers/ufs/host/ufs-exynos.c b/drivers/ufs/host/ufs-exynos.c
-> index 9ec318ef52bf..e25de4b86ac0 100644
-> --- a/drivers/ufs/host/ufs-exynos.c
-> +++ b/drivers/ufs/host/ufs-exynos.c
-> @@ -771,6 +771,21 @@ static void exynos_ufs_config_sync_pattern_mask(struct exynos_ufs *ufs,
->  	exynos_ufs_disable_ov_tm(hba);
->  }
->  
-> +#define UFS_HW_VER_MAJOR_MASK   GENMASK(15, 8)
-> +
-> +static u32 exynos_ufs_get_hs_gear(struct ufs_hba *hba)
-> +{
-> +	u8 major;
-> +
-> +	major = FIELD_GET(UFS_HW_VER_MAJOR_MASK, hba->ufs_version);
-> +
-> +	if (major >= 3)
-> +		return UFS_HS_G4;
-> +
-> +	/* Default is HS-G3 */
-> +	return UFS_HS_G3;
-> +}
-> +
->  static int exynos_ufs_pre_pwr_mode(struct ufs_hba *hba,
->  				struct ufs_pa_layer_attr *dev_max_params,
->  				struct ufs_pa_layer_attr *dev_req_params)
-> @@ -787,6 +802,8 @@ static int exynos_ufs_pre_pwr_mode(struct ufs_hba *hba,
->  	}
->  
->  	ufshcd_init_host_params(&host_params);
+Yes they are of the pattern VV_Mmmmm
 
-blank line
+V =3D Vendor (uppercase)
 
-> +	/* This driver only support symmetric gear setting e.g. hs_tx_gear == hs_rx_gear */
-> +	host_params.hs_tx_gear = host_params.hs_rx_gear = exynos_ufs_get_hs_gear(hba);
+M =3D Model (Model name mixed case, no pattern visible)
 
-I find it easier to read if you split inits on their own line:
-	host_params.hs_tx_gear = exynos_ufs_get_hs_gear(hba);
-	host_params.hs_rx_gear = exynos_ufs_get_hs_gear(hba);
+> I think you need to get this acked by the ath11k maintainer (Kalle Valo)
+> first.
 
->  
->  	ret = ufshcd_negotiate_pwr_params(&host_params, dev_max_params, dev_req_params);
->  	if (ret) {
+I will cc him.
+
+The current (?) behaviour of the ath11k driver is that when a board
+string with a variant is not found, it will search again without the
+variant and take the one it finds. So it will work with degraded
+performance, but it will work.
+
+>> +	};
+>> +};
+>> +&remoteproc_adsp {
+>> +	firmware-name =3D "qcom/sc8280xp/microsoft/blackrock/qcadsp8280.mbn";
+> Shouldn't these paths reflect the DMI values as on the X13s?
+
+Will check. Names were changed in the last iterations of the patch.
+
+dmidecode says:
+
+Handle 0x0009, DMI type 1, 27 bytes
+System Information
+ =C2=A0=C2=A0 =C2=A0Manufacturer: Microsoft Corporation
+ =C2=A0=C2=A0 =C2=A0Product Name: Windows Dev Kit 2023
+ =C2=A0=C2=A0 =C2=A0Version: 124I:00097T:000M:0200000B:07
+ =C2=A0=C2=A0 =C2=A0Serial Number: 0F01C4F22373F6
+ =C2=A0=C2=A0 =C2=A0UUID: e4a4662c-8367-75d0-a54f-1d04bd404860
+ =C2=A0=C2=A0 =C2=A0Wake-up Type: Unknown
+ =C2=A0=C2=A0 =C2=A0SKU Number: 2043
+ =C2=A0=C2=A0 =C2=A0Family: Surface
+
+>
+>> +&usb_0_hsphy {
+>> +	vdda-pll-supply =3D <&vreg_l9d>;
+>> +	vdda-phy-supply =3D <&vreg_l4d>;
+> The binding does not include a vdda-phy supply (same for the other HS
+> PHYs).
+>
+> Where did this come from?
+
+ From my "research" on the ic block diagram where they were defined
+(outer and inner block). Will remove to X13s levels.
+
+with best regards
+
+Jens
+
+>> +	vdda18-supply =3D <&vreg_l1c>;
+>> +	vdda33-supply =3D <&vreg_l7d>;
+>> +
+>> +	status =3D "okay";
+>> +};
+> Johan
 
