@@ -1,195 +1,126 @@
-Return-Path: <devicetree+bounces-117473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815539B67BD
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 16:27:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AAA59B699B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 17:52:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0681E1F2280D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 15:27:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1694C1F20F9F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 16:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5362A213129;
-	Wed, 30 Oct 2024 15:24:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D854215021;
+	Wed, 30 Oct 2024 16:52:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="YzMI9HzI"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="hMRAxvtk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82CA11EF095;
-	Wed, 30 Oct 2024 15:24:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35812C8EB;
+	Wed, 30 Oct 2024 16:52:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730301859; cv=none; b=nzGBLEEFIVrtrHWIPM7/+c3RvM4pbmncYnv40lZWZ/pGDdPhCcQrGM8CdVDgV6OXCxHId0kjD6pnRV4BqmPH9Hpi0na2J4aWH9s4bDONji/3yOVOnWl3g9G8i10fX7XOl6TYh3EuqfD7Rj+9u95oB4lUIYt53h9LnbKDwoonz7k=
+	t=1730307146; cv=none; b=blN9jsDU0Zllkjh7DdoWbHkwWyEVyTD8SX9VOornuTnAEXa4OplASLRt5Z6cdC6kMCWLvbXFxIWJxNPEaJoG3vSlVT0hlsIqBZYbJlmxdA7Cex+9yKSZSUkkoX80DtdVPJHBvbLT+gcueGdw+H++E+HzqQaovKcDXjSVED6CUO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730301859; c=relaxed/simple;
-	bh=CbEpmW7FPn+sPKG8c4xScnPU3gtguAymAaAB367/Few=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=BTqpvp4N/W/VE9DlYV5Ve/n2gy34u+OuYavVEvWkM0p+q1YxnoZjPZAIA4QRoujr+AnTBiMeXK26y+SL//fMGmzxE80jm3psZm7qRjuIu4H1DMxpA0iSxYomLYbfg92ynCnyhgy7CmfxMQ8059/HEENKx8ddkiGbzM8WaSabqcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=YzMI9HzI; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49UAeFcB003959;
-	Wed, 30 Oct 2024 15:50:02 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=selector1; bh=QSpvzlUoPaWMaJEafvzzJu
-	/6rUnf9nrlpcngc0lyE9U=; b=YzMI9HzIv7fVXIAAFowSIERlQHXvoQ7HZTwwWl
-	Gv46rC4Qz5UsmSqIeLVYOGisdfN4VRTsTjgRRfvi7z+KOdvsiEgasD1TAALflZ1D
-	SjbudpkqrkvxZC8xcVGAQmKPmkEPsGVygXKnvcjoh00BKyWf8IOt2Bn3iV7QZ2MZ
-	idXbUOvvvD29UmN6UsueJTwwCAONV/gjuitN0bPTGSezQx3vRu6Mx/8y0NopUUfD
-	LMzjKNLk3qa4podbuUPQLqx5r5/LxzY0l8fpNSVgIQ9++FK1JGRqrCDmVNcJysWg
-	AHEpCgMpvtwVKFMudYF3qlbvA9NuQ+D/+YJYPi+MG4zIgLXQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42gqacvqt1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 15:50:01 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 309AB4005F;
-	Wed, 30 Oct 2024 15:48:43 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E2DDD277227;
-	Wed, 30 Oct 2024 15:45:30 +0100 (CET)
-Received: from localhost (10.48.87.175) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 30 Oct
- 2024 15:45:30 +0100
-From: Gatien Chevallier <gatien.chevallier@foss.st.com>
+	s=arc-20240116; t=1730307146; c=relaxed/simple;
+	bh=lTE5B4Q0DvJ0K8kws/zE6MD1HtyarAGLFRHInpfDi0U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Cywtva+VDebu7WkWCspmB6kT3o9vK3Epppy0sc3oEhjqmz6fFvC6oIgvXKknSQ4ZTiO5U5hQDgBnfMGul5m0ltujmbg3hWO0q3NDGgIy1ZE/EVSBJtrQQNGQLCiqjbQ9jRD8EmmOBsT7N/MCE2uSm5wb++ucqS+XsXGjdf2fEoQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=hMRAxvtk; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 08FAC88C05;
+	Wed, 30 Oct 2024 17:52:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1730307142;
+	bh=x+Yr7pJg5mP2ZbYGiOeNesNXBUpmKdLZpizfZOIamOs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hMRAxvtkj6ba2o6ARABi+wku7kxQGehhXOvqdvBrm9ytYcDzT/YiWaVsN6rj/PRBQ
+	 z3aWHRCdEJog8CX7cdF75P4X0lF3cvjB9iBCUmJcRqupZLr3SVSQrsBnWkxD7lLNzB
+	 OMq+kZI7/JGqtQCwD5rmUAgZHGVSclZxC4iX5Xalg2YA/F3EHYOBxOk0/IK4NfeFy7
+	 YQCQa9Cc+8kNL9+2k3AlmIYb3zc5YSD546q5PjCDn6BhOlJ3ovh9nrSjVg05JrgjmB
+	 z2xPZ9Tqv+iL0bwn0rkcdXuqzISSw96cWh6nRSe4ornup1AIzEIBk4rt5k5ZQLxRMy
+	 ThbEi33vgkLuQ==
+Message-ID: <021aee32-795a-42c8-80e7-89cb8a45f935@denx.de>
 Date: Wed, 30 Oct 2024 15:45:30 +0100
-Subject: [PATCH v2] dt-bindings: access-controllers: add controller
- configuration property
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset gpio
+ to mdio node
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
+ <niklas.soderlund+renesas@ragnatech.se>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240704152610.1345709-1-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdUZAVAkPVus2T_O3sWT7f1PciRYjxm6ecLy0QUyh50OEw@mail.gmail.com>
+ <d1b36858-da21-4e2a-bc54-175524a7d3b4@denx.de>
+ <CAMuHMdXRhUr1My-w0+hoAhQKgOq9iwecjow4iZTh82ED5DEfdA@mail.gmail.com>
+ <50b37c36-643c-4307-9d4e-ad49b306ba8a@denx.de>
+ <20241015144810.GD2838422@ragnatech.se>
+ <825e3b22-340c-4618-8d80-5d1b004fc0e4@denx.de>
+ <CAMuHMdV9XoJHHUM42YFwackdM+oRgP4k-SwZOTwqg0RJGETViw@mail.gmail.com>
+ <d6b35a1b-3f42-4071-99c1-dc87999c5cce@denx.de>
+ <CAMuHMdXW332YZahLw=vzfB6fZwc_9jL8uY-Uxj=Qyfov5vYQFw@mail.gmail.com>
+ <2f9df6fa-2474-4f35-af29-a1c280d5fe6f@denx.de>
+ <CAMuHMdUH32upHwwY7dXqk085LDWzkOz9cBv83FezVUbi27Ygpw@mail.gmail.com>
+ <4d7d6a7d-cbe8-4cbf-9fb1-2cdec0f11ce2@denx.de>
+ <CAMuHMdVnJPMLx=39=f+7S4vdRAC-0q0hKS6Ww=ELYEaLBx+gZw@mail.gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <CAMuHMdVnJPMLx=39=f+7S4vdRAC-0q0hKS6Ww=ELYEaLBx+gZw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-ID: <20241030-firewall-conf-v2-v2-1-b531fd2957bb@foss.st.com>
-X-B4-Tracking: v=1; b=H4sIAIlGImcC/x3MQQqAIBBA0avErBuwyZC6SrQoG2sgLBQqEO+et
- HyL/xNEDsIRhipB4FuinL6A6grsPvuNUdZiIEW6UdShk8DPfBxoT+/wJrRGGb20qukXByW7Ajt
- 5/+U45fwB+zXz+WIAAAA=
-X-Change-ID: 20241025-firewall-conf-v2-c7074b3019bf
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Oleksii Moisieiev
-	<oleksii_moisieiev@epam.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <alvinga@andestech.com>,
-        Gatien Chevallier <gatien.chevallier@foss.st.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3659;
- i=gatien.chevallier@foss.st.com; h=from:subject:message-id;
- bh=CbEpmW7FPn+sPKG8c4xScnPU3gtguAymAaAB367/Few=;
- b=owEB7QES/pANAwAKAar3Rq6G8cMoAcsmYgBnIkaJI015nG3ge0UdJzasRkZr+Qiv2E/mehfxH
- QD2tKzIPTeJAbMEAAEKAB0WIQRuDsu+jpEBc9gaoV2q90auhvHDKAUCZyJGiQAKCRCq90auhvHD
- KKvTC/92B9NH44FuhrP6I5qQco0QMia8TYcoRvtzQ5Z25LIiGQ9xgLECNJLqXhUwJ8SQ4EqShP6
- E20hCAXpIVvXT3hEyDiPXQ3w1GgP1xHJXZjmEx9SfYN9OajzwbgdzhoV9J7tcGYTE7xXQAc+WD1
- 6Hf9boae8Bvga1bU/IRijcVFB72atj+8yQQq42AE91aXVbX1eNAg8wpy8cvcRW+uAfuMDCPnyjS
- ODvb7BS2PHzhBpuH7ZZ5STorXiYKUM09xNxvNGb/T4xuHpx3AEz3jL6O+AIaVmOldhlmNGlWVOU
- SJf2sXvgQC6Ezt8GJbM/5MDCrMrVxEtywZRUU1rVnS8cXufUkBvY75BprmrKrfUuRpb0HWcsT92
- ra1ZS1NJ13iHxnKwsUPD5ssqCb4gKlFYWyu8gq0fGJJeAq1YaO/jKra3PYRrM24guYPUz3NRque
- IMzcYIMy+LPrCbiyRpTWkSdOTq5ZVLePRfN6kiuZFg2Ungflq2q283oTrft6UnBOexDYA=
-X-Developer-Key: i=gatien.chevallier@foss.st.com; a=openpgp;
- fpr=6E0ECBBE8E910173D81AA15DAAF746AE86F1C328
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Add a pattern property to allow a device to request an alternate
-access rights configuration to one or more firewall controllers.
-It allows run-time controller reconfiguration of access rights
-to an authorized entity as use in OP-TEE OS [1].
+On 10/29/24 9:26 AM, Geert Uytterhoeven wrote:
 
-Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-Link: https://github.com/OP-TEE/optee_os/pull/6946 [1]
----
-Changes in V2:
-	- Addition of #access-conf-cells property
----
- .../access-controllers/access-controllers.yaml     | 31 ++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+[...]
 
-diff --git a/Documentation/devicetree/bindings/access-controllers/access-controllers.yaml b/Documentation/devicetree/bindings/access-controllers/access-controllers.yaml
-index 99e2865f0e46a0600ebbba3bc5771dc63d578c8b..304eecc79db8ae98a0330b3ec186e29832fb8c87 100644
---- a/Documentation/devicetree/bindings/access-controllers/access-controllers.yaml
-+++ b/Documentation/devicetree/bindings/access-controllers/access-controllers.yaml
-@@ -45,6 +45,12 @@ properties:
-       Can be any value as specified by device tree binding documentation
-       of a particular provider. The node is an access controller.
- 
-+  "#access-conf-cells":
-+    description:
-+      Number of cells in an *(?<=)-access-conf$ specifier;
-+      Can be any value as specified by device tree binding documentation
-+      of a particular provider. The node is an access controller.
-+
-   access-controller-names:
-     $ref: /schemas/types.yaml#/definitions/string-array
-     description:
-@@ -58,6 +64,16 @@ properties:
-       A list of access controller specifiers, as defined by the
-       bindings of the access-controllers provider.
- 
-+patternProperties:
-+  ".*(?<=)-access-conf$":
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      An access controller configuration contains a list of inseparable entries.
-+      A configuration may reference multiple access controllers. Therefore, each
-+      entry content may vary accordingly to the access controller
-+      "#access-conf-cells" value. A consumer will use this property to be able
-+      to dynamically query for an access rights update.
-+
- additionalProperties: true
- 
- examples:
-@@ -65,6 +81,7 @@ examples:
-     clock_controller: access-controllers@50000 {
-         reg = <0x50000 0x400>;
-         #access-controller-cells = <2>;
-+        #access-conf-cells = <2>;
-     };
- 
-     bus_controller: bus@60000 {
-@@ -73,6 +90,7 @@ examples:
-         #size-cells = <1>;
-         ranges;
-         #access-controller-cells = <3>;
-+        #access-conf-cells = <2>;
- 
-         uart4: serial@60100 {
-             reg = <0x60100 0x400>;
-@@ -81,4 +99,17 @@ examples:
-                                  <&bus_controller 1 3 5>;
-             access-controller-names = "clock", "bus";
-         };
-+
-+        uart5: serial@60200 {
-+          reg = <0x60200 0x400>;
-+          clocks = <&clk_serial2>;
-+          access-controllers = <&bus_controller 0 0 0>, <&bus_controller 1 0 0>,
-+                               <&clock_controller 2 3>;
-+          default-access-conf = <&bus_controller 0 10>,
-+                                <&bus_controller 1 10>,
-+                                <&clock_controller 0 0>;
-+          shared-access-conf = <&bus_controller 0 256>,
-+                               <&bus_controller 1 256>,
-+                               <&clock_controller 0 256>;
-+        };
-     };
+>>>>>> revision, we can revisit this discussion ? Maybe bootloader-applied DTOs
+>>>>>> could work then ?
+>>>>>
+>>>>> So, what would you suggest when the PHY nodes would not have compatible
+>>>>> strings?
+>>>> I hope I already answered that question before.
+>>>
+>>> Sorry, I may have missed that?
+>>>
+>>> I really prefer not having the PHY compatible strings, as DT should
+>>> describe only what cannot be auto-detected.
+>> See paragraph above (*). My take on this is the exact opposite, better
+>> describe the PHY in DT fully, including compatible strings, so that if
+>> the PHY driver needs to do some sort of bring up tweak/fix/errata
+>> workaround/... , it can do so by matching on the compatible string
+>> without trying to bring the PHY up in some generic and potentially
+>> problematic way.
+>>
+>> The MDIO bus is not discoverable the same way as PCIe or USB is, so I
+>> don't think the "DT should describe only what cannot be detected" is
+>> really applicable to MDIO bus the same way it applies to PCIe or USB.
+> 
+> So you think this is similar to SPI NOR, where most FLASHes can be
+> discovered with the JEDEC READ ID opcode?
 
----
-base-commit: 42f7652d3eb527d03665b09edac47f85fb600924
-change-id: 20241025-firewall-conf-v2-c7074b3019bf
+Possibly, if you take broken-flash-reset DT property into account 
+somehow. Even SPI NOR does require a proper reset after all, else the 
+READ ID opcode may not work.
 
-Best regards,
--- 
-Gatien Chevallier <gatien.chevallier@foss.st.com>
-
+> See commit 4b0cb4e7ab2f777c
+> ("dt-bindings: mtd: spi-nor: clarify the need for spi-nor compatibles"),
+> which clarified why no new compatible values are accepted.
+This works as long as your SPI NOR reset works.
 
