@@ -1,139 +1,194 @@
-Return-Path: <devicetree+bounces-117273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 360929B5C1C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:59:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CAD39B5C37
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 08:03:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A0ED1C21054
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 06:59:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 142ABB229FF
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:03:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E50F01DC07D;
-	Wed, 30 Oct 2024 06:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6A391DE2B6;
+	Wed, 30 Oct 2024 07:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="bewQAceO"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eIDSyPEa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D791DAC8E
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 06:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73D51D1309;
+	Wed, 30 Oct 2024 07:02:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730271566; cv=none; b=QVRHsK/7BVxY/sSMiAOOvPxP6pJAcW+Zqz9BJI5NhTcYUVwl5E3GO2Q4Va8nZf++qI7D7hRHIaRhmVqwG81e/9MBcqSx+lGLJSrZi/S6XNCLezDvK13zSXGkwEptI+mT0Av3Zow6ndRxOcEtpyLyL4ovL/YsgeaGRNXqKwJiarE=
+	t=1730271780; cv=none; b=Mvvq+aFrnAA75luommJTAUun/fSDWwS8tYpnVBp8TveGJueVh9kcggehQLKFtX6B+m2MyVgD5CAmbHg2CG2gdd07o3wtEm0QJ4MV1m8jlF6811xyE2kAAZJUBWycpZAD7njwN+VN9qCcvTcmLMv5rZjiHBmKXIwdmvUbpJqdZ7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730271566; c=relaxed/simple;
-	bh=i16pYFlL+2GPz4u0u591aWQv0tNB7ELcsGAfV5zdSA0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pRszyeUVNNF0ZNwFw2HAT/CtqjW1KzxATH/+VxO5GGq7Tz/qrQibW4ToXwQ6kR7FFRuaPd92486vz5Nkbjood9rLrBFYAgKJ37Lp0JdMXSteOUtsbMlgBn5a++tU59s/hLEzrnnd5WA7TeuBE9VTitnIpOzlxjjf9UmTjx1UR6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=bewQAceO; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-37d462c91a9so4456100f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 23:59:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730271562; x=1730876362; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=i16pYFlL+2GPz4u0u591aWQv0tNB7ELcsGAfV5zdSA0=;
-        b=bewQAceOUlkCq4sGvFwKgJAvRCBs+2FMXbT/xf/xKK2+bG9J6UNQCE9Ob6wEX7Hr7d
-         6m3iZ9P+KrWnZ6dxEdOYQiYXeiPGM8PHmhqF5jcT6wk8fapUjJ2pPI4xjEPUEX+l8STD
-         3cuCw32RsLK467pJ4nu7b6uVo+Zlg57pAeqMoOVwnpw3GVNVeViDeAGVJyBNJCsmpzvb
-         Exsqt4SLG+/rOoy2kOTYS20YsdEX7UlDopAJRk4leXtxDWYb46z7HfA0zmZCe0V9ILA0
-         uQ9gWfULPHIbjNtAblCsCzEUA/1yo/E06ZDL3BM60maIHdbi0Ze7dBs8QShIT46X6zgD
-         4VfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730271562; x=1730876362;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i16pYFlL+2GPz4u0u591aWQv0tNB7ELcsGAfV5zdSA0=;
-        b=ItXqQKXY9Ydh06T5Lvc3MoGRJrInto4OuVmQPRsWbefo6WBLEdesY5wSbu8oAnXXxA
-         8Ko5oxRtlUlSxjliLP5D9WctMRol1cbVCQLMTabkLMTvhnTI7at2MgsEVQ/8z16eGPjI
-         W1nbSWgCdAfHuEaMHuNSquGxbgOhrKvG63v3KMUNYrMwuvKDiqOOEr6kPu1e8wBA0M3D
-         XpB6dL0Uz2XEAg76ytGrHt/MYeDCLCRfeGDXgpT6KiLrT9fYZ140SleE1IV8ZxPUNTa8
-         54SlsoJhwAc1efBLCeSz+k8e3/ExOhpUcxGXLoL6HwUFd2QQ/bSjnYNbFCDQ8rVYrDXq
-         CBNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUTYp4HpVG+NStUNXxf+taZAm0pqwi4y8VMRy8J5k9vFMb3kJAlpVuIoZ+FmfZ6mo3yjtaQl2I4uAix@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxkk3fR9WXvVzW/jxll89h5A/GfQlE8e9bHZ0u/kZsYBHUkXip/
-	UagUDOwyK8ZKt4tT6bJTgrwyrT/kjYotDHfyw42xQrDLgpL36tJxiftITJ2rzzo=
-X-Google-Smtp-Source: AGHT+IFyqfOrZ4MI+sXiINodrY0EVZIGOc3drYiZoKJHu/kEVijxTqjjc6wOezZxjLb6iMiKoIcUbQ==
-X-Received: by 2002:a5d:638b:0:b0:37d:387b:f080 with SMTP id ffacd0b85a97d-381b7075edfmr1643140f8f.15.1730271562350;
-        Tue, 29 Oct 2024 23:59:22 -0700 (PDT)
-Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b70f25sm14695531f8f.67.2024.10.29.23.59.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 23:59:21 -0700 (PDT)
-Date: Wed, 30 Oct 2024 07:59:19 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Lee Jones <lee@kernel.org>, linux-mediatek@lists.infradead.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	upstream@airoha.com, benjamin.larsson@genexis.eu, ansuelsmth@gmail.com, 
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v9 3/6] dt-bindings: pwm: airoha: Add EN7581 pwm
-Message-ID: <jzihr7yp5ftyl6ojhtnv2r4duos6or6hozip7yxxodycokwjms@nfa5clftyocy>
-References: <20241023-en7581-pinctrl-v9-0-afb0cbcab0ec@kernel.org>
- <20241023-en7581-pinctrl-v9-3-afb0cbcab0ec@kernel.org>
+	s=arc-20240116; t=1730271780; c=relaxed/simple;
+	bh=HBHqqFJwlLZrnHKzABOXS58x4463lPh4o709iKwhKMo=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=InLGuLCeIoe5PBq08ZKhGpJRcqhaB7ZOssykdZ+tz6uU0+wD2blHpoXdl5YxStYnryiPgtSsEgDEfD6REvJLI1Oj/yT6RgyGiSvzWkTRIckqs1urgXWIHRNuPDSp6Q2Aly+Gjhp0kmnEDdtMa+d9zKJ6tUS2ywrw61bXgWOsQ14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eIDSyPEa; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49TM0ebj012773;
+	Wed, 30 Oct 2024 07:02:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=/g/BCeSyts2ynUtbS5uAaJ
+	lBY7+gxxbs+JXVEycwaMs=; b=eIDSyPEaZZcYyWl/6pKz1MPw3hgOTlBEOMjn9+
+	WuBR5EBsgYVLmm5Ra4p9prNJmSqVmyOhuJj21FJ+UM4z1vdW0UOTbsTwOMlc3zRH
+	JpopOd6rViqm/+twvwJQagD2fWhG1Ab+5dLJiSFluOUKD2pqospAwQYScKJnrLtV
+	Azg34g6JZuHeI6hfRjg2GxQ4X/GDCx3027+zdST2Mth2oLhVUc6HXkRwA13rqkaH
+	wn62GWFuHBAfOmu6dTHt3RxgdeCP593ap8KqUylcXhfnRKC5TJ6YkWyRt1QCfZlW
+	AuTqmGEIWZGIJ7TDAw6aKewU4WUg6WuFLWxQUTxjKGzDOSfA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grguk1g5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 07:02:42 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49U72bxQ019577
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 07:02:41 GMT
+Received: from [10.213.111.143] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 30 Oct
+ 2024 00:02:32 -0700
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Subject: [PATCH v3 0/2] DRM/MSM: Support for Adreno 663 GPU
+Date: Wed, 30 Oct 2024 12:32:01 +0530
+Message-ID: <20241030-a663-gpu-support-v3-0-bdf1d9ce6021@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xv6ynghrtwc3g4ok"
-Content-Disposition: inline
-In-Reply-To: <20241023-en7581-pinctrl-v9-3-afb0cbcab0ec@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOnZIWcC/23OwW7DIAwG4FeJOI8JbEKgp73HtAMB0/rQJIMk2
+ lT13UdbbdK0Hf/f8mdfRKXCVMWhu4hCO1eepxbwqRPxFKYjSU4tC1BglNeDDNaiPC6brNuyzGW
+ VozZDHx04q6xoa0uhzB938vWt5RPXdS6f9wu7vrXfmPuL7VoqCX2mgBmTNenlfePIU3yO81ncu
+ B1+CK0A/iGgEehSQAdorB9+E9fHi4VaW3l9/CnGUEm2+ZnXQ5ds0iEhJKUGbShmn7X3Vg8Ybfa
+ ODMZ+bLcbdv0C3b6D00EBAAA=
+To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Simona
+ Vetter" <simona@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Connor Abbott <cwabbott0@gmail.com>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Puranam V G Tejaswi
+	<quic_pvgtejas@quicinc.com>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730271752; l=2737;
+ i=quic_akhilpo@quicinc.com; s=20240726; h=from:subject:message-id;
+ bh=HBHqqFJwlLZrnHKzABOXS58x4463lPh4o709iKwhKMo=;
+ b=b+O+SWbc5uNySP8IKgSjq59mK1j53b1d4Qv2fmU0O7EZJ1aWkNpmv7wFP2se/3uwfBvU5harC
+ B7jjQeoW9PIBM/eZ4bXvp8OrK2qoSvWuWsaaOq7GDVwHRhAEQz+BSJL
+X-Developer-Key: i=quic_akhilpo@quicinc.com; a=ed25519;
+ pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 3jArTnuVb_XlOuygw0eKXEAfGdlT_19q
+X-Proofpoint-GUID: 3jArTnuVb_XlOuygw0eKXEAfGdlT_19q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
+ lowpriorityscore=0 adultscore=0 mlxscore=0 bulkscore=0 suspectscore=0
+ phishscore=0 spamscore=0 malwarescore=0 mlxlogscore=999 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410300054
 
+This series adds support for Adreno 663 gpu found in SA8775P chipsets.
+The closest gpu which is currently supported in drm-msm is A660.
+Following are the major differences with that:
+	1. gmu/zap firmwares
+	2. Recommended to disable Level2 swizzling
 
---xv6ynghrtwc3g4ok
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v9 3/6] dt-bindings: pwm: airoha: Add EN7581 pwm
-MIME-Version: 1.0
+Verified kmscube/weston/glmark2-es2 with the below Mesa change [1].
+This series is rebased on top of msm-next.
 
-Hello,
+Since they are already picked up, I have dropped the patches for msm-next
+in this revision. Remaining 2 devicetree patches are for Bjorn.
 
-On Wed, Oct 23, 2024 at 01:20:03AM +0200, Lorenzo Bianconi wrote:
-> Introduce device-tree binding documentation for Airoha EN7581 pwm
-> controller.
->=20
-> Co-developed-by: Christian Marangi <ansuelsmth@gmail.com>
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+Devicetree changes have a runtime dependency on the Display DT change [2].
 
-LGTM
+[1] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/31211
+[2] https://patchwork.freedesktop.org/patch/620500/?series=140216
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
+To: Rob Clark <robdclark@gmail.com>
+To: Sean Paul <sean@poorly.run>
+To: Konrad Dybcio <konradybcio@kernel.org>
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Marijn Suijten <marijn.suijten@somainline.org>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Connor Abbott <cwabbott0@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: freedreno@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
 
-Thanks
-Uwe
+-Akhil
 
---xv6ynghrtwc3g4ok
-Content-Type: application/pgp-signature; name="signature.asc"
+---
+Changes in v3:
+- Rebased on the latest msm-next tip
+- Added R-b tags from Dmitry
+- Dropped patch #1 and #2 from v2 revision since they are already
+picked up in msm-next
+- Link to v2: https://lore.kernel.org/r/20241022-a663-gpu-support-v2-0-38da38234697@quicinc.com
 
------BEGIN PGP SIGNATURE-----
+Changes in v2:
+- Fixed ubwc configuration (dimtry)
+- Split out platform dt patch (dimtry)
+- Fix formatting in the dt patch (dimtry)
+- Updated Opp table to include all levels
+- Updated bw IB votes to match downstream
+- Rebased on top of msm-next tip
+- Link to v1: https://lore.kernel.org/r/20240918-a663-gpu-support-v1-0-25fea3f3d64d@quicinc.com
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmch2UMACgkQj4D7WH0S
-/k4AsAf/WTL0HrSsNuwSLR9YrYS9gYAReyTQAnpm7wbARGWjQE5VLwUF+noWxWP/
-AWmOyJdCsgTFs3fXzuToK5SrEPTcsLv3lMAZl48Q7n6NNxMfHFFQSnLp7h+ZRKxu
-OQcfRE0N2VD/4NNDTlKZ9/LoTUTCFhJzjlGnhI6YlEe9Rj97KA1GlBrpneUUfXJ/
-ukXdcpGeN4W8DzvrzZSLjZYKT5EfDoFA0UFX6cDS1dZbe9LeCH/v13KFM5f7p1HU
-+rs9IqNp62uk4YBbsaRjExCK9pcQsQMK/zxcTUn+jMbqR5wweK0wtulbSUdgChQE
-Q1oE4Hk6LfFUUnRHCMrbhDER34YMOA==
-=rEHm
------END PGP SIGNATURE-----
+---
+Puranam V G Tejaswi (2):
+      arm64: dts: qcom: sa8775p: Add gpu and gmu nodes
+      arm64: dts: qcom: sa8775p-ride: Enable Adreno 663 GPU
 
---xv6ynghrtwc3g4ok--
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi |  8 +++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 94 ++++++++++++++++++++++++++++++
+ 2 files changed, 102 insertions(+)
+---
+base-commit: d6d1ad32d00714ecf9f1996173c6f98e43c5b022
+change-id: 20240917-a663-gpu-support-b1475c828606
+
+Best regards,
+-- 
+Akhil P Oommen <quic_akhilpo@quicinc.com>
+
 
