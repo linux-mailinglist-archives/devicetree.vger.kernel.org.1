@@ -1,265 +1,172 @@
-Return-Path: <devicetree+bounces-117441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D84C29B63BD
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 14:09:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 931C49B63EB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 14:19:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67AE31F21909
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:09:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 521022829B6
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:19:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3238A1E9097;
-	Wed, 30 Oct 2024 13:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 371AE4962C;
+	Wed, 30 Oct 2024 13:19:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="g2pKL/jW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oDQrniUO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FE8C1E9079;
-	Wed, 30 Oct 2024 13:09:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0514117579;
+	Wed, 30 Oct 2024 13:18:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730293759; cv=none; b=FMq9thQj/YjjFdzKGNVr+IGXVauOBA6955deoi9WwdYNpd4rmhmsXQVfuMOW+Ezs/HZTDGXiChNX4MXXMNiLfmY9O5HCU1bxnqZ8SIF0GQV/cm5ZSTU3F3htvXBgnxIkkICYGbwguOHTGrbJMUhTFav1UBdSzIL5DpM6/dIslBU=
+	t=1730294340; cv=none; b=mmkB6FLqVR4vMGaY/ypsW7Pq8fIBgsmtCwPc+mtl6uKjwLS6fEuTCflR7UeyfKSverrfRVQydo/nndPhZnlyWMAPkvWGQNHfV6Tusu3RRHbvfFBlYWgA0GTXMVIgIAN5k6AutdSUfNhOAHhwRPk+dkQAzGGbiT5ijbxExiMdelY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730293759; c=relaxed/simple;
-	bh=5nVY/DqRUJr8j6Hiw3QsL2AAJLRZSafOrbKFmNWKHks=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TWlEBrVsqpkk0fxm5gmAWUXgwGtGnUCR8peWzvs5j2PjHajgXGhPHVDB9m1oXkr+VKLdTKuMaVXr/qPdeXtC6Lri2OwpoZolLG0WE7HNhHPRupWzhwyHOykEjwPXB6W0CPO9xl9Gg4xTAQm+h2zhrUI+1bZaHyq80cgVlvgeYmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=g2pKL/jW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49U9MQNF019775;
-	Wed, 30 Oct 2024 13:09:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Eiz73eEzUqQKm7NMJHTtilhRLF12VrpCyYnzRfI4OWo=; b=g2pKL/jWCaGlMZGl
-	IwPeNmjNIn5c53rijycOM9zLx8w9am2hg1Y3kMpRfeD1NWzLNRuLwFc1S9rwhxDZ
-	93yW4imjgrEsDLZY8bb0e+toIhM3pfFRDM40lm8nKIA/Y3dlsH2g+oOpXGZrxugj
-	ctjrARRuqzIFkKjZxLaDD/a5imJ2WSdP+ckufDxP6bHDD2ZiWDrKNHqizwaVYvqq
-	xiv3zRMdsn8nRTuSYZFdnotmuhrZnR6kotYgcQ1XC2N40nlZMviXL/VrTtFRv8kZ
-	dyXV/atHUX+YENC+rigATr7RghCGsoltIt26JV8dSq+Jn97noUNiZLLzjYq+vMtq
-	abISVg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gqcqv5bx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 13:09:10 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49UD99b0008738
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 13:09:09 GMT
-Received: from hu-sibis-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 30 Oct 2024 06:09:04 -0700
-From: Sibi Sankar <quic_sibis@quicinc.com>
-To: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <dmitry.baryshkov@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
-        <quic_kshivnan@quicinc.com>, <quic_sibis@quicinc.com>,
-        <conor+dt@kernel.org>, <quic_nkela@quicinc.com>,
-        <quic_psodagud@quicinc.com>, <abel.vesa@linaro.org>
-Subject: [PATCH V7 2/2] arm64: dts: qcom: x1e80100: Enable cpufreq
-Date: Wed, 30 Oct 2024 18:38:40 +0530
-Message-ID: <20241030130840.2890904-3-quic_sibis@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241030130840.2890904-1-quic_sibis@quicinc.com>
-References: <20241030130840.2890904-1-quic_sibis@quicinc.com>
+	s=arc-20240116; t=1730294340; c=relaxed/simple;
+	bh=SGyl53QrSXt0NK+s0TZTOWpg5y0Q+SHCYZKlj5mUth0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TzKqStdT6uBNu1vvDwPrh45cE8dLbsvhiz1c3D0PTSwXxarEUt9hgsEygmSHNOvtiUcdT2lO+FvMrLNXVZ0ECQlW0jVxBz8JzNQ4HZohMBJM14GS8FzL8ly0/ZGLMwhK/UZZpzpaqx0oa4Yp/ly+rI39jwzH8pzzt67ka81vlGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oDQrniUO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 935F4C4AF0D;
+	Wed, 30 Oct 2024 13:18:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730294338;
+	bh=SGyl53QrSXt0NK+s0TZTOWpg5y0Q+SHCYZKlj5mUth0=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=oDQrniUOEt7Nu28y198TARsKSRQWEdfQNjz1UvtRgj3V6Fjm2/R7sWOw9T+C6ThXx
+	 BZEDiiv8ygh26EMMY+Nsdx2qC0EIteHw3YbA7NjnVXaSgb4G5biqH5WACjYkYwKte0
+	 jzYcq76H8gAcf/eXJ/bxSkJwFSZFoo1ZGXAbvSzzCvOkS8tvsku06NpP2f6pDKmAK8
+	 ZaXBpd8DI0HhQ9vdurQzxnGa4hSmnomsT3Ome8uIZGQw+LtbtHDEzWs5eozLjpJaHz
+	 a8s/TlgOCJtfB1Jd/XJqzgc595L3LEhp1YzlEql3c9AnaSXNQu8d6dCpR7QmtXtuVO
+	 wIwxB80AejVQQ==
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539e13375d3so7481341e87.3;
+        Wed, 30 Oct 2024 06:18:58 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUSOVLPK90vfmuX7CbMxGhyD50JjXb+9cQYFI3l35w5nuK4tSQR1pTPNrzIzoXPeW0amRzdexJ6MBRc@vger.kernel.org, AJvYcCVFyfGcq5NrBZVWlUeTRSj6l1TMLpNseJjXtUIyfdSGzCHJODvfxBh6hxt++JCeIt2iQSW+jcwX6I8f9s5z@vger.kernel.org, AJvYcCW/Am8t33Z+zUNuefygExMMzYCNH2lHfg9Wif7nXoTvMH8D0CTbYveoCyK1JGX689C1fA8Rn3V5kVA5sRfD73w=@vger.kernel.org, AJvYcCWFkoCnnT+3/EU4hcprgMmTMu9720lscy/Saf4VBVR8yNlE9i1BuububNVGVxi+ZimED0aoDfdRPrQ2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyT46pjCZb+M9Rtmbhp6QCUUirrmZDTmLbI9yXAVizjZxMCrvbx
+	hjB26OWO9T6Yrn7ddDtGcFBZHVZ/+LlpyjSnx21SB1zjiFr2g1CqFDgbCQPGkRT/HlyFZH7uUv6
+	rR+frKO70QvU44aGkOtd4DnkSvg==
+X-Google-Smtp-Source: AGHT+IEVKvqZU3lwKIBTDRwXuRwrMn8l0pyFDoASwjFpuJlO7j5nl3i6/F0Uq11GWp7kjD53mP60fhBKM1x1llFdaqA=
+X-Received: by 2002:a05:6512:3ba7:b0:539:530e:9de5 with SMTP id
+ 2adb3069b0e04-53b34b3bc7amr7674957e87.56.1730294336832; Wed, 30 Oct 2024
+ 06:18:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 9eHfRjPZfLvNOqpuKyfYjMAYELSXEtKI
-X-Proofpoint-GUID: 9eHfRjPZfLvNOqpuKyfYjMAYELSXEtKI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 suspectscore=0 bulkscore=0 adultscore=0 spamscore=0
- phishscore=0 impostorscore=0 clxscore=1015 priorityscore=1501 mlxscore=0
- mlxlogscore=895 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410300103
+References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-16-dakr@kernel.org>
+ <42a5af26-8b86-45ce-8432-d7980a185bde@de.bosch.com> <Zx9lFG1XKnC_WaG0@pollux>
+ <fd9f5a0e-b2d4-4b72-9f34-9d8fcc74c00c@de.bosch.com> <ZyCh4_hcr6qJJ8jw@pollux> <8d72e37e-9e27-4857-b0eb-0b1e98cc5610@de.bosch.com>
+In-Reply-To: <8d72e37e-9e27-4857-b0eb-0b1e98cc5610@de.bosch.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 30 Oct 2024 08:18:43 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL674Mf5_QcWxEn-oStMx45_VsaQfbN-Qzh3jEtXdsyYA@mail.gmail.com>
+Message-ID: <CAL_JsqL674Mf5_QcWxEn-oStMx45_VsaQfbN-Qzh3jEtXdsyYA@mail.gmail.com>
+Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
+ driver abstractions
+To: Dirk Behme <dirk.behme@de.bosch.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, gregkh@linuxfoundation.org, rafael@kernel.org, 
+	bhelgaas@google.com, ojeda@kernel.org, alex.gaynor@gmail.com, 
+	boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com, 
+	benno.lossin@proton.me, tmgross@umich.edu, a.hindborg@samsung.com, 
+	aliceryhl@google.com, airlied@gmail.com, fujita.tomonori@gmail.com, 
+	lina@asahilina.net, pstanner@redhat.com, ajanulgu@redhat.com, 
+	lyude@redhat.com, daniel.almeida@collabora.com, saravanak@google.com, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Enable cpufreq on X1E80100 SoCs through the SCMI perf protocol node.
+On Tue, Oct 29, 2024 at 4:19=E2=80=AFAM Dirk Behme <dirk.behme@de.bosch.com=
+> wrote:
+>
+> On 29.10.2024 09:50, Danilo Krummrich wrote:
+> > On Tue, Oct 29, 2024 at 08:20:55AM +0100, Dirk Behme wrote:
+> >> On 28.10.2024 11:19, Danilo Krummrich wrote:
+> >>> On Thu, Oct 24, 2024 at 11:11:50AM +0200, Dirk Behme wrote:
+> >>>>> +/// IdTable type for platform drivers.
+> >>>>> +pub type IdTable<T> =3D &'static dyn kernel::device_id::IdTable<of=
+::DeviceId, T>;
+> >>>>> +
+> >>>>> +/// The platform driver trait.
+> >>>>> +///
+> >>>>> +/// # Example
+> >>>>> +///
+> >>>>> +///```
+> >>>>> +/// # use kernel::{bindings, c_str, of, platform};
+> >>>>> +///
+> >>>>> +/// struct MyDriver;
+> >>>>> +///
+> >>>>> +/// kernel::of_device_table!(
+> >>>>> +///     OF_TABLE,
+> >>>>> +///     MODULE_OF_TABLE,
+> >>>>
+> >>>> It looks to me that OF_TABLE and MODULE_OF_TABLE are quite generic n=
+ames
+> >>>> used here. Shouldn't they be somehow driver specific, e.g. OF_TABLE_=
+MYDRIVER
+> >>>> and MODULE_OF_TABLE_MYDRIVER or whatever? Same for the other
+> >>>> examples/samples in this patch series. Found that while using the *s=
+ame*
+> >>>> somewhere else ;)
+> >>>
+> >>> I think the names by themselves are fine. They're local to the module=
+. However,
+> >>> we stringify `OF_TABLE` in `module_device_table` to build the export =
+name, i.e.
+> >>> "__mod_of__OF_TABLE_device_table". Hence the potential duplicate symb=
+ols.
+> >>>
+> >>> I think we somehow need to build the module name into the symbol name=
+ as well.
+> >>
+> >> Something like this?
+> >
+> > No, I think we should just encode the Rust module name / path, which sh=
+ould make
+> > this a unique symbol name.
+> >
+> > diff --git a/rust/kernel/device_id.rs b/rust/kernel/device_id.rs
+> > index 5b1329fba528..63e81ec2d6fd 100644
+> > --- a/rust/kernel/device_id.rs
+> > +++ b/rust/kernel/device_id.rs
+> > @@ -154,7 +154,7 @@ macro_rules! module_device_table {
+> >       ($table_type: literal, $module_table_name:ident, $table_name:iden=
+t) =3D> {
+> >           #[rustfmt::skip]
+> >           #[export_name =3D
+> > -            concat!("__mod_", $table_type, "__", stringify!($table_nam=
+e), "_device_table")
+> > +            concat!("__mod_", $table_type, "__", module_path!(), "_", =
+stringify!($table_name), "_device_table")
+> >           ]
+> >           static $module_table_name: [core::mem::MaybeUninit<u8>; $tabl=
+e_name.raw_ids().size()] =3D
+> >               unsafe { core::mem::transmute_copy($table_name.raw_ids())=
+ };
+> >
+> > For the doctests for instance this
+> >
+> >    "__mod_of__OF_TABLE_device_table"
+> >
+> > becomes
+> >
+> >    "__mod_of__doctests_kernel_generated_OF_TABLE_device_table".
+>
+>
+> What implies *one* OF/PCI_TABLE per path (file)?
 
-Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 63 ++++++++++++++++----------
- 1 file changed, 39 insertions(+), 24 deletions(-)
+It's generally one per module, but it's one per type because it is one
+type per driver. So platform (and most other) drivers can have $bus,
+DT, and ACPI tables.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index be93e482bb28..9c6d223b1b60 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -71,8 +71,8 @@ cpu0: cpu@0 {
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_0>;
--			power-domains = <&cpu_pd0>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd0>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&cluster_c4>;
- 
- 			l2_0: l2-cache {
-@@ -88,8 +88,8 @@ cpu1: cpu@100 {
- 			reg = <0x0 0x100>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_0>;
--			power-domains = <&cpu_pd1>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd1>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&cluster_c4>;
- 		};
- 
-@@ -99,8 +99,8 @@ cpu2: cpu@200 {
- 			reg = <0x0 0x200>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_0>;
--			power-domains = <&cpu_pd2>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd2>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&cluster_c4>;
- 		};
- 
-@@ -110,8 +110,8 @@ cpu3: cpu@300 {
- 			reg = <0x0 0x300>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_0>;
--			power-domains = <&cpu_pd3>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd3>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&cluster_c4>;
- 		};
- 
-@@ -121,8 +121,8 @@ cpu4: cpu@10000 {
- 			reg = <0x0 0x10000>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_1>;
--			power-domains = <&cpu_pd4>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd4>, <&scmi_dvfs 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&cluster_c4>;
- 
- 			l2_1: l2-cache {
-@@ -138,8 +138,8 @@ cpu5: cpu@10100 {
- 			reg = <0x0 0x10100>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_1>;
--			power-domains = <&cpu_pd5>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd5>, <&scmi_dvfs 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&cluster_c4>;
- 		};
- 
-@@ -149,8 +149,8 @@ cpu6: cpu@10200 {
- 			reg = <0x0 0x10200>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_1>;
--			power-domains = <&cpu_pd6>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd6>, <&scmi_dvfs 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&cluster_c4>;
- 		};
- 
-@@ -160,8 +160,8 @@ cpu7: cpu@10300 {
- 			reg = <0x0 0x10300>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_1>;
--			power-domains = <&cpu_pd7>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd7>, <&scmi_dvfs 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&cluster_c4>;
- 		};
- 
-@@ -171,8 +171,8 @@ cpu8: cpu@20000 {
- 			reg = <0x0 0x20000>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_2>;
--			power-domains = <&cpu_pd8>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd8>, <&scmi_dvfs 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&cluster_c4>;
- 
- 			l2_2: l2-cache {
-@@ -188,8 +188,8 @@ cpu9: cpu@20100 {
- 			reg = <0x0 0x20100>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_2>;
--			power-domains = <&cpu_pd9>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd9>, <&scmi_dvfs 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&cluster_c4>;
- 		};
- 
-@@ -199,8 +199,8 @@ cpu10: cpu@20200 {
- 			reg = <0x0 0x20200>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_2>;
--			power-domains = <&cpu_pd10>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd10>, <&scmi_dvfs 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&cluster_c4>;
- 		};
- 
-@@ -210,8 +210,8 @@ cpu11: cpu@20300 {
- 			reg = <0x0 0x20300>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_2>;
--			power-domains = <&cpu_pd11>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd11>, <&scmi_dvfs 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&cluster_c4>;
- 		};
- 
-@@ -310,6 +310,21 @@ scm: scm {
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 			qcom,dload-mode = <&tcsr 0x19000>;
- 		};
-+
-+		scmi {
-+			compatible = "arm,scmi";
-+			mboxes = <&cpucp_mbox 0>, <&cpucp_mbox 2>;
-+			mbox-names = "tx", "rx";
-+			shmem = <&cpu_scp_lpri0>, <&cpu_scp_lpri1>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			scmi_dvfs: protocol@13 {
-+				reg = <0x13>;
-+				#power-domain-cells = <1>;
-+			};
-+		};
- 	};
- 
- 	clk_virt: interconnect-0 {
--- 
-2.34.1
+While you could have 1 module with N drivers, I don't think I've ever
+seen that case and certainly not something we'd encourage. Perhaps it
+is just not possible to disallow in C, but we can in rust? That may be
+a benefit, not a limitation.
 
+Rob
 
