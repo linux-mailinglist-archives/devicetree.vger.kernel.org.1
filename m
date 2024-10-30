@@ -1,72 +1,65 @@
-Return-Path: <devicetree+bounces-117591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4CF09B7064
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 00:24:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D8FA9B7076
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 00:28:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E97E01F21EDA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 23:24:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0227A2825EC
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 23:28:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B73C7217652;
-	Wed, 30 Oct 2024 23:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D85B20604B;
+	Wed, 30 Oct 2024 23:28:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b="HmC1ZMEr"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="KVOmoll6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-02.smtp.spacemail.com (out-02.smtp.spacemail.com [63.250.43.87])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE0E21764B;
-	Wed, 30 Oct 2024 23:23:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.250.43.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51DF71BD9E5;
+	Wed, 30 Oct 2024 23:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730330632; cv=none; b=nF4xbCRKlPFzxtqTNKvR+cttUdf48iolL6Si/gbe8/jZL/PJ8iHZq/t2FEco/PDCQvmvwE7epSWm1Q1bpcnLujYp1wVG2a+L+57nrmguXhRimfZlU1E2Rwmirr2yCH/Ny9SEDgsDabKGY1RTo49Fxhzgs5JHNzzejrUI3qQW5k0=
+	t=1730330901; cv=none; b=Mj7jRObZT7be5Vm+Rd0BPDTlnyuVBL+ISA2+nriZoS5Qe2eSZTxwzyGvapz6DhyVU66x/McjQvZfcEioX7T+6XGMT8HpImgx1+TC4KR5CZgJ7THzRXSEZxP4UMLy1QaXS/1pg8DL06MxQhb4ho+Z633EdbIRdFQyTk1U5NDRzbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730330632; c=relaxed/simple;
-	bh=rrcxWMsdAW6NMlC1f4N45bAtmggSlI8lhfcgoRDdRok=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fj9qkVMEWpzPupR/2P40/TBbEvy08IrQqiBWVdm8GFP+zqWCNzFRG/8Ihnx69ARXwUTosxjmP9UEr9Z2M+rZFEZdde+mC1hIRmsiVTgeQAv4iItbJcsg0rzQeluzsCkxQcoOeHANOPMS/CSIwcXIFSNpkVXuuxGJMx5EIFir9sM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b=HmC1ZMEr; arc=none smtp.client-ip=63.250.43.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
-Received: from prod-lbout-phx.jellyfish.systems (unknown [198.177.122.3])
-	by smtp.spacemail.com (Postfix) with ESMTPA id 4Xf38z5GC0z4wLY;
-	Wed, 30 Oct 2024 23:23:47 +0000 (UTC)
-Received: from umer-b550pro4.lan (host-92-8-254-228.as13285.net [92.8.254.228])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.spacemail.com (Postfix) with ESMTPSA id 4Xf38r0vnvz8sWQ;
-	Wed, 30 Oct 2024 23:23:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=mentallysanemainliners.org; s=spacemail; t=1730330622;
-	bh=rrcxWMsdAW6NMlC1f4N45bAtmggSlI8lhfcgoRDdRok=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=HmC1ZMErsViEEu2EXu4cIxcumkp4pIFY61z3AWX1qVaJDzjOXSop4QEi0DKZDAS+9
-	 JB+6XbmqWgUX2iO+PSezTTJ/6NCvrYiTinmeE6Yf3pY4ZH+KyiRj3Uq6FBTivAZ2qB
-	 jGjJpAJSHnlCvaA7ufuxMRBSnn/ELhtie0rcyjGXeIdxdGkcVvPGJNO5ZGMeHTDRUW
-	 oZhqyXBWZU1ybIvtNXofBCziv2XmBznbwg2tII1kjrN1KRQyVeRrDxNotjY4pgiP1c
-	 UD1trLHG5+aXShk8XJ/OAG8Cs66gCldTZdpERaug0d5k2kRb2uGZAByw5vHLMPUOwT
-	 L7sOeKBjmQyhw==
-From: Umer Uddin <umer.uddin@mentallysanemainliners.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1730330901; c=relaxed/simple;
+	bh=+VgptE/dVgJZFkkXR3/0i+wD/OC7M623YZFzl2pdBL4=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=CuQAqlVL98Lq22Eibb8z3lKqpfoDECaw9G70qGJGGv5QQrzG6rGi/YUGse3IphJ76QGAZ4c4gKxk4IcB7KiBY34rgCUYQ15IKcYtmcDi93wyG1ToHqyUa58JGoTYFj0XwPEgK0VUoADS4H52EqA5TUexHZLSOkcY/CQmWgBwo8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=KVOmoll6; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=SbWlkHet4fXP9lFl2lD6ycOmmj0PFUZzrw6kS0LFEug=; b=KVOmoll6AHbqhfSE/mpmM8HuHO
+	+bLk3wedBks3wno9lzrogh/rOE3gStbXHDb6n+SkZYtD+j95xT/vXBydgOzCkoJUq04YqJSTGU1SV
+	jDntm8wWs9URx4XZML4+FFxhovaePaLAQppdKPxzVObVpCcd6f359sB7J21xZHeM9jP817OsoBgEj
+	l6XNHxDxRg4N945zf1yllwO4RiRKX5ixoJLS62kFFhG9WWA/Fasrta8ESAi9SAOHWdmu+PjhvtAfQ
+	eFTAlGFgLKCo3Gri/9n5cGL5vzIuJDmRP1qp0ZfIodv6HYjmB0m9WTNK8xrj8QNGw8dQz3/1/1E0j
+	a0DS8wAQ==;
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Conor Dooley <conor+dt@kernel.org>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	linux-kernel@vger.kernel.org,
-	igor.belwon@mentallysanemainliners.org
-Subject: [PATCH v3 4/4] arm64: dts: exynos: Add initial support for Samsung Galaxy S20 (x1slte)
-Date: Wed, 30 Oct 2024 23:23:08 +0000
-Message-ID: <20241030232308.72210-5-umer.uddin@mentallysanemainliners.org>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241030232308.72210-1-umer.uddin@mentallysanemainliners.org>
-References: <20241030232308.72210-1-umer.uddin@mentallysanemainliners.org>
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v3 0/3] ARM: dts: add Kobo Clara 2E
+Date: Thu, 31 Oct 2024 00:27:43 +0100
+Message-Id: <20241030232746.2644502-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.5
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,69 +68,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add initial support for the Samsung Galaxy S20 (x1slte/SM-G980F)
-phone. It was launched in 2020, and it's based on the Exynos 990 SoC. It
-has only one configuration with 8GB of RAM and 128GB of UFS 3.0 storage.
+Add a basic device tree for the Kobo Clara 2E Ebook reader.
+It is equipped with an i.MX6SLL SoC. EPDC PMIC drivers
+are not ready for mainline yet.
 
-This device tree adds support for the following:
+Changes in V3:
+- removed 30MegaOhm current sense resistor nonsense
 
-- SimpleFB
-- 8GB RAM
-- Buttons
+Changes in V2:
+- improved commit message about devices without binding
 
-Signed-off-by: Umer Uddin <umer.uddin@mentallysanemainliners.org>
----
- arch/arm64/boot/dts/exynos/Makefile           |  1 +
- .../boot/dts/exynos/exynos990-x1slte.dts      | 28 +++++++++++++++++++
- 2 files changed, 29 insertions(+)
- create mode 100644 arch/arm64/boot/dts/exynos/exynos990-x1slte.dts
+Andreas Kemnade (3):
+  dt-bindings: arm: fsl: add compatible strings for Kobo Clara 2E
+  ARM: dts: imx: Add devicetree for Kobo Clara 2E
+  ARM: imx_v6_v7_defconfig: Enable drivers for Kobo Clara 2E
 
-diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
-index deb8dc509..783807249 100644
---- a/arch/arm64/boot/dts/exynos/Makefile
-+++ b/arch/arm64/boot/dts/exynos/Makefile
-@@ -10,5 +10,6 @@ dtb-$(CONFIG_ARCH_EXYNOS) += \
- 	exynos8895-dreamlte.dtb		\
- 	exynos990-c1s.dtb		\
- 	exynos990-x1s.dtb		\
-+	exynos990-x1slte.dtb		\
- 	exynosautov9-sadk.dtb		\
- 	exynosautov920-sadk.dtb
-diff --git a/arch/arm64/boot/dts/exynos/exynos990-x1slte.dts b/arch/arm64/boot/dts/exynos/exynos990-x1slte.dts
-new file mode 100644
-index 000000000..7bca641e5
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/exynos990-x1slte.dts
-@@ -0,0 +1,28 @@
-+// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
-+/*
-+ * Samsung Galaxy S20 (x1slte/SM-G980F) device tree source
-+ *
-+ * Copyright (c) 2024, Umer Uddin <umer.uddin@mentallysanemainliners.org>
-+ */
-+
-+/dts-v1/;
-+#include "exynos990-hubble-common.dtsi"
-+
-+/ {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	model = "Samsung Galaxy S20";
-+	compatible = "samsung,x1slte", "samsung,exynos990";
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x0 0x3ab00000>,
-+		      /* Memory hole */
-+		      <0x0 0xc1200000 0x0 0x1ee00000>,
-+		      /* Memory hole */
-+		      <0x0 0xe1900000 0x0 0x1e700000>,
-+		      /* Memory hole */
-+		      <0x8 0x80000000 0x1 0x7ec00000>;
-+	};
-+};
+ .../devicetree/bindings/arm/fsl.yaml          |   8 +
+ arch/arm/boot/dts/nxp/imx/Makefile            |   2 +
+ .../dts/nxp/imx/imx6sll-kobo-clara2e-a.dts    |  23 +
+ .../dts/nxp/imx/imx6sll-kobo-clara2e-b.dts    |  23 +
+ .../nxp/imx/imx6sll-kobo-clara2e-common.dtsi  | 514 ++++++++++++++++++
+ arch/arm/configs/imx_v6_v7_defconfig          |   2 +
+ 6 files changed, 572 insertions(+)
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clara2e-a.dts
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clara2e-b.dts
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clara2e-common.dtsi
+
 -- 
-2.47.0
+2.39.5
 
 
