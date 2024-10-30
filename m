@@ -1,183 +1,107 @@
-Return-Path: <devicetree+bounces-117580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72C3D9B6FBA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 23:13:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 058DA9B6FE3
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 23:36:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1EE31F22014
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 22:13:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB2B528198E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 22:36:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBB50215C72;
-	Wed, 30 Oct 2024 22:13:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F13B1D1509;
+	Wed, 30 Oct 2024 22:36:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CP14lJEz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pk9TE3W/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C4081BD9DC
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 22:13:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40AD61925AE;
+	Wed, 30 Oct 2024 22:36:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730326418; cv=none; b=HRjUAFIqGrCfyebT4TibmP0f8XL6wA36QQBmpwUUyrJT0vHhML58PCy7J+b/crU4H4qwyUWonda3UAUuVaxpJ7xrJkALmFE8kHvztMvNhFa8rS+ii+xOtHdqSQgEVuPDCspF+uYsqKIQ0NalucEhs2mY3ZHFXpl+6YmdYw9HUlk=
+	t=1730327769; cv=none; b=RcF3VPgjRW8ezZOwOauHjSxmqOxBSjfl1fvjQBgziLe94o6EEUbQSbArtdq43V5OravK/7i3cNrYBvoV6Iu8hcxtpP4u1DYwFQEitClOzo6vN6ipCOqO+WvGX92waxLr7nZ0kX0W5H17QrjAWsMDks/91z7HOyvVLUhc6alYWx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730326418; c=relaxed/simple;
-	bh=fgwT0gHbh6JwWE2o92EklteS0EY8RyEo/1yUmC9seSo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JzLJl2Puid57nV6ttJyQiIF48r5Tk2GLWuDjH9P+SLhWPr0cI/4FJIArdTCsnSRlOGrbOSTR0YQ+FiLJyPWiMJQIjd8vAmYgsr3u/qbIn6UjvIE9xDlhAm4hWU/P+XOLe4uPtvvIkP5dyiRm558NHfd2RDK4Pj5udjGq4Dl4Z34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CP14lJEz; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-539ec09d690so43522e87.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 15:13:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730326415; x=1730931215; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rIOWGLPyHAbnmQC+s1hOIONGH2xKi9gafSnREwwOXk0=;
-        b=CP14lJEzZtHwrzQP1eWoWKeb6427e9BJYb3L4qb2Dv9bTtdmK5xehry+ckShi3J5to
-         E1e8BFjPq+bjlw8e5hXxlpRI0xBCjLWHf2NOdPBDy4SqIBuYBUec5c9kWLlr7XY7pXVK
-         zAeqkgFkNt48S9YQ4evdIX0Sm0NGOj2GyeeHLrzoZ/7YL0M2ByxB0GEM6g2+bO4JuzQ7
-         XDnw8suxR4Ftq5GMLu6RaRYGgegqhjXKwubWQCiULhRbN4FyStqdf+R0LQgM6Y0F/CK2
-         Ssrl0VB/NATistxYEhs5QynssZoHvbfiwMofgKeJZNVC1xqucqqZkuzsR8QXMJ0uzOsI
-         MHgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730326415; x=1730931215;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rIOWGLPyHAbnmQC+s1hOIONGH2xKi9gafSnREwwOXk0=;
-        b=xFHLYQTOhDGsYeGB3mGpE7D5Z6mT/FOmhRbBCqBorFwZqjJwvl1xoHTvdweWiGA7UG
-         1iasKFRbAlGx/BUmfFxuwsUJ/AfGaE5tE/oanssdUWMxgPnC7gUpsmLD8p8AvWFfDNEu
-         LKETTnIQhRyZdedZCK21r+o4BYcyVMS1cxeSC2dIOYtjE1n/grV4N4XwCDsKFBpvxFTm
-         q/kXinIx7pbP5IGuqwC12WtKgtouh6cSREup+OX4+1URakJkipJXK3pZCczIuGquiuWn
-         jmAY9BfA3pSSWQbwCFtDSf2oS5FpncZris2YnaG0dg39WLaGFpBTUtrmyQkl9+LloVt4
-         k+kQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWZBRmu2jC4wgecEpmVpMH97zTnaMSfNweCJHIP8AYHK8qDY2RJZuGZxwk+jZ0Ok+fLYTmNbPhHNMVY@vger.kernel.org
-X-Gm-Message-State: AOJu0YyN9QLf9izQ5gUAgdwrh6lchGhZ2PZosXy1QYmrxNUeAI39S4MN
-	ECJfKkknOLkTMQewmNtZvzLFOS23o6enwPdf3EvBklSZHhZUWbjIqeydRILgh5c=
-X-Google-Smtp-Source: AGHT+IE6WL5Y9y4VUvgC3PerluD3HeORJgxPkd3sHB908ZvUW+AUqyE/4Nteboj+F28dC19tVwr78A==
-X-Received: by 2002:a05:6512:b1c:b0:52f:413:30de with SMTP id 2adb3069b0e04-53b3491ccefmr2686948e87.7.1730326414540;
-        Wed, 30 Oct 2024 15:13:34 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53c7bdcc1cbsm16753e87.229.2024.10.30.15.13.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Oct 2024 15:13:34 -0700 (PDT)
-Message-ID: <b9a467bd-ad2f-4b6b-a0c3-0d60960023c6@linaro.org>
-Date: Thu, 31 Oct 2024 00:13:33 +0200
+	s=arc-20240116; t=1730327769; c=relaxed/simple;
+	bh=0Vb3Wf3/HTZV8uH5OinSanLo9pfuoCfY/xWhB0k2A5k=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=fdH/F8JbO2xpM6lhxj087i/elT00Qu3nkHFGxousLZs7S/dk1rdECUTZW0mURQCcLsZ1/EJtx3XzM04NHdy/vteu6d4HPqBq8v+MoZtwtA4vSzlH8TM2fV/n+KhJeQuY3njHsrWPJRvNd74mG1ICJiOLAz7PNphkIico7OvMW8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pk9TE3W/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B59FC4CECE;
+	Wed, 30 Oct 2024 22:36:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730327768;
+	bh=0Vb3Wf3/HTZV8uH5OinSanLo9pfuoCfY/xWhB0k2A5k=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=pk9TE3W/NKsAAr3YQ7Mapx4mtrp1AEeKnH6azllMhmvFuh5y5RarBqRsg8LvRcVgP
+	 wsAPwp2lNBHdo3vg6MB2t6aucPUvQ8iqTqm/fZ+u8m2TwGk/bgp3Grx1N1UMjR0Il2
+	 C1hnvL79/HI3/99SrptK+KweB5XEEBL6dkAW4PKtPpKl+BbOsQOadUkEPO3nCG2SF2
+	 BlMicmPB1YFXu50AglkOPVb26lEuTGKo1Fi5wApRcOndP61xiV5Lu9cBJ1vxpkiay2
+	 SgP8eE8pULZpfMeX5rZLRXb3JrSnvPETacAkAzufepbJltUxb6ZoKTlxtZ2w3GMwZY
+	 nRKk9Off1WFTw==
+Date: Wed, 30 Oct 2024 17:36:06 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/5] dt-bindings: media: camss: Add qcom,sdm670-camss
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Richard Acayan <mailingradian@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-media@vger.kernel.org
-References: <20241011023724.614584-7-mailingradian@gmail.com>
- <20241011023724.614584-9-mailingradian@gmail.com>
- <785c82d5-549d-454b-86bf-a00a39e6f521@linaro.org>
- <a230de8f-a11d-41c1-9bc6-7e06e850b51d@linaro.org>
- <20241011144129.GA2295617-robh@kernel.org>
- <ca89bbae-193b-4636-b1a6-ff0c9cecae58@linaro.org>
- <CAL_JsqKwaT4q-VHqfLXAabdGtKvRtnh7SFiELpyXDGVRRpOoYQ@mail.gmail.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <CAL_JsqKwaT4q-VHqfLXAabdGtKvRtnh7SFiELpyXDGVRRpOoYQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Markus Mayer <mmayer@broadcom.com>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Conor Dooley <conor+dt@kernel.org>, Aurelien Jarno <aurelien@aurel32.net>, 
+ Olivia Mackall <olivia@selenic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Device Tree Mailing List <devicetree@vger.kernel.org>, 
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Francesco Dolcini <francesco.dolcini@toradex.com>, 
+ Herbert Xu <herbert@gondor.apana.org.au>, 
+ Daniel Golle <daniel@makrotopia.org>, 
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+In-Reply-To: <20241030213400.802264-2-mmayer@broadcom.com>
+References: <20241030213400.802264-1-mmayer@broadcom.com>
+ <20241030213400.802264-2-mmayer@broadcom.com>
+Message-Id: <173032776639.2368457.1775095489562466317.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: rng: add binding for BCM74110 RNG
 
-On 10/30/24 23:06, Rob Herring wrote:
-> On Wed, Oct 30, 2024 at 9:20 AM Vladimir Zapolskiy
-> <vladimir.zapolskiy@linaro.org> wrote:
->>
->> Hi Rob.
->>
->> On 10/11/24 17:41, Rob Herring wrote:
->>> On Fri, Oct 11, 2024 at 09:31:06AM +0100, Bryan O'Donoghue wrote:
->>>> On 11/10/2024 08:14, Vladimir Zapolskiy wrote:
->>>>>
->>>>> Two most recently added CAMSS IP descriptions (qcom,sm8250-camss.yaml and
->>>>> qcom,sc8280xp-camss.yaml) do implement sorting by reg values, I believe
->>>>> from now on
->>>>> it should be assumed that all subsequently added CAMSS IP descriptions
->>>>> to follow
->>>>> the same established policy.
->>>>
->>>> My preference is sort by address not sort by name => we sort the device
->>>> nodes themselves by address so it seems more consistent to sort by address
->>>> inside of the devices too.
->>>
->>> Strictly speaking, the values of addresses are unknown to the binding,
->>> so you can't sort by address. However, if something is truly a single
->>> block, then the offsets are probably fixed in order by offset makes
->>> sense. But when a block is changed, any rule on sorting may go out
->>> the window since we add new regions on the end.
->>
->> Exactly, and this is an argument why the sorting is a subject to a device
->> driver policy, kind of any sorting order is equally bad. Sorting 'reg'
->> values by addresses helps to avoid a notorious problem with unit addresses.
+
+On Wed, 30 Oct 2024 14:33:54 -0700, Markus Mayer wrote:
+> Add a binding for the random number generator used on the BCM74110.
 > 
-> What notorious problem?
+> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
+> ---
+>  .../bindings/rng/brcm,bcm74110.yaml           | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rng/brcm,bcm74110.yaml
 > 
 
-Here the problem I reference to is the problem of an incorrespondence between
-device tree node unit address and the address of the first value of 'reg'
-values.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Having a sorting by addresses allows to grasp IO ranges easily, and setting
-device tree node unit addresses to some almost arbitrary chosen value from
-the middle of IP's IO range is suspicious and confusing in my opinion.
+yamllint warnings/errors:
 
->>
->>> This one in particular I have to wonder why csiphy is not a separate
->>> node.
->>
->> There were dicussions about it in the past, and kind of enforced outcome of
->> the discussions is to keep all CAMSS IP components together under one huge
->> plain device tree node. I personally dislike this approach, but obedience
->> is the way to get things merged.
-> 
-> Who are you saying would be in the way to get things merged? DT
-> maintainers? I feel certain I would have pushed for separate blocks,
-> but I'll defer to people that know the h/w. I can't learn the details
-> of everyone's h/w. If they get it wrong, it's their problem not mine.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/rng/brcm,bcm74110.example.dtb: /example-0/rng@83ba000: failed to match any schema with compatible: ['brcm,bcm74110-trng']
 
-I had this discussion with Qualcomm/CAMSS maintainers long time ago, it
-may be restarted, if there is a necessity.
+doc reference errors (make refcheckdocs):
 
->>>> Which means sorting reg by address and irq too.
->>>
->>> IRQs make little sense to sort IMO.
->>
->> For all non-reg properties with a present *-names property the sorting
->> order should be done by *-names property. Only 'reg' is very special.
-> 
-> No. If you had 'main' and 'error', I'd put 'main' first. If they are
-> somewhat equal (e.g. rx, tx), then sure, sort them however you like
-> (assuming no existing binding). The only real rules here are how new
-> entries should be added (on the end). Otherwise, there is no policy.
-> 
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241030213400.802264-2-mmayer@broadcom.com
 
-Here in the proposed terms the start of an IO region is 'main', while
-some value in the middle of it (the first one in alphabetical sorting)
-is too secondary to dictate the device tree node unit address, I believe.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
---
-Best wishes,
-Vladimir
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
