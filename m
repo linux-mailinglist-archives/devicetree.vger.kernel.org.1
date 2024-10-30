@@ -1,63 +1,69 @@
-Return-Path: <devicetree+bounces-117483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 592BF9B685D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 16:51:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99DF99B6858
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 16:51:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D4031C216A2
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 15:51:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBBC31C21523
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 15:51:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71ABB2141C9;
-	Wed, 30 Oct 2024 15:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E5D72141AD;
+	Wed, 30 Oct 2024 15:50:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Gyj03+rM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A7F213159;
-	Wed, 30 Oct 2024 15:50:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AE80213EDE
+	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 15:50:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730303460; cv=none; b=etgEPKm4JqHgCC3b4k76xQO4GyjBgBz8XUOJMfrhMV5kx793bgnDfiaHnF19pUo81sho+s5wQ644hXRNV3frWuzzlcbvBalfISPyLy63/D+6TUZruKLSsOcLgbbxRpVhTkczuSvC/DiDKYCzSpLqMgIstD4n/ivqcEnS+no7hsM=
+	t=1730303459; cv=none; b=Kx3rikex/XIn7mggCLojydRwzAGeqKXKm/7+KXOjfyuadGrD+13k7uZQ9OsG4otTh3L7JJJ+CquncBpyIvlQ10fLnLCzbJ+tanb2AqpEPgpGxZ/JgaYNAYjYAyqyL1v/d6mBNO3y0BLa1xF9vHwBarMfMarAk0NiTAcuEeH0ooQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730303460; c=relaxed/simple;
-	bh=oAx3qPoGk7/l7cVyiHCfFylfOD6C1GRnUkmHon3tzRY=;
+	s=arc-20240116; t=1730303459; c=relaxed/simple;
+	bh=23QkwfFcqhnnTu6FmefpKd4JdMrTveNk4xSWj2luJoQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V+GMJ4psQsncJh+b60+WYamwLCoWP/rJpDcku9d2DybExNnbEqFn2VIuAIt5fUrhThW6HVzZK2mcRWWt++hySuv2VRb4vSr11RCDk+tQsga5jhdW7+ibZMfWbiSJPwvOSCVCZPDmlxx6WeOHAC5Yq4SyrjBzTqqHnslsegJl4Uc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-6e8063533b5so67980537b3.1;
-        Wed, 30 Oct 2024 08:50:57 -0700 (PDT)
+	 To:Cc:Content-Type; b=n9M9r8zcQkDPUoM5dK34qNOJnRwFSDv7mc84xQ2A3UgQYxNMT038yVqU3TOCRJiurjWnyrOm5a26325SD0Yku20mV4H6hQk0IjaAMnGToA2y08LkmlDy17JG1EvCF95SxjQbOOjETow68ByeLSHtLMZLBRAtsattyWyP+6rRKdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Gyj03+rM; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-37d51055097so15101f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 08:50:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1730303456; x=1730908256; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4tUz2kqXiEvA7bbw4cwgFhsmyYBGaK3uoBn9S65jRVo=;
+        b=Gyj03+rMxVw5QRuIVtj1VrmkgdPmOOGjXpq0cfZIX6v5soRoj1HjX7pBQH+khONYkL
+         LkEYQFSSi2JJbFlZ8wzJFiaiitloJxBJXyEOxCgyhdo6YCUqvIRZqTvYHxXmBdrBnwke
+         fI92uq1a93ZkclaFfRsiiPlLPGWOg+Kku+iVAkuGL0au2OpZjBmzzedh1gNf1BylDJyf
+         cZiMrhWJyuAsnHSBK5J3PlvDZuJ1WcSL3C/FIN5RtC2eXWOZG3ptYEibXtbrVxKOYb5X
+         ngja6u3Xr0+RWH2fiix3Pobk+Pgm8E4DTHgW2wMPuVsq+Hji+sa5M/8jd+SWta8wG/tw
+         vs2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1730303456; x=1730908256;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EC2kAOyhBeu2A9ruzL2chXlQlK+zyVVG5peyIKTpvEg=;
-        b=ksxmZvlEGM52NJyCvE5jb/NKfW/8qwn7AGUWr7XXYgKin1XpG66FvTRc53v7Q6XlzL
-         o41TSJTcaqydnXeSOzWUDss2yYT21iEYBR7jHkn/DgxnjO95xANUqB3sztSMJG99VYDL
-         o4CXX3Naeaie4GtMhWgW4Mp4dqUO/QoH4wb3CyUU114/HEJCq6cY4YpljYoRDW+2OewU
-         TLC++XXfew45vzFTYj9RZWFUqVrDslMzccgfWzqX4r2OvyA0Xjcuw4YU3ViwFGRHIeCM
-         IDIAaTad94pre7y80gfCDE0cekPgPqEqpe0p+R4soQwJCiSTATSwNuisE3pd4W9XfY5k
-         FaTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU+l68QAg+5A1DHMfuiw8z2Iiyp/cXoLFEyI3jlq2Vk9MvrQw8PaC/a/uNA/ArliGbF3KKI9SKPt1tQczmu@vger.kernel.org, AJvYcCWINzeOVvfFZ8FbQOBCEvSaiUuHL/ycyPZXd3DoM7/YDkLTWUWkOOIO3UEdIaskf6Xs85WX6itR7/FB@vger.kernel.org, AJvYcCWLTGdeN9MOKTlsiQCgdPdIL9cnI/TauJ1vMNyVAK/RJQA4MbV1GMXdsEzlkhe63JLPkTS0T9DsVvNH@vger.kernel.org, AJvYcCX/G0cth1BjTaJzN09mmg3MDqpZbMkuamooS53+liQhqoEPSILa7ASNT6FMDHY6XPcoWJcE4qvQmzHh@vger.kernel.org, AJvYcCXZWgDLwUxQ/tNyy5cQM6p2O3bEpXp65euKCBbHybBUAyPg749GmJN/hjvY3f/oewDI6o+UrD+JJ6Ea2G7zL8j+oZ8=@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywpn8Sbaw3UvfAcQq1hPxxoRiBssoqQYCYcQiBYoFWokvnkqT/0
-	jCkNO6Csb9hSPNji907LBDg2r23ijAoMXBRToJjOfUztgDntAijWSP9M/4cD
-X-Google-Smtp-Source: AGHT+IEuUOKH+yMy6MkJxbn19btFh4k8iJ1oEh5BBRjfFxg6c7gVxEogkJiXVgqg4jSfGWsRSI6wWw==
-X-Received: by 2002:a05:690c:4b93:b0:6e3:2630:2a0c with SMTP id 00721157ae682-6e9d8a6ffe0mr177605167b3.26.1730303456544;
-        Wed, 30 Oct 2024 08:50:56 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e9c6bafd23sm24506467b3.29.2024.10.30.08.50.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Oct 2024 08:50:55 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6e8063533b5so67980247b3.1;
-        Wed, 30 Oct 2024 08:50:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUuxBdOf7hE8HR1yB/tp+u2tacIsTYInkDgN350TYixnrcf3TwbWtBiNS8QZVJf3B62IF3RY7UgWN+bR72E@vger.kernel.org, AJvYcCVfNJar3qEzxg8w/FIrD6iZKfRrT/j4QrA4coJl1+bCbMtcaIH0zu5Vz0U3YDOBdNkhFId5JZ3JQuH7@vger.kernel.org, AJvYcCW16hkXzV7uZNyGdjZWBJEfKb56H5N0nHrAd+NBQbFaGFPPdEkbJBMftRv7dxQwkoDWGE44WIPSfSOS@vger.kernel.org, AJvYcCWowukWMITJfAEKzG/d5pFmX6kuRbigQCN58QZlpKmKOwZAjhUvNG7vJEfYjGlCnxDWh93bEECUBjDMYKg90S6Yz+s=@vger.kernel.org, AJvYcCXmYduKC2YF6tKA4tVkttUrgPZYw426cH4Vy96/5jw8Kl3En82tWcwIEHQhkhMD2DXUZH9KfNC4aTxc@vger.kernel.org
-X-Received: by 2002:a05:690c:60c1:b0:6de:2ae:811f with SMTP id
- 00721157ae682-6e9d8b34729mr183550047b3.35.1730303455642; Wed, 30 Oct 2024
+        bh=4tUz2kqXiEvA7bbw4cwgFhsmyYBGaK3uoBn9S65jRVo=;
+        b=CZvbvfP/nMIhrV5yAAM6OOTsusdn5RofMKEuRTDXCK2F9vUxJ2zA8Q5wg5OlgU5Gll
+         PKazrVBvN2tOngRoe2D8DFufdft86wxAJBV6wFzhm+h9X/Jt5zN7dLlzfw6bXdm+xTYr
+         2CKy4E2NxD9K8s5Z7x3G2qEAO0OeoLyQTZP9kQrd52MEkrspsxSmSQy/RpRKbl4b80Vz
+         1vRJHzIBgp3OfaOfwI/V+E9688fa9AhZEHgxsWE+r0K5OG//Rm52ZwaNzlBQC7iS/gY2
+         gAl2O4CzWGsbQ4sIQgcNOIe289PGXFsICD93YDKuGK8vymDlqnPtuhJ4CgRsmROZVJQv
+         GT0g==
+X-Forwarded-Encrypted: i=1; AJvYcCVK9JOi4krcw8CY/YQGe8QAZLhvC6ZC+YKqzShOEnQsuL5OeJ91shPWarp6wfPfm8fiWXqJOXnez8c1@vger.kernel.org
+X-Gm-Message-State: AOJu0YyN6LtSU4ehVGXDkH6Wy/5PgNc5Tu7sQwUIDqWyNhp5w7unGrPt
+	oOdGHRXh3ryLQCeWe+kW1N9WQfNMnevP0ds5YI/KOIA3OOdUj+TrY/9Z9rwOp6kCULoXp1L8h3K
+	rFSA8TYWLtahC6XfSvDLQAzjW5jKXKc1u/nnJ
+X-Google-Smtp-Source: AGHT+IEc4hJ+rtP+KQ/RIg3dPbRWwJKL7gyG+QH18iBOl9mv4RIPLTcwUETKs5bjQ5mrWWVEy9CGfThEOh7YtbUIFX4=
+X-Received: by 2002:a5d:564e:0:b0:37d:4e80:516 with SMTP id
+ ffacd0b85a97d-38061192318mr11888207f8f.34.1730303455924; Wed, 30 Oct 2024
  08:50:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,69 +71,56 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241030110120.332802-1-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241030110120.332802-1-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
+References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-16-dakr@kernel.org>
+In-Reply-To: <20241022213221.2383-16-dakr@kernel.org>
+From: Alice Ryhl <aliceryhl@google.com>
 Date: Wed, 30 Oct 2024 16:50:43 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUwW98riCJ0VfZMzf59Lb4-gRm740z7mnSDQDTfQSJzWw@mail.gmail.com>
-Message-ID: <CAMuHMdUwW98riCJ0VfZMzf59Lb4-gRm740z7mnSDQDTfQSJzWw@mail.gmail.com>
-Subject: Re: [PATCH v5 00/10] Add RTC support for the Renesas RZ/G3S SoC
-To: mturquette@baylibre.com, sboyd@kernel.org, alexandre.belloni@bootlin.com
-Cc: Claudiu <claudiu.beznea@tuxon.dev>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, magnus.damm@gmail.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Message-ID: <CAH5fLghVDqWiWfi2WKsNi3n=2pR_Hy3ZLwY8q2xfjAvpHuDx=w@mail.gmail.com>
+Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
+ driver abstractions
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
+	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com, 
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com, 
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
+	daniel.almeida@collabora.com, saravanak@google.com, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Mike, Stephen, Alexander,
-
-On Wed, Oct 30, 2024 at 12:01=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev>=
+On Tue, Oct 22, 2024 at 11:33=E2=80=AFPM Danilo Krummrich <dakr@kernel.org>=
  wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> On the Renesas RZ/G3S SoC the RTC clock is provided by the VBATTB
-> IP. A 32 KHz crystall oscillator could be connected to the VBATTB
-> input pins. The logic to control this clock (and pass it to RTC)
-> is inside the VBATTB IP. For this, the clk-vbattb driver was added
-> (patches 01-03/12).
->
-> Patches:
-> - 01-03/10: add VBATTB support that provides the RTC clock
-> - 04-05/10: add the RTC driver
-> - 06-09/10: update the device trees with proper nodes to enable RTC
-> -    10/10: enable proper config flags for RTC to work on RZ/G3S SoC
->
-> Merge strategy, if any:
-> - clock patches (01-03/10) need to go though the same tree because of
->   patch 03/10 using the devm_clk_hw_register_gate_parent_hw() introduced
->   in patch 02/12
+> +/// Drivers must implement this trait in order to get a platform driver =
+registered. Please refer to
+> +/// the `Adapter` documentation for an example.
+> +pub trait Driver {
+> +    /// The type holding information about each device id supported by t=
+he driver.
+> +    ///
+> +    /// TODO: Use associated_type_defaults once stabilized:
+> +    ///
+> +    /// type IdInfo: 'static =3D ();
+> +    type IdInfo: 'static;
+> +
+> +    /// The table of device ids supported by the driver.
+> +    const ID_TABLE: IdTable<Self::IdInfo>;
+> +
+> +    /// Platform driver probe.
+> +    ///
+> +    /// Called when a new platform device is added or discovered.
+> +    /// Implementers should attempt to initialize the device here.
+> +    fn probe(dev: &mut Device, id_info: Option<&Self::IdInfo>) -> Result=
+<Pin<KBox<Self>>>;
 
-Once Mike/Stephen are happy with 02, I can queue patches 01-03 in
-renesas-clk.
+This forces the user to put their driver data in a KBox, but they
+might want to use an Arc instead. You don't actually *need* a KBox -
+any ForeignOwnable seems to fit your purposes.
 
-> - RTC patches (04-05/10) can go though RTC tree
-> - DTS and defconfig patches can go though Renesas tree
+Please see my miscdevice and shrinker patchsets for examples of how
+you can extend this to allow any ForeignOwnable.
 
-Patches 06 and 08 I can queue in renesas-devel soon.
-For 07 and 09, I am waiting for feedback from Alexandre on the RTC
-DT bindings.
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Alice
 
