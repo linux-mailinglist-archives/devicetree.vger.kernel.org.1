@@ -1,162 +1,195 @@
-Return-Path: <devicetree+bounces-117498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93BF89B6AFF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:28:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D389B6B4C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:49:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2512A1F2148C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 17:28:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97C691F22858
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 17:48:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB331BD9DB;
-	Wed, 30 Oct 2024 17:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F89719DF64;
+	Wed, 30 Oct 2024 17:48:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HIzn2okU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nr5PzKo7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE201BD9CB;
-	Wed, 30 Oct 2024 17:28:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D75B1BD9DD;
+	Wed, 30 Oct 2024 17:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730309306; cv=none; b=ZkVqbjY+g9lwzoPSpD5zX9I+TzvuW8L+t0aTjTcxJid2VwQIqbMVUJDxAr8Ktg7QyMM2A19R5P84hJQcjNpOGPYk/ZrZaXRW+CLW9Xmm3ihgu5xHZNYENkfgXzFypRI3ngc4zNr/KmjiArO+gBVr95nLM+hxIIsuHeQ+G6vHt/I=
+	t=1730310525; cv=none; b=Ke8ao9i20D4F0lLy1DnKANX6FAqn+Jwl+xP0cFLgD4/sslnNDX9ZUUZwQv2p5go2N5oecYDJpQnBd7W0R92RfIzxedOCxeeXTV5NAXSprZS1Enq1w3900fqEKaD3Mon63POsRx5aA48k9/otkSjdsFbwdK1ypFrcBf29s/XwqEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730309306; c=relaxed/simple;
-	bh=I+pOOGHMZI2SP6OFUnOB4ImhG03P+O3foWEohCD03YA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Y0Ob+bj4r66vxUFgsszBy7xtopFjq22ZXSVqBBjK09VYQBLlsMF0bR5Zc3HwFQob4tMhdANKN1Kd0InTYalvWLZ+/JnUCsuJXdQUSLCadR9geSkYtNgQQ3Cf4scKJIaVz+AShmS4O4vFqSnVBDbnQ9oefZaAwDyxUuWJNJvNJNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HIzn2okU; arc=none smtp.client-ip=209.85.210.171
+	s=arc-20240116; t=1730310525; c=relaxed/simple;
+	bh=S/CnkymRqaJT3ioMxi9DFh/1tiGv8xRkdVInnQUNGAw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=vABFi9OWf9hln/ARvNSD4RPI53hMO7Jam4n2RRaHhvmeafjbvJte/CXfTnXwJ1a8rPi4CqCmcvhmCWuZJ2HpsI3hULSE3jqNChAcAJJABhE1N/vFn2uqZiO22OTAi2xzrNnwoXNPc2TBbzQbXP27eHaKcEPp/HZntP8HvhNP/x0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nr5PzKo7; arc=none smtp.client-ip=209.85.208.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-720b173a9ebso54451b3a.0;
-        Wed, 30 Oct 2024 10:28:24 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2fabb837ddbso603281fa.1;
+        Wed, 30 Oct 2024 10:48:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730309304; x=1730914104; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MnkN8ptr3KGmpx2Uv+pp+uUkuHBCH11BckHc8GqWeDg=;
-        b=HIzn2okUNsJGA1yDQ62T5nhFz8JXJli5zSBbK/vxVBdYceEHL0ZPEVYhuVu29XSpi8
-         4pr4XBLwTdD72d4oYy1rXrRJkfjeHZl5p0IQjXVTOdvP95Yl9XD5Wz82FLUEjVMpGqwD
-         vl7IavGpluS/8tAu7s028/NKeLJRiJniS8VRYDQPMCKYUQadhl6/Lr+bsbg+Ywfkq0R/
-         MYExAnJv4ytgAK7gVKAZq/aNP5rArJEK0AR2ff04yWhuysCGLqiaal14jDcaekrAktNb
-         UgQfjUiKcEW0AfgrANK5ZRSSsQtKWF5NqSzlu35yozYtRAeETfcUHa8HG0d8DK3ZTC7o
-         2iTA==
+        d=gmail.com; s=20230601; t=1730310521; x=1730915321; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3c8WANbuwNQmIFyGiM0fFg9azajzbhCZ4zzBYom44vk=;
+        b=Nr5PzKo7lU/+i0ASAbL2EZHJ+HIT9AgM/lTggm5bc9OoV9DHYkO6M/e0v2NOnJh0VI
+         x5ogQJjyJwUsz+iU4bd4z34Tvdnf/K8LGbUjYsGyrCO4egxBLWV+YxX/5FMltwsv3Es8
+         qmlz20oOBGK+GiQFuELjgBm8ipv9SfCT5C64ezriWg2rTCstVyogeE7Rnsk1PRlkvoTy
+         WXwbVyaBKs9fsznU/N+ERS4iT5wkcWVYf5a1JOiQU9Hg+NaLqSbTX4P7Twg9uOSPQv5W
+         lTT0328hRjLR6LVVN8DQPxQVNjjTlZlLS6YXzstSwISR0odpnSWAMwYZDjmuwWFf+Oy4
+         mKLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730309304; x=1730914104;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MnkN8ptr3KGmpx2Uv+pp+uUkuHBCH11BckHc8GqWeDg=;
-        b=ERz/FPS/zkKswIz7WzXMP9Whfc4c68PBlhQ9FgjdjPWPID9IycRCLt3OdCzUg3sCML
-         1RfceAMw6eZeaESDYtiL0GDvRVx7uATUlrZ9lgpeKz8eOoYUls+wQWS4DxaEDhuOzq3g
-         AmGq0rS8N7+6RqGWIOt8xyHtMvwNyIyuzFWjGZXb70nM1k/icDClHlgJyWbfjKp9/Jc9
-         n3MaG6q5af9XCsbrhDiOTjidYio27yCQTYIDVKORbdpcT+SL9z5MvmIIO8I5zNHAXNkZ
-         1CoHNYDiaPiWAMkq7g/eZItIHN/2Dx5ALByeLzFEbtSHOGByOCcFfXisuC2zYVeV4vIs
-         lLQw==
-X-Forwarded-Encrypted: i=1; AJvYcCUt+WbiBbEJSzutStsa7f5kUYbvyPd+5h4aMJT6gxu4YF5SkhL4VGlgOBnAjtavC2Qzryz6Aj0iJWHD@vger.kernel.org, AJvYcCW37a84R/O+kc7JORiR92oG+B2Oo3qu48yRbN5t4knCbuOzzqIiAfVzKNBOdcZdlmzX0HlCuvOjPN+a0S/1@vger.kernel.org, AJvYcCXNZS0Pntqsqw/1Z0JiLH8nDErRXkleKyZj6MvC4KXAzV9ks5AWq/C8m94gYYlIbqiLBsaoMLy99Gw=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBM/PKxtxjHDWGfE8wltK6QaWMibQWXGzIVDQcItpAykeDSRzE
-	FKQ0SYK32D47zMPg4AVioqSbrWuJKrbOsIw61jJSwjiKfEKsZOixzucvr8+C7Utmj60CqcDN7Li
-	df6gCBhuVOo62QugBgd25ZUZ9LlbtjQ==
-X-Google-Smtp-Source: AGHT+IHW4Ei/MHebO474qYJ4FnNy3KOOcESKnX+HK1imXciZaQOAIYn479DmypH3MHAeRnnMNdgGnRLoV9bhVu1WXCI=
-X-Received: by 2002:a05:6a00:3c96:b0:71d:f4ef:6b3a with SMTP id
- d2e1a72fcca58-720b9db22bfmr624360b3a.21.1730309303938; Wed, 30 Oct 2024
- 10:28:23 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1730310521; x=1730915321;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3c8WANbuwNQmIFyGiM0fFg9azajzbhCZ4zzBYom44vk=;
+        b=LGRNhuIS8ORoRfdGl2WzdKlgwwPVWil+X5xhfYOYyAvp/XCcT39wrCkxpiolxQ262D
+         pqiMVW8XQhjJRdUo921kGR+UKOPrSPqi5CRY0O1bwfzRvYSEJoTMiFbCcYCikjs/aw36
+         D5kKmEuDOtR4EF9Q1dDEsE761cjstX/bfKz4yZ9WhJMkqj1B0Hl5GQSvytoXnpflo34z
+         Sth4xwiREi80YWoTqmTI7vfJqm8epdPC+K3fi1Kl1N46nU7Oc00f/RqK4tgYzR5L6y+W
+         JTVQ8nDANpQ2Ph7/pUG6KsmVYGVEIFP/alG7SUWPJYCuwWrpcuPHtotdJ0zPFEyb3bCq
+         vB5w==
+X-Forwarded-Encrypted: i=1; AJvYcCUW6x69MBc4Tdh2b4EiJhiPEe4n6SbxBYWo7ZR3jcjt1fwBBA32PvG/+rZ/2ywFLcQmimebE/Ez4ZEG@vger.kernel.org, AJvYcCXaE0JU93PrAye1nS9NsYIRhQyKhRAs9q89gguUDvelNewx/5sCTF2srNLeAVztv2CzrScjzHSABssDCNOt@vger.kernel.org
+X-Gm-Message-State: AOJu0YzksAx+QB5wOCnYMTx9s7CLoZmdWgsm7JbEESbpAqJLwXHSKGfK
+	levWc75RIqeSoRCSxvCyCTv9njjvMnKRyqYZNjDSfOHs9hKqVGbzx8JUUA==
+X-Google-Smtp-Source: AGHT+IF936HZvLKS36ZaGc+lnPVpTe4gcKZT85VFBeyPb+8M3ZNRhuEEpARe78myz2xA5w8VsI1TWQ==
+X-Received: by 2002:a2e:d09:0:b0:2fa:d7ea:a219 with SMTP id 38308e7fff4ca-2fcbe08857emr105624461fa.37.1730310520853;
+        Wed, 30 Oct 2024 10:48:40 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b3a088adesm587224766b.222.2024.10.30.10.48.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Oct 2024 10:48:40 -0700 (PDT)
+Date: Wed, 30 Oct 2024 18:48:38 +0100
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: sound: sprd,pcm-platform: convert to YAML
+Message-ID: <9fc646b70a73e7a6c513771d69b0edcd140f09d7.1730310275.git.stano.jakubek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240203165307.7806-1-aford173@gmail.com> <20241025080544.136280-1-mailinglist1@johanneskirchmair.de>
- <6d039ecf-0e48-415a-afd8-6bfce60081ae@kontron.de>
-In-Reply-To: <6d039ecf-0e48-415a-afd8-6bfce60081ae@kontron.de>
-From: Adam Ford <aford173@gmail.com>
-Date: Wed, 30 Oct 2024 12:28:12 -0500
-Message-ID: <CAHCN7xKevGWipBSch6gKVeJRT9Zb8QTchhxg3c=96XhnAvnjZw@mail.gmail.com>
-Subject: Re: imx8mp: HDMI display blank/black problems
-To: Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc: mailinglist1@johanneskirchmair.de, johannes.kirchmair@skidata.com, 
-	Laurent.pinchart@ideasonboard.com, airlied@gmail.com, 
-	alexander.stein@ew.tq-group.com, andrzej.hajda@intel.com, 
-	catalin.marinas@arm.com, conor+dt@kernel.org, daniel@ffwll.ch, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	festevam@gmail.com, jernej.skrabec@gmail.com, jonas@kwiboo.se, 
-	kernel@pengutronix.de, kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	l.stach@pengutronix.de, linux-arm-kernel@lists.infradead.org, 
-	linux-imx@nxp.com, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-pm@vger.kernel.org, 
-	maarten.lankhorst@linux.intel.com, marex@denx.de, mripard@kernel.org, 
-	neil.armstrong@linaro.org, p.zabel@pengutronix.de, rfoss@kernel.org, 
-	robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org, 
-	tzimmermann@suse.de, ulf.hansson@linaro.org, victor.liu@nxp.com, 
-	vkoul@kernel.org, will@kernel.org, Saravana Kannan <saravanak@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Wed, Oct 30, 2024 at 4:01=E2=80=AFAM Frieder Schrempf
-<frieder.schrempf@kontron.de> wrote:
->
-> Hi Johannes,
->
-> On 25.10.24 10:05 AM, mailinglist1@johanneskirchmair.de wrote:
-> > [Sie erhalten nicht h=C3=A4ufig E-Mails von mailinglist1@johanneskirchm=
-air.de. Weitere Informationen, warum dies wichtig ist, finden Sie unter htt=
-ps://aka.ms/LearnAboutSenderIdentification ]
-> >
-> > Hey,
-> > We had some problems with the hdmi on the imx8mp and wanted to leave, w=
-hat we found out about it, somewhere for others to find it.
-> >
-> > The problem was that our hdmi display sometimes stayed blank after hot =
-plugging and sometimes at startup. On older kernel versions 6.6 we did not =
-have the problem with the not mainlined hdmi patches.
-> > We tracked the commit down that introduced the problem for us. It was t=
-he following =E2=80=9Cdriver core: Enable fw_devlink=3Drpm by default=E2=80=
-=9D  https://lore.kernel.org/lkml/20231113220948.80089-1-saravanak@google.c=
-om/
-> > So we switched back to FW_DEVLINK_FLAGS_ON via kernel parameter. Don=E2=
-=80=99t really understand what the problem with RPM is.
-> >
-> > So, this information is just for reference. Maybe someone has an idea w=
-hat is going on here. And how to fix the problem in a more proper way.
->
-> Thanks for investigating and sharing your results!
->
-> I'm seeing the same symptoms and previously found out that this is
-> related to LCDIF underrun errors. See [1] for more information.
->
-> Adam has also started this thread: [2].
->
-> Anyway, knowing that this is related to fw_devlink=3Drpm is really
-> helpful. I just tried with fw_devlink=3Don and wasn't able to see any
-> issues anymore. So this confirms your findings.
+Convert the Spreadtrum DMA plaform bindings to DT schema.
+Adjust filename to match compatible.
 
-I was off in the weeds thinking there was something wrong in timing
-and/or a race condition around the PLL or something.  This is good
-news.
-Please forgive my ignorance, what does fw_devlink do?  Is there
-something we can do in the driver itself to force its behavior?
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+ .../bindings/sound/sprd,pcm-platform.yaml     | 56 +++++++++++++++++++
+ .../devicetree/bindings/sound/sprd-pcm.txt    | 23 --------
+ 2 files changed, 56 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/sprd,pcm-platform.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/sprd-pcm.txt
 
-adam
->
-> I hope that some of the driver framework and runtime PM experts can help
-> to find out what is actually wrong and how the correct fix might look lik=
-e.
->
-> I'm also CC-ing Saravana who authored the change from fw_devlink=3Don to
-> fw_devlink=3Drpm to see if they have anything to add.
->
-> Thanks
-> Frieder
->
-> [1]
-> https://patchwork.kernel.org/project/linux-phy/cover/20240904233100.11461=
-1-1-aford173@gmail.com/#26014057
-> [2]
-> https://lore.kernel.org/imx/8cfd3052-c85a-4235-b9b8-6d2929e9e455@kontron.=
-de/T/
+diff --git a/Documentation/devicetree/bindings/sound/sprd,pcm-platform.yaml b/Documentation/devicetree/bindings/sound/sprd,pcm-platform.yaml
+new file mode 100644
+index 000000000000..c15c01bbb884
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/sprd,pcm-platform.yaml
+@@ -0,0 +1,56 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/sprd,pcm-platform.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Spreadtrum DMA platform
++
++maintainers:
++  - Orson Zhai <orsonzhai@gmail.com>
++  - Baolin Wang <baolin.wang7@gmail.com>
++  - Chunyan Zhang <zhang.lyra@gmail.com>
++
++properties:
++  compatible:
++    const: sprd,pcm-platform
++
++  dmas:
++    maxItems: 10
++
++  dma-names:
++    items:
++      - const: normal_p_l
++      - const: normal_p_r
++      - const: normal_c_l
++      - const: normal_c_r
++      - const: voice_c
++      - const: fast_p
++      - const: loop_c
++      - const: loop_p
++      - const: voip_c
++      - const: voip_p
++
++required:
++  - compatible
++  - dmas
++  - dma-names
++
++additionalProperties: false
++
++examples:
++  - |
++    platform {
++      compatible = "sprd,pcm-platform";
++      dmas = <&agcp_dma 1 1>, <&agcp_dma 2 2>,
++             <&agcp_dma 3 3>, <&agcp_dma 4 4>,
++             <&agcp_dma 5 5>, <&agcp_dma 6 6>,
++             <&agcp_dma 7 7>, <&agcp_dma 8 8>,
++             <&agcp_dma 9 9>, <&agcp_dma 10 10>;
++      dma-names = "normal_p_l", "normal_p_r",
++                  "normal_c_l", "normal_c_r",
++                  "voice_c", "fast_p",
++                  "loop_c", "loop_p",
++                  "voip_c", "voip_p";
++    };
++...
+diff --git a/Documentation/devicetree/bindings/sound/sprd-pcm.txt b/Documentation/devicetree/bindings/sound/sprd-pcm.txt
+deleted file mode 100644
+index fbbcade2181d..000000000000
+--- a/Documentation/devicetree/bindings/sound/sprd-pcm.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-* Spreadtrum DMA platform bindings
+-
+-Required properties:
+-- compatible: Should be "sprd,pcm-platform".
+-- dmas: Specify the list of DMA controller phandle and DMA request line ordered pairs.
+-- dma-names: Identifier string for each DMA request line in the dmas property.
+-  These strings correspond 1:1 with the ordered pairs in dmas.
+-
+-Example:
+-
+-	audio_platform:platform@0 {
+-		compatible = "sprd,pcm-platform";
+-		dmas = <&agcp_dma 1 1>, <&agcp_dma 2 2>,
+-		     <&agcp_dma 3 3>, <&agcp_dma 4 4>,
+-		     <&agcp_dma 5 5>, <&agcp_dma 6 6>,
+-		     <&agcp_dma 7 7>, <&agcp_dma 8 8>,
+-		     <&agcp_dma 9 9>, <&agcp_dma 10 10>;
+-		dma-names = "normal_p_l", "normal_p_r",
+-			"normal_c_l", "normal_c_r",
+-			"voice_c", "fast_p",
+-			"loop_c", "loop_p",
+-			"voip_c", "voip_p";
+-	};
+-- 
+2.43.0
+
 
