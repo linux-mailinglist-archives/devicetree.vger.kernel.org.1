@@ -1,109 +1,207 @@
-Return-Path: <devicetree+bounces-117485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E2549B6885
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 16:55:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56F9F9B68C8
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 17:04:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C036F285A05
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 15:55:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12881288329
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 16:03:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB65C2141BA;
-	Wed, 30 Oct 2024 15:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AAAE213EC1;
+	Wed, 30 Oct 2024 16:03:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="II0PQP69"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KDDeMcYy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842502141B5;
-	Wed, 30 Oct 2024 15:55:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52D3C36126;
+	Wed, 30 Oct 2024 16:03:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730303730; cv=none; b=QRMEUOS+A9MdoeKLfbG9E0TV/Us4eCzQUTJPz/9iYEy+wkADMqB2aItynUALOOAPAJMwvBmSlfz9XyCAXfczyq1JrxlUZVMUgeQdVCNZsOJVyKqZeGPY5WrDBlyQjyyhHcwujTsLczEegytmMuVbI6zXqWMQYlpghIf4Tc/8e9g=
+	t=1730304235; cv=none; b=af5t3Qh8wZWrrA+wFRP8AJQ/mCFzMsjD+PCUrg7R8y4q3VDr0h4Ime6St3VOt0miIupyV8O3s7+WjbL7xe8yX86ARIo4WAl6cn/69rDAwCjSI8EczgdNrA2922nsurcbCTzvu4DfSv72WKzKQTNmpsBuXW+cb09zZ1gMaaFAZec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730303730; c=relaxed/simple;
-	bh=3yyLl30TQjYKD071Dpap+W12aDnptjFmDQr9KsgJj4U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WAYXw3vMHugbSbXEJk300/OkuDToPYQv/eQGwvPTKIeyuVRVQVFOAZpu824VAxRi5MXhA2yAqX9LXksqX1BkVMggT2YkpHL+N03nXERqWKPL4RNL8FqF/6K3t9diiaW6gj/rgKT7au+8wocsIfyOgL21kqXf5VqxlWYRw+kczxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=II0PQP69; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03BDEC4CECE;
-	Wed, 30 Oct 2024 15:55:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730303730;
-	bh=3yyLl30TQjYKD071Dpap+W12aDnptjFmDQr9KsgJj4U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=II0PQP69uWeP8lH2TXSIqUAQTe8WyNMJpjFfn+2Ctqok/d+umG4MHgWALYdMPIzVY
-	 mCKwu5o+4F+M0RaJEHnflVbiau/dHaakOVDDWkC2gejogLJ3G3UFyb65te+GHzG8LP
-	 09bMmB/73rZFHV7tiJS9uTCZh7nqqsam6un7bSc2ygu25rAoUPD785aZHTMA/tSYYa
-	 FZbCf6ZRYSopkB5ThsQNKWjF+5kmXV1j/+cWRSX3yxE3zU03j/r8TC1+9bdLCBFmsZ
-	 zHJWnFjAUtwG+smzYdbgEPbqgk+ujO4X5KRB8q9jZjBSWYo9oEeqdaaLo3J+MhKlJj
-	 /9Dh9N2CvzTEQ==
-Date: Wed, 30 Oct 2024 15:55:24 +0000
-From: Mark Brown <broonie@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	David Jander <david@protonic.nl>,
-	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH RFC v4 02/15] spi: add basic support for SPI offloading
-Message-ID: <e1b4f91a-ac94-4939-90eb-fc10e9a72ee9@sirena.org.uk>
-References: <20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
- <20241023-dlech-mainline-spi-engine-offload-2-v4-2-f8125b99f5a1@baylibre.com>
+	s=arc-20240116; t=1730304235; c=relaxed/simple;
+	bh=8MLDBn7mU2G6eGwIVqX/nGEK1NGlKs8yV/EOwYpdu7Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NcWvzSgjCFSG0Vu9B3oly2XxU4FiPpjsO6OpZb6SWd852K0PP2NzVq1sP2CEreM/cGByfyloaf63b5wskD/vUHLGigSRp3jGMar+BcwVGZjM17Tz8SUWtKOREqOPANokhavt/2al487m4TMepqO9LnCSqm1vwcOr7ML4v3OI+GM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KDDeMcYy; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-37d4ac91d97so32114f8f.2;
+        Wed, 30 Oct 2024 09:03:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730304232; x=1730909032; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=loh0zeo2kdsDuCCuROMVcSaSS8mgdLqRUDrIHMoopBQ=;
+        b=KDDeMcYywvGN79xZP3ghu5cm2Xpo6NhOQiZSxDuyBz6OyNbAa2IEwhNidt8i0wM5Ln
+         j/VzrurUVOXeL0s+YNM1Gk9r0xNCDPH0KHx/hqbgt+nLwbv1ogKVLdofHUB3WdePfZmp
+         jPtpdDZI2mGn1tjiYTfVwNKKaECmkCKFg9i/YK4vQ3AZp+H/H7BH2dIPo8cUOIsI3cel
+         rknRjafUj6edXfQ1S4/xYZkB+wwlu2SXOT4PtmR7wxBPG2M9K5QiVTdOMzbmE47sCH22
+         l0cCPQg6DFY+mRIwYr9wdVwVCAd6R8byNvHtepGliYXVCagC2YKwX9U9ThY9JzIzClPn
+         f6CA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730304232; x=1730909032;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=loh0zeo2kdsDuCCuROMVcSaSS8mgdLqRUDrIHMoopBQ=;
+        b=h4iiMsc6byTAHWdVm4+e/6aWMIEJuBXApxI2/RhnIQYfpJiaxeXxqd6wpbjddq8zFp
+         AZHHKVEZyvCtdh2sq2NCy28OmcDJgceSbzapqFpCyr6QK8x+R1NLLwK0Q1v8DnDEKipr
+         dwCAVn3tKlfa6bYR9Cxk/082h8cuh+UxkZc2nas50xUuQ9oiRpgpgWFpMqEUG0eVs/Lg
+         PlbJufz9D81qq/jbSuwaEWB3YRcbGGTioMF/G99QmZpWNXegXUZM2VH0U3U9fcZPtH78
+         03Wnygy40qHYaZfhC+sYb0TGwPP4JOzN7DigFO0TdK6UwoX4rxqDK23gFrJc3PUX8hxv
+         X8pQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVpLIWqx058goMdbnwE3+Yb01/i5iBT/85ZY6ezv4TQc0ggJQYkHtUaftiPy5n9A+sez5Qs7xmHeco/YDXQ@vger.kernel.org, AJvYcCVx0cu7/9bFrXlXf7kxDgbcQgS0xXmEdMqXkMnbq65X0R80tQYg6OGcoZSI4nMpj9oXhOlQgVnyhAFi@vger.kernel.org, AJvYcCXPlva0Kf4U0vbMyz3t5YUw1DRGmkWdQWX0sm9Eig2upOhopdwGDtnn4NxLufKu8WLLD1L5MYBzJiLrVhuGrm0=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0/uMtUFgyV2ifKrIg0BFqLaPIBT0cOrMDbY5HOMgxShdC6ByJ
+	kvF6Ws5qVG7sLawKxCDJuQrlzHG8R8seQH51cv2zqAkWOG6fdPY7
+X-Google-Smtp-Source: AGHT+IHiqK+pe4ogZgBOrg0REvXdAqXeZPpccBdO2od0LtmYHMbEebXDNuf+mtX00E8V6lrZPBGUvg==
+X-Received: by 2002:a05:6000:1ccc:b0:37d:4f69:c9b with SMTP id ffacd0b85a97d-380611e0c40mr14299216f8f.35.1730304231297;
+        Wed, 30 Oct 2024 09:03:51 -0700 (PDT)
+Received: from ?IPV6:2003:df:bf0d:b400:dc52:63bc:ee84:76b9? (p200300dfbf0db400dc5263bcee8476b9.dip0.t-ipconnect.de. [2003:df:bf0d:b400:dc52:63bc:ee84:76b9])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b70d5csm15788527f8f.89.2024.10.30.09.03.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Oct 2024 09:03:50 -0700 (PDT)
+Message-ID: <79c47555-c9e9-4ff6-8c43-c7c26a91afd4@gmail.com>
+Date: Wed, 30 Oct 2024 17:03:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wIB7CppBQdb9BVMQ"
-Content-Disposition: inline
-In-Reply-To: <20241023-dlech-mainline-spi-engine-offload-2-v4-2-f8125b99f5a1@baylibre.com>
-X-Cookie: I feel partially hydrogenated!
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 2/3] rust: Add bindings for device properties
+To: Rob Herring <robh@kernel.org>, Alice Ryhl <aliceryhl@google.com>
+Cc: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
+ Saravana Kannan <saravanak@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+References: <20241025-rust-platform-dev-v1-0-0df8dcf7c20b@kernel.org>
+ <20241025-rust-platform-dev-v1-2-0df8dcf7c20b@kernel.org>
+ <CAH5fLgjhiLUYPgTt_Ks+L-zhWaQG5-Yjm-Y3tfh2b2+PzT=bLg@mail.gmail.com>
+ <CAL_JsqJWPR-Q=vsxSvD7V9_v=+om5mRuW9yYNqfavVRUwH9JFw@mail.gmail.com>
+ <CAH5fLgiXPZqKpWSSNdx-Ww-E9h2tOLcF3_8Y4C_JQ0eU8EMwFw@mail.gmail.com>
+ <CANiq72kaidDJ=81+kibMNr9jNxg467HjOm9C_4G7WRvaiddGvg@mail.gmail.com>
+ <CAL_Jsq+T6T_3p2C62U3v4aSjm_oc-Ycjxi_ckF0ufh=JJDz=rg@mail.gmail.com>
+ <CAH5fLggCDiKUu_dvJZeJr8UD5RvUpqRJbdYKf1F3_MvCdOVK6g@mail.gmail.com>
+ <CAL_JsqL+b-f5K24qTxyA09c_QPeb07s4Hb=s1VqrdksBB4BQ=Q@mail.gmail.com>
+Content-Language: de-AT-frami
+From: Dirk Behme <dirk.behme@gmail.com>
+In-Reply-To: <CAL_JsqL+b-f5K24qTxyA09c_QPeb07s4Hb=s1VqrdksBB4BQ=Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+On 30.10.24 15:05, Rob Herring wrote:
+> On Wed, Oct 30, 2024 at 3:15 AM Alice Ryhl <aliceryhl@google.com> wrote:
+>>
+>> On Tue, Oct 29, 2024 at 8:35 PM Rob Herring <robh@kernel.org> wrote:
+>>>
+>>> On Tue, Oct 29, 2024 at 1:57 PM Miguel Ojeda
+>>> <miguel.ojeda.sandonis@gmail.com> wrote:
+>>>>
+>>>> On Tue, Oct 29, 2024 at 7:48 PM Alice Ryhl <aliceryhl@google.com> wrote:
+>>>>>
+>>>>> One option is to define a trait for integers:
+>>>
+>>> Yeah, but that doesn't feel like something I should do here. I imagine
+>>> other things might need the same thing. Perhaps the bindings for
+>>> readb/readw/readl for example. And essentially the crate:num already
+>>> has the trait I need. Shouldn't the kernel mirror that? I recall
+>>> seeing some topic of including crates in the kernel?
+>>
+>> You can design the trait to look similar to traits in external crates.
+>> We did that for FromBytes/AsBytes.
+>>
+>> I assume you're referring to the PrimInt trait [1]? That trait doesn't
+>> really let you get rid of the catch-all case, and it's not even
+>> unreachable due to the u128 type.
+> 
+> It was num::Integer which seems to be similar.
+> 
+>>
+>> [1]: https://docs.rs/num-traits/0.2.19/num_traits/int/trait.PrimInt.html
+>>
+>>>> +1, one more thing to consider is whether it makes sense to define a
+>>>> DT-only trait that holds all the types that can be a device property
+>>>> (like `bool` too, not just the `Integer`s).
+>>>>
+>>>> Then we can avoid e.g. `property_read_bool` and simply do it in `property_read`.
+>>>
+>>> Is there no way to say must have traitA or traitB?
+>>
+>> No. What should it do if you pass it something that implements both traits?
+>>
+>> If you want a single function name, you'll need one trait.
+> 
+> I'm not sure I want that actually.
+> 
+> DT boolean is a bit special. A property not present is false.
+> Everything else is true. For example, 'prop = <0>' or 'prop =
+> "string"' are both true. I'm moving things in the kernel to be
+> stricter so that those cases are errors. I recently introduced
+> (of|device)_property_present() for that reason. There's no type
+> information stored in DT.  At the DT level, it's all just byte arrays.
+> However, we now have all the type information for properties within
+> the schema. So eventually, I want to use that to warn on accessing
+> properties with the wrong type.
+> 
+> For example, I think I don't want this to work:
+> 
+> if dev.property_read(c_str!("test,i16-array"))? {
+>     // do something
+> }
+> 
+> But instead have:
+> 
+> if dev.property_present(c_str!("test,i16-array")) {
+>     // do something
+> }
+
+I think we have "optional" properties which can be there (== true) or
+not (== false). Let's assume for this example "test,i16-array" is such
+kind of "optional" property. With what you gave above we need two
+device tree accesses, then? One to check if it is there and one to
+read the data:
+
+let mut array = <empty_marker>;
+if dev.property_present(c_str!("test,i16-array")) {
+    array = dev.property_read(c_str!("test,i16-array"))?;
+}
+
+?
+
+Instead of these two accesses, I was thinking to use the error
+property_read() will return if the optional property is not there to
+just do one access:
+
+let mut array = <empty_marker>;
+if let Ok(val) = dev.property_read(c_str!("test,i16-array")) {
+       array = val;
+}
+
+(and ignore the error case as its irrelvant in the optional case)
+
+Have I missed anything?
+
+Best regards
+
+Dirk
 
 
---wIB7CppBQdb9BVMQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Wed, Oct 23, 2024 at 03:59:09PM -0500, David Lechner wrote:
 
-> +struct spi_offload *devm_spi_offload_alloc(struct device *dev,
-> +					   size_t num_offloads,
-> +					   size_t priv_size)
 
-> +	privs = (void *)(offloads + num_offloads);
 
-Casting to or from void * is generally suspicious.
-
-> +		void *priv = privs + i * priv_size;
-
-Can we have some brackets here for clarity please?
-
---wIB7CppBQdb9BVMQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmciVusACgkQJNaLcl1U
-h9Chqgf8DW8de4pnIgIUw/jsiKAtu3L5MxZFUkpBXjxY07ECczmWImt2iWoseFYJ
-rILRHF01ca8kZn1PRVsO9CFoP89a+jkwZgvXjYT7A+9jy3yBgGSddeOkrrvgOUBD
-1R5JngdpYU4IesCQWUopjqKJw61zFZvwmKboQR38z3Yxnfb88Ea1+XkwE/sCofPp
-KB7Z918mA4iyn5L9p8nrA1t8ivRc/KC0zBzH3smen+WzAqsLz5HfIJke5UzbTN6I
-zsYQP0gBHr0SDkivg9dKJ3oCcTwGpQ8iZySndgpLOHbBVEUxMTTmKetyOGldmpKF
-1MR7dfo/8rpKErN0COB/DbEgmN2RBQ==
-=NEXq
------END PGP SIGNATURE-----
-
---wIB7CppBQdb9BVMQ--
 
