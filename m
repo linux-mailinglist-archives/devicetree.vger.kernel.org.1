@@ -1,107 +1,222 @@
-Return-Path: <devicetree+bounces-117487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDDF19B691A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 17:27:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEC9B9B697D
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 17:47:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 595E2B220D8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 16:27:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D22BC1C20C9B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 16:47:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208F82141C2;
-	Wed, 30 Oct 2024 16:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D570213EE5;
+	Wed, 30 Oct 2024 16:47:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eDsVR9Va"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T2YGCmmd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2576A1E573B;
-	Wed, 30 Oct 2024 16:27:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D112768FC;
+	Wed, 30 Oct 2024 16:47:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730305625; cv=none; b=XrpHW+hg5YhZYobKbXMVDqYOt3WeWFmx6QnqSxsZXRTci7aglGsJJOEEqG0luXP1soUSZ2HIzlM4aPxL1F0ZKAVMKwYtbyAFtnhQgzrqve2G07L0C2uPPY1EADKg6/5jhb3RqyPrEMiCx7kkNMlTugqpki9N9Kiml1NZfBE1keU=
+	t=1730306863; cv=none; b=SK11opp6sCzK3Yw5+TFLbkGxp8H5/Y8ayc49O2iOyZQxQ48yw9UQQ4cXhVrAygQZ7+aBNw5i0zFBjsxu9Z68JdEiPLddq31Y+qQmUWExB/TCfhuF0/XAleGq4qeTICBdeuWxppEzTzDVOXZ2xjfp2C4hFkkXrf+51sTc1DsHsfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730305625; c=relaxed/simple;
-	bh=Z5gVZhp6D1TES0aWQFSn9gb/GoSlCRKexfne6oHSOpU=;
+	s=arc-20240116; t=1730306863; c=relaxed/simple;
+	bh=G9u9zhuA94H/fUMNkQs5qyanCAF7/yxcojMjY/sX3ZU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ET4Yeq/fuQDcyNw2j7CD1BQ3bOFV8jUc8aJx2CUT6zqouw8GIKCDGAS2UCPlbOLkd1AjEU6A+hO1U0iDb3z097T+FLwfQJsVAj1D5gVLXvrrTytjY06qOF3PH0hkE4SikWzNOwzkFRSKJjEakXT2FVTNsteE537Atj8qvvmGWQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eDsVR9Va; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a9a0ef5179dso1000809566b.1;
-        Wed, 30 Oct 2024 09:27:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730305621; x=1730910421; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mL6g494dCDURUvV6Gm9V0WqHA34f4AywV8P7ZaT7UX0=;
-        b=eDsVR9VaRsHvdvejjUgsD3Ojm2QEzfWtmgvykWIUUn5owRO9aedF2kopdC2hy8lB4W
-         /z2Z0ECMrSu4xTG17O3iG62l6GfjeWUJxiuHf3l1qOtpHjKprLf8ktsVdzLS1QQ7WF7p
-         9NT34nkfhv4trPEry/9lrABG+Skglx6zQ291TVI5c/RRn8WGs+vLwpY30/T/I/dRcrsM
-         G7B/YHySzuR5f6IU3GuzUQf3jponH90tsLlA99mB0noVqZMAl1YqRyHTosWqBTXcEJju
-         fVJdFgchFDYfs8848ufVX8XX9rsBM+2EjTfhRqM7Mvi1+dUpaVXewiCcaf3MjAx+9y/M
-         I9tQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730305621; x=1730910421;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mL6g494dCDURUvV6Gm9V0WqHA34f4AywV8P7ZaT7UX0=;
-        b=EaUnoM5WLwPmXE7yRK7Rmu3M5tUweV9kEybYQpNymAfp7LMCYfWRyXuFD1e7Qus6jA
-         zYF5mnPqQlBcV7U6vaOI/8RPVhVXKDWoifTqEgtMa2TnPkpMosUhdw+srZwBi/vG/fxL
-         K4cK7GpERomWA1U/pa0qMEcOQkbRToqIgbMIUbK6FfGMc8manVXlrqUALRnQWbdo5jDU
-         81eC8gG/iPrOiMPSSYatjelzS3xYIWwJccRA4wv8JRNGgpN6zQoYcGxgxJecS99XPajB
-         jOz1Sf9+MKevR8uR/WgntYQM7ft+BJX20AxBJQnE694RBn7JkkAYPSL7u86tuICQpdnC
-         CreA==
-X-Forwarded-Encrypted: i=1; AJvYcCWl7m97G9+E3iInH2P/e5DT3ZvPXDIvFJJY8sg3Ap6r0foHtqU0RGB/4Uhpsgj95HAsVsSn0mw2aazAuvnk@vger.kernel.org, AJvYcCWscII5GXsvDa7y4sgHB54bWYNVCVN0B9RFyhsB8ZKK+zbaYW3zYBaHa9BBZMhtvh5Jv9u5amdQXbkD@vger.kernel.org, AJvYcCXEWp6jBmjQA58XU30vTe92EpPgk1injz8C9KSkLtmImyjgAWh0RAs51XiqGNSi6WDRwDHVLqTDZPlo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWla6y/1z8zZKNWFcjrbfKTnCp2sitoiBf4ssKSCcZWmDbEbjW
-	PrDblLMsbDyCsFQVuIV2edb5aSJHxwEIlo0VMZ/08QH1T/A6OtLBhMD47mrAndlapXChQTNM3+H
-	mDiF/UEEviEaMI1RjMILfIh6CIQg=
-X-Google-Smtp-Source: AGHT+IH8F2i/ZAHGzrQ8NhWG3ucD3fmiMWqQjjUVUnSlco3GAnI5OvGB4ZoHFE246UsXhzy2aZ/j03PTX7uQUlQKbIQ=
-X-Received: by 2002:a17:907:2d89:b0:a99:33dd:d8a0 with SMTP id
- a640c23a62f3a-a9de5ff9ad3mr1357100466b.38.1730305621259; Wed, 30 Oct 2024
- 09:27:01 -0700 (PDT)
+	 To:Cc:Content-Type; b=ZrjuG55osYKlzAWFEtzz/nYHS4uzSorGVidxPqo370m5J4rTaG8iH979meB9wUc2a3gYFYE4M4F6dX87MKDEnPpa3jXNx4VEaayb/TMcPyD9hvjdCfIn6wlflHrxQffGj7cCK/qlozu95er4MovePCm2m0lam638x68J1Yv56MQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T2YGCmmd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA1DAC4CEDA;
+	Wed, 30 Oct 2024 16:47:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730306862;
+	bh=G9u9zhuA94H/fUMNkQs5qyanCAF7/yxcojMjY/sX3ZU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=T2YGCmmdSBZ8gg0xGA6L+5GpJbCouJJeTP/WKv2ItzgiZDaDS4/bEDxnUKeZEUBl5
+	 ue079TH0egbePlIkyn0w4Q5Ci2V2SsZi7C7Lz7yrd0wXxhHkvXAv2VjnxKiExU1Sw9
+	 +7XSQ5TsYMMSflwswMty1KA3kIMRxK4olo3q2J3uowEqjwie8joHRywRHFyOOkYOeJ
+	 S2EuO3wJlNgJmmAI8b8cDSY5XGmWnIRSBMrKAl4+Z1wvj8fA2Ib1EsrJGH/xTx6jxw
+	 tzqcMxE6jQl/u2aXlqgYLfYhuyPy8fKIOFumSXLnZRXAK86d9MWq+AFdieza7hWQge
+	 XRMT9U/38FOng==
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-539ebb5a20aso28494e87.2;
+        Wed, 30 Oct 2024 09:47:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUZH0JrnV3ntGMIoos4k+kCrlUiTf2X2eVg+YVyE5CsJXe5hxelP12w3+rjyw70tykqH75n5TnBybre+vMZ@vger.kernel.org, AJvYcCUnM0CiODB4FEKzoODqbdyfT4HmJL5PtjbQfd+EMfNMlZHixcJfNx7OitnvadCVayclFgJ5o2OEXn3tQhed+AE=@vger.kernel.org, AJvYcCXYEoesBoLndS62lvrbts78JOrA1g8BkfoTJ7OkxHqct//ROM5C/XgRMJ0Cmta+1efjdYS3qn0sew5J@vger.kernel.org
+X-Gm-Message-State: AOJu0YzI2YgUi+HduQrkpXju/E89qatNoQZ7cLouaF+oAvIoiAgJeIuR
+	ZZWXkR0EwEuV1ShcgLylBI96XgTOg9wLA7D59R2wZjxe+MrerlsIoOjCJqdxikaIRsCYRcYYDNG
+	DFZnxzNrI2z0yb23tPDybhF6xPQ==
+X-Google-Smtp-Source: AGHT+IGQ6H9qIhqtA2x22Lv1WNjZfStTB5wUkQiDjZODnFYdktSwlxnt6RTQXmtXnMQMYc0LM7iws8mWHFwymfjBU5U=
+X-Received: by 2002:a05:6512:32c7:b0:536:a50a:3c25 with SMTP id
+ 2adb3069b0e04-53b348c1612mr8787033e87.12.1730306860915; Wed, 30 Oct 2024
+ 09:47:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241030-topic-input-upstream-als31300-v4-0-494297c9e50a@linaro.org>
- <20241030-topic-input-upstream-als31300-v4-3-494297c9e50a@linaro.org>
-In-Reply-To: <20241030-topic-input-upstream-als31300-v4-3-494297c9e50a@linaro.org>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 30 Oct 2024 18:26:24 +0200
-Message-ID: <CAHp75Vf8ZO3ZJ0V8QGXMN1VXeA4=nUEjOJmJbpGWF_OdkGP8xQ@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] iio: magnetometer: add Allegro MicroSystems
- ALS31300 3-D Linear Hall Effect driver
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, Andy Shevchenko <andy@kernel.org>
+References: <20241025-rust-platform-dev-v1-0-0df8dcf7c20b@kernel.org>
+ <20241025-rust-platform-dev-v1-2-0df8dcf7c20b@kernel.org> <CAH5fLgjhiLUYPgTt_Ks+L-zhWaQG5-Yjm-Y3tfh2b2+PzT=bLg@mail.gmail.com>
+ <CAL_JsqJWPR-Q=vsxSvD7V9_v=+om5mRuW9yYNqfavVRUwH9JFw@mail.gmail.com>
+ <CAH5fLgiXPZqKpWSSNdx-Ww-E9h2tOLcF3_8Y4C_JQ0eU8EMwFw@mail.gmail.com>
+ <CANiq72kaidDJ=81+kibMNr9jNxg467HjOm9C_4G7WRvaiddGvg@mail.gmail.com>
+ <CAL_Jsq+T6T_3p2C62U3v4aSjm_oc-Ycjxi_ckF0ufh=JJDz=rg@mail.gmail.com>
+ <CAH5fLggCDiKUu_dvJZeJr8UD5RvUpqRJbdYKf1F3_MvCdOVK6g@mail.gmail.com>
+ <CAL_JsqL+b-f5K24qTxyA09c_QPeb07s4Hb=s1VqrdksBB4BQ=Q@mail.gmail.com> <79c47555-c9e9-4ff6-8c43-c7c26a91afd4@gmail.com>
+In-Reply-To: <79c47555-c9e9-4ff6-8c43-c7c26a91afd4@gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 30 Oct 2024 11:47:27 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJkkUk6AoAdgfVHROk=wpRo0En=gi7zwXe6S7LUEsdocQ@mail.gmail.com>
+Message-ID: <CAL_JsqJkkUk6AoAdgfVHROk=wpRo0En=gi7zwXe6S7LUEsdocQ@mail.gmail.com>
+Subject: Re: [PATCH RFC 2/3] rust: Add bindings for device properties
+To: Dirk Behme <dirk.behme@gmail.com>
+Cc: Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>, 
+	Saravana Kannan <saravanak@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 30, 2024 at 5:30=E2=80=AFPM Neil Armstrong
-<neil.armstrong@linaro.org> wrote:
+On Wed, Oct 30, 2024 at 11:03=E2=80=AFAM Dirk Behme <dirk.behme@gmail.com> =
+wrote:
+>
+> On 30.10.24 15:05, Rob Herring wrote:
+> > On Wed, Oct 30, 2024 at 3:15=E2=80=AFAM Alice Ryhl <aliceryhl@google.co=
+m> wrote:
+> >>
+> >> On Tue, Oct 29, 2024 at 8:35=E2=80=AFPM Rob Herring <robh@kernel.org> =
+wrote:
+> >>>
+> >>> On Tue, Oct 29, 2024 at 1:57=E2=80=AFPM Miguel Ojeda
+> >>> <miguel.ojeda.sandonis@gmail.com> wrote:
+> >>>>
+> >>>> On Tue, Oct 29, 2024 at 7:48=E2=80=AFPM Alice Ryhl <aliceryhl@google=
+.com> wrote:
+> >>>>>
+> >>>>> One option is to define a trait for integers:
+> >>>
+> >>> Yeah, but that doesn't feel like something I should do here. I imagin=
+e
+> >>> other things might need the same thing. Perhaps the bindings for
+> >>> readb/readw/readl for example. And essentially the crate:num already
+> >>> has the trait I need. Shouldn't the kernel mirror that? I recall
+> >>> seeing some topic of including crates in the kernel?
+> >>
+> >> You can design the trait to look similar to traits in external crates.
+> >> We did that for FromBytes/AsBytes.
+> >>
+> >> I assume you're referring to the PrimInt trait [1]? That trait doesn't
+> >> really let you get rid of the catch-all case, and it's not even
+> >> unreachable due to the u128 type.
+> >
+> > It was num::Integer which seems to be similar.
+> >
+> >>
+> >> [1]: https://docs.rs/num-traits/0.2.19/num_traits/int/trait.PrimInt.ht=
+ml
+> >>
+> >>>> +1, one more thing to consider is whether it makes sense to define a
+> >>>> DT-only trait that holds all the types that can be a device property
+> >>>> (like `bool` too, not just the `Integer`s).
+> >>>>
+> >>>> Then we can avoid e.g. `property_read_bool` and simply do it in `pro=
+perty_read`.
+> >>>
+> >>> Is there no way to say must have traitA or traitB?
+> >>
+> >> No. What should it do if you pass it something that implements both tr=
+aits?
+> >>
+> >> If you want a single function name, you'll need one trait.
+> >
+> > I'm not sure I want that actually.
+> >
+> > DT boolean is a bit special. A property not present is false.
+> > Everything else is true. For example, 'prop =3D <0>' or 'prop =3D
+> > "string"' are both true. I'm moving things in the kernel to be
+> > stricter so that those cases are errors. I recently introduced
+> > (of|device)_property_present() for that reason. There's no type
+> > information stored in DT.  At the DT level, it's all just byte arrays.
+> > However, we now have all the type information for properties within
+> > the schema. So eventually, I want to use that to warn on accessing
+> > properties with the wrong type.
+> >
+> > For example, I think I don't want this to work:
+> >
+> > if dev.property_read(c_str!("test,i16-array"))? {
+> >     // do something
+> > }
+> >
+> > But instead have:
+> >
+> > if dev.property_present(c_str!("test,i16-array")) {
+> >     // do something
+> > }
+>
+> I think we have "optional" properties which can be there (=3D=3D true) or
+> not (=3D=3D false). Let's assume for this example "test,i16-array" is suc=
+h
+> kind of "optional" property. With what you gave above we need two
+> device tree accesses, then? One to check if it is there and one to
+> read the data:
 
-...
+Yes, lots of properties are optional especially since any new property
+added has to be because the DT is an ABI.
 
-> +       ret =3D devm_mutex_init(dev, &data->mutex);
-> +       if (ret)
-> +               return ret;
+> let mut array =3D <empty_marker>;
+> if dev.property_present(c_str!("test,i16-array")) {
+>     array =3D dev.property_read(c_str!("test,i16-array"))?;
+> }
+>
+> ?
+>
+> Instead of these two accesses, I was thinking to use the error
+> property_read() will return if the optional property is not there to
+> just do one access:
+>
+> let mut array =3D <empty_marker>;
+> if let Ok(val) =3D dev.property_read(c_str!("test,i16-array")) {
+>        array =3D val;
+> }
+>
+> (and ignore the error case as its irrelvant in the optional case)
+>
+> Have I missed anything?
 
-Thanks!
+If you grep "_property_present", most if not all calls never need the
+data. When you need the data, you read it and test for EINVAL if you
+want to handle "not present". The overhead of parsing the data is not
+nothing, so I think it is better to provide both.
 
-FWIW, I'm about to send the last three patches to fix them all.
-Currently sent to IIO, GPIO subsystems.
+The typical pattern in the C code is:
 
---=20
-With Best Regards,
-Andy Shevchenko
+u32 val =3D DEFAULT_VALUE;
+of_property_read_u32(node, "a-property", &val);
+
+// val is now either the read property or the default. If the property
+is required, then the error code needs to be checked.
+
+Maybe we should have:
+
+let val: u32 =3D dev.property_read_optional(c_str!("test,i16-array"),
+DEFAULT_VALUE);
+
+Or looks like Option<> could be used here?:
+
+let val: u32 =3D dev.property_read(c_str!("test,i16-array"),
+Option<DEFAULT_VALUE>);
+
+One thing I'd like to improve is having fewer driver error messages
+and a printk for a missing required property is a common one. We have
+APIs like clk_get and clk_get_optional (which parse firmware
+properties). The difference is the former prints an error message on
+error case and the latter is silent.
+
+Rob
 
