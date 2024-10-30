@@ -1,102 +1,122 @@
-Return-Path: <devicetree+bounces-117585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C87DE9B6FF8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 23:42:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04F3A9B7005
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 23:51:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 068561C20FF6
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 22:42:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56B33B20ECC
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 22:51:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52EAF1EB9FD;
-	Wed, 30 Oct 2024 22:42:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96E7A2139C9;
+	Wed, 30 Oct 2024 22:51:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="00GX5QV+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BwXp4agm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472331BD9EB;
-	Wed, 30 Oct 2024 22:42:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 626401F4288;
+	Wed, 30 Oct 2024 22:51:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730328151; cv=none; b=Ob6WOsJw6jmHCkJ1Ghv3kX0lz6nORb4HUANLeyEkhQ3xDuNdU8g+3tLhYkAvgXnPQqGz6D40uvHlXJXHOXDzxC4lwKRlQKcbENPY3+1AlhiuIEQZ2EZCuUDyLGKki+oTGAAXpfHBIMZvUE2r3b/8i6b9iLxi5KKAeywzZC3WzFg=
+	t=1730328678; cv=none; b=SVKOQW/DH2RNiVSP64rrHslUJuaPesL3+s1wEjbj8kqev+7WZLg9JsRyBCZ3ye57v8dPiwW4ikxB5c8dGuBNyN7Ge8bHBqp9+K7FJm6lVrQyplpuoCw2La4IX3sn0LQXrdrq5sOr5yh964cEqR1vCMe62cHDManKJ3s06auXKTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730328151; c=relaxed/simple;
-	bh=DT9pXJgvQX5AoW7dMqWsYEaIWt1s6GH3Zy1zRV6DS2o=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Mhm8sbcM+7aiIpUDsUnvi7QGeAHY3vXrayivWNKCcfq4nbLUGBuZxCskf9bKWD5sZjew1IyV1jpuyIn4xXs/qN++bs1rPGQ9edmdcDnxfctnkIaCVSpdHkYRgfQrOL79IqgAVMwIkTEQ9XyQDH1eNkFKJa4N58/42jxmYKXd0o4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=00GX5QV+; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=/W1gnm6AuW6BiVpiHLFOI6HfP0cwzclLuehGNTmJEiQ=; b=00GX5QV+tX1qkKGx+RyXSzKDho
-	Kux6Mjn7iGMuDxARmDJm0d5PuUapZC/Fnwq4sQf2idXitSJCTmFVK6aAk/hTOtIfPuJZUHY226XDd
-	w4XrFQmvzUM3OTv6QjO+S8R6QF9Rl2QtFsWLbo5aRyfZbvxoQ6hrFnxVO10nCaodXsdcFSaxeIlQ8
-	+YLrPqjE6RH4WG1j+dzm7EqT+GO2FUiff2Ewikwp0P8oSgFglSRX4/wGkJ8EQmt8Psmsy+NdTlSf9
-	uRXlumfQIe8zGBBmWGo+kJzVtb7V5erNALFp1lg7+1B93TZA8nRljUJxx+8SLqeu56aZnQYqrHMns
-	aAeMDHAg==;
-Date: Wed, 30 Oct 2024 23:42:19 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Mithil Bavishi <bavishimithil@gmail.com>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman
- <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
- <tony@atomide.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v2 2/6] arm/dts: Add common device tree for Samsung
- Galaxy Tab 2 series
-Message-ID: <20241030234219.2d918b34@akair>
-In-Reply-To: <20241030211215.347710-3-bavishimithil@gmail.com>
-References: <20241030211215.347710-1-bavishimithil@gmail.com>
-	<20241030211215.347710-3-bavishimithil@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1730328678; c=relaxed/simple;
+	bh=6984DWiiZS6tpY28qzM6kzD89hg0yELFs+RNJQ8Wu9Q=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=I/B2bi8G4Y2R8vkji4n6wCIPoR0DmPTScMJkDQ99g5KvDMNkSvVLqcbZWM+g93zq6Xui+zPiwKBIDrYfH5bHx1mbXEgc0Bvv3VAzBHH8JN9Q1sEcJ3Egz5uRTxUwsQK9NooxqSultVltdNYu/Kv8NQyizjs6jPL+4hOjEBy2Q/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BwXp4agm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AD72C4CECE;
+	Wed, 30 Oct 2024 22:51:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730328676;
+	bh=6984DWiiZS6tpY28qzM6kzD89hg0yELFs+RNJQ8Wu9Q=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=BwXp4agmfVWQmJf6zrYQmWhunGpiG4KNBmdIhywjHM7ULS6RWwE+jKOYGJyR/uoHi
+	 WtWPh1dSm1BJYOxpJ4eRN/rgGQU9BQjTYx7nLCO2lZvvOcrjT+2IOl1Ag0muixkKLK
+	 aH6CT1e90ckLNGB9fhofWECC7jbB5s6Xae65l4fo5cuH5GgzqtnVvLAWiZStwfIp54
+	 YHNG2wVPQY6So6ShwY5IkgYdysN3T3uMpAppb1CTkBgK3yy102SPar02WnqAv0FEVz
+	 9Hn3S+sAc+PpGCkrPhJN+OTMATpXL6ao3YEcPEtNy4neNQg4LlXoiNpryhcbKT4H5d
+	 qSe5oJ1BE2xGQ==
+Date: Wed, 30 Oct 2024 17:51:14 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+ Vinod Koul <vkoul@kernel.org>, Nuno Sa <nuno.sa@analog.com>, 
+ devicetree@vger.kernel.org, dmaengine@vger.kernel.org
+In-Reply-To: <20241030-axi-dma-dt-yaml-v3-1-d3a9b506f96c@baylibre.com>
+References: <20241030-axi-dma-dt-yaml-v3-0-d3a9b506f96c@baylibre.com>
+ <20241030-axi-dma-dt-yaml-v3-1-d3a9b506f96c@baylibre.com>
+Message-Id: <173032867487.2384864.2184195071332557080.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: dma: adi,axi-dmac: convert to yaml
+ schema
 
-Hi Mithil,
 
-Am Wed, 30 Oct 2024 21:12:11 +0000
-schrieb Mithil Bavishi <bavishimithil@gmail.com>:
+On Wed, 30 Oct 2024 16:33:56 -0500, David Lechner wrote:
+> Convert the AXI DMAC bindings from .txt to .yaml.
+> 
+> Acked-by: Nuno Sa <nuno.sa@analog.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+> 
+> For the maintainer, Lars is the original author, but isn't really
+> active with ADI anymore, so I have added Nuno instead since he is the
+> most active ADI representative currently and is knowledgeable about this
+> hardware.
+> 
+> As in v1, the rob-bot is likely to complain with the following:
+> 
+> 	Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml: properties:adi,channels:type: 'boolean' was expected
+> 		hint: A vendor boolean property can use "type: boolean"
+> 		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+> 	DTC [C] Documentation/devicetree/bindings/dma/adi,axi-dmac.example.dtb
+> 
+> This is due to the fact that we have a vendor prefix on an object node.
+> We can't change that since it is an existing binding. Rob said he will
+> fix this in dtschema.
+> ---
+>  .../devicetree/bindings/dma/adi,axi-dmac.txt       |  61 ---------
+>  .../devicetree/bindings/dma/adi,axi-dmac.yaml      | 139 +++++++++++++++++++++
+>  2 files changed, 139 insertions(+), 61 deletions(-)
+> 
 
-> +	twl: twl@48 {
-> +		reg = <0x48>;
-> +		#clock-cells = <1>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <
-> +			&twl6030_pins
-> +			&twl6030_wkup_pins
-> +		>;
-> +
-> +		/* SPI = 0, IRQ# = 7, 4 = active high
-> level-sensitive */
-> +		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>; /*
-> IRQ_SYS_1N cascaded to gic */
-> +		interrupt-parent = <&gic>;
-> +		ti,system-power-controller;
+My bot found errors running 'make dt_binding_check' on your patch:
 
-this has to be system-power-controller;
+yamllint warnings/errors:
 
-And you have it correctly here:
-https://gitlab.postmarketos.org/postmarketOS/pmaports/-/blob/master/device/community/linux-postmarketos-omap/0002-arm-dts-Add-common-dtsi-for-espresso.patch?ref_type=heads#L532
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml: properties:adi,channels:type: 'boolean' was expected
+	hint: A vendor boolean property can use "type: boolean"
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
 
-so, please double-check if you are trying to mainline the right branch.
-No need to respin just for this line. There is still a lot other stuff
-to fix here but I want to make sure we are looking at the right thing.
+doc reference errors (make refcheckdocs):
 
-Regards,
-Andreas
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241030-axi-dma-dt-yaml-v3-1-d3a9b506f96c@baylibre.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
