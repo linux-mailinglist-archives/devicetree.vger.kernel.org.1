@@ -1,172 +1,171 @@
-Return-Path: <devicetree+bounces-117242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29A849B5941
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 02:41:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4405F9B5983
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 02:47:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5708283E09
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 01:41:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 038942843B1
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 01:47:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8FC170A11;
-	Wed, 30 Oct 2024 01:41:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B6171953B9;
+	Wed, 30 Oct 2024 01:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="J4YPlHoH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cVsRemNU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03715146D40;
-	Wed, 30 Oct 2024 01:41:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D29B18E37B;
+	Wed, 30 Oct 2024 01:46:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730252507; cv=none; b=G5ybXEQ4l+pQnb4DBPi+OI3A6UM+gGBVwNpFeAn8N02alhalzo3b/31EwVFgly59jxivS+YU/H47TqvY24OPXhaBPB/cEtOft0s3IiawJtGgWxm9yWfeq1qyH/3xK1nyxxhF+OKbXwgP+rht9q+MHYf6xls9BI7f36iKH6RizzY=
+	t=1730252803; cv=none; b=mh9+rfM5NGzLKTcVRMbe8UllrLYVgnE6mAbfKJSmVSVGI4jp07IviTWTLo5IUTZ6dSejgqkCezGk9/R3en1jfS/ntbQb9OjbwIDddTQaa1+rN6W9pm7eZ1UVVd/6Vi0ekMFbpWn3rx4F52himRO/dY+4sIl/26VQrOXC822QjaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730252507; c=relaxed/simple;
-	bh=WcMfb/ZXzjJ5ndEdwQHbHhsDGnvuFA3OHZX79Q4P304=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mhH1J9Mut6BZYjerWmFJbPi0v4uZlUSwR6TTIFN4bYLZJHFQ/HED47VrdPgWmV3NUhX0Ehd944UPEfcP+ExSwxV+HhwJIPLH0fhMahLpvygYHqhR4Gr3ad+dVpbK2LduAIlwlcAJVWZjawpUMALYbzwyHCjq3xiDAOqBa3BjaIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=J4YPlHoH; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730252505; x=1761788505;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WcMfb/ZXzjJ5ndEdwQHbHhsDGnvuFA3OHZX79Q4P304=;
-  b=J4YPlHoHYBdnA5kpqNlIMavjWMJZQR5cIgFlTYeGmIjQ7pl3/aCdvEUu
-   BoQS2XSCFYk/w2wvY4ik1msErXTpyw7GEubJkyCE2RMtsOj9R5PvN/W60
-   sHSJEygCDEiLam4XWZI0GustDkreHfd7jzQt+8BdwiWDqOuYNasbhYTRp
-   n9I3xcz+9qus+ILKJupllqr0ZPHNBaCc6hFydfzxPo+407f22b3Im1GI1
-   4XX0t06iqfG7wfHrvrMoSVU9QkDA3JkHoHxgGkaG3n3HdppkwTU3ld05h
-   8YvLggcnXgRSrbI/fLs/glAoznqP75XgbMKGnFyjkddQMnuAgzGPJqOR3
-   Q==;
-X-CSE-ConnectionGUID: /KfYJmWuQI2S7hogsRUafA==
-X-CSE-MsgGUID: M6mQaQsWShai+no5HumT/w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="30043181"
-X-IronPort-AV: E=Sophos;i="6.11,243,1725346800"; 
-   d="scan'208";a="30043181"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Oct 2024 18:41:45 -0700
-X-CSE-ConnectionGUID: Cd5FePhgSs6Fqha/z81raQ==
-X-CSE-MsgGUID: e13lZlRITLa/bV3qpXk1EQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,243,1725346800"; 
-   d="scan'208";a="82086912"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 29 Oct 2024 18:41:40 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t5xiL-000eNw-23;
-	Wed, 30 Oct 2024 01:41:37 +0000
-Date: Wed, 30 Oct 2024 09:41:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>,
-	manivannan.sadhasivam@linaro.org, alim.akhtar@samsung.com,
-	avri.altman@wdc.com, bvanassche@acm.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
-	konrad.dybcio@linaro.org, James.Bottomley@hansenpartnership.com,
-	martin.petersen@oracle.com, agross@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_narepall@quicinc.com,
-	quic_nitirawa@quicinc.com, Can Guo <quic_cang@quicinc.com>
-Subject: Re: [PATCH V2 3/3] scsi: ufs: qcom: Add support for multiple ICE
- allocators
-Message-ID: <202410300901.9B3oDYwL-lkp@intel.com>
-References: <20241029113003.18820-4-quic_rdwivedi@quicinc.com>
+	s=arc-20240116; t=1730252803; c=relaxed/simple;
+	bh=7pum3/JkD0BwlxJPHGGkWM5clHm8rPDq6SZ4bCR2v4g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EEmuUWYyNzVbU4nBbXNVa29y7KRRlOg/V9emtJKr8blAICXAyu41sqiCXHnKfFUmkxICI8UsUxYjSuzzn5dagkVeHbxMD6HYHgRZdkppIv0zrFWdf1DrTyv1xrK57jnSUlM4ox7GOvJfWs+9W3fSraFwDkULT2J9ZyXaXAtWOes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cVsRemNU; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2e2d1858cdfso4376433a91.1;
+        Tue, 29 Oct 2024 18:46:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730252801; x=1730857601; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bxFMjfk3ggTn0moJ8sPpGVsqjY/2TWidvbtEhX4CnB4=;
+        b=cVsRemNUT/4Rb5OvkiD/uDtbAnWZWVGE4aIJGEf4Hd2V68jhk+Rx5AEffgd+aLIH8U
+         TAwhot+czAADbrxZZnKp9NzhwzkEIUwEvlER+ZtbeeoblGd1Y7910q6dEq4zak0qZ9bU
+         4EoehDZjHcJmPDjwwEgWZsfXV3tc50auCSzujQyylWqCv77r6rR5WTVhVOzzWvuHuYcd
+         lbr9QQ9X1cNLdOLnekNU/Md4LACAD1vN/u+XWGLjV9sHFk9+r9Nix97J5MApNd0JaIXF
+         jiLCsBYYQAbCp2qspfrAUb5L4h1TbkU5bIh/My9fTfrKTFW5z8DDVDR4MTrft59pACUq
+         DGRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730252801; x=1730857601;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bxFMjfk3ggTn0moJ8sPpGVsqjY/2TWidvbtEhX4CnB4=;
+        b=J9o8eE8Tthp3YklzEclS02+weMAGh8AxefVOyKtOOFm4zCxzzsLU1rkYLxvLgXu04z
+         Rajsb5mUccPQ4U/vKj1W2hzSlub0W7s5Bu1Aiz/Zk1/a5HTfMFE+lPyj4kfvCjt2+4tB
+         Jk0bYafZIx2VeZIZ77gvRpmanpPubPFd/n8pZS6gK4yMLClI3WlbCkGeuU+ABOiZmQw0
+         el90ABOCEILNco/9mCx/+rRObkpszLVpvc0+J3W6sAFNuMnWM5WhSt//u1eiDVtsMP3X
+         mDjG5ZOYeOeZHGe3uMBedxVVafGXZFoexoHGM8r0ZPFwCSQ9dGzvyqOYs1ggz679x2y8
+         52dA==
+X-Forwarded-Encrypted: i=1; AJvYcCURUkLvdOBBxvr8b/nvT2NVJS6sRbiB1lMG6nlS7KcByuyG2XgHoXmsK3T2QLE3u7CYaUnbYeaMFrjDOcI=@vger.kernel.org, AJvYcCWJ4YAwjPdz1kZ8oKMaLrTjKWvZ2w2sHJn3dBm7t3QxTyxBlmzdZ/PlAJup7GgHPOHegG+Z8V4fpYk0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3iFUn55kV0jt8yqZu6FPfAO5+l8GYaVjVZJzq0NWFk7d+svlX
+	wdeGocCBYNMYrhP8tgO842K1VT1aU0v3CfEsM06p0863d8TjJ4ly
+X-Google-Smtp-Source: AGHT+IFZaj6aH2mDsjSI9GjYLL9VJVuI4bzhbZhrUs/Yck/v3RydR1pivAyoeT2NdQVzHEfQvCmzpQ==
+X-Received: by 2002:a17:90b:4b06:b0:2e2:cd62:549c with SMTP id 98e67ed59e1d1-2e8f10867cemr16377916a91.22.1730252800759;
+        Tue, 29 Oct 2024 18:46:40 -0700 (PDT)
+Received: from [172.19.1.43] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e92fa57cc3sm380550a91.32.2024.10.29.18.46.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Oct 2024 18:46:40 -0700 (PDT)
+Message-ID: <d6bf5b0d-7036-4636-a15e-41db6f665323@gmail.com>
+Date: Wed, 30 Oct 2024 09:46:35 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241029113003.18820-4-quic_rdwivedi@quicinc.com>
-
-Hi Ram,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on mkp-scsi/for-next jejb-scsi/for-next linus/master v6.12-rc5 next-20241029]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ram-Kumar-Dwivedi/dt-bindings-ufs-qcom-Document-ice-configuration-table/20241029-193301
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20241029113003.18820-4-quic_rdwivedi%40quicinc.com
-patch subject: [PATCH V2 3/3] scsi: ufs: qcom: Add support for multiple ICE allocators
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20241030/202410300901.9B3oDYwL-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241030/202410300901.9B3oDYwL-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410300901.9B3oDYwL-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
-   drivers/ufs/host/ufs-qcom.c: In function 'ufs_qcom_hce_enable_notify':
->> drivers/ufs/host/ufs-qcom.c:656:23: error: implicit declaration of function 'ufs_qcom_config_ice_allocator'; did you mean 'ufs_qcom_config_ice'? [-Wimplicit-function-declaration]
-     656 |                 err = ufs_qcom_config_ice_allocator(host);
-         |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |                       ufs_qcom_config_ice
-   drivers/ufs/host/ufs-qcom.c: At top level:
->> drivers/ufs/host/ufs-qcom.c:412:12: warning: 'ufs_qcom_config_ice' defined but not used [-Wunused-function]
-     412 | static int ufs_qcom_config_ice(struct ufs_qcom_host *host)
-         |            ^~~~~~~~~~~~~~~~~~~
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ mjchen@nuvoton.com, peng.fan@nxp.com, sudeep.holla@arm.com, arnd@arndb.de,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ dmitry.torokhov@gmail.com
+References: <20241022063158.5910-1-mjchen0829@gmail.com>
+ <20241022063158.5910-2-mjchen0829@gmail.com>
+ <csbechg6iarxx52z2gqidszhvgjdvaraoumpfcsozelhuuhmtb@ec7es3txuzxc>
+ <871e9a4c-7a3c-4a24-8829-a079983033da@gmail.com>
+ <ef407e89-950f-4874-9dca-474d107f6a52@kernel.org>
+ <984781ba-9f4c-4179-84d5-4ab8bbe4c3c6@gmail.com>
+ <9b0a508e-d9ae-45ab-882f-5bc1f03e13db@kernel.org>
+ <5d9e89aa-db10-4367-8417-9fcc1a3bb37a@gmail.com>
+ <844798ab-2910-458e-a9c5-dc69f5c8e368@kernel.org>
+Content-Language: en-US
+From: Ming-Jen Chen <mjchen0829@gmail.com>
+In-Reply-To: <844798ab-2910-458e-a9c5-dc69f5c8e368@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-vim +656 drivers/ufs/host/ufs-qcom.c
+On 2024/10/29 下午 09:19, Krzysztof Kozlowski wrote:
+> On 29/10/2024 03:00, Ming-Jen Chen wrote:
+>>>>>>>> +
+>>>>>>>> +  per-scale:
+>>>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>>>> +    description: Row Scan Cycle Pre-scale Value (1 to 256).
+>>>>>>> Missing constraints
+>>>>>>>
+>>>>>>>> +
+>>>>>>>> +  per-scalediv:
+>>>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>>>> +    description: Per-scale divider (1 to 256).
+>>>>>>> Missing constraints
+>>>>>>>
+>>>>>>> Both properties are unexpected... aren't you duplicating existing
+>>>>>>> properties?
+>>>>>> pre-scale:
+>>>>>> This value configures the IC register for the row scan cycle
+>>>>>> pre-scaling, with valid values ranging from 1 to 256
+>>>>>> per-scalediv:(I will change pre-scalediv to pre-scale-div)
+>>>>> Please look for matching existing properties first.
+>>>> I will change it to the following content:
+>>>>
+>>>> nuvoton,scan-time:
+>>> Why? What about my request?
+>> I utilized|grep|  to search for relevant properties in the|input/|  folder using keywords such as|scan|,|time|,|period|,|freq|, and|interval|.
+>> While I found some similar properties, I did not locate any that completely meet my requirements.
+>>
+>> For example, I found|"scanning_period"|, which is described as "Time between scans. Each step is 1024 us. Valid 1-256."
+>> I would like to confirm if you are suggesting that I use|scanning_period|  and explain my specific use case in the description,
+>> for example:
+> Description of these properties did not tell me much about their purpose
+> and underlying hardware, so I don't know which fits here. It looks like
+> you want to configure clock... but then wording confuses me -
+> "per-scale". What is "per"? Isn't it usually "pre"?
+>
+> So in general I don't know what to recommend you because your patch is
+> really unclear.
+>
+> Please also wrap emails according to mailing lists standards. And use
+> proper line separation of sentences. It's really hard to understand your
+> email.
 
-   635	
-   636	static int ufs_qcom_hce_enable_notify(struct ufs_hba *hba,
-   637					      enum ufs_notify_change_status status)
-   638	{
-   639		struct ufs_qcom_host *host = ufshcd_get_variant(hba);
-   640		int err;
-   641	
-   642		switch (status) {
-   643		case PRE_CHANGE:
-   644			err = ufs_qcom_power_up_sequence(hba);
-   645			if (err)
-   646				return err;
-   647	
-   648			/*
-   649			 * The PHY PLL output is the source of tx/rx lane symbol
-   650			 * clocks, hence, enable the lane clocks only after PHY
-   651			 * is initialized.
-   652			 */
-   653			err = ufs_qcom_enable_lane_clks(host);
-   654			break;
-   655		case POST_CHANGE:
- > 656			err = ufs_qcom_config_ice_allocator(host);
-   657			if (err) {
-   658				dev_err(hba->dev, "failed to configure ice, ret=%d\n", err);
-   659				break;
-   660			}
-   661			/* check if UFS PHY moved from DISABLED to HIBERN8 */
-   662			err = ufs_qcom_check_hibern8(hba);
-   663			ufs_qcom_enable_hw_clk_gating(hba);
-   664			ufs_qcom_ice_enable(host);
-   665			break;
-   666		default:
-   667			dev_err(hba->dev, "%s: invalid status %d\n", __func__, status);
-   668			err = -EINVAL;
-   669			break;
-   670		}
-   671		return err;
-   672	}
-   673	
+I apologize for any confusion caused by my previous responses regarding 
+this issue.
+It seems that our discussion has reached a bit of a bottleneck.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+I have a suggestion that I hope you might agree with: I would like to 
+upload version 2 of the code.
+In this version, I will rewrite the properties, although it may not 
+resolve their underlying issues.
+I will also continue to keep our current discussion ongoing in version 2.
+
+Thank you for your understanding, and I look forward to your thoughts on 
+this approach
+
+
+>
+>> nuvoton,scanning-period:
+>>       type:  uint32
+>>       description:  | Set the scan time for each key, specified in terms of keypad IP clock
+>> cycles. The valid range is from 1 to 256.      minimum:  1
+>>       maximum:  256 Could you please confirm if this approach aligns with your suggestion,
+>>    or if you have any other recommended existing properties?
+> Why this would be board dependent?
+>
+> Best regards,
+> Krzysztof
+>
 
