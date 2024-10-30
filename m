@@ -1,98 +1,83 @@
-Return-Path: <devicetree+bounces-117241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 313FA9B58C7
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 01:43:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A849B5941
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 02:41:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B58F41F23A46
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 00:43:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5708283E09
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 01:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 364171946B;
-	Wed, 30 Oct 2024 00:43:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8FC170A11;
+	Wed, 30 Oct 2024 01:41:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m6etfMYn"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="J4YPlHoH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C36F126C0A;
-	Wed, 30 Oct 2024 00:43:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03715146D40;
+	Wed, 30 Oct 2024 01:41:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730249026; cv=none; b=bYJ6cM4Iek8gw8oXdns04kFv5fgK0/349ZFrZKFHvlRgbbCHdmU5m5rj5o6N8/I5MDUyUFUa7so4rtJ8HwK4kYtVtvW2ktZxJxIMSyIh765iQ84VdEoCGJAS/RETbD+u5D1HsW4fj9DfHvnvHsiK7+dLHVD3hx4UpshZfBQtSrc=
+	t=1730252507; cv=none; b=G5ybXEQ4l+pQnb4DBPi+OI3A6UM+gGBVwNpFeAn8N02alhalzo3b/31EwVFgly59jxivS+YU/H47TqvY24OPXhaBPB/cEtOft0s3IiawJtGgWxm9yWfeq1qyH/3xK1nyxxhF+OKbXwgP+rht9q+MHYf6xls9BI7f36iKH6RizzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730249026; c=relaxed/simple;
-	bh=C6t5uYegxs7DG1qcLIM1YBlq/XLkFEwd87XZ8LbJPkM=;
+	s=arc-20240116; t=1730252507; c=relaxed/simple;
+	bh=WcMfb/ZXzjJ5ndEdwQHbHhsDGnvuFA3OHZX79Q4P304=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cuKlp0/ljTlGFw8W2wyhCvY+PNBM9C0PGvCPBEzP1knRYlJu3UsLX2qIZ1Zdlk4eedobdouESbsfycv2RFKw2jjtw7d3xSJTdAYULXAuM4fnZahBIeFwvwMpRVsaanLX9/ia2cqmfZT8nuSIEFJyRBeD97pdeLEAuI1fDpGTc0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m6etfMYn; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-20c693b68f5so66124255ad.1;
-        Tue, 29 Oct 2024 17:43:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730249023; x=1730853823; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=iZ3S2WcB+zGxiJngz5Z329XPyYJE8uVordKNgTGUhwk=;
-        b=m6etfMYnPPm7u9MVseekWgEWKCESXM/5O2ksm2nckfJL9o8TVXE9plwKbRyHLWL0R1
-         /xOZA+xBGNETvB9QmVcZnLVDvrVmTWNbQt4CMnaPHlrKTJATmJJHJaQN2/qSna3H8zXn
-         FiiXIhfhtTHII7kluelUTz22tmwjQK+Zt1WZuvMha78QICoLxeaZsCVcCOFQlEdRgcKN
-         rchzlfvq9nKLN51YF+L2MR7LNePacyYsDIc85+syHcKgIk5Msht3GlF7T1c7PsUJPXoz
-         LQY+XyGnX2p/ezZXIDOElqzgBc5xe88ow9JaFEpFQVOwVFxCZypttNYFNQUKfkB4BuF6
-         77OA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730249023; x=1730853823;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iZ3S2WcB+zGxiJngz5Z329XPyYJE8uVordKNgTGUhwk=;
-        b=rx3tczFR4gfOC0/xsq6Fps1ccWYpsQvNLzgq2bittRVECGAXD0sY4iyPW91GAmxnzd
-         DT/nUnzzbSamjbtCr/xY58zR/t7rGCNp9VM39UyznJTYxXJNovKac+B+n9iHPLNGGVC9
-         l87k13g5/kCoAp518Mmp+tMAQdkeNBPs8Sora17Km0lpGj86TJeJuCHJ/aFcdjRCx+mm
-         723yl1KaQLpvHnsLtvd+IBXmqtUj9SlyiRJhMsl3w7H+XUMHs79mPu4TpKeduzT9xZU+
-         B/mQpajBlUuCXNYZzhql48wZFwNmqyFIWko0rLZdOc4SeX2oAsVkF9G7utIhebIlSnhp
-         juDA==
-X-Forwarded-Encrypted: i=1; AJvYcCUCVz2w4QgRMrsiCuocsqOVmZN3t8FGNup5SeoAzVJZRJRMj6T+gEm1FaDii0f5G9e8agDNl+wPpESbEaGf@vger.kernel.org, AJvYcCVUrll3+lnxtPmPo/TfQOEsXeCl7PoW4lCZ5t5e0EMlNMMPudvlYthSOiTmr8F/Y8vAjL2lyo1TnANz@vger.kernel.org, AJvYcCW5rLFpUHZoRA+9q9wUj//8Wm2LaieAe9R+3POZSb/WSrF8DXxRD2NIW2ifrUy2NuO/COv3k80e@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIFbfbsZp2lbKYdfZswpM0thMJVrx9w79mX356KmNiVffyp3a5
-	2GM7oLx8FjfSZt4O0fXJM1Q9kh2SAUnupnCq2na3P/GKWkMj4jBG
-X-Google-Smtp-Source: AGHT+IHHRyGyDkKcNwaxMn/2+7uQYnlMNqSGQQ6CzP4zXPjfAAfmUzV8DyN0d/uv99tZavi9Wq36BA==
-X-Received: by 2002:a17:902:d2d2:b0:20b:6d71:4140 with SMTP id d9443c01a7336-210c6c7354cmr156629705ad.44.1730249023405;
-        Tue, 29 Oct 2024 17:43:43 -0700 (PDT)
-Received: from localhost ([121.250.214.124])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-210bc02eee6sm72101525ad.219.2024.10.29.17.43.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 17:43:43 -0700 (PDT)
-Date: Wed, 30 Oct 2024 08:43:16 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Inochi Amaoto <inochiama@outlook.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: net: Add support for Sophgo SG2044
- dwmac
-Message-ID: <kg4fvjertilaekjwuwxiojy25qsrwrmc3pxnpu35awg7klmlmw@3aar5yqe3olc>
-References: <20241025011000.244350-1-inochiama@gmail.com>
- <20241025011000.244350-3-inochiama@gmail.com>
- <4avwff7m4puralnaoh6pat62nzpovre2usqkmp3q4r4bk5ujjf@j3jzr4p74v4a>
- <mwlbdxw7yh5cqqi5mnbhelf4ihqihup4zkzppkxm7ggsb5itbb@mcbyevoat76d>
- <8eeb1f7c-3198-45ac-be9a-c3d4e5174f1f@kernel.org>
- <gcur4pgotkwp6nd557ftkvlzh5xv3shxvvl3ofictlie2hlxua@f4zxljrgzvke>
- <e134b98f-5a57-4a37-b46b-8b4017f050a6@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mhH1J9Mut6BZYjerWmFJbPi0v4uZlUSwR6TTIFN4bYLZJHFQ/HED47VrdPgWmV3NUhX0Ehd944UPEfcP+ExSwxV+HhwJIPLH0fhMahLpvygYHqhR4Gr3ad+dVpbK2LduAIlwlcAJVWZjawpUMALYbzwyHCjq3xiDAOqBa3BjaIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=J4YPlHoH; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1730252505; x=1761788505;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WcMfb/ZXzjJ5ndEdwQHbHhsDGnvuFA3OHZX79Q4P304=;
+  b=J4YPlHoHYBdnA5kpqNlIMavjWMJZQR5cIgFlTYeGmIjQ7pl3/aCdvEUu
+   BoQS2XSCFYk/w2wvY4ik1msErXTpyw7GEubJkyCE2RMtsOj9R5PvN/W60
+   sHSJEygCDEiLam4XWZI0GustDkreHfd7jzQt+8BdwiWDqOuYNasbhYTRp
+   n9I3xcz+9qus+ILKJupllqr0ZPHNBaCc6hFydfzxPo+407f22b3Im1GI1
+   4XX0t06iqfG7wfHrvrMoSVU9QkDA3JkHoHxgGkaG3n3HdppkwTU3ld05h
+   8YvLggcnXgRSrbI/fLs/glAoznqP75XgbMKGnFyjkddQMnuAgzGPJqOR3
+   Q==;
+X-CSE-ConnectionGUID: /KfYJmWuQI2S7hogsRUafA==
+X-CSE-MsgGUID: M6mQaQsWShai+no5HumT/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="30043181"
+X-IronPort-AV: E=Sophos;i="6.11,243,1725346800"; 
+   d="scan'208";a="30043181"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Oct 2024 18:41:45 -0700
+X-CSE-ConnectionGUID: Cd5FePhgSs6Fqha/z81raQ==
+X-CSE-MsgGUID: e13lZlRITLa/bV3qpXk1EQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,243,1725346800"; 
+   d="scan'208";a="82086912"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa009.jf.intel.com with ESMTP; 29 Oct 2024 18:41:40 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t5xiL-000eNw-23;
+	Wed, 30 Oct 2024 01:41:37 +0000
+Date: Wed, 30 Oct 2024 09:41:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>,
+	manivannan.sadhasivam@linaro.org, alim.akhtar@samsung.com,
+	avri.altman@wdc.com, bvanassche@acm.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+	konrad.dybcio@linaro.org, James.Bottomley@hansenpartnership.com,
+	martin.petersen@oracle.com, agross@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_narepall@quicinc.com,
+	quic_nitirawa@quicinc.com, Can Guo <quic_cang@quicinc.com>
+Subject: Re: [PATCH V2 3/3] scsi: ufs: qcom: Add support for multiple ICE
+ allocators
+Message-ID: <202410300901.9B3oDYwL-lkp@intel.com>
+References: <20241029113003.18820-4-quic_rdwivedi@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,59 +86,87 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e134b98f-5a57-4a37-b46b-8b4017f050a6@kernel.org>
+In-Reply-To: <20241029113003.18820-4-quic_rdwivedi@quicinc.com>
 
-On Tue, Oct 29, 2024 at 02:27:20PM +0100, Krzysztof Kozlowski wrote:
-> On 28/10/2024 08:16, Inochi Amaoto wrote:
-> > On Mon, Oct 28, 2024 at 08:06:25AM +0100, Krzysztof Kozlowski wrote:
-> >> On 28/10/2024 00:32, Inochi Amaoto wrote:
-> >>> On Sun, Oct 27, 2024 at 09:38:00PM +0100, Krzysztof Kozlowski wrote:
-> >>>> On Fri, Oct 25, 2024 at 09:09:58AM +0800, Inochi Amaoto wrote:
-> >>>>> The GMAC IP on SG2044 is almost a standard Synopsys DesignWare MAC
-> >>>>> with some extra clock.
-> >>>>>
-> >>>>> Add necessary compatible string for this device.
-> >>>>>
-> >>>>> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> >>>>> ---
-> >>>>
-> >>>> This should be squashed with a corrected previous patch 
-> >>>
-> >>> Good, I will.
-> >>>
-> >>>> (why do you need to select snps,dwmac-5.30a?), 
-> >>>
-> >>> The is because the driver use the fallback versioned compatible 
-> >>> string to set up some common arguments. (This is what the patch
-> >>
-> >> Nope. Driver never relies on schema doing select. That's just incorrect.
-> >>
-> > 
-> > Yeah, I make a mistake on understanding you. For me, I just followed
-> > what others do. But there is a comment before this select.
-> > 
-> > """
-> > Select every compatible, including the deprecated ones. This way, we
-> > will be able to report a warning when we have that compatible, since
-> > we will validate the node thanks to the select, but won't report it
-> > as a valid value in the compatible property description
-> > """
-> > 
-> > By reading this, I think there may be some historical reason? Maybe
-> > someone can explain this.
-> 
-> I think this is left-over from older times before all specific
-> compatibles were added here and in their bindings. This binding has been
-> waiting for some cleanup for a while now, so this is fine.
-> 
-> I still think the patches should be merged, though.
-> 
-> Best regards,
-> Krzysztof
-> 
+Hi Ram,
 
-Thanks, I will squash this patch in the next version
+kernel test robot noticed the following build errors:
 
-Regards,
-Inochi
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on mkp-scsi/for-next jejb-scsi/for-next linus/master v6.12-rc5 next-20241029]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Ram-Kumar-Dwivedi/dt-bindings-ufs-qcom-Document-ice-configuration-table/20241029-193301
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20241029113003.18820-4-quic_rdwivedi%40quicinc.com
+patch subject: [PATCH V2 3/3] scsi: ufs: qcom: Add support for multiple ICE allocators
+config: arm64-defconfig (https://download.01.org/0day-ci/archive/20241030/202410300901.9B3oDYwL-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241030/202410300901.9B3oDYwL-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410300901.9B3oDYwL-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   drivers/ufs/host/ufs-qcom.c: In function 'ufs_qcom_hce_enable_notify':
+>> drivers/ufs/host/ufs-qcom.c:656:23: error: implicit declaration of function 'ufs_qcom_config_ice_allocator'; did you mean 'ufs_qcom_config_ice'? [-Wimplicit-function-declaration]
+     656 |                 err = ufs_qcom_config_ice_allocator(host);
+         |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         |                       ufs_qcom_config_ice
+   drivers/ufs/host/ufs-qcom.c: At top level:
+>> drivers/ufs/host/ufs-qcom.c:412:12: warning: 'ufs_qcom_config_ice' defined but not used [-Wunused-function]
+     412 | static int ufs_qcom_config_ice(struct ufs_qcom_host *host)
+         |            ^~~~~~~~~~~~~~~~~~~
+
+
+vim +656 drivers/ufs/host/ufs-qcom.c
+
+   635	
+   636	static int ufs_qcom_hce_enable_notify(struct ufs_hba *hba,
+   637					      enum ufs_notify_change_status status)
+   638	{
+   639		struct ufs_qcom_host *host = ufshcd_get_variant(hba);
+   640		int err;
+   641	
+   642		switch (status) {
+   643		case PRE_CHANGE:
+   644			err = ufs_qcom_power_up_sequence(hba);
+   645			if (err)
+   646				return err;
+   647	
+   648			/*
+   649			 * The PHY PLL output is the source of tx/rx lane symbol
+   650			 * clocks, hence, enable the lane clocks only after PHY
+   651			 * is initialized.
+   652			 */
+   653			err = ufs_qcom_enable_lane_clks(host);
+   654			break;
+   655		case POST_CHANGE:
+ > 656			err = ufs_qcom_config_ice_allocator(host);
+   657			if (err) {
+   658				dev_err(hba->dev, "failed to configure ice, ret=%d\n", err);
+   659				break;
+   660			}
+   661			/* check if UFS PHY moved from DISABLED to HIBERN8 */
+   662			err = ufs_qcom_check_hibern8(hba);
+   663			ufs_qcom_enable_hw_clk_gating(hba);
+   664			ufs_qcom_ice_enable(host);
+   665			break;
+   666		default:
+   667			dev_err(hba->dev, "%s: invalid status %d\n", __func__, status);
+   668			err = -EINVAL;
+   669			break;
+   670		}
+   671		return err;
+   672	}
+   673	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
