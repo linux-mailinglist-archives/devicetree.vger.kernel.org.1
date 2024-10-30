@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-117261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3F279B5B75
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 06:47:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E7429B5B7B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 06:55:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4E9D3B227A1
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 05:47:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A8A81C20D45
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 05:55:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 856AE199949;
-	Wed, 30 Oct 2024 05:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A83D71D0E17;
+	Wed, 30 Oct 2024 05:55:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OIOBXc8o"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kHGcqmDR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE4062C95;
-	Wed, 30 Oct 2024 05:47:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92B7A199949;
+	Wed, 30 Oct 2024 05:55:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730267254; cv=none; b=BxqvNcULGYuL03LC4pDGCGKrBHzggBUHz0FHKrt6dIL23KPnN8VN0BgFINdEmTKqoO3OY5CfIOTEOhF73Lod4f+UvGpNuDEraR5B83c131N0d6L0pC0zs9HkrK6MvYSzVG6xygmCqAIkCBUgAEfyGaqUP6dUPjnEqusVlnH2j94=
+	t=1730267727; cv=none; b=XsCF36D7IlXjum8RxcGo2bkBvDXSN/fnZXrtx41JbZaVDR/XQHPa2IDZUtmKcjWI3JB/JBVftkmdcmvlPfpvo1dc/qcf8zOIBMbyDJCbX3wjosHUks9IQ2Lnsp9nxL2+/l1YlbbyULd4aaNcB9hNSaCofkMa4bn/eSSBh4ZYBC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730267254; c=relaxed/simple;
-	bh=xXoJv673ldiAszf2rv18SoHscyJGnO6yAY6w5laLGnQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=aZnKhRe6AjyY4/d8simy99VDMHLGEH4bPQwUMdreE4pAAquADNq46OdY7h4X4I0iLu0tfwbiI7rw9Xm1NxiGF5mHokBFBJJCfe5GyTPZSAHbJ3PQ1xwpt2f0m87B+HF3neWPQwKNFFug+elQZfDf5d+wSsGmdQZMaqiyw3mZTlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OIOBXc8o; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49U5lKYb057168;
-	Wed, 30 Oct 2024 00:47:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1730267240;
-	bh=UOJjWaLcmM4lSFeH+CtGHWFIWQwi5J9hsnjD3Fvku4o=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=OIOBXc8oHom8M8sadW03tMl1UQU/NwFLaDuBPlJGOMIaQDieLYYBvsrL4o5UY9TD5
-	 RR/1jEmkJ22IrECYyrHPOBqepZK+u4U2eHXTwsmFHVVURuFzLTFLWeSlI66hb3m5gI
-	 GmUQb2EBaav98pCyTpBMwZCWwgBwAbnBapBBE3lA=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49U5lKSW124517;
-	Wed, 30 Oct 2024 00:47:20 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 30
- Oct 2024 00:47:19 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 30 Oct 2024 00:47:19 -0500
-Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49U5lGpb008304;
-	Wed, 30 Oct 2024 00:47:17 -0500
-Message-ID: <e3c4f895-71a1-481f-86d4-dfab1b61715c@ti.com>
-Date: Wed, 30 Oct 2024 11:17:16 +0530
+	s=arc-20240116; t=1730267727; c=relaxed/simple;
+	bh=NWD+81n0gt6UiKT+LFWmdI5wMpW4m6OsIQWgMh29+1E=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=Z7zHBmwZi7vu3m2NL3+Ut20rTPThxu+LAyPtAVZ5BfRCqZX82ddBlGqKoZphPCgnbyv0BCKENLpRPMyw9+M6K7yLY4nl/S/cPW2NJdcCT7zX+vV2E/meHvVaSRbi4O6nd3nuWnFfqVM54sXMB7wLsu2m2ONubjwjp3DQSmw3l9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kHGcqmDR; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49TLjetW025437;
+	Wed, 30 Oct 2024 05:55:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	EdzhGzA2id7A/ZpD+TWeWQODIXZxwAyvIC+fzDbNVrU=; b=kHGcqmDRTeCjoT4b
+	r5fNCONUTqK/BQjTXBoZTCLwd2XhTNzbYNN5OGodWzUiv4xjttmChJ2fSkald0r5
+	EWH/ijF0P/GDZcvAt60vPTGAOssWU0A3Znro7jH0Kt4Ni+8IitI2SE6IyUrkEDVg
+	l81khw2do4GCt7MSmmp/6myN8Ca+hjU1RM50fFyt/NHkfeFHmGEG/HILdT67BXGw
+	l6KUw3+IbDmWW7BN6XLfECInnMzcijP/wmJzSK7cr3x5j8600kelk8I7BCfWW+YJ
+	Ir3yMib1iTdlXRoY1bRIKdh1QA0S04ys9wWMD/ZSDJrMGiooI3fdC6o2PTVRh2dT
+	nVRBSQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gsq8jsgq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 05:55:08 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49U5t7io027161
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 05:55:08 GMT
+Received: from [10.239.29.179] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
+ 2024 22:55:02 -0700
+Message-ID: <250bce05-a095-4eb3-a445-70bbf4366526@quicinc.com>
+Date: Wed, 30 Oct 2024 13:54:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,107 +65,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62: use opp_efuse_table for
- opp-table syscon
-To: Dhruva Gole <d-gole@ti.com>, Nishanth Menon <nm@ti.com>
-CC: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>, Bryan
- Brattlof <bb@ti.com>,
-        Wadim Egorov <w.egorov@phytec.de>
-References: <20241030044553.3225383-1-d-gole@ti.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v7 6/7] PCI: qcom: Disable ASPM L0s and remove BDF2SID
+ mapping config for X1E80100 SoC
+From: Qiang Yu <quic_qianyu@quicinc.com>
+To: Johan Hovold <johan@kernel.org>
+CC: <manivannan.sadhasivam@linaro.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <abel.vesa@linaro.org>,
+        <quic_msarkar@quicinc.com>, <quic_devipriy@quicinc.com>,
+        <dmitry.baryshkov@linaro.org>, <kw@linux.com>, <lpieralisi@kernel.org>,
+        <neil.armstrong@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <johan+linaro@kernel.org>,
+        <stable@vger.kernel.org>
+References: <20241017030412.265000-1-quic_qianyu@quicinc.com>
+ <20241017030412.265000-7-quic_qianyu@quicinc.com>
+ <ZxJrUQDGMDw3wI3Q@hovoldconsulting.com>
+ <91395c5e-22a0-4117-a4b5-4985284289ab@quicinc.com>
 Content-Language: en-US
-In-Reply-To: <20241030044553.3225383-1-d-gole@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+In-Reply-To: <91395c5e-22a0-4117-a4b5-4985284289ab@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 6otyPrzF45iN6J6U6RMBnPJR0HbuqtmZ
+X-Proofpoint-ORIG-GUID: 6otyPrzF45iN6J6U6RMBnPJR0HbuqtmZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
+ adultscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=659 impostorscore=0
+ lowpriorityscore=0 malwarescore=0 clxscore=1015 spamscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410300045
 
-Hi
 
-On 30/10/24 10:15, Dhruva Gole wrote:
-> Add another entry in the wkup_conf for the syscon node, and then use
-> that for the syscon in opp-table.
-> 
-> Marking entire wkup_conf as "syscon", "simple-mfd" is wrong and needs to
-> be addressed similar to how other child-nodes in wkup_conf are implemented
-> in the same file.
-> 
-> Signed-off-by: Dhruva Gole <d-gole@ti.com>
-> ---
-> 
-> Since the driver fixes for ti-cpufreq.c have made it in -next [1],
-> The DT fixes for SK-AM62x can be supported with support for legacy
-> style DT as well. This has been tested on SK-AM62x [2]
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/cpufreq/ti-cpufreq.c?id=1724ae88efcbcd0daeb203ffeb4a2c0e59f2ddf7
-> [2] https://gist.github.com/DhruvaG2000/40b80cc04a9ac90c86445d6e67ece4cb
-> 
-> Changelog:
-> 
-> Changes in v2:
-> - Deleted PATCH to Make the AM625 efuse_offset 0, because with [1] we no
->   longer break backward compatibility and hence need to preserve the old
->   offset.
-> - Link to v1:
->   https://lore.kernel.org/linux-arm-kernel/20240902093222.2828345-3-d-gole@ti.com/
-> 
-> ---
->  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 7 ++++++-
->  arch/arm64/boot/dts/ti/k3-am625.dtsi       | 2 +-
->  2 files changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> index e0afafd532a5..b2b65e31c7cf 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> @@ -10,7 +10,7 @@
->  &cbass_wakeup {
->  	wkup_conf: syscon@43000000 {
+On 10/24/2024 2:42 PM, Qiang Yu wrote:
+>
+> On 10/18/2024 10:06 PM, Johan Hovold wrote:
+>> Please use a more concise subject (e.g. try to stay within 72 chars)
+>> than:
+>>
+>>     PCI: qcom: Disable ASPM L0s and remove BDF2SID mapping config for 
+>> X1E80100 SoC
+>>
+>> Here you could drop "SoC", maybe "ASPM" and "config" for example.
+>>
+>> On Wed, Oct 16, 2024 at 08:04:11PM -0700, Qiang Yu wrote:
+>>> Currently, the cfg_1_9_0 which is being used for X1E80100 has 
+>>> config_sid
+>>> callback in its ops and doesn't disable ASPM L0s. However, as same as
+>>> SC8280X, PCIe controllers on X1E80100 are connected to SMMUv3, hence 
+>>> don't
+>>> need config_sid() callback and hardware team has recommended to disable
+>>> L0s as it is broken in the controller. Hence reuse cfg_sc8280xp for
+>>> X1E80100.
+>> Since the x1e80100 dtsi, like sc8280xp, do not specify an iommu-map,
+>> that bit is effectively just a cleanup and all this patch does is to
+>> disable L0s.
+>>
+>> Please rephrase to make this clear. This will also allow you to make the
+>> Subject even shorter (no need to mention the SID bit in Subject).
+>>
+>> Also say something about how L0s is broken so that it is more clear what
+>> the effect of this patch is. On sc8280xp enabling L0s lead to
+>> correctable errors for example.
+> Need more time to confirm the exact reason about disabling L0s.
+> Will update if get any progress
+Hi Johan Hovold
 
-Now that the compatible is updated, this needs to be bus@addr
-dtbs_check should catch such errors.
+I confirmed with HW team and SW team. L0s is not supported on X1E80100, 
+it is not fully verified. So we don't want to enable it.
 
->  		bootph-all;
-> -		compatible = "syscon", "simple-mfd";
-> +		compatible = "simple-bus";
-
-Did you also check U-Boot and make sure no regression/update needed?
-
->  		reg = <0x00 0x43000000 0x00 0x20000>;
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> @@ -22,6 +22,11 @@ chipid: chipid@14 {
->  			reg = <0x14 0x4>;
->  		};
->  
-> +		opp_efuse_table: syscon@18 {
-> +			compatible = "ti,am62-opp-efuse-table", "syscon";
-> +			reg = <0x18 0x4>;
-> +		};
-> +
->  		cpsw_mac_syscon: ethernet-mac-syscon@200 {
->  			compatible = "ti,am62p-cpsw-mac-efuse", "syscon";
->  			reg = <0x200 0x8>;
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625.dtsi b/arch/arm64/boot/dts/ti/k3-am625.dtsi
-> index c3d1db47dc9f..c249883a8a8d 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am625.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am625.dtsi
-> @@ -108,7 +108,7 @@ cpu3: cpu@3 {
->  	a53_opp_table: opp-table {
->  		compatible = "operating-points-v2-ti-cpu";
->  		opp-shared;
-> -		syscon = <&wkup_conf>;
-> +		syscon = <&opp_efuse_table>;
->  
->  		opp-200000000 {
->  			opp-hz = /bits/ 64 <200000000>;
-> 
-> base-commit: dec9255a128e19c5fcc3bdb18175d78094cc624d
-
--- 
-Regards
-Vignesh
+Thanks,
+Qiang Yu
+>
+> Thanks,
+> Qiang
+>>
+>>> Fixes: 6d0c39324c5f ("PCI: qcom: Add X1E80100 PCIe support")
+>>> Cc: stable@vger.kernel.org
+>> Johan
 
