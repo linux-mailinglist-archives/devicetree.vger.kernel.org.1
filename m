@@ -1,219 +1,129 @@
-Return-Path: <devicetree+bounces-117298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 045979B5CE3
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 08:24:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B06209B5CE7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 08:25:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2799E1C20BB0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:24:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B9162819CA
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:25:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CDFF1E2303;
-	Wed, 30 Oct 2024 07:23:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 508251DC759;
+	Wed, 30 Oct 2024 07:25:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Y7h3vNuZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FjahBHJT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF0DE1E22E3
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 07:22:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F1271D5CF9;
+	Wed, 30 Oct 2024 07:25:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730272982; cv=none; b=dU5YUAPbDEksaP8xcdKFhgf6UlbQNK6iUBZV37AfvB6UFY80z+fvVlU905FiBMgtgQQe2x5NxDsAkWB65x9trvRVwwxJELfK0JA7PIPrFwkAgzeODifZ7geQrPekY9EF5Fw5n/KDS0JqqnkKfWAgyzJeRZmcHv/FSLPrTAZA9Qc=
+	t=1730273139; cv=none; b=o0eKeKcO6Iz96e7qyvJOW/D6StnaUYnVZkC8k8JSytS9uxuMEYBj2SN0krMJ3DqoScrS5BT7doWEkpcH9vDxh8FOUak+akOUUsMqpZGXaCQGwFZaRENxTmkPdu8Q0TDTuHguHC4MAViS9vwn/yqIZ68AtxR4bOcsUebZas0n/Vc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730272982; c=relaxed/simple;
-	bh=7aq1M3psoX/kZO+uRauBs3Wo3o81OrpD0OG3KsRwDH0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aIFgMNNxu5zd4L+jRNFFlOHQi1YgBswKLgAObdLz/r4zIkIQ5KcsGHWeG9ezSlvcoJhyDrgCP74bTCBAWGhq0KM7rNtbrr/7eKfSHx5sbqmKvsDi5zBds28SZ9d92mwtvHgwz9IRjVRCmLX77O9tJrovEMKUF5ihJmbG5t1eB30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Y7h3vNuZ; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-656d8b346d2so4313475a12.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 00:22:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1730272979; x=1730877779; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qmJoXxC+Nj2No0J4gz+NFYN6UA8etQPYIirl1nYh9sw=;
-        b=Y7h3vNuZUMYIdZFYvZCWxEi63L4V4QAQXNo3MWP4/JCciBkZMSsYCAz+0t5GtXLQA0
-         FX20AjL90RRjYH+dlAAbUGBbnbtKUtqkSdX5UlrREwgoYlj8GlbEQGvdneOe7qQd6kas
-         DmV+5k9TXlhPVG+zrNyGg8Z6AcEgclbZij4yE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730272979; x=1730877779;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qmJoXxC+Nj2No0J4gz+NFYN6UA8etQPYIirl1nYh9sw=;
-        b=myinbZY6E0qzZq2dvFG9v/ZGUijVMrPUKZrXF8gH6Sa2i6T4HRbgKgcFGhk3qZSM9R
-         SszzezQOPfmcWqhnOigHHhiKwTRarbLq+ZlzzYUFHkm5GYEgz8BV5Niprn9mHFh4EiJg
-         v/XcyXgl3pDSS++dsOhi12/8FUoIOn7+PnCcpAip+5OTgZsL+m0HNFMtsmsk30SBUMoq
-         2+4quje0YCIvdkKvOb/G+sI/ltuYugPt4rjuts9SI7fkz+Wts2ilPIDVzuv0q4NWaG8f
-         F++u6HKLEMcCx0087gR/7N7RBVa8ZoC8kF5PBqtw54sKN3enTr+iFGvClNDIVlTfYpvq
-         Emug==
-X-Forwarded-Encrypted: i=1; AJvYcCWU15tsiy3tfg4PEWg7qZ7DAvwR4sr72d4zoEZhoTiqRIpxBySYY/mdJNw0Rb6v1FbKZFfxg6cOG7Tf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+mjzHjJqHjUCuaalr5HwijOLrC1vAhDtJyTsvftIAiTmp3FfG
-	h5OopF5KhYGrI6yO4qxMzb4jp+dyYI9MQUwySROlZhCjCpSeyN03hURnXwwGQQ==
-X-Google-Smtp-Source: AGHT+IFSxHaU+3aFl8XTDiP0cVXDw2kQMTvcGtMvQxzwOF2PNEaI4ueW/fIpKEk8aXN65gsJMZV+Zg==
-X-Received: by 2002:a05:6a21:32a8:b0:1d9:278a:9ab with SMTP id adf61e73a8af0-1d9a84b8d1cmr25165541637.35.1730272979191;
-        Wed, 30 Oct 2024 00:22:59 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:d1f3:aa64:657f:d8a8])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-210bc02e67esm76641445ad.186.2024.10.30.00.22.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Oct 2024 00:22:58 -0700 (PDT)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	chrome-platform@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>,
-	Jiri Kosina <jikos@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-i2c@vger.kernel.org,
-	stable+noautosel@kernel.org
-Subject: [PATCH v10 7/7] arm64: dts: mediatek: mt8173-elm-hana: Mark touchscreens and trackpads as fail
-Date: Wed, 30 Oct 2024 15:22:28 +0800
-Message-ID: <20241030072229.1013235-8-wenst@chromium.org>
-X-Mailer: git-send-email 2.47.0.163.g1226f6d8fa-goog
-In-Reply-To: <20241030072229.1013235-1-wenst@chromium.org>
-References: <20241030072229.1013235-1-wenst@chromium.org>
+	s=arc-20240116; t=1730273139; c=relaxed/simple;
+	bh=MVR/RKKMxMOWaQLw5EfRw5Rk1mSUn+qaFZJAl2tT47M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Jju5eb4GjJ3zGYMEeYj4lbCJpm1Ep2St77myJotwQCYaI616m4sf9Fwd/od3+EB5ZGCkz1fI/0uMN1/T7/rbWW2VJcAZ5uIavD4crYatJuN7zI7c27S/PQrIW4jT3w2xUg4/wjypPHJVR+fcPWhg1Ftqj7wPIfFnTyiXaaemnJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FjahBHJT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C8B5C4CEE4;
+	Wed, 30 Oct 2024 07:25:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730273138;
+	bh=MVR/RKKMxMOWaQLw5EfRw5Rk1mSUn+qaFZJAl2tT47M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FjahBHJTR5hY3F48yndbCx1ZQnwHBSpciEeE8STAfvSDZa/P0OK18A3GrAPMFt5x+
+	 Ar1lrQMGoD0RCuDIeMrw31GIFPxOYyb3DxVskPAcSLV2YtRRA1ed3663O3TcM+N8DA
+	 qswOiK+KXqeMJXUZX2NMK6LBxGfDL3KcIYLECXuRCdB7g+w+4CRdbltr33KxEicerS
+	 4C/ABOS12wGr+gpxD/BZSKXaQefD4cspXtYdOpxfL3RrGcXC6hl0GsCopsCa4aNso1
+	 nkt0mnkTuZR+O4n7fYBhe9j7Wt86c6w7A+OXK7TIDYwzAVPxyrCCQVfkI9jBGoKLcp
+	 K8Q0K3iJtKb1g==
+Message-ID: <ca46a692-3ec4-4b83-abd7-3fb82817940c@kernel.org>
+Date: Wed, 30 Oct 2024 08:25:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/3] dt-bindings: arm: qcom: Add Microsoft Windows Dev
+ Kit 2023
+To: jens.glathe@oldschoolsolutions.biz, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Merck Hung <merckhung@gmail.com>
+References: <20241030-jg-blackrock-for-upstream-v5-0-830c938437ad@oldschoolsolutions.biz>
+ <20241030-jg-blackrock-for-upstream-v5-1-830c938437ad@oldschoolsolutions.biz>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241030-jg-blackrock-for-upstream-v5-1-830c938437ad@oldschoolsolutions.biz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Instead of having them all available, mark them all as "fail-needs-probe"
-and have the implementation try to probe which one is present.
+On 30/10/2024 08:09, Jens Glathe via B4 Relay wrote:
+> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> 
+> Add compatible values for the Microsoft Windows Dev Kit (WDK2023)
+> with its codename "blackrock". The Dev kit is a small desktop box
+> based on the mainboard of the Surface pro 9 5G, intended for
+> developers to test/build arm64-based Windows software.
+> Link: https://learn.microsoft.com/en-us/windows/arm/dev-kit/
+> 
+> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
 
-Also remove the shared resource workaround by moving the pinctrl entry
-for the trackpad interrupt line back into the individual trackpad nodes.
+You got one reply, then another with bigger instruction, yet you ignored
+both of them.
 
-Cc: <stable+noautosel@kernel.org> # Needs accompanying new driver to work
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
-Changes since v9:
-- Picked up Doug's reviewed-by
-
-Changes since v8:
-none
-
-Changes since v7:
-- Mark touchscreen@40 as "fail-needs-probe" as well
-
-Changes since v6:
-none
-
-Changes since v5:
-none
-
-Changes since v4:
-- Rebased
-
-Changes since v3:
-- Also remove second source workaround, i.e. move the interrupt line
-  pinctrl entry from the i2c node back to the components.
-
-Changes since v2:
-- Drop class from status
----
- arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi | 14 ++++++++++++++
- arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi      |  4 ++--
- 2 files changed, 16 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-index ae0379fd42a9..dfc5c2f0ddef 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-@@ -14,6 +14,7 @@ touchscreen2: touchscreen@34 {
- 		compatible = "melfas,mip4_ts";
- 		reg = <0x34>;
- 		interrupts-extended = <&pio 88 IRQ_TYPE_LEVEL_LOW>;
-+		status = "fail-needs-probe";
- 	};
- 
- 	/*
-@@ -26,6 +27,7 @@ touchscreen3: touchscreen@20 {
- 		reg = <0x20>;
- 		hid-descr-addr = <0x0020>;
- 		interrupts-extended = <&pio 88 IRQ_TYPE_LEVEL_LOW>;
-+		status = "fail-needs-probe";
- 	};
- 
- 	/* Lenovo Ideapad C330 uses G2Touch touchscreen as a 2nd source touchscreen */
-@@ -35,6 +37,7 @@ touchscreen@40 {
- 		hid-descr-addr = <0x0001>;
- 		interrupt-parent = <&pio>;
- 		interrupts = <88 IRQ_TYPE_LEVEL_LOW>;
-+		status = "fail-needs-probe";
- 	};
- };
- 
-@@ -47,6 +50,8 @@ &i2c4 {
- 	trackpad2: trackpad@2c {
- 		compatible = "hid-over-i2c";
- 		interrupts-extended = <&pio 117 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&trackpad_irq>;
- 		reg = <0x2c>;
- 		hid-descr-addr = <0x0020>;
- 		/*
-@@ -58,6 +63,7 @@ trackpad2: trackpad@2c {
- 		 */
- 		vdd-supply = <&mt6397_vgp6_reg>;
- 		wakeup-source;
-+		status = "fail-needs-probe";
- 	};
- };
- 
-@@ -82,3 +88,11 @@ pins_wp {
- 		};
- 	};
- };
-+
-+&touchscreen {
-+	status = "fail-needs-probe";
-+};
-+
-+&trackpad {
-+	status = "fail-needs-probe";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-index b4d85147b77b..eee64461421f 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-@@ -358,12 +358,12 @@ touchscreen: touchscreen@10 {
- &i2c4 {
- 	clock-frequency = <400000>;
- 	status = "okay";
--	pinctrl-names = "default";
--	pinctrl-0 = <&trackpad_irq>;
- 
- 	trackpad: trackpad@15 {
- 		compatible = "elan,ekth3000";
- 		interrupts-extended = <&pio 117 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&trackpad_irq>;
- 		reg = <0x15>;
- 		vcc-supply = <&mt6397_vgp6_reg>;
- 		wakeup-source;
--- 
-2.47.0.163.g1226f6d8fa-goog
+Best regards,
+Krzysztof
 
 
