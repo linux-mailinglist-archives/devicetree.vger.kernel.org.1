@@ -1,112 +1,95 @@
-Return-Path: <devicetree+bounces-117444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C53FE9B6433
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 14:34:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2607A9B6439
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 14:35:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82C96281416
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:34:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56E891C213C2
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:35:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 673BB1EF09B;
-	Wed, 30 Oct 2024 13:33:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 227E51E570E;
+	Wed, 30 Oct 2024 13:35:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JMEfGjrY"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ooR9oXz4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A3251EABC2;
-	Wed, 30 Oct 2024 13:33:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD0A3185B62;
+	Wed, 30 Oct 2024 13:35:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730295238; cv=none; b=ShgzwU+uGFsbPGvX2TEqL/UDABbq/2zxRujZcAvyE2NAITmI0sX7M8QV9IEvciTK1BFL/0HJoLmWnR4Gl4xmFQdvjGh0ZmZnUz6pcyh56GJmm6VVd1Kk1aoL4c3WlR0Jhl4rUK/gNc8zxC0xstMc6zfR97hujFOp9hUmDjZHYWA=
+	t=1730295337; cv=none; b=ZdGC9hVIS80E0vNiKstt9yBKihxq14mJM61VtKPlj9+FQxxUniAiTqfsPskZAvVDt+Sc8gJjlwZuQXcR9kVvwjiOmuKPaWF9qXgmkXp/uCdfGWcPvCJfe9Nu1s3T6AOL4L7zz1BFLCueD1cJGzJexiT1moVgIwSzkF+F6ueSHak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730295238; c=relaxed/simple;
-	bh=/cvXZtoD4i+tDRYaqDH//dLStWALZWK3Mc7BtM1vj3M=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=hSnixDequECTYxy2/e0EmCU30NpTJTrlyoVaKgYsD3IKB8hPUcarKioSis7F7Eo9rq2aOHb+KLcOdkoOKi4xuQhqmxB7vssbU7HTl2tw1ZNda15LDJKk7bYkDyxbj1VZksysibdABoVD9cIycmoMdAkILAIDMF3AJ+sQRo55TuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JMEfGjrY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DD86C4CEE3;
-	Wed, 30 Oct 2024 13:33:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730295237;
-	bh=/cvXZtoD4i+tDRYaqDH//dLStWALZWK3Mc7BtM1vj3M=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=JMEfGjrYQg7epbEgeDHvzfaRWdBILQYisYf8sdx5L45PLskSGK10T9FRdVHQBzZQl
-	 H1IIwZOEtJ1detTOPV4noHHcpLl1PXDUvFOUy/QUldd2RJQE6lxGSxLwR/TlW1Ez5t
-	 N01GELabGKN3Rg+HrKdn0xT3weGKvP2GTe8HtC3LT2mzKn4tMosNG/QReK9bCvdUi9
-	 eWHYaAyHZGJgQWGng2TxfNFdCiEsuc4SsX9o95/eDPlwCAHKfPE2fldhVN6clN5b31
-	 n3aMUa9A4TPlB+r0z4s+KdkUs28bjNH3n7pI8MvEvG5bGPrQ57zgTKrDFyiy2+l7mC
-	 7Ani+xgRmOh0w==
-Date: Wed, 30 Oct 2024 08:33:55 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1730295337; c=relaxed/simple;
+	bh=q0+2bsG1gRSPhvpYprB+IAG8xeuM/DVRZ6H3+S4xmGQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dXxdp05g+xhPRyvYfESpFvf0Xo0hOK34e+3Alt+IbGMxnoz+8OddeHFKj/oYZ1xziJJ8j8pM3s9V7BcLFX8LX8P/OTWMaubAwW63slWbD5syySpYhhJ7otio9nlukiWFKM9A/ZeyJ6EL8Tznd3K0Q7+eSpp4exKqETektIgNel0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ooR9oXz4; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Q/3yOnbAAYgurf+C+eCBdRRuc1aeP4zqVtwXMl6zbys=; b=ooR9oXz4Ia58Wc5ZleJG1mkXW8
+	hSOeOcdYurwLwLvenD/zFFbS3NugdL74o7f1gWJL73KUdkbvj3/otUa4u+onWqOlaIXM3u6EzhGQ2
+	LcMJWbdzUetNevvOLuRujQKCRwmCPDOR9xhU5wcYXWBg4/4QftMbpuelJsa1Pfmww7es=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1t68r7-00BgzV-E7; Wed, 30 Oct 2024 14:35:25 +0100
+Date: Wed, 30 Oct 2024 14:35:25 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
+Cc: "Gupta, Suraj" <Suraj.Gupta2@amd.com>,
+	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"git (AMD-Xilinx)" <git@amd.com>,
+	"Katakam, Harini" <harini.katakam@amd.com>
+Subject: Re: [PATCH net] dt-bindings: net: xlnx,axi-ethernet: Correct
+ phy-mode property value
+Message-ID: <b078780a-4afd-43af-afcf-309707614b0a@lunn.ch>
+References: <20241028091214.2078726-1-suraj.gupta2@amd.com>
+ <MN0PR12MB59539234124DEF1B37FAB220B7542@MN0PR12MB5953.namprd12.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Krishna Kurapati <quic_kriskura@quicinc.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Bjorn Andersson <andersson@kernel.org>
-In-Reply-To: <20241030-sar2130p-dt-v2-1-027364ca0e86@linaro.org>
-References: <20241030-sar2130p-dt-v2-0-027364ca0e86@linaro.org>
- <20241030-sar2130p-dt-v2-1-027364ca0e86@linaro.org>
-Message-Id: <173029523595.389190.16064407897855389566.robh@kernel.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: arm: qcom-soc: extend to support
- SAR2130P platform
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MN0PR12MB59539234124DEF1B37FAB220B7542@MN0PR12MB5953.namprd12.prod.outlook.com>
 
+On Wed, Oct 30, 2024 at 06:12:37AM +0000, Pandey, Radhey Shyam wrote:
+> > -----Original Message-----
+> > From: Suraj Gupta <suraj.gupta2@amd.com>
+> > Sent: Monday, October 28, 2024 2:42 PM
+> > To: Pandey, Radhey Shyam <radhey.shyam.pandey@amd.com>;
+> > andrew+netdev@lunn.ch; davem@davemloft.net; edumazet@google.com;
+> > kuba@kernel.org; pabeni@redhat.com; robh@kernel.org; krzk+dt@kernel.org;
+> > conor+dt@kernel.org; netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> > kernel@vger.kernel.org
+> > Cc: git (AMD-Xilinx) <git@amd.com>; Katakam, Harini <harini.katakam@amd.com>
+> > Subject: [PATCH net] dt-bindings: net: xlnx,axi-ethernet: Correct phy-mode property
+> > value
+> > 
+> > Correct phy-mode property value to 1000base-x.
 
-On Wed, 30 Oct 2024 13:50:54 +0200, Dmitry Baryshkov wrote:
-> Extend the patterns in qcom-soc.yaml to support Qualcomm SAR2130P
-> platform.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  Documentation/devicetree/bindings/arm/qcom-soc.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/remoteproc/qcom,sa8775p-pas.example.dtb: remoteproc@30000000: compatible: ['qcom,sa8775p-adsp-pas'] is valid under each of {'items': [{'pattern': '^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$'}], 'type': 'array', 'minItems': 1, 'maxItems': 1}, {'items': [{'pattern': '^qcom,(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|sc|sd[amx]|sm|x1e)[0-9]+(p|pro)?-.*$'}], 'type': 'array', 'minItems': 1, 'maxItems': 1}
-	from schema $id: http://devicetree.org/schemas/arm/qcom-soc.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/qcom,sa8775p-gcc.example.dtb: clock-controller@100000: compatible: ['qcom,sa8775p-gcc'] is valid under each of {'items': [{'pattern': '^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$'}], 'type': 'array', 'minItems': 1, 'maxItems': 1}, {'items': [{'pattern': '^qcom,(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|sc|sd[amx]|sm|x1e)[0-9]+(p|pro)?-.*$'}], 'type': 'array', 'minItems': 1, 'maxItems': 1}
-	from schema $id: http://devicetree.org/schemas/arm/qcom-soc.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.example.dtb: phy@8901000: compatible: ['qcom,sa8775p-dwmac-sgmii-phy'] is valid under each of {'items': [{'pattern': '^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$'}], 'type': 'array', 'minItems': 1, 'maxItems': 1}, {'items': [{'pattern': '^qcom,(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|sc|sd[amx]|sm|x1e)[0-9]+(p|pro)?-.*$'}], 'type': 'array', 'minItems': 1, 'maxItems': 1}
-	from schema $id: http://devicetree.org/schemas/arm/qcom-soc.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.example.dtb: pinctrl@f000000: compatible: ['qcom,sa8775p-tlmm'] is valid under each of {'items': [{'pattern': '^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$'}], 'type': 'array', 'minItems': 1, 'maxItems': 1}, {'items': [{'pattern': '^qcom,(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|sc|sd[amx]|sm|x1e)[0-9]+(p|pro)?-.*$'}], 'type': 'array', 'minItems': 1, 'maxItems': 1}
-	from schema $id: http://devicetree.org/schemas/arm/qcom-soc.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interconnect/qcom,sa8775p-rpmh.example.dtb: interconnect-aggre1-noc: compatible: ['qcom,sa8775p-aggre1-noc'] is valid under each of {'items': [{'pattern': '^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$'}], 'type': 'array', 'minItems': 1, 'maxItems': 1}, {'items': [{'pattern': '^qcom,(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|sc|sd[amx]|sm|x1e)[0-9]+(p|pro)?-.*$'}], 'type': 'array', 'minItems': 1, 'maxItems': 1}
-	from schema $id: http://devicetree.org/schemas/arm/qcom-soc.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241030-sar2130p-dt-v2-1-027364ca0e86@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+    Andrew
 
