@@ -1,65 +1,67 @@
-Return-Path: <devicetree+bounces-117524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94C539B6CD7
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 894D89B6CD6
 	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 20:25:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B636B213AA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 19:25:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFCF31F2227E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 19:25:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 644D71CF5EF;
-	Wed, 30 Oct 2024 19:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F7D1CF7BA;
+	Wed, 30 Oct 2024 19:25:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DARFrT0J"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d9+uwNM3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 833CB8C1F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BF841CEEA3
 	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 19:24:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730316301; cv=none; b=cz9gdRk/zSU0H/SgTbStVUiNZjmrx0ik4N/5PiAfUsN8O63icUZshAI65iy+YRkNHuaNNFkORMczu6hl+o0ar3waTxaSnzE/BL1Xi+DNVgxWqUuxRsJZegcI+wXZ8mEmN9ACpfSwZ7z7Ue9dL4zWYEIXibKAb/q8nRFY5dWD8uU=
+	t=1730316301; cv=none; b=AR/0tr7jgDPqihlxjyrLbxxUJCIf4l5EfIlfS22O2lhlR6gj5Y5aF4XRz0j7Ne0sJaAaa4KTlVpLjneFMKTGqHozbBm+YVMF3uOmwG6UOPMS6zM7PWlz8fcEyxBJT7eR5vFGZ66bFXBJbSnV4RUIMmA50K58oHYg9b5xyL4VK8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1730316301; c=relaxed/simple;
-	bh=J2i2Ev7zPulUT07e3YOYtZnXJRVS2mY7sqnAQ34tueA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AW+R3ZqgUF2kuFFgPVP57PdfHDSErFbLLq+2Bgh70Dmh0mzdI7SQYFqTWiga4fZM7yxUNZEJSb6A6ntgIaTIaEZ4y6Uy93C4KppzoldbgKEW4c0Ocw0GDQdpToAXW1B/Mezn24RhyTfS8Ozx7rUhS67A5/7bm9slZxE+3ZegLug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DARFrT0J; arc=none smtp.client-ip=209.85.167.174
+	bh=QkqeFj/uHwD+PwVRbOy68PgyYxaJKtp6lCDvoGbC3ro=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=fDYRgpWkVP4rRfzj/FJGPIvbxt6Ti36U2Z1AFXCyMuwwVCPGWMHGxt+YC4/3vSO8smij5XjjZjvLIrrs4q8tx+Nq/kn6Iid7H8oYBU17rhGMqWG+Y9eLq9WS6fZZuMUV7hYGbTghkBRFpvOzj+KfmiINM72mcWYhCFH9MYW0q5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d9+uwNM3; arc=none smtp.client-ip=209.85.167.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3e600ae1664so138896b6e.2
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3e6010a3bbfso161743b6e.2
         for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 12:24:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730316298; x=1730921098; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HLeVcpMs22RhQ9P+S+WzLz2UKXz7BVsEnqwj5SzCpTs=;
-        b=DARFrT0J2QRdiy6kAnoh/JA7QadCG2F92tX6mae+HJYNB1FwRAgMVOmm6hhpspDME2
-         WxGmR+lh44ZiKuV3N4YARZXsjvh1fffEMJhKYM4Yq7xwjDXbkCHHV4BPPj6YTknVmMZq
-         fuu3D0RGXzOu9NbJvZgPhF0KvSfWwQre1c9JmCTzBjYBVwFzwhPL2nMJDdBt1ovzjQ2/
-         F2Y/WknSa8IQXdQoAcKnS1+uttZHVhI3Hv8SjvCuTS+OA2aUiryYfQTD5pPovFP4Hpy2
-         qOJtxHhOUZrGZRL2ewRouXnZijFFvXK56q8oMZM3VvMppxmBNuDVpFambKIYCDo0lDF2
-         Zj4g==
+        d=gmail.com; s=20230601; t=1730316299; x=1730921099; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=N0jI7anFu6tACdmq1ktw+g6zdLi6HmxfPbYpW9ePEvg=;
+        b=d9+uwNM36e9VT6yeQIALgE+zsfpLPTFT3F974wZVVvLlHJxTRuImW89jVwRPBhvAKM
+         EIr6HrBvbsSoO2/24Ikv2BUoYOjQpqfxvvF8EJ1qouZM8OoRYjGejgKtNCcAn7kJ8utM
+         Gos5ysvZraSjiUG8QzluHaq74Gmp69o9YjAKi6F9VWg7tKL6JuL0UXEil2XeqsaxccHw
+         hfcx3uF389pEF7zLMd7H0fey7NbcjehFXUGTaJ42HE27LMkqKDV7vMiXWXiQVDGe3HgZ
+         ygMB5x9rmEfF0PllsV6tM+OYkrdxGBYE6JHyVKZzba5fCp7nVdSafxa0XonwPm7nkrur
+         N4ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730316298; x=1730921098;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HLeVcpMs22RhQ9P+S+WzLz2UKXz7BVsEnqwj5SzCpTs=;
-        b=uaLy20DBGQD0+ioaamZSDbOY405ycYYg7lUPgDVzQ3LjY43fL1N4OSBNG53ixyTKpI
-         fhrgey02hxwzSaeVNaijBQ9RzbeH3cyG1w5bDlkQQ154CSw9y57Kp8l6vqkSmUKbSUqp
-         5f++HqGFzdhf1wEx9bG9ABqwOtv04/ZNG/VgT+4LhxPPTuP1VMFqVgGq9TyrjeQIYhpB
-         iu1jMzfiY4HrZj+tihvvo/Kd0VUSZMccrFWdpumPEMkLlbax+MIT9UKYY+k+pWO7iC/r
-         cbYfEWOSrQtLrGxxFh1GtwIuigFrhFos4pA+EsL0HnHNaHIY70jQQrGw2+WrVAoDZWV7
-         d/Kg==
-X-Gm-Message-State: AOJu0YwW442TRVx/G6G0f46jEBT0iQHBnkJqC8xzXXFt+ieBBbJbcks/
-	IzvYYh4p3HVpukhfsywhSfIZaOhpl3PaKueKEToZvGcpT3FwaVj9
-X-Google-Smtp-Source: AGHT+IFSK9dQOa/K/bFoWGtT3qo0L6EWNVL9/zH0xG+ffRsMPAJrOCCHCSDJLTSDPQkU5cUNth0V6w==
-X-Received: by 2002:a05:6808:2117:b0:3e6:1513:4c04 with SMTP id 5614622812f47-3e63845ad6cmr16077828b6e.20.1730316298576;
-        Wed, 30 Oct 2024 12:24:58 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1730316299; x=1730921099;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=N0jI7anFu6tACdmq1ktw+g6zdLi6HmxfPbYpW9ePEvg=;
+        b=DOpEBGob0bn8g4e4DzIKxYNANHcQyKdzPp2b+i5pM0goG1m10CQYPF4LTlOSbMg/JR
+         cB1Qew0gwg/NBZEAc7iLVLLFinZZGvy9o6M0hvr8msWVL6PlFGiYZ0ZJZnHBEzX2cnGs
+         /KD1UroSSM7bJt0v8jxi68Pa06bgcfJfydNgFJw5p3bKsE3njfuVQ5ZAilJpglxPShV0
+         V03BeKdQrhRbHYph5xodWr5T09cRcgYwoAG/i8dnkhQ2OhgwkQspMPeNm7wFeQtfwRMJ
+         oPboWmMvDzCdKI5LjL/mWHvIZnfOVU2e/77upiWgvv9y+E+KID4rXtx++2wmALysul1m
+         48IA==
+X-Gm-Message-State: AOJu0YyDsJLVx7HuQ5wBVIH3eyXLZK59wc4NTeaiUtn236j8miEZnVv/
+	8E64pvDy/cthUwVtKnLufmsrME2IA+DLF4AvW9YR3NQTTl6mnh4CCM7yog==
+X-Google-Smtp-Source: AGHT+IFrqkfM7z4LQrqXwq/YG6kPA6xu7Hgh5LsO3qpoCQRLhGx71THyPMYVSfC+R7c2gCQDbzcfyg==
+X-Received: by 2002:a05:6808:f01:b0:3e5:f172:3a3 with SMTP id 5614622812f47-3e6608e06dbmr524825b6e.19.1730316299245;
+        Wed, 30 Oct 2024 12:24:59 -0700 (PDT)
 Received: from localhost.localdomain ([2600:1700:fb0:1bcf::54])
         by smtp.gmail.com with ESMTPSA id 5614622812f47-3e63248d3e0sm2689204b6e.24.2024.10.30.12.24.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
@@ -73,10 +75,12 @@ Cc: devicetree@vger.kernel.org,
 	krzk+dt@kernel.org,
 	robh@kernel.org,
 	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V2 0/3] Indiedroid Nova Audio/HDMI Updates
-Date: Wed, 30 Oct 2024 14:22:33 -0500
-Message-ID: <20241030192236.839105-1-macroalpha82@gmail.com>
+Subject: [PATCH V2 1/3] arm64: dts: rockchip: correct analog audio name on Indiedroid Nova
+Date: Wed, 30 Oct 2024 14:22:34 -0500
+Message-ID: <20241030192236.839105-2-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241030192236.839105-1-macroalpha82@gmail.com>
+References: <20241030192236.839105-1-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,25 +91,30 @@ Content-Transfer-Encoding: 8bit
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-This series is for a handful of fixes and updates for the Indiedroid
-Nova. This series corrects the device name of the audio card to stop
-a kernel log error, and adds support for both the HDMI and GPU (now
-that HDMI support has been queued for linux-next).
+Correct the audio name for the Indiedroid Nova from
+rockchip,es8388-codec to rockchip,es8388. This name change corrects a
+kernel log error of "ASoC: driver name too long 'rockchip,es8388-codec'
+-> 'rockchip_es8388'".
 
-Changes since v1:
- - Corrected HDMI port from mini HDMI (c) to micro HDMI (d).
- - Explained why I enable hdmim0_rx_hpdin in contrast to the other
-   rk3588 boards.
- - Split HDMI0 and GPU patches into different patches.
+Fixes: 3900160e164b ("arm64: dts: rockchip: Add Indiedroid Nova board")
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Chris Morgan (3):
-  arm64: dts: rockchip: correct analog audio name on Indiedroid Nova
-  arm64: dts: rockchip: Enable GPU on Indiedroid Nova
-  arm64: dts: rockchip: Enable HDMI0 on Indiedroid Nova
-
- .../dts/rockchip/rk3588s-indiedroid-nova.dts  | 58 ++++++++++++++++++-
- 1 file changed, 57 insertions(+), 1 deletion(-)
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
+index d8c50fdcca3b..a4b930f6987f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
+@@ -62,7 +62,7 @@ sdio_pwrseq: sdio-pwrseq {
+ 
+ 	sound {
+ 		compatible = "audio-graph-card";
+-		label = "rockchip,es8388-codec";
++		label = "rockchip,es8388";
+ 		widgets = "Microphone", "Mic Jack",
+ 			  "Headphone", "Headphones";
+ 		routing = "LINPUT2", "Mic Jack",
 -- 
 2.43.0
 
