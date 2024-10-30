@@ -1,167 +1,139 @@
-Return-Path: <devicetree+bounces-117274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BCCE9B5C21
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:59:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 360929B5C1C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 07:59:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDE9A284599
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 06:59:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A0ED1C21054
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 06:59:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DB611DC195;
-	Wed, 30 Oct 2024 06:59:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E50F01DC07D;
+	Wed, 30 Oct 2024 06:59:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="caMjyRok"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="bewQAceO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87BE31CFEA0;
-	Wed, 30 Oct 2024 06:59:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D791DAC8E
+	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 06:59:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730271580; cv=none; b=tDK96ZIWMU0+1NnwiB7vSZpXJP56IEZDCnZlKMpmPBLiryQmiypEFAY7wRJnR0E55UahTl4pkR7OpCrWS8ADSlnuW2aJ83+4UrAXhcy0Oent7zgiRxNtDVCcyHNkpc4yv1IYkfSlMZ9DYEilEczrY8XeLJmF+ta8Pp/fFlOUCwc=
+	t=1730271566; cv=none; b=QVRHsK/7BVxY/sSMiAOOvPxP6pJAcW+Zqz9BJI5NhTcYUVwl5E3GO2Q4Va8nZf++qI7D7hRHIaRhmVqwG81e/9MBcqSx+lGLJSrZi/S6XNCLezDvK13zSXGkwEptI+mT0Av3Zow6ndRxOcEtpyLyL4ovL/YsgeaGRNXqKwJiarE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730271580; c=relaxed/simple;
-	bh=hYef1UAdkNfUtjKckYGh47Zsrm0EAjXPBUz8fPcgNaU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=p45u77GHRuLKE4lof+aEl85x1thoiCeJEIqaTvgoBkM0Bc8hnKeehUHKaFKHseZ5ugrDw3ecQac+qJ/CdWRV/YRSL2dBceK5JoVpSp5NV8NgelLeLwjgCA7ip/1noBwZVnsegwuKM4m7pb/YaaN5mAGpo13jzbC6U2VnXCLSyn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=caMjyRok; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49TLJumd017530;
-	Wed, 30 Oct 2024 06:59:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5ljvihIfFExUH52EvOk/obUHsk368hEW128UZHcAR3c=; b=caMjyRokjvNvwT2V
-	v833STgrm7pXwfDWZ2+hZDBbRKbBelnyS3KW+DOwJn36fQDSRr8MrB+RiWCclbPr
-	//Fcjld+8aIOitCXuNRtsFs8GLclS3i5JeuiMaNYGVKpMl6eIbzoW4JELIIQZq5R
-	7BZUv9MZuA03AduMVyptWX5TpIappm2wrYqPi7EkBiJEueK8fpbaCsZda5FBL/hi
-	ceQagn6PuVcrXWoU5D7YUP5i7HYMPSckNrS3dqjn6tCFx79GSb35D26ZUGuK3pdG
-	F4iefR7TEbiEwfLJi7u6zX5rzKORb1fk1F5+OErAlh7d1IyTLjDVoiJxcLbtRETb
-	tVvdlw==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grt72vh0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 06:59:34 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49U6xXJo003223
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 06:59:33 GMT
-Received: from [10.216.48.13] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
- 2024 23:59:28 -0700
-Message-ID: <f7551a7a-885c-4f74-8f74-10f1c0ebe6ad@quicinc.com>
-Date: Wed, 30 Oct 2024 12:29:17 +0530
+	s=arc-20240116; t=1730271566; c=relaxed/simple;
+	bh=i16pYFlL+2GPz4u0u591aWQv0tNB7ELcsGAfV5zdSA0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pRszyeUVNNF0ZNwFw2HAT/CtqjW1KzxATH/+VxO5GGq7Tz/qrQibW4ToXwQ6kR7FFRuaPd92486vz5Nkbjood9rLrBFYAgKJ37Lp0JdMXSteOUtsbMlgBn5a++tU59s/hLEzrnnd5WA7TeuBE9VTitnIpOzlxjjf9UmTjx1UR6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=bewQAceO; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-37d462c91a9so4456100f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2024 23:59:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730271562; x=1730876362; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=i16pYFlL+2GPz4u0u591aWQv0tNB7ELcsGAfV5zdSA0=;
+        b=bewQAceOUlkCq4sGvFwKgJAvRCBs+2FMXbT/xf/xKK2+bG9J6UNQCE9Ob6wEX7Hr7d
+         6m3iZ9P+KrWnZ6dxEdOYQiYXeiPGM8PHmhqF5jcT6wk8fapUjJ2pPI4xjEPUEX+l8STD
+         3cuCw32RsLK467pJ4nu7b6uVo+Zlg57pAeqMoOVwnpw3GVNVeViDeAGVJyBNJCsmpzvb
+         Exsqt4SLG+/rOoy2kOTYS20YsdEX7UlDopAJRk4leXtxDWYb46z7HfA0zmZCe0V9ILA0
+         uQ9gWfULPHIbjNtAblCsCzEUA/1yo/E06ZDL3BM60maIHdbi0Ze7dBs8QShIT46X6zgD
+         4VfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730271562; x=1730876362;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i16pYFlL+2GPz4u0u591aWQv0tNB7ELcsGAfV5zdSA0=;
+        b=ItXqQKXY9Ydh06T5Lvc3MoGRJrInto4OuVmQPRsWbefo6WBLEdesY5wSbu8oAnXXxA
+         8Ko5oxRtlUlSxjliLP5D9WctMRol1cbVCQLMTabkLMTvhnTI7at2MgsEVQ/8z16eGPjI
+         W1nbSWgCdAfHuEaMHuNSquGxbgOhrKvG63v3KMUNYrMwuvKDiqOOEr6kPu1e8wBA0M3D
+         XpB6dL0Uz2XEAg76ytGrHt/MYeDCLCRfeGDXgpT6KiLrT9fYZ140SleE1IV8ZxPUNTa8
+         54SlsoJhwAc1efBLCeSz+k8e3/ExOhpUcxGXLoL6HwUFd2QQ/bSjnYNbFCDQ8rVYrDXq
+         CBNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUTYp4HpVG+NStUNXxf+taZAm0pqwi4y8VMRy8J5k9vFMb3kJAlpVuIoZ+FmfZ6mo3yjtaQl2I4uAix@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxkk3fR9WXvVzW/jxll89h5A/GfQlE8e9bHZ0u/kZsYBHUkXip/
+	UagUDOwyK8ZKt4tT6bJTgrwyrT/kjYotDHfyw42xQrDLgpL36tJxiftITJ2rzzo=
+X-Google-Smtp-Source: AGHT+IFyqfOrZ4MI+sXiINodrY0EVZIGOc3drYiZoKJHu/kEVijxTqjjc6wOezZxjLb6iMiKoIcUbQ==
+X-Received: by 2002:a5d:638b:0:b0:37d:387b:f080 with SMTP id ffacd0b85a97d-381b7075edfmr1643140f8f.15.1730271562350;
+        Tue, 29 Oct 2024 23:59:22 -0700 (PDT)
+Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b70f25sm14695531f8f.67.2024.10.29.23.59.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Oct 2024 23:59:21 -0700 (PDT)
+Date: Wed, 30 Oct 2024 07:59:19 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Lee Jones <lee@kernel.org>, linux-mediatek@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	upstream@airoha.com, benjamin.larsson@genexis.eu, ansuelsmth@gmail.com, 
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v9 3/6] dt-bindings: pwm: airoha: Add EN7581 pwm
+Message-ID: <jzihr7yp5ftyl6ojhtnv2r4duos6or6hozip7yxxodycokwjms@nfa5clftyocy>
+References: <20241023-en7581-pinctrl-v9-0-afb0cbcab0ec@kernel.org>
+ <20241023-en7581-pinctrl-v9-3-afb0cbcab0ec@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: clock: qcom: Add GPU clocks for
- QCS8300
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Taniya Das
-	<quic_tdas@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        "Satya
- Priya Kakitapalli" <quic_skakitap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20241024-qcs8300-mm-patches-v2-0-76c905060d0a@quicinc.com>
- <20241024-qcs8300-mm-patches-v2-1-76c905060d0a@quicinc.com>
- <jhwf2slcwvkpxggqt42mfmnyiibhbnvwtqk3to7ueq3ppla7q7@23qrl2z56ygu>
- <0487791a-f31b-4427-b13b-b7ab6a80378b@quicinc.com>
- <ae61b485-d3af-4226-b2f8-e89ef5b4ed71@kernel.org>
- <fff416f9-4ea7-4117-87b0-986087f8e142@quicinc.com>
- <9bd4c63b-7c68-4e40-9995-9d569eed15b5@kernel.org>
-Content-Language: en-US
-From: Imran Shaik <quic_imrashai@quicinc.com>
-In-Reply-To: <9bd4c63b-7c68-4e40-9995-9d569eed15b5@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: k1kK1gxglV9b29xdG4fiIjcCcTKNzPeP
-X-Proofpoint-GUID: k1kK1gxglV9b29xdG4fiIjcCcTKNzPeP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- adultscore=0 clxscore=1011 impostorscore=0 malwarescore=0
- priorityscore=1501 phishscore=0 mlxscore=0 suspectscore=0 mlxlogscore=554
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410300053
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xv6ynghrtwc3g4ok"
+Content-Disposition: inline
+In-Reply-To: <20241023-en7581-pinctrl-v9-3-afb0cbcab0ec@kernel.org>
 
 
+--xv6ynghrtwc3g4ok
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v9 3/6] dt-bindings: pwm: airoha: Add EN7581 pwm
+MIME-Version: 1.0
 
-On 10/29/2024 3:06 PM, Krzysztof Kozlowski wrote:
-> On 29/10/2024 10:23, Imran Shaik wrote:
->>
->>
->> On 10/28/2024 12:35 PM, Krzysztof Kozlowski wrote:
->>> On 28/10/2024 06:15, Imran Shaik wrote:
->>>>
->>>>
->>>> On 10/26/2024 5:50 PM, Krzysztof Kozlowski wrote:
->>>>> On Thu, Oct 24, 2024 at 07:01:14PM +0530, Imran Shaik wrote:
->>>>>> The QCS8300 GPU clock controller is mostly identical to SA8775P, but
->>>>>> QCS8300 has few additional clocks and minor differences. Hence, reuse
->>>>>> SA8775P gpucc bindings and add additional clocks required for QCS8300.
->>>>>
->>>>> IIUC, these clocks are not valid for SA8775p. How do we deal with such
->>>>> cases for other Qualcomm SoCs?
->>>>>
->>>>
->>>> These newly added clocks are not applicable to SA8755P. In the
->>>> gpucc-sa8775p driver, these clocks are marked to NULL for the SA8755P,
->>>> ensuring they are not registered to the CCF.
->>>
->>> I meant bindings. And existing practice.
->>>
->>
->> In the bindings, the same approach is followed in other Qualcomm SoCs as
->> well, where additional clocks are added to the existing identical SoC’s
->> bindings.
->>
->> https://lore.kernel.org/r/20240818204348.197788-2-danila@jiaxyga.com
-> 
-> Exactly, defines are very different, so no, it is not the same approach.
-> 
+Hello,
 
-I believe the QCS8300 approach is same as that of SM8475. In the SM8475 
-SoC, GPLL2 and GPLL3 are the additional clock bindings compared to the 
-SM8450. Similarly, in the QCS8300, the GPU_CC_*_ACCU_SHIFT_CLK clock 
-bindings are additional to the SA8775P.
+On Wed, Oct 23, 2024 at 01:20:03AM +0200, Lorenzo Bianconi wrote:
+> Introduce device-tree binding documentation for Airoha EN7581 pwm
+> controller.
+>=20
+> Co-developed-by: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 
-We are also following this approach across all SoCs in the downstream 
-msm-kernel as well.
+LGTM
 
-Please let me know if I am missing anything here.
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
 
-Thanks,
-Imran
+Thanks
+Uwe
 
-> Best regards,
-> Krzysztof
-> 
+--xv6ynghrtwc3g4ok
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmch2UMACgkQj4D7WH0S
+/k4AsAf/WTL0HrSsNuwSLR9YrYS9gYAReyTQAnpm7wbARGWjQE5VLwUF+noWxWP/
+AWmOyJdCsgTFs3fXzuToK5SrEPTcsLv3lMAZl48Q7n6NNxMfHFFQSnLp7h+ZRKxu
+OQcfRE0N2VD/4NNDTlKZ9/LoTUTCFhJzjlGnhI6YlEe9Rj97KA1GlBrpneUUfXJ/
+ukXdcpGeN4W8DzvrzZSLjZYKT5EfDoFA0UFX6cDS1dZbe9LeCH/v13KFM5f7p1HU
++rs9IqNp62uk4YBbsaRjExCK9pcQsQMK/zxcTUn+jMbqR5wweK0wtulbSUdgChQE
+Q1oE4Hk6LfFUUnRHCMrbhDER34YMOA==
+=rEHm
+-----END PGP SIGNATURE-----
+
+--xv6ynghrtwc3g4ok--
 
