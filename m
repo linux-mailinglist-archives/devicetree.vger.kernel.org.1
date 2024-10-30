@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-117491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A55289B6A38
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:07:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 872939B6A3A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:07:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3535E1F213BB
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 17:07:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A84E1F21BA2
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 17:07:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 495ED219CAE;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9A71219CBE;
 	Wed, 30 Oct 2024 16:58:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="Kj+p16d8"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="Yl4o9Ji3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A56C0219486
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 16:57:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE77219488
+	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 16:58:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730307484; cv=none; b=AujVPh7wHiEXTsaj/iObOmuqOoDQBfERnx1MejcqDVKoUBhWwGWP1ZuABEyMCsZMY/vKbZYO5SlqiAVCDjmDVIwwUPMyqkKBzWpTi5OD8d8qTkq6pJbOV0V8dm+KdzJ9u0F7r16wWTY+loNy336K3aKtSn6VO6KZAiXP9WUnxjo=
+	t=1730307484; cv=none; b=I2PobHiwrVh23ipMp+/tWHV1wAdJ47JWLiDFPSWk3V/WFInrvkUFJxKvJEJriaudqsNVqqywh9mPjjIoD4szOQC2PvEsEmLdbAijpX0z/9dotUnW/GQOLSHzHY08sxbfxhbGuFfRa2RPyk0ky0AxNvzyiBlurhoM5mRfRkvEcI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1730307484; c=relaxed/simple;
-	bh=ytr4kv67qGAo7czUluBX9q+jXByw5RP4zcvFDppWqgM=;
+	bh=neXwPuNY2JHIeFvsve5uZTtDulaRq/OAudJCQheeq6Q=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TiMaBOppBVuhKwVZYcxA/ggDR0JjWM5xdZpWmQOL4DfF71C6p078kwxt+uaMVDMn5tFMLUlkKA6l2bZpFBvgU0qLNDJ8KZlWyUVt0wxjeGZTJ8RnZeqmEiyQHdQJpZXjaeNTHYtil2svmDnRE1YgauCnQy86lHZDcspsH9eI7HM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=Kj+p16d8; arc=none smtp.client-ip=209.85.215.171
+	 In-Reply-To:To:Cc; b=or2EXbGPOx8dKizjsrSVBJIkuMaQCUY4Kf+OkK8oaOpScJF4wsgp1P9W8lCPzT1px6J77hpkAKOscdL4nDHOh6TNBx5InWX97Wk+QtKpdObdQssoe4+i6otmlDR5EYFISky0s6suQ1YGprsPKvMY57mjbxUh0LAEF5pkTHzeb1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=Yl4o9Ji3; arc=none smtp.client-ip=209.85.210.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7d4f85766f0so84836a12.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 09:57:59 -0700 (PDT)
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-71e467c3996so12936b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 09:58:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1730307479; x=1730912279; darn=vger.kernel.org;
+        d=tenstorrent.com; s=google; t=1730307480; x=1730912280; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pzL62SVyIjejPV0WK5Icvrl5yXIEFUYP1mc1b47FbtQ=;
-        b=Kj+p16d8qUy8TxJkWPxHrnyq/TbM65sJgMEwFprUWsv5s2ImiK/UoFZSr7LlXuTgMK
-         ZhbDn+aeecnAzOR0L7bCXJv29TEy53cHa5L4zguQz7gX7FUMNwnooHKoeCBXY4tryiEJ
-         scDanIxNINqjk3gVX34GjThPD2jj9Bhjzc7ATD5ypRzhc/A6aVWTOlQ7Be2klzbBFOEp
-         07uLxpvHXw7p99GTTZ0RpHfpTsJZJBu6AQiyftoKL1F71ehT8kmsAf6DJFneXeK8D3WA
-         CbTmsJkAm0d7OaR/3mXVC95lLhCO89tOUpDDUwW9BWaumBD/3JZYWGNm3Op/fewY4AMJ
-         Z/sg==
+        bh=SQIDvZHJLlv2NnA/L5KGhQzE00s+QY4xZ6sZqZZ0iZs=;
+        b=Yl4o9Ji3rpalIq03Ki+eDNCQpi3pIGjFYLgA9rRywR6k/xO43XkCEqBdu5gWVWPe20
+         bPdeawlrdsg50THNGrqGLcKWmEQ0o6qnryjyCPoTHZ/PQe45NGYpJgTfn4vVtn8/BUW+
+         0Rzp2O+gkrVB0gwULyoZELGFPKi2zryPq8Dq0bjgzrCIRNYXVTtPPFmVINTwdF/NnkBH
+         sVxQzmOTB0O2SRS1rmA1iXWYej1w37Le3HkmHtFrfKJ9qcAaOFru/eImcW935t9PIbhD
+         8Rx+L3a2H/7PvHmyrHV4IqfHBK9cK7mR7AZZo1ON7fMS3I7YeMIohJdgLrGbS0Yqqxb4
+         QAaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730307479; x=1730912279;
+        d=1e100.net; s=20230601; t=1730307480; x=1730912280;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pzL62SVyIjejPV0WK5Icvrl5yXIEFUYP1mc1b47FbtQ=;
-        b=Rp4rJvaNTDL1TVvONn75StKrIQMAd0clT5WAfTfai+oXnTprK49pCRYf5FG8PLKg5q
-         KzHodL2Lyhj222G+Lls7WqoQGVGhkBYNOyOSOiALhxsoV+1pA0DgZRGnGlsEbfZ+xbY1
-         LfMAmxszAs+xCE1wKLmfDTwwRcvDVrFlZAfvrHxxER9n6vINpN6QNQkIFQGqhFMi0Ik8
-         R21zKOZ8Qil7zhEOHJ1SnIfLDOi2tih7aHOPUsJLa7XTgvGD4/OTwUJJW/HYAfAAn/Z5
-         N3LIwTungLel0aqq4+dOHqkMShSW0pv9iMOjvTYbZZG+rzg5drR58MCJVMpgyEA8+4NR
-         nGuw==
-X-Forwarded-Encrypted: i=1; AJvYcCVMzAfHKrht9towDbUphRqePFkP0cEF5lRhFt36zvW2H4WtC+583kCeSqO1u0nT6wI2rVvKkdv0ifiN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwREZqEQPXS51B8TpfiJo2gwAC8BN6GQJS+4/5eWO5ZIIgff0+i
-	JY8ypY3jYy6gqDtUHBAh5C6mzUDdZkXd87z84Eh6Q+N7W4joGLXeLLJwWtxy9hs=
-X-Google-Smtp-Source: AGHT+IE8bL+epQxJK6CXce+NuA003s35k7m7I3D6tHPjdUbTchJcFFfnxiHRxOXvx11kN2Kqf0lARg==
-X-Received: by 2002:a05:6a21:6e41:b0:1d9:175a:c2ba with SMTP id adf61e73a8af0-1db91d8b4b5mr85520637.20.1730307478935;
-        Wed, 30 Oct 2024 09:57:58 -0700 (PDT)
+        bh=SQIDvZHJLlv2NnA/L5KGhQzE00s+QY4xZ6sZqZZ0iZs=;
+        b=gR8xxPn9oyyhXfKvHeynr4zaws+y6GuvzEKQF+Hy6sTWbn+xQP96QyrnZOK97R72tb
+         w/O28A8Y765c38+U0Kl8uWsTIqKFdSky1Blg043MlrCKFAVb3Uv5o41IVv+/WGQr9YCP
+         l1Y0VtofUQ081Y3m0dBdP4opqB68Wc5cws5Zel7yTIeM1DOOFn0E/DbogrYV+WtIH4+c
+         lfLKuy2MLLAOTl28XWLaMYT1pPJ/W2cwXCcE1PybSskwjYA/4mIEmHREr4mz5SOitm+H
+         wC6MOQqCUkveWD26MLDVI30hY75/gSoxGh4rZCKu9B02G5zau5K/CnuQHbsBMzYaDS9M
+         mx/A==
+X-Forwarded-Encrypted: i=1; AJvYcCXyxvzR3TCzjgtqnp8jM7AP3Fs1srOQbkIed54UsKVJDOHrMXVun0uSPeypTLZFm6sCxRgJWJELDOBF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/k4p004yjvjFlEA4dAChUssypSqdNtfUk/1yVYXehobLfndED
+	mE0QBXlz0eWBoKTvc0KLVbCU+YwEqyns5w2xo/9cnRh8QSCKX8io/hHDjBNZ+HM=
+X-Google-Smtp-Source: AGHT+IFendjYryfYbhHPdbJiPH50n2zYBYX/Re9V2bpl5NUL9VcmlaAud6ZDSSBB5Y1WnNz8vlj0fg==
+X-Received: by 2002:a05:6a00:1892:b0:71e:4c20:75fc with SMTP id d2e1a72fcca58-72062f67d62mr23111941b3a.10.1730307479822;
+        Wed, 30 Oct 2024 09:57:59 -0700 (PDT)
 Received: from [127.0.1.1] (71-34-69-82.ptld.qwest.net. [71.34.69.82])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057a1f1ddsm9810776b3a.149.2024.10.30.09.57.58
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057a1f1ddsm9810776b3a.149.2024.10.30.09.57.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Oct 2024 09:57:58 -0700 (PDT)
+        Wed, 30 Oct 2024 09:57:59 -0700 (PDT)
 From: Drew Fustini <dfustini@tenstorrent.com>
-Date: Wed, 30 Oct 2024 09:57:44 -0700
-Subject: [PATCH net-next v6 1/2] dt-bindings: net: Add T-HEAD dwmac support
+Date: Wed, 30 Oct 2024 09:57:45 -0700
+Subject: [PATCH net-next v6 2/2] net: stmmac: Add glue layer for T-HEAD
+ TH1520 SoC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241030-th1520-gmac-v6-1-e48176d45116@tenstorrent.com>
+Message-Id: <20241030-th1520-gmac-v6-2-e48176d45116@tenstorrent.com>
 References: <20241030-th1520-gmac-v6-0-e48176d45116@tenstorrent.com>
 In-Reply-To: <20241030-th1520-gmac-v6-0-e48176d45116@tenstorrent.com>
 To: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
@@ -98,168 +99,348 @@ To: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
 Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-riscv@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
- linux-stm32@st-md-mailman.stormreply.com, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ linux-stm32@st-md-mailman.stormreply.com
 X-Mailer: b4 0.14.1
 
 From: Jisheng Zhang <jszhang@kernel.org>
 
-Add documentation to describe the DesginWare-based GMAC controllers in
-the T-HEAD TH1520 SoC.
+Add dwmac glue driver to support the DesignWare-based GMAC controllers
+on the T-HEAD TH1520 SoC.
 
 Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+[esmil: rename plat->interface -> plat->mac_interface,
+        use devm_stmmac_probe_config_dt()]
 Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-[drew: rename compatible, add apb registers as second reg of gmac node,
-       add clocks and interrupts poroperties]
+[drew: convert from stmmac_dvr_probe() to devm_stmmac_pltfr_probe(),
+       convert register access from regmap to regular mmio]
 Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
 ---
- .../devicetree/bindings/net/snps,dwmac.yaml        |   1 +
- .../devicetree/bindings/net/thead,th1520-gmac.yaml | 110 +++++++++++++++++++++
- MAINTAINERS                                        |   1 +
- 3 files changed, 112 insertions(+)
+ MAINTAINERS                                       |   1 +
+ drivers/net/ethernet/stmicro/stmmac/Kconfig       |  10 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile      |   1 +
+ drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c | 268 ++++++++++++++++++++++
+ 4 files changed, 280 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 4e2ba1bf788c..474ade185033 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -99,6 +99,7 @@ properties:
-         - snps,dwxgmac-2.10
-         - starfive,jh7100-dwmac
-         - starfive,jh7110-dwmac
-+        - thead,th1520-gmac
- 
-   reg:
-     minItems: 1
-diff --git a/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
-new file mode 100644
-index 000000000000..6d9de3303762
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
-@@ -0,0 +1,110 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/thead,th1520-gmac.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: T-HEAD TH1520 GMAC Ethernet controller
-+
-+maintainers:
-+  - Drew Fustini <dfustini@tenstorrent.com>
-+
-+description: |
-+  The TH1520 GMAC is described in the TH1520 Peripheral Interface User Manual
-+  https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/tree/main/docs
-+
-+  Features include
-+    - Compliant with IEEE802.3 Specification
-+    - IEEE 1588-2008 standard for precision networked clock synchronization
-+    - Supports 10/100/1000Mbps data transfer rate
-+    - Supports RGMII/MII interface
-+    - Preamble and start of frame data (SFD) insertion in Transmit path
-+    - Preamble and SFD deletion in the Receive path
-+    - Automatic CRC and pad generation options for receive frames
-+    - MDIO master interface for PHY device configuration and management
-+
-+  The GMAC Registers consists of two parts
-+    - APB registers are used to configure clock frequency/clock enable/clock
-+      direction/PHY interface type.
-+    - AHB registers are use to configure GMAC core (DesignWare Core part).
-+      GMAC core register consists of DMA registers and GMAC registers.
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - thead,th1520-gmac
-+  required:
-+    - compatible
-+
-+allOf:
-+  - $ref: snps,dwmac.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - thead,th1520-gmac
-+      - const: snps,dwmac-3.70a
-+
-+  reg:
-+    items:
-+      - description: DesignWare GMAC IP core registers
-+      - description: GMAC APB registers
-+
-+  reg-names:
-+    items:
-+      - const: dwmac
-+      - const: apb
-+
-+  clocks:
-+    items:
-+      - description: GMAC main clock
-+      - description: Peripheral registers interface clock
-+
-+  clock-names:
-+    items:
-+      - const: stmmaceth
-+      - const: pclk
-+
-+  interrupts:
-+    items:
-+      - description: Combined signal for various interrupt events
-+
-+  interrupt-names:
-+    items:
-+      - const: macirq
-+
-+required:
-+  - clocks
-+  - clock-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    gmac0: ethernet@e7070000 {
-+        compatible = "thead,th1520-gmac", "snps,dwmac-3.70a";
-+        reg = <0xe7070000 0x2000>, <0xec003000 0x1000>;
-+        reg-names = "dwmac", "apb";
-+        clocks = <&clk 1>, <&clk 2>;
-+        clock-names = "stmmaceth", "pclk";
-+        interrupts = <66>;
-+        interrupt-names = "macirq";
-+        phy-mode = "rgmii-id";
-+        snps,fixed-burst;
-+        snps,axi-config = <&stmmac_axi_setup>;
-+        snps,pbl = <32>;
-+        phy-handle = <&phy0>;
-+
-+        mdio {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            compatible = "snps,dwmac-mdio";
-+
-+            phy0: ethernet-phy@0 {
-+                reg = <0>;
-+            };
-+        };
-+    };
 diff --git a/MAINTAINERS b/MAINTAINERS
-index f39ab140710f..72dee6d07ced 100644
+index 72dee6d07ced..b53f9f6b3e04 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -19827,6 +19827,7 @@ L:	linux-riscv@lists.infradead.org
- S:	Maintained
- T:	git https://github.com/pdp7/linux.git
- F:	Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
-+F:	Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
+@@ -19830,6 +19830,7 @@ F:	Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
+ F:	Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
  F:	arch/riscv/boot/dts/thead/
  F:	drivers/clk/thead/clk-th1520-ap.c
++F:	drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
  F:	include/dt-bindings/clock/thead,th1520-clk-ap.h
+ 
+ RNBD BLOCK DRIVERS
+diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+index 05cc07b8f48c..6658536a4e17 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
++++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+@@ -228,6 +228,16 @@ config DWMAC_SUN8I
+ 	  stmmac device driver. This driver is used for H3/A83T/A64
+ 	  EMAC ethernet controller.
+ 
++config DWMAC_THEAD
++	tristate "T-HEAD dwmac support"
++	depends on OF && (ARCH_THEAD || COMPILE_TEST)
++	help
++	  Support for ethernet controllers on T-HEAD RISC-V SoCs
++
++	  This selects the T-HEAD platform specific glue layer support for
++	  the stmmac device driver. This driver is used for T-HEAD TH1520
++	  ethernet controller.
++
+ config DWMAC_IMX8
+ 	tristate "NXP IMX8 DWMAC support"
+ 	default ARCH_MXC
+diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
+index c2f0e91f6bf8..d065634c6223 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/Makefile
++++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
+@@ -28,6 +28,7 @@ obj-$(CONFIG_DWMAC_STI)		+= dwmac-sti.o
+ obj-$(CONFIG_DWMAC_STM32)	+= dwmac-stm32.o
+ obj-$(CONFIG_DWMAC_SUNXI)	+= dwmac-sunxi.o
+ obj-$(CONFIG_DWMAC_SUN8I)	+= dwmac-sun8i.o
++obj-$(CONFIG_DWMAC_THEAD)	+= dwmac-thead.o
+ obj-$(CONFIG_DWMAC_DWC_QOS_ETH)	+= dwmac-dwc-qos-eth.o
+ obj-$(CONFIG_DWMAC_INTEL_PLAT)	+= dwmac-intel-plat.o
+ obj-$(CONFIG_DWMAC_LOONGSON1)	+= dwmac-loongson1.o
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
+new file mode 100644
+index 000000000000..8c7ec156ebb0
+--- /dev/null
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
+@@ -0,0 +1,268 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * T-HEAD DWMAC platform driver
++ *
++ * Copyright (C) 2021 Alibaba Group Holding Limited.
++ * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
++ *
++ */
++
++#include <linux/bitfield.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/of_device.h>
++#include <linux/of_net.h>
++#include <linux/platform_device.h>
++
++#include "stmmac_platform.h"
++
++#define GMAC_CLK_EN			0x00
++#define  GMAC_TX_CLK_EN			BIT(1)
++#define  GMAC_TX_CLK_N_EN		BIT(2)
++#define  GMAC_TX_CLK_OUT_EN		BIT(3)
++#define  GMAC_RX_CLK_EN			BIT(4)
++#define  GMAC_RX_CLK_N_EN		BIT(5)
++#define  GMAC_EPHY_REF_CLK_EN		BIT(6)
++#define GMAC_RXCLK_DELAY_CTRL		0x04
++#define  GMAC_RXCLK_BYPASS		BIT(15)
++#define  GMAC_RXCLK_INVERT		BIT(14)
++#define  GMAC_RXCLK_DELAY_MASK		GENMASK(4, 0)
++#define  GMAC_RXCLK_DELAY_VAL(x)	FIELD_PREP(GMAC_RXCLK_DELAY_MASK, (x))
++#define GMAC_TXCLK_DELAY_CTRL		0x08
++#define  GMAC_TXCLK_BYPASS		BIT(15)
++#define  GMAC_TXCLK_INVERT		BIT(14)
++#define  GMAC_TXCLK_DELAY_MASK		GENMASK(4, 0)
++#define  GMAC_TXCLK_DELAY_VAL(x)	FIELD_PREP(GMAC_RXCLK_DELAY_MASK, (x))
++#define GMAC_PLLCLK_DIV			0x0c
++#define  GMAC_PLLCLK_DIV_EN		BIT(31)
++#define  GMAC_PLLCLK_DIV_MASK		GENMASK(7, 0)
++#define  GMAC_PLLCLK_DIV_NUM(x)		FIELD_PREP(GMAC_PLLCLK_DIV_MASK, (x))
++#define GMAC_GTXCLK_SEL			0x18
++#define  GMAC_GTXCLK_SEL_PLL		BIT(0)
++#define GMAC_INTF_CTRL			0x1c
++#define  PHY_INTF_MASK			BIT(0)
++#define  PHY_INTF_RGMII			FIELD_PREP(PHY_INTF_MASK, 1)
++#define  PHY_INTF_MII_GMII		FIELD_PREP(PHY_INTF_MASK, 0)
++#define GMAC_TXCLK_OEN			0x20
++#define  TXCLK_DIR_MASK			BIT(0)
++#define  TXCLK_DIR_OUTPUT		FIELD_PREP(TXCLK_DIR_MASK, 0)
++#define  TXCLK_DIR_INPUT		FIELD_PREP(TXCLK_DIR_MASK, 1)
++
++#define GMAC_GMII_RGMII_RATE	125000000
++#define GMAC_MII_RATE		25000000
++
++struct thead_dwmac {
++	struct plat_stmmacenet_data *plat;
++	void __iomem *apb_base;
++	struct device *dev;
++};
++
++static int thead_dwmac_set_phy_if(struct plat_stmmacenet_data *plat)
++{
++	struct thead_dwmac *dwmac = plat->bsp_priv;
++	u32 phyif;
++
++	switch (plat->mac_interface) {
++	case PHY_INTERFACE_MODE_MII:
++		phyif = PHY_INTF_MII_GMII;
++		break;
++	case PHY_INTERFACE_MODE_RGMII:
++	case PHY_INTERFACE_MODE_RGMII_ID:
++	case PHY_INTERFACE_MODE_RGMII_TXID:
++	case PHY_INTERFACE_MODE_RGMII_RXID:
++		phyif = PHY_INTF_RGMII;
++		break;
++	default:
++		dev_err(dwmac->dev, "unsupported phy interface %d\n",
++			plat->mac_interface);
++		return -EINVAL;
++	}
++
++	writel(phyif, dwmac->apb_base + GMAC_INTF_CTRL);
++	return 0;
++}
++
++static int thead_dwmac_set_txclk_dir(struct plat_stmmacenet_data *plat)
++{
++	struct thead_dwmac *dwmac = plat->bsp_priv;
++	u32 txclk_dir;
++
++	switch (plat->mac_interface) {
++	case PHY_INTERFACE_MODE_MII:
++		txclk_dir = TXCLK_DIR_INPUT;
++		break;
++	case PHY_INTERFACE_MODE_RGMII:
++	case PHY_INTERFACE_MODE_RGMII_ID:
++	case PHY_INTERFACE_MODE_RGMII_TXID:
++	case PHY_INTERFACE_MODE_RGMII_RXID:
++		txclk_dir = TXCLK_DIR_OUTPUT;
++		break;
++	default:
++		dev_err(dwmac->dev, "unsupported phy interface %d\n",
++			plat->mac_interface);
++		return -EINVAL;
++	}
++
++	writel(txclk_dir, dwmac->apb_base + GMAC_TXCLK_OEN);
++	return 0;
++}
++
++static void thead_dwmac_fix_speed(void *priv, unsigned int speed, unsigned int mode)
++{
++	struct plat_stmmacenet_data *plat;
++	struct thead_dwmac *dwmac = priv;
++	unsigned long rate;
++	u32 div, reg;
++
++	plat = dwmac->plat;
++
++	switch (plat->mac_interface) {
++	/* For MII, rxc/txc is provided by phy */
++	case PHY_INTERFACE_MODE_MII:
++		return;
++
++	case PHY_INTERFACE_MODE_RGMII:
++	case PHY_INTERFACE_MODE_RGMII_ID:
++	case PHY_INTERFACE_MODE_RGMII_RXID:
++	case PHY_INTERFACE_MODE_RGMII_TXID:
++		rate = clk_get_rate(plat->stmmac_clk);
++		if (!rate || rate % GMAC_GMII_RGMII_RATE != 0 ||
++		    rate % GMAC_MII_RATE != 0) {
++			dev_err(dwmac->dev, "invalid gmac rate %ld\n", rate);
++			return;
++		}
++
++		writel(FIELD_PREP(GMAC_PLLCLK_DIV_EN, 0), dwmac->apb_base + GMAC_PLLCLK_DIV);
++
++		switch (speed) {
++		case SPEED_1000:
++			div = rate / GMAC_GMII_RGMII_RATE;
++			break;
++		case SPEED_100:
++			div = rate / GMAC_MII_RATE;
++			break;
++		case SPEED_10:
++			div = rate * 10 / GMAC_MII_RATE;
++			break;
++		default:
++			dev_err(dwmac->dev, "invalid speed %u\n", speed);
++			return;
++		}
++
++		reg = FIELD_PREP(GMAC_PLLCLK_DIV_EN, 1) |
++		      FIELD_PREP(GMAC_PLLCLK_DIV_MASK, GMAC_PLLCLK_DIV_NUM(div));
++		writel(reg, dwmac->apb_base + GMAC_PLLCLK_DIV);
++		break;
++	default:
++		dev_err(dwmac->dev, "unsupported phy interface %d\n",
++			plat->mac_interface);
++		return;
++	}
++}
++
++static int thead_dwmac_enable_clk(struct plat_stmmacenet_data *plat)
++{
++	struct thead_dwmac *dwmac = plat->bsp_priv;
++	u32 reg;
++
++	switch (plat->mac_interface) {
++	case PHY_INTERFACE_MODE_MII:
++		reg = GMAC_RX_CLK_EN | GMAC_TX_CLK_EN;
++		break;
++
++	case PHY_INTERFACE_MODE_RGMII:
++	case PHY_INTERFACE_MODE_RGMII_ID:
++	case PHY_INTERFACE_MODE_RGMII_RXID:
++	case PHY_INTERFACE_MODE_RGMII_TXID:
++		/* use pll */
++		writel(GMAC_GTXCLK_SEL_PLL, dwmac->apb_base + GMAC_GTXCLK_SEL);
++		reg = GMAC_TX_CLK_EN | GMAC_TX_CLK_N_EN | GMAC_TX_CLK_OUT_EN |
++		      GMAC_RX_CLK_EN | GMAC_RX_CLK_N_EN;
++		break;
++
++	default:
++		dev_err(dwmac->dev, "unsupported phy interface %d\n",
++			plat->mac_interface);
++		return -EINVAL;
++	}
++
++	writel(reg, dwmac->apb_base + GMAC_CLK_EN);
++	return 0;
++}
++
++static int thead_dwmac_init(struct platform_device *pdev, void *priv)
++{
++	struct thead_dwmac *dwmac = priv;
++	int ret;
++
++	ret = thead_dwmac_set_phy_if(dwmac->plat);
++	if (ret)
++		return ret;
++
++	ret = thead_dwmac_set_txclk_dir(dwmac->plat);
++	if (ret)
++		return ret;
++
++	writel(GMAC_RXCLK_DELAY_VAL(0), dwmac->apb_base + GMAC_RXCLK_DELAY_CTRL);
++	writel(GMAC_TXCLK_DELAY_VAL(0), dwmac->apb_base + GMAC_TXCLK_DELAY_CTRL);
++
++	return thead_dwmac_enable_clk(dwmac->plat);
++}
++
++static int thead_dwmac_probe(struct platform_device *pdev)
++{
++	struct stmmac_resources stmmac_res;
++	struct plat_stmmacenet_data *plat;
++	struct thead_dwmac *dwmac;
++	void __iomem *apb;
++	int ret;
++
++	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret,
++				     "failed to get resources\n");
++
++	plat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
++	if (IS_ERR(plat))
++		return dev_err_probe(&pdev->dev, PTR_ERR(plat),
++				     "dt configuration failed\n");
++
++	dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
++	if (!dwmac)
++		return -ENOMEM;
++
++	apb = devm_platform_ioremap_resource(pdev, 1);
++	if (IS_ERR(apb))
++		return dev_err_probe(&pdev->dev, PTR_ERR(apb),
++				     "Failed to remap gmac apb registers\n");
++
++	dwmac->dev = &pdev->dev;
++	dwmac->plat = plat;
++	dwmac->apb_base = apb;
++	plat->bsp_priv = dwmac;
++	plat->fix_mac_speed = thead_dwmac_fix_speed;
++	plat->init = thead_dwmac_init;
++
++	return devm_stmmac_pltfr_probe(pdev, plat, &stmmac_res);
++}
++
++static const struct of_device_id thead_dwmac_match[] = {
++	{ .compatible = "thead,th1520-gmac" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, thead_dwmac_match);
++
++static struct platform_driver thead_dwmac_driver = {
++	.probe = thead_dwmac_probe,
++	.driver = {
++		.name = "thead-dwmac",
++		.pm = &stmmac_pltfr_pm_ops,
++		.of_match_table = thead_dwmac_match,
++	},
++};
++module_platform_driver(thead_dwmac_driver);
++
++MODULE_AUTHOR("Jisheng Zhang <jszhang@kernel.org>");
++MODULE_AUTHOR("Drew Fustini <drew@pdp7.com>");
++MODULE_DESCRIPTION("T-HEAD DWMAC platform driver");
++MODULE_LICENSE("GPL");
 
 -- 
 2.34.1
