@@ -1,101 +1,221 @@
-Return-Path: <devicetree+bounces-117512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B687F9B6BE5
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 19:14:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DC379B6BEB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 19:14:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 358C3B21CCB
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:14:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A10271F225A8
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 18:14:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425F41CBEB0;
-	Wed, 30 Oct 2024 18:14:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B9C91C4635;
+	Wed, 30 Oct 2024 18:14:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lrtg4v2F"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="jDOEMkE0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12A9982899;
-	Wed, 30 Oct 2024 18:14:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8FAD1C3F0E
+	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 18:14:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730312049; cv=none; b=ZuAY5WC5bpvxnEEX8P7q8WslCnyze1P9JBMQDMYTyaAbqhFMVt1cbKzq3MoL/t2Tlxd1v9WPWcP0mphSVdxlKWhjOat6nxTlqTXv7nnHF85cykFxuNcq4xSkhHATD0LP9EDddv6pcebtKffE0ebIh22BNLfVJ/V8+iuQ+pB/sLs=
+	t=1730312091; cv=none; b=aDPel5/G0iJl6XggZaToE8b49fQu5zmfJg8bp9EHqvaXY3qoiB40Xt6yYdiAHlQ9wy3yuVN2QpBnaZHwrxgdx0SRkRmFjGV4dkxwAXVZ6itQ9ITlL3kz0MsDGZNCCyq/esTjRqiydHG4la62DVVPz/q2lMfihMwLCEvN2E/tuio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730312049; c=relaxed/simple;
-	bh=gPom55NrJIdbKpm1OIV8sl9jUaW8THjT/W08qytNduY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RiQqfpZQb0Dp4CRn6NRdVdVLUP/pzBcvJgLeQRjBDRV620PmM6YjqcejU3+AZV017xZOLdqDOUvhuolZ0X9Si4dwR84L5keZLCKIJpzpxyqBZPd6/Y5R79SVWrW5AzGLfvQvtQUp7pCDbeKSvfS2bWYsYfMr/3E+iEZbz14DeaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lrtg4v2F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FF14C4CED2;
-	Wed, 30 Oct 2024 18:14:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730312048;
-	bh=gPom55NrJIdbKpm1OIV8sl9jUaW8THjT/W08qytNduY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lrtg4v2F6vLvgHtFFIiNEK8+MjINfH8XZyiQKGsB9f2m4CdhP5wbSNPOBOdGFjF6s
-	 q9x8cw+TXo3Tt/72B2PYAbDnWOiGISanNNE24eUH1FbuCwReCBW/CHLK/Us4OqRJzw
-	 BjX4vItTnYSgXIbrMaSV5T+ni9z44y8jlvTmeWJBy4hza7/EEeQn8AqP8ckO68mNDA
-	 53YiMRdvzcsFDL58KaPXEyMYIQ5/O1KV7l1edIgNr88UksVk5vGsNBpM9FFetq5jD5
-	 56Pf7WqdyDmlrex0iiLGoTcXZbR9dmjIF+QYCdxyGczP+A95eS9oAmztbNbvNp9MC0
-	 7dXjUVU8zFIgQ==
-Date: Wed, 30 Oct 2024 18:14:03 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: sound: sprd,pcm-platform: convert to
- YAML
-Message-ID: <97cb13bf-b1b8-4a8e-bb6e-7662ed28bde1@sirena.org.uk>
-References: <9fc646b70a73e7a6c513771d69b0edcd140f09d7.1730310275.git.stano.jakubek@gmail.com>
+	s=arc-20240116; t=1730312091; c=relaxed/simple;
+	bh=YSe3U/islx/1E277CWlGToGgYM9Ft9hfht8JqqNvJpA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bYvhG1ZhpIhk5XeIOYQMeGyaW9x981052s76BoNH8dbJDt8Ihndtw/62YSX4wQ50iYl02I98tYy1cg4yg0I2Z+U+GJ/7wCvtSlxH6NFWQ8plCJYG+PJ+ot7OCjsFEXLSYEQaV6NgKZ+3iXbuESsepngGAkJGjbok3xzobHRuf9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=jDOEMkE0; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2fb51e00c05so1376611fa.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 11:14:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1730312086; x=1730916886; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+U2OYjPXp1HVwKGheeUQjqD1Lkt2kZkOmbCmlNpJsuo=;
+        b=jDOEMkE03W0h9knrWaPYhMDPEzPcCnYgs4B+24vbN30nBouj753/O9cRAgpyaDC+8O
+         Sc7So83as5ITHIM0wMKujyWaWNEXw4D5dzxfs4mgkZ2CMNXdYmYKfNWjZUVhCnRJnHHX
+         r+rLRTpGp+8UHWiiLN69dho7gfMflB/fwlGuM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730312086; x=1730916886;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+U2OYjPXp1HVwKGheeUQjqD1Lkt2kZkOmbCmlNpJsuo=;
+        b=OQCd481LU9/+pMJ4cpe/Y/S2ssLYvlh6AOStqJa1LyU5aEb9abxfZtIf4HpLfufIgo
+         zYngBA/gDbyuSGa5PXcVz85qr7aqWptcGoMQnQznNizwEofj9H1Qm7vEtlFKCTuyGqzK
+         vgVpBm+ur0WArb55dfMBVjBHV3oRT1EWHex3If+bpBGM9p1aBTgNRVIOWAjNfwi0q5of
+         Vzecv67wqj27tZY9FC9E+JICD0bnAjimH63EmqTL86h/l4z56zFtu2lv58WDciTBVZF8
+         9dOvgKCBFOs6IqfPCDyUd0lEnnM1KNFyLzFCu0piUzMqr9Cdm7urozMjwpiz0PLkjryV
+         vX0w==
+X-Forwarded-Encrypted: i=1; AJvYcCUupt8XqTJ/t/njsoQ5tKNW5sL3cM1MeaLEF9h3wpszPntY9X6TATqh4hpecTayCdwRvwY1IcgTtqv/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzaKpB2/VqXXpnvWEcKX2PnAMMroaZQhoUsvz1kFJETUSvrEy6x
+	Kr2ZFCpfp4obSb2j+B9vJMCfOtcr3FyqwmDJTpKTK8+FWHyhYLKL+EMsZE1d7ev9vsNpjWZYm+Q
+	WBw==
+X-Google-Smtp-Source: AGHT+IHHn1TB5fpZ/UHvxp85rI+NrdSOgiRUag4DY6IicW+95D7p3fogCkIAjXohzSoLWVvtQaGG3A==
+X-Received: by 2002:a2e:f11:0:b0:2fb:6509:b6ba with SMTP id 38308e7fff4ca-2fcbe065723mr104498521fa.33.1730312086001;
+        Wed, 30 Oct 2024 11:14:46 -0700 (PDT)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com. [209.85.208.173])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fd5363b904sm3451541fa.116.2024.10.30.11.14.44
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Oct 2024 11:14:44 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2fb51e00c05so1375751fa.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 11:14:44 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXREaocl9DeL5Exn2jynFUOuoTOCxdfqOMDfhywAB1BN+TmYRVechDYMBaYhjh3xXhbrncaqbkbCilK@vger.kernel.org
+X-Received: by 2002:a05:651c:507:b0:2f7:6653:8053 with SMTP id
+ 38308e7fff4ca-2fcbdfc5394mr135074691fa.18.1730312084050; Wed, 30 Oct 2024
+ 11:14:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gOI4wYstUM9HsCLk"
-Content-Disposition: inline
-In-Reply-To: <9fc646b70a73e7a6c513771d69b0edcd140f09d7.1730310275.git.stano.jakubek@gmail.com>
-X-Cookie: I feel partially hydrogenated!
+References: <20241025114642.40793-2-charles.goodix@gmail.com>
+ <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3>
+ <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
+ <CAL_JsqLwOekE1mz+3g8NTE3o4GhE9PWwR1Jfk_tL0RYKQmCg-A@mail.gmail.com>
+ <CAD=FV=VHMfc2kJo2N3jkB9BR0H7SN2g9JqoDkZuZOOuq0OV6gw@mail.gmail.com> <ZyHYw40duPrm0ZeF@ux-UP-WHL01>
+In-Reply-To: <ZyHYw40duPrm0ZeF@ux-UP-WHL01>
+From: Doug Anderson <dianders@chromium.org>
+Date: Wed, 30 Oct 2024 11:14:26 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WtbBnCX6fcqBFYPO3C=zw8YhKmJ35hW920JWt0MvDqPw@mail.gmail.com>
+Message-ID: <CAD=FV=WtbBnCX6fcqBFYPO3C=zw8YhKmJ35hW920JWt0MvDqPw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+To: Charles Wang <charles.goodix@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, dmitry.torokhov@gmail.com, hbarnor@chromium.org, 
+	conor.dooley@microchip.com, jikos@kernel.org, bentiss@kernel.org, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Tue, Oct 29, 2024 at 11:57=E2=80=AFPM Charles Wang <charles.goodix@gmail=
+.com> wrote:
+>
+> On Fri, Oct 25, 2024 at 09:19:14AM -0700, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Fri, Oct 25, 2024 at 8:59=E2=80=AFAM Rob Herring <robh@kernel.org> w=
+rote:
+> > >
+> > > On Fri, Oct 25, 2024 at 10:29=E2=80=AFAM Doug Anderson <dianders@chro=
+mium.org> wrote:
+> > > >
+> > > > Charles,
+> > > >
+> > > > On Fri, Oct 25, 2024 at 5:03=E2=80=AFAM Krzysztof Kozlowski <krzk@k=
+ernel.org> wrote:
+> > > > >
+> > > > > > +properties:
+> > > > > > +  compatible:
+> > > > > > +    enum:
+> > > > > > +      - goodix,gt7986u-spi
+> > > > >
+> > > > > Compatible is already documented and nothing here explains why we=
+ should
+> > > > > spi variant.
+> > > > >
+> > > > > > +
+> > > > > > +  reg:
+> > > > > > +    maxItems: 1
+> > > > > > +
+> > > > > > +  interrupts:
+> > > > > > +    maxItems: 1
+> > > > > > +
+> > > > > > +  reset-gpios:
+> > > > > > +    maxItems: 1
+> > > > > > +
+> > > > > > +  goodix,hid-report-addr:
+> > > > >
+> > > > > I do not see this patch addressing previous review. Sending somet=
+hing
+> > > > > like this as v1 after long discussions also does not help.
+> > > >
+> > > > Krzysztof is right that it's better to wait until we get consensus =
+on
+> > > > the previous discussion before sending a new patch. I know you were
+> > > > just trying to help move things forward, but because of the way the
+> > > > email workflow works, sending a new version tends to fork the
+> > > > discussion into two threads and adds confusion.
+> > > >
+> > > > I know Krzysztof and Rob have been silent during our recent
+> > > > discussion, but it's also a long discussion. I've been assuming tha=
+t
+> > > > they will take some time to digest and reply in a little bit. If th=
+ey
+> > > > didn't, IMO it would have been reasonable to explicitly ask them fo=
+r
+> > > > feedback in the other thread after giving a bit of time.
+> > >
+> > > If the firmware creates fundamentally different interfaces, then
+> > > different compatibles makes sense. If the same driver handles both bu=
+s
+> > > interfaces, then 1 compatible should be fine. The addition of '-spi'
+> > > to the compatible doesn't give any indication of a different
+> > > programming model. I wouldn't care except for folks who will see it
+> > > and just copy it when their only difference is the bus interface and
+> > > we get to have the same discussion all over again. So if appending
+> > > '-spi' is the only thing you can come up with, make it abundantly
+> > > clear so that others don't blindly copy it. The commit msg is useful
+> > > for convincing us, but not for that purpose.
+> >
+> > OK, makes sense. Charles: Can you think of any better description for
+> > this interface than "goodix,gt7986u-spi"? I suppose you could make it
+> > super obvious that it's running different firmware with
+> > "goodix,gt7986u-spifw" and maybe that would be a little better.
+> >
+> > I think what Rob is asking for to make it super obvious is that in the
+> > "description" of the binding you mention that in this case we're
+> > running a substantially different firmware than GT7986U touchscreens
+> > represented by the "goodix,gt7986u" binding and thus is considered a
+> > distinct device.
+> >
+> > At this point, IMO you could wait until Monday in case Krzysztof wants
+> > to add his $0.02 worth and then you could send a "v2" patch addressing
+> > the comments so far, though of course you could continue to reply to
+> > this thread if you have further questions / comments.
+> >
+>
+> Thank you for your explanation, I understand your point. I want to clarif=
+y
+> that the gt7986u-spi and gt7986u indeed use two entirely different driver=
+s
+> and two distinct firmware.
+>
+> Using "goodix,gt7986u-spi" could indeed cause confusion. How about modify=
+ing
+> it to "goodix,gt7986u-losto" by adding a special code?
+
+If "lotso" somehow means something real to people using this product
+then that seems OK to me. If "lotso" is just a made up word because
+you don't want to use "spi" or "spifw" then it's not great. In either
+case you'll want to summarize our discussion here in your
+"description" in the yaml and in the commit message.
 
 
---gOI4wYstUM9HsCLk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> Additionally, I would like to confirm: when submitting the v2 patch, shou=
+ld
+> it be based on this thread or the previous discussion thread?
 
-On Wed, Oct 30, 2024 at 06:48:38PM +0100, Stanislav Jakubek wrote:
-> Convert the Spreadtrum DMA plaform bindings to DT schema.
-> Adjust filename to match compatible.
+No, v2 should _not_ be In-Reply-To this thread. It'll start a new
+thread. You can add a link (via lore.kernel.org/r/<message-id>) to the
+old discussion in your cover letter and/or version history.
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+Said another way:
+* New versions of patches create new threads.
+* The fact that new versions of patches create new threads is why
+people usually want open questions answered before the next version is
+sent.
 
---gOI4wYstUM9HsCLk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcid2oACgkQJNaLcl1U
-h9BOkgf+JtiwxnUsmi1LQ1DAbES3Mn8VD56Dkoe8ji5V7KVMAMP3JMqXUZBHWhMT
-shdLHUEY9d8H1gmLZfZcE59NYdfPATsN56Ck/arp3pFX8cJTn+xX0vSSixfdw1fn
-LSf4Mraf+yS8567FB7RTYxhFFWAKogO/SAIYt2iETRFmCCO8RSm0MlwhTC/XEd9I
-ke7aLn7qWciXVR7rtTb9mrdHEAV9rUnylyJ+6rt4EsK07CPPvJaLoj7UBJ/csAG4
-SLhaVP+pQrXeIp/plSpXKNUUUA5id5CrtfrzuEmIPIHuvHX4WUzuQ+ljkHJxddHI
-pfZRoXRWVWDYHwBRswcRA/gRdmCzgA==
-=uAbo
------END PGP SIGNATURE-----
-
---gOI4wYstUM9HsCLk--
+:-)
 
