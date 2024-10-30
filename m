@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-117391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 572B39B6108
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 12:05:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFF5C9B611D
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 12:10:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEE311F22507
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 11:05:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F7AC1F21BFB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 11:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F9F91E7C05;
-	Wed, 30 Oct 2024 11:03:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55F01E47B2;
+	Wed, 30 Oct 2024 11:09:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rFNKpYhv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DCp4upJE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE5591E767C
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 11:03:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91D6E1DDA31;
+	Wed, 30 Oct 2024 11:09:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730286204; cv=none; b=b2IHuEtuWzLS8b9KPrs1bTok185mk/JE1R/dr8fWGOGR6osNz6ZLyW7oCg0hV2TlI4ROQ+160Bf2HkANIxppeYW/HPKwjCcVS26xcCR4C+nnot5vYEbQRdXDcRtFNi7NO+opMFNSrG9MqpWgBNEG5ViW21xAk3iGCw/AsXFxiL0=
+	t=1730286594; cv=none; b=FufJ4yJ3XkFnajrZS/xCwF1dt4isVVDE3o9wysqisR8Ju3oE3v/GC3kAYFH8Nte5DJIRYGRxZENkw0x2lFVtCEtYBznQBkDSA+hQb1P71R0oFoszv94Zh51sXz4RYPvxnWNUdWiV82wPyJiPaONBYAJK690PiOwY0dqfib64tTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730286204; c=relaxed/simple;
-	bh=i/sTm2W58aqNc0bvwKrCduULaEOcP81xZKszHJgcu5k=;
+	s=arc-20240116; t=1730286594; c=relaxed/simple;
+	bh=rDUAKMNUAdyEU18DS+XwzCN9FoxiZViQ49Um1ifJw4k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LzwL4x+JbaFB9A37w4M8gzt/RucpmyBFOquOjfcxS41YnBBt6IrTfO7MqDOP1VJ9dzi6lQl87dKVjJZNdrai9cosk/8yaXkFNsxNiTec23dprFriL1Dtf+FelJk8RCFeDuZ83VLlevA/FNbk/uNarTQdHQYrVDlMFEkvrdHOWKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rFNKpYhv; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-53b15bc0731so858084e87.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 04:03:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730286201; x=1730891001; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dyDd73LhSa+Aowk0j+nzrmpWsgvv8frt2OywSF7Wle8=;
-        b=rFNKpYhvKs8wsIjVxz4uk/o/WdX67f8OTLp38bpJaYEEUt7nPB5M57lNPTEThZUWc+
-         EgVGUP2sCJ9ktPD+XKW/CmHueooons9gmMELbSdvhc9N9Z1h2k8H3r5nnDCzQsK3gJUe
-         6zE2TgNRplJzSRW9OgSCk19CArglkmrQ0/v8e+b8yxrv3nWPQ6iw43CjiU4L9TEwnz9/
-         jmmx0Rw4Fbo5tiFwVL/EWYG6Hr48qXye9XC3Dy9V7J/wX/5YSe+qQA/mBH1w6RN+gmZF
-         WtoLP6yFZBKm+YWIQd4uTPUpF/0JlqPlPy3vUsUxrF9KNsZwQMOchUQ+h6IPIpJsKvJM
-         W/6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730286201; x=1730891001;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dyDd73LhSa+Aowk0j+nzrmpWsgvv8frt2OywSF7Wle8=;
-        b=AyPqy7xcyhAkxIRPMp7jMGXQ8pR/uGeIismP68PbYq+HFChG+WnPzmRcIMWhgP4bg6
-         sOPL+LxWklcdsLrm79sddVWAHalct7nQlkAKuTXz6uEXbYiGYJSJzmHmAH8m4H2hkNRO
-         eTQdo41Fz61ycBPcmvK/X8cJA5YmTZJtAEqLfPZrzJIZptPtX6lRpaJ4mt+D7mHEu0XL
-         XjSTlV88KjqtVA9UTRlLZ+36m2jZ0LZnj1eRCuxgf2lh8vtlc6rKUPSFOjnAVmLjJDCM
-         H8A+xr9Nn+Z6DXbNSj4EoZs1nJbZjKQSYKSves+JDaDEQcW3PGdKEB9WJp8GyOdmRJQc
-         Qzng==
-X-Forwarded-Encrypted: i=1; AJvYcCWomvEToebggHCYP8VABqIqIaz+uRrXvHjjQNmUoTHx665BHeLVaTFG4C6aqy0UQ97zswWG/5jtQFfY@vger.kernel.org
-X-Gm-Message-State: AOJu0YziIlL/Wox527vyT2bk/PJM9pztW2JTDclQKBKOS5cRAyYEXoh7
-	wMIOq4pCKL/nYwOS97ov5quis3e1X7B/9TT06KeHGPaBrvd/RpDgGA99uUQd1Xw=
-X-Google-Smtp-Source: AGHT+IFhZJoljikBYl7EYG3OcLL8xTDXcY1FxwXB5w8ypUTn/Fu7ouw0JZgiUeSHRe8KwIvx45FKJg==
-X-Received: by 2002:a05:6512:350c:b0:53c:761c:2a07 with SMTP id 2adb3069b0e04-53c761c2d71mr163553e87.6.1730286200692;
-        Wed, 30 Oct 2024 04:03:20 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53bc0d52d87sm218049e87.164.2024.10.30.04.03.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Oct 2024 04:03:19 -0700 (PDT)
-Message-ID: <dfb7e2ad-5262-4e4a-a49a-584012ef0e57@linaro.org>
-Date: Wed, 30 Oct 2024 13:03:18 +0200
+	 In-Reply-To:Content-Type; b=BBGTv+AYGXzfUuuiS9u4j9fs3YUv3m3PLpd6tJ0iomkVYBx5NAv+evGVs5eHn0FSpFS8AQZo34/S74omMscHgwXVyJmMXJ7jcH4XwgImQ6CyR+q78/kYqXwROiLY9x2/L/zuwCqLYB001BXJWRnjBEP+vbbtFk0+GImCHHyIwrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DCp4upJE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 739E4C4CEE3;
+	Wed, 30 Oct 2024 11:09:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730286594;
+	bh=rDUAKMNUAdyEU18DS+XwzCN9FoxiZViQ49Um1ifJw4k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DCp4upJE38T2Wgq3dyPBYqXfrjvy+LeZBTQDPgMV+tR04OsoZ7aUTUKo7P3U0gtgL
+	 W3k61LwWmH0SlDd6UDnuQtS/j3+Ykl9cjb++5EufK9LklMJOgcJHo7yl9dp4/p8Ez0
+	 soWYJW5vfYVK/xnRhIDFgkRbzLjieUKtH/HF++3Nbv2BVdlDzvtAx0jnyJul2W5k+G
+	 N2q+w0+u7BO2ZsLjcRjMVyWNXRx4Ip5blqdBx7ghCuezkKmDn2/xxgjXachDnwCrNv
+	 zeLayLVVp1lNB1cKSQG+ywmltq2kX4qCbU9c2gE42xTnKodD13XgXtiJ49lta4Oy2u
+	 C+nnMkjVOBvYg==
+Message-ID: <bda36285-dc70-4dff-85ed-9c04c0f7ba44@kernel.org>
+Date: Wed, 30 Oct 2024 12:09:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,73 +50,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] dt-bindings: clock: qcom: Add CAMCC clocks for
- QCS8300
+Subject: Re: [PATCH v4 01/17] dt-bindings: net: wireless: cc33xx: Add
+ ti,cc33xx.yaml
+To: "Nemanov, Michael" <michael.nemanov@ti.com>, Kalle Valo
+ <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Sabeeh Khan <sabeeh-khan@ti.com>
+References: <20241029172354.4027886-1-michael.nemanov@ti.com>
+ <20241029172354.4027886-2-michael.nemanov@ti.com>
+ <936b19eb-cde7-4be8-98cf-e60e32b335cd@kernel.org>
+ <8024aa1c-5bd1-40d8-b0c3-14b5fcd992e2@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Imran Shaik <quic_imrashai@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>, Taniya Das
- <quic_tdas@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241024-qcs8300-mm-patches-v2-0-76c905060d0a@quicinc.com>
- <20241024-qcs8300-mm-patches-v2-3-76c905060d0a@quicinc.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20241024-qcs8300-mm-patches-v2-3-76c905060d0a@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <8024aa1c-5bd1-40d8-b0c3-14b5fcd992e2@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Imran, Krzysztof,
-
-On 10/24/24 16:31, Imran Shaik wrote:
-> The QCS8300 camera clock controller is mostly identical to SA8775P, but
-> QCS8300 has one additional clock and minor differences. Hence, reuse the
-> SA8775P camera bindings and add additional clock required for QCS8300.
+On 30/10/2024 11:59, Nemanov, Michael wrote:
+>>
+>> Your changelog does not explain these three. "Fixed compatibility" is
+>> way too vague, especially that you do not fix anything here.
+>>
 > 
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
-> ---
->   Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml | 1 +
->   include/dt-bindings/clock/qcom,sa8775p-camcc.h                  | 1 +
->   2 files changed, 2 insertions(+)
+> I was trying to address the feedback from previous patch. You said:
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml
-> index 36a60d8f5ae3..18cbc23b9a07 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml
-> @@ -18,6 +18,7 @@ description: |
->   properties:
->     compatible:
->       enum:
-> +      - qcom,qcs8300-camcc
->         - qcom,sa8775p-camcc
->   
->     clocks:
-> diff --git a/include/dt-bindings/clock/qcom,sa8775p-camcc.h b/include/dt-bindings/clock/qcom,sa8775p-camcc.h
-> index 38531acd699f..36ac587a981a 100644
-> --- a/include/dt-bindings/clock/qcom,sa8775p-camcc.h
-> +++ b/include/dt-bindings/clock/qcom,sa8775p-camcc.h
-> @@ -93,6 +93,7 @@
->   #define CAM_CC_SM_OBS_CLK					83
->   #define CAM_CC_XO_CLK_SRC					84
->   #define CAM_CC_QDSS_DEBUG_XO_CLK				85
-> +#define CAM_CC_TITAN_TOP_ACCU_SHIFT_CLK				86
->   
->   /* CAM_CC power domains */
->   #define CAM_CC_TITAN_TOP_GDSC					0
+>>>>> +static const struct of_device_id cc33xx_sdio_of_match_table[] = {
+>>>>> +	{ .compatible = "ti,cc3300", .data = &cc33xx_data },
+>>>>> +	{ .compatible = "ti,cc3301", .data = &cc33xx_data },
+>>>>> +	{ .compatible = "ti,cc3350", .data = &cc33xx_data },
+>>>>> +	{ .compatible = "ti,cc3351", .data = &cc33xx_data },
+>>>>> +	{ }
+>>>>> +};
+>>>>
+>>>>
+>>>> Eh? What happened here? So devices are compatibles thus make them
+>>>> compatible in the bindings.
+>>>>
+>>>
+>>> I thought this is the right way to do it (originally taken from [1]).
+>>> How can I solve it via DT bindings?
+>>
+>> It's all over the bindings (also example-schema). Use fallback and oneOf.
+>>
 > 
+> Looking at [2] and [3] as an example I tried to do the same (make cc33xx 
+> driver compatible with all chip variants).
+> How should have I done it?
 
-I greately dislike this change, and the reasons are the same as already
-given by Krzysztof.
+qcom-wdt is quite a different device. It's true you should have here
+oneOf, but for a purpose. oneOf without purpose does not make sense, right?
 
-If you find it possible, please follow an approach by adding a new
-header file and include a platform ancestor headder file from it, like
-it's done in commit a6a61b9701d1.
+I think other TI bindings would serve you as an example. Or this one:
 
---
-Best wishes,
-Vladimir
+https://elixir.bootlin.com/linux/v6.3-rc6/source/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml#L31
+
+
+Best regards,
+Krzysztof
+
 
