@@ -1,133 +1,124 @@
-Return-Path: <devicetree+bounces-117363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDD9D9B5FFE
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 11:23:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD5169B601E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 11:30:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F7CC282E71
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 10:23:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16AB91C21594
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 10:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 441271E260D;
-	Wed, 30 Oct 2024 10:23:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE051D278D;
+	Wed, 30 Oct 2024 10:30:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BgLdIRf4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iPBom++I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D0ED1990CD;
-	Wed, 30 Oct 2024 10:23:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0784C4DA03;
+	Wed, 30 Oct 2024 10:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730283807; cv=none; b=MT+fy4euq76iSRj5DGlJ5dOSu+yeM9UxCoF8bLbfky62kpbk5GmD76tJh1XYx1Ups3yMhKD7mCFhng2gTt7/PZOZ/5awHy+t/xoP+/jXB6nbDlzw3gwd6BYTB1jrtIIi042RgjhpEZZiED+F4JvbdEbSULYSejyI0yy5TSeriEk=
+	t=1730284212; cv=none; b=LUnjbOlc4ruK4pV06tL1FbUI70LJMuEC/wEt1Nr6NWqkdWYo4wYHqeXke+uPOupKOOvDb2lISay2IrOAYCR2LlQbSSd5QkAc/aZGqqj9JeqRMPiGDvYZSbfUnQvW3x80K/EWnDYp2uwsntfoO1fXWFcr510gDEge2+cXEupcN3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730283807; c=relaxed/simple;
-	bh=ZX/jOs/L/qfb0UBBnWfKIW5FiWo5eELu8h3+mjrR7Wo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cXehuiwUTc4LpUxrEUp5nowx4CjgWJdbVtFAHNDR34TNcOeLE/OXxaXpDcNJz2m02C2nZqhm07ImxZzsWUiUYOD7q03CpnYJGnKE0swlwCaF6NmWKmwLslFdkgfJaWSn8ekjwzFfDbHj3jXuA+rYXXwxsFBj7fZy69ZFva+lOwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BgLdIRf4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A17AC4CEE3;
-	Wed, 30 Oct 2024 10:23:22 +0000 (UTC)
+	s=arc-20240116; t=1730284212; c=relaxed/simple;
+	bh=fEyGQG5p+/Axzk94LPtg9MyYLs8WiA+7sDPOBdC8nuY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mP1wFkJoo8C+Ogn3rNbzuzLxQIH8CWPYRnP2Zs7GBqChLpWMXC8Z31Kl1HbFrNXwIt3t6aITP3RjaskMYyzQVSIsjH00DmC/HryirGqlEhgzpEAuWXyJVMW+R7RpXdE5SguUQrgvI/0eTUgP7dMgloKlfVHg6JEiClW+lRXc0gk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iPBom++I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27E7CC4CEE3;
+	Wed, 30 Oct 2024 10:30:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730283806;
-	bh=ZX/jOs/L/qfb0UBBnWfKIW5FiWo5eELu8h3+mjrR7Wo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BgLdIRf4rPdG80UiiwPppYcTMZ4P75hlTpraYTN8mhhfayMJUC3jAWQ25uJbkoAXO
-	 YaSku7i2i4P7NHtdeci+ktveivUdyY6WxeoGRSaDy9v5gSgXm8XZm0K2n6wdj7LKKA
-	 B2A3/SRVENFagOaDD7hK9+Ru68j4blHz5qThtgBLJzXIR1hWJsZojkZf+1PsgME7au
-	 LyLaIM7uUGIfMkPKfXHmRmfvrfm/zgzAFzqjkENxmjrkUyh4OmdG54mBfSrFy1gMPh
-	 T31FeSkE9qcmqV0HK/BhHlDbplRNLUiozWV4BeFpPFNnzhcQQHiFwlpEpJ6vILBJXM
-	 rCjiimoMpyr0w==
-Message-ID: <e9ee88dd-97f2-4d2d-b118-63ab9b5f09da@kernel.org>
-Date: Wed, 30 Oct 2024 11:23:20 +0100
+	s=k20201202; t=1730284211;
+	bh=fEyGQG5p+/Axzk94LPtg9MyYLs8WiA+7sDPOBdC8nuY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iPBom++Ip3zXbNr4S9qX5JpImsDxqHoTocohiCaoOx5wNTJbiARb4bC/qMG+xkcKl
+	 4bo9Z5yrvUKpiXeTjblCmlZFumY+okw/Vt7mCFA55EdghPH5Za2gM3Pd4VOqUoihoM
+	 RC1xYCQrttOvZlsb/YnO8yx8rwmJMkz4dkArPco2y1Naytv1uKPyxf+rLmFiNnWqL4
+	 hLvcUJg2ZZj271QMiXn3eMmS3Gk3eUI74tYuVqsgFHmT1D26eR4bwwRZoXeSi29m2C
+	 o24VUlOK0cedEcwP3X/B28lsMehPiZZsJvfrGYvPA5SwkdJ/67vIoYA0QMo/YjPKne
+	 u3uClG+jbjG3A==
+Date: Wed, 30 Oct 2024 11:30:09 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org, 
+	rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
+	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, 
+	airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, quic_jesszhan@quicinc.com, mchehab@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	sakari.ailus@linux.intel.com, hverkuil@xs4all.nl, tomi.valkeinen@ideasonboard.com, 
+	quic_bjorande@quicinc.com, geert+renesas@glider.be, dmitry.baryshkov@linaro.org, 
+	arnd@arndb.de, nfraprado@collabora.com, thierry.reding@gmail.com, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, sam@ravnborg.org, marex@denx.de, biju.das.jz@bp.renesas.com
+Subject: Re: [PATCH v4 03/13] drm/bridge: fsl-ldb: Use clk_round_rate() to
+ validate "ldb" clock rate
+Message-ID: <20241030-hypersonic-tremendous-tuatara-2bbeb0@houat>
+References: <20241028023740.19732-1-victor.liu@nxp.com>
+ <20241028023740.19732-4-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] dt-bindings: clock: qcom: Add CAMCC clocks for
- QCS8300
-To: Imran Shaik <quic_imrashai@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>, Taniya Das
- <quic_tdas@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241024-qcs8300-mm-patches-v2-0-76c905060d0a@quicinc.com>
- <20241024-qcs8300-mm-patches-v2-3-76c905060d0a@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241024-qcs8300-mm-patches-v2-3-76c905060d0a@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="jdfa4z4pqzuvoooj"
+Content-Disposition: inline
+In-Reply-To: <20241028023740.19732-4-victor.liu@nxp.com>
 
-On 24/10/2024 15:31, Imran Shaik wrote:
-> The QCS8300 camera clock controller is mostly identical to SA8775P, but
-> QCS8300 has one additional clock and minor differences. Hence, reuse the
-> SA8775P camera bindings and add additional clock required for QCS8300.
-> 
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+
+--jdfa4z4pqzuvoooj
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v4 03/13] drm/bridge: fsl-ldb: Use clk_round_rate() to
+ validate "ldb" clock rate
+MIME-Version: 1.0
+
+On Mon, Oct 28, 2024 at 10:37:30AM +0800, Liu Ying wrote:
+> Multiple display modes could be read from a display device's EDID.
+> Use clk_round_rate() to validate the "ldb" clock rate for each mode
+> in drm_bridge_funcs::mode_valid() to filter unsupported modes out.
+>=20
+> Also, since this driver doesn't directly reference pixel clock, use
+> clk_round_rate() to validate the pixel clock rate against the "ldb"
+> clock if the "ldb" clock and the pixel clock are sibling in clock
+> tree.  This is not done in display controller driver because
+> drm_crtc_helper_funcs::mode_valid() may not decide to do the
+> validation or not if multiple encoders are connected to the CRTC,
+> e.g., i.MX93 LCDIF may connect with MIPI DSI controller, LDB and
+> parallel display output simultaneously.
+>=20
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 > ---
->  Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml | 1 +
->  include/dt-bindings/clock/qcom,sa8775p-camcc.h                  | 1 +
->  2 files changed, 2 insertions(+)
+> Note that this patch depends on a patch in shawnguo/imx/fixes:
+> https://patchwork.kernel.org/project/linux-arm-kernel/patch/2024101703114=
+6.157996-1-marex@denx.de/
 
-To clarify - first patch was NAKed, which applies to other bindings here
-as well.
+I still believe that the root cause of this issue is your clock tree and
+driver setup, and since I've asked for explanations and didn't get any,
+I don't really see how we can move forward here.
 
-Best regards,
-Krzysztof
+Maxime
 
+--jdfa4z4pqzuvoooj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZyIKrAAKCRAnX84Zoj2+
+dk5eAYDDyKjKmenLlLXrE7PF5+02MCRjxjyPZUPeFcxn9WqZwrqLx6hAeRNfTD1I
+fBz39NEBgPedANzTVocrGaKTqjaLuKN1UWpfFGVqf9OjORjTtsRTq+Rg7VBMH8ER
+7Vm4WtqjxQ==
+=QcTM
+-----END PGP SIGNATURE-----
+
+--jdfa4z4pqzuvoooj--
 
