@@ -1,168 +1,155 @@
-Return-Path: <devicetree+bounces-117248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40B7A9B5ABC
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 05:35:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AABB9B5ACE
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 05:46:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DADCA1F23FA8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 04:35:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD7C11F24D11
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 04:46:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E316192B71;
-	Wed, 30 Oct 2024 04:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDF65192597;
+	Wed, 30 Oct 2024 04:46:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TK5jkAB7"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="n+hIZAP+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 314AD8F58;
-	Wed, 30 Oct 2024 04:35:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10F2518FC7F;
+	Wed, 30 Oct 2024 04:46:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730262902; cv=none; b=u+2sYyuPWvZW2aHvSwMJxLRDLMuEkmovjNVL0UBymIvzx9azuO7vERVD27WVPtnpkFce5YAWgmvC76oZlb8HTbnk5V9HUXm1Uhn0UWX2iujSREcjXemTyqAZ10z9nKQ0B8SXGApymVXBxIZEIcTQFYm8RuXG0ALc4/FQSDylk44=
+	t=1730263587; cv=none; b=JflRWWsjvcnMMT9SLVRvTQ5PXfKfaYQYRix/8G6M1TeaMWmMtCZvOCaxLiaNlIEBS9v4VhhzHS+Y3SwkNo13BCk0TZ6qAAPa4anTigHJp1eM4ySpTElTYuvbCqibMR969ysc0qfmNgtUH0XUWReSf8wXxb6xXhyOqQt48684QK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730262902; c=relaxed/simple;
-	bh=+EuhkwSDaDAWayoAOubmOujSXprEgb4QiD7JNkvz+MQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DSVkC/CvojkZkWh0WhMhOtaJsgREDgwZyNnPLmkK12o1HmC8Km17fZk9dBpsHCVoVCZUxwe+t6BIrOqAM2UIoHDFSoeL8nsHvn0FMOY1mSG4CsPZUF9O/aNjfmb4UE6Z/4YKVStDhzB4ZvRqzOMHDZkdMT/p2IoGkuuMjYdq/qA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TK5jkAB7; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a93c1cc74fdso865229766b.3;
-        Tue, 29 Oct 2024 21:34:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730262898; x=1730867698; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Zm51Q8bH8xmiBrCSz//TF2AHJWoAEHVkksNlNZ7l7wg=;
-        b=TK5jkAB7qhloqPHRvYnYNXMVaxt843Htn44K/8F9mVk3DJO1soH56wCz7bvYkVrqAy
-         npc9FM2WYlkv5syXua/RqNrINU3VfGESHpbLZXx3klwXt4L+FbFr7s9O1Kw6EdmvwevH
-         iVnena75SYqMSn+k3sPGfd/MSxFCjQ9ja+f2NXjcIKPJUKae9I3/mBEvMWu9sRhr+B1z
-         0M1Fwm8Eb2bYnUdBx+GSXll6ghAxI9rVZaOboED2hW93kH7yEn6dxk2EOVENmOn4lFtp
-         9VbsPXdhCJ/0QEl/MX+pt/2xSeyZtOlzP/MIQ41xrC14CwDmgQYIgEebRleOKQVErFe2
-         Cp8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730262898; x=1730867698;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zm51Q8bH8xmiBrCSz//TF2AHJWoAEHVkksNlNZ7l7wg=;
-        b=YUxMVcu35RFOgv+tq6kGLxviB89RMxwB9FvngK+folDEyDa3Mxe+TFOq5VcYDCvx8I
-         UzxeA6cuYHt3Gw9ohBvteFsBWKbmZv9fmeAMZjiTglxKGW+mLJTlm7qqRP7ZazwZkSbz
-         Vd92Nbz7hnZ5Er9dj+53jW+a/yM3B/Zm1VVdQ0oblVPcw2mmQ5Tmwr28YPzw19HqlHQI
-         ry2FZ7KNZtVKIR53d51J35bX+1tmRl6BaBRpWkPJdimcwlvsfJW5g1LkiGJ+ZsMF0pxp
-         RFOav6gamAWAKkf9eXuX2IFoonT0RNdTNNMlAeDaCl5j1Qv0tCDBLy/0jTc4hHoHcCXc
-         ylrw==
-X-Forwarded-Encrypted: i=1; AJvYcCUdov/gEKfg7FMPrmuPiHlqcKzF81pf00KXmb9tGriVCi7mf7P3fT1/yaaQMhvMdgSH/9yooDrsww1F@vger.kernel.org, AJvYcCWBjW8N/6rwDBXLQfyBDLN5ycVvbKaxPxKdkB8D0Lm207j3ocOUoHN88kk1nF/LuKIbW8AUAH/lieS3adfz@vger.kernel.org, AJvYcCWOOO2jbwU9UUdTBwwZxsKUri7fwTCM9uRLRPJXG7+GtCRdCsey+cWBrb1fcN71qnUWGh1bI95WQ5wA1/4=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOxWNS/u/CulYEmioIjnbYhFfGEKoI/MGjND2kElbETNbmJuFE
-	0uf7pJhkD/jnmc225Mh3gwXTsjrRPST735GXfhWGMLrNVC22dpEl
-X-Google-Smtp-Source: AGHT+IEvS0eoabyeQerrNjnEQ6XSEfClc3+BOk1PNBwVvFOgS1oYbBwT4YLdZvmHOpaCTVSgkXK5+A==
-X-Received: by 2002:a17:906:4788:b0:a99:5ad9:b672 with SMTP id a640c23a62f3a-a9de5ca5eb1mr1312064466b.10.1730262898368;
-        Tue, 29 Oct 2024 21:34:58 -0700 (PDT)
-Received: from ux-UP-WHL01 (mailgw01.goodix.com. [45.117.96.243])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1ef322ecsm526392366b.49.2024.10.29.21.34.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 21:34:57 -0700 (PDT)
-Date: Wed, 30 Oct 2024 12:34:49 +0800
-From: Charles Wang <charles.goodix@gmail.com>
-To: Doug Anderson <dianders@chromium.org>
-Cc: dmitry.torokhov@gmail.com, hbarnor@chromium.org,
-	conor.dooley@microchip.com, jikos@kernel.org, bentiss@kernel.org,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
-Message-ID: <ZyG3aciw6OvqoFZ1@ux-UP-WHL01>
-References: <20241025114642.40793-2-charles.goodix@gmail.com>
- <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3>
- <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
+	s=arc-20240116; t=1730263587; c=relaxed/simple;
+	bh=6QffawzmxJnaIqBSgqTQ3MnT6c9kD0vzT8QJz9k1yU8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FZoisTRUtbkF3rtB3JqbX78MZ7Ka47GTVcY6j0BM0p3eTiNjFRfc8eMOhqL13jklg5FIq9FVsS4PxnM+qGJF/8/vnZC7VSf5UZFxJnjULBJZ1aiCsIucbOOd/mqQruhtYvWBg3/YULGmcqbhX7tpml/OXDYcOwgJlizhl5/Gvj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=n+hIZAP+; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49U4kEUp089459;
+	Tue, 29 Oct 2024 23:46:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1730263574;
+	bh=jzLNZuN60N9bR5+YQqu9raEKZmtLRlqAM+KawBR1f0g=;
+	h=From:To:CC:Subject:Date;
+	b=n+hIZAP+oZABrfGZj8BsJHTYQdG4S0tReAJsZgI7RrslhlR8BWxVRUtNiQj8YGPk/
+	 Ig4BH/OFoVu9dDjX2yL0CFDWBLyZKWkjryODb8Ldu5n4FeylMUabLTQdsnMmXC3hz1
+	 Squ/7Xx0HkYLsqWQTmb7x7qYeT2mw0+fMaWYzLiw=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49U4kEcT011362
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 29 Oct 2024 23:46:14 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
+ Oct 2024 23:46:14 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 29 Oct 2024 23:46:14 -0500
+Received: from lcpd911.dhcp.ti.com (lcpd911.dhcp.ti.com [172.24.227.226])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49U4kAHe056490;
+	Tue, 29 Oct 2024 23:46:11 -0500
+From: Dhruva Gole <d-gole@ti.com>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+CC: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Dhruva Gole <d-gole@ti.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Bryan Brattlof <bb@ti.com>,
+        Wadim Egorov
+	<w.egorov@phytec.de>
+Subject: [PATCH v2] arm64: dts: ti: k3-am62: use opp_efuse_table for opp-table syscon
+Date: Wed, 30 Oct 2024 10:15:53 +0530
+Message-ID: <20241030044553.3225383-1-d-gole@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Doug,
+Add another entry in the wkup_conf for the syscon node, and then use
+that for the syscon in opp-table.
 
-On Fri, Oct 25, 2024 at 08:29:13AM -0700, Doug Anderson wrote:
-> Charles,
-> 
-> On Fri, Oct 25, 2024 at 5:03 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - goodix,gt7986u-spi
-> >
-> > Compatible is already documented and nothing here explains why we should
-> > spi variant.
-> >
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > > +
-> > > +  goodix,hid-report-addr:
-> >
-> > I do not see this patch addressing previous review. Sending something
-> > like this as v1 after long discussions also does not help.
-> 
-> Krzysztof is right that it's better to wait until we get consensus on
-> the previous discussion before sending a new patch. I know you were
-> just trying to help move things forward, but because of the way the
-> email workflow works, sending a new version tends to fork the
-> discussion into two threads and adds confusion.
-> 
-> I know Krzysztof and Rob have been silent during our recent
-> discussion, but it's also a long discussion. I've been assuming that
-> they will take some time to digest and reply in a little bit. If they
-> didn't, IMO it would have been reasonable to explicitly ask them for
-> feedback in the other thread after giving a bit of time.
-> 
-> As Krzysztof mentioned, if/when you send the "goodix,gt7986u-spi"
-> bindings again you'd want to:
-> 
-> * Make sure it's marked as v2.
-> 
-> * Make sure any previous review feedback has been addressed. For
-> instance, I think Krzysztof requested that you _remove_ the
-> goodix,hid-report-addr from the bindings and hardcode this into the
-> driver because every GT7986U will have the same hid-report-addr. I
-> know that kinda got lost in the discussion but it still needs to be
-> addressed or at least responded to. I guess there was at least one
-> other comment about "additionalProperties" that you should look for
-> and address.
-> 
-> * Make sure there's some type of version history after-the-cut. Tools
-> like "patman" and "b4" can help with this.
-> 
-> * The commit message should proactively address concerns that came up
-> during the review process. In this case if we go with
-> "goodix,gt7986u-spi" the commit message would want to say something
-> explaining _why_ the "-spi" suffix is appropriate here even though
-> normally it wouldn't be. That will help anyone digging through
-> history.
-> 
+Marking entire wkup_conf as "syscon", "simple-mfd" is wrong and needs to
+be addressed similar to how other child-nodes in wkup_conf are implemented
+in the same file.
 
-I apologize for any confusion caused. As a newcomer, I am still learning
-about the community practices.
+Signed-off-by: Dhruva Gole <d-gole@ti.com>
+---
 
-Thank you very much for your patience and clear explanation. I will recheck
-the previous review feedback and provide a new patch marked as v2.
+Since the driver fixes for ti-cpufreq.c have made it in -next [1],
+The DT fixes for SK-AM62x can be supported with support for legacy
+style DT as well. This has been tested on SK-AM62x [2]
 
-Best regards,
-Charles
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/cpufreq/ti-cpufreq.c?id=1724ae88efcbcd0daeb203ffeb4a2c0e59f2ddf7
+[2] https://gist.github.com/DhruvaG2000/40b80cc04a9ac90c86445d6e67ece4cb
+
+Changelog:
+
+Changes in v2:
+- Deleted PATCH to Make the AM625 efuse_offset 0, because with [1] we no
+  longer break backward compatibility and hence need to preserve the old
+  offset.
+- Link to v1:
+  https://lore.kernel.org/linux-arm-kernel/20240902093222.2828345-3-d-gole@ti.com/
+
+---
+ arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 7 ++++++-
+ arch/arm64/boot/dts/ti/k3-am625.dtsi       | 2 +-
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+index e0afafd532a5..b2b65e31c7cf 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+@@ -10,7 +10,7 @@
+ &cbass_wakeup {
+ 	wkup_conf: syscon@43000000 {
+ 		bootph-all;
+-		compatible = "syscon", "simple-mfd";
++		compatible = "simple-bus";
+ 		reg = <0x00 0x43000000 0x00 0x20000>;
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+@@ -22,6 +22,11 @@ chipid: chipid@14 {
+ 			reg = <0x14 0x4>;
+ 		};
+ 
++		opp_efuse_table: syscon@18 {
++			compatible = "ti,am62-opp-efuse-table", "syscon";
++			reg = <0x18 0x4>;
++		};
++
+ 		cpsw_mac_syscon: ethernet-mac-syscon@200 {
+ 			compatible = "ti,am62p-cpsw-mac-efuse", "syscon";
+ 			reg = <0x200 0x8>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am625.dtsi b/arch/arm64/boot/dts/ti/k3-am625.dtsi
+index c3d1db47dc9f..c249883a8a8d 100644
+--- a/arch/arm64/boot/dts/ti/k3-am625.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am625.dtsi
+@@ -108,7 +108,7 @@ cpu3: cpu@3 {
+ 	a53_opp_table: opp-table {
+ 		compatible = "operating-points-v2-ti-cpu";
+ 		opp-shared;
+-		syscon = <&wkup_conf>;
++		syscon = <&opp_efuse_table>;
+ 
+ 		opp-200000000 {
+ 			opp-hz = /bits/ 64 <200000000>;
+
+base-commit: dec9255a128e19c5fcc3bdb18175d78094cc624d
+-- 
+2.34.1
+
 
