@@ -1,107 +1,103 @@
-Return-Path: <devicetree+bounces-117443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45D1A9B6419
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 14:29:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92F7D9B643C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 14:35:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A09DF283223
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:29:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEE421C21614
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:35:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C46E91EABD5;
-	Wed, 30 Oct 2024 13:29:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w8f6Nwe2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12C871EBA1A;
+	Wed, 30 Oct 2024 13:35:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06571E907F
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 13:29:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 127253FB31;
+	Wed, 30 Oct 2024 13:35:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730294959; cv=none; b=FGtHosdmTrfWIekZmE3Eed8mPYp0zedLeDSphvQz4QB3WzjJWy2c5bV/bmYJP5VG3OYkV98d85FtWl+N8tZJhQk8kgW3/CRM+71ivrT9RZJVzNUNlXpzvEkXzPipGlYoDFmEVbmWWkkVwH42D0JfOnkh0vCYd//4OvaJifeC0yM=
+	t=1730295340; cv=none; b=GDDgI0EgeNMvaM5boBIWyZmFpdcs4xvHJ5FZ6QfARCOrkGtxC9Vw/5KXJ8HEC8Ro6ZIAqU48QTamNVNB0LDVNBE3BCmuTdW4uXoyeqZUPtH6w4dbxQdwqg3KXVe6NUW56lKZAjuBRvt/ORxm+eToM5iUh+xEECEg5B2CGumgLV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730294959; c=relaxed/simple;
-	bh=rcLE83f8I5rl8ZtZIrZgOnTLuwTtp/g9tS9d1ZU8SuI=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=dwXnT9S4KDc9+0+7VZvuWPhdBAyFWfIAJJrjT2Ku6qQ2BArr4Dv0Uk1Gx0/u8VKIWEcjTAWepxCy57AcJC2WKvkfAbenvVaSeJdQ8R+J1Uqh3uxOvTEWU7s885XJQQniEYhWvFjLrN57CWLhp8nmdpA2xH85Ye6MYJ6vxyxrvHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w8f6Nwe2; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-37d4821e6b4so4421621f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 06:29:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730294956; x=1730899756; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=rcLE83f8I5rl8ZtZIrZgOnTLuwTtp/g9tS9d1ZU8SuI=;
-        b=w8f6Nwe2Lvw6fY90d7sWFp6pWD0lWV9p0z6lJ5/eVjsaJiivlR9ajTQbRbZsF5dRr+
-         r5RBvcTJHlsmOazfq7+OyUOLsQUYQ1y7MxWAadXX4ZcTco1Mvf5QUvlV/IYTBFwc2WRf
-         vIhytAaZhAfNqemQytcQD/2CqpgSx99caBYvZRoIusFd9zfF5g4OuoPV7qGKNyqYKmU6
-         JfC9HpL4aeUF1qHs6eAm6CQqu9nHGEjuHij77tZ+DIq9BwA8bsAJfWTJpWgdeQVMOnk/
-         b44qw/RSR0rTNJcrf0atYEZzyg4Jbk7qTAOxtwqhv5F1/VXTLp/kxhmybcF6ifkfK9kp
-         97CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730294956; x=1730899756;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rcLE83f8I5rl8ZtZIrZgOnTLuwTtp/g9tS9d1ZU8SuI=;
-        b=npgPwzXJOh3KlFQa9CDNfzniGHKz/5rx9QL2sSDGa46q7NJXS6ovnxrm47maINnsBj
-         nzkgRuQuGnU5dDvaTkWT6BC9MFTCvyP94WjjNiXAGvfG428rXm8EbjlUUKqDo65VldZW
-         4KlNhsLb3huzUvDlebYYbxXOYE7nOI6XSXcyI2zAs3mo8n3SmBL3j+k0UmELwPjDWl5z
-         Vp1uIR1bBUnEm8wKVmlFeALzdeMn1WQ05S2bZ20AAT+gW6HvGCkXAaDz4WyNnfdssSul
-         +uMu9iBzazaE5F6t+CFw1+Htd/ggeWNvPwwQDXgRuA05V+X/bHoBjLWUMyc1fnRooXk8
-         IIXg==
-X-Forwarded-Encrypted: i=1; AJvYcCXyRd9sW4ggxy3ed+5x/ShcvEBx4jNCf+1vN6MivW+La00EtUb7ct+WeEOBZPJDUL/uQAe6G0/vhHAx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzLqQY3cSsLod5f25nOnmZV85ikzT4N6OgbMHBM1Zkcc632zSd
-	lgnGcHrKDLaqCqfInhneW7gdnZUcDwkKpBCV6AUnDUkhhEIUzzRwCmoEVn/nano=
-X-Google-Smtp-Source: AGHT+IHp5AbAqgjQIgwYYwcTFJhtpBHYbLWugEe1xzPeyU3dGtA9O/+opSkEXa/XOrO9WuCxMOGUqw==
-X-Received: by 2002:adf:ea43:0:b0:37d:633a:b361 with SMTP id ffacd0b85a97d-38061206c0cmr11906179f8f.51.1730294956053;
-        Wed, 30 Oct 2024 06:29:16 -0700 (PDT)
-Received: from [192.168.0.157] ([79.115.63.43])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431bd9a9a53sm21657955e9.30.2024.10.30.06.29.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Oct 2024 06:29:14 -0700 (PDT)
-Message-ID: <8e2a327a-5efc-4ba3-afa2-387099967468@linaro.org>
-Date: Wed, 30 Oct 2024 13:29:13 +0000
+	s=arc-20240116; t=1730295340; c=relaxed/simple;
+	bh=2bRRoStRcxTL3xVH545sz64x9ShvC5EiYQ0AmGxIfzc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Uovfh8keqjJtod56oCHE11z5v10A4nkpujKhwC8gp4BKWy+9eNij1wozL3JH8WbDPVoESgZX1gCDH0c8VtzwMrSktYRxVwAOw4PBOUHdGj4q8zr7jnVUNvdPBgpnWlru6Zb4al49EQq3hlkAPY8k1V/yFCu8KKXutDcEtuQtbPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [116.25.95.211])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 150888e4;
+	Wed, 30 Oct 2024 21:30:19 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: dmitry.baryshkov@linaro.org
+Cc: amadeus@jmu.edu.cn,
+	andersson@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org
+Subject: Re: [PATCH v3 1/4] arm64: dts: qcom: ipq6018: add 1.2GHz CPU Frequency
+Date: Wed, 30 Oct 2024 21:30:15 +0800
+Message-Id: <20241030133015.487183-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <xmqyp2rgd3nozuiqu44iwidjnnwsidls3mxaqhmy3sshd4nok5@n552fd5tkjoc>
+References: <xmqyp2rgd3nozuiqu44iwidjnnwsidls3mxaqhmy3sshd4nok5@n552fd5tkjoc>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/11] scsi: ufs: exynos: Add
- EXYNOS_UFS_OPT_SKIP_CONFIG_PHY_ATTR check
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, alim.akhtar@samsung.com,
- James.Bottomley@HansenPartnership.com, martin.petersen@oracle.com,
- avri.altman@wdc.com, bvanassche@acm.org, krzk@kernel.org
-Cc: andre.draszik@linaro.org, kernel-team@android.com,
- willmcvicker@google.com, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- ebiggers@kernel.org
-References: <20241025131442.112862-1-peter.griffin@linaro.org>
- <20241025131442.112862-5-peter.griffin@linaro.org>
- <f5ac07e3-3fde-4ac8-8cfc-fb7918ffb2a7@linaro.org>
-Content-Language: en-US
-In-Reply-To: <f5ac07e3-3fde-4ac8-8cfc-fb7918ffb2a7@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZGUkfVkkaTEIZGklCGUMaSlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk5VSUpKWVdZFhoPEhUdFFlBWU9LSFVKS0hJTEJLVUpLS1VKQk
+	tLWQY+
+X-HM-Tid: 0a92dd9eb68b03a2kunm150888e4
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NE06EQw5ETIaEwEyCjoaL0I2
+	DQEKCzJVSlVKTEhLSUJOS0pCQ0lJVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	TVVJTlVCTlVJSkpZV1kIAVlBSkpMSTcG
+
+Hi,
+> You can respond here and post new iteration once we settle on something.
+
+Sorry for the late reply. There are two versions of ipq6000 SoCs:
+(1) Earlier version: soc_id: IPQ6018; fuse: BIT(1); SBL version: BOOT.XF.0.3-00077-IPQ60xxLZB-2
+(2) Final   version: soc_id: IPQ6000; fuse: BIT(1); SBL version: BOOT.XF.0.3-00086-IPQ60xxLZB-1
+
+The soc_id is related to the sbl version, but it is written by the
+manufacturer. On the qsdk kernel, early version could reach 1.5GHz,
+while the final version was limited to 1.2GHz.
+
+So I think the commit message can be written like below:
+
+    arm64: dts: qcom: ipq6018: add 1.2GHz CPU Frequency
+
+        The final version of IPQ6000 (soc id: IPQ6000, SBL version:
+        BOOT.XF.0.3-00086-IPQ60xxLZB-1) has a max design frequency
+        of 1.2GHz, so add this CPU frequency.
 
 
+    arm64: dts: qcom: ipq6018: add 1.5GHz CPU Frequency
 
-On 10/30/24 8:56 AM, Tudor Ambarus wrote:
-> tx_linereset_n, rx_hibern8_wait is set but not used anywhere. Can we
-> remove it? Not related to this patch though.
+        The early version of IPQ6000 (soc id: IPQ6018, SBL version:
+        BOOT.XF.0.3-00086-IPQ60xxLZB-1) and IPQ6005 SoCs can reach
+        a max frequency of 1.5GHz, so add this CPU frequency.
 
-Sent patches to remove these fields at:
+Do you think this is appropriate?
 
-https://lore.kernel.org/linux-scsi/20241030132649.3575865-1-tudor.ambarus@linaro.org/
+Thanks,
+Chukun
+
+-- 
+2.25.1
+
 
