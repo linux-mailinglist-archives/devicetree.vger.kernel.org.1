@@ -1,675 +1,124 @@
-Return-Path: <devicetree+bounces-117478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 548049B67E5
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 16:31:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 361849B67F0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 16:34:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F037828445A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 15:31:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0FD01F228DE
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 15:34:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C152141D8;
-	Wed, 30 Oct 2024 15:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BAF11EF095;
+	Wed, 30 Oct 2024 15:34:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n6K++rq1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EN8R9VwB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F1B71F4711
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 15:30:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77AACB672;
+	Wed, 30 Oct 2024 15:34:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730302235; cv=none; b=RC+4yx26RmtdObV/7N4ovjp+sNe1Pu/a021yg8ucWbmU1X9eZmiYMtYtDea593t1TzSNnZ7liAjwQvdRgzyD+1gPZSQYiPLyP/WUY2o+hj5rdYDy6+OW2RtI6ok6lWjKBTMHEHzybomhIZl5rJXj+wTjNIPlvbYK6bJVUsyRO0s=
+	t=1730302456; cv=none; b=axh4fpG65jKQEBEr94lcxY6St6o/jRhCS1W1KZnBAhoNQLDEG8ib9tEkZIIJuyRWVyf18JVxvRzc6WEJBdRU/9UhW/nHVGS8Hx8u1U8cRFbVvd92k40iokeOMRx3SEHuU6mPPfYinNMAW2WMMagX8/O4umzpsUBCxaMSPNa6RdE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730302235; c=relaxed/simple;
-	bh=eBIMnCBQaNpLn7U3M2W2glS1xKvGKBEbt3HjuFgJPmU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=S5vnHSAscunPTMod3Pn7frP/EMxg7gQLHnBfhY2VAh1ZvfoEHnvgcFN6qyg0oYJ+6cw4zuR91t7c4Q+OFdCjBWb7ECfETx+u1V9R/088R2PL+oW/WBCVoangNPOny62hEClexaxIKf6l2nJoeTMVNfTLmiglfXttdsHuOgyY2qk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n6K++rq1; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-37d8901cb98so731078f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 08:30:31 -0700 (PDT)
+	s=arc-20240116; t=1730302456; c=relaxed/simple;
+	bh=vMjjsd/Xuzoj5kq9WRECUQGsxjzpcUg17A7b2x4rqnI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BbxeHrmsuzvxsUhg2YHqKjPDcmOLGC2qfLGg7vhL7OvmuSHYneUD1RwP375/cckBI0ERdY9uZzRgV1Yh9qGN4CGzR8mpkaREFblXS/krsStf9JqVbqt+F/wyfJZK8mTCq0ZbrZC96+s7t8BFA3QSFameRsPRb5yTPrPAgIqq8VM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EN8R9VwB; arc=none smtp.client-ip=209.85.219.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-6cbcc2bd800so9701966d6.0;
+        Wed, 30 Oct 2024 08:34:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730302230; x=1730907030; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EjKcunrCqABMsfKlxzqU1Ip8DOGMIT1Kxye1UV2fjx4=;
-        b=n6K++rq1onJC+AP7knN+siJMElflpUApdYQHAjMpnfCd9QDS30fqqvrbggH0NQd6WX
-         5+IfXqP97nhmhHD+vTcpt9JxLVrL4mMELoihLht36EfuwGuRrUYULInEGUaGZH+lOcb6
-         xsTOzCMZGy1ZT/S9aH0XgNBhuwxT8P9ZPnfttHw69Tj6oDbt0rr23cNSUqGXTcpoan+d
-         tWkC6s0yomyBfxIPiXBsnJF6sI4NLGUitJd5vfICz9PaJepX+ddP8J/Rx/vgiN7xvaYP
-         vNHO3s5W4246tyWfOb1WUBg9N5Dy35Wj1+Kmt00MKmBHnqNgnSgsG662mh5k3hKWC1fC
-         aF4g==
+        d=gmail.com; s=20230601; t=1730302453; x=1730907253; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+HsO/rND4GDvVu41dLnUKGBz8GF67TRaGpWDgwnI7lM=;
+        b=EN8R9VwBntCTMAX4woFo/sqJ/mj9qHzlAhDov9uludkPDm8KXhiYrv+Yt+oWLN9YKb
+         /I8Q0+7B4FCEXgPw0XRpsr/tsTRn9mCtVHMcVcu1umAAChux2AzHnJKSaJ7fvY0WOAI7
+         x/Pm4EQFsuhjuQLpXgjIiVg1FlHk+JM1dKA8XyASczmE2wXo+hzdV1l3KItqHUD1YnWu
+         A1yXDWfH6zd++pWTZEVexij1nqgLQvQKqsjuNgV0NzK1B38Ky6ZMzMjYusw9/8yB8OgI
+         eYNjX1K44PBV+3N3uTm4IJYsYFwNza/Dz2uFMYG+yR4uJ5bwBoufqXX6HBqlhZ4yiMJm
+         xbVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730302230; x=1730907030;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1730302453; x=1730907253;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EjKcunrCqABMsfKlxzqU1Ip8DOGMIT1Kxye1UV2fjx4=;
-        b=YbBV7sd99cJqXsidA6BgYhL/i7lV3df2JMh62Z8PCCSo8OgUEr8xrC7U/HWF5ju4Ww
-         OcTbg0SSUdwDx90lZ13RoGKD+pudyv453rGSYOyD4c76gu8t9KQ3RkgzqQBcmzyayeBk
-         IpdNdhBRIGo0ihgcotLVmmqcJUo58J9IVIr9Pt+WZ5CMQ2nei2periN3dQN2kihcLF8Q
-         3zChdzZO8UhU5yB+DutFKQK4oc32Fu4hsXPF2xll0c68HO0Q+gNJMvW0dwx/ttWZV4MI
-         WBYcBIDO2IZdqPB0tJXrZsMR7IDjIkYO+wWbOYQGoRF7WfjFKIftCcAZk/AShy5IHFni
-         eSyA==
-X-Forwarded-Encrypted: i=1; AJvYcCXmezvTrlqHXzKc9w3pHg7QKcNzLRUMJMn1kIgHtu/wFiiWiiVSEzjmH86T68gb55BbmTjwVWf01c7K@vger.kernel.org
-X-Gm-Message-State: AOJu0YxO2R4kXmOEs93q7klWQ62WPqvCvVYTxLFDjYVj3KRlIlm2nkSy
-	2jqAxaYhRNavX+bA6sGi1VDGh5mTiWryj7EZJ6RXU9nCNeAkiyOf2YrJMKigOaA=
-X-Google-Smtp-Source: AGHT+IHfBCtOgUgkZAkJ11CMypXtDw0ZxLKNpZGCaF44/M73Ql+TqyQy0VF9AgOWsH5HOFfKI4JmyA==
-X-Received: by 2002:adf:e742:0:b0:37d:4610:dca with SMTP id ffacd0b85a97d-38186a22c7dmr4997143f8f.31.1730302229783;
-        Wed, 30 Oct 2024 08:30:29 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b3c236sm15604040f8f.35.2024.10.30.08.30.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Oct 2024 08:30:29 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 30 Oct 2024 16:30:24 +0100
-Subject: [PATCH v4 3/3] iio: magnetometer: add Allegro MicroSystems
- ALS31300 3-D Linear Hall Effect driver
+        bh=+HsO/rND4GDvVu41dLnUKGBz8GF67TRaGpWDgwnI7lM=;
+        b=e7p+c50TM6Z88eyOF8SCy/Lclo/+8YZXR4JdEBGwWrK5bpvd5wNmij2eUNgxHxRZHv
+         QIuPqIZkjwDUnmEyAgiGYjCRuTu7vJqn1od5ZJp/iaDqOxBehaPae6oPM8uxxjP42v0Y
+         Yt+d6HdklKMusu604ATC1Er6aLa5Y9JtaCCRPt2TMvGelIxU7NpL2ckiMG1sZNOm9Ocd
+         wRoQh1mlTG4SvI4a0eBjE7lc/6T/xzpY7ri1Nswk92x1Y01Z0c4ETJJA83fPR3/FDNSz
+         yMTFlUX5Hi+x9Yh+5v9XOubgL7c0kqRCUQUB/mw3rBU0yJJ+2dWOFmqAy5DayxZSEzaf
+         0kow==
+X-Forwarded-Encrypted: i=1; AJvYcCW8/Rg0V6XxTfLMaDXmCGifTVxDPbaWK13453wYfXA2Re9YqMLKhYWoxE4ZEwFjTi11lKbFcvwAZZ6QpI4=@vger.kernel.org, AJvYcCWp+xlf73xvHAw54enCWMsReOAd32E8Xg27lns6VkZ2vxfxuyBIfNrxkNlwuoQCorkWg7w/rslI04Vw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxJ22Dt7lggDpX0vALd5TMg/pW8knDY05vr6hcQjiq1craWjVF
+	Vcl0Y6GjX32SN/OXQOK3rxq42wIfRTfuNYZ40F5lo0dFDuA/C4yqxSNatJ9FNpMLdFsFybQLmRQ
+	p49pgCXQaQ3QOLzucgsIVPINqRnLibEld
+X-Google-Smtp-Source: AGHT+IGqwVpgGBmnDo2J6rVE4cgq6yKqDtypjpudcXXrLwTuLF3wFm0ONT6UYpuujeYmA95coXDlTmcRhbLIp4OsiTI=
+X-Received: by 2002:a05:6214:5002:b0:6cb:c892:8c17 with SMTP id
+ 6a1803df08f44-6d34852cd13mr51324306d6.22.1730302453178; Wed, 30 Oct 2024
+ 08:34:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241030-topic-input-upstream-als31300-v4-3-494297c9e50a@linaro.org>
-References: <20241030-topic-input-upstream-als31300-v4-0-494297c9e50a@linaro.org>
-In-Reply-To: <20241030-topic-input-upstream-als31300-v4-0-494297c9e50a@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Andy Shevchenko <andy@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=16893;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=eBIMnCBQaNpLn7U3M2W2glS1xKvGKBEbt3HjuFgJPmU=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnIlERx3371zLVpUEseNQgapQfPxNy238UakfGXWHo
- 6TEQxBGJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZyJREQAKCRB33NvayMhJ0Y9ND/
- 9kNuFYnykly3KPbZXEzljuNJS3ADHoy3AI/g3odzyh9hmiEEaevC/Odix0nc5KUAtL2HH/8ZZMcNbE
- XXbYU54IT583fV9aW29dFsYKP3AsIsXPyJyVNbiClInFzc6IgLy4wvtyMZAVC9w/16q3Aj4In2Mkka
- S8Ab1MkneTMIy54IYvXBP1tgmPOQ1D6uzpvTQ8mJ2o97F6DdoW1uTIeUyIjJ5rElzTTO7uGsZbz8p/
- YRkAXSRiXpHqn/yTTquZ17sqNHCOz30x9VwGYW2WZrWqQ8meTXs7Y30QO+6pDYZOBrvNhax6Oy7E8D
- IvGsmAI9th6XNiJbjWuRCWrKSCo66HfVzoOhTawyyt0ip/cF93QXWqPgQnn3ubN8s7o8IAg7X2APcR
- JXAUaInDU3NN/90dxavx4Tzzudepe2XD++IJud64rOyurDPT3F58vDhkFq8fFpxpLnyY32cFTqmtd7
- zQDBUT6vQvRjMWxoZAuW75jkr+/hGGZsJf56PiwVlYa9ZCDu1RIhBOBcqqYtG1x8/8lVU5yP1FAx5u
- 4F4uoJt8H3asPmosTQ4UcuLB1bLvl5/mFl/dqSvFwfLUqX+ASC63uDBLJ4To0JyP+o/Fo3qbPYa15h
- s9elKNvDgoVTmIFup76gldOl7b48hRsvJDRUKOKR9lIFgLt2jHsWRXuhjptw==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+References: <20241026080535.444903-1-akinobu.mita@gmail.com>
+ <20241026080535.444903-3-akinobu.mita@gmail.com> <ijdk5uuurnfd2shnwwj2nm64bno6lmrhdyqp42pzjc3i2e5cyh@v5ljkrsgo6ac>
+ <CAC5umyitFp7oGR-eYXMVaS8bY1AGe3QwEuSPoEz3DxWwH=dUsA@mail.gmail.com>
+ <e29e2c9e-60c1-4f32-ab71-e74f331e1921@kernel.org> <CAC5umyhCw+62Y+h3Jvh3=0Ocs8XJsSu_vaiPpO_g=65Jo4vUFg@mail.gmail.com>
+ <e4985609-0642-4ff4-b074-8c5a34f88a24@kernel.org>
+In-Reply-To: <e4985609-0642-4ff4-b074-8c5a34f88a24@kernel.org>
+From: Akinobu Mita <akinobu.mita@gmail.com>
+Date: Thu, 31 Oct 2024 00:34:02 +0900
+Message-ID: <CAC5umyhrNCA4BHqC_k_tSaSOANcvP_vt485650xtFTPwJ+6snQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: hwmon: pwm-fan: add
+ retain-state-shutdown property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, 
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Billy Tsai <billy_tsai@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The Allegro MicroSystems ALS31300 is a 3-D Linear Hall Effect Sensor
-mainly used for 3D head-on motion sensing applications.
+2024=E5=B9=B410=E6=9C=8831=E6=97=A5(=E6=9C=A8) 0:18 Krzysztof Kozlowski <kr=
+zk@kernel.org>:
+>
+> On 28/10/2024 15:57, Akinobu Mita wrote:
+> >>>>
+> >>>> You described the desired Linux feature or behavior, not the actual
+> >>>> hardware. The bindings are about the latter, so instead you need to
+> >>>> rephrase the property and its description to match actual hardware
+> >>>> capabilities/features/configuration etc.
+> >>>
+> >>> Is this description okay?
+> >>> (Reused the description of retain-state-shutdown in leds-gpio.yaml)
+> >>>
+> >>> description:
+> >>>   Retain the state of the PWM on shutdown. Useful in BMC systems, for
+> >>>   example, when the BMC is rebooted while the host remains up, the fa=
+n
+> >>>   will not stop.
+> >>
+> >> Nothing improved in the property. You still say what the system should
+> >> do. This is user-space choice, not DT.
+> >
+> > It seems better to implement it as a device attribute.
+>
+> I don't know about that. To repeat: if you say what system is supposed
+> to be doing, it is a policy. Describe the hardware and its configuration
+> and maybe this would be suitable for DT.
 
-The device is configured over I2C, and as part of the Sensor data the
-temperature core is also provided.
-
-While the device provides an IRQ gpio, it depends on a configuration
-programmed into the internal EEPROM, thus only the default mode is
-supported and buffered input via trigger is also supported to allow
-streaming values with the same sensing timestamp.
-
-The device can be configured with different sensitivities in factory,
-but the sensitivity value used to calculate value into the Gauss
-unit is not available from registers, thus the sensitivity is provided
-by the compatible/device-id string which is based on the part number
-as described in the datasheet page 2.
-
-Reviewed-by: Andy Shevchenko <andy@kernel.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/iio/magnetometer/Kconfig    |  13 +
- drivers/iio/magnetometer/Makefile   |   1 +
- drivers/iio/magnetometer/als31300.c | 494 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 508 insertions(+)
-
-diff --git a/drivers/iio/magnetometer/Kconfig b/drivers/iio/magnetometer/Kconfig
-index 8eb718f5e50f3591082d33618b680ea22608fde8..e7adc11049d6f71b76da4569be4756e65f9dfd28 100644
---- a/drivers/iio/magnetometer/Kconfig
-+++ b/drivers/iio/magnetometer/Kconfig
-@@ -52,6 +52,19 @@ config AK09911
- 	help
- 	  Deprecated: AK09911 is now supported by AK8975 driver.
- 
-+config ALS31300
-+	tristate "Allegro MicroSystems ALS31300 3-D Linear Hall Effect Sensor"
-+	depends on I2C
-+	select REGMAP_I2C
-+	select IIO_BUFFER
-+	select IIO_TRIGGERED_BUFFER
-+	help
-+	  Say yes here to build support for the Allegro MicroSystems
-+	  ALS31300 Hall Effect Sensor through its I2C interface.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called als31300.
-+
- config BMC150_MAGN
- 	tristate
- 	select IIO_BUFFER
-diff --git a/drivers/iio/magnetometer/Makefile b/drivers/iio/magnetometer/Makefile
-index ec5c46fbf999b6403593de2c425079cf69a29cac..3e4c2ecd9adf865025d169a0d1d5feffd012e2f3 100644
---- a/drivers/iio/magnetometer/Makefile
-+++ b/drivers/iio/magnetometer/Makefile
-@@ -7,6 +7,7 @@
- obj-$(CONFIG_AF8133J)	+= af8133j.o
- obj-$(CONFIG_AK8974)	+= ak8974.o
- obj-$(CONFIG_AK8975)	+= ak8975.o
-+obj-$(CONFIG_ALS31300)	+= als31300.o
- obj-$(CONFIG_BMC150_MAGN) += bmc150_magn.o
- obj-$(CONFIG_BMC150_MAGN_I2C) += bmc150_magn_i2c.o
- obj-$(CONFIG_BMC150_MAGN_SPI) += bmc150_magn_spi.o
-diff --git a/drivers/iio/magnetometer/als31300.c b/drivers/iio/magnetometer/als31300.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..87b60c4e81fa1c9d8d6e8b083c5bcb605baf8ee9
---- /dev/null
-+++ b/drivers/iio/magnetometer/als31300.c
-@@ -0,0 +1,494 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Driver for the Allegro MicroSystems ALS31300 3-D Linear Hall Effect Sensor
-+ *
-+ * Copyright (c) 2024 Linaro Limited
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/bitfield.h>
-+#include <linux/delay.h>
-+#include <linux/module.h>
-+#include <linux/i2c.h>
-+#include <linux/regmap.h>
-+#include <linux/pm.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/types.h>
-+#include <linux/units.h>
-+
-+#include <linux/iio/buffer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/trigger_consumer.h>
-+#include <linux/iio/triggered_buffer.h>
-+
-+/*
-+ * The Allegro MicroSystems ALS31300 has an EEPROM space to configure how
-+ * the device works and how the interrupt line behaves.
-+ * Only the default setup with external trigger is supported.
-+ *
-+ * While the bindings supports declaring an interrupt line, those
-+ * events are not supported.
-+ *
-+ * It should be possible to adapt the driver to the current
-+ * device EEPROM setup at runtime.
-+ */
-+
-+#define ALS31300_EEPROM_CONFIG		0x02
-+#define ALS31300_EEPROM_INTERRUPT	0x03
-+#define ALS31300_EEPROM_CUSTOMER_1	0x0d
-+#define ALS31300_EEPROM_CUSTOMER_2	0x0e
-+#define ALS31300_EEPROM_CUSTOMER_3	0x0f
-+#define ALS31300_VOL_MODE		0x27
-+#define ALS31300_VOL_MODE_LPDCM			GENMASK(6, 4)
-+#define   ALS31300_LPDCM_INACTIVE_0_5_MS	0
-+#define   ALS31300_LPDCM_INACTIVE_1_0_MS	1
-+#define   ALS31300_LPDCM_INACTIVE_5_0_MS	2
-+#define   ALS31300_LPDCM_INACTIVE_10_0_MS	3
-+#define   ALS31300_LPDCM_INACTIVE_50_0_MS	4
-+#define   ALS31300_LPDCM_INACTIVE_100_0_MS	5
-+#define   ALS31300_LPDCM_INACTIVE_500_0_MS	6
-+#define   ALS31300_LPDCM_INACTIVE_1000_0_MS	7
-+#define ALS31300_VOL_MODE_SLEEP			GENMASK(1, 0)
-+#define   ALS31300_VOL_MODE_ACTIVE_MODE		0
-+#define   ALS31300_VOL_MODE_SLEEP_MODE		1
-+#define   ALS31300_VOL_MODE_LPDCM_MODE		2
-+#define ALS31300_VOL_MSB		0x28
-+#define ALS31300_VOL_MSB_TEMPERATURE		GENMASK(5, 0)
-+#define ALS31300_VOL_MSB_INTERRUPT		BIT(6)
-+#define ALS31300_VOL_MSB_NEW_DATA		BIT(7)
-+#define ALS31300_VOL_MSB_Z_AXIS			GENMASK(15, 8)
-+#define ALS31300_VOL_MSB_Y_AXIS			GENMASK(23, 16)
-+#define ALS31300_VOL_MSB_X_AXIS			GENMASK(31, 24)
-+#define ALS31300_VOL_LSB		0x29
-+#define ALS31300_VOL_LSB_TEMPERATURE		GENMASK(5, 0)
-+#define ALS31300_VOL_LSB_HALL_STATUS		GENMASK(7, 7)
-+#define ALS31300_VOL_LSB_Z_AXIS			GENMASK(11, 8)
-+#define ALS31300_VOL_LSB_Y_AXIS			GENMASK(15, 12)
-+#define ALS31300_VOL_LSB_X_AXIS			GENMASK(19, 16)
-+#define ALS31300_VOL_LSB_INTERRUPT_WRITE	BIT(20)
-+#define ALS31300_CUSTOMER_ACCESS	0x35
-+
-+#define ALS31300_DATA_X_GET(b)		\
-+		sign_extend32(FIELD_GET(ALS31300_VOL_MSB_X_AXIS, b[0]) << 4 | \
-+			      FIELD_GET(ALS31300_VOL_LSB_X_AXIS, b[1]), 11)
-+#define ALS31300_DATA_Y_GET(b)		\
-+		sign_extend32(FIELD_GET(ALS31300_VOL_MSB_Y_AXIS, b[0]) << 4 | \
-+			      FIELD_GET(ALS31300_VOL_LSB_Y_AXIS, b[1]), 11)
-+#define ALS31300_DATA_Z_GET(b)		\
-+		sign_extend32(FIELD_GET(ALS31300_VOL_MSB_Z_AXIS, b[0]) << 4 | \
-+			      FIELD_GET(ALS31300_VOL_LSB_Z_AXIS, b[1]), 11)
-+#define ALS31300_TEMPERATURE_GET(b)	\
-+		(FIELD_GET(ALS31300_VOL_MSB_TEMPERATURE, b[0]) << 6 | \
-+		 FIELD_GET(ALS31300_VOL_LSB_TEMPERATURE, b[1]))
-+
-+enum als31300_channels {
-+	TEMPERATURE = 0,
-+	AXIS_X,
-+	AXIS_Y,
-+	AXIS_Z,
-+};
-+
-+struct als31300_variant_info {
-+	u8 sensitivity;
-+};
-+
-+struct als31300_data {
-+	struct device *dev;
-+	/* protects power on/off the device and access HW */
-+	struct mutex mutex;
-+	const struct als31300_variant_info *variant_info;
-+	struct regmap *map;
-+};
-+
-+/* The whole measure is split into 2x32-bit registers, we need to read them both at once */
-+static int als31300_get_measure(struct als31300_data *data,
-+				u16 *t, s16 *x, s16 *y, s16 *z)
-+{
-+	u32 buf[2];
-+	int ret, err;
-+
-+	guard(mutex)(&data->mutex);
-+
-+	ret = pm_runtime_resume_and_get(data->dev);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Loop until data is valid, new data should have the
-+	 * ALS31300_VOL_MSB_NEW_DATA bit set to 1.
-+	 * Max update rate is 2KHz, wait up to 1ms.
-+	 */
-+	ret = read_poll_timeout(regmap_bulk_read, err,
-+				err || FIELD_GET(ALS31300_VOL_MSB_NEW_DATA, buf[0]),
-+				20, USEC_PER_MSEC, false,
-+				data->map, ALS31300_VOL_MSB, buf, ARRAY_SIZE(buf));
-+	/* Bail out on read_poll_timeout() error */
-+	if (ret)
-+		goto out;
-+
-+	/* Bail out on regmap_bulk_read() error */
-+	if (err) {
-+		dev_err(data->dev, "read data failed, error %d\n", ret);
-+		ret = err;
-+		goto out;
-+	}
-+
-+	*t = ALS31300_TEMPERATURE_GET(buf);
-+	*x = ALS31300_DATA_X_GET(buf);
-+	*y = ALS31300_DATA_Y_GET(buf);
-+	*z = ALS31300_DATA_Z_GET(buf);
-+
-+out:
-+	pm_runtime_mark_last_busy(data->dev);
-+	pm_runtime_put_autosuspend(data->dev);
-+
-+	return ret;
-+}
-+
-+static int als31300_read_raw(struct iio_dev *indio_dev,
-+			     const struct iio_chan_spec *chan, int *val,
-+			     int *val2, long mask)
-+{
-+	struct als31300_data *data = iio_priv(indio_dev);
-+	s16 x, y, z;
-+	u16 t;
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_PROCESSED:
-+	case IIO_CHAN_INFO_RAW:
-+		ret = als31300_get_measure(data, &t, &x, &y, &z);
-+		if (ret)
-+			return ret;
-+
-+		switch (chan->address) {
-+		case TEMPERATURE:
-+			*val = t;
-+			return IIO_VAL_INT;
-+		case AXIS_X:
-+			*val = x;
-+			return IIO_VAL_INT;
-+		case AXIS_Y:
-+			*val = y;
-+			return IIO_VAL_INT;
-+		case AXIS_Z:
-+			*val = z;
-+			return IIO_VAL_INT;
-+		default:
-+			return -EINVAL;
-+		}
-+	case IIO_CHAN_INFO_SCALE:
-+		switch (chan->type) {
-+		case IIO_TEMP:
-+			/*
-+			 * Fractional part of:
-+			 *         1000 * 302 * (value - 1708)
-+			 * temp = ----------------------------
-+			 *             4096
-+			 * to convert temperature in millicelcius.
-+			 */
-+			*val = MILLI * 302;
-+			*val2 = 4096;
-+			return IIO_VAL_FRACTIONAL;
-+		case IIO_MAGN:
-+			/*
-+			 * Devices are configured in factory
-+			 * with different sensitivities:
-+			 * - 500 GAUSS <-> 4 LSB/Gauss
-+			 * - 1000 GAUSS <-> 2 LSB/Gauss
-+			 * - 2000 GAUSS <-> 1 LSB/Gauss
-+			 * with translates by a division of the returned
-+			 * value to get Gauss value.
-+			 * The sensitivity cannot be read at runtime
-+			 * so the value depends on the model compatible
-+			 * or device id.
-+			 */
-+			*val = 1;
-+			*val2 = data->variant_info->sensitivity;
-+			return IIO_VAL_FRACTIONAL;
-+		default:
-+			return -EINVAL;
-+		}
-+	case IIO_CHAN_INFO_OFFSET:
-+		switch (chan->type) {
-+		case IIO_TEMP:
-+			*val = -1708;
-+			return IIO_VAL_INT;
-+		default:
-+			return -EINVAL;
-+		}
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static irqreturn_t als31300_trigger_handler(int irq, void *p)
-+{
-+	struct iio_poll_func *pf = p;
-+	struct iio_dev *indio_dev = pf->indio_dev;
-+	struct als31300_data *data = iio_priv(indio_dev);
-+	struct {
-+		u16 temperature;
-+		s16 channels[3];
-+		aligned_s64 timestamp;
-+	} scan;
-+	s16 x, y, z;
-+	int ret;
-+	u16 t;
-+
-+	ret = als31300_get_measure(data, &t, &x, &y, &z);
-+	if (ret)
-+		goto trigger_out;
-+
-+	scan.temperature = t;
-+	scan.channels[0] = x;
-+	scan.channels[1] = y;
-+	scan.channels[2] = z;
-+	iio_push_to_buffers_with_timestamp(indio_dev, &scan,
-+					   pf->timestamp);
-+
-+trigger_out:
-+	iio_trigger_notify_done(indio_dev->trig);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+#define ALS31300_AXIS_CHANNEL(axis, index)				     \
-+	{								     \
-+		.type = IIO_MAGN,					     \
-+		.modified = 1,						     \
-+		.channel2 = IIO_MOD_##axis,				     \
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		     \
-+				      BIT(IIO_CHAN_INFO_SCALE),		     \
-+		.address = index,					     \
-+		.scan_index = index,					     \
-+		.scan_type = {						     \
-+			.sign = 's',					     \
-+			.realbits = 12,					     \
-+			.storagebits = 16,				     \
-+			.endianness = IIO_CPU,				     \
-+		},							     \
-+	}
-+
-+static const struct iio_chan_spec als31300_channels[] = {
-+	{
-+		.type = IIO_TEMP,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE) |
-+				      BIT(IIO_CHAN_INFO_OFFSET),
-+		.address = TEMPERATURE,
-+		.scan_index = TEMPERATURE,
-+		.scan_type = {
-+			.sign = 'u',
-+			.realbits = 16,
-+			.storagebits = 16,
-+			.endianness = IIO_CPU,
-+		},
-+	},
-+	ALS31300_AXIS_CHANNEL(X, AXIS_X),
-+	ALS31300_AXIS_CHANNEL(Y, AXIS_Y),
-+	ALS31300_AXIS_CHANNEL(Z, AXIS_Z),
-+	IIO_CHAN_SOFT_TIMESTAMP(4),
-+};
-+
-+static const struct iio_info als31300_info = {
-+	.read_raw = als31300_read_raw,
-+};
-+
-+static int als31300_set_operating_mode(struct als31300_data *data,
-+				       unsigned int val)
-+{
-+	int ret;
-+
-+	ret = regmap_update_bits(data->map, ALS31300_VOL_MODE,
-+				 ALS31300_VOL_MODE_SLEEP, val);
-+	if (ret) {
-+		dev_err(data->dev, "failed to set operating mode (%pe)\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	/* The time it takes to exit sleep mode is equivalent to Power-On Delay Time */
-+	if (val == ALS31300_VOL_MODE_ACTIVE_MODE)
-+		fsleep(600);
-+
-+	return 0;
-+}
-+
-+static void als31300_power_down(void *data)
-+{
-+	als31300_set_operating_mode(data, ALS31300_VOL_MODE_SLEEP_MODE);
-+}
-+
-+static const struct iio_buffer_setup_ops als31300_setup_ops = {};
-+
-+static const unsigned long als31300_scan_masks[] = { GENMASK(3, 0), 0 };
-+
-+static bool als31300_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	return reg == ALS31300_VOL_MSB || reg == ALS31300_VOL_LSB;
-+}
-+
-+static const struct regmap_config als31300_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 32,
-+	.max_register = ALS31300_CUSTOMER_ACCESS,
-+	.volatile_reg = als31300_volatile_reg,
-+};
-+
-+static int als31300_probe(struct i2c_client *i2c)
-+{
-+	struct device *dev = &i2c->dev;
-+	struct als31300_data *data;
-+	struct iio_dev *indio_dev;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+	data->dev = dev;
-+	i2c_set_clientdata(i2c, indio_dev);
-+
-+	ret = devm_mutex_init(dev, &data->mutex);
-+	if (ret)
-+		return ret;
-+
-+	data->variant_info = i2c_get_match_data(i2c);
-+	if (!data->variant_info)
-+		return -EINVAL;
-+
-+	data->map = devm_regmap_init_i2c(i2c, &als31300_regmap_config);
-+	if (IS_ERR(data->map))
-+		return dev_err_probe(dev, PTR_ERR(data->map),
-+				     "failed to allocate register map\n");
-+
-+	ret = devm_regulator_get_enable(dev, "vcc");
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to enable regulator\n");
-+
-+	ret = als31300_set_operating_mode(data, ALS31300_VOL_MODE_ACTIVE_MODE);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to power on device\n");
-+
-+	ret = devm_add_action_or_reset(dev, als31300_power_down, data);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to add powerdown action\n");
-+
-+	indio_dev->info = &als31300_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->name = i2c->name;
-+	indio_dev->channels = als31300_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(als31300_channels);
-+	indio_dev->available_scan_masks = als31300_scan_masks;
-+
-+	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
-+					      iio_pollfunc_store_time,
-+					      als31300_trigger_handler,
-+					      &als31300_setup_ops);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "iio triggered buffer setup failed\n");
-+
-+	ret = pm_runtime_set_active(dev);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = devm_pm_runtime_enable(dev);
-+	if (ret)
-+		return ret;
-+
-+	pm_runtime_get_noresume(dev);
-+	pm_runtime_set_autosuspend_delay(dev, 200);
-+	pm_runtime_use_autosuspend(dev);
-+
-+	pm_runtime_mark_last_busy(dev);
-+	pm_runtime_put_autosuspend(dev);
-+
-+	ret = devm_iio_device_register(dev, indio_dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "device register failed\n");
-+
-+	return 0;
-+}
-+
-+static int als31300_runtime_suspend(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-+	struct als31300_data *data = iio_priv(indio_dev);
-+
-+	return als31300_set_operating_mode(data, ALS31300_VOL_MODE_SLEEP_MODE);
-+}
-+
-+static int als31300_runtime_resume(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-+	struct als31300_data *data = iio_priv(indio_dev);
-+
-+	return als31300_set_operating_mode(data, ALS31300_VOL_MODE_ACTIVE_MODE);
-+}
-+
-+static DEFINE_RUNTIME_DEV_PM_OPS(als31300_pm_ops,
-+				 als31300_runtime_suspend, als31300_runtime_resume,
-+				 NULL);
-+
-+static const struct als31300_variant_info al31300_variant_500 = {
-+	.sensitivity = 4,
-+};
-+
-+static const struct als31300_variant_info al31300_variant_1000 = {
-+	.sensitivity = 2,
-+};
-+
-+static const struct als31300_variant_info al31300_variant_2000 = {
-+	.sensitivity = 1,
-+};
-+
-+static const struct i2c_device_id als31300_id[] = {
-+	{
-+		.name = "als31300-500",
-+		.driver_data = (kernel_ulong_t)&al31300_variant_500,
-+	},
-+	{
-+		.name = "als31300-1000",
-+		.driver_data = (kernel_ulong_t)&al31300_variant_1000,
-+	},
-+	{
-+		.name = "als31300-2000",
-+		.driver_data = (kernel_ulong_t)&al31300_variant_2000,
-+	},
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(i2c, als31300_id);
-+
-+static const struct of_device_id als31300_of_match[] = {
-+	{
-+		.compatible = "allegromicro,als31300-500",
-+		.data = &al31300_variant_500,
-+	},
-+	{
-+		.compatible = "allegromicro,als31300-1000",
-+		.data = &al31300_variant_1000,
-+	},
-+	{
-+		.compatible = "allegromicro,als31300-2000",
-+		.data = &al31300_variant_2000,
-+	},
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, als31300_of_match);
-+
-+static struct i2c_driver als31300_driver = {
-+	.driver	 = {
-+		.name = "als31300",
-+		.of_match_table = als31300_of_match,
-+		.pm = pm_ptr(&als31300_pm_ops),
-+	},
-+	.probe = als31300_probe,
-+	.id_table = als31300_id,
-+};
-+module_i2c_driver(als31300_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("ALS31300 3-D Linear Hall Effect Driver");
-+MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
-
--- 
-2.34.1
-
+Billy, could you please write a proper description for this property?
+I'm not the right person for this.
 
