@@ -1,130 +1,156 @@
-Return-Path: <devicetree+bounces-117544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DAD89B6DBF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 21:34:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA70E9B6DC2
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 21:35:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 848DDB20DAF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 20:34:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FF65282C5A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 20:35:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2FC31D1E69;
-	Wed, 30 Oct 2024 20:34:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C76C01E7C3A;
+	Wed, 30 Oct 2024 20:35:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hCgyMKza"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YCTwIZne"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618D41BD9EF;
-	Wed, 30 Oct 2024 20:34:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9877D199FB1;
+	Wed, 30 Oct 2024 20:35:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730320481; cv=none; b=IcSJtZAa/Bznti2O/vf8WiepnraaXPqiYwRGjQQNHuZUgumvBKCbPxUDhWpXiLXd2tVckPDl0XvMxopB5mmYhtTCiVfVYm7U0Ydoyk01Cco9AS8wuB9E8U3CyuoNCpZKISeQbWfQ3predTb14y1/73ijXYolr04PLsinh3DhcVg=
+	t=1730320523; cv=none; b=VfVZcHQSrw7yCi9e6yK7KubRYKAJI5oXSVdzbxbozgRkqi0iR7RnABTE6gc4c+/Nb6e7V6vjphDNnfkheEZMHVYqTlOt9Lhx3lymKWuf5Qap8jfhcEFW/4+E5GIXn7Jk8N8elYW+DfYLcbIJzRGi6HjPKOFu3myubWhp6SDOLfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730320481; c=relaxed/simple;
-	bh=EJJO/HKqSPcRZoRs7N53d81QbG0Ckyd+9nHPbb89Xo4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pj0h9vvc90aKQt1NCsjU9iQoiHhttstJ2HbKBBnDYfSjvzPIyb+whxjwuVYlRCC4QPjk20APvCFsLqOEhSOk56+aL55QDHMyGkGi4fZk+rvSoK2MmwmgfQZFoDEnXBksU2cX8Z7mMk1amMvXGrvx0Ycx9TDHjig+5ny7y1p9pwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hCgyMKza; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730320479; x=1761856479;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EJJO/HKqSPcRZoRs7N53d81QbG0Ckyd+9nHPbb89Xo4=;
-  b=hCgyMKza1YpBJDioBdWMTrI9Xpi/JObdWpcrPUT8dZBD78AC/kiXnpfQ
-   WZ5HldmXNgt95VE0DPsLJxuFGyOslIr7JVAoM0rhKJ9gvOciOpXXGo9CX
-   ALZDzBuhW7SsweFG3DuOgLGS28wdGdF33JGu3F8H4WnOUDQ7Idg1TKuJz
-   8WqjLacJA8ap4mkPL30hO2kQ4aJeX7OUq9wjD32t9CJezG2SspSAg0xTm
-   8bieq/ddz4LGFY0zAt261/iq6CLFlomT4/keuSusXMTJDDBh/GRIeM7YO
-   3JtnfuTCppPQOSPbCRSzenjIFrUErdNEtdc7kdrl5tuhPOWfI/6GUubS1
-   A==;
-X-CSE-ConnectionGUID: rq8AyO69RfyRJ2C3Lwuevg==
-X-CSE-MsgGUID: iJxNQOrSRLaALWjYm8NYEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="41440268"
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; 
-   d="scan'208";a="41440268"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Oct 2024 13:34:38 -0700
-X-CSE-ConnectionGUID: Yes14h7CQ0qGk6qKs+ijyg==
-X-CSE-MsgGUID: OLkSKFVoQCC7m3bRKRunng==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; 
-   d="scan'208";a="83247480"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 30 Oct 2024 13:34:33 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t6FOg-000fHY-1u;
-	Wed, 30 Oct 2024 20:34:30 +0000
-Date: Thu, 31 Oct 2024 04:34:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Lee Jones <lee@kernel.org>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev, Pavel Machek <pavel@ucw.cz>,
-	linux-leds@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-	soc@kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>,
-	arm@kernel.org, Andy Shevchenko <andy@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Subject: Re: [PATCH leds v4 07/12] leds: turris-omnia: Notify sysfs on MCU
- global LEDs brightness change
-Message-ID: <202410310400.K6KRpgOx-lkp@intel.com>
-References: <20241029135621.12546-8-kabel@kernel.org>
+	s=arc-20240116; t=1730320523; c=relaxed/simple;
+	bh=43ROIMQBtkT2b268XPhwFJi+beswuD92eF7qUKl5Q/4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=QhqdbxTJlrLl5SVbApCdCCLK/9OMWq+xpeWxids8qi9aWYQ2P2LMQ6opmbGdKJGomGDWq8WyIj+Sq0/n5MRSea6cKhXbyGdF16Zo2vB/9RW5s9UL2zwz3CEWrR9/LW3oTzoE7UKbAwkYFexNuugtUh/ZL1ydNoCVmNSORak0k3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YCTwIZne; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CAB1C4CECE;
+	Wed, 30 Oct 2024 20:35:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730320523;
+	bh=43ROIMQBtkT2b268XPhwFJi+beswuD92eF7qUKl5Q/4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=YCTwIZne2Hfvnx7M6XgPeK7vJ6cHDOaFj3Lj0xEYYQXD0Q4mLjvXlgzg1I7OybtXU
+	 w7rkuKRA8szqfRNB3eS18YQ2Lba2U2JZ4Vx5r8VwMwTOIS98b/Rb2DvSPIKHtw0Qj9
+	 /L57aRPc3juIidentFXooBoQDE5v2FQeS3tFNz4I+jGjZX2A8V/D3HeyxxvsA9zxYB
+	 FHgVwf+dH8/WmZR9lHRC8Pi1L9hGLfjQEEXYqzH/MPOl4yTX76saAW7pbj2jaqj8AM
+	 b2lDsFlZzYH0RWYBEq7rP5s4koPx2Tlkmx7r8D5C/n0Pf/VmPZmA5Zqx6vZA3wq78J
+	 HN8f3hlRoEnAg==
+Date: Wed, 30 Oct 2024 20:35:14 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andriy.shevchenko@linux.intel.com,
+ anshulusr@gmail.com, gustavograzs@gmail.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 13/13] iio: chemical: bme680: add power management
+Message-ID: <20241030203514.349d8142@jic23-huawei>
+In-Reply-To: <ZyF8vtLiVUEHojl4@vamoirid-laptop>
+References: <20241021195316.58911-1-vassilisamir@gmail.com>
+	<20241021195316.58911-14-vassilisamir@gmail.com>
+	<20241027103013.06daac42@jic23-huawei>
+	<ZyF8vtLiVUEHojl4@vamoirid-laptop>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241029135621.12546-8-kabel@kernel.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Marek,
 
-kernel test robot noticed the following build warnings:
+> > > +
+> > >  int bme680_core_probe(struct device *dev, struct regmap *regmap,
+> > >  		      const char *name)
+> > >  {
+> > > @@ -1164,15 +1231,60 @@ int bme680_core_probe(struct device *dev, struct regmap *regmap,
+> > >  	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
+> > >  					      iio_pollfunc_store_time,
+> > >  					      bme680_trigger_handler,
+> > > -					      NULL);
+> > > +					      &bme680_buffer_setup_ops);
+> > >  	if (ret)
+> > >  		return dev_err_probe(dev, ret,
+> > >  				     "iio triggered buffer setup failed\n");
+> > >  
+> > > +	/* Enable runtime PM */
+> > > +	pm_runtime_get_noresume(dev);
+> > > +	pm_runtime_set_autosuspend_delay(dev, BME680_STARTUP_TIME_US * 100);
+> > > +	pm_runtime_use_autosuspend(dev);
+> > > +	pm_runtime_set_active(dev);
+> > > +	ret = devm_pm_runtime_enable(dev);  
+> > 
+> > Take a look at what this unwinds in the devm handler. You don't need to do
+> > as much (or possibly anything) yourself.
+> > 
+> >   
+> 
+> Well, in general what I see that could probably be dropped here is the
+> extra add_action_or_reset because of the devm_*. About the functions
+> get_noresume() and put(), I feel that they could be dropped as well
+> because the device registration will happen well before the autosuspend
+> delay, but does it make sense to depend on something like this?
 
-[auto build test WARNING on linus/master]
-[also build test WARNING on v6.12-rc5]
-[cannot apply to lee-leds/for-leds-next robh/for-next next-20241030]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+If you haven't enabled runtime pm yet all you need to do is set up the
+current state  Shouldn't need the get etc as you don't care if it powers
+down here anyway as you aren't talking to the device.
+> 
+> Cheers,
+> Vasilis
+> 
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	pm_runtime_put(dev);
+> > > +
+> > > +	ret = devm_add_action_or_reset(dev, bme680_pm_disable, dev);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > >  	return devm_iio_device_register(dev, indio_dev);
+> > >  }
+> > >  EXPORT_SYMBOL_NS_GPL(bme680_core_probe, IIO_BME680);
+> > >  
+> > > +static int bme680_runtime_suspend(struct device *dev)
+> > > +{
+> > > +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> > > +	struct bme680_data *data = iio_priv(indio_dev);
+> > > +
+> > > +	return regulator_bulk_disable(BME680_NUM_SUPPLIES, data->supplies);
+> > > +}
+> > > +
+> > > +static int bme680_runtime_resume(struct device *dev)
+> > > +{
+> > > +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> > > +	struct bme680_data *data = iio_priv(indio_dev);
+> > > +	int ret;
+> > > +
+> > > +	ret = regulator_bulk_enable(BME680_NUM_SUPPLIES, data->supplies);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	fsleep(BME680_STARTUP_TIME_US);
+> > > +
+> > > +	ret = bme680_chip_config(data);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	return bme680_gas_config(data);
+> > > +}
+> > > +
+> > > +EXPORT_RUNTIME_DEV_PM_OPS(bme680_dev_pm_ops, bme680_runtime_suspend,
+> > > +			  bme680_runtime_resume, NULL);
+> > > +
+> > >  MODULE_AUTHOR("Himanshu Jha <himanshujha199640@gmail.com>");
+> > >  MODULE_DESCRIPTION("Bosch BME680 Driver");
+> > >  MODULE_LICENSE("GPL v2");  
+> >   
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Beh-n/turris-omnia-mcu-interface-h-Move-command-execution-function-to-global-header/20241029-215858
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20241029135621.12546-8-kabel%40kernel.org
-patch subject: [PATCH leds v4 07/12] leds: turris-omnia: Notify sysfs on MCU global LEDs brightness change
-config: x86_64-kismet-CONFIG_TURRIS_OMNIA_MCU_GPIO-CONFIG_LEDS_TURRIS_OMNIA-0-0 (https://download.01.org/0day-ci/archive/20241031/202410310400.K6KRpgOx-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20241031/202410310400.K6KRpgOx-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410310400.K6KRpgOx-lkp@intel.com/
-
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for TURRIS_OMNIA_MCU_GPIO when selected by LEDS_TURRIS_OMNIA
-   WARNING: unmet direct dependencies detected for TURRIS_OMNIA_MCU_GPIO
-     Depends on [n]: CZNIC_PLATFORMS [=y] && TURRIS_OMNIA_MCU [=y] && GPIOLIB [=n] && OF [=y]
-     Selected by [y]:
-     - LEDS_TURRIS_OMNIA [=y] && NEW_LEDS [=y] && LEDS_CLASS_MULTICOLOR [=y] && I2C [=y] && (MACH_ARMADA_38X || COMPILE_TEST [=y]) && OF [=y] && TURRIS_OMNIA_MCU [=y]
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
