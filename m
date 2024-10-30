@@ -1,174 +1,160 @@
-Return-Path: <devicetree+bounces-117458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A67859B6510
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 15:01:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39DA79B6535
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 15:06:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 087D8B211D0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 14:01:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9A741F25986
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 14:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEEF61EE006;
-	Wed, 30 Oct 2024 14:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CA511EE039;
+	Wed, 30 Oct 2024 14:06:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LkOfSo/y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LzP2bmj9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC301EBFF2;
-	Wed, 30 Oct 2024 14:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 304611EE02F;
+	Wed, 30 Oct 2024 14:06:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730296874; cv=none; b=POZIUZ4/TgVEAT3BorshzxRqekn9cx6aUMxwN55j1duPNJOUk38wEZwOOu/k9kegm6fovonoC5JOrdLTMRuxNg9ixRC0DWlcyn/CXcEfWLs39OuV371jnCIFU8SsndNbFSXk/71S9bfvrjee0IEtwNZw7KYS6ml5lZUjc2ssCdQ=
+	t=1730297167; cv=none; b=bn1yyVM/c7PRCI7u6wWVo+wseMfS+X0Xautb0oQ6ve6qoV+Siu9r6BL28wvSU5R8lfiVPXaHdFWCfaRTawsUz1mhJkbyAWeiFbM7B/UjaV/chinufWjnUzH8P8gz9GqzTah0Dn404zP0jOBvRTEnpaBIOD6S2m4E86CAKTxbD4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730296874; c=relaxed/simple;
-	bh=cZyl/pNcW3otfN/m79DGyMQG/9YXXsayTz/r9b6yIhA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EkEFHpSOmwYnjjI3G3sagJngDTVdHKItvNpS6F/PNk5TnFzT2tVGFzuZqhINLbJNHojxBJifFiS6POHq4e586RnraNdHl4LL33sFh8+AoWaGhYO8z/DPNbfnym6tmSaBboMzSZAzo7olprU0oiYMMfQTH03JnPzx4U3jfurZAxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LkOfSo/y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A31C0C4CECE;
-	Wed, 30 Oct 2024 14:01:10 +0000 (UTC)
+	s=arc-20240116; t=1730297167; c=relaxed/simple;
+	bh=GrmqlZoNz0TpM8NpGoFe5fj7IqEdF5q25++QH0auuBg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tSDAOGgCzDoXWeC7CwA/fnsrtRizB0i9oupuX+7Nvuyh5C5DYQkXmCUj8WRoQ9XWtcLisiBU7v1ZgPpKTFTxzY8B7ZO7wiWJ6BnIrUTANrPAbie8kduzWjn9lh9w41UY+LCsaP9DTULTiZNeNoxOdaJz51KHl77l3ltb8JSVTmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LzP2bmj9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D57ABC4CED1;
+	Wed, 30 Oct 2024 14:06:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730296874;
-	bh=cZyl/pNcW3otfN/m79DGyMQG/9YXXsayTz/r9b6yIhA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LkOfSo/yWKilkg1Ba1/mfdCdNpDj5hmbfa2HUyCQMWR5oHPsxysWFNMSinsKPGwkm
-	 b959PYpfFQkCzX+y5ocQQS9/I/6fAPJW5Wgko9ltT79MGM+LfJ/RCigiJfjEY1mQQE
-	 NHvFU8DuaW0/JbIodVcvk92BhyWZ8Lr7Gd6HSSnQwZYGL79jMJPnfohMfNXm3EiTEY
-	 6W6LWd/xmw6Xy0+/68K4suxUxj6nIkiwvzLYEbSmO/y6RLeKiHmi0N7fisC7jE2N71
-	 z6Tb8SAJm02w3c3wTNhKC9ZgTh6lz7YsOEYNX91E3xarEdE6aHZCxBVCYQlyXEKutR
-	 bEqXNo+r8dqnw==
-Message-ID: <ae0faee0-d695-4b48-8be8-dfd2e7e08f54@kernel.org>
-Date: Wed, 30 Oct 2024 15:01:08 +0100
+	s=k20201202; t=1730297166;
+	bh=GrmqlZoNz0TpM8NpGoFe5fj7IqEdF5q25++QH0auuBg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=LzP2bmj9AU3xmjif/OR1xSgemSO8y2JeqioNRTfxa/Lbzlf/Eh9+hUMaGhz4mFnV+
+	 J0doz+2H2b5iWoHqvkpMwZEacYe+YMVqB6Xp49/dtZFB59jKDpbUrgATImW5U7h1BB
+	 zZ/QWDLYJ2/XpcljqWkQ7DFTVQbhdHiWwYDOeIfj/uMEY6pzZmhOlIZvor7spf/GDj
+	 v4Y6ne/7qjIWMP7b3qilD9WRrLlbFR2Sb/GX58yqC81vmVggcivhWuQQWOe9rrMlgz
+	 wv59/toTTGeD3E01qWwIC5D6AfZ+h1SelSp1R2vvlMJgbvyD2UCNLvc6gRefHcRyhp
+	 0ILKJo7UF83kg==
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2fb3ce15172so9310791fa.0;
+        Wed, 30 Oct 2024 07:06:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUrweV4YYyBapi/duR1wfqinpOFs3eV/0B7BK481kRrENyc2WKc+Th5k+CE58Ri6ly7W8ddPtsXWfWYudKEgjY=@vger.kernel.org, AJvYcCVgt8WYUTVRkJT0z4o2JXTNFBjXjQKeQ4hcQT7NlKI4yEnB/3cEzNcmknkPjy0jAyTBnpDQTrK4XZhc@vger.kernel.org, AJvYcCWcxoE7LtHcV5f3HqzPMuVK7DaIyW8yC1Fb25fs8VaenxBlaDPj9wcO6rLnvsuAhSEnHKbt+NE5xIb1OL4W@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8eCSlAP8uKZ0nHLT3ztYhLGE9s+QXFjLcfrFmma/XzA3ySAdu
+	DQE9wHlVeA1EX72FRSqNxcU/lcJHAkWgcZomAGSIcjVnXWqfw+JSV4CGldLObjY+UvYjV6RALGA
+	YR+bPBclx6FEsGrYy4CAvv6QATQ==
+X-Google-Smtp-Source: AGHT+IHraIDvgEshI6B9Lhwn0jf1bScQv1+cJh9BmMoQ68/u5a9ivzRXYW10ns73NHalIqSCwJ3femN7Utb8XdqZF+8=
+X-Received: by 2002:a05:6512:a93:b0:53b:48f2:459b with SMTP id
+ 2adb3069b0e04-53c316319a7mr876648e87.23.1730297165207; Wed, 30 Oct 2024
+ 07:06:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 01/17] dt-bindings: net: wireless: cc33xx: Add
- ti,cc33xx.yaml
-To: "Nemanov, Michael" <michael.nemanov@ti.com>, Kalle Valo
- <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Sabeeh Khan <sabeeh-khan@ti.com>
-References: <20241029172354.4027886-1-michael.nemanov@ti.com>
- <20241029172354.4027886-2-michael.nemanov@ti.com>
- <936b19eb-cde7-4be8-98cf-e60e32b335cd@kernel.org>
- <8024aa1c-5bd1-40d8-b0c3-14b5fcd992e2@ti.com>
- <bda36285-dc70-4dff-85ed-9c04c0f7ba44@kernel.org>
- <3fc3c670-ce63-4a27-9d12-1c6c996cf914@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <3fc3c670-ce63-4a27-9d12-1c6c996cf914@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241025-rust-platform-dev-v1-0-0df8dcf7c20b@kernel.org>
+ <20241025-rust-platform-dev-v1-2-0df8dcf7c20b@kernel.org> <CAH5fLgjhiLUYPgTt_Ks+L-zhWaQG5-Yjm-Y3tfh2b2+PzT=bLg@mail.gmail.com>
+ <CAL_JsqJWPR-Q=vsxSvD7V9_v=+om5mRuW9yYNqfavVRUwH9JFw@mail.gmail.com>
+ <CAH5fLgiXPZqKpWSSNdx-Ww-E9h2tOLcF3_8Y4C_JQ0eU8EMwFw@mail.gmail.com>
+ <CANiq72kaidDJ=81+kibMNr9jNxg467HjOm9C_4G7WRvaiddGvg@mail.gmail.com>
+ <CAL_Jsq+T6T_3p2C62U3v4aSjm_oc-Ycjxi_ckF0ufh=JJDz=rg@mail.gmail.com> <CAH5fLggCDiKUu_dvJZeJr8UD5RvUpqRJbdYKf1F3_MvCdOVK6g@mail.gmail.com>
+In-Reply-To: <CAH5fLggCDiKUu_dvJZeJr8UD5RvUpqRJbdYKf1F3_MvCdOVK6g@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 30 Oct 2024 09:05:51 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL+b-f5K24qTxyA09c_QPeb07s4Hb=s1VqrdksBB4BQ=Q@mail.gmail.com>
+Message-ID: <CAL_JsqL+b-f5K24qTxyA09c_QPeb07s4Hb=s1VqrdksBB4BQ=Q@mail.gmail.com>
+Subject: Re: [PATCH RFC 2/3] rust: Add bindings for device properties
+To: Alice Ryhl <aliceryhl@google.com>
+Cc: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>, Saravana Kannan <saravanak@google.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Dirk Behme <dirk.behme@gmail.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 30/10/2024 13:14, Nemanov, Michael wrote:
-> On 10/30/2024 1:09 PM, Krzysztof Kozlowski wrote:
->> On 30/10/2024 11:59, Nemanov, Michael wrote:
->>>>
->>>> Your changelog does not explain these three. "Fixed compatibility" is
->>>> way too vague, especially that you do not fix anything here.
->>>>
->>>
->>> I was trying to address the feedback from previous patch. You said:
->>>
->>>>>>> +static const struct of_device_id cc33xx_sdio_of_match_table[] = {
->>>>>>> +	{ .compatible = "ti,cc3300", .data = &cc33xx_data },
->>>>>>> +	{ .compatible = "ti,cc3301", .data = &cc33xx_data },
->>>>>>> +	{ .compatible = "ti,cc3350", .data = &cc33xx_data },
->>>>>>> +	{ .compatible = "ti,cc3351", .data = &cc33xx_data },
->>>>>>> +	{ }
->>>>>>> +};
->>>>>>
->>>>>>
->>>>>> Eh? What happened here? So devices are compatibles thus make them
->>>>>> compatible in the bindings.
->>>>>>
->>>>>
->>>>> I thought this is the right way to do it (originally taken from [1]).
->>>>> How can I solve it via DT bindings?
->>>>
->>>> It's all over the bindings (also example-schema). Use fallback and oneOf.
->>>>
->>>
->>> Looking at [2] and [3] as an example I tried to do the same (make cc33xx
->>> driver compatible with all chip variants).
->>> How should have I done it?
->>
->> qcom-wdt is quite a different device. It's true you should have here
->> oneOf, but for a purpose. oneOf without purpose does not make sense, right?
->>
->> I think other TI bindings would serve you as an example. Or this one:
->>
->> https://elixir.bootlin.com/linux/v6.3-rc6/source/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml#L31
->>
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> OK.
-> So I should make one of the variants the base and declare others as 
-> compatible? i.e:
-> 
+On Wed, Oct 30, 2024 at 3:15=E2=80=AFAM Alice Ryhl <aliceryhl@google.com> w=
+rote:
+>
+> On Tue, Oct 29, 2024 at 8:35=E2=80=AFPM Rob Herring <robh@kernel.org> wro=
+te:
+> >
+> > On Tue, Oct 29, 2024 at 1:57=E2=80=AFPM Miguel Ojeda
+> > <miguel.ojeda.sandonis@gmail.com> wrote:
+> > >
+> > > On Tue, Oct 29, 2024 at 7:48=E2=80=AFPM Alice Ryhl <aliceryhl@google.=
+com> wrote:
+> > > >
+> > > > One option is to define a trait for integers:
+> >
+> > Yeah, but that doesn't feel like something I should do here. I imagine
+> > other things might need the same thing. Perhaps the bindings for
+> > readb/readw/readl for example. And essentially the crate:num already
+> > has the trait I need. Shouldn't the kernel mirror that? I recall
+> > seeing some topic of including crates in the kernel?
+>
+> You can design the trait to look similar to traits in external crates.
+> We did that for FromBytes/AsBytes.
+>
+> I assume you're referring to the PrimInt trait [1]? That trait doesn't
+> really let you get rid of the catch-all case, and it's not even
+> unreachable due to the u128 type.
 
-Yes
+It was num::Integer which seems to be similar.
 
-Best regards,
-Krzysztof
+>
+> [1]: https://docs.rs/num-traits/0.2.19/num_traits/int/trait.PrimInt.html
+>
+> > > +1, one more thing to consider is whether it makes sense to define a
+> > > DT-only trait that holds all the types that can be a device property
+> > > (like `bool` too, not just the `Integer`s).
+> > >
+> > > Then we can avoid e.g. `property_read_bool` and simply do it in `prop=
+erty_read`.
+> >
+> > Is there no way to say must have traitA or traitB?
+>
+> No. What should it do if you pass it something that implements both trait=
+s?
+>
+> If you want a single function name, you'll need one trait.
 
+I'm not sure I want that actually.
+
+DT boolean is a bit special. A property not present is false.
+Everything else is true. For example, 'prop =3D <0>' or 'prop =3D
+"string"' are both true. I'm moving things in the kernel to be
+stricter so that those cases are errors. I recently introduced
+(of|device)_property_present() for that reason. There's no type
+information stored in DT.  At the DT level, it's all just byte arrays.
+However, we now have all the type information for properties within
+the schema. So eventually, I want to use that to warn on accessing
+properties with the wrong type.
+
+For example, I think I don't want this to work:
+
+if dev.property_read(c_str!("test,i16-array"))? {
+    // do something
+}
+
+But instead have:
+
+if dev.property_present(c_str!("test,i16-array")) {
+    // do something
+}
+
+To actually warn on property_read_bool, I'm going to have to rework
+the underlying C implementation to separate device_property_present
+and device_property_read_bool implementations.
+
+Rob
 
