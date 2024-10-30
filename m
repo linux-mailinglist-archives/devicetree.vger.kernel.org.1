@@ -1,196 +1,144 @@
-Return-Path: <devicetree+bounces-117434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 254259B6302
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:24:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 571F59B6307
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:25:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA6891F20407
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 12:24:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 017911F21B93
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 12:25:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DA5D1E5722;
-	Wed, 30 Oct 2024 12:24:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28A581E8846;
+	Wed, 30 Oct 2024 12:25:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LEhdjvWK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vVO/w2uR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC601D1E7A;
-	Wed, 30 Oct 2024 12:24:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07721E7C3B
+	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 12:25:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730291044; cv=none; b=QdtdV3gwafP85Vb3VgCS70ey7JKE0i/ErI0QG/ZYx6Bn3lfSJGdg0Oe+OUzEhKwq/3xj4D/mqjZpe3wOxNjjjrRB+vj6+9kzLcdoUdjO8NoyBjMEn+LvhgwN6tUDSDwT5f1A63KdBIm01WRyxQbG/VnwvAeYRfNltrep3/dqQcc=
+	t=1730291131; cv=none; b=mSstvIWwZuoAKAupE8la1y/IBxuUaO9iCNDhrPkG2+X2RQvvB9LfD8uqCJr8yQq2d3YGaA/1brV4ZGtLK+y/z+/YqSRNY5MCrj/dpS0yKfg7XIKEgBWGcDBfNV7R+YQqFK8EmUXI2DLn3bLnWmtjeOhu2Q7H/V8oA+2ioie+xx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730291044; c=relaxed/simple;
-	bh=bY0GAYNYCE+RSpo4fyBnoTfZwqxIoHX79jv6jrJ4QT0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VChlk8L2lpqb4AwmLAbOwYwWG1JQXyhEZA9ZERHVLaHYUnqo2FywKb/sVLTvyiei4GqvWkgAfpuSQ1W67YOO4EpBDx+Y7/0bwo83MxRhrmW8JqeIpfMSFoOPyc2Ydgq0dtRxr0Qhr6XPdxtdw3VEPfhxEIvv8CZFZwyzlXTUAw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LEhdjvWK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70262C4AF09;
-	Wed, 30 Oct 2024 12:24:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730291043;
-	bh=bY0GAYNYCE+RSpo4fyBnoTfZwqxIoHX79jv6jrJ4QT0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=LEhdjvWK4A9Zgjc5KoJoLfBA1TF5llAqVoIoB6Pc4P5I9gWgPPeOmMYOIWYmZ9CgY
-	 ZZhK4eeg2bxiccWbkgTpssSJUBgBpKe7J05noYaarosExUgW12+bhuKJi1OWVPjQPC
-	 uIJfqkPTZtDmpFzVj35uoJFZsjIXarXUjQl2XsNGsSpEuMusMr7vFm2/BlJSKqJJVt
-	 npJ6McW+76DExTE2qXvmffaWpLTtt8nzBmOyBOjzbSqDts/ekjVuvBCSwPW7FCSpbT
-	 Utd79sQsdlnhWa8StSFEK4l8j6ydLXSh3wlCDRnqRBdFJxuk/abBQKd1tJPAF2hIBS
-	 6BNmnznGY4fAA==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-539e59dadebso7775998e87.0;
-        Wed, 30 Oct 2024 05:24:03 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUrEeV0jZ1EcqM19I4D/lmyl8ibicLndeMZWiAnoKTfmMn0U82/+odK7L8gxXPMifguWFgj/WzXJ4OkSyaRcVg=@vger.kernel.org, AJvYcCWBVL5DwP9hzqUXGGURkWXSRLDc9DUs2nSvpjppQXc9Jsv9cC90L5fiJLJqiPlWyFTUyH4gXZfb4WI6@vger.kernel.org, AJvYcCX8fF6/HNz0ogiR4HVeDpKj/CjyNSVPS0JIQoPyWOI/T3KchufvBecwJ2yAWSi1vA5L16pOtpnn1lSUAAtt@vger.kernel.org, AJvYcCXySi80zeLg7lZcnCOC15z9l3yBxcWssz8F1ZGCVUlHJ8LvsTrOevvgj1C5WuaI39er7WmwsrdYirBV@vger.kernel.org
-X-Gm-Message-State: AOJu0YyD/ng5DaNDFSjEsgMoepSy0bi8uqKRNQZlw/IDqHf2CBeN/EtT
-	/nllG/GDc17inHqQFoAIuvOszmgOEYBHaqq9mSNXni5nCdvpvWjaxu38V+DsPOhvPM7xKUpyUp0
-	ST4g1HM3iXuktOfvO41UTZYj+wg==
-X-Google-Smtp-Source: AGHT+IEjmd362Hqb5BBG6j7OLpPRxtrkzKY/9eQkTx2RwWQmpEEJo7tsXGjQ/w8hsZo0lxGp1u96hzI1IqyL3t6dZZs=
-X-Received: by 2002:a05:6512:3d26:b0:539:f4a6:ef4b with SMTP id
- 2adb3069b0e04-53b34c8db59mr8102763e87.55.1730291041754; Wed, 30 Oct 2024
- 05:24:01 -0700 (PDT)
+	s=arc-20240116; t=1730291131; c=relaxed/simple;
+	bh=npPpKCfr8a/nX6dSWj7YKXfzbNKDFxy1Zti2s+52ors=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lgyw8lnS4iMJSqHa6h7fo5xXX4KlfgYFDGaM77InykQtDdGit9PcIPtsbxaz+R8duqy1r4LKbwUGTmXREDvmGdK6QghMFnnqVbptKAOApCBpsxLOtNGMuJNT33ZfJCNUopNnukJq5wg6arIOlMwlYjXpObgI+hr7QGaLnqP94R0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vVO/w2uR; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4316f3d3c21so60894245e9.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 05:25:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1730291127; x=1730895927; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SzgcGS1Hf9hdPADay9tMP9fc5ub7cUqD288aa3YpE9s=;
+        b=vVO/w2uRVW8ebWK9xhcPJodZ34mYkotL7O9mM5egXirCYNThka4mVjC3eSNIphSAzr
+         RNNmAU+xx0XHP3JuTCcru0E5B4dg6oUF5eeGvB+qJvRc7LeqpfAuLGI6yEgpTWWU5PTm
+         JxQXv81QbKhH8h2EKvx6LJgSBTHT/vwN2+7w015cFSrW2p1NbjVHYK+eWCG4CXmj0UL2
+         3ATAfnVl/gtzstbJ+SSzqv8iXSTJVbPhy7Hm2MmJ6+1b6Gf/7BS4ZC/6IrwwAwmw1L55
+         3N9o5KG/FRdvGSTbPkYyN3hCabjn/B3hbytrPdDqBZdtHpeefGK4ugIK5tDRVvoe08Rm
+         3M/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730291127; x=1730895927;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SzgcGS1Hf9hdPADay9tMP9fc5ub7cUqD288aa3YpE9s=;
+        b=Fy210UM9QDDz6QbmLtvFB8nH3Z/OomieWg2aWq27Hy/z8y5x7jSOSncPCsra3Ca4Q1
+         50sHsYYyO4/LfoxRIRS2ET8ssZAx9tkHIMfu/DFBMSrvClbYL1TlX7Z3xjsi/xm0EyVX
+         ueFqb3nrgzFzUBlu6YCLSljMBXfhh6z3ItWqjSLfLChAW5dkEZ1OHHOu4iyeQhBO9jHb
+         hx0WKRYkQmQd3IejIfPsMzzCXMCswyya9ZExs9pTnoKDOdCaeIfhi3bgRZYmlUzkcMlM
+         KoyDwNSGNS/5X8Ot+3JoZ0BcPLW79QauTw6jYRR024hoWbcwnxge2t9KvliSLkySTHgY
+         mgNw==
+X-Forwarded-Encrypted: i=1; AJvYcCXXTY/6bH16/7JTyV0hLF0aDGNt6aWqWZ8RA5Fi48VhQ9j2/tWbbYvloSp4qCIoGZtfU2hO8QfSxDJT@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZ7bkyuQaxkeyMr7TMrmajLBrgkwZYD2gsfq2IScGtiyawTG3r
+	si5Eq+nJEr4hpMmcoKQCKRxPRzplnWQSOst75tcYf6NJGBVhM8KyxZJD6u3Ryfo=
+X-Google-Smtp-Source: AGHT+IHoX4497mSUz/yxsu5fS7Yi5t7HC7XwVTZtKpVH7CT0vNJsNQn5cDMNxHVUOof05fQedX8kMw==
+X-Received: by 2002:a05:600c:4753:b0:431:5632:4497 with SMTP id 5b1f17b1804b1-431bb9d1122mr31382025e9.26.1730291127043;
+        Wed, 30 Oct 2024 05:25:27 -0700 (PDT)
+Received: from [192.168.0.157] ([79.115.63.43])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431bd918333sm20337295e9.10.2024.10.30.05.25.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Oct 2024 05:25:26 -0700 (PDT)
+Message-ID: <6d3beeab-c26d-4240-b968-cb13d06d7eae@linaro.org>
+Date: Wed, 30 Oct 2024 12:25:24 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-16-dakr@kernel.org>
- <20241022234712.GB1848992-robh@kernel.org> <ZxibWpcswZxz5A07@pollux>
- <20241023142355.GA623906-robh@kernel.org> <Zx9kR4OhT1pErzEk@pollux>
-In-Reply-To: <Zx9kR4OhT1pErzEk@pollux>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 30 Oct 2024 07:23:47 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLVdoQNSSDCfGcf0wCZE9VQphRhHKANxhpei_UoFzkN9g@mail.gmail.com>
-Message-ID: <CAL_JsqLVdoQNSSDCfGcf0wCZE9VQphRhHKANxhpei_UoFzkN9g@mail.gmail.com>
-Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
- driver abstractions
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com, 
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net, 
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com, 
-	daniel.almeida@collabora.com, saravanak@google.com, 
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 11/11] scsi: ufs: exynos: gs101: enable clock gating
+ with hibern8
+To: Peter Griffin <peter.griffin@linaro.org>, alim.akhtar@samsung.com,
+ James.Bottomley@HansenPartnership.com, martin.petersen@oracle.com,
+ avri.altman@wdc.com, bvanassche@acm.org, krzk@kernel.org
+Cc: andre.draszik@linaro.org, kernel-team@android.com,
+ willmcvicker@google.com, linux-scsi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ebiggers@kernel.org
+References: <20241025131442.112862-1-peter.griffin@linaro.org>
+ <20241025131442.112862-12-peter.griffin@linaro.org>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20241025131442.112862-12-peter.griffin@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 28, 2024 at 5:15=E2=80=AFAM Danilo Krummrich <dakr@kernel.org> =
-wrote:
->
-> On Wed, Oct 23, 2024 at 09:23:55AM -0500, Rob Herring wrote:
-> > On Wed, Oct 23, 2024 at 08:44:42AM +0200, Danilo Krummrich wrote:
-> > > On Tue, Oct 22, 2024 at 06:47:12PM -0500, Rob Herring wrote:
-> > > > On Tue, Oct 22, 2024 at 11:31:52PM +0200, Danilo Krummrich wrote:
-> > > > > +///     ]
-> > > > > +/// );
-> > > > > +///
-> > > > > +/// impl platform::Driver for MyDriver {
-> > > > > +///     type IdInfo =3D ();
-> > > > > +///     const ID_TABLE: platform::IdTable<Self::IdInfo> =3D &OF_=
-TABLE;
-> > > > > +///
-> > > > > +///     fn probe(
-> > > > > +///         _pdev: &mut platform::Device,
-> > > > > +///         _id_info: Option<&Self::IdInfo>,
-> > > > > +///     ) -> Result<Pin<KBox<Self>>> {
-> > > > > +///         Err(ENODEV)
-> > > > > +///     }
-> > > > > +/// }
-> > > > > +///```
-> > > > > +/// Drivers must implement this trait in order to get a platform=
- driver registered. Please refer to
-> > > > > +/// the `Adapter` documentation for an example.
-> > > > > +pub trait Driver {
-> > > > > +    /// The type holding information about each device id suppor=
-ted by the driver.
-> > > > > +    ///
-> > > > > +    /// TODO: Use associated_type_defaults once stabilized:
-> > > > > +    ///
-> > > > > +    /// type IdInfo: 'static =3D ();
-> > > > > +    type IdInfo: 'static;
-> > > > > +
-> > > > > +    /// The table of device ids supported by the driver.
-> > > > > +    const ID_TABLE: IdTable<Self::IdInfo>;
-> >
-> > Another thing. I don't think this is quite right. Well, this part is
-> > fine, but assigning the DT table to it is not. The underlying C code ha=
-s
-> > 2 id tables in struct device_driver (DT and ACPI) and then the bus
-> > specific one in the struct ${bus}_driver.
->
-> The assignment of this table in `Adapter::register` looks like this:
->
-> `pdrv.driver.of_match_table =3D T::ID_TABLE.as_ptr();`
->
-> What do you think is wrong with this assignment?
 
-Every bus implementation will need the DT and ACPI tables, so they
-should not be declared and assigned in platform driver code, but in
-the generic device/driver abstractions just like the underlying C
-code. The one here should be for platform_device_id. You could put all
-3 tables here, but that's going to be a lot of duplication I think.
 
-> >
-> > > > > +
-> > > > > +    /// Platform driver probe.
-> > > > > +    ///
-> > > > > +    /// Called when a new platform device is added or discovered=
-.
-> > > > > +    /// Implementers should attempt to initialize the device her=
-e.
-> > > > > +    fn probe(dev: &mut Device, id_info: Option<&Self::IdInfo>) -=
-> Result<Pin<KBox<Self>>>;
-> > > > > +
-> > > > > +    /// Find the [`of::DeviceId`] within [`Driver::ID_TABLE`] ma=
-tching the given [`Device`], if any.
-> > > > > +    fn of_match_device(pdev: &Device) -> Option<&of::DeviceId> {
-> > > >
-> > > > Is this visible to drivers? It shouldn't be.
-> > >
-> > > Yeah, I think we should just remove it. Looking at struct of_device_i=
-d, it
-> > > doesn't contain any useful information for a driver. I think when I a=
-dded this I
-> > > was a bit in "autopilot" mode from the PCI stuff, where struct pci_de=
-vice_id is
-> > > useful to drivers.
-> >
-> > TBC, you mean other than *data, right? If so, I agree.
->
-> Yes.
->
-> >
-> > The DT type and name fields are pretty much legacy, so I don't think th=
-e
-> > rust bindings need to worry about them until someone converts Sparc and
-> > PowerMac drivers to rust (i.e. never).
-> >
-> > I would guess the PCI cases might be questionable, too. Like DT, driver=
-s
-> > may be accessing the table fields, but that's not best practice. All th=
-e
-> > match fields are stored in pci_dev, so why get them from the match
-> > table?
->
-> Fair question, I'd like to forward it to Greg. IIRC, he explicitly reques=
-ted to
-> make the corresponding struct pci_device_id available in probe() at Kangr=
-ejos.
+On 10/25/24 2:14 PM, Peter Griffin wrote:
+> Enable clock gating and hibern8 capabilities for gs101. This
+> leads to a significantly cooler phone when running the upstream
+> kernel.
+> 
+> The exynos_ufs_post_hibern8() hook is also updated to remove the
+> UIC_CMD_DME_HIBER_EXIT code path as this causes a hang on gs101.
+> 
+> The code path is removed rather than re-factored as no other SoC
+> in ufs-exynos driver sets UFSHCD_CAP_HIBERN8_WITH_CLK_GATING
+> capability. Additionally until the previous commit the hibern8
+> callbacks were broken anyway as they expected a bool.
 
-Which table gets passed in though? Is the IdInfo parameter generic and
-can be platform_device_id, of_device_id or acpi_device_id? Not sure if
-that's possible in rust or not.
+I think too it's fine to remove uneeded code as it was broken anyway.
 
-PCI is the exception, not the rule here, in that it only matches with
-pci_device_id. At least I think that is the case currently, but it is
-entirely possible we may want to do ACPI/DT matching like every other
-bus. There are cases where PCI devices are described in DT.
+> 
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+>  drivers/ufs/host/ufs-exynos.c | 24 ++++--------------------
+>  1 file changed, 4 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/ufs/host/ufs-exynos.c b/drivers/ufs/host/ufs-exynos.c
+> index 3bbb71f7bae7..7c8195f27bb6 100644
+> --- a/drivers/ufs/host/ufs-exynos.c
+> +++ b/drivers/ufs/host/ufs-exynos.c
+cut
 
-Rob
+> @@ -1566,26 +1569,7 @@ static void exynos_ufs_post_hibern8(struct ufs_hba *hba, enum uic_cmd_dme cmd)
+>  {
+
+cut
+
+> +	if (cmd == UIC_CMD_DME_HIBER_ENTER) {
+
+I verified that the order of operations at hibern8_enter/exit() is sane:
+Reviewed-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+
+---
+hibern8_notify() gets called in ufshcd_uic_hibern8_enter/exit()
+
+exynos_ufs_post_hibern8 disables the clocks for:
+  ufshcd_vops_hibern8_notify(hba, UIC_CMD_DME_HIBER_ENTER, POST_CHANGE)
+
+exynos_ufs_pre_hibern8() enables the clocks for:
+  ufshcd_vops_hibern8_notify(hba, UIC_CMD_DME_HIBER_EXIT, PRE_CHANGE);
 
