@@ -1,97 +1,168 @@
-Return-Path: <devicetree+bounces-117247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E33B89B5A82
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 04:52:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40B7A9B5ABC
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 05:35:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A757D282F8D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 03:52:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DADCA1F23FA8
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 04:35:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEC8E194A68;
-	Wed, 30 Oct 2024 03:52:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E316192B71;
+	Wed, 30 Oct 2024 04:35:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CJoTboqH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TK5jkAB7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDBA919341F;
-	Wed, 30 Oct 2024 03:52:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 314AD8F58;
+	Wed, 30 Oct 2024 04:35:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730260350; cv=none; b=acBWACzSljqsU0FP3jQyZ7uggVbEjVSPTpuEfrj85y4gSUlSORW0grv8TKXnz8aFaA+JJx+82WM5eCNAI35yCSQoWEbEO2Um9LPPMJZ5eiG9YcZPZitY8LDNQ5YYND+29kAAkLZ9k2a3tGsi+Va3gOLr7CL2gjBSMkNHCCYEXns=
+	t=1730262902; cv=none; b=u+2sYyuPWvZW2aHvSwMJxLRDLMuEkmovjNVL0UBymIvzx9azuO7vERVD27WVPtnpkFce5YAWgmvC76oZlb8HTbnk5V9HUXm1Uhn0UWX2iujSREcjXemTyqAZ10z9nKQ0B8SXGApymVXBxIZEIcTQFYm8RuXG0ALc4/FQSDylk44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730260350; c=relaxed/simple;
-	bh=I7kpKQmp+LA7SA7EyORv8B9GG6XIXMl8zBoQd8WMleQ=;
+	s=arc-20240116; t=1730262902; c=relaxed/simple;
+	bh=+EuhkwSDaDAWayoAOubmOujSXprEgb4QiD7JNkvz+MQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DNsaJBUAuR4OJHOrmQStUJksL9G6nTcCyqY9egMiGd3CKb8gYEcmP00uqo+dQlD/7hoc+XcQ+sDTaw6KxFvt93xSozBMiRGBGjJQT6Amu6mnbCCunjgvkYOJXSEHB/PoY3I5e9lnK6RG6wy7vO2oPaiqbcSzrLWFUcMYt2OtWdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CJoTboqH; arc=none smtp.client-ip=209.85.216.44
+	 Content-Type:Content-Disposition:In-Reply-To; b=DSVkC/CvojkZkWh0WhMhOtaJsgREDgwZyNnPLmkK12o1HmC8Km17fZk9dBpsHCVoVCZUxwe+t6BIrOqAM2UIoHDFSoeL8nsHvn0FMOY1mSG4CsPZUF9O/aNjfmb4UE6Z/4YKVStDhzB4ZvRqzOMHDZkdMT/p2IoGkuuMjYdq/qA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TK5jkAB7; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2e5a0177531so4768156a91.2;
-        Tue, 29 Oct 2024 20:52:26 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a93c1cc74fdso865229766b.3;
+        Tue, 29 Oct 2024 21:34:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730260346; x=1730865146; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LbwvVTwOy+SO0yRgFOz9kS/o1vQ7kE8X5/o9C5j2WJ4=;
-        b=CJoTboqHlLpQS+nugV/bTL+OftwTNOQyDKzUhdXfi14GNo5gOtZObhy5mmlduGJB8K
-         diHF8IVc2eZhpV6ImG8OkpjVUAdyOkE2EIgQVxbOFFiU0hf1MD0P/BTgTAWfBhDusIpc
-         /UtOJePp19FRaRWAYUvZHyFXnccs54+aROaTMNjGjm8GLyo4DdQwybYkV3S9wzIT7pTj
-         OIU7Pb8IbakELK6bZ/V5nWZzT6nwYtPRcaipkbq7dUaxPiJNRRr3fJCJTHqv8jeAXBjX
-         uVKldKBmqN4kK1BKIBbxFlVZOj5WY/clrOUXj6e+mqc41j8Bkj4LnIcxxiEN0Vwinjys
-         Bl3g==
+        d=gmail.com; s=20230601; t=1730262898; x=1730867698; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Zm51Q8bH8xmiBrCSz//TF2AHJWoAEHVkksNlNZ7l7wg=;
+        b=TK5jkAB7qhloqPHRvYnYNXMVaxt843Htn44K/8F9mVk3DJO1soH56wCz7bvYkVrqAy
+         npc9FM2WYlkv5syXua/RqNrINU3VfGESHpbLZXx3klwXt4L+FbFr7s9O1Kw6EdmvwevH
+         iVnena75SYqMSn+k3sPGfd/MSxFCjQ9ja+f2NXjcIKPJUKae9I3/mBEvMWu9sRhr+B1z
+         0M1Fwm8Eb2bYnUdBx+GSXll6ghAxI9rVZaOboED2hW93kH7yEn6dxk2EOVENmOn4lFtp
+         9VbsPXdhCJ/0QEl/MX+pt/2xSeyZtOlzP/MIQ41xrC14CwDmgQYIgEebRleOKQVErFe2
+         Cp8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730260346; x=1730865146;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LbwvVTwOy+SO0yRgFOz9kS/o1vQ7kE8X5/o9C5j2WJ4=;
-        b=LqwrrRhFF4jIyV4TpPswdI95jnG4KXqpj80znwHDP88upkElAhOlSC5G5I7Xu9g0gj
-         N7ElFRRjY0uvuO8qvkWfRr7K2dDyLQSdair9x0MeW0Xobh7FzoeSPdWJoxZsOt0vPA7x
-         6QETb3kinI1LJzYRyXD5e70xBcqb+8z9gDmGy1kyoqgQsjJniuwrGHMFKDK4NSRzjCPL
-         b5ejewJ2y0FbfztUSSr7G046TllTP3p3JStafQl2qw0VBZYKBXv2ed5wEZwG/Ig0nE5Y
-         WV+wMyRFVM7UMa71Qa6hzBbtoPPlGnoSWZTZJ+0XLlmLnPyWI80RjzTl6Jxhz+mZUiDm
-         F4vw==
-X-Forwarded-Encrypted: i=1; AJvYcCVbscA5IeWKzJHlwVVoNld9EPT+/G0dW2TP9849z2HRJPfpJjO1xv1hHy9Yov0UsTn4Qn5coqb+KwdC@vger.kernel.org, AJvYcCX4FzU7l8P6RYq/Exu0AVIRUgT89RXcoS/PPkkR8iuAzTQ8VxYttLCk/dWFXFAnylwcGbX3Lp71+xajWdxX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxg4iKIDxC9AmtHeHVAN1tZd2aAvkJGtUGFgi/TRkwLuVG596NL
-	XbT58gWCAs5UCem1y4rzS+MIx98twcCKLaXISRtONjQjqcBv9BXX6XVgiw==
-X-Google-Smtp-Source: AGHT+IHyC/i13QPcOKD2CFv23b+jdVC2FHNMqnX9p8U1AHLFjS2zjB6luXhurheF98UBB3QUMm+kZQ==
-X-Received: by 2002:a17:90a:b111:b0:2e2:d16e:8769 with SMTP id 98e67ed59e1d1-2e8f106926emr15758945a91.15.1730260346047;
-        Tue, 29 Oct 2024 20:52:26 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e92fbe07cesm525438a91.43.2024.10.29.20.52.25
+        d=1e100.net; s=20230601; t=1730262898; x=1730867698;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zm51Q8bH8xmiBrCSz//TF2AHJWoAEHVkksNlNZ7l7wg=;
+        b=YUxMVcu35RFOgv+tq6kGLxviB89RMxwB9FvngK+folDEyDa3Mxe+TFOq5VcYDCvx8I
+         UzxeA6cuYHt3Gw9ohBvteFsBWKbmZv9fmeAMZjiTglxKGW+mLJTlm7qqRP7ZazwZkSbz
+         Vd92Nbz7hnZ5Er9dj+53jW+a/yM3B/Zm1VVdQ0oblVPcw2mmQ5Tmwr28YPzw19HqlHQI
+         ry2FZ7KNZtVKIR53d51J35bX+1tmRl6BaBRpWkPJdimcwlvsfJW5g1LkiGJ+ZsMF0pxp
+         RFOav6gamAWAKkf9eXuX2IFoonT0RNdTNNMlAeDaCl5j1Qv0tCDBLy/0jTc4hHoHcCXc
+         ylrw==
+X-Forwarded-Encrypted: i=1; AJvYcCUdov/gEKfg7FMPrmuPiHlqcKzF81pf00KXmb9tGriVCi7mf7P3fT1/yaaQMhvMdgSH/9yooDrsww1F@vger.kernel.org, AJvYcCWBjW8N/6rwDBXLQfyBDLN5ycVvbKaxPxKdkB8D0Lm207j3ocOUoHN88kk1nF/LuKIbW8AUAH/lieS3adfz@vger.kernel.org, AJvYcCWOOO2jbwU9UUdTBwwZxsKUri7fwTCM9uRLRPJXG7+GtCRdCsey+cWBrb1fcN71qnUWGh1bI95WQ5wA1/4=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOxWNS/u/CulYEmioIjnbYhFfGEKoI/MGjND2kElbETNbmJuFE
+	0uf7pJhkD/jnmc225Mh3gwXTsjrRPST735GXfhWGMLrNVC22dpEl
+X-Google-Smtp-Source: AGHT+IEvS0eoabyeQerrNjnEQ6XSEfClc3+BOk1PNBwVvFOgS1oYbBwT4YLdZvmHOpaCTVSgkXK5+A==
+X-Received: by 2002:a17:906:4788:b0:a99:5ad9:b672 with SMTP id a640c23a62f3a-a9de5ca5eb1mr1312064466b.10.1730262898368;
+        Tue, 29 Oct 2024 21:34:58 -0700 (PDT)
+Received: from ux-UP-WHL01 (mailgw01.goodix.com. [45.117.96.243])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1ef322ecsm526392366b.49.2024.10.29.21.34.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2024 20:52:25 -0700 (PDT)
-Date: Wed, 30 Oct 2024 11:50:54 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Inochi Amaoto <inochiama@gmail.com>
-Subject: Re: [PATCH] riscv: dts: sophgo: fix pinctrl base-address
-Message-ID: <ihmors43w3ttfun7c4fj75ahh2hnhafdxhlmocbxfwttigj3fq@wxud2d2srisn>
-References: <20241028-fix-address-v1-1-dcbe21e59ccf@bootlin.com>
+        Tue, 29 Oct 2024 21:34:57 -0700 (PDT)
+Date: Wed, 30 Oct 2024 12:34:49 +0800
+From: Charles Wang <charles.goodix@gmail.com>
+To: Doug Anderson <dianders@chromium.org>
+Cc: dmitry.torokhov@gmail.com, hbarnor@chromium.org,
+	conor.dooley@microchip.com, jikos@kernel.org, bentiss@kernel.org,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+Message-ID: <ZyG3aciw6OvqoFZ1@ux-UP-WHL01>
+References: <20241025114642.40793-2-charles.goodix@gmail.com>
+ <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3>
+ <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241028-fix-address-v1-1-dcbe21e59ccf@bootlin.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
 
-On Mon, Oct 28, 2024 at 11:43:24AM +0100, Thomas Bonnefille wrote:
-> Fix the base-address of the pinctrl controller to match its register
-> address.
+Hi Doug,
+
+On Fri, Oct 25, 2024 at 08:29:13AM -0700, Doug Anderson wrote:
+> Charles,
 > 
-> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> On Fri, Oct 25, 2024 at 5:03 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - goodix,gt7986u-spi
+> >
+> > Compatible is already documented and nothing here explains why we should
+> > spi variant.
+> >
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  reset-gpios:
+> > > +    maxItems: 1
+> > > +
+> > > +  goodix,hid-report-addr:
+> >
+> > I do not see this patch addressing previous review. Sending something
+> > like this as v1 after long discussions also does not help.
+> 
+> Krzysztof is right that it's better to wait until we get consensus on
+> the previous discussion before sending a new patch. I know you were
+> just trying to help move things forward, but because of the way the
+> email workflow works, sending a new version tends to fork the
+> discussion into two threads and adds confusion.
+> 
+> I know Krzysztof and Rob have been silent during our recent
+> discussion, but it's also a long discussion. I've been assuming that
+> they will take some time to digest and reply in a little bit. If they
+> didn't, IMO it would have been reasonable to explicitly ask them for
+> feedback in the other thread after giving a bit of time.
+> 
+> As Krzysztof mentioned, if/when you send the "goodix,gt7986u-spi"
+> bindings again you'd want to:
+> 
+> * Make sure it's marked as v2.
+> 
+> * Make sure any previous review feedback has been addressed. For
+> instance, I think Krzysztof requested that you _remove_ the
+> goodix,hid-report-addr from the bindings and hardcode this into the
+> driver because every GT7986U will have the same hid-report-addr. I
+> know that kinda got lost in the discussion but it still needs to be
+> addressed or at least responded to. I guess there was at least one
+> other comment about "additionalProperties" that you should look for
+> and address.
+> 
+> * Make sure there's some type of version history after-the-cut. Tools
+> like "patman" and "b4" can help with this.
+> 
+> * The commit message should proactively address concerns that came up
+> during the review process. In this case if we go with
+> "goodix,gt7986u-spi" the commit message would want to say something
+> explaining _why_ the "-spi" suffix is appropriate here even though
+> normally it wouldn't be. That will help anyone digging through
+> history.
+> 
 
-Fixes: 93b61555f509 ("riscv: dts: sophgo: Add initial SG2002 SoC device tree")
+I apologize for any confusion caused. As a newcomer, I am still learning
+about the community practices.
 
+Thank you very much for your patience and clear explanation. I will recheck
+the previous review feedback and provide a new patch marked as v2.
+
+Best regards,
+Charles
 
