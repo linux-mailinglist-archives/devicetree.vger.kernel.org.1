@@ -1,134 +1,376 @@
-Return-Path: <devicetree+bounces-117256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EEB99B5AE7
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 05:54:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FA369B5B13
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 06:08:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD8DD1C20D2D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 04:54:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93E751C21016
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 05:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 395841946C7;
-	Wed, 30 Oct 2024 04:54:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F0E1974FA;
+	Wed, 30 Oct 2024 05:08:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FKEByTDY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lMCMlvKW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1753F82899;
-	Wed, 30 Oct 2024 04:54:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD890BA4A;
+	Wed, 30 Oct 2024 05:07:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730264075; cv=none; b=TyxasBAt3cl90LM+S1tS5Jq0EBGfMlZJ0AGQIJVtkENfch1RWoT+JrRZ6V00Q4Wimwby+YpjIP3s/pNfUQppWDIoGvuVZA+l7ycrPZNdwz6NmDe41HnXZu1IW6HygBsk8w28FBfgDWipBePBSUbd+9ukD4HiAp0wNclrnjQyl80=
+	t=1730264882; cv=none; b=V5hmsaOcDqxNZSIjce3iaMzuO6hp27pZUXB1gybgj2TpJaB0c4NUENtsTtJXNtDBJVs0iQurX+a5h9LSp233Niayjb85Kw/XMvgIz2BDiUEzGBv1DWMEQn5wPyYxs20Of6u8Q5PracSehPIpTiZB7uhIhBqOOIsj3urcHUz27N4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730264075; c=relaxed/simple;
-	bh=wlXwWBhkokDz6umu5vrGR/bq+03UBF7BVjl4Smmzuyw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uU59mCmKZ3xw+9jW/rfAqM8KVtynDyl66MOJC3D0mLHelduY4sUWJdgKwPOQeZeE7veputfCmBAttzHNlouZxLlVX4V+wcoT6KltjXKZYBM92go6wXNDA+QK7LouMhkwcdOlCWH3StFVwYbl3Dsrd+MLjR74XuNhQXnqKmnvTK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FKEByTDY; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49U4sR8B060578;
-	Tue, 29 Oct 2024 23:54:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1730264067;
-	bh=NF1ozKFoQkWPI0e7AdbdJLTmdxko1lP62hOtfBf8zzk=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=FKEByTDYstGw2/SsbzV4sJpKQUQv/Pm0bszpsMlTT1KB5pB2sxNdkLz3w5IEfabeU
-	 6PlrpEiyIrRe+YPsDrbGSO9SLPgro/WwxutnpWiJkkgFVFfVwVF5tMarroFiSqD0zC
-	 nQNt7oFIOONAy31jDtYWw7IaiZ14LfHKxpkG8HRM=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49U4sQto118844
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 29 Oct 2024 23:54:27 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
- Oct 2024 23:54:26 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 29 Oct 2024 23:54:26 -0500
-Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49U4sMU1064291;
-	Tue, 29 Oct 2024 23:54:23 -0500
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <vaishnav.a@ti.com>, <j-keerthy@ti.com>,
-        Anurag Dutta
-	<a-dutta@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-Subject: Re: (subset) [PATCH 0/4] MCSPI clock ID fixes for J7200/J721E/J721S2/J784S4
-Date: Wed, 30 Oct 2024 10:24:17 +0530
-Message-ID: <173021674663.3859929.6398782356598128564.b4-ty@ti.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241023104532.3438851-1-a-dutta@ti.com>
-References: <20241023104532.3438851-1-a-dutta@ti.com>
+	s=arc-20240116; t=1730264882; c=relaxed/simple;
+	bh=dN6dWGsj0J+OPpngUYV8QXJlh0F89unqq6bsVm2JvYc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=dlQwFhn614Mf9rrfnDEvoALBXxuNRL8rbMFwF5WaQNf7rYOAD1IJZRpzDblrC5tIDgYSeslLTm3e7iCQLyYkkrwCTJQm/GInAI0S6M4B8JZgUKdwSa0TamRX+veNvZ60qQfvpuV2Ukb4iWCa5+UcO06n0lG9y3D8bclYuRqeuOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lMCMlvKW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49TM0eSA012773;
+	Wed, 30 Oct 2024 05:07:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5EaiPV8HgOn+AOMbwRUCE8i+sVD4MK8Fvx+leJhokhw=; b=lMCMlvKW9/Frk9qy
+	+GjnzZGQigvOUDxtQW+qXN6WPoQmBXsdi+/UyC3HnG4kvXaw5TxQdt3IFTipPrdm
+	nwCAyq0wZDFNfW9sdZ2s5L4s8BrFK9d6xFetwGzJEd3pap9KqB4tcDh1I6FuiOei
+	2ol6qEKsG7m2Is4hfm00+W5qTt27ruXbWYkVp5G/ymTk14Vb5QviopCEDCRF3+FB
+	o/+9ESRPb1fFXgjdxAr76FIKGqUje/N7dmwWmbDg5p7JOpqGYfgQ7/pcYt0pikmZ
+	EeufpI7M3RclCcTXO4RirDn4khPhYCHnUf4tUBelzw8BO3DPd265Gt7Zp4VWo8w+
+	6EDPVw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grgujrf9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 05:07:30 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49U57THl015152
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Oct 2024 05:07:29 GMT
+Received: from [10.216.49.160] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
+ 2024 22:07:20 -0700
+Message-ID: <d98bff34-d7ea-2b05-0c0d-eaf0392aef3f@quicinc.com>
+Date: Wed, 30 Oct 2024 10:37:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: wcd937x-sdw: Add static channel
+ mapping support
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Bard Liao
+	<yung-chuan.liao@linux.intel.com>,
+        Jaroslav Kysela <perex@perex.cz>, "Takashi
+ Iwai" <tiwai@suse.com>,
+        Pierre-Louis Bossart
+	<pierre-louis.bossart@linux.dev>,
+        Sanyog Kale <sanyog.r.kale@intel.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
+        <kernel@quicinc.com>
+References: <20241023061326.3871877-1-quic_mohs@quicinc.com>
+ <20241023061326.3871877-2-quic_mohs@quicinc.com>
+ <qzjbiby7w6a7m4e324hdatgklmejlcxfwv7tszzfmdqahgrbu2@bcwsdlrpncxq>
+From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+In-Reply-To: <qzjbiby7w6a7m4e324hdatgklmejlcxfwv7tszzfmdqahgrbu2@bcwsdlrpncxq>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: VHEgHkQ44s6yuQoIlMFokJ7O4BZ33SqG
+X-Proofpoint-GUID: VHEgHkQ44s6yuQoIlMFokJ7O4BZ33SqG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1011
+ lowpriorityscore=0 adultscore=0 mlxscore=0 bulkscore=0 suspectscore=0
+ phishscore=0 spamscore=0 malwarescore=0 mlxlogscore=999 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410300037
 
-Hi Anurag Dutta,
-
-On Wed, 23 Oct 2024 16:15:28 +0530, Anurag Dutta wrote:
-> This series fixes the clock IDs for MCSPI instances across:
-> 1) Main and Wakeup domains in j7200
-> 2) Wakeup domain in j721e
-> 3) Main and wakeup domain in j721s2
-
-
-> 4) Main domain in j784s4
-
-J784s4 bits dont apply cleanly anymore. Please respin.
-
+On 10/23/2024 1:22 PM, Krzysztof Kozlowski wrote:
+> On Wed, Oct 23, 2024 at 11:43:23AM +0530, Mohammad Rafi Shaik wrote:
+>> Add static channel mapping between master and slave rx/tx ports for
+>> Qualcomm wcd937x soundwire codec.
+>>
+>> Currently, the channel mask for each soundwire port is hardcoded in the
+>> wcd937x-sdw driver, and the same channel mask value is configured in the
+>> soundwire master.
+>>
+>> The Qualcomm boards like the QCM6490-IDP require different channel mask settings
+>> for the soundwire master and slave ports.
 > 
-> In j7200, kernel crashes were observed due to incorrect clock IDs.
-> In j721e/j721s2/j784s4, there was only a mismatch of clock IDs w.r.t
-> documentation, however it did not trigger a crash. The clock IDs can be
-> verified from the below links.
+> Different than what? Other wcd937x? Which are these?
 > 
-> [...]
+For Qualcomm QCM6490-IDP board soundwire master needs a different 
+channel mask setting.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+The wcd937x channel mask values are hardcoded in wcd driver.
+https://elixir.bootlin.com/linux/v6.12-rc5/source/sound/soc/codecs/wcd937x-sdw.c#L35
+https://elixir.bootlin.com/linux/v6.12-rc5/source/sound/soc/codecs/wcd938x-sdw.c#L37
 
-[1/4] arm64: dts: ti: k3-j7200: Fix clock ids for MCSPI instances
-      commit: 3a47e381670f130870caef6e1155ac531b17b032
-[2/4] arm64: dts: ti: k3-j721e: Fix clock IDs for MCSPI instances
-      commit: ab09a68f3be04b2f9d1fc7cfc0e2225025cb9421
-[3/4] arm64: dts: ti: k3-j721s2: Fix clock IDs for MCSPI instances
-      commit: 891874f015e98f67ab2fda76f2e859921e136621
+In case of QCM6490-IDP the soundwire master and wcd937x require 
+different channel mask settings, not the same.
+For Example, wcd937x ADC2 connection
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+                           Master                 Slave (wcd937x)
+                      +--------------+           +--------------+
+                      |  +--------+  |           |  +--------+  |
+          ADC1  ----->|  | PORT1  |  |           |  |   TX1  | 
+|<-----------ADC1
+          ADC2  ----->|  |        |  |           |  |        |  |
+                      |  +--------+  |           |  +--------+  |
+                      |              |           |              |
+          ADC3  ----->|  +--------+  |           |  +--------+  |
+                      |  |  PORT2 |  |           |  |   TX2  | 
+|<-----------ADC2
+                      |  |        |  |           |  |        | 
+|<-----------ADC3
+                      |  +--------+  |           |  +--------+  |
+                      |              |           |              |
+                      |  +--------+  |           |  +--------+  |
+  DMIC0...DMIC3------>|  |  PORT3 |  |           |  |   TX3  | 
+|<-----------DMIC0...DMIC3
+                      |  |        |  |           |  |        | 
+|<-----------MBHC
+                      |  +--------+  |           |  +--------+  |
+                      |              |           |              |
+                      |  +--------+  |           |  +--------+  |
+  DMIC4...DMIC3 ----->|  |  PORT4 |  |           |  |   TX4  | 
+|<-----------DMIC4...DMIC7
+                      |  |        |  |           |  |        |  |
+                      |  +--------+  |           |  +--------+  |
+                      |              |           |              |
+                      +------------- +           +--------------+
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+					
+For ADC2, The Slave needs to configure TX2 Port with channel mask value 
+1 and
+For Master, it required PORT1 with channel mask  value 2.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+In existing design master and slave configured with same channel mask, 
+it will fail ADC2.
+The new design will help to configure channel mapping between master and 
+slave from DT.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+>>
+>> With the introduction of the following channel mapping properties, it is now possible
+>> to configure the master channel mask directly from the device tree.
+>>
+>> The qcom,tx-channel-mapping property specifies the static channel mapping between the slave
+>> and master tx ports in the order of slave port channels which is adc1, adc2, adc3, adc4,
+>> dmic0, dmic1, mbhc, dmic2, dmic3, dmci4, dmic5, dmic6, dmic7.
+> 
+> I still don't get what is the channel here.
+> 
+Typo error,
+
+The qcom,tx-channel-mapping property specifies the static channel 
+mapping between the slave
+
+and master tx ports in the order of slave port channel index which are 
+adc1, adc2, adc3, adc4,
+
+dmic0, dmic1, mbhc, dmic2, dmic3, dmci4, dmic5, dmic6, dmic7.
+
+
+
+https://elixir.bootlin.com/linux/v6.12-rc5/source/sound/soc/codecs/wcd937x.h#L599
+
+
+
+Will be fixed in the next version
+
+>>
+>> The qcom,rx-channel-mapping property specifies static channel mapping between the slave
+>> and master rx ports in the order of slave port channels which is hph_l, hph_r, clsh,
+>> comp_l, comp_r, lo, dsd_r, dsd_l.
+> 
+> And this description copies binding :/.
+> 
+> Please wrap commit message according to Linux coding style / submission
+> process (neither too early nor over the limit):
+> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+>
+
+Ack
+
+>>
+>> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>> ---
+>>   .../bindings/sound/qcom,wcd937x-sdw.yaml      | 36 +++++++++++++++++++
+>>   1 file changed, 36 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
+>> index d3cf8f59cb23..a6bc9b391db0 100644
+>> --- a/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
+>> @@ -58,6 +58,38 @@ properties:
+>>       items:
+>>         enum: [1, 2, 3, 4, 5]
+>>   
+>> +  qcom,tx-channel-mapping:
+>> +    description: |
+>> +      Specifies static channel mapping between slave and master tx port
+>> +      channels.
+>> +      In the order of slave port channels which is adc1, adc2, adc3, adc4,
+>> +      dmic0, dmic1, mbhc, dmic2, dmic3, dmci4, dmic5, dmic6, dmic7.
+>> +      ch_mask1 ==> bit mask value 1
+>> +      ch_mask2 ==> bit mask value 2
+>> +      ch_mask3 ==> bit mask value 4
+>> +      ch_mask4 ==> bit mask value 8
+>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>> +    minItems: 8
+>> +    maxItems: 13
+> 
+> Why size is variable? This device has fixed amount of slave ports, I
+> think.
+>
+
+yes will check modify
+
+>> +    items:
+>> +      enum: [1, 2, 4, 8]
+> 
+> What is the point of using bits if you cannot actually create a bit mask
+> out of it? Why this cannot be 7?
+> 
+Actually, these values should be fixed: 1 (0001), 2 (0010), 4(0100), 
+8(1000).
+
+
+If required to set 7, it is handled in wcd driver based on mixer commands.
+https://elixir.bootlin.com/linux/v6.12-rc5/source/sound/soc/codecs/wcd937x.c#L1199
+
+
+Example:
+WCD937X_HPH_L -> channel mask value is 1
+WCD937X_HPH_R -> channel mask value is 2
+
+
+The final channel mask for that specific port is 3
+>> +
+>> +  qcom,rx-channel-mapping:
+>> +    description: |
+>> +      Specifies static channels mapping between slave and master rx port
+>> +      channels.
+>> +      In the order of slave port channels, which is
+>> +      hph_l, hph_r, clsh, comp_l, comp_r, lo, dsd_r, dsd_l.
+>> +      ch_mask1 ==> bit mask value 1
+>> +      ch_mask2 ==> bit mask value 2
+>> +      ch_mask3 ==> bit mask value 4
+>> +      ch_mask4 ==> bit mask value 8
+> 
+> and the value is what exactly? Index is channel, but what does "ch_mask4 ==> bit
+> mask value 8" mean? I don't understand this at all.
+> 
+
+                           Master
+                      +--------------+
+                      |  +--------+  |
+           ADC1 ----->|  | PORT1  |  |
+           ADC2 ----->|  |        |  |
+                      |  +--------+  |
+                      |              |
+           ADC3 ----->|  +--------+  |
+                      |  |  PORT2 |  |
+                      |  |        |  |
+                      |  +--------+  |
+                      |              |
+                      |  +--------+  |
+   DMIC0...DMIC3 ---->|  |  PORT3 |  |
+                      |  |        |  |
+                      |  +--------+  |
+                      |              |
+                      |  +--------+  |
+   DMIC4...DMIC7----->|  |  PORT4 |  |
+                      |  |        |  |
+                      |  +--------+  |
+                      |              |
+                      +------------- +
+
+
+The PORT1 has 2 ADC connections,
+
+ADC1 -> PORT1 ch_mask index 1 -> channel mask value 1 (0001)
+ADC2 -> PORT1 ch_mask index 2 -> channel mask value 2 (0010)
+
+
+DMIC0 -> PORT3 ch_mask index 1 -> channel mask value 1 (0001)
+DMIC1 -> PORT3 ch_mask index 2 -> channel mask value 2 (0010)
+DMIC2 -> PORT3 ch_mask index 3 -> channel mask value 4 (0100)
+DMIC3 -> PORT3 ch_mask index 4 -> channel mask value 8 (1000)
+
+
+Will check and add a proper description.
+
+
+>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>> +    minItems: 8
+>> +    maxItems: 8
+>> +    items:
+>> +      enum: [1, 2, 4, 8]
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+>> @@ -74,6 +106,8 @@ examples:
+>>               compatible = "sdw20217010a00";
+>>               reg = <0 4>;
+>>               qcom,rx-port-mapping = <1 2 3 4 5>;
+>> +            qcom,rx-channel-mapping =  /bits/ 8 <0x01 0x02 0x01 0x01 0x02
+>> +                                                 0x01 0x01 0x02>;
+>>           };
+>>       };
+>>   
+>> @@ -85,6 +119,8 @@ examples:
+>>               compatible = "sdw20217010a00";
+>>               reg = <0 3>;
+>>               qcom,tx-port-mapping = <2 2 3 4>;
+>> +            qcom,tx-channel-mapping = /bits/ 8 <0x01 0x02 0x01 0x01 0x02 0x04
+>> +                                                0x04 0x08 0x01 0x02 0x04 0x8>;
+> 
+> Keep it consistent, e.g. everywhere without leading 0... actually not
+> sure why this is hex, either.
+> 
+
+Ack, okay will check and modify.
+
+
+For hex value, Actually took the reference from port mask values in swr 
+DT entry.
+https://elixir.bootlin.com/linux/v6.12-rc5/source/arch/arm64/boot/dts/qcom/sc7280.dtsi#L2528
+>>           };
+>>       };
+>>   
+>> -- 
+>> 2.25.1
+
+Thanks & Regards,
+Rafi.
+>>
 
 
