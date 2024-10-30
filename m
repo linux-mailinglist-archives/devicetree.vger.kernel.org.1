@@ -1,63 +1,74 @@
-Return-Path: <devicetree+bounces-117318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AC799B5D89
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 09:22:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B1489B5D90
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 09:24:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 945A81F22E2A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 08:22:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E5932823C8
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 08:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 567EC1E0DF9;
-	Wed, 30 Oct 2024 08:22:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273761E0E03;
+	Wed, 30 Oct 2024 08:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MvH14qhl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dgQVSADj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D0C1DFE16;
-	Wed, 30 Oct 2024 08:22:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 179D01DFE16
+	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 08:24:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730276533; cv=none; b=d1TqLzyU8I0M/Z6u0mpRNUIPTfxUNZ5pB0iqzrGZ3TsIxEyD7y2NgONJpxTZyLzl21giYqtcJlpSe7KLOfFQTd4zc4sxHtSvmPx1PVWrMONQa3hAPLX7Z6M+1TfuhbzBcekrrTmqK1TJrLAZ/GdOPmd8y7EHf69g8ybyFYesDCo=
+	t=1730276655; cv=none; b=cRZjVd20pZ/c3LlXH/LmkbL/g//0WnSh7uag0tYVVE5Avz4OGxC878LDlW8Z+0/1IfZn3oq8lds+oc17OCcpXr3zmIjwc9m+VJeekZW7l/u3GkDY36H5W72mJwmUjTcBc0EXS2bH3bwK72GGeYzbd/CpNvHVgGsNBBhNUzCyGuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730276533; c=relaxed/simple;
-	bh=DWYnLGkiN2PMlXa8wdKXfPzpxErN/Zr77L6vOtX6ac8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kkVKEo+EIdG6RyY1ysRdeNqOEx/CwAngFy/b5gwqKk31TqqyCbFvqJyZUQWW5K40BmNz8kqe67IHZZuUVFiLjhVMMsnNQo+PJKTBleZuZV7OUdvxzRu1dRYbfPoRVQX1LIgaSWBTB6Gh/UMkL3epDeOEMAMZxGPo5twPr3gMRxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MvH14qhl; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49TLdvfu030537;
-	Wed, 30 Oct 2024 08:22:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XzuxKdU4ZRLT2MY1cC4a93fwZsOuoHolMj42z3Aar/0=; b=MvH14qhlDZa2yKE+
-	PzeD8HjvSg4YwLPWfiG6hFgc4H17u7Iqow0KzhPhE+0cI3XkmcFs0xmvb1q+OXh0
-	u9yWgxhzC8twtWCVTOHWEEbQ189ctpvmHng6bFR1/RFymEKIRXUdVTRjYV9h3kB1
-	b71he4xjYL85xMujjcW0IPzue0neSL+RTghufA2US6Y1nIp7ELQDXCKIRbZdctyH
-	dpoxUh/BgmG/QvS1uL5LQm4P/zcPJz1zoD8c6oiiwCIhUGPnN24mtR+xmilvZHn7
-	pIO/HhKJ2bcPtIlCGThXKa2ZGuqM4kqiKuoxDPYkISOyoXkph6gQmhSAMdprG0aU
-	ZlTaiw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gsq8k6u0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 08:22:00 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49U8LxjH024621
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 08:21:59 GMT
-Received: from [10.239.132.41] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 30 Oct
- 2024 01:21:55 -0700
-Message-ID: <197f3520-70a0-4056-b4b4-5325de520ab2@quicinc.com>
-Date: Wed, 30 Oct 2024 16:21:52 +0800
+	s=arc-20240116; t=1730276655; c=relaxed/simple;
+	bh=Qhpkm4WTteAyftmrwtnK9R8dd+A2hUuNmx/G1bGXkYY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=vFwRdVFljQ2+670t1dLnjDaMeBlqdUniuTF2EAz6y221Z4ziLk4jPozCCAFO1vCHZYegn0THOZxGRzGV+NjklBRwxgGoUGo/nHFBUzPlv/hwQeNWIhuR9EyxrqzD+pPYdEnUmYBpdrcX/vQP3xdnYnGpALnfvub6JqozCzjCTIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dgQVSADj; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a9aa8895facso1047394066b.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 01:24:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1730276651; x=1730881451; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4IzTjonjvv4fhPKtE1bAMZ0z1TTpZMKWkER0B3kjnaU=;
+        b=dgQVSADjzU7mFlrNo7V7ohi1dVUSo9j0YZkEIVkrmbHwsmwCyoQyG+o1jRET2VBPw2
+         5icY86ol+yKWQLY57/M9HSKAuj2VrHvD7SAzohfYwM2WM62kH6McCpMsOXx+Ks9CliJs
+         hwY6M0hXkO6OiKm5mYmCPcv9KO7rGejkh5Vx5TLwd/FjuDA9DGdNMiWXW9BwQQvYM2YI
+         Byf3YzE+qiOn09q/wIAvxq5P/aousxtLIynAOuKAivoEWjA+6KSdn2pCB9KFoCw7dgA7
+         xQmU89ldGLqaS20MjX6wgLbaNNnoEx3ZYVkjFybNzyhhb+FKqzzVGHLD5kNfNA+3b98B
+         fM4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730276651; x=1730881451;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4IzTjonjvv4fhPKtE1bAMZ0z1TTpZMKWkER0B3kjnaU=;
+        b=dJd1idm8LZNixI5YaTxXEnb8ojtu0p7bPxuqCNyP4xbkO9Ee0o72mClwISi6hR3Vpw
+         4LOCWaU5UOehCgZVdKtACVA0V4jkAJqDlaU158fYCGyrUm9O+VmPlq2I6DvYgAAkMe/i
+         1iTJaPNPB9B2NpyXfZQD1aBKU29nJBHl9TtWtmJmnRjvYFWVhOdbngYfrLLfJQgNaRpq
+         xxmkSubEgFdBfS7Qnw4AMilDdf/rmRdBRad7NA+SAYPF1R50zLEW7515GZnSxImuBK38
+         X0xAs74SvXjeZIEj2EC0SbGcwiz55wtSbTxpVDsaWSWwxIp1PGlR6xiYfG4Ii2DqPv7E
+         f4Qg==
+X-Forwarded-Encrypted: i=1; AJvYcCWrndms63i2aBEPUSIe8TsOpxBxmZhGJHY2CkKtXfQtc27f950oZofFjFsG5tWkGQC9rfFEGHg3GmcG@vger.kernel.org
+X-Gm-Message-State: AOJu0YyX34e35FZG1QDt4rMYiQopFcsFtNpHayUSR1a6F++Jtl5E8HLB
+	hvshw5E/U5sN2j01CsOkNRwZlo0zr4ZGd6Yh7Y8cSDnJhoyBjA9Y6kofXn8z2YI=
+X-Google-Smtp-Source: AGHT+IH5x1e9E410/aCJcWrSKGwzP+rL5H/qoPDmLBUylFSzYy/PDgopa4w/bjGtxcjDtfhlYRn7IQ==
+X-Received: by 2002:a17:906:794c:b0:a99:e505:2089 with SMTP id a640c23a62f3a-a9de61ce120mr1423660466b.45.1730276651447;
+        Wed, 30 Oct 2024 01:24:11 -0700 (PDT)
+Received: from [192.168.0.157] ([79.115.63.43])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b13309sm14733219f8f.3.2024.10.30.01.24.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Oct 2024 01:24:11 -0700 (PDT)
+Message-ID: <039d4e57-30e7-40e8-9501-cc4b18c6bb30@linaro.org>
+Date: Wed, 30 Oct 2024 08:24:09 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,73 +76,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: qcs615: add the APPS SMMU node
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <robimarko@gmail.com>,
-        <will@kernel.org>, <robin.murphy@arm.com>, <joro@8bytes.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>
-References: <20241025030732.29743-1-quic_qqzhou@quicinc.com>
- <20241025030732.29743-5-quic_qqzhou@quicinc.com>
- <8a60b729-b312-4afc-835b-a18060ad3f03@oss.qualcomm.com>
- <zsphor7rpbwx4km6uxpepky2h7atbgjn2435puygmpssfc36mc@wkquqxud2yij>
- <8c9804f2-ef4d-412b-97ea-f521dfd35ec2@oss.qualcomm.com>
- <nhthg2rlfatc2pyhsuoulvo5447cxg7buv4aq3r7r5amsmjjoq@pgfyvvegfron>
- <828c465f-684b-4257-86cb-d9c753fc30f1@oss.qualcomm.com>
-From: Qingqing Zhou <quic_qqzhou@quicinc.com>
-In-Reply-To: <828c465f-684b-4257-86cb-d9c753fc30f1@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: l6jd9oubk9CrZXNtnlo1NWgmNnS3jJrp
-X-Proofpoint-ORIG-GUID: l6jd9oubk9CrZXNtnlo1NWgmNnS3jJrp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- adultscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=721 impostorscore=0
- lowpriorityscore=0 malwarescore=0 clxscore=1011 spamscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410300064
+Subject: Re: [PATCH v2 03/11] scsi: ufs: exynos: gs101: remove
+ EXYNOS_UFS_OPT_BROKEN_AUTO_CLK_CTRL
+To: Peter Griffin <peter.griffin@linaro.org>, alim.akhtar@samsung.com,
+ James.Bottomley@HansenPartnership.com, martin.petersen@oracle.com,
+ avri.altman@wdc.com, bvanassche@acm.org, krzk@kernel.org
+Cc: andre.draszik@linaro.org, kernel-team@android.com,
+ willmcvicker@google.com, linux-scsi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ebiggers@kernel.org
+References: <20241025131442.112862-1-peter.griffin@linaro.org>
+ <20241025131442.112862-4-peter.griffin@linaro.org>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20241025131442.112862-4-peter.griffin@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
 
-在 10/28/2024 11:46 PM, Konrad Dybcio 写道:
-> On 26.10.2024 8:18 PM, Dmitry Baryshkov wrote:
->> On Fri, Oct 25, 2024 at 06:45:01PM +0200, Konrad Dybcio wrote:
->>> On 25.10.2024 1:06 PM, Dmitry Baryshkov wrote:
->>>> On Fri, Oct 25, 2024 at 10:54:24AM +0200, Konrad Dybcio wrote:
->>>>> On 25.10.2024 5:07 AM, Qingqing Zhou wrote:
->>>>>> Add the APPS SMMU node for QCS615 platform. Add the dma-ranges
->>>>>> to limit DMA address range to 36bit width to align with system
->>>>>> architecture.
->>>>>>
->>>>>> Signed-off-by: Qingqing Zhou <quic_qqzhou@quicinc.com>
->>>>>> ---
->>>>>
->>>>> You probably also want to mark it `dma-coherent` (see e.g.
->>>>> x1e80100.dtsi)
->>>>
->>>> Is it? I don't think SM6150 had dma-coherent SMMU, at least it wasn't
->>>> marked as such.
->>>
->>> I don't think I have any documentation on this, so.. one way to find out!
->>
->> I don't have qcs615 at hand, so a purely theoretical question. But how
->> should it break if we mark it as dma-coherent, while it is not?
+On 10/25/24 2:14 PM, Peter Griffin wrote:
+> This flag is not required for gs101 SoC.
 > 
-> The board will hang rather quickly
-> 
-> Konrad
-Thanks for review comments from Konrad and Dmitry!
-QCS615 SMMU hardware supports IO-coherency after confirming with Qualcomm hardware team.
-We also try to add "dma-coherent" for APPS SMMU node and test some SMMU clients, such as UFS and Ethernet, these SMMU clients work well on QCS615.
-Do you advise and agree to add "dma-coherent" for SMMU node?
 
+nitpick, use imperative
+
+Auto clk control works fine for gs101, remove
+EXYNOS_UFS_OPT_BROKEN_AUTO_CLK_CTRL flag.
+
+(or something along these lines)
+
+Reviewed-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+>  drivers/ufs/host/ufs-exynos.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/ufs/host/ufs-exynos.c b/drivers/ufs/host/ufs-exynos.c
+> index 939d08bce545..d685d3e93ea1 100644
+> --- a/drivers/ufs/host/ufs-exynos.c
+> +++ b/drivers/ufs/host/ufs-exynos.c
+> @@ -2142,8 +2142,7 @@ static const struct exynos_ufs_drv_data gs101_ufs_drvs = {
+>  				  UFSHCD_QUIRK_BROKEN_OCS_FATAL_ERROR |
+>  				  UFSHCI_QUIRK_SKIP_MANUAL_WB_FLUSH_CTRL |
+>  				  UFSHCD_QUIRK_SKIP_DEF_UNIPRO_TIMEOUT_SETTING,
+> -	.opts			= EXYNOS_UFS_OPT_BROKEN_AUTO_CLK_CTRL |
+> -				  EXYNOS_UFS_OPT_SKIP_CONFIG_PHY_ATTR |
+> +	.opts			= EXYNOS_UFS_OPT_SKIP_CONFIG_PHY_ATTR |
+>  				  EXYNOS_UFS_OPT_UFSPR_SECURE |
+>  				  EXYNOS_UFS_OPT_TIMER_TICK_SELECT,
+>  	.drv_init		= exynosauto_ufs_drv_init,
 
