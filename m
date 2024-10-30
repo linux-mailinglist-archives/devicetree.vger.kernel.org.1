@@ -1,159 +1,157 @@
-Return-Path: <devicetree+bounces-117574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9639B6F1B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 22:37:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 111DF9B6F81
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 22:46:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9256528439E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 21:37:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 341761C227E7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 21:46:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7A521BB04;
-	Wed, 30 Oct 2024 21:34:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595FF218318;
+	Wed, 30 Oct 2024 21:41:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="q3BsFvwy"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="TxTjl6FG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C186421B435
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 21:34:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57476217909
+	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 21:41:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730324048; cv=none; b=AhaDa9YBhWJYS79P6bT0Wr7XeVl89r3btjBJKbFJfIY7tJv/uV6xH+PfzHFeIiHaXS57+SCfj+PH1HY88qax8xkdSUHKIck9YuUohJfiA5Yr56CHR5Yk7HQVCfz3nZ/utvv/S4qWtXPYbuCAK8QHtbKxRZWnl8wxa3259xxDq4A=
+	t=1730324507; cv=none; b=uUx1vV0e7LKPxTURn5apSMoDM2HTGSi9kDSEdS4AHr/REzR3VTRffE9zwCxp/d8SMZTynlQAxZPxk5mgs1Z9Dm9ulLmTOob2DAMQ1bTiy4rAnOYlJl8ZWHC4Zp+EfMhBa/0l0Tsa7DPp23XsHNLRY5U0oBulJ4H/O8rroLpyqyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730324048; c=relaxed/simple;
-	bh=CI2Lnp2ZFIQ9X+t6DOzwzXbSD1CdFhZkAhG2G3EEy/g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WnvjWwnmVNPWNRi5EvsQt3qRGm3rvBP5DwbmHbrjd+DWLNEaRueOZTL2j/lyUCkZxGxTwyHbHVnTtrc0kZ+hsE4Dj9S4ErFg4MFGHZKiZClHRzPGgxN0AjDhAB01JkCWsR1tuAs4FBu+CuyZQk9Hho5wTg/5DKf81aN4ngP7dzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=q3BsFvwy; arc=none smtp.client-ip=209.85.167.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3e60d3adecbso199311b6e.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 14:34:06 -0700 (PDT)
+	s=arc-20240116; t=1730324507; c=relaxed/simple;
+	bh=RvmR17dczNIeoFW11OEaNexBaQ6D/CYv7PqXzDryWXg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rsBCwuMyLnYnSUjQTUtn1HSNp1zBcBiCmmYy0FXkhyAVWJSpPw92iM/RvVIe6so3o0EVudtbz0dTBiozJoay18ot2W6lWFA4YCGcrDMXtAZVVYud0PK8O5ZEWZrC3c9u6PdggKTGA2EFz95cfSGXsGKUa2t+f9IYvZsxUT0lLDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=TxTjl6FG; arc=none smtp.client-ip=209.85.219.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6d18dff41cdso2044446d6.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 14:41:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730324046; x=1730928846; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/DgxmuugdaQ3XDKgZ0SuFc+VJJKKz2RxlCHCWZM4DSU=;
-        b=q3BsFvwyFmlQx6ku2ey1oFMnO+sf8nXRyk0UyCCK9vdv66qAsOfBpxI8+AxZW95KL0
-         CAyc2Ze8CP6MgaQBwT23NUI41hdXLvNUYXM+amUAba8mrg7PEkrC3ZeaXo/wKlHl4ppO
-         pm3ywssPTZHtQuc1/m8kVJvbXb3BmmPiegzKonKz8TQkWYImAAyQoDIS+rA60HX9ot/T
-         OhWGCgyZNw6gQhgUpjgPbXRdFb4ZncgkCpDcLrzvCxJWHddBfjipyaOt7YPQiwxvAoze
-         uVgft07TZu0VK1+u7DIevJQAk4cNZhqBxbTdU20DS/QCScwTLorJ4JmLM8hTyZQTfxB0
-         AEFw==
+        d=broadcom.com; s=google; t=1730324504; x=1730929304; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=bfzdBjgNBayDdNyFN0s82vygdMnTioCx1ueOKnyTHa8=;
+        b=TxTjl6FG4YAFHPOizymZIOzxBw4byQ+bZz8gt1c52roJc/U+xGBa4d2lj+ZWOn9WT/
+         giOM8e0jzerD00DCxeV7VFZbjBPQ1V4KWbbmR/MzGM5B7IXql38wtIHZwUi6UOVsW3AT
+         hR45fGb4tMBslrXn/MHrS7XZpvnJnY7RG0/bk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730324046; x=1730928846;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/DgxmuugdaQ3XDKgZ0SuFc+VJJKKz2RxlCHCWZM4DSU=;
-        b=iLlZ2pgnmVb5OjXkM2btcwaAooq/LvqeZywfOWbT7ofB5Xbt1ERBt5AF6hdjycFu3R
-         sipZ+Q+UW6XCjNOwtMBc0ELcpnW0bIZTpiPQ+g5ndiA/H2oqpW3awG479fK9TNZfh+ui
-         CwCp8iYWBHn4SI++1zE5zNReYPMPoji3CGxljP1pqSHRpqcIi7OW8UkgefvEtNYIevtJ
-         oyy4TUk4InlM0zGhbuLk6yC7qo6gif9366gNAYMFSNCKo7bzg4q/0d342q9gaVaNaXPz
-         ratG1mxMqO6Z/6hxnBNMpDl6/ZuPmOwz95HEkOwI0FMIY1hrFdAMxcb8JfCWDn0YqmlZ
-         62bg==
-X-Forwarded-Encrypted: i=1; AJvYcCXhGIv/71jYTFb/l0Z+/7NYFzeP2fPHB97vx/fCI7SDNMnrV4m4nmaXud8oAClTZpfT/uFMhQ/Q6B1I@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzfu/Cc0e+OFfueCec6YcC10jdI40T8onzeaZgqGVR4TAvV3jUn
-	tIhdpIq7SDVJbf7YoDz1RKaiqYroWmDiWVYJ1F46XHyD4Z7+v51d4mcDNDLnO99gwTWp00IA+8I
-	y
-X-Google-Smtp-Source: AGHT+IELI/bVcmvdyZTSN9hBWkdwB7oJD6kTnVdjciv8Nv/H1LfXG4kzLNgcKSWs8NfJtZc+8ZjFBg==
-X-Received: by 2002:a05:6808:6488:b0:3e6:54d0:d467 with SMTP id 5614622812f47-3e654d0d4d3mr6480892b6e.9.1730324045947;
-        Wed, 30 Oct 2024 14:34:05 -0700 (PDT)
-Received: from [127.0.1.1] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3e6611a661dsm52127b6e.14.2024.10.30.14.34.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Oct 2024 14:34:04 -0700 (PDT)
-From: David Lechner <dlechner@baylibre.com>
-Date: Wed, 30 Oct 2024 16:33:57 -0500
-Subject: [PATCH v3 2/2] dt-bindings: dma: adi,axi-dmac: deprecate
- adi,channels node
+        d=1e100.net; s=20230601; t=1730324504; x=1730929304;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bfzdBjgNBayDdNyFN0s82vygdMnTioCx1ueOKnyTHa8=;
+        b=ujYkLxWbHhodSrBuykFX3A5yLL1nAlohEy8SWXrNBy/am+++CAaWhbB458iE+gvxbF
+         KvaIOiiZ3PpO+tCaYvTnM79eSt3N1LWp+S9J/FiVyAm+QpZ3sZl8i4wsSGwQADl0S7G2
+         fDpMXiGeuvgDBlAxYuqwY/kki9jNUIrVgcfFHJP+Z+/tLUmJ6JeB1x5yYSyrwFZlItMs
+         JWg/PuIMrtGl9bTZk0v7NZhGIExOz2U1CFWVeItjyk/Fbz8zi0/4KJfEFs8BC5CSsK5E
+         xK88zQJ+6vS9lKrBEEsZtye6HwyDWHDcBWrGd8tE1MAUCPWkqPM2kGU0Jsgtn1GT8hlr
+         Knfg==
+X-Gm-Message-State: AOJu0YzqZ+ne67DIq+0JmpfOcEJOG77LZQJFUvxXJUnZf0Ds6ltwXs9u
+	p9Hq0vJLWDogpRGLyQC1gF5tGAxalZEPapGwmpE6FKD5is0EIxwDgIseUtaPiw==
+X-Google-Smtp-Source: AGHT+IFLfa1DPSp5HPKZWtt7TUZnjzOaRmXwS60hSjSPPEa5OJdyOUcDPqxoGWS8IaPVhryI4Qexwg==
+X-Received: by 2002:a05:6214:1645:b0:6d3:456e:947 with SMTP id 6a1803df08f44-6d3456e0a89mr50320226d6.14.1730324504105;
+        Wed, 30 Oct 2024 14:41:44 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6d35415a62asm644386d6.80.2024.10.30.14.41.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Oct 2024 14:41:42 -0700 (PDT)
+Message-ID: <c6b02317-e65f-444a-906d-e56f33dac9f4@broadcom.com>
+Date: Wed, 30 Oct 2024 14:41:38 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] hwrng: bcm74110 - Add Broadcom BCM74110 RNG driver
+To: Markus Mayer <mmayer@broadcom.com>, Olivia Mackall <olivia@selenic.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Aurelien Jarno <aurelien@aurel32.net>, Conor Dooley <conor+dt@kernel.org>,
+ Daniel Golle <daniel@makrotopia.org>,
+ Francesco Dolcini <francesco.dolcini@toradex.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh@kernel.org>
+Cc: Device Tree Mailing List <devicetree@vger.kernel.org>,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20241030213400.802264-1-mmayer@broadcom.com>
+ <20241030213400.802264-3-mmayer@broadcom.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20241030213400.802264-3-mmayer@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241030-axi-dma-dt-yaml-v3-2-d3a9b506f96c@baylibre.com>
-References: <20241030-axi-dma-dt-yaml-v3-0-d3a9b506f96c@baylibre.com>
-In-Reply-To: <20241030-axi-dma-dt-yaml-v3-0-d3a9b506f96c@baylibre.com>
-To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, dmaengine@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- David Lechner <dlechner@baylibre.com>
-X-Mailer: b4 0.14.1
 
-Deprecate the adi,channels node in the adi,axi-dmac binding. Prior to
-IP version 4.3.a, this information was required. Since then, there are
-memory-mapped registers that can be read to get the same information.
+On 10/30/24 14:33, Markus Mayer wrote:
+> Add a driver for the random number generator present on the Broadcom
+> BCM74110 SoC.
+> 
+> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
+> ---
+>   drivers/char/hw_random/Kconfig        |  14 +++
+>   drivers/char/hw_random/Makefile       |   1 +
+>   drivers/char/hw_random/bcm74110-rng.c | 125 ++++++++++++++++++++++++++
+>   3 files changed, 140 insertions(+)
+>   create mode 100644 drivers/char/hw_random/bcm74110-rng.c
+> 
+> diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
+> index b51d9e243f35..90ae35aeb23a 100644
+> --- a/drivers/char/hw_random/Kconfig
+> +++ b/drivers/char/hw_random/Kconfig
+> @@ -99,6 +99,20 @@ config HW_RANDOM_BCM2835
+>   
+>   	  If unsure, say Y.
+>   
+> +config HW_RANDOM_BCM74110
+> +	tristate "Broadcom BCM74110 Random Number Generator support"
+> +	depends on ARCH_BCM2835 || ARCH_BCM_NSP || ARCH_BCM_5301X || \
+> +		   ARCH_BCMBCA || BCM63XX || ARCH_BRCMSTB || COMPILE_TEST
 
-Acked-by: Nuno Sa <nuno.sa@analog.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
-
-For context, the adi,channels node has not been required in the Linux
-kernel since [1].
-
-[1]: https://lore.kernel.org/all/20200825151950.57605-7-alexandru.ardelean@analog.com/
----
- .../devicetree/bindings/dma/adi,axi-dmac.yaml        | 20 +++++---------------
- 1 file changed, 5 insertions(+), 15 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml b/Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml
-index b1f4bdcab4fd..63b6fb0423c2 100644
---- a/Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml
-+++ b/Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml
-@@ -33,8 +33,12 @@ properties:
-     const: 1
- 
-   adi,channels:
-+    deprecated: true
-     type: object
--    description: This sub-node must contain a sub-node for each DMA channel.
-+    description:
-+      This sub-node must contain a sub-node for each DMA channel. This node is
-+      only required for IP versions older than 4.3.a and should otherwise be
-+      omitted.
-     additionalProperties: false
- 
-     properties:
-@@ -113,7 +117,6 @@ required:
-   - interrupts
-   - clocks
-   - "#dma-cells"
--  - adi,channels
- 
- examples:
-   - |
-@@ -123,17 +126,4 @@ examples:
-         interrupts = <0 57 0>;
-         clocks = <&clkc 16>;
-         #dma-cells = <1>;
--
--        adi,channels {
--            #size-cells = <0>;
--            #address-cells = <1>;
--
--            dma-channel@0 {
--                reg = <0>;
--                adi,source-bus-width = <32>;
--                adi,source-bus-type = <0>; /* Memory mapped */
--                adi,destination-bus-width = <64>;
--                adi,destination-bus-type = <2>; /* FIFO */
--            };
--        };
-     };
-
+AFAICT this driver is only present on STB chips so limiting to 
+ARCH_BRCMSTB || COMPILE_TEST should suffice for now.
 -- 
-2.43.0
-
+Florian
 
