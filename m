@@ -1,75 +1,100 @@
-Return-Path: <devicetree+bounces-117535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A116E9B6D10
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 20:48:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD3719B6D2C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 20:55:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60B30282210
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 19:48:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60807B21760
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 19:55:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E0C11CBE9B;
-	Wed, 30 Oct 2024 19:48:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979791D0B81;
+	Wed, 30 Oct 2024 19:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GnmoJZMR"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="tfIDrgZk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C6631BD9F0;
-	Wed, 30 Oct 2024 19:48:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1F7199EAB;
+	Wed, 30 Oct 2024 19:55:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730317680; cv=none; b=ou34TCOsvOWFYQMrzMzwf5wCJPSUnwFx1WdxK1INHR4n+r/DroH1h+6uYSl7DoNg5t1xpIHebEM8wp/4sej4ur9NPbCeQbVyFmbFi0xufhplFcaYXlHB+8IDfS2+WloHt0pXFRAHqH25pXP4WqSe+PVgONDdEj7ZNkxSRp5qgz8=
+	t=1730318147; cv=none; b=hrGDTY0iiLMjuKVXVr5S7QJUjiogzHcizoZFLhNiXcwb3/aFf14jEkgwq97S+6b/3BOHZgoyEsY5hE8Y4o+6z6xBWbxuCogPFxFJmccW4zwHnJ+bch/vPmLj0pueL+Bw4k99LKgHTF+9a+vx1QmYqo78kenYl3fi19szdUyoJ8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730317680; c=relaxed/simple;
-	bh=or2KvqJqW9neTrGs27NJV1Mi505S8IEzYJIDkgKZoEc=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=okuBjsTmx8QFUJyTPcABns0rkIrjsxnQF6SR+wGj1StQ2D3b12CD6HHrPS1gVZxJLO9V1Gu8/nY6vkgfJh59oiTFbtgbChtvrFpGxwgCuoOWTd7X2n/H0BNIHzyjPnX5pY2jTSogmBSi+uGBOQnh5PuPwKOL4i39YCZiTdQwMrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GnmoJZMR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC520C4CED1;
-	Wed, 30 Oct 2024 19:47:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730317679;
-	bh=or2KvqJqW9neTrGs27NJV1Mi505S8IEzYJIDkgKZoEc=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=GnmoJZMRD/rtg+jn7BGx08wKVT8M6G63TvnrrDXecde7e1/4BVYddIh9qHTKiKD+d
-	 Juy6Iuemeemw0Q6wZS6kRnwYXm2AFn/eNIyiUrTUTDJqukFaX7E/ue1FeYZVp85f9M
-	 yV4jet/k5v3Lbo4Bm7cDpi1Fyaa0OK6yawAYkjNyIA1jiDjmfJl43dZqFJyV0QCsr5
-	 fGTL98dbU6d/bS/kMrUYBs2jZSrk2TmF3SZcmHak5e9hydEJTkhUNhBWY5Op42El/E
-	 69wT7rXGtucgP3jDqHAF1Ry03kQrI3y1NpsuvaG6XRuIBhfiyV6fUhGpM6ftoWvyIr
-	 cNAPyHTuNTcKw==
-Message-ID: <d9d5ef74df0564cbec46c093bd611ab8.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1730318147; c=relaxed/simple;
+	bh=3Yry6e2i+Q/8y/Y7GYu/r3LM2bG17cY37ERXt9ayWc8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AinewEwYxNERIGlOgMCqW8VU8p/Lj1Raa8cNn/vpvq8PCW+Lur0YiHDzLW8vQ0aVMzPUHTcZ7Hr63yZMYjK73u3+uX9dPtjDdADRv6N1AoWRPj00ooRXp85m8s7w+qu5Hzlv6Isr5Y3EbeWOTe1oGmLQcouOQiupNbISrjNOvOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=tfIDrgZk; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=m1ax2i/8ssdJf3PBk2bD9mf6fEXIgj3s1i8YvLv/bF0=; b=tfIDrgZkdOpSX0u2Jz4SGMxapW
+	u/LoRFA2AgLKEd+B9zNS1nZJ8Cm40kQERuNs69Wk5xTIIL1xMTCWRQCZZCb1Z/6pqpRtAYOP7cfFi
+	tkqYtj/k3dxSYqiY075XTBRhoIWKbGx2BWqYZVavSqKFtEhtrDWwyq3X5EATSd+5KOQXesQQYb4oG
+	yq/MbEkgpSqUn6JzXdeSUtOJIBj+6673H1cUvOP5pZTxirvaNjO6DS5k1iN3kjmCjU9jeAqxWXTZg
+	xU6yjKT0biJhMIhwczUqjNeadenhUwnKSwUbjw85jEqrdWNF31EvW7eGWt3EnVC1+koxX3XAOyknQ
+	rF3BadUg==;
+Date: Wed, 30 Oct 2024 20:55:35 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Mithil Bavishi <bavishimithil@gmail.com>
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman
+ <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
+ <tony@atomide.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v1 2/6] arm/dts: Add common device tree for Samsung
+ Galaxy Tab 2 series
+Message-ID: <20241030205535.7ea507ea@akair>
+In-Reply-To: <20241030194136.297648-3-bavishimithil@gmail.com>
+References: <20241030194136.297648-1-bavishimithil@gmail.com>
+	<20241030194136.297648-3-bavishimithil@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241030110120.332802-3-claudiu.beznea.uj@bp.renesas.com>
-References: <20241030110120.332802-1-claudiu.beznea.uj@bp.renesas.com> <20241030110120.332802-3-claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v5 02/10] clk: linux/clk-provider.h: Add devm_clk_hw_register_gate_parent_hw()
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, claudiu.beznea@tuxon.dev, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-To: Claudiu <claudiu.beznea@tuxon.dev>, alexandre.belloni@bootlin.com, conor+dt@kernel.org, geert+renesas@glider.be, krzk+dt@kernel.org, magnus.damm@gmail.com, mturquette@baylibre.com, p.zabel@pengutronix.de, robh@kernel.org
-Date: Wed, 30 Oct 2024 12:47:57 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Subject can just be "clk: Add devm_clk_hw_register_gate_parent_hw()"
+Hi,
 
-Quoting Claudiu (2024-10-30 04:01:12)
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->=20
-> Add devm_clk_hw_register_gate_parent_hw() macro to allow registering
-> devres managed gate clocks providing struct clk_hw object as parent.
->=20
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+a quick first pass of review.
+
+Am Wed, 30 Oct 2024 19:41:32 +0000
+schrieb Mithil Bavishi <bavishimithil@gmail.com>:
+
+> Create common device tree for Samsung Espresso series devices
+> 
+> Differentiate based on screen sizes, panels, touch controllers,
+> and batteries
+> 
+> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
 > ---
+[...]
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+> +	backlight_pins: pinmux_backlight_pins {
+
+- instead of _ in node names please, also for other places:
+    backlight_pins: pinmux-backlight-pins
+
+[...]
+> +
+> +#include "twl6030.dtsi"
+> +
+really??? you include both twl6030 and twl6032. That does not make any
+sense. Including twl6030_omap4.dtsi might make sense but not
+twl6030.dtsi.
+
+Regards,
+Andreas
 
