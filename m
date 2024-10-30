@@ -1,41 +1,41 @@
-Return-Path: <devicetree+bounces-117418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFADD9B62A2
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:11:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C04F49B62A9
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 13:12:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3EDA283053
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 12:11:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23287B21470
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 12:12:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48CA11EF0A6;
-	Wed, 30 Oct 2024 12:10:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB52F1EBFF2;
+	Wed, 30 Oct 2024 12:10:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A00C1EBA1E
-	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 12:10:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A22F1EBFFC
+	for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 12:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730290230; cv=none; b=NyU7b1k5FTdGysNHAq2XKBvfIrqnVVr/tt/RFalJz2eBOqfJyCoEaOxc+XZq6CqigFFp5p8gDbJmjOP4t/sjeen8orLj9m6YipnHY8CfemJEyBTPC8E7DpTzX4FBPEhAErDh/EpcaerF9kj8m1e5uBhh4FmVFgBCTVGC9LqBVFg=
+	t=1730290233; cv=none; b=a5xFIkIJWUc+UoDIYHpl3V2N4H5aciDfZnRLMcAoMd8d/IKQJSRcqQfYd3rl1Q6pLmftZ/WfaHjy7AFYTkKlcoduZ3ZvcCRbjF8RIwDRnYr+KunDBiyJS+8mGQUelylMqltfpX1dkS3QsQVXX1Ta1awDZDFxp2eILr3KVD43P/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730290230; c=relaxed/simple;
-	bh=FFXiiQhXhWNlPYV60DTxKdZyGuqHKlEKBnrLXPUxdvQ=;
+	s=arc-20240116; t=1730290233; c=relaxed/simple;
+	bh=CPjrZ4fKhbLXk0zIZxVMkwmvH7cZECkh0hUkVKEQKCc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NCzgxmgvk+UgqV8Or14wHY76vM9YjT/dqk6+Mx6cypf5GjKnlQ3N0yxlx5rqMPFd2t4HoNesX9L5HeG6+mo0YuKyubBWn6Vx8p8WWyZiDRP0AGsoDmtDdvNpYAgTkA1X1Yq55faTdzOROmwBlYL9tQLjOEVKwTcfq5f3gWgR5zE=
+	 In-Reply-To:To:Cc; b=MwiFiI+biE1gW5/IK7uJOi5Yvl+n6g+CzyAcuv2ZxyI2vJQ0Q+Hwniv3w9Q0+N+OmrqS8uoKCjJSxf0yob3pKAd5TnKRjDctcT5XLXTstr8LjnNDdHunVnLiCXfO2Bad9QEgD4MbhTkf19k2mP5XzZCGs/2rUl6dxB4deXjpU9s=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.trumtrar.info)
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <s.trumtrar@pengutronix.de>)
-	id 1t67Wm-0006os-88; Wed, 30 Oct 2024 13:10:20 +0100
+	id 1t67Wm-0006os-Tb; Wed, 30 Oct 2024 13:10:20 +0100
 From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Date: Wed, 30 Oct 2024 13:10:12 +0100
-Subject: [PATCH 1/4] arm64: dts: agilex5: add gpio0
+Date: Wed, 30 Oct 2024 13:10:13 +0100
+Subject: [PATCH 2/4] arm64: dts: agilex5: add gmac nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,7 +44,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241030-v6-12-topic-socfpga-agilex5-v1-1-b2b67780e60e@pengutronix.de>
+Message-Id: <20241030-v6-12-topic-socfpga-agilex5-v1-2-b2b67780e60e@pengutronix.de>
 References: <20241030-v6-12-topic-socfpga-agilex5-v1-0-b2b67780e60e@pengutronix.de>
 In-Reply-To: <20241030-v6-12-topic-socfpga-agilex5-v1-0-b2b67780e60e@pengutronix.de>
 To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -62,44 +62,348 @@ X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-gpio0 is the same as gpio1 with a different base address.
+The Agilex5 provides three Synopsys XGMAC ethernet cores, that can be
+used to transmit and receive data at 10M/100M/1G/2.5G over ethernet
+connections and enables support for Time Sensitive Networking (TSN)
+applications.
 
 Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
 ---
- arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 321 +++++++++++++++++++++++++
+ 1 file changed, 321 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-index 1162978329c1637aa0fd9a4adef16a9ae5017ac3..57c28e284cccdb99ede6cea2bc0e8dd8aaf47fe9 100644
+index 57c28e284cccdb99ede6cea2bc0e8dd8aaf47fe9..761d970f8de59e08275edf15a9c890ba3bb1404c 100644
 --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
 +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-@@ -222,6 +222,26 @@ i3c1: i3c@10da1000 {
- 			status = "disabled";
- 		};
+@@ -141,6 +141,327 @@ soc: soc@0 {
+ 		device_type = "soc";
+ 		interrupt-parent = <&intc>;
  
-+		gpio0: gpio@10c03200 {
-+			compatible = "snps,dw-apb-gpio";
-+			reg = <0x10c03200 0x100>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			resets = <&rst GPIO0_RESET>;
++		gmac0: ethernet@10810000 {
++			compatible = "altr,socfpga-stmmac-a10-s10",
++				     "snps,dwxgmac-2.10",
++				     "snps,dwxgmac";
++			reg = <0x10810000 0x3500>;
++			interrupt-parent = <&intc>;
++			interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq";
++			max-frame-size = <3800>;
++			snps,multicast-filter-bins = <64>;
++			snps,perfect-filter-entries = <64>;
++			rx-fifo-depth = <16384>;
++			tx-fifo-depth = <32768>;
++			resets = <&rst EMAC0_RESET>, <&rst EMAC0_OCP_RESET>;
++			reset-names = "stmmaceth", "stmmaceth-ocp";
++			clocks = <&clkmgr AGILEX5_EMAC0_CLK>,
++				 <&clkmgr AGILEX5_EMAC_PTP_CLK>;
++			clock-names = "stmmaceth", "ptp_ref";
++			snps,axi-config = <&stmmac_axi_emac0_setup>;
++			snps,mtl-rx-config = <&mtl_rx_emac0_setup>;
++			snps,mtl-tx-config = <&mtl_tx_emac0_setup>;
++			altr,sysmgr-syscon = <&sysmgr 0x44 0>;
 +			status = "disabled";
 +
-+			porta: gpio-controller@0 {
-+				compatible = "snps,dw-apb-gpio-port";
-+				reg = <0>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+				snps,nr-gpios = <24>;
-+				interrupt-controller;
-+				#interrupt-cells = <2>;
-+				interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
++			stmmac_axi_emac0_setup: stmmac-axi-config {
++				snps,wr_osr_lmt = <31>;
++				snps,rd_osr_lmt = <31>;
++				snps,blen = <0 0 0 32 16 8 4>;
++			};
++
++			mtl_rx_emac0_setup: rx-queues-config {
++				snps,rx-queues-to-use = <8>;
++				snps,rx-sched-sp;
++				queue0 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x0>;
++				};
++				queue1 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x1>;
++				};
++				queue2 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x2>;
++				};
++				queue3 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x3>;
++				};
++				queue4 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x4>;
++				};
++				queue5 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x5>;
++				};
++				queue6 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x6>;
++				};
++				queue7 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x7>;
++				};
++			};
++
++			mtl_tx_emac0_setup: tx-queues-config {
++				snps,tx-queues-to-use = <8>;
++				snps,tx-sched-wrr;
++				queue0 {
++					snps,weight = <0x9>;
++					snps,dcb-algorithm;
++				};
++				queue1 {
++					snps,weight = <0x0A>;
++					snps,dcb-algorithm;
++				};
++				queue2 {
++					snps,weight = <0x0B>;
++					snps,dcb-algorithm;
++				};
++				queue3 {
++					snps,weight = <0x0C>;
++					snps,dcb-algorithm;
++				};
++				queue4 {
++					snps,weight = <0x0D>;
++					snps,dcb-algorithm;
++				};
++				queue5 {
++					snps,weight = <0x0E>;
++					snps,dcb-algorithm;
++				};
++				queue6 {
++					snps,weight = <0x0F>;
++					snps,dcb-algorithm;
++					snps,tbs-enable;
++				};
++				queue7 {
++					snps,weight = <0x10>;
++					snps,dcb-algorithm;
++					snps,tbs-enable;
++				};
 +			};
 +		};
 +
- 		gpio1: gpio@10c03300 {
- 			compatible = "snps,dw-apb-gpio";
- 			reg = <0x10c03300 0x100>;
++		gmac1: ethernet@10820000 {
++			compatible = "altr,socfpga-stmmac-a10-s10",
++				     "snps,dwxgmac-2.10",
++				     "snps,dwxgmac";
++			reg = <0x10820000 0x3500>;
++			interrupt-parent = <&intc>;
++			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq";
++			max-frame-size = <3800>;
++			snps,multicast-filter-bins = <64>;
++			snps,perfect-filter-entries = <64>;
++			rx-fifo-depth = <16384>;
++			tx-fifo-depth = <32768>;
++			resets = <&rst EMAC1_RESET>, <&rst EMAC1_OCP_RESET>;
++			reset-names = "stmmaceth", "stmmaceth-ocp";
++			clocks = <&clkmgr AGILEX5_EMAC1_CLK>,
++				 <&clkmgr AGILEX5_EMAC_PTP_CLK>;
++			clock-names = "stmmaceth", "ptp_ref";
++			snps,axi-config = <&stmmac_axi_emac1_setup>;
++			snps,mtl-rx-config = <&mtl_rx_emac1_setup>;
++			snps,mtl-tx-config = <&mtl_tx_emac1_setup>;
++			altr,sysmgr-syscon = <&sysmgr 0x48 0>;
++			status = "disabled";
++
++			stmmac_axi_emac1_setup: stmmac-axi-config {
++				snps,wr_osr_lmt = <31>;
++				snps,rd_osr_lmt = <31>;
++				snps,blen = <0 0 0 32 16 8 4>;
++			};
++
++			mtl_rx_emac1_setup: rx-queues-config {
++				snps,rx-queues-to-use = <8>;
++				snps,rx-sched-sp;
++				queue0 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x0>;
++				};
++				queue1 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x1>;
++				};
++				queue2 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x2>;
++				};
++				queue3 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x3>;
++				};
++				queue4 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x4>;
++				};
++				queue5 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x5>;
++				};
++				queue6 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x6>;
++				};
++				queue7 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x7>;
++				};
++			};
++
++			mtl_tx_emac1_setup: tx-queues-config {
++				snps,tx-queues-to-use = <8>;
++				snps,tx-sched-wrr;
++				queue0 {
++					snps,weight = <0x9>;
++					snps,dcb-algorithm;
++				};
++				queue1 {
++					snps,weight = <0x0A>;
++					snps,dcb-algorithm;
++				};
++				queue2 {
++					snps,weight = <0x0B>;
++					snps,dcb-algorithm;
++				};
++				queue3 {
++					snps,weight = <0x0C>;
++					snps,dcb-algorithm;
++				};
++				queue4 {
++					snps,weight = <0x0D>;
++					snps,dcb-algorithm;
++				};
++				queue5 {
++					snps,weight = <0x0E>;
++					snps,dcb-algorithm;
++				};
++				queue6 {
++					snps,weight = <0x0F>;
++					snps,dcb-algorithm;
++					snps,tbs-enable;
++				};
++				queue7 {
++					snps,weight = <0x10>;
++					snps,dcb-algorithm;
++					snps,tbs-enable;
++				};
++			};
++		};
++
++		gmac2: ethernet@10830000 {
++			compatible = "altr,socfpga-stmmac-a10-s10",
++				     "snps,dwxgmac-2.10",
++				     "snps,dwxgmac";
++			reg = <0x10830000 0x3500>;
++			interrupt-parent = <&intc>;
++			interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq";
++			max-frame-size = <3800>;
++			snps,multicast-filter-bins = <64>;
++			snps,perfect-filter-entries = <64>;
++			rx-fifo-depth = <16384>;
++			tx-fifo-depth = <32768>;
++			resets = <&rst EMAC2_RESET>, <&rst EMAC2_OCP_RESET>;
++			reset-names = "stmmaceth", "stmmaceth-ocp";
++			clocks = <&clkmgr AGILEX5_EMAC2_CLK>,
++				 <&clkmgr AGILEX5_EMAC_PTP_CLK>;
++			clock-names = "stmmaceth", "ptp_ref";
++			snps,axi-config = <&stmmac_axi_emac2_setup>;
++			snps,mtl-rx-config = <&mtl_rx_emac2_setup>;
++			snps,mtl-tx-config = <&mtl_tx_emac2_setup>;
++			altr,sysmgr-syscon = <&sysmgr 0x4c 0>;
++			status = "disabled";
++
++			stmmac_axi_emac2_setup: stmmac-axi-config {
++				snps,wr_osr_lmt = <31>;
++				snps,rd_osr_lmt = <31>;
++				snps,blen = <0 0 0 32 16 8 4>;
++			};
++
++			mtl_rx_emac2_setup: rx-queues-config {
++				snps,rx-queues-to-use = <8>;
++				snps,rx-sched-sp;
++				queue0 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x0>;
++				};
++				queue1 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x1>;
++				};
++				queue2 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x2>;
++				};
++				queue3 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x3>;
++				};
++				queue4 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x4>;
++				};
++				queue5 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x5>;
++				};
++				queue6 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x6>;
++				};
++				queue7 {
++					snps,dcb-algorithm;
++					snps,map-to-dma-channel = <0x7>;
++				};
++			};
++
++			mtl_tx_emac2_setup: tx-queues-config {
++				snps,tx-queues-to-use = <8>;
++				snps,tx-sched-wrr;
++				queue0 {
++					snps,weight = <0x9>;
++					snps,dcb-algorithm;
++				};
++				queue1 {
++					snps,weight = <0x0A>;
++					snps,dcb-algorithm;
++				};
++				queue2 {
++					snps,weight = <0x0B>;
++					snps,dcb-algorithm;
++				};
++				queue3 {
++					snps,weight = <0x0C>;
++					snps,dcb-algorithm;
++				};
++				queue4 {
++					snps,weight = <0x0D>;
++					snps,dcb-algorithm;
++				};
++				queue5 {
++					snps,weight = <0x0E>;
++					snps,dcb-algorithm;
++				};
++				queue6 {
++					snps,weight = <0x0F>;
++					snps,dcb-algorithm;
++					snps,tbs-enable;
++				};
++				queue7 {
++					snps,weight = <0x10>;
++					snps,dcb-algorithm;
++					snps,tbs-enable;
++				};
++			};
++		};
++
+ 		clkmgr: clock-controller@10d10000 {
+ 			compatible = "intel,agilex5-clkmgr";
+ 			reg = <0x10d10000 0x1000>;
 
 -- 
 2.46.0
