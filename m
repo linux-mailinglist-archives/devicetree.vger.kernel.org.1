@@ -1,166 +1,189 @@
-Return-Path: <devicetree+bounces-117870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A17F59B82E1
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 19:54:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EC079B82E8
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 19:56:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B217D1C214E9
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 18:54:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88956B20EAD
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 18:56:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23B2B1C9EA3;
-	Thu, 31 Oct 2024 18:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AAA61C9ED8;
+	Thu, 31 Oct 2024 18:56:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ltogtxm+"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="dB41oaQ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A0E13A865;
-	Thu, 31 Oct 2024 18:54:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78B711C9DFC
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 18:56:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730400871; cv=none; b=FJQOlXG7Ik/fiCwL51e9DAGJTT//9xHMlG1I1EIGRg40oGQU1iw5nqk2NWsIAUJTIy7vcKIs5vnxYo/LShyQ/7xaJQS1qEiBEiNGll/EN/ouIPlibobh0YQY90BxnmBfdMLt7WlSDCQQ37a+mNd1Hb7XzLiulEjYnok4Ya1laPs=
+	t=1730400964; cv=none; b=rImnwqEeae/8gJSKgqIzcZuGLkwcZ9eVb9NSYe316ru03UW/9wSFVq1GwNwD8DaACjEPrlpOi9xoeUGEU+tyQPtBjbo9tdVW7PEnlDZbzt2zzsIhp7N+5HCwe8/RIPzPUeQMqD264/9lVpwWH5f1G6ur1BFgG0HHc9hoL3nlz1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730400871; c=relaxed/simple;
-	bh=0AN2cEme6KN+MD6/2CJs5BoWooLWL+Ww1sHtt035mkA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SeSGFmMQMv+ywIwzgfA6yiDZ3wfQwlhn9ORx/BrOfpccxI4qBrgH89+fsvhEe1M5+kwREmtekqrnF+AA9GEUjgemACyBL8IpPxu3Gxm6X6SkVs6uOZSnRnWGbsJsVfUbiNZ5UJIMITNluNrcfxJEJ1xlkL0tZ2CFcwzon6X+WO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ltogtxm+; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49V9rSBx009576;
-	Thu, 31 Oct 2024 18:54:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zR2oPsDq+v2hp6B2K+B1H3EJciKvEeAHkR4Lv7MS4eQ=; b=ltogtxm+CKy3YvlC
-	uadNAigIuRlzQ77fw/6kG4eKvKivQJW6gbLA/UlfmOc9NZHX9z84dmXIfrF0Funt
-	rhdL05fM+xzmhLUdrhqXqEwiCVCB7VvOR0laPiiMyLOqMPjcTaFaU72HNc7tJ3hM
-	M+Gz5aMk7wIqNs2cBA1Pe7RYTsM4vYU5SuL8UlATs8fS9yHPLXFhvqT4uiUe7XDQ
-	3bKco0ljno3bh7JoW7FKkldFYU9G5o1biCOkt5X4Ll0KDbd9X3WRspeY3wiixsmm
-	jJd+Sezg3LK413gfezoSCQ6RjnWXZddXOJ/yBkyR6ZCSEx/ERf/6ZRZY/x9G0Nkj
-	epytBg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42kjm1d01r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 31 Oct 2024 18:54:15 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49VIsDTk025895
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 31 Oct 2024 18:54:13 GMT
-Received: from [10.216.19.89] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 31 Oct
- 2024 11:54:10 -0700
-Message-ID: <5a9e97ad-0f84-4e0c-85e6-5ed0a4d20568@quicinc.com>
-Date: Fri, 1 Nov 2024 00:24:07 +0530
+	s=arc-20240116; t=1730400964; c=relaxed/simple;
+	bh=B4oTAhRHxTZv6woXYBjT10l0sPULFpxloGX1fSZnhFI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QSPpyYNjZUe/lSuS2mZ/FB/YWd9h80iSyE6fr5QkFx54gPCYL05QVJUDU44SvKcO6o6he4ohGhwhK+Rch8qEMWurkO8z96RZnlZoI+h1CXCUCtol7DkDxpaAGb7VI9/ltUFeX3bqzHYGCVkovuPf2SbLKNZh6gnKW3pYRT1T1Q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=dB41oaQ+; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-7e6d04f74faso875168a12.1
+        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 11:56:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1730400962; x=1731005762; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=n9x1m1RYOM7X235H8PXZkpmXCy7V1cpMxA3l6ZbKlLA=;
+        b=dB41oaQ+F4hOH5iV62YOarY2em20muXAUpP+rNjx/qnok74eVh9BTQAINHjVus1EG4
+         6LxZqXP0aevOdGY9AgsiYmxf+qre6vk1jLu3kpotKu+nQNUr1nuaV6vKJSEFqnjRgJZY
+         DilzQlL+vkRXrWmwDfTdYPNha8xbO3q1O6oqw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730400962; x=1731005762;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n9x1m1RYOM7X235H8PXZkpmXCy7V1cpMxA3l6ZbKlLA=;
+        b=E0WtjAPnf2p7lWuHctYjs4uwUBJjetkC7H/UzzhlMyCWq+wY0nuz2sFBpeyPywkplm
+         Hu1qlsucztd7v3O+p8/BWkECUFj2D7+noJsd9sjt/P6DBf7ocvUIUTsmsW3D5fxKKHDo
+         Y5kG5AVUH+Z58ZB6ds+SeJFh7kTdBamwDEz23nHZAvooVYqhK2aGbEgBV5wJT154rx5C
+         +r3toHkejCS85Vslmxbi8KV+uB4eMc8x7WIlAyEVyAM70diSNPivxIIdSXSKxZYYNyHN
+         KvyTBcxzb5bI6ZmjQ+qAJY0guazG1bqJLEj5Gwi+dwS5tYNEVvwYk7iv/gST0whpt22o
+         oiRw==
+X-Forwarded-Encrypted: i=1; AJvYcCUYH3TwmL9/oL3tEvhNkrSoKkpW+9NqWa95x2IuVUtLWAMezv12qnFcDGOYab50DD9fPdv1hTKvOxLO@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywy7VvjHJrpJY7KEsYFepAirVaQ2bUCA1207trI8MkVMR84Cwmq
+	XhEWOA+9jZTacX6aYk3BXxakHm1xsCQ8JDTPXm6/3sBgf7W13Jp1x8BfZmqT1IaHMqU4YwQi2c0
+	xGj42CirvIG/IHBR6TauTc0XEDx6rnSh3Exyk
+X-Google-Smtp-Source: AGHT+IGJpxj9d+x9ha4I4b3L3gglHusIK56TMkuuORxNw6XyB05oJPNEE+9L1slSzK08FESBEhhNbGUFCE1cpFuwIAc=
+X-Received: by 2002:a17:90b:3a8d:b0:2e2:c1d0:68dc with SMTP id
+ 98e67ed59e1d1-2e94bdfa857mr1551852a91.9.1730400960308; Thu, 31 Oct 2024
+ 11:56:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/3] arm64: dts: qcom: sc8280xp-blackrock: dt
- definition for WDK2023
-To: <jens.glathe@oldschoolsolutions.biz>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Kalle Valo
-	<kvalo@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        Merck Hung <merckhung@gmail.com>,
-        Bjorn
- Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-References: <20241030-jg-blackrock-for-upstream-v6-0-7cd7f7d8d97c@oldschoolsolutions.biz>
- <20241030-jg-blackrock-for-upstream-v6-3-7cd7f7d8d97c@oldschoolsolutions.biz>
-Content-Language: en-US
-From: Krishna Kurapati <quic_kriskura@quicinc.com>
-In-Reply-To: <20241030-jg-blackrock-for-upstream-v6-3-7cd7f7d8d97c@oldschoolsolutions.biz>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TBHZUxU695kobpyZQOeTCFl3G-q22yjs
-X-Proofpoint-ORIG-GUID: TBHZUxU695kobpyZQOeTCFl3G-q22yjs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 adultscore=0
- mlxscore=0 mlxlogscore=999 spamscore=0 suspectscore=0 clxscore=1011
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410310143
+References: <20241030213400.802264-1-mmayer@broadcom.com> <20241030213400.802264-2-mmayer@broadcom.com>
+ <db7b7745-404d-45f7-a429-c1c747de8e6b@linaro.org>
+In-Reply-To: <db7b7745-404d-45f7-a429-c1c747de8e6b@linaro.org>
+From: Markus Mayer <mmayer@broadcom.com>
+Date: Thu, 31 Oct 2024 11:55:48 -0700
+Message-ID: <CAGt4E5ud=0rwSKBTOAsx0RMB3Pkjo+HHxZ_JLPBFbOSZUTCRVg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: rng: add binding for BCM74110 RNG
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Olivia Mackall <olivia@selenic.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
+	Aurelien Jarno <aurelien@aurel32.net>, Conor Dooley <conor+dt@kernel.org>, 
+	Daniel Golle <daniel@makrotopia.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Francesco Dolcini <francesco.dolcini@toradex.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Device Tree Mailing List <devicetree@vger.kernel.org>, 
+	Linux Crypto Mailing List <linux-crypto@vger.kernel.org>, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
+On Thu, 31 Oct 2024 at 00:29, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 30/10/2024 22:33, Markus Mayer wrote:
+> > Add a binding for the random number generator used on the BCM74110.
+> >
+> > Signed-off-by: Markus Mayer <mmayer@broadcom.com>
+> > ---
+> >  .../bindings/rng/brcm,bcm74110.yaml           | 35 +++++++++++++++++++
+> >  1 file changed, 35 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/rng/brcm,bcm74110.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/rng/brcm,bcm74110.yaml b/Documentation/devicetree/bindings/rng/brcm,bcm74110.yaml
+> > new file mode 100644
+> > index 000000000000..acd0856cee72
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/rng/brcm,bcm74110.yaml
+>
+> Filename as compatible.
 
+I am not sure what you mean by this. That the filename should match
+the compatible string? I did change the filename to
+brcm,bcm74110-rng.yaml the ID to
+http://devicetree.org/schemas/rng/brcm,bcm74110-rng.yaml# in response
+to Florian's comment from yesterday.
 
-On 10/30/2024 4:32 PM, Jens Glathe via B4 Relay wrote:
-> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> 
-> Device tree for the Microsoft Windows Dev Kit 2023. This work
-> is based on the initial work of Merck Hung <merckhung@gmail.com>.
-> 
-> Original work: https://github.com/merckhung/linux_ms_dev_kit/blob/ms-dev-kit-2023-v6.3.0/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-dev-kit-2023.dts
-> 
-> The Windows Dev Kit 2023 is a nice little desktop based on sc8280xp.
-> Link: https://learn.microsoft.com/en-us/windows/arm/dev-kit/
-> 
-> Supported features:
-> - USB type-c and type-a ports
-> - minidp connector
-> - built-in r8152 Ethernet adapter
-> - PCIe devices
-> - nvme
-> - ath11k WiFi (WCN6855)
-> - WCN6855 Bluetooth
-> - A690 GPU
-> - ADSP and CDSP
-> - GPIO keys
-> - Audio definition (works via USB)
-> 
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> ---
+> > @@ -0,0 +1,35 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/rng/brcm,bcm74110.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: BCM74110 Random number generator
+> > +
+> > +description: |
+>
+> Do not need '|' unless you need to preserve formatting.
 
-[...]
+Removed.
 
-> +&usb_2 {
-> +	pinctrl-0 = <&usb2_en_state>;
-> +	pinctrl-names = "default";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_dwc3 {
-> +	dr_mode = "host";
-> +	phy-names = "usb2-port0", "usb3-port0";
-> +	phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
-> +
-> +	status = "okay";
-> +};
+> > +  Random number generator used on the BCM74110.
+> > +
+> > +maintainers:
+> > +  - Markus Mayer <mmayer@broadcom.com>
+> > +  - Florian Fainelli <florian.fainelli@broadcom.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - brcm,bcm74110-rng
+>
+> That's not what you have in DTS.
 
- From what I remember, the phy names for multiport must be "usb2-X"  or 
-"usb3-X". The above notation might compile but If I am not wrong, the 
-phys won't be active. How was USB tested in this case ?
+Fixed in the DTS to be "brcm,bcm74110-rng" everywhere.
 
-Moreover just marking status as "okay" for usb_2 must work like done in 
-[1] and [2] and there is no need for explicitly marking dr_mode as host 
-again and refactoring the phy-names.
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    rng: rng@83ba000 {
+>
+> Drop unused label.
 
-[1]: 
-https://lore.kernel.org/all/20240707085624.3411961-1-quic_kriskura@quicinc.com/
-[2]: 
-https://patchwork.kernel.org/project/linux-arm-msm/patch/20240501065641.965-1-johan+linaro@kernel.org/
+Done.
 
-Please fix this up.
+I am giving it a bit more time for additional feedback (on the driver
+and the binding) and will send v2 in a few days. Meanwhile, the
+generated DTS (with the changes incorporated) is now looking like
+this:
 
-Regards,
-Krishna,
+$ cat ./Documentation/devicetree/bindings/rng/brcm,bcm74110-rng.example.dts
+/dts-v1/;
+/plugin/; // silence any missing phandle references
+
+/{
+    compatible = "foo";
+    model = "foo";
+    #address-cells = <1>;
+    #size-cells = <1>;
+
+    example-0 {
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        rng@83ba000 {
+            compatible = "brcm,bcm74110-rng";
+            reg = <0x83ba000 0x14>;
+        };
+    };
+};
+
+Thanks,
+-Markus
 
