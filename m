@@ -1,132 +1,121 @@
-Return-Path: <devicetree+bounces-117599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 890429B711A
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 01:23:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AE949B7146
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 01:45:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC8031C20918
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 00:23:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C5861C212AB
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 00:45:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93EE536124;
-	Thu, 31 Oct 2024 00:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373A81BC20;
+	Thu, 31 Oct 2024 00:45:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=justinweiss.com header.i=@justinweiss.com header.b="psq1dtEy";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="T488zIJV"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TrV3EIYK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A14653A7;
-	Thu, 31 Oct 2024 00:22:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.147
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A288C2FD;
+	Thu, 31 Oct 2024 00:45:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730334163; cv=none; b=Zqg+U83aAzC9gjFY0eU4Xy0fg2b4T70iS3aH4Dl9li37koYA5mPeM8uaytvqIpW+bs0W9AbxRGtIWoNxoeKe+jZESDbBOkNTRwLWAmLKg5Ss0yB4OagQqWiFHBfnKi5qE5u+MoYV7IoF7DNjT+LBzqlPbgZPl1zzAVIkW12Qmac=
+	t=1730335550; cv=none; b=axfkpejWxDlxF3LynBByCS0rlsInuh/tF9FNEkL7AfyiKEwPMxFZlgKQ9Dy/Qj+sZb7MvHNDbf/TpvFmXKjeNkBJSkWzVUw87EGOuFqJEluIZPXZjkLdF0s93/3S/mfXQrch705RC4bPjprmubAoUNof2pDPuFA0bUiW9p+jMkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730334163; c=relaxed/simple;
-	bh=mXzGNXOzoEpPANsKrOIIcMcCUBg6ySS5sQpL9j6eHwc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=if32XmnOjH0ZJK+a6zpm4wB1dB4C76tasX/lQQQye3uWxlILTN7OHs87i0r4ryMJC5gFk9XI6FWwUdnJAmP6ff1mmtCkJ82iDQKPwUdDwGGRF8s4P3v3qUvW9KkwfXsNMGT82LZIVGeOpC/iyAjNhTYnINe3ai2jDRQIUvt5mk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=justinweiss.com; spf=pass smtp.mailfrom=justinweiss.com; dkim=pass (2048-bit key) header.d=justinweiss.com header.i=@justinweiss.com header.b=psq1dtEy; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=T488zIJV; arc=none smtp.client-ip=202.12.124.147
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=justinweiss.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=justinweiss.com
-Received: from phl-compute-02.internal (phl-compute-02.phl.internal [10.202.2.42])
-	by mailfout.stl.internal (Postfix) with ESMTP id 10166114011B;
-	Wed, 30 Oct 2024 20:22:39 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-02.internal (MEProxy); Wed, 30 Oct 2024 20:22:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=justinweiss.com;
-	 h=cc:cc:content-type:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1730334158; x=
-	1730420558; bh=mXzGNXOzoEpPANsKrOIIcMcCUBg6ySS5sQpL9j6eHwc=; b=p
-	sq1dtEyohfAF0pZGBiDIQQk8OQLqHw35qmi8Pvv9S+4+TqTxPvWfDNqSgMPj2+G3
-	oiZnRNUQeXgGQ5XhGCLfbdlyleOd6ADfaXvTgkUH532ErGiMFst5FmIv2tUkHYrN
-	g/hPkrOr4cDU33a8j91EvH+/egh81r6sDBG71BlNtF4cgOP51Ot9sMZhFFHO4kiE
-	F+EWlkcQ7Tr4g6Xbjv7qO9C+tYOYYnVseH0jbKw1UNWwsEuWeJyoNvitlW+T41C7
-	WO7D050FKxZO52P9CBUjv1JcNvuSJoLGqC/U++Xa8SGXUhZnBOLa7yNW1owwdn8t
-	IqOhEvoUcoZdbF/DkPLYg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
-	1730334158; x=1730420558; bh=mXzGNXOzoEpPANsKrOIIcMcCUBg6ySS5sQp
-	L9j6eHwc=; b=T488zIJVHAc1m7tLA7Hi/TuO1NYBngJHw0EMzVgY5womohXZ6p4
-	8c2i4nO0q88Gg+uSBE/trqJDrpA/5C36IzPQAd7Y1WQtCHSIhGT6Bc8UbFtSpd80
-	vk0AnJ0YlwoDT/wVBVisEVMW8sm1bC2rD/c4DqhYPV1uxhDsDDM21YJx4NnwTIzM
-	c/pTiVWTtKeLXZe//D5HNmKbiNJ4aZF7uQ61Yd54mdd8DPLDbnpBuP5NW7PWs9VA
-	pFfvjsLo890XjKrkvmkW+FJ6H4H+Wi0eD4vGUFqVt4Qy6h29bQW9Qw/jhXB0HfVu
-	UN7XBqzCibJzgxcTrETy2nBl9yoEggzPtcQ==
-X-ME-Sender: <xms:zs0iZyXnnNTrqEKZCIIa8VOO4CJWot43KIc0SfsxM2GjXvieajLp5w>
-    <xme:zs0iZ-nEi_LZ21p_yYcCh6MNpLC53uNDAxOHs2f1R_xDJTP_SDpqk8KqDSLzhPute
-    32kC_feeTV0s69gig>
-X-ME-Received: <xmr:zs0iZ2aFmGQj4bGXrViD0_jVV8BZG16-zUZfOMv8CSsU-U8MWlglPejCf6DDswdFnmbg6NlgQg0ywt6Vp234fEJLjdeyHt3m0mM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdekgedgvdduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhephffvvefujghffffkfgggtgesthdtredttdertden
-    ucfhrhhomheplfhushhtihhnucghvghishhsuceojhhushhtihhnsehjuhhsthhinhifvg
-    hishhsrdgtohhmqeenucggtffrrghtthgvrhhnpefgueegueeiheffkeektdetfffgffeu
-    ieekvdefieejvdefiefgvefhiefhfefgveenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehjuhhsthhinhesjhhushhtihhnfigvihhsshdrtgho
-    mhdpnhgspghrtghpthhtohepuddvpdhmohguvgepshhmthhpohhuthdprhgtphhtthhope
-    hphhhilhhmsehmrghnjhgrrhhordhorhhgpdhrtghpthhtohepuggvrhgvkhhjohhhnhdr
-    tghlrghrkhesghhmrghilhdrtghomhdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlh
-    esvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvges
-    vhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhiihhosehvgh
-    gvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghnughrihihrdhshhgvvhgthhgv
-    nhhkoheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopegtohhnohhrodguth
-    eskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdho
-    rhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:zs0iZ5XctY_SrqjklwQf19IP8Dh-X-AXzkYrKQhOGlzivlk3i8H0ng>
-    <xmx:zs0iZ8mNPGBUbdVeqg2zQP2-3rPp_VUpXoNADYclZ8yeyDBebHjLUw>
-    <xmx:zs0iZ-eQXeW1-n6bMPCOAu-TwPzhHtmzOc8hMw2gRn0CRlXxnCgOOg>
-    <xmx:zs0iZ-HNlxIGaxNdaBR-VxIuXChUyHNQXv8NKENiQ38-Bu8LDJAGYw>
-    <xmx:zs0iZ38Ixzg9ZB8fHZtL4bui3CWjtx3Vt0KGR6Xrd_5FU3Qc_ZeoCz7J>
-Feedback-ID: icf614246:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 30 Oct 2024 20:22:37 -0400 (EDT)
-From: Justin Weiss <justin@justinweiss.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Alex Lanzano <lanzano.alex@gmail.com>,  Lars-Peter Clausen
- <lars@metafoo.de>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>,
-  linux-iio@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  "Derek J . Clark"
- <derekjohn.clark@gmail.com>,  Philip =?utf-8?Q?M=C3=BCller?=
- <philm@manjaro.org>
-Subject: Re: [PATCH v4 0/4] Add i2c driver for Bosch BMI260 IMU
-In-Reply-To: <20241028201817.71bebfee@jic23-huawei> (Jonathan Cameron's
-	message of "Mon, 28 Oct 2024 20:18:17 +0000")
-References: <20241027172029.160134-1-justin@justinweiss.com>
-	<20241028201817.71bebfee@jic23-huawei>
-Date: Wed, 30 Oct 2024 17:22:36 -0700
-Message-ID: <87a5elkto3.fsf@justinweiss.com>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1730335550; c=relaxed/simple;
+	bh=oAA+9OSWf2l09wWMiiddhw7UfO+O2McyY//3wWYPwBo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MH3XKgoXTRAaGL4+Hp8MG5sKnA4nNviJzK+SeWAFEZD5mq+X8hTqgz+fOreSwcrrLj7xzRG0HO/AYdte/d94Q6E3OPwotgLfVZIghaW5eRuNl5HPjiQz6EhcROQOgxLputjOrb9Lh0EVbW8x8B+2iPZa3apmzjkmH24xpbRUoiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TrV3EIYK; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1730335548; x=1761871548;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oAA+9OSWf2l09wWMiiddhw7UfO+O2McyY//3wWYPwBo=;
+  b=TrV3EIYKA05jJUu3v56RFE41aWGRuc8AZK9WjXOc0LgVijBropSuoGYh
+   mEoZzccSFGb5SFvqVPhfevntmY+TZo5PEusSpjDhDwOWk8NM3nbwEwugl
+   h0NxEXQAaVQc8Y5tfpYBusAyn9D9fV6+96B5CMJEuI8P/kclCV5yEjonh
+   HLB1zTP7qt/gkWUpikt+ktfvkaoHLzHRuspIJkXUtaj6UZ1Xx3o4ErlGL
+   aBDIrvP9vB3rV3JS9mDC73MvPapNoU7qV8Z4moz3RwWgjMZhg65dG00Gl
+   B/zCuCpi6XJ+PdNlN0ZaUzEzY2qy55wwwCKWwkXEVeV7KoL4Lu9sYnN7o
+   g==;
+X-CSE-ConnectionGUID: pBbrpmWVTxy5luXuIjeOpA==
+X-CSE-MsgGUID: HOhj0uCgSF2aE7SRWOyvxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="40637955"
+X-IronPort-AV: E=Sophos;i="6.11,246,1725346800"; 
+   d="scan'208";a="40637955"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Oct 2024 17:45:47 -0700
+X-CSE-ConnectionGUID: X4k+Gr8wTfSo4COVZJWTZg==
+X-CSE-MsgGUID: bS1Vd3qcQn2WxqGo5GafTw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,246,1725346800"; 
+   d="scan'208";a="82790697"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 30 Oct 2024 17:45:43 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t6JJk-000fSq-2D;
+	Thu, 31 Oct 2024 00:45:40 +0000
+Date: Thu, 31 Oct 2024 08:44:48 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ryan Chen <ryan_chen@aspeedtech.com>, lee@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
+	andrew@codeconstruct.com.au, mturquette@baylibre.com,
+	sboyd@kernel.org, p.zabel@pengutronix.de,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, dmitry.baryshkov@linaro.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v7 3/3] clk: aspeed: add AST2700 clock driver.
+Message-ID: <202410310827.OOitgPg0-lkp@intel.com>
+References: <20241028053018.2579200-4-ryan_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241028053018.2579200-4-ryan_chen@aspeedtech.com>
 
-Jonathan Cameron <jic23@kernel.org> writes:
+Hi Ryan,
 
-> Applied with a few tweaks thanks to Andy's review.
->
-> I'll push this out as testing to let 0-day poke at it before it goes
-> into linux-next in a few days time.
->
+kernel test robot noticed the following build errors:
 
-Thank you, and thanks for all the help!
-Justin
+[auto build test ERROR on clk/clk-next]
+[also build test ERROR on pza/reset/next lee-mfd/for-mfd-next lee-leds/for-leds-next linus/master lee-mfd/for-mfd-fixes v6.12-rc5 next-20241030]
+[cannot apply to pza/imx-drm/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> Thanks,
->
-> Jonathan
+url:    https://github.com/intel-lab-lkp/linux/commits/Ryan-Chen/dt-bindings-mfd-aspeed-support-for-AST2700/20241028-133255
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20241028053018.2579200-4-ryan_chen%40aspeedtech.com
+patch subject: [PATCH v7 3/3] clk: aspeed: add AST2700 clock driver.
+config: csky-randconfig-001-20241031 (https://download.01.org/0day-ci/archive/20241031/202410310827.OOitgPg0-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241031/202410310827.OOitgPg0-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410310827.OOitgPg0-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   csky-linux-ld: drivers/clk/clk-ast2700.o: in function `ast2700_soc_clk_probe':
+   clk-ast2700.c:(.text+0x530): undefined reference to `aspeed_reset_controller_register'
+>> csky-linux-ld: clk-ast2700.c:(.text+0x558): undefined reference to `aspeed_reset_controller_register'
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
