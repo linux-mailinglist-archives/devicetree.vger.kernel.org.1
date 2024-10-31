@@ -1,262 +1,133 @@
-Return-Path: <devicetree+bounces-117744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49AA19B78D3
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 11:41:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D3289B78D6
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 11:41:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABCE1B23586
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F13B1C240CF
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:41:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A212199395;
-	Thu, 31 Oct 2024 10:40:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DBD01993B0;
+	Thu, 31 Oct 2024 10:41:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="WnAesqFu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lWDERBAv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D5A712C52E
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 10:40:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56EB31953A2;
+	Thu, 31 Oct 2024 10:41:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730371249; cv=none; b=FNicZDtQjT9T1jqsakosgXlykOB5hnfW7GVJmXid99kxfDTUR5Md6ABKuj2sGdJyyiHpapD+uD76hY/CA9EvC31vEQ66QM4Iw1OSDnU6muByclUsZysMlzQQVaAb6KgqmB3uHBRKQQ5W55RAysV25BLu4lxKYGfgYguyfyu5Nh0=
+	t=1730371316; cv=none; b=INgEIhL8w0DWcZIKF3OzpSFGgM0T/9httRsCARgOboN2q6hTVSu5PmNZPem/5fmQVIXVMrZ29tXIdEq/o1PIncdoaKIWIFIqarc542vE0bdr9d8xOf41/HP9/4A6avt2lKwNqtWlu/2jcV7y0J5iamnFpCAX98JD8g0diA6v8bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730371249; c=relaxed/simple;
-	bh=XtnAwlHqbDwEqBbAVelZJFoPIxrzfr7UOto+zsLrlkw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nb8l5eskZaTaLAF6p6P5kmpOPaH/TmJsVEXD+1aZqmFihQzRGLDU6JqCBiTooWM+PHKnqJ7mizYIELpk7/pMEAISioJqTkeuKVhf5oVvNjc1XpPKNcqxM/wxfBljcSNMrKHYdVoz+4KyoX8+iPFfTNn78UKwnuDzaSJMJyAcm8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=WnAesqFu; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4315eeb2601so8165725e9.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 03:40:45 -0700 (PDT)
+	s=arc-20240116; t=1730371316; c=relaxed/simple;
+	bh=q2m+OHJQe9VEbpZccvcxyWYrsG45lMP+Rd3vJL1KHms=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=QkEhXis1RbKvlXm/XVt+4DGczv21uDuSo/7j/UT8ARTcqaU4tlYwJ0oaeA2KUnggkCyJYJMgWn2653NJlUDybVp2JKHGst9ApXVQA+EeCjKvlfPYZr6s/VSl9flP7f2sJ/dJN2l2/IPMq2/9zci+8wgQBhp/ZXIhxZcrNR2HiJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lWDERBAv; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-20e6981ca77so8681045ad.2;
+        Thu, 31 Oct 2024 03:41:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730371244; x=1730976044; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=lgKmGA2XP6AGtqM9oW1AxbuyILWkrlt7gPefc+gScmU=;
-        b=WnAesqFuDcvek1e+QHgl4Bpl3rZuQvcSZyBeB+aZTFhmUsnXaWhaYGFBEJ+7kfnsPs
-         AsKtsRyISTpgbzzt0i5yazgmHbcsLyXjuJ1l5qEnutpaw1jIuTFrnj3Z57CDM8jOoec/
-         WqrNb3nV7qUmobnd4O+S6tEEJtW91fnc5SeINuKq4OmFe0Eb4xsreSNgLztwW/8+c9y9
-         wXjf/PJ+eQiyeLpd2wMLxU8NLTpDVVNgwSEdDEBmCX98HDPBdfZvAxn8clkiYnmYV2ts
-         XQ52+smTpnqtcOG3qez7yTP3f8CbD+/26YUXprElkmIFqgjqyIVbRYS54rM4kt3Z+RZz
-         V+HA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730371244; x=1730976044;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1730371314; x=1730976114; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lgKmGA2XP6AGtqM9oW1AxbuyILWkrlt7gPefc+gScmU=;
-        b=aI4CieX4DxrgCr6yveSIPHdWokOIASt1hXEQPcgPR6BVFNPz5LCyAPrH8tuk6VJ2cS
-         flBa8207bSxGMy0lu5N2veIIcyrky7F3p81XtCY/+/0aUzCvWS+ae6EJpp6738NQp/l0
-         DMrSn3fwBidkGE2+ItltD+uMT4zCC5VLh6DGjkHuD+ECGmh0ZfZkmt/Skz5qS8L8qeoA
-         OgHweEIbsT1AWH0YSGlV6qG0QEAE1aeXTMar/TdW/bjBXvK4lmR767AIbeJuOTxo74dy
-         KMQqbhtn+r8MQVBXLsyStPtkRBvOk61alIIw3FpmD8q1aSEVXFyiojnXRTj61NsQW/nA
-         aBUA==
-X-Forwarded-Encrypted: i=1; AJvYcCWxCK6IR4txyWVIe9pXPQevGLYKrapW9+6nyxf/f1LonZ75y8L6JHPx2cpKpXopUQbeSuGotMo2ZdF3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwV/8psnH1GEqh3eW9xa38YUWj6TPWfCiLc669tf7EPsoFfWlZn
-	2KNZL7S2HG6t+8/lnB12amMbw5LzuQ0INdA4V+uZeGXl9jG5a7NLbLieAgjlVOU=
-X-Google-Smtp-Source: AGHT+IFPYqx1ZOnNkJk+PcsQb0H+6RC0VdaFuA9KFeFSW0MTwuAVcXEfqSuPspkXtnVhb/q30nPQfA==
-X-Received: by 2002:a05:600c:1d8b:b0:426:59fe:ac27 with SMTP id 5b1f17b1804b1-4319ad06901mr232128505e9.26.1730371244319;
-        Thu, 31 Oct 2024 03:40:44 -0700 (PDT)
-Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4327d6984f0sm21970065e9.46.2024.10.31.03.40.43
+        bh=r5GNro7YWC/FjezeaKCH9xRHgSznLSEnftFlQE0TrdM=;
+        b=lWDERBAvcs16YHCtTdnWtu75E+sGf/YxzaJRFbEpZ5rma/jsYxaKsNHEIhNtXzbPFL
+         YgtvorLaxziu6Gx4YyFq3pm3TFLURiVzhnWVZFL68Pa35PNdrWujaIJg5rvFYsOy4Gje
+         08T1k9yh6B3NtY8mL3XMMf95wKPbctd5+kKfN6BR9IKs1ytmCjZ0itvnYlJh9MXC6Nfv
+         G3/lziIP75xqBQ/bnWPfkVh9RqzA+Zq3kF+8yjB12pNOd/vyKY+HhOHHg/87HC+ISwWQ
+         2dvPabZayxQ4AN7BNDVUMXglFzsJWZQgf72FAssCxV9xGv7c2kO1yBuI78xbPy0Yfvyc
+         yMcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730371314; x=1730976114;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=r5GNro7YWC/FjezeaKCH9xRHgSznLSEnftFlQE0TrdM=;
+        b=GiwA6xs21Sh8MdUYRFCXizuGwGBGvinC8QjTRMbmMpJsNewMgRDHC5sjNz//JELR/D
+         KpiZujG5QXq9Yin6MRYoa8D/kCOhHgQ6afpjpgvjFDhPHFNj1/b+Nhr47c+R3iaDqq5g
+         pw63SnMH66mECIIH9dKNIn3XOTUQTYAOx2Ot/s1N0RnSnV24qv2ikgT1/OQ2PVu+kDFD
+         QoYZANtCwJHRtuuvBgVgiENKx545vqPnyCMKqSxMBmxpID5RgKx9GggRXKjdd+QBtbZi
+         Hb2LU58q7WzlSr4YFj6qtmunDwHqAL/clRC31zxZeWYvhUEV7cKNjoiSjdLPPU4BnYSp
+         yeUw==
+X-Forwarded-Encrypted: i=1; AJvYcCUKVn6v4bbThuXYQPc/dpzXPKZFbqWY2++X1FfbHvGqFRucND+aqSFY9WL/18MBc3LphYpEy0UlZkSRjw==@vger.kernel.org, AJvYcCVQHJ9Z3hhhT9hY0lywcWSsiLLaE131Aa3nMscodGyCstDgAJ41dLs6N6EfsieQTpPOaGGCGMedVC9qZnTN@vger.kernel.org, AJvYcCVqOSlJgyo3gRVLyhtMO1tlHSpuf4yyb2DPq8+NWnnUxTxXdkqsLwC+T9zAnq1qXS59R6KEPstNvB8Q@vger.kernel.org, AJvYcCXTfzmcbnD9aEJnDUkmT4Qmw+Ehf9qBQijvbVRQ8Ulk62kQGmONR02TIXRkdDSzDyAb6gOCdEKozsV40NmMs4le@vger.kernel.org
+X-Gm-Message-State: AOJu0YzF4y+78KoqAFz4PLj8ckOCgwToecB6oOxauGDQI7HOcDylmnVG
+	6hTGIjj342bOIFlZiBouGnKdbqbR2yi67wNB32fsNmgl5QPxXc5Z
+X-Google-Smtp-Source: AGHT+IFxKgky6EqyTOIn7AIkk0TZ6xVCr1/Y3di4h7lNHH2Vcs437U3ctPeYZl6ScCv0XhCeKnA8vA==
+X-Received: by 2002:a17:902:ea04:b0:20c:f9ec:cd9e with SMTP id d9443c01a7336-21103c59c36mr32515255ad.41.1730371313557;
+        Thu, 31 Oct 2024 03:41:53 -0700 (PDT)
+Received: from mighty.kangaroo-insen.ts.net ([120.88.183.44])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211056ed995sm7067045ad.39.2024.10.31.03.41.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2024 03:40:43 -0700 (PDT)
-Date: Thu, 31 Oct 2024 11:40:42 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Dumitru Ceclan <dumitru.ceclan@analog.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-iio@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v2 3/4] iio: adc: ad_sigma_delta: Add support for reading
- irq status using a GPIO
-Message-ID: <y3amm7yj37lravbk6fcwze3jlllp4extmffqtx4jaoeqjt6uyl@nsdrcy2dk5kr>
-References: <20241028160748.489596-6-u.kleine-koenig@baylibre.com>
- <20241028160748.489596-9-u.kleine-koenig@baylibre.com>
- <a575430a74a7825a2df9fad1a8e073ad0507b0e7.camel@gmail.com>
- <20241030204429.70cdcf35@jic23-huawei>
+        Thu, 31 Oct 2024 03:41:52 -0700 (PDT)
+From: Mithil Bavishi <bavishimithil@gmail.com>
+To: andreas@kemnade.info
+Cc: aaro.koskinen@iki.fi,
+	bavishimithil@gmail.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	khilman@baylibre.com,
+	krzk+dt@kernel.org,
+	linux-hardening@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	robh@kernel.org,
+	rogerq@kernel.org,
+	tony@atomide.com
+Subject: Re: [PATCH v2 2/6] arm/dts: Add common device tree for Samsung Galaxy Tab 2 series
+Date: Thu, 31 Oct 2024 10:41:45 +0000
+Message-ID: <20241031104146.4538-1-bavishimithil@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241031083248.043d25d0@akair>
+References: <20241031083248.043d25d0@akair>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vu4ylvzikv3ve35j"
-Content-Disposition: inline
-In-Reply-To: <20241030204429.70cdcf35@jic23-huawei>
+Content-Transfer-Encoding: 8bit
 
+> well, that takes time, I wanted to start that on the right thing.
 
---vu4ylvzikv3ve35j
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 3/4] iio: adc: ad_sigma_delta: Add support for reading
- irq status using a GPIO
-MIME-Version: 1.0
+Yes indeed, I'll be more careful the next time, again sorry for the 
+trouble, I am not used to the process of mailing lists and may have done
+some mistakes there as well.
 
-Hello,
+> 1. make dtbs shows warnings
 
-On Wed, Oct 30, 2024 at 08:44:29PM +0000, Jonathan Cameron wrote:
-> On Wed, 30 Oct 2024 14:04:58 +0100
-> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
->=20
-> > On Mon, 2024-10-28 at 17:07 +0100, Uwe Kleine-K=C3=B6nig wrote:
-> > > Some of the ADCs by Analog signal their irq condition on the MISO lin=
-e.
-> > > So typically that line is connected to an SPI controller and a GPIO. =
-The
-> > > GPIO is used as input and the respective interrupt is enabled when the
-> > > last SPI transfer is completed.
-> > >=20
-> > > Depending on the GPIO controller the toggling MISO line might make the
-> > > interrupt pending even while it's masked. In that case the irq handler
-> > > is called immediately after irq_enable() and so before the device
-> > > actually pulls that line low which results in non-sense values being
-> > > reported to the upper layers.
-> > >=20
-> > > The only way to find out if the line was actually pulled low is to re=
-ad
-> > > the GPIO. (There is a flag in AD7124's status register that also sign=
-als
-> > > if an interrupt was asserted, but reading that register toggles the M=
-ISO
-> > > line and so might trigger another spurious interrupt.)
-> > >=20
-> > > Add the possibility to specify an interrupt GPIO in the machine
-> > > description instead of a plain interrupt. This GPIO is used as interr=
-upt
-> > > source and to check if the irq line is actually active in the irq
-> > > handler.
-> > >=20
-> > > Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com>
-> > > --- =20
-> >=20
-> > Hi all,
-> >=20
-> > Regarding this, I do share some of the concerns already raised by Jonat=
-han. I fear
-> > that we're papering around an issue with the IRQ controller rather than=
- being an
-> > issue with the device. When I look at irq_disable() docs [1], it feels =
-that we're
-> > already doing what we're supposed to do. IOW, we disable the lazy appro=
-ach so we
-> > *should* not get any pending IRQ.
+> 2. make CHECK_DTBS=y ti/omap/omap4-samsung-espresso7.dtb is too noisy
+> (probably same for espresso10).
 
-I think this is wrong and you always have to be prepared to see an irq
-triggering that became pending while masked.
+> a lot comes from the dtsi files, so you need to ignore a lot, probably
+> either strip down the new dts to almost nothing besides dtsi includes
+> to determine the background noise or take a similar device, redirect
+> output and errors, diff that output with the full devicetree.
+> I am trying to clean that dtsi warning mess up, linux-next shows a lot
+> less warnings but that takes time.
 
-> > Also looking at drivers as the xilinx gpio controller, it seems some
-> > are careful about this [2] and make sure to clear all pending IRQs
-> > when unmasking.
-> Your links are both to the same place.
+Oh, I was not aware of such tool, ran it and yeah there are a ton of
+warnings, where can I ask for assitance if I need it while fixing them.
 
-The right one is:
-https://elixir.bootlin.com/linux/v6.11.5/source/drivers/gpio/gpio-xilinx.c#=
-L419
+> One of the warnings that should be fixed:
+> dts/ti/omap/omap4-samsung-espresso7.dtb: lvds-encoder: compatible:
+> 'oneOf' conditional failed, one must be fixed: ['lvds-encoder'] is too
+> short 'lvds-encoder' is not one of ['ti,ds90c185', 'ti,ds90c187',
+> 'ti,sn75lvds83'] 'lvds-encoder' is not one of ['ti,ds90cf364a',
+> 'ti,ds90cf384a', 'ti,sn65lvds94'] 'lvds-encoder' is not one of
+> ['thine,thc63lvdm83d'] from schema $id:
+> 	http://devicetree.org/schemas/display/bridge/lvds-codec.yaml
 
-I think this is buggy, see below for the reasoning.
+Ah right, I have to add the encoder (doestek, dtc34lm85am) in bindings and
+in vendor, this patchset may grow too big I assume.
 
-> > Jonathan also said this:
-> >=20
-> > "True enough - that race is a possibility, but not all interrupt inputs
-> > are capable of gpio usage whilst setup to received interrupts."
-> Race should be easy to avoid using a level interrupt now I think more on =
-that:
-> can't miss a level.
-
-In general this isn't true. If it were that easy we could just assume
-all irqs being level interrupts and simplify the irq code a bit. At
-least for the ad7124 if a conversion is done, the chip holds the line
-low until the next conversion is done. In that case it deasserts
-DOUT/=CC=85R=CC=85D=CC=85Y for a short while to create another falling edge=
- signalling
-another event. I can imagine this to confuse level detection?!
-
-> > To my understanding this also means this is doomed to fail for some dev=
-ices or am I
-> > not following it?
->=20
-> If you were wired to one of those, you couldn't use the GPIO trick, but t=
-hen
-> don't have a GPIO in your DT in that case.
-
-Yes. If the device isn't properly connected in hardware you're out of
-luck. But that is also true if the spi clock line isn't connected. So
-apart from the requirement that "properly" involves things that are
-unusual for other SPI devices, that's expected. Having said that it was
-clear before because the MISO (aka DOUT/=CC=85R=CC=85D=CC=85Y) line was alr=
-eady know to have
-to be connected to an irq capable pin.
-=20
-> > All that said, my naive feeling would be for a masked line to not get a=
-ny pending IRQ
-> > and if it does, the driver should make sure to clean all outstanding in=
-terrupts when
-> > unmasking. But I'm far from being an expert of the IRQ subsystem. Maybe=
- it would be
-> > interesting to get some inputs about someone who actually knows better?
-> +CC Thomas Gleixner,
->=20
-> Annoying case where a wire is both the interrupt source for dataready and=
- the
-> SPI data line (if separate clock signal is toggling)  So currently the dr=
-iver
-> masks interrupts at the host end, but we have at least one interrupt cont=
-roller
-> where they end up pending and fire on reenabling the interrupt.  Querying=
- the
-> device to check the status register then ends up causing it to happen aga=
-in,
-> so that doesn't help.
->=20
-> Proposal is to query it as a GPIO (or maybe a separate GPIO wired to the =
-same
-> pin) to check the level when an interrupt comes in.
-
-In my understanding it's the expected behaviour of an irq controller
-that a masked irq becomes pending if the irq event (level or edge)
-happens and then triggers immediately after enable_irq() -- independent
-of laziness being used or not.
-
-That's also the only way to prevent missing interrupts. To understand
-that consider an irq that signals there is data in a fifo. The handler
-reads that data out and when it's empty returns. Returning results in
-unmasking the interrupt again. If new data arrives between seeing the
-fifo empty and reenabling the irq you miss the event if the irq doesn't
-become pending while it's masked.
-
-> Any thoughts on this nasty hardware and what is responsiblity of the devi=
-ce
-> driver vs the interrupt controller driver in this case?
-
-+1
-
-Best regards
-Uwe
-
---vu4ylvzikv3ve35j
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcjXqcACgkQj4D7WH0S
-/k6l0Qf9H43QChnW4w6qaJbshV3+8ZGstbguoZE1x5XYLSNe+7l2bvdXeQHitndw
-e3f6GhaFNsrUJDleicZxpAqPQ/btwJ3RsUs57l84iuH3svthZsiXpFASAAgzSNDn
-FB0oEaA7tBqP5df2mV6hgatju/wJ60nSfE+SksNW1newP61JGLohqv3FCwJk3hgi
-ZOitlJonKXLhZGt7o+vpyJ20giyFftf0LY7/5uKNGorfoKODJHFz4OVSehEAC82u
-WCtdJ3/5j/bcrAJZcV+HUS5MVJiIQ5ZpxS2A+BIW7qGBZ8NE3azjxHlRbzDzMLNv
-58mIqfx8LXGKjOF7ekIr4iJHRfIo7Q==
-=2pE1
------END PGP SIGNATURE-----
-
---vu4ylvzikv3ve35j--
+Best Regards,
+Mithil
 
