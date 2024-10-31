@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-117736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64DEB9B77EC
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:51:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9C719B7821
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:59:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAB8E1F24AA2
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 09:51:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA565285A78
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 09:59:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47458198E8C;
-	Thu, 31 Oct 2024 09:50:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14CCB198A22;
+	Thu, 31 Oct 2024 09:59:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TWYWDuyk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PmGBbOJ0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0632A198E70;
-	Thu, 31 Oct 2024 09:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7D82197A9A;
+	Thu, 31 Oct 2024 09:59:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730368251; cv=none; b=pZvhKUIdX00JElAZBKRz01VgfpNhiftJenuuZ4yGCI05H62tim9Cknw7Y05b2T4Ok8cbd2CrCUzinwjL6yekVfdTc9vPCohNLxJklHFjCOqiO3YnUmYUtKzhO6vwOxe+G4/jIxPIPBZrN3n8R8XDQSO+ohxFbLPYv+mlkzqyKew=
+	t=1730368762; cv=none; b=d9bBWBjZonuNyels0AVt4r1KwG68LknV9jXmBfpPpUyuSe+V/YWhxvJlYq6puZpIlj7WiZZ21T9twjTftR+oCiy6H7UMNClX2UEHONel+YrNHcbf7DQtHvUpWe/AeFHKChpkmF96tYMpeS2bPVmnBkDWi5CsqpZxL26V/oFEJvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730368251; c=relaxed/simple;
-	bh=Vjh+3r/T5wXwLUhjDZ9Z5nnKZ/Su77T2fS+C3WYnF70=;
+	s=arc-20240116; t=1730368762; c=relaxed/simple;
+	bh=0Z/Ae2UNtxEs3oOIzL9noQbt9KWPAGJ+Ppa2XVlpXeU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VAEGbRVSkehGEOdNuG1grWgQ+PTNZb04NQRjlPXTkDMVwHBFkGie7NK230SJGWlMVIiny/QceJfNb88C0N0FppI9gwcJRMvWQ8WZL1Wd//W0rLqao0Nw3oYxudYzvfJxKXhQgHOKxcodkCfzNobN2I2Y4loMvdotqXGBPjnwUJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TWYWDuyk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 543DBC4CEC3;
-	Thu, 31 Oct 2024 09:50:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=uKZjlYRH/9WWnzPkz6zJbYt2uIjYyDQzJAWq/yLqJsQPRnQrBanN4RJKLj8oGJm8uYPnO5p1PnzPyfqYGts7+zTsBDm/8bcJ2W6MNl/m/9IrfMg6aT/b0uCgr+KJJyvXU+FJ4lQhE9Z78eHziuF2Ku1bkRan2UlYV+9yEOOkLG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PmGBbOJ0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06069C4CEC3;
+	Thu, 31 Oct 2024 09:59:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730368250;
-	bh=Vjh+3r/T5wXwLUhjDZ9Z5nnKZ/Su77T2fS+C3WYnF70=;
+	s=k20201202; t=1730368761;
+	bh=0Z/Ae2UNtxEs3oOIzL9noQbt9KWPAGJ+Ppa2XVlpXeU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TWYWDuyk4z6lBKH9oDOionHLuqSbNreW5L9Fn8Q7kjcgu9rF2TdYi5Xe/4VrF+Aok
-	 8vwR9CUvm+x3i13zuMNlyaGeSMM6ZUQ6KZebggcTpH6oGAIsEFQJJF812JnOqP9Nq5
-	 S+U+LUuEQzkE6oMlrB9tXxPMO1jyXKb1Cn6/d7E6D1XQXv8ip6GgkZdEM9iMOvRXFC
-	 w88D6YLXcFd/5LMuJGzdxFGOPzD84TS6lgtRrz5CxxNyODY9+vzPTvj27l7rMILcn9
-	 RPOzcwOjrplsorMIQ9dtztEM/QjQu0qxE8Nmta23LMMrOX9PftCMRWuFrztfwDcaem
-	 OkDFfhZSzq+gA==
-Message-ID: <24e81091-e0f9-40c7-b781-10354b4a3ea2@kernel.org>
-Date: Thu, 31 Oct 2024 10:50:41 +0100
+	b=PmGBbOJ0DKa25hH+c1NLm5IW6UAQOPuqujiGj89c+Dmkl9+bri+eg6qS8wnnXSXud
+	 HduqN9MsQsDJiHd1E6FqtGnpgikzYv4vXhYymJDHNWcyv0BvGesK3LdaW+IrkEUox+
+	 Kb4xLAsh2aLrzLbOn1qHAxuAP6v6unc816JgeplfgO4QyBxXtYXTUH6u9Xc30DagaT
+	 Y01NeeLyCEZcvkv1GzH5/2HrD+IdpVJcIsK9lN8+hu6m4KSns8146sCQ5uy8C8nKNN
+	 ED2MFbA8ebI8UEGkBDs/KparCPlu/s1J7APBi3pDIe4bKyPVr87hJG/rBFdxrj+3cQ
+	 MbpxQWun36q6g==
+Message-ID: <f11f1a3c-0626-4f6c-9bfd-1bf6fb37388e@kernel.org>
+Date: Thu, 31 Oct 2024 10:59:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: mfd: sprd,sc2731: convert to YAML
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org
-References: <ZyExK01iprBHhGm6@standask-GA-A55M-S2HP>
- <ki4wvjslncrngwpz7qukknzgdsjkxvrhitem7i5lof6ggyhu4e@tviovrd2wi77>
- <ZyHjW86v9Y59-TJQ@standask-GA-A55M-S2HP>
- <7db6431e-1892-463e-9c74-cd466ae3ca32@kernel.org>
- <ZyHq4FJ0ubQVGREo@standask-GA-A55M-S2HP>
+Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: wcd937x-sdw: Add static channel
+ mapping support
+To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Bard Liao <yung-chuan.liao@linux.intel.com>, Jaroslav Kysela
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+ Sanyog Kale <sanyog.r.kale@intel.com>, linux-arm-msm@vger.kernel.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com, kernel@quicinc.com
+References: <20241023061326.3871877-1-quic_mohs@quicinc.com>
+ <20241023061326.3871877-2-quic_mohs@quicinc.com>
+ <qzjbiby7w6a7m4e324hdatgklmejlcxfwv7tszzfmdqahgrbu2@bcwsdlrpncxq>
+ <d98bff34-d7ea-2b05-0c0d-eaf0392aef3f@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,55 +112,247 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZyHq4FJ0ubQVGREo@standask-GA-A55M-S2HP>
+In-Reply-To: <d98bff34-d7ea-2b05-0c0d-eaf0392aef3f@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/10/2024 09:14, Stanislav Jakubek wrote:
-> On Wed, Oct 30, 2024 at 08:48:25AM +0100, Krzysztof Kozlowski wrote:
->> On 30/10/2024 08:42, Stanislav Jakubek wrote:
->>>>
->>>>> +
->>>>> +  '#address-cells':
->>>>> +    const: 1
->>>>> +
->>>>> +  '#interrupt-cells':
->>>>> +    const: 1
->>>>> +
->>>>> +  '#size-cells':
->>>>> +    const: 0
->>>>> +
->>>>> +  regulators:
->>>>> +    type: object
->>>>> +    $ref: /schemas/regulator/sprd,sc2731-regulator.yaml#
->>>>> +
->>>>> +patternProperties:
->>>>> +  "^adc@[0-9a-f]+$":
->>>>> +    type: object
->>>>> +    $ref: /schemas/iio/adc/sprd,sc2720-adc.yaml#
->>>>> +
->>>>> +  "^charger@[0-9a-f]+$":
->>>>> +    type: object
->>>>> +    $ref: /schemas/power/supply/sc2731-charger.yaml#
->>>>> +
->>>>> +  "^efuse@[0-9a-f]+$":
->>>>> +    type: object
->>>>> +    $ref: /schemas/nvmem/sprd,sc2731-efuse.yaml#
->>>>
->>>> I don't think this was merged. You still have dependency.
+On 30/10/2024 06:07, Mohammad Rafi Shaik wrote:
+> On 10/23/2024 1:22 PM, Krzysztof Kozlowski wrote:
+>> On Wed, Oct 23, 2024 at 11:43:23AM +0530, Mohammad Rafi Shaik wrote:
+>>> Add static channel mapping between master and slave rx/tx ports for
+>>> Qualcomm wcd937x soundwire codec.
 >>>
->>> This is in next-20241029, which this patch is based on.
+>>> Currently, the channel mask for each soundwire port is hardcoded in the
+>>> wcd937x-sdw driver, and the same channel mask value is configured in the
+>>> soundwire master.
+>>>
+>>> The Qualcomm boards like the QCM6490-IDP require different channel mask settings
+>>> for the soundwire master and slave ports.
 >>
->> Try what I wrote below and see if this works...
-> 
-> I assume you meant the MFD maintainers' tree here.
-> Yes, that tree doesn't have the nvmem patch this depends on.
-> 
-> Would the approach with listing the compatibles and additionalProperties:
-> true be considered a temporary workaround?
+>> Different than what? Other wcd937x? Which are these?
+>>
+> For Qualcomm QCM6490-IDP board soundwire master needs a different 
+> channel mask setting.
 
-Not really, it's a correct approach. The node will be validated anyway
-by efuse/child schema.
+I understand, but I asked different than which board? Maybe all boards
+needs this different channel setting, so basically it is "not different".
+
+> 
+> The wcd937x channel mask values are hardcoded in wcd driver.
+> https://elixir.bootlin.com/linux/v6.12-rc5/source/sound/soc/codecs/wcd937x-sdw.c#L35
+> https://elixir.bootlin.com/linux/v6.12-rc5/source/sound/soc/codecs/wcd938x-sdw.c#L37
+> 
+> In case of QCM6490-IDP the soundwire master and wcd937x require 
+> different channel mask settings, not the same.
+> For Example, wcd937x ADC2 connection
+> 
+>                            Master                 Slave (wcd937x)
+>                       +--------------+           +--------------+
+>                       |  +--------+  |           |  +--------+  |
+>           ADC1  ----->|  | PORT1  |  |           |  |   TX1  | 
+> |<-----------ADC1
+>           ADC2  ----->|  |        |  |           |  |        |  |
+>                       |  +--------+  |           |  +--------+  |
+>                       |              |           |              |
+>           ADC3  ----->|  +--------+  |           |  +--------+  |
+>                       |  |  PORT2 |  |           |  |   TX2  | 
+> |<-----------ADC2
+>                       |  |        |  |           |  |        | 
+> |<-----------ADC3
+>                       |  +--------+  |           |  +--------+  |
+>                       |              |           |              |
+>                       |  +--------+  |           |  +--------+  |
+>   DMIC0...DMIC3------>|  |  PORT3 |  |           |  |   TX3  | 
+> |<-----------DMIC0...DMIC3
+>                       |  |        |  |           |  |        | 
+> |<-----------MBHC
+>                       |  +--------+  |           |  +--------+  |
+>                       |              |           |              |
+>                       |  +--------+  |           |  +--------+  |
+>   DMIC4...DMIC3 ----->|  |  PORT4 |  |           |  |   TX4  | 
+> |<-----------DMIC4...DMIC7
+>                       |  |        |  |           |  |        |  |
+>                       |  +--------+  |           |  +--------+  |
+>                       |              |           |              |
+>                       +------------- +           +--------------+
+> 
+> 					
+> For ADC2, The Slave needs to configure TX2 Port with channel mask value 
+> 1 and
+> For Master, it required PORT1 with channel mask  value 2.
+> 
+> 
+> In existing design master and slave configured with same channel mask, 
+> it will fail ADC2.
+> The new design will help to configure channel mapping between master and 
+> slave from DT.
+> 
+>>>
+>>> With the introduction of the following channel mapping properties, it is now possible
+>>> to configure the master channel mask directly from the device tree.
+>>>
+>>> The qcom,tx-channel-mapping property specifies the static channel mapping between the slave
+>>> and master tx ports in the order of slave port channels which is adc1, adc2, adc3, adc4,
+>>> dmic0, dmic1, mbhc, dmic2, dmic3, dmci4, dmic5, dmic6, dmic7.
+>>
+>> I still don't get what is the channel here.
+>>
+> Typo error,
+> 
+> The qcom,tx-channel-mapping property specifies the static channel 
+> mapping between the slave
+> 
+> and master tx ports in the order of slave port channel index which are 
+> adc1, adc2, adc3, adc4,
+> 
+> dmic0, dmic1, mbhc, dmic2, dmic3, dmci4, dmic5, dmic6, dmic7.
+> 
+> 
+> 
+> https://elixir.bootlin.com/linux/v6.12-rc5/source/sound/soc/codecs/wcd937x.h#L599
+> 
+> 
+> 
+> Will be fixed in the next version
+> 
+>>>
+>>> The qcom,rx-channel-mapping property specifies static channel mapping between the slave
+>>> and master rx ports in the order of slave port channels which is hph_l, hph_r, clsh,
+>>> comp_l, comp_r, lo, dsd_r, dsd_l.
+>>
+>> And this description copies binding :/.
+>>
+>> Please wrap commit message according to Linux coding style / submission
+>> process (neither too early nor over the limit):
+>> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+>>
+> 
+> Ack
+> 
+>>>
+>>> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>>> ---
+>>>   .../bindings/sound/qcom,wcd937x-sdw.yaml      | 36 +++++++++++++++++++
+>>>   1 file changed, 36 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
+>>> index d3cf8f59cb23..a6bc9b391db0 100644
+>>> --- a/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
+>>> +++ b/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
+>>> @@ -58,6 +58,38 @@ properties:
+>>>       items:
+>>>         enum: [1, 2, 3, 4, 5]
+>>>   
+>>> +  qcom,tx-channel-mapping:
+>>> +    description: |
+>>> +      Specifies static channel mapping between slave and master tx port
+>>> +      channels.
+>>> +      In the order of slave port channels which is adc1, adc2, adc3, adc4,
+>>> +      dmic0, dmic1, mbhc, dmic2, dmic3, dmci4, dmic5, dmic6, dmic7.
+>>> +      ch_mask1 ==> bit mask value 1
+>>> +      ch_mask2 ==> bit mask value 2
+>>> +      ch_mask3 ==> bit mask value 4
+>>> +      ch_mask4 ==> bit mask value 8
+>>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>>> +    minItems: 8
+>>> +    maxItems: 13
+>>
+>> Why size is variable? This device has fixed amount of slave ports, I
+>> think.
+>>
+> 
+> yes will check modify
+> 
+>>> +    items:
+>>> +      enum: [1, 2, 4, 8]
+>>
+>> What is the point of using bits if you cannot actually create a bit mask
+>> out of it? Why this cannot be 7?
+>>
+> Actually, these values should be fixed: 1 (0001), 2 (0010), 4(0100), 
+> 8(1000).
+
+What is fixed here?
+
+I asked why these look like bitmasks but they cannot be used as bitmask.
+This is a mapping, so index is channel slave port channel number and the
+value is master port channel number, no?
+
+> 
+> 
+> If required to set 7, it is handled in wcd driver based on mixer commands.
+> https://elixir.bootlin.com/linux/v6.12-rc5/source/sound/soc/codecs/wcd937x.c#L1199
+
+I talk about binding. Why you are not allowing value of 7 if this is a
+mask? If this is not a mask - property says it is channel mapping - then
+these should be [1-4].
+
+> 
+> 
+> Example:
+> WCD937X_HPH_L -> channel mask value is 1
+> WCD937X_HPH_R -> channel mask value is 2
+
+
+
+> 
+> 
+> The final channel mask for that specific port is 3
+>>> +
+>>> +  qcom,rx-channel-mapping:
+>>> +    description: |
+>>> +      Specifies static channels mapping between slave and master rx port
+>>> +      channels.
+>>> +      In the order of slave port channels, which is
+>>> +      hph_l, hph_r, clsh, comp_l, comp_r, lo, dsd_r, dsd_l.
+>>> +      ch_mask1 ==> bit mask value 1
+>>> +      ch_mask2 ==> bit mask value 2
+>>> +      ch_mask3 ==> bit mask value 4
+>>> +      ch_mask4 ==> bit mask value 8
+>>
+>> and the value is what exactly? Index is channel, but what does "ch_mask4 ==> bit
+>> mask value 8" mean? I don't understand this at all.
+>>
+> 
+>                            Master
+>                       +--------------+
+>                       |  +--------+  |
+>            ADC1 ----->|  | PORT1  |  |
+>            ADC2 ----->|  |        |  |
+>                       |  +--------+  |
+>                       |              |
+>            ADC3 ----->|  +--------+  |
+>                       |  |  PORT2 |  |
+>                       |  |        |  |
+>                       |  +--------+  |
+>                       |              |
+>                       |  +--------+  |
+>    DMIC0...DMIC3 ---->|  |  PORT3 |  |
+>                       |  |        |  |
+>                       |  +--------+  |
+>                       |              |
+>                       |  +--------+  |
+>    DMIC4...DMIC7----->|  |  PORT4 |  |
+>                       |  |        |  |
+>                       |  +--------+  |
+>                       |              |
+>                       +------------- +
+> 
+> 
+> The PORT1 has 2 ADC connections,
+> 
+> ADC1 -> PORT1 ch_mask index 1 -> channel mask value 1 (0001)
+> ADC2 -> PORT1 ch_mask index 2 -> channel mask value 2 (0010)
+> 
+> 
+> DMIC0 -> PORT3 ch_mask index 1 -> channel mask value 1 (0001)
+> DMIC1 -> PORT3 ch_mask index 2 -> channel mask value 2 (0010)
+> DMIC2 -> PORT3 ch_mask index 3 -> channel mask value 4 (0100)
+> DMIC3 -> PORT3 ch_mask index 4 -> channel mask value 8 (1000)
+> 
+> 
+> Will check and add a proper description.
+
 
 Best regards,
 Krzysztof
