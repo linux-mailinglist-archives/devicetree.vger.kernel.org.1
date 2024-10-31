@@ -1,129 +1,116 @@
-Return-Path: <devicetree+bounces-117639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEDEC9B7450
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:10:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 874459B7459
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:15:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 863B81F24460
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 06:10:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B88641C21219
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 06:15:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 567C9146D57;
-	Thu, 31 Oct 2024 06:09:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BCFC1422C7;
+	Thu, 31 Oct 2024 06:15:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HCsGv2md"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MGrio9ey"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 758EB1465AB;
-	Thu, 31 Oct 2024 06:09:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ABCF13DB99;
+	Thu, 31 Oct 2024 06:15:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730354979; cv=none; b=XzQCcF1nlqmmmHGGuyz6QGX9u5q/urvklJwMdbol6ft+uN/6zC1HRlb/shTJm6oOkjmGfXvEcaN1QtYPFa6dnInkDkxi+Y1FyUWiyT7czKoAfFCMuWL7uzgEnGoMDX5HgjUbce//mzxWORAYlaHFHKJJlZqmOOri41OLYJKXSVo=
+	t=1730355311; cv=none; b=nxUs84tZgjmOgB3pgdPooiC5r9kE7801JYBHfIEksQFgZU4gJkq99or3h8BKjNldyPVyTBWMto8XIwxkfmqBBnsG+Fnj4z4hui1FSu5ks+1W85Ey29YuAdSg11wAieQWNtzqHlpdxQDYoPE7c3/5j95RFxSd5moqBs2yZZsubHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730354979; c=relaxed/simple;
-	bh=Q9CnyF7t//8HC8h6F6lh1zeH9rMHPCikrgtfjgJg+a8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=llbhjA0AaUWtr8EiOqOGmYf39ozrG973x8pWsGPG7pNOF1V3WKZDTvX2Uh9dga+p0+3n9Zgkk8aENLPIePYacryQ1boCN0X6LvKEdzNFnPBLRO/taMkQ0RtKhV7m1jMKNuFRYZRHflf/19O5FqT/geBFPOaKSwQ0a/8sFdg2eFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HCsGv2md; arc=none smtp.client-ip=209.85.215.171
+	s=arc-20240116; t=1730355311; c=relaxed/simple;
+	bh=DnuqAVCDEoiNqvIljcES2Gj6fmR7w07gT8Kjtmhb/PQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uYXiQnXu0jOzqJU/2/MI1w6+jcReQhLCnPpXRRiDsqvfE0eEARgr+yevAXhiBgItZA8F0y1iagu3Cc4cG8oBO3Etvq2PeYPIJO7Wa7AoqaK+91QVRQ0gzn8PQxAiPX0c3Ep/lfmYWanViJptqD92FMv5dbKq1OBUTLpRfuHUa10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MGrio9ey; arc=none smtp.client-ip=209.85.210.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7d4f85766f0so514760a12.2;
-        Wed, 30 Oct 2024 23:09:37 -0700 (PDT)
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-71e592d7f6eso436493b3a.3;
+        Wed, 30 Oct 2024 23:15:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730354977; x=1730959777; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ncgmlyGfcrqHCYKyqt0DRpGIqa2UXUmRq5v7oAb7ZpU=;
-        b=HCsGv2mdXs5DdK2iPp6y0Klq9JkySVhO/lb/QlmMNcGWHq74AiFDnO0F3ojDnytv0M
-         9V3XwcJkvma3qr0OtIDMIzueE4HNjsKIBVtm2s+fEI1X5ECmQDSsrXLYVsWL5nrczJgg
-         cZc32r35Vs51dkz4dZLndUps0iSsyzdUOOD5DxQx8ZsCi528EKNyo0gVwEzCVx3dVpKr
-         p6SrrraeyPeyFG65LP0paMutbeQmQuCd/OjZpftc6NqDF6656tx1PqpXkFzfZWkpZvfz
-         +lB+a1DOSyqCHvhlDfdWsHYdRPagr6/o7NdnvhCW6V0LUdemBl6ITVCOe92pNTqQNUKP
-         zXJQ==
+        d=gmail.com; s=20230601; t=1730355309; x=1730960109; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XNHizp3vdR2jJwWfWzhOjHw4wEUjGKp2hXV+t4+ArSE=;
+        b=MGrio9eyI6bgdOT4iv3XWN5rgY9Y6gDHd46FMR7P2v29yJyDjjaOEqnEekWhbjG0mb
+         fvYHGN4eItTB/St1Ff0fRWQnzndO2zhj7yThGSnwIPItbAf29C1e8abuMfr/IqwyZSoF
+         lzLatwErtXdpXePp99EirLPFcLdsCe4maKjHCT9Rajp472V4puM9tiQjNODV52ukjrTJ
+         yLoqG0qaUzcyyN6Jf40TzuJzvabwh9sxi6H6bp19TKgb7+TT8Oo8xV9TQ9RVi4qJrvN8
+         NF7DHQeW1tILeOANkBWwiojnHGNaOmATT0FM2rffJBniS4l3aWyzlsl2B6Jc4SXz5c5n
+         2gCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730354977; x=1730959777;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ncgmlyGfcrqHCYKyqt0DRpGIqa2UXUmRq5v7oAb7ZpU=;
-        b=qEKWFDsontLdASx84/3nVGiIR9pfLPXz/lY8txikH6PsmBR3cQfLUHhaGAsE07SNOB
-         Pwo/sGKL2eLIqWU0EUiiRx1GtTxgFtRTMm9x4bUd94+6sl/lNBuYeO/ZSX8P26jgLJ0x
-         y4Z59wLrwKv/ES/A5PG+1j6Ir+aGiq4NRvqtaBdzORYuKOteB7XB0McQwt3J6J9JQcYu
-         8N2XJVtS29kTSpihspQN+7kihJefSpnzTdjd22kpiNaMlA9qdtm7Yik799D0ibOtdo1u
-         fhADla0//cFmZZ0iDxK+GQqWn0FMaAL2E4PppSUJLXywpVzUla1GLmpVANloF5N/NPzQ
-         S8rg==
-X-Forwarded-Encrypted: i=1; AJvYcCVHcylOpzcnQPPRqQfKXxV4T+sIOgY4Zq8ku21POpdQihPvTV2p+EgXIs+A8tcT5KcZXGEuIFhKPqW3@vger.kernel.org, AJvYcCWpCBq3zDmXLFDiVH0bkczKcaP/tqpBj6Z95t+zzcKSzouVq18d+QArdz5gLa9z7JBxatOOGphMTnPaJe4N@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYe0/rXkgRP9/pA3Ebnxm/hEPrBhDw8E6U4GIKidNLdxeVQcZA
-	CO+mFp8oMctAa/IZER69bSq8ERFT/hvzDYshZQexbJ5PdrItHa+O
-X-Google-Smtp-Source: AGHT+IGwIIjCJ9cra3CtW/n855IKa7eXRuLq3icr68WZ/L++36slplZBz+5pTu2cxLdjevaZWAGmAg==
-X-Received: by 2002:a05:6a21:3990:b0:1d9:1f7a:a44f with SMTP id adf61e73a8af0-1db91d898fcmr2823576637.12.1730354976633;
-        Wed, 30 Oct 2024 23:09:36 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1730355309; x=1730960109;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XNHizp3vdR2jJwWfWzhOjHw4wEUjGKp2hXV+t4+ArSE=;
+        b=QuajytvI/Om7GEIXbONUvk84p7sZpJMozNkJneHWc3zsBonRrEcgTo7WXJz/q9gAjT
+         bJGFmSsJj3kJaapLrSJvOmdDkoqTSzyezpJt8EVBVgQeXYzaWgGdIuvGRtv1ntExjbzD
+         3JJ/4abJEynBynpox9smzJ4AtmDg1bfN9Z6VOJUfgURZyVsOwFxxC0TXj6j0GMj+iRPk
+         yHX/3IlnwtmH7TH+GuizIGUV36e/wopfwn/ICoTCWZrE9XlOXEknPzKHMAN4psA5WUij
+         iHPx7LpfRSsPOGzwxQe19TCtuetstDpffyzXWcVKf3vwMJhn6zNafYqXZmkjuREYkxjK
+         TICw==
+X-Forwarded-Encrypted: i=1; AJvYcCVY5tFJqh8LWwtLGHGkbam3IV1ygE7VW4a5ByfrSHtui+YtsmqECe9QsI5rs8C9qsaGPTKez98G2Z1bkSZ9@vger.kernel.org, AJvYcCXcnKof6c+E3XnLBLLEZ19y00I4+GQI89eZyyb3FjMV2pdFkiBhjPLSv9DRz6xdYenYdJV/v8ceTVSg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxzq2eNsBOPOGQYjkHl4Im1T3H3nDFYpl7yqBu+8KtmSStvGnMz
+	MddyLodiwrqxa7HyRze5P5Q0N3gqsBiat6LkAWclGnLUIG28cvuy
+X-Google-Smtp-Source: AGHT+IHe8ZlhfO4mUD9OaBTVRSTp19pxfjwgeX5Q24Oh31kpwAwy3z/U7oVNpbqUXJpwMzMLLWNxEw==
+X-Received: by 2002:a05:6a00:b48:b0:71e:69e:596b with SMTP id d2e1a72fcca58-7206306de29mr24794428b3a.17.1730355308831;
+        Wed, 30 Oct 2024 23:15:08 -0700 (PDT)
 Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc1eb1a0sm557691b3a.67.2024.10.30.23.09.35
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc2c54c2sm567916b3a.134.2024.10.30.23.15.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Oct 2024 23:09:36 -0700 (PDT)
+        Wed, 30 Oct 2024 23:15:08 -0700 (PDT)
+Date: Thu, 31 Oct 2024 14:14:40 +0800
 From: Inochi Amaoto <inochiama@gmail.com>
-To: Chen Wang <unicorn_wang@outlook.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Guo Ren <guoren@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: Chen Wang <unicorn_wang@outlook.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Peter Zijlstra <peterz@infradead.org>, Inochi Amaoto <inochiama@outlook.com>, 
+	Guo Ren <guoren@kernel.org>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Yangyu Chen <cyy@cyyself.name>, Anup Patel <apatel@ventanamicro.com>, 
+	Hal Feng <hal.feng@starfivetech.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, 
+	Inochi Amaoto <inochiama@gmail.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-riscv@lists.infradead.org
-Subject: [PATCH v5 3/3] riscv: defconfig: Enable T-HEAD C900 ACLINT SSWI drivers
-Date: Thu, 31 Oct 2024 14:08:59 +0800
-Message-ID: <20241031060859.722258-4-inochiama@gmail.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241031060859.722258-1-inochiama@gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: interrupt-controller: Add Sophgo
+ SG2044 ACLINT SSWI
+Message-ID: <esuteqvz37blehx6wa5cj5ixlglcbullhuls3rcvjtuiviqqpb@ojho3arlnwst>
 References: <20241031060859.722258-1-inochiama@gmail.com>
+ <20241031060859.722258-2-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241031060859.722258-2-inochiama@gmail.com>
 
-Add support for T-HEAD C900 ACLINT SSWI irqchip.
+On Thu, Oct 31, 2024 at 02:08:57PM +0800, Inochi Amaoto wrote:
+> Sophgo SG2044 has a new version of T-HEAD C920, which implement
+> a fully featured T-HEAD ACLINT device. This ACLINT device contains
+> a SSWI device to support fast S-mode IPI.
+> 
+> Add necessary compatible string for the T-HEAD ACLINT sswi device.
+> 
+> Link: https://www.xrvm.com/product/xuantie/C920
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
----
- arch/riscv/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Hi, Conor,
 
-diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-index 2341393cfac1..5b1d6325df85 100644
---- a/arch/riscv/configs/defconfig
-+++ b/arch/riscv/configs/defconfig
-@@ -256,6 +256,7 @@ CONFIG_RPMSG_CTRL=y
- CONFIG_RPMSG_VIRTIO=y
- CONFIG_PM_DEVFREQ=y
- CONFIG_IIO=y
-+CONFIG_THEAD_C900_ACLINT_SSWI=y
- CONFIG_PHY_SUN4I_USB=m
- CONFIG_PHY_STARFIVE_JH7110_DPHY_RX=m
- CONFIG_PHY_STARFIVE_JH7110_PCIE=m
--- 
-2.47.0
+Could you review it again? I have updated the description of
+the binding and mark the device is T-HEAD specific.
+
+Regards,
+Inochi
 
 
