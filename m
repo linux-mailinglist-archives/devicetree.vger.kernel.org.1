@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-117704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC4119B762E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 09:17:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA2C79B7633
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 09:18:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BB3C2856F5
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:17:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A00E42858AD
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:18:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F188F154BEA;
-	Thu, 31 Oct 2024 08:17:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A903B14EC46;
+	Thu, 31 Oct 2024 08:18:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gVoMdO9l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XX45PSYO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9F5D1547ED;
-	Thu, 31 Oct 2024 08:17:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FA6C7E59A;
+	Thu, 31 Oct 2024 08:18:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730362633; cv=none; b=eNVEzSm6a7T2pMPedhuW+l/sqE3PA63NalZGTC4KlSo5oHz/2FYMZSVPAvMscdqha5uBLUiPK26BcFWgYHmWBROHKlbQPsdX10XjDfz0XkdnbTUuAHe9Cw9PRoW9Eu6EdvfUxrEEIZg6LfJU63uUG9j3U1IqCP4Q6i6iw/P3hzs=
+	t=1730362734; cv=none; b=CDdRc5rFteUl+WA1xBhEcUA2uqPaH6XQGkpKe8DKW3iSzTMCPQQs8fnJa/7oMtxd2yu/O9WywH7Fw+aog5kjlkImkzYGf3B9zrDY+2/ZoJXWR759ayWEVjaS1YDnf24Gpzu9xKFAleqy9V+UHCBc8x3ppJU4KY0J1/SPZe+Z+2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730362633; c=relaxed/simple;
-	bh=/Uypm1Fod0x7S2WLQLLjrh9dUnoclEPbXXeFRSWSGig=;
+	s=arc-20240116; t=1730362734; c=relaxed/simple;
+	bh=kSsM/nW/TCC/rQiWCePnYj6XEURc0s4gHPiZvFg6n38=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KKYEwC7pmplcyVxcHqHXp0YpqX0wmtEeOKRv0P0XRCli060rZYJFGIr0autdYivcKuXazTuWwVsUtuLRgiSHIKxg+fW686401mBcA2dW2WP1du+jPU0dSnK5pBa7sGy0TfroOx5InZB4nvqtGI0RNVvSU96kYNh89QT0Zk2C6yg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gVoMdO9l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29B68C4CED2;
-	Thu, 31 Oct 2024 08:17:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BmoVubmPoCJ1lr9XUQAtAIazru81dpF5uhpWUjNtuBzwXFYB5JHsn1iHgNw016UQR1VqbvyWegme2PGZucsJPx4hoFPdruZ9E5Pj1ECb0/sR39KnOYgF0ZJQq1/8AdN4a9mrX82l5K9zPJP3LtIbdr9GuAqUwYPu7NVuv+4I5as=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XX45PSYO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2DF0C4CEC3;
+	Thu, 31 Oct 2024 08:18:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730362633;
-	bh=/Uypm1Fod0x7S2WLQLLjrh9dUnoclEPbXXeFRSWSGig=;
+	s=k20201202; t=1730362733;
+	bh=kSsM/nW/TCC/rQiWCePnYj6XEURc0s4gHPiZvFg6n38=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gVoMdO9lHGWjKUvm6JCnBPjQvobYbSvS8WDuDiVuizf6sersPToWLYisJcdhLEHLG
-	 WfyjpM5ScGpj2ukitEJ82XMPgofzEXFmyfKcSAD+ErbwBp95Ew0PxHDHeqX4zj+IJI
-	 FeAcRLP2B5W1/mvDwOUZAo1xgx2NJsiLShNgQlmMpaO825j85aogM3MDLxX8ubgkC0
-	 6xwNuEcZgoDoInH4SCh8WXdLCo0LE4v0rn3Drjqcz18CSUk+b5FmNzC61UNLI8gbWb
-	 WstAYKCYA48MyP0M1ej3RFA330KCkcmcJKwtzLn/sNVXBG7WbWzdXJj/JT+Aboay3C
-	 wWZAcwHDyjm9g==
-Date: Thu, 31 Oct 2024 09:17:09 +0100
+	b=XX45PSYO+CFtHBTGgf3kvt1p7oN99WP+B/VeYCe4Uj0G7xM75/Y395zkSQ1w+B5SP
+	 FcFR5clsb2csIXkbb5wJePkBiczXIMBmSzRWzT7XL7jh4VRNYhgFEji8C/JSLKqDG6
+	 tYK4VWxDCMzmp486KS0TP7QT48C2rZeVeI3BvUi9HjrTC1swni8pvRgxAD5op1q7BC
+	 hG808w+hB6cRd8FCx11HcmtJRVRMCCgSUC6OMJe2h15G+VezM47ptEkS7l3+RxQyve
+	 ZztbOLvU1HsOv7/iOpJ/oeSvLiQWsPtut+XUXOgv82JyWmH7lOmjaO4qD0wwGQqp3v
+	 X8wjvDVyfJ0aw==
+Date: Thu, 31 Oct 2024 09:18:49 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dmitry Yashin <dmt.yashin@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: rockchip: add Banana Pi P2 Pro
- board
-Message-ID: <5e4tokdfdslb6gop2h2ow5inftoflfo2mlgosydyg3f6ehwmmi@kefvmy32vchy>
-References: <20241030202144.629956-1-dmt.yashin@gmail.com>
- <20241030202144.629956-2-dmt.yashin@gmail.com>
+To: Mithil Bavishi <bavishimithil@gmail.com>
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, 
+	Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v2 3/6] dt-bindings: omap: Add Samaung Galaxy Tab 2 7.0
+Message-ID: <46rktrrcnpl53nt3o7qe24cd4wp3cjq2v4sbno5oxdrgyazzfj@uqr5kt7pm2x5>
+References: <20241030211847.413-1-bavishimithil@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,42 +60,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241030202144.629956-2-dmt.yashin@gmail.com>
+In-Reply-To: <20241030211847.413-1-bavishimithil@gmail.com>
 
-On Thu, Oct 31, 2024 at 01:21:43AM +0500, Dmitry Yashin wrote:
-> BBanana Pi P2 Pro is the SBC made by Shenzhen SINOVOIP based on
-> Rockchip RK3308.
+On Wed, Oct 30, 2024 at 09:18:43PM +0000, Mithil Bavishi wrote:
+> Add samsung-espresso7 codename for the 7 inch variant
 > 
-> Banana Pi P2 Pro features:
-> - Rockchip RK3308B-S
-> - DDR3 512 MB
-> - eMMC 8 GB
-> - 100M lan + onboard PoE
-> - 40 pin and 12 pin headers
-> - AP6256 BT + WIFI
-> - TF card slot
-> - 2x USB 2.0 (Type-C OTG and Type-A)
-> - Headphone jack
+> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/ti/omap.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
+This is v2, so where is the changelog? Same for all other patches. No
+cover letter, no changelogs in patches.
 
 Best regards,
 Krzysztof
