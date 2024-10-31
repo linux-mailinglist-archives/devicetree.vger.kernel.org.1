@@ -1,104 +1,93 @@
-Return-Path: <devicetree+bounces-117929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4785A9B8663
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 23:55:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1B579B86C6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 00:13:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B6F71C2171B
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 22:55:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4BCFFB21AE8
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 23:13:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76A7E1E04AB;
-	Thu, 31 Oct 2024 22:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 544171D0E0D;
+	Thu, 31 Oct 2024 23:13:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vkGovc4W"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FU7/VamT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64F2B1D0BAD
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 22:54:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01C819F430;
+	Thu, 31 Oct 2024 23:13:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730415300; cv=none; b=K2UvM72vizsBxUQnKOH4vAvGn8Hb9X9UE3nnM6q0XzLzrLM5byVBmdJaQB3yo5m8l2Z4yaOqcsuYSPUIcwo5aSB3246jhym9Ys2No0MPMT+V0Yix+ZcEqs3BoUTTwiOoViVl6dtDIAOw5n5kfSytYRhcMpSB+GoI5KlzCnM653U=
+	t=1730416418; cv=none; b=moNNgNHZtazxzmlb1jc4AsJ/GOqPpX/a7jxSOm7OY3UbwL6QiABtasx4e6x88iF912T+XOXHMrOqvZRIz00i/ej+xTBgPzvcWWgd5vHxXNa7GTDL3aUD51pLUdrWDjTyHRSH4aAsBb8EpsTlvKnxpm3r7ZEpdnreEspsM2ZQlH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730415300; c=relaxed/simple;
-	bh=0XtiuL8HzPVUIcbQmp4W/ObpOQuqBuHvLMZmD4Hqmmw=;
+	s=arc-20240116; t=1730416418; c=relaxed/simple;
+	bh=NPEe7PrssaZbZ3xTsE8DLNbNq5rGbhvcLwckuu5NZZ0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CVH+9UXcxMksC93FsyvSOMPxAsbJa24i28B+JRQ0vYQ0o5qDR8d9cLYWvmYLFHjxe0R/zcQyiG/j2hNWeP0FiT58xl3ZXDGvahm7UuxJsp1VyVkaRSARK5A05veO8A/DDZTl9AIsdox7u2qC100alpT7Fv+G7TlKOFAmfy8WdCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vkGovc4W; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-53a0c160b94so1646220e87.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 15:54:53 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GECi45UB7JW4iH2aEZSxYWo9QFcDhJpXB/eNpS+XACsi/V0MQcSCxHf+BcnhNJiNydFIezq0XAc0AIu8Esky+ERAkJ4VU55VnDquHayyISC2rgZ8ovbT1eS/iWrF1GoSxPFlfbHekxlNcv2NKvhOXTuZEz4d1THLvPWX3C1aD7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FU7/VamT; arc=none smtp.client-ip=209.85.215.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-7ed9f1bcb6bso1059445a12.1;
+        Thu, 31 Oct 2024 16:13:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730415291; x=1731020091; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1730416412; x=1731021212; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2xfjHXyb5eaHTGVlXfFi968g4q6zA2j3OKWo/NXVyLM=;
-        b=vkGovc4W9Go1HJMVBpaUJY4Z2+2IG68D8NOn+bmMThuipl+LNEo7VYpo5douwz1bA8
-         bWqmlN0Xkd+LdLS7sCdARYQJzZrIILm+vTf/dtVlh6ctpWB+9BDbFQZZu4+pf0cPBaVr
-         jFwY8wPEJb84eYK+pn5ZmLCzDNK2+mB1iq4l5WWfqb8k9Vphmb+VnV7P0xGXiGY4DwFU
-         O2pUAD2Ztnws2R2WGGaS+imLX8wPCHuxcW+Jh7hmAEhA+3MtE3f1btOhVXaNVHCl+3lp
-         B9IzU2P3lc/kFAsnceteVgcR4Ph9UMyfCfn+sXjxlD8vgZ2RU6QpACvYNsc3dw9epjwL
-         nBjg==
+        bh=Ii0kEwrxMeKD6ai8F4P/+h5BX5m5f6101kjzvcy1Bp8=;
+        b=FU7/VamTgmuNidNrQYg3euUbcRtz5bsz6TB1LMn5zIRW839pkxMwhEMZ1nXXpRDCXG
+         jSVOJSEP8TDPQ4rO1VBmj8Ekd9H8G0RsSWrmWYxMZLWZ07Tdz+7ftc5DyEd0CKLOkH/g
+         XlbPp7uTTvyXlnXeQx2G8WsJWVNbdAChARZ1t+qqwgC9V8+hlX5HjHustIWGNa6nr4H0
+         gms4kA+ntOoyGTWzGJTM9FT++3+oLXB3Bw0FDQOrNePkWZZnsd+iJhuqxfG8DEbFM3h3
+         7g+PhCxSQJdrmomCg1+lFr3X6QNaqDE9tcMoH1KeHa3gbT5ewcEO7tzJltVXs9A6V6ES
+         dUkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730415291; x=1731020091;
+        d=1e100.net; s=20230601; t=1730416412; x=1731021212;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2xfjHXyb5eaHTGVlXfFi968g4q6zA2j3OKWo/NXVyLM=;
-        b=VUnQuUSTvwY4bttX+rqF9G0jyDxGM9fBt/vn6c7sFHlCJfOQLIOHxRr415853jSq+M
-         6EFQY/dLTRlOdO69QrV18cH4E+AS+SGhNhulo18r+HY/gxoc0z47zQH5l7tmAcWytQUR
-         DaXwhOWgD/LfQ/DXyVFNbBQU5JMLFe20UC3XKLFrYJGT1fkRJf1V04e8huMDw4BT3Jzi
-         EKNhF0PR//z71vWZ/p/9LuvoYmiWWmN6MDMoiG5IrLt19VwqYseJPMaOODgjI5Y2ajFH
-         tHAqcVod6KKx23wF70mORGx53DbG00l7lIxKA73a4ov5UW0FRGOSr5SZVfgNr2YUrEhc
-         F3jA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBiZVl/HflyX8o1pEuM+FKA5MaBNf3OZMAZiroQmw5LEpLpZEWFPKOTh4V8F970UK+9hqKcM7+9zKb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLS0vHtPez2KTg6U7xznd7HWXAFia2ra3KFvW9i3H1NbriG6NW
-	slQqQQm1ODuzYo0Tt36Ee3umBb8Xf7RbfNXP9FAQymIXpmX9Z4CbTBEFq5ExkTs=
-X-Google-Smtp-Source: AGHT+IFPpRVk+mVtirKf0Jlz98/n7f35BC4uMgBDb7CL//fsMETaxYe+5vZzwJgBgkvRqyECZwvNrA==
-X-Received: by 2002:ac2:4c46:0:b0:52b:de5b:1b30 with SMTP id 2adb3069b0e04-53d65e1a5e7mr872060e87.44.1730415291364;
-        Thu, 31 Oct 2024 15:54:51 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53c7bc9bee0sm354438e87.79.2024.10.31.15.54.50
+        bh=Ii0kEwrxMeKD6ai8F4P/+h5BX5m5f6101kjzvcy1Bp8=;
+        b=wRYN2On+Q/oxpi08/gIW1DA91hEtNgdOpTkJ0vUoXFqZ07alb+4hVNLwxYluP2B7Aj
+         Q7ueQZvX/5LKd8Ho5SjEFnbOs3djd0gEvZ4/ORbyMLmq4wvZpzWdIyKxKHHO8CjT3qz0
+         RuKuy2qIFqGzIb1StIZPTbdPfxi6Jv2wEr0ktj6Jl0EQZ0GmUuP692xnW6g7hoAK80bu
+         AjgWnfaKRhhqya/KEXuMhpv0nzZ3R1t1771RNCPQLP4IYsje/dEQ4U3hiA0/jYrj+99D
+         gxpU4S24ibr/0bkKUxpdCLYlVPevWc3zytF2ry1SYg1/LghbIAom51plRUg3tGTWuJqq
+         ru+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVdwTXpblTakw76hNF1vrSEHaojGwkcty4ZFLgtMoIGsZsMk7t4BACMGtD1/0On+o73Y6RbR0AR6RLjg9K3@vger.kernel.org, AJvYcCXNJs1qsAjmoKPeqpzyTWVC5U2ff42Vd46mahGcJIZPBBPew6J/53UtphC6lq0vp9FNELj0HtR5TH1d@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXLC+ckQWpgdepQsxNozDj95Crt7g9ZY+lTppCUm1DEzjlHDAH
+	k/Bb3LbKjpN/kMD8jktuaPr+0iyJ5GhkJiZN2ls+mBTCL7r7/EtP
+X-Google-Smtp-Source: AGHT+IGT9BughKRRNW5nz1IyDJrjjO/pXrWdnusD1MQeMuR+s0APSOVSBqdDkMHvxgC5e8Kip24JwQ==
+X-Received: by 2002:a17:90b:1c10:b0:2e2:cef9:8f68 with SMTP id 98e67ed59e1d1-2e8f1059571mr24207222a91.4.1730416411738;
+        Thu, 31 Oct 2024 16:13:31 -0700 (PDT)
+Received: from localhost ([121.250.214.124])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e92fa57cc3sm3936055a91.32.2024.10.31.16.13.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2024 15:54:50 -0700 (PDT)
-Date: Fri, 1 Nov 2024 00:54:49 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	patches@lists.linux.dev, devicetree@vger.kernel.org, 
-	Douglas Anderson <dianders@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Benson Leung <bleung@chromium.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, 
-	David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org, 
-	Guenter Roeck <groeck@chromium.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Lee Jones <lee@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Prashant Malani <pmalani@chromium.org>, 
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Daniel Scally <djrscally@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Ivan Orlov <ivan.orlov0322@gmail.com>, 
-	linux-acpi@vger.kernel.org, linux-usb@vger.kernel.org, 
-	Mika Westerberg <mika.westerberg@linux.intel.com>, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4 15/18] dt-bindings: usb: Add ports to
- google,cros-ec-typec for DP altmode
-Message-ID: <gstohhcdnmnkszk4l2ikd5xiewtotgo5okia62paauj6zpaw7y@4wchyvoynm2p>
-References: <20240901040658.157425-1-swboyd@chromium.org>
- <20240901040658.157425-16-swboyd@chromium.org>
- <phdcjgqqpjpruxp7v2mw446q73xr3eg4wfgfbjw5tasgr2pgg2@77swbk47b2tg>
- <CAE-0n514QMaQC2yjKP8bZqyfbv6B3AQm=+NJ87vxo6NdYiL03A@mail.gmail.com>
- <lf7y7wpuca6kzqcglgs5d443iusf7xjocum4adi7t3npfavccx@zgsp37oyztme>
- <CAE-0n53-KmOS3zXmJPvOOZ7xxkek9-S=oBExgaY0PDnt_HjdNw@mail.gmail.com>
- <yk3xidaisbd56yndaucax7otijjauqmm7lqm6q4q633kdawlqo@qaq27lwxmvwd>
- <CAE-0n501j+8bMnMKabFyZjn+MLUy3Z68Hiv1PsfW0APy5ggN8g@mail.gmail.com>
+        Thu, 31 Oct 2024 16:13:31 -0700 (PDT)
+Date: Fri, 1 Nov 2024 07:13:03 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Thomas Gleixner <tglx@linutronix.de>, Conor Dooley <conor@kernel.org>, 
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Peter Zijlstra <peterz@infradead.org>, Inochi Amaoto <inochiama@outlook.com>, 
+	Guo Ren <guoren@kernel.org>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Yangyu Chen <cyy@cyyself.name>, Anup Patel <apatel@ventanamicro.com>, 
+	Hal Feng <hal.feng@starfivetech.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: interrupt-controller: Add Sophgo
+ SG2044 ACLINT SSWI
+Message-ID: <tjoe7t45tbogrjmyip6lhkqprpc42mkmgysb7xinoreehsgnz7@uqqsp6llevy5>
+References: <20241031060859.722258-1-inochiama@gmail.com>
+ <20241031060859.722258-2-inochiama@gmail.com>
+ <esuteqvz37blehx6wa5cj5ixlglcbullhuls3rcvjtuiviqqpb@ojho3arlnwst>
+ <20241031-armored-marbled-36cfb6d599e3@spud>
+ <87ikt8wh8l.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,391 +96,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAE-0n501j+8bMnMKabFyZjn+MLUy3Z68Hiv1PsfW0APy5ggN8g@mail.gmail.com>
+In-Reply-To: <87ikt8wh8l.ffs@tglx>
 
-On Thu, Oct 31, 2024 at 02:45:29PM -0700, Stephen Boyd wrote:
-> Quoting Dmitry Baryshkov (2024-10-31 11:42:36)
-> > On Tue, Oct 29, 2024 at 01:15:51PM -0700, Stephen Boyd wrote:
-> > > At this point we need to tell the DP bridge, like IT6505, that it's one
-> > > or the other output endpoints that it should use, but we haven't
-> > > directly connected the usb-c-connector to the output ports of IT6505
-> > > because drm_of_find_panel_or_bridge() can't find the parent of the
-> > > usb-c-connector if we connect the DP bridge to the usb-c-connector
-> > > graphs. We'll need a way for the bridge to know which output port is
-> > > connected to a usb-c-connector fwnode. Some sort of API like
+On Thu, Oct 31, 2024 at 02:10:18PM +0100, Thomas Gleixner wrote:
+> On Thu, Oct 31 2024 at 12:38, Conor Dooley wrote:
+> > On Thu, Oct 31, 2024 at 02:14:40PM +0800, Inochi Amaoto wrote:
+> >> On Thu, Oct 31, 2024 at 02:08:57PM +0800, Inochi Amaoto wrote:
+> >> > Sophgo SG2044 has a new version of T-HEAD C920, which implement
+> >> > a fully featured T-HEAD ACLINT device. This ACLINT device contains
+> >> > a SSWI device to support fast S-mode IPI.
+> >> > 
+> >> > Add necessary compatible string for the T-HEAD ACLINT sswi device.
+> >> > 
+> >> > Link: https://www.xrvm.com/product/xuantie/C920
+> >> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> >> 
+> >> Hi, Conor,
+> >> 
+> >> Could you review it again? I have updated the description of
+> >> the binding and mark the device is T-HEAD specific.
 > >
-> > I think that the final bridge should be the IT6505. It can save you from
-> > some troubles, like the inter-bridge lane negotiation. Please remember
-> > that using lanes 2-3 as primary lanes doesn't seem to fall into the
-> > standard DisplayPort usage. It is documented by USB-C and only because
-> > of the orientation switching.
-> 
-> If the final bridge is IT6505 then drm_of_find_panel_or_bridge() isn't
-> called and I think we're OK. But then we have to traverse the
-> remote-endpoint of the usb-c-connector to IT6505 in displayport.c in the
-> Corsola case while knowing to look at the parent of the usb-c-connector
-> node and traversing the remote-endpoint to the QMP phy in the Trogdor
-> case. The logic in dp_altmode_probe() is like
-> 
->   if (port@1/endpoint@1 exists in usb-c-connector)
->     connector_fwnode = port@1/endpoint@1/remote-endpoint
->   else if (cros-ec-typec/port exists)
->     connector_fwnode = cros-ec-typec/port@0/endpoint/remote-endpoint
->   else
->     original stuff
-
-I'd say, definitely ugh. Maybe we can add the swnode with the
-"displayport" property pointing back to the DP bridge / endpoint.
-
-But... read below.
-
-> If we have the crazy three usb-c-connector design it can still work
-> because we'd have something like
-> 
->   cros-ec-typec {
->     port {
->       dp_endpoint: endpoint {
->         remote-endpoint = <&dp_ml0_ml1>;
->       };
->     };
-> 
->     usb-c-connector@0 {
->       port@1 {
->         endpoint {
->           remote-endpoint = <&hub_ss0>;
->        };
->        // Implicitly dp_ml0_ml1
->       };
->     };
->     usb-c-connector@1 {
->       port@1 {
->         endpoint@0 {
->           remote-endpoint = <&hub_ss1>;
->         };
->         endpoint@1 {
->           remote-endpoint = <&dp_ml2_ml3>;
->         };
->       };
->     };
->     usb-c-connector@2 {
->       port@1 {
->         endpoint {
->           remote-endpoint = <&hub_ss2>;
->         };
->        // Implicitly dp_ml0_ml1
->       };
->     };
->   };
-> 
-> (I like thinking about this 3 connector case because it combines both
-> Trogdor and Corsola designs so I can talk about both cases at the same
-> time)
-> 
-> I don't know what happens when we have 4 connectors though, with 2 going
-> to one pair of lanes and 2 going to the other 2 lanes. Maybe it's better
-> to always have a DP input port in cros-ec-typec to avoid this problem
-> and map back to the endpoint explicitly.
-> 
->   cros-ec-typec {
->     port {
->       dp_endpoint0: endpoint@0 {
->         remote-endpoint = <&dp_ml0_ml1>;
->       };
->       dp_endpoint1: endpoint@1 {
->         remote-endpoint = <&dp_ml2_ml3>;
->       };
->     };
-> 
->     usb-c-connector@0 {
->       port@1 {
->         endpoint@0 {
->           remote-endpoint = <&hub_ss0>;
->        };
->        endpoint@1 {
->          remote-endpoint = <&dp_endpoint0>;
->        };
->       };
->     };
->     usb-c-connector@1 {
->       port@1 {
->         endpoint@0 {
->           remote-endpoint = <&hub_ss1>;
->         };
->         endpoint@1 {
->           remote-endpoint = <&dp_endpoint1>;
->         };
->       };
->     };
->     usb-c-connector@2 {
->       port@1 {
->         endpoint@0 {
->           remote-endpoint = <&hub_ss2>;
->         };
->         endpoint@1 {
->           remote-endpoint = <&dp_endpoint1>;
->         };
->       };
->     };
->   };
-> 
-> Or use a displayport property that goes to connector node itself so that
-> we don't extend the graph binding of the usb-c-connector.
-> 
->   cros-ec-typec {
->     usb-c-connector@0 {
->       altmodes {
->         displayport {
->           connector = <&dp_ml0_ml1>;
-
-I think this has been frowned upon. Not exactly this, but adding the
-displayport = <&foo>.
-
-Thus it can only go to the swnode that is generated in software by the
-cros-ec driver.
-
->         };
->       };
->       port@1 {
->         endpoint@0 {
->           remote-endpoint = <&hub_ss0>;
->        };
->       };
->     };
->     usb-c-connector@1 {
->       altmodes {
->         displayport {
->           connector = <&dp_ml2_ml3>;
->         };
->       };
->       port@1 {
->         endpoint {
->           remote-endpoint = <&hub_ss1>;
->         };
->       };
->     };
->     usb-c-connector@2 {
->       altmodes {
->         displayport {
->           connector = <&dp_ml2_ml3>;
->         };
->       };
->       port@1 {
->         endpoint {
->           remote-endpoint = <&hub_ss2>;
->         };
->       };
->     };
->   };
-> 
->   it6505 {
->     ports {
->       port@1 {
->         dp_ml0_ml1: endpoint@0 {
->           remote-endpoint = <??>;
->         };
->         dp_ml2_ml3: endpoint@1 {
->           remote-endpoint = <??>;
->         };
->       };
->     };
->   };
-> 
-> The logic could look at a node like usb-c-connector@2, find
-> altmodes/display node, and look for a 'connector' property that points
-> at the endpoint of the last bridge. If we don't use the OF graph binding
-> it makes it easier to point at the same endpoint in the QMP phy or the
-> IT6505 graph from more than one usb-c-connector. This also makes it very
-> clear that we intend to pass that fwnode as the 'connector_fwnode' to
-> oob_hotplug_event().
-> 
-> If we want to actually populate the 'remote-endpoint' property of IT6505
-> we will need to make a graph in cros-ec-typec.
-> 
->   cros-ec-typec {
->     port {
->       dp_endpoint0: endpoint@0 {
->         remote-endpoint = <&dp_ml0_ml1>;
->       };
->       dp_endpoint1: endpoint@1 {
->         remote-endpoint = <&dp_ml2_ml3>;
->       };
->     };
->     usb-c-connector@0 {
->       altmodes {
->         displayport {
->           connector = <&dp_endpoint0>;
->         };
->       };
->       port@1 {
->         endpoint@0 {
->           remote-endpoint = <&hub_ss0>;
->        };
->       };
->     };
->     usb-c-connector@1 {
->       altmodes {
->         displayport {
->           connector = <&dp_endpoint1>;
->         };
->       };
->       port@1 {
->         endpoint {
->           remote-endpoint = <&hub_ss1>;
->         };
->       };
->     };
->     usb-c-connector@2 {
->       altmodes {
->         displayport {
->           connector = <&dp_endpoint1>;
->         };
->       };
->       port@1 {
->         endpoint {
->           remote-endpoint = <&hub_ss2>;
->         };
->       };
->     };
->   };
-> 
->   it6505 {
->     ports {
->       port@1 {
->         dp_ml0_ml1: endpoint@0 {
->           remote-endpoint = <dp_endpoint0>;
->         };
->         dp_ml2_ml3: endpoint@1 {
->           remote-endpoint = <dp_endpoint1>;
->         };
->       };
->     };
->   };
-> 
-> and then the logic in displayport.c will have to check if the
-> 'connector' property points at a graph endpoint, traverse that to the
-> remote-endpoint, and consider that the connector_fwnode.
-> 
+> > Only thing I would say is that
+> > title: Sophgo sg2044 ACLINT Supervisor-level Software Interrupt Device
+> > should probably be
+> > title: T-Head c900 ACLINT Supervisor-level Software Interrupt Device
+> > or similar, since this isn't Sophgo's IP.
 > >
-> > Maybe that's just it? Register DP_bridge (or QMP PHY) as
-> > orientation-switch? Then you don't need any extra API for the lane
-> > mapping? The cross-ec-typec can provide orientation information and the
-> > USB-C-aware controller will follow the lane mapping.
+> > w/ that,
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > (dunno if Thomas is willing to change that on application)
 > 
-> I'm not really following but I don't think the DT binding discussed here
-> prevents that.
+> Yes
 
-I'm thinking about:
-
-it6505 {
-  orientation-switch;
-
-  ports {
-    port@1 {
-      it6505_dp_out: remote-endpoint = <&cros_ec_dp>;
-      data-lanes = <0 1>;
-    };
-  };
-};
-
-cros-ec {
-  port {
-    cross_ec_dp: remote-endpoint = <&it6505_dp_out>;
-  };
-
-  connector@0 {
-    reg = <0>;
-    cros,dp-orientation = "normal";
-
-    ports {
-      // all USB HS and SS ports as usual;
-    };
-  };
-
-  connector@1 {
-    reg = <1>;
-    cros,dp-orientation = "reverse";
-
-    ports {
-      // all USB HS and SS ports as usual;
-    };
-  };
-
-  connector@2 {
-    reg = <2>;
-    cros,dp-orientation = "reverse";
-
-    ports {
-      // all USB HS and SS ports as usual;
-    };
-  };
-
-  connector@3 {
-    reg = <3>;
-    cros,dp-orientation = "normal";
-
-    ports {
-      // all USB HS and SS ports as usual;
-    };
-  };
-};
-
-The cros-ec registers single drm bridge which will generate HPD events
-except on Trogdor, etc. At the same time, cros-ec requests the
-typec_switch_get(). When the cros-ec detects that the connector@N it
-being used for DP, it just generates corresponding typec_switch_set()
-call, setting the orientation of the it6505 (or QMP PHY). The rest can
-be handled either by EC's HPD code or by DP's HPD handler, the
-orientation should already be a correct one.
-
-So, yes. It requires adding the typec_switch_desc implementation _in_
-the it6505 (or in any other component which handles the 0-1 or 2-3
-selection). On the other hand as I wrote previously, the 0-1 / 2-3 is
-the USB-C functionality, not the DP one.
-
-[...]
-
-> 
-> >
-> > > > > Corsola could work with this design, but we'll need to teach
-> > > > > dp_altmode_probe() to look for the drm_bridge elsewhere besides as the
-> > > > > parent of the usb-c-connector node. That implies using the 'displayport'
-> > > > > property in the cros-ec-typec node or teaching dp_altmode_probe() to
-> > > > > look for the port@1/endpoint@1 remote-endpoint handle in the
-> > > > > usb-c-connector graph.
-> > > > >
-> > > > > Assuming the bindings you've presented here are fine and good and I got
-> > > > > over the differences between Trogdor and Corsola, then I can make mostly
-> > > > > everything work with the drm_connector_oob_hotplug_event() signature
-> > > > > change from above and some tweaks to dp_altmode_probe() to look for
-> > > > > port@1/endpoint@1 first because that's the "logical" DP input endpoint
-> > > > > in the usb-c-connector binding's graph. Great! The final roadblock I'm
-> > > > > at is that HPD doesn't work on Trogdor, so I can't signal HPD through
-> > > > > the typec framework.
-> > > >
-> > > > Hmm, I thought that a normal DP's HPD GPIO works on the trogdor. Was I
-> > > > misunderstanding it? But then we don't know, which USB-C connector
-> > > > triggered the HPD...
-> > >
-> > > By HPD not working on Trogdor I mean that the EC doesn't tell the kernel
-> > > about the state of HPD for a usb-c-connector in software. Instead, HPD
-> > > is signaled directly to the DP controller in hardware via a GPIO. It is
-> > > as you suspect, we don't know which USB-C connector has HPD unless we
-> > > read the mux controlled by the EC and combine that with what the DP
-> > > driver knows about the state of the HPD pin.
-> >
-> > I see. So the HPD event gets delivered to the DP controller, but we
-> > really need some API to read the port? If it's not the
-> > orientation-switch, of course.
-> 
-> Yes. This is needed to understand what USB type-c connector the DP
-> signals should go to. In the case of Corsola/IT6505 it's needed to know
-> which two lanes should be sent if both type-c connectors/ports are
-> capable of DP altmode. On Corsola, the EC could tell the kernel that
-> both ports are in DP altmode but the EC is also controlling the AUX
-> channel mux that decides which usb-c-connector type-c port is actually
-> displaying DP.
-
--- 
-With best wishes
-Dmitry
+Thanks.
 
