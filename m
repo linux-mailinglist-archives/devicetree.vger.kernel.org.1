@@ -1,228 +1,122 @@
-Return-Path: <devicetree+bounces-117866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F392C9B827C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 19:20:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87B199B82A8
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 19:35:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 221581C213C0
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 18:20:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47938282F66
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 18:35:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 245F91C9B82;
-	Thu, 31 Oct 2024 18:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B6E41C9B7B;
+	Thu, 31 Oct 2024 18:35:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Aln31iLM"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="hRI1Ybr1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C01141C8FD7
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 18:20:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 327A61C1735
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 18:35:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730398854; cv=none; b=BdF8X+0EckZP81lmGbHLFX6bRVwN1ZfGn53weqVrHKc7e2gsVS0WyoQRvTioMfJWoSw0/oT80za89dtEbjTrNxV6s3DmWFetEZGy0CnqGlW/RMVyWi90unG3axlt2SG9icbtrVkYw0rirkmI8ET+fpZ/kQ5ScB8Jgof0PDRw4zM=
+	t=1730399747; cv=none; b=jU3LmKc4+GOBf2KdVcEgGT6oLOu7hHwHUqVCiZ7egBdIu8zmfh1HCUOtCNK4HXQpGhO4VtzwoPtsr5801hfEP9B++NiFyenx/GiDA5rLwLxfY9AC6opmX12Nlmr7KVMJmsjQ9Se48sneYdocm6Ve6ZJAp7FBZKIwum9ObgCyoec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730398854; c=relaxed/simple;
-	bh=FyWu/MmruUKcYDBZtwz3BWZ6sqrZ2UBNz2oBRpi4PAU=;
+	s=arc-20240116; t=1730399747; c=relaxed/simple;
+	bh=jg7VAD2aVLnFNu6KLQ/pbomFTgwL24uoZAQdht5T+Rg=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cUp9edyYfugKUmdoUM7XWUTYeNA5WYvFi+pu5v4grN7gaS4TCpwbtY9vGvaAZJ8aCWnz19R9z4IDRBqJ/0N0S5IyJv647sOFh4cztWmVRr0DQC5YPh0CSu9DIl/QW2dYHAINZTLlkeaXqBTuFlx61YxcG15YqxRpZ3tYMg8reB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Aln31iLM; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6ea5f68e17aso7282497b3.3
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 11:20:51 -0700 (PDT)
+	 To:Cc:Content-Type; b=TPBCqt+zipgTymQ8P+5gcaDyB3Z5BBKlvAEF+2jBj6hqImNlm39qVYvFCttsX5KTecUQ9tPNp09l8N38Q7/zLZM1WTn8+SW86tdXQ5gfPk6fSfIgmg4A7PIYdDDoULb7P4N3+ThAooMXCOvt6cBKvFvjFRG4zBsrFcuu0gQPNPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=hRI1Ybr1; arc=none smtp.client-ip=209.85.215.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-7ea7ad1e01fso904276a12.0
+        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 11:35:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730398851; x=1731003651; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1730399744; x=1731004544; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WLDUJfbR6R9Q78ZWppjQCRBcAEdo3kQLDzuM0lwJU0g=;
-        b=Aln31iLMzqOqdYV5Cu0h2Q6mWZYoIDO4Lmg8+HGaYQ4OrKF9EYeb5cQoNJSfEqpy/l
-         gtWU4UuNN0fize5kCYFFMO6djBF62+KA8ixeoUFPe4dRqoOu2kLunlNJmySplDhz4Wkj
-         NVVknNsyemdeG/ZpsYAZt+bbPJzV4GvW5cIFpR6h7djqxkdYVZdtJPOr620bI58WcPJl
-         jTIjxiZkh+rXDKQzbyrruOmnzfyk8ju6QTDW3hFGR66VA3g8GgHVN+xLZ/BWos3vvcMd
-         SqWydAHyxmD72WOd/90cqYAl8fJxciIj5phl3hHkS8w3Y+CCxRnKl/6TDfJ8MVJnNL86
-         ZtbA==
+        bh=clclPZtCVo76nq6JvC8BRNLzx95l3mSozKtIXOlYhOw=;
+        b=hRI1Ybr1SQd1XwWQnuCqPcvvdwYkGa5W5E4hINhWiYG6jGj3lGpq5i6Invjb2J8XKq
+         wSzbsT7r99lCZ0iYJw/bp034ERDFF5orKc0xiIuq4fLy8KS0ChwqgSDOEA5FJfybJAoq
+         0sLW3bO75cVJ3U0KMhe+lz2oY4cewfBGxxagY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730398851; x=1731003651;
+        d=1e100.net; s=20230601; t=1730399744; x=1731004544;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=WLDUJfbR6R9Q78ZWppjQCRBcAEdo3kQLDzuM0lwJU0g=;
-        b=gon+pEjAv2yMsLsE3CWYXsCqt8d5U7Jjt4jEe6kEiS6MAZKuYr27ekUG7y5eiytPMp
-         spV0XO/pAcuBainRSyvJQ/vXF05OklbecHPiUihgeWt2FJd8swC0r3fI8IwDl2h+6PSW
-         HN5m8/Cll3et+gYc9p45FdJNG42ZBQeit9sVBYZi+zjAkV+0EQHbGfsFu1D5gBOzU+HK
-         KnjXqIUhXrTBLbk9I7mUh8Yg/bHSj4CPdJ/8z4hGFBqn55kNMYmgKJuTrasLPjgdkrWm
-         apBmTkESjI82ou/fVfdHDSKrD9g4JdRQs0DdyxC6w9U9ae4+Jsr8Nh3yPX7Nb1Yc3Dop
-         8wmA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3OOTDFvwIND8TSYiYOBivPLW35yoj0yDFc0X6uQ2a/YUbcxoB9NTiz0fhV0YIjtbaSOfbKL7o3rNp@vger.kernel.org
-X-Gm-Message-State: AOJu0YyypvZpNS7ZGMS7UqYP3i4xPbdnVXRQllvbgjEGvn9hc210uC0x
-	mr06iuwtdjIV/ZXboMFVl0T2JRQLwXJk+HB3G+HU+gduNmK6BN9Fuh2Jz5HK8eTmXA5YUDAKqSw
-	LG2J6VpnH9KFF5hI/QA9meLh5EsldKqrl6OhLNw==
-X-Google-Smtp-Source: AGHT+IFAsMwssl3CsGQHQvM8bMdP93YVWcDHIhkTXiHlpvS1lZLveTm8hn3cb6TISveDQA5kxCdXkhevk4P4DApB+UQ=
-X-Received: by 2002:a05:690c:fd5:b0:6e3:116c:ec0c with SMTP id
- 00721157ae682-6e9d8aa40bcmr195925997b3.30.1730398850667; Thu, 31 Oct 2024
- 11:20:50 -0700 (PDT)
+        bh=clclPZtCVo76nq6JvC8BRNLzx95l3mSozKtIXOlYhOw=;
+        b=XV04YPhoLEe+ouSya/7GTAgO/EpO/mMHtH85OTFCM/o8I0pfh42BTToadeYrYJBqjx
+         r0hocu+Uqx5v8NrFdkoXztxE9Q3/n9CfIiYcdeVDRlMXGZuCfYfnZFl2k1E8Ip5MgHxN
+         031dKxf1FL8nHwnCvXm2e3/oTLDr+puZBbewpqU1D+br2PAqEmvFwVs/OFAA6NqquYIm
+         h5IERq7gckD41ZqGS5Oh30YwqvfoXLavbPWfDJFjCSCner2UZLjIBcKh8tlyEJ9XCxcB
+         SgbJp2IwnqKz0JNOWijKg7QbIJP9JWG/tntuKgTrSZd0AevhKEpl2GLsBX9kgeq4XHM0
+         s5Ow==
+X-Forwarded-Encrypted: i=1; AJvYcCV0iMdBGpWoM9O7ugfnEpM8Lf85hWwIRQiGbP3aBcGgcZ6fXywFAV7WlNteHtQDybcLoHnhpVWUNpWO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yytns/NoZEYVZwuFCCednE9y7WNter84U6LnZCTLkHE/OeMWWL+
+	dvQIjwjSYT459BgiKOoV+y14g9hzrGfJRfTWyiitsWIGvhgBGPZTOyzho9wMdfOTZIBNYWKvjMT
+	rRMzMaxcSAVTpRx6C/K23ssLPYo2iBXIWTEuW5M3unsoV2wgQpeJf
+X-Google-Smtp-Source: AGHT+IHW3PtgJ+3707l1WWNfcjCY4eO8OMoynAIZzOQokfTKBfjzi20ckAen6vyMcZjlYruukCT5PSDTi39c9efruUM=
+X-Received: by 2002:a17:90b:3b8f:b0:2e2:878a:fc6 with SMTP id
+ 98e67ed59e1d1-2e94c23101dmr1451727a91.18.1730399744517; Thu, 31 Oct 2024
+ 11:35:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241028023740.19732-1-victor.liu@nxp.com> <CAA8EJprFBbC_=kBHi86j-nE_K68QeG+c2OBzJCbUyNWs5zQK0Q@mail.gmail.com>
- <TY3PR01MB11346F956733032EC10E997AF864A2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <5ycxltnw3vhik3iype6ncuh4nelwwtom745o5dlf32qyiqh5bv@yjj5l6kb2psm>
- <1e8526e5-d9b7-42ac-9db3-13b42ccc4fbe@nxp.com> <CAA8EJppAnfiVqNYN6CxaU1Q5fMwDgWhSsPU9qQz7KHb6px=grA@mail.gmail.com>
- <TY3PR01MB113467D658D6680491662BA3586542@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB113467D658D6680491662BA3586542@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 31 Oct 2024 20:20:39 +0200
-Message-ID: <CAA8EJpryBmTXb53M1i5o9u+94du48AZnDeFQqXZtgxvOuoYR9A@mail.gmail.com>
-Subject: Re: [PATCH v4 00/13] Add ITE IT6263 LVDS to HDMI converter support
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Liu Ying <victor.liu@nxp.com>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"andrzej.hajda@intel.com" <andrzej.hajda@intel.com>, 
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, "rfoss@kernel.org" <rfoss@kernel.org>, 
-	"laurent.pinchart" <laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se" <jonas@kwiboo.se>, 
-	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, 
-	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, 
-	"mripard@kernel.org" <mripard@kernel.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>, 
-	"airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch" <simona@ffwll.ch>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"quic_jesszhan@quicinc.com" <quic_jesszhan@quicinc.com>, "mchehab@kernel.org" <mchehab@kernel.org>, 
-	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, 
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, 
-	"catalin.marinas@arm.com" <catalin.marinas@arm.com>, "will@kernel.org" <will@kernel.org>, 
-	"sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>, "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>, 
-	"tomi.valkeinen@ideasonboard.com" <tomi.valkeinen@ideasonboard.com>, 
-	"quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>, 
-	"geert+renesas@glider.be" <geert+renesas@glider.be>, "arnd@arndb.de" <arnd@arndb.de>, 
-	"nfraprado@collabora.com" <nfraprado@collabora.com>, 
-	"thierry.reding@gmail.com" <thierry.reding@gmail.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	"sam@ravnborg.org" <sam@ravnborg.org>, "marex@denx.de" <marex@denx.de>
+References: <20241030213400.802264-1-mmayer@broadcom.com> <20241030213400.802264-3-mmayer@broadcom.com>
+ <c6b02317-e65f-444a-906d-e56f33dac9f4@broadcom.com>
+In-Reply-To: <c6b02317-e65f-444a-906d-e56f33dac9f4@broadcom.com>
+From: Markus Mayer <mmayer@broadcom.com>
+Date: Thu, 31 Oct 2024 11:35:32 -0700
+Message-ID: <CAGt4E5uqpv-gzRa4B5av_-f3n9rsuwVKs3H9T8ndH1JSXLsoXQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] hwrng: bcm74110 - Add Broadcom BCM74110 RNG driver
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Olivia Mackall <olivia@selenic.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
+	Aurelien Jarno <aurelien@aurel32.net>, Conor Dooley <conor+dt@kernel.org>, 
+	Daniel Golle <daniel@makrotopia.org>, Francesco Dolcini <francesco.dolcini@toradex.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Device Tree Mailing List <devicetree@vger.kernel.org>, 
+	Linux Crypto Mailing List <linux-crypto@vger.kernel.org>, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, 30 Oct 2024 at 11:02, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+On Wed, 30 Oct 2024 at 14:41, Florian Fainelli
+<florian.fainelli@broadcom.com> wrote:
 >
-> Hi Dmitry Baryshkov,
->
-> > -----Original Message-----
-> > From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Sent: 30 October 2024 03:17
-> > Subject: Re: [PATCH v4 00/13] Add ITE IT6263 LVDS to HDMI converter support
+> On 10/30/24 14:33, Markus Mayer wrote:
+> > Add a driver for the random number generator present on the Broadcom
+> > BCM74110 SoC.
 > >
-> > On Tue, 29 Oct 2024 at 04:41, Liu Ying <victor.liu@nxp.com> wrote:
-> > >
-> > > On 10/28/2024, Dmitry Baryshkov wrote:
-> > > > On Mon, Oct 28, 2024 at 11:12:00AM +0000, Biju Das wrote:
-> > > >> Hi Dmitry, Liu,
-> > > >>
-> > > >>> -----Original Message-----
-> > > >>> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > >>> Sent: 28 October 2024 10:20
-> > > >>> Subject: Re: [PATCH v4 00/13] Add ITE IT6263 LVDS to HDMI
-> > > >>> converter support
-> > > >>>
-> > > >>> Hi,
-> > > >>>
-> > > >>> On Mon, 28 Oct 2024 at 04:37, Liu Ying <victor.liu@nxp.com> wrote:
-> > > >>>>
-> > > >>>> Hi,
-> > > >>>>
-> > > >>>> This patch series aims to add ITE IT6263 LVDS to HDMI converter
-> > > >>>> on i.MX8MP EVK.  Combined with LVDS receiver and HDMI 1.4a
-> > > >>>> transmitter, the IT6263 supports LVDS input and HDMI 1.4 output
-> > > >>>> by conversion function.  IT6263 product link can be found at [1].
-> > > >>>>
-> > > >>>> Patch 1 is a preparation patch to allow display mode of an
-> > > >>>> existing panel to pass the added mode validation logic in patch 3.
-> > > >>>>
-> > > >>>> Patch 2 allows i.MX8MP LVDS Display Bridge(LDB) bridge driver to
-> > > >>>> find the next non-panel bridge, that is the IT6263 in this case.
-> > > >>>>
-> > > >>>> Patch 3 adds mode validation logic to i.MX8MP LDB bridge driver
-> > > >>>> against "ldb" clock so that it can filter out unsupported display
-> > > >>>> modes read from EDID.
-> > > >>>>
-> > > >>>> Patch 4 adds MEDIA_BUS_FMT_RGB101010_1X7X5_{SPWG,JEIDA} support,
-> > > >>>> as they are supported by IT6263(with LVDS data bit reversed order).
-> > > >>>>
-> > > >>>> Patch 5 makes drm_of.c use MEDIA_BUS_FMT_RGB101010_1X7X5_{JEIDA,SPWG}.
-> > > >>>>
-> > > >>>> Patch 6 supports getting dual-link LVDS pixel order for the sink
-> > > >>>> side as needed by IT6263 driver.
-> > > >>>>
-> > > >>>> Patch 7 documents jeida-30 and vesa-30 data mappings in
-> > > >>>> lvds-data-mapping.yaml, as needed by IT6263 DT binding.
-> > > >>>>
-> > > >>>> Patch 8 extracts common dual-link LVDS display properties into
-> > > >>>> new lvds-dual-ports.yaml so that IT6263 DT binding can reference it.
-> > > >>>>
-> > > >>>> Patch 9 adds DT binding for IT6263.
-> > > >>>>
-> > > >>>> Patch 10 adds IT6263 bridge driver.  Only video output is supported.
-> > > >>>>
-> > > >>>> Patch 11 adds DT overlays to support NXP adapter cards[2][3] with
-> > > >>>> IT6263 populated.
-> > > >>>>
-> > > >>>> Patch 12 enables the IT6263 bridge driver in defconfig.
-> > > >>>>
-> > > >>>> Patch 13 updates MAINTAINERS to add maintainer for IT6263 driver.
-> > > >>>
-> > > >>> This has pretty complicated structure from the merging point of view.
-> > > >>>
-> > > >>> I propose we take patches 6, 8, 9 (without 30-bit formats, they
-> > > >>> can be dropped while applying), 11, 12
-> > > >>> (?) and 13 through drm-misc in one batch (once DT maintainers
-> > > >>> review the binding parts). This looks like a minimal set, having no extra dependencies.
-> > > >>
-> > > >>>
-> > > >>> The second set might be 4, 5 + new patch, re-adding 30-bit formats
-> > > >>> to
-> > > >>> IT6263 binding (no driver changes are necessary). This can go in
-> > > >>> separately, after an Ack from media maintainers.
-> > > >>>
-> > > >>> Of course both sets can go together if linux-media maintainers
-> > > >>> reacts quickly and ack merging media- formats patch through drm-misc tree.
-> > >
-> > > I'm fine with merging the two sets through drm-misc tree as long as
-> > > linux-media and dri-devel maintainers accept this.  Up to them.
-> > >
-> > > >>>
-> > > >>> The rest of the patches don't have such strong dependencies and go in once ready / reviewed.
-> > > >>>
-> > > >>> WDYT?
-> > > >>
-> > > >> I guess, 6,8,9(without 30-bit formats), 10, 12 and 13.
-> > > >>
-> > > >> 11 may have dependency on 1, 2 and 3 as it is SoC specific.
-> > > >
-> > > > Yes, of course, 10, not 11.
-> > > >
-> > > >> Then 4, 5 + new patch, re-adding 30-bit formats to IT6263 binding.
-> > >
-> > > I think it would be good to directly support 30-bit formats in
-> > > IT6263 DT binding, not re-add them to it.  This way, we'll have one
-> > > version of the binding, not two.  So, a better first set would contain
-> > > patch 6, 7(one existing A-b from Krzysztof), 8, 9, 10, 12 and 13.
+> > Signed-off-by: Markus Mayer <mmayer@broadcom.com>
+> > ---
+> >   drivers/char/hw_random/Kconfig        |  14 +++
+> >   drivers/char/hw_random/Makefile       |   1 +
+> >   drivers/char/hw_random/bcm74110-rng.c | 125 ++++++++++++++++++++++++++
+> >   3 files changed, 140 insertions(+)
+> >   create mode 100644 drivers/char/hw_random/bcm74110-rng.c
 > >
-> > I'm not sure that 7 can go without an ack from linux-media maintainers.
+> > diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
+> > index b51d9e243f35..90ae35aeb23a 100644
+> > --- a/drivers/char/hw_random/Kconfig
+> > +++ b/drivers/char/hw_random/Kconfig
+> > @@ -99,6 +99,20 @@ config HW_RANDOM_BCM2835
+> >
+> >         If unsure, say Y.
+> >
+> > +config HW_RANDOM_BCM74110
+> > +     tristate "Broadcom BCM74110 Random Number Generator support"
+> > +     depends on ARCH_BCM2835 || ARCH_BCM_NSP || ARCH_BCM_5301X || \
+> > +                ARCH_BCMBCA || BCM63XX || ARCH_BRCMSTB || COMPILE_TEST
 >
-> You mean in describing jeida-30 and vesa-30 format in
-> patch#7, is valid only if patch#4 is ok with media people
-> or they provide an ack for patch#7 to take it through drm tree?
+> AFAICT this driver is only present on STB chips so limiting to
+> ARCH_BRCMSTB || COMPILE_TEST should suffice for now.
 
-The former one. I'd prefer an ack from linux-media maintainers to
-accept bindings based on those names.
+This is now fixed in my tree. I will resend in a few days.
 
--- 
-With best wishes
-Dmitry
+Regards,
+-Markus
 
