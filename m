@@ -1,311 +1,108 @@
-Return-Path: <devicetree+bounces-117650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE2979B74A4
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:35:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 835EC9B74C1
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:55:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE9B61C2517C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 06:35:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 369C71F243E1
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 06:55:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BBAD1465B1;
-	Thu, 31 Oct 2024 06:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EABE1474A2;
+	Thu, 31 Oct 2024 06:55:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rl7gayR8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W7y22bqL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7828D146599;
-	Thu, 31 Oct 2024 06:35:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84DC613B7B3;
+	Thu, 31 Oct 2024 06:55:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730356547; cv=none; b=C9kxE+6PU9D/je5j2FBEqS22lN99DZEfnb+rpz2bzI0784kNVpwPBlZkRLwmmmQykpKCT4xKNeocrwYarlEohDaMmDzmeGT5z0Mz4jQONBqUOpO8jNPyrHSfHHZHJDPcasV+ZR+CuBZjfXJvEUjQ+PsqLqhi5MxAdulKsuOc4MA=
+	t=1730357736; cv=none; b=ZgoMnPtaNG6yZuc3il4SfYZaJ8kC980I/ko0Fh9WgdWARhw3elKc6DNjskITmytol6t/NNly3RNYPDw4kiS41DSy3NZiolEMYYILqKsnB8ARuDkDf5Ni5pWyf+aBNJk+L4slAfA0EYCVmjJHzVJI1VOQ1OCQO4wecMVQ+G8Nv3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730356547; c=relaxed/simple;
-	bh=q/59yFbh8SfsCt8UmgbjPvCb9jhhsN+B8fPlN0zgjvs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=jXflqtoAE4Kl6hGsCyhqdi+w6Qb8kOoC4p/ABkHaBvVHZ+0EB7QCl93NrfSV5WIOjwVZQvvkCCOe7XlOVXGY6jyF1mfamCFR4BD/K4rZSySV25s/62RpqAy5UCT/y0L+dV2GRn7dudy7N4EWZcSHV45TBUTg+mDi8KjFd8tRz+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rl7gayR8; arc=none smtp.client-ip=209.85.221.47
+	s=arc-20240116; t=1730357736; c=relaxed/simple;
+	bh=k5e7LBmNJeMJSZN6anErizq1fQ8yqtX6gXRt+viO/SA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=PoVDF8++dDYTGNXrdP74bujblqIJiXTCcfkY0F/r6Gdb6RcJUNYoafsRXAoidv8odVcrb0DrT06xtbwAYj3VyDi6sY7/d9pkWJL+GRPN5UTfInh1X1toMnFJ9ls8UaTpBXL+Phs2g2hnJN4VdRCZcvlEWlsbvqHc3cLW8vddnN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W7y22bqL; arc=none smtp.client-ip=209.85.215.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-37d3e8d923fso407745f8f.0;
-        Wed, 30 Oct 2024 23:35:44 -0700 (PDT)
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-7eae96e6624so521421a12.2;
+        Wed, 30 Oct 2024 23:55:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730356543; x=1730961343; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=F75xPnob/0lWkFALsaz/alsMdiA7L3Oet9JH75Rjxo8=;
-        b=Rl7gayR82iKBM5z/SWHUT4cFd4EYs0LIDnPy+5WRZVm9/xNkUdqn8/dtbUDIqjbybC
-         AznOPqBesNpDWAhu0lF1kNZP5IicXl8j39a0eAvKuJT397nDKRsCBE1JhFb8agWNUGKa
-         MqorGXHzwOAdMGVwu6rxtjXOH4QTSp8t3jndqrU38Pwe0t+DhBbg4uaol4VQpnJjwEOj
-         GKbvdnIkRXAasF5nT6kqk6wDXo4KrTafWcI5Q6VcWUEWwALEujnnkYiiEAQiz7xT1e4k
-         NI7OwS5rVXOQGNy6sDfqqXY/RGWMbLkhfYMwWGZBbJ1lbWO2BGiRQ76/tbZasn+8yhYH
-         5aug==
+        d=gmail.com; s=20230601; t=1730357734; x=1730962534; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k5e7LBmNJeMJSZN6anErizq1fQ8yqtX6gXRt+viO/SA=;
+        b=W7y22bqLGtp/Y4aAkPmrQXwVRTb/UVHn8+mSD+NdS9WlI+v8jKIJmxdbpAaEIGEWXo
+         8tg+OcP9dMJZdolrNDnZ+LnIqZi3dnptVEAX3Xf+ptzNukirCnruG4gTlzuyqj4qD2kp
+         QmeUidyptpUyoYgoWOMsj/MGkYOBuxcblBw/VGx7ug2XHLWNtZDm7mvGxjb5iVb4iBLb
+         J90VHh9L4Hgnf8Ipf+mixrrSLNgP5ImAIFaG2SYjkNxMUNwwH5nGe5Sro4OwkRzXst+f
+         82xscRuluRtg/bH7JGq+qPe+Teuq6Xmoupv3kILH6VlFhFKonfpyeLWnec/ABgWkUl3N
+         pG7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730356543; x=1730961343;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=F75xPnob/0lWkFALsaz/alsMdiA7L3Oet9JH75Rjxo8=;
-        b=jkmSAirBSLnKlyE6YEXJ/Yo9hKzHsluDnaABiMxgiLq1HEbsdKGbCj2zC1yvJr52xq
-         dRCFBiTCPrvgLZ1VZIn9oL1fqcZImSJfcyUOWRhnOvXl14b0Ys+1+ZHC1/tNnfKiUKx1
-         UWOierdrmbAQR0xS8SfJgGce/0iy5YIC3cJMh9gbaWRtthSS5Up9mel7Vn/tawvfE+TS
-         4umELItYOF8jyDTcZTLpuEV1wOu3ZOmk0ZilaT/FzOsbedYBSx7y73zjMA830ENqI4fm
-         KIC9X1gFEqABrkH12frAOiVHz9qQ5L2cBMF1MVfABdsBUo+Fn/1lIDBg6keyeq+lQPIo
-         FqGw==
-X-Forwarded-Encrypted: i=1; AJvYcCURIP9tkE2sUqkHIKrZcK4feGi/GEkQeGwF/KCvnN1Y3IFLhI6Sim+QM0vcmFuJIVg2XHj27BroC4loRadP@vger.kernel.org, AJvYcCUlrYHa3DhE4rVruZ8trShS1wINM5YY/VxXC2aeI4X/JsdnSyuquoylMnXIxyh0mZjfuuIy04i7LWUo@vger.kernel.org, AJvYcCXiHtEDMIx1locUPCnoJbdN8eUMPVWFiBcozFCxQsxEnWzsjp657P1Pc6ApMNCt4iYzew4q2pvbJktw@vger.kernel.org
-X-Gm-Message-State: AOJu0YwndX1DJ21DNdTLrGSOl8X9odUdQCf0ImztS4wRis2xwU67XdxO
-	7T+TTmch6viATf63t6HloX9ShIhEJgBSiTZXeKv5aAmOnPTpq9xx
-X-Google-Smtp-Source: AGHT+IETCRY2PNqng4xrGPPp//Zq9XZAJ4eH/XyOR+CwXOLr0jw/zWi6YLf9eBcejrRfprHEONGb7Q==
-X-Received: by 2002:a05:6000:104a:b0:37d:2de4:d64 with SMTP id ffacd0b85a97d-38061162c32mr12281346f8f.35.1730356542457;
-        Wed, 30 Oct 2024 23:35:42 -0700 (PDT)
-Received: from ?IPv6:2001:a61:34c9:ea01:14b4:7ed9:5135:9381? ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c10ea7c2sm1063670f8f.57.2024.10.30.23.35.41
+        d=1e100.net; s=20230601; t=1730357734; x=1730962534;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=k5e7LBmNJeMJSZN6anErizq1fQ8yqtX6gXRt+viO/SA=;
+        b=qE6mNHIGPEO+J8eALR9RcZgzcDG6HW2ky3qdXqZUsIl9wxxaxCeWrtTIyn8MvKe7xF
+         maOHWR2qbsvKJ2K2bsgnf/y+Kcv0/d0d52+sqzI6IG3Vx7a9Zn1L7FDIIbCKfIYeyTFB
+         qoGsm+KH3rnSwdWkA1/odThrtV+qIoDMSMVR+IMTc9/+qcsF/+FCIhiI1LbABOMLdZvl
+         enewgoheBYUZSVn6/ZLc/oi9H6uon/pj2RIzdcrO47nHLB56VglyBr9FATZFuBkf/XwL
+         XRp7MWQ6d8V7UC+0iaXoRtn0mshcIEq7lf9+RCXNENsXH3qWVEkyojtAbN0KbTzBkuZs
+         P7qw==
+X-Forwarded-Encrypted: i=1; AJvYcCV2hxNwQPym63uzzra4euCJznRGinUDaWjqqeh0KRcdGYKg4/QL3aNptChSdzGTaAUL/t5yQ2jj9ruCsw==@vger.kernel.org, AJvYcCVVdu6tTC2BlLBXszNvv6qNO3yiIlBEMSq8HtFAAJrNq79EFUwlVnB0uojIIPe8I2qVVAgyOlFulBCF26yF@vger.kernel.org, AJvYcCVhxmi5Z4uidTTcZXyujViH8sm93EaUIEspA7sU5rTdPfXyW5yaKV6W/wc+TezQ9QXHet+hnE3KQjDNXeMrqg/w@vger.kernel.org, AJvYcCWJ9MRyKnFHVF6YQ00MdiHf8wGXK2c3f74ROSIFOn7O6G1OkJvhWDHuQykHCcGLZHbts6WCks/7YTV0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaNLYd3gzjlbu0fCP5/+HBsgloiDq4zNedaxKoB6+yyoK9NADw
+	Ov71a3F2R1L1o7D6pvlxjGNYEynwOTJoV3HULiRtNdSwg2ogBPg0
+X-Google-Smtp-Source: AGHT+IGbLyPOXx6DCrOUl7LkUJCGcD524sl54LQMtTqVyyY0tLYH9vOWU6iXIhcRrtmJZYzFvfe4gQ==
+X-Received: by 2002:a05:6a20:d74d:b0:1d8:ae90:c647 with SMTP id adf61e73a8af0-1d9a85130demr24773728637.42.1730357733815;
+        Wed, 30 Oct 2024 23:55:33 -0700 (PDT)
+Received: from mighty.kangaroo-insen.ts.net ([120.88.183.44])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc1b8ce8sm626792b3a.35.2024.10.30.23.55.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Oct 2024 23:35:41 -0700 (PDT)
-Message-ID: <2e343f2da60b8ad4da9f24d0d42a961abf2dc30f.camel@gmail.com>
-Subject: Re: [PATCH v9 4/8] iio: dac: adi-axi-dac: extend features
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Angelo Dureghello <angelo@kernel-space.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
- linux-iio@vger.kernel.org,  devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dlechner@baylibre.com,  Mark Brown
- <broonie@kernel.org>, Angelo Dureghello <adureghello@baylibre.com>
-Date: Thu, 31 Oct 2024 07:35:41 +0100
-In-Reply-To: <20241029211737.6486e0d6@jic23-huawei>
-References: 
-	<20241028-wip-bl-ad3552r-axi-v0-iio-testing-v9-0-f6960b4f9719@kernel-space.org>
-	 <20241028-wip-bl-ad3552r-axi-v0-iio-testing-v9-4-f6960b4f9719@kernel-space.org>
-	 <51afb385d291d27ea4e5d8b1f5f3389573b119d5.camel@gmail.com>
-	 <20241029211737.6486e0d6@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
+        Wed, 30 Oct 2024 23:55:33 -0700 (PDT)
+From: Mithil Bavishi <bavishimithil@gmail.com>
+To: andreas@kemnade.info
+Cc: aaro.koskinen@iki.fi,
+	bavishimithil@gmail.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	khilman@baylibre.com,
+	krzk+dt@kernel.org,
+	linux-hardening@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	robh@kernel.org,
+	rogerq@kernel.org,
+	tony@atomide.com
+Subject: Re: [PATCH v2 2/6] arm/dts: Add common device tree for Samsung Galaxy Tab 2 series
+Date: Thu, 31 Oct 2024 06:55:24 +0000
+Message-ID: <20241031065524.546-1-bavishimithil@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241030234219.2d918b34@akair>
+References: <20241030234219.2d918b34@akair>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Tue, 2024-10-29 at 21:17 +0000, Jonathan Cameron wrote:
-> On Tue, 29 Oct 2024 09:13:42 +0100
-> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
->=20
-> > On Mon, 2024-10-28 at 22:45 +0100, Angelo Dureghello wrote:
-> > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > >=20
-> > > Extend AXI-DAC backend with new features required to interface
-> > > to the ad3552r DAC. Mainly, a new compatible string is added to
-> > > support the ad3552r-axi DAC IP, very similar to the generic DAC
-> > > IP but with some customizations to work with the ad3552r.
-> > >=20
-> > > Then, a series of generic functions has been added to match with
-> > > ad3552r needs. Function names has been kept generic as much as
-> > > possible, to allow re-utilization from other frontend drivers.
-> > >=20
-> > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > > ---=C2=A0=20
-> >=20
-> > Hi Angelo,
-> >=20
-> > Small stuff that Jonathan might be able to change while applying... Wit=
-h that:
-> >=20
-> > Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-> >=20
-> > > =C2=A0drivers/iio/dac/adi-axi-dac.c | 256 +++++++++++++++++++++++++++=
-++++++++++++--
-> > > -
-> > > =C2=A01 file changed, 242 insertions(+), 14 deletions(-)
-> > >=20
-> > > diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-=
-dac.c
-> > > index 04193a98616e..155d04ca2315 100644
-> > > --- a/drivers/iio/dac/adi-axi-dac.c
-> > > +++ b/drivers/iio/dac/adi-axi-dac.c
-> > > @@ -46,9 +46,28 @@
-> > > =C2=A0#define AXI_DAC_CNTRL_1_REG			0x0044
-> > > =C2=A0#define=C2=A0=C2=A0 AXI_DAC_CNTRL_1_SYNC			BIT(0)
-> > > =C2=A0#define AXI_DAC_CNTRL_2_REG			0x0048
-> > > +#define=C2=A0=C2=A0 AXI_DAC_CNTRL_2_SDR_DDR_N		BIT(16)
-> > > +#define=C2=A0=C2=A0 AXI_DAC_CNTRL_2_SYMB_8B		BIT(14)
-> > > =C2=A0#define=C2=A0=C2=A0 ADI_DAC_CNTRL_2_R1_MODE		BIT(5)
-> > > +#define=C2=A0=C2=A0 AXI_DAC_CNTRL_2_UNSIGNED_DATA		BIT(4)
-> > > +#define AXI_DAC_STATUS_1_REG			0x0054
-> > > +#define AXI_DAC_STATUS_2_REG			0x0058
-> > > =C2=A0#define AXI_DAC_DRP_STATUS_REG			0x0074
-> > > =C2=A0#define=C2=A0=C2=A0 AXI_DAC_DRP_STATUS_DRP_LOCKED		BIT(17)
-> > > +#define AXI_DAC_CUSTOM_RD_REG			0x0080
-> > > +#define AXI_DAC_CUSTOM_WR_REG			0x0084
-> > > +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_WR_DATA_8		GENMASK(23, 16)
-> > > +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_WR_DATA_16		GENMASK(23, 8)
-> > > +#define AXI_DAC_UI_STATUS_REG			0x0088
-> > > +#define=C2=A0=C2=A0 AXI_DAC_UI_STATUS_IF_BUSY		BIT(4)
-> > > +#define AXI_DAC_CUSTOM_CTRL_REG			0x008C
-> > > +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_ADDRESS		GENMASK(31, 24)
-> > > +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_SYNCED_TRANSFER	BIT(2)
-> > > +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_STREAM		BIT(1)
-> > > +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA	BIT(0)
-> > > +
-> > > +#define
-> > > AXI_DAC_CUSTOM_CTRL_STREAM_ENABLE	(AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA =
-| \
-> > > +						 AXI_DAC_CUSTOM_CTRL_STREAM)
-> > > =C2=A0
-> > > =C2=A0/* DAC Channel controls */
-> > > =C2=A0#define AXI_DAC_CHAN_CNTRL_1_REG(c)		(0x0400 + (c) * 0x40)
-> > > @@ -63,12 +82,21 @@
-> > > =C2=A0#define AXI_DAC_CHAN_CNTRL_7_REG(c)		(0x0418 + (c) * 0x40)
-> > > =C2=A0#define=C2=A0=C2=A0 AXI_DAC_CHAN_CNTRL_7_DATA_SEL		GENMASK(3, 0=
-)
-> > > =C2=A0
-> > > +#define AXI_DAC_RD_ADDR(x)			(BIT(7) | (x))
-> > > +
-> > > =C2=A0/* 360 degrees in rad */
-> > > =C2=A0#define AXI_DAC_2_PI_MEGA			6283190
-> > > =C2=A0
-> > > =C2=A0enum {
-> > > =C2=A0	AXI_DAC_DATA_INTERNAL_TONE,
-> > > =C2=A0	AXI_DAC_DATA_DMA =3D 2,
-> > > +	AXI_DAC_DATA_INTERNAL_RAMP_16BIT =3D 11,
-> > > +};
-> > > +
-> > > +struct axi_dac_info {
-> > > +	unsigned int version;
-> > > +	const struct iio_backend_info *backend_info;
-> > > +	bool has_dac_clk;
-> > > =C2=A0};
-> > > =C2=A0
-> > > =C2=A0struct axi_dac_state {
-> > > @@ -79,9 +107,11 @@ struct axi_dac_state {
-> > > =C2=A0	 * data/variables.
-> > > =C2=A0	 */
-> > > =C2=A0	struct mutex lock;
-> > > +	const struct axi_dac_info *info;
-> > > =C2=A0	u64 dac_clk;
-> > > =C2=A0	u32 reg_config;
-> > > =C2=A0	bool int_tone;
-> > > +	int dac_clk_rate;
-> > > =C2=A0};
-> > > =C2=A0
-> > > =C2=A0static int axi_dac_enable(struct iio_backend *back)
-> > > @@ -471,6 +501,11 @@ static int axi_dac_data_source_set(struct iio_ba=
-ckend
-> > > *back, unsigned int chan,
-> > > =C2=A0					=C2=A0 AXI_DAC_CHAN_CNTRL_7_REG(chan),
-> > > =C2=A0					=C2=A0 AXI_DAC_CHAN_CNTRL_7_DATA_SEL,
-> > > =C2=A0					=C2=A0 AXI_DAC_DATA_DMA);
-> > > +	case IIO_BACKEND_INTERNAL_RAMP_16BIT:
-> > > +		return regmap_update_bits(st->regmap,
-> > > +					=C2=A0 AXI_DAC_CHAN_CNTRL_7_REG(chan),
-> > > +					=C2=A0 AXI_DAC_CHAN_CNTRL_7_DATA_SEL,
-> > > +					=C2=A0 AXI_DAC_DATA_INTERNAL_RAMP_16BIT);
-> > > =C2=A0	default:
-> > > =C2=A0		return -EINVAL;
-> > > =C2=A0	}
-> > > @@ -528,6 +563,154 @@ static int axi_dac_reg_access(struct iio_backen=
-d *back,
-> > > unsigned int reg,
-> > > =C2=A0	return regmap_write(st->regmap, reg, writeval);
-> > > =C2=A0}
-> > > =C2=A0
-> > > +static int axi_dac_ddr_enable(struct iio_backend *back)
-> > > +{
-> > > +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> > > +
-> > > +	return regmap_clear_bits(st->regmap, AXI_DAC_CNTRL_2_REG,
-> > > +				 AXI_DAC_CNTRL_2_SDR_DDR_N);
-> > > +}
-> > > +
-> > > +static int axi_dac_ddr_disable(struct iio_backend *back)
-> > > +{
-> > > +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> > > +
-> > > +	return regmap_set_bits(st->regmap, AXI_DAC_CNTRL_2_REG,
-> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AXI_DAC_CNTRL_2_SDR_DDR_N);
-> > > +}
-> > > +
-> > > +static int axi_dac_data_stream_enable(struct iio_backend *back)
-> > > +{
-> > > +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> > > +
-> > > +	return regmap_set_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
-> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_STREAM_E=
-NABLE);
-> > > +}
-> > > +
-> > > +static int axi_dac_data_stream_disable(struct iio_backend *back)
-> > > +{
-> > > +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> > > +
-> > > +	return regmap_clear_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
-> > > +				 AXI_DAC_CUSTOM_CTRL_STREAM_ENABLE);
-> > > +}
-> > > +
-> > > +static int axi_dac_data_transfer_addr(struct iio_backend *back, u32 =
-address)
-> > > +{
-> > > +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> > > +
-> > > +	if (address > FIELD_MAX(AXI_DAC_CUSTOM_CTRL_ADDRESS))
-> > > +		return -EINVAL;
-> > > +
-> > > +	/*
-> > > +	 * Sample register address, when the DAC is configured, or stream
-> > > +	 * start address when the FSM is in stream state.
-> > > +	 */
-> > > +	return regmap_update_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
-> > > +				=C2=A0 AXI_DAC_CUSTOM_CTRL_ADDRESS,
-> > > +				=C2=A0 FIELD_PREP(AXI_DAC_CUSTOM_CTRL_ADDRESS,
-> > > +				=C2=A0 address));
-> > > +}
-> > > +
-> > > +static int axi_dac_data_format_set(struct iio_backend *back, unsigne=
-d int ch,
-> > > +				=C2=A0=C2=A0 const struct iio_backend_data_fmt *data)
-> > > +{
-> > > +	struct axi_dac_state *st =3D iio_backend_get_priv(back);
-> > > +
-> > > +	switch (data->type) {
-> > > +	case IIO_BACKEND_DATA_UNSIGNED:
-> > > +		return regmap_clear_bits(st->regmap, AXI_DAC_CNTRL_2_REG,
-> > > +					 AXI_DAC_CNTRL_2_UNSIGNED_DATA);
-> > > +	default:
-> > > +		return -EINVAL;
-> > > +	}
-> > > +}
-> > > +
-> > > +static int axi_dac_bus_reg_write_locked(struct iio_backend *back, u3=
-2 reg,
-> > > +					u32 val, size_t data_size)=C2=A0=20
-> >=20
-> > nit: this is actually unlocked and needs to be locked from the outside.=
- So,
-> > unlocked could be a better suffix. But more importantly is the extra ca=
-ll to
-> > iio_backend_get_priv(). We can just pass *st directly from the outer fu=
-nction.
->=20
-> This naming always gets confusing. Are we naming the state, or what happe=
-ns?
->=20
-> A lockdep marking just inside the function can be used to make it obvious
-> or the old __ prefix to say 'special, check the rules'.
->=20
+> this has to be system-power-controller;
 
+I am so sorry for the mess up, I was on the wrong branch which is almost the same as pmOS but a bit older, hence the entire mess up. I'll run a quick diff from pmOS and this patch and fix them accordingly.
 
-Yeah, personally I would prefer the __ prefix...
+> There is still a lot other stuff to fix here but I want to make sure we are looking at the right thing.
 
-- Nuno S=C3=A1
+Could you please go ahead and mention them as well.
 
-
+Best Regards,
+Mithil
 
