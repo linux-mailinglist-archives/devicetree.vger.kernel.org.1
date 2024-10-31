@@ -1,86 +1,83 @@
-Return-Path: <devicetree+bounces-117804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8BD89B7DD0
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 16:07:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8E9D9B7DDE
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 16:12:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 920581F21535
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 15:07:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37313B223A0
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 15:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E88D21A255A;
-	Thu, 31 Oct 2024 15:07:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FD681A0AFE;
+	Thu, 31 Oct 2024 15:12:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UewkTDYa"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="IhzO+4gK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F05336A019
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 15:07:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53696A019;
+	Thu, 31 Oct 2024 15:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730387252; cv=none; b=uiVT2YHcVjM9nG4HxyPVsLuY1dXD53F8F2V+bwWzZSscaALF5a16pgsBlKYuSo2IGY7t2nOTYrEqmZgaXjFGOCzvRrV7tvK9o7uE52IMZixhdoWFpzfxnfGtGECuox6ckdxp5VA+Y9Lld1rKRjXX1LtZJOFEy7NJfJCjetRQxyw=
+	t=1730387571; cv=none; b=H8UjDuiOeqOTrtjsXEyToj33VUiAP7cdXZjdMLA+xTqRq6IgedLlrggEsBKeaLd2wGp3RddvsxsO/GTscSWDBOqBK725lXpf7h43aUHXoK8VkiKXPG52D0Bsg4MuIHMf+PPeYG0kwPqSlp6aTlDq0qlqC7/bEHF0mqC1/VP28s8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730387252; c=relaxed/simple;
-	bh=COcuBig8GEG/5Qrga7lfsBTbKmx/g8I88+wIiDqBNiM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oRKPt0jDAsM/JAm8A/nM+Oj3AjVVJT1hZWJFoNVcOgrFsbYU2c5XFTliaN0cA9g6PsbYDvkuXyVPtiOVIVMH6tucuy1dAUoyjn5cQXzSrrURBmVRQkAF3AqJPi1TyhTmXKGb5J6na0VifhLl6DaWEymXhVlfGY42Lr5Ec5nf+bY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UewkTDYa; arc=none smtp.client-ip=209.85.161.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-5ebc22e6362so495848eaf.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 08:07:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730387250; x=1730992050; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jlWwUEVPL4Ht5JR9rZd0qrjB4/ZUY1ibxQvg14KDPjs=;
-        b=UewkTDYab6liqtKcrvPK0uEAbuYd3j7CyOYNn88ZI+V+t3v9x7lAgRkPo/dMp13oYS
-         bZmesArc2f7dfj+xar5mbyxOdJbAMuBqG1dWgtYv1SRx4ze8tp1DnGUOaQH7zgAHFFU3
-         WxhJDFbKZkXhS3s6nhcoVuwQQ2SJO5cv+cKGkLS8UJCTTYnxaGCPGjxz4jXqS+fDpscm
-         75ycxs1WWqn63SZQ07eSRcFoSJtiJJL5Lu5+gqbC7RJvLpHHcslfbJ3r22wZcbAmxfmq
-         hs23U3WcHn+jdaJfWOt7m+6+KEnbZUQbZr+UoE/chuqh9KKvjGtojwE0IYt0aEpZhoHA
-         6K8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730387250; x=1730992050;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jlWwUEVPL4Ht5JR9rZd0qrjB4/ZUY1ibxQvg14KDPjs=;
-        b=nlJdcG9NHVzGbKf2Q1LLgSfIqyTxUTSoipHSBVh0bbGQidnkKsTRgLLtEFOWeTd8SB
-         6dKsYI8SKrfVa650Eg1+mMWm/qpBL1XBv9tvo3RG3rZeVUOHCRcc/qeTihZ9E/jAEZCP
-         ABtqO7JOgi2ERyCYZaf/Iu3Bu/L5yAZYGuflPH9SdARmiq1TBi/1b6uMinPXErdbwhjq
-         Ot2gXyyvP5FpzuRsdkfZSeGmrbgG9ny3THNb0V98qW2utmM+R/NAY0PX3hGDSBHz/UDQ
-         m+aSZXgYeO/YyL509Kk0U7QyCh/b4ReWT991L32gY7gnro5D5wgZ3Ro7VXTd5sELZt3P
-         z1Jw==
-X-Gm-Message-State: AOJu0YzK8j4eWwPEf/n0HAg/870fuEKPIRytozW4eKjkA41NMEGdDsfD
-	KMNWY+OTiirXkvIxpD7LE3Cl4FO92HUoVPXclpUkt3v3yvfE+91H
-X-Google-Smtp-Source: AGHT+IHrnnNEC7W9Gy4tyX2vX0j96eLcc1aZvHwwgyHwDkIycahdXSdL0CeVLvLWa3/QOhDfjFUDcg==
-X-Received: by 2002:a05:6820:1c9d:b0:5e5:941c:ca5a with SMTP id 006d021491bc7-5ec6da771ebmr2078268eaf.1.1730387249972;
-        Thu, 31 Oct 2024 08:07:29 -0700 (PDT)
-Received: from localhost.localdomain ([2600:1700:fb0:1bcf::54])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ec704bfefdsm317330eaf.4.2024.10.31.08.07.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2024 08:07:29 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: devicetree@vger.kernel.org,
-	honyuenkwun@gmail.com,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V3 3/3] arm64: dts: rockchip: Enable HDMI0 on Indiedroid Nova
-Date: Thu, 31 Oct 2024 10:05:05 -0500
-Message-ID: <20241031150505.967909-4-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241031150505.967909-1-macroalpha82@gmail.com>
-References: <20241031150505.967909-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1730387571; c=relaxed/simple;
+	bh=fE7XOfb60YUH7w+POxS2I+b7W3BK8jEjKtWCQTJ2KqM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KtMmABniMTwDkHIlv5HDpu9kKFkukEWrtxcSzGAK8Wmhr7Z3YP2yMsV81baeh+YbsdFWdoAHyHOw35YaYfxZBZ9dnwE9NGDWWRQr/jEjYL9DGYuiYN5Q2ZDtwh5GewpvvSQiKaB0r3iGrcgyqi7lnfoK3efgsvjJOqiiyXVeSPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=IhzO+4gK; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from localhost.localdomain (89-186-114-4.pool.digikabel.hu [89.186.114.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: hs@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 4C89A88F48;
+	Thu, 31 Oct 2024 16:12:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1730387567;
+	bh=LM1+WsafnKkfeROALqH5BTD103VV7dOo3P/ZG+WIGVc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=IhzO+4gKZr3u3GehPzi0opVPoUdKOHh0Q8+VMz1YdmWnF5Gn51PAgptcSETJZ9aot
+	 WruroA1+WmNh19u2KhFsiPvACXWWNxrc/geeHUGMQ7+6ScCnSOkNGchiwjtIHYJGBD
+	 xDZZ4sA5haZsshdlV76FN68wGQN4qVU8mf0kfj/ACleLuSMHO2a2WZYJWxFhjJcSDn
+	 OWkHOaQ3A9EgNd754MkYe5AR2uKGIYERook9hjvLI0TyRmhi5n0ahfcHHdADpcPX6B
+	 UnWwZGNByLFroTnNPN/kq/oekvXkLY4wOeWUcf7dk43H+7EOD9X+gwRU8Bda5if8ve
+	 OCZlUbaUh2XwQ==
+From: Heiko Schocher <hs@denx.de>
+To: linux-kernel@vger.kernel.org
+Cc: Heiko Schocher <hs@denx.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Mathieu Othacehe <m.othacehe@gmail.com>,
+	Max Merchel <Max.Merchel@ew.tq-group.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Tim Harvey <tharvey@gateworks.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org
+Subject: [PATCH v2 0/3] arm64: dts: imx8mp: add support for the ABB SoM and carrier
+Date: Thu, 31 Oct 2024 16:12:34 +0100
+Message-Id: <20241031151238.67753-1-hs@denx.de>
+X-Mailer: git-send-email 2.20.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,96 +85,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-From: Chris Morgan <macromorgan@hotmail.com>
+The board uses an ABB specific SoM from ADLink, based on NXP
+i.MX8MP SoC. The SoM is used on 3 different carrier boards,
+with small differences.
 
-Enable the HDMI0 port for the Indiedroid Nova.
+series is based on:
+819837584309 - (tag: v6.12-rc5, origin/master, origin/HEAD) Linux 6.12-rc5
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- .../dts/rockchip/rk3588s-indiedroid-nova.dts  | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
+patches are now checked with
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-index 065d44735001..3a41b9c00010 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-@@ -5,6 +5,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
- #include <dt-bindings/usb/pd.h>
- #include "rk3588s.dtsi"
- 
-@@ -50,6 +51,17 @@ chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
-+	hdmi0-con {
-+		compatible = "hdmi-connector";
-+		type = "d";
-+
-+		port {
-+			hdmi0_con_in: endpoint {
-+				remote-endpoint = <&hdmi0_out_con>;
-+			};
-+		};
-+	};
-+
- 	sdio_pwrseq: sdio-pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		clock-names = "ext_clock";
-@@ -247,6 +259,29 @@ &gpu {
- 	status = "okay";
- };
- 
-+&hdmi0 {
-+	pinctrl-0 = <&hdmim0_tx0_scl>, <&hdmim0_tx0_sda>,
-+		    <&hdmim0_tx0_hpd>, <&hdmim0_tx0_cec>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&hdmi0_in {
-+	hdmi0_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi0>;
-+	};
-+};
-+
-+&hdmi0_out {
-+	hdmi0_out_con: endpoint {
-+		remote-endpoint = <&hdmi0_con_in>;
-+	};
-+};
-+
-+&hdptxphy_hdmi0 {
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	pinctrl-0 = <&i2c0m2_xfer>;
- 	pinctrl-names = "default";
-@@ -924,3 +959,18 @@ usbdp_phy0_dp_altmode_mux: endpoint@1 {
- 		};
- 	};
- };
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-+		remote-endpoint = <&hdmi0_in_vp0>;
-+	};
-+};
+make W=1 dt_binding_check
+make W=1 dtbs_check
+make W=1 CHECK_DTBS=y {for each dtb introduced in this series)
+
+as Krzysztof suggested.
+
+Changes in v2:
+- worked in comments from Krzysztof
+  - reworked the compatible strings for ABB imx8mp based boards
+  - removed unneeded dtbos and build now dtbs for each
+    carrierboard.
+  - removed user spidev entries, as I do not know the
+    real spi devices connected to...
+  - call dtb check targets as described in cover letter
+    and fixed warnings except warnings see below:
+not fixed dtb check warnings
+- pci (warning pops up for each new dtb from this patch, but
+  also for a lot of other boards, which are already in tree)
+imx8mp-aristainetos3-adpismarc.dtb: pcie-ep@33800000: reg: [[864026624, 4194304], [402653184, 134217728]] is too short
+        from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie-ep.yaml#
+imx8mp-aristainetos3-adpismarc.dtb: pcie-ep@33800000: reg-names: ['dbi', 'addr_space'] is too short
+        from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie-ep.yaml#
+- proton2s dtb specific:
+  - rs485
+    imx8mp-aristainetos3-proton2s.dtb: serial@30a60000: rs485-rts-delay:0: 0 is not of type 'array'
+        from schema $id: http://devicetree.org/schemas/serial/fsl-imx-uart.yaml#
+    imx8mp-aristainetos3-proton2s.dtb: serial@30a60000: rs485-rts-delay:1: 0 is not of type 'array'
+        from schema $id: http://devicetree.org/schemas/serial/fsl-imx-uart.yaml#
+    imx8mp-aristainetos3-proton2s.dtb: serial@30a60000: Unevaluated properties are not allowed ('linux,rs485-enabled-at-boot-time', 'rs485-rts-active-low', 'rs485-rts-delay' were unexpected)
+        from schema $id: http://devicetree.org/schemas/serial/fsl-imx-uart.yaml#
+    do not see, what I am doing wrong, also rs485 works fine
+  - led driver
+    imx8mp-aristainetos3-proton2s.dtb: /soc@0/bus@30800000/i2c@30a30000/tlc59108@40: failed to match any schema with compatible: ['ti,tlc59108']
+    I use the comaptible entry used in drivers/leds/leds-tlc591xx.c
+    Ah, may because file
+    Documentation/devicetree/bindings/leds/leds-tlc591xx.txt
+    is not converted to yaml?
+  - pinctrl driver
+    adding 'gpio-line-names' leads in a warning as this property
+    is not checked yet (and so a warning is dropped).
+    add this check in new patch
+    dt-bindings: pinctrl: sx150xq: allow gpio line naming
+    in v2
+
+Heiko Schocher (3):
+  dt-bindings: arm: fsl: Add ABB SoM and carrier
+  dt-bindings: pinctrl: sx150xq: allow gpio line naming
+  arm64: dts: imx8mp: add aristainetos3 board support
+
+ .../devicetree/bindings/arm/fsl.yaml          |    9 +
+ .../bindings/pinctrl/semtech,sx1501q.yaml     |    4 +
+ arch/arm64/boot/dts/freescale/Makefile        |    5 +
+ .../imx8mp-aristainetos3-adpismarc.dts        |   38 +
+ .../imx8mp-aristainetos3-helios-lvds.dtso     |  115 ++
+ .../freescale/imx8mp-aristainetos3-helios.dts |   99 ++
+ .../imx8mp-aristainetos3-proton2s.dts         |  162 +++
+ .../imx8mp-aristainetos3a-som-v1.dtsi         | 1116 +++++++++++++++++
+ 8 files changed, 1548 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-adpismarc.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-helios-lvds.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-helios.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-proton2s.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aristainetos3a-som-v1.dtsi
+
 -- 
-2.43.0
+2.20.1
 
 
