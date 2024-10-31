@@ -1,153 +1,127 @@
-Return-Path: <devicetree+bounces-117884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B55B29B83E4
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 21:00:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16EB99B8402
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 21:04:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E258B281EC0
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 19:59:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48C061C21BBF
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 20:04:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C671CBE8D;
-	Thu, 31 Oct 2024 19:59:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C224D1CCEE2;
+	Thu, 31 Oct 2024 20:04:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m8ztcsIj"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="rCGZ/gDy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC8061C9B98
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 19:59:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D5601CB52E
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 20:04:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730404773; cv=none; b=MI+KcH93uOgRbv4nfXDzBS8EhOHZV/hV6Udf0Btw499KVsOMWk9sm9/DXKNrjpLKLrs6ToBiX0KRJ84qNG782s9r4+pFiBFNxISD7Fu8CJsAiCEw0osZpPs1drwoFjZ4hhqcpAXNvOk856iAPFwFkmxjR6dF5GiNTLQedIN3FCo=
+	t=1730405046; cv=none; b=Y/Aei0qujzL8OKDj6tHJTjcsKC0o7L33p7Pg0LwZgoKaa3f+WXlcxZuszmNjzGd90BUsRNeeuk6/Awsv573f4HiQrD1qCiPLnlX8jD2Ad1lv5wFQ47nYyKvvHnDe/MH66Hx5DzIu83xIyy5jZ0s8bJzIPRByNgXqA8AeuTymSpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730404773; c=relaxed/simple;
-	bh=5p4Mk678GuitXuuECGJ5e05Cm7ocEQTQPS952K3CUw0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZuGGSmcG+eFDTxOjiO6Rv/nDHjgZPH9nrQ4qmLKZDWqopTPx+PanLwyRgN7SoqFVQPIIOoDnMuz4jpC+xM0Tj9p64kNXCUaW3vrL9XT6zwTgkdyZcJbzadQo0XUBUczjQpw6YDYZ25OS3NdheSQiAdzvAhe/5Jax82pBTiBBwrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m8ztcsIj; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2fb59652cb9so13242711fa.3
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 12:59:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730404769; x=1731009569; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=r2xSFooj3LTMdkPz8EDCzvFWM6rUJZfX8/xlhCllXOs=;
-        b=m8ztcsIj8lRYPW3OJzKX98epVi7p7Fo9uOn09BMSfHBZ4m+vS1ePlknlpHNmQX2Q/7
-         QXajJPKEKoXbRZtOuWd2pqjI9JAaHIpwjRHjqAZD+ZxJfza3jTCMZ6qqIt50xaMdmJKS
-         De/9t8FtUzl0fV7qMglKLIuWG4GSWWPOGVxatYlOaejyiylxDH0CUDsYiWzOqDz7c5QY
-         tUlP2rY8tLeN0sEpoCHT87tuvy1tV4Pno36iWgGcu663L+DTDntHfxbp8+pEb3V2ptoX
-         LDtipOOhcR4CwPiKCfsQm+yH/4noXjel7iDBt4UebxLY77W6gEe5jZ4oT/8fhXA/r6U2
-         1IvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730404769; x=1731009569;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=r2xSFooj3LTMdkPz8EDCzvFWM6rUJZfX8/xlhCllXOs=;
-        b=DR41RQ8F4Eipq/lctrV+pjDPIkNEmS/ubrYn1pakPMbGKWLMwrF4VkrAPb8UbA7h0l
-         O0CROPFfChn3DliBdZHqCnQUTDfBR7x23aVj5Lzw5caO1EEZGxmqc4gS7/Umo9UumeTL
-         ejeSKOjMGU6v5k/yxK8I+sW1SeTBWgpVaIOy0lkkibykV368GEcTjDlOU5Cv9GcYksEP
-         Q7gFsmFjBYmdPxkEleS+7t5/lsHDbcUH8z4MegOWGnh8athtRSI9pONrAxjktUGGZU/d
-         dXB3jMOiDEbmKvrtKLjs5vE+oao9xwj25OxQiwkK/P/GsXpXzJW/hOOGYZuKWvGRO+RP
-         M1RQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXq2DwzGpt4azRNb4f8ZpW+54mkqyual5Gnrsr/537innCF7mbX8jR5PyxxpXyLOc9ovW8Wnhom9hyn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyarmuBaJws9IUA6peXKMUeWYySrxTKk4N/GwPugJV5Dy/nfx9s
-	sVPygSAmHAHr2UtqC8Ghk+HjHnkIYz3fU50C/BXYybpVt+5vckKrIyrbXUVj7To=
-X-Google-Smtp-Source: AGHT+IHDY9mv/LMyrOcAiV/L1FzFmSewuJQRy7gy5xJKrH90HggjEEuq5c/C64nK+qTpVwhpZjhxzg==
-X-Received: by 2002:a05:651c:556:b0:2f6:649e:bf5c with SMTP id 38308e7fff4ca-2fdec726444mr22632061fa.17.1730404768964;
-        Thu, 31 Oct 2024 12:59:28 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fdef3b8ed5sm3238001fa.13.2024.10.31.12.59.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2024 12:59:27 -0700 (PDT)
-Date: Thu, 31 Oct 2024 21:59:26 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Guido =?utf-8?Q?G=C3=BAnther?= <agx@sigxcpu.org>, 
-	Robert Chiras <robert.chiras@nxp.com>, "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: display: nwl-dsi: Allow 'data-lanes'
- property for port@1
-Message-ID: <gz3ifraqt7ga4isxhx6negcmfngen5jmhmcecnvy7gu7mpfffw@j65umo6arwc7>
-References: <20241031194714.2398527-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1730405046; c=relaxed/simple;
+	bh=DeB184f4TFb79JnTdhyFsFvAi0f64OZa5QexDRja9ug=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=duBXzD+Ogdy6wwz1F9bWWY5GDzHPPhe6HNLa1gMVKAj3B7dV6Cd3DHh81zfPQuQGIdvqd7qALQFr2di88JaX+sRpKhXEvSrCeJ4rAF62jFq5TRdRpKhX53LcBbRr8NC+cG3vw78AdCyvFH1JAfudUG9goxok1g1+UjD7280KZF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=rCGZ/gDy; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 26D5D2C012B;
+	Fri,  1 Nov 2024 09:03:53 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1730405033;
+	bh=Y2rVrxEzenf5xW4+rr7fG8RlWJBZNxoLoDtBnZKILFw=;
+	h=From:To:Cc:Subject:Date:From;
+	b=rCGZ/gDyeyHK0KGrod56Bhs/2FYIqUPQ0umGZEihgzt64oVlDbZlXBv0AsUKNRVqa
+	 3fmsfqJ5zclDE1krPa1rnacRhbqhiru1wF/93OOiBaHk6iQu8+bh7lxjgQTfUkmgFI
+	 vwr3U2WN3bK0S2CoVqVPN2rN1We2nPaeHGmlCWxhVp5IYfMnw3C46r7yr462Jn3Gvl
+	 XvvMcnJVis8GfPhSVwRTWEppDCTyGIEqbYftfoyjx+7GSoR2ksSFnnjXumqe12bK1L
+	 FoUV9BOj4ZzVR/f678Al7pOazMFcuitMAK8T9/ykDlfbSzBGFq1HnJvnVdWCkSjTd9
+	 ZyY1+sRqiOH/Q==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B6723e2a80000>; Fri, 01 Nov 2024 09:03:52 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id D308B13EE32;
+	Fri,  1 Nov 2024 09:03:52 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id CB832280964; Fri,  1 Nov 2024 09:03:52 +1300 (NZDT)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: andi.shyti@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	lee@kernel.org,
+	sre@kernel.org,
+	tsbogend@alpha.franken.de
+Cc: linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v8 0/7] RTL9300 support for reboot and i2c
+Date: Fri,  1 Nov 2024 09:03:43 +1300
+Message-ID: <20241031200350.274945-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241031194714.2398527-1-Frank.Li@nxp.com>
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=ca1xrWDM c=1 sm=1 tr=0 ts=6723e2a8 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=VlfZXiiP6vEA:10 a=Ecff0wTpLh6po_UDYMwA:9 a=3ZKOabzyN94A:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-On Thu, Oct 31, 2024 at 03:47:14PM -0400, Frank Li wrote:
-> Change $ref of port@1 from 'port' to 'port-base' and add 'endpoint'
-> property referencing video-interfaces.yaml. Allow 'data-lanes' values
-> 1, 2, 3, and 4 for port@1.
-> 
-> Fix below CHECK_DTB warnings:
-> arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx-lvds-tm070jvhg33.dtb:
->  dsi@30a00000: ports:port@1:endpoint: Unevaluated properties are not allowed ('data-lanes' was unexpected)
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../bindings/display/bridge/nwl-dsi.yaml       | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> index 350fb8f400f02..5952e6448ed47 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> @@ -111,11 +111,27 @@ properties:
->          unevaluatedProperties: false
->  
->        port@1:
-> -        $ref: /schemas/graph.yaml#/properties/port
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
->          description:
->            DSI output port node to the panel or the next bridge
->            in the chain
->  
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                description: array of physical DSI data lane indexes.
-> +                minItems: 1
-> +                items:
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +                  - const: 4
+The first two patches have already been applied by Sebastian (thanks),
+they're just included for context. At Lee's request I've split the
+binding patch so the mfd change can go via a different tree to the i2c
+one. As the mfd binding has a $ref to the i2c binding I've put the i2c
+patch first. They should apply cleanly but various automated checkers
+might complain until they land in the same tree. The mips dts and i2c
+driver itself haven't changed since v6 of this series.
 
-Why are they indexed starting from 1?
+--
+2.46.1
 
-> +
->      required:
->        - port@0
->        - port@1
-> -- 
-> 2.34.1
-> 
+Chris Packham (7):
+  dt-bindings: reset: syscon-reboot: Add reg property
+  power: reset: syscon-reboot: Accept reg property
+  dt-bindings: i2c: Add Realtek RTL I2C Controller
+  dt-bindings: mfd: Add Realtek RTL9300 switch peripherals
+  mips: dts: realtek: Add syscon-reboot node
+  mips: dts: realtek: Add I2C controllers
+  i2c: Add driver for the RTL9300 I2C controller
 
--- 
-With best wishes
-Dmitry
+ .../bindings/i2c/realtek,rtl9301-i2c.yaml     |  69 +++
+ .../bindings/mfd/realtek,rtl9301-switch.yaml  | 114 +++++
+ .../bindings/power/reset/syscon-reboot.yaml   |  11 +-
+ MAINTAINERS                                   |   7 +
+ .../cameo-rtl9302c-2x-rtl8224-2xge.dts        |   2 +-
+ arch/mips/boot/dts/realtek/rtl9302c.dtsi      |  15 +
+ arch/mips/boot/dts/realtek/rtl930x.dtsi       |  29 ++
+ drivers/i2c/busses/Kconfig                    |  10 +
+ drivers/i2c/busses/Makefile                   |   1 +
+ drivers/i2c/busses/i2c-rtl9300.c              | 425 ++++++++++++++++++
+ drivers/power/reset/syscon-reboot.c           |   3 +-
+ 11 files changed, 683 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i2c/realtek,rtl9301=
+-i2c.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/realtek,rtl9301=
+-switch.yaml
+ create mode 100644 arch/mips/boot/dts/realtek/rtl9302c.dtsi
+ create mode 100644 drivers/i2c/busses/i2c-rtl9300.c
+
+--=20
+2.47.0
+
 
