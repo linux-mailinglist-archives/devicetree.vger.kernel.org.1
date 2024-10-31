@@ -1,193 +1,113 @@
-Return-Path: <devicetree+bounces-117738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAC479B783C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 11:01:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECC509B7858
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 11:06:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDD9E1C20F19
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:01:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A5781C21743
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:06:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C2D19922A;
-	Thu, 31 Oct 2024 10:01:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53AFC1946CF;
+	Thu, 31 Oct 2024 10:06:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="FvFtVW8d"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="bdXYH2ok"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83EC91991BE;
-	Thu, 31 Oct 2024 10:01:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC4012C478;
+	Thu, 31 Oct 2024 10:06:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730368868; cv=none; b=mpeDGDxwe6e4czKyS05yWSHlguwx5+fTObpR9NG+4wdJSM6kPjv4iSmCBQepHMWhacwrx5Wzb+KSTpP6Ju+x2zJdPjmgiMbOTUzMNnqSlYkaZhdJuXtsMmr0RCuVwv/0NGCQMPClk/YfPio7OMcdLaRF40ScXP6Ree/hUFTyJgw=
+	t=1730369210; cv=none; b=tS2RGR0IOzw3Qrm2Gjq+BwLEv6tbSFakcm+An/61YmZAEaAUp0bLG0Q8mp7LZrLgSXcXthCWUzWpHWPj8e+vpF0Yr2G0FTFyaNaARv1uNtCE889NHy9PGZROg2ELD6HtlqMcKQs0k/N8MDZG/2nRxjUzbLPAluqHZZa7TeK7ep4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730368868; c=relaxed/simple;
-	bh=cFDTkS/Sa+PzAEz7WhmTzdLNszjGc6G/uOYhgfigvhc=;
+	s=arc-20240116; t=1730369210; c=relaxed/simple;
+	bh=czggZw1ImOvUCNjV9J0Fcc94CVGtF4QXnBHN0bWctP8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V5nKP5IOklR8b9kRPXY1doZVO7MrGg495mTBvvT+/OQYCi4zByAdQJ0jKr9E3uhfzh42qPusbBKZJgdGKYJV+ZR1fFdLJoKqAht2zps+Zh/IR137Ph6G8rQONpFJeuk5eV3THk8M6SHM7304MshozOQ5zDdA9zp8rPT7SWN4P3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=FvFtVW8d; arc=none smtp.client-ip=217.72.192.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1730368843; x=1730973643;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=w6KxghVJUqBJRJO3HvVS8uKSOJoergi/DuFpwoGgi7M=;
+	 In-Reply-To:Content-Type; b=Y1v0IEsQBvlLl9xsrvujEY8sAJTJv61KbqU71lPcrk1HBl9clESiAAp9K0Rhjpm8mpFz4Mgo4Q8BFQ6y6UunmEjSlbUPUa9dAtCdVjpA143dAFd2G9+p7ykGOpRI282WWI1QVLfP+1u1xpnY4NxG2r2JqzC99baeHIDWYbrE7AQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=bdXYH2ok; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1730369194; x=1730973994; i=wahrenst@gmx.net;
+	bh=czggZw1ImOvUCNjV9J0Fcc94CVGtF4QXnBHN0bWctP8=;
 	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
 	 References:From:In-Reply-To:Content-Type:
 	 Content-Transfer-Encoding:cc:content-transfer-encoding:
 	 content-type:date:from:message-id:mime-version:reply-to:subject:
 	 to;
-	b=FvFtVW8dGneQNojsB2SOOoe8FADGFj0gBGE3V+YVKj1xo7sxV7G4wx3tinbih3+1
-	 WAhvJxIiE02mfw3seH2ni1++OfIR9FJMT6/ZrmYYkJjpNl87q4Wh7lIQJGctrV6Jh
-	 35obAz7TBMpjvprIr8mHlNZEeWl1TB6g40o1WJ9YsbT9yK2ioCuQxZ03Yq5e/fAmD
-	 y9ode3lkxCUXrSrgQ5q6wEph52qCgpWA98kVD1WJFWjoFXT+GG88/GNFPOiWFrqxy
-	 D61LVp8QkzVfezu9rdIbs+XPpoW0fDDxUSd6umLOqp+08Yt+SxRZ5mc+0b/FGjqlm
-	 OqpiNLDqORCgthuMkA==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.174] ([91.64.229.215]) by mrelayeu.kundenserver.de
- (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MuUWi-1twlgW3ZgY-00xZEv; Thu, 31 Oct 2024 11:00:42 +0100
-Message-ID: <5d8ec8c4-f473-4849-a428-f7a7283ff478@oldschoolsolutions.biz>
-Date: Thu, 31 Oct 2024 11:00:40 +0100
+	b=bdXYH2ok2ThyRDK0WQIxlpnIB7e/Chol5Cm3EywtEwFpI0+CQayBlS/tc8CvUt7D
+	 Gz39OuPCzMWKdiVjHuwVRWBr6uu79HAd4MP0uV70Df+MXWTGe8CgPVJcr/tSMAs9I
+	 nvqF4mIYQq2SOekDMjU8OVva3VtkoTvbrvaHHAeSbZkP3DhQLDqbCDnYk1yjxWMjY
+	 0zvNPanqw7YJZ4ZN3MZMzf2eFJeWE/T4YOio/oCwiyuLSCxa45m6T1j54f41Skdb0
+	 rMmYPEld9nG1WjD3J2kKb7YeU0KmJcbREO9dSbd87XaC6fKBzQgeS+zMjDOr7kb3m
+	 Jyr/WUEdoNvxa1u+KQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.105] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MqaxU-1tbP6Q31uq-00eZ21; Thu, 31
+ Oct 2024 11:06:34 +0100
+Message-ID: <1a851c21-18d2-472f-95ae-b4121ffded4f@gmx.net>
+Date: Thu, 31 Oct 2024 11:06:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH V3 0/3] X1E001DE Snapdragon Devkit for Windows
-To: Abel Vesa <abel.vesa@linaro.org>, Marc Zyngier <maz@kernel.org>
-Cc: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
- konradybcio@kernel.org, krzk+dt@kernel.org, robh+dt@kernel.org,
- dmitry.baryshkov@linaro.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- conor+dt@kernel.org, srinivas.kandagatla@linaro.org,
- quic_jjohnson@quicinc.com
-References: <20241025123227.3527720-1-quic_sibis@quicinc.com>
- <86y1251q3b.wl-maz@kernel.org> <ZyNR5MD/HAS5w7N/@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 4/4] ARM: dts: mxs: Add descriptions for imx287 based
+ btt3-[012] devices
+To: Lukasz Majewski <lukma@denx.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20241022133040.686562-1-lukma@denx.de>
+ <20241022133040.686562-4-lukma@denx.de>
 Content-Language: en-US
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-In-Reply-To: <ZyNR5MD/HAS5w7N/@linaro.org>
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20241022133040.686562-4-lukma@denx.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:DE26g/zePNYl7lt3v0o9/f8BjRVz9bk0Vw03sLytJZszJHXgnNP
- 9VIPB6kK+G6UxA8R03AIqL6jsTKMRwlMKlMLuA4qUAkrx/WYgnO1Jdm0TW73O/T8wEkF2O7
- grjD7Z6v6KiX9ULuX5iUgZ8vCZN9YBK5FFjBnMokqKcQBNOJerLoQgdUnPDTcYwCdWFmlyN
- LeVt4gmN2clnKIVk1Xqxg==
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:F7iNUNqYNdiEuQkrR7RINVZPMB1Sy2y7T6+j14hQxtRoye0cYGT
+ S0D3noRd9h1Q0UvacqGupZJ+mxwgvM044pV0jhv/Fn+qPyzbJ2Hm+driWi4b+bfVKExWLay
+ LrMs6JrgPbKOHCXFHW2FEPN4I7blrn+1VbE+RVUmlEni8RptFd7yKAkOh6ABJLijBomkmRw
+ +edM6v6gyUCRcwkL0mdiA==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:MTf5hyfXXWA=;wXxb0MhGplrUnuMDME6kxlFa8qN
- yXjJWsFLiAuV7z/FK10V5sv2pqx7VP14GS78j/y6ONJzaiQgnPrWSAMsVxHGlxYbt8DWFaMmh
- 9wzexyxzcYgZqkpKsyuqDyV+AqvU6XWs+9eDVseHE7TIDK0Zpp+pw2cR0b3PFn46av+dA12Pb
- apjVZaR2eZCEL9todm467T/EKb0GOHTMJfyEI5M/aBWsRY8wej7E+immnkNdyD0mfRpVEfXca
- SD0K/xhCtWVK7D11aMzuIvf5zEDbzx5xGGi47oy7t+45kGooUDhSnHdUPPnI7K/rP9r5p1fqH
- mP6x8DKsVt3n9ZnydFNGIoFoQhkV8rNXp1cWAj6Z5lW3JYjO6/K+dx6WaH2aQ5nB7nWBnVWRw
- le0Ului5bxMviIN/RMU61vlzT56DRip+g7etGMPHDOe9Hu1uFbaTHU4L2dr4sEfcX/UP9M5LD
- Q2Y2tNqvyKuPKX3K8/mt51sFJUxTTrVi8nshrRWD6Ks8UjyLHgW5+ayWpnloP/p5M786ulEwn
- 7zMoPViydnxwPPTEe0oQb7yEpgWbvfRfrtjZffmZuRRrfR0ypvrKyZtDqmZwTpydXeSVUnDLY
- s+luIOo+SQwQFYfCDhWflskxQ01TsOhM7qN1R7yQVv7VF8gXskNbTm8HAg9wHwq6FfiNfsUQ1
- DOGnB8gNBAdvwriOBzkKXHiOEMw6o7GwJ27pq+wYRhnHdXCP762DFLY4uwmlw99rS57kmLHJ0
- zSL/3KR1KEmyJcelqJaj9Gf4Pb+cXNWUg==
+UI-OutboundReport: notjunk:1;M01:P0:s4eDwSPY0a8=;0KcBJFMpQiU1k9ATTJaFmUH2h5T
+ vcJ8BbomjztZJIutSk/kPEkwZcR5oPkxlbfuy5FCSFW8VYlKyeNFmROJyFm1uqB9W7r88nyin
+ sqg7EIsry0EYsQHtGVZ5HTweRxhcBANSqV84SiESUJmoxc2GklO5FuTLMsjg0CBfEeWGGitWy
+ cvE08ycTnAbDwudWzQo6dZMG727usqShFvg3fHtEe1wFfaBBOFkSuMOOb6XFmw2l/HB5nYspK
+ glddAOUMyEQVXStJMf7HQW5txZyzYYKrzIw2Jd4xXcG3GFwRz2M4OL2fskbhOVd1qaF2jCM43
+ 8/mRs33YUqVz/d5Hq2nAdhHlOkDrxmIvJb3BGfkQJTE0HYOFT4mDGkKmUeKRNBAaLPM/xDb9s
+ wS6PsFDtMO71wrSlFTG8MyPpH5jWy3s1PN8MY1qAijurobv2El4MPXqatsgiL6MoW38hvlQGw
+ XC9uM28Q1SFgjMMVayQDyqT/zxGXPnvA66ZNh3zZleFugbimW38Kxv/ir9F/z/GM7N3G7Qpl5
+ rKsGEir4Iqw1Rx7tt+ee/ZNjTGCq3o07EeNx0mVwIyRA+Jj83v7Fi4TA2cQ8QIeWLymVTvXVi
+ lMv7QpgDLWveaUi1yKS4FRhpJsfj5u4kb3p31HoM7njLj7rhgFjDuIe7PheTYuH/asVMBdST/
+ GBIHA8G6Rr4DBkRCQttVXcRMVWtZH6Mby691qoezLy+PBpWdn3KgVFDkr4hBGdShfssLg9OX7
+ SYIFooYqnasuEyUKvRtL8fne5ayO3gx4evx4EZOnpjSwS/96sZvrqjTxpYmGbHZPitMjcZAc7
+ KfjphD/63KZOKhVHudWfmdpg==
 
-On 31.10.24 10:46, Abel Vesa wrote:
-> On 24-10-30 17:02:32, Marc Zyngier wrote:
->> On Fri, 25 Oct 2024 13:32:24 +0100,
->> Sibi Sankar <quic_sibis@quicinc.com> wrote:
->>> Add initial support for X1E001DE Snapdragon Devkit for Windows. X1E001=
-DE
->>> is the speed binned variant of X1E80100 that supports turbo boost up t=
-o
->>> 4.3 Ghz. The initial support includes the following:
->>>
->>> -DSPs
->>> -Ethernet (RTL8125BG) over the pcie 5 instance.
->>> -NVme
->>> -Wifi
->>> -USB-C ports
->>>
->>> V3:
->>> * Asked around and looked at the firmware, couldn't find a codename so
->>>    will keep it as DEVKIT. Will update it if someone from the communit=
-y
->>>    finds something else.
->> My machine has the following information as part of its DMI tables:
->>
->> Handle 0x0005, DMI type 1, 27 bytes
->> System Information
->> 	Manufacturer: Qualcomm
->> 	Product Name: Snapdragon-Devkit
->> 	Version: 2.1
->> 	Serial Number: 5
->> 	UUID: 63b5fc8b-9c50-89aa-fd0f-3fcef93dc291
->> 	Wake-up Type: Power Switch
->> 	SKU Number: 6
->> 	Family: SCP_HAMOA
->>
->> So I guess that Snapdragon-Devkit is another possible name. But given
->> that it is a bit of a mouthful, devkit, Devkit, or any other variation
->> on the case would work for me.
-> The point was to have something unique A codename would be unique.
-> Naming it Snapdragon-Devkit (or just devkit) will be confusing since
-> there was already a 2023 devkit (from Microsoft) with the Snapdragon
-> 8cx Gen 3, and probably the next compute platform will also have a devki=
-t
-> as well. So probably "X Elite devkit" could be the right option..
-As for The Windows Dev Kit 2023, dmidecode says this:
+Am 22.10.24 um 15:30 schrieb Lukasz Majewski:
+> The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
+> some extend similar to already upstreamed XEA devices, hence are
+> using common imx28-lwe.dtsi file.
+>
+> New, imx28-btt3.dtsi has been added to embrace common DTS
+> properties for different HW revisions for this device.
+>
+> As a result - changes introduced in imx28-btt3-[012].dts are
+> minimal.
+>
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
 
-Handle 0x0009, DMI type 1, 27 bytes
-System Information
- =C2=A0=C2=A0 =C2=A0Manufacturer: Microsoft Corporation
- =C2=A0=C2=A0 =C2=A0Product Name: Windows Dev Kit 2023
- =C2=A0=C2=A0 =C2=A0Version: 124I:00097T:000M:0200000B:07
- =C2=A0=C2=A0 =C2=A0Serial Number: 0F01C4F22373F6
- =C2=A0=C2=A0 =C2=A0UUID: e4a4662c-8367-75d0-a54f-1d04bd404860
- =C2=A0=C2=A0 =C2=A0Wake-up Type: Unknown
- =C2=A0=C2=A0 =C2=A0SKU Number: 2043
- =C2=A0=C2=A0 =C2=A0Family: Surface
+Assuming that Rob's comment wouldn't result in fundamental changes here:
 
-That's also really a mouthful. In my patchset for it there were some
-name / path changes, microsoft/blackrock it is now. Would be cool to
-have short and unique names. In the end, whatever works and is unique.
-Like those UUIDs?
-
->>> * Update type c roles as reported by ucsi. [Dmitry]
->>> * Update THUNDERCOMM to Thundercomm. [Dmitry]
->>> * Update regulator names and sort Order. [Dmitry]
->>> * Add x1e001DE devkit to the safe list.
->>> * Mark regulator-nmve as boot enabled.
->>>
->>>
->>> V2:
->>> * Fix Ghz -> GHz  [Jeff]
->>> * Pick up Ab tag from Rob.
->>> * Use Vendor in ADSP/CDSP firmware path [Dmitry]
->>> * Fix reserved gpios [Dmitry]
->>> * Only port0 supports DRD update the dt accordingly [Dmitry]
->>>
->>> Sibi Sankar (3):
->>>    dt-bindings: arm: qcom: Add Snapdragon Devkit for Windows
->>>    firmware: qcom: uefisecapp: Allow X1E Devkit devices
->>>    arm64: dts: qcom: Add X1E001DE Snapdragon Devkit for Windows
->>>
->>>   .../devicetree/bindings/arm/qcom.yaml         |   6 +
->>>   arch/arm64/boot/dts/qcom/Makefile             |   1 +
->>>   arch/arm64/boot/dts/qcom/x1e001de-devkit.dts  | 814 ++++++++++++++++=
-++
->>>   drivers/firmware/qcom/qcom_scm.c              |   1 +
->>>   4 files changed, 822 insertions(+)
->>>   create mode 100644 arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
->> FWIW, I'm running this as part of my KVM test rig with minor changes
->> to expose the SMMU and allow the ITS on pcie5, and things work as well
->> as you can expect. FWIW:
->>
->> Acked-by: Marc Zyngier <maz@kernel.org>
->> Tested-by: Marc Zyngier <maz@kernel.org>
->>
->> 	M.
->>
->> --
->> Without deviation from the norm, progress is not possible.
+Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 
