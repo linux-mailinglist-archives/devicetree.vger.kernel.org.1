@@ -1,79 +1,102 @@
-Return-Path: <devicetree+bounces-117868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 288909B82B4
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 19:41:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C47F79B82B9
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 19:42:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACB841F22959
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 18:41:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54F611F22A01
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 18:42:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A4971C9B9F;
-	Thu, 31 Oct 2024 18:41:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038401C9EAA;
+	Thu, 31 Oct 2024 18:42:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XYwEnDDs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c5wbCmJr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F76B19D089;
-	Thu, 31 Oct 2024 18:41:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D16A1C9DD5
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 18:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730400109; cv=none; b=pu390L8Vxt2b1Lca1nLiHK48MF0GwrDRgsMUIkw/EtN2NNRKfyVaQ4GrEIjU1tNPk+i7nvImuVnoc724Zz3gyVMFiu/C2snps2YEX/Pyg/xUL9ibGY6PoymAQvEX8MRf3m+cPZa2m+9dukf+3z9GVGih++2MEb+YOU4GVhRttHI=
+	t=1730400168; cv=none; b=QjHtgkIicfkECjh7RU+T9J+4tTQ1nbfkTTrMlbKpXTaNSepEyC44e/sNJeNzhoNspcYFKhRvjJ/gaQbVRurFfOz8jtADjCvG8gbip7OcH3OoiGySY8HtvpNavUo2oepMBsY6UlVrYBhlSy/IkDq48RY85/q9wrd2n8kjSan17BM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730400109; c=relaxed/simple;
-	bh=O5y3yG44Z4TIp1Sm4Gu/6/BEmbwWPpuPhRNG0KS07T0=;
+	s=arc-20240116; t=1730400168; c=relaxed/simple;
+	bh=iyC1K+aHZj50hiN8zKRt95gU+Gy82SLqZJPwNQDOQnA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CVRgd9vP4IULBUJJiFAp88O1lDEJcHL0NR8av+G0xV/ah8g+YFGhQJmRmaVlqg/flAJeQD/N5MjZkBmyVGFCuXeeTI6x3Edb/rvBBCch7qzpgpkGZR0YCdIlquC5kEjQ336Q7U7Hkk8rp+a9I9higsFYqu7P2mZnco47ToS6ZAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XYwEnDDs; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730400105; x=1761936105;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=O5y3yG44Z4TIp1Sm4Gu/6/BEmbwWPpuPhRNG0KS07T0=;
-  b=XYwEnDDsiOo7YEA+LIuE++F5sPf0QJK0UUmQAfCL29tJv5gnYXWDWRsT
-   5xDrpCcf9kLD/wug/b6TpGVSiHe2N/ZFOE6/XdG7p2hZALJxd1hmQrTvY
-   hxariau/dyAUYEXT8ZbFrafJ6m0ULCxW5DCh/WkBQ44J8ejEI+E0WS5WR
-   YqjiRaX2D7gvLPXtVaq9zpM2X06qH17T9Tu50Q8wx01sTqhgwoI0cjsVy
-   G9Ll2JN/Dkm17p0j3hF2wKaF2kQ9HjMfCZVH3z+DR85K5iLlBUPXzQQQ6
-   3TA3FgtswKAVRx+/Vb807idmvHMHdwiYGoQ4DteyFPGMtESefR3k94Qcj
-   w==;
-X-CSE-ConnectionGUID: c4TZn0ExSTeHTeOjLo9VHg==
-X-CSE-MsgGUID: 4aPu+QUzT1yZVD2uP7RiBQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11242"; a="34094548"
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; 
-   d="scan'208";a="34094548"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2024 11:41:45 -0700
-X-CSE-ConnectionGUID: Krln/6P8SmaZlQfEP74GXA==
-X-CSE-MsgGUID: dOqKAt02SbmNtCK7R0+xmA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; 
-   d="scan'208";a="82813006"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 31 Oct 2024 11:41:42 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t6a72-000gc2-0S;
-	Thu, 31 Oct 2024 18:41:40 +0000
-Date: Fri, 1 Nov 2024 02:40:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Subject: Re: [rft, PATCH v2 1/1] gpio: Drop unused inclusions from of_gpio.h
-Message-ID: <202411010235.zmCLneNF-lkp@intel.com>
-References: <20241031105314.2463446-1-andriy.shevchenko@linux.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HJNvCZtnHOiRfjLr8l4r2wM12tIyKe1sTiiorHSyJ2f+xAqfWpMAmEn4X2FFhI++kePderZQjR4UZw7t9Geb3uELZ/1ayraO4uoBoXWZwDY6ZibC+fTb2ejIlV7+pqKzdiuViEto0gEYTCBpoulIOY+jFCAqVFfNK30BX/CX0yM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c5wbCmJr; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2fb51f39394so12193391fa.2
+        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 11:42:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1730400164; x=1731004964; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9mbgmHLn4hkidzibtmbgVdxuSze2Xy6FGjf01Pt2smo=;
+        b=c5wbCmJrg3kzKPLbmtNIrZK8ikK0wUDWdZT99y1cs/YdUHWW8U5A0NoLHsR0Cjl77E
+         IslL8StEa1NNr5BINyyQU73BzltOiNIa5jfYHcmEqgcrD+yqItsWV0BbhLDwjY232DMO
+         bHuvHJwX8UOdrWywfDntHBXYjdniHr7EL7uEaKDcvz6/tHCdO5K7Ff/cYUxhPofvxj8e
+         INJ+XIGgH2GCLdQYTnt4GDmCrayMxXO/SGASpJ896pZRg0y+1h68j5jjGH101pQ085dQ
+         VIbhTdS5sVA06esQktlpL9PI/wWiE8yio2LQSpwWvI3Tor2kcVQhwYgcEzsk4SQ2Jxrs
+         PWQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730400164; x=1731004964;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9mbgmHLn4hkidzibtmbgVdxuSze2Xy6FGjf01Pt2smo=;
+        b=VmFlLXfsZOAxpVDkQcKW+LOBy/RZcAJFKRA4Yw8psoEBj6tKV+NHI6d8AqHa7UyrJT
+         mefE+IMBhWk5kq8Wwzl8UjBIX4whkr7vDrlcwcuJ8t17Sb7cV6GlnvI+6BuCnpF59rDG
+         S9y8v03XHfl5gW9ZA08+qMeb9fw4P8VjJZnO/Z+gtEiM2ucyybygvpkxFdZ3O9DS8yEM
+         tCc/ges6RPNF3d9OmfJ11LjEpaj8bBf/l0M+8cp+NOO+LrclmdL6xMB1hZTLgIZFPZQk
+         vM0mGZuGS+2koB6ikAws3nZ4FkEvXX6Y0tutVz2qOhoBGOy6y+4pj1UrF+i1z94u6fRn
+         Pxug==
+X-Forwarded-Encrypted: i=1; AJvYcCWUYS5zyOS0SbPYR2EC68+J85O6SR6hm8pviCk0hfSj1Jbhy2yIOBzlgmcn1vdZEVBg6nF8GD1QTVZd@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKxtXk3f+wW+slLBhmZSMvzAfM/gVyTvzknvVCxBLhnQsM0vJ5
+	GviHBDyciR1rJAC3MMesdZaTOVEQ1qQjY9DkddJ3t/pLR0D/w1+WZjnuic1N77c=
+X-Google-Smtp-Source: AGHT+IGWhda+crxSXmmfomPzg+L773MkY6bHphixow0At3+T7amJS9Ed/gUMhUaDKwBOL563vJN1wQ==
+X-Received: by 2002:a2e:b8c8:0:b0:2fb:4b0d:9092 with SMTP id 38308e7fff4ca-2fcbdf69fbemr100872501fa.1.1730400163522;
+        Thu, 31 Oct 2024 11:42:43 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fdef8a6013sm2915101fa.82.2024.10.31.11.42.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Oct 2024 11:42:40 -0700 (PDT)
+Date: Thu, 31 Oct 2024 20:42:36 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Stephen Boyd <swboyd@chromium.org>
+Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	patches@lists.linux.dev, devicetree@vger.kernel.org, 
+	Douglas Anderson <dianders@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Benson Leung <bleung@chromium.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, 
+	David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org, 
+	Guenter Roeck <groeck@chromium.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Lee Jones <lee@kernel.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Prashant Malani <pmalani@chromium.org>, 
+	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Daniel Scally <djrscally@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Ivan Orlov <ivan.orlov0322@gmail.com>, 
+	linux-acpi@vger.kernel.org, linux-usb@vger.kernel.org, 
+	Mika Westerberg <mika.westerberg@linux.intel.com>, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4 15/18] dt-bindings: usb: Add ports to
+ google,cros-ec-typec for DP altmode
+Message-ID: <yk3xidaisbd56yndaucax7otijjauqmm7lqm6q4q633kdawlqo@qaq27lwxmvwd>
+References: <20240901040658.157425-1-swboyd@chromium.org>
+ <20240901040658.157425-16-swboyd@chromium.org>
+ <phdcjgqqpjpruxp7v2mw446q73xr3eg4wfgfbjw5tasgr2pgg2@77swbk47b2tg>
+ <CAE-0n514QMaQC2yjKP8bZqyfbv6B3AQm=+NJ87vxo6NdYiL03A@mail.gmail.com>
+ <lf7y7wpuca6kzqcglgs5d443iusf7xjocum4adi7t3npfavccx@zgsp37oyztme>
+ <CAE-0n53-KmOS3zXmJPvOOZ7xxkek9-S=oBExgaY0PDnt_HjdNw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,226 +105,415 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241031105314.2463446-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <CAE-0n53-KmOS3zXmJPvOOZ7xxkek9-S=oBExgaY0PDnt_HjdNw@mail.gmail.com>
 
-Hi Andy,
+On Tue, Oct 29, 2024 at 01:15:51PM -0700, Stephen Boyd wrote:
+> Quoting Dmitry Baryshkov (2024-10-25 03:49:36)
+> > On Tue, Oct 22, 2024 at 06:15:47PM -0700, Stephen Boyd wrote:
+> > > Quoting Dmitry Baryshkov (2024-09-20 02:38:53)
+> > > > On Sat, Aug 31, 2024 at 09:06:53PM GMT, Stephen Boyd wrote:
+> >
+> > >
+> > > Either way the problem seems to be that I need to associate one
+> > > drm_bridge with two displayport altmode drivers and pass some fwnode
+> > > handle to drm_connector_oob_hotplug_event() in a way that we can map
+> > > that back to the right output endpoint in the DP bridge graph. That
+> > > seems to imply that we need to pass the fwnode for the usb-c-connector
+> > > in addition to the fwnode for the drm_bridge, so that the drm_bridge
+> > > code can look at its DT graph and find the remote node connected.
+> > > Basically something like this:
+> > >
+> > >   void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
+> > >                                        struct fwnode_handle
+> > > *usb_connector_fwnode,
+> > >                                        enum drm_connector_status status)
+> > >
+> > > (We might as well also pass the number of lanes here)
+> >
+> > I think this is a bit of an overkill.
+> >
+> > The drm_connector_oob_hotplug_event() is fine as it is, it gets
+> > "fwnode_handle to report the event on".
+> 
+> Ok. I understand that drm_*() shouldn't know about USB or type-c in
+> general.
+> 
+> >
+> > What needs to be changed (in my humble opinion) is the
+> > drm_connector_find_by_fwnode() function (or likely a new function is to
+> > be added): if it can not find drm_connector for the passed fwnode, it
+> > should look it up on the parent, then on parent's parent, etc, until we
+> > actually find the drm_connector (good) or we reach the root (sad).
+> >
+> > And finally after getting the drm_connector, the oob_hotplug_event()
+> > callback should also receive the fwnode argument. This way the connector
+> > (or the bridge) can identify the fwnode (aka usb-c-connector in our
+> > case) that caused the event.
+> >
+> > WDYT?
+> 
+> Ok I think I'm following along. The dp->connector_fwnode in
+> displayport.c will always be the usb-c-connector node in your example?
+> And that will search for the connector or bridge associated with that
+> usb-c-connector node. Then when it comes time to call
+> drm_connector_oob_hotplug_event() it will take the usb-c-connector
+> fwnode as 'connector_fwnode' and in that function we'll make
+> drm_connector_find_by_fwnode() implement the parent walk? The
+> cros-ec-typec compatible node will register a drm_bridge in all cases,
+> and that is the parent of the usb-c-connector node, so the walk will end
+> there.
+> 
+> Then you want to pass the usb-c-connector fwnode to
+> connector->funcs->oob_hotplug_event()? So
+> drm_bridge_connector_oob_hotplug_event() changes to also get the
+> usb-c-connector fwnode. This plan should work.
 
-kernel test robot noticed the following build errors:
+Yes, that was my proposal. This way we know the origin device (bridge /
+connector) and let it take care of any details on its own.
 
-[auto build test ERROR on brgl/gpio/for-next]
-[also build test ERROR on linus/master v6.12-rc5 next-20241031]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> At this point we need to tell the DP bridge, like IT6505, that it's one
+> or the other output endpoints that it should use, but we haven't
+> directly connected the usb-c-connector to the output ports of IT6505
+> because drm_of_find_panel_or_bridge() can't find the parent of the
+> usb-c-connector if we connect the DP bridge to the usb-c-connector
+> graphs. We'll need a way for the bridge to know which output port is
+> connected to a usb-c-connector fwnode. Some sort of API like
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/gpio-Drop-unused-inclusions-from-of_gpio-h/20241031-185405
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git gpio/for-next
-patch link:    https://lore.kernel.org/r/20241031105314.2463446-1-andriy.shevchenko%40linux.intel.com
-patch subject: [rft, PATCH v2 1/1] gpio: Drop unused inclusions from of_gpio.h
-config: i386-buildonly-randconfig-002-20241031 (https://download.01.org/0day-ci/archive/20241101/202411010235.zmCLneNF-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241101/202411010235.zmCLneNF-lkp@intel.com/reproduce)
+I think that the final bridge should be the IT6505. It can save you from
+some troubles, like the inter-bridge lane negotiation. Please remember
+that using lanes 2-3 as primary lanes doesn't seem to fall into the
+standard DisplayPort usage. It is documented by USB-C and only because
+of the orientation switching.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411010235.zmCLneNF-lkp@intel.com/
+Maybe that's just it? Register DP_bridge (or QMP PHY) as
+orientation-switch? Then you don't need any extra API for the lane
+mapping? The cross-ec-typec can provide orientation information and the
+USB-C-aware controller will follow the lane mapping.
 
-All errors (new ones prefixed by >>):
+> 
+>  fwnode_graph_get_endpoint_connected_to_fwnode(bridge_fwnode, usb_c_fwnode)
+> 
+> that takes the bridge fwnode and traverses the graph to find the
+> endpoint in that's connected to 'usb_c_fwnode'. That traversal API will
+> need help from the intermediate node, cros-ec-typec, so maybe it is
+> better as a drm_bridge API that uses some new drm_bridge_funcs callback.
+> This way IT6505 can ask the bridge chain which output DP endpoint is
+> actually associated with the connector fwnode it gets from the
+> oob_hotplug_event() callback.
+> 
+> Here's the two DT snippets that I've ended up with:
+> 
+> typec {
+>         compatible = "google,cros-ec-typec";
+> 
+>         ports {
+>                 port@0 {
+>                         reg = <0>;
+>                         typec_dp_in: endpoint {
+>                                  remote-endpoint = <&usb_1_qmp_phy_out_dp>;
+>                         };
+>                 };
+> 
+>                 port@1 {
+>                         reg = <1>;
+>                         typec_usb0_in: endpoint@0 {
+>                                  reg = <0>;
+>                                  remote-endpoint = <&usb_hub_dfp1_ss>;
+>                         };
+>                         typec_usb1_in: endpoint@1 {
+>                                  reg = <1>;
+>                                  remote-endpoint = <&usb_hub_dfp2_ss>;
+>                         };
+>                 }
+> 
+>                 // This port is not really needed because we know the
+> 		// mapping from input ports to usb-c-connectors
+>                 port@2 {
+>                         reg = <2>;
+>                         typec0_out: endpoint@0 {
+>                                  reg = <0>;
+>                                  remote-endpoint = <&usb_c0_ss_in>;
+>                         };
+>                         typec1_out: endpoint@1 {
+>                                  reg = <1>;
+>                                  remote-endpoint = <&usb_c1_ss_in>;
+>                         };
+>                 }
 
-   In file included from sound/soc/codecs/cs42l52.c:18:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:21:
-   In file included from include/linux/mm.h:2213:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> sound/soc/codecs/cs42l52.c:1143:9: error: call to undeclared function 'devm_gpio_request_one'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1143 |                 ret = devm_gpio_request_one(&i2c_client->dev,
-         |                       ^
->> sound/soc/codecs/cs42l52.c:1145:10: error: use of undeclared identifier 'GPIOF_OUT_INIT_HIGH'
-    1145 |                                             GPIOF_OUT_INIT_HIGH,
-         |                                             ^
->> sound/soc/codecs/cs42l52.c:1152:3: error: call to undeclared function 'gpio_set_value_cansleep'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1152 |                 gpio_set_value_cansleep(cs42l52->pdata.reset_gpio, 0);
-         |                 ^
-   1 warning and 3 errors generated.
---
-   In file included from sound/soc/codecs/wcd938x.c:17:
-   In file included from include/sound/pcm.h:15:
-   In file included from include/linux/mm.h:2213:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> sound/soc/codecs/wcd938x.c:3305:2: error: call to undeclared function 'gpio_direction_output'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    3305 |         gpio_direction_output(wcd938x->reset_gpio, 0);
-         |         ^
-   sound/soc/codecs/wcd938x.c:3305:2: note: did you mean 'gpiod_direction_output'?
-   include/linux/gpio/consumer.h:111:5: note: 'gpiod_direction_output' declared here
-     111 | int gpiod_direction_output(struct gpio_desc *desc, int value);
-         |     ^
->> sound/soc/codecs/wcd938x.c:3308:2: error: call to undeclared function 'gpio_set_value'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    3308 |         gpio_set_value(wcd938x->reset_gpio, 1);
-         |         ^
-   sound/soc/codecs/wcd938x.c:3308:2: note: did you mean 'gpiod_set_value'?
-   include/linux/gpio/consumer.h:122:6: note: 'gpiod_set_value' declared here
-     122 | void gpiod_set_value(struct gpio_desc *desc, int value);
-         |      ^
-   1 warning and 2 errors generated.
---
-   In file included from sound/soc/codecs/cs42l73.c:18:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:21:
-   In file included from include/linux/mm.h:2213:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> sound/soc/codecs/cs42l73.c:1316:9: error: call to undeclared function 'devm_gpio_request_one'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1316 |                 ret = devm_gpio_request_one(&i2c_client->dev,
-         |                       ^
->> sound/soc/codecs/cs42l73.c:1318:10: error: use of undeclared identifier 'GPIOF_OUT_INIT_HIGH'
-    1318 |                                             GPIOF_OUT_INIT_HIGH,
-         |                                             ^
->> sound/soc/codecs/cs42l73.c:1325:3: error: call to undeclared function 'gpio_set_value_cansleep'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1325 |                 gpio_set_value_cansleep(cs42l73->pdata.reset_gpio, 0);
-         |                 ^
-   sound/soc/codecs/cs42l73.c:1363:2: error: call to undeclared function 'gpio_set_value_cansleep'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1363 |         gpio_set_value_cansleep(cs42l73->pdata.reset_gpio, 0);
-         |         ^
-   1 warning and 4 errors generated.
+Why do we need these two ports? Can't &usb_hub_dfpN_ss be connected
+directly to the usb_cN_ss_in? I understand that you probably want to
+express the internal structure of the lane switching, but I think that's
+a bit of the overkill. Leaving this to the other commenters / DT
+maintainers.
 
+>         };
+> 
+>         usb_c0: connector@0 {
+>                 compatible = "usb-c-connector";
+>                 reg = <0>;
+> 
+>                 ports {
+>                         port@0 {
+>                                 reg = <0>;
+>                                 usb_c0_hs_in: endpoint {
+>                                         remote-endpoint = <&usb_hub_dfp1_hs>;
+>                                 };
+>                         };
+> 
+>                         port@1 {
+>                                 reg = <1>;
+>                                 usb_c0_ss_in: endpoint {
+>                                         remote-endpoint = <&typec0_out>;
+>                                 };
+>                         };
+>                 };
+>         };
+> 
+>         usb_c1: connector@1 {
+>                 compatible = "usb-c-connector";
+>                 reg = <1>;
+> 
+>                 ports {
+>                         port@0 {
+>                                 reg = <0>;
+>                                 usb_c1_hs_in: endpoint {
+>                                         remote-endpoint = <&usb_hub_dfp2_hs>;
+>                                 };
+>                         };
+> 
+>                         port@1 {
+>                                 reg = <1>;
+>                                 usb_c1_ss_in: endpoint {
+>                                         remote-endpoint = <&typec1_out>;
+>                                 };
+>                         };
+>                 };
+>         };
+> };
+> 
+> &usb_1_qmpphy {
+>         ports {
+>                 port@0 {
+>                         endpoint@0 {
+>                                 data-lanes = <0 1>;
+>                                 // this might go to USB-3 hub
+>                         };
+> 
+>                         usb_1_qmp_phy_out_dp: endpoint@1 {
+>                                 remote-endpoint = <&typec_dp_in>;
+>                                 data-lanes = <2 3>;
+>                         };
+>                 }
+>         };
+> };
+> 
+> -------
+> 
+> typec {
+>         ports {
+>                 port@0 {
+>                         reg = <0>;
+>                         typec_dp0_in: endpoint@0 {
+>                                  reg = <0>;
+>                                  remote-endpoint = <&dp_bridge_out_0>;
+>                         };
+>                         typec_dp1_in: endpoint@1 {
+>                                  reg = <1>;
+>                                  remote-endpoint = <&dp_bridge_out_1>;
+>                         };
+>                 };
+> 
+>                 port@1 {
+>                         reg = <1>;
+>                         typec_usb0_in: endpoint@0 {
+>                                  reg = <0>;
+>                                  remote-endpoint = <&usb_hub_0_ss>;
+>                         };
+>                         typec_usb1_in: endpoint@1 {
+>                                  reg = <1>;
+>                                  remote-endpoint = <&usb_hub_1_ss>;
+>                         };
+>                 }
+>         };
+> 
+>         connector@0 {
+>                 port@1 {
+>                         endpoint@0 {
+>                                 remote-endpoint = <&usb_hub_0_hs>;
 
-vim +/devm_gpio_request_one +1143 sound/soc/codecs/cs42l52.c
+port@1 is for SS lanes, so something is wrong here.
 
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1089  
-4a4043456cb82d Stephen Kitt      2022-03-25  1090  static int cs42l52_i2c_probe(struct i2c_client *i2c_client)
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1091  {
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1092  	struct cs42l52_private *cs42l52;
-6dd17757927ba9 Brian Austin      2013-10-25  1093  	struct cs42l52_platform_data *pdata = dev_get_platdata(&i2c_client->dev);
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1094  	int ret;
-4ac9b48adf4d56 Charles Keepax    2021-05-11  1095  	unsigned int devid;
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1096  	unsigned int reg;
-391fc59db87615 Brian Austin      2013-11-15  1097  	u32 val32;
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1098  
-cd9e0b8282653d Markus Elfring    2017-11-22  1099  	cs42l52 = devm_kzalloc(&i2c_client->dev, sizeof(*cs42l52), GFP_KERNEL);
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1100  	if (cs42l52 == NULL)
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1101  		return -ENOMEM;
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1102  	cs42l52->dev = &i2c_client->dev;
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1103  
-134b2f576b9144 Brian Austin      2012-06-04  1104  	cs42l52->regmap = devm_regmap_init_i2c(i2c_client, &cs42l52_regmap);
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1105  	if (IS_ERR(cs42l52->regmap)) {
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1106  		ret = PTR_ERR(cs42l52->regmap);
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1107  		dev_err(&i2c_client->dev, "regmap_init() failed: %d\n", ret);
-134b2f576b9144 Brian Austin      2012-06-04  1108  		return ret;
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1109  	}
-391fc59db87615 Brian Austin      2013-11-15  1110  	if (pdata) {
-6dd17757927ba9 Brian Austin      2013-10-25  1111  		cs42l52->pdata = *pdata;
-391fc59db87615 Brian Austin      2013-11-15  1112  	} else {
-cd9e0b8282653d Markus Elfring    2017-11-22  1113  		pdata = devm_kzalloc(&i2c_client->dev, sizeof(*pdata),
-391fc59db87615 Brian Austin      2013-11-15  1114  				     GFP_KERNEL);
-e04db58c125230 Markus Elfring    2017-11-22  1115  		if (!pdata)
-391fc59db87615 Brian Austin      2013-11-15  1116  			return -ENOMEM;
-e04db58c125230 Markus Elfring    2017-11-22  1117  
-391fc59db87615 Brian Austin      2013-11-15  1118  		if (i2c_client->dev.of_node) {
-391fc59db87615 Brian Austin      2013-11-15  1119  			if (of_property_read_bool(i2c_client->dev.of_node,
-391fc59db87615 Brian Austin      2013-11-15  1120  				"cirrus,mica-differential-cfg"))
-391fc59db87615 Brian Austin      2013-11-15  1121  				pdata->mica_diff_cfg = true;
-391fc59db87615 Brian Austin      2013-11-15  1122  
-391fc59db87615 Brian Austin      2013-11-15  1123  			if (of_property_read_bool(i2c_client->dev.of_node,
-391fc59db87615 Brian Austin      2013-11-15  1124  				"cirrus,micb-differential-cfg"))
-391fc59db87615 Brian Austin      2013-11-15  1125  				pdata->micb_diff_cfg = true;
-391fc59db87615 Brian Austin      2013-11-15  1126  
-391fc59db87615 Brian Austin      2013-11-15  1127  			if (of_property_read_u32(i2c_client->dev.of_node,
-391fc59db87615 Brian Austin      2013-11-15  1128  				"cirrus,micbias-lvl", &val32) >= 0)
-391fc59db87615 Brian Austin      2013-11-15  1129  				pdata->micbias_lvl = val32;
-391fc59db87615 Brian Austin      2013-11-15  1130  
-391fc59db87615 Brian Austin      2013-11-15  1131  			if (of_property_read_u32(i2c_client->dev.of_node,
-391fc59db87615 Brian Austin      2013-11-15  1132  				"cirrus,chgfreq-divisor", &val32) >= 0)
-69ae8489076fa0 Mark Brown        2013-11-29  1133  				pdata->chgfreq = val32;
-391fc59db87615 Brian Austin      2013-11-15  1134  
-391fc59db87615 Brian Austin      2013-11-15  1135  			pdata->reset_gpio =
-391fc59db87615 Brian Austin      2013-11-15  1136  				of_get_named_gpio(i2c_client->dev.of_node,
-391fc59db87615 Brian Austin      2013-11-15  1137  						"cirrus,reset-gpio", 0);
-391fc59db87615 Brian Austin      2013-11-15  1138  		}
-391fc59db87615 Brian Austin      2013-11-15  1139  		cs42l52->pdata = *pdata;
-391fc59db87615 Brian Austin      2013-11-15  1140  	}
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1141  
-6dd17757927ba9 Brian Austin      2013-10-25  1142  	if (cs42l52->pdata.reset_gpio) {
-4e17d2d33abe4b Axel Lin          2014-04-08 @1143  		ret = devm_gpio_request_one(&i2c_client->dev,
-4e17d2d33abe4b Axel Lin          2014-04-08  1144  					    cs42l52->pdata.reset_gpio,
-4e17d2d33abe4b Axel Lin          2014-04-08 @1145  					    GPIOF_OUT_INIT_HIGH,
-4e17d2d33abe4b Axel Lin          2014-04-08  1146  					    "CS42L52 /RST");
-6dd17757927ba9 Brian Austin      2013-10-25  1147  		if (ret < 0) {
-6dd17757927ba9 Brian Austin      2013-10-25  1148  			dev_err(&i2c_client->dev, "Failed to request /RST %d: %d\n",
-6dd17757927ba9 Brian Austin      2013-10-25  1149  				cs42l52->pdata.reset_gpio, ret);
-6dd17757927ba9 Brian Austin      2013-10-25  1150  			return ret;
-6dd17757927ba9 Brian Austin      2013-10-25  1151  		}
-6dd17757927ba9 Brian Austin      2013-10-25 @1152  		gpio_set_value_cansleep(cs42l52->pdata.reset_gpio, 0);
-6dd17757927ba9 Brian Austin      2013-10-25  1153  		gpio_set_value_cansleep(cs42l52->pdata.reset_gpio, 1);
-6dd17757927ba9 Brian Austin      2013-10-25  1154  	}
-6dd17757927ba9 Brian Austin      2013-10-25  1155  
-6dd17757927ba9 Brian Austin      2013-10-25  1156  	i2c_set_clientdata(i2c_client, cs42l52);
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1157  
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1158  	ret = regmap_register_patch(cs42l52->regmap, cs42l52_threshold_patch,
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1159  				    ARRAY_SIZE(cs42l52_threshold_patch));
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1160  	if (ret != 0)
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1161  		dev_warn(cs42l52->dev, "Failed to apply regmap patch: %d\n",
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1162  			 ret);
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1163  
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1164  	ret = regmap_read(cs42l52->regmap, CS42L52_CHIP, &reg);
-4ac9b48adf4d56 Charles Keepax    2021-05-11  1165  	if (ret) {
-4ac9b48adf4d56 Charles Keepax    2021-05-11  1166  		dev_err(&i2c_client->dev, "Failed to read chip ID: %d\n", ret);
-4ac9b48adf4d56 Charles Keepax    2021-05-11  1167  		return ret;
-4ac9b48adf4d56 Charles Keepax    2021-05-11  1168  	}
-4ac9b48adf4d56 Charles Keepax    2021-05-11  1169  
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1170  	devid = reg & CS42L52_CHIP_ID_MASK;
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1171  	if (devid != CS42L52_CHIP_ID) {
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1172  		ret = -ENODEV;
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1173  		dev_err(&i2c_client->dev,
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1174  			"CS42L52 Device ID (%X). Expected %X\n",
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1175  			devid, CS42L52_CHIP_ID);
-134b2f576b9144 Brian Austin      2012-06-04  1176  		return ret;
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1177  	}
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1178  
-e5f03af644c46b Brian Austin      2013-10-25  1179  	dev_info(&i2c_client->dev, "Cirrus Logic CS42L52, Revision: %02X\n",
-a14bf88749c5b5 Axel Lin          2014-04-06  1180  		 reg & CS42L52_CHIP_REV_MASK);
-e5f03af644c46b Brian Austin      2013-10-25  1181  
-153723f6f1d13e Brian Austin      2013-10-25  1182  	/* Set Platform Data */
-44b2ed54036ece Brian Austin      2013-11-14  1183  	if (cs42l52->pdata.mica_diff_cfg)
-153723f6f1d13e Brian Austin      2013-10-25  1184  		regmap_update_bits(cs42l52->regmap, CS42L52_MICA_CTL,
-153723f6f1d13e Brian Austin      2013-10-25  1185  				   CS42L52_MIC_CTL_TYPE_MASK,
-44b2ed54036ece Brian Austin      2013-11-14  1186  				cs42l52->pdata.mica_diff_cfg <<
-153723f6f1d13e Brian Austin      2013-10-25  1187  				CS42L52_MIC_CTL_TYPE_SHIFT);
-153723f6f1d13e Brian Austin      2013-10-25  1188  
-44b2ed54036ece Brian Austin      2013-11-14  1189  	if (cs42l52->pdata.micb_diff_cfg)
-153723f6f1d13e Brian Austin      2013-10-25  1190  		regmap_update_bits(cs42l52->regmap, CS42L52_MICB_CTL,
-153723f6f1d13e Brian Austin      2013-10-25  1191  				   CS42L52_MIC_CTL_TYPE_MASK,
-44b2ed54036ece Brian Austin      2013-11-14  1192  				cs42l52->pdata.micb_diff_cfg <<
-153723f6f1d13e Brian Austin      2013-10-25  1193  				CS42L52_MIC_CTL_TYPE_SHIFT);
-153723f6f1d13e Brian Austin      2013-10-25  1194  
-153723f6f1d13e Brian Austin      2013-10-25  1195  	if (cs42l52->pdata.chgfreq)
-153723f6f1d13e Brian Austin      2013-10-25  1196  		regmap_update_bits(cs42l52->regmap, CS42L52_CHARGE_PUMP,
-153723f6f1d13e Brian Austin      2013-10-25  1197  				   CS42L52_CHARGE_PUMP_MASK,
-153723f6f1d13e Brian Austin      2013-10-25  1198  				cs42l52->pdata.chgfreq <<
-153723f6f1d13e Brian Austin      2013-10-25  1199  				CS42L52_CHARGE_PUMP_SHIFT);
-153723f6f1d13e Brian Austin      2013-10-25  1200  
-153723f6f1d13e Brian Austin      2013-10-25  1201  	if (cs42l52->pdata.micbias_lvl)
-153723f6f1d13e Brian Austin      2013-10-25  1202  		regmap_update_bits(cs42l52->regmap, CS42L52_IFACE_CTL2,
-153723f6f1d13e Brian Austin      2013-10-25  1203  				   CS42L52_IFACE_CTL2_BIAS_LVL,
-153723f6f1d13e Brian Austin      2013-10-25  1204  				cs42l52->pdata.micbias_lvl);
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1205  
-4ac9b48adf4d56 Charles Keepax    2021-05-11  1206  	return devm_snd_soc_register_component(&i2c_client->dev,
-9665a74944b321 Kuninori Morimoto 2018-01-29  1207  			&soc_component_dev_cs42l52, &cs42l52_dai, 1);
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1208  }
-dfe0f98b8d2e11 Brian Austin      2012-04-27  1209  
+>                         };
+>                 };
+>         };
+> 
+>         connector@1 {
+>                 port@1 {
+>                         endpoint@0 {
+>                                 remote-endpoint = <&usb_hub_1_hs>;
+>                         };
+>                 };
+>         };
+> };
+> 
+> dp_bridge {
+>         ports {
+>                 port@1 {
+>                         dp_bridge_out_0: endpoint@0 {
+>                                 remote-endpoint = <&typec_dp0_in>;
+>                                 data-lanes = <0 1>;
+>                         };
+> 
+>                         dp_bridge_out_1: endpoint@1 {
+>                                 remote-endpoint = <&typec_dp1_in>;
+>                                 data-lanes = <2 3>;
+>                         };
+>                 };
+>         };
+> };
+> 
+> -------
+> 
+> I wonder about a case where we may take two lanes and connect them to a
+> usb-c-connector and then take the other two lanes and send them through
+> a mux to two more usb-c-connectors. I think we'll need another property
+> in that case that indicates which input DP endpoints correspond to the
+> usb-c-connector nodes.
+> 
+> typec {
+>         ports {
+>                 port@0 {
+>                         reg = <0>;
+>                         typec_dp0_in: endpoint@0 {
+>                                  reg = <0>;
+>                                  remote-endpoint = <&dp_bridge_out_0>;
+>                         };
+>                         typec_dp1_in: endpoint@1 {
+>                                  reg = <1>;
+>                                  remote-endpoint = <&dp_bridge_out_1>;
+>                         };
+>                 };
+> 
+>                 port@1 {
+>                         reg = <1>;
+>                         typec_usb0_in: endpoint@0 {
+>                                  reg = <0>;
+>                                  remote-endpoint = <&usb_hub_0_ss>;
+>                         };
+>                         typec_usb1_in: endpoint@1 {
+>                                  reg = <1>;
+>                                  remote-endpoint = <&usb_hub_1_ss>;
+>                         };
+>                         typec_usb2_in: endpoint@2 {
+>                                  reg = <2>;
+>                                  remote-endpoint = <&usb_hub_2_ss>;
+>                         };
+>                 }
+>         };
+> 
+> 	dp-2-usb-mapping = <0 0>, <1 1>, <1 2>;
+
+dp-to-typec-mapping?
+
+> };
+> 
+> This property would indicate dp endpoint 0 goes to usb-c-connector 0
+> while dp endpoint 1 goes to usb-c-connector 1 and 2. I don't have this
+> hardware but I could see how someone might do this by adding another mux
+> that the EC controls. I don't want to design a binding and have to
+> rework it in the future to handle this new case. I hope adding a new
+> property, or getting more information from the EC firmware, will be
+> sufficient to describe the linkage between the DP endpoint and the
+> connectors managed by the cros-ec-typec device.
+
+Does it change anything from the DP point of view? It is still either
+lanes 0-1 or lanes 2-3? I'd really like to inject the hotplug OOB event
+to the dp_bridge letting it get one of the endpoints as a HPD even
+source.
+
+> > > Corsola could work with this design, but we'll need to teach
+> > > dp_altmode_probe() to look for the drm_bridge elsewhere besides as the
+> > > parent of the usb-c-connector node. That implies using the 'displayport'
+> > > property in the cros-ec-typec node or teaching dp_altmode_probe() to
+> > > look for the port@1/endpoint@1 remote-endpoint handle in the
+> > > usb-c-connector graph.
+> > >
+> > > Assuming the bindings you've presented here are fine and good and I got
+> > > over the differences between Trogdor and Corsola, then I can make mostly
+> > > everything work with the drm_connector_oob_hotplug_event() signature
+> > > change from above and some tweaks to dp_altmode_probe() to look for
+> > > port@1/endpoint@1 first because that's the "logical" DP input endpoint
+> > > in the usb-c-connector binding's graph. Great! The final roadblock I'm
+> > > at is that HPD doesn't work on Trogdor, so I can't signal HPD through
+> > > the typec framework.
+> >
+> > Hmm, I thought that a normal DP's HPD GPIO works on the trogdor. Was I
+> > misunderstanding it? But then we don't know, which USB-C connector
+> > triggered the HPD...
+> 
+> By HPD not working on Trogdor I mean that the EC doesn't tell the kernel
+> about the state of HPD for a usb-c-connector in software. Instead, HPD
+> is signaled directly to the DP controller in hardware via a GPIO. It is
+> as you suspect, we don't know which USB-C connector has HPD unless we
+> read the mux controlled by the EC and combine that with what the DP
+> driver knows about the state of the HPD pin.
+
+I see. So the HPD event gets delivered to the DP controller, but we
+really need some API to read the port? If it's not the
+orientation-switch, of course.
+
+> 
+> >
+> > > This series fixes that problem by "capturing" HPD state from the
+> > > upstream drm_bridge, e.g. msm_dp, by hooking the struct
+> > > drm_bridge_funcs::hpd_notify() path and injecting HPD into the typec
+> > > messages received from the EC. That's a workaround to make the typec
+> > > framework see HPD state changes that are otherwise invisible to the
+> > > kernel. Newer firmwares actually tell us the state of HPD properly, but
+> > > even then we have to read a gpio mux controlled by the EC to figure out
+> > > which usb-c-connector is actually muxing DP when HPD changes on either
+> > > typec_port. Having a drm_bridge in cros-ec-typec helped here because we
+> > > could hook this path and signal HPD if we knew the firmware was fixed.
+> > > If we don't have the drm_bridge anymore, I'm lost how to do this.
+> >
+> > It's probably okay to add one, but let me think if we can work without
+> > it. Can we make EC driver listen for that single HPD GPIO (by making it
+> > an actual GPIO rather than "dp_hot") and then react to it?
+> 
+> I don't know how we handle the attention message, HPD_IRQ, because
+> that's a short pulse that the kernel may miss when this is a GPIO that
+> has to be triggered when both falling and rising. When the pin goes
+> directly to the DP controller this is fine because the hardware can
+> detect that. Similarly, when the EC sends the message about an HPD_IRQ
+> we can replay that into the type-c framework and signal attention
+> through drm_connector_oob_hotplug_event()/hpd_notify() paths.
+
+Ack.
+
+> 
+> >
+> > >
+> > > Maybe the right answer here is to introduce a drm_connector_dp_typec
+> > > structure that is created by the TCPM (cros-ec-typec) that sets a new
+> > > DRM_BRIDGE_OP_DP_TYPEC bridge op flag? And then teach
+> > > drm_bridge_connector about this new flag, similar to the HDMI one. The
+> > > drm_bridge could implement some function that maps the typec_port
+> > > (usb-c-connector) to the upstream drm_bridge (ANX7625) graph port,
+> > > possibly all in drm_bridge_connector_oob_hotplug_event() so that nothing
+> > > else really changes. It could also let us keep hooking the hpd_notify()
+> > > path for the workaround needed on Trogdor. And finally it may let us
+> > > harmonize the two DT bindings so that we only have one port@1/endpoint
+> > > node in the usb-c-connector.
+> >
+> > I think we have lightly discussed adding drm_connector_displayport, so
+> > that part is okay. But my gut feeling is that there should be no _typec
+> > part in thart picture. The DRM framework shouldn't need to know all the
+> > Type-C details.
+> >
+> 
+> Alright, got it.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
