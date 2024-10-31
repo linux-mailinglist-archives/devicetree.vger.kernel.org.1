@@ -1,61 +1,66 @@
-Return-Path: <devicetree+bounces-117776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 462BF9B7B22
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:55:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DAAD9B7B45
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 14:02:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C565A1F22F81
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 12:55:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EC831C214AC
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 026B819D082;
-	Thu, 31 Oct 2024 12:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D709219D880;
+	Thu, 31 Oct 2024 13:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hMYYsU7u"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B/3AdS8O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F7B19CC2E;
-	Thu, 31 Oct 2024 12:55:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB20113A869;
+	Thu, 31 Oct 2024 13:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730379306; cv=none; b=VrPU9xDuKJng6wXbECPfrCl7WEwBQ6EVhpT4P/3fz2qVA2xxX0Ji3MRsXxlTd+EkR8ycjbTAKDbjzirxBWlKyuk6dpIKmTpc7RArlwyOn9hxNmngOgM+BuJ/yxcSNa8yntzcNlTnHtNk4z+StgZZxHwlifjCk0oNFMnw6AVchHY=
+	t=1730379728; cv=none; b=VIt8oycvDKJh7vhQeUq1OI0HSkY0Q3NhUs7pRflqQslCtpUNCVgU/1VIHnfDnPMVdvDEU4kvCXcz1qIwlfVg/7w3igkZQn9KkeHPaNuHuppLCmbZiFPLSJnydYpC/zka45ccj8eHP/p8tW/EgQT3FBYboihJvAgNaG+4oakTPvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730379306; c=relaxed/simple;
-	bh=GPlv4S+DuUI/4xSmvucFd92+4NRSOm7WZZhkjapC230=;
+	s=arc-20240116; t=1730379728; c=relaxed/simple;
+	bh=xdDOP8XDMU0WMjtRp5geiK1WaH7I1H742Dq0rUfn6kw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nHgwfwloGz+HpSN0E2DN391Q3IUnAzwCWsb7A52jSeIKvA8vagDXP3SagZfBu5FwL2f1yh0zj1UiuMs4QcEOSUBFpTngH/+fkkNg8DSPEBvYjVi/b4M31LYItuR8xWVT46rHRP1buMXHtCrbGosM8Oqrv444dVPo6GqsxnM+z0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hMYYsU7u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA223C4FE00;
-	Thu, 31 Oct 2024 12:55:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qcd/DhQZT42WqhIPmZaWvfAX6CxcpPbInC/EOrvJI1zneWALr5fi442Yjk5rvLRmYNQnaBHGPXgRNWKwuyKrraAeqX9J1wzg2cMxYbcJazh9cW+zjmsJH3V6I1wu6JuaeZ9rSOXu17uRbf/aXZVMS/pWUE8xpvZ/goUW5clQy4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B/3AdS8O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F36BC4FF6B;
+	Thu, 31 Oct 2024 13:02:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730379306;
-	bh=GPlv4S+DuUI/4xSmvucFd92+4NRSOm7WZZhkjapC230=;
+	s=k20201202; t=1730379728;
+	bh=xdDOP8XDMU0WMjtRp5geiK1WaH7I1H742Dq0rUfn6kw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hMYYsU7uCcUBq9dr1BWK6m4iNNmBR1LY0l4hO45E3uM7RELtX0XBbA31mRXVGNEGs
-	 XkV2USCyoUIpxQ7JPJwKfGE2qc52P7f0q+y5tOgHKKJWYO8CcAm0YCNPtrWc9ni2lF
-	 xDTZ7ztxlBkpvL/j9y3hfBS/tNw3fBwaE9n5PnPAQ+vaqEpH8OAHJFUTr+kp1Kyzl+
-	 u8wNDOGIMBhi5Akm2h+aH5CryzhHZOhqVl0ARB2212ES54U8yBAuJhUtf7UGjAvs4m
-	 7B4w4v3xBaaueFvyWuUvYP8o61qAm3y66OwtWvaBnfILD7MCY+T70kGoVue3O0s2mP
-	 uYSCDUTk79/AA==
-Date: Thu, 31 Oct 2024 12:55:01 +0000
+	b=B/3AdS8OoQv+xdoHidG1bZWd+VE3k+D6zFsafKnX9cRmM/QQJtNQ5gEtBInEcIyLl
+	 p7G3GHWwaswNp/wYvDFnq5xE7TDpMqVaPhwsxFKg0vXO0nqaykDTw3uEJTwXnt+Ifp
+	 ClUSCI+naGTIAbEqQmTdlk214CAVYi9rruZKh9DpO3XHdaGAQ0sD245+uD+9s2CoI5
+	 vpKaFEN4Jv8dJx9EKJzjiqo2F/9dyjgacOkUCUNAQL30xO0mz+HIX1QJms0zJFZeyU
+	 sPSdy07yMacNzJkPjSoNNerkHetxbOY+WDxCD9A0M2QlBOXUi1eaDnp3ZoJy3HdXWU
+	 iZDdU+l3kJfPA==
+Date: Thu, 31 Oct 2024 13:02:04 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Grant Peltier <grantpeltier93@gmail.com>
-Cc: robh@kernel.org, linux@roeck-us.net, geert+renesas@glider.be,
-	magnus.damm@gmail.com, grant.peltier.jg@renesas.com,
-	brandon.howell.jg@renesas.com, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	jic23@kernel.org, Peter Rosin <peda@axentia.se>
-Subject: Re: [PATCH v3 2/2] dt-bindings: hwmon: isl68137: add bindings to
- support voltage dividers
-Message-ID: <20241031-chalice-drainpipe-d49b0c5f9ef0@spud>
-References: <cover.1729715599.git.grantpeltier93@gmail.com>
- <2cc99616ff3dd9bcecb1309cd4d103d70aea862b.1729715599.git.grantpeltier93@gmail.com>
- <20241024-corporate-faceted-811e8e5a8c58@spud>
- <ZxqSqcN11fTambT4@raspberrypi>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Nuno Sa <nuno.sa@analog.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: axi-clkgen: include AXI clk
+Message-ID: <20241031-saga-earache-2179dc30adaa@spud>
+References: <20241023-axi-clkgen-fix-axiclk-v1-0-980a42ba51c3@analog.com>
+ <20241023-axi-clkgen-fix-axiclk-v1-1-980a42ba51c3@analog.com>
+ <20241023-tucking-pacific-7360480bcb61@spud>
+ <1e0097f6a15f47c173cb207e369909c1cb5943f9.camel@gmail.com>
+ <20241024-wildfowl-pushiness-d5f46c9c538a@spud>
+ <8b853ad3964cd2b7dafc225d4037ddbf11ebb2d3.camel@gmail.com>
+ <20241025-numerate-quirk-b622c5acdacc@spud>
+ <113e98edbff4501556e35698431080364e134233.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,155 +68,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DRCKVA0AUzND/Zu8"
+	protocol="application/pgp-signature"; boundary="C3qVovVDD5k1QD0u"
 Content-Disposition: inline
-In-Reply-To: <ZxqSqcN11fTambT4@raspberrypi>
+In-Reply-To: <113e98edbff4501556e35698431080364e134233.camel@gmail.com>
 
 
---DRCKVA0AUzND/Zu8
-Content-Type: text/plain; charset=us-ascii
+--C3qVovVDD5k1QD0u
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 24, 2024 at 01:32:09PM -0500, Grant Peltier wrote:
-> On Thu, Oct 24, 2024 at 06:01:11PM +0100, Conor Dooley wrote:
-> > On Wed, Oct 23, 2024 at 03:53:51PM -0500, Grant Peltier wrote:
-> > > + [...]
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - renesas,isl68220
-> > > +      - renesas,isl68221
-> > > +      - renesas,isl68222
-> > > +      - renesas,isl68223
-> > > +      - renesas,isl68224
-> > > +      - renesas,isl68225
-> > > +      - renesas,isl68226
-> > > +      - renesas,isl68227
-> > > +      - renesas,isl68229
-> > > +      - renesas,isl68233
-> > > +      - renesas,isl68239
-> > > +      - renesas,isl69222
-> > > +      - renesas,isl69223
-> > > +      - renesas,isl69224
-> > > +      - renesas,isl69225
-> > > +      - renesas,isl69227
-> > > +      - renesas,isl69228
-> > > +      - renesas,isl69234
-> > > +      - renesas,isl69236
-> > > +      - renesas,isl69239
-> > > +      - renesas,isl69242
-> > > +      - renesas,isl69243
-> > > +      - renesas,isl69247
-> > > +      - renesas,isl69248
-> > > +      - renesas,isl69254
-> > > +      - renesas,isl69255
-> > > +      - renesas,isl69256
-> > > +      - renesas,isl69259
-> > > +      - renesas,isl69260
-> > > +      - renesas,isl69268
-> > > +      - renesas,isl69269
-> > > +      - renesas,isl69298
-> > > +      - renesas,raa228000
-> > > +      - renesas,raa228004
-> > > +      - renesas,raa228006
-> > > +      - renesas,raa228228
-> > > +      - renesas,raa229001
-> > > +      - renesas,raa229004
+On Mon, Oct 28, 2024 at 03:01:44PM +0100, Nuno S=E1 wrote:
+
+> > > The assumption is that the axi clock is the last one in the phandle a=
+rray. But
+> > > your
+> > > comment made me think a bit more about this and I do see a possible p=
+roblem if we
+> > > run
+> > > old DTs against a kernel with this patch. We have two possibilities:
+> > >=20
+> > > 1) DT only with one parent clock;
+> > > 2) DT with two parent clocks;
+> > >=20
+> > > 1) is "fine" as it would now fail to probe. 2) is more problematic as=
+ we would
+> > > assume
+> > > the second parent to be the axi_bus clock so effectively not fixing a=
+nything and
+> > > silently probing with a broken setup.
+> > >=20
+> > > So yeah, I think I overthinked the backward compatibility thing. I me=
+an, in
+> > > theory,
+> > > all old DTs are not correct and should be fixed by including the axi_=
+clk. And if
+> > > we
+> > > now enforce clock-names we at least get probe errors right away makin=
+g it clear
+> > > (which is far better from silently breaking after probe).
+> > >=20
+> > > Given the above, it should be fine to just enforce clock-names now, r=
+ight?
 > >=20
-> > Damn, that;s a list and a half, innit! Looking briefly at the driver
-> > change, the match data implies that quite a few of these actually would
-> > be suitable for fallback compatibles.
+> > I think you need to enforce clock-names in the binding and take
+> > !clock-names and 2 clocks to mean that the second one is a clkin. I
+> > think that's a better solution than failing to probe for all extant
+> > devicestrees.
 >=20
-> Yes, there are quite a few part numbers (and likely to be more in the
-> future). My intention was to make the driver more user friendly since the
-> variants listed in the driver do not map to something in any of the
-> datasheets. So using those instead would require users to inspect the
-> source of the driver instead of simply referencing their part number(s).
+> Ok, so IIUC, you mean leaving old DTs as of today and relying on someone =
+else to
+> enable the axi clock (if it was not enabled they would have noticed by no=
+w).
 
-I don't understand. How would a fallback materially change anything in
-that regard? You still put the compatible corresponding to the device
-you have in your dts. A fallback means having multiple compatible
-strings in the property, not a single one corresponding to another
-device.
+Yea. Obviously any old dts within reach (so those in-tree) should be
+updated to have the missing third clock, but as we can't be sure we have
+changed all users, so the driver must retain its current functionality
+with the old devicetrees.
 
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  '#address-cells':
-> > > +    const: 1
-> > > +
-> > > +  '#size-cells':
-> > > +    const: 0
-> > > +
-> > > +patternProperties:
-> > > +  "^channel@([0-3])$":
-> > > +    type: object
-> > > +    description:
-> > > +      Container for properties specific to a particular channel (rai=
-l).
-> > > +
-> > > +    properties:
-> > > +      reg:
-> > > +        description: The channel (rail) index.
-> > > +        items:
-> > > +          minimum: 0
-> > > +          maximum: 3
-> > > +
-> > > +      renesas,vout-voltage-divider:
-> >=20
-> > There's already a binding for voltage dividers: voltage-divider.yaml
-> > That said, I have no idea how that would work with an extant driver for
-> > the hardware like we have here. I'd imagine it would really have to be
-> > used with iio-hwmon? + Peter and Jonathan, since I don't know how the
-> > driver side of using the voltage divider works.
->=20
-> In his recent revier, Guenter requested using a standard voltage divider
-> schema as well. I see there is an implementation in maxim,maxim20730.yaml
-> but that differs from the one in voltage-divider.yaml. Should I opt to
-> match maxim,maxim20730.yaml?
+> And only
+> take care of the bus clock when clock-names is provided?
 
-I would rather the standard binding was used, but it would probably
-involve having to hook up iio-rescale to hwmon? I don't know enough
-about that, which is why I Cced Peter and Jonathan.
+Yup.
 
-> > > +examples:
-> > > +  - |
-> > > +    i2c {
-> > > +      #address-cells =3D <1>;
-> > > +      #size-cells =3D <0>;
-> > > +
-> > > +      isl68239@60 {
-> > > +        compatible =3D "renesas,isl68239";
-> > > +        reg =3D <0x60>;
-> > > +      };
-> > > +    };
-> >=20
-> > Without any channels, what does this actually do? If you've got no
-> > channels you cannot measure anything making this example invalid?
->=20
-> The channel structures are optional to allow users to arbitrarily define
-> voltage dividers for any particular rail. Omitting the channel definitions
-> still allow the device to be instantiated and probed as an I2C device
-> along with all related hwmon PMBus telemetry dictated by the part variant.
 
-I dunno, either the channels are hooked up to something or they are not.
-If they are, the channels should be populated in the devicetree.
-
-Cheers,
-Conor.
-
---DRCKVA0AUzND/Zu8
+--C3qVovVDD5k1QD0u
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyN+JQAKCRB4tDGHoIJi
-0on0AQDBZsF7avHEorAfrgsVeB5TjV/Vrbg91EUg7hgYV/HMIwEAqxpcskKUxXdi
-fbWd2rKSQ4yLYkRQm59qmLH2Fhz7CQQ=
-=DmG0
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyN/zAAKCRB4tDGHoIJi
+0gS2AP9KFusL2IYEvY+70gKNTizKWIsY+058Z+CwTI5kgDfYPAD+N9js+eOfwmAc
+qkbffCHLfqHrpTiCkF2H2eHEdH0J0wM=
+=WBhq
 -----END PGP SIGNATURE-----
 
---DRCKVA0AUzND/Zu8--
+--C3qVovVDD5k1QD0u--
 
