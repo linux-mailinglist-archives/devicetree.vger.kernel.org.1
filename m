@@ -1,113 +1,103 @@
-Return-Path: <devicetree+bounces-117780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02CB69B7B62
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 14:10:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F9AD9B7C1E
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 14:48:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 329E61C20C94
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:10:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4465428171E
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:48:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DD5D19D8BC;
-	Thu, 31 Oct 2024 13:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FBA81A0712;
+	Thu, 31 Oct 2024 13:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="cZPr7c9r";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="r/WF7NtE"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="A6chTNt6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E42819CC2D;
-	Thu, 31 Oct 2024 13:10:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF47D1A00E2;
+	Thu, 31 Oct 2024 13:48:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730380222; cv=none; b=lpbIbNsxJb8Slsize8DrqveMzxPEyKe8uuil8plDPeRhnMkNA9y1LiAJ9qStGNq6LVrHdv54HMsOQCND6FEw1og9mMTlOn2TVPe2Ll2ckVGIP0QOVwfP3rrGVCyFHuFCmPGJiG+Ad2DfmXSVLFJ5TYv0zOZCT89V1oH5O0uNIxY=
+	t=1730382489; cv=none; b=lNb8nKzbfB7M0HFfJhh6mehWF6fRBnfbfYuUCmVsv+PEc49rarTZL2xNHKGRYHQjQPAk7yqcYO1Lmu08YbsZ0p8TOaPx6S+aXYUIaWvll+sfZEd9ehmTdwWDHJRCRjDZ12+aNi7zve/uBbQGHL479HYq4Bp1zlRdwipxzhaFVpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730380222; c=relaxed/simple;
-	bh=Khel1CjCqD6GywqHIRkJC23AjuuARNeWjnIoyg8t5ys=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=VLR2+SVlKDczaRHKq+CrQgVQcEmSM0jFlYlJgRYsb1S96N9iXzS4nhQdDbcWNDlMqYFWlGTYyn1GD1R/GotuxSZAuyVoIdUXhMPQe8b4eIDf0A6P65FLm4n9jYs6zkMiDJSpwR2GVhFJiWjXPcEs6zvUYSlG7mxjSKknz37Ijgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=cZPr7c9r; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=r/WF7NtE; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1730380218;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=n9KzjzVNQ8Kocvxcj31qY9sIt3lmgpdIUIkiScgCA4Y=;
-	b=cZPr7c9reVDeCHTlZwoxBPVYMZlN3G/dTVTQdkTTDaJ89tpKCtPo8EkeU27J1U2NKhv801
-	5lQ0w7+al8WvIbp5qPeOp/1W71eF8XFHZovHvM873GgwnxRq/Wbt0xNjgYs67PA6+YUmqW
-	YiJm4SpGCaaksFnT/OFSdM3lHs0Sp5MutH9zzBB5TdFzfp+a8x9ghckGs0o8Tax/4jQUOG
-	w/PEpAZwP+Jg6A7cJMeQab4KduJXxkwIUpec86VkGxT0qh71AYiixi0+C9gztjf/KqJdG3
-	xU/vFXaYaRr3/+M/M+lvpCJ0JLpb3TE7ckYAMlPLqIoWf5ffv2uobiVI/rLJ4w==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1730380218;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=n9KzjzVNQ8Kocvxcj31qY9sIt3lmgpdIUIkiScgCA4Y=;
-	b=r/WF7NtEoHc5yMmmmEgyNRfuKPAwN6UMWQX7pGgI8kOncV4SLVrtCGL1KPWEVsxsmKVtXe
-	sWw/W+y07XAozBDQ==
-To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Chen Wang
- <unicorn_wang@outlook.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Peter Zijlstra <peterz@infradead.org>, Inochi Amaoto
- <inochiama@outlook.com>, Guo Ren <guoren@kernel.org>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>, Yangyu Chen <cyy@cyyself.name>,
- Anup Patel <apatel@ventanamicro.com>, Hal Feng
- <hal.feng@starfivetech.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: interrupt-controller: Add Sophgo
- SG2044 ACLINT SSWI
-In-Reply-To: <20241031-armored-marbled-36cfb6d599e3@spud>
-References: <20241031060859.722258-1-inochiama@gmail.com>
- <20241031060859.722258-2-inochiama@gmail.com>
- <esuteqvz37blehx6wa5cj5ixlglcbullhuls3rcvjtuiviqqpb@ojho3arlnwst>
- <20241031-armored-marbled-36cfb6d599e3@spud>
-Date: Thu, 31 Oct 2024 14:10:18 +0100
-Message-ID: <87ikt8wh8l.ffs@tglx>
+	s=arc-20240116; t=1730382489; c=relaxed/simple;
+	bh=rxqIYUa/88KA7IdISu4c3kQ5I2OSOmVp9YvD7HCgSnQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Dk6j6NhZQlhHjL+48R3ABdDZKjIJrwPeD1kxPxQhGrjOmnVJV4XRBZLbZMrcMD2dMC2ZkPSzuuwZQft24ZqL8yaLscY0m7QTvt9412rvo2E5TL809y8xA8Vyn5F6MPovkRtF8yxh2AZ7vfkoLoDrlCKVcuFsDVytVYsETmZr6Wg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=A6chTNt6; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References; bh=/WX0zlVMGEjN7OmQYxz8QF0Yqk7Ydl3fEs/ezvkQO0w=; b=A6
+	chTNt6iJIXWR1g9MryBelAZnCtfOKjj7Mromu1S+HYk8tO5Tx83lkTr+AKw+KFODIq/ISxkIY8iKz
+	wCcgAsWqBCekLPRSAttJWEeOzCgizHSmyNnMqswuWGq3be+l4yPoOo6ngFZQVxJzelmd7QLJ+/mQe
+	ecyp9iQWMS20GIMtPhOEeIg9Fz31EeYHRPhpSRvOQbje26oAX9e8O6i3rVEPgui5GoQEP+5VDABLd
+	4cNQT5/9QwS85eLH24GnOdHYTaAJGvAE2zRYAGuHCW8btxtxftMpWyaY8Qi5siVMAhgGJCzsmqO8k
+	qj6UEPd81/+B9Rv4tcU+omZJnonPejbg==;
+Received: from sslproxy07.your-server.de ([78.47.199.104])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sean@geanix.com>)
+	id 1t6VAR-0005LO-Jb; Thu, 31 Oct 2024 14:24:51 +0100
+Received: from [185.17.218.86] (helo=zen.localdomain)
+	by sslproxy07.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sean@geanix.com>)
+	id 1t6VAR-000DTL-0K;
+	Thu, 31 Oct 2024 14:24:50 +0100
+From: Sean Nyekjaer <sean@geanix.com>
+Subject: [PATCH 0/2] can: tcan4x5x: add option for selecting nWKRQ voltage
+Date: Thu, 31 Oct 2024 14:24:20 +0100
+Message-Id: <20241031-tcan-wkrqv-v1-0-823dbd12fe4a@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAASFI2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDA2MD3ZLkxDzd8uyiwjLdZDOjJEsDMwMD05REJaCGgqLUtMwKsGHRsbW
+ 1AOmEH6hcAAAA
+X-Change-ID: 20241030-tcan-wkrqv-c62b906005da
+To: Marc Kleine-Budde <mkl@pengutronix.de>, 
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-can@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Sean Nyekjaer <sean@geanix.com>
+X-Mailer: b4 0.14.2
+X-Authenticated-Sender: sean@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27444/Thu Oct 31 09:34:36 2024)
 
-On Thu, Oct 31 2024 at 12:38, Conor Dooley wrote:
-> On Thu, Oct 31, 2024 at 02:14:40PM +0800, Inochi Amaoto wrote:
->> On Thu, Oct 31, 2024 at 02:08:57PM +0800, Inochi Amaoto wrote:
->> > Sophgo SG2044 has a new version of T-HEAD C920, which implement
->> > a fully featured T-HEAD ACLINT device. This ACLINT device contains
->> > a SSWI device to support fast S-mode IPI.
->> > 
->> > Add necessary compatible string for the T-HEAD ACLINT sswi device.
->> > 
->> > Link: https://www.xrvm.com/product/xuantie/C920
->> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
->> 
->> Hi, Conor,
->> 
->> Could you review it again? I have updated the description of
->> the binding and mark the device is T-HEAD specific.
->
-> Only thing I would say is that
-> title: Sophgo sg2044 ACLINT Supervisor-level Software Interrupt Device
-> should probably be
-> title: T-Head c900 ACLINT Supervisor-level Software Interrupt Device
-> or similar, since this isn't Sophgo's IP.
->
-> w/ that,
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> (dunno if Thomas is willing to change that on application)
+This series adds support for setting the nWKRQ voltage.
 
-Yes
+Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+---
+Sean Nyekjaer (2):
+      can: tcan4x5x: add option for selecting nWKRQ voltage
+      dt-bindings: can: tcan4x5x: Document the ti,nwkrq-voltage-sel option
+
+ .../devicetree/bindings/net/can/tcan4x5x.txt       |  7 +++++
+ drivers/net/can/m_can/tcan4x5x-core.c              | 35 ++++++++++++++++++++++
+ drivers/net/can/m_can/tcan4x5x.h                   |  2 ++
+ 3 files changed, 44 insertions(+)
+---
+base-commit: 2b2a9a08f8f0b904ea2bc61db3374421b0f944a6
+change-id: 20241030-tcan-wkrqv-c62b906005da
+
+Best regards,
+-- 
+Sean Nyekjaer <sean@geanix.com>
+
 
