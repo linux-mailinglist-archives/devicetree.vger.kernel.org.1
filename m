@@ -1,90 +1,82 @@
-Return-Path: <devicetree+bounces-117640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 874459B7459
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:15:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B9089B745B
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:16:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B88641C21219
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 06:15:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78F531C21BFD
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 06:16:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BCFC1422C7;
-	Thu, 31 Oct 2024 06:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 399A713D8A3;
+	Thu, 31 Oct 2024 06:16:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MGrio9ey"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nl1sJhFi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ABCF13DB99;
-	Thu, 31 Oct 2024 06:15:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5190053A7;
+	Thu, 31 Oct 2024 06:16:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730355311; cv=none; b=nxUs84tZgjmOgB3pgdPooiC5r9kE7801JYBHfIEksQFgZU4gJkq99or3h8BKjNldyPVyTBWMto8XIwxkfmqBBnsG+Fnj4z4hui1FSu5ks+1W85Ey29YuAdSg11wAieQWNtzqHlpdxQDYoPE7c3/5j95RFxSd5moqBs2yZZsubHI=
+	t=1730355405; cv=none; b=t/jTHa2r93naUxOCow60IJA4eXK20G5C0gNkZcM1MqHalFVf50HkoGgx2tl7MkM2AWY4MPUL+9MHfBcGdlxAT33c0ikEyYjS4CNKzrh5WD8ngDJxEXWwGxLjAHrBu09ABP4ns/nGHVrS+h2Z+zT5MriKyeESTE2nE7q1qt788G0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730355311; c=relaxed/simple;
-	bh=DnuqAVCDEoiNqvIljcES2Gj6fmR7w07gT8Kjtmhb/PQ=;
+	s=arc-20240116; t=1730355405; c=relaxed/simple;
+	bh=j2HlgDp8+u9hg2vkQed2WwynkePj63eEmVQB7+uORIQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uYXiQnXu0jOzqJU/2/MI1w6+jcReQhLCnPpXRRiDsqvfE0eEARgr+yevAXhiBgItZA8F0y1iagu3Cc4cG8oBO3Etvq2PeYPIJO7Wa7AoqaK+91QVRQ0gzn8PQxAiPX0c3Ep/lfmYWanViJptqD92FMv5dbKq1OBUTLpRfuHUa10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MGrio9ey; arc=none smtp.client-ip=209.85.210.181
+	 Content-Type:Content-Disposition:In-Reply-To; b=VPUrN2uq1v6XMIQ+45EF3SdHQc9IWjADEC65CU7SM84l+0HERBw2BoWBfPLeaBuzcq0jViYpc7CQf366gmLltEhXKjIXPBc6ZR7gCAZlbOaQmEdtd2db7nL/ET+/riBzIZc9RdVuEaVIbfhMc8EAUSuL4UrjFdlD41SEPJoK05Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nl1sJhFi; arc=none smtp.client-ip=209.85.166.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-71e592d7f6eso436493b3a.3;
-        Wed, 30 Oct 2024 23:15:09 -0700 (PDT)
+Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-3a6ababa9f7so432745ab.1;
+        Wed, 30 Oct 2024 23:16:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730355309; x=1730960109; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1730355402; x=1730960202; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XNHizp3vdR2jJwWfWzhOjHw4wEUjGKp2hXV+t4+ArSE=;
-        b=MGrio9eyI6bgdOT4iv3XWN5rgY9Y6gDHd46FMR7P2v29yJyDjjaOEqnEekWhbjG0mb
-         fvYHGN4eItTB/St1Ff0fRWQnzndO2zhj7yThGSnwIPItbAf29C1e8abuMfr/IqwyZSoF
-         lzLatwErtXdpXePp99EirLPFcLdsCe4maKjHCT9Rajp472V4puM9tiQjNODV52ukjrTJ
-         yLoqG0qaUzcyyN6Jf40TzuJzvabwh9sxi6H6bp19TKgb7+TT8Oo8xV9TQ9RVi4qJrvN8
-         NF7DHQeW1tILeOANkBWwiojnHGNaOmATT0FM2rffJBniS4l3aWyzlsl2B6Jc4SXz5c5n
-         2gCw==
+        bh=EuWXK1FTmmyHPdq/HX3ciQnkpD6mZ9pTPXfUjDd7qVw=;
+        b=nl1sJhFi0froFM6uOB+lsx3c1o3xOqI4QKB2B2vK7goFUp6c4vZTfu64Ymmxjy4e7T
+         YTarBGiGZPlYZhvbQtTrYeV+ZTXsfGOW/xASm582v/ijHHRs/j9wj9mgNT9K5TEr2zmH
+         GiAw/VtkzwUZFzVdCtSbeAkqMTr5usvfUzqkDdyhAOydCSatFv3XYpXNortoH3vXVCW3
+         VkBldVme3xQkJmz1N5+Zv22Jjq2YsLnFZIC5w6YykBnyQS+nVy806DUhDCNNcF+AFiVS
+         0T85LwA6b9xg92EAsC9wbBF428k65AF141QsbK+7BLcB9ZsFXTz0SDmpp1Hk935V/FZQ
+         pFrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730355309; x=1730960109;
+        d=1e100.net; s=20230601; t=1730355402; x=1730960202;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XNHizp3vdR2jJwWfWzhOjHw4wEUjGKp2hXV+t4+ArSE=;
-        b=QuajytvI/Om7GEIXbONUvk84p7sZpJMozNkJneHWc3zsBonRrEcgTo7WXJz/q9gAjT
-         bJGFmSsJj3kJaapLrSJvOmdDkoqTSzyezpJt8EVBVgQeXYzaWgGdIuvGRtv1ntExjbzD
-         3JJ/4abJEynBynpox9smzJ4AtmDg1bfN9Z6VOJUfgURZyVsOwFxxC0TXj6j0GMj+iRPk
-         yHX/3IlnwtmH7TH+GuizIGUV36e/wopfwn/ICoTCWZrE9XlOXEknPzKHMAN4psA5WUij
-         iHPx7LpfRSsPOGzwxQe19TCtuetstDpffyzXWcVKf3vwMJhn6zNafYqXZmkjuREYkxjK
-         TICw==
-X-Forwarded-Encrypted: i=1; AJvYcCVY5tFJqh8LWwtLGHGkbam3IV1ygE7VW4a5ByfrSHtui+YtsmqECe9QsI5rs8C9qsaGPTKez98G2Z1bkSZ9@vger.kernel.org, AJvYcCXcnKof6c+E3XnLBLLEZ19y00I4+GQI89eZyyb3FjMV2pdFkiBhjPLSv9DRz6xdYenYdJV/v8ceTVSg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxzq2eNsBOPOGQYjkHl4Im1T3H3nDFYpl7yqBu+8KtmSStvGnMz
-	MddyLodiwrqxa7HyRze5P5Q0N3gqsBiat6LkAWclGnLUIG28cvuy
-X-Google-Smtp-Source: AGHT+IHe8ZlhfO4mUD9OaBTVRSTp19pxfjwgeX5Q24Oh31kpwAwy3z/U7oVNpbqUXJpwMzMLLWNxEw==
-X-Received: by 2002:a05:6a00:b48:b0:71e:69e:596b with SMTP id d2e1a72fcca58-7206306de29mr24794428b3a.17.1730355308831;
-        Wed, 30 Oct 2024 23:15:08 -0700 (PDT)
+        bh=EuWXK1FTmmyHPdq/HX3ciQnkpD6mZ9pTPXfUjDd7qVw=;
+        b=T7pHybiGT7UtwkxXQs/Os5ifejssmCtNoKXLSOUGtgdMEX4QcJoKXpOo9migoGtLZz
+         qhJpqYsHTNQG4AIM1Xcr8Lf6mKIkcgb5NxC0ZtP3qELWMMThN6pz/Y5KQS29PApUyxoo
+         UGZryJEG8MD5hFCn290/TGjtEvhm8OOY4WcpH7GejYF10vLcEDJ3aYMHscH7mWD4hQvz
+         g4wXaZf2uPy9Fs2CzAWI16IvXJLc22dohEjnldmZh4+3oqPTPxzYa6TJpkmFeKlaBPx3
+         o6QmBIfiCfzOlhEQLVud3vVUDfQXJ3Aa4OC73RNElD7PgRmX486rQo4hDg/3DA7FbqHN
+         nISw==
+X-Forwarded-Encrypted: i=1; AJvYcCUY9krsVvvPjXpILJVY8ugWCo4+hm7OnkXRCyeoirFSwuVDMpWzFxz++Xd7oIGukCEmcXUyH4tjkgmK391h@vger.kernel.org, AJvYcCVCnzFw8KurK5SYtyf3I2uz1T4p4wggBINvXOzo7UM621P5kp6DYRNbTsnrNqHeZcGQr3OUJYHLB+zSeQ==@vger.kernel.org, AJvYcCWObjyx/GhiWx4H47pBZLj/W29GNH2jiviORA0HNqikRPT0TMO5Y029yUG/6q27CL97AVzm2SfWmVif@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmtuvZsgl6gat9jlGL+t1JUFw3rA7hXLRnZjE/wicfADFbwaXG
+	5ZLa90SLi6aFuoZMbX7ofEmYhQXp1Gbc77RBOBQYjKdjykR5aW6z
+X-Google-Smtp-Source: AGHT+IEjlco9iARxa0bQC4eLe4X9RvrtbLwAsHFCOo4/n8JV2mCJn3xvzg1nlMhFCJCWEVeRqZ3nSA==
+X-Received: by 2002:a05:6e02:1c29:b0:3a0:8d60:8ba4 with SMTP id e9e14a558f8ab-3a4ed2e066fmr9182655ab.16.1730355402297;
+        Wed, 30 Oct 2024 23:16:42 -0700 (PDT)
 Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc2c54c2sm567916b3a.134.2024.10.30.23.15.08
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7ee452aa703sm499528a12.27.2024.10.30.23.16.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Oct 2024 23:15:08 -0700 (PDT)
-Date: Thu, 31 Oct 2024 14:14:40 +0800
+        Wed, 30 Oct 2024 23:16:41 -0700 (PDT)
+Date: Thu, 31 Oct 2024 14:16:13 +0800
 From: Inochi Amaoto <inochiama@gmail.com>
-To: Conor Dooley <conor+dt@kernel.org>
-Cc: Chen Wang <unicorn_wang@outlook.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Peter Zijlstra <peterz@infradead.org>, Inochi Amaoto <inochiama@outlook.com>, 
-	Guo Ren <guoren@kernel.org>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Yangyu Chen <cyy@cyyself.name>, Anup Patel <apatel@ventanamicro.com>, 
-	Hal Feng <hal.feng@starfivetech.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+To: Chen Wang <unicornxw@gmail.com>, linus.walleij@linaro.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, inochiama@outlook.com, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: interrupt-controller: Add Sophgo
- SG2044 ACLINT SSWI
-Message-ID: <esuteqvz37blehx6wa5cj5ixlglcbullhuls3rcvjtuiviqqpb@ojho3arlnwst>
-References: <20241031060859.722258-1-inochiama@gmail.com>
- <20241031060859.722258-2-inochiama@gmail.com>
+Cc: Chen Wang <unicorn_wang@outlook.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: correct typo of description for
+ cv1800
+Message-ID: <3vgu3mw6eqdbv4lbenihpgfouupspeivfox7qu5upxdzfl5l4y@azhfscgilvfs>
+References: <20241029012312.3448287-1-unicornxw@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,24 +85,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241031060859.722258-2-inochiama@gmail.com>
+In-Reply-To: <20241029012312.3448287-1-unicornxw@gmail.com>
 
-On Thu, Oct 31, 2024 at 02:08:57PM +0800, Inochi Amaoto wrote:
-> Sophgo SG2044 has a new version of T-HEAD C920, which implement
-> a fully featured T-HEAD ACLINT device. This ACLINT device contains
-> a SSWI device to support fast S-mode IPI.
+On Tue, Oct 29, 2024 at 09:23:12AM +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
 > 
-> Add necessary compatible string for the T-HEAD ACLINT sswi device.
+> It should be PINMUX/PINMUX2, not GPIOMUX/GPIOMUX2, see
+> <dt-bindings/pinctrl/pinctrl-cv1800b.h>.
 > 
-> Link: https://www.xrvm.com/product/xuantie/C920
-> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> Fixes: 64aa494de6fa ("dt-bindings: pinctrl: Add pinctrl for Sophgo CV1800 series SoC.")
+> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+> ---
+>  .../devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml      | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml
+> index 1e6a55afe26a..feb4785a3fac 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml
+> @@ -58,7 +58,7 @@ patternProperties:
+>            pinmux:
+>              description: |
+>                The list of GPIOs and their mux settings that properties in the
+> -              node apply to. This should be set using the GPIOMUX or GPIOMUX2
+> +              node apply to. This should be set using the PINMUX or PINMUX2
+>                macro.
+>  
+>            bias-pull-up:
+> 
+> base-commit: 81983758430957d9a5cb3333fe324fd70cf63e7e
+> -- 
+> 2.34.1
+> 
 
-Hi, Conor,
-
-Could you review it again? I have updated the description of
-the binding and mark the device is T-HEAD specific.
-
-Regards,
-Inochi
-
+Reviewed-by: Inochi Amaoto <inochiama@gmail.com>
 
