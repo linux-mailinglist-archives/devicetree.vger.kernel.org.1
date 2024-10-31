@@ -1,161 +1,248 @@
-Return-Path: <devicetree+bounces-117906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A551C9B8483
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 21:42:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3A8E9B8499
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 21:48:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AA3228196E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 20:42:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D0571C216A6
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 20:48:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E061CC147;
-	Thu, 31 Oct 2024 20:42:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B8051CCB47;
+	Thu, 31 Oct 2024 20:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EkzwZDHD"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="PCSAuJNZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7B8F149C55
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 20:42:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8900E14A4F3
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 20:47:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730407341; cv=none; b=tniKlHpYIp5hnhFO6231/XcKfv6imipqJKJGtwon1VwpsSFhmODyeX2K+ff5LdxyJw6D94yID0jTf8XYegixxnSKHocHMSI2mcVWPxwv3e8ehpxwdL6bFM/BgJB7MNyxYDIrADI/x1m9FMbUACIWW+/gpxUJSgv8TUmPFKBGfpU=
+	t=1730407664; cv=none; b=k8eY7F8ZO3HAmzFE/8461eeymXEMpfCP2FuIb0QevscUMSPem/Yn0gKZUVmfRybsdBnQ1bkyDepI4qSonLRIb1M8CdY7s3YtV4CxwT1BWn8uxistD1PRxg3DYTwXxITomL9OncZ3KxyIu4xNPIB6/AQgmVHfQf5mZEvPe3ulPds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730407341; c=relaxed/simple;
-	bh=MFpNRpqRd9LH4pJmd0TDJFGlaMsED1SWhV9pcS+sRzA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RiizxwRW/JrjFadLf2KyvYCVkhVmxAWIHIR+vTUrXt6yfKx+YhGYjZp8dx/OXdvtJBatJrHXCHHciM+fNOysF8iE3gjWGnWBF7dAHF+CuQR4acpRqoWM3Z7NEJMXMnxZea3n49t5rRxBDCHrRhD+8wLWEaMTvWQaHnHQgv7Ffmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EkzwZDHD; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49VD1t7s027387
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 20:42:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	VqpxAZr42lt2krLgg+7vgLWAa8YGLnkwMHJCnyltXHU=; b=EkzwZDHDW41xH24/
-	YfOrcaQ7qo+aWFiEOuecSDsAuBBa8qBpkIF+bzhmCy/H4IWxl/LEP+OaHeNVIhGz
-	/HBbcsE6zqx8laj0Hx+KDtcDeEndAp2SbvVbQDxduLHeE84QrdOon50cSuXzokD4
-	IP3Sqax6SQb2INIIUP4aXjkvtC8Mvyn9j6hyOibgS/BVFK3r+6ltr9csq8mXYODp
-	wJEdvUUjrTBX03p2I/EsmXv1jYZ2WzgxKq6suwgknpy0j9phJt7wl15G3LgipMi0
-	DO+jiahfK/L+tRO8jBgTVjDV+xlIzMn4Cvynv8qHC7omg5O7Z3DcAXIviXdV8C7+
-	E6+Mug==
-Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com [209.85.161.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42k1p385ap-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 20:42:18 +0000 (GMT)
-Received: by mail-oo1-f70.google.com with SMTP id 006d021491bc7-5eb9dd2d3daso156607eaf.1
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 13:42:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730407337; x=1731012137;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VqpxAZr42lt2krLgg+7vgLWAa8YGLnkwMHJCnyltXHU=;
-        b=rQxXRoMXtRzYSU4D+7fMhOmOZHZoV1N4mHPRnFZN4hB4uIV+CEBpcfS6KATLZ+w1uh
-         bOUfdyoz8z+3kVkdzBvUCVdFQthsjb6iR9dNoxpjEakBsqce4DjP78UugxxHB+J6PP2L
-         a7sKYb04JYozhVZf//SzgdmR/M1EcYww6AaMi6iWr9uqU6Ib7ZagDOlOE7ld2tfKNt4+
-         zai7ex4+urq4KZ9Dx4AV4nTP/BU2uMqtwm193C8PeIVBPAEEHg6E90Rpo7SpC+NOyLgG
-         QBxZZt8WCZt1aMmLBBeAuJLdL+4kUlD+lGK/hCweMX+vrVcXz39+rHv0KdF31QHySY1D
-         pyDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUQRU/ZZ41o6EwYKuJEZmGdKlRG6HS09XJpE+kdjfnp3+yC67kf3/yTBef/NZhK0iaaQiiSSPmpsqxk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIXJvtCewMsZk3ogzgsjvjk4OYaI6ApHv/J3R7hLmNkmEuA50t
-	N6n8NeB90Ct/xU46eB6WOTvN8OGKD3LsAlzwPmFHtkLmqPO6Blp/yYwazY/Pcv42UB59qUIQUBX
-	6A63BKf71gyfpc4ZEwLzBuhGxwsqyXSSRBSsEGjrcCElaK0b5IxFnIBilJQV5
-X-Received: by 2002:a05:6870:c094:b0:26f:d381:fd31 with SMTP id 586e51a60fabf-29051ade5c4mr4749688fac.1.1730407337693;
-        Thu, 31 Oct 2024 13:42:17 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGOklbpgSQPKrzZF2v//gyCTkBydr6GONYtPoc+mNnrDmew/I2RgaNj2IMmRgOfpE340yIhvg==
-X-Received: by 2002:a05:6870:c094:b0:26f:d381:fd31 with SMTP id 586e51a60fabf-29051ade5c4mr4749678fac.1.1730407337342;
-        Thu, 31 Oct 2024 13:42:17 -0700 (PDT)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e564c5348sm100834366b.49.2024.10.31.13.42.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Oct 2024 13:42:15 -0700 (PDT)
-Message-ID: <7a87ff33-2a88-4476-9116-69d6725b8d0c@oss.qualcomm.com>
-Date: Thu, 31 Oct 2024 21:42:13 +0100
+	s=arc-20240116; t=1730407664; c=relaxed/simple;
+	bh=CGtXJKxBgqoj2ZhJWq95lN3GeEMod1hgLrFk3VLQLnM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=r8KkjNZdT1UWpSISSQQOL7n74d1gEbtitJTkyt9/thBPc4JAbOtq1Tej59aG5CpffiZyJZweRxbdZOn5yDeFEiMotwAfScY4Cxgq34Q9iRs51Pt0XhK+VDFnMkxYbx4NW9SPkv9FBCUCWPnWdjlSIFCADzWxuuNebRawlbqSBEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=PCSAuJNZ; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20241031204735euoutp02f3724386d1162b793eacaed76aef3994~DpJgvdJov2195921959euoutp02g
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 20:47:35 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20241031204735euoutp02f3724386d1162b793eacaed76aef3994~DpJgvdJov2195921959euoutp02g
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1730407655;
+	bh=s6DGAxUHb2q0xPQ2y2B8ZAw2ghixwQVQZDTwr523jNs=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=PCSAuJNZ+NAbFTqo63200lRTk6h5pTUnNfFw5E4xHK2/zOQD8C/ntOg6ihR2MGRwM
+	 pt2QWAS8tRBJjNMhOZSYzTu0kDnz3QdmpI3l783szv6IsA2g/tKVZfKsC2g/DIWZSO
+	 507G8Q6HDBFmb1Mn058RV57ZQu3np/moa1G+Mavc=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20241031204734eucas1p2bbdcbc237d9116eefa8aa796fceed66d~DpJfpT9gU1026810268eucas1p2O;
+	Thu, 31 Oct 2024 20:47:34 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges1new.samsung.com (EUCPMTA) with SMTP id 52.15.20821.5ECE3276; Thu, 31
+	Oct 2024 20:47:34 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20241031204733eucas1p223f2ad621130055e20e81b7633054f26~DpJfMXC1B0030200302eucas1p2T;
+	Thu, 31 Oct 2024 20:47:33 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20241031204733eusmtrp1b33538262d60038dd58e7d1cd60e4d1b~DpJfLqsOF2727327273eusmtrp1z;
+	Thu, 31 Oct 2024 20:47:33 +0000 (GMT)
+X-AuditID: cbfec7f2-b09c370000005155-ee-6723ece5f573
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id 0D.20.19654.5ECE3276; Thu, 31
+	Oct 2024 20:47:33 +0000 (GMT)
+Received: from AMDC4942.home (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20241031204732eusmtip140e0fa6c8476517761ca8e5e11e13e5d~DpJeEmhKz1679316793eusmtip1J;
+	Thu, 31 Oct 2024 20:47:32 +0000 (GMT)
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+To: drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
+	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, m.szyprowski@samsung.com, samuel.holland@sifive.com,
+	emil.renner.berthing@canonical.com
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Michal Wilczynski <m.wilczynski@samsung.com>
+Subject: [PATCH v5 0/3] Introduce support for T-head TH1520 Mailbox
+Date: Thu, 31 Oct 2024 21:47:20 +0100
+Message-Id: <20241031204723.1149912-1-m.wilczynski@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sar2130p: add QAR2130P board
- file
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: Krishna Kurapati <quic_kriskura@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20241030-sar2130p-dt-v2-0-027364ca0e86@linaro.org>
- <20241030-sar2130p-dt-v2-4-027364ca0e86@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241030-sar2130p-dt-v2-4-027364ca0e86@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 8SnYFaUNIlCN6ojMGPSvfAGiRrXKgosR
-X-Proofpoint-ORIG-GUID: 8SnYFaUNIlCN6ojMGPSvfAGiRrXKgosR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- adultscore=0 spamscore=0 lowpriorityscore=0 mlxscore=0 malwarescore=0
- phishscore=0 clxscore=1015 impostorscore=0 mlxlogscore=999 suspectscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410310156
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrPKsWRmVeSWpSXmKPExsWy7djPc7rP3iinG9y5yGSx9fcsdos1e88x
+	Wcw/co7V4t6lLUwWlzpXMFq82NvIYnFtxVx2i5ez7rFZXN41h81i2+cWNou1R+6yW6z/Op/J
+	4uXlHmaLtln8Fv/37GC3WH3uCotFy/4pLA6CHrMaetk83rx8yeJxuOMLu8fOWXfZPTat6mTz
+	2Lyk3qNl7TEmj/f7rrJ59G1Zxehxqfk6u8fnTXIB3FFcNimpOZllqUX6dglcGZN2TGMr+K9d
+	ca5vMUsD4ynlLkZODgkBE4nfC16wdjFycQgJrGCUaL2yiBnC+cIoMeHERijnM6NE7901zDAt
+	815+YIRILAdq6XjMDpIQEnjDKNFxwBTEZhMwkniwfD7YXBGB9UwSz3YvYwdxmAV6GSWm7p3J
+	1MXIwSEs4Czx/a8LSAOLgKrEmd47TCA2r4C9xN8ZT9kgtslL7D94lhkiLihxcuYTFhCbGSje
+	vHU22HkSAqs5JW7f/A11novEnFP3oWxhiVfHt7BD2DISpyf3sEDY+RIPtn6CqqmR2NlzHMq2
+	lrhz7hcbyG3MApoS63fpQ4QdJe7eegF2soQAn8SNt4IQJ/BJTNo2nRkizCvR0SYEUa0mMbWn
+	F27puRXbmCBsD4k5O7+xQYIqVqJj+UamCYwKs5A8NgvJY7MQbljAyLyKUTy1tDg3PbXYMC+1
+	XK84Mbe4NC9dLzk/dxMjMA2e/nf80w7Gua8+6h1iZOJgPMQowcGsJML7oUA5XYg3JbGyKrUo
+	P76oNCe1+BCjNAeLkjivaop8qpBAemJJanZqakFqEUyWiYNTqoFJ1ovrvejHNT/rlWMsl/fF
+	t/tu0vO4HLfEPW57FLe8kuv64lTu7tO/F4g53Fhtx6owqz9B86u56GXLI186vzu2cLybl5Gg
+	uPCOtfOXq6uXFrgrOHX0m0+pf8t2Nt06oqTuvd6P6bcmXBLaXq1yW/lEvcu7ivz/bds7s9Y9
+	LytYdO16HzP7sWAmdeE/f4qfrv6+6qBATsdMJ5kGgUlrGhY53hT9aBletPHmu0PLvlc09rvc
+	Pp++sT1oVvjnY6sSb81eYNkkfnd14TO5BJ5nn7ccumw4v2DvW5cyqx/PD37R3/1tOvtkS02r
+	g2xdT0Jdb/tezfNJ/rNwIfeNXT31GeLa9ik9ZrdnZTD/6OIqKrirxFKckWioxVxUnAgAXllw
+	z/IDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrDIsWRmVeSWpSXmKPExsVy+t/xu7pP3yinG2w8r2ix9fcsdos1e88x
+	Wcw/co7V4t6lLUwWlzpXMFq82NvIYnFtxVx2i5ez7rFZXN41h81i2+cWNou1R+6yW6z/Op/J
+	4uXlHmaLtln8Fv/37GC3WH3uCotFy/4pLA6CHrMaetk83rx8yeJxuOMLu8fOWXfZPTat6mTz
+	2Lyk3qNl7TEmj/f7rrJ59G1Zxehxqfk6u8fnTXIB3FF6NkX5pSWpChn5xSW2StGGFkZ6hpYW
+	ekYmlnqGxuaxVkamSvp2NimpOZllqUX6dgl6GZN2TGMr+K9dca5vMUsD4ynlLkZODgkBE4l5
+	Lz8wdjFycQgJLGWUaL/1kBEiISNxrfslC4QtLPHnWhcbRNErRok3L06wgiTYBIwkHiyfD2aL
+	COxnknh9tgikiFlgIqPEzbn3gSZxcAgLOEt8/+sCUsMioCpxpvcOE4jNK2Av8XfGUzaIBfIS
+	+w+eZYaIC0qcnPmEBaSVWUBdYv08IZAwM1BJ89bZzBMY+WchqZqFUDULSdUCRuZVjCKppcW5
+	6bnFRnrFibnFpXnpesn5uZsYgdG67djPLTsYV776qHeIkYmD8RCjBAezkgjvhwLldCHelMTK
+	qtSi/Pii0pzU4kOMpkBXT2SWEk3OB6aLvJJ4QzMDU0MTM0sDU0szYyVxXrYr59OEBNITS1Kz
+	U1MLUotg+pg4OKUamFYUu4r1zT3SW1b+Zs+CRXc81l6J3vK03s3daH5Lv3rM2ykcan57t/zN
+	UjjX+8nHZoGqSqbYlff+avMnrS/+pbvipG/6As2Etw9zjoRn+R4Tm7qmNsr2xMXfrB1ffFKm
+	q+SZfy+YqrLCLmPBjqnSL9QPCD3YeHqZh9TWt0/5L17xE+Pf6pK999TmsmaWRU9SzDkmllXN
+	S5H/tPfJsYkXI1mmNwlmXHNW+xAmUNWw8WvZv9XytxiWF3tx6AlMfxOYtOba3J+93G29DhGL
+	J9bI26dVz897yLNqy5fFWUVZf59vM+ReIfRsybPdq206uhmSbrZ6mr2/ueOzn8uhN3obtz8v
+	OL2iY8meE+UpRcrquRxKLMUZiYZazEXFiQDyuy5VXwMAAA==
+X-CMS-MailID: 20241031204733eucas1p223f2ad621130055e20e81b7633054f26
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20241031204733eucas1p223f2ad621130055e20e81b7633054f26
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20241031204733eucas1p223f2ad621130055e20e81b7633054f26
+References: <CGME20241031204733eucas1p223f2ad621130055e20e81b7633054f26@eucas1p2.samsung.com>
 
-On 30.10.2024 12:50 PM, Dmitry Baryshkov wrote:
-> Add board DT file for the Qualcomm Snapdragon AR2 Gen1 Smart Viewer
-> Development Kit.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+The T-head TH1520 SoC supports a hardware mailbox that enables two cores
+within the SoC to communicate and coordinate [1]. One example of such
+coordination would be cooperation with the T-Head E902 core, which is
+responsible for power, clock, and resource management. For example, in
+the specific case of the BXM-4-64 GPU, it needs to be powered on by the
+E902 core, and the kernel running on the E910 needs to 'ask' the
+firmware running on the E902 core to enable power to the GPU island.
+Given recent advancements in work on the upstream GPU driver [2], there
+is an emerging need to get this code in the mainline kernel.
 
-Please add newlines before status consistently
+Link: https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf [1]
+Link: https://gitlab.freedesktop.org/imagination/linux-firmware/-/issues/1 [2]
 
-[...]
+Thanks everyone for taking the time to review this series !
 
-> +
-> +	wcn7850-pmu {
-> +		compatible = "qcom,wcn7850-pmu";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wlan_en_state>, <&bt_en_state>;
+To test this, I've prepared a diff that includes the missing drivers
+utilizing the mailbox and enabled the GPU node in the device tree to use
+the drm/imagination driver.
 
-flip please
+I’ve created two branches. Both contain the same code, including this
+patch series and some extra commits with mailbox consumers. The only
+difference is that one branch has an additional commit that switches ON
+calls to OFF calls (and vice versa) to observe the behavior when the GPU
+is turned off via the mailbox.
 
-[...]
+To reproduce, simply clone the repository, add the following extra options
+in the config:
 
-> +
-> +&pon_resin {
-> +	status = "okay";
-> +
-> +	linux,code = <KEY_VOLUMEDOWN>;
+CONFIG_THEAD_TH1520_MBOX=y #(this series)
+CONFIG_DRM_POWERVR=y
+CONFIG_LIGHT_AON=y
+CONFIG_LIGHT_AON_PD=y
 
-and here
+Then build and deploy on the target.
 
-[...]
+In case [1], the output should be:
+[    2.478394] light_aon_probe: virtual_log_mem=0x000000005faf564a, phy base=0x33600000, size:2097152
+[    2.488589] succeed to create power domain debugfs direntry
+[    2.494987] powervr ffef400000.gpu: Before reading BVNC
+At this point, the system will hang because the driver is trying to read
+memory-mapped registers while the GPU isn’t powered on.
 
-> +
-> +	ptn3222: redriver@4f {
-> +		compatible = "nxp,ptn3222";
-> +		reg = <0x4f>;
-> +		#phy-cells = <0>;
-> +		vdd3v3-supply = <&vreg_l2a_3p1>;
-> +		vdd1v8-supply = <&vreg_l15a_1p8>;
-> +		reset-gpios = <&tlmm 99 GPIO_ACTIVE_LOW>;
+In case [2], the GPU powers on correctly, and the BVNC can be read
+without issues. If the specific firmware file isn’t available, the
+output would look like this:
+root@revyos-lpi4a:~# dmesg | grep gpu
+[    2.408207] powervr ffef400000.gpu: Before reading BVNC
+[    2.413533] powervr ffef400000.gpu: After reading BVNC
+[    2.418930] powervr ffef400000.gpu: Direct firmware load for powervr/rogue_36.52.104.182_v1.fw failed with error -2
+[    2.429568] powervr ffef400000.gpu: [drm] *ERROR* failed to load firmware powervr/rogue_36.52.104.182_v1.fw (err=-2)
+[    2.440403] powervr ffef400000.gpu: probe with driver powervr failed with error -2
 
-Since I'm nitpicking hard already, please see the property order in romulus.dtsi
+Here are the links:
+[1] - https://github.com/mwilczy/linux/tree/31_october_demonstrate_mailbox_not_working
+[2] - https://github.com/mwilczy/linux/tree/31_october_demonstrate_mailbox_working
 
-Looks good otherwise, thanks!
+Note: U-Boot must load the AON firmware at startup to the address mapped
+for AON for this to work properly.
 
-Konrad
+v5:
+ - removed 'type' mbox-cell, which isn't really necessary for the use-cases of
+   the series, but desribes SW protocol instead of the HW, adjust driver code
+   logic to account for this, simplifying it
+ - change the register mappings in the device tree node to reflect the manual
+ - adjust the driver code to compensate for irregularities in the mappings, do
+   this by modifying th1520_map_mmio() with extra argument 'offset'
+ - add support for enabling/disabling MBOX clocks in the driver
+ - add clocks in the dt-binding/device tree node
+ - rebase and retest
+
+v4:
+- fixed warning of unused variable
+- added Reviewed-by from Krzysztof
+- fixed minor cosmetic issues in dt-binding
+
+v3:
+- added a comment about mixing devm_ and non-devm resources in the context
+  of shared interrupts and explained why it's safe to do so in this
+  particular case
+- changed the order of resource freeing in the .shutdown callback
+- used a wrapper function for register mapping
+- since the only conceivable use case for this mailbox driver is
+  communication with cores not managed by the kernel, I’ve hard-coded
+  this by removing the thead,icu-cpu-id property and adjusted the mailbox
+  driver code accordingly.
+- added a more detailed description for mbox-cells.
+- made some cosmetic changes.
+- retested by applying the patch with non-yet-upstreamed patches,
+  confirming that the drm/imagination driver can read the registers
+  correctly.
+
+v2:
+ - fixed thead,th1520-mbox.yaml binding file by dropping redundant
+   descriptions, renaming reg-names, removing unnecessary clocks,
+   providing constraints and defining ICU's
+ - fixed the mailbox driver code to work well with updated binding-file,
+   removed clocks support, as it's not necessary for mailbox to work
+ - adjusted the device tree node instance of mbox_910t so it will work
+   with updated bindings file
+
+Michal Wilczynski (3):
+  mailbox: Introduce support for T-head TH1520 Mailbox driver
+  dt-bindings: mailbox: Add thead,th1520-mailbox bindings
+  riscv: dts: thead: Add mailbox node
+
+ .../bindings/mailbox/thead,th1520-mbox.yaml   |  89 +++
+ MAINTAINERS                                   |   2 +
+ arch/riscv/boot/dts/thead/th1520.dtsi         |  16 +
+ drivers/mailbox/Kconfig                       |  10 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/mailbox-th1520.c              | 592 ++++++++++++++++++
+ 6 files changed, 711 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml
+ create mode 100644 drivers/mailbox/mailbox-th1520.c
+
+-- 
+2.34.1
+
 
