@@ -1,176 +1,262 @@
-Return-Path: <devicetree+bounces-117743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0675B9B78B2
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 11:34:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49AA19B78D3
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 11:41:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AA2F1C22326
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:34:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABCE1B23586
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D084198A2F;
-	Thu, 31 Oct 2024 10:34:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A212199395;
+	Thu, 31 Oct 2024 10:40:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="R4DHCx5y"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="WnAesqFu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 194E513A89A;
-	Thu, 31 Oct 2024 10:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D5A712C52E
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 10:40:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730370871; cv=none; b=QanzTZnubei6RL23T8dL0POidM5xIgQexKyhFc3ZJOxKmL/il5oRLCylRbcIcd1B0+bkS3daH7eqC1yf7glJKT5BpPGUEjdjfhDl0sMW+/9/KAil8gGeSixIYqcq0aKzykpcB+3XvXIUxDapX3uXfYbsBK4SM0PTJS2lkRqe+lY=
+	t=1730371249; cv=none; b=FNicZDtQjT9T1jqsakosgXlykOB5hnfW7GVJmXid99kxfDTUR5Md6ABKuj2sGdJyyiHpapD+uD76hY/CA9EvC31vEQ66QM4Iw1OSDnU6muByclUsZysMlzQQVaAb6KgqmB3uHBRKQQ5W55RAysV25BLu4lxKYGfgYguyfyu5Nh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730370871; c=relaxed/simple;
-	bh=zANYUiHmKXksyQ6E+6YVTESkzq42rbS9GPMJvQKhXnk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LerRlwiu9hAzWGUwl/4uwjrpYNCcgQIJAK+CkhIJg7zkiYxyRPunVPqlQ1fZAZTwEXYf/XYeMUvCvbm/n2qTJ5OtnZzRORSg2gKCClsh1o6K/j58gMu1hbdSX5geYz74qbAbOsrXwxYCrVoUZOLjFq5c8URF7PQWCTdwmDMlVoo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=R4DHCx5y; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id C286989285;
-	Thu, 31 Oct 2024 11:34:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1730370867;
-	bh=xMjYvi/k0LQv3mvZTRUW98lV/FQ3V/2XaFC77x3qp1Q=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=R4DHCx5y1WLPTmrQgUeiNT6q3Bn6qZiHbfVy1ehcrKerMsp7P+SUnLS0pozgzOPEO
-	 kwgnuv6a61i3Dm+t+OvvD22xMAErsoInObWnEPfvAA8jybfRkteO3QxnFRAt/OeNgM
-	 MoxHxi38Bt/0U2XnfgVEP3Bj+03bJYDY8TQQzGWn8DhvAcnznVXQAT3eJPUvFCPn//
-	 pQfTEjQHSr0rSIfcrOi+2EDXasBluWymdqPk9XPs8skGxvOgoeapD4WQ1oLywpfmO5
-	 Jbx+6iLWJwYhirI8XINXT4olddEyZrSN328ulmFYI1T6lTRVUjGnkRRn4p71+Hc2wW
-	 +Fzheen24Xqmg==
-Date: Thu, 31 Oct 2024 11:34:25 +0100
-From: Lukasz Majewski <lukma@denx.de>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 4/4] ARM: dts: mxs: Add descriptions for imx287
- based btt3-[012] devices
-Message-ID: <20241031113425.1e3d1da5@wsk>
-In-Reply-To: <806770fc-3830-4e89-a3ee-487b662685ed@gmx.net>
-References: <20241022133040.686562-1-lukma@denx.de>
-	<20241022133040.686562-4-lukma@denx.de>
-	<20241031094236.17ed927d@wsk>
-	<806770fc-3830-4e89-a3ee-487b662685ed@gmx.net>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1730371249; c=relaxed/simple;
+	bh=XtnAwlHqbDwEqBbAVelZJFoPIxrzfr7UOto+zsLrlkw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nb8l5eskZaTaLAF6p6P5kmpOPaH/TmJsVEXD+1aZqmFihQzRGLDU6JqCBiTooWM+PHKnqJ7mizYIELpk7/pMEAISioJqTkeuKVhf5oVvNjc1XpPKNcqxM/wxfBljcSNMrKHYdVoz+4KyoX8+iPFfTNn78UKwnuDzaSJMJyAcm8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=WnAesqFu; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4315eeb2601so8165725e9.2
+        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 03:40:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730371244; x=1730976044; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lgKmGA2XP6AGtqM9oW1AxbuyILWkrlt7gPefc+gScmU=;
+        b=WnAesqFuDcvek1e+QHgl4Bpl3rZuQvcSZyBeB+aZTFhmUsnXaWhaYGFBEJ+7kfnsPs
+         AsKtsRyISTpgbzzt0i5yazgmHbcsLyXjuJ1l5qEnutpaw1jIuTFrnj3Z57CDM8jOoec/
+         WqrNb3nV7qUmobnd4O+S6tEEJtW91fnc5SeINuKq4OmFe0Eb4xsreSNgLztwW/8+c9y9
+         wXjf/PJ+eQiyeLpd2wMLxU8NLTpDVVNgwSEdDEBmCX98HDPBdfZvAxn8clkiYnmYV2ts
+         XQ52+smTpnqtcOG3qez7yTP3f8CbD+/26YUXprElkmIFqgjqyIVbRYS54rM4kt3Z+RZz
+         V+HA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730371244; x=1730976044;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lgKmGA2XP6AGtqM9oW1AxbuyILWkrlt7gPefc+gScmU=;
+        b=aI4CieX4DxrgCr6yveSIPHdWokOIASt1hXEQPcgPR6BVFNPz5LCyAPrH8tuk6VJ2cS
+         flBa8207bSxGMy0lu5N2veIIcyrky7F3p81XtCY/+/0aUzCvWS+ae6EJpp6738NQp/l0
+         DMrSn3fwBidkGE2+ItltD+uMT4zCC5VLh6DGjkHuD+ECGmh0ZfZkmt/Skz5qS8L8qeoA
+         OgHweEIbsT1AWH0YSGlV6qG0QEAE1aeXTMar/TdW/bjBXvK4lmR767AIbeJuOTxo74dy
+         KMQqbhtn+r8MQVBXLsyStPtkRBvOk61alIIw3FpmD8q1aSEVXFyiojnXRTj61NsQW/nA
+         aBUA==
+X-Forwarded-Encrypted: i=1; AJvYcCWxCK6IR4txyWVIe9pXPQevGLYKrapW9+6nyxf/f1LonZ75y8L6JHPx2cpKpXopUQbeSuGotMo2ZdF3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwV/8psnH1GEqh3eW9xa38YUWj6TPWfCiLc669tf7EPsoFfWlZn
+	2KNZL7S2HG6t+8/lnB12amMbw5LzuQ0INdA4V+uZeGXl9jG5a7NLbLieAgjlVOU=
+X-Google-Smtp-Source: AGHT+IFPYqx1ZOnNkJk+PcsQb0H+6RC0VdaFuA9KFeFSW0MTwuAVcXEfqSuPspkXtnVhb/q30nPQfA==
+X-Received: by 2002:a05:600c:1d8b:b0:426:59fe:ac27 with SMTP id 5b1f17b1804b1-4319ad06901mr232128505e9.26.1730371244319;
+        Thu, 31 Oct 2024 03:40:44 -0700 (PDT)
+Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4327d6984f0sm21970065e9.46.2024.10.31.03.40.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Oct 2024 03:40:43 -0700 (PDT)
+Date: Thu, 31 Oct 2024 11:40:42 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>, 
+	Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Dumitru Ceclan <dumitru.ceclan@analog.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-iio@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH v2 3/4] iio: adc: ad_sigma_delta: Add support for reading
+ irq status using a GPIO
+Message-ID: <y3amm7yj37lravbk6fcwze3jlllp4extmffqtx4jaoeqjt6uyl@nsdrcy2dk5kr>
+References: <20241028160748.489596-6-u.kleine-koenig@baylibre.com>
+ <20241028160748.489596-9-u.kleine-koenig@baylibre.com>
+ <a575430a74a7825a2df9fad1a8e073ad0507b0e7.camel@gmail.com>
+ <20241030204429.70cdcf35@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/FD/wYCUhTrUoXhAbjXcXHQB";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vu4ylvzikv3ve35j"
+Content-Disposition: inline
+In-Reply-To: <20241030204429.70cdcf35@jic23-huawei>
 
---Sig_/FD/wYCUhTrUoXhAbjXcXHQB
-Content-Type: text/plain; charset=US-ASCII
+
+--vu4ylvzikv3ve35j
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 3/4] iio: adc: ad_sigma_delta: Add support for reading
+ irq status using a GPIO
+MIME-Version: 1.0
 
-Hi Stefan,
+Hello,
 
-> Am 31.10.24 um 09:42 schrieb Lukasz Majewski:
-> > Dear Community,
-> > =20
-> >> The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
-> >> some extend similar to already upstreamed XEA devices, hence are
-> >> using common imx28-lwe.dtsi file.
-> >>
-> >> New, imx28-btt3.dtsi has been added to embrace common DTS
-> >> properties for different HW revisions for this device.
-> >>
-> >> As a result - changes introduced in imx28-btt3-[012].dts are
-> >> minimal.
-> >>
-> >> Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> >>
-> >> ---
-> >> Changes for v2:
-> >> - Rename dts file from btt3-[012] to imx28-btt3-[012] to match
-> >> current linux kernel naming convention
-> >> - Remove 'wlf,wm8974' from compatible for codec@1a
-> >>
-> >> Changes for v3:
-> >> - Keep alphabethical order for Makefile entries
-> >>
-> >> Changes for v4:
-> >> - Change compatible for btt3 board (to 'lwn,imx28-btt3')
-> >>
-> >> Changes for v5:
-> >> - Combine patch, which adds btt3-[012] with one adding board entry
-> >> to fsl.yaml
-> >>
-> >> Changes for v6:
-> >> - Make the patch series for adding entry in fsl.yaml and btt3
-> >>
-> >> Changes for v7:
-> >> - Use "panel" property as suggested by the community
-> >> - Use panel-timing to specify the display parameters
-> >> - Update subject line with correct tags
-> >>
-> >> Changes for v8:
-> >> - Use GPIO_ACTIVE_HIGH instead of '0'
-> >> - Add the comment regarding mac address specification
-> >> - Remove superfluous comment
-> >> - Change wifi-en-pin node name
-> >>
-> >> Changes for v9:
-> >> - Remove not used 'pm-ignore-notify'
-> >> - Add display names for 'panel-dpi' compatible to avoid Schema
-> >> warnings
-> >>
-> >> Changes for v10:
-> >> - Drop new line with panel-timing definitions
-> >> - Add new lines with 'sound' node
-> >> - Change 'codec' to 'audio-codec'
-> >> - Change order of properties for saif1 node =20
-> > Are there any more comments regarding this patch? =20
-> Sorry, i wasn't aware that you are waiting for reviews after Rob's
-> request.
+On Wed, Oct 30, 2024 at 08:44:29PM +0000, Jonathan Cameron wrote:
+> On Wed, 30 Oct 2024 14:04:58 +0100
+> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+>=20
+> > On Mon, 2024-10-28 at 17:07 +0100, Uwe Kleine-K=C3=B6nig wrote:
+> > > Some of the ADCs by Analog signal their irq condition on the MISO lin=
+e.
+> > > So typically that line is connected to an SPI controller and a GPIO. =
+The
+> > > GPIO is used as input and the respective interrupt is enabled when the
+> > > last SPI transfer is completed.
+> > >=20
+> > > Depending on the GPIO controller the toggling MISO line might make the
+> > > interrupt pending even while it's masked. In that case the irq handler
+> > > is called immediately after irq_enable() and so before the device
+> > > actually pulls that line low which results in non-sense values being
+> > > reported to the upper layers.
+> > >=20
+> > > The only way to find out if the line was actually pulled low is to re=
+ad
+> > > the GPIO. (There is a flag in AD7124's status register that also sign=
+als
+> > > if an interrupt was asserted, but reading that register toggles the M=
+ISO
+> > > line and so might trigger another spurious interrupt.)
+> > >=20
+> > > Add the possibility to specify an interrupt GPIO in the machine
+> > > description instead of a plain interrupt. This GPIO is used as interr=
+upt
+> > > source and to check if the irq line is actually active in the irq
+> > > handler.
+> > >=20
+> > > Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com>
+> > > --- =20
+> >=20
+> > Hi all,
+> >=20
+> > Regarding this, I do share some of the concerns already raised by Jonat=
+han. I fear
+> > that we're papering around an issue with the IRQ controller rather than=
+ being an
+> > issue with the device. When I look at irq_disable() docs [1], it feels =
+that we're
+> > already doing what we're supposed to do. IOW, we disable the lazy appro=
+ach so we
+> > *should* not get any pending IRQ.
 
-I did not received any mail from Rob's automated DTS test script, so
-this is a good thing :-).
+I think this is wrong and you always have to be prepared to see an irq
+triggering that became pending while masked.
 
+> > Also looking at drivers as the xilinx gpio controller, it seems some
+> > are careful about this [2] and make sure to clear all pending IRQs
+> > when unmasking.
+> Your links are both to the same place.
 
-Best regards,
+The right one is:
+https://elixir.bootlin.com/linux/v6.11.5/source/drivers/gpio/gpio-xilinx.c#=
+L419
 
-Lukasz Majewski
+I think this is buggy, see below for the reasoning.
 
---
+> > Jonathan also said this:
+> >=20
+> > "True enough - that race is a possibility, but not all interrupt inputs
+> > are capable of gpio usage whilst setup to received interrupts."
+> Race should be easy to avoid using a level interrupt now I think more on =
+that:
+> can't miss a level.
 
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+In general this isn't true. If it were that easy we could just assume
+all irqs being level interrupts and simplify the irq code a bit. At
+least for the ad7124 if a conversion is done, the chip holds the line
+low until the next conversion is done. In that case it deasserts
+DOUT/=CC=85R=CC=85D=CC=85Y for a short while to create another falling edge=
+ signalling
+another event. I can imagine this to confuse level detection?!
 
---Sig_/FD/wYCUhTrUoXhAbjXcXHQB
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+> > To my understanding this also means this is doomed to fail for some dev=
+ices or am I
+> > not following it?
+>=20
+> If you were wired to one of those, you couldn't use the GPIO trick, but t=
+hen
+> don't have a GPIO in your DT in that case.
+
+Yes. If the device isn't properly connected in hardware you're out of
+luck. But that is also true if the spi clock line isn't connected. So
+apart from the requirement that "properly" involves things that are
+unusual for other SPI devices, that's expected. Having said that it was
+clear before because the MISO (aka DOUT/=CC=85R=CC=85D=CC=85Y) line was alr=
+eady know to have
+to be connected to an irq capable pin.
+=20
+> > All that said, my naive feeling would be for a masked line to not get a=
+ny pending IRQ
+> > and if it does, the driver should make sure to clean all outstanding in=
+terrupts when
+> > unmasking. But I'm far from being an expert of the IRQ subsystem. Maybe=
+ it would be
+> > interesting to get some inputs about someone who actually knows better?
+> +CC Thomas Gleixner,
+>=20
+> Annoying case where a wire is both the interrupt source for dataready and=
+ the
+> SPI data line (if separate clock signal is toggling)  So currently the dr=
+iver
+> masks interrupts at the host end, but we have at least one interrupt cont=
+roller
+> where they end up pending and fire on reenabling the interrupt.  Querying=
+ the
+> device to check the status register then ends up causing it to happen aga=
+in,
+> so that doesn't help.
+>=20
+> Proposal is to query it as a GPIO (or maybe a separate GPIO wired to the =
+same
+> pin) to check the level when an interrupt comes in.
+
+In my understanding it's the expected behaviour of an irq controller
+that a masked irq becomes pending if the irq event (level or edge)
+happens and then triggers immediately after enable_irq() -- independent
+of laziness being used or not.
+
+That's also the only way to prevent missing interrupts. To understand
+that consider an irq that signals there is data in a fifo. The handler
+reads that data out and when it's empty returns. Returning results in
+unmasking the interrupt again. If new data arrives between seeing the
+fifo empty and reenabling the irq you miss the event if the irq doesn't
+become pending while it's masked.
+
+> Any thoughts on this nasty hardware and what is responsiblity of the devi=
+ce
+> driver vs the interrupt controller driver in this case?
+
++1
+
+Best regards
+Uwe
+
+--vu4ylvzikv3ve35j
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmcjXTEACgkQAR8vZIA0
-zr2R0gf/dn+dA46KkhqB5cnCwM/Du4YuF84nm95iXMGzE3j0nrAz35xAEt4kbQWT
-AeHvQn13mHETK44MBDyVCmwJsx/UIWNCPRdpFRyN1b7cVLqxQu2ktw3k2roMChbS
-Xy4aOQY4GcAf+OPczECtsV/sXrCAbZlOILrtEP0qBxREDWbLy6J+7fWL8UZ6VXbM
-fCBTG/iu4bJRUpQG4gX8w2G2WW4Su487RJqbun0Wj0r+/ED4tQqzmye5wZapZNhJ
-CO8rqfo9o6qQZzW+ppECs3DC4vRVLeMYbsNhyKhTrM8igjjAnutyabSHzw5R3Jh1
-5D8uiUHD+Y/NfIWkM/tJFFnS1iGreA==
-=8/4m
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcjXqcACgkQj4D7WH0S
+/k6l0Qf9H43QChnW4w6qaJbshV3+8ZGstbguoZE1x5XYLSNe+7l2bvdXeQHitndw
+e3f6GhaFNsrUJDleicZxpAqPQ/btwJ3RsUs57l84iuH3svthZsiXpFASAAgzSNDn
+FB0oEaA7tBqP5df2mV6hgatju/wJ60nSfE+SksNW1newP61JGLohqv3FCwJk3hgi
+ZOitlJonKXLhZGt7o+vpyJ20giyFftf0LY7/5uKNGorfoKODJHFz4OVSehEAC82u
+WCtdJ3/5j/bcrAJZcV+HUS5MVJiIQ5ZpxS2A+BIW7qGBZ8NE3azjxHlRbzDzMLNv
+58mIqfx8LXGKjOF7ekIr4iJHRfIo7Q==
+=2pE1
 -----END PGP SIGNATURE-----
 
---Sig_/FD/wYCUhTrUoXhAbjXcXHQB--
+--vu4ylvzikv3ve35j--
 
