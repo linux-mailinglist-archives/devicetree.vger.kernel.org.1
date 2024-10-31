@@ -1,151 +1,250 @@
-Return-Path: <devicetree+bounces-117675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1C029B7536
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:19:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B80D19B753E
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:20:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66AD3286514
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:19:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DACA31C21AEB
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:20:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1D1415665E;
-	Thu, 31 Oct 2024 07:18:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E989D1494AB;
+	Thu, 31 Oct 2024 07:19:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="SLmNCP0p"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pw2T4Vu/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 652A41547F5
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 07:17:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC591487FE;
+	Thu, 31 Oct 2024 07:19:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730359081; cv=none; b=FHWGTIhGEG2q8um+oGA6OQGq8R0BPlOJgWKZYnuavKaOy8zMtKxVuXWkHQQD0xs+k6QSh8UrS5dmS+GWCESx0qUZsrJV99ngDTSn+xX1sKIKtF/bbvQNNPzNsyR1QtEWBJMrxaOfjHJMNukNDV126yUvXAc34mx+pIVADT2Hlic=
+	t=1730359196; cv=none; b=p6DFd0l0qPRnlN8L/VYIoZf5lsfZgEI7ERAu6PxDIengM9vhXBfebzK8yg9Ups42/11A3smpvxFqfpTeED208YZ1DO6DOBYDSIdONV3li8W1zI0rheNgqbUUGz2AcpVeWYBOwZGKUkSWS8E1wWLyrsevl22aDzQCzR3bm4AxRyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730359081; c=relaxed/simple;
-	bh=Wpo8Oj/klmyH5vH0z1jaegb5OcJIFZ72Wg0pt5glQAc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=HU3PC8AccPW4vcr5n/IUcejeR1TfTlO7vXIOH6JmbWfEMONOoAcBpypgHXJdj6c9VaMPyTAfHBxlO1+R/z7m2toFapl+Jwcw3HbeiWf0+YRFV1gw7IDvS+oxp1JP4xOyr1q/9/2TyLjoaAB67rTTUxoEEVScCj89c01UwBaCbAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=SLmNCP0p; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4314fa33a35so4814855e9.1
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 00:17:59 -0700 (PDT)
+	s=arc-20240116; t=1730359196; c=relaxed/simple;
+	bh=SgOgFG1BEPIvTLIqnCJzdAkzonty5Cbue+t1fnhQ0Lk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uMjKmjpNKzu0xX94z32J+4fWtIjXsaX8+nX6GsLqFN5x06ReeYhq75NUcFit4YqFQEZSrAWGDr7p2fFnSVarsnozc7oQygr6dLRi1WqgD33OFsieMUolL+x7tKrQjAygb/ukcqSYrRGOhij8eaH5BcPBpQJS6NdPJ68JUu/DreM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pw2T4Vu/; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4315df7b43fso5080655e9.0;
+        Thu, 31 Oct 2024 00:19:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730359078; x=1730963878; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ta8KKdF2jcNVKVs5pCv9tj8EzXOBx+/a1iWRb1D6Seo=;
-        b=SLmNCP0pbhwRhyQijQmytLoOPxPwgYWw6lRGZ841HjhOHC030QRUGftl9jVcK/77/r
-         n3D4Uy2s0V3LNcm3w9JKgNL31pOmIHGm7N9D7RKKxXLaamunoXVGzkftDvkNhydly/vT
-         6CCF8hfbDTT4y61/U5UORJKqiNQqdehlXxuv1mAYgmewffpUMZH9sPMjHgAI6XXlRbu8
-         ubQpFiVpG+6+wTcDVapuEqFExWBlXX7xMT0eJpj+rl2K22/8pcw7ITIBfxvqJq6Ui+Kg
-         XeDZ6Z6wH34oDsX6j/lpc9hHIbJo+1vgzGsN4bPAuILjwwjcV1ULO5qz8ODlGL6rRxwq
-         FjVg==
+        d=gmail.com; s=20230601; t=1730359193; x=1730963993; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DbUNa9NvVBQiQBCGAtj9LNHK2+u/05a6j0plbfulxqw=;
+        b=Pw2T4Vu/SG/HSjTiqaFtrOSC/2WVWY2LUHcvzNVaPYJyikIt4niWBjkSh6hO7RJF9A
+         dIQy8urtO78I5oltC7FG8tKbRbr+KMkVydeNy1wjM0TI6QXRI/dZ1bf8vpbn2lTb/54d
+         T0A4ITX06S0bq9aZqbXjHwMw+ZUVLNOrrVlcXJTQZmM7c0dpGhuj4Q1RhHyNy4k1WSQJ
+         p9LJZweSOjgv4MjX49tmzdL1uOCSkXEj2ovj7PDGzKfIq17n6Eh3F4hwM+FFaXK2hmQH
+         sjaaJjZ/XKBldoh+T1T4KIvElYYP3FjrD5a2KMk+vlkakCN+rSX2eUBNmCJ66wAoDp8j
+         X6MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730359078; x=1730963878;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ta8KKdF2jcNVKVs5pCv9tj8EzXOBx+/a1iWRb1D6Seo=;
-        b=klIFZ4LTc5V3sWZJvEKOcgzU/Hv5N8bcLIsm7Ot7aVuA7sc1UckPQI/aMAdhTIvF7B
-         N1m7FeUWYDrnwY0YbB0qKfEgATeJeeOJi54OjC/w98CyYoXERpfYAKfswPDLewkxCauF
-         OksuZzgG0Tqszd9B0RqjzbKe4f1N8yM2SDve94zxspQO11HyInHSDfV+rSdTMLHeIUo5
-         xfN5xKfa/ML4iOjcA6Zj6/HfH4oHBQeVKBNi7G8dSbCRX/w2pzZLtxr2rONxZTVX3xFX
-         BOw/SoBkumLcTzjDCzLSmGCAIIm7+2wVUSemZy+yctxCsiErKPHglQBbEzgE+8PRubR/
-         yX4w==
-X-Forwarded-Encrypted: i=1; AJvYcCUOcXvhZ2VqZ7Rx4X/yLpHaUfqFWrYDjrlMo84O3y4FyUIvD+1I6Y5WuRlYOVncamnx1FQCYOdCt+8c@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQN17tiqKd5L9sXDVRgu/9H7uAcLcCtpf0nLp655wQXPDGdmCA
-	yExD/1jSd2B3k+ilFou1f6iKj0q9RW0mQ4m+pP34o6uRjwfdUxoUknW+zaS3AbY=
-X-Google-Smtp-Source: AGHT+IFApzsnUKOt+RjkBsEFLWnDMKMhhkMDsz9e5PgIwP+GShRdVqxyiVYzdBFrvcfuDkSiF/a0ww==
-X-Received: by 2002:a05:600c:4ecd:b0:431:6060:8b22 with SMTP id 5b1f17b1804b1-431bb9855a2mr50657975e9.10.1730359077813;
-        Thu, 31 Oct 2024 00:17:57 -0700 (PDT)
-Received: from axelh-ThinkPad-T450s.home (lfbn-nic-1-251-169.w2-15.abo.wanadoo.fr. [2.15.94.169])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c113e694sm1187547f8f.86.2024.10.31.00.17.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2024 00:17:56 -0700 (PDT)
-From: ahaslam@baylibre.com
-To: lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	jic23@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	nuno.sa@analog.com,
-	dlechner@baylibre.com
-Cc: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Axel Haslam <ahaslam@baylibre.com>
-Subject: [PATCH v3 6/6] iio: dac: ad5791: Use devm_iio_device_register
-Date: Thu, 31 Oct 2024 08:17:46 +0100
-Message-Id: <20241031071746.848694-7-ahaslam@baylibre.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241031071746.848694-1-ahaslam@baylibre.com>
-References: <20241031071746.848694-1-ahaslam@baylibre.com>
+        d=1e100.net; s=20230601; t=1730359193; x=1730963993;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DbUNa9NvVBQiQBCGAtj9LNHK2+u/05a6j0plbfulxqw=;
+        b=n+/oHLfbAFn8nm/9Vu0j5mJV2uiPVVF3DHa+GoUObnPq/MRvmc/mYjdXA30tL/pcim
+         XwZxVr93tWYPlVZ8tC+wOXFbmlA4S5h8bh+Y/OIU2a4ojjGxIBzFbX70XxAWPK385Ezr
+         zFVmVXxFXMTei1VE1gYgaSxvVvxfPimhkak/oV7pYCKijIxOYbIa5dA5iBg9uTNt3OJw
+         Q4Y76ddi/onWnj5QjmvvVHMImqutfJ2r1JMRsjv82va64AxcC8OyzqJp/md15o2PUTZ3
+         a94YKhN1ULu7z1aj5HfkCHbZkG16lAdDIH685Sjii+KSuKQadr4VpVWMFWIizmhuU6PW
+         CR3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUatvRg+ZctfBtjiS5iv3/z1PFF0okNSrvjh6C1chSjPkjz5PT9Bp6IW0QhYd0cDwtsfANHqAesDDvA@vger.kernel.org, AJvYcCV/bppR9pgAyvAo5fN2v6+XfdLGWyiuD3GBnNOU2G6I/u6HaTcwx4mQzUqaPOVKM+u9zOYkCmKTNAgkmMHayB4=@vger.kernel.org, AJvYcCWKSzR+CxuJHVrHWpjj8W53I5hwcV6gOd40P+kpWXpiUuAZUJff7WHXHdcaKGUw7ZYyHhbODpXJBRW+6hog@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTX6alGIg2l4TNycEzMY3mz6mf5tQs5lYElv5l/KDpvOEHv7sa
+	AFLYqxOxbvIia5OBQIJrsoymtPl2sS0jiHfzlIkFwNE3KStp1buw
+X-Google-Smtp-Source: AGHT+IEbCOzwenjTNJj6dCH8Qbf6Mz1j8NxxWiASasAsuFPMRKYq3tazzD1aZw/KWBKRAPs0x/1UAA==
+X-Received: by 2002:a05:600c:3c8c:b0:431:4fa0:2e0b with SMTP id 5b1f17b1804b1-4319ad146b1mr144630435e9.28.1730359192519;
+        Thu, 31 Oct 2024 00:19:52 -0700 (PDT)
+Received: from ?IPV6:2003:df:bf0d:b400:5538:841f:81ca:6a17? (p200300dfbf0db4005538841f81ca6a17.dip0.t-ipconnect.de. [2003:df:bf0d:b400:5538:841f:81ca:6a17])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c10d429dsm1219961f8f.31.2024.10.31.00.19.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Oct 2024 00:19:52 -0700 (PDT)
+Message-ID: <a5d44a42-bcc0-4512-a324-7aa8506b4fdf@gmail.com>
+Date: Thu, 31 Oct 2024 08:19:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 2/3] rust: Add bindings for device properties
+To: Rob Herring <robh@kernel.org>
+Cc: Alice Ryhl <aliceryhl@google.com>,
+ Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
+ Saravana Kannan <saravanak@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+References: <20241025-rust-platform-dev-v1-0-0df8dcf7c20b@kernel.org>
+ <20241025-rust-platform-dev-v1-2-0df8dcf7c20b@kernel.org>
+ <CAH5fLgjhiLUYPgTt_Ks+L-zhWaQG5-Yjm-Y3tfh2b2+PzT=bLg@mail.gmail.com>
+ <CAL_JsqJWPR-Q=vsxSvD7V9_v=+om5mRuW9yYNqfavVRUwH9JFw@mail.gmail.com>
+ <CAH5fLgiXPZqKpWSSNdx-Ww-E9h2tOLcF3_8Y4C_JQ0eU8EMwFw@mail.gmail.com>
+ <CANiq72kaidDJ=81+kibMNr9jNxg467HjOm9C_4G7WRvaiddGvg@mail.gmail.com>
+ <CAL_Jsq+T6T_3p2C62U3v4aSjm_oc-Ycjxi_ckF0ufh=JJDz=rg@mail.gmail.com>
+ <CAH5fLggCDiKUu_dvJZeJr8UD5RvUpqRJbdYKf1F3_MvCdOVK6g@mail.gmail.com>
+ <CAL_JsqL+b-f5K24qTxyA09c_QPeb07s4Hb=s1VqrdksBB4BQ=Q@mail.gmail.com>
+ <79c47555-c9e9-4ff6-8c43-c7c26a91afd4@gmail.com>
+ <CAL_JsqJkkUk6AoAdgfVHROk=wpRo0En=gi7zwXe6S7LUEsdocQ@mail.gmail.com>
+Content-Language: de-AT-frami
+From: Dirk Behme <dirk.behme@gmail.com>
+In-Reply-To: <CAL_JsqJkkUk6AoAdgfVHROk=wpRo0En=gi7zwXe6S7LUEsdocQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Axel Haslam <ahaslam@baylibre.com>
+On 30.10.24 17:47, Rob Herring wrote:
+> On Wed, Oct 30, 2024 at 11:03 AM Dirk Behme <dirk.behme@gmail.com> wrote:
+>>
+>> On 30.10.24 15:05, Rob Herring wrote:
+>>> On Wed, Oct 30, 2024 at 3:15 AM Alice Ryhl <aliceryhl@google.com> wrote:
+>>>>
+>>>> On Tue, Oct 29, 2024 at 8:35 PM Rob Herring <robh@kernel.org> wrote:
+>>>>>
+>>>>> On Tue, Oct 29, 2024 at 1:57 PM Miguel Ojeda
+>>>>> <miguel.ojeda.sandonis@gmail.com> wrote:
+>>>>>>
+>>>>>> On Tue, Oct 29, 2024 at 7:48 PM Alice Ryhl <aliceryhl@google.com> wrote:
+>>>>>>>
+>>>>>>> One option is to define a trait for integers:
+>>>>>
+>>>>> Yeah, but that doesn't feel like something I should do here. I imagine
+>>>>> other things might need the same thing. Perhaps the bindings for
+>>>>> readb/readw/readl for example. And essentially the crate:num already
+>>>>> has the trait I need. Shouldn't the kernel mirror that? I recall
+>>>>> seeing some topic of including crates in the kernel?
+>>>>
+>>>> You can design the trait to look similar to traits in external crates.
+>>>> We did that for FromBytes/AsBytes.
+>>>>
+>>>> I assume you're referring to the PrimInt trait [1]? That trait doesn't
+>>>> really let you get rid of the catch-all case, and it's not even
+>>>> unreachable due to the u128 type.
+>>>
+>>> It was num::Integer which seems to be similar.
+>>>
+>>>>
+>>>> [1]: https://docs.rs/num-traits/0.2.19/num_traits/int/trait.PrimInt.html
+>>>>
+>>>>>> +1, one more thing to consider is whether it makes sense to define a
+>>>>>> DT-only trait that holds all the types that can be a device property
+>>>>>> (like `bool` too, not just the `Integer`s).
+>>>>>>
+>>>>>> Then we can avoid e.g. `property_read_bool` and simply do it in `property_read`.
+>>>>>
+>>>>> Is there no way to say must have traitA or traitB?
+>>>>
+>>>> No. What should it do if you pass it something that implements both traits?
+>>>>
+>>>> If you want a single function name, you'll need one trait.
+>>>
+>>> I'm not sure I want that actually.
+>>>
+>>> DT boolean is a bit special. A property not present is false.
+>>> Everything else is true. For example, 'prop = <0>' or 'prop =
+>>> "string"' are both true. I'm moving things in the kernel to be
+>>> stricter so that those cases are errors. I recently introduced
+>>> (of|device)_property_present() for that reason. There's no type
+>>> information stored in DT.  At the DT level, it's all just byte arrays.
+>>> However, we now have all the type information for properties within
+>>> the schema. So eventually, I want to use that to warn on accessing
+>>> properties with the wrong type.
+>>>
+>>> For example, I think I don't want this to work:
+>>>
+>>> if dev.property_read(c_str!("test,i16-array"))? {
+>>>     // do something
+>>> }
+>>>
+>>> But instead have:
+>>>
+>>> if dev.property_present(c_str!("test,i16-array")) {
+>>>     // do something
+>>> }
+>>
+>> I think we have "optional" properties which can be there (== true) or
+>> not (== false). Let's assume for this example "test,i16-array" is such
+>> kind of "optional" property. With what you gave above we need two
+>> device tree accesses, then? One to check if it is there and one to
+>> read the data:
+> 
+> Yes, lots of properties are optional especially since any new property
+> added has to be because the DT is an ABI.
+> 
+>> let mut array = <empty_marker>;
+>> if dev.property_present(c_str!("test,i16-array")) {
+>>     array = dev.property_read(c_str!("test,i16-array"))?;
+>> }
+>>
+>> ?
+>>
+>> Instead of these two accesses, I was thinking to use the error
+>> property_read() will return if the optional property is not there to
+>> just do one access:
+>>
+>> let mut array = <empty_marker>;
+>> if let Ok(val) = dev.property_read(c_str!("test,i16-array")) {
+>>        array = val;
+>> }
+>>
+>> (and ignore the error case as its irrelvant in the optional case)
+>>
+>> Have I missed anything?
+> 
+> If you grep "_property_present", most if not all calls never need the
+> data. When you need the data, you read it and test for EINVAL if you
+> want to handle "not present". The overhead of parsing the data is not
+> nothing, so I think it is better to provide both.
+> 
+> The typical pattern in the C code is:
+> 
+> u32 val = DEFAULT_VALUE;
+> of_property_read_u32(node, "a-property", &val);
+> 
+> // val is now either the read property or the default. If the property
+> is required, then the error code needs to be checked.
 
-Use devm_iio_device_register to automatically free the iio device.
-since this is the last remaining resource that was not automatically
-freed, we can drop the ".remove" callback.
+Yes :)
 
-Suggested-by: David Lechner <dlechner@baylibre.com>
-Reviewed-by: David Lechner <dlechner@baylibre.com>
-Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
----
- drivers/iio/dac/ad5791.c | 15 +--------------
- 1 file changed, 1 insertion(+), 14 deletions(-)
+> Maybe we should have:
+> 
+> let val: u32 = dev.property_read_optional(c_str!("test,i16-array"),
+> DEFAULT_VALUE);
+> 
+> Or looks like Option<> could be used here?:
+> 
+> let val: u32 = dev.property_read(c_str!("test,i16-array"),
+> Option<DEFAULT_VALUE>);
 
-diff --git a/drivers/iio/dac/ad5791.c b/drivers/iio/dac/ad5791.c
-index 92d47e766fd3..57374f78f6b8 100644
---- a/drivers/iio/dac/ad5791.c
-+++ b/drivers/iio/dac/ad5791.c
-@@ -411,24 +411,12 @@ static int ad5791_probe(struct spi_device *spi)
- 	if (ret)
- 		return dev_err_probe(&spi->dev, ret, "fail to write ctrl register\n");
- 
--	spi_set_drvdata(spi, indio_dev);
- 	indio_dev->info = &ad5791_info;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
- 	indio_dev->channels = &st->chip_info->channel;
- 	indio_dev->num_channels = 1;
- 	indio_dev->name = st->chip_info->name;
--	ret = iio_device_register(indio_dev);
--	if (ret)
--		return dev_err_probe(&spi->dev, ret, "unable to register iio device\n");
--
--	return 0;
--}
--
--static void ad5791_remove(struct spi_device *spi)
--{
--	struct iio_dev *indio_dev = spi_get_drvdata(spi);
--
--	iio_device_unregister(indio_dev);
-+	return devm_iio_device_register(&spi->dev, indio_dev);
- }
- 
- static const struct of_device_id ad5791_of_match[] = {
-@@ -457,7 +445,6 @@ static struct spi_driver ad5791_driver = {
- 		   .of_match_table = ad5791_of_match,
- 		   },
- 	.probe = ad5791_probe,
--	.remove = ad5791_remove,
- 	.id_table = ad5791_id,
- };
- module_spi_driver(ad5791_driver);
--- 
-2.34.1
+
+In the success case we will get back Some(val)? In the error case
+'val' will get Some(DEFAULT_VALUE)? But where would we get the error
+value itself (e.g. EINVAL)? Or is the idea to not care about that any
+more then? When would we use None?
+
+Best regards
+
+Dirk
+
+> One thing I'd like to improve is having fewer driver error messages
+> and a printk for a missing required property is a common one. We have
+> APIs like clk_get and clk_get_optional (which parse firmware
+> properties). The difference is the former prints an error message on
+> error case and the latter is silent.
+> 
+> Rob
 
 
