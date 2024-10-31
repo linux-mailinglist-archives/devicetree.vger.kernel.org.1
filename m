@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-117672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7DC99B752E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:18:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB8839B7531
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:18:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33C121F24DB7
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:18:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A7EE1C21B74
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:18:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA4514F9CC;
-	Thu, 31 Oct 2024 07:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F189115443F;
+	Thu, 31 Oct 2024 07:17:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rvsYjor/"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cMW1ujZN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A474149C53
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 07:17:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9983E14B08C
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 07:17:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730359077; cv=none; b=rw/MjyFdgEx+CzQfJIf7/rhEewbjMb6RjkZL3vVylqu20QEFghTXQfrrhTd2pq5qPPIX+MfIPm+oaue211UFn/HOdElRsSZGPQ08JfKdwZdC0tCv0FANZbOw7JTZu+TGbmqp2PsvuKPRXmP5hZio9ZBitOFZHXmP70WzoMVO7ig=
+	t=1730359078; cv=none; b=bab5VYq45/uli0S+SBAQ+4C7jQ6ptOyQ5xzZPP83bh4NDNsM/EbA75cKwHOq5shZ1KM/BD4CM8fiZwDa70QjhRCYB32prwHF43ckRN9mylBcVg8amgRmb2lvV6qTmao3yj2iiMN4iLC/LwjZDQLj49nbPKXfNa2JjvYmq5B/NsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730359077; c=relaxed/simple;
-	bh=j6d0colaxPKycD+GQrCgSDLkv20Xcns4fpDxmhAFBNg=;
+	s=arc-20240116; t=1730359078; c=relaxed/simple;
+	bh=Op2p8Q2E5igZsGlkYWqymbzX2Ifj7PSmb49r/ALp7lU=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kgkQ+zTtSPvW2ekb1MIfd23k2afSugMSJqo8/JfmgLbtqHbRl5Kn8Q9p1UzaYK1eYWYUNsgi1n+7Ec8mgrmVem+PV+Ch0fwF8jW11kjTD2kxFW8Tm6MpLpEwk4SPF5P/q5UhqXQObCKgim+W4aqc0hp3Zl9eD1dtMMMoKgJX7+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rvsYjor/; arc=none smtp.client-ip=209.85.221.53
+	 MIME-Version; b=f4vdDIszu6oef+LksvnH4+84CPUDqY5XHWYy3MMpZJHrnbpv4MexhjLAof9HgzYt1aorPGLgaaBU64MSu3mGj3n77wMOdjb571p4uCA4FH1pN+WjC+EXHBks8jGyI65135LC0feHWGZHQXGHrQrPUqVQPiZzp1L7T3PUP3y4+X4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cMW1ujZN; arc=none smtp.client-ip=209.85.221.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-37d47eff9acso394708f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 00:17:55 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-37d43a9bc03so372631f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 00:17:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730359074; x=1730963874; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730359075; x=1730963875; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NH5MUt/+cbzy9bnDTQWkFoXyedi+6bP21xIeET9Apek=;
-        b=rvsYjor/Om2bO7suxr9Cx5PntCLvajHVWLdchLch+UKKc/OfeQoo+YdFT7VahF9zsl
-         6Ep6iVOq5YWaUeivyj5fUBbalRZaEUaZmp85LDUAQeLb9uKPTzcCGrME1nriG8zo6kha
-         Gd1AT/kpM2Amp0UxOW3TTfibjh44TgyhGADPKccI8hqyiMYBagfMKwYMnzcrHl8YYT0g
-         P9Odlyp9dWyd5caifoGewGuzQzBzJ7d2EeTU2kL8n/ECytlbJiHoumbl+DmlqEpeL32E
-         CrjLJnmCz+afRr6m7umGB9wHhdB6VrFKQEi1Nwp4uVNQ2CITcG+ZZ5/JxrCmW8649+kD
-         TDHw==
+        bh=I1pq/Bgv4QeCrwiPVa9U9DPj0A/SeEyPL96AcSHmLho=;
+        b=cMW1ujZNbrhUsB95uM8iS5Y66yMmzaqHwBPFll+On9vBj8euqJESQl596o9IleEmWd
+         ePwZ+Qrrk9gMDKteXQ3ULgYEU7hB7urb1vmNX5XBb2N5TbWea9ZP6N+uipU8fuYVRcWq
+         f3N+3xdXiiVYWgjbb7OpCv+sHvWKMrm7iN0v9+4eSuMsgdXT1ODczUlmmimjiz5bU7l+
+         CQKKrSxoPqEfcDNTGwJF7EAWhP/H2K2B3nm7xBc766OumapcsWVNKOkgv0INh2YaPg32
+         2pld/G1OgP9ozhnNCpimS5bZtUb0xvHGfcLVrRepiCKzJKgy8blka6baWqheMK5/MTIs
+         t0eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730359074; x=1730963874;
+        d=1e100.net; s=20230601; t=1730359075; x=1730963875;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NH5MUt/+cbzy9bnDTQWkFoXyedi+6bP21xIeET9Apek=;
-        b=bM+4Vkoqk+XS7YcOR7l01E9DqnzC097EJzIcxA/FKPtFk/CgWG/rHXbUxMFXbxnwLi
-         yvsVKux4CRWRy3qNlwPYUEYqvG5hpl/HXg8jMcPZBuGFdPkq76G1Drmb3BgUvvmnZdeB
-         5WlCzy0apweWdaj2kipZxnO1kda2l/4ggP6DNQdDcH60pDctlvX/jcVfC0iAGfyQYVrx
-         lwKMsz6TbWImawZ8kfvX40arylPbu/FxvFEC/L+jHzj8Ug5EGIUjThcyVeY8LVqoJ6Aw
-         K+LfJJT3uuQ3rUXXDYVE3liP+wezGp1FSl0v0OR+dxyLrXdNfNL2BkkXexxCMp1Qpd5L
-         SC3A==
-X-Forwarded-Encrypted: i=1; AJvYcCXbbeQmFc/8t+4V9qlV1hnZ9YFMMp8jLD4GnhHChuwBG+JEFuDga26ZpJ+PBpFloPwU0H9sDFfVmxJ5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwingwZAdmzdFqSpq5HloxDBSnrziAQTBYhUXl1FXpDPY4gQugQ
-	2IE1G+WF2NHlIcep+07pEjm72Fi+SEGagCddh5w3kILz6Ha5XM4S7CsmIRUNP/8=
-X-Google-Smtp-Source: AGHT+IFqvelwoSi19crIY7cSvQsHBQH6NsXHxPWvECq3yNRMlEGXT2iQ4rFHd5MRgRYaRlPogLspsg==
-X-Received: by 2002:a5d:4285:0:b0:374:af19:7992 with SMTP id ffacd0b85a97d-380610f8e2fmr12888771f8f.7.1730359073687;
-        Thu, 31 Oct 2024 00:17:53 -0700 (PDT)
+        bh=I1pq/Bgv4QeCrwiPVa9U9DPj0A/SeEyPL96AcSHmLho=;
+        b=qEsJIB40hA35hFYeQFbZ8nbGrMLI9eKgETEQn5dd4EwGYeUz8Dw36GARPDL26ALXU5
+         xY9O/QZ4XqogT20EoeoYho6CYzkqWOMGs6ZRp49Qt5ErZB8EfElJFcnx6o26uzm0SMAf
+         Ap2xzIfVx4JY5NivbRHkJT7wGWeK/G67gdXAlWCQ5ddoow6vfUMoj3VARcLaFG64qes3
+         +vZ8roDetK32cxXdzopQ1TSOz4urtYAd0UFb57iGkvv70U1amZ6LOZ6C5XLV463W42tN
+         AHU5oyQoGMliqBc/X5lICmZW8EyXQmEVk3+okPV0tajqYtXpQnacj2BZ6miPvsw4Oaeg
+         2R7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVM9eUP35CrxaT3fwzUe9WRNFfki+hvSpDL00YXtnhjReMcwyzd/qhDNukLRevFA5rD4NPKlkFTuJm5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzx8WpHQpXxrcYko5hnFAUMSBQii32Eg1FEuRUojd1XuHx0WSYe
+	Mi9j0nfzTCrOH/zwB3nGacGoNCR+pNsroD35OHCxxZbMFutFhmG8vQT+JhhOmxk=
+X-Google-Smtp-Source: AGHT+IGW7kCzNAoBXXZ34GznNmWRMdGAze3cMSGQu0oer+FnmY9AH27Byjv+q+Uux4qqJf3Mcgy/wA==
+X-Received: by 2002:a5d:6a4e:0:b0:37d:4e74:689 with SMTP id ffacd0b85a97d-380611ed135mr13359122f8f.47.1730359075031;
+        Thu, 31 Oct 2024 00:17:55 -0700 (PDT)
 Received: from axelh-ThinkPad-T450s.home (lfbn-nic-1-251-169.w2-15.abo.wanadoo.fr. [2.15.94.169])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c113e694sm1187547f8f.86.2024.10.31.00.17.52
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c113e694sm1187547f8f.86.2024.10.31.00.17.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2024 00:17:53 -0700 (PDT)
+        Thu, 31 Oct 2024 00:17:54 -0700 (PDT)
 From: ahaslam@baylibre.com
 To: lars@metafoo.de,
 	Michael.Hennerich@analog.com,
@@ -80,9 +80,9 @@ Cc: linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Axel Haslam <ahaslam@baylibre.com>
-Subject: [PATCH v3 3/6] iio: dac: ad5791: Include chip_info in device match tables
-Date: Thu, 31 Oct 2024 08:17:43 +0100
-Message-Id: <20241031071746.848694-4-ahaslam@baylibre.com>
+Subject: [PATCH v3 4/6] iio: dac: ad5791: Add reset, clr and ldac gpios
+Date: Thu, 31 Oct 2024 08:17:44 +0100
+Message-Id: <20241031071746.848694-5-ahaslam@baylibre.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241031071746.848694-1-ahaslam@baylibre.com>
 References: <20241031071746.848694-1-ahaslam@baylibre.com>
@@ -96,193 +96,92 @@ Content-Transfer-Encoding: 8bit
 
 From: Axel Haslam <ahaslam@baylibre.com>
 
-Include a chip info struct in device SPI and device OF match tables to
-provide channel definitions for each particular ADC model and drop
-device enum.
+The ad7591 has reset, clr and ldac gpios. For the DAC to output data
+continuously written to the data register the state of these gpios needs
+to be set by the driver.
 
-Suggested-by: Nuno Sa <nuno.sa@analog.com>
+Add these gpios to the driver making them optional in case they are fixed
+on the pcb.
+
 Reviewed-by: David Lechner <dlechner@baylibre.com>
 Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
 ---
- drivers/iio/dac/ad5791.c | 110 +++++++++++++++++++--------------------
- 1 file changed, 53 insertions(+), 57 deletions(-)
+ drivers/iio/dac/ad5791.c | 34 +++++++++++++++++++++++++++++++---
+ 1 file changed, 31 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/iio/dac/ad5791.c b/drivers/iio/dac/ad5791.c
-index 553431bf0232..f6b9a40241f3 100644
+index f6b9a40241f3..c5d4d755d57a 100644
 --- a/drivers/iio/dac/ad5791.c
 +++ b/drivers/iio/dac/ad5791.c
-@@ -61,11 +61,14 @@
- 
- /**
-  * struct ad5791_chip_info - chip specific information
-+ * @name:		name of the dac chip
-+ * @channel:		channel specification
-  * @get_lin_comp:	function pointer to the device specific function
-  */
--
- struct ad5791_chip_info {
--	int (*get_lin_comp)	(unsigned int span);
-+	const char *name;
-+	const struct iio_chan_spec channel;
-+	int (*get_lin_comp)(unsigned int span);
- };
- 
- /**
-@@ -98,13 +101,6 @@ struct ad5791_state {
- 	} data[3] __aligned(IIO_DMA_MINALIGN);
- };
- 
--enum ad5791_supported_device_ids {
--	ID_AD5760,
--	ID_AD5780,
--	ID_AD5781,
--	ID_AD5791,
--};
--
- static int ad5791_spi_write(struct ad5791_state *st, u8 addr, u32 val)
- {
- 	st->data[0].d32 = cpu_to_be32(AD5791_CMD_WRITE |
-@@ -228,20 +224,6 @@ static int ad5780_get_lin_comp(unsigned int span)
- 	else
- 		return AD5780_LINCOMP_10_20;
- }
--static const struct ad5791_chip_info ad5791_chip_info_tbl[] = {
--	[ID_AD5760] = {
--		.get_lin_comp = ad5780_get_lin_comp,
--	},
--	[ID_AD5780] = {
--		.get_lin_comp = ad5780_get_lin_comp,
--	},
--	[ID_AD5781] = {
--		.get_lin_comp = ad5791_get_lin_comp,
--	},
--	[ID_AD5791] = {
--		.get_lin_comp = ad5791_get_lin_comp,
--	},
--};
- 
- static int ad5791_read_raw(struct iio_dev *indio_dev,
- 			   struct iio_chan_spec const *chan,
-@@ -289,30 +271,34 @@ static const struct iio_chan_spec_ext_info ad5791_ext_info[] = {
- 	{ },
- };
- 
--#define AD5791_CHAN(bits, _shift) {			\
--	.type = IIO_VOLTAGE,				\
--	.output = 1,					\
--	.indexed = 1,					\
--	.address = AD5791_ADDR_DAC0,			\
--	.channel = 0,					\
--	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),	\
--	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |	\
--		BIT(IIO_CHAN_INFO_OFFSET),		\
--	.scan_type = {					\
--		.sign = 'u',				\
--		.realbits = (bits),			\
--		.storagebits = 24,			\
--		.shift = (_shift),			\
--	},						\
--	.ext_info = ad5791_ext_info,			\
-+#define AD5791_DEFINE_CHIP_INFO(_name, bits, _shift, _lin_comp)		\
-+static const struct ad5791_chip_info _name##_chip_info = {		\
-+	.name = #_name,							\
-+	.get_lin_comp = &(_lin_comp),					\
-+	.channel = {							\
-+			.type = IIO_VOLTAGE,				\
-+			.output = 1,					\
-+			.indexed = 1,					\
-+			.address = AD5791_ADDR_DAC0,			\
-+			.channel = 0,					\
-+			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),	\
-+			.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |	\
-+				BIT(IIO_CHAN_INFO_OFFSET),		\
-+			.scan_type = {					\
-+				.sign = 'u',				\
-+				.realbits = (bits),			\
-+				.storagebits = 24,			\
-+				.shift = (_shift),			\
-+			},						\
-+			.ext_info = ad5791_ext_info,			\
-+	},								\
- }
- 
--static const struct iio_chan_spec ad5791_channels[] = {
--	[ID_AD5760] = AD5791_CHAN(16, 4),
--	[ID_AD5780] = AD5791_CHAN(18, 2),
--	[ID_AD5781] = AD5791_CHAN(18, 2),
--	[ID_AD5791] = AD5791_CHAN(20, 0)
--};
-+AD5791_DEFINE_CHIP_INFO(ad5760, 16, 4, ad5780_get_lin_comp);
-+AD5791_DEFINE_CHIP_INFO(ad5780, 18, 2, ad5780_get_lin_comp);
-+AD5791_DEFINE_CHIP_INFO(ad5781, 18, 2, ad5791_get_lin_comp);
-+AD5791_DEFINE_CHIP_INFO(ad5790, 20, 0, ad5791_get_lin_comp);
-+AD5791_DEFINE_CHIP_INFO(ad5791, 20, 0, ad5791_get_lin_comp);
- 
- static int ad5791_write_raw(struct iio_dev *indio_dev,
- 			    struct iio_chan_spec const *chan,
-@@ -400,9 +386,9 @@ static int ad5791_probe(struct spi_device *spi)
- 	if (ret)
- 		goto error_disable_reg_neg;
- 
--	st->chip_info =	&ad5791_chip_info_tbl[spi_get_device_id(spi)
--					      ->driver_data];
--
-+	st->chip_info = spi_get_device_match_data(spi);
-+	if (!st->chip_info)
-+		return dev_err_probe(&spi->dev, -EINVAL, "no chip info\n");
- 
- 	st->ctrl = AD5761_CTRL_LINCOMP(st->chip_info->get_lin_comp(st->vref_mv))
- 		  | (use_rbuf_gain2 ? 0 : AD5791_CTRL_RBUF) |
-@@ -416,10 +402,9 @@ static int ad5791_probe(struct spi_device *spi)
- 	spi_set_drvdata(spi, indio_dev);
- 	indio_dev->info = &ad5791_info;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
--	indio_dev->channels
--		= &ad5791_channels[spi_get_device_id(spi)->driver_data];
-+	indio_dev->channels = &st->chip_info->channel;
- 	indio_dev->num_channels = 1;
--	indio_dev->name = spi_get_device_id(st->spi)->name;
-+	indio_dev->name = st->chip_info->name;
- 	ret = iio_device_register(indio_dev);
- 	if (ret)
- 		goto error_disable_reg_neg;
-@@ -448,19 +433,30 @@ static void ad5791_remove(struct spi_device *spi)
- 		regulator_disable(st->reg_vss);
- }
- 
-+static const struct of_device_id ad5791_of_match[] = {
-+	{ .compatible = "adi,ad5760", .data = &ad5760_chip_info },
-+	{ .compatible = "adi,ad5780", .data = &ad5780_chip_info },
-+	{ .compatible = "adi,ad5781", .data = &ad5781_chip_info },
-+	{ .compatible = "adi,ad5790", .data = &ad5790_chip_info },
-+	{ .compatible = "adi,ad5791", .data = &ad5791_chip_info },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ad5791_of_match);
+@@ -9,6 +9,7 @@
+ #include <linux/interrupt.h>
+ #include <linux/fs.h>
+ #include <linux/device.h>
++#include <linux/delay.h>
+ #include <linux/kernel.h>
+ #include <linux/spi/spi.h>
+ #include <linux/slab.h>
+@@ -76,6 +77,9 @@ struct ad5791_chip_info {
+  * @spi:			spi_device
+  * @reg_vdd:		positive supply regulator
+  * @reg_vss:		negative supply regulator
++ * @gpio_reset:		reset gpio
++ * @gpio_clear:		clear gpio
++ * @gpio_ldac:		load dac gpio
+  * @chip_info:		chip model specific constants
+  * @vref_mv:		actual reference voltage used
+  * @vref_neg_mv:	voltage of the negative supply
+@@ -88,6 +92,9 @@ struct ad5791_state {
+ 	struct spi_device		*spi;
+ 	struct regulator		*reg_vdd;
+ 	struct regulator		*reg_vss;
++	struct gpio_desc		*gpio_reset;
++	struct gpio_desc		*gpio_clear;
++	struct gpio_desc		*gpio_ldac;
+ 	const struct ad5791_chip_info	*chip_info;
+ 	unsigned short			vref_mv;
+ 	unsigned int			vref_neg_mv;
+@@ -337,6 +344,22 @@ static int ad5791_probe(struct spi_device *spi)
+ 	if (!indio_dev)
+ 		return -ENOMEM;
+ 	st = iio_priv(indio_dev);
 +
- static const struct spi_device_id ad5791_id[] = {
--	{"ad5760", ID_AD5760},
--	{"ad5780", ID_AD5780},
--	{"ad5781", ID_AD5781},
--	{"ad5790", ID_AD5791},
--	{"ad5791", ID_AD5791},
--	{}
-+	{ "ad5760", (kernel_ulong_t)&ad5760_chip_info },
-+	{ "ad5780", (kernel_ulong_t)&ad5780_chip_info },
-+	{ "ad5781", (kernel_ulong_t)&ad5781_chip_info },
-+	{ "ad5790", (kernel_ulong_t)&ad5790_chip_info },
-+	{ "ad5791", (kernel_ulong_t)&ad5791_chip_info },
-+	{ }
- };
- MODULE_DEVICE_TABLE(spi, ad5791_id);
++	st->gpio_reset = devm_gpiod_get_optional(&spi->dev, "reset",
++						 GPIOD_OUT_HIGH);
++	if (IS_ERR(st->gpio_reset))
++		return PTR_ERR(st->gpio_reset);
++
++	st->gpio_clear = devm_gpiod_get_optional(&spi->dev, "clear",
++						 GPIOD_OUT_LOW);
++	if (IS_ERR(st->gpio_clear))
++		return PTR_ERR(st->gpio_clear);
++
++	st->gpio_ldac = devm_gpiod_get_optional(&spi->dev, "ldac",
++						GPIOD_OUT_HIGH);
++	if (IS_ERR(st->gpio_ldac))
++		return PTR_ERR(st->gpio_ldac);
++
+ 	st->reg_vdd = devm_regulator_get(&spi->dev, "vdd");
+ 	if (!IS_ERR(st->reg_vdd)) {
+ 		ret = regulator_enable(st->reg_vdd);
+@@ -382,9 +405,14 @@ static int ad5791_probe(struct spi_device *spi)
+ 		dev_warn(&spi->dev, "reference voltage unspecified\n");
+ 	}
  
- static struct spi_driver ad5791_driver = {
- 	.driver = {
- 		   .name = "ad5791",
-+		   .of_match_table = ad5791_of_match,
- 		   },
- 	.probe = ad5791_probe,
- 	.remove = ad5791_remove,
+-	ret = ad5791_spi_write(st, AD5791_ADDR_SW_CTRL, AD5791_SWCTRL_RESET);
+-	if (ret)
+-		goto error_disable_reg_neg;
++	if (st->gpio_reset) {
++		fsleep(20);
++		gpiod_set_value_cansleep(st->gpio_reset, 0);
++	} else {
++		ret = ad5791_spi_write(st, AD5791_ADDR_SW_CTRL, AD5791_SWCTRL_RESET);
++		if (ret)
++			goto error_disable_reg_neg;
++	}
+ 
+ 	st->chip_info = spi_get_device_match_data(spi);
+ 	if (!st->chip_info)
 -- 
 2.34.1
 
