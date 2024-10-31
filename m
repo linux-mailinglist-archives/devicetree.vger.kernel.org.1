@@ -1,97 +1,113 @@
-Return-Path: <devicetree+bounces-117779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C38C59B7B5C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 14:09:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02CB69B7B62
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 14:10:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 873D2281899
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:09:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 329E61C20C94
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:10:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B5C1465A5;
-	Thu, 31 Oct 2024 13:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DD5D19D8BC;
+	Thu, 31 Oct 2024 13:10:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MsnkWyiO"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="cZPr7c9r";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="r/WF7NtE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8DDA1C6B8;
-	Thu, 31 Oct 2024 13:09:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E42819CC2D;
+	Thu, 31 Oct 2024 13:10:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730380164; cv=none; b=Ty+c1ZIQcQhcsnnxV3ynHaKKtj5feNA159BiNQliRpWLDBPa6oMB6NTvmj3mEe2RE5LYGdBe8TXt8sqM+6avP9A0PCRKftFrmpGzScgcyRoMBtdvcUPq3Gth41uWFv2Cd6S6zhR3qgt/2uzmnfsTP4vZQnaU6syuiKexmcYOd+Y=
+	t=1730380222; cv=none; b=lpbIbNsxJb8Slsize8DrqveMzxPEyKe8uuil8plDPeRhnMkNA9y1LiAJ9qStGNq6LVrHdv54HMsOQCND6FEw1og9mMTlOn2TVPe2Ll2ckVGIP0QOVwfP3rrGVCyFHuFCmPGJiG+Ad2DfmXSVLFJ5TYv0zOZCT89V1oH5O0uNIxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730380164; c=relaxed/simple;
-	bh=3H47IOxYEfHkJ9A39j6LSPYQX1SkSS7HVKz3N9MajYo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EAOaAU5uYWDhraQOjk5GM2xD8QS5NaMqfX1PQyI0vBWMMCYiuiI+qJpm8ad8jXwQbTBNTMq9v1NnMVEn/HnSfD1us6Zmj3i/MaZN5jVbOZfOSH/6X/ZRLDs7Ey3fDUrYX3XNA9iQ9puvfo3G+Ynz78nTDvXFY0Z3AQ0YxszDd08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MsnkWyiO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C194C4CEFA;
-	Thu, 31 Oct 2024 13:09:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730380163;
-	bh=3H47IOxYEfHkJ9A39j6LSPYQX1SkSS7HVKz3N9MajYo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MsnkWyiOvUAJZCtDX0tOCzSoSeDSSPG9W1sQpSucO/mdwUDT1q5j5KwIfxueS5BOx
-	 oJUK19Tt1BA6dPBfPnqgqS4jQLVvoYyFsko9VPzH+vUp7uo+0swDTRASHY1SngOujo
-	 /l7pTKFp7wjsKAyGuplSe5EH62JtZGNGUI3eJUoJtc4XTD4q2GYUAZMsicOv0S9kYl
-	 Ua2mFpSDooMsuLfyyxR7Yp1VpDCoVwpen25s8lb5zD35nyTT4J9O8mhcf2dMsDA0Jt
-	 IvbXKNERKa9IiQjA4v7fW7DpaZHEYCkO39DDS6LUZ5q7XhnFXZuYr1tlNsePn0xEQh
-	 zGn/reHo/LJ0A==
-Date: Thu, 31 Oct 2024 13:09:19 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Nuno Sa <nuno.sa@analog.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: axi-clkgen: include AXI clk
-Message-ID: <20241031-unawake-unruffled-c57907460df4@spud>
-References: <20241029-axi-clkgen-fix-axiclk-v2-0-bc5e0733ad76@analog.com>
- <20241029-axi-clkgen-fix-axiclk-v2-1-bc5e0733ad76@analog.com>
+	s=arc-20240116; t=1730380222; c=relaxed/simple;
+	bh=Khel1CjCqD6GywqHIRkJC23AjuuARNeWjnIoyg8t5ys=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=VLR2+SVlKDczaRHKq+CrQgVQcEmSM0jFlYlJgRYsb1S96N9iXzS4nhQdDbcWNDlMqYFWlGTYyn1GD1R/GotuxSZAuyVoIdUXhMPQe8b4eIDf0A6P65FLm4n9jYs6zkMiDJSpwR2GVhFJiWjXPcEs6zvUYSlG7mxjSKknz37Ijgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=cZPr7c9r; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=r/WF7NtE; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1730380218;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=n9KzjzVNQ8Kocvxcj31qY9sIt3lmgpdIUIkiScgCA4Y=;
+	b=cZPr7c9reVDeCHTlZwoxBPVYMZlN3G/dTVTQdkTTDaJ89tpKCtPo8EkeU27J1U2NKhv801
+	5lQ0w7+al8WvIbp5qPeOp/1W71eF8XFHZovHvM873GgwnxRq/Wbt0xNjgYs67PA6+YUmqW
+	YiJm4SpGCaaksFnT/OFSdM3lHs0Sp5MutH9zzBB5TdFzfp+a8x9ghckGs0o8Tax/4jQUOG
+	w/PEpAZwP+Jg6A7cJMeQab4KduJXxkwIUpec86VkGxT0qh71AYiixi0+C9gztjf/KqJdG3
+	xU/vFXaYaRr3/+M/M+lvpCJ0JLpb3TE7ckYAMlPLqIoWf5ffv2uobiVI/rLJ4w==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1730380218;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=n9KzjzVNQ8Kocvxcj31qY9sIt3lmgpdIUIkiScgCA4Y=;
+	b=r/WF7NtEoHc5yMmmmEgyNRfuKPAwN6UMWQX7pGgI8kOncV4SLVrtCGL1KPWEVsxsmKVtXe
+	sWw/W+y07XAozBDQ==
+To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Chen Wang
+ <unicorn_wang@outlook.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Peter Zijlstra <peterz@infradead.org>, Inochi Amaoto
+ <inochiama@outlook.com>, Guo Ren <guoren@kernel.org>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>, Yangyu Chen <cyy@cyyself.name>,
+ Anup Patel <apatel@ventanamicro.com>, Hal Feng
+ <hal.feng@starfivetech.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: interrupt-controller: Add Sophgo
+ SG2044 ACLINT SSWI
+In-Reply-To: <20241031-armored-marbled-36cfb6d599e3@spud>
+References: <20241031060859.722258-1-inochiama@gmail.com>
+ <20241031060859.722258-2-inochiama@gmail.com>
+ <esuteqvz37blehx6wa5cj5ixlglcbullhuls3rcvjtuiviqqpb@ojho3arlnwst>
+ <20241031-armored-marbled-36cfb6d599e3@spud>
+Date: Thu, 31 Oct 2024 14:10:18 +0100
+Message-ID: <87ikt8wh8l.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="q7sPDN7IEuTtY0tg"
-Content-Disposition: inline
-In-Reply-To: <20241029-axi-clkgen-fix-axiclk-v2-1-bc5e0733ad76@analog.com>
+Content-Type: text/plain
 
+On Thu, Oct 31 2024 at 12:38, Conor Dooley wrote:
+> On Thu, Oct 31, 2024 at 02:14:40PM +0800, Inochi Amaoto wrote:
+>> On Thu, Oct 31, 2024 at 02:08:57PM +0800, Inochi Amaoto wrote:
+>> > Sophgo SG2044 has a new version of T-HEAD C920, which implement
+>> > a fully featured T-HEAD ACLINT device. This ACLINT device contains
+>> > a SSWI device to support fast S-mode IPI.
+>> > 
+>> > Add necessary compatible string for the T-HEAD ACLINT sswi device.
+>> > 
+>> > Link: https://www.xrvm.com/product/xuantie/C920
+>> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+>> 
+>> Hi, Conor,
+>> 
+>> Could you review it again? I have updated the description of
+>> the binding and mark the device is T-HEAD specific.
+>
+> Only thing I would say is that
+> title: Sophgo sg2044 ACLINT Supervisor-level Software Interrupt Device
+> should probably be
+> title: T-Head c900 ACLINT Supervisor-level Software Interrupt Device
+> or similar, since this isn't Sophgo's IP.
+>
+> w/ that,
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> (dunno if Thomas is willing to change that on application)
 
---q7sPDN7IEuTtY0tg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Oct 29, 2024 at 02:59:41PM +0100, Nuno Sa wrote:
-> In order to access the registers of the HW, we need to make sure that
-> the AXI bus clock is enabled. Hence let's increase the number of clocks
-> by one and add clock-names to differentiate between parent clocks and
-> the bus clock.
->=20
-> Fixes: 0e646c52cf0e ("clk: Add axi-clkgen driver")
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
---q7sPDN7IEuTtY0tg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyOBfwAKCRB4tDGHoIJi
-0oMsAP4+g2rRuFgG9dGBMOL2puQrMEy6mZ00M3YECyd9y/o1lQEAjd7HxriNpDpD
-Tpce4zZRk1gxMjWiHWUZRGBeKnanDgY=
-=ro9B
------END PGP SIGNATURE-----
-
---q7sPDN7IEuTtY0tg--
+Yes
 
