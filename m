@@ -1,115 +1,125 @@
-Return-Path: <devicetree+bounces-117772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63E329B7AB7
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:37:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1D649B7AC3
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:39:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A8F41F25414
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 12:37:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66B052836C1
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 12:38:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A4E1A00D1;
-	Thu, 31 Oct 2024 12:36:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55DFA19D89B;
+	Thu, 31 Oct 2024 12:38:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="QCcmYDL6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NRSn412O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92AEC19E97A;
-	Thu, 31 Oct 2024 12:36:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC4E19D07E;
+	Thu, 31 Oct 2024 12:38:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730378199; cv=none; b=tZkVWvNDQnBT2NRUwoO6bXD3cQCAp7KErDGilsT1IWuDdrMNADoV5LUkwj/6IupAR17Cjl7NJNdk7OPISfu4DvyPtERjT5I/sUnqufXOuISz+F7kDdzTYScT7kzKSI9FgXze9L5HrpbUNNxeuz0wuQwhg4jVsG91y4NdJ3N95kw=
+	t=1730378297; cv=none; b=rwrxpI5qdQOD8LH9mcryY0jG4mmSU3xKr7phI99plFnr6xuK0O7as1eDIlWuTOmtAScdo4JdAt+gDPVOI2YGDooSI8Xqgs7ht7k9rPNyl0MwQNtiBrqLEFbNUYfH383oZtW3VixzEbgwBTRPG2Grh5aCoVJJSSNKxuETp7kNhxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730378199; c=relaxed/simple;
-	bh=o8uExKqB5qYo54a2nVBhqm5tJs6jO0jYNm2MbZM9eVQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PnpsW0QDQ7NzXr5C2r3+Byjt/PS8BF0WDCh78f4H5zH/EfgoK0xkkJGcLX6i+foFADhYPsoP0CcHoZ8jfBPzf7rsAJRbqPE85MIj3b/3kqPnIjo+IIqVMYTT9sd1LyI/3irZSr/wlbiLSkgX4Np/qH2sv8VrG6eoEP1pOIjbOEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=QCcmYDL6; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 44144A03F3;
-	Thu, 31 Oct 2024 13:36:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=mail; bh=ZZCQu8PNGzbUydOutitt
-	bytVy0ecwKj8suiZ8x5X5G4=; b=QCcmYDL6+v9xdH2YXHTS7Zqz/CItscCRXo7A
-	U31p5LHGEfDle6PKu1dvjJyOg+Nu3Y6wcj1P2gg5jzB28PH0XQHA7l6rpE0icTpi
-	p/Gal6rddtTEREjAqZg0UeU3JBu+XiDeJ8DXx6aQi5YS2y+gJs3nxmTjfnEqas6i
-	f+869DVnKhzTwNxJZoeJ9sj9yjXTd0NxLh1scTR2yrXz/6RPEeN7zYV44AbzJVnt
-	4Rgnz3NTS0ECoIoYRP+go+slK+Ng7ANLP4iEQosE5GInaKUfJz8PtdiHkozTIVnS
-	KucnLC76yvihT9vsdNCvtvNke1a64ORY+8SkMGxr/P4axIuZHHtnfNaa5lgnsDE9
-	Phm44+r2xGmUjea+j/J2nXZ0nTaipj1TqUSIUPtdZ8sQzf3884qW/3pd7TXv8rpi
-	Q1GOZ7Or71GCg2ZOdCHPCL5UOcaYinW/DrlGPNzAAnXg6Ss/G3eXaJ3zpCLvMcSY
-	ygd3dY1D1StnLbu/SHKyGGSOBMc2uqKhcYSDi8HAgAopmi0mFSxqsseSb2y790Qb
-	eiZ6zBnuWpuJeu9kz4VM7m3txxq5aEKgiuANX4H1CLhww7v3YgyU3Hmy71s2oVGh
-	/N6SY6ZJ9Rm/4Pr+SBbWQDW3HYsedhG4c7z0eK9lGPlIKtwgj7Pq3Mzzq7tsHmhF
-	aTDPnqA=
-From: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>
-To: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>
-CC: Mesih Kilinc <mesihkilinc@gmail.com>,
-	=?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
-	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v4 10/10] ARM: dts: suniv: f1c100s: Activate Audio Codec for Lichee Pi Nano
-Date: Thu, 31 Oct 2024 13:35:36 +0100
-Message-ID: <20241031123538.2582675-10-csokas.bence@prolan.hu>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241031123538.2582675-1-csokas.bence@prolan.hu>
-References: <20241031123538.2582675-1-csokas.bence@prolan.hu>
+	s=arc-20240116; t=1730378297; c=relaxed/simple;
+	bh=6zINfUhcq11skpHNYXg2rHHDLkTZ5uPjWErNSLSYvfA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i6FKevVgoipiI4dPV8ZesAhzAfN0ul3geOtCBZGIh+dQMUZo1Z9oOMRQvBSrwL1Ur7XOoG5rO4k1ESOMI0g3yxxYrju/CjytkKjsvalSMwNUHPHqycvmra9wGRTyxzgbuKBp1Dw0mZXZQ4uYTFvDLZG4L/0ITLfnf8YTL+hirmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NRSn412O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAB11C4CED1;
+	Thu, 31 Oct 2024 12:38:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730378296;
+	bh=6zINfUhcq11skpHNYXg2rHHDLkTZ5uPjWErNSLSYvfA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NRSn412O09IxxRHRbjZCA85hxExQTsyRkLKhBlg7kn2tMf+s3si5Wtz/R7t+1CEaF
+	 AhQtCH+9h6ZjixbmrtmudnlAakAA5RCI37MtRDWHznNgymxCYByKvnFCCZBZK8MJvA
+	 np0SsqnTBTMdWV3auWHlSdVy8Y48n2Y4g9IAhdHFn4r351RIVia+phwNrMnLXn9ImV
+	 1aatHUw13d5gFgXm85kUnKwwwT5uP2bxsuWLDbHfPmn1+Jlp3IX2HOTiwcBZO3l8nr
+	 sMEa0V5iGxC8UnWGdeH3lc6sXZuAVzxSdx2RoMDgZV/tNGpbohHe8XxlIpn3/WiV8M
+	 9B1BcKQp2kvaw==
+Date: Thu, 31 Oct 2024 12:38:10 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Inochi Amaoto <inochiama@outlook.com>, Guo Ren <guoren@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: interrupt-controller: Add Sophgo
+ SG2044 ACLINT SSWI
+Message-ID: <20241031-armored-marbled-36cfb6d599e3@spud>
+References: <20241031060859.722258-1-inochiama@gmail.com>
+ <20241031060859.722258-2-inochiama@gmail.com>
+ <esuteqvz37blehx6wa5cj5ixlglcbullhuls3rcvjtuiviqqpb@ojho3arlnwst>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1730378195;VERSION=7979;MC=2596984542;ID=207190;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
-X-ESET-Antispam: OK
-X-EsetResult: clean, is OK
-X-EsetId: 37303A2980D94855667667
-
-From: Mesih Kilinc <mesihkilinc@gmail.com>
-
-Allwinner suniv F1C100s now has basic audio codec support. Activate it
-for Lichee Pi Nano board.
-
-Signed-off-by: Mesih Kilinc <mesihkilinc@gmail.com>
-[ csokas.bence: Moved and fixed conflict ]
-Signed-off-by: Csókás, Bence <csokas.bence@prolan.hu>
----
- .../boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts    | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm/boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts b/arch/arm/boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts
-index 43896723a994..472ded0aafcf 100644
---- a/arch/arm/boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts
-+++ b/arch/arm/boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts
-@@ -62,6 +62,14 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&codec {
-+	allwinner,audio-routing =
-+		"Headphone", "HP",
-+		"Headphone", "HPCOM",
-+		"MIC", "Mic";
-+	status = "okay";
-+};
-+
- &usb_otg {
- 	dr_mode = "otg";
- 	status = "okay";
--- 
-2.34.1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="QH+DklLw2VTXfWnH"
+Content-Disposition: inline
+In-Reply-To: <esuteqvz37blehx6wa5cj5ixlglcbullhuls3rcvjtuiviqqpb@ojho3arlnwst>
 
 
+--QH+DklLw2VTXfWnH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Oct 31, 2024 at 02:14:40PM +0800, Inochi Amaoto wrote:
+> On Thu, Oct 31, 2024 at 02:08:57PM +0800, Inochi Amaoto wrote:
+> > Sophgo SG2044 has a new version of T-HEAD C920, which implement
+> > a fully featured T-HEAD ACLINT device. This ACLINT device contains
+> > a SSWI device to support fast S-mode IPI.
+> >=20
+> > Add necessary compatible string for the T-HEAD ACLINT sswi device.
+> >=20
+> > Link: https://www.xrvm.com/product/xuantie/C920
+> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+>=20
+> Hi, Conor,
+>=20
+> Could you review it again? I have updated the description of
+> the binding and mark the device is T-HEAD specific.
+
+Only thing I would say is that
+title: Sophgo sg2044 ACLINT Supervisor-level Software Interrupt Device
+should probably be
+title: T-Head c900 ACLINT Supervisor-level Software Interrupt Device
+or similar, since this isn't Sophgo's IP.
+
+w/ that,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+(dunno if Thomas is willing to change that on application)
+
+--QH+DklLw2VTXfWnH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyN6MgAKCRB4tDGHoIJi
+0iNMAQC8918qceXht4v+i90x6glN4L4mOHgWG7iUzkRIq6wpuwD+PUBMu/Kdjoxt
+jsgV7kPADBYAj4UKKBuMWJ1JrevOjAY=
+=40NK
+-----END PGP SIGNATURE-----
+
+--QH+DklLw2VTXfWnH--
 
