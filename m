@@ -1,78 +1,58 @@
-Return-Path: <devicetree+bounces-117703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 460639B7620
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 09:14:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC4119B762E
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 09:17:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B32EFB2167C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:14:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BB3C2856F5
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:17:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B90B154C07;
-	Thu, 31 Oct 2024 08:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F188F154BEA;
+	Thu, 31 Oct 2024 08:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Ur6j9tUU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gVoMdO9l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E33F1531C0;
-	Thu, 31 Oct 2024 08:14:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9F5D1547ED;
+	Thu, 31 Oct 2024 08:17:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730362453; cv=none; b=VPzctUVbftxHC8hT0JKaOL9tNTQx8yU2G7vy049znkus0OuG9sAUEPjHKmQeiu8VCSYJfr9xIjTtz+03Y2drn9097GnfVK8Lc/ghHMiIm01yE2xudP2G2vuUFJrKZvqk0e52XpLuzBeY0LUjfUtNa3zWWttnsGohHcaORJtMX1M=
+	t=1730362633; cv=none; b=eNVEzSm6a7T2pMPedhuW+l/sqE3PA63NalZGTC4KlSo5oHz/2FYMZSVPAvMscdqha5uBLUiPK26BcFWgYHmWBROHKlbQPsdX10XjDfz0XkdnbTUuAHe9Cw9PRoW9Eu6EdvfUxrEEIZg6LfJU63uUG9j3U1IqCP4Q6i6iw/P3hzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730362453; c=relaxed/simple;
-	bh=yHVx56kdklX6a6WjIJViALRYiu1NFmOidLIkcT/rSnk=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=dHBOH/Oqb1aNPJoEZr017FD+jf/gq6vWA0jv9cZtJYiW3MLS5IhbYNN55pKDyI/xvvXeqqlOeHpezbT5vbd7OZ+yreKh7+F9GD51A17VxqZ64MwPu0KD7nVKzPt1SLTYxdFnBX0nfCiq0wOo5zESCrIXdHxVJz/E1Pna5Sducxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Ur6j9tUU; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 15ED1E0002;
-	Thu, 31 Oct 2024 08:13:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1730362442;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yHVx56kdklX6a6WjIJViALRYiu1NFmOidLIkcT/rSnk=;
-	b=Ur6j9tUU4ZhbyRKqUfVHQ3jArwWtmk9Xn2jBMAiYT4BUAKxd9GPgd95GmNvH5foMwnZPb3
-	A8tzAY/dlFoaZxqyyvE9hyWunygPFYVoPRr7RQbYQYqkvcdBtQeTusz11pUcFfow8f0F0C
-	DznNnW1x1cDi4E0E+eHMsdW7Njq2MGbIwwnVi8+ZD3j1I+a7pLUItUZY1jGAJD4O1Q9Ku5
-	T9yXadtxw86RarC07Vc+PmrFEZ+/PP8ATpUEiO4wnmS58uHWzJswG1tkcTiPC/eUDVJu3d
-	nyqXlTxPZ3l6+8emdKkGEbsJJ7ucr/QyUbs3nQd4JbfRlTdV7PsLfvSfU2mSaQ==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>, Aleksandar Rikalo
- <arikalo@gmail.com>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vladimir Kondratiev
- <vladimir.kondratiev@mobileye.com>, Theo Lebrun <theo.lebrun@bootlin.com>,
- Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org, Djordje
- Todorovic <djordje.todorovic@htecgroup.com>, Chao-ying Fu
- <cfu@wavecomp.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, Geert
- Uytterhoeven <geert@linux-m68k.org>, Greg Ungerer <gerg@kernel.org>, Hauke
- Mehrtens <hauke@hauke-m.de>, Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
- linux-kernel@vger.kernel.org, "linux-mips@vger.kernel.org"
- <linux-mips@vger.kernel.org>, Marc Zyngier <maz@kernel.org>,
- "paulburton@kernel.org" <paulburton@kernel.org>, Peter Zijlstra
- <peterz@infradead.org>, Serge Semin <fancer.lancer@gmail.com>, Tiezhu Yang
- <yangtiezhu@loongson.cn>
-Subject: Re: [PATCH v8 10/13] dt-bindings: mips: cpu: Add property for
- broken HCI information
-In-Reply-To: <378f8b70-12d9-4ec3-a1e5-35bd992bfc90@app.fastmail.com>
-References: <20241028175935.51250-1-arikalo@gmail.com>
- <20241028175935.51250-11-arikalo@gmail.com>
- <avz4crm2yrk3fg7r4qxkgkt3ka5hmk54v2wtcms453tsnewu5w@jzjxmyd4b7yg>
- <CAGQJe6p6QgSQKByVQ8G+HpWbdEHnfNb8vRureOrS2VZa6Lk74A@mail.gmail.com>
- <29d7688e-5fac-4821-8764-bdc760112370@app.fastmail.com>
- <378f8b70-12d9-4ec3-a1e5-35bd992bfc90@app.fastmail.com>
-Date: Thu, 31 Oct 2024 09:13:57 +0100
-Message-ID: <87jzdoadve.fsf@BLaptop.bootlin.com>
+	s=arc-20240116; t=1730362633; c=relaxed/simple;
+	bh=/Uypm1Fod0x7S2WLQLLjrh9dUnoclEPbXXeFRSWSGig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KKYEwC7pmplcyVxcHqHXp0YpqX0wmtEeOKRv0P0XRCli060rZYJFGIr0autdYivcKuXazTuWwVsUtuLRgiSHIKxg+fW686401mBcA2dW2WP1du+jPU0dSnK5pBa7sGy0TfroOx5InZB4nvqtGI0RNVvSU96kYNh89QT0Zk2C6yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gVoMdO9l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29B68C4CED2;
+	Thu, 31 Oct 2024 08:17:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730362633;
+	bh=/Uypm1Fod0x7S2WLQLLjrh9dUnoclEPbXXeFRSWSGig=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gVoMdO9lHGWjKUvm6JCnBPjQvobYbSvS8WDuDiVuizf6sersPToWLYisJcdhLEHLG
+	 WfyjpM5ScGpj2ukitEJ82XMPgofzEXFmyfKcSAD+ErbwBp95Ew0PxHDHeqX4zj+IJI
+	 FeAcRLP2B5W1/mvDwOUZAo1xgx2NJsiLShNgQlmMpaO825j85aogM3MDLxX8ubgkC0
+	 6xwNuEcZgoDoInH4SCh8WXdLCo0LE4v0rn3Drjqcz18CSUk+b5FmNzC61UNLI8gbWb
+	 WstAYKCYA48MyP0M1ej3RFA330KCkcmcJKwtzLn/sNVXBG7WbWzdXJj/JT+Aboay3C
+	 wWZAcwHDyjm9g==
+Date: Thu, 31 Oct 2024 09:17:09 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dmitry Yashin <dmt.yashin@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: rockchip: add Banana Pi P2 Pro
+ board
+Message-ID: <5e4tokdfdslb6gop2h2ow5inftoflfo2mlgosydyg3f6ehwmmi@kefvmy32vchy>
+References: <20241030202144.629956-1-dmt.yashin@gmail.com>
+ <20241030202144.629956-2-dmt.yashin@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,66 +60,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Disposition: inline
+In-Reply-To: <20241030202144.629956-2-dmt.yashin@gmail.com>
 
-Hi Jiaxun,
+On Thu, Oct 31, 2024 at 01:21:43AM +0500, Dmitry Yashin wrote:
+> BBanana Pi P2 Pro is the SBC made by Shenzhen SINOVOIP based on
+> Rockchip RK3308.
+> 
+> Banana Pi P2 Pro features:
+> - Rockchip RK3308B-S
+> - DDR3 512 MB
+> - eMMC 8 GB
+> - 100M lan + onboard PoE
+> - 40 pin and 12 pin headers
+> - AP6256 BT + WIFI
+> - TF card slot
+> - 2x USB 2.0 (Type-C OTG and Type-A)
+> - Headphone jack
 
-> =E5=9C=A82024=E5=B9=B410=E6=9C=8829=E6=97=A5=E5=8D=81=E6=9C=88 =E4=B8=8B=
-=E5=8D=884:11=EF=BC=8CJiaxun Yang=E5=86=99=E9=81=93=EF=BC=9A
->> =E5=9C=A82024=E5=B9=B410=E6=9C=8829=E6=97=A5=E5=8D=81=E6=9C=88 =E4=B8=8B=
-=E5=8D=8812:21=EF=BC=8CAleksandar Rikalo=E5=86=99=E9=81=93=EF=BC=9A
->> [...]
->>>
->>>> Is this property applicable for all MIPS vendors? There is no vendor
->>>> prefix here, so this is generic for this architecture, right?
->>
->> I'd say the best vendor prefix is mti in this case.
->>
->> CM3 IP block is supplied by MIPS Technology, it is not a part of MIPS
->> architecture spec.
->
-> I just tried to revise this problem and I think a better approach would
-> be picking my CM binding [1] patch and add this as a property to CM bindi=
-ng.
->
-> You don't need to pick rest of that series, this binding alone is suffici=
-ent,
-> and it's already being reviewed.
->
-> Thanks
-> [1]:
-> https://lore.kernel.org/all/20240612-cm_probe-v2-5-a5b55440563c@flygoat.c=
-om/
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I had a look at your series and it seems that all the issues raised were
-solved, so why wasn't it merged?
+---
 
-Regarding the binding in particular: If we add the property
-"cm3-l2-config-hci-broken", then it should be optional. However, the reg
-property also should be optional. Indeed, if we can detect the CM
-address, we shouldn't use a reg property.
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
 
-If we go in this direction, not only will the binding be modified but
-also code in arch/mips/kernel/mips-cm.c to handle this new property and
-manage the case where the reg is not needed. Additionally, we'll need to
-modify code in arch/mips/kernel/smp-cps.c to retrieve information about
-the HCI.
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
 
-I can write a series to illustrate it, if needed.
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+</form letter>
 
-Gregory
+Best regards,
+Krzysztof
 
->>
->> Thanks
->> --=20
->> - Jiaxun
->
-> --=20
-> - Jiaxun
-
---=20
-Gr=C3=A9gory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
