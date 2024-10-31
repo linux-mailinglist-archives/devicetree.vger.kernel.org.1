@@ -1,103 +1,132 @@
-Return-Path: <devicetree+bounces-117593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 868B89B7077
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 00:28:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 890429B711A
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 01:23:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B7CD28266D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2024 23:28:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC8031C20918
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 00:23:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DBF4213EF6;
-	Wed, 30 Oct 2024 23:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93EE536124;
+	Thu, 31 Oct 2024 00:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="MFOqAO6X"
+	dkim=pass (2048-bit key) header.d=justinweiss.com header.i=@justinweiss.com header.b="psq1dtEy";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="T488zIJV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E541C461C;
-	Wed, 30 Oct 2024 23:28:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A14653A7;
+	Thu, 31 Oct 2024 00:22:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.147
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730330901; cv=none; b=HUxR58CoIyWYE8DyIMUOA3f3hmKoL1QVD5a+CS5O8/pndfr+5X1Mcub14gzTKoO6jrIrVXYwEZKl894x5xT1l4y3dgLwYgEgOkpmt32ydklqOcVYk9dA4qzQOHUQj3yhNEyEKcdv2OiOltyHIcTcLql+Jol8mo3YVfkFFix+Mtw=
+	t=1730334163; cv=none; b=Zqg+U83aAzC9gjFY0eU4Xy0fg2b4T70iS3aH4Dl9li37koYA5mPeM8uaytvqIpW+bs0W9AbxRGtIWoNxoeKe+jZESDbBOkNTRwLWAmLKg5Ss0yB4OagQqWiFHBfnKi5qE5u+MoYV7IoF7DNjT+LBzqlPbgZPl1zzAVIkW12Qmac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730330901; c=relaxed/simple;
-	bh=j2WxG1gi9sX9Q9XHaunLYPDXuZFPxo2eTPeWaKuZNcw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=eE+nEDggt5Rvgm509vUie7Zn3gDVTXnSstxiYtoxpXRwGlfG578MSt77cWJoBzxxJ1SK3wiCvoawj83fZ779wDk1Srg6LaVWPlpePrb+mNneeue2EMG9WeN3yL/XgbXdQEXxw/021eZcTDwZfhxriIhBBbqgnrEpXo3tnnf6BEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=MFOqAO6X; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=A1dLRRt6Gpz+f3YNGF2cRhz0EDeBb4t+Te4s+RjcUeE=; b=MFOqAO6XqjGyvEm7AbuJN82usY
-	sWvcCd1Q6neva+KTQ1AiEfgOtBadaU+TllYnrDqwmsK/nhylFD2DzvtTq1r2ImPIMKs3KOQshyNIh
-	28ixTccW9GNKQ9PN5/Imb+fwC6Ct8mxF2136WwQtkRwR2hqOuUXsZ3gsFVibPO+xGcQpH2rte8AK5
-	wLPf2UYlPvpI0RqQ94DeuSV6nh5V+M8GxZZ3z8mCykGcHwwpxTtolbCJ0coBHnjlz2NJmWRSPKf8s
-	BfS32TcZKku51OVq4cpkYSd3zCi8kRSv1P46WHxKejRqlOnK1shgWMwu5bBRAzP+j0y1LchZFKouF
-	6d1xJcvQ==;
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Conor Dooley <conor+dt@kernel.org>,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH v3 3/3] ARM: imx_v6_v7_defconfig: Enable drivers for Kobo Clara 2E
-Date: Thu, 31 Oct 2024 00:27:46 +0100
-Message-Id: <20241030232746.2644502-4-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241030232746.2644502-1-andreas@kemnade.info>
-References: <20241030232746.2644502-1-andreas@kemnade.info>
+	s=arc-20240116; t=1730334163; c=relaxed/simple;
+	bh=mXzGNXOzoEpPANsKrOIIcMcCUBg6ySS5sQpL9j6eHwc=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=if32XmnOjH0ZJK+a6zpm4wB1dB4C76tasX/lQQQye3uWxlILTN7OHs87i0r4ryMJC5gFk9XI6FWwUdnJAmP6ff1mmtCkJ82iDQKPwUdDwGGRF8s4P3v3qUvW9KkwfXsNMGT82LZIVGeOpC/iyAjNhTYnINe3ai2jDRQIUvt5mk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=justinweiss.com; spf=pass smtp.mailfrom=justinweiss.com; dkim=pass (2048-bit key) header.d=justinweiss.com header.i=@justinweiss.com header.b=psq1dtEy; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=T488zIJV; arc=none smtp.client-ip=202.12.124.147
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=justinweiss.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=justinweiss.com
+Received: from phl-compute-02.internal (phl-compute-02.phl.internal [10.202.2.42])
+	by mailfout.stl.internal (Postfix) with ESMTP id 10166114011B;
+	Wed, 30 Oct 2024 20:22:39 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-02.internal (MEProxy); Wed, 30 Oct 2024 20:22:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=justinweiss.com;
+	 h=cc:cc:content-type:content-type:date:date:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm2; t=1730334158; x=
+	1730420558; bh=mXzGNXOzoEpPANsKrOIIcMcCUBg6ySS5sQpL9j6eHwc=; b=p
+	sq1dtEyohfAF0pZGBiDIQQk8OQLqHw35qmi8Pvv9S+4+TqTxPvWfDNqSgMPj2+G3
+	oiZnRNUQeXgGQ5XhGCLfbdlyleOd6ADfaXvTgkUH532ErGiMFst5FmIv2tUkHYrN
+	g/hPkrOr4cDU33a8j91EvH+/egh81r6sDBG71BlNtF4cgOP51Ot9sMZhFFHO4kiE
+	F+EWlkcQ7Tr4g6Xbjv7qO9C+tYOYYnVseH0jbKw1UNWwsEuWeJyoNvitlW+T41C7
+	WO7D050FKxZO52P9CBUjv1JcNvuSJoLGqC/U++Xa8SGXUhZnBOLa7yNW1owwdn8t
+	IqOhEvoUcoZdbF/DkPLYg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+	1730334158; x=1730420558; bh=mXzGNXOzoEpPANsKrOIIcMcCUBg6ySS5sQp
+	L9j6eHwc=; b=T488zIJVHAc1m7tLA7Hi/TuO1NYBngJHw0EMzVgY5womohXZ6p4
+	8c2i4nO0q88Gg+uSBE/trqJDrpA/5C36IzPQAd7Y1WQtCHSIhGT6Bc8UbFtSpd80
+	vk0AnJ0YlwoDT/wVBVisEVMW8sm1bC2rD/c4DqhYPV1uxhDsDDM21YJx4NnwTIzM
+	c/pTiVWTtKeLXZe//D5HNmKbiNJ4aZF7uQ61Yd54mdd8DPLDbnpBuP5NW7PWs9VA
+	pFfvjsLo890XjKrkvmkW+FJ6H4H+Wi0eD4vGUFqVt4Qy6h29bQW9Qw/jhXB0HfVu
+	UN7XBqzCibJzgxcTrETy2nBl9yoEggzPtcQ==
+X-ME-Sender: <xms:zs0iZyXnnNTrqEKZCIIa8VOO4CJWot43KIc0SfsxM2GjXvieajLp5w>
+    <xme:zs0iZ-nEi_LZ21p_yYcCh6MNpLC53uNDAxOHs2f1R_xDJTP_SDpqk8KqDSLzhPute
+    32kC_feeTV0s69gig>
+X-ME-Received: <xmr:zs0iZ2aFmGQj4bGXrViD0_jVV8BZG16-zUZfOMv8CSsU-U8MWlglPejCf6DDswdFnmbg6NlgQg0ywt6Vp234fEJLjdeyHt3m0mM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdekgedgvdduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhephffvvefujghffffkfgggtgesthdtredttdertden
+    ucfhrhhomheplfhushhtihhnucghvghishhsuceojhhushhtihhnsehjuhhsthhinhifvg
+    hishhsrdgtohhmqeenucggtffrrghtthgvrhhnpefgueegueeiheffkeektdetfffgffeu
+    ieekvdefieejvdefiefgvefhiefhfefgveenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehjuhhsthhinhesjhhushhtihhnfigvihhsshdrtgho
+    mhdpnhgspghrtghpthhtohepuddvpdhmohguvgepshhmthhpohhuthdprhgtphhtthhope
+    hphhhilhhmsehmrghnjhgrrhhordhorhhgpdhrtghpthhtohepuggvrhgvkhhjohhhnhdr
+    tghlrghrkhesghhmrghilhdrtghomhdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlh
+    esvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvges
+    vhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhiihhosehvgh
+    gvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghnughrihihrdhshhgvvhgthhgv
+    nhhkoheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopegtohhnohhrodguth
+    eskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdho
+    rhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:zs0iZ5XctY_SrqjklwQf19IP8Dh-X-AXzkYrKQhOGlzivlk3i8H0ng>
+    <xmx:zs0iZ8mNPGBUbdVeqg2zQP2-3rPp_VUpXoNADYclZ8yeyDBebHjLUw>
+    <xmx:zs0iZ-eQXeW1-n6bMPCOAu-TwPzhHtmzOc8hMw2gRn0CRlXxnCgOOg>
+    <xmx:zs0iZ-HNlxIGaxNdaBR-VxIuXChUyHNQXv8NKENiQ38-Bu8LDJAGYw>
+    <xmx:zs0iZ38Ixzg9ZB8fHZtL4bui3CWjtx3Vt0KGR6Xrd_5FU3Qc_ZeoCz7J>
+Feedback-ID: icf614246:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 30 Oct 2024 20:22:37 -0400 (EDT)
+From: Justin Weiss <justin@justinweiss.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Alex Lanzano <lanzano.alex@gmail.com>,  Lars-Peter Clausen
+ <lars@metafoo.de>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Andy
+ Shevchenko <andriy.shevchenko@linux.intel.com>,
+  linux-iio@vger.kernel.org,  devicetree@vger.kernel.org,
+  linux-kernel@vger.kernel.org,  "Derek J . Clark"
+ <derekjohn.clark@gmail.com>,  Philip =?utf-8?Q?M=C3=BCller?=
+ <philm@manjaro.org>
+Subject: Re: [PATCH v4 0/4] Add i2c driver for Bosch BMI260 IMU
+In-Reply-To: <20241028201817.71bebfee@jic23-huawei> (Jonathan Cameron's
+	message of "Mon, 28 Oct 2024 20:18:17 +0000")
+References: <20241027172029.160134-1-justin@justinweiss.com>
+	<20241028201817.71bebfee@jic23-huawei>
+Date: Wed, 30 Oct 2024 17:22:36 -0700
+Message-ID: <87a5elkto3.fsf@justinweiss.com>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Enable drivers used on Kobo Clara 2E
+Jonathan Cameron <jic23@kernel.org> writes:
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/configs/imx_v6_v7_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+> Applied with a few tweaks thanks to Andy's review.
+>
+> I'll push this out as testing to let 0-day poke at it before it goes
+> into linux-next in a few days time.
+>
 
-diff --git a/arch/arm/configs/imx_v6_v7_defconfig b/arch/arm/configs/imx_v6_v7_defconfig
-index 333ef55476a30..0beecdde55f58 100644
---- a/arch/arm/configs/imx_v6_v7_defconfig
-+++ b/arch/arm/configs/imx_v6_v7_defconfig
-@@ -68,6 +68,7 @@ CONFIG_BT=y
- CONFIG_BT_BNEP=m
- CONFIG_BT_HCIUART=y
- CONFIG_BT_HCIUART_LL=y
-+CONFIG_BT_NXPUART=m
- CONFIG_CFG80211=y
- CONFIG_CFG80211_WEXT=y
- CONFIG_MAC80211=y
-@@ -253,6 +254,7 @@ CONFIG_MFD_ROHM_BD71828=y
- CONFIG_REGULATOR_FIXED_VOLTAGE=y
- CONFIG_REGULATOR_ANATOP=y
- CONFIG_REGULATOR_BD71815=y
-+CONFIG_REGULATOR_BD71828=y
- CONFIG_REGULATOR_DA9052=y
- CONFIG_REGULATOR_DA9062=y
- CONFIG_REGULATOR_DA9063=y
--- 
-2.39.5
+Thank you, and thanks for all the help!
+Justin
 
+> Thanks,
+>
+> Jonathan
 
