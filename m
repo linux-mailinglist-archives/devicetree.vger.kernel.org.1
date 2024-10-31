@@ -1,100 +1,113 @@
-Return-Path: <devicetree+bounces-117626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44C559B7262
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 03:09:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3141C9B7280
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 03:28:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09EEF2812EB
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 02:09:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 634041C2344E
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 02:28:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09EF185283;
-	Thu, 31 Oct 2024 02:09:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89FC584E11;
+	Thu, 31 Oct 2024 02:28:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i5cSoP/p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cE75NtXm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C59D1BD9F7;
-	Thu, 31 Oct 2024 02:09:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565F017BA3;
+	Thu, 31 Oct 2024 02:28:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730340545; cv=none; b=fsO3jNkJKspJU8rGHLKRRCew/V4n4pU9G4cpLKzyMt5iZJl1FK+JdHTtCopX66DuaAlGxY7FxYm+0EU5P3cKIa3VNntLWL/zemJ6E+iTcyf18QTylnW29j0ew8+MZBYzR6wmq0RV3rixf6zjgJQkLZ5CIziwHvtLd8Uvfmegey0=
+	t=1730341689; cv=none; b=ngdLtJ1O7D0CIv/L05mi1mw7IdG4hUvr04vWPhvCHpk4ptZLmbbK1GlsFEKQCT1FY/AGeF0ijFKr4vBXWFD2QQQsmoGV17v4u6eFPtE3atB1RPh8gUYF4nYdKCcWx9mwsjU5q0zpc6y91LSQ3gDcOVw40nxY5Pe6gxUzzY/yubA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730340545; c=relaxed/simple;
-	bh=WKXp0moqgamIP7R29DMbOfl9IdZ2pJ/b7R2GlsuQTL0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JcKiqq8kfsbeaB7YLpeqwVxnaJ7H38lWvL7TW4ubzHaUHiPXf0r9dVNraxMeu7WRFgvVEGlXLj+YYuNppiWQ6oM2U2V0ein/KNzVgR55tiodiviexMk+Fcp77jYY2j3PyXUPbyzd5U+DfVrdwcTCJSNKdkg/vUi2ZJ7lxGiQNH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i5cSoP/p; arc=none smtp.client-ip=209.85.210.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-7180bd5b79dso165081a34.2;
-        Wed, 30 Oct 2024 19:09:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730340543; x=1730945343; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WKXp0moqgamIP7R29DMbOfl9IdZ2pJ/b7R2GlsuQTL0=;
-        b=i5cSoP/pC5Lck+8R3VUyc75L4yub82nkSHptHY/4NG8rOou8HmbukyqujsGSiBKLP6
-         /+vCsdpgWIvGCydck4r9lIRCriy3k4MR8KjVcPvCwfq7j+7W0UWP+0pZdXUJArSfpdXp
-         Xpll8Sk6VeRQlS5T6wu307K5VTaF0F5qTMvspkdSC3alVndIPfMHNoqjuawpt/hocc0X
-         gusWr7LBr01U8CzGe3sf3bpFVwTcFvozqWkhBCYwMrfkjhyu82EeCoLscI9f5RGpy7Ib
-         7eGKgE6mBS6vam/h4eAFX4uQnuowE+hO0KNL65hf5CXw2uTDDIbXhKr8ZjhFT4uak4AK
-         SfUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730340543; x=1730945343;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WKXp0moqgamIP7R29DMbOfl9IdZ2pJ/b7R2GlsuQTL0=;
-        b=N+qaE+tbZrCKpxELqDHMtQISXufoeVUeqYRMAAMpXgojn/X2NItQ5Vt5mqkEDeChm2
-         TqkNyGekAodCSXrg+niO6gjQ8jjno9O7gdFrGQyFGavEhiVCmnb+v4R9q23MMKXBPq8A
-         j56H1E5XvUDsP/lYsYu0yoahPFboXj7Z7ae8J27L1hkzLy3MsrLo2cvwEqQalVzv64Mr
-         70daft6RbPLycaqNzTneKbliF8gkPlc+8V48fg1zBkMxNCyd4rDLk3kVWw0oym3VgmwT
-         yc/dMBNaG4OhhjnxT7QACPVnt25CWPaWgiytWfky29HsM6T7Q5CZrtVUOQ/dwquW5Vvo
-         KoLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU98VbifMTVunNSsynCw92pIICFU8Iv4q8+eQPisZP5txq5rYSU6mgTI3yXXdz+nz74hMOV97H+H0ml@vger.kernel.org, AJvYcCX9+9EPSzgjhqfooMJLLNyaKNbgJkcrkxpoxl7qphrt026rRHLSokdZ926zPXbxS3RiNCo4h6DnWgGSjoV7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0ipgZyCs83edCtozF0FFKcQ8scCGtv5tyuqKqK++j47Ltg6MG
-	OIh6/5DX7NMA/1fXDih5wLm7ofnB3AdF/IkX7pNWJjvyn2J90o1w7bp9czYhKhkg3AiptISmPF/
-	O98+tziHokBMfYVAUxjLZHQHkkH0=
-X-Google-Smtp-Source: AGHT+IH+yrLiJjq+i5ie1WCex04mIWFRLsmq3qV+TlaiiaefPBEphpMHstKWEPeLMuwYfiGYCJ48xmfkRcN6cpgnW5k=
-X-Received: by 2002:a05:6830:6a97:b0:718:240:42d5 with SMTP id
- 46e09a7af769-71868299585mr18071136a34.32.1730340543144; Wed, 30 Oct 2024
- 19:09:03 -0700 (PDT)
+	s=arc-20240116; t=1730341689; c=relaxed/simple;
+	bh=8BIQo0QykbY0+G6sL8ETJHJhiDHFJprVGPUxC/ITDK4=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=QZ/ICIWyra3f/wVXYtd9O3zTSyAC28TDH49D7cN/S3DAgtPfl/Zj3dh9yINv4pOym9SaRu3LOdN0i8yiu33Bjc3cJj3AON+4Na2EcFsgFxc6ytqdrYnjm9dXEelDh2s85h0YDvLpLiCPfT/8QcMQkMJVKsyHP9yP4iOdAtqMwDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cE75NtXm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98D33C4CECE;
+	Thu, 31 Oct 2024 02:28:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730341688;
+	bh=8BIQo0QykbY0+G6sL8ETJHJhiDHFJprVGPUxC/ITDK4=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=cE75NtXmm9H0Cj0sGlR0QefPCWdv+7PEk5ioaHjQAIk2rj/n0sjMU5Eo3ICqHuJbT
+	 UdVJGrKKdwahac91LK2LkBUEctzOTbXk1Fr7Qm5iUx2qFsIGF8Ab6Kh4jbmUiKfrKD
+	 wwVrtCfLZNOyBJxr66adtyaxmMSpYl+zJ1afknc6NVgm+osFuPirBq0fLKbJXwGjBK
+	 2dv/bgthqgGZ4lH2QDnr+GrjjQxGD56qJSt5Dqfr2+He6Uo4VFDyrYvQGV5Hs29L9n
+	 MV4Dy5BnwES/6exKxcPp6qkMntGDOPWdjmhAObRhqaxAQDTyLXh8AUophttUXUCQx8
+	 ec9FYXebp5zOA==
+Date: Wed, 30 Oct 2024 21:28:06 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1723716331.git.stano.jakubek@gmail.com> <ZyJ1keHD-neTNZ2J@standask-GA-A55M-S2HP>
-In-Reply-To: <ZyJ1keHD-neTNZ2J@standask-GA-A55M-S2HP>
-From: Chunyan Zhang <zhang.lyra@gmail.com>
-Date: Thu, 31 Oct 2024 10:08:27 +0800
-Message-ID: <CAAfSe-uZ5KWfnZ=DqAy=4fJp0TrTimdEs0Vy57CYcsK06Ev_UQ@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Cleanup Spreadtrum/Unisoc ARM64 DT (part 2)
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
-	Baolin Wang <baolin.wang@linux.alibaba.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ tudor.laurentiu.oss@gmail.com, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-arm-msm@vger.kernel.org, Bryan.Kemp@dell.com, 
+ Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>
+In-Reply-To: <20241030182153.16256-1-alex.vinarskis@gmail.com>
+References: <20241030182153.16256-1-alex.vinarskis@gmail.com>
+Message-Id: <173034159113.3085522.9879701637514263982.robh@kernel.org>
+Subject: Re: [PATCH v1 0/1] X1E Dell XPS 9345 Improvements 2
 
-Hi Stanislav,
 
-On Thu, 31 Oct 2024 at 02:06, Stanislav Jakubek <stano.jakubek@gmail.com> wrote:
->
-> Hi all,
->
-> not sure which tree this should go through, but could someone pick this up?
-> It's been sitting for ~2.5 months.
+On Wed, 30 Oct 2024 19:19:35 +0100, Aleksandrs Vinarskis wrote:
+> Describe retimers for the said device. At the moment DP alt mode is
+> not working, but this still allows to use USB3.0 in both orientations.
+> Once msm-dp is fixed, DP-alt mode enabling patch will follow.
+> 
+> This patch depends on [1], which is still undergoing reviews. As it
+> appears to be close to its final state, sending this already so it can
+> be reviewed.
+> 
+> [1] https://lore.kernel.org/all/20241022-x1e80100-ps8830-v3-0-68a95f351e99@linaro.org/
+> 
+> Aleksandrs Vinarskis (1):
+>   arm64: dts: qcom: x1e80100-dell-xps13-9345: Introduce retimer support
+> 
+>  .../dts/qcom/x1e80100-dell-xps13-9345.dts     | 293 +++++++++++++++++-
+>  1 file changed, 283 insertions(+), 10 deletions(-)
+> 
+> --
+> 2.45.2
+> 
+> 
+> 
 
-One question is what do we do about those warnings reported by Rob's bot?
-Apart from that I suggest you send a pull request to soc@kernel.org directly.
 
-Thanks,
-Chunyan
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y qcom/x1e80100-dell-xps13-9345.dtb' for 20241030182153.16256-1-alex.vinarskis@gmail.com:
+
+arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dtb: /soc@0/geniqup@bc0000/i2c@b8c000/typec-mux@8: failed to match any schema with compatible: ['parade,ps8830']
+arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dtb: /soc@0/geniqup@bc0000/i2c@b9c000/typec-mux@8: failed to match any schema with compatible: ['parade,ps8830']
+
+
+
+
+
 
