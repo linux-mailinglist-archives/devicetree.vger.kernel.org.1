@@ -1,188 +1,122 @@
-Return-Path: <devicetree+bounces-117731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1B539B776D
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:26:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0324E9B77A9
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:36:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E21B31C2252E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 09:26:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A206B1F20419
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 09:36:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3375D17E01B;
-	Thu, 31 Oct 2024 09:26:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA13E19538D;
+	Thu, 31 Oct 2024 09:36:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="q+uQKR6p"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="jubE+MuV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE8219408B
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 09:26:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25FE6193078;
+	Thu, 31 Oct 2024 09:36:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730366792; cv=none; b=qsSTWbLZtEd5tW6N64X64WOKlGRio/5QQV48aRK5cZ4BtPPbP7CVwl+p/akohl/yu8d8062DV4V1t1EkBW/KAMUTPHiDgw1+HsvEdiXZFTcJYN+vBblAXMuQzJ19iNjN7Q/3odhuAR9kiXAWsZP/p3qLqTjDgJyhlKVEIyjoYXs=
+	t=1730367404; cv=none; b=PpBpeJj8psrZA/bS7Fjwv3GWMTWd5cc/IAEzMUebDnVFIhz99fB4VQCeXDKeDNySFWSUGJfkEmhqboMbqu113TFG+K6nYVBsZKg0Ql/dW5t4v3J3qaB4V23NZMI3qdF3wyIXmzvsN+y2weIfPoJ10Kd+6cBoLHidFN3s60LxOG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730366792; c=relaxed/simple;
-	bh=W+7WITvQz2ZgCwS9oNFaKkBroXYi4X6KRO4xqfT+YUQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e3gdaXNYcR225C23IqELhoH2l39ZCOiZRUbttkzAhedi1STIx3AO78FRjly0X3CHCRcssduojcTpDEkLwDsvT/5zzm6RyfMi2vVDrNmsiUka5AiRGVViqzcmgI/Yb9I4KIIqgeKGEMB7Sw5WTuP4xrowVvSm015sP5mmISXPZ/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=q+uQKR6p; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-539f4d8ef84so902065e87.0
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 02:26:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1730366786; x=1730971586; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WPySU9GG1bDdptaowyq3VjxeujL5zBs3sjWS8sIYgHw=;
-        b=q+uQKR6pkACB75xQMn3++eVBRS7sJIf7dk+y3++vj9EYnyBUzJVi1HvR+OL9uJRzIf
-         mqKetllPpd8T/2jYbu5bh2G/v1lkywjkCeZQiXD5DyDRpnww3Q14AfK5fmsjYpblaWnf
-         o/sgTrFl3hfU6wLKcvBXlNdhrfCBbKX0BPV2fqlROpJGvXOJ3yOnBJpuxBevp94k5pvO
-         wZI8K1LU9c/oooBTQyHVgVI7DH3FRRewgf2P5TCfvVTK7uNnuJ+Q/u8F0cV42/8NLZAX
-         Q5WYtwok1dOGng+OTpqsZbSuhCBSyLI4NrUMurGqpLVU/IingGWFAPeFU7hiuKTayMn7
-         5svw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730366786; x=1730971586;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WPySU9GG1bDdptaowyq3VjxeujL5zBs3sjWS8sIYgHw=;
-        b=k1W+nct4T/bx2O54R8Wk6oCdyM8l4kpETG8oDxGPNUEGyNG02AqAOasXFgVn1W2EfT
-         VtHnq3/W54STYV84TdPR/azE3y5foIlBRleyjW7LgMRxY+6kxWl94hVuZeiRM1USuywY
-         +k8eN5G9d0oqZcQMVy77IexeD5nWzdArJ7R/dJFzVBIbAm/RiKvcMANi5R3b3z6F7KOK
-         sTrfrbixdSkpbl0glOg29XCdN59dpRx1zFWW0mY936h6LQF7GlebiRFbx9W61vLMpNmM
-         SnbvVu/ghPy546ebGu3SSI0ZrVTi0EIcdaRPy/gk9H5OUPsVOEB0AMpUrCMLpHaCN/7S
-         IjbA==
-X-Forwarded-Encrypted: i=1; AJvYcCV3qEkCUMVmilBr1a4Scz22jB5hpMDumpiyfPKoOyPfCN3l3r7/M1g4BZJdk+lV7iVfzIa3YganjZnr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTmKKQTzSrMOtRgD+Qjl0+PTJ67yqhvhEF+r1LW2a7hCJZYLKd
-	NFKxJX13aQlNBsubM+e5pZ4TFf6BDUtRZjbde7dmBQrio4BoSwVEirMrVedpFTs=
-X-Google-Smtp-Source: AGHT+IFx8MLTqlbYOXV70FjxcgUiPu/8my35yVrkTf/0/c/FdNoy8F04GpO/K6glzhe+yo4QhhnwIg==
-X-Received: by 2002:a05:6512:b94:b0:539:f7ab:e161 with SMTP id 2adb3069b0e04-53c79e8ec22mr1531829e87.45.1730366785959;
-        Thu, 31 Oct 2024 02:26:25 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.190])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431bd917fefsm48372175e9.16.2024.10.31.02.26.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Oct 2024 02:26:25 -0700 (PDT)
-Message-ID: <ee94a802-97ec-4a9b-9ca4-5c14e0eba116@tuxon.dev>
-Date: Thu, 31 Oct 2024 11:26:23 +0200
+	s=arc-20240116; t=1730367404; c=relaxed/simple;
+	bh=Jk/UL+5rTj1PV/YoegypnMhOCixtc3MMVbc/scCFjOE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lQXJ1n3FZUo/v4m6jOisjixUaWHdwVbib/NfeTg+WGsJT1ccVCeD7/D3FmfpeQj7wPXu7VdEKqTlLWgsYv7p7darLhr52uBNnDLJVLWKTyLyhJtoEm7hpJItxtylcinzXXwgQBXLBlX0Whk6nRCy43Kx6dDBFAU2F24zzvSHQEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=jubE+MuV; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1730367402; x=1761903402;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Jk/UL+5rTj1PV/YoegypnMhOCixtc3MMVbc/scCFjOE=;
+  b=jubE+MuVTxyQuBiUO+J29NNC7KOpMVE6nvODKhQymuilXDPlWY7I2Sws
+   S8xG2ll7XO6Hy9HvH+F75D0WE2p6IaJ9zn4MN0lZs9+vsPwQWIk9JP8Hh
+   xqJhnbFnPU8A140WHlFSr4XzdYKREw52in1/UTS1lGogzthks/fTznATz
+   KVXxbSB8EbOG/7F1wfvQ2cWS7ptMTSaELsoC5H6J4nhQZt3nXBXvXOtBh
+   4K69wsDf/xk3NTxXX1JeGz+4rjpGl1nqcUKOf75rGJh6d19t5YkhiMpDX
+   Uocjl3k9vun3HEGlU5sb6OC62c2GUvcnozpcwUx9Nya2mHPqcHKkwlabi
+   Q==;
+X-CSE-ConnectionGUID: U7/DaQSZR9qiaEJq3md8kg==
+X-CSE-MsgGUID: BBxWSfWVS0+qtiQRUILoGg==
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; 
+   d="scan'208";a="34234608"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 31 Oct 2024 02:36:41 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 31 Oct 2024 02:36:33 -0700
+Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Thu, 31 Oct 2024 02:36:29 -0700
+Date: Thu, 31 Oct 2024 09:36:28 +0000
+From: Daniel Machon <daniel.machon@microchip.com>
+To: Jakub Kicinski <kuba@kernel.org>
+CC: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+	<edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Andrew Lunn
+	<andrew+netdev@lunn.ch>, Lars Povlsen <lars.povlsen@microchip.com>, "Steen
+ Hegelund" <Steen.Hegelund@microchip.com>, <horatiu.vultur@microchip.com>,
+	<jensemil.schulzostergaard@microchip.com>,
+	<Parthiban.Veerasooran@microchip.com>, <Raju.Lakkaraju@microchip.com>,
+	<UNGLinuxDriver@microchip.com>, Richard Cochran <richardcochran@gmail.com>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, <jacob.e.keller@intel.com>,
+	<ast@fiberby.net>, <maxime.chevallier@bootlin.com>, <horms@kernel.org>,
+	<netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next v2 10/15] net: lan969x: add PTP handler function
+Message-ID: <20241031093628.faiupqqny7oco7uz@DEN-DL-M70577>
+References: <20241024-sparx5-lan969x-switch-driver-2-v2-0-a0b5fae88a0f@microchip.com>
+ <20241024-sparx5-lan969x-switch-driver-2-v2-10-a0b5fae88a0f@microchip.com>
+ <20241030180742.2143cb59@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 03/10] clk: renesas: clk-vbattb: Add VBATTB clock
- driver
-Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com,
- magnus.damm@gmail.com, p.zabel@pengutronix.de,
- linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20241030110120.332802-1-claudiu.beznea.uj@bp.renesas.com>
- <20241030110120.332802-4-claudiu.beznea.uj@bp.renesas.com>
- <mg2ugyg65ke3tngzqyyixfkawf4iop4o373dc6fosy7bfydbe5@pm43dhkd7asu>
- <CAMuHMdUcw_UHAZRVGt=Tr0jv3NOPDibtPy1E-46Pq74YKFZxWg@mail.gmail.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <CAMuHMdUcw_UHAZRVGt=Tr0jv3NOPDibtPy1E-46Pq74YKFZxWg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20241030180742.2143cb59@kernel.org>
 
-Hi, Geert, Krzysztof,
+> On Thu, 24 Oct 2024 00:01:29 +0200 Daniel Machon wrote:
+> > +             spin_lock_irqsave(&port->tx_skbs.lock, flags);
+> > +             skb_queue_walk_safe(&port->tx_skbs, skb, skb_tmp) {
+> > +                     if (SPARX5_SKB_CB(skb)->ts_id != id)
+> > +                             continue;
+> > +
+> > +                     __skb_unlink(skb, &port->tx_skbs);
+> > +                     skb_match = skb;
+> > +                     break;
+> > +             }
+> > +             spin_unlock_irqrestore(&port->tx_skbs.lock, flags);
+> 
+> For a followup for both drivers -- you're mixing irqsave and bare
+> spin_lock() here. The _irqsave/_irqrestore is not necessary, let's
+> drop it.
+> 
+> > +             spin_lock(&sparx5->ptp_ts_id_lock);
 
-On 31.10.2024 10:43, Geert Uytterhoeven wrote:
-> Hi Krzysztof,
-> 
-> On Thu, Oct 31, 2024 at 8:48 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> On Wed, Oct 30, 2024 at 01:01:13PM +0200, Claudiu wrote:
->>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>
->>> The VBATTB IP of the Renesas RZ/G3S SoC controls the clock that is used
->>> by the RTC. The input to the VBATTB could be a 32KHz crystal
->>> or an external clock device.
->>>
->>> The HW block diagram for the clock generator is as follows:
->>>
->>>            +----------+ XC   `\
->>> RTXIN  --->|          |----->| \       +----+  VBATTCLK
->>>            | 32K clock|      |  |----->|gate|----------->
->>>            | osc      | XBYP |  |      +----+
->>> RTXOUT --->|          |----->| /
->>>            +----------+      ,
->>>
->>> After discussions w/ Stephen Boyd the clock tree associated with this
->>> hardware block was exported in Linux as:
->>>
->>> vbattb-xtal
->>>    xbyp
->>>    xc
->>>       mux
->>>          vbattbclk
->>>
->>> where:
->>> - input-xtal is the input clock (connected to RTXIN, RTXOUT pins)
->>> - xc, xbyp are mux inputs
->>> - mux is the internal mux
->>> - vbattclk is the gate clock that feeds in the end the RTC
->>>
->>> to allow selecting the input of the MUX though assigned-clock DT
->>> properties, using the already existing clock drivers and avoid adding
->>> other DT properties. If the crystal is connected on RTXIN,
->>> RTXOUT pins the XC will be selected as mux input. If an external clock
->>> device is connected on RTXIN, RTXOUT pins the XBYP will be selected as
->>> mux input.
->>>
->>> The load capacitance of the internal crystal can be configured
->>> with renesas,vbattb-load-nanofarads DT property.
->>>
->>> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
->>> --- a/drivers/clk/renesas/Kconfig
->>> +++ b/drivers/clk/renesas/Kconfig
->>> @@ -237,6 +237,10 @@ config CLK_RZV2H
->>>       bool "RZ/V2H(P) family clock support" if COMPILE_TEST
->>>       select RESET_CONTROLLER
->>>
->>> +config CLK_RENESAS_VBATTB
->>> +     bool "Renesas VBATTB clock controller"
->>
->> tristate
-> 
-> Good point.
-> However, does it work as a module, or would that break the RTC?
+Hi Jakub,
 
-On RZ/G3S the RTC counter needs the clock provided by VBATTB.
+I agree it seems wrong to mix these.
 
-I'll try with this as a module.
+I just talked to Horatiu, and he mentioned posting a similar fix for the
+lan966x driver some time ago [1]. Only this fix added
+_irqsave/_irqrestore to the ptp_ts_id_lock - so basically the opposite
+of what you are suggesting. Why do you think that the
+_irqsave/_irqrestore is not necessary?
 
-> 
-> And this is missing
-> 
->         depends on ARCH_RENESAS || COMPILE_TEST
-> 
-> which I can add while applying.
+[1] 3a70e0d4c9d7 ("net: lan966x: Fix possible deadlock inside PTP")
 
-Thank you!
-
-Claudiu
-
-> 
->>
->>> +     select RESET_CONTROLLER
->>> +
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
+/Daniel
 
