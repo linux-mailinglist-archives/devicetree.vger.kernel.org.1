@@ -1,125 +1,176 @@
-Return-Path: <devicetree+bounces-117742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E2689B7881
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 11:18:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0675B9B78B2
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 11:34:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02095286BCA
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:18:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AA2F1C22326
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 557A71990AE;
-	Thu, 31 Oct 2024 10:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D084198A2F;
+	Thu, 31 Oct 2024 10:34:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hvjaPhpi"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="R4DHCx5y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25D9013A25F
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 10:18:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 194E513A89A;
+	Thu, 31 Oct 2024 10:34:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730369889; cv=none; b=uQuf7TnA0tXT15GH2ENdCTD9YtyybPYdcI2GTB5PWvB9Tj/rDAUs+MnFu1tqM/Y7MqnFNwYyVJ0ZwD5iTxILH5wEzVWgxoKjb4ZN36SNeQx3cAwTeAOiCOCxlrMftU7+ZthnYLXFaeQRN1Vo2mAz6Fm6TntSH8+kni3bvKVhBbA=
+	t=1730370871; cv=none; b=QanzTZnubei6RL23T8dL0POidM5xIgQexKyhFc3ZJOxKmL/il5oRLCylRbcIcd1B0+bkS3daH7eqC1yf7glJKT5BpPGUEjdjfhDl0sMW+/9/KAil8gGeSixIYqcq0aKzykpcB+3XvXIUxDapX3uXfYbsBK4SM0PTJS2lkRqe+lY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730369889; c=relaxed/simple;
-	bh=2at9QXm0aNBG20u2WqXOcEomkIJcJIuX7V0RN33vqJk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=O3/zaAEq30YgJayElry1k9rLh4rIWJ0dLxuMSGtddOOyPcOY3NLcZu2lGiyYQN+62Nvf/J5fE2LW4fW8VZFxEC7eo4UksEoCtBq9SEP48IFR3OtqgGIJ2GyfFBoVZe5+iRBDIGNg0oWzenyVvToswWysaZC/hUY3Th2BV7oUwZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hvjaPhpi; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-37d538fe5f2so563503f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 03:18:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730369885; x=1730974685; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zbKlMfLsvMFTnYP2zSuabkcuPcI1EtftuFYYUuKCDN8=;
-        b=hvjaPhpiQn8QkYveUlMlqjTn+qHyMlYqgFCblHIEbfzGDDStNCUvYEAb1hk1OQnr/I
-         EtCntOF1WYpAgLu+bmH5O6kWY16mvNlZ9g79jzwm/zuuG2ItfOSwbAAkxrRe0YOm1veT
-         sq+tximCBP44djqiL9ghggdGiYejihXjPScPRaMzfijXh0hBUEleZBMssA00QjR25zMo
-         GpnCGbfU8gB0v/yH0023/S6Gqej0NCw2YHKLaMZuK16xqXxnp3t9tvs+28+GwtFkaUZs
-         X5ilkroN6g6FPAU9TC9L/mXCR+lcUZLmduM4p6dQTeual/Vou9JGTWpO6yD0vpxp38Cl
-         tZ/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730369885; x=1730974685;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zbKlMfLsvMFTnYP2zSuabkcuPcI1EtftuFYYUuKCDN8=;
-        b=daFvoum4qtTtr7XrM9aHEjYeFxrpzLdpO60yZDE+w9g+8DmMasrsiqMjM3hzzzVKg/
-         t0gIHhrG0So6JbInzIvZLJwoptp7r58LrXqv+qBzuju9Qtm1N9JvhyCFBjASXtaaiNIg
-         eVgP9yb+uzRlUTmJ6XCy9YBOiU65Akntgu0lVYpiTLYEK41X1FH9KR0EzTbXWl2NH3hp
-         ImAbChtDUrkpQuaQSq69uUro2dm6BzdLpXNqCnNPesq9qcasx0aY0GMPlNlKb+L0ia3A
-         YYcSMKoYlJ1PH7kMI4YEVIeiBGZX2GRjZZH0dXj2LdyP9mMCZah1968NB5mObg11K3xm
-         F13A==
-X-Forwarded-Encrypted: i=1; AJvYcCUzZaG9nLJpAGxyjLhuG3juQEs/408YLXnCl8NT8x6BP9DgDOoY/Pj3aU6Cjk5AeoF5SAX8weghiHmC@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxfSTjH+fju9Zrh0vZrq/7jzimTUGU3GIQ81Tan9DxPHsY78cw
-	6JhKQN/h8V2zN8lBk32vKXrrsgEeuVal2MyhboKkJMiid2OXlYKmoBKSuvNWHEI=
-X-Google-Smtp-Source: AGHT+IGCX3IRxS92Sd+q6XBt7pJBtLTSBxWZ6mf2JAbO8k9l38YvaQZx8tf1dO/Ew/ZMJtShzY0QOA==
-X-Received: by 2002:a05:6000:2a8a:b0:37d:518f:995d with SMTP id ffacd0b85a97d-381bea2772amr2508132f8f.56.1730369885431;
-        Thu, 31 Oct 2024 03:18:05 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c10e7449sm1678420f8f.49.2024.10.31.03.18.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2024 03:18:04 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jakob Hauser <jahau@rocketmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht
-In-Reply-To: <cover.1730070570.git.jahau@rocketmail.com>
-References: <cover.1730070570.git.jahau@rocketmail.com>
- <cover.1730070570.git.jahau@rocketmail.com>
-Subject: Re: [PATCH v4 0/5] Add new panel driver Samsung S6E88A0-AMS427AP24
-Message-Id: <173036988456.2180741.11445064656378016116.b4-ty@linaro.org>
-Date: Thu, 31 Oct 2024 11:18:04 +0100
+	s=arc-20240116; t=1730370871; c=relaxed/simple;
+	bh=zANYUiHmKXksyQ6E+6YVTESkzq42rbS9GPMJvQKhXnk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LerRlwiu9hAzWGUwl/4uwjrpYNCcgQIJAK+CkhIJg7zkiYxyRPunVPqlQ1fZAZTwEXYf/XYeMUvCvbm/n2qTJ5OtnZzRORSg2gKCClsh1o6K/j58gMu1hbdSX5geYz74qbAbOsrXwxYCrVoUZOLjFq5c8URF7PQWCTdwmDMlVoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=R4DHCx5y; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id C286989285;
+	Thu, 31 Oct 2024 11:34:26 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1730370867;
+	bh=xMjYvi/k0LQv3mvZTRUW98lV/FQ3V/2XaFC77x3qp1Q=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=R4DHCx5y1WLPTmrQgUeiNT6q3Bn6qZiHbfVy1ehcrKerMsp7P+SUnLS0pozgzOPEO
+	 kwgnuv6a61i3Dm+t+OvvD22xMAErsoInObWnEPfvAA8jybfRkteO3QxnFRAt/OeNgM
+	 MoxHxi38Bt/0U2XnfgVEP3Bj+03bJYDY8TQQzGWn8DhvAcnznVXQAT3eJPUvFCPn//
+	 pQfTEjQHSr0rSIfcrOi+2EDXasBluWymdqPk9XPs8skGxvOgoeapD4WQ1oLywpfmO5
+	 Jbx+6iLWJwYhirI8XINXT4olddEyZrSN328ulmFYI1T6lTRVUjGnkRRn4p71+Hc2wW
+	 +Fzheen24Xqmg==
+Date: Thu, 31 Oct 2024 11:34:25 +0100
+From: Lukasz Majewski <lukma@denx.de>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v10 4/4] ARM: dts: mxs: Add descriptions for imx287
+ based btt3-[012] devices
+Message-ID: <20241031113425.1e3d1da5@wsk>
+In-Reply-To: <806770fc-3830-4e89-a3ee-487b662685ed@gmx.net>
+References: <20241022133040.686562-1-lukma@denx.de>
+	<20241022133040.686562-4-lukma@denx.de>
+	<20241031094236.17ed927d@wsk>
+	<806770fc-3830-4e89-a3ee-487b662685ed@gmx.net>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: multipart/signed; boundary="Sig_/FD/wYCUhTrUoXhAbjXcXHQB";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi,
+--Sig_/FD/wYCUhTrUoXhAbjXcXHQB
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 28 Oct 2024 00:42:01 +0100, Jakob Hauser wrote:
-> The patchset adds a new driver for Samsung AMS427AP24 panel with S6E88A0
-> controller. Patches are based on current branch drm-misc-next.
-> 
-> The discussion in v3 was not finished. I send v4 nonetheless as a new base to
-> continue the discussion. I hope that's ok.
-> 
-> Changes in v4:
-> 
-> [...]
+Hi Stefan,
 
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
+> Am 31.10.24 um 09:42 schrieb Lukasz Majewski:
+> > Dear Community,
+> > =20
+> >> The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
+> >> some extend similar to already upstreamed XEA devices, hence are
+> >> using common imx28-lwe.dtsi file.
+> >>
+> >> New, imx28-btt3.dtsi has been added to embrace common DTS
+> >> properties for different HW revisions for this device.
+> >>
+> >> As a result - changes introduced in imx28-btt3-[012].dts are
+> >> minimal.
+> >>
+> >> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> >>
+> >> ---
+> >> Changes for v2:
+> >> - Rename dts file from btt3-[012] to imx28-btt3-[012] to match
+> >> current linux kernel naming convention
+> >> - Remove 'wlf,wm8974' from compatible for codec@1a
+> >>
+> >> Changes for v3:
+> >> - Keep alphabethical order for Makefile entries
+> >>
+> >> Changes for v4:
+> >> - Change compatible for btt3 board (to 'lwn,imx28-btt3')
+> >>
+> >> Changes for v5:
+> >> - Combine patch, which adds btt3-[012] with one adding board entry
+> >> to fsl.yaml
+> >>
+> >> Changes for v6:
+> >> - Make the patch series for adding entry in fsl.yaml and btt3
+> >>
+> >> Changes for v7:
+> >> - Use "panel" property as suggested by the community
+> >> - Use panel-timing to specify the display parameters
+> >> - Update subject line with correct tags
+> >>
+> >> Changes for v8:
+> >> - Use GPIO_ACTIVE_HIGH instead of '0'
+> >> - Add the comment regarding mac address specification
+> >> - Remove superfluous comment
+> >> - Change wifi-en-pin node name
+> >>
+> >> Changes for v9:
+> >> - Remove not used 'pm-ignore-notify'
+> >> - Add display names for 'panel-dpi' compatible to avoid Schema
+> >> warnings
+> >>
+> >> Changes for v10:
+> >> - Drop new line with panel-timing definitions
+> >> - Add new lines with 'sound' node
+> >> - Change 'codec' to 'audio-codec'
+> >> - Change order of properties for saif1 node =20
+> > Are there any more comments regarding this patch? =20
+> Sorry, i wasn't aware that you are waiting for reviews after Rob's
+> request.
 
-[1/5] dt-bindings: display: panel: Move flip properties to panel-common
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3c0ecd83eee9b8584588f629e01d209f2c3a632b
-[2/5] dt-bindings: display: panel: Add Samsung S6E88A0-AMS427AP24
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/4998d53df6753c3dbb6e960291715027518c61df
-[3/5] drm/panel: samsung-s6e88a0-ams427ap24: Add initial driver
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/d5658db2a0768a73a862f8b5fe6daae10d3abfec
-[4/5] drm/panel: samsung-s6e88a0-ams427ap24: Add brightness control
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/5b67fdf1668fc373b1e492e33ce7d17f7056a609
-[5/5] drm/panel: samsung-s6e88a0-ams427ap24: Add flip option
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/e70d4f8e242bbc4fd39f3a867dc3e33122d7e559
+I did not received any mail from Rob's automated DTS test script, so
+this is a good thing :-).
 
--- 
-Neil
 
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/FD/wYCUhTrUoXhAbjXcXHQB
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmcjXTEACgkQAR8vZIA0
+zr2R0gf/dn+dA46KkhqB5cnCwM/Du4YuF84nm95iXMGzE3j0nrAz35xAEt4kbQWT
+AeHvQn13mHETK44MBDyVCmwJsx/UIWNCPRdpFRyN1b7cVLqxQu2ktw3k2roMChbS
+Xy4aOQY4GcAf+OPczECtsV/sXrCAbZlOILrtEP0qBxREDWbLy6J+7fWL8UZ6VXbM
+fCBTG/iu4bJRUpQG4gX8w2G2WW4Su487RJqbun0Wj0r+/ED4tQqzmye5wZapZNhJ
+CO8rqfo9o6qQZzW+ppECs3DC4vRVLeMYbsNhyKhTrM8igjjAnutyabSHzw5R3Jh1
+5D8uiUHD+Y/NfIWkM/tJFFnS1iGreA==
+=8/4m
+-----END PGP SIGNATURE-----
+
+--Sig_/FD/wYCUhTrUoXhAbjXcXHQB--
 
