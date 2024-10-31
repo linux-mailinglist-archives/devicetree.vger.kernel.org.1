@@ -1,70 +1,72 @@
-Return-Path: <devicetree+bounces-117670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76E49B7527
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7251E9B7526
 	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:17:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67B31285F1C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:17:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1ED101F24FEA
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:17:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2471494BF;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA6341494B5;
 	Thu, 31 Oct 2024 07:17:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cGZMBBh7"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="LlMyQyNf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4561B148318
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 07:17:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D891487FE
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 07:17:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730359074; cv=none; b=XweeO4w4WyLfrZbPkR+LJG+FgnT7YrPfUFSHLnlfJTShgbHtRLfwOzQlerG4isAZkvFGt6mpwLh3PonP1t3Xc3+QyoHXXEtmH17N6Rvm5K14B0+hFvdFvOEH5Q6hFBPz0upNh8pGDf4nMUt8RIr++zp2TLcKmXg88NcsderN4bs=
+	t=1730359074; cv=none; b=VAgdKLsvb/GwbSoGwp2PcB4EzGvMr11B+bwkG+e520nkiowgZIDhBuclPjO8O17URwc3hvLjb1rm1BpIZFYFhQeTcqASjnAIWM4JB3KV7H4NI1wI7kawkfLMoqowcvH/2IRIcMzTwGY6kvzCMWHj+r0Ed1Un0oz1nCRHhXMud2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1730359074; c=relaxed/simple;
-	bh=BnctoaThzk9TCtG6Rxw+H7YIyitDA6GU43ZIVeyO6HE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=te5IhDovV2+RYNIfDHWu3+04VwJJ79wzOy7FQReF/s1EM/kZrciCCgzR7fz/+PrIsGBitgggYYMI6DuiBeiGO2IqbhBWm0eTEI6XyQOQ196oweDrWqSqDtHWfTlNw0ScbLDJ23rdq++YZS3Km30qGCY+NqZhvUdFwzjrrmYQ34s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cGZMBBh7; arc=none smtp.client-ip=209.85.221.54
+	bh=xu4vcOByqa0T+o0Mtg/VMSPa5suwUETcqrDuyfDGNgQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=GdQ1u4SbXCyOU/ySY6ixREozGF3fpwU/dbkhgkx1PnZLJ3gkYrzMO/crO+UI9enud0+jslQK+nDvh7IbkxlmgcM6Rivayc9SSoBGAfltxaNqVPyKICihNbMj6IBpypULdJTSya8XhujC94mMn9TfOjbno/7Oz0HOb2TaxidTo1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=LlMyQyNf; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-37d4a5ecc44so383087f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 00:17:51 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-37d51055097so393889f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 00:17:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730359070; x=1730963870; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vbdfq8Je3d3l1JKu54Y52BJh8JgRsihwOk8O/lVTfe0=;
-        b=cGZMBBh7q3rAMIzrVkPom8YzdLggcV+PrDTMNBOg1j82O5cUHJebHkcr9CimlZDoUW
-         AD/WOgbl1Miw0kZIs+sFjXPkHZN7eARgC18LFYJgNixJLhaesW6I0Vv+E/SIW/l30BlO
-         3/OdjzZ4BlkepY2h8mo6QEyfLwREF/M1VPh3fhf7ZRq0Xzu6fNNByGCIxqYfE+AWbRiq
-         2BLsjN4AaKn0boDgiyRHZhOAcYNj8tbtI3rjXrh3eCEt1/zk6zsoPpOg43SSqe5JMRjc
-         0RUly4Uo7GiQ2SCfpDUyyLHUzfrf7N6LS0wTZMCOm5We9k8JwQWMWV+zQkmoi2zZyU6W
-         Qn1w==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730359071; x=1730963871; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m6z7u9n04i1CD+dVrnwMZN3subLaG04bfZd3Fni/4JM=;
+        b=LlMyQyNfYnMucYPqFikZvNwyXYu4Yd4ozfSFZTRxmq3hBmBHZgDZpzf1Pevq7xwQb0
+         2sl6nlXojLiVtjy4LhsNSxTYYKrK5Yhhlmt/1PZ5hXY4WZ70wABFA15EHH6jp/ObSSo+
+         01foXQyha3AV4txE76kCG1zE2CagYyhHOT+y42WeOk4sTHNRWKT9R2foD4PTjS8D879J
+         Xd9oJHKyFh9JOv9+dIq4ek9bIdD+jGmPrSHtl9PbQOcnBRkgTqCDAnQL/c09ZTZz1v6c
+         kqxpZ+poh6Kktjhl5wAJV4FUzwTQMuoFys996EaRZdnkMen/7NNn7PM9jgC88GlQCD49
+         iZgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730359070; x=1730963870;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vbdfq8Je3d3l1JKu54Y52BJh8JgRsihwOk8O/lVTfe0=;
-        b=udU4VOHh2UGFxueJy4RFLAxIg4837ujdXCAijBCg9kL7y2GskkLJcTN4vc4NWH1TEn
-         VWON33Gdvnv1gZdw4dym3HCaZ84SyGoc2TQg2wj+jxphUWZ39u0a6kAn01nMID+qtmt1
-         aYlEVWdbbVapqqlMei5JmVrn4opQMleyTxAOPUFsX9PHUjFjEl2kY0q6pbMfi0l9Y40O
-         KbfiAI/w9oQ+UJxM+hz3AuWi5CSMN5RbMZH+4mb1D/UwdfsgCNSQb7Lj8CUu6HWHImUA
-         a24GQBozSJRwakI3fFbaard8NJYPh/qe0k8cqc/LxI087ByBnUoZnABbUh/V6CgKAOF5
-         irCA==
-X-Forwarded-Encrypted: i=1; AJvYcCW3AYDYq7YTVZ9CnqeK7k0bX1AFhIwzoBpjlNLK94l6GMoQUIxvSHU/DVBSkbKAJY0qYJrSEmfdGIS+@vger.kernel.org
-X-Gm-Message-State: AOJu0YykPBOPAp1OV5kMA8zYeFO2Di+z3JHmARByeesvXCVTHAokXoZY
-	aF4WAIjnYRg+3XxxDB5hkw+hsBrhKknktjWDg/NYivlIWoJI50mhUS29RhUgKC8=
-X-Google-Smtp-Source: AGHT+IH0ecoJmTJyGmkK2ASaEkXcOU4g+2rVZqrKqcLhxnzq14TG+MSD/Flf10ahMxtm5wkcwC2XhQ==
-X-Received: by 2002:a5d:4106:0:b0:37c:d558:a931 with SMTP id ffacd0b85a97d-3806115902emr13662094f8f.31.1730359069635;
-        Thu, 31 Oct 2024 00:17:49 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1730359071; x=1730963871;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=m6z7u9n04i1CD+dVrnwMZN3subLaG04bfZd3Fni/4JM=;
+        b=aBPKAs5zkUdYmeYW2WIZgh5QDL0COMtLW4giWzHWsfitBjX1t9Hm7nbAcQH8QkjwhU
+         HkOz/1FmlNYRyFb7PrDMMFtYYh2r/VaqaKw5hEUojrWYki5F4Jx1DpYoXW88OsHcmPvj
+         Q+rEzxFMORML/uXiclA1ndlqovmIWCz6H1L9k/Uxypxje6CdyVPNkTSFBYfnoFpB0hMm
+         x+fMpD55it6n7Y5kZFEIXNd4pKJSZDhiQetaZrdtdAPssU0ayPrQAIZy+P/PGTW6fiEb
+         qDlUwhSzSa2FK6M/8ZX3QF4vSICfKrDz/kRw1gqpYMGVd5r83u2anOwZAktgFJVle+rT
+         WS/w==
+X-Forwarded-Encrypted: i=1; AJvYcCWzZ/dkmPLJSVakPt/NWclBzXRnqHqWa++ezPlHL8CAnjFCK7SvFBegcSr7FbxjF+DmVEweoG7zIiwT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUh6Y0uA6Kj8gutvWDj2QR+3up99ypD4nWVCunx4GoQBUhszHh
+	3X8nPauadI/0F9o9HodEsCw5KfPlH6p7kkm7aM6DfBpUMHOxUc0C9LC9N/xIRnk=
+X-Google-Smtp-Source: AGHT+IHqsSrRK3WaqLyPzOG0cz8hA2PrJwrsarp3k2DUiOAi+1UO9m3fvc3ksKyJ1vyEA2H50edTtA==
+X-Received: by 2002:adf:e543:0:b0:37d:54d0:1f20 with SMTP id ffacd0b85a97d-38061158e30mr12973741f8f.24.1730359070881;
+        Thu, 31 Oct 2024 00:17:50 -0700 (PDT)
 Received: from axelh-ThinkPad-T450s.home (lfbn-nic-1-251-169.w2-15.abo.wanadoo.fr. [2.15.94.169])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c113e694sm1187547f8f.86.2024.10.31.00.17.48
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c113e694sm1187547f8f.86.2024.10.31.00.17.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2024 00:17:49 -0700 (PDT)
+        Thu, 31 Oct 2024 00:17:50 -0700 (PDT)
 From: ahaslam@baylibre.com
 To: lars@metafoo.de,
 	Michael.Hennerich@analog.com,
@@ -77,11 +79,14 @@ To: lars@metafoo.de,
 Cc: linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Axel Haslam <ahaslam@baylibre.com>
-Subject: [PATCH v3 0/6] Improvements and Enhancements for AD5791 DAC Driver
-Date: Thu, 31 Oct 2024 08:17:40 +0100
-Message-Id: <20241031071746.848694-1-ahaslam@baylibre.com>
+	Axel Haslam <ahaslam@baylibre.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 1/6] dt-bindings: iio: dac: ad5791: Add optional reset, clr and ldac gpios
+Date: Thu, 31 Oct 2024 08:17:41 +0100
+Message-Id: <20241031071746.848694-2-ahaslam@baylibre.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241031071746.848694-1-ahaslam@baylibre.com>
+References: <20241031071746.848694-1-ahaslam@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,35 +97,56 @@ Content-Transfer-Encoding: 8bit
 
 From: Axel Haslam <ahaslam@baylibre.com>
 
-These patches aim to improve on the ad5791 driver:
- - make use of chip_info / match tables, and drop device enum id.
- - Add reset, clr and ldac gpios that have to be set to the correct level in case they
-   are not hardwired on the setup/PCB.
- - simplify probe by using the devm_* functions to automatically free resources.
+Depending on board layout, the ad57xx may need control of reset, clear,
+and ldac pins by the host driver. Add optional bindings for these gpios.
+
+Reviewed-by: David Lechner <dlechner@baylibre.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
 ---
-Changes in v3:
-- v2 is missing the version prefix. Im sending v3 just with the added review-by tag.
-- Add review-by tag from David Lechner
-- Link to V2: https://lore.kernel.org/all/94a03835-bdd1-4243-88c7-0ad85784fe36@baylibre.com/
+ .../devicetree/bindings/iio/dac/adi,ad5791.yaml   | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-Changes in v2:
-- Fix probe error print using uninitialized ret.
-- Add documentation for new struct parameters
-- Add review-by tags to device tree bindings
-- Link to V1: https://lore.kernel.org/all/CAKXjFTPwN2TYW6sq1kj3miZ0f5OqKX0aTk8eGf1sj9TBk1_e=A@mail.gmail.com/T/
-
-Axel Haslam (6):
-  dt-bindings: iio: dac: ad5791: Add optional reset, clr and ldac gpios
-  dt-bindings: iio: dac: ad5791: Add required voltage supplies
-  iio: dac: ad5791: Include chip_info in device match tables
-  iio: dac: ad5791: Add reset, clr and ldac gpios
-  iio: dac: ad5791: Use devm_regulator_get_enable_read_voltage
-  iio: dac: ad5791: Use devm_iio_device_register
-
- .../bindings/iio/dac/adi,ad5791.yaml          |  39 ++++
- drivers/iio/dac/ad5791.c                      | 203 ++++++++----------
- 2 files changed, 131 insertions(+), 111 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
+index c81285d84db7..fe664378c966 100644
+--- a/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
+@@ -31,6 +31,17 @@ properties:
+       gain of two configuration.
+     type: boolean
+ 
++  reset-gpios:
++    maxItems: 1
++
++  clear-gpios:
++    maxItems: 1
++
++  ldac-gpios:
++    description:
++      LDAC pin to be used as a hardware trigger to update the DAC channels.
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+@@ -44,6 +55,7 @@ unevaluatedProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/gpio/gpio.h>
+     spi {
+         #address-cells = <1>;
+         #size-cells = <0>;
+@@ -53,6 +65,9 @@ examples:
+             reg = <0>;
+             vss-supply = <&dac_vss>;
+             vdd-supply = <&dac_vdd>;
++            reset-gpios = <&gpio_bd 16 GPIO_ACTIVE_LOW>;
++            clear-gpios = <&gpio_bd 17 GPIO_ACTIVE_LOW>;
++            ldac-gpios = <&gpio_bd 18 GPIO_ACTIVE_HIGH>;
+         };
+     };
+ ...
 -- 
 2.34.1
 
