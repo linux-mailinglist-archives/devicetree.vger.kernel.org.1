@@ -1,121 +1,114 @@
-Return-Path: <devicetree+bounces-117600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AE949B7146
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 01:45:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 352A89B714F
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 01:49:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C5861C212AB
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 00:45:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D42571F212C9
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 00:49:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373A81BC20;
-	Thu, 31 Oct 2024 00:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAEBD1CFB6;
+	Thu, 31 Oct 2024 00:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TrV3EIYK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ifGBdiR2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A288C2FD;
-	Thu, 31 Oct 2024 00:45:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D244817991
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 00:49:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730335550; cv=none; b=axfkpejWxDlxF3LynBByCS0rlsInuh/tF9FNEkL7AfyiKEwPMxFZlgKQ9Dy/Qj+sZb7MvHNDbf/TpvFmXKjeNkBJSkWzVUw87EGOuFqJEluIZPXZjkLdF0s93/3S/mfXQrch705RC4bPjprmubAoUNof2pDPuFA0bUiW9p+jMkM=
+	t=1730335762; cv=none; b=k1q84ONM/tr6NS3/K1HQniT7lHS249bbyjJE78y8O4X95BGwMFrBmGkydPNEWPXEJNenn7VgXT7g3u+Y7ldriHbpZfn4ubzSFevBUvyMyoeL51dfqHLKj7hM7EsyFt5W7sE/AE9CGfNGz3f4/z4yymrODnpiz9iUm7tuDNWnD94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730335550; c=relaxed/simple;
-	bh=oAA+9OSWf2l09wWMiiddhw7UfO+O2McyY//3wWYPwBo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MH3XKgoXTRAaGL4+Hp8MG5sKnA4nNviJzK+SeWAFEZD5mq+X8hTqgz+fOreSwcrrLj7xzRG0HO/AYdte/d94Q6E3OPwotgLfVZIghaW5eRuNl5HPjiQz6EhcROQOgxLputjOrb9Lh0EVbW8x8B+2iPZa3apmzjkmH24xpbRUoiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TrV3EIYK; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730335548; x=1761871548;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=oAA+9OSWf2l09wWMiiddhw7UfO+O2McyY//3wWYPwBo=;
-  b=TrV3EIYKA05jJUu3v56RFE41aWGRuc8AZK9WjXOc0LgVijBropSuoGYh
-   mEoZzccSFGb5SFvqVPhfevntmY+TZo5PEusSpjDhDwOWk8NM3nbwEwugl
-   h0NxEXQAaVQc8Y5tfpYBusAyn9D9fV6+96B5CMJEuI8P/kclCV5yEjonh
-   HLB1zTP7qt/gkWUpikt+ktfvkaoHLzHRuspIJkXUtaj6UZ1Xx3o4ErlGL
-   aBDIrvP9vB3rV3JS9mDC73MvPapNoU7qV8Z4moz3RwWgjMZhg65dG00Gl
-   B/zCuCpi6XJ+PdNlN0ZaUzEzY2qy55wwwCKWwkXEVeV7KoL4Lu9sYnN7o
-   g==;
-X-CSE-ConnectionGUID: pBbrpmWVTxy5luXuIjeOpA==
-X-CSE-MsgGUID: HOhj0uCgSF2aE7SRWOyvxA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="40637955"
-X-IronPort-AV: E=Sophos;i="6.11,246,1725346800"; 
-   d="scan'208";a="40637955"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Oct 2024 17:45:47 -0700
-X-CSE-ConnectionGUID: X4k+Gr8wTfSo4COVZJWTZg==
-X-CSE-MsgGUID: bS1Vd3qcQn2WxqGo5GafTw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,246,1725346800"; 
-   d="scan'208";a="82790697"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 30 Oct 2024 17:45:43 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t6JJk-000fSq-2D;
-	Thu, 31 Oct 2024 00:45:40 +0000
-Date: Thu, 31 Oct 2024 08:44:48 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ryan Chen <ryan_chen@aspeedtech.com>, lee@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-	andrew@codeconstruct.com.au, mturquette@baylibre.com,
-	sboyd@kernel.org, p.zabel@pengutronix.de,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, dmitry.baryshkov@linaro.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v7 3/3] clk: aspeed: add AST2700 clock driver.
-Message-ID: <202410310827.OOitgPg0-lkp@intel.com>
-References: <20241028053018.2579200-4-ryan_chen@aspeedtech.com>
+	s=arc-20240116; t=1730335762; c=relaxed/simple;
+	bh=ZjtbT2Pdo5aYguq16kK5+0TmKumhpkQwfo5YKWlpA4U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RvK4UJbKT9mLofRA6x1i8VLBIz08gv7D53XFR49N/US5i2wWDpKHPg9A/d0HwOek/+T3VDWVrXdPvIShAfGTdUdDuUzAoGzlH7nzB1/ZNcph4OfcQdimzEEEu3NVxukqt3IybauRqr/u7HgruoHmuWm4Uo4+GiV8iq0HQtJyVfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ifGBdiR2; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4314c4cb752so3482455e9.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 17:49:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730335759; x=1730940559; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZjtbT2Pdo5aYguq16kK5+0TmKumhpkQwfo5YKWlpA4U=;
+        b=ifGBdiR21FipJtgfUCy97fSpZaHk0UDdAnV8Bs9oh7i1imi2lmkGV43UYd73PyR1S0
+         94prMJd865hktYJRNSB3R+zH3B8ozE8cO7724bXdggs24UgiKc7wlIwGInjBlSohQ0eK
+         0zcTMNoxSs9Sj0eJ7Xflrr2JwnKDPAJt2v7e2J/FkXU+8B7cKADua03NpELSBJfoMaC4
+         6iuduNqd92wl2CBFLgxKfT5/I/9Lw0H50L2PCbIkQtjDO+V1bHGQz3PKFu4ToYGoyLdF
+         zIvhBezKLpjNMeq60fYeQwvJz2Jk9mMOOZY01pXvuEKcTgYkcPsp0L81EDZT3yYft5x5
+         1AuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730335759; x=1730940559;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZjtbT2Pdo5aYguq16kK5+0TmKumhpkQwfo5YKWlpA4U=;
+        b=jw1FUebzga7BRwSQnHNLU2PRbzbgyno+0Sax4AKToZP6JUvsY66W4mRrUTkbpdtxGZ
+         fE8yX2hDReKb62fmOrgPw4bE+m2ugQteloQhoA5Nq/UXNaQfdMv7Kpc0bZvbRK2U2TQ0
+         Sbu70/rrUHgxI4WvfbZQCPVU73kYvaxLR4iPpXvMUXM80HO6m1PSUafDKn7IyoFhYrd4
+         vWpBtbw3c1TNEtZoBc+dIi3tPKB/4/P4wwUXX8eT8btbxj7NG+IgPkUVjVFK9bpYI5sX
+         fERF275eUuKcSbEV6A2pT5pYFBs6GFzam4yIjHGv60BC4ZCmn0NwM42YSNIZCNfHP7j8
+         RfEA==
+X-Forwarded-Encrypted: i=1; AJvYcCVn85n369N2t2WuP2R8gCRNgdFMIC5l7RjCGlbxIwVmBp9LHSTuDTctdE68TgRUeWGyuErkwacIhhF2@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmWpLiRWF6yhheoU9IQVlHEUUxP3RgY9v+nPqFuQLDRUokBYM5
+	Kb08K3iK94E4HMi6+uANl85YS+4uW4ZfHgmR4wRw0KY29J9G/OTFO9lWvrRbwur5SpQAIas9l2R
+	QBCrC/7yfIqVfK2AftXeN2HAoJQU=
+X-Google-Smtp-Source: AGHT+IE9kEhPn7zleAyFMbH7KL0/80IedkMpTxBdxFKB0CUsFcu0GnoRPTCofF61WV28ypcgTSjTd1XcRg3PlY2rXu8=
+X-Received: by 2002:a05:600c:1f91:b0:426:66a2:b200 with SMTP id
+ 5b1f17b1804b1-4327b6c79f7mr12136815e9.0.1730335758928; Wed, 30 Oct 2024
+ 17:49:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241028053018.2579200-4-ryan_chen@aspeedtech.com>
+References: <20241030192236.839105-1-macroalpha82@gmail.com> <20241030192236.839105-4-macroalpha82@gmail.com>
+In-Reply-To: <20241030192236.839105-4-macroalpha82@gmail.com>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Wed, 30 Oct 2024 19:49:07 -0500
+Message-ID: <CALWfF7LNN2dAtr00nLyk8rgE-K1vtSXkjhCFMbkVSzxhhSDvWQ@mail.gmail.com>
+Subject: Re: [PATCH V2 3/3] arm64: dts: rockchip: Enable HDMI0 on Indiedroid Nova
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
+	Chris Morgan <macromorgan@hotmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Ryan,
+On Wed, Oct 30, 2024 at 2:25=E2=80=AFPM Chris Morgan <macroalpha82@gmail.co=
+m> wrote:
+>
+> From: Chris Morgan <macromorgan@hotmail.com>
+>
+> Enable the HDMI0 port for the Indiedroid Nova. The schematics available
+> show the hdmim0_rx_hpdin is connected, so this pinctrl is enabled in
+> contrast with the other rk3588 boards.
 
-kernel test robot noticed the following build errors:
+Which pin in the schematic [1] (page 24) does it refer to? It's not
+obvious how to match it up.
+The schematic looks the same as the Rock 5B schematic [2] (page 31)
+and the Rock 5B dts uses the default pinctrl [3]
 
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on pza/reset/next lee-mfd/for-mfd-next lee-leds/for-leds-next linus/master lee-mfd/for-mfd-fixes v6.12-rc5 next-20241030]
-[cannot apply to pza/imx-drm/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Note: The vendor kernel DTS doesn't modify the pinctrl either. [4]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ryan-Chen/dt-bindings-mfd-aspeed-support-for-AST2700/20241028-133255
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20241028053018.2579200-4-ryan_chen%40aspeedtech.com
-patch subject: [PATCH v7 3/3] clk: aspeed: add AST2700 clock driver.
-config: csky-randconfig-001-20241031 (https://download.01.org/0day-ci/archive/20241031/202410310827.OOitgPg0-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241031/202410310827.OOitgPg0-lkp@intel.com/reproduce)
+If you try using the default pinctrl (not overriding), does HDMI not work?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410310827.OOitgPg0-lkp@intel.com/
+Jimmy
 
-All errors (new ones prefixed by >>):
-
-   csky-linux-ld: drivers/clk/clk-ast2700.o: in function `ast2700_soc_clk_probe':
-   clk-ast2700.c:(.text+0x530): undefined reference to `aspeed_reset_controller_register'
->> csky-linux-ld: clk-ast2700.c:(.text+0x558): undefined reference to `aspeed_reset_controller_register'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+[1] https://wiki.indiedroid.us/Nova/schematics
+[2] https://dl.radxa.com/rock5/5b/docs/hw/radxa_rock_5b_v1450_schematic.pdf
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.gi=
+t/tree/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts?h=3Dfor-next&id=3Dc8=
+152f79c2dd8039e14073be76fdbce8760175da#n207
+[4] https://github.com/stvhay/kernel/blob/batocera-rk3588-4.0/arch/arm64/bo=
+ot/dts/rockchip/rk3588s-9tripod-x3588s.dtsi#L226
 
