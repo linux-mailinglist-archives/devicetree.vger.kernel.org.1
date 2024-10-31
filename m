@@ -1,91 +1,188 @@
-Return-Path: <devicetree+bounces-117838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46EBA9B7FFD
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 17:25:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 769A39B8056
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 17:40:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7891C1C218E6
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 16:25:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7A8C1C21DA6
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 16:40:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FE2B1BBBE0;
-	Thu, 31 Oct 2024 16:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889471BC088;
+	Thu, 31 Oct 2024 16:39:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t32C6N4s"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Q6pixFk4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED4122E406;
-	Thu, 31 Oct 2024 16:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08FBD1BC07D;
+	Thu, 31 Oct 2024 16:39:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730391918; cv=none; b=Ghj89MC4ovTQQzYsMrIbF4X0W2QMt1cyeOzFkggCBp4Xy84CFaVz+vCWnycGeFAGtLgj4RQSUBKp8awCfmiSFsFeW+Sg17XL/ZlISdSauN/y9MnGzaYljC1m2CSFEz7JTQTy1GNkiB+VJcd36tnb11TGDbGH+jHwqsQCt/qzPi4=
+	t=1730392776; cv=none; b=H/Bi+2lDL0NI/etjq1E1dAdoFjTvHh5lS9PVJAg1NLhneSuWHZnUPhEsrR4I+jtePbDecQP/K0Wm/nZzCVLFC6ZMeIwHx8OCZTRzfHhIEDHfKpuqhum+y9q9RgDZ4J8GlQ3ZVAcvVfl8E8azR67zJTEnP+5jyZj07mUq/u/o3D4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730391918; c=relaxed/simple;
-	bh=kOzU4sWaB8Z+MTN4eCgKLw2cHRT9ijWtixUXAnUmrkU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=bQUE1nA9jwZ/+MdEQ7L64+5sqkPROt2c2OPOm8UjBvbMHPazGzkfTxtgIFm0hQuweJLf78FkVIN4DA4scZzL637DzS0t3YpcP3bCra5FMAx31PmBlTGWQUIjwOumhBp4ltkY85EweZUZrAfrgM9RtSRPWtDleYmZshn5yvqaQX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t32C6N4s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1296CC4AF64;
-	Thu, 31 Oct 2024 16:25:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730391916;
-	bh=kOzU4sWaB8Z+MTN4eCgKLw2cHRT9ijWtixUXAnUmrkU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=t32C6N4seQsMZw8/8OYb3lpIsZd1hFHGoeWntGbPiFss9dtTp1gVTsiP2D265EW4Y
-	 pFUaQMb9ggqGzl/Hj+1bAwpkBO0TnOgmmaolQCghuoQCKUEbDTLHdj1CaXIIYgeE9T
-	 QDN7L6PxJcU6+pYftOuAo6hyt/GPVMe8tquGeGMpEexn8WDeY9/+ciL3RK5gAJwNYw
-	 gc7g+Y+RfM/ogalnMFkaLs4INKpK0ECG97OL0ATNRKacfbPor71kKWEu5FYgGd7sHM
-	 y1td18RUcsJgC9kzu3t/lABQPwEuFGYMH6kVYMLITxCYJznPIrk8jhzGcQf8/gG1SJ
-	 WIayZYm7etZJg==
-From: Lee Jones <lee@kernel.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>, 
- Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>, 
- Lee Jones <lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- jason-ch chen <Jason-ch.Chen@mediatek.com>, 
- Chen Zhong <chen.zhong@mediatek.com>, Flora Fu <flora.fu@mediatek.com>, 
- Alexandre Mergnat <amergnat@baylibre.com>, 
- Yassine Oudjana <yassine.oudjana@gmail.com>
-Cc: Yassine Oudjana <y.oudjana@protonmail.com>, linux-input@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org
-In-Reply-To: <20241018081050.23592-5-y.oudjana@protonmail.com>
-References: <20241018081050.23592-1-y.oudjana@protonmail.com>
- <20241018081050.23592-5-y.oudjana@protonmail.com>
-Subject: Re: (subset) [PATCH 4/6] mfd: mt6397: Add initial support for
- MT6328
-Message-Id: <173039191181.1807167.5693334391101093863.b4-ty@kernel.org>
-Date: Thu, 31 Oct 2024 16:25:11 +0000
+	s=arc-20240116; t=1730392776; c=relaxed/simple;
+	bh=luEuhY2NHbh+W5Mf5hekJwKMw2+9BoSebFMTzw2KDHY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=MEKBz9NsLmxejmWrEro2780q/p7rXeF6GKymDR6RH0U5Tcmdn/MEw0SAP2uJW3o41VSylkD39UgSPzjlWF+UOdsQ3r8FcsOupkMzk3A23nHiTKjfT8eUIAbaqSTfMlD92Z04gr6TwQLqL/WX9AI7PtDV2H4pSrIMyKbwUa4XstY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Q6pixFk4; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49VGdB8b075269;
+	Thu, 31 Oct 2024 11:39:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1730392751;
+	bh=bXLrbm4rNgCxySzqegyMFNcdkSquFq5CB9anD4WpKE8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Q6pixFk4owkW+oYSI/1SbFcgjnq4y3gomOrgV3Jk/764nSfOhCcS+zvCfEegpMZRd
+	 fr/2tvb2OCuOe8teDxxyyjx4XqVhCcZFNYMfj2AWBTzPylADq2Q4ZrSaK+SuyCj3bq
+	 BXL3qHLX/Zxty7/yJ36oRszdpyTeCmkkmF2dlJYk=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49VGdBvQ029782;
+	Thu, 31 Oct 2024 11:39:11 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 31
+ Oct 2024 11:39:11 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 31 Oct 2024 11:39:11 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49VGdAW7096539;
+	Thu, 31 Oct 2024 11:39:10 -0500
+Message-ID: <9b30cb03-8334-48ce-b23b-19df8e9f89f9@ti.com>
+Date: Thu, 31 Oct 2024 11:39:10 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am642-evm: Add dt overlay to disable
+ icssg for Linux
+To: MD Danish Anwar <danishanwar@ti.com>, <vigneshr@ti.com>, <nm@ti.com>
+CC: <conor+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <kristo@kernel.org>, <srk@ti.com>, Roger Quadros <rogerq@kernel.org>
+References: <20241030114458.1358800-1-danishanwar@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20241030114458.1358800-1-danishanwar@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, 18 Oct 2024 11:10:46 +0300, Yassine Oudjana wrote:
-> The MT6328 PMIC is commonly used with the MT6735 SoC. Add initial
-> support for this PMIC.
+On 10/30/24 6:44 AM, MD Danish Anwar wrote:
+> Add k3-am642-evm-icssg1-disable.dtso overlay file that disables
+> icssg1-eth from Linux so that icssg peripherals can be used by
+> RTOS or some other OS running on R5 core.
 > 
+
+That was the point of putting icssg1-eth in its own overlay,
+if you don't want to use ICSSG1 for Ethernet, just don't apply
+k3-am642-evm-icssg1-dualemac.dtbo.
+
+Andrew
+
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/Makefile               |  7 +--
+>   .../dts/ti/k3-am642-evm-icssg1-disable.dtso   | 49 +++++++++++++++++++
+>   2 files changed, 53 insertions(+), 3 deletions(-)
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-disable.dtso
 > 
-
-Applied, thanks!
-
-[4/6] mfd: mt6397: Add initial support for MT6328
-      commit: 6e31bb8d3a63bb2c3efab2fb6bcfccac677a4581
-
---
-Lee Jones [李琼斯]
-
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index 6bd06bd76b68..0fd95b7df5a8 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -76,6 +76,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-nand.dtbo
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac.dtbo
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac-mii.dtbo
+> +dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-disable.dtbo
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-pcie0-ep.dtbo
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+> @@ -235,8 +236,8 @@ k3-am62p5-sk-microtips-mf103hie-lcd2-dtbs := k3-am62p5-sk.dtb \
+>   	k3-am62p5-sk-microtips-mf103hie-lcd2.dtbo
+>   k3-am642-evm-icssg1-dualemac-dtbs := \
+>   	k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac.dtbo
+> -k3-am642-evm-icssg1-dualemac-mii-dtbs := \
+> -	k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac-mii.dtbo
+> +k3-am642-evm-icssg1-disable-dtbs := \
+> +	k3-am642-evm.dtb k3-am642-evm-icssg1-disable.dtbo
+>   k3-am642-evm-pcie0-ep-dtbs := \
+>   	k3-am642-evm.dtb k3-am642-evm-pcie0-ep.dtbo
+>   k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
+> @@ -323,7 +324,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+>   	k3-am62p5-sk-microtips-mf101hie-panel.dtb \
+>   	k3-am62p5-sk-microtips-mf103hie-lcd2.dtb \
+>   	k3-am642-evm-icssg1-dualemac.dtb \
+> -	k3-am642-evm-icssg1-dualemac-mii.dtb \
+> +	k3-am642-evm-icssg1-disable.dtb \
+>   	k3-am642-evm-pcie0-ep.dtb \
+>   	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
+>   	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-disable.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-disable.dtso
+> new file mode 100644
+> index 000000000000..dc04e2999e97
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-disable.dtso
+> @@ -0,0 +1,49 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/**
+> + * DT overlay for enabling 2nd ICSSG1 port on AM642 EVM
+> + *
+> + * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "k3-pinctrl.h"
+> +
+> +&oc_sram {
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +
+> +	r5f0_0_sram: r5f0_0_sram@0 {
+> +		reg = <0x0 0x180000>;
+> +	};
+> +};
+> +
+> +&main_r5fss0_core0 {
+> +	sram = <&r5f0_0_sram>;
+> +};
+> +
+> +&cpsw_port2 {
+> +	status = "disabled";
+> +};
+> +
+> +&icssg0 {
+> +	status = "disabled";
+> +};
+> +
+> +&icssg1 {
+> +	status = "disabled";
+> +};
+> +
+> +&ospi0 {
+> +	status = "disabled";
+> +};
+> +
+> +&mdio_mux_1 {
+> +	status = "disabled";
+> +};
+> +
+> +&icssg1_eth {
+> +	status = "disabled";
+> +};
 
