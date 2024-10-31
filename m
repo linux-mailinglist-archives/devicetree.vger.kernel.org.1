@@ -1,147 +1,132 @@
-Return-Path: <devicetree+bounces-117777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DAAD9B7B45
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 14:02:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CF519B7B50
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 14:05:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EC831C214AC
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:02:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9024DB2585F
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:05:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D709219D880;
-	Thu, 31 Oct 2024 13:02:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C588819D890;
+	Thu, 31 Oct 2024 13:05:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B/3AdS8O"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FRbA/9fi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB20113A869;
-	Thu, 31 Oct 2024 13:02:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62E3C19D892;
+	Thu, 31 Oct 2024 13:04:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730379728; cv=none; b=VIt8oycvDKJh7vhQeUq1OI0HSkY0Q3NhUs7pRflqQslCtpUNCVgU/1VIHnfDnPMVdvDEU4kvCXcz1qIwlfVg/7w3igkZQn9KkeHPaNuHuppLCmbZiFPLSJnydYpC/zka45ccj8eHP/p8tW/EgQT3FBYboihJvAgNaG+4oakTPvo=
+	t=1730379901; cv=none; b=vFDV5osBDjz1EAk4Bx503PtgKSx/WEBWsgmieNNjkLV87vrSkQcB+O4vR6oaOIJXM41JJfc5HAe3KVq8bjcgAMIUAl9KtTCv93Zuw9fKW8q4JrpEbTQ7HMsCX+aJNWorT55kC2gsM5/8gXeaaVtfYCOuLzu84UXsjIyLl4KjLqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730379728; c=relaxed/simple;
-	bh=xdDOP8XDMU0WMjtRp5geiK1WaH7I1H742Dq0rUfn6kw=;
+	s=arc-20240116; t=1730379901; c=relaxed/simple;
+	bh=XUEUdiZZ588RY/DmjfG2Rv2p7ELbqn2IBxk/dYJU760=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qcd/DhQZT42WqhIPmZaWvfAX6CxcpPbInC/EOrvJI1zneWALr5fi442Yjk5rvLRmYNQnaBHGPXgRNWKwuyKrraAeqX9J1wzg2cMxYbcJazh9cW+zjmsJH3V6I1wu6JuaeZ9rSOXu17uRbf/aXZVMS/pWUE8xpvZ/goUW5clQy4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B/3AdS8O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F36BC4FF6B;
-	Thu, 31 Oct 2024 13:02:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730379728;
-	bh=xdDOP8XDMU0WMjtRp5geiK1WaH7I1H742Dq0rUfn6kw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B/3AdS8OoQv+xdoHidG1bZWd+VE3k+D6zFsafKnX9cRmM/QQJtNQ5gEtBInEcIyLl
-	 p7G3GHWwaswNp/wYvDFnq5xE7TDpMqVaPhwsxFKg0vXO0nqaykDTw3uEJTwXnt+Ifp
-	 ClUSCI+naGTIAbEqQmTdlk214CAVYi9rruZKh9DpO3XHdaGAQ0sD245+uD+9s2CoI5
-	 vpKaFEN4Jv8dJx9EKJzjiqo2F/9dyjgacOkUCUNAQL30xO0mz+HIX1QJms0zJFZeyU
-	 sPSdy07yMacNzJkPjSoNNerkHetxbOY+WDxCD9A0M2QlBOXUi1eaDnp3ZoJy3HdXWU
-	 iZDdU+l3kJfPA==
-Date: Thu, 31 Oct 2024 13:02:04 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Nuno Sa <nuno.sa@analog.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=BIz1B9gBuhQg4W52DLWHnjr19zUlY2OfGDRnJYAo9r0plSPeUCE/xgR70n6DM6BZVRg3zTIABj1pf1WZtQF7h/D3J5TjngbCxVGktj2RHlAhhYmyNKBAlOxGNSElHiPGaSUQiw2XGOW+42NXLXz8KVRpx7Wq1r3SmiUynKR3yxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FRbA/9fi; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=3D8AOsFf2lVt9L71mkZVmKIqNbDdk74xgKnAtcWILOc=; b=FRbA/9fi/pVNHzTX7/ZaLC24xA
+	alEpwQWuUyVEDaZmSc+lBB9O4PRee3nl6Ud4bE/zBqTnrzb16nHnp2K7Usvs/WjANG/ecjK/5uYbM
+	AIcMrYCSguzUmhTFgg/F38+QTMOfdGQX448zKFI3YV9FYtIybDFvbafVXH5KD2Gb8xEc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1t6Uql-00Bmpa-82; Thu, 31 Oct 2024 14:04:31 +0100
+Date: Thu, 31 Oct 2024 14:04:31 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Chen Wang <unicorn_wang@outlook.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: axi-clkgen: include AXI clk
-Message-ID: <20241031-saga-earache-2179dc30adaa@spud>
-References: <20241023-axi-clkgen-fix-axiclk-v1-0-980a42ba51c3@analog.com>
- <20241023-axi-clkgen-fix-axiclk-v1-1-980a42ba51c3@analog.com>
- <20241023-tucking-pacific-7360480bcb61@spud>
- <1e0097f6a15f47c173cb207e369909c1cb5943f9.camel@gmail.com>
- <20241024-wildfowl-pushiness-d5f46c9c538a@spud>
- <8b853ad3964cd2b7dafc225d4037ddbf11ebb2d3.camel@gmail.com>
- <20241025-numerate-quirk-b622c5acdacc@spud>
- <113e98edbff4501556e35698431080364e134233.camel@gmail.com>
+	Inochi Amaoto <inochiama@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Liu Gui <kenneth.liu@sophgo.com>, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH] riscv: dts: sophgo: Add ethernet configuration for cv18xx
+Message-ID: <e389a60d-2fe3-46fd-946c-01dd3a0a0f6f@lunn.ch>
+References: <20241028011312.274938-1-inochiama@gmail.com>
+ <87e215a7-0b27-4336-9f9c-e63ade0772ef@lunn.ch>
+ <wgggariprpp2wczsljy3vw6kp7vhnrifg6soxdgiio2seyctym@4owbzlg3ngum>
+ <ftfp2rwkytqmzruogcx66d5qkn4tzrgyjtlz4hdduxhwit3tok@kczgzrjdxx46>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="C3qVovVDD5k1QD0u"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <113e98edbff4501556e35698431080364e134233.camel@gmail.com>
+In-Reply-To: <ftfp2rwkytqmzruogcx66d5qkn4tzrgyjtlz4hdduxhwit3tok@kczgzrjdxx46>
 
+> > > > +		gmac0: ethernet@4070000 {
+> > > > +			compatible = "snps,dwmac-3.70a";
+> > > > +			reg = <0x04070000 0x10000>;
+> > > > +			clocks = <&clk CLK_AXI4_ETH0>, <&clk CLK_ETH0_500M>;
+> > > > +			clock-names = "stmmaceth", "ptp_ref";
+> > > > +			interrupts = <31 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +			interrupt-names = "macirq";
+> > > > +			phy-handle = <&phy0>;
+> > > > +			phy-mode = "rmii";
+> > > > +			rx-fifo-depth = <8192>;
+> > > > +			tx-fifo-depth = <8192>;
+> > > > +			snps,multicast-filter-bins = <0>;
+> > > > +			snps,perfect-filter-entries = <1>;
+> > > > +			snps,aal;
+> > > > +			snps,txpbl = <8>;
+> > > > +			snps,rxpbl = <8>;
+> > > > +			snps,mtl-rx-config = <&gmac0_mtl_rx_setup>;
+> > > > +			snps,mtl-tx-config = <&gmac0_mtl_tx_setup>;
+> > > > +			snps,axi-config = <&gmac0_stmmac_axi_setup>;
+> > > > +			status = "disabled";
+> > > > +
+> > > > +			mdio {
+> > > > +				compatible = "snps,dwmac-mdio";
+> > > > +				#address-cells = <1>;
+> > > > +				#size-cells = <0>;
+> > > > +
+> > > > +				phy0: phy@0 {
+> > > > +					compatible = "ethernet-phy-ieee802.3-c22";
+> > > > +					reg = <0>;
+> > > > +				};
+> > > > +			};
+> > > 
+> > > It is not clear to me what cv18xx.dtsi represents, 
+> > 
+> > This is a include file to define common ip for the whole
+> > cv18xx series SoCs (cv1800b, cv1812h, sg2000, sg2000).
+> > 
+> > > and where the PHY node should be, here, or in a .dts file. 
+> > > Is this a SOM, and the PHY is on the SOM? 
+> > 
+> > The phy is on the SoC, it is embedded, and no external phy
+> > is supported. So I think the phy node should stay here, not 
+> > in the dts file.
+> 
+> There is a mistake, Some package supports external rmii/mii
+> phy. So I will move this phy definition to board specific.
 
---C3qVovVDD5k1QD0u
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+When there is an external PHY, does the internal PHY still exists? If
+it does, it should be listed, even if it is not used.
 
-On Mon, Oct 28, 2024 at 03:01:44PM +0100, Nuno S=E1 wrote:
+Do the internal and external PHY share the same MDIO bus? I've seen
+some SoCs with complex MDIO muxes for internal vs external PHYs.
 
-> > > The assumption is that the axi clock is the last one in the phandle a=
-rray. But
-> > > your
-> > > comment made me think a bit more about this and I do see a possible p=
-roblem if we
-> > > run
-> > > old DTs against a kernel with this patch. We have two possibilities:
-> > >=20
-> > > 1) DT only with one parent clock;
-> > > 2) DT with two parent clocks;
-> > >=20
-> > > 1) is "fine" as it would now fail to probe. 2) is more problematic as=
- we would
-> > > assume
-> > > the second parent to be the axi_bus clock so effectively not fixing a=
-nything and
-> > > silently probing with a broken setup.
-> > >=20
-> > > So yeah, I think I overthinked the backward compatibility thing. I me=
-an, in
-> > > theory,
-> > > all old DTs are not correct and should be fixed by including the axi_=
-clk. And if
-> > > we
-> > > now enforce clock-names we at least get probe errors right away makin=
-g it clear
-> > > (which is far better from silently breaking after probe).
-> > >=20
-> > > Given the above, it should be fine to just enforce clock-names now, r=
-ight?
-> >=20
-> > I think you need to enforce clock-names in the binding and take
-> > !clock-names and 2 clocks to mean that the second one is a clkin. I
-> > think that's a better solution than failing to probe for all extant
-> > devicestrees.
->=20
-> Ok, so IIUC, you mean leaving old DTs as of today and relying on someone =
-else to
-> enable the axi clock (if it was not enabled they would have noticed by no=
-w).
-
-Yea. Obviously any old dts within reach (so those in-tree) should be
-updated to have the missing third clock, but as we can't be sure we have
-changed all users, so the driver must retain its current functionality
-with the old devicetrees.
-
-> And only
-> take care of the bus clock when clock-names is provided?
-
-Yup.
-
-
---C3qVovVDD5k1QD0u
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyN/zAAKCRB4tDGHoIJi
-0gS2AP9KFusL2IYEvY+70gKNTizKWIsY+058Z+CwTI5kgDfYPAD+N9js+eOfwmAc
-qkbffCHLfqHrpTiCkF2H2eHEdH0J0wM=
-=WBhq
------END PGP SIGNATURE-----
-
---C3qVovVDD5k1QD0u--
+	Andrew
 
