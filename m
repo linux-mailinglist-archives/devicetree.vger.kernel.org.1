@@ -1,82 +1,63 @@
-Return-Path: <devicetree+bounces-117915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B33029B84D1
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 22:00:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A04E9B84EC
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 22:06:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6FD21C22171
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 21:00:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1019F1F2256C
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 21:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B0161CCECE;
-	Thu, 31 Oct 2024 21:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB2A1CCB27;
+	Thu, 31 Oct 2024 21:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OqRzQIFa"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iiniXS9t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B712D15821D
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 21:00:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9082E13A87C;
+	Thu, 31 Oct 2024 21:06:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730408433; cv=none; b=mfvdKZWAK/dZFWpGqj0KYm8j1kKWq565+kU7WIWOn0nT7pGFeCyXdStWswsrexugLVEj0mfQZeIgBj9/pEeCWp2KmsaLEHkrf2FmnnhS7F0MDNQ9LP29yE2EXkwIcchttcb4mxxZXKfPrMgV54v3iT76LsHZg2ZXRYjpoZZgQKw=
+	t=1730408805; cv=none; b=jlAgZ2/LTprklO2I5ZurPPBAmEkIzzqwCj+dPBf/jo6Digii8iVBO1aFLWSMp/YOMoZIT+YfE8pP9a0bbRU4a/cT9B3iKIrajFPO0f4kob93LihVJ8jZfELGC7nKCXvF6MS9y4ck95w/8bmxGG9JRSfu9tjqjc2yAYBbPBJpaCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730408433; c=relaxed/simple;
-	bh=9p2L/gsUOtDAw0oVvraU/aabiEdBTQXQnBMzEvVuzpA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yxb4+OutAh72PMdtyjjgadSlvKreLlP44gfMI8ukuXZlckXM752xiAVUmpSo87jIzVv3kpsJZp7RfrRexSIfGUZo65yv9/y0g6lkYqwhOviSyFsOJXCt8Bzv9YAvHIOcno3P4Jvq0JywWjr3UNf3EeP+dEEUrmxU0LYkr4RPEiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OqRzQIFa; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49VIElKc003950
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 21:00:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	s=arc-20240116; t=1730408805; c=relaxed/simple;
+	bh=JYp+fyknPW8dimBPN339BuKak/diiWfixerUQ6rrTKc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TdMlmkArvGR3mraYgDwjsZFeIt0wZoSlcLWdfyRGnI6XZ9D+9GxsOVXuzaGdESwbtmG1c6QUVJX1kTXQjNvRoDsu1a3mia98lsA8tZkgs9QHIbc8kVL6E1Hm6Gn8Wt7imCEbvFuaCg618tNYgObUbzThWjce2bh95xvdqjG8WdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iiniXS9t; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49V9ET8d020425;
+	Thu, 31 Oct 2024 21:06:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cQXYDYwMp5w/UPDufraPkZVemoBNsCrL5WS+2fWGtzI=; b=OqRzQIFasekmk0bc
-	Qr98VHXL1g4GLDFS12CKQ6aGI+NuaA6ZWBLeCvJw2yTr2S/gC/1a7twRR8NcCDDq
-	68J9z3yNluVj1eEORquAkEqY3nEhCoYHiqLGNK156VGalNvF3qAtDwqrqKUBsGdM
-	IH0SoGwZ0lAnz3PAyUbxZVlAYzV728VulNOXHbGN0ocp+NlelBsTkTc+ptXnrsL6
-	E0EzDOevLfEGYJ/nPzwxvNjmgtsYP3S11673quQLB1MaMhg9bXkgewHJ/hg/bdug
-	rf+vVhS39+qfJjoT3wF63z0MgY0k0+LuT5WjOaX0dGaSPgRzvqc2mQKVheF+VNsI
-	vnvLsA==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42m65pa2w5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 21:00:25 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7b14327832bso19945285a.1
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 14:00:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730408424; x=1731013224;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cQXYDYwMp5w/UPDufraPkZVemoBNsCrL5WS+2fWGtzI=;
-        b=ZcvXlBFjkR1+E05NP2b+U2InOJjUF1OksEgNzuBijY0sXxyFMphLcG0TPSRLTMcgqt
-         4KB1xR+pDybWqo6ofdR1XFBIHf5kToMT0E308plijh6HQlaLIDIV3W1VHXhlQVXqdxCh
-         NPDh1L84VuR6vLHjotxuPWLbuodTsJi6blKk3ZuiVQ9LAVHzirp0szwMpMkI6Nw+LwJo
-         p8spqZmb7ylVS3TIxtZKalktszwxFaTJ/CBC0pWR0LvJzQbsDCYNBFvL4ivo76X4Puwk
-         oQPxwb3OzLdviuMz+8R4DiYbOlAp7pyjvC86It2brnPkhw6Of9/ddK6IuarmT1Qu2lkn
-         Aliw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1+UR7SkDZMq59Ws+n+rTgDUoWO5A3SyeKqI+wzr/m7hT7LgWGcltJSzV20O/9rnydc/Qr+uf3l445@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXR7laTfDCh6W/pd42UFyxDa8SSVRCWXjYF7EUFQZ84WwbQDPT
-	Al4tBHbDhECFxTkkvZEMNwEevY/X+lJ4L6J9uexNThe2NrYLi5gnHvPF8drvfpmlbo7eRH1XMTk
-	w+371CHOsRK/e8P8ez62g4EoTqVO5pspIf4GKS8fY0uTcG0tIjQdN2KpsIJpN
-X-Received: by 2002:a05:620a:4244:b0:7ac:bb36:599a with SMTP id af79cd13be357-7b193f68d9dmr1396483185a.13.1730408423701;
-        Thu, 31 Oct 2024 14:00:23 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG7X3DXyUEHB5jUA7SsCpLG6ODedxFLxLwr5aSO7qvzGjyUq4xOk1NXhSiKUvlHHhYkltCg/g==
-X-Received: by 2002:a05:620a:4244:b0:7ac:bb36:599a with SMTP id af79cd13be357-7b193f68d9dmr1396480785a.13.1730408423177;
-        Thu, 31 Oct 2024 14:00:23 -0700 (PDT)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e564c4f2dsm103158466b.52.2024.10.31.14.00.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Oct 2024 14:00:22 -0700 (PDT)
-Message-ID: <304b909d-bf2d-446c-acc9-e65b94627468@oss.qualcomm.com>
-Date: Thu, 31 Oct 2024 22:00:20 +0100
+	ttpBt+TvrTplOEFw0OZQmZ0OXUZGOnJ8+0DNKAJghII=; b=iiniXS9ti44rDGeU
+	K3iU1qFgzlGxRtHGG5YP+CTFibAoUgsNByAQ0PPcAzo2dmrfWvLy4EmZ4yYk2NFR
+	rUX7c+NWxRCJMQQXRwJ/ZvhDStVA1NnQl4LNJma9HTcg7bx9LYl4SJ+m299fNC8B
+	5mvrKfTuWs9K4uPC5gkAsdyANNxQ5667VFXVqk4///caBWns5UimPNgd7oFMAwxU
+	l1R1Xgc/uMQNqnwDNcnbjEYVOYiohvm1ke9Ha9GJ4Z+UOS87i0N2O2o2kltGgeMs
+	YMy4KVFyOmfekG3bnixl49LCg9nIKO5FA2dZct4KeLs54TGn0HH8ESeZuzPnDpE5
+	UZWFvA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grgus0aa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 31 Oct 2024 21:06:10 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49VL694b009191
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 31 Oct 2024 21:06:09 GMT
+Received: from [10.71.109.85] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 31 Oct
+ 2024 14:06:05 -0700
+Message-ID: <8c987a26-d499-4ceb-905e-750bb24fcb08@quicinc.com>
+Date: Thu, 31 Oct 2024 14:05:58 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,76 +65,259 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: x1e80100-crd: describe HID supplies
-To: Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
-        Stephan Gerhold <stephan.gerhold@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20241029075258.19642-1-johan+linaro@kernel.org>
+Subject: Re: [PATCH v10 1/2] of: reserved_mem: Restruture how the reserved
+ memory regions are processed
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+CC: <robh@kernel.org>, <aisheng.dong@nxp.com>, <andy@black.fi.intel.com>,
+        <catalin.marinas@arm.com>, <devicetree@vger.kernel.org>, <hch@lst.de>,
+        <iommu@lists.linux.dev>, <kernel@quicinc.com>, <klarasmodin@gmail.com>,
+        <linux-kernel@vger.kernel.org>, <m.szyprowski@samsung.com>,
+        <quic_ninanaik@quicinc.com>, <robin.murphy@arm.com>,
+        <saravanak@google.com>, <will@kernel.org>
+References: <20241008220624.551309-1-quic_obabatun@quicinc.com>
+ <20241008220624.551309-2-quic_obabatun@quicinc.com>
+ <CAMuHMdUXj4QiSKdhf61xdDeu94=Hv0BXuCxykDpQwdY81_h2vw@mail.gmail.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241029075258.19642-1-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 0Uz-7cG06Da6RRqkF2XBJs9UWFIv65F6
-X-Proofpoint-GUID: 0Uz-7cG06Da6RRqkF2XBJs9UWFIv65F6
+From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+In-Reply-To: <CAMuHMdUXj4QiSKdhf61xdDeu94=Hv0BXuCxykDpQwdY81_h2vw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: jENReLuDKfucV4YzQeUetUH7khIbXGBL
+X-Proofpoint-GUID: jENReLuDKfucV4YzQeUetUH7khIbXGBL
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- phishscore=0 malwarescore=0 clxscore=1015 priorityscore=1501
- mlxlogscore=798 suspectscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410310159
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1011
+ lowpriorityscore=0 adultscore=0 mlxscore=0 bulkscore=0 suspectscore=0
+ phishscore=0 spamscore=0 malwarescore=0 mlxlogscore=999 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410310159
 
-On 29.10.2024 8:52 AM, Johan Hovold wrote:
-> Add the missing HID supplies to avoid relying on other consumers to keep
-> them on.
-> 
-> This also avoids the following warnings on boot:
-> 
-> 	i2c_hid_of 0-0010: supply vdd not found, using dummy regulator
-> 	i2c_hid_of 0-0010: supply vddl not found, using dummy regulator
-> 	i2c_hid_of 1-0015: supply vdd not found, using dummy regulator
-> 	i2c_hid_of 1-0015: supply vddl not found, using dummy regulator
-> 	i2c_hid_of 1-003a: supply vdd not found, using dummy regulator
-> 	i2c_hid_of 1-003a: supply vddl not found, using dummy regulator
-> 
-> Note that VREG_MISC_3P3 is also used for things like the fingerprint
-> reader which are not yet fully described so mark the regulator as always
-> on for now.
-> 
-> Fixes: d7e03cce0400 ("arm64: dts: qcom: x1e80100-crd: Enable more support")
-> Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
 
-[...]
+On 10/29/2024 5:41 AM, Geert Uytterhoeven wrote:
+> Hi Oreoluwa,
+>
+> On Wed, Oct 9, 2024 at 12:08 AM Oreoluwa Babatunde
+> <quic_obabatun@quicinc.com> wrote:
+>> Reserved memory regions defined in the devicetree can be broken up into
+>> two groups:
+>> i) Statically-placed reserved memory regions
+>> i.e. regions defined with a static start address and size using the
+>>      "reg" property.
+>> ii) Dynamically-placed reserved memory regions.
+>> i.e. regions defined by specifying an address range where they can be
+>>      placed in memory using the "alloc_ranges" and "size" properties.
+>>
+>> These regions are processed and set aside at boot time.
+>> This is done in two stages as seen below:
+>>
+>> Stage 1:
+>> At this stage, fdt_scan_reserved_mem() scans through the child nodes of
+>> the reserved_memory node using the flattened devicetree and does the
+>> following:
+>>
+>> 1) If the node represents a statically-placed reserved memory region,
+>>    i.e. if it is defined using the "reg" property:
+>>    - Call memblock_reserve() or memblock_mark_nomap() as needed.
+>>    - Add the information for that region into the reserved_mem array
+>>      using fdt_reserved_mem_save_node().
+>>      i.e. fdt_reserved_mem_save_node(node, name, base, size).
+>>
+>> 2) If the node represents a dynamically-placed reserved memory region,
+>>    i.e. if it is defined using "alloc-ranges" and "size" properties:
+>>    - Add the information for that region to the reserved_mem array with
+>>      the starting address and size set to 0.
+>>      i.e. fdt_reserved_mem_save_node(node, name, 0, 0).
+>>    Note: This region is saved to the array with a starting address of 0
+>>    because a starting address is not yet allocated for it.
+>>
+>> Stage 2:
+>> After iterating through all the reserved memory nodes and storing their
+>> relevant information in the reserved_mem array,fdt_init_reserved_mem() is
+>> called and does the following:
+>>
+>> 1) For statically-placed reserved memory regions:
+>>    - Call the region specific init function using
+>>      __reserved_mem_init_node().
+>> 2) For dynamically-placed reserved memory regions:
+>>    - Call __reserved_mem_alloc_size() which is used to allocate memory
+>>      for each of these regions, and mark them as nomap if they have the
+>>      nomap property specified in the DT.
+>>    - Call the region specific init function.
+>>
+>> The current size of the resvered_mem array is 64 as is defined by
+>> MAX_RESERVED_REGIONS. This means that there is a limitation of 64 for
+>> how many reserved memory regions can be specified on a system.
+>> As systems continue to grow more and more complex, the number of
+>> reserved memory regions needed are also growing and are starting to hit
+>> this 64 count limit, hence the need to make the reserved_mem array
+>> dynamically sized (i.e. dynamically allocating memory for the
+>> reserved_mem array using membock_alloc_*).
+>>
+>> On architectures such as arm64, memory allocated using memblock is
+>> writable only after the page tables have been setup. This means that if
+>> the reserved_mem array is going to be dynamically allocated, it needs to
+>> happen after the page tables have been setup, not before.
+>>
+>> Since the reserved memory regions are currently being processed and
+>> added to the array before the page tables are setup, there is a need to
+>> change the order in which some of the processing is done to allow for
+>> the reserved_mem array to be dynamically sized.
+>>
+>> It is possible to process the statically-placed reserved memory regions
+>> without needing to store them in the reserved_mem array until after the
+>> page tables have been setup because all the information stored in the
+>> array is readily available in the devicetree and can be referenced at
+>> any time.
+>> Dynamically-placed reserved memory regions on the other hand get
+>> assigned a start address only at runtime, and hence need a place to be
+>> stored once they are allocated since there is no other referrence to the
+>> start address for these regions.
+>>
+>> Hence this patch changes the processing order of the reserved memory
+>> regions in the following ways:
+>>
+>> Step 1:
+>> fdt_scan_reserved_mem() scans through the child nodes of
+>> the reserved_memory node using the flattened devicetree and does the
+>> following:
+>>
+>> 1) If the node represents a statically-placed reserved memory region,
+>>    i.e. if it is defined using the "reg" property:
+>>    - Call memblock_reserve() or memblock_mark_nomap() as needed.
+>>
+>> 2) If the node represents a dynamically-placed reserved memory region,
+>>    i.e. if it is defined using "alloc-ranges" and "size" properties:
+>>    - Call __reserved_mem_alloc_size() which will:
+>>      i) Allocate memory for the reserved region and call
+>>      memblock_mark_nomap() as needed.
+>>      ii) Call the region specific initialization function using
+>>      fdt_init_reserved_mem_node().
+>>      iii) Save the region information in the reserved_mem array using
+>>      fdt_reserved_mem_save_node().
+>>
+>> Step 2:
+>> 1) This stage of the reserved memory processing is now only used to add
+>>    the statically-placed reserved memory regions into the reserved_mem
+>>    array using fdt_scan_reserved_mem_reg_nodes(), as well as call their
+>>    region specific initialization functions.
+>>
+>> 2) This step has also been moved to be after the page tables are
+>>    setup. Moving this will allow us to replace the reserved_mem
+>>    array with a dynamically sized array before storing the rest of
+>>    these regions.
+>>
+>> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+> Thanks for your patch, which is now commit 8a6e02d0c00e7b62
+> ("of: reserved_mem: Restructure how the reserved memory regions
+> are processed") in dt-rh/for-next.
+>
+> I have bisected a boot issue on RZ/Five to this commit.
+> With "earlycon keep_bootcon" (else there is no output):
+>
+>     Oops - store (or AMO) access fault [#1]
+>     CPU: 0 UID: 0 PID: 1 Comm: swapper Not tainted
+> 6.12.0-rc1-00015-g8a6e02d0c00e #201
+>     Hardware name: Renesas SMARC EVK based on r9a07g043f01 (DT)
+>     epc : __memset+0x60/0x100
+>      ra : __dma_alloc_from_coherent+0x150/0x17a
+>     epc : ffffffff8062d2bc ra : ffffffff80053a94 sp : ffffffc60000ba20
+>      gp : ffffffff812e9938 tp : ffffffd601920000 t0 : ffffffc6000d0000
+>      t1 : 0000000000000000 t2 : ffffffffe9600000 s0 : ffffffc60000baa0
+>      s1 : ffffffc6000d0000 a0 : ffffffc6000d0000 a1 : 0000000000000000
+>      a2 : 0000000000001000 a3 : ffffffc6000d1000 a4 : 0000000000000000
+>      a5 : 0000000000000000 a6 : ffffffd601adacc0 a7 : ffffffd601a841a8
+>      s2 : ffffffd6018573c0 s3 : 0000000000001000 s4 : ffffffd6019541e0
+>      s5 : 0000000200000022 s6 : ffffffd6018f8410 s7 : ffffffd6018573e8
+>      s8 : 0000000000000001 s9 : 0000000000000001 s10: 0000000000000010
+>      s11: 0000000000000000 t3 : 0000000000000000 t4 : ffffffffdefe62d1
+>      t5 : 000000001cd6a3a9 t6 : ffffffd601b2aad6
+>     status: 0000000200000120 badaddr: ffffffc6000d0000 cause: 0000000000000007
+>     [<ffffffff8062d2bc>] __memset+0x60/0x100
+>     [<ffffffff80053e1a>] dma_alloc_from_global_coherent+0x1c/0x28
+>     [<ffffffff80053056>] dma_direct_alloc+0x98/0x112
+>     [<ffffffff8005238c>] dma_alloc_attrs+0x78/0x86
+>     [<ffffffff8035fdb4>] rz_dmac_probe+0x3f6/0x50a
+>     [<ffffffff803a0694>] platform_probe+0x4c/0x8a
+>     [<ffffffff8039ea16>] really_probe+0xe4/0x1c8
+>     [<ffffffff8039ebc4>] __driver_probe_device+0xca/0xce
+>     [<ffffffff8039ec48>] driver_probe_device+0x34/0x92
+>     [<ffffffff8039ede8>] __driver_attach+0xb4/0xbe
+>     [<ffffffff8039ce58>] bus_for_each_dev+0x60/0xa0
+>     [<ffffffff8039e26a>] driver_attach+0x1a/0x22
+>     [<ffffffff8039dc20>] bus_add_driver+0xa4/0x184
+>     [<ffffffff8039f65c>] driver_register+0x8a/0xb4
+>     [<ffffffff803a051c>] __platform_driver_register+0x1c/0x24
+>     [<ffffffff808202f6>] rz_dmac_driver_init+0x1a/0x22
+>     [<ffffffff80800ef6>] do_one_initcall+0x64/0x134
+>     [<ffffffff8080122e>] kernel_init_freeable+0x200/0x202
+>     [<ffffffff80638126>] kernel_init+0x1e/0x10a
+>     [<ffffffff8063d58e>] ret_from_fork+0xe/0x18
+>     Code: 1007 82b3 40e2 0797 0000 8793 00e7 8305 97ba 8782 (b023) 00b2
+>     ---[ end trace 0000000000000000 ]---
+>     Kernel panic - not syncing: Fatal exception in interrupt
+>     ---[ end Kernel panic - not syncing: Fatal exception in interrupt ]---
+>
+> Nothing really stands out in the kernel log, except for a delayed
+> initialization of the reserved mem nodes (they are the same
+> before/after):
+>
+>  printk: debug: ignoring loglevel setting.
+> -OF: reserved mem: 0x0000000000030000..0x000000000003ffff (64 KiB)
+> nomap non-reusable mmode_resv0@30000
+> -OF: reserved mem: 0x0000000000040000..0x000000000004ffff (64 KiB)
+> nomap non-reusable mmode_resv1@40000
+> -OF: reserved mem: 0x0000000044000000..0x000000004403ffff (256 KiB)
+> nomap non-reusable mmode_resv3@44000000
+> -OF: reserved mem: 0x0000000044040000..0x000000004405ffff (128 KiB)
+> nomap non-reusable mmode_resv2@44040000
+> +earlycon: scif0 at MMIO 0x000000001004b800 (options '115200n8')
+> +printk: legacy bootconsole [scif0] enabled
+> +printk: debug: skip boot console de-registration.
+>  Reserved memory: created DMA memory pool at 0x0000000058000000, size 128 MiB
+>  OF: reserved mem: initialized node pma_resv0@58000000, compatible id
+> shared-dma-pool
+>  OF: reserved mem: 0x0000000058000000..0x000000005fffffff (131072 KiB)
+> nomap non-reusable pma_resv0@58000000
+> +OF: reserved mem: 0x0000000000030000..0x000000000003ffff (64 KiB)
+> nomap non-reusable mmode_resv0@30000
+> +OF: reserved mem: 0x0000000000040000..0x000000000004ffff (64 KiB)
+> nomap non-reusable mmode_resv1@40000
+> +OF: reserved mem: 0x0000000044040000..0x000000004405ffff (128 KiB)
+> nomap non-reusable mmode_resv2@44040000
+> +OF: reserved mem: 0x0000000044000000..0x000000004403ffff (256 KiB)
+> nomap non-reusable mmode_resv3@44000000
+>  Zone ranges:
+>    DMA32    [mem 0x0000000048000000-0x000000007fffffff]
+>    Normal   empty
+>
+> Reverting commits 00c9a452a235c61f ("of: reserved_mem: Add code to
+> dynamically allocate reserved_mem array") and 8a6e02d0c00e7b62 fixes
+> the issue.
+>
+> root@smarc-rzfive:/sys/firmware/devicetree/base/reserved-memory# ls -l
+> total 0
+> -r--r--r-- 1 root root  4 Oct 29 12:37 #address-cells
+> -r--r--r-- 1 root root  4 Oct 29 12:37 #size-cells
+> drwxr-xr-x 2 root root  0 Oct 29 12:37 mmode_resv0@30000
+> drwxr-xr-x 2 root root  0 Oct 29 12:37 mmode_resv1@40000
+> drwxr-xr-x 2 root root  0 Oct 29 12:37 mmode_resv2@44040000
+> drwxr-xr-x 2 root root  0 Oct 29 12:37 mmode_resv3@44000000
+> -r--r--r-- 1 root root 16 Oct 29 12:37 name
+> drwxr-xr-x 2 root root  0 Oct 29 12:37 pma_resv0@58000000
+> -r--r--r-- 1 root root  0 Oct 29 12:37 ranges
+Hi Geert,
 
->  
-> +	vreg_misc_3p3: regulator-misc-3p3 {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "VREG_MISC_3P3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&pm8550ve_8_gpios 6 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&misc_3p3_reg_en>;
+Thanks for reaching out and sorry you're seeing this issue.
 
-property-n
-property-names
+Please can you provide reproduction steps? I tried booting up
+risc-v arch with qemu but did not run into the issue you are
+seeing.
 
-for consistency, please
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
+Regards,
+Oreoluwa
 
