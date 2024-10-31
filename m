@@ -1,168 +1,134 @@
-Return-Path: <devicetree+bounces-117794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEC529B7D16
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 15:39:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 273C49B7CEA
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 15:33:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 844291F22995
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 14:39:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6D7CB20F89
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 14:32:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87DC1A073F;
-	Thu, 31 Oct 2024 14:39:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A17719FA8D;
+	Thu, 31 Oct 2024 14:32:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BadDpcVD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA143156CF;
-	Thu, 31 Oct 2024 14:39:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0300319C57F;
+	Thu, 31 Oct 2024 14:32:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730385586; cv=none; b=Kvec4E1kXdlSfJ2qZJMBx8G77iD2cpbRbzb7jLIVxrMGD88bJ9DjaRIzAIOFisQ35tjJYXpAd+hxZcOkuwmSnY1fgN1ntw/nSKIs4bH7dqwaeyNAia0O7+pKgRDh85PXWjDSC9efMDxVkNcVuhJxi08jnq5EVU/rr/QkioXk0HE=
+	t=1730385176; cv=none; b=LiLykRb/tsyV8VjSx/0yDDJOx8gtxnoBUiz2G4KoggL66w1ywABQ8VS51qO0HGITD+iG7Q4+lWheY1wzpeAEeEliNJ5mMyHdbGJ8ZulL6OiowDvPYDGFY7DwMMoFj5m980RH9FbVHE1UhtD+vOKgCSG6UxQ01wpu+3CXzjSKvJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730385586; c=relaxed/simple;
-	bh=wPyDz5ZOCbGsu9cjNU3R/aJsJzADof3DW/0MCSkhKOE=;
+	s=arc-20240116; t=1730385176; c=relaxed/simple;
+	bh=GdvBqgA9us7PRKsGay4ZUGodHWRvXjW1Th8o7CsH9Os=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FX2tFuz5HaTEL97ApCQqTIzvcZnclNdEI++SMVMY9BeD3pY2x90Jj7iRJ98hk+4VAXWtZGbWRIKd/la/0I36jdQFPrpVm6QGXV3WCPxow+TRmBVp1/MLloRd7VdVMrXPXoPVy/LK1xqtK6S1wNGZmtmq8oCYAg/pOlxztm1ar7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; arc=none smtp.client-ip=92.121.34.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 28DF8201059;
-	Thu, 31 Oct 2024 15:29:30 +0100 (CET)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 10B5320102E;
-	Thu, 31 Oct 2024 15:29:30 +0100 (CET)
-Received: from lsv051416.swis.nl-cdc01.nxp.com (lsv051416.swis.nl-cdc01.nxp.com [10.168.48.122])
-	by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 719D52033F;
-	Thu, 31 Oct 2024 15:29:29 +0100 (CET)
-Date: Thu, 31 Oct 2024 15:29:30 +0100
-From: Jan Petrous <jan.petrous@oss.nxp.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-	Keyur Chudgar <keyur@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	NXP S32 Linux Team <s32@nxp.com>
-Subject: Re: [PATCH v4 13/16] dt-bindings: net: Add DT bindings for DWMAC on
- NXP S32G/R SoCs
-Message-ID: <ZyOUSgMo0chsGnCa@lsv051416.swis.nl-cdc01.nxp.com>
-References: <20241028-upstream_s32cc_gmac-v4-0-03618f10e3e2@oss.nxp.com>
- <20241028-upstream_s32cc_gmac-v4-13-03618f10e3e2@oss.nxp.com>
- <erg5zzxgy45ucqv2nq3fkcv4sr7cxqzxz6ejdikafwfpgkkmse@7eigsyq245lu>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ADmedCp2LZieohTMBvBKUZTjSNhnUZe2S4bBWrJxD1a5nM2wTu+AFg2LAo2PY/Gjfd0gXTLOJJ0W63aEdvmjOj1EsNbfMEIPfHHaRW5TH+H8RHgPQZEg/fXQcfAHKXIzUlRFUrG53RdP0Rr7QD6HXoeVz+Tqs5uQqWq/nxCpzX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BadDpcVD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96A89C4CED0;
+	Thu, 31 Oct 2024 14:32:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730385175;
+	bh=GdvBqgA9us7PRKsGay4ZUGodHWRvXjW1Th8o7CsH9Os=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BadDpcVDHkEHKOItwoeeX8Vwio08SysKCwRsexowF/sLGr5NgYb3Wt13+/J5/H8YX
+	 k8eIg/tL99B+Ebxwff1lUqB2s/bKZNmaKaIRMexERMw6JALpoOzLdE2LYC7yP3+mZ1
+	 Bz06UaS4wualVrZ5PFA1fh6N2O/Q3hhuVH6XCSqnvlPOGP1f8ZYhs7BCdhta3y1Ym+
+	 Uu6uMPUoBOreDh7N8nF8Hru3QmDR3DlZaQWiPUXDdhlGn8+yDolVlXhVkenIYuWXaH
+	 fyTWL72AG9e9Fp5sFwdGhswxEpnP0mr84oU87v0Op37ZRaMrb2eBOiPMcHM7GKqjVi
+	 1ioujHHYsgjwA==
+Date: Thu, 31 Oct 2024 14:32:50 +0000
+From: Lee Jones <lee@kernel.org>
+To: George Stark <gnstark@salutedevices.com>
+Cc: pavel@ucw.cz, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@salutedevices.com
+Subject: Re: [PATCH 2/2] leds: pwm: Add optional DT property
+ default-brightness
+Message-ID: <20241031143250.GH10824@google.com>
+References: <20241015151410.2158102-1-gnstark@salutedevices.com>
+ <20241015151410.2158102-3-gnstark@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <erg5zzxgy45ucqv2nq3fkcv4sr7cxqzxz6ejdikafwfpgkkmse@7eigsyq245lu>
-X-Virus-Scanned: ClamAV using ClamSMTP
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241015151410.2158102-3-gnstark@salutedevices.com>
 
-On Tue, Oct 29, 2024 at 08:12:37AM +0100, Krzysztof Kozlowski wrote:
-> On Mon, Oct 28, 2024 at 09:24:55PM +0100, Jan Petrous (OSS) wrote:
-> > Add basic description for DWMAC ethernet IP on NXP S32G2xx, S32G3xx
-> > and S32R45 automotive series SoCs.
-> > 
-> > Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-> > ---
-> >  .../devicetree/bindings/net/nxp,s32-dwmac.yaml     | 98 ++++++++++++++++++++++
-> >  .../devicetree/bindings/net/snps,dwmac.yaml        |  3 +
-> >  2 files changed, 101 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> > new file mode 100644
-> > index 000000000000..b11ba3bc4c52
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> > @@ -0,0 +1,98 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Copyright 2021-2024 NXP
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/nxp,s32-dwmac.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NXP S32G2xx/S32G3xx/S32R45 GMAC ethernet controller
-> > +
-> > +maintainers:
-> > +  - Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-> > +
-> > +description:
-> > +  This device is a Synopsys DWC IP, integrated on NXP S32G/R SoCs.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - nxp,s32g2-dwmac
-> > +      - nxp,s32g3-dwmac
-> > +      - nxp,s32r-dwmac
-> 
-> Your driver says these are fully compatible, why this is not expressed
-> here?
-> 
+On Tue, 15 Oct 2024, George Stark wrote:
 
-They are compatible on current stage of driver implementation, the
-RGMII interface has no any difference. But later there shall be
-added SGMII and this provides some level of difference, at least
-from max-speed POV.
+> When probing if default LED state is on then default brightness will be
+> applied instead of max brightness.
+> 
+> Signed-off-by: George Stark <gnstark@salutedevices.com>
+> ---
+>  drivers/leds/leds-pwm.c | 13 ++++++++++---
+>  1 file changed, 10 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/leds/leds-pwm.c b/drivers/leds/leds-pwm.c
+> index 7961dca0db2f..514fc8ca3e80 100644
+> --- a/drivers/leds/leds-pwm.c
+> +++ b/drivers/leds/leds-pwm.c
+> @@ -65,7 +65,8 @@ static int led_pwm_set(struct led_classdev *led_cdev,
+>  
+>  __attribute__((nonnull))
+>  static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
+> -		       struct led_pwm *led, struct fwnode_handle *fwnode)
+> +		       struct led_pwm *led, struct fwnode_handle *fwnode,
+> +		       unsigned int default_brightness)
+>  {
+>  	struct led_pwm_data *led_data = &priv->leds[priv->num_leds];
+>  	struct led_init_data init_data = { .fwnode = fwnode };
+> @@ -104,7 +105,7 @@ static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
+>  	/* set brightness */
+>  	switch (led->default_state) {
+>  	case LEDS_DEFSTATE_ON:
+> -		led_data->cdev.brightness = led->max_brightness;
+> +		led_data->cdev.brightness = default_brightness;
+>  		break;
+>  	case LEDS_DEFSTATE_KEEP:
+>  		{
+> @@ -141,6 +142,7 @@ static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
+>  static int led_pwm_create_fwnode(struct device *dev, struct led_pwm_priv *priv)
+>  {
+>  	struct led_pwm led;
+> +	unsigned int default_brightness;
+>  	int ret;
+>  
+>  	device_for_each_child_node_scoped(dev, fwnode) {
+> @@ -160,7 +162,12 @@ static int led_pwm_create_fwnode(struct device *dev, struct led_pwm_priv *priv)
+>  
+>  		led.default_state = led_init_default_state_get(fwnode);
+>  
+> -		ret = led_pwm_add(dev, priv, &led, fwnode);
+> +		ret = fwnode_property_read_u32(fwnode, "default-brightness",
+> +					       &default_brightness);
+> +		if (ret < 0 || default_brightness > led.max_brightness)
+> +			default_brightness = led.max_brightness;
+> +
+> +		ret = led_pwm_add(dev, priv, &led, fwnode, default_brightness);
 
-The S32R allows higher speed (2G5) on SGMII, but S32G2/S32G3 has
-1G as maximum.
+This creates a lot more hopping around than is necessary.
 
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: Main GMAC registers
-> > +      - description: GMAC PHY mode control register
-> >
-> 
-> ...
-> 
-> > +        mdio {
-> > +          #address-cells = <1>;
-> > +          #size-cells = <0>;
-> > +          compatible = "snps,dwmac-mdio";
-> > +
-> > +          phy0: ethernet-phy@0 {
-> > +              reg = <0>;
-> 
-> Messed indentation. Keep it consistent.
+Since led_pwm_add() already has access to the fwnode, why not look up
+the property in there instead, thus massively simplifying things.
+
+
+>  		if (ret)
+>  			return ret;
+>  	}
+> -- 
+> 2.25.1
 > 
 
-Thanks. I will fix it in v5.
-
-> Best regards,
-> Krzysztof
-> 
+-- 
+Lee Jones [李琼斯]
 
