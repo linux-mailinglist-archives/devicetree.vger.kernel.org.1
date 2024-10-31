@@ -1,114 +1,213 @@
-Return-Path: <devicetree+bounces-117601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 352A89B714F
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 01:49:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E60229B7152
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 01:49:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D42571F212C9
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 00:49:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5822282C64
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 00:49:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAEBD1CFB6;
-	Thu, 31 Oct 2024 00:49:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27FC01DFE3;
+	Thu, 31 Oct 2024 00:49:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ifGBdiR2"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="g/AnwqZ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D244817991
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 00:49:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD33943AD9;
+	Thu, 31 Oct 2024 00:49:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730335762; cv=none; b=k1q84ONM/tr6NS3/K1HQniT7lHS249bbyjJE78y8O4X95BGwMFrBmGkydPNEWPXEJNenn7VgXT7g3u+Y7ldriHbpZfn4ubzSFevBUvyMyoeL51dfqHLKj7hM7EsyFt5W7sE/AE9CGfNGz3f4/z4yymrODnpiz9iUm7tuDNWnD94=
+	t=1730335787; cv=none; b=PtgKTeZSzR0TPTUuEKMhFpuiVBiB6ry95/gg7Uz1oye33DOajP1JQjlp/Dsg6s+JsGNNAOMAulyorFj6Ulc4SIQhC8174IXo481CcwEvLMT8kVmoOK6GaZgyK/fPhKnJKoAXpbuAXfZ+BVOFgRFLEaG8UswqbCqthPfRBTFtucE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730335762; c=relaxed/simple;
-	bh=ZjtbT2Pdo5aYguq16kK5+0TmKumhpkQwfo5YKWlpA4U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RvK4UJbKT9mLofRA6x1i8VLBIz08gv7D53XFR49N/US5i2wWDpKHPg9A/d0HwOek/+T3VDWVrXdPvIShAfGTdUdDuUzAoGzlH7nzB1/ZNcph4OfcQdimzEEEu3NVxukqt3IybauRqr/u7HgruoHmuWm4Uo4+GiV8iq0HQtJyVfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ifGBdiR2; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4314c4cb752so3482455e9.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2024 17:49:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730335759; x=1730940559; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZjtbT2Pdo5aYguq16kK5+0TmKumhpkQwfo5YKWlpA4U=;
-        b=ifGBdiR21FipJtgfUCy97fSpZaHk0UDdAnV8Bs9oh7i1imi2lmkGV43UYd73PyR1S0
-         94prMJd865hktYJRNSB3R+zH3B8ozE8cO7724bXdggs24UgiKc7wlIwGInjBlSohQ0eK
-         0zcTMNoxSs9Sj0eJ7Xflrr2JwnKDPAJt2v7e2J/FkXU+8B7cKADua03NpELSBJfoMaC4
-         6iuduNqd92wl2CBFLgxKfT5/I/9Lw0H50L2PCbIkQtjDO+V1bHGQz3PKFu4ToYGoyLdF
-         zIvhBezKLpjNMeq60fYeQwvJz2Jk9mMOOZY01pXvuEKcTgYkcPsp0L81EDZT3yYft5x5
-         1AuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730335759; x=1730940559;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZjtbT2Pdo5aYguq16kK5+0TmKumhpkQwfo5YKWlpA4U=;
-        b=jw1FUebzga7BRwSQnHNLU2PRbzbgyno+0Sax4AKToZP6JUvsY66W4mRrUTkbpdtxGZ
-         fE8yX2hDReKb62fmOrgPw4bE+m2ugQteloQhoA5Nq/UXNaQfdMv7Kpc0bZvbRK2U2TQ0
-         Sbu70/rrUHgxI4WvfbZQCPVU73kYvaxLR4iPpXvMUXM80HO6m1PSUafDKn7IyoFhYrd4
-         vWpBtbw3c1TNEtZoBc+dIi3tPKB/4/P4wwUXX8eT8btbxj7NG+IgPkUVjVFK9bpYI5sX
-         fERF275eUuKcSbEV6A2pT5pYFBs6GFzam4yIjHGv60BC4ZCmn0NwM42YSNIZCNfHP7j8
-         RfEA==
-X-Forwarded-Encrypted: i=1; AJvYcCVn85n369N2t2WuP2R8gCRNgdFMIC5l7RjCGlbxIwVmBp9LHSTuDTctdE68TgRUeWGyuErkwacIhhF2@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmWpLiRWF6yhheoU9IQVlHEUUxP3RgY9v+nPqFuQLDRUokBYM5
-	Kb08K3iK94E4HMi6+uANl85YS+4uW4ZfHgmR4wRw0KY29J9G/OTFO9lWvrRbwur5SpQAIas9l2R
-	QBCrC/7yfIqVfK2AftXeN2HAoJQU=
-X-Google-Smtp-Source: AGHT+IE9kEhPn7zleAyFMbH7KL0/80IedkMpTxBdxFKB0CUsFcu0GnoRPTCofF61WV28ypcgTSjTd1XcRg3PlY2rXu8=
-X-Received: by 2002:a05:600c:1f91:b0:426:66a2:b200 with SMTP id
- 5b1f17b1804b1-4327b6c79f7mr12136815e9.0.1730335758928; Wed, 30 Oct 2024
- 17:49:18 -0700 (PDT)
+	s=arc-20240116; t=1730335787; c=relaxed/simple;
+	bh=AouGVQ2CRkjpEWM70bUJlCu0V+yKP2XQnmW+HAZ45c8=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=FiP3h2rh3ORjD+jgKuVqQNsDW+8FcI9Pxm5WU/di2rTGrTHU3OOjug5LarxJ8LaTMJ+8CXz0omag0PJ12CTa/DQCcm2lDbQl8JEA7ClDJ1pG0P1NzJW9QPm/B+t5R5UnTWCwlFVRFcy7yLkAXn5NbpitsND0lGBVO8uy6hBqB0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=g/AnwqZ3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49UCH9ug019847;
+	Thu, 31 Oct 2024 00:49:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7xhMTx79uWJ0oHC0IxM8Ok0hQb/h6nRSursI6CrKMEE=; b=g/AnwqZ3Yif4Pzs9
+	KNW5jnZUznCrIQweqAJPN2eBbylguIg9A+Lb3oIoZ/6PVJ+K6OE8qFGSS9kW39i4
+	jqRrPlz4uQIfbSHSlMIx8YFg+l1p4wMsEfNbfVfakFk7UPY7S4X9vMPJp3WGVB4v
+	LFe3/fhmghYYimkF1MItCwkWuigpuJI+FLXRIgLjNp7PcRPXfD4H/XfNYZ+3kUyW
+	XHMhMBbexVYS9emVN69riDIRc+7EIVogY99NrtMJc3BSMjm8WRQ8ftxFZTKMg0bE
+	0YYLsxaAasl1dM/MhkJZ/KY22YvtnOhIUiZ3MwgrhVJbfTv7a9JnSkI8K5FumQ4R
+	hCFDCQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42kmp0ht14-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 31 Oct 2024 00:49:20 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49V0nKMA010497
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 31 Oct 2024 00:49:20 GMT
+Received: from [10.71.115.184] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 30 Oct
+ 2024 17:49:19 -0700
+Message-ID: <07d5a8b5-e985-45c1-95e0-1def6695ba9b@quicinc.com>
+Date: Wed, 30 Oct 2024 17:49:18 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241030192236.839105-1-macroalpha82@gmail.com> <20241030192236.839105-4-macroalpha82@gmail.com>
-In-Reply-To: <20241030192236.839105-4-macroalpha82@gmail.com>
-From: Jimmy Hon <honyuenkwun@gmail.com>
-Date: Wed, 30 Oct 2024 19:49:07 -0500
-Message-ID: <CALWfF7LNN2dAtr00nLyk8rgE-K1vtSXkjhCFMbkVSzxhhSDvWQ@mail.gmail.com>
-Subject: Re: [PATCH V2 3/3] arm64: dts: rockchip: Enable HDMI0 on Indiedroid Nova
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
-	heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
-	Chris Morgan <macromorgan@hotmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v29 04/33] xhci: sideband: add initial api to register a
+ sideband entity
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+CC: "srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>,
+        "mathias.nyman@intel.com" <mathias.nyman@intel.com>,
+        "perex@perex.cz"
+	<perex@perex.cz>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
+        "corbet@lwn.net"
+	<corbet@lwn.net>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "pierre-louis.bossart@linux.intel.com"
+	<pierre-louis.bossart@linux.intel.com>,
+        "broonie@kernel.org"
+	<broonie@kernel.org>,
+        "bgoswami@quicinc.com" <bgoswami@quicinc.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "gregkh@linuxfoundation.org"
+	<gregkh@linuxfoundation.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-sound@vger.kernel.org"
+	<linux-sound@vger.kernel.org>,
+        "linux-input@vger.kernel.org"
+	<linux-input@vger.kernel.org>,
+        "linux-usb@vger.kernel.org"
+	<linux-usb@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org"
+	<linux-arm-msm@vger.kernel.org>,
+        "linux-doc@vger.kernel.org"
+	<linux-doc@vger.kernel.org>,
+        "alsa-devel@alsa-project.org"
+	<alsa-devel@alsa-project.org>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>
+References: <20241015212915.1206789-1-quic_wcheng@quicinc.com>
+ <20241015212915.1206789-5-quic_wcheng@quicinc.com>
+ <20241025232252.wsk4lviqzyzqjzuh@synopsys.com>
+ <52ea0b32-79c7-42e8-8e2c-192d08f41e64@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <52ea0b32-79c7-42e8-8e2c-192d08f41e64@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: OqRiUjmTcddOaQjqdwLe-IzQ-UetsT-M
+X-Proofpoint-ORIG-GUID: OqRiUjmTcddOaQjqdwLe-IzQ-UetsT-M
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 malwarescore=0 impostorscore=0 mlxscore=0 suspectscore=0
+ adultscore=0 clxscore=1015 phishscore=0 spamscore=0 mlxlogscore=999
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410310005
 
-On Wed, Oct 30, 2024 at 2:25=E2=80=AFPM Chris Morgan <macroalpha82@gmail.co=
-m> wrote:
+On 10/29/2024 11:58 AM, Wesley Cheng wrote:
+> Hi Thinh,
 >
-> From: Chris Morgan <macromorgan@hotmail.com>
+> On 10/25/2024 4:22 PM, Thinh Nguyen wrote:
+>> Hi,
+>>
+>> On Tue, Oct 15, 2024, Wesley Cheng wrote:
+>>> From: Mathias Nyman <mathias.nyman@linux.intel.com>
+>>>
+>>> Introduce XHCI sideband, which manages the USB endpoints being requested by
+>>> a client driver.  This is used for when client drivers are attempting to
+>>> offload USB endpoints to another entity for handling USB transfers.  XHCI
+>>> sideband will allow for drivers to fetch the required information about the
+>>> transfer ring, so the user can submit transfers independently.  Expose the
+>>> required APIs for drivers to register and request for a USB endpoint and to
+>>> manage XHCI secondary interrupters.
+>>>
+>>> Multiple ring segment page linking, proper endpoint clean up, and allowing
+>>> module compilation added by Wesley Cheng to complete original concept code
+>>> by Mathias Nyman.
+>>>
+>>> Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
+>>> Co-developed-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>>> ---
+>>>  drivers/usb/host/Kconfig          |   9 +
+>>>  drivers/usb/host/Makefile         |   2 +
+>>>  drivers/usb/host/xhci-sideband.c  | 424 ++++++++++++++++++++++++++++++
+>>>  drivers/usb/host/xhci.h           |   4 +
+>>>  include/linux/usb/xhci-sideband.h |  70 +++++
+>>>  5 files changed, 509 insertions(+)
+>>>  create mode 100644 drivers/usb/host/xhci-sideband.c
+>>>  create mode 100644 include/linux/usb/xhci-sideband.h
+>>>
+>>> diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
+>>> index 4448d0ab06f0..96659efa4be5 100644
+>>> --- a/drivers/usb/host/Kconfig
+>>> +++ b/drivers/usb/host/Kconfig
+>>> @@ -104,6 +104,15 @@ config USB_XHCI_RZV2M
+>>>  	  Say 'Y' to enable the support for the xHCI host controller
+>>>  	  found in Renesas RZ/V2M SoC.
+>>>  
+>>> +config USB_XHCI_SIDEBAND
+>>> +	tristate "xHCI support for sideband"
+>>> +	help
+>>> +	  Say 'Y' to enable the support for the xHCI sideband capability.
+>>> +	  Provide a mechanism for a sideband datapath for payload associated
+>> Please correct me if I'm wrong, but this doesn't look like the actual
+>> xHCI Audio Sideband capability described in the xHCI spec section 7.9
+>> but rather a specific implementation for Qcom right? For the xHCI Audio
+>> Sideband xHCI capability, the driver should detect this capability
+>> through the xHCI get extended capability. If this is not xHCI Audio
+>> Sideband capability, we should properly clarify this in the
+>> documentation and the naming of things to avoid any confusion.
+> Sure, that's a good point.  It does still currently rely on utilizing the system memory for USB IO transfers.  I can add some comments and update some of the documentation to reflect that this is different. 
+
+Hi Mathias,
+
+Would it make sense to rename the APIs and driver to something other than "sideband" so that users don't get confused with the audio sideband that is mentioned above by Thinh?  How about using something like xhci-sec-intr to signify that this driver has APIs that will help support the use of xHCI secondary interrupters?
+
+Thanks
+
+Wesley Cheng
+
+> Thanks
 >
-> Enable the HDMI0 port for the Indiedroid Nova. The schematics available
-> show the hdmim0_rx_hpdin is connected, so this pinctrl is enabled in
-> contrast with the other rk3588 boards.
-
-Which pin in the schematic [1] (page 24) does it refer to? It's not
-obvious how to match it up.
-The schematic looks the same as the Rock 5B schematic [2] (page 31)
-and the Rock 5B dts uses the default pinctrl [3]
-
-Note: The vendor kernel DTS doesn't modify the pinctrl either. [4]
-
-If you try using the default pinctrl (not overriding), does HDMI not work?
-
-Jimmy
-
-[1] https://wiki.indiedroid.us/Nova/schematics
-[2] https://dl.radxa.com/rock5/5b/docs/hw/radxa_rock_5b_v1450_schematic.pdf
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.gi=
-t/tree/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts?h=3Dfor-next&id=3Dc8=
-152f79c2dd8039e14073be76fdbce8760175da#n207
-[4] https://github.com/stvhay/kernel/blob/batocera-rk3588-4.0/arch/arm64/bo=
-ot/dts/rockchip/rk3588s-9tripod-x3588s.dtsi#L226
+> Wesley Cheng
+>
+>> I believe your implementation still needs to provide the data to the
+>> host controller through the system memory right? The xHCI Audio Sideband
+>> capability may pass the data to the xHC other than the main memory.
+>>
+>> BR,
+>> Thinh
+>>
+>>> +	  with audio class endpoints. This allows for an audio DSP to use
+>>> +	  xHCI USB endpoints directly, allowing CPU to sleep while playing
+>>> +	  audio.
+>>> +
+>>>  config USB_XHCI_TEGRA
+>>>  	tristate "xHCI support for NVIDIA Tegra SoCs"
+>>>  	depends on PHY_TEGRA_XUSB
 
