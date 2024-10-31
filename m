@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-117682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 401149B7576
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:36:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F306C9B7584
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:42:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E61C1C24C82
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:36:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F5D91C21A86
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:42:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71DEE149C6F;
-	Thu, 31 Oct 2024 07:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8117F14AD29;
+	Thu, 31 Oct 2024 07:42:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ahwbu6H5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LhzZduIs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20864149C54;
-	Thu, 31 Oct 2024 07:36:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C8FA14A619;
+	Thu, 31 Oct 2024 07:42:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730360207; cv=none; b=dEAYdqcqW61SiV8Cp6csR4fFdiR7Gr2Xym77MSerUY1O3clL0/c17Dtv1CX2nHFh7UX8GrjbLXGlWu7U9hRJH5bPpKUURPFe8i5iEBgkTKOvW0Ofdw9vOgTykE/YQBYxCUDTgSo8cHof/VLwP7ULzpiEPj5qE3uIgd4iNLqJMMU=
+	t=1730360573; cv=none; b=AooP4ZcQeXP2BQtRdGG24liZvh9CYw9hckn8UwMODNYfJ2VVLyIvaQs0A0zACiRnVNm2j3VzLP8HqcfaIVTJ1aUepMXjiQUxVhIIY3sf+0nvzeU2dm9cuCE1rfagQNEwsSI+AAos7l42dr9+XEh+83v2wn9vkPXh/75BJfTR0lQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730360207; c=relaxed/simple;
-	bh=Q1aV6rGqCQlq2aELxThGs+q8I/yjm7V3satrDVXpHi0=;
+	s=arc-20240116; t=1730360573; c=relaxed/simple;
+	bh=cKqO+HacNDsYOGX1oXC/gkePXadnPjS5KOgqUQC17uw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BXcwJKC+t816Q+ZxReX7HnusTreKXyoCdkee3wVIlcKm2mcez02rhKhGa5Bpe5S3zBivbFevl8CUPeJQfovl4b3xFLl7w08nitLi9ggk0YdQieSYdaCpA4G7dmJL6mmU5F2p6lpVqymka1img1/jY5kQlL0jPFP0jQZSNbGRmSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ahwbu6H5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D789EC4CEC3;
-	Thu, 31 Oct 2024 07:36:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qWDmRfWL3WbTjpUBqMli/Qu5YKgdxX+1B5XqYG74SMDVKNlrjq8CVlmlWAtFXvaeVInkuX1qZ3P/91KA+9uUPlL00OqZqix9JPE0JxjLvgjBRoVsopocDv0VWhlrRFMwouR1sEFN4x4Ha1+MbRvwDnceQ1uOYsch02OriM5p/5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LhzZduIs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7621C4CEC3;
+	Thu, 31 Oct 2024 07:42:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730360206;
-	bh=Q1aV6rGqCQlq2aELxThGs+q8I/yjm7V3satrDVXpHi0=;
+	s=k20201202; t=1730360572;
+	bh=cKqO+HacNDsYOGX1oXC/gkePXadnPjS5KOgqUQC17uw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ahwbu6H5HG9lVu/5J77HI7tAOJuawifD1MFA/FuGxixJWdC+IRfrWJZl9Cop3NInD
-	 diUILWcIGV0F/JEejh/7cyibK7MBCjEJiHBeKqm5sE5qvb+uoXv8oiAti3YowG/TCA
-	 1FVdGDI3eJczqHNO6DeBd4lNTR7dLAMqwZb+6ISwmKAuefrq8yfbod3Mr3B8/KVizy
-	 QjZlCcjP9vzRJMn5Tc1JF8sqRWFjZXToego7Np9jlF8dw9CGvkdMt4llSA2d62Y6FO
-	 0yBpy5iHb/7AAStQ984O/fU8jGOvvMEJ/PViIutiM+Ei6Q/BtOknEHYbEzry9pH0Na
-	 aEBc7HQO5HMjw==
-Date: Thu, 31 Oct 2024 08:36:43 +0100
+	b=LhzZduIsTLE6KmsEKbW1O8sF8COg0PID66sl16MUGDwWFLNDMt4WnDIxrgUdQIb85
+	 bY9WRwqdcj5/n5SfhLufBmHB7Ao6fZD1ZBCBC45+pRCJ1/Z7IBLuC4SNza/FkujWP9
+	 JVfy7d7o7Tx9hhjauRbtg10ChC0bDwV6wkZUyhd7BlZsXt1hgnqGNNw8YsFVN+TAVS
+	 teqzBBA8m8s3c1+rzIxw6IRE9LHhHxllIC1gZ5OoUX2soOKrtV3k66za5iEd7BrWXV
+	 SixWZapnydK8F1EbKgrC7JsI5/ep/eQmSsOn2VwyAIJA2jsBfY3w3X3uEwIIBBsIao
+	 yXV6wZ7YYHARQ==
+Date: Thu, 31 Oct 2024 08:42:49 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jishnu Prakash <quic_jprakash@quicinc.com>
-Cc: jic23@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org, 
-	dmitry.baryshkov@linaro.org, konrad.dybcio@linaro.org, daniel.lezcano@linaro.org, 
-	sboyd@kernel.org, quic_subbaram@quicinc.com, quic_collinsd@quicinc.com, 
-	quic_amelende@quicinc.com, quic_kamalw@quicinc.com, amitk@kernel.org, lee@kernel.org, 
-	rafael@kernel.org, rui.zhang@intel.com, lukasz.luba@arm.com, lars@metafoo.de, 
-	quic_skakitap@quicinc.com, neil.armstrong@linaro.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, cros-qcom-dts-watchers@chromium.org
-Subject: Re: [PATCH V4 0/4] Add support for QCOM SPMI PMIC5 Gen3 ADC
-Message-ID: <f2c2zxxmsk74rbgbhus7nyrxppwdeq2esgifigt7c326zzlmla@6vdb2rmbjptl>
-References: <20241030185854.4015348-1-quic_jprakash@quicinc.com>
+To: Cody Eksal <masterr3c0rd@epochal.quest>
+Cc: Yangtao Li <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>, 
+	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Maxime Ripard <mripard@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Parthiban <parthiban@linumiz.com>, 
+	Andre Przywara <andre.przywara@arm.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 11/13] dt-bindings: opp: h6: Add A100 operating points
+Message-ID: <4flk2ub5dldqfv7wd7ytmmnvyvwqb7fxhw6eut2fpatnoms5li@kwehlp4mhytf>
+References: <20241031070232.1793078-1-masterr3c0rd@epochal.quest>
+ <20241031070232.1793078-12-masterr3c0rd@epochal.quest>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,38 +66,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241030185854.4015348-1-quic_jprakash@quicinc.com>
+In-Reply-To: <20241031070232.1793078-12-masterr3c0rd@epochal.quest>
 
-On Thu, Oct 31, 2024 at 12:28:50AM +0530, Jishnu Prakash wrote:
-> PMIC5 Gen3 has a similar ADC architecture to that on PMIC5 Gen2,
-> with all SW communication to ADC going through PMK8550 which
-> communicates with other PMICs through PBS. The major difference is
-> that the register interface used here is that of an SDAM present on
-> PMK8550, rather than a dedicated ADC peripheral. There may be more than one
-> SDAM used for ADC5 Gen3. Each ADC SDAM has eight channels, each of which may
-> be used for either immediate reads (same functionality as previous PMIC5 and
-> PMIC5 Gen2 ADC peripherals) or recurring measurements (same as PMIC5 and PMIC5
-> Gen2 ADC_TM functionality). In this case, we have VADC and ADC_TM functionality
-> combined into the same driver.
+On Thu, Oct 31, 2024 at 04:02:24AM -0300, Cody Eksal wrote:
+> The A100, similar to the H6 and H616, use an NVMEM value to determine
+> speed binnings. The method used is similar to that of the H6. However,
+> the information is stored at a slightly different bit offset.
 > 
-> Patch 1 is a cleanup, to move the QCOM ADC dt-bindings files from
-> dt-bindings/iio to dt-bindings/iio/adc folder, as they are
-> specifically for ADC devices. It also fixes all compilation errors
-> with this change in driver and devicetree files and similar errors
-> in documentation for dtbinding check.
+> Add a new compatible for the A100.
 > 
-> Patch 2 adds bindings for ADC5 Gen3 peripheral.
-> 
-> Patch 3 adds the main driver for ADC5 Gen3.
-> 
-> Patch 4 adds the auxiliary thermal driver which supports the ADC_TM
-> functionality of ADC5 Gen3.
-> 
-> Changes since v3:
-> - Updated files affected by adc file path change in /arch/arm folder,
->   which were missed earlier.
+> Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
+> ---
+> Changes in V2:
+>  - Fix ordering of compatibles
 
-I don't think this was tested afterwards...
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
