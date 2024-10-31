@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-117735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18FC99B77E0
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:49:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64DEB9B77EC
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:51:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B96AF1F25303
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 09:49:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAB8E1F24AA2
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 09:51:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9EDB197A88;
-	Thu, 31 Oct 2024 09:49:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47458198E8C;
+	Thu, 31 Oct 2024 09:50:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oEgCRQti"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TWYWDuyk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C61881E;
-	Thu, 31 Oct 2024 09:49:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0632A198E70;
+	Thu, 31 Oct 2024 09:50:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730368148; cv=none; b=k2t5GTogPbp0SXDW1XEbYJ3bphZBUPw5HY86XbwhUTOwNb14i3mQWX3u3jdSjtHzyc2DkHWVuoGvuSZJrLe9WnJzw7KuDxI7NAHCJniNa7beoC0ZrChsv0/ZlrnoQrqawkDkL2ts3dQrEwzAQ6Lu0MKgVRkqeibh/w/AfVkTqr4=
+	t=1730368251; cv=none; b=pZvhKUIdX00JElAZBKRz01VgfpNhiftJenuuZ4yGCI05H62tim9Cknw7Y05b2T4Ok8cbd2CrCUzinwjL6yekVfdTc9vPCohNLxJklHFjCOqiO3YnUmYUtKzhO6vwOxe+G4/jIxPIPBZrN3n8R8XDQSO+ohxFbLPYv+mlkzqyKew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730368148; c=relaxed/simple;
-	bh=U2CTtbVD42+J2rWSDZ/dXeRVdT7Po9urr393OHVzYI0=;
+	s=arc-20240116; t=1730368251; c=relaxed/simple;
+	bh=Vjh+3r/T5wXwLUhjDZ9Z5nnKZ/Su77T2fS+C3WYnF70=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S8hGNiSpudmjSiighWICyOwwgwaVrhBf9lFhWHzkE33XJrm658RqLJv48NuN8iyPEAcy0ZMHlq5UwSzg94P/Xz3jGSQbI2r7BTppASXreO6kfK4v4y/PaRc3JqAK7adclWrU34Q+e/fxVspS+WSKQWAdNzVS4hNbMIn1YqyRqbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oEgCRQti; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9502C4CEC3;
-	Thu, 31 Oct 2024 09:49:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=VAEGbRVSkehGEOdNuG1grWgQ+PTNZb04NQRjlPXTkDMVwHBFkGie7NK230SJGWlMVIiny/QceJfNb88C0N0FppI9gwcJRMvWQ8WZL1Wd//W0rLqao0Nw3oYxudYzvfJxKXhQgHOKxcodkCfzNobN2I2Y4loMvdotqXGBPjnwUJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TWYWDuyk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 543DBC4CEC3;
+	Thu, 31 Oct 2024 09:50:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730368148;
-	bh=U2CTtbVD42+J2rWSDZ/dXeRVdT7Po9urr393OHVzYI0=;
+	s=k20201202; t=1730368250;
+	bh=Vjh+3r/T5wXwLUhjDZ9Z5nnKZ/Su77T2fS+C3WYnF70=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oEgCRQtitJKe9TeBSOeAze3r5/VzVFrnsS8NSBTkDijD0gtzIpt26JTaRZj0hVKn4
-	 PRrW3HjVK5pF9kJHPmFvQSwu1y2PnNs5MVPipjfsD4XH/yXiS6Y1YFrXrcF8JgDMn9
-	 XoYSRHUfXz7y/7FfsUrFnTT19ov7axXWPtFTsTGnHemsPMbyeMss9XFx7mPmt/8FH8
-	 bI8rk31PWsdlRwyFS3vK1ViAQh2pJm4hkC7A0D1D4xAHltAf3KWLqmFLwf2uCaphCg
-	 Nr/CIy4V+ccw22npdI3aYpk5a2UKNgNBbnDNehw8FMDQtGfIZX3JbyZLOyg1YreyBJ
-	 jC/erwzHSKTSA==
-Message-ID: <b3d51c31-3bcc-4319-8857-e16ddb636328@kernel.org>
-Date: Thu, 31 Oct 2024 10:49:00 +0100
+	b=TWYWDuyk4z6lBKH9oDOionHLuqSbNreW5L9Fn8Q7kjcgu9rF2TdYi5Xe/4VrF+Aok
+	 8vwR9CUvm+x3i13zuMNlyaGeSMM6ZUQ6KZebggcTpH6oGAIsEFQJJF812JnOqP9Nq5
+	 S+U+LUuEQzkE6oMlrB9tXxPMO1jyXKb1Cn6/d7E6D1XQXv8ip6GgkZdEM9iMOvRXFC
+	 w88D6YLXcFd/5LMuJGzdxFGOPzD84TS6lgtRrz5CxxNyODY9+vzPTvj27l7rMILcn9
+	 RPOzcwOjrplsorMIQ9dtztEM/QjQu0qxE8Nmta23LMMrOX9PftCMRWuFrztfwDcaem
+	 OkDFfhZSzq+gA==
+Message-ID: <24e81091-e0f9-40c7-b781-10354b4a3ea2@kernel.org>
+Date: Thu, 31 Oct 2024 10:50:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] dt-bindings: omap: Add Samaung Galaxy Tab 2 7.0
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Mithil Bavishi <bavishimithil@gmail.com>,
- Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman <khilman@baylibre.com>,
- Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20241030211847.413-1-bavishimithil@gmail.com>
- <46rktrrcnpl53nt3o7qe24cd4wp3cjq2v4sbno5oxdrgyazzfj@uqr5kt7pm2x5>
- <20241031092448.174402c3@akair>
+Subject: Re: [PATCH v2] dt-bindings: mfd: sprd,sc2731: convert to YAML
+To: Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org
+References: <ZyExK01iprBHhGm6@standask-GA-A55M-S2HP>
+ <ki4wvjslncrngwpz7qukknzgdsjkxvrhitem7i5lof6ggyhu4e@tviovrd2wi77>
+ <ZyHjW86v9Y59-TJQ@standask-GA-A55M-S2HP>
+ <7db6431e-1892-463e-9c74-cd466ae3ca32@kernel.org>
+ <ZyHq4FJ0ubQVGREo@standask-GA-A55M-S2HP>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,34 +115,55 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241031092448.174402c3@akair>
+In-Reply-To: <ZyHq4FJ0ubQVGREo@standask-GA-A55M-S2HP>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/10/2024 09:24, Andreas Kemnade wrote:
-> Am Thu, 31 Oct 2024 09:18:49 +0100
-> schrieb Krzysztof Kozlowski <krzk@kernel.org>:
-> 
->> On Wed, Oct 30, 2024 at 09:18:43PM +0000, Mithil Bavishi wrote:
->>> Add samsung-espresso7 codename for the 7 inch variant
+On 30/10/2024 09:14, Stanislav Jakubek wrote:
+> On Wed, Oct 30, 2024 at 08:48:25AM +0100, Krzysztof Kozlowski wrote:
+>> On 30/10/2024 08:42, Stanislav Jakubek wrote:
+>>>>
+>>>>> +
+>>>>> +  '#address-cells':
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  '#interrupt-cells':
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  '#size-cells':
+>>>>> +    const: 0
+>>>>> +
+>>>>> +  regulators:
+>>>>> +    type: object
+>>>>> +    $ref: /schemas/regulator/sprd,sc2731-regulator.yaml#
+>>>>> +
+>>>>> +patternProperties:
+>>>>> +  "^adc@[0-9a-f]+$":
+>>>>> +    type: object
+>>>>> +    $ref: /schemas/iio/adc/sprd,sc2720-adc.yaml#
+>>>>> +
+>>>>> +  "^charger@[0-9a-f]+$":
+>>>>> +    type: object
+>>>>> +    $ref: /schemas/power/supply/sc2731-charger.yaml#
+>>>>> +
+>>>>> +  "^efuse@[0-9a-f]+$":
+>>>>> +    type: object
+>>>>> +    $ref: /schemas/nvmem/sprd,sc2731-efuse.yaml#
+>>>>
+>>>> I don't think this was merged. You still have dependency.
 >>>
->>> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
->>> ---
->>>  Documentation/devicetree/bindings/arm/ti/omap.yaml | 1 +
->>>  1 file changed, 1 insertion(+)
->>>  
+>>> This is in next-20241029, which this patch is based on.
 >>
->> This is v2, so where is the changelog? Same for all other patches. No
->> cover letter, no changelogs in patches.
->>
-> The cover letter including changelog is here:
-> https://lore.kernel.org/linux-omap/20241030211215.347710-1-bavishimithil@gmail.com/T/#t
+>> Try what I wrote below and see if this works...
 > 
-> seems like it was ripped apart somehow.
+> I assume you meant the MFD maintainers' tree here.
+> Yes, that tree doesn't have the nvmem patch this depends on.
+> 
+> Would the approach with listing the compatibles and additionalProperties:
+> true be considered a temporary workaround?
 
-It's not attached to this thread. I don't have it in my mailbox. Neither
-did b4 when applying entire thread for review. Sending something
-separately or making it not accessible for review means it does not exist.
+Not really, it's a correct approach. The node will be validated anyway
+by efuse/child schema.
 
 Best regards,
 Krzysztof
