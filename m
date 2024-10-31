@@ -1,98 +1,114 @@
-Return-Path: <devicetree+bounces-117931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD3439B86E6
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 00:17:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B90EA9B8769
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 01:00:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56FC71F221AA
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 23:17:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DEDD91C214DF
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 00:00:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E20F61E2007;
-	Thu, 31 Oct 2024 23:17:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB56153BFC;
+	Fri,  1 Nov 2024 00:00:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bn2fG+8+"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="R56GkXfw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f201.google.com (mail-yb1-f201.google.com [209.85.219.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E41CC1CC8B7;
-	Thu, 31 Oct 2024 23:17:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92001E32CC
+	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 00:00:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730416658; cv=none; b=DR/A2L1EedYNlL/eei+LkJuN/ifjJuLnbgphEvyfuikPuO13BI8/VOXK7dqxZlK2rgMqWFAWam0o9O5CIp0gwQyJLp/ytRhhfnsIM4kBMuqEhJ6y3FJs/s8dDzz4JGoMP3LL653XirTiIJYLRbGLv9uzGBoNPKwa/WndlMr1diI=
+	t=1730419207; cv=none; b=XC/ZcOKJ52c0cxXnrJiOZq9yPRFPHHhVBcBblSnma5rB4SPTt3clO4uR4+fImlfcEBW2OuWkIuZusm43QUDS1IKZ/RclS6NYMft91o9TvEprOfHU+rUmAmaAW5k5r0Pv3UWcDvGICtoPJRgIxYldUo9zU8OqXiHwIEnN8PGJ4s4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730416658; c=relaxed/simple;
-	bh=guKQZ269YoJkWNOHN8n+zpW1sLw/rcZPJRVDIFG7ssQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IcRUiFMJJrI9Onyh7j/raIVjbloR6cdzrFBSwhFT34ri8UarMq1XOSP45o9BuMjh9HlXPdH/iH5FyJ6f5QGCBD5ouBYb3eNbFIOKEtPQ0v3ykaMKgtX8HH8QED3sZXVYemQ2B+4LvYMhNebuuNgSVm6mgLF6fNFaaSdAp/b0eXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bn2fG+8+; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 038AE20002;
-	Thu, 31 Oct 2024 23:17:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1730416650;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Q2N3NKmH49hjRiqnrVgcxvKSV4bVv8lUQzTG26S2d3Y=;
-	b=bn2fG+8+pXP2OIG5T46ZntHVHumfx4xU2hVMnhQuJ0sX3uPBQlHbiUl8Tr+WHUjbwvYqPP
-	sx+mKsfBDuoCjVzFeyumLm7B+ttWP5/ZzPeTO9f1D3KWdkJ1RehsIGLwytozpfoGFnZZ8j
-	atWicNRrYbfkVY+jje2eoTo3oSby7g4dOgJnU6LBHvhPIm5awdpcj0Gl9c4erLIIj4VrK1
-	gQMvCk0NZ3DZ4+aE98JcxX5+5ws5Pju+ox4zxRNI62UNW/chM/4iKZPCBV+rjfO3M5UVAd
-	4qaWLxpxrLJY/c+Cx95/wPVuJbFtPjnCbrlpcCJwCS1k05muZTYVjEiST3utQg==
-Date: Fri, 1 Nov 2024 00:17:28 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	magnus.damm@gmail.com, p.zabel@pengutronix.de,
-	Claudiu <claudiu.beznea@tuxon.dev>
-Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: (subset) [PATCH v5 00/10] Add RTC support for the Renesas RZ/G3S
- SoC
-Message-ID: <173041660392.2394403.11154347678487291985.b4-ty@bootlin.com>
-References: <20241030110120.332802-1-claudiu.beznea.uj@bp.renesas.com>
+	s=arc-20240116; t=1730419207; c=relaxed/simple;
+	bh=dwDn0TURDpWQmYISsxqoCtZReaNWkDo/PboWB6G0Owk=;
+	h=Date:Mime-Version:Message-ID:Subject:From:To:Cc:Content-Type; b=imwx93YRCs0IGjTVvSyit1nkqAPXk2SUhm2eDX/fqakNrre27A/8akg9Wf1b1s1K8ayAu1UzA9KmALTOLPXvdT627Xu77AEsPwcPjOeFQ8day2pFQCaWvlje0xldJKZccWTXhb66ETWm7OSy+/M0MIMPVO51T+1rHsbH2eW2yPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--amitsd.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=R56GkXfw; arc=none smtp.client-ip=209.85.219.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--amitsd.bounces.google.com
+Received: by mail-yb1-f201.google.com with SMTP id 3f1490d57ef6-e2954ada861so2501342276.3
+        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 17:00:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1730419200; x=1731024000; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=cEt3MVqqxDBbCecmuXKd75lsXhmWRHU5J08RIUulB2g=;
+        b=R56GkXfwinT9W16ByaGxSoECb/FeGethy5g0k1W96PZIrwQZfLH8H5+znGLkuiYM3J
+         f1azHLTsdALoqPNyuhpknq7cnRPOqr0JQsCs+PU9SWgWqeKSzNA2NEB85VVtq/AHn7kS
+         Fq4GK5L5rdXgSgXndkFCZNtNXBKZO8cvWqZv+DwpZ9rImdt2Tbk6YNv53OaW5qZ7ZtGs
+         y5gPIUlBukw/LDivvCcNDB3/3qQ88EvW+hJDtAhI7A2g3gSurook4WosrntMNZ750yaa
+         X2JmnFh9wsC3s7JL0TCfY59UqbW7facYJfTdS8g5zVq1qmkA9ArQRnMmMxYDyNF8typ3
+         GooA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730419200; x=1731024000;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cEt3MVqqxDBbCecmuXKd75lsXhmWRHU5J08RIUulB2g=;
+        b=lfI7/qLk+0hMdoVYhPEtD1qlHwEmUG70ExuMiFqZMM4xodW6BN+Rg9+zEWGe6R0L+f
+         1hgk613+ZKVT+gAQezLpcLowhSrMFNrchziBp/yllhe+v2QSmtny0Yh+V1FY0bWA5iNm
+         Z7Wm3e2oihYI84mDWQZJyLX0ozCSPaigqfBcz572BLH7ZsC1AKpSNpjAoiBePxE2tByE
+         L5fzkR1azAhEytQy72sYX4BbkBFhZ7yEU2F8rDQU/MeNjqxNTMZFkdS8FQy2Yxttgfaw
+         tPDy0rFK2Bon+1LEI2Oua/fRmZ2XWdm90bKXhXCZSSLEfolHWafv8RBtuAN8Lx/TNcDs
+         8ljA==
+X-Forwarded-Encrypted: i=1; AJvYcCXcHaPn3gWsUNpeAJ04YJVOZDQjbMGqWamGZ53DdI8+y47Y3xKTpU8oVXSM0CYTp5mv5slpS8mj7bP2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyl3h8FCrp4LTWfUXi2bBHt+MXufT5wnepCBBuarbBfWSy1lRmw
+	XF3IKXoej9zd2s552J43nUZFHtgkN+jnNWepXMsqCQ1BmKc6EoCCs8RpWj1qamfp2X160BQ7C5B
+	wXg==
+X-Google-Smtp-Source: AGHT+IEXZV3G3jh5U5saB7BhlzBPRlhCsxeQIBe08kK/8AySWU+uLXqwjkKqdarvd1ytRanLG3qi1O/CSHg=
+X-Received: from amitsd-gti.c.googlers.com ([fda3:e722:ac3:cc00:20:ed76:c0a8:827])
+ (user=amitsd job=sendgmr) by 2002:a25:abc1:0:b0:e30:cee4:1431 with SMTP id
+ 3f1490d57ef6-e30cee41523mr14871276.1.1730419199960; Thu, 31 Oct 2024 16:59:59
+ -0700 (PDT)
+Date: Thu, 31 Oct 2024 16:59:51 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241030110120.332802-1-claudiu.beznea.uj@bp.renesas.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.47.0.199.ga7371fff76-goog
+Message-ID: <20241031235957.1261244-1-amitsd@google.com>
+Subject: [PATCH v1 0/3]  Add new time property for battery charger type detection
+From: Amit Sunil Dhamne <amitsd@google.com>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	gregkh@linuxfoundation.org, heikki.krogerus@linux.intel.com
+Cc: dmitry.baryshkov@linaro.org, kyletso@google.com, rdbabiera@google.com, 
+	badhri@google.com, linux@roeck-us.net, xu.yang_2@nxp.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, Amit Sunil Dhamne <amitsd@google.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, 30 Oct 2024 13:01:10 +0200, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> Hi,
-> 
-> On the Renesas RZ/G3S SoC the RTC clock is provided by the VBATTB
-> IP. A 32 KHz crystall oscillator could be connected to the VBATTB
-> input pins. The logic to control this clock (and pass it to RTC)
-> is inside the VBATTB IP. For this, the clk-vbattb driver was added
-> (patches 01-03/12).
-> 
-> [...]
+This patchset adds a new time DT property to handle time taken by
+battery charger type detection completion.
 
-Applied, thanks!
+Note that BC detection is based on
+"Battery Charging Specification Revision 1.2".
 
-[04/10] dt-bindings: rtc: renesas,rzg3s-rtc: Document the Renesas RTCA-3 IP
-        https://git.kernel.org/abelloni/c/71c61a45c951
-[05/10] rtc: renesas-rtca3: Add driver for RTCA-3 available on Renesas RZ/G3S SoC
-        https://git.kernel.org/abelloni/c/d4488377609e
+This patchset depends on the patch series:
+ - https://lore.kernel.org/all/20241022-pd-dt-time-props-v1-0-fea96f51b302@google.com/
 
-Best regards,
+Amit Sunil Dhamne (3):
+  dt-bindings: connector: Add time property for Sink BC12 detection
+    completion
+  dt-bindings: usb: maxim,max33359.yaml: add usage of sink bc12 time
+    property
+  usb: typec: tcpm: Add support for sink-bc12-completion-time-ms DT
+    property
 
+ .../bindings/connector/usb-connector.yaml        | 11 +++++++++++
+ .../devicetree/bindings/usb/maxim,max33359.yaml  |  1 +
+ drivers/usb/typec/tcpm/tcpm.c                    | 16 +++++++++++++++-
+ 3 files changed, 27 insertions(+), 1 deletion(-)
+
+
+base-commit: 0fc810ae3ae110f9e2fcccce80fc8c8d62f97907
+prerequisite-patch-id: c08696694dabcbb86b458a935a9cbbcbabb75672
+prerequisite-patch-id: 634924883df820956acb33941b659e8c9ef85d1e
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.47.0.199.ga7371fff76-goog
+
 
