@@ -1,116 +1,117 @@
-Return-Path: <devicetree+bounces-117763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A91CF9B7A52
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:14:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E9B09B7A79
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:26:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C5442821B2
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 12:14:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19F8A1F2465A
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 12:26:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 726D619B3DD;
-	Thu, 31 Oct 2024 12:14:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5838F19ADA4;
+	Thu, 31 Oct 2024 12:26:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="jnZ/A9Td"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VQZ8Hmfl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DED5319ABBD
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 12:14:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30A0C14831D;
+	Thu, 31 Oct 2024 12:26:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730376876; cv=none; b=aT0P9CPGpwK7swwnCH4jrRxk/g389vt0brhr/JsS8jVl94TgAD17stud3H4Nz8jFlvtDP5ZKSJzZPQAFnt9zLASpc9O9bjKYIKjSk4lCl3y+ap9BAnJ9fNQLlA47EcIMm2jM1ejPh0GU61TwaJ2cB1gUoWavHTo08AiYzOkSV4o=
+	t=1730377599; cv=none; b=on0oNr+Jwt+seVr0Nno8+MHEtnmsghat/KfRcwdVR/9K1pY3FoTzYCj5P/MZa4i0VuwYgBfZ17iuUkyWAuJccpWVEF8G78LtjAj0fnDHIXIFjdjXzD8c9GQx9WHBXB0Su7rCwzLtTNp4HrIeVk77a5G/fMtZpRJyw6kYuE+v3Fc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730376876; c=relaxed/simple;
-	bh=qzZLBzu6tyfJlmH/zutIjp+TUUKE+0aO3mck+5Q39Ic=;
+	s=arc-20240116; t=1730377599; c=relaxed/simple;
+	bh=ROImIcKd26I37IIPZ7G3j3tGh80SEofFXW3tR61BJI8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kvlcKiHaDoqnwc6WMKamIQk5DGXwHIhpiS8rVGZWHLVPNu5rUz4NQiQBY5QPDhcsyeokX4QPOGhJXggRfXwXac5huNlOf7pGCMnvyp29TkKIcHsmIaGW5zt7mIs1ZpHrDIg3RRejb3/f3kZNB6ITYFVY6F59Fsln7z6p5BCqkdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=jnZ/A9Td; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=qzZLBzu6tyfJlmH/zutIjp+TUUKE+0aO3mck+5Q39Ic=; b=jnZ/A9Tdxg+LSPl6JXB0MKE9EN
-	91IhwKQhLDAqQYI88kWTkDG8z6BC6soHAzAe9mHmYCwMCAGVPPLqWvZeUcqgqpLiKYsTYgXoYNNGd
-	eozkSzarXVON5jo9els8bLbJ9uxhWQ2arjUbwvwVHA62IG+qxMMJocE9w3WYVbB7AM+H9L96Pv7OY
-	mz4LJ3dXfL5mi4u9/hr63fV68ni6favMc+1aKIb9URuKpzaW0Fjo38w2W1GqKepF5IsSmwuT90swu
-	/w2dqJ40e6FUDUrVwGg/00vE3FlO7mDZnIpLn54glKjtbiOu7P20dg2zy7JEgaDapz6rNKTQ5+ZdD
-	b7AdOQIw==;
-Received: from i5e861914.versanet.de ([94.134.25.20] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1t6U4E-0008JK-VR; Thu, 31 Oct 2024 13:14:23 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Chris Morgan <macroalpha82@gmail.com>, Jimmy Hon <honyuenkwun@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- Chris Morgan <macromorgan@hotmail.com>
-Subject:
- Re: [PATCH V2 3/3] arm64: dts: rockchip: Enable HDMI0 on Indiedroid Nova
-Date: Thu, 31 Oct 2024 13:14:22 +0100
-Message-ID: <5831051.DvuYhMxLoT@diego>
-In-Reply-To:
- <CALWfF7LNN2dAtr00nLyk8rgE-K1vtSXkjhCFMbkVSzxhhSDvWQ@mail.gmail.com>
-References:
- <20241030192236.839105-1-macroalpha82@gmail.com>
- <20241030192236.839105-4-macroalpha82@gmail.com>
- <CALWfF7LNN2dAtr00nLyk8rgE-K1vtSXkjhCFMbkVSzxhhSDvWQ@mail.gmail.com>
+	 MIME-Version:Content-Type; b=pV8cCQxMxOqN6fdzEhh8PImPZWk+Dv4N4ofbB5SKCd5IHgRuNM75S58XE9n18e6CtQrR7Yb6cKp05hEGbtYDHbSaiSntwXZnu6MsJVxbZxAEuMi1KT+tJ7uG6F1p3rlGH3k1Y4fgvjh2nZ+u+7MSMtlO93AJsX/wFIaercaB75Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VQZ8Hmfl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E411C4FE0F;
+	Thu, 31 Oct 2024 12:26:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730377598;
+	bh=ROImIcKd26I37IIPZ7G3j3tGh80SEofFXW3tR61BJI8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=VQZ8HmfllQmBOTiIj7AXghEbzCewVOl5UEKOTbuj/oF9tT8vmfaZti53DuzStqOFg
+	 KJLwrCdV/8Zky2cGPZckIQkZA8AdWyJDefksndBQIX7jeHyHjL9tTAT1pA0uWiWlyX
+	 49shJFYqGwYDWq8EqWvCfCruM5eDunH+FAymVk6Pseh4Sn1BJsTprZsLTh+wPQqCa9
+	 ZmAgHnUdnjvMXPRZdlnBCGi9QSbqmqv5aPpZ4krsVn0lzmxKRuQ4TS+IYT8hh9KGpK
+	 RxaNryz+eLxzGoVxwfdCzlO2TiSbEtw09YpJSXUgIzVQekmN46opDXkc3r/bCZgYoh
+	 VvCKISkHqgwOw==
+From: Conor Dooley <conor@kernel.org>
+To: Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	rafal@milecki.pl,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Guodong Xu <guodong@riscstar.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Michael Zhu <michael.zhu@starfivetech.com>,
+	Drew Fustini <drew@beagleboard.org>,
+	Alexandru Stan <ams@frame.work>,
+	Daniel Schaefer <dhs@frame.work>,
+	Sandie Cao <sandie.cao@deepcomputing.io>,
+	Yuning Liang <yuning.liang@deepcomputing.io>,
+	Huiming Qiu <huiming.qiu@deepcomputing.io>,
+	Alex Elder <elder@riscstar.com>,
+	linux@frame.work,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 0/5] Add DeepComputing FML13V01 board dts
+Date: Thu, 31 Oct 2024 12:26:19 +0000
+Message-ID: <20241031-synapse-cycling-0f7834a28b91@spud>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241028082553.1989797-1-guodong@riscstar.com>
+References: <20241028082553.1989797-1-guodong@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1245; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=zWFfzFih/Cg5hWs+WTraOfKNpKZTj9yvCQj0KE3sbQ0=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDOnK5Tnr0tcHFdVmFD373qH2YlbwiYTsXRkHQrS1hP/vK /wnV7O7o5SFQYyDQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABNJt2f4K2AbbrR6f+/1JZX7 5fafkVxq07NYwWKhboJmDSev+v4d2YwMSy6p1QWv3WqX6X99h+qK9XEWx5/lay3/1WOwI2y9kN5 /XgA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-Am Donnerstag, 31. Oktober 2024, 01:49:07 CET schrieb Jimmy Hon:
-> On Wed, Oct 30, 2024 at 2:25=E2=80=AFPM Chris Morgan <macroalpha82@gmail.=
-com> wrote:
-> >
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> >
-> > Enable the HDMI0 port for the Indiedroid Nova. The schematics available
-> > show the hdmim0_rx_hpdin is connected, so this pinctrl is enabled in
-> > contrast with the other rk3588 boards.
->=20
-> Which pin in the schematic [1] (page 24) does it refer to? It's not
-> obvious how to match it up.
-> The schematic looks the same as the Rock 5B schematic [2] (page 31)
-> and the Rock 5B dts uses the default pinctrl [3]
->=20
-> Note: The vendor kernel DTS doesn't modify the pinctrl either. [4]
->=20
-> If you try using the default pinctrl (not overriding), does HDMI not work?
+From: Conor Dooley <conor.dooley@microchip.com>
 
-I stumbled over the same issue recently for our Theobroma boards too.
+On Mon, 28 Oct 2024 16:25:48 +0800, Guodong Xu wrote:
+> This series updates Device Tree related files to introduce the
+> FML13V10 board from DeepComputing, which incorporates a StarFive
+> JH7110 SoC.  This board is designed for use on the Framework Laptop 13
+> Chassis, which has (Framework) SKU FRANHQ0001.
+> 
+> The original three versions of this series were posted by Sandie Cao
+> from DeepComputing.  Her mailer configuration caused mail threading
+> errors, which led to some confusion.  After some discussion, we have
+> agreed to take over moving this series toward acceptance.
+> 
+> [...]
 
-=46rom the Indiedroid schematics, you can see that the hdmim0_rx_hpdin
-pin is gpio4_b6, which in their board is connected to the hdmi0_tx_on_h
-functionality, which controls the output functionality between hdmi2.0-tmds
-and hdmi2.1-frl modes.
+Applied to riscv-dt-for-next, thanks!
 
-The hdmi-driver currently only does hdmi2.0 but normally, on most boards
-I've seen so far, this pin has a default pull to set hdmi2.0 anyway, so oth=
-er
-boards don't need that.
+[1/5] riscv: dts: starfive: jh7110-common: revised device node
+      https://git.kernel.org/conor/c/5a5001d27065
+[2/5] riscv: dts: starfive: jh7110-common: move usb0 config to board dts
+      https://git.kernel.org/conor/c/817eac165ed4
+[3/5] dt-bindings: vendor: add deepcomputing
+      https://git.kernel.org/conor/c/e9b4ceedb5ae
+[4/5] dt-bindings: riscv: starfive: add deepcomputing,fml13v01
+      https://git.kernel.org/conor/c/e87fa39dbcb4
+[5/5] riscv: dts: starfive: add DeepComputing FML13V01 board device tree
+      https://git.kernel.org/conor/c/c8b72c301dbe
 
-So for one, please check if the nova can run without it, but if a pin
-setting is needed, please define a new per-board one, labeling it correctly
-for this hdmi0_tx_on_h functionality and do not re-use the hdmi-rx
-pin-setting.
-
-
-Heiko
-
-
-
+Thanks,
+Conor.
 
