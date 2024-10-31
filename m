@@ -1,118 +1,98 @@
-Return-Path: <devicetree+bounces-117816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BF6E9B7F05
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 16:51:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8200F9B7F10
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 16:52:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE1C91C21A72
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 15:51:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23FDA1F20978
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 15:52:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 826611BC9FB;
-	Thu, 31 Oct 2024 15:48:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7234C1A2C04;
+	Thu, 31 Oct 2024 15:51:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AvQWtG5U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HuUkXO/x"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ED3F1BC9F3;
-	Thu, 31 Oct 2024 15:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CD4B19B59C;
+	Thu, 31 Oct 2024 15:51:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730389738; cv=none; b=bkrrD43Hf9W2Yh19pzxvtbE4NyuAYDWx84YeJ1OZLFCLOvnpz72hsr0D01UItYrWk30IYQGh1L6HG3TOIvDiZSaNmlUxtujEftV6ZOwX7buRPeJ7sGoybvj9i7auHj4CavCPpQIxO7jMT0zmWJTLf0Rx9ZJksZyolGHkLnbZPXc=
+	t=1730389903; cv=none; b=FRp8X+uWC4nT+7ZhyCjL8+P+brQLBCf5JdsoAvWf5z0aCjVUabqseMrgzyeHtx+58VxjQfvv2IkiBz16DfN6ao5OcmhUTubVvGDuElLg8lmaLvZN9Yai8284NLfUKUwwg7r60D/gqiA+gi3KTkI6Nny4TfUNfi/q3YtzWqIfjSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730389738; c=relaxed/simple;
-	bh=ARsdt7q0eVUNvr7pYU7BYuIsTkSNZkoxY5yzKP07DrA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n55jtHOJL+A7klZRoyonUHthIBCK0j79PE4YMCkThVkwy4RBjJN41eq5uq5t06cNJ2lq/MEyaO+5+jCP+6drM1VuzLJ/Sr/PIpandfKDxI0Tp6MelSZ29kRQtRcHza9Ahl+J0jIKijw/HIkdLgYyMwwR16uitqKuHKQb5BqFC5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AvQWtG5U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4477FC4CEEA;
-	Thu, 31 Oct 2024 15:48:55 +0000 (UTC)
+	s=arc-20240116; t=1730389903; c=relaxed/simple;
+	bh=WivZL725Ki/1pUOgmZWpT/+Ixrb99680JnJjkTk1UM8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=hjMc8h4gveKnnB6Zj8z4aJEYx5CmGGY2sr1CscwZmfPXlTSVzzjaY1r6lCNyBvQ4uUFGedXSiGjKzrng0MKm5932sWv0mVmg6gKrtSp+lowG83AdJ8PnSAwZAIsEFGY3x5gIEwPtoV7OTcgtAs7MouWpNgNbqO/W+C4fj1kjSjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HuUkXO/x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B32CC567E3;
+	Thu, 31 Oct 2024 15:51:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730389737;
-	bh=ARsdt7q0eVUNvr7pYU7BYuIsTkSNZkoxY5yzKP07DrA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AvQWtG5UkTOa5+HJMdxSSq4RUi208Z6bN2KLb8dXitDmTYs9efECVvdhUx/phKCto
-	 br4TfCUy86h5Crrc1uLNV2o6CHBobVB7ldPN6isVGpRWtsi7qmdXs72fMi7vpX4Noa
-	 liVwQj7bA+PYAxYVsTdVTCW3ELkF9hC4HfE/EUMgxm5OnBWH73Ys5mh2sLyi7vTRbi
-	 US6+yJaTpVnYj8aQaV5eXz5ifk9vmgXQLqbvu9TKJ4YJFp2K+1vJwNPMM9KnIA5uWb
-	 ZObXfhdm/Maz3hAB/Ka0xs6SQKVG32ys8+fq8w9f5jqnzP6CsGPKNuBhYC9BvAxYG0
-	 ajfzphlDCcrUQ==
-Date: Thu, 31 Oct 2024 15:48:52 +0000
+	s=k20201202; t=1730389901;
+	bh=WivZL725Ki/1pUOgmZWpT/+Ixrb99680JnJjkTk1UM8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=HuUkXO/xIJ8kZhK8e5Gr+HjAF2w75nBYAj0uypV++3m/LEDVkN+jFixZJ/CNq+8OQ
+	 DAJ9ZcZ6nUzO8eAWFV0Je1NWLfIjBlfiVApPuf8sdYl57G9Lsbn9SzpZTGzL1uhr3u
+	 bcvCJlTG+Vdho46cDkeShhkHJp7AyoWvURGp1X8ThZNwZFwYzuqYNBa94/UFdE+Yia
+	 bYW0lX1nGEm5CmQ1b11z9PoTjOZZycIGPv3nlx/rYU446KhGUt4ztk8lrzqvApsHBY
+	 awN6ycAnqx7VrOVLFhmLkoLLP2MZ9qgQavtyPaG8vj+xE8S2ZLpqDJbDRVh2crFaqP
+	 2tHk4BuPhHz1w==
 From: Lee Jones <lee@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, sre@kernel.org, tsbogend@alpha.franken.de,
-	markus.stockhausen@gmx.de, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH v7 3/6] dt-bindings: mfd: Add Realtek RTL9300 switch
- peripherals
-Message-ID: <20241031154852.GI10824@google.com>
-References: <20241017001653.178399-1-chris.packham@alliedtelesis.co.nz>
- <20241017001653.178399-4-chris.packham@alliedtelesis.co.nz>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Andre Przywara <andre.przywara@arm.com>
+Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Martin Botka <martin.botka@somainline.org>, 
+ Chris Morgan <macromorgan@hotmail.com>
+In-Reply-To: <20241007001408.27249-1-andre.przywara@arm.com>
+References: <20241007001408.27249-1-andre.przywara@arm.com>
+Subject: Re: [PATCH v2 0/5] regulator: add X-Powers AXP323 support
+Message-Id: <173038989913.1784644.2617880426369954438.b4-ty@kernel.org>
+Date: Thu, 31 Oct 2024 15:51:39 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241017001653.178399-4-chris.packham@alliedtelesis.co.nz>
+X-Mailer: b4 0.13.0
 
-On Thu, 17 Oct 2024, Chris Packham wrote:
+On Mon, 07 Oct 2024 01:14:03 +0100, Andre Przywara wrote:
+> A small update of version, just changing the regmap cache type to maple
+> tree, and adding the accrued tags (thanks to the reviewers!).
+> ================================
+> The X-Powers AXP323 is a close sibling to the AXP313a PMIC, only that it
+> allows to dual-phase the first two DC/DC converters. This is controlled
+> via a new register. On the first glance that would sound like a
+> compatible extension, but any random AXP313a driver would not know about
+> the potential dual-phase nature of the second DCDC rail, so might want
+> to turn that off, spoiling the whole setup. So this patchset introduces
+> a new compatible string, without any fallbacks.
+> 
+> [...]
 
-> Add device tree schema for the Realtek RTL9300 switches. The RTL9300
-> family is made up of the RTL9301, RTL9302B, RTL9302C and RTL9303. These
-> have the same SoC differ in the Ethernet switch/SERDES arrangement.
-> 
-> Currently the only supported features are the syscon-reboot and i2c
-> controllers. The syscon-reboot is needed to be able to reboot the board.
-> The I2C controllers are slightly unusual because they each own an SCL
-> pin (GPIO8 for the first controller, GPIO 17 for the second) but have 8
-> common SDA pins which can be assigned to either controller (but not
-> both).
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
-> 
-> Notes:
->     Changes in v7:
->     - Set additionalProperties: false
->     - Remove extraneous examples from i2c binding
->     Changes in v6:
->     - Drop wildcard compatible
->     - Add specific compatibles for the 4 known SoC variants
->     - For the i2c part of the binding accept realtek,rtl9301 as a fallback
->       for the other compatibles
->     - The overall switches will eventually differ because these will have
->       different SERDES/port arrangements so they aren't getting the same
->       fallback treatment
->     Changes in v5:
->       I've combined the two series I had in flight so this is the
->       combination of adding the switch syscon, the reboot and i2c. It makes
->       the changelog a bit meaningless so I've dropped the earlier
->       commentary.
->     
->       As requested I've put a more complete example in the main
->       rtl9300-switch.yaml.
->     
->       I've kept rtl9300-i2c.yaml separate for now but link to it with a $ref
->       from rtl9300-switch.yaml to reduce clutter. The example in
->       rtl9300-i2c.yaml is technically duplicating part of the example from
->       rtl9300-switch.yaml but I feel it's nice to be able to see the example
->       next to where the properties are defined.
-> 
->  .../bindings/i2c/realtek,rtl9301-i2c.yaml     |  69 +++++++++++
->  .../bindings/mfd/realtek,rtl9301-switch.yaml  | 114 ++++++++++++++++++
+Applied, thanks!
 
-Can you separate these out so I can apply the MFD part please?
+[1/5] dt-bindings: mfd: x-powers,axp152: Document AXP323
+      commit: bd91530aee6007a979e52d816779a6e10ed8c00a
+[2/5] mfd: axp20x: ensure relationship between IDs and model names
+      commit: 697a4001d31a607a72c6297e4eb0f7918c6e6929
+[3/5] mfd: axp20x: Allow multiple regulators
+      commit: e37ec32188701efa01455b9be42a392adab06ce4
+[4/5] mfd: axp20x: Add support for AXP323
+      commit: 35fec94afe045856456faca4879b9c560e39d1e3
+[5/5] regulator: axp20x: add support for the AXP323
+      commit: a0f8a8898e120d5a3f14cd22289daa3709d83f5b
 
--- 
+--
 Lee Jones [李琼斯]
+
 
