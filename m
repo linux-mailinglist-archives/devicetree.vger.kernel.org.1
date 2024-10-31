@@ -1,213 +1,597 @@
-Return-Path: <devicetree+bounces-117725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B17279B769B
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 09:37:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D53549B76A8
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 09:43:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70AD2281E8E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:37:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A48A1F24DAE
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0FB0193409;
-	Thu, 31 Oct 2024 08:36:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7962215665E;
+	Thu, 31 Oct 2024 08:42:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="PdE6dwuN"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="URIetSzy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2049.outbound.protection.outlook.com [40.107.249.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79739190684;
-	Thu, 31 Oct 2024 08:36:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730363781; cv=fail; b=Lle6r+sp3hMkJ4NW06FwjGgJf5LoKhKK0p/W7jWJ11yh/iyqWSyvrQUA8PWRVJ0K+lbr2o1vTdhnWIXM1os5RptBHTN8DWnPQmUq7zKUOb78fCGJN7Kt0fU0MECALmmOdbVVPAgsqYTXFReobqwLuVUGABUDfU47UDaQHlICHC4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730363781; c=relaxed/simple;
-	bh=gPWrcsX0yNgOrxniFUUIpd4R/Sf/rzujv/lnBO6E3Vc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=WD5sX3aW4GUwqcVhRsYLZtJlhpKPhO12q+1KqfXPPbQRDN3+ItXsIP6tGexh/yzGdRj2kwi6Km2Y5cTzdxr6+9mE31IGRO1bzjcjmH7aAnXR3Fw9YnOt0qLgELICmzhAGEMMTlXT+uPhHB4ISUveKvkmjYVQB+T3CeXTCi+2qYU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=PdE6dwuN; arc=fail smtp.client-ip=40.107.249.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FrfDMrG5nc+OEP6gVlImGvjh7r2z+Ty0anrI9LbjvQXcezwrb3wqJ3YHU7S7tqnRB3/NSSZKJ1mEiVEEjc4HhgC6GckoG/tb71LrJ7VI6or5mXWkL81ozQ+ltk1K0/PKG/nADTTF0+5iro0SDi9gyfsK0WkNspuFXA2704SkPp9rD5z0vXVoLOH4mZV1mGooHu+HkmIerNGs/1XYQTouLLVOEUKkV/znj/M4a17BqbuhnXu/18Xyj/1kzp8qnpAedP7humeCfk23QZIYzffxEWKcIyoJcwJYl0whI+6RcrDH3KfAgvls4yo1I1j3EzgIsId9rQPC13XQVLmO/4vV2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Wh3dxdiFnnlVrzcHjBrhgCcglC+z8h3oypiIHqgl9ZY=;
- b=wQ5cTdMUGMg9Qy/ePdxwF1K8KC+2VkkefMbIwRA1uSI1zVdpumqqaNsL+KD2ELVS2lP2IBipvx+YHnWGbG9VyyFuqbHqWcYJn4M2TTw1M3PaO+5YxVPO9BVhmc2KEYoYw+nQBrCQoFq5cfrXQrjz+slVHUfhy5kSG7DnBB3EatTrpBn32qxukw2aE6OXasUMBaB4LkOvEGmFEKrzhkccHOEXSQjiYAwvQftHM8d4r9nd7WYukxyjOyUSWkev9pzYPKIth6IZm2pgbnkmLh8VhwLFbBd133Xh3qqB7Ko/5MtX3zfd8r1HE3c/ywLSG+RdjzKUnKP45t7JraTOV6M1Ow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Wh3dxdiFnnlVrzcHjBrhgCcglC+z8h3oypiIHqgl9ZY=;
- b=PdE6dwuNfYrH/LufA/7Un+FGTuubreq0Y43u3FU6A+2TA9P8P/gVL6Ej4EcDG3FX6bOFU0Cll1v3RTUW0yQgIeqVol2l4G327AmP4cCDDcPg96IJ9s7/0IP0MP8RYTN+iZhL22E7+ROdbgRUmD/dgXWl/AUuz3L/RITvQFTyy9v0/XvBGgBEtucJwWCzLD4BlR5r/CxYJtJAaNyuLx8eNblcjSe7thu+JWMkg9Nr7lG2R5LbvNpQ7nF1FYCBAO3mH+A6Rl0dyPIrVNOPB0M31Wnr43SyPFtFpHylBmsDSOETz/g4gQGS3o+e2sKpbqImqm8k94OEvg6OQFt/WByVPg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9251.eurprd04.prod.outlook.com (2603:10a6:10:352::15)
- by VI1PR04MB7199.eurprd04.prod.outlook.com (2603:10a6:800:11d::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.32; Thu, 31 Oct
- 2024 08:36:09 +0000
-Received: from DU0PR04MB9251.eurprd04.prod.outlook.com
- ([fe80::708f:69ee:15df:6ebd]) by DU0PR04MB9251.eurprd04.prod.outlook.com
- ([fe80::708f:69ee:15df:6ebd%6]) with mapi id 15.20.8093.025; Thu, 31 Oct 2024
- 08:36:08 +0000
-From: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-Subject: [PATCH v3 4/4] MAINTAINERS: add NXP S32G RTC driver
-Date: Thu, 31 Oct 2024 10:35:57 +0200
-Message-ID: <20241031083557.2156751-5-ciprianmarian.costea@oss.nxp.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241031083557.2156751-1-ciprianmarian.costea@oss.nxp.com>
-References: <20241031083557.2156751-1-ciprianmarian.costea@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM0PR04CA0132.eurprd04.prod.outlook.com
- (2603:10a6:208:55::37) To DU0PR04MB9251.eurprd04.prod.outlook.com
- (2603:10a6:10:352::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B687D517;
+	Thu, 31 Oct 2024 08:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730364169; cv=none; b=RwCPeJo7RYdMzXLO1BPBMOyw3jQ+Qgz17QlfE4N9qin3fg+8n7FnUKtAEAV8L8TAggTjOo42LIb0YMpQy+KrsM+zcHDxT5Rl4TTEemKKXJia+PY1wMhb9C9HYs8D4hOj1t7LPyRvJhFtR1/Vsn2bpa4BAoeJqQPq6QsN5r67j9k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730364169; c=relaxed/simple;
+	bh=qOFbxzVc1yg9PbMZaHB7951u5Ct/fNBCF0PRRwQQoJ8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JsMG2Xn41mjAEDy8yblqmvJdbMt8OIf6X611U8mqkmvLvwp5EKKCEeCbrwd7U8DFqNoeb517VA+fcOTrKO77BpTDqzFMloC4koCDlHW57H2ndkTu+sDpByomJ7WSbw3hgoGFJTz4yR99q1lo1In+UXXvXl7YLqUlxyb9sJKk/74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=URIetSzy; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 9534688B64;
+	Thu, 31 Oct 2024 09:42:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1730364158;
+	bh=rUf8sVySlFXtIwIpX4FQb/2dElNvL9W3CW51tvMc/4Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=URIetSzykmpN7JTWWY2TT331rqL0n5p+sdKmugWGqBl5K51AG+FWwO4Yj2Vc3VK2T
+	 n0wCXeP8Mc5Z7w8X4ADw1gJ07NNzKUh9d5Td7tPe82MwzVg9gVSV/rAjxMDAYEQocV
+	 80ACsDKnVOR/rnfFSXmNcOpvTC5ojpg37RZOMGyrbW+XEy64NOk5ZOyplMw9jEqtdO
+	 aodlp3KYdeNPp/ruAfCaBnv/aK4hUil5UPosRRseh0pncLz58ufkdjvuDCdkpnfhHf
+	 ciuw4mah0u8t5j4Lr8oVH/10foLBMw5njq6FrWjjEaoKM9xs+R2kVNC/FG9rQe9xzE
+	 ZdOA9XecdQ1Sw==
+Date: Thu, 31 Oct 2024 09:42:36 +0100
+From: Lukasz Majewski <lukma@denx.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+ <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Stefan
+ Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH v10 4/4] ARM: dts: mxs: Add descriptions for imx287
+ based btt3-[012] devices
+Message-ID: <20241031094236.17ed927d@wsk>
+In-Reply-To: <20241022133040.686562-4-lukma@denx.de>
+References: <20241022133040.686562-1-lukma@denx.de>
+	<20241022133040.686562-4-lukma@denx.de>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9251:EE_|VI1PR04MB7199:EE_
-X-MS-Office365-Filtering-Correlation-Id: f685d535-b702-4696-76e6-08dcf9871102
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?bUVGeC9TRXY5Zk45TGxyQVBIZnJGcFFvcXpXWXRJUDB1K0xDOWFMTGNyWmN3?=
- =?utf-8?B?OWpIRVBMa0lsS2oyZWhKc3VKUitxamkrdTlyWWI2enl2YlF1SnVBQ2RnS2Jq?=
- =?utf-8?B?cU1JY1M5ejBOUjJTdFJWeEEybWZpU29GZ1M0OTRqUk16SWpFM2o0ZEpJVVFM?=
- =?utf-8?B?QVpqOCtWN1J0WlArQlk3bXFJRzlRdHVOK2lYYVdmSVV1WmZ2T1NPUzJNNytW?=
- =?utf-8?B?UDZIb2JuTVhxSWx6R1JXd3RPMXlYOFVSS1Z6MVV3NS9HdXlmOHpRZFRDRjh1?=
- =?utf-8?B?ZWhHOHFlVXB0azFraU9ncng3ekdha0tRdTliUjBjVVZiWWY3MnVxazFueXVB?=
- =?utf-8?B?MXpmSnpLazd1Z0ZHS0NYN0k4azJueUhhNXJxZ1l3NnI5cm1MTHJwNjk2VklK?=
- =?utf-8?B?WTZ0a2lNWjR0Ymk3QkdSTGp1c25VaVdleHFuc1ZDYWpURmFuaG1Qb3BFd0RR?=
- =?utf-8?B?U1ZsNEljaENlWXV6U0ttUGNrcUZlYWdCV3I0dFRiWXd3dU14VHQzbGZ6M0JL?=
- =?utf-8?B?RlBiL1JiNlpIQXNyejNOdGphRitIYXMvR2Foa1dPRENiTmdmTEh0VkpPWHhU?=
- =?utf-8?B?MnFkMFNYcyt5TDJRbGdTVk5FQVV1ZlZPTTV4U2VITmREbHU1S3M1U3E0ZTNv?=
- =?utf-8?B?STFOWjFDV3IybVlOV3V0clJhdjZWeStHSTh6QWVXQ2gvWEREeXY2bnh0VHRr?=
- =?utf-8?B?TDJ4cGxGaTRZSGtwU28yVjdvQzNFT3NYa25XcnQxc3g1aWwzWjU1eXFaNVdL?=
- =?utf-8?B?ZlVGKzhocFo0U3ZpbElyRHBXejl4UGM2UWFDbkVVT3VTUHBLdXFpaHE4ZC9h?=
- =?utf-8?B?VEk0ZzF3NlZONzllQ1UyYnNLeTVoY0dETkpjaVBUcWoxZHhUQTExWVdMY2dY?=
- =?utf-8?B?K2x0NksyTzh6eS9JNjRuL2R4VjNWYVpGRkQrSGd2QUtmRXhDVkg5VGl6TTJW?=
- =?utf-8?B?Z0U5b1gxK1BUVWdjOTNEUUw0bzlKY0Q3enNFcFo4WmdEWHc3RXBqeUhoUU43?=
- =?utf-8?B?elhIMStZbGpuNHpqNDRlK25LR3k0c0xIaSt2cllVeWluR0ZiaVFIb2dmRysr?=
- =?utf-8?B?ejVwcytJZFd1NGhrT2RjWmcvd2xBNHA5WjVJSUFiNmZwVUFBbzI3OGxrYVhR?=
- =?utf-8?B?M0lOcFVoSmRVVElMYUlIeFZlQXc0bTZJdEgxc3I1V1AzeXBVKzdDcTRTYWxx?=
- =?utf-8?B?dm5xM05aL3FmSGRmVkhId05IMGJ0OFU3NzFVa01JUktCTGhqT1VGMG1hVXpw?=
- =?utf-8?B?OG1UMnBnUzVxOVV0dTM4SjRoaFYyUGVrV3RxQmVzdWR6NzYveTJNcllPTDVh?=
- =?utf-8?B?U2JWWkVxVkppM2RXQzZFcXBDVS9tdDZ2bmZFL240eWw4dFp1STBMSUpoWFh5?=
- =?utf-8?B?eHpCTVRYN1RuNWR0clN0QzBRZUhmcGllNXFUaElZSG5kUU1sS1NQOFl6Zzhh?=
- =?utf-8?B?S1lKdTFvQTNVbERaUFhlaFVObWFUNEVieUFXeGpVQ1RzblZ3K1NNWHBjakp0?=
- =?utf-8?B?ZXRsdHUvYnQ4K0hUQnNxWk13eXkxTDhWekZsN3huZ0R6WnZDdU1EUHovV1VK?=
- =?utf-8?B?N01iWFQ0Mmt5VERWeGYxN3NZSnhQSXhZeno5L2o5UkhPa3NMYU1za2VoT2tC?=
- =?utf-8?B?ZWdza09ucGpJdEljdmFYRFBuNzY4K2o5aVUrejVWVldFVjl4RFdaaXlrK3k3?=
- =?utf-8?B?TlFJcTZ0SXJXSFFFNHQrYW53TlQzYnNRaEp2NVRKM0FrSlhwdVdyM0tBYzhC?=
- =?utf-8?Q?J5cWXoNKCBnlj3KjUU+PN2mCx9lkaYPULPsezTD?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9251.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?LzFPeXBqSy9mUWNaVTE2RXVNYjBpREZtZlUxRGcyNDRBTDNabzJBWnE2K3di?=
- =?utf-8?B?dExOd3BtTG1vWEZXeFlPV3NQb2FRaHZ2ZkErZGpOeHM0Vm1HSzhBbXlEdHVr?=
- =?utf-8?B?UjBobnBWMTA2dUtKeVJEc3VXL2NMTURsZnk1V283T0owbUZlZzNnTkl0R0s3?=
- =?utf-8?B?YzlrR3htOXh4bmowTFJjNDB1Q3lVeW1FSXVaek1DdkVzMytRclhUVkordkdI?=
- =?utf-8?B?dUcxMjBSTEVmQ1pVV0xZbU5IS1daUWx0ZVprSEloVjduamtBa0lhVDBMM2E4?=
- =?utf-8?B?UHR5c09MRlpFcjluU1ZJYlNqUHVjcDZMcUNNemJOTXVDL0dOMGxYU25rRDR1?=
- =?utf-8?B?UGVrTnJPUlBxTkNZdnRNU3UwSUhocyt3Um1SSHpzUWg4akFFNEJLTkFXR3VB?=
- =?utf-8?B?bUFOWXkwTmp3UGdodW9RNFZycnh6VXJpak52ZHRPMjBnbHB2L0Fud1pocFUx?=
- =?utf-8?B?TWFqWkt5TTZuUWdGaENqelVjVGcrZjZDb08wNnFqaFkvSHFXTy9LNmxadWpF?=
- =?utf-8?B?YmVmb1U2STVZbk9Ub0FHYXl2WVFVdWlZT0lhMzFhUlhHTU5KNlZMUkdGVSsx?=
- =?utf-8?B?WVFWa2lWalpWU1hhVnlVU21Lc2dHKzlkSTd5b09PZGwwdktpQStLQWJiaCtC?=
- =?utf-8?B?Q05oWGJ5K2s5MDlVWjMrbXNvZ2RncUdlOFg5dUwyR2lnTFN1YVVXaE1DcTRu?=
- =?utf-8?B?K2V5Y0t3b2RNWitVZksvMGNiZVdhOU9HMXZodEMwdXp4TndFQ3Ryb0doVEc2?=
- =?utf-8?B?S3BrZ0dpVXRibUhJYUc3VURINGsweHkxSzU0WGViUW5ITWFYYVRGb3NUSE5z?=
- =?utf-8?B?THZyQWFZWlpZL1lqZ05WZDRHQWxNcGZFSjMyL0xvSVJlUXlUMTNRTTM0VnBN?=
- =?utf-8?B?VC9wNlFUQ21QMkhDQ1RBRktaczlXMFNDcUYvSW96bVBPalJ2ajhVMEhtV0NK?=
- =?utf-8?B?NDNwOXhRdnJJdllsRWlPd2ZpNU0veHd5VTI3M3lPN0tqc1NYRVJvS3VtS2xZ?=
- =?utf-8?B?NGs5aXo4OW1BTmxrK05mb3plam9DMzFhN3VwTTFzS0dwcFRpRWEzdHBHWjJH?=
- =?utf-8?B?NTU1ZTIxb21IOENuQWZkNlRuN1F2d25Tbk02QnRvbzdVR2F2UjV3Slh3TVYx?=
- =?utf-8?B?NE5QRThuL3FkVDF3UlNycE9iUnZaMWNaa0xFeU91eXFLV0VRT3ozUmFweXB5?=
- =?utf-8?B?OGcrRk9KdzlQejJ3dFdqc25SQUx1akVob3U3TmdCR1prWGFHWWt1N2wvTS8y?=
- =?utf-8?B?anlRa2V4bS8vT0RGenFVOUhnaWJTeEEybldCQnlGWUhXMkJBN0hncEYvbFhH?=
- =?utf-8?B?a3I3WW1GMzVZR3o3YW1Wd0MxS0M0amNKYjVmTnNMN0IvVWsrY1JhVTRzT2Z1?=
- =?utf-8?B?R2FpdVhUVDBGMkhDUVBZOTEzN0VpaGpEVlhGSlZqZGpWVDR2bjlkZFI1ZVlj?=
- =?utf-8?B?OUtSQVlCTU9oeVNGRDNrZnVjZ04rcjNxRXF3UFF1Qk9NdDJKMDZ4eW1DRmNm?=
- =?utf-8?B?RXMzVzNXVi9XdmE2RmI5Nzl1T0FVc1cybEZiYmw5QlBHTFllQmFLZjBrRmIy?=
- =?utf-8?B?azh5WW5hV1pneVcvUE5YL21LcVB3VEVWQUwzTkR4d0FjbUZhQzJtKzNNelUw?=
- =?utf-8?B?eG1Sb3lPeUsxUXN3U05TaHplcmJvQUVFbE5XQXFCY1NwNkpxdjZhSDJ6dFUx?=
- =?utf-8?B?d096SU1ja096U094TnZldkprQ2tXa1p2SEdHdUNiZG8rSzJrZ0VHVlJYU21B?=
- =?utf-8?B?OHpXcnRBcUFFTkpHd1kwMmFwdGlWRldPbXRmSFpGR2dRT29WdW9mbEtJWUI0?=
- =?utf-8?B?S2RKQ2JTa2pxUWtXVHdpODdqaHdBS1FDYm5DT3hib2tpQ2VqOHBpZmplUXZM?=
- =?utf-8?B?MEErSExaZ0VLdTNjTCtJYmZOL0JBWVh3SWdTZE1iOVY4YWhNbjBoS0JJTW1T?=
- =?utf-8?B?T1NHcTQzeG13L3dpdng4UkZ2dDdCRlJNQnVyUHcrVFV2VjYzeURZZkJleCs5?=
- =?utf-8?B?TjhUMlIyRWQwbVIzUWJCbzVYNnZxTWt1ZWVSL1B0cTZIa1lvUkpDYUVDOE5a?=
- =?utf-8?B?TXJJWkRaVzh0R280Vks3OFMva2xiT0xCdjJudDl6L3A4b3RNbjZIUVJSWEpq?=
- =?utf-8?B?aDh0SWpCQTVadFNDRlFIQ3hmNnRSQllWN0h1Y2pKNXR6NzNvTUVjSlBzakRO?=
- =?utf-8?B?R2c9PQ==?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f685d535-b702-4696-76e6-08dcf9871102
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9251.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2024 08:36:08.2679
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JV/sNlW0gJLaGObf1ysfPyoRsvvuioBFOXx5pQhdrAWXj4rkTRggjTd+sSB82qRgE6SPn6yC8Avy0JgSmbg2zg+20zUDsw9i6zX2/vcWIDc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7199
+Content-Type: multipart/signed; boundary="Sig_/UO.QAaBk=Q4=wHeRgRVaSKf";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+--Sig_/UO.QAaBk=Q4=wHeRgRVaSKf
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Add the NXP S32G RTC driver as maintained so further patches
-on this driver can be reviewed under this architecture.
+Dear Community,
 
-Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+> The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
+> some extend similar to already upstreamed XEA devices, hence are
+> using common imx28-lwe.dtsi file.
+>=20
+> New, imx28-btt3.dtsi has been added to embrace common DTS
+> properties for different HW revisions for this device.
+>=20
+> As a result - changes introduced in imx28-btt3-[012].dts are
+> minimal.
+>=20
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+>=20
+> ---
+> Changes for v2:
+> - Rename dts file from btt3-[012] to imx28-btt3-[012] to match current
+>   linux kernel naming convention
+> - Remove 'wlf,wm8974' from compatible for codec@1a
+>=20
+> Changes for v3:
+> - Keep alphabethical order for Makefile entries
+>=20
+> Changes for v4:
+> - Change compatible for btt3 board (to 'lwn,imx28-btt3')
+>=20
+> Changes for v5:
+> - Combine patch, which adds btt3-[012] with one adding board entry to
+>   fsl.yaml
+>=20
+> Changes for v6:
+> - Make the patch series for adding entry in fsl.yaml and btt3
+>=20
+> Changes for v7:
+> - Use "panel" property as suggested by the community
+> - Use panel-timing to specify the display parameters
+> - Update subject line with correct tags
+>=20
+> Changes for v8:
+> - Use GPIO_ACTIVE_HIGH instead of '0'
+> - Add the comment regarding mac address specification
+> - Remove superfluous comment
+> - Change wifi-en-pin node name
+>=20
+> Changes for v9:
+> - Remove not used 'pm-ignore-notify'
+> - Add display names for 'panel-dpi' compatible to avoid Schema
+> warnings
+>=20
+> Changes for v10:
+> - Drop new line with panel-timing definitions
+> - Add new lines with 'sound' node
+> - Change 'codec' to 'audio-codec'
+> - Change order of properties for saif1 node
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7bfef98226d9..991a9df6819d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2763,8 +2763,10 @@ R:	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
- L:	NXP S32 Linux Team <s32@nxp.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
-+F:	Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
- F:	arch/arm64/boot/dts/freescale/s32g*.dts*
- F:	drivers/pinctrl/nxp/
-+F:	drivers/rtc/rtc-s32g.c
- 
- ARM/Orion SoC/Technologic Systems TS-78xx platform support
- M:	Alexander Clouter <alex@digriz.org.uk>
--- 
-2.45.2
+Are there any more comments regarding this patch?
 
+> ---
+>  arch/arm/boot/dts/nxp/mxs/Makefile         |   3 +
+>  arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts |  12 +
+>  arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts |   8 +
+>  arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts |  39 +++
+>  arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi  | 313
+> +++++++++++++++++++++ 5 files changed, 375 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts
+>  create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts
+>  create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts
+>  create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
+>=20
+> diff --git a/arch/arm/boot/dts/nxp/mxs/Makefile
+> b/arch/arm/boot/dts/nxp/mxs/Makefile index a430d04f9c69..96dd31ea19ba
+> 100644 --- a/arch/arm/boot/dts/nxp/mxs/Makefile
+> +++ b/arch/arm/boot/dts/nxp/mxs/Makefile
+> @@ -8,6 +8,9 @@ dtb-$(CONFIG_ARCH_MXS) +=3D \
+>  	imx28-apf28.dtb \
+>  	imx28-apf28dev.dtb \
+>  	imx28-apx4devkit.dtb \
+> +	imx28-btt3-0.dtb \
+> +	imx28-btt3-1.dtb \
+> +	imx28-btt3-2.dtb \
+>  	imx28-cfa10036.dtb \
+>  	imx28-cfa10037.dtb \
+>  	imx28-cfa10049.dtb \
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts
+> b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts new file mode 100644
+> index 000000000000..6ac46e4b21bb
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts
+> @@ -0,0 +1,12 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright 2024
+> + * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
+> + */
+> +
+> +/dts-v1/;
+> +#include "imx28-btt3.dtsi"
+> +
+> +&hog_pins_rev {
+> +	fsl,pull-up =3D <MXS_PULL_ENABLE>;
+> +};
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts
+> b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts new file mode 100644
+> index 000000000000..213fe931c58b
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts
+> @@ -0,0 +1,8 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright 2024
+> + * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
+> + */
+> +
+> +/dts-v1/;
+> +#include "imx28-btt3.dtsi"
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts
+> b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts new file mode 100644
+> index 000000000000..4bccd784d065
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts
+> @@ -0,0 +1,39 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright 2024
+> + * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
+> + */
+> +
+> +/dts-v1/;
+> +#include "imx28-btt3.dtsi"
+> +
+> +/ {
+> +	panel {
+> +		compatible =3D "powertip,st7272", "panel-dpi";
+> +		power-supply =3D <&reg_3v3>;
+> +		width-mm =3D <70>;
+> +		height-mm =3D <52>;
+> +
+> +		panel-timing {
+> +			clock-frequency =3D <6500000>;
+> +			hactive =3D <320>;
+> +			vactive =3D <240>;
+> +			hfront-porch =3D <20>;
+> +			hback-porch =3D <68>;
+> +			hsync-len =3D <30>;
+> +			vfront-porch =3D <4>;
+> +			vback-porch =3D <14>;
+> +			vsync-len =3D <4>;
+> +			hsync-active =3D <0>;
+> +			vsync-active =3D <0>;
+> +			de-active =3D <1>;
+> +			pixelclk-active =3D <1>;
+> +		};
+> +
+> +		port {
+> +			panel_in: endpoint {
+> +				remote-endpoint =3D <&display_out>;
+> +			};
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
+> b/arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi new file mode 100644
+> index 000000000000..2c52e67e5c14
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
+> @@ -0,0 +1,313 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright 2024
+> + * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
+> + */
+> +/dts-v1/;
+> +#include "imx28-lwe.dtsi"
+> +
+> +/ {
+> +	model =3D "BTT3";
+> +
+> +	compatible =3D "lwn,imx28-btt3", "fsl,imx28";
+> +
+> +	chosen {
+> +	       bootargs =3D "root=3D/dev/mmcblk0p2 rootfstype=3Dext4 ro
+> rootwait console=3DttyAMA0,115200 panic=3D1 quiet";
+> +	};
+> +
+> +	memory@40000000 {
+> +		reg =3D <0x40000000 0x10000000>;
+> +		device_type =3D "memory";
+> +	};
+> +
+> +	panel {
+> +		compatible =3D "powertip,hx8238a", "panel-dpi";
+> +		power-supply =3D <&reg_3v3>;
+> +		width-mm =3D <70>;
+> +		height-mm =3D <52>;
+> +
+> +		panel-timing {
+> +			clock-frequency =3D <6500000>;
+> +			hactive =3D <320>;
+> +			vactive =3D <240>;
+> +			hfront-porch =3D <20>;
+> +			hback-porch =3D <38>;
+> +			hsync-len =3D <30>;
+> +			vfront-porch =3D <4>;
+> +			vback-porch =3D <14>;
+> +			vsync-len =3D <4>;
+> +			hsync-active =3D <0>;
+> +			vsync-active =3D <0>;
+> +			de-active =3D <0>;
+> +			pixelclk-active =3D <1>;
+> +		};
+> +
+> +		port {
+> +			panel_in: endpoint {
+> +				remote-endpoint =3D <&display_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	poweroff {
+> +		compatible =3D "gpio-poweroff";
+> +		gpios =3D <&gpio0 24 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	sound {
+> +		compatible =3D "simple-audio-card";
+> +		simple-audio-card,name =3D "BTTC Audio";
+> +		simple-audio-card,widgets =3D "Speaker", "BTTC
+> Speaker";
+> +		simple-audio-card,routing =3D "BTTC Speaker",
+> "SPKOUTN", "BTTC Speaker", "SPKOUTP"; +
+> +		simple-audio-card,dai-link@0 {
+> +			format =3D "left_j";
+> +			bitclock-master =3D <&dai0_master>;
+> +			frame-master =3D <&dai0_master>;
+> +			mclk-fs =3D <256>;
+> +
+> +			dai0_master: cpu {
+> +				sound-dai =3D <&saif0>;
+> +			};
+> +
+> +			codec {
+> +				sound-dai =3D <&wm89xx>;
+> +				clocks =3D <&saif0>;
+> +			};
+> +		};
+> +	};
+> +
+> +	wifi_pwrseq: sdio-pwrseq {
+> +		compatible =3D "mmc-pwrseq-simple";
+> +		pinctrl-names =3D "default";
+> +		pinctrl-0 =3D <&wifi_en_pin_bttc>;
+> +		reset-gpios =3D <&gpio0 27 GPIO_ACTIVE_LOW>;
+> +		/* W1-163 needs 60us for WL_EN to be low and */
+> +		/* 150ms after high before downloading FW is
+> possible */
+> +		post-power-on-delay-ms =3D <200>;
+> +		power-off-delay-us =3D <100>;
+> +	};
+> +};
+> +
+> +&auart0 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&auart0_2pins_a>;
+> +	status =3D "okay";
+> +};
+> +
+> +&auart3 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&auart3_pins_a>;
+> +	uart-has-rtscts;
+> +	status =3D "okay";
+> +};
+> +
+> +&i2c0 {
+> +	wm89xx: audio-codec@1a {
+> +		compatible =3D "wlf,wm8940";
+> +		reg =3D <0x1a>;
+> +		#sound-dai-cells =3D <0>;
+> +	};
+> +};
+> +
+> +&lcdif {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&lcdif_24bit_pins_a>, <&lcdif_sync_pins_bttc>,
+> +		    <&lcdif_reset_pins_bttc>;
+> +	status =3D "okay";
+> +
+> +	port {
+> +		display_out: endpoint {
+> +			remote-endpoint =3D <&panel_in>;
+> +		};
+> +	};
+> +};
+> +
+> +&mac0 {
+> +	clocks =3D <&clks 57>, <&clks 57>, <&clks 64>;
+> +	clock-names =3D "ipg", "ahb", "enet_out";
+> +	phy-handle =3D <&mac0_phy>;
+> +	phy-mode =3D "rmii";
+> +	phy-supply =3D <&reg_3v3>;
+> +	/*
+> +	 * This MAC address is adjusted during production.
+> +	 * Value specified below is used as a fallback during
+> recovery.
+> +	 */
+> +	local-mac-address =3D [ 00 11 B8 00 BF 8A ];
+> +	status =3D "okay";
+> +
+> +	mdio {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		mac0_phy: ethernet-phy@0 {
+> +			/* LAN8720Ai - PHY ID */
+> +			compatible =3D
+> "ethernet-phy-id0007.c0f0","ethernet-phy-ieee802.3-c22";
+> +			reg =3D <0>;
+> +			smsc,disable-energy-detect;
+> +			max-speed =3D <100>;
+> +			reset-gpios =3D <&gpio4 12 GPIO_ACTIVE_LOW>;
+> +			reset-assert-us =3D <1000>;
+> +			reset-deassert-us =3D <1000>;
+> +		};
+> +	};
+> +};
+> +
+> +&pinctrl {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&hog_pins_a>, <&hog_pins_rev>;
+> +
+> +	hog_pins_a: hog@0 {
+> +		reg =3D <0>;
+> +		fsl,pinmux-ids =3D <
+> +			MX28_PAD_GPMI_RDY2__GPIO_0_22
+> +			MX28_PAD_GPMI_RDY3__GPIO_0_23
+> +			MX28_PAD_GPMI_RDN__GPIO_0_24
+> +			MX28_PAD_LCD_VSYNC__GPIO_1_28
+> +			MX28_PAD_SSP2_SS1__GPIO_2_20
+> +			MX28_PAD_SSP2_SS2__GPIO_2_21
+> +			MX28_PAD_AUART2_CTS__GPIO_3_10
+> +			MX28_PAD_AUART2_RTS__GPIO_3_11
+> +			MX28_PAD_GPMI_WRN__GPIO_0_25
+> +			MX28_PAD_ENET0_RXD2__GPIO_4_9
+> +			MX28_PAD_ENET0_TXD2__GPIO_4_11
+> +		>;
+> +		fsl,drive-strength =3D <MXS_DRIVE_4mA>;
+> +		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
+> +		fsl,pull-up =3D <MXS_PULL_DISABLE>;
+> +	};
+> +
+> +	hog_pins_rev: hog@1 {
+> +		reg =3D <1>;
+> +		fsl,pinmux-ids =3D <
+> +			MX28_PAD_ENET0_RXD3__GPIO_4_10
+> +			MX28_PAD_ENET0_TX_CLK__GPIO_4_5
+> +			MX28_PAD_ENET0_COL__GPIO_4_14
+> +			MX28_PAD_ENET0_CRS__GPIO_4_15
+> +		>;
+> +		fsl,drive-strength =3D <MXS_DRIVE_4mA>;
+> +		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
+> +		fsl,pull-up =3D <MXS_PULL_DISABLE>;
+> +	};
+> +
+> +	keypad_pins_bttc: keypad-bttc@0 {
+> +		reg =3D <0>;
+> +		fsl,pinmux-ids =3D <
+> +			MX28_PAD_GPMI_D00__GPIO_0_0
+> +			MX28_PAD_AUART0_CTS__GPIO_3_2
+> +			MX28_PAD_AUART0_RTS__GPIO_3_3
+> +			MX28_PAD_GPMI_D03__GPIO_0_3
+> +			MX28_PAD_GPMI_D04__GPIO_0_4
+> +			MX28_PAD_GPMI_D05__GPIO_0_5
+> +			MX28_PAD_GPMI_D06__GPIO_0_6
+> +			MX28_PAD_GPMI_D07__GPIO_0_7
+> +			MX28_PAD_GPMI_CE1N__GPIO_0_17
+> +			MX28_PAD_GPMI_CE2N__GPIO_0_18
+> +			MX28_PAD_GPMI_CE3N__GPIO_0_19
+> +			MX28_PAD_GPMI_RDY0__GPIO_0_20
+> +		>;
+> +		fsl,drive-strength =3D <MXS_DRIVE_4mA>;
+> +		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
+> +		fsl,pull-up =3D <MXS_PULL_DISABLE>;
+> +	};
+> +
+> +	lcdif_sync_pins_bttc: lcdif-bttc@0 {
+> +		reg =3D <0>;
+> +		fsl,pinmux-ids =3D <
+> +			MX28_PAD_LCD_DOTCLK__LCD_DOTCLK
+> +			MX28_PAD_LCD_ENABLE__LCD_ENABLE
+> +			MX28_PAD_LCD_HSYNC__LCD_HSYNC
+> +			MX28_PAD_LCD_RD_E__LCD_VSYNC
+> +		>;
+> +		fsl,drive-strength =3D <MXS_DRIVE_4mA>;
+> +		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
+> +		fsl,pull-up =3D <MXS_PULL_DISABLE>;
+> +	};
+> +
+> +	lcdif_reset_pins_bttc: lcdif-bttc@1 {
+> +		reg =3D <1>;
+> +		fsl,pinmux-ids =3D <
+> +			MX28_PAD_LCD_RESET__GPIO_3_30
+> +		>;
+> +		fsl,drive-strength =3D <MXS_DRIVE_4mA>;
+> +		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
+> +		fsl,pull-up =3D <MXS_PULL_ENABLE>;
+> +	};
+> +
+> +	ssp1_sdio_pins_a: ssp1-sdio@0 {
+> +		reg =3D <0>;
+> +		fsl,pinmux-ids =3D <
+> +			MX28_PAD_SSP1_DATA0__SSP1_D0
+> +			MX28_PAD_GPMI_D01__SSP1_D1
+> +			MX28_PAD_GPMI_D02__SSP1_D2
+> +			MX28_PAD_SSP1_DATA3__SSP1_D3
+> +			MX28_PAD_SSP1_CMD__SSP1_CMD
+> +			MX28_PAD_SSP1_SCK__SSP1_SCK
+> +		>;
+> +		fsl,drive-strength =3D <MXS_DRIVE_8mA>;
+> +		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
+> +		fsl,pull-up =3D <MXS_PULL_ENABLE>;
+> +	};
+> +
+> +	wifi_en_pin_bttc: wifi-en-pin@0 {
+> +		reg =3D <0>;
+> +		fsl,pinmux-ids =3D <
+> +			MX28_PAD_GPMI_CLE__GPIO_0_27
+> +		>;
+> +		fsl,drive-strength =3D <MXS_DRIVE_8mA>;
+> +		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
+> +		fsl,pull-up =3D <MXS_PULL_ENABLE>;
+> +	};
+> +};
+> +
+> +&pwm {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pwm3_pins_a>;
+> +	status =3D "okay";
+> +};
+> +
+> +&reg_usb_5v {
+> +	gpio =3D <&gpio1 28 GPIO_ACTIVE_HIGH>;
+> +};
+> +
+> +&saif0 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&saif0_pins_a>;
+> +	#sound-dai-cells =3D <0>;
+> +	assigned-clocks =3D <&clks 53>;
+> +	assigned-clock-rates =3D <12000000>;
+> +	status =3D "okay";
+> +};
+> +
+> +&saif1 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&saif1_pins_a>;
+> +	#sound-dai-cells =3D <0>;
+> +	fsl,saif-master =3D <&saif0>;
+> +	status =3D "okay";
+> +};
+> +
+> +&ssp1 {
+> +	compatible =3D "fsl,imx28-mmc";
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&ssp1_sdio_pins_a>;
+> +	bus-width =3D <4>;
+> +	no-1-8-v;       /* force 3.3V VIO */
+> +	non-removable;
+> +	vmmc-supply =3D <&reg_3v3>;
+> +	mmc-pwrseq =3D <&wifi_pwrseq>;
+> +	keep-power-in-suspend;
+> +	status =3D "okay";
+> +
+> +	wlan@1 {
+> +		reg =3D <1>;
+> +		compatible =3D "brcm,bcm4329-fmac";
+> +	};
+> +};
+> +
+> +&ssp2 {
+> +	compatible =3D "fsl,imx28-spi";
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&spi2_pins_a>;
+> +	status =3D "okay";
+> +};
+
+
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/UO.QAaBk=Q4=wHeRgRVaSKf
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmcjQvwACgkQAR8vZIA0
+zr2XHQgA2OtA0FiEHKCg3dxjOlRGRFKbrZLhWVvsRWh3Ai4Kwxi1yl4uuSqin8vG
+JYFA9B7LQlDHJowR19czGe/jsS3g875iVmeGiXOUYaGcfdxl2nDuGRrXrZd9Otqd
+kz28a6oYguIi1SiacuJ0LDvZ8rKz2X0FaecP84sRNk+TI7v9LEjvJYVJj6zpN1Tm
+1rtcfUnyDivov7zdDquV5FJwoqfXsSWIqKYT/CA362/SXyyzmFdvEzJ6R/+cePFk
+WooAQHyVCTE+06Yw3ASt4LmzLlZzSTPABUbA45NpNX9yuS6Ss6JD1j+eCNhPFDlR
+zLXYPYgX0kyTM3Kdb5raD2j2+Bgq8Q==
+=PRU/
+-----END PGP SIGNATURE-----
+
+--Sig_/UO.QAaBk=Q4=wHeRgRVaSKf--
 
