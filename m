@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-117624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 218729B71FC
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 02:32:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B87B9B7256
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 03:00:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53AEB1C2407F
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 01:32:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59BA51C233D0
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 02:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21340126C00;
-	Thu, 31 Oct 2024 01:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB9F3126BF5;
+	Thu, 31 Oct 2024 02:00:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KqadQ3m5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sxMv7CBZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D666313AD0F;
-	Thu, 31 Oct 2024 01:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E7D41BD9F7;
+	Thu, 31 Oct 2024 02:00:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730338247; cv=none; b=AHEnYnP7Po78X1x61rj0IS/bXz88Ar6LoSDPw/p2k2qjyXGzWNLJ91AEhARuNzd8jD/gftuIy3KW66HmO8w4zn9xJqAX1w+A2oMSrYluDimM0CaqQ/HvsKXK8/Eoc3Kn1OPfpdW8U6nqButWbRrYklO2Ju3r5nqa+Rclyg9+NU4=
+	t=1730340027; cv=none; b=HGPFc0aRXO8kY2WVTiBnWyoQ1MyCrD+mrIt2ehn0Mo+LLCG99InU/A1gfIk4w/9gbEJsB0XE/nf7ZwTfmTbMYVDZhZy3ovNl5oi9P8/+kCkbbIYm0D1nhiPxYOvoXj7JP3R3Af0DFKoRl3sTZLpRm2fD2nEf53q8i2ep2Yg6bCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730338247; c=relaxed/simple;
-	bh=j+BB9YGaPQ5Jt/rM1wEWyTXGGJ8IZD0VG0ayICqAde4=;
+	s=arc-20240116; t=1730340027; c=relaxed/simple;
+	bh=vZMVsbHNqyyr8Yn54rtnZgMFl+1OmQ4zR7lt+BwmeFk=;
 	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=gz9k8v3KtXiNyw2BYkvU5RnpCepX2lfbrQpZ61QwKWCmZjhXZe202CO031Ypi6IHLBhW2JCoa5fePPgAqFdFIQSgW4Sq4oy6EfIPvrPZ5cFabaSdv8CFevy+cVEBns2OxvEvfsDr1gBPvwrfr/9zGrle4K0dNAgXjlgE+utPVCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KqadQ3m5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A85DAC4CECF;
-	Thu, 31 Oct 2024 01:30:46 +0000 (UTC)
+	 In-Reply-To:To:Cc; b=GoAkcKx71Wqbs9nKQhoFs6W9mwuBaY8OqantTCb3l27J0g00GN3cutYvbrdfADlDYdMP//Q07G8m7tmpOjrwQuGvMmkLtu8FvJ/AJx0TX6xGgZzSJHtj5+p+cyIImcgRbwkYWjQu0hBlHVuB1HKcZCb+Fdgka+AbkzVN/IRGRFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sxMv7CBZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4088C4CECF;
+	Thu, 31 Oct 2024 02:00:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730338246;
-	bh=j+BB9YGaPQ5Jt/rM1wEWyTXGGJ8IZD0VG0ayICqAde4=;
+	s=k20201202; t=1730340026;
+	bh=vZMVsbHNqyyr8Yn54rtnZgMFl+1OmQ4zR7lt+BwmeFk=;
 	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=KqadQ3m5rQty8x5sVzIu6aGKXRSz+gGhEuzXteAbc/7khJUbaL4fd3HS3JmEshWZo
-	 uE7C87CLAqM485F5EN/FXyayA7Ny+2aiqudjS5wskAYsdOZfCkhb0uA/4V3C9btUti
-	 EVlrbMMRFmUUW2FnaLuMU+Z9XHajjFi4upK95ak4mRKNCdfA4Q3Q9E7Yt9CYv9Nlby
-	 HwenkkxyYUC8NU9b8Ki35RG1r4iopYEqawRFfJ4Cd7sWaFbHcZm4EHRDiEi/vU/60B
-	 vQ8z1VYe/Z+AqcqhmmxDXejeo7DO+mByDtNYVTGfynQ6YwCd+s9RKc1NUEFF37/MG5
-	 4VxYr2QAhDi0Q==
+	b=sxMv7CBZ5foQRJW+oGoe0rVzaspDacvos4thi150CE89TnkNPqDgPEMNbLbCswULs
+	 7o67xfN5No71n64T22aqaE/TXFAOfv6ILyspZP14vDjuKwzyz1FYQBYG5MPYDZS30p
+	 vFHyln62v8uHZ6KXk2hswAYtFDZt6vz6hAouctN24aQYC2/D7LwimrS9Dkynjp4ZW1
+	 k814zQpScpOuDMGECAL37Sy6a5k9iijdih6jxSXDN2y6K0DQ9FF+3qmiTbivyfU8YH
+	 zMYqq2WExnrZf8nP9h0SuoNYOAXh8vRdvPHIZmruNBz+O+pOSDpkGjbX1Zzyb1Mmwo
+	 qntiq7+0f9zWg==
 Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id AE41E380AC22;
-	Thu, 31 Oct 2024 01:30:55 +0000 (UTC)
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EAF9B380AC22;
+	Thu, 31 Oct 2024 02:00:34 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -52,39 +52,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH] dt-bindings: net: renesas,ether: Add iommus property
+Subject: Re: [PATCH v3 0/2] Add ethernet dts schema for qcs615/qcs8300
 From: patchwork-bot+netdevbpf@kernel.org
 Message-Id: 
- <173033825449.1516656.15513030725066077693.git-patchwork-notify@kernel.org>
-Date: Thu, 31 Oct 2024 01:30:54 +0000
-References: <2ca890323477a21c22e13f6a1328288f4ee816f9.1729868894.git.geert+renesas@glider.be>
-In-Reply-To: <2ca890323477a21c22e13f6a1328288f4ee816f9.1729868894.git.geert+renesas@glider.be>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: sergei.shtylyov@gmail.com, paul.barker.ct@bp.renesas.com,
- niklas.soderlund+renesas@ragnatech.se, davem@davemloft.net,
+ <173034003374.1522872.103186698139735392.git-patchwork-notify@kernel.org>
+Date: Thu, 31 Oct 2024 02:00:33 +0000
+References: <20241029-schema-v3-0-fbde519eaf00@quicinc.com>
+In-Reply-To: <20241029-schema-v3-0-fbde519eaf00@quicinc.com>
+To: Yijie Yang <quic_yijiyang@quicinc.com>
+Cc: vkoul@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
  edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+ krzk+dt@kernel.org, conor+dt@kernel.org, bhupesh.sharma@linaro.org,
+ linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ krzysztof.kozlowski@linaro.org
 
 Hello:
 
-This patch was applied to netdev/net-next.git (main)
+This series was applied to netdev/net-next.git (main)
 by Jakub Kicinski <kuba@kernel.org>:
 
-On Fri, 25 Oct 2024 17:12:24 +0200 you wrote:
-> make dtbs_check:
-> 
->     arch/arm64/boot/dts/renesas/r8a77980-condor.dtb: ethernet@e7400000: 'iommus' does not match any of the regexes: '@[0-9a-f]$', 'pinctrl-[0-9]+'
-> 	    from schema $id: http://devicetree.org/schemas/net/renesas,ether.yaml#
-> 
-> Ethernet Controllers on R-Car Gen2/Gen3 SoCs can make use of the IOMMU,
-> so add the missing iommus property.
+On Tue, 29 Oct 2024 11:11:54 +0800 you wrote:
+> Document the ethernet and SerDes compatible for qcs8300. This platform
+> shares the same EMAC and SerDes as sa8775p, so the compatible fallback to
+> it.
+> Document the ethernet compatible for qcs615. This platform shares the
+> same EMAC as sm8150, so the compatible fallback to it.
+> Document the compatible for revision 2 of the qcs8300-ride board.
 > 
 > [...]
 
 Here is the summary with links:
-  - dt-bindings: net: renesas,ether: Add iommus property
-    https://git.kernel.org/netdev/net-next/c/1aea2c42d494
+  - [v3,1/2] dt-bindings: net: qcom,ethqos: add description for qcs615
+    https://git.kernel.org/netdev/net-next/c/32535b9410b8
+  - [v3,2/2] dt-bindings: net: qcom,ethqos: add description for qcs8300
+    https://git.kernel.org/netdev/net-next/c/0fb248365993
 
 You are awesome, thank you!
 -- 
