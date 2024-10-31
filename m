@@ -1,237 +1,203 @@
-Return-Path: <devicetree+bounces-117898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDF1C9B8444
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 21:20:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C67D29B8448
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 21:23:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72F10284F25
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 20:20:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5853B284AF9
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 20:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2FAC1CBEA2;
-	Thu, 31 Oct 2024 20:20:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72A91CB521;
+	Thu, 31 Oct 2024 20:23:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MBIp9phN"
+	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="UgpzEkf8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2081.outbound.protection.outlook.com [40.107.241.81])
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E78911A2562;
-	Thu, 31 Oct 2024 20:20:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.81
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730406029; cv=fail; b=dALpu3qCbOPAFcV4qST1EXfcrkaL7+jHmMw+sZWo8zplwfjtvhzwKxzzJBMNZs4ue82z6gPQrexvbPblhF+LisJWeXiNrCLIpijwWm7BeaCIDO3hUqFv1UVU1rzY5Vcco683N8UEKtuvkmuIGwViYpYJ7t/neCPr2rpd1h5fAKs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730406029; c=relaxed/simple;
-	bh=s18vhTPrk0+yOPzwEZ7Ae8tzIHYk7DVHRDgyfcD8GLU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=FCwAJCr5csXr6Ulqnn1hrE6muBr6h6qmVh6j/8KCc6sCwtO6O4PtEPqtWyeGak3aHe4ZQ1jLkl1ZTcRisbk6wDEqxBcBAhGa+4RlBhXsUM3h1YP79UVjAgYJZMV5+oUN/PczwtQVuoLhow3ehH/QVNqmHN2MAbPtZ7Xkb8tkaaE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MBIp9phN; arc=fail smtp.client-ip=40.107.241.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MtZDJz+pm9vXXkNISLrADkyW2lmaP+rNS/kaTXMykJx4GD3cxCB1u9a2w8jwkCoh+NGyTKTla8IytSbOJ030/ItH31wdNNYEGe1QtODED/KDui7eMTdeKX7ZC2EK1+NoLzqbN2gfXZx/OLu2F201FNRb8r06WdQDBgVMznS7caYwBJaNYIpFNrOGK3ez0IdMXss1k5kWe9MUUp5PvCilvgilcY49imBtK4tB8yQLus52fvjxHJRny8plGg5bvn2AeFDi6nlF24bPrRRwH/w+ZucEDmrk32UInTpIKdctwaRMzruoRGz0Kd0LBsTBxgBinwEfW12rSNPw9SFWakwL5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=z7qKzBQp/SA7Cw4i9p3QZCc3JFNsiVWm9vd5mo58wms=;
- b=DHolAbhg/C1A8XLtp3BCuvH0+mipYeRAA5RiX8o2kiH3ihcWw4CCqgvRsrC6J5//XVWAjRBLHF1m2FAKORb3ZJx0lGX+8oH8lAY1+Sd5LWF0kdCk5pdO6XLtSTwuQG6QLTZgsD4JqawnYVf5meUK8Da1UrN50B2DirOGK4hSIcB/SEAFn4deHh2Bz/Z5nxNUcSU0IgfcrHNLYvAAahqqAqK4TTvq8OeCTKUus4Tbts5EXxDONX7vaXpe22ctkRNzjrGN75tS81DUcHFJx1eRNVK5OtANOwavW1xjGrIC7aIHEYlWb0OlBUm8tBEhWUm6LTdPOPb22TrpzrpDFECjLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z7qKzBQp/SA7Cw4i9p3QZCc3JFNsiVWm9vd5mo58wms=;
- b=MBIp9phNKDMtJPY1C+R5JKduYqazrhjm1T4rBTZfQbT0k9oel41wbBziRzS55HSYZJaQZFCgfDKl7ruc7xfJA5y3OSbXqtX8iqETK0QbrUsEOapnh15tKnkUHf1vsSsqWCm11xtIkwWxCSAosNjbYV2DFWKY+ZQtN2SWlwrTowCiCxQkwCUFCazVIJkU0tTGtXyRYs6+4LpTXEjdB84dhB3aco+okXakURWspflYz38Gtoj2LTdX94Mem7/yK0dJBz/3JxxLEB7SVcValHEEpSt9sU0WZgoYQNzKlnk96pvzbvF5uA2+FPNAwPRcO8n7hS5pWt6EDsA/NHdNproc2Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PR3PR04MB7433.eurprd04.prod.outlook.com (2603:10a6:102:86::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.20; Thu, 31 Oct
- 2024 20:20:21 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8093.027; Thu, 31 Oct 2024
- 20:20:20 +0000
-Date: Thu, 31 Oct 2024 16:20:10 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guido =?iso-8859-1?Q?G=FAnther?= <agx@sigxcpu.org>,
-	Robert Chiras <robert.chiras@nxp.com>,
-	"open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: display: nwl-dsi: Allow 'data-lanes'
- property for port@1
-Message-ID: <ZyPmeippTU8SQLkH@lizhi-Precision-Tower-5810>
-References: <20241031194714.2398527-1-Frank.Li@nxp.com>
- <gz3ifraqt7ga4isxhx6negcmfngen5jmhmcecnvy7gu7mpfffw@j65umo6arwc7>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <gz3ifraqt7ga4isxhx6negcmfngen5jmhmcecnvy7gu7mpfffw@j65umo6arwc7>
-X-ClientProxiedBy: BYAPR11CA0091.namprd11.prod.outlook.com
- (2603:10b6:a03:f4::32) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0088C1A2562;
+	Thu, 31 Oct 2024 20:23:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.24
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730406204; cv=none; b=lfr9fmQV0BncfGrdcfeqlbI/Eb+iv6M6ufptLQTKHuVYIWyfBEwVjLuuQGlIownsqkbAMMo5CYUwvZdbNoUHFc7G8l1UTtNzNGwgjI4IrOxM910yOYBMhygNm3oIOFOeGm5N3U1zmat/QRdBMJAkHE4UG78NQXdleJMhzG+X4uE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730406204; c=relaxed/simple;
+	bh=0gHri73JxXQLKIznefuoF0DInf+P6LqeXuRxZkKjpy8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P3rS4jccYATingbbmlyX1WFaCuieB6Vk/4GL702LDTPFH5NjJe1UtyJ0Mf/H7LTu4qwzVOpCpqlbVp6OBnqZDhZnmbTQVPIgq9HU1mvBXVUQixVevWvaRKNkGuJK9yMue0fFnqidQm91QvcECAqnaFo5kk0YpUpcfR3/Voov9Lc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=UgpzEkf8; arc=none smtp.client-ip=212.227.17.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=oldschoolsolutions.biz; s=s1-ionos; t=1730406179; x=1731010979;
+	i=jens.glathe@oldschoolsolutions.biz;
+	bh=jLI5KRJQSbDEC5WSLvIji4e/VUU2TikNoPPCsm/Q3Nw=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=UgpzEkf8gAw831l3ie5fTmDW1X5WdDKAK9EIezDfgLBFZwUdr+x6nhM8Q4lQF0zD
+	 zLA6UGYENGd+ArcTe04RdUbnXconASwYmAXc5Glh1YKcCA7QY27PrsuKyGeKNM/Fu
+	 +WvOUgKDavPdcYJS5N3lYV56WXMZVo0FdWDMHGHrDMHh9aDxuk9kEUdl6Xs6bkIEc
+	 hnd6tu0uFWZYN/uPWgEOfziY4HIGjHMkiZHuoM3iJ8nRDBdEl94uU1J05y5V4PEQ/
+	 J7F6+F0/r0VS98xIHxA7cf/j5ForlMNFlftTA59HW4Ou+uj/auFFHNJ5UU/+fh0bT
+	 E7M5uHWxNk/m19rirw==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.0.174] ([62.226.38.42]) by mrelayeu.kundenserver.de
+ (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1Mf0FY-1tlk0f13Ag-00cWky; Thu, 31 Oct 2024 21:22:59 +0100
+Message-ID: <108c5fb7-fe36-4d07-979e-409cd4539879@oldschoolsolutions.biz>
+Date: Thu, 31 Oct 2024 21:22:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PR3PR04MB7433:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0d1c8648-38dd-4467-df01-08dcf9e9711d
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|52116014|7416014|376014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?srfwuOgBx3YhYR+G6sOKqDsSCXQknU0XZQmupYnuEO24oy6yCi9gw7Qxv/mq?=
- =?us-ascii?Q?QsSpiH7JI1wYEus1+dNC7kU2ByPihhL1gEjabnw2gA8npyScZ11SBHIU7hlF?=
- =?us-ascii?Q?ZrmVcJ7MPlnqpcTXHW9HkG3oU/HC8o4fv+2lokXwZmmIejmL1ovn2PWJk4ip?=
- =?us-ascii?Q?B+CfUr+mwT1jqNs5zZP/kfpzHwIyu69fdORuTVG6LlvZLM4ivL3/2sEcECg4?=
- =?us-ascii?Q?XFwHsYVpAJ7pRm+N/vKs45euYG4nIgZbQ7EtWuZtbFxS0bnJFwjB7IrbX94C?=
- =?us-ascii?Q?kjTwlJrKrwvOlI64ms+63ayvrSSdgVHnn7n7fLoO1ZE2cKjkB0U2T/lWpQ+c?=
- =?us-ascii?Q?ArPiBESrTmxkeSRSwbE2yYUeLcjfIS6Kl8YMRKZeyumQBtDtf2mH3rk99ck2?=
- =?us-ascii?Q?yG3UvKN7WYB3MnBzWSI34kEAmyZ+Tk/TJA9Jto9/mryubQXR2aws+Y2yhBHg?=
- =?us-ascii?Q?XiUEqRDdN3oKXTUzJCFoHHXT5L2uj7TgTO8KKJbR//wkYVSGGZXSzoUOi4dM?=
- =?us-ascii?Q?xysKoYugy5BlNM+YEEwksb3UbefnnSFXl7ikAdmoNHI5JQvK2h1E1ID6R33L?=
- =?us-ascii?Q?vDsomEUdxk8MXIRkmWMLxaZp93yy0z2xp1YyJ3Uv8EGUdr8UUWDnhXFUtmQ5?=
- =?us-ascii?Q?D9wuSOwUDOWt+XRG3iWejnOfYSb4FZBRL62Y2SuBABHm/8xyGIU4wYNa/lPw?=
- =?us-ascii?Q?UKvGvHT76MG1t4REyY+X+7TdzG3atyQsV9U4tK2PrDYfDODkYzvQCV0qWwQ9?=
- =?us-ascii?Q?+fSdwvMiXFz14cT7sWQAZDOqZiOdYziL+zA8itYAI7N/LkQs+PxAkgoPT2EH?=
- =?us-ascii?Q?zNyyqAAaUjKDvoxXQWQWIfZUwUDhQai3+90ZHr1s92ibdG52c+Q4gHdp5wda?=
- =?us-ascii?Q?oE7w0TCnPYXWIA6IQkcqygl35Yj7ZJeCVBXlWfBVxaUsixWZbnn2888XcmYT?=
- =?us-ascii?Q?lPG4Ysbq2Gy25CmyGo6oJITw0L8hIWB9Oz4/kd3S/EAOVdasDoH6KQWEnmRe?=
- =?us-ascii?Q?dbHSQSeWB08c4WVnzgtCAITGF+483zBW1Md/oYjZ9ZcbJlYdr0BXYh/afcC4?=
- =?us-ascii?Q?ts6WS64vhOKpba0n7oeqSrGrfnXjrIGM8g16buEMPyjmvrc4J7iUz26iV/de?=
- =?us-ascii?Q?jwm1pxBhTH3ntqOWzDhq9T8fTFnH1/p5R4co2uOC8uw+FeV4D6KCnUVDqfYT?=
- =?us-ascii?Q?9fmjH6UNcEyZdICWYLzub2w8mmGR0vqHdiRNFqnLwPaArL8+cJ9QJmP0zaFP?=
- =?us-ascii?Q?oJI1eyb2tGomzXIMU0AksdqfyEhar1GY9aSfHXefKmSGtJgKxIYGPUaBHmDH?=
- =?us-ascii?Q?sb5YO7hho+6ddRMOaUtLkXCXG8QMoYqWP4uGT4T3Nsoe5E7D1c3J/uSbwWwQ?=
- =?us-ascii?Q?XgYjRw0=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(7416014)(376014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?vpj/Kc+yNy1TGUrZATocib7I+awe9Zxr7FBE04JDT0daGtihcHHbFvD7LLzc?=
- =?us-ascii?Q?tV5/XBZNZpoen+/yISEBWFwCPp1F1yyP73OuVA8Eynh3qsr1M/C0BjKGuqxx?=
- =?us-ascii?Q?Fn38jqccvrqvzOwA1Ub7rextd5nxPcIuTkRogf3f2AGKFMVS2b4PmGbOkEaS?=
- =?us-ascii?Q?c9SLXCCX4PL/DquicD3FBxFnap78vioJFP3Zs69LjdfA0VT6xVIKILoxp/tD?=
- =?us-ascii?Q?gztTL8TBx3NqVJccgYateFzr4W+TnDHOSXjCUx/FBue5/VtnEgs5jrMFlVO6?=
- =?us-ascii?Q?iPdWfncIuuJgQBm4A5dp25q/wa8UepIzy3ATIuBBOzhKRbF5+G1whtoz90nG?=
- =?us-ascii?Q?6gGZgWTOrrecyOmBepHcViojMFbM+ET+jz9V/y/3nvatUnq8vzD+2+9tlKBT?=
- =?us-ascii?Q?FHwCRXbbPVop3mH+r/xKu52rBjt1wFs4wYe9Xh7/6Jz2LpuZsoa2QLwKF1VF?=
- =?us-ascii?Q?clfjePGvBIpIZviiGWbzNrM0badWeOMb2ayumDhilycIjqxJFNc+3DpaJ7cv?=
- =?us-ascii?Q?Uink6dpxVZrOIJ2EZF0IpFsyqmDWWsnCI5QDk2NJxVCruJXVwnf/SjeAVri5?=
- =?us-ascii?Q?tdYLtCR5yzeX2ze+GzFse1ddmimb/IJUi/q4tBf46w4hTgY9rIYnMLWrzUqg?=
- =?us-ascii?Q?RiCRhK/lpPg3HpltPpu4Jd+iC+TASTmImDNfDFhDBuvGaMdJrdwJ3gg8c6U3?=
- =?us-ascii?Q?NTyzdf6+V2HNvhtaOK8SUTHuFvwCXoVCYKjeuDBKlVVX+OcjGK9LXhxPo+DC?=
- =?us-ascii?Q?UrbcPRBhPQnBerVL3Vp41J8QnCaN8jxdj4Zk8ETAjNwINO/L/JS/X9JElX49?=
- =?us-ascii?Q?hmMOrAFmCXUGDwiRxkmg5gDsSaZieG0floRc6AcQZ3jV227tRxY2gxOgXpJY?=
- =?us-ascii?Q?djG9BoFDE49eRqfDUNOSzk5raIhtcvA6uUMPM1S8BdA7Wq43W8CWyQAEQ/kl?=
- =?us-ascii?Q?0m09UanHrhUoHHLFuuGKxg7n/m6u/kq4b8y9+FbEKQv1V5pYJKQlxjUB9mMu?=
- =?us-ascii?Q?Zhvnk3pHj/3krlhWB282Jz5vXEGPvIwmeJfW80mBoF+fWdjA5IzrbBpLB2eL?=
- =?us-ascii?Q?1xfotnglkSaXJzDH5aLDt6G5M0SA0AeY1hi0Dn0aHBSzGKm85mcKXoFPjxwE?=
- =?us-ascii?Q?0oWCIFRkrmXrz097ZKWh37eowNIP5Sjk5XKkkMRvUmFs0Oa/XB0SC5eSoa2h?=
- =?us-ascii?Q?EHLugmlYJqy1n4teKIcWHaXAybiM2UnTxHskfsSm+4i68JsM3qwKl97teuBe?=
- =?us-ascii?Q?ewYfpTKDEKAIPyF77jiaGo9K0sX+kmUooG8XGyppZUFEtRFxf6MUys7KYEeu?=
- =?us-ascii?Q?d2R/7Fsc1Ec7jPCHql+lq3Zwn18kPUM8O/eniJfyp9wuzhE23N8WOu0RkoUJ?=
- =?us-ascii?Q?vp3Ab1SVLOwtOP/SBAv2eDuV+KokT9Rg07fsC91+Zqbm7BNJWDrmrgwSX2lB?=
- =?us-ascii?Q?0m1ImK/3E7yeQOQP8qLZcuxU4XAFThUD1OxPyvmRjXDvluHfvv4lixdrT4+A?=
- =?us-ascii?Q?Jr19ZROqkQO7wmECZC6FRN3ajnr3WMa18TWg1onx/AMSfcigw+ntzmYgp12p?=
- =?us-ascii?Q?+xAmwdiH4aNE0z7diqN8VD1/Qy25GB2BJOQIXm6W?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d1c8648-38dd-4467-df01-08dcf9e9711d
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2024 20:20:20.1445
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aQe+WhCmgBtjvDOncKkN1fWp+HEa7onHaRJ4oov6Z52gt51PuQwJarVJs63ax4aVGDoAObCm3X114J4/izztug==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7433
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/3] arm64: dts: qcom: sc8280xp-blackrock: dt
+ definition for WDK2023
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Merck Hung <merckhung@gmail.com>
+References: <20241030-jg-blackrock-for-upstream-v6-0-7cd7f7d8d97c@oldschoolsolutions.biz>
+ <20241030-jg-blackrock-for-upstream-v6-3-7cd7f7d8d97c@oldschoolsolutions.biz>
+ <0bceeb9c-1604-408a-a465-e7ac4d05b3f3@oss.qualcomm.com>
+Content-Language: en-US
+From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+In-Reply-To: <0bceeb9c-1604-408a-a465-e7ac4d05b3f3@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:oFPpdjyPlwQjU6bA5zVSYSk9O5UrZCQBiVVlckc/F3qjdV30xwK
+ 2btUsr5L0pb4yq20xoQZjm5JCH//qyW6paKE3fugSDEdfM0GFXgNbZNzk6cD5ZXiEpoOpI6
+ hkXsegqucdHZKGvFnJGdbt71gjvfHnzcMWNPtINjPP3xtJ4H7E78yKzXPCfaQHrX6piFitM
+ 82xQbwRr6KBX2zo3nHmJQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:DXq5uMogUAM=;vm2abjfptZrIuC401zJTGqajEcH
+ WA/EUAl1lplM66P/sojo2H5AOMpwuqu9SGkwGzVIaSGSJzlFBpFjRvPjuPmURZWtrTa5a826L
+ Zj6JyJgbsrU811YRtJwPQHqvYVQUly5YwCcBS94hPlwjYxf4mFOZSX9L/UDXzDKaM7KSY/ZKW
+ h/xOhtLqLbJGdUFFNfbFLvZTViEaVee0V4qXpSCYYSjOovEXR364AGZwkeapK25l3Tm7ltDgF
+ acEVDJglw8tCQ+1+JSzbGIyT1vPeppHLnYUshztjSOjA2/FhwHvU3Sa1IIUp184DVJu9ZBRXl
+ PebdVS7a4x3EL81v1d1ngQ9YQnGZMgBll/TlKAS2GrwOxA2dfqBb1vwZVQl0/j/bOst+F46C8
+ BHsLm4zsZtCcjB3p8ZO3/f4/6l/DTKApgRdD6JgaQ3IL/wq/6NXHTDEHY80ronL3tKt7UjMf/
+ s0WLtVOfODqoNpOoEeOAX0XLzgGlxXKxUr4hD0+QSI2C0MExQMphRgTkJSFh1aWb4o1SaKBH/
+ Y1Vr9mfMjIzl/pCOJFiygI6eGNBb7m8Kc+hMKTcZShURWuJY1I3woP4+fGuVCDdzQsIwS0Y96
+ gGrIIk4y4+7oBfzoFWo2H2w1ZVBoIe1WuDCVcSdVWSgHBSv0u2JbmN2WVuMrg6d/hagH+wxv1
+ Cys1cNcJfiv2dqqX1HFEsHPmCXeX8Oi01emkLBuImSghafOHGk7Xl2Fcn61jTpfE0Ua6zAp/Z
+ Bqm+8lJ1zYQxPvIKLYHWrFCZiWj+EV8lw==
 
-On Thu, Oct 31, 2024 at 09:59:26PM +0200, Dmitry Baryshkov wrote:
-> On Thu, Oct 31, 2024 at 03:47:14PM -0400, Frank Li wrote:
-> > Change $ref of port@1 from 'port' to 'port-base' and add 'endpoint'
-> > property referencing video-interfaces.yaml. Allow 'data-lanes' values
-> > 1, 2, 3, and 4 for port@1.
-> >
-> > Fix below CHECK_DTB warnings:
-> > arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx-lvds-tm070jvhg33.dtb:
-> >  dsi@30a00000: ports:port@1:endpoint: Unevaluated properties are not allowed ('data-lanes' was unexpected)
-> >
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  .../bindings/display/bridge/nwl-dsi.yaml       | 18 +++++++++++++++++-
-> >  1 file changed, 17 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> > index 350fb8f400f02..5952e6448ed47 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> > @@ -111,11 +111,27 @@ properties:
-> >          unevaluatedProperties: false
-> >
-> >        port@1:
-> > -        $ref: /schemas/graph.yaml#/properties/port
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > +        unevaluatedProperties: false
-> >          description:
-> >            DSI output port node to the panel or the next bridge
-> >            in the chain
-> >
-> > +        properties:
-> > +          endpoint:
-> > +            $ref: /schemas/media/video-interfaces.yaml#
-> > +            unevaluatedProperties: false
-> > +
-> > +            properties:
-> > +              data-lanes:
-> > +                description: array of physical DSI data lane indexes.
-> > +                minItems: 1
-> > +                items:
-> > +                  - const: 1
-> > +                  - const: 2
-> > +                  - const: 3
-> > +                  - const: 4
+On 31.10.24 21:15, Konrad Dybcio wrote:
+> On 30.10.2024 12:02 PM, Jens Glathe via B4 Relay wrote:
+>> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>>
+>> Device tree for the Microsoft Windows Dev Kit 2023. This work
+>> is based on the initial work of Merck Hung <merckhung@gmail.com>.
+>>
+>> Original work: https://github.com/merckhung/linux_ms_dev_kit/blob/ms-de=
+v-kit-2023-v6.3.0/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-dev-kit-2023=
+.dts
+>>
+>> The Windows Dev Kit 2023 is a nice little desktop based on sc8280xp.
+>> Link: https://learn.microsoft.com/en-us/windows/arm/dev-kit/
+>>
+>> Supported features:
+>> - USB type-c and type-a ports
+>> - minidp connector
+>> - built-in r8152 Ethernet adapter
+>> - PCIe devices
+>> - nvme
+>> - ath11k WiFi (WCN6855)
+>> - WCN6855 Bluetooth
+>> - A690 GPU
+>> - ADSP and CDSP
+>> - GPIO keys
+>> - Audio definition (works via USB)
+>>
+>> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>> ---
+> [...]
 >
-> Why are they indexed starting from 1?
-
-Not sure, git grep -r data-lanes Documentation/devicetree/bindings/
-Most start from 1. Not sure latest DT team's intention.
-
-Frank
-
+>> +	wcn6855-pmu {
+>> +		compatible =3D "qcom,wcn6855-pmu";
+>> +
+>> +		pinctrl-0 =3D <&bt_default>, <&wlan_en>;
+>> +		pinctrl-names =3D "default";
+>> +
+>> +		wlan-enable-gpios =3D <&tlmm 134 GPIO_ACTIVE_HIGH>;
+>> +		bt-enable-gpios =3D <&tlmm 133 GPIO_ACTIVE_HIGH>;
+>> +
+>> +		vddio-supply =3D <&vreg_s10b>;
+>> +		vddaon-supply =3D <&vreg_s12b>;
+>> +		vddpmu-supply =3D <&vreg_s12b>;
+>> +		vddrfa0p95-supply =3D <&vreg_s12b>;
+>> +		vddrfa1p3-supply =3D <&vreg_s11b>;
+>> +		vddrfa1p9-supply =3D <&vreg_s1c>;
+>> +		vddpcie1p3-supply =3D <&vreg_s11b>;
+>> +		vddpcie1p9-supply =3D <&vreg_s1c>;
+> Please update this atop
 >
-> > +
-> >      required:
-> >        - port@0
-> >        - port@1
-> > --
-> > 2.34.1
-> >
+> <20241018-sc8280xp-pwrseq-v6-0-8da8310d9564@linaro.org>
 >
-> --
-> With best wishes
-> Dmitry
+> most notably including a new supply (which will likely be identical)
+
+okay, thanks
+
+>> +	compatible =3D "qcom,sc8280xp-sndcard";
+>> +	model =3D "microsoft/blackrock";
+>> +	audio-routing =3D
+> Please don't break the line, see e.g. x1e80100-crd.dts
+>
+>> +		"SpkrLeft IN", "WSA_SPK1 OUT",
+>> +		"SpkrRight IN", "WSA_SPK2 OUT",
+> Oh, this thing has a speaker!
+
+Well, no. Will take another look at it. Interestingly, the SnapDragon
+Dev Kit (x1e) has a panel for speakers. So, maybe they are there on an
+unused panel.
+
+> [...]
+>
+>> +&pmc8280_1_gpios {
+>> +	edp_bl_en: edp-bl-en-state {
+>> +		pins =3D "gpio8";
+>> +		function =3D "normal";
+>> +	};
+>> +
+>> +	edp_bl_reg_en: edp-bl-reg-en-state {
+>> +		pins =3D "gpio9";
+>> +		function =3D "normal";
+>> +	};
+>> +
+>> +	misc_3p3_reg_en: misc-3p3-reg-en-state {
+>> +		pins =3D "gpio1";
+>> +		function =3D "normal";
+>> +	};
+> Sorting GPIOs by their number is preferred
+>
+> https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-=
+of-nodes
+>
+> [...]
+Will sort.
+>> +&tlmm {
+>> +	gpio-reserved-ranges =3D <70 2>, <74 6>, <125 2>, <128 2>, <154 4>;
+> Do we know what these are for? If so, please describe it (also
+> like in x1e80100-crd.dts)
+>
+> Konrad
+
+Will check and amend if necessary.
+
+with best regards
+
+Jens
+
 
