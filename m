@@ -1,130 +1,208 @@
-Return-Path: <devicetree+bounces-117925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77FB09B85BD
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 22:52:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2D689B862D
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 23:41:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C0982823DF
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 21:52:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 127001C20E0A
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 22:41:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0D581CBE97;
-	Thu, 31 Oct 2024 21:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A8271BBBED;
+	Thu, 31 Oct 2024 22:41:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O7c2PhMQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PZmsAdfT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9266A1C8FD2;
-	Thu, 31 Oct 2024 21:52:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A570A1CB53B;
+	Thu, 31 Oct 2024 22:40:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730411565; cv=none; b=Jd5hXapXwi8ESGIF+kiN/WetUV03NxEdg+xHC/ddyRpilPq2BuRpaYaqPzrX92nDATt6bUoxjorRQ2Ct3VqOrwgX9hZcEJvOIBENKeyuIwGkUHZCP1tbhMKgEjOH3A609hb2xScfKaAA6dr5X0qXXI5IE+sgr7vkXOrEOEnhi5k=
+	t=1730414462; cv=none; b=IUIKnknBEim/Rr8tyxfMWKyBzWzuogvVhQU4vJwbzU4XiSu5rhRmiQ5Sr5dE0VttSbO+RprbKKwd8awPF6Ki7yATvYkVwf3ArALMILO5e9sfbOnlSBMV0h4apNcqnzezIrEps2Vn8+quQcwFT/Nk+DFIVYzxhOizIxVRO1gCjkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730411565; c=relaxed/simple;
-	bh=S04zhds+KgkztO9Go6G1Kn6KUaaJUECBrILEMcartx4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=r5eQjk1L8OGWm8AJp3hEm04cxCY7/KLx2prHiy6fvKrplIz5CSm/FUbmwcdFrVkdzgIeSGjw2xNG1vGj2pw7X/5jQk8EVwC+BeIV60/TbA/4rnnsfijTBBATonwM4dKtnM4pAAfhWHR+w16SeqUivGaqbdGBqGHz5WOZMlcZ+y4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O7c2PhMQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D85E7C4CEC3;
-	Thu, 31 Oct 2024 21:52:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730411565;
-	bh=S04zhds+KgkztO9Go6G1Kn6KUaaJUECBrILEMcartx4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=O7c2PhMQcitNS0m812whJN1n1SkO4Fo5eIdjOho7r41AloxjupiqJhk+1gX7EzAP1
-	 ep5x69pBZXAUVVRlmPm60s7Wq8NY2vk/McaVMxC41M9cXCj9xens3uIuAeM8UXNTdk
-	 eHJ3kiqqyezzO/XY9NCEg5bmUiJ4Gk9FonFbg5vIq/T8hTQ2qUCo6v2faznk/qUPqI
-	 S+WXI+TaWFVyn1Pmk7oQQKUrcSviKzn+Xku/NvAuw7fLL/hWvgbHjrDrmfrVWMPrqW
-	 2ZBHPlFxOUW0ArrpWcco3BEwXXwdLgqNgqmrz7rodv7gVn4ZUZTV4TegXSJ9kyxP/A
-	 XHGA4l1upfhUQ==
-Date: Thu, 31 Oct 2024 21:52:38 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 0/2] iio: light: veml6070: add integration time
-Message-ID: <20241031215238.6ba6b98b@jic23-huawei>
-In-Reply-To: <20241031-veml6070-integration-time-v4-0-c66da6788256@gmail.com>
-References: <20241031-veml6070-integration-time-v4-0-c66da6788256@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1730414462; c=relaxed/simple;
+	bh=TtX246/7V9tXd0BN+YUjyWwj/a3VQ2j7RYCFTjdfKgs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vCR2cQlAqwZTcOzhHn/vNMYuSiKGDoAb2kuKnyRUX6HvHwBkOzXvjl6fXbi6BL7RAK3vay/zBa6mrKoDqzxznhWsQegdq8qtwu6KVD8Crcy794Ynbi55IGP2G0oalm8rHn6WUjStihXhdxPhp+wp73d5iuJpW1Qg6BN/d3kGdq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PZmsAdfT; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1730414457; x=1761950457;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TtX246/7V9tXd0BN+YUjyWwj/a3VQ2j7RYCFTjdfKgs=;
+  b=PZmsAdfT3v2IINtcA2aZWBGiFceBZXQkuvFMmxQvSGFwxoxZc87RNNDK
+   MqkbBsA6/tLt8NKRpaOwphm5ykHju2lNCo9IqotjwyjfdYCr+SDdClv0a
+   kxoQtUzGV/3IA/wqBjP3q++Kg3Q1iujFVBHc6NEb/HerjkqTwF7xq1tiq
+   DqoCWr0fU3ho0t0Iv454dp3UTGCFwsaiGAF2KYjO5o8ZZGQNxvQUzaCS9
+   Sy5A35iLrvVaRc0PjWMZK7gzDdnpVfGtLKn+r5BVzGcGxEvjnhgXmxgxd
+   ePTkFpS3LVPbeEH+8bK9vXoVXjCTwBbO+2fUCjvW4v31VaCMQlOy4ZByc
+   w==;
+X-CSE-ConnectionGUID: bT1I4m5UR8Wp2ZFJXRQgIw==
+X-CSE-MsgGUID: 212Ceag/SK2OXrpj6ftqFg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11242"; a="30294386"
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; 
+   d="scan'208";a="30294386"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2024 15:40:56 -0700
+X-CSE-ConnectionGUID: wD6CisJHQ06wuSZ12h/+6A==
+X-CSE-MsgGUID: NsMJpRFKSGW57UVHodjKJg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; 
+   d="scan'208";a="120231292"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 31 Oct 2024 15:40:50 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t6dqR-000gnK-1T;
+	Thu, 31 Oct 2024 22:40:47 +0000
+Date: Fri, 1 Nov 2024 06:39:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
+	bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	frank.li@nxp.com, s.hauer@pengutronix.de, festevam@gmail.com
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	imx@lists.linux.dev, kernel@pengutronix.de,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Richard Zhu <hongxing.zhu@nxp.com>, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v5 02/10] PCI: imx6: Add ref clock for i.MX95 PCIe
+Message-ID: <202411010605.6YPlxVeu-lkp@intel.com>
+References: <20241031080655.3879139-3-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241031080655.3879139-3-hongxing.zhu@nxp.com>
 
-On Thu, 31 Oct 2024 00:09:56 +0100
-Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
+Hi Richard,
 
-> This series adds a missing feature in the veml6070 driver to select the
-> integration time, which also depends on an external restistor that has
-> been added to the corresponding bindings.
-> 
-> The datasheet provides a Refresh time vs Rset graph (figure 7), which
-> does not clearly specify the minimum and maximum values for Rset. The
-> manufacuter has confirmed that no values under 75 kohms should be used
-> to keep linearity, and the graph does not go beyond 1200 kohms, which is
-> also the biggest Rset used in the application note. The default value of
-> 270 kohms is the one currently used in the driver to calculate the UVI.
-> 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Applied and initially pushed out as testing for 0-day to take a look.
+kernel test robot noticed the following build warnings:
 
-Thanks,
+[auto build test WARNING on pci/next]
+[also build test WARNING on pci/for-linus shawnguo/for-next mani-mhi/mhi-next linus/master v6.12-rc5 next-20241031]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Jonathan
+url:    https://github.com/intel-lab-lkp/linux/commits/Richard-Zhu/dt-bindings-imx6q-pcie-Add-ref-clock-for-i-MX95-PCIe-RC/20241031-160000
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
+patch link:    https://lore.kernel.org/r/20241031080655.3879139-3-hongxing.zhu%40nxp.com
+patch subject: [PATCH v5 02/10] PCI: imx6: Add ref clock for i.MX95 PCIe
+config: um-allmodconfig (https://download.01.org/0day-ci/archive/20241101/202411010605.6YPlxVeu-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 639a7ac648f1e50ccd2556e17d401c04f9cce625)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241101/202411010605.6YPlxVeu-lkp@intel.com/reproduce)
 
-> ---
-> Changes in v4:
-> - Add vendor prefix to rset-ohms property (bindings and driver).
-> - Drop default values for out-of-range rset and fail the probe instead.
-> - Link to v3: https://lore.kernel.org/r/20241028-veml6070-integration-time-v3-0-dd7ace62f480@gmail.com
-> 
-> Changes in v3:
-> - veml6075.yaml: simplify property handling (describe it completely at
->   the top and add block for the devices that do not support it).
-> - veml6070.c: use int instead of u32 for the integration times.
-> - veml6070.c: refactor default rset value assignment.
-> - veml6070.c: drop comment about default Rset and IT.
-> - veml6070.c: use units from units.h
-> - Link to v2: https://lore.kernel.org/r/20241024-veml6070-integration-time-v2-0-d53272ec0feb@gmail.com
-> 
-> Changes in v2:
-> - Rebase onto iio/testing and drop applied patches.
-> - veml6075.yaml: use documented -ohms, top-level definition and
->   per-device restriction.
-> - veml6075.yaml: add default value.
-> - veml6075.yaml: fix typo in commit message.
-> - veml6070.c: adjust rset property name and convert from ohms to kohms
->   to avoid overflows and work with the same units as in the datasheet.
-> - veml6070.c: change default to 270 kohms (already used as default
->   value to calculate UVI).
-> - veml6070.c: calculate UVI according to the current integration time.
-> - veml6070.c: re-calculate measurement time (i.e. msleep()) with the
->   current integration time.
-> - Link to v1: https://lore.kernel.org/r/20241017-veml6070-integration-time-v1-0-3507d17d562a@gmail.com
-> 
-> ---
-> Javier Carrasco (2):
->       dt-bindings: iio: light: veml6075: document vishay,rset-ohms
->       iio: light: veml6070: add support for integration time
-> 
->  .../bindings/iio/light/vishay,veml6075.yaml        |  18 +++
->  drivers/iio/light/veml6070.c                       | 131 +++++++++++++++++++--
->  2 files changed, 141 insertions(+), 8 deletions(-)
-> ---
-> base-commit: e2687d0723257db5025a4cf8cefbd80bed1e2681
-> change-id: 20241014-veml6070-integration-time-78daf4eaad2f
-> 
-> Best regards,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411010605.6YPlxVeu-lkp@intel.com/
 
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/pci/controller/dwc/pci-imx6.c:21:
+   In file included from include/linux/of_address.h:7:
+   In file included from include/linux/io.h:14:
+   In file included from arch/um/include/asm/io.h:24:
+   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     548 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/pci/controller/dwc/pci-imx6.c:21:
+   In file included from include/linux/of_address.h:7:
+   In file included from include/linux/io.h:14:
+   In file included from arch/um/include/asm/io.h:24:
+   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/pci/controller/dwc/pci-imx6.c:21:
+   In file included from include/linux/of_address.h:7:
+   In file included from include/linux/io.h:14:
+   In file included from arch/um/include/asm/io.h:24:
+   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:693:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     693 |         readsb(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:701:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     701 |         readsw(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:709:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     709 |         readsl(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:718:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     718 |         writesb(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   include/asm-generic/io.h:727:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     727 |         writesw(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   include/asm-generic/io.h:736:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     736 |         writesl(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   In file included from drivers/pci/controller/dwc/pci-imx6.c:22:
+   In file included from include/linux/pci.h:1645:
+   In file included from include/linux/dmapool.h:14:
+   In file included from include/linux/scatterlist.h:8:
+   In file included from include/linux/mm.h:2213:
+   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/pci/controller/dwc/pci-imx6.c:1490:27: warning: unused variable 'imx95_ext_osc_clks' [-Wunused-const-variable]
+    1490 | static const char * const imx95_ext_osc_clks[] = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux"};
+         |                           ^~~~~~~~~~~~~~~~~~
+   14 warnings generated.
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for MODVERSIONS
+   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
+   Selected by [y]:
+   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [m]:
+   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
+
+
+vim +/imx95_ext_osc_clks +1490 drivers/pci/controller/dwc/pci-imx6.c
+
+  1483	
+  1484	static const char * const imx6q_clks[] = {"pcie_bus", "pcie", "pcie_phy"};
+  1485	static const char * const imx8mm_clks[] = {"pcie_bus", "pcie", "pcie_aux"};
+  1486	static const char * const imx8mq_clks[] = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux"};
+  1487	static const char * const imx6sx_clks[] = {"pcie_bus", "pcie", "pcie_phy", "pcie_inbound_axi"};
+  1488	static const char * const imx8q_clks[] = {"mstr", "slv", "dbi"};
+  1489	static const char * const imx95_clks[] = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux", "ref"};
+> 1490	static const char * const imx95_ext_osc_clks[] = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux"};
+  1491	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
