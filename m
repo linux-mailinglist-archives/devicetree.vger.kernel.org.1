@@ -1,141 +1,137 @@
-Return-Path: <devicetree+bounces-117854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 122F09B81F0
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 18:58:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE0A19B81FB
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 18:58:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43AD31C21783
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 17:58:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97D8CB234E1
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 17:58:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70FA31C463F;
-	Thu, 31 Oct 2024 17:58:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8828F1C7B62;
+	Thu, 31 Oct 2024 17:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TE3YMvI3"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ZA/UIs0C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3167E1C2307
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 17:58:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A4BE1B1D63
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 17:58:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730397485; cv=none; b=uursrNjWBn1h8Cx22t9DlpWEyf6wmQLj4dFlfHyp62Z+yrTmEwQYXpTtQ3DFMdNd7A7H6Mbh1o2wwb4gsO+I02Ts90yXOLHCgL+ZXV/JY2PcpG22gabOTtVaIXiJ8dpWk58aOf59F4yARw1SsJs6h+CwNohCjQwe3qGMde9jwOE=
+	t=1730397511; cv=none; b=KqRa5vl5ow0v1DCZyGj0qePsbC+8c4WjlgtgRkgXRC1C9yE/r24YZ5gseYV82QeZrlVKEKFc3AX68s2L0K3XvDni9nUu4fjXsw7zGnftyEsHJOrq6NWLefupta38slcrAmJchEA/g1YkjS08mGpV4IOSarxFeuRfToTVl/RKdFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730397485; c=relaxed/simple;
-	bh=s98ZX28OsVpUZzWaaWrFm/+3vCU+Pr78M3qXyvNi430=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XVupOeSnnef/nDJcdBBkg9LPdiPBpqhv3uKoLwtI7aJLN7sTfafmSNAlJIRtottzdFjzDoGiS5N9Zqy5+8ax997c501nv0ZRSm47KQ/cyV8KbvETvLqy+i0YfzTQzy16wLl6inNMvzPSjlqEAkIi29V9UKLNDi1Fu1ZJvbB5PdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TE3YMvI3; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-539e8607c2aso1343513e87.3
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 10:58:02 -0700 (PDT)
+	s=arc-20240116; t=1730397511; c=relaxed/simple;
+	bh=GprtLr3+fDuoA1kbr5iV1i1OWpC+hVzEb/dgPxI6zjY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uptoaqqbvfBIQcS+Vc9MHKspwHsAkCBRFpihDqoBexpxdJtimS6SCKUsJNNpgOfCgzyQvjL55+FnzKzOZBWB6GdlxevYOc7yiy2ZvmvVE4JbBiSNOLvdhMrcGuw19GqO4gaX+f0f+kszeT0zBDpsUWfopvVuY268A8vRWaRo2oY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ZA/UIs0C; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-539f2b95775so1336470e87.1
+        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 10:58:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730397481; x=1731002281; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=P83QC4divwjdwrOkzc0beaK7x66pdeMqgQ1qbe4pGZQ=;
-        b=TE3YMvI3gX8v3czSKkqhq73RscaYYFOYVzLdo4u52ig90xybOIIpbe5iR1r5IMPxdr
-         0qMZaYYfEaEbr88BieHkHhE1TBpfSZ1mJtr4bwI6Tfk9x9bzfu/3GRanxP+wSSZeHAqc
-         8zTnpenvflZw391sG/a3Yp7wHaDJs0xbWcnxo0kJAByYxCvZsZVF7O6BwsuV9xan8VJW
-         DHqdjRep895ikJ+hbw53gWmZRtii3CwsSSuWV9tklMhJN0rLiCUTaGusecGgMUtXvyF9
-         o345UfGapyOlYSOAGu4P7gQtZ/mAxFl2vbnw4mKEBIDsLdX1K2gXKWyNw4iUtrGk0Wrp
-         H3oQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730397481; x=1731002281;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1730397505; x=1731002305; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=P83QC4divwjdwrOkzc0beaK7x66pdeMqgQ1qbe4pGZQ=;
-        b=owWtSozQRW61GT2D8X8L1RSLtjK14ugybRmMfKYiYj+1xQ7e6OFkLDQMiwzDwlHUNA
-         G5Ecn4mr6FMSTx5nT7Ay0HppVF+dKc8K2yMs3It5QzTJQNV2l+SposSFie4wJQXIL859
-         8BHzwocyisszY4YLXNQGvnasivYp0GOfU4571BttlZZ9bOPf2pEleND9snE9UgGp/KGi
-         77AJC4HhmKX4sVwoU8CQxIGtf5kZRXTaW0D9h4zup/YimSA/tEyrYGmAon9kiRc/Gaig
-         zZ+yF12ihdYUo++oPoJGqPCXZwkP0T+eLpuuC/ja/7NnM5YJA291oggJ6gbWCdkZMP/6
-         DleQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWvzfF/neDsPhLuoEvX7pJZZM8ug9LoUVxB8hxE1KSuE8/WQsZcqMqbed1wSYQEGyrNrnStzeuMXoz1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPKn9J+4lkZDwQInCiQFLydvvfp6cMxDNec2O1G6OUbwUaa2Ns
-	HvbAT4ZjWs6WnWlsWxSeHJecSalHQp7k6QjGLq8zr0+0lZ5p4bQXJAgpTlbp4s8=
-X-Google-Smtp-Source: AGHT+IGSV5srlEIwYq4ukshM4Ah7sMYFPuqhx1GlJEoXoE2aV6eQnDSC8Wx080gm6OXkRcNzRUro1A==
-X-Received: by 2002:a05:6512:687:b0:536:581c:9d9f with SMTP id 2adb3069b0e04-53b348d6ademr10336086e87.24.1730397481275;
-        Thu, 31 Oct 2024 10:58:01 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53c7bc9c9f3sm282595e87.116.2024.10.31.10.57.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2024 10:58:00 -0700 (PDT)
-Date: Thu, 31 Oct 2024 19:57:58 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jishnu Prakash <quic_jprakash@quicinc.com>
-Cc: jic23@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, daniel.lezcano@linaro.org, sboyd@kernel.org, 
-	quic_subbaram@quicinc.com, quic_collinsd@quicinc.com, quic_amelende@quicinc.com, 
-	quic_kamalw@quicinc.com, amitk@kernel.org, lee@kernel.org, rafael@kernel.org, 
-	rui.zhang@intel.com, lukasz.luba@arm.com, lars@metafoo.de, quic_skakitap@quicinc.com, 
-	neil.armstrong@linaro.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	cros-qcom-dts-watchers@chromium.org
-Subject: Re: [PATCH V4 2/4] dt-bindings: iio: adc: Add support for QCOM PMIC5
- Gen3 ADC
-Message-ID: <ag3wqsjdec7ujcba2jpvhzgcbbc5vnyjyes5ljyyf5b4edw7j3@rj23a25wvoyd>
-References: <20241030185854.4015348-1-quic_jprakash@quicinc.com>
- <20241030185854.4015348-3-quic_jprakash@quicinc.com>
+        bh=lp+SkhbwfifV7k5hA8ZYEm0WPfNORR7rjsrxe7EFMug=;
+        b=ZA/UIs0CJ75GwI1qVdNbiHQ+SlbD9/yNHnMSJS/l2Z3nuQH4xalqfFnWIlcbUHaTjL
+         89Stwcu86JTvV7WwbIGapdgs/p2gnekFFZcZsGvxSPwiKyf6NWMVR76s0ZV7k6oslNhI
+         hnxLddHxIW2HKsJtI3bPAMPc8q5A5CALWnX+Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730397505; x=1731002305;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lp+SkhbwfifV7k5hA8ZYEm0WPfNORR7rjsrxe7EFMug=;
+        b=QPhanKdIk7XPtMNed9xxvjCv6KR+AOP7B/nMoh8xc2hVchJZpO8ECk0gdp2K0j/Wqo
+         G1yai78tQ/C+IboCVplOHWTnzgbRWFg4xcoR049Dmu5RBIEb+gBgUIhxGt8oPN35zwW+
+         sHU146Malx75LGH6naTbpCilNy8UeZTiDjDU7SEzAv9tdNrBfHowqdCCUp2AyfbxDvUO
+         ViIWLI2fUA3es7Op+7fVoPMix+wIVdf9C3Zl5/wsh4Ow8PVE3PqKMxMFaG98Eyrr/PBH
+         7yCiZG5+qga7AhiDlnSF0UejXzfHybhI0SVrGd+3tjoBhm4EdaiL3xAeb4wnRJlo75iN
+         eA5w==
+X-Forwarded-Encrypted: i=1; AJvYcCUTdexht5S1IfYeuh5JAOqIKcE9L9K8Od1jy3webxZ79PBwZUZWzG9TSd+BtuDM0MRkZPP4edYCERzR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxqt44/ej3Y+lFjNzhh6PQrm247oMUYElB8570ZJahE+AaUY0Xa
+	R9ZgGY4xsPb++ZiQ9opKigDys0kx6MgGHruFpUcuBUxLmJfJk+3k93cPOK8jWZz2AqD5kV8gWMW
+	0N7im
+X-Google-Smtp-Source: AGHT+IHKX1pWn9sOseCErIpjoEYyApObpK8J6ZpeAhhS18FwBfK6R6uAuqCcsl5/KiJEBoMZN3igGQ==
+X-Received: by 2002:a05:6512:1295:b0:538:9e36:7b6a with SMTP id 2adb3069b0e04-53d65df25a3mr904136e87.32.1730397505441;
+        Thu, 31 Oct 2024 10:58:25 -0700 (PDT)
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com. [209.85.167.48])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53c7bde3a89sm274924e87.285.2024.10.31.10.58.23
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Oct 2024 10:58:25 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-539f58c68c5so2309925e87.3
+        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 10:58:23 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVOuwQDVI4FMbzZYr/Fa/nb97PhNF4rc4womslQuAeu9uDnLEHro/oEvKLFuB+wtrYDDyCgTnk6X4iD@vger.kernel.org
+X-Received: by 2002:a05:6512:605:b0:53b:1508:468d with SMTP id
+ 2adb3069b0e04-53d65e1686bmr748585e87.54.1730397503175; Thu, 31 Oct 2024
+ 10:58:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241030185854.4015348-3-quic_jprakash@quicinc.com>
+References: <20241025114642.40793-2-charles.goodix@gmail.com>
+ <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3> <ZyLtYdwoJWx9FsdS@ux-UP-WHL01>
+In-Reply-To: <ZyLtYdwoJWx9FsdS@ux-UP-WHL01>
+From: Doug Anderson <dianders@chromium.org>
+Date: Thu, 31 Oct 2024 10:58:07 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UNKECLn=3VrjsJfA+HTNa9Gag1qw5jOcBvw7=ZtkZEnw@mail.gmail.com>
+Message-ID: <CAD=FV=UNKECLn=3VrjsJfA+HTNa9Gag1qw5jOcBvw7=ZtkZEnw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+To: Charles Wang <charles.goodix@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, dmitry.torokhov@gmail.com, hbarnor@chromium.org, 
+	conor.dooley@microchip.com, jikos@kernel.org, bentiss@kernel.org, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 31, 2024 at 12:28:52AM +0530, Jishnu Prakash wrote:
-> For the PMIC5-Gen3 type PMICs, ADC peripheral is present in HW for the
-> following PMICs: PMK8550, PM8550, PM8550B and PM8550VX PMICs.
-> 
-> It is similar to PMIC5-Gen2, with SW communication to ADCs on all PMICs
-> going through PBS(Programmable Boot Sequence) firmware through a single
-> register interface. This interface is implemented on an SDAM (Shared
-> Direct Access Memory) peripheral on the master PMIC PMK8550 rather
-> than a dedicated ADC peripheral.
-> 
-> Add documentation for PMIC5 Gen3 ADC and macro definitions for ADC
-> channels and virtual channels (combination of ADC channel number and
-> PMIC SID number) per PMIC, to be used by clients of this device.
-> 
-> Co-developed-by: Anjelique Melendez <quic_amelende@quicinc.com>
-> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
-> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
-> ---
-> Changes since v3:
-> - Added ADC5 Gen3 documentation changes in existing qcom,spmi-vadc.yaml file
->   instead of adding separate file and updated top-level constraints in documentation
->   file based on discussion with reviewers.
+Hi,
 
-I think it has been better, when it was a separate file. Krzysztof asked
-for rationale, not for merging it back. Two different things.
+On Wed, Oct 30, 2024 at 7:37=E2=80=AFPM Charles Wang <charles.goodix@gmail.=
+com> wrote:
+>
+> > > +  goodix,hid-report-addr:
+> >
+> > I do not see this patch addressing previous review. Sending something
+> > like this as v1 after long discussions also does not help.
+> >
+> > No, you keep sending the same and the same, without improvements.
+> >
+>
+> I apologize for overlooking the discussions regarding this issue.
+>
+> I would like to clarify that while the current boards use the same addres=
+s,
+> but newly designed boards in the future may require different addresses.
+>
+> Retaining this property would likely offer more flexibility.
 
-> - Dropped default SID definitions.
-> - Addressed other reviewer comments.
-> 
-> Changes since v2:
-> - Moved ADC5 Gen3 documentation into a separate new file.
-> 
-> Changes since v1:
-> - Updated properties separately for all compatibles to clarify usage
->   of new properties and updates in usage of old properties for ADC5 Gen3.
-> - Avoided updating 'adc7' name to 'adc5 gen2' and just left a comment
->   mentioning this convention.
-> - Used predefined channel IDs in individual PMIC channel definitions
->   instead of numeric IDs.
-> - Addressed other comments from reviewers.
-> 
+I don't feel very strongly about it, but maybe Krzysztof does?
+Possibly the path of least resistance would be:
 
--- 
-With best wishes
-Dmitry
+1. You drop the property from the bindings.
+
+2. You hardcode it in the driver to be the normal value.
+
+3. If/when someone actually needs a different value then we can add it
+as an optional property in the bindings and fall back to the default
+value if the property isn't present.
+
+What do you think? If you feel strongly about keeping the
+"hid-report-addr" then you can certainly keep making your case.
+However, it's probably best to wait to get agreement from Krzysztof
+(or one of the other DT maintainers) before sending your next version
+unless you're going to take the "path of least resistance" that I talk
+about above.
+
+-Doug
 
