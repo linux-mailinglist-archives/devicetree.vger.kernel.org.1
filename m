@@ -1,132 +1,97 @@
-Return-Path: <devicetree+bounces-117778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CF519B7B50
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 14:05:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C38C59B7B5C
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 14:09:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9024DB2585F
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:05:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 873D2281899
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C588819D890;
-	Thu, 31 Oct 2024 13:05:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B5C1465A5;
+	Thu, 31 Oct 2024 13:09:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FRbA/9fi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MsnkWyiO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62E3C19D892;
-	Thu, 31 Oct 2024 13:04:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8DDA1C6B8;
+	Thu, 31 Oct 2024 13:09:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730379901; cv=none; b=vFDV5osBDjz1EAk4Bx503PtgKSx/WEBWsgmieNNjkLV87vrSkQcB+O4vR6oaOIJXM41JJfc5HAe3KVq8bjcgAMIUAl9KtTCv93Zuw9fKW8q4JrpEbTQ7HMsCX+aJNWorT55kC2gsM5/8gXeaaVtfYCOuLzu84UXsjIyLl4KjLqA=
+	t=1730380164; cv=none; b=Ty+c1ZIQcQhcsnnxV3ynHaKKtj5feNA159BiNQliRpWLDBPa6oMB6NTvmj3mEe2RE5LYGdBe8TXt8sqM+6avP9A0PCRKftFrmpGzScgcyRoMBtdvcUPq3Gth41uWFv2Cd6S6zhR3qgt/2uzmnfsTP4vZQnaU6syuiKexmcYOd+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730379901; c=relaxed/simple;
-	bh=XUEUdiZZ588RY/DmjfG2Rv2p7ELbqn2IBxk/dYJU760=;
+	s=arc-20240116; t=1730380164; c=relaxed/simple;
+	bh=3H47IOxYEfHkJ9A39j6LSPYQX1SkSS7HVKz3N9MajYo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BIz1B9gBuhQg4W52DLWHnjr19zUlY2OfGDRnJYAo9r0plSPeUCE/xgR70n6DM6BZVRg3zTIABj1pf1WZtQF7h/D3J5TjngbCxVGktj2RHlAhhYmyNKBAlOxGNSElHiPGaSUQiw2XGOW+42NXLXz8KVRpx7Wq1r3SmiUynKR3yxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FRbA/9fi; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=3D8AOsFf2lVt9L71mkZVmKIqNbDdk74xgKnAtcWILOc=; b=FRbA/9fi/pVNHzTX7/ZaLC24xA
-	alEpwQWuUyVEDaZmSc+lBB9O4PRee3nl6Ud4bE/zBqTnrzb16nHnp2K7Usvs/WjANG/ecjK/5uYbM
-	AIcMrYCSguzUmhTFgg/F38+QTMOfdGQX448zKFI3YV9FYtIybDFvbafVXH5KD2Gb8xEc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t6Uql-00Bmpa-82; Thu, 31 Oct 2024 14:04:31 +0100
-Date: Thu, 31 Oct 2024 14:04:31 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=EAOaAU5uYWDhraQOjk5GM2xD8QS5NaMqfX1PQyI0vBWMMCYiuiI+qJpm8ad8jXwQbTBNTMq9v1NnMVEn/HnSfD1us6Zmj3i/MaZN5jVbOZfOSH/6X/ZRLDs7Ey3fDUrYX3XNA9iQ9puvfo3G+Ynz78nTDvXFY0Z3AQ0YxszDd08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MsnkWyiO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C194C4CEFA;
+	Thu, 31 Oct 2024 13:09:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730380163;
+	bh=3H47IOxYEfHkJ9A39j6LSPYQX1SkSS7HVKz3N9MajYo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MsnkWyiOvUAJZCtDX0tOCzSoSeDSSPG9W1sQpSucO/mdwUDT1q5j5KwIfxueS5BOx
+	 oJUK19Tt1BA6dPBfPnqgqS4jQLVvoYyFsko9VPzH+vUp7uo+0swDTRASHY1SngOujo
+	 /l7pTKFp7wjsKAyGuplSe5EH62JtZGNGUI3eJUoJtc4XTD4q2GYUAZMsicOv0S9kYl
+	 Ua2mFpSDooMsuLfyyxR7Yp1VpDCoVwpen25s8lb5zD35nyTT4J9O8mhcf2dMsDA0Jt
+	 IvbXKNERKa9IiQjA4v7fW7DpaZHEYCkO39DDS6LUZ5q7XhnFXZuYr1tlNsePn0xEQh
+	 zGn/reHo/LJ0A==
+Date: Thu, 31 Oct 2024 13:09:19 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Nuno Sa <nuno.sa@analog.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Liu Gui <kenneth.liu@sophgo.com>, Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: Re: [PATCH] riscv: dts: sophgo: Add ethernet configuration for cv18xx
-Message-ID: <e389a60d-2fe3-46fd-946c-01dd3a0a0f6f@lunn.ch>
-References: <20241028011312.274938-1-inochiama@gmail.com>
- <87e215a7-0b27-4336-9f9c-e63ade0772ef@lunn.ch>
- <wgggariprpp2wczsljy3vw6kp7vhnrifg6soxdgiio2seyctym@4owbzlg3ngum>
- <ftfp2rwkytqmzruogcx66d5qkn4tzrgyjtlz4hdduxhwit3tok@kczgzrjdxx46>
+	Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: axi-clkgen: include AXI clk
+Message-ID: <20241031-unawake-unruffled-c57907460df4@spud>
+References: <20241029-axi-clkgen-fix-axiclk-v2-0-bc5e0733ad76@analog.com>
+ <20241029-axi-clkgen-fix-axiclk-v2-1-bc5e0733ad76@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="q7sPDN7IEuTtY0tg"
+Content-Disposition: inline
+In-Reply-To: <20241029-axi-clkgen-fix-axiclk-v2-1-bc5e0733ad76@analog.com>
+
+
+--q7sPDN7IEuTtY0tg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ftfp2rwkytqmzruogcx66d5qkn4tzrgyjtlz4hdduxhwit3tok@kczgzrjdxx46>
+Content-Transfer-Encoding: quoted-printable
 
-> > > > +		gmac0: ethernet@4070000 {
-> > > > +			compatible = "snps,dwmac-3.70a";
-> > > > +			reg = <0x04070000 0x10000>;
-> > > > +			clocks = <&clk CLK_AXI4_ETH0>, <&clk CLK_ETH0_500M>;
-> > > > +			clock-names = "stmmaceth", "ptp_ref";
-> > > > +			interrupts = <31 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +			interrupt-names = "macirq";
-> > > > +			phy-handle = <&phy0>;
-> > > > +			phy-mode = "rmii";
-> > > > +			rx-fifo-depth = <8192>;
-> > > > +			tx-fifo-depth = <8192>;
-> > > > +			snps,multicast-filter-bins = <0>;
-> > > > +			snps,perfect-filter-entries = <1>;
-> > > > +			snps,aal;
-> > > > +			snps,txpbl = <8>;
-> > > > +			snps,rxpbl = <8>;
-> > > > +			snps,mtl-rx-config = <&gmac0_mtl_rx_setup>;
-> > > > +			snps,mtl-tx-config = <&gmac0_mtl_tx_setup>;
-> > > > +			snps,axi-config = <&gmac0_stmmac_axi_setup>;
-> > > > +			status = "disabled";
-> > > > +
-> > > > +			mdio {
-> > > > +				compatible = "snps,dwmac-mdio";
-> > > > +				#address-cells = <1>;
-> > > > +				#size-cells = <0>;
-> > > > +
-> > > > +				phy0: phy@0 {
-> > > > +					compatible = "ethernet-phy-ieee802.3-c22";
-> > > > +					reg = <0>;
-> > > > +				};
-> > > > +			};
-> > > 
-> > > It is not clear to me what cv18xx.dtsi represents, 
-> > 
-> > This is a include file to define common ip for the whole
-> > cv18xx series SoCs (cv1800b, cv1812h, sg2000, sg2000).
-> > 
-> > > and where the PHY node should be, here, or in a .dts file. 
-> > > Is this a SOM, and the PHY is on the SOM? 
-> > 
-> > The phy is on the SoC, it is embedded, and no external phy
-> > is supported. So I think the phy node should stay here, not 
-> > in the dts file.
-> 
-> There is a mistake, Some package supports external rmii/mii
-> phy. So I will move this phy definition to board specific.
+On Tue, Oct 29, 2024 at 02:59:41PM +0100, Nuno Sa wrote:
+> In order to access the registers of the HW, we need to make sure that
+> the AXI bus clock is enabled. Hence let's increase the number of clocks
+> by one and add clock-names to differentiate between parent clocks and
+> the bus clock.
+>=20
+> Fixes: 0e646c52cf0e ("clk: Add axi-clkgen driver")
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
 
-When there is an external PHY, does the internal PHY still exists? If
-it does, it should be listed, even if it is not used.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Do the internal and external PHY share the same MDIO bus? I've seen
-some SoCs with complex MDIO muxes for internal vs external PHYs.
+--q7sPDN7IEuTtY0tg
+Content-Type: application/pgp-signature; name="signature.asc"
 
-	Andrew
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyOBfwAKCRB4tDGHoIJi
+0oMsAP4+g2rRuFgG9dGBMOL2puQrMEy6mZ00M3YECyd9y/o1lQEAjd7HxriNpDpD
+Tpce4zZRk1gxMjWiHWUZRGBeKnanDgY=
+=ro9B
+-----END PGP SIGNATURE-----
+
+--q7sPDN7IEuTtY0tg--
 
