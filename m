@@ -1,135 +1,110 @@
-Return-Path: <devicetree+bounces-117680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A18A9B755E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:30:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BA149B7564
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:33:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DF981C24194
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:30:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3D26282BC6
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:33:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F81813E8AE;
-	Thu, 31 Oct 2024 07:30:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D75A41487C1;
+	Thu, 31 Oct 2024 07:32:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nq5i3TbZ"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="QB1HPFBL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7101C10A3E;
-	Thu, 31 Oct 2024 07:30:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E2A12CDBF;
+	Thu, 31 Oct 2024 07:32:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730359852; cv=none; b=c8Kx59ZUyDn3hzYlmlTYqaPOpl6k6HEvHDFZLnpHDrjS7Z3rBy44HHGkbvQtsKeKAhTWLWT7s2Nd7QGusKPKH1k+JviXGyFhIZ8+kbvwVNsqAwIx/pYUYlgeo7RRl7y+khGg6bvnrmPQiMS46PDyCpU6aaEoFu5KYaXs+DTrokw=
+	t=1730359977; cv=none; b=JhHJfTXAown/9XvUfoBbTaaszKXpWGhMkudY5xsXdtoA987had4dtsjWWnwvEmJl1Q7pf9wBUV8Q8fxQ3DuJbhrG9uSDNAb/n73zB0Rhf/w7wbCvhYI/Kg2k04o47linPRHnKUJGSFeNR9HLAJrpzq2Ak/5pRr/V7JKcLX/nXVU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730359852; c=relaxed/simple;
-	bh=zjxK4DTqZw9IhZIdod8GJ4JXuFeeFqZAEZ5JbU83ryo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I+7rMoXYV7FXrMxUVyRBNiJkiWwdMl1LqfyVjr47oij2qmAwz8Ekk2IOkNLVmGOLvCfzkCTOs9CBcIq1zTjCbjPXJAzy92AS8LuiiMECOcoklI0VO+ZI88fiYx2W5YlZNHA/4WgWFw8jiAPonolzQpmpAShvZNkPwltjbORkZMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nq5i3TbZ; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a9a628b68a7so84121666b.2;
-        Thu, 31 Oct 2024 00:30:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730359849; x=1730964649; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/eLyIHEDLmnqKBkl9EZ/QS1fOPZWds5n1WBxINpUw5s=;
-        b=nq5i3TbZhMj289A7RC0u+7E78XBFk67wAP8Zy8heDdalUruthxWSCm5ViqRs1KUdKj
-         Gi3acAffUR1OKOMAx1KNZo2is4D6KqV7AIXlL2G3x64kTzjthZyH5XtaJYwesoYawbn4
-         jd+JSEcLGMl4Zc9I81Rx6XrwHDxQrxva6KKs1zc7PHh8zu2J+J/cDtLWI99MgaVtN5/g
-         9yApVkHDiyhx0vNty2m7th2Z+uWgmffyvV8xyBVj9g2L1lT+IaS7aREVx9ohug9Cz0YL
-         QXFe73ETdWkFEDU6aPvVqF74P7bNVK/sqg6yGeTIFajiEwUQkY76V8uSldQDey0w6wAE
-         hWng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730359849; x=1730964649;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/eLyIHEDLmnqKBkl9EZ/QS1fOPZWds5n1WBxINpUw5s=;
-        b=Se2WTUVui3shmHuRMx6iaJyVdi6Ggeq83/SACfqNoxMItl/OOMiQZkYfAUWmF4RIKU
-         xrYAgN2kL/AXJCyIr+m2bw15jghlcDyTUoS5auz9s3j0uYIKLAC4CaTSh4fwS3MbQubC
-         KABo9j2Vx4RvvSVHH2fYa0t1JzHRyqK07b8MeuVF5TCdsAhSRJDh6I7iXdxKmreWyAs/
-         EhhLJiHVMDH/FI8x0hgTl5IYeuQFUmKTMabJoLiAUu9lAma3RvjPJkd3//0PRny1ARWE
-         GgrzTbqYRGqbygh1LLO+izs7aYnaFPq2ejsRTBDOEZWr4iw+H0o/Qq0PfNIOjcAKPv0j
-         fBPg==
-X-Forwarded-Encrypted: i=1; AJvYcCX1GBtL2zgjANOJWdSUsaH7WjtbCd/hvSHl63BzZ4OGhSOzI9PsSQPoDak2W4sHN8dwfOPDadmGeAV83SQ=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzEme2pqQio5t+dRP9lUNEKx2XS4/IgkvtCynQvaDjbLze4EjsM
-	FFHpf+HziXF81CwXYQ5ypKlgQY8Ytt142hnKCb2FAawjG+e/+Qro
-X-Google-Smtp-Source: AGHT+IEc9E2xS94xaD1VTkOKzTYVeevxnLXidGIu1k9elFl5LfpBJ21mQ6g00F4tlmDxQntuwkCllQ==
-X-Received: by 2002:a17:907:94c1:b0:a99:4ca4:4ff4 with SMTP id a640c23a62f3a-a9de5d98002mr1480023466b.23.1730359848554;
-        Thu, 31 Oct 2024 00:30:48 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e566797a7sm36034666b.190.2024.10.31.00.30.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2024 00:30:48 -0700 (PDT)
-Date: Thu, 31 Oct 2024 08:30:46 +0100
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] arm64: dts: sprd: sc2731: fix bat-detect-gpios
- property
-Message-ID: <ZyMyJrSPTfFrSC-t@standask-GA-A55M-S2HP>
-References: <cover.1723716331.git.stano.jakubek@gmail.com>
- <e57ee9b94f128753d156d77015f6cc3dc24fd9e8.1723716331.git.stano.jakubek@gmail.com>
+	s=arc-20240116; t=1730359977; c=relaxed/simple;
+	bh=ZCZgVRk+zO7UMA6+ytUIaXNf7YEOn7KOWBHyoaTQF/U=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=o1kEjcNlhwN9Gk8s+YVE98gUc0tIxhWL59eb6gXRM4BNUZpaBEpGzjU7VuxGI5V+FG4Z4lyrxmNESCL5JTF3Qk3Np49+SWzkyGT5/0OuWSQ8gZ9LobNRAbsOPuXkiX449Mx+FHQ+HBIa4xBbVfC9jahlgd6HnYiMVYPacOpqrH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=QB1HPFBL; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=VcSkoPVnn13uM0IHmlXrzCxiaYdSJeBZvUKAKpZqyQc=; b=QB1HPFBLAaHKD7cfINabzvDIPX
+	SjYJNr/GerRzuRqyA6cGsujAemzS+l5z1zsPCrmd2ynP2Ceau9FeXagO71rlGvRJnFoouFV+E98xB
+	WXMKGq9BLNBaPTgoIGlU3rQBGenE4CTGiddBg0iDhhPGQS/SSu6fHCvPaLbvhiqAvpjKkcL0efLLT
+	posLKiGJo8v/iKd/upZFQY2p6SZWYk197NeTbSVJoic8NWIkZRMFmO5BTLgZ7Q3KWbnxjmthoBZXv
+	J/1U6S0dG7hRKe5Mpo11yz3qujPiSv/GvPPSodopt4MYw9Vppit1/2WQEVsozLJKiGdDqkSuu5h8x
+	WXRZXVZw==;
+Date: Thu, 31 Oct 2024 08:32:48 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Mithil Bavishi <bavishimithil@gmail.com>
+Cc: aaro.koskinen@iki.fi, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ khilman@baylibre.com, krzk+dt@kernel.org, linux-hardening@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, robh@kernel.org,
+ rogerq@kernel.org, tony@atomide.com
+Subject: Re: [PATCH v2 2/6] arm/dts: Add common device tree for Samsung
+ Galaxy Tab 2 series
+Message-ID: <20241031083248.043d25d0@akair>
+In-Reply-To: <20241031065524.546-1-bavishimithil@gmail.com>
+References: <20241030234219.2d918b34@akair>
+	<20241031065524.546-1-bavishimithil@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e57ee9b94f128753d156d77015f6cc3dc24fd9e8.1723716331.git.stano.jakubek@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 15, 2024 at 12:13:18PM +0200, Stanislav Jakubek wrote:
-> According to DT bindings, the property is called bat-detect-gpios, not
-> bat-detect-gpio. Update the property as such.
+Hi,
+
+Am Thu, 31 Oct 2024 06:55:24 +0000
+schrieb Mithil Bavishi <bavishimithil@gmail.com>:
+
+> > this has to be system-power-controller;  
 > 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-> ---
->  arch/arm64/boot/dts/sprd/sc2731.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> I am so sorry for the mess up, I was on the wrong branch which is
+> almost the same as pmOS but a bit older, hence the entire mess up.
+> I'll run a quick diff from pmOS and this patch and fix them
+> accordingly.
 > 
-> diff --git a/arch/arm64/boot/dts/sprd/sc2731.dtsi b/arch/arm64/boot/dts/sprd/sc2731.dtsi
-> index 12136e68dada..c8b30c0479fd 100644
-> --- a/arch/arm64/boot/dts/sprd/sc2731.dtsi
-> +++ b/arch/arm64/boot/dts/sprd/sc2731.dtsi
-> @@ -97,7 +97,7 @@ pmic_adc: adc@480 {
->  		fuel-gauge@a00 {
->  			compatible = "sprd,sc2731-fgu";
->  			reg = <0xa00>;
-> -			bat-detect-gpio = <&pmic_eic 9 GPIO_ACTIVE_HIGH>;
-> +			bat-detect-gpios = <&pmic_eic 9 GPIO_ACTIVE_HIGH>;
->  			io-channels = <&pmic_adc 3>, <&pmic_adc 6>;
->  			io-channel-names = "bat-temp", "charge-vol";
->  			monitored-battery = <&bat>;
-> -- 
-> 2.34.1
+> > There is still a lot other stuff to fix here but I want to make
+> > sure we are looking at the right thing.  
 > 
+> Could you please go ahead and mention them as well.
+> 
+well, that takes time, I wanted to start that on the right thing.
 
-Hi all,
+1. make dtbs shows warnings
 
-looking at this patch again, it seems there's some confusion going on.
-The bindings specify the property as "battery-detect-gpios", but the driver
-checks for "bat-detect" [1]. I assume the DTS was added with "bat-detect"
-to make it work, even though it's not conformant to bindings.
-It has been this way since the bindings/driver/DTS were introduced
-back in 2018/2019.
+2. make CHECK_DTBS=y ti/omap/omap4-samsung-espresso7.dtb is too noisy
+(probably same for espresso10).
 
-What would be the correct way to fix this? Change the bindings to
-"bat-detect-gpios" or change the driver/DTS to "battery-detect-gpios"?
+a lot comes from the dtsi files, so you need to ignore a lot, probably
+either strip down the new dts to almost nothing besides dtsi includes
+to determine the background noise or take a similar device, redirect
+output and errors, diff that output with the full devicetree.
+I am trying to clean that dtsi warning mess up, linux-next shows a lot
+less warnings but that takes time.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/power/supply/sc27xx_fuel_gauge.c?h=v6.11#n1186
+One of the warnings that should be fixed:
+dts/ti/omap/omap4-samsung-espresso7.dtb: lvds-encoder: compatible:
+'oneOf' conditional failed, one must be fixed: ['lvds-encoder'] is too
+short 'lvds-encoder' is not one of ['ti,ds90c185', 'ti,ds90c187',
+'ti,sn75lvds83'] 'lvds-encoder' is not one of ['ti,ds90cf364a',
+'ti,ds90cf384a', 'ti,sn65lvds94'] 'lvds-encoder' is not one of
+['thine,thc63lvdm83d'] from schema $id:
+	http://devicetree.org/schemas/display/bridge/lvds-codec.yaml
 
 Regards,
-Stanislav
+Andreas
+
 
