@@ -1,272 +1,212 @@
-Return-Path: <devicetree+bounces-117663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C3309B74FE
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:05:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B72D89B7510
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:11:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AF7228663E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:05:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2C8E285A3F
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:11:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63FB8186E46;
-	Thu, 31 Oct 2024 07:03:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C3F4148318;
+	Thu, 31 Oct 2024 07:11:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=epochal.quest header.i=@epochal.quest header.b="YtMGcXQ1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hVp4vsf2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from thales.epochal.quest (thales.epochal.quest [51.222.15.28])
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F62A1531F2;
-	Thu, 31 Oct 2024 07:03:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.222.15.28
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E50C91BD9D4;
+	Thu, 31 Oct 2024 07:11:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730358217; cv=none; b=J6LjLT5P/o/WykZomBiNX8Q2PXKelnrlIOICCwVjZKawXbrRBkbugcV7CO0S1LhigZCyI3SmputKET9APwnIyHQTmvUI16cRClhOk8fciN6OxQazTLVEFSFdkR3t1JkbEpp27OYKDJwZ7C0E86oUkPUZUkDhS6bZuWI9Qbj5JXY=
+	t=1730358706; cv=none; b=FAH4GnKV9Cg4kJMdZ5RkT3WbIAMu4FzMzU8eYooGJVBMaTI2m7sYY0Q5DlL9ye0lTmFPFt7Rf55sGhugdoA+VkhckHSb4rSE+wMKyuEPrnBEZ9/MwrrV3P0uaTnKl9tw0/ZdqDD2rf9ZQP9c/c+4T42g4K9lvVonCIi9dVV8vWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730358217; c=relaxed/simple;
-	bh=GAI+JxmxQAyxNiN5ndHrGW83jif5+/YkLkstTry27TU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=k/pX8+XbfkXB8Px0arFmOPZzFyk1Pfkt4XkCON8410SbiI1XGBciIozDYp4IFylbR1UHxmVUFvLobitpwFXCyQXDY7kWhLZ97ApbTxlchCb9EhjFf++9AZ2rcXKY5Kk65bj1AZdy3t/uSGWm5Vfe3f6IgQm7VHukUELFxiDAlPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=epochal.quest; spf=pass smtp.mailfrom=epochal.quest; dkim=pass (2048-bit key) header.d=epochal.quest header.i=@epochal.quest header.b=YtMGcXQ1; arc=none smtp.client-ip=51.222.15.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=epochal.quest
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=epochal.quest
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=epochal.quest;
-	s=default; t=1730358209;
-	bh=GAI+JxmxQAyxNiN5ndHrGW83jif5+/YkLkstTry27TU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=YtMGcXQ1SID1v4pgdcEhkufRJU5/wJrIL+RPeDknvJHDNbNSCg10hAmPea+B/COhW
-	 hNTRGGOCwQlISoewvbOqC5k7zQoOYNM7Xyc2PxoaKo7eDa6yNnZpoMX5iBTvUmFJHW
-	 WWws924uIjCzjCdc/8NdWnOwcMcCRtg92jjtPYpqlgBXmor3uvD1Shzs0egMApqFQi
-	 fJ/KMAM0h3Jw36XHCAOlD7HUWMuGiVD88CbsyXyC+jwwpsMRdk6e47Ls17qhL6u2zQ
-	 S/5ldj9z9iX05LrBJfrBfolRrZwRUFKC3k0ur650DmGIzHn7OdDI75k/7SR+XA/Qrr
-	 l/9NYcMCxWE6g==
-X-Virus-Scanned: by epochal.quest
-From: Cody Eksal <masterr3c0rd@epochal.quest>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Nishanth Menon <nm@ti.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Viresh Kumar <vireshk@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Yangtao Li <tiny.windzz@gmail.com>,
-	Parthiban <parthiban@linumiz.com>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Cody Eksal <masterr3c0rd@epochal.quest>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 13/13] arm64: dts: allwinner: a100: Add CPU Operating Performance Points table
-Date: Thu, 31 Oct 2024 04:02:26 -0300
-Message-ID: <20241031070232.1793078-14-masterr3c0rd@epochal.quest>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241031070232.1793078-1-masterr3c0rd@epochal.quest>
-References: <20241031070232.1793078-1-masterr3c0rd@epochal.quest>
+	s=arc-20240116; t=1730358706; c=relaxed/simple;
+	bh=KmEQQ1s6Mv96zNVsmm/PGUzclVUeYqkmH1f/zLli7+k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P8aaUHhe4Q9LrY+ykupbP5NX9PwTBl7uc+c6aj0Rcyuhr9XZ45lKXvzT1h8wqWO7T/EiAAr6zBPhcXO8YnYHsEL2gjJd4qK4n0UhI1SyamQ+nicjDZoBq+pVliSrb48CRPK1DgBUJWOkhyYCqmltfrQAQU5u6CfN0C0/9G/APlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hVp4vsf2; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-71e70c32cd7so471877b3a.1;
+        Thu, 31 Oct 2024 00:11:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730358703; x=1730963503; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=F8kx/Q3WV6oV1a8lTuJyAF8FReeIGHyPGyomJSeRgH8=;
+        b=hVp4vsf2j5/gE1N3eXEpns8BFu1t+25bP2UUC+i2c3/438BlwHl0PvP1QHbEkSKtry
+         BTJ4H/6TO5VjG3DK2W2zI5pfr5c/r8vmc1har+NkQNQQz1B8b7KgGevx23oULOBB7EbK
+         OC1jacEoRbFZ93S37L6+n3+I+whNZOK13ioQUNqMdyV7p9dA2sjGzo8upLkAIlHNqqJh
+         ddGQZbNiw+oAeC5ywUo+s95Ua+Iwxpd5N3rxn+4eXcaopo4tF0MDnsN2nxgf5qKo1wmy
+         2ijJKCYADiNL0qwYWD1SIEbGwnFHuyf95H0sFbwQZ6uMoWZr7fbnnUbEW8s3qfA3fjO2
+         tdYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730358703; x=1730963503;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=F8kx/Q3WV6oV1a8lTuJyAF8FReeIGHyPGyomJSeRgH8=;
+        b=gDUdCtThA36G04lEE1GUOk0tzE9ed54P8b8jWOfgvv6rbuPEElQDOiUlpiQHnTrvvP
+         8SYwJGqdhwRnuYNf1ZJj0mQloUH97zqqjqhywgdYQ5wwyTgCrfCp0xXAj6T/YnAkbaof
+         bXYEuwMI+lpGBhkt++hqkW0ojUt3lYmwCx80N6Upox4J4yCyrl8FRFtCLSQewHpTA2Mu
+         QowwQJOCQXs3VVw3MfAoSFXhT+ddIOtYPKprHVDDQWoW/R+p/QRPK5dQE9HqxxJYdp6F
+         W65PVoHvq/oZAl3rdhlgrxunOGGM2yqRUPgLpWQ5y/gNrteqpl5KY+I0zEVNvb1fmAhV
+         C4fg==
+X-Forwarded-Encrypted: i=1; AJvYcCULq1vwP1faUN3Be/kyioKWDDD6Rpxitk82t4wOTPiA5GzMSUCU230YEYPJhQ6LELW6a8sJ6HIHIGCHVBg=@vger.kernel.org, AJvYcCUk7M5VsUBT/il00ccbd3i7x2I2TSPfAZeLLR/okTQvjRGO+G9Aloe9sXNMhhk37M0wGs1VEPj/4JVm@vger.kernel.org, AJvYcCWpJavMu9rs5XlOQ+pUi6nN9/+mNIpLXpTGcwnJ5qCj/PDfo+ftwpj9b9JgcxYQiLZuPy90QSRrpuf+4WS8@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvVRMBjIJTfo4QCJLwghvI1z3cII6Qkc57W5KXF4rkAlp6w3Au
+	HOILTss2aD83HAnN/wJ7uQH/Bh3LjFJfRU5ahf/dcjTqiaRuBbsz
+X-Google-Smtp-Source: AGHT+IHlT1ly2KZHCHWRKW2rHfaZSrWxzDKTGW1GCGmqFUlvEOGZPgfcDgXjuS+I6C3x4NVHtADn2Q==
+X-Received: by 2002:a05:6a20:b30a:b0:1d9:c6c5:70c with SMTP id adf61e73a8af0-1d9c6c62035mr13190038637.5.1730358703112;
+        Thu, 31 Oct 2024 00:11:43 -0700 (PDT)
+Received: from ux-UP-WHL01 ([240e:47e:2ed8:ab06:94f5:966b:9066:6b36])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc2c3e08sm629364b3a.105.2024.10.31.00.11.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Oct 2024 00:11:42 -0700 (PDT)
+Date: Thu, 31 Oct 2024 15:11:15 +0800
+From: Charles Wang <charles.goodix@gmail.com>
+To: Doug Anderson <dianders@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, dmitry.torokhov@gmail.com,
+	hbarnor@chromium.org, conor.dooley@microchip.com, jikos@kernel.org,
+	bentiss@kernel.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+Message-ID: <ZyMtk4_z0gvF4Fhj@ux-UP-WHL01>
+References: <20241025114642.40793-2-charles.goodix@gmail.com>
+ <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3>
+ <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
+ <CAL_JsqLwOekE1mz+3g8NTE3o4GhE9PWwR1Jfk_tL0RYKQmCg-A@mail.gmail.com>
+ <CAD=FV=VHMfc2kJo2N3jkB9BR0H7SN2g9JqoDkZuZOOuq0OV6gw@mail.gmail.com>
+ <ZyHYw40duPrm0ZeF@ux-UP-WHL01>
+ <CAD=FV=WtbBnCX6fcqBFYPO3C=zw8YhKmJ35hW920JWt0MvDqPw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=WtbBnCX6fcqBFYPO3C=zw8YhKmJ35hW920JWt0MvDqPw@mail.gmail.com>
 
-From: Shuosheng Huang <huangshuosheng@allwinnertech.com>
+On Wed, Oct 30, 2024 at 11:14:26AM -0700, Doug Anderson wrote:
+> Hi,
+> 
+> On Tue, Oct 29, 2024 at 11:57 PM Charles Wang <charles.goodix@gmail.com> wrote:
+> >
+> > On Fri, Oct 25, 2024 at 09:19:14AM -0700, Doug Anderson wrote:
+> > > Hi,
+> > >
+> > > On Fri, Oct 25, 2024 at 8:59 AM Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Fri, Oct 25, 2024 at 10:29 AM Doug Anderson <dianders@chromium.org> wrote:
+> > > > >
+> > > > > Charles,
+> > > > >
+> > > > > On Fri, Oct 25, 2024 at 5:03 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > > > >
+> > > > > > > +properties:
+> > > > > > > +  compatible:
+> > > > > > > +    enum:
+> > > > > > > +      - goodix,gt7986u-spi
+> > > > > >
+> > > > > > Compatible is already documented and nothing here explains why we should
+> > > > > > spi variant.
+> > > > > >
+> > > > > > > +
+> > > > > > > +  reg:
+> > > > > > > +    maxItems: 1
+> > > > > > > +
+> > > > > > > +  interrupts:
+> > > > > > > +    maxItems: 1
+> > > > > > > +
+> > > > > > > +  reset-gpios:
+> > > > > > > +    maxItems: 1
+> > > > > > > +
+> > > > > > > +  goodix,hid-report-addr:
+> > > > > >
+> > > > > > I do not see this patch addressing previous review. Sending something
+> > > > > > like this as v1 after long discussions also does not help.
+> > > > >
+> > > > > Krzysztof is right that it's better to wait until we get consensus on
+> > > > > the previous discussion before sending a new patch. I know you were
+> > > > > just trying to help move things forward, but because of the way the
+> > > > > email workflow works, sending a new version tends to fork the
+> > > > > discussion into two threads and adds confusion.
+> > > > >
+> > > > > I know Krzysztof and Rob have been silent during our recent
+> > > > > discussion, but it's also a long discussion. I've been assuming that
+> > > > > they will take some time to digest and reply in a little bit. If they
+> > > > > didn't, IMO it would have been reasonable to explicitly ask them for
+> > > > > feedback in the other thread after giving a bit of time.
+> > > >
+> > > > If the firmware creates fundamentally different interfaces, then
+> > > > different compatibles makes sense. If the same driver handles both bus
+> > > > interfaces, then 1 compatible should be fine. The addition of '-spi'
+> > > > to the compatible doesn't give any indication of a different
+> > > > programming model. I wouldn't care except for folks who will see it
+> > > > and just copy it when their only difference is the bus interface and
+> > > > we get to have the same discussion all over again. So if appending
+> > > > '-spi' is the only thing you can come up with, make it abundantly
+> > > > clear so that others don't blindly copy it. The commit msg is useful
+> > > > for convincing us, but not for that purpose.
+> > >
+> > > OK, makes sense. Charles: Can you think of any better description for
+> > > this interface than "goodix,gt7986u-spi"? I suppose you could make it
+> > > super obvious that it's running different firmware with
+> > > "goodix,gt7986u-spifw" and maybe that would be a little better.
+> > >
+> > > I think what Rob is asking for to make it super obvious is that in the
+> > > "description" of the binding you mention that in this case we're
+> > > running a substantially different firmware than GT7986U touchscreens
+> > > represented by the "goodix,gt7986u" binding and thus is considered a
+> > > distinct device.
+> > >
+> > > At this point, IMO you could wait until Monday in case Krzysztof wants
+> > > to add his $0.02 worth and then you could send a "v2" patch addressing
+> > > the comments so far, though of course you could continue to reply to
+> > > this thread if you have further questions / comments.
+> > >
+> >
+> > Thank you for your explanation, I understand your point. I want to clarify
+> > that the gt7986u-spi and gt7986u indeed use two entirely different drivers
+> > and two distinct firmware.
+> >
+> > Using "goodix,gt7986u-spi" could indeed cause confusion. How about modifying
+> > it to "goodix,gt7986u-losto" by adding a special code?
+> 
+> If "lotso" somehow means something real to people using this product
+> then that seems OK to me. If "lotso" is just a made up word because
+> you don't want to use "spi" or "spifw" then it's not great. In either
+> case you'll want to summarize our discussion here in your
+> "description" in the yaml and in the commit message.
+> 
 
-Add an Operating Performance Points table for the CPU cores to
-enable Dynamic Voltage & Frequency Scaling on the A100.
+Okay, got it.
 
-Signed-off-by: Shuosheng Huang <huangshuosheng@allwinnertech.com>
-[masterr3c0rd@epochal.quest: fix typos in -cpu-opp, use compatible]
-Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
----
-Changes in V2:
- - Rename cpu-opp-table to opp-table-cpu
- - Use single cell version of opp-microvolt-speedX
+> 
+> > Additionally, I would like to confirm: when submitting the v2 patch, should
+> > it be based on this thread or the previous discussion thread?
+> 
+> No, v2 should _not_ be In-Reply-To this thread. It'll start a new
+> thread. You can add a link (via lore.kernel.org/r/<message-id>) to the
+> old discussion in your cover letter and/or version history.
+> 
+> Said another way:
+> * New versions of patches create new threads.
+> * The fact that new versions of patches create new threads is why
+> people usually want open questions answered before the next version is
+> sent.
+> 
 
- .../allwinner/sun50i-a100-allwinner-perf1.dts |  5 ++
- .../dts/allwinner/sun50i-a100-cpu-opp.dtsi    | 90 +++++++++++++++++++
- .../arm64/boot/dts/allwinner/sun50i-a100.dtsi |  8 ++
- 3 files changed, 103 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi
+Okay, thank you very much for your patient explanation.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
-index d418fc272b3c..1fb629df9f1d 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "sun50i-a100.dtsi"
-+#include "sun50i-a100-cpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- 
-@@ -68,6 +69,10 @@ &usb_otg {
- 	status = "okay";
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
- &pio {
- 	vcc-pb-supply = <&reg_dcdc1>;
- 	vcc-pc-supply = <&reg_eldo1>;
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi
-new file mode 100644
-index 000000000000..c6a2efa037dc
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (c) 2020 Yangtao Li <frank@allwinnertech.com>
-+// Copyright (c) 2020 ShuoSheng Huang <huangshuosheng@allwinnertech.com>
-+
-+/ {
-+	cpu_opp_table: opp-table-cpu {
-+		compatible = "allwinner,sun50i-a100-operating-points";
-+		nvmem-cells = <&cpu_speed_grade>;
-+		opp-shared;
-+
-+		opp-408000000 {
-+			clock-latency-ns = <244144>; /* 8 32k periods */
-+			opp-hz = /bits/ 64 <408000000>;
-+
-+			opp-microvolt-speed0 = <900000>;
-+			opp-microvolt-speed1 = <900000>;
-+			opp-microvolt-speed2 = <900000>;
-+		};
-+
-+		opp-600000000 {
-+			clock-latency-ns = <244144>; /* 8 32k periods */
-+			opp-hz = /bits/ 64 <600000000>;
-+
-+			opp-microvolt-speed0 = <900000>;
-+			opp-microvolt-speed1 = <900000>;
-+			opp-microvolt-speed2 = <900000>;
-+		};
-+
-+		opp-816000000 {
-+			clock-latency-ns = <244144>; /* 8 32k periods */
-+			opp-hz = /bits/ 64 <816000000>;
-+
-+			opp-microvolt-speed0 = <940000>;
-+			opp-microvolt-speed1 = <900000>;
-+			opp-microvolt-speed2 = <900000>;
-+		};
-+
-+		opp-1080000000 {
-+			clock-latency-ns = <244144>; /* 8 32k periods */
-+			opp-hz = /bits/ 64 <1080000000>;
-+
-+			opp-microvolt-speed0 = <1020000>;
-+			opp-microvolt-speed1 = <980000>;
-+			opp-microvolt-speed2 = <950000>;
-+		};
-+
-+		opp-1200000000 {
-+			clock-latency-ns = <244144>; /* 8 32k periods */
-+			opp-hz = /bits/ 64 <1200000000>;
-+
-+			opp-microvolt-speed0 = <1100000>;
-+			opp-microvolt-speed1 = <1020000>;
-+			opp-microvolt-speed2 = <1000000>;
-+		};
-+
-+		opp-1320000000 {
-+			clock-latency-ns = <244144>; /* 8 32k periods */
-+			opp-hz = /bits/ 64 <1320000000>;
-+
-+			opp-microvolt-speed0 = <1160000>;
-+			opp-microvolt-speed1 = <1060000>;
-+			opp-microvolt-speed2 = <1030000>;
-+		};
-+
-+		opp-1464000000 {
-+			clock-latency-ns = <244144>; /* 8 32k periods */
-+			opp-hz = /bits/ 64 <1464000000>;
-+
-+			opp-microvolt-speed0 = <1180000>;
-+			opp-microvolt-speed1 = <1180000>;
-+			opp-microvolt-speed2 = <1130000>;
-+		};
-+	};
-+};
-+
-+&cpu0 {
-+	operating-points-v2 = <&cpu_opp_table>;
-+};
-+
-+&cpu1 {
-+	operating-points-v2 = <&cpu_opp_table>;
-+};
-+
-+&cpu2 {
-+	operating-points-v2 = <&cpu_opp_table>;
-+};
-+
-+&cpu3 {
-+	operating-points-v2 = <&cpu_opp_table>;
-+};
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-index 29ac7716c7a5..6a76858b654a 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-@@ -23,6 +23,7 @@ cpu0: cpu@0 {
- 			device_type = "cpu";
- 			reg = <0x0>;
- 			enable-method = "psci";
-+			clocks = <&ccu CLK_CPUX>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -30,6 +31,7 @@ cpu1: cpu@1 {
- 			device_type = "cpu";
- 			reg = <0x1>;
- 			enable-method = "psci";
-+			clocks = <&ccu CLK_CPUX>;
- 		};
- 
- 		cpu2: cpu@2 {
-@@ -37,6 +39,7 @@ cpu2: cpu@2 {
- 			device_type = "cpu";
- 			reg = <0x2>;
- 			enable-method = "psci";
-+			clocks = <&ccu CLK_CPUX>;
- 		};
- 
- 		cpu3: cpu@3 {
-@@ -44,6 +47,7 @@ cpu3: cpu@3 {
- 			device_type = "cpu";
- 			reg = <0x3>;
- 			enable-method = "psci";
-+			clocks = <&ccu CLK_CPUX>;
- 		};
- 	};
- 
-@@ -142,6 +146,10 @@ efuse@3006000 {
- 			ths_calibration: calib@14 {
- 				reg = <0x14 8>;
- 			};
-+
-+			cpu_speed_grade: cpu-speed-grade@1c {
-+				reg = <0x1c 0x2>;
-+			};
- 		};
- 
- 		watchdog@30090a0 {
--- 
-2.47.0
-
+Best regards,
+Charles
 
