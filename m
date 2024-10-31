@@ -1,270 +1,178 @@
-Return-Path: <devicetree+bounces-117765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 574E29B7A7D
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:28:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CABB9B7A83
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:29:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88869B20E7B
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 12:28:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C9F1284C3C
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 12:29:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71CA119CC0A;
-	Thu, 31 Oct 2024 12:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63C1E19CC26;
+	Thu, 31 Oct 2024 12:29:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TfgPyGXp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MaehoI2R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D926C14831D;
-	Thu, 31 Oct 2024 12:28:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3563319CC1D;
+	Thu, 31 Oct 2024 12:29:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730377724; cv=none; b=eB+JICZKM1RlAPtr0iJINJCUdX+KFSih5B/AXHqE5HKP8o1hQK/jNIce+zWuVnjTU2vQB03zD3orc5nnKYxyORG7YUG+iTvi9A3TGwZaoqDH+0D0pBqUUXe3HEzeiOBKZLU5nPdvK6qs/kQkPounIRSjOtXqwdA0PfhdorJ+1Og=
+	t=1730377784; cv=none; b=YYF06nNP/T3n2xNRrmCkz0SJRxLXyVOqUC12X05PVa6aZSc5P02KstSWenTjcXAb+kvbCLAie3ntsuJqVtliyyK6XnfQycWNskEBwQ2MQgPlWMaXJ/MtZxppWuX8HOxvatrgPzOzdJNoK/37ME11Vj54Vb8zvHGzab1YBk8jcec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730377724; c=relaxed/simple;
-	bh=COHtKEhdwDfMKAwGFRKy2mayNeckWQPMt9AH5PbUzjI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=WStG2oIAArdWEmtHkRhOD5ep0oMg9mm/gWgDR/17X2VvnAC2sgNbIpoASDyodU3qJ/I7AtPnKtGq/Fe3FtfYx1zBckcsi7v02e1/im0N7icf/gccvCFnAZh4rb+L/3XGY5nbEPEtRe5PyDn0JoQxR53/GHBBaroKXJhAocm1plc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TfgPyGXp; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-431ac30d379so7290025e9.1;
-        Thu, 31 Oct 2024 05:28:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730377720; x=1730982520; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=COHtKEhdwDfMKAwGFRKy2mayNeckWQPMt9AH5PbUzjI=;
-        b=TfgPyGXpMC1i5yu2bEe11cOE2iZ8mWBqgvud2ZXR8bzBPq5PO1BnETHWHKKOnSUWdJ
-         cdo7wuD7AFx7eObg+GUmiYS+m3yBLhqPHQV/60TXSCDELrS9tw3tLwr0OuGlJHa2cgsX
-         iF5Yxhwea86zFo2CN/CMLW6DSBzE5XLV6mCMuqQHptc/TOXxprmC4myP0Px9UcLbDfTF
-         ILvaM6I0191MbwfZdD/i8bn05WFToVxtfsdMtHnI4ZpQWdcRwEwSAR8FYBQKvosB6i4N
-         K3FG7ym2NRL77KR7t9d/5WzzQU6JXySRh6m1FG3EpLQpGme0aibezCickzpX4xNGPz70
-         Cr2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730377720; x=1730982520;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=COHtKEhdwDfMKAwGFRKy2mayNeckWQPMt9AH5PbUzjI=;
-        b=e9wBJjMI7S2Yybk66hEwJ6I54F1QB1f/OYJyoBqzQtbNAymfxekvLfe3Bxj/Jtd4Mz
-         MujT6hytr/Ms2ulKM2ysLrtFF5Q2NpADkg2icHuY5xliALzlwGf3jF7MsLovMA/P4sYy
-         jMIab+FM0Fs7ObseOaupf/uRTptoG9nOQfe8WIONComts2R7uuavpPwkRRdvYfWwuJKN
-         bb/OnxNM888l4Mn1ew/NLorLCrK0MCstJ4YovvGS+ImR5ynvkD5pVGsrrnCzrTTEcMzV
-         iFvV3e5eh5urQqqycNxc0GozXqtP3WsQOSc5bs4cI2QXWTPFzc64cK7ule5hY79JW7IC
-         YxRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUYRUnRC2fgFbP36veWdeFrtoS1OHSRfu8UVxkcmJDCqe+JCLP5YIZW9GzWPC7fa4NNpWM4+sOytXOa@vger.kernel.org, AJvYcCXnf5SLr4ZM6Jaassoofsb2EpoLduQocphqyT0IR5aNyY0SDIL6Y4cECJJdEXWKImTCjPZbN2DjnhXI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsLOVoD9LAxkXdANHYAB+xppFJtN9ClfFPux+eKY494kGRNq5f
-	+WKaMqAd0DFfgUfnZ6DNOlx/olllUNKCMWzIUSTFrxjNaMdXmRGv
-X-Google-Smtp-Source: AGHT+IH6SzX6eS9ZqhvWgHjqhxNBZDRVINQzZiCLhro6kw1u+seP2+O9n8q/Bgtgrdx4AvAlLyFhBw==
-X-Received: by 2002:a05:600c:3514:b0:431:4880:3120 with SMTP id 5b1f17b1804b1-4319aca55a6mr150311295e9.11.1730377719847;
-        Thu, 31 Oct 2024 05:28:39 -0700 (PDT)
-Received: from ?IPv6:2001:a61:34c9:ea01:14b4:7ed9:5135:9381? ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4327d6983f6sm25656565e9.45.2024.10.31.05.28.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2024 05:28:39 -0700 (PDT)
-Message-ID: <4232185aa896721ac4b3bf25a7ec6025cf6b883d.camel@gmail.com>
-Subject: Re: [PATCH v2 3/4] iio: adc: ad_sigma_delta: Add support for
- reading irq status using a GPIO
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>, 
- Jonathan Cameron
-	 <jic23@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, David Lechner
- <dlechner@baylibre.com>,  Dumitru Ceclan <dumitru.ceclan@analog.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org,  linux-iio@vger.kernel.org, Thomas Gleixner
- <tglx@linutronix.de>
-Date: Thu, 31 Oct 2024 13:28:38 +0100
-In-Reply-To: <1de551c284aaa9f4e91f91fa0c4ac570c8b7f2c9.camel@gmail.com>
-References: <20241028160748.489596-6-u.kleine-koenig@baylibre.com>
-	 <20241028160748.489596-9-u.kleine-koenig@baylibre.com>
-	 <a575430a74a7825a2df9fad1a8e073ad0507b0e7.camel@gmail.com>
-	 <20241030204429.70cdcf35@jic23-huawei>
-	 <y3amm7yj37lravbk6fcwze3jlllp4extmffqtx4jaoeqjt6uyl@nsdrcy2dk5kr>
-	 <1de551c284aaa9f4e91f91fa0c4ac570c8b7f2c9.camel@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
+	s=arc-20240116; t=1730377784; c=relaxed/simple;
+	bh=0pgnrKFCd7krk9HzGqlDXM26z+itSZVYEdeZBHDof1g=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VPVsWh+ygioITjaRfCcauSYUr0qSKgoizo6XU0kl0NDZongt5Lojw/6OiJYhkR7F0UZ6MgkfzUTVgmpVRD5/AUALydcNfj2mUPhjRZp/2pYlH0G0mHn2yRf+PjQ422uzDKJc9FuE7u2STaUYIVKN2CAZ5Se2QRBYJ3ejcFjzjS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MaehoI2R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5382C4DDED;
+	Thu, 31 Oct 2024 12:29:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730377783;
+	bh=0pgnrKFCd7krk9HzGqlDXM26z+itSZVYEdeZBHDof1g=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=MaehoI2R2yl2V53Xv7oZeuswyGfMw7HTFfLGktq2oxSMwXSi/PmmLutEYJGJDGnmK
+	 MnkZTXH8ytwV4XK/UXmv03vEHrs9p5ZCZkQ5T7roMAN2HgYbeBzMzAx+NigK92oloe
+	 ahPylV40f9+BPXY1+1SSoMXkAhyJcBVta+Kpb1PL6D0X+/XCGTzE7uNECjdVcH1mNC
+	 RpqMSC25ktseTmZZvtyETRhZfTsWN1hl7KAkkRpuL21iQ1Tnn7YNJxQcTWNIqDDCXS
+	 Afq3t1HxSPoaS4thfeSEat5WJs6XoZyhWtS+K2UzckYFyqrmUANgHBmkUfqo0V29+G
+	 TRQR+IMfw86vQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1t6UJ3-008YcM-DV;
+	Thu, 31 Oct 2024 12:29:41 +0000
+Date: Thu, 31 Oct 2024 12:29:40 +0000
+Message-ID: <86v7x81mmj.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>, Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Cc: 	Sibi Sankar <quic_sibis@quicinc.com>,
+	andersson@kernel.org,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	robh+dt@kernel.org,
+	dmitry.baryshkov@linaro.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	conor+dt@kernel.org,
+	srinivas.kandagatla@linaro.org,
+	quic_jjohnson@quicinc.com
+Subject: Re: [PATCH V3 0/3] X1E001DE Snapdragon Devkit for Windows
+In-Reply-To: <5d8ec8c4-f473-4849-a428-f7a7283ff478@oldschoolsolutions.biz>
+References: <20241025123227.3527720-1-quic_sibis@quicinc.com>
+	<86y1251q3b.wl-maz@kernel.org>
+	<ZyNR5MD/HAS5w7N/@linaro.org>
+	<5d8ec8c4-f473-4849-a428-f7a7283ff478@oldschoolsolutions.biz>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: abel.vesa@linaro.org, jens.glathe@oldschoolsolutions.biz, quic_sibis@quicinc.com, andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, robh+dt@kernel.org, dmitry.baryshkov@linaro.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, srinivas.kandagatla@linaro.org, quic_jjohnson@quicinc.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Thu, 2024-10-31 at 13:05 +0100, Nuno S=C3=A1 wrote:
-> On Thu, 2024-10-31 at 11:40 +0100, Uwe Kleine-K=C3=B6nig wrote:
-> > Hello,
-> >=20
-> > On Wed, Oct 30, 2024 at 08:44:29PM +0000, Jonathan Cameron wrote:
-> > > On Wed, 30 Oct 2024 14:04:58 +0100
-> > > Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
-> > >=20
-> > > > On Mon, 2024-10-28 at 17:07 +0100, Uwe Kleine-K=C3=B6nig wrote:
-> > > > > Some of the ADCs by Analog signal their irq condition on the MISO=
- line.
-> > > > > So typically that line is connected to an SPI controller and a GP=
-IO. The
-> > > > > GPIO is used as input and the respective interrupt is enabled whe=
-n the
-> > > > > last SPI transfer is completed.
-> > > > >=20
-> > > > > Depending on the GPIO controller the toggling MISO line might mak=
-e the
-> > > > > interrupt pending even while it's masked. In that case the irq ha=
-ndler
-> > > > > is called immediately after irq_enable() and so before the device
-> > > > > actually pulls that line low which results in non-sense values be=
-ing
-> > > > > reported to the upper layers.
-> > > > >=20
-> > > > > The only way to find out if the line was actually pulled low is t=
-o read
-> > > > > the GPIO. (There is a flag in AD7124's status register that also =
-signals
-> > > > > if an interrupt was asserted, but reading that register toggles t=
-he MISO
-> > > > > line and so might trigger another spurious interrupt.)
-> > > > >=20
-> > > > > Add the possibility to specify an interrupt GPIO in the machine
-> > > > > description instead of a plain interrupt. This GPIO is used as in=
-terrupt
-> > > > > source and to check if the irq line is actually active in the irq
-> > > > > handler.
-> > > > >=20
-> > > > > Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.co=
-m>
-> > > > > ---=C2=A0=20
-> > > >=20
-> > > > Hi all,
-> > > >=20
-> > > > Regarding this, I do share some of the concerns already raised by J=
-onathan. I
-> > > > fear
-> > > > that we're papering around an issue with the IRQ controller rather =
-than being
-> > > > an
-> > > > issue with the device. When I look at irq_disable() docs [1], it fe=
-els that
-> > > > we're
-> > > > already doing what we're supposed to do. IOW, we disable the lazy a=
-pproach so
-> > > > we
-> > > > *should* not get any pending IRQ.
-> >=20
-> > I think this is wrong and you always have to be prepared to see an irq
-> > triggering that became pending while masked.
-> >=20
-> > > > Also looking at drivers as the xilinx gpio controller, it seems som=
-e
-> > > > are careful about this [2] and make sure to clear all pending IRQs
-> > > > when unmasking.
-> > > Your links are both to the same place.
-> >=20
-> > The right one is:
-> > https://elixir.bootlin.com/linux/v6.11.5/source/drivers/gpio/gpio-xilin=
-x.c#L419
-> >=20
-> > I think this is buggy, see below for the reasoning.
-> >=20
-> > > > Jonathan also said this:
-> > > >=20
-> > > > "True enough - that race is a possibility, but not all interrupt in=
-puts
-> > > > are capable of gpio usage whilst setup to received interrupts."
-> > > Race should be easy to avoid using a level interrupt now I think more=
- on that:
-> > > can't miss a level.
-> >=20
-> > In general this isn't true. If it were that easy we could just assume
-> > all irqs being level interrupts and simplify the irq code a bit. At
-> > least for the ad7124 if a conversion is done, the chip holds the line
-> > low until the next conversion is done. In that case it deasserts
-> > DOUT/=CC=85R=CC=85D=CC=85Y for a short while to create another falling =
-edge signalling
-> > another event. I can imagine this to confuse level detection?!
-> >=20
-> > > > To my understanding this also means this is doomed to fail for some=
- devices
-> > > > or
-> > > > am I
-> > > > not following it?
-> > >=20
-> > > If you were wired to one of those, you couldn't use the GPIO trick, b=
-ut then
-> > > don't have a GPIO in your DT in that case.
-> >=20
-> > Yes. If the device isn't properly connected in hardware you're out of
-> > luck. But that is also true if the spi clock line isn't connected. So
-> > apart from the requirement that "properly" involves things that are
-> > unusual for other SPI devices, that's expected. Having said that it was
-> > clear before because the MISO (aka DOUT/=CC=85R=CC=85D=CC=85Y) line was=
- already know to have
-> > to be connected to an irq capable pin.
-> > =C2=A0
-> > > > All that said, my naive feeling would be for a masked line to not g=
-et any
-> > > > pending IRQ
-> > > > and if it does, the driver should make sure to clean all outstandin=
-g
-> > > > interrupts
-> > > > when
-> > > > unmasking. But I'm far from being an expert of the IRQ subsystem. M=
-aybe it
-> > > > would be
-> > > > interesting to get some inputs about someone who actually knows bet=
-ter?
-> > > +CC Thomas Gleixner,
-> > >=20
-> > > Annoying case where a wire is both the interrupt source for dataready=
- and the
-> > > SPI data line (if separate clock signal is toggling)=C2=A0 So current=
-ly the driver
-> > > masks interrupts at the host end, but we have at least one interrupt =
-controller
-> > > where they end up pending and fire on reenabling the interrupt.=C2=A0=
- Querying the
-> > > device to check the status register then ends up causing it to happen=
- again,
-> > > so that doesn't help.
-> > >=20
-> > > Proposal is to query it as a GPIO (or maybe a separate GPIO wired to =
-the same
-> > > pin) to check the level when an interrupt comes in.
-> >=20
-> > In my understanding it's the expected behaviour of an irq controller
-> > that a masked irq becomes pending if the irq event (level or edge)
-> > happens and then triggers immediately after enable_irq() -- independent
-> > of laziness being used or not.
-> >=20
+On Thu, 31 Oct 2024 10:00:40 +0000,
+Jens Glathe <jens.glathe@oldschoolsolutions.biz> wrote:
 >=20
-> I'm really not sure about that. If a consumer disables/masks an interrupt=
-, then I
-> would think it expects no interrupts. If one comes during that time, it s=
-eems
-> reasonable to me that the IRQ is discarded.=C2=A0And if the expected beha=
-vior is to have
-> a
-> pending IRQ if we got it while masked, then I'm not sure why we have the =
-UNLAZY
-> thing. I mean, let's always do the lazy approach which is effectively onl=
-y masking
-> the line if we get an IRQ while disabled (and also mark it as pending). I=
-f both
-> approaches result in a pending IRQ...
+> On 31.10.24 10:46, Abel Vesa wrote:
+> > On 24-10-30 17:02:32, Marc Zyngier wrote:
+> >> On Fri, 25 Oct 2024 13:32:24 +0100,
+> >> Sibi Sankar <quic_sibis@quicinc.com> wrote:
+> >>> Add initial support for X1E001DE Snapdragon Devkit for Windows. X1E00=
+1DE
+> >>> is the speed binned variant of X1E80100 that supports turbo boost up =
+to
+> >>> 4.3 Ghz. The initial support includes the following:
+> >>>=20
+> >>> -DSPs
+> >>> -Ethernet (RTL8125BG) over the pcie 5 instance.
+> >>> -NVme
+> >>> -Wifi
+> >>> -USB-C ports
+> >>>=20
+> >>> V3:
+> >>> * Asked around and looked at the firmware, couldn't find a codename so
+> >>>    will keep it as DEVKIT. Will update it if someone from the communi=
+ty
+> >>>    finds something else.
+> >> My machine has the following information as part of its DMI tables:
+> >>=20
+> >> Handle 0x0005, DMI type 1, 27 bytes
+> >> System Information
+> >> 	Manufacturer: Qualcomm
+> >> 	Product Name: Snapdragon-Devkit
+> >> 	Version: 2.1
+> >> 	Serial Number: 5
+> >> 	UUID: 63b5fc8b-9c50-89aa-fd0f-3fcef93dc291
+> >> 	Wake-up Type: Power Switch
+> >> 	SKU Number: 6
+> >> 	Family: SCP_HAMOA
+> >>=20
+> >> So I guess that Snapdragon-Devkit is another possible name. But given
+> >> that it is a bit of a mouthful, devkit, Devkit, or any other variation
+> >> on the case would work for me.
+> > The point was to have something unique A codename would be unique.
+> > Naming it Snapdragon-Devkit (or just devkit) will be confusing since
+> > there was already a 2023 devkit (from Microsoft) with the Snapdragon
+> > 8cx Gen 3, and probably the next compute platform will also have a devk=
+it
+> > as well. So probably "X Elite devkit" could be the right option..
 
-Hmmm maybe the real point with UNLAZY is to not take the same interrupt twi=
-ce. One
-through the resend mechanism and another one through HW.
+Odd, I didn't get that email.
 
-- Nuno S=C3=A1
+My point was the the HW already comes with a full description as part
+of the existing tables. If you really want something that is truly
+unique to that platform and that can be used by a tool (be it
+firmware, kernel or userspace) to understand what it is running on,
+then you cannot have *less* information.
 
+At the very least, you would need Manufacturer, Product Name, Version
+and Family.
 
+But does it really matter? I don't think it is *that* crucial. At the
+end of the day, this is only used to pick the correct DT out of a set
+for a given SoC, or worse case a family of SoCs that are closely
+related.
+
+> As for The Windows Dev Kit 2023, dmidecode says this:
+>=20
+> Handle 0x0009, DMI type 1, 27 bytes
+> System Information
+> =C2=A0=C2=A0 =C2=A0Manufacturer: Microsoft Corporation
+> =C2=A0=C2=A0 =C2=A0Product Name: Windows Dev Kit 2023
+> =C2=A0=C2=A0 =C2=A0Version: 124I:00097T:000M:0200000B:07
+> =C2=A0=C2=A0 =C2=A0Serial Number: 0F01C4F22373F6
+> =C2=A0=C2=A0 =C2=A0UUID: e4a4662c-8367-75d0-a54f-1d04bd404860
+> =C2=A0=C2=A0 =C2=A0Wake-up Type: Unknown
+> =C2=A0=C2=A0 =C2=A0SKU Number: 2043
+> =C2=A0=C2=A0 =C2=A0Family: Surface
+>=20
+> That's also really a mouthful. In my patchset for it there were some
+> name / path changes, microsoft/blackrock it is now. Would be cool to
+> have short and unique names. In the end, whatever works and is unique.
+> Like those UUIDs?
+
+Are those actually per platform? or per unit? On my box, the serial
+number is probably a dud. What does the UUID reports on your X1E box?
+
+Thanks,
+
+	M.
+
+--=20
+Without deviation from the norm, progress is not possible.
 
