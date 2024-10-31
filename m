@@ -1,118 +1,138 @@
-Return-Path: <devicetree+bounces-117750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C02C89B7917
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 11:53:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0E809B7911
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 11:53:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6677CB2659F
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:53:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A69F2286070
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 10:53:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8343B19ABD5;
-	Thu, 31 Oct 2024 10:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6F7199E93;
+	Thu, 31 Oct 2024 10:53:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L4apDF2g"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="e2+lkE7b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EF5119AA41;
-	Thu, 31 Oct 2024 10:53:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA75213A25F
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 10:53:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730372000; cv=none; b=Z9fjpnPTaWJCAD4hRXxLRZdhe4Mo9kVmw6QFSc3y0uaAfAjzxVHgyW6rqomNh3uLxm1c/vE1MAhVBnxGQK6J/9RL8WpVDfCIU3xR4N8ehcSkpQ6Q+xr+1559EJfjTMAobTTJ6c+szfiHSkz6Hf2zoUpYv8bGsyd07LkjbAPqlKY=
+	t=1730371992; cv=none; b=Xk/+6CuuoetaXShO99iFbhOfGZvuJgV3zqPW35FCF1h1rc6AeYn2S3JaQ/3YNwtRnBrQGq/CppJn3e4d0m4ymCYnLKiQsXj2Lu5Ll/AgBignm/XDoe8Phb6QqklBT9eWpLynleQtIoWCFYZEl+lnbgK/HuWoWRq1xm0P/8L7S0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730372000; c=relaxed/simple;
-	bh=B3VPOjcZCPaE9BVVoLeurOhtk6dcK/IkvH0s8KqwX28=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IQ/TogXSpzCWZ0XK6hUCr17Ay/ncpPabDoLcPep7Ma8pmN0QDH8hn0f3MhfSm8yYpSan5udBNBSBkCP3UcD+yke+f5EhhActc/cxRdaHQoWgS3njXC7McD6SvnQZAVTLjnIq5J2jaKcxUD+BFEKNlpoEm1QXJ2vfrR13CbNi4v4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L4apDF2g; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730371999; x=1761907999;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=B3VPOjcZCPaE9BVVoLeurOhtk6dcK/IkvH0s8KqwX28=;
-  b=L4apDF2gUELEDdbVu9qd2qRMoop+lHQFljbRlhUjqD4xLeqcA9HCdIE4
-   lEAz1L0Ey84FZoxv318zBoscX98FGl639tbvDrbu6XrIW5/Rg1y+8CpzJ
-   KfGIlSc/lAl6LHfqn42QutI3gUReskcOUWOjVovUuqnRm1HXMGmvLrcRp
-   Wd7tSDOGELHXRhs3V62H6jzp8EA4c0D4UbWNKrcevqrbO3ZrywIpZwD//
-   IGpWJfHHGqEXilbU0s55bsfNNHKARXWmRwHpZv4q7viCZOEEI6rIIWBP4
-   kPHbzG03PhpuvRqAkC0/+0nfczUeToIB8J2DPNg3kinVKpDHxjZtyxaF2
-   Q==;
-X-CSE-ConnectionGUID: GJMWxxSDRSOMVmRU6ft6lQ==
-X-CSE-MsgGUID: 1b+9tF9/R9qH7L7hl83uaA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29871003"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="29871003"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2024 03:53:18 -0700
-X-CSE-ConnectionGUID: cSYuM+g6QrO439w0diQYnA==
-X-CSE-MsgGUID: Cqq6vTZMT32z0vbtGXAEFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; 
-   d="scan'208";a="113384156"
-Received: from black.fi.intel.com ([10.237.72.28])
-  by orviesa002.jf.intel.com with ESMTP; 31 Oct 2024 03:53:16 -0700
-Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id CC3931A0; Thu, 31 Oct 2024 12:53:14 +0200 (EET)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Subject: [rft, PATCH v2 1/1] gpio: Drop unused inclusions from of_gpio.h
-Date: Thu, 31 Oct 2024 12:52:03 +0200
-Message-ID: <20241031105314.2463446-1-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.43.0.rc1.1336.g36b5255a03ac
+	s=arc-20240116; t=1730371992; c=relaxed/simple;
+	bh=VoH550F/rVtXbdjnsH8N0Kb36JWps2TBibjKOZE7pfE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OXCEIgPrJUK7xz1IPGeAKlp+CYPVh+PYIF73s8Fg/BOzeiRxtd/xO52qzBVzpH9OfCVqTalBqQVIe3JZKEwcnxHFgUwQwcnJ9GoaFtQlirwesF1OtxoTgLSiNzcWxBSBp+YxzxW6pbAupkfANUkjUAMK37FT38oLZL/gruPZ2Zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=e2+lkE7b; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43163667f0eso6532245e9.0
+        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 03:53:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730371989; x=1730976789; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=L2/PPaAetYxmKzv3sgVnjzcQ59oLRc0dcwRBbTXacjU=;
+        b=e2+lkE7bM/xRb95I0mlH9/THJb5QR6TIHHhZN22/tKMggJSbQ34YOxWLpqvDwgeHt0
+         lbbnbbQ/mzGWjeDtFVPFkrwO91uWer3dsqTeCecdfkMUzEcS4Ym/l8CecHRKHz3ecI+W
+         Jb4bGaOtWiy+lgSwqWqI+vD2x6TcJ5dfflLusj0DcOIyIP7XxUk8JmVyp1V3b945bOXk
+         9cyUyCjD2Jq3zLsdPezxxiLTH2ZS4ECFfTBZlYxLvn/EMTBtud5BIwlvJX3Y8qKpM7B4
+         kRXReLlbp76ykxf1drkIWKH1SVvZgkoak4yrKumLUjXL5UWs+YRnu7h6gX69A50aUY6t
+         KI5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730371989; x=1730976789;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L2/PPaAetYxmKzv3sgVnjzcQ59oLRc0dcwRBbTXacjU=;
+        b=Rth460nZdq5Guc2ZOwpOg9gsQ9YBO/GaqgL8iakFwvtlZVSsjW8IviM+Pc+gEqt4qC
+         QLhbv3fQlNLmzQGfxo+4FyjHyvW9gz+dptzbo/sKNivQwAgjzSNdx8IzcGo5zrL6DdLe
+         Tt41u4K9bC02/t+udi6DagDzTXz8V0vl178Z7dv4FvJv8uegDxieKXC0Bz9wv0PSZyIh
+         JCsuD5fYmNr1f0+7CWA9Rv2zx906WhpFfNU54+MKUIzuDjzthv4D1GvBCqYkHReIfrc9
+         wbS8X/dM5q5oVz6FOmJn8n+Cm7GovYPIK7wCRujjOHqtsqCDAaizTYMmCD/TyGu/2zzY
+         wHlg==
+X-Forwarded-Encrypted: i=1; AJvYcCXN/ZsCPF6OpOVZXUQz4XOV/gGVhMxRp9ZoFJnkhLd7pLuknhbpEK8BmqOgB0kSEd2M5T3qMDl/8p47@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEPwsgSaqhYI5otiJBO7GROG9P8i1OrnJui6YaHc4rozlxhh7W
+	k1vof1ADV7AUcIWcDTwllnk73DmkVG4ETYZygKXxzT26p0B572bOduDySBkeY5U=
+X-Google-Smtp-Source: AGHT+IEj2PmCrm+rjaPGqCqvTA61rjlM2smHZN2BDqZGjYKUG6p+9lHCct26bf+Hc89r3OBtcRNNrg==
+X-Received: by 2002:a05:6000:ccd:b0:37d:2edd:b731 with SMTP id ffacd0b85a97d-380611639f9mr12661409f8f.30.1730371989006;
+        Thu, 31 Oct 2024 03:53:09 -0700 (PDT)
+Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c10b7c1esm1764015f8f.12.2024.10.31.03.53.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Oct 2024 03:53:08 -0700 (PDT)
+Date: Thu, 31 Oct 2024 11:53:07 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Benjamin Larsson <benjamin.larsson@genexis.eu>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sean Wang <sean.wang@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Lee Jones <lee@kernel.org>, linux-mediatek@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	upstream@airoha.com, ansuelsmth@gmail.com, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v9 6/6] pwm: airoha: Add support for EN7581 SoC
+Message-ID: <ljpgey6oqeisnhnf3zojnmczxvpduabj6cgf3utef3oic2k27e@r5sbpdxwzghs>
+References: <20241023-en7581-pinctrl-v9-0-afb0cbcab0ec@kernel.org>
+ <20241023-en7581-pinctrl-v9-6-afb0cbcab0ec@kernel.org>
+ <bf5lpb3dwfywzgnbcel6de57ick7hfzxfaovyqrt7juif6tgp7@sdmugrua6t3c>
+ <184f8707-0b4b-474a-b2d4-b54a3438f4a3@genexis.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wg4oaapc6iokbp6v"
+Content-Disposition: inline
+In-Reply-To: <184f8707-0b4b-474a-b2d4-b54a3438f4a3@genexis.eu>
 
-As a preliminary step, drop unused inclusions from of_gpio.h,
-so people will use the header only when it's really needed and
-not as a substitute of any of the dropped ones.
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
+--wg4oaapc6iokbp6v
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v9 6/6] pwm: airoha: Add support for EN7581 SoC
+MIME-Version: 1.0
 
-For testing purposes on what will fail in CIs. People are also
-encouraged to test this, if have time / chance / wish.
+Hello Benjamin,
 
-Nothing special in v2, just to see the currect status of affairs as tons
-of the misuse of of_gpio.h has been fixed already.
+On Wed, Oct 30, 2024 at 11:14:41AM +0100, Benjamin Larsson wrote:
+> On 2024-10-30 08:32, Uwe Kleine-K=F6nig wrote:
+> > > +	/* Configure frequency divisor */
+> > > +	mask =3D WAVE_GEN_CYCLE_MASK(index % 4);
+> > > +	val =3D (period << __ffs(mask)) & mask;
+> > FIELD_PREP please.
+>=20
+> Per my understanding FIELD_PREP only work on compile time constants.
 
- include/linux/of_gpio.h | 5 -----
- 1 file changed, 5 deletions(-)
+Then please create an alternative macro with the same semantic that also
+works when the mask isn't known at compile time instead of open coding
+the same concept several times.
 
-diff --git a/include/linux/of_gpio.h b/include/linux/of_gpio.h
-index d0f66a5e1b2a..bf6774632b5e 100644
---- a/include/linux/of_gpio.h
-+++ b/include/linux/of_gpio.h
-@@ -10,11 +10,6 @@
- #ifndef __LINUX_OF_GPIO_H
- #define __LINUX_OF_GPIO_H
- 
--#include <linux/compiler.h>
--#include <linux/gpio/driver.h>
--#include <linux/gpio.h>		/* FIXME: Shouldn't be here */
--#include <linux/of.h>
--
- struct device_node;
- 
- #ifdef CONFIG_OF_GPIO
--- 
-2.43.0.rc1.1336.g36b5255a03ac
+Best regards
+Uwe
 
+--wg4oaapc6iokbp6v
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcjYZAACgkQj4D7WH0S
+/k5i+Qf/QUXWMBOT0BMZ7vYNOddtUYFZcRph+Cgv/55I6yp0wo0c8gGiYBTgjdls
+BZkBjvIPurO3QEZd8dGjcYFSDkJFCfuikUofKD7RQ4wWxRsfmY88TBsztrkfqbg2
+aIjBeZlp3n3SyIQ4lsQV9HdMzUGvITEGLBN3k8cbmaZyfZU08CN9n6hmZN1EwduZ
++yQtVPlDRq2k7jUiTTLbRcSqb6ngR8FajPEP+s+vYXawI8a43BIBVHZzt80AXfkG
+NZTgD+fW8qmB4uUevfuVq8+yw5cTAGrTxkjh/fMNsIArbA5bNdVBUKLhTrUvMHTI
+NK5mFlK9MFcl5mK6ETI1KgnKNHa75Q==
+=lv66
+-----END PGP SIGNATURE-----
+
+--wg4oaapc6iokbp6v--
 
