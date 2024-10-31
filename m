@@ -1,76 +1,74 @@
-Return-Path: <devicetree+bounces-117653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F9BA9B74E7
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:03:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B04CE9B74EB
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 08:03:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 651ED28656F
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:03:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CB841F2507D
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 07:03:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30BB91494CA;
-	Thu, 31 Oct 2024 07:03:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F12D14D2A7;
+	Thu, 31 Oct 2024 07:03:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=epochal.quest header.i=@epochal.quest header.b="gFcok4re"
+	dkim=pass (2048-bit key) header.d=epochal.quest header.i=@epochal.quest header.b="GFS4Qz3u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from thales.epochal.quest (thales.epochal.quest [51.222.15.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD44D148318;
-	Thu, 31 Oct 2024 07:03:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 174991474BF;
+	Thu, 31 Oct 2024 07:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.222.15.28
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730358212; cv=none; b=NUiOUqaDJLeTvCrhyjfIKNJ/7/ZURDsRDU8yTTnZYh7UfyKNA8z0h5NY81Cu8df0c9dI/6teRc/PaF5EhPhOT8FqnTMecG0roWDnOwojRdmnP1OCxdcArh5BTSJ4PWtysMeDe47z1PmDBJz02Aul7NKZtclBYHeLtfPLjQLuZ7E=
+	t=1730358213; cv=none; b=AYYQ+2HgGRng8fClB58osF9N72Y1pHCVhQj434zi1BN8GvONI2scPaZ6qAsdYo2sh7fEIsjObNKN/6V+829aZ/lbvXm09/o6ELBlZLTB90+C/dZJFF0IN6MfubiN9jyLknoi5X/R0xre9YhF16zpgLgaELRMYJ8FEL3IfunAitw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730358212; c=relaxed/simple;
-	bh=Os/2HAMdT7ukejERWbP8Yp9xeT6KhRyx6c3PHQ0aWEI=;
+	s=arc-20240116; t=1730358213; c=relaxed/simple;
+	bh=gCXgoaBUYXSYReLJKteTd41Q6MEmZ2zAzNHvT0JUlFc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kbH+8Z4BWugGQGkmK6vnrtvO7gica/sEK8wa2p2LIJ2xTGboGDdgFPNIp8ciZWp757sQrx9P285+SpOFFgr+igKv9SIaCPCg1CbK2NJtxWgkDci3+j+HFPhfi5Dx+V8vARzzRl5JSM6U/NA33ylhHuqA99grwnTAok1HOnw3ros=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=epochal.quest; spf=pass smtp.mailfrom=epochal.quest; dkim=pass (2048-bit key) header.d=epochal.quest header.i=@epochal.quest header.b=gFcok4re; arc=none smtp.client-ip=51.222.15.28
+	 MIME-Version; b=g/gPfTHeK5cs/Vq5V//Yq0mHeFa7DFqrG/g5YpBafUInp/G3SWX6nMmuT92nlCg89WJ9NERI1e1c+pr7yFsYItE6JB5cDVHyTFPkqN06nAKAmNouaYlvjs6f4QgeLU8uW5rJCDCLunymSrupnW+apjiGWeAVS4J1Ypx2VHJv8sw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=epochal.quest; spf=pass smtp.mailfrom=epochal.quest; dkim=pass (2048-bit key) header.d=epochal.quest header.i=@epochal.quest header.b=GFS4Qz3u; arc=none smtp.client-ip=51.222.15.28
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=epochal.quest
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=epochal.quest
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=epochal.quest;
-	s=default; t=1730358202;
-	bh=Os/2HAMdT7ukejERWbP8Yp9xeT6KhRyx6c3PHQ0aWEI=;
+	s=default; t=1730358203;
+	bh=gCXgoaBUYXSYReLJKteTd41Q6MEmZ2zAzNHvT0JUlFc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=gFcok4reqrQOlsc4g8NJc8TQjsUCpiSjgreTa+ZqAuh+0YrcGbuXQKhT3igIykUz0
-	 Eyaa7RaLFbO0d3M+cyLw0koMvJB65WLf7zAAvvn9na/OckpChpJ+yOT5jPyZtL81V3
-	 6QCSsmeaxE3NGWGBTWEFz58w0JZ4oA8D/I6FVgL8fUuCDC7WuCwq2NNj1lQVcQWTa1
-	 B7GD6TnS7r9rR1d0QZpjI+WHNZ9zqPDWo/lXTdQqqNUpsRZZnu5R3vRhAEPt8PceTi
-	 zwPr9MSiYwBDoKZcXhm2geD6AYvXk67+k6b48fNrlTmFnRMgziER6z8+Q6qFzwpae8
-	 UtXapdSmZABlA==
+	b=GFS4Qz3uSMolkFeoX0DkhKFzigFLUToTR8Nw0N7Sk1gGC/twb9fAKdkvXJJUmC7mM
+	 piBHbbOs44+xzCPYk1lAPrArwuL6se5v9eooujbWQP0Q0wlEVeo6+Txc9j48dUpG8T
+	 q1fWdAnRonwczDTkjF9JMD8mjljnormo2VMNt1cSyMavk6IbGAYxsIJTXBWJik2IoF
+	 rsfJnrRzRTcC6oQH4OfuwRZTo2ozKQ6kGVDE+GdYPSpeGs5PIDZdX1ZBljyGihnrq3
+	 oLLVD+Opy60v2BJ46FqiJgMIEtRZ1uGfLdITm6oJjAylh2vtywqVjArrfv0Dau9iTs
+	 OshsieeaZ0T6A==
 X-Virus-Scanned: by epochal.quest
 From: Cody Eksal <masterr3c0rd@epochal.quest>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Chen-Yu Tsai <wens@csie.org>,
 	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Maxime Ripard <mripard@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
 	Michael Turquette <mturquette@baylibre.com>,
 	Nishanth Menon <nm@ti.com>,
 	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
 	Stephen Boyd <sboyd@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
 	Viresh Kumar <vireshk@kernel.org>,
 	Viresh Kumar <viresh.kumar@linaro.org>,
 	Yangtao Li <tiny.windzz@gmail.com>,
 	Parthiban <parthiban@linumiz.com>,
 	Andre Przywara <andre.przywara@arm.com>,
 	Cody Eksal <masterr3c0rd@epochal.quest>,
-	linux-phy@lists.infradead.org,
+	linux-usb@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 03/13] dt-bindings: phy: sun50i-a64: add a100 compatible
-Date: Thu, 31 Oct 2024 04:02:16 -0300
-Message-ID: <20241031070232.1793078-4-masterr3c0rd@epochal.quest>
+Subject: [PATCH v2 04/13] dt-bindings: usb: Add A100 compatible string
+Date: Thu, 31 Oct 2024 04:02:17 -0300
+Message-ID: <20241031070232.1793078-5-masterr3c0rd@epochal.quest>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241031070232.1793078-1-masterr3c0rd@epochal.quest>
 References: <20241031070232.1793078-1-masterr3c0rd@epochal.quest>
@@ -82,39 +80,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The USB PHY found in the A100 is similar to that found in the D1. Add a
-compatible for the A100.
+The Allwinner A100 contains two fully OHCI/EHCI compatible USB host
+controllers. Add their compatible strings to the list of
+generic OHCI/EHCI controllers.
 
 Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
 ---
 Changes in V2:
- - Update binding to allow using the D1 as a compatible.
+ - Fix ordering of compatibles
 
- .../bindings/phy/allwinner,sun50i-a64-usb-phy.yaml     | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/usb/generic-ehci.yaml | 1 +
+ Documentation/devicetree/bindings/usb/generic-ohci.yaml | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/phy/allwinner,sun50i-a64-usb-phy.yaml b/Documentation/devicetree/bindings/phy/allwinner,sun50i-a64-usb-phy.yaml
-index f557feca9763..21209126ed00 100644
---- a/Documentation/devicetree/bindings/phy/allwinner,sun50i-a64-usb-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/allwinner,sun50i-a64-usb-phy.yaml
-@@ -15,9 +15,13 @@ properties:
-     const: 1
- 
-   compatible:
--    enum:
--      - allwinner,sun20i-d1-usb-phy
--      - allwinner,sun50i-a64-usb-phy
-+    oneOf:
-+      - enum:
-+          - allwinner,sun20i-d1-usb-phy
-+          - allwinner,sun50i-a64-usb-phy
-+      - items:
-+          - const: allwinner,sun50i-a100-usb-phy
-+          - const: allwinner,sun20i-d1-usb-phy
- 
-   reg:
-     items:
+diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+index 2ed178f16a78..0d797e01fc0b 100644
+--- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
++++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+@@ -28,6 +28,7 @@ properties:
+       - items:
+           - enum:
+               - allwinner,sun4i-a10-ehci
++              - allwinner,sun50i-a100-ehci
+               - allwinner,sun50i-a64-ehci
+               - allwinner,sun50i-h6-ehci
+               - allwinner,sun50i-h616-ehci
+diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+index b9576015736b..cf33764553fa 100644
+--- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
++++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+@@ -15,6 +15,7 @@ properties:
+       - items:
+           - enum:
+               - allwinner,sun4i-a10-ohci
++              - allwinner,sun50i-a100-ohci
+               - allwinner,sun50i-a64-ohci
+               - allwinner,sun50i-h6-ohci
+               - allwinner,sun50i-h616-ohci
 -- 
 2.47.0
 
