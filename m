@@ -1,178 +1,127 @@
-Return-Path: <devicetree+bounces-117766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CABB9B7A83
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:29:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B24A9B7AA2
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 13:35:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C9F1284C3C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 12:29:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCB531C22652
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 12:35:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63C1E19CC26;
-	Thu, 31 Oct 2024 12:29:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22E9019CC3E;
+	Thu, 31 Oct 2024 12:35:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MaehoI2R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WU8IeSpN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3563319CC1D;
-	Thu, 31 Oct 2024 12:29:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 040ED176242
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 12:35:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730377784; cv=none; b=YYF06nNP/T3n2xNRrmCkz0SJRxLXyVOqUC12X05PVa6aZSc5P02KstSWenTjcXAb+kvbCLAie3ntsuJqVtliyyK6XnfQycWNskEBwQ2MQgPlWMaXJ/MtZxppWuX8HOxvatrgPzOzdJNoK/37ME11Vj54Vb8zvHGzab1YBk8jcec=
+	t=1730378121; cv=none; b=rJIKMbykFle8u4Ne6ATZm+eWNmsHCXXQBFtKRnlK5bBGxNX63+3oHt8GC4n4PJkkKE04DRJJNh1+ruX92s8rYWMP1O3vcThZyP+k8Hr7JLFDYSUH4/jzNPcG4pX9RnqJi3cv1N01TAWAQkAy7UAcE7Ujs1a9IbWNv0rSCLI16/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730377784; c=relaxed/simple;
-	bh=0pgnrKFCd7krk9HzGqlDXM26z+itSZVYEdeZBHDof1g=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VPVsWh+ygioITjaRfCcauSYUr0qSKgoizo6XU0kl0NDZongt5Lojw/6OiJYhkR7F0UZ6MgkfzUTVgmpVRD5/AUALydcNfj2mUPhjRZp/2pYlH0G0mHn2yRf+PjQ422uzDKJc9FuE7u2STaUYIVKN2CAZ5Se2QRBYJ3ejcFjzjS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MaehoI2R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5382C4DDED;
-	Thu, 31 Oct 2024 12:29:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730377783;
-	bh=0pgnrKFCd7krk9HzGqlDXM26z+itSZVYEdeZBHDof1g=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MaehoI2R2yl2V53Xv7oZeuswyGfMw7HTFfLGktq2oxSMwXSi/PmmLutEYJGJDGnmK
-	 MnkZTXH8ytwV4XK/UXmv03vEHrs9p5ZCZkQ5T7roMAN2HgYbeBzMzAx+NigK92oloe
-	 ahPylV40f9+BPXY1+1SSoMXkAhyJcBVta+Kpb1PL6D0X+/XCGTzE7uNECjdVcH1mNC
-	 RpqMSC25ktseTmZZvtyETRhZfTsWN1hl7KAkkRpuL21iQ1Tnn7YNJxQcTWNIqDDCXS
-	 Afq3t1HxSPoaS4thfeSEat5WJs6XoZyhWtS+K2UzckYFyqrmUANgHBmkUfqo0V29+G
-	 TRQR+IMfw86vQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1t6UJ3-008YcM-DV;
-	Thu, 31 Oct 2024 12:29:41 +0000
-Date: Thu, 31 Oct 2024 12:29:40 +0000
-Message-ID: <86v7x81mmj.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>, Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Cc: 	Sibi Sankar <quic_sibis@quicinc.com>,
-	andersson@kernel.org,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	robh+dt@kernel.org,
-	dmitry.baryshkov@linaro.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	conor+dt@kernel.org,
-	srinivas.kandagatla@linaro.org,
-	quic_jjohnson@quicinc.com
-Subject: Re: [PATCH V3 0/3] X1E001DE Snapdragon Devkit for Windows
-In-Reply-To: <5d8ec8c4-f473-4849-a428-f7a7283ff478@oldschoolsolutions.biz>
-References: <20241025123227.3527720-1-quic_sibis@quicinc.com>
-	<86y1251q3b.wl-maz@kernel.org>
-	<ZyNR5MD/HAS5w7N/@linaro.org>
-	<5d8ec8c4-f473-4849-a428-f7a7283ff478@oldschoolsolutions.biz>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1730378121; c=relaxed/simple;
+	bh=HNw99ZBoCtL9gebq7HnHLHFtZ02VTCgq3uG6OiI7Lpw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NhG7a902Cmn07PYBvFILCnBHvS3WppdfHcnp/aAKNApJBea9QSdbRoh6wAlLHDQoZ8lGOiP9pfXANkj/xMScl1TN/nv4WwsZOwOpIc1S3vSwl05EYwZGCxvKhc+6zC7NTDhaGb8mxxtyaurmhGlYKeieRFNkW73OQfItNYUACKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WU8IeSpN; arc=none smtp.client-ip=209.85.210.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-7181b86a749so331882a34.3
+        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 05:35:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1730378119; x=1730982919; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HNw99ZBoCtL9gebq7HnHLHFtZ02VTCgq3uG6OiI7Lpw=;
+        b=WU8IeSpNiAnaRF36fC/vv7+zG9kGiWFWgWmP8p3Aw6FVgF4xhmjb/fYznNZUOZuH2u
+         be1x8nBg6wuJBmFMgfK7UTo0crhdYoraukbHqoqYDTb1CHJGYxwMwOCXjIgbkJTnaCAw
+         D/Fi5/noZmiyrt+b3zzLhwe8CoFC2+AXpabfgw2lzxHjksb0US4ZHeirrGU5Dl1dIupi
+         60yrAmVUgiz/AqDQcI5DQKjeJ88KlVhGvB8SdUdSVyk+DuYJulV6mEomv3YT5BWR8WZX
+         aF0RPimWRgK/z4wdfchtSQMEsjWGgkyUsgLYkz5ldeu37w5au0EYbl0BDZy8MfTN6KcE
+         f1ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730378119; x=1730982919;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HNw99ZBoCtL9gebq7HnHLHFtZ02VTCgq3uG6OiI7Lpw=;
+        b=t0aaQ6OCxN7d3GRvWsi3w0ggDT9zjCFgFxdj66f2wiGMszLX2UZOkWk3wkWQA5xrWE
+         V/+duiPd9LWlm5HWSKDOHwqfuoq8cDhKNSy/L4frZljsSx8Psrb69cFJ3Ivx7Wbv/VWM
+         YsYEdY5bRPqqa9aVe5KYVML6GyHrUWq3XmdFMg3xO0p67SHr7DFvB8MPylLVzNKp8rZY
+         F9yd+sNNWnOzIiF95u5NZrPW42qE8EddpfpAZ75/xHMcm8mI/WmmQNDyF/8mI5dN8g4q
+         4SXlgXN8mXXateXQ3IiYJjRG8uFsWpICzrrIt9g34vt03AfWCIOMNF6hklWudaifJ7fX
+         fVfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWUnb8y/7RgYBIYtb5ERF1ngv5Va+/7nJ5YovhMneBY4H/FsPPfU10Gc5xgxj602qtEIMA57ej6L9zw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsqiHVMzJd09plV7xBfsU+aGP4lArixL/Nne1wyJIHRcHpwwPW
+	kzX+fH+5zTBy+H2HN5imcFNSzjKdVG46R8qcKiUSm+ooY7V/0Dvp2jy7nAiIX2HPNY31yvw2yP1
+	BY8OVwHmiHdNCzOZbI8Pd+yu3dtFS1ANRCWiWzg==
+X-Google-Smtp-Source: AGHT+IEkKbJXyNqLSsuHdItgZxyQY+mBzja5TSh+tq+4mVxz/XjBn5K2/1nC62dW10Qg5qYRGU0KEBvvMHxYsE/WEXU=
+X-Received: by 2002:a05:6830:2b07:b0:718:9989:efac with SMTP id
+ 46e09a7af769-7189989f002mr3434433a34.18.1730378119050; Thu, 31 Oct 2024
+ 05:35:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: abel.vesa@linaro.org, jens.glathe@oldschoolsolutions.biz, quic_sibis@quicinc.com, andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, robh+dt@kernel.org, dmitry.baryshkov@linaro.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, srinivas.kandagatla@linaro.org, quic_jjohnson@quicinc.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+References: <20241025131442.112862-1-peter.griffin@linaro.org>
+ <20241025131442.112862-11-peter.griffin@linaro.org> <b5dcd5df-7215-4679-a6be-c45d525e8051@linaro.org>
+In-Reply-To: <b5dcd5df-7215-4679-a6be-c45d525e8051@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Thu, 31 Oct 2024 12:35:08 +0000
+Message-ID: <CADrjBPoRTidJbUmC-gMDaEJRkF8iPUiGHWE89WJ2=+Ja5s1mRA@mail.gmail.com>
+Subject: Re: [PATCH v2 10/11] scsi: ufs: exynos: fix hibern8 notify callbacks
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: alim.akhtar@samsung.com, James.Bottomley@hansenpartnership.com, 
+	martin.petersen@oracle.com, avri.altman@wdc.com, bvanassche@acm.org, 
+	krzk@kernel.org, andre.draszik@linaro.org, kernel-team@android.com, 
+	willmcvicker@google.com, linux-scsi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	ebiggers@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 31 Oct 2024 10:00:40 +0000,
-Jens Glathe <jens.glathe@oldschoolsolutions.biz> wrote:
->=20
-> On 31.10.24 10:46, Abel Vesa wrote:
-> > On 24-10-30 17:02:32, Marc Zyngier wrote:
-> >> On Fri, 25 Oct 2024 13:32:24 +0100,
-> >> Sibi Sankar <quic_sibis@quicinc.com> wrote:
-> >>> Add initial support for X1E001DE Snapdragon Devkit for Windows. X1E00=
-1DE
-> >>> is the speed binned variant of X1E80100 that supports turbo boost up =
-to
-> >>> 4.3 Ghz. The initial support includes the following:
-> >>>=20
-> >>> -DSPs
-> >>> -Ethernet (RTL8125BG) over the pcie 5 instance.
-> >>> -NVme
-> >>> -Wifi
-> >>> -USB-C ports
-> >>>=20
-> >>> V3:
-> >>> * Asked around and looked at the firmware, couldn't find a codename so
-> >>>    will keep it as DEVKIT. Will update it if someone from the communi=
-ty
-> >>>    finds something else.
-> >> My machine has the following information as part of its DMI tables:
-> >>=20
-> >> Handle 0x0005, DMI type 1, 27 bytes
-> >> System Information
-> >> 	Manufacturer: Qualcomm
-> >> 	Product Name: Snapdragon-Devkit
-> >> 	Version: 2.1
-> >> 	Serial Number: 5
-> >> 	UUID: 63b5fc8b-9c50-89aa-fd0f-3fcef93dc291
-> >> 	Wake-up Type: Power Switch
-> >> 	SKU Number: 6
-> >> 	Family: SCP_HAMOA
-> >>=20
-> >> So I guess that Snapdragon-Devkit is another possible name. But given
-> >> that it is a bit of a mouthful, devkit, Devkit, or any other variation
-> >> on the case would work for me.
-> > The point was to have something unique A codename would be unique.
-> > Naming it Snapdragon-Devkit (or just devkit) will be confusing since
-> > there was already a 2023 devkit (from Microsoft) with the Snapdragon
-> > 8cx Gen 3, and probably the next compute platform will also have a devk=
-it
-> > as well. So probably "X Elite devkit" could be the right option..
+Hi Tudor,
 
-Odd, I didn't get that email.
+On Wed, 30 Oct 2024 at 12:00, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>
+>
+>
+> On 10/25/24 2:14 PM, Peter Griffin wrote:
+> > v1 of the patch which introduced the ufshcd_vops_hibern8_notify() callback
+> > used a bool instead of an enum. In v2 this was updated to an enum based on
+> > the review feedback in [1].
+> >
+> > ufs-exynos hibernate calls have always been broken upstream as it follows
+> > the v1 bool implementation.
+> >
+> > [1] https://patchwork.kernel.org/project/linux-scsi/patch/001f01d23994$719997c0$54ccc740$@samsung.com/
+>
+> you can use the Link tag, Link: blabla [1]
 
-My point was the the HW already comes with a full description as part
-of the existing tables. If you really want something that is truly
-unique to that platform and that can be used by a tool (be it
-firmware, kernel or userspace) to understand what it is running on,
-then you cannot have *less* information.
+Will fix in v3
 
-At the very least, you would need Manufacturer, Product Name, Version
-and Family.
+>
+> A Fixes tag and maybe Cc to stable? Or maybe you chose to not backport
+> it intentionally, in which case you have to add:
+> Cc: <stable+noautosel@kernel.org> # reason goes here, and must be present
 
-But does it really matter? I don't think it is *that* crucial. At the
-end of the day, this is only used to pick the correct DT out of a set
-for a given SoC, or worse case a family of SoCs that are closely
-related.
+I'll add a cc stable tag, as there is no reason not to backport this fix.
 
-> As for The Windows Dev Kit 2023, dmidecode says this:
->=20
-> Handle 0x0009, DMI type 1, 27 bytes
-> System Information
-> =C2=A0=C2=A0 =C2=A0Manufacturer: Microsoft Corporation
-> =C2=A0=C2=A0 =C2=A0Product Name: Windows Dev Kit 2023
-> =C2=A0=C2=A0 =C2=A0Version: 124I:00097T:000M:0200000B:07
-> =C2=A0=C2=A0 =C2=A0Serial Number: 0F01C4F22373F6
-> =C2=A0=C2=A0 =C2=A0UUID: e4a4662c-8367-75d0-a54f-1d04bd404860
-> =C2=A0=C2=A0 =C2=A0Wake-up Type: Unknown
-> =C2=A0=C2=A0 =C2=A0SKU Number: 2043
-> =C2=A0=C2=A0 =C2=A0Family: Surface
->=20
-> That's also really a mouthful. In my patchset for it there were some
-> name / path changes, microsoft/blackrock it is now. Would be cool to
-> have short and unique names. In the end, whatever works and is unique.
-> Like those UUIDs?
+>
+> In order to avoid scripts queuing your patch. It contains "fix" in the
+> subject, there's a high probability to be queued to stable.
+>
+> With these addressed:
+> Reviewed-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 
-Are those actually per platform? or per unit? On my box, the serial
-number is probably a dud. What does the UUID reports on your X1E box?
+Thanks for the reviews!
 
-Thanks,
-
-	M.
-
---=20
-Without deviation from the norm, progress is not possible.
+Peter.
 
