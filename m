@@ -1,154 +1,173 @@
-Return-Path: <devicetree+bounces-117789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F6E99B7C88
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 15:15:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5B119B7CA0
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 15:19:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3C7B1F2185A
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 14:15:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0A3C1C20FCD
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 14:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C448E192B9E;
-	Thu, 31 Oct 2024 14:15:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BCA71A08AB;
+	Thu, 31 Oct 2024 14:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="ZFzwELqO"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="PWs9TC7W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from omta38.uswest2.a.cloudfilter.net (omta38.uswest2.a.cloudfilter.net [35.89.44.37])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6805C19C579
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 14:15:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.37
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2D91A0711
+	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 14:19:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730384109; cv=none; b=dbSxlpTUm67085i3tBVdAmTi0TmIuuVcVD91bmfYSVbrZRwJ7G6s5XnutVoTbMgVR8aYe89Bz2iPsR8ZMeU1REcLRjXZ4Qv2JYRqgj/jzGo/daMuwQVXhDEFr5hMlJk2GiXgfICRXxHB7mMmRhi8QKDpa6R353mRXOb4aWf0qA8=
+	t=1730384391; cv=none; b=UE/qAIYcGSCHnSiK4gyTYsLDQ4La/HIUSqgDqqrdH5k7Tpewl1rjjURHnOJtVwoFO0aRaLhSDMex8eE6n/ZlAG35TiTbwDU+ZF8Ou97B6hNbtxvJY+pp+HVSGfpgk1ZSW478/6Ey26JN2YiuMeqwIRa8QADyio25dLAlKDfoVg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730384109; c=relaxed/simple;
-	bh=Kdog3okChVG+qtVt1DYFpPo7Ncm0Hjlct7/16T1KnLs=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=jhNAkOgG1nnKJsb3yRxlWGfOq6zLlkhJAoa/8wE708yL+EMAbpZNkEFd/n/pTSzSFauRrscXHzzsPjed8fAZZI/rzs9OO025u3J1Uuybr/sKiVcM5dytTWzVLewpW5iG5zc7BPWHhnaFZM3U5VytszOhFHyU8E8qeZ7Jsta6qa0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=ZFzwELqO; arc=none smtp.client-ip=35.89.44.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
-Received: from eig-obgw-5009a.ext.cloudfilter.net ([10.0.29.176])
-	by cmsmtp with ESMTPS
-	id 6BqjtiH56umtX6VwztUA7K; Thu, 31 Oct 2024 14:15:01 +0000
-Received: from md-in-79.webhostbox.net ([43.225.55.182])
-	by cmsmtp with ESMTPS
-	id 6VwxtR3PHdurn6VwytOsd6; Thu, 31 Oct 2024 14:15:01 +0000
-X-Authority-Analysis: v=2.4 cv=aNH2q69m c=1 sm=1 tr=0 ts=672390e5
- a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
- a=IkcTkHD0fZMA:10 a=DAUX931o1VcA:10 a=-pn6D5nKLtMA:10 a=6Ujbnq6iAAAA:8
- a=7CQSdrXTAAAA:8 a=vU9dKmh3AAAA:8 a=oUTu_NvtNUWWlwhRUWsA:9 a=QEXdDO2ut3YA:10
- a=-sNzveBoo8RYOSiOai2t:22 a=a-qgeE7W1pNrGK8U0ZQC:22 a=rsP06fVo5MYu2ilr0aT5:22
- a=ZCPYImcxYIQFgLOT52_G:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:To:Subject:Cc:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=GY6AwgdHxbopxTlrLA2vjYBTcxsL4277viuzwS9TPwk=; b=ZFzwELqOkrSNBIMVRTiDlSFHyU
-	uj5CcjhYb80VHZUVw7ln/7cP9qYhRKcYxMzRae/5d6Dmz47qP5nCVXEsYdZtSAdFgyVtwYmIRLd/z
-	Po/4rajeYeTvsjdgq1evjHmH3bwOiXAFu3GsqHKS6zwO3Uy90qgzB1rIR5hrv5W2GsrVH8o+8OAOJ
-	3baIK8SJmQAa7Fhi8mhpu2aWlNDzQm7YwS2/D8QNke3Op0VtQzkDqKyayfIflaAeVHfILbQXcXX2/
-	bT5K+wuHNoK3tKUqeK4yEWjN1XVqYT+WBlqD8Cy+AcG3kBgXa02V19AM5iFV8coPfp6h5j+viKvc1
-	cA8+nkxw==;
-Received: from [122.165.245.213] (port=51552 helo=[192.168.1.5])
-	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <parthiban@linumiz.com>)
-	id 1t6Vwq-0038ez-1T;
-	Thu, 31 Oct 2024 19:44:52 +0530
-Message-ID: <fd26dadb-1a55-49dd-9530-5a3e2a58e36a@linumiz.com>
-Date: Thu, 31 Oct 2024 19:44:48 +0530
+	s=arc-20240116; t=1730384391; c=relaxed/simple;
+	bh=PWQX7SnfjbZidOlrXf4jY4+SlsOeBgBtUEt8Ddtd0jg=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O8wBdkfdbcJI8mrJkY2eCAmVE+cCieg53kQ3TSi8XsLxY8HLvOzWs34iYK+QZr+CWJyo/ZA/aM2vg+yBcOczVnK6xiHWX9xVcCoLFr8huii6xHTA/oUfqave3fTGD32hZKoSXCpvPsCJVg9K8YbxZ51R9q4kjJcK3YPZK/1iwks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=PWs9TC7W; arc=none smtp.client-ip=209.85.208.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f65.google.com with SMTP id 4fb4d7f45d1cf-5c94861ee25so683533a12.0
+        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 07:19:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1730384386; x=1730989186; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PVUmTxmFHTbxuLXdUJhPx7kX3ILoUiW3IeTmfpkoY6o=;
+        b=PWs9TC7W258qgA7r2mOpVUFUNwAFjm4i3dxxATRXQbbiBW1++MEMpazUw+9ZCf2xKi
+         eAB+wO5fGKu+mhRO2gxTbELc8o+t0FEh34rAkU7Znd0Zo1oJvtk8enu+nGFPg8uOYACW
+         UWoHG/7QcnBn6eJU6fNCHoUhyAG0DB1wG6OY/dI8TzfE9XagEzJ+YNtLSIS7udOYyjZC
+         zhVPx8Q6dgjDyHstru6HNuCk6Jpo53glBlas8AOsMakwpWCDIQ0mv+olK89J8sHSmZ70
+         uw1WFPynGqB8/e+qooW/g9cu+slA4tw8r8y1APUkYwQ088NUPAqM3RVYwg9FXIxBnFpb
+         90Wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730384386; x=1730989186;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PVUmTxmFHTbxuLXdUJhPx7kX3ILoUiW3IeTmfpkoY6o=;
+        b=m8cxzozZuCE482uVDAI3goM6QCLkcMi3lrSLgYZONsBBo95+mTY90N/GRKvZHgzRXP
+         c2eTGip4c9QiGKUJg+wtCZnyEb/TCwdGTTOioqdqTqimTObQtSPZiz5d91LGv/RrDT6Z
+         KZbgPS5jtaKVUl1nz78g79p16aLhhpA3SJPLSx/WV1zBJ3OifUOkCWvsXI7W1iGLSEeu
+         jZxfrs6wWRBRJKFIBn3Qmqzg+4rhZpSaJKQAImiqnrcgAGBFk9z05upNzL7dMo0kCJcx
+         +2WtjDg7GNN83LBD9ypk0xRuZn6WZPV2HU8fwtmoi4Qi3IkEgZsnu8v/d7tCO6+O5tSa
+         pIQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVlMHtcduMFMMS1ZOVxRNyKiN7r0XGlyuwYQnAFiSNRr8H2okzbZEFjdvVn0iQdRTgJFjN1ywODFZP5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEfHaBenSN6j5LQSlOBWmxLLSpsAV4RmVntVzMlIex9oHmW4Ca
+	udz1glJ7GaL9ighmDj+OuEfqP+G/61IUQzI+UgccmKF1HkUi/HvQjE+BxttMu3M=
+X-Google-Smtp-Source: AGHT+IFBlmMQ8BF9VGOE8p6eOCCFYLNGVsY0KuYK2zU9xVixT1ZKB8UzaLusANFsmSbOvc8av3xycg==
+X-Received: by 2002:a05:6402:278e:b0:5c9:5745:de9a with SMTP id 4fb4d7f45d1cf-5cbbf8a40c4mr17455994a12.9.1730384386255;
+        Thu, 31 Oct 2024 07:19:46 -0700 (PDT)
+Received: from localhost (host-79-35-211-193.retail.telecomitalia.it. [79.35.211.193])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ceac7700dbsm627152a12.34.2024.10.31.07.19.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Oct 2024 07:19:45 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Thu, 31 Oct 2024 15:20:10 +0100
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v3 03/12] dt-bindings: pci: Add common schema for devices
+ accessible through PCI BARs
+Message-ID: <ZyOSGgJ4zb31Posb@apocalypse>
+References: <cover.1730123575.git.andrea.porta@suse.com>
+ <2948fdf8ccf8d83f59814d0b2a85ce8dac938764.1730123575.git.andrea.porta@suse.com>
+ <fwqcbnub36fk4abmhbtuwsoxdlf64mx4v65mxahsxmiv2sz6er@bfjddapvb75v>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: parthiban@linumiz.com, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Maxime Ripard <mripard@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Nishanth Menon <nm@ti.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- Vinod Koul <vkoul@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Yangtao Li <tiny.windzz@gmail.com>,
- Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 02/13] arm64: dts: allwinner: a100: add watchdog node
-To: Cody Eksal <masterr3c0rd@epochal.quest>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>
-References: <20241031070232.1793078-1-masterr3c0rd@epochal.quest>
- <20241031070232.1793078-3-masterr3c0rd@epochal.quest>
-Content-Language: en-US
-From: Parthiban <parthiban@linumiz.com>
-Organization: Linumiz
-In-Reply-To: <20241031070232.1793078-3-masterr3c0rd@epochal.quest>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - linumiz.com
-X-BWhitelist: no
-X-Source-IP: 122.165.245.213
-X-Source-L: No
-X-Exim-ID: 1t6Vwq-0038ez-1T
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.1.5]) [122.165.245.213]:51552
-X-Source-Auth: parthiban@linumiz.com
-X-Email-Count: 4
-X-Org: HG=dishared_whb_net_legacy;ORG=directi;
-X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfKdfqdb5Cn3YhhbrvGcyqRY7MsI2ck6VH9OOcXpHPEkX5/SAq6wBc1qdWf+HLhbAs0gxRz+aHYSKwONRsmCtHZm8Fpt/Lh62YJnNj88/nW1bSCm6kkUk
- 9fwBpBy8+cD5SzRa3T645Kx0o6EPz4uKrZ+Jpmky/b0jNZrAmZsq1OWBP69uqpqOoj7yin12vbWmMyMW5Nur64QiLCUYhsw4xm8=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fwqcbnub36fk4abmhbtuwsoxdlf64mx4v65mxahsxmiv2sz6er@bfjddapvb75v>
 
-On 10/31/24 12:32 PM, Cody Eksal wrote:
-> From: Yangtao Li <frank@allwinnertech.com>
-> 
-> Declare A100's watchdog in the device-tree.
-> 
-> Signed-off-by: Yangtao Li <frank@allwinnertech.com>
-> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-> Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
-Tested-by: Parthiban Nallathambi <parthiban@linumiz.com>
+Hi Krzysztof,
 
-Thanks,
-Parthiban
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
+On 08:28 Tue 29 Oct     , Krzysztof Kozlowski wrote:
+> On Mon, Oct 28, 2024 at 03:07:20PM +0100, Andrea della Porta wrote:
+> > Common YAML schema for devices that exports internal peripherals through
+> > PCI BARs. The BARs are exposed as simple-buses through which the
+> > peripherals can be accessed.
+> > 
+> > This is not intended to be used as a standalone binding, but should be
+> > included by device specific bindings.
+> > 
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> > ---
+> >  .../devicetree/bindings/pci/pci-ep-bus.yaml   | 58 +++++++++++++++++++
+> >  MAINTAINERS                                   |  1 +
+> >  2 files changed, 59 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/pci-ep-bus.yaml b/Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
+> > new file mode 100644
+> > index 000000000000..e532621f226b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
+> > @@ -0,0 +1,58 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pci/pci-ep-bus.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Common Properties for PCI MFD Endpoints with Peripherals Addressable from BARs
+> > +
+> > +maintainers:
+> > +  - Andrea della Porta  <andrea.porta@suse.com>
+> > +
+> > +description:
+> > +  Define a generic node representing a PCI endpoint which contains several sub-
+> > +  peripherals. The peripherals can be accessed through one or more BARs.
+> > +  This common schema is intended to be referenced from device tree bindings, and
 > 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> index 1eca7c220ede..adb11b26045f 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> @@ -144,6 +144,14 @@ ths_calibration: calib@14 {
->  			};
->  		};
->  
-> +		watchdog@30090a0 {
-> +			compatible = "allwinner,sun50i-a100-wdt",
-> +				     "allwinner,sun6i-a31-wdt";
-> +			reg = <0x030090a0 0x20>;
-> +			interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&dcxo24M>;
-> +		};
-> +
->  		pio: pinctrl@300b000 {
->  			compatible = "allwinner,sun50i-a100-pinctrl";
->  			reg = <0x0300b000 0x400>;
+> Please wrap code according to coding style (checkpatch is not a coding
+> style description but only a tool).
+> 
+> Above applies to all places here and other bindings.
 
+Are you referring to the title being longer than 80 column here, right?
+Because the description seems correctly wrapped... or should I add a
+newline for each paragraph?
+
+Many thanks,
+Andrea
+
+> 
+> Best regards,
+> Krzysztof
+> 
 
