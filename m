@@ -1,106 +1,102 @@
-Return-Path: <devicetree+bounces-117863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE2F69B826D
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 19:17:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E443C9B8272
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 19:18:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2BDF282097
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 18:17:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B97EB23FB8
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 18:18:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2F881C8FBA;
-	Thu, 31 Oct 2024 18:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C93561C8FBA;
+	Thu, 31 Oct 2024 18:18:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BxPbeWLz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IdxNqRUH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 818DF1EA90;
-	Thu, 31 Oct 2024 18:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2441EA90;
+	Thu, 31 Oct 2024 18:18:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730398671; cv=none; b=W/rAJY6Zf4CKUrmigbrHpsGKSHwOMG2iYlmnQWAv5/WZxAn2CPWWyjK6RUjHdcmVQEDJdR9vvQkUxczYjuiLLS75pCIATHfgNTNia1xyrMhABqrVdRmQgimu4Ehj8TSWLotnN2s46DMQjjX4Uejs1eKPZnSDAwURPQOu9zP7dVA=
+	t=1730398704; cv=none; b=Z8CXAwBjv3SjKeO1XnuAl77um7byaXi5/6t4Tgftrffn0RZTy6A+pHAVPoYFpDMb5fnFaCO0IX3qgMyEsymeptQccRWo+eyqT9Wzqc3NOy1us7rXPFVRdstDTuXXx6SdPd6V4dNdF8LOD00pYNE7Gu5P8iFpexiGcq6K2djMd+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730398671; c=relaxed/simple;
-	bh=jvJJQy15udztSTe+99Lr2COkQGC4eOLwJnRCW9vATlo=;
+	s=arc-20240116; t=1730398704; c=relaxed/simple;
+	bh=kR/0Pxk459rWEyGTEDKYRMfC8DiaInmUZTUtxxSNPLI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZU6Uqjy001w91r7HZ4c0946sv5xNkpW15I8K/+UJnIleHdggwANZn5Ql/B++cD8tX3qY07fexkwt5GdJHnktrKiqJLsuH2Px9ijGRNgMYOGmqQftnTwcwRf8nPkGwaebIaeOpLGgMWHOEmleShDwhWTUEFBq9U1O+kusT6hiO4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BxPbeWLz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA272C4CEC3;
-	Thu, 31 Oct 2024 18:17:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GofEe5yjqzgSPfdnxa6b3o9oxnjqnoMqvD+bSIJQW9EFv65YGZ/WpLfmsXVop1Iz7A1T2LSjBzJMswDIKDF72LN50Ks3NRt4HwW+EmPc/3tCHE9L8Ef5v49AoWXvTyGWBP8tc39IHr8noyOvAY5ZmehEgiFy+yPQzdPiryTFXG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IdxNqRUH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF927C4CEC3;
+	Thu, 31 Oct 2024 18:18:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730398671;
-	bh=jvJJQy15udztSTe+99Lr2COkQGC4eOLwJnRCW9vATlo=;
+	s=k20201202; t=1730398704;
+	bh=kR/0Pxk459rWEyGTEDKYRMfC8DiaInmUZTUtxxSNPLI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BxPbeWLzN8gyS/+5v78ZHxhq1BwhPcdXIdT4Zh5A5OZv6ls+g6zM4mR4On+uD+uu4
-	 9XPOu/aAqFS1Uuk8AVpPQ9nAOhOjxWx7I0sDwciNmFELDhT7Lao/VWdDNT+DAc+L1O
-	 JSxHBHu0f7Cmk4kBAsZJUnZDAge1+hi+gUIg5ikZ44p3i6DJ/OV30uwnsMZPClNlyJ
-	 h+doGxdIEZ5kMZKDFMUOC16cY3J2NfYZutofNqo45IKZDL2ke9Lm3FTLqEDQBso6gs
-	 z2lYxXJI4d5msee6FirCMB7hZUtQYMFcRBoz6LVps4NRym3XvqMUNMsjGyxrz0qjwO
-	 m6B0zuKX4ZL3w==
-Date: Thu, 31 Oct 2024 13:17:49 -0500
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?B?Q3Pza+FzLA==?= Bence <csokas.bence@prolan.hu>
-Cc: Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v4 03/10] dt-bindings: dmaengine: Add Allwinner suniv
- F1C100s DMA
-Message-ID: <20241031181749.GA1260045-robh@kernel.org>
-References: <20241031123538.2582675-1-csokas.bence@prolan.hu>
- <20241031123538.2582675-3-csokas.bence@prolan.hu>
+	b=IdxNqRUHraWlE5oylexV69MRGpC+DC/o8U6bp6JF+UAGjUymuPiTngCMHr6g0wkzs
+	 pUVICgZWxlGVyKetf7aopoMoWkpjUasB7m+VQYT4eyZngQamleJDyzIYroCWoE9alq
+	 PS50nNwx/r+3j6F38F/Ncr8L+0Z4pYlVoMOtMvxYc0IEXK/yGJsHgg2gxI4yeCohG8
+	 i68QD1kIm3p0KTRXfT1C+tm30KIcqtHu/wgbYGKucm4rb2DNYslCszoBZNAyFnBxY6
+	 ayL0xJYJZ4MQKVK61iUHRA4z3otQf6hRKoG2hT95/eX5zYVDDFJNNsWK/bn4S48L/+
+	 tPF0GYBDfXZFQ==
+Date: Thu, 31 Oct 2024 13:18:22 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Grant Peltier <grantpeltier93@gmail.com>
+Cc: linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+	brandon.howell.jg@renesas.com, grant.peltier.jg@renesas.com,
+	linux@roeck-us.net, devicetree@vger.kernel.org,
+	magnus.damm@gmail.com, geert+renesas@glider.be
+Subject: Re: [PATCH v6 2/2] dt-bindings: hwmon: isl68137: add bindings to
+ support voltage dividers
+Message-ID: <173039867893.1263948.4560760756076027047.robh@kernel.org>
+References: <cover.1730326915.git.grantpeltier93@gmail.com>
+ <1dff1f63a2e122788e2c17f192472705491aa5b8.1730326916.git.grantpeltier93@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241031123538.2582675-3-csokas.bence@prolan.hu>
+In-Reply-To: <1dff1f63a2e122788e2c17f192472705491aa5b8.1730326916.git.grantpeltier93@gmail.com>
 
-On Thu, Oct 31, 2024 at 01:35:29PM +0100, Csókás, Bence wrote:
-> Add compatible string for Allwinner suniv F1C100s DMA.
+
+On Wed, 30 Oct 2024 17:41:39 -0500, Grant Peltier wrote:
+> Add devicetree bindings to support declaring optional voltage dividers to
+> the rail outputs of supported digital multiphase regulators. Some
+> applications require Vout to exceed the voltage range that the Vsense pin
+> can detect. This binding definition allows users to define the
+> characteristics of a voltage divider placed between Vout and the Vsense
+> pin for any rail powered by the device.
 > 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Link: https://lore.kernel.org/linux-kernel/20241024-recycler-borrowing-5d4296fd4a56@spud/
-
-You don't need a link to Conor's ack.
-
-> [ csokas.bence: Reimplemented Mesih Kilinc's binding in YAML ]
-> Signed-off-by: Csókás, Bence <csokas.bence@prolan.hu>
+> These bindings copy the vout-voltage-divider property defined in the
+> maxim,max20730 bindings schema since it is the best fit for the use case
+> of scaling hwmon PMBus telemetry. The generic voltage-divider property
+> used by many iio drivers was determined to be a poor fit because that
+> schema is tied directly to iio for the purpose of scaling io-channel
+> voltages and the isl68137 driver is not an iio driver.
+> 
+> Signed-off-by: Grant Peltier <grantpeltier93@gmail.com>
 > ---
->  .../devicetree/bindings/dma/allwinner,sun4i-a10-dma.yaml      | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  .../hwmon/pmbus/renesas,isl68137.yaml         | 147 ++++++++++++++++++
+>  1 file changed, 147 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/renesas,isl68137.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/allwinner,sun4i-a10-dma.yaml b/Documentation/devicetree/bindings/dma/allwinner,sun4i-a10-dma.yaml
-> index 02d5bd035409..9b5180c0a7c4 100644
-> --- a/Documentation/devicetree/bindings/dma/allwinner,sun4i-a10-dma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/allwinner,sun4i-a10-dma.yaml
-> @@ -22,7 +22,9 @@ properties:
->        number.
->  
->    compatible:
-> -    const: allwinner,sun4i-a10-dma
-> +    enum:
-> +      - allwinner,sun4i-a10-dma
-> +      - allwinner,suniv-f1c100s-dma
->  
->    reg:
->      maxItems: 1
-> -- 
-> 2.34.1
-> 
-> 
+
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
+Missing tags:
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
+
+
 
