@@ -1,129 +1,175 @@
-Return-Path: <devicetree+bounces-117877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A6309B831E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 20:12:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE36D9B834F
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 20:24:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 365701F22D96
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 19:12:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C92E1F23179
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 19:24:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D83541C9EAA;
-	Thu, 31 Oct 2024 19:12:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84F701CB32F;
+	Thu, 31 Oct 2024 19:24:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pWj5KqBx"
+	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="t0aZx8n5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B160213C8FF
-	for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 19:12:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 969191CB316;
+	Thu, 31 Oct 2024 19:24:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730401972; cv=none; b=X839IGYYdR1uA8v6aYiwD9aXxOznRNLHSsXq5sQBNiKSl7qLhOlfQKNke3U+5VrgeCo6Rh9x/6fTBNZQd7nRauiuYpz6tojtbnO+dWB8fyn8Q6K0TI7xYUowd7l2xBf2I6p7c7ExB12dfHKWXkM5537nk7TMIwNSr5tKJwNrHoU=
+	t=1730402665; cv=none; b=aUdaK8PaisiFW1JGUj2DZN3uTogcQrXgD4322xhcg82ht1wZH4YVe2q/E2ET6in6xp8OXpnlnrsTE1rRkuc1Ig3xXYVLWJLSmR8I9mWAcsN2g1sijlV6Hil/sWGhU6r0RfuGIlX3/wKxugyn7AkO4G3YcZaFMDJBCCw2SgdFSbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730401972; c=relaxed/simple;
-	bh=TYW55Jhp7t0Vd1HnF8KrL/jWsJe3Zk30JNz8WAh27Rw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OzDLipSAxjeFFMaaijBeXyLBt5s/GHxcuKjQ3V6IDdoxDiDT3fqZ2h4xd/85Nj8vBlYfGI8POzGoZGGxssXtZcufQyLkBy39E8aarSM6MwCdRH1njd/fGbVNR186MTqcfV2exoJ0AOn4LnZVJy/q2QzH8EVRSTUKgBLdSmdXzCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pWj5KqBx; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-539f72c913aso2067742e87.1
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 12:12:50 -0700 (PDT)
+	s=arc-20240116; t=1730402665; c=relaxed/simple;
+	bh=Z0OXm8zr7PBtjSI2zcACzeGQatvaS4IUl5PQ4yPa3GM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LApMkX6AbsVugOsT0BZcz9ZTg7jplrwlbJtZxStsjAaU//FCiGz7DLZO8KWyNLVbrVJmOn0Un5fOQ0T++btlozQ8SgClHblJ1VIESSpga22XM5wQH/agQaw8oV9ZihZnzXVnEXegEkygVVOblAs1z7V48g4IkResf4ENvNW8Cz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=t0aZx8n5; arc=none smtp.client-ip=217.72.192.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730401969; x=1731006769; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rD/pY/i638YKtWjS7I89D6wpk5BweHDNRe5Pjk8A2Hc=;
-        b=pWj5KqBxM2rzUTiYhkbIpkfVcRHBvnSezYO6nWCe6HtDecuyfrlj4N2v1tX/bfVQLz
-         nrlHw7wEE2G6Jz+UCNOVW1OuX8amsxpgSoK53yCw2QC+2CNr56jBJnBPOfmKgLbGLz26
-         rqfyh++uFwVmoBXRo5iIF1TP8SjVU1Tlr1OVPLwCVblhFSUcxxcYFnbCHpmXeAmYNleF
-         8BsYcg51bx/AhUVRPv2lWuB3uZMjXszC1l6svNwhIkNJHW2X0cM3BUJyvl8Q+h5LlEdH
-         UWNeyDKGuMagpguR4BFB02hqhscOak0cppKz7p0xJEULHI3kUqrXUTzK7uk09LhyLAcP
-         K1Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730401969; x=1731006769;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rD/pY/i638YKtWjS7I89D6wpk5BweHDNRe5Pjk8A2Hc=;
-        b=ly4C7k5O9hv6S2wkP+NzijoIZOrnlXqRl9y5pyqRtM2gl4biwVoA419VvdQI0IBHKK
-         pOxSmBWDp+bLvB1pi+j5mTL0CJa/+Mv3s6LpsXff+dsVpvE7JCCKAOREzQsC5xdgyKi/
-         uF94DPWWdZ8SV9/bpxzzQZOeizX3LkwT+dXi09Fw2ODdse9UQ9hDuN0n9dW1qJF66eq5
-         hTcl00gfCnhep6/N7t3wtdMgMsS7DZCw/TG585HnbFc6VxHGux1e7RXOHQCFKPky3quy
-         +J53UywSxSJ0rXBA0RANVo39SrVJI4wYewZPY5la1H/EDatSbyR0gZH0zOFejOyXUmA4
-         7HCg==
-X-Forwarded-Encrypted: i=1; AJvYcCXJEaOO6E5vE5N8KTBLTiODyemrh/y+6aLuGuD355aReJd7Dc0ddsAMV1QhybsNLcveamnKhOYFAW3G@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuC/YXET5M/6y3JZPTA+d9AlqFsoi/KhF5uJ31c5CDRLN+6kp/
-	33IhS9QkKWeUOhpxr/qNkQKFFTLxq7/UHUKfM/LG1WMJ75rW+H/dRNHoilsNIMQ=
-X-Google-Smtp-Source: AGHT+IEHlgrOOPldK5P7S57DuVyfV2iyV8RJOHXDbZ5tbr/99nLsMq1Jtiuo0Qol8RifwvNdY1Zhjg==
-X-Received: by 2002:a05:6512:3b25:b0:539:e9b4:7ff6 with SMTP id 2adb3069b0e04-53b34a18f2fmr10168609e87.45.1730401968815;
-        Thu, 31 Oct 2024 12:12:48 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53c7bc957aasm302503e87.42.2024.10.31.12.12.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2024 12:12:47 -0700 (PDT)
-Date: Thu, 31 Oct 2024 21:12:44 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Richard Acayan <mailingradian@gmail.com>
-Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
-	Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Rob Clark <robdclark@gmail.com>, linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 0/2] iommu/arm-smmu-qcom: Add SDM670 SMMU v2
-Message-ID: <jivvekptfdr5zh6xnzvzgye7oaana6q3dpyge65m4uklfo6ubv@rq5uar3avkdg>
-References: <20240730013820.41702-4-mailingradian@gmail.com>
- <ZyFSJjO2fkqCwzWm@radian>
+	d=oldschoolsolutions.biz; s=s1-ionos; t=1730402652; x=1731007452;
+	i=jens.glathe@oldschoolsolutions.biz;
+	bh=Z0OXm8zr7PBtjSI2zcACzeGQatvaS4IUl5PQ4yPa3GM=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=t0aZx8n5LhpSehLErr/x+289ycoOMQUqIIQJjeFkpsOp2U33m46TAsmBJsygsYx+
+	 XuVkwGTjOmcSnVbIkT8EsMGWSau/ZeKVmZ7YCT+unBKpDn/HeDVvKMBMB/glU3Cwy
+	 bBviNQp1y18nXXfx/HDMaXqNg/XItYaA67ETJcTXvE2mlsCAPgRoIjtV5cgomTN/4
+	 6CWJhzEx4qCmrabJcCkusxx9r9p1NPKkUe3Y8VXs27pt8CC22RuoZTYB//GmPBagA
+	 AfEHYrV+VtVegHXgJBvVURO7iVNiJbLMGOf/tFI2t72crvn4TV2gI0bxo051qc4Mf
+	 kk8V3g0H/WllUHCWZg==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.0.174] ([91.64.229.215]) by mrelayeu.kundenserver.de
+ (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1N7yz7-1trybX0CJf-010XIE; Thu, 31 Oct 2024 20:24:12 +0100
+Message-ID: <6b5591ea-b575-4118-85f3-11c64dd9f449@oldschoolsolutions.biz>
+Date: Thu, 31 Oct 2024 20:24:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZyFSJjO2fkqCwzWm@radian>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/3] arm64: dts: qcom: sc8280xp-blackrock: dt
+ definition for WDK2023
+To: Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Kalle Valo <kvalo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-kernel@vger.kernel.org, Merck Hung <merckhung@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+References: <20241030-jg-blackrock-for-upstream-v6-0-7cd7f7d8d97c@oldschoolsolutions.biz>
+ <20241030-jg-blackrock-for-upstream-v6-3-7cd7f7d8d97c@oldschoolsolutions.biz>
+ <5a9e97ad-0f84-4e0c-85e6-5ed0a4d20568@quicinc.com>
+Content-Language: en-US
+From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+In-Reply-To: <5a9e97ad-0f84-4e0c-85e6-5ed0a4d20568@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:wP0AGbYNFvFC/WG14B0BL2KWGrDNWfSq/jWOqKMef4NbZe+tk9k
+ k5Ni2JDOPbXlBoqK9AXhWqeAOmB+KOVTuJ/NbIVsHIChwSc8t303xK2UnrY+aTDoMTeFDh4
+ cZnIt5oH5iOkowY1unZNn782l9U/SnhTIspERknuUD/BvkKNhbov0In2Xb6zRtjDxUKxNDa
+ PYjpJ30mLHr7/u7BIvMEA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:pIPv8XQmrdU=;Cx+fvPQdY5tEOX5F261EyO4XFIp
+ 3apqfI7s1BlA975DfjZcsSYuHj8CQzdts6yAl0bJDrUfVe9vPquoj8MYRS5k0R14XNX9h1Wu7
+ nshHHuwGc+HDov30hPqZsnTc+pe4DN0w8MlnxoBhOvP3AU0ns3BRF/O9gNHofmTn9WayPTMIm
+ PPhSqk44mOKTvzc67liV2OGhekZJDrCaxtG3B+IiG1P97yhEhxtorI9FRq96gNmW36802g7nd
+ hAaMv/0LQCthcpz7SLhyd0v01p0ijMY6Fbc4yUi7Ye5I0Umsghu17/h3LQZsTNE5RNTOcb8RU
+ nHSxJG469Ec5oBRz0MJyFs3QiUpvCngKRpLTGPVQn/AinECOzs4oG340+jw+c5GegzzXfginL
+ nEDqJ0KkbBQdV+qfGdpfJJrHZV5hytopkOfLIw4rzg9Z+yhVEloJ5Cztlv01kDER4ObO62v/q
+ BHVvzWgwR3+FADigGkAaQF8+wDoJvBCaPJ4ytkpITg/3oreigrSWbW7H0cMG/jK54lwDbe6wJ
+ npTcsMnY+9+AN2RqHwAU5feFs3EhsNfT8+NL7czINIDWEoF5vKRw8OYuVbh+rmpA4q9eNjt3N
+ CaJJS3lPewnY39FAyrMPjkgu9yczyb3hetvqzculY591eFLfepaY/kcMYGtXKpfcgm45zGOkv
+ 81ypx8PPccQdyf2TYnXceLifwr1JyU4TnVisF03LwfT+uwT3XtDBjdVP1CRlxicTc6EWVmh8V
+ bsRoWSUYFta6CaPxB3sMYkFzG4/MJHiLQ==
 
-On Tue, Oct 29, 2024 at 05:22:46PM -0400, Richard Acayan wrote:
-> On Mon, Jul 29, 2024 at 09:38:21PM -0400, Richard Acayan wrote:
-> > This adds the SMMU v2 for the Snapdragon 670, used for the Adreno GPU.
-> > 
-> > Richard Acayan (2):
-> >   dt-bindings: iommu: arm,smmu: add sdm670 adreno iommu compatible
-> >   iommu/arm-smmu-qcom: add sdm670 adreno iommu compatible
-> > 
-> >  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
-> >  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c            | 1 +
-> >  2 files changed, 2 insertions(+)
-> 
-> Hi, I'm wondering if this is still being considered.
-> 
-> The NAK doesn't really make sense here, as there's a warning/BUG at the
-> bottom of the qcom SMMU driver that occurs when the compatible isn't
-> added:
+On 31.10.24 19:54, Krishna Kurapati wrote:
+> On 10/30/2024 4:32 PM, Jens Glathe via B4 Relay wrote:
+>> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>>
+>> Device tree for the Microsoft Windows Dev Kit 2023. This work
+>> is based on the initial work of Merck Hung <merckhung@gmail.com>.
+>>
+>> Original work:
+>> https://github.com/merckhung/linux_ms_dev_kit/blob/ms-dev-kit-2023-v6.3=
+.0/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-dev-kit-2023.dts
+>>
+>> The Windows Dev Kit 2023 is a nice little desktop based on sc8280xp.
+>> Link: https://learn.microsoft.com/en-us/windows/arm/dev-kit/
+>>
+>> Supported features:
+>> - USB type-c and type-a ports
+>> - minidp connector
+>> - built-in r8152 Ethernet adapter
+>> - PCIe devices
+>> - nvme
+>> - ath11k WiFi (WCN6855)
+>> - WCN6855 Bluetooth
+>> - A690 GPU
+>> - ADSP and CDSP
+>> - GPIO keys
+>> - Audio definition (works via USB)
+>>
+>> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>> ---
+>
+> [...]
+>
+>> +&usb_2 {
+>> +=C2=A0=C2=A0=C2=A0 pinctrl-0 =3D <&usb2_en_state>;
+>> +=C2=A0=C2=A0=C2=A0 pinctrl-names =3D "default";
+>> +
+>> +=C2=A0=C2=A0=C2=A0 status =3D "okay";
+>> +};
+>> +
+>> +&usb_2_dwc3 {
+>> +=C2=A0=C2=A0=C2=A0 dr_mode =3D "host";
+>> +=C2=A0=C2=A0=C2=A0 phy-names =3D "usb2-port0", "usb3-port0";
+>> +=C2=A0=C2=A0=C2=A0 phys =3D <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
+>> +
+>> +=C2=A0=C2=A0=C2=A0 status =3D "okay";
+>> +};
+>
+> From what I remember, the phy names for multiport must be "usb2-X"=C2=A0=
+ or
+> "usb3-X". The above notation might compile but If I am not wrong, the
+> phys won't be active. How was USB tested in this case ?
+>
+All 4 type-a ports are working at full capacity, I assume the phys are
+up. On one of these is the internal r8152 adapter. Actually when I
+started with the WDK the type-a ports were the most reliable ones. The
+box is my daily driver, so its extensively tested for ~18 months now.
 
-Please resend it, adding an explicit note about having no generic
--v2 fallback and that being a correct way. I don't think Krzysztof
-reacts to old patches.
+> Moreover just marking status as "okay" for usb_2 must work like done
+> in [1] and [2] and there is no need for explicitly marking dr_mode as
+> host again and refactoring the phy-names.
+>
+> [1]:
+> https://lore.kernel.org/all/20240707085624.3411961-1-quic_kriskura@quici=
+nc.com/
+> [2]:
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/20240501065641.=
+965-1-johan+linaro@kernel.org/
+>
+> Please fix this up.
 
-> 
-> 	/*
-> 	 * If you hit this WARN_ON() you are missing an entry in the
-> 	 * qcom_smmu_impl_of_match[] table, and GPU per-process page-
-> 	 * tables will be broken.
-> 	 */
-> 	WARN(of_device_is_compatible(np, "qcom,adreno-smmu"),
-> 	     "Missing qcom_smmu_impl_of_match entry for: %s",
-> 	     dev_name(smmu->dev));
-> 
-> DTS change for context (pending):
-> https://lore.kernel.org/linux-arm-msm/20240806214452.16406-10-mailingradian@gmail.com
+will do, thank you for the hint.
 
--- 
-With best wishes
-Dmitry
+with best regards
+
+Jens
+
+> Regards,
+> Krishna,
 
