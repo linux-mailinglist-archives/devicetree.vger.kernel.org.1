@@ -1,188 +1,302 @@
-Return-Path: <devicetree+bounces-117839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 769A39B8056
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 17:40:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44D3F9B8058
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 17:40:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7A8C1C21DA6
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 16:40:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6812C1C21E01
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2024 16:40:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889471BC088;
-	Thu, 31 Oct 2024 16:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57E6C1BF7FC;
+	Thu, 31 Oct 2024 16:39:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Q6pixFk4"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="c8Huos25"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2082.outbound.protection.outlook.com [40.107.22.82])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08FBD1BC07D;
-	Thu, 31 Oct 2024 16:39:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730392776; cv=none; b=H/Bi+2lDL0NI/etjq1E1dAdoFjTvHh5lS9PVJAg1NLhneSuWHZnUPhEsrR4I+jtePbDecQP/K0Wm/nZzCVLFC6ZMeIwHx8OCZTRzfHhIEDHfKpuqhum+y9q9RgDZ4J8GlQ3ZVAcvVfl8E8azR67zJTEnP+5jyZj07mUq/u/o3D4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730392776; c=relaxed/simple;
-	bh=luEuhY2NHbh+W5Mf5hekJwKMw2+9BoSebFMTzw2KDHY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=MEKBz9NsLmxejmWrEro2780q/p7rXeF6GKymDR6RH0U5Tcmdn/MEw0SAP2uJW3o41VSylkD39UgSPzjlWF+UOdsQ3r8FcsOupkMzk3A23nHiTKjfT8eUIAbaqSTfMlD92Z04gr6TwQLqL/WX9AI7PtDV2H4pSrIMyKbwUa4XstY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Q6pixFk4; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49VGdB8b075269;
-	Thu, 31 Oct 2024 11:39:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1730392751;
-	bh=bXLrbm4rNgCxySzqegyMFNcdkSquFq5CB9anD4WpKE8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Q6pixFk4owkW+oYSI/1SbFcgjnq4y3gomOrgV3Jk/764nSfOhCcS+zvCfEegpMZRd
-	 fr/2tvb2OCuOe8teDxxyyjx4XqVhCcZFNYMfj2AWBTzPylADq2Q4ZrSaK+SuyCj3bq
-	 BXL3qHLX/Zxty7/yJ36oRszdpyTeCmkkmF2dlJYk=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49VGdBvQ029782;
-	Thu, 31 Oct 2024 11:39:11 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 31
- Oct 2024 11:39:11 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 31 Oct 2024 11:39:11 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49VGdAW7096539;
-	Thu, 31 Oct 2024 11:39:10 -0500
-Message-ID: <9b30cb03-8334-48ce-b23b-19df8e9f89f9@ti.com>
-Date: Thu, 31 Oct 2024 11:39:10 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD6C1BF7F9;
+	Thu, 31 Oct 2024 16:39:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.82
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730392782; cv=fail; b=lgMH+KbxYprPExXFkcO0ebzmvWC++5JlJL+Og8VgAyWXxIjW+cFV0Tv9cwGQ8I9zTQaJbbH6vK8UKcOcN08DNJwkKBY+1+cP5+LcrePGq0/XxqC5CJMa1ohInlLKrgdc+wOrOj/Zm4QBm4hZ5Yo6RLuH/aFrlup9PRZg1LM9c/A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730392782; c=relaxed/simple;
+	bh=EVM4QozZ8LAQPxDqaucvv0zaVmYWYa5QxUnjFDmBVC8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=UIq+MtmdwyXLllIoqNg3s1viuzZjMgDdJMnNA/0sB/KbWIGYBKxRvoMUR9a7CMtgETJJtwwAWgnYeHT6TcakTIbCMPhzJWj4fE8qwlGAYHrkBjxn89p3Id4u5QF5YREd0FeZQY2fxAP+1J3vk1xqo1elfXTnPhgweypISl4SeJI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=c8Huos25; arc=fail smtp.client-ip=40.107.22.82
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=icAHdMpixzt5wLmw9iFyXVbLGmsOwMOdwExXVHVQW7A10L2xno3SVHLzXAc/AZ5AKfikLNtjr0iArBGHu6OR7+j8TMet2/b8lMWmS893c/1zxn0IsNTF0U9IHit93rGFSKdEJcOksuD5EBb4LgWfNs5wdK9QTlvV8MMGubMSdssN5YBm/FcrMlH0J5gDNkC3inOTuJmhVjJFF4fFaYtyvKspLLGb5xykZRWcSMF1BuoOkwZsirHZKOIsaGThwja5sbsyrk/DXYJPSVfdQN01REYFph1xS9mvcF7PEvh1h5sZBweZhlmSVXTs2Z1x7tsMcEM04NF3OZWodAQmfRLYJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KIrVvLsHj3eP9WO3Jt3d6wo/IY+hmmkP/dlATpGk3OA=;
+ b=H3w59wKBu6WHumFyMWi6Smt8auXq9RsNVKbMudvh2C1EkjflshqOTIUCRZT5hBTQyIPD/SAtlpfzll2pRR8fGdFV30dJJwNZ0NU3Fg4hUGu8c7t2ZcIsCx7G/T2C7kpW2cspIv3pG+zFOO1bNrzk5czHyLTVRypqz+sbcF0jis9i2YvHPjRnEsTJ268nVocwP2O+r8WlGtIjlKd8OPPtHZMc+rND+JtiXCNlUjnXjwv6Zh1FXvJrzlfOUewpnb8umMYa35xqCFU1v10Cogzt/y9fgcnIa5UEt/vy3u2xv4rpfOy5KAMhTv55mWdqAdcNwUkGRSJIPSUu6svGQF+rbQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KIrVvLsHj3eP9WO3Jt3d6wo/IY+hmmkP/dlATpGk3OA=;
+ b=c8Huos25BZmZx4fYg8gwl5ccnQu+2fePKtE2rJU28hlqYjR5+tHvFzBaawktSDrtK5+nDophfIYqkxFOCQuhYwFSnYC2h31QTAyF0MWjgbadeM7f2aLv3KDrKsxfBIv9aGvNlqUnpFxqAez5IGf693Jj3i53pUPreIOQ2Hp4lQvrNxf3xsSNpz4BzkHrYiH1O8GuhEq55FRDv+W1CC1FmdB+BM6AhyA3UckxXmKdPAnZd5JsUXcd5yQrxgWJZPdQw5yoBh7jy8UuDPhfHJTFlqTjGCnEfVfTRqthftK3if0sxvUct3clf1xv+8ixuSE5jE5vm1b3DrkZX3dZEDhW+Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PA4PR04MB9487.eurprd04.prod.outlook.com (2603:10a6:102:27c::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.32; Thu, 31 Oct
+ 2024 16:39:35 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8093.027; Thu, 31 Oct 2024
+ 16:39:35 +0000
+Date: Thu, 31 Oct 2024 12:39:26 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>,
+	Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: rtc: add schema for NXP S32G2/S32G3
+ SoCs
+Message-ID: <ZyOyvgw0qZ4YKwTi@lizhi-Precision-Tower-5810>
+References: <20241031083557.2156751-1-ciprianmarian.costea@oss.nxp.com>
+ <20241031083557.2156751-2-ciprianmarian.costea@oss.nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241031083557.2156751-2-ciprianmarian.costea@oss.nxp.com>
+X-ClientProxiedBy: SJ0PR03CA0334.namprd03.prod.outlook.com
+ (2603:10b6:a03:39c::9) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am642-evm: Add dt overlay to disable
- icssg for Linux
-To: MD Danish Anwar <danishanwar@ti.com>, <vigneshr@ti.com>, <nm@ti.com>
-CC: <conor+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <kristo@kernel.org>, <srk@ti.com>, Roger Quadros <rogerq@kernel.org>
-References: <20241030114458.1358800-1-danishanwar@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20241030114458.1358800-1-danishanwar@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA4PR04MB9487:EE_
+X-MS-Office365-Filtering-Correlation-Id: 23adf39d-8884-4fad-2487-08dcf9ca9a5a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|366016|7416014|52116014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?TyYuSpsyGKIl046IFKQsvZwVLv/RAYeB7yKC1maR8/J0TOMDX9Ic/eQDcTT8?=
+ =?us-ascii?Q?YAUUlPWJKvlhejch7acJHtT7fymG6A/her0ZnBaApKBZZy1+pe9nfWJAHpMD?=
+ =?us-ascii?Q?cPAzIogOjDxjqbj+hqHYjuqjFQd8ZuRJpj67jtJrbXqhPSl4VPWNVfXekIAr?=
+ =?us-ascii?Q?TneeSUdUjMYKrGloGrF5rOeqCJyOgb2I/l7nJgHOmlDIZU7XCa7Z41QyIa3U?=
+ =?us-ascii?Q?q477zd4LyJQ4Y/RC04mC2J9DaXyGYQXvvetAKSR0EH5jtMNYw6Ow/353G55k?=
+ =?us-ascii?Q?TzeU24kUwdvoxQKW/fa9afCi6gbId8uHaqMubB+yv4i3mwrqKnUR09bYEvbi?=
+ =?us-ascii?Q?6aiS9oUcsFmBoKFyzo9QSRstFC557c+FD1YC3AznHLIkeCWSVos5KFipoQhM?=
+ =?us-ascii?Q?RteD9GrBDLGyzeAlyaHeCJ6t53uilBTN3UFmK9mGWog5QXWcy2p2368lPquc?=
+ =?us-ascii?Q?dn2jZluBaCqqdON5To5fjBUXtVvogWC57wNoapCPdtSLGNJMb3EqIz/P53P7?=
+ =?us-ascii?Q?9cVbnwBZdb9kqjtgU64bXewfP6meq/Jcnbzon2fWkTfyJx60hSZLnogNSfSE?=
+ =?us-ascii?Q?urG3HVVzrlTsylYxPmHDnOOyMF0a5veblzSJxuQTwpNc9YFkRvRzV9MkMyMr?=
+ =?us-ascii?Q?iQLd4de6wcMtB1/Q3DaOlUBt59cSTgS6Kt02IIiwyiObYHJqNK3GRJVAr3GX?=
+ =?us-ascii?Q?GOVtPhKt5bjheOFKKv/DtG8ZfQofsYa9JvmV7Bo0FLaFUJu6tdEJ8bQvABBz?=
+ =?us-ascii?Q?KLpMTSVyx1zd9kE1vejKZhKhOVgiSVOTDZDYJx6KnWrY/5Buj+9wTVhRqo6L?=
+ =?us-ascii?Q?U4ljLRr4ZlX0NcGaF5hov4257sOz9UDtvTymxYhx4uiI+MUoYU7g/bIpcJFf?=
+ =?us-ascii?Q?LDZS5TBYyRflux3zw4RU2vuBiGJOIwhWNbPOqMFGkgDBy3LFLtKpalu+b63V?=
+ =?us-ascii?Q?DI/tuT0KHfITKbcpg3flu2iQenn4Qwqx4gHtnn18eZtBzICOOgQtvh0IxJPK?=
+ =?us-ascii?Q?ARzKz7Nmrx4NLeSZweOqCVwuun/0ZL51YZT3Bsj7L1PfwHLgfUC4viW1q9Uy?=
+ =?us-ascii?Q?lYnqHJUlFQZuUYczLo+6bZf+MsekBJaJpsHPUYOqvDde8cSoGGYabe8La9fC?=
+ =?us-ascii?Q?T023N2VMm96ApCsWMjMgEGcKc3ptd1wm/LQxdb5p/MVcHj23z8hNjulNmC9P?=
+ =?us-ascii?Q?ooBBjdxYdORr7qJP0MK0gfxDAwMwC9sE/tbB7dFtaqvxg6yNpJXlBS3vtDZb?=
+ =?us-ascii?Q?z7qsr+0z06yxbwcnB3MfJFVPRpA36LxUV6Lha/YyE0fc9btLvIxNWoh2Ia15?=
+ =?us-ascii?Q?eC7ioZ2iT3xPAOKRGZ89gElW?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(7416014)(52116014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?o5Ebiap6YRnK+ar+f3WdmjAn3/DColZzijQEZBJrabjZJR6VghRpdpyszkTp?=
+ =?us-ascii?Q?AmMVty2QXRp8Q4A02MGnrQDm6QHvnryNW/iqRfRCNySVyQLtxu4KIegXBE93?=
+ =?us-ascii?Q?FOnV04vsEaE7N4U64TGyBq7UahwQ8PGcxIecyETt9mpfUoXSV/zPIK+H21dz?=
+ =?us-ascii?Q?V/Er5tU54aJuGp/+wfTPc5iZfjoqk6XBp6FNj79c84X2Dd/jhB2leYjXQS+9?=
+ =?us-ascii?Q?YSvCnED/VoeyY6WvhuiJ35HbfPQOxckaXmwImEDhWVGUvhoRZ2kMV0yMlhrq?=
+ =?us-ascii?Q?r6+rPbmm9F7U1gYecbJ7IuIFyaQPFRSKdslGH8CanF+ywHWT8lQibzUEFwg4?=
+ =?us-ascii?Q?qgzSbeH2TuzolxXMyN02+3Umkym/1VVeE7ejRujAN5qOwp7SHo1KeLJlVhU4?=
+ =?us-ascii?Q?5G6XoF8IH4hl7KuLKB2FIvTm+vfhYgccvEuLDL9YyABiwyR3ml7auxDAqUrp?=
+ =?us-ascii?Q?5EPUQ4MKApIeki8eaIh55pKTPm5bvozQZsDs4r3LLi+TeN+KP97fCxW9h/3s?=
+ =?us-ascii?Q?jflahVjU5t4bP/ezJSe0b1xiBEMK4trLJJaPs5NWW5Vj6pfRm/ZWrNJAwCPp?=
+ =?us-ascii?Q?l5KvY7Ur1bU/XaycCllWZRJxE74cRN95711abAk5SFaYoOuEVzHpLCp7bDvX?=
+ =?us-ascii?Q?xqqb8T0q2tX60bKIsgo1Ut+xEvbk+7zyvddvR51g0R87uO9py5qSJMjWguXF?=
+ =?us-ascii?Q?Mr8KLT3ve37l/w3mR54PnsotsLDDT+g1EBLj+Hk0dSlK/i/8f5t3BM73v2yR?=
+ =?us-ascii?Q?vyh4sI2tPJdjkjNViW7rRz8wIu9wPBMXo3lHN7xihfin6Bbo52l5fMIood5d?=
+ =?us-ascii?Q?I4vPgie7te+d75UMBYeW3w/nXby2Q2q6396xlXnxtHYrTZdiEHLGnHLooryd?=
+ =?us-ascii?Q?pCKa+AbenE+HAxBR2zBmr0u4JxXIbrRXsgBPeYZ++WHOj+ZCXQufbIVSGitU?=
+ =?us-ascii?Q?WrP8/xRpGNQVfuSlN3g6ydnGRrRCd+Jz/VVQFJCQpZzNFjvfirOoAmpIC9kb?=
+ =?us-ascii?Q?1tpvnH/z2ifUWRYQptI1xNm6C/lfgVnz0SMY8dieENO/6BKVjufxkcLhf5hx?=
+ =?us-ascii?Q?gcwd1r63hJHfvfLZXdgywDXrBLPMUu779fwkxzB3rPNXI8T0inBF9H+b0UrP?=
+ =?us-ascii?Q?ciC1Zorp5X/xEEdOTDucaYhBbEYZoA2QfDzkdW1yWJzK7TaZKwtksJeXXAbN?=
+ =?us-ascii?Q?j9yw9SLjfG/0K0PQFXCTHOSLipb/CCgFuzocojQjytm2v77rvWc9AIwfKfkU?=
+ =?us-ascii?Q?3onFdfKO0L10r3OsN/tcGumsnslIIErWu8A2ZQPf0czXugEdIFbgE/xkxWU5?=
+ =?us-ascii?Q?q1S8ptz1sWPjEGrH2gjCVG1veWrjBlOKmV/X52nwIs5l2hRf6OEP4AL0kOy6?=
+ =?us-ascii?Q?rLyOvx5Wm681IMZAq9yhv6eMrIvZlqMMsKwrPkq0OsEzlLLcccyzaVLFT0Kw?=
+ =?us-ascii?Q?IiFOOdknjrs+ymBCyUABiuyIuHp/Uo0h69ENwEMRwDDsPFyXd7/x7p66gcw+?=
+ =?us-ascii?Q?s5wgtgq6RbooBt0Qgs0k7DLb2qUWC07wJOUp5A1SKitegRC+pM/HiEQ7Nncr?=
+ =?us-ascii?Q?84AFMuUr8OEN2rSMqIiNqiOpaIvMmhwZAs7OXbDa?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 23adf39d-8884-4fad-2487-08dcf9ca9a5a
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2024 16:39:34.9601
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: g5wjKxNMCnV6mxjHmyBQTZDEgjhLDU4t/xtTucXkeIS/JfaJyJi/3fD2b+USULLgY8bmPow9zrXfTBeVAMvNyg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9487
 
-On 10/30/24 6:44 AM, MD Danish Anwar wrote:
-> Add k3-am642-evm-icssg1-disable.dtso overlay file that disables
-> icssg1-eth from Linux so that icssg peripherals can be used by
-> RTOS or some other OS running on R5 core.
-> 
-
-That was the point of putting icssg1-eth in its own overlay,
-if you don't want to use ICSSG1 for Ethernet, just don't apply
-k3-am642-evm-icssg1-dualemac.dtbo.
-
-Andrew
-
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+On Thu, Oct 31, 2024 at 10:35:54AM +0200, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>
+> This patch adds the dt-bindings for NXP S32G2/S32G3 SoCs RTC driver.
+>
+> Co-developed-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> Co-developed-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 > ---
->   arch/arm64/boot/dts/ti/Makefile               |  7 +--
->   .../dts/ti/k3-am642-evm-icssg1-disable.dtso   | 49 +++++++++++++++++++
->   2 files changed, 53 insertions(+), 3 deletions(-)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-disable.dtso
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 6bd06bd76b68..0fd95b7df5a8 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -76,6 +76,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-nand.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac-mii.dtbo
-> +dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-disable.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-pcie0-ep.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
-> @@ -235,8 +236,8 @@ k3-am62p5-sk-microtips-mf103hie-lcd2-dtbs := k3-am62p5-sk.dtb \
->   	k3-am62p5-sk-microtips-mf103hie-lcd2.dtbo
->   k3-am642-evm-icssg1-dualemac-dtbs := \
->   	k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac.dtbo
-> -k3-am642-evm-icssg1-dualemac-mii-dtbs := \
-> -	k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac-mii.dtbo
-> +k3-am642-evm-icssg1-disable-dtbs := \
-> +	k3-am642-evm.dtb k3-am642-evm-icssg1-disable.dtbo
->   k3-am642-evm-pcie0-ep-dtbs := \
->   	k3-am642-evm.dtb k3-am642-evm-pcie0-ep.dtbo
->   k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
-> @@ -323,7 +324,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
->   	k3-am62p5-sk-microtips-mf101hie-panel.dtb \
->   	k3-am62p5-sk-microtips-mf103hie-lcd2.dtb \
->   	k3-am642-evm-icssg1-dualemac.dtb \
-> -	k3-am642-evm-icssg1-dualemac-mii.dtb \
-> +	k3-am642-evm-icssg1-disable.dtb \
->   	k3-am642-evm-pcie0-ep.dtb \
->   	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
->   	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-disable.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-disable.dtso
+
+next time you can cc imx@lists.linux.dev
+
+>  .../devicetree/bindings/rtc/nxp,s32g-rtc.yaml | 99 +++++++++++++++++++
+>  1 file changed, 99 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml b/Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
 > new file mode 100644
-> index 000000000000..dc04e2999e97
+> index 000000000000..3694af883dc7
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-disable.dtso
-> @@ -0,0 +1,49 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +/**
-> + * DT overlay for enabling 2nd ICSSG1 port on AM642 EVM
-> + *
-> + * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
-> + */
+> +++ b/Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
+> @@ -0,0 +1,99 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/nxp,s32g-rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +/dts-v1/;
-> +/plugin/;
+> +title: NXP S32G2/S32G3 Real Time Clock (RTC)
 > +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include "k3-pinctrl.h"
+> +maintainers:
+> +  - Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> +  - Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
 > +
-> +&oc_sram {
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - nxp,s32g2-rtc
+> +      - items:
+> +          - const: nxp,s32g3-rtc
+> +          - const: nxp,s32g2-rtc
 > +
-> +	r5f0_0_sram: r5f0_0_sram@0 {
-> +		reg = <0x0 0x180000>;
-> +	};
-> +};
+> +  reg:
+> +    maxItems: 1
 > +
-> +&main_r5fss0_core0 {
-> +	sram = <&r5f0_0_sram>;
-> +};
+> +  interrupts:
+> +    maxItems: 1
 > +
-> +&cpsw_port2 {
-> +	status = "disabled";
-> +};
+> +  "#clock-cells":
+> +    const: 1
+
+Does your RTC is clock provider? why need #clock-cells
+
 > +
-> +&icssg0 {
-> +	status = "disabled";
-> +};
+> +  clocks:
+> +    items:
+> +      - description: ipg clock drives the access to the
+> +          RTC iomapped registers
 > +
-> +&icssg1 {
-> +	status = "disabled";
-> +};
+> +  clock-names:
+> +    items:
+> +      - const: ipg
 > +
-> +&ospi0 {
-> +	status = "disabled";
-> +};
+> +  assigned-clocks:
+> +    minItems: 1
+> +    items:
+> +      - description: Runtime clock source. It must be a clock
+> +            source for the RTC module. It will be disabled by hardware
+> +            during Standby/Suspend.
+> +      - description: Standby/Suspend clock source. It is optional
+> +            and can be used in case the RTC will continue ticking during
+> +            platform/system suspend. RTC hardware module contains a
+> +            hardware mux for clock source selection.
 > +
-> +&mdio_mux_1 {
-> +	status = "disabled";
-> +};
+> +  assigned-clock-parents:
+> +    description: List of phandles to each parent clock.
 > +
-> +&icssg1_eth {
-> +	status = "disabled";
-> +};
+> +  assigned-clock-rates:
+> +    description: List of frequencies for RTC clock sources.
+> +            RTC module contains 2 hardware divisors which can be
+> +            enabled or not. Hence, available frequencies are the following
+> +            parent_freq, parent_freq / 512, parent_freq / 32 or
+> +            parent_freq / (512 * 32)
+
+Needn't assigned-*
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - "#clock-cells"
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    rtc0: rtc@40060000 {
+
+needn't label
+
+> +        compatible = "nxp,s32g3-rtc",
+> +                   "nxp,s32g2-rtc";
+> +        reg = <0x40060000 0x1000>;
+> +        interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
+> +        #clock-cells = <1>;
+> +        clocks = <&clks 54>;
+> +        clock-names = "ipg";
+> +        /*
+> +         * Configuration of default parent clocks.
+> +         * 'assigned-clocks' 0-3 IDs are Runtime clock sources
+> +         * 4-7 IDs are Suspend/Standby clock sources.
+> +         */
+> +        assigned-clocks = <&rtc0 2>, <&rtc0 4>;
+> +        assigned-clock-parents = <&clks 56>, <&clks 55>;
+> +        /*
+> +         * Clock frequency can be divided by value
+> +         * 512 or 32 (or both) via hardware divisors.
+> +         * Below configuration:
+> +         * Runtime clock source: FIRC (51 MHz) / 512 (DIV512)
+> +         * Suspend/Standby clock source: SIRC (32 KHz)
+> +         */
+> +        assigned-clock-rates = <99609>, <32000>;
+> +    };
+> --
+> 2.45.2
+>
 
