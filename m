@@ -1,140 +1,100 @@
-Return-Path: <devicetree+bounces-118214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FE7C9B9611
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 17:59:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 149659B9625
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 18:00:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C030B1C21BDF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:59:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE5AA1F231E0
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 17:00:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E8CB1CCEF7;
-	Fri,  1 Nov 2024 16:58:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A5AC1CCB3A;
+	Fri,  1 Nov 2024 16:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nexus-software-ie.20230601.gappssmtp.com header.i=@nexus-software-ie.20230601.gappssmtp.com header.b="XxGOKzte"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cpzyazao"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 080731CCEC7
-	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 16:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E66B1A2643;
+	Fri,  1 Nov 2024 16:59:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730480297; cv=none; b=D+qKlmLENK7oSxCGFWYiMa8iBc2yyy5CTd0pNjFypgVr6pyvLhiSWZFh+uEZnPA1N1jOdizHECOH2JBvJaERRcnqYqFB2Pa9qcMHYdRiQhP1+dOUBlAb3bWRUObHSIx8i+gkuveFF3zhn7AHL2kP5JMuMxj5jCJwUbDTDGN//t0=
+	t=1730480388; cv=none; b=fikN+1FfRxd/UwEbYzBoY/U6oOo0Rz0JS9dSzO75HnpeAo7wHTZPyBnRYh4hXjsa69rU4RSf7xIiQMZFuwkhCG8mAHifELyROZ+2CHh46MHTwzJ15e1OYWhX8SRslmH22fjcLbmrIslV6ahICG7lbN+BP49SJO9m0XaewyvILRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730480297; c=relaxed/simple;
-	bh=5ua0i6SRNpuWEK/yWQUjFdR/CAmilD3VbEcQ5chLct0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TMkxKGHg1ZunkYqKIzJmVTlxeVzY05ILwVIXOPonXST8g59vXt97uDhS/xb8v0mxM2uXpDzNj2k5z+xvQj0fspEU30lgVBpavILVHeAV1y+GJMDzL5lE+h5GnG4Ro5cCNe1VKxmMDHOCfschvd60ZS0CQ2ZI0qmPDjpIyAy03JI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexus-software.ie; spf=none smtp.mailfrom=nexus-software.ie; dkim=pass (2048-bit key) header.d=nexus-software-ie.20230601.gappssmtp.com header.i=@nexus-software-ie.20230601.gappssmtp.com header.b=XxGOKzte; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexus-software.ie
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nexus-software.ie
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-37d518f9abcso1494164f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 09:58:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexus-software-ie.20230601.gappssmtp.com; s=20230601; t=1730480292; x=1731085092; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rZ42MofQarYX/wWDjy0bAGDnZUGwKJjh02fFI2gvDOk=;
-        b=XxGOKzte2GreuSasFfcz+SMQk67oNGk2j86i18F7r/haUAr6/C+oHLCoI6EjcFnR/B
-         7rfGVijVIxJN8SPIJ4hvdxKdt4jL/neBDznKJ+KsRyJux+SlLAgcHU+olmY9WZOxnXv9
-         ZvspF0ddh1BT3qGn1cqFdHzUGomxpzW0HGWgQevjoNOg+7jHRM/SAUHBmhfoN9NBOA+L
-         7qsOZyHCwuN5TS9fMnFFW8KiKI4IpFh3yqXcAbeyKjASOFr2lBFFLb6D+eMPrjkenGo6
-         Fn1krqGvRZ0SelJZuETD/p8A81ePRkpwb6/u5Nbgx5o4C7Kw9EQrRUsaAP0hymihokYg
-         jNfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730480292; x=1731085092;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rZ42MofQarYX/wWDjy0bAGDnZUGwKJjh02fFI2gvDOk=;
-        b=tNZTYcT+YCSUwUPnDrwIPv86FkGXMlEEPFegXeCd2uaUNjPSzQL+Emh+XSxmoKNKLG
-         Jp0FjOEL49xSmqD/0Zp/khDEVNv6Ki8nhnbuYJ2b2JuM3xbLaVCnuBSBwxwxx6Lj4bah
-         XIXlJoEgv/YVTyPbxRmYDy8rQxSCp3JhF6PcPiTXzUWziacfshaVvh1/N4HL5TioJrGj
-         3OpftzNHp3jIQiCPUHxOuhn8sPseVLGz7J3YURVPwk253gBtoCrFCH+NALaDXPrVCVTo
-         J4bKJvdiG9gKFbo/JNfUgZsibblUghdl1VVqfbaCcXf7gjKf9/Pf3rXkXwQVd0Rqa6oZ
-         mZvw==
-X-Forwarded-Encrypted: i=1; AJvYcCUBxRXL8XUKH9VI8bZcqiOdQZ9/ev2OS3x9aieAsvw2V4cL0Yf4n5cT5kNSEtmMvr9Vlt9rWR07iBg4@vger.kernel.org
-X-Gm-Message-State: AOJu0YykfCQgiZ0YdgZNfAVc3qKwafdlB6oIIvveKjyh58nkdSo08tDV
-	0VpzGnivAA4r2lBr+iQPZBAlFFuTIeYr6T13q86zjdS/zYjWycm5iu7Ny6OBRR0=
-X-Google-Smtp-Source: AGHT+IHAa9n0wqCDn1QohNNd+/WglbGtAr9r8mfa5nPglSkmQfcoBT7474Lu9a4Ebh5JwKugHCwsiA==
-X-Received: by 2002:adf:f18c:0:b0:374:c621:3d67 with SMTP id ffacd0b85a97d-38061137930mr17850679f8f.24.1730480292095;
-        Fri, 01 Nov 2024 09:58:12 -0700 (PDT)
-Received: from [192.168.0.35] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c113e771sm5706776f8f.81.2024.11.01.09.58.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Nov 2024 09:58:11 -0700 (PDT)
-Message-ID: <0a6ee450-6582-4d00-aa8d-9a5c0f2547a5@nexus-software.ie>
-Date: Fri, 1 Nov 2024 16:58:09 +0000
+	s=arc-20240116; t=1730480388; c=relaxed/simple;
+	bh=uW1XYYinselZ61VFECQL01iyBgcUhCFlCa/9NjOdWjQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Hex4xh8ocWr5xyE4ckUYnZ67S4ejn+E38dr9msf7l5AlPIi1ODHP2xJCUuErC1Iq3kCL0k7qwoZQOx4oSoQQnjjXpXr/hvqNmUkTmpFH34PC6FYkNtqa3FZbLzDIgzvXkPTW9eN/fbWfZq/rmFbsmC3ZcRVPWSjSB78RNS2OMdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cpzyazao; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20C3AC4CECD;
+	Fri,  1 Nov 2024 16:59:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730480387;
+	bh=uW1XYYinselZ61VFECQL01iyBgcUhCFlCa/9NjOdWjQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=CpzyazaoDPxbjWgFHiaoFYuOzrpFB3JIgpdSV74pfD+wHgQRk/j7pyqUZNdAZEoIE
+	 IOiP9Che+SDxevNLwuxDpw86Ip0k7DU15t2zh7VAZAg+epO51Mnb8YvI5+827n9O+R
+	 wrM1DoAq50T0GQVhvVKR3gM7bE3zZnqyCx/PwbiNitxKa8Zz+eZCWikAT5ZgbhpqKQ
+	 2tUIVZhcf4m3SLDU5eMNVCPmliSe6a3JC09Jy3aAwqYJtkwqGB4Ug1XO+PWztRwYqs
+	 1/t/ETwfns3QVdkHXesgAchpW3bXLgvtbil7nNlymIQmFqiNipmzlgs58weR7caJzu
+	 2fouvGHGxL8HQ==
+Date: Fri, 1 Nov 2024 16:59:40 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Andy Shevchenko
+ <andy@kernel.org>
+Subject: Re: [PATCH v4 0/3] iio: magnetometer: add support for the Allegro
+ MicroSystems ALS31300 3-D Linear Hall Effect Sensor
+Message-ID: <20241101165940.5bc37b69@jic23-huawei>
+In-Reply-To: <20241030-topic-input-upstream-als31300-v4-0-494297c9e50a@linaro.org>
+References: <20241030-topic-input-upstream-als31300-v4-0-494297c9e50a@linaro.org>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] media: camss: vfe: implement pm domain ops for v4.1
-To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20241101-camss-msm8953-v1-0-4012559fcbc2@mainlining.org>
- <20241101-camss-msm8953-v1-1-4012559fcbc2@mainlining.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <pure.logic@nexus-software.ie>
-In-Reply-To: <20241101-camss-msm8953-v1-1-4012559fcbc2@mainlining.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 01/11/2024 13:47, Barnabás Czémán wrote:
-> MSM8917 and MSM8953 has multiple VFE power domains they
-> have to be power on/off explicitly.
+On Wed, 30 Oct 2024 16:30:21 +0100
+Neil Armstrong <neil.armstrong@linaro.org> wrote:
 
-"have multiple VFE power-domains"
-
+> The Allegro MicroSystems ALS31300 is a 3-D Linear Hall Effect Sensor
+> mainly used in 3D sensing applications for head-on motion.
 > 
-> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
-> ---
->   drivers/media/platform/qcom/camss/camss-vfe-4-1.c | 10 ++++++++--
->   1 file changed, 8 insertions(+), 2 deletions(-)
+> The device is configured over I2C, and as part of the Sensor
+> data the temperature core is also provided.
 > 
-> diff --git a/drivers/media/platform/qcom/camss/camss-vfe-4-1.c b/drivers/media/platform/qcom/camss/camss-vfe-4-1.c
-> index 1bd3a6ef1d04d8610fd1bee0c22cdbc147c98de5..9a9007c3ff33b40f4c88cd30283f0ad42f8e8d00 100644
-> --- a/drivers/media/platform/qcom/camss/camss-vfe-4-1.c
-> +++ b/drivers/media/platform/qcom/camss/camss-vfe-4-1.c
-> @@ -938,7 +938,10 @@ static irqreturn_t vfe_isr(int irq, void *dev)
->    */
->   static void vfe_4_1_pm_domain_off(struct vfe_device *vfe)
->   {
-> -	/* nop */
-> +	if (!vfe->res->has_pd)
-> +		return;
-> +
-> +	vfe_pm_domain_off(vfe);
->   }
->   
->   /*
-> @@ -947,7 +950,10 @@ static void vfe_4_1_pm_domain_off(struct vfe_device *vfe)
->    */
->   static int vfe_4_1_pm_domain_on(struct vfe_device *vfe)
->   {
-> -	return 0;
-> +	if (!vfe->res->has_pd)
-> +		return 0;
-> +
-> +	return vfe_pm_domain_on(vfe);
->   }
->   
->   static const struct vfe_hw_ops_gen1 vfe_ops_gen1_4_1 = {
+> While the device provides an IRQ gpio, it depends on a configuration
+> programmed into the internal EEPROM, thus only the default mode
+> is supported and buffered input via trigger is also supported
+> to allow streaming values with the same sensing timestamp.
 > 
+> The device can be configured with different sensitivities in factory,
+> but the sensitivity value used to calculate value into the Gauss
+> unit is not available from registers, thus the sensitivity is
+> provided by the compatible/device-id string which is based
+> on the part number as described in the datasheet page 2.
+>     
+> The datasheet is available on the product website at [1].
+> 
+> [1] https://www.allegromicro.com/en/products/sense/linear-and-angular-position/linear-position-sensor-ics/als31300
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Hi Neil,
 
-Otherwise LGTM, once you fix your commit log add.
+Applied to the togreg branch of iio.git but initially pushed out as testing
+to let 0-day have a little poke at it.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Thanks,
+
+Jonathan
 
