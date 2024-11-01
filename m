@@ -1,149 +1,169 @@
-Return-Path: <devicetree+bounces-118277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE8B89B9A46
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 22:36:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 037AD9B9A62
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 22:50:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D8C5283A32
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 21:36:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1A6D2817F1
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 21:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EE951E2848;
-	Fri,  1 Nov 2024 21:36:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B28861D0947;
+	Fri,  1 Nov 2024 21:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="kJFGcK7P"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YVjOECtG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38C0416F8EB;
-	Fri,  1 Nov 2024 21:36:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730496988; cv=pass; b=fFQIT8wBauQc9z8si+/6EdmfYpa4di/nQo9tvUtYdJXiqfujxAvUDpmxfiTesk4NFJIqZuog0pXlq7vHF4W77QD3E8u+m7OLOqFXQSxuZh9LghbYIxzRTSF3iWsa8RkDvho+WwPa+M3CdHrpvZ5Ea5n/T2o12gxuvsGTqnPgg2o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730496988; c=relaxed/simple;
-	bh=dUYHsEZiYqbUgRMNwFN/xI61QBnMhgl08f0EFMD2ha8=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDDC725634;
+	Fri,  1 Nov 2024 21:48:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730497689; cv=none; b=bgZZ9JUX9topRuHNGyPDTOi57Yw/IqFKVHJBCFikUWg+f8dVcXv/7/kJeUkxeRKDf23yQVy43pSNwAv4lEDqJkt6ebmLRPaRGwONFuPpbsZW7+sfCdaToCAbYhmy5ahK3/AFWa42M3H64wusVm9XQps0gCoeRCHrivz1fo1u6h0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730497689; c=relaxed/simple;
+	bh=Dwdq9rHIpOh+78kD6lWNmELuBrWSfYZSR/MPnUOKJUA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s2SWHcnLdE4TH98I6+wXqRMrrk+CmYlFmd6qJScUziGqVc2W5J0py+taoX0zcpY33pR4KUQveVJG4g9wZrnC8lJUWQV/PVxmds8/IRJu8yTfK++NLtyfTZrUHaQx4w7KZ4caGC2UxNabIpCz+TaJ2YhrajzgagyDJ/AVb9lUQZs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=kJFGcK7P; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1730496962; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=c0/oSnW3qgXohyX2ioSOL6MsthONf456o2MyAC90ucdp/0GIaV0mDBTaIpySDqr9v3B0qT0UtEDpu6TAlhOQwIaSh9j780dxyYkxDrE1EG1y7MHQ7YGMRIo8UVk+lNPCtbCzboz/SzODmDilpzSLil9N2Oqo7tor286GjYbn3Ro=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1730496962; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=dUYHsEZiYqbUgRMNwFN/xI61QBnMhgl08f0EFMD2ha8=; 
-	b=bDR0qiYaIPIRJI79NFUAcvJaXK8Nh8Pnkm1IDgHi+ogZHygWINdPVOUa14mRZMhhCcARQI7x9oq2PzI08ckSlUUuExnFJkLVdPvxpt523SyfU5SH5O1nXBpf6iAZpDn6U3yQFPJ9GzKiOAhX9e6QxkKcBm3RxexYCFSxtzz+4ZE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1730496962;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=dUYHsEZiYqbUgRMNwFN/xI61QBnMhgl08f0EFMD2ha8=;
-	b=kJFGcK7PraYbPv6+lH4VJtSEtn0RmXlwv65YniGVukJFQJjQ7NIEsbipvdd+v4bH
-	hTZivSykCSQyzDNBJMKc/7vLrVfrEWnStHsq89EFpVLfRwNGuNJ4yibM2ddoLYDMp81
-	xjxcELlEfOhkH2iKkG4LLn1BgBQZu9p4vggHiyTc=
-Received: by mx.zohomail.com with SMTPS id 1730496960315327.07503190696764;
-	Fri, 1 Nov 2024 14:36:00 -0700 (PDT)
-Received: by mercury (Postfix, from userid 1000)
-	id 95B8010604B0; Fri, 01 Nov 2024 22:35:53 +0100 (CET)
-Date: Fri, 1 Nov 2024 22:35:53 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Chen-Yu Tsai <wens@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Elaine Zhang <zhangqing@rock-chips.com>, 
-	=?utf-8?B?QWRyacOhbiBNYXJ0w61uZXo=?= Larumbe <adrian.larumbe@collabora.com>, Boris Brezillon <boris.brezillon@collabora.com>, 
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH v3 0/7] Fix RK3588 GPU domain
-Message-ID: <avq5v5c23croz7fydzmmuj7zmcfp37ehgrt3gl5csyam5lbx2g@id4prnbhv4ot>
-References: <20241022154508.63563-1-sebastian.reichel@collabora.com>
- <CAPDyKFoAv1jeQitHmTMhvwG9vGzN-vLby0fPzkX1E6+-Qe2dog@mail.gmail.com>
- <CAPDyKFp=sRLVBhW2aK87pYHVGi_6gNw=e3j3AGMnEWP2SVYFpw@mail.gmail.com>
- <9b4c9b61-a2be-465e-a4d9-034951fc862f@sirena.org.uk>
- <CAGb2v65ahUB_Q+HPFV6B-UqWCbCNLdGz58BGo9iHRhVyf1ruZA@mail.gmail.com>
- <27yrptpmhdbugmrgxaxllnbllv3adu3tzgl7e26b3flsvhlf3g@nfqn2fvmktmc>
- <cbe94b51-09f3-44ca-b2f1-f8da7ffdf05a@sirena.org.uk>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NFDhQAfnembHhzhqhBFdWJdnj5cE6C2Y76VybbrHogko2NPd/kIrv2rLNl2dq89MWPtLCcW+bR6q9pztsD8v5VwG3zAoQzTu0ot+kSkumSwdElXXMDjuiJDSJtn11JhkB5FcKdmPbLEY1NFDHrzjV12lV4wj/SWObV8yxNmw8JI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YVjOECtG; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1730497688; x=1762033688;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Dwdq9rHIpOh+78kD6lWNmELuBrWSfYZSR/MPnUOKJUA=;
+  b=YVjOECtGaaiXmxZJkkCRA2bKy++UCudc4u1YiEjD7dA49LdPRKLrGP5c
+   KQKw+c/dgTeVjqh9Ynhc6GPJdqMHEvObgiEF/xgGyml1X90vtEwQTk4nj
+   Mpln/hXGU1q0NZIWRBiOrhRSOVddRnm5JS4pIiJpC599fWJvhy9Uk9VHw
+   3ZdephmLCoivghRBrhRKzC/xkus3lX8yThGzAWF/lz/a9DaQV9lv0/SVk
+   4Ayz1f6kBMx3A/tCR30gefTH6KH0vP8ju7ZlfeArxLF2UFAYJBfq3Py08
+   V8mqhth1X3Uy6n8aKv3GpNw9bEIOoGigItJDa5gnFVDJuZPSu2v5wX/W1
+   Q==;
+X-CSE-ConnectionGUID: gfGt6b4ZReSl1CHfVo9GfQ==
+X-CSE-MsgGUID: hKh4ICcBQ/aS+N8hq48qNw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30229825"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="30229825"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Nov 2024 14:48:07 -0700
+X-CSE-ConnectionGUID: 9w/56nX/RnCHrAdIl5pDBA==
+X-CSE-MsgGUID: yEtcosP4Tc+1RCMNMWkXcA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,251,1725346800"; 
+   d="scan'208";a="82613540"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 01 Nov 2024 14:48:01 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t6zUt-000i55-08;
+	Fri, 01 Nov 2024 21:47:59 +0000
+Date: Sat, 2 Nov 2024 05:47:53 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
+	Larisa Grigore <larisa.grigore@nxp.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>, Lee Jones <lee@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v5 4/7] pinctrl: s32: convert the driver into an mfd cell
+Message-ID: <202411020514.qOUrieWa-lkp@intel.com>
+References: <20241101080614.1070819-5-andrei.stefanescu@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qwagicrogdfbufct"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cbe94b51-09f3-44ca-b2f1-f8da7ffdf05a@sirena.org.uk>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/230.373.91
-X-ZohoMailClient: External
+In-Reply-To: <20241101080614.1070819-5-andrei.stefanescu@oss.nxp.com>
+
+Hi Andrei,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on linusw-pinctrl/devel]
+[also build test WARNING on linusw-pinctrl/for-next lee-mfd/for-mfd-next shawnguo/for-next linus/master v6.12-rc5 next-20241101]
+[cannot apply to lee-mfd/for-mfd-fixes]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Andrei-Stefanescu/dt-bindings-mfd-add-support-for-the-NXP-SIUL2-module/20241101-160940
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
+patch link:    https://lore.kernel.org/r/20241101080614.1070819-5-andrei.stefanescu%40oss.nxp.com
+patch subject: [PATCH v5 4/7] pinctrl: s32: convert the driver into an mfd cell
+config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20241102/202411020514.qOUrieWa-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 639a7ac648f1e50ccd2556e17d401c04f9cce625)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241102/202411020514.qOUrieWa-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411020514.qOUrieWa-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/pinctrl/nxp/pinctrl-s32cc.c:103: warning: Function parameter or struct member 'gpio_configs_lock' not described in 's32_pinctrl'
+>> drivers/pinctrl/nxp/pinctrl-s32cc.c:103: warning: Excess struct member 'gpiop_configs_lock' description in 's32_pinctrl'
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for MODVERSIONS
+   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
+   Selected by [y]:
+   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
 
 
---qwagicrogdfbufct
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 0/7] Fix RK3588 GPU domain
-MIME-Version: 1.0
+vim +103 drivers/pinctrl/nxp/pinctrl-s32cc.c
 
-Hi,
+fd84aaa8173d3f Chester Lin       2023-02-20   82  
+157a51f7e5e81e Andrei Stefanescu 2024-11-01   83  /**
+157a51f7e5e81e Andrei Stefanescu 2024-11-01   84   * struct s32_pinctrl - private driver data
+fd84aaa8173d3f Chester Lin       2023-02-20   85   * @dev: a pointer back to containing device
+fd84aaa8173d3f Chester Lin       2023-02-20   86   * @pctl: a pointer to the pinctrl device structure
+fd84aaa8173d3f Chester Lin       2023-02-20   87   * @regions: reserved memory regions with start/end pin
+fd84aaa8173d3f Chester Lin       2023-02-20   88   * @info: structure containing information about the pin
+fd84aaa8173d3f Chester Lin       2023-02-20   89   * @gpio_configs: Saved configurations for GPIO pins
+fd84aaa8173d3f Chester Lin       2023-02-20   90   * @gpiop_configs_lock: lock for the `gpio_configs` list
+157a51f7e5e81e Andrei Stefanescu 2024-11-01   91   * @saved_context: Configuration saved over system sleep
+fd84aaa8173d3f Chester Lin       2023-02-20   92   */
+fd84aaa8173d3f Chester Lin       2023-02-20   93  struct s32_pinctrl {
+fd84aaa8173d3f Chester Lin       2023-02-20   94  	struct device *dev;
+fd84aaa8173d3f Chester Lin       2023-02-20   95  	struct pinctrl_dev *pctl;
+fd84aaa8173d3f Chester Lin       2023-02-20   96  	struct s32_pinctrl_mem_region *regions;
+fd84aaa8173d3f Chester Lin       2023-02-20   97  	struct s32_pinctrl_soc_info *info;
+fd84aaa8173d3f Chester Lin       2023-02-20   98  	struct list_head gpio_configs;
+fd84aaa8173d3f Chester Lin       2023-02-20   99  	spinlock_t gpio_configs_lock;
+fd84aaa8173d3f Chester Lin       2023-02-20  100  #ifdef CONFIG_PM_SLEEP
+fd84aaa8173d3f Chester Lin       2023-02-20  101  	struct s32_pinctrl_context saved_context;
+fd84aaa8173d3f Chester Lin       2023-02-20  102  #endif
+fd84aaa8173d3f Chester Lin       2023-02-20 @103  };
+fd84aaa8173d3f Chester Lin       2023-02-20  104  
 
-On Fri, Nov 01, 2024 at 07:22:28PM +0000, Mark Brown wrote:
-> On Fri, Nov 01, 2024 at 08:04:52PM +0100, Sebastian Reichel wrote:
-> > On Fri, Nov 01, 2024 at 10:41:14PM +0800, Chen-Yu Tsai wrote:
->=20
-> > > There's still the issue of backwards compatibility with older device
-> > > trees that are missing said supply though.
->=20
-> > Exactly :)
->=20
-> > As far as I can see the same misuse potential also exists for the
-> > plain devm_regulator_get() version.
->=20
-> You'll get warnings but I'm not sure that's such a huge issue?
-
-I see that as a feature and not as an issue. Obviously the
-dependency should be properly described in DT. When we upstreamed
-GPU support for RK3588 we did not mark the GPU regulator as always-on
-[*] and that has been copied to all other upstreamed RK3588 board DTs.
-This means all of them are buggy now. Getting a warning might help
-people to understand what is going on. In any case I fixed up every
-in-tree user as part of this series.
-
-[*] Older Rockchip platforms (which are not touched by this series)
-and downstream RK3588 have the GPU regulator marked as always-on.
-
-Greetings,
-
--- Sebastian
-
---qwagicrogdfbufct
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmclSbYACgkQ2O7X88g7
-+prITQ/+Lo2bN91GtZH1sC9wK852DhkaHZ3XYvltKURPIJZu7p2GuqGeFZw+mUWr
-PIoHHiVAfjOI+I2Ycvg5cuvXVaTaDV1ATBiJjaKN/qWH7fgq0Q3iQgNi4ArU3KS8
-6v6NBCzzUiWslu057EeEIvq3KeH+Q7OSxl3IUWPSJS6NvelgecvneNi1j9KCwq3h
-RVl3IuumWYLfFZ4uW5ft/+dy3GNCv6HdlFmLvcGFupZMqpXFv9yOvpZGl83YyPv5
-amSxtr++aKMi7h7kryjXHySD7BxR90JL+fPHXMGvxbL8ayKgPVyjM1kfFVhmcYt4
-yKRAc/G5Y6TY2d0bshHDRfpuVL4/mv8Nzbz4mxai1+KvLnEAWi1A6845dzKje1Ar
-m0CEj0WpiMgffPw/E088YvwNMdntMrLB/okNn+EjMQlecz332dNFDlj/KvXB5+sk
-8hwW8MjOK8ALlS9RcVS/s3CzD3dcgTo+5MOGA2i2WqFEwORDvjDmzltwA0Pj5Pl3
-Pqy+0T/scBUtdrjGoeTxO4iGZSn49TFjEMO92DAjnyt9MUq7Q7aCUM1qPCtbE1fe
-9ukZF7jBz6DhJ4ahNv9Uk8uw1KcwPa7I0jxRAscacZBvBWwb0D9nGF33vY4h1Ivc
-dvz68qw0uirqexV2G6aczQ5FoCY3qbZ71NX8MWUWY0ykK5do+cc=
-=9b8r
------END PGP SIGNATURE-----
-
---qwagicrogdfbufct--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
