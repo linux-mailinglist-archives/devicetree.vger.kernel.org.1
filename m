@@ -1,184 +1,113 @@
-Return-Path: <devicetree+bounces-118195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EA119B94E4
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 17:05:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23CEC9B94F4
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 17:08:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B79CB282E45
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:05:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB9B8284EF5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:08:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38B221B4F2D;
-	Fri,  1 Nov 2024 16:05:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658831C82F3;
+	Fri,  1 Nov 2024 16:08:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mDrsVhLf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="igi+83t8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1658181ACA;
-	Fri,  1 Nov 2024 16:05:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C1F13D893;
+	Fri,  1 Nov 2024 16:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730477123; cv=none; b=muvny47GlmuyiXtYdy3d8UwhyxGinAx1XB0JDSJlNbG2SkF9Q2Xdv3hk3DOksevwncIGmkNzsBXYJr88uixNvnxQwsU3o+wy5QL6+O1kIgvCuwcLALwRSgwrsExTyBmjkfASN96+bymCFI2eV3BqBRyxnQZLlZSQDrfn/yULDoY=
+	t=1730477306; cv=none; b=S6DpmgBC+dz9JBfK8kX2gjiB1z5w5oOHYo7zBA8q0EsRh80/gyJuZVtQYK+wMFrGtAaCvAbQqe/GJfM3kBMCmW5V01TYhzJXR5X/GWWcr9RqpbrhpQuOWs0b9DujGzVzFiX8RnG7OS8SiuyrQu3xAmV5d5EUPOLfsixr4R/G9Fk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730477123; c=relaxed/simple;
-	bh=Uu4MQlnjm2E1L/aU+HDZPVxnrRXgoclKUmjZt66t2L8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BgR/N61VW7yDD8GT+jVmKa6BCeQp5BzJE/Lrue9LAuRe01EqhFfHN/p9HVql9dJOkhPPrj/FUFL1uBmIhNUff02iOEYhfwXspMCZFlulYIsex9S8gQqK0FTxyCGuHobKNl4ZD3Ba8qyN5GPAFtO6j7snlVOsl9zXxq/Ym1ClDSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mDrsVhLf; arc=none smtp.client-ip=209.85.166.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-83ac05206f6so79593539f.2;
-        Fri, 01 Nov 2024 09:05:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730477119; x=1731081919; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kuGYsDq/8KVBVCrawJNRaHmxsjuDcoTms3F6ILMG2Nc=;
-        b=mDrsVhLf73MVbFsomloow6WiARQGNgy4xV2Dx9Tbwrh0gaU205XYHeKb/mZ4zOORq9
-         e6M0P901ft9yp/Tr+QVb9GwayB9boBpF0N/ZzxaRZkoLKCK/DcCrnnzXFbnSAA3pvSfz
-         vck4alBSX/FLgMEE6js+4FdeIsM8BkTWY6yMBS3MlkkIVrU+FjZIczD6Er10il11o4Bj
-         BOE5Iy6tkFvvvcmmCDghhkgUNAaZj811Pfja/2pkXwhxWXJDb0i/Uqo+fY/kCnaZFi57
-         lvP8vRvt2DwZImi9gDB43p29C05HJpd1+WGQCfnoKhObK4pQdubb+uKqJzQ6P5us6/Kj
-         t5Pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730477119; x=1731081919;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kuGYsDq/8KVBVCrawJNRaHmxsjuDcoTms3F6ILMG2Nc=;
-        b=PxRVtaFmRp6Ic5RvwWoOv11xotL0teF5nBxslOHYMGGuN++FNg23PF26rn8y6v1jai
-         X3dXC7gA61Uq7znlckOtkwWY8Sdo4cVD6TVmeS8DS/ElB3Od+9f3fOOLrKvxMgV9keJP
-         nVtTwQDPNoNu0+8eDEh83loFCNskwPnCXxbvOcHCDkmJUKA3fNfOk3CchgQi9pG+FTjk
-         o7BlTig+M3YZRitNmmKFeG+qyzqo/potyRJMqKy83tRZZTHt47bgkPi0OvbxdlHqUCc7
-         ieEwJcZaX6+hiTtjno9i2KwoAX18YNPgNrCQTJesS6E4nS0DnPrBcAOJxJo4QLWWEYZJ
-         2zHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUHKpwdmGPXgTmg/nV4GjPYwQYmOXcmSUHGIJc9ue7LtnH5BfmtWrju2tDekRhpAH6Q9GYAj0dUmxsLcHEc@vger.kernel.org, AJvYcCV9j2UKMngL4xpPKqlLpeiA9dCOFzFG7cvFb9IkAlpkHX1gtyccSvWvw7o5tE1cKedK5mjb61+ZjC41RBs1Cg==@vger.kernel.org, AJvYcCVMpaK2NAtJohRC6Zaa8pX53pa03CvMp3bJMaW0SFzv+/HtAuE0EpHLFF6Q7X2IfTiRksUQ3O+e5KWJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxulpxtwfWASBbgm+WHzZTqDv6VvTCWntVWEFwSL+V/j1GyJIwO
-	8TyqkP0P+7U/XaW2t+9sghE1uNcbRctoF0K+8ZYHfeq1Qv5OWqJZlVW2ZYnooGvpLuVb+Na9WGI
-	+KiJXaaDZ5drnGkMRnQmy0zsDpjo=
-X-Google-Smtp-Source: AGHT+IHONrdDV4LzejxnIZF3enutVxBdz/iPFoAD8iZdgn5tMyF+owzTrNCgAzQzlf79XfKrpVjQbV7QD4AiQKQyJQk=
-X-Received: by 2002:a05:6e02:1645:b0:3a5:e250:bba1 with SMTP id
- e9e14a558f8ab-3a61752ae86mr81367985ab.18.1730477118991; Fri, 01 Nov 2024
- 09:05:18 -0700 (PDT)
+	s=arc-20240116; t=1730477306; c=relaxed/simple;
+	bh=z/zU3VAMR7o1s5ellyeBMQGSOHuJK6e1Il8p5hmq1A8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XQT6ew55qEWwcnC+gSmA+eXTrHE8Pnmj4dn0tjn5PzWd6JDOpNfpFel4hqQlo5MAIk0ZsSEwD8Bvd6YIeZOMoiRSc+fF+aGNx+EJziJrJ3tUyJ51NRnWCu3j9aJIJANQFyptxVMI94K5aD5m6/QGSUABoyAjAZJkyD1VC4BwmY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=igi+83t8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DB14C4CECD;
+	Fri,  1 Nov 2024 16:08:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730477305;
+	bh=z/zU3VAMR7o1s5ellyeBMQGSOHuJK6e1Il8p5hmq1A8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=igi+83t82Hxt0inVEK7BtwfHMIYxT7T1W/IF8Lvn318KNmubbGWJJ070eXK7h+SPM
+	 yQSd01WFJ6aPtEcz65508SDUNran5bN8aPnIxXn2SFiDrMtFrpBUJYagZ4KzgVj3jh
+	 7Lls0s+1Ih5eZ4rn9zLCeIsUgUR/opOa9sP7r1D/ubbn7O5fZ6oaDBaWvc96uSZ1wR
+	 UY3MG11aCzlzeBhawuAswUYPM2fT58m4IMaYxKkNZAxEZdTl/cYZ7cnx2yrq0wgmIe
+	 P+CvxUvbmmMqES7bZu/YzvkJnLlKsYWre7ATT8FGCzcWFAXWY5j/2VAtF6sIAg1Ap9
+	 Wf3b/tyZUslAg==
+Date: Fri, 1 Nov 2024 16:08:20 +0000
+From: Mark Brown <broonie@kernel.org>
+To: j@jannau.net
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] spi: apple: Add driver for Apple SPI controller
+Message-ID: <e3008c6b-ba71-46cf-810b-053dbafe2cfb@sirena.org.uk>
+References: <20241101-asahi-spi-v2-0-763a8a84d834@jannau.net>
+ <20241101-asahi-spi-v2-2-763a8a84d834@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241025-b4-linux-next-24-10-25-camss-dts-fixups-v1-0-cdff2f1a5792@linaro.org>
- <20241025-b4-linux-next-24-10-25-camss-dts-fixups-v1-6-cdff2f1a5792@linaro.org>
- <CAF6AEGu_qJYV3TnprJsqsWV_GoLhiBFQ8LNwfYDjczDparvZCA@mail.gmail.com> <173047431366.2974136.175546053701391124@ping.linuxembedded.co.uk>
-In-Reply-To: <173047431366.2974136.175546053701391124@ping.linuxembedded.co.uk>
-From: Rob Clark <robdclark@gmail.com>
-Date: Fri, 1 Nov 2024 09:05:04 -0700
-Message-ID: <CAF6AEGu_vmR1N9C=1BQ21kk4w-tz6n3j-Sv14RoqbkxAeNUsvw@mail.gmail.com>
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: sdm845-db845c-navigation-mezzanine:
- Add cma heap for libcamera softisp support
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Depeng Shao <quic_depengs@quicinc.com>, Vikram Sharma <quic_vikramsa@quicinc.com>, 
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vxQmEEN76lEDPmLk"
+Content-Disposition: inline
+In-Reply-To: <20241101-asahi-spi-v2-2-763a8a84d834@jannau.net>
+X-Cookie: We read to say that we have read.
 
-On Fri, Nov 1, 2024 at 8:18=E2=80=AFAM Kieran Bingham
-<kieran.bingham@ideasonboard.com> wrote:
->
-> +Cc Laurent
->
-> Quoting Rob Clark (2024-11-01 12:33:44)
-> > On Fri, Oct 25, 2024 at 8:49=E2=80=AFAM Bryan O'Donoghue
-> > <bryan.odonoghue@linaro.org> wrote:
-> > >
-> > > libcamera softisp requires a linux,cma heap export in order to suppor=
-t
-> > > user-space debayering, 3a and export to other system components such =
-as
-> > > pipewire, Firefox/Chromium - Hangouts, Zoom etc.
-> >
-> > AFAIU libcamera could use udmabuf, etc, and there is no hw requirement
-> > for CMA.  So it doesn't seem we should be adding this to dt.  And I'd
-> > really prefer that we not be using CMA just for lolz.
->
-> I agree here. Otherwise this theoretically locks this memory to the pool
-> 'forever'. It's not something we should define in device tree.
->
-> udmabuf provides a means to get memfd allocated memory which is not
-> physically contiguous - but /is/ managed by a dmabuf handle.
->
-> Presently with SoftISP being CPU only - physically contiguous memory is
-> not required.
->
-> Bryan, will this still be true when you have a GPU based ISP ? Will that
-> require physically contiguous memory ? Or will the mapping into the GPU
-> handle any required translations?
 
-GPU does not require phys contiguous.  OTOH it may/will impose some
-layout constraints.
+--vxQmEEN76lEDPmLk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-I'm kinda leaning towards teaching gbm to allocate YUV plus add a
-GBO_BO_USE_CPU usage bit if softisp also needs CPU access.  (Modern
-adreno can do cached-coherent buffers, at some small performance cost,
-so that CPU access doesn't have to fall off a cliff.)  But that
-doesn't exist yet.
+On Fri, Nov 01, 2024 at 03:25:04PM +0100, Janne Grunau via B4 Relay wrote:
 
-BR,
--R
+> transfer, most of which we do not use right now. Hardware CS control
+> is available, but we haven't found a way to make it stay low across
+> multiple logical transfers, so we just use software CS control for now.
 
->
-> --
-> Kieran
->
->
-> >
-> > BR,
-> > -R
-> >
-> > > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> > > ---
-> > >  .../boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso     | 11 +=
-++++++++++
-> > >  1 file changed, 11 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzan=
-ine.dtso b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
-> > > index d62a20f018e7a7e1c7e77f0c927c2d9fe7ae8509..c8507afcd1e0d1f9b14b6=
-e4edcbc646032e7b6c9 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts=
-o
-> > > +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts=
-o
-> > > @@ -9,6 +9,17 @@
-> > >  #include <dt-bindings/clock/qcom,camcc-sdm845.h>
-> > >  #include <dt-bindings/gpio/gpio.h>
-> > >
-> > > +/ {
-> > > +       reserved-memory {
-> > > +               linux,cma {
-> > > +                       compatible =3D "shared-dma-pool";
-> > > +                       size =3D <0x0 0x8000000>;
-> > > +                       reusable;
-> > > +                       linux,cma-default;
-> > > +               };
-> > > +       };
-> > > +};
-> > > +
-> > >  &camss {
-> > >         vdda-phy-supply =3D <&vreg_l1a_0p875>;
-> > >         vdda-pll-supply =3D <&vreg_l26a_1p2>;
-> > >
-> > > --
-> > > 2.47.0
-> > >
-> > >
+It is extremely common for hardware CS control to not support multiple
+transfers, I wouldn't be surprised if it's simply not possible.  We
+could potentially use it with compatible messages it seems dubious that
+it'd be worth the time/effort of checking and using it only some of the
+time.
+
+> +++ b/drivers/spi/spi-apple.c
+> @@ -0,0 +1,531 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Apple SoC SPI device driver
+> + *
+
+Please make the entire comment block a C++ one so things look more
+intentional.
+
+--vxQmEEN76lEDPmLk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmck/PMACgkQJNaLcl1U
+h9BaDQgAgY0Tgn8A8AUWpa6rhj7aN09cctz9vhkmDJR8/ez7hwonJ4BpUrS1RES8
+ERU9g7IS5n2nnmq4Fw2f0G0ZlKHHprCkmj/rfCWFd5CX19kngP3ipq5DW0msYyfA
+xip5+8iAvEuHEpOmrTKE0cMQ+UMGSj5841+b97jvCfD3n8h6r+veyZ/fwzo/6hsE
+9CAYB4LimTQO+3qA8GCKTUIi4C3uvoBbpu+yM5spxtYAah8BRcfepv7BWvLUPx6U
+58ZxNVMWMlkCWq/6F/+lenAafU0MfPWaQiumdqGgAlxifOyy0Qv+VS7toKAI3bol
+7P5EiKWJAIC1VcGogoYW9JHOlGX2mg==
+=K8jA
+-----END PGP SIGNATURE-----
+
+--vxQmEEN76lEDPmLk--
 
