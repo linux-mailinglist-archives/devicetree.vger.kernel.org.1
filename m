@@ -1,84 +1,148 @@
-Return-Path: <devicetree+bounces-118197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0953D9B9500
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 17:12:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A693F9B951F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 17:19:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2B441F21A93
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:12:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3488A1F22ED6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621C91C9B80;
-	Fri,  1 Nov 2024 16:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A651F1AA781;
+	Fri,  1 Nov 2024 16:19:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dmaX2Npl"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="o7vpaOIO";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="RELjwy81"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-a3-smtp.messagingengine.com (fhigh-a3-smtp.messagingengine.com [103.168.172.154])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 329A11C8FD3;
-	Fri,  1 Nov 2024 16:12:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CBD51798C;
+	Fri,  1 Nov 2024 16:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.154
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730477548; cv=none; b=caH/Nxuro0ZMWHCkmB29WViDa5+CVPYf3hitYiBBkxOGVOSI3vyh7IoiQga8Qzk87bNkvYaPpjJyJf3PhBr2T9JmeO04he2pr0xSVxXBDFXhnKAKFkbR/EOqSnxgD1fc9sAoMNguEpjRNoHkj/NXoYA3WT7Ft38G02Z9sSxDWRI=
+	t=1730477952; cv=none; b=bM2XmzLi7z9gQ9MZRFhp9p3yjup9Y3RiYbCqz3q/rLKSYrfDG9rqmq3jRwBzF0RuaitUUVykFVJyH6h8JNVxJi8Eukf351P9fIjl09wjvAP6ctPEYYqvySo72xq7PyABoo8zCmlZ00v/AGikEuYWEKF2UC5ZJq6ppdkkLEWtHrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730477548; c=relaxed/simple;
-	bh=uwXUT5FtHSsLYjY23SN+coyvRK2O8i6XV0K5dlhp3Qs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Eps+//TasPW3etgKf3zTRufax7eYPZ37aUJbkQwkZ6BfcN5eb+mAyoCg3Fxhloruro54O0gVi/aWNxQ+ruLZhEZsyIZyMwKtKeQ2VMXBhdLVlhrlpXi6sHTYHQExn8GPaSSEkg3RRS5ndC3g4sU9n0QE41lUC6OXOz6Qmd0zhc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dmaX2Npl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6598C4CECD;
-	Fri,  1 Nov 2024 16:12:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730477547;
-	bh=uwXUT5FtHSsLYjY23SN+coyvRK2O8i6XV0K5dlhp3Qs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=dmaX2Nplc9QxCZRRY5Fbnq/PxjXcgLVPzmYLgxlaDO4rna64XDtqCOrxVYr0J5szB
-	 Npqtvz8dRNAd7ViCuk2MLHkGA7eTvnXYkKUaQlwl3qlrx76/ULmaSEoLyntGzpWWPC
-	 KJ7D4NrcX42+sZjs9FbV9YsttI11hzwmwuIP24o8vvdU2uO/EfBI5jRrX0ShKM6SfL
-	 6aEYFNomlrRPUn5PkorX0hSmyFwwDwTPvpOTSbTPA6cUxo7FZT0hr8efh/D4opvx+F
-	 XyqwQvcAxFIennJEMO7aC8eKS25RdXOLLlevMAiDhz7zVQbNc5xd/+eliz609Z2B19
-	 Y2V5d07aSa/Kw==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au, 
- mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- linux-clk@vger.kernel.org, dmitry.baryshkov@linaro.org, 
- Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20241023090153.1395220-2-ryan_chen@aspeedtech.com>
-References: <20241023090153.1395220-1-ryan_chen@aspeedtech.com>
- <20241023090153.1395220-2-ryan_chen@aspeedtech.com>
-Subject: Re: (subset) [PATCH v6 1/3] dt-bindings: mfd: aspeed: support for
- AST2700
-Message-Id: <173047754439.1930424.6922132618537420144.b4-ty@kernel.org>
-Date: Fri, 01 Nov 2024 16:12:24 +0000
+	s=arc-20240116; t=1730477952; c=relaxed/simple;
+	bh=AKa2W0mpcQm+sAU/4P3gnENB8BRaZp1V1lnxvdVW4Js=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kZ69smGChCU9Mh+G7hBiXsRxfJAahk0knf27kXS6sb14qNW2jUswEJS2sh6FKLlFNtUt0X2axGSDk69Z5/L/FW22iGr9q3dCTOzzuy3p7GAsaRHb+vUIytXg/h64C191Yf36kme+ydd0mfdmk4U0BLEwNRklFZEHfcBLsEb9uD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=o7vpaOIO; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=RELjwy81; arc=none smtp.client-ip=103.168.172.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-03.internal (phl-compute-03.phl.internal [10.202.2.43])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 30E2B1140168;
+	Fri,  1 Nov 2024 12:19:08 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-03.internal (MEProxy); Fri, 01 Nov 2024 12:19:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm2; t=1730477948; x=1730564348; bh=GNHBMWzMD0
+	NkocAqxwRh+MsZa3vWvxzvM3VdrJFfGM8=; b=o7vpaOIOMhBTDnnIBq4DTTS3TD
+	mcTjIFbaCJEqHFrDXQgMFh1Kd9i3S18ndp02te6drKJjpfxGb2HlcMZtWnkJ5CHY
+	MdDCQbM8MGrbkRs8JlELheLdFTY3RtaxP8ZWM+Th/ZO/Z3GRbxKR5bPlRBk7beLL
+	2x1mZwUMNNXsUrmh/tcaPeG7vpSIQLkE4/ncMXnbdPdWMsntvDvHyKMbHaQkrcdL
+	irTgt4ANrlJuYNcocoUtHZB/1eL+tGRTS/O4GVtcQz/mII0LbQ+/WUN33twm7llN
+	LzR1e5m2/t6oq6Yw5LCCr+32mbMRA9rBc+6GyhCKLG764AdIwyRe58lUbARQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+	1730477948; x=1730564348; bh=GNHBMWzMD0NkocAqxwRh+MsZa3vWvxzvM3V
+	drJFfGM8=; b=RELjwy8121HB4CAmI/ikAW784AJyek7dbq6QmgxImiVB5Ghj3Lr
+	h440rCbcwHnNnMGYTDcrzg4f4+8QZw0LGmFmJUFta6Co201DJVXrXqUQ9lg1OtyN
+	PbQCfQ5gt+ajjQp2+ft4zVcIclb0HTTzgsXuf4oPatxqWEmYpaiALd5r2zLkYFwi
+	Il0NfLjzrThh/K9pMjINt0v5lsVpRO5LYqZPebouABKnFZsyHozRMI+TF28PWYXx
+	1p+Fbk3fQHbnFlqodaV2cKflUM1tolAWaZNN5nVqjngJR0gjSvTdBHZeu+U/tzQL
+	ijUm3mD5mX0fWCRM+JyQxw3MPEljYtcadwg==
+X-ME-Sender: <xms:e_8kZ8QprNSabMxxUFBd1mej28P07D3DYighSP-WUrVM6ZQzwy-ggw>
+    <xme:e_8kZ5z8efst3Z5klllVV3zbueWAFRYUxAkbJj6fpdhIhTg6JPSKfYYsnpLq3PTgA
+    glVtm-sYp2nsjVIvDc>
+X-ME-Received: <xmr:e_8kZ50OFcvBsBwTWnV3fXB7iY_CgLNSz4M3DKokepl1TnDAbnhpYr2lxEVwrLktuvEipQ6xwxWZOHak8ctOQImirbRzTwxWST0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdekledgkeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtjeen
+    ucfhrhhomheplfgrnhhnvgcuifhruhhnrghuuceojhesjhgrnhhnrghurdhnvghtqeenuc
+    ggtffrrghtthgvrhhnpefgudeuffelfeekgeeukedtheekjeettdfftddujefhvdehtefg
+    iefgledtueefjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrh
+    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrghurdhnvght
+    pdhnsggprhgtphhtthhopeduvddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepsg
+    hrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhgrrhgtrghnsehmrghr
+    tggrnhdrshhtpdhrtghpthhtohepshhvvghnsehsvhgvnhhpvghtvghrrdguvghvpdhrtg
+    hpthhtoheprghlhihsshgrsehrohhsvghniiifvghighdrihhopdhrtghpthhtoheprhho
+    sghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlh
+    drohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghp
+    thhtoheprghsrghhiheslhhishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopehlih
+    hnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrgh
+X-ME-Proxy: <xmx:e_8kZwCzt0aws-_lwbhVUfa6KB1UiP_CRfzPP0vBfYKP7dXnJBOe6g>
+    <xmx:e_8kZ1j7TGefpKR_BbVS2p5Bc1dkR6PFYEpogrJDiHymD4RbdGAKAg>
+    <xmx:e_8kZ8qwnquqlBZ21pLj2iAb5m5BH68sQkghrs4I8vHZNWiFrxVXsg>
+    <xmx:e_8kZ4hTPD5nHLRGQ16g22C4ZdzMT3b98fG92fFs58TOm1o1hmiBIg>
+    <xmx:fP8kZ-ZFRMagDDBxQVcs4uxML9aDGlKW1K-V7ozF0gcFTD8CSPuzOUV4>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 1 Nov 2024 12:19:06 -0400 (EDT)
+Date: Fri, 1 Nov 2024 17:19:05 +0100
+From: Janne Grunau <j@jannau.net>
+To: Mark Brown <broonie@kernel.org>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] spi: apple: Add driver for Apple SPI controller
+Message-ID: <20241101161905.GB194146@robin.jannau.net>
+References: <20241101-asahi-spi-v2-0-763a8a84d834@jannau.net>
+ <20241101-asahi-spi-v2-2-763a8a84d834@jannau.net>
+ <e3008c6b-ba71-46cf-810b-053dbafe2cfb@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <e3008c6b-ba71-46cf-810b-053dbafe2cfb@sirena.org.uk>
 
-On Wed, 23 Oct 2024 17:01:51 +0800, Ryan Chen wrote:
-> Add reset, clk dt bindings headers, and update compatible
-> support for AST2700 clk, silicon-id in yaml.
+On Fri, Nov 01, 2024 at 04:08:20PM +0000, Mark Brown wrote:
+> On Fri, Nov 01, 2024 at 03:25:04PM +0100, Janne Grunau via B4 Relay wrote:
 > 
+> > transfer, most of which we do not use right now. Hardware CS control
+> > is available, but we haven't found a way to make it stay low across
+> > multiple logical transfers, so we just use software CS control for now.
 > 
+> It is extremely common for hardware CS control to not support multiple
+> transfers, I wouldn't be surprised if it's simply not possible.  We
+> could potentially use it with compatible messages it seems dubious that
+> it'd be worth the time/effort of checking and using it only some of the
+> time.
+> 
+> > +++ b/drivers/spi/spi-apple.c
+> > @@ -0,0 +1,531 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Apple SoC SPI device driver
+> > + *
+> 
+> Please make the entire comment block a C++ one so things look more
+> intentional.
 
-Applied, thanks!
+I did after your the same comment in v1 but reverted that since
+checkpatch.pl complained. See
 
-[1/3] dt-bindings: mfd: aspeed: support for AST2700
-      commit: 76c6217c31266e800b67a476bba59dfeb9858a90
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/scripts/checkpatch.pl?id=a674fefd1732#n3742
 
---
-Lee Jones [李琼斯]
+The inconsistency between *.h and *.c is surprising. I'll change it and
+ignore checkpatch.pl for v3. I'll address the other comemnts as well.
 
+Thanks,
+Janne
 
