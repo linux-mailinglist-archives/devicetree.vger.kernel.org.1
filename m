@@ -1,59 +1,64 @@
-Return-Path: <devicetree+bounces-118261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1911F9B98DC
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 20:45:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEFE29B98E3
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 20:47:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D231F281443
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 19:45:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9273C2818EA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 19:47:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C6751D0DE8;
-	Fri,  1 Nov 2024 19:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF4471D0E22;
+	Fri,  1 Nov 2024 19:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QWU7F0mo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z6AqLWWW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC2A1CACF2;
-	Fri,  1 Nov 2024 19:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BDBA5D8F0;
+	Fri,  1 Nov 2024 19:47:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730490347; cv=none; b=QcjNE941eRBtwSSe95NJnBqUPTv5eyb4s1SaTGjbevgMbJciZ42Oh6hKjULdaa8ajAWUU+N28zCN7BlzWLqJLfzKkaqpBhCk/3GaFEoEpEWNy9YKPADEj6O4eEIy4WmYM0J4OdH979NSEVTJh5bcbQG4zw58B7wcG7ju4/qehkw=
+	t=1730490455; cv=none; b=ALAAIhWFbRKjIAAKA675X0PvJiAJ3EhHYn9qXJUzsuZC2VRN+CuO+FEm4373qPUR14czCcoukdkhRhVXGxMRwYPgw2XwAcuS9XXE+IWMteurOIZI0bwyWDaaJ/JhJ/+xrpuyHnAFpccHPxUeTTwCwWKCYjCjEwwtZFjkJz9V6Nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730490347; c=relaxed/simple;
-	bh=YWNoNC6IgOJgm0SF/tIFJ7L/6qpPeiZn6M9zbN/xeVg=;
+	s=arc-20240116; t=1730490455; c=relaxed/simple;
+	bh=B+lUXNUnGKnkUkqXfymc/e9SpMpB4y1++c6mOoxHc8I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X7m1IuowlO4RF6Exoe6xIARw/EyP81rvcIILVZtY4xMVQqQLiGRUp9/ZQexeRHbNZD0zBiiROpQDQfkAyOFLIGF9sFObHoFCqKP8PTZf2uLywacoCvq/Putq4+ePxw3395U05HS0L+oOKwuoHjLgA+sMypElICdxTsSIaRRjTWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QWU7F0mo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DE14C4CECD;
-	Fri,  1 Nov 2024 19:45:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AGdvVvtV/ebhvIoU/ftP2OhewJXQbn1yhH/1UWNP4FGzunT9K37j9qSFJfFMA6gwmVyc+PDR6EKSnWrQ3XOn/KBF4CAbfyjmwDs5R9y01YQFgr12AayC7Ye7G+mcnTQVa8/snakJJe0cMOIZMaVz6XOERHQuaFa6w/ILWTH+8IA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z6AqLWWW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0571C4CECD;
+	Fri,  1 Nov 2024 19:47:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730490346;
-	bh=YWNoNC6IgOJgm0SF/tIFJ7L/6qpPeiZn6M9zbN/xeVg=;
+	s=k20201202; t=1730490454;
+	bh=B+lUXNUnGKnkUkqXfymc/e9SpMpB4y1++c6mOoxHc8I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QWU7F0mohIBlgoCwzDfa6NQlqoHqC2bj57eoIluqRilmnwj6nOem5x/QrCxAleoHi
-	 Swc75tHM+cVEVIU0yz3iX2upl8vnUkU1C5Qy8ccyvP3Npsv9DSUXwWdgK32QewocNn
-	 VWUiJ+NstQvLI4HtaZOPIX2/U/1Zo+9tZhp1BYHvPSCjOO/yB7IOQO6uJ29BskLVVL
-	 JfaAwiJGOvRdd4kW6Je9o9mzvj9tQix7/QRez4oCD45RNRYif9XUeKh6nEG8gbm0X2
-	 3cS4Ui9uP5AnZlW2Evr0M8NsqBnI+n1FS6ISMnOW/N1kbjXkBy23La2jKcTC+I7H0r
-	 +GnB2NEmgRVZA==
-Date: Fri, 1 Nov 2024 14:45:44 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pwm: sprd,ums512-pwm: convert to YAML
-Message-ID: <173049034404.4086958.11176792870448395104.robh@kernel.org>
-References: <ZyH-JASRcpMXYsmH@standask-GA-A55M-S2HP>
+	b=Z6AqLWWWGWwkE6bYBR7023sarjXeRnXyjJwR+sQ3ZR0nLHXlhrEDaN+DxTV2BgPPB
+	 LhwBtrFV84d/SvuHpp5NlZOTc88jQVYTW1nYgjdKdCPnnA6FjZUCMh1ZJ2L3Ct/VFu
+	 jcxmC2gy9bRwjgjppVxnkd/61YMKDwHA5r3HwD2pQ9tMoDKx/l3NzUcypt2SPqYK81
+	 c6qwSPk30U+nBHtOkJCk47eYR5h8IzaGdYaBQR8u8Ka+rOF/mkZZEVEwzLZDotTddn
+	 rJ8D6CEukxNJYjjYBFt/cPGCNIPJf8Pt28xWnX5ZjTjhZbLR7lFak3mj/qHAWmn2Q1
+	 vz4/gBYYasoIg==
+Date: Fri, 1 Nov 2024 14:47:32 -0500
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: fsl-esai: allow fsl,imx8qm-esai
+ fallback to fsl,imx6ull-esai
+Message-ID: <20241101194732.GA4088016-robh@kernel.org>
+References: <20241028-esai_fix-v1-0-3c1432a5613c@nxp.com>
+ <20241028-esai_fix-v1-1-3c1432a5613c@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +67,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZyH-JASRcpMXYsmH@standask-GA-A55M-S2HP>
+In-Reply-To: <20241028-esai_fix-v1-1-3c1432a5613c@nxp.com>
 
-
-On Wed, 30 Oct 2024 10:36:36 +0100, Stanislav Jakubek wrote:
-> Convert the Spreadtrum/Unisoc UMS512 PWM controller bindings to DT schema.
-> Adjust filename to match compatible. Drop assigned-* properties as these
-> should not be needed.
+On Mon, Oct 28, 2024 at 03:49:31PM -0400, Frank Li wrote:
+> The ESAI of i.MX8QM is the same as i.MX6ULL. So allow fsl,imx8qm-esai
+> fallback to fsl,imx6ull-esai.
 > 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../devicetree/bindings/pwm/pwm-sprd.txt      | 40 -----------
->  .../bindings/pwm/sprd,ums512-pwm.yaml         | 66 +++++++++++++++++++
->  2 files changed, 66 insertions(+), 40 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-sprd.txt
->  create mode 100644 Documentation/devicetree/bindings/pwm/sprd,ums512-pwm.yaml
-> 
+>  Documentation/devicetree/bindings/sound/fsl,esai.yaml | 14 +++++++++-----
+>  1 file changed, 9 insertions(+), 5 deletions(-)
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
