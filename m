@@ -1,66 +1,59 @@
-Return-Path: <devicetree+bounces-117957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C69DB9B88D9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 02:47:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2EF29B88E6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 02:53:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B50E280051
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 01:47:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 997891F22AD2
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 01:53:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B4031C687;
-	Fri,  1 Nov 2024 01:47:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6938C12F59C;
+	Fri,  1 Nov 2024 01:53:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MNtlDTwc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from angie.orcam.me.uk (angie.orcam.me.uk [78.133.224.34])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9122ADDAD;
-	Fri,  1 Nov 2024 01:47:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.133.224.34
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37DE712D758;
+	Fri,  1 Nov 2024 01:53:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730425646; cv=none; b=CU7iWAqIoU+fxG042asSXo9ckXvLHyUUwjvojD1WXTkfg6RbRmecZpsSLltIsJUJb42jzei3t5oM1nT5kUSHtqS9MM3satILlgC5+LDUVk+Uo8vePzlkgKRd6fuJv+b2sIjihz8lT7+OEX4MzDMncou1QIc2zHdsaeJXb+etyW0=
+	t=1730425994; cv=none; b=XCQX2mqLOgFMGBWHU/s+Qfyzj2W+AbP3EFcKYOv4UNu9MvM3WRlVoEvnd3quNUjvEbAXenIIq/5MFujpHdCOjBrk+lsQVa53T8OyeWAkCmfym2CrB4zKPDSZDhBhRqVdZG5zhAskulPk828zHsrxI4b06je6xKxt1bSwWWRhsVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730425646; c=relaxed/simple;
-	bh=sXZCbRbeFr64bWTbo4bDXx21yjrRFDO5DVEu8ooKcUI=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=aHu54tKVXbsyiZm+ix4gCNWyk5gmMHlzdK645uTmSmbaVztHiTHz4VohjH3pnDXOm0FwW6eF1vt/DSk3ZH7dMIFC1o8br9zNi8uy3VlDTGPcbfNkldG/VFlIco6xl8FMrzp63p8b8NEx1WO5AA0MPfb+4xlvZj57EPD8dCJqqI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=orcam.me.uk; spf=none smtp.mailfrom=orcam.me.uk; arc=none smtp.client-ip=78.133.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=orcam.me.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=orcam.me.uk
-Received: by angie.orcam.me.uk (Postfix, from userid 500)
-	id CF8C992009C; Fri,  1 Nov 2024 02:47:17 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by angie.orcam.me.uk (Postfix) with ESMTP id C827A92009B;
-	Fri,  1 Nov 2024 01:47:17 +0000 (GMT)
-Date: Fri, 1 Nov 2024 01:47:17 +0000 (GMT)
-From: "Maciej W. Rozycki" <macro@orcam.me.uk>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>
-cc: Aleksandar Rikalo <arikalo@gmail.com>, 
-    Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-    Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, 
-    Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-    Gregory CLEMENT <gregory.clement@bootlin.com>, 
-    Theo Lebrun <theo.lebrun@bootlin.com>, Arnd Bergmann <arnd@arndb.de>, 
-    devicetree@vger.kernel.org, 
-    Djordje Todorovic <djordje.todorovic@htecgroup.com>, 
-    Chao-ying Fu <cfu@wavecomp.com>, 
-    Daniel Lezcano <daniel.lezcano@linaro.org>, 
-    Geert Uytterhoeven <geert@linux-m68k.org>, Greg Ungerer <gerg@kernel.org>, 
-    Hauke Mehrtens <hauke@hauke-m.de>, 
-    Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>, linux-kernel@vger.kernel.org, 
-    "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>, 
-    Marc Zyngier <maz@kernel.org>, 
-    "paulburton@kernel.org" <paulburton@kernel.org>, 
-    Peter Zijlstra <peterz@infradead.org>, 
-    Serge Semin <fancer.lancer@gmail.com>, 
-    Tiezhu Yang <yangtiezhu@loongson.cn>
-Subject: Re: [PATCH v8 00/13] MIPS: Support I6500 multi-cluster
- configuration
-In-Reply-To: <c7d5a4e9-f080-46dd-9b96-07eb08d361f4@app.fastmail.com>
-Message-ID: <alpine.DEB.2.21.2411010146340.40463@angie.orcam.me.uk>
-References: <20241028175935.51250-1-arikalo@gmail.com> <c7d5a4e9-f080-46dd-9b96-07eb08d361f4@app.fastmail.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+	s=arc-20240116; t=1730425994; c=relaxed/simple;
+	bh=kAfgBaLVneYp2OP6j9guxjjd4rVucLYNQVBy+4UBS0Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=udtWF7V7CwnXi0WOPkjmrOkLFAMmg8ARKZz9ZXRUP2zXXRrOouKgRFAN1/NU7PC2HyViuV1oxGpxA/XZcaDUNCU/cK/CU6V18faJF+SiuTUO9m/EaUVhsu9pe2v9BkICBNIkaHcTYB0xlf/NiWLxxOC8Mg7hNRR0zWfG54i8zSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MNtlDTwc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22C8FC4CED0;
+	Fri,  1 Nov 2024 01:53:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730425994;
+	bh=kAfgBaLVneYp2OP6j9guxjjd4rVucLYNQVBy+4UBS0Q=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=MNtlDTwccG4dvIXNyfo5DbfGZV7PHgd/reGMpE69cn/mU7z3kc7ATpzg+CpXCf0+Y
+	 kxsLOgh9kPhVir9g7tcp/3GIkV1yfqxW5T+kigkdcMFqpIa+DQ5uzOskSzAqS9WvND
+	 IPoYAbMf/j1XdiW6BO44WpdAkeUhUFQEkzldF7d+/Rc2j/dXwoJ+ahR3P/yo3lPlWa
+	 etpMiIjDm7yx+T0o7ROKfhM+G1gePOhpNbtgIZkOK1Hd7rubml6livNDO0+3ra1Iux
+	 NhTo5XmUeqiqL7TiLoEQKZ7elFC07RMeaozKDhX8unHn5MOptgGL2GmnDYDHAxEu5Y
+	 7Aypv8aYl0SqQ==
+Date: Thu, 31 Oct 2024 18:53:12 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Suraj Gupta <suraj.gupta2@amd.com>, <robh@kernel.org>,
+ <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+Cc: <radhey.shyam.pandey@amd.com>, <andrew+netdev@lunn.ch>,
+ <davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
+ <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <git@amd.com>, <harini.katakam@amd.com>
+Subject: Re: [PATCH net] dt-bindings: net: xlnx,axi-ethernet: Correct
+ phy-mode property value
+Message-ID: <20241031185312.65bc62dc@kernel.org>
+In-Reply-To: <20241028091214.2078726-1-suraj.gupta2@amd.com>
+References: <20241028091214.2078726-1-suraj.gupta2@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,12 +61,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Wed, 30 Oct 2024, Jiaxun Yang wrote:
+On Mon, 28 Oct 2024 14:42:14 +0530 Suraj Gupta wrote:
+> Correct phy-mode property value to 1000base-x.
+> 
+> Fixes: cbb1ca6d5f9a ("dt-bindings: net: xlnx,axi-ethernet: convert bindings document to yaml")
+> Signed-off-by: Suraj Gupta <suraj.gupta2@amd.com>
+> ---
+>  Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
+> index e95c21628281..fb02e579463c 100644
+> --- a/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
+> +++ b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
+> @@ -61,7 +61,7 @@ properties:
+>        - gmii
+>        - rgmii
+>        - sgmii
+> -      - 1000BaseX
+> +      - 1000base-x
+>  
+>    xlnx,phy-type:
+>      description:
 
-> Reviewd-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-
- Typo here.
-
-  Maciej
+Can we get an ack from DT folks?
 
