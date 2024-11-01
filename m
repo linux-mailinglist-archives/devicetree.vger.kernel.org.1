@@ -1,93 +1,116 @@
-Return-Path: <devicetree+bounces-118110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9E6F9B9071
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 12:42:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7A289B9073
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 12:42:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AEDAC282B51
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:42:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A68A1F2256B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F4D19C54E;
-	Fri,  1 Nov 2024 11:41:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C027619ABC4;
+	Fri,  1 Nov 2024 11:42:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="PWBHOkBe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eMFJ9PM7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B8F119ABBD;
-	Fri,  1 Nov 2024 11:41:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82FE615820C;
+	Fri,  1 Nov 2024 11:42:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730461302; cv=none; b=oSyOX3VCMnZD7OyHxjQushB7QqNeC03cveQDMR4Yih8Nc2CxUE5/NduMEHxLygkngu8yh2n7HNgObgCF3hh/fCqdTEn52j159puAK2+U5S3blwszVWKKw58b3zFekMH3691Xe7hDKcuBy8UREJ0dya5/9uymeKqZYDE3Q48xqR0=
+	t=1730461339; cv=none; b=HcgpYhDDUUGy2ez8MMwtrM52lg9lqXubWYrRrSGxvQTtVkbYfQGlS4UtBo59B9832mN9wSkeOA3kxf3ILuDeFlnF7sDDpZzos34JQbbZNQJf6Gnw+AbtHoAp5mbzY5yLBojsyVSy15A/ybi4DoMkj9wsa3tpnRsFAGqLs3y5Sq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730461302; c=relaxed/simple;
-	bh=UpIhy6ONjO+Fga90pjXdn+xEmrcqSSZ/ILq/5/r2IW0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LXhkhQBfNPRd7ek0fMhbvQpXbRquhJ/SRKiZlZBbg7QYCuJ4pmsQdXv2vCiCI6GLh/Mc6holWNvn0gioo9ZpCuMiiF5MnTG9BUreM+sHOgWQ/4100FC88qQJ7iVDnjuLKiqmtfXuLgNDDZ5H9z7Jx1YlcQQrbRxWWEwFHxAWE70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=PWBHOkBe; arc=none smtp.client-ip=1.95.21.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=c+ww708aRc0qAteUCkjthXfj1VPpWdpi32cBrs7jx40=;
-	b=PWBHOkBeUaF7mXHNKxJLf+YgphM25RjX5LqSCZLkCvuMz5RQTODLV+3SIEUMem
-	vWWdt5Xxr9lFpGM+3Wh88y4mPHmOjr+CfR8zcJHXGOS7Sh5yukjMRjTkKBTUcXgH
-	u/0gyluq3eZs9QSbBZgBRWGtzTmFei0Z9moJZKXVst09g=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgCXvSdGviRndu1qAQ--.14047S3;
-	Fri, 01 Nov 2024 19:40:56 +0800 (CST)
-Date: Fri, 1 Nov 2024 19:40:54 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	"open list:TQ SYSTEMS BOARD & DRIVER SUPPORT" <linux@ew.tq-group.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] arm64: dts: imx8mn-tqma8mqnl-mba8mx-usbot: fix
- coexistence of output-low and output-high in GPIO
-Message-ID: <ZyS+Rm8rRkPX6L8S@dragon>
-References: <20241023210313.1390767-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1730461339; c=relaxed/simple;
+	bh=6xrGD7oKWlZ6XOU+8wWyQpg+NtkqgDu0wWDFBNCgLS4=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=ApjjGRdjYBtjncWhRjScpgV7coxUffLL8437tn5C7L0JYEktdeTRbk7B81JBHwkpPSwxYsQG2QpiK9++hfE9ZXnbSkklJZEnp5vMs1FDlqkfZx38DtKzYs9g27CpXdHQXWu4O0ishJQDxrxREMyTElp6Y5OrqtNsEx/ni1wic+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eMFJ9PM7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9FE8C4CECD;
+	Fri,  1 Nov 2024 11:42:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730461339;
+	bh=6xrGD7oKWlZ6XOU+8wWyQpg+NtkqgDu0wWDFBNCgLS4=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=eMFJ9PM7hZnTN7+y6+MUNOnYAo9owzrlKfKHsVzt5++CJ4kCCAl3RRIBpSvwlPPQs
+	 ill/6w/7zibQCyPz/in3wgbgH9Twni9Eydc7LrPUOp93ebcCQe3Z78Sl0qsJy+FJQX
+	 db2eWi95HC5rIdDU8IFaNp9L/QRqWsQdaafUZCA4pjFzQ5O4PzaAXoVea1yfpy/xoe
+	 MDeQVNeRotYoVc8IkXfht5kCz/STxKxSGMKuhfmhNqFXLjFKxKs4OceiUn20dxoaEh
+	 5fBCMd9p6xUhDTtlq8NaxvepKM0Y/eyWFyXtgXVtZk5ydBRzBzAa0MjNu8Gx4oTy0t
+	 WMzWMoUIOjmVw==
+Date: Fri, 01 Nov 2024 06:42:17 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241023210313.1390767-1-Frank.Li@nxp.com>
-X-CM-TRANSID:Ms8vCgCXvSdGviRndu1qAQ--.14047S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW7XF45ZF47tw47Zry5uw13CFg_yoWfKFXE9a
-	sYqw4xJ348Crn0kwnxCwsY9rW29r1xWrnIqr1Sg398KFWFvanFyF10vrySqFW5CF4jyr9r
-	G34ktw1UXrWF9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8EoGJUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAgeKZWckfBi+WgAAsp
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, 
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ Abhishek Sahu <absahu@codeaurora.org>, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Will Deacon <will@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Imran Shaik <quic_imrashai@quicinc.com>, linux-kernel@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Jagadeesh Kona <quic_jkona@quicinc.com>, 
+ Ajit Pandey <quic_ajipan@quicinc.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+In-Reply-To: <20241101-qcs615-mm-clockcontroller-v2-5-d1a4870a4aed@quicinc.com>
+References: <20241101-qcs615-mm-clockcontroller-v2-0-d1a4870a4aed@quicinc.com>
+ <20241101-qcs615-mm-clockcontroller-v2-5-d1a4870a4aed@quicinc.com>
+Message-Id: <173046133538.2741746.9760905670245295955.robh@kernel.org>
+Subject: Re: [PATCH v2 05/11] dt-bindings: clock: Add Qualcomm QCS615
+ Display clock controller
 
-On Wed, Oct 23, 2024 at 05:03:13PM -0400, Frank Li wrote:
-> Fix the issue where both 'output-low' and 'output-high' exist under GPIO
-> hog nodes  (rst_usb_hub_hog and sel_usb_hub_hog) when applying device
-> tree overlays. Since /delete-property/ is not supported in the overlays,
-> setting 'output-low' results in both properties being present. The
-> workaround is to disable these hogs and create new ones with 'output-low'
-> as needed.
-> 
-> Fix below CHECK_DTBS warning:
-> arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtb: sel-usb-hub-hog:
->    {'output-low': True, 'gpio-hog': True, 'gpios': [[1, 0]], 'output-high': True, 'phandle': 108, '$nodename': ['sel-usb-hub-hog']}
->        is valid under each of {'required': ['output-low']}, {'required': ['output-high']
-> 
-> Fixes: 3f6fc30abebc ("arm64: dts: imx8mn: tqma8mqnl-mba8mx: Add USB DR overlay")
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Applied, thanks!
+On Fri, 01 Nov 2024 16:08:17 +0530, Taniya Das wrote:
+> Add DT bindings for the Display clock on QCS615 platforms. Add the
+> relevant DT include definitions as well.
+> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
+>  .../bindings/clock/qcom,qcs615-dispcc.yaml         | 73 ++++++++++++++++++++++
+>  include/dt-bindings/clock/qcom,qcs615-dispcc.h     | 52 +++++++++++++++
+>  2 files changed, 125 insertions(+)
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/clock/qcom,qcs615-dispcc.example.dts:19:18: fatal error: dt-bindings/clock/qcom,qcs615-gcc.h: No such file or directory
+   19 |         #include <dt-bindings/clock/qcom,qcs615-gcc.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.dtbs:129: Documentation/devicetree/bindings/clock/qcom,qcs615-dispcc.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1442: dt_binding_check] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241101-qcs615-mm-clockcontroller-v2-5-d1a4870a4aed@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
