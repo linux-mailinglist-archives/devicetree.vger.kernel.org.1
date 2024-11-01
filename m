@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-118051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21C1C9B8D7D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 10:17:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 564599B8DC4
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 10:23:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4128E283434
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 09:17:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA2971F242B1
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 09:23:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20EAE155CBF;
-	Fri,  1 Nov 2024 09:17:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FF4B156883;
+	Fri,  1 Nov 2024 09:23:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UwQLbJUw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JUiVQhmY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E380F3FF1;
-	Fri,  1 Nov 2024 09:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D38CA3FF1;
+	Fri,  1 Nov 2024 09:23:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730452665; cv=none; b=ldwoGFX5Z1OtMSCLWX2E9p6w9kgjqX1gIhsG+mV/lTTG6vgsbKcFMtgo7D8oDCESoNfjI77Uexq9ylCnMIe64kzy4Jlm89XbpsesY+qQPcWi/QkvsOn4fE79NnMt2anXzuTN/2QOX9rBnt7US188Q9DcGJmhgtT0uzpkUKHDyiQ=
+	t=1730453035; cv=none; b=aEGci3Je1GiKSWmAf/DJIE7RLStQe5vbhLobwwJ+rbzGlmVkg5JuaYx6Fk7UnSEm1JzEGO4X5r8tvrZjUs6Q7HJiQHoQGix979N2XZSb24xfSPnE3Pw0pDJ4ToRmDCBl0XH7coS5g43X3AwAqkgmxpzBs5UsuUafz9WTw9JGsaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730452665; c=relaxed/simple;
-	bh=I/S1uhkh08rAgU3JZhYipI9jeIqmi5/WNFqTNKk8w6g=;
+	s=arc-20240116; t=1730453035; c=relaxed/simple;
+	bh=ELj8XYF+YCmi8TI/wRUv1Afq/83eTPVQ4o6A6cJZWSs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=noz5b+/QtvGmFTY/GW6X9ZWrRHTM2R7N/okezheqyFwWfCCt1yPA0hkroygACRJ3WO1mf72k/QKI7LEai4gzqLeGMhi0zzO1wpOHrsdyNI3Q1P2AY9hYojj70qniaTq/ovUAPgbB51qrRGTnkWjcVAPqy5G5r1h5xQnfbVQcZho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UwQLbJUw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3830DC4CECD;
-	Fri,  1 Nov 2024 09:17:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=HoxId/ZrTGYgV5Sv8AFUzlIXFqND9uvBxRUH1Q/OVkp6/bWm7ee/vvp5cNMqTXNHUQWIxIWEIYjr86NmGhskif7EhjqYmNoAowswT/hCkYN1uUo3O6nA5Q1ylMILJ0mJG5HtXpCv3wKJNTEjdeWPzQGltzCglptKTGvrnKT7QpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JUiVQhmY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6FCEC4CECD;
+	Fri,  1 Nov 2024 09:23:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730452664;
-	bh=I/S1uhkh08rAgU3JZhYipI9jeIqmi5/WNFqTNKk8w6g=;
+	s=k20201202; t=1730453034;
+	bh=ELj8XYF+YCmi8TI/wRUv1Afq/83eTPVQ4o6A6cJZWSs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UwQLbJUwn7kT0eOK7VYLAXxXLw8wwWectUG7f2NEAKO9p7lBasB9oZ1bgXFmtmG96
-	 vkdWOw5JKWdv7btbIQZGTiNlDyFrxi+ACTIK86kzyKN9GaYUy3aRBGbDqydMYmfJej
-	 N1RZfNc2HHaFG1wKcjSR8jq8qpP3FYShnIV3swuqP/ZSZ7CnpLFB6NZe18PqtUoZtU
-	 StJv0J9T8Uqx8OtI8wBQkS9wekIZfisUlom6JuKzHviTEd8aIxeQFb2gDk4ZUtSgWE
-	 cHke0eNSryaB1DhTm4MhE1SWMWxk3eBJOeEiB9DPfzqvV9o5mhR6Tkbs4foerZkNEk
-	 V9fbwPpkGbP5w==
-Message-ID: <6ce1f20b-1efb-408f-ac28-e8c35162643a@kernel.org>
-Date: Fri, 1 Nov 2024 10:17:35 +0100
+	b=JUiVQhmYO06Y/sVA1xmqj6PQ7KQ+5ExXYImx2ry8HI1U4Ooyeh7slrHuZP+3S2gwP
+	 xl+AURmqYHebsm4pR3b0gmnO9GsHLOgzKpOL3/pNAEWVZux/FSuc1bG2slHmZzRdm0
+	 6n4cjp+8ixu0Yl/lu6Glr/r9l0UQjsLEkGkZYDq4SVuqaS73YndEcm1HGWFIUfrd0P
+	 3aOa3fVnvNb9iHTN0Sd7pRH3GTrs29b9ve7JJdrKlP+PElbB1gVO8v5fSotSDurrmc
+	 0xCJNnGEOFVLFHFXwuOyrPdCmMM7W3d8IEnsT8ZjiN0ht6g/OB3YhgedyNPsEQdI+e
+	 DcPIXdX6gocWg==
+Message-ID: <144458a6-6c63-4386-99da-3a27743288b4@kernel.org>
+Date: Fri, 1 Nov 2024 10:23:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/5] dt-bindings: media: camss: Add qcom,sdm670-camss
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Richard Acayan <mailingradian@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 1/4] dt-bindings: arm: qcom-soc: simplify SoC-matching
+ patterns
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-media@vger.kernel.org
-References: <20241011023724.614584-7-mailingradian@gmail.com>
- <20241011023724.614584-9-mailingradian@gmail.com>
- <785c82d5-549d-454b-86bf-a00a39e6f521@linaro.org>
- <jcqgsgp4ivbokn545sy2rvfllm3vnygfpbufxagotuicacfmgd@v2hlnohlwzdf>
- <b054116e-c6a4-48c3-8162-571d653788a4@linaro.org>
+ <conor+dt@kernel.org>, Krishna Kurapati <quic_kriskura@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241101-sar2130p-dt-v3-0-61597eaf0c37@linaro.org>
+ <20241101-sar2130p-dt-v3-1-61597eaf0c37@linaro.org>
+ <pmgutki3fjqbka5ozalevpw7qptmzykhqxiaofqc2nh4gpnn4f@bgmz6fknavbf>
+ <iixsrpkyzae5mpwsa2qm5jdyftzgav52ryficoizlhfzw54xbi@gdfxwmjutqp2>
+ <80a37af3-ffef-4342-b7d3-f2eb36bb60ba@kernel.org>
+ <sjayaro5coievz22gdeu6tplzjs6kju333a6womyuk6bsvw2h5@a5ewi6sdl7wj>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,33 +110,60 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <b054116e-c6a4-48c3-8162-571d653788a4@linaro.org>
+In-Reply-To: <sjayaro5coievz22gdeu6tplzjs6kju333a6womyuk6bsvw2h5@a5ewi6sdl7wj>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/10/2024 16:42, Bryan O'Donoghue wrote:
-> On 11/10/2024 15:29, Krzysztof Kozlowski wrote:
->> How do you imagine writing drivers and request items by order (not by
->> name) if the order is different in each flavor?
+On 01/11/2024 09:52, Dmitry Baryshkov wrote:
+> On Fri, Nov 01, 2024 at 09:37:23AM +0100, Krzysztof Kozlowski wrote:
+>> On 01/11/2024 08:47, Dmitry Baryshkov wrote:
+>>> On Fri, Nov 01, 2024 at 08:26:04AM +0100, Krzysztof Kozlowski wrote:
+>>>> On Fri, Nov 01, 2024 at 02:49:22AM +0200, Dmitry Baryshkov wrote:
+>>>>> The patterns for individual SoC families grew up to be pretty complex,
+>>>>> containing lots of special cases and optional suffixes. Split them per
+>>>>> the suffix to make it easier to extend SoC patterns.
+>>>>
+>>>> This is doing something quite different - split is not important here.
+>>>> Instead you narrow the patterns significantly and disallow things like
+>>>> msm8994pro, sc8280p or sc8280px, and allow things like sa5200p.
+>>>
+>>> Just for the sake of correctness, msm8994pro is still allowed, if I'm
+>>> not mistaken.
+>>>
+>>>> I don't see here much of pattern simplifying - dropping (pro)? really
+>>>> makes little difference.
+>>>
+>>> Patterns are simplified by being explicit. E.g. in the previous
+>>> iteration I completely didn't notice the intersection of the |p that I
+>>> have added with the existing [a-z][a-z]? pattern. If you think that
+>>> sa5200p should be disallowed, I can tune the numeric part of the
+>>> pattern. And sc8280p / sc8280px should not be allowed in the first
+>>> place, such platforms don't exist.
+>>
+>> I am fine with this, but extend the commit msg with some good rationale.
+>> Have in mind that the point of this pattern was *not* to validate SoCs
+>> names. sa5200p is fine, sc8180p is fine and all others are fine, sc8280z
+>> as well, because we do not want to grow this pattern with every new model.
+>>
+>> The only, single point of this entire binding is to disallow incorrect
+>> order of block names in compatible. Not validate the SoC names. If you
+>> need narrower patterns to achieve that objective, sure. If you need
+>> narrower patterns to validate SoC names, then nope.
 > 
-> I don't think I'd be much in favour of relying on declaration order in 
-> the dts, favouring names to find resources instead, tbh.
-> 
-> The 8250 has regs that sort by address and name in the same order. For 
-> 8280xp we preferred sort by address and you're right the interrupt 
-> sorting isn't consistent.
-> 
-> However the latest applied dts for CAMSS is sort by address/irq not sort 
-> by reg-name irq-name.
-> 
-> Unless its a NAK from yourself and Rob, that would certainly be my 
-> preference for any _new_ additions subsequent.
+> I need narrower patterns to simplify adding new SoCs.
+> Another option is to define a mega-pattern like
+> qcom,(msm|sm|sd[am]|.....)[0-9]+[a-z]*-.* . Frankly speaking I'm fine
+> with that approach too.
 
-It's not a NAK as long you keep the same order in new bindings, which I
-think it is not possible. I repeat myself: there is no rule/style that
-list should be ordered by values, but there is a rule that all devices
-from the same family should have the same order of items in the list. I
-don't think it is achievable with your approach - sorting by value.
+I do not see how narrower patterns, changing:
+"^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$"
+into
+pattern: "^qcom,sa[0-9]+p-.*$"
+
+instead of
+pattern: "^qcom,sa[0-9]+[a-z]-.*$"
+is needed for that. It's true that 'p' is simpler than '[a-z]' but if
+this results in new commit next time we have sa8995r, then benefit is lost.
 
 Best regards,
 Krzysztof
