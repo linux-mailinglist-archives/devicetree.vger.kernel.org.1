@@ -1,193 +1,81 @@
-Return-Path: <devicetree+bounces-118010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 361339B8C23
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 08:41:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 731319B8C2A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 08:42:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C6B61C21A8B
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 07:41:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37AA2282F1B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 07:42:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3B771547C8;
-	Fri,  1 Nov 2024 07:40:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B48061547E0;
+	Fri,  1 Nov 2024 07:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kndf8JpZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l8Vr2djH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7D3455896;
-	Fri,  1 Nov 2024 07:40:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85ADD153BF8;
+	Fri,  1 Nov 2024 07:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730446858; cv=none; b=HzBOle3t3ju92sqnb66uGBbhUbUv4mjdd1QdQjMprcgO/2yzuFte5i/ZYtWwo19+7V6L66CFnr4I9YZdTcwshUyUCTQaeP9pzkxUVqKib4wgZdTEMj4YKfwIua/9FKuem9HdwyrWpU9u1VqUuE7NCd/EmcJ7HZichO3Fktt4qFs=
+	t=1730446957; cv=none; b=rbTa0kNHfEVG1Tc/yJBV0ddKxdRkC0WJE/0z6Ec8QCHgfb2Gls/MOIrFK9KQBvvjbTA63aytPEq2IWzkvx78nq/MTywPEEHU3LeE64FwKOon0RAimMkyxx1kxYHU8z6HVqbNCK2R5Nn07jvloKce8RzUQJZH+J9Asiv4o8MIwf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730446858; c=relaxed/simple;
-	bh=mU0VMdm104wjRtXVgEZ+lSglLurcb/kByS+gvz22oYQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ezoW/YP/yqSNzCqcx+5go1jlEupvBuwjir4B2ihvanUuTsXKqi8w+lRaYxEwnxsVEESFeGplsdv3D/iDlAZEOdssUKsSJvrnpo0jM/pg5e+kYdZauDXPrGn8uyYNFT0KDCl6VNjsAEWyyU4IDrKSReFRBVwf5ES0WXcukLvIhJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kndf8JpZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 481CDC4CECD;
-	Fri,  1 Nov 2024 07:40:58 +0000 (UTC)
+	s=arc-20240116; t=1730446957; c=relaxed/simple;
+	bh=0oNmvFac5245Iw3R03dhUawXYguOd6fOhCVHCDRw/pA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TT/1YCr8/g1WxhLJV/SqIHUlhnY0Q2tJ3DMHlCr+wmIhdpdxwOfA7xBoXn8eDHC/wEA8tXua4QBqCFTXOxxERnJFhNdTQHQkOL258EKYzHPn5czedHUhb77n+SIWocbhjuFpdv8naslmTUYl9Z94XLUGyf7v1h504/7LVOAFeqA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l8Vr2djH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39514C4CECD;
+	Fri,  1 Nov 2024 07:42:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730446858;
-	bh=mU0VMdm104wjRtXVgEZ+lSglLurcb/kByS+gvz22oYQ=;
-	h=From:To:Cc:Subject:Date:From;
-	b=kndf8JpZMuw9uSCjbF0JPSc2ffqCm95tneDc4TjMoWczMtX/0pFUesBTleAp+/eeT
-	 /wScMeTnMYh2gulgTSSLCYpD2W+Jkb9QqF/MFzja+spe3lPSeSw0QauSrdait5WBc1
-	 AQqahsuRRPyHSUbWgf0NNDtqV9y9BF1fZXJMDX5I0rd4Ta/C6KzfSc78rvLVoFmTPB
-	 DPvaK2JcBVRhbfhZx+hKLpM4cYQwhfs7y2O92BWEX6esIm4L8J7g562wCKgS+uciwe
-	 O0AIU9EYScS+D3Clzvd83gR6v36FzAW/B62or1dQhEz0ewJZkOx9BFJunm1Ry6HD5u
-	 UIzpzjfE3SPpg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1t6mHA-000000005q3-1KoG;
-	Fri, 01 Nov 2024 08:40:56 +0100
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v3] arm64: dts: x1e80100-crd: describe HID supplies
-Date: Fri,  1 Nov 2024 08:40:06 +0100
-Message-ID: <20241101074006.22390-1-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.45.2
+	s=k20201202; t=1730446957;
+	bh=0oNmvFac5245Iw3R03dhUawXYguOd6fOhCVHCDRw/pA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=l8Vr2djHUs7y0gdTiLx9KSyaYapvUg+x7ibuPfsOfpMOet6nEHK4anWnAediZZUBV
+	 YC2HKiiJBIwKRWceDnnojRRPl94/RE6ce91Yeoc9O7gZJUGckMLyiZx0yZL1+Anysz
+	 ztwVDWcObnOm245zQqmPuzT2TgbCID7qUIX7y4cT9CWDGaRIwuT31p9zYSduD1kR86
+	 /+wBEY9xDQs7Fhgb4zixG5LPaHdJeKtORdjyA0EW5LhMqkLVY5B9Cl47nYPU3Pc2yC
+	 7SRukrwKmuLrOm7hhdDIP4qoqQrE6ni9iQeD0p2ISkPx5Is7IRxZt8TFF9Ll8HHPLG
+	 ykSfamTU39XnA==
+Date: Fri, 1 Nov 2024 08:42:33 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
+	Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: sound: sprd,pcm-platform: convert to
+ YAML
+Message-ID: <nquz3c6uty64ujtesz6e4nodycxui6xgvktr6hcq4whkokywph@t62vclojf6gx>
+References: <9fc646b70a73e7a6c513771d69b0edcd140f09d7.1730310275.git.stano.jakubek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <9fc646b70a73e7a6c513771d69b0edcd140f09d7.1730310275.git.stano.jakubek@gmail.com>
 
-Add the missing HID supplies to avoid relying on other consumers to keep
-them on.
+On Wed, Oct 30, 2024 at 06:48:38PM +0100, Stanislav Jakubek wrote:
+> Convert the Spreadtrum DMA plaform bindings to DT schema.
 
-This also avoids the following warnings on boot:
+typo: platform
 
-	i2c_hid_of 0-0010: supply vdd not found, using dummy regulator
-	i2c_hid_of 0-0010: supply vddl not found, using dummy regulator
-	i2c_hid_of 1-0015: supply vdd not found, using dummy regulator
-	i2c_hid_of 1-0015: supply vddl not found, using dummy regulator
-	i2c_hid_of 1-003a: supply vdd not found, using dummy regulator
-	i2c_hid_of 1-003a: supply vddl not found, using dummy regulator
+> Adjust filename to match compatible.
+> 
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> ---
 
-Note that VREG_MISC_3P3 is also used for things like the fingerprint
-reader which are not yet fully described so mark the regulator as always
-on for now.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Fixes: d7e03cce0400 ("arm64: dts: qcom: x1e80100-crd: Enable more support")
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
-
-Changes in v3
- - move 'pinctrl-names' after 'pinctrl-0'
-
-Changes in v2:
- - amend the pin config in order not to rely on the boot firmware
-
-
- arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 40 +++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-index b50accb220e5..88f6b1fa7c74 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-@@ -8,6 +8,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- 
- #include "x1e80100.dtsi"
-@@ -277,6 +278,23 @@ vreg_edp_3p3: regulator-edp-3p3 {
- 		regulator-boot-on;
- 	};
- 
-+	vreg_misc_3p3: regulator-misc-3p3 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_MISC_3P3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&pm8550ve_8_gpios 6 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&misc_3p3_reg_en>;
-+		pinctrl-names = "default";
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
- 	vreg_nvme: regulator-nvme {
- 		compatible = "regulator-fixed";
- 
-@@ -691,6 +709,9 @@ touchpad@15 {
- 		hid-descr-addr = <0x1>;
- 		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
- 
-+		vdd-supply = <&vreg_misc_3p3>;
-+		vddl-supply = <&vreg_l12b_1p2>;
-+
- 		pinctrl-0 = <&tpad_default>;
- 		pinctrl-names = "default";
- 
-@@ -704,6 +725,9 @@ keyboard@3a {
- 		hid-descr-addr = <0x1>;
- 		interrupts-extended = <&tlmm 67 IRQ_TYPE_LEVEL_LOW>;
- 
-+		vdd-supply = <&vreg_misc_3p3>;
-+		vddl-supply = <&vreg_l12b_1p2>;
-+
- 		pinctrl-0 = <&kybd_default>;
- 		pinctrl-names = "default";
- 
-@@ -723,6 +747,9 @@ touchscreen@10 {
- 		hid-descr-addr = <0x1>;
- 		interrupts-extended = <&tlmm 51 IRQ_TYPE_LEVEL_LOW>;
- 
-+		vdd-supply = <&vreg_misc_3p3>;
-+		vddl-supply = <&vreg_l15b_1p8>;
-+
- 		pinctrl-0 = <&ts0_default>;
- 		pinctrl-names = "default";
- 	};
-@@ -856,6 +883,19 @@ &pcie6a_phy {
- 	status = "okay";
- };
- 
-+&pm8550ve_8_gpios {
-+	misc_3p3_reg_en: misc-3p3-reg-en-state {
-+		pins = "gpio6";
-+		function = "normal";
-+		bias-disable;
-+		drive-push-pull;
-+		input-disable;
-+		output-enable;
-+		power-source = <1>; /* 1.8 V */
-+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
-+	};
-+};
-+
- &pmc8380_3_gpios {
- 	edp_bl_en: edp-bl-en-state {
- 		pins = "gpio4";
--- 
-2.45.2
+Best regards,
+Krzysztof
 
 
