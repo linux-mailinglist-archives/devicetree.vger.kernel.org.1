@@ -1,64 +1,91 @@
-Return-Path: <devicetree+bounces-118101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C9DF9B8FF9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 12:07:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0CFC9B9028
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 12:22:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE48F1C2113B
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:07:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6D791C2157F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:22:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A7B186E40;
-	Fri,  1 Nov 2024 11:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D607199256;
+	Fri,  1 Nov 2024 11:21:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OxWBRlgW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D0+H3b1C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB9AF1714BC;
-	Fri,  1 Nov 2024 11:07:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0BD0199238
+	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 11:21:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730459222; cv=none; b=XgjWrexmLHkP45L4STQoJWdI8ql243oAy2RRZeE4B2N9xNuWM8Jyf539l8zYY8mxSMrBe7tJ5DPZGYr8ZfIJ6t+Sx56XChbzPBI/YU6jAmLbrYrRH8EwF7n8XE6Rg2GH4ce5FEeo3+SmufQS17dqpZKYltBPQ5PObM+GdCpmvb0=
+	t=1730460117; cv=none; b=svKc1Vv+BMONrTwLU0guUKtuShdBm+pKAKOoKX2vGm7vQcUgSrRTHAN5bLj9kkYXoS/hTLJebzVJYHu2jK6a2fOv412mW9ioNtTRAPnQHXgj/kw64UeTlxhGyzYz9unppRbv2lMD2eoeXwXoQgeahD/8htmXJoViqvdgEbmzO9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730459222; c=relaxed/simple;
-	bh=srguf2lufsd2nms2sdpliq9KmczeQ+7p0oDEJZUn4qQ=;
+	s=arc-20240116; t=1730460117; c=relaxed/simple;
+	bh=KoTvzO8VKEqtuA3KrJa8XxyQcDEmRjc9CaAtz8YICLQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I/6LDsr/eyRnY98IKNrLCSrvRL52VrV2QNg1+er5ervmcV+oULqOCoahIShKA5PpuBEjxed1pBqHs3jrLdNd9B4fWzOguEmQ6v2uvsLifVA6XwG2R0fqeS4TjyX6J9JLj6dHTOgf/uyzu6/gcoY0x5V+izj0nqzX2t47AksgmwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OxWBRlgW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89FFBC4CECD;
-	Fri,  1 Nov 2024 11:06:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730459221;
-	bh=srguf2lufsd2nms2sdpliq9KmczeQ+7p0oDEJZUn4qQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OxWBRlgWxR/HP1ssthtXOEjS1Ug+Pnv12CO8Ue4CGm5zvPtzZNCHpIJLCVRraSIE0
-	 mCGNA+ACuorR5XtJrpn+LW6WYujtmVXSTqVawVBoHFyx0NvPZNdx+bA7SU9FJQD8Xn
-	 oOsAtCBRcrSTCTMMG4ltrDj7xiXWdcF1vl4QobbocLu1eoYb+c5EhbAaKK9sdgVs4O
-	 uulEWugA/Ur0gE+cPD3/eKUB1xPCA9DY68NtMwWTHTH7tgEczjIIARGCWXfCsCFCY0
-	 J0y5b40u+kgMDMJw8zWUxeHTPMa2RQ86ncI0qFOhEnpwyV+IQK1g6sdM6TShlMl4Dx
-	 +NeuK5nt12mkQ==
-Date: Fri, 1 Nov 2024 12:06:54 +0100
-From: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: kernel test robot <lkp@intel.com>, 
-	Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>, Lee Jones <lee@kernel.org>, llvm@lists.linux.dev, 
-	oe-kbuild-all@lists.linux.dev, Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, 
-	soc@kernel.org, Gregory Clement <gregory.clement@bootlin.com>, 
-	arm <arm@kernel.org>, Andy Shevchenko <andy@kernel.org>, 
-	Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH leds v4 02/12] leds: turris-omnia: Use command execution
- functions from the MCU driver
-Message-ID: <6zpxjvs4tbccftlb6rqxpoibasm65pgv6rfntbytbatumriyyv@6htvljg5ftv4>
-References: <20241029135621.12546-3-kabel@kernel.org>
- <202410311612.0OkxKVgC-lkp@intel.com>
- <98d3ab51-e7db-46b0-8268-b111e115a281@app.fastmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=GyiA1Nwq2pZevB5LS1Hx6TmbVXjv1XXLROV6WJEjlqALnaGBywiDopv4U8Gy4UVgN5QjXhASrMjWOVqcEPNj0gtPxEENGCQDa1Zc5Ta0aF21wBWaAf6nCoqeTKi4d1dIi5VgrmzqXMOugfxUWGOO3Rk5SAazgX7PVvtrt2Bghdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D0+H3b1C; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3807dd08cfcso1467027f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 04:21:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1730460114; x=1731064914; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=eXKsOWR/wJ8s/vomPLhl+IstAtu8+B4WWYmjYIcAfF8=;
+        b=D0+H3b1CJsHsW37MQ9JBJ/6HJLHuK1ZM8h2nikhAD8L8bG8AqhMBJ/rvNlKvvOG+bL
+         6b0PSWwpp1Zx2qFi+p301nVQAd9H5/9W8Crdi5yBiWEfMz7ppIIRzDI3iCgCxiBHqTgc
+         20D0trc1YBuF/zNdp7TGWFPqbffhk7rDm+PUdEIAny07XC5HvoawO/0Tk242VBQQ7I4y
+         lSpQ1rTUtbeEjQ/SpSnwwURJuPaEhg1c1DnExTPnpXQm0s39OWBSWA6b3TZrqKtmxDhX
+         gWqYa3+6ByhQKu9mtWJWJu85StsKS2kq6MG6oeiQcnlh+jD0bCGvILDQSyDaiD1VwcA9
+         nzwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730460114; x=1731064914;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eXKsOWR/wJ8s/vomPLhl+IstAtu8+B4WWYmjYIcAfF8=;
+        b=XgvGliixUvrOWLwBbVZWUiGVb0q+ejMN2RG20cM7Vm6Twl+YY1LsOX8McHFTr/LxAq
+         km3JqeCQc5gGPym49twB23rSzIvSmqj/JwJRGQNTIfmHIyCuJmMnqh2CYgIagTvOyjf1
+         qi3FnS25vNVydgud/OFdvuLvAmOIb+qRMmUvXa9875dcYkaSpWUD4THW/LR+54BGGovI
+         kjR/iZGBZ76PZ2L9WH+MsAj0OJdJ8J/rFfJjxHInpeXrKePMoDpURZ1LiQG6Cx16Bk93
+         pyWJCdeghfid1L4eZ0aQv1u8trLh5r+CPIAhPIzjQfyAuh1eoPAA6NWOV/UWNp7e2+V1
+         THeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXlvyq901aXECUet9SIkZCIMI8WKtmC4kebHgfWYfKcFsdvCFkv4hUmnCIoK7GwrWNaIALgMJxggmtb@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLBdn/FLBfxel2NNlshotcqcM3XQAuuX1FVf9ig0txgONI4soE
+	dRaZlHQvtuX9jsjscFB9vq0kl+9JXxN+x14JAuKKm1DSZs1vBoWvZzmHwYbwpfE=
+X-Google-Smtp-Source: AGHT+IF1Hi3RvwWs7DSq+spdpzYUhwOwwmzTbkypHgqr1nBe6xd71RG+VXm6t9yCvd53dDUoi1AkKw==
+X-Received: by 2002:a5d:5a13:0:b0:37c:fbf8:fc4 with SMTP id ffacd0b85a97d-381c7af3be3mr3201528f8f.59.1730460114103;
+        Fri, 01 Nov 2024 04:21:54 -0700 (PDT)
+Received: from linaro.org ([82.76.168.176])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c113e89csm4808765f8f.74.2024.11.01.04.21.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Nov 2024 04:21:53 -0700 (PDT)
+Date: Fri, 1 Nov 2024 13:21:52 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Johan Hovold <johan@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: x1e80100: Describe TLMM pins
+ for SDC2
+Message-ID: <ZyS50DFLhHVlnRtd@linaro.org>
+References: <20241022-x1e80100-qcp-sdhc-v3-0-46c401e32cbf@linaro.org>
+ <20241022-x1e80100-qcp-sdhc-v3-2-46c401e32cbf@linaro.org>
+ <a282021f-5e61-480c-84c4-272049e28244@oss.qualcomm.com>
+ <Zx9P+HQMOkJsJGcj@linaro.org>
+ <327507d8-2dc7-4645-ac3d-d68ff31a84dd@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,27 +94,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <98d3ab51-e7db-46b0-8268-b111e115a281@app.fastmail.com>
+In-Reply-To: <327507d8-2dc7-4645-ac3d-d68ff31a84dd@oss.qualcomm.com>
 
-On Fri, Nov 01, 2024 at 10:06:40AM +0100, Arnd Bergmann wrote:
-> On Thu, Oct 31, 2024, at 10:01, kernel test robot wrote:
-> >
-> > kernel test robot noticed the following build warnings:
+On 24-10-28 14:10:54, Konrad Dybcio wrote:
+> On 28.10.2024 9:48 AM, Abel Vesa wrote:
+> > On 24-10-25 20:34:19, Konrad Dybcio wrote:
+> >> On 22.10.2024 12:46 PM, Abel Vesa wrote:
+> >>> Describe the SDC2 default and sleep state pins configuration
+> >>> in TLMM. Do this in SoC dtsi file since they will be shared
+> >>> across multiple boards.
+> >>>
+> >>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> >>> ---
+> >>
+> >> Not very useful on its own but okay..
+> > 
+> > Fair enough. For some reason, I'm not able to get sdc4 pinconf
+> > to work.
 > 
-> >>> drivers/leds/leds-turris-omnia.c:409:12: warning: stack frame size (2064) exceeds limit (2048) in 'omnia_leds_probe' [-Wframe-larger-than]
-> >      409 | static int omnia_leds_probe(struct i2c_client *client)
-> >          |            ^
-> 
-> The problem here is the i2c_client on the stack, you can't
-> do that:
-> 
->  static int omnia_mcu_get_features(const struct i2c_client *client)
->  {
-> +	struct i2c_client mcu_client = *client;
->  	u16 reply;
+> Any chance you tried to define 'sdc4_cmd' etc.? This one seems to have
+> sdc4 pins on gpio127..=132
 
-OMG, I see. struct i2c_client contains struct device.
-OK, I will do this correctly by finding the MCU device on the I2C bus.
+Yes.
 
-Marek
+But since the sdc4 pins can have other functions and since there is no
+device that uses them (yet). Shouldn't we just skip describing the sdc4
+pinconf entirely as that should be done on a per-board basis?
+
+> 
+> Konrad
 
