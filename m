@@ -1,149 +1,140 @@
-Return-Path: <devicetree+bounces-118173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 517619B9401
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:09:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C79169B9405
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:10:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1E11B21893
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:09:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C48F282235
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:10:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E15331ABEB5;
-	Fri,  1 Nov 2024 15:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EDF91AC884;
+	Fri,  1 Nov 2024 15:10:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OpD4IMGA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k6YsdPsW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D3B51AB517;
-	Fri,  1 Nov 2024 15:09:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 585A919F43B;
+	Fri,  1 Nov 2024 15:10:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730473774; cv=none; b=LmkmhtA8lt8heRn/zOOjxBeZT4dLJLE/5LTrIRLeqAveNL5KBv49K4MgtGtEJKx39TczirNWqgaUpOb5yh/MaR6u716SacxuHVZKe0ms2PRc1gdjzprUJ2mxCfgmMY/2hLzL/Hp2C+CXhDveCto76IUmcRyqzJWluJYagNJBgPQ=
+	t=1730473832; cv=none; b=jejEW7mk7CgEvhyrN9Xdfho+HKIH7mcMbQHbIsuFA5mkH+cl/OsU5NB7tnDiUoKZDzmv4uOKN5qoPctJAr5Pg8HS3D3ggtpBxLJa7KOuve7ibUIT87e0pqsejDeZSNRylymlz62gIXcFtwrNgSll50GAr+bIEGBIJv9pz+4N0Mw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730473774; c=relaxed/simple;
-	bh=8O6+8zSdIrOsYZwhpn/UdsD7JMLogYbKMaHww4edegI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KwQGARShHqWVXpDUVHGbmXIsdtquMBKiniUKSabFBHr+YqN2/Yc5Mm33etiMJ1nSgChn9tQ96svzcZm7CDC8cRU4ACyarBVFriwM008q7Dao4NOdy8ufeN7USZR8bsgRcrKA25XPaVvwwVieDsebhFRbmdbIs9tVAuMXAd/628w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OpD4IMGA; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1730473832; c=relaxed/simple;
+	bh=wG+chI/4UZO5jGgLoc/oTzdlxZquqHoUg8VBqRFJICo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zg9vczn36kihoAU5xeXvcaV1dNQTtcS8dIlzprU3AVdTWwJJPPYJf9dbSHA1BYEK15A1Ofg/vco7mSYLUZmpzs845qWHrO2j95rbFtzWj6thdYH5FcHA8/RDSBJuiQ+KkfPbXbux4y6cqTMNJ9I2n+vWZtx1eJMRJaFwrX/LvrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k6YsdPsW; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7205b6f51f3so1845495b3a.1;
-        Fri, 01 Nov 2024 08:09:32 -0700 (PDT)
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2e2bd0e2c4fso1740373a91.3;
+        Fri, 01 Nov 2024 08:10:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730473772; x=1731078572; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gjnycSKe7PLm9xEIfiXtceGbvBfhF7/8n6iYzZypH+Y=;
-        b=OpD4IMGAQasFlLTbG1WWViP5oR0n2jr3z85HRlBdNg3a2dCsiNfVOUcQhgGF+ge3eA
-         pqvETLyUuaHlkOnWrM84DPvFm1GXEjTouu+GtwXj+Y4hSk+S8v1m1gEDdXRCC0RyK1Mx
-         bNf1s2JYaKhv0CjOYgikfpSFM8cBpJmV/kO8oJqXB0daflmuZK3YqRKg5FiD9lAVlTWE
-         duKJ4rHQnPAB5CuYJnFqhoVPWw9iuQeKFhcvQW3v3QgwLhCsAW1wcy4aYSxF9wBLr+yB
-         w/WuNMN2jQl2AG0tZgKA/kvpgOQtTteLb0H+lSvl5MipwfFQnCQ3FS1KATMl006ATOyZ
-         4S3w==
+        d=gmail.com; s=20230601; t=1730473829; x=1731078629; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GLHEFIz6OYXrCESggZlGnEkVWOeVNMnrs5P4PoJFuVY=;
+        b=k6YsdPsWspL5Z6dMGdYyM2Bq7g56fT7FWj/sLRUCgtkmngDLLZbB/JXI7aDn0e/xSk
+         HcJZg9Ku4PlsvuctJhW8cMIgs6r9zoV3tUiw1qtT4Wv1V/zzuxKAxVsppzGUn7gjkmho
+         +Inb0cOsUF9Q3CRNJniraFQurX2aOythnN9+7Bzl5groe68TM3LP0ba4CKUHGeiFoXxy
+         ZQgBHGZaGmDMb8PyNUD8FU6vgWvgJO3SzzTckS/TgM7IRVkFXC18SriGIwzQgzhpAv+y
+         t3+++DaHEOX1zenWZdrIA7mXN8oYkcEM8tujOgriHVoVx2R5uIsAuU4jCvE7U/Xfh2t4
+         PJpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730473772; x=1731078572;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gjnycSKe7PLm9xEIfiXtceGbvBfhF7/8n6iYzZypH+Y=;
-        b=l8UQ68tz+j/nUolIIGsJnWmU1xDE+tRy99L4wQrrNlNERebSGsLXfl2gSHqXUxRxsQ
-         mXKO4ZHhbcFoyOkbqo5debnfi6inbcKdM0OZD7rMdN7oOyyg2tpfVg8KLdctk9uOus6G
-         v3CVFeT2ugha2NveZLbP0zqzTn4C3uy9M+tBJQeRixb4tjx5B4SSED+X/Xvngwe4xHmB
-         2Me+ackEPkLXo4TGtlFW5jaz7uK3g/3PKB6AjtdxyW65cQQOSgQTwoVHse5u2a9fy079
-         SV04+e1OysntrpjKWN0ypEYG8p0HlFRMAAPado5HfDv+HxhnMTCKSVpfmUrQxTB4x7my
-         lIzw==
-X-Forwarded-Encrypted: i=1; AJvYcCUGuCuM4ZKWH/ngqN0c265a4sV3LsugGt8C/DyV4Ci0BFSoG4X9E4jTeJN7PO6nPlPc/tbqrSwcN5ng@vger.kernel.org, AJvYcCXBVePs8Utis+KZavZ6Aaaq3fNA61lywDKnASd2vvMZi6ZoE9xE5YaUDGrfzV+q3zSPacjVU+tmRe4Fl9qN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMub+RVLaT+XV9dlkpbpPeRhhSSjQvbvj6zLpziGxAo3xo7nwD
-	ZJuOtU4pEXdzc+MLhrBlnbb4HuQGpHip8iXujKrMZSu4MlJxiM30K19SHB+/
-X-Google-Smtp-Source: AGHT+IGj1ICWG+enL/mz+nRHk/RtiB2DmVTTu6rkphqnle4KBHonuvB3QqFfG5gzDuZ4/b49o0GKyg==
-X-Received: by 2002:a05:6a00:3c91:b0:720:75c2:7a92 with SMTP id d2e1a72fcca58-720c98d32b7mr5329009b3a.15.1730473772025;
-        Fri, 01 Nov 2024 08:09:32 -0700 (PDT)
-Received: from [192.168.0.122] ([59.188.211.160])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc2c38c7sm2745972b3a.125.2024.11.01.08.09.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Nov 2024 08:09:31 -0700 (PDT)
-Message-ID: <b0e81bfe-f7d3-475c-95af-7824d60deed9@gmail.com>
-Date: Fri, 1 Nov 2024 23:09:27 +0800
+        d=1e100.net; s=20230601; t=1730473829; x=1731078629;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GLHEFIz6OYXrCESggZlGnEkVWOeVNMnrs5P4PoJFuVY=;
+        b=IbpJG7e2fRvk6FpHgqpOh3pDQyfbttksO3gEKjcIhcMMGhIQDpfItfbF5aIrRenBdo
+         F0SEzmi+/JZVjO4f0ZFEaT+z388q2a0G24YFXEx/K5ZMBZXxJcvOM5DDd0uMuT1LSe5k
+         vpVMmpiuUSFLw8nTeiXiij06uvsbhZw7FHuAd0xsMI/padWXB8x//PyE60M3phDm7gb4
+         jHDKTaY0NEhQESAm9+ypdnbDhYojZ4WhxJwNmo/Dfuw+DIdBcTHQ5YAFMXHgUl9Qr1de
+         Mry/GpojmRFTtZEOYCvbWSkhbI3Mu8I0MXNMlR5fz2x9JU5IXFgh2C1Nwbuyl2ulBLpU
+         a5iQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVBaO7l+j+LSw+ahlbOZsFVu/IXOC2RTte4OA8MM9Pj4M9gRzPeFTk590qYSa3w7ZqAl2cHgsKKv5LTF3NV@vger.kernel.org, AJvYcCVIXuS7r0/OexUJoLDfAEGLwcMtaydf9OLHwG4Pwbk4PmCW8GUsPCLAaCjrzXTd1uOuSBP3jk+XNZ5HxC0=@vger.kernel.org, AJvYcCWpfrTWAl5KiS1Dj1bHPn3wyTowDjItNUzm/UP1RUUFAimk9I/qy5AO1vrkMGEieFXLZsYqpU3uq92F@vger.kernel.org, AJvYcCWxAALzOoWw7o4zqHHz/Gvr2snrVSVjA5ljP+sKnvKHJ3qQADSBTkkrPrcak8ReOMqvshagsGozzZt4@vger.kernel.org, AJvYcCXLwYpNXN9Z5vOvfUnqb1eRRHMj7iMPUAzTiK/dSdfvtgGksdYoK3RZBD+nRRay2FABb81Ky4KootLa@vger.kernel.org
+X-Gm-Message-State: AOJu0YycrD1Eq9X5vo53JK1ze8sEhNNF3+Nx+3kQYkQdUhdjAw0ZOHqD
+	SnRdgqOWuJIhQJW4LNkyKUIdUiNAXVJrCXBqhr9drpq6m1SaOeqki7bsQQ==
+X-Google-Smtp-Source: AGHT+IGBaoFdTTYrMwEIUc2SYb3gkcNYaF696BCJ+PIXirOU5+dmKWZrLhvF0QjXxuTctSLRVsYkSw==
+X-Received: by 2002:a17:90b:1a8c:b0:2e2:b21b:2247 with SMTP id 98e67ed59e1d1-2e93c1e6e78mr9104077a91.27.1730473829482;
+        Fri, 01 Nov 2024 08:10:29 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e92fa450d8sm5055509a91.25.2024.11.01.08.10.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Nov 2024 08:10:28 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Fri, 1 Nov 2024 08:10:27 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v3 4/6] hwmon: (pmbus/core) clear faults after setting
+ smbalert mask
+Message-ID: <fa3ccd3b-7dab-45b2-92ec-49400e39114c@roeck-us.net>
+References: <20241024-tps25990-v3-0-b6a6e9d4b506@baylibre.com>
+ <20241024-tps25990-v3-4-b6a6e9d4b506@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH asahi-soc/dt 04/10] arm64: dts: apple: t7000: Add PMGR
- node
-To: Rob Herring <robh@kernel.org>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241029010526.42052-1-towinchenmi@gmail.com>
- <20241029010526.42052-5-towinchenmi@gmail.com>
- <CAL_JsqLv2DJOsL=3bxf229ZdArL1TqArw+9cLtmjYMkm5yfZ7Q@mail.gmail.com>
-Content-Language: en-MW
-From: Nick Chan <towinchenmi@gmail.com>
-In-Reply-To: <CAL_JsqLv2DJOsL=3bxf229ZdArL1TqArw+9cLtmjYMkm5yfZ7Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241024-tps25990-v3-4-b6a6e9d4b506@baylibre.com>
 
-
-
-On 1/11/2024 21:04, Rob Herring wrote:
-> On Mon, Oct 28, 2024 at 8:06 PM Nick Chan <towinchenmi@gmail.com> wrote:
->>
->> This adds the PMGR node and all known power state subnodes. Since there
->> are a large number of them, let's put them in a separate file to include.
->>
->> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
->> ---
->>  arch/arm64/boot/dts/apple/t7000-6.dtsi        |   4 +
->>  arch/arm64/boot/dts/apple/t7000-handheld.dtsi |   4 +
->>  arch/arm64/boot/dts/apple/t7000-j42d.dts      |   1 +
->>  arch/arm64/boot/dts/apple/t7000-mini4.dtsi    |   4 +
->>  arch/arm64/boot/dts/apple/t7000-n102.dts      |   4 +
->>  arch/arm64/boot/dts/apple/t7000-pmgr.dtsi     | 641 ++++++++++++++++++
->>  arch/arm64/boot/dts/apple/t7000.dtsi          |  14 +
->>  7 files changed, 672 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/apple/t7000-pmgr.dtsi
->>
->> diff --git a/arch/arm64/boot/dts/apple/t7000-6.dtsi b/arch/arm64/boot/dts/apple/t7000-6.dtsi
->> index f60ea4a4a387..77d74d6af1c4 100644
->> --- a/arch/arm64/boot/dts/apple/t7000-6.dtsi
->> +++ b/arch/arm64/boot/dts/apple/t7000-6.dtsi
->> @@ -48,3 +48,7 @@ switch-mute {
->>                 };
->>         };
->>  };
->> +
->> +&framebuffer0 {
->> +       power-domains = <&ps_disp0 &ps_mipi_dsi>;
->> +};
->> diff --git a/arch/arm64/boot/dts/apple/t7000-handheld.dtsi b/arch/arm64/boot/dts/apple/t7000-handheld.dtsi
->> index 8984c9ec6cc8..566346be5b53 100644
->> --- a/arch/arm64/boot/dts/apple/t7000-handheld.dtsi
->> +++ b/arch/arm64/boot/dts/apple/t7000-handheld.dtsi
->> @@ -10,6 +10,10 @@
->>   */
->>
->>  / {
->> +       aliases {
->> +               framebuffer0 = &framebuffer0;
+On Thu, Oct 24, 2024 at 08:10:38PM +0200, Jerome Brunet wrote:
+> pmbus_write_smbalert_mask() ignores the errors if the chip can't set
+> smbalert mask the standard way. It is not necessarily a problem for the irq
+> support if the chip is otherwise properly setup but it may leave an
+> uncleared fault behind.
 > 
-> Looks like an unrelated change. Also, not a standard alias name. So please drop.
-Alright, (for other SoCs as well) the next version will not have any
-"framebuffer0"
-aliases additions.
-
+> pmbus_core will pick the fault on the next register_check(). The register
+> check will fails regardless of the actual register support by the chip.
 > 
-> Rob
+> This leads to missing attributes or debugfs entries for chips that should
+> provide them.
+> 
+> We cannot rely on register_check() as PMBUS_SMBALERT_MASK may be read-only.
+> 
+> Unconditionally clear the page fault after setting PMBUS_SMBALERT_MASK to
+> avoid the problem.
+> 
+> Suggested-by: Guenter Roeck <linux@roeck-us.net>
+> Fixes: 221819ca4c36 ("hwmon: (pmbus/core) Add interrupt support")
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/hwmon/pmbus/pmbus_core.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
+> index ce697ca03de01c0e5a352f8f6b72671137721868..a0a397d571caa1a6620ef095f9cf63d94e8bda1d 100644
+> --- a/drivers/hwmon/pmbus/pmbus_core.c
+> +++ b/drivers/hwmon/pmbus/pmbus_core.c
+> @@ -3346,7 +3346,12 @@ static int pmbus_regulator_notify(struct pmbus_data *data, int page, int event)
+>  
+>  static int pmbus_write_smbalert_mask(struct i2c_client *client, u8 page, u8 reg, u8 val)
+>  {
+> -	return _pmbus_write_word_data(client, page, PMBUS_SMBALERT_MASK, reg | (val << 8));
+> +	int ret;
+> +
+> +	ret = _pmbus_write_word_data(client, page, PMBUS_SMBALERT_MASK, reg | (val << 8));
+> +	pmbus_clear_fault_page(client, -1);
 
-Nick Chan
+Why -1 and not page ?
+
+Guenter
 
