@@ -1,177 +1,107 @@
-Return-Path: <devicetree+bounces-118187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D35449B94A0
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:43:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1951E9B94A5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:43:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97C9C2827E5
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:42:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 997A4B21625
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D631C32E2;
-	Fri,  1 Nov 2024 15:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E87FC1C729B;
+	Fri,  1 Nov 2024 15:43:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="MOaSnPjw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iGqhRb8j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A5425634;
-	Fri,  1 Nov 2024 15:42:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B92BE1C32E2;
+	Fri,  1 Nov 2024 15:43:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730475775; cv=none; b=Lsfh/2QImPSk0qzDs03GkFT+gb3loCMaKEC9Pwnu7a6zDqBxO7DrDMe1ekaPQZSLzZbseIfwVhJOYiguW0GLlm+b/JW0h6tjYfykzyIkDCSmvyBnsqzKzx8YeHRsNttsQWVLvSmrk82GX0/kWeKS8D1Po10+1Xphdlb6sIXFGzk=
+	t=1730475795; cv=none; b=WZUlpne7MGLVSP6iZv/VzU7pnfQaqz/dW1gTUIPbrfGJsbGeyk9qmOeIIdJ0c1Uc2rIkqmQrJn23ohNqAvHG58aZgiiTCT6f/eOebRXuROdiVjVvLT4HWutxxkbsXzQPHBLq6U5vZMnRKI7ifQpN50a5LiFSLSY99EiZT+ycxs4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730475775; c=relaxed/simple;
-	bh=e2RIMkxPzI4fgD86ODFquo5MfMVtY6+e/BHyT0tUnVY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=abkhtR/vmi/BLW0+J1pXsmZGsGEF6u1gyPjFW7NlcgXWTulT989CgSjIqBiY5PD6uI3ntgQ++QfBeqIxvYl8OEuaZDLoj2p1eePd1HthVJe4rRteB3z9mKNCebNtnRu6DpOg0Ul3EWatY4WPru34pqs9ECTDXi5Yjo3tshGpnws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=MOaSnPjw; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 4E7BB120019;
-	Fri,  1 Nov 2024 18:42:29 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4E7BB120019
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1730475749;
-	bh=++GLuDudYgupqyL0+wip7nEuzoF4sv5Ujk/jbnUCDIs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=MOaSnPjw8ycOcScy5hWFOiTbjmNq9d6VuCaKVjCmtYgWaT3saY1A5dp7U1cAgzPd2
-	 KKw0DTsT1aW4NcQOeZ7nPf8HyasRyA0SOH4L35NVyH5v1EK7z33nv4uSn6JAYS+vYx
-	 M1knP/XFeZteLarhljWFP2BUb/SJwCd+Wa6s8uMfRjc/JALgOtQlAQljpjJ5mbSD7i
-	 9aAXRaR+vF5LUShd8wbygbVVRVTQIU+coQtg0lOS3x+0SGHog77WselrzbnGAVYSIq
-	 RX22R2Qo/9zZgH120d1KTfDZcUjou+Pd/AkaYD1gEWeCZuyk+TNqGHojweMwX2cimK
-	 RIHcB4z9YGMCQ==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri,  1 Nov 2024 18:42:29 +0300 (MSK)
-Message-ID: <e37f23e6-f471-4061-b346-4b082f37060d@salutedevices.com>
-Date: Fri, 1 Nov 2024 18:42:28 +0300
+	s=arc-20240116; t=1730475795; c=relaxed/simple;
+	bh=irRgyaZNL3QbES2BKZpFC5HFrUeyLhBKBuQONdo5KOg=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=LQNobOLssH7m631CKogdOxBIGv3aee01TfYKK5pXqZjxPzuuXcqrQoJBzk8SonfRmxrt4GsXiF2la6BN4H+OVLt+JBn36JChwMNXLOvJcLbhNnuV3Kbv+fR/MbBfEHCgzYZvCaP2vCYUBPC09dtYeFfqW5QdoFTQXE+2Cw1prek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iGqhRb8j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 277FEC4CECD;
+	Fri,  1 Nov 2024 15:43:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730475795;
+	bh=irRgyaZNL3QbES2BKZpFC5HFrUeyLhBKBuQONdo5KOg=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=iGqhRb8jR4HXevjHc8GpzO5tk/iTgRBDJAhlmEszyFfNIfToCBXDMMpnPyx1YyG0G
+	 UyT/L0bngIoQ19hvlGOS7ZBCE5FjRpbj0CfRO9K8+s2VyWd6qo4wJRZOGMgPEy0YvI
+	 yTewADkihAH/QKVdQj2cTVDXG0FVQBpJqxwiPgIKRrhi0AD/LJeHHodQSnPvqtc4Gt
+	 TCmm7BTfa9hJX3s5aZez/Hrh/9tbYXjLxrYtnKp3raOryFi12UlC0cjBAOhlTvI6hC
+	 y/f19yAtUUem5jGZOqULHJMjj1vTJx81NUJh9Jzm95puOEwFeCib9t7BgSnFjhPhbd
+	 1JvhK64JRtEmg==
+Date: Fri, 01 Nov 2024 10:43:13 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] leds: pwm: Add optional DT property
- default-brightness
-To: Lee Jones <lee@kernel.org>
-CC: <pavel@ucw.cz>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <linux-leds@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@salutedevices.com>
-References: <20241015151410.2158102-1-gnstark@salutedevices.com>
- <20241015151410.2158102-3-gnstark@salutedevices.com>
- <20241031143250.GH10824@google.com>
-Content-Language: en-US
-From: George Stark <gnstark@salutedevices.com>
-In-Reply-To: <20241031143250.GH10824@google.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 188909 [Nov 01 2024]
-X-KSMG-AntiSpam-Version: 6.1.1.7
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 41 0.3.41 623e98d5198769c015c72f45fabbb9f77bdb702b, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/11/01 12:35:00 #26800049
-X-KSMG-AntiVirus-Status: Clean, skipped
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Janne Grunau <j@jannau.net>
+Cc: asahi@lists.linux.dev, Hector Martin <marcan@marcan.st>, 
+ Sven Peter <sven@svenpeter.dev>, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+ Mark Brown <broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+In-Reply-To: <20241101-asahi-spi-v2-1-763a8a84d834@jannau.net>
+References: <20241101-asahi-spi-v2-0-763a8a84d834@jannau.net>
+ <20241101-asahi-spi-v2-1-763a8a84d834@jannau.net>
+Message-Id: <173047579349.3488175.222264580667894425.robh@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: spi: apple,spi: Add binding for
+ Apple SPI controllers
 
-Hello Lee
 
-Thanks for the review!
-
-On 10/31/24 17:32, Lee Jones wrote:
-> On Tue, 15 Oct 2024, George Stark wrote:
+On Fri, 01 Nov 2024 15:25:03 +0100, Janne Grunau wrote:
+> From: Hector Martin <marcan@marcan.st>
 > 
->> When probing if default LED state is on then default brightness will be
->> applied instead of max brightness.
->>
->> Signed-off-by: George Stark <gnstark@salutedevices.com>
->> ---
->>   drivers/leds/leds-pwm.c | 13 ++++++++++---
->>   1 file changed, 10 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/leds/leds-pwm.c b/drivers/leds/leds-pwm.c
->> index 7961dca0db2f..514fc8ca3e80 100644
->> --- a/drivers/leds/leds-pwm.c
->> +++ b/drivers/leds/leds-pwm.c
->> @@ -65,7 +65,8 @@ static int led_pwm_set(struct led_classdev *led_cdev,
->>   
->>   __attribute__((nonnull))
->>   static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
->> -		       struct led_pwm *led, struct fwnode_handle *fwnode)
->> +		       struct led_pwm *led, struct fwnode_handle *fwnode,
->> +		       unsigned int default_brightness)
->>   {
->>   	struct led_pwm_data *led_data = &priv->leds[priv->num_leds];
->>   	struct led_init_data init_data = { .fwnode = fwnode };
->> @@ -104,7 +105,7 @@ static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
->>   	/* set brightness */
->>   	switch (led->default_state) {
->>   	case LEDS_DEFSTATE_ON:
->> -		led_data->cdev.brightness = led->max_brightness;
->> +		led_data->cdev.brightness = default_brightness;
->>   		break;
->>   	case LEDS_DEFSTATE_KEEP:
->>   		{
->> @@ -141,6 +142,7 @@ static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
->>   static int led_pwm_create_fwnode(struct device *dev, struct led_pwm_priv *priv)
->>   {
->>   	struct led_pwm led;
->> +	unsigned int default_brightness;
->>   	int ret;
->>   
->>   	device_for_each_child_node_scoped(dev, fwnode) {
->> @@ -160,7 +162,12 @@ static int led_pwm_create_fwnode(struct device *dev, struct led_pwm_priv *priv)
->>   
->>   		led.default_state = led_init_default_state_get(fwnode);
->>   
->> -		ret = led_pwm_add(dev, priv, &led, fwnode);
->> +		ret = fwnode_property_read_u32(fwnode, "default-brightness",
->> +					       &default_brightness);
->> +		if (ret < 0 || default_brightness > led.max_brightness)
->> +			default_brightness = led.max_brightness;
->> +
->> +		ret = led_pwm_add(dev, priv, &led, fwnode, default_brightness);
+> The Apple SPI controller is present in SoCs such as the M1 (t8103) and
+> M1 Pro/Max (t600x). This controller uses one IRQ and one clock, and
+> doesn't need any special properties, so the binding is trivial.
 > 
-> This creates a lot more hopping around than is necessary.
-> 
-> Since led_pwm_add() already has access to the fwnode, why not look up
-> the property in there instead, thus massively simplifying things.
-
-I looked up the new property here to be near to
-led_init_default_state_get (both props are from the same group) and
-led_pwm_add is big enough already. And you're absolutely right that the
-patch can be optimized. Please take a look at the v2
-
-> 
-> 
->>   		if (ret)
->>   			return ret;
->>   	}
->> -- 
->> 2.25.1
->>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Janne Grunau <j@jannau.net>
+> ---
+>  .../devicetree/bindings/spi/apple,spi.yaml         | 62 ++++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
 > 
 
--- 
-Best regards
-George
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/spi/apple,spi.yaml:10:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241101-asahi-spi-v2-1-763a8a84d834@jannau.net
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
