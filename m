@@ -1,115 +1,141 @@
-Return-Path: <devicetree+bounces-118156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE5229B9326
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:28:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 198799B933A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:30:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BFA51C20C17
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 14:28:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6121FB22FFF
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 14:30:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1E8E1A08C4;
-	Fri,  1 Nov 2024 14:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB6FA1AA792;
+	Fri,  1 Nov 2024 14:30:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bPk/nBfp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jw9uAyNf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 074E71BF24;
-	Fri,  1 Nov 2024 14:28:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF6AC60DCF;
+	Fri,  1 Nov 2024 14:30:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730471305; cv=none; b=ZeLqPxsBc4K6LTf1oJd5f/mvWTHlznUd2UTRo8+Nf/S7NdlunXAWMZl+GlgJL4PmVLGffdmU5lx5EsdVX3tRDOpei4IBSMedyqvGHk/OI5V8o291ZNFpZuB0TE12TashYjNsPLHr6+Um94AUf0D1pXQT+con6DZU7CkwBzp4y4s=
+	t=1730471423; cv=none; b=JJv5khvRyoKIO1JU8K3vtDM14Dk+SplyHTBJ+sTSXBFm+u3RA1Z7EVN9PtkEu5oN6at2zA72jmtpEk0HMFYl5mljFuA6KedmOgbBJrGf6mv4HNEguKpqqh5ACze3Rg5yhmAoFynu3LwBSh/p3VfkDnJ/XU83H2+HvSrqq1M/lbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730471305; c=relaxed/simple;
-	bh=JJOTGDsJTC0/vFf6QQmSD03I7QVCGkcddc1fNIPBBH8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JrdMSRWqAAOmZf/9hnPmtra4cGIqGJ1xx96nrFBrVp5sKxQZ6xEQt9i15La7YOd5JxgSM8ilHFe14SuhdqVtsB7EluHXKNzqu8J2xObUw5UoVJtDf4w53lMpAId9VyTBbbs+F8u46PSJtK+VzzgU1NyLIE82sh97w2vVK4uOxb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bPk/nBfp; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1730471423; c=relaxed/simple;
+	bh=GELZeM7SL+vX4J10M+PYFvjC1VtfZpBaaZsWDEcTe1o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BihAFZUwNnAj/2XlxZQT2G/8jl/HLD9jHZ1vInrS6Z9NcHB7z45ZoUdm3r9PLk9RhnR+1At44FC3jtXo6BiUz2wSlv0KzmpXVoR+PzfGdgqVXcgC/7ZC9xVL2RDzl2WdpYcBeEozzZFF1ZdYq2hQLPXRb0n3EHwuN0F0FisyCNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jw9uAyNf; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-72061bfec2dso1727601b3a.2;
-        Fri, 01 Nov 2024 07:28:23 -0700 (PDT)
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2e3010478e6so1526579a91.1;
+        Fri, 01 Nov 2024 07:30:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730471303; x=1731076103; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XFmWdX7p8UW/OnDmfSeyrMc2Et7zZ5YN9L5u0UlMjL4=;
-        b=bPk/nBfpLMykXFWTgMERGo95Atv5Qj+dXHY/grWNqlNQz0smNsCp2dceVmrx3BZPcc
-         qo1YcuPSU+LG4OrlGSJqeHShgE6aSu+MNuzzq8BX2Zu1yC2nqQtP9OM0bzmJnpbHa8rq
-         wz5+lm309GgkwnbhSVEjBI4v8RNcQGQe3efTjoWhBbT/fQq2QIMzQI+ZQZjUP3nXkCFL
-         cobmTVKrt5zxMuFpanxnoA9p9x05gt6I5cX8GJZENYAlOTpmA5wqZVhJeis7jijhP6+p
-         zk21xRMu80s91V9aLzFgGaBOJ1i6DnEnLIbh5eDXlLcFrK6j7UDXz8Dsx9GDy9gpA0ph
-         4X5g==
+        d=gmail.com; s=20230601; t=1730471421; x=1731076221; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GELZeM7SL+vX4J10M+PYFvjC1VtfZpBaaZsWDEcTe1o=;
+        b=jw9uAyNfBZ2rj29cAQUnj9vn4Kl/6VKxeoej0ohChZIWLACoFKgOrrFjnkkTtLtjXP
+         t45ByGYR4yEsF0GUp+MSaaPOtuyMu20349ldxhbcRzHbe5S54rxJW/h0fCz/FgHgcC1a
+         LUqdodc4HXi8T12SDmG9KFjgHjTPInr0anjFmhHOBSYPp8AyE8blXsgkkS0SJZ0/br0t
+         rc1Gxpp8F9zrozL+Lna7FLAdJlVi6yLzsM/iss3wyilO28pPnBAtJHSem09/fS85GKQk
+         2nWMDB+IZkWR0j2WIcrwMV+IF4E8LwwoD4KO8jHWKBK5TKQU0tVmRaGhEyyf013bdx9w
+         rJHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730471303; x=1731076103;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1730471421; x=1731076221;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XFmWdX7p8UW/OnDmfSeyrMc2Et7zZ5YN9L5u0UlMjL4=;
-        b=S46sJPDRs+OVfv1hRrM1XwFsJ2u6IUQdvXhEuP2UagkUE2T+JBXMHYURO/oKFWUjFh
-         hqHR+9jJhpMn7SJhH1EJCAtJofOKm2P5HZCV1sIcp38woTL+NDbJduPkU+eNjvDBqfse
-         ONjmMOQJUkg3BSCWxkjR35YXoef/GDPmhGiRcyRbgOrAgY6UY50AaVlW0bt3TR+k0FlY
-         7T1Y+2jG1OChVCvqzjSh0TRm2JR0Ye+oUV7K51+Os0kaxZjM3A80Kl+mhefoTVSggkGV
-         bSg/s955kY9F7P/lsz5RZyqWwu0OYi4hbB+84OQh3gAn9X64lTbK2ZOkyuGbozlXxxOt
-         oz2w==
-X-Forwarded-Encrypted: i=1; AJvYcCUCFAyVTNEVgIzfbkArW+Xez53fp6cXIGxn+IKOZjqAgrsMAcl3m7KuJy3NlWB01OibCkKl8reOuypA@vger.kernel.org, AJvYcCUSSSSDHvz0dJf16IXOS2w/Uns7tr1w47SzF43Dd1oPx8rDvY6sRnzdVSftn3TCCpZ+iOMYZBNjdN2V@vger.kernel.org, AJvYcCUh08XUZKQ3rWBzD/EIXx9vjovZ0A/7utOp/iJe7qmSpcs8b4vh2erOHVcdVUvUMD6LMA1yWo8EEPSiAwc=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUf808w7z25yy6Qk+x9TLry22HcMRbL1Jmp4Qu08iIenqDoYjG
-	L48KM9WwFYqkD/vnG0flkNJ7pJ9z85YlGLcm9UrK1sZ9q+cqC3pUFqQ4+w==
-X-Google-Smtp-Source: AGHT+IGRzSa7VeVFuEmHm5dbtnCna16zr18z8jeBGaFurcodmaam2po6f5ay80Mki0j25xDwKrhtng==
-X-Received: by 2002:a05:6a00:2e15:b0:71d:eb7d:20e4 with SMTP id d2e1a72fcca58-720c98d0527mr5231224b3a.8.1730471302963;
-        Fri, 01 Nov 2024 07:28:22 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc20f64asm2784783b3a.96.2024.11.01.07.28.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Nov 2024 07:28:22 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Fri, 1 Nov 2024 07:28:20 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Grant Peltier <grantpeltier93@gmail.com>
-Cc: robh@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
-	grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] dt-bindings: hwmon: isl68137: add bindings to
- support voltage dividers
-Message-ID: <8feb1581-4c0b-40fa-8aa4-8c2691921125@roeck-us.net>
-References: <cover.1730326915.git.grantpeltier93@gmail.com>
- <1dff1f63a2e122788e2c17f192472705491aa5b8.1730326916.git.grantpeltier93@gmail.com>
+        bh=GELZeM7SL+vX4J10M+PYFvjC1VtfZpBaaZsWDEcTe1o=;
+        b=J6R2W6JAJl2QCLywzSstfhx5ddEPA4HzVhiMXm8SUzW5Hc0h6dKm2er7HGGv09LSH+
+         0RgAmTESUise5DWWan3Lfk326gZstvqxver577+oE0sJEJHxwxeysY2DxxGuEHkfokfE
+         6B0MDMTEOh05ONdZyuLAzqodbcewnS/VpX4aLU+l0rlctPLEeDqtLTlII97uCs05Eypp
+         Cbp3Y8arpOpRVTnRFqC89BcpprfkFL1hcK3mWBXYv6z2r8s/MYvWCo4QOZTzrb7nBm1+
+         mi66Rn7fWEoooS4mGyPLH1Umx/+ty5owFNyE0wqzuq/683ivxRCQvEQDNq6RRX1472ZO
+         uPPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCULtoc0nqB05G7tRj9fBtUqZtr9igcwpsVnEgb3RMvo6ppRDcckPAzHqKmBqBdBrgTNxUaEBYpIVdc5@vger.kernel.org, AJvYcCWMWJDXzn4R3pem4JB4Ks5dDYrr1/tJXkeMlNPWToL/KFoO3I1wWowvQ7vW8OXNl/bolStIj2v4yPq+@vger.kernel.org, AJvYcCXbfgVw3uFfUBy5A32bRzFAVnOcTkC7hKw3Cqms69LYggxzIF4BSSwzsHRr2vgsqCkzsRCAF6mqfRPF25nZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwJnMDl8kB94Acto0Y8d92ipCSWGCYwx4BOcaOABONAW8tfwTI
+	q+9jQ1ipi6JjlSkCXEExhNuqf5RJKQUQbslkxEKHi4q13qH70FSciabj0FnWjByAKNrAb8p6LQt
+	/H8gj5mlRvo341ID/sw8GtnOejEY=
+X-Google-Smtp-Source: AGHT+IGdeX3stWgFTyf6spjEjN99PHriOnBxS+A509LgHsURAUxqmYxlKZ3iqTfB/zTj/U4sDz+/1hbT7XtnP492ocs=
+X-Received: by 2002:a17:90b:4d06:b0:2e2:a2f0:e199 with SMTP id
+ 98e67ed59e1d1-2e94c29ec6fmr4741654a91.8.1730471421289; Fri, 01 Nov 2024
+ 07:30:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1dff1f63a2e122788e2c17f192472705491aa5b8.1730326916.git.grantpeltier93@gmail.com>
+References: <20241028053220.346283-1-TroyMitchell988@gmail.com>
+ <20241028053220.346283-2-TroyMitchell988@gmail.com> <6zx3tqdc5bma2vutexwigzlir6nr6adp7arg4qwl5ieyd3avbu@5yyhv57ttwcl>
+ <dbeea869-54cd-43fe-9021-783d641f1278@gmail.com> <ariqiukhztgziwwgaauqy6q3pghflnoeuwtag4izwkfmtvi2kh@gnlq4d7jsaw4>
+In-Reply-To: <ariqiukhztgziwwgaauqy6q3pghflnoeuwtag4izwkfmtvi2kh@gnlq4d7jsaw4>
+From: Jesse T <mr.bossman075@gmail.com>
+Date: Fri, 1 Nov 2024 10:29:44 -0400
+Message-ID: <CAJFTR8T60Azb3refwAB9LALJthKxQz8E1ixZyEA0K=hXfNcUyg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: spacemit: add support for K1 SoC
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Troy Mitchell <troymitchell988@gmail.com>, andi.shyti@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 30, 2024 at 05:41:39PM -0500, Grant Peltier wrote:
-> Add devicetree bindings to support declaring optional voltage dividers to
-> the rail outputs of supported digital multiphase regulators. Some
-> applications require Vout to exceed the voltage range that the Vsense pin
-> can detect. This binding definition allows users to define the
-> characteristics of a voltage divider placed between Vout and the Vsense
-> pin for any rail powered by the device.
-> 
-> These bindings copy the vout-voltage-divider property defined in the
-> maxim,max20730 bindings schema since it is the best fit for the use case
-> of scaling hwmon PMBus telemetry. The generic voltage-divider property
-> used by many iio drivers was determined to be a poor fit because that
-> schema is tied directly to iio for the purpose of scaling io-channel
-> voltages and the isl68137 driver is not an iio driver.
-> 
-> Signed-off-by: Grant Peltier <grantpeltier93@gmail.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+On Fri, Nov 1, 2024 at 10:24=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Tue, Oct 29, 2024 at 04:36:00PM +0800, Troy Mitchell wrote:
+> > On 2024/10/28 15:38, Krzysztof Kozlowski wrote:
+> > > On Mon, Oct 28, 2024 at 01:32:19PM +0800, Troy Mitchell wrote:
+> > >> The I2C of K1 supports fast-speed-mode and high-speed-mode,
+> > >> and supports FIFO transmission.
+> > >>
+> > >> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
+> > >> ---
 
-Applied.
+Change in v2:
+- drop fifo-disable property
+- unevaluatedProperties goes after required: block
+- drop alias
+
+> > >
+> > > Where is the changelog? Nothing here, nothing in cover letter.
+It seems like it was accidentally dropped seeing there are the dashes.
+
+> > >
+> > > I asked for several changes, so now I don't know if you implemented
+> > > them.
+> >
+> > I deleted the FIFO property because I believe your suggestion is correc=
+t.
+> > this should be decided by the driver, even though the FIFO is provided
+> > by the hardware.
+> >
+> > Apologies for missing the changelog. To correct this, should I send a v=
+3
+> > version with the changelog or resend v2?
+>
+> Reply now with changelog. Your binding has some other unrelated and
+> incorrect changes, which I do not understand.
+
+...
 
 Thanks,
-Guenter
+Jesse Taube
+
+>
+> Best regards,
+> Krzysztof
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
