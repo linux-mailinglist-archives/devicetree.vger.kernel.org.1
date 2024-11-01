@@ -1,109 +1,113 @@
-Return-Path: <devicetree+bounces-118247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 441419B9850
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 20:20:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B2969B985B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 20:22:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE69B1F2250C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 19:20:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 206B9282DF5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 19:22:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 721491CF28E;
-	Fri,  1 Nov 2024 19:20:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CF971CF5DD;
+	Fri,  1 Nov 2024 19:22:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KaEtV9BQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="io6aL7bA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4926C1CEEA1;
-	Fri,  1 Nov 2024 19:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57691CCEE3;
+	Fri,  1 Nov 2024 19:22:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730488815; cv=none; b=lB3AIaq+PzXctUBj3nhU1E07eqgqFtnXBvjsi6kzPhaxN4S4FIqwOeNyAb20jY/ifXs7QEUgQtpip9DB5AjEkLI5JyV4WAESt8JnR06/+jQB9JSJLZbcdDZLa4hykVYvS3BX0Ga5Kav6UhJl2So4xSHt54xeD0Px00wED8HUWAY=
+	t=1730488954; cv=none; b=gRpM/NYcQtKPkRbzTUaP6moLOvGqQbVkmWqszxSml7X+wDU9KzlLczTv5oTAncVWOKKt4uqjvjLjd/OdnIWr+O3N3Tm7c9h4rce+mWj2KyxTq5QPTsgonnbGlF0oeOTah9t4/aZZZB0yOJhC5G1l2u7dipBqv7xtYWp0Y60GFVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730488815; c=relaxed/simple;
-	bh=JfQadZqGyKfCRqhcNClpBZ1kfu6wd9bo/LpO7Ij7QKE=;
+	s=arc-20240116; t=1730488954; c=relaxed/simple;
+	bh=O/ym4d0WTlG6huG3aJJmFPNVCgzuGvNmZvEadQiWdng=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tBJWx65ZgIsRm5wcknbq0chGL9REwocWuyVLIgDrDYjRoCDeu9Ak+MyWO6j02GxtlO6SmQ+ZDYad9KZJmD1Oz385GRHz47Hur94JsvvZMb7ExJJSHnXSsXSO89GNmHh9Os6NhziKmPID9rnu9ICpJN0Izs9/O2n2gANHkitFxbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KaEtV9BQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91C52C4CECD;
-	Fri,  1 Nov 2024 19:20:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rdkanDhWxYBdu+eUo+qU/ZE9xxMIJPPmvW+TWHUAC//9BaCSKcPVM3vVDFV+leGZrfzVOXCmOkMTE4K9XRirEGpk55Iry1M1HClHGzpxrN8v433OUANG3Sz9btvGDWlXuXVS/j46IrfHj16imxU54v+1z52se/7qS5YeTpPRb5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=io6aL7bA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E628C4CECE;
+	Fri,  1 Nov 2024 19:22:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730488813;
-	bh=JfQadZqGyKfCRqhcNClpBZ1kfu6wd9bo/LpO7Ij7QKE=;
+	s=k20201202; t=1730488954;
+	bh=O/ym4d0WTlG6huG3aJJmFPNVCgzuGvNmZvEadQiWdng=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KaEtV9BQ1ivqTzNIbr4NL0dGSKok/lFYumcnJT4lS2qbEN83Dahxn6wokug+1gyX4
-	 gOFwpqEDzXgEpmWDGonOVDrrJf2NIe+CMJuP7Xb40AfYwtmDTAtmmfk8MNx/N44ktq
-	 KSuesodhSCbW7Xn+9hM0zX+U7NJpn+5LtcgCKDfQiFBDVYYwlyEdyEUQpw/PQ5qKQM
-	 S2OneSv/pSDajEJA73oIKUEgMb5InoCco1Mg4B6cL4Rs4ci2w5eLn2CMltOL/i1P4d
-	 SN0qSn4VSmsDCnXDQH1HQ2trDRGFDjMl2auLdfntA8/V0AawZlpIf5cV8hq/mV+cGY
-	 /KMt4kvfgmfWg==
-Date: Fri, 1 Nov 2024 14:20:12 -0500
-From: Rob Herring <robh@kernel.org>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Dumitru Ceclan <dumitru.ceclan@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
+	b=io6aL7bAV2/t2veS2luEgDTV9BS6/r7pU6DL0zi+yggHcih8kGCJEpXBQcakZm+29
+	 VFdP0zayDHjHbeoZTSifM6wGBVPLgzNy/m3cIgYIjB828vKQz2WKpPLdNQkcZKvI/l
+	 ZXsXbWFsaguNPaLAIVZW186qSAVeIPsVDqMPYCklFEjdzgfVB+jfN6noBjVpEHf+m1
+	 uYFpt/Qlpk+GhgcUTWe1wLl92uVLftZ50E7v/JFjiv5e0CtLlMrRVZlQtdOdyv7gaC
+	 l1LzAcytEXhgdRizzMU3/kYaFApFCFvi0LPjmJ/P6zuBatMvo15Fo1/Jyrid+EQelp
+	 Tbn0oog2SLYYw==
+Date: Fri, 1 Nov 2024 19:22:28 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Chen-Yu Tsai <wens@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno Sa <nuno.sa@analog.com>, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: iio: adc: adi,ad7124: Allow
- specifications of a gpio for irq line
-Message-ID: <20241101192012.GA4052854-robh@kernel.org>
-References: <20241028160748.489596-6-u.kleine-koenig@baylibre.com>
- <20241028160748.489596-8-u.kleine-koenig@baylibre.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	=?iso-8859-1?Q?Adri=E1n_Mart=EDnez?= Larumbe <adrian.larumbe@collabora.com>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v3 0/7] Fix RK3588 GPU domain
+Message-ID: <cbe94b51-09f3-44ca-b2f1-f8da7ffdf05a@sirena.org.uk>
+References: <20241022154508.63563-1-sebastian.reichel@collabora.com>
+ <CAPDyKFoAv1jeQitHmTMhvwG9vGzN-vLby0fPzkX1E6+-Qe2dog@mail.gmail.com>
+ <CAPDyKFp=sRLVBhW2aK87pYHVGi_6gNw=e3j3AGMnEWP2SVYFpw@mail.gmail.com>
+ <9b4c9b61-a2be-465e-a4d9-034951fc862f@sirena.org.uk>
+ <CAGb2v65ahUB_Q+HPFV6B-UqWCbCNLdGz58BGo9iHRhVyf1ruZA@mail.gmail.com>
+ <27yrptpmhdbugmrgxaxllnbllv3adu3tzgl7e26b3flsvhlf3g@nfqn2fvmktmc>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="p4SFN8OtHYlRMYXM"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241028160748.489596-8-u.kleine-koenig@baylibre.com>
+In-Reply-To: <27yrptpmhdbugmrgxaxllnbllv3adu3tzgl7e26b3flsvhlf3g@nfqn2fvmktmc>
+X-Cookie: We read to say that we have read.
 
-On Mon, Oct 28, 2024 at 05:07:51PM +0100, Uwe Kleine-König wrote:
-> For the AD7124 chip the logical irq line (̅R̅D̅Y) is physically on the same
-> pin as the spi MISO output (DOUT) and so reading a register might
-> trigger an interrupt. For correct operation it's critical that the
-> actual state of the pin can be read to judge if an interrupt event is a
-> real one or just a spurious one triggered by toggling the line in its
-> MISO mode.
-> 
-> Allow specification of an "rdy-gpios" property that references a GPIO
-> that can be used for that purpose. While this is typically the same GPIO
-> also used (implicitly) as interrupt source, it is still supposed that
-> the interrupt is specified as before and usual.
-> 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
-> index de49b571bd57..71a40c7ca4bf 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
-> @@ -37,6 +37,12 @@ properties:
->      description: IRQ line for the ADC
->      maxItems: 1
->  
-> +  rdy-gpios:
-> +    description: |
 
-Don't need '|'.
+--p4SFN8OtHYlRMYXM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Otherwise,
+On Fri, Nov 01, 2024 at 08:04:52PM +0100, Sebastian Reichel wrote:
+> On Fri, Nov 01, 2024 at 10:41:14PM +0800, Chen-Yu Tsai wrote:
 
-Reviewed-by: Rob Hering (Arm) <robh@kernel.org>
+> > There's still the issue of backwards compatibility with older device
+> > trees that are missing said supply though.
 
-> +      GPIO reading the ̅R̅D̅Y line. Useful to reliably detect the interrupt
-> +      condition.
+> Exactly :)
+
+> As far as I can see the same misuse potential also exists for the
+> plain devm_regulator_get() version.
+
+You'll get warnings but I'm not sure that's such a huge issue?
+
+--p4SFN8OtHYlRMYXM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmclKnMACgkQJNaLcl1U
+h9B9twf/QTGk86FAM5H8xV0Epn/9qOT85YTAzZYDwwWc0yqPqBqNwkRR6JhBRkb2
+3KIhctV4uLAJgKQDk9zR7n79rZj0x08PPS1O5b2OzpS/UmWYEH4I8ZHjdpdDuuIr
+I0PZjazDxBp5fAPieR5Jf5iXwhfN/QAJ5CqqePZs+V4vOc0ENyQXhozZCCiKWSr5
+SDk10YySJNmEQpwuWPXLt/5F9GFtVA3EcK4E/0GU8vnQFgHcFNjI8W9ekN+/1U0w
+Fy7VLGtmx9KfgnCtcqqYDEB7dgwvxoVfKWCkmyvvrG4gE4GyvgCe7vxiPAxg9ti+
+0o1QDSRVbsBURb10e6VxYXEjr5tTpw==
+=23kx
+-----END PGP SIGNATURE-----
+
+--p4SFN8OtHYlRMYXM--
 
