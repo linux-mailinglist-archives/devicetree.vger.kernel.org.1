@@ -1,138 +1,248 @@
-Return-Path: <devicetree+bounces-117982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6648E9B8A8E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 06:33:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 549409B8A9E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 06:35:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2ABBA28335D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 05:33:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C82AB1F22AE5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 05:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1D815667B;
-	Fri,  1 Nov 2024 05:32:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 253FA148317;
+	Fri,  1 Nov 2024 05:33:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jBnIAPX0"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="ZZ4my0jo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from omta040.useast.a.cloudfilter.net (omta040.useast.a.cloudfilter.net [44.202.169.39])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5EE615533B
-	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 05:32:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB6881494BB
+	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 05:33:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=44.202.169.39
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730439134; cv=none; b=TLReB+Nt8ZUdyD+SdGkf9XaFbCpp2X/z8n15tdff5cMA0RLrG2Hgcgx+EIqL0V7qGTA5ls9XNiVgbT+fSwyhjkkbvdxW3FQbfhjcD7fDZxdEVU++PMQnWEqGReCn1P6ODm0GfJ/zdzLR4bcwNYbnCCGDbAqfrPFA49oYPoI66zg=
+	t=1730439203; cv=none; b=pioHUtnilIBVgF7yIT0i4CaO3bYdv/E8MUNr/LTajBc5ClXOQ/qzM77odrQfSBFOaddg5IyZ1sVFAwaBMolTxW3oshfLHlYwLU5t901yMW1HOadFyMGYFgUDL8ypzQ9SVD7IgJRvZArPwGBU+kic6g1/cAioxH3rjeYf2STRIcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730439134; c=relaxed/simple;
-	bh=7t6SY/A5qJfgXLXrqRp6mPVqti3WBAnSq+LngHcAwxg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gnewa1Nl6J83EJRvC9dFmtufl2qZbtQDa4urpz5xxEAg/ZaBQKnDa8tYaXSkTYOwWjzMEp924QCNLv0n6CrAqHlqgLbL9cWPtwWroH3PafQoFpnio2d2lcYT8AntPB05RX6uhAes4vZZSYuBXCjn6TpKqUMm9w3bCV0kQZzHkAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jBnIAPX0; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43162cf1eaaso17940185e9.0
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 22:32:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730439130; x=1731043930; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0qZ+GHMqA1XdG2ZoQPqbFp+pFaFwbLJtnfQPgYvvEGs=;
-        b=jBnIAPX0nwf4+J5NjJXxJlmJeGQ3TUhXGyA7YGSD1EcuDQu5x7HI6aBmsOggLeHe94
-         cNYKXwaeaAD+B9y11dwB7LzT19RGhTDxcha4GB4vtH30bhMFSbYgZjQQ/xP2DSeOCN2V
-         Gm/nB0P6gPbKmgv3qJPZA8FK2zT6GuZ51xFbJbCqyYpgqCbAnkq2352M+aPUzWiT8N2y
-         VP4/sAElk3xqK6T/N6GD2q1pjJ3yVCnysin/PxHLjabKHi4eQnZbOnc9oXkYNPQcq4H9
-         VbTTAoB01h0mK0unwTeXG0K7+9Ppj3RRydEjDO1FL3fIXP6nS8ca6HHrO8rYAowezkfU
-         wsvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730439130; x=1731043930;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0qZ+GHMqA1XdG2ZoQPqbFp+pFaFwbLJtnfQPgYvvEGs=;
-        b=mI1d4i/ZfHSQqpKGh8aglFubF+kDrHM94WJg4xCCwhY+Q322UEVRm1ciqMdjLyjEk4
-         Ntfxoc4SLHbC+xbC68yAL563OtRUuh98NdxKa6UpX5t/XRqON+vMXjPWunI+OSajKAL0
-         g1yHhFdVCLKkVFP1p51VQZxs7NwrmDiU4/5siK2gDQ97bQwe71iO4aDWsxO9e1ml66J5
-         OBYGg/WEkGb1x9ae3oq7cC7iz1bSNgc6HZ0LJNa6W8Nh2gk/6k0fteK8GvZAZLCXDb/y
-         ZB5Kc5FGwiuLlWl2WBw3EwFBML+/uBIXiHTTji9pLi/cvdHcG1WKOIDDtIgzVXm4EfZi
-         e8JQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVJFGxaewK0y7E8nI2z2uTMG63oGW/Hh2dlVkFLYr09KQgFVDicOxPotYwHOFKzsHw2jtIZ828mJQ2x@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKrHgeivG57QPdtD2/KEEiUKnW4r12jorSfsPJ0UJbasuMI+sw
-	HyidiesZc7Ecryxd4l3VApeApVr2ekUw0XV/WBD2hl0XqzfhMo/gusda05nCRlU=
-X-Google-Smtp-Source: AGHT+IGf6ar6VexZK13JhCW0Tfya9l6kv+PZwdcvXJwTsfxhD1kd0t2KZRYLapS6J/eWQ4atw7TETw==
-X-Received: by 2002:a05:600c:4e8a:b0:431:54f3:11ab with SMTP id 5b1f17b1804b1-43283296051mr20804705e9.33.1730439129894;
-        Thu, 31 Oct 2024 22:32:09 -0700 (PDT)
-Received: from localhost.localdomain ([2.222.231.247])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4327d6852fdsm46960505e9.34.2024.10.31.22.32.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2024 22:32:09 -0700 (PDT)
-From: Alexey Klimov <alexey.klimov@linaro.org>
-To: broonie@kernel.org,
-	konradybcio@kernel.org,
-	konrad.dybcio@oss.qualcomm.com,
-	andersson@kernel.org,
-	srinivas.kandagatla@linaro.org
-Cc: tiwai@suse.com,
-	lgirdwood@gmail.com,
-	perex@perex.cz,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dmitry.baryshkov@linaro.org,
-	linux-sound@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 10/10] ASoC: qcom: sm8250: force single channel via RX_1 output
-Date: Fri,  1 Nov 2024 05:31:54 +0000
-Message-ID: <20241101053154.497550-11-alexey.klimov@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241101053154.497550-1-alexey.klimov@linaro.org>
-References: <20241101053154.497550-1-alexey.klimov@linaro.org>
+	s=arc-20240116; t=1730439203; c=relaxed/simple;
+	bh=D4TJEIOyYSwiDdug5OMtrVlk3hwp/FEe6gmeAbaC37c=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=kIktsuunLiVdIl5HoDFWGBcdbnNTfzO2z+6rSbxg4M84ecGSpfk3skEV2X7AQ7PRPTy/3Bw4SzZc8tfIC36w2aOTSERX7pS01U05PkZ8umovW/knMc32P8xbjoxeaVaNqBPYyaUdVOLkW417FUnoj41r93wDVCbBwvJr4C2RP18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=ZZ4my0jo; arc=none smtp.client-ip=44.202.169.39
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
+Received: from eig-obgw-6004a.ext.cloudfilter.net ([10.0.30.197])
+	by cmsmtp with ESMTPS
+	id 6jbvtHTg4nNFG6kHet7CQk; Fri, 01 Nov 2024 05:33:18 +0000
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+	by cmsmtp with ESMTPS
+	id 6kHat4NzdWdNZ6kHctZkoz; Fri, 01 Nov 2024 05:33:17 +0000
+X-Authority-Analysis: v=2.4 cv=FtTO/Hrq c=1 sm=1 tr=0 ts=6724681d
+ a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
+ a=IkcTkHD0fZMA:10 a=VlfZXiiP6vEA:10 a=-pn6D5nKLtMA:10 a=6Ujbnq6iAAAA:8
+ a=vU9dKmh3AAAA:8 a=uXP6E58horQQbnEz6SkA:9 a=QEXdDO2ut3YA:10
+ a=-sNzveBoo8RYOSiOai2t:22 a=rsP06fVo5MYu2ilr0aT5:22 a=ZCPYImcxYIQFgLOT52_G:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:To:Subject:Cc:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=KsIO27gsMFDVvdSYn96XeM2cN2MZTMmCMSsPkFkYeNg=; b=ZZ4my0joR3FM9GiojirEbvrQMi
+	kacs17UJsIZgN7r0skFbn6kKVskk8xzdoj1k+crQIMRt8lsStrGfey27QnS35DwsBn9zNJfGRP1X5
+	P+D2d044aw5ZSYYALvJwfRZy+NyXZvHWXqFhZMsnfKqVxBDDKExElwDuyuxnqyZIcIoP7q+Ihfe39
+	+ow3nZKgE4/yk3an+6nxEG7NOsi0nrWAKNQ3R9k5b2b1SIpnu9A5EJaKylN71msYHzO5zIkkbvHHF
+	Kfyn8lFW0LRQI7r7n5AbDVONZxL+C72WTCnbGqYPSm5wOPv1nWYYYIXain+H+yT1jyiYxHuI/z0A5
+	/rRVTnew==;
+Received: from [122.165.245.213] (port=35224 helo=[192.168.1.5])
+	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <parthiban@linumiz.com>)
+	id 1t6kHS-002KJ3-32;
+	Fri, 01 Nov 2024 11:03:06 +0530
+Message-ID: <d38ff4ee-27a6-48ef-8429-15f59230de46@linumiz.com>
+Date: Fri, 1 Nov 2024 11:03:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Cc: parthiban@linumiz.com, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Nishanth Menon <nm@ti.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Vinod Koul <vkoul@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Yangtao Li <tiny.windzz@gmail.com>,
+ Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 06/13] arm64: dts: allwinner: a100: add usb related
+ nodes
+To: Cody Eksal <masterr3c0rd@epochal.quest>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>
+References: <20241031070232.1793078-1-masterr3c0rd@epochal.quest>
+ <20241031070232.1793078-7-masterr3c0rd@epochal.quest>
+Content-Language: en-US
+From: Parthiban <parthiban@linumiz.com>
+Organization: Linumiz
+In-Reply-To: <20241031070232.1793078-7-masterr3c0rd@epochal.quest>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 122.165.245.213
+X-Source-L: No
+X-Exim-ID: 1t6kHS-002KJ3-32
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.1.5]) [122.165.245.213]:35224
+X-Source-Auth: parthiban@linumiz.com
+X-Email-Count: 4
+X-Org: HG=dishared_whb_net_legacy;ORG=directi;
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfPa33zia81FWf+lNpScW9IWjo54BS9uMxsaZp7X05EDr1LzweXvm3OWJHNJL5NGNEsANETf5Xw/gcDvJ4lJFOIHkZesT0er2HnZ8fbkMVkYaNuz8kGM7
+ BfziFwKdMhPSbbHF/QeAuTod0tpBQO5XKEHFaSPjao9X/WEKOZTQ+aEgb3nCD8IvtXMttpT93OS/HpU1pV2SSGLRZlYYO51Cvfw=
 
-In case of mono configurations we need to enforce single channel
-output. This is required for audio playback on QRB4210 RB2 board.
+On 10/31/24 12:32 PM, Cody Eksal wrote:
+> From: Yangtao Li <frank@allwinnertech.com>
+> 
+> The Allwinner A100 has two HCI USB controllers, a OTG controller and a
+> USB PHY. The PHY is compatible with that used by the D1, while the OTG
+> controller is compatible with the A33. Add nodes for these to the base
+> DTSI.
+> 
+> Signed-off-by: Yangtao Li <frank@allwinnertech.com>
+> [masterr3c0rd@epochal.quest: fallback to a33-musb and d1-usb-phy, edited message]
+> Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
+Peripheral mode works after disabling ehci0 and ohci0. Otherwise,
 
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
----
- sound/soc/qcom/sm8250.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Tested-by: Parthiban Nallathambi <parthiban@linumiz.com>
 
-diff --git a/sound/soc/qcom/sm8250.c b/sound/soc/qcom/sm8250.c
-index 45e0c33fc3f3..7994488d7998 100644
---- a/sound/soc/qcom/sm8250.c
-+++ b/sound/soc/qcom/sm8250.c
-@@ -39,10 +39,20 @@ static int sm8250_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
- 					SNDRV_PCM_HW_PARAM_RATE);
- 	struct snd_interval *channels = hw_param_interval(params,
- 					SNDRV_PCM_HW_PARAM_CHANNELS);
-+	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
- 
- 	rate->min = rate->max = 48000;
- 	channels->min = channels->max = 2;
- 
-+	/* Maybe should be moved to driver data variant */
-+	switch (cpu_dai->id) {
-+	case RX_CODEC_DMA_RX_1:
-+		channels->min = channels->max = 1;
-+		break;
-+	default:
-+		break;
-+	}
-+
- 	return 0;
- }
- 
--- 
-2.45.2
+Thanks,
+Parthiban
+> ---
+> Changes in V2:
+>  - Fix sizes of reg definitions in usbphy
+>  - Move #phy-cells to the end of usbphy
+>  - Order nodes by MMIO address
+>  - Remove dr_mode
+> 
+>  .../arm64/boot/dts/allwinner/sun50i-a100.dtsi | 91 +++++++++++++++++++
+>  1 file changed, 91 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+> index adb11b26045f..f6162a107641 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+> @@ -302,6 +302,97 @@ ths: thermal-sensor@5070400 {
+>  			#thermal-sensor-cells = <1>;
+>  		};
+>  
+> +		usb_otg: usb@5100000 {
+> +			compatible = "allwinner,sun50i-a100-musb",
+> +				     "allwinner,sun8i-a33-musb";
+> +			reg = <0x05100000 0x0400>;
+> +			clocks = <&ccu CLK_BUS_OTG>;
+> +			resets = <&ccu RST_BUS_OTG>;
+> +			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "mc";
+> +			phys = <&usbphy 0>;
+> +			phy-names = "usb";
+> +			extcon = <&usbphy 0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		usbphy: phy@5100400 {
+> +			compatible = "allwinner,sun50i-a100-usb-phy",
+> +				     "allwinner,sun20i-d1-usb-phy";
+> +			reg = <0x05100400 0x100>,
+> +			      <0x05101800 0x100>,
+> +			      <0x05200800 0x100>;
+> +			reg-names = "phy_ctrl",
+> +				    "pmu0",
+> +				    "pmu1";
+> +			clocks = <&ccu CLK_USB_PHY0>,
+> +				 <&ccu CLK_USB_PHY1>;
+> +			clock-names = "usb0_phy",
+> +				      "usb1_phy";
+> +			resets = <&ccu RST_USB_PHY0>,
+> +				 <&ccu RST_USB_PHY1>;
+> +			reset-names = "usb0_reset",
+> +				      "usb1_reset";
+> +			status = "disabled";
+> +			#phy-cells = <1>;
+> +		};
+> +
+> +		ehci0: usb@5101000 {
+> +			compatible = "allwinner,sun50i-a100-ehci",
+> +				     "generic-ehci";
+> +			reg = <0x05101000 0x100>;
+> +			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_OHCI0>,
+> +				 <&ccu CLK_BUS_EHCI0>,
+> +				 <&ccu CLK_USB_OHCI0>;
+> +			resets = <&ccu RST_BUS_OHCI0>,
+> +				 <&ccu RST_BUS_EHCI0>;
+> +			phys = <&usbphy 0>;
+> +			phy-names = "usb";
+> +			status = "disabled";
+> +		};
+> +
+> +		ohci0: usb@5101400 {
+> +			compatible = "allwinner,sun50i-a100-ohci",
+> +				     "generic-ohci";
+> +			reg = <0x05101400 0x100>;
+> +			interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_OHCI0>,
+> +				 <&ccu CLK_USB_OHCI0>;
+> +			resets = <&ccu RST_BUS_OHCI0>;
+> +			phys = <&usbphy 0>;
+> +			phy-names = "usb";
+> +			status = "disabled";
+> +		};
+> +
+> +		ehci1: usb@5200000 {
+> +			compatible = "allwinner,sun50i-a100-ehci",
+> +				     "generic-ehci";
+> +			reg = <0x05200000 0x100>;
+> +			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_OHCI1>,
+> +				 <&ccu CLK_BUS_EHCI1>,
+> +				 <&ccu CLK_USB_OHCI1>;
+> +			resets = <&ccu RST_BUS_OHCI1>,
+> +				 <&ccu RST_BUS_EHCI1>;
+> +			phys = <&usbphy 1>;
+> +			phy-names = "usb";
+> +			status = "disabled";
+> +		};
+> +
+> +		ohci1: usb@5200400 {
+> +			compatible = "allwinner,sun50i-a100-ohci",
+> +				     "generic-ohci";
+> +			reg = <0x05200400 0x100>;
+> +			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_OHCI1>,
+> +				 <&ccu CLK_USB_OHCI1>;
+> +			resets = <&ccu RST_BUS_OHCI1>;
+> +			phys = <&usbphy 1>;
+> +			phy-names = "usb";
+> +			status = "disabled";
+> +		};
+> +
+>  		r_ccu: clock@7010000 {
+>  			compatible = "allwinner,sun50i-a100-r-ccu";
+>  			reg = <0x07010000 0x300>;
 
 
