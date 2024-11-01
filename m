@@ -1,173 +1,85 @@
-Return-Path: <devicetree+bounces-117989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1FF29B8B5A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 07:50:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF819B8BAD
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 08:02:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B809E1C21009
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 06:50:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADECF1F222F5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 07:02:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 080A514E2E6;
-	Fri,  1 Nov 2024 06:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A56149C57;
+	Fri,  1 Nov 2024 07:02:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vqXvCOO9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gl+hyo2P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6942614F126
-	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 06:50:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AA8C12BF24;
+	Fri,  1 Nov 2024 07:02:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730443811; cv=none; b=qUSsbwUtX/tdN+mTmOa+Z2FZrEcvF6Jc4qs/z3cAEDR3cnJjdvwNBVh1n/pPv3OPgaN3MXY+LyztZB7lJ+IOYQddnJpyoVY4iwWd7MR1V5RKYOyk3X0Wa/VWbIcXyqT3ujkEECNBCgKdzJj1TInsZ+tUkHbE1DQk/EY3ikGoou4=
+	t=1730444532; cv=none; b=RiDQpcPs0uVdGQ3F9UK1H6tuvWSyRFhHpw4aL+Yd70AJ9HPU7bST7qieuP2W8hoFNuwt/+29vP/8vhafLrDDwrvhryoVfPO7nTggBH5W9yJZJx0eqZZ7ZpG+NzSVd4xWPdfbTIdyylaz2UcJW+5+3Ss5oT6JW7kDgpCsfcpziVU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730443811; c=relaxed/simple;
-	bh=ODJ1U56tKN/dg4KO8D11FzeojPk4P9LEzQa3wCw6N0g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sstxyz30PbExfyFXsnEDk4FRCTQdLVKUBt4INgn/n99omn7VOZi1nTOeU03/uf6+4S8rvOZWXftP8Rmg3wOzRc6XATdSlQuguNwhDr+1MY20yn3mU9UbZPbCeCo1OYjlA9L5BF9ad3mnEiDqEvce2w/jvNiMTEMZFxTZDhwu9+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vqXvCOO9; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a9a1b8d45fcso25573466b.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2024 23:50:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730443807; x=1731048607; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=BoHoD7USV7MEAnZlU2UJzxgFTmdUTbHvC51Pi8erYfk=;
-        b=vqXvCOO9PmuaTgLkDPEkIzZuuHnYKs2Y6KSafQ9z2I4LXgSRA4yaiomz2zWfSCrsTr
-         hO0lADObW1nlJdBRidy9tVJ5TFaWo6Az73X8HiuTakIB2rZI8ntnTHkj50zWd8yRHLD4
-         oEazAqaxcAYjwhHUm2pUJnn0l6roI2Quv60lvy+kmgKNqWZfbsY/EnNLt4kQBbau47wk
-         vuJlxUJqnb60FCZW/oPW+AXI+YCDOGNCgT1nLm7sT6rwY0MD2OK2O/tL6lhkjaiEswD8
-         g4jgBeJ1bOcqekyDZyXAsneJXQli68KWOFwEcU73y1qnd8ua6++Of/EnKRTCfzgK64ju
-         drxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730443807; x=1731048607;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BoHoD7USV7MEAnZlU2UJzxgFTmdUTbHvC51Pi8erYfk=;
-        b=PBD1uWaGrEW7c0UoIgTgLTvT9XfuIkapEmzlSfmpPpMYTGXJPPYSLlBKz6jGvSQ/Kd
-         NVELJXPy4gL/lAIe5NbUP2NkbcrB+KIj0NYlT8yE0h6o0Q8tV9iibAizCsM0zN0R0emL
-         XH6iD1EhvPyoNSD5+d/Pfeoeym1ztneX2lfEzmDxdwJXVMet6Ut6Bbj+0FqnT1+eqrCf
-         tfaCaUApuM/5YvNeSfDQT+ThLQBfGaST3ksFXzVd2mxIQdKVUEh+tgtpsr/eCxV4J0U0
-         fhthdjiSRSKjL0lKC1ElwM0UMvxxZcBR4CrXmu7HoGCpLLb2ofNZkI6tidUk4zmAu2py
-         CoaA==
-X-Forwarded-Encrypted: i=1; AJvYcCWyNQnjX6L9ISZG7iFonP+zvz7XJXI+IVXTnyn2UtgsgLj/eXR2iyMO6JvXSmrt1fthmRq/cPyTvSqJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSE6gXWpQ0iDTPayqjxgyqdgm/Lt/C1sbbsYK8SZv8GUNAS5iy
-	6Y/BCFvca8VwRcuIg1qwPF81bf71HnjnUM80hQ6H/rTxcEAGTBs+mUMoNuTK3NY=
-X-Google-Smtp-Source: AGHT+IEAYHZTjJ6/KrgtwRF4vrEkWZBl/PoMNQCnKqHSKQ5lDc5aBqd9u5WLmF5kBRtx87lGmWqLNA==
-X-Received: by 2002:a05:6402:5256:b0:5cb:b616:5ed5 with SMTP id 4fb4d7f45d1cf-5cbbf936330mr7700329a12.5.1730443806785;
-        Thu, 31 Oct 2024 23:50:06 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ceac74cba4sm1252114a12.6.2024.10.31.23.50.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Oct 2024 23:50:05 -0700 (PDT)
-Message-ID: <aa6b6171-24ad-4dea-b0cc-28d7111416b7@linaro.org>
-Date: Fri, 1 Nov 2024 07:50:02 +0100
+	s=arc-20240116; t=1730444532; c=relaxed/simple;
+	bh=rHH169qaZTiJl0gLMfxJLR5YBm5hTCcLIsFp6V79Z98=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LW7M1dzEVV6qXQNGqXTuCSVUAf2LOLY1R6r/cyuTGWeTOIkZ33JKgILVsT/AQtVth+TdfGf9MRXnBc3qMpjlWwOGS/srVLk1kktQodaAxrdF8pnHufUWGyFcIuH/qZkJJPRmtCUZhW2vEKZzuDK0CWqzCRN/tiqyk/vlsxn+3mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gl+hyo2P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CD47C4CECD;
+	Fri,  1 Nov 2024 07:02:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730444531;
+	bh=rHH169qaZTiJl0gLMfxJLR5YBm5hTCcLIsFp6V79Z98=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Gl+hyo2Pxjl8y3WwiP/hYBe00cAvQvpSOCU6PVMQZ/77BACSBtoLMfMsu4aUZ71RM
+	 dl4lxUUnL/9ui/TvHlR/RRK8D0nHpHqIC7hocnvW4o5AABXefZFogmXivXRvdL3Z57
+	 ulfXFoQvr6oKys6E5RZuIeyK2BY9VYkymYdM4ocjI336ymVaNIvsdUYgBBvmZh5H7H
+	 13mI/tetnIjX3ii3z26Yi7i0EujBwIfzrQ5aCBoHS9sf8EsGU3vHfQE0dlIhkWIc+N
+	 6DagPZPMfuTqaYWs68myYM2mjVKd2rOGTv6Cd3LY/3fxTufC+gq6lo2BSGwUCI/vBQ
+	 Qj8S+kaWnjFsw==
+Date: Fri, 1 Nov 2024 08:02:08 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Amit Sunil Dhamne <amitsd@google.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	gregkh@linuxfoundation.org, heikki.krogerus@linux.intel.com, dmitry.baryshkov@linaro.org, 
+	kyletso@google.com, rdbabiera@google.com, badhri@google.com, linux@roeck-us.net, 
+	xu.yang_2@nxp.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] dt-bindings: usb: maxim,max33359.yaml: add usage
+ of sink bc12 time property
+Message-ID: <r44xdvk53c45bhyvwhy6722vj7wttkhfesta3ty22kkt6nfrtu@vcooujz3ywlj>
+References: <20241031235957.1261244-1-amitsd@google.com>
+ <20241031235957.1261244-3-amitsd@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: rng: add binding for BCM74110 RNG
-To: Markus Mayer <mmayer@broadcom.com>
-Cc: Olivia Mackall <olivia@selenic.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Aurelien Jarno <aurelien@aurel32.net>, Conor Dooley <conor+dt@kernel.org>,
- Daniel Golle <daniel@makrotopia.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Francesco Dolcini <francesco.dolcini@toradex.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Device Tree Mailing List <devicetree@vger.kernel.org>,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20241030213400.802264-1-mmayer@broadcom.com>
- <20241030213400.802264-2-mmayer@broadcom.com>
- <db7b7745-404d-45f7-a429-c1c747de8e6b@linaro.org>
- <CAGt4E5ud=0rwSKBTOAsx0RMB3Pkjo+HHxZ_JLPBFbOSZUTCRVg@mail.gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAGt4E5ud=0rwSKBTOAsx0RMB3Pkjo+HHxZ_JLPBFbOSZUTCRVg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241031235957.1261244-3-amitsd@google.com>
 
-On 31/10/2024 19:55, Markus Mayer wrote:
-> On Thu, 31 Oct 2024 at 00:29, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 30/10/2024 22:33, Markus Mayer wrote:
->>> Add a binding for the random number generator used on the BCM74110.
->>>
->>> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
->>> ---
->>>  .../bindings/rng/brcm,bcm74110.yaml           | 35 +++++++++++++++++++
->>>  1 file changed, 35 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/rng/brcm,bcm74110.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/rng/brcm,bcm74110.yaml b/Documentation/devicetree/bindings/rng/brcm,bcm74110.yaml
->>> new file mode 100644
->>> index 000000000000..acd0856cee72
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/rng/brcm,bcm74110.yaml
->>
->> Filename as compatible.
+On Thu, Oct 31, 2024 at 04:59:53PM -0700, Amit Sunil Dhamne wrote:
+> Add usage of "sink-bc12-completion-time-ms"  connector property to
+
+There is no such property. You cannot add it. You did not even
+test this patch before sending :/
+
+
+> max33359 controller for delaying PD negotiation till BC1.2 detection
+> completes. This overcomes the occasional delays observed while
+> receiving PD messages where BC1.2 detection runs in parallel.
 > 
-> I am not sure what you mean by this. That the filename should match
-> the compatible string? I did change the filename to
+> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> Reviewed-by: Badhri Jagan Sridharan <badhri@google.com>
 
-Yes.
+Your Reviewed-by tag is pretty wrong. I don't believe any review
+happened here. If it did, it was pretty useless.
 
 Best regards,
 Krzysztof
