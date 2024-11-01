@@ -1,123 +1,158 @@
-Return-Path: <devicetree+bounces-118242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F89E9B97D3
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 19:43:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D519B980C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 20:05:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 519771C210FD
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 18:43:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDA7F1F21EC6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 19:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AC981CDA2F;
-	Fri,  1 Nov 2024 18:43:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C90D14E2ED;
+	Fri,  1 Nov 2024 19:05:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hXB2cBDY"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="UguSqV4x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E4AA1AB6C1;
-	Fri,  1 Nov 2024 18:43:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730486591; cv=none; b=V63KvBvW2WgmhvHxbZ3E9XoaY90NnfDNNR2mPjYMkUojH8BKihftaAtQoq0Yyv2QijFVZ9LceKOzjRi3A8Rm9uh1zzPhwOg8evA3czNSLmR1a376nV+nUIjiUYmhzoftBFfhQ0Un5D64M0MUMKSi6Zbcuix1oKxAKfowPnuMJy4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730486591; c=relaxed/simple;
-	bh=j3OTeLdioiEXWn4ftMh38JgfvmXciXzbfnqa9kQhC3c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=IO2x+oTpDZift9M7gsk8q4TBucRftg/Zh8yO5q3ja/lNpNFs6FM4pok/d2EjswJc0JBqrbbPZTrjDPDcQFRD+cXTFiswf+VOxuPKy4lEp0mfXEeHuz9f3yO78Fruotk0FiXOyuEdmcySmrNarTPDMCjQQpQxJhFofLGVah2Js7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hXB2cBDY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A1GcF8Y028274;
-	Fri, 1 Nov 2024 18:43:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	k13nb62oaBC/LKwTpq5E66VPRLY65tnsSUNT62O3KVQ=; b=hXB2cBDYpIJmKdhq
-	NxcdWMpNlDg38fnl0inMdXZZTCmlnT9OW6SXUQuiFxGGeqIdntNd/+TuSnU4FInG
-	mJ2+4MDO2o1IChwZsY+I/QZWObdBSlW5W8cgQqi0gk/dn3mud3xgTH1kje3oWLod
-	C3tGVV0IbzS04roZCamCvrslqLRgpXZzvpYyfpz7I0I7DYtYs99YR1x6weeUw5nx
-	6yzImzuy/eIUZ6N38481Vn3Rv+QcvPMxnu1CxlMFedJfQV5kJWMzsHN8Lc0WERG8
-	sckV3KpK5edZe/JYg4MDYAiDV6kLIssK6lgl+YNP24XWaKjxUGoz341PQdmDjToT
-	sv5eZg==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42mu7c9vy1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 01 Nov 2024 18:43:04 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A1Ih3IH003537
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 1 Nov 2024 18:43:03 GMT
-Received: from [10.110.33.199] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 1 Nov 2024
- 11:43:03 -0700
-Message-ID: <883b48f2-26de-4d44-b26e-a84ed0d46fd8@quicinc.com>
-Date: Fri, 1 Nov 2024 11:43:03 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 800A41A0B16;
+	Fri,  1 Nov 2024 19:05:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730487926; cv=pass; b=NKVOsPQ4Y3EgPPLC0aggl2XRt/nOQfAEosdF+SpprnPu/yXUiUKiN6Ehe1Lxl0hHBIWRQNoRqXsi4YlVACE8TIWRWUjCsaUjVVSuitaDiMvN+gHBUxTa+4+H8P4dOzkKUvUfltFQrxIRWSeJ9tB4ApXu16gcmJKGYPeUnm5+eNE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730487926; c=relaxed/simple;
+	bh=pzoJ5fr6Q5GERZ5oaDzhX4m2iyhXQfzYDnP4gVMdNVU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CMjxizkx47oPCTlO4Ug9BgLK1ln56p5u8Ngw3cHtHtHOy2bGZwuTKun1KnUhcMN4iEKrA6ie9EnZencA/S4lMoeMn2nA84tvi7Sq42xCQP+4X0vz4FP4EJGbjSnxF3VtIulPSXnWMddG6+UcdtCIcCGvf0fhH3icFPubgot3SXQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=UguSqV4x; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1730487900; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=d20C6Y3wyw3/8SaY0GwAVhYMHvrXivxlNZuO18r6gr/ZegIhYAyXtqss75WvJKUS8a5SJLObM6nnjF2q5gkeWsHV/t31Fcm0F65WyZu21L8VzwbbO4JOSumNpLMhOXY6ObLqOpY5RSJGRz1C6NJHOPA1dZPeLoWMaREJbvfFMtU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1730487900; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=pzoJ5fr6Q5GERZ5oaDzhX4m2iyhXQfzYDnP4gVMdNVU=; 
+	b=Z0mYTzCYL6nKjVntpGOnNrUTIO23JKlDrF1q5/elaQklnmk2gJGug/vSKnHj4I9ZkDH8hfLz/JWSEKapbDlpDKh53/3PzZyIR+mFE+ej5KCzfQt610MOVme1V3NS0oWC6dsY9WRLSYKwxcdIzKmMTi8xVwH0FUf3CPTdZhezmko=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1730487900;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=pzoJ5fr6Q5GERZ5oaDzhX4m2iyhXQfzYDnP4gVMdNVU=;
+	b=UguSqV4x+9hrg/V3cytNm2dwqbndRkJLTRaQ/SEMM8w/qbHiDqVOOaaEd4cUiArS
+	2hTuGpx67ztYGzAKJA/k1bEpjVPsva2c8iA27GvPDxqxl/3XIyKcgSfuHURJB7cOZtH
+	wUGVT0mzS+UcebYPEUCU8e9EBh+RfB4RSGr/gD4Q=
+Received: by mx.zohomail.com with SMTPS id 1730487897758168.1618463566807;
+	Fri, 1 Nov 2024 12:04:57 -0700 (PDT)
+Received: by mercury (Postfix, from userid 1000)
+	id 18AEF10604B0; Fri, 01 Nov 2024 20:04:53 +0100 (CET)
+Date: Fri, 1 Nov 2024 20:04:52 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Elaine Zhang <zhangqing@rock-chips.com>, 
+	=?utf-8?B?QWRyacOhbiBNYXJ0w61uZXo=?= Larumbe <adrian.larumbe@collabora.com>, Boris Brezillon <boris.brezillon@collabora.com>, 
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v3 0/7] Fix RK3588 GPU domain
+Message-ID: <27yrptpmhdbugmrgxaxllnbllv3adu3tzgl7e26b3flsvhlf3g@nfqn2fvmktmc>
+References: <20241022154508.63563-1-sebastian.reichel@collabora.com>
+ <CAPDyKFoAv1jeQitHmTMhvwG9vGzN-vLby0fPzkX1E6+-Qe2dog@mail.gmail.com>
+ <CAPDyKFp=sRLVBhW2aK87pYHVGi_6gNw=e3j3AGMnEWP2SVYFpw@mail.gmail.com>
+ <9b4c9b61-a2be-465e-a4d9-034951fc862f@sirena.org.uk>
+ <CAGb2v65ahUB_Q+HPFV6B-UqWCbCNLdGz58BGo9iHRhVyf1ruZA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8750-qrd: Enable ADSP
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Satya Durga Srinivasu Prabhala
-	<quic_satyap@quicinc.com>,
-        Srinivas Kandagatla
-	<srinivas.kandagatla@linaro.org>
-References: <20241101-sm8750-audio-v1-0-730aec176459@linaro.org>
- <20241101-sm8750-audio-v1-4-730aec176459@linaro.org>
-Content-Language: en-US
-From: Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <20241101-sm8750-audio-v1-4-730aec176459@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 0YSAUrnwyHGemuw8Pq91oMvacZKX56bT
-X-Proofpoint-ORIG-GUID: 0YSAUrnwyHGemuw8Pq91oMvacZKX56bT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- impostorscore=0 mlxlogscore=548 adultscore=0 priorityscore=1501
- clxscore=1015 phishscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411010134
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sd4kvys2evpxroym"
+Content-Disposition: inline
+In-Reply-To: <CAGb2v65ahUB_Q+HPFV6B-UqWCbCNLdGz58BGo9iHRhVyf1ruZA@mail.gmail.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.3.1/230.343.48
+X-ZohoMailClient: External
 
 
+--sd4kvys2evpxroym
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 0/7] Fix RK3588 GPU domain
+MIME-Version: 1.0
 
-On 11/1/2024 10:19 AM, Krzysztof Kozlowski wrote:
-> Enable ADSP on QRD8750 board.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> ---
->
-> Firmware release will follow up later.
-> ---
->   arch/arm64/boot/dts/qcom/sm8750-qrd.dts | 7 +++++++
->   1 file changed, 7 insertions(+)
+Hi,
 
-Reviewed-by: Melody Olvera <quic_molvera@quicinc.com>
+On Fri, Nov 01, 2024 at 10:41:14PM +0800, Chen-Yu Tsai wrote:
+> On Fri, Nov 1, 2024 at 10:36=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
+rote:
+> > On Fri, Nov 01, 2024 at 12:56:16PM +0100, Ulf Hansson wrote:
+> > > On Wed, 23 Oct 2024 at 12:05, Ulf Hansson <ulf.hansson@linaro.org> wr=
+ote:
+> >
+> > > > The merge strategy seems reasonable to me. But I am fine with that
+> > > > whatever works for Mark.
+> >
+> > > Mark, any update on this?
+> >
+> > > If easier, you could also just ack the regulator patch (patch1), and
+> > > can just take it all via my tree.
+> >
+> > I'm still deciding what I think about the regulator patch, I can see why
+> > it's wanted in this situation but it's also an invitation to misuse by
+> > drivers just blindly requesting all supplies and not caring if things
+> > work.
+>=20
+> I suppose an alternative is to flag which power domains actually need
+> a regulator supply. The MediaTek power domain driver does this.
 
-Thanks,
-Melody
+If you look at patch 6/7, which actually makes use of devm_of_regulator_get=
+()
+you will notice that I did actually flag which power domains have/need a
+regulator.
+
+> There's still the issue of backwards compatibility with older device
+> trees that are missing said supply though.
+
+Exactly :)
+
+As far as I can see the same misuse potential also exists for the
+plain devm_regulator_get() version.
+
+Greetings,
+
+-- Sebastian
+
+--sd4kvys2evpxroym
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmclJk4ACgkQ2O7X88g7
++poVOg/+PaFjJt/IbSqoFt+2B0uc3fK8C3HKt56Y2kbeE0svwnnG8rBkWqbNGP/x
+699N+JDv8ZOozhjWXknZBfsGLJUOSvvE1b88xb5WWsZ0FXnQ+uqaOdBu2Ph5iWL2
+efopHne/lUiElpPwuHPrGyibqdclrjuF4REkt9IfIG9wCuXwTbmrtXSGV0B1A6El
+JF36I3Gb0i1UwsaIdFKm5MgnLeycFyHMnBYNSeQ5ODnK3UXCRySfQa/CJHU0uAKx
+hrlQ4S9cP0ndBZTkd9fXAXCVftPfZx/k8ov6eBUtHIk9E0ADCePmQMtjPBvHU33S
+KJzVyjsCSR5hOP1TEcD8+3b3T9qOxJAuvJXvycotVFyueWO+RHfJvY46Aye865O7
+l6009bUVHnEpod1uRb8GSufiMt38yu5tCyM2fckpCL624YwC/pLEEWqqyJP9Mw4E
+oqgpexhSAVHZxI3RnuWxmesclM4xA/cI/wl8PQsNZ7fArS0RWlHCYn4lvlz4i886
+TSUvys5m4QxVx8rlADvDS6z1HQd2xXtsjq2aYwwxkqxhK/aK/kef2vIEy1zq02TK
+aFs+AtwO1jNofEYAQBRsTTlmz7yES7YJ6wA6ClyjKHme1DhHe6JvjX4lrdAsen9x
+Tu9hfY0Gi8fg/k3O2NB/g9L1QyeSosgA2xfc3a1f17mtYX/ZGqA=
+=IDSJ
+-----END PGP SIGNATURE-----
+
+--sd4kvys2evpxroym--
 
