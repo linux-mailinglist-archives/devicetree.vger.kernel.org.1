@@ -1,126 +1,135 @@
-Return-Path: <devicetree+bounces-118102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0CFC9B9028
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 12:22:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1E649B902D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 12:24:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6D791C2157F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:22:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BC661C20D95
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D607199256;
-	Fri,  1 Nov 2024 11:21:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD0DB199386;
+	Fri,  1 Nov 2024 11:24:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D0+H3b1C"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="CqPusi1I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0BD0199238
-	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 11:21:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D51E14A62B;
+	Fri,  1 Nov 2024 11:24:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730460117; cv=none; b=svKc1Vv+BMONrTwLU0guUKtuShdBm+pKAKOoKX2vGm7vQcUgSrRTHAN5bLj9kkYXoS/hTLJebzVJYHu2jK6a2fOv412mW9ioNtTRAPnQHXgj/kw64UeTlxhGyzYz9unppRbv2lMD2eoeXwXoQgeahD/8htmXJoViqvdgEbmzO9Q=
+	t=1730460285; cv=none; b=pW00sETgEcbK8aSsLXmrUJF+r8bVwXseLFofEG4Ajgzz3umsoxk5901GKxuyFrgaRP56/u8lFAjCU8gj8ph3yfA6QQY4FLbB2XNS8pUoZ0ELfjvw5ynqIL5zdMkuHoSS0yN5YAlMwtHoVNyn3GsSI82qPITdwYixtC4eZojfE8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730460117; c=relaxed/simple;
-	bh=KoTvzO8VKEqtuA3KrJa8XxyQcDEmRjc9CaAtz8YICLQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GyiA1Nwq2pZevB5LS1Hx6TmbVXjv1XXLROV6WJEjlqALnaGBywiDopv4U8Gy4UVgN5QjXhASrMjWOVqcEPNj0gtPxEENGCQDa1Zc5Ta0aF21wBWaAf6nCoqeTKi4d1dIi5VgrmzqXMOugfxUWGOO3Rk5SAazgX7PVvtrt2Bghdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D0+H3b1C; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3807dd08cfcso1467027f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 04:21:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730460114; x=1731064914; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=eXKsOWR/wJ8s/vomPLhl+IstAtu8+B4WWYmjYIcAfF8=;
-        b=D0+H3b1CJsHsW37MQ9JBJ/6HJLHuK1ZM8h2nikhAD8L8bG8AqhMBJ/rvNlKvvOG+bL
-         6b0PSWwpp1Zx2qFi+p301nVQAd9H5/9W8Crdi5yBiWEfMz7ppIIRzDI3iCgCxiBHqTgc
-         20D0trc1YBuF/zNdp7TGWFPqbffhk7rDm+PUdEIAny07XC5HvoawO/0Tk242VBQQ7I4y
-         lSpQ1rTUtbeEjQ/SpSnwwURJuPaEhg1c1DnExTPnpXQm0s39OWBSWA6b3TZrqKtmxDhX
-         gWqYa3+6ByhQKu9mtWJWJu85StsKS2kq6MG6oeiQcnlh+jD0bCGvILDQSyDaiD1VwcA9
-         nzwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730460114; x=1731064914;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eXKsOWR/wJ8s/vomPLhl+IstAtu8+B4WWYmjYIcAfF8=;
-        b=XgvGliixUvrOWLwBbVZWUiGVb0q+ejMN2RG20cM7Vm6Twl+YY1LsOX8McHFTr/LxAq
-         km3JqeCQc5gGPym49twB23rSzIvSmqj/JwJRGQNTIfmHIyCuJmMnqh2CYgIagTvOyjf1
-         qi3FnS25vNVydgud/OFdvuLvAmOIb+qRMmUvXa9875dcYkaSpWUD4THW/LR+54BGGovI
-         kjR/iZGBZ76PZ2L9WH+MsAj0OJdJ8J/rFfJjxHInpeXrKePMoDpURZ1LiQG6Cx16Bk93
-         pyWJCdeghfid1L4eZ0aQv1u8trLh5r+CPIAhPIzjQfyAuh1eoPAA6NWOV/UWNp7e2+V1
-         THeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXlvyq901aXECUet9SIkZCIMI8WKtmC4kebHgfWYfKcFsdvCFkv4hUmnCIoK7GwrWNaIALgMJxggmtb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLBdn/FLBfxel2NNlshotcqcM3XQAuuX1FVf9ig0txgONI4soE
-	dRaZlHQvtuX9jsjscFB9vq0kl+9JXxN+x14JAuKKm1DSZs1vBoWvZzmHwYbwpfE=
-X-Google-Smtp-Source: AGHT+IF1Hi3RvwWs7DSq+spdpzYUhwOwwmzTbkypHgqr1nBe6xd71RG+VXm6t9yCvd53dDUoi1AkKw==
-X-Received: by 2002:a5d:5a13:0:b0:37c:fbf8:fc4 with SMTP id ffacd0b85a97d-381c7af3be3mr3201528f8f.59.1730460114103;
-        Fri, 01 Nov 2024 04:21:54 -0700 (PDT)
-Received: from linaro.org ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c113e89csm4808765f8f.74.2024.11.01.04.21.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Nov 2024 04:21:53 -0700 (PDT)
-Date: Fri, 1 Nov 2024 13:21:52 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Johan Hovold <johan@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: x1e80100: Describe TLMM pins
- for SDC2
-Message-ID: <ZyS50DFLhHVlnRtd@linaro.org>
-References: <20241022-x1e80100-qcp-sdhc-v3-0-46c401e32cbf@linaro.org>
- <20241022-x1e80100-qcp-sdhc-v3-2-46c401e32cbf@linaro.org>
- <a282021f-5e61-480c-84c4-272049e28244@oss.qualcomm.com>
- <Zx9P+HQMOkJsJGcj@linaro.org>
- <327507d8-2dc7-4645-ac3d-d68ff31a84dd@oss.qualcomm.com>
+	s=arc-20240116; t=1730460285; c=relaxed/simple;
+	bh=53IWbInwjlO7Z5VBHcWpCMQqe7HNtwdsn8Flx18kno4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WmGoFScptbPNUBncKxGdCD0+CDSR3c22UE6+StE+LUJYxNcVJxp11MMTqn3AGfTenh/fKj2EUy0cttHoPLgYu1wv6pqVZOvVdfp3fRqMJ15vHNW+JT8fsyc2K9+5StcKlqpgx0UE4Y4/4J+DSduNL9AB7ynQlrDBBCKTAMi7MJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=CqPusi1I; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A16R460006546;
+	Fri, 1 Nov 2024 07:24:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=4ytrpuro3bSWG9Tt8uGzvDdhz3t
+	76ddrHBtHeXSYhV8=; b=CqPusi1I/vd9NYupPnGaEIjVHNKJFR5vjIyuNghzplz
+	4n6gcl+1ICB3rUlDoyZLDrHbpNe2Tj4NSlFxsPyfoJtebp0EPaCHdVIg44CbjKlz
+	JUKch4L6lAHt15XGzMM/MeJwONIpF5JMxV+IiVNIH9uWL6se15pZTxmtDwFPP8Dq
+	1VzjctAuuRTTezxEo9UWyQ4Lqy3+fjZwziUd/nkBdMscOQAVFxfG9sJUNS0xHL8p
+	NV965wyNclaOwqeYd7CjZOmYbbab/WiFyrCWIFPjYIrsYlXh9P1VA4kidnx3QSZJ
+	JdiIud+86mcg538MNptCd5K+ypefH2Dae3eKE0kyquA==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 42k6yveu14-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 01 Nov 2024 07:24:38 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 4A1BObXX038436
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 1 Nov 2024 07:24:37 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 1 Nov 2024
+ 07:24:37 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 1 Nov 2024 07:24:37 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.114])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4A1BOP8i016631;
+	Fri, 1 Nov 2024 07:24:27 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <conor+dt@kernel.org>, <dlechner@baylibre.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH 0/7] *** Add support for AD485x DAS Family ***
+Date: Fri, 1 Nov 2024 13:23:52 +0200
+Message-ID: <20241101112358.22996-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <327507d8-2dc7-4645-ac3d-d68ff31a84dd@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: Vvu0rksF9wL1-mYRZm3GyIPdVvirzoH7
+X-Proofpoint-GUID: Vvu0rksF9wL1-mYRZm3GyIPdVvirzoH7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=999
+ lowpriorityscore=0 clxscore=1015 suspectscore=0 bulkscore=0
+ priorityscore=1501 mlxscore=0 malwarescore=0 phishscore=0 impostorscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411010082
 
-On 24-10-28 14:10:54, Konrad Dybcio wrote:
-> On 28.10.2024 9:48 AM, Abel Vesa wrote:
-> > On 24-10-25 20:34:19, Konrad Dybcio wrote:
-> >> On 22.10.2024 12:46 PM, Abel Vesa wrote:
-> >>> Describe the SDC2 default and sleep state pins configuration
-> >>> in TLMM. Do this in SoC dtsi file since they will be shared
-> >>> across multiple boards.
-> >>>
-> >>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> >>> ---
-> >>
-> >> Not very useful on its own but okay..
-> > 
-> > Fair enough. For some reason, I'm not able to get sdc4 pinconf
-> > to work.
-> 
-> Any chance you tried to define 'sdc4_cmd' etc.? This one seems to have
-> sdc4 pins on gpio127..=132
+Add support for AD485X fully buffered, 8-channel simultaneous sampling,
+16/20-bit, 1 MSPS data acquisition system (DAS) with differential, wide
+common-mode range inputs.
 
-Yes.
+Some particularities:
+1. softspan - the devices support multiple softspans which are represented in iio
+              through offset/scale. The current handling implies changing both
+              the scale and the offset separately via IIO, therefore in order to
+              properly set the softspan, each time the offset changes the softspan
+              is set to the default value. And only after changing also the scale
+              the desired softspan is set. This is the approach we are suggesting
+              since we need the softspan configurable from userspace and not from
+              devicetree.
 
-But since the sdc4 pins can have other functions and since there is no
-device that uses them (yet). Shouldn't we just skip describing the sdc4
-pinconf entirely as that should be done on a per-board basis?
+2. packet format - Data provided on the CMOS and LVDS conversion data output buses
+                   are packaged into eight channel packets. This is currently handled
+                   as extended info.
 
-> 
-> Konrad
+Antoniu Miclaus (7):
+  iio: backend: add API for interface get
+  iio: backend: add support for data size set
+  iio: adc: adi-axi-adc: add interface type
+  iio: adc: adi-axi-adc: set data format
+  dt-bindings: iio: adc: add ad458x
+  iio: adc: ad485x: add ad485x driver
+  Documentation: ABI: testing: ad485x: add ABI docs
+
+ .../ABI/testing/sysfs-bus-iio-adc-ad485x      |   14 +
+ .../bindings/iio/adc/adi,ad485x.yaml          |   82 ++
+ drivers/iio/adc/Kconfig                       |   12 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/ad485x.c                      | 1061 +++++++++++++++++
+ drivers/iio/adc/adi-axi-adc.c                 |   44 +
+ drivers/iio/industrialio-backend.c            |   45 +
+ include/linux/iio/backend.h                   |   13 +
+ 8 files changed, 1272 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad485x
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad485x.yaml
+ create mode 100644 drivers/iio/adc/ad485x.c
+
+-- 
+2.46.0
+
 
