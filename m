@@ -1,169 +1,177 @@
-Return-Path: <devicetree+bounces-118278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037AD9B9A62
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 22:50:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E2869B9AD5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 23:29:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1A6D2817F1
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 21:50:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 022342823E8
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 22:29:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B28861D0947;
-	Fri,  1 Nov 2024 21:48:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ED5A1CCEE2;
+	Fri,  1 Nov 2024 22:29:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YVjOECtG"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="vPhgVekF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2108.outbound.protection.outlook.com [40.92.103.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDDC725634;
-	Fri,  1 Nov 2024 21:48:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730497689; cv=none; b=bgZZ9JUX9topRuHNGyPDTOi57Yw/IqFKVHJBCFikUWg+f8dVcXv/7/kJeUkxeRKDf23yQVy43pSNwAv4lEDqJkt6ebmLRPaRGwONFuPpbsZW7+sfCdaToCAbYhmy5ahK3/AFWa42M3H64wusVm9XQps0gCoeRCHrivz1fo1u6h0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730497689; c=relaxed/simple;
-	bh=Dwdq9rHIpOh+78kD6lWNmELuBrWSfYZSR/MPnUOKJUA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NFDhQAfnembHhzhqhBFdWJdnj5cE6C2Y76VybbrHogko2NPd/kIrv2rLNl2dq89MWPtLCcW+bR6q9pztsD8v5VwG3zAoQzTu0ot+kSkumSwdElXXMDjuiJDSJtn11JhkB5FcKdmPbLEY1NFDHrzjV12lV4wj/SWObV8yxNmw8JI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YVjOECtG; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730497688; x=1762033688;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Dwdq9rHIpOh+78kD6lWNmELuBrWSfYZSR/MPnUOKJUA=;
-  b=YVjOECtGaaiXmxZJkkCRA2bKy++UCudc4u1YiEjD7dA49LdPRKLrGP5c
-   KQKw+c/dgTeVjqh9Ynhc6GPJdqMHEvObgiEF/xgGyml1X90vtEwQTk4nj
-   Mpln/hXGU1q0NZIWRBiOrhRSOVddRnm5JS4pIiJpC599fWJvhy9Uk9VHw
-   3ZdephmLCoivghRBrhRKzC/xkus3lX8yThGzAWF/lz/a9DaQV9lv0/SVk
-   4Ayz1f6kBMx3A/tCR30gefTH6KH0vP8ju7ZlfeArxLF2UFAYJBfq3Py08
-   V8mqhth1X3Uy6n8aKv3GpNw9bEIOoGigItJDa5gnFVDJuZPSu2v5wX/W1
-   Q==;
-X-CSE-ConnectionGUID: gfGt6b4ZReSl1CHfVo9GfQ==
-X-CSE-MsgGUID: hKh4ICcBQ/aS+N8hq48qNw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30229825"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="30229825"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Nov 2024 14:48:07 -0700
-X-CSE-ConnectionGUID: 9w/56nX/RnCHrAdIl5pDBA==
-X-CSE-MsgGUID: yEtcosP4Tc+1RCMNMWkXcA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,251,1725346800"; 
-   d="scan'208";a="82613540"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 01 Nov 2024 14:48:01 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t6zUt-000i55-08;
-	Fri, 01 Nov 2024 21:47:59 +0000
-Date: Sat, 2 Nov 2024 05:47:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
-	Larisa Grigore <larisa.grigore@nxp.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>, Lee Jones <lee@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v5 4/7] pinctrl: s32: convert the driver into an mfd cell
-Message-ID: <202411020514.qOUrieWa-lkp@intel.com>
-References: <20241101080614.1070819-5-andrei.stefanescu@oss.nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2957C1BDC3;
+	Fri,  1 Nov 2024 22:29:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.108
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730500145; cv=fail; b=Aw9uMfsVLldQv5FlvPM9x5SDovisFKXZkpGyXPOVk39v90T+wcWNMgroG3BTbQfkpRDPGxWV8pgRq59daG3/29+WzSqXaHrEwILYcOx5Yz1CohZ9DoVZY3oxyI4ixPjdXB+Iu6crrmPSguaGO1UzPZcN87YZSVT3599H6QLLuvE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730500145; c=relaxed/simple;
+	bh=n4Gq2qe9oA76sl2PQ2k7CBEc3VE1N4TRHPJ0vVDJFQ0=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=CCYOxyeoOpb99iTwYExdWCDXEaLCfd4hxTyL8lQizkVtTPuZgRKU9SBFWsanEXcdu5w4mHCCsb2oALQdQEKNxirSd3qkurAluMkTGxe/OMgoIfl6rF61C1gEROl9jgW9i0ZrfA7tmrgonImDA/dAqJFF5FlHA9Gixf6Z5uFuL7A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=vPhgVekF; arc=fail smtp.client-ip=40.92.103.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IQc5/Hb84Z5csrCG5sm6sHR99A8liz96he7EDxT8CWb55Osd4/psSdv0IFmthIN8f8NCMUYdl1P+mN5MSyZHuN0KudGxeLrEcp7fb2YfICzJKc1ZyuFZN+emEin0GuBcBast+I+aASD7RFGl4xYh/IGLKMhxxJUJERZ5LihdxFFoa4DMfUwH4PkWVjEPd8tK4KBxYKiQk49C1nKV2hFNmi74E2w91+cjDf7rVS1PlOqpqlFg0h7u8d7vqExEdg90A0pzBirWDrrrqlPNX+niq+0+0VtkRzHTHupyUkuIamV+KhiXmssdkuzHR1ehlr1xxmiZEMeqX584UMMzPu2s7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=n4Gq2qe9oA76sl2PQ2k7CBEc3VE1N4TRHPJ0vVDJFQ0=;
+ b=sqqpRi4XwmtKr5WksYcBRcu9BOl8VuM0tjppTQ9jT1KF8Y1fNoZeYDX1jqVK0ohdgSjppiHngTm/FProRax+2RWgsRMDTeY1YmKljXEM5c/m/YIZ++Me/5Tbf9cYs1NefNgTfxi5PuQcd97JyitgykVB7zowUQZY/WsKxd0BofAvgoH/myUHDomxppjrjUZZmffbPS+cJ8/wiYTtOdcSDzuP52/Q/bp/tFfSwwNYwnIRjTQXAyUE6VNyAkodW99m1CUI+MKJfmK8cKmdNXisNUUAZ6gK4qPLmREsHgViuR/3NgdWeZB3Dicl6Xzzy7ou5YnfClSDmtGi3Ye/3nnX9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n4Gq2qe9oA76sl2PQ2k7CBEc3VE1N4TRHPJ0vVDJFQ0=;
+ b=vPhgVekF9Cjn28/farMVmfayJ4ZkzZ+LIR1FVDetS6A3Twwn0Zn6/VTQaOswNFpgoWF5JVk+HG33g+Fx/Vbz9P35lLExGYL6YMLjWhZKI4P3trE/bnA181sV0xgw+ZKpzKfpXjmxlDif8kDblY0D74MpMr5C/Tl7vuArFnu+jZt1/itbLfyD+9nSylmgkeFEFlxmNg/Q6hJ8PEEVS2XEvLQ9mGkPrq96DS1uoY16pEpkAlz9itg41C0bJwjYshKLAoPhckUQpZEChdJTpEaRIWyQjPmYQmEki8kixrh0o0vp61g9ORd+iQz3moUjLGSWx+uC+6OogbouTk5EONhIyQ==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by PN0P287MB1820.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:18b::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.23; Fri, 1 Nov
+ 2024 22:28:58 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c%3]) with mapi id 15.20.8114.028; Fri, 1 Nov 2024
+ 22:28:58 +0000
+Message-ID:
+ <MA0P287MB28221D96A094D7C3373C1865FE562@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Sat, 2 Nov 2024 06:28:50 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] riscv: dts: sophgo: fix pinctrl base-address
+To: Inochi Amaoto <inochiama@gmail.com>,
+ Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+ Inochi Amaoto <inochiama@outlook.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20241028-fix-address-v1-1-dcbe21e59ccf@bootlin.com>
+ <ihmors43w3ttfun7c4fj75ahh2hnhafdxhlmocbxfwttigj3fq@wxud2d2srisn>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <ihmors43w3ttfun7c4fj75ahh2hnhafdxhlmocbxfwttigj3fq@wxud2d2srisn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2P153CA0042.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::11)
+ To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <29cf70af-280f-46d6-a6a7-080fca8b06cc@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241101080614.1070819-5-andrei.stefanescu@oss.nxp.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN0P287MB1820:EE_
+X-MS-Office365-Filtering-Correlation-Id: e178bb7e-9e43-44ff-46e5-08dcfac492d2
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|8022599003|7092599003|8060799006|15080799006|461199028|5072599009|6090799003|19110799003|3412199025|440099028;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ajVRYmxPN1pnaXpWU2Rvak4wbGNiVzkxc2xUSWYvWHV0V1RPMG5PdU1SMGFz?=
+ =?utf-8?B?cHZCS2VPTDQ1VURoR0NBZkRzNFh6WkFvSGVjT2c0bXdjeW9KWG01eHY3WUdB?=
+ =?utf-8?B?NVFTVTMvbUlydFg0Ymt6aTdXSFNRT3ZPLzRXdmk0STgzeVRJVTM4WEUvdTEz?=
+ =?utf-8?B?c1JKN0RTWUhrdW96S2UxU2JZVkV6czdBWVFuaWdhSVBheUlOY0FzdnNqM3NK?=
+ =?utf-8?B?dmpUOVdnenUrbGt6dlZId1RSMzlHSmZvVThPUEpXNmtCQWN3aHErT01rMnFQ?=
+ =?utf-8?B?V1pWUmt3M3c5eFZOb3c2U3lDdCt4aGZwQ2g0YjhSNkpQdDEzTVBjaEgyUmts?=
+ =?utf-8?B?aXk3bEtTejBOQlBHbU5OSWo2cW1YUFdrWmMvbStPQW5ScStrWFZnUU5kTmVk?=
+ =?utf-8?B?QVViRW4yK1JjUTBuM0h2ODVjanNHcks3TTdIUXFBMkxNVml6UGNIVTQ2bVpQ?=
+ =?utf-8?B?VENJN1VSZlZ2am9mQ3ArL2lpcHozVU9mM0pteVB5cm1kakE0Y0xJZHNnaWJj?=
+ =?utf-8?B?MzJ6WGlkdVpqRCtoS2VxZThUTlRIeXJiTk0wS2M3V2RwNHV2Q2NybW5Takwr?=
+ =?utf-8?B?WTExOGZHTnJHRVpPZUkra0xTMXpReEF3SXJMK2dvMmhRYTFiWk5vOWpvWVJJ?=
+ =?utf-8?B?QzkzRjRIRXJFc0hldHZsUlJFeE5kcW16Q3BLTnFERDlWVnc2V3VLbjR4a2Uw?=
+ =?utf-8?B?enBjQURDTXhVYm1jWFk0Wk9QbkxJUnhzcGJTUm5veC9KZGdQYU1WbXpMS1ph?=
+ =?utf-8?B?VlI4THIrejhFTjFueVdmT3EzcWhQc1Rpc3VCVDgwLzFEaXNlNlE4cDNMUksv?=
+ =?utf-8?B?d3RkL1ZXWlZrbGc3NGx3TmM2blA1djYrN2d3VjFlWUhMckRNTWVyS0RaU3R4?=
+ =?utf-8?B?REFoNlY1a0Mwc1Q0K0NkMzJwaUhSeGZuV2lJazIyMTdxM2J3cGxpS0xyZGZ4?=
+ =?utf-8?B?Q01ld0lQdFFFdmRCRmhiaExldi91amlHYVlWN2pFeDFmTUF5OHJVSEUwcGE2?=
+ =?utf-8?B?S0g2N1lKdzhIazkvTEQ1QzE2Snl3N1NianRyZ0g3OXZRYVBNWVFLUnd1aEQy?=
+ =?utf-8?B?SWdtL3AwSFhYdFJhOUdUbHlNbkpEcS9XRVNVTmprQmpZeTA5QkhHRUd5V2VE?=
+ =?utf-8?B?SW5hTFovdHhBTnliS3Y1ME85ZEw1MnlaWkw1d2hkZk1VMG5yeGczVzZ6WUxZ?=
+ =?utf-8?B?V3J2MW0rbVltNytuNXJCUWZBTVpKYzdERW9MNVRlNDZqRDZwYWVpR3ZpZkhi?=
+ =?utf-8?B?Zk56RVRlWFRQRHAxVDlKMHRobWl4V1VJZ2RUK1VzU3RNejU4RFBKNkpBNWJV?=
+ =?utf-8?B?SVRLNjJVSlJLeWV2c2F3eEZ4UzlqMDc3SE9XdVphLzN4M2pnaVZRdlVTWUpE?=
+ =?utf-8?B?djgvODdVRm5VRmd1dy9XWUF0UUFuUmZhUUs1S1dNRnN6NmJBRUdGWUNXVWxn?=
+ =?utf-8?B?eWh2dUl5VWc5THVGVFg2elIybEVvdVhiVUJwTC94bDVYSURPU1FZbXBPZTRt?=
+ =?utf-8?Q?7UKk9c=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?eXNTMmxPdWo0U3kyaHZZMjdvV1QzdHBLelZIKzlhZUJYSmZ0NU1YOGNJdURs?=
+ =?utf-8?B?TERyY3lBWlQvQmVBM1hRWUtid2Q0N1ZqRlpqTFRHYXJ0ejcvQkg1K2I2anZx?=
+ =?utf-8?B?Yk1vTkZRVElGTHl5a1hIbWlvK1FpSWNuT2tCQ09OZXlkdjZ3Znd0bUZHc1BG?=
+ =?utf-8?B?dzM5YmhVVzkvVWtiNU5qczJ4bjJieVpwejdBZEFlQUV1U2xHTDFCeEs5UitU?=
+ =?utf-8?B?S1hnVnhROEl5Y3NUd2tyUUlmTjVQcmZYYitMN0lWWHdFODN5cVJuWVZRZE1o?=
+ =?utf-8?B?bFVYQVFZQTRrUjYzVnRuQVQyYVFPWFRkVmNuaThybkVwVTUrWDFDQksyWXl4?=
+ =?utf-8?B?SmZkRXpYL1l5NitRTGN0czlYOFBmTmZDL3pFdVF0bnZUVzdOb09DVlIydVAr?=
+ =?utf-8?B?a1I4VThwTC9QM2VpODM0UUZiZWFyYytTdmJKRmJSUXVlWm1ydUplcHBoWTl1?=
+ =?utf-8?B?R0dWS0NsNkE1QUtvd01GaDZ4d0Y2MmIrV2hMbUxkbDh1bFc0amRYT2pVcHJI?=
+ =?utf-8?B?dklielBDMGFKQjQwayswdCtqTlp4MVJzUjFuVFdJdXhqZ2hZZW1NMElTKzFS?=
+ =?utf-8?B?cjVTWlVUWnlRbm8wSEk3bjJ6NkZvTGJwckFwcG5CTjgwald4WXdpM00wN0c0?=
+ =?utf-8?B?OGkzblFBR3Q5YTVncHFWYVhYUWFOdHMvQk1IVEc5c3FjbHVZVGJWV2JsdXBO?=
+ =?utf-8?B?cHRoTzJpbnl4aWhxbVZoOHBCT1l2Q3M3TERmNXRxRlZlWkw2bWRveXJGOHR5?=
+ =?utf-8?B?cldqS2lKSWNkajNOWGpPQmI4Ly9yZlNrNTAvaWt0MUdWRkVBcnJPd0pnd0E2?=
+ =?utf-8?B?dGtwOWJjV3laUWpvTjhWblVvRVJOejB5Z1Rla2lSalZBYzllK3VJK3dGRk01?=
+ =?utf-8?B?NWVzaEttb0ZRbzZWUDg4WG1pSGw3RlN4R0xLQ0xCaXBkbktuRWhXd0MrMWJh?=
+ =?utf-8?B?b09LTUNleGtNN25JRWN3RDBlVnd1R2Zqd0MzYmJUSnFRMTB3ZXNyMCtKOEsy?=
+ =?utf-8?B?UnM3VkdUbnM2R2piNXlRMERaK3Nqbi9VMllnTlZPOUlFY2hpNVV0NFVwQjZm?=
+ =?utf-8?B?VFIrS0dwSlBuN1p5dFRxTC9SK0lHWTEwVjNMc3d0cm9lTUVpZ2FadXdQeFV3?=
+ =?utf-8?B?eEQxWWF1SXdiTXlpSUg1V242bHJBaW1lNmRPeG1CYzIvVW4wV3FGS2N3WHlK?=
+ =?utf-8?B?aVNNL2lsWFVuSnJuYnlxU3lUR0VaWTRaY25oTnZDWFMyMnF0RVNsN0tzL1N4?=
+ =?utf-8?B?ejVkcWw2YjdXZWg1QTNVSWVMaVV6eFVDODlMcWp5SmpFZEd1bTJVaUtyQUJH?=
+ =?utf-8?B?RnEyczU4S1UvNjYzWG1OTkRjOElnNGl4T2RPeVgrblFzVGpwQmgzUlVuRFV4?=
+ =?utf-8?B?bWVuNUpDSURYMU9Ld1BrUEtSZ3RTS2ozY0RqSENGSk1MREtxY2tZajNMNDVa?=
+ =?utf-8?B?MmVxei8yejhWVU5VN2hmVWZkTEtRR04wejVSVnNLTHlidFVkbGxrelVsczNG?=
+ =?utf-8?B?TDkrWTl2Z3RzNzFkMGpvVGtmd2tUTlRCMlF5Q3FkRVRvZk9Sek5pNjljYkZm?=
+ =?utf-8?B?U0l1N2lqbmVxRjFTNGp3b3J1cUZuRHJWVVVVdWJYZlR5VnIwOHFZMyt2N2Rt?=
+ =?utf-8?B?YUhRZ2pRK0dLNjZvRU0ycksyMmxycUpEcDJmWXRUNFVnS2kzT3V5SlNuM085?=
+ =?utf-8?Q?Mp2wHiIWkjZsyqlNW4zZ?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e178bb7e-9e43-44ff-46e5-08dcfac492d2
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2024 22:28:57.9001
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB1820
 
-Hi Andrei,
+Hi, Inochi,
 
-kernel test robot noticed the following build warnings:
+Will you pick this on sophgo/for-next?
 
-[auto build test WARNING on linusw-pinctrl/devel]
-[also build test WARNING on linusw-pinctrl/for-next lee-mfd/for-mfd-next shawnguo/for-next linus/master v6.12-rc5 next-20241101]
-[cannot apply to lee-mfd/for-mfd-fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Regards,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andrei-Stefanescu/dt-bindings-mfd-add-support-for-the-NXP-SIUL2-module/20241101-160940
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
-patch link:    https://lore.kernel.org/r/20241101080614.1070819-5-andrei.stefanescu%40oss.nxp.com
-patch subject: [PATCH v5 4/7] pinctrl: s32: convert the driver into an mfd cell
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20241102/202411020514.qOUrieWa-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 639a7ac648f1e50ccd2556e17d401c04f9cce625)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241102/202411020514.qOUrieWa-lkp@intel.com/reproduce)
+Chen
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411020514.qOUrieWa-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/pinctrl/nxp/pinctrl-s32cc.c:103: warning: Function parameter or struct member 'gpio_configs_lock' not described in 's32_pinctrl'
->> drivers/pinctrl/nxp/pinctrl-s32cc.c:103: warning: Excess struct member 'gpiop_configs_lock' description in 's32_pinctrl'
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for MODVERSIONS
-   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
-   Selected by [y]:
-   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
-
-
-vim +103 drivers/pinctrl/nxp/pinctrl-s32cc.c
-
-fd84aaa8173d3f Chester Lin       2023-02-20   82  
-157a51f7e5e81e Andrei Stefanescu 2024-11-01   83  /**
-157a51f7e5e81e Andrei Stefanescu 2024-11-01   84   * struct s32_pinctrl - private driver data
-fd84aaa8173d3f Chester Lin       2023-02-20   85   * @dev: a pointer back to containing device
-fd84aaa8173d3f Chester Lin       2023-02-20   86   * @pctl: a pointer to the pinctrl device structure
-fd84aaa8173d3f Chester Lin       2023-02-20   87   * @regions: reserved memory regions with start/end pin
-fd84aaa8173d3f Chester Lin       2023-02-20   88   * @info: structure containing information about the pin
-fd84aaa8173d3f Chester Lin       2023-02-20   89   * @gpio_configs: Saved configurations for GPIO pins
-fd84aaa8173d3f Chester Lin       2023-02-20   90   * @gpiop_configs_lock: lock for the `gpio_configs` list
-157a51f7e5e81e Andrei Stefanescu 2024-11-01   91   * @saved_context: Configuration saved over system sleep
-fd84aaa8173d3f Chester Lin       2023-02-20   92   */
-fd84aaa8173d3f Chester Lin       2023-02-20   93  struct s32_pinctrl {
-fd84aaa8173d3f Chester Lin       2023-02-20   94  	struct device *dev;
-fd84aaa8173d3f Chester Lin       2023-02-20   95  	struct pinctrl_dev *pctl;
-fd84aaa8173d3f Chester Lin       2023-02-20   96  	struct s32_pinctrl_mem_region *regions;
-fd84aaa8173d3f Chester Lin       2023-02-20   97  	struct s32_pinctrl_soc_info *info;
-fd84aaa8173d3f Chester Lin       2023-02-20   98  	struct list_head gpio_configs;
-fd84aaa8173d3f Chester Lin       2023-02-20   99  	spinlock_t gpio_configs_lock;
-fd84aaa8173d3f Chester Lin       2023-02-20  100  #ifdef CONFIG_PM_SLEEP
-fd84aaa8173d3f Chester Lin       2023-02-20  101  	struct s32_pinctrl_context saved_context;
-fd84aaa8173d3f Chester Lin       2023-02-20  102  #endif
-fd84aaa8173d3f Chester Lin       2023-02-20 @103  };
-fd84aaa8173d3f Chester Lin       2023-02-20  104  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+On 2024/10/30 11:50, Inochi Amaoto wrote:
+> On Mon, Oct 28, 2024 at 11:43:24AM +0100, Thomas Bonnefille wrote:
+>> Fix the base-address of the pinctrl controller to match its register
+>> address.
+>>
+>> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> Fixes: 93b61555f509 ("riscv: dts: sophgo: Add initial SG2002 SoC device tree")
+>
 
