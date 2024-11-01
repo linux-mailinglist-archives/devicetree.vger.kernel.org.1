@@ -1,155 +1,187 @@
-Return-Path: <devicetree+bounces-118080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FC6B9B8F13
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:22:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 567BA9B8F21
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:25:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63CF61C227B7
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 10:22:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F1942831B1
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 10:25:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D2615CD46;
-	Fri,  1 Nov 2024 10:21:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A631B160783;
+	Fri,  1 Nov 2024 10:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zNrDVJU8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pIXeLKXT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0C5C1586F2
-	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 10:21:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 447641581EE
+	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 10:25:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730456507; cv=none; b=NPBgwT2effvVpH2fZ5Pa0bfh/1TpKPlnxIEEruuHwJiS5q1xranqqFzDg+FSp9noqOAqg5UNszPArcowNUGVPX/M8bAR+fHwqGpGKY1aiEf0ocHTIbi3Ynmlxd5f5+Zjy7PGsbD/NCKSDJ2Lfa572JhVBpLS/EfBDAkP1iJTVoc=
+	t=1730456715; cv=none; b=JaT7XcqDhIy56X8+VT6E1cqG1aairSK5WETA5HTLOpQRQYsPkFVgUh9iFLDCIqUTZINT6vq2EjJprvXLv7ePdV2c4A+3kZ0WpVHZZnHyJwDb4cVvRZ62HstGNXyimzhtGQfwcM+cJj9TSofr/Wd6HxeoO1OC74SLjb7B0K/9S6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730456507; c=relaxed/simple;
-	bh=4/ezJhMVv4g5+hO3ZmYWJYwO3H0qSI/sZ7ZYkaIRCjY=;
+	s=arc-20240116; t=1730456715; c=relaxed/simple;
+	bh=+yXHMbKZ1H5XAjjCoPBfjF7SFzBBi8D94y9c9WKOknk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=d7uhf5axnrlrIk0B8dEKpZLeRUiHEN2ogqZRdKJ4nchst571b+NeYu9sMP9cGg+55cfKg/KnfKqAtUrsCfkimiQpAdD7h9+Xhf5oOZ+ANaFXSYqBhRM4IeJZ3o9QJG6/2B41O1xLNgqEfpNoIZok2Dqt1weqIRJsH/5kGDSta8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zNrDVJU8; arc=none smtp.client-ip=209.85.128.181
+	 To:Cc:Content-Type; b=ijxitINfMgA/2GlX9XpEm3aFjM7/84o/m7Fhcvz1eQDEU3Xqicm11rwd9GaPLyT8VyZo9GkTVJiGxjoxWe2dr0B+U8el6icFqwK5SXjTN7rgXjA4989zTgftclqSiOifcf3QMP6sQwwGgiuFka+EvHettZi3BhD9ZQVcr8fIxuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pIXeLKXT; arc=none smtp.client-ip=209.85.208.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6ea656c60f2so7868387b3.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 03:21:45 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2fb59652cb9so17719571fa.3
+        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 03:25:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730456504; x=1731061304; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=v1OOWFaJk+1JoyvwxXdi8qci9o7AVgvK3rkL5KCBYSI=;
-        b=zNrDVJU88sjWhXO5CVcp8A+GgbkOpUNcSC3IThVnwzKdCmKYujGQjNqx6tTNssTKtq
-         EbceWmEc9P93+EGQBKOXTsnrWVLR6Zspj8Dx18NspaH3LByPurUkL8wYwEv9juYXUuZQ
-         rl4+Uzav0u9YwuMv5dckfGu1efLJoZwoeCoq4wZ6vlmR3RkQoCdAycO3CKnTMV60N3NK
-         s3+1bGyNR0gO4h8HJ7SqBmdOXxKCKXSY28Q1rzij5DgKPY839dWbp8ImgO76oJRMrddd
-         fIedmls1vldRsI2SeqiTIaIp71Ni7FLj2uwWwGwrY7EcEqrWG+KoJrfCvl+dDaOJeTkv
-         wclA==
+        d=linaro.org; s=google; t=1730456711; x=1731061511; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WpzSgjnpO5Pgi4peizaj5qKRJmTZYgfK/PfyJYP5YwM=;
+        b=pIXeLKXT3i+5+lhQQwW32ZtR+YUZytHp9/nV8gXy+MDJLZh4Pt35wL3SKAyl+n/4Jp
+         xLTjp8j2iamuabR7bJCYYbGRB423DYN67mWpLK99GBbHkMUb+LNzsMqqDTfna4hPWZnA
+         y+KxP1jJd7ckgY1IdGhSUfnCDlJH9cfZ438JqJzqKP9XpMxwanU4SlHYcJuA1GbBVyqB
+         3NASVi7d4xns1LC07PGWbh4fYEpxI9O3mroMqGLl5/iJiERjm8PS7kwZ0HlEGtLobBtY
+         tmbsV3r+x0l9c2IIIiRAGywaPtARAi4C3UwVJxfeAmpqa65T2JG7Vziu2A8xf1GQRKGY
+         RmqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730456504; x=1731061304;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v1OOWFaJk+1JoyvwxXdi8qci9o7AVgvK3rkL5KCBYSI=;
-        b=hPJ3Xrl1o6no4iyiAaSpLvMqqIH4Ww+OFrAXjyG7rCT1mWXjHvaAjm0CqTVEItU4Ww
-         aB+H/4HFj/ibt+KdZGX0oceebHE84NOamnAktiO7GLkpJfWF1prDK4iVfBLyy7oUTLb+
-         CGI/eaX0kUlVTi6uliEbXF6Und6H3rr9Ru45JTypprBfhmvIbVGLkQ+iWv6mX/uC1KeL
-         MIMmmUEYds42zTzLAPNDB2Wk3sljIANipfgIa+ESihJNjj9kYNEMOGIechd+0+ui3HBF
-         nhaPNz7I8hvdDTjQZPOsmw6a803WOJyYC2S5czGETOMziYUyUd9pI/BFiHJV81dhGwF6
-         6Qjw==
-X-Forwarded-Encrypted: i=1; AJvYcCXN1920cjgNpLIUI3uobzDNVVcECfQ6q0Eo9N8xy8enSaRbEogWgiq2urW45uBjjHE5cEK0aNlrQhh4@vger.kernel.org
-X-Gm-Message-State: AOJu0YydIR+IgdzxgutlK8djcEuDgix6+hl8uC8XbHsrwSEgDEGgUtoN
-	sGVE5oYpBav4WueskhRVcSo0G7VktO+/uaDdioZS44uVOnU/4/5R2v3MdfoDBg1s201hHRn4Z5B
-	Ao3dc+vrntae3QOLv/PmJ52Ucs9Or6XV3wsmBeQ==
-X-Google-Smtp-Source: AGHT+IH3otYNddLuzk8gQrByLU+Sf4Mj9Uga9WVF0JjPzZQt9IvpKS5zTDwy//SSX+obcs3a4lj5hYohRHYRqexjcQQ=
-X-Received: by 2002:a05:690c:3506:b0:6dd:b7e0:65b2 with SMTP id
- 00721157ae682-6e9d8a6f784mr243997357b3.24.1730456504581; Fri, 01 Nov 2024
- 03:21:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1730456711; x=1731061511;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WpzSgjnpO5Pgi4peizaj5qKRJmTZYgfK/PfyJYP5YwM=;
+        b=DGinR6UBT+Qp4L6ncG4MsMSHJ9e8yKp2ZdnqLaWNk30EPb+Dd0MASsvo5DWq2yADLl
+         Y6OdtRMflK76GptTGmc3ZiYbHlT1GH5cu1v/WH5hIOxVI3OoVe61Wvk9IXV2qpWnlYbc
+         K++yQhFaBUG0+eNWl83n0eh0UL7hjdXyW8k/LinsqnGpzm5w6j0zt3wB0w+ASrQZcx4v
+         X3Y/pKqwZJAUgWfDOufu0moYAYyacFbm5vmiZFUiTSjJw7Q0HyELNn7Z7GkNjOi8JXML
+         2DU4IVgoTrdkuImSdsT6PdFoaS8YGPA0l8ixrnvDlvuJ8tiiXbT/ytaV3BTgNFtomQRD
+         sj+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVSV8GWAqrottDrFz8dvI9r4N090RP9wlNmxIvPHTuhVNDvDnF1rBSE2n5GMK5g+o/4Bd+ys8o1D7B5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8z6Qa1WxNAO6wIDhywLNRrKlF5W1pDdT/krkWuGBGoi1BAKoc
+	qaNZymxYF1wsAwntsi6dzOpeO9OVo5i+YG20kOIFu9cqy8Bf3qaU/c/fUu+QiRsUL/hlG5aG0ks
+	NB/pNNlgwlPkdLx5sPbSTiOOIntojQwy+WRlbGg==
+X-Google-Smtp-Source: AGHT+IEh3UD7clJCQ/gk/n1lZMbdbxLI4TLsCj8gBPyhuLX6iMsirPWos/kw6T81Ngl9MnmOHHdaCm4w/4b+g80Z8io=
+X-Received: by 2002:a2e:819:0:b0:2f7:a5fe:adbe with SMTP id
+ 38308e7fff4ca-2fdec72f2bemr26733951fa.18.1730456711357; Fri, 01 Nov 2024
+ 03:25:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241101-sar2130p-dt-v3-0-61597eaf0c37@linaro.org>
- <20241101-sar2130p-dt-v3-1-61597eaf0c37@linaro.org> <pmgutki3fjqbka5ozalevpw7qptmzykhqxiaofqc2nh4gpnn4f@bgmz6fknavbf>
- <iixsrpkyzae5mpwsa2qm5jdyftzgav52ryficoizlhfzw54xbi@gdfxwmjutqp2>
- <80a37af3-ffef-4342-b7d3-f2eb36bb60ba@kernel.org> <sjayaro5coievz22gdeu6tplzjs6kju333a6womyuk6bsvw2h5@a5ewi6sdl7wj>
- <144458a6-6c63-4386-99da-3a27743288b4@kernel.org>
-In-Reply-To: <144458a6-6c63-4386-99da-3a27743288b4@kernel.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 1 Nov 2024 12:21:33 +0200
-Message-ID: <CAA8EJpqC2j8GC3Z72ShtnyBxFx5jBttg-J1V_MJDuJZUsKon_Q@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: arm: qcom-soc: simplify SoC-matching patterns
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krishna Kurapati <quic_kriskura@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241022155658.1647350-1-antonio.borneo@foss.st.com>
+ <20241022155658.1647350-8-antonio.borneo@foss.st.com> <CACRpkdZKimfE_00kxa_qAf+jjwxBtuKizDTd3RvOS_PDuZ_JKg@mail.gmail.com>
+ <df12289dc65c21496d4f9818a53d9797406e2663.camel@foss.st.com>
+In-Reply-To: <df12289dc65c21496d4f9818a53d9797406e2663.camel@foss.st.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 1 Nov 2024 11:24:58 +0100
+Message-ID: <CACRpkdbne8730=6Hvd2W5ymv3xYNC6ApPthT0Fcb+D-fafA_5A@mail.gmail.com>
+Subject: Re: [PATCH 07/14] dt-bindings: pinctrl: stm32: support IO
+ synchronization parameters
+To: Antonio Borneo <antonio.borneo@foss.st.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	=?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>, 
+	Stephane Danieau <stephane.danieau@foss.st.com>, 
+	Amelie Delaunay <amelie.delaunay@foss.st.com>, Fabien Dessenne <fabien.dessenne@foss.st.com>, 
+	Valentin Caron <valentin.caron@foss.st.com>, 
+	Gatien Chevallier <gatien.chevallier@foss.st.com>, Cheick Traore <cheick.traore@foss.st.com>, 
+	linux-stm32@st-md-mailman.stormreply.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 1 Nov 2024 at 11:23, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+Hi Antonio,
+
+some responses below!
+
+On Thu, Oct 31, 2024 at 2:44=E2=80=AFPM Antonio Borneo
+<antonio.borneo@foss.st.com> wrote:
+
+> > Otherwise I would say that just checking if the line is in input
+> > or output from other properties should be enough to configure
+> > this? input-enable, output-enable to name the obvious.
 >
-> On 01/11/2024 09:52, Dmitry Baryshkov wrote:
-> > On Fri, Nov 01, 2024 at 09:37:23AM +0100, Krzysztof Kozlowski wrote:
-> >> On 01/11/2024 08:47, Dmitry Baryshkov wrote:
-> >>> On Fri, Nov 01, 2024 at 08:26:04AM +0100, Krzysztof Kozlowski wrote:
-> >>>> On Fri, Nov 01, 2024 at 02:49:22AM +0200, Dmitry Baryshkov wrote:
-> >>>>> The patterns for individual SoC families grew up to be pretty complex,
-> >>>>> containing lots of special cases and optional suffixes. Split them per
-> >>>>> the suffix to make it easier to extend SoC patterns.
-> >>>>
-> >>>> This is doing something quite different - split is not important here.
-> >>>> Instead you narrow the patterns significantly and disallow things like
-> >>>> msm8994pro, sc8280p or sc8280px, and allow things like sa5200p.
-> >>>
-> >>> Just for the sake of correctness, msm8994pro is still allowed, if I'm
-> >>> not mistaken.
-> >>>
-> >>>> I don't see here much of pattern simplifying - dropping (pro)? really
-> >>>> makes little difference.
-> >>>
-> >>> Patterns are simplified by being explicit. E.g. in the previous
-> >>> iteration I completely didn't notice the intersection of the |p that I
-> >>> have added with the existing [a-z][a-z]? pattern. If you think that
-> >>> sa5200p should be disallowed, I can tune the numeric part of the
-> >>> pattern. And sc8280p / sc8280px should not be allowed in the first
-> >>> place, such platforms don't exist.
-> >>
-> >> I am fine with this, but extend the commit msg with some good rationale.
-> >> Have in mind that the point of this pattern was *not* to validate SoCs
-> >> names. sa5200p is fine, sc8180p is fine and all others are fine, sc8280z
-> >> as well, because we do not want to grow this pattern with every new model.
-> >>
-> >> The only, single point of this entire binding is to disallow incorrect
-> >> order of block names in compatible. Not validate the SoC names. If you
-> >> need narrower patterns to achieve that objective, sure. If you need
-> >> narrower patterns to validate SoC names, then nope.
+> On STM32MP25x there is a 'skew-delay' HW block on each pin,
+> but it's applied independently on each pin either only on the
+> input direction OR only on the output direction.
+> There is no automatic way to switch it between input and
+> output path. This property assigns the delay to one path.
+> The generic property 'skew-delay' does not considers this
+> case.
+>
+> While I could extend the pinctrl driver to include the info about
+> direction, that is trivial for example for UART or SPI, it will fail
+> for bidirectional pins like I2C's SDA; some use case could
+> require the skew-delay on SDA input path, other on the output path.
+> Also the idea of assigning the direction at startup (e.g. in the
+> bootloader) is not feasible as the delay depends on the
+> functionality that can change at runtime e.g. by loading modules.
+> I prefer having this "direction" path explicitly selected through
+> a DT property.
+>
+> The existing properties 'input-enable' and 'output-enable' are
+> not specific for the skew-delay.
+> And I think it would be confusing having 'input-enable' or
+> 'output-enable' associated with a bidirectional pins like I2C's SDA.
+>
+> I propose to change it as, e.g.
+>   st,skew-delay-on-input:
+>     type: boolean
+>     description: |
+>       If this property is present, then skew-delay applies to input path =
+only,
+>       otherwise it applies to output patch only.
+>
+> Or, it could be a new generic property (keeping backward compatibility), =
+e.g.:
+>   skew-delay-direction:
+>     enum [0, 1, 2]
+>     default: 0
+>     description: |
+>       0: skew-delay applies to both input and output path, or it switches=
+ automatically
+>          between the two direction
+>       1: skew-delay applies only to input path
+>       2: skew-delay applies only to output path
+
+I like this property the most. Can we go with the generic
+skew-delay-direction?
+
+Also state in the existing skew-delay property that if
+skew-delay-direction is not
+present then it is assumed that the property applies to all
+directions of a pin.
+
+> > > +          st,io-clk-edge:
+> > > +            description: |
+> > > +              IO synchronization clock edge
+> > > +              0: Data single-edge (changing on rising or falling clo=
+ck edge)
+> > > +              1: Data double-edge (changing on both clock edges)
+> > > +            $ref: /schemas/types.yaml#/definitions/uint32
+> > > +            enum: [0, 1]
 > >
-> > I need narrower patterns to simplify adding new SoCs.
-> > Another option is to define a mega-pattern like
-> > qcom,(msm|sm|sd[am]|.....)[0-9]+[a-z]*-.* . Frankly speaking I'm fine
-> > with that approach too.
+> > This looks like it should be made into a generic property,
 >
-> I do not see how narrower patterns, changing:
-> "^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$"
-> into
-> pattern: "^qcom,sa[0-9]+p-.*$"
+> I believe it is too specific to ST implementation.
+> I see already some 'retime' mentioned in old ST bindings
+> bindings/pinctrl/pinctrl-st.txt and bindings/net/sti-dwmac.txt, but the c=
+ontrol looks quite different; I don't plan to reuse them.
 >
-> instead of
-> pattern: "^qcom,sa[0-9]+[a-z]-.*$"
-> is needed for that. It's true that 'p' is simpler than '[a-z]' but if
-> this results in new commit next time we have sa8995r, then benefit is lost.
+> I will fuse in V2 this property together with the next two in a more
+> meaningful one, partially acknowledging your proposal below.
 
-Ok, let's drop it, I will just update the qcom-soc.yaml to handle
-sar21330p via the "^qcom,(sa|sar|sc)8[0-9]+[a-z][a-z]?-.*$"
+Hmmmm. Let's see. I know that e.g. MMC has similar properties
+and if similar things appear in other bindings (not necessarily
+pinctrl bindings) then that should also be taken into account.
 
->
-> Best regards,
-> Krzysztof
->
+And in MMC this is called DDR.
 
-
--- 
-With best wishes
-Dmitry
+Yours,
+Linus Walleij
 
