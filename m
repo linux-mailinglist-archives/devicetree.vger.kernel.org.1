@@ -1,140 +1,134 @@
-Return-Path: <devicetree+bounces-118125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7E0B9B912B
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 13:34:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4BF59B9134
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 13:40:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 194B3B20F5D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 12:34:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81FC91F2256D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 12:40:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C26A419AA43;
-	Fri,  1 Nov 2024 12:33:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C052619E7E2;
+	Fri,  1 Nov 2024 12:40:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kEF+sB1a"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="h0FAhilm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C43CF194ACC;
-	Fri,  1 Nov 2024 12:33:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D0822097;
+	Fri,  1 Nov 2024 12:40:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730464439; cv=none; b=tekSU6BrrV6P/5p2xSfXScHELZGN80dbYgp/134djE/tAA44RDgUNaFmmtBBMuFdn0yPkuDMyo3OE7cyN+81jovlJkwYrrdu+RqeiTr3kEwPYULEc469CB6UMV4TdEG7LZVdQpfeydITrTgzoAEAyV1bGFqClFdW3QoUt3dQ2yw=
+	t=1730464817; cv=none; b=I7sXU+wTSJ+vBCt8igx5Y71Opz/6150HPJ9/dZc/MGyMCKYPdZs+e2UhQei8mYu04oIuvID6olSlp0o1vvun33k6Z+meRQ6sNfgWL/R3Z+6c+Ik/nws1i4fF/rLWSD9d/FFkvlXAyxCqNorom3qgJikFamrzGIgwbtER6Lm0SHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730464439; c=relaxed/simple;
-	bh=NLZgXQly6/JBYeaoMI2Gj4UqVeX9adEe2V/e7lQ8X5I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z8I/FzOatnBrS5Aw6WGR77Uhv+Rw0Lnsn2mFOED0bx/zWCDZh8wuPewUxZa2fa3tJ9KbUz2d5Ylf9VqoPzDvYqEvgBxbiOocnBGx8QEq2HmS0gy4aWDvUZSPXrC35AuMGxOPiCjX7wjUn1lzHeT/lcmII9tgqLVrQ3wzrYymcfs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kEF+sB1a; arc=none smtp.client-ip=209.85.166.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f173.google.com with SMTP id e9e14a558f8ab-3a5075ed279so7628925ab.0;
-        Fri, 01 Nov 2024 05:33:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730464437; x=1731069237; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=luTIfl8fjfaYqdOzb0XicGQ8fkkc3h4j7fSA6fwqKtI=;
-        b=kEF+sB1a4/r9IryvNFDlcF30DzX0h5gQ6Z9wjcKhbFOJY1YO/UwPVE1ztABM/reY1I
-         W7n9xtNrETydxZxZhiM+ahWgRZhGrc4By6bqU0Hm3+zcJhmjQtRytkwLU9x3eC2N4Fb0
-         fi2GnibXNLGLLPYKXO/vracNhfxceK1o05CfeqCIJfVyo5heEQLLBH9MFuMFFmHExgRj
-         jQWWvoKOKZPzwtemwiqv5gSME39hUvN2flIr5iuZdFvAVnqya+g5HH5kT98dmTUIzdVq
-         KZMo7Jt7Kk9knxJF1AOTZeOzARZN8FewQzIljnGoBljSE7IkAZU9IDxxRCT9Bh8aK7kj
-         1B3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730464437; x=1731069237;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=luTIfl8fjfaYqdOzb0XicGQ8fkkc3h4j7fSA6fwqKtI=;
-        b=xPGfXkfOV08Ft/uizmT3F2tEEDnsqULsoa/2dRN6PQiwUdcomx62jPTcH8YKcJrXZz
-         gZMg4Zls6h+35yYswuid+l3+MhuZOc42cZt8/5otylR8cyeZ8D1AbKfR42Hz920r/BJx
-         sZY7EV5YLeSHd/vWaqX4qrOquxpRSunjb1Hqdpzaz3SXf85zG6Gl8BXuopF9PZgLvYcA
-         ypx84isEwlgljXAOjk4G55XcKqJv6EjXOUQwZoI4kVXqnnJ+U8fQtVmFlMg3Cz1mB4Pu
-         51DYHqzqlEmoK4iYWz5sQrOBbW5sAWkfC5JdwDZkaQYQq+pMzsp8U2xa3CGQyXYVfW7Q
-         PJbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUTdtddbld5udZRSRHnVNt2x1gPbpc7vbhsxIArhgJ3cvkLEgZQd64lvs1Rl1/h3Js8rML968wCshN5@vger.kernel.org, AJvYcCUhQCHNXD01RgEMVTcpaBD3BDCKq2VA9BIn2hJyd0p+pyQz0rmbnJypo2VVxIvcaD6kFZzS3tRNic9c1JmN@vger.kernel.org, AJvYcCWuqsgmzFoU1C5dvzUjln1uciX4SlhW99t01vX91lZHXiKRpzhGMHHQOyiwv8K+h9OzWBHJ/smWO3gSIuFEXw==@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywzj3UuEYv4g2SHiDsRlUWjRErHNl9HF+CBiA3jZ0XxEE3tGSai
-	kEVUoiefWAWZ7nRSOzo3pFb2uvitsOy4YCGizHq9QBfAZXk5y3FSTPdzJ45EqaVtn3rIvhL+b7u
-	SjAhAMT5lOxHz1stS5vetIxAtXPg=
-X-Google-Smtp-Source: AGHT+IHROmGFY4O7d8AzmJAHmAMWlbgwtTWlJERIniDbvCooTOD9qLFdaEGNBi0WQhCjbz4p3oj41XFMGb3QjjueJBk=
-X-Received: by 2002:a05:6e02:1e07:b0:3a4:e9b3:22ad with SMTP id
- e9e14a558f8ab-3a602f7fbabmr77904845ab.0.1730464436782; Fri, 01 Nov 2024
- 05:33:56 -0700 (PDT)
+	s=arc-20240116; t=1730464817; c=relaxed/simple;
+	bh=QNXdyGnqE6MurJIcF0ns6jB3cXGZVUEvz/Y3ylybaQ4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eOPCZ4C8a5eZIRJKDxkArkNGbtFhU6Sq9TBHUvf855dNalGzceHKZG/AbSpORqkh/NeQVMEtgmrtounGEs7girt/wIUlPDXRsLqjwrDN4IyEzPPNciZVIgzBiBTv9fEhJ0auyw4cXkKFKnUhAhH79NB+XC/sVy7wzbXS1SR9gKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=h0FAhilm; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=JLfKetvUuxPUYkpPeA7mnXrzdgQkP5ynoIU4H8aYS3U=; b=h0FAhilmGmVBQ5NQWg3uCkBa5Z
+	wBWcuyUI17qGVzn7hgmPZYc8+Y/8faJQW7qsFUCd4+QAan8AfGgxrSLUThwbNqFCSqRFnV8RWNRFl
+	DvvjfhGliWxog9tagmqENZzMNVIlzb7BrBGuszd5VPi+LN8iAw7MpZz4Ue4QhsS0WqoI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1t6qwa-00BsXZ-SD; Fri, 01 Nov 2024 13:40:00 +0100
+Date: Fri, 1 Nov 2024 13:40:00 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Chen Wang <unicorn_wang@outlook.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Liu Gui <kenneth.liu@sophgo.com>, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH] riscv: dts: sophgo: Add ethernet configuration for cv18xx
+Message-ID: <5b08e092-c302-43a9-a04d-3566bec96e94@lunn.ch>
+References: <20241028011312.274938-1-inochiama@gmail.com>
+ <87e215a7-0b27-4336-9f9c-e63ade0772ef@lunn.ch>
+ <wgggariprpp2wczsljy3vw6kp7vhnrifg6soxdgiio2seyctym@4owbzlg3ngum>
+ <ftfp2rwkytqmzruogcx66d5qkn4tzrgyjtlz4hdduxhwit3tok@kczgzrjdxx46>
+ <e389a60d-2fe3-46fd-946c-01dd3a0a0f6f@lunn.ch>
+ <nkydxanwucqmbzzz2fb24xyelrouj6gvhuuou2ssbf4tvvhfea@6uiuueim7m3a>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241025-b4-linux-next-24-10-25-camss-dts-fixups-v1-0-cdff2f1a5792@linaro.org>
- <20241025-b4-linux-next-24-10-25-camss-dts-fixups-v1-6-cdff2f1a5792@linaro.org>
-In-Reply-To: <20241025-b4-linux-next-24-10-25-camss-dts-fixups-v1-6-cdff2f1a5792@linaro.org>
-From: Rob Clark <robdclark@gmail.com>
-Date: Fri, 1 Nov 2024 05:33:44 -0700
-Message-ID: <CAF6AEGu_qJYV3TnprJsqsWV_GoLhiBFQ8LNwfYDjczDparvZCA@mail.gmail.com>
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: sdm845-db845c-navigation-mezzanine:
- Add cma heap for libcamera softisp support
-To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Depeng Shao <quic_depengs@quicinc.com>, Vikram Sharma <quic_vikramsa@quicinc.com>, 
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <nkydxanwucqmbzzz2fb24xyelrouj6gvhuuou2ssbf4tvvhfea@6uiuueim7m3a>
 
-On Fri, Oct 25, 2024 at 8:49=E2=80=AFAM Bryan O'Donoghue
-<bryan.odonoghue@linaro.org> wrote:
->
-> libcamera softisp requires a linux,cma heap export in order to support
-> user-space debayering, 3a and export to other system components such as
-> pipewire, Firefox/Chromium - Hangouts, Zoom etc.
+> > > > > > +			mdio {
+> > > > > > +				compatible = "snps,dwmac-mdio";
+> > > > > > +				#address-cells = <1>;
+> > > > > > +				#size-cells = <0>;
+> > > > > > +
+> > > > > > +				phy0: phy@0 {
+> > > > > > +					compatible = "ethernet-phy-ieee802.3-c22";
+> > > > > > +					reg = <0>;
+> > > > > > +				};
+> > > > > > +			};
+> > > > > 
+> > > > > It is not clear to me what cv18xx.dtsi represents, 
+> > > > 
+> > > > This is a include file to define common ip for the whole
+> > > > cv18xx series SoCs (cv1800b, cv1812h, sg2000, sg2000).
+> > > > 
+> > > > > and where the PHY node should be, here, or in a .dts file. 
+> > > > > Is this a SOM, and the PHY is on the SOM? 
+> > > > 
+> > > > The phy is on the SoC, it is embedded, and no external phy
+> > > > is supported. So I think the phy node should stay here, not 
+> > > > in the dts file.
+> > > 
+> > > There is a mistake, Some package supports external rmii/mii
+> > > phy. So I will move this phy definition to board specific.
+> > 
+> > When there is an external PHY, does the internal PHY still exists? If
+> > it does, it should be listed, even if it is not used.
+> > 
+> > Do the internal and external PHY share the same MDIO bus? 
+> 
+> They share the same MDIO bus and phy id setting.
 
-AFAIU libcamera could use udmabuf, etc, and there is no hw requirement
-for CMA.  So it doesn't seem we should be adding this to dt.  And I'd
-really prefer that we not be using CMA just for lolz.
+What do you mean by phy ID?
 
-BR,
--R
+> When an external phy
+> is select, the internal one is not initialized and can not be accessed
+> by the SoC.
+> 
+> > I've seen some SoCs with complex MDIO muxes for internal vs external
+> > PHYs.
+> > 
+> > 	Andrew
+> 
+> There is a switch register on the SoC to decide which phy/mode is used. 
+> By defaut is internal one with rmii mode. I think a driver is needed to
+> handle this properly.
 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso     | 11 +++++=
-++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.=
-dtso b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
-> index d62a20f018e7a7e1c7e77f0c927c2d9fe7ae8509..c8507afcd1e0d1f9b14b6e4ed=
-cbc646032e7b6c9 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
-> @@ -9,6 +9,17 @@
->  #include <dt-bindings/clock/qcom,camcc-sdm845.h>
->  #include <dt-bindings/gpio/gpio.h>
->
-> +/ {
-> +       reserved-memory {
-> +               linux,cma {
-> +                       compatible =3D "shared-dma-pool";
-> +                       size =3D <0x0 0x8000000>;
-> +                       reusable;
-> +                       linux,cma-default;
-> +               };
-> +       };
-> +};
-> +
->  &camss {
->         vdda-phy-supply =3D <&vreg_l1a_0p875>;
->         vdda-pll-supply =3D <&vreg_l26a_1p2>;
->
-> --
-> 2.47.0
->
->
+This sounds like a complex MDIO mux. You should think about this now,
+because others have left this same problem too late and ended up with
+a complex design in order to keep backwards compatibility with old DT
+blobs which don't actually describe the real hardware.
+
+	Andrew
 
