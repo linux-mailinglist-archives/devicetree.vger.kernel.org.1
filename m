@@ -1,178 +1,184 @@
-Return-Path: <devicetree+bounces-118194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 259609B94D1
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 17:00:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EA119B94E4
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 17:05:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3768B21F5E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:00:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B79CB282E45
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:05:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CDFF1586C8;
-	Fri,  1 Nov 2024 16:00:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38B221B4F2D;
+	Fri,  1 Nov 2024 16:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="iPUnZ8bs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mDrsVhLf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from msa.smtpout.orange.fr (out-72.smtpout.orange.fr [193.252.22.72])
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C926B1DA53;
-	Fri,  1 Nov 2024 16:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.252.22.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1658181ACA;
+	Fri,  1 Nov 2024 16:05:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730476845; cv=none; b=uimo72vJj8DNmXhAPWJW7MBb9EXBZvoMOSrvftyFqr8KH/Rw7B1HXsveul5fAJhAY78H+LSW8xk/bD5reZ7uv7d+m19BD2b2ASGiZwynHPIhortzBSPDYmrjGqw14uj1iCt/apFlpnIi1LJMy8Gb+9vOKKmIUq8HFuIjsmKXDOo=
+	t=1730477123; cv=none; b=muvny47GlmuyiXtYdy3d8UwhyxGinAx1XB0JDSJlNbG2SkF9Q2Xdv3hk3DOksevwncIGmkNzsBXYJr88uixNvnxQwsU3o+wy5QL6+O1kIgvCuwcLALwRSgwrsExTyBmjkfASN96+bymCFI2eV3BqBRyxnQZLlZSQDrfn/yULDoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730476845; c=relaxed/simple;
-	bh=tgUcafWIcyw/Xw6WtWftC4IV18qq2lbN+XPC1DDYwpA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rACojyvNkRbdc8RPgiqaAs845DY+pGNpXBx4XKMuo2epZNYGBgNz1wOCKHw2srzinCoHps93+SJO5iFb3gQBCs1r74zyJ3DlTl3exWiCPaigCu27Af6H6wn9PR8FIUhuLfitxVy9ayBttlAVA3pvvDdoanRoakUXZbA2YSbTyCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=iPUnZ8bs; arc=none smtp.client-ip=193.252.22.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id 6u3ZtHqXNH3SU6u3ZtLSD5; Fri, 01 Nov 2024 16:59:28 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1730476768;
-	bh=OPHPOhW9HUBF4EAgD2hHEl89Ml4qq1QzyjIJ4lZA8VU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=iPUnZ8bsHVrouKOtqJuIaZT9mlO0HzGTPoMPj1s2yuM7ms6mOg1moCSuWZku7Ndwd
-	 jVvaMAENZvOrBkCGLorHATLAAPE6NlDfdntZ/qDdho1yOfACdoBrRqASevzKgLALSM
-	 BwHgW4OJGsJTjXJhY9j/3yFgXkQy2JwkIa5/YVqIy6++dEH7a/qKYfrrjuPoVl5cXj
-	 j4BXOjPqvwWLbR1y81ZcWdy9Uac4kiVk6xFgVLeEmzzp7W1aJAWjSi5alIw/pc53tW
-	 m4RJNOq5bexSI9JFbWxfbVKaIa40QZ76aXuFzifXUTnSDZI95RWCdQmZ+N3+ol/neF
-	 kxZXn8wK1zuEA==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Fri, 01 Nov 2024 16:59:28 +0100
-X-ME-IP: 90.11.132.44
-Message-ID: <9bf24861-f792-4315-9492-e71f7d9c457f@wanadoo.fr>
-Date: Fri, 1 Nov 2024 16:59:21 +0100
+	s=arc-20240116; t=1730477123; c=relaxed/simple;
+	bh=Uu4MQlnjm2E1L/aU+HDZPVxnrRXgoclKUmjZt66t2L8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BgR/N61VW7yDD8GT+jVmKa6BCeQp5BzJE/Lrue9LAuRe01EqhFfHN/p9HVql9dJOkhPPrj/FUFL1uBmIhNUff02iOEYhfwXspMCZFlulYIsex9S8gQqK0FTxyCGuHobKNl4ZD3Ba8qyN5GPAFtO6j7snlVOsl9zXxq/Ym1ClDSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mDrsVhLf; arc=none smtp.client-ip=209.85.166.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-83ac05206f6so79593539f.2;
+        Fri, 01 Nov 2024 09:05:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730477119; x=1731081919; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kuGYsDq/8KVBVCrawJNRaHmxsjuDcoTms3F6ILMG2Nc=;
+        b=mDrsVhLf73MVbFsomloow6WiARQGNgy4xV2Dx9Tbwrh0gaU205XYHeKb/mZ4zOORq9
+         e6M0P901ft9yp/Tr+QVb9GwayB9boBpF0N/ZzxaRZkoLKCK/DcCrnnzXFbnSAA3pvSfz
+         vck4alBSX/FLgMEE6js+4FdeIsM8BkTWY6yMBS3MlkkIVrU+FjZIczD6Er10il11o4Bj
+         BOE5Iy6tkFvvvcmmCDghhkgUNAaZj811Pfja/2pkXwhxWXJDb0i/Uqo+fY/kCnaZFi57
+         lvP8vRvt2DwZImi9gDB43p29C05HJpd1+WGQCfnoKhObK4pQdubb+uKqJzQ6P5us6/Kj
+         t5Pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730477119; x=1731081919;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kuGYsDq/8KVBVCrawJNRaHmxsjuDcoTms3F6ILMG2Nc=;
+        b=PxRVtaFmRp6Ic5RvwWoOv11xotL0teF5nBxslOHYMGGuN++FNg23PF26rn8y6v1jai
+         X3dXC7gA61Uq7znlckOtkwWY8Sdo4cVD6TVmeS8DS/ElB3Od+9f3fOOLrKvxMgV9keJP
+         nVtTwQDPNoNu0+8eDEh83loFCNskwPnCXxbvOcHCDkmJUKA3fNfOk3CchgQi9pG+FTjk
+         o7BlTig+M3YZRitNmmKFeG+qyzqo/potyRJMqKy83tRZZTHt47bgkPi0OvbxdlHqUCc7
+         ieEwJcZaX6+hiTtjno9i2KwoAX18YNPgNrCQTJesS6E4nS0DnPrBcAOJxJo4QLWWEYZJ
+         2zHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUHKpwdmGPXgTmg/nV4GjPYwQYmOXcmSUHGIJc9ue7LtnH5BfmtWrju2tDekRhpAH6Q9GYAj0dUmxsLcHEc@vger.kernel.org, AJvYcCV9j2UKMngL4xpPKqlLpeiA9dCOFzFG7cvFb9IkAlpkHX1gtyccSvWvw7o5tE1cKedK5mjb61+ZjC41RBs1Cg==@vger.kernel.org, AJvYcCVMpaK2NAtJohRC6Zaa8pX53pa03CvMp3bJMaW0SFzv+/HtAuE0EpHLFF6Q7X2IfTiRksUQ3O+e5KWJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxulpxtwfWASBbgm+WHzZTqDv6VvTCWntVWEFwSL+V/j1GyJIwO
+	8TyqkP0P+7U/XaW2t+9sghE1uNcbRctoF0K+8ZYHfeq1Qv5OWqJZlVW2ZYnooGvpLuVb+Na9WGI
+	+KiJXaaDZ5drnGkMRnQmy0zsDpjo=
+X-Google-Smtp-Source: AGHT+IHONrdDV4LzejxnIZF3enutVxBdz/iPFoAD8iZdgn5tMyF+owzTrNCgAzQzlf79XfKrpVjQbV7QD4AiQKQyJQk=
+X-Received: by 2002:a05:6e02:1645:b0:3a5:e250:bba1 with SMTP id
+ e9e14a558f8ab-3a61752ae86mr81367985ab.18.1730477118991; Fri, 01 Nov 2024
+ 09:05:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] spi: apple: Add driver for Apple SPI controller
-To: Janne Grunau via B4 Relay <devnull+j.jannau.net@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Janne Grunau <j@jannau.net>,
- Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20241101-asahi-spi-v2-0-763a8a84d834@jannau.net>
- <20241101-asahi-spi-v2-2-763a8a84d834@jannau.net>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20241101-asahi-spi-v2-2-763a8a84d834@jannau.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20241025-b4-linux-next-24-10-25-camss-dts-fixups-v1-0-cdff2f1a5792@linaro.org>
+ <20241025-b4-linux-next-24-10-25-camss-dts-fixups-v1-6-cdff2f1a5792@linaro.org>
+ <CAF6AEGu_qJYV3TnprJsqsWV_GoLhiBFQ8LNwfYDjczDparvZCA@mail.gmail.com> <173047431366.2974136.175546053701391124@ping.linuxembedded.co.uk>
+In-Reply-To: <173047431366.2974136.175546053701391124@ping.linuxembedded.co.uk>
+From: Rob Clark <robdclark@gmail.com>
+Date: Fri, 1 Nov 2024 09:05:04 -0700
+Message-ID: <CAF6AEGu_vmR1N9C=1BQ21kk4w-tz6n3j-Sv14RoqbkxAeNUsvw@mail.gmail.com>
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: sdm845-db845c-navigation-mezzanine:
+ Add cma heap for libcamera softisp support
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Depeng Shao <quic_depengs@quicinc.com>, Vikram Sharma <quic_vikramsa@quicinc.com>, 
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Le 01/11/2024 à 15:25, Janne Grunau via B4 Relay a écrit :
-> From: Hector Martin <marcan-WKacp4m3WJJeoWH0uzbU5w@public.gmane.org>
-> 
-> This SPI controller is present in Apple SoCs such as the M1 (t8103) and
-> M1 Pro/Max (t600x). It is a relatively straightforward design with two
-> 16-entry FIFOs, arbitrary transfer sizes (up to 2**32 - 1) and fully
-> configurable word size up to 32 bits. It supports one hardware CS line
-> which can also be driven via the pinctrl/GPIO driver instead, if
-> desired. TX and RX can be independently enabled.
-> 
-> There are a surprising number of knobs for tweaking details of the
-> transfer, most of which we do not use right now. Hardware CS control
-> is available, but we haven't found a way to make it stay low across
-> multiple logical transfers, so we just use software CS control for now.
-> 
-> There is also a shared DMA offload coprocessor that can be used to handle
-> larger transfers without requiring an IRQ every 8-16 words, but that
-> feature depends on a bunch of scaffolding that isn't ready to be
-> upstreamed yet, so leave it for later.
-> 
-> The hardware shares some register bit definitions with spi-s3c24xx which
-> suggests it has a shared legacy with Samsung SoCs, but it is too
-> different to warrant sharing a driver.
-> 
-> Signed-off-by: Hector Martin <marcan-WKacp4m3WJJeoWH0uzbU5w@public.gmane.org>
-> Signed-off-by: Janne Grunau <j@jannau.net>
+On Fri, Nov 1, 2024 at 8:18=E2=80=AFAM Kieran Bingham
+<kieran.bingham@ideasonboard.com> wrote:
+>
+> +Cc Laurent
+>
+> Quoting Rob Clark (2024-11-01 12:33:44)
+> > On Fri, Oct 25, 2024 at 8:49=E2=80=AFAM Bryan O'Donoghue
+> > <bryan.odonoghue@linaro.org> wrote:
+> > >
+> > > libcamera softisp requires a linux,cma heap export in order to suppor=
+t
+> > > user-space debayering, 3a and export to other system components such =
+as
+> > > pipewire, Firefox/Chromium - Hangouts, Zoom etc.
+> >
+> > AFAIU libcamera could use udmabuf, etc, and there is no hw requirement
+> > for CMA.  So it doesn't seem we should be adding this to dt.  And I'd
+> > really prefer that we not be using CMA just for lolz.
+>
+> I agree here. Otherwise this theoretically locks this memory to the pool
+> 'forever'. It's not something we should define in device tree.
+>
+> udmabuf provides a means to get memfd allocated memory which is not
+> physically contiguous - but /is/ managed by a dmabuf handle.
+>
+> Presently with SoftISP being CPU only - physically contiguous memory is
+> not required.
+>
+> Bryan, will this still be true when you have a GPU based ISP ? Will that
+> require physically contiguous memory ? Or will the mapping into the GPU
+> handle any required translations?
 
-Hi,
+GPU does not require phys contiguous.  OTOH it may/will impose some
+layout constraints.
 
-a few nitpicks, if they make sense to you or in case of v3.
+I'm kinda leaning towards teaching gbm to allocate YUV plus add a
+GBO_BO_USE_CPU usage bit if softisp also needs CPU access.  (Modern
+adreno can do cached-coherent buffers, at some small performance cost,
+so that CPU access doesn't have to fall off a cliff.)  But that
+doesn't exist yet.
 
+BR,
+-R
 
-> +static int apple_spi_probe(struct platform_device *pdev)
-> +{
-> +	struct apple_spi *spi;
-> +	int ret, irq;
-> +	struct spi_controller *ctlr;
-> +
-> +	ctlr = devm_spi_alloc_master(&pdev->dev, sizeof(struct apple_spi));
-> +	if (!ctlr)
-> +		return dev_err_probe(&pdev->dev, -ENOMEM, "out of memory\n");
-
-Usually, no message is needed, because kmalloc like functions are 
-already verbose.
-
-> +
-> +	spi = spi_controller_get_devdata(ctlr);
-> +	init_completion(&spi->done);
-> +	platform_set_drvdata(pdev, ctlr);
-> +
-> +	spi->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(spi->regs))
-> +		return PTR_ERR(spi->regs);
-> +
-> +	spi->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-> +	if (IS_ERR(spi->clk))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(spi->clk),
-> +				     "Unable to find or enable bus clock\n");
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0)
-> +		return irq;
-> +
-> +	ret = devm_request_irq(&pdev->dev, irq, apple_spi_irq, 0,
-> +			       dev_name(&pdev->dev), spi);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret, "Unable to bind to interrupt\n");
-> +
-> +	ctlr->dev.of_node = pdev->dev.of_node;
-> +	ctlr->bus_num = pdev->id;
-> +	ctlr->num_chipselect = 1;
-> +	ctlr->mode_bits = SPI_CPHA | SPI_CPOL | SPI_LSB_FIRST;
-> +	ctlr->bits_per_word_mask = SPI_BPW_RANGE_MASK(1, 32);
-> +	ctlr->flags = 0;
-
-Nitpick: not needed, the memory if already zeroed.
-
-> +	ctlr->prepare_message = apple_spi_prepare_message;
-> +	ctlr->set_cs = apple_spi_set_cs;
-> +	ctlr->transfer_one = apple_spi_transfer_one;
-> +	ctlr->auto_runtime_pm = true;
-> +
-> +	pm_runtime_set_active(&pdev->dev);
-> +	devm_pm_runtime_enable(&pdev->dev);
-
-There could be an error handling, or if intentional, maybe a (void) or a 
-comment to show the intent.
-
-> +
-> +	apple_spi_init(spi);
-> +
-> +	ret = devm_spi_register_controller(&pdev->dev, ctlr);
-> +	if (ret < 0)
-> +		return dev_err_probe(&pdev->dev, ret, "devm_spi_register_controller failed\n");
-> +
-> +	return 0;
-> +}
-
-...
-
-CJ
+>
+> --
+> Kieran
+>
+>
+> >
+> > BR,
+> > -R
+> >
+> > > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > > ---
+> > >  .../boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso     | 11 +=
+++++++++++
+> > >  1 file changed, 11 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzan=
+ine.dtso b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
+> > > index d62a20f018e7a7e1c7e77f0c927c2d9fe7ae8509..c8507afcd1e0d1f9b14b6=
+e4edcbc646032e7b6c9 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts=
+o
+> > > +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts=
+o
+> > > @@ -9,6 +9,17 @@
+> > >  #include <dt-bindings/clock/qcom,camcc-sdm845.h>
+> > >  #include <dt-bindings/gpio/gpio.h>
+> > >
+> > > +/ {
+> > > +       reserved-memory {
+> > > +               linux,cma {
+> > > +                       compatible =3D "shared-dma-pool";
+> > > +                       size =3D <0x0 0x8000000>;
+> > > +                       reusable;
+> > > +                       linux,cma-default;
+> > > +               };
+> > > +       };
+> > > +};
+> > > +
+> > >  &camss {
+> > >         vdda-phy-supply =3D <&vreg_l1a_0p875>;
+> > >         vdda-pll-supply =3D <&vreg_l26a_1p2>;
+> > >
+> > > --
+> > > 2.47.0
+> > >
+> > >
 
