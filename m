@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-118228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 395059B9698
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 18:34:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBAAC9B96AC
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 18:39:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1EC5280EF2
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 17:34:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 972021F23A05
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 17:39:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B8B1CC178;
-	Fri,  1 Nov 2024 17:34:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E951CCB4C;
+	Fri,  1 Nov 2024 17:39:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DWdTRB8N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rNugFRiW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86CC684E1C;
-	Fri,  1 Nov 2024 17:34:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C751CCB2A;
+	Fri,  1 Nov 2024 17:39:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730482443; cv=none; b=gtZV02iYi0nKahOb4wz/1OeYESFXO3tDUpHWxPDShQ+sNw8t36ogaM8MJb+jCJKoDW/fPBAo0hnEhw+AtwuDY0uY797JzCBc1WIxMPDwktYSu0i56tFeS5Lb8Bg5IfxOSz0pN7Wk/GEcZc9K4b5fRcDNseJRNtFbKE1wr1Uz3Ps=
+	t=1730482757; cv=none; b=Xs3pArmsVujH3bevrG5LJBosa6vpsiX6ZOav57WBfsug/+GRuoqJd/Se7nueTw7fJ86ZYksJ+0eUpkm4YTfWGjYmk/SzVh4kavceSbqPABkiOeLJu2fLPkrH+lIKZGSwXV/uTzJNrunf2+LNrSXfz8WE6bSjX6OObl0kGRfs8Ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730482443; c=relaxed/simple;
-	bh=13D5qO+iCCU4BtPeL0cBtUnyyfuAgxln/g3XVg4bLfo=;
+	s=arc-20240116; t=1730482757; c=relaxed/simple;
+	bh=MjpluMk4z1Rdc7ccRrPusPdZsycZJ1/7Dl1Io0hhDd0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kNSPGw0qc119GtVTtRTBe0tqfMk35B5YHbR5d5MDoIcthGAZG1JpXdlrbFthmV4qspxalFCjUkfrOeGOHqTzaz+DC7+2w5lSBoeQMlZ7zMF5rTU3ORWGOXJ/58FbwRMPeXV/MqhyJGTrgnoqDQFccg10FeBwrX0ZmKCOtSaBTfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DWdTRB8N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1B6CC4CECD;
-	Fri,  1 Nov 2024 17:34:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iFxkJwExmuxsMugytDoj42xXiXfwJn6A88ZDGFTFcRBKTUwI8EW4pxAqvXdc/FZYz5XCAtNsTfky8eHZ7k9VJOKRhk5WXY2WHAvPK1YuHM6G9nOKeu+6B9dFAm7edKAF/kQzrzUr3AFs/ttDvAMw2Z3LpbJnYM+UyavUzbrhTQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rNugFRiW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F4ECC4CED2;
+	Fri,  1 Nov 2024 17:39:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730482443;
-	bh=13D5qO+iCCU4BtPeL0cBtUnyyfuAgxln/g3XVg4bLfo=;
+	s=k20201202; t=1730482756;
+	bh=MjpluMk4z1Rdc7ccRrPusPdZsycZJ1/7Dl1Io0hhDd0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DWdTRB8Nhtivx/MimJEqGEAxXtuEYXsLxs8ZHgNq65+Eg6+P4PS9rjSKApLSazoWI
-	 u039m64m6Kp2DYoOSE6KFajfgXamleIoBicYcJekyKDbSYhdYcP7pxsKKbjocPo/ZJ
-	 AmnFRmmLLWYguOcN+ZYYA1ghGbdtlecFnPqugPkKbEAglQhv0LI7kkSemQgqu0A1V/
-	 L9Tg2ZvchTtfSpkpu0Ti1gLYB6/DbDoRQImeccyacz+feSa2K30DQ+diiZsiFUtZ+0
-	 Qu+6s8367BaNZdCYq8Ah8PnRovg0/UtaOOwUjYZo2tTZyzvxKqI/2Z3Y5sfceU77Yx
-	 0WGEd1hpmIq9Q==
-Date: Fri, 1 Nov 2024 12:34:01 -0500
+	b=rNugFRiWXU9A1hv0yLrPnNuqZWo/NBrOFcGqfFlDK4gWybtlvZuoCNl+xcrBGUYdP
+	 OWJ/PlOntDhgHvzfpTtieKf5A0bMLOFaz/ruk/y/KmzHzo2MgkXQho/c1oYD22G4W1
+	 b3iCEs9xsocPs1dZflBHc5ZEQSk14PuA2/drhm1SCS+hKb13/ZHluOX7lACK4B81M9
+	 Y9HHvanYUTX6Aa0i91zO6apUgfleVN/5XOtnMPunbeUQrvT0th4DppCBkAs4+WLY3c
+	 Bd1KqSp+/JZoJdHn9nD6+Drkxg0iWix+QdpgwBpt3OIPaeveosCxqX+LLdczdp69Mm
+	 EYoCxGjcKYtvg==
+Date: Fri, 1 Nov 2024 12:39:14 -0500
 From: Rob Herring <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Jakub Kicinski <kuba@kernel.org>, Suraj Gupta <suraj.gupta2@amd.com>,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	radhey.shyam.pandey@amd.com, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, git@amd.com, harini.katakam@amd.com
-Subject: Re: [PATCH net] dt-bindings: net: xlnx,axi-ethernet: Correct
- phy-mode property value
-Message-ID: <20241101173401.GA3780112-robh@kernel.org>
-References: <20241028091214.2078726-1-suraj.gupta2@amd.com>
- <20241031185312.65bc62dc@kernel.org>
- <20241101-left-handshake-7efc5a202311@spud>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC PATCH 01/10] dt-bindings: soc: imx-blk-ctrl: add
+ 'fsl,power-domains-boot-on' property
+Message-ID: <20241101173914.GA3786619-robh@kernel.org>
+References: <20241028102559.1451383-1-dario.binacchi@amarulasolutions.com>
+ <20241028102559.1451383-2-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,43 +66,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241101-left-handshake-7efc5a202311@spud>
+In-Reply-To: <20241028102559.1451383-2-dario.binacchi@amarulasolutions.com>
 
-On Fri, Nov 01, 2024 at 05:14:50PM +0000, Conor Dooley wrote:
-> On Thu, Oct 31, 2024 at 06:53:12PM -0700, Jakub Kicinski wrote:
-> > On Mon, 28 Oct 2024 14:42:14 +0530 Suraj Gupta wrote:
-> > > Correct phy-mode property value to 1000base-x.
-> > > 
-> > > Fixes: cbb1ca6d5f9a ("dt-bindings: net: xlnx,axi-ethernet: convert bindings document to yaml")
-> > > Signed-off-by: Suraj Gupta <suraj.gupta2@amd.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
-> > > index e95c21628281..fb02e579463c 100644
-> > > --- a/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
-> > > @@ -61,7 +61,7 @@ properties:
-> > >        - gmii
-> > >        - rgmii
-> > >        - sgmii
-> > > -      - 1000BaseX
-> > > +      - 1000base-x
-> > >  
-> > >    xlnx,phy-type:
-> > >      description:
-> > 
-> > Can we get an ack from DT folks?
+On Mon, Oct 28, 2024 at 11:25:24AM +0100, Dario Binacchi wrote:
+> This property lists the state of the power domains, indicating whether
+> they have been left on or off by the bootloader/firmware.
+> This information becomes relevant, for example, in the case of supporting
+> the simple framebuffer.
 > 
-> I dunno, the commit message gives no detail at all about the impact of
-> changing this, so I don't want to ack it. I *assume* that this is parsed
-> by common code and 1000BaseX is not understood by that common code,
-> but...
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> ---
+> 
+>  .../bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml       | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
+> index eeec9965b091..00aa0b8d8ea9 100644
+> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
+> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
+> @@ -56,6 +56,15 @@ properties:
+>        - const: csi-aclk
+>        - const: csi-pclk
+>  
+> +  fsl,power-domains-boot-on:
+> +    description: |
+> +      Provide the on/off (1/0) status of the power domains. It allows
+> +      specifying whether one or more power domains have already been
+> +      initialized and left powered on by the bootloader.
 
-We're the ones defining the names in ethernet-controller.yaml. It should 
-also have failed validation if used because the list here must be a 
-subset of that list. So nothing to do with whatever the kernel does.
+Sounds like a common problem *if* we wanted to fix it in DT.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Why can't you just read the h/w registers to see which domains are 
+powered on? Perhaps because some are on, but you want to turn them off.
+
+Also, for simple-framebuffer, I think you can list the power-domains to 
+keep on.
+
+Rob
+
+
 
