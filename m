@@ -1,138 +1,91 @@
-Return-Path: <devicetree+bounces-118192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 824C49B94BD
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:49:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 191259B94CA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:56:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34B6C1F222FA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:49:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1CA5282F76
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:56:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7EBF1C9B8C;
-	Fri,  1 Nov 2024 15:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEA6E1C830D;
+	Fri,  1 Nov 2024 15:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="Puwmproe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eKVNy96u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 689CF145A17;
-	Fri,  1 Nov 2024 15:48:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0AED1C82F1;
+	Fri,  1 Nov 2024 15:56:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730476137; cv=none; b=Gd5sjkIZJl9q1rBzM9jDTPkkcQwjjQj/Ss2IcyX9YRaVSagWNK/vNiS3aOWqQ5lEA6PUhiRv3WHIuCZ8QwhAdsJDhtBQWBYIClcCArJ2iDR1Fakwvni856HbjVDpwiinOaSAzW2TIh7L/cD+8EsVM4jn/AGQo3sssLZjoY4t3X0=
+	t=1730476569; cv=none; b=tuRe6VPhVvgI9oqasfNR4SGBJZAfKdyU6rmN+7vE+2uEci3eB3Gse9ZAoewLPIEYQeb19uq+P/93evfalNAr5bKgcQbszoCqzfaoZW+bJG0EqhVD6cIpO1B3FwhYYbpq9g6gOBnGK1RpmafrmHIRlnVUqXQHZzXEKiLZ89OADwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730476137; c=relaxed/simple;
-	bh=owxthw8apBkSEWYqs4yWEGhY3z/N/jKewtQA8W3IS6I=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CAp5WwA1F9QWCJrr2AK31/gVSZH1F8TbSdpuVTZhROQ0/BsmtIHvxclzyx3rEVjStlFKnOPaQkXk5fXZ5iPgBWT27Zq3MrnP3UMYIgpj6pO/Mz/7AgZSe0bRwOcL/qiRiJzuYXwDN2M9cQAVXyycDiiiyvKSWWnd8z+j6jlB9qM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=Puwmproe; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id ADF0912001E;
-	Fri,  1 Nov 2024 18:48:52 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru ADF0912001E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1730476132;
-	bh=Gzt6Advx4UA3v5SWZS0PBIz63eWIsrEtoOW6jR3P4MQ=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=PuwmproesWqVjgnD5FEo83cKFfO6XHX+GIXQKFKGXpLdnhHoLMMZBc4yY6FaweMeA
-	 GDo2LS18MjrzFP996lf+iOdmyR7KmAZsERyUQCh9z2K4+8uhsDXiqzwFYQ2opTBTNJ
-	 HZhedhi62LduB1rSq2HrqXwaK1OLtFSqPIh+H6WID4BBqoEBBVOeaW/7TC+YJuUJQh
-	 hRhK001MOGWatH+R96lNuiXsOFK2MPtYHHaZcIqPKRcogKXyx/GSDfb4Zxz4O46C0p
-	 GOY3PDa1EgzqSSnEO0T22H4E9/cFgpsde8nli/RBNqP7wYlkzH1LWFZHeqa8CxINbw
-	 nzdlkeTxTVjQg==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri,  1 Nov 2024 18:48:52 +0300 (MSK)
-From: George Stark <gnstark@salutedevices.com>
-To: <pavel@ucw.cz>, <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <kernel@salutedevices.com>, George Stark
-	<gnstark@salutedevices.com>
-Subject: [PATCH v2 2/2] leds: pwm: Add optional DT property default-brightness
-Date: Fri, 1 Nov 2024 18:48:44 +0300
-Message-ID: <20241101154844.1175860-3-gnstark@salutedevices.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241101154844.1175860-1-gnstark@salutedevices.com>
-References: <20241101154844.1175860-1-gnstark@salutedevices.com>
+	s=arc-20240116; t=1730476569; c=relaxed/simple;
+	bh=t7oKgsETFr273A7RvyL2X1/OppxzBtZym5X35T8L0bQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=lHWYyz59QFCPYB5Ule4xLNsOSro6TnuLdYMaa2dBUwSJHJrso90ePtqRqF7iCKdzs6hRAxeucRp7mTrzYa4+3z6I1ODRdI0zA6nmtScT+Wqhh/r5o5mMtmE7SD/+Cq3H5C3SHCtO1mphp4kA9piKpYpVfzh2jE2/Ueknyac1gYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eKVNy96u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 242E9C4CECD;
+	Fri,  1 Nov 2024 15:56:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730476569;
+	bh=t7oKgsETFr273A7RvyL2X1/OppxzBtZym5X35T8L0bQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=eKVNy96uvXS9yt+HWB4rdfmMIzi7wfVwXUFOcitPN03t+l3CHWWkCIrZjHEvHtCIb
+	 E0SErly6kNO7WGiCvO0Y9IcW4O0V+KzE+3HfzUWTamCLp3++wiyVCdPcjSbjD3TplH
+	 9LipYT+lDyr8CvjgUr7DP2YR8HB3ZPYYCiu4w/ZcBOamrsECZadRdv2PhNft5+tUTR
+	 Hd93CsC8cSHlGjSazxMb/f3P0SoUcYO4FdoFR+sgB7U2X0PS8V6yimtTDbYkH6vy33
+	 TLNu3c29FKuZNEmyEz/YOl3b5VLKPaJJSqO7dUAfnJ2NC2A+UrCiHqDF3qyqDRLQZa
+	 eSZlgUGw8LDbw==
+From: Lee Jones <lee@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
+ =?utf-8?q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Trilok Soni <quic_tsoni@quicinc.com>, 
+ Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, 
+ Melody Olvera <quic_molvera@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Jishnu Prakash <quic_jprakash@quicinc.com>
+In-Reply-To: <20241021232114.2636083-3-quic_molvera@quicinc.com>
+References: <20241021232114.2636083-1-quic_molvera@quicinc.com>
+ <20241021232114.2636083-3-quic_molvera@quicinc.com>
+Subject: Re: (subset) [PATCH 2/5] dt-bindings: mfd: qcom,spmi-pmic:
+ Document PMICs added in SM8750
+Message-Id: <173047656485.1921130.11574000081112709760.b4-ty@kernel.org>
+Date: Fri, 01 Nov 2024 15:56:04 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: p-i-exch-a-m2.sberdevices.ru (172.24.196.120) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 188910 [Nov 01 2024]
-X-KSMG-AntiSpam-Version: 6.1.1.7
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 41 0.3.41 623e98d5198769c015c72f45fabbb9f77bdb702b, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/11/01 12:35:00 #26800049
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Mailer: b4 0.13.0
 
-When probing if default LED state is on then default brightness will be
-applied instead of max brightness.
+On Mon, 21 Oct 2024 16:21:11 -0700, Melody Olvera wrote:
+> Document compatibles for the added pmd8028 and pmih0108 SPMI PMICs.
+> 
+> 
 
-Signed-off-by: George Stark <gnstark@salutedevices.com>
----
- drivers/leds/leds-pwm.c | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+Applied, thanks!
 
-diff --git a/drivers/leds/leds-pwm.c b/drivers/leds/leds-pwm.c
-index 7961dca0db2f..7636ee178c39 100644
---- a/drivers/leds/leds-pwm.c
-+++ b/drivers/leds/leds-pwm.c
-@@ -63,6 +63,20 @@ static int led_pwm_set(struct led_classdev *led_cdev,
- 	return pwm_apply_might_sleep(led_dat->pwm, &led_dat->pwmstate);
- }
- 
-+static int led_pwm_default_brightness_get(struct fwnode_handle *fwnode,
-+					  int max_brightness)
-+{
-+	unsigned int default_brightness;
-+	int ret;
-+
-+	ret = fwnode_property_read_u32(fwnode, "default-brightness",
-+				       &default_brightness);
-+	if (ret < 0 || default_brightness > max_brightness)
-+		default_brightness = max_brightness;
-+
-+	return default_brightness;
-+}
-+
- __attribute__((nonnull))
- static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
- 		       struct led_pwm *led, struct fwnode_handle *fwnode)
-@@ -104,7 +118,8 @@ static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
- 	/* set brightness */
- 	switch (led->default_state) {
- 	case LEDS_DEFSTATE_ON:
--		led_data->cdev.brightness = led->max_brightness;
-+		led_data->cdev.brightness =
-+			led_pwm_default_brightness_get(fwnode, led->max_brightness);
- 		break;
- 	case LEDS_DEFSTATE_KEEP:
- 		{
--- 
-2.25.1
+[2/5] dt-bindings: mfd: qcom,spmi-pmic: Document PMICs added in SM8750
+      commit: 42e34f8446252a3dde70822d7e6f8d7d86ec20f4
+
+--
+Lee Jones [李琼斯]
 
 
