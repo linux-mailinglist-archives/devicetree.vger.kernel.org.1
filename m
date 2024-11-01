@@ -1,201 +1,132 @@
-Return-Path: <devicetree+bounces-118184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 805A29B9462
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:27:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 979609B9492
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:39:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A35831C20AF4
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:27:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19932B21443
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE0671C6F71;
-	Fri,  1 Nov 2024 15:27:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D52941B5EBC;
+	Fri,  1 Nov 2024 15:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="3SagI3t1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ggxrEIV5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 240941C5798
-	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 15:27:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6A0C25634;
+	Fri,  1 Nov 2024 15:39:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730474855; cv=none; b=PZk8AStFVELTD/9BAiLwvLBvjZVYnyjEZXy22QW6Cyix5jLG4CqCBM0VjJyFeqmscF5thJiEU8lq6RZaFOQD1PL6hejjEix6joLg41wkpbVFqB6mE460T7dqXv0ZnGX3kx5iPgvOdkqK5QROcdY3VRN+7QziSv/tKW2+OuZw63g=
+	t=1730475579; cv=none; b=b9g1cTqYd65iWLE5J0iGysNK5+FUruD1XczdWV7r5HKqQFQ0p8dyj8zgG+kjfQLDnlBlB+ZBVB4HwGMqcA9diD4K+DsoUg8QnCyhvgcZMfZ/f2Mm4zlBGkn3QPpmZlrT4Jgub3nZotOBoP2IXp7jkGSOw7SugoK+vRUMIcyslyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730474855; c=relaxed/simple;
-	bh=v6bPRfzSENICoKf9OISSZbMLHA1bYo0mcGwtUDZpoK8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=QjshhB1JVr6XKLE4vGpnN3YBIl/kJp1ZekGzbZ7JOLOs/K1vTcA9czgpu7oWF+nTpPbnv2Y+iPZQLdc6F/9F7IkwfJfjy4sYMmjiD5zMdkQY29aWd4lgEhg+tq6D681nKXVbWxC2G+KgMfCrsBW7CuKbcQUl4W2ElEYJ1qydsxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=3SagI3t1; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5cb6704ff6bso2780580a12.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 08:27:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1730474851; x=1731079651; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K6TkXEo4x1I5Rzwt8fjqhUP2t7jAOO31BIJtURlqSmc=;
-        b=3SagI3t1U8CH99DmXDvZmkGIbbxKeCjM9vLWKrwep4eNtJH8xc48NrzDbhtMSFPqY5
-         bfafTDTEgEuGQVgICE9QAJfYJDGPnS+vCFT4n7RLMTYYgbXFUAGCPj2REl3JccXGtNS+
-         9EjDsg08WCZB3fmetfifqWBpDlKfJTYz81m6x2wQNc6V6S08DSTr8mY0QH/XXsqeR4Tt
-         EeomETE1N7CCrBTYiqQXvTNCgTUy3cSHCawm+RPt+e6yTt6cDRDi5vBkve11eA5UzOp6
-         1IqC6UjrMUh8eivk0XvR+5YGcyCNMDiTwg0NBu9QHt8ny6SpE6vzgtDloW3aXnj2on5O
-         jf8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730474851; x=1731079651;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=K6TkXEo4x1I5Rzwt8fjqhUP2t7jAOO31BIJtURlqSmc=;
-        b=ldUMi2+5MXsEkc4pudktsq6GDO9/1rirLUFtUDvKR8qaE1H+um+QBF9i7/VkiYfSe+
-         euYXMH+izJpv8XsUcxOi1Ulx6DIWTPVK5rssHjizRKCZBGJ/6mu/+TIULWlDOZTvv5BS
-         au9AHS4Yvh/VvS/Qhn6tLasJlb5PwchJr3qqxNPBEoUt2KHfSbvJQmJLSxeTdV4sMStB
-         IqrluPqzbAdeaZy+1gqo8eWUfvuX79IPuGVl3nsqkm7pBavUzuWi7frXVHhBy1boiP6Z
-         eY22tO7E+c3MopwojxreGs0a3M8A1tomtKuOAFDHVS8LW7IxmuydydiJJvMEjuJZUgwp
-         OLCg==
-X-Forwarded-Encrypted: i=1; AJvYcCV3HyIXge/474KX6qXpjTunbKF+S1QIe2/ZQ4B72DsfGdwZK+9h5UtTCIgkILfZUEtDomLK4Fzxm0Af@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTOIjcFUpG9vO6PHjdshW/R4o6PIjO4NySrGvHAuX38Cf0qB3w
-	I4AY6sbMORRod4T4NR8UxbhBq6ay4uvf+rjxJsrtf1Zh7UI2nR3G1g29J+8I+CE=
-X-Google-Smtp-Source: AGHT+IHBNPcncBQHtNtb7STpigHQlaFGA7NJY+pQaXbjyeqQZ6bXscULA7A1iluv+zMZo2STz3vLvw==
-X-Received: by 2002:a05:6402:2695:b0:5c2:6d16:ad5e with SMTP id 4fb4d7f45d1cf-5ceb92a7bc4mr2823312a12.19.1730474851261;
-        Fri, 01 Nov 2024 08:27:31 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ceac5cb8fbsm1607974a12.0.2024.11.01.08.27.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Nov 2024 08:27:30 -0700 (PDT)
+	s=arc-20240116; t=1730475579; c=relaxed/simple;
+	bh=vCmihEQoV1sQ3RVSmj0nT8aQeaFnoE7/Rdn3ZKtwFJ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=namt8XN6HQlULv9NuwJ6qWrCJ4ycVrPKkGDTk50rpRKN3HKBu9F2x3p41AGKBJG1Xr6WWuVHtiboyBLLmssJ+NyyHI6GNwLYYotsUt35xT1qDlwy5XMo1E13wppzilRKhcXHVZhsxRZMAo4a66omHnab7eb6dCW3I9JWBGbhNJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ggxrEIV5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0537C4CED1;
+	Fri,  1 Nov 2024 15:39:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730475579;
+	bh=vCmihEQoV1sQ3RVSmj0nT8aQeaFnoE7/Rdn3ZKtwFJ0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ggxrEIV5y/A0Wp1Sg/E0OYQVDITTMbsixBigKgz+YM2buSPfY3VIiZ2hlmnih4XNX
+	 RVR7sqwZ2VUvun5+61bMLxFjIKdy0xm4e4lyfoOfWbwW8BAR5rUWZmJjwhLZqecRQz
+	 T+ipRhmkM2g2C1OKwNkcxfO/XEmNb9A0ld99O/kv46TFtlmXqbPSke1+zBrcoRd/gB
+	 BolyaoBK+HkIXw68rcRN/SLqKpaO3qCGRl5FmTdjPEjT4e6stVW6gaIyNlr1HaBXcC
+	 4w4gGDR82vWw8acx5fyYSurXt2dnFZ5HIzd7QHkAY/WaB8Z1f9NyeHzc+TDDwb/pnB
+	 engoxprAT3DXw==
+Message-ID: <4ce01e3b-9bcd-4d8c-bfe1-c2b17a4c2566@kernel.org>
+Date: Fri, 1 Nov 2024 16:39:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH asahi-soc/dt 01/10] dt-bindings: arm: apple: apple,pmgr:
+ Add A7-A11 compatibles
+To: Hector Martin <marcan@marcan.st>, Nick Chan <towinchenmi@gmail.com>
+Cc: Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig
+ <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241029010526.42052-1-towinchenmi@gmail.com>
+ <20241029010526.42052-2-towinchenmi@gmail.com>
+ <wpwa22u5z5hamvme7za7dqe7kjl5bap2a254w32yyqrohz235g@hk3izcckbdqn>
+ <5e0b5238-d781-458a-9285-df54a16232af@marcan.st>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <5e0b5238-d781-458a-9285-df54a16232af@marcan.st>
 Content-Type: text/plain; charset=UTF-8
-Date: Fri, 01 Nov 2024 16:27:30 +0100
-Message-Id: <D5AY4ZK858IO.3BH1USXK7NTAD@fairphone.com>
-Cc: <linux-arm-kernel@lists.infradead.org>, <linux-media@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-Subject: Re: [PATCH v4 0/6] media: qcom: camss: Add sc7280 support
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Vikram Sharma" <quic_vikramsa@quicinc.com>, <rfoss@kernel.org>,
- <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>, <mchehab@kernel.org>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <akapatra@quicinc.com>, <hariramp@quicinc.com>, <andersson@kernel.org>,
- <konradybcio@kernel.org>, <hverkuil-cisco@xs4all.nl>,
- <cros-qcom-dts-watchers@chromium.org>, <catalin.marinas@arm.com>,
- <will@kernel.org>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20241030105347.2117034-1-quic_vikramsa@quicinc.com>
-In-Reply-To: <20241030105347.2117034-1-quic_vikramsa@quicinc.com>
+Content-Transfer-Encoding: 7bit
 
-On Wed Oct 30, 2024 at 11:53 AM CET, Vikram Sharma wrote:
-> SC7280 is a Qualcomm SoC. This series adds support to bring up the CSIPHY=
-,
-> CSID, VFE/RDI interfaces in SC7280.
->
-> SC7280 provides
->
-> - 3 x VFE, 3 RDI per VFE
-> - 2 x VFE Lite, 4 RDI per VFE
-> - 3 x CSID
-> - 2 x CSID Lite
-> - 5 x CSI PHY
->
-> The changes are verified on SC7280 qcs6490-rb3gen2 board, with attached v=
-ision mezzanine
-> the base dts for qcs6490-rb3gen2 is:
-> https://lore.kernel.org/all/20231103184655.23555-1-quic_kbajaj@quicinc.co=
-m/
+On 01/11/2024 13:33, Hector Martin wrote:
+> - First the ancient s5l series
+> - Then all the t/sXXXX chips up to t8103 (M1) (numeric order, ignoring
+> prefix letter)
+> - Then the rest of the "baseline" Ax,Mx chips that continue after M1,
+> which are all numbered t8xxx (numeric order)
+> - Finally the t6xxx series (Mx Pro/Mx Max), which forks the timeline and
+> numbering after t8103/M1 (M1 Pro = t6000).
+> 
+> Unless there's significant objection I'd like to keep this pattern, it
+> makes sense from the POV of people working on these chips.
 
-Hi Vikram!
+No, no, it's fine, I am just forgetting where do we have exceptions. :)
 
-Two things:
-
-You use the property "power-domains-names" in both bindings and dtsi but
-this property is never parsed in the kernel. This should be
-"power-domain-names"
-
-Second, I still can't get the test pattern to work on my QCM6490-based
-phone (Fairphone 5). Could you please try if the commands as per [0]
-work on your board?
-
-[0] https://lore.kernel.org/linux-arm-msm/c912f2da-519c-4bdc-a5cb-e19c3aa63=
-ea8@linaro.org/
-
-Regards
-Luca
-
->
-> Changes in V4:
-> - V3 had 8 patches and V4 is reduced to 6.
-> - Removed [Patch v3 2/8] as binding change is not required for dtso.
-> - Removed [Patch v3 3/8] as the fix is already taken care in latest
->   kernel tip.=20
-> - Updated alignment for dtsi and dt-bindings.
-> - Adding qcs6490-rb3gen2-vision-mezzanine as overlay.=20
-> - Link to v3: https://lore.kernel.org/linux-arm-msm/20241011140932.174412=
-4-1-quic_vikramsa@quicinc.com/
->
-> Changes in V3:
-> - Added missed subject line for cover letter of V2.
-> - Updated Alignment, indentation and properties order.
-> - edit commit text for [PATCH 02/10] and [PATCH 03/10].
-> - Refactor camss_link_entities.
-> - Removed camcc enablement changes as it already done.
-> - Link to v2: https://lore.kernel.org/linux-arm-msm/20240904-camss_on_sc7=
-280_rb3gen2_vision_v2_patches-v1-0-b18ddcd7d9df@quicinc.com/
->
-> Changes in V2:
-> - Improved indentation/formatting.
-> - Removed _src clocks and misleading code comments.
-> - Added name fields for power domains and csid register offset in DTSI.
-> - Dropped minItems field from YAML file.
-> - Listed changes in alphabetical order.
-> - Updated description and commit text to reflect changes
-> - Changed the compatible string from imx412 to imx577.
-> - Added board-specific enablement changes in the newly created vision
->   board DTSI file.
-> - Fixed bug encountered during testing.
-> - Moved logically independent changes to a new/seprate patch.
-> - Removed cci0 as no sensor is on this port and MCLK2, which was a
->   copy-paste error from the RB5 board reference.
-> - Added power rails, referencing the RB5 board.
-> - Discarded Patch 5/6 completely (not required).
-> - Removed unused enums.
-> - Link to v1: https://lore.kernel.org/linux-arm-msm/20240629-camss_first_=
-post_linux_next-v1-0-bc798edabc3a@quicinc.com/
->
-> Suresh Vankadara (1):
->   media: qcom: camss: Add support for camss driver on SC7280
->
-> Vikram Sharma (5):
->   media: dt-bindings: media: camss: Add qcom,sc7280-camss binding
->   media: qcom: camss: Sort CAMSS version enums and compatible strings
->   media: qcom: camss: Restructure camss_link_entities
->   arm64: dts: qcom: sc7280: Add support for camss
->   arm64: dts: qcom: qcs6490-rb3gen2-vision-mezzanine: Add vision
->     mezzanine
->
->  .../bindings/media/qcom,sc7280-camss.yaml     | 439 +++++++++++++++
->  arch/arm64/boot/dts/qcom/Makefile             |   4 +
->  .../qcs6490-rb3gen2-vision-mezzanine.dtso     |  73 +++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi          | 208 ++++++++
->  .../media/platform/qcom/camss/camss-csid.c    |   1 -
->  .../qcom/camss/camss-csiphy-3ph-1-0.c         |  13 +-
->  .../media/platform/qcom/camss/camss-csiphy.c  |   5 +
->  .../media/platform/qcom/camss/camss-csiphy.h  |   1 +
->  drivers/media/platform/qcom/camss/camss-vfe.c |   8 +-
->  drivers/media/platform/qcom/camss/camss.c     | 500 ++++++++++++++++--
->  drivers/media/platform/qcom/camss/camss.h     |   1 +
->  11 files changed, 1190 insertions(+), 63 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,sc7280-c=
-amss.yaml
->  create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezza=
-nine.dtso
+Best regards,
+Krzysztof
 
 
