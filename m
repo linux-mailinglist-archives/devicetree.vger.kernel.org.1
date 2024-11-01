@@ -1,427 +1,169 @@
-Return-Path: <devicetree+bounces-118267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4862E9B98FD
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 20:51:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F90B9B990A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 20:53:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72E951C21B10
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 19:51:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F509281F7E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 19:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 985EB1D1E77;
-	Fri,  1 Nov 2024 19:51:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE71D1DBB36;
+	Fri,  1 Nov 2024 19:52:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BNdSfh4C"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cXMnX946"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CD7A1CACF2;
-	Fri,  1 Nov 2024 19:51:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8762D1D2F5D
+	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 19:52:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730490691; cv=none; b=PFi/vSWIUEKpML3aR5LQBxTeRVAXS56IH4oBO4sdr4DCygsrHt/WAByu5RhU2R7KTNNeMZmVnC080UxeTGbxPggJik1v3rnY4TdKLKLLjdE1G/NAtUSy98JFFv0AablELRK8Y+wG5R/SUytbKZVn42AJEBubiqrbU4LChrnUuMY=
+	t=1730490777; cv=none; b=kOsiZS2Em2+YmpS/5S0d1sAoiFHLgCxb527MK/2zPrzraf+9XtWvNA0MSxEZ61C7ody8JPcL9GJRNmoXNGc4qggVKTGF/VOeMXs5V18V7xtke+VLIrfPCFEBYj9LnUNMUxOXhNijGqKlXZjGfZCCGaCn3aU1MJe3pxKFzWwpaJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730490691; c=relaxed/simple;
-	bh=OT/t9K2xq7Es9qQAio9bNa7j/kTDs0LY2tM4nZClC5s=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=QJRn+5UvpHpNVJpF7djqXUb4EIc6BT2aJbR9jg0T+4+ld7mTBAzUAbVbzjRHz/Dz+HdqxxNT6LZlc9knEiSFmdNmlxlG0plvPJDD1QUzhZm5SEnq7/i7ap9NWD7qzGXwbqV8i/NQu54qBL4WV/uhgUtfJ/lAyO+UZm4xnWCmyaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BNdSfh4C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7949C4CECD;
-	Fri,  1 Nov 2024 19:51:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730490691;
-	bh=OT/t9K2xq7Es9qQAio9bNa7j/kTDs0LY2tM4nZClC5s=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=BNdSfh4CjGIlBqyhVYDawbxl7pDUsTPDDc43sq8h1E0UkHJOoDviqK1A0iL34M6oX
-	 ReGj655bTTyxE2UEMBcCE1YSs0VJJpzlz3RvANfaSZHWLxueSdKFCN6FZ4+24fvPHd
-	 Fp+Te5+0RIgoZsDRa1JSyfqDBSKdkQxRwloZaaofhJtQLhqdRZH77MHYB+fxSpkGwL
-	 HeVfNQ+drbSgbZJ1hoydfpvrxXTHU+S8IjEbWBPqFnXcDGuoSmVmktbFP9oRdvTYEx
-	 3ge2LELG4KpWyfUhXgcXMrX7cfEI0Ci4qbWFEv/m8AjbmK4P28oMtmJxac+7Xc7OWJ
-	 ExlFM7F6OaS6w==
-Date: Fri, 1 Nov 2024 14:51:29 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-pci@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 2/2] PCI: microchip: rework reg region handing to
- support using either instance 1 or 2
-Message-ID: <20241101195129.GA1318063@bhelgaas>
+	s=arc-20240116; t=1730490777; c=relaxed/simple;
+	bh=1fQRD6HlseoWDCYFnVt7JdBQcw7mXEZmvqF4gDLC8Bs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Va5kEc3Tb42pPxXyH3nhxyM792tKgXRywPYyNtjwmvCpwaoqk2hdYPRe+Dlhj47aExMdbc/HmfxJaH1axYCLdBQLdt6/mtYpY8d5mi9Jkf69lugjSANQvi+fyvpqgPlBTOgz5UdnHSpW8KR4tbXchYUjog1qjchNPzCjTIMNGQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cXMnX946; arc=none smtp.client-ip=209.85.167.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3e5ffbc6acbso1426394b6e.3
+        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 12:52:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730490773; x=1731095573; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=1Y5RFN1Yg682nc4388GjuL13yMU/0zuz4gK5UIWaEMc=;
+        b=cXMnX9468zQDiWCCuEovtrMO+km8qV34ZuY5GdoHJ5YXV6ouhD1OfGecHhvzS/uw4K
+         iVF7ds2Z740xyVKQMO94iJ0gmo+Vy91SmHzZGdpJ+bUogQLH63mzZ+5fPcgr1jbADTt4
+         2OoEboeQ4uJFUnc2x2MGF1gfGQWwalfqLRyIxWM6TBVn+0nJBvXT8bp02+5Iq/85NCT8
+         oiMgMjEX3eeMIg5WMCS4wzKFvsQdlelPLSV76DfcXub3SVxo42LrLaTxx/ZCZDqG9OUa
+         1LNE8uP15Q4iG1j5NgAWjWLPY68cv9lRcICHenNevoTh2+IICWW3SFUm4dh2ygFNFc1A
+         43Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730490773; x=1731095573;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1Y5RFN1Yg682nc4388GjuL13yMU/0zuz4gK5UIWaEMc=;
+        b=cfCoJAg9D5zflZ8XJ8iUTFqtaxgFlfE4K4TB5HrnbsO4O/ymEhkraPmCqxcXwznO1T
+         Ru7OCzgapqgfls4kCwNSANKbELNcQqm2JF726M1YWlKkitgfR+OnTLBmqfRYwMO/geMD
+         U7DizdmksjlKaCLKaYl5YBB2qWdJuNZRY++whjRYpMxM+FJGL9ZfbzcFdzxZNRMXcd4Q
+         s0SBMBr1dQmXzAuPJ+xkEFDzp0LFItj5lq8BO9L9GMQ8OuLYLIPYtyDjSFs9JOfkRaZB
+         ELqjUX20ixWpiHWHOp/4UZKeum6QlHc5iJfbJ3kQNLU4ZSlu9eCfZ74b7tMff6pftzUI
+         SuMw==
+X-Forwarded-Encrypted: i=1; AJvYcCVDLUioLoUtY15LRPmsEEaTaiLaCpKhCfZCd8TzPFSEruis9CjWsTVRba4NDBbzostWhAzmwfTPs8tH@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywamvg6pT19LrQUINxu3IZVJVmmPLqeVfWUmMFH871hD9blSLOk
+	ySERQFvkoW8wBHtNH33LqTHxTjxrIcOoptxIOaqql1PDQ/my6d8M3QBx0ngxkqU=
+X-Google-Smtp-Source: AGHT+IHt7K5eAUn3WyZOQ4QBBFiXCbww8ZLgyOPtLtHxzPx/IPAKsRfVjpSk8qxn1mTyET7jUJ75IQ==
+X-Received: by 2002:a05:6808:d50:b0:3e6:580e:f12c with SMTP id 5614622812f47-3e758bfe42amr5242236b6e.10.1730490773671;
+        Fri, 01 Nov 2024 12:52:53 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3e66119120dsm940758b6e.12.2024.11.01.12.52.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Nov 2024 12:52:52 -0700 (PDT)
+Message-ID: <0f4a6e40-a7c8-43e4-8596-4fa495159378@baylibre.com>
+Date: Fri, 1 Nov 2024 14:52:50 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240814-outmost-untainted-cedd4adcd551@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/6] iio: adc: adi-axi-adc: set data format
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
+ conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+References: <20241101112358.22996-1-antoniu.miclaus@analog.com>
+ <20241101112358.22996-5-antoniu.miclaus@analog.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20241101112358.22996-5-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Aug 14, 2024 at 09:08:42AM +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On 11/1/24 6:23 AM, Antoniu Miclaus wrote:
+> Add support for selecting the data format within the AXI ADC ip.
 > 
-> The PCI host controller on PolarFire SoC has multiple "instances", each
-> with their own bridge and ctrl address spaces. The original binding has
-> an "apb" register region, and it is expected to be set to the base
-> address of the host controllers register space. Defines in the driver
-> were used to compute the addresses of the bridge and ctrl address ranges
-> corresponding to instance1. Some customers want to use instance0 however
-> and that requires changing the defines in the driver, which is clearly
-> not a portable solution.
-
-The subject mentions "instance 1 or 2".
-
-This paragraph implies adding support for "instance0" ("customers want
-to use instance0").
-
-The DT patch suggests that we're adding support for "instance2"
-("customers want to use instance2").
-
-Both patches suggest that the existing support is for "instance 1".
-
-Maybe what's being added is "instance 2", and this commit log should
-s/instance0/instance 2/ ?  And probably s/instance1/instance 1/ so the
-style is consistent?
-
-Is this a "pick one or the other but not both" situation, or does this
-device support two independent PCIe controllers?
-
-I first thought this driver supported a single PCIe controller, and
-you were adding support for a second independent controller.
-
-But the fact that you say "the [singular] host controller on
-PolarFire", and you're not changing mc_host_probe() to call
-pci_host_common_probe() more than once makes me think there is only a
-single PCIe controller, and for some reason you can choose to operate
-it using either register set 1 or register set 2.
-
-> The binding has been changed from a single register region to a pair,
-> corresponding to the bridge and ctrl regions respectively, so modify the
-> driver to read these regions directly from the devicetree rather than
-> compute them from the base address of the abp region.
-> 
-> To maintain backwards compatibility with the existing binding, the
-> driver retains code to handle the "abp" reg and computes the base
-> address of the bridge and ctrl regions using the defines if it is
-> present. reg-names has always been a required property, so this is
-> safe to do.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
-> Dropped Daire's Ack due to substantial rebasing.
-> ---
->  .../pci/controller/plda/pcie-microchip-host.c | 116 +++++++++---------
->  1 file changed, 61 insertions(+), 55 deletions(-)
+> no changes in v5.
+>  drivers/iio/adc/adi-axi-adc.c | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
 > 
-> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
-> index 48f60a04b740..57f35290c83b 100644
-> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
-> @@ -25,9 +25,6 @@
->  #define MC_PCIE1_BRIDGE_ADDR			0x00008000u
->  #define MC_PCIE1_CTRL_ADDR			0x0000a000u
+> diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
+> index f6475bc93796..6f658d9b4c9d 100644
+> --- a/drivers/iio/adc/adi-axi-adc.c
+> +++ b/drivers/iio/adc/adi-axi-adc.c
+> @@ -45,6 +45,9 @@
+>  #define ADI_AXI_ADC_REG_CTRL			0x0044
+>  #define    ADI_AXI_ADC_CTRL_DDR_EDGESEL_MASK	BIT(1)
 >  
-> -#define MC_PCIE_BRIDGE_ADDR			(MC_PCIE1_BRIDGE_ADDR)
-> -#define MC_PCIE_CTRL_ADDR			(MC_PCIE1_CTRL_ADDR)
-> -
->  /* PCIe Controller Phy Regs */
->  #define SEC_ERROR_EVENT_CNT			0x20
->  #define DED_ERROR_EVENT_CNT			0x24
-> @@ -128,7 +125,6 @@
->  	[EVENT_LOCAL_ ## x] = { __stringify(x), s }
+> +#define ADI_AXI_ADC_REG_CNTRL_3			0x004c
+> +#define   ADI_AXI_ADC_CNTRL_3_CUSTOM_CTRL_MSK	GENMASK(7, 0)
+> +
+>  #define ADI_AXI_ADC_REG_DRP_STATUS		0x0074
+>  #define   ADI_AXI_ADC_DRP_LOCKED		BIT(17)
 >  
->  #define PCIE_EVENT(x) \
-> -	.base = MC_PCIE_CTRL_ADDR, \
->  	.offset = PCIE_EVENT_INT, \
->  	.mask_offset = PCIE_EVENT_INT, \
->  	.mask_high = 1, \
-> @@ -136,7 +132,6 @@
->  	.enb_mask = PCIE_EVENT_INT_ENB_MASK
+> @@ -312,6 +315,24 @@ static int axi_adc_interface_type_get(struct iio_backend *back,
+>  	return 0;
+>  }
 >  
->  #define SEC_EVENT(x) \
-> -	.base = MC_PCIE_CTRL_ADDR, \
->  	.offset = SEC_ERROR_INT, \
->  	.mask_offset = SEC_ERROR_INT_MASK, \
->  	.mask = SEC_ERROR_INT_ ## x ## _INT, \
-> @@ -144,7 +139,6 @@
->  	.enb_mask = 0
->  
->  #define DED_EVENT(x) \
-> -	.base = MC_PCIE_CTRL_ADDR, \
->  	.offset = DED_ERROR_INT, \
->  	.mask_offset = DED_ERROR_INT_MASK, \
->  	.mask_high = 1, \
-> @@ -152,7 +146,6 @@
->  	.enb_mask = 0
->  
->  #define LOCAL_EVENT(x) \
-> -	.base = MC_PCIE_BRIDGE_ADDR, \
->  	.offset = ISTATUS_LOCAL, \
->  	.mask_offset = IMASK_LOCAL, \
->  	.mask_high = 0, \
-> @@ -179,7 +172,8 @@ struct event_map {
->  
->  struct mc_pcie {
->  	struct plda_pcie_rp plda;
-> -	void __iomem *axi_base_addr;
-> +	void __iomem *bridge_base_addr;
-> +	void __iomem *ctrl_base_addr;
+> +static int axi_adc_data_size_set(struct iio_backend *back, ssize_t size)
+> +{
+> +	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
+> +	unsigned int val;
+> +
+> +	if (size <= 20)
+> +		val = 0;
+> +	else if (size <= 24)
+> +		val = 1;
+> +	else if (size <= 32)
+> +		val = 3;
+
+Should these be exact matches instead of "<="?
+
+Also, what would val = 2 mean? Perhaps we need some macros to explain
+the meanings of these values. The docs linked below give the meaning
+for a different chip, but not AD485x.
+
+> +	else
+> +		return -EINVAL;
+> +
+> +	return regmap_update_bits(st->regmap, ADI_AXI_ADC_REG_CNTRL_3,
+> +				  ADI_AXI_ADC_CNTRL_3_CUSTOM_CONTROL_MSK, val);
+
+My understanding is that the use of REG_CHAN_CNTRL_3 is different
+for every HDL project depending on what (frontend) chip is is being
+used with. In the AXI DAC, we added a new compatible string for this
+(and other reasons). Not sure if we need to go that far here, but I
+would at least put a comment here explaining that this use of the
+register is highly specific to the AXI AD485x variant [1] of the
+AXI ADC IP core.
+
+Ideally though, there should be an ID register that we can read
+to get this info or use a different DT compatible string.
+
+[1]: http://analogdevicesinc.github.io/hdl/library/axi_ad485x/index.html
+
+> +}
+> +
+>  static struct iio_buffer *axi_adc_request_buffer(struct iio_backend *back,
+>  						 struct iio_dev *indio_dev)
+>  {
+> @@ -360,6 +381,7 @@ static const struct iio_backend_ops adi_axi_adc_ops = {
+>  	.test_pattern_set = axi_adc_test_pattern_set,
+>  	.chan_status = axi_adc_chan_status,
+>  	.interface_type_get = axi_adc_interface_type_get,
+> +	.data_size_set = axi_adc_data_size_set,
+>  	.debugfs_reg_access = iio_backend_debugfs_ptr(axi_adc_reg_access),
+>  	.debugfs_print_chan_status = iio_backend_debugfs_ptr(axi_adc_debugfs_print_chan_status),
 >  };
->  
->  struct cause {
-> @@ -253,7 +247,6 @@ static struct event_map local_status_to_event[] = {
->  };
->  
->  static struct {
-> -	u32 base;
->  	u32 offset;
->  	u32 mask;
->  	u32 shift;
-> @@ -325,8 +318,7 @@ static inline u32 reg_to_event(u32 reg, struct event_map field)
->  
->  static u32 pcie_events(struct mc_pcie *port)
->  {
-> -	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
-> -	u32 reg = readl_relaxed(ctrl_base_addr + PCIE_EVENT_INT);
-> +	u32 reg = readl_relaxed(port->ctrl_base_addr + PCIE_EVENT_INT);
->  	u32 val = 0;
->  	int i;
->  
-> @@ -338,8 +330,7 @@ static u32 pcie_events(struct mc_pcie *port)
->  
->  static u32 sec_errors(struct mc_pcie *port)
->  {
-> -	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
-> -	u32 reg = readl_relaxed(ctrl_base_addr + SEC_ERROR_INT);
-> +	u32 reg = readl_relaxed(port->ctrl_base_addr + SEC_ERROR_INT);
->  	u32 val = 0;
->  	int i;
->  
-> @@ -351,8 +342,7 @@ static u32 sec_errors(struct mc_pcie *port)
->  
->  static u32 ded_errors(struct mc_pcie *port)
->  {
-> -	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
-> -	u32 reg = readl_relaxed(ctrl_base_addr + DED_ERROR_INT);
-> +	u32 reg = readl_relaxed(port->ctrl_base_addr + DED_ERROR_INT);
->  	u32 val = 0;
->  	int i;
->  
-> @@ -364,8 +354,7 @@ static u32 ded_errors(struct mc_pcie *port)
->  
->  static u32 local_events(struct mc_pcie *port)
->  {
-> -	void __iomem *bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
-> -	u32 reg = readl_relaxed(bridge_base_addr + ISTATUS_LOCAL);
-> +	u32 reg = readl_relaxed(port->bridge_base_addr + ISTATUS_LOCAL);
->  	u32 val = 0;
->  	int i;
->  
-> @@ -412,8 +401,12 @@ static void mc_ack_event_irq(struct irq_data *data)
->  	void __iomem *addr;
->  	u32 mask;
->  
-> -	addr = mc_port->axi_base_addr + event_descs[event].base +
-> -		event_descs[event].offset;
-> +	if (event_descs[event].offset == ISTATUS_LOCAL)
-> +		addr = mc_port->bridge_base_addr;
-> +	else
-> +		addr = mc_port->ctrl_base_addr;
-> +
-> +	addr += event_descs[event].offset;
->  	mask = event_descs[event].mask;
->  	mask |= event_descs[event].enb_mask;
->  
-> @@ -429,8 +422,12 @@ static void mc_mask_event_irq(struct irq_data *data)
->  	u32 mask;
->  	u32 val;
->  
-> -	addr = mc_port->axi_base_addr + event_descs[event].base +
-> -		event_descs[event].mask_offset;
-> +	if (event_descs[event].offset == ISTATUS_LOCAL)
-> +		addr = mc_port->bridge_base_addr;
-> +	else
-> +		addr = mc_port->ctrl_base_addr;
-> +
-> +	addr += event_descs[event].mask_offset;
->  	mask = event_descs[event].mask;
->  	if (event_descs[event].enb_mask) {
->  		mask <<= PCIE_EVENT_INT_ENB_SHIFT;
-> @@ -460,8 +457,12 @@ static void mc_unmask_event_irq(struct irq_data *data)
->  	u32 mask;
->  	u32 val;
->  
-> -	addr = mc_port->axi_base_addr + event_descs[event].base +
-> -		event_descs[event].mask_offset;
-> +	if (event_descs[event].offset == ISTATUS_LOCAL)
-> +		addr = mc_port->bridge_base_addr;
-> +	else
-> +		addr = mc_port->ctrl_base_addr;
-> +
-> +	addr += event_descs[event].mask_offset;
->  	mask = event_descs[event].mask;
->  
->  	if (event_descs[event].enb_mask)
-> @@ -554,26 +555,20 @@ static const struct plda_event mc_event = {
->  
->  static inline void mc_clear_secs(struct mc_pcie *port)
->  {
-> -	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
-> -
-> -	writel_relaxed(SEC_ERROR_INT_ALL_RAM_SEC_ERR_INT, ctrl_base_addr +
-> +	writel_relaxed(SEC_ERROR_INT_ALL_RAM_SEC_ERR_INT, port->ctrl_base_addr +
->  		       SEC_ERROR_INT);
-> -	writel_relaxed(0, ctrl_base_addr + SEC_ERROR_EVENT_CNT);
-> +	writel_relaxed(0, port->ctrl_base_addr + SEC_ERROR_EVENT_CNT);
->  }
->  
->  static inline void mc_clear_deds(struct mc_pcie *port)
->  {
-> -	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
-> -
-> -	writel_relaxed(DED_ERROR_INT_ALL_RAM_DED_ERR_INT, ctrl_base_addr +
-> +	writel_relaxed(DED_ERROR_INT_ALL_RAM_DED_ERR_INT, port->ctrl_base_addr +
->  		       DED_ERROR_INT);
-> -	writel_relaxed(0, ctrl_base_addr + DED_ERROR_EVENT_CNT);
-> +	writel_relaxed(0, port->ctrl_base_addr + DED_ERROR_EVENT_CNT);
->  }
->  
->  static void mc_disable_interrupts(struct mc_pcie *port)
->  {
-> -	void __iomem *bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
-> -	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
->  	u32 val;
->  
->  	/* Ensure ECC bypass is enabled */
-> @@ -581,22 +576,22 @@ static void mc_disable_interrupts(struct mc_pcie *port)
->  	      ECC_CONTROL_RX_RAM_ECC_BYPASS |
->  	      ECC_CONTROL_PCIE2AXI_RAM_ECC_BYPASS |
->  	      ECC_CONTROL_AXI2PCIE_RAM_ECC_BYPASS;
-> -	writel_relaxed(val, ctrl_base_addr + ECC_CONTROL);
-> +	writel_relaxed(val, port->ctrl_base_addr + ECC_CONTROL);
->  
->  	/* Disable SEC errors and clear any outstanding */
-> -	writel_relaxed(SEC_ERROR_INT_ALL_RAM_SEC_ERR_INT, ctrl_base_addr +
-> +	writel_relaxed(SEC_ERROR_INT_ALL_RAM_SEC_ERR_INT, port->ctrl_base_addr +
->  		       SEC_ERROR_INT_MASK);
->  	mc_clear_secs(port);
->  
->  	/* Disable DED errors and clear any outstanding */
-> -	writel_relaxed(DED_ERROR_INT_ALL_RAM_DED_ERR_INT, ctrl_base_addr +
-> +	writel_relaxed(DED_ERROR_INT_ALL_RAM_DED_ERR_INT, port->ctrl_base_addr +
->  		       DED_ERROR_INT_MASK);
->  	mc_clear_deds(port);
->  
->  	/* Disable local interrupts and clear any outstanding */
-> -	writel_relaxed(0, bridge_base_addr + IMASK_LOCAL);
-> -	writel_relaxed(GENMASK(31, 0), bridge_base_addr + ISTATUS_LOCAL);
-> -	writel_relaxed(GENMASK(31, 0), bridge_base_addr + ISTATUS_MSI);
-> +	writel_relaxed(0, port->bridge_base_addr + IMASK_LOCAL);
-> +	writel_relaxed(GENMASK(31, 0), port->bridge_base_addr + ISTATUS_LOCAL);
-> +	writel_relaxed(GENMASK(31, 0), port->bridge_base_addr + ISTATUS_MSI);
->  
->  	/* Disable PCIe events and clear any outstanding */
->  	val = PCIE_EVENT_INT_L2_EXIT_INT |
-> @@ -605,11 +600,11 @@ static void mc_disable_interrupts(struct mc_pcie *port)
->  	      PCIE_EVENT_INT_L2_EXIT_INT_MASK |
->  	      PCIE_EVENT_INT_HOTRST_EXIT_INT_MASK |
->  	      PCIE_EVENT_INT_DLUP_EXIT_INT_MASK;
-> -	writel_relaxed(val, ctrl_base_addr + PCIE_EVENT_INT);
-> +	writel_relaxed(val, port->ctrl_base_addr + PCIE_EVENT_INT);
->  
->  	/* Disable host interrupts and clear any outstanding */
-> -	writel_relaxed(0, bridge_base_addr + IMASK_HOST);
-> -	writel_relaxed(GENMASK(31, 0), bridge_base_addr + ISTATUS_HOST);
-> +	writel_relaxed(0, port->bridge_base_addr + IMASK_HOST);
-> +	writel_relaxed(GENMASK(31, 0), port->bridge_base_addr + ISTATUS_HOST);
->  }
->  
->  static int mc_platform_init(struct pci_config_window *cfg)
-> @@ -617,12 +612,10 @@ static int mc_platform_init(struct pci_config_window *cfg)
->  	struct device *dev = cfg->parent;
->  	struct platform_device *pdev = to_platform_device(dev);
->  	struct pci_host_bridge *bridge = platform_get_drvdata(pdev);
-> -	void __iomem *bridge_base_addr =
-> -		port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
->  	int ret;
->  
->  	/* Configure address translation table 0 for PCIe config space */
-> -	plda_pcie_setup_window(bridge_base_addr, 0, cfg->res.start,
-> +	plda_pcie_setup_window(port->bridge_base_addr, 0, cfg->res.start,
->  			       cfg->res.start,
->  			       resource_size(&cfg->res));
->  
-> @@ -649,7 +642,7 @@ static int mc_platform_init(struct pci_config_window *cfg)
->  static int mc_host_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> -	void __iomem *bridge_base_addr;
-> +	void __iomem *apb_base_addr;
->  	struct plda_pcie_rp *plda;
->  	int ret;
->  	u32 val;
-> @@ -661,30 +654,43 @@ static int mc_host_probe(struct platform_device *pdev)
->  	plda = &port->plda;
->  	plda->dev = dev;
->  
-> -	port->axi_base_addr = devm_platform_ioremap_resource(pdev, 1);
-> -	if (IS_ERR(port->axi_base_addr))
-> -		return PTR_ERR(port->axi_base_addr);
-> +	port->bridge_base_addr = devm_platform_ioremap_resource_byname(pdev, "bridge");
-> +	port->ctrl_base_addr = devm_platform_ioremap_resource_byname(pdev, "ctrl");
-> +	if (!IS_ERR(port->bridge_base_addr) && !IS_ERR(port->ctrl_base_addr))
-> +		goto addrs_set;
->  
-> +	/*
-> +	 * The original, incorrect, binding that lumped the control and
-> +	 * bridge addresses together still needs to be handled by the driver.
-> +	 */
-> +	apb_base_addr = devm_platform_ioremap_resource_byname(pdev, "apb");
-> +	if (IS_ERR(apb_base_addr))
-> +		return dev_err_probe(dev, PTR_ERR(apb_base_addr),
-> +				     "both legacy apb register and ctrl/bridge regions missing");
-> +
-> +	port->bridge_base_addr = apb_base_addr + MC_PCIE1_BRIDGE_ADDR;
-> +	port->ctrl_base_addr = apb_base_addr + MC_PCIE1_CTRL_ADDR;
-> +
-> +addrs_set:
->  	mc_disable_interrupts(port);
->  
-> -	bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
-> -	plda->bridge_addr = bridge_base_addr;
-> +	plda->bridge_addr = port->bridge_base_addr;
->  	plda->num_events = NUM_EVENTS;
->  
->  	/* Allow enabling MSI by disabling MSI-X */
-> -	val = readl(bridge_base_addr + PCIE_PCI_IRQ_DW0);
-> +	val = readl(port->bridge_base_addr + PCIE_PCI_IRQ_DW0);
->  	val &= ~MSIX_CAP_MASK;
-> -	writel(val, bridge_base_addr + PCIE_PCI_IRQ_DW0);
-> +	writel(val, port->bridge_base_addr + PCIE_PCI_IRQ_DW0);
->  
->  	/* Pick num vectors from bitfile programmed onto FPGA fabric */
-> -	val = readl(bridge_base_addr + PCIE_PCI_IRQ_DW0);
-> +	val = readl(port->bridge_base_addr + PCIE_PCI_IRQ_DW0);
->  	val &= NUM_MSI_MSGS_MASK;
->  	val >>= NUM_MSI_MSGS_SHIFT;
->  
->  	plda->msi.num_vectors = 1 << val;
->  
->  	/* Pick vector address from design */
-> -	plda->msi.vector_phy = readl_relaxed(bridge_base_addr + IMSI_ADDR);
-> +	plda->msi.vector_phy = readl_relaxed(port->bridge_base_addr + IMSI_ADDR);
->  
->  	ret = mc_pcie_init_clks(dev);
->  	if (ret) {
-> -- 
-> 2.43.0
-> 
+
 
