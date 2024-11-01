@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-118116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80EEB9B90AE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 12:53:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E3359B90B1
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 12:54:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1AE0B21286
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:53:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A1FFB20E21
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:54:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E961419CC29;
-	Fri,  1 Nov 2024 11:53:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C222D19B595;
+	Fri,  1 Nov 2024 11:54:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z+W+OcGk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KvCwlNdl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC84719B5A5
-	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 11:53:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B81A22A1B2
+	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 11:54:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730462021; cv=none; b=NdZhQtg8MwkW7BgILhMdWG2fn6y/HL9avriKKm2lme9jhFGLnQvchRDLOoZSXjBCAqVFKsAuBW5LXp/Sujc8559CRRDXvZNJ7qKskN0+hWHcWHDaJSGePg8hqtF8ua9XBe5jPp2ID2hEsMICWSUxjeDTX9hOV8OEYwzvPgwppqs=
+	t=1730462072; cv=none; b=cjhz7V6x/xXIhoMxCRNiSb1B1zSr/9tr9GCd5rqPcVDT06S9x/663F8qJctI0FGQTw75PzyUZk4PTXQR/xQv3GXoEn/zTE5gnDlYuIEdpmhyc6sGZienAyAk4bqUv7NSuNP0Gvn0jjpf45b/i1AtWdNGY86lPf3HXRp4tvzQpM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730462021; c=relaxed/simple;
-	bh=Bxzb7SedPrl5l7ZKQkhztkTNV+iyjd0TpmJ2sRm3VZY=;
+	s=arc-20240116; t=1730462072; c=relaxed/simple;
+	bh=VTkHIu6x6J8oDnM2EYPHGTKSx4bAvmnfjc2sBE+Lf2I=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fUQTjKAs4h+tMqY3jQ4T6bArJ6AsF13+lUloBuZotuzl7x7bc7PFzXoHaeLwlOaxf022FFqffVrZa1cGS9uRtRDdnBWs21yd7Xi0RlsWssZ66aGku/GJf2CJS4yNyN5eJj04ZgH8qNJxt5c6Z6PT9g6s27dc6fntsmodMWv+/sk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z+W+OcGk; arc=none smtp.client-ip=209.85.208.173
+	 To:Cc:Content-Type; b=GSB0fMwLSk+g3gCues3Ll/6rVfiLPFSNpcuME17RiAEx0/TU1eiuVaZm2A+oPRAfX1+D2ok7vH4NIo/aedJmw43F3LXEu6f6aNdhC/Ed+FeA5gNHLOHsnbazZP4sr0jjXVk7DS9cniGt4Q3CjUpx7RVxN8RwGiOKn0E43G6hbps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KvCwlNdl; arc=none smtp.client-ip=209.85.208.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2fb5743074bso15413521fa.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 04:53:39 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2fb3debdc09so14278031fa.3
+        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 04:54:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730462018; x=1731066818; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1730462069; x=1731066869; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Bxzb7SedPrl5l7ZKQkhztkTNV+iyjd0TpmJ2sRm3VZY=;
-        b=Z+W+OcGkr8IH8R40cqPpWLnOAwnQMnC1xkV18DPCAje2VpNxaPV2SmS87Lvnjv0pHJ
-         r/BpXuwHqdZObCQXOPbRyi9/XmQC7FDJSYliPAtpea5buwGK0a9Y+pybQ0yEHBdl3FpU
-         52ssejNUPy9LIgko7dmRei4E7689oV0pt/iKIePqZrNoTRMurOgQyUvNQpL1JGVi594O
-         rR0yVqhxEiZLvbEamqMed3SAZUmfP/iXQYxcujjctOxmSpy/8m1rrbSN2aRTM6S1/EXd
-         E7Cz2aSxv1StPbUaCouU5Yx7T8/Mr1L3ilz8HCtt5TzteWbeP9z6/XzYGC5zNRq14IEp
-         5VqQ==
+        bh=VTkHIu6x6J8oDnM2EYPHGTKSx4bAvmnfjc2sBE+Lf2I=;
+        b=KvCwlNdlZHvuAo/NQ5ntgTz2uEH4MvpJYhRtkGuJBChah7TMnK2bcJGKzICMAV4w/T
+         pa4vgCG3Ap8WwjrCkmmExzda5r9G0rsbWSXPSyNdEknA3EDl4bNPtE/qXWhcea+BgN4A
+         FQHWhF/OsNG8AiJvhDVHrbXaXUBXlm6jHkefkSnVJRETESexQoXHjDPLKQeCHw7ON114
+         m/QLQ5EUExO2wu/A0Evc2+ix7btfJsQAmMWDYsPT1kP3izFcREiC5dOf7BvSJj/+x530
+         c6LkygrZkILgtzmTVT9sT5s03GPXOCCOoH/z+dfAiEuQfzdQPZmycj5yqOobbTQWtlP7
+         mEPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730462018; x=1731066818;
+        d=1e100.net; s=20230601; t=1730462069; x=1731066869;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Bxzb7SedPrl5l7ZKQkhztkTNV+iyjd0TpmJ2sRm3VZY=;
-        b=oX0jn4LcqfNOVgpVNS0H9/v8+S0ofqw/aCdopMlStKaiNtwvI2OFS4OYhEHZBH4qVC
-         RLzGbTHaM1mdM/WsRZSctJw12sczkrl89Qh0xlPXqqu3uzd5Jn5yZCqsSjdqB7QJfKeR
-         AKxrufkZwnv2+JAFKYUpE8ZSmmNM3VS2xM/J4vLO0R853h65MuS5q8miOEJulrod0o3+
-         6t57SYXSgBPb0zeZNvySrPdd0tmpZ6SgyPQK8YLQxoG0+NQSQSe0uM/Zvx59mkyCRbAS
-         x6UuyDslHRGC3pqhynkYi02RSu7I0+h22s1gz5tYOwS5jLi15nO4pgQ1k0D5Bq3WwMwF
-         sWtA==
-X-Forwarded-Encrypted: i=1; AJvYcCW3XglDJepxPF63d43VqekuSrvsBKYrQSq9w4Qt88JN+CCLIMgwFmG0eCPyeUIqaAaVLv+7GLecuJY+@vger.kernel.org
-X-Gm-Message-State: AOJu0YystBAFNiWW2ToV/VXnLoHIHqIDRDQBw0kq3wyyEBKAh5L541cI
-	tbEDZi4dzxsV/chlH0gqax0OekzaC9dM+Nee+Mon2hrLaUioWoZAGhoeL+4Mzp99/ThqRj/j8C8
-	DU6OQMmbulNx9ogVyccXN3893s49crx4/aYR5Jg==
-X-Google-Smtp-Source: AGHT+IGIi5ao43k/vIAO/lA0KVUBT2iz7DHq1Gqz+0/lE6XQd/R5X3Fft6qTZ9ZmTNYTYQonru0QZ16ntriXjkPbnU0=
-X-Received: by 2002:a2e:a595:0:b0:2fb:4fd4:668a with SMTP id
- 38308e7fff4ca-2fedb49929amr11134431fa.22.1730462017840; Fri, 01 Nov 2024
- 04:53:37 -0700 (PDT)
+        bh=VTkHIu6x6J8oDnM2EYPHGTKSx4bAvmnfjc2sBE+Lf2I=;
+        b=d7UoE4kFQwoE69FrXvyEHgNWP39L5ahakqtiTosesorga6nubzhdnTU7roEyV1w+H4
+         7ebhL7oO6MUq75A5B6OB7joj58/CX0MnKuXYFC0N6nfMRVcYgwGPBc5Tlb+9a/Bgdzcp
+         frT3Dya6xW2izf3x0L9XBitIwk6/fPanQl3wiDiAS0BwdL49gstRpS9DnykXu6Xrs5z3
+         os5mcE4sSPeUf7WQqoIBeDihbk5ATGCgh03qrUJCzmgmHkZeGGzmS7a8j6U5inGFUL+F
+         9vLMlZ1W0SLCvc+eBvieKz7g9oltJD3DKlzbwuXoK/HLqzw2uWRXOCw0PpAsNGNNJMq1
+         +I4w==
+X-Forwarded-Encrypted: i=1; AJvYcCVuA9UlHZ2ezr4oNa2aZPnv5Z/CHhHYY5KWxSvnKbsl+e+ItyOqGa/6I/yiiRmTI41TV9b2kxdO4Jyw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzR45+JGDzSWJqsT3pJ53mnExgmFCOInyx3zWBKN0BcCT3XVDFt
+	PBx859YKblaC6L+gLpa7eZE8kNZNnwvrM0RcDTyndIEaBG/P7ba1Dd0lcVyDOtORerR7dg62gKz
+	HHTfaRSzUy3wxM6RX8LuWfint/fVXq5LdDkICQg==
+X-Google-Smtp-Source: AGHT+IElM+4cf5nJiQK/flMPFGUQS/qscWK2wONW7FVnOjF9n3NBlck/a/D8oXjerYOiHg6n+ZKlCTOw3SU28go/iqc=
+X-Received: by 2002:a05:651c:154b:b0:2fb:6394:d6bd with SMTP id
+ 38308e7fff4ca-2fdec4e750emr31077211fa.12.1730462068876; Fri, 01 Nov 2024
+ 04:54:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241101080614.1070819-1-andrei.stefanescu@oss.nxp.com> <20241101080614.1070819-5-andrei.stefanescu@oss.nxp.com>
-In-Reply-To: <20241101080614.1070819-5-andrei.stefanescu@oss.nxp.com>
+References: <20241101080614.1070819-1-andrei.stefanescu@oss.nxp.com> <20241101080614.1070819-6-andrei.stefanescu@oss.nxp.com>
+In-Reply-To: <20241101080614.1070819-6-andrei.stefanescu@oss.nxp.com>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 1 Nov 2024 12:53:26 +0100
-Message-ID: <CACRpkdaFqtMxE26jA6gWDAps6L58zL3KD6CisxTcVJj-DAR+pw@mail.gmail.com>
-Subject: Re: [PATCH v5 4/7] pinctrl: s32: convert the driver into an mfd cell
+Date: Fri, 1 Nov 2024 12:54:17 +0100
+Message-ID: <CACRpkda2Ss_oy8vX6V7KK9DCvSoWxSg2R_iCourt-XReHBcpLg@mail.gmail.com>
+Subject: Re: [PATCH v5 5/7] pinctrl: s32cc: change to "devm_pinctrl_register_and_init"
 To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
 Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -96,13 +96,12 @@ Content-Transfer-Encoding: quoted-printable
 On Fri, Nov 1, 2024 at 9:06=E2=80=AFAM Andrei Stefanescu
 <andrei.stefanescu@oss.nxp.com> wrote:
 
-> The SIUL2 module is now represented as an mfd device. The pinctrl driver
-> is now an mfd_cell. Therefore, remove its compatible and adjust its
-> probing in order to get the necessary information from its mfd parent.
+> Switch from "devm_pinctrl_register" to "devm_pinctrl_register_and_init"
+> and "pinctrl_enable" since this is the recommended way.
 >
 > Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 I assume this needs to go in with the rest of the patches.
 
 Yours,
