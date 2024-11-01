@@ -1,138 +1,93 @@
-Return-Path: <devicetree+bounces-118100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BFFA9B8FA2
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:45:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C9DF9B8FF9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 12:07:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F20B1C20C48
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 10:45:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE48F1C2113B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:07:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 147741B85D0;
-	Fri,  1 Nov 2024 10:40:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A7B186E40;
+	Fri,  1 Nov 2024 11:07:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y0WQ5hTo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OxWBRlgW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A939170A15;
-	Fri,  1 Nov 2024 10:40:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB9AF1714BC;
+	Fri,  1 Nov 2024 11:07:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730457603; cv=none; b=AHHcC0Ls32WzafAazGqAhcDmN2AYz1I7VXKzVt+VgtTbqUE0ysiJAnkhMaoWhKqD/k6NpGAi0wWK0T5MH2V9OoXnwrKzciaDJ3m6kvyUqUOXBoBsi74eprHaGoj3rw30lnJfA/3of8slW3lN0mzvXZaxpUHgeRaPyEZh44ff6g0=
+	t=1730459222; cv=none; b=XgjWrexmLHkP45L4STQoJWdI8ql243oAy2RRZeE4B2N9xNuWM8Jyf539l8zYY8mxSMrBe7tJ5DPZGYr8ZfIJ6t+Sx56XChbzPBI/YU6jAmLbrYrRH8EwF7n8XE6Rg2GH4ce5FEeo3+SmufQS17dqpZKYltBPQ5PObM+GdCpmvb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730457603; c=relaxed/simple;
-	bh=LB0ERSXQL/Llu9CsxiUVYqiS/OzFA+1sg2d30cc2eNI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=KL/G6I32+eCDyPpKyJQCAjXHb9De+/WfimUm+mGndiFmTupnDdy3VwK8SzcXUstk0rLhUxcQ41350kkbGX427EiEIyaG8rIqw0RsAjs6KHuMUIFYzu44g74C4jKDB6eO3uC+bU3NJOxRrmS3zE2HkfZ1BsXyvdxab5MPzHV16Vw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Y0WQ5hTo; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A19LBnJ004630;
-	Fri, 1 Nov 2024 10:39:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	t1cA9NDwFLH5+vfmPGgF5z/CRZpfWRBSGlRVBz5PXQE=; b=Y0WQ5hToLd0VhKE8
-	8Im6pWtW047ydpfFEmazd8L383TrGBHsso0IKhznXhRQZf1QSueAIzQMDc23maEs
-	bLwjJHAIar/5WKxcdwmj8PmIa58Qf5g15UpN0jTZNuwkWpXUp5CHafH1k8jpixit
-	BHnqyvYY25MaoJtXFKj2jt8k482rjE5gHmyOMcwlPSASey4weIdD5S5nbq8RemZN
-	eSIsnOz28sKWcTtQ4bsMOvFhFQwPeH1XZc3bRtxI+0FL4A7vspTvnNrv5GJQvNVc
-	qDmSnd9QFWqTQMiqiJVHXiZp75F8HmpMg3Ef1QP9WUWlke+Uts0ryNOt3r6aAjLZ
-	IxA+CA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42m65pby9a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 01 Nov 2024 10:39:30 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A1AdTQL027105
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 1 Nov 2024 10:39:29 GMT
-Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 1 Nov 2024 03:39:24 -0700
-From: Taniya Das <quic_tdas@quicinc.com>
-Date: Fri, 1 Nov 2024 16:08:23 +0530
-Subject: [PATCH v2 11/11] arm64: defconfig: Enable QCS615 clock controllers
+	s=arc-20240116; t=1730459222; c=relaxed/simple;
+	bh=srguf2lufsd2nms2sdpliq9KmczeQ+7p0oDEJZUn4qQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I/6LDsr/eyRnY98IKNrLCSrvRL52VrV2QNg1+er5ervmcV+oULqOCoahIShKA5PpuBEjxed1pBqHs3jrLdNd9B4fWzOguEmQ6v2uvsLifVA6XwG2R0fqeS4TjyX6J9JLj6dHTOgf/uyzu6/gcoY0x5V+izj0nqzX2t47AksgmwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OxWBRlgW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89FFBC4CECD;
+	Fri,  1 Nov 2024 11:06:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730459221;
+	bh=srguf2lufsd2nms2sdpliq9KmczeQ+7p0oDEJZUn4qQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OxWBRlgWxR/HP1ssthtXOEjS1Ug+Pnv12CO8Ue4CGm5zvPtzZNCHpIJLCVRraSIE0
+	 mCGNA+ACuorR5XtJrpn+LW6WYujtmVXSTqVawVBoHFyx0NvPZNdx+bA7SU9FJQD8Xn
+	 oOsAtCBRcrSTCTMMG4ltrDj7xiXWdcF1vl4QobbocLu1eoYb+c5EhbAaKK9sdgVs4O
+	 uulEWugA/Ur0gE+cPD3/eKUB1xPCA9DY68NtMwWTHTH7tgEczjIIARGCWXfCsCFCY0
+	 J0y5b40u+kgMDMJw8zWUxeHTPMa2RQ86ncI0qFOhEnpwyV+IQK1g6sdM6TShlMl4Dx
+	 +NeuK5nt12mkQ==
+Date: Fri, 1 Nov 2024 12:06:54 +0100
+From: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: kernel test robot <lkp@intel.com>, 
+	Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>, Lee Jones <lee@kernel.org>, llvm@lists.linux.dev, 
+	oe-kbuild-all@lists.linux.dev, Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, 
+	soc@kernel.org, Gregory Clement <gregory.clement@bootlin.com>, 
+	arm <arm@kernel.org>, Andy Shevchenko <andy@kernel.org>, 
+	Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH leds v4 02/12] leds: turris-omnia: Use command execution
+ functions from the MCU driver
+Message-ID: <6zpxjvs4tbccftlb6rqxpoibasm65pgv6rfntbytbatumriyyv@6htvljg5ftv4>
+References: <20241029135621.12546-3-kabel@kernel.org>
+ <202410311612.0OkxKVgC-lkp@intel.com>
+ <98d3ab51-e7db-46b0-8268-b111e115a281@app.fastmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241101-qcs615-mm-clockcontroller-v2-11-d1a4870a4aed@quicinc.com>
-References: <20241101-qcs615-mm-clockcontroller-v2-0-d1a4870a4aed@quicinc.com>
-In-Reply-To: <20241101-qcs615-mm-clockcontroller-v2-0-d1a4870a4aed@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Abhishek Sahu
-	<absahu@codeaurora.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-X-Mailer: b4 0.15-dev-aa3f6
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: bOO5f36N5ZfUWi0Dlhoq045WA244N6zj
-X-Proofpoint-GUID: bOO5f36N5ZfUWi0Dlhoq045WA244N6zj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- phishscore=0 malwarescore=0 clxscore=1015 priorityscore=1501
- mlxlogscore=696 suspectscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411010076
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <98d3ab51-e7db-46b0-8268-b111e115a281@app.fastmail.com>
 
-Enable the QCS615 display, video, camera and graphics clock controller
-for their respective functionalities on the Qualcomm QCS615 ride
-platform.
+On Fri, Nov 01, 2024 at 10:06:40AM +0100, Arnd Bergmann wrote:
+> On Thu, Oct 31, 2024, at 10:01, kernel test robot wrote:
+> >
+> > kernel test robot noticed the following build warnings:
+> 
+> >>> drivers/leds/leds-turris-omnia.c:409:12: warning: stack frame size (2064) exceeds limit (2048) in 'omnia_leds_probe' [-Wframe-larger-than]
+> >      409 | static int omnia_leds_probe(struct i2c_client *client)
+> >          |            ^
+> 
+> The problem here is the i2c_client on the stack, you can't
+> do that:
+> 
+>  static int omnia_mcu_get_features(const struct i2c_client *client)
+>  {
+> +	struct i2c_client mcu_client = *client;
+>  	u16 reply;
 
-Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
----
- arch/arm64/configs/defconfig | 4 ++++
- 1 file changed, 4 insertions(+)
+OMG, I see. struct i2c_client contains struct device.
+OK, I will do this correctly by finding the MCU device on the I2C bus.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 730f303350c36a75661dc267fdd0f8f3088153fc..2fa666156b88b44a8298651e276c196cded9a7f8 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1322,7 +1322,11 @@ CONFIG_MSM_GCC_8998=y
- CONFIG_MSM_MMCC_8998=m
- CONFIG_QCM_GCC_2290=y
- CONFIG_QCM_DISPCC_2290=m
-+CONFIG_QCS_DISPCC_615=m
-+CONFIG_QCS_CAMCC_615=m
- CONFIG_QCS_GCC_404=y
-+CONFIG_QCS_GPUCC_615=m
-+CONFIG_QCS_VIDEOCC_615=m
- CONFIG_QDU_GCC_1000=y
- CONFIG_SC_CAMCC_8280XP=m
- CONFIG_SC_DISPCC_7280=m
-
--- 
-2.45.2
-
+Marek
 
