@@ -1,188 +1,139 @@
-Return-Path: <devicetree+bounces-118151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F6959B930B
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:23:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CCF59B9317
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:25:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BADB283197
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 14:23:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEFBA1C21394
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 14:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414411A2C06;
-	Fri,  1 Nov 2024 14:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E0EA1A2C29;
+	Fri,  1 Nov 2024 14:25:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="mSs2a7/b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="epfmS1nf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF24A1A263F
-	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 14:22:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2975175D2D;
+	Fri,  1 Nov 2024 14:25:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730470964; cv=none; b=mTkyZjyFpZ9LG5iP2xZ8VOwMC0jyEWIRP4zWbM/r4h575YW6ViM9sHlorwAHLgxxIAUO9FecRQczl61j6DydTMP4AeOdOMAVclAsNpAhBb05XpTsEJ10DjDN9J7Re5HdeS+1C7XZuTME+8AxTPLXEHFNMZBbc7NBHZGIqiiUNY0=
+	t=1730471118; cv=none; b=q7ZVEmWdUUUMPiLjc1V1qwcVQ6voThZZNqS1yZqWzoyDvrNAPQ4ZtZGBx2CUqBUppftLMSY/GD0cM7U1BsLwc8AgphFAWL9cTjV+8V+lRl1Nx5yoYsYkkMgYr4mdng6jaakxHhFR746ZeCj5/wPBy+Hb3AQ0fozIyrBfxVjav98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730470964; c=relaxed/simple;
-	bh=eaoYM3+CQf0qMzz9k7+znlcR8JA5fJSdnCEIFmJglng=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KGGTgHlQG0uawEUu7/RDy0K8NXCj5s76AYakGk1d9nXBmPzQcU+km1m5TvINoNN+xQiDIzcNGrIGLBOxCrnRgQU0EGCgSP2/xsL7cFCveJ3txMoUSa5tY0GT9n9AMyjRkF/6aKFMRZj3fycFEjw/EUOdBfDqyNAca4kY5be2v5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=mSs2a7/b; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2fb561f273eso17470471fa.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 07:22:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1730470960; x=1731075760; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3NkzkjFi+fXP94uSTTPmiY1l/XjdYqeKRey3P/qytSM=;
-        b=mSs2a7/bfjbqtCSa68hEl/jz5zQnFEh/dt1n+TQbDxWg+amTxuL1Q0mnP0CXCOPjQa
-         BQo/rMDF67nqjLxZOfV7U2fRk2spcVM3o2c+A+zRZP+3VNcUOdbNzVLsCdfeP+xZscki
-         8OruUlC0rs/jjriwJf3JVvrnoCXdEGQTUeYQuyLPsqwtSU3wKcQ36CmO02q89xagBIUF
-         1ukBPMMxsfO+arT/0ejYXPo5wa8yEXPNe20Y8tWpCeSaCMJuT7KY+wLIiesH7Bja+1to
-         e1ilL9bjAIPTp6wasxSpxbm7i1q4fPQ8z/lcjFJb7AcZd0fpDoC/gxCyTiQI2oHnTSyI
-         fYbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730470960; x=1731075760;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3NkzkjFi+fXP94uSTTPmiY1l/XjdYqeKRey3P/qytSM=;
-        b=gHgd12+vyoeVVB+EqPfjwcKDbbIE6rP1o0QFP5XuAOKtcc1oinCWdMEqswo2Aw5Aok
-         4S8plE4GPn3p2LWzwThaWdg2g/0zt8JWNz4QK9zPsVbmjJjL4yG7Rx8l+2wPi6WuXtnh
-         Yz1froFgQOT8SnyhlhJ134yJg1l1QsUIfvFrjn2+xrwHO7L1n6zvchRrp+2TnlUTzC4E
-         PYUPCG0EXAQhjA8Ex7a+EkGnDCFwR5Dq1YrSMrAFtOin1wzSQKyctcAfUVf80fuh9pKn
-         7oJtIQMcgsRRTe8MtWGvLJtLruYcar3Fe1k0TmcW+zBTogy5b8NQrZ5DKcMvpQs3uHIY
-         ftHA==
-X-Forwarded-Encrypted: i=1; AJvYcCWmcDUKRQU3DQNfsqBdokoHnX4PlhR+ENevftGkn9+/KRBNvadFJJPjHLNhqrRbBkjIktqN+Cxp1/0y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4lVofx8SnBxCAXb3R5XdqbTJd655LcDGeHvUAyTc4o8u9EnH+
-	N7ovmTv9mdtRujY1keM94MAHT5xBqXfI8ubP2KQfP9CsrIJVGTUPBUiE8kJKFYxAH2AoFu3LOYj
-	wce6plfQFVyD8oCFV2G/Z17daVuTy2UfRLwN5YA==
-X-Google-Smtp-Source: AGHT+IFlDvjJIvDi2HZUP2QxWHPvwa8yzlrKeA5Te1yyulTITJs/lklicGzd4spG4MJlVOtyOjGQ7leC0jF/L+Hoijg=
-X-Received: by 2002:a05:651c:12c3:b0:2f9:c337:aca9 with SMTP id
- 38308e7fff4ca-2fed6de9eb3mr30677851fa.44.1730470960066; Fri, 01 Nov 2024
- 07:22:40 -0700 (PDT)
+	s=arc-20240116; t=1730471118; c=relaxed/simple;
+	bh=G0qwyxNvo32PglzTqhei8HtXuP6KaKJ/ZPAyTNEr4ow=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=j+/2f7h7qQoFGmBevSM5fK/9miOLE3qQNhfJPy8p5auCXW6JEW1eUoOFcxgotq0wZFuOOFgDpQNXvPDh4n21X5EKPNOWRO7VTfM9tbY3L5XCa3NIVWZwxFugA5ZUCmxSFzNFzZF+JVSjH4bH46OSvc5AXbaMIX/sHTpZzw7hDFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=epfmS1nf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 61BC2C4CECD;
+	Fri,  1 Nov 2024 14:25:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730471118;
+	bh=G0qwyxNvo32PglzTqhei8HtXuP6KaKJ/ZPAyTNEr4ow=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=epfmS1nfY7m4X21UkU8Yhve0XFPrQq/PTKISo4zjRSojhjHMmw+dcvjN+o41fxJYO
+	 gOfgx+9Rp7kHFA/axgcrhqhGAsS2QfeQWmCvIGDn5L5hg7OMoqTnwOuTiWHnt491Kp
+	 CgCkwOiSfXA+DRPY1ro/zhMBLTk7XNm87nx4/HDmC3Kot6GscvRHjUB3cRJdpo+XZx
+	 u6udxCJuceQYC7uavzZwgkkqTZLU+v1IK+BN8k93L8KPlcNF1kpq+oJ6DFcZN5uNl4
+	 bFeHCx4ICRxuTlDznX+mzYZlwaBlXrbtM2TiZuGlG3THHWeME8eTYKEXCXtTzRzsFA
+	 hXcqRe59P2rYA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C9B4E6F064;
+	Fri,  1 Nov 2024 14:25:18 +0000 (UTC)
+From: Janne Grunau via B4 Relay <devnull+j.jannau.net@kernel.org>
+Subject: [PATCH v2 0/3] Apple SPI controller driver
+Date: Fri, 01 Nov 2024 15:25:02 +0100
+Message-Id: <20241101-asahi-spi-v2-0-763a8a84d834@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241018-sc8280xp-pwrseq-v6-0-8da8310d9564@linaro.org>
-In-Reply-To: <20241018-sc8280xp-pwrseq-v6-0-8da8310d9564@linaro.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 1 Nov 2024 15:22:28 +0100
-Message-ID: <CAMRc=Md=ChXtdAY5_ZGtWQCk06mvtA2pMM2DF03-pb2StvHR7g@mail.gmail.com>
-Subject: Re: [PATCH v6 0/6] arm64: dts: qcom: enable Bluetooth and WLAN on
- sc8280xp and sm8450 boards
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Johan Hovold <johan+linaro@kernel.org>, 
-	Kalle Valo <kvalo@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Steev Klimaszewski <steev@kali.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL7kJGcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
+ vPSU3UzU4B8JSMDIxMDC0ND3cTixIxM3eKCTN00C3MTg6REc0vzFHMloPqCotS0zAqwWdGxtbU
+ A+JADClsAAAA=
+X-Change-ID: 20240811-asahi-spi-f8740ba797d7
+To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Janne Grunau <j@jannau.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2147; i=j@jannau.net;
+ s=yk2024; h=from:subject:message-id;
+ bh=G0qwyxNvo32PglzTqhei8HtXuP6KaKJ/ZPAyTNEr4ow=;
+ b=owGbwMvMwCW2UNrmdq9+ahrjabUkhnSVJ2eUV0+uaQqSM1ZfYn3i6Wpx430vJhQ6CJ6Ib3M8r
+ tycUizTUcrCIMbFICumyJKk/bKDYXWNYkztgzCYOaxMIEMYuDgFYCIzVjEybP/stWZzsvCBxuBI
+ 600bTrw5Hrz7gNT0oJbvy4Icn2zXnMDIcMSaed6iqutK05cW+BQ8UeFVP6jSErb22QtXm5y/hn8
+ msQMA
+X-Developer-Key: i=j@jannau.net; a=openpgp;
+ fpr=8B336A6BE4E5695E89B8532B81E806F586338419
+X-Endpoint-Received: by B4 Relay for j@jannau.net/yk2024 with auth_id=264
+X-Original-From: Janne Grunau <j@jannau.net>
+Reply-To: j@jannau.net
 
-On Fri, Oct 18, 2024 at 2:49=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl>=
- wrote:
->
-> This series previously only concerned sc8280xp but while enabling
-> WLAN/BT on sm8450 I noticed some more changes will be required so I
-> folded the latter into this series and updated the sc8280xp CRD and X13
-> patches.
->
-> =3D=3D
->
-> This models the WLAN and Bluetooth modules on several boards using the
-> WCN6855 module.
->
-> The wcn6855 (also known as qca6490) is a bit different from the qca6390
-> so modify the power sequencing driver to support it with separate device
-> match data.
->
-> For the sc8280xp-crd and sm8450-hdk we add the PMU, wifi and bluetooth
-> nodes with the correctly modelled wiring between them. For the X13s, we
-> rework existing nodes so that they align with the new DT bindings
-> contract.
->
-> On sm8450-hdk we require some additional toggling of the XO-CLK signal
-> so add that to the driver as well and update the bindings.
->
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
-> Changes in v6:
-> - add the xo-clk signal handling to the pwrseq-qcom-wcn driver
-> - add a patch enabling wifi and bluetooth on sm8450-hdk
-> - add missing supplies to the PMUs on sc8280xp boards
-> - Link to v5: https://lore.kernel.org/all/20241008102545.40003-1-brgl@bgd=
-ev.pl/
->
-> Changes in v5:
-> - put vreg_s10b under the "B" PMIC on the CRD instead of modeling it as a
->   fixed regulator
-> - order pinctrl nodes alphabetically
-> - restore the drive-strength property for all pins to what bootfw sets it=
- to
-> - disable bias on wlan-en pin on the CRD
-> - remove stray newline
-> - add the swctrl pins to the PMU node
->
-> Changes in v4:
-> - bind bluetooth pins on X13s in patch 3/3
-> - only drop the regulator-always-on properties for vreg_s11b and vreg_s12=
-b
->   and fold this change into patch 3/3
->
-> Changes in v3:
-> - move adding the bt-enable-gpios to the PMU on the CRD to patch 2/4
-> - add a patch removing the regulator-always-on property from regulators
->   on X13s that no longer need it
->
-> Changes in v2:
-> - fix commit message in patch 1/3
-> - drop drive-strength from the wlan enable pin function
-> - drop the calibration variant property from the wifi node of the CRD
->
-> ---
-> Bartosz Golaszewski (6):
->       regulator: dt-bindings: qcom,qca6390-pmu: add more properties for w=
-cn6855
->       power: sequencing: qcom-wcn: improve support for wcn6855
->       arm64: dts: qcom: sc8280xp-crd: model the PMU of the on-board wcn68=
-55
->       arm64: dts: qcom: sc8280xp-crd: enable bluetooth
->       arm64: dts: qcom: sc8280xp-x13s: model the PMU of the on-board wcn6=
-855
->       arm64: dts: qcom: sm8450-hdk: model the PMU of the on-board wcn6855
->
->  .../bindings/regulator/qcom,qca6390-pmu.yaml       |  12 ++
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts          | 169 +++++++++++++++=
-++++++
->  .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     | 103 +++++++++++--
->  arch/arm64/boot/dts/qcom/sm8450-hdk.dts            | 157 +++++++++++++++=
-++++
->  arch/arm64/boot/dts/qcom/sm8450.dtsi               |   2 +-
->  drivers/power/sequencing/pwrseq-qcom-wcn.c         | 101 +++++++++++-
->  6 files changed, 526 insertions(+), 18 deletions(-)
-> ---
-> base-commit: f2493655d2d3d5c6958ed996b043c821c23ae8d3
-> change-id: 20240807-sc8280xp-pwrseq-7b6859d846c5
->
-> Best regards,
-> --
-> Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->
+Hi all,
 
-It's been two weeks. If there are no objections to the DTS changes,
-can the remainder of this series be picked up for v6.13?
+This updated series address the review comments from the original
+submission in 2021 [1]. It adds a new SPI controller driver for Apple
+SoCs and is based on spi-sifive. It has been tested with the generic
+jedec,spi-nor support and with a downstream driver for an Apple specific
+HID over SPI transport.
 
-Thanks,
-Bartosz
+As usual, I'm splitting off the MAINTAINERS and DT binding changes.
+We would rather merge the MAINTAINERS change through the Asahi-SoC
+tree to avoid merge conflicts as things trickle upstream, since
+we have other submissions touching that section of the file.
+
+The DT binding change can go via the SPI tree or via ours, but it's
+easier if we merge it, as then we can make the DT changes to
+instantiate it without worrying about DT validation failures depending
+on merge order.
+
+This is mostly Hector's work with a few minor changes to address review
+comments from me.
+
+[1] https://lore.kernel.org/linux-spi/20211212034726.26306-1-marcan@marcan.st/
+
+v2:
+- removed '#address-cells' and '#size-cells' from the bindings and added
+  Rob's Rb:
+- fixed (new) checkpatch warnings
+- added t8112 (M2) SoC
+- shorted long and complex source code lines
+- switch to devm_clk_prepare_enable() and devm_pm_runtime_enable()
+- switch to dev_err_probe() in probe function
+- removed "pdev->dev.dma_mask = NULL;"
+- got rid of apple_spi_remove()
+
+Signed-off-by: Janne Grunau <j@jannau.net>
+---
+Hector Martin (3):
+      dt-bindings: spi: apple,spi: Add binding for Apple SPI controllers
+      spi: apple: Add driver for Apple SPI controller
+      MAINTAINERS: Add apple-spi driver & binding files
+
+ .../devicetree/bindings/spi/apple,spi.yaml         |  62 +++
+ MAINTAINERS                                        |   2 +
+ drivers/spi/Kconfig                                |  11 +
+ drivers/spi/Makefile                               |   1 +
+ drivers/spi/spi-apple.c                            | 531 +++++++++++++++++++++
+ 5 files changed, 607 insertions(+)
+---
+base-commit: 98f7e32f20d28ec452afb208f9cffc08448a2652
+change-id: 20240811-asahi-spi-f8740ba797d7
+
+Best regards,
+-- 
+Janne Grunau <j@jannau.net>
+
+
 
