@@ -1,171 +1,343 @@
-Return-Path: <devicetree+bounces-118134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DEC39B91AA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 14:15:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38D4D9B91BE
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 14:17:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1F4D283F39
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 13:14:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B20BC1F21FBF
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 13:17:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 189441A0704;
-	Fri,  1 Nov 2024 13:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0E4E179A7;
+	Fri,  1 Nov 2024 13:16:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=phytecmesstechnikgmbh.onmicrosoft.com header.i=@phytecmesstechnikgmbh.onmicrosoft.com header.b="KUmqK69H"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="N5qU9Hln";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3XSEdShc";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="eVGoFl8R";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="/xubP/1V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2131.outbound.protection.outlook.com [40.107.105.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C65F619F436;
-	Fri,  1 Nov 2024 13:14:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.131
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730466889; cv=fail; b=AD0bWgFMNJlNzUN5fvgX5R7D8fWufSLvqohkdsl3mIRb6fIQsPtDfGYUx9uZYGzm1Hp2bkQqZ9sAvIziyO2/Y4NHShxqPeFqtXr9DDCmEERqjtHrgM4ol0bklMeHMCpFx6TUlmVbzXi3XPmLzf4+vvN+EKaXfMKlccBwYWR8obo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730466889; c=relaxed/simple;
-	bh=5FOR1WJVlFjBmHtWGw0Do68LIF/0mi9ZsHN0vpsFGzw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MHyVoVsQfA/PWV3mpIFuvVeIZsW51Ffdzoy2lGzLhK/+KyB9IJdgWl9zL8vwcZw4V4UzLk25ESIy0Ia5wzVYLFiBvqC1idXnkG8kHR+9KzVws/LmDJuBdCii/l2CZeMHqq+gUqzZGKHOk7pda7SGxOZfvSQygfmByBHBVfcTPnE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytecmesstechnikgmbh.onmicrosoft.com header.i=@phytecmesstechnikgmbh.onmicrosoft.com header.b=KUmqK69H; arc=fail smtp.client-ip=40.107.105.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qjQv/iwG/qRr2keBHEmqfNiSBjWuM2ZH1WQxTCcsT3XWqEHt8HO0t6rFPFr9a0tuklAt21lPkO3S1lOlJheJ5NRXmeRSlU40ledCHQhf1OaE5i4MBWdhdEsHzekh2JqJm+dgh9RgtU8PpDWJ0w+CaCOFt9aQYedpaQaLWlwl5fVgyZorPTdDOe/ZddOa9kll2dMlj/ndmTLViFFPrPg1t+UHi5TpuFwH/l6rvdHwFH46uL0MBJR9g4FRrdhIIqPjM3cXYbKnSCeIyGRA5oNVDKWbi8BIn5EKCB4Doi40H7IBoDffLRC5wgYYL3wV3rj/UHtKwV0NzJrc0ocewaW1qA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9XBkSLP9LtYBQe/ReJbA8BHRcOvR7hWGeE6QYCdYe8w=;
- b=uTrZMAfk1sd0mr7OJF8ObfkEMTbWh7NJBKiA2mWwu/o29HXtCvonWmhn+LotJo3xXRmewpmNBU6EYfPDEzCK3HmE6YRydyXfg9741vTCeWjI8HDoUCRrZmueaf8osebYtMWsKttHnD2fYZy6TEHea3hYk0pnstdUvvEMvWZAuurc3zReQ8MnRJ9DFARR4//B2BQENo8sC8g+SB4b+dSqM/W/UEYhCP7TF0prAqSsLQdRz4HEmqKyN56oDnrj8FVxc5lRZ3Hw6Xz7RgLZXtSa1xzpd2JQITWDrRGV52h7P3RZDPEHLcXePbBR7lcQXU9fWTrhUuCMx7EYCppSHE+7sw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 91.26.50.189) smtp.rcpttodomain=ti.com smtp.mailfrom=phytec.de; dmarc=none
- action=none header.from=phytec.de; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=phytecmesstechnikgmbh.onmicrosoft.com;
- s=selector1-phytecmesstechnikgmbh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9XBkSLP9LtYBQe/ReJbA8BHRcOvR7hWGeE6QYCdYe8w=;
- b=KUmqK69H61cdo8bAIBKO36gybJIjq5U1NVev7fxbJzMdj9txK9mhG5lt3hsgM456TDUmgWql5GWexVHu8/QXyhQQPIIu84m9JoE/6pNTllBs5YFeJZ/Z42zWThSy1pGWfIlLh4i3mDrzrkcPx7AsDURIeNCVMZDGL4JKMdyq73Q=
-Received: from DUZP191CA0019.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:4f9::29)
- by AS2P195MB2152.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:558::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.25; Fri, 1 Nov
- 2024 13:14:42 +0000
-Received: from DU2PEPF00028D0C.eurprd03.prod.outlook.com
- (2603:10a6:10:4f9:cafe::d4) by DUZP191CA0019.outlook.office365.com
- (2603:10a6:10:4f9::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.23 via Frontend
- Transport; Fri, 1 Nov 2024 13:14:42 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
- smtp.mailfrom=phytec.de; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.de;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- phytec.de discourages use of 91.26.50.189 as permitted sender)
-Received: from Diagnostix.phytec.de (91.26.50.189) by
- DU2PEPF00028D0C.mail.protection.outlook.com (10.167.242.20) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8114.16 via Frontend Transport; Fri, 1 Nov 2024 13:14:42 +0000
-Received: from Berlix.phytec.de (172.25.0.12) by Diagnostix.phytec.de
- (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 1 Nov 2024
- 14:14:38 +0100
-Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 1 Nov 2024
- 14:14:38 +0100
-From: Wadim Egorov <w.egorov@phytec.de>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <upstream@lists.phytec.de>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 4/4] arm64: dts: ti: am62-phyboard-lyra: Provide a vcc-supply for the I2C EEPROM
-Date: Fri, 1 Nov 2024 14:14:27 +0100
-Message-ID: <20241101131427.3815341-4-w.egorov@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241101131427.3815341-1-w.egorov@phytec.de>
-References: <20241101131427.3815341-1-w.egorov@phytec.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3776717C69;
+	Fri,  1 Nov 2024 13:16:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730466973; cv=none; b=L/1MESkxyrbSe869vyCw0yLC44FJ+0yDb9XMKLe3l+pqiCWtV86qjVvGl5SMIWcsDkNwXgnrU/8vhLIkiWbYeBQToZIcHScCS8amQ+SyXL7GlavEdE79tKuI9odYvtuxtzpyGef6DJ4XB8UsxODPBJ1SFQFdvVOrDg95s898xJw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730466973; c=relaxed/simple;
+	bh=q8x7adgTZ7pB0rg19q+Qs9+2xp9zpae4/ft+NvePveo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RADxD24VF2MftXMdkDcCSnI5qrnDHoTklE5NVsQKLp5qvCntubO7+nNhxNEqoRDA5PwI64qtWYZxXGuv3t6jXx1NKzv5CAEsO9HA8fz3jtQXUeAFOcNWUCpHoqzrvMt5n9fJaZSbklr3TYJKdoa3LTfmc7on/71Nut/Aho9uS2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=N5qU9Hln; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=3XSEdShc; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=eVGoFl8R; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=/xubP/1V; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 1F8C421904;
+	Fri,  1 Nov 2024 13:16:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1730466969; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ou58hKRtbuCdZ6nv3zgkZh8JqnndITWAtzdUhM0Jops=;
+	b=N5qU9HlnxQww7f/jFVhb+TreokcR5nYGBPs56+9P4aTQDjN+8Bj7WlCeMeK1hQt7Idgdjy
+	dGMzu8UM+a7MikJs1jZJWMCT2tamwRgPRLL0qkdCR/Krc+Ai2oh/oZRn7OO4xwEjg+QLRZ
+	tqAkKPYlM66v7AFnS+d/0LJ+lR+zDmw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1730466969;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ou58hKRtbuCdZ6nv3zgkZh8JqnndITWAtzdUhM0Jops=;
+	b=3XSEdShcJqvIG1sQ/dEevVFXPGHhuff85A8UEmmR1TQeJjZI/GUAsBTTtjI5fgmxUwn/0X
+	d9WCrmRKk8Cdt6DA==
+Authentication-Results: smtp-out1.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=eVGoFl8R;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="/xubP/1V"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1730466968; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ou58hKRtbuCdZ6nv3zgkZh8JqnndITWAtzdUhM0Jops=;
+	b=eVGoFl8REMHsjsVk8icKiA/GmNPwD0v3UZANVctU47p9tPOCUId5poNMhy9vxBv8yGegeG
+	BQBWDD6tdPjXsnRgkh0TLLgiSV9cRlBMxd3dR9ncVHDGYXJ9ikUk/JSZKE647MYeVXamQd
+	hGEX3q1YX642dGiQuo1b8J6pGCyfr54=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1730466968;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ou58hKRtbuCdZ6nv3zgkZh8JqnndITWAtzdUhM0Jops=;
+	b=/xubP/1VDB2gEXirWE3+4FHqqexw0vOe8LOC3xbu+FMXVca9L5Gs/BoXFF9desmaE8Zi3R
+	8WEXrDfeG83eEoDg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 0D370136D9;
+	Fri,  1 Nov 2024 13:16:07 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id F5hlAJfUJGdgdQAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Fri, 01 Nov 2024 13:16:07 +0000
+Message-ID: <421d7d37-f368-4eb3-9135-2d547cf590e6@suse.de>
+Date: Fri, 1 Nov 2024 15:15:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
- (172.25.0.12)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PEPF00028D0C:EE_|AS2P195MB2152:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2a54260d-221d-474b-79da-08dcfa7725e4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?2xNUFUU60IYh4ovUVYTbFdvxgNV2yX8bwVCy+EB7i6/zmz6AA9dK/bs8pWjT?=
- =?us-ascii?Q?SO75S5ZJQp8FanL1Xog4NX20c9WJP8QxGendnexYpuAzIMPJB6S/4feDqmuY?=
- =?us-ascii?Q?uOgQn7BTtg0h9rIBDXzVCgiOZjbR6LOAwWWnrIVvl/feY8Q8k90bdJA5Wsvq?=
- =?us-ascii?Q?jNvXH1LupPpm6l6MHsSFNWoJV92rcIhdj+ZLpWiFP+QjE3ZWR/yhnjj5wk5C?=
- =?us-ascii?Q?bT90lBxbNd9uLGtUnxZz4BSUSPJpW7H7psqXRlnP5QLUWSwjp4mIAT08fO2V?=
- =?us-ascii?Q?ECo0GwAe9UmTg7Qv1ZsfTJwqLHZBSf1/+YcYeXlyhNKdw84Fmm6EQs+apZ9W?=
- =?us-ascii?Q?ifZ9MoBoMEToZia4zdTfPd2+nzS3CA4hs/RMQaVens7cvhA1ehO1xJRgAUfS?=
- =?us-ascii?Q?jwaZdkSnyz5p7VxE9VypXqVHS6LOJ7WjS3/Bn6D9c0wgnjqogbs5k7oqWf6C?=
- =?us-ascii?Q?hWcer6kVbfz6D+3MlZPq9TDgupvC8ifHF/XJGiIGtAI20XhvntZGzSLBeKyd?=
- =?us-ascii?Q?JJfJ4tbPcc1IuxLz3czo5KcWhQYiaePWcnUvFQ76eC8QSmg33KvIf3CRyxPl?=
- =?us-ascii?Q?01vJr/lnHiJJDDMOao29avLz7+xhC+v8btqE/lpITRctj0KOmMWw7u9E8roS?=
- =?us-ascii?Q?p2rO+7udpBdXjeV4krwdNjIxuQSMLzpLAA2zsI2HRAoA03TS22uHO9CxNVvL?=
- =?us-ascii?Q?3VK8CK64kSsAiuVVDiZUHktTujzXA7XFRJy4gH5duIE4D7MNNwc4gfwjEfVS?=
- =?us-ascii?Q?mizjsui41UB677Nj+pzyri6c8YdZf9/2KEFXAUMj1Pt5gnTzp4ro0e8N8oOa?=
- =?us-ascii?Q?sS3Q/Mu3+mXzq4C+XO/Dh5JVwfgIFiSOMqsdsJlQ3XA5IcpXqPDpzKOuTbGz?=
- =?us-ascii?Q?icg+LH6ltqR+4o7hKbJNDY9c/jUuZ+jC56X/YFPJjzYtpzlF1WNQaS7dwhqh?=
- =?us-ascii?Q?3wEklUsW9mQzAIFqDPZhvKb9I8ZApZWWeMh0/Oc4dY7xEJcTF70Jos7G1qzR?=
- =?us-ascii?Q?hC9OdYqQt5StfPW/L+xvf7XIDLJXVC/CRs8BAdFyq0xnow+lZQ+RNltlVIny?=
- =?us-ascii?Q?85j5V1fGqrUXXg+pQW4YmsL3GGtHg6oqOCQuWBMgcehXUJPHovW9pfsnJwPT?=
- =?us-ascii?Q?X5gt+oTpz3nGAUzTVLzZGdq1NxT98JEe6bOT+HTJh5Tem20DzJ/ulOvYlbvv?=
- =?us-ascii?Q?piM88YkKECD/tnTFGqx3Yb+TaUTAzy0i1POYDCbjsY9DKxB4AGysfTzgGkXS?=
- =?us-ascii?Q?0kGyD8XxY7295VqAyoo8efRnWUE0LSReWDWHtQqjPOsE8ON7eeoU5X2qciz0?=
- =?us-ascii?Q?1yyVbKk2oUX53kLoyAhSnk08Xg6yzOiWGYeKtE8XAqIXcHALwm9cnixuRu1r?=
- =?us-ascii?Q?NjNr0S6C5SlSSRU5m4hRJeleqRpdBgisRyY0UpqccYeudrDBww=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:Diagnostix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013);DIR:OUT;SFP:1102;
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2024 13:14:42.2925
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a54260d-221d-474b-79da-08dcfa7725e4
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Diagnostix.phytec.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU2PEPF00028D0C.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2P195MB2152
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 03/10] irqchip: Add Broadcom bcm2712 MSI-X interrupt
+ controller
+To: Thomas Gleixner <tglx@linutronix.de>,
+ Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Jim Quinlan <jim2101024@gmail.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Andrea della Porta <andrea.porta@suse.com>,
+ Phil Elwell <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>
+References: <20241025124515.14066-1-svarbanov@suse.de>
+ <20241025124515.14066-4-svarbanov@suse.de> <87ttcw0z6y.ffs@tglx>
+Content-Language: en-US
+From: Stanimir Varbanov <svarbanov@suse.de>
+In-Reply-To: <87ttcw0z6y.ffs@tglx>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 1F8C421904
+X-Spam-Level: 
+X-Spamd-Result: default: False [-3.01 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	MIME_TRACE(0.00)[0:+];
+	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[kernel.org,broadcom.com,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com];
+	RCVD_TLS_ALL(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	DKIM_TRACE(0.00)[suse.de:+];
+	ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -3.01
+X-Spam-Flag: NO
 
-Add the missing vcc-supply property to the EEPROM node which resolves
-the following warning:
+Hi Thomas,
 
-  at24 1-0051: supply vcc not found, using dummy regulator
+Thank you for the review!
 
-Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
----
- arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+On 10/28/24 22:06, Thomas Gleixner wrote:
+> On Fri, Oct 25 2024 at 15:45, Stanimir Varbanov wrote:
+> 
+>> Add an interrupt controller driver for MSI-X Interrupt Peripheral (MIP)
+>> hardware block found in bcm2712. The interrupt controller is used to
+>> handle MSI-X interrupts from peripherials behind PCIe endpoints like
+>> RP1 south bridge found in RPi5.
+>>
+>> There are two MIPs on bcm2712, the first has 64 consecutive SPIs
+>> assigned to 64 output vectors, and the second has 17 SPIs, but only
+>> 8 of them are consecutive starting at the 8th output vector.
+> 
+> This starts to converge nicely. Just a few remaining nitpicks.
+> 
+>> +static int mip_alloc_hwirq(struct mip_priv *mip, unsigned int nr_irqs,
+>> +			   unsigned int *hwirq)
+>> +{
+>> +	int bit;
+>> +
+>> +	spin_lock(&mip->lock);
+>> +	bit = bitmap_find_free_region(mip->bitmap, mip->num_msis,
+>> +				      ilog2(nr_irqs));
+>> +	spin_unlock(&mip->lock);
+> 
+> This should be
+> 
+>         scoped_guard(spinlock, &mip->lock)
+> 		bit = bitmap_find_free_region(mip->bitmap, mip->num_msis, ilog2(nr_irqs));
+> 
+>> +	if (bit < 0)
+>> +		return bit;
+>> +
+>> +	if (hwirq)
+>> +		*hwirq = bit;
+> 
+> But what's the point of this conditional? The only call site hands in a
+> valid pointer, no?
+> 
+>> +	return 0;
+> 
+> And therefore the whole thing can be simplified to:
+> 
+> static int mip_alloc_hwirq(struct mip_priv *mip, unsigned int nr_irqs)
+> {
+>         guard(spinlock)(&mip_lock);
+>         return bitmap_find_free_region(mip->bitmap, mip->num_msis, ilog2(nr_irqs));
+> }
+> 
+> and the callsite becomes:
+> 
+>         irq = mip_alloc_hwirq(mip, nr_irqs);
+>         if (irq < 0)
+>         	return irq;
+> Hmm?
+> 
+>> +}
+>> +
+>> +static void mip_free_hwirq(struct mip_priv *mip, unsigned int hwirq,
+>> +			   unsigned int nr_irqs)
+>> +{
+>> +	spin_lock(&mip->lock);
+> 
+> 	guard(spinlock)(&mip->lock);
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi
-index 04fa2bffca79..9c0949c7ae34 100644
---- a/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi
-@@ -416,6 +416,7 @@ eeprom@51 {
- 		compatible = "atmel,24c02";
- 		pagesize = <16>;
- 		reg = <0x51>;
-+		vcc-supply = <&vcc_3v3_mmc>;
- 	};
- };
- 
--- 
-2.34.1
+Will address the above comments in next version.
 
+> 
+>> +	bitmap_release_region(mip->bitmap, hwirq, ilog2(nr_irqs));
+>> +	spin_unlock(&mip->lock);
+>> +}
+> 
+>> +	ret = irq_domain_alloc_irqs_parent(domain, virq, nr_irqs, &fwspec);
+>> +	if (ret) {
+>> +		mip_free_hwirq(mip, irq, nr_irqs);
+>> +		return ret;
+> 
+>                 goto err_free_hwirq; ?
+> 
+>> +	}
+>> +
+>> +	for (i = 0; i < nr_irqs; i++) {
+>> +		irqd = irq_domain_get_irq_data(domain->parent, virq + i);
+>> +		irqd->chip->irq_set_type(irqd, IRQ_TYPE_EDGE_RISING);
+>> +
+>> +		ret = irq_domain_set_hwirq_and_chip(domain, virq + i, hwirq + i,
+>> +						    &mip_middle_irq_chip, mip);
+>> +		if (ret)
+>> +			goto err_free;
+>> +
+>> +		irqd = irq_get_irq_data(virq + i);
+>> +		irqd_set_single_target(irqd);
+>> +		irqd_set_affinity_on_activate(irqd);
+>> +	}
+>> +
+>> +	return 0;
+>> +
+>> +err_free:
+>> +	irq_domain_free_irqs_parent(domain, virq, nr_irqs);
+>> +	mip_free_hwirq(mip, irq, nr_irqs);
+>> +	return ret;
+>> +}
+>> +
+>> +static int __init mip_of_msi_init(struct device_node *node,
+>> +				  struct device_node *parent)
+> 
+> No line break required here.
+
+OK.
+
+> 
+>> +{
+>> +	struct platform_device *pdev;
+>> +	struct mip_priv *mip;
+>> +	int ret;
+>> +
+>> +	pdev = of_find_device_by_node(node);
+>> +	of_node_put(node);
+>> +	if (!pdev)
+>> +		return -EPROBE_DEFER;
+>> +
+>> +	mip = kzalloc(sizeof(*mip), GFP_KERNEL);
+>> +	if (!mip)
+>> +		return -ENOMEM;
+>> +
+>> +	spin_lock_init(&mip->lock);
+>> +	mip->dev = &pdev->dev;
+>> +
+>> +	ret = mip_parse_dt(mip, node);
+>> +	if (ret)
+>> +		goto err_priv;
+>> +
+>> +	mip->base = of_iomap(node, 0);
+>> +	if (!mip->base) {
+>> +		ret = -ENXIO;
+>> +		goto err_priv;
+>> +	}
+>> +
+>> +	mip->bitmap = bitmap_zalloc(mip->num_msis, GFP_KERNEL);
+>> +	if (!mip->bitmap) {
+>> +		ret = -ENOMEM;
+>> +		goto err_base;
+>> +	}
+>> +
+>> +	/*
+>> +	 * All MSI-X masked in for the host, masked out for the
+>> +	 * VPU, and edge-triggered.
+>> +	 */
+>> +	writel(0, mip->base + MIP_INT_MASKL_HOST);
+>> +	writel(0, mip->base + MIP_INT_MASKH_HOST);
+>> +	writel(~0, mip->base + MIP_INT_MASKL_VPU);
+>> +	writel(~0, mip->base + MIP_INT_MASKH_VPU);
+>> +	writel(~0, mip->base + MIP_INT_CFGL_HOST);
+>> +	writel(~0, mip->base + MIP_INT_CFGH_HOST);
+> 
+> What undoes that in case mpi_init_domains() fails? Or is it harmless? I
+> really have no idea what masked in and masked out means here.
+
+It should be harmless, but I could move registers initialization in
+mip_init_domains() and fix the comments.
+
+> 
+>> +	dev_dbg(&pdev->dev,
+>> +		"MIP: MSI-X count: %u, base: %u, offset: %u, msg_addr: %llx\n",
+> 
+> Please move the string up. You have 100 characters width available.
+
+OK.
+
+> 
+>> +		mip->num_msis, mip->msi_base, mip->msi_offset, mip->msg_addr);
+> 
+> Thanks,
+> 
+>         tglx
+
+regards,
+~Stan
 
