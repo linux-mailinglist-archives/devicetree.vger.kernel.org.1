@@ -1,48 +1,57 @@
-Return-Path: <devicetree+bounces-118186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20A109B9498
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:41:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D35449B94A0
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:43:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AD201F22212
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:41:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97C9C2827E5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:42:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90FE51C9B97;
-	Fri,  1 Nov 2024 15:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D631C32E2;
+	Fri,  1 Nov 2024 15:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GaFb1+V/"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="MOaSnPjw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB2D25634;
-	Fri,  1 Nov 2024 15:41:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A5425634;
+	Fri,  1 Nov 2024 15:42:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730475663; cv=none; b=kO4W2oMvwe2FflRHPrCtbrOrixNSWQV+fFMoaYPT8k3RTi5wVUj7jJwKJXLIgBOieb5fAjRNHlgvx+5NpDgU3MHgZiS+PjxYxyVjPvqs97PCJ9BVJhLFle9ZL7Bq3B68I8DTGkbOT+rrYbK3FltHJNSVBUov52D4KyYePW0ceJw=
+	t=1730475775; cv=none; b=Lsfh/2QImPSk0qzDs03GkFT+gb3loCMaKEC9Pwnu7a6zDqBxO7DrDMe1ekaPQZSLzZbseIfwVhJOYiguW0GLlm+b/JW0h6tjYfykzyIkDCSmvyBnsqzKzx8YeHRsNttsQWVLvSmrk82GX0/kWeKS8D1Po10+1Xphdlb6sIXFGzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730475663; c=relaxed/simple;
-	bh=zla9w9yuxenlwXZM9FMEzg1b87SODZSVTWyPtyv2tJQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LmOGWYS3i2mW28M11cnaGZu0Eub7wPvLGXVtAzqp5DE9JJu3hseGPVJB6z0ubCRYYa2mD3BCnTzhTIeJxtpgbuBwauKhJ/Cu6lKNVfK+DexcDiiF+9o8lXWriMF0eO4NMzliSlAMqMDBv3EaXDALaVUPmVJvWf0sDWKbj/ikY18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GaFb1+V/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B599C4CECD;
-	Fri,  1 Nov 2024 15:40:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730475662;
-	bh=zla9w9yuxenlwXZM9FMEzg1b87SODZSVTWyPtyv2tJQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GaFb1+V/oKwjeRtAHrj7Jz11JXecNJLRIxuWfVub7Y/7Lx1tCRuv9YZsZfDwODgr6
-	 BSprj8QPULTkHLHEgonlW4Gy1seNjtx4EfG1G6itCT6BY8QK4w5FoACp8oRJuIgZhm
-	 wdgNcbDGP+7BU/3OnqSJW24QbXtj+zB7QxspAINC7HjI9cxQ4qCBRxs2356JfRf6V6
-	 59qi3Cnc9KVjX9bQP3PMBwvFd4y/xdtl8ZIedU9eq4E3Yj2UAXRsZ1hOi61xF3cPcm
-	 h3NowUVMf7oO0Q96O+6I+d+9ZKn1w8up6DME6Wx3vyDjG/K7VZ4EDPc4LtvLQ0BRDR
-	 IH620WjfPLkUA==
-Message-ID: <9e876379-c555-45e6-8a8a-752d90fdc8ed@kernel.org>
-Date: Fri, 1 Nov 2024 16:40:50 +0100
+	s=arc-20240116; t=1730475775; c=relaxed/simple;
+	bh=e2RIMkxPzI4fgD86ODFquo5MfMVtY6+e/BHyT0tUnVY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=abkhtR/vmi/BLW0+J1pXsmZGsGEF6u1gyPjFW7NlcgXWTulT989CgSjIqBiY5PD6uI3ntgQ++QfBeqIxvYl8OEuaZDLoj2p1eePd1HthVJe4rRteB3z9mKNCebNtnRu6DpOg0Ul3EWatY4WPru34pqs9ECTDXi5Yjo3tshGpnws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=MOaSnPjw; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 4E7BB120019;
+	Fri,  1 Nov 2024 18:42:29 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4E7BB120019
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1730475749;
+	bh=++GLuDudYgupqyL0+wip7nEuzoF4sv5Ujk/jbnUCDIs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=MOaSnPjw8ycOcScy5hWFOiTbjmNq9d6VuCaKVjCmtYgWaT3saY1A5dp7U1cAgzPd2
+	 KKw0DTsT1aW4NcQOeZ7nPf8HyasRyA0SOH4L35NVyH5v1EK7z33nv4uSn6JAYS+vYx
+	 M1knP/XFeZteLarhljWFP2BUb/SJwCd+Wa6s8uMfRjc/JALgOtQlAQljpjJ5mbSD7i
+	 9aAXRaR+vF5LUShd8wbygbVVRVTQIU+coQtg0lOS3x+0SGHog77WselrzbnGAVYSIq
+	 RX22R2Qo/9zZgH120d1KTfDZcUjou+Pd/AkaYD1gEWeCZuyk+TNqGHojweMwX2cimK
+	 RIHcB4z9YGMCQ==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri,  1 Nov 2024 18:42:29 +0300 (MSK)
+Message-ID: <e37f23e6-f471-4061-b346-4b082f37060d@salutedevices.com>
+Date: Fri, 1 Nov 2024 18:42:28 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,157 +59,119 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 14/16] net: stmmac: dwmac-s32: add basic NXP S32G/S32R
- glue driver
-To: Jan Petrous <jan.petrous@oss.nxp.com>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>,
- Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>,
- Minda Chen <minda.chen@starfivetech.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Iyappan Subramanian <iyappan@os.amperecomputing.com>,
- Keyur Chudgar <keyur@os.amperecomputing.com>,
- Quan Nguyen <quan@os.amperecomputing.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org, imx@lists.linux.dev,
- devicetree@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>
-References: <20241028-upstream_s32cc_gmac-v4-0-03618f10e3e2@oss.nxp.com>
- <20241028-upstream_s32cc_gmac-v4-14-03618f10e3e2@oss.nxp.com>
- <xanb4j56u2rjwpkyj5gwh6y6t36gpvawph62jw72ksh7jximhr@cjwlp7wsxgp6>
- <ZyOXgdqUgg2qlCah@lsv051416.swis.nl-cdc01.nxp.com>
- <b9aefcf2-8f0d-431c-865b-34c9b8e69c4d@kernel.org>
- <ZyO7fn3NWULA9bGG@lsv051416.swis.nl-cdc01.nxp.com>
- <ZyO9Mfq+znZdJJrJ@lsv051416.swis.nl-cdc01.nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 2/2] leds: pwm: Add optional DT property
+ default-brightness
+To: Lee Jones <lee@kernel.org>
+CC: <pavel@ucw.cz>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <linux-leds@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<kernel@salutedevices.com>
+References: <20241015151410.2158102-1-gnstark@salutedevices.com>
+ <20241015151410.2158102-3-gnstark@salutedevices.com>
+ <20241031143250.GH10824@google.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <ZyO9Mfq+znZdJJrJ@lsv051416.swis.nl-cdc01.nxp.com>
-Content-Type: text/plain; charset=UTF-8
+From: George Stark <gnstark@salutedevices.com>
+In-Reply-To: <20241031143250.GH10824@google.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 188909 [Nov 01 2024]
+X-KSMG-AntiSpam-Version: 6.1.1.7
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 41 0.3.41 623e98d5198769c015c72f45fabbb9f77bdb702b, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/11/01 12:35:00 #26800049
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On 31/10/2024 18:24, Jan Petrous wrote:
-> On Thu, Oct 31, 2024 at 06:16:46PM +0100, Jan Petrous wrote:
->> On Thu, Oct 31, 2024 at 04:44:45PM +0100, Krzysztof Kozlowski wrote:
->>> On 31/10/2024 15:43, Jan Petrous wrote:
->>>> On Tue, Oct 29, 2024 at 08:13:40AM +0100, Krzysztof Kozlowski wrote:
->>>>> On Mon, Oct 28, 2024 at 09:24:56PM +0100, Jan Petrous (OSS) wrote:
->>>>>> +	plat->init = s32_gmac_init;
->>>>>> +	plat->exit = s32_gmac_exit;
->>>>>> +	plat->fix_mac_speed = s32_fix_mac_speed;
->>>>>> +
->>>>>> +	plat->bsp_priv = gmac;
->>>>>> +
->>>>>> +	return stmmac_pltfr_probe(pdev, plat, &res);
->>>>>> +}
->>>>>> +
->>>>>> +static const struct of_device_id s32_dwmac_match[] = {
->>>>>> +	{ .compatible = "nxp,s32g2-dwmac" },
->>>>>> +	{ .compatible = "nxp,s32g3-dwmac" },
->>>>>> +	{ .compatible = "nxp,s32r-dwmac" },
->>>>>
->>>>> Why do you need three same entries?
->>>>>
->>>>
->>>> We have three different SoCs and in v3 review you told me
->>>> to return all back:
->>>> https://patchwork.kernel.org/comment/26067257/
->>>
->>> It was about binding, not driver.
->>>
->>> I also asked there: use proper fallback and compatibility. Both comments
->>> of course affect your driver, but why choosing only first part?
->>>
+Hello Lee
+
+Thanks for the review!
+
+On 10/31/24 17:32, Lee Jones wrote:
+> On Tue, 15 Oct 2024, George Stark wrote:
+> 
+>> When probing if default LED state is on then default brightness will be
+>> applied instead of max brightness.
 >>
->> Does it mean I should remove first two (G2/G3) members from match array
->> and use "nxp,s32r-dwmac" as fallback for G2/G3? And similarly change
->> the bindings to:
+>> Signed-off-by: George Stark <gnstark@salutedevices.com>
+>> ---
+>>   drivers/leds/leds-pwm.c | 13 ++++++++++---
+>>   1 file changed, 10 insertions(+), 3 deletions(-)
 >>
->>   compatible:
->>     oneOf:
->>       - const: nxp,s32r-dwmac
->>       - items:
->> 	  - enum:
->> 	      - nxp,s32g2-dwmac
->> 	      - nxp,s32g3-dwmac
->>           - const: nxp,s32r-dwmac
->>
->> And add here, into the driver, those members back when some device
->> specific feature will be needed? Am I understand your hints right?
+>> diff --git a/drivers/leds/leds-pwm.c b/drivers/leds/leds-pwm.c
+>> index 7961dca0db2f..514fc8ca3e80 100644
+>> --- a/drivers/leds/leds-pwm.c
+>> +++ b/drivers/leds/leds-pwm.c
+>> @@ -65,7 +65,8 @@ static int led_pwm_set(struct led_classdev *led_cdev,
+>>   
+>>   __attribute__((nonnull))
+>>   static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
+>> -		       struct led_pwm *led, struct fwnode_handle *fwnode)
+>> +		       struct led_pwm *led, struct fwnode_handle *fwnode,
+>> +		       unsigned int default_brightness)
+>>   {
+>>   	struct led_pwm_data *led_data = &priv->leds[priv->num_leds];
+>>   	struct led_init_data init_data = { .fwnode = fwnode };
+>> @@ -104,7 +105,7 @@ static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
+>>   	/* set brightness */
+>>   	switch (led->default_state) {
+>>   	case LEDS_DEFSTATE_ON:
+>> -		led_data->cdev.brightness = led->max_brightness;
+>> +		led_data->cdev.brightness = default_brightness;
+>>   		break;
+>>   	case LEDS_DEFSTATE_KEEP:
+>>   		{
+>> @@ -141,6 +142,7 @@ static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
+>>   static int led_pwm_create_fwnode(struct device *dev, struct led_pwm_priv *priv)
+>>   {
+>>   	struct led_pwm led;
+>> +	unsigned int default_brightness;
+>>   	int ret;
+>>   
+>>   	device_for_each_child_node_scoped(dev, fwnode) {
+>> @@ -160,7 +162,12 @@ static int led_pwm_create_fwnode(struct device *dev, struct led_pwm_priv *priv)
+>>   
+>>   		led.default_state = led_init_default_state_get(fwnode);
+>>   
+>> -		ret = led_pwm_add(dev, priv, &led, fwnode);
+>> +		ret = fwnode_property_read_u32(fwnode, "default-brightness",
+>> +					       &default_brightness);
+>> +		if (ret < 0 || default_brightness > led.max_brightness)
+>> +			default_brightness = led.max_brightness;
+>> +
+>> +		ret = led_pwm_add(dev, priv, &led, fwnode, default_brightness);
+> 
+> This creates a lot more hopping around than is necessary.
+> 
+> Since led_pwm_add() already has access to the fwnode, why not look up
+> the property in there instead, thus massively simplifying things.
+
+I looked up the new property here to be near to
+led_init_default_state_get (both props are from the same group) and
+led_pwm_add is big enough already. And you're absolutely right that the
+patch can be optimized. Please take a look at the v2
+
+> 
+> 
+>>   		if (ret)
+>>   			return ret;
+>>   	}
+>> -- 
+>> 2.25.1
 >>
 > 
-> Sorry, it's not correct. This way I'm not able to detect S32R which is
-> the only one with higher speed.
-> 
-> Then I could use the G2 as fallback I think, Ie.:
-> 
->   compatible:
->     oneOf:
->       - const: nxp,s32g2-dwmac
->       - items:
-> 	  - enum:
->               - nxp,s32g3-dwmac
->               - nxp,s32r-dwmac
->            - const: nxp,s32g2-dwmac
 
-I don't understand. In both cases you can 'detect r', if by this you
-meant match and bind. I don't care which one is the fallback, but if one
-does not work it points to different issues with your code.
-
-Best regards,
-Krzysztof
-
+-- 
+Best regards
+George
 
