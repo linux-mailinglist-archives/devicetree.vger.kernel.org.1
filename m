@@ -1,113 +1,84 @@
-Return-Path: <devicetree+bounces-118196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23CEC9B94F4
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 17:08:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0953D9B9500
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 17:12:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB9B8284EF5
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:08:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2B441F21A93
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 16:12:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658831C82F3;
-	Fri,  1 Nov 2024 16:08:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621C91C9B80;
+	Fri,  1 Nov 2024 16:12:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="igi+83t8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dmaX2Npl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C1F13D893;
-	Fri,  1 Nov 2024 16:08:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 329A11C8FD3;
+	Fri,  1 Nov 2024 16:12:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730477306; cv=none; b=S6DpmgBC+dz9JBfK8kX2gjiB1z5w5oOHYo7zBA8q0EsRh80/gyJuZVtQYK+wMFrGtAaCvAbQqe/GJfM3kBMCmW5V01TYhzJXR5X/GWWcr9RqpbrhpQuOWs0b9DujGzVzFiX8RnG7OS8SiuyrQu3xAmV5d5EUPOLfsixr4R/G9Fk=
+	t=1730477548; cv=none; b=caH/Nxuro0ZMWHCkmB29WViDa5+CVPYf3hitYiBBkxOGVOSI3vyh7IoiQga8Qzk87bNkvYaPpjJyJf3PhBr2T9JmeO04he2pr0xSVxXBDFXhnKAKFkbR/EOqSnxgD1fc9sAoMNguEpjRNoHkj/NXoYA3WT7Ft38G02Z9sSxDWRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730477306; c=relaxed/simple;
-	bh=z/zU3VAMR7o1s5ellyeBMQGSOHuJK6e1Il8p5hmq1A8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XQT6ew55qEWwcnC+gSmA+eXTrHE8Pnmj4dn0tjn5PzWd6JDOpNfpFel4hqQlo5MAIk0ZsSEwD8Bvd6YIeZOMoiRSc+fF+aGNx+EJziJrJ3tUyJ51NRnWCu3j9aJIJANQFyptxVMI94K5aD5m6/QGSUABoyAjAZJkyD1VC4BwmY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=igi+83t8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DB14C4CECD;
-	Fri,  1 Nov 2024 16:08:23 +0000 (UTC)
+	s=arc-20240116; t=1730477548; c=relaxed/simple;
+	bh=uwXUT5FtHSsLYjY23SN+coyvRK2O8i6XV0K5dlhp3Qs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Eps+//TasPW3etgKf3zTRufax7eYPZ37aUJbkQwkZ6BfcN5eb+mAyoCg3Fxhloruro54O0gVi/aWNxQ+ruLZhEZsyIZyMwKtKeQ2VMXBhdLVlhrlpXi6sHTYHQExn8GPaSSEkg3RRS5ndC3g4sU9n0QE41lUC6OXOz6Qmd0zhc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dmaX2Npl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6598C4CECD;
+	Fri,  1 Nov 2024 16:12:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730477305;
-	bh=z/zU3VAMR7o1s5ellyeBMQGSOHuJK6e1Il8p5hmq1A8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=igi+83t82Hxt0inVEK7BtwfHMIYxT7T1W/IF8Lvn318KNmubbGWJJ070eXK7h+SPM
-	 yQSd01WFJ6aPtEcz65508SDUNran5bN8aPnIxXn2SFiDrMtFrpBUJYagZ4KzgVj3jh
-	 7Lls0s+1Ih5eZ4rn9zLCeIsUgUR/opOa9sP7r1D/ubbn7O5fZ6oaDBaWvc96uSZ1wR
-	 UY3MG11aCzlzeBhawuAswUYPM2fT58m4IMaYxKkNZAxEZdTl/cYZ7cnx2yrq0wgmIe
-	 P+CvxUvbmmMqES7bZu/YzvkJnLlKsYWre7ATT8FGCzcWFAXWY5j/2VAtF6sIAg1Ap9
-	 Wf3b/tyZUslAg==
-Date: Fri, 1 Nov 2024 16:08:20 +0000
-From: Mark Brown <broonie@kernel.org>
-To: j@jannau.net
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] spi: apple: Add driver for Apple SPI controller
-Message-ID: <e3008c6b-ba71-46cf-810b-053dbafe2cfb@sirena.org.uk>
-References: <20241101-asahi-spi-v2-0-763a8a84d834@jannau.net>
- <20241101-asahi-spi-v2-2-763a8a84d834@jannau.net>
+	s=k20201202; t=1730477547;
+	bh=uwXUT5FtHSsLYjY23SN+coyvRK2O8i6XV0K5dlhp3Qs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=dmaX2Nplc9QxCZRRY5Fbnq/PxjXcgLVPzmYLgxlaDO4rna64XDtqCOrxVYr0J5szB
+	 Npqtvz8dRNAd7ViCuk2MLHkGA7eTvnXYkKUaQlwl3qlrx76/ULmaSEoLyntGzpWWPC
+	 KJ7D4NrcX42+sZjs9FbV9YsttI11hzwmwuIP24o8vvdU2uO/EfBI5jRrX0ShKM6SfL
+	 6aEYFNomlrRPUn5PkorX0hSmyFwwDwTPvpOTSbTPA6cUxo7FZT0hr8efh/D4opvx+F
+	 XyqwQvcAxFIennJEMO7aC8eKS25RdXOLLlevMAiDhz7zVQbNc5xd/+eliz609Z2B19
+	 Y2V5d07aSa/Kw==
+From: Lee Jones <lee@kernel.org>
+To: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au, 
+ mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ linux-clk@vger.kernel.org, dmitry.baryshkov@linaro.org, 
+ Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20241023090153.1395220-2-ryan_chen@aspeedtech.com>
+References: <20241023090153.1395220-1-ryan_chen@aspeedtech.com>
+ <20241023090153.1395220-2-ryan_chen@aspeedtech.com>
+Subject: Re: (subset) [PATCH v6 1/3] dt-bindings: mfd: aspeed: support for
+ AST2700
+Message-Id: <173047754439.1930424.6922132618537420144.b4-ty@kernel.org>
+Date: Fri, 01 Nov 2024 16:12:24 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vxQmEEN76lEDPmLk"
-Content-Disposition: inline
-In-Reply-To: <20241101-asahi-spi-v2-2-763a8a84d834@jannau.net>
-X-Cookie: We read to say that we have read.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.13.0
 
+On Wed, 23 Oct 2024 17:01:51 +0800, Ryan Chen wrote:
+> Add reset, clk dt bindings headers, and update compatible
+> support for AST2700 clk, silicon-id in yaml.
+> 
+> 
 
---vxQmEEN76lEDPmLk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Applied, thanks!
 
-On Fri, Nov 01, 2024 at 03:25:04PM +0100, Janne Grunau via B4 Relay wrote:
+[1/3] dt-bindings: mfd: aspeed: support for AST2700
+      commit: 76c6217c31266e800b67a476bba59dfeb9858a90
 
-> transfer, most of which we do not use right now. Hardware CS control
-> is available, but we haven't found a way to make it stay low across
-> multiple logical transfers, so we just use software CS control for now.
+--
+Lee Jones [李琼斯]
 
-It is extremely common for hardware CS control to not support multiple
-transfers, I wouldn't be surprised if it's simply not possible.  We
-could potentially use it with compatible messages it seems dubious that
-it'd be worth the time/effort of checking and using it only some of the
-time.
-
-> +++ b/drivers/spi/spi-apple.c
-> @@ -0,0 +1,531 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Apple SoC SPI device driver
-> + *
-
-Please make the entire comment block a C++ one so things look more
-intentional.
-
---vxQmEEN76lEDPmLk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmck/PMACgkQJNaLcl1U
-h9BaDQgAgY0Tgn8A8AUWpa6rhj7aN09cctz9vhkmDJR8/ez7hwonJ4BpUrS1RES8
-ERU9g7IS5n2nnmq4Fw2f0G0ZlKHHprCkmj/rfCWFd5CX19kngP3ipq5DW0msYyfA
-xip5+8iAvEuHEpOmrTKE0cMQ+UMGSj5841+b97jvCfD3n8h6r+veyZ/fwzo/6hsE
-9CAYB4LimTQO+3qA8GCKTUIi4C3uvoBbpu+yM5spxtYAah8BRcfepv7BWvLUPx6U
-58ZxNVMWMlkCWq/6F/+lenAafU0MfPWaQiumdqGgAlxifOyy0Qv+VS7toKAI3bol
-7P5EiKWJAIC1VcGogoYW9JHOlGX2mg==
-=K8jA
------END PGP SIGNATURE-----
-
---vxQmEEN76lEDPmLk--
 
