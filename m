@@ -1,56 +1,61 @@
-Return-Path: <devicetree+bounces-118257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E63C9B988E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 20:28:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AED89B98BA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 20:35:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9B011F23687
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 19:28:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEAC51C21FCD
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 19:35:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BC611D0B98;
-	Fri,  1 Nov 2024 19:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 390231D04A5;
+	Fri,  1 Nov 2024 19:35:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uYoiD2kT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XLbv6Uxx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044E51D0425;
-	Fri,  1 Nov 2024 19:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C1021CEE94;
+	Fri,  1 Nov 2024 19:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730489227; cv=none; b=EeZjhNYeTz+vjuQyQCEvk9+EqUj9/5tQgZ3KqzpuEYx4dit9P4zQ8d6MUyWDu8X2WiU46niI7fDgfqLcIA4KNazf56asxuU3BCIsuWlJE+47IhvukoQ2GU7TcCVSkARobpHHLjwy8P94ObyKsAI9q5XRxmo44jGOisDGxl2lXio=
+	t=1730489732; cv=none; b=m9NCsrF+itw2jLkQqT5fdlQbFVG1dxJwtjYg8suGZoNfGMCc+Y8p+tY/lYrGZyUYqJtIV4yXUc9axMPYXTJ8AwBdJxzIlQnMNQbQ4NQxvL7eMQE1PTnt0rvxUp9ffOmAIWiyl+tOVbCGWX4/XzKQMjJVhsqQkvfjlVVt0g55BcE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730489227; c=relaxed/simple;
-	bh=ZgsRFhjZ8jdb9d5nAWftavR5ewJEWTt7qpXCwxTn82Y=;
+	s=arc-20240116; t=1730489732; c=relaxed/simple;
+	bh=LBcJYTB6WIbJ8DlAwG7hImL3BwFHDAgo02896nLj1Z4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EsWwp/bPSZDNwM28B+NCoOluVNzIaQL4Ll4ui12qqR4QTdVCUQlhsdDydIXxjkQ1AwX38QAhvB0FG9fNQKtbmCLX7ai0wz2rVro3RrPN8e2GJrkCE6ZgRo1O9NuGEfyeYOSJ6X+orcjKYz/BgFxNAa2B3DX0BGB0BQzemmN7Gbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uYoiD2kT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A114FC4CECD;
-	Fri,  1 Nov 2024 19:27:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hB+GSQ6LfKHZKh/WSj+IqFMf+rrrIyZB324fgxzayoObG2IywZv3zmry5UBHSJU6poKYkT7H/86V6yTwSg5CnLUrY+8VTjdZ//RHvYhqyuGTQZfGa7CfLsd8ITyPrkWDpep2BS7dRqQpQs4Q+SxbTd9KeifhAt6+u2kY0D1dUrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XLbv6Uxx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F887C4CECE;
+	Fri,  1 Nov 2024 19:35:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730489226;
-	bh=ZgsRFhjZ8jdb9d5nAWftavR5ewJEWTt7qpXCwxTn82Y=;
+	s=k20201202; t=1730489730;
+	bh=LBcJYTB6WIbJ8DlAwG7hImL3BwFHDAgo02896nLj1Z4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uYoiD2kTeKpYOm2z/uULnpoK0n0Z20N9XF81Is+CU610H7+p5tunUexmxrYd3ywG6
-	 5qYLPmQMgBCV4FnfuMCOJuNx19pVO5xj0Xe+8d9w0/Snlx0n/cBROpNlyrp+meb2G/
-	 cSF8Iv5eyOSB1INnm25svwU9YZ7Q61nmo4pMJsRCN8Ev5KVbl2Tzkqdlsh4tmG4gCe
-	 It0ReBPcJarJ3qgBZKTMQnQGCm6B+NCs3Y1jeLtwPA1xyPl9sAkB39RV5KZ7cICr0q
-	 l+et7ux4a94wnKMZaHFMptUILN/ktLRNcL3OyHFjjM12zogQG0osHS79Dpb7p8stoc
-	 e7zAdiXO4MX4Q==
-Date: Fri, 1 Nov 2024 14:27:05 -0500
+	b=XLbv6Uxxo8SQJm21791wg19EUL58H9utdxxI+OA95m+CsTNwB6++xU/9/m0/hprGj
+	 FtqxO722j/ulpty5c1g+TzF8YdjdDro98e1zAlPeEFWLLAoCn6+7UtlhGuTleLfpso
+	 eNscequJtH3HGY/7k19sz42uhTZQvG1XdBRIiJQkwDctN219TGQ688tmK/8/jJDeB6
+	 xnNdv9hOxEvaQG6/wx9hM3wkaPEmADMC08UUYZweW3oo+foHodWykfrMiOYhGHEePi
+	 AtOY5QHqt93iRsKHseckQw7hxrXvT4v+rFXiusKwK4RQ3t7F4tl9ow6gg6MF6Cun/f
+	 Ly6v514duNndA==
+Date: Fri, 1 Nov 2024 14:35:28 -0500
 From: Rob Herring <robh@kernel.org>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: lee@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	mazziesaccount@gmail.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, sre@kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: bd71828: Use charger resistor in mOhm
- instead of MOhm
-Message-ID: <20241101192705.GA4062121-robh@kernel.org>
-References: <20241029111112.33386-1-andreas@kemnade.info>
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: krzk+dt@kernel.org, a.fatoum@pengutronix.de, conor+dt@kernel.org,
+	dinguyen@kernel.org, marex@denx.de, s.trumtrar@pengutronix.de,
+	alexandre.torgue@foss.st.com, joabreu@synopsys.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, mcoquelin.stm32@gmail.com,
+	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 11/23] net: stmmac: add support for dwmac 3.72a
+Message-ID: <20241101193528.GA4067749-robh@kernel.org>
+References: <20241029202349.69442-1-l.rubusch@gmail.com>
+ <20241029202349.69442-12-l.rubusch@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,66 +64,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241029111112.33386-1-andreas@kemnade.info>
+In-Reply-To: <20241029202349.69442-12-l.rubusch@gmail.com>
 
-On Tue, Oct 29, 2024 at 12:11:12PM +0100, Andreas Kemnade wrote:
-> Apparently there was some confusion regarding milliohm vs. megaohm.
-> (m/M). Use microohms to be able to properly specify the charger
-> resistor like other drivers do. This is not used yet by mainline code
-> yet. Specify a current sense resistor in milliohms range rathes then
-> megaohms range in the examples.
-
-milliohms?
-
-rathes?
-
+On Tue, Oct 29, 2024 at 08:23:37PM +0000, Lothar Rubusch wrote:
+> The dwmac 3.72a is an ip version that can be found on Intel/Altera Arria10
+> SoCs. Going by the hardware features "snps,multicast-filter-bins" and
+> "snps,perfect-filter-entries" shall be supported. Thus add a
+> compatibility flag, and extend coverage of the driver for the 3.72a.
 > 
-> CC: sre@kernel.org
-> Reported-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> Closes: https://lore.kernel.org/imx/6dcd724a-a55c-4cba-a45b-21e76b1973b0@gmail.com/T/#mf590875a9f4d3955cd1041d7196ff0c65c0a7e9d
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
 > ---
->  .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml  | 13 +++++++------
->  1 file changed, 7 insertions(+), 6 deletions(-)
-
-Looks like rohm,bd71815-pmic.yaml has the same problem.
-
+>  drivers/net/ethernet/stmicro/stmmac/dwmac-generic.c   | 1 +
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 1 +
+>  2 files changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-> index fa17686a64f7..09e7d68e92bf 100644
-> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-> @@ -55,14 +55,15 @@ properties:
->      minimum: 0
->      maximum: 1
->  
-> -  rohm,charger-sense-resistor-ohms:
-> -    minimum: 10000000
-> -    maximum: 50000000
-> +  rohm,charger-sense-resistor-micro-ohms:
-> +    minimum: 10000
-> +    maximum: 50000
-> +    default: 30000
->      description: |
->        BD71827 and BD71828 have SAR ADC for measuring charging currents.
->        External sense resistor (RSENSE in data sheet) should be used. If some
-> -      other but 30MOhm resistor is used the resistance value should be given
-> -      here in Ohms.
-> +      other but 30mOhm resistor is used the resistance value should be given
-> +      here in microohms.
->  
->    regulators:
->      $ref: /schemas/regulator/rohm,bd71828-regulator.yaml
-> @@ -114,7 +115,7 @@ examples:
->              #gpio-cells = <2>;
->              gpio-reserved-ranges = <0 1>, <2 1>;
->  
-> -            rohm,charger-sense-resistor-ohms = <10000000>;
-> +            rohm,charger-sense-resistor-micro-ohms = <10000>;
->  
->              regulators {
->                  buck1: BUCK1 {
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-generic.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-generic.c
+> index 598eff926..b9218c07e 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-generic.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-generic.c
+> @@ -56,6 +56,7 @@ static const struct of_device_id dwmac_generic_match[] = {
+>  	{ .compatible = "snps,dwmac-3.610"},
+>  	{ .compatible = "snps,dwmac-3.70a"},
+>  	{ .compatible = "snps,dwmac-3.710"},
+> +	{ .compatible = "snps,dwmac-3.72a"},
+>  	{ .compatible = "snps,dwmac-4.00"},
+>  	{ .compatible = "snps,dwmac-4.10a"},
+>  	{ .compatible = "snps,dwmac"},
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> index 54797edc9..e7e2d6c20 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> @@ -522,6 +522,7 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
+>  	if (of_device_is_compatible(np, "st,spear600-gmac") ||
+>  		of_device_is_compatible(np, "snps,dwmac-3.50a") ||
+>  		of_device_is_compatible(np, "snps,dwmac-3.70a") ||
+> +		of_device_is_compatible(np, "snps,dwmac-3.72a") ||
+
+All these of_device_is_compatible() checks should really go away and all 
+the settings just come from match table data. Then everything is const 
+and we're not matching multiple times at run-time. That would be a bit 
+of refactoring though...
+
+>  		of_device_is_compatible(np, "snps,dwmac")) {
+>  		/* Note that the max-frame-size parameter as defined in the
+>  		 * ePAPR v1.1 spec is defined as max-frame-size, it's
 > -- 
-> 2.39.5
+> 2.25.1
 > 
 
