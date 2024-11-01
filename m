@@ -1,138 +1,121 @@
-Return-Path: <devicetree+bounces-117959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-117960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62E849B88EA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 02:54:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3320C9B890C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 03:07:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19BC51F219DA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 01:54:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA1A0282FBD
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 02:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 289B5823DE;
-	Fri,  1 Nov 2024 01:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B19B513AA2B;
+	Fri,  1 Nov 2024 02:06:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jwzxVCaC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uJsTUGGd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E6617BCE;
-	Fri,  1 Nov 2024 01:53:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 866DD126BF9;
+	Fri,  1 Nov 2024 02:06:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730426041; cv=none; b=mkGbSTVeOs3aKfM/fcYV5QuogpDu3eua3Ro2w5v4viLnwsm8K3R5YCVtpOMFRRnRA0MCGc97uN50D58rX1uRI60N87hTcWLSv45EQ4KlyZCLqjl6uyWEYXCERljyEyc9kWBbBHL4NYKwNT6ksr/PfMdxtekD2VM7t5bo7fzoLzo=
+	t=1730426819; cv=none; b=oVI2xBMDUzCwAzfQvW/LxvTTw/JjpOIsgHkhQ5KIPDakhMGadTY5ebiWdO8LLwSiVAcfBgvCzlx1Q6cGTWA60AZLCq9Yji4yfiNtGe5qp4o8kIXewEtiDLACGqQESbRSD7rvc3twZ8h5iqHDkVK1HlhQ9OaCr/WJOfc+sJQhnRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730426041; c=relaxed/simple;
-	bh=DYXzLbNkX5We0MkfTIw9SDnFIwLhUmVUlIg+tLMebk0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MYVrWWVFI1bv27x2Z0jwIRSHT5rreYRkUMlVD9Z79mQj2W9QkUWtWVh+kfITesOXO6ErrUEOnE35tIggEHkFErbwyfJscUJL5TjQn4rqymYGk31yhMcLXL4uK/FRO8Y3v/oMQ8UHQuI0RToC7MtZDqHZo3wKkP4b90edtpg5x2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jwzxVCaC; arc=none smtp.client-ip=209.85.167.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3e5ffea2699so1324592b6e.1;
-        Thu, 31 Oct 2024 18:53:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730426034; x=1731030834; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=F6D1Wm3FMJcQXu9DNBHAKX/TsEgkUYA/96V4XySBVqQ=;
-        b=jwzxVCaC4+hJST4FN9sbkOzvFDjVyhnTSeSNKm/MXN/UdQny5Ao/fFxDHhgVfpmpG7
-         yfwd7lfdGxcAFsy0JtlniXbxpJdIdRh9rP0MYo2DmOx/t5deKkHaYMHMbwGTO3wf75jx
-         8q98dnhwLOGjzxZ6vxs7qAHiuyIxHm/uSkfwrv6CXkkNAxCaFSyqoRKbfVYzvRcAe20M
-         guqZNxIWCjK5rFlohP7AXCCla4zHNFo2pgWXRyBpA0O4h6rhR2obhXQ5f5GjOoWVzrt5
-         6S+1AGZHB14xSRrXQLPyF9yZX0UkTuh40g4wG64Rkg8+7HN0CqFk6PP0khEZhnYn+57y
-         cqbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730426034; x=1731030834;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=F6D1Wm3FMJcQXu9DNBHAKX/TsEgkUYA/96V4XySBVqQ=;
-        b=JfoYD5kpzKQq53ij1fhBOnpNmXt1+yNBabTo+LxxaNE7ytEO1YepGsCIGz1QrRHr5e
-         Rv1rjg81asJDBQx4M79bz21T0+YCYAEze5N/onTY7fJQIzZMJc5BaMrSNxbvpLhnF7XD
-         CfeEXPcg8d2+p5hq/pxQHVn8HoqviCSO2DjwNZeyEaIkIn7mRBv+Ab+fKP++eO+8Xql0
-         Y4uGY4sjSmumf9KwThj71IrXNTPgINvgrxx3xFVeJUqtKtdq14zFi0dHjGVlUwRXN9wC
-         1DJfPp79dI4dcYahltiEnUxqmRwYWP4IQGwdPlwSu0nNUy4TJ4HiHKpVxWOAceckv3/H
-         VDuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVKDyvmyCt8rjmFoWxotMr9OLPFsbPs4hy14y852leWUqZER2gf6v4a7Hv8FF8dqczwONk2idgv70by@vger.kernel.org, AJvYcCW3pQgwtz8MweIqTFh7vJxnC0km719OTOcBGw0UKoME6H3HP7Dy8NvKmpKbAQzgXdHcxYZ678B0BRi4xjoE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBTntyqtGIbGMYkp3sg7MzagZqLo1cNoczowqqg8pajAKL7vy5
-	ZGudFRu0NL6L5Ay0FAmkP/f/v6A9Dx20pExPaR5Q5oaod2hekIVjlM9YWFmEkf0LoHjV42xW+Gq
-	aVuyeqZBWJh+DZ6zv00n25wjaQQ4=
-X-Google-Smtp-Source: AGHT+IFZQ4NyGNMCDLgv6bCZyw5Zsw65CYGtv8tMY/DPPDyDLkJOAPDiCRinE+4bVOEGfk1xiPcwEU7dyPJOaeEVW6o=
-X-Received: by 2002:a05:6808:21a0:b0:3e0:468f:7c5b with SMTP id
- 5614622812f47-3e74c3d95c3mr1351262b6e.17.1730426034446; Thu, 31 Oct 2024
- 18:53:54 -0700 (PDT)
+	s=arc-20240116; t=1730426819; c=relaxed/simple;
+	bh=g8Fx5TTJzV1MuTCeRPULLGaYpS2ORG7ZcWbYMH2W/Ds=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MJqfRykfPnBg37w5v83s96DEyMuyGkusvEOcl+ejKam/vB6gmCRC8TXJn+kHaZ2QPoYDCchY0eMo7m7XISvqesTADlzAKo2cCYs8H8JSPVxY5UgEiZEACbxuzMSVxEGBdnTiUjVnxf5NjKvkWSe3Uo2EJIikyUY0B3zcb5bC8bQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uJsTUGGd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1B9A7C4CEC3;
+	Fri,  1 Nov 2024 02:06:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730426819;
+	bh=g8Fx5TTJzV1MuTCeRPULLGaYpS2ORG7ZcWbYMH2W/Ds=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=uJsTUGGdvGAFC/ue1WVQ4iFaOP8LD/iC9zBiDnAebPj2s7DQngOzI+E1Lfj4CePUL
+	 WI3AM3m7u5aL2liENGaCjlCDR0BmYoY8Is/mbSx09xf0PJU5TgVu+KLqYFbxtx0wsr
+	 EGhsTEC31Hz6pldqSszc9IsmBO4+CJCxeSoCC9YJ4fip96vnWHw018w3X423mZrE9T
+	 WME4NAtz+c5smY8xmknveYHW5E+oWJdbhxN4iRAfUKmtIeJeXPdv+x1WEGPYewkdtS
+	 FUUjQvwqxUIaV0WT3GGQioK24lGmUv5OPUWTe+e1NxpuQa5XeFvVjGUwcDaWhI/MV+
+	 DPDVeGr8OWkLA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 11EC2E67496;
+	Fri,  1 Nov 2024 02:06:59 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH RESEND v4 0/3] support for amlogic rtc
+Date: Fri, 01 Nov 2024 10:06:46 +0800
+Message-Id: <20241101-rtc-v4-0-14e1ed486ed8@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1723716331.git.stano.jakubek@gmail.com> <e57ee9b94f128753d156d77015f6cc3dc24fd9e8.1723716331.git.stano.jakubek@gmail.com>
- <ZyMyJrSPTfFrSC-t@standask-GA-A55M-S2HP>
-In-Reply-To: <ZyMyJrSPTfFrSC-t@standask-GA-A55M-S2HP>
-From: Chunyan Zhang <zhang.lyra@gmail.com>
-Date: Fri, 1 Nov 2024 09:53:18 +0800
-Message-ID: <CAAfSe-uC+G8iEk_37vBr3+dQsv4a4tTTsz11hUguVRnU=r+4qQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: sprd: sc2731: fix bat-detect-gpios property
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
-	Baolin Wang <baolin.wang@linux.alibaba.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+To: Yiting Deng <yiting.deng@amlogic.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730426817; l=1589;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=g8Fx5TTJzV1MuTCeRPULLGaYpS2ORG7ZcWbYMH2W/Ds=;
+ b=L6jDG5I4ppkE3/ogU72kAKSdhg5iKkHL41Adh5bjA13FwGiJHkGApvFLyAI1c0QSHcSAC3jyG
+ 9nLMw4aoC9yA7LyDm5A4LO/vPzO/bt3+O4KOC8nDVwyRaPKvcPsoS2c
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-On Thu, 31 Oct 2024 at 15:30, Stanislav Jakubek <stano.jakubek@gmail.com> wrote:
->
-> On Thu, Aug 15, 2024 at 12:13:18PM +0200, Stanislav Jakubek wrote:
-> > According to DT bindings, the property is called bat-detect-gpios, not
-> > bat-detect-gpio. Update the property as such.
-> >
-> > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/sprd/sc2731.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/sprd/sc2731.dtsi b/arch/arm64/boot/dts/sprd/sc2731.dtsi
-> > index 12136e68dada..c8b30c0479fd 100644
-> > --- a/arch/arm64/boot/dts/sprd/sc2731.dtsi
-> > +++ b/arch/arm64/boot/dts/sprd/sc2731.dtsi
-> > @@ -97,7 +97,7 @@ pmic_adc: adc@480 {
-> >               fuel-gauge@a00 {
-> >                       compatible = "sprd,sc2731-fgu";
-> >                       reg = <0xa00>;
-> > -                     bat-detect-gpio = <&pmic_eic 9 GPIO_ACTIVE_HIGH>;
-> > +                     bat-detect-gpios = <&pmic_eic 9 GPIO_ACTIVE_HIGH>;
-> >                       io-channels = <&pmic_adc 3>, <&pmic_adc 6>;
-> >                       io-channel-names = "bat-temp", "charge-vol";
-> >                       monitored-battery = <&bat>;
-> > --
-> > 2.34.1
-> >
->
-> Hi all,
->
-> looking at this patch again, it seems there's some confusion going on.
-> The bindings specify the property as "battery-detect-gpios", but the driver
-> checks for "bat-detect" [1]. I assume the DTS was added with "bat-detect"
-> to make it work, even though it's not conformant to bindings.
-> It has been this way since the bindings/driver/DTS were introduced
-> back in 2018/2019.
->
-> What would be the correct way to fix this? Change the bindings to
-> "bat-detect-gpios" or change the driver/DTS to "battery-detect-gpios"?
+Add rtc driver and bindigns for the amlogic A4(A113L2) and A5(A113X2) SoCs.
 
-I would prefer the second, i.e. change to "battery-detect-gpios" in
-the driver and DTS.
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v4:
+- Keep the same order as as in properties.
+- Link to v3: https://lore.kernel.org/r/20240910-rtc-v3-0-1fa077a69a20@amlogic.com
 
-Thanks,
-Chunyan
+Changes in v3:
+- Perfect the binding description and rename binding.
+- Using dev_err_probe function correctly, and modify commit message.
+- Change placement about MAINTAINERS.
+- Link to v2: https://lore.kernel.org/r/20240903-rtc-v2-0-05da5755b8d9@amlogic.com
 
->
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/power/supply/sc27xx_fuel_gauge.c?h=v6.11#n1186
->
-> Regards,
-> Stanislav
+Changes in v2:
+- Modify bindings clock name and perfect the example.
+- Fix some bug in driver, and use dev_err_probe instead of dev_err in probe process.
+- Use RTC API to handle calibration.
+- Remove unused func and rename driver file name.
+- Link to v1: https://lore.kernel.org/r/20240823-rtc-v1-0-6f70381da283@amlogic.com
+
+---
+Yiting Deng (3):
+      dt-bindings: rtc: Add Amlogic A4 and A5 RTC
+      rtc: support for the Amlogic on-chip RTC
+      MAINTAINERS: Add an entry for Amlogic RTC driver
+
+ .../devicetree/bindings/rtc/amlogic,a4-rtc.yaml    |  63 +++
+ MAINTAINERS                                        |   8 +
+ drivers/rtc/Kconfig                                |  12 +
+ drivers/rtc/Makefile                               |   1 +
+ drivers/rtc/rtc-amlogic-a4.c                       | 473 +++++++++++++++++++++
+ 5 files changed, 557 insertions(+)
+---
+base-commit: 658b3fec5fc0ef3c016c4a7eedac1a5f3b8c0151
+change-id: 20240823-rtc-127cd8192a13
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
