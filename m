@@ -1,158 +1,193 @@
-Return-Path: <devicetree+bounces-118243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43D519B980C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 20:05:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 177C39B982F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 20:13:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDA7F1F21EC6
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 19:05:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8724CB21260
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 19:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C90D14E2ED;
-	Fri,  1 Nov 2024 19:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B031CF280;
+	Fri,  1 Nov 2024 19:12:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="UguSqV4x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pt06Jk4r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 800A41A0B16;
-	Fri,  1 Nov 2024 19:05:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730487926; cv=pass; b=NKVOsPQ4Y3EgPPLC0aggl2XRt/nOQfAEosdF+SpprnPu/yXUiUKiN6Ehe1Lxl0hHBIWRQNoRqXsi4YlVACE8TIWRWUjCsaUjVVSuitaDiMvN+gHBUxTa+4+H8P4dOzkKUvUfltFQrxIRWSeJ9tB4ApXu16gcmJKGYPeUnm5+eNE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730487926; c=relaxed/simple;
-	bh=pzoJ5fr6Q5GERZ5oaDzhX4m2iyhXQfzYDnP4gVMdNVU=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 815A01CEEA8;
+	Fri,  1 Nov 2024 19:12:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730488351; cv=none; b=gZph1tYw3FwIbPZeG165k1/2hCdPg4DHqAIQ7RdQPIvZauRXdxGm6DM10bVLMbuN8ZMcZb3DjPd2vQpdyLtazYcAb5aPWwBF+h9uWrhN6bb39/3mT1IC+CtlQFTAw2K7Luvs5GNHtqnFICnr0bCSjbFKZi6cHRoePfd0CKTQd08=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730488351; c=relaxed/simple;
+	bh=uDz0+rrdKUxN7l++C1yclZv0bkKrRBTyhR8EgMvYQjU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CMjxizkx47oPCTlO4Ug9BgLK1ln56p5u8Ngw3cHtHtHOy2bGZwuTKun1KnUhcMN4iEKrA6ie9EnZencA/S4lMoeMn2nA84tvi7Sq42xCQP+4X0vz4FP4EJGbjSnxF3VtIulPSXnWMddG6+UcdtCIcCGvf0fhH3icFPubgot3SXQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=UguSqV4x; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1730487900; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=d20C6Y3wyw3/8SaY0GwAVhYMHvrXivxlNZuO18r6gr/ZegIhYAyXtqss75WvJKUS8a5SJLObM6nnjF2q5gkeWsHV/t31Fcm0F65WyZu21L8VzwbbO4JOSumNpLMhOXY6ObLqOpY5RSJGRz1C6NJHOPA1dZPeLoWMaREJbvfFMtU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1730487900; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=pzoJ5fr6Q5GERZ5oaDzhX4m2iyhXQfzYDnP4gVMdNVU=; 
-	b=Z0mYTzCYL6nKjVntpGOnNrUTIO23JKlDrF1q5/elaQklnmk2gJGug/vSKnHj4I9ZkDH8hfLz/JWSEKapbDlpDKh53/3PzZyIR+mFE+ej5KCzfQt610MOVme1V3NS0oWC6dsY9WRLSYKwxcdIzKmMTi8xVwH0FUf3CPTdZhezmko=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1730487900;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=pzoJ5fr6Q5GERZ5oaDzhX4m2iyhXQfzYDnP4gVMdNVU=;
-	b=UguSqV4x+9hrg/V3cytNm2dwqbndRkJLTRaQ/SEMM8w/qbHiDqVOOaaEd4cUiArS
-	2hTuGpx67ztYGzAKJA/k1bEpjVPsva2c8iA27GvPDxqxl/3XIyKcgSfuHURJB7cOZtH
-	wUGVT0mzS+UcebYPEUCU8e9EBh+RfB4RSGr/gD4Q=
-Received: by mx.zohomail.com with SMTPS id 1730487897758168.1618463566807;
-	Fri, 1 Nov 2024 12:04:57 -0700 (PDT)
-Received: by mercury (Postfix, from userid 1000)
-	id 18AEF10604B0; Fri, 01 Nov 2024 20:04:53 +0100 (CET)
-Date: Fri, 1 Nov 2024 20:04:52 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Elaine Zhang <zhangqing@rock-chips.com>, 
-	=?utf-8?B?QWRyacOhbiBNYXJ0w61uZXo=?= Larumbe <adrian.larumbe@collabora.com>, Boris Brezillon <boris.brezillon@collabora.com>, 
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH v3 0/7] Fix RK3588 GPU domain
-Message-ID: <27yrptpmhdbugmrgxaxllnbllv3adu3tzgl7e26b3flsvhlf3g@nfqn2fvmktmc>
-References: <20241022154508.63563-1-sebastian.reichel@collabora.com>
- <CAPDyKFoAv1jeQitHmTMhvwG9vGzN-vLby0fPzkX1E6+-Qe2dog@mail.gmail.com>
- <CAPDyKFp=sRLVBhW2aK87pYHVGi_6gNw=e3j3AGMnEWP2SVYFpw@mail.gmail.com>
- <9b4c9b61-a2be-465e-a4d9-034951fc862f@sirena.org.uk>
- <CAGb2v65ahUB_Q+HPFV6B-UqWCbCNLdGz58BGo9iHRhVyf1ruZA@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HBUE48tS84gLNj2FO2AvlN4PfIMmiaggVkJxfcAmlvyE/wPrwqzm1uMoKWII8pZBM/VZp0A/ktRegkf0i1n0cK5o/t0IJieK+3PvayEK2U8V8AA5JPLhFM69/GX59P7JKVGqnSs2pe2mFOZVKxOlasse0lePl0Jn0BatKW3QBTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pt06Jk4r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD346C4CECD;
+	Fri,  1 Nov 2024 19:12:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730488351;
+	bh=uDz0+rrdKUxN7l++C1yclZv0bkKrRBTyhR8EgMvYQjU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Pt06Jk4rqrpDY2wKmy2XXXWpChHkcnIP34Tf+iNO478aLXDzfFWI//ErszeF/c6lq
+	 1qbP/oU84hIaMZjgbVpAe4HNWD8bIonlTgeXgFIrFqV3kCoKFIdhVPInzSI/bPG9ED
+	 9heSn3m9KAh+gQGQeJYefeWAS/IUrDV+PJ6pArU5h1azfEqoiAmVga1CYaizBdU18v
+	 g3ivDW59fS6KjfYNMqlAnMLBt5a6z/lNnnuptV2DBlzBJnOR94ozJyGszryTZb37Ge
+	 U7hQxYute3bZR4b6UYLj3ILL2tmZSAkHpJ3ZzR5NeXDcNVC/7yM8aZ+Er3CH0K/HEH
+	 pWgUB7i/Ke7Gg==
+Date: Fri, 1 Nov 2024 14:12:29 -0500
+From: Rob Herring <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Antoine Tenart <atenart@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	llvm@lists.linux.dev, upstream@airoha.com
+Subject: Re: [PATCH v5 2/3] dt-bindings: crypto: Add Inside Secure SafeXcel
+ EIP-93 crypto engine
+Message-ID: <20241101191229.GA3841377-robh@kernel.org>
+References: <20241028124206.24321-1-ansuelsmth@gmail.com>
+ <20241028124206.24321-2-ansuelsmth@gmail.com>
+ <20241028143515.GA792452-robh@kernel.org>
+ <671fa31a.050a0220.12b1fe.157e@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sd4kvys2evpxroym"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAGb2v65ahUB_Q+HPFV6B-UqWCbCNLdGz58BGo9iHRhVyf1ruZA@mail.gmail.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/230.343.48
-X-ZohoMailClient: External
+In-Reply-To: <671fa31a.050a0220.12b1fe.157e@mx.google.com>
 
-
---sd4kvys2evpxroym
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 0/7] Fix RK3588 GPU domain
-MIME-Version: 1.0
-
-Hi,
-
-On Fri, Nov 01, 2024 at 10:41:14PM +0800, Chen-Yu Tsai wrote:
-> On Fri, Nov 1, 2024 at 10:36=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
-rote:
-> > On Fri, Nov 01, 2024 at 12:56:16PM +0100, Ulf Hansson wrote:
-> > > On Wed, 23 Oct 2024 at 12:05, Ulf Hansson <ulf.hansson@linaro.org> wr=
-ote:
+On Mon, Oct 28, 2024 at 03:43:34PM +0100, Christian Marangi wrote:
+> On Mon, Oct 28, 2024 at 09:35:15AM -0500, Rob Herring wrote:
+> > On Mon, Oct 28, 2024 at 01:41:42PM +0100, Christian Marangi wrote:
+> > > Add bindings for the Inside Secure SafeXcel EIP-93 crypto engine.
+> > > 
+> > > The IP is present on Airoha SoC and on various Mediatek devices and
+> > > other SoC under different names like mtk-eip93 or PKTE.
+> > > 
+> > > All the compatible that currently doesn't have any user are left there
+> > > commented for reference.
+> > > 
+> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > > ---
+> > > Changes v5:
+> > > - Comment out compatible with no current user
+> > > Changes v4:
+> > > - Out of RFC
+> > > Changes v3:
+> > > - Add SoC compatible with generic one
+> > > Changes v2:
+> > > - Change to better compatible
+> > > - Add description for EIP93 models
+> > > 
+> > >  .../crypto/inside-secure,safexcel-eip93.yaml  | 67 +++++++++++++++++++
+> > >  1 file changed, 67 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+> > > new file mode 100644
+> > > index 000000000000..188240b74110
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+> > > @@ -0,0 +1,67 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/crypto/inside-secure,safexcel-eip93.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Inside Secure SafeXcel EIP-93 cryptographic engine
+> > > +
+> > > +maintainers:
+> > > +  - Christian Marangi <ansuelsmth@gmail.com>
+> > > +
+> > > +description: |
+> > > +  The Inside Secure SafeXcel EIP-93 is a cryptographic engine IP block
+> > > +  integrated in varios devices with very different and generic name from
+> > > +  PKTE to simply vendor+EIP93. The real IP under the hood is actually
+> > > +  developed by Inside Secure and given to license to vendors.
+> > > +
+> > > +  The IP block is sold with different model based on what feature are
+> > > +  needed and are identified with the final letter. Each letter correspond
+> > > +  to a specific set of feature and multiple letter reflect the sum of the
+> > > +  feature set.
+> > > +
+> > > +  EIP-93 models:
+> > > +    - EIP-93i: (basic) DES/Triple DES, AES, PRNG, IPsec ESP, SRTP, SHA1
+> > > +    - EIP-93ie: i + SHA224/256, AES-192/256
+> > > +    - EIP-93is: i + SSL/DTLS/DTLS, MD5, ARC4
+> > > +    - EIP-93ies: i + e + s
+> > > +    - EIP-93iw: i + AES-XCB-MAC, AES-CCM
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - const: airoha,crypto-eip93
+> > 
+> > Still doesn't look SoC specific...
 > >
-> > > > The merge strategy seems reasonable to me. But I am fine with that
-> > > > whatever works for Mark.
+> 
+> Oh ok I didn't understand that I had to drop it.
+
+Not drop, but something with the SoC name in it. What's the SoC you are 
+using?
+
+> 
+> > > +          - const: inside-secure,safexcel-eip93ies
+> > > +      # Compatible that doesn't have any current user.
+> > > +      # - items:
+> > > +      #     - const: SoC specific compatible
+> > > +      #     - enum:
+> > > +      #         - inside-secure,safexcel-eip93i
+> > > +      #         - inside-secure,safexcel-eip93ie
+> > > +      #         - inside-secure,safexcel-eip93is
+> > > +      #         - inside-secure,safexcel-eip93iw
+> > 
+> > I should have looked at the driver before commenting before, but since 
+> > you are using these compatibles, you should go with my other suggestion 
+> > or these will be listed as undocumented.
 > >
-> > > Mark, any update on this?
-> >
-> > > If easier, you could also just ack the regulator patch (patch1), and
-> > > can just take it all via my tree.
-> >
-> > I'm still deciding what I think about the regulator patch, I can see why
-> > it's wanted in this situation but it's also an invitation to misuse by
-> > drivers just blindly requesting all supplies and not caring if things
-> > work.
->=20
-> I suppose an alternative is to flag which power domains actually need
-> a regulator supply. The MediaTek power domain driver does this.
+> 
+> The other suggestion you mean with the false or not: {} ? I tried that
+> first with 
+> 
+> - items:
+> 	- not: {}
+> 	- enum:
+> 		- ...
+> 
+> But make dt_binding_check always complained. and False had some problem
+> is compiling the yaml schema.
 
-If you look at patch 6/7, which actually makes use of devm_of_regulator_get=
-()
-you will notice that I did actually flag which power domains have/need a
-regulator.
+Either way should work with main branch now.
 
-> There's still the issue of backwards compatibility with older device
-> trees that are missing said supply though.
+> Sorry if I'm making this very confusing. We can also consider using SoC
+> specific compatible in the driver directly and just declare the generic
+> one here.
 
-Exactly :)
+How would that work for the cases without an SoC specific compatible 
+yet? Of course, if you can't test the i, ie, is or iw variants, how do 
+you know they work. Just relying on them being a subset of functionality 
+I guess.
 
-As far as I can see the same misuse potential also exists for the
-plain devm_regulator_get() version.
-
-Greetings,
-
--- Sebastian
-
---sd4kvys2evpxroym
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmclJk4ACgkQ2O7X88g7
-+poVOg/+PaFjJt/IbSqoFt+2B0uc3fK8C3HKt56Y2kbeE0svwnnG8rBkWqbNGP/x
-699N+JDv8ZOozhjWXknZBfsGLJUOSvvE1b88xb5WWsZ0FXnQ+uqaOdBu2Ph5iWL2
-efopHne/lUiElpPwuHPrGyibqdclrjuF4REkt9IfIG9wCuXwTbmrtXSGV0B1A6El
-JF36I3Gb0i1UwsaIdFKm5MgnLeycFyHMnBYNSeQ5ODnK3UXCRySfQa/CJHU0uAKx
-hrlQ4S9cP0ndBZTkd9fXAXCVftPfZx/k8ov6eBUtHIk9E0ADCePmQMtjPBvHU33S
-KJzVyjsCSR5hOP1TEcD8+3b3T9qOxJAuvJXvycotVFyueWO+RHfJvY46Aye865O7
-l6009bUVHnEpod1uRb8GSufiMt38yu5tCyM2fckpCL624YwC/pLEEWqqyJP9Mw4E
-oqgpexhSAVHZxI3RnuWxmesclM4xA/cI/wl8PQsNZ7fArS0RWlHCYn4lvlz4i886
-TSUvys5m4QxVx8rlADvDS6z1HQd2xXtsjq2aYwwxkqxhK/aK/kef2vIEy1zq02TK
-aFs+AtwO1jNofEYAQBRsTTlmz7yES7YJ6wA6ClyjKHme1DhHe6JvjX4lrdAsen9x
-Tu9hfY0Gi8fg/k3O2NB/g9L1QyeSosgA2xfc3a1f17mtYX/ZGqA=
-=IDSJ
------END PGP SIGNATURE-----
-
---sd4kvys2evpxroym--
+Rob
 
