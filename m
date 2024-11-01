@@ -1,187 +1,158 @@
-Return-Path: <devicetree+bounces-118081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 567BA9B8F21
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:25:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8951F9B8F48
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:36:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F1942831B1
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 10:25:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC74A1C22223
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 10:36:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A631B160783;
-	Fri,  1 Nov 2024 10:25:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6987D1925A9;
+	Fri,  1 Nov 2024 10:35:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pIXeLKXT"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BpIjtGGI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 447641581EE
-	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 10:25:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 465F7839F4;
+	Fri,  1 Nov 2024 10:35:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730456715; cv=none; b=JaT7XcqDhIy56X8+VT6E1cqG1aairSK5WETA5HTLOpQRQYsPkFVgUh9iFLDCIqUTZINT6vq2EjJprvXLv7ePdV2c4A+3kZ0WpVHZZnHyJwDb4cVvRZ62HstGNXyimzhtGQfwcM+cJj9TSofr/Wd6HxeoO1OC74SLjb7B0K/9S6s=
+	t=1730457315; cv=none; b=lHyz4sqQaacDHbjvnNYllLD53m/9ueTY4ILSx2yr7HN9ZTr3xtbQ+IaPk16TCjd6mLbY7JL9Z+MR9Hwm0T5N/0eHkc2p59AwzfhAV1VEfYTehtTMLOY8osXIbm5s6vRjcczy62mC29O8+6Cdk5QDLd1xcmd3ajYBnrtGg1HKrxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730456715; c=relaxed/simple;
-	bh=+yXHMbKZ1H5XAjjCoPBfjF7SFzBBi8D94y9c9WKOknk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ijxitINfMgA/2GlX9XpEm3aFjM7/84o/m7Fhcvz1eQDEU3Xqicm11rwd9GaPLyT8VyZo9GkTVJiGxjoxWe2dr0B+U8el6icFqwK5SXjTN7rgXjA4989zTgftclqSiOifcf3QMP6sQwwGgiuFka+EvHettZi3BhD9ZQVcr8fIxuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pIXeLKXT; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2fb59652cb9so17719571fa.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 03:25:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730456711; x=1731061511; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WpzSgjnpO5Pgi4peizaj5qKRJmTZYgfK/PfyJYP5YwM=;
-        b=pIXeLKXT3i+5+lhQQwW32ZtR+YUZytHp9/nV8gXy+MDJLZh4Pt35wL3SKAyl+n/4Jp
-         xLTjp8j2iamuabR7bJCYYbGRB423DYN67mWpLK99GBbHkMUb+LNzsMqqDTfna4hPWZnA
-         y+KxP1jJd7ckgY1IdGhSUfnCDlJH9cfZ438JqJzqKP9XpMxwanU4SlHYcJuA1GbBVyqB
-         3NASVi7d4xns1LC07PGWbh4fYEpxI9O3mroMqGLl5/iJiERjm8PS7kwZ0HlEGtLobBtY
-         tmbsV3r+x0l9c2IIIiRAGywaPtARAi4C3UwVJxfeAmpqa65T2JG7Vziu2A8xf1GQRKGY
-         RmqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730456711; x=1731061511;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WpzSgjnpO5Pgi4peizaj5qKRJmTZYgfK/PfyJYP5YwM=;
-        b=DGinR6UBT+Qp4L6ncG4MsMSHJ9e8yKp2ZdnqLaWNk30EPb+Dd0MASsvo5DWq2yADLl
-         Y6OdtRMflK76GptTGmc3ZiYbHlT1GH5cu1v/WH5hIOxVI3OoVe61Wvk9IXV2qpWnlYbc
-         K++yQhFaBUG0+eNWl83n0eh0UL7hjdXyW8k/LinsqnGpzm5w6j0zt3wB0w+ASrQZcx4v
-         X3Y/pKqwZJAUgWfDOufu0moYAYyacFbm5vmiZFUiTSjJw7Q0HyELNn7Z7GkNjOi8JXML
-         2DU4IVgoTrdkuImSdsT6PdFoaS8YGPA0l8ixrnvDlvuJ8tiiXbT/ytaV3BTgNFtomQRD
-         sj+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVSV8GWAqrottDrFz8dvI9r4N090RP9wlNmxIvPHTuhVNDvDnF1rBSE2n5GMK5g+o/4Bd+ys8o1D7B5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8z6Qa1WxNAO6wIDhywLNRrKlF5W1pDdT/krkWuGBGoi1BAKoc
-	qaNZymxYF1wsAwntsi6dzOpeO9OVo5i+YG20kOIFu9cqy8Bf3qaU/c/fUu+QiRsUL/hlG5aG0ks
-	NB/pNNlgwlPkdLx5sPbSTiOOIntojQwy+WRlbGg==
-X-Google-Smtp-Source: AGHT+IEh3UD7clJCQ/gk/n1lZMbdbxLI4TLsCj8gBPyhuLX6iMsirPWos/kw6T81Ngl9MnmOHHdaCm4w/4b+g80Z8io=
-X-Received: by 2002:a2e:819:0:b0:2f7:a5fe:adbe with SMTP id
- 38308e7fff4ca-2fdec72f2bemr26733951fa.18.1730456711357; Fri, 01 Nov 2024
- 03:25:11 -0700 (PDT)
+	s=arc-20240116; t=1730457315; c=relaxed/simple;
+	bh=mDY3sQhHHJay03QoXDGp/ZK5UPvuGf6lO1jg/cq7xSw=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=JkPBN58dyaqgbFNAJUyqbAZTIh6p1ppwdpbkG4vywnDBk+sHxLyEWasNyy0BS3DLu/jhrqfZmYwBxlnZAYy2oWOJSboKVBqvjPfvKe00tiTrBwQzgGqvzFpeFlJKQpj7X56pI4zZmJ5lOn1G6heYOuQ9MvPM+CqQGL1hmC3yNWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BpIjtGGI; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A15pMkj027500;
+	Fri, 1 Nov 2024 10:34:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=idB0wFf+KEHEu+GKhdfnGe
+	cqvCNGY2vxrRLBvif2tl8=; b=BpIjtGGIPi3fS+akhumUzmokk54Z84mfAkYqSE
+	Mi6baqxH5PGMvIn2sa5r83SO8aeZ+DKJ3DWsCGISV7BvDhYFqGDhEzCBmndSHthP
+	h5XoqR+Gx7YAwWLjJqv6Wj1vKkPZ2uSvPwlFm2uXMGbhcVcCEKh4rPU74h6flRvD
+	Ik+0HkrtpXkyaemxUgQuxC5s/GnF06ViGAnvkKxt8nK1UbZTmT+3gTrvCQHvtD3S
+	XGPi3Vs0LZ29xz35nlyPIuOj6+TkhHkuPG5EvJr+x5pfwwiOt3PiRv7K+aUC4q3J
+	OezFogjo/MmlPI13HrD1dOOLpHCdO35fZbrLkJmmDVr4Ux6g==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42k1p3a3dx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 01 Nov 2024 10:34:58 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A1AYhsc004189
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 1 Nov 2024 10:34:43 GMT
+Received: from nsssdc-sh01-lnx.ap.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 1 Nov 2024 03:34:37 -0700
+From: Lei Wei <quic_leiwei@quicinc.com>
+Subject: [PATCH net-next 0/5] Add PCS support for Qualcomm IPQ9574 SoC
+Date: Fri, 1 Nov 2024 18:32:48 +0800
+Message-ID: <20241101-ipq_pcs_rc1-v1-0-fdef575620cf@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241022155658.1647350-1-antonio.borneo@foss.st.com>
- <20241022155658.1647350-8-antonio.borneo@foss.st.com> <CACRpkdZKimfE_00kxa_qAf+jjwxBtuKizDTd3RvOS_PDuZ_JKg@mail.gmail.com>
- <df12289dc65c21496d4f9818a53d9797406e2663.camel@foss.st.com>
-In-Reply-To: <df12289dc65c21496d4f9818a53d9797406e2663.camel@foss.st.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 1 Nov 2024 11:24:58 +0100
-Message-ID: <CACRpkdbne8730=6Hvd2W5ymv3xYNC6ApPthT0Fcb+D-fafA_5A@mail.gmail.com>
-Subject: Re: [PATCH 07/14] dt-bindings: pinctrl: stm32: support IO
- synchronization parameters
-To: Antonio Borneo <antonio.borneo@foss.st.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	=?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>, 
-	Stephane Danieau <stephane.danieau@foss.st.com>, 
-	Amelie Delaunay <amelie.delaunay@foss.st.com>, Fabien Dessenne <fabien.dessenne@foss.st.com>, 
-	Valentin Caron <valentin.caron@foss.st.com>, 
-	Gatien Chevallier <gatien.chevallier@foss.st.com>, Cheick Traore <cheick.traore@foss.st.com>, 
-	linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFCuJGcC/x3MQQqAIBBA0avIrBMai6iuEhExTTUbM5UIxLsnL
+ d/i/wSBvXCAUSXw/EiQyxZgpYDO1R6sZSsGU5sWsUYt7l4chcUTatOtjH1DA3UNlMJ53uX9bxN
+ YjtryG2HO+QN2JvOOZwAAAA==
+To: "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Andrew Lunn
+	<andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King
+	<linux@armlinux.org.uk>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_kkumarcs@quicinc.com>,
+        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_linchen@quicinc.com>, <quic_luoj@quicinc.com>,
+        <quic_leiwei@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <bartosz.golaszewski@linaro.org>, <vsmuthu@qti.qualcomm.com>,
+        <john@phrozen.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730457277; l=1960;
+ i=quic_leiwei@quicinc.com; s=20240829; h=from:subject:message-id;
+ bh=mDY3sQhHHJay03QoXDGp/ZK5UPvuGf6lO1jg/cq7xSw=;
+ b=ZB2HSgnS8szv49yGy4OIy4c+EnnNgiEpPn2dBTwtoa6VxW6sk+vcXSTpSGLdfgmzqTvAWOb1b
+ 8Yb8c7N857DAsPGDWj2EJ8uIOWqZ2cHvLh2gV+oLk+KVuOpCjL9f6bP
+X-Developer-Key: i=quic_leiwei@quicinc.com; a=ed25519;
+ pk=uFXBHtxtDjtIrTKpDEZlMLSn1i/sonZepYO8yioKACM=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XL6t0DXuFUg4viHgM9e2gB6mKYjqNTeu
+X-Proofpoint-ORIG-GUID: XL6t0DXuFUg4viHgM9e2gB6mKYjqNTeu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 spamscore=0 lowpriorityscore=0 mlxscore=0 malwarescore=0
+ phishscore=0 clxscore=1015 impostorscore=0 mlxlogscore=887 suspectscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411010076
 
-Hi Antonio,
+The 'UNIPHY' PCS block in the Qualcomm IPQ9574 SoC provides Ethernet
+PCS and SerDes functions. It supports 1Gbps mode PCS and 10-Gigabit
+mode PCS (XPCS) functions, and supports various interface modes for
+the connectivity between the Ethernet MAC and the external PHYs/Switch.
+There are three UNIPHY (PCS) instances in IPQ9574, supporting the six
+Ethernet ports.
 
-some responses below!
+This patch series adds base driver support for initializing the PCS,
+and PCS phylink ops for managing the PCS modes/states. Support for
+SGMII/QSGMII (PCS) and USXGMII (XPCS) modes is being added initially.
 
-On Thu, Oct 31, 2024 at 2:44=E2=80=AFPM Antonio Borneo
-<antonio.borneo@foss.st.com> wrote:
+The Ethernet driver which handles the MAC operations will create the
+PCS instances and phylink for the MAC, by utilizing the API exported
+by this driver.
 
-> > Otherwise I would say that just checking if the line is in input
-> > or output from other properties should be enough to configure
-> > this? input-enable, output-enable to name the obvious.
->
-> On STM32MP25x there is a 'skew-delay' HW block on each pin,
-> but it's applied independently on each pin either only on the
-> input direction OR only on the output direction.
-> There is no automatic way to switch it between input and
-> output path. This property assigns the delay to one path.
-> The generic property 'skew-delay' does not considers this
-> case.
->
-> While I could extend the pinctrl driver to include the info about
-> direction, that is trivial for example for UART or SPI, it will fail
-> for bidirectional pins like I2C's SDA; some use case could
-> require the skew-delay on SDA input path, other on the output path.
-> Also the idea of assigning the direction at startup (e.g. in the
-> bootloader) is not feasible as the delay depends on the
-> functionality that can change at runtime e.g. by loading modules.
-> I prefer having this "direction" path explicitly selected through
-> a DT property.
->
-> The existing properties 'input-enable' and 'output-enable' are
-> not specific for the skew-delay.
-> And I think it would be confusing having 'input-enable' or
-> 'output-enable' associated with a bidirectional pins like I2C's SDA.
->
-> I propose to change it as, e.g.
->   st,skew-delay-on-input:
->     type: boolean
->     description: |
->       If this property is present, then skew-delay applies to input path =
-only,
->       otherwise it applies to output patch only.
->
-> Or, it could be a new generic property (keeping backward compatibility), =
-e.g.:
->   skew-delay-direction:
->     enum [0, 1, 2]
->     default: 0
->     description: |
->       0: skew-delay applies to both input and output path, or it switches=
- automatically
->          between the two direction
->       1: skew-delay applies only to input path
->       2: skew-delay applies only to output path
+While support is being added initially for IPQ9574, the driver is
+expected to be easily extendable later for other SoCs in the IPQ
+family such as IPQ5332.
 
-I like this property the most. Can we go with the generic
-skew-delay-direction?
+Signed-off-by: Lei Wei <quic_leiwei@quicinc.com>
+---
+Lei Wei (5):
+      dt-bindings: net: pcs: Add Ethernet PCS for Qualcomm IPQ9574 SoC
+      net: pcs: Add PCS driver for Qualcomm IPQ9574 SoC
+      net: pcs: qcom-ipq: Add PCS create and phylink operations for IPQ9574
+      net: pcs: qcom-ipq: Add USXGMII interface mode for IPQ9574
+      MAINTAINERS: Add maintainer for Qualcomm IPQ PCS driver
 
-Also state in the existing skew-delay property that if
-skew-delay-direction is not
-present then it is assumed that the property applies to all
-directions of a pin.
+ .../bindings/net/pcs/qcom,ipq9574-pcs.yaml         | 230 ++++++
+ MAINTAINERS                                        |   9 +
+ drivers/net/pcs/Kconfig                            |   9 +
+ drivers/net/pcs/Makefile                           |   1 +
+ drivers/net/pcs/pcs-qcom-ipq.c                     | 879 +++++++++++++++++++++
+ include/dt-bindings/net/pcs-qcom-ipq.h             |  15 +
+ include/linux/pcs/pcs-qcom-ipq.h                   |  16 +
+ 7 files changed, 1159 insertions(+)
+---
+base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+change-id: 20241101-ipq_pcs_rc1-26ae183c9c63
 
-> > > +          st,io-clk-edge:
-> > > +            description: |
-> > > +              IO synchronization clock edge
-> > > +              0: Data single-edge (changing on rising or falling clo=
-ck edge)
-> > > +              1: Data double-edge (changing on both clock edges)
-> > > +            $ref: /schemas/types.yaml#/definitions/uint32
-> > > +            enum: [0, 1]
-> >
-> > This looks like it should be made into a generic property,
->
-> I believe it is too specific to ST implementation.
-> I see already some 'retime' mentioned in old ST bindings
-> bindings/pinctrl/pinctrl-st.txt and bindings/net/sti-dwmac.txt, but the c=
-ontrol looks quite different; I don't plan to reuse them.
->
-> I will fuse in V2 this property together with the next two in a more
-> meaningful one, partially acknowledging your proposal below.
+Best regards,
+-- 
+Lei Wei <quic_leiwei@quicinc.com>
 
-Hmmmm. Let's see. I know that e.g. MMC has similar properties
-and if similar things appear in other bindings (not necessarily
-pinctrl bindings) then that should also be taken into account.
-
-And in MMC this is called DDR.
-
-Yours,
-Linus Walleij
 
