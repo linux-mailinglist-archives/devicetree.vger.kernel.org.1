@@ -1,69 +1,71 @@
-Return-Path: <devicetree+bounces-118273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EA2E9B99EF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 22:13:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70ADC9B99F8
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 22:14:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F063EB21B7F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 21:13:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A29231C216B9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 21:14:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF411E47B9;
-	Fri,  1 Nov 2024 21:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5731D1E9092;
+	Fri,  1 Nov 2024 21:13:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="eXLDEFVW"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="bq4OAVe2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F021B1E282A
-	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 21:13:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7871E47A4
+	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 21:13:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730495616; cv=none; b=jPWrbwukxfDpsPyNKzXHZEEMvQV6qUQyynGrFvFwUsQECZr8g/bl6tC57kWjF3glb2TGR2tuGjYPVg0R9BtG1d4ZapIK99hDVb8I+WcnHkOPL7PRoGyV5+dN8BrjN7VoHK2hnYRw1tYf9VD55G7cqlh3LmJyiay210kQDuew/x4=
+	t=1730495628; cv=none; b=psftHGBdNa1CqRLEfc/CjV3cbeU908dbAwVn/MbhNDtBG2Kh25/e5cIHQYTgyYL727kQ1IFEIUBb6scIMxhhrCFqsSa5KrXC+TXmUz5RosKMydOGN1jmeuUtjPIXvUyz5IsF1nbTsU2me330G2isOwski9mxhJ8FbMnJ+K3FIvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730495616; c=relaxed/simple;
-	bh=fVRyDwIDJEU3QhhtvsXhsXyGoQ+vQkIYsVbHH/ESiz0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ngt06DFxWsBD4rMf6mwciC4od16ry/i2FmXYaCcOBMzDviOpLU+o9IVJJWP1CCUZa6c4FC2KUi/kxWcXWy3nMdm2PlbkqyUoP6gow2gRHek+gFDAkFRIlCNzmNDitf379DiaaG8jbDst/Fk1XamNoyZh9MmR32SWjZ9f1uTzWyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=eXLDEFVW; arc=none smtp.client-ip=209.85.210.172
+	s=arc-20240116; t=1730495628; c=relaxed/simple;
+	bh=j7iW1feqAWso+Tat91tAHo+FMkx1wlBjbAqAJjmwQzI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=EKl9JvXWzG9dBShiF+s8VCjglV1XIu52yexYYrLQVG0d9NRSVoDyTHSzzWgsRxvbQuF4Wxr3AAHvX2rx7vopJKcyLFnk6xLUYA+weiXzEFKl+7z32tyKtMjnXS0HKv22YI4/y8aAOP3VTunQm7cmk513/k6A0AOir6TjSYT0sO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=bq4OAVe2; arc=none smtp.client-ip=209.85.210.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-71e5a62031aso1975011b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 14:13:34 -0700 (PDT)
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-71e61b47c6cso2107549b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 14:13:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1730495614; x=1731100414; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MBfbdpDXvXyTc8pX+dqi/KLkO3CnvwNV1g4IugsXMhU=;
-        b=eXLDEFVWoR8NyqBugrznes+87beQuNuYqvl5Tjnes5LW2+l62xu9TvzbkmgAERp67q
-         4BjpxX1iGC1PfIwIhjCOaAm10qn4DtMVKrSU2qWeVimyUlNmzudyZCDbin+ZtuZ+0JN3
-         77gyTDoUcw5Q2LXCXGanYAN7KyImbpgINkwxg=
+        d=broadcom.com; s=google; t=1730495623; x=1731100423; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/gmaslziIHUfTRq5OT9nnJb5IIrBuXYj22iGCA2p1Vw=;
+        b=bq4OAVe2CcyY8Fz3NqUZ/Slhb2Tb1KQKZzuPuj339Kq4z/TmpFCUmx9xq5brm94bO3
+         in9evA3ATgn/4YteOw6GL1sm12igoFoYyvlwN5kyqNGv/qjwHUZPDAh0E0Iiq3BukwzX
+         wfnrRHizTvXvfrFyU3WoT1UiNvkOPQnpQDxjE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730495614; x=1731100414;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MBfbdpDXvXyTc8pX+dqi/KLkO3CnvwNV1g4IugsXMhU=;
-        b=ole9XU0KIvv41rffS1h21wg/1GGUAIjNEuA/XRZHFOShp/Xd0prlq4RLkQDDDk7aGq
-         o4lUIqeD+/wkv6F3wUPwwbrgseAsE4IPPTPSkqRQKe1E0OiFeR/YqN+8Ih+G4P1HC+iO
-         3dYdx4wyeC9q89l0DefnhqlO14Z7A1fEw02Ldp/IkwJ2vRzGaiTW3Tx8LRZ5vaa2jrcK
-         RHq4B9kILzV19awbWXBXb93ZiuRK0BkNEN1EJpLgsseGtsQPIcJNU8327b8WTNltGG5S
-         4QwEEHiaYSAU8ORwfrWoAxgqua+eASumwpsNbXjmTuaZNwHq/UpQTRCbEVN+1fR2tzad
-         i0TQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX7HIUNAXI4YvOvEwoyI4PiOHsTPLvEEvOUDRH5PkId5slGI6+249bG1L78Q9vwAcSFtHuAsGEYKHKX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKwIEuJhHwAWqHzwNoe5iTg6mNvHEnhABua6uU0sr4Vq2xOMDg
-	8iSzhvwlojCXEKsZD55saFYka47tOcwQWukydCNaatVUBBsgakdsAwhNi7xrmA==
-X-Google-Smtp-Source: AGHT+IHSF2JuOrjTjV/cyFRyjiRvzuvcMqrlb4ZbR1iu6WticcFNwva8vtTE8w1/zgmTXaNn/gruuA==
-X-Received: by 2002:a05:6a00:4603:b0:71d:f821:1981 with SMTP id d2e1a72fcca58-720c98a5ebfmr7787754b3a.4.1730495614192;
-        Fri, 01 Nov 2024 14:13:34 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1730495623; x=1731100423;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/gmaslziIHUfTRq5OT9nnJb5IIrBuXYj22iGCA2p1Vw=;
+        b=GVdT/ocIvTaBi5q2c66Vhy240G+U28Bcif4ogDrhdto/AgS5w04qUBqL+A2lD3kJ2Z
+         X6mMQ6uDqO13WhFsubXxBoiPiVJXuH3ahsZUSOp8+gOdErbUsOxC/1pX/JhLwfTAUoVj
+         twTiZP4ZdCFsr/8i3fO9t7hyV++uc8Vt5WDBGUTCEoGrrxdHOd2LyZU0d0eN48M6I74z
+         PCWULcNX9FrWIA4vQrNYnS6OnwZHB5nm+INwLoJu7e+QCa2Fdd34KM/UqfI+I87PFWvk
+         /HLX+NRlm4WGLE0XFPG2iCtIXsB5tqhibsUXFh0o8CIA2Hpi8ny0636YCTOLUnzZhoVq
+         7bEg==
+X-Forwarded-Encrypted: i=1; AJvYcCUTDJrR34dPsSH/KBCOvj+n81UgkvSbfFbyIc+4k9qUJsv7qX5rpT5WQL3Qgb246i5KuEQdJS8NMNAo@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJ5TRic/MmO1L5Tr3xEFIwqgRudVje2RGZe8gXphhk620Uq+4p
+	ic6rC2+LUH+NUZpyqkNpbUrnAI1tpS5Rd/eyUA9WmGmeyPk3IldYJNidq+gnBQ==
+X-Google-Smtp-Source: AGHT+IEAOefh63wQIqfkUJOl5klZYVKP7yCEGttqmKZtHp1y5vUat4ZKI34uorr+hfkqicJydf5fHA==
+X-Received: by 2002:a05:6a20:cd91:b0:1cf:3c60:b8d3 with SMTP id adf61e73a8af0-1d9a83cf404mr30917513637.19.1730495623421;
+        Fri, 01 Nov 2024 14:13:43 -0700 (PDT)
 Received: from lbrmn-mmayer.ric.broadcom.net ([192.19.161.248])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc1b8992sm3109854b3a.44.2024.11.01.14.13.33
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7ee452a995bsm2898250a12.21.2024.11.01.14.13.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Nov 2024 14:13:33 -0700 (PDT)
+        Fri, 01 Nov 2024 14:13:42 -0700 (PDT)
 Received: by lbrmn-mmayer.ric.broadcom.net (Postfix, from userid 1000)
-	id 8E67B6FC; Fri,  1 Nov 2024 14:13:32 -0700 (PDT)
+	id 029D06FE; Fri,  1 Nov 2024 14:13:42 -0700 (PDT)
 From: Markus Mayer <mmayer@broadcom.com>
 To: Olivia Mackall <olivia@selenic.com>,
 	Herbert Xu <herbert@gondor.apana.org.au>,
@@ -78,10 +80,12 @@ Cc: Markus Mayer <mmayer@broadcom.com>,
 	Device Tree Mailing List <devicetree@vger.kernel.org>,
 	Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
 	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 0/2] hwrng: bcm74110 - Add Broadcom BCM74110 RNG driver
-Date: Fri,  1 Nov 2024 14:13:13 -0700
-Message-ID: <20241101211316.91345-1-mmayer@broadcom.com>
+Subject: [PATCH v2 1/2] dt-bindings: rng: add binding for BCM74110 RNG
+Date: Fri,  1 Nov 2024 14:13:14 -0700
+Message-ID: <20241101211316.91345-2-mmayer@broadcom.com>
 X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241101211316.91345-1-mmayer@broadcom.com>
+References: <20241101211316.91345-1-mmayer@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,30 +94,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This series adds a driver for the random number generator found on the
-BCM74110 SoC.
+Add a binding for the random number generator used on the BCM74110.
 
-Binding changes from v1:
-  - renamed binding file to brcm,bcm74110-rng.yaml
-  - ensure "brcm,bcm74110-rng" is being used instead of "...-trng"
-  - removed "|" after "description:"
-  - removed label "rng:"
-
-Code-related changes from v1:
-  - only enable the driver for ARCH_BRCMSTB || COMPILE_TEST
-
-Markus Mayer (2):
-  dt-bindings: rng: add binding for BCM74110 RNG
-  hwrng: bcm74110 - Add Broadcom BCM74110 RNG driver
-
- .../bindings/rng/brcm,bcm74110-rng.yaml       |  35 +++++
- drivers/char/hw_random/Kconfig                |  13 ++
- drivers/char/hw_random/Makefile               |   1 +
- drivers/char/hw_random/bcm74110-rng.c         | 125 ++++++++++++++++++
- 4 files changed, 174 insertions(+)
+Signed-off-by: Markus Mayer <mmayer@broadcom.com>
+---
+ .../bindings/rng/brcm,bcm74110-rng.yaml       | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/rng/brcm,bcm74110-rng.yaml
- create mode 100644 drivers/char/hw_random/bcm74110-rng.c
 
+diff --git a/Documentation/devicetree/bindings/rng/brcm,bcm74110-rng.yaml b/Documentation/devicetree/bindings/rng/brcm,bcm74110-rng.yaml
+new file mode 100644
+index 000000000000..8e89d4a70b53
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rng/brcm,bcm74110-rng.yaml
+@@ -0,0 +1,35 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rng/brcm,bcm74110-rng.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: BCM74110 Random number generator
++
++description:
++  Random number generator used on the BCM74110.
++
++maintainers:
++  - Markus Mayer <mmayer@broadcom.com>
++  - Florian Fainelli <florian.fainelli@broadcom.com>
++
++properties:
++  compatible:
++    enum:
++      - brcm,bcm74110-rng
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    rng@83ba000 {
++        compatible = "brcm,bcm74110-rng";
++        reg = <0x83ba000 0x14>;
++    };
 -- 
 2.47.0
 
