@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-118117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E3359B90B1
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 12:54:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D6609B90C6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 12:56:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A1FFB20E21
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:54:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03FEEB22436
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 11:56:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C222D19B595;
-	Fri,  1 Nov 2024 11:54:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 845EE19B3E3;
+	Fri,  1 Nov 2024 11:56:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KvCwlNdl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MxzH+GCR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B81A22A1B2
-	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 11:54:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E82519925B
+	for <devicetree@vger.kernel.org>; Fri,  1 Nov 2024 11:56:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730462072; cv=none; b=cjhz7V6x/xXIhoMxCRNiSb1B1zSr/9tr9GCd5rqPcVDT06S9x/663F8qJctI0FGQTw75PzyUZk4PTXQR/xQv3GXoEn/zTE5gnDlYuIEdpmhyc6sGZienAyAk4bqUv7NSuNP0Gvn0jjpf45b/i1AtWdNGY86lPf3HXRp4tvzQpM0=
+	t=1730462182; cv=none; b=lMSRo4zdcsqgmvH+meOe1wu3hPknxpkb5xEtp1XDFACO+lqNpNTOIw1dRrNFGSGaplW5qzWwsejDF7YkXbUR7x5nxXMom9/RbgC/WhpYvbY++ItjnshIu24v6ZE0B/EDUtVreXfH6e8Dfj4PFqLLHhtu6UtzorZcmIiNZFAQeF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730462072; c=relaxed/simple;
-	bh=VTkHIu6x6J8oDnM2EYPHGTKSx4bAvmnfjc2sBE+Lf2I=;
+	s=arc-20240116; t=1730462182; c=relaxed/simple;
+	bh=1Uojm1GMg7+SmttJF2ZuBBVhB5ST+uLPitvJ1/9BMXM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GSB0fMwLSk+g3gCues3Ll/6rVfiLPFSNpcuME17RiAEx0/TU1eiuVaZm2A+oPRAfX1+D2ok7vH4NIo/aedJmw43F3LXEu6f6aNdhC/Ed+FeA5gNHLOHsnbazZP4sr0jjXVk7DS9cniGt4Q3CjUpx7RVxN8RwGiOKn0E43G6hbps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KvCwlNdl; arc=none smtp.client-ip=209.85.208.173
+	 To:Cc:Content-Type; b=aABn59Z19OACReFK/+Xap8356JU8ke/tnbGtgm1viHOfjEfIpBFPQ/zs4pMQqC6SiZIW6xfTZtqCCPhRSqHZ7dlhiBplbd3epeFDpAK4dBCDKNZ6OLlEjkkRmE8nFQvWAzmgkU44htlKWtAip4UMrixnwBBEBxnrA8ni3c7ZnG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MxzH+GCR; arc=none smtp.client-ip=209.85.208.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2fb3debdc09so14278031fa.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 04:54:30 -0700 (PDT)
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2fb443746b8so16411001fa.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2024 04:56:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730462069; x=1731066869; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1730462178; x=1731066978; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VTkHIu6x6J8oDnM2EYPHGTKSx4bAvmnfjc2sBE+Lf2I=;
-        b=KvCwlNdlZHvuAo/NQ5ntgTz2uEH4MvpJYhRtkGuJBChah7TMnK2bcJGKzICMAV4w/T
-         pa4vgCG3Ap8WwjrCkmmExzda5r9G0rsbWSXPSyNdEknA3EDl4bNPtE/qXWhcea+BgN4A
-         FQHWhF/OsNG8AiJvhDVHrbXaXUBXlm6jHkefkSnVJRETESexQoXHjDPLKQeCHw7ON114
-         m/QLQ5EUExO2wu/A0Evc2+ix7btfJsQAmMWDYsPT1kP3izFcREiC5dOf7BvSJj/+x530
-         c6LkygrZkILgtzmTVT9sT5s03GPXOCCOoH/z+dfAiEuQfzdQPZmycj5yqOobbTQWtlP7
-         mEPg==
+        bh=PR7nhijIFPqEwqWUXxfWpQdSj2cyoar1EyPI7jC4FfI=;
+        b=MxzH+GCRv9ClLXszj1vkA7X0oGAXClXXgEIfvB1I/fqumEFDtqAzfp3hURIQrIAVEZ
+         BsqbkaFi5p3FyjrPwEk4hGz5p94qimaZQXAlI7Ps+m69KiH8Gbw4dgRTSE2mb6EHnH4N
+         wi3vSnMtzyNMr7ipbOc+lxfww/zjYouA+g2Fy/JvBb0lY8OC6Nw9we4tjJHv8j9xHcqC
+         BAo0oh3U+8LGjpDZCm6O4mJaKarznjkDV/o4EOKJsTDsR/VR9PTHJcaU12FxvYyDAeEf
+         5JdKWuQtH5k8F1vC1JFfyoIGkWUw5zNWqP7LAivnTuIenqLG6C0GX4ozJ7SW3/FF5C+J
+         LQsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730462069; x=1731066869;
+        d=1e100.net; s=20230601; t=1730462178; x=1731066978;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VTkHIu6x6J8oDnM2EYPHGTKSx4bAvmnfjc2sBE+Lf2I=;
-        b=d7UoE4kFQwoE69FrXvyEHgNWP39L5ahakqtiTosesorga6nubzhdnTU7roEyV1w+H4
-         7ebhL7oO6MUq75A5B6OB7joj58/CX0MnKuXYFC0N6nfMRVcYgwGPBc5Tlb+9a/Bgdzcp
-         frT3Dya6xW2izf3x0L9XBitIwk6/fPanQl3wiDiAS0BwdL49gstRpS9DnykXu6Xrs5z3
-         os5mcE4sSPeUf7WQqoIBeDihbk5ATGCgh03qrUJCzmgmHkZeGGzmS7a8j6U5inGFUL+F
-         9vLMlZ1W0SLCvc+eBvieKz7g9oltJD3DKlzbwuXoK/HLqzw2uWRXOCw0PpAsNGNNJMq1
-         +I4w==
-X-Forwarded-Encrypted: i=1; AJvYcCVuA9UlHZ2ezr4oNa2aZPnv5Z/CHhHYY5KWxSvnKbsl+e+ItyOqGa/6I/yiiRmTI41TV9b2kxdO4Jyw@vger.kernel.org
-X-Gm-Message-State: AOJu0YzR45+JGDzSWJqsT3pJ53mnExgmFCOInyx3zWBKN0BcCT3XVDFt
-	PBx859YKblaC6L+gLpa7eZE8kNZNnwvrM0RcDTyndIEaBG/P7ba1Dd0lcVyDOtORerR7dg62gKz
-	HHTfaRSzUy3wxM6RX8LuWfint/fVXq5LdDkICQg==
-X-Google-Smtp-Source: AGHT+IElM+4cf5nJiQK/flMPFGUQS/qscWK2wONW7FVnOjF9n3NBlck/a/D8oXjerYOiHg6n+ZKlCTOw3SU28go/iqc=
-X-Received: by 2002:a05:651c:154b:b0:2fb:6394:d6bd with SMTP id
- 38308e7fff4ca-2fdec4e750emr31077211fa.12.1730462068876; Fri, 01 Nov 2024
- 04:54:28 -0700 (PDT)
+        bh=PR7nhijIFPqEwqWUXxfWpQdSj2cyoar1EyPI7jC4FfI=;
+        b=cIeOevOy72lhx5ZWtYimumEqkp9xbK8bRj40ALTbiH8Tw3IbHKVUIhF4C0jA969iap
+         9kXt+l3tWmShM+H3MGcluPTTlnJxKfk0CJuHaW8dezg3s1m+v8Pndf8+ZPATiF0X76Fx
+         CahEVMsam8qxPDv2Vv6DJpE4yV29ByZEQBui8YRO8mjhDNXQgNwRjN7TKu4WInZbrZ9E
+         fuPuIlJfZZuQ+0mv0K/WK38fCaBW/viFH7QeDOXTwDHFOULbSMUofjGrP3S4yl3p2YWZ
+         pp9okUV8QfPL4Wx1nhL1ITnoCncqUJblsXHSQ6G3wJ20I6gES9jZ+0fM52C/zHD45cbY
+         53BA==
+X-Forwarded-Encrypted: i=1; AJvYcCUXr48gulVFWDloI2IklZebfIw0yW3jWaKEXj0d8WjjOoEWOMKOwYOtQfwaBZjEHw7lw7KQD1BAMAV/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzy2gTzvEvfF84vLX5HLOiH3QbZKN09PrzSgDIsbj/LhkdeuTXW
+	gcc0ZS1C2Qf/zWRi9Iy33eQAM8quUOX6P3/C6o5v2GYEoRzSqVgHuhvjSwb8RP/FMN7tBu4qUiK
+	kHOMugY0qkFocZtIk7S1MxXUZpC0L7Yb0ZpVH6Q==
+X-Google-Smtp-Source: AGHT+IG201tjRpH4xAJy3js1MXvAZgMS+IPv3AAVo1TZLrpjjIYjlw9AiqUvvc+CIbPttUv3zlvfcUINXBzKPHjno0Q=
+X-Received: by 2002:a05:651c:211a:b0:2fc:9550:d658 with SMTP id
+ 38308e7fff4ca-2fcbe004950mr124110461fa.24.1730462178345; Fri, 01 Nov 2024
+ 04:56:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241101080614.1070819-1-andrei.stefanescu@oss.nxp.com> <20241101080614.1070819-6-andrei.stefanescu@oss.nxp.com>
-In-Reply-To: <20241101080614.1070819-6-andrei.stefanescu@oss.nxp.com>
+References: <20241101080614.1070819-1-andrei.stefanescu@oss.nxp.com>
+In-Reply-To: <20241101080614.1070819-1-andrei.stefanescu@oss.nxp.com>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 1 Nov 2024 12:54:17 +0100
-Message-ID: <CACRpkda2Ss_oy8vX6V7KK9DCvSoWxSg2R_iCourt-XReHBcpLg@mail.gmail.com>
-Subject: Re: [PATCH v5 5/7] pinctrl: s32cc: change to "devm_pinctrl_register_and_init"
+Date: Fri, 1 Nov 2024 12:56:07 +0100
+Message-ID: <CACRpkdbFQ6f6xg906ZREOgDifSWwfFWdxCqDxcLALZdYg6PWWQ@mail.gmail.com>
+Subject: Re: [PATCH v5 0/7] gpio: siul2-s32g2: add initial GPIO driver
 To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
 Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -96,13 +96,21 @@ Content-Transfer-Encoding: quoted-printable
 On Fri, Nov 1, 2024 at 9:06=E2=80=AFAM Andrei Stefanescu
 <andrei.stefanescu@oss.nxp.com> wrote:
 
-> Switch from "devm_pinctrl_register" to "devm_pinctrl_register_and_init"
-> and "pinctrl_enable" since this is the recommended way.
->
-> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+> Andrei Stefanescu (7):
+>   dt-bindings: mfd: add support for the NXP SIUL2 module
+>   mfd: nxp-siul2: add support for NXP SIUL2
+>   arm64: dts: s32g: make pinctrl part of mfd node
+>   pinctrl: s32: convert the driver into an mfd cell
+>   pinctrl: s32cc: change to "devm_pinctrl_register_and_init"
+>   pinctrl: s32cc: add driver for GPIO functionality
+>   MAINTAINERS: add MAINTAINER for NXP SIUL2 MFD driver
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-I assume this needs to go in with the rest of the patches.
+How do you want to merge this?
+
+Can the MFD and pinctrl parts be merged separately, or shall
+it all go into MFD or all into pinctrl?
+
+I can certainly merge it if Lee ACKs the MFD patch.
 
 Yours,
 Linus Walleij
