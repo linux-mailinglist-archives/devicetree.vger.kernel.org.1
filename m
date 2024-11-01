@@ -1,162 +1,105 @@
-Return-Path: <devicetree+bounces-118036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBB709B8CBC
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 09:14:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97BC79B8D04
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 09:27:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 972E71F2357F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 08:14:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 434E41F2380E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 08:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E48155CA5;
-	Fri,  1 Nov 2024 08:14:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE12D156C52;
+	Fri,  1 Nov 2024 08:26:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qZhHuI21"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="b1KqIXuO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0152484A5E;
-	Fri,  1 Nov 2024 08:14:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52B2B154C15;
+	Fri,  1 Nov 2024 08:26:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730448869; cv=none; b=d6t6Y1F6kX1iaym8JeJjkuGHtm47Yz/tzGXZPUHtsUXubVQkqeVzDYWYFEu3vOGvYxs4iatSzUFXNowZPstXrmORR2NvfR25J4mP4vHRXtaielgnojX8FN6bmCZp3PVteagaT/SbIcg7TezZgVBboq5d2clWubUcSiAICb6uQ8A=
+	t=1730449619; cv=none; b=TF7fSwocMAJX3tz5+t5b9Hw36+0agj/ebwsl3ja9jb9PTJZ8I/OrBFOmJihrsgnEm6R2Vts872Tyn+ios2yA5HnO+k3ZTZ9RnwGiRwZynB1eO7QFsIVykBfEffQOeJUuUm2G7chYhrHboNU/diNnicDYEbTRtqsTH1TfGi8PP4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730448869; c=relaxed/simple;
-	bh=TeFuD4EkGsPleD8hJkslZxcZRg6USTXrl/FwyS9Z094=;
+	s=arc-20240116; t=1730449619; c=relaxed/simple;
+	bh=qz+sStLf3csnHSVervtbuwoNFwpbuAjWD3eBqYi2Rrc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S0LCYwYCXw45K7f0Xa2LEiiwIG8qJiqI6iR02xa29u9c05gqzD7qD8dOyZDzkwA9ZNzKOZFEq94E3u4L/XG/yIrgQ2eZPPiCjCB2IHVrll4E4DlN082IQ6XSbHfq7dLKE0XgKMjbVY1NqvscIq4hfDASga9Nr0EhBJG9c01mD2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qZhHuI21; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D065EC4CECD;
-	Fri,  1 Nov 2024 08:14:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730448868;
-	bh=TeFuD4EkGsPleD8hJkslZxcZRg6USTXrl/FwyS9Z094=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qZhHuI21iH4oJd813Z85XkXHycBQp2Xq2VhC/lNZGgnpenHtSFz650GpAePajxRpQ
-	 1g07p3wA0RuaFoN+Tle9Llbm36p5HZRCkd2n2QGnGJK3Il9mHs8zLkwsa81b7pbJar
-	 u1xn4yNwhjS1OPS+NR5eZ6jWzZdB1GzRQSnRjkORuBNYkgrmlKlNdaTV/iA8PU0fJa
-	 uSOZmCOvlFTsRIddmsOhUdJwik+6dxxPQWNwW3wHd71SSjnDfUrW1g+CDFogtAv7q+
-	 zidsq/eNMaU9U9U6qo4cFA6VbqIOOuOb30Hi2/fxoCZcs9yuCFLyYYeSe9Bysn5RXF
-	 fLpxFraW49y4Q==
-Date: Fri, 1 Nov 2024 09:14:24 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alexey Klimov <alexey.klimov@linaro.org>
-Cc: broonie@kernel.org, konradybcio@kernel.org, 
-	konrad.dybcio@oss.qualcomm.com, andersson@kernel.org, srinivas.kandagatla@linaro.org, 
-	tiwai@suse.com, lgirdwood@gmail.com, perex@perex.cz, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, dmitry.baryshkov@linaro.org, 
-	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 08/10] arm64: dts: qcom: qrb4210-rb2: enable wsa881x
- amplifier
-Message-ID: <5zkslmf7m5vphs2wjcdg3536eo7tuh3stjthh3ulkr7oic5i25@qtnsog5ladsb>
-References: <20241101053154.497550-1-alexey.klimov@linaro.org>
- <20241101053154.497550-9-alexey.klimov@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ymxct/8ZHxd9GRf2u+o13DtL7a9Cr6NOrY9e2S27yISDJt1u5ZnSWA1WJIcEhhUincug0nT0oByqG2Z4oTP9YeogrLgmClm+zjpwfGlI19NDvl1V/fNxzC1gjW26YFmE3dHkLJZjhyX06RF8TVwIkleZRVUp6VyPiw93RsrNEjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=b1KqIXuO; arc=none smtp.client-ip=220.197.32.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=pIZ4297mYks9TlNfZB/eCFyx2Nv7liMlVOj3Uim+dgg=;
+	b=b1KqIXuO36LLkH4jukpFtZ/rIBd49x54x//dPgK8gHofkebhw4UwICLC6q5WgX
+	YmZI9DjdyVt+iezP72zjkg7z6TmUT21jj/n+0QPct7A+quZGWK+5goZG4gut+bq2
+	UnnJ70z01kWqBGST65ni7unB6dOIL5o1HIlboqbV7HSfY=
+Received: from dragon (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgCnxfgMjiRnKmJfAQ--.13668S3;
+	Fri, 01 Nov 2024 16:15:10 +0800 (CST)
+Date: Fri, 1 Nov 2024 16:15:07 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: carlos.song@nxp.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	haibo.chen@nxp.com, frank.li@nxp.com
+Subject: Re: [PATCH 0/5] arm64: dts: imx: Add LPSPI alias for
+ I.MX8ULP/8QXP/8QM/8DXL/93
+Message-ID: <ZySOC+STuelEZykQ@dragon>
+References: <20241018034532.2552325-1-carlos.song@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241101053154.497550-9-alexey.klimov@linaro.org>
+In-Reply-To: <20241018034532.2552325-1-carlos.song@nxp.com>
+X-CM-TRANSID:M88vCgCnxfgMjiRnKmJfAQ--.13668S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWrZFWxtF1xJr1DGFWkZw47Jwb_yoW8JF17pF
+	W7XFyxKw1qkr4xur4kZFW8Awn3JaykWF1fXr4rt3yYkwn5ur98trW5Kry5KFy7XFW5ZFyY
+	yayUJ3yxCwn0vaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jb5rcUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBBWKZWckjIUEMAABsB
 
-On Fri, Nov 01, 2024 at 05:31:52AM +0000, Alexey Klimov wrote:
-> One WSA881X amplifier is connected on QRB4210 RB2 board
-> hence only mono speaker is supported. This amplifier is set
-> to work in analog mode only. Also add required powerdown
-> pins/gpios.
+On Fri, Oct 18, 2024 at 11:45:27AM +0800, carlos.song@nxp.com wrote:
+> From: Carlos Song <carlos.song@nxp.com>
 > 
-> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 45 ++++++++++++++++++++++++
->  1 file changed, 45 insertions(+)
+> Now there is no alias for LPSPI on I.MX8ULP/8QXP/8QM/8DXL/93.
+> So spidevB.C index B will be automatically allocated by kernel
+> incrementally from zero according to the order of registering
+> spi controller. In this case, it is hard to determine spidevB.C
+> is spi interface of device C on which LPSPI bus. It will cause
+> confusion when operate spi devices in userspace.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> index fc71f5930688..76b9ae1b0ebc 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> @@ -63,6 +63,16 @@ hdmi_con: endpoint {
->  		};
->  	};
->  
-> +	i2c0_gpio: i2c0 {
+> For example, in I.MX93, When LPSPI3 and LPSPI5 are enabled
+> without alais:
+> 
+> :~# ls /dev/spidev*
+> /dev/spidev0.0  /dev/spidev1.0
+> 
+> After LPSPI alais is applied, fixedly B is the LPSPI index and
+> C is the spi device index in spidevB.C. They are the pleasant
+> spidev names. Directly spidev2.0 is the device0 at LPSPI3 bus
+> and spidev4.0 is the device0 at LPSPI5 bus:
+> 
+> :~# ls /dev/spidev*
+> /dev/spidev2.0  /dev/spidev4.0
+> 
+> Signed-off-by: Carlos Song <carlos.song@nxp.com>
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> 
+> Carlos Song (5):
+>   arm64: dts: imx8qxp: Add LPSPI alias
+>   arm64: dts: imx8qm: Add LPSPI alias
+>   arm64: dts: imx8dxl: Add LPSPI alias
+>   arm64: dts: imx8ulp: Add LPSPI alias
+>   arm64: dts: imx93: Add LPSPI alias
 
-Is 0 name on the schematics or datasheet? If yes, then i2c-0. If not,
-then i2c-1
-
-
-> +		compatible = "i2c-gpio";
-> +
-> +		sda-gpios = <&tlmm 4 GPIO_ACTIVE_HIGH>;
-> +		scl-gpios = <&tlmm 5 GPIO_ACTIVE_HIGH>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		status = "disabled";
-> +	};
-> +
->  	i2c2_gpio: i2c {
-
-i2c-(x+1)
-
-
->  		compatible = "i2c-gpio";
->  
-> @@ -272,6 +282,25 @@ zap-shader {
->  	};
->  };
->  
-> +&i2c0_gpio {
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +
-> +	wsa881x: codec@f {
-> +		compatible = "qcom,qrb4210-wsa881x-i2c-codec";
-> +		reg = <0x0f>;
-> +		pinctrl-0 = <&wsa_en_active>;
-> +		pinctrl-1 = <&wsa_en_sleep>;
-> +		pinctrl-names = "default", "sleep";
-> +		clocks = <&q6afecc LPASS_CLK_ID_MCLK_2 LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
-> +		clock-names = "wsa_mclk";
-> +		powerdown-gpios = <&lpass_tlmm 16 GPIO_ACTIVE_LOW>;
-> +		mclk-gpios = <&lpass_tlmm 18 GPIO_ACTIVE_HIGH>;
-> +		sound-name-prefix = "SpkrMono";
-> +		#sound-dai-cells = <0>;
-> +	};
-> +};
-> +
->  &i2c2_gpio {
->  	clock-frequency = <400000>;
->  	status = "okay";
-> @@ -746,6 +775,22 @@ wcd_reset_n_sleep: wcd-reset-n-sleep-state {
->  		bias-disable;
->  		output-low;
->  	};
-> +
-> +	wsa_en_active: wsa-en-active-state {
-> +		pins = "gpio106";
-> +		function = "gpio";
-> +		drive-strength = <16>;
-> +		bias-disable;
-> +		output-high;
-> +	};
-> +
-> +	wsa_en_sleep: wsa-en-sleep-state {
-> +		pins = "gpio106";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +		input-enable;
-
-Are you sure this passes dtbs_check? I think this was not allowed since
-1.5 years.
-
-Best regards,
-Krzysztof
+Applied all, thanks!
 
 
