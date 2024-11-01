@@ -1,120 +1,115 @@
-Return-Path: <devicetree+bounces-118155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DEC89B931C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:25:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5229B9326
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 15:28:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B84601F22C41
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 14:25:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BFA51C20C17
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2024 14:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576571A726B;
-	Fri,  1 Nov 2024 14:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1E8E1A08C4;
+	Fri,  1 Nov 2024 14:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b/8qkiaO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bPk/nBfp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 205FF1A3031;
-	Fri,  1 Nov 2024 14:25:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 074E71BF24;
+	Fri,  1 Nov 2024 14:28:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730471119; cv=none; b=Q1sFB4SEQVi3EHMRuiTUTiHkXVLkR9t3R+A2GItQ8EDwqNOKlPVwpMDAgPaeU76zlzrHKScfiXNvfgmAeP/9cc6EJmbmyd3f8dsz5kvMS8tshh3tDGJpX8V3KX4gQUB8LvddpVhnbwhq68Sa4z55W/JB6sBCF4gUnwWTaRwHivY=
+	t=1730471305; cv=none; b=ZeLqPxsBc4K6LTf1oJd5f/mvWTHlznUd2UTRo8+Nf/S7NdlunXAWMZl+GlgJL4PmVLGffdmU5lx5EsdVX3tRDOpei4IBSMedyqvGHk/OI5V8o291ZNFpZuB0TE12TashYjNsPLHr6+Um94AUf0D1pXQT+con6DZU7CkwBzp4y4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730471119; c=relaxed/simple;
-	bh=7vrEPIQ4bAMycnZ9O2SmDP1fd541LGxGZlIiiqJbkww=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bPp4hz0atPn+Sli9UhpEugOZEPhGt8vr0YMja3Gic/vvu9q4pa0zIT8oQAVFDZaRBW0MvgaYXOg2QXs8SetdglRdVAVPCZZ7J1M1vwuF5x9nmsEwiGSJFP/TbZBG4CzwskzoW5vTzlLMUM5g9/Dfaz0FRGH53s25NCSyn8ReYfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b/8qkiaO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AB8B6C4CED8;
-	Fri,  1 Nov 2024 14:25:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730471118;
-	bh=7vrEPIQ4bAMycnZ9O2SmDP1fd541LGxGZlIiiqJbkww=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=b/8qkiaOffx0IirFn8jZgYKZXIUobR4UZ8A0xFNEVLIpSzpuGrqezzvaUTmOcvZNK
-	 oxMPvlPg5VFiG0Pt8/0dDHRllyR6WaAanyb1+nBZ66PQ79gCAVsn1wakw32dSc+HW4
-	 7KELuhWKIUZBv7Y4i4AItAOvHgjVzjvwyOCYYKO5bx+hZDyRMkr9H1H/iV42ASfj5A
-	 6FqioZguuabaomlgZAD9GcVHoOrqvhMveAelGzGdtpFHtd9eDZr+UIkyadO+KhOOY6
-	 EZoP25wuFEv7Uu3DP4DqrSOxa9E7j1i2WB3jdoNfMWCK264cw8EMHiLL2OxGH0NnSQ
-	 i7701mJAY63tA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9574EE6F063;
-	Fri,  1 Nov 2024 14:25:18 +0000 (UTC)
-From: Janne Grunau via B4 Relay <devnull+j.jannau.net@kernel.org>
-Date: Fri, 01 Nov 2024 15:25:05 +0100
-Subject: [PATCH v2 3/3] MAINTAINERS: Add apple-spi driver & binding files
+	s=arc-20240116; t=1730471305; c=relaxed/simple;
+	bh=JJOTGDsJTC0/vFf6QQmSD03I7QVCGkcddc1fNIPBBH8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JrdMSRWqAAOmZf/9hnPmtra4cGIqGJ1xx96nrFBrVp5sKxQZ6xEQt9i15La7YOd5JxgSM8ilHFe14SuhdqVtsB7EluHXKNzqu8J2xObUw5UoVJtDf4w53lMpAId9VyTBbbs+F8u46PSJtK+VzzgU1NyLIE82sh97w2vVK4uOxb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bPk/nBfp; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-72061bfec2dso1727601b3a.2;
+        Fri, 01 Nov 2024 07:28:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730471303; x=1731076103; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XFmWdX7p8UW/OnDmfSeyrMc2Et7zZ5YN9L5u0UlMjL4=;
+        b=bPk/nBfpLMykXFWTgMERGo95Atv5Qj+dXHY/grWNqlNQz0smNsCp2dceVmrx3BZPcc
+         qo1YcuPSU+LG4OrlGSJqeHShgE6aSu+MNuzzq8BX2Zu1yC2nqQtP9OM0bzmJnpbHa8rq
+         wz5+lm309GgkwnbhSVEjBI4v8RNcQGQe3efTjoWhBbT/fQq2QIMzQI+ZQZjUP3nXkCFL
+         cobmTVKrt5zxMuFpanxnoA9p9x05gt6I5cX8GJZENYAlOTpmA5wqZVhJeis7jijhP6+p
+         zk21xRMu80s91V9aLzFgGaBOJ1i6DnEnLIbh5eDXlLcFrK6j7UDXz8Dsx9GDy9gpA0ph
+         4X5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730471303; x=1731076103;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XFmWdX7p8UW/OnDmfSeyrMc2Et7zZ5YN9L5u0UlMjL4=;
+        b=S46sJPDRs+OVfv1hRrM1XwFsJ2u6IUQdvXhEuP2UagkUE2T+JBXMHYURO/oKFWUjFh
+         hqHR+9jJhpMn7SJhH1EJCAtJofOKm2P5HZCV1sIcp38woTL+NDbJduPkU+eNjvDBqfse
+         ONjmMOQJUkg3BSCWxkjR35YXoef/GDPmhGiRcyRbgOrAgY6UY50AaVlW0bt3TR+k0FlY
+         7T1Y+2jG1OChVCvqzjSh0TRm2JR0Ye+oUV7K51+Os0kaxZjM3A80Kl+mhefoTVSggkGV
+         bSg/s955kY9F7P/lsz5RZyqWwu0OYi4hbB+84OQh3gAn9X64lTbK2ZOkyuGbozlXxxOt
+         oz2w==
+X-Forwarded-Encrypted: i=1; AJvYcCUCFAyVTNEVgIzfbkArW+Xez53fp6cXIGxn+IKOZjqAgrsMAcl3m7KuJy3NlWB01OibCkKl8reOuypA@vger.kernel.org, AJvYcCUSSSSDHvz0dJf16IXOS2w/Uns7tr1w47SzF43Dd1oPx8rDvY6sRnzdVSftn3TCCpZ+iOMYZBNjdN2V@vger.kernel.org, AJvYcCUh08XUZKQ3rWBzD/EIXx9vjovZ0A/7utOp/iJe7qmSpcs8b4vh2erOHVcdVUvUMD6LMA1yWo8EEPSiAwc=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUf808w7z25yy6Qk+x9TLry22HcMRbL1Jmp4Qu08iIenqDoYjG
+	L48KM9WwFYqkD/vnG0flkNJ7pJ9z85YlGLcm9UrK1sZ9q+cqC3pUFqQ4+w==
+X-Google-Smtp-Source: AGHT+IGRzSa7VeVFuEmHm5dbtnCna16zr18z8jeBGaFurcodmaam2po6f5ay80Mki0j25xDwKrhtng==
+X-Received: by 2002:a05:6a00:2e15:b0:71d:eb7d:20e4 with SMTP id d2e1a72fcca58-720c98d0527mr5231224b3a.8.1730471302963;
+        Fri, 01 Nov 2024 07:28:22 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc20f64asm2784783b3a.96.2024.11.01.07.28.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Nov 2024 07:28:22 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Fri, 1 Nov 2024 07:28:20 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Grant Peltier <grantpeltier93@gmail.com>
+Cc: robh@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+	grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] dt-bindings: hwmon: isl68137: add bindings to
+ support voltage dividers
+Message-ID: <8feb1581-4c0b-40fa-8aa4-8c2691921125@roeck-us.net>
+References: <cover.1730326915.git.grantpeltier93@gmail.com>
+ <1dff1f63a2e122788e2c17f192472705491aa5b8.1730326916.git.grantpeltier93@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241101-asahi-spi-v2-3-763a8a84d834@jannau.net>
-References: <20241101-asahi-spi-v2-0-763a8a84d834@jannau.net>
-In-Reply-To: <20241101-asahi-spi-v2-0-763a8a84d834@jannau.net>
-To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Janne Grunau <j@jannau.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1316; i=j@jannau.net;
- s=yk2024; h=from:subject:message-id;
- bh=wbyAeXiak8ymhiqSGZePVuZ0IdBpI3guim8H/E8/EiU=;
- b=owGbwMvMwCW2UNrmdq9+ahrjabUkhnSVJ2cO5nswZ9Wq7uuQuBKUHqDHVLRqzn3RBfuYhYR9x
- GdLmFR0lLIwiHExyIopsiRpv+xgWF2jGFP7IAxmDisTyBAGLk4BmIjELEaGVat5HtlL5F456etw
- xI/xsAf//aAky1lcQkbzNZX539R/Z/hnLyJ0evtEEa4eJVZT+8CAuBnT/bcsX1P5J3dv2PJZx13
- 5AA==
-X-Developer-Key: i=j@jannau.net; a=openpgp;
- fpr=8B336A6BE4E5695E89B8532B81E806F586338419
-X-Endpoint-Received: by B4 Relay for j@jannau.net/yk2024 with auth_id=264
-X-Original-From: Janne Grunau <j@jannau.net>
-Reply-To: j@jannau.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1dff1f63a2e122788e2c17f192472705491aa5b8.1730326916.git.grantpeltier93@gmail.com>
 
-From: Hector Martin <marcan@marcan.st>
+On Wed, Oct 30, 2024 at 05:41:39PM -0500, Grant Peltier wrote:
+> Add devicetree bindings to support declaring optional voltage dividers to
+> the rail outputs of supported digital multiphase regulators. Some
+> applications require Vout to exceed the voltage range that the Vsense pin
+> can detect. This binding definition allows users to define the
+> characteristics of a voltage divider placed between Vout and the Vsense
+> pin for any rail powered by the device.
+> 
+> These bindings copy the vout-voltage-divider property defined in the
+> maxim,max20730 bindings schema since it is the best fit for the use case
+> of scaling hwmon PMBus telemetry. The generic voltage-divider property
+> used by many iio drivers was determined to be a poor fit because that
+> schema is tied directly to iio for the purpose of scaling io-channel
+> voltages and the isl68137 driver is not an iio driver.
+> 
+> Signed-off-by: Grant Peltier <grantpeltier93@gmail.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-This Apple SPI controller is present on Apple ARM SoCs (t8103/t6000).
+Applied.
 
-Splitting this change from the binding/driver commits to avoid merge
-conflicts with other things touching this section, as usual.
-
-Signed-off-by: Hector Martin <marcan@marcan.st>
-Signed-off-by: Janne Grunau <j@jannau.net>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cc40a9d9b8cd10e2e00caa5a5881381cd40c0d9a..552febcb12a95766ff502960782941d9d016d5e0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2068,6 +2068,7 @@ F:	Documentation/devicetree/bindings/pci/apple,pcie.yaml
- F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
- F:	Documentation/devicetree/bindings/power/apple*
- F:	Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
-+F:	Documentation/devicetree/bindings/spi/apple,spi.yaml
- F:	Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
- F:	arch/arm64/boot/dts/apple/
- F:	drivers/bluetooth/hci_bcm4377.c
-@@ -2085,6 +2086,7 @@ F:	drivers/nvmem/apple-efuses.c
- F:	drivers/pinctrl/pinctrl-apple-gpio.c
- F:	drivers/pwm/pwm-apple.c
- F:	drivers/soc/apple/*
-+F:	drivers/spi/spi-apple.c
- F:	drivers/watchdog/apple_wdt.c
- F:	include/dt-bindings/interrupt-controller/apple-aic.h
- F:	include/dt-bindings/pinctrl/apple.h
-
--- 
-2.47.0
-
-
+Thanks,
+Guenter
 
