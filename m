@@ -1,206 +1,122 @@
-Return-Path: <devicetree+bounces-118421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD58C9BA2B6
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 23:17:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8922C9BA2C4
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 23:39:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D6901C20941
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 22:17:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3183A1F21749
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 22:39:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36052157A6B;
-	Sat,  2 Nov 2024 22:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C39C1A0B07;
+	Sat,  2 Nov 2024 22:39:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i9MPRxZg"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="oQxhCiK7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642A54120B;
-	Sat,  2 Nov 2024 22:17:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AABC91E86E;
+	Sat,  2 Nov 2024 22:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730585839; cv=none; b=HBJXIiZZCsq1bbOacY3QdN4LNElDBMgxN6sI08f9eIPH8wWbHtDvcF2sLt+gE/m+ckI/F0h+aAiUtQOHofEIWgY477534FXymaXwHoyV+eytMxJdrLB7PVS/TfMHA/qbhSIdtnYlPh+0dYmcdCefPbX0kGStlSbNZmSg+vbi/JQ=
+	t=1730587184; cv=none; b=G5wnOG18cgEIl/9D00V0twOK0lAt0WFNFFs7LBbEB1+QOkf28YrHlIPHiCeL2qHZSNLllFTcIO/RFOQSLSAK7iUjazg9mW4WpIRUHALOTpc+eOH3/UAqYctWHprh6jtru6CFQQSIQnhnG/Dws4vW+w9GVEw9Oq6BJpfjpdKyJ8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730585839; c=relaxed/simple;
-	bh=Uk9I+q5+k0HBlwrfb+1T6Z4LdoqzQTxeoqP3WIiSdKY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WNBIZJ1JfPfxPUEo3906QWkGuFC5WVctny5qnv1odGREH0D4VBlg2ky4kvU0EoioqgKgJyHfgQmJAlf2ygRmMHU0JlMAJOXcT9LlsaL/Av4eyD3isCY4RVunlUqfNNvb7uOBKGrG9QkI+0icuZRPZ3GEmcpk6Vm7GAjdcMzCtXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i9MPRxZg; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a99f3a5a44cso417372466b.3;
-        Sat, 02 Nov 2024 15:17:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730585836; x=1731190636; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5vxf8MUw1KHlnGBa/1IMyXj2UG6JCewFqgb6iXxRDuo=;
-        b=i9MPRxZgR6XuIgZK2jNC4eIM+YG4CsBMROtQIbA39EcKicZfFCwRDw+3HTqIFPAVvc
-         fRLuGu+gFogsp+CSJVpi7aFLLlodNbfg2J8vDBLonbhusV+WuIisI2/TnS6Ly4se2vn5
-         Kg0DEVgy1J3z0uxxRvTEI87klHfU/OqNCpQMDkG5SL+Ah5pm9bmOEZhXI1W67i/TY1HE
-         UJqKSowflCRtb+a9EvkMy/12LyMG6p6hbynsrwShW6o5yRe0TVwhjBI5FM2rfuiQ0Srj
-         LkzUrPJI+/IGUMrUb1q2qTkOnY6TRurPMVHLziYbvQ3dw0/eTkdLUl7C7VLe0Zy2Kh49
-         tPDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730585836; x=1731190636;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5vxf8MUw1KHlnGBa/1IMyXj2UG6JCewFqgb6iXxRDuo=;
-        b=H/bPwZzRC8Nxin+mrq3YxUfzkyIWQra48zJM4xAjZ0zfAXTzZZKqKro1PpFW/Slrsz
-         agCmmwFta3d43VDzAb6kDtZgHeedFnctRho+g3JP02qRlNKVF020gbv5iZMxfvOMC3a2
-         h2/sIThZ8Igz8ZxDHnzUEJk+2BJiP4qTNkGA18HjGsGA+SZC7QA7RWcQJrjKY3p8vzYG
-         /RlqBgTZ/hP38RqGbic1+qdo4zK+eytsQ+bX1r2Tz5pHWtTT0I/hOzT9nGjiNdKRszaG
-         IK7UIz6guXy4fKy5R56t+uKS7aiQUjl48lD3GDQPu3Nlx1JESbRM0/zZWDTalRniJDuk
-         xxtw==
-X-Forwarded-Encrypted: i=1; AJvYcCVnsdPW4dnFFkundKrWnPSIDAcoEohJaewCNdx4Pew6u1AbbBtR4X9/KKFyf5sbw56hvlmx+I45bg5e@vger.kernel.org, AJvYcCXZ/R+V/YZvzV9rUT0pyKnWmcPlpm0qPtQ0hUvjmpj6zDgKSYGSD92vQQLVPuTgTK70+1dZLvrjzJCeCnsP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwA6vgW5QL/Ofy3RMRjTEokuqpVbvnnfGViayLNuK+hFZielcKY
-	JAt6noMN+a9LAr7B4OpUpWd0hnYEcGjAgUEYe5Kdp2QK1VexTMZK
-X-Google-Smtp-Source: AGHT+IE+SUlLFoN/+EuPuCWvs6qpBKkmSyn3eiHJ8mhwnVR3nprD9gPRGUlcGSR5L/12vtyXRpdvcg==
-X-Received: by 2002:a17:906:7311:b0:a9a:8502:6ebb with SMTP id a640c23a62f3a-a9de61ce5c1mr2560597666b.41.1730585835467;
-        Sat, 02 Nov 2024 15:17:15 -0700 (PDT)
-Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e564c4f2dsm350412566b.52.2024.11.02.15.17.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Nov 2024 15:17:14 -0700 (PDT)
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: linux-actions@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] dt-bindings: power: actions,owl-sps: convert to YAML
-Date: Sun,  3 Nov 2024 00:17:06 +0200
-Message-ID: <20241102221707.2857342-1-ivo.ivanov.ivanov1@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1730587184; c=relaxed/simple;
+	bh=6Eop++qcnh7z5JGQtKxoxBR8JeXXueycqdHNLIJ3cnI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QwGt4DYytjsP3bk12i2XUlDgNf0g5ZsLLATqNCUYoI8s70S67G3zqB+p5tWNIEsXOzBroaoLDlYFSiqooFStVU1/69i8U/H3Bs53L5U/jOiW5Ndl+Vd6tJ0kPx39FQKfL5TbiOTvfF5ulNC8loU7625D9bT/EkfWqwRhO2HTLHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=oQxhCiK7; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from [192.168.0.162] (254C1E29.nat.pool.telekom.hu [37.76.30.41])
+	by mail.mainlining.org (Postfix) with ESMTPSA id 5DE36E45AB;
+	Sat,  2 Nov 2024 22:39:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1730587174;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=GIPMrWV1SAbPsQC3sU0RnQYgR2wvrsaafxIG9OfVj1k=;
+	b=oQxhCiK7oeUD8fyMpGT7nIdjUum2NT0lCW6hE31jMeM5lSFztY18KyOkfH70FTh9pHwAZv
+	3HGQ8XFow5z8HH4eNSMuTRUcJRaFjJ1zNoPClxVKdJZy8ezDNeAnqC7Bj8lJTdl+xvlU+r
+	WZHROpcNto6sDCkXMl8uiGol27ObeScXFUN5/hRpnvGxdyjMBIc+QTfqgdGExLAs6Hvelb
+	DPb2q0afCcIaEo++D5XvcsMfoFPp2NPHBnAiOhiewdCaG1UvJJeDX5Sv8buXjZQtGzNyVP
+	baz+CBEPRm2rfsGjmH2sHe8Me25YHmnQV3bQObQgBVB3pxcKQQCQbeKuHwGoeg==
+From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH v3 0/3] Add MSM8953 camss support
+Date: Sat, 02 Nov 2024 23:39:11 +0100
+Message-Id: <20241102-camss-msm8953-v3-0-7041c9fa7a58@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAA+qJmcC/3XMSwrCMBSF4a2UjI3k5mFbR+5DHMT0tr1gUkkkK
+ KV7N+1IFIf/gfPNLGEkTOxYzSxipkRTKKF2FXOjDQNy6kozKaQGEMCd9Slxn3zTGsUVNlboWuP
+ Bdax87hF7em7e+VJ6pPSY4mvjM6zrPykDF1wLkMa0vbs6efKWwo0ChWE/xYGtXJafhPwmZCEaV
+ SsQqI0G90Msy/IGHV5a9fIAAAA=
+X-Change-ID: 20241101-camss-msm8953-3e8a0474e6cd
+To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Barnabas Czeman <barnabas.czeman@mainlining.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Vladimir Lypak <vladimir.lypak@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730587174; l=1493;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=6Eop++qcnh7z5JGQtKxoxBR8JeXXueycqdHNLIJ3cnI=;
+ b=c930d87zKA/VGuJyRc6K+axAuX7qzJG5z0UcG8LFIcmMuLD6Et+E3SKqxnZ+vVQy6As4S0326
+ 33gtS9IyYvaB8yvFl1efS3YDefuxwnUoG2NjSwz9K0ac5r40G/lYFHe
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
 
-Convert the Actions Semi Owl Smart Power System (SPS) bindings to DT
-schema.
+Add camss support for MSM8953/SDM450/SDM632 based devices.
 
-Changes during conversion:
- - Rename file to match compatible
- - Add a description
+This patch series was tested on Redmi Note 4 (mido).
 
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
 ---
- .../bindings/power/actions,owl-sps.txt        | 21 --------
- .../bindings/power/actions,owl-sps.yaml       | 50 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 51 insertions(+), 22 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/power/actions,owl-sps.txt
- create mode 100644 Documentation/devicetree/bindings/power/actions,owl-sps.yaml
+Changes in v3:
+- Fix schema issues addressed by reviews.
+- Fix commit messages.
+- Link to v2: https://lore.kernel.org/r/20241102-camss-msm8953-v2-0-837310e4541c@mainlining.org
 
-diff --git a/Documentation/devicetree/bindings/power/actions,owl-sps.txt b/Documentation/devicetree/bindings/power/actions,owl-sps.txt
-deleted file mode 100644
-index a3571937b..000000000
---- a/Documentation/devicetree/bindings/power/actions,owl-sps.txt
-+++ /dev/null
-@@ -1,21 +0,0 @@
--Actions Semi Owl Smart Power System (SPS)
--
--Required properties:
--- compatible          :  "actions,s500-sps" for S500
--                         "actions,s700-sps" for S700
--                         "actions,s900-sps" for S900
--- reg                 :  Offset and length of the register set for the device.
--- #power-domain-cells :  Must be 1.
--                         See macros in:
--                          include/dt-bindings/power/owl-s500-powergate.h for S500
--                          include/dt-bindings/power/owl-s700-powergate.h for S700
--                          include/dt-bindings/power/owl-s900-powergate.h for S900
--
--
--Example:
--
--		sps: power-controller@b01b0100 {
--			compatible = "actions,s500-sps";
--			reg = <0xb01b0100 0x100>;
--			#power-domain-cells = <1>;
--		};
-diff --git a/Documentation/devicetree/bindings/power/actions,owl-sps.yaml b/Documentation/devicetree/bindings/power/actions,owl-sps.yaml
-new file mode 100644
-index 000000000..6496f3a71
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/actions,owl-sps.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/actions,owl-sps.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Actions Semi Owl Smart Power System (SPS)
-+
-+maintainers:
-+  - Andreas Färber <afaerber@suse.de>
-+
-+description: |
-+  Actions Semi Owl SoCs feature a Smart Power System (SPS) that manages power
-+  domains to optimize power usage across various hardware blocks. Each power
-+  domain corresponds to a specific hardware block and is represented by a bit
-+  in the power control register and an acknowledgment bit, which is then
-+  translated into a corresponding voltage on a rail.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - actions,s500-sps
-+      - actions,s700-sps
-+      - actions,s900-sps
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#power-domain-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#power-domain-cells"
-+
-+additionalProperties: false
-+examples:
-+  - |
-+    #include <dt-bindings/power/owl-s500-powergate.h>
-+    soc {
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+      sps: power-controller@b01b0100 {
-+        compatible = "actions,s500-sps";
-+        reg = <0xb01b0100 0x100>;
-+        #power-domain-cells = <1>;
-+      };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 76ea65128..420d06d37 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2023,7 +2023,7 @@ F:	Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
- F:	Documentation/devicetree/bindings/mmc/owl-mmc.yaml
- F:	Documentation/devicetree/bindings/net/actions,owl-emac.yaml
- F:	Documentation/devicetree/bindings/pinctrl/actions,*
--F:	Documentation/devicetree/bindings/power/actions,owl-sps.txt
-+F:	Documentation/devicetree/bindings/power/actions,owl-sps.yaml
- F:	Documentation/devicetree/bindings/timer/actions,owl-timer.yaml
- F:	arch/arm/boot/dts/actions/
- F:	arch/arm/mach-actions/
+Changes in v2:
+- Add power-domain-names and pd_name.
+- Fix style issues and orderings in schema.
+- Link to v1: https://lore.kernel.org/r/20241101-camss-msm8953-v1-0-4012559fcbc2@mainlining.org
+
+---
+Barnabás Czémán (2):
+      media: camss: vfe: implement pm domain ops for v4.1
+      media: dt-bindings: media: camss: Add qcom,msm8953-camss
+
+Vladimir Lypak (1):
+      media: qcom: camss: Add MSM8953 resources
+
+ .../bindings/media/qcom,msm8953-camss.yaml         | 322 +++++++++++++++++++++
+ drivers/media/platform/qcom/camss/camss-csiphy.c   |   1 +
+ drivers/media/platform/qcom/camss/camss-ispif.c    |   5 +
+ drivers/media/platform/qcom/camss/camss-vfe-4-1.c  |  10 +-
+ drivers/media/platform/qcom/camss/camss-vfe.c      |   1 +
+ drivers/media/platform/qcom/camss/camss.c          | 170 +++++++++++
+ drivers/media/platform/qcom/camss/camss.h          |   1 +
+ 7 files changed, 508 insertions(+), 2 deletions(-)
+---
+base-commit: f9f24ca362a4d84dd8aeb4b8f3ec28cb6c43dd06
+change-id: 20241101-camss-msm8953-3e8a0474e6cd
+
+Best regards,
 -- 
-2.43.0
+Barnabás Czémán <barnabas.czeman@mainlining.org>
 
 
