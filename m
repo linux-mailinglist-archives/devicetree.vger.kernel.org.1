@@ -1,144 +1,157 @@
-Return-Path: <devicetree+bounces-118375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A78579B9FDC
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 13:00:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1C989BA025
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 14:00:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD49E1C2140B
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 12:00:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 749351F212AC
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 13:00:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 099BB16EBE8;
-	Sat,  2 Nov 2024 12:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CB7418C324;
+	Sat,  2 Nov 2024 13:00:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hOy5EUSy"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="A+UtL/ly"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF686AB8;
-	Sat,  2 Nov 2024 12:00:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB25C18BBA0;
+	Sat,  2 Nov 2024 13:00:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730548842; cv=none; b=kt8Qkwe0se83xx2bl9jWPRJv7VKbW+St7QALPev8wLnZBP4j9cdsNSTU7HzInbjWhG47CpPUejTEZT0VU3HWBlhg6ikhw8sFqazU7TapmanhdQ+DJfyBOdUpRDvVIBNc1XAUGe5QJIZy+MceRLhFpNGr3xWvjgIIPv9DypAI/c0=
+	t=1730552412; cv=none; b=MP27URsVw6+xocQNFjruZM+kwjBqZTRh8hyt9aW0T/nW2T12b/JFxJzA768yeOFMOf5NKl7UOIkzg76At1IV/JV4KLZ2eJIj8ukDZbRLrIHl3Py3OVOgXFBIbaf78BdEHrjgCjRK1SarIvjmp3ftpkdlBGmfWKMH/jy1lcvlliA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730548842; c=relaxed/simple;
-	bh=Gax01FuZKLQfe+8CO7ewzivLwUdPlXNuJeuqRVWx8Qc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jPhD6D+fBF6gzxknshcbpHophNoM6/04j4NwCEHkBrMCrE7APoX8V4bVH5bK57PbnOk86WxJX0WKDc4UVyBgbFp/OL6jOjF9lVgyjNl93XklaKnLUyKarsZr2Vnaxt//HrELRJ4MFzCAKDCEzIgMk61AvdoN3tFlVoWbMyRh6wM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hOy5EUSy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D16A1C4CED2;
-	Sat,  2 Nov 2024 12:00:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730548842;
-	bh=Gax01FuZKLQfe+8CO7ewzivLwUdPlXNuJeuqRVWx8Qc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hOy5EUSypJsqP3WaNWj8wo13ZKzdP7ItQe6wpSkp5E/shKd/Jg8XJds3y8apv97bG
-	 dLxo0ECMkWdfaeaioW8poZ6Pfv+e5mFt00Pb13PJPM9O/JfvJfyPQBn5f3+fLyLg/t
-	 tkpZgWTzCSxO7OAnfFRhi6M1aOZOZciftNFY+THjG81eeXl9ray4CYrQIDgPkmfE4r
-	 jYqNlVCykpkR+5VhWbXt+xakVAIvvmJ4JObdP8Nv41Jc+I8n+i6ERrqmSdntKFV4F3
-	 0Swj+Ss+SUPNn+onGxe1xtWPgISqAlW2xdxmIbsftlDJoItvn5q1SAhwPbZXsQ1SuY
-	 6AoJjjmrG8dQw==
-Date: Sat, 2 Nov 2024 12:00:30 +0000
-From: Simon Horman <horms@kernel.org>
-To: "Nemanov, Michael" <michael.nemanov@ti.com>
-Cc: Kalle Valo <kvalo@kernel.org>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Sabeeh Khan <sabeeh-khan@ti.com>
-Subject: Re: [PATCH v3 12/17] wifi: cc33xx: Add scan.c, scan.h
-Message-ID: <20241102120030.GG1838431@kernel.org>
-References: <20240806170018.638585-1-michael.nemanov@ti.com>
- <20240806170018.638585-13-michael.nemanov@ti.com>
- <20240809160355.GD1951@kernel.org>
- <33f3b6a4-f907-4374-90ac-d81a81700936@ti.com>
+	s=arc-20240116; t=1730552412; c=relaxed/simple;
+	bh=3UkeRzv8tuyM480RNYtsP4upZlJ+1C00o1KTqGMdwCg=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fSJF3gfBqHB0t215MMAsKadnN1JBCGqd5455Kqi9WZFfDydlKJ5/Pli8Nsl96yX6UB13RQWTnTJSR6lwno2nkDOSEFZ3NE2YSbXOlPW9sWsieJX3L/EoLzWLolDPIBcZZPoGd/+Oai+ESiEnA2TvpG3GV4t9YJ+RmBhPBNmkAaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=A+UtL/ly; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 69622A0ABF;
+	Sat,  2 Nov 2024 14:00:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=mail; bh=6BVVyLjJdR6me74k/F+O
+	t1blbg2/epRtk+d2HKjKdKo=; b=A+UtL/lytKD+HLHR4iDjYCIulzShvKEyTfgw
+	3Z5KSRo6vXfQ0/d/E2XSJrJBfqVK5bwJNXTB3d41PvsGpTpT2tbDSHTeuKMCjdAI
+	f0DmKXb76aM4Xv7GA0KGyMwktjy0sujpM7uUWVsBgs2iJYV88XYAwBxARZ6hqKBC
+	uEElnh0nBjnhkOUin+Alo4vvCj/AwWoeeatw795rt0Ye4niKhSues4kMrB9+7vqC
+	2l5C2dRl8cw9VBXdcxMyRt3cWhlvxHXz31vp2I07kj+ZBcS3CXbxas/cS48c5lqR
+	1UZUchOQ3NKPxBLg2scsexKhGd9dzNegQ4xsnSDevNN2iMlH7K+F4iZDOZDmXzh7
+	M6t+Wsr8S9s8QNEYsjiPLio+c8PVlClscZByvv4q9DP356oCoquLwmLtCz7bqqxQ
+	ulJYjJTHZ1FsRIvgaj4NDR0HURlaVFdAFUX0WkDrrz2fS+zt7Cjpf721AbKz0MhN
+	S9wx9NN2r1M+BwjW8j/dJJ3sXSQ5m77SwkQ9yYLdwn2CqlHNpmzpX3Jmd6+pGti7
+	8ZhUXitbbX5uFqRbBLfaYd79+pPhDhsct6jDbfHQPRq99OW8WzGKs/oGj+giMaXW
+	9uNG+hUakgslS2rFSbp68yI1di+ZY1RJwS2xcpSAHs7KguD1uSMZZNdLh8+rsWuH
+	dGTaLco=
+From: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>
+To: Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
+	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
+	<linux-kernel@vger.kernel.org>
+CC: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>, "Liam
+ Girdwood" <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, "Samuel
+ Holland" <samuel@sholland.org>
+Subject: [PATCH v5 2/3] dt-bindings: sound: Add Allwinner suniv F1C100s Audio Codec
+Date: Sat, 2 Nov 2024 13:57:11 +0100
+Message-ID: <20241102125712.2647325-3-csokas.bence@prolan.hu>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241102125712.2647325-1-csokas.bence@prolan.hu>
+References: <20241102125712.2647325-1-csokas.bence@prolan.hu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <33f3b6a4-f907-4374-90ac-d81a81700936@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1730552408;VERSION=7979;MC=1258900186;ID=222167;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
+X-ESET-Antispam: OK
+X-EsetResult: clean, is OK
+X-EsetId: 37303A2980D9485566706B
 
-On Mon, Oct 28, 2024 at 06:26:50PM +0200, Nemanov, Michael wrote:
-> On 8/9/2024 7:03 PM, Simon Horman wrote:
-> > On Tue, Aug 06, 2024 at 08:00:13PM +0300, Michael Nemanov wrote:
-> > 
-> > ...
-> > 
-> > > diff --git a/drivers/net/wireless/ti/cc33xx/scan.h b/drivers/net/wireless/ti/cc33xx/scan.h
-> > 
-> > ...
-> > 
-> > > +/**
-> > > + * struct cc33xx_cmd_ssid_list - scan SSID list description
-> > > + *
-> > > + * @role_id:            roleID
-> > > + *
-> > > + * @num_of_ssids:       Number of SSID in the list. MAX 16 entries
-> > 
-> > @num_of_ssids -> @n_ssids
-> > 
-> > > + *
-> > > + * @ssid_list:          SSIDs to scan for (active scan only)
-> > 
-> > @ssid_list -> @ssids
-> >
-> 
-> Thanks for the feedback, will fix.
-> 
-> > Please document all non-private fields,
-> > and annotate those that are private.
-> > 
-> 
-> Not sure I follow. You mean mark private vs. non private members in the
-> documentation? If so, private to what (the CC33xx driver or the underlying
-> HW)?
+Add compatible string for Allwinner suniv F1C100s audio codec.
 
-Hi Michael,
+[ csokas.bence: Reimplement Mesih Kilinc's binding in YAML ]
+Signed-off-by: Csókás, Bence <csokas.bence@prolan.hu>
+---
+ .../sound/allwinner,sun4i-a10-codec.yaml      | 31 +++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-I'm not sure why I mentioned private, perhaps it was a general statement
-that all fields should either be documented or marked as private. If
-you don't think anything is private - whatever that might mean - then you
-can ignore that part of my comment. But suffice to say, there is syntax to
-mark fields as private[1].
+diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
+index 78273647f766..16f4f7a40d9d 100644
+--- a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
++++ b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
+@@ -22,6 +22,7 @@ properties:
+       - allwinner,sun8i-a23-codec
+       - allwinner,sun8i-h3-codec
+       - allwinner,sun8i-v3s-codec
++      - allwinner,suniv-f1c100s-codec
+ 
+   reg:
+     maxItems: 1
+@@ -70,6 +71,7 @@ properties:
+         - MIC1
+         - MIC2
+         - MIC3
++        - MIC
+ 
+         # Microphone Biases from the SoC
+         - HBIAS
+@@ -80,6 +82,8 @@ properties:
+         - Headset Mic
+         - Line In
+         - Line Out
++        - Right FM In
++        - Left FM In
+         - Mic
+         - Speaker
+ 
+@@ -229,6 +233,33 @@ allOf:
+               - Mic
+               - Speaker
+ 
++  - if:
++      properties:
++        compatible:
++          enum:
++            - allwinner,suniv-f1c100s-codec
++
++    then:
++      properties:
++        allwinner,audio-routing:
++          items:
++            enum:
++              - HP
++              - HPCOM
++              - LINEIN
++              - LINEOUT
++              - MIC
++              - HBIAS
++              - MBIAS
++              - Headphone
++              - Headset Mic
++              - Line In
++              - Line Out
++              - Right FM In
++              - Left FM In
++              - Mic
++              - Speaker
++
+ unevaluatedProperties: false
+ 
+ examples:
+-- 
+2.34.1
 
-[1] https://www.kernel.org/doc/html/latest/doc-guide/kernel-doc.html#members
 
-> > There are a number of similar minor Kernel doc problems with this patch.
-> > Please consider using W=1 builds or ./scripts/kernel-doc -none
-> > (bonus points for -Wall)
-> > 
-> 
-> Ran both, got warning for "no structured comments found" on multiple files.
-> Is that it?
-
-I'm a but unsure why you see that, but what I was referring to is this:
-
-$ ./scripts/kernel-doc -none drivers/net/wireless/ti/cc33xx/scan.h
-drivers/net/wireless/ti/cc33xx/scan.h:104: warning: Function parameter or struct member 'header' not described in 'cc33xx_cmd_ssid_list'
-drivers/net/wireless/ti/cc33xx/scan.h:104: warning: Function parameter or struct member 'scan_type' not described in 'cc33xx_cmd_ssid_list'
-drivers/net/wireless/ti/cc33xx/scan.h:104: warning: Function parameter or struct member 'n_ssids' not described in 'cc33xx_cmd_ssid_list'
-drivers/net/wireless/ti/cc33xx/scan.h:104: warning: Function parameter or struct member 'ssids' not described in 'cc33xx_cmd_ssid_list'
-drivers/net/wireless/ti/cc33xx/scan.h:104: warning: Function parameter or struct member 'padding' not described in 'cc33xx_cmd_ssid_list'
-drivers/net/wireless/ti/cc33xx/scan.h:104: warning: Excess struct member 'num_of_ssids' description in 'cc33xx_cmd_ssid_list'
-drivers/net/wireless/ti/cc33xx/scan.h:104: warning: Excess struct member 'ssid_list' description in 'cc33xx_cmd_ssid_list'
-drivers/net/wireless/ti/cc33xx/scan.h:149: warning: bad line:
-drivers/net/wireless/ti/cc33xx/scan.h:177: warning: cannot understand function prototype: 'struct sched_scan_plan_cmd '
-drivers/net/wireless/ti/cc33xx/scan.h:227: warning: Function parameter or struct member 'u' not described in 'scan_param'
-drivers/net/wireless/ti/cc33xx/scan.h:227: warning: Excess struct member 'one_shot' description in 'scan_param'
-drivers/net/wireless/ti/cc33xx/scan.h:227: warning: Excess struct member 'periodic' description in 'scan_param'
-drivers/net/wireless/ti/cc33xx/scan.h:269: warning: Function parameter or struct member 'header' not described in 'cc33xx_cmd_scan_params'
-drivers/net/wireless/ti/cc33xx/scan.h:269: warning: Function parameter or struct member 'padding' not described in 'cc33xx_cmd_scan_params'
-drivers/net/wireless/ti/cc33xx/scan.h:295: warning: Function parameter or struct member 'header' not described in 'cc33xx_cmd_set_ies'
-drivers/net/wireless/ti/cc33xx/scan.h:319: warning: Function parameter or struct member 'header' not described in 'cc33xx_cmd_scan_stop'
-drivers/net/wireless/ti/cc33xx/scan.h:319: warning: Function parameter or struct member 'padding' not described in 'cc33xx_cmd_scan_stop'
 
