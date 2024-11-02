@@ -1,208 +1,79 @@
-Return-Path: <devicetree+bounces-118327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81F709B9D4E
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 06:26:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17F1A9B9D83
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 07:48:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B144D1C22A94
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 05:26:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBC701F21AC2
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 06:48:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CADC61494C3;
-	Sat,  2 Nov 2024 05:26:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA47E147C79;
+	Sat,  2 Nov 2024 06:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="D2NrWu4h"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="mpYFZX3E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB42C125;
-	Sat,  2 Nov 2024 05:26:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9404380;
+	Sat,  2 Nov 2024 06:48:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730525203; cv=none; b=INLcuu33yrpSx3l3vIkMbBS0qIRF8r5cTPrFlJv+2zX3TePZQA9EprgIxFkxDm+TnvJw58TvZlLSlOEFupLQ/m5vDQIjFvi5h25ewTTLHjinkNKmMaSfC+l7+luePW86COxwNkPMAmui+/pgUgwSrKkph/kr4ZBnC/DBs4qSHYU=
+	t=1730530133; cv=none; b=XMR3rfbgdsSPIpdWVLedHF/Av8FkDsWDggT0S8NxQ1sH1qw4sQS2tZeIrM/E1ETHo7jnZCfn4Po2tu3PLvGG8YLKfwM7ZuiTWagEs1gnBmfmD4hTcLNfdpAh0qvw5i8emZzXf+5MlBephGqCT62crfUvU+dZvc9uv0BS6SAHXp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730525203; c=relaxed/simple;
-	bh=KjNwzMV5yvgyY1Ft01pRLLi2SK3O5QpnitB0cGzkzlo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QtrGCxRkAFANZCcIsrEZN7Q0OMfkjm2knarkMmrZMt9LLNmV/MgrZe0HJRb8B68+UqYOuS/VlYIkzLweKLKndwkeJoTNm2klJWDWFpqnnKET0krjyfcHbX7Ib2RQsALnDKFqWqbmNIXDcGLTWedZssQVAl1ZzAYtWXHYw3C00Qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=D2NrWu4h; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [192.168.1.107] (89-186-114-4.pool.digikabel.hu [89.186.114.4])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: hs@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 68B7E88C05;
-	Sat,  2 Nov 2024 06:26:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1730525193;
-	bh=aMBU2qOGn7N5XNfPAceGpX7c3ieAUrfe/STrbX+Z488=;
-	h=Date:Subject:To:Cc:References:From:Reply-To:In-Reply-To:From;
-	b=D2NrWu4htWk6G82mMXPh8UXqSbeaxwqR4dopgzwHnoe75elXhJGI/5BfVn+i2i/MO
-	 OXi0K87SbgioOxWv495Nsg5kxmzcjl5lho03tjzJdClwRAAWwvh61yurQfhUmn7Mmd
-	 NYw64zfgpUUaZ55vHxC3ZUUDQOzGl2e7d0yIOCcXZKbvmoYbhgIKzoxfVY9c/X+TvI
-	 A/zrO+rntpr0cgU+QS6XQxwwOKrLda7ozRn834aVex/7bgTPLFoVGoae3bMh9ST3li
-	 rPYljYsA5TXG2bY6krRAzPHtE6a6CSDm7H8XmkGa3gxc6QuRuS1xJ3ayWa7I/TD5b2
-	 kqZfDFKNNlXMA==
-Message-ID: <644ae184-1fef-fa42-06de-e1086b7b14bb@denx.de>
-Date: Sat, 2 Nov 2024 06:24:07 +0100
+	s=arc-20240116; t=1730530133; c=relaxed/simple;
+	bh=n6Ym9nl5ofu4kHAJL5/w2BJ6rjntnfm7Mkviq67cZYs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Uh6HSTUs4kBQjBb+DBJooDA8k7oYQLbFjC4PoWklwLth46IjP2hy7BbkMdh5/kVuk9+srQKx4zc+VOz2q7TbZio8db7/UrItK+RfnKHdHFa/d/sNH0Afs+eA0sYi/zYdcv5BD3dQWR4a9Oi5/Cia2oQJZpDpIW69jQuUH0j8yIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=mpYFZX3E; arc=none smtp.client-ip=1.95.21.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=0VIcPO/qvZo2Yecv6kglkByNG81C4qnffnZZIqE0ty4=;
+	b=mpYFZX3EkeqHbGE6w69j1mVPnOKV0cTtvf2l9CHxyPE3mRWdV/8O9bRu92EIht
+	LUN9HixVth3IQ8gnMwACWp/HRoHaGyRwg89YKnHiXtKrflsE64Vk3n99ZAZoIgHr
+	5WlnD49YjNwJi0BGftdbXhLbV0kYqCix/9D9u8OcUlMU4=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgBHi8gnyyVnUm9+AQ--.14872S3;
+	Sat, 02 Nov 2024 14:48:09 +0800 (CST)
+Date: Sat, 2 Nov 2024 14:48:07 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] arm64: dts: imx8qxp-mek: replace hardcode 0 with
+ IMX_LPCG_CLK_0
+Message-ID: <ZyXLJ0RbHqCIym3R@dragon>
+References: <20241025220810.1833819-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH v2 2/3] dt-bindings: pinctrl: sx150xq: allow gpio line
- naming
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20241031151238.67753-1-hs@denx.de>
- <20241031151238.67753-3-hs@denx.de>
- <639d6ab8-688a-437c-adb9-9dea1fbd0c51@kernel.org>
-From: Heiko Schocher <hs@denx.de>
-Reply-To: hs@denx.de
-In-Reply-To: <639d6ab8-688a-437c-adb9-9dea1fbd0c51@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241025220810.1833819-1-Frank.Li@nxp.com>
+X-CM-TRANSID:Ms8vCgBHi8gnyyVnUm9+AQ--.14872S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxtxhDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBBOLZWclrIE-mQAAsw
 
-Hello Krzysztof,
-
-On 31.10.24 19:14, Krzysztof Kozlowski wrote:
-> On 31/10/2024 16:12, Heiko Schocher wrote:
->> Adding gpio-line-names property works fine for this
->> device node, but dtb check drops warning:
->>
->> 'gpio-line-names' does not match any of the regexes: '-cfg$', 'pinctrl-[0-9]+'
->> from schema $id: http://devicetree.org/schemas/pinctrl/semtech,sx1501q.yaml#
->>
->> Allow to add property gpio-line-names for this devices.
->>
->> Signed-off-by: Heiko Schocher <hs@denx.de>
->>
->> ---
->> checkpatch shows
->> WARNING: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
->> 'gpio-line-names' does not match any of the regexes: '-cfg$', 'pinctrl-[0-9]+'
+On Fri, Oct 25, 2024 at 06:08:08PM -0400, Frank Li wrote:
+> Update clock settings to use the macro IMX_LPCG_CLK_0 instead of the
+> hardcoded value 0. The first argument of lpcg is indices, not index.
 > 
-> No worries, this can be ignored. Warning messages can pass the limit (up
-> to some point).
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Fine, thanks!
+Applied all, thanks!
 
->> Ignored, as it is a make output, which helps to understand the
->> reason for adding this patch.
->>
->> Changes in v2:
->> patch dt-bindings: pinctrl: sx150xq: allow gpio line naming new in v2
->>
->>   .../devicetree/bindings/pinctrl/semtech,sx1501q.yaml          | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml b/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
->> index 4214d7311f6b..fd0936545bb8 100644
->> --- a/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
->> +++ b/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
->> @@ -26,6 +26,10 @@ properties:
->>     reg:
->>       maxItems: 1
->>   
->> +  gpio-line-names:
->> +    minItems: 1
-> 
-> I think gpio-line-names should always match the actual number of GPIOs
-> for given device. Do you have here devices with 1 gpio? This could be
-> further constrained in if:then sections.
-
-I have the device with "sx150x_16_pins", see drivers/pinctrl/pinctrl-sx150x.c
-
-I started with minItems, because I thought it is okay to allow
-less names... (as I did in patch 3/3) but see now, that other drivers have
-minItems = maxItems.
-
-So I think I should add to my patch the following part:
-
-hs@threadripper:linux  [aristainetos3-dts-v3] $ git diff
-diff --git a/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml 
-b/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
-index fd0936545bb8..0872ee1c6fa6 100644
---- a/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
-@@ -91,6 +91,45 @@ required:
-
-  allOf:
-    - $ref: pinctrl.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - semtech,sx1501q
-+              - semtech,sx1504q
-+              - semtech,sx1507q
-+    then:
-+       properties:
-+          gpio-line-names:
-+              minItems: 5
-+              maxItems: 5
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - semtech,sx1502q
-+              - semtech,sx1505q
-+              - semtech,sx1508q
-+    then:
-+       properties:
-+          gpio-line-names:
-+              minItems: 9
-+              maxItems: 9
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - semtech,sx1503q
-+              - semtech,sx1506q
-+              - semtech,sx1509q
-+    then:
-+       properties:
-+          gpio-line-names:
-+              minItems: 17
-+              maxItems: 17
-    - if:
-        not:
-          properties:
-
-With that, dtb checks than claim (as expected) for my 3/3 patch
-from this seris:
-"""
-imx8mp-aristainetos3-proton2s.dtb: pinctrl@3f: gpio-line-names: ['RELAY0', 'RELAY1', 'RELAY2', 
-'HEATER', 'FAN', 'SPARE', 'CLEAR', 'FAULT'] is too short
-"""
-
-So, I adapt that too in a next version of the patchset, if above
-change is okay... is it?
-
-Thanks for your review!
-
-bye,
-Heiko
--- 
--- 
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
 
