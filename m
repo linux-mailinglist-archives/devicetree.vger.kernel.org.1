@@ -1,94 +1,115 @@
-Return-Path: <devicetree+bounces-118310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 234089B9C50
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 03:20:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA2559B9C59
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 03:37:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 531F41C212E9
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 02:20:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 640D6282358
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 02:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A22C982890;
-	Sat,  2 Nov 2024 02:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C79042048;
+	Sat,  2 Nov 2024 02:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pbn5BRVU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eMT2VHK5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71625249F9;
-	Sat,  2 Nov 2024 02:20:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF9D9479;
+	Sat,  2 Nov 2024 02:37:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730514021; cv=none; b=Ng9qDTDFAZL/O+0aVDML7pStvlGdAOIQQFnall1TyIFVmy7hMFESjS2DIAdsQR4hv83zFiiTnN+BiIiD/Emty0Ae8C7V3kmNuWnI70FBuq01fnB8dQSzphZu98kQ5BLLbbQnE+oZmpB+Oh0vbqfzRIc0Bqne0XYBKiGC+yQ4TKk=
+	t=1730515021; cv=none; b=dzKHKLHODAc4d7VLDRSkg9NypjUnjTMHcpKPX0g+pmaafMeNu2N4RltUlnk//afpzAMk8/1BY2i19sbP8D95wieShGb2+Jk6VBUIcCaNIy8fER64/wQ1eIKj1UP1NwlBv/bkSwGJ1oWVwExpMPrmMnP+2LF9Vaxfla2RP3BOcAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730514021; c=relaxed/simple;
-	bh=UJhc1BEfXPgr74QkV2GxYzBCuO9egGha+1beHL+B8Xg=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=U9P3+7Ik5MLyxeAgfU/m+DeZSHtqpTnUQf5RhWYzrrgVkEbJkXvMcqEXdBwlwYoW6MA32WqKt6My5lE4bvMFAJ0FVPzxpJSoHmajkCjFTewlXXQpvsv5OLGpiG17IBvZUhHr9qLz/S2m3FqEJChyz3VYiblay2InEl+ZpgVzJSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pbn5BRVU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FFF2C4CECD;
-	Sat,  2 Nov 2024 02:20:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730514021;
-	bh=UJhc1BEfXPgr74QkV2GxYzBCuO9egGha+1beHL+B8Xg=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=pbn5BRVUmvazhkNzSVfqivJI9waT3vL5iMAT/ZoJTlfrjXDu1HeQoWJwrdgqOJAmX
-	 Wyyi+ucm5PpYidq9h7OaxDq6A7HLRsCins5rys2T7KrZ+5qN0c0YSEGqdjwspieoPG
-	 18/VKwU43RxhCuKK+VBRQ4c3eBWjqu+8WkUiP7yak8OcEvPx4P+42wBeUR0DPJRa14
-	 rt8lYtG0b3vbkl+bR0b4Yqa1BrKUdwJYPWS7+xqCC1NdGyVZhLyixSKcrWuJh717T6
-	 YVqO57K5W7NgDIGwdCz57N/72XXttzuDt5pELeaXG+YpSkPSQc6Y7QFhGMzcZsopo1
-	 iK2qRwEmcbn4g==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 70C6F3AB8A90;
-	Sat,  2 Nov 2024 02:20:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1730515021; c=relaxed/simple;
+	bh=HAm2uFR/BmaPeA/QPdAV5p1sBdlEXjYIAwxP1zNZREE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=X+bwJWzvv6cnTjCKrz940pYiFiDnCuXTw6jQGYaIXylLEehg1xbWTHZ59VAEYZhj7DoaQ96sBFzlcuREHJoxpgBWySkVXXbPrbAIDtsnli+/7/zLzdr7F3JfY6OBgZ6JT1NvFjBBl18IdinF5EvRLAasjA1BABN3ztl91qrBtF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eMT2VHK5; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-71e8235f0b6so2255775b3a.3;
+        Fri, 01 Nov 2024 19:37:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730515020; x=1731119820; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=52ooFznqeRMYHCyQ/j8hVCDyBghXj5ug7pBFSOFL7Wc=;
+        b=eMT2VHK52yGGtEpzpMoH/bz4UIbB7JAgCDSUS2zPhpjumyX94CFbASW9WzHLLTbxV2
+         H4uDv8nv26DCq2Vbg+lV3/6j92VFGdlkQJv710bWhgQjrSQnrOddFR2EAZUSGg///3cH
+         FTgz/3fIy8pL9XEGPd+wldU8zaeMKPTUD6WpLZcmMbXfEZrsUnv8ZHu7qLhpsjuXUFG8
+         mjQ6ZQ/Kxha366KhCFdhDg6kDxxw5CMZ0xEdLfEYq8pFYaBD0ueMJCYT0RuhExEyBIAP
+         OgWeInZC/MNK6hj1ICf15qaMZ8AnGaQXoU7V6Mr6dKGnvLJ/gkV5Lkub2KiGBLvUqnb/
+         WtmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730515020; x=1731119820;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=52ooFznqeRMYHCyQ/j8hVCDyBghXj5ug7pBFSOFL7Wc=;
+        b=qVUF8i289iIidR6x+eYXIVMmFiMV7v+ZXnZVQqLTtR1mgRNIWbqdWfC/IBQdoobIPm
+         5KIaQ4dlfNueXLTHzcqPrfvHo1hECAj3g1E8Ad1mn+/I9a52JpGN4v++98PRzTwKXbyg
+         1II4U2K/jXbKm/RmZBFsJxfMYbaxeQQtDc6QPqwHbjwuJOIMCBRKQ9GpnQS6NyHtQ2ar
+         6JGsyZ9XiugnMBqKeadMYjgQiHMAn5egoc1Sw4dtzA8opeU9uruKCbq+UB5gRMr+IuSX
+         llkAvpotSIDV3J5jhrYe0u3FBCCt3Lzaaa+vdpKYCTj/OQVohfoVtqo2FQymO7vGarLi
+         R5Ig==
+X-Forwarded-Encrypted: i=1; AJvYcCUipQVO4Ko2wS99nOrne/nHrVpQkxYsWuFLNFHSHjTEzprsPkBtnP91995Glh/dAf8tVe74jvAu3J39ZgCk@vger.kernel.org, AJvYcCUt3960TWka4jOc47Ps6Y1iajBcMCGmtvIjj/FIAzc2jpmE33S77N2bmsw8eK5iUrsig7nCU7kpC2mA@vger.kernel.org, AJvYcCWKqP8k27kVdlGgBdI3Xe80MG9A28sRegjwgkGXmWujKO/2orwf2jDLlgnTzeVEE54i1D1PhVK2zAq7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyShzvC05PrgvqMPpjZpIkL2bhp/hCcbWLtTfv7bRyYbyMXeCxd
+	aAWtTz6GAWI7IF8qqpQaoTDgMeW6bv/24pNzqp0MCiMsiipK9cTJ
+X-Google-Smtp-Source: AGHT+IGQ9zfRcHvemJpUmA2q1CaZU/zY095T+aeF4SHQo9LbXPUf1m6TDA8Q4+PugPH5HaynDPT5mA==
+X-Received: by 2002:a05:6a21:710a:b0:1d9:a1c:7086 with SMTP id adf61e73a8af0-1db91ec3ed9mr13201042637.44.1730515019885;
+        Fri, 01 Nov 2024 19:36:59 -0700 (PDT)
+Received: from [192.168.0.122] ([59.188.211.160])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc1ba19asm3338528b3a.21.2024.11.01.19.36.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Nov 2024 19:36:59 -0700 (PDT)
+Message-ID: <46b31874-9fe2-4534-9777-816765a265b1@gmail.com>
+Date: Sat, 2 Nov 2024 10:36:56 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net] dt-bindings: net: xlnx,axi-ethernet: Correct phy-mode
- property value
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <173051402925.2895750.10291096132066734100.git-patchwork-notify@kernel.org>
-Date: Sat, 02 Nov 2024 02:20:29 +0000
-References: <20241028091214.2078726-1-suraj.gupta2@amd.com>
-In-Reply-To: <20241028091214.2078726-1-suraj.gupta2@amd.com>
-To: Suraj Gupta <suraj.gupta2@amd.com>
-Cc: radhey.shyam.pandey@amd.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, git@amd.com,
- harini.katakam@amd.com
-
-Hello:
-
-This patch was applied to netdev/net.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Mon, 28 Oct 2024 14:42:14 +0530 you wrote:
-> Correct phy-mode property value to 1000base-x.
-> 
-> Fixes: cbb1ca6d5f9a ("dt-bindings: net: xlnx,axi-ethernet: convert bindings document to yaml")
-> Signed-off-by: Suraj Gupta <suraj.gupta2@amd.com>
-> ---
->  Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-
-Here is the summary with links:
-  - [net] dt-bindings: net: xlnx,axi-ethernet: Correct phy-mode property value
-    https://git.kernel.org/netdev/net/c/b2183187c5fd
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: spi: apple,spi: Add binding for Apple
+ SPI controllers
+Content-Language: en-MW
+To: j@jannau.net, Hector Martin <marcan@marcan.st>,
+ Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241101-asahi-spi-v3-0-3b411c5fb8e5@jannau.net>
+ <20241101-asahi-spi-v3-1-3b411c5fb8e5@jannau.net>
+From: Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <20241101-asahi-spi-v3-1-3b411c5fb8e5@jannau.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
+
+On 2/11/2024 03:26, Janne Grunau via B4 Relay wrote:
+
+[...]
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - apple,t8103-spi
+> +          - apple,t8112-spi
+> +          - apple,t6000-spi
+> +      - const: apple,spi
+Apple A7-A11 SoCs seems to use a Samsung SPI block, so apple,spi is too
+generic. Fallback to something like apple,t8103-spi instead.
+
+[...]
+
+Nick Chan
 
