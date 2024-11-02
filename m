@@ -1,124 +1,179 @@
-Return-Path: <devicetree+bounces-118348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1018E9B9E52
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 10:37:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BC1D9B9E4C
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 10:36:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF8F11F22CF8
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 09:37:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4B691F22D56
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 09:36:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BFE416A397;
-	Sat,  2 Nov 2024 09:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA4316D4E5;
+	Sat,  2 Nov 2024 09:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="Aax1zlUo"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LSZVSLXa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0382E1662E8;
-	Sat,  2 Nov 2024 09:36:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0D18166F14
+	for <devicetree@vger.kernel.org>; Sat,  2 Nov 2024 09:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730540198; cv=none; b=dyxLhQYMFboNTI3aY0MQ0M7ShLR9iwRU562s6cOtjrQPAnS0uoNhKZSbaDZwjEx38uQzuY6GiY29IH7v3smAuBnZTm38Z4pDbmLsT3AwPGMrSIUgFx0Y5fv1EtBp/LhRT/OWnr5LNt3L6S10N2VyucyrleI3sqKqnXmcf8vPLCk=
+	t=1730540176; cv=none; b=pehk8j03d6zJHWOnVPMxQDPe9Xw39uQyz9izi2ck/59tgTPydvQRU3jTAAPuxylOYkuQGKuA+PVKgt2oLY+JTzQ7yzLrmIuLV7NPEai8l1JbBHfqkoOxqa7mNRNQ/s9LHu62ltsGy0Y+g2iKtkYvbUIKn2CTVJ+cpY4x0KUlASA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730540198; c=relaxed/simple;
-	bh=wsuI6gv0q9tfLPXfBuW2/25U08FQF/pHMaCA7KwDTmU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bEUjkRs7BJEzLcVC3E0ZtiUt+AXsQuQKUJGtqhYgL4PAiNaXrt3HM80shTrg/p3t0qirSnsDM5duOUgdRm+56xPseJPjmhJvpUNEpIZ/JzCo9H2otGStNyduSQZpn0our/gMQBWkzPA/0AQ1CW9pyv+QocPGDgfsxDeprPMByfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=Aax1zlUo; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 7A705A0B13;
-	Sat,  2 Nov 2024 10:36:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=mail; bh=gF4/ZNsAK1S1Q0ruvMfp
-	DSairoKQHeLYMeqLyk6oG4w=; b=Aax1zlUo5IrrmsA+XX6SDjcSAQkEwxNfJ56L
-	bP827L6qd0N+lU0F5auKJy/y3r5mZN+yB8OM3FGnQwnBWbBgx30u4qQenmu/e8do
-	KI+x4C2dEG0LgWQR0ZepfZ0HEMpofPMxUTwqM/u/DLkTWR8G4LYa0DJkb5BJ1ujZ
-	nCyihq97aBo8krJxLY07urhZpC+cBs/fvuBO+fkjubUKxF5bedhD0GkPqOaGA3vE
-	I8C4XM5K9m6z5M1jZ64rj5rxK9iMgScs7a8KoRb4A09jrljj3PsR9bPnfS+Wrqs8
-	aj+eQiVadv+8VtYBGZ6Y4kRS4IPuC1ZQimbiY5os6RBfjQ/Cdx/u+7LGmIpXeeZa
-	MQ+L3qrXJWPN3oWMCfiHEf3glekwftBK+nZUfBwbdqsN8dSCuo7iYEnVbpF4Bi1W
-	Wuuv203zZ5unzZHmMNW0b3RiY/4D+kzPTIoDC/niBxbWYWzIwSmXqQoC4kCvFnU9
-	PWhlUFiH6X1Q+Un6lvPdw6QTZ+PbR6QQxaY/6U+aX9nypR0Wgb1h/i1kiqzlSX2E
-	v+vv2vM5GMPLXS9ziIxrP9HuSibFpg30wxNvbsVdlopGqJB3OotTwoFxADI6fsik
-	AIGWhhYiBbFn55Tlj1660kE84yjLMC0vzVh4rzsodga+YkgZbuNEFoL8uoyPzn2L
-	BAgiwrg=
-From: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>
-To: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>
-CC: Mesih Kilinc <mesihkilinc@gmail.com>,
-	=?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
-	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v5 5/5] ARM: dts: suniv: f1c100s: Add support for DMA
-Date: Sat, 2 Nov 2024 10:31:44 +0100
-Message-ID: <20241102093140.2625230-6-csokas.bence@prolan.hu>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241102093140.2625230-1-csokas.bence@prolan.hu>
-References: <20241102093140.2625230-1-csokas.bence@prolan.hu>
+	s=arc-20240116; t=1730540176; c=relaxed/simple;
+	bh=UnCtBaOSgA/sU0BThnRnBlmMsS042zthQzkmU2N+Hz8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UrSY2JFvLFSJ19v5JIE2ECHAWMaZz3d/M/o679If6hRDzZ+Yt+IE/GwZqzJKTNgMTC6ZOdqeWwR47/GKEIqxvwMxuRCkO+Zgz5JXNDDZFMBrA40vCJT9jd26rNefq+zt/OfQUYr8Oc1laG/RooV2S8rnHarSiB9EIz3S3HmCGZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LSZVSLXa; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A24e1Fi029399
+	for <devicetree@vger.kernel.org>; Sat, 2 Nov 2024 09:36:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YM8HACUKl4ocuSlUDdw9y8YU3/9YMZaLj+z480woTi0=; b=LSZVSLXacyh0ddjd
+	ae+mcmjmZMVkYhPno7rxKIYjDSq9omMggEyR+sMaeDE1Ri9KA+SdHmXenOiPvVyp
+	vZZ+FkymvF1mplcFa6AI+s4Z0l4IRoynlDSNYB26d5PFeg6GNlsn7XAXLQixK1Sc
+	Q/acs1Mde+1OOKTs2qz2mlrjd1AFv+kTnL76RVRO9NbjxkCE7df75JXVHpTSSoMe
+	6PUmFCQ3GePFjVZHJh+0Zdt48pAu1HXtbQm9qqItGd1ZME7Iw8+URZKzQHhW3BlB
+	Xf03G3HQ/BCIxZ66DJRFJ1tGiIS1QbCKGr9NdxVYn3Gxu/VkJpIKTrTh8DmyqEaJ
+	21gPZg==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd8h8cvt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 02 Nov 2024 09:36:13 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6cc290898adso9086626d6.0
+        for <devicetree@vger.kernel.org>; Sat, 02 Nov 2024 02:36:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730540169; x=1731144969;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YM8HACUKl4ocuSlUDdw9y8YU3/9YMZaLj+z480woTi0=;
+        b=crc30zp6JJkwCiqejSjLF9ZlAScwvsfxMzSSKpFXyfL0x8TkUYsn3MesQ08nEFPc6a
+         xB/68GBGFJVzRYXQeC2C3L/Zi2ZicZ4hr6nGeI5BPDPcCTAkIOpp4OFm0/w42KhrekGX
+         iWNJsyIfth3WvTyG1u+AzxGyI1ysodIJvBRsNYSBGSgeLq1Vk4fEzduckXk9lrUGx9QW
+         N72HC9OWAxvJw70fEQtOpFI8ODuZu0BuaS0oAtHWF45oTIMumBGiSbYZilAegCu3ZaIS
+         TmBiFX7WQ11HrYilCumGWbSwH0vMpHbf5qL3Fl1X4UFgHb0np1v0vuQJshN9GFqt1myh
+         fvBw==
+X-Forwarded-Encrypted: i=1; AJvYcCV78yz4xZH70t58CetyW8VXSDuXX1VHp8TBZGyVVl9AFNp5UX8H3fdMVPXLWzAEY47JGK744Bv5S4Yh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyf5T0w+Z9NeWOPnJTxK6gQhi32aCUheU+CvxJd1m2QfqOboWOp
+	m79r8wsFXpYT07CvNC4AHGMs9NHw68F5zWgp0U1T/64TWMWt4G9GaW6Z5KkEQo7FoIaGVIkGs6O
+	7fvHkywvB7MLvI3Zk6mcNBXT+zmNyd4g1VRUtSIDvGaeyCSF63fb8MtARUgNk
+X-Received: by 2002:a05:620a:4091:b0:7a9:b52a:a6f2 with SMTP id af79cd13be357-7b193f080dcmr1729303585a.8.1730540169286;
+        Sat, 02 Nov 2024 02:36:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHOpuZhSc/uUOWj0mnoU2gw1NJRB4sXHPQcGTLP8tl7/FwvWLjafzIamKU51fvqyvtbBO+7rA==
+X-Received: by 2002:a05:620a:4091:b0:7a9:b52a:a6f2 with SMTP id af79cd13be357-7b193f080dcmr1729300985a.8.1730540168925;
+        Sat, 02 Nov 2024 02:36:08 -0700 (PDT)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e565df86esm291855266b.112.2024.11.02.02.36.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 02 Nov 2024 02:36:08 -0700 (PDT)
+Message-ID: <c4407327-1060-4805-abb8-0c7bcb067ee4@oss.qualcomm.com>
+Date: Sat, 2 Nov 2024 10:36:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1730540194;VERSION=7979;MC=2738325872;ID=220022;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
-X-ESET-Antispam: OK
-X-EsetResult: clean, is OK
-X-EsetId: 37303A2980D94855667067
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: Add base sm8750 dtsi and mtp and
+ qrd dts
+To: Melody Olvera <quic_molvera@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+        Stephen Boyd <sboyd@kernel.org>, Trilok Soni <quic_tsoni@quicinc.com>,
+        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Jishnu Prakash <quic_jprakash@quicinc.com>,
+        Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+References: <20241021232114.2636083-1-quic_molvera@quicinc.com>
+ <20241021232114.2636083-5-quic_molvera@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241021232114.2636083-5-quic_molvera@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: CxrliyqAmlqLyzgXA0ZKTtL29o1mZBFK
+X-Proofpoint-GUID: CxrliyqAmlqLyzgXA0ZKTtL29o1mZBFK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
+ priorityscore=1501 phishscore=0 clxscore=1015 mlxscore=0 impostorscore=0
+ bulkscore=0 mlxlogscore=985 adultscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411020085
 
-From: Mesih Kilinc <mesihkilinc@gmail.com>
+On 22.10.2024 1:21 AM, Melody Olvera wrote:
+> Add base dtsi for the sm8750 SoC describing the CPUs, GCC and
+> RPMHCC clock controllers, geni UART, interrupt controller, TLMM,
+> reserved memory, interconnects, regulator, and SMMU nodes. Also add
+> MTP and QRD board dts files for sm8750.
+> 
+> Co-developed-by: Taniya Das <quic_tdas@quicinc.com>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> Co-developed-by: Jishnu Prakash <quic_jprakash@quicinc.com>
+> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
+> Co-developed-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
 
-Allwinner suniv F1C100s now has DMA support. Enable it under device
-tree.
+[...]
 
-Signed-off-by: Mesih Kilinc <mesihkilinc@gmail.com>
-[ csokas.bence: Rebased on current master ]
-Signed-off-by: Csókás, Bence <csokas.bence@prolan.hu>
----
- arch/arm/boot/dts/allwinner/suniv-f1c100s.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> +&spmi_bus {
+> +	pm8550ve_d: pmic@3 {
 
-diff --git a/arch/arm/boot/dts/allwinner/suniv-f1c100s.dtsi b/arch/arm/boot/dts/allwinner/suniv-f1c100s.dtsi
-index 3c61d59ab5f8..290efe026ceb 100644
---- a/arch/arm/boot/dts/allwinner/suniv-f1c100s.dtsi
-+++ b/arch/arm/boot/dts/allwinner/suniv-f1c100s.dtsi
-@@ -6,6 +6,7 @@
- 
- #include <dt-bindings/clock/suniv-ccu-f1c100s.h>
- #include <dt-bindings/reset/suniv-ccu-f1c100s.h>
-+#include <dt-bindings/dma/sun4i-a10.h>
- 
- / {
- 	#address-cells = <1>;
-@@ -159,6 +160,15 @@ usbphy: phy@1c13400 {
- 			status = "disabled";
- 		};
- 
-+		dma: dma-controller@1c02000 {
-+			compatible = "allwinner,suniv-f1c100s-dma";
-+			reg = <0x01c02000 0x1000>;
-+			interrupts = <18>;
-+			clocks = <&ccu CLK_BUS_DMA>;
-+			resets = <&ccu RST_BUS_DMA>;
-+			#dma-cells = <2>;
-+		};
-+
- 		ccu: clock@1c20000 {
- 			compatible = "allwinner,suniv-f1c100s-ccu";
- 			reg = <0x01c20000 0x400>;
--- 
-2.34.1
+These usually go to a separate file each.. But I see why that would
+be difficult here.
 
+Lately I've been a fan of <socname>-pmics.dtsi. WDYT, Bjorn?
 
+[...]
+
+> +		apps_smmu: iommu@15000000 {
+> +			compatible = "qcom,sm8750-smmu-500", "qcom,smmu-500", "arm,mmu-500";
+> +			reg = <0x0 0x15000000 0x0 0x100000>;
+> +
+
+[...]
+
+> +			#iommu-cells = <2>;
+> +			#global-interrupts = <1>;
+
+This is usually dma-coherent, you can determine that through a smoke
+test
+
+> +		};
+> +
+> +		intc: interrupt-controller@16000000 {
+> +			compatible = "arm,gic-v3";
+> +			reg = <0x0 0x16000000 0x0 0x10000>,     /* GICD */
+> +			      <0x0 0x16080000 0x0 0x200000>;    /* GICR * 12 */
+
+These comments are copypasted gen to gen and don't bring much
+information atop what's in bindings
+
+Konrad
 
