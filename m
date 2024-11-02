@@ -1,182 +1,120 @@
-Return-Path: <devicetree+bounces-118353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FDB09B9F48
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 12:30:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 026F69B9F4D
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 12:34:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3FD81F21E89
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 11:30:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92A691F21EF2
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 11:34:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0D911779BB;
-	Sat,  2 Nov 2024 11:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA6F9175D29;
+	Sat,  2 Nov 2024 11:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AqIUvCU1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 699A1171E7C;
-	Sat,  2 Nov 2024 11:30:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8129116EBED;
+	Sat,  2 Nov 2024 11:34:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730547005; cv=none; b=YF3j3pwBlZjVAmahleGCfmXwJYDmaX5fc398y2XPTVvnuDtzyJjuklQm7VeBjKFkegbJV0wyTWSfzfYp5XcbJKXn320sjnS4kYy3qnb/SNkcmZBlF3a+J3raY/qh6LbZTDDldZVGdI7sNzyajHM9knpUAjYOFXwCxDhocpAwgGw=
+	t=1730547242; cv=none; b=TKgwGRhy0h5Pac2+G3xQd45QtJcQ0uLoumivEirrliYIqKMjF0gGHAekViYEPyWLg/3uCxaMK8xCzgN7v29oluH1Eh1x2mIcB38bGaSzsjhkVCYr2DUa8w5Mn76g1ze7RuPlqkgnArmIj+4tF4o3vNTrhFL/UbMnrOjHw4WnMrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730547005; c=relaxed/simple;
-	bh=/F1oVefCGAZN0JK03Otc0zwkAJofnTFCZ5g14PrPdhU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tQZZgBwpZ2VP9x1c2azGal6Tj0gwG/kiE6uRH85oVy3PcN7MaeQxyGRvcWgjtB9IR+hujpUzb43rPAAdugZaKwN+KzriHrRcpWITI0yvGBiX0ClnHWzGHFaXHWbfCegzZraKTJVzzEykEJPdXKLmjrSZwMLGn3WsTn/jNJJIGxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+	s=arc-20240116; t=1730547242; c=relaxed/simple;
+	bh=8Toc6IFng2Tnsji7txr94Wiz0YYYryVDYAGQt80sQWk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Zal9K0JmvId35wM+wHxCWHRfN1f57jtFa9lyxEO2hLNozt0rXXPUStBh6fwvAtv46w3DLixmDdyYa/vZgINPDE05NJzzrq4CF3083oOVU0O0WjM8/efpsmNQAPDsIXPy+G+pk1+yWDZ8lApkd8Wrkn4+yZIh694WjMXaFYrBc/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AqIUvCU1; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2fb388e64b0so26861921fa.0;
-        Sat, 02 Nov 2024 04:30:03 -0700 (PDT)
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-20caea61132so24353065ad.2;
+        Sat, 02 Nov 2024 04:34:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730547241; x=1731152041; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1zrdCAeiD6RabuL/Tg4yBStUK0YW2zJOy12eTTTW6jE=;
+        b=AqIUvCU1bh+Pa4rk5i+99FMBLfIfoE4S9Uz/ea0vwKTmlkwWn8qT206pciwoTheAQV
+         QbZdVXTeOjRFy/PwQfVvKdCn9fHWOSO1kq5Ke/xf3RUfnGQrdZBdje2uQYMobX6ViU6q
+         77/Ir7vCKnR8y8OcLbbXIPvJ/YCT6ILsDp47mPNf5zysF/qBZ/wqpfN6xV8iHAlv4RLN
+         XgqAyCnnM2iqeNF015Pc9k5LzV/+8YrKUGUPhdZS1kbYZl70LGyt51i8qJ2Sj8hgZjU2
+         gZxQNfu1fONi22Jjb9ZKL9EBs/zbs7KXCLIqo5bUh5wTO82Cbpq19fibTxP7HXNlTSWv
+         h+4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730547001; x=1731151801;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2//9P0I4J3XvBkNzIbbNIA2dq470ULwziNwddPzImEE=;
-        b=JLCeWIJwB6LA3vVhXQffzWJsT8271aEJSjVm0fhHOIFwMEqNS9bwYr/Xxs+DPmCgR1
-         a2i2XVlk4zEXlR/S30F94BTi3XrbtBAVJKma++yUy1zG5HqoyMVyB+27JtYTi7UQADdZ
-         NotHXZ9leTdi/dmS5q0vGO1xDggmhPfzrCQjpcQBKdNHSwsSY5b4vpT+5AIHncaR2I/J
-         YjdnHtCP9HnllQhIj9OYVhe2Y6AJTMKKUlBfG5YvPv55yWYRwO10gAYswCMSp0qYwLg7
-         FUSh4r+i7NFhHVawg0zF94rZWQFeeDAJ5hHu4WQKuN8Xz/RAaQ6kIhPnfBUa08EmiLMe
-         aZPA==
-X-Forwarded-Encrypted: i=1; AJvYcCXBdE+hSxsbphEtod99+LN8gkB5pTYHNarAJdjw9uNNYOWjg7rvv4crLpRPlPcxkKctOZ0gClev7u5X@vger.kernel.org, AJvYcCXXZ52KTS5ZU5iKHGUl2UVrQjzJc3xG9wx8U22oT76ENKWqnj4YYnwcZ991dQcy2bQoB12SWKLQublwFHWz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGEcEEgtLdNnPvSjDekotJk8VYpJBC3a0FXG9HBPHVBA1l3HaV
-	nvnEhwOO3SjYxdWx440V7kqo4MssG3q2RIHwwFq2PrZSkmXujkeNTwwGHmqC7vw=
-X-Google-Smtp-Source: AGHT+IFrCEbx/9JVN4tXGepoYmzDI958bCIzuo4JVpLTyA3kjQUkPu4EqFij1Km2PSsNvnwyvPZNLw==
-X-Received: by 2002:a2e:b894:0:b0:2fb:570a:496e with SMTP id 38308e7fff4ca-2fd058fc799mr76866641fa.9.1730547000739;
-        Sat, 02 Nov 2024 04:30:00 -0700 (PDT)
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fdef8fa17asm8694781fa.134.2024.11.02.04.30.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Nov 2024 04:30:00 -0700 (PDT)
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2fb5740a03bso26144251fa.1;
-        Sat, 02 Nov 2024 04:30:00 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW7KTVv7eLVaoyZ4157Y+OOQ4wBZr4wFIK+JgsOaNKfO4reqGEtG9n+579u1qriIPny41uw+MVf/Dul@vger.kernel.org, AJvYcCXAiWmRPaEocMAfwwhNdd1QwXPxIpnfWSW7ELT/BBNc/YizCeP7vKcwgbZez0s1W/3AB0WQgQ3MAWnxQRpt@vger.kernel.org
-X-Received: by 2002:a05:651c:1508:b0:2fb:656b:4c69 with SMTP id
- 38308e7fff4ca-2fd0df8886amr74910741fa.43.1730547000254; Sat, 02 Nov 2024
- 04:30:00 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1730547241; x=1731152041;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1zrdCAeiD6RabuL/Tg4yBStUK0YW2zJOy12eTTTW6jE=;
+        b=QqU7V8DlBICLBAz25ZIbjlte8nS/ViJSoU7/ZWjIDMYBufiE7s4FTHhoOrMv1BcjYx
+         I2Kg3Go5xKmSfBwTPY0LQUv+dwuMI1kytkMWvhLiBXCeVV8M3BYWAtocPEsRYFNBXqBi
+         O4jZ1DF4YQ148mW1j+k6OthO7LJDT7tO2tyQneNlr4/K+5NdAJlZKQ2NnKDuSMXFD+61
+         GBdrqwCLbesBDiG324Hoh/ixZT+oz4HvygVbuTM9k3gDJqQ6puctjYJcDUZfjxvXDbbD
+         wcw40SS0wHK6Bi2GXl6t5sSSliiLb26w9IPAJGRefeeP3Rg03HS/JYbHDoe14+4cFQsd
+         MX/g==
+X-Forwarded-Encrypted: i=1; AJvYcCXxGlMuMquBrtOWOQ69rWtEl4KzZ3mjO7sEOtVOGOh4sBxC6pjHLZzRgkA2VmWwCMGxjLl7tGP1kxhrmBo=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCT+ad5lDcd1NIQ8w7KhwRpyKnPruj3kgdelQBVr4PrRVKQvvF
+	yuyocLbwgvE8dUgCT/yauU3h53HHUswHz1AJpi3HGMOxgaWNR+1G
+X-Google-Smtp-Source: AGHT+IGC2g1aC2YkRztsD/2FH/X/4f1saVcpsTCvGvZjuc/hnIKVFEFZw6fQnqRepBc6PxglD0mZ8A==
+X-Received: by 2002:a17:902:e5cf:b0:20c:705b:4123 with SMTP id d9443c01a7336-2111aef2713mr87504465ad.21.1730547240665;
+        Sat, 02 Nov 2024 04:34:00 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211056edc34sm32894405ad.51.2024.11.02.04.33.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 Nov 2024 04:34:00 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] riscv: dts: sophgo: cv18xx: add emmc and sdio support
+Date: Sat,  2 Nov 2024 19:33:25 +0800
+Message-ID: <173054635857.778838.7207985849003780014.b4-ty@gmail.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241025112902.1200716-1-inochiama@gmail.com>
+References: <20241025112902.1200716-1-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241031070232.1793078-1-masterr3c0rd@epochal.quest> <20241031070232.1793078-8-masterr3c0rd@epochal.quest>
-In-Reply-To: <20241031070232.1793078-8-masterr3c0rd@epochal.quest>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Sat, 2 Nov 2024 19:29:46 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66meMUPwOUr4Qutqu7TO-UwDtCdwOhwDv8JE_JMZi=58w@mail.gmail.com>
-Message-ID: <CAGb2v66meMUPwOUr4Qutqu7TO-UwDtCdwOhwDv8JE_JMZi=58w@mail.gmail.com>
-Subject: Re: [PATCH v2 07/13] arm64: allwinner: A100: enable EHCI, OHCI and
- USB PHY nodes in Perf1
-To: Cody Eksal <masterr3c0rd@epochal.quest>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Maxime Ripard <mripard@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Nishanth Menon <nm@ti.com>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Viresh Kumar <vireshk@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Yangtao Li <tiny.windzz@gmail.com>, Parthiban <parthiban@linumiz.com>, 
-	Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 31, 2024 at 3:03=E2=80=AFPM Cody Eksal <masterr3c0rd@epochal.qu=
-est> wrote:
->
-> From: Yangtao Li <frank@allwinnertech.com>
->
-> Add USB support on A100 perf1 board, which include two USB2.0 port.
->
-> Signed-off-by: Yangtao Li <frank@allwinnertech.com>
-> Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
-> ---
-> Changes in V2:
->  - Add dr_mode here, instead of in the .dtsi
->
->  .../allwinner/sun50i-a100-allwinner-perf1.dts | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dt=
-s b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
-> index f5c5c1464482..2f8c7ee60283 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
-> @@ -7,6 +7,8 @@
->
->  #include "sun50i-a100.dtsi"
->
-> +#include <dt-bindings/gpio/gpio.h>
-> +
->  /{
->         model =3D "Allwinner A100 Perf1";
->         compatible =3D "allwinner,a100-perf1", "allwinner,sun50i-a100";
-> @@ -18,6 +20,36 @@ aliases {
->         chosen {
->                 stdout-path =3D "serial0:115200n8";
->         };
-> +
-> +       reg_usb1_vbus: usb1-vbus {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "usb1-vbus";
-> +               regulator-min-microvolt =3D <5000000>;
-> +               regulator-max-microvolt =3D <5000000>;
-> +               gpio =3D <&pio 7 10 GPIO_ACTIVE_HIGH>; /* PH10 */
-> +               enable-active-high;
-> +       };
-> +};
-> +
-> +&ehci0 {
-> +       status =3D "okay";
-> +};
-> +
-> +&ehci1 {
-> +       status =3D "okay";
-> +};
-> +
-> +&ohci0 {
-> +       status =3D "okay";
-> +};
-> +
-> +&ohci1 {
-> +       status =3D "okay";
-> +};
-> +
-> +&usb_otg {
-> +       dr_mode =3D "otg";
-> +       status =3D "okay";
+On Fri, 25 Oct 2024 19:28:58 +0800, Inochi Amaoto wrote:
+> Since the sdhci driver is already supported, it is possible to
+> add emmc and sdio device for cv18xx SoC.
+> 
+> Inochi Amaoto (2):
+>   riscv: dts: sophgo: Add sdio configuration for Huashan Pi
+>   riscv: dts: sophgo: Add emmc support for Huashan Pi
+> 
+> [...]
 
-Since you noted in the previous patch that OTG doesn't work if OHCI0/EHCI0
-are enabled and probed before musb, maybe we should keep them disabled
-for the time being?
+Applied to for-next, thanks!
 
-You could leave a TODO item above the &usb_otg node.
+[1/2] riscv: dts: sophgo: Add sdio configuration for Huashan Pi
+      https://github.com/sophgo/linux/commit/06133f48a87144de40bbd3934fcaad449ecc1b93
+[2/2] riscv: dts: sophgo: Add emmc support for Huashan Pi
+      https://github.com/sophgo/linux/commit/b5cf65cc0fd00aa30ff218ec8170dd48e3cbe78d
 
-ChenYu
+Thanks,
+Inochi
 
->  };
->
->  &pio {
-> @@ -178,3 +210,10 @@ &uart0 {
->         pinctrl-0 =3D <&uart0_pb_pins>;
->         status =3D "okay";
->  };
-> +
-> +&usbphy {
-> +       usb0_id_det-gpios =3D <&pio 7 8 GPIO_ACTIVE_HIGH>; /* PH8 */
-> +       usb0_vbus-supply =3D <&reg_drivevbus>;
-> +       usb1_vbus-supply =3D <&reg_usb1_vbus>;
-> +       status =3D "okay";
-> +};
-> --
-> 2.47.0
->
 
