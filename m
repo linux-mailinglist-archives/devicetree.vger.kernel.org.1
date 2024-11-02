@@ -1,123 +1,169 @@
-Return-Path: <devicetree+bounces-118373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C73D9B9FCD
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 12:56:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97BC59B9FD8
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 12:59:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5F62282895
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 11:56:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AA011F23361
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 11:59:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF76A187844;
-	Sat,  2 Nov 2024 11:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300DB186E40;
+	Sat,  2 Nov 2024 11:59:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i7YUAfqa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3880F187355;
-	Sat,  2 Nov 2024 11:54:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B88156C5E;
+	Sat,  2 Nov 2024 11:59:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730548455; cv=none; b=mLZRqkWGzphq3/HeTBcq/eUWMcYdt51TKj1bz/tVl3M1vpcrw8Go0h6aUx0+2XKbnf6w6qtmXRUOLRdEQFudmtU2QQgkYqAuSTCQnm+RW0OdTg1pNYnady1EQyG9z9gBhK6f2ydechqFVdZPW4IIVDzGjkkQRDpW+1rcitz8L58=
+	t=1730548767; cv=none; b=SLZBR7ZCZjycAsjsUaTNKsIG22LBtW/0AV5/00z741TAk5ZsKfJo24Rs4VvSAiEQytBlhoneJYVUpg3Eb8qpyLb7wUbPj8ybDlZBjhjKflYq+tTong/Fe4JGlUvPMS0uicg27Q605bsKqFfUpDaI6WwZxIGTqDaPUlMrEYULoyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730548455; c=relaxed/simple;
-	bh=XvbJ9e26e4gpCai0/lrArNSvaSzm/i6/gjXmcfle0BI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K2tH0JLPqSUUWnzAxgFnb5YnPNc8Ng4u/Px0dBtN6zw2tyMeFyb/8cpuoNQaQfokxFf9mfns0+XOjgL/H25BEY9/1Bfs3z6HTcYpS8lJkDpCns6qZ1bKxRDaz75InOXRtCrMmdbmUeKZlpXP6VO/vHWxJuno3Y2HuP6qe2w9I4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+	s=arc-20240116; t=1730548767; c=relaxed/simple;
+	bh=6BZBv2koBZFEV3fNfwGJ8Fje5PDD4OA7Ov5A9pHFnMQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RpVmikyo6pvu9C9ApG/9rWzPHclHF+1t7+OFQjwnBGbzmu5+uFImS3uN0LmVpLOA4GvXkewU73uLhqXCrQ6mY+eELK/t3QseDYD9YQpcMgWT/w0RoUbsh+yyOvR5cG0PWEwQgoiOG9b8BWDFhnBh6nyVd2R8N5uy2dymMHP9vZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i7YUAfqa; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-71e8235f0b6so2469708b3a.3;
-        Sat, 02 Nov 2024 04:54:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730548453; x=1731153253;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6e344ccb049so1751507b3.0;
+        Sat, 02 Nov 2024 04:59:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730548764; x=1731153564; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cVx7U4bzYVpyfgKjWQr0MaSdBVExKH9K4jnX08inNnM=;
-        b=bdnjLVxgWwuxdR1v42NBbEszhUd2jtQdrJoPx0J8yLBD3UqfBRXg9Ku8E+9NSbILMX
-         R7PlveFotDlN18hYhHN4Ofq9DumGw2o4uD12Lbcyw07+v3c7S62tQvRzV+iBFhM+mle1
-         Tbe5X3y7iMOSiYLxK+dgWuC8vxuGGbX9oymEdPkuPAsOibr6ui+LQbrnQFbkat0LwTiY
-         LQO39GD6de0uyObXhuo7pkw4utCBXD3zo1WL4knaN1n+x8C3ZJepWNTR77vWtBI3FqJT
-         7f3SJi7rDqDtkVOaRvgUJWc1+BOpEbjHZMgo3gPF1BSnKAM2pWk38K93E8uFddEChh7i
-         QXGA==
-X-Forwarded-Encrypted: i=1; AJvYcCUvHZSbzu6LCawp3Gc6qWus90yb3ldY/mbRwEoQa+MrV999+Tj7Izl7jHAgor1/yWoK1GpSpgJ2+aMwbAWr@vger.kernel.org, AJvYcCUyYmvzg3HtsM9ymXmlgxpiqCH2s35dJxaIl+r73LuuXnG6Pif0cN2Pzhf4rlxc8qX+IeIq5r9JUGP+@vger.kernel.org, AJvYcCXOvg3ofW11Y3xHHhJ0ZQQE1IKd5JIw+GEjVl+u3cCFjdda3L+ynzeJnWRE9kF6XtIymav3ikldpw+Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaWyqJnCE5frULd6Mw0ZdZvh5DrAtyqF/A+DZ95265Jl52wrnf
-	MQA1aUNkIFJ94N2gm+azFUzpBvtFqCY/86/CKJ+Ei3mZFX6rKlEl
-X-Google-Smtp-Source: AGHT+IHADfTBPOuMjseNhPZnBBPX7nUxyp7rMazi1phiYKiysXu9Wg3hN940Yi3yFmnRm7R8Dx3VBQ==
-X-Received: by 2002:a05:6a21:164a:b0:1d9:69cd:ae22 with SMTP id adf61e73a8af0-1db91dec892mr13325470637.30.1730548453509;
-        Sat, 02 Nov 2024 04:54:13 -0700 (PDT)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc31874bsm3986223b3a.213.2024.11.02.04.54.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Nov 2024 04:54:12 -0700 (PDT)
-Date: Sat, 2 Nov 2024 20:54:11 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, linux-pci@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 2/2] PCI: microchip: rework reg region handing to
- support using either instance 1 or 2
-Message-ID: <20241102115411.GE2260768@rocinante>
-References: <20240814-outmost-untainted-cedd4adcd551@spud>
- <20241101195129.GA1318063@bhelgaas>
+        bh=U8eATJCki+TxES4vc6y+ssSPQ0d6v6bnz/0z0oHNrr0=;
+        b=i7YUAfqar32MOhmejoUDmXsd0yOIy8emH7h4B2NU75HrKFsb9WlQre+0pa9CXa/3E9
+         nVKXWFDgO6Oo2+hOd8g3UOX6sEz/Pcn38yDemgC07MUpndGXCTXZ7FmGqg1n0OELeyDC
+         i4THzsrQMMQOcdYbJuxtLsDGEkEIRRJ5tPcJ4O2PKfuR8yt8cWSdN9yS0O6Buom/wPHu
+         qdh6TK/+YgX4Duo+de0ks9T2GUZIsMKuJIOAIDHYuyxTcu4xZulYABski5fS7+/yAteh
+         8WkFUvlpaxgEEl8v5bQuAIYvy/CD0XKkjQF/bMFukCFLSIh01EM+zQbpJtZTaUxuV7LC
+         02UQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730548764; x=1731153564;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=U8eATJCki+TxES4vc6y+ssSPQ0d6v6bnz/0z0oHNrr0=;
+        b=cAOkNer8mynA+AF2q8s5LcNbb4CHfEEBxJS5u4k/PPdiw2RNYRR5W9dYTdTzsJIiaX
+         zPC3RsfpDRf3KcgrSbtvIYTpzfCC7GKFKFZf7yFBsSBfxu9C9bCO38U/xx7ZAe5ULaXq
+         K0shmOghWBsR5bmaYlkb8APaHvtJslKH7Z1feGPHJBr+iQ28Dzpun43gnltnqFDXaSLc
+         X8ECgsuBPY2i8mZtiGzyCCiFHeBfeFZNH2lEG8FV/1qlVLKI/klsM79fO+EUf7ZTuG87
+         /UjoVuG1aq52BFnxtNTvrDDUDTVIKBfEuqJsdZFdNdgRoW0MeqQt57VN9yA9q70HiL4q
+         tZ9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUM5OD6Kq7nDX/xleiUp7/ApyzQOKKji+YFFeqPC5ACbvlFNpKcSKJJFsKiTADVhjZKzYlL9Ty9JZHl/nnO@vger.kernel.org, AJvYcCVWddnQZwcspE1lCUtB9uy57sTepE76fJ4CYMTvxwoMiwkZZjFveznBkF4PEhteMxNRO58Z2Mzc@vger.kernel.org, AJvYcCXGmwHDqC8v6awd1LMQR8tRFKvWSIBECOabojU6EKMBl7wY9V8fBjz8X57R4IwKmR+sZmyGN2L72kbK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfW0ruumPIye4Y4mzmmtzaqetRQz1G/oEKFqvznjNfJqdt5Axs
+	SunQ214duHIMovb6YzXfx0hnh6JxYH3Oy6R8cIPu+vNy+OxXWi9BYvG6nnd6JkvqLjoHSBefNPa
+	dzdHrMOWaynzAqJGD3LGhybfXbNE=
+X-Google-Smtp-Source: AGHT+IFMbxyKVoPx41xbCrD0GPiI2GpxGV8kau6mx1CGcW2fC32QAQ0PlbBb0QPHWgT/KLrfKzplVdzjum4zHSCNoGI=
+X-Received: by 2002:a05:690c:4484:b0:6d3:c7d:5eaa with SMTP id
+ 00721157ae682-6e9d8b22e4amr116494867b3.8.1730548764251; Sat, 02 Nov 2024
+ 04:59:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241101195129.GA1318063@bhelgaas>
+References: <20241029202349.69442-1-l.rubusch@gmail.com> <20241029202349.69442-12-l.rubusch@gmail.com>
+ <20241101193528.GA4067749-robh@kernel.org>
+In-Reply-To: <20241101193528.GA4067749-robh@kernel.org>
+From: Lothar Rubusch <l.rubusch@gmail.com>
+Date: Sat, 2 Nov 2024 12:58:47 +0100
+Message-ID: <CAFXKEHa5A039NfyGFnXH4pm1FN9YwDuTLtoa9Xn8xzZYwTCvKg@mail.gmail.com>
+Subject: Re: [PATCH v4 11/23] net: stmmac: add support for dwmac 3.72a
+To: Rob Herring <robh@kernel.org>
+Cc: krzk+dt@kernel.org, a.fatoum@pengutronix.de, conor+dt@kernel.org, 
+	dinguyen@kernel.org, marex@denx.de, s.trumtrar@pengutronix.de, 
+	alexandre.torgue@foss.st.com, joabreu@synopsys.com, davem@davemloft.net, 
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
+	mcoquelin.stm32@gmail.com, netdev@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On Fri, Nov 1, 2024 at 8:35=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Oct 29, 2024 at 08:23:37PM +0000, Lothar Rubusch wrote:
+> > The dwmac 3.72a is an ip version that can be found on Intel/Altera Arri=
+a10
+> > SoCs. Going by the hardware features "snps,multicast-filter-bins" and
+> > "snps,perfect-filter-entries" shall be supported. Thus add a
+> > compatibility flag, and extend coverage of the driver for the 3.72a.
+> >
+> > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+> > ---
+> >  drivers/net/ethernet/stmicro/stmmac/dwmac-generic.c   | 1 +
+> >  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 1 +
+> >  2 files changed, 2 insertions(+)
+> >
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-generic.c b/driv=
+ers/net/ethernet/stmicro/stmmac/dwmac-generic.c
+> > index 598eff926..b9218c07e 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-generic.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-generic.c
+> > @@ -56,6 +56,7 @@ static const struct of_device_id dwmac_generic_match[=
+] =3D {
+> >       { .compatible =3D "snps,dwmac-3.610"},
+> >       { .compatible =3D "snps,dwmac-3.70a"},
+> >       { .compatible =3D "snps,dwmac-3.710"},
+> > +     { .compatible =3D "snps,dwmac-3.72a"},
+> >       { .compatible =3D "snps,dwmac-4.00"},
+> >       { .compatible =3D "snps,dwmac-4.10a"},
+> >       { .compatible =3D "snps,dwmac"},
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/dr=
+ivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> > index 54797edc9..e7e2d6c20 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> > @@ -522,6 +522,7 @@ stmmac_probe_config_dt(struct platform_device *pdev=
+, u8 *mac)
+> >       if (of_device_is_compatible(np, "st,spear600-gmac") ||
+> >               of_device_is_compatible(np, "snps,dwmac-3.50a") ||
+> >               of_device_is_compatible(np, "snps,dwmac-3.70a") ||
+> > +             of_device_is_compatible(np, "snps,dwmac-3.72a") ||
+>
+> All these of_device_is_compatible() checks should really go away and all
+> the settings just come from match table data. Then everything is const
+> and we're not matching multiple times at run-time. That would be a bit
+> of refactoring though...
 
-> > The PCI host controller on PolarFire SoC has multiple "instances", each
-> > with their own bridge and ctrl address spaces. The original binding has
-> > an "apb" register region, and it is expected to be set to the base
-> > address of the host controllers register space. Defines in the driver
-> > were used to compute the addresses of the bridge and ctrl address ranges
-> > corresponding to instance1. Some customers want to use instance0 however
-> > and that requires changing the defines in the driver, which is clearly
-> > not a portable solution.
-> 
-> The subject mentions "instance 1 or 2".
-> 
-> This paragraph implies adding support for "instance0" ("customers want
-> to use instance0").
-> 
-> The DT patch suggests that we're adding support for "instance2"
-> ("customers want to use instance2").
-> 
-> Both patches suggest that the existing support is for "instance 1".
-> 
-> Maybe what's being added is "instance 2", and this commit log should
-> s/instance0/instance 2/ ?  And probably s/instance1/instance 1/ so the
-> style is consistent?
-> 
-> Is this a "pick one or the other but not both" situation, or does this
-> device support two independent PCIe controllers?
-> 
-> I first thought this driver supported a single PCIe controller, and
-> you were adding support for a second independent controller.
-> 
-> But the fact that you say "the [singular] host controller on
-> PolarFire", and you're not changing mc_host_probe() to call
-> pci_host_common_probe() more than once makes me think there is only a
-> single PCIe controller, and for some reason you can choose to operate
-> it using either register set 1 or register set 2.
+I can see your point, but I have some doubts on that. As I asked
+before, my current scope is actually on upstreaming my .dts/.dtsi
+files. This would be nice, since I'm doing it in parallel in u-boot
+and they're going to dts/upstream so we're waiting on the kernel
+community here.
 
-Conor, let me know if we need to clarify the commit log per Bjorn's
-questions.  If so, then I will do it directly on the branch.
+I'm unclear what additionally to fixing my .dts files is needed. Shall
+I fix all? / some? / none? of the errors your dtbs check bot gives?
+First, most of the errors come from not covered bindings. Since TXT
+files for socfpga never were converted to YAML. Should I do this? I
+guess this would increase coverage of dt-bindings check and reduce the
+errors tremendously. But I'd see it as a different patch set if so. Is
+this needed to upstream my .dts files?
+Second, the maintainer of platform socfpga seems to be currently on a
+sabbatical. At least I hope he's fine and not sick or burned out. But
+also I would like to get some feedback on the .dts files. Please help
+me if you can give me some.
+Third, when I update things like the mentioned dwmac things and try to
+update the driver compatible to best of my knowledge, I understand
+that it would be better to refactor a redundantly checked
+compatibility to just one check in the driver.
+But, I only have one hardware: an Arria10 SOM which is affected here.
+And, is it really anyway needed to refactor networking drivers for
+upstreamining my .dts/.dtsi files at the end of the day?
 
-	Krzysztof
+Please don't missunderstand me. I can absolutely see your point here
+and appreciate all type of feedback. Anyway IMHO these are all
+different topics i.e. different sets of patches, or smells a bit like
+scope creep. I separated the 2 patches for a different set, as Jakub
+wrote.
 
