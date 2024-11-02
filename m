@@ -1,85 +1,128 @@
-Return-Path: <devicetree+bounces-118392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AB499BA05E
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 14:17:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 602689BA084
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 14:25:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BADB51F2175D
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 13:17:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06E3F1F21671
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 13:25:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF33F18A6BA;
-	Sat,  2 Nov 2024 13:17:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2BA18A6DE;
+	Sat,  2 Nov 2024 13:25:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c0h6gQEM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z0UT1LrD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0E6C1E515;
-	Sat,  2 Nov 2024 13:17:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 981261E515;
+	Sat,  2 Nov 2024 13:25:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730553423; cv=none; b=oxvEwt4tJk++xR+0Myu2ExoD/nas12WzHUyjZQLAO4J3EFkSZxfUInFo6lgrXV7rrRkimg6LK+pueHBYnv4N2OfYq9/5fv9U9zUah+gjB+hVZJxIXf50bVPBoJ3QKg3qNOA5bPVtAiNGvdU4AWlZR8q8MM/Qfr6z6ujoAF7HfvY=
+	t=1730553939; cv=none; b=S+gJg2oNvlGbja8Ho5YWUwIgrK2C+UVNs0VmMW/RhVVMotw7HYR3WjEZ3m4CErQnii5YXbrt86cV/8juS8RhQxgI4nxfjQPJuAiyQd4gbk+rytLWX0RVX7KIgDNjj4is+0/uUrWVmzsmmjAsYt+yGcWbP81Dk7qjUf36/YpAC5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730553423; c=relaxed/simple;
-	bh=m7HZYLDFS5CEPm06FIwHTt0tQLxBAUAMPV9pgMT+j+4=;
+	s=arc-20240116; t=1730553939; c=relaxed/simple;
+	bh=Brh7PCFfiHPodDSQkSEDFp8MWJQXOxvx1uid36Iwljc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nz3f9efQK8Z5KE6+N6GdjYGqNdT6svlJvhH1lij+siFwlilF6AC7Xa4Zg1uwqppF+0x5Ww/BXaqdf/CMVSONgbTF0W6fbyM4ci1cuAkXjmBGhxOEI7GtrFg17BKpzH23qp5O7qorgM5H2gcUZXxsUObzN1uFYDeM5OoItw7RGho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c0h6gQEM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDA01C4CED0;
-	Sat,  2 Nov 2024 13:17:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=i3NiiJTiWRJ3ydqVW+NTAjHrYLgDkK0K4+FltDN619wly8OoMZzzupOIBlG6Nahu1ZHMN+SgitoXu+O26+68K109digyziOGC7tGRk9+D1SH7Jqad8uvc+p0mzatrkqSXrKN88HDm+FOVzjwsyQ1gJG4lPW6kahyx6rxT8Sy2Aw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z0UT1LrD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B2D9C4CEC3;
+	Sat,  2 Nov 2024 13:25:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730553423;
-	bh=m7HZYLDFS5CEPm06FIwHTt0tQLxBAUAMPV9pgMT+j+4=;
+	s=k20201202; t=1730553939;
+	bh=Brh7PCFfiHPodDSQkSEDFp8MWJQXOxvx1uid36Iwljc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c0h6gQEMlYTK7v9/q1tzsOryUAZJt5P6B6maeM11aSGcTw218PJ1HD4NsfpZD6O8R
-	 dmvl6IvFyprJP/XFIeW8RgLwacuvUgzKeHzyVj0F3sBGmBMfjLSMRbcmxVZljEKDFH
-	 YeOyYieDBFw/gQDTbAzZh+aOU1yqhOH54Ddnv+VtE5PBM2LyqEGNAMitcX5hUxjSYP
-	 QWfBivo0Y5xhIRoztZMXW/3z1yk8TCdsuEgPlgiiXRN6eZs0PFkcxWPsM/PvEGZum2
-	 RHLimyzV3opF5QmbQJsisgBrpVGpaekrq2lsrzLvtwEmE7hCBOSA/MYhGAW2sJTvx5
-	 FMMooRvuaQPOw==
-Date: Sat, 2 Nov 2024 14:16:59 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] media: dt-bindings: media: camss: Add
- qcom,msm8953-camss binding
-Message-ID: <kdqobcodlotegbpn4l7n7htyvlvrcdyhdgz3f65ngli5agfc76@va2eels3r7nf>
-References: <20241102-camss-msm8953-v2-0-837310e4541c@mainlining.org>
- <20241102-camss-msm8953-v2-2-837310e4541c@mainlining.org>
+	b=Z0UT1LrD0JnecxRQ9ghkR0Z8Mk/+S/sA2GbGMku5OkqJq8LM6KrVcsVNf04GAGuuO
+	 8sm1lhzmUyW+Brp2t4BxAbCmmcKVkZu1qgsOslVddaki6ntWlrQ08SMVoEBxaQsU8+
+	 1XrJjCqB7x9V9NwbE/Jo39qdCAXHjiyFwMCC0a7C0XJHEpbaBo9f6zsnlc9QYnAvTQ
+	 fHtsGCDX7MblpS/fhrT6j7LI6SyLrR7ZWzPJhaHQJ8dZAgq+s/97q0edTtsMsvbt2j
+	 dFPfcfvpZHJvNQ3gyDkT39hmDFTWa5hEiZ74qM3chMsvJtD6c75Ky2hQN9l8fV5qV+
+	 Ed1S1Z4ypcwiA==
+Date: Sat, 2 Nov 2024 13:25:32 +0000
+From: Simon Horman <horms@kernel.org>
+To: Michael Nemanov <michael.nemanov@ti.com>
+Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Sabeeh Khan <sabeeh-khan@ti.com>
+Subject: Re: [PATCH v4 09/17] wifi: cc33xx: Add main.c
+Message-ID: <20241102132532.GJ1838431@kernel.org>
+References: <20241029172354.4027886-1-michael.nemanov@ti.com>
+ <20241029172354.4027886-10-michael.nemanov@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241102-camss-msm8953-v2-2-837310e4541c@mainlining.org>
+In-Reply-To: <20241029172354.4027886-10-michael.nemanov@ti.com>
 
-On Sat, Nov 02, 2024 at 02:32:29AM +0100, Barnab=C3=A1s Cz=C3=A9m=C3=A1n wr=
-ote:
-> Add bindings for qcom,msm8953-camss in order to support the camera
-> subsystem for MSM8953/SDM450/SDM632.
->=20
+On Tue, Oct 29, 2024 at 07:23:46PM +0200, Michael Nemanov wrote:
+> General code and structures.
+> Notably:
+> 
+> cc33xx_irq - Handles IRQs received from the device.
+> 
+> process_core_status - Core status is a new concept in CC33xx.
+> it's a structure that is appended to each transfer from the device and
+> contains its most up-to-date status report (IRQs, buffers, etc.).
+> See struct core_status for details.
+> 
+> process_event_and_cmd_result - Responses to driver commands and
+> FW events both arrive asynchronously. Therefore, driver cannot know what
+> he read from HW until inspecting the payload. This code reads and
+> dispatches the data accordingly.
+> 
+> cc33xx_recovery_work - Driver supports basic recovery on FW crash and
+> other illegal conditions. This implements the recovery flow
+> (Remove all vifs, turn device off and on, download FW,
+> let ieee80211_restart_hw do the rest).
+> 
+> irq_deferred_work - Does irq-related work that requires holding the
+> cc->mutex. Thisd is mostly in response to HW's Tx/Rx IRQs.
+> 
+> cc33xx_nvs_cb - Callback for the NVS FW request API. Similar to wlcore,
+> this is where the init of the HW is performed.
+> 
+> cc33xx_load_ini_bin_file - Loads a configuration file from user-space
+> via the request FW API. The structure is described in a separate patch.
+> 
+> cc33xx_op_X - MAC80211 operation handlers.
+> 
+> Signed-off-by: Michael Nemanov <michael.nemanov@ti.com>
+> ---
+>  drivers/net/wireless/ti/cc33xx/main.c | 5689 +++++++++++++++++++++++++
+>  1 file changed, 5689 insertions(+)
+>  create mode 100644 drivers/net/wireless/ti/cc33xx/main.c
+> 
+> diff --git a/drivers/net/wireless/ti/cc33xx/main.c b/drivers/net/wireless/ti/cc33xx/main.c
 
-Also:
+...
 
-A nit, subject: drop second/last, redundant "binding". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/b=
-indings/submitting-patches.rst#L18
+> +static struct ieee80211_sband_iftype_data iftype_data_2ghz[] = {{
 
-Best regards,
-Krzysztof
+Hi Michael,
 
+Sparse seems a bit unhappy about this:
+
+.../main.c:332:24: warning: incorrect type in initializer (different address spaces)
+.../main.c:332:24:    expected struct ieee80211_sband_iftype_data const [noderef] __iftype_data *iftype_data
+.../main.c:332:24:    got struct ieee80211_sband_iftype_data *
+
+So perhaps it should be:
+
+static const struct ieee80211_sband_iftype_data __iftd iftype_data_2ghz[] = {{
+
+Likewise for iftype_data_5ghz.
+
+...
 
