@@ -1,152 +1,144 @@
-Return-Path: <devicetree+bounces-118405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 182119BA193
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 18:09:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F5F79BA1CB
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 18:43:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BECDC1F21735
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 17:09:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF2061F21BEF
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 17:43:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660881A071C;
-	Sat,  2 Nov 2024 17:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 187B51A2557;
+	Sat,  2 Nov 2024 17:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HZetXxDm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cp5Bg/mv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED96F3C3C
-	for <devicetree@vger.kernel.org>; Sat,  2 Nov 2024 17:09:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47B04EB50;
+	Sat,  2 Nov 2024 17:43:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730567364; cv=none; b=bdVDsk9h36txNE6YPrLVZaoPzRaKn+OPLmj9c0GZGIrVD43q1Rk6aqHoqb9+xTvLfXi2/ostl4lFUxmtkWcjHAMUEeA5doVUPYEjBEefjqlj0Kk0KB2lTTdh7NbVsGIsGfNNhw+840wMi5GGVo9Ps6/q/MTZX3coQdwvhLxCvaY=
+	t=1730569385; cv=none; b=mk+bqcnbkXT6z+OvMA7psctneAki11FPUMaHmeqV5xDqrGeVXOKyVKjCFmtSId5V7rXolpDEDnRD7sVuAScTARW2e4d1GjViXx+N3ltlNJyZUOPLGPzAmMl2cyle2CsFREm+rQEs14DXrIDeMyqf52yqJdxYyzUr8p8VCkDci00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730567364; c=relaxed/simple;
-	bh=Z4ujPaeRMEt6r7M7H1TsEVcv9xtm5hvQruVS6LMJgNc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s5aOZuyqyEwPr6hr34aVSIApHeg43xHSdYWMrWAmrwqAXIa7W4vN+B7YunBALz7ix5iF0dU0unlD3RDB44Agp34fshYLGEfKsLiInB+uOapyBGSp7XwCbuF5kfzhxBZtLcdOtyqTjNitB+/iRXtx/KfYvyPYHo6wk9Q9hkKOeSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HZetXxDm; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-20cd76c513cso23644225ad.3
-        for <devicetree@vger.kernel.org>; Sat, 02 Nov 2024 10:09:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730567361; x=1731172161; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=niemCpBaWtNTD33HK4hY7EmVvjCf6wQeZoDXMitV7Gw=;
-        b=HZetXxDmN8QlshSNxk61fUsiuCnePcI18I10cz+pzFpr+14WVEiM39mazf6BBNEn2h
-         Ohk2XXW3EVZWFVBVUoQz3Pfo7SLXp2+pomwWdwL1qj4NJjJC2siL2ZI0CqUfWbLmvN+H
-         t2Xy0pfNFas3HqknRQgMVVva1eRgp3ZF6cXplHW8favIvAYICny5tyiHpqvjlmLvXMId
-         i/mJFBoZgG5iX0+Ty304/YEGG/bI6o+zR78E2QiDTPiPddGMAjNZrwXdr2V0OkuorvLR
-         0G25Z69OIMq6gmkQMSGyuIXjAPrlCnEAoa1u9R4L+R/zs95PB5i92aLURxawFfHyedAd
-         QObQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730567361; x=1731172161;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=niemCpBaWtNTD33HK4hY7EmVvjCf6wQeZoDXMitV7Gw=;
-        b=TmJ3ob8FaZ4E37U+pkjjD95XmegMcuxEv1RicRil4edm2oLtFuUPs49qQSBSx3ecJz
-         2MxFFKtemY165fVX3ZDsbZefE865kBrFx5fNEOqPEbN2ggR9VU7i9cb5Lclpm5tNjdLT
-         W3IJZkSoMSVIZfzNDcoEwOvpPeCw/CUSqKr9n12SxE/V/V2rNENwdIcLrrq6SQj6J/kO
-         7xgD9qcTRcBp/Eg8WtfLzj2Q3KuupRnKoojeMoQkjkPfJLxzuN210CaSeV0zU+YR+TlA
-         I2UULgCZJ9iLbuZEvsLyFowRqVg/2zmyl/r+QNiQrOANsuF08zaUcNyDfN7I/0ZCF452
-         lQZA==
-X-Forwarded-Encrypted: i=1; AJvYcCUG8jo/PTGNG7U1erwd8YmI5O4FAJkAVl6XfwYVMcZFW7/BdzGhux/oUTjIyOPrgBj7s2Rf2iCvHRb7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbJx/9+Vvq4qIzVmnWpZ3VvOFiIrRUnbhHQbx9qJfq9muaOaf9
-	FLIz+XGC5w7PmIJa1mG08UxP2/+du7Ks5GxX3Gkeyjq6gacG+NzUiQeTZ6O1dg==
-X-Google-Smtp-Source: AGHT+IE57YiawuzlnoPc/P8d7TUPT1NkGH0WXOgqoMFowdmCtN7jxWsbHJCr+a/Z5Z8OOuUwKEUShw==
-X-Received: by 2002:a17:902:e810:b0:210:e8b7:58c5 with SMTP id d9443c01a7336-210f76ff16fmr219810025ad.56.1730567361173;
-        Sat, 02 Nov 2024 10:09:21 -0700 (PDT)
-Received: from thinkpad ([220.158.156.209])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211056ed8efsm35882265ad.55.2024.11.02.10.09.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Nov 2024 10:09:20 -0700 (PDT)
-Date: Sat, 2 Nov 2024 22:39:08 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v3 05/12] PCI: of_property: Assign PCI instead of CPU bus
- address to dynamic bridge nodes
-Message-ID: <20241102170908.fa5n6pz5ldxb66zk@thinkpad>
-References: <cover.1730123575.git.andrea.porta@suse.com>
- <f6b445b764312fd8ab96745fe4e97fb22f91ae4c.1730123575.git.andrea.porta@suse.com>
+	s=arc-20240116; t=1730569385; c=relaxed/simple;
+	bh=U2CSmDapur3Jo4JKm5z6Wka0AR1ocn27ba4W1txoJHA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V3Ml93yIiwmVEaylI/xcMxwschR7N1mDgPPH6KU4AQWBX1WKCalS44bNLsks4ZhewFy9BsNCxSvO3CIQzSkZly9Fxis9alU2dW32gpySG7CNTsUWzz8Mqi5Lge3Z1FtvTlNMz+k8YiBJz6gaDObd3fjZ8iDMCRZjNgRaG7JcxPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cp5Bg/mv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0341FC4CEC3;
+	Sat,  2 Nov 2024 17:43:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730569384;
+	bh=U2CSmDapur3Jo4JKm5z6Wka0AR1ocn27ba4W1txoJHA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Cp5Bg/mv/kOL/y7uDFW0AY6zoJDfLAHMVXOxWEsEB2EhnKTBx8M/JoWCkE3TSXyFM
+	 zsPi+xMglUo9ybptXu2aQAPy3mVeu2vbNJ7rwHuJNZv9j9rvhY0Mgq69I3q3jS7xrc
+	 z5x/V+JXikfxz66Rov1tOoRmGmC6KJQHeZu1rINGytaM5UJOu9d7l3k2JjIdvaeqMy
+	 T9rQHpr/1ETzEZzd/Ss/Mf4WhG1TGswDxqy8pScJaor4SUaZ/ITPPGRAYX9l3b38E9
+	 C2VCrZmYZR//EAfQge2JsD5GTxr80Fixdwh5/bytP5V2EyEe/9qkLH7brAv5Ie8NZy
+	 UvkjDLc7Q92WA==
+Message-ID: <719f9d89-f644-48bc-8be8-09c1a4de0101@kernel.org>
+Date: Sat, 2 Nov 2024 18:42:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f6b445b764312fd8ab96745fe4e97fb22f91ae4c.1730123575.git.andrea.porta@suse.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/4] Add minimal Samsung Galaxy S20 Series board,
+ SM-G981B and SM-G980F support
+To: Umer Uddin <umer.uddin@mentallysanemainliners.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ igor.belwon@mentallysanemainliners.org
+References: <20241030232308.72210-1-umer.uddin@mentallysanemainliners.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241030232308.72210-1-umer.uddin@mentallysanemainliners.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 28, 2024 at 03:07:22PM +0100, Andrea della Porta wrote:
-> When populating "ranges" property for a PCI bridge, of_pci_prop_ranges()
-> incorrectly use the CPU bus address of the resource. Since this is a PCI-PCI
-> bridge, the window should instead be in PCI address space. Call
-> pci_bus_address() on the resource in order to obtain the PCI bus
-> address.
+On 31/10/2024 00:23, Umer Uddin wrote:
+> Hi folks,
 > 
-
-of_pci_prop_ranges() could be called for PCI devices also (not just PCI
-bridges), right?
-
-- Mani
-
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
->  drivers/pci/of_property.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> This series adds initial support for the Samsung Galaxy S20 Series and also
+> initial board support for the Samsung Galaxy S20 5G (SM-G981B)
+> codenamed x1s.
 > 
-> diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
-> index 5a0b98e69795..886c236e5de6 100644
-> --- a/drivers/pci/of_property.c
-> +++ b/drivers/pci/of_property.c
-> @@ -126,7 +126,7 @@ static int of_pci_prop_ranges(struct pci_dev *pdev, struct of_changeset *ocs,
->  		if (of_pci_get_addr_flags(&res[j], &flags))
->  			continue;
->  
-> -		val64 = res[j].start;
-> +		val64 = pci_bus_address(pdev, &res[j] - pdev->resource);
->  		of_pci_set_address(pdev, rp[i].parent_addr, val64, 0, flags,
->  				   false);
->  		if (pci_is_bridge(pdev)) {
-> -- 
-> 2.35.3
+> The S20 Series feature a lot of similarities in their configuration
+> and internally Samsung named the common devicetrees in their
+> downstream kernel 'hubble', please note hubble excludes the
+> S20 FE series and Note20 series.
+> The device trees have been tested with dtbs_check W=1
+> and results in no warnings.
 > 
+> This initial bringup consists of:
+>  * pinctrl
+>  * gpio-keys
+>  * simple-framebuffer
+> 
+> This is enough to reach a shell in an initramfs. More platform support
+> will be added in the future.
 
--- 
-மணிவண்ணன் சதாசிவம்
+Patches look good, thanks.
+
+Unfortunately, it is late in the cycle and due to some travel it is
+actually too late for me to pick it up. I will take it after the merge
+window.
+
+
+Best regards,
+Krzysztof
+
 
