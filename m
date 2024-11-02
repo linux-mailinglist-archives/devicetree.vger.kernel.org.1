@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-118378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E579BA02D
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 14:07:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE1729BA032
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 14:12:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54BF7B2160B
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 13:07:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DC881F21678
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 13:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BC6A189B8E;
-	Sat,  2 Nov 2024 13:06:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8EC18A6A7;
+	Sat,  2 Nov 2024 13:11:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FuEeBoKa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nUHv4s6e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F586EAC6;
-	Sat,  2 Nov 2024 13:06:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71477EAC6;
+	Sat,  2 Nov 2024 13:11:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730552819; cv=none; b=H1orn7ybDR+Rd03q0pp/1HaCHMMsOr/354wqIELDj9Q5rMyvLJ/ixBrs0Wbc1+R5R4qj5MSlm9eI6OpHikBaKMvgXbIo7LbRo0vjs+irg8qyNBJ+tiQwn5iSdp1x3eG6Zl3seYR3Zh7mN2CaJ7Z7mUGpTRzf7IB3jId4/kt2Dtg=
+	t=1730553115; cv=none; b=pKdq7fubn5W7cE/sWGizDqb6pcJNFk5rUuRYNQ/1HD143ylW9aMKY8WVK+CrSBKP6hXxa/8AE0NH+tew0x8drcaXHi3mY/fN+JZwVV0/OZ4ZgDSN7wfQQLkh4VEgsguUpgRHvZRs0EHAuUxCBZsJVK8ZjG3kJ+xgeirTFMD3PDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730552819; c=relaxed/simple;
-	bh=QUQZ/U08FUV2AMYlJQIt0c1roE/xH5qntepaJpWp+rE=;
+	s=arc-20240116; t=1730553115; c=relaxed/simple;
+	bh=eGFck0cKd1Wy64d/Ev/jSEbK3IIKOXA4fI7Uzfoz+9k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HPZk/MyRflatoxgWhGn+Coen7cZgEhJia8maud96nRJyKVcqKfVgpTbUj2JKPRrhiXd9dxexs7Kd9j7Navl8OSfsHViz2bc2vzZbQy7zR9qIRLWu7Kcv31n2IO7j1PBuQV2d3AuBtuqFHOZ84DjS2IKsfd5nHSfU6S1GtMQqP2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FuEeBoKa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24AB7C4CED0;
-	Sat,  2 Nov 2024 13:06:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LTYn+6LSl4k6SEORWlP/IFJwdh0n/dv6j6Y7FeEzxHT1FHo2g3UXGDmGjGm5ggwbfCv0vQ/m9BJFbu9a0+Jh6Bs9lBJBeQ0a6nSGOajk9SIfEJ9rHM8TyErNa0f/nyltnuzuMm2lGGObB5V0H75fsf95bddfD38dwxVOZJRha1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nUHv4s6e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E21A2C4CEC3;
+	Sat,  2 Nov 2024 13:11:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730552818;
-	bh=QUQZ/U08FUV2AMYlJQIt0c1roE/xH5qntepaJpWp+rE=;
+	s=k20201202; t=1730553115;
+	bh=eGFck0cKd1Wy64d/Ev/jSEbK3IIKOXA4fI7Uzfoz+9k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FuEeBoKaKrzBUnRKXjnLXHmnVcYNKRqeWjwdEnb+kVkL1oMNGzPFxk4Jaoz1oauI9
-	 kWZ2upyiseDzvmWb4cKzkuRuE1T25A2EeoBJsxH9BMGlen54b916bYyMHE2A5TK7uo
-	 WgoWPtip1k2IUB9EIolrgpZv7gqSBje1vJbAuze1fR+zOVkLm2IL5mFBR3HYiYD+Ik
-	 zw0Pwv2ogwwLPaRJnhWXJUxOdzLHFJIRh8HhjVuRyIn1huVkizufvS/tbymq+6CWDe
-	 oyqQTaO1ijmJgZyDk9FOYxGL35pht+cVQt35lykhAwfWcTXUxdu5Y9MkErmAbiyGqn
-	 oPuFY6dND5+dQ==
-Date: Sat, 2 Nov 2024 14:06:55 +0100
+	b=nUHv4s6eRD6BBzQHjsh+cFIyMNUx1BNkT6PJb+Vs/t6ALkfudA5Wz7c0N9VjIqXvE
+	 nwOIv10w8osITYi4ymFr3BrogeMuR3Ekn+PVgFwp/7WwdtYV0wctd+0vWlEHWX9Jgt
+	 GtNTStE8UN/7qVZZq9QE0hDg/d/QAyjzR0ccjazeCmeRd0QanNktUhWN6pzQ+Qp8ET
+	 0WPwx9TwPKdiXKesmS8jSlfheWbruBuKz9jSMA9ZKp+jk9LSQLIH9B4DZStMRLxkNB
+	 AwvsEGTXK4Qccaa9MEPrbx11qUKk2x/EV+y+08s+nkgAIgismXVnCzbUEJa00tvtTy
+	 NI8Eimmavnz1A==
+Date: Sat, 2 Nov 2024 14:11:51 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: George Stark <gnstark@salutedevices.com>
-Cc: pavel@ucw.cz, lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel@salutedevices.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: leds: pwm: Add default-brightness
- property
-Message-ID: <ngwfccj55vovsaj5bdealdidgxdrxfl7nwxfdqponqzdiv3olo@epzabbxkdzxb>
-References: <20241101154844.1175860-1-gnstark@salutedevices.com>
- <20241101154844.1175860-2-gnstark@salutedevices.com>
+To: Janne Grunau <j@jannau.net>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] Apple SPI controller driver
+Message-ID: <vzulq4ewdbrk7qdurtypxpaoe4jsswddfprtdbudoxipf6d3ya@4gnbmr722pig>
+References: <20241101-asahi-spi-v3-0-3b411c5fb8e5@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,35 +60,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241101154844.1175860-2-gnstark@salutedevices.com>
+In-Reply-To: <20241101-asahi-spi-v3-0-3b411c5fb8e5@jannau.net>
 
-On Fri, Nov 01, 2024 at 06:48:43PM +0300, George Stark wrote:
-> Optional default-brightness property specifies brightness value to be
-> used if default LED state is on.
+On Fri, Nov 01, 2024 at 08:26:11PM +0100, Janne Grunau wrote:
+> Hi all,
 > 
-> Signed-off-by: George Stark <gnstark@salutedevices.com>
-> ---
->  Documentation/devicetree/bindings/leds/leds-pwm.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
->
+> This updated series address the review comments from the original
+> submission in 2021 [1]. It adds a new SPI controller driver for Apple
+> SoCs and is based on spi-sifive. It has been tested with the generic
+> jedec,spi-nor support and with a downstream driver for an Apple specific
+> HID over SPI transport.
+> 
+> As usual, I'm splitting off the MAINTAINERS and DT binding changes.
+> We would rather merge the MAINTAINERS change through the Asahi-SoC
+> tree to avoid merge conflicts as things trickle upstream, since
+> we have other submissions touching that section of the file.
+> 
+> The DT binding change can go via the SPI tree or via ours, but it's
+> easier if we merge it, as then we can make the DT changes to
+> instantiate it without worrying about DT validation failures depending
+> on merge order.
+> 
+> This is mostly Hector's work with a few minor changes to address review
+> comments from me.
+> 
+> [1] https://lore.kernel.org/linux-spi/20211212034726.26306-1-marcan@marcan.st/
+> 
+> v2:
+> - removed '#address-cells' and '#size-cells' from the bindings and added
+>   Rob's Rb:
 
-<form letter>
-This is a friendly reminder during the review process.
-
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation: Please add
-Acked-by/Reviewed-by/Tested-by tags when posting new versions, under
-or above your Signed-off-by tag. Tag is "received", when provided
-in a message replied to you on the mailing list. Tools like b4 can help
-here. However, there's no need to repost patches *only* to add the tags.
-The upstream maintainer will do that for tags received on the version
-they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
+Where?
 
 Best regards,
 Krzysztof
