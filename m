@@ -1,79 +1,118 @@
-Return-Path: <devicetree+bounces-118317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25EEC9B9C72
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 04:06:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 112DA9B9C79
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 04:09:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69DE0B21015
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 03:06:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4D341F2316A
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 03:09:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2017742070;
-	Sat,  2 Nov 2024 03:06:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFCAE13A250;
+	Sat,  2 Nov 2024 03:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Bg8QAQuu"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="gzNQWntG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E73E2AD00
-	for <devicetree@vger.kernel.org>; Sat,  2 Nov 2024 03:06:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8BC52AD00;
+	Sat,  2 Nov 2024 03:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730516767; cv=none; b=IHp38buZnzhIQb7Mu4+Gf9v1ZheWdl3di3HdWwSiHO6sv5nUANAgLIzW9dVhZDnywVrc95RBnLmZalmbK6/F3wlqn8pJjR4Ilx8T9SM9lFCPscJTIkIAigWxaT/MqTsM23fww9mEIUwxAz3LctPpLt/eazP5VEcrmmXFfoEpXic=
+	t=1730516966; cv=none; b=WCYdDUVgHSMpuhvOVdsJC8l+v7/o+J4lzrUZlNeRg9feah5hxRSde/Zsp54cFwjnvJHkk5dX/UlbY8KbYzuHDdfmWJTqHphyjxqomRV8zt9iIrC7pBfsvphCXPe21X5RIcoB+ZdS+rkvGxeuPg8c7EqP/UUa3D1ck5vXWtXCr3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730516767; c=relaxed/simple;
-	bh=CrBW7gcFJPzHjeH5/TI3/rKBzVxK4Zjcgf6BIWAcJns=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oRW/YxOKmpEstpDkjdtIqwWlzKaEhai7WpDR3fHZQgW6aIMXq/fe7wrlW635Yb9aPkD4uz6Umulj5IuBsCmZ0IKlQPbENEapsOtStSv0sswv7VSki5nQrSa2w/uAeuTDO2GGPpSAM5lYnCbBtOlFKS1tbZfYk06T+5xsq608EWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Bg8QAQuu; arc=none smtp.client-ip=220.197.32.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=p8eD/9xKOfuW1a5aPO+P+oTlB82ZVFjGxpbnAcOwcBM=;
-	b=Bg8QAQuulN5NSlNJTqdEjQzv8SKn88C1nZQLOFMQBu/oE238yGdnjssZJraoIR
-	IgogDHuOJH0H3s41FKACyXiJ7AiZRa6JByrSKq3cbzIdLSJsbVBFzAELVNEP4CuX
-	Rb97m8219Hzl3lsanR20qFgw9YZ70vnQmqVO/PZT5grDA=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDXfyz7liVnl_l6AQ--.14941S3;
-	Sat, 02 Nov 2024 11:05:33 +0800 (CST)
-Date: Sat, 2 Nov 2024 11:05:31 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	shengjiu.wang@nxp.com, Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] ARM: dts: imx6sll: Fix the last SPDIF clock name
-Message-ID: <ZyWW+3NsvR3poTTY@dragon>
-References: <20241024181409.1461997-1-festevam@gmail.com>
+	s=arc-20240116; t=1730516966; c=relaxed/simple;
+	bh=m6kuhS/d1UW4myk/mZJ4FBqNBvknHThF4SusqOWR1RM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=T9STFAK8Yfde+TjXUR/lQP9K85i727/AmnoImFWVJEB1YlWYikzesIVrKGkItPw4w6C7ZNt3/2a3J+5moEh4Po9OQYa4oVjLy2f0NglTuVy4n8AuvpHeNCGnrkwjWrdFjJlhZT2nDmFm2ttUqmhFmBz0JAxDrWA4GRyUJnyvHfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=gzNQWntG; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1730516957;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=IokIVkNSt4ES1wovgJeW/dP40rMHM/y+rSgYmJiJZ6M=;
+	b=gzNQWntGZCnSbVnelnFmAvF805b20plMmapOhEpoDjoxcpPEcyMhdwhvA95oHDP1rDH2Ok
+	smqsBFfs0okEel18dHG+mOuTfYUmDGrZJK0Bj5CCToG3WiQZ9KTlMlewB1+4Cr2jH/tz5N
+	Pcx2aK88jVJ5mYhF2aDJ1q1c3l0xIxGfpwoGdnNYcWZ//HncPqULx2AOl61Zi+7SttR+Tw
+	G0fKR7JRxujD2JRe20oe9ITFLv2uo/s8xZUvAuMYG0zskdU6PgTyAxpldsvy7lgreODW2g
+	vtmeG3TyWFj80Akd7ah3lhMpc78be+Z3DWBwpJUDyF4GB9ZFx8Ew36RhCBEWQg==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	didi.debian@cknow.org
+Subject: [PATCH v2 0/3] Update, encapsulate and expand the RK356x SoC dtsi files
+Date: Sat,  2 Nov 2024 04:08:58 +0100
+Message-Id: <cover.1730516702.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241024181409.1461997-1-festevam@gmail.com>
-X-CM-TRANSID:Ms8vCgDXfyz7liVnl_l6AQ--.14941S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxCJmUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEg6LZWclifsbEgAAsL
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Thu, Oct 24, 2024 at 03:14:09PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> The last SPDIF clock is IMX6SLL_CLK_SPBA, so change the last
-> clock-name entry to 'spba' as expected by fsl,spdif.yaml.
-> 
-> This fixes the following dt-schema warning:
-> 
-> spdif@2004000: clock-names:9: 'spba' was expected
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+This series tackles the Rockchip RK356x SoC dtsi files in a few different
+ways.  First, it updates the lower and upper voltage limits and the exact
+voltages for the Rockchip RK356x CPU OPPs, using the most conservative
+per-OPP values for different SoC bins.  This is rather similar to the
+already performed adjustment of the GPU OPP voltages. [1]
 
-Applied, thanks!
+Next, this series prepares the RK356x SoC dtsi files for per-variant OPPs,
+with the RK3566T being the first new RK356x SoC variant to be introduced.
+This follows the approach used for the RK3588 SoC variants. [2]
+
+Lastly, this series introduces new SoC dtsi for the RK3566T variant, which
+is capable of operating at the CPU and GPU OPPs/frequencies lower than the
+"full-fat" RK3566 variant's.  The RK3566T is found on some of the already
+supported boards and rather importantly, this stops the CPU cores and the
+GPU from being overclocked on these boards.
+
+Changes in v2:
+  - Improved the wording of the patch 3/3 description, to make it more
+    clear which of the mentioned RK3566T-based SBCs are already supported
+  - Renumbered the references in patch 3/3, so their numbering follows
+    the order in which the references appear in the patch description
+  - Adjusted the patch generation options passed to git-format-patch(1),
+    to make the patch 2/3 a bit more readable, [3] and added a note about
+    the git-log(1) options to the description of patch 2/3
+  - No changes to the actual patches are introduced
+
+Link to v1: https://lore.kernel.org/linux-rockchip/cover.1728752527.git.dsimic@manjaro.org/T/#u
+
+[1] https://lore.kernel.org/linux-rockchip/cover.1719763100.git.dsimic@manjaro.org/T/#m786f0e0a45377d29aea826f05c95b5052a8bb3d9
+[2] https://lore.kernel.org/all/9ffedc0e2ca7f167d9d795b2a8f43cb9f56a653b.1717923308.git.dsimic@manjaro.org/T/#u
+[3] https://lore.kernel.org/linux-rockchip/D4ZZFL98AMFI.1TDPL2DJPSQ3D@cknow.org/
+
+Dragan Simic (3):
+  arm64: dts: rockchip: Update CPU OPP voltages in RK356x SoC dtsi
+  arm64: dts: rockchip: Prepare RK356x SoC dtsi files for per-variant
+    OPPs
+  arm64: dts: rockchip: Add new SoC dtsi for the RK3566T variant
+
+ .../{rk3566.dtsi => rk3566-base.dtsi}         |   2 +-
+ .../dts/rockchip/rk3566-radxa-zero-3.dtsi     |   2 +-
+ .../boot/dts/rockchip/rk3566-rock-3c.dts      |   2 +-
+ arch/arm64/boot/dts/rockchip/rk3566.dtsi      | 142 +++++++++++++-----
+ arch/arm64/boot/dts/rockchip/rk3566t.dtsi     |  90 +++++++++++
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      | 113 +++++++++++++-
+ .../{rk356x.dtsi => rk356x-base.dtsi}         |  81 ----------
+ 7 files changed, 307 insertions(+), 125 deletions(-)
+ copy arch/arm64/boot/dts/rockchip/{rk3566.dtsi => rk3566-base.dtsi} (95%)
+ rewrite arch/arm64/boot/dts/rockchip/rk3566.dtsi (87%)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566t.dtsi
+ rename arch/arm64/boot/dts/rockchip/{rk356x.dtsi => rk356x-base.dtsi} (96%)
 
 
