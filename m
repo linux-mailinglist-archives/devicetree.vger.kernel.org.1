@@ -1,157 +1,82 @@
-Return-Path: <devicetree+bounces-118376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1C989BA025
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 14:00:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE8119BA028
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 14:02:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 749351F212AC
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 13:00:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F05791C20EBD
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 13:02:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CB7418C324;
-	Sat,  2 Nov 2024 13:00:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F18B1189521;
+	Sat,  2 Nov 2024 13:02:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="A+UtL/ly"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ummwtIk0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB25C18BBA0;
-	Sat,  2 Nov 2024 13:00:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B52ADEAC6;
+	Sat,  2 Nov 2024 13:02:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730552412; cv=none; b=MP27URsVw6+xocQNFjruZM+kwjBqZTRh8hyt9aW0T/nW2T12b/JFxJzA768yeOFMOf5NKl7UOIkzg76At1IV/JV4KLZ2eJIj8ukDZbRLrIHl3Py3OVOgXFBIbaf78BdEHrjgCjRK1SarIvjmp3ftpkdlBGmfWKMH/jy1lcvlliA=
+	t=1730552538; cv=none; b=hmI7C+faDPt4bJ0HBj78MgqnapCIbs7N7g0b3grX6+b3z6AXlccOEV2lfcrvlh1PF7qe9fIQbZHdjbi7pM1fIhw48aHkT2HuCYTFZ1Nyvs4DkxuTVJcvobxUtmpE9agP8IlcLcOYRVRqth0UQQzYotJ5EuyM1SkAmG1jBpYD4AY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730552412; c=relaxed/simple;
-	bh=3UkeRzv8tuyM480RNYtsP4upZlJ+1C00o1KTqGMdwCg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fSJF3gfBqHB0t215MMAsKadnN1JBCGqd5455Kqi9WZFfDydlKJ5/Pli8Nsl96yX6UB13RQWTnTJSR6lwno2nkDOSEFZ3NE2YSbXOlPW9sWsieJX3L/EoLzWLolDPIBcZZPoGd/+Oai+ESiEnA2TvpG3GV4t9YJ+RmBhPBNmkAaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=A+UtL/ly; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 69622A0ABF;
-	Sat,  2 Nov 2024 14:00:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=mail; bh=6BVVyLjJdR6me74k/F+O
-	t1blbg2/epRtk+d2HKjKdKo=; b=A+UtL/lytKD+HLHR4iDjYCIulzShvKEyTfgw
-	3Z5KSRo6vXfQ0/d/E2XSJrJBfqVK5bwJNXTB3d41PvsGpTpT2tbDSHTeuKMCjdAI
-	f0DmKXb76aM4Xv7GA0KGyMwktjy0sujpM7uUWVsBgs2iJYV88XYAwBxARZ6hqKBC
-	uEElnh0nBjnhkOUin+Alo4vvCj/AwWoeeatw795rt0Ye4niKhSues4kMrB9+7vqC
-	2l5C2dRl8cw9VBXdcxMyRt3cWhlvxHXz31vp2I07kj+ZBcS3CXbxas/cS48c5lqR
-	1UZUchOQ3NKPxBLg2scsexKhGd9dzNegQ4xsnSDevNN2iMlH7K+F4iZDOZDmXzh7
-	M6t+Wsr8S9s8QNEYsjiPLio+c8PVlClscZByvv4q9DP356oCoquLwmLtCz7bqqxQ
-	ulJYjJTHZ1FsRIvgaj4NDR0HURlaVFdAFUX0WkDrrz2fS+zt7Cjpf721AbKz0MhN
-	S9wx9NN2r1M+BwjW8j/dJJ3sXSQ5m77SwkQ9yYLdwn2CqlHNpmzpX3Jmd6+pGti7
-	8ZhUXitbbX5uFqRbBLfaYd79+pPhDhsct6jDbfHQPRq99OW8WzGKs/oGj+giMaXW
-	9uNG+hUakgslS2rFSbp68yI1di+ZY1RJwS2xcpSAHs7KguD1uSMZZNdLh8+rsWuH
-	dGTaLco=
-From: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>
-To: Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
-	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
-	<linux-kernel@vger.kernel.org>
-CC: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>, "Liam
- Girdwood" <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, "Samuel
- Holland" <samuel@sholland.org>
-Subject: [PATCH v5 2/3] dt-bindings: sound: Add Allwinner suniv F1C100s Audio Codec
-Date: Sat, 2 Nov 2024 13:57:11 +0100
-Message-ID: <20241102125712.2647325-3-csokas.bence@prolan.hu>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241102125712.2647325-1-csokas.bence@prolan.hu>
-References: <20241102125712.2647325-1-csokas.bence@prolan.hu>
+	s=arc-20240116; t=1730552538; c=relaxed/simple;
+	bh=7W8ecw9iKDX42Va0103cXROcPqELbw7Dq4r9AhyU8iI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j2Ii5g8ZuXNXShBIUV6WyE/daKmX1qGOIaB4kC/fy5fHweT9mI2yGjGMzKF6ttMZymihdQAXb/W/xmHahVWQ4+Gef9rAgysqwmaYIjuavp87bTDF1I0CvExgZqumJG0ykjDQohlYtJWSHeojEyG4x8h6H4wA8E3Y2TsWiwS3T7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ummwtIk0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 629DDC4CEC3;
+	Sat,  2 Nov 2024 13:02:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730552538;
+	bh=7W8ecw9iKDX42Va0103cXROcPqELbw7Dq4r9AhyU8iI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ummwtIk0fBkH4u2coz36iBA1QCn9LCjkVSO7gJH0ENGGTbenuTWjetU+KP10PHhoL
+	 0JYqvCrQoqQKQLEjqwFt1Q8kRVdMtx/+vjOtclDIkz4v9ibt9h1A7CxkaKTfHerDU+
+	 7cJAhwp5gI6cW/i/MZCgDs2/LRE81NMmS7nUXB5CLBYnI43odCYednbWnM2JL6ogWZ
+	 8KneQKQjQ4SFLpszofmjjVJvHkLqdgm5wdkZ/qeAZKtdgy3jtCAxbVbm0B05E7q9nQ
+	 XfFeK1gbIw8kDIqgfc3OXW7AEZtcnZtAn7qmEZgod9ukuK8CEIe16T4USIjtjpLrI3
+	 xYLAcC2WSJ0iw==
+Date: Sat, 2 Nov 2024 14:02:14 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Abhishek Sahu <absahu@codeaurora.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 03/11] dt-bindings: clock: Add Qualcomm QCS615 Camera
+ clock controller
+Message-ID: <dn3pg3h7fis2hn7pgkw3qwfkvbmf5tezowbkbqp3mzd6jcir6q@fffo2jjwcjgq>
+References: <20241101-qcs615-mm-clockcontroller-v2-0-d1a4870a4aed@quicinc.com>
+ <20241101-qcs615-mm-clockcontroller-v2-3-d1a4870a4aed@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1730552408;VERSION=7979;MC=1258900186;ID=222167;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
-X-ESET-Antispam: OK
-X-EsetResult: clean, is OK
-X-EsetId: 37303A2980D9485566706B
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241101-qcs615-mm-clockcontroller-v2-3-d1a4870a4aed@quicinc.com>
 
-Add compatible string for Allwinner suniv F1C100s audio codec.
+On Fri, Nov 01, 2024 at 04:08:15PM +0530, Taniya Das wrote:
+> Add DT bindings for the Camera clock on QCS615 platforms. Add the
+> relevant DT include definitions as well.
+> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
 
-[ csokas.bence: Reimplement Mesih Kilinc's binding in YAML ]
-Signed-off-by: Csókás, Bence <csokas.bence@prolan.hu>
----
- .../sound/allwinner,sun4i-a10-codec.yaml      | 31 +++++++++++++++++++
- 1 file changed, 31 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
-index 78273647f766..16f4f7a40d9d 100644
---- a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
-+++ b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
-@@ -22,6 +22,7 @@ properties:
-       - allwinner,sun8i-a23-codec
-       - allwinner,sun8i-h3-codec
-       - allwinner,sun8i-v3s-codec
-+      - allwinner,suniv-f1c100s-codec
- 
-   reg:
-     maxItems: 1
-@@ -70,6 +71,7 @@ properties:
-         - MIC1
-         - MIC2
-         - MIC3
-+        - MIC
- 
-         # Microphone Biases from the SoC
-         - HBIAS
-@@ -80,6 +82,8 @@ properties:
-         - Headset Mic
-         - Line In
-         - Line Out
-+        - Right FM In
-+        - Left FM In
-         - Mic
-         - Speaker
- 
-@@ -229,6 +233,33 @@ allOf:
-               - Mic
-               - Speaker
- 
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - allwinner,suniv-f1c100s-codec
-+
-+    then:
-+      properties:
-+        allwinner,audio-routing:
-+          items:
-+            enum:
-+              - HP
-+              - HPCOM
-+              - LINEIN
-+              - LINEOUT
-+              - MIC
-+              - HBIAS
-+              - MBIAS
-+              - Headphone
-+              - Headset Mic
-+              - Line In
-+              - Line Out
-+              - Right FM In
-+              - Left FM In
-+              - Mic
-+              - Speaker
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
 
