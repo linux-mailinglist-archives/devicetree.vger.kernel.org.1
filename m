@@ -1,193 +1,141 @@
-Return-Path: <devicetree+bounces-118333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79BF99B9DCD
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 08:56:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 319BF9B9DE8
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 09:36:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1B26282545
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 07:56:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 683821C20D1F
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 08:36:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3EA5153BF7;
-	Sat,  2 Nov 2024 07:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BF55156872;
+	Sat,  2 Nov 2024 08:36:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vBV3brip"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="TAJdI5nA";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="HuP631SA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-b7-smtp.messagingengine.com (fout-b7-smtp.messagingengine.com [202.12.124.150])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A48012FF69;
-	Sat,  2 Nov 2024 07:56:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1AA149013;
+	Sat,  2 Nov 2024 08:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730534165; cv=none; b=LttiU5OtMwFWyntfzABdbZMNA+5Oxic5QKWVEpNRiBwhN24Vg0Wgnb0cZTxVgvWWvZG2VaQDEwkPMlx59040e7PazHjHVvQdRkSwU6jPY2s337GqrPOO/bSWWHbZqwflm22pzYDXwtKpdQB1eN5BHBsPxYSBoG5zN3afIDqan2M=
+	t=1730536577; cv=none; b=kI/AvFziHzRjqRJz7d41zqDzWiUlyjRU2Ep8wXoVDCUyLM9C8LRiBR41WzyfAHffLCUC1T/LyZF7IB4D3PdaUxbEJo5aicmNuI88ALc+yZsvgx6esDzE2PW36sYSNCIdbjiqWyfgcHcx0zNMT5c3RB5Z3abpEt5LurHmI+SHnBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730534165; c=relaxed/simple;
-	bh=fldAxtdVmighiw1Xz9hhdENpTpUPfnW8Z5fYdIp9fVY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lWLI+547pbfL4DZY7vZAQ+YEcV/kaBhVQyktAt2l7U0oOewSKidlXijvMOC0sO3BnxOxsueMxyIcwYVXPyMKiEXs4gyK2jp0DtulnQA82mUxXUz8uD0x8yPIQczHarJxswjAotcxt3CIQdRNiTNxlnBD0mVzx6fwVJ9iPDjwfUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vBV3brip; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD73AC4CEC3;
-	Sat,  2 Nov 2024 07:56:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730534165;
-	bh=fldAxtdVmighiw1Xz9hhdENpTpUPfnW8Z5fYdIp9fVY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vBV3briprrVWI0BuSKrAdEfZcPUK6IZAgl83hrEEBA51E4BaKNHM/2ilMBHDFSw1q
-	 gNjomm1l7FDfUo4r8BjJqzvaVcqkzjp0qZexhqfNswa3qJr7g+OKsMMctRQT3bMoDz
-	 iPMtOHfTUxUHXzrKqBt6zmoLGrydRztVol39Ra9qS5QEuQe2nxdkfZ+f04RKqjdEZX
-	 hifx0PjE6HScMHgRO7zOW3E2KM50BZhNlqlyK4FFRdMmah+KuPq8IpFdz12nRI/5iu
-	 PlH9IuaVs8QrWL5s7yVRjFXn2ukZvln1XqFlFx07PiQ8AaC13dKFAPxKIoujKjnEgG
-	 iEwzCcfZzIARg==
-Message-ID: <559908e3-ca6b-4bbd-846d-940cf338e2b7@kernel.org>
-Date: Sat, 2 Nov 2024 08:56:00 +0100
+	s=arc-20240116; t=1730536577; c=relaxed/simple;
+	bh=D+Mijo0FL6xpK9EOLFIwHY+A29Y47n3svW0py42hJ8s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bpO8UtdIsL7+txSEljgBj15IhQmXcMX+Nj2f8NHxwsQLXcvA/eGyJyIOCw+89AZ/Bj7fJ8+jtv8vNB7Nt07MuateApylFV/kgeqen8rszGGQ5br57LlHWz9ywi7ad1y13A0++i0iJlKS7EvpuH+CoQTQg4jLFLYXbUWteXqRRTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=TAJdI5nA; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=HuP631SA; arc=none smtp.client-ip=202.12.124.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-02.internal (phl-compute-02.phl.internal [10.202.2.42])
+	by mailfout.stl.internal (Postfix) with ESMTP id B17BE1140113;
+	Sat,  2 Nov 2024 04:36:13 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-02.internal (MEProxy); Sat, 02 Nov 2024 04:36:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm2; t=1730536573; x=1730622973; bh=CxnydXbwJ5
+	eq9YUDX/EDzhIGvXa8fKehgoMmewXSQHs=; b=TAJdI5nAD6q3HluHLkaBXGD9f6
+	gHJCALc9zMPzV0vRb8UB2lYzPr979fqIkVsoqGYkPuKKDo9X9K8s2NJnNu4UH6Up
+	Kq2jUJ0GAsU98bTEUM/jXcRw95wkorCLioREZthUv0yPOFO8ooCSv0fem9SIcRP/
+	ANX9Wv+pStJ0ogH/8TmuOVnFPNyeW705fsPZWlfq09+hHf6x+rgYLp2ZABl5RyI7
+	6awdEkvJKk3Spnb7XTYYUTlDxkturI5Yn/8sMBY1tZWkKZ+NqIzlkpfvU1s2jDih
+	JcR3MIhw4ZHa91k/sSLaXnCQDfXerIcKCR8ltgLt64BugfEjuUti/rgI1HSA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+	1730536573; x=1730622973; bh=CxnydXbwJ5eq9YUDX/EDzhIGvXa8fKehgoM
+	mewXSQHs=; b=HuP631SAvyeeZHWs+JrtVJWwL00bMZ0gi+cQns6gFZM2gu4S1PK
+	rV3ly0VRs9LsvpZhQ+coufByMgCmiWjyOJHtBITCHPJ+z1qjP9RU0jdbULCYzAGC
+	DefaDb6KMwPKbQeAEO4GyYU9zGOPKDAWJMkxTWK4a5Y2pPMTRquoPP+N1/ussHth
+	CwG0dC4V6RNJPV82sgl4+ZJkfjzHzfS+m4N0zRdGLtjhTgyJAPnvY3cQuLqEIv8Y
+	+GrwkLniHAnafbIyQ6qbDDAGiS7ChdDqPsF7+VBPkSRM4vSGm4tQ4UqExJqV4EDx
+	tJrKqPUW3/pysECFCqFnjvEzAEYAdpKKTLg==
+X-ME-Sender: <xms:e-QlZ_a9_L_-1qdndBi9EyVE1RfvY0h-Gb_COzmZPWrKvuXouquq0g>
+    <xme:e-QlZ-YBBowAHMAQ_SE73I4PT1VdvHrDj1RNu70FpMsnicmu4P3WIH-POWueb9Ka_
+    S5h-Vnt3YqVtP0SbVs>
+X-ME-Received: <xmr:e-QlZx_Lqy8r4Z5fAiv39L3BOYL7MpJL_hUn7GUl6K-1kcUMjVABIUxQEsu0-fhZVtvGN0BmI4lyJhL_0qYObFVjQnWzyrznrT8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdeltddguddvtdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttdej
+    necuhfhrohhmpeflrghnnhgvucfirhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqne
+    cuggftrfgrthhtvghrnhepgfduueffleefkeegueektdehkeejtedtffdtudejhfdvheet
+    gfeigfeltdeufeejnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvg
+    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjsehjrghnnhgruhdrnhgv
+    thdpnhgspghrtghpthhtohepudefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhope
+    htohifihhntghhvghnmhhisehgmhgrihhlrdgtohhmpdhrtghpthhtohepmhgrrhgtrghn
+    sehmrghrtggrnhdrshhtpdhrtghpthhtohepshhvvghnsehsvhgvnhhpvghtvghrrdguvg
+    hvpdhrtghpthhtoheprghlhihsshgrsehrohhsvghniiifvghighdrihhopdhrtghpthht
+    ohepsghrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvg
+    hrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdp
+    rhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprg
+    hsrghhiheslhhishhtshdrlhhinhhugidruggvvh
+X-ME-Proxy: <xmx:e-QlZ1rCGgyYwIm0MvtZUxAbZcABlPTgAHcfvQTlzJqOAJ4-tgx_Yg>
+    <xmx:e-QlZ6pgPaU9Pjm19b883M6R3UeFUufranZFbUrX4Uon-jJBw0Fp9w>
+    <xmx:e-QlZ7SAmYmre5LCDI_AdOFSS1T3dfKMYdJ4RDnD04sOy_ONYOexIA>
+    <xmx:e-QlZyoWi7B9Q94K7a402vdT3F8InxhnTcuPL2dc_bFRvQGospOBOw>
+    <xmx:feQlZ_7_vg1vU6QchmWwft0O504JlUpp_2PPFt47138o039zjUeq9ck_>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 2 Nov 2024 04:36:10 -0400 (EDT)
+Date: Sat, 2 Nov 2024 09:36:08 +0100
+From: Janne Grunau <j@jannau.net>
+To: Nick Chan <towinchenmi@gmail.com>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: spi: apple,spi: Add binding for
+ Apple SPI controllers
+Message-ID: <20241102083608.GA308136@robin.jannau.net>
+References: <20241101-asahi-spi-v3-0-3b411c5fb8e5@jannau.net>
+ <20241101-asahi-spi-v3-1-3b411c5fb8e5@jannau.net>
+ <46b31874-9fe2-4534-9777-816765a265b1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: pinctrl: sx150xq: allow gpio line
- naming
-To: hs@denx.de, linux-kernel@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20241031151238.67753-1-hs@denx.de>
- <20241031151238.67753-3-hs@denx.de>
- <639d6ab8-688a-437c-adb9-9dea1fbd0c51@kernel.org>
- <644ae184-1fef-fa42-06de-e1086b7b14bb@denx.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <644ae184-1fef-fa42-06de-e1086b7b14bb@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <46b31874-9fe2-4534-9777-816765a265b1@gmail.com>
 
-On 02/11/2024 06:24, Heiko Schocher wrote:
->>>     reg:
->>>       maxItems: 1
->>>   
->>> +  gpio-line-names:
->>> +    minItems: 1
->>
->> I think gpio-line-names should always match the actual number of GPIOs
->> for given device. Do you have here devices with 1 gpio? This could be
->> further constrained in if:then sections.
+On Sat, Nov 02, 2024 at 10:36:56AM +0800, Nick Chan wrote:
 > 
-> I have the device with "sx150x_16_pins", see drivers/pinctrl/pinctrl-sx150x.c
 > 
-> I started with minItems, because I thought it is okay to allow
-> less names... (as I did in patch 3/3) but see now, that other drivers have
-> minItems = maxItems.
+> On 2/11/2024 03:26, Janne Grunau via B4 Relay wrote:
 > 
-> So I think I should add to my patch the following part:
+> [...]
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - apple,t8103-spi
+> > +          - apple,t8112-spi
+> > +          - apple,t6000-spi
+> > +      - const: apple,spi
+> Apple A7-A11 SoCs seems to use a Samsung SPI block, so apple,spi is too
+> generic. Fallback to something like apple,t8103-spi instead.
 
-Yes, but in top-level you keep widest constraints, so min 5 max 17.
+Have you looked at it? This one still seems to be somehow Samsung
+related. See the previous discussion at
+https://lore.kernel.org/linux-devicetree/d87ae109-4b58-7465-b16e-3bf7c9d60f1f@marcan.st/
 
-> 
-> hs@threadripper:linux  [aristainetos3-dts-v3] $ git diff
-> diff --git a/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml 
-> b/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
-> index fd0936545bb8..0872ee1c6fa6 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
-> @@ -91,6 +91,45 @@ required:
-> 
->   allOf:
->     - $ref: pinctrl.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - semtech,sx1501q
-> +              - semtech,sx1504q
-> +              - semtech,sx1507q
-> +    then:
-> +       properties:
-> +          gpio-line-names:
-> +              minItems: 5
-> +              maxItems: 5
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - semtech,sx1502q
-> +              - semtech,sx1505q
-> +              - semtech,sx1508q
-> +    then:
-> +       properties:
-> +          gpio-line-names:
-> +              minItems: 9
-> +              maxItems: 9
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - semtech,sx1503q
-> +              - semtech,sx1506q
-> +              - semtech,sx1509q
-> +    then:
-> +       properties:
-> +          gpio-line-names:
-> +              minItems: 17
-> +              maxItems: 17
->     - if:
->         not:
->           properties:
+Even the A7-A11 SPI controllers are not compatible "apple,spi" doesn't
+prevent us from using something like "apple,s5l-spi" for those.
 
-
-Best regards,
-Krzysztof
-
+Janne
 
