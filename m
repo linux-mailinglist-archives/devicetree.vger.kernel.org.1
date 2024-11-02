@@ -1,142 +1,130 @@
-Return-Path: <devicetree+bounces-118370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 459909B9F85
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 12:49:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C0959B9FC7
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 12:56:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C7B51C20B45
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 11:49:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7A501F220AA
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 11:56:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BB9716DED5;
-	Sat,  2 Nov 2024 11:49:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C57F7189F2B;
+	Sat,  2 Nov 2024 11:51:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8920C7F6;
-	Sat,  2 Nov 2024 11:49:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C366C189BAD;
+	Sat,  2 Nov 2024 11:51:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730548143; cv=none; b=LNQ0rQOtLZ4cK1VqLHLmWVMOHTts6ZI3AEy79RNGFZjItRx08Yy3B15/pXo0QMvsKLpWWjR9RhdK6yBwObUNEnJavu0PkK9LHgeAQWEids5AK4LtiLK55fJBWpwfcr/ZUBedsjUnUulcJ2AIO4PveZW1uY3SppXVpJRftN9xrTc=
+	t=1730548271; cv=none; b=mRfFckqTVKaEAiGXvJqWD4khzd1wONdxhd3SSvnn9pA6yEG9KJM2sgW4B0Di7Ybo9p2kalGsqn1rxc2MbcqyFw9GLr5KQglqq/qWmL27Yghq0jsl+OQm6l+8ddJpTgHsHe4r4AtYAlnrL0zig3Wxgy3HB1pTLaAcUB74Tn2xDew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730548143; c=relaxed/simple;
-	bh=W2cSYdIgTxYR8mOPhf+ODb+RkckYv34eRxJumqWmJ98=;
+	s=arc-20240116; t=1730548271; c=relaxed/simple;
+	bh=MtCxFhn9qQLXFwmCIV0k0ztAlVpN8badYhBgaQ4qWME=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jzr3Tknydp7X2ww467gO3Y/BUuW1UHLJ9FhOgpbpL+hc6UNbGIdL1tZgplz+nPhk1DPVT/wrZHnu7qI+0oxbne9y8NKqgMxgnnXtmf9m5T4JoYPGvCOEt14A+RtoHuYhVYpK5dBrTRVZtwy+5JkkBegsD8pV7WrrIz65JAETmOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.166.171
+	 To:Cc:Content-Type; b=ujgIkNIQWLXO0ydhLjNf0qqmASMGGmAduaZ28ZMWv1yuA2gsiimV5/QAAJukzoNEaB+21yXLfiOCNdVeIQcSUH1I+Ja9tcTOeonEH0CjjIWG3fjTa8kypi/Z4QYKDYZrU7Cz71exwrwtRe0pjhyc2/6qT0eoBfdt8kK6/YFmOdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-3a6adaee7acso7914645ab.0;
-        Sat, 02 Nov 2024 04:49:00 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-53a0c160b94so3109236e87.2;
+        Sat, 02 Nov 2024 04:51:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730548137; x=1731152937;
+        d=1e100.net; s=20230601; t=1730548264; x=1731153064;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :reply-to:in-reply-to:references:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UCDur7kMwBxLZ7iPM36W+L8Iemo6gZ+3RoWOEA3d2yQ=;
-        b=H9nEIKCvpGy71QNZu/p7cVNGyxTsvpwnQJweO8tKhcIZjzqqDgnanmy0T/wPqqYEm1
-         dG4qlNnSo3/Lj6JJsGvea/pHde3177YdK01IYcLnCXBu1GGASWqiSZBXBJs2W3PKMKF/
-         +3URsqhRayPXl73R3Zrzfb37qTOpmVqr87kFW+Nsrd/bu+HBrZzBqLmW/+KPjgaYFi05
-         sJ42Yyehz8UhoMFLkQohl1HkMZhFh56sHJbEGJhfux/a1GxAbZ3ZHhJhE6JTYl3fbtAR
-         XFHCX5zD6a1s1JS+bmPnJ1x9DMcdsG1ZjffgMiRPbIfYdZC3l097OSlyDpRsYzIZaEdG
-         HiXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPolnl3mAOzMF/9zMcdwRFYD63CyciSRJjFEAU3e7xoK4f7ewhfu+p0Ljy039mgd816gH0vLDmIlePW/mn@vger.kernel.org, AJvYcCVPpSfVApHZhZHNHnugo0xkzLM0tVFwt4IKhIgiDhx+p0ruFNEZOMbgdsTa7uk5j34+7QVvW5C1iURO@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxZpcL5Uc7mBLYREdEdZjrZ+BkMq2xFjp2HI+rfPhYYDKnLbuC
-	ZMkE1IfHQW5jI3g/qZEOnuD98oDFG11FfmeF2Ep53vQccktYe+JFUQ6dxvF3HU0=
-X-Google-Smtp-Source: AGHT+IHcWdsMnb+Nu566FNwvSGOeJZwI2yU7n3VRWpobNlLaab3UQj8pI3gEvfEQ9ARE/GpX2qQ1XA==
-X-Received: by 2002:a05:6e02:1c01:b0:3a6:aee2:1696 with SMTP id e9e14a558f8ab-3a6aee218b9mr59957085ab.21.1730548136763;
-        Sat, 02 Nov 2024 04:48:56 -0700 (PDT)
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com. [209.85.166.47])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4de048bfbe7sm1131748173.54.2024.11.02.04.48.55
+        bh=HNxx58SAnxfm8WutwLtZrpYz0UwbZu8UhPuKwFhJ2Po=;
+        b=DwBWKS6thXXlhQEdRmebtkglceD/c99oMau/Bw4xwyMei1XSH/54E7C8c8jw0+HFDi
+         X2KNh6etXrhXRJwGHUmyaXvtdtVF73LFn3k+561P2qRP3kKqpdBxfqsb2YsT3SwCe1xl
+         MPJVc+o2UArG8DJ1YAwvIvOzriFVXh40P46RDaC67DWug6hpLcZtLeP/7+aBu19KVl8K
+         j2JbjqIEhyFjoJgMKUQTqDtRKHNcyLedYHhm9VRqhkW0lFaJcOZoj1S8WilckZlz5exE
+         Hp5vbRR3NMP2yfGvhhOTjS7IpSeU4iKb8IoTd3ni44cboxvHdETejnTD3pjU6TDo45o+
+         YLXw==
+X-Forwarded-Encrypted: i=1; AJvYcCU+K7X2VaJp8YgitOduRWOBYYSXPZEt+xM5urV+qYqyphJp9xhQPI+JoR51tSPGzTXtZjtgg9wGP7w2@vger.kernel.org, AJvYcCWEm3Vgs9SlLoXVwXADHVlmpIZnG/k3QayzcgTi/9t9AEavrfzDcye8kRY+Q7XJK20y7P4ceNbipjY=@vger.kernel.org, AJvYcCWjlk1+ZFju8ZehQKdGWRYBJbaMuthYMojOf4fNiFVNbjVi3rJ7EAg9IFjQnX8XyQwNsCO+dBNdsgD8klN2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAl47e2HMi1ZGMiECQ0DteQo8josuvH+z+yqViGUhDuEFHk+a/
+	py/eKtc5mLiRu4AFTd2pyMdA9Nx508JrYyDnWiqH0L1YTtxkZaeLzknC9jUXYnY=
+X-Google-Smtp-Source: AGHT+IFYPUyOL73IeXAWNld6qeXVFY+7vz1m1b2czqCVMh2g+Fg0Mhswfl3Uu2RLrW+V4zlJ1vGinQ==
+X-Received: by 2002:a05:6512:2315:b0:536:a6c6:33f with SMTP id 2adb3069b0e04-53d65df22e7mr3182705e87.13.1730548263610;
+        Sat, 02 Nov 2024 04:51:03 -0700 (PDT)
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com. [209.85.208.170])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53c7bde0a53sm879228e87.262.2024.11.02.04.51.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Nov 2024 04:48:56 -0700 (PDT)
-Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-83abe4524ccso99132239f.1;
-        Sat, 02 Nov 2024 04:48:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUZja1syE9tnXG5AV51O9pizDsVWhSxDiUhRmkY5wa2xJlNOJlEqPTs36DfxbPbaFvUoow7LfPhE7rH84qq@vger.kernel.org, AJvYcCUpGLXIl3gZQSXTSr3mzI1SaLJwbVGRuhsiH05YIXfJYpf528HIvxBe+bJsevepIz6Ruxptr66NytVz@vger.kernel.org
-X-Received: by 2002:a05:6602:29ce:b0:82c:ed57:ebd9 with SMTP id
- ca18e2360f4ac-83b650372b4mr1250261339f.10.1730548135524; Sat, 02 Nov 2024
- 04:48:55 -0700 (PDT)
+        Sat, 02 Nov 2024 04:51:02 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2fb559b0b00so23045201fa.0;
+        Sat, 02 Nov 2024 04:51:02 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUbliltb2C7b0J4cknxYAW9P1XSzxOf0uJbDNF2IBT9g02ZaNhwL9iICQ9PDwV9VXv30cZpe5XBgcgSJshn@vger.kernel.org, AJvYcCVpGdWXHMeQn4M7sjZYGznYWkLoNdW2udCnKDzQNyPaXxKqCEK95OOy7fNIIUjgHACyCvQWcRTfuMo=@vger.kernel.org, AJvYcCWaCliN1ZuKs3Y4WIB+MH1SLW9brW3JHl9MtlCa34bcbphl5o5E+luzQe45rYPTLQSYkJDYnhCxgryX@vger.kernel.org
+X-Received: by 2002:a05:651c:247:b0:2fa:ccae:d1d3 with SMTP id
+ 38308e7fff4ca-2fedb7a218amr36689791fa.11.1730548262188; Sat, 02 Nov 2024
+ 04:51:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241031070232.1793078-1-masterr3c0rd@epochal.quest> <20241031070232.1793078-11-masterr3c0rd@epochal.quest>
-In-Reply-To: <20241031070232.1793078-11-masterr3c0rd@epochal.quest>
+References: <20241031070232.1793078-1-masterr3c0rd@epochal.quest> <20241031070232.1793078-12-masterr3c0rd@epochal.quest>
+In-Reply-To: <20241031070232.1793078-12-masterr3c0rd@epochal.quest>
 Reply-To: wens@csie.org
 From: Chen-Yu Tsai <wens@csie.org>
-Date: Sat, 2 Nov 2024 19:48:41 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66TAttAezXE7TnT5N6XFW2482ipuqkcpwjeDud6v=xD3w@mail.gmail.com>
-Message-ID: <CAGb2v66TAttAezXE7TnT5N6XFW2482ipuqkcpwjeDud6v=xD3w@mail.gmail.com>
-Subject: Re: [PATCH v2 10/13] arm64: dts: allwinner: a100: perf1: Add eMMC and
- MMC node
-To: Cody Eksal <masterr3c0rd@epochal.quest>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Maxime Ripard <mripard@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Nishanth Menon <nm@ti.com>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Viresh Kumar <vireshk@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Yangtao Li <tiny.windzz@gmail.com>, Parthiban <parthiban@linumiz.com>, 
-	Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
+Date: Sat, 2 Nov 2024 19:50:49 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64BtnCTCHnqpQrT=c8XRpr8UtpLK58DrWd9gv=tJjPHdA@mail.gmail.com>
+Message-ID: <CAGb2v64BtnCTCHnqpQrT=c8XRpr8UtpLK58DrWd9gv=tJjPHdA@mail.gmail.com>
+Subject: Re: [PATCH v2 11/13] dt-bindings: opp: h6: Add A100 operating points
+To: Cody Eksal <masterr3c0rd@epochal.quest>, Viresh Kumar <vireshk@kernel.org>
+Cc: Yangtao Li <tiny.windzz@gmail.com>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Maxime Ripard <mripard@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Parthiban <parthiban@linumiz.com>, 
+	Andre Przywara <andre.przywara@arm.com>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 On Thu, Oct 31, 2024 at 3:03=E2=80=AFPM Cody Eksal <masterr3c0rd@epochal.qu=
 est> wrote:
 >
-> From: Yangtao Li <frank@allwinnertech.com>
+> The A100, similar to the H6 and H616, use an NVMEM value to determine
+> speed binnings. The method used is similar to that of the H6. However,
+> the information is stored at a slightly different bit offset.
 >
-> A100 perf1 hava MicroSD slot and on-board eMMC module, add support for th=
-em.
+> Add a new compatible for the A100.
 >
-> Signed-off-by: Yangtao Li <frank@allwinnertech.com>
 > Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
 
-So I skipped this one since Andre had some questions about the previous
-mmc clock patch. And I believe this one won't work without it?
+Acked-by: Chen-Yu Tsai <wens@csie.org>
 
-ChenYu
+I assume Viresh will take this along with the cpufreq driver patch.
 
 > ---
->  .../allwinner/sun50i-a100-allwinner-perf1.dts    | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+> Changes in V2:
+>  - Fix ordering of compatibles
 >
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dt=
-s b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
-> index 2f8c7ee60283..d418fc272b3c 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
-> @@ -39,6 +39,22 @@ &ehci1 {
->         status =3D "okay";
->  };
+>  .../bindings/opp/allwinner,sun50i-h6-operating-points.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> +&mmc0 {
-> +       vmmc-supply =3D <&reg_dcdc1>;
-> +       cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-> +       bus-width =3D <4>;
-> +       status =3D "okay";
-> +};
-> +
-> +&mmc2 {
-> +       vmmc-supply =3D <&reg_dcdc1>;
-> +       vqmmc-supply =3D <&reg_aldo1>;
-> +       cap-mmc-hw-reset;
-> +       non-removable;
-> +       bus-width =3D <8>;
-> +       status =3D "okay";
-> +};
-> +
->  &ohci0 {
->         status =3D "okay";
->  };
+> diff --git a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-op=
+erating-points.yaml b/Documentation/devicetree/bindings/opp/allwinner,sun50=
+i-h6-operating-points.yaml
+> index ec5e424bb3c8..75ab552f6ecd 100644
+> --- a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating=
+-points.yaml
+> +++ b/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating=
+-points.yaml
+> @@ -22,6 +22,7 @@ allOf:
+>  properties:
+>    compatible:
+>      enum:
+> +      - allwinner,sun50i-a100-operating-points
+>        - allwinner,sun50i-h6-operating-points
+>        - allwinner,sun50i-h616-operating-points
+>
 > --
 > 2.47.0
 >
