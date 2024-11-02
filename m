@@ -1,58 +1,53 @@
-Return-Path: <devicetree+bounces-118316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D43C59B9C70
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 04:04:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25EEC9B9C72
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 04:06:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 992F628173C
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 03:04:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69DE0B21015
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 03:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C629342AA1;
-	Sat,  2 Nov 2024 03:04:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2017742070;
+	Sat,  2 Nov 2024 03:06:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="cEGfSccs"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Bg8QAQuu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E0D13A250;
-	Sat,  2 Nov 2024 03:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E73E2AD00
+	for <devicetree@vger.kernel.org>; Sat,  2 Nov 2024 03:06:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730516675; cv=none; b=m8RD59zvPQ72t0xk2hn2At5yf76jgr6BSnVV/h4Yu/WUcU7Sf8rodkXt3/pD/3GKSTaKNuAobK9+oH2Tr7CKyjm7BMZlYo19hd6T2gvMoBjvNuNpCLrNTlCiXj9yFCymJmE9xtys0O0uemNAOBwqzYhQP3NOkVysaKmh6lDSDXk=
+	t=1730516767; cv=none; b=IHp38buZnzhIQb7Mu4+Gf9v1ZheWdl3di3HdWwSiHO6sv5nUANAgLIzW9dVhZDnywVrc95RBnLmZalmbK6/F3wlqn8pJjR4Ilx8T9SM9lFCPscJTIkIAigWxaT/MqTsM23fww9mEIUwxAz3LctPpLt/eazP5VEcrmmXFfoEpXic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730516675; c=relaxed/simple;
-	bh=EEt0MEjE4FFmpHsXng0O/SiotnzKihY6I6Ua5Ya3cRI=;
+	s=arc-20240116; t=1730516767; c=relaxed/simple;
+	bh=CrBW7gcFJPzHjeH5/TI3/rKBzVxK4Zjcgf6BIWAcJns=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KMl54ack88zmeSqfASSYACQ4LKx3GEJnhweYBSMwYdXQS7S2w749FMN0adA/lq4AG0h66uz6NdkMO1JKxixEqlGA+ZwJa/cMU0A3GugfJukf0Ai8W0Nv3l+VOclrT0wspqS1GxxmTBCV6vkvWu2CdbMdnsnJrClu+qfWRbi4Omk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=cEGfSccs; arc=none smtp.client-ip=220.197.32.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=oRW/YxOKmpEstpDkjdtIqwWlzKaEhai7WpDR3fHZQgW6aIMXq/fe7wrlW635Yb9aPkD4uz6Umulj5IuBsCmZ0IKlQPbENEapsOtStSv0sswv7VSki5nQrSa2w/uAeuTDO2GGPpSAM5lYnCbBtOlFKS1tbZfYk06T+5xsq608EWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Bg8QAQuu; arc=none smtp.client-ip=220.197.32.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=ANBeQg3BIZC2MxnhvEH4gAK8e61+0m9Yr8bFK4R/WhA=;
-	b=cEGfSccsODcmEk9CfsTGs+7qzKJsdowUgKk3yHE6TbswYJQK+LWTLl2bjaUEWC
-	HRuvDiNhmmhNcN8H7Jdt5eiOPS+lPw59MapV+SMuxuJj/0+X4tDG3voUt48AvXFU
-	xh3iGWkf6Rptzsbsm8Z2tlsU8xHQ/EBS7ApOYWbqIublk=
+	Content-Type; bh=p8eD/9xKOfuW1a5aPO+P+oTlB82ZVFjGxpbnAcOwcBM=;
+	b=Bg8QAQuulN5NSlNJTqdEjQzv8SKn88C1nZQLOFMQBu/oE238yGdnjssZJraoIR
+	IgogDHuOJH0H3s41FKACyXiJ7AiZRa6JByrSKq3cbzIdLSJsbVBFzAELVNEP4CuX
+	Rb97m8219Hzl3lsanR20qFgw9YZ70vnQmqVO/PZT5grDA=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgBHk_2VliVn_Lh1AQ--.14550S3;
-	Sat, 02 Nov 2024 11:03:51 +0800 (CST)
-Date: Sat, 2 Nov 2024 11:03:48 +0800
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDXfyz7liVnl_l6AQ--.14941S3;
+	Sat, 02 Nov 2024 11:05:33 +0800 (CST)
+Date: Sat, 2 Nov 2024 11:05:31 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/2] arm64: dts: freescale: imx8m[mp]-verdin: Fix SD
- regulator startup delay
-Message-ID: <ZyWWlA7sGuhg0rJw@dragon>
-References: <20241024130651.49718-1-francesco@dolcini.it>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	shengjiu.wang@nxp.com, Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH] ARM: dts: imx6sll: Fix the last SPDIF clock name
+Message-ID: <ZyWW+3NsvR3poTTY@dragon>
+References: <20241024181409.1461997-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,23 +56,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241024130651.49718-1-francesco@dolcini.it>
-X-CM-TRANSID:Mc8vCgBHk_2VliVn_Lh1AQ--.14550S3
+In-Reply-To: <20241024181409.1461997-1-festevam@gmail.com>
+X-CM-TRANSID:Ms8vCgDXfyz7liVnl_l6AQ--.14941S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxtxhDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAh2KZWck2JnQywABso
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxCJmUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEg6LZWclifsbEgAAsL
 
-On Thu, Oct 24, 2024 at 03:06:49PM +0200, Francesco Dolcini wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On Thu, Oct 24, 2024 at 03:14:09PM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> The power switch used to power the SD card interface might have
-> more than 2ms turn-on time, increase the startup delay to 20ms to
-> prevent failures.
+> The last SPDIF clock is IMX6SLL_CLK_SPBA, so change the last
+> clock-name entry to 'spba' as expected by fsl,spdif.yaml.
 > 
-> Francesco Dolcini (2):
->   arm64: dts: freescale: imx8mm-verdin: Fix SD regulator startup delay
->   arm64: dts: freescale: imx8mp-verdin: Fix SD regulator startup delay
+> This fixes the following dt-schema warning:
+> 
+> spdif@2004000: clock-names:9: 'spba' was expected
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-Applied both, thanks!
+Applied, thanks!
 
 
