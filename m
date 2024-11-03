@@ -1,83 +1,92 @@
-Return-Path: <devicetree+bounces-118455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFCDA9BA4B4
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 09:57:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40B969BA4DC
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 10:14:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDFECB21029
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 08:57:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF9231F21772
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 09:14:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C674C15B149;
-	Sun,  3 Nov 2024 08:57:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25E4215C128;
+	Sun,  3 Nov 2024 09:14:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Xd3pJv91"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="VzJ11Z8E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33A354430;
-	Sun,  3 Nov 2024 08:57:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4254F44C6F;
+	Sun,  3 Nov 2024 09:14:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730624230; cv=none; b=eLNs1fsKD6v3s9KNJEcjq4DQ06mJifvaaxU2wHHRaBhPjLe76FdjMKRoHYybzlqV00eMiC8FlIdXjDzdTOmFCcNwlK/sGW4Gj/nsfrXok5IDS+oRo0Nnu5rTVSZExFGWV/4w1tY6VugypLDayXGPV//CIROqQRIp1j1EK06TU/M=
+	t=1730625286; cv=none; b=NgZTxZm0bXFibxvKM5/lvheTBL/anFzU2nkbWLwJRT7IyFLZTNH0jaBpN3+8gWRLVUJpvXyPbVnbn+gl/SzFoEC5PKGGVlGoywyUBMPaIoRQPJNIA+WBMIRUCFCc+OGMazpGxeOCaKcjAeLtb2NbU1tZaniKDW5PMs8c06RfIWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730624230; c=relaxed/simple;
-	bh=kf2YSqFIkSaE2uUJ+UB5rQmrH03K2t4Fm2WbuEiZ+gk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G6GaV8FIA6yZVIvoEnyF7EI1JBzPeaSYViJPZIrGRaEREXQuAYfWbAf870w/um88W7QFFNlMHYp9ujh+Y8cSkrkkYmqfZip6ubi9/Lwd9yVfDYbKMSf9MJeKOy9rg+W0wQfKqr6nAGOpqaLvnWqh45cSXjnn3XB/V4tORsnSVnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Xd3pJv91; arc=none smtp.client-ip=220.197.32.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=8JTO3pXa6iKx5Hb/VSB98fJK/UCMUDuzcS6whwJ9WpM=;
-	b=Xd3pJv91sb3iFpnuMZ4Z6yxTWRvSdC9/iFW/Rcrd8JrLd+4lqUsG5Qv+CX/4DY
-	2TF1HEuRrc+ezfjKgo7E6ci2apbiIuhkM3ygZ5ig4RWiToeo7WvxvJevHcNYWsyF
-	BoBy+GYRJdFNhKiau1xMYZKXGBzbCF/Tsux2HGxJKhQiQ=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgBHo5K4Oidn1XaRAQ--.16068S3;
-	Sun, 03 Nov 2024 16:56:26 +0800 (CST)
-Date: Sun, 3 Nov 2024 16:56:24 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Stefan Eichenberger <eichest@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, francesco.dolcini@toradex.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/2] arm64: dts: imx8mm/imx8mp-verdin: add
- single-master property to all i2c nodes
-Message-ID: <Zyc6uEcPys1On65L@dragon>
-References: <20241025095915.22313-1-eichest@gmail.com>
+	s=arc-20240116; t=1730625286; c=relaxed/simple;
+	bh=Z3YgnPEAERGAdHkzc8j/4jBp8ik+UqhN/LWk43KGe8I=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=JFz7faSagGpurnmXUv9t9xMMjfLsQP9EYtMHGx0qvaw+SamxeNdPOAzTtgnVPRZ2hPCUNkDvr+FKTqCIPzoEpmFVVvz2TlsfTGLlk6QNM5Q4SOHxFqzVJopvb9KM3iIn6I6M+tNJuwDgDVKMtgResXWM/xRNQ8Y4sGGG6eEJHw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=VzJ11Z8E; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from localhost (docker-mailserver-web-1.docker-mailserver_default [172.22.0.5])
+	by mail.mainlining.org (Postfix) with ESMTPSA id B985BE45BA;
+	Sun,  3 Nov 2024 09:14:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1730625281;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=aMkEqJ6w2Zkn0eeuNU8cmK18lh1mkaMAulThx8pFgfo=;
+	b=VzJ11Z8EBWnqvN1vtSDFxxwGOEAE15Oj6gG1rD2bxRjBbSF5Ucn45BaKcLOuia8ZdbLB4x
+	TbQEKH5/BfVyKswpk4S7PJlkfP8/VeSy3DEMcuJu0g3ZpoRUzRKxAYJeqavv3yiACll3hT
+	EYOWXAvV7d2Io8+d4Tf2G0wO/VdUC8BFISUKLSKYyAfoYyIqxV8ZdpG8tkllAbS1u2spLB
+	z0q/KuMN1Z42Nhv17Bu6td3DFyvgoy3nznABybpUUwNr02C6yIWL2CRDHP6YzskNZiyJtT
+	31LB4guifXdHwfIF1pegJGLW9hDn6oR7FzRCBzOH7U+5LKmh4VjM5kLGb+KPnw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241025095915.22313-1-eichest@gmail.com>
-X-CM-TRANSID:Mc8vCgBHo5K4Oidn1XaRAQ--.16068S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW7Jr1UJr4kXFW7tr45Jry8uFg_yoWxuFXEk3
-	ZrKF1Ik3yYgFWrKw4Ut3ZrZr909rW8Wwnag342qFWSvr93Aan3CF9Yqryfu3WxXa1xJFsF
-	kryxZ34SyFWUCjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUn6nmtUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiERiMZWcm9u9uJQAAsz
+Date: Sun, 03 Nov 2024 10:14:41 +0100
+From: barnabas.czeman@mainlining.org
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, Bryan
+ O'Donoghue <bryan.odonoghue@linaro.org>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] media: dt-bindings: media: camss: Add
+ qcom,msm8953-camss
+In-Reply-To: <5fc19470-dc8c-4c12-b3f5-822bac97f38c@kernel.org>
+References: <20241102-camss-msm8953-v3-0-7041c9fa7a58@mainlining.org>
+ <20241102-camss-msm8953-v3-2-7041c9fa7a58@mainlining.org>
+ <5fc19470-dc8c-4c12-b3f5-822bac97f38c@kernel.org>
+Message-ID: <1e62bb64769d1cc071ed5745a0d231d2@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Oct 25, 2024 at 11:58:01AM +0200, Stefan Eichenberger wrote:
-> Add the single-master property to all i2c nodes on the iMX8MM and iMX8MP
-> Verdin modules. This will allow us to use some single-master
-> optimisations on the i2c driver. Together with the following series, now
-> in the i2c-host branch of Andis tree, we get rid of a timeout problem on
-> the i2c bus with a SMBus ADC:
-> https://lore.kernel.org/all/7ts577rxed4mmfkfin7kfdjfjkb6iak2y4vtgtz6merwxkzz6w@h5aefbvyx44u/
+On 2024-11-03 09:03, Krzysztof Kozlowski wrote:
+> On 02/11/2024 23:39, Barnabás Czémán wrote:
+>> Add bindings for qcom,msm8953-camss in order to support the camera
+>> subsystem for MSM8953.
+>> 
+>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
 > 
-> Stefan Eichenberger (2):
->   arm64: dts: imx8mm-verdin: add single-master property to all i2c nodes
->   arm64: dts: imx8mp-verdin: add single-master property to all i2c nodes
-
-Applied both, thanks!
-
+> Subject did not improve much. Why do you need to say twice that this is
+Because i misunderstood your previous comment, sorry for that i am going 
+to fix it.
+> a media subsystem? See DT submitting patches document:
+> https://elixir.bootlin.com/linux/v6.11-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst
+> 
+> Best regards,
+> Krzysztof
 
