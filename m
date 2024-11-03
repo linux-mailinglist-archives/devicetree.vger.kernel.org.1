@@ -1,125 +1,270 @@
-Return-Path: <devicetree+bounces-118473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C7999BA55F
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 13:03:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7278E9BA56B
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 13:35:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECC8F1F21598
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 12:03:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E122C1F21808
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 12:35:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B743416A949;
-	Sun,  3 Nov 2024 12:02:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E6A21E492;
+	Sun,  3 Nov 2024 12:35:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SsiAyq4/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B56B013635B;
-	Sun,  3 Nov 2024 12:02:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CD9D15A8;
+	Sun,  3 Nov 2024 12:35:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730635376; cv=none; b=GRG5BfLLFl2PiNSxJeQm3eJHX3301pW4ZdvDFZS786ZDeVbg7KnCbBOSNN5WJ51JDSQU7CHyF3eTRdm1/JLi59p+wBI0Vp/254MYTA+MM6AL3y5hoQdpwtuv4ZfzLF/kLzg46oO5SMRVV17/kvdACv1wEHhoV1jqMdhnsk7W/KI=
+	t=1730637320; cv=none; b=QBxD/oWqSA9jryp3tXCpApJgpVjsHBfBoVSXsba3IvFJS/9NZJAfAXupsi2H05cpiI/7HV9tJACcUOYRPUcnLlIRgHmOpCLGqWCCzEHhNFd20x7nEum8tfp3OT2pNq3SO/gS2JepGEg9MiFNAV4l4N9GejvSL4Lmu1k0psE9tb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730635376; c=relaxed/simple;
-	bh=hzqa0J6A/W1DpFzA4bzSC2epR0PHH34jRlxVwGV8E9I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X7cOs2IGsoLKyj6qHkJ+17MGoz41ej8Y4uAB5TkkURkMrn/zlHkqN7sZ9LoPeUam++LPKhjsIx/TyswFbZ0nytNLvaMBdGXRGbcbgkDmapr1pxXImXVEczvZRGR9j7uE5oW7cRBk0OeW4bYO/5IwjHBF5giTmS6TmqIPfy/XSRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1730637320; c=relaxed/simple;
+	bh=pyMhGlOko2l1l4rPvpvIIJR5UOe1eWHbUFWCyGiJd7w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=n9eAR0X4KfH2xS66wLvDwASrvfbYFQaRydmEPLtwE80xZHrtHK1xGn8OceffsSR08qCnyBqFKnrrgaHXKJ8yVsm0Udhxn+RbQjC/SY1END/GEVw+kowYt/u3Lx/sS3rP1gqUNxw1u9IgYKeG35KnHnnZ9gFtOUq7f9wHC1dFk9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SsiAyq4/; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6e5cec98cceso27058457b3.2;
-        Sun, 03 Nov 2024 04:02:54 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a9a2209bd7fso583556466b.2;
+        Sun, 03 Nov 2024 04:35:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730637317; x=1731242117; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nLWzptnhbAYcuwHkPTV5EYcOi52RjfwzuyiUdLBphLI=;
+        b=SsiAyq4/JCh4pq6KlsLhj6nFuwOUKjdP0qCpXaNxobNj9OamHyk5d3ttgzIAMTD+FN
+         vVeAohMFnaMSxP8OeKmLuIGykAQ5C1m5WVJ7tZemfH1xCKXa3hNBVZrb7uWZrobnYdd7
+         GW6jr/CAGbbkfqSbueC5AbgYu2geHCHZ1/fDbYawAT/5faep0QtDsGgHw0vvQ6/n8WmI
+         JrW1vhsckHNc90ltHsEF/0ass0YdiKP0norXiCX5RuwVbItRS0jxak8soGSNokgUtiwC
+         1EbaaRiFjA+KTdsANA1rM1zydyQTtYH0w+CVGgcaFvMUFTDINYs7yz8vhA2SkJ+oVwgk
+         jUuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730635373; x=1731240173;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cd3kIe56QXQQam1qx/3dD2gryf9hu9/6h0hqv8KkgSA=;
-        b=tEUVCmoYOXsE8rGhftAE5LO/2NSVmd57DtJVwKxX8AZBK6wiUPsZNJXp82uqFkjYT+
-         W7ibOy28Ee5f+hCxiQb8MSE3IZYd6urvJmlPJqJZnIoD7dHRzN+aQPmBt84myNXZbQNu
-         ZpECVmH/H3ibNZM3Iy+8yxbysNWiFNmrh78jwOdvQGbBC87UHYZ0uQkmLKyFcsQm+Fzm
-         sr63a9j+n76hyBhycK6pDcn1Gp/o+GG2qRkW7cGiqugIluEmKcTD5ZdHJ6TiU+xO1LM6
-         DPfyM5mDIynoA/CfQ8Q3l6m0O2GgD9CUtn9JaA9nkatL/pD4VxOh14I/nDGXqys7ZakJ
-         2yLg==
-X-Forwarded-Encrypted: i=1; AJvYcCUC62jFXDwEO427ZJ3cDLWZh+aD9gmBDrfi7++KW9JTCZc+sEqKGYPCBD+D9dQt98fX8CKfkT8wy0nh@vger.kernel.org, AJvYcCVHt6dlOWrTf/EiOqHqJk+nGNQjTp93CiYqvdgygqWJoyMiIGS4MV3iVLcLHzLA1pYwVGkhuG4ar8qb8Ir3lIx2TLg=@vger.kernel.org, AJvYcCVRS7sR+blIoEYi2WhNhvTuRvlMAUazZXIbMDhL4cPMuIfpazcmSfIIubYwfJ2nMeBY3tjYfeu2jQSW++8x@vger.kernel.org, AJvYcCXQOXcuNejt22yXSs/122wiFZFTQHqSekZk/VkrDy26TjaoC+R1IEX07Te3FkFUhDXAXPaZpf3cJ6wv@vger.kernel.org, AJvYcCXuAO9bs45eWprnTU1rSYOjSGB+Dn28lVeDbHTsSCW79jEmbGjXq3D90fXiJmjh9lypDtX7Mye76y7v@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0wfOL7oW09OkO3O+3k6Rr8oSkZ6GK8JmvVeznAFDg+YigRhKJ
-	jhf6f4TYHyPJnXZgkyhCdXTbarF05nVkvqBRXGxjbBxqWT6LCZKQi7RThvyL
-X-Google-Smtp-Source: AGHT+IGZd5/u1HXwT3unSGA8s1xPCdRRiXT1hDISOsnllf0+AaCkCcd1WF0FFA4ZiZupNSfroB3TFQ==
-X-Received: by 2002:a05:690c:7445:b0:6e2:4c7b:e379 with SMTP id 00721157ae682-6ea523d1ae7mr133923337b3.19.1730635371977;
-        Sun, 03 Nov 2024 04:02:51 -0800 (PST)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6ea55c48b6esm14083157b3.103.2024.11.03.04.02.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Nov 2024 04:02:50 -0800 (PST)
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e2bd7d8aaf8so2942175276.3;
-        Sun, 03 Nov 2024 04:02:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVgJq46aoh1RID9RO5WqW01mBdwvdtMjn2+QBhaInA/KkoGqpEFkQob79FWVYgOZ0LhkY3rqrcVak6B@vger.kernel.org, AJvYcCW8abytacKPTJNy7g11RGecAAj4UxbLLecpoWuf2J1HNolGlDvzkrquAi+eZUkWH8E6BjxexoZpFRnS6XrArePaR8A=@vger.kernel.org, AJvYcCW9SqFV21fQWjniDykd3jbAyPQX6ERjTlCeK9A0PNfdWA7NEEcYblsxKrMN58vCY3KWudUv4SNZrI5S@vger.kernel.org, AJvYcCWL7P0SSS5Ssl07wFlWnDAAR8brORPWLwis3g1F6w1cFf9+8rsLsOp1bHZL+N6r0A89xwr2JAJXJcbb@vger.kernel.org, AJvYcCWNJkLx7HDOYGKPd/T2T4xhPey1XwWtSJVsi81CA/30QjsgkW8N3rNiWOUS3t+mqvvRwHwLFtYzHHTjfEVx@vger.kernel.org
-X-Received: by 2002:a05:690c:600c:b0:6e3:21fa:e50f with SMTP id
- 00721157ae682-6ea523742dcmr121048567b3.13.1730635369662; Sun, 03 Nov 2024
- 04:02:49 -0800 (PST)
+        d=1e100.net; s=20230601; t=1730637317; x=1731242117;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nLWzptnhbAYcuwHkPTV5EYcOi52RjfwzuyiUdLBphLI=;
+        b=lR8aonIdydLvgJGFyohQmEVUb1pk7+P8hNwSBtS6BHft9Brv2XZgVqZkyI65hftI0k
+         0BchNgdAglPh3RTXc2XuW65OhGazWB0kbHGnEix65wAfZRIdZJKmIlaw0fZFzFSGqtrQ
+         nf8lGnoqzzwKAx8TgjL29cGSY6UxwGbAvtVeccZTStcD8rdD8IIp3mAUcz+iww/F/ZEs
+         Nh2UYmBtnjcTcXYoBZ3WOIPx4xjRhg8fM07F+D64DDCsAQ3XhV5EYwitGLPSQ4LMFaoN
+         XZ48rqBkaqu7Upvdo0efavQieb/sZ5eAA3jATjQjmqO7rRJgR9nhUxPxpjgWjcy+U5wr
+         kRow==
+X-Forwarded-Encrypted: i=1; AJvYcCUJCg+swc5bXXJt+MdHIbY48DyIa9YUhP2Z1pq39l1Qn4WJighA+Umb2Gz+/8v+wd//grsqcmqTV+Ei@vger.kernel.org, AJvYcCViqCN0D2mH/U/Ns4iJULRfu4KLxyk3rL+DNAJVuIYFPePa8EMXet1ETA4BpRIP4uTEAla2gTtGKYusgZNq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWEimi5YpdRifKSgsiCCwbEICiWg2i3pPGgKdpkKZ1cm82vQrS
+	CnTVNHSDDu62taE9yjvqoLxzdAL1R2vIS2/i+S7WC0TO0vA9BbwN
+X-Google-Smtp-Source: AGHT+IHXfkrHb7besGkh4Nbcj39gl2gY+KXPI9aF9iT7CR5AegIJ0eV9DFkX1G+cTTqp04nuc7chCg==
+X-Received: by 2002:a17:907:7f9f:b0:a9a:be:37f8 with SMTP id a640c23a62f3a-a9de61675a4mr3072270166b.43.1730637317039;
+        Sun, 03 Nov 2024 04:35:17 -0800 (PST)
+Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e566797a7sm418754866b.190.2024.11.03.04.35.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Nov 2024 04:35:16 -0800 (PST)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: linux-actions@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: timer: actions,owl-timer: convert to YAML
+Date: Sun,  3 Nov 2024 14:35:11 +0200
+Message-ID: <20241103123513.2890107-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241101095720.2247815-1-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241101095720.2247815-1-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Sun, 3 Nov 2024 13:02:37 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWJ7XSvE4AS67-Xwo9sRayyoFxkjFeffSA0y6242g6thw@mail.gmail.com>
-Message-ID: <CAMuHMdWJ7XSvE4AS67-Xwo9sRayyoFxkjFeffSA0y6242g6thw@mail.gmail.com>
-Subject: Re: [PATCH v6 0/9] Add RTC support for the Renesas RZ/G3S SoC
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com, 
-	magnus.damm@gmail.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Claudiu,
+Convert the Actions Semi Owl timer bindings to DT schema.
 
-On Fri, Nov 1, 2024 at 10:57=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> On the Renesas RZ/G3S SoC the RTC clock is provided by the VBATTB
-> IP. A 32 KHz crystall oscillator could be connected to the VBATTB
-> input pins. The logic to control this clock (and pass it to RTC)
-> is inside the VBATTB IP. For this, the clk-vbattb driver was added
-> (patches 01-03/09).
->
-> Patches:
-> - 01-03/09: add VBATTB support that provides the RTC clock
-> -    04/09: fixes compilation error for RTCA3 when building for RISC-V
-> - 05-08/09: update the device trees with proper nodes to enable RTC
-> -    09/09: enable proper config flags for RTC to work on RZ/G3S SoC
->
-> Merge strategy, if any:
-> - clock patches (01-03/09) need to go though the same tree because of
->   patch 03/09 using the devm_clk_hw_register_gate_parent_hw() introduced
->   in patch 02/09
-> - RTC patch can go though RTC tree
-> - DTS and defconfig patches can go though Renesas tree
+Changes during conversion:
+ - Add a description
+ - Add "clocks" as a required property, since the driver searches for it
+ - Correct the given example according to owl-s500.dtsi
 
-Thank you! I have queued 01-03 and 05-09 in renesas-clk resp. renesas-devel=
-.
+Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+---
+v2: update commit message to be accurate (Krzysztof)
+v2: don't preserve formatting in the description (Krzysztof)
+v2: add allOf:if:then block constraining per variant (Krzysztof)
+v2: add a blank line after additionalProperties (Krzysztof)
+---
+ .../bindings/timer/actions,owl-timer.txt      |  21 ----
+ .../bindings/timer/actions,owl-timer.yaml     | 107 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 108 insertions(+), 22 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/timer/actions,owl-timer.txt
+ create mode 100644 Documentation/devicetree/bindings/timer/actions,owl-timer.yaml
 
-Gr{oetje,eeting}s,
+diff --git a/Documentation/devicetree/bindings/timer/actions,owl-timer.txt b/Documentation/devicetree/bindings/timer/actions,owl-timer.txt
+deleted file mode 100644
+index 977054f87..000000000
+--- a/Documentation/devicetree/bindings/timer/actions,owl-timer.txt
++++ /dev/null
+@@ -1,21 +0,0 @@
+-Actions Semi Owl Timer
+-
+-Required properties:
+-- compatible      :  "actions,s500-timer" for S500
+-                     "actions,s700-timer" for S700
+-                     "actions,s900-timer" for S900
+-- reg             :  Offset and length of the register set for the device.
+-- interrupts      :  Should contain the interrupts.
+-- interrupt-names :  Valid names are: "2hz0", "2hz1",
+-                                      "timer0", "timer1", "timer2", "timer3"
+-                     See ../resource-names.txt
+-
+-Example:
+-
+-		timer@b0168000 {
+-			compatible = "actions,s500-timer";
+-			reg = <0xb0168000 0x100>;
+-			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+-			             <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "timer0", "timer1";
+-		};
+diff --git a/Documentation/devicetree/bindings/timer/actions,owl-timer.yaml b/Documentation/devicetree/bindings/timer/actions,owl-timer.yaml
+new file mode 100644
+index 000000000..646c554a3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/actions,owl-timer.yaml
+@@ -0,0 +1,107 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/actions,owl-timer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Actions Semi Owl timer
++
++maintainers:
++  - Andreas Färber <afaerber@suse.de>
++
++description:
++  Actions Semi Owl SoCs provide 32bit and 2Hz timers.
++  The 32bit timers support dynamic irq, as well as one-shot mode.
++
++properties:
++  compatible:
++    enum:
++      - actions,s500-timer
++      - actions,s700-timer
++      - actions,s900-timer
++
++  clocks:
++    maxItems: 1
++
++  interrupts:
++    minItems: 1
++    maxItems: 6
++
++  interrupt-names:
++    minItems: 1
++    maxItems: 6
++    items:
++      enum:
++        - 2hz0
++        - 2hz1
++        - timer0
++        - timer1
++        - timer2
++        - timer3
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - clocks
++  - interrupts
++  - interrupt-names
++  - reg
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - actions,s500-timer
++    then:
++      properties:
++        interrupts:
++          minItems: 4
++          maxItems: 4
++        interrupt-names:
++          items:
++            - const: 2hz0
++            - const: 2hz1
++            - const: timer0
++            - const: timer1
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - actions,s700-timer
++              - actions,s900-timer
++    then:
++      properties:
++        interrupts:
++          minItems: 1
++          maxItems: 1
++        interrupt-names:
++          items:
++            - const: timer1
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    soc {
++      #address-cells = <1>;
++      #size-cells = <1>;
++      timer@b0168000 {
++        compatible = "actions,s500-timer";
++        reg = <0xb0168000 0x100>;
++        clocks = <&hosc>;
++        interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "2hz0", "2hz1", "timer0", "timer1";
++      };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5f34d168b..76ea65128 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2024,7 +2024,7 @@ F:	Documentation/devicetree/bindings/mmc/owl-mmc.yaml
+ F:	Documentation/devicetree/bindings/net/actions,owl-emac.yaml
+ F:	Documentation/devicetree/bindings/pinctrl/actions,*
+ F:	Documentation/devicetree/bindings/power/actions,owl-sps.txt
+-F:	Documentation/devicetree/bindings/timer/actions,owl-timer.txt
++F:	Documentation/devicetree/bindings/timer/actions,owl-timer.yaml
+ F:	arch/arm/boot/dts/actions/
+ F:	arch/arm/mach-actions/
+ F:	arch/arm64/boot/dts/actions/
+-- 
+2.43.0
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
