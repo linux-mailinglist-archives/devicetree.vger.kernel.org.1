@@ -1,196 +1,121 @@
-Return-Path: <devicetree+bounces-118427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1009B9BA33A
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 01:23:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E80C9BA39E
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 03:55:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 381981C20F8C
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 00:23:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C215E28156D
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 02:55:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE1005234;
-	Sun,  3 Nov 2024 00:23:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NYh9FfDN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22B7B70803;
+	Sun,  3 Nov 2024 02:55:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3419C4C91;
-	Sun,  3 Nov 2024 00:23:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E313070804;
+	Sun,  3 Nov 2024 02:55:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730593395; cv=none; b=XQ+vOzYea3sws9dZ87mWmLHKLL92eJ+BG+ZpFmSzzRh6k88jOZNRmudrjrBWZTxZLDSMFyE7uv27mJr5aexprS4TLTjzL3zj02e7Zi+2hdUgkiAxDKVbrQdbir2lKB+/qgFLbMFlR/7LxFB/9sWfv74l1EE3x59qFXY0Clx6VPk=
+	t=1730602514; cv=none; b=q2Bbb7YoPInCiq5n/I5+oxav0C6nJjLIoxu1lC1dfY2Prp0teMhM457GanAgqOrYW8tSUR36a0S92pvZMOAHYoYrGBmMivJDTRBK43nxigC9QIWz6Z+jTDhuq0N6xPHyaXuj0B1bczcPAliA3xibq6UKz5/T57xruJ1oXj1jnj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730593395; c=relaxed/simple;
-	bh=JOZss1uzrgy96RicxBsQfsth0zz7FF1zuMrJ1I5c9sg=;
+	s=arc-20240116; t=1730602514; c=relaxed/simple;
+	bh=Ts5mJgx2UPMaUYQQ1cD8EkIgBpOKjbKDuYhTB6/VNzM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X7+tbTdOWivWxz+K3xPd6EAU0mbjENpLyVzDw3W8yYNKN1qBobcgDzZ7pP08NP+J79eFnSgoGKtVbQsS84NYMoRv93r4ipwcuabkF94D36cSmfBZ2BgIBSiFAp88APInE5iTEKEtNef3cVoUobzsvpeTYUswcofXnntr4zhCk4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NYh9FfDN; arc=none smtp.client-ip=209.85.167.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	 To:Cc:Content-Type; b=gQDDdmgu8p8E7tsA5nDV+GMKHpxghve2bRP1KiYY7TJnYVY4DL/UWCW7XNAOdZIgn3R9UH8ZZmBSCUOGT+azb3TYOA0lg9TuUL1RSYLJdTBjfH0IuzFsBVHZNx6XChFYUroIs7F38A0yEMsZ5S/i/FOcg3LymXoK46V09sxDv4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3e5fa17a79dso1826806b6e.1;
-        Sat, 02 Nov 2024 17:23:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730593393; x=1731198193; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cy+oQJ2GEMRpNjhFn1LJw929fydtHkD4JsoP5UMnHEE=;
-        b=NYh9FfDNg/XNlWQBSlioikSk8CE4WHifeuJ0YP5nlCjJAAa/kj1ssJ48drZL/nwdH0
-         zZrd8OD1tQ+yzDy+D1byViUFNiTet4YYJSJ65tyjILW3lyjMiew5SDSk7vtVJkt+DLG2
-         GXq8zsZelrkHQiU6C5J3WXhdYP02ADEtHqZT5sG7+6qbZRwsaBxCp6rg0ZEAMaMc/dhg
-         JuA6i0fym5mwXbkzdKA7iUsfRiAfHwdl1TLOhnJtNi+99+vn86jfFP2KL4pV9F06lflU
-         kMGvgjnPMBvvOmA/q3jml5e2NNzlS+zroKzqEby+IxDnqY0kewXSVe+ytYDJt0C5pSIu
-         0kQQ==
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2fb584a8f81so28410971fa.3;
+        Sat, 02 Nov 2024 19:55:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730593393; x=1731198193;
+        d=1e100.net; s=20230601; t=1730602509; x=1731207309;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cy+oQJ2GEMRpNjhFn1LJw929fydtHkD4JsoP5UMnHEE=;
-        b=kBZBlgHw0qZVGBTNC5IqLKvIxibvHahK7xvSIvhFXDfIFuLxiLGjrbfs3w/NKmXR9C
-         gfSTqTVm7z47lJjTsLjoiT21O8pGX0aRtbKEd7SJuEQAMu867tEe4dEqZavr6t4VKlxy
-         mT77agSfjNVk7zOnQXdsngoN4VbpvPoLcgqq8Zaa7rpDEpjQC8rlO84GktWeAn7Nuazy
-         HwkMbqIfjmba37ebrClfljTvINQbiRHsXHkaIOOq8VQvyXkXG20k9K6N4lddCZh54vaU
-         9mxDZvUByHjO32HIY/sIUfVLUqTHaLRB5aSLm7QMc49w06cVZQJQ6xO1AcqcPW8zRzHx
-         Wa+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUWN5RfvyF00S/TkN18IqQoN2ghtb/TiIMj1L+UTiOacx6I5bUysTSUqnChm1Ue5J8GxgMiTnZvByVn@vger.kernel.org, AJvYcCUoLM58Q9UsGEE3OUxwEXRn7sTEJWq5N4iUlr8BWFDVABXDyFLN1bTVNrlqFXcZMXdI9HBEj5zXe7P+mrNj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkpWajjP4GrFd1aTOQeFWaZ12XCjVDblgwT6ZgJBKepJQUMLkw
-	B9Kah/NejZ4T1JsVO/0Qwb9IOyWYJ5JYfdhKIooCoTxB675vQlBNo3Ixe4HAPS0d9HjN53FZihu
-	GuR6edFWdgyt5Jl9s6Rk5SLEEWok=
-X-Google-Smtp-Source: AGHT+IH1/AqKguweEOJ8EZHcTlXSXIH8nwkWs4syLgX8RZ0uDmap1bE6uGoyjAxjUn7dGn0O2qZi1jtZGw0jSkQ9ph0=
-X-Received: by 2002:a05:6808:2f0e:b0:3e2:9e62:37d5 with SMTP id
- 5614622812f47-3e65834f25dmr15244041b6e.5.1730593393243; Sat, 02 Nov 2024
- 17:23:13 -0700 (PDT)
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ts5mJgx2UPMaUYQQ1cD8EkIgBpOKjbKDuYhTB6/VNzM=;
+        b=XxE3LxK7/OWxgAIUPGqy5o9sZh2DH0kHiwJAlkFIxVENu+nu+FoGmMeQi16i9o9hTY
+         EJjxlSiIZ0fiVwX5IV2X81xZpGeTLD+8EH8YpeRxhz1Ud4tSXHIsXgDHUfwPvzZxWWi4
+         ++uYttInBbWt7px6LKY/jem7fnMdVN0Ow975Ja/443Zi4bmWV/ADeksiPq6oe2OgPPf6
+         DBroHfFiLrmpmjnukf/XTWRSS2CWBE3sRNJq4mD5ElcJC9DXSAvC6UhYE9HcPgVEvu7G
+         t4Cm+fdD2J/GqtX2Zez9MjLlqIoVAN6nzNIAsNGpg9x+H3aogWxnU5P+ZVAoTlecp6IF
+         f6FQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUJzENOhoWWuaxEZVfPnnEIqKbzurn0FAgUDQcFDf1tB1Jo9NNQaKEgh4m5l/s/DeWR3NEW19qSm3MoqVwg@vger.kernel.org, AJvYcCXFmQwcWkUkXIKDHyJXas6sp4aW3fAkMdvlcAsqjYjxaQbqYlII5A6dxn1uhyW9gFCBc+bEB2MU1Yeg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNO0ruZZbiw73oFXC+5BQbGZ2MORPFsfMisPzZVweyDYuYO+Q7
+	r99zUcI7k682f2nHg3RJ17QIquqBjpPBo7C3AY2W7LotZYDOqhicadMf8xlG4cM=
+X-Google-Smtp-Source: AGHT+IHH+efbbHaSXvYUhzblOr5mC/yDgOpYXBh0LcfFGIQs23YtRP6bl5ooqPI9Ab14/4Ex8LPzLw==
+X-Received: by 2002:a2e:be84:0:b0:2fb:4f2e:5be7 with SMTP id 38308e7fff4ca-2fcbdfe4a77mr138953671fa.24.1730602508779;
+        Sat, 02 Nov 2024 19:55:08 -0700 (PDT)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com. [209.85.208.182])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fdef8a686bsm11411011fa.80.2024.11.02.19.55.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 02 Nov 2024 19:55:07 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2fb5638dd57so28629271fa.0;
+        Sat, 02 Nov 2024 19:55:07 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU03FMtgvOoi4uj32ckmPRqeEmJKrssrio/NYMz4UZKxw8FJXT+SvDe0peaDZvtMqQ78s3pXMZZ0Z0d@vger.kernel.org, AJvYcCUSnLuimW8U2wrDX1MgL7SEebtn+NVtASUQ2+nUxrTO3LJWLeXmuYyGiBARmQ0nA3zYWxDusD9HD3hry/aN@vger.kernel.org
+X-Received: by 2002:a05:651c:1507:b0:2fb:5e64:327e with SMTP id
+ 38308e7fff4ca-2fcbe079c43mr115559201fa.33.1730602507670; Sat, 02 Nov 2024
+ 19:55:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241025125110.1347757-1-valentina.fernandezalanis@microchip.com> <20241025125110.1347757-4-valentina.fernandezalanis@microchip.com>
-In-Reply-To: <20241025125110.1347757-4-valentina.fernandezalanis@microchip.com>
-From: Jassi Brar <jassisinghbrar@gmail.com>
-Date: Sat, 2 Nov 2024 19:23:01 -0500
-Message-ID: <CABb+yY3cDD-E-P1MPKQjdX7R2XVVKjwXUW-BANWcz-9aR6kskA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] mailbox: add Microchip IPC support
-To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	peterlin@andestech.com, conor.dooley@microchip.com, conor+dt@kernel.org, 
-	ycliang@andestech.com, dminus@andestech.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, robh@kernel.org, krzk+dt@kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
+References: <20241031070232.1793078-1-masterr3c0rd@epochal.quest>
+ <20241031070232.1793078-11-masterr3c0rd@epochal.quest> <CAGb2v66TAttAezXE7TnT5N6XFW2482ipuqkcpwjeDud6v=xD3w@mail.gmail.com>
+ <36415ea50a5aa6cec8c5fb281af73f50@epochal.quest>
+In-Reply-To: <36415ea50a5aa6cec8c5fb281af73f50@epochal.quest>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Sun, 3 Nov 2024 10:54:55 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67RHjq=5DMiP8YtvOww5B8qJxCqF9ofGTXPUkmP-5herA@mail.gmail.com>
+Message-ID: <CAGb2v67RHjq=5DMiP8YtvOww5B8qJxCqF9ofGTXPUkmP-5herA@mail.gmail.com>
+Subject: Re: [PATCH v2 10/13] arm64: dts: allwinner: a100: perf1: Add eMMC and
+ MMC node
+To: Cody Eksal <masterr3c0rd@epochal.quest>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Maxime Ripard <mripard@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Nishanth Menon <nm@ti.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Viresh Kumar <vireshk@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Yangtao Li <tiny.windzz@gmail.com>, Parthiban <parthiban@linumiz.com>, 
+	Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 25, 2024 at 7:36=E2=80=AFAM Valentina Fernandez
-<valentina.fernandezalanis@microchip.com> wrote:
+On Sun, Nov 3, 2024 at 5:23=E2=80=AFAM Cody Eksal <masterr3c0rd@epochal.que=
+st> wrote:
+>
+> On 2024/11/02 8:48 am, Chen-Yu Tsai wrote:
+> > On Thu, Oct 31, 2024 at 3:03=E2=80=AFPM Cody Eksal <masterr3c0rd@epocha=
+l.quest> wrote:
+> >>
+> >> From: Yangtao Li <frank@allwinnertech.com>
+> >>
+> >> A100 perf1 hava MicroSD slot and on-board eMMC module, add support for=
+ them.
+> >>
+> >> Signed-off-by: Yangtao Li <frank@allwinnertech.com>
+> >> Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
+> >
+> > So I skipped this one since Andre had some questions about the previous
+> > mmc clock patch. And I believe this one won't work without it?
+> eMMC (mmc2) works fine after more testing, even without the clock
+> reparenting patch (in fact, it appears to work more consistently), but
+> mmc0 and mmc1 require more testing and debugging. I'll deal with
+> the remaining MMC issues in a future patch.
 
-....
-> +
-> +enum ipc_irq_type {
-> +       IPC_OPS_NOT_SUPPORTED   =3D 1,
-> +       IPC_MP_IRQ              =3D 2,
-> +       IPC_MC_IRQ              =3D 4,
-> +};
-totally unused.
+I think it would be better if only the eMMC was enabled. Enabling something
+that is almost guaranteed to cause data corruption isn't going to be fun
+for users.
 
-> +
-> +/**
-> + * struct mchp_ipc_probe - IPC probe message format
-> + *
-> + * @hw_type:           IPC implementation available in the hardware
-> + * @num_channels:      number of IPC channels available in the hardware
-> + *
-> + * Used to retrieve information on the IPC implementation
-> + * using the SBI_EXT_IPC_PROBE SBI function id.
-> + */
-> +struct mchp_ipc_probe {
- same as the driver.probe(), so maybe call this microchip_mbox_info
-
-......
-
-> +struct mchp_ipc_cluster_cfg {
-> +       void *buf_base;
-> +       unsigned long buf_base_addr;
-> +       int irq;
-> +};
-> +
-> +struct ipc_chan_info {
- I suggest s/ipc_chan_info/microchip_sbi_chan and hooking it to
-mbox_chan.con_priv
-
-....
-
-> +       unsigned long buf_base_tx_addr;
-> +       unsigned long buf_base_rx_addr;
-> +       unsigned long msg_buf_tx_addr;
-> +       unsigned long msg_buf_rx_addr;
-If these are __pa(), then phys_addr_t please.
-
-> +       int chan_aggregated_irq;
-> +       int mp_irq;
-> +       int mc_irq;
-> +       u32 id;
-> +       u32 max_msg_size;
-> +};
-> +
-> +struct microchip_ipc {
- Maybe s/microchip_ipc/microchip_sbi_mbox ?
-
-
-> +       struct device *dev;
-> +       struct mbox_chan *chans;
-> +       struct mchp_ipc_cluster_cfg *cluster_cfg;
-> +       struct ipc_chan_info *priv;
-  replace this with 'struct mbox_chan *chan' and hook
-     chan[i].con_priv =3D priv[i]
-  this will help avoid having to EXPORT mchp_ipc_get_chan_id
-
-
-> +       void *buf_base;
-> +       unsigned long buf_base_addr;
-phys_addr_t buf_base_addr ?
-
-> +       struct mbox_controller controller;
-> +       u8 num_channels;
-this could be dropped by directly using 'controller.num_chans'
-
-......
-
-> +static int mchp_ipc_send_data(struct mbox_chan *chan, void *data)
-> +{
-> +       struct ipc_chan_info *chan_info =3D (struct ipc_chan_info *)chan-=
->con_priv;
-> +       const struct mchp_ipc_msg *msg =3D data;
-> +       struct mchp_ipc_sbi_msg sbi_payload;
-> +
-> +       memcpy(chan_info->msg_buf_tx, msg->buf, msg->size);
-> +       sbi_payload.buf_addr =3D chan_info->msg_buf_tx_addr;
-> +       sbi_payload.size =3D msg->size;
-> +       memcpy(chan_info->buf_base_tx, &sbi_payload, sizeof(sbi_payload))=
-;
-How does this work? sizeof(sbi_payload) is more than
-sizeof(*chan_info->buf_base_tx)
-I think buf_base_tx needs to be u8 array of max{sizeof(struct
-mchp_ipc_init), sizeof(struct mchp_ipc_sbi_msg)}, if there are
-alignment requirements then maybe kmalloc that size.
-Similarly for buf_base_rx.
-
-...
-
-> +static struct platform_driver mchp_ipc_driver =3D {
-> +       .driver =3D {
-> +               .name =3D "microchip_ipc",
-> +               .of_match_table =3D mchp_ipc_of_match,
-> +       },
-> +       .probe =3D mchp_ipc_probe,
-The driver could be built as a module, so please provide .remove()
-even if you never intend to unload it.
-
-cheers.
+ChenYu
 
