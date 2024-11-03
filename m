@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-118499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24DC29BA688
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 17:09:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC8D99BA690
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 17:11:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D12031F2156F
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 16:09:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99B301F214EF
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 16:11:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07AF817DFE4;
-	Sun,  3 Nov 2024 16:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68BAC187355;
+	Sun,  3 Nov 2024 16:11:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rD9Cn5sQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XSILdoVR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C52667081E;
-	Sun,  3 Nov 2024 16:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DB14183CBE;
+	Sun,  3 Nov 2024 16:11:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730650155; cv=none; b=G4B5bPaIaufSSplxZpEndzs55ztFirqsFDQHFoUO+QY13/0Y9yhMq8bSlRVHVAchFEGuX+EPItoB44EKDohLwsOJ6izOZL6X9Cb3Rk4SvbC0ZD93oXe4bmIPNGaGUkb3YcoJOnTYt3g/ybgQFopkXashPEKJQrQkmtJDC+YW97Q=
+	t=1730650264; cv=none; b=n8PSDRqwRA1ZK2SPF0x1xnf4oYtqfXL4sNbDMlCv5LYezZ/l7tNoCJlh/x3uQTP+4n/13K4VqHlDDfXmQzIBhkpkPQZxBU/lIqedw1d/7LtND5jsY6mrb32/Adhro5Zmwb5rsaIkBw4oBMsbqJSBoRx+Yr0903P2ewTb0zXpVHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730650155; c=relaxed/simple;
-	bh=4QV2rgslp98KWjtvQhopWEdq9aYWfWejvpYMbITcxMw=;
+	s=arc-20240116; t=1730650264; c=relaxed/simple;
+	bh=SZuHQtZJYWnlM0GulECNtlNPxV5j9CAf6AvkG4mjcZA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EWwqhTmcUfsiB9BLJu6Vuw0n5krvty76A1fukeJ/zBkujltTBkzt/Zr2xbS1ExOq2oXbgGqrBcpVkW5qOUNZ5eBa2KiCBtmD/iU+UKSnEwjxUCI+QRDFZoPMErwt0R7ISUuJYYFhTz/Pvl/ct3GPraqY5XNCrEZ1DxbKKCjQAyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rD9Cn5sQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 013C7C4CECD;
-	Sun,  3 Nov 2024 16:09:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=aAxVR1Fg8BxJ/l6P1aJzh1cmfd51gVtW8l9iQNdC+jjLBdmelhYI2QlqRhVWGIPQgR/rvABrLqClag+hLGL0/epUF/8Jy6TarIDXXD7ZQNZt4AmD3iMiUnCwZmbDl7igBcpXOmARiLOjsaIAHKj9E/cL5nUyVBN2E3JAQeo4c3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XSILdoVR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 643B9C4CECD;
+	Sun,  3 Nov 2024 16:10:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730650154;
-	bh=4QV2rgslp98KWjtvQhopWEdq9aYWfWejvpYMbITcxMw=;
+	s=k20201202; t=1730650263;
+	bh=SZuHQtZJYWnlM0GulECNtlNPxV5j9CAf6AvkG4mjcZA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rD9Cn5sQp59UPbbUGdTlexP3iQ5TPnA9NrGK4bpYxnUzgEoiGJrOjh0TwKfzJk7d0
-	 2jw0yRHJDeKY1aDuvMHkEQd/Bd1uF5VmFxY705HYyXq60SVraSl+OcfExKX6VNtMAL
-	 ESbfDWK2B/a/mHYTqL+614QkGYeFcQe3Ly4ULVnl4LN1vwElKIsfMuwbaQpMTkChdb
-	 xKGzNxwRbnH2Xl8oO7t5VNkXuSwYJwMpSKxcP5rIgzDfuC8e6PRVnaV00efSSWAWNk
-	 Q2Nyr4EmhvF4R7ZFRNEzurNQUXdXLcquuxnR4vVOGNoUs6zidPe8jPz1ZFMMMnA4pn
-	 XNY8qQ8VOwjXg==
-Message-ID: <aa920d1c-ab2b-4177-9b66-f8d8b45906af@kernel.org>
-Date: Sun, 3 Nov 2024 17:09:06 +0100
+	b=XSILdoVRtcztBYaC8SOMgXfl92VJFZkSDqn+m0TJ32YWaX6tCHMO2NJvf0U3/gRO2
+	 8sUeYwNacJ9pi1shHz38uZ9lPUfhetrEEEADQiI6JnIV7YFdLFPB+veGHIG4Ha1/9u
+	 HsPXBZKMKDoUu4e1sA0ncr/FEfC+BtdQRyzaQmRvPQPQRuY2rhbssQPw/D0B3RzW/M
+	 fwkXo4ntST6qHtU2cBlaKuVOnqObJ6j3wDTmugKev0C1+uQ04QNcRY0F8Q53rMqaeD
+	 A+YmEEBEWzg+/fYg4JfqvaeoXcWdnllY6Bft44xktDxdDMnaHtynsP0Z++k8r8x9fs
+	 Lku5wSD8fOUmg==
+Message-ID: <6dfecd6d-ecff-4867-ba61-e0d197a397a7@kernel.org>
+Date: Sun, 3 Nov 2024 17:10:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] media: dt-bindings: Add qcom,msm8953-camss
-To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20241103-camss-msm8953-v4-0-48d0ec75958d@mainlining.org>
- <20241103-camss-msm8953-v4-2-48d0ec75958d@mainlining.org>
+Subject: Re: [PATCH v2] dt-bindings: timer: actions,owl-timer: convert to YAML
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241103123513.2890107-1-ivo.ivanov.ivanov1@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,20 +105,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241103-camss-msm8953-v4-2-48d0ec75958d@mainlining.org>
+In-Reply-To: <20241103123513.2890107-1-ivo.ivanov.ivanov1@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 03/11/2024 10:45, Barnabás Czémán wrote:
-> Add bindings for qcom,msm8953-camss in order to support the camera
-> subsystem for MSM8953.
+On 03/11/2024 13:35, Ivaylo Ivanov wrote:
+> Convert the Actions Semi Owl timer bindings to DT schema.
 > 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> Changes during conversion:
+>  - Add a description
+>  - Add "clocks" as a required property, since the driver searches for it
+>  - Correct the given example according to owl-s500.dtsi
+> 
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
 > ---
->  .../bindings/media/qcom,msm8953-camss.yaml         | 322 +++++++++++++++++++++
->  1 file changed, 322 insertions(+)
-> 
+> v2: update commit message to be accurate (Krzysztof)
+> v2: don't preserve formatting in the description (Krzysztof)
+> v2: add allOf:if:then block constraining per variant (Krzysztof)
+> v2: add a blank line after additionalProperties (Krzysztof)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
