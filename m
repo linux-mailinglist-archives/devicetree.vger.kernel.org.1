@@ -1,137 +1,140 @@
-Return-Path: <devicetree+bounces-118469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3095A9BA529
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 11:36:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 059E89BA53E
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 12:22:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D6B2281637
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 10:36:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8C631F218DB
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 11:22:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E757A166F33;
-	Sun,  3 Nov 2024 10:36:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F00D1632E3;
+	Sun,  3 Nov 2024 11:22:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SMuhZ73R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91273154BFB;
-	Sun,  3 Nov 2024 10:36:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61BCB156C40;
+	Sun,  3 Nov 2024 11:22:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730630164; cv=none; b=ZXPpb3WrbAiKSAJlZgD2EtkDVwv3WsdHH7Y4Q8mT7regu3U6w/iG2f1udib3aCic4xFu+oegFv5KdfBOVbOJ4Hd9iW1ODlUv9gntktL9t7Tqbbqf2Wi0WMFvWQvA2j3Ug5fG4ODZRfznHpF9y8rFNhQK/ZEalIMrpC5N0DfJpfE=
+	t=1730632943; cv=none; b=LyWu8bWIZykURiP42dyZxev/QXcVe1PxyTm06JXp6RciYv1yX64FiMlQRGfm1vcnTSCo26jbUlvA3W2bJpRoABwcHDoHA+ssaeklMEWxAy/YBmoYip+ZieRHIlxKQxe3jNvycnoSJtwbBkfONuczelenhldTRDAPx461sqXTH14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730630164; c=relaxed/simple;
-	bh=tVmykVXvLosgHNeME37N10pXj0NPlF2mZGHrprv3SBI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WmBF1+1MX/hQqMVsuGluF48plTkJqQb0ucwK/QfScWktAPYfXq5neT3lhYCC5m7FUZ6y1XxcsfcDlb5JY8OaKuR1QhWcmd3qOxFSH8miNHNLLhQNyapkNUINaC7g+RXdG9qzQIFLyk+TgRG0XMAIz7/EPCnrjAUoYjqV+LNeS70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e292926104bso2951451276.0;
-        Sun, 03 Nov 2024 02:36:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730630161; x=1731234961;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4rxI8+R82FkhXbdk7eO8KDrDLgj0MsO7XK9vQ4Tu1FU=;
-        b=xDplMs/InlF/NWkVrPaLWibw8REnUpQmbF/O+1pM08HQbZNYFVvYKZh0dO11/SZTmF
-         NMlZJDE52I3ronyW7WdOYn9sMoPC/T4sgh6ZqCQX4PdkfTm+ommoLpvqP9E+4xyyRomc
-         cO+T4hCXl37hQ6cA1ui0I/XHvTrx0wpFhLUCBs2r5+fDuTNlyFiDM68zDw0EOECQSj4J
-         4Hi2+K2g1iUiVAbyPQapa4Cx13G4OEER3IuYVPLLJXp4p11GxGM3BPVcwwDuO+He7j+j
-         //QgjABFiAmGHewjxw5nI5MutOg3Gt+N+VeXbyPmMe20ZOCJ1H1wEIXUj68LiR/dNlYi
-         qTvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUFggY/RKsr2cr547ynX9RTzzIFXPEux1Fb6zbZX6d70V3S2YmZiUYxR6fx/Ff6yX2aS/T8joz4M8ZK@vger.kernel.org, AJvYcCUcqv7t5F9SAajI8r0h7vZw+09edcXEAdUO7wD9jJAQtZo/AKgOD6GSaOuLOaTZDWJj2yfNLm2Muhg6@vger.kernel.org, AJvYcCVgOgKQ1f8UOwETKkJ7K3O9lOi56IdFYwWyX58tsjAe3thNCfcuSwidfYZ3fNsI14RsOAeDoIWPwOI6@vger.kernel.org, AJvYcCWFY0q2Sm/k719w0DwSeX+2SN81vrwZQ7Q1vPJzJEGPEpr2iJxxPIe553TCHLveZ/xhcnlBWRXWvko6Ogpe@vger.kernel.org, AJvYcCXGXDh3oLDIvtKYO35jggkFVE2aBdXczVfZzgnEN9HnT6u56ro8O3fzeyJzMMSyAPI+sqD4eu2dumZGhr9/DSeCqXU=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzjh8pZI8MUCVz/T0bnr1pBOepGLWb7JpUoRknEo2Fxp01sE4tS
-	qKYPf/4OWd345NLOFfb/5Sl4oY74eeaInanSFWr/p8/noc+xOSHQxbLIEjG+
-X-Google-Smtp-Source: AGHT+IHz8OQQbvFjJ6PFzJ3uhcgLK1pe60+E+8T68D/CCc/Zh49X//zQljtPpUpOtFOZDFk4oOLSMQ==
-X-Received: by 2002:a05:6902:2b84:b0:e2b:ce99:909b with SMTP id 3f1490d57ef6-e3087c36061mr21564111276.57.1730630160642;
-        Sun, 03 Nov 2024 02:36:00 -0800 (PST)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6ea55b2309asm13938757b3.57.2024.11.03.02.35.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Nov 2024 02:35:58 -0800 (PST)
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e30d0d84d23so2739122276.3;
-        Sun, 03 Nov 2024 02:35:58 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUJbcePhf5ZKicypDq7wUo9JP0K99/4mWQmG2o3/sbcPGQ3n2kNmDwuqUFR/3bAwMw+0GDLUkJlYo3PskHcaii5LFY=@vger.kernel.org, AJvYcCUpNaSx2TgUHkXt2cE7ZNSOjqlS4t7emoe8UM5s0WqsJhKA+bguOnIlNxQJ+ihKQb2LIBRC+iyzsl0z@vger.kernel.org, AJvYcCVhLUGes+8HsEHCJrGKXdQgWx+twN7J205igRijczVQIRyhrtUHNWnZOWBJUQ2iA8ZgnmDiz2qc8/h9@vger.kernel.org, AJvYcCWQHkxFek8G3hrVJyDvvfD9miHcQt3xZKy3EmUmjaNarvc87em6LpmG6U1k1EzHkOWUaypxitOlXCg9@vger.kernel.org, AJvYcCXdChaRJwAxEuGwUVvsVa5B/N+G9XJqf+MfT2HFTTkEUQOnNKY1Te0EGA1OIL6tRGErbV8eZWVmEmbvCMqI@vger.kernel.org
-X-Received: by 2002:a05:690c:31a:b0:6ea:6876:5226 with SMTP id
- 00721157ae682-6ea68765303mr77877237b3.23.1730630158376; Sun, 03 Nov 2024
- 02:35:58 -0800 (PST)
+	s=arc-20240116; t=1730632943; c=relaxed/simple;
+	bh=rojxZqDQYmo7DcaabxpY+qtg25SoBSbQIlcnA6osyJw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rCyb0FbrTshCmqxOX6Fv2q9bDUBoJjVJMQmBy/GKEmf32KNwGOEgs+BmUU5MDPYB5GVklI+CqTR+cTpI9aRKuSYvhpwqwTf5D2LXZCD2V9LnAOHHVecum4fj+imefkkpZaoWQUm3C1iGC09XI1E5PvanFZK6v81e+XMVSQxGaQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SMuhZ73R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68023C4CECD;
+	Sun,  3 Nov 2024 11:22:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730632942;
+	bh=rojxZqDQYmo7DcaabxpY+qtg25SoBSbQIlcnA6osyJw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=SMuhZ73RSbfxkOVpJ71Fpb2kdzTjWQp4utVDK1cYMBga+Y9ldKNQNO6JdoVCpiUzi
+	 ldZxXWejGjuoh/mttBC91vjRPBeD5CaLuxzqUXg5WNZYRg3LGw7WUhZlnEDQ3IOgWp
+	 t0YArjF1QmzwZJ9QErSzlQEe9RdJFLi5l30Yp1ikl2yu8lwJe8R+X/2PtfgtGvJiD6
+	 47FfeL33TwgYT1D0YZT/jKVQY3rcRqNJZiPV990lXtONr/brsrv90vrnsiFZs3vS4x
+	 CXSYmBxelswPO8yaIDyHklTeDtkona74buBXRZyAW6uti9etKk3CWqAZZtdGGhwGqn
+	 XKSVTianPzfMQ==
+Date: Sun, 3 Nov 2024 11:22:08 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Aren Moynihan <aren@peacevolution.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Kaustabh
+ Chakraborty <kauschluss@disroot.org>, =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?=
+ <trabarni@gmail.com>, Ondrej Jirman <megi@xff.cz>, Uwe =?UTF-8?B?S2xlaW5l?=
+ =?UTF-8?B?LUvDtm5pZw==?= <u.kleine-koenig@pengutronix.de>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, Dragan Simic <dsimic@manjaro.org>,
+ phone-devel@vger.kernel.org
+Subject: Re: [PATCH v4 2/6] iio: light: stk3310: handle all remove logic
+ with devm callbacks
+Message-ID: <20241103112208.233f7180@jic23-huawei>
+In-Reply-To: <20241102195037.3013934-7-aren@peacevolution.org>
+References: <20241102195037.3013934-3-aren@peacevolution.org>
+	<20241102195037.3013934-7-aren@peacevolution.org>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241101095720.2247815-1-claudiu.beznea.uj@bp.renesas.com> <20241101095720.2247815-5-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241101095720.2247815-5-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Sun, 3 Nov 2024 11:35:46 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXdeq_wTdtrn28yhm+Ue==FMJ=0dkEAQTkrNUDRtcQ3Ew@mail.gmail.com>
-Message-ID: <CAMuHMdXdeq_wTdtrn28yhm+Ue==FMJ=0dkEAQTkrNUDRtcQ3Ew@mail.gmail.com>
-Subject: Re: [PATCH v6 4/9] rtc: renesas-rtca3: Fix compilation error on RISC-V
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com, 
-	magnus.damm@gmail.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, Nov 1, 2024 at 10:57=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Fix the following compilation errors when building the RTCA3 for RISCV:
->
-> ../drivers/rtc/rtc-renesas-rtca3.c:270:23: error: call to undeclared func=
-tion 'FIELD_GET'; ISO C99 and later do not support implicit function declar=
-ations [-Wimplicit-function-declaration]
->   270 |         tm->tm_sec =3D bcd2bin(FIELD_GET(RTCA3_RSECCNT_SEC, sec))=
-;
->       |                              ^
-> ../drivers/rtc/rtc-renesas-rtca3.c:369:23: error: call to undeclared func=
-tion 'FIELD_GET'; ISO C99 and later do not support implicit function declar=
-ations [-Wimplicit-function-declaration]
->   369 |         tm->tm_sec =3D bcd2bin(FIELD_GET(RTCA3_RSECAR_SEC, sec));
->       |                              ^
-> ../drivers/rtc/rtc-renesas-rtca3.c:476:11: error: call to undeclared func=
-tion 'FIELD_GET'; ISO C99 and later do not support implicit function declar=
-ations [-Wimplicit-function-declaration]
->   476 |         cycles =3D FIELD_GET(RTCA3_RADJ_ADJ, radj);
->       |                  ^
-> ../drivers/rtc/rtc-renesas-rtca3.c:523:9: error: call to undeclared funct=
-ion 'FIELD_PREP'; ISO C99 and later do not support implicit function declar=
-ations [-Wimplicit-function-declaration]
->   523 |         radj =3D FIELD_PREP(RTCA3_RADJ_ADJ, abs(cycles));
->       |                ^
-> ../drivers/rtc/rtc-renesas-rtca3.c:658:8: error: call to undeclared funct=
-ion 'FIELD_PREP'; ISO C99 and later do not support implicit function declar=
-ations [-Wimplicit-function-declaration]
->   658 |         val =3D FIELD_PREP(RTCA3_RCR1_PES, RTCA3_RCR1_PES_1_64_SE=
-C);
->       |               ^
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Hi Aren,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> @@ -624,7 +640,7 @@ static int stk3310_probe(struct i2c_client *client)
+>  	device_property_read_u32(&client->dev, "proximity-near-level",
+>  				 &data->ps_near_level);
+>  
+> -	mutex_init(&data->lock);
+> +	devm_mutex_init(&client->dev, &data->lock);
+ret = devm_mutex_init()
+if (ret)
+	return ret;
 
-Gr{oetje,eeting}s,
+It is very unlikely to fail but technically it can.  Andy has been fixing
+this up across the kernel (including IIO) so let's not introduce another
+case that doesn't check it!
 
-                        Geert
+If nothing else comes up I can probably tidy that up whilst applying.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Jonathan
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+>  
+>  	ret = stk3310_regmap_init(data);
+>  	if (ret < 0)
+> @@ -650,29 +666,17 @@ static int stk3310_probe(struct i2c_client *client)
+>  		if (ret < 0) {
+>  			dev_err(&client->dev, "request irq %d failed\n",
+>  				client->irq);
+> -			goto err_standby;
+> +			return ret;
+>  		}
+>  	}
+>  
+> -	ret = iio_device_register(indio_dev);
+> +	ret = devm_iio_device_register(&client->dev, indio_dev);
+>  	if (ret < 0) {
+>  		dev_err(&client->dev, "device_register failed\n");
+> -		goto err_standby;
+> +		return ret;
+>  	}
+>  
+>  	return 0;
+> -
+> -err_standby:
+> -	stk3310_set_state(data, STK3310_STATE_STANDBY);
+> -	return ret;
+> -}
+> -
+> -static void stk3310_remove(struct i2c_client *client)
+> -{
+> -	struct iio_dev *indio_dev = i2c_get_clientdata(client);
+> -
+> -	iio_device_unregister(indio_dev);
+> -	stk3310_set_state(iio_priv(indio_dev), STK3310_STATE_STANDBY);
+>  }
+>  
+>  static int stk3310_suspend(struct device *dev)
+> @@ -736,7 +740,6 @@ static struct i2c_driver stk3310_driver = {
+>  		.acpi_match_table = stk3310_acpi_id,
+>  	},
+>  	.probe =        stk3310_probe,
+> -	.remove =           stk3310_remove,
+>  	.id_table =         stk3310_i2c_id,
+>  };
+>  
+
 
