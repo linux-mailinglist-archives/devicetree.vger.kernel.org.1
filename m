@@ -1,74 +1,101 @@
-Return-Path: <devicetree+bounces-118520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C229BA831
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 22:04:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 409069BA876
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 23:09:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C90581C209E3
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 21:04:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF87F2816F5
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 22:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2405E18B460;
-	Sun,  3 Nov 2024 21:04:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63C8718BC2F;
+	Sun,  3 Nov 2024 22:09:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IziPJNGL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EBCD155392;
-	Sun,  3 Nov 2024 21:04:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3A71189BA0;
+	Sun,  3 Nov 2024 22:09:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730667855; cv=none; b=dGoQGr+TzTlIahZYUriAnzJn6Mhmn3+LE/axXE8GTB5HN91u3ZCnpX0g6f1JRs6YlVF9DjRR90T4kSeXz3+dM+twBDf+Vl5jAJpCtwD2LFeRMwFaEDs0SXSfH5Vp3gvt4TTI0vhE6krRKI/FZZdA2RGbi8P/IN6X1cit5kiRnxI=
+	t=1730671783; cv=none; b=Q+l9v8fKLQo9goNyJcMPppsBixbkXQwfmYNfEWp7TxYNN6rCB3FEI8pIqDteCl3Vy2bUakfrlCT4XRDmqLLTvOY6gsmojoDEV4nChQWrmClSaTMRvYbuyQlmf8P8FDBmx95U12zal5Zao2lftB0+PC8ciU3i5eVS6QBe98rSd5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730667855; c=relaxed/simple;
-	bh=q6OOaED5zvRfnbaltrJMmwCUXdYdGlzn7Gzj+ZaEkNo=;
+	s=arc-20240116; t=1730671783; c=relaxed/simple;
+	bh=WkYHzjB1FsobEK55AqhBuGNO8OPLcecCjyT36wwY6Lc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y0p8Ic9h08Uys+rYuEKYou3djqtmPLNfwK01RDqHxe0nTPV0lx1RiBdLJsq14fx9JXWWwtqDifuqLDDPruvaTO/+XzzYMxj56CaXIKBqMwGSPVvJvDTRkpsWhf0uvvYYehJv/7GuQApXetU/vf0lWUivOeBSDIv5g/xQSwDbdFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+	 Content-Type:Content-Disposition:In-Reply-To; b=tYdXo7IOwJ7q8JO64PgRit4NqxVOauD9rsIeZnyS+p4NZ81SFbvY4odDwck2/Ewa1eH0u03pgwELXL57PorGeUtyWiVVmHhkiAVHZVFNMKeX9aEKhm3ufwL4BjdX5TTPYBV69tzR/N/ZFf+BSLdXfSks8WDktfR5mUYCyCnuH/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IziPJNGL; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-20cdda5cfb6so34052435ad.3;
-        Sun, 03 Nov 2024 13:04:12 -0800 (PST)
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7206304f93aso3456965b3a.0;
+        Sun, 03 Nov 2024 14:09:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730671780; x=1731276580; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/rHJELaF04JBRi0aLmrWuxoS3tWtyUhwmRJRrDNiPz8=;
+        b=IziPJNGLtz56KgxCv8Fn6ziU+UMUMlzwizoWlz45bCIqRzhldvhiwqRhl9JAU7u3ri
+         bjnyf0RrPzPxeeGdPbQUulRBbIgW+hG8dStFaP3UW603klM1pZuyR19dWuPw6rxBzC7r
+         9jwTDOBlThdKilsQrHGd8LtLG42MfFiG3vnKhxz7ZsnYcHyYOlqhHpQC59w5++EWv7JM
+         g+VGVYKAgRKy/Pc5ZSoLqcQy0kSAk8vs10ReVrs+QjFgggxFPhpxqcwIz7nYP3g8fO1k
+         vYbdMyiuIovi1FrO+XmIoY0JDkSdpQoSeTnheyFDe743yrST6iPzmLOB6e0FV9pTlUh4
+         tc3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730667852; x=1731272652;
+        d=1e100.net; s=20230601; t=1730671780; x=1731276580;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=iyk/tHp3wM7ZJ+kBBA3UsNzDpyC6CZHEFHkxEbaxlrA=;
-        b=H9j1XcXSwtZ66Z3tLk9YtGscTM6+NG3100Yn09QKhZqhEkckPwDksp5GlIn+Pwa7JZ
-         qIb7z0O5wFHz6oVaZHDfOFr2fMWzuwec2MZ2EBPjicVsdf7xzdTvD28Dlbjycu8XXrei
-         /WNfDvmTEPwcMtlAv0z7IexXUCWkR3qxbk7uBh2T4A+Gxf/4qeuhORjYqdZ4X1W+dMsw
-         XsBUG9R2c1BQkQM2WQf2uvmqBZj5717hM/rLX3Z2K4Dsim/uy+nJzGqwqhk6O9EL4kph
-         eFXwX1jvH02lLeO2cTHD89mOQlBz3XaFSduRw97+BLZzCPqFjzSZcmP4xCAP1ojh3gu3
-         9BhA==
-X-Forwarded-Encrypted: i=1; AJvYcCW6+Y3nid3NA+vWeaM9yzn+Rlb9+nBp6ijaNiRGUD804zf3EWIifgdXsUNopTvtRshhj9zz8dPejjK2z2IC@vger.kernel.org, AJvYcCWHdr5br+Cmof3/m5s4lnWUat3QVkeuYLuyIGSt+B6xMAH0vwmFGCfq7X406ETRiMn7OR1iEJeqd1Ua@vger.kernel.org, AJvYcCWbMjucPk9/jIKIt7E3BeY+v4DDc/d8yQhEhTiE2VIwxwRzNaE5KjPpIWztM1176XgloRcVF/6zPLa2@vger.kernel.org, AJvYcCXgJ7oJyHFPqcVelUsoYhiYyMqHYpxJNfR2p2G85u1vRqOrfxcGsm9mprkztthnPNRrUFoGoFwlbPJDXKZqCg==@vger.kernel.org, AJvYcCXjN6eEbNNV/pByuOpUWICW56toFjJXe3iWv08ganLgSR0cDuEcIeMIuEc7NqVfW+EjB64xkY6+DEbT@vger.kernel.org
-X-Gm-Message-State: AOJu0YywrAtUW37WkxmIhLV8x60x+W0mge50OfHkgrLl39z1UMzvk+qi
-	VMEVdUq32OEmHNmz5Ai87UY2Xu+oIWT/NpXTdbpSaInl/9Aw82ZW
-X-Google-Smtp-Source: AGHT+IEuBWJcoxFyodqaLltsAgGc1DHq3aBd4Exho6fhd7kC5UnQpnx06MfS33ABD5bBS6JPZdF+Yw==
-X-Received: by 2002:a17:902:e850:b0:20b:6d8c:463 with SMTP id d9443c01a7336-21103b34f6dmr193025595ad.35.1730667852188;
-        Sun, 03 Nov 2024 13:04:12 -0800 (PST)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211057a2ec3sm49960975ad.140.2024.11.03.13.04.11
+        bh=/rHJELaF04JBRi0aLmrWuxoS3tWtyUhwmRJRrDNiPz8=;
+        b=bkLYNfhnNgv0mgaTKivGL/rEkxf6Rk6jBwxYalxyQA/g01kJ0TWdEr8HUENQolkxOT
+         zrizqeU7LC3sC0AgjePUUYwl+q7u13VDXqc8880cuFewULaw8WOKcsRPLnZF7CwPskgx
+         DYvMOKiHyEPaCSoqtAlKWNuPkd8M9c94X5ofBx/fDr968Jh1gbkbgErWG+8OqOLgsSxW
+         Itnc9BZqIFc0EjMdzH9VaFbLzyss9A4ALIAxTKVCClhlUF4h5TACS6R6FodDt3qP6Ran
+         34vUsF3z7Aywdg8Qdt5nmwd0L3+0wpzQItpB+op5XbXbACNdw84pD6CXGNX1NmqreFK+
+         mb7w==
+X-Forwarded-Encrypted: i=1; AJvYcCV5/x6hqJTm+626GB7+ug56IHO9F4bsRAj/POXGpAr9Yf9zD7+f7KtNpO+IqR3UdPk3sxDF5BoA@vger.kernel.org, AJvYcCVEjNVCH2jro4pL5vgb+Jo0iU/M5Luq5H9KJ8gXzhGC9b11vtVA+4WTbula6NAxOrGwdhuTNNB4IGVtoBZ/@vger.kernel.org, AJvYcCXeTabEGgC2F3rRHEluaeYNnihIdJqd2xrbzTYg5gkM/Rjm+KV5y4uLHzwa33ai2Ft1MCjKAx099iho@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhPZpx6SIFsxKUxUOL8m00xw4+i40+LlklU3H9/ScnMIujiKN8
+	X0KTmmH9lk4pUfVlJ+RnwexD+VZkf12DnVH1Rp/veXQN+Qqj5SAd
+X-Google-Smtp-Source: AGHT+IFKyJJZHHJG1xrvYibWpBIs/FS0N3kdjWrsxFMjWgEPFe5BpYTq3ei0lG/0AXdt3oOlAP3xDg==
+X-Received: by 2002:a05:6a20:e605:b0:1d9:dfd:93c0 with SMTP id adf61e73a8af0-1dba556fdc2mr13977660637.49.1730671780063;
+        Sun, 03 Nov 2024 14:09:40 -0800 (PST)
+Received: from x1 (71-34-69-82.ptld.qwest.net. [71.34.69.82])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc1ba033sm6074536b3a.34.2024.11.03.14.09.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Nov 2024 13:04:11 -0800 (PST)
-Date: Mon, 4 Nov 2024 06:04:09 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Qiang Yu <quic_qianyu@quicinc.com>
-Cc: manivannan.sadhasivam@linaro.org, vkoul@kernel.org, kishon@kernel.org,
-	robh@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
-	sboyd@kernel.org, abel.vesa@linaro.org, quic_msarkar@quicinc.com,
-	quic_devipriy@quicinc.com, dmitry.baryshkov@linaro.org,
-	lpieralisi@kernel.org, neil.armstrong@linaro.org,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	johan+linaro@kernel.org
-Subject: Re: [PATCH v8 0/5] Add support for PCIe3 on x1e80100
-Message-ID: <20241103210409.GK237624@rocinante>
-References: <20241101030902.579789-1-quic_qianyu@quicinc.com>
+        Sun, 03 Nov 2024 14:09:38 -0800 (PST)
+Date: Sun, 3 Nov 2024 14:09:37 -0800
+From: Drew Fustini <pdp7pdp7@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Drew Fustini <dfustini@tenstorrent.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Andrew Lunn <andrew+netdev@lunn.ch>, Drew Fustini <drew@pdp7.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH net-next v7 0/2] Add the dwmac driver support for T-HEAD
+ TH1520 SoC
+Message-ID: <Zyf0oVGk6FiVrPsB@x1>
+References: <20241103-th1520-gmac-v7-0-ef094a30169c@tenstorrent.com>
+ <662a8258-291d-4cfc-b21a-f3c92f9588f2@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,27 +104,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241101030902.579789-1-quic_qianyu@quicinc.com>
+In-Reply-To: <662a8258-291d-4cfc-b21a-f3c92f9588f2@lunn.ch>
 
-> This series add support for PCIe3 on x1e80100.
+On Sun, Nov 03, 2024 at 07:12:24PM +0100, Andrew Lunn wrote:
+> On Sun, Nov 03, 2024 at 08:57:58AM -0800, Drew Fustini wrote:
+> > This series adds support for dwmac gigabit ethernet in the T-Head TH1520
+> > RISC-V SoC used on boards like BeagleV Ahead and the LicheePi 4A.
+> > 
+> > The gigabit ethernet on these boards does need pinctrl support to mux
+> > the necessary pads. The pinctrl-th1520 driver, pinctrl binding, and
+> > related dts patches are in linux-next. However, they are not yet in
+> > net-next/main.
+> > 
+> > Therefore, I am dropping the dts patch for v5 as it will not build on
+> > net-next/main due to the lack of the padctrl0_apsys pin controller node
+> > in next-next/main version th1520.dtsi.
 > 
-> PCIe3 needs additional set of clocks, regulators and new set of PCIe QMP
-> PHY configuration compare other PCIe instances on x1e80100. Hence add
-> required resource configuration and usage for PCIe3.
+> You should send the .dts patch to the Maintainer responsible for
+> merging all the RISC-V DT patches, maybe via a sub Maintainer. All the
+> different parts will then meet up in linux-next.
+> 
+> 	Andrew
 
-Applied to controller/qcom, thank you!
+I am the maintainer for arch/riscv/boot/dts/thead. I'm planning to apply
+the dts patch to my for-next branch once this series with the binding
+and driver are applied to net-next.
 
-[01/04] dt-bindings: PCI: qcom: Move OPP table to qcom,pcie-common.yaml
-        https://git.kernel.org/pci/pci/c/39a06b55df6c
-
-[02/04] dt-bindings: PCI: qcom,pcie-x1e80100: Add 'global' interrupt
-        https://git.kernel.org/pci/pci/c/66dc205962c5
-
-[03/04] PCI: qcom: Remove BDF2SID mapping config for SC8280X family SoC
-        https://git.kernel.org/pci/pci/c/66cc06169fcf
-
-[04/04] PCI: qcom: Disable ASPM L0s for X1E80100
-        https://git.kernel.org/pci/pci/c/fc69fb202beb
-
-	Krzysztof
+Thanks,
+Drew
 
