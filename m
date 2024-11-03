@@ -1,100 +1,100 @@
-Return-Path: <devicetree+bounces-118502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 320179BA69F
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 17:23:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD5079BA6AC
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 17:40:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C966B1F21E80
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 16:23:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFCCF1C218EA
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 16:40:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B715018784C;
-	Sun,  3 Nov 2024 16:23:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04D271865FD;
+	Sun,  3 Nov 2024 16:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b="WmOQ1duW"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="V/WNNszn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a.peacevolution.org (a.peacevolution.org [206.189.193.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB938185B7B;
-	Sun,  3 Nov 2024 16:23:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.193.133
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53470AD2D;
+	Sun,  3 Nov 2024 16:39:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730650995; cv=none; b=Zi/rA4OLGlUQ/Kkx0cYPc95ThXeRAzFJ2JSnb2dxBjgJ9hLD0gbwofvSS+9/PqHPDpKPenjAKGkCmf2PbiJ+FqGLCULdssSMaXq67YhxdV/1uVNHYcNH3NohsNAZFMYyLQYBsRa0Mh1oWb9DhTB92y5yC7A4302kwq+cqMTTO1c=
+	t=1730652002; cv=none; b=lHFo1lsBakdgwAOTsTSBBMoGp9gI75hfIjMYfMJHwKzi9IYxYqS1pz+blYzSZeNq5hbxyBRg+FSCxpcO3W7jJiz903h97j261KVZZJPYrkrwEwKOEggjXFgMeI97AcgDkv+vswGbjsC6bVbOSDxXlI0/YL18lyKplvel4nzka0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730650995; c=relaxed/simple;
-	bh=Th3OOXZJfsZuk7HXCZ7L6IU6s2r0I+j2t7q7eIgzWNE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CctC7duLLFCKj3wLPN0KvOLiRsKs/5B1GFLHo37uloRMrpPVYIRWR0o+zWO6OWX1q82DdwmVpWcKVH6oGsYjvrswVJdSt+1Mj+3s3Glx8lBbdI6eL4Xo4a8gp+wxhjuhPSNb2ZrCIDFRAuWcm/OpWQvhdQf8VvZo6b1c5IO2m0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org; spf=pass smtp.mailfrom=peacevolution.org; dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b=WmOQ1duW; arc=none smtp.client-ip=206.189.193.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=peacevolution.org
-Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
-	by a.peacevolution.org (Postfix) with ESMTPA id A69264C891;
-	Sun,  3 Nov 2024 16:23:10 +0000 (UTC)
-Date: Sun, 3 Nov 2024 11:23:08 -0500
-From: Aren <aren@peacevolution.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Kaustabh Chakraborty <kauschluss@disroot.org>, =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>, 
-	Ondrej Jirman <megi@xff.cz>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, Dragan Simic <dsimic@manjaro.org>, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v4 2/6] iio: light: stk3310: handle all remove logic with
- devm callbacks
-Message-ID: <iyasbuxwpgqeeuaimcpnycrze3xg6u55uusfxnvy3i3k2ejy57@lbrrc7c3r4fx>
-References: <20241102195037.3013934-3-aren@peacevolution.org>
- <20241102195037.3013934-7-aren@peacevolution.org>
- <20241103112208.233f7180@jic23-huawei>
+	s=arc-20240116; t=1730652002; c=relaxed/simple;
+	bh=B2XWJUFled52xvHd4GjxQkLraBNHHyiNbE8xycuLjoI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=BM4d3CxyxnK4/aABrIYFesZmdcovKDoeVUstWIQ4WxwUHpUsavMJ4OWUVKM3p088nHiCOvwFSLQpvoG1dFmi3dD/2+vr+pjAQLal1Gn1yaC5fwG9FZxtWIiGagZ4KxOfeQlEvyXTN38qywnTgcnQs38uH520SGMSlwTZanHMiek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=V/WNNszn; arc=none smtp.client-ip=220.197.31.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=FbWwF
+	FWXwSYGZ7x6HYor0Xf23KSHwmI8qh1gVcDacTE=; b=V/WNNsznVjwztLOMmEUIn
+	rRf5CooDRTz1bjIvAcjVwCewl8YDjA7FcwBWpRDkC/MFx/y5Ln+KqUcY+qVRw3aJ
+	tTzIMdvCBdmX2fMTErbPtA2y+Opai7ldxH/axesuvXICEePF2xyCnWYfkMrnKbwm
+	vuxiWw43yNnU4TE8W+FXVg=
+Received: from 100ask.localdomain (unknown [112.10.131.71])
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wDXX6gupydnXah8Ew--.35873S3;
+	Mon, 04 Nov 2024 00:39:14 +0800 (CST)
+From: Wenliang <wenliang202407@163.com>
+To: linux@roeck-us.net
+Cc: book <book@100ask.localdomain>,
+	jdelvare@suse.com,
+	linux-hwmon@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH linux dev-6.11 v3 2/2] dt-bindings: Add SY24655 to ina2xx devicetree bindings
+Date: Sun,  3 Nov 2024 11:39:08 -0500
+Message-ID: <20241103163908.11890-2-wenliang202407@163.com>
+X-Mailer: git-send-email 2.47.0.229.g8f8d6eee53
+In-Reply-To: <20241103163908.11890-1-wenliang202407@163.com>
+References: <706d4821-2637-4aac-869b-822f69aebbfa@roeck-us.net>
+ <20241103163908.11890-1-wenliang202407@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241103112208.233f7180@jic23-huawei>
-X-Spamd-Bar: /
-Authentication-Results: auth=pass smtp.auth=aren@peacevolution.org smtp.mailfrom=aren@peacevolution.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=peacevolution.org;
-	s=dkim; t=1730650991;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:references;
-	bh=je3uCAcHsGiyDOgvqOvzEM2tjCfi8IWbvFmZvz9katU=;
-	b=WmOQ1duWnvM+PHINwEcVOHgkXZK4Gu49qiTEWLXeIMTTD/95JdSpVS0QcU3as8OuqLbPA0
-	4vz3fZ7Jz7e2JgJIISbRBSCnHvGJhOECg4IO3GkWuibDZjDsncPb2JZgLwL/2Mah+Uj381
-	pqrN4ROz0kl2cw9L99XRu7qgNhuCrGc=
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDXX6gupydnXah8Ew--.35873S3
+X-Coremail-Antispam: 1Uf129KBjvdXoW7XFyfWw1rtw4fCFy5GFyrXrb_yoWftrbEga
+	y7Jw1UZFZ8JFyYgr4qy3yxXFyFy3WSkF4kCr1UCrZ5Aw4rZws0ga4kG3sxAryUXrWUu3W3
+	ua1kZ3y8Xr12kjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8OJ57UUUUU==
+X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/1tbiNQ+M02cnoLAwsQABs1
 
-On Sun, Nov 03, 2024 at 11:22:08AM +0000, Jonathan Cameron wrote:
-> Hi Aren,
-> 
-> > @@ -624,7 +640,7 @@ static int stk3310_probe(struct i2c_client *client)
-> >  	device_property_read_u32(&client->dev, "proximity-near-level",
-> >  				 &data->ps_near_level);
-> >  
-> > -	mutex_init(&data->lock);
-> > +	devm_mutex_init(&client->dev, &data->lock);
-> ret = devm_mutex_init()
-> if (ret)
-> 	return ret;
-> 
-> It is very unlikely to fail but technically it can.  Andy has been fixing
-> this up across the kernel (including IIO) so let's not introduce another
-> case that doesn't check it!
+From: book <book@100ask.localdomain>
 
-Right, I'll take this as my periodic reminder to read the docs / types
-more carefully :)
+SY24655 is similar to INA226. Its supply voltage and pin definitions
+are therefore the same. Compared to INA226, SY24655 has two additional
+registers for configuring and calculating average power.
 
-> If nothing else comes up I can probably tidy that up whilst applying.
+Signed-off-by: book <book@100ask.localdomain>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-That would be great
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+index 6ae961732e6b..05a9cb36cd82 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+@@ -20,6 +20,7 @@ description: |
+ properties:
+   compatible:
+     enum:
++      - silergy,sy24655
+       - ti,ina209
+       - ti,ina219
+       - ti,ina220
+-- 
+2.47.0.229.g8f8d6eee53
 
-Thanks
- - Aren
 
