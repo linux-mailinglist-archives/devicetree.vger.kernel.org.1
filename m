@@ -1,294 +1,178 @@
-Return-Path: <devicetree+bounces-118436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 040BF9BA43F
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 07:16:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8F349BA45A
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 08:33:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E59E1C20E89
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 06:16:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 449AB281780
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 07:33:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03AD2143C4C;
-	Sun,  3 Nov 2024 06:16:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E9814F9FD;
+	Sun,  3 Nov 2024 07:33:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vjKdNDW4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bj30YjOh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01B35695;
-	Sun,  3 Nov 2024 06:16:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 663D31422D4;
+	Sun,  3 Nov 2024 07:33:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730614585; cv=none; b=Gt4Bau4WKNsO1VgqTZrDdyp6JUhpFi31WTyWt0CY6Ukp8/O+voFTHpM766faMmri1VSP5roYS1fxaNKTaT8FvqxcxVrlwg/+dxtrCLeOQM+UPfJA7lokqKLvxwv3XHlzpn3nV3ZQWAQIgYJOEK7KLTT3ey3uXUYa/B8eZzP6ypY=
+	t=1730619221; cv=none; b=WCDBo+WNte7e9wpv3vbHxRhI3e6Bs4W0lvxR48oAnSjHKHS3cgiQKIcCa5qldy14nhxdWBicXeWbuyS1xh8wQs+Z6TIYLOnCYYiTbAM290o1FvOgdhxcJCwKWQ+yzurI7eRDH1JrSro0YW9ENe1X3zwU7GYPgS5rG2eM0RzxJVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730614585; c=relaxed/simple;
-	bh=X9o0eh7UIy5jiV5ZvNHOGYg1gpHiYb7fTqhaoZ8vVvU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Vnz0YoFlLO9yTZZXXcNzWqvBHlc2sJ8Oc8fz2EqmTfmFu6OU3TBMtMjtF8+B0LsfTQ9B8N38msb2le5m8UTmnhGOEd8aiSAL/UQCetiAkbgVGze8+hRx1gA00pTvCvKPur4hVfmvEfl0SSzaXjFvicdZBu+i+ok16lF4xqZ28eM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vjKdNDW4; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4A36G5KK043083;
-	Sun, 3 Nov 2024 01:16:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1730614565;
-	bh=NYgEDruINISZGBX4Cd/tmdAf48brbc9RaFngJbqVRpo=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=vjKdNDW4H4csRBs5v/BeVjhF9h0DOHS8283o3D2szP1vy4rsEwr+y8auPAJVTJg0j
-	 uK6YW2xTixt7JzkDh1D655X6dpEmZefoCtHRRI9krRsLW1Or+kXbbM0HbZSE43DVbx
-	 IfWGDaKUXB0Y9ZjqXButh15PRr/W8el9SWVp2RbI=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4A36G5u7129759
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 3 Nov 2024 01:16:05 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 3
- Nov 2024 01:16:04 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 3 Nov 2024 01:16:04 -0500
-Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4A36Fxkc090807;
-	Sun, 3 Nov 2024 01:16:00 -0500
-Message-ID: <3d7abd75-68a2-4232-ad8c-e874c10df1ae@ti.com>
-Date: Sun, 3 Nov 2024 11:45:58 +0530
+	s=arc-20240116; t=1730619221; c=relaxed/simple;
+	bh=iJDACKEXdrr4mcyjON6lv7CP6tLtsf3Oxbt6vCwmHp4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=c6X9oVZJMX1zD/GXqrqitUspR24KzjUXD3lLI5tyh1W0k5GXVZ+sJGN6IeJXXR0tcb9QlXey/JI7hj8pGAkGF9RXA9wrV98Qdz7/kJxr109mcrVYIFgfB340EisllraS/HDMuII14aTD2p01kmF5LI9uscuL0GLlXlX77qcfV58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bj30YjOh; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-7ea76a12c32so2445232a12.1;
+        Sun, 03 Nov 2024 00:33:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730619219; x=1731224019; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JK9/LDUBjeqfgN2Gg/DD/Yg8tlljxY1YXMgl96rzOhc=;
+        b=bj30YjOhziVsfKlm24VrSYB4RXXVivSSrcce6LdF/ahuyrfHz29c5yKIxWLq7O3sAE
+         1fi/jkPrG/37kiCXsNhtSwdH41WwLecM5VgLZolQK/txo2SJYdraiAh4+tYFwp1s3S+Q
+         6XnbBALBDUuCXI3WORMlTSxhCfa2VCfURZs/u9S24eG8MMgMsXaXd0SKDwWeAbB39H8X
+         hxlxzy+D4sI4UzpCOPA64SpG2SLq4rCIVKEArqK6dhEKFyMjpGE/UuhVbXIaC909YQYR
+         YvWejzjTHQjbWHV4sE6VON74rV2CNMrXOATv3eLyYTloDpqDlLVI5gpsuDBc9uDuLwXv
+         Y/zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730619219; x=1731224019;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JK9/LDUBjeqfgN2Gg/DD/Yg8tlljxY1YXMgl96rzOhc=;
+        b=aJmssZFjiTI8O7N6kxhRhMB/u7SxVe/fOdiIjWMeVaNxrUAs5QaEnhCvTtqVmIi3qc
+         xy5nzpaf3KVgiflkUOLAbgpk65rQKijNk/08MoQVIr4OjNJ7vKix4C8YCvrAiBn1H+9U
+         9fmKaaGZjIRbMaJByZT9V85EFKz9J5/F9Q2oXkI0V6SmuH48r8QOqjxA/DurC5mc4daw
+         cJ9U2e8oaszvdsXCtC/i161BvBW+qjLc7fEvfO8aAfJe26vLcd6PCv6SOrBsd+uHCqVn
+         IvjiVrE201GdACvbV8DwRRNyUBKXJ72+Im+q1+iKZii2ub7Zs5FoC16kYBzxSSfEe6Dt
+         RG5g==
+X-Forwarded-Encrypted: i=1; AJvYcCUVaaUM9comuSZPjsJ+NIZxWZSvMwIRsUts40lf3u9hxe6oaBtvwazuhXx/V2iF+1VG3guNiTD227CBccBS@vger.kernel.org, AJvYcCVsonzkThHYaoyoJVN/Pib3DeTR7wCqSw1st57mzm5GUuCsh1IxHk4bwahDYGwM6h0fhLlwcFcgInlU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZ/wIx1Qv7wsTtwJvCAGZ02wdGDqLBxd0XFXoQ3tbuRC/dSASZ
+	GXTcMzYUhe3CwNr3S45vvy//7BP8QsiZ8Cf12GEk37x9GZwmsJml
+X-Google-Smtp-Source: AGHT+IHpO6ChUYhlaktb2w//U/SuJc4GICT1u8EbdcOi6DCPXEF/TjJe/FrYq9R1QV8LS7U+4HIwDg==
+X-Received: by 2002:a17:90b:2e45:b0:2e2:d181:6808 with SMTP id 98e67ed59e1d1-2e93c1d3a03mr16305519a91.30.1730619219400;
+        Sun, 03 Nov 2024 00:33:39 -0700 (PDT)
+Received: from localhost.localdomain ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-2e93da983f9sm5353443a91.5.2024.11.03.00.33.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Nov 2024 00:33:37 -0700 (PDT)
+From: Nick Chan <towinchenmi@gmail.com>
+To: Hector Martin <marcan@marcan.st>,
+	Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH asahi-soc/dt v3 00/10] Add PMGR nodes for Apple A7-A11 SoCs
+Date: Sun,  3 Nov 2024 15:31:11 +0800
+Message-ID: <20241103073319.30672-1-towinchenmi@gmail.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/7] PCI: keystone: Add support for PVU-based DMA
- isolation on AM654
-To: Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
-        Santosh
- Shilimkar <ssantosh@kernel.org>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        Siddharth Vadapalli <s-vadapalli@ti.com>,
-        Bao Cheng Su
-	<baocheng.su@siemens.com>,
-        Hua Qian Li <huaqian.li@siemens.com>,
-        Diogo Ivo
-	<diogo.ivo@siemens.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas
-	<bhelgaas@google.com>
-References: <cover.1725901439.git.jan.kiszka@siemens.com>
- <f6ea60ec075e981a9b587b42baec33649e3f3918.1725901439.git.jan.kiszka@siemens.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-Content-Language: en-US
-In-Reply-To: <f6ea60ec075e981a9b587b42baec33649e3f3918.1725901439.git.jan.kiszka@siemens.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+
+This series adds the PMGR nodes and all known power state subnodes for
+Apple A7-A11 SoCs, along with the associated dt-bindings.
+
+Changes since v2:
+- Removed "apple,always-on" property from "ps_pmp" from s8001, t8011,
+t8015 power domains. It is not on at boot. (Mixed up with ps_pms which
+is required to be on)
+- Add asahi-soc/dt back into the subject prefix, missing from v2.
+
+Link to v2: https://lore.kernel.org/asahi/20241102011004.59339-1-towinchenmi@gmail.com
+
+Changes since v1:
+- Removed "framebuffer0" dt aliases. It is not standard and not needed.
+
+Link to v1: https://lore.kernel.org/asahi/20241029010526.42052-1-towinchenmi@gmail.com
+
+Nick Chan
+---
+
+Nick Chan (10):
+  dt-bindings: arm: apple: apple,pmgr: Add A7-A11 compatibles
+  dt-bindings: arm: apple: apple,pmgr-pwrstate: Add A7-A11 compatibles
+  arm64: dts: apple: s5l8960x: Add PMGR node
+  arm64: dts: apple: t7000: Add PMGR node
+  arm64: dts: apple: t7001: Add PMGR node
+  arm64: dts: apple: s8000: Add PMGR nodes
+  arm64: dts: apple: s8001: Add PMGR nodes
+  arm64: dts: apple: t8010: Add PMGR nodes
+  arm64: dts: apple: t8011: Add PMGR nodes
+  arm64: dts: apple: t8015: Add PMGR nodes
+
+ .../bindings/arm/apple/apple,pmgr.yaml        |   5 +
+ .../bindings/power/apple,pmgr-pwrstate.yaml   |   5 +
+ arch/arm64/boot/dts/apple/s5l8960x-5s.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/s5l8960x-air1.dtsi  |   4 +
+ arch/arm64/boot/dts/apple/s5l8960x-mini2.dtsi |   4 +
+ arch/arm64/boot/dts/apple/s5l8960x-pmgr.dtsi  | 610 ++++++++++++
+ arch/arm64/boot/dts/apple/s5l8960x.dtsi       |  13 +
+ arch/arm64/boot/dts/apple/s8000-pmgr.dtsi     | 757 ++++++++++++++
+ arch/arm64/boot/dts/apple/s8000.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/s8001-common.dtsi   |   1 +
+ .../arm64/boot/dts/apple/s8001-j98a-j99a.dtsi |  26 +
+ arch/arm64/boot/dts/apple/s8001-j98a.dts      |   1 +
+ arch/arm64/boot/dts/apple/s8001-j99a.dts      |   1 +
+ arch/arm64/boot/dts/apple/s8001-pmgr.dtsi     | 822 ++++++++++++++++
+ arch/arm64/boot/dts/apple/s8001.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/s800x-6s.dtsi       |   4 +
+ arch/arm64/boot/dts/apple/s800x-ipad5.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/s800x-se.dtsi       |   4 +
+ arch/arm64/boot/dts/apple/t7000-6.dtsi        |   4 +
+ arch/arm64/boot/dts/apple/t7000-j42d.dts      |   1 +
+ arch/arm64/boot/dts/apple/t7000-mini4.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/t7000-n102.dts      |   4 +
+ arch/arm64/boot/dts/apple/t7000-pmgr.dtsi     | 641 ++++++++++++
+ arch/arm64/boot/dts/apple/t7000.dtsi          |  14 +
+ arch/arm64/boot/dts/apple/t7001-air2.dtsi     |   1 +
+ arch/arm64/boot/dts/apple/t7001-pmgr.dtsi     | 650 ++++++++++++
+ arch/arm64/boot/dts/apple/t7001.dtsi          |  13 +
+ arch/arm64/boot/dts/apple/t8010-7.dtsi        |   4 +
+ arch/arm64/boot/dts/apple/t8010-ipad6.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/t8010-n112.dts      |   4 +
+ arch/arm64/boot/dts/apple/t8010-pmgr.dtsi     | 772 +++++++++++++++
+ arch/arm64/boot/dts/apple/t8010.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/t8011-common.dtsi   |   1 +
+ arch/arm64/boot/dts/apple/t8011-pmgr.dtsi     | 806 +++++++++++++++
+ arch/arm64/boot/dts/apple/t8011-pro2.dtsi     |   8 +
+ arch/arm64/boot/dts/apple/t8011.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/t8015-common.dtsi   |   1 +
+ arch/arm64/boot/dts/apple/t8015-pmgr.dtsi     | 930 ++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8015.dtsi          |  21 +
+ 39 files changed, 6236 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/apple/s5l8960x-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s8000-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s8001-j98a-j99a.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s8001-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t7000-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t7001-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t8010-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t8011-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t8015-pmgr.dtsi
 
 
-
-On 09/09/24 22:33, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> The AM654 lacks an IOMMU, thus does not support isolating DMA requests
-> from untrusted PCI devices to selected memory regions this way. Use
-> static PVU-based protection instead. The PVU, when enabled, will only
-> accept DMA requests that address previously configured regions.
-> 
-> Use the availability of a restricted-dma-pool memory region as trigger
-> and register it as valid DMA target with the PVU. In addition, enable
-> the mapping of requester IDs to VirtIDs in the PCI RC. Use only a single
-> VirtID so far, catching all devices. This may be extended later on.
-> 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> ---
-> CC: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> CC: "Krzysztof Wilczyński" <kw@linux.com>
-> CC: Bjorn Helgaas <bhelgaas@google.com>
-> CC: linux-pci@vger.kernel.org
-> ---
->  drivers/pci/controller/dwc/pci-keystone.c | 108 ++++++++++++++++++++++
->  1 file changed, 108 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
-> index 2219b1a866fa..a5954cae6d5d 100644
-> --- a/drivers/pci/controller/dwc/pci-keystone.c
-> +++ b/drivers/pci/controller/dwc/pci-keystone.c
-> @@ -19,6 +19,7 @@
->  #include <linux/mfd/syscon.h>
->  #include <linux/msi.h>
->  #include <linux/of.h>
-> +#include <linux/of_address.h>
->  #include <linux/of_irq.h>
->  #include <linux/of_pci.h>
->  #include <linux/phy/phy.h>
-> @@ -26,6 +27,7 @@
->  #include <linux/regmap.h>
->  #include <linux/resource.h>
->  #include <linux/signal.h>
-> +#include <linux/ti-pvu.h>
->  
->  #include "../../pci.h"
->  #include "pcie-designware.h"
-> @@ -111,6 +113,16 @@
->  
->  #define PCI_DEVICE_ID_TI_AM654X		0xb00c
->  
-> +#define KS_PCI_VIRTID			0
-> +
-> +#define PCIE_VMAP_xP_CTRL		0x0
-> +#define PCIE_VMAP_xP_REQID		0x4
-> +#define PCIE_VMAP_xP_VIRTID		0x8
-> +
-> +#define PCIE_VMAP_xP_CTRL_EN		BIT(0)
-> +
-> +#define PCIE_VMAP_xP_VIRTID_VID_MASK	0xfff
-> +
->  struct ks_pcie_of_data {
->  	enum dw_pcie_device_mode mode;
->  	const struct dw_pcie_host_ops *host_ops;
-> @@ -1125,6 +1137,96 @@ static const struct of_device_id ks_pcie_of_match[] = {
->  	{ },
->  };
->  
-> +#ifdef CONFIG_TI_PVU
-> +static int ks_init_vmap(struct platform_device *pdev, const char *vmap_name)
-> +{
-> +	struct resource *res;
-> +	void __iomem *base;
-> +	u32 val;
-> +
-
-Nit:
-
-	if (!IS_ENABLED(CONFIG_TI_PVU))
-		return 0;
-
-
-this looks cleaner than #ifdef.. #else..#endif .
-
-
-Rest LGTM
-
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, vmap_name);
-> +	base = devm_pci_remap_cfg_resource(&pdev->dev, res);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	writel(0, base + PCIE_VMAP_xP_REQID);
-> +
-> +	val = readl(base + PCIE_VMAP_xP_VIRTID);
-> +	val &= ~PCIE_VMAP_xP_VIRTID_VID_MASK;
-> +	val |= KS_PCI_VIRTID;
-> +	writel(val, base + PCIE_VMAP_xP_VIRTID);
-> +
-> +	val = readl(base + PCIE_VMAP_xP_CTRL);
-> +	val |= PCIE_VMAP_xP_CTRL_EN;
-> +	writel(val, base + PCIE_VMAP_xP_CTRL);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ks_init_restricted_dma(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct of_phandle_iterator it;
-> +	struct resource phys;
-> +	int err;
-> +
-> +	/* Only process the first restricted dma pool, more are not allowed */
-> +	of_for_each_phandle(&it, err, dev->of_node, "memory-region",
-> +			    NULL, 0) {
-> +		if (of_device_is_compatible(it.node, "restricted-dma-pool"))
-> +			break;
-> +	}
-> +	if (err)
-> +		return err == -ENOENT ? 0 : err;
-> +
-> +	err = of_address_to_resource(it.node, 0, &phys);
-> +	if (err < 0) {
-> +		dev_err(dev, "failed to parse memory region %pOF: %d\n",
-> +			it.node, err);
-> +		return 0;
-> +	}
-> +
-> +	/* Map all incoming requests on low and high prio port to virtID 0 */
-> +	err = ks_init_vmap(pdev, "vmap_lp");
-> +	if (err)
-> +		return err;
-> +	err = ks_init_vmap(pdev, "vmap_hp");
-> +	if (err)
-> +		return err;
-> +
-> +	/*
-> +	 * Enforce DMA pool usage with the help of the PVU.
-> +	 * Any request outside will be dropped and raise an error at the PVU.
-> +	 */
-> +	return ti_pvu_create_region(KS_PCI_VIRTID, &phys);
-> +}
-> +
-> +static void ks_release_restricted_dma(struct platform_device *pdev)
-> +{
-> +	struct of_phandle_iterator it;
-> +	struct resource phys;
-> +	int err;
-> +
-> +	of_for_each_phandle(&it, err, pdev->dev.of_node, "memory-region",
-> +			    NULL, 0) {
-> +		if (of_device_is_compatible(it.node, "restricted-dma-pool") &&
-> +		    of_address_to_resource(it.node, 0, &phys) == 0) {
-> +			ti_pvu_remove_region(KS_PCI_VIRTID, &phys);
-> +			break;
-> +		}
-> +	}
-> +}
-> +#else
-> +static inline int ks_init_restricted_dma(struct platform_device *pdev)
-> +{
-> +	return 0;
-> +}
-> +
-> +static inline void ks_release_restricted_dma(struct platform_device *pdev)
-> +{
-> +}
-> +#endif
-> +
->  static int ks_pcie_probe(struct platform_device *pdev)
->  {
->  	const struct dw_pcie_host_ops *host_ops;
-> @@ -1273,6 +1375,10 @@ static int ks_pcie_probe(struct platform_device *pdev)
->  	if (ret < 0)
->  		goto err_get_sync;
->  
-> +	ret = ks_init_restricted_dma(pdev);
-> +	if (ret < 0)
-> +		goto err_get_sync;
-> +
->  	switch (mode) {
->  	case DW_PCIE_RC_TYPE:
->  		if (!IS_ENABLED(CONFIG_PCI_KEYSTONE_HOST)) {
-> @@ -1354,6 +1460,8 @@ static void ks_pcie_remove(struct platform_device *pdev)
->  	int num_lanes = ks_pcie->num_lanes;
->  	struct device *dev = &pdev->dev;
->  
-> +	ks_release_restricted_dma(pdev);
-> +
->  	pm_runtime_put(dev);
->  	pm_runtime_disable(dev);
->  	ks_pcie_disable_phy(ks_pcie);
-
+base-commit: 5c9de6f45db36b8a74c12e448cf9db87c97bf1e5
 -- 
-Regards
-Vignesh
+2.47.0
+
 
