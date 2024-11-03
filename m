@@ -1,116 +1,128 @@
-Return-Path: <devicetree+bounces-118490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D4E9BA616
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 15:57:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24DC29BA688
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 17:09:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F6E71F21716
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 14:57:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D12031F2156F
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 16:09:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32E7917624D;
-	Sun,  3 Nov 2024 14:57:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07AF817DFE4;
+	Sun,  3 Nov 2024 16:09:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZVU8b3ug"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rD9Cn5sQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741711714C9;
-	Sun,  3 Nov 2024 14:57:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C52667081E;
+	Sun,  3 Nov 2024 16:09:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730645851; cv=none; b=rdn664tKqrdM7OdNBeof9khFs2t+5uGmG8i2LEPxXzHFEdjVOnm27l6g2BybTZm2IgyeQwCz3sxMsQJ1TcMZDzQM14DEBWhr8YWofWmdC2MP8guoNsRhvQVnAVDbJ3bWfKqKqixDsuNmNYzLKmfHPRaKUnlDwRAex02Iy+y4XOw=
+	t=1730650155; cv=none; b=G4B5bPaIaufSSplxZpEndzs55ztFirqsFDQHFoUO+QY13/0Y9yhMq8bSlRVHVAchFEGuX+EPItoB44EKDohLwsOJ6izOZL6X9Cb3Rk4SvbC0ZD93oXe4bmIPNGaGUkb3YcoJOnTYt3g/ybgQFopkXashPEKJQrQkmtJDC+YW97Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730645851; c=relaxed/simple;
-	bh=EOsvNzuZPbWSw+k1ZdiEsy7Q4yXtJ7tmRLNBP6XVcFo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bvr5//+M5mF/077f1ik5ioIIp8atyNqgLj0Qf4YXweuExJ6pDuulV13zy2pUnmQXGtHQ+SXVJ7AdKHLSkdNhy2hBGsDb/LlwvD58GmizYRqGb/Zuyl/gtBylgE9sP0skZ7Qn3MhBn+6Z55p/6j76jlNJ4R1E1qkSg686asEnxVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZVU8b3ug; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a9a2209bd7fso600486366b.2;
-        Sun, 03 Nov 2024 06:57:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730645848; x=1731250648; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=l70JIgOc7IzpCaPrM3FJwtrkPdLAYJDlpQSQ7yaSRQg=;
-        b=ZVU8b3ugRBO11jsOHaH7bBTnQc0e4Jt9vJIIcPqXtvkHfEceSl703KtwxwZadMCPzw
-         3VF946q+/gskAQvVJF4NXH/7FLb72yxaEfYLSAoAtDqgffUNd5Esnz2gV9OyDI0yiuwl
-         zhI6yBm3pzr8GDKZBCvATOoaKj4L7AyTB1JDH/z4zef0P2fTN4S9hE5o89PAfKeXbfas
-         AQTP24h2W7lIJqFcrOXHN2MWbaD2YRd2UjwR/IGOBdngfYuOnb86Ej/6T9XuGj/rRUgX
-         LJDkc4TIKbLGBvhLE0Mw9Vw+EfO2VMUO7p2TcgmhAJgwnDV1/z6O8p35UILTD9msi2SS
-         x6Fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730645848; x=1731250648;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l70JIgOc7IzpCaPrM3FJwtrkPdLAYJDlpQSQ7yaSRQg=;
-        b=rjzZ+DSYwo79RF1ol+HzI2rKOyoAr+ULYAAA/SY+ch0J4c0/buV9x+NOIgCbA58hIS
-         6XWULJMgb+mXzmXszr98vHfJtgctOYFsF9+hxcnekcq9UMlrMVNZGiU7ekMNgrR60yqh
-         sYDco0FvIcymZwG/y0Izn2WCXsonezfIjDZYR4a6yfniNR1IoRw3jcBXrkeSWMF+e4l5
-         S9V5omm1r4/UkiwemTgbFtN8uEl+t7z51k3ztptYo281bHt/8vVmGBZq/YK3/hXuafch
-         y1TY6ECIsYUhcw+fISpmRWfuz0BqZF9uGUTJf2ISxiW2aSHAx7d7DN4jjOFnoviDUoq/
-         uETQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUey5XZWTOMgKzXDXflygNVcm6BTsGRL6HZ+aQyGLTiripFgzqPXM+e3GlwnqMY9mozIlkJD8qWQrji@vger.kernel.org, AJvYcCVBsW2QdwfRJG/fcS/qdtsExJA2rGOK1W0iSVcTN7lvAe0v/aU+03VdqRbGe3Im+mL9/cg8xKEjG4N1TS5T@vger.kernel.org, AJvYcCXQm31tug+R83wnQAEOTslFQ0kL9QLsYGtSVgOf+cuOofx6TZ70JHfrNpSHFqxest2jJha8CBWAD6MZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqUD2jqswVWKtdsPoawy46dYlFXA+vtMsg46i2G3qHXmbfB6u/
-	nTUzDmBcpyJROcZnq8OvAYr4LUBxvseLYdoIYoGHYJLJCZGJkA7FI0WbrQ==
-X-Google-Smtp-Source: AGHT+IFS9BezNhD2QcpuQw2ndnCLizdvkhTKmF4tibAAksPwAWzbjtK9FXV8UoZK4ALtenLknKx0qw==
-X-Received: by 2002:a17:907:1c22:b0:a99:ee4e:266d with SMTP id a640c23a62f3a-a9de5c91a9cmr2884313766b.1.1730645847510;
-        Sun, 03 Nov 2024 06:57:27 -0800 (PST)
-Received: from vamoirid-laptop ([2a04:ee41:82:7577:c24c:5620:73cc:ab84])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e56494295sm438447366b.14.2024.11.03.06.57.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Nov 2024 06:57:26 -0800 (PST)
-Date: Sun, 3 Nov 2024 15:57:25 +0100
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andriy.shevchenko@linux.intel.com,
-	anshulusr@gmail.com, gustavograzs@gmail.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 7/7] iio: chemical: bme680: add power management
-Message-ID: <ZyePVVk6jzQPsjSF@vamoirid-laptop>
-References: <20241102131311.36210-1-vassilisamir@gmail.com>
- <20241102131311.36210-8-vassilisamir@gmail.com>
- <20241102153512.5b93efa7@jic23-huawei>
+	s=arc-20240116; t=1730650155; c=relaxed/simple;
+	bh=4QV2rgslp98KWjtvQhopWEdq9aYWfWejvpYMbITcxMw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EWwqhTmcUfsiB9BLJu6Vuw0n5krvty76A1fukeJ/zBkujltTBkzt/Zr2xbS1ExOq2oXbgGqrBcpVkW5qOUNZ5eBa2KiCBtmD/iU+UKSnEwjxUCI+QRDFZoPMErwt0R7ISUuJYYFhTz/Pvl/ct3GPraqY5XNCrEZ1DxbKKCjQAyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rD9Cn5sQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 013C7C4CECD;
+	Sun,  3 Nov 2024 16:09:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730650154;
+	bh=4QV2rgslp98KWjtvQhopWEdq9aYWfWejvpYMbITcxMw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rD9Cn5sQp59UPbbUGdTlexP3iQ5TPnA9NrGK4bpYxnUzgEoiGJrOjh0TwKfzJk7d0
+	 2jw0yRHJDeKY1aDuvMHkEQd/Bd1uF5VmFxY705HYyXq60SVraSl+OcfExKX6VNtMAL
+	 ESbfDWK2B/a/mHYTqL+614QkGYeFcQe3Ly4ULVnl4LN1vwElKIsfMuwbaQpMTkChdb
+	 xKGzNxwRbnH2Xl8oO7t5VNkXuSwYJwMpSKxcP5rIgzDfuC8e6PRVnaV00efSSWAWNk
+	 Q2Nyr4EmhvF4R7ZFRNEzurNQUXdXLcquuxnR4vVOGNoUs6zidPe8jPz1ZFMMMnA4pn
+	 XNY8qQ8VOwjXg==
+Message-ID: <aa920d1c-ab2b-4177-9b66-f8d8b45906af@kernel.org>
+Date: Sun, 3 Nov 2024 17:09:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241102153512.5b93efa7@jic23-huawei>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] media: dt-bindings: Add qcom,msm8953-camss
+To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241103-camss-msm8953-v4-0-48d0ec75958d@mainlining.org>
+ <20241103-camss-msm8953-v4-2-48d0ec75958d@mainlining.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241103-camss-msm8953-v4-2-48d0ec75958d@mainlining.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sat, Nov 02, 2024 at 03:35:12PM +0000, Jonathan Cameron wrote:
-> On Sat,  2 Nov 2024 14:13:11 +0100
-> Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
+On 03/11/2024 10:45, Barnabás Czémán wrote:
+> Add bindings for qcom,msm8953-camss in order to support the camera
+> subsystem for MSM8953.
 > 
-> > Add runtime power management to the device.
-> > 
-> > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
-> This and previous patch look fine to me.  Just need to clean up that
-> dt-binding patch and hopefully get a clear direction on whether to require the
-> supplies or not.
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> ---
+>  .../bindings/media/qcom,msm8953-camss.yaml         | 322 +++++++++++++++++++++
+>  1 file changed, 322 insertions(+)
 > 
-> Thanks,
-> 
-> Jonathan
 
-Hi Jonathan,
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thank you very much for the review once again!
+Best regards,
+Krzysztof
 
-I will wait as well to see how that evolves and I will send a new
-version, thank you!
-
-Cheers,
-Vasilis
 
