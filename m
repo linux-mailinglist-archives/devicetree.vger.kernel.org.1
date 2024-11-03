@@ -1,67 +1,98 @@
-Return-Path: <devicetree+bounces-118480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDE229BA5C4
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 14:52:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82A119BA5FE
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 15:52:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0CE728150E
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 13:52:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37904281B4E
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 14:52:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0EB173357;
-	Sun,  3 Nov 2024 13:52:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC7717085A;
+	Sun,  3 Nov 2024 14:51:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="lDdwp72Q"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="z5KILhZ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CD8516BE14;
-	Sun,  3 Nov 2024 13:52:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A43AF9E4
+	for <devicetree@vger.kernel.org>; Sun,  3 Nov 2024 14:51:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730641940; cv=none; b=u4wh+tO2sT+susJaeDKzFAn8ZrixT6MbZXeKXg5jXDI1dXlayH7VcCxx0v8CiCiok9kFx5Ze7bT/mVab6OUfP5K/6I2GUg811JM70W18SbuYIeoxPJ5vCXJRcqy3PG4Dxah29LZ/FmGeNLCMw70ChQslrbDqsuUCBliGL3FP4Gg=
+	t=1730645519; cv=none; b=B3IWAVntZFOloAbxIE47Z76xvZ5RanAmOVR8s7OviRTN6a3pC3Vrb2pdswcJ2QdMAGvDm+GD4XN+7TV5EefWUX/R4VPlaUNnNmQgsGu2TkOqmZgorUG8ESVTQgjrD93bTTS35pnOI+xsZ+ASz84gFNWyLL/dcyuXgbQh8jFSFUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730641940; c=relaxed/simple;
-	bh=j2WxG1gi9sX9Q9XHaunLYPDXuZFPxo2eTPeWaKuZNcw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=WfxCo8NlP4qlBmlkavT+PhKb3ZFISKl8R4JDtQQ4nUsnSca+xFfw4Rc15v5iBCjq3L0lXdY7e6a32WRrL/++rqapn3SqKe+9e0DivvhjvipbZ7+AOVO5i3Kl7pv+03ykuQeaaXFXPbMtQtEkbcILnjC1z1xAhlJOW6oL+3K44v4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=lDdwp72Q; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=A1dLRRt6Gpz+f3YNGF2cRhz0EDeBb4t+Te4s+RjcUeE=; b=lDdwp72QRpdcjecb79UtxXvLrU
-	ZOJkSSVHO6PNrkQpfDHBwD4r1lOPiRs0WumKvSwaofaItO6z3zdXn3oWiGjFKe039SmNHMkvL8YO1
-	oImbxsTrnUc9c6hzQJgh1bCMJCnk7b7pW5dLuZLfeJmvwnJNGD3ENkTBgVJKKr6rh2vAQ6Teo3IyJ
-	u9nz2vKFeQq8woW26daQpDPOba4mSBoTiVuzs+yykzGlhuNgK9GJUu/spyzpL4FvvQKkxwnro8OxH
-	foh8jfWtGm3PFMiF1z0kWTaoIThuU4rtrjY76d5bL4qR/eWhBGLvg8KQWEm01WlW6WVDKDc3BMuuz
-	JogX233w==;
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=arc-20240116; t=1730645519; c=relaxed/simple;
+	bh=JYh1T1i4AQrEvFqMcUan1Zml1xpl3Q+7dSgH/9JNbyY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=onnAfRFi+cSrsI1aYID1hudOYDZMIvxuEgGGDKOvq0IXIxIAXN+68vKhhqOYn3hZ/Tir29mxKtCqR2dyLszTA0GaOetHlfBGqutRicreHwxC4j5CRVNdwfHzH5CIz9w7f+urIuSuNJznerLHloc8vCKa3gE1n4IyLS4afrVUvDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=z5KILhZ0; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4315baec69eso29021435e9.2
+        for <devicetree@vger.kernel.org>; Sun, 03 Nov 2024 06:51:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1730645516; x=1731250316; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jSppsV7RjjZ1bmxB7W4Mk7Rcpn8dl6Te+yVP1IF48lU=;
+        b=z5KILhZ0JNp9KIMtN4YuXPQBt4ixELXpF6PMvG3vhcM5aLbvKilGCwNKZNFHmCq8rm
+         79QFb6AilgR0gMdr+xsIONar1h0ffHdnx+vCOsPtANM3XDsfhN32I7nUy6e7viSpBNvV
+         zyPGy+7cKybDz1MuUiKypJ3KY4Z/TxNSHeUf8uRfFSatBlGskATFVrNnsScF8wDnnwiN
+         KBJAaljPsh5hVf7oCED9lE7F/NmpDz4UEY2iAznkpZ9Tbsnm5Dd/4bvMnoPgiSUH+lNF
+         7GujdI257hMnp6waNs9Xo3MGcR6IRquYDNYRnU5nNHzpuzAjRypKAMduH9LbQCUJSt9l
+         O/9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730645516; x=1731250316;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jSppsV7RjjZ1bmxB7W4Mk7Rcpn8dl6Te+yVP1IF48lU=;
+        b=n8qkGGZIPUW4Jy/mvo6O47eFVqmNS3mIGwv+M7ODX2+C5DCZXdJT1PGCjbaYKqlPW5
+         OyJHItPLUuSS+RRcGydSbXBdqjigjJvaj7zZ4Cqz4KO8MFbQitpfhb5AKxn0oGoVSlNH
+         27GeuyrlXBBedOGBdSLqp0GVy+SzG7StHuajt3FrY5+szu4h2a8hw77RIeF6dZiWEdMB
+         Sp7E0mNpCffK4AvHHc4jrFh/ZPdB6o7zN8Zd025mGbPc4HerYNZG8oE6oZlN3zrSomgl
+         EvvSfrXCoZe3Du1l1mGC5hNPdnjBb4Z3ltrLRaJ8Ne8SNHAk8e/muJCAzeEyRjn/Ek5o
+         VNEg==
+X-Forwarded-Encrypted: i=1; AJvYcCUNjO5GA8pj6bC67TffgTr7mUJL4siVPre0mQNBKpOY6J9kq8au7cOT1h8N+6fxbxxm+Uz+53414eVe@vger.kernel.org
+X-Gm-Message-State: AOJu0YzET+Fnn8mU7JGeW6ZMWxH/IStomS1NKEnoRkAjUtn5rpkNgySC
+	Rhpi62EijapTxGNNCa3qZ5F9Dyz2Ja3QeKLlcf3fz4PkquTt3/0iQHRkbnIAb2k=
+X-Google-Smtp-Source: AGHT+IGjt4U1xHUBvFYLYj0RtN3f0C6NSRnAyUSDbBhxom+UAElrEQDK6qLbjN9NN9sklRU9XdiWmA==
+X-Received: by 2002:a05:600c:450d:b0:431:5ba1:a529 with SMTP id 5b1f17b1804b1-4328324b343mr76830645e9.14.1730645515598;
+        Sun, 03 Nov 2024 06:51:55 -0800 (PST)
+Received: from alex-rivos.ba.rivosinc.com (lfbn-lyo-1-472-36.w2-7.abo.wanadoo.fr. [2.7.62.36])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431bd91093csm159829025e9.15.2024.11.03.06.51.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Nov 2024 06:51:54 -0800 (PST)
+From: Alexandre Ghiti <alexghiti@rivosinc.com>
+To: Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Andrea Parri <parri.andrea@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Leonardo Bras <leobras@redhat.com>,
+	Guo Ren <guoren@kernel.org>,
+	linux-doc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Shawn Guo <shawnguo@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH v4 3/3] ARM: imx_v6_v7_defconfig: Enable drivers for Kobo Clara 2E
-Date: Sun,  3 Nov 2024 14:52:01 +0100
-Message-Id: <20241103135201.25615-4-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241103135201.25615-1-andreas@kemnade.info>
-References: <20241103135201.25615-1-andreas@kemnade.info>
+	linux-riscv@lists.infradead.org,
+	linux-arch@vger.kernel.org
+Cc: Alexandre Ghiti <alexghiti@rivosinc.com>
+Subject: [PATCH v6 00/13] Zacas/Zabha support and qspinlocks
+Date: Sun,  3 Nov 2024 15:51:40 +0100
+Message-Id: <20241103145153.105097-1-alexghiti@rivosinc.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,34 +101,122 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Enable drivers used on Kobo Clara 2E
+This implements [cmp]xchgXX() macros using Zacas and Zabha extensions
+and finally uses those newly introduced macros to add support for
+qspinlocks: note that this implementation of qspinlocks satisfies the
+forward progress guarantee.
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/configs/imx_v6_v7_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+It also uses Ziccrse to provide the qspinlock implementation.
 
-diff --git a/arch/arm/configs/imx_v6_v7_defconfig b/arch/arm/configs/imx_v6_v7_defconfig
-index 333ef55476a30..0beecdde55f58 100644
---- a/arch/arm/configs/imx_v6_v7_defconfig
-+++ b/arch/arm/configs/imx_v6_v7_defconfig
-@@ -68,6 +68,7 @@ CONFIG_BT=y
- CONFIG_BT_BNEP=m
- CONFIG_BT_HCIUART=y
- CONFIG_BT_HCIUART_LL=y
-+CONFIG_BT_NXPUART=m
- CONFIG_CFG80211=y
- CONFIG_CFG80211_WEXT=y
- CONFIG_MAC80211=y
-@@ -253,6 +254,7 @@ CONFIG_MFD_ROHM_BD71828=y
- CONFIG_REGULATOR_FIXED_VOLTAGE=y
- CONFIG_REGULATOR_ANATOP=y
- CONFIG_REGULATOR_BD71815=y
-+CONFIG_REGULATOR_BD71828=y
- CONFIG_REGULATOR_DA9052=y
- CONFIG_REGULATOR_DA9062=y
- CONFIG_REGULATOR_DA9063=y
+Thanks to Guo and Leonardo for their work!
+
+v5: https://lore.kernel.org/linux-riscv/20240818063538.6651-1-alexghiti@rivosinc.com/
+v4: https://lore.kernel.org/linux-riscv/20240731072405.197046-1-alexghiti@rivosinc.com/
+v3: https://lore.kernel.org/linux-riscv/20240717061957.140712-1-alexghiti@rivosinc.com/
+v2: https://lore.kernel.org/linux-riscv/20240626130347.520750-1-alexghiti@rivosinc.com/
+v1: https://lore.kernel.org/linux-riscv/20240528151052.313031-1-alexghiti@rivosinc.com/
+
+Changes in v6:
+- Rebase on 6.12-rc5
+- Fix comment about macros (Drew)
+- Add RB from Drew
+
+Changes in v5:
+- Remove useless include in cpufeature.h and add required ones (Drew)
+- Add RB from Drew
+- Add AB from Conor and Peter
+- use macros to help readability of arch_cmpxchg_XXX() (Drew)
+- restore the build_bug() for size > 8 (Drew)
+- Update Ziccrse riscv profile spec version commit hash (Conor)
+
+Changes in v4:
+- rename sc_sfx into sc_cas_sfx in _arch_cmpxchg (Drew)
+- cmpxchg() depends on 64BIT (Drew)
+- rename xX register into tX (Drew)
+- cas operations require the old value in rd, make this assignment more explicit
+  as it seems to confuse people (Drew, Andrea)
+- Fix ticket/queued configs build errors (Andrea)
+- riscv_spinlock_init() is only needed for combo spinlocks but implement it
+  anyway to inform of the type of spinlocks used (Andrea)
+- Add RB from Guo
+- Add NONPORTABLE to RISCV_QUEUED_SPINLOCKS (Samuel)
+- Add a link to Guo's qspinlocks results on the sophgo platform
+- Reorder ZICCRSE (Samuel)
+- Use riscv_has_extention_unlikely() instead of direct asm goto, which is way
+  cleaner and fixes the llvm 16 bug
+- add dependency on RISCV_ALTERNATIVES in kconfig
+- Rebase on top of 6.11, add patches to fix header circular dependency and
+  to fix build_bug()
+
+Changes in v3:
+- Fix patch 4 to restrict the optimization to fully ordered AMO (Andrea)
+- Move RISCV_ISA_EXT_ZABHA definition to patch 4 (Andrea)
+- !Zacas at build time => no CAS from Zabha too (Andrea)
+- drop patch 7 "riscv: Improve amoswap.X use in xchg()" (Andrea)
+- Switch lr/sc and cas order (Guo)
+- Combo spinlocks do not depend on Zabha
+- Add a Kconfig for ticket/queued/combo (Guo)
+- Use Ziccrse (Guo)
+
+Changes in v2:
+- Add patch for Zabha dtbinding (Conor)
+- Fix cmpxchg128() build warnings missed in v1
+- Make arch_cmpxchg128() fully ordered
+- Improve Kconfig help texts for both extensions (Conor)
+- Fix Makefile dependencies by requiring TOOLCHAIN_HAS_XXX (Nathan)
+- Fix compilation errors when the toolchain does not support the
+  extensions (Nathan)
+- Fix C23 warnings about label at the end of coumpound statements (Nathan)
+- Fix Zabha and !Zacas configurations (Andrea)
+- Add COMBO spinlocks (Guo)
+- Improve amocas fully ordered operations by using .aqrl semantics and
+  removing the fence rw, rw (Andrea)
+- Rebase on top "riscv: Fix fully ordered LR/SC xchg[8|16]() implementations"
+- Add ARCH_WEAK_RELEASE_ACQUIRE (Andrea)
+- Remove the extension version in march for LLVM since it is only required
+  for experimental extensions (Nathan)
+- Fix cmpxchg128() implementation by adding both registers of a pair
+  in the list of input/output operands
+
+Alexandre Ghiti (11):
+  riscv: Move cpufeature.h macros into their own header
+  riscv: Do not fail to build on byte/halfword operations with Zawrs
+  riscv: Implement cmpxchg32/64() using Zacas
+  dt-bindings: riscv: Add Zabha ISA extension description
+  riscv: Implement cmpxchg8/16() using Zabha
+  riscv: Improve zacas fully-ordered cmpxchg()
+  riscv: Implement arch_cmpxchg128() using Zacas
+  riscv: Implement xchg8/16() using Zabha
+  riscv: Add ISA extension parsing for Ziccrse
+  dt-bindings: riscv: Add Ziccrse ISA extension description
+  riscv: Add qspinlock support
+
+Guo Ren (2):
+  asm-generic: ticket-lock: Reuse arch_spinlock_t of qspinlock
+  asm-generic: ticket-lock: Add separate ticket-lock.h
+
+ .../devicetree/bindings/riscv/extensions.yaml |  12 +
+ .../locking/queued-spinlocks/arch-support.txt |   2 +-
+ arch/riscv/Kconfig                            |  69 +++++
+ arch/riscv/Makefile                           |   6 +
+ arch/riscv/include/asm/Kbuild                 |   4 +-
+ arch/riscv/include/asm/cmpxchg.h              | 286 +++++++++++++-----
+ arch/riscv/include/asm/cpufeature-macros.h    |  66 ++++
+ arch/riscv/include/asm/cpufeature.h           |  61 +---
+ arch/riscv/include/asm/hwcap.h                |   2 +
+ arch/riscv/include/asm/spinlock.h             |  47 +++
+ arch/riscv/kernel/cpufeature.c                |   2 +
+ arch/riscv/kernel/setup.c                     |  37 +++
+ include/asm-generic/qspinlock.h               |   2 +
+ include/asm-generic/spinlock.h                |  87 +-----
+ include/asm-generic/spinlock_types.h          |  12 +-
+ include/asm-generic/ticket_spinlock.h         | 105 +++++++
+ 16 files changed, 567 insertions(+), 233 deletions(-)
+ create mode 100644 arch/riscv/include/asm/cpufeature-macros.h
+ create mode 100644 arch/riscv/include/asm/spinlock.h
+ create mode 100644 include/asm-generic/ticket_spinlock.h
+
 -- 
-2.39.5
+2.39.2
 
 
