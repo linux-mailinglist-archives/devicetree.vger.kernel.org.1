@@ -1,252 +1,242 @@
-Return-Path: <devicetree+bounces-118471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 287969BA541
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 12:31:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 586359BA559
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 13:02:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A666E281D62
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 11:31:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC7AAB21B15
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 12:02:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B806A168483;
-	Sun,  3 Nov 2024 11:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89E79171E6E;
+	Sun,  3 Nov 2024 12:02:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WfsI9xbL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hJVBPcwC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E64770832;
-	Sun,  3 Nov 2024 11:31:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04A7175D39
+	for <devicetree@vger.kernel.org>; Sun,  3 Nov 2024 12:02:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730633483; cv=none; b=qlKoxuxPr2NL3BdiKG3+dDdlg6p9qjwwU9vEpt4JgaWICDv1Kmbhvauh6d8Xr4Mui55vLkoVNg4fy9fzLXij3Gh0mGHAI2Yx0sVwrS/WlGihBbdgXCwDwL717zW9fjTw99kzriEzHjjdt9Ibkx7I3IQKiZd4wA2AOHo1+6S4AgI=
+	t=1730635352; cv=none; b=ZqxoPgow2R8+/suc2z4Ev4HfMzQtwgjTxoczVneULWuoTTm98SOs9GD/YbaJRfaN3W27uJEz6vUNQBGvEVPkGQAvu6E87XrDjQadwbzfUwsWUsxlCbLjw+HTicTn14cWmWftTp81SV5iSiSQv+W7cDS2IF8qLT85WkFuyW/9MjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730633483; c=relaxed/simple;
-	bh=ZvbVHVuun8oeRhQlJajET7qBhOvsWylLAA2B8VkfPFY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qFxUng7VldNrQKJcFvDqJZ/gwUWTp/+vRkoCj4b+E8TUbUoy/130mwf9QPL7UstAP0CqfRSxwlqb8TPsmWMwrS6+keBSVuX186Fcm14OWcFPsWNW7J6+LHKFuqNn1Mn4jUdqZnlAHpLmw+vPS+w5e4LGpyWcIBFUjgAoZqttR9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WfsI9xbL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD515C4CECD;
-	Sun,  3 Nov 2024 11:31:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730633483;
-	bh=ZvbVHVuun8oeRhQlJajET7qBhOvsWylLAA2B8VkfPFY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=WfsI9xbLsIDKjoAK61UpdaKB1MZDf+nzsNT6q0hqXnk+BOWHDvW+ZejPDr83/cTcC
-	 5p0njkFXStrBEqtWjGHGB9TDDyanBXuM99CK93l8AEemJBPfXy8vS/PZLK3EiO8XLG
-	 3XUKYcaiTZoAJKwbQlZRqIJ1nIw+0U4J4uut0SH5BJwUv1wbA1UxDXkuVbXu1q5mr1
-	 v/7jbnVwp9LzEbLO5xuLhuRlX4GFPWG0RwW7rLq8L0B+EUBk9Z8m/Ei9WnH/5ntr6H
-	 aYmjPhjfBmQpayBwpDHyvUFpoj7tl3JH+OhSLDKlgC93FHrKqVVWMhk7jbFEgjE6nz
-	 hizgVfwY6NINA==
-Date: Sun, 3 Nov 2024 11:31:03 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Aren Moynihan <aren@peacevolution.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Kaustabh
- Chakraborty <kauschluss@disroot.org>, =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?=
- <trabarni@gmail.com>, Ondrej Jirman <megi@xff.cz>, Uwe =?UTF-8?B?S2xlaW5l?=
- =?UTF-8?B?LUvDtm5pZw==?= <u.kleine-koenig@pengutronix.de>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, Dragan Simic <dsimic@manjaro.org>,
- phone-devel@vger.kernel.org
-Subject: Re: [PATCH v4 3/6] iio: light: stk3310: Implement vdd and leda
- supplies
-Message-ID: <20241103112933.60f96f97@jic23-huawei>
-In-Reply-To: <20241102195037.3013934-9-aren@peacevolution.org>
-References: <20241102195037.3013934-3-aren@peacevolution.org>
-	<20241102195037.3013934-9-aren@peacevolution.org>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1730635352; c=relaxed/simple;
+	bh=EkfjY6qc7ZZqItUKau0nuoSNvJIwoZnbsM2jci2CLJo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UepmhdsvlVamPMQ8aFUQ+r01v1VHv5p3ADbino5knkiHXRwTKu9s0bwMmlNn4QbO6KX6Np+IYUldWaTIV7SMl/YRjP/lpfilk13P0aq86dBlVih2NrsmWUFF33GA3aducOc40iaJc2O3Nhe475DK4nMxLkyILdWjECHYwNk8Ku4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hJVBPcwC; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-71e8235f0b6so2925303b3a.3
+        for <devicetree@vger.kernel.org>; Sun, 03 Nov 2024 04:02:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1730635350; x=1731240150; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=FUkXMfCkR70Uh4iKdLC2cSNlr1iFRoDLX5iaBLAzooI=;
+        b=hJVBPcwCsw9LtJIDvKkvMshxn8/MJmw86JwpnKPSUfM/9it8j1U/IrfUjfVylwpqk8
+         xAUzTaT22wSdlTyqF87Lm3+eB2KkLp1j8Is3eSCN5PiIEJtI80cIAlf+mCgupZMkVSsK
+         8Hoiuq0OsbWyl5R0MtNf/w9GB++4FcP9ZX3b4Sqs5goxJk4rvyGfzheNXAc3aAYopmAe
+         RxkL3WhDU/u0M0EXCNwtXPGJk4Nj5f0wftuYcDIxEcJVNPMlCLuAbkOHZIhv6XxBLzOe
+         HjW1XUniGkBOHl1xGOSPmHywNh69vXjcrVbWN9g3Yc3ytCxEpgyXJQRkWjJksqTG6TQI
+         K50g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730635350; x=1731240150;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FUkXMfCkR70Uh4iKdLC2cSNlr1iFRoDLX5iaBLAzooI=;
+        b=Y3aoT8BpTqqCYxL3QS5oncFYzuU2Pc0/ilTYFsfMzPOu/rmFMGXXQ+qgCyeTuq6Aff
+         wXncu4X2GpZkhVkgYyyCpePHy0Yg420wI/vA0NDEG3w3Nq5P1JMwct1BFZGX/VJYL4MJ
+         YlAH8uzTtu1+7+JQNRnxlSTlCFQY9zUiDcZ1Xp4VIek0jMrLQmIm+D2NCgX1Jzr1OCXK
+         fl5ju0+9Pwejz2LrmfTROR+lrZs0np690wOSrtxPvlqHaflfAhpcF9dJm7Gk5aPWczRH
+         55/CYU1I9Nxyzh0vkHiCJc4Wa5vRinPpwc1p6PnW8QhxP6HldRjoqpoxFpXdwMRvCd0K
+         nI0A==
+X-Forwarded-Encrypted: i=1; AJvYcCXHvVpyxEeSSBBFsOUeeSHNLSsQxULv/OfwL6YuWUck0XV6oMXNr/DnQtP98f88tXRXe01wtCnrPZTc@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDqDQrBNckWEoiCMBONL0rg7vxr/n/Lma8/EmJVuoxazaqCstK
+	60x1DMqn2UxrJvK3bNUh06fxLnYmwSfcF9J7sHo3+5Fe5qgRq0xyVGp62ZHBfs1zaNXqttNefkI
+	=
+X-Google-Smtp-Source: AGHT+IG67vE3Hy81Qa1sXK1wXZ0XGN5eh5NVCE1J0d5f1x/U0tyMLbeT3PWIyJgXlJE+GgOJ+sNXFQ==
+X-Received: by 2002:a05:6a21:920b:b0:1d9:6ea3:9741 with SMTP id adf61e73a8af0-1db91d440eemr17725699637.4.1730635349968;
+        Sun, 03 Nov 2024 04:02:29 -0800 (PST)
+Received: from thinkpad ([220.158.156.209])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7ee459f8ee9sm5215196a12.72.2024.11.03.04.02.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Nov 2024 04:02:29 -0800 (PST)
+Date: Sun, 3 Nov 2024 17:32:23 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+	linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] scsi: ufs: rockchip: initial support for UFS
+Message-ID: <20241103120223.abkwgej4svas4epr@thinkpad>
+References: <1728368130-37213-1-git-send-email-shawn.lin@rock-chips.com>
+ <1728368130-37213-6-git-send-email-shawn.lin@rock-chips.com>
+ <CAPDyKForpLcmkqruuTfD6kkJhp_4CKFABWRxFVYNskGL1tjO=w@mail.gmail.com>
+ <3969bae0-eeb8-447a-86a5-dfdac0b136cd@rock-chips.com>
+ <CAPDyKFo=GcHG2sGQBrXJ7VWyp59QOmbLCAvHQ3krUympEkid_A@mail.gmail.com>
+ <98e0062c-aeb1-4bea-aa2b-4a99115c9da4@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <98e0062c-aeb1-4bea-aa2b-4a99115c9da4@rock-chips.com>
 
-On Sat,  2 Nov 2024 15:50:39 -0400
-Aren Moynihan <aren@peacevolution.org> wrote:
+On Fri, Oct 18, 2024 at 05:20:08PM +0800, Shawn Lin wrote:
+> Hi Ulf,
+> 
+> 在 2024/10/18 17:07, Ulf Hansson 写道:
+> > On Thu, 10 Oct 2024 at 03:21, Shawn Lin <shawn.lin@rock-chips.com> wrote:
+> > > 
+> > > Hi Ulf
+> > > 
+> > > 在 2024/10/9 21:15, Ulf Hansson 写道:
+> > > > [...]
+> > > > 
+> > > > > +
+> > > > > +static int ufs_rockchip_runtime_suspend(struct device *dev)
+> > > > > +{
+> > > > > +       struct ufs_hba *hba = dev_get_drvdata(dev);
+> > > > > +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> > > > > +       struct generic_pm_domain *genpd = pd_to_genpd(dev->pm_domain);
+> > > > 
+> > > > pd_to_genpd() isn't safe to use like this. It's solely to be used by
+> > > > genpd provider drivers.
+> > > > 
+> > > > > +
+> > > > > +       clk_disable_unprepare(host->ref_out_clk);
+> > > > > +
+> > > > > +       /*
+> > > > > +        * Shouldn't power down if rpm_lvl is less than level 5.
+> > > > 
+> > > > Can you elaborate on why we must not power-off the power-domain when
+> > > > level is less than 5?
+> > > > 
+> > > 
+> > > Because ufshcd driver assume the controller is active and the link is on
+> > > if level is less than 5. So the default resume policy will not try to
+> > > recover the registers until the first error happened. Otherwise if the
+> > > level is >=5, it assumes the controller is off and the link is down,
+> > > then it will restore the registers and link.
+> > > 
+> > > And the level is changeable via sysfs.
+> > 
+> > Okay, thanks for clarifying.
+> > 
+> > > 
+> > > > What happens if we power-off anyway when the level is less than 5?
+> > > > 
+> > > > > +        * This flag will be passed down to platform power-domain driver
+> > > > > +        * which has the final decision.
+> > > > > +        */
+> > > > > +       if (hba->rpm_lvl < UFS_PM_LVL_5)
+> > > > > +               genpd->flags |= GENPD_FLAG_RPM_ALWAYS_ON;
+> > > > > +       else
+> > > > > +               genpd->flags &= ~GENPD_FLAG_RPM_ALWAYS_ON;
+> > > > 
+> > > > The genpd->flags is not supposed to be changed like this - and
+> > > > especially not from a genpd consumer driver.
+> > > > 
+> > > > I am trying to understand a bit more of the use case here. Let's see
+> > > > if that helps me to potentially suggest an alternative approach.
+> > > > 
+> > > 
+> > > I was not familiar with the genpd part, so I haven't come up with
+> > > another solution. It would be great if you can guide me to the right
+> > > way.
+> > 
+> > I have been playing with the existing infrastructure we have at hand
+> > to support this, but I need a few more days to be able to propose
+> > something for you.
+> > 
+> 
+> Much appreciate.
+> 
+> > > 
+> > > > > +
+> > > > > +       return ufshcd_runtime_suspend(dev);
+> > > > > +}
+> > > > > +
+> > > > > +static int ufs_rockchip_runtime_resume(struct device *dev)
+> > > > > +{
+> > > > > +       struct ufs_hba *hba = dev_get_drvdata(dev);
+> > > > > +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> > > > > +       int err;
+> > > > > +
+> > > > > +       err = clk_prepare_enable(host->ref_out_clk);
+> > > > > +       if (err) {
+> > > > > +               dev_err(hba->dev, "failed to enable ref out clock %d\n", err);
+> > > > > +               return err;
+> > > > > +       }
+> > > > > +
+> > > > > +       reset_control_assert(host->rst);
+> > > > > +       usleep_range(1, 2);
+> > > > > +       reset_control_deassert(host->rst);
+> > > > > +
+> > > > > +       return ufshcd_runtime_resume(dev);
+> > > > > +}
+> > > > > +
+> > > > > +static int ufs_rockchip_system_suspend(struct device *dev)
+> > > > > +{
+> > > > > +       struct ufs_hba *hba = dev_get_drvdata(dev);
+> > > > > +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> > > > > +
+> > > > > +       /* Pass down desired spm_lvl to Firmware */
+> > > > > +       arm_smccc_smc(ROCKCHIP_SIP_SUSPEND_MODE, ROCKCHIP_SLEEP_PD_CONFIG,
+> > > > > +                       host->pd_id, hba->spm_lvl < 5 ? 1 : 0, 0, 0, 0, 0, NULL);
+> > > > 
+> > > > Can you please elaborate on what goes on here? Is this turning off the
+> > > > power-domain that the dev is attached to - or what is actually
+> > > > happening?
+> > > > 
+> > > 
+> > > This smc call is trying to ask firmware not to turn off the power-domian
+> > > that the UFS is attached to and also not to turn off the power of UFS
+> > > conntroller.
+> > 
+> > Okay, thanks for clarifying!
+> > 
+> > A follow up question, don't you need to make a corresponding smc call
+> > to inform the FW that it's okay to turn off the power-domain at some
+> > point?
+> > 
+> 
+> Yes. Each time entering sleep, we teach FW if it need to turn off or keep
+> power-domain, for instance "hba->spm_lvl < 5 ? 1 : 0" , 0 means
+> off and 1 means on.
+> 
 
-> The vdd and leda supplies must be powered on for the chip to function
-> and can be powered off during system suspend.
-> 
-> This was originally based on a patch by Ondrej Jirman[1], but has been
-> rewritten since.
-> 
-> 1: https://codeberg.org/megi/linux/commit/a933aff8b7a0e6e3c9cf1d832dcba07022bbfa82
-> 
-> Signed-off-by: Aren Moynihan <aren@peacevolution.org>
-> ---
-> 
-> Notes:
->     Changes in v4:
->      - fix variable declaration order in stk3310_resume to match the rest of
->        the driver
+We had a requirement to notify the genpd provider from consumer to not turn off
+the power domain during system suspend. So Ulf came up with an API for
+consumers, device_set_wakeup_path() setting the 'dev->power.wakeup_path' which
+will be honored by the genpd core. Will that work for you?
 
-For this Andy was asking for consistency.  Generally we don't insist on a
-particular ordering in IIO drivers, but we do prefer them to be the same.
-Your new ordering is inconsistent between resume and suspend.  Whilst
-existing code may be inconsistent, you can still pick most common ordering
-and use that for your new code.
+PS: The API naming suggests that the device will be used in wakeup path, which
+may not be true here but the end result will be the same.
 
-If the existing driver is inconsistent then feel free to tidy that up but
-do it in a precursor patch so there is a consistent style for you to then
-carry on.
+- Mani
 
->     
->     Changes in v3:
->      - use bulk regulators instead of two individual ones
->      - handle cleanup using devm callbacks instead of the remove function
->     
->     Changes in v2:
->      - always enable / disable regulators and rely on a dummy regulator if
->        one isn't specified
->      - replace usleep_range with fsleep
->      - reorder includes so iio headers are last
->      - add missing error handling to resume
-> 
->  drivers/iio/light/stk3310.c | 76 ++++++++++++++++++++++++++++++++++++-
->  1 file changed, 74 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/iio/light/stk3310.c b/drivers/iio/light/stk3310.c
-> index 181b7acb3f96..f93689c61f44 100644
-> --- a/drivers/iio/light/stk3310.c
-> +++ b/drivers/iio/light/stk3310.c
-> @@ -13,6 +13,8 @@
->  #include <linux/module.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +
->  #include <linux/iio/events.h>
->  #include <linux/iio/iio.h>
->  #include <linux/iio/sysfs.h>
-> @@ -130,6 +132,7 @@ struct stk3310_data {
->  	struct regmap_field *reg_int_ps;
->  	struct regmap_field *reg_flag_psint;
->  	struct regmap_field *reg_flag_nf;
-> +	struct regulator_bulk_data supplies[2];
->  };
->  
->  static const struct iio_event_spec stk3310_events[] = {
-> @@ -621,6 +624,31 @@ static irqreturn_t stk3310_irq_event_handler(int irq, void *private)
->  	return IRQ_HANDLED;
->  }
->  
-> +static int stk3310_regulators_enable(struct stk3310_data *data)
-> +{
-> +	int ret;
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(data->supplies), data->supplies);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* we need a short delay to allow the chip time to power on */
-> +	fsleep(1000);
-> +
-> +	return 0;
-> +}
-> +
-> +static void stk3310_regulators_disable(void *private)
-> +{
-> +	int ret;
-> +	struct stk3310_data *data = private;
-> +	struct device *dev = &data->client->dev;
-> +
-> +	ret = regulator_bulk_disable(ARRAY_SIZE(data->supplies), data->supplies);
-> +	if (ret)
-> +		dev_err(dev, "failed to disable regulators: %d\n", ret);
-> +}
-> +
->  static int stk3310_probe(struct i2c_client *client)
->  {
->  	int ret;
-> @@ -642,6 +670,13 @@ static int stk3310_probe(struct i2c_client *client)
->  
->  	devm_mutex_init(&client->dev, &data->lock);
->  
-> +	data->supplies[0].supply = "vdd";
-> +	data->supplies[1].supply = "leda";
-> +	ret = devm_regulator_bulk_get(&client->dev, ARRAY_SIZE(data->supplies),
-> +				      data->supplies);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret, "get regulators failed\n");
-> +
->  	ret = stk3310_regmap_init(data);
->  	if (ret < 0)
->  		return ret;
-> @@ -652,6 +687,16 @@ static int stk3310_probe(struct i2c_client *client)
->  	indio_dev->channels = stk3310_channels;
->  	indio_dev->num_channels = ARRAY_SIZE(stk3310_channels);
->  
-> +	ret = stk3310_regulators_enable(data);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "regulator enable failed\n");
-> +
-> +	ret = devm_add_action_or_reset(&client->dev, stk3310_regulators_disable, data);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "failed to register regulator cleanup\n");
-> +
->  	ret = stk3310_init(indio_dev);
->  	if (ret < 0)
->  		return ret;
-> @@ -682,18 +727,45 @@ static int stk3310_probe(struct i2c_client *client)
->  static int stk3310_suspend(struct device *dev)
->  {
->  	struct stk3310_data *data;
-> +	int ret;
->  
->  	data = iio_priv(i2c_get_clientdata(to_i2c_client(dev)));
->  
-> -	return stk3310_set_state(data, STK3310_STATE_STANDBY);
-> +	ret = stk3310_set_state(data, STK3310_STATE_STANDBY);
-> +	if (ret)
-> +		return ret;
-> +
-> +	regcache_mark_dirty(data->regmap);
-> +
-> +	ret = regulator_bulk_disable(ARRAY_SIZE(data->supplies), data->supplies);
-> +	if (ret) {
-> +		dev_err(dev, "failed to disable regulators: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
->  }
->  
->  static int stk3310_resume(struct device *dev)
->  {
-> -	u8 state = 0;
-> +	int ret;
->  	struct stk3310_data *data;
-> +	u8 state = 0;
->  
->  	data = iio_priv(i2c_get_clientdata(to_i2c_client(dev)));
-> +
-> +	ret = stk3310_regulators_enable(data);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to re-enable regulators: %d", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regcache_sync(data->regmap);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to restore registers: %d\n", ret);
-> +		return ret;
-> +	}
-> +
->  	if (data->ps_enabled)
->  		state |= STK3310_STATE_EN_PS;
->  	if (data->als_enabled)
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
