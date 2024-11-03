@@ -1,137 +1,196 @@
-Return-Path: <devicetree+bounces-118426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD4A79BA305
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 00:23:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1009B9BA33A
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 01:23:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36B2C283749
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2024 23:23:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 381981C20F8C
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 00:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 482C318593A;
-	Sat,  2 Nov 2024 23:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE1005234;
+	Sun,  3 Nov 2024 00:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="fp3KCrPE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NYh9FfDN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 821D2158DC4;
-	Sat,  2 Nov 2024 23:22:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3419C4C91;
+	Sun,  3 Nov 2024 00:23:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730589785; cv=none; b=NY3LF2GstXgd06aVSAFrnYc17iG5hIRg0yZyCOPb42mpNho1JWNVuL2xVVV2o9KnEymuKTRzrCdAJ4dVF0GFer7cZx31ALr7z2lhhXgMBSLTUGWJGqlO0ivWfRyl6aiijLJ01n99SsaUvtilZeullh1HERBa9hDO8tf45ZsQlVM=
+	t=1730593395; cv=none; b=XQ+vOzYea3sws9dZ87mWmLHKLL92eJ+BG+ZpFmSzzRh6k88jOZNRmudrjrBWZTxZLDSMFyE7uv27mJr5aexprS4TLTjzL3zj02e7Zi+2hdUgkiAxDKVbrQdbir2lKB+/qgFLbMFlR/7LxFB/9sWfv74l1EE3x59qFXY0Clx6VPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730589785; c=relaxed/simple;
-	bh=YJ3sYPc+iG4EtVbZOeXZIZMMgFvSsgjeYHInbchlMXc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=J0vod+Wgo9npqaMMD6eeJoybKPTul1UVs2YNgtMXom14shxmZBQH0OUjMJh6qa2SIC2aRfgthcaVIHoySvrIvL5bp6+A/aStkGT8SLpC8rrMHuy4k+ZBXJ4xARsl0IPwkbOc5GaKYyE/EYFPwCAyR1QI/FxIAElpZFkDKiQ3YIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=fp3KCrPE; arc=none smtp.client-ip=37.18.73.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 42671100004;
-	Sun,  3 Nov 2024 02:15:19 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 42671100004
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1730589319;
-	bh=QPWimwSMLRZZhnlPIYt85z2yTmcu2PSWskgTqEezw+g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=fp3KCrPEMPvQlFJ2TWYiamiDWZZhTroLlRKBcnzSvPMaQS5wcuH9BGjwwpSvTHTwP
-	 xEgkLsK1oyKoyYbVX1cA3XZchUk9sGwkE435dQuvHW2h/gG8aZAazslUK7cyk4/QiJ
-	 hEjsI0NfPkP4YMqUIweJEt1cMRZhp6zrsH0olHP36AuDR7YI8klIehTcm5Nb7coRLD
-	 mQ8CkhzDNYc67fKbbHzSIC8QSdxOn31EwtHHVSMHxa4gM8JHju6AGBfuwXuH42tqiT
-	 5wkKK4ciwDk8mkBBJSRWIAkvJXqfvlXB82oi49j0kQyuOGMMra9L72JIzvQ087cl2c
-	 qk1nDIleXTy4A==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Sun,  3 Nov 2024 02:15:19 +0300 (MSK)
-Message-ID: <aa96e9ab-00d6-413b-a7e8-8c709087f5bc@salutedevices.com>
-Date: Sun, 3 Nov 2024 02:15:18 +0300
+	s=arc-20240116; t=1730593395; c=relaxed/simple;
+	bh=JOZss1uzrgy96RicxBsQfsth0zz7FF1zuMrJ1I5c9sg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X7+tbTdOWivWxz+K3xPd6EAU0mbjENpLyVzDw3W8yYNKN1qBobcgDzZ7pP08NP+J79eFnSgoGKtVbQsS84NYMoRv93r4ipwcuabkF94D36cSmfBZ2BgIBSiFAp88APInE5iTEKEtNef3cVoUobzsvpeTYUswcofXnntr4zhCk4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NYh9FfDN; arc=none smtp.client-ip=209.85.167.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3e5fa17a79dso1826806b6e.1;
+        Sat, 02 Nov 2024 17:23:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730593393; x=1731198193; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cy+oQJ2GEMRpNjhFn1LJw929fydtHkD4JsoP5UMnHEE=;
+        b=NYh9FfDNg/XNlWQBSlioikSk8CE4WHifeuJ0YP5nlCjJAAa/kj1ssJ48drZL/nwdH0
+         zZrd8OD1tQ+yzDy+D1byViUFNiTet4YYJSJ65tyjILW3lyjMiew5SDSk7vtVJkt+DLG2
+         GXq8zsZelrkHQiU6C5J3WXhdYP02ADEtHqZT5sG7+6qbZRwsaBxCp6rg0ZEAMaMc/dhg
+         JuA6i0fym5mwXbkzdKA7iUsfRiAfHwdl1TLOhnJtNi+99+vn86jfFP2KL4pV9F06lflU
+         kMGvgjnPMBvvOmA/q3jml5e2NNzlS+zroKzqEby+IxDnqY0kewXSVe+ytYDJt0C5pSIu
+         0kQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730593393; x=1731198193;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cy+oQJ2GEMRpNjhFn1LJw929fydtHkD4JsoP5UMnHEE=;
+        b=kBZBlgHw0qZVGBTNC5IqLKvIxibvHahK7xvSIvhFXDfIFuLxiLGjrbfs3w/NKmXR9C
+         gfSTqTVm7z47lJjTsLjoiT21O8pGX0aRtbKEd7SJuEQAMu867tEe4dEqZavr6t4VKlxy
+         mT77agSfjNVk7zOnQXdsngoN4VbpvPoLcgqq8Zaa7rpDEpjQC8rlO84GktWeAn7Nuazy
+         HwkMbqIfjmba37ebrClfljTvINQbiRHsXHkaIOOq8VQvyXkXG20k9K6N4lddCZh54vaU
+         9mxDZvUByHjO32HIY/sIUfVLUqTHaLRB5aSLm7QMc49w06cVZQJQ6xO1AcqcPW8zRzHx
+         Wa+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUWN5RfvyF00S/TkN18IqQoN2ghtb/TiIMj1L+UTiOacx6I5bUysTSUqnChm1Ue5J8GxgMiTnZvByVn@vger.kernel.org, AJvYcCUoLM58Q9UsGEE3OUxwEXRn7sTEJWq5N4iUlr8BWFDVABXDyFLN1bTVNrlqFXcZMXdI9HBEj5zXe7P+mrNj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkpWajjP4GrFd1aTOQeFWaZ12XCjVDblgwT6ZgJBKepJQUMLkw
+	B9Kah/NejZ4T1JsVO/0Qwb9IOyWYJ5JYfdhKIooCoTxB675vQlBNo3Ixe4HAPS0d9HjN53FZihu
+	GuR6edFWdgyt5Jl9s6Rk5SLEEWok=
+X-Google-Smtp-Source: AGHT+IH1/AqKguweEOJ8EZHcTlXSXIH8nwkWs4syLgX8RZ0uDmap1bE6uGoyjAxjUn7dGn0O2qZi1jtZGw0jSkQ9ph0=
+X-Received: by 2002:a05:6808:2f0e:b0:3e2:9e62:37d5 with SMTP id
+ 5614622812f47-3e65834f25dmr15244041b6e.5.1730593393243; Sat, 02 Nov 2024
+ 17:23:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: leds: pwm: Add default-brightness
- property
-To: Krzysztof Kozlowski <krzk@kernel.org>, <robh@kernel.org>
-CC: <pavel@ucw.cz>, <lee@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <linux-leds@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@salutedevices.com>
-References: <20241101154844.1175860-1-gnstark@salutedevices.com>
- <20241101154844.1175860-2-gnstark@salutedevices.com>
- <ngwfccj55vovsaj5bdealdidgxdrxfl7nwxfdqponqzdiv3olo@epzabbxkdzxb>
-Content-Language: en-US
-From: George Stark <gnstark@salutedevices.com>
-In-Reply-To: <ngwfccj55vovsaj5bdealdidgxdrxfl7nwxfdqponqzdiv3olo@epzabbxkdzxb>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: p-i-exch-a-m2.sberdevices.ru (172.24.196.120) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 188949 [Nov 02 2024]
-X-KSMG-AntiSpam-Version: 6.1.1.7
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 41 0.3.41 623e98d5198769c015c72f45fabbb9f77bdb702b, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, elixir.bootlin.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/11/02 22:22:00
-X-KSMG-LinksScanning: Clean, bases: 2024/11/02 22:22:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/11/02 20:58:00 #26807587
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20241025125110.1347757-1-valentina.fernandezalanis@microchip.com> <20241025125110.1347757-4-valentina.fernandezalanis@microchip.com>
+In-Reply-To: <20241025125110.1347757-4-valentina.fernandezalanis@microchip.com>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Sat, 2 Nov 2024 19:23:01 -0500
+Message-ID: <CABb+yY3cDD-E-P1MPKQjdX7R2XVVKjwXUW-BANWcz-9aR6kskA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] mailbox: add Microchip IPC support
+To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	peterlin@andestech.com, conor.dooley@microchip.com, conor+dt@kernel.org, 
+	ycliang@andestech.com, dminus@andestech.com, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, robh@kernel.org, krzk+dt@kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Krzysztof, Rob
+On Fri, Oct 25, 2024 at 7:36=E2=80=AFAM Valentina Fernandez
+<valentina.fernandezalanis@microchip.com> wrote:
 
-Thanks for noticing it, missed the tag not by purpose, sorry about it.
-Sure I'll add the tag to v3 if v3 happens.
+....
+> +
+> +enum ipc_irq_type {
+> +       IPC_OPS_NOT_SUPPORTED   =3D 1,
+> +       IPC_MP_IRQ              =3D 2,
+> +       IPC_MC_IRQ              =3D 4,
+> +};
+totally unused.
 
-On 11/2/24 16:06, Krzysztof Kozlowski wrote:
-> On Fri, Nov 01, 2024 at 06:48:43PM +0300, George Stark wrote:
->> Optional default-brightness property specifies brightness value to be
->> used if default LED state is on.
->>
->> Signed-off-by: George Stark <gnstark@salutedevices.com>
->> ---
->>   Documentation/devicetree/bindings/leds/leds-pwm.yaml | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
-> 
-> <form letter>
-> This is a friendly reminder during the review process.
-> 
-> It looks like you received a tag and forgot to add it.
-> 
-> If you do not know the process, here is a short explanation: Please add
-> Acked-by/Reviewed-by/Tested-by tags when posting new versions, under
-> or above your Signed-off-by tag. Tag is "received", when provided
-> in a message replied to you on the mailing list. Tools like b4 can help
-> here. However, there's no need to repost patches *only* to add the tags.
-> The upstream maintainer will do that for tags received on the version
-> they apply.
-> 
-> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-> 
-> If a tag was not added on purpose, please state why and what changed.
-> </form letter>
-> 
-> Best regards,
-> Krzysztof
-> 
+> +
+> +/**
+> + * struct mchp_ipc_probe - IPC probe message format
+> + *
+> + * @hw_type:           IPC implementation available in the hardware
+> + * @num_channels:      number of IPC channels available in the hardware
+> + *
+> + * Used to retrieve information on the IPC implementation
+> + * using the SBI_EXT_IPC_PROBE SBI function id.
+> + */
+> +struct mchp_ipc_probe {
+ same as the driver.probe(), so maybe call this microchip_mbox_info
 
--- 
-Best regards
-George
+......
+
+> +struct mchp_ipc_cluster_cfg {
+> +       void *buf_base;
+> +       unsigned long buf_base_addr;
+> +       int irq;
+> +};
+> +
+> +struct ipc_chan_info {
+ I suggest s/ipc_chan_info/microchip_sbi_chan and hooking it to
+mbox_chan.con_priv
+
+....
+
+> +       unsigned long buf_base_tx_addr;
+> +       unsigned long buf_base_rx_addr;
+> +       unsigned long msg_buf_tx_addr;
+> +       unsigned long msg_buf_rx_addr;
+If these are __pa(), then phys_addr_t please.
+
+> +       int chan_aggregated_irq;
+> +       int mp_irq;
+> +       int mc_irq;
+> +       u32 id;
+> +       u32 max_msg_size;
+> +};
+> +
+> +struct microchip_ipc {
+ Maybe s/microchip_ipc/microchip_sbi_mbox ?
+
+
+> +       struct device *dev;
+> +       struct mbox_chan *chans;
+> +       struct mchp_ipc_cluster_cfg *cluster_cfg;
+> +       struct ipc_chan_info *priv;
+  replace this with 'struct mbox_chan *chan' and hook
+     chan[i].con_priv =3D priv[i]
+  this will help avoid having to EXPORT mchp_ipc_get_chan_id
+
+
+> +       void *buf_base;
+> +       unsigned long buf_base_addr;
+phys_addr_t buf_base_addr ?
+
+> +       struct mbox_controller controller;
+> +       u8 num_channels;
+this could be dropped by directly using 'controller.num_chans'
+
+......
+
+> +static int mchp_ipc_send_data(struct mbox_chan *chan, void *data)
+> +{
+> +       struct ipc_chan_info *chan_info =3D (struct ipc_chan_info *)chan-=
+>con_priv;
+> +       const struct mchp_ipc_msg *msg =3D data;
+> +       struct mchp_ipc_sbi_msg sbi_payload;
+> +
+> +       memcpy(chan_info->msg_buf_tx, msg->buf, msg->size);
+> +       sbi_payload.buf_addr =3D chan_info->msg_buf_tx_addr;
+> +       sbi_payload.size =3D msg->size;
+> +       memcpy(chan_info->buf_base_tx, &sbi_payload, sizeof(sbi_payload))=
+;
+How does this work? sizeof(sbi_payload) is more than
+sizeof(*chan_info->buf_base_tx)
+I think buf_base_tx needs to be u8 array of max{sizeof(struct
+mchp_ipc_init), sizeof(struct mchp_ipc_sbi_msg)}, if there are
+alignment requirements then maybe kmalloc that size.
+Similarly for buf_base_rx.
+
+...
+
+> +static struct platform_driver mchp_ipc_driver =3D {
+> +       .driver =3D {
+> +               .name =3D "microchip_ipc",
+> +               .of_match_table =3D mchp_ipc_of_match,
+> +       },
+> +       .probe =3D mchp_ipc_probe,
+The driver could be built as a module, so please provide .remove()
+even if you never intend to unload it.
+
+cheers.
 
