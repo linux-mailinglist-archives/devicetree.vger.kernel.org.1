@@ -1,209 +1,119 @@
-Return-Path: <devicetree+bounces-118512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 997D29BA793
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 20:07:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A0E89BA7BC
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 20:52:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F3661F21374
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 19:07:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAC741F2136A
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2024 19:52:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1C3D176AAD;
-	Sun,  3 Nov 2024 19:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C76B8187344;
+	Sun,  3 Nov 2024 19:52:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dWv2mTIq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NgJwdjBh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F665C2FB;
-	Sun,  3 Nov 2024 19:07:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2782140E5F
+	for <devicetree@vger.kernel.org>; Sun,  3 Nov 2024 19:52:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730660836; cv=none; b=avIJLJ0+hK1i5G8kjAYgHRMD46U8YiUCCnaE4g6M5ks4ihvRmNmpta9GvNjxwREsdAGrJIg4V4gIzLT9l/V3F+FnTG2+M/iVp/zjldexiV08YlPCjeCtletOM/2L/PWyJFlvbt5cQkFAzvqEMkpIc0mbiopIithbMA1hY5bDw1s=
+	t=1730663557; cv=none; b=tEoDQc5roMsE0jyQ4xp6EPjjO9lkqeYzg2dBXHLj5IhTsXCjk4gUbqIIbR+m62SUAI364xSDBGGa4cw3axyl2f61e/3XE1isjigy+gY1b+Sn8zDKeTElucKekI90yviOuUhMY3SQg0MOriNwI3zfjP4g/TMSOhd7gixu6pz/luU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730660836; c=relaxed/simple;
-	bh=inPz1olU9xAQEZazepwNq7m/9CKJqGFpLVCsLGkrwHU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NB9gVaz3uxKQN+Fb8JmCgyBovDwLO7r3lUZ+qsNIgu810FrHhA/Up/sSOfkQDsSacc3gX+hLCRbGsOubF9tWOX60zC2mMtyMC0FVy1j3kwnCHJoKhM1FXXBB8DT+dYn+b0a7A0l6+uPYrfPEfMfWKrpHkbsbaIvQ6LhLfm57IEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dWv2mTIq; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43161e7bb25so27210295e9.2;
-        Sun, 03 Nov 2024 11:07:14 -0800 (PST)
+	s=arc-20240116; t=1730663557; c=relaxed/simple;
+	bh=PQegQn3+8/PIWx8/Y7AMCPnrxj3hemTpvdg9V+17eCI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ne+cohX0ztn7JKNnTnrPUgLgnOqgC2nexMyG4e1cGE7r4JB05bN1eaqtBDb8QrhLFENEeIroi9sXb5slDkSKkheWR83VQg0NXLS0sW2D+0BmszsYzTyZpVMK9bsEOq3uAUDmyCRcdmUtxjueh4FLk95lD8ujSr3bZU1JFsCEbtg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NgJwdjBh; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37d41894a32so1898620f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 03 Nov 2024 11:52:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730660833; x=1731265633; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+PN4j5JM27ruL3MMdVRgYXopSApMIbDZTF6zIljuQt0=;
-        b=dWv2mTIqxObqBjA3SuGLPXv5EqDiF0Xl2Qoivv4An22kAAQ8GCgqzm2AykT8spNtUo
-         pXwoAMG7DBt2AstPg1fvF705yYc2nETuil+284f3s0FDcPVKUqNDutTM4Ejm+Ck80o4x
-         dkXOkI7J9q1/2varKd3wdoRUiDwGTRPG+L6z8MJoei1W0jAcmE27hPavZYXHWU7UI9dd
-         W/VH8ehZrrGpIRDK6NKUUXgK4nKNy3MKF4vbVZsQx/7jFPynmz4cL4ZB/cJTRfxGesOR
-         wDsNj6kejP9ZNUTQnFqDKbE/q8PnoIr2kqSZLVw13+XL9wjUrMyybUQid0pUgnt9Fnnu
-         XMtw==
+        d=linaro.org; s=google; t=1730663554; x=1731268354; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=x9HRwxuKA5SYPrf0mycwo4kyEZVXW2KTXgvqsO4ho/A=;
+        b=NgJwdjBh9NP1ZCCji8ErlDAw1rE/6dF/R+pXWdwxVY/qnFcLj/P6MuDz2d6bk2fSE1
+         8Zu5SUQfYL9u2rUc3H1nsbVaJcu3rxIEDkqVvXC1gFA4epqgpnhWPLz6+B7bw+5rBlF6
+         shHYoFoHH+2lW3dgkC+9kaRZ7fSgMrchf86b6FtaQJ3ZmPejKuUPO9vReCqLknLOTDfK
+         V5dXFyrnYAUE/Lm+FaqqP1agM9Sio6YDmaUpAGpeZMjDKmOe50HRsapm2MimusRLxEf5
+         FmGGYUG8P2AqjP2Cu5tsTiIizfk7gFCMtqMCNuH/1rVGX6iSfIvj3TkcwQj0GbVILYMn
+         nIzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730660833; x=1731265633;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1730663554; x=1731268354;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+PN4j5JM27ruL3MMdVRgYXopSApMIbDZTF6zIljuQt0=;
-        b=UF+idt3sF4JKR3Fgc1V24He6GxxS8JOyr6P/keDyfYJJsKl6Lz3nXupzrh5+W9vPAb
-         os6w/t9HGg3P5aUQXXRzntonvCtRUEemBg0vkpjf4+uAY3bZ5VkUfTty6uQCvNkiq+EX
-         pYh4hYT/DsTDCWqN3nsxCoo0/VoLxntuNlSo1n0yAWcGOQfCNM9OBR7DzmVTihmAcVp2
-         ZWpLk12qrAz12pAAqnj0fZNYmEwCBNdQbwVDJMs9z2xzbUlQlWKpDTaJH9ue9iab3Z67
-         hRlZ1Q2bJ1QzIbtjp4m25hUpD3NXSHTR1SWCnUnKb0wfKOdgdOZjmAz9lbAeUS1FOJVN
-         0kNw==
-X-Forwarded-Encrypted: i=1; AJvYcCVcV893b+F1Jba+Hjja9iis2GB7Dh+MJuxlPdtplSjsUhAyMkZyXSBnzjjm3u2u4HUWNxQ6bpkDHnMK@vger.kernel.org, AJvYcCWiLE7cz5Vvhb4T+cqHdizJHbnLhpX0Sh/l9ojQOgAmIsNzlcki8NXWuHEEnGwIKloUnK3ew2wKkkCZ@vger.kernel.org, AJvYcCXKR7Fxtf0LKwe5loIXlGS+i4sLfxI7sgvhHNXl3n1kJUDVPv/5mHEXe6T+vBIJSjue+ThLYy2Zk0ByTmMb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMW47BUJ4qrguP54V6Js44/GNQbQRoEakqBF2vOmmwNVw0c/fT
-	5PUHnvAEnGiSuSjqzZvEnaOdHJZ/j10dK7ukNegV/6TR5Ujbie4F
-X-Google-Smtp-Source: AGHT+IHIFoXvuCJNYxjDuvpKDd+kNXiq3JOImcMMhf+ncuSnMB/eRPWoMljK5H6pueGZiJ/0RrgylA==
-X-Received: by 2002:a05:600c:5114:b0:431:60ac:9aef with SMTP id 5b1f17b1804b1-431bb9de94bmr163930405e9.29.1730660832897;
-        Sun, 03 Nov 2024 11:07:12 -0800 (PST)
-Received: from debian ([2a00:79c0:63e:e900:224:9bff:fe22:6dd6])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4327d685308sm129434855e9.33.2024.11.03.11.07.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Nov 2024 11:07:12 -0800 (PST)
-Date: Sun, 3 Nov 2024 20:07:09 +0100
-From: Dimitri Fedrau <dima.fedrau@gmail.com>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] pwm: add support for NXPs high-side switch
- MC33XS2410
-Message-ID: <20241103190709.GA466098@debian>
-References: <20240927125745.38367-1-dima.fedrau@gmail.com>
- <20240927125745.38367-3-dima.fedrau@gmail.com>
- <oppdnsda4tqjcpsb26j5ew62t4bkkmtxuu7e2fpinnazubk5ky@tmz76o5xdrlj>
- <20241023125221.GA197308@debian>
- <eyom32milbbqp6floun4r5bpozuewbe5kk2htvhp5cmcytj2oy@bpcrd2aiwk6m>
+        bh=x9HRwxuKA5SYPrf0mycwo4kyEZVXW2KTXgvqsO4ho/A=;
+        b=o3YRFl4ZaI/0kF7I85R+svCJelhBYII2x9E7Lw+snsxPFylpfGz/XkrFcVZ+56BzOo
+         XCYuVqgushP9DW2aXnUPl3YelZWXOUVfXPYK3D0tSj3Fc4A4BCb6hqNpWR1nQ/oTH6LH
+         q16iNkmn5WzIcl/TLgRGfraIaxtrTW5cCaHNRdXrD4XxMdTi/t9SzMeAoBgj+vuIIo5H
+         tssakflJhDk/GKmK8U4L4NS/XZAMqZIGs79+MT/IQoQvVYuXmo6/ki73IV8Znj6/alGT
+         dcGWZ/cE40LtxkEw3Se3Y71SQelvgrooJEZsw38go+Vj2r2jfolM4brkR+Vluqh+aDMI
+         reOw==
+X-Forwarded-Encrypted: i=1; AJvYcCV/2ImVdJVJTEGLiMg+zeFGbM/iVZZQBnYVEkya+2rB2abboYpCtrXfjVAvjlm+Q0SFIMiKXTqCZUy7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSvY1fyBbnA+9LNbkjZAUR40CpuIE03W7jheDb1z9XVMjj0i8D
+	NHw3b5eEXosvKfZlZ2K5yBAhTGVZo0S+i1bjk8cgN016sZ5pbEdNFSA6NGwf9xQ=
+X-Google-Smtp-Source: AGHT+IHRlzR/T44vFTA6xhju6BevgdlpguiQL7NPllDCW6AH3Dy70BrbMRmNdc01zD9C3OYhha4t6w==
+X-Received: by 2002:a5d:5888:0:b0:37d:3f81:153f with SMTP id ffacd0b85a97d-381c149f226mr12298762f8f.17.1730663554250;
+        Sun, 03 Nov 2024 11:52:34 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-381c10e61f9sm11272153f8f.58.2024.11.03.11.52.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 03 Nov 2024 11:52:33 -0800 (PST)
+Message-ID: <d9f946a3-44d6-4973-859e-60aa2807181c@linaro.org>
+Date: Sun, 3 Nov 2024 20:52:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: timer: actions,owl-timer: convert to YAML
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241103123513.2890107-1-ivo.ivanov.ivanov1@gmail.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20241103123513.2890107-1-ivo.ivanov.ivanov1@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <eyom32milbbqp6floun4r5bpozuewbe5kk2htvhp5cmcytj2oy@bpcrd2aiwk6m>
 
-Hello Uwe,
-
-Am Thu, Oct 24, 2024 at 11:19:16PM +0200 schrieb Uwe Kleine-König:
-> Hello Dimitri,
+On 03/11/2024 13:35, Ivaylo Ivanov wrote:
+> Convert the Actions Semi Owl timer bindings to DT schema.
 > 
-> On Wed, Oct 23, 2024 at 02:52:21PM +0200, Dimitri Fedrau wrote:
-> > Am Tue, Oct 22, 2024 at 09:54:50AM +0200 schrieb Uwe Kleine-König:
-> > > > +{
-> > > > +	struct spi_transfer t[MC33XS2410_MAX_TRANSFERS] = { { 0 } };
-> > > > +	u8 tx[MC33XS2410_MAX_TRANSFERS * MC33XS2410_WORD_LEN];
-> > > > +	u8 rx[MC33XS2410_MAX_TRANSFERS * MC33XS2410_WORD_LEN];
-> > > > +	int i, ret, reg_i, val_i;
-> > > > +
-> > > > +	if (!len)
-> > > > +		return 0;
-> > > > +
-> > > > +	if (read)
-> > > > +		len++;
-> > > > +
-> > > > +	if (len > MC33XS2410_MAX_TRANSFERS)
-> > > > +		return -EINVAL;
-> > > > +
-> > > > +	for (i = 0; i < len; i++) {
-> > > > +		reg_i = i * MC33XS2410_WORD_LEN;
-> > > > +		val_i = reg_i + 1;
-> > > > +		if (read) {
-> > > > +			if (i < len - 1) {
-> > > > +				tx[reg_i] = reg[i];
-> > > > +				tx[val_i] = ctrl[i] ? MC33XS2410_RD_CTRL : 0;
-> > > > +				t[i].tx_buf = &tx[reg_i];
-> > > > +			}
-> > > > +
-> > > > +			if (i > 0)
-> > > > +				t[i].rx_buf = &rx[reg_i - MC33XS2410_WORD_LEN];
-> > > > +		} else {
-> > > > +			tx[reg_i] = reg[i] | MC33XS2410_WR;
-> > > > +			tx[val_i] = val[i];
-> > > > +			t[i].tx_buf = &tx[reg_i];
-> > > > +		}
-> > > > +
-> > > > +		t[i].len = MC33XS2410_WORD_LEN;
-> > > > +		t[i].cs_change = 1;
-> > > 
-> > > Not sure if MC33XS2410_WORD_LEN really improves readability here.
-> > 
-> > It is used throughout in the function and improves readability overall,
-> > maybe not here but for consistency I would stick to it.
+> Changes during conversion:
+>   - Add a description
+>   - Add "clocks" as a required property, since the driver searches for it
+>   - Correct the given example according to owl-s500.dtsi
 > 
-> Seems to be subjective.
->
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> ---
+> v2: update commit message to be accurate (Krzysztof)
+> v2: don't preserve formatting in the description (Krzysztof)
+> v2: add allOf:if:then block constraining per variant (Krzysztof)
+> v2: add a blank line after additionalProperties (Krzysztof)
+> ---
 
-I will get rid of it. Due to your proposal below, to use SPI_CS_WORD, the
-code to read/write from/to the device can be simplified by using a single
-transaction.
+Applied, thanks
 
-> > > Why is this done using $len transfers, wouldn't a single one do (and
-> > > maybe be more performant and not rely on a spi controller that supports
-> > > cs_change)?
-> > 
-> > Without cs_change after every 16 bit, requests aren't processed by the
-> > device. Reading/writing from/to device fails. The SPI controller therefore
-> > must support cs_change. Single transfer is not possible because of the
-> > cs_change after every 16bit.
-> 
-> There is SPI_CS_WORD for this usecase.
->
-Thanks, didn't know about it. Helps a lot to simplify the code to
-read/write from/to device. Will switch to 16 bits per word and use
-SPI_CS_WORD.
 
-> > > > +	/* polarity */
-> > > > +	mask = MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm);
-> > > > +	val[2] = (state->polarity == PWM_POLARITY_INVERSED) ?
-> > > > +		 (val[2] | mask) : (val[2] & ~mask);
-> > > > +
-> > > > +	/* enable output */
-> > > > +	mask = MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm);
-> > > > +	val[3] = (state->enabled && rel_dc >= 0) ? (val[3] | mask) :
-> > > > +						   (val[3] & ~mask);
-> > > > +
-> > > > +	return mc33xs2410_write_regs(spi, reg, val, 4);
-> > > > +}
-> > > > +
-> > > > +static int mc33xs2410_pwm_get_state(struct pwm_chip *chip,
-> > > > +				    struct pwm_device *pwm,
-> > > > +				    struct pwm_state *state)
-> > > > +{
-> > > > [...]
-> > > > +	state->period = mc33xs2410_pwm_get_period(val[0]);
-> > > > +	state->polarity = (val[2] & MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm)) ?
-> > > > +			  PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
-> > > > +	state->enabled = !!(val[3] & MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm));
-> > > > +	mc33xs2410_pwm_set_relative_duty_cycle(state, val[1]);
-> > > 
-> > > No need to set state->duty_cycle = 0 if state->enabled is false. This is
-> > > another function I suggest to unroll as it hides more than it abstracts.
-> > 
-> > Function can be unrolled, but the check for state->enabled is needed. The
-> > device is unable to generate a 0% duty cycle, so it is turned off to
-> > generate a 0% duty cylce.
-> 
-> What breaks if you drop the check for state->enabled?
->  
-The device is unable to generate a 0% duty cycle, to support this you
-proposed in an earlier review to disable the output. Without checking if
-the output is disabled, the mc33xs2410_pwm_get_state function returns the
-wrong duty cycle for a previously setted 0% duty cycle. A "0" value in the
-MC33XS2410_PWM_DC register means that the relative duty cylce is 1/256. As
-a result there are complaints if PWM_DEBUG is enabled.
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Best regards,
-Dimitri
-
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
