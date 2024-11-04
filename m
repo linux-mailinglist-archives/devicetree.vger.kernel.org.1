@@ -1,113 +1,153 @@
-Return-Path: <devicetree+bounces-118817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C5CA9BB9EB
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:12:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 287D39BB9FA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:16:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42D391F22726
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:12:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 596831C2102C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:16:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75EF91C07F7;
-	Mon,  4 Nov 2024 16:12:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 560221BBBD7;
+	Mon,  4 Nov 2024 16:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bdwUCbNm"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iY1nblVu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B232AF12;
-	Mon,  4 Nov 2024 16:12:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41DE120326;
+	Mon,  4 Nov 2024 16:16:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730736762; cv=none; b=FMRbxXm9KiYSHBs8BZlXhPLqdBOfYc7aJXM9nUWekZcNh/ez7e6VTFtMIHw7EearhZ6q9TcjJuk3s46Tfo67eTKdYu7ee3KRfNnvB1pqwL/ee8vEA/ZsWaPQZncWOO/ZLUYFRiw7zKRmoOLKApsKzn3aA4xVAKlAzNuf4wgZq8U=
+	t=1730737011; cv=none; b=jCKMD2D4/vuJ6bXb/7XQqoXcgahnsYniwVosiODq1N09Pa0hhCdnPpmXnL5HrMz9mgldMiwnMpsl4r7urq7LkRmE1vN7azN+jVtWoax5/Mgk2dcwUYnxzTYWj4lxOTh1De4l7r1Ltjs+9tdeGtzF/snayl56bkkD5r6+enZcwD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730736762; c=relaxed/simple;
-	bh=CSI8nmFVeCBUZm3j23aCaLtGEVXGHX7F+EO7hopFI+Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TqMQAfuMxzXqitz/FM5fD3pE29f2W1C5eQswkUymYVfwAwjPXr3NCHwAkQ22sM94sb7Jj7u0x8GU85Yji5shtuZaLGaxoODGNHunxvcQtBKCF87e0ELuqfc2BcnZxE4xw5bIjd3Ui2qGi8UKlkEbdCdp349e8lu21VUVWCd2KZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bdwUCbNm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D564C4CECE;
-	Mon,  4 Nov 2024 16:12:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730736759;
-	bh=CSI8nmFVeCBUZm3j23aCaLtGEVXGHX7F+EO7hopFI+Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bdwUCbNmHML9PrNRdfy29kUrRCJ+UtUsiVXu0fQDqOvjEDs1MiwEtWWsiE4TNtwCr
-	 15ttqIq17BRC9+3YTw8CQf1lIqQSb8DpE8Aqd6NFQjCvWdh6tnVjypmIbECUbk5EqU
-	 Rs+HYZR/snvujBQGJylaQ71jiUH+YmzyUYqQsTU8tzG/jq3jInKe5RrOyUeoI0BRrr
-	 X+OVVN4KzoshoecdzH9MWUr0wVrs2UhQpRNybBQbQKg6EFVcIJQG0KZrZgsd859jzN
-	 WQwHpxAZZwXAIcnelk0ZpR10LFHinC8ACu2kJ9+5k8K3burokUgzCmfAdxnBjizLpx
-	 gTsgy9KArpFbQ==
-Date: Mon, 4 Nov 2024 10:12:37 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: thierry.reding@gmail.com, linux-kernel@vger.kernel.org,
-	krzk+dt@kernel.org, tzimmermann@suse.de, mchehab@kernel.org,
-	mripard@kernel.org, geert+renesas@glider.be, jonas@kwiboo.se,
-	nfraprado@collabora.com, jernej.skrabec@gmail.com,
-	kernel@pengutronix.de, prabhakar.mahadev-lad.rj@bp.renesas.com,
-	quic_jesszhan@quicinc.com, Laurent.pinchart@ideasonboard.com,
-	sam@ravnborg.org, arnd@arndb.de, neil.armstrong@linaro.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	dmitry.baryshkov@linaro.org, s.hauer@pengutronix.de,
-	tomi.valkeinen@ideasonboard.com, shawnguo@kernel.org,
-	simona@ffwll.ch, will@kernel.org, conor+dt@kernel.org,
-	marex@denx.de, quic_bjorande@quicinc.com, andrzej.hajda@intel.com,
-	catalin.marinas@arm.com, rfoss@kernel.org,
-	sakari.ailus@linux.intel.com, airlied@gmail.com,
-	maarten.lankhorst@linux.intel.com, linux-media@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, hverkuil@xs4all.nl,
-	biju.das.jz@bp.renesas.com, festevam@gmail.com
-Subject: Re: [PATCH v5 08/13] dt-bindings: display: Document dual-link LVDS
- display common properties
-Message-ID: <173073675713.309604.179338628102616229.robh@kernel.org>
-References: <20241104032806.611890-1-victor.liu@nxp.com>
- <20241104032806.611890-9-victor.liu@nxp.com>
+	s=arc-20240116; t=1730737011; c=relaxed/simple;
+	bh=dvq4WdAmFMn0vLZ9JnYGSSdyWumIrzJUc3NB73OMPOg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=MjbEqF8goa7ZBCz8G+oOwxPknYGD1ynK34NwJ9s4+OieMfr/tcuPySLR5pmGFtdG/RVl0MFMHnqCPGPme18EIvgvbWdahf4m1xsGyx59hB/D3Tntb6LTu+2uAQOnCqsc3yx+azwWga/Ju/10HrR/Ycp+GBa+9clks4UFrnh6dQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iY1nblVu; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E858860007;
+	Mon,  4 Nov 2024 16:16:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1730737006;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6rqr0N+cqbVGEIJ9JWQr1pdzzt48RW1+Mdy+DMTESZ0=;
+	b=iY1nblVuCVjnM+iTFMao7fUaBwok5qhuYyl5TtzZscEOZvgXF2YrpkzOxUKzv5XoY74lQK
+	oppy49hTbZU/PhquKOHASxNSEXIXlOHpxwISjN/laalnrg63rwBUgbWOw6wQA3B4EcwuIY
+	QL767l7li094Yudwrx/DmBYTP+1vITi4aKVfTg09PKocToLFGPI/Sp44U3LnOEnX0mfyJG
+	RJ+JuQEPRGN2itJPlbTEUs5t4AwJIK0ViWJjR/FjeJWLI3EErU9IzDYBwrezYGV3eYrJwm
+	kbNJY1QqR5BbjWKi9k19PXUtzFNciVn2Du5JABW+OSBJq16y89cFLqZSr1Gulg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241104032806.611890-9-victor.liu@nxp.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 04 Nov 2024 17:16:45 +0100
+Message-Id: <D5DJ2C103MJL.2DBH24E85MPYP@bootlin.com>
+Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Thomas
+ Bogendoerfer" <tsbogend@alpha.franken.de>, <linux-mips@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-clk@vger.kernel.org>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH 04/13] dt-bindings: clock: eyeq: add Mobileye EyeQ6H
+ central clocks
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20241031-mbly-clk-v1-0-89d8b28e3006@bootlin.com>
+ <20241031-mbly-clk-v1-4-89d8b28e3006@bootlin.com>
+ <7ebcdarioght4u2bai4l42pckitcw5iz4rky4ncgp7aqmtrlen@zl7k7pgijloq>
+In-Reply-To: <7ebcdarioght4u2bai4l42pckitcw5iz4rky4ncgp7aqmtrlen@zl7k7pgijloq>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
+On Fri Nov 1, 2024 at 8:48 AM CET, Krzysztof Kozlowski wrote:
+> On Thu, Oct 31, 2024 at 04:52:54PM +0100, Th=C3=A9o Lebrun wrote:
+> > Add clock indexes for EyeQ6H central OLB.
+> >=20
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > ---
+> >  include/dt-bindings/clock/mobileye,eyeq5-clk.h | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >=20
+> > diff --git a/include/dt-bindings/clock/mobileye,eyeq5-clk.h b/include/d=
+t-bindings/clock/mobileye,eyeq5-clk.h
+> > index 7d9e700b5e59573c45919865d9c68a9e8cf6a9eb..2356bc52646df9cfeb93df8=
+120eb8f0bf80d97e9 100644
+> > --- a/include/dt-bindings/clock/mobileye,eyeq5-clk.h
+> > +++ b/include/dt-bindings/clock/mobileye,eyeq5-clk.h
+> > @@ -34,6 +34,9 @@
+> >  #define EQ6LC_PLL_PER		2
+> >  #define EQ6LC_PLL_VDI		3
+> > =20
+> > +#define EQ6HC_CENTRAL_PLL_CPU	0
+> > +#define EQ6HC_CENTRAL_CPU_OCC	1
+> > +
+>
+> Don't add define after define in separate patches. Logical change is to
+> add all defines at once, so multiple patches here should be squashed.
 
-On Mon, 04 Nov 2024 11:28:01 +0800, Liu Ying wrote:
-> Dual-link LVDS displays receive odd pixels and even pixels separately from
-> dual LVDS links.  One link receives odd pixels and the other receives even
-> pixels.  Some of those displays may also use only one LVDS link to receive
-> all pixels, being odd and even agnostic.  Document common properties for
-> those displays by extending LVDS display common properties defined in
-> lvds.yaml.
-> 
-> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v5:
-> * Use patternProperties to define port@0 and port@1.  (Biju)
-> * Require port@0 or port@1.
-> 
-> v4:
-> * Squash change for advantech,idk-2121wr.yaml and
->   panel-simple-lvds-dual-ports.yaml with lvds-dual-ports.yaml.  (Rob)
-> * Improve description in lvds-dual-ports.yaml.  (Krzysztof)
-> 
-> v3:
-> * New patch.  (Dmitry)
-> 
->  .../bindings/display/lvds-dual-ports.yaml     | 63 +++++++++++++++++++
->  .../display/panel/advantech,idk-2121wr.yaml   | 14 +----
->  .../panel/panel-simple-lvds-dual-ports.yaml   | 20 +-----
->  3 files changed, 65 insertions(+), 32 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/lvds-dual-ports.yaml
-> 
+Sure, I was not sure so I leaned in the safe bet direction. Squashing is
+much easier than splitting. Also improved the commit message, which
+will look like this for next revision (incoming soon):
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+--
+
+dt-bindings: clock: eyeq: add more Mobileye EyeQ5/EyeQ6H clocks
+
+Add #defines for Mobileye clock controller:
+
+ - EyeQ5 core 0 thru 3 clocks. Internally:
+
+      EQ5C_PLL_CPU:           already exposed
+      =E2=94=94=E2=94=80=E2=94=80 EQ5C_CPU_OCC:       unexposed, no reason =
+to do so
+          =E2=94=9C=E2=94=80=E2=94=80 EQ5C_CPU_CORE0: new!
+          =E2=94=9C=E2=94=80=E2=94=80 EQ5C_CPU_CORE1: new!
+          =E2=94=9C=E2=94=80=E2=94=80 EQ5C_CPU_CORE2: new!
+          =E2=94=94=E2=94=80=E2=94=80 EQ5C_CPU_CORE3: new!
+
+ - EyeQ5 peripheral clocks. Internally:
+
+      EQ5C_PLL_PER:          already exposed
+      =E2=94=94=E2=94=80=E2=94=80 EQ5C_PER_OCC:      new!
+          =E2=94=94=E2=94=80=E2=94=80 EQ5C_PER_UART: new!
+
+ - EyeQ6H central OLB. Internally:
+
+      EQ6HC_CENTRAL_PLL_CPU:     new!
+      =E2=94=94=E2=94=80=E2=94=80 EQ6HC_CENTRAL_CPU_OCC: new!
+
+ - EyeQ6H west OLB. Internally:
+
+      EQ6HC_WEST_PLL_PER:          new!
+      =E2=94=94=E2=94=80=E2=94=80 EQ6HC_WEST_PER_OCC:      new!
+          =E2=94=94=E2=94=80=E2=94=80 EQ6HC_WEST_PER_UART: new!
+
+Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+
+--
+
+Thanks Krzysztof,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
