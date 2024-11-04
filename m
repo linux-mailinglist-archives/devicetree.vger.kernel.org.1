@@ -1,65 +1,71 @@
-Return-Path: <devicetree+bounces-118637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A3C89BB0A6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:10:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C18A89BB0AC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:10:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29DD8B25470
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:10:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E4BD1F20C16
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304BD1AF0DD;
-	Mon,  4 Nov 2024 10:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7AFF1B0F3C;
+	Mon,  4 Nov 2024 10:10:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZS8rdhD5"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Gup59poh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 799D31ABEB1;
-	Mon,  4 Nov 2024 10:10:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4EDD1B0F38;
+	Mon,  4 Nov 2024 10:10:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730715008; cv=none; b=H6KvfzQrdto08Xsj9yDppks9syu09qisRhvyyLgReu8jictrQ0jcQWsPJ6T4cgcsQQcXKwsUhNfS5LbDmZB9AHCWTk+Cr8GNCClskz4ASE9mhHF1gAQPSLjePYG1CmQiwI8o3JmyZGl+ZBqLvqneNLFPAlxk1uCM4clTkrie4gU=
+	t=1730715026; cv=none; b=rpm7zsXs6Hzy+hfw6mMtIypkhNpuM0AriaLpqPkYPWShw6vkUDHCIV7upCo1nhR7clmUqe2otB7J99HHWI1OqTxgf6+0sbfozl346AbaxIYsx2Huye4G7rVt23M6B3GektqeJD/CKX0jDCsr7e2AYd8634QZr2cPi+Ezc0UtHqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730715008; c=relaxed/simple;
-	bh=lLbyBoAV8LAAMdgY2WJPPlbx5TE3cUhhNB8Q1ZTzIcA=;
+	s=arc-20240116; t=1730715026; c=relaxed/simple;
+	bh=CSYjP+K7N5aRJn2h9T1DLvgtC+RNWp28+4aFe4h0Gn0=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=JrCz86GTF0YoyuVc5hEuGuSZS5/sRdlq/5za7eMzc8F+/BGg5z+2WRagzke7JAGXzCUqqxCtiAlbn6h+Cil1O6CXP3rOz3ndFI8UZD0SkSBJM6n6MSeKm8vXQfCi7UgbPEtDcT+ei+nDIiHKjsWozzonMHsuWDOMbB1D2GbKNbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZS8rdhD5; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version:Content-Type; b=Gw7/Sf+6hHs9SonVNZcjpK6gt6xIyoXXEkfCdyx4KbCMykio2/eSYBRIUPjGMuhgWPKZYqU62pTcnzxTLHkvdYYsQK18hhW7gf0zstTjjDkSGULpKVw9+AGOrk5WSeu7iHP6SBCgqLqhf1fRxp0L9TfQUIgtMvnKi7ODvEs+z8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Gup59poh; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1730714998;
-	bh=lLbyBoAV8LAAMdgY2WJPPlbx5TE3cUhhNB8Q1ZTzIcA=;
+	s=mail; t=1730715022;
+	bh=CSYjP+K7N5aRJn2h9T1DLvgtC+RNWp28+4aFe4h0Gn0=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ZS8rdhD50IHxY+5Rbx8r7cZBPvPyB6xYWC2v/L0hAjlXLYIJaIQnpK/KX7TlVjHbz
-	 rHmHYWcyHxEAidWoqcfCp9gywzr/GbIR4VcnC7mr2ltpJ5s2zbtwWupskX1d5hEujo
-	 K9Fym5ilmXMygh31eFMLzJ3OCwI8JJj8aIlKX7Yfq/z22gyTWkJUX1Sll7LT4dukRI
-	 mTXSp0TUiBspnV5zj0kuQ44tOSav6QtX75717Ogobq1dcwpjcfL9DSlva3pEsy2UVN
-	 G/5sGyge0T6kjWHznZwdk1V2RkwSUH+vGWDq4zG68iPQ8VIRqX4FL7U35Eg9VtiE9v
-	 21dC8e2AFkipw==
+	b=Gup59pohQBT87OEkR5N8zLsA21IUm3/nZ31/e8b9Gm5d8/0gp0PrTlddgvji0g/ca
+	 MUtnC7m9mzuAR5vBYqZmakEh36t7ir8FmcwCnWuTnFdK0p6z7qweKw752JX524A5or
+	 IIBTAz07Yu/M3tP4fXOw50OpiNAYey0ijh5oNH0VXXGPKcL/lxXEzcOhgp3ZIJzz/S
+	 cwXbwycmL8LzKq90PhVE5Wxm4KICsveUJ9EJX63Ga3sZ/T+P8D4N5vDej1fsio5CBE
+	 2cNUv87uL9d/dh335U/lT1RQZFbjZkhTkWxL8MIp7KB5N6ZZeTrawBlx9c9V2QFJbD
+	 2J20lFU39klgQ==
 Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1451B17E14EF;
-	Mon,  4 Nov 2024 11:09:58 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 352C217E14EF;
+	Mon,  4 Nov 2024 11:10:22 +0100 (CET)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
- Chen-Yu Tsai <wenst@chromium.org>
-Cc: devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- stable@vger.kernel.org
-In-Reply-To: <20241029100226.660263-1-wenst@chromium.org>
-References: <20241029100226.660263-1-wenst@chromium.org>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8186-corsola: Fix IT6505 reset
- line polarity
-Message-Id: <173071499802.113773.6669341556020572344.b4-ty@collabora.com>
-Date: Mon, 04 Nov 2024 11:09:58 +0100
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Alexandre Mergnat <amergnat@baylibre.com>, 
+ Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>, 
+ Macpaul Lin <macpaul@gmail.com>, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com, 
+ linux-usb@vger.kernel.org, Chris-qj chen <chris-qj.chen@mediatek.com>
+In-Reply-To: <20241029064647.13370-1-macpaul.lin@mediatek.com>
+References: <20241029064647.13370-1-macpaul.lin@mediatek.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt6358: fix dtbs_check error
+Message-Id: <173071502217.114014.11522421669609196627.b4-ty@collabora.com>
+Date: Mon, 04 Nov 2024 11:10:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,21 +76,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
-On Tue, 29 Oct 2024 18:02:25 +0800, Chen-Yu Tsai wrote:
-> The reset line of the IT6505 bridge chip is active low, not active high.
-> It was incorrectly inverted in the device tree as the implementation at
-> the time incorrectly inverted the polarity in its driver, due to a prior
-> device having an inline inverting level shifter.
+On Tue, 29 Oct 2024 14:46:47 +0800, Macpaul Lin wrote:
+> Fix DTBS check errors for 'mt6358codec' and 'mt6358regulator':
 > 
-> Fix the polarity now while the external display pipeline is incomplete,
-> thereby avoiding any impact to running systems.
+> Error message is:
+> pmic: 'mt6358codec' and 'mt6358regulator' does not match any of the
+> regexes: 'pinctrl-[0-9]+'.
+> Rename these two device node to generic 'audio-codec' and 'regulators'.
 > 
 > [...]
 
 Applied to v6.12-next/dts64, thanks!
 
-[1/1] arm64: dts: mediatek: mt8186-corsola: Fix IT6505 reset line polarity
-      commit: fbcc95fceb6d179dd150df2dc613dfd9b013052c
+[1/1] arm64: dts: mediatek: mt6358: fix dtbs_check error
+      commit: 76ab2ae0ab9ebb2d70e6ee8a9f59911621192c37
 
 Cheers,
 Angelo
