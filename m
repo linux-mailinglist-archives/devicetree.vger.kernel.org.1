@@ -1,115 +1,158 @@
-Return-Path: <devicetree+bounces-118693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D39FA9BB420
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:04:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FA869BB42F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:08:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98283281034
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:04:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1EA11C206FD
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:08:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 592C31B3937;
-	Mon,  4 Nov 2024 12:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C9891B4F15;
+	Mon,  4 Nov 2024 12:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Iaj/wtND"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="npXjDaGG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8725E188700;
-	Mon,  4 Nov 2024 12:04:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1065418DF85;
+	Mon,  4 Nov 2024 12:07:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730721853; cv=none; b=Dt0Y7mUE99lOsfj3UfoBuTt5DBRcEKljlDL7ab9FCgX82S0A9edYIEuLBV+LhxU0vvE633Z1aCmuanhd361VN0Ozt8XhIYp0dBgM76jhEnb6sAY+NuEaqmZZEE8hVgkdhR4W8bBI+jFg9BIOglr+Tya3vLBuf8rSomewtRFaSZM=
+	t=1730722076; cv=none; b=fT6HXfnB1Y4u7Mt5HL1056wA744M24TOH0lHwmfmNE3uyKoTVYVtcDWLoKLVtsrJmPOJxTvzJWhzjH7sCsboJlDCfICo1Zqi7UiVCrwVkH0/WtroYxv5EYWdor8tlyfwEG5uB373esFc8DDGF//T1/8w+vFx00Xxj5l1/ld5ec4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730721853; c=relaxed/simple;
-	bh=5V3k7t/BD3t++beRovDo9rbK7RVpmurTwzAlsqQ9dCA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BVyYTxyoHrrjIXT1TrP4o17szTmYIu0Fk84HoKcEV7IF9ek+1xvOZ8I5ZdQnqXe3ODy4gp6l1AycF+fBoopn32NPnwb5sSaJFZIOqT6ffzfd0yI68YotQ7aXk2wI2xCYaCR3hKfgWdGM4leJS1bIM9FIJnusQsEGlueBD4tIcKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Iaj/wtND; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [192.168.1.107] (87-97-112-21.pool.digikabel.hu [87.97.112.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: hs@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 48E0088113;
-	Mon,  4 Nov 2024 13:04:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1730721849;
-	bh=wF15CK3q+ocViJhOms9ADFB9q0mQckeGq5fArBdv+lo=;
-	h=Date:Subject:To:Cc:References:Reply-To:From:In-Reply-To:From;
-	b=Iaj/wtNDV1SD0/BijQwuDtssB1toG2nFV66NzthHlMHhmYB25iVlCF1meuY18lgET
-	 uvP963YFf7wAYnCpvZeUx8iDCC3wT5rPBV1jdavV2u9t3tibTM8gCUJNyv/7HOFL5o
-	 BkT7nY+s5GznUpkJwD6+VrV4ih1cP/2b5jaMma7ksv7+fmR1odoEBI6q9KHa7qg0tE
-	 kX7Ub9zA7jVmA4gJIV6omTECtT6isvAouDxrNKTA3V0irX7WoYpriScMRsu1RG3csC
-	 ompLI0tA9KsXNZRaSxzMiJsBbTNFDOlQhBs/tQTKU0h+GlcE9m9vCFulAnh6l+AOok
-	 25Bx6jlNbBH9A==
-Message-ID: <3214def1-4669-79ed-36c2-e19a119aabeb@denx.de>
-Date: Mon, 4 Nov 2024 13:01:43 +0100
+	s=arc-20240116; t=1730722076; c=relaxed/simple;
+	bh=vsi/33NO427ZAndINphaIY00QOvDA9ey0no25IMNd9Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mc5++0RyXAxDRHiBJNhPl43yVFYk37RbUn4Mej/Pq5sm12rtvFDnsoJQqL1fSioxBNd72HSau6l1cOChAGGA/BiLYx8BK9+9DAeKGMOmjYD+pK58QIQJyfD1R0/Sve2UI2Be8QH/E7wG0gtspWgwJHVq9CGDLjxjuxCUwkhuXJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=npXjDaGG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2F5DC4CED1;
+	Mon,  4 Nov 2024 12:07:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730722075;
+	bh=vsi/33NO427ZAndINphaIY00QOvDA9ey0no25IMNd9Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=npXjDaGGZ80pU4vZ5j/r8KHDcCtmUDdEQC/2TlGdDWGbkKhfeTBrNjRXVd7bo7N3M
+	 Zf0PhHihION3wOtFDRHym/jLTMhd5BgFjLC4dZKe6ZCBsX0EeKJptLeGOyPMvZ+RCR
+	 TP3nYhIziZ8vdu67APyeHjs8ItLBeVBhP94zT/nGgHUxxed+aSSJPGroRnOH5EIZY9
+	 QdocH/QeuOfA7dVrUer1mBV7sQj4EE5HN2j+T3C00hfXWDr1d4xGqUc/9PjK/JWDQo
+	 HMekwVt4NgTs/4OzDZYcc+ITCiSr5ojkNf6AH8bhqb14UkMNzb/M5FIIAoKwRX0RhE
+	 T6rnPFfharIUQ==
+Date: Mon, 4 Nov 2024 12:07:49 +0000
+From: Conor Dooley <conor@kernel.org>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+Cc: Inochi Amaoto <inochiama@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Evan Green <evan@rivosinc.com>,
+	Charlie Jenkins <charlie@rivosinc.com>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Andy Chiu <andybnac@gmail.com>, Xiao Wang <xiao.w.wang@intel.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH v2 2/3] riscv: add ISA extension parsing for bfloat16 ISA
+ extension
+Message-ID: <20241104-number-recall-85e044c9b72d@spud>
+References: <20241103074959.1135240-1-inochiama@gmail.com>
+ <20241103074959.1135240-3-inochiama@gmail.com>
+ <2e775421-0c3e-48ef-8a8c-6734f7fcf298@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: imx8mp: add aristainetos3 board
- support
-Content-Language: en-US
-To: Fabio Estevam <festevam@gmail.com>
-Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20241031151238.67753-1-hs@denx.de>
- <20241031151238.67753-4-hs@denx.de>
- <CAOMZO5ACMGbhySUbR8r1UUimc53YDaRbfEObyUrf0GLYZcQfjg@mail.gmail.com>
-Reply-To: hs@denx.de
-From: Heiko Schocher <hs@denx.de>
-In-Reply-To: <CAOMZO5ACMGbhySUbR8r1UUimc53YDaRbfEObyUrf0GLYZcQfjg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="vFZn2GDfm8gUnKj9"
+Content-Disposition: inline
+In-Reply-To: <2e775421-0c3e-48ef-8a8c-6734f7fcf298@rivosinc.com>
 
-Hello Fabio,
 
-On 04.11.24 12:15, Fabio Estevam wrote:
-> Hi Heiko,
-> 
-> On Thu, Oct 31, 2024 at 12:12 PM Heiko Schocher <hs@denx.de> wrote:
-> 
->> +               brightness-levels = < 0  1  2  3  4  5  6  7  8  9
->> +                                    10 11 12 13 14 15 16 17 18 19
->> +                                    20 21 22 23 24 25 26 27 28 29
->> +                                    30 31 32 33 34 35 36 37 38 39
->> +                                    40 41 42 43 44 45 46 47 48 49
->> +                                    50 51 52 53 54 55 56 57 58 59
->> +                                    60 61 62 63 64 65 66 67 68 69
->> +                                    70 71 72 73 74 75 76 77 78 79
->> +                                    80 81 82 83 84 85 86 87 88 89
->> +                                    90 91 92 93 94 95 96 97 98 99
->> +                                   100>;
->> +               default-brightness-level = <80>;
-> 
-> One suggestion: a more succinct way to represent this would be:
-> 
-> brightness-levels = <0 100>;
-> num-interpolated-steps = <100>;
+--vFZn2GDfm8gUnKj9
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the suggestion!
+On Mon, Nov 04, 2024 at 10:15:56AM +0100, Cl=E9ment L=E9ger wrote:
+>=20
+>=20
+> On 03/11/2024 08:49, Inochi Amaoto wrote:
+> > Add parsing for Zfbmin, Zvfbfmin, Zvfbfwma ISA extension which
+> > were ratified in 4dc23d62 ("Added Chapter title to BF16") of
+> > the riscv-isa-manual.
+> >=20
+> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > ---
+> >  arch/riscv/include/asm/hwcap.h | 3 +++
+> >  arch/riscv/kernel/cpufeature.c | 3 +++
+> >  2 files changed, 6 insertions(+)
+> >=20
+> > diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hw=
+cap.h
+> > index 46d9de54179e..97657fb63af6 100644
+> > --- a/arch/riscv/include/asm/hwcap.h
+> > +++ b/arch/riscv/include/asm/hwcap.h
+> > @@ -93,6 +93,9 @@
+> >  #define RISCV_ISA_EXT_ZCMOP		84
+> >  #define RISCV_ISA_EXT_ZAWRS		85
+> >  #define RISCV_ISA_EXT_SVVPTC		86
+> > +#define RISCV_ISA_EXT_ZFBFMIN		87
+> > +#define RISCV_ISA_EXT_ZVFBFMIN		88
+> > +#define RISCV_ISA_EXT_ZVFBFWMA		89
+> > =20
+> >  #define RISCV_ISA_EXT_XLINUXENVCFG	127
+> > =20
+> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeat=
+ure.c
+> > index 3a8eeaa9310c..1b286f5bc591 100644
+> > --- a/arch/riscv/kernel/cpufeature.c
+> > +++ b/arch/riscv/kernel/cpufeature.c
+> > @@ -325,6 +325,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D=
+ {
+> >  	__RISCV_ISA_EXT_DATA(zacas, RISCV_ISA_EXT_ZACAS),
+> >  	__RISCV_ISA_EXT_DATA(zawrs, RISCV_ISA_EXT_ZAWRS),
+> >  	__RISCV_ISA_EXT_DATA(zfa, RISCV_ISA_EXT_ZFA),
+> > +	__RISCV_ISA_EXT_DATA(zfbfmin, RISCV_ISA_EXT_ZFBFMIN),
+> >  	__RISCV_ISA_EXT_DATA(zfh, RISCV_ISA_EXT_ZFH),
+> >  	__RISCV_ISA_EXT_DATA(zfhmin, RISCV_ISA_EXT_ZFHMIN),
+> >  	__RISCV_ISA_EXT_DATA(zca, RISCV_ISA_EXT_ZCA),
+> > @@ -357,6 +358,8 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D=
+ {
+> >  	__RISCV_ISA_EXT_SUPERSET(zve64d, RISCV_ISA_EXT_ZVE64D, riscv_zve64d_e=
+xts),
+> >  	__RISCV_ISA_EXT_SUPERSET(zve64f, RISCV_ISA_EXT_ZVE64F, riscv_zve64f_e=
+xts),
+> >  	__RISCV_ISA_EXT_SUPERSET(zve64x, RISCV_ISA_EXT_ZVE64X, riscv_zve64x_e=
+xts),
+> > +	__RISCV_ISA_EXT_DATA(zvfbfmin, RISCV_ISA_EXT_ZVFBFMIN),
+> > +	__RISCV_ISA_EXT_DATA(zvfbfwma, RISCV_ISA_EXT_ZVFBFWMA),
+>=20
+> @Conor,
+>=20
+> Should we wait for your V/F validation support to be merged before this
+> one ?
 
-bye,
-Heiko
--- 
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
+Uh, I don't really see a reason to hold this up on my account. I can
+easily rebase on top when I get the motivation to do more work on that
+series.
+
+--vFZn2GDfm8gUnKj9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyi5FQAKCRB4tDGHoIJi
+0nLvAP9dZnNwlwpdYASHbLLL4ZVIYfSR0JyUNfivFOkfosM0aQEAhemaFYVfqvPL
+YewSufLQLOeK2QCh4rruU59GZSdYwAQ=
+=uyWh
+-----END PGP SIGNATURE-----
+
+--vFZn2GDfm8gUnKj9--
 
