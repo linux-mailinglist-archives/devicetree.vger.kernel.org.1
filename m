@@ -1,101 +1,95 @@
-Return-Path: <devicetree+bounces-118763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6E679BB78A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 15:20:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5958F9BB79D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 15:24:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D93ED28488D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:20:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 053551F21974
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:24:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CA6D1442F2;
-	Mon,  4 Nov 2024 14:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7024178CDE;
+	Mon,  4 Nov 2024 14:24:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mJRmrsJO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SDkIXJjU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64AEE13A257;
-	Mon,  4 Nov 2024 14:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E6C714D2B1;
+	Mon,  4 Nov 2024 14:24:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730730021; cv=none; b=syok2oxzrTLvwbmF+tn9FmwTci4oTq2yTrFxj5/TvGl/YOhu4EpoZIucRBj/UCaAGgWh9oa/UjkztfH9LY/Mh9bMtJozfkGztpN9HYGr/psjdR9WturGcV6PraGHDRve0vVxZAnLWGha7lhKf2UmA3MpUo9OorbnRSU58K/TbP4=
+	t=1730730263; cv=none; b=bZNrxAsG/DRPdOr56A5q88ymT0w9Av7/xkgPIo9yieQebQmArqo8mdGyPwJXkZrAmRAEdiT7BKccjipM/mXCrxCY9VbBuyqzSkYbZlAVepro7lrGtjIaxW2dXxK20+ewSqH535KzaGg6mh0Prul1gZVN+xpykliDYvTub2DvFtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730730021; c=relaxed/simple;
-	bh=02cumqv7Pptd8Tkhcc6pofXSXkHGb+wYsFd9giydYr4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YENNs6c+NcAJumb2bythQj4D1WXdj75Vdy9qcCKHmGU3Cjdbm9Ahm6V/sWUKf0J6TVsAwlvFPoROM/AX/H03OnLAG8vBkorto8wvWmSYszKvb4KAkToodtKEAnrPrC5dQrT5uwfGDKqT6isEFsyETUV/WH3EvlDRA3wP6JLA2fs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mJRmrsJO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C424C4CEDB;
-	Mon,  4 Nov 2024 14:20:17 +0000 (UTC)
+	s=arc-20240116; t=1730730263; c=relaxed/simple;
+	bh=xu/jVyvAFcaTT86i2w/CmQDbYhthYBNARz5ujHg8xP4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SMV+JrksVruosNouttEFJyzppa+H5m8bibEBd1d1grnWq8Mdf1yKFsWJK5kU1a3vrveVHzdROay/vLmegDsgu1XyadHPHthkpUW24FmMfuNLd8R1Ffj2hK8A7F8ydPZb2JuM4sb/iIrj9AuRSDIq9NQPu+pAUyfC+IyhcYBenSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SDkIXJjU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 033FCC4CED0;
+	Mon,  4 Nov 2024 14:24:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730730021;
-	bh=02cumqv7Pptd8Tkhcc6pofXSXkHGb+wYsFd9giydYr4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=mJRmrsJOR9MTLMeiDc3UdRBlUA6b8l9lBH5W129vD3MOgCD+YrhKDsJbP69La44ki
-	 GTJrs2jdcMVPryBJOZxP8fUcCndSyjO3hhp6UAbhJ0mbP1o6f5ReM9k+II1udOf4TA
-	 Maanwxq/pGBPWz2mDBIPt6l76rhrDLwVCYe0iftXy6C0k7CMpDcPG7MAN9SyI1Fp8A
-	 5l4VQujSQ2bC0gLJp9kFzpBD8v4YegsYSjjuN4zYRs9NhwXgv6AG9+QrLrTB1G1ZA1
-	 SKaJCzqzlVgkvW1Pv9deMWBsXSAfWTe3Up91paYIHzAwsnmq9sj4zHg8JDTIaDJNDD
-	 7OrPhW0FBMm6g==
-From: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Pavel Machek <pavel@ucw.cz>,
-	linux-leds@vger.kernel.org,
-	Arnd Bergmann <arnd@arndb.de>,
-	soc@kernel.org,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	arm@kernel.org,
-	Andy Shevchenko <andy@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Subject: [PATCH leds v5 12/12] ARM: dts: turris-omnia: Add global LED brightness change interrupt
-Date: Mon,  4 Nov 2024 15:19:24 +0100
-Message-ID: <20241104141924.18816-13-kabel@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241104141924.18816-1-kabel@kernel.org>
-References: <20241104141924.18816-1-kabel@kernel.org>
+	s=k20201202; t=1730730263;
+	bh=xu/jVyvAFcaTT86i2w/CmQDbYhthYBNARz5ujHg8xP4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SDkIXJjUqI8v65KuM7S0M3PNEJPSnroUHZ06u2jFVG4lS5fEazbocaYJ4NOqQS0g0
+	 7yCtHwOzd1De1r+WB/6AX7+giDketoP1aVZ10dWwC5eBy2u26VQxxaJhY0mTG4w7OF
+	 p6HwSLWMwbhdPwzoxZHDeuNz5kP4602+FPHb8lN7RnixdW01ddfYvQY69SvPOiGBZd
+	 KH+WXeeX46KbPW8sb4hLI6WnLk3qCmRhuAUkactaqXuIsXDdz/hLFcv3SyEi5IA7GL
+	 DjXa8ynJmuEUszLbxL4evzBfakrMG2xgl8O7d/dIdYv6xi3d23GFaaJiyFUS8Irna5
+	 9smLFvnEwr3Qg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1t7y0B-000000007zq-2QQ4;
+	Mon, 04 Nov 2024 15:24:20 +0100
+Date: Mon, 4 Nov 2024 15:24:19 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Qiang Yu <quic_qianyu@quicinc.com>
+Cc: manivannan.sadhasivam@linaro.org, vkoul@kernel.org, kishon@kernel.org,
+	robh@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
+	sboyd@kernel.org, abel.vesa@linaro.org, quic_msarkar@quicinc.com,
+	quic_devipriy@quicinc.com, dmitry.baryshkov@linaro.org,
+	kw@linux.com, lpieralisi@kernel.org, neil.armstrong@linaro.org,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	johan+linaro@kernel.org
+Subject: Re: [PATCH v8 3/5] PCI: qcom: Remove BDF2SID mapping config for
+ SC8280X family SoC
+Message-ID: <ZyjZE-U_7YZhScfG@hovoldconsulting.com>
+References: <20241101030902.579789-1-quic_qianyu@quicinc.com>
+ <20241101030902.579789-4-quic_qianyu@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241101030902.579789-4-quic_qianyu@quicinc.com>
 
-When global LED brightness is changed by pressing the front button on
-Turris Omnia, the MCU can produce an interrupt to the CPU. Add the
-description of this interrupt to the LED controller node.
+On Thu, Oct 31, 2024 at 08:09:00PM -0700, Qiang Yu wrote:
+> The SC8280XP PCIe devicetree nodes do not specify an 'iommu-map' so the
+> config_sid() callback is effectively a no-op. Hence introduce a new ops
 
-Signed-off-by: Marek Behún <kabel@kernel.org>
----
- arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts | 1 +
- 1 file changed, 1 insertion(+)
+Would have been good to say something about why there are no 'iommu-map'
+properties on sc8280xp (e.g. since it uses an SMMUv3) as Bjorn
+suggested.
 
-diff --git a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts b/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-index 43202890c959..83fe00abd652 100644
---- a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-+++ b/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-@@ -251,6 +251,7 @@ mcu: system-controller@2a {
- 			led-controller@2b {
- 				compatible = "cznic,turris-omnia-leds";
- 				reg = <0x2b>;
-+				interrupts-extended = <&mcu 11 IRQ_TYPE_NONE>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "okay";
--- 
-2.45.2
+> struct, namely ops_1_21_0 which is same as ops_1_9_0 except that it
+> doesn't have config_sid() callback to clean it up.
+> 
+> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
+I see that this patch has been picked up now. The above is already much
+better and I guess this is good enough for now:
+
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 
