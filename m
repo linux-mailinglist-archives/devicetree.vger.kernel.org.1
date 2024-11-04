@@ -1,205 +1,97 @@
-Return-Path: <devicetree+bounces-118857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C679BBD8A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 19:55:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BCDC9BBD90
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 19:57:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50F6E1F22506
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 18:55:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F5BD1C2164A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 18:57:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A291CACE5;
-	Mon,  4 Nov 2024 18:55:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CC1618B478;
+	Mon,  4 Nov 2024 18:57:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="D+91PJ0A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lQWik+ae"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E3B418622;
-	Mon,  4 Nov 2024 18:55:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B57318622;
+	Mon,  4 Nov 2024 18:57:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730746524; cv=none; b=QVunBhdxCo9m2lUObxwnWisfdGjzxkttPoRNsRVMt2oCKDzZWQRMe+R+MF1fv9MKGwTRvs2RDjPXp9LzsvuDqinRLoiDZY7xSlr/9H+uwvt3QKfaZfah+GSMfXw61yl2uwx2RZKNQltWE5v/640j/cjh3T2LNZ8qJX9XnSwJ/Z4=
+	t=1730746624; cv=none; b=rbVrYobM2uqrN58Xj1p/ggDBXRyEevDzt+gx1ByUS0lrioDJg0J7qBi4VtMz+nmkBJuVIy0IN7+P/pCD/AteiufpxzyCXQ3cslvvxw9O/Vhb7YTFc2jvwuoaqCPZZ7PoXMJ2+ibS9o+eq7Ybc+Vhre9TgPdJ/juZBKX3en2Hbow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730746524; c=relaxed/simple;
-	bh=sAVXfE+viSyvyyb4ZsPNYrVskuTdS5aiXCQOI2NGJf8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=irqZ+XVHBUhnx1XZBfs6F36XrgaXVH19ZijlDYnctzfQOfAqwWQZukay1U5SekrjZjm2bLSt5H+FL1e055u5KPdqpVBiYcUqJisLpkalCBSqDs3Vu1fKNMl5P5KUOEZD4dvCHLEmxTOjCaQjSHeEciFqi7Y15BgqTBNqmII6c4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=D+91PJ0A; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A4Bj2UP027157;
-	Mon, 4 Nov 2024 18:55:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EnzS8YCHDwGTykF7cqgVjEldgKDqxW3aidPt90wH09U=; b=D+91PJ0AwEv1Tw2P
-	EzvBll3qLGS+D6UmAcOQ4MjGRs/NRYKLxKqpywKd9+sU4hbSMp/qRpIltYy4FK4A
-	V2VehFRREqPKG7Hk7JzqGGLjzxC150xvCNGhY1d+PmHzz5bAN04syd/SZ2fxGWPd
-	kTPdPSu7fJRSTZN1+9M4/EF4MApN7uYe9LAj1Yvbmc4WVKXjFqszXN88giZ8Doi/
-	AcD1kDdsqfwxVsZ4I2zWlbNdIwP3pamSCPnJM+rV4RS8Ca/enNxiEqiBR2exATuD
-	i+RskwNWGEnu//DN/O3mwCg/2CpBtxGr0e6c+sE2Uh5AlFyWIyMrChXpqMB0JmGv
-	zJ0E4g==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42ncyxw630-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 04 Nov 2024 18:55:15 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A4ItEYB030484
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 4 Nov 2024 18:55:14 GMT
-Received: from [10.216.7.198] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 4 Nov 2024
- 10:55:09 -0800
-Message-ID: <b8054e94-1ea4-4d39-8050-2f3ddd0a8b3f@quicinc.com>
-Date: Tue, 5 Nov 2024 00:25:06 +0530
+	s=arc-20240116; t=1730746624; c=relaxed/simple;
+	bh=klRNM2QW6fTskX6MxVeh5Eu1pMzs7Vd2pwb5fH/5Csw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ghcMyXBHDSKq/kZM5nZ0I9xGDFy9zjx4fAMyoj9DH9CLtQfT8G+zzWlA99DuX6rclSr6BIoie3LOFLbRWUFwY9nYZ5+EHniiDZeKHjtp0qzslJO9T5BCbVUCgnd7ff8rm7j2MUBIKRa0ydQOzkatDegizwP9KENTwBFM+gbeOtc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lQWik+ae; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A845BC4CECE;
+	Mon,  4 Nov 2024 18:57:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730746624;
+	bh=klRNM2QW6fTskX6MxVeh5Eu1pMzs7Vd2pwb5fH/5Csw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lQWik+aeNFU8ogWjtCmkss7kGZP/iF2OtVuPVfEaR5VODM9vL3G3aKKMvmMIB9DCq
+	 Su81izEMPMGM/6dJW9MbWy4OPcuBjnU5JSqcB63+Qe4a4dHlTTsfEE1E5HfVnjTw+d
+	 JmXLHkwrzQIktGJXSApVm8iGz5uw57EYxNiyPhnIESREtOxDFHxJ6gErnS6EDhDvTY
+	 2hGGCKlF8Px6FZ3kDzEBfOGexlCjrLOpJJWZcoPxoCyBaHR5aOfpHt719W+wqmXlqq
+	 RcJg1Ky8pIsRTdh9zTNG0WFqzrmefvsBt+hmTfE8VRxeXdfrM/vsx+EhR+iMiVtU3l
+	 hJ5lR5Ye/z8iA==
+Date: Mon, 4 Nov 2024 18:56:59 +0000
+From: Conor Dooley <conor@kernel.org>
+To: j@jannau.net
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: spi: apple,spi: Add binding for
+ Apple SPI controllers
+Message-ID: <20241104-retract-wife-e1abe7425cc8@spud>
+References: <20241101-asahi-spi-v3-0-3b411c5fb8e5@jannau.net>
+ <20241101-asahi-spi-v3-1-3b411c5fb8e5@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 1/5] dt-bindings: net: wireless: ath12k: describe
- WSI properties for QCN9274
-To: Jeff Johnson <quic_jjohnson@quicinc.com>, <ath12k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20241029173050.2188150-1-quic_rajkbhag@quicinc.com>
- <20241029173050.2188150-2-quic_rajkbhag@quicinc.com>
- <4d273cac-8955-4850-bd8a-0bad318c1e4f@quicinc.com>
-Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <4d273cac-8955-4850-bd8a-0bad318c1e4f@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: kkVYawqLpV08D4dHjeKgglZUYSoOEZOB
-X-Proofpoint-GUID: kkVYawqLpV08D4dHjeKgglZUYSoOEZOB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- malwarescore=0 bulkscore=0 impostorscore=0 priorityscore=1501
- lowpriorityscore=0 mlxscore=0 phishscore=0 adultscore=0 mlxlogscore=999
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411040155
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="eDkNDo8k+C4oOoqZ"
+Content-Disposition: inline
+In-Reply-To: <20241101-asahi-spi-v3-1-3b411c5fb8e5@jannau.net>
 
-On 10/31/2024 12:34 AM, Jeff Johnson wrote:
-> On 10/29/2024 10:30 AM, Raj Kumar Bhagat wrote:
->> QCN9274 device has WSI support. WSI stands for WLAN Serial Interface.
->> It is used for the exchange of specific control information across
->> radios based on the doorbell mechanism. This WSI connection is
->> essential to exchange control information among these devices
->>
->> Hence, describe WSI interface supported in QCN9274 with the following
->> properties:
->>
->>  - qcom,wsi-group-id: It represents the identifier assigned to the WSI
->>    connection. All the ath12k devices connected to same WSI connection
->>    have the same wsi-group-id.
->>
->>  - qcom,wsi-master: Indicates if this device is the WSI master.
->>
->>  - ports: This is a graph ports schema that has two ports: TX (port@0)
->>    and RX (port@1). This represents the actual WSI connection among
->>    multiple devices.
->>
->> Also, describe the ath12k device property
->> "qcom,ath12k-calibration-variant". This is a common property among
->> ath12k devices.
->>
->> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
->> ---
->>  .../bindings/net/wireless/qcom,ath12k.yaml    | 241 +++++++++++++++++-
->>  1 file changed, 232 insertions(+), 9 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
->> index 1b5884015b15..42bcd73dd159 100644
->> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
->> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
->> @@ -1,5 +1,6 @@
->>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>  # Copyright (c) 2024 Linaro Limited
->> +# Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
->>  %YAML 1.2
->>  ---
->>  $id: http://devicetree.org/schemas/net/wireless/qcom,ath12k.yaml#
->> @@ -18,10 +19,17 @@ properties:
->>    compatible:
->>      enum:
->>        - pci17cb,1107  # WCN7850
->> +      - pci17cb,1109  # QCN9274
->>  
->>    reg:
->>      maxItems: 1
->>  
->> +  qcom,ath12k-calibration-variant:
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +    description: |
->> +      string to uniquely identify variant of the calibration data for designs
->> +      with colliding bus and device ids
->> +
->>    vddaon-supply:
->>      description: VDD_AON supply regulator handle
->>  
->> @@ -49,21 +57,100 @@ properties:
->>    vddpcie1p8-supply:
->>      description: VDD_PCIE_1P8 supply regulator handle
->>  
->> +  wsi:
->> +    type: object
->> +    description: |
->> +      The ath12k devices (QCN9274) feature WSI support. WSI stands for
->> +      WLAN Serial Interface. It is used for the exchange of specific
->> +      control information across radios based on the doorbell mechanism.
->> +      This WSI connection is essential to exchange control information
->> +      among these devices.
->> +
->> +      Diagram to represent one WSI connection (one WSI group) among
->> +      three devices.
->> +
->> +               +-------+        +-------+        +-------+
->> +               | pcie2 |        | pcie3 |        | pcie1 |
-> is there a reason to not have these in some order?
-> 
 
-This could be made in same order. In next version will update.
-But in actual hardware the pcie and wsi connection may not be same order.
+--eDkNDo8k+C4oOoqZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
->> +               |       |        |       |        |       |
->> +        +----->|  wsi  |------->|  wsi  |------->|  wsi  |-----+
->> +        |      | grp 0 |        | grp 0 |        | grp 2 |     |
-> s/grp 2/grp 0/???                                          ^ typo?
-> 
+On Fri, Nov 01, 2024 at 08:26:12PM +0100, Janne Grunau via B4 Relay wrote:
+> +      spi: spi@39b104000 {
 
-Thanks for pointing out, this is a typo. will update in next version.
->> +        |      +-------+        +-------+        +-------+     |
->> +        +------------------------------------------------------+
->> +
->> +      Diagram to represent two WSI connections (two separate WSI groups)
->> +      among four devices.
->> +
->> +           +-------+    +-------+          +-------+    +-------+
->> +           | pcie2 |    | pcie3 |          | pcie1 |    | pcie0 |
-> again seems strange to not have any logical (to me) order
+nit: the label here serves no purpose, and could be dropped. No need to
+respin for that obviously.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Will keep this example diagram in pcie order in next version.
+Cheers,
+Conor.
+
+--eDkNDo8k+C4oOoqZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZykY+wAKCRB4tDGHoIJi
+0hkyAQCYza7XuxDWpE6cI+SQHeNqZ9LyGEb4tyHPUXhBQfj65AD/Yw6470Q9ai91
+Pki+/cTol7qQomfJQSdCFz2ZZaADigo=
+=XGu/
+-----END PGP SIGNATURE-----
+
+--eDkNDo8k+C4oOoqZ--
 
