@@ -1,139 +1,128 @@
-Return-Path: <devicetree+bounces-118779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 254859BB840
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 15:48:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D41939BB846
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 15:51:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C80FB1F235C4
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:48:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80FA91F2197A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:51:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B212D1B6D0A;
-	Mon,  4 Nov 2024 14:48:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k2Fhd/oV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 864091B6D1B;
+	Mon,  4 Nov 2024 14:51:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8134C469D;
-	Mon,  4 Nov 2024 14:48:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAB4D469D;
+	Mon,  4 Nov 2024 14:51:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730731704; cv=none; b=GmCA8ffh5mPWNYrZch84COeHCwTmm/Dh6M6VOC11ilhwwzzSMlTvyfeDxU+5yjCVqzcqhwivQGqVVZbzewgFPRUbKh2u05DQG7NXii9s3eHijiSB9veoBtrtnOIjem5wwKV7pH6XEi57cVzs62O1Ax5a2a+HzK+Vj+QZYF85HJw=
+	t=1730731894; cv=none; b=qxua6aQ5pV74fDXyJGRu/62pKWvr4xs2lCyLgKvIhonpv1XXmItHPF3Fecpi5woOxYGnweR18lXSl/xiDtwP28M7WOd7x9Dg3lrQxn6rlZ3SpEOgRbSYt6uPr8x8wlb/Dp+CRbdcrl2xYPnARd7ylgBDVyolKQjL+ALliYhtqGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730731704; c=relaxed/simple;
-	bh=f7SgoDZTxN1Ai2BJlj04ErLnyoJUnr6IKPRQk6VU2mw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bl6TOLxo6rZsJlGrYWOpHvAzvpKBklMH98P0Y5jsys2mzJSwoelV7NzyW5i4i8c77jTHeb98meBwaM8XfhRXUNVSdbp0f8/5gCvJ/arQI9HjQ4TNlVqcMpqEE98hjNOTW/uSextYUu+n6HtRG6wpfqDdfG76xG5ZSd8ueBo3q3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k2Fhd/oV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0256C4CECE;
-	Mon,  4 Nov 2024 14:48:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730731704;
-	bh=f7SgoDZTxN1Ai2BJlj04ErLnyoJUnr6IKPRQk6VU2mw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=k2Fhd/oVd79XKT5qNS1m5B3PqfnS9AhvirT3o/Oze++i6oQNSbIZHmE4q7F4KLnhP
-	 FX6fBOuflFDoUQZfQ4mTtHf8REmoeHGsxTnnjdJ8hIMVgH3IJmHjk8TQV2bmk5wrLL
-	 hTZgzbos5JjEGz7t5ryis5SQED+ZPXSygeTJG2C2+KlXiAZQ1SUsUI7TYk+Nnyzxsu
-	 om1rymDD3qRbWNXiAqwQbg3bmR1X33qlOlELKCzoFWEGwNbja4G9MCx0CKL78qENNz
-	 Y5ZPLI6Eu0Og5q0WRJLJ/2Q1YsBAiSUfiaq+GdaunW6eY8n7XIBizkxH+yWE5FfQOs
-	 gY9uqaS2OtniQ==
-Message-ID: <502b0b14-0e1f-4a59-85ad-7edeb9d3033d@kernel.org>
-Date: Mon, 4 Nov 2024 15:48:18 +0100
+	s=arc-20240116; t=1730731894; c=relaxed/simple;
+	bh=wRD1k9qYGHSw3Ki2lqflDP8d+sagOGgk/7QMLra8St8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HZAL4ETWdNzH2aaHMKu2A+8zEBdaHL18EHNvxHLxlldQxEZBwRxvPcocI6aWgmp5Du+igJ/Z9fbAHz0lgk01n3m3FQITUW2vnZnvpqV54902vqEZ8CvgQFyFtU+Ctu8ssx0YilB6RuY/iKWGssyET7+pitG8/1Pz88krf6aYhrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: c5jetXIZTQeQTXhRUiMwVA==
+X-CSE-MsgGUID: Tqttt6ldQIeQIgGiOyqK6w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="55832686"
+X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; 
+   d="scan'208";a="55832686"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2024 06:51:32 -0800
+X-CSE-ConnectionGUID: lKChbBCfTayaHR+zoyOkbA==
+X-CSE-MsgGUID: 2rS0Hw92RemWtEtDNlFnFQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; 
+   d="scan'208";a="88249843"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2024 06:51:28 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andy@kernel.org>)
+	id 1t7yQP-0000000B6JY-08Si;
+	Mon, 04 Nov 2024 16:51:25 +0200
+Date: Mon, 4 Nov 2024 16:51:24 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+	linux-leds@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+	soc@kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>,
+	arm@kernel.org, Hans de Goede <hdegoede@redhat.com>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH leds v5 02/12] leds: turris-omnia: Use command execution
+ functions from the MCU driver
+Message-ID: <ZyjfbOkJgpWVvj9v@smile.fi.intel.com>
+References: <20241104141924.18816-1-kabel@kernel.org>
+ <20241104141924.18816-3-kabel@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: spacemit: add support for K1 SoC
-To: Troy Mitchell <troymitchell988@gmail.com>
-Cc: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20241028053220.346283-1-TroyMitchell988@gmail.com>
- <20241028053220.346283-2-TroyMitchell988@gmail.com>
- <6zx3tqdc5bma2vutexwigzlir6nr6adp7arg4qwl5ieyd3avbu@5yyhv57ttwcl>
- <dbeea869-54cd-43fe-9021-783d641f1278@gmail.com>
- <ariqiukhztgziwwgaauqy6q3pghflnoeuwtag4izwkfmtvi2kh@gnlq4d7jsaw4>
- <6cce463e-25cc-4a07-971f-6260347cb581@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <6cce463e-25cc-4a07-971f-6260347cb581@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241104141924.18816-3-kabel@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 04/11/2024 14:01, Troy Mitchell wrote:
-> 
-> On 2024/10/31 16:00, Krzysztof Kozlowski wrote:
->> On Tue, Oct 29, 2024 at 04:36:00PM +0800, Troy Mitchell wrote:
->>> On 2024/10/28 15:38, Krzysztof Kozlowski wrote:
->>>> On Mon, Oct 28, 2024 at 01:32:19PM +0800, Troy Mitchell wrote:
->>>>> The I2C of K1 supports fast-speed-mode and high-speed-mode,
->>>>> and supports FIFO transmission.
->>>>>
->>>>> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
->>>>> ---
-> Change in v2:
->  - Change the maxItems of reg from 1 to 2 in properties
+On Mon, Nov 04, 2024 at 03:19:14PM +0100, Marek Behún wrote:
+> Use the MCU command execution functions from the MCU driver instead of
+> the ad-hoc implementation in the LED driver. This allows as to drop the
+> LED driver implementation, which is a duplicate.
 
-Why?
+...
 
->  - Change 'i2c' to 'I2C' in the commit message.
->  - Drop fifo-disable property
->  - Drop alias in dts example
->  - Move `unevaluatedProperties` after `required:` block
+> +static int omnia_match_mcu_client(struct device *dev, void *data)
+> +{
+> +	struct i2c_client *client;
+> +
+> +	client = i2c_verify_client(dev);
+> +	if (!client)
+> +		return 0;
+> +
+> +	return client->addr == OMNIA_MCU_I2C_ADDR;
+> +}
+> +
+> +static int omnia_find_mcu_and_get_features(struct device *dev)
+> +{
+> +	struct device *mcu_dev;
+> +	int ret;
+> +
+> +	mcu_dev = device_find_child(dev->parent, NULL, omnia_match_mcu_client);
+> +	if (!mcu_dev)
+> +		return -ENODEV;
+> +
+> +	ret = omnia_mcu_get_features(i2c_verify_client(mcu_dev));
+> +
+> +	put_device(mcu_dev);
+> +
+> +	return ret;
+>  }
 
-Rest look ok.
+I'm wondering why the MCU driver (and node) is not represented as syscon
+(with some regmap beneath it).
 
-Best regards,
-Krzysztof
+In such a case it would be something like
+
+  foo = syscon_regmap_lookup_by_compatible();
+
+here instead of all these dances.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
