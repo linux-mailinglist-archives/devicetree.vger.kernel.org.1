@@ -1,63 +1,57 @@
-Return-Path: <devicetree+bounces-118819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F549BBA09
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:18:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1EFC9BBA32
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:21:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E5951F226ED
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:18:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4BB62833EA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:21:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DAAE1C233C;
-	Mon,  4 Nov 2024 16:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A2781C2DA1;
+	Mon,  4 Nov 2024 16:19:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ELeHiV4v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kUfTB2vv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2245F1C302B;
-	Mon,  4 Nov 2024 16:17:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00BF142AA6;
+	Mon,  4 Nov 2024 16:19:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730737074; cv=none; b=R/hPJ/Vcc1lZb1VpOIsWNaTnTXUB6uawf09w3z9t18MktotYa6Cnq01fP2FkQJN6/bBa505rnKpg6B6zIQ9/zhxiWqvDLCwEhl8Hcx7XuOCZ8bJO803NZpnfy66vHAW1tyUiYDk9jQYkSCFbpAHwMJlVFXSN7MvToNlT8oWVjMg=
+	t=1730737193; cv=none; b=GuEjyu3mvzwaPrIsyo7QsgMPXymPabVbrlrlWAwXcuKErdnTN3m0mlR3W0VwNlT6azWEMIG9foRFRHaomu0sNCfJ4wZzljluSkzSPFsZneFWhkqj/P1Ygab4IvPByrehAame+UFq5ScZJzcA14OIl1xS5YZI1w79+yj2O4fVaKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730737074; c=relaxed/simple;
-	bh=bfAsiSNijIbn9dA6dCEoAJCNnIpUVnYgwURSK8OS4ug=;
+	s=arc-20240116; t=1730737193; c=relaxed/simple;
+	bh=DXOrN7Qat5xsjGc+y7PGlfGGMhhuz39fBqnNJVF2MZM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IQobsu5VIIO0CwXbww039kEDHa0/CXJdYHHK64Cdfdwlp+dlQuyk9aHYM5wgHRstQ5aj4N5sROgIm+YRmg5eW+oDsYexrLYOGK3RiNyX1esar8OlBdstoNlH3TaaI4uI2RaskbtNzdVYc2xssA3PRlYSObUAbcpPpDZt2M5bX+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ELeHiV4v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E502C4CECE;
-	Mon,  4 Nov 2024 16:17:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=V6e6wf/b7M2IDuqm0JatAMv0ZQ57WYqocCWatqC6KQXHmadzLxoqKtMhLeUHtax/zAflAb9mF9cs0nQXfRtWsG/UGXBZ7nd0BnhVBAwkFuRoRbp7Y+T/+Xwc6eDhENGt3AT1VH+XQQ2QdXR1m9iVO5yM8QKV+PNMw5Dj7k/nhDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kUfTB2vv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F70DC4CECE;
+	Mon,  4 Nov 2024 16:19:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730737073;
-	bh=bfAsiSNijIbn9dA6dCEoAJCNnIpUVnYgwURSK8OS4ug=;
+	s=k20201202; t=1730737192;
+	bh=DXOrN7Qat5xsjGc+y7PGlfGGMhhuz39fBqnNJVF2MZM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ELeHiV4vJKBVJKglPnNwM4FU9h4OgvTXusWR8lAPnMYQkdfviOs8EYxwcL7BFbdiL
-	 2RVJSf42kx/VHzzyjb4XTns0+4vRba32OT2rKvpm8SOwYAx5UdrChcvvsSZ2CEFndf
-	 daO4CLeyWE5Lbh8G7KVLF5o9n7K3VsPFRKrVV44BpsC97egsW8iREvcfqojKpnzwj1
-	 03GkPzA0xMlNzY9F/Q3KiNX+Iqyda+V0dAPhUZYMyiihT49jsH9JICKfJKpendetVR
-	 cx3TENatm5/RUWWRx9XlsjY818EJGeRDOmYYG69p1JW1AKCDsHHhDGMSFgkG2nm4P1
-	 lv2vYvcLarrcw==
-Date: Mon, 4 Nov 2024 10:17:51 -0600
-From: Rob Herring <robh@kernel.org>
-To: Ki-Seok Jo <kiseok.jo@irondevice.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	"alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: irondevice,sma1307: Add
- initial DT binding
-Message-ID: <20241104161751.GA320514-robh@kernel.org>
-References: <20241104-irondevice-sma1307-v3-0-4bbe79895f54@irondevice.com>
- <20241104-irondevice-sma1307-v3-1-4bbe79895f54@irondevice.com>
- <SL2P216MB23377A60BEC4396ADFA78A6A8C512@SL2P216MB2337.KORP216.PROD.OUTLOOK.COM>
+	b=kUfTB2vvlo6tGQzjTfqVQguVCEEquylrSvGItWBBiWL6xKnwtAlXHzBQS33T7qCr4
+	 pMUAylL2VFtHqrmcH8Jgcn5Bn8Yt75Hl+eL1Rz+7vIR1Hbs5vpCKvzGgGW71jZUVn4
+	 9nrsBe5J0630IHS/ak2YVu+mERe8uz6lBHa6L1UmLpQC0dEnb7wBONuZE2J02A7xPf
+	 VyZuGP568XikffCY7aZS8vwgrpUpr51VrZ4SsvcnfAYZuRtYttGNs8nq5rcaXslPFM
+	 SbuHgK+1LY1g+RQ7A0bKSypkAeFB1ZCEBnNYnSlXXGxNCDzYH8BIvXq5P700Y0J9EJ
+	 UTBFKzQHjcp+g==
+Date: Mon, 4 Nov 2024 10:19:50 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	conor@kernel.org, linux-kernel@vger.kernel.org,
+	konradybcio@kernel.org, andersson@kernel.org, krzk+dt@kernel.org
+Subject: Re: [PATCH v1 1/3] dt-bindings: cache: qcom,llcc: Add IPQ5424
+ compatible
+Message-ID: <173073719041.380640.10202387939372853981.robh@kernel.org>
+References: <20241104073840.3686674-1-quic_varada@quicinc.com>
+ <20241104073840.3686674-2-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,95 +60,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <SL2P216MB23377A60BEC4396ADFA78A6A8C512@SL2P216MB2337.KORP216.PROD.OUTLOOK.COM>
+In-Reply-To: <20241104073840.3686674-2-quic_varada@quicinc.com>
 
-On Mon, Nov 04, 2024 at 07:33:47AM +0000, Ki-Seok Jo wrote:
+
+On Mon, 04 Nov 2024 13:08:38 +0530, Varadarajan Narayanan wrote:
+> Document the Last Level Cache Controller on IPQ5424. The
+> 'broadcast' register space is present only in chipsets that have
+> multiple instances of LLCC IP. Since IPQ5424 has only one
+> instance, both the LLCC and LLCC_BROADCAST points to the same
+> register space.
 > 
-
-I don't see the rest of the series (I fetch from lore). That means your 
-threading is broken.
-
-> This adds the schema binding for the Iron Device SMA1307 Amp
+> Hence, allow only '1' reg & reg-names entry for IPQ5424.
 > 
-> Signed-off-by: Kiseok Jo <kiseok.jo@irondevice.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
-
-v3, but where is the revision history?
-
->  .../bindings/sound/irondevice,sma1307.yaml         | 54 ++++++++++++++++++++++
->  1 file changed, 54 insertions(+)
+>  .../devicetree/bindings/cache/qcom,llcc.yaml  | 20 +++++++++++++++++--
+>  1 file changed, 18 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/irondevice,sma1307.yaml b/Documentation/devicetree/bindings/sound/irondevice,sma1307.yaml
-> new file mode 100644
-> index 000000000..0bb4ee664
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/irondevice,sma1307.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
 
-"%YAML 1.2" goes on the 2nd line.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +---
-> +$id: http://devicetree.org/schemas/sound/irondevice,sma1307.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Iron Device SMA1307 Audio Amplifier
-> +
-> +maintainers:
-> +  - Kiseok Jo <kiseok.jo@irondevice.com>
-> +
-> +description:
-> +  SMA1307 boosted digital speaker amplifier
-> +  with feedback-loop.
-
-Wrap lines at 80 char.
-
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - irondevice,sma1307a
-> +      - irondevice,sma1307aq
-> +    description:
-> +      If a 'q' is added, it indicated the product is AEC-Q100
-> +      qualified for automotive applications. SMA1307A supports
-> +      both WLCSP and QFN packages. However, SMA1307AQ only
-> +      supports the QFN package.
-
-Is this difference visible to software? The package is not, so that part 
-is irrelevant.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#sound-dai-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#sound-dai-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        amplifier@1e {
-> +            compatible = "irondevice,sma1307a";
-> +            reg = <0x1e>;
-> +            #sound-dai-cells = <1>;
-> +        };
-> +    };
-> 
-> --
-> 2.39.2
-> 
 
