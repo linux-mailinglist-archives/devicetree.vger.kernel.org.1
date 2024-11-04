@@ -1,88 +1,217 @@
-Return-Path: <devicetree+bounces-118554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A3709BABC8
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 05:15:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 998109BABD5
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 05:31:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E1B2281882
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 04:15:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4450228196D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 04:31:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB9FD1A724C;
-	Mon,  4 Nov 2024 04:13:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 164022744D;
+	Mon,  4 Nov 2024 04:31:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rn/O87p2"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RMmwFLoV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8931A3AB9;
-	Mon,  4 Nov 2024 04:13:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DAEF290F;
+	Mon,  4 Nov 2024 04:31:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730693639; cv=none; b=Q1xo2uRTIUtIEji6kpZwNU2SrU3RVaYjG2n4L1wavLelcjauvoogVP7Ndm00a/WAggmeyM9UOvUoRpuAmwE+5I4Of28huaUXoP7ksrko+U5YXXKaweo5un3I6TIJ25IgSX5uwisHM2/YYqyCYAYihjynS6a91HPwO+xPLAFPPRI=
+	t=1730694685; cv=none; b=G8q+k83gSpuAIJYjzpyPWhsMcTcy1025HmeQdUPa2MPUlN7XuB/rIc6j7td/6U4mi9AuF1B4sFiGo39UhR5EFJVtHvIQEEidgpV/ARm/ZpRf+BE3dpup1vkTV+sb6BKzpEHQinZWzJpwpoN6sOXZ3nQtO1z1R1pIWUH0UbzfG00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730693639; c=relaxed/simple;
-	bh=9T5BKD42cfy4aGeFmGVZc0bCKlM+O2UhHcLKtXsTiq4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UB/Gw1rA6LdpHpR4eTpc/Y+8lPN++L+JKO4rN9lzeqwvhZXqSZ7HrG3IcRdHfG7RAYU58E6O1A2o0UaPif67WFqT79EafEtiJx5hGIC3i9wkW5WYu6U/a3Rm5SwFBggaqY0+6Q+3hGYqB+XVatmyD2O2WmfQmiHcDTYa64OYWcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rn/O87p2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70F52C4CEE1;
-	Mon,  4 Nov 2024 04:13:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730693639;
-	bh=9T5BKD42cfy4aGeFmGVZc0bCKlM+O2UhHcLKtXsTiq4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=rn/O87p2oRnwhRGLp0m+BRJZWbAHU/x8ZaTYxLgonRns1hUVDT/jH6VJudk8/5ucZ
-	 7mYpzEvrl+avmP8ySoM/xA4aTr5H1XiQvtQx32CGeZK5Vm/vAUOcfxnbuColef0Abf
-	 1af8AFJPCbcnqU2vnK1eAS160hHVzBRCHfX2U7Y84J6R8VXieypx31HHRaH1U0moK1
-	 SHgbfLSOpFHC2Xs4Z3zPohmPhyYGAMnYWvPKGtF5o+GVcRLYb7HwFTff12U8WhWAmK
-	 LSVPlYHxENioF5nLm7xb42cP/LRX7smAVfser5+6+HCVetlhhp4+i6n45vdWubmSqT
-	 NALhSCcG8JtBw==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tengfei Fan <quic_tengfan@quicinc.com>
-Cc: kernel@quicinc.com,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH v2 0/4] arm64: dts: qcom: Add support for the QCS9100 SoC and board
-Date: Sun,  3 Nov 2024 22:13:45 -0600
-Message-ID: <173069362371.23540.3919794283427263969.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20240911-add_qcs9100_support-v2-0-e43a71ceb017@quicinc.com>
-References: <20240911-add_qcs9100_support-v2-0-e43a71ceb017@quicinc.com>
+	s=arc-20240116; t=1730694685; c=relaxed/simple;
+	bh=vbigO1/0tmqLCH75w1yvEiA/jHXipTAk41obguiX2g8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=BXT9x1YdtyLRTx7szwSEwGRkpOhPuQv3I2ObAUJ0oILiXz0kM1TwdXBdBhjjAVARlt4hv+Eb5mm4ks9kBkBRI8cIa/55qZiZrbkoCAmELLoT/By561JIKN8uBq3dkFvnsDZapIU/ampSX44L1IU4zrSOcYbysMFQTKdbpthUdjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RMmwFLoV; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A40E0d7025188;
+	Mon, 4 Nov 2024 04:31:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	+w9BUqc9qTS5lo096IW4hBuKmzwChCj8VIAFc+Sqiv0=; b=RMmwFLoVTDAHi7CC
+	3agB+E+g4fy27QsspWVAL7xMDc9ksKhleSE8GBtyu+7wvL4RenuzrwMibadlU5Di
+	fC5Qrpz9V8ctHkT1QT4l0pGuFNY1RRdwRHVRyNezcUkjiosH8medTgirqXLf31wa
+	65H9BQXWIGOboMtmgKOgFn33/1g8KdZqvz0HQT7mxpJ80iV2EH3I6uumQdhI1XVN
+	NiyOuZK3cmSu5/L2sAFvcmv7Htqvh85QY2ho26kHScexybBZ24QMHaUtVOt1R8SM
+	QtK5tJhgRrdjBsIrWch0D/iN5SxniyxRuwmJEZurwF6BXsqpzM7EGO3gBEds5V9r
+	sBgw9Q==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd2r30nv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 04 Nov 2024 04:31:15 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A44V9Dh016816
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 4 Nov 2024 04:31:09 GMT
+Received: from [10.216.1.91] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 3 Nov 2024
+ 20:31:06 -0800
+Message-ID: <945f3eae-0a68-4738-af07-74e228039508@quicinc.com>
+Date: Mon, 4 Nov 2024 10:01:03 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 3/3] arm64: dts: qcom: sc8280xp-blackrock: dt
+ definition for WDK2023
+To: <jens.glathe@oldschoolsolutions.biz>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Merck Hung <merckhung@gmail.com>,
+        Kalle Valo
+	<kvalo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>
+References: <20241101-jg-blackrock-for-upstream-v7-0-8295e9f545d9@oldschoolsolutions.biz>
+ <20241101-jg-blackrock-for-upstream-v7-3-8295e9f545d9@oldschoolsolutions.biz>
+Content-Language: en-US
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+In-Reply-To: <20241101-jg-blackrock-for-upstream-v7-3-8295e9f545d9@oldschoolsolutions.biz>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Ug9g8cPQUpCHaczIpV-yad96zKYoMhPb
+X-Proofpoint-GUID: Ug9g8cPQUpCHaczIpV-yad96zKYoMhPb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ mlxlogscore=999 priorityscore=1501 malwarescore=0 bulkscore=0
+ lowpriorityscore=0 suspectscore=0 clxscore=1015 phishscore=0 spamscore=0
+ mlxscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411040039
 
 
-On Wed, 11 Sep 2024 19:10:54 +0800, Tengfei Fan wrote:
-> Add QCS9100 SoC ID and board device trees support.
-> QCS9100 is a variant of SA8775p, and they are fully compatible with each
-> other.
+
+On 11/1/2024 11:56 PM, Jens Glathe via B4 Relay wrote:
+> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
 > 
+> Device tree for the Microsoft Windows Dev Kit 2023. This work
+> is based on the initial work of Merck Hung <merckhung@gmail.com>.
 > 
+> Original work: https://github.com/merckhung/linux_ms_dev_kit/blob/ms-dev-kit-2023-v6.3.0/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-dev-kit-2023.dts
+> 
+> The Windows Dev Kit 2023 is a nice little desktop based on sc8280xp.
+> Link: https://learn.microsoft.com/en-us/windows/arm/dev-kit/
+> 
+> Supported features:
+> - USB type-c and type-a ports
+> - minidp connector
+> - built-in r8152 Ethernet adapter
+> - PCIe devices
+> - nvme
+> - ath11k WiFi (WCN6855)
+> - WCN6855 Bluetooth
+> - A690 GPU
+> - ADSP and CDSP
+> - GPIO keys
+> - Audio definition (works via USB)
+> 
+> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> ---
 
-Applied, thanks!
+[...]
 
-[3/4] dt-bindings: arm: qcom: Document qcs9100-ride and qcs9100-ride Rev3
-      commit: e80fd25537541b67da12be30a581671ee81b66ca
-[4/4] arm64: dts: qcom: qcs9100: Add support for the QCS9100 Ride and Ride Rev3 boards
-      commit: 7dcc1dfaa3d1cd3aafed2beb7086ed34fdb22303
+> +&usb_2 {
+> +	pinctrl-0 = <&usb2_en_state>;
+> +	pinctrl-names = "default";
+> +
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+On the blackrock platform, for this controller, are there all 4 ports 
+given out for use or only one ?
+
+Because if all 4 are there, you might need to give all 4 pinctrls (one 
+for each TS3USB221A mux select) here for usb_2 node. If only one port is 
+given out for use on the platform, then only one phy (of the 4 activated 
+below) needs to be marked as active.
+
+In my case, in [1] on the ADP platform, I marked them as always on for 
+all gpios on multiport controller since driver had no support added yet.
+
+[1]: 
+https://lore.kernel.org/all/20240707085624.3411961-1-quic_kriskura@quicinc.com/
+
+> +	status = "okay";
+> +};
+> +
+> +&usb_2_hsphy0 {
+> +	vdda-pll-supply = <&vreg_l1b>;
+> +	vdda18-supply = <&vreg_l1c>;
+> +	vdda33-supply = <&vreg_l7d>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_2_hsphy1 {
+> +	vdda-pll-supply = <&vreg_l8d>;
+> +	vdda18-supply = <&vreg_l1c>;
+> +	vdda33-supply = <&vreg_l7d>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_2_hsphy2 {
+> +	vdda-pll-supply = <&vreg_l10d>;
+> +	vdda18-supply = <&vreg_l8c>;
+> +	vdda33-supply = <&vreg_l2d>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_2_hsphy3 {
+> +	vdda-pll-supply = <&vreg_l10d>;
+> +	vdda18-supply = <&vreg_l8c>;
+> +	vdda33-supply = <&vreg_l2d>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_2_qmpphy0 {
+> +	vdda-phy-supply = <&vreg_l1b>;
+> +	vdda-pll-supply = <&vreg_l4d>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_2_qmpphy1 {
+> +	vdda-phy-supply = <&vreg_l8d>;
+> +	vdda-pll-supply = <&vreg_l4d>;
+> +
+> +	status = "okay";
+> +};
+> +
+
+[...]
+
+> +	usb2_en_state: usb2-en-state {
+> +		/* TS3USB221A USB2.0 mux select */
+> +		pins = "gpio24";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +		output-low;
+> +	};
+> +
+
+Regards,
+Krishna,
 
