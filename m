@@ -1,267 +1,217 @@
-Return-Path: <devicetree+bounces-118655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B5F9BB244
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:06:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 509B69BB2BF
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:16:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5A81282A77
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:05:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 746EB1C215F9
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:16:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1EF11DD9AC;
-	Mon,  4 Nov 2024 10:54:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E231BE238;
+	Mon,  4 Nov 2024 11:02:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="YaZivBDM"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="KSVxPdwF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+Received: from mail-m60244.netease.com (mail-m60244.netease.com [210.79.60.244])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 428D91DD0CA;
-	Mon,  4 Nov 2024 10:54:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D0461BD014;
+	Mon,  4 Nov 2024 11:02:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.79.60.244
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730717669; cv=none; b=NO0MHjVptgG63VkcCXkC3+rgbBke+2B1xUaNeXKRIXUybOv/d7iO/jK+KbI+PsyeYMoxvotltM+lAKtEojCV6G7IvwfFqTxDMoA8A72UpP78Jc7HbTqb9Wt6kbNQTO70y9wFHmrDrXtZ+LOcdNHiHfqeze7Ijdc5izc8xM+Lu3A=
+	t=1730718132; cv=none; b=pfdagVvpalo+K20VuU435zM03A6ZXLLzQ91/Hfd30MpyoH7H/Cyklra6TZ4EHGV4rufebGHhOT3R9ofGb22XOoFv98yrk4RtjCMWTmwvrPwMQznAyi+DCuM5TRmzNZ10FyOZCawkXtsUdc7clr57Zz4G2q27OeYbiWGtpEVrpxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730717669; c=relaxed/simple;
-	bh=Xp2eMGFVn3MC7Z6tDGlp1OpvzHvkucWeksZagcdWn2w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NSC9iKZExqGNqs9xAB4kyNKZO0uP29SKgjp4Muksvb3Mwy3mL/ptW/AjL0naRxZIUEfW08dch6FkU1tm+9SQ5AL1uKudCrku0/mhBnn9K+ViBCkmTzP3zY9X3XmLxdONGA4PR0US/dRiSL8Alwh3ekYrA7EcyLLLyqQ/AERYQNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=YaZivBDM; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID; bh=nMNE/O5pjFvv7Wgu/uX54LU5Iy2V038M4oyhx/Jj4sQ=; b=YaZivB
-	DMGlKnQLkEMe+a6D8fVmFX+OfXql1QpCUKGtK8z4efyLkPDt6JyGiUtNxbLvY3haeEsuHbAjjnp+F
-	VZoEQjUpDG9Or7zloFeoxbT6EwR6Ulin5w0FEfZW4Q+m3xoRc2Cms6EovBAv+u3fN8WWw8HgVd1Oz
-	SborqZVFkPKYWUQrCqfjSel+QixgCWMXH/d3OGFS02XGo+X2rwl52eqfjhNzGy48TfTDqE7pjyVxM
-	60KR9cpf/HBu7IVMke/knTnPS/RDYth3vUfS9eFJGt+V54E27rtkjC2rrdhqnRoKQmOdVjsmLrWlj
-	/S9j2zy9eyw4WG3fn+EdQ+HK4G9g==;
-Received: from sslproxy05.your-server.de ([78.46.172.2])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sean@geanix.com>)
-	id 1t7uj1-0001pJ-4m; Mon, 04 Nov 2024 11:54:23 +0100
-Received: from [185.17.218.86] (helo=Seans-MacBook-Pro.local)
-	by sslproxy05.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sean@geanix.com>)
-	id 1t7uj0-0004BJ-1B;
-	Mon, 04 Nov 2024 11:54:22 +0100
-Date: Mon, 4 Nov 2024 11:54:21 +0100
-From: Sean Nyekjaer <sean@geanix.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH] dt-bindings: can: convert tcan4x5x.txt to DT schema
-Message-ID: <2mx3fpwo5miho3tdhfbt7ogwnifnhe7qlvjs3zjb2y2iifgjwo@23mxoxvwsogy>
-References: <20241104085616.469862-1-sean@geanix.com>
- <ee47c6d7-4197-4f5d-b39e-aab70a9337d6@kernel.org>
+	s=arc-20240116; t=1730718132; c=relaxed/simple;
+	bh=AWmRrV/UZ+5iDnXL4rcR+Cq8I1OD5Oyw/4/xpteEEf8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=hXeLhBGK1GNTlH0pOZrgpaipUfXdwllSkdfrN0/kZc7i6CPesKUKd7dYC7B506r2j+HXK7DMgsG+pEWx+uKDf8wlRYdsBnyDa31zLahHWRqnw1SXuMlhs5a6z9gfuO5TahvXrU0CbJ1itGIuepFza0NmZe00GZJPvlbe0/Bw+8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=KSVxPdwF; arc=none smtp.client-ip=210.79.60.244
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1b5d89cc;
+	Mon, 4 Nov 2024 15:32:51 +0800 (GMT+08:00)
+From: Shawn Lin <shawn.lin@rock-chips.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	YiFeng Zhao <zyf@rock-chips.com>,
+	Liang Chen <cl@rock-chips.com>,
+	linux-scsi@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH v4 2/7] dt-bindings: ufs: Document Rockchip UFS host controller
+Date: Mon,  4 Nov 2024 15:31:56 +0800
+Message-Id: <1730705521-23081-3-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1730705521-23081-1-git-send-email-shawn.lin@rock-chips.com>
+References: <1730705521-23081-1-git-send-email-shawn.lin@rock-chips.com>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQx4eTVYfQx9KS0wdH0JISk1WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a92f6173f3409cckunm1b5d89cc
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PlE6SQw6ITIvLDo#HisyDzwo
+	LBoaCTpVSlVKTEhLTEtOTkxISE5MVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUhDT0k3Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=KSVxPdwFDVoqngFirPI2IBr5cWLLVww7StkydZ2wpTw83ZGY3oEa99cAmj5mSGL1XBwGH9X0ezVtGilNUQklv6RkyaY/a4sW6Tddz9wl6w0WIkD+Otjsm+MSJyXDTFXmp6n0klQcJYgMBgYrutFJDl6DvLR8GXKBYXkBNanq0mE=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=t0jfq2PeStTsZaJFc2X5b22FPiijLc9hnERUdwLupVk=;
+	h=date:mime-version:subject:message-id:from;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <ee47c6d7-4197-4f5d-b39e-aab70a9337d6@kernel.org>
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27448/Mon Nov  4 10:33:38 2024)
 
-On Mon, Nov 04, 2024 at 10:27:04AM +0100, Krzysztof Kozlowski wrote:
-> On 04/11/2024 09:56, Sean Nyekjaer wrote:
-> > Convert binding doc tcan4x5x.txt to yaml.
-> > 
-> > Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-> > ---
-> > 
-> > Can we somehow reference bosch,mram-cfg from the bosch,m_can.yaml?
-> > I have searched for yaml files that tries the same, but it's usually
-> > includes a whole node.
-> > 
-> > I have also tried:
-> > $ref: /schema/bosch,m_can.yaml#/properties/bosch,mram-cfg
-> 
-> Yes, this would work just with full path, so /schemas/net/can/...
-> 
-> See:
-> Documentation/devicetree/bindings/pinctrl/starfive,jh7100-pinctrl.yaml
-> 
-> But you can also just copy it. Ideally this should be moved to common
-> schema or replaced with more generic property, but these do not have to
->be part of this conversion.
+Document Rockchip UFS host controller for RK3576 SoC.
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+---
 
-diff --git a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-index 9ff52b8b3063..0fc37b10e899 100644
---- a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-+++ b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-@@ -50,7 +50,7 @@ properties:
-     maxItems: 1
+Changes in v4:
+- properly describe reset-gpios
 
-   bosch,mram-cfg:
--    $ref: bosch,m_can.yaml#
-+    $ref: /schemas/net/can/bosch,m_can.yaml#/properties/bosch,mram-cfg
+Changes in v3:
+- rename the file to rockchip,rk3576-ufshc.yaml
+- add description for reset-gpios
+- use rockchip,rk3576-ufshc as compatible
 
-   spi-max-frequency:
-     description:
+Changes in v2:
+- rename the file
+- add reset-gpios
 
-Still results in:
-% make dt_binding_check DT_SCHEMA_FILES=ti,tcan4x5x.yaml
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  CHKDT   Documentation/devicetree/bindings
-Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml: properties:bosch,mram-cfg: 'anyOf' conditional failed, one must be fixed:
-        'description' is a dependency of '$ref'
-        '/schemas/net/can/bosch,m_can.yaml#/properties/bosch,mram-cfg' does not match 'types.yaml#/definitions/'
-                hint: A vendor property needs a $ref to types.yaml
-        '/schemas/net/can/bosch,m_can.yaml#/properties/bosch,mram-cfg' does not match '^#/(definitions|\\$defs)/'
-                hint: A vendor property can have a $ref to a a $defs schema
-        hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-        from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+ .../bindings/ufs/rockchip,rk3576-ufshc.yaml        | 105 +++++++++++++++++++++
+ 1 file changed, 105 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml
 
-> 
-> > 
-> > Any hints to share a property?
-> > 
-> >  .../devicetree/bindings/net/can/tcan4x5x.txt  | 48 ---------
-> >  .../bindings/net/can/ti,tcan4x5x.yaml         | 97 +++++++++++++++++++
-> >  2 files changed, 97 insertions(+), 48 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/net/can/tcan4x5x.txt
-> >  create mode 100644 Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-> > 
-> 
-> ...
-> 
-> > diff --git a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-> > new file mode 100644
-> > index 000000000000..62c108fac6b3
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-> > @@ -0,0 +1,97 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/can/ti,tcan4x5x.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Texas Instruments TCAN4x5x CAN Controller
-> > +
-> > +maintainers:
-> > +  - Marc Kleine-Budde <mkl@pengutronix.de>
-> > +
-> > +allOf:
-> > +  - $ref: can-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - enum:
-> > +          - ti,tcan4552
-> > +          - ti,tcan4553
-> > +          - ti,tcan4x5x
-> 
-> That's not really what old binding said.
-> 
-> It said for example:
-> "ti,tcan4552", "ti,tcan4x5x"
-> 
-> Which is not allowed above. You need list. Considering there are no
-> in-tree users of ti,tcan4x5x alone, I would allow only lists followed by
-> ti,tcan4x5x. IOW: disallow ti,tcan4x5x alone.
-> 
-> Mention this change to the binding in the commit message.
-> 
-> 
+diff --git a/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml b/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml
+new file mode 100644
+index 0000000..bc4c3de
+--- /dev/null
++++ b/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml
+@@ -0,0 +1,105 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/ufs/rockchip,rk3576-ufshc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip UFS Host Controller
++
++maintainers:
++  - Shawn Lin <shawn.lin@rock-chips.com>
++
++allOf:
++  - $ref: ufs-common.yaml
++
++properties:
++  compatible:
++    const: rockchip,rk3576-ufshc
++
++  reg:
++    maxItems: 5
++
++  reg-names:
++    items:
++      - const: hci
++      - const: mphy
++      - const: hci_grf
++      - const: mphy_grf
++      - const: hci_apb
++
++  clocks:
++    maxItems: 4
++
++  clock-names:
++    items:
++      - const: core
++      - const: pclk
++      - const: pclk_mphy
++      - const: ref_out
++
++  power-domains:
++    maxItems: 1
++
++  resets:
++    maxItems: 4
++
++  reset-names:
++    items:
++      - const: biu
++      - const: sys
++      - const: ufs
++      - const: grf
++
++  reset-gpios:
++    maxItems: 1
++    description: |
++      GPIO specifiers for host to reset the whole UFS device including PHY and
++      memory. This gpio is active low and should choose the one whose high output
++      voltage is lower than 1.5V based on the UFS spec.
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - interrupts
++  - power-domains
++  - resets
++  - reset-names
++  - reset-gpios
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rockchip,rk3576-cru.h>
++    #include <dt-bindings/reset/rockchip,rk3576-cru.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/power/rockchip,rk3576-power.h>
++    #include <dt-bindings/pinctrl/rockchip.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        ufs: ufs@2a2d0000 {
++              compatible = "rockchip,rk3576-ufshc";
++              reg = <0x0 0x2a2d0000 0x0 0x10000>,
++                    <0x0 0x2b040000 0x0 0x10000>,
++                    <0x0 0x2601f000 0x0 0x1000>,
++                    <0x0 0x2603c000 0x0 0x1000>,
++                    <0x0 0x2a2e0000 0x0 0x10000>;
++              reg-names = "hci", "mphy", "hci_grf", "mphy_grf", "hci_apb";
++              clocks = <&cru ACLK_UFS_SYS>, <&cru PCLK_USB_ROOT>, <&cru PCLK_MPHY>,
++                      <&cru CLK_REF_UFS_CLKOUT>;
++              clock-names = "core", "pclk", "pclk_mphy", "ref_out";
++              interrupts = <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>;
++              power-domains = <&power RK3576_PD_USB>;
++              resets = <&cru SRST_A_UFS_BIU>, <&cru SRST_A_UFS_SYS>, <&cru SRST_A_UFS>,
++                        <&cru SRST_P_UFS_GRF>;
++              reset-names = "biu", "sys", "ufs", "grf";
++              reset-gpios = <&gpio4 RK_PD0 GPIO_ACTIVE_LOW>;
++        };
++    };
+-- 
+2.7.4
 
-I would prefer to not change anything other that doing the conversion to
-DT schema.
-
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  vdd-supply:
-> > +    description: Regulator that powers the CAN controller.
-> > +
-> > +  xceiver-supply:
-> > +    description: Regulator that powers the CAN transceiver.
-> 
-> You need to mention all changes done to the binding in the commit msg.
-> 
-Is this a change? It existed in the old doc aswell...
-
-> > +
-> > +  reset-gpios:
-> > +    description: Hardwired output GPIO. If not defined then software reset.
-> > +    maxItems: 1
-> > +
-> > +  device-state-gpios:
-> > +    description: Input GPIO that indicates if the device is in a sleep state or if the device is active.
-> > +      Not available with tcan4552/4553.
-> > +    maxItems: 1
-> > +
-> > +  device-wake-gpios:
-> > +    description: Wake up GPIO to wake up the TCAN device. Not available with tcan4552/4553.
-> > +    maxItems: 1
-> > +
-> > +  bosch,mram-cfg:
-> > +    $ref: bosch,m_can.yaml#
-> > +
-> > +  spi-max-frequency:
-> > +    description:
-> > +      Must be half or less of "clocks" frequency.
-> > +    maximum: 10000000
-> 
-> Old binding said 18 MHz?
-> 
-
-Good catch.
-
-> > +
-> > +  wakeup-source:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description:
-> > +      Enable CAN remote wakeup.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - bosch,mram-cfg
-> > +
-> 
-> Missing allOf: with $ref to spi-peripheral-props. See other SPI devices.
-> 
-> 
-
-Added for v2.
-
-> > +additionalProperties: false
-> 
-> And this becomes unevaluatedProperties: false
-> 
-> Best regards,
-> Krzysztof
-> 
-
-Added for v2.
-
-Br,
-/Sean
 
