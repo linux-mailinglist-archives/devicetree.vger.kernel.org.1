@@ -1,135 +1,146 @@
-Return-Path: <devicetree+bounces-118596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C78149BAE41
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:38:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2EA49BAE45
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:38:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F3041F22FBC
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 08:38:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 377351C216EB
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 08:38:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1BD118BB93;
-	Mon,  4 Nov 2024 08:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 899A818B488;
+	Mon,  4 Nov 2024 08:38:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JNzuLcPE"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="SkyG/7Ua"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F71318A947;
-	Mon,  4 Nov 2024 08:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B48418C039
+	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 08:38:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730709479; cv=none; b=q5ReBr9JEH0JUSr03BbWeOutuBDBVWdjLWlWpJEUPUnQi0yU+6uPj0QI4e7x1dCWYFrO6LSmUOicN8nUrhpFeiI2mSSj8HVA7gdihG3bMsaMHtwZsPmK1dYWv/VKmozHUAJ7Swx2mGlKQnzK7WWtJ7Z/bLZMrFWX/6ZHBHb9kIk=
+	t=1730709497; cv=none; b=GxlYJpFxlLCHLrBF+ad91nNF2XK+V8COMRK0vVe5ZZvyL2Vq/+aXwzzlYPd1hJY48xoQTiY4ECiNt/uSbdoh8EuzNS12C5oqqtqZOCexr747qy3CYMfX2gM5taH/W7RskrkzfX0HFO3UdpKluK1oXPN8RSn4aJdzA9gMiHezrOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730709479; c=relaxed/simple;
-	bh=ML6JuLR5aGTGkpWrKYsMlJoQ/UheugXHDbe7zvn2E4g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZxpAprvZwl23uhO+IOc0wA6B7Ve0nqN3zEMKr6Q4nl6+eVHPS4u4KJTpPmN1yhauMAdGsOWfVOS0F/1SC+JZKsXzbbJFgmPqaUlDHuIss52oFuYN0cvXTkAtoK2yBtg2K5LpHbg2uvxwdQaU3Gi/pqYx1EuVm2ZEe5DeWrmQD3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JNzuLcPE; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730709479; x=1762245479;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ML6JuLR5aGTGkpWrKYsMlJoQ/UheugXHDbe7zvn2E4g=;
-  b=JNzuLcPEtsgvhr7hlCAwN6UugFErwvoEccLoCPsGNWbeCl48VBU7SqZK
-   uL0CKIqvQyDze4KayxCG5TUIj3Mc0fAqg/b6UZoK6Hv8CFFMEJ60xOG8N
-   HbcwLpu8HnlKz6ru3WP3AXKiwLDiSP9Op0WuKTjEWZZ8qBx+s+Ni1kGOR
-   z0hruqZIRxGCm/zH0A09HpOjOtxB6zEOZcc5B4vnzGl9fEef0huztsNV8
-   YBW7uFOjsznNe28RraiiDzr3iZKgXBbIMFDTo5DCuX9RA2NMs9BHUOPBN
-   1noLar4ChcnoGEGi1h1oBJKaxBlIFl9CU9C5LtWxN+RGhN0Eio0VrQ4s3
-   g==;
-X-CSE-ConnectionGUID: bMfzltfsQbWPwhRsYMNq9g==
-X-CSE-MsgGUID: rzKvuV0fS3C8rYXYTXB09A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41502023"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="41502023"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2024 00:37:58 -0800
-X-CSE-ConnectionGUID: VctOKoJRQM2VqqPSh3Rvkg==
-X-CSE-MsgGUID: +3dMFlo4Q2icgewC0wY8Ag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,256,1725346800"; 
-   d="scan'208";a="88166032"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2024 00:37:53 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1t7sas-0000000Az4Q-200R;
-	Mon, 04 Nov 2024 10:37:50 +0200
-Date: Mon, 4 Nov 2024 10:37:50 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Aren <aren@peacevolution.org>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1730709497; c=relaxed/simple;
+	bh=G/X0h+8/yRif+x6UMM4PsGQCOAGV7mUsPioWsd9Uy1Y=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dTJv4nVoBRXJzHzwQWqPunGz80CqEKIMKvlyfy0SNJ7QwFRl5widEG8KeiL9eyCquGGZdSt9Wmq9RwucI8brfUDmViYc2qZzNsqUZAafF3ZRbcAINuGeNqGdRBJU8P7EGWbAk4c1jToLUtVWVT4f0lUNl0Xts/B0ZjgJ35L8usE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=SkyG/7Ua; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2fb4af0b6beso56574871fa.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 00:38:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1730709493; x=1731314293; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=0eDl7nTDHYrLpfTOtxAhIDxo7Jm/MGY+3YDpczmW7gs=;
+        b=SkyG/7Uag6F8YZQJo1FATaSWqUNH1DRrzqdy0DIdWjXLnt8IsLjABIk6XH7CBrYKsy
+         E/n3N9bAor8V2YJl6fl6pQRLyDVCLPjMphzXO39XwrywXwFYwso/BllS7CGpnhXVD+lG
+         1As12TxBzS8FBtiSUuLsSKUNk271wAiLtYm+KmA9zCVhROflG+7d9hZYZfEX3FEXW1+y
+         ElRHtcGnXZGolSSv/r53Ao5l8uy845SmsEncYBv7SyY4tyksWGqUMHGOSkoUuFt9SIGo
+         O8xWXMI1q8VNosdNLirSOfvyNd0eJNWEzBMIqKvVeqf1d+P/9Gy5MtM05VFy6Svp8lP4
+         ldUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730709493; x=1731314293;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0eDl7nTDHYrLpfTOtxAhIDxo7Jm/MGY+3YDpczmW7gs=;
+        b=dKBAhQCG7adgkqCzWYLyzNPO+F1HE7YP60EcmAdb243kkEX1iQEKmHRTjTaveKBvry
+         YxY7jKIO+y2vSfYSFusU7RnttMcBfLmUXXXtx/ET9P6yUrvSTntZEFByx66dPPJYOdv4
+         qgIJBi7JZxV/LLWGxp7zACzmdsAFRtNWxqF1Rwct4AjnOnWvPqe+NbGPcLrrZUOU6cLu
+         NfG2f9mFysMCMxwhRRMoaAZ798o9kYF0fWK13wuEXYWXyUAZbyRdpU4nFHGh1MgWzWzQ
+         BSK0JUqIaxq4PORySmRBQjoNok5OZ/YExyxXvMpFqv4kcaOoR0DQO3Ez5/zJkX23M3Uq
+         6eDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWCOnhgQ4Sq4dl+9tqFsMQlxW1i7wIhEYRqBnz2RHKf8cUx70aphUI5Tz86cbahS47T2qRo2NPy7MiR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUl8KsAlKUM1MciVLv49/SGbNNQoGm3BII18rYjW0m3Bg5eaoj
+	StCewwXhJjv2vfWlJbU1cOlOwqHAH7egij+0j/w72JFWK42wahTUwuhQd2B9AUs=
+X-Google-Smtp-Source: AGHT+IFBeEZRJog8jSvCZbczChA6E0/8cPss+uc4uzyQS1f/pQYOfuO7Wtjy7JqnNnrKVyUSvAin5Q==
+X-Received: by 2002:a2e:a589:0:b0:2fb:3df8:6a8c with SMTP id 38308e7fff4ca-2fedb7c9c38mr69759771fa.23.1730709493472;
+        Mon, 04 Nov 2024 00:38:13 -0800 (PST)
+Received: from localhost (host-79-35-211-193.retail.telecomitalia.it. [79.35.211.193])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e564e9ceasm522722066b.96.2024.11.04.00.38.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Nov 2024 00:38:13 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Mon, 4 Nov 2024 09:38:39 +0100
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Kaustabh Chakraborty <kauschluss@disroot.org>,
-	=?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <trabarni@gmail.com>,
-	Ondrej Jirman <megi@xff.cz>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, Dragan Simic <dsimic@manjaro.org>,
-	phone-devel@vger.kernel.org
-Subject: Re: [PATCH v4 3/6] iio: light: stk3310: Implement vdd and leda
- supplies
-Message-ID: <ZyiH3lkMZoAS-toj@smile.fi.intel.com>
-References: <20241102195037.3013934-3-aren@peacevolution.org>
- <20241102195037.3013934-9-aren@peacevolution.org>
- <20241103112933.60f96f97@jic23-huawei>
- <cx5bvcqfabsptn37uzscooh73j73dsoqadmfaibzxrzjk3byx4@ofwu7qa6ht4f>
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v3 05/12] PCI: of_property: Assign PCI instead of CPU bus
+ address to dynamic bridge nodes
+Message-ID: <ZyiID11EbNIwyYOP@apocalypse>
+References: <cover.1730123575.git.andrea.porta@suse.com>
+ <f6b445b764312fd8ab96745fe4e97fb22f91ae4c.1730123575.git.andrea.porta@suse.com>
+ <20241104090623.53f73d75@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <cx5bvcqfabsptn37uzscooh73j73dsoqadmfaibzxrzjk3byx4@ofwu7qa6ht4f>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241104090623.53f73d75@bootlin.com>
 
-On Sun, Nov 03, 2024 at 11:11:13AM -0500, Aren wrote:
-> On Sun, Nov 03, 2024 at 11:31:03AM +0000, Jonathan Cameron wrote:
-> > On Sat,  2 Nov 2024 15:50:39 -0400
-> > Aren Moynihan <aren@peacevolution.org> wrote:
+Hi Herve,
 
-...
-
-> > For this Andy was asking for consistency.  Generally we don't insist on a
-> > particular ordering in IIO drivers, but we do prefer them to be the same.
-> > Your new ordering is inconsistent between resume and suspend.  Whilst
-> > existing code may be inconsistent, you can still pick most common ordering
-> > and use that for your new code.
+On 09:06 Mon 04 Nov     , Herve Codina wrote:
+> Hi Andrea,
+> 
+> On Mon, 28 Oct 2024 15:07:22 +0100
+> Andrea della Porta <andrea.porta@suse.com> wrote:
+> 
+> > When populating "ranges" property for a PCI bridge, of_pci_prop_ranges()
+> > incorrectly use the CPU bus address of the resource. Since this is a PCI-PCI
+> > bridge, the window should instead be in PCI address space. Call
+> > pci_bus_address() on the resource in order to obtain the PCI bus
+> > address.
 > > 
-> > If the existing driver is inconsistent then feel free to tidy that up but
-> > do it in a precursor patch so there is a consistent style for you to then
-> > carry on.
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 > 
-> Oh right, the order of declarations in stk3310_suspend also needs to be
-> flipped. Is that simple enough that you can fix it when applying this?
+> Tested ok with my LAN966x PCI device.
 > 
-> Apparently I was being dense, I checked the rest of the driver to see
-> what it did (it's consistent about putting shorter lines & ones without
-> an assignment first), and fixed the case Andy pointed out to match that,
-> but failed to check the rest of the patch.
+> Tested-by: Herve Codina <herve.codina@bootlin.com>
 
-Thanks!
+Thanks for testing that!
 
-You may ignore my comment about RCT order if it's not that one that being
-commonly used in the driver.
+Regards,
+Andrea
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> 
+> Best regards,
+> Hervé
 
