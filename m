@@ -1,192 +1,126 @@
-Return-Path: <devicetree+bounces-118642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12D949BB0E3
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:22:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19DBD9BB0EB
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:22:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 379881C2150C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:22:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BBF81C21538
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:22:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3479F1AF4EE;
-	Mon,  4 Nov 2024 10:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D14351B0F0D;
+	Mon,  4 Nov 2024 10:22:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RDWvKhHz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rut4Py5v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C8C018C020;
-	Mon,  4 Nov 2024 10:22:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91A551B0F09;
+	Mon,  4 Nov 2024 10:22:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730715739; cv=none; b=LliKT2JKw6mPNsmvVVMQubj460c2SXC5/iKCYzdSLVP3uIDnD20r+h3P7msaL+OmB/UcWbVWkSNoULMTpAtcrsWcha+wWRhpf62XyB3kJ9OoY14W0izLrXWyJeBrPShDDumlSmAUXqQz6T0dK/HYBdYcnZhy0AxpZtd8au95S+w=
+	t=1730715771; cv=none; b=MeUe2TL2L10erg068N68o1MzzLdV8nCaEK6i2AO0ZdSsFJdV81B4XVk6Maf/2mQ8xnTjOruGBw20X2TRKz6jGgPuyb87RgyjJWd8y9F6lTiC1x6fiZgwS/C7W9Wb4AUGuWCkEEd7tmHftwJiz0PfFEylXNvuhcTmLbcWGJbEKvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730715739; c=relaxed/simple;
-	bh=kh5QtwjbRWBwwF0Hou4I7K9sJhsih+FO7clvh+maj8Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Ab2uNGEJIe88DXklutj2zD7bKwhj9+q51Tm+FfagAMjGlw7K0zWktcX7LA02iJWFoHmQVecLOTOSHHZPjyXJJG/8dRhUQ6yT9ddwt013Z4ofgLLtqPVP/U+1Yi5MffLQmbqGI4rHBsEMRn1fGOu5jy3MSXrT9wHqMixTod9Obqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RDWvKhHz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A3Mo2Uu031707;
-	Mon, 4 Nov 2024 10:21:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0Nn0WorU6l2jJYLx45HO5FWgM6QDg3c9c5+U561I2mE=; b=RDWvKhHzcdxfC29i
-	u7+n1kB9lTQb9a3ubtALdFWRuNooLB6iEUyG+/ypJTobXgxaZ0Ix4bF6ZdFKByg8
-	0JrgxdWg8MJ7vePfg4XCYeDT6eKWURruL86VUA4mCklIikZGXldvbx6ZN/C9pj5o
-	6Sg1eqzTalNGfikgXXRKlbmYUAQQEHzK5Sls9TwpWlNba4HRN3kl/5dsZ80ur1Na
-	6D+38TPhKCu7NDv3ogFUu/WJ9MkKAVzQwdMn779iWcL7MwXf7M6+F7bOdh9FdKB8
-	Fu3WZjEG+Xh1iumKW3Ldfs6xVg222LKzHH75BbaxPKBthKKkOmAxFTxydRL4lrci
-	9B3v+g==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd1fkudw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 04 Nov 2024 10:21:54 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A4ALro9001503
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 4 Nov 2024 10:21:53 GMT
-Received: from [10.217.217.28] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 4 Nov 2024
- 02:21:45 -0800
-Message-ID: <16aaae04-4fe8-4227-9374-0919960a4ca2@quicinc.com>
-Date: Mon, 4 Nov 2024 15:51:36 +0530
+	s=arc-20240116; t=1730715771; c=relaxed/simple;
+	bh=nMfTLLFzcG1ZcG1H25Gar8chdwYJf1C0bitXKfycbJ4=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=FjgDZIB1xSLCJcxwpBcuoRYF6z/FGBrNyhIo0VveQieFMakNb5BuAsLZBkqpF6uYhVgyH/jRNzrrhUXO8E9D/t8z9VdccBs2FQ23+kMG/32KU5RsXHCiLouRhftfPLWV0aLwqaRyoDiJdMEOEl2dNBVzO8bAmGxgnjnKc5ML7QM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rut4Py5v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC163C4CECE;
+	Mon,  4 Nov 2024 10:22:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730715771;
+	bh=nMfTLLFzcG1ZcG1H25Gar8chdwYJf1C0bitXKfycbJ4=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=rut4Py5vVrIi6BT1pfGKTCXZcGyAz3HgoAkBuQSfnktQis/5pd67FT7i3fpSNt9lI
+	 RVmQ/2kxQEXTovrZLkvfIa/FXiEjXcpP//w/H7jFsMfmapoMbnCENuiSNhAEGfWS3q
+	 8m+AvAmgpE41vBfzwg/cpYykzPHK+afTeqCCR7u3IHp8wsH9WXoRW+1IMKc/TCgFYM
+	 WWYErn3sC4kK9WLypVS8iGMb4Yd0uq0SbYOJXODcA/jZPeZnDn89od35lemgHI3s0S
+	 oYjrDUruelmeCbTg2CNcmhGXaZy/ojbtD/KTN+dETvSoSy/Pl/i23azPrCfw3k6GK4
+	 CO3QFKAgO/ErA==
+Date: Mon, 04 Nov 2024 04:22:48 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 1/4] dt-bindings: iio/adc: Move QCOM ADC bindings to
- iio/adc folder
-To: "Rob Herring (Arm)" <robh@kernel.org>
-CC: <quic_skakitap@quicinc.com>, <daniel.lezcano@linaro.org>,
-        <andersson@kernel.org>, <lee@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>, <linux-kernel@vger.kernel.org>,
-        <lars@metafoo.de>, <robh+dt@kernel.org>, <quic_subbaram@quicinc.com>,
-        <rafael@kernel.org>, <quic_kamalw@quicinc.com>, <agross@kernel.org>,
-        <amitk@kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dmitry.baryshkov@linaro.org>,
-        <quic_amelende@quicinc.com>, <neil.armstrong@linaro.org>,
-        <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <quic_collinsd@quicinc.com>,
-        <konrad.dybcio@linaro.org>, <jic23@kernel.org>,
-        <devicetree@vger.kernel.org>, <lukasz.luba@arm.com>,
-        <rui.zhang@intel.com>, <sboyd@kernel.org>
-References: <20241030185854.4015348-1-quic_jprakash@quicinc.com>
- <20241030185854.4015348-2-quic_jprakash@quicinc.com>
- <173031962644.1844672.11198879616520852521.robh@kernel.org>
-Content-Language: en-US
-From: Jishnu Prakash <quic_jprakash@quicinc.com>
-In-Reply-To: <173031962644.1844672.11198879616520852521.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nwFSCJpt7OlT4ZFwLopJb1OaMawAdfgn
-X-Proofpoint-ORIG-GUID: nwFSCJpt7OlT4ZFwLopJb1OaMawAdfgn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- impostorscore=0 bulkscore=0 mlxlogscore=999 spamscore=0 phishscore=0
- malwarescore=0 mlxscore=0 clxscore=1015 lowpriorityscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411040092
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Sean Nyekjaer <sean@geanix.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ "David S. Miller" <davem@davemloft.net>, linux-can@vger.kernel.org, 
+ devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>, linux-kernel@vger.kernel.org, 
+ Eric Dumazet <edumazet@google.com>, Marc Kleine-Budde <mkl@pengutronix.de>, 
+ netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <20241104085616.469862-1-sean@geanix.com>
+References: <20241104085616.469862-1-sean@geanix.com>
+Message-Id: <173071576894.2866974.11023196178832654081.robh@kernel.org>
+Subject: Re: [RFC PATCH] dt-bindings: can: convert tcan4x5x.txt to DT
+ schema
 
-Hi Rob,
 
-On 10/31/2024 1:50 AM, Rob Herring (Arm) wrote:
+On Mon, 04 Nov 2024 09:56:15 +0100, Sean Nyekjaer wrote:
+> Convert binding doc tcan4x5x.txt to yaml.
 > 
-> On Thu, 31 Oct 2024 00:28:51 +0530, Jishnu Prakash wrote:
->> There are several files containing QCOM ADC macros for channel names
->> right now in the include/dt-bindings/iio folder. Since all of these
->> are specifically for adc, move the files to the
->> include/dt-bindings/iio/adc folder.
->>
->> Also update all affected devicetree and driver files to fix compilation
->> errors seen with this move and update documentation files to fix
->> dtbinding check errors for the same.
->>
->> Acked-by: Lee Jones <lee@kernel.org>
->> Acked-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
->> ---
->> Changes since v3:
->> - Updated files affected by adc file path change in /arch/arm, which
->>   were missed earlier. Updated some more new devicetree files requiring
->>   this change in /arch/arm64.
->>
-
-
->>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-smb139x.h (93%)
->>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h (100%)
->>
+> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+> ---
 > 
-> My bot found errors running 'make dt_binding_check' on your patch:
+> Can we somehow reference bosch,mram-cfg from the bosch,m_can.yaml?
+> I have searched for yaml files that tries the same, but it's usually
+> includes a whole node.
 > 
-> yamllint warnings/errors:
+> I have also tried:
+> $ref: /schema/bosch,m_can.yaml#/properties/bosch,mram-cfg
 > 
-> dtschema/dtc warnings/errors:
-> In file included from Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.example.dts:80:
-> ./scripts/dtc/include-prefixes/dt-bindings/iio/adc/qcom,spmi-adc7-pmk8350.h:13:10: fatal error: dt-bindings/iio/adc/qcom,spmi-vadc.h: No such file or directory
->    13 | #include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
->       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-I think there must be some mistake here because my patch does add the file include/dt-bindings/iio/adc/qcom,spmi-vadc.h, through a rename. This is seen at the very end of my patch:
-
-> diff --git a/include/dt-bindings/iio/qcom,spmi-vadc.h b/include/dt-bindings/iio/adc/qcom,spmi-vadc.h
-> similarity index 100%
-> rename from include/dt-bindings/iio/qcom,spmi-vadc.h
-> rename to include/dt-bindings/iio/adc/qcom,spmi-vadc.h
-
-This patch moves our ADC-related header files from 'include/dt-bindings/iio/' folder to 'include/dt-bindings/iio/adc' folder
-and fixes this path change in all affected files in the same patch....I think this should be expected to pass compilation.
-
-Is it possible something went wrong from your end in this case? I see that both the files mentioned in the above error, qcom,spmi-adc7-pmk8350.h and qcom,spmi-vadc.h
-are moved from 'include/dt-bindings/iio/' folder to 'include/dt-bindings/iio/adc' folder in my patch, could the tool be confused due to qcom,spmi-adc7-pmk8350.h
-containing the updated path of qcom,spmi-vadc.h?
-
-
-> compilation terminated.
-> make[2]: *** [scripts/Makefile.dtbs:129: Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.example.dtb] Error 1
-> make[2]: *** Waiting for unfinished jobs....
-> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1442: dt_binding_check] Error 2
-> make: *** [Makefile:224: __sub-make] Error 2
+> Any hints to share a property?
 > 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241030185854.4015348-2-quic_jprakash@quicinc.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
+>  .../devicetree/bindings/net/can/tcan4x5x.txt  | 48 ---------
+>  .../bindings/net/can/ti,tcan4x5x.yaml         | 97 +++++++++++++++++++
+>  2 files changed, 97 insertions(+), 48 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
 > 
 
-I have also followed the above instructions to update dt-schema and run 'make dt_binding_check' again and I did not see the above error.
-I'm also not getting any errors when building with this patch applied.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Thanks,
-Jishnu
+yamllint warnings/errors:
 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml: properties:bosch,mram-cfg: 'anyOf' conditional failed, one must be fixed:
+	'description' is a dependency of '$ref'
+	'bosch,m_can.yaml#' does not match 'types.yaml#/definitions/'
+		hint: A vendor property needs a $ref to types.yaml
+	'bosch,m_can.yaml#' does not match '^#/(definitions|\\$defs)/'
+		hint: A vendor property can have a $ref to a a $defs schema
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.example.dtb: can@0: bosch,mram-cfg: [0, 0, 0, 16, 0, 0, 1, 1] is not of type 'object'
+	from schema $id: http://devicetree.org/schemas/net/can/ti,tcan4x5x.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.example.dtb: can@0: bosch,mram-cfg: [0, 0, 0, 16, 0, 0, 1, 1] is not of type 'object'
+	from schema $id: http://devicetree.org/schemas/net/can/ti,tcan4x5x.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241104085616.469862-1-sean@geanix.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
