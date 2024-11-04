@@ -1,123 +1,92 @@
-Return-Path: <devicetree+bounces-118809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D13A39BB952
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:46:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B02F79BB958
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:47:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5ADA9B20E98
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 15:46:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 675131F224DE
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 15:47:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 575FF13D246;
-	Mon,  4 Nov 2024 15:46:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD931BFE03;
+	Mon,  4 Nov 2024 15:47:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hVmran2L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF0FF1CF8B
-	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 15:46:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50CC913D246;
+	Mon,  4 Nov 2024 15:47:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730735204; cv=none; b=bgbR9Ws3UUYse3rfCgSIUgSBQSM+Me/mo7D9K8zqVVzR46lySjrGtMQMyh0zQxcBG7Om7NTbeb32fyhimroMeWP+ITGjiN41cUzrzPVoh4rvLPMecGGkNMmgwyn7LxtBqq52LlJSq7e4sVhu03Kuxlv4oGN+5ES46E772zCnO/Y=
+	t=1730735256; cv=none; b=AEx2CO9a8MUpeh3bGVLoPhT976MQCjYViPUkC8P/uHU/DlSTGQylqYRXo0LJN/nKOl8JW96QU1WoiEORvkEttycQaqkHBkrzqeWQPGfY4cBipOK7tosuL3fGgaU6de6vuouO9SRScrb9tVol8epWd+/06BUnrB8vG8hfWgBsOx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730735204; c=relaxed/simple;
-	bh=RRYhob/Ht0A51BwBbphpEbr1yiD1sVmJt994Zu5V1vY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mo1FbAxF8gFpMw9eltX7IlijvqpbZBMX3rGmOSZaBeVBk+b0xEAMLoJBb85AQo5nTxpD43GoLRz4FmqEcTAuA6GoQCDLEuaV+14GOreTB6A/FqY0swq9TxUia2Dc6psLzG+KntoQ6OwWHZurIWQp9es36m63X9KIEg2tTlH3830=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1t7zHm-00081r-Qh; Mon, 04 Nov 2024 16:46:34 +0100
-Message-ID: <97aacb17-675f-451d-9908-dfac409c015c@pengutronix.de>
-Date: Mon, 4 Nov 2024 16:46:34 +0100
+	s=arc-20240116; t=1730735256; c=relaxed/simple;
+	bh=thCjFnNDPilh94gVyOhCKzVXMSGdfN2FgGarlKfx91U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F34VdVWaD0NbGCU4DS5Y/4WC3G1Vr8GCD1juMaLJjww0GzDOmHvXONozXMxJ1R7878FeNtJa+EP3TriU8r20S/aFFiP/9y1xwhPZK85r09SPHNIbmNI7CqMtHNO3Dc6+PpFjzRSCO2p75yZBbq9FsXmFhXADy+4+PG8dNsd2Al0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hVmran2L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B13BCC4CECE;
+	Mon,  4 Nov 2024 15:47:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730735255;
+	bh=thCjFnNDPilh94gVyOhCKzVXMSGdfN2FgGarlKfx91U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hVmran2Lb0MC3j0jbuh7IiZSvCSx2oUjTLOShp9l7mY3Gm3NNPsWVmDxX6bsR9xeh
+	 bnWRB4Yfa9b42e6FwM9qWPmIJbod44dFIn529DW97Y0d0Y6AmMklSwhR270YhPNVpg
+	 G7o7tSjVwvqBIhKPgsIQqGPEOYkdRw9fmt46n4Mf5FoGHY3R7MMR7s1NjmwQEXDcWO
+	 608mNNQrlkBztgNI7160NhdyYVXsRBdA+8qIgn8o1WgZtrkE1c/wOnWhkr0vyC0nF4
+	 I+o0m75a9c9buHv00I9gU/C8qVxK+vC9IfPDYUJ7a3vHPcIfI8nNiYkuvdKyYehjeU
+	 SF6DLNPJTDQ9Q==
+Date: Mon, 4 Nov 2024 09:47:33 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Melody Olvera <quic_molvera@quicinc.com>, linux-kernel@vger.kernel.org,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	devicetree@vger.kernel.org,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: remoteproc: qcom,sm8550-pas: Add SM8750 ADSP
+Message-ID: <173073525333.217463.16399518132776024798.robh@kernel.org>
+References: <20241101170309.382782-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] ARM: dts: imx6sl: Provide a more specific lcdif
- compatible
-To: Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
-Cc: marex@denx.de, andreas@kemnade.info, kernel@pengutronix.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- Fabio Estevam <festevam@denx.de>
-References: <20241101135406.47836-1-festevam@gmail.com>
- <20241101135406.47836-3-festevam@gmail.com>
-Content-Language: en-US
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20241101135406.47836-3-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241101170309.382782-1-krzysztof.kozlowski@linaro.org>
 
-On 01.11.24 14:54, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+
+On Fri, 01 Nov 2024 18:03:09 +0100, Krzysztof Kozlowski wrote:
+> Document compatible for Qualcomm SM8750 SoC ADSP PAS which looks fully
+> compatible with SM8550 variant.  The only difference from bindings point
+> of view is one more interrupt ("shutdown-ack").  Marking devices as
+> compatible, using SM8550 ADSP PAS fallback, requires changing some of
+> the conditionals in "if:then:" to "contains".
 > 
-> The LCDIF IP on i.MX6SL and i.MX6SLL is compatible with i.MX6SX.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Provide a more specific "fsl,imx6sx-lcdif" compatible and still keep
-> "fsl,imx28-lcdif" for DT compatibility.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-
-Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-
-Thank you,
-Ahmad
-
 > ---
-> Changes since v3:
-> - None.
 > 
->  arch/arm/boot/dts/nxp/imx/imx6sl.dtsi  | 3 ++-
->  arch/arm/boot/dts/nxp/imx/imx6sll.dtsi | 3 ++-
->  2 files changed, 4 insertions(+), 2 deletions(-)
+> Cc: Melody Olvera <quic_molvera@quicinc.com>
+> Cc: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>
+> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  .../bindings/remoteproc/qcom,sm8550-pas.yaml  | 48 +++++++++++++------
+>  1 file changed, 34 insertions(+), 14 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi
-> index 6aa61235e39e..840e19b2ca0f 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi
-> @@ -773,7 +773,8 @@ epdc: epdc@20f4000 {
->  			};
->  
->  			lcdif: lcdif@20f8000 {
-> -				compatible = "fsl,imx6sl-lcdif", "fsl,imx28-lcdif";
-> +				compatible = "fsl,imx6sl-lcdif", "fsl,imx6sx-lcdif",
-> +					     "fsl,imx28-lcdif";
->  				reg = <0x020f8000 0x4000>;
->  				interrupts = <0 39 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SL_CLK_LCDIF_PIX>,
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-> index 85fe2a4ab97a..eff83f5e5535 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-> @@ -648,7 +648,8 @@ pxp: pxp@20f0000 {
->  			};
->  
->  			lcdif: lcd-controller@20f8000 {
-> -				compatible = "fsl,imx6sll-lcdif", "fsl,imx28-lcdif";
-> +				compatible = "fsl,imx6sll-lcdif", "fsl,imx6sx-lcdif",
-> +					     "fsl,imx28-lcdif";
->  				reg = <0x020f8000 0x4000>;
->  				interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SLL_CLK_LCDIF_PIX>,
 
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
