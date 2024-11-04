@@ -1,135 +1,90 @@
-Return-Path: <devicetree+bounces-118605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 556589BAEB8
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:56:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AE689BAEEE
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:00:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 028241F21A50
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 08:56:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3C6C283A4F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:00:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FF1A1AB6EA;
-	Mon,  4 Nov 2024 08:56:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC678187FEC;
+	Mon,  4 Nov 2024 09:00:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="lMorisUp";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="eSuOISPK"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="6mmp3G7A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ACC214B06C;
-	Mon,  4 Nov 2024 08:56:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC68817B4E1;
+	Mon,  4 Nov 2024 09:00:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730710604; cv=none; b=goGJNXe4EbgjvQxb3YySjmh/Oo6MvmCHvBpcNiQjS9ecDk9HN6Ase/DHF2Px8alRXocSSmeaMRNBVChb3WwQMv2gr0rF3T1t9iTpx7La9byQUK7EUVeZ2R8I0hclb1biV7vJAwtDGs2f6gt4yh6MRoagO5Famni0iyLsmY1Zd9Y=
+	t=1730710824; cv=none; b=mRyushDMwRs/osNLNMr01T6igE48zzFoNncrUtJn1SZ+BZQsbHVeJOX5IQyp/GuoJA695Oq/fV+lhK9PxYoE/eoRBep9uxpDmYmYX6+1GIe6renWZD0dp3BlteE1DcAq82ITTmyI7XMRjIBCsRz1F0jxMMfpFdewGBxfWkMtqZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730710604; c=relaxed/simple;
-	bh=Vz20v+1mMjGBXMV3/Ud1+fs+2WLaeyAEPGs1X8XeUgA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jUkdTTpXAg6jJrnzLBqLQBGY9e0LVC4ihuXrB+3+jfedsdGQVNrle3GTJDOkC7cmQkocxBmbgns53BjNOqXdU02JNyZvS9Wgz8MCnkQeMttBW+e+A/d3/kUruNLbin0sJzMHhW4I3GC9Aq6AM1kFBphb6TZLs2aKi7DhccoyDhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=lMorisUp; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=eSuOISPK reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1730710600; x=1762246600;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=bZVznDietMqc8CDisChXL1GqxDSxeGo8m3Z1J4jxM2Y=;
-  b=lMorisUpN+AQUmwWYZhPvRvHnHpgqFo2nMD+p0/zVQQDyWV6/9UL1oKr
-   KfUKRi18WlA1j7PBVETDffMcMI+WwkA4P4q1nWJw8DjcjySsJ4qpQYGJC
-   RJkQxrSIhIXsRDhcGAbcAXKXeaOqdu+CsC4omZdAiSdWj4kuAffw8o1gj
-   jIgbmrjjGZ73RGBYYPczF+gthKFWfskdm0GPEP620HtHOHLtkS6MqIjrG
-   5X15IX8NYd4DkpvHYuVDydyVMmu58YZi6V/l9YkK16h+SWjJPOHZy0cqe
-   WwF/cpl2xWxRpMM7ZesozP6skSaW35T+oQlhhiisZu8igqZllQR/AvyHo
-   g==;
-X-CSE-ConnectionGUID: M8Pqh8T1SQubNcH7SyS38A==
-X-CSE-MsgGUID: NH7lcu2QSreFwOgS1H6gcA==
-X-IronPort-AV: E=Sophos;i="6.11,256,1725314400"; 
-   d="scan'208";a="39825187"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 04 Nov 2024 09:56:32 +0100
-X-CheckPoint: {67288C40-C-90CD5875-E0265C0B}
-X-MAIL-CPID: 0A056B4CA4F8B68938265580AB1C91AE_3
-X-Control-Analysis: str=0001.0A682F17.67288C40.0091,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 788D8160A4B;
-	Mon,  4 Nov 2024 09:56:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1730710587; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=bZVznDietMqc8CDisChXL1GqxDSxeGo8m3Z1J4jxM2Y=;
-	b=eSuOISPKfPImLq0eXXN5Lwhyv503U1T0BcpmaKEIt/m3tpbtQ1gaweKcvynPFBkRcVvBCl
-	ZGJps3JG6ZdK+kOz6F0mFQgxjass7YbMLdf0kAPzhq/cFriJL7weQK5S5DkZl8nOuCg1K2
-	aEGVcKqsHUoe1LqOWgEOYV7pmsxtlMRt5eJ1AAYXdcKX4abFWns5h61FteR4//7+7CA2xX
-	qZRLoKEBPp/42gh6GY+0fA0E29eN5ABwAlsPpBtQQoRXA1InzslxdhPUYspnKyTyIbtPlU
-	SgG3Yh7G731Si5uDbqPhZ75eEF8s9Cb0XuqXiXbscyA9TWUzZnlQgYz8iKtZXw==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Peng Fan <peng.fan@nxp.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/1] dt-bindings: firmware: imx95-scmi: Allow linux,code for protocol@81
-Date: Mon,  4 Nov 2024 09:56:21 +0100
-Message-Id: <20241104085622.177781-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1730710824; c=relaxed/simple;
+	bh=ZXHiXGPAvmouGNCzwlTWatH7zxmlXNw+LAIkBSNOPTc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=A//qgQPPAKytmhCDaU03BPMBBTTC4rvin3GW/JUBCjR3VBoupdP/CEUpDCRE5ljOtOIDlXtbilCvXqFQrNdNUZXzy/MWEvcEN6J+A5fixA1bfmDgsbfV7RzNEdQy0YzBT9R0MRawd689rZ6zWJGV1T4ogBW10BUeU19s3TlzuDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=6mmp3G7A; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=OZ6ceByodZIjpBVVoFOulrOIVCJF0fRn/mN4p+R1OIk=; b=6mmp3G7AddpHNGQvxu97cUolBP
+	Jwueqr2b7wFsdpMZ0rxgoAzjoLPblvRY0/L1JZyqd8AF+FXzslliatcFnI2P8469N3TijRuVS2qHA
+	Fms3UX3MCzaPtQmXvft5eJrDTm8J8EueB1pPWxVPgEmM9T+bkSuRTICBFg22uVNFbS/W8fizfpAW9
+	HvAGvxbpKJ0cqeFgYAwulvMg4/PNm+PI1f7ZVp8NDltV0jm2wAo27EgYTajrHmnRKSWjd7jPYssYN
+	nphhNflkDTRl18Y79w8GDPcHam1Hp3+R1/zyLWRoHa5A0ueQNYvS/Z5+bYkilnP+cgPaUkjiIp5e8
+	cEwuBeog==;
+Date: Mon, 4 Nov 2024 10:00:19 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Rob Herring <robh@kernel.org>
+Cc: lee@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mazziesaccount@gmail.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, sre@kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: bd71828: Use charger resistor in mOhm
+ instead of MOhm
+Message-ID: <20241104100019.1fbc38d8@akair>
+In-Reply-To: <20241101192705.GA4062121-robh@kernel.org>
+References: <20241029111112.33386-1-andreas@kemnade.info>
+	<20241101192705.GA4062121-robh@kernel.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-BBM protocol supports a single power button, supported by driver
-imx-sm-bbm-key.c. By default this is KEY_POWER, but can also be overwritten
-using linux,code. Add a reference to this schema and add linux,code as a
-supported property.
+Am Fri, 1 Nov 2024 14:27:05 -0500
+schrieb Rob Herring <robh@kernel.org>:
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes in v2:
-* Added default value
+> On Tue, Oct 29, 2024 at 12:11:12PM +0100, Andreas Kemnade wrote:
+> > Apparently there was some confusion regarding milliohm vs. megaohm.
+> > (m/M). Use microohms to be able to properly specify the charger
+> > resistor like other drivers do. This is not used yet by mainline
+> > code yet. Specify a current sense resistor in milliohms range
+> > rathes then megaohms range in the examples.  
+> 
+> milliohms?
+> 
+hmm, do not understand what you are after: Milliohms range:
+I mean a value well expressed in milliohm (like 10-50mohm) in the
+examples, but we use microohms to specify it like we often to, having
+room for some unexpected precision requirements as we do in other
+places also (microvolts for values more in mV/V range)
 
- .../devicetree/bindings/firmware/nxp,imx95-scmi.yaml   | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+> rathes?
 
-diff --git a/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
-index 1a95010a546b1..c1b7140ee0098 100644
---- a/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
-@@ -12,13 +12,19 @@ maintainers:
- 
- properties:
-   protocol@81:
--    $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
--    unevaluatedProperties: false
-+    type: object
-+    allOf:
-+      - $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
-+      - $ref: /schemas/input/input.yaml#
-+    additionalProperties: false
- 
-     properties:
-       reg:
-         const: 0x81
- 
-+      linux,code:
-+        default: 116  # KEY_POWER
-+
-   protocol@84:
-     $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
-     unevaluatedProperties: false
--- 
-2.34.1
+ok, simple typo: rather
 
+Regards,
+Andreas
 
