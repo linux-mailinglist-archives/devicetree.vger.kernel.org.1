@@ -1,95 +1,112 @@
-Return-Path: <devicetree+bounces-118568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F04FD9BAD0A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 08:18:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B45E9BAD29
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 08:33:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B3D51C20924
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 07:18:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FBA11C20777
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 07:33:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2FA218C02E;
-	Mon,  4 Nov 2024 07:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E0E18C028;
+	Mon,  4 Nov 2024 07:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="a6eLp7oC"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="BDoi8/1o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8685023AB;
-	Mon,  4 Nov 2024 07:18:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+Received: from mail-m6092.netease.com (mail-m6092.netease.com [210.79.60.92])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AA63193408;
+	Mon,  4 Nov 2024 07:33:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.79.60.92
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730704715; cv=none; b=hzEiFq18LGwhEBSSdNQ0bvka9/umyGjJM9f2mWdK8349EqtcLYfAOt5Si6E7Q5XJNAAlY4pHWBaZH6eCF/0P7T2vX3Dvl5Wf4NPXYK9rQJyoNnn6bz2sR/bZQ1q66HmoScF7DLZWLZfxjcUMkNw7sm8y5SmiwFoWExHa57/MHi0=
+	t=1730705600; cv=none; b=bMFr33BpthvyXES1YCnaRYnE7bc1eAgg0CKSgbYpmL+tTmJlXrmEmzCRmu64Y00aSdlkxlyX3ImjlY0a9Sf1jYPAq3T00jKZI9sH9ZYBEQ3Z+PLSeBCX4iueJZutW6SH5bvvVYJ4o09DjB2DFggIoj1LU1aeZmnNOpgBzJS5IGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730704715; c=relaxed/simple;
-	bh=frXb0Lok2+S7AxxRyLcA2tyzYP6Pe4kdGhMvdbZs68U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l8nDL8jJFhNLqOtcKObbl5Vsx31FngFDdjxGmwMXKSB1jdvtKO/Q8NXQyWu8i8yFCTKhLZdwEToDcEng9IQkjhj6hSzxj/0XQfb6IaExDe/Op3OGQE+GLK+a28PEKbyFv0fYrNram+OmBA6YINGZjS5Y9febdj768/w9ep83XEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=a6eLp7oC; arc=none smtp.client-ip=1.95.21.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=u0JY0l9KILWtgurR5lkp/s4CjaE73Dq2Pe4jWzYkjNc=;
-	b=a6eLp7oCTvtMLCXR6x0IO4FMP8fHujOklnFcuT4b4ukhJp1m3fyVygHDpbPAJ1
-	EcCK/gja+Y3oBj9oJcNInT08fPEvnT/h1qv2BxABaOohvsTvvgoVeRUnS1hP+k0s
-	T2KDbPY78ReV5iwzgvHlHtNmEYVmKYvtQ8youZKYCaXgs=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgDHDu8ZdShnBECmAQ--.16720S3;
-	Mon, 04 Nov 2024 15:17:46 +0800 (CST)
-Date: Mon, 4 Nov 2024 15:17:44 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v4 0/3] ARM: dts: add Kobo Clara 2E
-Message-ID: <Zyh1GKFk9fksLCQo@dragon>
-References: <20241103135201.25615-1-andreas@kemnade.info>
+	s=arc-20240116; t=1730705600; c=relaxed/simple;
+	bh=HcAtJ+KdWFjukkplQq/eUQ5X4sEL5W385xYCnFj8q2s=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=mythPPaZljFllmsQXilVcOvxz1chdDx0/UVF7buO8ChbcNjFDwuFQTRG8Tr+N7TgL1UtOstGgCq+NtO7iqz1OqxX0UI8Fwrc71+AZTVQrl24rWNoiVKXr9Korc+fWlH+Z09OxED6xKzSr5WKkROVDXojNBg2MZqq22wf6nYrybc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=BDoi8/1o; arc=none smtp.client-ip=210.79.60.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1b5f85e2;
+	Mon, 4 Nov 2024 15:33:04 +0800 (GMT+08:00)
+From: Shawn Lin <shawn.lin@rock-chips.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	YiFeng Zhao <zyf@rock-chips.com>,
+	Liang Chen <cl@rock-chips.com>,
+	linux-scsi@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH v4 3/7] soc: rockchip: add header for suspend mode SIP interface
+Date: Mon,  4 Nov 2024 15:31:57 +0800
+Message-Id: <1730705521-23081-4-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1730705521-23081-1-git-send-email-shawn.lin@rock-chips.com>
+References: <1730705521-23081-1-git-send-email-shawn.lin@rock-chips.com>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGk8eGFZIHU5PQ08YSBlMHR5WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a92f61772c109cckunm1b5f85e2
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MiI6HDo6DjIvGjoqDjVKDy8D
+	IzkwCg1VSlVKTEhLTEtOTkNNT0NMVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUJOTzcG
+DKIM-Signature:a=rsa-sha256;
+	b=BDoi8/1o0y4qs1XCUwE1wY8O5Dwy5r8bBTrIJIljgXxpTVkvNOJH/smvoGA+cNjncWRMVQ+cdMOGGwv9YjDfL1I3aAPKzaWB4g2Z9NBlGbdaKX3oCHM5zgKGEy36ss1KQuARxkl0I89/cpCOzfu0PbCIRGn8ITAh+Advkikp1O8=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=Ty6mGnWBoIaPt2RyCxg02+KQlGxmCwE6/d4KhDj58FM=;
+	h=date:mime-version:subject:message-id:from;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241103135201.25615-1-andreas@kemnade.info>
-X-CM-TRANSID:Mc8vCgDHDu8ZdShnBECmAQ--.16720S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrZry7AFy8uw1UZr43ZrWfAFb_yoWxArX_uw
-	4kZ34UCa15CFs7Kwnxtr1q9r4rKr1jyrZ3ur1kKa4SyF93ZF98uFWkX34xu34UZan0qwnF
-	vF17W34kC3Wa9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8DDG5UUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAgmNZWcocJkPOwAAsx
 
-On Sun, Nov 03, 2024 at 02:51:58PM +0100, Andreas Kemnade wrote:
-> Add a basic device tree for the Kobo Clara 2E Ebook reader.
-> It is equipped with an i.MX6SLL SoC. EPDC PMIC drivers
-> are not ready for mainline yet.
-> 
-> Changes in V4:
-> - fix order of pinmux nodes
-> - remove some blank lines
-> 
-> Changes in V3:
-> - removed 30MegaOhm current sense resistor nonsense
-> 
-> Changes in V2:
-> - improved commit message about devices without binding
-> 
-> Andreas Kemnade (3):
->   dt-bindings: arm: fsl: add compatible strings for Kobo Clara 2E
->   ARM: dts: imx: Add devicetree for Kobo Clara 2E
->   ARM: imx_v6_v7_defconfig: Enable drivers for Kobo Clara 2E
+Add ROCKCHIP_SIP_SUSPEND_MODE to pass down parameters to Trusted Firmware
+in order to decide suspend mode. Currently only add ROCKCHIP_SLEEP_PD_CONFIG
+which teaches firmware to power down controllers or not.
 
-Applied all, thanks!
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+---
+
+Changes in v4: None
+Changes in v3: None
+Changes in v2: None
+
+ include/soc/rockchip/rockchip_sip.h | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/include/soc/rockchip/rockchip_sip.h b/include/soc/rockchip/rockchip_sip.h
+index c46a9ae..501ad1f 100644
+--- a/include/soc/rockchip/rockchip_sip.h
++++ b/include/soc/rockchip/rockchip_sip.h
+@@ -6,6 +6,9 @@
+ #ifndef __SOC_ROCKCHIP_SIP_H
+ #define __SOC_ROCKCHIP_SIP_H
+ 
++#define ROCKCHIP_SIP_SUSPEND_MODE		0x82000003
++#define ROCKCHIP_SLEEP_PD_CONFIG		0xff
++
+ #define ROCKCHIP_SIP_DRAM_FREQ			0x82000008
+ #define ROCKCHIP_SIP_CONFIG_DRAM_INIT		0x00
+ #define ROCKCHIP_SIP_CONFIG_DRAM_SET_RATE	0x01
+-- 
+2.7.4
 
 
