@@ -1,153 +1,160 @@
-Return-Path: <devicetree+bounces-118818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 287D39BB9FA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:16:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F549BBA09
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:18:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 596831C2102C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:16:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E5951F226ED
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:18:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 560221BBBD7;
-	Mon,  4 Nov 2024 16:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DAAE1C233C;
+	Mon,  4 Nov 2024 16:17:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iY1nblVu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ELeHiV4v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41DE120326;
-	Mon,  4 Nov 2024 16:16:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2245F1C302B;
+	Mon,  4 Nov 2024 16:17:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730737011; cv=none; b=jCKMD2D4/vuJ6bXb/7XQqoXcgahnsYniwVosiODq1N09Pa0hhCdnPpmXnL5HrMz9mgldMiwnMpsl4r7urq7LkRmE1vN7azN+jVtWoax5/Mgk2dcwUYnxzTYWj4lxOTh1De4l7r1Ltjs+9tdeGtzF/snayl56bkkD5r6+enZcwD8=
+	t=1730737074; cv=none; b=R/hPJ/Vcc1lZb1VpOIsWNaTnTXUB6uawf09w3z9t18MktotYa6Cnq01fP2FkQJN6/bBa505rnKpg6B6zIQ9/zhxiWqvDLCwEhl8Hcx7XuOCZ8bJO803NZpnfy66vHAW1tyUiYDk9jQYkSCFbpAHwMJlVFXSN7MvToNlT8oWVjMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730737011; c=relaxed/simple;
-	bh=dvq4WdAmFMn0vLZ9JnYGSSdyWumIrzJUc3NB73OMPOg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=MjbEqF8goa7ZBCz8G+oOwxPknYGD1ynK34NwJ9s4+OieMfr/tcuPySLR5pmGFtdG/RVl0MFMHnqCPGPme18EIvgvbWdahf4m1xsGyx59hB/D3Tntb6LTu+2uAQOnCqsc3yx+azwWga/Ju/10HrR/Ycp+GBa+9clks4UFrnh6dQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iY1nblVu; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E858860007;
-	Mon,  4 Nov 2024 16:16:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1730737006;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=6rqr0N+cqbVGEIJ9JWQr1pdzzt48RW1+Mdy+DMTESZ0=;
-	b=iY1nblVuCVjnM+iTFMao7fUaBwok5qhuYyl5TtzZscEOZvgXF2YrpkzOxUKzv5XoY74lQK
-	oppy49hTbZU/PhquKOHASxNSEXIXlOHpxwISjN/laalnrg63rwBUgbWOw6wQA3B4EcwuIY
-	QL767l7li094Yudwrx/DmBYTP+1vITi4aKVfTg09PKocToLFGPI/Sp44U3LnOEnX0mfyJG
-	RJ+JuQEPRGN2itJPlbTEUs5t4AwJIK0ViWJjR/FjeJWLI3EErU9IzDYBwrezYGV3eYrJwm
-	kbNJY1QqR5BbjWKi9k19PXUtzFNciVn2Du5JABW+OSBJq16y89cFLqZSr1Gulg==
+	s=arc-20240116; t=1730737074; c=relaxed/simple;
+	bh=bfAsiSNijIbn9dA6dCEoAJCNnIpUVnYgwURSK8OS4ug=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IQobsu5VIIO0CwXbww039kEDHa0/CXJdYHHK64Cdfdwlp+dlQuyk9aHYM5wgHRstQ5aj4N5sROgIm+YRmg5eW+oDsYexrLYOGK3RiNyX1esar8OlBdstoNlH3TaaI4uI2RaskbtNzdVYc2xssA3PRlYSObUAbcpPpDZt2M5bX+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ELeHiV4v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E502C4CECE;
+	Mon,  4 Nov 2024 16:17:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730737073;
+	bh=bfAsiSNijIbn9dA6dCEoAJCNnIpUVnYgwURSK8OS4ug=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ELeHiV4vJKBVJKglPnNwM4FU9h4OgvTXusWR8lAPnMYQkdfviOs8EYxwcL7BFbdiL
+	 2RVJSf42kx/VHzzyjb4XTns0+4vRba32OT2rKvpm8SOwYAx5UdrChcvvsSZ2CEFndf
+	 daO4CLeyWE5Lbh8G7KVLF5o9n7K3VsPFRKrVV44BpsC97egsW8iREvcfqojKpnzwj1
+	 03GkPzA0xMlNzY9F/Q3KiNX+Iqyda+V0dAPhUZYMyiihT49jsH9JICKfJKpendetVR
+	 cx3TENatm5/RUWWRx9XlsjY818EJGeRDOmYYG69p1JW1AKCDsHHhDGMSFgkG2nm4P1
+	 lv2vYvcLarrcw==
+Date: Mon, 4 Nov 2024 10:17:51 -0600
+From: Rob Herring <robh@kernel.org>
+To: Ki-Seok Jo <kiseok.jo@irondevice.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	"alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: irondevice,sma1307: Add
+ initial DT binding
+Message-ID: <20241104161751.GA320514-robh@kernel.org>
+References: <20241104-irondevice-sma1307-v3-0-4bbe79895f54@irondevice.com>
+ <20241104-irondevice-sma1307-v3-1-4bbe79895f54@irondevice.com>
+ <SL2P216MB23377A60BEC4396ADFA78A6A8C512@SL2P216MB2337.KORP216.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 04 Nov 2024 17:16:45 +0100
-Message-Id: <D5DJ2C103MJL.2DBH24E85MPYP@bootlin.com>
-Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Thomas
- Bogendoerfer" <tsbogend@alpha.franken.de>, <linux-mips@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-clk@vger.kernel.org>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH 04/13] dt-bindings: clock: eyeq: add Mobileye EyeQ6H
- central clocks
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20241031-mbly-clk-v1-0-89d8b28e3006@bootlin.com>
- <20241031-mbly-clk-v1-4-89d8b28e3006@bootlin.com>
- <7ebcdarioght4u2bai4l42pckitcw5iz4rky4ncgp7aqmtrlen@zl7k7pgijloq>
-In-Reply-To: <7ebcdarioght4u2bai4l42pckitcw5iz4rky4ncgp7aqmtrlen@zl7k7pgijloq>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SL2P216MB23377A60BEC4396ADFA78A6A8C512@SL2P216MB2337.KORP216.PROD.OUTLOOK.COM>
 
-On Fri Nov 1, 2024 at 8:48 AM CET, Krzysztof Kozlowski wrote:
-> On Thu, Oct 31, 2024 at 04:52:54PM +0100, Th=C3=A9o Lebrun wrote:
-> > Add clock indexes for EyeQ6H central OLB.
-> >=20
-> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > ---
-> >  include/dt-bindings/clock/mobileye,eyeq5-clk.h | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >=20
-> > diff --git a/include/dt-bindings/clock/mobileye,eyeq5-clk.h b/include/d=
-t-bindings/clock/mobileye,eyeq5-clk.h
-> > index 7d9e700b5e59573c45919865d9c68a9e8cf6a9eb..2356bc52646df9cfeb93df8=
-120eb8f0bf80d97e9 100644
-> > --- a/include/dt-bindings/clock/mobileye,eyeq5-clk.h
-> > +++ b/include/dt-bindings/clock/mobileye,eyeq5-clk.h
-> > @@ -34,6 +34,9 @@
-> >  #define EQ6LC_PLL_PER		2
-> >  #define EQ6LC_PLL_VDI		3
-> > =20
-> > +#define EQ6HC_CENTRAL_PLL_CPU	0
-> > +#define EQ6HC_CENTRAL_CPU_OCC	1
-> > +
->
-> Don't add define after define in separate patches. Logical change is to
-> add all defines at once, so multiple patches here should be squashed.
+On Mon, Nov 04, 2024 at 07:33:47AM +0000, Ki-Seok Jo wrote:
+> 
 
-Sure, I was not sure so I leaned in the safe bet direction. Squashing is
-much easier than splitting. Also improved the commit message, which
-will look like this for next revision (incoming soon):
+I don't see the rest of the series (I fetch from lore). That means your 
+threading is broken.
 
---
+> This adds the schema binding for the Iron Device SMA1307 Amp
+> 
+> Signed-off-by: Kiseok Jo <kiseok.jo@irondevice.com>
+> ---
 
-dt-bindings: clock: eyeq: add more Mobileye EyeQ5/EyeQ6H clocks
+v3, but where is the revision history?
 
-Add #defines for Mobileye clock controller:
+>  .../bindings/sound/irondevice,sma1307.yaml         | 54 ++++++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/irondevice,sma1307.yaml b/Documentation/devicetree/bindings/sound/irondevice,sma1307.yaml
+> new file mode 100644
+> index 000000000..0bb4ee664
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/irondevice,sma1307.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
 
- - EyeQ5 core 0 thru 3 clocks. Internally:
+"%YAML 1.2" goes on the 2nd line.
 
-      EQ5C_PLL_CPU:           already exposed
-      =E2=94=94=E2=94=80=E2=94=80 EQ5C_CPU_OCC:       unexposed, no reason =
-to do so
-          =E2=94=9C=E2=94=80=E2=94=80 EQ5C_CPU_CORE0: new!
-          =E2=94=9C=E2=94=80=E2=94=80 EQ5C_CPU_CORE1: new!
-          =E2=94=9C=E2=94=80=E2=94=80 EQ5C_CPU_CORE2: new!
-          =E2=94=94=E2=94=80=E2=94=80 EQ5C_CPU_CORE3: new!
+> +---
+> +$id: http://devicetree.org/schemas/sound/irondevice,sma1307.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Iron Device SMA1307 Audio Amplifier
+> +
+> +maintainers:
+> +  - Kiseok Jo <kiseok.jo@irondevice.com>
+> +
+> +description:
+> +  SMA1307 boosted digital speaker amplifier
+> +  with feedback-loop.
 
- - EyeQ5 peripheral clocks. Internally:
+Wrap lines at 80 char.
 
-      EQ5C_PLL_PER:          already exposed
-      =E2=94=94=E2=94=80=E2=94=80 EQ5C_PER_OCC:      new!
-          =E2=94=94=E2=94=80=E2=94=80 EQ5C_PER_UART: new!
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - irondevice,sma1307a
+> +      - irondevice,sma1307aq
+> +    description:
+> +      If a 'q' is added, it indicated the product is AEC-Q100
+> +      qualified for automotive applications. SMA1307A supports
+> +      both WLCSP and QFN packages. However, SMA1307AQ only
+> +      supports the QFN package.
 
- - EyeQ6H central OLB. Internally:
+Is this difference visible to software? The package is not, so that part 
+is irrelevant.
 
-      EQ6HC_CENTRAL_PLL_CPU:     new!
-      =E2=94=94=E2=94=80=E2=94=80 EQ6HC_CENTRAL_CPU_OCC: new!
-
- - EyeQ6H west OLB. Internally:
-
-      EQ6HC_WEST_PLL_PER:          new!
-      =E2=94=94=E2=94=80=E2=94=80 EQ6HC_WEST_PER_OCC:      new!
-          =E2=94=94=E2=94=80=E2=94=80 EQ6HC_WEST_PER_UART: new!
-
-Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-
---
-
-Thanks Krzysztof,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#sound-dai-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#sound-dai-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        amplifier@1e {
+> +            compatible = "irondevice,sma1307a";
+> +            reg = <0x1e>;
+> +            #sound-dai-cells = <1>;
+> +        };
+> +    };
+> 
+> --
+> 2.39.2
+> 
 
