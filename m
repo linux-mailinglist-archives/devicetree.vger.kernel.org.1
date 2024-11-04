@@ -1,119 +1,118 @@
-Return-Path: <devicetree+bounces-118814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF8EF9BB9CB
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:05:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 574469BB9DC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:10:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F5F5281B95
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:05:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 891981C22D64
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D09181C07DF;
-	Mon,  4 Nov 2024 16:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5851C07F5;
+	Mon,  4 Nov 2024 16:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="oWBrESDj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JPxIZ3Qw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB2E6208A7;
-	Mon,  4 Nov 2024 16:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE601B393D;
+	Mon,  4 Nov 2024 16:10:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730736338; cv=none; b=eI4ma9n5LS8IGQG8h1Oaf1v6U+8W6RV7d8qX7d6FQc3aE+SfH6wzoaBpKcN62FWzeWzab7azN6FB0RVVlKjWjYrtOIpnsWeFfOsrUOsqenopWxqvHBuCWhDqmmLaidCnqoSQKnN3U6bmnlldN7Gp42iJb8gY007w6YffTJADfZU=
+	t=1730736636; cv=none; b=HEN2n1bVqyYeh+rh9L7IU6PHKyOk71GsgoYm94RxuDfGSMTGJucJjWRkJ0OEFidVBNudTus6T36IGn2K/A8F/ZWrD5bgEPfeuua2DDv/GSZgWlD7947Tlg8REWb7psV0QICz17du+jVHVkYm0AFX8xBvdngrGcLZ117h6hVR8VQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730736338; c=relaxed/simple;
-	bh=OHtFV7tHDYv2kLL2ZzjwBTy+CA8ziyZqbKQx6QELXuo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=j09IIxGQy4szQfZyZVvREntjLaPR6NIJSP8x3HD544f5eqFNwzlw+6odlj/5p1OZGXBHCYdZNNVuKP7Gu2tXG+k36SXaib3Ss8MsWFdalDLkbePcKXo98GE7aEKcZGs0dwqaDuKjMRm8/Ty0aBumMdoU7JkOYYpExQtf1+Y8xM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=oWBrESDj; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D6E2460006;
-	Mon,  4 Nov 2024 16:05:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1730736335;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bGXE4eDYjk2lR2ubbk00XXdKNVfRlNdbyZKN2+XEphI=;
-	b=oWBrESDjrkJ+vex81zeexplceHDPwXDVOl6tJO1sOBfkZdIDzT7P+MMRlsRP9DbqB1hrSg
-	Og3p5pVD7P1CtF7HDKs7Cf1Tey7iOj3vUaEr8cqMOXC4SkkKPp0Oeft+MWR+Ixmhs7BZv8
-	Y3WvpiXl9jyw7LnvZj80kF//6X6izUlkrewdxYzwnTGeEnfoNp/gKC6POszbZRLpOnzu6h
-	UvJYpqGa3LAlBke1UZic4dHZrV2joV6cRTjSBgKMTD80KAlurBItXgQ6nvYwuZYjfDurhJ
-	KbHc3ZLihnhXfUYtjU6DT9jf9M4cp1yz5WltPqtSZQpTyMWsGFLXH5oAnNrO6A==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>, Sebastian
- Hesselbarth <sebastian.hesselbarth@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: marvell: kirkwood: Fix at24 EEPROM node name
-In-Reply-To: <CAL_JsqLLRSEaDv=Zm_LQH9cpgH2prh21+cmovgSR=pzQTuRtZQ@mail.gmail.com>
-References: <20240910215914.823546-1-robh@kernel.org>
- <CAL_JsqLLRSEaDv=Zm_LQH9cpgH2prh21+cmovgSR=pzQTuRtZQ@mail.gmail.com>
-Date: Mon, 04 Nov 2024 17:05:34 +0100
-Message-ID: <878qtz9e7l.fsf@BLaptop.bootlin.com>
+	s=arc-20240116; t=1730736636; c=relaxed/simple;
+	bh=0qhEJZGgBMV6CikmD2WWDctceX83RuUixIjHqPp7U24=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MbtyiynPsJwEHNq6u8CMezbvwEWmsfbKGIm2VMJI9ueiyIB5p8IQeeACzXocSGl2pUqj5Yz3JBc8muuMJmjXz7rBnG7+ZitcOn3iYHVTBZ+eX4XLOMObS7D2R/IXBpx0HiAD5vRcs296VgCve5lKRQ8uzm+HGi4xpFzuL8gRzsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JPxIZ3Qw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1213AC4CECE;
+	Mon,  4 Nov 2024 16:10:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730736635;
+	bh=0qhEJZGgBMV6CikmD2WWDctceX83RuUixIjHqPp7U24=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JPxIZ3QwvJh+65TMIwfy4GdFk81DJ9KrimR4ViFDAskoDigd3PRvjcLuYB2jmDq8y
+	 xLir3jkJbDkkjSWRmYm2bg4hfoklCgmkkTyoeUcrE84z5XaUMOoqC3kpD//5jgb372
+	 8V0+DcSUMbRUx8K1kGSCDYXPtgOwCmS2SIry89FjRcFRigg5OWxg16JS4a+jzHwUXd
+	 9sh6znm45Tns6eXRAhF5rWOKXV/upOD9nfCTOJZ2asMqayQ+bBXndUEEY0vqX8jL/p
+	 kBkUs8RAcBdPyVN0IBnJ9AO1LFAa23OGahENaBMuT3CEaQwBVaRy8P/bjYvqorHP2f
+	 D6gASLB+FuGgg==
+Date: Mon, 4 Nov 2024 10:10:33 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Vasileios Amoiridis <vassilisamir@gmail.com>, lars@metafoo.de,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	andriy.shevchenko@linux.intel.com, anshulusr@gmail.com,
+	gustavograzs@gmail.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 5/7] dt-bindings: iio: bosch,bme680: Add supply
+ properties
+Message-ID: <20241104161033.GA228709-robh@kernel.org>
+References: <20241102131311.36210-1-vassilisamir@gmail.com>
+ <20241102131311.36210-6-vassilisamir@gmail.com>
+ <20241102153315.2175fd5b@jic23-huawei>
+ <6sucdv4k5jdovqgtaemeer4cnluvnl3xgyn57mo3elgwdmojrx@phu4gowaqtuv>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6sucdv4k5jdovqgtaemeer4cnluvnl3xgyn57mo3elgwdmojrx@phu4gowaqtuv>
 
-Hello Rob,
+On Sun, Nov 03, 2024 at 10:46:46AM +0100, Krzysztof Kozlowski wrote:
+> On Sat, Nov 02, 2024 at 03:33:15PM +0000, Jonathan Cameron wrote:
+> > On Sat,  2 Nov 2024 14:13:09 +0100
+> > Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
+> > 
+> > > Extend dt-binding for BME680 gas sensor device. The device incorporates
+> > > as well temperature, pressure and relative humidity sensors.
+> > This description should make it clear it is moving from trivial-devices.yaml
+> > 
+> > dt-bindings: iio: bosch,bme680: Move from trivial-bindings and add missing supplies.
+> > 
+> > Then say a little more on why you are moving it.
+> > 
+> > > 
+> > > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> > 
+> > There was an open question on the previous version about
+> > setting the supplies as required (which I see you've removed).
+> > My understanding previously was that it is fine to make that change
+> > in a binding if it reflects supplies that are required to be enabled
+> > for the device to function at all.  If there were previously missing
+> > that's a binding bug we should fix.
+> > 
+> > I'd like a clarification from the DT binding maintainers on that.
+> > Obviously doesn't work for other users of dt bindings but in
+> > Linux this would be fine as they were already on for any board
+> > that worked and the regulator framework will through us a fake
+> > regulator for cases like this.
+> > 
+> > https://lore.kernel.org/all/20241022182451.00007ac0@Huawei.com/
+> > 
+> > Jonathan
+> 
+> That was Rob's objection so I will leave it to him, but putting my two
+> cents in for Linux it is not an ABI break because missing regulator
+> supplies are substituted with dummy ones. Unless something changed...
 
-> On Tue, Sep 10, 2024 at 4:59=E2=80=AFPM Rob Herring (Arm) <robh@kernel.or=
-g> wrote:
->>
->> at24.yaml defines the node name for at24 EEPROMs as 'eeprom'.
->>
->> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->> ---
->>  arch/arm/boot/dts/marvell/kirkwood-openblocks_a7.dts | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> Ping!
->
-> Are Marvell platforms still maintained?
+Shrug. I don't think we're entirely consistent on this. If we're saying 
+supplies are always required, then every device in trivial-devices.yaml 
+is wrong. Since Linux handles them missing, you can also argue that 
+supplies are never required.
 
-Actually I just applied it this morning, and was about to notify about
-it.
+I'd prefer not to special case regulators as an exception I have to 
+remember. I have some rudimentary ABI checking I'm working on that 
+checks for things like new required properties. Though it wouldn't catch 
+this particular change given it moves the schema.
 
-Applied on mvebu/dt
-
-Thanks,
-
-Gregory
-
->
->>
->> diff --git a/arch/arm/boot/dts/marvell/kirkwood-openblocks_a7.dts b/arch=
-/arm/boot/dts/marvell/kirkwood-openblocks_a7.dts
->> index 9c438f10f737..2bc4b68bd723 100644
->> --- a/arch/arm/boot/dts/marvell/kirkwood-openblocks_a7.dts
->> +++ b/arch/arm/boot/dts/marvell/kirkwood-openblocks_a7.dts
->> @@ -44,7 +44,7 @@ sata@80000 {
->>                 i2c@11100 {
->>                         status =3D "okay";
->>
->> -                       s24c02: s24c02@50 {
->> +                       s24c02: eeprom@50 {
->>                                 compatible =3D "atmel,24c02";
->>                                 reg =3D <0x50>;
->>                         };
->> --
->> 2.45.2
->>
-
---=20
-Gr=C3=A9gory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Rob
 
