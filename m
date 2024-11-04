@@ -1,247 +1,125 @@
-Return-Path: <devicetree+bounces-118869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 248439BBEAA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 21:17:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F61C9BBEB0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 21:20:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48B491C2109A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 20:17:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2FABB213EF
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 20:20:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BA141DD9C6;
-	Mon,  4 Nov 2024 20:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 896BB1E231D;
+	Mon,  4 Nov 2024 20:20:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="I8Hkxr0m"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XMzEf9z3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8055970837;
-	Mon,  4 Nov 2024 20:17:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D735C1E2009;
+	Mon,  4 Nov 2024 20:20:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730751462; cv=none; b=aKaXqLuDM0lh2q6+8V7axyoCPuZp60Uaj7sNy+6vFJrhTD/c2c1J0ARN/puSQOrQOFfvi14ezGIIL/c3FTEFWc8hNDsm9uirz4jFv4dBtQhbfY+9uWS2G+8CJQ6WFLu/wRffB7Q3C2R6M9gJF+qOmaqLanC4rDg10YGdcda1Qg0=
+	t=1730751604; cv=none; b=d/wBYeqeG7uGyAEnRdijD9O+nDHzJBwiF3ni9xnrYG1yxtuC549wF3LibMQTOTb80B5FZQi3FGLy7Gtq7o0oJjsPubOnANFqVFZT4PY+jo7lDCoZ+bf3Hj+/0Yx+HZjwN0qyT3FKcFP2t9czymoYPNaXV5KgnJGrm1HcpU0R134=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730751462; c=relaxed/simple;
-	bh=5MWgbh4aOjwoJiLBWxpgay+wgAMi+P1rkEAd6ZT8gdE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ntQZqKPgMp/ZtFjkLRssRe+tar17hCzBi4lXBE59hfziQB+67/GD5mzDbXClLPRXqJ7aN3MSIgcRaKOU8DOkqSzPVHJWMqArvaTpccJ7iKmfOyq0COO0QwMC7y/WXGw3jVVK2e1G8vj8jLBigeKWPL/AyuSYwi1wyJ2QsoKpytc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=I8Hkxr0m; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730751461; x=1762287461;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5MWgbh4aOjwoJiLBWxpgay+wgAMi+P1rkEAd6ZT8gdE=;
-  b=I8Hkxr0mAsYglyYe+QacWMJmLhZ084uE5wTVlsO9tTg7ie3DqseUzDLq
-   q89yvyH4YNIwsGnRxv3cOJ5bAVRBtlBGMIA0ddQiwAXN+Ji9MO5xF98Fj
-   NpNrhWdcVjphR9HehYt2W3jwXzYrD0pOo4HEyVhUUzCfaiuX+/uQUgRyM
-   Obeb9/U9DG6I4KfqHntYALXwA2ulv2p7ElLO5MEkuQUV8dfTpOk9SyEF9
-   ZH18S4mGT2FDgGMly7xq4OpvElgwtsSXUzTDNDv89DhsstbrFD+6K9OKw
-   SUBa1G8aCYytZHDKJXygxWAAn+faDs6y/BV6U7lTlxqkrqncbzEbWpYAe
-   g==;
-X-CSE-ConnectionGUID: 9g0r+AqLSKa68qaBQHxFYQ==
-X-CSE-MsgGUID: f5bk+H3uQtOFPgkQxCciKA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="41858047"
-X-IronPort-AV: E=Sophos;i="6.11,258,1725346800"; 
-   d="scan'208";a="41858047"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2024 12:17:40 -0800
-X-CSE-ConnectionGUID: DjDAKnVUQtS4/c7pKUkeQg==
-X-CSE-MsgGUID: a15UI2hBS9yREI5ghSgxJg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,258,1725346800"; 
-   d="scan'208";a="83286325"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 04 Nov 2024 12:17:35 -0800
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t83W1-000lFV-1X;
-	Mon, 04 Nov 2024 20:17:33 +0000
-Date: Tue, 5 Nov 2024 04:17:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Shawn Lin <shawn.lin@rock-chips.com>, Rob Herring <robh+dt@kernel.org>,
-	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
-	linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v4 4/7] pmdomain: core: Introduce
- dev_pm_genpd_rpm_always_on()
-Message-ID: <202411050317.abJatSkD-lkp@intel.com>
-References: <1730705521-23081-5-git-send-email-shawn.lin@rock-chips.com>
+	s=arc-20240116; t=1730751604; c=relaxed/simple;
+	bh=6Jp9yG5p7UiSdTlXFk9u6GiJfG9huE/XkPl6MVC9k/8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Zh+3BSg/ps7vEWV+vAfe/ijaQoE5sf+1Tb6bUbEek74aOg6VHs3b+bOpUJwxgWfKxUq3aOUizzUU8eucm5nssCIT8CozKj7RKvcjc1u8j9LJopNJagWFBnzUQSYEJ5ibNWpKKid+GhCSJN50tXUYbJj6MdRiqMlfYcIWSpGrjII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XMzEf9z3; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5c9c28c1ecbso5651692a12.0;
+        Mon, 04 Nov 2024 12:20:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730751600; x=1731356400; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PL5KkaHYcHYSWz5JR4tNjnJI/ZRJgGAc7HAWIuIWV80=;
+        b=XMzEf9z3IpqccXe17yLvMgH4uK40A0F2Y9gRpA16CqiBR7DYbCx/Qie3cNLbz+n+NT
+         41p3XiY9E6zDXcIpC27S9oNcpWW84mVFZIkNFBLnJptnzkSL+tGHUWpzhIvz1tNzXt5X
+         1lURZqI5+D0HV34XxBKYJac+PRnh5og1F23HuwpRsone8HgrlXyhA2Y3ua8TQXbj8RtH
+         FEG2C93ZgfVWiIM1TbDn4MRqo8c6W9foa92ldC/Yj1vwCL9bcWIRjpVYtbr7ADuWKX6J
+         ZeWBAtJl8HKjhX5MRd0YQvhjYnPnkEdHou0GXKDJhf3RqS1OZdGdtxVGvUqtD093wJkA
+         s55A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730751600; x=1731356400;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PL5KkaHYcHYSWz5JR4tNjnJI/ZRJgGAc7HAWIuIWV80=;
+        b=Lzx5jV+Vnfx9dhZ+klVHRUKfNkQHE1CxeJkZupFhfoTyQ3tL9W+2JyJT1DDiSECNsj
+         hdgpmnbIQBR9IQCddXGRnq2LgQVbAujYyOSwsmeY8IuRAvvSeAhoYXUhXZzUOGEkuiEC
+         gFKpAthWDztmO/Eku6Fvf4hrlBAA9vgb1IPlB1AgdjEIyVKATT56y7rmhddIVt0AhRYn
+         tpTWIMTB0qs9gglKM7N5Pmq/VvalWP0dTENxNxvW2QuVMy/4unKeF/iBUZxYk4WNkwLP
+         17D93cx9K8L7CP4HBSc0Qi8ROaXZqON5kCevfIXgG5uFgkPoMoUdkGUwad2bkNpJOreQ
+         TSKA==
+X-Forwarded-Encrypted: i=1; AJvYcCULm/Moc1G80ftxE8nmrPCHjgxZDJX03n/ts9iang8W368IrykK4YfB8gr0qAjXcEfVJeCzDVoxvvyqWSHQ@vger.kernel.org, AJvYcCVQF7XI7sJEV/tqCf+5bI6YuQTjd/gkN3OjkO2oW58XlOVHlgezXAfyTyLp4q1YmSbdMtYCD0h8LRzb@vger.kernel.org, AJvYcCWQjEkc0uugVdF8sVhqfxIwTq/kWD4N7W/G32mGXXQily/MQGxbhesl7hN/kSYmEWw00vC1P5Bpbv14@vger.kernel.org
+X-Gm-Message-State: AOJu0YykQ7eoGhNF+uQzu154Ms4bqTVriG2BsdfXagbNNb510rSJoFUZ
+	P9Dkhk0KpW9enQFGbDoIG20aOLInJs42V15lGK+tQXSNLRpLKz3z0loAfw==
+X-Google-Smtp-Source: AGHT+IHXtRvhD5B7CEvemZJBPO8ju1v/PqOpVbjDT5dKTYG9+66K5/OIGPeiwGURsAWbNapVtBB1DQ==
+X-Received: by 2002:a05:6402:2753:b0:5c9:62c3:e7fd with SMTP id 4fb4d7f45d1cf-5cbbf8b1d2emr28411216a12.16.1730751599818;
+        Mon, 04 Nov 2024 12:19:59 -0800 (PST)
+Received: from [192.168.1.102] (miroral.stz.ddns.bulsat.com. [91.139.249.115])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cee6ac08c9sm259291a12.42.2024.11.04.12.19.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Nov 2024 12:19:59 -0800 (PST)
+Message-ID: <0198082e-19a2-48e8-ada1-a7edaeddb73c@gmail.com>
+Date: Mon, 4 Nov 2024 22:19:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1730705521-23081-5-git-send-email-shawn.lin@rock-chips.com>
-
-Hi Shawn,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on jejb-scsi/for-next]
-[also build test WARNING on robh/for-next linus/master v6.12-rc6]
-[cannot apply to mkp-scsi/for-next next-20241104]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Shawn-Lin/dt-bindings-ufs-Document-Rockchip-UFS-host-controller/20241104-191810
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jejb/scsi.git for-next
-patch link:    https://lore.kernel.org/r/1730705521-23081-5-git-send-email-shawn.lin%40rock-chips.com
-patch subject: [PATCH v4 4/7] pmdomain: core: Introduce dev_pm_genpd_rpm_always_on()
-config: x86_64-buildonly-randconfig-002-20241104 (https://download.01.org/0day-ci/archive/20241105/202411050317.abJatSkD-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241105/202411050317.abJatSkD-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411050317.abJatSkD-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/pmdomain/core.c:21:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:21:
-   In file included from include/linux/mm.h:2213:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/pmdomain/core.c:898:4: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
-     898 |                         if (to_gpd_data(pdd)->rpm_always_on)
-         |                         ^
-   drivers/pmdomain/core.c:893:3: note: previous statement is here
-     893 |                 if (!pm_runtime_suspended(pdd->dev) ||
-         |                 ^
-   2 warnings generated.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] dt-bindings: clock: actions,owl-cmu: convert to YAML
+To: Conor Dooley <conor@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ linux-actions@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20241104153108.3053932-1-ivo.ivanov.ivanov1@gmail.com>
+ <20241104-lend-lark-ab46a268213a@spud>
+Content-Language: en-US
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20241104-lend-lark-ab46a268213a@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-vim +/if +898 drivers/pmdomain/core.c
 
-   837	
-   838	/**
-   839	 * genpd_power_off - Remove power from a given PM domain.
-   840	 * @genpd: PM domain to power down.
-   841	 * @one_dev_on: If invoked from genpd's ->runtime_suspend|resume() callback, the
-   842	 * RPM status of the releated device is in an intermediate state, not yet turned
-   843	 * into RPM_SUSPENDED. This means genpd_power_off() must allow one device to not
-   844	 * be RPM_SUSPENDED, while it tries to power off the PM domain.
-   845	 * @depth: nesting count for lockdep.
-   846	 *
-   847	 * If all of the @genpd's devices have been suspended and all of its subdomains
-   848	 * have been powered down, remove power from @genpd.
-   849	 */
-   850	static int genpd_power_off(struct generic_pm_domain *genpd, bool one_dev_on,
-   851				   unsigned int depth)
-   852	{
-   853		struct pm_domain_data *pdd;
-   854		struct gpd_link *link;
-   855		unsigned int not_suspended = 0;
-   856		int ret;
-   857	
-   858		/*
-   859		 * Do not try to power off the domain in the following situations:
-   860		 * (1) The domain is already in the "power off" state.
-   861		 * (2) System suspend is in progress.
-   862		 */
-   863		if (!genpd_status_on(genpd) || genpd->prepared_count > 0)
-   864			return 0;
-   865	
-   866		/*
-   867		 * Abort power off for the PM domain in the following situations:
-   868		 * (1) The domain is configured as always on.
-   869		 * (2) When the domain has a subdomain being powered on.
-   870		 */
-   871		if (genpd_is_always_on(genpd) ||
-   872				genpd_is_rpm_always_on(genpd) ||
-   873				atomic_read(&genpd->sd_count) > 0)
-   874			return -EBUSY;
-   875	
-   876		/*
-   877		 * The children must be in their deepest (powered-off) states to allow
-   878		 * the parent to be powered off. Note that, there's no need for
-   879		 * additional locking, as powering on a child, requires the parent's
-   880		 * lock to be acquired first.
-   881		 */
-   882		list_for_each_entry(link, &genpd->parent_links, parent_node) {
-   883			struct generic_pm_domain *child = link->child;
-   884			if (child->state_idx < child->state_count - 1)
-   885				return -EBUSY;
-   886		}
-   887	
-   888		list_for_each_entry(pdd, &genpd->dev_list, list_node) {
-   889			/*
-   890			 * Do not allow PM domain to be powered off, when an IRQ safe
-   891			 * device is part of a non-IRQ safe domain.
-   892			 */
-   893			if (!pm_runtime_suspended(pdd->dev) ||
-   894				irq_safe_dev_in_sleep_domain(pdd->dev, genpd))
-   895				not_suspended++;
-   896	
-   897				/* The device may need its PM domain to stay powered on. */
- > 898				if (to_gpd_data(pdd)->rpm_always_on)
-   899					return -EBUSY;
-   900		}
-   901	
-   902		if (not_suspended > 1 || (not_suspended == 1 && !one_dev_on))
-   903			return -EBUSY;
-   904	
-   905		if (genpd->gov && genpd->gov->power_down_ok) {
-   906			if (!genpd->gov->power_down_ok(&genpd->domain))
-   907				return -EAGAIN;
-   908		}
-   909	
-   910		/* Default to shallowest state. */
-   911		if (!genpd->gov)
-   912			genpd->state_idx = 0;
-   913	
-   914		/* Don't power off, if a child domain is waiting to power on. */
-   915		if (atomic_read(&genpd->sd_count) > 0)
-   916			return -EBUSY;
-   917	
-   918		ret = _genpd_power_off(genpd, true);
-   919		if (ret) {
-   920			genpd->states[genpd->state_idx].rejected++;
-   921			return ret;
-   922		}
-   923	
-   924		genpd->status = GENPD_STATE_OFF;
-   925		genpd_update_accounting(genpd);
-   926		genpd->states[genpd->state_idx].usage++;
-   927	
-   928		list_for_each_entry(link, &genpd->child_links, child_node) {
-   929			genpd_sd_counter_dec(link->parent);
-   930			genpd_lock_nested(link->parent, depth + 1);
-   931			genpd_power_off(link->parent, false, depth + 1);
-   932			genpd_unlock(link->parent);
-   933		}
-   934	
-   935		return 0;
-   936	}
-   937	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+On 11/4/24 21:03, Conor Dooley wrote:
+> On Mon, Nov 04, 2024 at 05:31:08PM +0200, Ivaylo Ivanov wrote:
+>> +    soc {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+> FWIW, you could drop these two if...
+
+I see, although the point of this was to keep it the example as close
+to the original usage in s900.dtsi as possible. Anyways, if a v2 is
+needed, I can do that.
+
+Thanks for the review!
+Best regards, Ivo.
+
+>
+>> +        cmu: clock-controller@e0160000 {
+>> +          compatible = "actions,s900-cmu";
+>> +          reg = <0x0 0xe0160000 0x0 0x1000>;
+> ...you dropped the 0x0s from here.
+>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>
+> Cheers,
+> Conor.
+
 
