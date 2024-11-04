@@ -1,209 +1,121 @@
-Return-Path: <devicetree+bounces-118558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 621969BAC18
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 06:36:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A4A99BAC52
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 07:07:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 170C11F20F15
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 05:36:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DBD91C20F86
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 06:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F00117FAC2;
-	Mon,  4 Nov 2024 05:36:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF7618BC13;
+	Mon,  4 Nov 2024 06:07:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="UT1udimv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M3vrlsfg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58EB0189916;
-	Mon,  4 Nov 2024 05:36:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F86E189914;
+	Mon,  4 Nov 2024 06:06:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730698591; cv=none; b=nAzt5BbPjMp7ia3t5EhysvrJg1WOBLfJ9EcupS7MGPj7onA2n4AuRkZ8/EZACTnXDwrc81SxxwoDv9e5KE7/oLPWDTIuYOYRT3/5kg03ZhtkN3WDXDUpww+X8h5WVyPimShb2R/4okpB1T0sjN/k6QfmUiwoiRGsaV5hBLlAq+U=
+	t=1730700421; cv=none; b=ozEH45Dt75hvhwK1rdYSXfrtAZ+3BYKK66ITZxFCjFpfASmmvIktveOwv+AdJzeDg89V/nbqqEazXYAs3lomQ4BPXwb0JOIQElf4iB9fuhzZN65lXpxA1fyCBm6VL96Nx9UY7xrFaYZzw4WAoTpxBeOEcm970L0X4tDmn3/s8js=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730698591; c=relaxed/simple;
-	bh=M8fiDdWP9TqU5G7C4KsM1hZt+cILpRsYqCPpihJWIdA=;
+	s=arc-20240116; t=1730700421; c=relaxed/simple;
+	bh=EZnJdlfz5hvZ6tAgtg48RQwQz7DoCasQ1QKR1j1/LAY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S1Fp5rR+OTIXm7F27j9YXPY3FLNW1HiTFtiHtGpcMRrzQDSd2YehKLFB61Nvbimp0k1yxuKeIcA6u/NoqqgfnbgY6RIA9r0K/laXveFlCILxWM9sg+Y25A+0+CmuOjpm4ih/4EGByUEbv3DbalO6T3BvTUj44xkTXYdyrIU/kAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=UT1udimv; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [192.168.1.107] (87-97-112-21.pool.digikabel.hu [87.97.112.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: hs@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id A4FEF89138;
-	Mon,  4 Nov 2024 06:36:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1730698586;
-	bh=zNgk47u3wRfC4zw7b391h07FE1WMd6Q9cZ/grbxNFII=;
-	h=Date:Subject:To:Cc:References:From:Reply-To:In-Reply-To:From;
-	b=UT1udimvre//bCB8aCJMPmxDMRwwAdn3E0ZYyRJVoH2NwLTtZRBNze6zYt5Ai4F5J
-	 DSLoOd20gmFYKvNu30OaNmNsPZpYPlZOysocQX8dPiRiJ7fi29vW9opYLE4HTOhex2
-	 5aszpyqKACMCbtew+NhiUORrALUxkUVALm98l5aTTqts2bwvJXQX29gBhuajSrr5QA
-	 0S/DRJLoQcTgmA3qYXiAWgbiNcmhvtGSnS86UVlU3bAHsotu9vWbk8WQcvzvDLdiy0
-	 SOlyOu5xuNfMCkbYiVKI5JYdrFc8zc/e8c+jFBOzasqiM+u9U8n7ZF5sPYeyNHFNDK
-	 B/8BeSD3YBJUA==
-Message-ID: <5340fb82-bda0-d22f-23df-de620c8d61c3@denx.de>
-Date: Mon, 4 Nov 2024 06:33:55 +0100
+	 In-Reply-To:Content-Type; b=g/0LUKsytw4aQh5QVM/NmrQd3AVf2UiGwYpJCNcV2G1zpfLayNIBJ0lnE26WHUj6lDcZz294y1thqnwyJvjwQRz+oIUEVOt1Vl0RTE0Vr0AAwzw1FXV3NRlfVy1FrW3GKwfNsgchN2nCa/U/8ThgS22EtNPsPkEG34FNOPTzdZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M3vrlsfg; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2fb5fa911aaso53323311fa.2;
+        Sun, 03 Nov 2024 22:06:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730700418; x=1731305218; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=m6jQkrpv3MdS+5xKVIFE6860tge3gxXMaWgpp2Uy0w8=;
+        b=M3vrlsfgaO4Ya5MMFh+4t1kMQKekv0oE8E7i6pjsQLZb4/sOBpyN8hGd42cM0J7Hfm
+         dGPM+TW5/KAekCy8z35ePqsIB3Q76MvuPzSk1+MDaGe12m8xYJh0k9mXpssvAJH61EVO
+         1Zj2wzPiHV6SqNcJGzhPMSt99l1Ytn1pJ73Wp0mZRJ0a+ClgSREFRMlLppqu4dmrGlpk
+         ub1CDyUQy/wZXznZHsXzHC75fcZSJm9KAVMIDnq7xf34i+lOxQCRw/RQscPt19PwvpM4
+         UyMXiGLcnloePLhUH0RmwP2FcvfhFxbmzEJ4iIsoM9BeSjamEo3YDW5D5iOpMe1N6atF
+         muNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730700418; x=1731305218;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=m6jQkrpv3MdS+5xKVIFE6860tge3gxXMaWgpp2Uy0w8=;
+        b=IqofcMwTkJIaes+ZT96risE7B7+tkvOMlZvNT+gHZE37e4umK9uJNmeDcDwg0uhwUo
+         8Co8DMZ8vi23cs5YwJDxxA9MKZxRv7wc2s0AKZmN3uVY7YmlGS2afpaIQPTX5Xy3RAW4
+         FQmAZF7vb71miWbtDadLOe19Bn9dskSmvSKF4P9R+EDsJbOk12WS72NlhnFt2EMn3US0
+         uRB10co+PIsHyM++sTreKwFz0EoGsYg18foMB7JYjwEGhTVGmtkOzCbpW+k/+T3IxQ4z
+         ehlA93WDfa3TrzCZrk5UQOtjLFF7Ks96rMJWzQdn7V9opFABCtzE9MLOtmOTuCFptcK2
+         d89Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWWxDPwGbid+KqwLZbRGaT+bF0r9rEmX3nW9cMCaWIlHd8W/vjmsoerQJWMEfaLISBrrkSURuxrZeJd@vger.kernel.org, AJvYcCXVMnGpwLk0Mgjp95Kph8N5o7p1qZcNp3ZYm9RZH+hHNeuOcA1DnTAMJKRLzUYBDHYfAHTe1EcSpxdKhRve@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyw8i3PSENYi1ceqJqgPum3/YLhkx+OIUn13bF+jZY3PbKr3tPh
+	ZdZ4uDtpTTdNYL+fQXAbz8atonK+1a6kpGh+cHarJNV0MFdig7Xhh4knKmYG
+X-Google-Smtp-Source: AGHT+IEQoFtFhAEtNK1sLHmReP5ogTKOoTOKksUbZIT3SlZPpjCKyRUuyr0b78o4npcXlMhtfo+jkA==
+X-Received: by 2002:a2e:a908:0:b0:2fb:2a1c:936d with SMTP id 38308e7fff4ca-2fedb7a1fd0mr75423731fa.10.1730700417856;
+        Sun, 03 Nov 2024 22:06:57 -0800 (PST)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fdef3b8c91sm15148751fa.18.2024.11.03.22.06.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 03 Nov 2024 22:06:56 -0800 (PST)
+Message-ID: <bf50b6c0-af1a-4c7f-9c3e-ffbd3da87a80@gmail.com>
+Date: Mon, 4 Nov 2024 08:06:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: imx8mp: add aristainetos3 board
- support
-Content-Language: en-US
-To: Shawn Guo <shawnguo2@yeah.net>
-Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20241031151238.67753-1-hs@denx.de>
- <20241031151238.67753-4-hs@denx.de> <ZydFO6b6oe9widaa@dragon>
-From: Heiko Schocher <hs@denx.de>
-Reply-To: hs@denx.de
-In-Reply-To: <ZydFO6b6oe9widaa@dragon>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mfd: bd71828: Use charger resistor in mOhm
+ instead of MOhm
+To: Rob Herring <robh@kernel.org>, Andreas Kemnade <andreas@kemnade.info>
+Cc: lee@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, sre@kernel.org
+References: <20241029111112.33386-1-andreas@kemnade.info>
+ <20241101192705.GA4062121-robh@kernel.org>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20241101192705.GA4062121-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-Hello Shawn,
-
-removed the changes which are clear...
-
-On 03.11.24 10:41, Shawn Guo wrote:
-> On Thu, Oct 31, 2024 at 04:12:37PM +0100, Heiko Schocher wrote:
->> Add support for the i.MX8MP based aristainetos3 boards from ABB.
+On 01/11/2024 21:27, Rob Herring wrote:
+> On Tue, Oct 29, 2024 at 12:11:12PM +0100, Andreas Kemnade wrote:
+>> Apparently there was some confusion regarding milliohm vs. megaohm.
+>> (m/M). Use microohms to be able to properly specify the charger
+>> resistor like other drivers do. This is not used yet by mainline code
+>> yet. Specify a current sense resistor in milliohms range rathes then
+>> megaohms range in the examples.
+> 
+> milliohms?
+> 
+> rathes?
+> 
 >>
->> The board uses a ABB specific SoM from ADLink, based on NXP
->> i.MX8MP SoC. The SoM is used on 3 different carrier boards,
->> with small differences.
->>
->> Signed-off-by: Heiko Schocher <hs@denx.de>
+>> CC: sre@kernel.org
+>> Reported-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>> Closes: https://lore.kernel.org/imx/6dcd724a-a55c-4cba-a45b-21e76b1973b0@gmail.com/T/#mf590875a9f4d3955cd1041d7196ff0c65c0a7e9d
+>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 >> ---
->>
-[...]
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-aristainetos3a-som-v1.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-aristainetos3a-som-v1.dtsi
->> new file mode 100644
->> index 000000000000..ced35e1d72b7
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/freescale/imx8mp-aristainetos3a-som-v1.dtsi
-[...]
->> +	pcie0_refclk: pcie0-refclk {
+>>   .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml  | 13 +++++++------
+>>   1 file changed, 7 insertions(+), 6 deletions(-)
 > 
-> Can we name the node clock-xxx?
+> Looks like rohm,bd71815-pmic.yaml has the same problem.
 
-renamed from rename pcie0-refclk to clock-pcie0-ref
+Yes! Thanks for pointing it out. I'll wait for a while if Andreas wants 
+to fix them both at the same go. I'll send a fix for BD71815 if I've not 
+seen one in a week or so :)
 
-[...]
->> +	/* SX1509(0) U2605 */
->> +	gpio6: pinctrl@3f {
->> +		#gpio-cells = <2>;
->> +		#interrupt-cells = <2>;
->> +		compatible = "semtech,sx1509q";
->> +		reg = <0x3f>;
-
-I moved compatible and reg to the beginning of the node,
-as you commented this also on other places.
-
->> +
->> +		semtech,probe-reset;
->> +		gpio-controller;
->> +		interrupt-controller;
->> +
->> +		interrupt-parent = <&gpio1>;
->> +		interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
->> +	};
-
-Should I remove newlines here too?... but looking into the example from
-
-Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
-
-there are this newlines ... so I let this lines in... or?
-
->> +
->> +	/* SX1509(1) U2606 */
->> +	gpio7: pinctrl@70 {
->> +		#gpio-cells = <2>;
->> +		#interrupt-cells = <2>;
->> +		compatible = "semtech,sx1509q";
->> +		reg = <0x70>;
-
-I moved compatible and reg to the beginning of the node here too.
-
->> +
->> +		semtech,probe-reset;
->> +		gpio-controller;
->> +		interrupt-controller;
->> +
->> +		interrupt-parent = <&gpio4>;
->> +		interrupts = <19 IRQ_TYPE_EDGE_FALLING>;
->> +
->> +		gpio6-cfg {
->> +			pins = "gpio6";
->> +			output-high;
->> +		};
->> +
->> +		gpio7-cfg {
->> +			pins = "gpio7";
->> +			output-high;
->> +		};
->> +	};
-
-and let the newlines as I did...
-
->> +
->> +	/* RTC U2607 */
->> +	rtc0: rtc@51 {
-> 
-> I2C slave nodes should be sorted in addresses.
-
-done.
-
-> 
->> +		compatible = "nxp,pcf8563";
->> +		reg = <0x51>;
->> +		#clock-cells = <0>;
->> +	};
->> +};
->> +
->> +&irqsteer_hdmi {
->> +	status = "okay";
->> +};
->> +
->> +&lcdif1 {
->> +	status = "disabled";
->> +};
->> +
->> +&lcdif2 {
->> +	status = "disabled";
->> +};
->> +
->> +/* HDMI */
->> +&lcdif3 {
->> +	status = "okay";
->> +
-> 
-> Unneeded newline.
-
-Many thanks for your review, and sorry, for trivial fixes...
-
-bye,
-Heiko
-
--- 
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
+Yours,
+     --Matti
 
