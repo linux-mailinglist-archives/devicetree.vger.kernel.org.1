@@ -1,309 +1,252 @@
-Return-Path: <devicetree+bounces-118632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 535DB9BB079
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:01:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A39999BB097
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:08:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD6531F22FEA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:01:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C67561C21626
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:08:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5786D1B218C;
-	Mon,  4 Nov 2024 10:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6A0B1AF4EE;
+	Mon,  4 Nov 2024 10:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="M2J2CRCu"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="fGwwByEe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2064.outbound.protection.outlook.com [40.107.104.64])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04C251B0F26;
-	Mon,  4 Nov 2024 10:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.64
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730714464; cv=fail; b=lwgLlRFt4jWOkXCpBC4ffHSQpt9CtlkWrcKyJI21Ru7MUhDP6sPEFbGNBLrvd43GJVfm67ZlE5HBsigz2nusILF1rmHV23Ju6M0BwM0PQg8v2LaBBVX72V6jaK6S8H9033+/aaz3N6+tTcpTYggBFK2BIhQDFiJdni+rdp52ZN8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730714464; c=relaxed/simple;
-	bh=U7GBfDvNoizSjWh01A042BOlkC0W56gsgmVgLj2y3ho=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JfwtvFSE0kCHLq9eX+AY/NPNMcb3UBsHbKXZqw8qWfVfcUyEW2bDk77Pkka8PFTCLSBZvu46Vqhp7MIOufvyspj10DgQbkUSOeyMf1s2lIAIBGQGiCfzMxwoEPABysVUtrYFBRvt1EEYSItdV7B2D4qdBGCf03YbRp3gCBiShrU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=M2J2CRCu; arc=fail smtp.client-ip=40.107.104.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tdvdLq6QSpfO/S2EPipQg58izacjnrz2+Y/3MoogEYkq4pK5HkFijsWBmi8lRE1LZNIf4/GIfG69x4tcsEwh8qTRbgJzun5gtonRk16qXtag5s9Q4ndTR/kp2Yf0VuQAfp25ygyvQBrb0Ocmv/e3KuCSUmi17+R3UTB6hy3DF3jFHbYPw4SLP5p1InirNWcNvEaHEuL1vtGFRGwqUpcDpao9LJBRk1J911Oly2uTiHDS2VOGcN56n2Gp0waE5G5u/KXD7RhUc34rgctxVlnjsQstj9HdIquCi6UcVSW+hdKfdpQ0Q2WD+mzhfn0Q3vPGuPDToLgSt+SxcxgxUYe9tQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kwZ6s2Kxruih+NW0LgLdVIf3bnoPNU9rRCt/vQ+acig=;
- b=Pvj8QTU2AIUq31m8rRjeujNvg24oTTg8SoWpXFl71jQqGQMHTsotTJTGmZSsvd4PlP4oEYgbbQSBqrjAqEsWNIJnMPN7kohsqHZqSAJOMd5PvalF2M9J/0A2wCy6vb/AEcieqRPdrfy20bHU0+GTXuUlpHQjJyT4Yz76kMvNsFY1DK/NDvk14ItTnKYkQkTCmCAeq+rSm/nNG4Lqfr+WTyilqvwsCyfedDDrgvzLtJtdIHG7+a6zO25XxGpnZbvFmXJdvBvLJZu98bJfMGisBs/kLsYqjo9E3icfdFE4HSPgz7XmKy4eVT8rgsaBc7vBwKJq3nlPpwbNaNanT+sEOA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kwZ6s2Kxruih+NW0LgLdVIf3bnoPNU9rRCt/vQ+acig=;
- b=M2J2CRCuoU8Wx+qgxfMmws2rP70MRUCr+720XgMhUJ0wKUxOY+n7tFczOjuNhjcw8l6KbEbxnTc+LhevN3TWUiU0ZaJRWMEIIEPLGoT3DoI11SgG4NU/5Yktz0d9Tc4TiXgfgBfqO9OugfV1ko05Css1oCiYF/VGSm/Tq/Zz5scZes88xBfzy1iXL9Z1zOCouwTlzY8b97NOzzTE1G5XNfckoL2uG/U3bi2csO9C4FYOKblDUTpnzRvY0jYcOIKWM2XiJ2kIpfBIP7fqx8htR1zlQ9DzmSODQe+tgs0de6U/FpjgSBSPxBtXQ3g2Evd1Cm0FJs/+DkskeU4qSxhvTA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9251.eurprd04.prod.outlook.com (2603:10a6:10:352::15)
- by DB8PR04MB6825.eurprd04.prod.outlook.com (2603:10a6:10:112::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.30; Mon, 4 Nov
- 2024 10:00:58 +0000
-Received: from DU0PR04MB9251.eurprd04.prod.outlook.com
- ([fe80::708f:69ee:15df:6ebd]) by DU0PR04MB9251.eurprd04.prod.outlook.com
- ([fe80::708f:69ee:15df:6ebd%6]) with mapi id 15.20.8114.028; Mon, 4 Nov 2024
- 10:00:54 +0000
-From: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>,
-	Ionut Vicovan <Ionut.Vicovan@nxp.com>
-Subject: [PATCH 2/2] i2c: imx: add support for S32G2/S32G3 SoCs
-Date: Mon,  4 Nov 2024 12:00:44 +0200
-Message-ID: <20241104100044.3634076-3-ciprianmarian.costea@oss.nxp.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241104100044.3634076-1-ciprianmarian.costea@oss.nxp.com>
-References: <20241104100044.3634076-1-ciprianmarian.costea@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM8P189CA0028.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:20b:218::33) To DU0PR04MB9251.eurprd04.prod.outlook.com
- (2603:10a6:10:352::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E940A1AF0A8
+	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 10:08:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730714888; cv=none; b=DBuNEGOnGR6fCIiibKTdp29jPvHz9Z20hjvV0WEkNnZTT1gNBB1KC0pri9ZkCRC18cGXjBl+/m15Pkr62C7xQIRGh4y+wJgub6ElYhoe+qKTRHu9abJwP9WBnfN62Ed5Tn02AskTuyJL/9J+mKxXLePXN2a6AZbVElmyKmNzRbw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730714888; c=relaxed/simple;
+	bh=w8uDUhL+0RVy703GunghhdLMyl8W7zQAjigiX1nb2kw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=WBmt+bcNNIHzPqeDw2yanN8yOeG1IOYKxi4xARUtYEDFeZHCmUhjE61ZQXyn0HWhJZeWORLfI7KH90/wA7Iw/RkQwk0dWXPNvFO0YZDruRHaOR9gwwJsE+8z+lExAGKoog1IJmd9YFvXVPu6tMtNjBB9KFzfmFMqRCI0YhKnlYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=fGwwByEe; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20241104100758euoutp01dc7e11036a2e3ad35734a30692e20be1~EvAMSRTQx2551025510euoutp01U
+	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 10:07:58 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20241104100758euoutp01dc7e11036a2e3ad35734a30692e20be1~EvAMSRTQx2551025510euoutp01U
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1730714878;
+	bh=nda/NO/chPzTHaeqpg1t4XLXCD8XsnwMHQXDCOSvolY=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=fGwwByEemCWZBl2e7iOX/OXNTup+jUFkTshbWOuP6hkKCoG+eXl6WLKcJWSmUVwiB
+	 nbwBFG3bNKKLiEuHZnteevK+pwxr6geXk+BZimdlpAanbsvWTeDP+SHKLKc9Rgc5w/
+	 KN40ISow9y+z8ZnuKX/Pf4lpljAUQjtqjX5qabhc=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+	20241104100757eucas1p1bb76e56b3efa108a185916a4c94bccb7~EvAL4lz2u2023520235eucas1p1o;
+	Mon,  4 Nov 2024 10:07:57 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+	eusmges1new.samsung.com (EUCPMTA) with SMTP id B2.82.20821.DFC98276; Mon,  4
+	Nov 2024 10:07:57 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20241104100757eucas1p15156cbe4466b785095cfb788192a7077~EvALfihbp2023520235eucas1p1n;
+	Mon,  4 Nov 2024 10:07:57 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20241104100757eusmtrp1cb6a88a1eb9ee50b128a4213c3c69c54~EvALeI2UJ1011310113eusmtrp1R;
+	Mon,  4 Nov 2024 10:07:57 +0000 (GMT)
+X-AuditID: cbfec7f2-b09c370000005155-87-67289cfdd927
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id DF.CB.19920.DFC98276; Mon,  4
+	Nov 2024 10:07:57 +0000 (GMT)
+Received: from AMDC4942.home (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20241104100756eusmtip1146361b5cd070b817f137b1924b6379b~EvAKXnpv22858228582eusmtip1O;
+	Mon,  4 Nov 2024 10:07:56 +0000 (GMT)
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+To: drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
+	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, m.szyprowski@samsung.com, samuel.holland@sifive.com,
+	emil.renner.berthing@canonical.com
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, christophe.jaillet@wanadoo.fr, Michal Wilczynski
+	<m.wilczynski@samsung.com>
+Subject: [PATCH v6 0/3] Introduce support for T-head TH1520 Mailbox
+Date: Mon,  4 Nov 2024 11:07:31 +0100
+Message-Id: <20241104100734.1276116-1-m.wilczynski@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9251:EE_|DB8PR04MB6825:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0e143f73-9541-434c-6ccf-08dcfcb791f8
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TTFQNThxMXpTN3Fka2hUUEZCZTRPbnNXRkpNQnhJbTdOQXU2QW1aSDB6czQr?=
- =?utf-8?B?MG9CZ05DYzVjNE10TFdtR01FV054cWc5LzZqUG0wYlZ3RFFCVmhZS0tDcFI4?=
- =?utf-8?B?ek9DMGgzK3lKOEVoR1hvWWVYZGxsbE9vdlpvR2hlYUZDa3RCYTNtdXo4VmNs?=
- =?utf-8?B?ZE95aUdsZitBYU9oeVFLV1NydVM0K3RQL3dkN3RlV0lydUNFVldyQ25qZXZh?=
- =?utf-8?B?enpWZzVYQjg5TThaZUE5K1FaZkVmVmV6M0syRHJQdWdwU2h1V0s5QlNkSktt?=
- =?utf-8?B?OHo4T1VQZjJWcHY0MXhoOXg1TVFRSkpVODY0bWJyMXVsUGlZQzVtaUhlWURB?=
- =?utf-8?B?Y0xyY2M5WkhXNVJuNmxuKzkxa3dKRGdTSlYxNlhobThxSUFGSlk2ZUhGWXR0?=
- =?utf-8?B?SExmZlBtc0daZVNQbnBLOTU0aXJ3UTlGMWhtZGtGRjd0VktYdFlaWnFyRjNF?=
- =?utf-8?B?LzBybmVITUpQMG9KMHBQMzRFcG42NGlaNExiSWxYdmUvVWxKL3hQRUdrUEZp?=
- =?utf-8?B?ck5qSmNqdjBPdXFNcmt5MXdtLzN1azhZOUpPVUxBQTNKOStQY1dPUFV6bis5?=
- =?utf-8?B?YlVpZk9hTFdheS9mbVdsMHRRTUVFa3gyS1JBQW55clVPNnp0clQrdDNJbE5s?=
- =?utf-8?B?MkhyUG1KWkpZdTRFRDZrbmFtYWlWSkxqUzJtRUJQSW8zOGtkSUFXTlkzaEhP?=
- =?utf-8?B?by9taWJqbktlY3VYWHBTTndKT2VGSk9BRytMYU95Y25jOXAxYVVzZG1xeW5X?=
- =?utf-8?B?SE13ckZiQnM0RUFrRWxyaUgxUnVjb2RKRHhBSDdTbEdvQWJLbXZxUkF6L2N0?=
- =?utf-8?B?VkhkcWM2TlZxWXR0a0ZpcS9jQ1ROcm9wZjEySHl1S2pLai8xK01tOEhWQ0Fs?=
- =?utf-8?B?UjZ2VlhObGNGV2gyeDhxUTdpYXk2VmdyUEZidzNiQXFaMW5YOEd3eTRXMWRN?=
- =?utf-8?B?UnQyM0h1Z2dGY3k1OVpQendEdC93T2FCQnBoQjZpUDB2OWlwWlhYMDJGN3M1?=
- =?utf-8?B?NGtWc0k3TWF0ZW05VVdnTmt4d2g4RktTdHFERVlVbjY0TGZBNHRlY0o3dVJr?=
- =?utf-8?B?UEJVN1V3YldDS1B3aytFT2VRbjRHeXNKRi8wYjRxbjY0VEdlbnE0SkJKZ3Yr?=
- =?utf-8?B?a21BekdweFFKV0xBZGFDcGQxZmRjRWlTMUVqZ21TYlUyVFNyYTBMT1RvNklm?=
- =?utf-8?B?TzNQbmVBN1RSa1VLOVpvdEVHUUtvc2xUTERzT0U3VFlkSTAyQUozUE1jMmh5?=
- =?utf-8?B?MmZmOUlGa0xEWVNvRHVQYWJobmRlRkVmUTdTUnlOMG1qeDNYVlZmOGdqVGFV?=
- =?utf-8?B?SThNTm9RdUJLaUNseUlpTlRCeUt6cWxyMUE0eis0T3F1cUFSK01XanhQMEhi?=
- =?utf-8?B?b0lsZVFkcHAwbk95djQ3ekZKTHNwU2JjWVhCR1MvTWFzOXJRTm5FUjBuUTNJ?=
- =?utf-8?B?MkJta3ZyN1Zha05IYVhHaHg3dUFNVVZMa2RsWGtrWW9lVGFveE9ScjJTTUE5?=
- =?utf-8?B?Y1p5NGxLdWFDcUMwU3JhbTh6d3V4S1NiWW1ockI0NERFMW5QZnRreEhnaE5I?=
- =?utf-8?B?VFZCb1BPN0VqUmJMZDNJYVlIMkZ1aEJ5NGVWTnJId3V5ckNJekliQ21EdVdQ?=
- =?utf-8?B?bHZSb0xBckN6VkRmZjQ0bjJIZlZmYXN2b01tRUZFL2MwV283Q0Y3NXFmRzJP?=
- =?utf-8?Q?i2iahLC/0LQ9joLOzO9e?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9251.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WTgweUJSOXN2NW9FNFR3cEZBbFYxUHdNM1E4MDErZS9GN0hSZk5rVFBwZ01k?=
- =?utf-8?B?OGR4ZWFHVk1EMkNha0xuYk4rakRxRWFBd3B1T2VFMW1RbHFERFFwdVRrUUhm?=
- =?utf-8?B?YmpRK3Y0SHJ2eXRHcktjVlA3WmlvdVRuc3VLVXRLRU5FVzZFaE0raXdaTFlv?=
- =?utf-8?B?R1ZtNTM2VlVzZjJtS3d6UGczMEljY1hJOWRpTWdKeVZMbGJmVk4yTlhjdUJD?=
- =?utf-8?B?OS9tYVJWNysva3JjMmFZZDRVWlFIMmhvWXBEc3VVR2tMWU5Jb0ttanBNa1hM?=
- =?utf-8?B?ckRLTlVDUGVETzVXOWFTSzA5YmlzQXlFZTY1UkZxL0VSc0paNGNEY1RZZy9N?=
- =?utf-8?B?TkYrSXhSemxOdU00RHBHRHRLU3BNWFhWUjQ5UVBnV29PVlEyVWw1Slo3UUs5?=
- =?utf-8?B?VUJINTU2Z0ZITVMxVm00WElXWGlLMUY4YUpUOXd2MlBzU0h0Q0lrSWh4YVhn?=
- =?utf-8?B?MVFVckx4VjNnNTJ4WXQ1enc3bEtPSXlzUVFRKzVrZzRWWFNYeFMwQVh5NHNi?=
- =?utf-8?B?SnU3NUFScmMvejgydmlxMGd6Nit3WkRCbjVHNm5yV1NuQklySFFiMFZxK3kr?=
- =?utf-8?B?UTk2Rlg1ZDg3MXpCVUlDeGFVbGlqR0lETkdmWms1b014TGVYR3lHc05WTWox?=
- =?utf-8?B?UnRMcHB5Q3I4cTNQNGtxbFZsWGhYQjNyV2s5S2pVa29Fc3NsVWp5OGdUcW8x?=
- =?utf-8?B?Z2ZOb2VPVUFONEticHVIOU4zcVZsSFJYSE1ac0ExYlRNS2RRUXJvSjRjM29r?=
- =?utf-8?B?YjVnMnVSclIzbWlXMUYwL01jNG9lTUVIcmUxcmVyb3oySWNRUE42a2VXWHZT?=
- =?utf-8?B?SnpMY0pYWEt1UWxaY1prSFZuUTdCVGxXeUlFZ1NwS1VIWk5PK3FuQmVaZEdw?=
- =?utf-8?B?ZUZrYjcxWTY1VXN2UWpYOUhiSlI1TUh3dS8xL2NEMXZ0VFNwS1lmRkpBaVlu?=
- =?utf-8?B?ODcxQmVFdHN6QS9FdlVhQjhjM1psamxidFJxb0NUNytHN1NZOC9uRWFjWHp1?=
- =?utf-8?B?VWFTUENKQTlMOGs2NHdUUDdDeEd3Zk92dWEzeEZFS1Q0WVh2dllOeGdLUjNT?=
- =?utf-8?B?N0M4MXZEaGVLWHRXWE1jdWxieElSbmlxWVh6WHFKNVdnakpMKzhGWHk1ZW1S?=
- =?utf-8?B?LzNzTXVQWGR1NjVVbjhkV1VVOGV5eERaMkJzN1dtY0dzMkxkNlFHK1dENE05?=
- =?utf-8?B?M05NTmo2YzdWaEMxVFFwVzlJaXhkQitmaGZ1SUxONWNwWnF4S1VTRXJZWTlx?=
- =?utf-8?B?cWdBSDZFMDRLSm1LaTNFc3BtUnA0bktqVmRoQjh5bnpoNEorcWhSVW0wN0Fh?=
- =?utf-8?B?VnpQNUFRYTJ1bnU4ekVZeHVheVlPWXRjS3pGTkhUcVQyVUQ1clRZTm1Iejdx?=
- =?utf-8?B?SkZvOXVoMkxPK2tYTXIyeFdiZ25sYld5TEVmdENRYUFJVjY1K2JndXZ6U0I3?=
- =?utf-8?B?aHNFRytBaVp6VG9xTnplMDU4V2ZGSis5dEhiRWNralVzRlV2QTYwL1BXNTkz?=
- =?utf-8?B?MUpOeEJZekkwNkFZN3ZPYTBsemtRbml6OEtEcHdETERySEtMTy9SSEpoUmhX?=
- =?utf-8?B?R0VUZy82ZVJsc3h2UzJBTU1QajlrTGxDSVhmQXJBbFBlM0M1LzRzMmNiM0dP?=
- =?utf-8?B?cHNOTHRNYzluZEEyU1lGZEZMOWhoU1BPUWJramFVcTNTWGdkVyt2RWx3ZXMx?=
- =?utf-8?B?UDVMK2xYT3FWTWYwaFZFb241akNIWTh2M0pUOWhpa0o3QjN5Z01vODRVS3Vn?=
- =?utf-8?B?SFNFOVhxU0lIZE1DdnNIeDV3NW9qTDBudm0rV1h5Vm5uRmlJeDFORWx1UmdZ?=
- =?utf-8?B?OFYvckR0KzIvWVRpaEJ2RE9xL2JwNTlvRWk4azlDaE56RlVMbmdQK2lxbWtF?=
- =?utf-8?B?UUNEbXZVSkw2YnpINWxFN28yeEhVNFE3azZOa1VHZzNLeUpuankwTTkwRWN0?=
- =?utf-8?B?VlYyUHl4TFl1a0xBRUxpaXEyWjE5c2x6SWZGMkNyK01Bd2hyRGJhV3MrZTI5?=
- =?utf-8?B?T3AxbVNxZ3pwL1hFREZ0TXJzQmFxNWkvRUJBaEdkcEdIanc2RGRQSGZXbGtx?=
- =?utf-8?B?ZG5PZC9YM3BJUTRLc0VWNnhzeVBVT2hSYlRRN0VTT1g3S2pCU0hVdm4vWnZR?=
- =?utf-8?B?SmxIOGQwOUVtNFVLNWQyRVdTcjY5QVFZMWFqWlozUVNBOFQ2MngxYlBkK2tH?=
- =?utf-8?B?c0E9PQ==?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e143f73-9541-434c-6ccf-08dcfcb791f8
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9251.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2024 10:00:54.0136
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Rl59JlPJcC7Ly8lTQVmzql1tTvL2nT7l0l2mJ6XTZo11nfHfqbe7UIouSQV6B/ainK+4FunYy+d4noOwwZjIx8kkgSM45XdlJR4lJ4n/jzA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6825
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrBKsWRmVeSWpSXmKPExsWy7djP87p/52ikG5yfo2Wx9fcsdoutB+ey
+	WqzZe47JYv6Rc6wW9y5tYbK41LmC0eLF3kYWi2sr5rJbvJx1j83i8q45bBbbPrewWaw9cpfd
+	Yv3X+UwWLy/3MFu0zeK3+L9nB7vF6nNXWCxa9k9hcRDymNXQy+bx5uVLFo/DHV/YPXbOusvu
+	sWlVJ5vH5iX1Hi1rjzF5vN93lc2jb8sqRo9LzdfZPT5vkvP4fHc9awBPFJdNSmpOZllqkb5d
+	AlfG5QnrWQou6lS83P2HpYGxQ6WLkYNDQsBEYtN8pi5GLg4hgRWMEmv3vGaHcL4wSqw59JsV
+	wvnMKLHw9hmgMk6wjrVHzkBVLWeU2LZ5P1TVG0aJf/O+s4BUsQkYSTxYPh8sISKwnkni2e5l
+	7CAJZoF1jBKfrtiD2MICzhKvv/WCxVkEVCX+HP7NDGLzCthLnHkzhRFinbzE/oNnoeKCEidn
+	PmGBmCMv0bx1NjPIAgmBzZwSS/d0MUM0uEg0PNsLZQtLvDq+hR3ClpE4PbmHBcLOl3iw9RNU
+	TY3Ezp7jULa1xJ1zv9hAIcMsoCmxfpc+RNhRYuH/hWyQAOOTuPFWEOIEPolJ26YzQ4R5JTra
+	hCCq1SSm9vTCLT23Yhs04Dwk7hzfzQJSLiQQKzGvSXICo8IsJH/NQvLXLIQTFjAyr2IUTy0t
+	zk1PLTbMSy3XK07MLS7NS9dLzs/dxAhMjKf/Hf+0g3Huq496hxiZOBgPMUpwMCuJ8M5LVU8X
+	4k1JrKxKLcqPLyrNSS0+xCjNwaIkzquaIp8qJJCeWJKanZpakFoEk2Xi4JRqYHJbuLbmR0xM
+	XavDiTVnpMWEvV7emrm4gPep1WfG/FrlR38CXKe4xQVJCWRz7+Lcf2rrqxVst9IX2rxgT/Te
+	5aL+v9yxjk31Sqiq7DyPXVvm1r3U/9D8xjm+knna441bX8UdF50yQ9ig32ZHu8vlRzcXHjm1
+	nVMvQyXDudnsWWfXz2fljlI/X8Z8nsTqxDLdkyd2R+M+jxPp0hP1e55tXDY7mCPqmdzT30W7
+	HfSW3HEvKr9gevhzU3vUvkMvJpwSCfYtXSyixlyXHi8wIfrlVQVuUUPt2TM1Z9hOPy3646XQ
+	vxnr3ogd7Pri3duxWd7ydFmc3DQZT40NC94ulNmc9EQ3ZfmTdtv0i/wVR5+umabEUpyRaKjF
+	XFScCABvrPZV+wMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrOIsWRmVeSWpSXmKPExsVy+t/xu7p/52ikG3xbxG+x9fcsdoutB+ey
+	WqzZe47JYv6Rc6wW9y5tYbK41LmC0eLF3kYWi2sr5rJbvJx1j83i8q45bBbbPrewWaw9cpfd
+	Yv3X+UwWLy/3MFu0zeK3+L9nB7vF6nNXWCxa9k9hcRDymNXQy+bx5uVLFo/DHV/YPXbOusvu
+	sWlVJ5vH5iX1Hi1rjzF5vN93lc2jb8sqRo9LzdfZPT5vkvP4fHc9awBPlJ5NUX5pSapCRn5x
+	ia1StKGFkZ6hpYWekYmlnqGxeayVkamSvp1NSmpOZllqkb5dgl7G5QnrWQou6lS83P2HpYGx
+	Q6WLkZNDQsBEYu2RM+xdjFwcQgJLGSW2PVvODJGQkbjW/ZIFwhaW+HOtiw2i6BWjxMMfU8ES
+	bAJGEg+Wz2cFsUUE9jNJvD5bBFLELLCJUeLSyn52kISwgLPE62+9YDaLgKrEn8O/wTbwCthL
+	nHkzhRFig7zE/oNnoeKCEidnPgFawAE0SF1i/TwhkDAzUEnz1tnMExj5ZyGpmoVQNQtJ1QJG
+	5lWMIqmlxbnpucWGesWJucWleel6yfm5mxiBMbzt2M/NOxjnvfqod4iRiYPxEKMEB7OSCO+8
+	VPV0Id6UxMqq1KL8+KLSnNTiQ4ymQFdPZJYSTc4HJpG8knhDMwNTQxMzSwNTSzNjJXFet8vn
+	04QE0hNLUrNTUwtSi2D6mDg4pRqYUj+avnSJP78osCc4divzY+1pYuG1x99LcCy/yVHit5+h
+	mcXQ/+61XacuLYp6PW3X/uzf39kequqfv6aacEhl+YEOxrcOq5xNrzs95pyi/VtzV+XHgKs1
+	c2bKXT3K9ntRrsSOrcKq7S9j1mmej9Vi8OU+2hpZ/PThTJX/ebfjlrZKJm9e9Yp7/fl1XcsU
+	tgqnmN+Y8eJ3glaBnIt8qrAeS0mDzdPsJSevuK6Y/fXD7Kb9Epm6YfaKz5dxMSqyds9evkgy
+	/6N9s0Tg4jfPtHZozFC4nRB/4rwnx5HNSovfMGyzb2Lvvtk/LTnm4sWVS447ySjyTPW8mroi
+	KP5CepfwjYn8J689/LXooSKHXbWnnRJLcUaioRZzUXEiABpgHcBqAwAA
+X-CMS-MailID: 20241104100757eucas1p15156cbe4466b785095cfb788192a7077
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20241104100757eucas1p15156cbe4466b785095cfb788192a7077
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20241104100757eucas1p15156cbe4466b785095cfb788192a7077
+References: <CGME20241104100757eucas1p15156cbe4466b785095cfb788192a7077@eucas1p1.samsung.com>
 
-From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+The T-head TH1520 SoC supports a hardware mailbox that enables two cores
+within the SoC to communicate and coordinate [1]. One example of such
+coordination would be cooperation with the T-Head E902 core, which is
+responsible for power, clock, and resource management. For example, in
+the specific case of the BXM-4-64 GPU, it needs to be powered on by the
+E902 core, and the kernel running on the E910 needs to 'ask' the
+firmware running on the E902 core to enable power to the GPU island.
+Given recent advancements in work on the upstream GPU driver [2], there
+is an emerging need to get this code in the mainline kernel.
 
-Some S32G2/S32G3 SoC I2C particularities exist
-such as different <clock divider, register value> pairs.
-Those are addressed by adding specific S32G2 and S32G3
-compatible strings.
+Link: https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf [1]
+Link: https://gitlab.freedesktop.org/imagination/linux-firmware/-/issues/1 [2]
 
-Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
----
- drivers/i2c/busses/Kconfig   |  7 ++++---
- drivers/i2c/busses/i2c-imx.c | 37 +++++++++++++++++++++++++++++++++++-
- 2 files changed, 40 insertions(+), 4 deletions(-)
+Thanks everyone for taking the time to review this series !
 
-diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
-index 6b3ba7e5723a..45ea214e4b0e 100644
---- a/drivers/i2c/busses/Kconfig
-+++ b/drivers/i2c/busses/Kconfig
-@@ -741,13 +741,14 @@ config I2C_IMG
- 
- config I2C_IMX
- 	tristate "IMX I2C interface"
--	depends on ARCH_MXC || ARCH_LAYERSCAPE || COLDFIRE || COMPILE_TEST
-+	depends on ARCH_MXC || ARCH_LAYERSCAPE || ARCH_S32 || COLDFIRE \
-+		|| COMPILE_TEST
- 	select I2C_SLAVE
- 	help
- 	  Say Y here if you want to use the IIC bus controller on
--	  the Freescale i.MX/MXC, Layerscape or ColdFire processors.
-+	  the Freescale i.MX/MXC/S32G, Layerscape or ColdFire processors.
- 
--	  This driver can also be built as a module.  If so, the module
-+	  This driver can also be built as a module. If so, the module
- 	  will be called i2c-imx.
- 
- config I2C_IMX_LPI2C
-diff --git a/drivers/i2c/busses/i2c-imx.c b/drivers/i2c/busses/i2c-imx.c
-index 98539313cbc9..3509c37c89ab 100644
---- a/drivers/i2c/busses/i2c-imx.c
-+++ b/drivers/i2c/busses/i2c-imx.c
-@@ -17,7 +17,7 @@
-  *	Copyright (C) 2008 Darius Augulis <darius.augulis at teltonika.lt>
-  *
-  *	Copyright 2013 Freescale Semiconductor, Inc.
-- *	Copyright 2020 NXP
-+ *	Copyright 2020, 2024 NXP
-  *
-  */
- 
-@@ -84,6 +84,7 @@
- 
- #define IMX_I2C_REGSHIFT	2
- #define VF610_I2C_REGSHIFT	0
-+#define S32G_I2C_REGSHIFT	0
- 
- /* Bits of IMX I2C registers */
- #define I2SR_RXAK	0x01
-@@ -165,10 +166,35 @@ static struct imx_i2c_clk_pair vf610_i2c_clk_div[] = {
- 	{ 3840, 0x3F }, { 4096, 0x7B }, { 5120, 0x7D }, { 6144, 0x7E },
- };
- 
-+/* S32G2/S32G3 clock divider, register value pairs */
-+static struct imx_i2c_clk_pair s32g2_i2c_clk_div[] = {
-+	{ 34,    0x00 }, { 36,    0x01 }, { 38,    0x02 }, { 40,    0x03 },
-+	{ 42,    0x04 }, { 44,    0x05 }, { 46,    0x06 }, { 48,    0x09 },
-+	{ 52,    0x0A }, { 54,    0x07 }, { 56,    0x0B }, { 60,    0x0C },
-+	{ 64,    0x0D }, { 68,    0x40 }, { 72,    0x0E }, { 76,    0x42 },
-+	{ 80,    0x12 }, { 84,    0x0F }, { 88,    0x13 }, { 96,    0x14 },
-+	{ 104,   0x15 }, { 108,   0x47 }, { 112,   0x19 }, { 120,   0x16 },
-+	{ 128,   0x1A }, { 136,   0x80 }, { 144,   0x17 }, { 152,   0x82 },
-+	{ 160,   0x1C }, { 168,   0x84 }, { 176,   0x1D }, { 192,   0x21 },
-+	{ 208,   0x1E }, { 216,   0x87 }, { 224,   0x22 }, { 240,   0x56 },
-+	{ 256,   0x1F }, { 288,   0x24 }, { 320,   0x25 }, { 336,   0x8F },
-+	{ 352,   0x93 }, { 356,   0x5D }, { 358,   0x98 }, { 384,   0x26 },
-+	{ 416,   0x56 }, { 448,   0x2A }, { 480,   0x27 }, { 512,   0x2B },
-+	{ 576,   0x2C }, { 640,   0x2D }, { 704,   0x9D }, { 768,   0x2E },
-+	{ 832,   0x9D }, { 896,   0x32 }, { 960,   0x2F }, { 1024,  0x33 },
-+	{ 1152,  0x34 }, { 1280,  0x35 }, { 1536,  0x36 }, { 1792,  0x3A },
-+	{ 1920,  0x37 }, { 2048,  0x3B }, { 2304,  0x74 }, { 2560,  0x3D },
-+	{ 3072,  0x3E }, { 3584,  0x7A }, { 3840,  0x3F }, { 4096,  0x7B },
-+	{ 4608,  0x7C }, { 5120,  0x7D }, { 6144,  0x7E }, { 7168,  0xBA },
-+	{ 7680,  0x7F }, { 8192,  0xBB }, { 9216,  0xBC }, { 10240, 0xBD },
-+	{ 12288, 0xBE }, { 15360, 0xBF },
-+};
-+
- enum imx_i2c_type {
- 	IMX1_I2C,
- 	IMX21_I2C,
- 	VF610_I2C,
-+	S32G_I2C,
- };
- 
- struct imx_i2c_hwdata {
-@@ -258,7 +284,15 @@ static struct imx_i2c_hwdata vf610_i2c_hwdata = {
- 	.ndivs			= ARRAY_SIZE(vf610_i2c_clk_div),
- 	.i2sr_clr_opcode	= I2SR_CLR_OPCODE_W1C,
- 	.i2cr_ien_opcode	= I2CR_IEN_OPCODE_0,
-+};
- 
-+static const struct imx_i2c_hwdata s32g2_i2c_hwdata = {
-+	.devtype		= S32G_I2C,
-+	.regshift		= S32G_I2C_REGSHIFT,
-+	.clk_div		= s32g2_i2c_clk_div,
-+	.ndivs			= ARRAY_SIZE(s32g2_i2c_clk_div),
-+	.i2sr_clr_opcode	= I2SR_CLR_OPCODE_W1C,
-+	.i2cr_ien_opcode	= I2CR_IEN_OPCODE_0,
- };
- 
- static const struct platform_device_id imx_i2c_devtype[] = {
-@@ -288,6 +322,7 @@ static const struct of_device_id i2c_imx_dt_ids[] = {
- 	{ .compatible = "fsl,imx8mp-i2c", .data = &imx6_i2c_hwdata, },
- 	{ .compatible = "fsl,imx8mq-i2c", .data = &imx6_i2c_hwdata, },
- 	{ .compatible = "fsl,vf610-i2c", .data = &vf610_i2c_hwdata, },
-+	{ .compatible = "nxp,s32g2-i2c", .data = &s32g2_i2c_hwdata, },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, i2c_imx_dt_ids);
+To test this, I've prepared a diff that includes the missing drivers
+utilizing the mailbox and enabled the GPU node in the device tree to use
+the drm/imagination driver.
+
+I’ve created two branches. Both contain the same code, including this
+patch series and some extra commits with mailbox consumers. The only
+difference is that one branch has an additional commit that switches ON
+calls to OFF calls (and vice versa) to observe the behavior when the GPU
+is turned off via the mailbox.
+
+To reproduce, simply clone the repository, add the following extra options
+in the config:
+
+CONFIG_THEAD_TH1520_MBOX=y #(this series)
+CONFIG_DRM_POWERVR=y
+CONFIG_LIGHT_AON=y
+CONFIG_LIGHT_AON_PD=y
+
+Then build and deploy on the target.
+
+In case [1], the output should be:
+[    2.478394] light_aon_probe: virtual_log_mem=0x000000005faf564a, phy base=0x33600000, size:2097152
+[    2.488589] succeed to create power domain debugfs direntry
+[    2.494987] powervr ffef400000.gpu: Before reading BVNC
+At this point, the system will hang because the driver is trying to read
+memory-mapped registers while the GPU isn’t powered on.
+
+In case [2], the GPU powers on correctly, and the BVNC can be read
+without issues. If the specific firmware file isn’t available, the
+output would look like this:
+root@revyos-lpi4a:~# dmesg | grep gpu
+[    2.408207] powervr ffef400000.gpu: Before reading BVNC
+[    2.413533] powervr ffef400000.gpu: After reading BVNC
+[    2.418930] powervr ffef400000.gpu: Direct firmware load for powervr/rogue_36.52.104.182_v1.fw failed with error -2
+[    2.429568] powervr ffef400000.gpu: [drm] *ERROR* failed to load firmware powervr/rogue_36.52.104.182_v1.fw (err=-2)
+[    2.440403] powervr ffef400000.gpu: probe with driver powervr failed with error -2
+
+Here are the links:
+[1] - https://github.com/mwilczy/linux/tree/31_october_demonstrate_mailbox_not_working
+[2] - https://github.com/mwilczy/linux/tree/31_october_demonstrate_mailbox_working
+
+Note: U-Boot must load the AON firmware at startup to the address mapped
+for AON for this to work properly.
+
+v6:
+ - added a devm_ action callback to disable the clocks if the probe fails
+
+v5:
+ - removed 'type' mbox-cell, which isn't really necessary for the use-cases of
+   the series, but desribes SW protocol instead of the HW, adjust driver code
+   logic to account for this, simplifying it
+ - change the register mappings in the device tree node to reflect the manual
+ - adjust the driver code to compensate for irregularities in the mappings, do
+   this by modifying th1520_map_mmio() with extra argument 'offset'
+ - add support for enabling/disabling MBOX clocks in the driver
+ - add clocks in the dt-binding/device tree node
+ - rebase and retest
+
+v4:
+- fixed warning of unused variable
+- added Reviewed-by from Krzysztof
+- fixed minor cosmetic issues in dt-binding
+
+v3:
+- added a comment about mixing devm_ and non-devm resources in the context
+  of shared interrupts and explained why it's safe to do so in this
+  particular case
+- changed the order of resource freeing in the .shutdown callback
+- used a wrapper function for register mapping
+- since the only conceivable use case for this mailbox driver is
+  communication with cores not managed by the kernel, I’ve hard-coded
+  this by removing the thead,icu-cpu-id property and adjusted the mailbox
+  driver code accordingly.
+- added a more detailed description for mbox-cells.
+- made some cosmetic changes.
+- retested by applying the patch with non-yet-upstreamed patches,
+  confirming that the drm/imagination driver can read the registers
+  correctly.
+
+v2:
+ - fixed thead,th1520-mbox.yaml binding file by dropping redundant
+   descriptions, renaming reg-names, removing unnecessary clocks,
+   providing constraints and defining ICU's
+ - fixed the mailbox driver code to work well with updated binding-file,
+   removed clocks support, as it's not necessary for mailbox to work
+ - adjusted the device tree node instance of mbox_910t so it will work
+   with updated bindings file
+
+Michal Wilczynski (3):
+  mailbox: Introduce support for T-head TH1520 Mailbox driver
+  dt-bindings: mailbox: Add thead,th1520-mailbox bindings
+  riscv: dts: thead: Add mailbox node
+
+ .../bindings/mailbox/thead,th1520-mbox.yaml   |  89 +++
+ MAINTAINERS                                   |   2 +
+ arch/riscv/boot/dts/thead/th1520.dtsi         |  16 +
+ drivers/mailbox/Kconfig                       |  10 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/mailbox-th1520.c              | 597 ++++++++++++++++++
+ 6 files changed, 716 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml
+ create mode 100644 drivers/mailbox/mailbox-th1520.c
+
 -- 
-2.45.2
+2.34.1
 
 
