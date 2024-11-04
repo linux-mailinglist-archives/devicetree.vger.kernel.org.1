@@ -1,314 +1,121 @@
-Return-Path: <devicetree+bounces-118665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17E599BB2FB
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:21:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA5C19BB308
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:22:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37D621C21DEE
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:21:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 652D11F220CC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:22:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36CD1D3584;
-	Mon,  4 Nov 2024 11:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B831D47AE;
+	Mon,  4 Nov 2024 11:11:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="VFK3C1wl"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nfRDemp9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com [209.85.208.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B892C1D31AA
-	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 11:11:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53AB1C6895
+	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 11:11:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730718683; cv=none; b=LSx5ZnqNTwpDXrDq8buobT2AmUkZAdiMEPgG7IRZwN/XwkY1caBl7c/6S3rjgbS9H1z5PgC0c8UQ3h9aMBzAb9cUJb6CK75liOHVg5iuhSTcgJk89nmXOHi+MeFRM+5ZvM1kzi8OqAJKGjlXL0Aoh2mkVMI3k3oAckH/3MNX2nY=
+	t=1730718713; cv=none; b=P6+f0VghidVe6tH4w9ZoIj2PHSxWnEac5tGagdF/xBLmMcY7TcUTlwgobJTNI2UuYzWT01xAskJeDtt6bnPwSSqsmkRAkwROvQDn5dnfqEm3isljKtGJuYV48PN0EiX9yhA0eslPwfo0+yZacDzhnn0XPyrN/iJL8zR7o9jLEv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730718683; c=relaxed/simple;
-	bh=VYra1vd3ZI3DNsV6QlM4eJ9XfY/djVw8e2jACzdfLOA=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eiFS0yDKIJltt55ILMXodIq+u+rCWy8gIeoYO0y3cTVLg69s6bTql6LA9bil990cVyh7C2dox1wydIg1nP2crVawO6As/e0d73cUfmdVUMovRWBHg9u9AieyPsdV2DmGgDGkzsVM+IlV0kMs93jf7USDj2X3Y32gRble7XTgrBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=VFK3C1wl; arc=none smtp.client-ip=209.85.208.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f68.google.com with SMTP id 4fb4d7f45d1cf-5c9693dc739so5417998a12.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 03:11:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1730718679; x=1731323479; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=iR/eLuJ7hqRBDR8qMgEyoLrx9OmW3jzB7EgHhAaqCPM=;
-        b=VFK3C1wlQS9YEinmoSKLaIgWH8mnwCB1+9tp7wyC0kP0xMo1GJiJy++adFkf0XuBU6
-         gRtNyhuzK+NDY1bpIoI0h5CqwyHEglxR+M/X69GFkxT6AB5SRxJniq3NKksC1PuP0oEE
-         MDFEkCj9rlXjqsyxiDtWkU8a00Sehy/eY3X966U+YTNVQyQzwKWWqTjCViHhMeZSOJO+
-         0z0B5Td6BaE17HX5HH1z/37/TpCRZwPaQc0jlfaPPS7tDHkgASciJ5kTpaLPHFOE5opU
-         mBOVjT2PpWVJdvNsRujqFlrgTGKwJ/S6+4vvDqwOTVQfXo9Zva86D/T9/9x9lvRnbF3g
-         flYA==
+	s=arc-20240116; t=1730718713; c=relaxed/simple;
+	bh=QF5qeqPKv1tyCvIMTbga0xwDQ0otiI62wU1788A6G4s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E91W3vxnpxPOPhUooI1sZY/NG69IIn63I0hiRLnCbWBQH8bG/NDJX/uAc+sG1VFjObLs9gGEaPpC92RHyRc5XjVQSV8RmSadQVsOCLr1TouX0yAx4wFWbjb/lMdL9Fb1rzsl6xtYUcUh3v2a63nOQKubz9CML69wyDLkKJkY96o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nfRDemp9; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A40N8Er014974
+	for <devicetree@vger.kernel.org>; Mon, 4 Nov 2024 11:11:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	FnLOBHCGGtHyCjziPaoUnh3eyHhBuYonYqV3aXjJRbw=; b=nfRDemp9yCbyjxxm
+	sJEPwdHKuno8l4+TcI1JntZ/pZL78aWE+QPPhK6oUOyslqJWEeH3X3p8DHDgXkNp
+	ZdUABjrVfAlfatS80imq4hmQNr3CgL6q63gi14eI1gR/TJtez7Jz8nL8AnJd/o3v
+	J3wlB66R3sYf9EpOHCeCmqE4dtRjoOCPHbmPbDaSz0BsRRm6tI9pSOspQdbi+o0p
+	DbnRmBMcEOdspcss16d83esFb2nrVZXREPAoEU8sAu+mlMQAdKPCaISoQibY6x4s
+	Hm9431xz1Lrk2uZEpqBtLZRHCAzta/49lXaqhgfNP6JeqxHnpViuXRwYRcSib3Vd
+	cBeekQ==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd11uxxy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 11:11:50 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6cbe149b1cfso14581126d6.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 03:11:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730718679; x=1731323479;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iR/eLuJ7hqRBDR8qMgEyoLrx9OmW3jzB7EgHhAaqCPM=;
-        b=L168rpETfJ1+J7b7ghi/yLwsBi9UeReLsmDvxNvcDPZIVjFmrJMEcAYUOpo/2cvJRT
-         AO7k6PSCK8Hm87vZ4AvM2rH1k9GfiTwufHAlCKZDtXEDEJoR+hdmNlBGL+qKpF1i3d5d
-         Nku36vNard+XilC90bOx7iegx0U8IWz3wBuhKblyJ/sSmzXK/UnUpHcf1Y8D60FBdf1y
-         NzKiM6ipf/RrZ8ySWMYuIydr5/FYV72DHbV5swCY9voTgcOUEdZ/j/a+CdbdjcJr4QUk
-         E5jVfVRbEWzjOfgAlfXNZY5wALNMfDDmmNQTD/OrdEdS/iczjDBtfs7MiQCJmmpdO74q
-         t45g==
-X-Forwarded-Encrypted: i=1; AJvYcCVP44eQ2p0aocyY+w3NuipqE6sSHcZJ4cAs57WyXAXhaOpKyaUnp3LNgFubpH2Xo+BtjkaW8c9X4DUj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBG5gxYjvI9h9nXKMnfBytpHy3FENRhdd8SZnZ21bqoXvJRgxV
-	xVODEK+fgq7VXffW1mZ+sFaqcogVri9sfw0V63UnyQ83GACPALPPiq/TS7ZVlOg=
-X-Google-Smtp-Source: AGHT+IG5tnzS154o2gsQZG2Mb2tToZi0pE7ZGdMnxoVRw4hvBg/+92C8iupvzX1HwjwL9uMQzQiObQ==
-X-Received: by 2002:a17:907:9446:b0:a99:88ab:c7cb with SMTP id a640c23a62f3a-a9e654fd997mr1068397466b.33.1730718677440;
-        Mon, 04 Nov 2024 03:11:17 -0800 (PST)
-Received: from localhost (host-79-35-211-193.retail.telecomitalia.it. [79.35.211.193])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e56645dcbsm549642066b.177.2024.11.04.03.11.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Nov 2024 03:11:16 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Mon, 4 Nov 2024 12:11:42 +0100
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v3 02/12] dt-bindings: pinctrl: Add RaspberryPi RP1
- gpio/pinctrl/pinmux bindings
-Message-ID: <Zyir7pu8T-fjUIA4@apocalypse>
-References: <cover.1730123575.git.andrea.porta@suse.com>
- <9a02498e0fbc135dcbe94adc7fc2d743cf190fac.1730123575.git.andrea.porta@suse.com>
- <mjhopgkrjahaxydn3ckianqnvjn55kxrldulvjkpqivlz72uyi@57l5vhydpzc2>
- <ZyOPHm7fl_vW7mAJ@apocalypse>
- <cc2e1a17-c5b1-4608-8e32-a6dea23a7efb@kernel.org>
+        d=1e100.net; s=20230601; t=1730718710; x=1731323510;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FnLOBHCGGtHyCjziPaoUnh3eyHhBuYonYqV3aXjJRbw=;
+        b=IytB/tnK7AcC+C/RMqumheYpuJ8A4q7yBfX7uv8fxHURbKZmGXvB/JKn8kqQuT8rWf
+         T6KaJkVhZY9cvzLJcuuVaVYfygKC92n0lmLPhUB4NSl99LozuDYTA4/0Qw7Y9kelzw1I
+         u/kp1LzErjv6HFr9tgNDXD7SvHgESnWnz9jr0vUEmHeZustM+DwG0lGdcWgAZib8+Z0f
+         Gk23izkFKEjb3fj/5snDzcpOwkkSGmRe+JZB1L7iwB9fnjh1MLgJiaFJupVsjE0He8qe
+         C+wgXgRuYOnQ5PrQAHYjceHVNnRuyTuQ1bLMRMdMWKlHDrz5ll9cWFEpJqOIMOge9ox7
+         SPbw==
+X-Forwarded-Encrypted: i=1; AJvYcCU5LGTf+nAaPmyGbQ985JwiIfawMUgpdB8nM5VdstQyzoMhuavkTU1N34ca3a1VafM+xj308WQUaj54@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzt6xZDvZSkjW591VYOeblMNUCxLil732gLdwQD1JotgQTjMsyG
+	21sUKqFm9gECc7t8gAHa4mGujFEK6iLQCZV7nuywV8m+Eh73cNoeWRIPaRBiauOJDWKSDoSVr9v
+	Kkiqbe7kLhoezImxywUag2C7W1kHoz/JDYTagD6W2H69zac22dSyrBu+ZFuXAjj9KUG8c
+X-Received: by 2002:a05:6214:234d:b0:6c5:3338:2503 with SMTP id 6a1803df08f44-6d1858886d8mr235370796d6.11.1730718709864;
+        Mon, 04 Nov 2024 03:11:49 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEthW7hWd0uAwrn8o30FFKo+68/sUmkTx97LA8okPZrmjtw/NrlKbGtAzwGCR1uo9lHM4+CfQ==
+X-Received: by 2002:a05:6214:234d:b0:6c5:3338:2503 with SMTP id 6a1803df08f44-6d1858886d8mr235370556d6.11.1730718709555;
+        Mon, 04 Nov 2024 03:11:49 -0800 (PST)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e565dfa8bsm541905066b.103.2024.11.04.03.11.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Nov 2024 03:11:49 -0800 (PST)
+Message-ID: <350c6332-e6c3-4d8c-b147-36fba68b3190@oss.qualcomm.com>
+Date: Mon, 4 Nov 2024 12:11:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cc2e1a17-c5b1-4608-8e32-a6dea23a7efb@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: qcs8300: Add PMU support for QCS8300
+To: Jingyi Wang <quic_jingyw@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: quic_tengfan@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241101-qcs8300_pmu-v1-1-3f3d744a3482@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241101-qcs8300_pmu-v1-1-3f3d744a3482@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 6RvGxF8Pqx7a9OjGfyr70PlJ9y7f2qu6
+X-Proofpoint-ORIG-GUID: 6RvGxF8Pqx7a9OjGfyr70PlJ9y7f2qu6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=777
+ mlxscore=0 clxscore=1015 lowpriorityscore=0 phishscore=0
+ priorityscore=1501 impostorscore=0 spamscore=0 bulkscore=0 suspectscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411040098
 
-Hi Krzysztof,
-
-On 19:10 Thu 31 Oct     , Krzysztof Kozlowski wrote:
-> On 31/10/2024 15:07, Andrea della Porta wrote:
-> > Hi Krzysztof,
-> > 
-> > On 08:26 Tue 29 Oct     , Krzysztof Kozlowski wrote:
-> >> On Mon, Oct 28, 2024 at 03:07:19PM +0100, Andrea della Porta wrote:
-> >>> Add device tree bindings for the gpio/pin/mux controller that is part of
-> >>> the RP1 multi function device, and relative entries in MAINTAINERS file.
-> >>>
-> >>> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> >>> ---
-> >>>  .../pinctrl/raspberrypi,rp1-gpio.yaml         | 163 ++++++++++++++++++
-> >>>  MAINTAINERS                                   |   2 +
-> >>>  2 files changed, 165 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..465a53a6d84f
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
-> >>> @@ -0,0 +1,163 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/pinctrl/raspberrypi,rp1-gpio.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: RaspberryPi RP1 GPIO/Pinconf/Pinmux Controller submodule
-> >>> +
-> >>> +maintainers:
-> >>> +  - Andrea della Porta <andrea.porta@suse.com>
-> >>> +
-> >>> +description:
-> >>> +  The RP1 chipset is a Multi Function Device containing, among other sub-peripherals,
-> >>> +  a gpio/pinconf/mux controller whose 54 pins are grouped into 3 banks. It works also
-> >>
-> >> Please wrap code according to coding style (checkpatch is not a coding
-> >> style description but only a tool).
-> > 
-> > Ack.
-> > 
-> >>
-> >>> +  as an interrupt controller for those gpios.
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    const: raspberrypi,rp1-gpio
-> >>> +
-> >>> +  reg:
-> >>> +    maxItems: 3
-> >>> +    description: One reg specifier for each one of the 3 pin banks.
-> >>> +
-> >>> +  '#gpio-cells':
-> >>> +    description: The first cell is the pin number and the second cell is used
-> >>> +      to specify the flags (see include/dt-bindings/gpio/gpio.h).
-> >>> +    const: 2
-> >>> +
-> >>> +  gpio-controller: true
-> >>> +
-> >>> +  gpio-ranges:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  gpio-line-names:
-> >>> +    maxItems: 54
-> >>> +
-> >>> +  interrupts:
-> >>> +    maxItems: 3
-> >>> +    description: One interrupt specifier for each one of the 3 pin banks.
-> >>> +
-> >>> +  '#interrupt-cells':
-> >>> +    description:
-> >>> +      Specifies the Bank number [0, 1, 2] and Flags as defined in
-> >>> +      include/dt-bindings/interrupt-controller/irq.h.
-> >>> +    const: 2
-> >>> +
-> >>> +  interrupt-controller: true
-> >>> +
-> >>> +additionalProperties:
-> >>
-> >> Not much improved. You are supposed to have here pattern, just like
-> >> other bindings. I asked for this last time.
-> >>
-> >> And there are examples using it - almost all or most of pinctrl
-> >> bindings, including bindings having subnodes (but you do not use such
-> >> case here).
-> > 
-> > This is the same approach used in [1], which seems quite recent. I did't
+On 1.11.2024 7:44 AM, Jingyi Wang wrote:
+> Add Performance Monitoring Unit(PMU) nodes on the QCS8300 platform.
 > 
-> 2021, so not that recent, but you are right that it's not the example I
-> would recommend. See rather:
-> git grep pins -- Documentation/devicetree/bindings/pinctrl/ | grep '\$'
-> 
-> 
-> pins, groups, states, etc.
+> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+> ---
 
-Perfect. Thanks for the example suggestion.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> 
-> > use pattern because I wouldn't really want to enforce a particular naming
-> > scheme. Subnodes are used, please see below. Since pinctrl.yaml explicitly
-> 
-> But we want to enforce, because it brings uniformity and matches
-> partially generic naming patterns.
-
-Ack.
-
-> 
-> > says that there is no common binding but each device has its own, I
-> > thought that was reasonable choice. Should I enforce some common pattern,
-> > then?
-> 
-> Yes, you should. Again, look at other bindings, e.g. qcom tlmm or lpass lpi.
-
-Ok.
-
-> 
-> > 
-> >>
-> >>> +  anyOf:
-> >>> +    - type: object
-> >>> +      additionalProperties: false
-> >>> +      allOf:
-> >>> +        - $ref: pincfg-node.yaml#
-> >>> +        - $ref: pinmux-node.yaml#
-> >>> +
-> >>> +      description:
-> >>> +        Pin controller client devices use pin configuration subnodes (children
-> >>> +        and grandchildren) for desired pin configuration.
-> >>> +        Client device subnodes use below standard properties.
-> >>> +
-> >>> +      properties:
-> >>> +        pins:
-> >>> +          description:
-> >>> +            A string (or list of strings) adhering to the pattern 'gpio[0-5][0-9]'
-> >>> +        function: true
-> >>> +        bias-disable: true
-> >>> +        bias-pull-down: true
-> >>> +        bias-pull-up: true
-> >>> +        slew-rate:
-> >>> +          description: 0 is slow slew rate, 1 is fast slew rate
-> >>> +          enum: [ 0, 1 ]
-> >>> +        drive-strength:
-> >>> +          enum: [ 2, 4, 8, 12 ]
-> >>> +
-> >>> +    - type: object
-> >>> +      additionalProperties:
-> >>> +        $ref: "#/additionalProperties/anyOf/0"
-> >>
-> >> Your example does not use any subnodes, so this looks not needed.
-> > 
-> > The example has subnodes, as in the following excerpt from the example:
-> 
-> I meant, you do not need properties in subnodes (1st level). You only
-> want properties in subnodes of subnodes, so 2nd level. What is the point
-> of allowing them in 1st level?
-
-I will add those two sub-nodes to the example:
-
-            rp1-i2s0-default-state {
-                function = "i2s0";
-                pins = "gpio18", "gpio19", "gpio20", "gpio21";
-                bias-disable;
-            };
-
-            rp1-uart0-default-state {
-                txd-pins {
-                    function = "uart0";
-                    pins = "gpio14";
-                    bias-disable;
-                };
-
-                rxd-pins {
-                    function = "uart0";
-                    pins = "gpio15";
-                    bias-pull-up;
-                };
-            };
-
-The first is just a group of pins with the same settings, the second is 
-a pin group with different settings per pin. This is basically the same
-usage as in qcom,sm4250-lpass-lpi-pinctrl.yaml.
-
-Many thanks,
-Andrea
-
- 
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Konrad
 
