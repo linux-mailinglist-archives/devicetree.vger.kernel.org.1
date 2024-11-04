@@ -1,107 +1,116 @@
-Return-Path: <devicetree+bounces-118876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B719BC142
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 00:07:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDE159BC1A3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 00:49:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 776FF28294E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 23:07:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BCE21C2147C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 23:49:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E7F01B3953;
-	Mon,  4 Nov 2024 23:07:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABF561FDFAF;
+	Mon,  4 Nov 2024 23:49:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="Y3R5bwbZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ntrz21As"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49CD16087B;
-	Mon,  4 Nov 2024 23:07:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74D951A76A4;
+	Mon,  4 Nov 2024 23:49:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730761663; cv=none; b=tFtGuOd4MAH9BLQVzZZsxExDnrildypblRKNdW/bBu1lmruiNPtcWQ7r/CW/VSFUxcUmF+j0c5gbAhUME5Oc++zaphrBePDl4RxM8tmZehXYAcALvg68FBhM9+vYTX4Iwy5G1Gd3pfAyr8OfbQG7CNl69/Dw5xKi5MvK/7eNhWk=
+	t=1730764179; cv=none; b=T8nCAooRoyNh4SaIYLHu9fjvc4C9FdX01UycZUE3NXpg+1OUC2rFzzHnCkV7OXI072P4T/PlGE3wIOTLthzU1n1OGqWA0oA9CC2uCyS28m6L0FIs/liFoY4uoFxrFUPBJysOfyqwaw6nCm7iSRc05qX/d+hi+jb7jEBHI5gty2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730761663; c=relaxed/simple;
-	bh=+VfH4fvW+9d8dvRTPYPKDM3ymW0NXD+fA2osgzdzeRc=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ezA4uJKJBly7L9CSDevJ/uc6QfikKezELVRkNolYGTvDk587txnJt8S0KapZ83hrPM0NTOZD4lNUsZUZ5KZ/4qU3lEWdvRc+98Zxx4kPUYWDmsoNIWU8f4zAwM+uQB70A+DoSNvVN6jKRwDJaArNCJiX3uiPgg2ceahlBZfqpTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=Y3R5bwbZ; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 0BB31A0242;
-	Tue,  5 Nov 2024 00:07:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:message-id:mime-version:reply-to:subject:subject:to
-	:to; s=mail; bh=3SU0Hz8yQJ8VxaLNaO1Vtp9LHZMmrfztXZDJGoyiC6I=; b=
-	Y3R5bwbZOPC2SEzr6D/jllq7kjMiy3HgqL6P6XhLIeB9U5xTL7jINNxg5kaThBrp
-	56M+YM2KpwYFu9EeuA8RUtrQ9u+bSeLdHkYAQERnBjqyemjdHAHis9r5hREQG6Bb
-	c4YUAtyEtie5dvfTO1VO4dXn8LOTW1SGOiw5Eb10Fq6WiXHPwNZ2VutOe00Y8Q6o
-	h4uq5Fjk6rK9+qZucw+YsS/Dpeh8gW/EdfSa1P/sF4A3PSC1IUVcBAe/EJ9Rd0pq
-	5QJ1Go4U2eqJdEbft45z8T/LaE7NC3290tpkLd0OzM0dL/qFshLnJiHgADmaabzN
-	IJ8znJDu1Sk6MRfdCJd+9x36jIRPShHtIguAV5FD/PuLJfXv5yQP0nNs9dDSiwh/
-	0o/YqIHpOcpc9Yv0R+gj/bggArjRdcR0tbAL/SY+IXbH4Nm/gdlNd47XSyMCpKLe
-	n09q46T5letUknQ4bU6mLa5jJkz4INBp9e14vy9oyPaEo34wZF5gSVJsginRfrKZ
-	W2hvzHz2ekQNb0cxaLnd/BpDh3vkGw47t2f9vxu29BYJFCyBwTT3y8HX23huy/Dg
-	2Q9PBvLtKIBnpYfaU+YYAqwliQP0RdjfCBXeP8t3t22sAJCDb/74lHEpKWFm+4CO
-	gn4GBcHuN+E5kTewkKUoRVWlmAl4/uW5Up3L9zC7SNg=
-From: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>
-To: Andre Przywara <andre.przywara@arm.com>, Florian Fainelli
-	<f.fainelli@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Enric Balletbo i Serra <eballetbo@gmail.com>, Alexandre TORGUE
-	<alexandre.torgue@st.com>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
-	<linux-kernel@vger.kernel.org>
-CC: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
-	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, "Tony
- Lindgren" <tony@atomide.com>, Shawn Guo <shawnguo@kernel.org>, "Kunihiko
- Hayashi" <hayashi.kunihiko@socionext.com>
-Subject: [PATCH] ARM: dts: allwinner: Remove accidental suniv duplicates
-Date: Tue, 5 Nov 2024 00:06:27 +0100
-Message-ID: <20241104230628.3736186-1-csokas.bence@prolan.hu>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1730764179; c=relaxed/simple;
+	bh=iYZ8xQtA17SG7eVmEIV4S/I2ob0ny1CVlXDrXQZre+c=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=HvRLr7gyLwB8yAJdeSBCXmOCgza8bI7d9wGxH/EIzxjyu44IGecOC9dc6HYkcQXMlnMGeOJjZK1GQbOTm7r4E7fClABPCaH8sSZCEOHBeE0gImlfp2pITKWTIGOfRL1pl57d30Sq1EZ/qro5JJg6uEWZON9GrEZfpyNgKPzoowI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ntrz21As; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA3E8C4CECE;
+	Mon,  4 Nov 2024 23:49:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730764178;
+	bh=iYZ8xQtA17SG7eVmEIV4S/I2ob0ny1CVlXDrXQZre+c=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Ntrz21As60vacLFu5p1uAmxmcX96c07NNHqwAPllOOJB9RJXakyrOXNdt4fbBnjUm
+	 DV1PpoHYRCz1U5qcb4iU4W17QW/fCzR0CO/c+y6/IZYExhQq+wESmOvX3jZyHl72DG
+	 wxwE5FARzswPmdhMRSY+monukJehqVG7Et9RHSf3aO0Qwy1N1ppG8tSBMV3PkZbqms
+	 2ZZqYtYByX9TfJTPlUtGAes7++oKDqQVSGVDp7m0JWypWvGw8UHnrPwduSWpiBhj2o
+	 EN1anG73X1epeNiI1zoJE7//PnviSJH5pFTTFJ5hYGwgsPutn7QyP3uBWPS03aAmzh
+	 lVNPTZyXfzscQ==
+Date: Mon, 4 Nov 2024 17:49:37 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v3 05/12] PCI: of_property: Assign PCI instead of CPU bus
+ address to dynamic bridge nodes
+Message-ID: <20241104234937.GA1446920@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1730761655;VERSION=7979;MC=3740397895;ID=239242;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
-X-ESET-Antispam: OK
-X-EsetResult: clean, is OK
-X-EsetId: 37303A2980D94855667D63
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241104150521.r4hbsurw4dbzlxpg@thinkpad>
 
-Allwinner suniv boards' DT files were accidentally duplicated
-in the Makefile when they were moved to the new directory
-structure. Remove these duplicates for code cleanness.
+On Mon, Nov 04, 2024 at 08:35:21PM +0530, Manivannan Sadhasivam wrote:
+> On Mon, Nov 04, 2024 at 09:54:57AM +0100, Andrea della Porta wrote:
+> > On 22:39 Sat 02 Nov     , Manivannan Sadhasivam wrote:
+> > > On Mon, Oct 28, 2024 at 03:07:22PM +0100, Andrea della Porta wrote:
+> > > > When populating "ranges" property for a PCI bridge, of_pci_prop_ranges()
+> > > > incorrectly use the CPU bus address of the resource. Since this is a PCI-PCI
+> > > > bridge, the window should instead be in PCI address space. Call
+> > > > pci_bus_address() on the resource in order to obtain the PCI bus
+> > > > address.
+> > > 
+> > > of_pci_prop_ranges() could be called for PCI devices also (not just PCI
+> > > bridges), right?
+> > 
+> > Correct. Please note however that while the PCI-PCI bridge has the parent
+> > address in CPU space, an endpoint device has it in PCI space: here we're
+> > focusing on the bridge part. It probably used to work before since in many
+> > cases the CPU and PCI address are the same, but it breaks down when they
+> > differ.
+> 
+> When you say 'focusing', you are specifically referring to the
+> bridge part of this API I believe. But I don't see a check for the
+> bridge in your change, which is what concerning me. Am I missing
+> something?
 
-Fixes: 724ba6751532 ("ARM: dts: Move .dts files to vendor sub-directories")
-Signed-off-by: Csókás, Bence <csokas.bence@prolan.hu>
----
- arch/arm/boot/dts/allwinner/Makefile | 4 ----
- 1 file changed, 4 deletions(-)
+I think we want this change for all devices in the PCI address
+domain, including PCI-PCI bridges and endpoints, don't we?  All those
+"ranges" addresses should be in the PCI domain.
 
-diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
-index cd0d044882cf..2ea5df3d9894 100644
---- a/arch/arm/boot/dts/allwinner/Makefile
-+++ b/arch/arm/boot/dts/allwinner/Makefile
-@@ -268,7 +268,3 @@ dtb-$(CONFIG_MACH_SUNIV) += \
- 	suniv-f1c100s-licheepi-nano.dtb \
- 	suniv-f1c200s-lctech-pi.dtb \
- 	suniv-f1c200s-popstick-v1.1.dtb
--dtb-$(CONFIG_MACH_SUNIV) += \
--	suniv-f1c100s-licheepi-nano.dtb \
--	suniv-f1c200s-lctech-pi.dtb \
--	suniv-f1c200s-popstick-v1.1.dtb
--- 
-2.34.1
-
-
+Bjorn
 
