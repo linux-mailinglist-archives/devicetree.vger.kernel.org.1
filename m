@@ -1,236 +1,205 @@
-Return-Path: <devicetree+bounces-118856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFC8D9BBD7E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 19:49:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0C679BBD8A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 19:55:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 747121F21378
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 18:49:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50F6E1F22506
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 18:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CCB01C9DDF;
-	Mon,  4 Nov 2024 18:49:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A291CACE5;
+	Mon,  4 Nov 2024 18:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AiHaKP8+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="D+91PJ0A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D343919BBA;
-	Mon,  4 Nov 2024 18:49:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E3B418622;
+	Mon,  4 Nov 2024 18:55:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730746178; cv=none; b=FTyhPiKivqD50xip0cUHVWuwspgdB7zKK4JJ4UXjgy/dR9bPiqlH8NIED5zSXPlD1xnFtIGiIsUc+7BnpzfOiQWwj/OAo5mBUfqc9GR+dd1Ms9aEpcFYN4PzljS3DYv3Gr5EBl4/a+C4B68Z/XVpJap1fCci5mBs3p/hHndjILw=
+	t=1730746524; cv=none; b=QVunBhdxCo9m2lUObxwnWisfdGjzxkttPoRNsRVMt2oCKDzZWQRMe+R+MF1fv9MKGwTRvs2RDjPXp9LzsvuDqinRLoiDZY7xSlr/9H+uwvt3QKfaZfah+GSMfXw61yl2uwx2RZKNQltWE5v/640j/cjh3T2LNZ8qJX9XnSwJ/Z4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730746178; c=relaxed/simple;
-	bh=6xH53IhT0TJpyNorkchqFjFvXwlo4Osd48zybI+w52w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tp/6DMEQgfUoqknKdbZwRgjGWm8+Mk/lUuJ7pJuCviGtRkjgIkUmPm5EunPfnxmKr7Ub1EmZBrJSL++NM6gi9aolsVIcsVDrNpwHQFEb/zMSDSoqP4tYZ6BpwSuZ5p21LwOiy+ES8dBkLjd1HClz63x3gH977gqbjUp5abDZTng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AiHaKP8+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85C24C4CECE;
-	Mon,  4 Nov 2024 18:49:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730746178;
-	bh=6xH53IhT0TJpyNorkchqFjFvXwlo4Osd48zybI+w52w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AiHaKP8+Aqe9E4ixvWAlPw8snyH+4TsToC8aOcmTaKI3EdTgvUJ+veldiNqt3FPIs
-	 SEo7xwUpNLVFKyoxFa8LIOJ3oS+fURHUwPXId/H+T5YUMDeMzD2pUVKE5g7HjgjS7S
-	 25zGYOUcsSYYkOTxgZ3MX4OYaXroGl6nZhHXIHsgxmCxsJ2VOmcZsDYkTZvpKDG8jx
-	 BSprX9Bz3p0bHuS4TFuUEG84Z+21wKVZOEejaStaz7OhDM/ljiuveyVqRQhwidhg5h
-	 PcFI7MAJvKiX9afUKlU5yb0nQebLUaugv/8QmFUIxhUx+2TlGwj7U0EXpMFv23bg18
-	 wkCmrh0LLzLIw==
-Date: Mon, 4 Nov 2024 18:49:33 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Naresh Solanki <naresh.solanki@9elements.com>, jdelvare@suse.com,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, krzk+dt@kernel.org, sylv@sylv.io,
-	linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
-	linux@roeck-us.net, Joel Stanley <joel@jms.id.au>,
-	conor+dt@kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: add IBM SBP1 board
-Message-ID: <20241104-saturate-device-d020a0d7321f@spud>
-References: <20241104092220.2268805-1-naresh.solanki@9elements.com>
- <173072771091.3690717.11563964377469449295.robh@kernel.org>
+	s=arc-20240116; t=1730746524; c=relaxed/simple;
+	bh=sAVXfE+viSyvyyb4ZsPNYrVskuTdS5aiXCQOI2NGJf8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=irqZ+XVHBUhnx1XZBfs6F36XrgaXVH19ZijlDYnctzfQOfAqwWQZukay1U5SekrjZjm2bLSt5H+FL1e055u5KPdqpVBiYcUqJisLpkalCBSqDs3Vu1fKNMl5P5KUOEZD4dvCHLEmxTOjCaQjSHeEciFqi7Y15BgqTBNqmII6c4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=D+91PJ0A; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A4Bj2UP027157;
+	Mon, 4 Nov 2024 18:55:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	EnzS8YCHDwGTykF7cqgVjEldgKDqxW3aidPt90wH09U=; b=D+91PJ0AwEv1Tw2P
+	EzvBll3qLGS+D6UmAcOQ4MjGRs/NRYKLxKqpywKd9+sU4hbSMp/qRpIltYy4FK4A
+	V2VehFRREqPKG7Hk7JzqGGLjzxC150xvCNGhY1d+PmHzz5bAN04syd/SZ2fxGWPd
+	kTPdPSu7fJRSTZN1+9M4/EF4MApN7uYe9LAj1Yvbmc4WVKXjFqszXN88giZ8Doi/
+	AcD1kDdsqfwxVsZ4I2zWlbNdIwP3pamSCPnJM+rV4RS8Ca/enNxiEqiBR2exATuD
+	i+RskwNWGEnu//DN/O3mwCg/2CpBtxGr0e6c+sE2Uh5AlFyWIyMrChXpqMB0JmGv
+	zJ0E4g==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42ncyxw630-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 04 Nov 2024 18:55:15 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A4ItEYB030484
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 4 Nov 2024 18:55:14 GMT
+Received: from [10.216.7.198] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 4 Nov 2024
+ 10:55:09 -0800
+Message-ID: <b8054e94-1ea4-4d39-8050-2f3ddd0a8b3f@quicinc.com>
+Date: Tue, 5 Nov 2024 00:25:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="aHEnBD9/syuq+wBO"
-Content-Disposition: inline
-In-Reply-To: <173072771091.3690717.11563964377469449295.robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 1/5] dt-bindings: net: wireless: ath12k: describe
+ WSI properties for QCN9274
+To: Jeff Johnson <quic_jjohnson@quicinc.com>, <ath12k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20241029173050.2188150-1-quic_rajkbhag@quicinc.com>
+ <20241029173050.2188150-2-quic_rajkbhag@quicinc.com>
+ <4d273cac-8955-4850-bd8a-0bad318c1e4f@quicinc.com>
+Content-Language: en-US
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <4d273cac-8955-4850-bd8a-0bad318c1e4f@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: kkVYawqLpV08D4dHjeKgglZUYSoOEZOB
+X-Proofpoint-GUID: kkVYawqLpV08D4dHjeKgglZUYSoOEZOB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ malwarescore=0 bulkscore=0 impostorscore=0 priorityscore=1501
+ lowpriorityscore=0 mlxscore=0 phishscore=0 adultscore=0 mlxlogscore=999
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411040155
 
+On 10/31/2024 12:34 AM, Jeff Johnson wrote:
+> On 10/29/2024 10:30 AM, Raj Kumar Bhagat wrote:
+>> QCN9274 device has WSI support. WSI stands for WLAN Serial Interface.
+>> It is used for the exchange of specific control information across
+>> radios based on the doorbell mechanism. This WSI connection is
+>> essential to exchange control information among these devices
+>>
+>> Hence, describe WSI interface supported in QCN9274 with the following
+>> properties:
+>>
+>>  - qcom,wsi-group-id: It represents the identifier assigned to the WSI
+>>    connection. All the ath12k devices connected to same WSI connection
+>>    have the same wsi-group-id.
+>>
+>>  - qcom,wsi-master: Indicates if this device is the WSI master.
+>>
+>>  - ports: This is a graph ports schema that has two ports: TX (port@0)
+>>    and RX (port@1). This represents the actual WSI connection among
+>>    multiple devices.
+>>
+>> Also, describe the ath12k device property
+>> "qcom,ath12k-calibration-variant". This is a common property among
+>> ath12k devices.
+>>
+>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+>> ---
+>>  .../bindings/net/wireless/qcom,ath12k.yaml    | 241 +++++++++++++++++-
+>>  1 file changed, 232 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
+>> index 1b5884015b15..42bcd73dd159 100644
+>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
+>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
+>> @@ -1,5 +1,6 @@
+>>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>  # Copyright (c) 2024 Linaro Limited
+>> +# Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>>  %YAML 1.2
+>>  ---
+>>  $id: http://devicetree.org/schemas/net/wireless/qcom,ath12k.yaml#
+>> @@ -18,10 +19,17 @@ properties:
+>>    compatible:
+>>      enum:
+>>        - pci17cb,1107  # WCN7850
+>> +      - pci17cb,1109  # QCN9274
+>>  
+>>    reg:
+>>      maxItems: 1
+>>  
+>> +  qcom,ath12k-calibration-variant:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description: |
+>> +      string to uniquely identify variant of the calibration data for designs
+>> +      with colliding bus and device ids
+>> +
+>>    vddaon-supply:
+>>      description: VDD_AON supply regulator handle
+>>  
+>> @@ -49,21 +57,100 @@ properties:
+>>    vddpcie1p8-supply:
+>>      description: VDD_PCIE_1P8 supply regulator handle
+>>  
+>> +  wsi:
+>> +    type: object
+>> +    description: |
+>> +      The ath12k devices (QCN9274) feature WSI support. WSI stands for
+>> +      WLAN Serial Interface. It is used for the exchange of specific
+>> +      control information across radios based on the doorbell mechanism.
+>> +      This WSI connection is essential to exchange control information
+>> +      among these devices.
+>> +
+>> +      Diagram to represent one WSI connection (one WSI group) among
+>> +      three devices.
+>> +
+>> +               +-------+        +-------+        +-------+
+>> +               | pcie2 |        | pcie3 |        | pcie1 |
+> is there a reason to not have these in some order?
+> 
 
---aHEnBD9/syuq+wBO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This could be made in same order. In next version will update.
+But in actual hardware the pcie and wsi connection may not be same order.
 
-On Mon, Nov 04, 2024 at 08:39:21AM -0600, Rob Herring (Arm) wrote:
->=20
-> On Mon, 04 Nov 2024 14:52:14 +0530, Naresh Solanki wrote:
-> > Document the new compatibles used on IBM SBP1.
-> >=20
-> > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> > Changes in V4:
-> > - Retain Acked-by from v2.
-> > - Fix alphabetic order
-> > ---
-> >  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
->=20
->=20
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
->=20
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
->=20
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
->=20
->   pip3 install dtschema --upgrade
->=20
->=20
-> New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ibm-sbp1.dtb'=
- for 20241104092220.2268805-1-naresh.solanki@9elements.com:
+>> +               |       |        |       |        |       |
+>> +        +----->|  wsi  |------->|  wsi  |------->|  wsi  |-----+
+>> +        |      | grp 0 |        | grp 0 |        | grp 2 |     |
+> s/grp 2/grp 0/???                                          ^ typo?
+> 
 
-Really? This many warnings on a v6?
+Thanks for pointing out, this is a typo. will update in next version.
+>> +        |      +-------+        +-------+        +-------+     |
+>> +        +------------------------------------------------------+
+>> +
+>> +      Diagram to represent two WSI connections (two separate WSI groups)
+>> +      among four devices.
+>> +
+>> +           +-------+    +-------+          +-------+    +-------+
+>> +           | pcie2 |    | pcie3 |          | pcie1 |    | pcie0 |
+> again seems strange to not have any logical (to me) order
 
->=20
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: timer: 'clocks' does no=
-t match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /sdram@1e6e0000: failed=
- to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon=
-']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: bus@1e600000: compatibl=
-e: ['aspeed,ast2600-ahbc', 'syscon'] is too long
-> 	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.y=
-aml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: syscon@1e6e2000: 'smp-m=
-emram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-=
-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^silicon-id@[0=
--9a-f]+$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.ya=
-ml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb@1e6e0000/sysco=
-n@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['as=
-peed,ast2600-smpmem']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb@1e6e0000/sysco=
-n@1e6e2000/interrupt-controller@560: failed to match any schema with compat=
-ible: ['aspeed,ast2600-scu-ic0']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb@1e6e0000/sysco=
-n@1e6e2000/interrupt-controller@570: failed to match any schema with compat=
-ible: ['aspeed,ast2600-scu-ic1']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb@1e6e0000/displ=
-ay@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2600-g=
-fx', 'syscon']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: adc@1e6e9000: 'interrup=
-ts' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-ad=
-c.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: adc@1e6e9100: 'interrup=
-ts' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-ad=
-c.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: crypto@1e6fa000: 'aspee=
-d,ahbc' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acr=
-y.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/video@1e700000: fa=
-iled to match any schema with compatible: ['aspeed,ast2600-video-engine']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: sdc@1e740000: sdhci@1e7=
-40100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-> 	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: sdc@1e740000: sdhci@1e7=
-40200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-> 	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/sdc@1e740000/sdhci=
-@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdh=
-ci', 'sdhci']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/sdc@1e740000/sdhci=
-@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdh=
-ci', 'sdhci']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb@1e780000/timer=
-@1e782000: failed to match any schema with compatible: ['aspeed,ast2600-tim=
-er']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: lpc@1e789000: lpc-snoop=
-@80: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: lpc@1e789000: reg-io-wi=
-dth: 4 is not of type 'object'
-> 	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: kcs@24: 'clocks' does n=
-ot match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-b=
-mc.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: kcs@28: 'clocks' does n=
-ot match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-b=
-mc.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: kcs@2c: 'clocks' does n=
-ot match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-b=
-mc.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: kcs@114: 'clocks' does =
-not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-b=
-mc.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb@1e780000/lpc@1=
-e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast260=
-0-lhc']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb@1e780000/lpc@1=
-e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast26=
-00-ibt-bmc']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb@1e780000/bus@1=
-e78a000/i2c@280/bmc-slave@10: failed to match any schema with compatible: [=
-'ipmb-dev']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: fsi@1e79b000: compatibl=
-e: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
-> 	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-ma=
-ster.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb@1e790000/fsi@1=
-e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-m=
-aster', 'fsi-master']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: fsi@1e79b100: compatibl=
-e: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
-> 	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-ma=
-ster.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb@1e790000/fsi@1=
-e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-m=
-aster', 'fsi-master']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb@1e790000/dma-c=
-ontroller@1e79e000: failed to match any schema with compatible: ['aspeed,as=
-t2600-udma']
->=20
->=20
->=20
->=20
->=20
-
---aHEnBD9/syuq+wBO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZykXPQAKCRB4tDGHoIJi
-0rMWAQDlKZmiJuot7oP6aowJtnVfHH76ohyheufSc66w5m0cpQEAnaA4tO/Xidyx
-qN6rj7vtGBTORT4bzSgiKVOGQ9hkqgw=
-=xs2s
------END PGP SIGNATURE-----
-
---aHEnBD9/syuq+wBO--
+Will keep this example diagram in pcie order in next version.
 
