@@ -1,129 +1,200 @@
-Return-Path: <devicetree+bounces-118862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0A3A9BBDA8
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 20:06:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AC059BBDD9
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 20:16:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D272C1C21C32
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 19:06:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C44701F21A60
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 19:16:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED8071CBE85;
-	Mon,  4 Nov 2024 19:06:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1EA018C342;
+	Mon,  4 Nov 2024 19:16:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lO1yJ8Uu"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="BHDWDqf+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-15.smtpout.orange.fr [80.12.242.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0CA61CB9F4;
-	Mon,  4 Nov 2024 19:06:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB57E1805E;
+	Mon,  4 Nov 2024 19:16:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730747172; cv=none; b=QQFR6b3ACF/+y+07HrWrZIv9g6fXvqBRRuzXx3zzXk1Wn9soGwgYU4La6HN5//JGOzDUB42BwzVIyhFKTPZGJKPRFHGJaiNOJXPD21JdQZ8v1regMDe412Md1j0OTw7oUG4l5mOiPYQkgWThLPWSTdezE8L6JUnvuP2X0BJYwWM=
+	t=1730747800; cv=none; b=nwvftXOmVWrNOsNNTD5DcfVVNniAYSIPXnEJGKzsqvuLnLDtVTBf2KLvQOBJbA1Q3HaNwnY8RbmEYxdU2qmhmbK2jYw+0uZpsBbCqzfewUWhdm3DpwZF0BLIzWA9EJwb/V5ij9wtNcGilEW42FN80VcLOoRHGh1nrnGcpmn2Olk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730747172; c=relaxed/simple;
-	bh=JBVrtATskCzv7INVkabkiMcc6JE0MwYvfyVsJYvZhrw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TLLYkB2JFI/WKKCk6fmU8kT8I9qG9XgqNNWuLnwH6efl8FyYW+GRCmD4VujjntM66upSbnmvjVD7727k++mLm10WmrriyrLKbgntROgxWW29wYKr+mz2Hv5QQzY0uS/EubHkaxINGXiMX190yDE1W4caVYcP4IWRC9YjtSekVWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lO1yJ8Uu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDFE1C4CECE;
-	Mon,  4 Nov 2024 19:06:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730747172;
-	bh=JBVrtATskCzv7INVkabkiMcc6JE0MwYvfyVsJYvZhrw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lO1yJ8UuWs0hm/pLJA1PQGiG6WtNqyGjrC1KOOawFuZqT3AFTwBnyz4uTWAFMfOY8
-	 730X+VFRdGcYuBMiE+xXlWuPwpjyv/GNDy4MQ3uA0z5IhJcUk+ht/sRoHe9Xtgu3Fo
-	 3MD8FUbcj6WydEa8FxVTkLjWUaLq/ZuPG4YDEdcRf0nNnz8B9JQwFdK4pAvhCTUgyY
-	 QpYrv7CJOSap1So3T7TxUlYj9ZdO9Wh8fKSE6Jki4xTU9CtmTGQWQ+Vr9g/L4X0Lhu
-	 WnVil/tv/Lb+eQPkVd4279pQYiMRY5/B6sZ/dL/WQKwI6AeWQjzjnRUju8U4rzTJO5
-	 FQ2hRII61InnQ==
-Date: Mon, 4 Nov 2024 19:06:08 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Conor Dooley <conor.dooley@microchip.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND] dt-bindings: rtc: mpfs-rtc: remove Lewis from
- maintainers
-Message-ID: <20241104-immodest-finishing-354430b8e386@spud>
-References: <20241015-surcharge-caucasian-095d1fd2fa27@wendy>
+	s=arc-20240116; t=1730747800; c=relaxed/simple;
+	bh=3xuuggSkQ1gJDazVSehcHvaQLA17WBi8ZghN/dKlbdg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G7aPg9XuAXXywFV0uDvBbIR21iv7JIqHNDgsNHZ9F6qg9h84n+MTI4RUHwRyalXEmnNwbz6ucFNyS/V1DCQwHlywyTcUcxsnHfacRtx9nQ2YynmLxTNntoGpW3EPcvrCqiZLlKv1V3Q6W9auI+quYG531/rvnTwL9/1ZxylKF8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=BHDWDqf+; arc=none smtp.client-ip=80.12.242.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id 82YstxmztYm1782YstBapD; Mon, 04 Nov 2024 20:16:29 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1730747789;
+	bh=d1jQaocaMHbNON/4n1N6k2N3AqN6ubtMG+w0c/TobY0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=BHDWDqf+CJCUETUTPBtliWbjwoQy4lIo0UBJSkWL8RKc47xSr3CcoEB5vqQzKy0q9
+	 MyUH6r4J6T8Za1YuUV3RL0694+z4X24XjOaqhNNtAx4SG5rODViLBgb9c3pYnkaDaL
+	 L84GJKN1pISWNnKkjErVKOvm+togOGqIMHnXrXz9ew5IiwfqrFVFrGAutNAEr0OtIO
+	 6RrKsxap4+GZk5bohJAICU9CtK2RJNQjp6xRPc/EvOkXkhG03/dPm7nmiRa/od77gD
+	 cULhiCCV79RQ6KKHaSAZGAt9wmmKnAsnhOwOLvwbjOEhgA5+pQIuaobF4P803hJPM+
+	 KSYMtWVH8BSqQ==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Mon, 04 Nov 2024 20:16:29 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <ff82c5bf-c757-4496-83ac-c3b257ef476c@wanadoo.fr>
+Date: Mon, 4 Nov 2024 20:16:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="e/KpZXvkrNTSFxzZ"
-Content-Disposition: inline
-In-Reply-To: <20241015-surcharge-caucasian-095d1fd2fa27@wendy>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] spi: apple: Add driver for Apple SPI controller
+To: Janne Grunau via B4 Relay <devnull+j.jannau.net@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Janne Grunau <j@jannau.net>,
+ Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20241101-asahi-spi-v3-0-3b411c5fb8e5@jannau.net>
+ <20241101-asahi-spi-v3-2-3b411c5fb8e5@jannau.net>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20241101-asahi-spi-v3-2-3b411c5fb8e5@jannau.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
---e/KpZXvkrNTSFxzZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Oct 15, 2024 at 07:52:05AM +0100, Conor Dooley wrote:
-> Lewis hasn't worked at Microchip for a while, and IIRC never actually
-> worked on the RTC in the first place. Remove him from the maintainers
-> list in the binding, leaving Daire.
->=20
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+Le 01/11/2024 à 20:26, Janne Grunau via B4 Relay a écrit :
+> From: Hector Martin <marcan-WKacp4m3WJJeoWH0uzbU5w@public.gmane.org>
+> 
+> This SPI controller is present in Apple SoCs such as the M1 (t8103) and
+> M1 Pro/Max (t600x). It is a relatively straightforward design with two
+> 16-entry FIFOs, arbitrary transfer sizes (up to 2**32 - 1) and fully
+> configurable word size up to 32 bits. It supports one hardware CS line
+> which can also be driven via the pinctrl/GPIO driver instead, if
+> desired. TX and RX can be independently enabled.
+> 
+> There are a surprising number of knobs for tweaking details of the
+> transfer, most of which we do not use right now. Hardware CS control
+> is available, but we haven't found a way to make it stay low across
+> multiple logical transfers, so we just use software CS control for now.
+> 
+> There is also a shared DMA offload coprocessor that can be used to handle
+> larger transfers without requiring an IRQ every 8-16 words, but that
+> feature depends on a bunch of scaffolding that isn't ready to be
+> upstreamed yet, so leave it for later.
+> 
+> The hardware shares some register bit definitions with spi-s3c24xx which
+> suggests it has a shared legacy with Samsung SoCs, but it is too
+> different to warrant sharing a driver.
+> 
+> Signed-off-by: Hector Martin <marcan-WKacp4m3WJJeoWH0uzbU5w@public.gmane.org>
+> Signed-off-by: Janne Grunau <j@jannau.net>
 > ---
-> Noticed him in the CC list of your resend, figured it was worth removing
-> him.
 
-Could you pick this up Alexandre? I've got no contact info for Lewis, so
-I doubt you'll see an ack from him...
+Hi,
 
-> CC: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: Daire McNamara <daire.mcnamara@microchip.com>
-> CC: linux-rtc@vger.kernel.org
-> CC: devicetree@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/rtc/microchip,mpfs-rtc.yaml | 1 -
->  1 file changed, 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/rtc/microchip,mpfs-rtc.yam=
-l b/Documentation/devicetree/bindings/rtc/microchip,mpfs-rtc.yaml
-> index 7742465b93839..59919a3e1c46c 100644
-> --- a/Documentation/devicetree/bindings/rtc/microchip,mpfs-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/microchip,mpfs-rtc.yaml
-> @@ -12,7 +12,6 @@ allOf:
-> =20
->  maintainers:
->    - Daire McNamara <daire.mcnamara@microchip.com>
-> -  - Lewis Hanly <lewis.hanly@microchip.com>
-> =20
->  properties:
->    compatible:
-> --=20
-> 2.43.2
->=20
+> diff --git a/drivers/spi/spi-apple.c b/drivers/spi/spi-apple.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..1a3f61501db56d0d7689cc3d6f987bf636130cdb
+> --- /dev/null
+> +++ b/drivers/spi/spi-apple.c
+> @@ -0,0 +1,531 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +//
+> +// Apple SoC SPI device driver
+> +//
+> +// Copyright The Asahi Linux Contributors
+> +//
+> +// Based on spi-sifive.c, Copyright 2018 SiFive, Inc.
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/module.h>
 
---e/KpZXvkrNTSFxzZ
-Content-Type: application/pgp-signature; name="signature.asc"
+Move a few lines below to keep alphabetical order?
 
------BEGIN PGP SIGNATURE-----
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/spi/spi.h>
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZykbIAAKCRB4tDGHoIJi
-0gQEAP9cbgDskQtU7bxwDBs12edEA33t0ckQLMPgWrOIJTXflwD/QJ8mrvzGxFkN
-lBJWxJdHecJtGwvyj4JVcbSb1ZVFKgs=
-=QbOs
------END PGP SIGNATURE-----
+...
 
---e/KpZXvkrNTSFxzZ--
+> +static int apple_spi_probe(struct platform_device *pdev)
+> +{
+> +	struct apple_spi *spi;
+> +	int ret, irq;
+> +	struct spi_controller *ctlr;
+> +
+> +	ctlr = devm_spi_alloc_master(&pdev->dev, sizeof(struct apple_spi));
+> +	if (!ctlr)
+> +		return -ENOMEM;
+> +
+> +	spi = spi_controller_get_devdata(ctlr);
+> +	init_completion(&spi->done);
+> +	platform_set_drvdata(pdev, ctlr);
+
+Is it needed?
+There is no platform_get_drvdata()
+
+> +
+> +	spi->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(spi->regs))
+> +		return PTR_ERR(spi->regs);
+> +
+> +	spi->clk = devm_clk_get_enabled(&pdev->dev, NULL);
+> +	if (IS_ERR(spi->clk))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(spi->clk),
+> +				     "Unable to find or enable bus clock\n");
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	ret = devm_request_irq(&pdev->dev, irq, apple_spi_irq, 0,
+> +			       dev_name(&pdev->dev), spi);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "Unable to bind to interrupt\n");
+> +
+> +	ctlr->dev.of_node = pdev->dev.of_node;
+> +	ctlr->bus_num = pdev->id;
+> +	ctlr->num_chipselect = 1;
+> +	ctlr->mode_bits = SPI_CPHA | SPI_CPOL | SPI_LSB_FIRST;
+> +	ctlr->bits_per_word_mask = SPI_BPW_RANGE_MASK(1, 32);
+> +	ctlr->prepare_message = apple_spi_prepare_message;
+> +	ctlr->set_cs = apple_spi_set_cs;
+> +	ctlr->transfer_one = apple_spi_transfer_one;
+> +	ctlr->auto_runtime_pm = true;
+> +
+> +	pm_runtime_set_active(&pdev->dev);
+> +	ret = devm_pm_runtime_enable(&pdev->dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	apple_spi_init(spi);
+> +
+> +	ret = devm_spi_register_controller(&pdev->dev, ctlr);
+> +	if (ret < 0)
+> +		return dev_err_probe(&pdev->dev, ret, "devm_spi_register_controller failed\n");
+> +
+> +	return 0;
+> +}
+
+...
+
+CJ
 
