@@ -1,184 +1,353 @@
-Return-Path: <devicetree+bounces-118708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9E7E9BB50B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:49:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E40049BB522
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:54:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7962F280DBD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:49:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A37DF28168F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:54:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 466731B21B0;
-	Mon,  4 Nov 2024 12:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE2571B6D03;
+	Mon,  4 Nov 2024 12:53:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jdpG2xNi"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="Gyq7+p9O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA4A618BC0E
-	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 12:49:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28444188700;
+	Mon,  4 Nov 2024 12:53:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730724578; cv=none; b=CJlI0VficE0ixIc7TrG/voDSgpavh8KhCBpJLn2aJCJA5T+wAhVMZ3vS14Wf2opV/z4nxT1XIfU6jibblV641QtRf5HcsKKWTUIQKHKN5mQg1jE2C1chQ4x0q2KodhDgYez9sjyG+2LuRZcDBdkJ13X2eKWIlq43ElE6xOL7iLE=
+	t=1730724838; cv=none; b=qRkopaEyVBMFFz4ZspqYrV+z2iwGAWb4iiMOrxIcg4Ah8ZFSUNnnqzHEVFDYVXy87EaGJkiT630pZf8wvZFSD9m+hJ3W75TgqZChEE5FOrxUf3/ip8Gu5QtVThLAfxU4GoOItMt81hG4fEs5u/Z+OxIPBPLh8B/Bq4VD3rblEws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730724578; c=relaxed/simple;
-	bh=XW7hs8G36CNAEwjYMdInvWPMG8A66qheBKqJ1JBE+gQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lYFSg1GuZdoPm19AiAl5do/aANwZHnTctX9otWSnE4NauaVjbM2IK8e90GeLkHYJYywj12S1ZRFBT63oMrkeMzb5oFIWeaso4VXWuKVkmKpblRbYjlI9ZVVNFfX2r/SCfd/gM7BwfC+MlBt1fVkXlyZANy6N7/TXxQ3GrcD//ts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jdpG2xNi; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-37d4d1b48f3so2456794f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 04:49:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730724573; x=1731329373; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=O+8ar25+zkPQftQoW0zSux+U6wynSTjWRmQVVLNYVMU=;
-        b=jdpG2xNiyCJ1ErLBP8vWoygbwWBzaQrGJRSUt4QXWuqjtM945UF6qPaoAiEvH/VjuE
-         AnHmMaLZ7GJD75gk2+Qozal0Qw5huo847vYlEtKqEw0oQRt9V2oEmiTBy+0rMS+sHqDH
-         b4ewDf8S36hdCJZ8MtvckIsiP+XhAt9BU9yzqA3qVvvsTBn4isIdTp78J/CJcTnueAOs
-         x57XstmqUrawt60Uj50dDDpMXoKYILDfZLoex1EO1pKhiIlMlkyIepFclpQPkyQL/OS+
-         floUPRJAK6uVXFqrZAnxliRHCmO0K4Ht/tZaoxfbXhQA2r7AFVXJfyaba3sTfqwM9Pl2
-         sIHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730724573; x=1731329373;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O+8ar25+zkPQftQoW0zSux+U6wynSTjWRmQVVLNYVMU=;
-        b=oaumYMIszv6KRioJz6/Od4V4zlwRh+IZPH+1EzAwlok9egOumMQL39P8JmGOq9Zncc
-         sXvHML1kB06dRg92u8H462j24IJ1zjAMpC1oUqWyHE+F7TkupX7D3nfgzQxzfV5U9d9Z
-         DIwXYmK36U+5lST0vQawS2xXQeH6qHbrK1z1l0YzELEU3Nc1v/rNIqqNk2jIx/Xxg7Yd
-         kogIVUiL0+6JyqRB4ax003yHgUegseLe79t94Sm7phkl120k66zz40Cz4njICHcsxCl5
-         YXwx9SHgbvNHtCIP1Lt+DuH8ZSDIjX4LARNQ+Hcy53q4142ZCqXRVUwiE1SU8H9NwSxW
-         FqrA==
-X-Forwarded-Encrypted: i=1; AJvYcCXVUcj1xjrof8ji4VVkPQt6xotlYze+jSpqRMVb8sLN+8Yx8v7Ot/iUJQWo+6MI1BUi9zCriJCGOVvQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyg3kbAfXHJqWQgNnVzGESEb8OODQr8W5Kb+laPVc8jSXVf/Mn4
-	fHTq+AtzYRDM4isThssqxXfSq7ejs51vMW3SNVThwgVyDS6QDybwnPTR3LKmbtg=
-X-Google-Smtp-Source: AGHT+IElm1HbGEaP5DlS+q1JvYrUwqy8DDZ7yjKcYxuoKpT+ohFbYVJ6uOgTgXWdNzisAUhMCIAYvA==
-X-Received: by 2002:a05:6000:ac1:b0:37d:3280:203a with SMTP id ffacd0b85a97d-381b7057644mr14063522f8f.10.1730724572692;
-        Mon, 04 Nov 2024 04:49:32 -0800 (PST)
-Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c116b181sm13046590f8f.107.2024.11.04.04.49.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Nov 2024 04:49:32 -0800 (PST)
-Date: Mon, 4 Nov 2024 13:49:30 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Dumitru Ceclan <dumitru.ceclan@analog.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-iio@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>, 
-	Russell King <linux@armlinux.org.uk>
-Subject: Re: [PATCH v2 3/4] iio: adc: ad_sigma_delta: Add support for reading
- irq status using a GPIO
-Message-ID: <xka5svqs3jbjiqcz6bacih7hjqzjbrugutjii6qusdbqoxfrp5@5hcv3htsjtlp>
-References: <20241028160748.489596-6-u.kleine-koenig@baylibre.com>
- <20241028160748.489596-9-u.kleine-koenig@baylibre.com>
- <a575430a74a7825a2df9fad1a8e073ad0507b0e7.camel@gmail.com>
- <20241030204429.70cdcf35@jic23-huawei>
- <y3amm7yj37lravbk6fcwze3jlllp4extmffqtx4jaoeqjt6uyl@nsdrcy2dk5kr>
- <1de551c284aaa9f4e91f91fa0c4ac570c8b7f2c9.camel@gmail.com>
+	s=arc-20240116; t=1730724838; c=relaxed/simple;
+	bh=QsB96WLlxyBkpPCDkrGTOdZUuEGM40LRH8fdJ8ClFp4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UD7DitAwOWjJXbj7o17lG2Hk5aPJwPZQ0b2+zXogPemfUKrMVu0FxX+k6SAE4Y5u6iE8HBTCL4oxO0ntfqrN6MY1Jdf7tN24wHQ9MV/WTFzEtARGNwzcuS/t+cI7snDB8GRh90czmZEM32YvUjgaRCdE3J7MaKrc9yGMFDJ1EFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=Gyq7+p9O; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=MmlxgEqKziTj1q+YPuL8kTTJi9CETcM/dQgzPCIXOxw=; b=Gyq7+p9OGNS0B9EWxJwutI9NrA
+	QynE3nAus4PUmrU6t1pvIpEsXRKk+6GmCprvpmeswKfcQnq8xpujZ0cmt6O9DRhcjCUw46YTCl0Yt
+	MgwzRvsp80qNYOOfMgKkFg/AMybIMykfav3rWzWoxzX0D+cbwIpWbcCe/mfCWPW1kmPPvzCJ9Vd9S
+	nfPWFpFjEGpDnJvaQGlgrlqu9/Ue9lJY62MoHNe4lrwcgWT2qvHR0/KVb+eGjogMGlaaY9Lq/8SDF
+	qmz9XyZ6AONlGAvnrOFDKuN/ysBXN7g9z5FvtPmHESLruZdux2h0HxP0RBWXVL8gNEMZukb8Mrr0b
+	psVpp58g==;
+Received: from sslproxy01.your-server.de ([78.46.139.224])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sean@geanix.com>)
+	id 1t7wad-000P8L-Mo; Mon, 04 Nov 2024 13:53:51 +0100
+Received: from [185.17.218.86] (helo=zen..)
+	by sslproxy01.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sean@geanix.com>)
+	id 1t7wac-000OtJ-33;
+	Mon, 04 Nov 2024 13:53:50 +0100
+From: Sean Nyekjaer <sean@geanix.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Sean Nyekjaer <sean@geanix.com>,
+	linux-can@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: can: convert tcan4x5x.txt to DT schema
+Date: Mon,  4 Nov 2024 13:53:40 +0100
+Message-ID: <20241104125342.1691516-1-sean@geanix.com>
+X-Mailer: git-send-email 2.46.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wdbnsv6t56wxh6yu"
-Content-Disposition: inline
-In-Reply-To: <1de551c284aaa9f4e91f91fa0c4ac570c8b7f2c9.camel@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Sender: sean@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27448/Mon Nov  4 10:33:38 2024)
 
+Convert binding doc tcan4x5x.txt to yaml.
 
---wdbnsv6t56wxh6yu
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 3/4] iio: adc: ad_sigma_delta: Add support for reading
- irq status using a GPIO
-MIME-Version: 1.0
+Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+---
+Changes since rfc:
+  - Tried to re-add ti,tcan4x5x wildcard
+  - Removed xceiver and vdd supplies (copy paste error)
+  - Corrected max SPI frequency
+  - Copy pasted bosch,mram-cfg from bosch,m_can.yaml
+  - device-state-gpios and device-wake-gpios only available for tcan4x5x
 
-Hello,
+ .../devicetree/bindings/net/can/tcan4x5x.txt  |  48 -----
+ .../bindings/net/can/ti,tcan4x5x.yaml         | 189 ++++++++++++++++++
+ 2 files changed, 189 insertions(+), 48 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+ create mode 100644 Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
 
-[adding rmk to Cc as the docs state that he invented lazy disabling]
+diff --git a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+deleted file mode 100644
+index 20c0572c9853..000000000000
+--- a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
++++ /dev/null
+@@ -1,48 +0,0 @@
+-Texas Instruments TCAN4x5x CAN Controller
+-================================================
+-
+-This file provides device node information for the TCAN4x5x interface contains.
+-
+-Required properties:
+-	- compatible:
+-		"ti,tcan4552", "ti,tcan4x5x"
+-		"ti,tcan4553", "ti,tcan4x5x" or
+-		"ti,tcan4x5x"
+-	- reg: 0
+-	- #address-cells: 1
+-	- #size-cells: 0
+-	- spi-max-frequency: Maximum frequency of the SPI bus the chip can
+-			     operate at should be less than or equal to 18 MHz.
+-	- interrupt-parent: the phandle to the interrupt controller which provides
+-                    the interrupt.
+-	- interrupts: interrupt specification for data-ready.
+-
+-See Documentation/devicetree/bindings/net/can/bosch,m_can.yaml for additional
+-required property details.
+-
+-Optional properties:
+-	- reset-gpios: Hardwired output GPIO. If not defined then software
+-		       reset.
+-	- device-state-gpios: Input GPIO that indicates if the device is in
+-			      a sleep state or if the device is active. Not
+-			      available with tcan4552/4553.
+-	- device-wake-gpios: Wake up GPIO to wake up the TCAN device. Not
+-			     available with tcan4552/4553.
+-	- wakeup-source: Leave the chip running when suspended, and configure
+-			 the RX interrupt to wake up the device.
+-
+-Example:
+-tcan4x5x: tcan4x5x@0 {
+-		compatible = "ti,tcan4x5x";
+-		reg = <0>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		spi-max-frequency = <10000000>;
+-		bosch,mram-cfg = <0x0 0 0 16 0 0 1 1>;
+-		interrupt-parent = <&gpio1>;
+-		interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
+-		device-state-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
+-		device-wake-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
+-		reset-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
+-		wakeup-source;
+-};
+diff --git a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
+new file mode 100644
+index 000000000000..0351e5c04230
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
+@@ -0,0 +1,189 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/can/ti,tcan4x5x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments TCAN4x5x CAN Controller
++
++maintainers:
++  - Marc Kleine-Budde <mkl@pengutronix.de>
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - ti,tcan4552
++          - const: ti,tcan4x5x
++      - items:
++          - enum:
++              - ti,tcan4553
++          - const: ti,tcan4x5x
++      - items:
++          - enum:
++              - ti,tcan4x5x
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description: The GPIO parent interrupt.
++
++  clocks:
++    maxItems: 1
++
++  reset-gpios:
++    description: Hardwired output GPIO. If not defined then software reset.
++    maxItems: 1
++
++  device-state-gpios:
++    description: |
++      Input GPIO that indicates if the device is in a sleep state or if the
++      device is active. Not available with tcan4552/4553.
++    maxItems: 1
++
++  device-wake-gpios:
++    description: |
++      Wake up GPIO to wake up the TCAN device.
++      Not available with tcan4552/4553.
++    maxItems: 1
++
++  bosch,mram-cfg:
++    description: |
++      Message RAM configuration data.
++      Multiple M_CAN instances can share the same Message RAM
++      and each element(e.g Rx FIFO or Tx Buffer and etc) number
++      in Message RAM is also configurable, so this property is
++      telling driver how the shared or private Message RAM are
++      used by this M_CAN controller.
++
++      The format should be as follows:
++      <offset sidf_elems xidf_elems rxf0_elems rxf1_elems rxb_elems txe_elems txb_elems>
++      The 'offset' is an address offset of the Message RAM where
++      the following elements start from. This is usually set to
++      0x0 if you're using a private Message RAM. The remain cells
++      are used to specify how many elements are used for each FIFO/Buffer.
++
++      M_CAN includes the following elements according to user manual:
++      11-bit Filter	0-128 elements / 0-128 words
++      29-bit Filter	0-64 elements / 0-128 words
++      Rx FIFO 0		0-64 elements / 0-1152 words
++      Rx FIFO 1		0-64 elements / 0-1152 words
++      Rx Buffers	0-64 elements / 0-1152 words
++      Tx Event FIFO	0-32 elements / 0-64 words
++      Tx Buffers	0-32 elements / 0-576 words
++
++      Please refer to 2.4.1 Message RAM Configuration in Bosch
++      M_CAN user manual for details.
++    $ref: /schemas/types.yaml#/definitions/int32-array
++    items:
++      - description: The 'offset' is an address offset of the Message RAM where
++          the following elements start from. This is usually set to 0x0 if
++          you're using a private Message RAM.
++        default: 0
++      - description: 11-bit Filter 0-128 elements / 0-128 words
++        minimum: 0
++        maximum: 128
++      - description: 29-bit Filter 0-64 elements / 0-128 words
++        minimum: 0
++        maximum: 64
++      - description: Rx FIFO 0 0-64 elements / 0-1152 words
++        minimum: 0
++        maximum: 64
++      - description: Rx FIFO 1 0-64 elements / 0-1152 words
++        minimum: 0
++        maximum: 64
++      - description: Rx Buffers 0-64 elements / 0-1152 words
++        minimum: 0
++        maximum: 64
++      - description: Tx Event FIFO 0-32 elements / 0-64 words
++        minimum: 0
++        maximum: 32
++      - description: Tx Buffers 0-32 elements / 0-576 words
++        minimum: 0
++        maximum: 32
++    minItems: 1
++
++  spi-max-frequency:
++    description:
++      Must be half or less of "clocks" frequency.
++    maximum: 18000000
++
++  wakeup-source:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      Enable CAN remote wakeup.
++
++allOf:
++  - $ref: can-controller.yaml#
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - ti,tcan4552
++              - ti,tcan4553
++    then:
++      properties:
++        device-state-gpios: false
++        device-wake-gpios: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - bosch,mram-cfg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        can@0 {
++            compatible = "ti,tcan4x5x";
++            reg = <0>;
++            clocks = <&can0_osc>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&can0_pins>;
++            spi-max-frequency = <10000000>;
++            bosch,mram-cfg = <0x0 0 0 16 0 0 1 1>;
++            interrupt-parent = <&gpio1>;
++            interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
++            device-state-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
++            device-wake-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
++            reset-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
++            wakeup-source;
++        };
++    };
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        can@0 {
++            compatible = "ti,tcan4552","ti,tcan4x5x";
++            reg = <0>;
++            clocks = <&can0_osc>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&can0_pins>;
++            spi-max-frequency = <10000000>;
++            bosch,mram-cfg = <0x0 0 0 16 0 0 1 1>;
++            interrupt-parent = <&gpio1>;
++            interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
++            reset-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
++            wakeup-source;
++        };
++    };
+-- 
+2.46.2
 
-On Thu, Oct 31, 2024 at 01:05:21PM +0100, Nuno S=C3=A1 wrote:
-> On Thu, 2024-10-31 at 11:40 +0100, Uwe Kleine-K=C3=B6nig wrote:
-> > On Wed, Oct 30, 2024 at 08:44:29PM +0000, Jonathan Cameron wrote:
-> > > On Wed, 30 Oct 2024 14:04:58 +0100
-> > > Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
-> > > > Regarding this, I do share some of the concerns already raised by J=
-onathan. I fear
-> > > > that we're papering around an issue with the IRQ controller rather =
-than being an
-> > > > issue with the device. When I look at irq_disable() docs [1], it fe=
-els that we're
-> > > > already doing what we're supposed to do. IOW, we disable the lazy a=
-pproach so we
-> > > > *should* not get any pending IRQ.
-> >=20
-> > I think this is wrong and you always have to be prepared to see an irq
-> > triggering that became pending while masked.
-
-I did some research, here are my findings:
-
-https://www.kernel.org/doc/html/v6.12-rc6/core-api/genericirq.html#delayed-=
-interrupt-disable
-reads:
-
-	The interrupt is kept enabled and is masked in the flow handler
-	when an interrupt event happens. This prevents losing edge
-	interrupts on hardware which does not store an edge interrupt
-	event while the interrupt is disabled at the hardware level.
-
-This suggests that lazy disabling is needed for some controllers that
-stop their event detection when disabled. I read that as: *Normally* an
-irq event gets pending in hardware while the irq is disabled.
-
-The lazy disable approach is expected to work fine always, the reason to
-implement non-lazy disabling is "only" a performance optimisation. See
-commit e9849777d0e27cdd2902805be51da73e7c79578c.
-
-With the DOUT/=CC=85R=CC=85D=CC=85Y pin the ad7124 (and others) is in this =
-"Unfortunately
-there are devices which do not allow the interrupt to be disabled easily
-at the device level." class.
-
-However that makes me wonder what is the difference between the
-irq_mask() and irq_disable() callbacks defined in struct irq_chip.
-I don't know, but there is a difference for sure. So please forgive me
-for (probably) using the terms disable and mask wrongly.
-Also I wonder what happens if a device driver calls
-
-	irq_set_status_flags(myirq, IRQ_DISABLE_UNLAZY);
-
-when the respective irq controller is one of those that miss events
-while masked. Shouldn't that better be caught?
-
-Best regards
-Uwe
-
---wdbnsv6t56wxh6yu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcowtgACgkQj4D7WH0S
-/k5Qmgf/X+jaKnfDQ6JwsJEY35+UnbzimBPfwS8Uj8CBFwwUKg1bA1tmFyF4xmZJ
-sAjHWQtjR7bxtiVm7hDGzieLjWNTeP01xHM+jkXvLSXYcSeUW5A+A8mUy29N55DN
-PVWLkbG09V2AudOc7GvzPL+Y8dZ7H45XbtauKs3OiyfZdJLZUXhqzsKfsg3t5jDE
-chTVMQ9cM4tdMdBVm82XHrySR5bQWgyfINr5Ko9r3o1rH5aXxXNYTORlhBu8vqJt
-rj2KKnP73YS1lDKYJjgrga/8suMZft/bKKQnEXXwXCP7USm6PHDtJOmlwzurTgOV
-iyqD1dNq4nPhFC/ikU7CfcZCFVpygw==
-=dgpW
------END PGP SIGNATURE-----
-
---wdbnsv6t56wxh6yu--
 
