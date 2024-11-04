@@ -1,80 +1,92 @@
-Return-Path: <devicetree+bounces-118559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBDCD9BAC27
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 06:46:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D329BAC31
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 06:48:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F7481F22644
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 05:46:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CB151F235A7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 05:48:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 294A3187332;
-	Mon,  4 Nov 2024 05:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C61F11885A0;
+	Mon,  4 Nov 2024 05:48:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="N80uiclq"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="RR4Qk1YP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7E3B800;
-	Mon,  4 Nov 2024 05:46:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 941FD14E2FD;
+	Mon,  4 Nov 2024 05:48:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730699200; cv=none; b=oqvJDumDd1dmfjH8r/W6Ols7MgS9d3CqrOcT0FFay5c2jp47mIYhb8z/vdWgI1NEnRdhWV7BVrK0kqNDy6UMKWoO96b5aUxRgvJF4l7t8bgG2b3bSpyn7ynJfWcR6jn1MxgJPQ/Kvn2uScD1lpbymPnWHFFe5FikBadmZu3XuTw=
+	t=1730699297; cv=none; b=NKd9/81FgnRlyvL8QHie+wSZXofdZORY4AVg6iWZMSJARsRi2ZIAop9TUm7c1vr1p37cwVLTaT6wHtQQybdtks4FuIxuU88k6JklECdx+6BoucEs/XFLdk32IxN+xiGxNnjmTYwgolZrInX/GIGqZeZdoas/VOodoAZynTn1dqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730699200; c=relaxed/simple;
-	bh=VsaZ4KjQRsbAjLC6vSYbUfp8wn3g20hzPrGdvQVvyJ8=;
+	s=arc-20240116; t=1730699297; c=relaxed/simple;
+	bh=edvxFmTBjxvI4nBUqoMSl9EeUROQLK62qEI3WJuFB7c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dv6kZ5itA3fLVp61/HDZmXdFOm7FQoFEORSgbWIzvDIpfKXD8zQCtEzJlT9nPL98Jz3bcuypb000DTfoLynW+f8Op6v30p26H66KZDqh0el1FL7Iir3FbtkOTFW0B2c8xitRuyvQETfULWVGLps2dpuLuHH+g/5yz6xVQRpLQzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=N80uiclq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 414DEC4CECE;
-	Mon,  4 Nov 2024 05:46:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ittbHbyDfdu7IQqq0TP02rlq0g9L2sqStyghvIi4l8/52Vnw2V4bM1C5ev3cQ80tdT3Q7vcs7loPOB6doQ1wysyI6pgrwIaJJ7tYfU3lVDhZN+4bVDha1ctgiYNQjWZ6JSBqVVLS4znttYhfOQuGg903gnp2oHt9yWFTn3oDcno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=RR4Qk1YP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD88BC4CECE;
+	Mon,  4 Nov 2024 05:48:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1730699199;
-	bh=VsaZ4KjQRsbAjLC6vSYbUfp8wn3g20hzPrGdvQVvyJ8=;
+	s=korg; t=1730699297;
+	bh=edvxFmTBjxvI4nBUqoMSl9EeUROQLK62qEI3WJuFB7c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N80uiclqr9jZgv7xNsJL3qQCXO+zMytUriGgBQ9Kxvv7Zsir7uaFBvWe0czAu7xsv
-	 PTVxzyG+7Gf6nlLaxJNFMbmWSot9tSUa5Mk27ZFAuceWqtuZTQYWsYBZzYuslEgQmi
-	 JgCw/PTlUgxKR/a/rTaRCGo9i9AWQ0+08jWRl5lk=
-Date: Mon, 4 Nov 2024 00:08:12 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: qcom,dwc3: Add SAR2130P compatible
-Message-ID: <2024110458-seclusion-impatient-a4ee@gregkh>
-References: <20241017-sar2130p-usb-v1-1-21e01264b70e@linaro.org>
- <gohuncowxxud4rilmr23q3zc6rnkoqpbkl6v4puiexegvzr3fm@2zt4olzo64bu>
+	b=RR4Qk1YP7HOhaPMLrbFubaN0eN/0WTF9lNfya6BDCca24j5pjeFVwLAlPN4/q73Oq
+	 X6p84GqYT0i0wOzO2Hj355bNf4VLemJPT4+lakeHAOvoLqlexULxPa2O3ibKdPYPJu
+	 rOiE46mkXmX7AVdsqbqCOLtO21tNVq6CCorvZHYg=
+Date: Mon, 4 Nov 2024 01:15:59 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Alice Ryhl <aliceryhl@google.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, ojeda@kernel.org, rafael@kernel.org,
+	bhelgaas@google.com, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com,
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	Wedson Almeida Filho <walmeida@microsoft.com>
+Subject: Re: [PATCH v3 02/16] rust: introduce `InPlaceModule`
+Message-ID: <2024110425-overfill-follicle-c963@gregkh>
+References: <20241022213221.2383-1-dakr@kernel.org>
+ <20241022213221.2383-3-dakr@kernel.org>
+ <CAH5fLghQ3Rdgk+xzz9RzNzTs4vYLMO0q-SkDOrnb1u4TkPQVUA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <gohuncowxxud4rilmr23q3zc6rnkoqpbkl6v4puiexegvzr3fm@2zt4olzo64bu>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAH5fLghQ3Rdgk+xzz9RzNzTs4vYLMO0q-SkDOrnb1u4TkPQVUA@mail.gmail.com>
 
-On Thu, Oct 31, 2024 at 07:37:43PM +0200, Dmitry Baryshkov wrote:
-> On Thu, Oct 17, 2024 at 09:16:38PM +0300, Dmitry Baryshkov wrote:
-> > Document compatible for the Synopsys DWC3 USB Controller on SAR2130P
-> > platform.
-> > 
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
+On Tue, Oct 29, 2024 at 01:45:36PM +0100, Alice Ryhl wrote:
+> On Tue, Oct 22, 2024 at 11:32 PM Danilo Krummrich <dakr@kernel.org> wrote:
+> >
+> > From: Wedson Almeida Filho <walmeida@microsoft.com>
+> >
+> > This allows modules to be initialised in-place in pinned memory, which
+> > enables the usage of pinned types (e.g., mutexes, spinlocks, driver
+> > registrations, etc.) in modules without any extra allocations.
+> >
+> > Signed-off-by: Wedson Almeida Filho <walmeida@microsoft.com>
+> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 > 
-> Gracious ping, the patch has been acked by DT maintainers, but is still
-> not present in linux-next and got no other reviews.
+> Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+> 
+> Miguel: I think this patch would be good to land in 6.13. I'd like to
+> submit a miscdevice sample once 6.14 comes around, and having this
+> already in will make the miscdevice sample nicer.
 
-I don't see the ack here, where am I missing it?
+If no one objects, I'll just add this to the char/misc tree that already
+has the other misc device rust code in it.
 
 thanks,
 
