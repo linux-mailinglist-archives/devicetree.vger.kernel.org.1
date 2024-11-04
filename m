@@ -1,192 +1,342 @@
-Return-Path: <devicetree+bounces-118656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D659BB2B2
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:15:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B679BB2BD
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:16:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99343B27DA5
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:14:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C19FD1F21EF3
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:16:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025581B85D2;
-	Mon,  4 Nov 2024 10:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1980E1B3928;
+	Mon,  4 Nov 2024 11:02:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hznSesPa"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NBEs9DsX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EB981B85CC
-	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 10:58:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20DAF1AF0B3;
+	Mon,  4 Nov 2024 11:02:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730717916; cv=none; b=dRrwzcdlQMGRmPaX4axdDfY+XZW9bJqfkg/ARQ6RCnwx0zXcri6JUHicMp8O+z3/Jd/vwHWBWDTb6igvUZMzEX75vLUpf7VFHCtqCGDRTy7qn3u68gvqsU1Zod/mcQhH6GccHwWmLmxr12cdUwqEnOxpHu4ctNmOOdMCzZvcwkc=
+	t=1730718126; cv=none; b=YoYXAJ7XxrS4rjPuPU1gxs7x+2wc/Bt43iN676bh3JA0+mrHNG1MdS2t5ebF9LPu8CYoe1WrKB4eGnXLGfiVRKxkYBnNR1jZANfLbeboFOPN5k+c4ZzRtoNbtxqsS0AcSZxR3AfkIBAtJ/yqhSEQwrIqz5xgFJooxJ217JnxbRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730717916; c=relaxed/simple;
-	bh=HXRqLnDDtJW6cTQrcmKnH1WqFgEaTawJdcXZ4z9WS+0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=m5FAGF21pJsiu8Y2Aq/B7GkmVp2/2blbgcbF6yZnC7ZkyMVoFfFXzZHV9zepVWeEnjAmnXORx4apsMsMjJQpLRxYSnOAfCDzM6u+80xioOHCKuWKYHgCBwCtKSYiKgQx3cq/aojYe4dBx3Y5iUdEUhqjJb8kVAw5+Un59OyM5mQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hznSesPa; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6e9ba45d67fso36863457b3.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 02:58:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730717914; x=1731322714; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=A8OEwwbndwQP7wHdh9ISRQA4yW5gd+UJ76JpEPhxfag=;
-        b=hznSesPaYJXF1pGvJjwrrVmxvphKVCUfNmrKb2iCfbiWWY5k3gS+xlD1zTSNmQZhj5
-         Pk9PA7sDOG/UE1Ou9ycYFMNrlsyfTz5oznWIQ3QspNTsKVf41Wn2ItSpo2Om9gaGAn0X
-         lgZWP3f/5M7FJs8hD2yo/MGEYG4HaPwOmmXe+2+R+uD1eg3a4ePmmPeV7f1DjrnylHyR
-         B/Spg3PXyEf5Ra53MRAPH/98LDyUQLEIUTkJXkCPrXVdRL6rTvFDsNDipxvHCVm87d5w
-         hvWnp7zqa0A5lyEfGjZrRTDc2dghK6Ef6s1Oj0dRDJskCmlW8+7QHk8MNZ1D+Iy1ZgT3
-         OYtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730717914; x=1731322714;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=A8OEwwbndwQP7wHdh9ISRQA4yW5gd+UJ76JpEPhxfag=;
-        b=Hab//d+/Cw0TcGL/FlaKbPlyw5dBMvwZMHRy57ieq0WyP1OEkUolYOVSd2EAPzo76Z
-         43HtpQNSbh6Op9G7X2w0zCO6K+YIQd6IZm8/4kIfzXhRHtSL7GjUrK1LEtJniD9XgGuK
-         I03doAUZr/h3mTihFW2iFiig9e+1VFe7MURPbMsGcvoCbdSOUMjaalSMc6QmhWB3d/hJ
-         N1JOVa0lg+vIydrjRcZ9WGIaUJ5lYDxSAUcjKdRRTMZRON0hVmzLG+DMvP5VXYJo1+xq
-         Un6rpXvhvH90SpK7Y0FnCB+trZTK2EQs2YTXTzZtLYlnqata2EOwtr+eUEIxeYIxXEbv
-         eYhw==
-X-Forwarded-Encrypted: i=1; AJvYcCXw5NHm1iKJoYoKjIOAXF3y1vj9S/U3zwGYuVr+2TgUK31TC8Npi2Bzxog7xim6h+QJo5JLO4ObhgQp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yziqc1gBQZGZCtawU9/aJhHElrp++ziWPnbyJ5BF+4mp9OnUDk9
-	ZZH+V92coQWCdLfXNNTOjMz0qxmLI30gB3dU0y9vunVu6NFSU1NXNYMQnXdlD6GLBPnS4hM1iY6
-	tuD1Rrllln4fyTAs8ZCzFNd1dTbd9kFqtyLh3oQ==
-X-Google-Smtp-Source: AGHT+IHi7UAsQfjAiAGv3Fbp4VDCnNLJgrXpVXyVg0zWty3KS6vdc/17EwBBZWalLVopb7bNmLcxY/IvP/w/XllPp6g=
-X-Received: by 2002:a05:690c:3005:b0:6e7:e92d:6c0c with SMTP id
- 00721157ae682-6ea3b8954cdmr141759517b3.10.1730717914161; Mon, 04 Nov 2024
- 02:58:34 -0800 (PST)
+	s=arc-20240116; t=1730718126; c=relaxed/simple;
+	bh=Hjqtp28MkwTHLGdVMYwCjGKjVh3uTl747qkb8HHPzwA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=NHwm3hplqZ2WAspO4CM0nshFj6riyv+sVHFdyAJzcf7cBRjEKgWv/cVZFD5QW2YxZuogu2tvlUgBpxh+OfTxto9vOOquRcHAnrhdLx55GhdDjQdpltXON8dS7bL65EdeGIdQNIjahIFAJOp9wOa4Z+qGQcyqYNaM/wa8FIQpyN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NBEs9DsX; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A3NebjK003006;
+	Mon, 4 Nov 2024 11:01:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	QpTybn7wg9kA7W0U5vP4m/bFmDWBpTZhuuFBeCI4ZZU=; b=NBEs9DsXOBTFOjDd
+	lPxAwZZbCXkWSe9Av2icziyH6ej643Wok0ScjcqJjlaQGpluucLRb79R6uBN0E3X
+	ADzln0lrIvcThnDG9hfUV5JiqW3Qtr1MG8EDSx06+gLn9SJcLb3KP5kRDdXScRJH
+	RByCpc9Lh8sTGmevw36scWqVA5UgiEEvD7Nxcjtj757Cm8ggozuhDBQd9GPRhmU4
+	xX8Fcr0mLYUAD8+TAsb/Wtn8FgrDDqqFhSKLv1e74TaxaHXpjp7YHQPtP3xBxRlm
+	RdxVn97QFa2RM1PdsgXO3kIYxp9j3XJO0G3k+leyDfm+qxRvzu09YzM9w/jvMrRf
+	SuPtaw==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd4ukx7r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 04 Nov 2024 11:01:47 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A4B1koT012239
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 4 Nov 2024 11:01:46 GMT
+Received: from [10.253.14.204] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 4 Nov 2024
+ 03:01:41 -0800
+Message-ID: <4c849bc5-979f-4f78-bb46-50b93f087d9f@quicinc.com>
+Date: Mon, 4 Nov 2024 19:01:30 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1730705521-23081-1-git-send-email-shawn.lin@rock-chips.com> <1730705521-23081-8-git-send-email-shawn.lin@rock-chips.com>
-In-Reply-To: <1730705521-23081-8-git-send-email-shawn.lin@rock-chips.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 4 Nov 2024 11:57:58 +0100
-Message-ID: <CAPDyKFrig236e5xTSeOHfNR5Z3840o6u_h7LnoAG2P8Ck348WQ@mail.gmail.com>
-Subject: Re: [PATCH v4 7/7] scsi: ufs: rockchip: initial support for UFS
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>, 
-	"Martin K . Petersen" <martin.petersen@oracle.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
-	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 1/5] dt-bindings: net: pcs: Add Ethernet PCS for
+ Qualcomm IPQ9574 SoC
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Andrew Lunn
+	<andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King
+	<linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
+        <quic_pavir@quicinc.com>, <quic_linchen@quicinc.com>,
+        <quic_luoj@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <bartosz.golaszewski@linaro.org>, <vsmuthu@qti.qualcomm.com>,
+        <john@phrozen.org>
+References: <20241101-ipq_pcs_rc1-v1-0-fdef575620cf@quicinc.com>
+ <20241101-ipq_pcs_rc1-v1-1-fdef575620cf@quicinc.com>
+ <c3kdfqqcgczy3k2odbxnemmjvuaoqmli67zisyrrrdfxd5hu4v@thxnvpv5gzap>
+Content-Language: en-US
+From: Lei Wei <quic_leiwei@quicinc.com>
+In-Reply-To: <c3kdfqqcgczy3k2odbxnemmjvuaoqmli67zisyrrrdfxd5hu4v@thxnvpv5gzap>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: m-iU_Uh5vpMRv6Ib9agqRvNmNXsXPNSH
+X-Proofpoint-ORIG-GUID: m-iU_Uh5vpMRv6Ib9agqRvNmNXsXPNSH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 malwarescore=0
+ lowpriorityscore=0 bulkscore=0 phishscore=0 priorityscore=1501
+ mlxlogscore=999 impostorscore=0 suspectscore=0 spamscore=0 mlxscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411040097
 
-On Mon, 4 Nov 2024 at 08:34, Shawn Lin <shawn.lin@rock-chips.com> wrote:
->
-> RK3576 SoC contains a UFS controller, add initial support for it.
-> The features are:
-> (1) support UFS 2.0 features
-> (2) High speed up to HS-G3
-> (3) 2RX-2TX lanes
-> (4) auto H8 entry and exit
->
-> Software limitation:
-> (1) HCE procedure: enable controller->enable intr->dme_reset->dme_enable
-> (2) disable unipro timeout values before power mode change
->
-> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
-> ---
->
-> Changes in v4:
-> - deal with power domain of rpm and spm suggested by Ulf
-> - Fix typo and disable clks in ufs_rockchip_remove
-> - remove clk_disable_unprepare(host->ref_out_clk) from
->   ufs_rockchip_remove
->
 
-[...]
 
-> +#ifdef CONFIG_PM
-> +static int ufs_rockchip_runtime_suspend(struct device *dev)
-> +{
-> +       struct ufs_hba *hba = dev_get_drvdata(dev);
-> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
-> +
-> +       clk_disable_unprepare(host->ref_out_clk);
-> +
-> +       /* Shouldn't power down if rpm_lvl is less than level 5. */
-> +       dev_pm_genpd_rpm_always_on(dev, hba->rpm_lvl < UFS_PM_LVL_5 ? true : false);
-> +
-> +       return ufshcd_runtime_suspend(dev);
-> +}
-> +
-> +static int ufs_rockchip_runtime_resume(struct device *dev)
-> +{
-> +       struct ufs_hba *hba = dev_get_drvdata(dev);
-> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
-> +       int err;
-> +
-> +       err = clk_prepare_enable(host->ref_out_clk);
-> +       if (err) {
-> +               dev_err(hba->dev, "failed to enable ref out clock %d\n", err);
-> +               return err;
-> +       }
-> +
-> +       reset_control_assert(host->rst);
-> +       usleep_range(1, 2);
-> +       reset_control_deassert(host->rst);
-> +
-> +       return ufshcd_runtime_resume(dev);
-> +}
-> +#endif
-> +
-> +#ifdef CONFIG_PM_SLEEP
-> +static int ufs_rockchip_system_suspend(struct device *dev)
-> +{
-> +       struct ufs_hba *hba = dev_get_drvdata(dev);
-> +
-> +       if (hba->spm_lvl < 5)
-> +               device_set_wakeup_path(dev);
+On 11/2/2024 9:34 PM, Krzysztof Kozlowski wrote:
+> On Fri, Nov 01, 2024 at 06:32:49PM +0800, Lei Wei wrote:
+>> The 'UNIPHY' PCS block in the IPQ9574 SoC includes PCS and SerDes
+>> functions. It supports different interface modes to enable Ethernet
+>> MAC connections to different types of external PHYs/switch. It includes
+>> PCS functions for 1Gbps and 2.5Gbps interface modes and XPCS functions
+>> for 10Gbps interface modes. There are three UNIPHY (PCS) instances
+>> in IPQ9574 SoC which provide PCS/XPCS functions to the six Ethernet
+>> ports.
+>>
+>> Signed-off-by: Lei Wei <quic_leiwei@quicinc.com>
+>> ---
+>>   .../bindings/net/pcs/qcom,ipq9574-pcs.yaml         | 230 +++++++++++++++++++++
+>>   include/dt-bindings/net/pcs-qcom-ipq.h             |  15 ++
+>>   2 files changed, 245 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/pcs/qcom,ipq9574-pcs.yaml b/Documentation/devicetree/bindings/net/pcs/qcom,ipq9574-pcs.yaml
+>> new file mode 100644
+>> index 000000000000..a33873c7ad73
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/pcs/qcom,ipq9574-pcs.yaml
+>> @@ -0,0 +1,230 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/pcs/qcom,ipq9574-pcs.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Ethernet PCS for Qualcomm IPQ SoC
+> 
+> s/IPQ/IPQ9574/
+> 
 
-Please use device_set_awake_path() instead.
+OK, will update.
 
-Ideally all users of device_set_wakeup_path() should convert into
-device_set_awake_path(), it's just that we haven't been able to
-complete the conversion yet.
+>> +
+>> +maintainers:
+>> +  - Lei Wei <quic_leiwei@quicinc.com>
+> 
+> ...
+> 
+>> +    const: 0
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: system clock
+>> +      - description: AHB clock needed for register interface access
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: sys
+>> +      - const: ahb
+>> +
+>> +  '#clock-cells':
+> 
+> Use consistent quotes, either ' or "
+> 
 
-> +       else
-> +               device_clr_wakeup_path(dev);
+OK, will use single quotes ' everywhere.
 
-This isn't needed. The flag is getting cleared in device_prepare().
+>> +    const: 1
+>> +    description: See include/dt-bindings/net/pcs-qcom-ipq.h for constants
+>> +
+>> +patternProperties:
+>> +  "^pcs-mii@[0-4]$":
+>> +    type: object
+>> +    description: PCS MII interface.
+>> +
+>> +    properties:
+>> +      reg:
+>> +        minimum: 0
+>> +        maximum: 4
+>> +        description: MII index
+>> +
+>> +      clocks:
+>> +        items:
+>> +          - description: PCS MII RX clock
+>> +          - description: PCS MII TX clock
+>> +
+>> +      clock-names:
+>> +        items:
+>> +          - const: mii_rx
+> 
+> rx
+> 
 
-> +
-> +       return ufshcd_system_suspend(dev);
+OK.
 
-Don't you want to disable the clock during system suspend too? If the
-device is runtime resumed at this point, the clock will be left
-enabled, no?
+>> +          - const: mii_tx
+> 
+> tx
 
-> +}
-> +#endif
-> +
-> +static const struct dev_pm_ops ufs_rockchip_pm_ops = {
-> +       SET_SYSTEM_SLEEP_PM_OPS(ufs_rockchip_system_suspend, ufshcd_system_resume)
-> +       SET_RUNTIME_PM_OPS(ufs_rockchip_runtime_suspend, ufs_rockchip_runtime_resume, NULL)
-> +       .prepare         = ufshcd_suspend_prepare,
-> +       .complete        = ufshcd_resume_complete,
-> +};
-> +
+OK.
 
-[...]
+> 
+>> +
+>> +    required:
+>> +      - reg
+>> +      - clocks
+>> +      - clock-names
+>> +
+>> +    additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - '#address-cells'
+>> +  - '#size-cells'
+>> +  - clocks
+>> +  - clock-names
+>> +  - '#clock-cells'
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
+>> +
+>> +    pcs0: ethernet-pcs@7a00000 {
+> 
+> Drop unused labels here and further.
+> 
 
-Kind regards
-Uffe
+OK, will drop the unused labels "pcs0" and "pcs0_miiX".
+
+>> +        compatible = "qcom,ipq9574-pcs";
+>> +        reg = <0x7a00000 0x10000>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +        clocks = <&gcc GCC_UNIPHY0_SYS_CLK>,
+>> +                 <&gcc GCC_UNIPHY0_AHB_CLK>;
+>> +        clock-names = "sys",
+>> +                      "ahb";
+>> +        #clock-cells = <1>;
+>> +
+>> +        pcs0_mii0: pcs-mii@0 {
+>> +            reg = <0>;
+>> +            clocks = <&nsscc 116>,
+>> +                     <&nsscc 117>;
+>> +            clock-names = "mii_rx",
+>> +                          "mii_tx";
+>> +        };
+>> +
+>> +        pcs0_mii1: pcs-mii@1 {
+>> +            reg = <1>;
+>> +            clocks = <&nsscc 118>,
+>> +                     <&nsscc 119>;
+>> +            clock-names = "mii_rx",
+>> +                          "mii_tx";
+>> +        };
+>> +
+>> +        pcs0_mii2: pcs-mii@2 {
+>> +            reg = <2>;
+>> +            clocks = <&nsscc 120>,
+>> +                     <&nsscc 121>;
+>> +            clock-names = "mii_rx",
+>> +                          "mii_tx";
+>> +        };
+>> +
+>> +        pcs0_mii3: pcs-mii@3 {
+>> +            reg = <3>;
+>> +            clocks = <&nsscc 122>,
+>> +                     <&nsscc 123>;
+>> +            clock-names = "mii_rx",
+>> +                          "mii_tx";
+>> +        };
+>> +    };
+>> +
+>> +    pcs1: ethernet-pcs@7a10000 {
+> 
+> One example is enough, drop the rest.
+> 
+
+OK.
+
+>> +        compatible = "qcom,ipq9574-pcs";
+>> +        reg = <0x7a10000 0x10000>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +        clocks = <&gcc GCC_UNIPHY1_SYS_CLK>,
+>> +                 <&gcc GCC_UNIPHY1_AHB_CLK>;
+>> +        clock-names = "sys",
+>> +                      "ahb";
+>> +        #clock-cells = <1>;
+>> +
+>> +        pcs1_mii0: pcs-mii@0 {
+>> +            reg = <0>;
+>> +            clocks = <&nsscc 124>,
+>> +                     <&nsscc 125>;
+>> +            clock-names = "mii_rx",
+>> +                          "mii_tx";
+>> +        };
+>> +    };
+>> +
+>> +    pcs2: ethernet-pcs@7a20000 {
+>> +        compatible = "qcom,ipq9574-pcs";
+>> +        reg = <0x7a20000 0x10000>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +        clocks = <&gcc GCC_UNIPHY2_SYS_CLK>,
+>> +                 <&gcc GCC_UNIPHY2_AHB_CLK>;
+>> +        clock-names = "sys",
+>> +                      "ahb";
+>> +        #clock-cells = <1>;
+>> +
+>> +        pcs2_mii0: pcs-mii@0 {
+>> +            reg = <0>;
+>> +            clocks = <&nsscc 126>,
+>> +                     <&nsscc 127>;
+>> +            clock-names = "mii_rx",
+>> +                          "mii_tx";
+>> +        };
+>> +    };
+>> diff --git a/include/dt-bindings/net/pcs-qcom-ipq.h b/include/dt-bindings/net/pcs-qcom-ipq.h
+>> new file mode 100644
+>> index 000000000000..8d9124ffd75d
+>> --- /dev/null
+>> +++ b/include/dt-bindings/net/pcs-qcom-ipq.h
+> 
+> Filename matching exactly binding filename.
+> 
+
+OK.
+
+> Best regards,
+> Krzysztof
+> 
+
 
