@@ -1,90 +1,120 @@
-Return-Path: <devicetree+bounces-118812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43AB19BB998
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:58:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A88E89BB9BD
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:02:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E445B1F22C65
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 15:58:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2FB39B2134B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:02:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 323A81C07E5;
-	Mon,  4 Nov 2024 15:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E141C07E7;
+	Mon,  4 Nov 2024 16:02:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WhkgX+5D"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="V7BFKuQF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F21391BF804;
-	Mon,  4 Nov 2024 15:57:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC79208A7;
+	Mon,  4 Nov 2024 16:02:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730735840; cv=none; b=EmR9DSsedWgf0FJm3DyFrQR/xzQIxxuUUt3ErDh1jDJeCsrw0f2sMDoPqOSDr3pb8TEhWDy5S3lUFm+GY5lqPisYYmGY0Rr8OKMrpmxJCkjOr+Nnv4dUDwY7OY37Thlgyx0RM0SE8oyQesEt8ogj6xzNqmlfn6uN9sejHpoGJgU=
+	t=1730736169; cv=none; b=fpQmW89uHRCsp5WkNim0Fi59xGwVX36g9fC5Z9F90GgX2xkqAYv2VtpdL+/YFwmNya8RgBcsM1N4XqdViCbNqmMUsGM/9atN6ou3TYHxyBfABjeXaYwt2lwjmXE36tO1aab8Bj+Oh7341Zuk4ExZbfWxQPca0ytuko1do3KDfhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730735840; c=relaxed/simple;
-	bh=du3D9Ti6JlIpp3Bx+I1pxH4VeSvLJQ6Ys6/W+ho9O+k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TAvTcX/dqcIVtnHY1xsWWwobKEjXECVxnPRuKXi6ieszFlb9sG5lbrFAQxNAdbTlvWLs+1zppp71djb4In2RtZ48IwiQJi3m/SqipElemU0JtcPGqH3Aa+F/WLozLv9sUH0a754cTBK2S8LttJrxpOXBrCc6H0JTUqKEO+Tcp14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WhkgX+5D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9567FC4CECE;
-	Mon,  4 Nov 2024 15:57:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730735838;
-	bh=du3D9Ti6JlIpp3Bx+I1pxH4VeSvLJQ6Ys6/W+ho9O+k=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=WhkgX+5Dt2lESakf8onXXzW7cZ5C/VqXTnynUXelk6LMEmiXhiiS5uKvIiglYRRQd
-	 r9RgkSZwoBub61J/vu+uTCqUEU5Ysp0D09w42GTSBZWCxX1EfAehu9alRA25tch2LA
-	 f0lxhUclCAfrEgeCiP7XMk73AL1jAXLjj481hlXxCSN67ZjIMUU0zsbjfEbevIoMJ/
-	 5WrBNrm/zPmv3jByyuHyNh2s3y8gktj41YrXr6X8tTIgUsbLAz6duPWeSGogxZ43h5
-	 iX9Q6SKBCIk9tK5vr7TMzpOKsV2UaAlMIR8AmfYR6NIq/rmyqePpo/iA+7ZCt7RwqH
-	 axASATQSWEtlQ==
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e28fe07e97dso4350588276.3;
-        Mon, 04 Nov 2024 07:57:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU+ajockVYa4qSm+DAZ3DMOHSyKKIchZzwafAKVJBKdZ+d8Tb/GIhiXazyIsnXtS7oYqkpZ+rS/QkM+@vger.kernel.org, AJvYcCWBYEyUPPlUVQjRL+F6XxtiwyzU//nfg+lZxIHevxI3gHujcmZzJ6DrtkeYjJW7ObPJMaGBjdQTt3X4299F@vger.kernel.org, AJvYcCWG5fZkjSNfwgtq2jMeIhuR8zmlmW+si2gErxRA0/UIkRffkD8soBRGwHRUAOIzeU6bZDxYsIdb2rFcD2g=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrLbTX72UxhtMSv1sUjIpU/70lyRo7DfMEjcDdNzbS8Gf5MN1F
-	4DaZbnku/yh9nCI9m+fpmfjl7PzurQGwMqNuf+oTrclOCIT4uuW8q1mrLvrkiS+0Q4W6cM3NjBL
-	xKAlTYFPrBiLr3o0htcObQtvRZA==
-X-Google-Smtp-Source: AGHT+IFJthhkSzkBdnbiB5dDIi1s/eaCvQbG6JsPmn7TbVCmrz/zQ6MVdpFKk0iB6A/Zy7+RL9YE/wF2HoO/7hQxgz4=
-X-Received: by 2002:a05:6902:3188:b0:e33:25e2:4af6 with SMTP id
- 3f1490d57ef6-e3325e24e4amr5209097276.6.1730735837784; Mon, 04 Nov 2024
- 07:57:17 -0800 (PST)
+	s=arc-20240116; t=1730736169; c=relaxed/simple;
+	bh=IMPSXRSZHiSKChDLZSD/EL+GNcEzzjv6djemSat7PcQ=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ff7Hs5jWnGAWTheIjLbRiUqq+S4Ny9aaxkphobfxksGdaGmrtGrw9ujTSvYgA+B2GsMExbmhx1RpDpgWjHAbeYnArBJY2a/EiBCKgRXvtsWO8LWap3SBf5AEMFIONFJa5WoM9/DQEjMg7oSfa84pvGTofUtE8ojAJsluZ+vc58s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=V7BFKuQF; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5A61B1BF212;
+	Mon,  4 Nov 2024 16:02:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1730736165;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hVW8Eovr8XM+Wk5SgrmMG++7+hvu3mp1NJ851HHAgbQ=;
+	b=V7BFKuQFb19JUly9CiSwu5oht+6XImDThA72JhlABUx3krc0uXVJxEb2TOwzR6GCPLzJT8
+	0kf1fHR24ed1AhbpdyDhYhxVsPX5M6NDxqSKHgoqkUx5AnKbrcbWz8U4zcdmqZMhOeS/sY
+	NWX0RpKkkxQO3oU4hGuWFeKFT4QvARW9oXmCBExe0eADehf2mqWiW5UbGCOXXJJq3M2teu
+	PfWQCpS3CfHi/JsYe1abKbJMtghDsGoPCmwtmBI5l7j3PmeDaotqC+fx160Z9PsrcnDUvv
+	pdSn1GPBPIYG25qk4IQrfGuZywH4sn+L8QIhbyBvcfszlDSTMyRz4TsLD3grXw==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>, Lee Jones
+ <lee@kernel.org>
+Cc: Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, Arnd Bergmann
+ <arnd@arndb.de>, soc@kernel.org, arm@kernel.org, Andy Shevchenko
+ <andy@kernel.org>, Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?Q?J?=
+ =?utf-8?Q?=C3=A4rvinen?=
+ <ilpo.jarvinen@linux.intel.com>, Andrew Lunn <andrew@lunn.ch>, Sebastian
+ Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, Marek
+ =?utf-8?Q?Beh=C3=BAn?=
+ <kabel@kernel.org>
+Subject: Re: [PATCH leds v5 12/12] ARM: dts: turris-omnia: Add global LED
+ brightness change interrupt
+In-Reply-To: <20241104141924.18816-13-kabel@kernel.org>
+References: <20241104141924.18816-1-kabel@kernel.org>
+ <20241104141924.18816-13-kabel@kernel.org>
+Date: Mon, 04 Nov 2024 17:02:44 +0100
+Message-ID: <87bjyv9ecb.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241102125712.2647325-1-csokas.bence@prolan.hu> <20241102125712.2647325-3-csokas.bence@prolan.hu>
-In-Reply-To: <20241102125712.2647325-3-csokas.bence@prolan.hu>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 4 Nov 2024 09:57:06 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+BFBTUT_VrkmCTV-XBmNvscGF0Bzfj7LEeytRea55aBg@mail.gmail.com>
-Message-ID: <CAL_Jsq+BFBTUT_VrkmCTV-XBmNvscGF0Bzfj7LEeytRea55aBg@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] dt-bindings: sound: Add Allwinner suniv F1C100s
- Audio Codec
-To: =?UTF-8?B?Q3PDs2vDoXMsIEJlbmNl?= <csokas.bence@prolan.hu>
-Cc: Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: gregory.clement@bootlin.com
 
-On Sat, Nov 2, 2024 at 8:00=E2=80=AFAM Cs=C3=B3k=C3=A1s, Bence <csokas.benc=
-e@prolan.hu> wrote:
+Marek Beh=C3=BAn <kabel@kernel.org> writes:
+
+> When global LED brightness is changed by pressing the front button on
+> Turris Omnia, the MCU can produce an interrupt to the CPU. Add the
+> description of this interrupt to the LED controller node.
 >
-> Add compatible string for Allwinner suniv F1C100s audio codec.
->
-> [ csokas.bence: Reimplement Mesih Kilinc's binding in YAML ]
-> Signed-off-by: Cs=C3=B3k=C3=A1s, Bence <csokas.bence@prolan.hu>
+> Signed-off-by: Marek Beh=C3=BAn <kabel@kernel.org>
+
+As the binding had been acked, and this change won't produce any
+regression I can already get it.
+
+Applied on mvebu/dt
+
+Thanks,
+
+Gregory
+
 > ---
->  .../sound/allwinner,sun4i-a10-codec.yaml      | 31 +++++++++++++++++++
->  1 file changed, 31 insertions(+)
+>  arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts b/arch=
+/arm/boot/dts/marvell/armada-385-turris-omnia.dts
+> index 43202890c959..83fe00abd652 100644
+> --- a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
+> +++ b/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
+> @@ -251,6 +251,7 @@ mcu: system-controller@2a {
+>  			led-controller@2b {
+>  				compatible =3D "cznic,turris-omnia-leds";
+>  				reg =3D <0x2b>;
+> +				interrupts-extended =3D <&mcu 11 IRQ_TYPE_NONE>;
+>  				#address-cells =3D <1>;
+>  				#size-cells =3D <0>;
+>  				status =3D "okay";
+> --=20
+> 2.45.2
+>
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
