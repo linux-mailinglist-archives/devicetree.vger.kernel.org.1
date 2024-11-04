@@ -1,164 +1,156 @@
-Return-Path: <devicetree+bounces-118608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25C3A9BAF0F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:05:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96B419BB053
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:55:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D75F2282C2F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:05:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EAD51F2271B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:55:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4BF11AC42C;
-	Mon,  4 Nov 2024 09:05:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F13C1AF0AE;
+	Mon,  4 Nov 2024 09:55:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="S3SuE4ZA"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="fyTzUEGq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from mail-m25477.xmail.ntesmail.com (mail-m25477.xmail.ntesmail.com [103.129.254.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA6B1AB507;
-	Mon,  4 Nov 2024 09:05:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C5851ABEDC;
+	Mon,  4 Nov 2024 09:55:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.129.254.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730711107; cv=none; b=ZHRPTudCBTXWt3Ysj7hVBCNyOIgX4BUn+/AIRWY3jh9byGdwm+B8+lk8HVlGcbzUzVKPzHieyW7WPtbCcxfvgWewS6gmRkc2MpEdE3ypA5qbkqqnI2+ncXABQj6W3x1LbDudkKEous4oF+goHqjvSIPyyRfrswnp1xzvKEOD1FA=
+	t=1730714114; cv=none; b=AYSqSBS+tmZZTunhzwkOtGhEwsCYcW6MPMuznMzJG8aVQITCc6yizC0RTtxob8CNLgHVjFz94R4ARzuJ/eWSZcLs/9kNO/E0+sVVLPQTL8fMRUtWsrMFFeFTCQLnKY0HiXnIpkb3DVIkpklkecJZyqd92WBu62CDTMwJuEo3/UI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730711107; c=relaxed/simple;
-	bh=YxpTatOZCyamBYTrl1KGmff6TcW5/0IaMURbSuA1bRs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lvi96Wr/FicYIymljc+fUft5OD67Ka+ghQZ7ig2sBloNhSHqL/fioEWlT3QP+P12HKt0CgD4a2Axz3V08mdspiXDSkIqIKZyMZGdUWZcJokASl2F5/lrR/p8Zj9+u4Dht3ZosiK+nKL79kudQOMY88LjOx8G0NwC0vK87vHkAeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=S3SuE4ZA; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730711106; x=1762247106;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YxpTatOZCyamBYTrl1KGmff6TcW5/0IaMURbSuA1bRs=;
-  b=S3SuE4ZAXJ2qiNvAKhcaPzduGajS3Lt+dw4ZMM5IAdM5HYy1ZuquAVjy
-   +qkVHSafTPshB3RCO1Q69OTVohAlVfVD49C2aJozQgA4sLkxHSYXJy+94
-   4snZqsvida4/vLe0q+1qphgih+bUwVS3szjSiKSm2XfDJsmyx37yxZ+FH
-   1rB2o+5SlSCxoJJ65bqzXmWeSkwBbKi8/vTkwGPTPC0sKYVZT9V55fn3W
-   /iZMMRctP2Zj0RMizyfgjKNyito2xfz4RT61cIzE7CfRFvAn0ifn/QzyT
-   czwNwD1oiPC7AlDaTtqFMZhmEBnw27mIMtVu3y2fat3J7bC3SEcZjlrny
-   g==;
-X-CSE-ConnectionGUID: TAswzz1BTWWghYgfiIYBig==
-X-CSE-MsgGUID: MKgr6ToTT5uIF5dLUrrqPA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11245"; a="55797122"
-X-IronPort-AV: E=Sophos;i="6.11,256,1725346800"; 
-   d="scan'208";a="55797122"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2024 01:05:05 -0800
-X-CSE-ConnectionGUID: ebv1R6qRT+2i4k8PHCqdPw==
-X-CSE-MsgGUID: Mf8Ep902TI2Ai7UY3aK1gQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,256,1725346800"; 
-   d="scan'208";a="83523755"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 04 Nov 2024 01:04:58 -0800
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t7t16-000kfn-0q;
-	Mon, 04 Nov 2024 09:04:56 +0000
-Date: Mon, 4 Nov 2024 17:04:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alexandre Ghiti <alexghiti@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Andrea Parri <parri.andrea@gmail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Arnd Bergmann <arnd@arndb.de>, Leonardo Bras <leobras@redhat.com>,
-	Guo Ren <guoren@kernel.org>, linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-arch@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Alexandre Ghiti <alexghiti@rivosinc.com>
-Subject: Re: [PATCH v6 13/13] riscv: Add qspinlock support
-Message-ID: <202411041609.gxjI2dsw-lkp@intel.com>
-References: <20241103145153.105097-14-alexghiti@rivosinc.com>
+	s=arc-20240116; t=1730714114; c=relaxed/simple;
+	bh=RHWO6iEQTDETJffGVpmIWYwT1WtB/IvuIvBOxzo+Osc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=MCTGpf2/7e/vlgICiJnHdk1D63wSjvyUnp35taWyvA3wTcwHTuMQdvJBzSg26tTbwcLop1AzEt07c/d1/P88kkd84Fghh6pOY23L6rccSJ8Z6uhNFYpfOADnoSdeBPo1hOh3DiOMSmy19QPZuLQPxCcQCba8YY/3KgL+6GQ/uYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=fyTzUEGq; arc=none smtp.client-ip=103.129.254.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1b5d898f;
+	Mon, 4 Nov 2024 15:32:37 +0800 (GMT+08:00)
+From: Shawn Lin <shawn.lin@rock-chips.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	YiFeng Zhao <zyf@rock-chips.com>,
+	Liang Chen <cl@rock-chips.com>,
+	linux-scsi@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH v4 1/7] scsi: ufs: core: Add UFSHCI_QUIRK_DME_RESET_ENABLE_AFTER_HCE
+Date: Mon,  4 Nov 2024 15:31:55 +0800
+Message-Id: <1730705521-23081-2-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1730705521-23081-1-git-send-email-shawn.lin@rock-chips.com>
+References: <1730705521-23081-1-git-send-email-shawn.lin@rock-chips.com>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQh9MTFZIS0xPHR0fTBpDTUpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a92f617072f09cckunm1b5d898f
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Myo6EBw*ITIaLDoKQys0CE0V
+	EQgwFA1VSlVKTEhLTEtOTk5DQktCVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUlKTU03Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=fyTzUEGqpD7cOV/gtR7q6BW8ZrIP2F7Il0l0fRmIWbpntGqeRNaY0xD3go56SRvQDKFp6+9Vn8/QTcR8aBbVlulPDUK1DAXd+5Dc9IpmHP4w03liGg+JBkB6ZXLYqRd1As27+Q5dHci7nSbjEv4mCiQfdHPoDhHPShTxzJaej+w=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=H80kBB4v9HnGpTZXw3/vIrv2TnnmcgYDzbgw9IhYzgg=;
+	h=date:mime-version:subject:message-id:from;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241103145153.105097-14-alexghiti@rivosinc.com>
 
-Hi Alexandre,
+HCE on Rockchip SoC is different from both of ufshcd_hba_execute_hce()
+and UFSHCI_QUIRK_BROKEN_HCE case. It need to do dme_reset and dme_enable
+after enabling HCE. So in order not to abuse UFSHCI_QUIRK_BROKEN_HCE, add
+a new quirk UFSHCI_QUIRK_DME_RESET_ENABLE_AFTER_HCE, to deal with that
+limitation.
 
-kernel test robot noticed the following build warnings:
+Suggested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+---
 
-[auto build test WARNING on arnd-asm-generic/master]
-[also build test WARNING on robh/for-next tip/locking/core linus/master v6.12-rc6]
-[cannot apply to next-20241101]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Changes in v4:
+- fix typo
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Alexandre-Ghiti/riscv-Move-cpufeature-h-macros-into-their-own-header/20241103-230614
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/arnd/asm-generic.git master
-patch link:    https://lore.kernel.org/r/20241103145153.105097-14-alexghiti%40rivosinc.com
-patch subject: [PATCH v6 13/13] riscv: Add qspinlock support
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+Changes in v3: None
+Changes in v2: None
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411041609.gxjI2dsw-lkp@intel.com/
+ drivers/ufs/core/ufshcd.c | 17 +++++++++++++++++
+ include/ufs/ufshcd.h      |  6 ++++++
+ 2 files changed, 23 insertions(+)
 
-includecheck warnings: (new ones prefixed by >>)
->> arch/riscv/include/asm/spinlock.h: asm/ticket_spinlock.h is included more than once.
->> arch/riscv/include/asm/spinlock.h: asm/qspinlock.h is included more than once.
-
-vim +10 arch/riscv/include/asm/spinlock.h
-
-     8	
-     9	#define __no_arch_spinlock_redefine
-  > 10	#include <asm/ticket_spinlock.h>
-    11	#include <asm/qspinlock.h>
-    12	#include <asm/jump_label.h>
-    13	
-    14	/*
-    15	 * TODO: Use an alternative instead of a static key when we are able to parse
-    16	 * the extensions string earlier in the boot process.
-    17	 */
-    18	DECLARE_STATIC_KEY_TRUE(qspinlock_key);
-    19	
-    20	#define SPINLOCK_BASE_DECLARE(op, type, type_lock)			\
-    21	static __always_inline type arch_spin_##op(type_lock lock)		\
-    22	{									\
-    23		if (static_branch_unlikely(&qspinlock_key))			\
-    24			return queued_spin_##op(lock);				\
-    25		return ticket_spin_##op(lock);					\
-    26	}
-    27	
-    28	SPINLOCK_BASE_DECLARE(lock, void, arch_spinlock_t *)
-    29	SPINLOCK_BASE_DECLARE(unlock, void, arch_spinlock_t *)
-    30	SPINLOCK_BASE_DECLARE(is_locked, int, arch_spinlock_t *)
-    31	SPINLOCK_BASE_DECLARE(is_contended, int, arch_spinlock_t *)
-    32	SPINLOCK_BASE_DECLARE(trylock, bool, arch_spinlock_t *)
-    33	SPINLOCK_BASE_DECLARE(value_unlocked, int, arch_spinlock_t)
-    34	
-    35	#elif defined(CONFIG_RISCV_QUEUED_SPINLOCKS)
-    36	
-    37	#include <asm/qspinlock.h>
-    38	
-    39	#else
-    40	
-  > 41	#include <asm/ticket_spinlock.h>
-    42	
-
+diff --git a/drivers/ufs/core/ufshcd.c b/drivers/ufs/core/ufshcd.c
+index 7cab1031..4084bf9 100644
+--- a/drivers/ufs/core/ufshcd.c
++++ b/drivers/ufs/core/ufshcd.c
+@@ -4819,6 +4819,7 @@ static int ufshcd_hba_execute_hce(struct ufs_hba *hba)
+ {
+ 	int retry_outer = 3;
+ 	int retry_inner;
++	int ret;
+ 
+ start:
+ 	if (ufshcd_is_hba_active(hba))
+@@ -4865,6 +4866,22 @@ static int ufshcd_hba_execute_hce(struct ufs_hba *hba)
+ 	/* enable UIC related interrupts */
+ 	ufshcd_enable_intr(hba, UFSHCD_UIC_MASK);
+ 
++	/*
++	 * Do dme_reset and dme_enable if a UFS host controller needs
++	 * this procedure to actually finish HCE.
++	 */
++	if (hba->quirks & UFSHCI_QUIRK_DME_RESET_ENABLE_AFTER_HCE) {
++		ret = ufshcd_dme_reset(hba);
++		if (!ret) {
++			ret = ufshcd_dme_enable(hba);
++			if (ret)
++				dev_err(hba->dev,
++					"Failed to do dme_enable after HCE.\n");
++		} else {
++			dev_err(hba->dev, "Failed to do dme_reset after HCE.\n");
++		}
++	}
++
+ 	ufshcd_vops_hce_enable_notify(hba, POST_CHANGE);
+ 
+ 	return 0;
+diff --git a/include/ufs/ufshcd.h b/include/ufs/ufshcd.h
+index a95282b..e939af8 100644
+--- a/include/ufs/ufshcd.h
++++ b/include/ufs/ufshcd.h
+@@ -685,6 +685,12 @@ enum ufshcd_quirks {
+ 	 * single doorbell mode.
+ 	 */
+ 	UFSHCD_QUIRK_BROKEN_LSDBS_CAP			= 1 << 25,
++
++	/*
++	 * This quirk needs to be enabled if host controller need to
++	 * do dme_reset and dme_enable after hce.
++	 */
++	UFSHCI_QUIRK_DME_RESET_ENABLE_AFTER_HCE		= 1 << 26,
+ };
+ 
+ enum ufshcd_caps {
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.7.4
+
 
