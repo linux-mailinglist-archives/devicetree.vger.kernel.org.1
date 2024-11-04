@@ -1,172 +1,93 @@
-Return-Path: <devicetree+bounces-118635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 392AF9BB09C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:08:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A3C89BB0A6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:10:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C2861C217E1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:08:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29DD8B25470
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:10:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04BB1B0F38;
-	Mon,  4 Nov 2024 10:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304BD1AF0DD;
+	Mon,  4 Nov 2024 10:10:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="cKHu7gBu"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZS8rdhD5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C34641B0F0A
-	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 10:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 799D31ABEB1;
+	Mon,  4 Nov 2024 10:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730714891; cv=none; b=LDINeMlDqetltAn0o+SXO9Sa91feH1rZ8N2tcoikisu3CRxbd2qILDzEel0hurWHaPcdnS2hkukNwgfdUPUFmTr4jLmUTbdeJBTvuscQ8pdjp5unTl+mtIGKUgGjg2W5yZmkyYpSPS67KKrAQ+cjiIIKWDu6yJzfn8WE8+DlIlU=
+	t=1730715008; cv=none; b=H6KvfzQrdto08Xsj9yDppks9syu09qisRhvyyLgReu8jictrQ0jcQWsPJ6T4cgcsQQcXKwsUhNfS5LbDmZB9AHCWTk+Cr8GNCClskz4ASE9mhHF1gAQPSLjePYG1CmQiwI8o3JmyZGl+ZBqLvqneNLFPAlxk1uCM4clTkrie4gU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730714891; c=relaxed/simple;
-	bh=rFgxEKAY53F1vr1UjWz5Op/T157tTAWmRMUpgFYnWY0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=Lr7UP8sVB3+o3SaQ0RmwRBINyDVysjVAkC8yxi/tDQMvWwmWpKpsYw5Bg23Iie7gzhCGPMc02ropmFOSTIPumOcz34gmyXfXx/7BGiPVHHCWdEwAvKPZzBeMgj0bHCRGXl7tt58UzU/n4O4ldhgt8y150JOqngTvX8HGTFweukY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=cKHu7gBu; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20241104100802euoutp014baaeb6d58002e2a9ad43507a1655b2e~EvAQQn-nK2551025510euoutp01a
-	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 10:08:02 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20241104100802euoutp014baaeb6d58002e2a9ad43507a1655b2e~EvAQQn-nK2551025510euoutp01a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1730714882;
-	bh=vxNiS8XZmEMSZYQqnfyixq5+aqnBLp9jGcPWzOWdRC0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cKHu7gBuasc5eAfb7TwtV0Zl+MIpwGHveZ8zwqQkNxenzEcc1UO1TAQsrq6QIx68f
-	 YtTWO3WBI0sv6WMJ5K/N7RmAkkgshKdT4VhaJ/4+oeAw3JK3GupBNUgI2ed4I5OoOT
-	 4xkOpRnBcpejidyZmwotjHNB7LDkge5mNW0kGaJw=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20241104100802eucas1p1b33700ff4fdd391202998a0330c0d8cc~EvAP2EG1X0455904559eucas1p1I;
-	Mon,  4 Nov 2024 10:08:02 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id CD.DE.20397.10D98276; Mon,  4
-	Nov 2024 10:08:01 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20241104100801eucas1p27cd0d7b9b5b4500604470664884c42fb~EvAPT3Z4K2364623646eucas1p2V;
-	Mon,  4 Nov 2024 10:08:01 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20241104100801eusmtrp1757aa91b22956a42dc6fbe959ac26d29~EvAPS0WIq1011310113eusmtrp1a;
-	Mon,  4 Nov 2024 10:08:01 +0000 (GMT)
-X-AuditID: cbfec7f5-e59c770000004fad-56-67289d012784
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id 52.B7.19654.10D98276; Mon,  4
-	Nov 2024 10:08:01 +0000 (GMT)
-Received: from AMDC4942.home (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20241104100800eusmtip1e1410955ce324ec0762b7beedd809821~EvAOeo3AI2849928499eusmtip1S;
-	Mon,  4 Nov 2024 10:08:00 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-To: drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
-	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, m.szyprowski@samsung.com, samuel.holland@sifive.com,
-	emil.renner.berthing@canonical.com
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, christophe.jaillet@wanadoo.fr, Michal Wilczynski
-	<m.wilczynski@samsung.com>
-Subject: [PATCH v6 3/3] riscv: dts: thead: Add mailbox node
-Date: Mon,  4 Nov 2024 11:07:34 +0100
-Message-Id: <20241104100734.1276116-4-m.wilczynski@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241104100734.1276116-1-m.wilczynski@samsung.com>
+	s=arc-20240116; t=1730715008; c=relaxed/simple;
+	bh=lLbyBoAV8LAAMdgY2WJPPlbx5TE3cUhhNB8Q1ZTzIcA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=JrCz86GTF0YoyuVc5hEuGuSZS5/sRdlq/5za7eMzc8F+/BGg5z+2WRagzke7JAGXzCUqqxCtiAlbn6h+Cil1O6CXP3rOz3ndFI8UZD0SkSBJM6n6MSeKm8vXQfCi7UgbPEtDcT+ei+nDIiHKjsWozzonMHsuWDOMbB1D2GbKNbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZS8rdhD5; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1730714998;
+	bh=lLbyBoAV8LAAMdgY2WJPPlbx5TE3cUhhNB8Q1ZTzIcA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=ZS8rdhD50IHxY+5Rbx8r7cZBPvPyB6xYWC2v/L0hAjlXLYIJaIQnpK/KX7TlVjHbz
+	 rHmHYWcyHxEAidWoqcfCp9gywzr/GbIR4VcnC7mr2ltpJ5s2zbtwWupskX1d5hEujo
+	 K9Fym5ilmXMygh31eFMLzJ3OCwI8JJj8aIlKX7Yfq/z22gyTWkJUX1Sll7LT4dukRI
+	 mTXSp0TUiBspnV5zj0kuQ44tOSav6QtX75717Ogobq1dcwpjcfL9DSlva3pEsy2UVN
+	 G/5sGyge0T6kjWHznZwdk1V2RkwSUH+vGWDq4zG68iPQ8VIRqX4FL7U35Eg9VtiE9v
+	 21dC8e2AFkipw==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1451B17E14EF;
+	Mon,  4 Nov 2024 11:09:58 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Matthias Brugger <matthias.bgg@gmail.com>, 
+ Chen-Yu Tsai <wenst@chromium.org>
+Cc: devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org
+In-Reply-To: <20241029100226.660263-1-wenst@chromium.org>
+References: <20241029100226.660263-1-wenst@chromium.org>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8186-corsola: Fix IT6505 reset
+ line polarity
+Message-Id: <173071499802.113773.6669341556020572344.b4-ty@collabora.com>
+Date: Mon, 04 Nov 2024 11:09:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrOKsWRmVeSWpSXmKPExsWy7djP87qMczXSDa7OtbDY+nsWu8XWg3NZ
-	LdbsPcdkMf/IOVaLe5e2MFlc6lzBaPFibyOLxbUVc9ktXs66x2ZxedccNottn1vYLNYeuctu
-	sf7rfCaLl5d7mC3aZvFb/N+zg91i9bkrLBYt+6ewOAh5zGroZfN48/Ili8fhji/sHjtn3WX3
-	2LSqk81j85J6j5a1x5g83u+7yubRt2UVo8el5uvsHp83yXl8vrueNYAnissmJTUnsyy1SN8u
-	gSvj5dcWtoIjXBUn75xlbGDcz9HFyMEhIWAiMeGYSRcjJ4eQwApGibX7dCDsL0D2heQuRi4g
-	+zOjxJz2DmaQBEj96i1PWSESyxklpm3oZoJw3jBKfDy0gQ2kik3ASOLB8vlgVSIC65kknu1e
-	xg6SYBZYxyjx6Yo9iC0sYC3x4e4TsLEsAqoSF6ZNZAWxeQXsJfqubmSCWCcvsf/gWbAaTgEH
-	iV+9X5ggagQlTs58wgIxU16ieetsZpBlEgK7OSWWvXrNBtHsIrH53nxWCFtY4tXxLewQtozE
-	6ck9LBB2vsSDrZ+gfquR2NlzHMq2lrhz7hcbKIyYBTQl1u/Shwg7Svz7eYMVEnR8EjfeCkKc
-	wCcxadt0Zogwr0RHmxBEtZrE1J5euKXnVmyD+spDYt2EI8wTGBVnIXlmFpJnZiHsXcDIvIpR
-	PLW0ODc9tdg4L7Vcrzgxt7g0L10vOT93EyMwLZ7+d/zrDsYVrz7qHWJk4mA8xCjBwawkwjsv
-	VT1diDclsbIqtSg/vqg0J7X4EKM0B4uSOK9qinyqkEB6YklqdmpqQWoRTJaJg1OqgWnKrxPM
-	7jq6OYfULrC+7FpfuXqis6K8+cygPLNPs7byn/5x+1ny+Zt6V8WvBPcvkxbO/VRjfmPPFrfI
-	N+/5OBJ/P7x4nK0keFcK3yv/h5zbfi3Z3uL1482etqeFX758Yf/6X6Rr/tELG7U6b75Vnrr3
-	8qzAzx0rGE/9W/JO+dLePlF7hiPvz289ck334C+Ri3eWXrio2JBSfemRlswupwJdb+vzbtUf
-	XzolR62eE7LrbECLpkC/lmTuTf7A43EGHRaOy2Pm8zQFdYuu4b736aMxa1HscoFv/6SKY2yi
-	Pk5wu7vg4Nt5P0PPHI67L2G3gNmaTV5hv/msfe1fp7sKrbijcu60+6UZ+xennRBzPy45Q4ml
-	OCPRUIu5qDgRABP2Lrj6AwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrOIsWRmVeSWpSXmKPExsVy+t/xu7qMczXSDWZMFrPY+nsWu8XWg3NZ
-	LdbsPcdkMf/IOVaLe5e2MFlc6lzBaPFibyOLxbUVc9ktXs66x2ZxedccNottn1vYLNYeuctu
-	sf7rfCaLl5d7mC3aZvFb/N+zg91i9bkrLBYt+6ewOAh5zGroZfN48/Ili8fhji/sHjtn3WX3
-	2LSqk81j85J6j5a1x5g83u+7yubRt2UVo8el5uvsHp83yXl8vrueNYAnSs+mKL+0JFUhI7+4
-	xFYp2tDCSM/Q0kLPyMRSz9DYPNbKyFRJ384mJTUnsyy1SN8uQS/j5dcWtoIjXBUn75xlbGDc
-	z9HFyMkhIWAisXrLU1YQW0hgKaPE2ydaEHEZiWvdL1kgbGGJP9e62CBqXjFKPDgTBmKzCRhJ
-	PFg+H6xXRGA/k8Trs0VdjFwczAKbGCUurexnB0kIC1hLfLj7hBnEZhFQlbgwbSJYA6+AvUTf
-	1Y1MEAvkJfYfPAtWwyngIPGr9wsTxDJ7iYMH9jBC1AtKnJz5BOwgZqD65q2zmScwCsxCkpqF
-	JLWAkWkVo0hqaXFuem6xkV5xYm5xaV66XnJ+7iZGYAxvO/Zzyw7Gla8+6h1iZOJgPMQowcGs
-	JMI7L1U9XYg3JbGyKrUoP76oNCe1+BCjKdDdE5mlRJPzgUkkryTe0MzA1NDEzNLA1NLMWEmc
-	l+3K+TQhgfTEktTs1NSC1CKYPiYOTqkGpkKDcxJNLBO5f86LFAg/dTEs+cCkqHefnK//YVKf
-	NGu96NQZOsv/TF9nV3743rxPS+YrtbiX/kyzOB14eUXvw0T1Xz8T3xRHcagarZY4FVakJ21m
-	+M94zeEbHpUbTWc2BB2s/vRKjqlrxiXtvCWh5w9OzQviEsrbetEpvydc8bjC9bU8S74LXTXN
-	ulqQtr0jeP7BE+LFERP/3ftwMDWlOdz/0Pm/yTwJe96EvP7ObPq0Yd/U8NcP+57cuVT5/rbv
-	hJm3HzQobvpSIzrp7eLsNZ6RO668cdCL2egqtVd76kKN3ct4/diN2ZU29W4Xi7oup7U76SGT
-	UH7Q+T63n0vjMw/lrJMMmMp39nmVZ0vjhydKLMUZiYZazEXFiQCe0wTnagMAAA==
-X-CMS-MailID: 20241104100801eucas1p27cd0d7b9b5b4500604470664884c42fb
-X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20241104100801eucas1p27cd0d7b9b5b4500604470664884c42fb
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20241104100801eucas1p27cd0d7b9b5b4500604470664884c42fb
-References: <20241104100734.1276116-1-m.wilczynski@samsung.com>
-	<CGME20241104100801eucas1p27cd0d7b9b5b4500604470664884c42fb@eucas1p2.samsung.com>
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-Add mailbox device tree node. This work is based on the vendor kernel [1].
+On Tue, 29 Oct 2024 18:02:25 +0800, Chen-Yu Tsai wrote:
+> The reset line of the IT6505 bridge chip is active low, not active high.
+> It was incorrectly inverted in the device tree as the implementation at
+> the time incorrectly inverted the polarity in its driver, due to a prior
+> device having an inline inverting level shifter.
+> 
+> Fix the polarity now while the external display pipeline is incomplete,
+> thereby avoiding any impact to running systems.
+> 
+> [...]
 
-Link: https://github.com/revyos/thead-kernel.git [1]
+Applied to v6.12-next/dts64, thanks!
 
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- arch/riscv/boot/dts/thead/th1520.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+[1/1] arm64: dts: mediatek: mt8186-corsola: Fix IT6505 reset line polarity
+      commit: fbcc95fceb6d179dd150df2dc613dfd9b013052c
 
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index 6992060e6a54..89de5634d3d3 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -520,6 +520,22 @@ timer7: timer@ffffc3303c {
- 			status = "disabled";
- 		};
- 
-+		mbox_910t: mailbox@ffffc38000 {
-+			compatible = "thead,th1520-mbox";
-+			reg = <0xff 0xffc38000 0x0 0x6000>,
-+			      <0xff 0xffc40000 0x0 0x6000>,
-+			      <0xff 0xffc4c000 0x0 0x2000>,
-+			      <0xff 0xffc54000 0x0 0x2000>;
-+			reg-names = "local", "remote-icu0", "remote-icu1", "remote-icu2";
-+			clocks = <&clk CLK_MBOX0>, <&clk CLK_MBOX1>, <&clk CLK_MBOX2>,
-+				 <&clk CLK_MBOX3>;
-+			clock-names = "clk-local", "clk-remote-icu0", "clk-remote-icu1",
-+				      "clk-remote-icu2";
-+			interrupt-parent = <&plic>;
-+			interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
-+			#mbox-cells = <1>;
-+		};
-+
- 		ao_gpio0: gpio@fffff41000 {
- 			compatible = "snps,dw-apb-gpio";
- 			reg = <0xff 0xfff41000 0x0 0x1000>;
--- 
-2.34.1
+Cheers,
+Angelo
+
 
 
