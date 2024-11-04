@@ -1,70 +1,62 @@
-Return-Path: <devicetree+bounces-118813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A88E89BB9BD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:02:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF8EF9BB9CB
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:05:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2FB39B2134B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:02:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F5F5281B95
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:05:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E141C07E7;
-	Mon,  4 Nov 2024 16:02:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D09181C07DF;
+	Mon,  4 Nov 2024 16:05:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="V7BFKuQF"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="oWBrESDj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC79208A7;
-	Mon,  4 Nov 2024 16:02:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB2E6208A7;
+	Mon,  4 Nov 2024 16:05:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730736169; cv=none; b=fpQmW89uHRCsp5WkNim0Fi59xGwVX36g9fC5Z9F90GgX2xkqAYv2VtpdL+/YFwmNya8RgBcsM1N4XqdViCbNqmMUsGM/9atN6ou3TYHxyBfABjeXaYwt2lwjmXE36tO1aab8Bj+Oh7341Zuk4ExZbfWxQPca0ytuko1do3KDfhA=
+	t=1730736338; cv=none; b=eI4ma9n5LS8IGQG8h1Oaf1v6U+8W6RV7d8qX7d6FQc3aE+SfH6wzoaBpKcN62FWzeWzab7azN6FB0RVVlKjWjYrtOIpnsWeFfOsrUOsqenopWxqvHBuCWhDqmmLaidCnqoSQKnN3U6bmnlldN7Gp42iJb8gY007w6YffTJADfZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730736169; c=relaxed/simple;
-	bh=IMPSXRSZHiSKChDLZSD/EL+GNcEzzjv6djemSat7PcQ=;
+	s=arc-20240116; t=1730736338; c=relaxed/simple;
+	bh=OHtFV7tHDYv2kLL2ZzjwBTy+CA8ziyZqbKQx6QELXuo=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=ff7Hs5jWnGAWTheIjLbRiUqq+S4Ny9aaxkphobfxksGdaGmrtGrw9ujTSvYgA+B2GsMExbmhx1RpDpgWjHAbeYnArBJY2a/EiBCKgRXvtsWO8LWap3SBf5AEMFIONFJa5WoM9/DQEjMg7oSfa84pvGTofUtE8ojAJsluZ+vc58s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=V7BFKuQF; arc=none smtp.client-ip=217.70.183.201
+	 MIME-Version:Content-Type; b=j09IIxGQy4szQfZyZVvREntjLaPR6NIJSP8x3HD544f5eqFNwzlw+6odlj/5p1OZGXBHCYdZNNVuKP7Gu2tXG+k36SXaib3Ss8MsWFdalDLkbePcKXo98GE7aEKcZGs0dwqaDuKjMRm8/Ty0aBumMdoU7JkOYYpExQtf1+Y8xM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=oWBrESDj; arc=none smtp.client-ip=217.70.183.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5A61B1BF212;
-	Mon,  4 Nov 2024 16:02:44 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D6E2460006;
+	Mon,  4 Nov 2024 16:05:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1730736165;
+	t=1730736335;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=hVW8Eovr8XM+Wk5SgrmMG++7+hvu3mp1NJ851HHAgbQ=;
-	b=V7BFKuQFb19JUly9CiSwu5oht+6XImDThA72JhlABUx3krc0uXVJxEb2TOwzR6GCPLzJT8
-	0kf1fHR24ed1AhbpdyDhYhxVsPX5M6NDxqSKHgoqkUx5AnKbrcbWz8U4zcdmqZMhOeS/sY
-	NWX0RpKkkxQO3oU4hGuWFeKFT4QvARW9oXmCBExe0eADehf2mqWiW5UbGCOXXJJq3M2teu
-	PfWQCpS3CfHi/JsYe1abKbJMtghDsGoPCmwtmBI5l7j3PmeDaotqC+fx160Z9PsrcnDUvv
-	pdSn1GPBPIYG25qk4IQrfGuZywH4sn+L8QIhbyBvcfszlDSTMyRz4TsLD3grXw==
+	bh=bGXE4eDYjk2lR2ubbk00XXdKNVfRlNdbyZKN2+XEphI=;
+	b=oWBrESDjrkJ+vex81zeexplceHDPwXDVOl6tJO1sOBfkZdIDzT7P+MMRlsRP9DbqB1hrSg
+	Og3p5pVD7P1CtF7HDKs7Cf1Tey7iOj3vUaEr8cqMOXC4SkkKPp0Oeft+MWR+Ixmhs7BZv8
+	Y3WvpiXl9jyw7LnvZj80kF//6X6izUlkrewdxYzwnTGeEnfoNp/gKC6POszbZRLpOnzu6h
+	UvJYpqGa3LAlBke1UZic4dHZrV2joV6cRTjSBgKMTD80KAlurBItXgQ6nvYwuZYjfDurhJ
+	KbHc3ZLihnhXfUYtjU6DT9jf9M4cp1yz5WltPqtSZQpTyMWsGFLXH5oAnNrO6A==
 From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>, Lee Jones
- <lee@kernel.org>
-Cc: Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, Arnd Bergmann
- <arnd@arndb.de>, soc@kernel.org, arm@kernel.org, Andy Shevchenko
- <andy@kernel.org>, Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?Q?J?=
- =?utf-8?Q?=C3=A4rvinen?=
- <ilpo.jarvinen@linux.intel.com>, Andrew Lunn <andrew@lunn.ch>, Sebastian
- Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, Marek
- =?utf-8?Q?Beh=C3=BAn?=
- <kabel@kernel.org>
-Subject: Re: [PATCH leds v5 12/12] ARM: dts: turris-omnia: Add global LED
- brightness change interrupt
-In-Reply-To: <20241104141924.18816-13-kabel@kernel.org>
-References: <20241104141924.18816-1-kabel@kernel.org>
- <20241104141924.18816-13-kabel@kernel.org>
-Date: Mon, 04 Nov 2024 17:02:44 +0100
-Message-ID: <87bjyv9ecb.fsf@BLaptop.bootlin.com>
+To: Rob Herring <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>, Sebastian
+ Hesselbarth <sebastian.hesselbarth@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: marvell: kirkwood: Fix at24 EEPROM node name
+In-Reply-To: <CAL_JsqLLRSEaDv=Zm_LQH9cpgH2prh21+cmovgSR=pzQTuRtZQ@mail.gmail.com>
+References: <20240910215914.823546-1-robh@kernel.org>
+ <CAL_JsqLLRSEaDv=Zm_LQH9cpgH2prh21+cmovgSR=pzQTuRtZQ@mail.gmail.com>
+Date: Mon, 04 Nov 2024 17:05:34 +0100
+Message-ID: <878qtz9e7l.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,16 +67,24 @@ Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-GND-Sasl: gregory.clement@bootlin.com
 
-Marek Beh=C3=BAn <kabel@kernel.org> writes:
+Hello Rob,
 
-> When global LED brightness is changed by pressing the front button on
-> Turris Omnia, the MCU can produce an interrupt to the CPU. Add the
-> description of this interrupt to the LED controller node.
+> On Tue, Sep 10, 2024 at 4:59=E2=80=AFPM Rob Herring (Arm) <robh@kernel.or=
+g> wrote:
+>>
+>> at24.yaml defines the node name for at24 EEPROMs as 'eeprom'.
+>>
+>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+>> ---
+>>  arch/arm/boot/dts/marvell/kirkwood-openblocks_a7.dts | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> Signed-off-by: Marek Beh=C3=BAn <kabel@kernel.org>
+> Ping!
+>
+> Are Marvell platforms still maintained?
 
-As the binding had been acked, and this change won't produce any
-regression I can already get it.
+Actually I just applied it this morning, and was about to notify about
+it.
 
 Applied on mvebu/dt
 
@@ -92,26 +92,25 @@ Thanks,
 
 Gregory
 
-> ---
->  arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts | 1 +
->  1 file changed, 1 insertion(+)
 >
-> diff --git a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts b/arch=
-/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-> index 43202890c959..83fe00abd652 100644
-> --- a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-> +++ b/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-> @@ -251,6 +251,7 @@ mcu: system-controller@2a {
->  			led-controller@2b {
->  				compatible =3D "cznic,turris-omnia-leds";
->  				reg =3D <0x2b>;
-> +				interrupts-extended =3D <&mcu 11 IRQ_TYPE_NONE>;
->  				#address-cells =3D <1>;
->  				#size-cells =3D <0>;
->  				status =3D "okay";
-> --=20
-> 2.45.2
->
+>>
+>> diff --git a/arch/arm/boot/dts/marvell/kirkwood-openblocks_a7.dts b/arch=
+/arm/boot/dts/marvell/kirkwood-openblocks_a7.dts
+>> index 9c438f10f737..2bc4b68bd723 100644
+>> --- a/arch/arm/boot/dts/marvell/kirkwood-openblocks_a7.dts
+>> +++ b/arch/arm/boot/dts/marvell/kirkwood-openblocks_a7.dts
+>> @@ -44,7 +44,7 @@ sata@80000 {
+>>                 i2c@11100 {
+>>                         status =3D "okay";
+>>
+>> -                       s24c02: s24c02@50 {
+>> +                       s24c02: eeprom@50 {
+>>                                 compatible =3D "atmel,24c02";
+>>                                 reg =3D <0x50>;
+>>                         };
+>> --
+>> 2.45.2
+>>
 
 --=20
 Gr=C3=A9gory CLEMENT, Bootlin
