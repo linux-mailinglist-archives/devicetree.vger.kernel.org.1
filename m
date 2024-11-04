@@ -1,296 +1,259 @@
-Return-Path: <devicetree+bounces-118683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B0A69BB386
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:35:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4BE69BB395
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:38:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29FF02852A5
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:35:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55C3D1F23225
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:38:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D69C1B6D1D;
-	Mon,  4 Nov 2024 11:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2103E1B3931;
+	Mon,  4 Nov 2024 11:37:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="kWesCMhb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WjYy3U1A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2057.outbound.protection.outlook.com [40.107.105.57])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1B317BEA4;
-	Mon,  4 Nov 2024 11:33:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.57
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730720025; cv=fail; b=FWDQNuzNKuZmg6+1Yv5P/bbBaECe235ziJCJfFeA7cf196jhsB90qySeoyBIxfNjjsK7wo3o+zRQqgZKjog7pLqQEXIxcJVcHCHmVxGoW4yKQSUlWDvMl1HMT/85q+scAJxJMI0ai1NTw4OhQ2JWuqTB2v4UGIhpykukcmCl4Qk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730720025; c=relaxed/simple;
-	bh=YuUBHiuXDhah3eaSLMVMMxyySeaqpBKnk7EHs4E3Nx0=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=t9abxoqUWlAMjR+qNX1zwk3sSB60La+9CBqdNZj/8/LuhVDl75ryoejD9FrpF0/7j3zDxLI7/bvI7We3BSU2sCfJ01WpXknVQHyIpyrRqWjxeYx+c1sLA2v3wqadAxEaelvxqc1HdFHEem2+tbHdCNa7vl3971txB+Qh4xLiBLo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=kWesCMhb; arc=fail smtp.client-ip=40.107.105.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kmVh8Wcdp38rXgxCpvdSN1hlp4QKWb1hqx5sbdEy6zR1+vcFhqGPkhP1Ll/MDZO7XkVmsjNfcC0OEl7yukMGXAcjFChhgm144sAHLIlsPI3nKxkf+rMsFE0aiSOXC2BxDXCqtcKe1ApAJl6jV7FUzUObwR/bOSt0WqfT6YY8rpAI3ZieG9N58q0ERECIGmPnFaXCnhQsd6f3T18BSJo90Gfn5EJl5DMQF1P8saOPaYXGR/FIpsYcDdF06PEjVw61zviJkr/4nysGKTtWuIc+9k/nC10+YWM54G7S6zsdcni6Zc/2U1CgDPh2IcWViwaugAaD9PTJkzatxJaE+jVRDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4dLgVTGw7k4nkv29hw13e1hTe1QdpXjjYd+ALrDR58s=;
- b=sHVNrSrM4443pbJORf9GxIp49bV4e6u8rPZYs3NMmHrL1nSnQQSdgA3XftIzbhzndxPM93x8KEhgjNA6PW7K3FN+IHeW6CsbEqrDM/qGO4pcBQdjQ65EJ5mWlrxe6V0/sVGCFNfvRLE+Y4Bk/XK+VFPoQjlS3dvrNZ6vlj4MhArkhyHhtt5gADPBtdNapubDcMVMQMqLdX4CvK/L7jLVjx+XVQ13J81Try5WgGsvf9XuvdMNfxh4Dk5PLwbPGzteQJrD9cMYZ1CuxpxYjYtqrGLkc81XnbigAWm9x2juM3HNP5Bw5dbjNeWHgxEGKq04uklcVc1I9oLi2gfVgE+Y8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4dLgVTGw7k4nkv29hw13e1hTe1QdpXjjYd+ALrDR58s=;
- b=kWesCMhbKm6hv/5/ELyT445Stnrf6uk5H06bSlwS/0VPdL6vVbN2BiwlhrMkvcLV256ZvwVJwPqFd3+vAWyeVjEEnvDt021bH4/HY/w9Rf5KorVC9vgSOWpuExUY6cixo08Ef/cVPit5cNXgxbX1sXZDNZDIHOhoSsyvvhd+slnK4rV2/L+DFCzaOF5Ci9Y/3xGjoAgoUWCB1KTJa8Pmx7Zufq2WLzdS3VcBKZxqB3C+EQcR3RJQOjTXoMkZbp8uc71enUJWQ4I6xRDvkq/ZN4LSbaDKh6jY1mdrT7zGCj8frSqT5sHSn4NyV0aJpfNjbjL7p90wg4jAkZRqON7GWQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AM9PR04MB8487.eurprd04.prod.outlook.com (2603:10a6:20b:41a::6)
- by DB9PR04MB10034.eurprd04.prod.outlook.com (2603:10a6:10:4c4::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.30; Mon, 4 Nov
- 2024 11:33:40 +0000
-Received: from AM9PR04MB8487.eurprd04.prod.outlook.com
- ([fe80::6d7a:8d2:f020:455]) by AM9PR04MB8487.eurprd04.prod.outlook.com
- ([fe80::6d7a:8d2:f020:455%5]) with mapi id 15.20.8114.028; Mon, 4 Nov 2024
- 11:33:40 +0000
-Message-ID: <88fd2cba-081d-48e9-8733-4cb6eecaac9f@oss.nxp.com>
-Date: Mon, 4 Nov 2024 13:33:35 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/7] arm64: dts: s32g: make pinctrl part of mfd node
-To: Frank Li <Frank.li@nxp.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chester Lin <chester62515@gmail.com>,
- Matthias Brugger <mbrugger@suse.com>,
- Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
- Larisa Grigore <larisa.grigore@nxp.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Lee Jones <lee@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Dong Aisheng <aisheng.dong@nxp.com>,
- Jacky Bai <ping.bai@nxp.com>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, NXP S32 Linux Team <s32@nxp.com>,
- Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
- Enric Balletbo <eballetb@redhat.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, imx@lists.linux.dev
-References: <20241101080614.1070819-1-andrei.stefanescu@oss.nxp.com>
- <20241101080614.1070819-4-andrei.stefanescu@oss.nxp.com>
- <ZyUcc5s6u9OzOoyq@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-In-Reply-To: <ZyUcc5s6u9OzOoyq@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS4P191CA0026.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d9::17) To AM9PR04MB8487.eurprd04.prod.outlook.com
- (2603:10a6:20b:41a::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E08AA185B4D;
+	Mon,  4 Nov 2024 11:37:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730720253; cv=none; b=ChZAH+98QLq9Rqo5ZmUSrBbtrX9tsuyDb+UtXQx5Osp68rCBLDp8bDIGWKmmdcOV/mv44PEInPbJQjzTTYpwr8Ic6uORzecgsm/XPZoQBp2VFtn5F++XKvEVGSszjhC8OOAmn+L9t3jUFmiJXkrkiRPnUZo8OlAeBuby9Ts8my8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730720253; c=relaxed/simple;
+	bh=r0F7WWieVy3G1VNWPIWM2T4e1JEAK4pK6vQsE3LT8/g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ICz+ZuixrW3cP6Pjsjj3/HleLwiJwCn6NqCtGheW+ErDs8WGGn0SQlZYef9BNbIxhQcn0Sdnma6VAwGM7OotwoI52YsEYn3/M0GgExDD+gdln9J2eJbQ575Utx/1jfil/UXr0NSu6+JTjWUFhWpBcPjCiviM/0WJnZeurnl52Wo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WjYy3U1A; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8F67C4CECE;
+	Mon,  4 Nov 2024 11:37:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730720252;
+	bh=r0F7WWieVy3G1VNWPIWM2T4e1JEAK4pK6vQsE3LT8/g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WjYy3U1AobPrUtwdAIEqkg0GLwohYbqHHLLiXv53qNDF1oik49YeZmX9T9naY3H2s
+	 AsHCzYY2Ld/iRPoOcVGt1I4QvsweQZqnDDPRjmrDg3ysXuZS+jTAEU6lo/la0zecLt
+	 6iuPYlPtY0GoVff5TGjm712paAM61lqNRs8WIrfcC9LI3//pWHFWeEQ8Mz8lkq4BHo
+	 bYKqxtMSL86VC/Nr81+YaFNaxhoWo0HBSIufAFXHq/yPPp1LB9Bz9qpVp47grgE5Ij
+	 KzVM8PhfXg4V9UTUPSPvwxoX0Ot6sfYvbmYvBV0yNoy5Fvp0F5mYPsECmym5UZEpJk
+	 4qMDnFLMGPTWg==
+Message-ID: <ff191ee3-bacc-48ed-86a8-2e60ebecc391@kernel.org>
+Date: Mon, 4 Nov 2024 12:37:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR04MB8487:EE_|DB9PR04MB10034:EE_
-X-MS-Office365-Filtering-Correlation-Id: 57243fe6-6677-4d02-0955-08dcfcc487ac
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?alNoeG05Q1dnNjl3eTFQbWNwNXhUV0VWUEEvVXB4ODZFcFgyZ3N0eXhvQ215?=
- =?utf-8?B?SnRhNEtta2xnZW1FK3Q4d1V6VEgzU3ZWallNLzdWY3l3bDlMMFh5T2F0MnN0?=
- =?utf-8?B?eWhQTTBBdklIK1ZUVGtJcjRtK0taL0RWRXNWZjl0VEFHUTVDM2FGcUcrREZ4?=
- =?utf-8?B?SUVwWDdLWXIvZWErU1pBS0lsMGdDeUtIMmJyajFhRExXMWwyd2oyT1Mxb3Jx?=
- =?utf-8?B?K2ZCUDVtNjBtdkFJeXZKbE5pQ241czk4M2xYaFM5dHpzL1pZREwwY2tOaHAw?=
- =?utf-8?B?UU9XVldZYWR4Z3ZLaXozMnNVNDVTNC9ycmxOQnhRb1pIekxvMDlubkdiZVkw?=
- =?utf-8?B?Ri9pT1V3RzVCaGVpdDY4TkpoOVlWdUt1ajNoRm1FeXgvMHRSWWlmUC93ZlQv?=
- =?utf-8?B?WTBXVmkzSUliODdRUHR0TzJTc3ZqZkkxVmtQZ2ZpOVhUNkNod1dvaDFOd2VC?=
- =?utf-8?B?THU0R3hQVHppRUg3YjNzUitIUG5aYkkwZHh0R2xDQUFoRmdJb3ZiR3V5VnVZ?=
- =?utf-8?B?ZU9RTURaVzNYVEhCMEZYTDBHZjBVMFZiNU5qY2Y1bzhXL1U3Qm0zVXJSSkIy?=
- =?utf-8?B?OENoVW4yRU5OV3lXcEsyV0Z5cHRGTUR3QWJCSEVhL09STm5ZSlFWQWRuTTdy?=
- =?utf-8?B?b2ZNemhGTXpHWEpPWWU3b3ZaQ0VyNy9keFAxdTdEQlRQVHEwUkJJU1A1eXFV?=
- =?utf-8?B?ZWs1QUMyVTcwVG5TdXFKbTVpZjJIa1JxYWhpait1QW1WSW9RWHZzNk0rZTNN?=
- =?utf-8?B?UlNkL2N6ZFkvTXFNZno1RGU3NW1yZC8xYjRJSkVra29XSG1RRzZxVEU4dWMx?=
- =?utf-8?B?ZjBmU1UwNWxXSURueVFZMzNraVpnc2Y1bFpEdjF5Z0NDWFh5ME1FUGtrYnA4?=
- =?utf-8?B?Mi9MekRtR2t0a3E4UWxLZDlUVmNwQkwxZk5CWU12WkNDdXdiU1pFVkhvaFRD?=
- =?utf-8?B?OEliRUNXY2lUOTVzMWJxYzhhR3JWdDZkckttRC9oeUUwMUdlb3U0bWNHdGhz?=
- =?utf-8?B?M0ZLcndCb3lhY1BRdGt2K0c3SlhBK09jbVYrbnRGcS9iTmIveXp1T3RpRm9D?=
- =?utf-8?B?YkNpVSttTEJrN2k1RlFWRC9iSUhrdkJTa05kbHg2dWNiWWxVZm4zQ1JnVkZO?=
- =?utf-8?B?MUxHbVJJc2NwWkxZdHJ6R3Z3M3VBWm8wcHdjOUplN2JpcnZnMUo3ajdReFJm?=
- =?utf-8?B?RkV1OHFKSTJyZnhkRmNIajNtaGx2WHBMdDhNM2IwVGhJZDI0UEVxNnVuWTYx?=
- =?utf-8?B?ZGM5eklsT1ZXOGgwdk1HYlV5TTE5bWRKbVErdzYxUDJJd0VIWDNReFJxWEJR?=
- =?utf-8?B?UElsdTVsNGd1SjlRY28rNXh6dFE4a2VxSjdjUzVaWjNaYVk4LzN5a0ZuRys0?=
- =?utf-8?B?a3c0ZzJCSGhTM3kzOXpvdzE1Z1dSb0trUHdDK3ZkdWdkOUlsbW9rVE9GVW9t?=
- =?utf-8?B?bUwvVzd1cTB3b0Y4VDhXZWlXZGZFRnhSQ1dxYW9ON0hJR2VncHZIMmkrVXlT?=
- =?utf-8?B?clQyLzc5KytFTTJPRWVUNGROdCtDbi9naGVTcDFSMUY4LzlJZ09TNjdidVFG?=
- =?utf-8?B?UlpVYTc2Y3Z4WFBQZWFKMEVRUW9tRlhmL2pzTmUxMy96MmNjaHVEZTArdi96?=
- =?utf-8?B?eU1DMDRad2pUL0pSWmVoUnhGemhOT21RNUhDeXd4bkhUb3JPdDRKeVNxc29G?=
- =?utf-8?B?OUdVYTJ3c2tHTnV2TDB0azRrYjJmK1Nxb2R1MFZtNGU5WmpMWWxwemw4Qk52?=
- =?utf-8?Q?Yg0fpeBAPRLda2glc5V9wFe8EDDvncUvOFaJUtM?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8487.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?b05YeEF0Y2I3K1EzRlVUSHBnc1JDMVhzWmdqdm8rNzVtdWQ5THU4c1RpNTUv?=
- =?utf-8?B?YzVueWVBZVZNMEFoVE5JZnFRVnNybFRXSWlXTWh1VnM1OE80eHBjbWJFZHl6?=
- =?utf-8?B?RkZlT2szbUZQY0o3NktJZ3pzbk5wZnlQMjl3OWIxaUVLOWRtL2lmRWxHODZk?=
- =?utf-8?B?TlA1UC9ZbjEvSTFXRDZLSmQ1bmRZb2daSUFlM3ZmbmVZemozR3ZTNUF5bDZV?=
- =?utf-8?B?WnpDNG1XUHFKY1ZlRmhoWkVLSm9seW8vQTg5OUpJYVFCYzNhZWFCUUo3bmhR?=
- =?utf-8?B?dFk4NVBrcGtRdlN3eWxNYkIvbldqeU1rQndxMjhFbnBrTGYwTHhqRHFyRmhF?=
- =?utf-8?B?ZFNHL2ZIQWN3dlkwSEpFK29lMzZMWXM3NFFYNlVDNUtxTjBLK29IK21MNWRx?=
- =?utf-8?B?QU5mMmpZLy9XQ3NnY0wwbVlCQ01Eb3grRWVyTkdOTk1oQzRXWDZvbWZMZWwx?=
- =?utf-8?B?NzY4UGVFck1Ic3VOU0V1alQ5Qy9IdHQxS3FMQk01VXFwV1JPYWlFWno3UzYw?=
- =?utf-8?B?eVJkc1NPYkRhQlZNM3lDM3krOUNIQkxWL0tvTld5WHFxNU5hYXR0eVBsSm41?=
- =?utf-8?B?amkwcGUvN1FIN2laWjF2bER3VDYyMlFwQ2FmY1VXeFBzZDRHTnQzWU9RaWVO?=
- =?utf-8?B?VTFiZzZGU0g5WXU1VjdVNDFyTXVUM1NJTW1aRC9NQWRWRHFMUE9rU3Rtdlhw?=
- =?utf-8?B?RnVKcFFrRnNPOW5zUUVBN1NxU21GYmJpT09mMTVJKzY0elo1VS96Z0w4ZkZI?=
- =?utf-8?B?WnhZMFU2aU9yNlE2RFMya0NwYlYzLzk5bDV1bC9YZFp3ME14eWR2blM3cnJ6?=
- =?utf-8?B?UlBSVEp6eXBBZjJyM1FsZ2FKUW5JMVdGYkNhcm5xSmt5SXZGdHZJVjdEZ0Fp?=
- =?utf-8?B?YW56SlN2VnF4b1FiT2FPYW5seGFNVUE0K0F1Z3ZUYkRGaENES1Q4SVR5eTJO?=
- =?utf-8?B?UGkrS1kzaEduWVNwM2R2TzYzTmQ4aTkzR3ZMT21KenJlV1lPRzJaa1pEbGRk?=
- =?utf-8?B?eTBpS01ZMCtZM1BtaE9udVFZYWRmL0paNzkxT2JtZStHSy83ejJWRWlHUWtZ?=
- =?utf-8?B?MHdpUGZpRU00QUhpdXE3aFROVjJVUFBYYjU3blNZaFE3SGJNdUVjUThmSDlJ?=
- =?utf-8?B?cFVsajU1UnJ1TTNFMTlTd0ZMZ3hLQ2VNeDhUM3l1ZmdBczRZNkxibW5nQUdl?=
- =?utf-8?B?Y2pWaW5ZcnhxdWhWWThoa3hpNHZabThQOVFvVEcwQkRkek1ZMUkrdmowbXV5?=
- =?utf-8?B?cG96QUhiTHNNSWlKNy9UaFZ3emNuR1Vjakx6UFIrNEw1bTErKy84QlZuUWRz?=
- =?utf-8?B?YVVITXVQN21xQmVLU0xHNG5LdVB1cHprTXFrTy80bW83bDdCQ0tyVFI2eFJP?=
- =?utf-8?B?R3VNUEdoeUtxbmRRdGJWVTY3c2JnRkJsQXVXUThNQVdMNXRrWWpOVlhZYjgr?=
- =?utf-8?B?TGc3NFFmbHNoRkhXTHl0cmNyK0tFdjFTMXF4d0Z6NmhEU2piVDRCdWZsZlQ3?=
- =?utf-8?B?M2N1MWkxb0ZuRDUyRTRBQ0ZaQ0VoVHdtYllBT2FKNldyMnNCNDAvNFplYTZJ?=
- =?utf-8?B?OXBkUDZ6TVlCUVlTQWUxeEFHekUyR3lPM2R2L2duY3Y0UDJHZWhkRlo2cTZs?=
- =?utf-8?B?TlRnbnBPTFBSZGNpaHowT1BZNVZSczVxR0xlcUUzWERzNWZ6alBJT08rQkdX?=
- =?utf-8?B?TlZLRnAwQUw4cjVHUEJ2b1NzSjdDOVVyNThoZFRJUHp6WUNMMGVNUzJpcWFZ?=
- =?utf-8?B?SmZpVzJVd2N5VU53aWJWOHF2RTZ3ZGFKS3gveDlpY3Yxc1hyZmFFZmp3ZVpQ?=
- =?utf-8?B?OUlFN3ptRUNtNXJSUGNFdDJmNXl3bUJETitsVkEvemRwM0NWLy9yMmVkN1Uy?=
- =?utf-8?B?Y1UxanNpVmxGckpZTEZQM3l2bElzZlZzZHM1YXJmbUhzOGd5QjRvdCtyZUw0?=
- =?utf-8?B?d3NobDRLMzhOdys3S2wyb2o4YVViWEE0RjdsR1dsTlYwcDV2enZ1aW5DOHBW?=
- =?utf-8?B?SzRCcmc4MkZ6bXB0RGw3VmFaQjQ0bE4rRnZrMmtycHo5eDNYdGpyZGV3dGE0?=
- =?utf-8?B?U3dKd054WC8rdllUUVpQMlhjcmdCd0MwQlB1YXA5QjVUUVJSNWpoQm4vaDV4?=
- =?utf-8?B?dlBTQTh6ODZjekxZb2M0T0RocjBPQWZZcEFsOXMyc0JhTFpVYk5Wa21VNVBq?=
- =?utf-8?B?WXc9PQ==?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 57243fe6-6677-4d02-0955-08dcfcc487ac
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8487.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2024 11:33:40.1205
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZSVkPB3JeqkwPxQ9tHFCVMxhM0IVDFRBOS2myoO43MP/mdt356+Of6A1sVluzczPUEujyY0sAZKoNlJpB0WVIA/WFoKn5EZQyY3v3yGzrGk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB10034
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH] dt-bindings: can: convert tcan4x5x.txt to DT schema
+To: Sean Nyekjaer <sean@geanix.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241104085616.469862-1-sean@geanix.com>
+ <ee47c6d7-4197-4f5d-b39e-aab70a9337d6@kernel.org>
+ <2mx3fpwo5miho3tdhfbt7ogwnifnhe7qlvjs3zjb2y2iifgjwo@23mxoxvwsogy>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <2mx3fpwo5miho3tdhfbt7ogwnifnhe7qlvjs3zjb2y2iifgjwo@23mxoxvwsogy>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Frank,
-
-On 01/11/2024 20:22, Frank Li wrote:
-> On Fri, Nov 01, 2024 at 10:06:09AM +0200, Andrei Stefanescu wrote:
->> SIUL2 is now represented as an mfd device. Therefore, the old
->> pinctrl node is deprecated. Move the pinctrl related properties
->> inside the new "nxp-siul2" node. The latter one is now used
->> to represent the mfd device.
+On 04/11/2024 11:54, Sean Nyekjaer wrote:
 > 
-> Generally, dt team want you to keep both for sometime to keep
-> back compatiblity.
+> diff --git a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
+> index 9ff52b8b3063..0fc37b10e899 100644
+> --- a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
+> @@ -50,7 +50,7 @@ properties:
+>      maxItems: 1
+> 
+>    bosch,mram-cfg:
+> -    $ref: bosch,m_can.yaml#
+> +    $ref: /schemas/net/can/bosch,m_can.yaml#/properties/bosch,mram-cfg
+> 
+>    spi-max-frequency:
+>      description:
+> 
+> Still results in:
+> % make dt_binding_check DT_SCHEMA_FILES=ti,tcan4x5x.yaml
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>   CHKDT   Documentation/devicetree/bindings
+> Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml: properties:bosch,mram-cfg: 'anyOf' conditional failed, one must be fixed:
+>         'description' is a dependency of '$ref'
+>         '/schemas/net/can/bosch,m_can.yaml#/properties/bosch,mram-cfg' does not match 'types.yaml#/definitions/'
+>                 hint: A vendor property needs a $ref to types.yaml
+>         '/schemas/net/can/bosch,m_can.yaml#/properties/bosch,mram-cfg' does not match '^#/(definitions|\\$defs)/'
+>                 hint: A vendor property can have a $ref to a a $defs schema
+>         hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+>         from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
 
-Just to make sure I understand correctly, I will keep the previous pinctrl
-node and have both the new siul2 node and the old pinctrl one, right?
+Yeah, probably not much benefits of referencing other schema. Just copy
+the property.
+
+> 
+>>
+>>>
+>>> Any hints to share a property?
+>>>
+>>>  .../devicetree/bindings/net/can/tcan4x5x.txt  | 48 ---------
+>>>  .../bindings/net/can/ti,tcan4x5x.yaml         | 97 +++++++++++++++++++
+>>>  2 files changed, 97 insertions(+), 48 deletions(-)
+>>>  delete mode 100644 Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+>>>  create mode 100644 Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
+>>>
+>>
+>> ...
+>>
+>>> diff --git a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
+>>> new file mode 100644
+>>> index 000000000000..62c108fac6b3
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
+>>> @@ -0,0 +1,97 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/net/can/ti,tcan4x5x.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Texas Instruments TCAN4x5x CAN Controller
+>>> +
+>>> +maintainers:
+>>> +  - Marc Kleine-Budde <mkl@pengutronix.de>
+>>> +
+>>> +allOf:
+>>> +  - $ref: can-controller.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - enum:
+>>> +          - ti,tcan4552
+>>> +          - ti,tcan4553
+>>> +          - ti,tcan4x5x
+>>
+>> That's not really what old binding said.
+>>
+>> It said for example:
+>> "ti,tcan4552", "ti,tcan4x5x"
+>>
+>> Which is not allowed above. You need list. Considering there are no
+>> in-tree users of ti,tcan4x5x alone, I would allow only lists followed by
+>> ti,tcan4x5x. IOW: disallow ti,tcan4x5x alone.
+>>
+>> Mention this change to the binding in the commit message.
+>>
+>>
+> 
+> I would prefer to not change anything other that doing the conversion to
+> DT schema.
+
+Well, above you changed a lot :/, but fine - wildcard can stay. But
+anyway compatible list has to be fixed.
+
+> 
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  vdd-supply:
+>>> +    description: Regulator that powers the CAN controller.
+>>> +
+>>> +  xceiver-supply:
+>>> +    description: Regulator that powers the CAN transceiver.
+>>
+>> You need to mention all changes done to the binding in the commit msg.
+>>
+> Is this a change? It existed in the old doc aswell...
+
+Where? I pointed out that this is a change. I cannot find it. If you
+disagree, please point to the patch. And it's tricky for me to prove my
+point - to show that such thing did not exist...
+
+
+Two more comments below:
+
+> 
+>>> +
+>>> +  reset-gpios:
+>>> +    description: Hardwired output GPIO. If not defined then software reset.
+>>> +    maxItems: 1
+>>> +
+>>> +  device-state-gpios:
+>>> +    description: Input GPIO that indicates if the device is in a sleep state or if the device is active.
+
+Please wrap code according to coding style (checkpatch is not a coding
+style description, but only a tool).
+
+
+>>> +      Not available with tcan4552/4553.
+
+Then you need if:then: inside allOf: block disallowing it for this variant.
+https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/bindings/example-schema.yaml#L223
+
+
 
 Best regards,
-Andrei
-
-> 
-> Frank
->>
->> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
->> ---
->>  arch/arm64/boot/dts/freescale/s32g2.dtsi | 26 +++++++++++-------------
->>  arch/arm64/boot/dts/freescale/s32g3.dtsi | 26 +++++++++++-------------
->>  2 files changed, 24 insertions(+), 28 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
->> index fa054bfe7d5c..e14ce5503e1f 100644
->> --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
->> @@ -114,20 +114,18 @@ soc@0 {
->>  		#size-cells = <1>;
->>  		ranges = <0 0 0 0x80000000>;
->>
->> -		pinctrl: pinctrl@4009c240 {
->> -			compatible = "nxp,s32g2-siul2-pinctrl";
->> -				/* MSCR0-MSCR101 registers on siul2_0 */
->> -			reg = <0x4009c240 0x198>,
->> -				/* MSCR112-MSCR122 registers on siul2_1 */
->> -			      <0x44010400 0x2c>,
->> -				/* MSCR144-MSCR190 registers on siul2_1 */
->> -			      <0x44010480 0xbc>,
->> -				/* IMCR0-IMCR83 registers on siul2_0 */
->> -			      <0x4009ca40 0x150>,
->> -				/* IMCR119-IMCR397 registers on siul2_1 */
->> -			      <0x44010c1c 0x45c>,
->> -				/* IMCR430-IMCR495 registers on siul2_1 */
->> -			      <0x440110f8 0x108>;
->> +		siul2: siul2@4009c000 {
->> +			compatible = "nxp,s32g2-siul2";
->> +			reg = <0x4009c000 0x179c>,
->> +			      <0x44010000 0x17b0>;
->> +			reg-names = "siul20", "siul21";
->> +			gpio-controller;
->> +			#gpio-cells = <2>;
->> +			gpio-ranges = <&siul2 0 0 102>, <&siul2 112 112 79>;
->> +			gpio-reserved-ranges = <102 10>, <123 21>;
->> +			interrupt-controller;
->> +			#interrupt-cells = <2>;
->> +			interrupts = <GIC_SPI 210 IRQ_TYPE_LEVEL_HIGH>;
->>
->>  			jtag_pins: jtag-pins {
->>  				jtag-grp0 {
->> diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
->> index b4226a9143c8..fa43d036686f 100644
->> --- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
->> @@ -171,20 +171,18 @@ soc@0 {
->>  		#size-cells = <1>;
->>  		ranges = <0 0 0 0x80000000>;
->>
->> -		pinctrl: pinctrl@4009c240 {
->> -			compatible = "nxp,s32g2-siul2-pinctrl";
->> -				/* MSCR0-MSCR101 registers on siul2_0 */
->> -			reg = <0x4009c240 0x198>,
->> -				/* MSCR112-MSCR122 registers on siul2_1 */
->> -			      <0x44010400 0x2c>,
->> -				/* MSCR144-MSCR190 registers on siul2_1 */
->> -			      <0x44010480 0xbc>,
->> -				/* IMCR0-IMCR83 registers on siul2_0 */
->> -			      <0x4009ca40 0x150>,
->> -				/* IMCR119-IMCR397 registers on siul2_1 */
->> -			      <0x44010c1c 0x45c>,
->> -				/* IMCR430-IMCR495 registers on siul2_1 */
->> -			      <0x440110f8 0x108>;
->> +		siul2: siul2@4009c000 {
->> +			compatible = "nxp,s32g3-siul2";
->> +			reg = <0x4009c000 0x179c>,
->> +			      <0x44010000 0x17b0>;
->> +			reg-names = "siul20", "siul21";
->> +			gpio-controller;
->> +			#gpio-cells = <2>;
->> +			gpio-ranges = <&siul2 0 0 102>, <&siul2 112 112 79>;
->> +			gpio-reserved-ranges = <102 10>, <123 21>;
->> +			interrupt-controller;
->> +			#interrupt-cells = <2>;
->> +			interrupts = <GIC_SPI 210 IRQ_TYPE_LEVEL_HIGH>;
->>
->>  			jtag_pins: jtag-pins {
->>  				jtag-grp0 {
->> --
->> 2.45.2
->>
+Krzysztof
 
 
