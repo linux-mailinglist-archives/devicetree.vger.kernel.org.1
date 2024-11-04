@@ -1,138 +1,159 @@
-Return-Path: <devicetree+bounces-118699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082929BB497
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:23:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A332A9BB4E7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:45:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A36F1C21509
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:23:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2DEC1B219F3
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:44:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6CD1B21BB;
-	Mon,  4 Nov 2024 12:23:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1560F1B6CE2;
+	Mon,  4 Nov 2024 12:44:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a+M3vrgj"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HiSyNGeq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778D01B0F2B;
-	Mon,  4 Nov 2024 12:23:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA7B1DFD8;
+	Mon,  4 Nov 2024 12:44:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730723013; cv=none; b=Ao8RuZw3LtPNFwQ8AHez5Xi+rSSE6HAI0UjYXQz98kUTDZDz9BYTEY4H/gyzo9UIEhVFtmnnGYpPGN0Z2qrCj9alKct3idGsb5M6Yo/DsBVvK4KXh6kkYFgSzDpTdAnKjNeRVoWXqwPCcqUtQB6iCkKKneTQvQ2GwvaF91uqGJM=
+	t=1730724293; cv=none; b=TqKSyGhg+0LyMgvPopw3xtnA/36/Rw1HXylC3TQCjKHtsH2Lg6TFY79dAUGmXtDh+OsqqiQjT+wmP+5ssO8i/Yp4j316eAlwliq5pxynbPEUUJ9d745jZQ4Z1MCtBF9hWH1i/JwQckbYH5ouSfidTtDaJpBJjtx9JfWOXJm23z0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730723013; c=relaxed/simple;
-	bh=ZFwj51A2gbZA7vJSStsy0TIypVjePjyNWxkZO2XfIEc=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=HKKM9EUxhkZaZD5ulikYBUaDW7wqdfV2C4GOt/prDF2+VC9BMnM0823YehLjSNlBr0tiibPXtoeLY2IClsLH0UohUxYLbLDTNui4mNstpOrKlTXqpmHph1Bd7WGfApAUXnoWT5Onw783kXeT52EpX2//LzfwXSaQqNWEPV2M2vA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a+M3vrgj; arc=none smtp.client-ip=209.85.214.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f195.google.com with SMTP id d9443c01a7336-20ce5e3b116so31260885ad.1;
-        Mon, 04 Nov 2024 04:23:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730723011; x=1731327811; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:cc:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fiCZNrw+g0MfYd+wHoshXkkg40DDzaFGOl5IzkgDf8E=;
-        b=a+M3vrgj3twLLQ4O/48ElZVQa8MFsoFKNwgdmouzjw/IZnDpJ4l8slZMTjbccF0RDM
-         fTh4sPUEG70nGnYUUoIUdVc3xz28wKTcxWG/evbf3L50HH5O/pI//QUfYVtYVj3Lorye
-         ZVuLBHnDTH7tGL0Q3YWAABB1IyJHU3EfAYKqZNxg/kpZvYcofKUtFktuCiM7pKH0xh7f
-         d09ExQWeFA7QabUimfSa0qr8crza48cRIevq0mGL1jAs+dTDstHMOqx8iljLLpv7aoFR
-         2FIaChyZZcHpodfptS4+P3ySKAXhcKzgmcTFIIhM5rwx/SY32eFwmL8khfpeT8UC3tDr
-         yOMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730723011; x=1731327811;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:cc:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fiCZNrw+g0MfYd+wHoshXkkg40DDzaFGOl5IzkgDf8E=;
-        b=M3zP9FbE86Grha/JH+6AWxwRMuMgvvXfy2dBQAA72GnwWhYv963gZgt2EykxUlhe0R
-         KZ3gz/Az53qnVpS1e87jnriyEXi/hQklh0YpvIs2AbIAoeeHUMnPXddpTZqq/GHvJnO+
-         D1/r88PSEboka+EmUyzkjCre+wrXWRFEYQJbf6pkRCp7HSOlOAiaD05kYCiwR+ZXkoIN
-         FLpdt3ie+yWPjke3OMx9C/qI6j618/4ZZPWY32A5EThul+1flCfmaySXWaQ09OwIHsOl
-         3TcrebIfP0dG6o97gUJlFcdAFeS0oKNMUIO0NBWDZrJR7HtFwmYew8rGalIoCCjK1Z6f
-         os1g==
-X-Forwarded-Encrypted: i=1; AJvYcCVyLRfogmS87XCWKNDkVtzifRK2mrvCKY486hBvzP2JcrQ6dxAsWp4PW8IUhoqvUvi6cYioAWhthETR@vger.kernel.org, AJvYcCWDLVteqvozi9ZFBG6PJiAhvP9gDKWVa1pv1sBTOmVHpXGluomkejjN3QSeFssNaRmFunMUR0dyBgHDYkpQ@vger.kernel.org, AJvYcCXQPnbq5R/H1hkggU6f3U4QiNmMXZo1c81phIfSF3jgE6aEb25QJzBeqv4FTuf8M19hd9uwOFenRMNu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4M0M0WCEQGifFJIeZni3pn3tAiMgwXGvLRTwe3J9zEH3Mg7wb
-	hJHlkrEet/Y88EqMkaNgNjHWwkdlgWiH3UgAcUelY45RLBs8xV+o
-X-Google-Smtp-Source: AGHT+IHLvWMCkXJUq+FJuMDRusJubVpqKeDmaeSEQmUKm01US5Q5+wIpwJg+l9Cfx8xC6auYaOIr6A==
-X-Received: by 2002:a17:903:2343:b0:210:e75e:4649 with SMTP id d9443c01a7336-2111af3fbfbmr177573405ad.17.1730723010690;
-        Mon, 04 Nov 2024 04:23:30 -0800 (PST)
-Received: from [127.0.0.1] ([2602:f919:106::1b8])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211057d3c3esm59811605ad.245.2024.11.04.04.23.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Nov 2024 04:23:30 -0800 (PST)
-Message-ID: <edfaccd7-ac96-47fc-a174-912c8aaf0f5e@gmail.com>
-Date: Mon, 4 Nov 2024 20:23:23 +0800
+	s=arc-20240116; t=1730724293; c=relaxed/simple;
+	bh=XLFKyaBCc7k/Bi+Yg+zStQSzxok+9dy35rk6M8PjV40=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Fv2xmtDtEJ2iRDazq+1AEkBs6DXMNZW5ZPKlWI9p/vOi1w429eXpIesrsd4JFkCk1EivLLT/iat7VwTJQZTEj6Llxao3kxthKuzwg7g6w27obCFlXP65pBQYlN51pBzzXuaDcRvAHwhmof7vU3cIqgJrWEXNYF5frqQbyTaEhMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HiSyNGeq; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A4BA1NH005846;
+	Mon, 4 Nov 2024 12:44:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=TeJzf0gLHQuB9pE3jYViCi
+	NMn1Lwgsx8/oK1wVQL288=; b=HiSyNGeqxtE7wnMrpi1lauL01ff8XdbF5Pf+PZ
+	xYAJCaf3qlM/rhQYVmDPcuRzjCXyLN/Eopgr+4EwKW6/NdHmUEm7zWaeoMhMTDru
+	PKsdYUK5hwYsdiF0arPWjH82Xi/gqKNURGfWkd4seRQ+th7majvm76rTezuo3zFY
+	XmKSVOXEPKlbAS7lwI1z0mIDBeujNZ/i8GmGTO1gGUtBFwY8Ebj8+HxBy40Y8wMe
+	GoHHWMNGKJwBgRauEKrHVcxEXegp9aP+dHv1nD6dtAjtzqew2+tdRb+QpFF+Y0DA
+	5zU9PPWhJtg2Z+P02Fwa//UTnq/Z9TSIBU73vqgEqS38ZySA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42ncyxv7km-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 04 Nov 2024 12:44:41 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A4CieXq009191
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 4 Nov 2024 12:44:40 GMT
+Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 4 Nov 2024 04:44:35 -0800
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+To: <srinivas.kandagatla@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <amitk@kernel.org>, <thara.gopinath@gmail.com>,
+        <rafael@kernel.org>, <daniel.lezcano@linaro.org>,
+        <rui.zhang@intel.com>, <lukasz.luba@arm.com>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+Subject: [PATCH v6 0/7] Add TSENS support for IPQ5332, IPQ5424
+Date: Mon, 4 Nov 2024 18:14:06 +0530
+Message-ID: <20241104124413.2012794-1-quic_mmanikan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: troymitchell988@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 0/2] riscv: spacemit: add i2c support to K1 SoC
-To: Andi Shyti <andi.shyti@kernel.org>
-References: <20241028053220.346283-1-TroyMitchell988@gmail.com>
- <stpzkggfwseaqy6kbppiog4xfbpq4r2jwix2nvredbmmjqzbsi@wkllt4jlingv>
-Content-Language: en-US
-From: Troy Mitchell <troymitchell988@gmail.com>
-In-Reply-To: <stpzkggfwseaqy6kbppiog4xfbpq4r2jwix2nvredbmmjqzbsi@wkllt4jlingv>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: yHxDmoJ_62-jARGiScQh2G3540Y1IRWC
+X-Proofpoint-GUID: yHxDmoJ_62-jARGiScQh2G3540Y1IRWC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ malwarescore=0 bulkscore=0 impostorscore=0 priorityscore=1501
+ lowpriorityscore=0 mlxscore=0 phishscore=0 adultscore=0 mlxlogscore=889
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411040111
 
-On 2024/10/31 19:43, Andi Shyti wrote:
-> Hi Tony,
-> 
-> On Mon, Oct 28, 2024 at 01:32:18PM +0800, Troy Mitchell wrote:
->> Hi all,
->>
->> This patch implements I2C driver for the SpacemiT K1 SoC,
->> providing basic support for I2C read/write communication which
->> compatible with standard I2C bus specifications.
->>
->> In this version, the driver defaults to use fast-speed-mode and
->> interrupts for transmission, and does not support DMA, high-speed mode, or FIFO.
->>
->> The docs of I2C can be found here, in chapter 16.1 I2C [1]
->>
->> Link: https://developer.spacemit.com/documentation?token=Rn9Kw3iFHirAMgkIpTAcV2Arnkf#part5 [1]
->>
->> Troy Mitchell (2):
->>   dt-bindings: i2c: spacemit: add support for K1 SoC
->>   i2c: spacemit: add support for SpacemiT K1 SoC
-> 
-> As Krzysztof has asked, please do provide the changelog, it's
-> important to track the progress of your series.
-I saw a compilation warning sent to me by the robot, and I've
-fixed the warning. Should I resend V2 with the changelog
-what I miss or send V3?
+IPQ5332 uses tsens v2.3.3 IP with combined interrupt for
+upper/lower and critical. IPQ5332 does not have RPM and
+kernel has to take care of TSENS enablement and calibration.
 
-Thank for your response.
-> 
-> Thanks,
-> Andi
-> 
->>  .../bindings/i2c/spacemit,k1-i2c.yaml         |  51 ++
->>  drivers/i2c/busses/Kconfig                    |  18 +
->>  drivers/i2c/busses/Makefile                   |   1 +
->>  drivers/i2c/busses/i2c-k1.c                   | 658 ++++++++++++++++++
->>  4 files changed, 728 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
->>  create mode 100644 drivers/i2c/busses/i2c-k1.c
->>
->> -- 
->> 2.34.1
->>
+IPQ5424 also uses same tsens v2.3.3 IP and it's similar to IPQ5332
+(no RPM) hence add IPQ5424 support in this series itself.
 
+This patch series adds the temperature sensor enablement,
+calibration support for IPQ5332 and IPQ5424.
+
+Depends On:
+https://lore.kernel.org/linux-arm-msm/20241028060506.246606-1-quic_srichara@quicinc.com/
+
+Changes in V6:
+	- Patches are re-ordered as follows
+	  1) dt-bindings
+	  2) driver
+	  3) dts
+	- Patch #1 and Patch #5 from V5 have been merged and incorporated into
+	  Patch #3 in V6
+	- Added TSENS support for IPQ5424
+	- Detailed change logs are added to the respective patches
+
+V5 can be found at:
+https://lore.kernel.org/linux-arm-msm/20230721054619.2366510-1-quic_ipkumar@quicinc.com/
+
+V4 can be found at:
+https://lore.kernel.org/linux-arm-msm/20230719104041.126718-1-quic_ipkumar@quicinc.com/
+
+V3 can be found at:
+https://lore.kernel.org/linux-arm-msm/20230713052732.787853-1-quic_ipkumar@quicinc.com/
+
+V2 can be found at:
+https://lore.kernel.org/linux-arm-msm/20230712113539.4029941-1-quic_ipkumar@quicinc.com/
+
+Manikanta Mylavarapu (3):
+  dt-bindings: nvmem: Add compatible for IPQ5424
+  arm64: dts: qcom: ipq5424: Add tsens node
+  arm64: dts: qcom: ipq5424: Add thermal zone nodes
+
+Praveenkumar I (4):
+  dt-bindings: thermal: tsens: Add ipq5332, ipq5424 compatible
+  thermal/drivers/tsens: Add TSENS enable and calibration support for V2
+  arm64: dts: qcom: ipq5332: Add tsens node
+  arm64: dts: qcom: ipq5332: Add thermal zone nodes
+
+ .../bindings/nvmem/qcom,qfprom.yaml           |   1 +
+ .../bindings/thermal/qcom-tsens.yaml          |  18 ++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         | 144 ++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi         | 211 ++++++++++++++++++
+ drivers/thermal/qcom/tsens-v2.c               | 182 +++++++++++++++
+ drivers/thermal/qcom/tsens.c                  |   8 +-
+ drivers/thermal/qcom/tsens.h                  |   4 +-
+ 7 files changed, 566 insertions(+), 2 deletions(-)
+
+
+base-commit: 1ffec08567f426a1c593e038cadc61bdc38cb467
+prerequisite-patch-id: 1090fe9cee19a52dc8595e2fecef659199828246
+prerequisite-patch-id: 491c9f6c32738c4eb4398962c1ae7c625cd43238
+prerequisite-patch-id: 1651c75547b539eb46eb4d02630e364f262860bf
+prerequisite-patch-id: 7ce54f0af6083e897067a7e5cd9561198f3d4d41
+prerequisite-patch-id: 0a04fdee4b5b76cd5b734c666f7c8f5561e3e9d8
+prerequisite-patch-id: 084f6dced27c39b600711dde2f797b43393cde73
 -- 
-Troy Mitchell
+2.34.1
+
 
