@@ -1,217 +1,149 @@
-Return-Path: <devicetree+bounces-118555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 998109BABD5
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 05:31:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F8A99BABE1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 05:52:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4450228196D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 04:31:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 246921F2194F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 04:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 164022744D;
-	Mon,  4 Nov 2024 04:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB73D183CD4;
+	Mon,  4 Nov 2024 04:52:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RMmwFLoV"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="n0Lq0biJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DAEF290F;
-	Mon,  4 Nov 2024 04:31:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE6F1290F;
+	Mon,  4 Nov 2024 04:52:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730694685; cv=none; b=G8q+k83gSpuAIJYjzpyPWhsMcTcy1025HmeQdUPa2MPUlN7XuB/rIc6j7td/6U4mi9AuF1B4sFiGo39UhR5EFJVtHvIQEEidgpV/ARm/ZpRf+BE3dpup1vkTV+sb6BKzpEHQinZWzJpwpoN6sOXZ3nQtO1z1R1pIWUH0UbzfG00=
+	t=1730695962; cv=none; b=u+drKDb7TKIBmWjYI6l0gH7Ue17LqdCkS7GxIHuabW8VGhbWU2pRqLXUVs0svOoXz9QE6E1HJGllp6uzmR0upmCknblm5wMtH4oq5cUSMwJuS5/G18xEbFkuV40ypMh/wIJQEtM6oglYl6nNiYLh6o5pMhLy57bcmcZvjPDi27U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730694685; c=relaxed/simple;
-	bh=vbigO1/0tmqLCH75w1yvEiA/jHXipTAk41obguiX2g8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=BXT9x1YdtyLRTx7szwSEwGRkpOhPuQv3I2ObAUJ0oILiXz0kM1TwdXBdBhjjAVARlt4hv+Eb5mm4ks9kBkBRI8cIa/55qZiZrbkoCAmELLoT/By561JIKN8uBq3dkFvnsDZapIU/ampSX44L1IU4zrSOcYbysMFQTKdbpthUdjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RMmwFLoV; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A40E0d7025188;
-	Mon, 4 Nov 2024 04:31:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+w9BUqc9qTS5lo096IW4hBuKmzwChCj8VIAFc+Sqiv0=; b=RMmwFLoVTDAHi7CC
-	3agB+E+g4fy27QsspWVAL7xMDc9ksKhleSE8GBtyu+7wvL4RenuzrwMibadlU5Di
-	fC5Qrpz9V8ctHkT1QT4l0pGuFNY1RRdwRHVRyNezcUkjiosH8medTgirqXLf31wa
-	65H9BQXWIGOboMtmgKOgFn33/1g8KdZqvz0HQT7mxpJ80iV2EH3I6uumQdhI1XVN
-	NiyOuZK3cmSu5/L2sAFvcmv7Htqvh85QY2ho26kHScexybBZ24QMHaUtVOt1R8SM
-	QtK5tJhgRrdjBsIrWch0D/iN5SxniyxRuwmJEZurwF6BXsqpzM7EGO3gBEds5V9r
-	sBgw9Q==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd2r30nv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 04 Nov 2024 04:31:15 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A44V9Dh016816
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 4 Nov 2024 04:31:09 GMT
-Received: from [10.216.1.91] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 3 Nov 2024
- 20:31:06 -0800
-Message-ID: <945f3eae-0a68-4738-af07-74e228039508@quicinc.com>
-Date: Mon, 4 Nov 2024 10:01:03 +0530
+	s=arc-20240116; t=1730695962; c=relaxed/simple;
+	bh=hD5Ds+9z7GbWDKil7XA8fTLgvOAuEk8OiI3nOJgmWxY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p+fGfXVgyDz3uKNRPYrIazstM0G/apppkX42z/mXtTS7oGrM2TH1SuVlBH9CphjJXwKKn7VegyMvQOyoXCF6CrCZXPJaVyeQMWLKDzfB6Mw7dmptXyVrcGwvQo9ALgn5n5C1PTlW4SUEZu0cR77mkyEGqsRDX5TKbe7TguHS6pc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=n0Lq0biJ; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4A44qStB092545;
+	Sun, 3 Nov 2024 22:52:28 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1730695949;
+	bh=plZaN47/UeZAG1fxbybtFuEI5NnJRqWIxgjxXp4yRZg=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=n0Lq0biJsxO+8yz4XUCUtpbLeeuRsFwX4XQs8CjBwyZLlY//OqALPaqBvwc/aoKjO
+	 1LppbZ5DTJIhVicdgkPytK64ZiHZJRnUKrGMvBJIk4yIXaQ6sGpEdRzesUHOjmxlEl
+	 RBtWJRvFEwyA2O78NlAVdP6kEU9Q/au9fhOrH4cY=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4A44qSI8011227
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 3 Nov 2024 22:52:28 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 3
+ Nov 2024 22:52:28 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sun, 3 Nov 2024 22:52:28 -0600
+Received: from localhost (lcpd911.dhcp.ti.com [172.24.227.226])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4A44qR35090094;
+	Sun, 3 Nov 2024 22:52:28 -0600
+Date: Mon, 4 Nov 2024 10:22:27 +0530
+From: Dhruva Gole <d-gole@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>
+CC: Nishanth Menon <nm@ti.com>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>, Bryan Brattlof <bb@ti.com>,
+        Wadim
+ Egorov <w.egorov@phytec.de>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62: use opp_efuse_table for
+ opp-table syscon
+Message-ID: <20241104045227.2tzm2lcwi7kqee5r@lcpd911>
+References: <20241030044553.3225383-1-d-gole@ti.com>
+ <e3c4f895-71a1-481f-86d4-dfab1b61715c@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/3] arm64: dts: qcom: sc8280xp-blackrock: dt
- definition for WDK2023
-To: <jens.glathe@oldschoolsolutions.biz>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Merck Hung <merckhung@gmail.com>,
-        Kalle Valo
-	<kvalo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>
-References: <20241101-jg-blackrock-for-upstream-v7-0-8295e9f545d9@oldschoolsolutions.biz>
- <20241101-jg-blackrock-for-upstream-v7-3-8295e9f545d9@oldschoolsolutions.biz>
-Content-Language: en-US
-From: Krishna Kurapati <quic_kriskura@quicinc.com>
-In-Reply-To: <20241101-jg-blackrock-for-upstream-v7-3-8295e9f545d9@oldschoolsolutions.biz>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Ug9g8cPQUpCHaczIpV-yad96zKYoMhPb
-X-Proofpoint-GUID: Ug9g8cPQUpCHaczIpV-yad96zKYoMhPb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 priorityscore=1501 malwarescore=0 bulkscore=0
- lowpriorityscore=0 suspectscore=0 clxscore=1015 phishscore=0 spamscore=0
- mlxscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411040039
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <e3c4f895-71a1-481f-86d4-dfab1b61715c@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-
-
-On 11/1/2024 11:56 PM, Jens Glathe via B4 Relay wrote:
-> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+On Oct 30, 2024 at 11:17:16 +0530, Vignesh Raghavendra wrote:
+> Hi
 > 
-> Device tree for the Microsoft Windows Dev Kit 2023. This work
-> is based on the initial work of Merck Hung <merckhung@gmail.com>.
+> On 30/10/24 10:15, Dhruva Gole wrote:
+> > Add another entry in the wkup_conf for the syscon node, and then use
+> > that for the syscon in opp-table.
+> > 
+> > Marking entire wkup_conf as "syscon", "simple-mfd" is wrong and needs to
+> > be addressed similar to how other child-nodes in wkup_conf are implemented
+> > in the same file.
+> > 
+> > Signed-off-by: Dhruva Gole <d-gole@ti.com>
+> > ---
+> > 
+> > Since the driver fixes for ti-cpufreq.c have made it in -next [1],
+> > The DT fixes for SK-AM62x can be supported with support for legacy
+> > style DT as well. This has been tested on SK-AM62x [2]
+> > 
+> > [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/cpufreq/ti-cpufreq.c?id=1724ae88efcbcd0daeb203ffeb4a2c0e59f2ddf7
+> > [2] https://gist.github.com/DhruvaG2000/40b80cc04a9ac90c86445d6e67ece4cb
+> > 
+> > Changelog:
+> > 
+> > Changes in v2:
+> > - Deleted PATCH to Make the AM625 efuse_offset 0, because with [1] we no
+> >   longer break backward compatibility and hence need to preserve the old
+> >   offset.
+> > - Link to v1:
+> >   https://lore.kernel.org/linux-arm-kernel/20240902093222.2828345-3-d-gole@ti.com/
+> > 
+> > ---
+> >  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 7 ++++++-
+> >  arch/arm64/boot/dts/ti/k3-am625.dtsi       | 2 +-
+> >  2 files changed, 7 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+> > index e0afafd532a5..b2b65e31c7cf 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+> > @@ -10,7 +10,7 @@
+> >  &cbass_wakeup {
+> >  	wkup_conf: syscon@43000000 {
 > 
-> Original work: https://github.com/merckhung/linux_ms_dev_kit/blob/ms-dev-kit-2023-v6.3.0/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-dev-kit-2023.dts
+> Now that the compatible is updated, this needs to be bus@addr
+> dtbs_check should catch such errors.
+
+Oh yes, I'll update this. Good catch.
+
 > 
-> The Windows Dev Kit 2023 is a nice little desktop based on sc8280xp.
-> Link: https://learn.microsoft.com/en-us/windows/arm/dev-kit/
+> >  		bootph-all;
+> > -		compatible = "syscon", "simple-mfd";
+> > +		compatible = "simple-bus";
 > 
-> Supported features:
-> - USB type-c and type-a ports
-> - minidp connector
-> - built-in r8152 Ethernet adapter
-> - PCIe devices
-> - nvme
-> - ath11k WiFi (WCN6855)
-> - WCN6855 Bluetooth
-> - A690 GPU
-> - ADSP and CDSP
-> - GPIO keys
-> - Audio definition (works via USB)
+> Did you also check U-Boot and make sure no regression/update needed?
 > 
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> ---
 
-[...]
+No, I can do a quick sanity boot till kernel with this DTB in U-boot to
+check for regressions.
 
-> +&usb_2 {
-> +	pinctrl-0 = <&usb2_en_state>;
-> +	pinctrl-names = "default";
-> +
+Thanks for the review.
 
-On the blackrock platform, for this controller, are there all 4 ports 
-given out for use or only one ?
-
-Because if all 4 are there, you might need to give all 4 pinctrls (one 
-for each TS3USB221A mux select) here for usb_2 node. If only one port is 
-given out for use on the platform, then only one phy (of the 4 activated 
-below) needs to be marked as active.
-
-In my case, in [1] on the ADP platform, I marked them as always on for 
-all gpios on multiport controller since driver had no support added yet.
-
-[1]: 
-https://lore.kernel.org/all/20240707085624.3411961-1-quic_kriskura@quicinc.com/
-
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_hsphy0 {
-> +	vdda-pll-supply = <&vreg_l1b>;
-> +	vdda18-supply = <&vreg_l1c>;
-> +	vdda33-supply = <&vreg_l7d>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_hsphy1 {
-> +	vdda-pll-supply = <&vreg_l8d>;
-> +	vdda18-supply = <&vreg_l1c>;
-> +	vdda33-supply = <&vreg_l7d>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_hsphy2 {
-> +	vdda-pll-supply = <&vreg_l10d>;
-> +	vdda18-supply = <&vreg_l8c>;
-> +	vdda33-supply = <&vreg_l2d>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_hsphy3 {
-> +	vdda-pll-supply = <&vreg_l10d>;
-> +	vdda18-supply = <&vreg_l8c>;
-> +	vdda33-supply = <&vreg_l2d>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_qmpphy0 {
-> +	vdda-phy-supply = <&vreg_l1b>;
-> +	vdda-pll-supply = <&vreg_l4d>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_qmpphy1 {
-> +	vdda-phy-supply = <&vreg_l8d>;
-> +	vdda-pll-supply = <&vreg_l4d>;
-> +
-> +	status = "okay";
-> +};
-> +
-
-[...]
-
-> +	usb2_en_state: usb2-en-state {
-> +		/* TS3USB221A USB2.0 mux select */
-> +		pins = "gpio24";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +		output-low;
-> +	};
-> +
-
-Regards,
-Krishna,
+-- 
+Best regards,
+Dhruva Gole
+Texas Instruments Incorporated
 
