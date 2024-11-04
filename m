@@ -1,125 +1,208 @@
-Return-Path: <devicetree+bounces-118871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CC3B9BBEB2
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 21:20:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 072219BBEDB
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 21:37:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 960451C2164A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 20:20:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B3061C21E5B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 20:37:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 650A81E3766;
-	Mon,  4 Nov 2024 20:20:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5118E1F5856;
+	Mon,  4 Nov 2024 20:37:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EsfWxSZx"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="A0efuFFB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2072.outbound.protection.outlook.com [40.107.21.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37B1A1E25F1;
-	Mon,  4 Nov 2024 20:20:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730751611; cv=none; b=HYTTpfKyKv6BOJqq4dP526jDEOOS8jFr9aZSSqk6MACy+FASRHvxXjYw8ezhnGWSWY8kqqdU8Z59ujfGZg70hiGShY+LtdrrrANoQ+pWEyZy6kl+Rf6kETV+uSLUrbVQ7JJyFvWJHISfcsTPVES1QsE66M6MXvEhHIUxOWesOl0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730751611; c=relaxed/simple;
-	bh=F35QXu0CPb2RNTi9cqqHOPETxQ69DznhMqoB8u7EK/k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SRWhGUen4bT6GXg3eZhO1BQ4agN55/jZLrIHB1TYCn+YnND1iVrwCVEXgwTJFFHqEa0yMDi5C16wt9vl36CBiV836NhFmZUk7aq6BcaHby+0iVHYThxruflabKIN8p169uxwqjYmXDyL/5D+N5j71u/PZuVbINj9HGt3xQxPi1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EsfWxSZx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88909C4CECE;
-	Mon,  4 Nov 2024 20:20:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730751610;
-	bh=F35QXu0CPb2RNTi9cqqHOPETxQ69DznhMqoB8u7EK/k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EsfWxSZxcLob+OpZQ/6kbeznGeNpk12qsGwzGZQQkwQCFfQv4+n7/UuPxDhC8ZLuN
-	 LVONQaZrfhhnRtFu3RcJKdQ34vOBPhLr/g0U8Rcn/BW2RVHx2ZvRvgv0eXVGWGBVIC
-	 LojWYoLqFkP4jEiG53jwIwRW6Pl6QMy1U0/lKkAgs8E8PueJYc++VDvXYNBKz3ZFwe
-	 XuJI3NW2XZllYTLrRXChbGsMwwCiSrP8NcYu2bky7Kyla7nIacFa/ltzkhFWIBRJUu
-	 FnP40w1Bq37G4EPw8KAe5X6KjceW84wHqKVkTKJe7bRh7DriDS8p6bcWBJUk0aEQra
-	 c/rrnl387nMlg==
-Date: Mon, 4 Nov 2024 14:20:08 -0600
-From: Rob Herring <robh@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH 2/6] PCI: of: Use device_{add,remove}_of_node() to attach
- of_node to existing device
-Message-ID: <20241104202008.GB361448-robh@kernel.org>
-References: <20241104172001.165640-1-herve.codina@bootlin.com>
- <20241104172001.165640-3-herve.codina@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D441CC177;
+	Mon,  4 Nov 2024 20:37:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.72
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730752623; cv=fail; b=chFWDwq2No0Rlb8vQetIpykQ6m2iazy9KlrP2SYHS+MzdQdrfct/yT2x9wFllj/U+vWdKc2dHCBfflV4vgOrq/rEIUJGb9HGWD08slOp6VlWvmElqVKGGtvXo4KX53X2DbPHELjD40fUXllBzXBOpmY4oIOwVwJ0g6qAfuYfMDU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730752623; c=relaxed/simple;
+	bh=msCWuu4TTtIn+8BcNHdP95TMGllUJZAhrC+Vfz6VZKk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=lNt2l3TpB0tjNtxG5PPDoa2TAiCd+fhBRrjbDe4qfbLoLFCfhf1ibYVgaWNo3mZFlCvPokQEjt7Zf9d0kruwPslc0SCs7sk1Y5QqDygpeirXFgXH24m4CpBJ9jYzdq/ad7fnKWae4TP8lUcuon6chUk/RyjK4EklhW4rShiKeUs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=A0efuFFB; arc=fail smtp.client-ip=40.107.21.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=r96qyLAugTXEsnYXTMmyLvMlP580XU+fjnqf67dUgIDSveGfamln/PmuKntJhiV67EsE6tg3lzpQ02/Q9vxWJ95+QOvYkA8PoEYKBom3oa708B1sioaE7gW4Fs3PRyB+T7PKIyakGZi6Gqq7NPshBCFzE5jmaxR3pMwpnItdZxbxbql2zyeeBWpOHSzSmj/7Du9PLisOqQn/u9ixKnQzMKyXf8Mq3B1cuDj0BoEZ1bh8LyTWlsZE0rK8TO829gxWmkncie6tOcej7KMF2OmlPHcY7wywFtRqZ5UekKBr5YEgAPpsY36EHrxvDpG4KyVf0dV8ZlYrkL5kUTKsMVm74Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XQwoN97tgocea8vqp68RRcLJ2uJu0fJc6R/WoXPr/VQ=;
+ b=ctMEdQrOL+nc8/KTAZ2upQZUq6fm++X367B40ZeDkL+FtVJ1upu7GBu9gAJ94vQ1fMx/24o/AMAVGcc3imCKBkJ9sLvnOloA0Zsr+S4OmSzBlkKNN9z75X+LEZ65JI2PVrfbndgkYunJkQHmnNEE3fb3AAM0TdRV355mpuoOvICmzbhRAQ3xdbC9RqWKfFHilWUsEfpC3Vq8SbpsiCYQJQqn7bhn9mtX1rpvsFyGftcRMO74MdMBDhKLdzcf5LY2tuNZlSjFCDkwYnznqvcLEuUyCC+5/wPhEUPDodPUMGH6Zcod/rROnZZRkyCMjEyPBi1NVoHNipeRQXq6NmXoww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XQwoN97tgocea8vqp68RRcLJ2uJu0fJc6R/WoXPr/VQ=;
+ b=A0efuFFBEhN0U5M7p51JuzjqaU4nXnxoHFPGPp11Bs1eoC23liEfzU4hy06iZwe16p4hKhX5nAbhby6d4OV5crN6f+5s6pumGpHiuM403Cspl43DL+pjuCKKtb9TBoHkI0ciCiTvQY5PFeZM3hDaTDglxj3hPNvNn/nHT6TezrKK34Q6lZ5zxKVfvIBoNM1lUc+OsJo5kM7OOdw9+NiZWkbLT8q86EVB7MCAQjDHtQtzeWYvEPjrIclyiYxFWfvFSaPyJzlNy1S7tIMeL8WLK+YYVgS3pFnY1CeD0S65qVRVCQYcvBACl+yKrRongGMA6VxbmMox/xx0Hg2kSkW5PQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by GVXPR04MB9976.eurprd04.prod.outlook.com (2603:10a6:150:117::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.30; Mon, 4 Nov
+ 2024 20:36:57 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8114.028; Mon, 4 Nov 2024
+ 20:36:56 +0000
+Date: Mon, 4 Nov 2024 15:36:48 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Shawn Guo <shawnguo2@yeah.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mq-zii-ultra: remove #address-cells
+ of eeprom@a4
+Message-ID: <ZykwYD67p+Oug/kG@lizhi-Precision-Tower-5810>
+References: <20241018183117.740439-1-Frank.Li@nxp.com>
+ <ZySVlU2gPSN3KKSl@dragon>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZySVlU2gPSN3KKSl@dragon>
+X-ClientProxiedBy: SJ0PR05CA0095.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241104172001.165640-3-herve.codina@bootlin.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB9976:EE_
+X-MS-Office365-Filtering-Correlation-Id: f2b6eb83-ae33-4524-5c9c-08dcfd106cb4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|7416014|376014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?49DahJ9T5ZJ7A1mULFMZudqoGoQJkt73ribKkoJT6hgR3Pk8kzWEaZpIOThJ?=
+ =?us-ascii?Q?GGNkBYAh3JvKR3xw1+SJahUV5hsFL9cXTJvNzIYQ15fReV+wmp9whYCg+MVk?=
+ =?us-ascii?Q?ew8njMD1A3p9oVjWgYc9/ANUvMU7ycXHwf291bYbIiCVuQhjxP/I7AqaFlEM?=
+ =?us-ascii?Q?ex/EBBeKmeVAtacXNq5+kj0wHhQtnpI9ryrfqedMfgGs/JYwKiRXFxL4ahhb?=
+ =?us-ascii?Q?gNcJV6EDU3XGPtXorYd5QIF8sJtP3Txg3pNsLE75sDhN2gHS4E9BVc15Xaxq?=
+ =?us-ascii?Q?SoBaO93TObTm6Yr6ZwNz7fWiwTPiyxWVoZxaVbPRjTQ1EZ/4CQZrgULvzfe/?=
+ =?us-ascii?Q?GjDOdkMqyU/A2ccxh5mmXOdjnKO1DGa6IhcqZoEtLt0OhTuNnM5Y+M3yVpCe?=
+ =?us-ascii?Q?Kn8PKdub5HDa7371bzYhIkEnaUkr3vNu3wQqNzD4CCYCZqHX6FyWGUEi4UxB?=
+ =?us-ascii?Q?Sy2VTxONFHf3G+x9KuqHkQJD87X+QXBWjr6Ly43RswuyGiWAc7ubsdom0cxd?=
+ =?us-ascii?Q?yZxS+eYVxkRSNT2oIbz7JByvhgmkP9aU/B8Z9IA1Yn+thnLZL4SSrWSVTfW+?=
+ =?us-ascii?Q?NevGCRwMHghVSbGkW23zw6HMkRKuI0cAt8OocKeuX81PYuRFfM07mUhHfyL7?=
+ =?us-ascii?Q?dwEn2RVW0i+SCa+TzAEh67Oj3aMVUiMAT7dAevoAxd1fpjpts/wcwh8iIzQ5?=
+ =?us-ascii?Q?/SYr3SerIVm5qJZ+dkTEX41ygcPKb3a7N/8PSSDUAMBX4y9iEv+SvE8sxQzH?=
+ =?us-ascii?Q?ZU238T78Dw7D8cIo1OrGa+sucQ1sO2tSRK3whzty51YhpzG/ZiIsM/6FYtGX?=
+ =?us-ascii?Q?v9yAF8EpsS0aDxYKWpPhpM0Y4YS0JbMwzbPMg0BJwm0g1sP1i7fwAYOxGsLB?=
+ =?us-ascii?Q?VhbR9BYC0ZO4ufhbfcRKkB2lhbE8hxzmxDv04SqkZXX5rbvmyU0Z/lGS0oKs?=
+ =?us-ascii?Q?VajLhRGvNEzcMT5QWmmHEMgIiuliIycGTCoeV6GgihNbl7Dz1yWUkZB5vAz0?=
+ =?us-ascii?Q?z0xnedlRNLRhdMUNDMqVc7bEK8R3Zq6xfyDKYO6zZqvpMV27QBhSEfilhnio?=
+ =?us-ascii?Q?IQxhkYCUMKWGjlVBvHIjuV8iAlclyjk/P/5R9ysf94RySGP8hbGl/BelkG1k?=
+ =?us-ascii?Q?XIf/OoRm3KrV/7Vle8XH4XWw5kAwl09qo0RVpEah6Rl0e7cZBAM2B50VfM/8?=
+ =?us-ascii?Q?IwCp5+h/Qqp/GrU33DCjZg1YOEnWv4zLruTAY7boZIw1/oMYR/jctVW86pHO?=
+ =?us-ascii?Q?vmKoX/ost+QSraseJAnnC2lugyMPHYT19OwNqNSWdwrZJBIpNHi/GI9YQ8G9?=
+ =?us-ascii?Q?P3CRqXdOSaaYeAQ/QXiZGYc8wTc4HObs/LYGZd+UJJRouyfelxIjXm+y3pz9?=
+ =?us-ascii?Q?9d2s0RE=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?eAku4L6wAXkN+H9xwxszaxMfhjZio/ijRXI+jRH87DdZGq4EVxbB0HU1tViu?=
+ =?us-ascii?Q?Ok/ASXmAFNTKaL7/g8wMe8dP0DKuu1Hn24LSBshorl3PPnY4QPQYyb2exqGD?=
+ =?us-ascii?Q?HibLwot3d+5jk3A7uGyLjCTgafibHqKuTfiqvkFJHWiKR8MoZ3ooy+c3XRj+?=
+ =?us-ascii?Q?KAW2twiOThU6byZgaDUJgyVaBhGRuvnAZP5didwlkZ6VODhLsxLWvNNEKW7w?=
+ =?us-ascii?Q?LzRrAmGeURpo1AE4HQFkUioTed4eQkGeJ71Vf9J/V4wXSEAqr4Q6RR2W6AaQ?=
+ =?us-ascii?Q?00aw+9HsNDtJzawCGABOfHmfU3CqD3b7JXJ+fnYPDrosqpkoQQv6diUDmn2F?=
+ =?us-ascii?Q?P9VcWxMvzU1GlqtOtlJtmzqUQWB3pP76VgfRfKoB8oTrxU6u/yMY1vSocnTt?=
+ =?us-ascii?Q?gVKhYftsyIErova013izzWcYDW27cmcNQj1FqpoCHzEnYRaT93ibj2KE5afw?=
+ =?us-ascii?Q?RSh3ndhFJCN5B3yEBIgVMoyV8Vw3Hn2oqD05nUeeLtW8+76xlIjsHYZU19r7?=
+ =?us-ascii?Q?IIUvve3mMXgsZbatILp6KTOdpgThq22jelT52cjNvIvnFlPzwfjcw0rhDzlW?=
+ =?us-ascii?Q?IPWJDneEAVLLavoV3nJyQbM058a0mvMHjtSCV2Li3lta6+uFW7bLbs+JNVfY?=
+ =?us-ascii?Q?+4xxCeZZ3BSZv9v+1QFlmLfHydaqrbEyxXUBme4j5SGgTRE699xlJG/OeYkR?=
+ =?us-ascii?Q?0gQEVfc3ZpQo5m5W82ii7SB86lvq5ZzUeshrYFFksEbrLmDs16ET2ubWtUZ/?=
+ =?us-ascii?Q?jvj2PqoC20Db1N3PD3iuclQqxcOEkxYjni/z4JsckwYvw9clbJ0qYRAVySxp?=
+ =?us-ascii?Q?PW38wvl83GMVGgM9a5J4LHPjnhB/j9WAMVbMWNoAa2uaPCOU5cyPLkWIw53v?=
+ =?us-ascii?Q?4I5VOvLDTo39Ytipvp2wsK+yHbQqquv5v9Rs7LVeCXWSL5vCrkpJJYQ29weK?=
+ =?us-ascii?Q?MYrcvthNvdi2cmepZwXOHlePsmw/6oCVWizlZCxXjmqkE5n6jO0sOd0kH7eA?=
+ =?us-ascii?Q?wAeTlwbhzdCta6d77w4//s568+7AuUnNL5HZMv8PVVrv2VIvr5AgHUzpLLbJ?=
+ =?us-ascii?Q?1tcZsSysfCBpM9QI9bQ/UoJydr8rpSCz5UGBtIHSH58KbO5eY3Pj2+jq/mUr?=
+ =?us-ascii?Q?RAHuUcs9QCd1ZMWOxWkOvwEGGojvlyDZTkSYpdJ9Y0hnM0QgB1BRCV9k2kj/?=
+ =?us-ascii?Q?7spVNNnCa+PX6aFHHzzyIMwTfzv4o5qP9WwxAljLNGW4/K+xFgwAGBCX+fbM?=
+ =?us-ascii?Q?PI2EemCLzkE+DKnO4sNRcgKAOzkD4apQeO1oFrI6YEIVq9hPZ9Y6HtB1sFwB?=
+ =?us-ascii?Q?+QytMIJ9O8u8zxx+wt8A/q2trqawqWLdSxLj/YwznPKElZpRJuOYFIF+9gIf?=
+ =?us-ascii?Q?SHw4yBDaBip7Dtbj49D7jjsn1LmIqHVA6yLY2AJNA5SaXkBNLvFdaSEjFFio?=
+ =?us-ascii?Q?HzL5Vq+J38jfT3lPB4WkuuuZbGg06B+sC3AOBlw2OgDO/HnE3CRQynkayB6k?=
+ =?us-ascii?Q?L1KiwZ6mV/0XLL3bLD3EXGQMOY7QdevaJHMdowGQL0Ky076ifZ4otdE9c/AO?=
+ =?us-ascii?Q?bS7f6P9GdnooCOIEptY=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2b6eb83-ae33-4524-5c9c-08dcfd106cb4
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2024 20:36:56.7879
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MUJu7HAcD8GNKfe+hdgjqTiMA8UqVPIOOjQkPLIVsSLXzgeo8kItLzuh2T7roG3tv2dx5Y7fA+gJwYEB37utIg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9976
 
-On Mon, Nov 04, 2024 at 06:19:56PM +0100, Herve Codina wrote:
-> The commit 407d1a51921e ("PCI: Create device tree node for bridge")
-> creates of_node for PCI devices. The newly created of_node is attached
-> to an existing device. This is done setting directly pdev->dev.of_node
-> in the code.
-> 
-> Even if pdev->dev.of_node cannot be previously set, this doesn't handle
-> the fwnode field of the struct device. Indeed, this field needs to be
-> set if it hasn't already been set.
-> 
-> device_{add,remove}_of_node() have been introduced to handle this case.
-> 
-> Use them instead of the direct setting.
-> 
-> Fixes: 407d1a51921e ("PCI: Create device tree node for bridge")
-> Cc: stable@vger.kernel.org
+On Fri, Nov 01, 2024 at 04:47:17PM +0800, Shawn Guo wrote:
+> On Fri, Oct 18, 2024 at 02:31:16PM -0400, Frank Li wrote:
+> > Remove #address-cells and #size-cells of eeprom@a4 because no children
+> > nodes under eeprom@a4.
+>
+> Hmm, bindings/nvmem/zii,rave-sp-eeprom.txt suggests there could be child
+> nodes?
 
-I don't think this is stable material. What exactly would is broken 
-which would be fixed by just the first 2 patches?
+"Data cells are child nodes of eerpom node, bindings for which are
+documented in Documentation/devicetree/bindings/nvmem/nvmem.txt"
 
+It should be optional property to declear offset, such as mac_address, or
+watchdog_timeout value.
 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  drivers/pci/of.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index dacea3fc5128..141ffbb1b3e6 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -655,8 +655,8 @@ void of_pci_remove_node(struct pci_dev *pdev)
->  	np = pci_device_to_OF_node(pdev);
->  	if (!np || !of_node_check_flag(np, OF_DYNAMIC))
->  		return;
-> -	pdev->dev.of_node = NULL;
->  
-> +	device_remove_of_node(&pdev->dev);
->  	of_changeset_revert(np->data);
->  	of_changeset_destroy(np->data);
->  	of_node_put(np);
-> @@ -713,7 +713,7 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
->  		goto out_free_node;
->  
->  	np->data = cset;
-> -	pdev->dev.of_node = np;
-> +	device_add_of_node(&pdev->dev, np);
->  	kfree(name);
->  
->  	return;
-> -- 
-> 2.46.2
-> 
+Here is no children nodes under eeprom@a4, so needn't #address-cells. It
+should be added only when add children nodes.
+
+Frank
+
+>
+> Shawn
+>
+> >
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mq-zii-ultra.dtsi | 2 --
+> >  1 file changed, 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq-zii-ultra.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-zii-ultra.dtsi
+> > index 0c960efd9b3d5..c7bbba45f3685 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mq-zii-ultra.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mq-zii-ultra.dtsi
+> > @@ -517,8 +517,6 @@ eeprom@a3 {
+> >  		eeprom@a4 {
+> >  			compatible = "zii,rave-sp-eeprom";
+> >  			reg = <0xa4 0x4000>;
+> > -			#address-cells = <1>;
+> > -			#size-cells = <1>;
+> >  			zii,eeprom-name = "main-eeprom";
+> >  		};
+> >  	};
+> > --
+> > 2.34.1
+> >
+>
 
