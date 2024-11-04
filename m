@@ -1,137 +1,77 @@
-Return-Path: <devicetree+bounces-118771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2E129BB811
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 15:39:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 048889BB821
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 15:41:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 202D41C24634
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:39:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90C4D2856D1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1C641BD018;
-	Mon,  4 Nov 2024 14:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cRn/+vtb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B99F1B4F3E;
+	Mon,  4 Nov 2024 14:41:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E3C51BC9FE;
-	Mon,  4 Nov 2024 14:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBBFD2AE93;
+	Mon,  4 Nov 2024 14:41:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730731165; cv=none; b=bYAccXl1HL53i5GstnWeIIgGh4mvCVoG9ott/9YJKUC2eLNgoPMctTipcsdBhgafr4eJETHB3zzqG3A5ieup/YD5djx/ZJp+lkVCN+FHRTL2jA2mllffeKCv7RfNk2YCinFiPd+bqBRgU4q1ZW5G+ft+4Hd7hn37pZdTmMySg1g=
+	t=1730731287; cv=none; b=bCt1euLQcy6FItJTEDsZWWXDgUBC4Qge5VkJRS5jeCmCYktJOr/DpB/ADhR6kfBNRhnD4pbvsmKS+UR1YYpbqBZ6fbXtzhTa38wqaJ+56wpmpkPKr02XYcVSBnZysI6oKS9T+w8Wp9vLwdQ5AfM/vyWyhUS1fhOVMxkN8cNg4mE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730731165; c=relaxed/simple;
-	bh=uuNW8QkqgnaDeBYjYCEj/zDRiaDiB3NGiL194aT02nA=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=sOe3qccXf6kBI+IbQvFUrTTZ6C+epx8SMc5nL31zb57rlIw9KT/sh0PHHMQ6dGczCB9NdZZ4Jt00doUp7/1WEV9GXdHy5v/6C7gaxCvLgiAS88XQS5oNB2QinJmQx3oStD7LC6Dj3vEN8Aue/hBeckSawh2MTp0izdArHg/pKb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cRn/+vtb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3B03C4CED1;
-	Mon,  4 Nov 2024 14:39:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730731165;
-	bh=uuNW8QkqgnaDeBYjYCEj/zDRiaDiB3NGiL194aT02nA=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=cRn/+vtbSTam1Cs8Yl9oy23CvCJS08Zp0BZeig6G3nUi2Sm3Zl1DNOYMI+4ktZPVU
-	 eT930TVQMEqK5Z4NG2OCjLFwh5S3Q7K7cpKWRFeKa+KhZc+KYE7ruVB8f+A1YQex3W
-	 8G/qtAUPzZ9vLE63kJaYqThzf7mUqdGbIO4nRLCSOjNV7nZXteyaQWALOQOH0nF4YK
-	 0LvPU5O5h23KF8+dR30UxrV7llNQNvdCfOpM4mvCDoDHs++qWBA4Yx+n5bWMr++b19
-	 HVbS5pvttFfD2tlHSHnEHMbsxzU9kX2lCn7+N8t8icqFPq6EbjfZD8+JHurPSuurqM
-	 a//QVvoJooYzw==
-Date: Mon, 04 Nov 2024 08:39:23 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1730731287; c=relaxed/simple;
+	bh=IeHY557XIBW2uvlyi1J/3/7e+moNgw/Ilc7cUzJxNRE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FOMna8vO4NoSLFO5cxPUuZDR0z7fXJZ3XrR1I9F7TvsoW80+QrDGBKuFgSpZCPwbLMf9rDTqtMxM1hWdgLjtY4TPG9WOvpYdujc+A2hP9LcAu5vSazXFqYNgn/OA9TB/Ec/kGsbByZGx61rp9GB2PwdCuhrbJ1c/dJwD4gnM3Hk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
+	by Atcsqr.andestech.com with ESMTPS id 4A4Ef5F9068300
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+	Mon, 4 Nov 2024 22:41:05 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS34.andestech.com
+ (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 4 Nov
+ 2024 22:41:05 +0800
+From: CL Wang <cl634@andestech.com>
+To: <cl634@andestech.com>, <alexandre.belloni@bootlin.com>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <tim609@andestech.com>
+Subject: [PATCH V3 0/1] dt-bindings: rtc: atcrtc100: add Andes atcrtc100
+Date: Mon, 4 Nov 2024 22:40:52 +0800
+Message-ID: <20241104144053.1136083-1-cl634@andestech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Cc: Tero Kristo <kristo@kernel.org>, linux-usb@vger.kernel.org, 
- Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- Devarsh Thakkar <devarsht@ti.com>, Conor Dooley <conor+dt@kernel.org>, 
- Felipe Balbi <balbi@kernel.org>, Hari Nagalla <hnagalla@ti.com>, 
- linux@ew.tq-group.com, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>, Nishanth Menon <nm@ti.com>, 
- Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
- linux-hardening@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
-In-Reply-To: <cover.1730299760.git.matthias.schiffer@ew.tq-group.com>
-References: <cover.1730299760.git.matthias.schiffer@ew.tq-group.com>
-Message-Id: <173072771143.3690742.7100697196468196200.robh@kernel.org>
-Subject: Re: [PATCH 0/5] TQ-Systems TQMa62xx SoM and MBa62xx board
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
+ ATCPCS34.andestech.com (10.0.1.134)
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 4A4Ef5F9068300
 
+Document the Andes atcrtc100 device tree bindings.
 
-On Mon, 04 Nov 2024 10:47:23 +0100, Matthias Schiffer wrote:
-> This adds Device Trees for out AM62x-based SoM TQMa62xx and its
-> reference carrier board MBa62xx.
-> 
-> Two of the patches are adapted from the TI vendor repo ti-linux-kernel to
-> add RemoteProc/RPMsg support for the R5F core. A similar patch has been
-> submitted for mainline by TI themselves for the closely related AM62A SoC.
-> 
-> Not yet included are overlays to enable LVDS display output and MIPI-CSI
-> camera input.
-> 
-> Devarsh Thakkar (1):
->   arm64: dts: ti: k3-am62: Add DM R5 ranges in cbass
-> 
-> Hari Nagalla (1):
->   arm64: dts: ti: k3-am62-wakeup: Add R5F device node
-> 
-> Matthias Schiffer (3):
->   dt-bindings: usb: dwc3: Allow connector in USB controller node
->   dt-bindings: arm: ti: Add compatible for AM625-based TQMa62xx SOM
->     family and carrier board
->   arm64: dts: ti: Add TQ-Systems TQMa62xx SoM and MBa62xx carrier board
->     Device Trees
-> 
->  .../devicetree/bindings/arm/ti/k3.yaml        |   7 +
->  .../devicetree/bindings/usb/snps,dwc3.yaml    |   6 +
->  arch/arm64/boot/dts/ti/Makefile               |   1 +
->  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi    |  24 +
->  arch/arm64/boot/dts/ti/k3-am62.dtsi           |   8 +-
->  .../boot/dts/ti/k3-am625-tqma62xx-mba62xx.dts | 917 ++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am625-tqma62xx.dtsi | 346 +++++++
->  7 files changed, 1307 insertions(+), 2 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am625-tqma62xx-mba62xx.dts
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am625-tqma62xx.dtsi
-> 
-> --
-> TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
-> Amtsgericht München, HRB 105018
-> Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
-> https://www.tq-group.com/
-> 
-> 
+CL Wang (1):
+  dt-bindings: rtc: add atcrtc100 Real Time Clock
 
+ .../bindings/rtc/andestech,atcrtc100.yaml     | 44 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 45 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/andestech,atcrtc100.yaml
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y ti/k3-am625-tqma62xx-mba62xx.dtb' for cover.1730299760.git.matthias.schiffer@ew.tq-group.com:
-
-arch/arm64/boot/dts/ti/k3-am625-tqma62xx-mba62xx.dtb: syscon@43000000: compatible: ['syscon', 'simple-mfd'] is too short
-	from schema $id: http://devicetree.org/schemas/mfd/syscon-common.yaml#
-
-
-
-
+-- 
+2.34.1
 
 
