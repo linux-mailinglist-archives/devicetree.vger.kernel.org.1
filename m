@@ -1,116 +1,108 @@
-Return-Path: <devicetree+bounces-118712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 222679BB540
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:02:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EFFA9BB54E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:03:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA035282B3B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:02:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06E54B21521
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:03:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87AE41BBBFC;
-	Mon,  4 Nov 2024 13:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414901B6CFE;
+	Mon,  4 Nov 2024 13:03:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HprVWzZ+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g9HfkBhs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1743618A6B6;
-	Mon,  4 Nov 2024 13:01:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930D7381B1;
+	Mon,  4 Nov 2024 13:03:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730725316; cv=none; b=nIut/UI3jLk6zhdTDqPDO0Q+/I9lTLweaB72/caiNqx4Ru/MY8wSVaGEDy/3vU9Ns6dpAClftqzEKyUHZjaNV2t9XZgJ4zWZNzPp2dtNd0WkrLRCaWVpgiCnu3U/Y2R/POTGuDzxcvGKC3UlyCNV2XwwBBLkW3faY6PoXvlFYx0=
+	t=1730725413; cv=none; b=DfX37Yj0FGhDIuC/PrXWHSZZBKdGG3lJ8s2Q4Lui6KutW2sskSP6G//IqCsZVYV7qHAuUGOli1PW+bCBgerdFYxcQM8RB6KM9hWTz4aSidrth5sL971L3QlJQ+TYv73dvpW1Fy5BsqnwP+iGDgTHEWglI0mHXTQtkOEcrBOMR9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730725316; c=relaxed/simple;
-	bh=BiYRTqlQ9T5SIEINIuQ5NyZrV1T5NtgJq9XawCRDYfI=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Mk+1IKqDObA3y3joDYPALNDKptGorTgNWDHPiLn0A8vNPJ+wo99JRvlduJ2/Wj98nv7lN7hqKc7Ll5ofR86hil60Luo0y+/Ha7AugTLlDecBX0oiZHQKBWRyu2PtX0Y1Gu7cLBYfnwnMvA6q5UxgF/52l4PqLn5V23WQ4ZweAyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HprVWzZ+; arc=none smtp.client-ip=209.85.214.196
+	s=arc-20240116; t=1730725413; c=relaxed/simple;
+	bh=bYh6V3K5DjFWn+ofN6Mv26qITEiIb8G7g1SR2SXl+ro=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=i17krdq3YBvmeSGF6IF+Px3fAVKrir2lOJY6yQIYolE0ifL/suGRriKZMUbljWgwV87ayaz8A1ZwW4WNwSRJ9ba7YhMlgnd0HLrkICumnR1/H4dhuu9xvTKAzWeCAI4NwFpfsk0T04HsRN546t/Zajn/5qYQpz021/zlHYwJK4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g9HfkBhs; arc=none smtp.client-ip=209.85.208.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f196.google.com with SMTP id d9443c01a7336-20cf6eea3c0so31869345ad.0;
-        Mon, 04 Nov 2024 05:01:54 -0800 (PST)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5c903f5bd0eso7569873a12.3;
+        Mon, 04 Nov 2024 05:03:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730725314; x=1731330114; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:cc:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20230601; t=1730725410; x=1731330210; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=y5vDGuAIRKGG7+0YjIAG/Iu7B9p1N90ZoOHqeFvhx2k=;
-        b=HprVWzZ+9CYMJDKUa0znRLFswGDL20cXCq9y7prLUke6OnSF0YXtFy2gDoTlojzjy+
-         rHTcb/WWXuZcUoQBUgmnQS/hbDmD0395ZGSFeA8BdMcYvaKDuQINcnRx5rjXlW+iiM6E
-         uGTiOT6/q0mlLwccnOVP2wV4hafPQTTyYZmiThRqhVvYeDof8mC3q3NM36108HeeSPzC
-         iN1cFp4kGHRrkCV9VU/j9zMcmCJZZMxjGCdXHwkhnISQy8N0IR6WyOVQdIu5KZQ/0NyW
-         B0pxRyT3z136f3AKmtjy85rdwfnXaDRtv6A9ju55aG8KS7/9H8i7dlNvB1OYtLzqR/0a
-         s9ZQ==
+        bh=6ZIvZCeqy7RfdP5tDZOW6ypxwB8F2fLxo5+2BC+8L5k=;
+        b=g9HfkBhsehm2oW0EKGr17tIsxCLWXUKcZaytCoirsc9LyyUgpIXSAh000h22paTtVy
+         gUuqCTWrYjANzbztHTNI6gIuDbmCN2VaAtwYF3bQwPBCieVYT7G+QlMMJVDJR0v1YJsD
+         SSgphUL2zam4k7QOzopNrk3bkF7xo84Srr+F+HiGqts+g9cPyouKMKMOe1bSpU3JLcGl
+         ngdF7LkOKbXzXmhhlQzhCVA1Wp6VVScJv1pppSg8XU00BMP2GK9+cAuwaNtb7b238xOG
+         UwbrPY+XwQhfmMak2voWjS2N6EXIPflzO+1HdZHHVChVTrCy4R5/dcs9zx3RUPlki4/X
+         oFTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730725314; x=1731330114;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:cc:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1730725410; x=1731330210;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y5vDGuAIRKGG7+0YjIAG/Iu7B9p1N90ZoOHqeFvhx2k=;
-        b=Ltk2sEU8y6xUjQKewJfbH4XC0l5Gko1KA+xbi3H/imJWIDYAOreDHqcIk9FJ8G7wV+
-         mq4fRhkDrguhWxExGomFADOVdXIzx7JT7rfbxicarA0Ze+8LrrG9NG62uciC4GInZuij
-         XDY3LtgEmZfwgGBU6Uc8auwYUVr/+hn2S2QOkBEEruKbza+KMsizv5UpPC3SyV3cHtrN
-         xIG88hBV9rv+BlKjXuiKhPR97w2hBGKv+alNkk2VjVVJb7ff3JPztv9fWvWjGP/g/gnG
-         SRzBtTP346AU6DHsm30/Qkwlf+ZtSgnS8BBKRYgwx0kCiioJnTW8ILuOaVSHhdYaZDbo
-         Uahw==
-X-Forwarded-Encrypted: i=1; AJvYcCVjdcVSKPR3TwhBNSSCfFlNWKXpq4v3bzvg6eqT3C+xXt0VZrWsd5qpTo/WelNf/0QykEOIRVpMD/yj@vger.kernel.org, AJvYcCWBU6tkGsFmgzr0wX6A5fVDQ+7s69ge83Xrh1HwO/HIlMGqKcnhhJsA0aM8qzH/zRdDzg/tIGNDjLDN@vger.kernel.org, AJvYcCWiJx+F2J5kYuZSQOm8lzui6XUfd2ksswCh445PrfAbnipUAzuIzjJ53c+0KsbngojxI/9AHTCAQcUaa/Rz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+AZPpCzDcyICNtqtFLDqbrn+DTYB39bHZXJZXi6lA6VEt3qn6
-	t1WafMfrk6bXv6jp9Fu3iDA9BykgawhDZfxC6e2PGzyC2+XbVzv3
-X-Google-Smtp-Source: AGHT+IEM0Q3G/62bhXUw0h9w4pdtwquLGh3tZcGwf11n11w13Li3mRc8Taxp/JLIt3CimlmCP4HY8Q==
-X-Received: by 2002:a17:903:41d2:b0:20b:7d21:fb8a with SMTP id d9443c01a7336-210c6ce60a9mr370052365ad.61.1730725314268;
-        Mon, 04 Nov 2024 05:01:54 -0800 (PST)
-Received: from [127.0.0.1] ([2602:f919:106::1b8])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211057a2bf7sm60238765ad.173.2024.11.04.05.01.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Nov 2024 05:01:53 -0800 (PST)
-Message-ID: <ff300296-daea-4113-8597-62f7a5f61d9c@gmail.com>
-Date: Mon, 4 Nov 2024 21:01:47 +0800
+        bh=6ZIvZCeqy7RfdP5tDZOW6ypxwB8F2fLxo5+2BC+8L5k=;
+        b=gYWA4Y2chGPG0jG1Cb3cVOPJc/1SXde67erVXGf5y9Bivso/oiwR+bQHks9UJsEs96
+         mC8aC1j3lc2ISnLWggAjLsUhB3XH4TPvlsngz4c59Tbqx6+dnPhRO/gZRX8avUaNQBrQ
+         HwtQLvelEDF5L8VtvuzsfkAuhIRAquGxyT17TuF7tCcKCYScLRjI1suoWzT3k4TiSoSQ
+         GnonzRExvU1RhfHX/eTiddcr5ogVB44ggcVeuZqLc4O7tHD+6Zsbx5HwOOM8wQUjf7XA
+         Yfp0YSpYccb2fkJoLLztzg6BhEOKo/0N5d7wqee8lqIjbBc7lVBQGfmMFBkwWd8PIYaL
+         MqQg==
+X-Forwarded-Encrypted: i=1; AJvYcCU30359fBFobTcR4bywQwEEYB2rG4Kzbkw21pa9wjQla2bY2ZvRCB8Y8CXQfmdqfycwRoyQMwsGQcR7kGwS@vger.kernel.org, AJvYcCVf4qL4SlXaDbPA3Hru4EcWGABLvmAFILwLuU9TwgCbi37AXfc66n3PhDN3g2aGBZotGqd+7uK4IkNy@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvmXFf6qqBeoKTUAPGIhG1juqFAOUcO4KII+H0d8nQj7e49uYy
+	/WKjayF+QH42qGoRgPqhpu54QJbNV//hVObIRxp5H2bSGY/hVizY
+X-Google-Smtp-Source: AGHT+IFaOtQwdKPI4uQZK81r7i0bcchN1Pv3yyCSooI1ke+iqHYxVn2ST/ZCYtu1mp1g/FAUxwlMwQ==
+X-Received: by 2002:a05:6402:5107:b0:5ce:dde6:dd6f with SMTP id 4fb4d7f45d1cf-5cedde6de53mr1504660a12.24.1730725409545;
+        Mon, 04 Nov 2024 05:03:29 -0800 (PST)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ceac770226sm4216379a12.37.2024.11.04.05.03.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Nov 2024 05:03:29 -0800 (PST)
+Date: Mon, 4 Nov 2024 14:03:27 +0100
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] sc27xx-fuel-gauge: fix battery detect
+Message-ID: <cover.1730720720.git.stano.jakubek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: troymitchell988@gmail.com, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] i2c: spacemit: add support for SpacemiT K1 SoC
-To: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-References: <20241028053220.346283-1-TroyMitchell988@gmail.com>
- <20241028053220.346283-3-TroyMitchell988@gmail.com>
-Content-Language: en-US
-From: Troy Mitchell <troymitchell988@gmail.com>
-In-Reply-To: <20241028053220.346283-3-TroyMitchell988@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+Marked this as V2, since the DTS (last) patch is a continuation of
+the 2nd patch from [1].
 
-On 2024/10/28 13:32, Troy Mitchell wrote:
-> This patch introduces basic I2C support for the SpacemiT K1 SoC,
-> utilizing interrupts for transfers.
-> 
-> The driver has been tested using i2c-tools on a Bananapi-F3 board,
-> and basic I2C read/write operations have been confirmed to work.
-> 
-> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
-> --
-Change in V2:
- - Alphabetize Makefile and Kconfig
- - Change `.remove_new` to `.remove` in `struct platform_driver`
- - Change `dev_alert` to `dev_warn_ratelimited` in `spacemit_i2c_bus_reset`
- - Change `spacemit_i2c_read/write_reg` to `read/writel`
- - Change `spacemit_i2c_dt_match` to `spacemit_i2c_of_match`
- - Clean up code flow
- - Fix unnecessary line wraps
- - Move `spacemit_i2c_handle_err` to a suitable location
- - Use `PTR_ERR(i2c->base)` directly as the `dev_err_probe` parameter instead of
-   the intermediate variable
+[1] https://lore.kernel.org/lkml/cover.1723716331.git.stano.jakubek@gmail.com/
+
+Stanislav Jakubek (3):
+  dt-bindings: power: supply: sc27xx-fg: document deprecated
+    bat-detect-gpio
+  power: supply: sc27xx: Fix battery detect GPIO probe
+  arm64: dts: sprd: Fix battery-detect-gpios property
+
+ .../devicetree/bindings/power/supply/sc27xx-fg.yaml    |  5 +++++
+ arch/arm64/boot/dts/sprd/sc2731.dtsi                   |  2 +-
+ drivers/power/supply/sc27xx_fuel_gauge.c               | 10 +++++++---
+ 3 files changed, 13 insertions(+), 4 deletions(-)
+
 -- 
-Troy Mitchell
+2.43.0
+
 
