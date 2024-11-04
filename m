@@ -1,183 +1,234 @@
-Return-Path: <devicetree+bounces-118609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E20529BAF29
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:10:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE3E59BAF36
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:11:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 351CAB240A7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:10:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FA3A1F211AA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:11:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBFC01ADFF8;
-	Mon,  4 Nov 2024 09:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B49751AC456;
+	Mon,  4 Nov 2024 09:10:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="G+FryC7y"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gInoj0cg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A2721ABEBB
-	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 09:09:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F369E185B4D;
+	Mon,  4 Nov 2024 09:10:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730711362; cv=none; b=sayl6tHABfVdbzXhNdR4EvPhxAWYy6DQQ8xleQMEaKhl+lOuGFXO4meI/Sk1l4cBUI4o6xvv/XZqVWgfpdZArF0DqA40ROJ8+lwvAJM4+GTH/ZdSJfUfiU110nYKmvJU3iOOe24bSj5GY7i5CbfwQuGrKfSfpVyIi0g8A+uz7cU=
+	t=1730711455; cv=none; b=UiYvChSVz8PBGwf3/+jf0ZWUFsKbSjykxQwpCGuh4M+aN1PUsHWfi797TnbnKVWJONU+7DbUaSqfQje5wjOG9Dep4u5sHSY+Uw5XNdQyxCrPyd6Nhe4seYj7ggb6CZYeHMm/OXJqLYqfSI7CBqxXQerwC0juZBouNrorw5moVC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730711362; c=relaxed/simple;
-	bh=ifqPukSiWEbvQx2BNyq44t24PrtspIIZb3U4Z0syxko=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=a51gJXDTIhJJ2ubcC7yfCsGB2HeV+CMmouF34A8jWbG7vk8B9MjoSM3Zku3ER2IF3+EBLqDYEfxNhbq4+SkaNszqGtmiTuO3j8yP730cYz4k52TLOQJEr3j8QCSofJ8o375ocJ9H9eX/1s1/moC94KW6ivHlKx5Cz+vwWnNq5x0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=G+FryC7y; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5c96b2a10e1so5720761a12.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 01:09:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1730711359; x=1731316159; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=055q6HVRLMtsIiCxhqKFgJlzoVTgwNt+2YbIpiGOuNo=;
-        b=G+FryC7yB7FbtEYO8s6Kq4+9k3AOvtRu4ULtV2B05UMo/Ja/6oZnC+ueNFi25DtNx6
-         hdHvhzcwchq/YBPHcpFhimO2gYdk/Cb/khUvB3WKmodzQXVAZmHJsSdPiUrYmdN9If0h
-         Q9NiDtjRoYPsXZIUqHuxBbzxfFEz7dO7K7yWcj0D0bXEl58Gfw0GEhSeMjHQpYd+thXc
-         2bJQu7mcf09c5j5Lfu3cjLbW2jxDnlCp4wdPf24I5L8A9GL5vYQOMZHmvft2HJ2XEdF1
-         1xJFwM9MCHc99osyTleMoX2MsCj78kzxTCzpwXU17l/5edlt51pqTPsBBDxEa2rsMY7g
-         dWbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730711359; x=1731316159;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=055q6HVRLMtsIiCxhqKFgJlzoVTgwNt+2YbIpiGOuNo=;
-        b=PYnPexgY1iq6rllm8Y2EouKRuhrdNeefnkD9iwT0l6ZwrTO01XobzxrtTOXI9+Wsp6
-         25MH3bO5RJZL0+0giYvsqLUm7mLpGXwkoNe1oM1jsHUbvVH7wKFoqOsYN5wO1J+a0uqH
-         DHXXovleUh36jck0swX85ikq1wVpumbEJPFaEsTxD5V9OUcDTNL8/yu+ia+fqQEq/zMX
-         AbLQJI+Dft8MjMVyFdGgtV2V3O1pU9c9mS+lvTrS2lBH+NKgivA58vlhwD20bRuGi6uS
-         81E2K3/8F7GFg+jRQT+AkxBGAo+Z7L/JnfVeZtkQgCt6zTpmfg2MWpMqj3AosMnpG6MD
-         dW/A==
-X-Forwarded-Encrypted: i=1; AJvYcCUGrFCD51Z7gCrbDa7bDL0L9vDK3Wiusrddp81kzW4vBdS2as7oxBYMpJCI90k60JuNTpaGKJIUoN3+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9AKkY8AES59afTmhZJaiSHPu/idJaILb1gplMMRCSKFqdC3Ks
-	Xpd1NQOKvutrZzQ09Hu8CqLxyZ/uvBozQnetkHxv9O/1h0f73BwzN20jDx7xjP1eIbX7lcCA4v0
-	hAv2OwoscYr2g4MocFg/SIHU5wxFc0H/BqIJfww==
-X-Google-Smtp-Source: AGHT+IG7T23Pew0G4bjyo8FIV5YjqVKWXQFF//1S8lbRwvUhNbZuSM2H8qF/oqLViu8AJNrr6QEfuupKRznSgIqZeV4=
-X-Received: by 2002:a05:6402:51ca:b0:5ce:d397:9f5 with SMTP id
- 4fb4d7f45d1cf-5ced3970cbemr2889559a12.24.1730711358703; Mon, 04 Nov 2024
- 01:09:18 -0800 (PST)
+	s=arc-20240116; t=1730711455; c=relaxed/simple;
+	bh=TOiLZB9+TUCbyQ6juA160AS0UCAnllOUb5owxKncID8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=nK+JjSMTN2Rj0z0HZ22zsZcDGTapbR89ZwXgrMYnpDDO5k/RWfbpXTOt5R7srN4JRYq9xzPWgoNAuxu4ZPFThO5GPzOeY0oE4ahviAedbW+YEB8OPOz9SYBUMQddZeYZB3hQwOmmd4GVUN163G2EZlp210sHkcuG1Vmgx2P8vJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gInoj0cg; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A3Nw1ku032546;
+	Mon, 4 Nov 2024 09:10:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=VVyP+kG/x/vvff0g4CI/xA
+	Tpn2KE+IcyF3JSkSbQ9Zg=; b=gInoj0cghHJriHPZrAghmX7V+6y3k9xHXe0RWg
+	+LXoRP6qeM7y/nLOOUNtVS0xfopsyaYWZUGbgDNOrgNTMp1DqEUz8VibMkQNvmw0
+	3qUyhV5rgFXJJTwquecUc3VaAvYM9JH4dE4hjowi1XH8NrR+Dv8GnOCTBs/omiTZ
+	IbKW45C0bCTMrtpZDQzEASi/D9RV6OjD0fKHSPAuQG/RfO8By0hDiPvniF2mS6TX
+	f0LaS2zlj5RxhZJFj1a/NoFln1xcUAvJeTIdUGuZHH97nINIzP43AjcqhiUky4Zg
+	5+eqq3+SEkAj1yMT75B6c2mK99jVOJwvO0Ik//Sd1p1HjsWg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42p5ye1qa6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 04 Nov 2024 09:10:30 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A49AT11017116
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 4 Nov 2024 09:10:29 GMT
+Received: from lijuang2-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 4 Nov 2024 01:10:23 -0800
+From: Lijuan Gao <quic_lijuang@quicinc.com>
+Subject: [PATCH v5 0/5] Add initial support for QCS615 SoC and QCS615 RIDE
+ board
+Date: Mon, 4 Nov 2024 17:10:07 +0800
+Message-ID: <20241104-add_initial_support_for_qcs615-v5-0-9dde8d7b80b0@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241103145153.105097-14-alexghiti@rivosinc.com> <202411041609.gxjI2dsw-lkp@intel.com>
-In-Reply-To: <202411041609.gxjI2dsw-lkp@intel.com>
-From: Alexandre Ghiti <alexghiti@rivosinc.com>
-Date: Mon, 4 Nov 2024 10:09:07 +0100
-Message-ID: <CAHVXubj8EXCXNPuJ+hqrHwyujjz3GDcqqMjQ4ZFC5VbmZurV3w@mail.gmail.com>
-Subject: Re: [PATCH v6 13/13] riscv: Add qspinlock support
-To: kernel test robot <lkp@intel.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Andrea Parri <parri.andrea@gmail.com>, 
-	Nathan Chancellor <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
-	Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Leonardo Bras <leobras@redhat.com>, Guo Ren <guoren@kernel.org>, 
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-arch@vger.kernel.org, oe-kbuild-all@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHCPKGcC/62RwW7DIBBEf8XiXCog4Ng+5T+qysLLOlk1Ng4QN
+ 1WUfy9xUjWHVr30OCv2zexwZhEDYWRNcWYBZ4rkxyzMU8FgZ8ctcnJZMyWUllJobp1raaREdt/
+ G4zT5kNreh/YAsZSGl0IbUJWslelYhkwBezotBi+vWe8oJh8+Fr9ZXqc3tFDqL/SsueDCGiOhd
+ G6l1eZwJKARnsEP7AqfzX8CL7f4AfM0Urrd8N1KU1x9RC1rfufB3sMbd4FmDNytte3QlXVldDN
+ r9ljo16oSS8R3m2Dn/LbNtpNN1O3xMSYiVLYCBbXKJPUjScqFdOin4IffOKtOqL7s7Vpik7vPn
+ M5G5Pn1QKkpRjwlfv9nmc+/fALYWC1mHQIAAA==
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thomas Gleixner
+	<tglx@linutronix.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        lijuang <quic_lijuang@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.15-dev-99b12
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730711423; l=5567;
+ i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
+ bh=TOiLZB9+TUCbyQ6juA160AS0UCAnllOUb5owxKncID8=;
+ b=yFhKjOYgT/VpkN3LvicTpOnL/CLsEY2c5kSJOyfLJWuBmpy3krJ47+R2k8KElL2iK3x6geIoa
+ tSGBseBo7/SCSzHg+g0YSSR0xDbRWpONdi97pq7DO4s3wxSEH1JPzb6
+X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
+ pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: c1YygsRHlWKqlAfTiLzitq83E_FfM9b5
+X-Proofpoint-GUID: c1YygsRHlWKqlAfTiLzitq83E_FfM9b5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ mlxscore=0 spamscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0
+ suspectscore=0 priorityscore=1501 clxscore=1015 mlxlogscore=999
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411040081
 
-On Mon, Nov 4, 2024 at 10:05=E2=80=AFAM kernel test robot <lkp@intel.com> w=
-rote:
->
-> Hi Alexandre,
->
-> kernel test robot noticed the following build warnings:
->
-> [auto build test WARNING on arnd-asm-generic/master]
-> [also build test WARNING on robh/for-next tip/locking/core linus/master v=
-6.12-rc6]
-> [cannot apply to next-20241101]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->
-> url:    https://github.com/intel-lab-lkp/linux/commits/Alexandre-Ghiti/ri=
-scv-Move-cpufeature-h-macros-into-their-own-header/20241103-230614
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/arnd/asm-generic.=
-git master
-> patch link:    https://lore.kernel.org/r/20241103145153.105097-14-alexghi=
-ti%40rivosinc.com
-> patch subject: [PATCH v6 13/13] riscv: Add qspinlock support
-> compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51=
-eccf88f5321e7c60591c5546b254b6afab99)
->
-> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
-ion of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202411041609.gxjI2dsw-lkp=
-@intel.com/
->
-> includecheck warnings: (new ones prefixed by >>)
-> >> arch/riscv/include/asm/spinlock.h: asm/ticket_spinlock.h is included m=
-ore than once.
-> >> arch/riscv/include/asm/spinlock.h: asm/qspinlock.h is included more th=
-an once.
+Introduces the Device Tree for the QCS615 platform.
 
-Yes but that's in a #ifdef/#elif#else clause so nothing to do here!
+Features added and enabled:
+- CPUs with PSCI idle states
+- Interrupt-controller with PDC wakeup support
+- Timers, TCSR Clock Controllers
+- Reserved Shared memory
+- QFPROM
+- TLMM
+- Watchdog
+- RPMH controller
+- Sleep stats driver
+- Rpmhpd power controller
+- Interconnect
+- GCC and Rpmhcc
+- QUP with Uart serial support
 
->
-> vim +10 arch/riscv/include/asm/spinlock.h
->
->      8
->      9  #define __no_arch_spinlock_redefine
->   > 10  #include <asm/ticket_spinlock.h>
->     11  #include <asm/qspinlock.h>
->     12  #include <asm/jump_label.h>
->     13
->     14  /*
->     15   * TODO: Use an alternative instead of a static key when we are a=
-ble to parse
->     16   * the extensions string earlier in the boot process.
->     17   */
->     18  DECLARE_STATIC_KEY_TRUE(qspinlock_key);
->     19
->     20  #define SPINLOCK_BASE_DECLARE(op, type, type_lock)               =
-       \
->     21  static __always_inline type arch_spin_##op(type_lock lock)       =
-       \
->     22  {                                                                =
-       \
->     23          if (static_branch_unlikely(&qspinlock_key))              =
-       \
->     24                  return queued_spin_##op(lock);                   =
-       \
->     25          return ticket_spin_##op(lock);                           =
-       \
->     26  }
->     27
->     28  SPINLOCK_BASE_DECLARE(lock, void, arch_spinlock_t *)
->     29  SPINLOCK_BASE_DECLARE(unlock, void, arch_spinlock_t *)
->     30  SPINLOCK_BASE_DECLARE(is_locked, int, arch_spinlock_t *)
->     31  SPINLOCK_BASE_DECLARE(is_contended, int, arch_spinlock_t *)
->     32  SPINLOCK_BASE_DECLARE(trylock, bool, arch_spinlock_t *)
->     33  SPINLOCK_BASE_DECLARE(value_unlocked, int, arch_spinlock_t)
->     34
->     35  #elif defined(CONFIG_RISCV_QUEUED_SPINLOCKS)
->     36
->     37  #include <asm/qspinlock.h>
->     38
->     39  #else
->     40
->   > 41  #include <asm/ticket_spinlock.h>
->     42
->
-> --
-> 0-DAY CI Kernel Test Service
-> https://github.com/intel/lkp-tests/wiki
+Bindings and base Device Tree for the QCS615 SoC are splited
+in four parts:
+- 1-2: Binding files for QCS615 SoC and PDC (Reviewed)
+- 3-4: Initial DTSI and RIDE board device tree
+- 5  : Enable uart related configs
+
+Bindings Dependencies:
+- watchdog: https://lore.kernel.org/all/20240920-add_watchdog_compatible_for_qcs615-v2-1-427944f1151e@quicinc.com/ - Reviewed
+- qfprom: https://lore.kernel.org/all/20240912-add_qfprom_compatible_for_qcs615-v1-1-9ef2e26c14ee@quicinc.com/ - Reviewed
+- tcsr: https://lore.kernel.org/all/20240920-add_tcsr_compatible_for_qcs615-v2-1-8ce2dbc7f72c@quicinc.com/ - Applied
+- tlmm: https://lore.kernel.org/all/20240920-add_qcs615_pinctrl_driver-v2-1-e03c42a9d055@quicinc.com/ - Applied
+- interconnect: https://lore.kernel.org/all/20240924143958.25-2-quic_rlaggysh@quicinc.com/ - Applied
+- rpmhcc: https://lore.kernel.org/all/20241022-qcs615-clock-driver-v4-1-3d716ad0d987@quicinc.com/  - Reviewed
+- gcc: https://lore.kernel.org/all/20241022-qcs615-clock-driver-v4-3-3d716ad0d987@quicinc.com/ - Reviewed
+- rpmhpd: https://lore.kernel.org/all/20240927-add_qcs615_qcs8300_powerdomains_driver_support-v2-3-18c030ad7b68@quicinc.com/ - Applied
+
+Build Dependencies:
+- tlmm: https://lore.kernel.org/all/20240920-add_qcs615_pinctrl_driver-v2-2-e03c42a9d055@quicinc.com/ - Applied
+- rpmhcc: https://lore.kernel.org/all/20241022-qcs615-clock-driver-v4-2-3d716ad0d987@quicinc.com/ - Reviewed
+- gcc: https://lore.kernel.org/all/20241022-qcs615-clock-driver-v4-4-3d716ad0d987@quicinc.com/
+
+Patch made the following verifications:
+- Successfully passed dt_binding_check with DT_CHECKER_FLAGS=-m for earch binding file
+- Successfully passed dtbs_check with W=1 for dts
+- Verified CPU Hotplug, idle and online CPUs on QCS615 ride board
+- Checked pinctrl-maps path
+- Verified watchdog functionality with "echo 1 > /dev/watchdog", can trigger
+  a watchdog bark and later bite
+- Verified functionality with UART console on QCS615 ride board
+- RPMH controller driver probed successfully
+- Sleep stats driver probed successfully and checked qcom_stats
+  node on QCS615 ride board
+
+Signed-off-by: lijuang <quic_lijuang@quicinc.com>
+---
+Changes in v5:
+- Remove applied patches 2 and 4
+- Update the titles and commit messages of the initial DTSI and ride DTS
+- Update the commit message of defconfig patch
+- Pad register addresses to 8 hex digits
+- Link to v4: https://lore.kernel.org/r/20241022-add_initial_support_for_qcs615-v4-0-0a551c6dd342@quicinc.com
+
+Changes in v4:
+- Configure vreg_l17a to High Power Mode (HPM) as it supplies power to UFS
+  and eMMC, which can be utilized as boot devices.
+- Link to v3: https://lore.kernel.org/r/20240926-add_initial_support_for_qcs615-v3-0-e37617e91c62@quicinc.com
+
+Changes in v3:
+- Added interconnect, GCC, RPMHCC, QPU, and RPMHPD related nodes for UART console
+- Enabled UART condole on ride board device
+- Link to v2: https://lore.kernel.org/r/20240913-add_initial_support_for_qcs615-v2-0-9236223e7dab@quicinc.com
+
+Changes in v2:
+- Collected reviewed-bys
+- Removed extra blank line
+- Removed redundant function
+- Renamed xo-board to xo-board-clk and move it and sleep-clk to board dts
+- Renamed system-sleep to cluster_sleep_2
+- Removed cluster1
+- Added entry-method for idle-states
+- Added DTS chassis type
+- Added TCSR Clock Controllers
+- Added Reserved Shared memory
+- Added QFPROM
+- Added TLMM
+- Added Watchdog
+- Added RPMH controller
+- Added Sleep stats driver
+- Link to v1: https://lore.kernel.org/r/20240828-add_initial_support_for_qcs615-v1-0-5599869ea10f@quicinc.com
+
+---
+Lijuan Gao (5):
+      dt-bindings: arm: qcom: document QCS615 and the reference board
+      dt-bindings: qcom,pdc: document QCS615 Power Domain Controller
+      arm64: dts: qcom: add QCS615 platform
+      arm64: dts: qcom: add base QCS615 RIDE
+      arm64: defconfig: enable clock controller, interconnect and pinctrl for QCS615
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   6 +
+ .../bindings/interrupt-controller/qcom,pdc.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts           | 219 +++++++
+ arch/arm64/boot/dts/qcom/qcs615.dtsi               | 688 +++++++++++++++++++++
+ arch/arm64/configs/defconfig                       |   3 +
+ 6 files changed, 918 insertions(+)
+---
+base-commit: ec29543c01b3dbfcb9a2daa4e0cd33afb3c30c39
+change-id: 20241104-add_initial_support_for_qcs615-6045c281925b
+prerequisite-change-id: 20240919-qcs615-clock-driver-d74abed69854:v4
+prerequisite-patch-id: cd9fc0a399ab430e293764d0911a38109664ca91
+prerequisite-patch-id: 07f2c7378c7bbd560f26b61785b6814270647f1b
+prerequisite-patch-id: a57054b890d767b45cca87e71b4a0f6bf6914c2f
+prerequisite-patch-id: 5a8e9ea15a2c3d60b4dbdf11b4e2695742d6333c
+prerequisite-change-id: 20240920-add_watchdog_compatible_for_qcs615-eec8a8c2c924:v2
+prerequisite-patch-id: 3a76212d3a3e930d771312ff9349f87aee5c55d5
+prerequisite-change-id: 20240911-add_qfprom_compatible_for_qcs615-e3b02f6fa71e:v1
+prerequisite-patch-id: 8a2454d5e07e56a6dd03f762f498051065635d85
+
+Best regards,
+-- 
+lijuang <quic_lijuang@quicinc.com>
+
 
