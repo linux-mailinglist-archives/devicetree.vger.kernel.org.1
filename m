@@ -1,76 +1,86 @@
-Return-Path: <devicetree+bounces-118606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813C09BAEC5
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:57:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 556589BAEB8
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:56:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A57E21C21AA2
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 08:57:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 028241F21A50
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 08:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C27F31AF0AB;
-	Mon,  4 Nov 2024 08:56:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FF1A1AB6EA;
+	Mon,  4 Nov 2024 08:56:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="Nb9buJXz"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="lMorisUp";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="eSuOISPK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6546E1ABEA5;
-	Mon,  4 Nov 2024 08:56:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ACC214B06C;
+	Mon,  4 Nov 2024 08:56:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730710609; cv=none; b=JTI2fM02C9Ox+Hwj+Q4rMKM1BFHj9SWt56i1SIwus4Igx7ae/JuA4/8IUK9OJuYr9YbQ6rZykOKjQvX/b73BR6e3ljW1kB0IhVabiTGOnm4G42zjNmNjVtgQF5BIHV1GCWd4GVlekPVvbgXf948+OZx8/5uBUwBRt/3sYX2/UeM=
+	t=1730710604; cv=none; b=goGJNXe4EbgjvQxb3YySjmh/Oo6MvmCHvBpcNiQjS9ecDk9HN6Ase/DHF2Px8alRXocSSmeaMRNBVChb3WwQMv2gr0rF3T1t9iTpx7La9byQUK7EUVeZ2R8I0hclb1biV7vJAwtDGs2f6gt4yh6MRoagO5Famni0iyLsmY1Zd9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730710609; c=relaxed/simple;
-	bh=DbA2AEzCZovDIsw1ZlFZ8GDzT6MXyd0MnqvqEW2ykrU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZV0dxqH2OLlCeuTNqrVpt7W+2bsh8Gy7emDPDrmJqIapnoebMvLsRw0OqtjAZzWkV8SCMNJGgxjQYCARKB3/E4d1bCfwvA2PsfElwmLcoPebKCsHjfvGOKWVEuVm5kYPHfsAukQCRt2aO2FU+oEfuQBYTrpy7Xn2OwfF0Z+CtTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=Nb9buJXz; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
-	Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References;
-	bh=l/EQKtXU0ivrCC+MIz2pary8R5/8USRLvyKAY9Yy/mI=; b=Nb9buJXzFJqBghSp8frhQOW6LC
-	1B5luLCs+8k/Dd2IAHihMYKoZPHK5Z9UlGPondaumnKJU0oJc9src2K35KpZRMYzFFvSxUcI4mwHj
-	SIMfdKbV5e6L0Bp+y40mAh5a9euQocXuaXfcmfnokgNkV06SUhrvniAXoCOPJrxpckqssGos2Z/um
-	jycHo1tIvc8OjK9xR6dmJUkr2Fc9kKpztfxNdgQfXsZh1KECycDIrMF/aObLU8d+Jjhgpto3UzX0B
-	Lo5LALHqy5+bsC8GynrztyIZmIXmoni/tYTKJ4RXYxOn10inAJfJ/ogjeU3ztRhiEslxVvde8Z6zG
-	EimE9TwA==;
-Received: from sslproxy01.your-server.de ([78.46.139.224])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sean@geanix.com>)
-	id 1t7st2-0005XE-99; Mon, 04 Nov 2024 09:56:36 +0100
-Received: from [185.17.218.86] (helo=zen..)
-	by sslproxy01.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sean@geanix.com>)
-	id 1t7st1-000Gvx-1d;
-	Mon, 04 Nov 2024 09:56:35 +0100
-From: Sean Nyekjaer <sean@geanix.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1730710604; c=relaxed/simple;
+	bh=Vz20v+1mMjGBXMV3/Ud1+fs+2WLaeyAEPGs1X8XeUgA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jUkdTTpXAg6jJrnzLBqLQBGY9e0LVC4ihuXrB+3+jfedsdGQVNrle3GTJDOkC7cmQkocxBmbgns53BjNOqXdU02JNyZvS9Wgz8MCnkQeMttBW+e+A/d3/kUruNLbin0sJzMHhW4I3GC9Aq6AM1kFBphb6TZLs2aKi7DhccoyDhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=lMorisUp; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=eSuOISPK reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1730710600; x=1762246600;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=bZVznDietMqc8CDisChXL1GqxDSxeGo8m3Z1J4jxM2Y=;
+  b=lMorisUpN+AQUmwWYZhPvRvHnHpgqFo2nMD+p0/zVQQDyWV6/9UL1oKr
+   KfUKRi18WlA1j7PBVETDffMcMI+WwkA4P4q1nWJw8DjcjySsJ4qpQYGJC
+   RJkQxrSIhIXsRDhcGAbcAXKXeaOqdu+CsC4omZdAiSdWj4kuAffw8o1gj
+   jIgbmrjjGZ73RGBYYPczF+gthKFWfskdm0GPEP620HtHOHLtkS6MqIjrG
+   5X15IX8NYd4DkpvHYuVDydyVMmu58YZi6V/l9YkK16h+SWjJPOHZy0cqe
+   WwF/cpl2xWxRpMM7ZesozP6skSaW35T+oQlhhiisZu8igqZllQR/AvyHo
+   g==;
+X-CSE-ConnectionGUID: M8Pqh8T1SQubNcH7SyS38A==
+X-CSE-MsgGUID: NH7lcu2QSreFwOgS1H6gcA==
+X-IronPort-AV: E=Sophos;i="6.11,256,1725314400"; 
+   d="scan'208";a="39825187"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 04 Nov 2024 09:56:32 +0100
+X-CheckPoint: {67288C40-C-90CD5875-E0265C0B}
+X-MAIL-CPID: 0A056B4CA4F8B68938265580AB1C91AE_3
+X-Control-Analysis: str=0001.0A682F17.67288C40.0091,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 788D8160A4B;
+	Mon,  4 Nov 2024 09:56:26 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1730710587; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=bZVznDietMqc8CDisChXL1GqxDSxeGo8m3Z1J4jxM2Y=;
+	b=eSuOISPKfPImLq0eXXN5Lwhyv503U1T0BcpmaKEIt/m3tpbtQ1gaweKcvynPFBkRcVvBCl
+	ZGJps3JG6ZdK+kOz6F0mFQgxjass7YbMLdf0kAPzhq/cFriJL7weQK5S5DkZl8nOuCg1K2
+	aEGVcKqsHUoe1LqOWgEOYV7pmsxtlMRt5eJ1AAYXdcKX4abFWns5h61FteR4//7+7CA2xX
+	qZRLoKEBPp/42gh6GY+0fA0E29eN5ABwAlsPpBtQQoRXA1InzslxdhPUYspnKyTyIbtPlU
+	SgG3Yh7G731Si5uDbqPhZ75eEF8s9Cb0XuqXiXbscyA9TWUzZnlQgYz8iKtZXw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Sean Nyekjaer <sean@geanix.com>,
-	linux-can@vger.kernel.org,
-	netdev@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Peng Fan <peng.fan@nxp.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [RFC PATCH] dt-bindings: can: convert tcan4x5x.txt to DT schema
-Date: Mon,  4 Nov 2024 09:56:15 +0100
-Message-ID: <20241104085616.469862-1-sean@geanix.com>
-X-Mailer: git-send-email 2.46.2
+Subject: [PATCH v2 1/1] dt-bindings: firmware: imx95-scmi: Allow linux,code for protocol@81
+Date: Mon,  4 Nov 2024 09:56:21 +0100
+Message-Id: <20241104085622.177781-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,187 +88,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27447/Sun Nov  3 10:33:29 2024)
+X-Last-TLS-Session-Version: TLSv1.3
 
-Convert binding doc tcan4x5x.txt to yaml.
+BBM protocol supports a single power button, supported by driver
+imx-sm-bbm-key.c. By default this is KEY_POWER, but can also be overwritten
+using linux,code. Add a reference to this schema and add linux,code as a
+supported property.
 
-Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
+Changes in v2:
+* Added default value
 
-Can we somehow reference bosch,mram-cfg from the bosch,m_can.yaml?
-I have searched for yaml files that tries the same, but it's usually
-includes a whole node.
+ .../devicetree/bindings/firmware/nxp,imx95-scmi.yaml   | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-I have also tried:
-$ref: /schema/bosch,m_can.yaml#/properties/bosch,mram-cfg
-
-Any hints to share a property?
-
- .../devicetree/bindings/net/can/tcan4x5x.txt  | 48 ---------
- .../bindings/net/can/ti,tcan4x5x.yaml         | 97 +++++++++++++++++++
- 2 files changed, 97 insertions(+), 48 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/can/tcan4x5x.txt
- create mode 100644 Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-
-diff --git a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
-deleted file mode 100644
-index 20c0572c9853..000000000000
---- a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
-+++ /dev/null
-@@ -1,48 +0,0 @@
--Texas Instruments TCAN4x5x CAN Controller
--================================================
--
--This file provides device node information for the TCAN4x5x interface contains.
--
--Required properties:
--	- compatible:
--		"ti,tcan4552", "ti,tcan4x5x"
--		"ti,tcan4553", "ti,tcan4x5x" or
--		"ti,tcan4x5x"
--	- reg: 0
--	- #address-cells: 1
--	- #size-cells: 0
--	- spi-max-frequency: Maximum frequency of the SPI bus the chip can
--			     operate at should be less than or equal to 18 MHz.
--	- interrupt-parent: the phandle to the interrupt controller which provides
--                    the interrupt.
--	- interrupts: interrupt specification for data-ready.
--
--See Documentation/devicetree/bindings/net/can/bosch,m_can.yaml for additional
--required property details.
--
--Optional properties:
--	- reset-gpios: Hardwired output GPIO. If not defined then software
--		       reset.
--	- device-state-gpios: Input GPIO that indicates if the device is in
--			      a sleep state or if the device is active. Not
--			      available with tcan4552/4553.
--	- device-wake-gpios: Wake up GPIO to wake up the TCAN device. Not
--			     available with tcan4552/4553.
--	- wakeup-source: Leave the chip running when suspended, and configure
--			 the RX interrupt to wake up the device.
--
--Example:
--tcan4x5x: tcan4x5x@0 {
--		compatible = "ti,tcan4x5x";
--		reg = <0>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		spi-max-frequency = <10000000>;
--		bosch,mram-cfg = <0x0 0 0 16 0 0 1 1>;
--		interrupt-parent = <&gpio1>;
--		interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
--		device-state-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
--		device-wake-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
--		reset-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
--		wakeup-source;
--};
-diff --git a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-new file mode 100644
-index 000000000000..62c108fac6b3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-@@ -0,0 +1,97 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/can/ti,tcan4x5x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
+index 1a95010a546b1..c1b7140ee0098 100644
+--- a/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
+@@ -12,13 +12,19 @@ maintainers:
+ 
+ properties:
+   protocol@81:
+-    $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
+-    unevaluatedProperties: false
++    type: object
++    allOf:
++      - $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
++      - $ref: /schemas/input/input.yaml#
++    additionalProperties: false
+ 
+     properties:
+       reg:
+         const: 0x81
+ 
++      linux,code:
++        default: 116  # KEY_POWER
 +
-+title: Texas Instruments TCAN4x5x CAN Controller
-+
-+maintainers:
-+  - Marc Kleine-Budde <mkl@pengutronix.de>
-+
-+allOf:
-+  - $ref: can-controller.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - ti,tcan4552
-+          - ti,tcan4553
-+          - ti,tcan4x5x
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description: Regulator that powers the CAN controller.
-+
-+  xceiver-supply:
-+    description: Regulator that powers the CAN transceiver.
-+
-+  reset-gpios:
-+    description: Hardwired output GPIO. If not defined then software reset.
-+    maxItems: 1
-+
-+  device-state-gpios:
-+    description: Input GPIO that indicates if the device is in a sleep state or if the device is active.
-+      Not available with tcan4552/4553.
-+    maxItems: 1
-+
-+  device-wake-gpios:
-+    description: Wake up GPIO to wake up the TCAN device. Not available with tcan4552/4553.
-+    maxItems: 1
-+
-+  bosch,mram-cfg:
-+    $ref: bosch,m_can.yaml#
-+
-+  spi-max-frequency:
-+    description:
-+      Must be half or less of "clocks" frequency.
-+    maximum: 10000000
-+
-+  wakeup-source:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      Enable CAN remote wakeup.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - bosch,mram-cfg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        can@0 {
-+            compatible = "ti,tcan4x5x";
-+            reg = <0>;
-+            clocks = <&can0_osc>;
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&can0_pins>;
-+            spi-max-frequency = <10000000>;
-+            bosch,mram-cfg = <0x0 0 0 16 0 0 1 1>;
-+            interrupt-parent = <&gpio1>;
-+            interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
-+            device-state-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
-+            device-wake-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
-+            reset-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
-+            wakeup-source;
-+        };
-+    };
+   protocol@84:
+     $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
+     unevaluatedProperties: false
 -- 
-2.46.2
+2.34.1
 
 
