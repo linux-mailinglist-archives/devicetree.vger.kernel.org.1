@@ -1,82 +1,63 @@
-Return-Path: <devicetree+bounces-118669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AA1A9BB30E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:23:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F7EE9BB31A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:25:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2DBF285307
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:23:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2CD8280FB7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:25:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38871D54F7;
-	Mon,  4 Nov 2024 11:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C9E11B3725;
+	Mon,  4 Nov 2024 11:15:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cxVVPBqX"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="M7koPf3j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 340911D517E
-	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 11:12:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D59FA1ABEC1;
+	Mon,  4 Nov 2024 11:15:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730718776; cv=none; b=Wp6qCBE48o6x//j7xh3wbGmPm1VrbKRQWgajc7Dwe25aZEcm23crwi9adfqmoASCz14jBBoP6XwqTH7EVTfeuX0iMaXbwzpvd8T+9Sq3vZHc5+ejtoWHoeMb8ByG/f8A2AW6lUhvr0w81XQBKsr5mII9Zrjr7sABF6K2heIz2qA=
+	t=1730718922; cv=none; b=euK3yUE1vJRMXKK1E559s8ygTrAEf0paYzKDXclfmHT59+ENct1yWr+mb3Bq29aLDnq7rMR32a62r9WY8YdQO+C4mKlKUp2EGrvS2oM25MQAiQmMBW2W8NOi8aOiLs/L1BRiJi7/7HTZ7HxZ1/m7kFgnZGxKjit+dARICkbXBIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730718776; c=relaxed/simple;
-	bh=GfTqS8OGtgvdq4CghxVn86HK6W2OBHBs1c4oIr7MYHI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ObrXqno9EwnPxq40U1yDeisPusZ1/gWJrY87422TGHo1H8LQSIBpe3c/tVarVQL4KvRop5iIxYXFjKIBEZFxX1q/xrWnzdrYA1zHZFzO0DWZJUFArKe9VGZ/mNUiHt/gXbSkCG46183OcWZt/n4OvSxCyVJ06S2IT8Wl0kzNSEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cxVVPBqX; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A3NPRnV025059
-	for <devicetree@vger.kernel.org>; Mon, 4 Nov 2024 11:12:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	s=arc-20240116; t=1730718922; c=relaxed/simple;
+	bh=2gIlUI7PdKKTWDXTSzufN9sRX+NITpJDNOa8IuBIsUM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=VvDUsLm0sZTGEO4Cpw7x6wloGLm9jknC8v8oA34T8340fCzThiMyLUMZJQ2L8zqGThZ5HvYNrZP0mZWurQJS6XvoAi0Q4Y73EabTxkD0cKtMO4CuAiW+2TK2760xCFRdIwGQqBcb5m2hF36eKAnR0r2KNZZ0Xc3xQVdrh6o6HgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=M7koPf3j; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A4BB2rE020115;
+	Mon, 4 Nov 2024 11:15:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FkrN5aPzH8cFJEUSM1S5b0+HOoTa6/UxeCk1GA3RQ9E=; b=cxVVPBqXDuq7NWL+
-	K0ZmgTrC/lj+ijuwzxBWw59YbYsxfcyXoO4/cpsxY6E5KqxeqJV6REBqI1dMCVj0
-	nyIBbRafDqPM7sopTLCJJcryagtohr8oQ+QT059X6poX5vCs+ngT09h+DW4JIyRu
-	tFXrnb1xPulcBuYOK9ZRd9BPeljahCv1uFUEeofR7hidLsF7tdrzB6I/gZAKMs3c
-	pRZsV3ERVhL4vcYbk76TP0LIz486cGWKUU5vuTVZwyCsmBsSHl5Vj1H+pivihBCY
-	0dRGCUrzvWqbI3YnM50T3U1gIodUQzMIPpk0LQgtvhP/9R8DH+sP+n7fB0sKhrVP
-	6RGZYA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd8hbuq9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 11:12:54 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4608a761cb2so9773311cf.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 03:12:54 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730718773; x=1731323573;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FkrN5aPzH8cFJEUSM1S5b0+HOoTa6/UxeCk1GA3RQ9E=;
-        b=qIBWnfTJUcOUPzwMvE4i3eyuLeOns/kc0h4400lAyvxfh8AXILyshft/xa5ERbxpaF
-         70/70SqVyp0n5YvmTuZ6birAoa7rsLFzcOr0Y2QXH3STPpv0jZm5oLYDg8YJrSbtIh8z
-         LEEQnimGb5HepCDEjXtkFll/gcdOIDKk8QXk/0kGGO1zXKsSBM+MjkY+hHzLFslQeF7G
-         yqsxMUtxVi/bYVDR+J0PiJTVHHmFzeXoZmsM6yd2VIih7vYC3olsdkQa9teicaw6nTQX
-         J/ShQQ7iTCkTbVRstwDoIQ2MomBh6Ny4kiK5we31FaOybpPW5Hq/iK50Hnp/Gi3F3KeK
-         80Kg==
-X-Forwarded-Encrypted: i=1; AJvYcCUeFw0EwEo9OjvGiUkjDCd/cJz0e8w+eft8SXxuLdZ4B88KYnfkWA0U+7sOJ6gc1cIQ6c64yLpeCDII@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjmZOrn3eo/UTbmBcu+GDZdXhZ9bD7Hq/qy5/Dy6RiE5+zOViM
-	M5k6qqOnn8v5HEVpppLUhV2FHd31tlBbBsEzm4oY3o+acq85HeAKutbORyMrvcOA2mIZTFOkvt6
-	yrcUAwVrBoKFKKr+cC7VHZMEPOg6VNaIA+5i+A7XVSpxeAjz+O6waICqEzedL
-X-Received: by 2002:a05:620a:17ab:b0:7b1:43b3:8189 with SMTP id af79cd13be357-7b193f68cf5mr2130263585a.12.1730718772737;
-        Mon, 04 Nov 2024 03:12:52 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE1kLsLhTw1eCaFhwc75OEkkLjLtmAZaNU8WNIlpyHgnRFt+2XGunT7R8lTybD+GT5231O6HQ==
-X-Received: by 2002:a05:620a:17ab:b0:7b1:43b3:8189 with SMTP id af79cd13be357-7b193f68cf5mr2130260885a.12.1730718772318;
-        Mon, 04 Nov 2024 03:12:52 -0800 (PST)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e565e08d0sm536708066b.115.2024.11.04.03.12.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Nov 2024 03:12:51 -0800 (PST)
-Message-ID: <e9d5e5fb-a656-46f4-9f5e-c6092729709c@oss.qualcomm.com>
-Date: Mon, 4 Nov 2024 12:12:49 +0100
+	q3KRPy89viz3fpcXqHpGWIgbjdIp9ffw2rFAz7KIa98=; b=M7koPf3jiKP7Xa6+
+	Q2xvzqKsxD9J4bgoccS0smZQf0WaUEsQiBlwOAuxRFkQ8da6odFjuv2NJkQz1GlT
+	HK2Zi2lJTNDxHTyxSGgMzfbjpAemGrXM0vSv1acuDAIqJK1cC1kbDZlpPsK8udGD
+	FWRhQ/NxkKIBhM+WfiSn1SbGTM+nrwH2R4WE+GTjfpojvYzqxkWjf/vkacOGz8/F
+	GATw/lN2TrRK914tDrEt7ld1F5yPPbAGSiN5FSBlVgq3CLWqCTddk4qTWyMdWydE
+	+TuLGaSd7r0082OYzAIOIq8FRs1fRJ9ug9e3sV/0WjcmsHI7xIIbGotMn6l1Nt32
+	FGHUeg==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd2s3yf8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 04 Nov 2024 11:15:07 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A4BF6jQ029070
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 4 Nov 2024 11:15:06 GMT
+Received: from [10.253.14.204] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 4 Nov 2024
+ 03:15:01 -0800
+Message-ID: <ec76fc73-79e5-4d09-ac4a-65efa60874fe@quicinc.com>
+Date: Mon, 4 Nov 2024 19:14:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,43 +65,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/5] arm64: dts: qcom: sm6115: add apr and its services
-To: Alexey Klimov <alexey.klimov@linaro.org>, linux-sound@vger.kernel.org,
-        srinivas.kandagatla@linaro.org, broonie@kernel.org
-Cc: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        perex@perex.cz, tiwai@suse.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org,
-        krzysztof.kozlowski@linaro.org, caleb.connolly@linaro.org,
-        linux-kernel@vger.kernel.org, a39.skl@gmail.com
-References: <20241101005925.186696-1-alexey.klimov@linaro.org>
- <20241101005925.186696-3-alexey.klimov@linaro.org>
+Subject: Re: [PATCH net-next 2/5] net: pcs: Add PCS driver for Qualcomm
+ IPQ9574 SoC
+To: Andrew Lunn <andrew@lunn.ch>
+CC: "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiner Kallweit
+	<hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
+        <quic_pavir@quicinc.com>, <quic_linchen@quicinc.com>,
+        <quic_luoj@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <bartosz.golaszewski@linaro.org>, <vsmuthu@qti.qualcomm.com>,
+        <john@phrozen.org>
+References: <20241101-ipq_pcs_rc1-v1-0-fdef575620cf@quicinc.com>
+ <20241101-ipq_pcs_rc1-v1-2-fdef575620cf@quicinc.com>
+ <8f55f21e-134e-4aa8-b1d5-fd502f05a022@lunn.ch>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241101005925.186696-3-alexey.klimov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From: Lei Wei <quic_leiwei@quicinc.com>
+In-Reply-To: <8f55f21e-134e-4aa8-b1d5-fd502f05a022@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: lFCU-UcXWyInz5ppbEWvxbCUW_sXdwPP
-X-Proofpoint-GUID: lFCU-UcXWyInz5ppbEWvxbCUW_sXdwPP
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: UHj-c7Jyh7MmmH0s4H82Aix-xfWtWL40
+X-Proofpoint-GUID: UHj-c7Jyh7MmmH0s4H82Aix-xfWtWL40
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- priorityscore=1501 phishscore=0 clxscore=1015 mlxscore=0 impostorscore=0
- bulkscore=0 mlxlogscore=488 adultscore=0 suspectscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2411040098
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ lowpriorityscore=0 mlxlogscore=622 clxscore=1015 suspectscore=0
+ adultscore=0 priorityscore=1501 bulkscore=0 mlxscore=0 malwarescore=0
+ spamscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2409260000 definitions=main-2411040099
 
-On 1.11.2024 1:59 AM, Alexey Klimov wrote:
-> Add apr (asynchronous packet router) node and its associated services
-> required to enable audio on QRB4210 RB2 platform.
+
+
+On 11/1/2024 9:00 PM, Andrew Lunn wrote:
+>> +config PCS_QCOM_IPQ
+>> +	tristate "Qualcomm IPQ PCS"
 > 
-> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> ---
+> Will Qualcomm only ever have one PCS driver?
+> 
+> You probably want a more specific name so that when the next PCS
+> driver comes along, you have a reasonable consistent naming scheme.
+> 
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+We expect one PCS driver to support the 'IPQ' family of Qualcomm 
+processors. While we are initially adding support for IPQ9574 SoC, this 
+driver will be easily extendable later to other SoC in the IPQ family 
+such as IPQ5332, IPQ5424 and others. Therefore we used the name with 
+suffix '_IPQ'. Hope it is fine.
 
-Konrad
+> 	Andrew
+
 
