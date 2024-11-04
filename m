@@ -1,98 +1,124 @@
-Return-Path: <devicetree+bounces-118639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C18A89BB0AC
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:10:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD899BB0A8
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:10:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E4BD1F20C16
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:10:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DDB11F20EEE
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7AFF1B0F3C;
-	Mon,  4 Nov 2024 10:10:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C49801AF4EE;
+	Mon,  4 Nov 2024 10:10:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Gup59poh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jnyjXEyt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4EDD1B0F38;
-	Mon,  4 Nov 2024 10:10:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 749A51AF0DC;
+	Mon,  4 Nov 2024 10:10:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730715026; cv=none; b=rpm7zsXs6Hzy+hfw6mMtIypkhNpuM0AriaLpqPkYPWShw6vkUDHCIV7upCo1nhR7clmUqe2otB7J99HHWI1OqTxgf6+0sbfozl346AbaxIYsx2Huye4G7rVt23M6B3GektqeJD/CKX0jDCsr7e2AYd8634QZr2cPi+Ezc0UtHqo=
+	t=1730715021; cv=none; b=ZKRIC2uIUivd8c4DnvvkCE90lUYOG/DqIxSnRaKzZ+8rfBOd8pJwU6qWwhoSdh+ccNEkybrmNYS/VHRekicExhTjkdZFsPvtnXlMXFOb3C4nEKwcC7e72fwhlXmlGP+6XMPJWRhjERyBpWr3trl7wscLZIIo67KAVer2QQhiGcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730715026; c=relaxed/simple;
-	bh=CSYjP+K7N5aRJn2h9T1DLvgtC+RNWp28+4aFe4h0Gn0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Gw7/Sf+6hHs9SonVNZcjpK6gt6xIyoXXEkfCdyx4KbCMykio2/eSYBRIUPjGMuhgWPKZYqU62pTcnzxTLHkvdYYsQK18hhW7gf0zstTjjDkSGULpKVw9+AGOrk5WSeu7iHP6SBCgqLqhf1fRxp0L9TfQUIgtMvnKi7ODvEs+z8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Gup59poh; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1730715022;
-	bh=CSYjP+K7N5aRJn2h9T1DLvgtC+RNWp28+4aFe4h0Gn0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Gup59pohQBT87OEkR5N8zLsA21IUm3/nZ31/e8b9Gm5d8/0gp0PrTlddgvji0g/ca
-	 MUtnC7m9mzuAR5vBYqZmakEh36t7ir8FmcwCnWuTnFdK0p6z7qweKw752JX524A5or
-	 IIBTAz07Yu/M3tP4fXOw50OpiNAYey0ijh5oNH0VXXGPKcL/lxXEzcOhgp3ZIJzz/S
-	 cwXbwycmL8LzKq90PhVE5Wxm4KICsveUJ9EJX63Ga3sZ/T+P8D4N5vDej1fsio5CBE
-	 2cNUv87uL9d/dh335U/lT1RQZFbjZkhTkWxL8MIp7KB5N6ZZeTrawBlx9c9V2QFJbD
-	 2J20lFU39klgQ==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 352C217E14EF;
-	Mon,  4 Nov 2024 11:10:22 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Alexandre Mergnat <amergnat@baylibre.com>, 
- Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>, 
- Macpaul Lin <macpaul@gmail.com>, 
- Project_Global_Chrome_Upstream_Group@mediatek.com, 
- linux-usb@vger.kernel.org, Chris-qj chen <chris-qj.chen@mediatek.com>
-In-Reply-To: <20241029064647.13370-1-macpaul.lin@mediatek.com>
-References: <20241029064647.13370-1-macpaul.lin@mediatek.com>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt6358: fix dtbs_check error
-Message-Id: <173071502217.114014.11522421669609196627.b4-ty@collabora.com>
-Date: Mon, 04 Nov 2024 11:10:22 +0100
+	s=arc-20240116; t=1730715021; c=relaxed/simple;
+	bh=6ml2BT2raqF8G8x+buM0eWiADTiQBARWLyqnb/h1l28=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=EuwFiSOnN85sye116QaX0287SVGFNSW72ry4WqvYCJ1J35Mnt8zuuxMMXGrLovS9qY34pGpq8b7gHGuxqwzEljLyPmS4sE0N18XY4Oleg46GYFCIvnw6yO/Lai2Xurov1hNo1bv9x1KW7+BgimpzJaaK6rm4fHxiB5wVSiU4i+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jnyjXEyt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E603FC4CECE;
+	Mon,  4 Nov 2024 10:10:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730715021;
+	bh=6ml2BT2raqF8G8x+buM0eWiADTiQBARWLyqnb/h1l28=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=jnyjXEytSg4Dm0xzK4vuTLgkBxwZ/GX7mBQWaqRAntPAIU1v59qxD3oNhcM18YxMX
+	 r546u+w39gMnchf3pd1bD9X3zBzJKFO6DJnRj2Cx2KF7afLAlpWhGXhJjQ6ZevXFQ7
+	 q/h6iJTvDEcTw7VqawGHV4R5zuTQ9XoHe3TU5Kk2OAToHLmkLGpAHM8lQZdthSO6Gy
+	 ZEVU61Xgq1630a9a1eFAaG/3Y5ASwCNWo9rnrzL9QsKiYWByPwoXLFqBQOMi/EXnCP
+	 viQ3Ar0siICl5XbP7Y/S+GmsLhT0cZHUbz0gdoiphvkwAGRAgrTvMLaOA05AxcCeni
+	 Oh3+bqznOu8nA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADF403805CC0;
+	Mon,  4 Nov 2024 10:10:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v6 net-next 00/12] add basic support for i.MX95 NETC
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <173071502951.4013812.6348392511340491502.git-patchwork-notify@kernel.org>
+Date: Mon, 04 Nov 2024 10:10:29 +0000
+References: <20241030093924.1251343-1-wei.fang@nxp.com>
+In-Reply-To: <20241030093924.1251343-1-wei.fang@nxp.com>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ vladimir.oltean@nxp.com, claudiu.manoil@nxp.com, xiaoning.wang@nxp.com,
+ Frank.Li@nxp.com, christophe.leroy@csgroup.eu, linux@armlinux.org.uk,
+ horms@kernel.org, imx@lists.linux.dev, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, alexander.stein@ew.tq-group.com
 
-On Tue, 29 Oct 2024 14:46:47 +0800, Macpaul Lin wrote:
-> Fix DTBS check errors for 'mt6358codec' and 'mt6358regulator':
-> 
-> Error message is:
-> pmic: 'mt6358codec' and 'mt6358regulator' does not match any of the
-> regexes: 'pinctrl-[0-9]+'.
-> Rename these two device node to generic 'audio-codec' and 'regulators'.
+Hello:
+
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
+
+On Wed, 30 Oct 2024 17:39:11 +0800 you wrote:
+> This is first time that the NETC IP is applied on i.MX MPU platform.
+> Its revision has been upgraded to 4.1, which is very different from
+> the NETC of LS1028A (its revision is 1.0). Therefore, some existing
+> drivers of NETC devices in the Linux kernel are not compatible with
+> the current hardware. For example, the fsl-enetc driver is used to
+> drive the ENETC PF of LS1028A, but for i.MX95 ENETC PF, its registers
+> and tables configuration are very different from those of LS1028A,
+> and only the station interface (SI) part remains basically the same.
+> For the SI part, Vladimir has separated the fsl-enetc-core driver, so
+> we can reuse this driver on i.MX95. However, for other parts of PF,
+> the fsl-enetc driver cannot be reused, so the nxp-enetc4 driver is
+> added to support revision 4.1 and later.
 > 
 > [...]
 
-Applied to v6.12-next/dts64, thanks!
+Here is the summary with links:
+  - [v6,net-next,01/12] dt-bindings: net: add compatible string for i.MX95 EMDIO
+    https://git.kernel.org/netdev/net-next/c/da98dbbc2c74
+  - [v6,net-next,02/12] dt-bindings: net: add i.MX95 ENETC support
+    https://git.kernel.org/netdev/net-next/c/db2fb74c8560
+  - [v6,net-next,03/12] dt-bindings: net: add bindings for NETC blocks control
+    https://git.kernel.org/netdev/net-next/c/f70384e53b09
+  - [v6,net-next,04/12] net: enetc: add initial netc-blk-ctrl driver support
+    https://git.kernel.org/netdev/net-next/c/fe5ba6bf91b3
+  - [v6,net-next,05/12] net: enetc: extract common ENETC PF parts for LS1028A and i.MX95 platforms
+    https://git.kernel.org/netdev/net-next/c/80c8c852615e
+  - [v6,net-next,06/12] net: enetc: build enetc_pf_common.c as a separate module
+    https://git.kernel.org/netdev/net-next/c/3774409fd4c6
+  - [v6,net-next,07/12] net: enetc: remove ERR050089 workaround for i.MX95
+    https://git.kernel.org/netdev/net-next/c/86831a3f4cd4
+  - [v6,net-next,08/12] net: enetc: add i.MX95 EMDIO support
+    https://git.kernel.org/netdev/net-next/c/a52201fb9caa
+  - [v6,net-next,09/12] net: enetc: extract enetc_int_vector_init/destroy() from enetc_alloc_msix()
+    https://git.kernel.org/netdev/net-next/c/b4bfd0a904e9
+  - [v6,net-next,10/12] net: enetc: optimize the allocation of tx_bdr
+    https://git.kernel.org/netdev/net-next/c/9e7f2116199d
+  - [v6,net-next,11/12] net: enetc: add preliminary support for i.MX95 ENETC PF
+    https://git.kernel.org/netdev/net-next/c/99100d0d9922
+  - [v6,net-next,12/12] MAINTAINERS: update ENETC driver files and maintainers
+    https://git.kernel.org/netdev/net-next/c/f488649e40f8
 
-[1/1] arm64: dts: mediatek: mt6358: fix dtbs_check error
-      commit: 76ab2ae0ab9ebb2d70e6ee8a9f59911621192c37
-
-Cheers,
-Angelo
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
 
