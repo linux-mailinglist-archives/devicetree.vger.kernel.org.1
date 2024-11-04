@@ -1,125 +1,226 @@
-Return-Path: <devicetree+bounces-118827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B309BBA87
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:46:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A87819BBCAE
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 18:58:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15D351F21A9C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:46:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04604B225FC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46FC51C0DFD;
-	Mon,  4 Nov 2024 16:46:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C261CB316;
+	Mon,  4 Nov 2024 17:55:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JOk2/8JC"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="DU3SuEdP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from mail-m17243.xmail.ntesmail.com (mail-m17243.xmail.ntesmail.com [45.195.17.243])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FC7942056;
-	Mon,  4 Nov 2024 16:46:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 070471CB312
+	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 17:55:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.195.17.243
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730738776; cv=none; b=BqjnYqe+6SDzG/g8GWE3MZueshi+blsW/7X/u5iq1xpQMPFUoPzlUpUJsQmv5ZX2UganNvjxM0L0j2xHMEBzcpNlHWCV/wtsLsPb0VBRiakOMMlYQUXhCAJ0PA13fPrKk8GYdgKtJa6eFP0Hd62WnV9uYnnSUdv5m90c3Lk0XqE=
+	t=1730742919; cv=none; b=ZbW9hY+46T9WLaQ8GIMRftaYA+PGMj0PupW17oQd1eQMQZxlmnjU7Zw1smLyuVsta0web4kHvRmCjrHuJ/pCq8/SmtQj84o0XURI/eyVGQKs96K4UTe/cg9m46bGSeZrIpLxSfJOPh9L1r8ZsuxSjMPjqO0Tiic2AAnO7CvFAwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730738776; c=relaxed/simple;
-	bh=DGrRE7TUEKaaDw37a+FHzO+nzWDrspEHgHtffr+CQGI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=bpErXFlOIvo4oKq6erRnBzMl9h+myHoOzldg1KTUu8TZQo37Zw+0H/YXP9kAtmGTnwvKbMgNQLNfAxv0/e/RpI1Qn0jjTsS9WDa2FtbRjEnzkMxV20lFeB0jPOtKw4vTujlm1kPr97e+0Z1BkJ+yFhPjkRGP+h52YN/c1AO86bg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JOk2/8JC; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C8C3E2000D;
-	Mon,  4 Nov 2024 16:46:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1730738771;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TK/3OnrOZfeWPKLNUkcYsUToqQO4kgM2GP8iJaKUbjY=;
-	b=JOk2/8JCqilJlJUfCvY4uRlTxlIp9ji8Qy1ngcdkwnygCzCyejzCgVMiRSaTFs9FFJDn8L
-	zV1x+ih0Gkk/qUZCv5sdT61fI1vEU+O/BjB73mPc8uoRCyM9KgaYdurfjD9fOSxMTWO90C
-	celi03gusvUFIczQAXKPUpoHig5vrFrnmhHY0OZVffXsEEsSrjJrxzoUUqvBSOdaYebHxF
-	vA3a1Fyno2B1Jd+fU6PRBwiydlj8yI4eAk6TdghaZfng6k3eDH/odGft/I/7lBgEQnAZgV
-	psQ0M2X/GNgV6qIjy3UOBxDnghEGd39eq45MFbMKvfkweDnJCvYd6olMILoDPw==
+	s=arc-20240116; t=1730742919; c=relaxed/simple;
+	bh=Vbw/eBJ9fZbuakGdvyE6kcwGjTyBm8s5NtjMjx4wHIQ=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=ifyeXFECp7B9ItoluoZ1K3+iFT2dNaxLbjKr/rWPXoNzFmcNIf8ehRIULIAkUXTXelAecycKrU4o6fU/wGF9sMv3ztaXQsWcB03NX9FvfozdKz0Onqlf8rWhAg7F0lsRppwYkaqyNxWrUcuwksoD5XDWw/vKsLUke2T9qKVZghM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=DU3SuEdP; arc=none smtp.client-ip=45.195.17.243
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.45] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1b3e7143;
+	Mon, 4 Nov 2024 14:38:16 +0800 (GMT+08:00)
+Message-ID: <6f3f2d17-4ca2-44ad-b8df-72986d4b3174@rock-chips.com>
+Date: Mon, 4 Nov 2024 14:38:16 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 04 Nov 2024 17:46:10 +0100
-Message-Id: <D5DJOUV9NPY4.22MIOBKLAYGA3@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH 01/13] dt-bindings: soc: mobileye: set `#clock-cells =
- <1>` for all compatibles
-Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
- <sboyd@kernel.org>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Rob Herring" <robh@kernel.org>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20241031-mbly-clk-v1-0-89d8b28e3006@bootlin.com>
- <20241031-mbly-clk-v1-1-89d8b28e3006@bootlin.com>
- <20241104153727.GA192461-robh@kernel.org>
-In-Reply-To: <20241104153727.GA192461-robh@kernel.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, Ulf Hansson <ulf.hansson@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ "James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
+ "Martin K . Petersen" <martin.petersen@oracle.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, YiFeng Zhao <zyf@rock-chips.com>,
+ Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] scsi: ufs: rockchip: initial support for UFS
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+References: <1728368130-37213-1-git-send-email-shawn.lin@rock-chips.com>
+ <1728368130-37213-6-git-send-email-shawn.lin@rock-chips.com>
+ <CAPDyKForpLcmkqruuTfD6kkJhp_4CKFABWRxFVYNskGL1tjO=w@mail.gmail.com>
+ <3969bae0-eeb8-447a-86a5-dfdac0b136cd@rock-chips.com>
+ <CAPDyKFo=GcHG2sGQBrXJ7VWyp59QOmbLCAvHQ3krUympEkid_A@mail.gmail.com>
+ <98e0062c-aeb1-4bea-aa2b-4a99115c9da4@rock-chips.com>
+ <20241103120223.abkwgej4svas4epr@thinkpad>
+Content-Language: en-GB
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20241103120223.abkwgej4svas4epr@thinkpad>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQhpCSlZMTR4dSkhKSx9PHh9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a92f5e546e209cckunm1b3e7143
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NBw6Sww4FTIuPDpLSBktPSI9
+	MggwCRFVSlVKTEhLTEtJSUJDTktIVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU5JTkg3Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=DU3SuEdPcEpa+HXaAmtYzoHn1y+J+KZBKzvBxCyom7GSkWUk50hQMl+d4ECHq69Tsvw8Tw05iTs3jWFbioFxLIB83lYsghYWbulcmBPsfGMTdvyqfWaVycjbMornt1Ol5qaIUYlBAMETiWUExJp/Ye+9gkZKuMd6wfhjUqNQiJw=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=coXjwW8ahmTl1/WoUAvxkkWEwwxJZx/4YBJoZyucdyI=;
+	h=date:mime-version:subject:message-id:from;
 
-On Mon Nov 4, 2024 at 4:37 PM CET, Rob Herring wrote:
-> On Thu, Oct 31, 2024 at 04:52:51PM +0100, Th=C3=A9o Lebrun wrote:
-> > Some compatibles expose a single clock. For those, we used to let them
-> > using `#clock-cells =3D <0>` (ie <&olb> reference rather than <&olb 0>)=
-.
-> >=20
-> > Switch away from that: enforce a cell for all compatibles. This is more
-> > straight forward, and avoids devicetree changes whenever a compatible
-> > goes from exposing a single clock to multiple ones.
->
-> Your reasoning is flawed. Changing #clock-cells is an ABI break. So you=
-=20
-> should only be changing this if it was just wrong. And if it's not wrong=
-=20
-> in some cases, you shouldn't be changing those. The h/w either has 1=20
-> clock or multiple and #clocks-cells should match.
+在 2024/11/3 20:02, Manivannan Sadhasivam 写道:
+> On Fri, Oct 18, 2024 at 05:20:08PM +0800, Shawn Lin wrote:
+>> Hi Ulf,
+>>
+>> 在 2024/10/18 17:07, Ulf Hansson 写道:
+>>> On Thu, 10 Oct 2024 at 03:21, Shawn Lin <shawn.lin@rock-chips.com> wrote:
+>>>>
+>>>> Hi Ulf
+>>>>
+>>>> 在 2024/10/9 21:15, Ulf Hansson 写道:
+>>>>> [...]
+>>>>>
+>>>>>> +
+>>>>>> +static int ufs_rockchip_runtime_suspend(struct device *dev)
+>>>>>> +{
+>>>>>> +       struct ufs_hba *hba = dev_get_drvdata(dev);
+>>>>>> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+>>>>>> +       struct generic_pm_domain *genpd = pd_to_genpd(dev->pm_domain);
+>>>>>
+>>>>> pd_to_genpd() isn't safe to use like this. It's solely to be used by
+>>>>> genpd provider drivers.
+>>>>>
+>>>>>> +
+>>>>>> +       clk_disable_unprepare(host->ref_out_clk);
+>>>>>> +
+>>>>>> +       /*
+>>>>>> +        * Shouldn't power down if rpm_lvl is less than level 5.
+>>>>>
+>>>>> Can you elaborate on why we must not power-off the power-domain when
+>>>>> level is less than 5?
+>>>>>
+>>>>
+>>>> Because ufshcd driver assume the controller is active and the link is on
+>>>> if level is less than 5. So the default resume policy will not try to
+>>>> recover the registers until the first error happened. Otherwise if the
+>>>> level is >=5, it assumes the controller is off and the link is down,
+>>>> then it will restore the registers and link.
+>>>>
+>>>> And the level is changeable via sysfs.
+>>>
+>>> Okay, thanks for clarifying.
+>>>
+>>>>
+>>>>> What happens if we power-off anyway when the level is less than 5?
+>>>>>
+>>>>>> +        * This flag will be passed down to platform power-domain driver
+>>>>>> +        * which has the final decision.
+>>>>>> +        */
+>>>>>> +       if (hba->rpm_lvl < UFS_PM_LVL_5)
+>>>>>> +               genpd->flags |= GENPD_FLAG_RPM_ALWAYS_ON;
+>>>>>> +       else
+>>>>>> +               genpd->flags &= ~GENPD_FLAG_RPM_ALWAYS_ON;
+>>>>>
+>>>>> The genpd->flags is not supposed to be changed like this - and
+>>>>> especially not from a genpd consumer driver.
+>>>>>
+>>>>> I am trying to understand a bit more of the use case here. Let's see
+>>>>> if that helps me to potentially suggest an alternative approach.
+>>>>>
+>>>>
+>>>> I was not familiar with the genpd part, so I haven't come up with
+>>>> another solution. It would be great if you can guide me to the right
+>>>> way.
+>>>
+>>> I have been playing with the existing infrastructure we have at hand
+>>> to support this, but I need a few more days to be able to propose
+>>> something for you.
+>>>
+>>
+>> Much appreciate.
+>>
+>>>>
+>>>>>> +
+>>>>>> +       return ufshcd_runtime_suspend(dev);
+>>>>>> +}
+>>>>>> +
+>>>>>> +static int ufs_rockchip_runtime_resume(struct device *dev)
+>>>>>> +{
+>>>>>> +       struct ufs_hba *hba = dev_get_drvdata(dev);
+>>>>>> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+>>>>>> +       int err;
+>>>>>> +
+>>>>>> +       err = clk_prepare_enable(host->ref_out_clk);
+>>>>>> +       if (err) {
+>>>>>> +               dev_err(hba->dev, "failed to enable ref out clock %d\n", err);
+>>>>>> +               return err;
+>>>>>> +       }
+>>>>>> +
+>>>>>> +       reset_control_assert(host->rst);
+>>>>>> +       usleep_range(1, 2);
+>>>>>> +       reset_control_deassert(host->rst);
+>>>>>> +
+>>>>>> +       return ufshcd_runtime_resume(dev);
+>>>>>> +}
+>>>>>> +
+>>>>>> +static int ufs_rockchip_system_suspend(struct device *dev)
+>>>>>> +{
+>>>>>> +       struct ufs_hba *hba = dev_get_drvdata(dev);
+>>>>>> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+>>>>>> +
+>>>>>> +       /* Pass down desired spm_lvl to Firmware */
+>>>>>> +       arm_smccc_smc(ROCKCHIP_SIP_SUSPEND_MODE, ROCKCHIP_SLEEP_PD_CONFIG,
+>>>>>> +                       host->pd_id, hba->spm_lvl < 5 ? 1 : 0, 0, 0, 0, 0, NULL);
+>>>>>
+>>>>> Can you please elaborate on what goes on here? Is this turning off the
+>>>>> power-domain that the dev is attached to - or what is actually
+>>>>> happening?
+>>>>>
+>>>>
+>>>> This smc call is trying to ask firmware not to turn off the power-domian
+>>>> that the UFS is attached to and also not to turn off the power of UFS
+>>>> conntroller.
+>>>
+>>> Okay, thanks for clarifying!
+>>>
+>>> A follow up question, don't you need to make a corresponding smc call
+>>> to inform the FW that it's okay to turn off the power-domain at some
+>>> point?
+>>>
+>>
+>> Yes. Each time entering sleep, we teach FW if it need to turn off or keep
+>> power-domain, for instance "hba->spm_lvl < 5 ? 1 : 0" , 0 means
+>> off and 1 means on.
+>>
+> 
+> We had a requirement to notify the genpd provider from consumer to not turn off
+> the power domain during system suspend. So Ulf came up with an API for
+> consumers, device_set_wakeup_path() setting the 'dev->power.wakeup_path' which
+> will be honored by the genpd core. Will that work for you?
 
-I see your reasoning, and I agree that changing #clock-cells is an ABI
-break. However, there are two things to take into account:
+Yes, that works. And we may need a symmetrical call, for instance,
+device_clr_wakeup_path() to allow genpd provider to turn off the power
+domain as well.
 
- - We do not (yet?) have an omniscient view of the hardware. We do not
-   know what every single register in those memory regions do.
-
-   Some clocks might be lurking in the shadows, especially as we don't
-   support many HW capabilities yet.
-
- - The earlier the better. If we discover later down the road that,
-   indeed, some more clocks were hiding, we'll have to do an ABI break.
-
-   At that point, some people might actually be using the platform.
-   Seeing what we currently have supported upstream versus the amount
-   of HW blocks available in the SoC, I cannot imagine anyone using the
-   platform with an upstream kernel.
-
-So the choice is:
- - potential ABI break in the future, once people use the platform, or,
- - guaranteed ABI break now, when no one is using it.
-
-I pick option two! Do you agree with the thought process?
-
-Thanks Rob,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> 
+> PS: The API naming suggests that the device will be used in wakeup path, which
+> may not be true here but the end result will be the same.
+> 
+> - Mani
+> 
 
 
