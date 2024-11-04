@@ -1,123 +1,135 @@
-Return-Path: <devicetree+bounces-118710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE7589BB538
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:00:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BECE9BB53D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:01:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 890AE1F20D46
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:00:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED94B1F21698
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:01:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262011B392A;
-	Mon,  4 Nov 2024 13:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 453451AF0BB;
+	Mon,  4 Nov 2024 13:01:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="BQtLYRqh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HZIxjfnp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com [209.85.214.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE8E18C907
-	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 13:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC66418A6B6;
+	Mon,  4 Nov 2024 13:01:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730725254; cv=none; b=uP9a+Mqno7p3FjMndGI0isyhDdK0XXjUISz5uOzMJ6trZKN1UUWMNPMgA5zZ+WXtWnm4oagnekuGKL33TFxonS7d8CJByqRAAML7YLZVcvyNNy+RlXQjqI+ZgYjpePRoMcx95h80rVC34XsE7M0s/2zqSZi6n5tH3TbzYU8S7JM=
+	t=1730725311; cv=none; b=bVYLiAc7RrdnIEdEjrcypr6Yw0qAMSVF8cNR+dTdsmgi1BlN8lg7Hl9DcW50kKVMU/DMa0gFoPhfOsrWGIKwfmV0rOZyv6doOm430FWZiI9DrGwl6zPtUncgsoyIjTlVcFdc7/LQFhemBvUibttTpRdamGtFffQlFQk8KEVOLQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730725254; c=relaxed/simple;
-	bh=JhQ2PWN2Y1EFf7Bbt6XnhgOueYeaz3vhV3MZ8+CoaM0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KpWFeI+nUg/Fx5sg9Ky5rvs+VNFYXXfC3mVp1n39Q6ycVf2PalMA6ud/BbXDklsw/KLOBDeqLkB+wsFk1YxpVrchtdgounCO5gO6W+6lolHaGtCImPF5OJyPxk94De8wMFFEQ4lANWpcdTTrRwcIs707R4NfRlybqaUFiuhkzJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=BQtLYRqh; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-539f72c913aso6724146e87.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 05:00:52 -0800 (PST)
+	s=arc-20240116; t=1730725311; c=relaxed/simple;
+	bh=J44/JPvySgw2nxSBKZizSV9MaJ7OyvkzhgCNOwdau6A=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=DLE40T4YFO+gm6CZpqZOqglux+8+MYKsSyuq0uTp9oSYlZqfdY3+X/f/qrKv9DhiC9CSN3Embx7tQ0i+CAw1WZSkYrxrj+qLeovbFJhWev9D8qrva8O3/GzQmgFLOB7L+XyEWsmxdijxZcekI2ePKW/YA4kR3aANapJ//rKl+rU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HZIxjfnp; arc=none smtp.client-ip=209.85.214.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f194.google.com with SMTP id d9443c01a7336-20cf3e36a76so43533525ad.0;
+        Mon, 04 Nov 2024 05:01:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1730725250; x=1731330050; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+nWI6Xd/q/LZwmtaLVMw4xyJRrOQePjMO2FUfWARW0Q=;
-        b=BQtLYRqh1kfutTaexWkm7NQi+uUkV4bTu7tZ9SuFVSMCx5vUnFDXRsVNoBO6WqEavK
-         odGncTYYOoq0iftkLro4CxESxFU8bEvwePfZAocA1FAjvheaaUQzlShEZTm5zlqrVltH
-         t6kpCFcBtrYLlesVeN0SHLXvj7zBql3wD88e8=
+        d=gmail.com; s=20230601; t=1730725309; x=1731330109; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:cc:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bggMuP0j8I4Cl2VFvczgvzqyg/UZ6DBjAMKce4D1IhA=;
+        b=HZIxjfnpFNa+5EjF+1JkohlduuLCo8aBlnvWJPIofBO3IuAENx5eqXoPaMtw6cUI8U
+         Z1NzeVwjhOvPuEjW8ggOzAK0dc4HzMIcE5Z1OmZ8Da+MU8RVjhWc3jST7XK57l/Cur3c
+         QkxmYBj+C4NfTETXavqK88I3CeDlLvy6a9lU6E9sRhbBiqIiI3fXArYbf9o7YP9EPkiP
+         1BlSFyv7M+zNkTslWA/KUiPEmlKOhryEcgY4YVSSRJdjlfWRz3MmGlS4+zd5NJQ3twsG
+         yJRR2FAk7VNiEQT0IAVGtgRF/9lGqjkYibSuXX1hGgP43jIkJUYqM6OrIZdTgH35w726
+         4peQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730725250; x=1731330050;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+nWI6Xd/q/LZwmtaLVMw4xyJRrOQePjMO2FUfWARW0Q=;
-        b=UVSwd03X56RI+f4YxnwzKeD8OSTPx2ZMFs5y4zJDNBH0dGXezdubzzGAXor6ELcSs3
-         wcv9SVh44Aet/kPL2IGAXGHv0Co6v3N0rtG1kq3WTMxwOJgOW002ot9TdXgzUfsHlfdv
-         vMnKcrBZRGWR9CL2VQ3W9EBoYpPp7KFz9nz25li3nuwvBF758pCy04/suG+14iTrMtFW
-         lbQcEDcLnJ5v2uWQfWzeSesZq+i7HpOoi00WYOEO+n2juzphbVEYZtaOCIl3sjhSUoIV
-         mzdGUVH1U98QoyrUUoJo/vh53D/lP8PXtJks4bUNVMsJRNylWDHOS6o2ekXnwoQGbPDk
-         n/2w==
-X-Gm-Message-State: AOJu0YwNDIyIym/lHxfS4DB3DFmLKJMeaW6GfCEIA278EW2Dmo/kHTnk
-	iuCQS82qzyxYS7VRTlV9eiLgBpluqOe8mgZy+/UUa+eP23pdK/GMBwWwSxWAh2S7nZv0EiZPrQr
-	ml/w+OZi3y6m2NNa8vXhQaIL6DD8YLh9ziqvr
-X-Google-Smtp-Source: AGHT+IEaB8ZZda+xiJN8hKjO+7R4XsS7rVORV17qPKkGoFiz7+eoeVha8v/dIRlM1DAoeMrrYQuRDQrFwr1eS5hM8ts=
-X-Received: by 2002:a05:6512:3404:b0:530:ad7d:8957 with SMTP id
- 2adb3069b0e04-53b34b36e63mr15028995e87.49.1730725249927; Mon, 04 Nov 2024
- 05:00:49 -0800 (PST)
+        d=1e100.net; s=20230601; t=1730725309; x=1731330109;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:cc:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bggMuP0j8I4Cl2VFvczgvzqyg/UZ6DBjAMKce4D1IhA=;
+        b=CedWo112Az9HMaW5sx3NLKCRNG6UP024VGaKslLOQxrcY09NI37fyxKNbPlOUqptQ9
+         k5/m0jHN9aUat00nnpwS8E/VjiruFjF6T47/G0YLuX/Vy0DSsdSy/Zdiqxtp4EDTLHg8
+         DmiLDM/ph4MvDMsCKbwF0Xs+qZJTUQ87V85ic3asXrZqZw3BECCmLL8X14YczTo97yN/
+         aKR3gXzVecUtSJceg2Kq17ZJRirVhqAO/FH69Q+hIswblrGoT51Fbo/cOAyMeCftisNF
+         FUR+BqUcJZJkv3mZyX7eZrhyb7xl22578dr5rExT2+EePYE4fwgIGEBYFS82WufuorFZ
+         K8bQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUYxrNdFBQcJW2o0zH89C0VoGFSuI+8AI/hc7ipXm3XnmY3aY/rl+1xau/cLXbO0R+yAyltg3R4czMC@vger.kernel.org, AJvYcCVPzBKlKFrX3uatQ+xn/ABOxgHmlFvQRjICqJu4o3zzUq8jwchWHLq068gq+2lIN0OPB6Hufu8eQmhd@vger.kernel.org, AJvYcCWVeonLdsLh3a5g1UBHdUjSEUPee59VRKiDMx85OEHF1Ic6Z2kgDbLPc4tz9fVr7r/2OQCcDDpBkTCkFYUu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnC9GLhHRzbUB5sueD38xGTQ90mzBQC0qVVxg81Uu5OuIhm814
+	TfVpgd3QDhiYVP+0FLyzbeQUmGlWkoV4DRuVOA+NOnns85ydCMII
+X-Google-Smtp-Source: AGHT+IGp9W2hxadwgRNmNykF2kMJxHkLvqXSziQp7OTyn0xuMYqTlQh0Q/87CZjhUI3SSdhNoev0dw==
+X-Received: by 2002:a17:902:ecc3:b0:20c:ee48:94f3 with SMTP id d9443c01a7336-21103accfbbmr208730745ad.14.1730725308712;
+        Mon, 04 Nov 2024 05:01:48 -0800 (PST)
+Received: from [127.0.0.1] ([2602:f919:106::1b8])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211057a2bf7sm60238765ad.173.2024.11.04.05.01.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Nov 2024 05:01:48 -0800 (PST)
+Message-ID: <6cce463e-25cc-4a07-971f-6260347cb581@gmail.com>
+Date: Mon, 4 Nov 2024 21:01:41 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241030070224.1006331-1-wenst@chromium.org> <20241030070224.1006331-2-wenst@chromium.org>
-In-Reply-To: <20241030070224.1006331-2-wenst@chromium.org>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 4 Nov 2024 21:00:39 +0800
-Message-ID: <CAGXv+5HVy41qee6kwVUeLV_DfA0=wk2X77kv81rBKAZDGE6mww@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: mediatek: mt8183-kukui-jacuzzi: Drop
- pp3300_panel voltage settings
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Oct 30, 2024 at 3:02=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
-rote:
->
-> The pp3300_panel fixed regulator is just a load switch. It does not have
-> any regulating capabilities. Thus having voltage constraints on it is
-> wrong.
->
-> Remove the voltage constraints.
->
-> Fixes: cabc71b08eb5 ("arm64: dts: mt8183: Add kukui-jacuzzi-damu board")
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-
-I see that the other three patches were merged and included in the pull
-request, but not this one. Were there any concerns?
+User-Agent: Mozilla Thunderbird
+Cc: troymitchell988@gmail.com, andi.shyti@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: spacemit: add support for K1 SoC
+To: Krzysztof Kozlowski <krzk@kernel.org>
+References: <20241028053220.346283-1-TroyMitchell988@gmail.com>
+ <20241028053220.346283-2-TroyMitchell988@gmail.com>
+ <6zx3tqdc5bma2vutexwigzlir6nr6adp7arg4qwl5ieyd3avbu@5yyhv57ttwcl>
+ <dbeea869-54cd-43fe-9021-783d641f1278@gmail.com>
+ <ariqiukhztgziwwgaauqy6q3pghflnoeuwtag4izwkfmtvi2kh@gnlq4d7jsaw4>
+Content-Language: en-US
+From: Troy Mitchell <troymitchell988@gmail.com>
+In-Reply-To: <ariqiukhztgziwwgaauqy6q3pghflnoeuwtag4izwkfmtvi2kh@gnlq4d7jsaw4>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-ChenYu
+On 2024/10/31 16:00, Krzysztof Kozlowski wrote:
+> On Tue, Oct 29, 2024 at 04:36:00PM +0800, Troy Mitchell wrote:
+>> On 2024/10/28 15:38, Krzysztof Kozlowski wrote:
+>>> On Mon, Oct 28, 2024 at 01:32:19PM +0800, Troy Mitchell wrote:
+>>>> The I2C of K1 supports fast-speed-mode and high-speed-mode,
+>>>> and supports FIFO transmission.
+>>>>
+>>>> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
+>>>> ---
+Change in v2:
+ - Change the maxItems of reg from 1 to 2 in properties
+ - Change 'i2c' to 'I2C' in the commit message.
+ - Drop fifo-disable property
+ - Drop alias in dts example
+ - Move `unevaluatedProperties` after `required:` block
 
-> ---
->  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arc=
-h/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> index 783c333107bc..7bbafe926558 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> @@ -35,8 +35,6 @@ pp1800_mipibrdg: pp1800-mipibrdg {
->         pp3300_panel: pp3300-panel {
->                 compatible =3D "regulator-fixed";
->                 regulator-name =3D "pp3300_panel";
-> -               regulator-min-microvolt =3D <3300000>;
-> -               regulator-max-microvolt =3D <3300000>;
->                 pinctrl-names =3D "default";
->                 pinctrl-0 =3D <&pp3300_panel_pins>;
->
-> --
-> 2.47.0.163.g1226f6d8fa-goog
->
+>>>
+>>> Where is the changelog? Nothing here, nothing in cover letter.
+>>>
+>>> I asked for several changes, so now I don't know if you implemented
+>>> them.
+>>
+>> I deleted the FIFO property because I believe your suggestion is correct.
+>> this should be decided by the driver, even though the FIFO is provided
+>> by the hardware.
+>>
+>> Apologies for missing the changelog. To correct this, should I send a v3 
+>> version with the changelog or resend v2?
+> 
+> Reply now with changelog. Your binding has some other unrelated and
+> incorrect changes, which I do not understand.
+> 
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+Troy Mitchell
 
