@@ -1,206 +1,168 @@
-Return-Path: <devicetree+bounces-118603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F90B9BAE9C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:53:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 420A39BAEA0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:54:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31AC01F21145
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 08:53:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6FFE1F21952
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 08:54:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C72AA1AB530;
-	Mon,  4 Nov 2024 08:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9478C1AB6EA;
+	Mon,  4 Nov 2024 08:54:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="w64F1RmQ"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="L6D+oWFY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D37311AAE2E
-	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 08:52:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD801AB526
+	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 08:54:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730710376; cv=none; b=e2+yzAb5yNoZvmLzKOei0MENE4POCfA20a6cyxhfGW302JHQIz6YIM9HPd5iHtuK8ob5Hm9l1Z3B/5jw6/kDayqCR7ymr7pvlw3d0p4iEQUke6BQ6DtkNfTPGni0oVayFSeMnGwA4lD9Xh8XfCHAdDYfZKmUwRfRdGKBofN+p28=
+	t=1730710475; cv=none; b=kuKT4/qPuAKndjUX/zE3qZwRQMi6ETjjvkbkUCTsD7MyiJwumLOSAPoIzmn4T4e9zkHRHAvo5Vw8ATfFm6URLck9K4E5OMlK5ROApDcVQzStVewrSJo7xsJy7cZzNs2xRsP1ZCCQcEiPvjLxl23NjJlyYoLKdsOmkNox0FioLhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730710376; c=relaxed/simple;
-	bh=+dg7+/oeLYejz4vf4EdmY/yPLTxLAvK5rCpl1BLgxkY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fKKetOdY1bpBomVljfuL7MARXqykRoosv8VYdZcQvJLUhNMr+itQiYZQ574H+FEQNEaCT2ijIl0YPa7eVAketlVdbgW05rivnEw5dKwG/utzU3pLCoFXVr71xduZKtt7AmHTjebE/wB6oMnV/5CpJ0lcyMX/uDnrkM9Mo0n7xuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=w64F1RmQ; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-37d70df0b1aso2499877f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 00:52:54 -0800 (PST)
+	s=arc-20240116; t=1730710475; c=relaxed/simple;
+	bh=J1lybsdywqSajY8+XO5SA+Jx3q7N50JOGpD77qB0vPE=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xi/bbOtqJha6mjA/6k1E0mZeQsMuMOaqaxaZVEkNgB+QV4c5QlfkF8OnChDazog8Rc+FH4r7OhO621Yb7BCokFAQ7YvN/uIhXK64Po8nbHcUzKHfVzWQWux7WOr1a1RjLpEmeym9P9NFIUFqrvjUAmAMIN8fZM3j8aUkPN6bP70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=L6D+oWFY; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a9a0f198d38so682602866b.1
+        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 00:54:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730710373; x=1731315173; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=GT4c1xxWFNvifykBes4pG2L4vTvH31piGgiV/8RPSmM=;
-        b=w64F1RmQtIfoN34isRu5saJ8zOa6E3eAiE5lCu3XwCK2MDp4sjwXaLcBdTr/E7FY6s
-         /nZ+sW0svioXgsEchplLMGYbxiXKurYaTJ8dCIzPcWGrQebc/A+2mGHieCwa+LhIZlHN
-         gktKfRz58cOB06E+/OW/oUC+eNEZf6hzfPRHt3qM4wBa7P8Frn4b8FGjMCt59dHBoRz9
-         jx6xip8iwrE1QLruV8+BFzZazPKrSATdA2UAByZfylleld6VHLrWO8kffE1BW4Hykt5C
-         BSiMoBsO0c0dEArO7PUIIF6zxQ1Tg8Fg2StN9thI5oTlMHskywLrOh4iVh4pbGbb5DFQ
-         4ONA==
+        d=suse.com; s=google; t=1730710472; x=1731315272; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=wVgtF+RQO3Bp9xa0wTFVgwHh2YZ5qiUAa82quET385A=;
+        b=L6D+oWFYL/dRJ3QfMl0QDc1JvClifZsvCwEHs30ScF0oZECySUsxPxUVLXQ0joHblQ
+         RJIJdofH9n/APZwIgIPcSs6V9tN6/uz+38DZ+b1OgnKKDo99k4TC+/cQAyXpmpGIUigk
+         3pLqhBtRPOOrFwOse+8qTeYoHSWOLR30ffATYgoCdl4e6ZL8Hhac2kTnJSDn0U57K9p6
+         GLpzEZ5WkIe3bHW+L0Fkp7g1atHUjJ2R+ousYm6dJX1KbHFIwHCkmXxa4Nw60K0AB8kA
+         wii2qixJyFbJ4qd5DrdMBKNqKPewui8aC6ySOWOl7vKdU58U9e4xZEpASWnU2kQVNmpB
+         fdFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730710373; x=1731315173;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GT4c1xxWFNvifykBes4pG2L4vTvH31piGgiV/8RPSmM=;
-        b=jfwyiYiusG4b2nfkIFqOhbfUXrYFrSXPdyMHxjQsn++jpLQexVA+7zmQjLtuNQExPD
-         CO9M/53InMI4N+AIeT0JctuoSCJKB2MzQrd5a3ehY3dzPVVgLaTsVne1LDMkQSgjZuIh
-         EuXNMsq7OAVzfudEmXDppqWMnAkWMpM8V8Z2Z2c8XdeXcbTkwi8iAMXSUTgSxV4efJ1a
-         G4fxgL3ChB1zGNh5vp+fN0oRL1Cup5GTeqYqXoHdDth06oBtl3UIB2VGT5MkfB8i46T9
-         6gSIZOpyPoVcFawqP3rzwSGk4Wi4SfyLbkG2AaE5I8HgfrUj8g9NnguuPx1wGSv4AF/m
-         5uaw==
-X-Forwarded-Encrypted: i=1; AJvYcCXMNMeb+vO3N2H8l+ICGz8BzDhGqd4O3Dj/ywNyMbwUxvBskXcKgSjKnX97DkY2UP31+vjDkIjHdUbt@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDb15kFipmF2UAU9KWcPaDtPCFrEHGOFbjTFn7nHPC83fdhwHU
-	ihe+EbGaD4fFiHa55v4Dq0A7FDO6DA0ZPRoi5MPKhGucQRjVJ5SVHF2eAzTUxz0=
-X-Google-Smtp-Source: AGHT+IH46ZjGucmxl6PTqFcmfDahpKMeLn2vnjDdJTD5YAvlDVhF2bkLjwJIb/MKH9YMOw8OMO2PEA==
-X-Received: by 2002:a5d:4fc4:0:b0:37d:393a:97c5 with SMTP id ffacd0b85a97d-3806115a0d7mr20711375f8f.28.1730710373108;
-        Mon, 04 Nov 2024 00:52:53 -0800 (PST)
-Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c10b7d20sm12734573f8f.7.2024.11.04.00.52.52
+        d=1e100.net; s=20230601; t=1730710472; x=1731315272;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wVgtF+RQO3Bp9xa0wTFVgwHh2YZ5qiUAa82quET385A=;
+        b=QB5LSApKat6hbamoZ5ZozHmggOpjmf7NtwBl6R+EF9UPEOINJR+qRcIEnChbJ/0cwc
+         6ueNukEnH6dBKwC3ON7oUqsfWBnH2BKomp17w5dJwQd32uyhwjy1p8EM6c5gB2yKOK+F
+         ZLrjM5dZst/ROq3HCJJfU5JYbHACxtq/Z2Mkaa6gGVT+n5O76PlnEWxyVFaZL9CmmgtQ
+         Imr7k9jDOqVd2bX6TEsIZh2Jc2MfHtO6pD6t2j8fbViyMjOsK0HUfWmRzNRwfE/S99Lq
+         WrETXoqJaSlTpdbqJd4mqSpLt3seaU5ld2VQBUdDQEO4/TUWzsziQhdksqHRKhKNyGnV
+         bwjw==
+X-Forwarded-Encrypted: i=1; AJvYcCXllegZcmUdLZvUZ7lytfjtB+MTU4BYd+OBBQIsJ9wXqn6lp/Qm8KzizFVdMgB/wmmLgnZgu8UO33Wg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMFkhW6lqD2ykOqthOpBL1ZBhkyde1Uaga8u44n29VH+woZTZ7
+	vYKlljCppF1GC3j9IX9EnKCXcYYdOS2wuO6r4V+VIAfszt9K/MsDO2HLDvtvJEs=
+X-Google-Smtp-Source: AGHT+IHHWwU4nmC4hKYGVohwmL7B6wm+EPEOdY9CCLcF+bYsvgn7lE94cff864zN3lJnYIL8UQ8UFQ==
+X-Received: by 2002:a17:907:2d0d:b0:a99:61d1:348f with SMTP id a640c23a62f3a-a9e655b9703mr1085525566b.52.1730710471755;
+        Mon, 04 Nov 2024 00:54:31 -0800 (PST)
+Received: from localhost (host-79-35-211-193.retail.telecomitalia.it. [79.35.211.193])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e5669a18esm524386366b.216.2024.11.04.00.54.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Nov 2024 00:52:52 -0800 (PST)
-Date: Mon, 4 Nov 2024 09:52:51 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] pwm: add support for NXPs high-side switch
- MC33XS2410
-Message-ID: <dy5abepkqhkmbgirwjkblbmw6vwb56vaqgazluyt675qflzioz@glp4djy6fhuo>
-References: <20240927125745.38367-1-dima.fedrau@gmail.com>
- <20240927125745.38367-3-dima.fedrau@gmail.com>
- <oppdnsda4tqjcpsb26j5ew62t4bkkmtxuu7e2fpinnazubk5ky@tmz76o5xdrlj>
- <20241023125221.GA197308@debian>
- <eyom32milbbqp6floun4r5bpozuewbe5kk2htvhp5cmcytj2oy@bpcrd2aiwk6m>
- <20241103190709.GA466098@debian>
- <atkj7wnhl4n6frl5swjwrto6r6dhofjtnqisqrn5z6w3cmfl3h@dgqgdxovrqb4>
- <20241103205215.GA509903@debian>
+        Mon, 04 Nov 2024 00:54:31 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Mon, 4 Nov 2024 09:54:57 +0100
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v3 05/12] PCI: of_property: Assign PCI instead of CPU bus
+ address to dynamic bridge nodes
+Message-ID: <ZyiL4RnRC1z907Ly@apocalypse>
+References: <cover.1730123575.git.andrea.porta@suse.com>
+ <f6b445b764312fd8ab96745fe4e97fb22f91ae4c.1730123575.git.andrea.porta@suse.com>
+ <20241102170908.fa5n6pz5ldxb66zk@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ydvmgz6gd4xioeih"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241103205215.GA509903@debian>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241102170908.fa5n6pz5ldxb66zk@thinkpad>
 
+Hi Manivannan,
 
---ydvmgz6gd4xioeih
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 2/2] pwm: add support for NXPs high-side switch
- MC33XS2410
-MIME-Version: 1.0
+On 22:39 Sat 02 Nov     , Manivannan Sadhasivam wrote:
+> On Mon, Oct 28, 2024 at 03:07:22PM +0100, Andrea della Porta wrote:
+> > When populating "ranges" property for a PCI bridge, of_pci_prop_ranges()
+> > incorrectly use the CPU bus address of the resource. Since this is a PCI-PCI
+> > bridge, the window should instead be in PCI address space. Call
+> > pci_bus_address() on the resource in order to obtain the PCI bus
+> > address.
+> > 
+> 
+> of_pci_prop_ranges() could be called for PCI devices also (not just PCI
+> bridges), right?
 
-On Sun, Nov 03, 2024 at 09:52:15PM +0100, Dimitri Fedrau wrote:
-> Hello Uwe,
->=20
-> Am Sun, Nov 03, 2024 at 09:19:36PM +0100 schrieb Uwe Kleine-K=F6nig:
-> > Hello Dimitri,
-> >=20
-> > On Sun, Nov 03, 2024 at 08:07:09PM +0100, Dimitri Fedrau wrote:
-> > > Am Thu, Oct 24, 2024 at 11:19:16PM +0200 schrieb Uwe Kleine-K=F6nig:
-> > > > What breaks if you drop the check for state->enabled?
-> > > > =20
-> > > The device is unable to generate a 0% duty cycle, to support this you
-> > > proposed in an earlier review to disable the output. Without checking=
- if
-> > > the output is disabled, the mc33xs2410_pwm_get_state function returns=
- the
-> > > wrong duty cycle for a previously setted 0% duty cycle. A "0" value i=
-n the
-> > > MC33XS2410_PWM_DC register means that the relative duty cylce is 1/25=
-6. As
-> > > a result there are complaints if PWM_DEBUG is enabled.
-> >=20
-> > I fail to follow. If .enabled=3Dtrue + .duty_cycle=3D0 is requested you
-> > disable. That's fine. However it shouldn't be necessary to use
-> > state->enabled in .get_state(). I didn't look at the actual code, but if
-> > you provide a sequence of writes to /sys that trigger a PWM_DEBUG
-> > output, I'll take another look.
-> >=20
-> Apply 0% duty cycle: .enabled=3Dfalse + .duty_cycle=3D0
-> Below some writes triggering PWM_DEBUG output:
->=20
-> # echo 488282 > /sys/class/pwm/pwmchip3/pwm0/period
-> # echo 244140 > /sys/class/pwm/pwmchip3/pwm0/duty_cycle
-> # echo 0 > /sys/class/pwm/pwmchip3/pwm0/duty_cycle
-> [   91.813513] mc33xs2410-pwm spi0.0: .apply is supposed to round down du=
-ty_cycle (requested: 0/488282, applied: 1908/488282)
+Correct. Please note however that while the PCI-PCI bridge has the parent
+address in CPU space, an endpoint device has it in PCI space: here we're
+focusing on the bridge part. It probably used to work before since in many
+cases the CPU and PCI address are the same, but it breaks down when they
+differ.
 
-I don't understand that. We're talking about=20
+Many thanks,
+Andrea
 
-diff --git a/drivers/pwm/pwm-mc33xs2410.c b/drivers/pwm/pwm-mc33xs2410.c
-index f9a334a5e69b..14f5f7312d0a 100644
---- a/drivers/pwm/pwm-mc33xs2410.c
-+++ b/drivers/pwm/pwm-mc33xs2410.c
-@@ -244,15 +244,6 @@ static int mc33xs2410_pwm_get_relative_duty_cycle(u64 =
-period, u64 duty_cycle)
- 	return duty_cycle - 1;
- }
-=20
--static void mc33xs2410_pwm_set_relative_duty_cycle(struct pwm_state *state,
--						   u16 duty_cycle)
--{
--	if (!state->enabled)
--		state->duty_cycle =3D 0;
--	else
--		state->duty_cycle =3D DIV_ROUND_UP_ULL((duty_cycle + 1) * state->period,=
- 256);
--}
--
- static int mc33xs2410_pwm_apply(struct pwm_chip *chip, struct pwm_device *=
-pwm,
- 				const struct pwm_state *state)
- {
-@@ -325,7 +316,7 @@ static int mc33xs2410_pwm_get_state(struct pwm_chip *ch=
-ip,
- 	state->polarity =3D (val[2] & MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm)) ?
- 			  PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
- 	state->enabled =3D !!(val[3] & MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm));
--	mc33xs2410_pwm_set_relative_duty_cycle(state, val[1]);
-+	state->duty_cycle =3D DIV_ROUND_UP_ULL((duty_cycle + 1) * state->period, =
-256);
- 	return 0;
- }
-=20
-on top of your patch, right?
-
-`echo 0 > /sys/class/pwm/pwmchip3/pwm0/duty_cycle` should result in
-MC33XS2410_PWM_CTRL3 having MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm) cleared.
-When mc33xs2410_pwm_get_state() is called then it returns state->enabled
-=3D false and in that case the above mentioned warning doesn't trigger.
-
-Where is the misunderstanding?
-
-Best regards
-Uwe
-
---ydvmgz6gd4xioeih
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcoi2AACgkQj4D7WH0S
-/k66+gf9EIyiCWwLCtdADfq3OdF4WI+Bfhcss7xk3MUTxyx4vcgWqEg2309SYLZw
-0117CRb6WsbnRyNo5Vj5GGkBn7eITd+k7b1TuEN+Aw0DNH24EwWNabO6DMKzUkQu
-AxFy9WXsyVr6IVHvSFK8xtiz0qexTwFSkmTI6o8cm0rAy/wyMY4dLu20WbLkZTZp
-zID7f047BkLo8T3o8k0fWmfD2s8OLT87+EDipK+D/VfosMf2BZ0Sb7/pr3tPZSMy
-loMLKgaMEGiWb5EZJ2nBeuUnGM4dimWdWI+B1JC6YeaN5/OW795ljIwyyGDELldu
-uCGcWdCXc/xONQsetMa5Mn9+tyoxrQ==
-=Ek8Z
------END PGP SIGNATURE-----
-
---ydvmgz6gd4xioeih--
+> 
+> - Mani
+> 
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> > ---
+> >  drivers/pci/of_property.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
+> > index 5a0b98e69795..886c236e5de6 100644
+> > --- a/drivers/pci/of_property.c
+> > +++ b/drivers/pci/of_property.c
+> > @@ -126,7 +126,7 @@ static int of_pci_prop_ranges(struct pci_dev *pdev, struct of_changeset *ocs,
+> >  		if (of_pci_get_addr_flags(&res[j], &flags))
+> >  			continue;
+> >  
+> > -		val64 = res[j].start;
+> > +		val64 = pci_bus_address(pdev, &res[j] - pdev->resource);
+> >  		of_pci_set_address(pdev, rp[i].parent_addr, val64, 0, flags,
+> >  				   false);
+> >  		if (pci_is_bridge(pdev)) {
+> > -- 
+> > 2.35.3
+> > 
+> 
+> -- 
+> மணிவண்ணன் சதாசிவம்
 
