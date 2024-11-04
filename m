@@ -1,187 +1,138 @@
-Return-Path: <devicetree+bounces-118697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E44BF9BB449
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:13:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 082929BB497
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:23:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3072282237
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:13:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A36F1C21509
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:23:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3F801B4F3E;
-	Mon,  4 Nov 2024 12:13:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6CD1B21BB;
+	Mon,  4 Nov 2024 12:23:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UDfMoCJT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a+M3vrgj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93A911B4F15;
-	Mon,  4 Nov 2024 12:13:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778D01B0F2B;
+	Mon,  4 Nov 2024 12:23:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730722386; cv=none; b=mrqPWi0qQxZXZ+NcKCjIalHtXBWWLqLUrn+PaKObWcf/Pagd5jG7o7hBZngN7KFwdxQLgC7M81hZ7OR1jXhwY4k4ufQMd0r+H1eWqNa36skRvqpjId2e2FM6nyhfn18I9ycj5PltCrhFnJtLYhI3YTHUzEBOfvYwlZTbW6gYysY=
+	t=1730723013; cv=none; b=Ao8RuZw3LtPNFwQ8AHez5Xi+rSSE6HAI0UjYXQz98kUTDZDz9BYTEY4H/gyzo9UIEhVFtmnnGYpPGN0Z2qrCj9alKct3idGsb5M6Yo/DsBVvK4KXh6kkYFgSzDpTdAnKjNeRVoWXqwPCcqUtQB6iCkKKneTQvQ2GwvaF91uqGJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730722386; c=relaxed/simple;
-	bh=3EfRZikjOd6hHl542PDBgADBfoEuuFC9YaROOj7fHUM=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=J+AU4nCO0wr4caxB+xgq71xkUnxUZ4oUUzF9tT8L6rbnISTG10+FXFMEOpmic2xcSDPqXjK8G4QoeWXXOTe7hOXD0XqyB8CpIgwApVnNM0uY76xVEqGHjclqawykIFdyVsbtm0nN8EWJMD80HZ2WCTroGuZ9nZqJO+ihkNbnlo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UDfMoCJT; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4A4CCk5Q009117;
-	Mon, 4 Nov 2024 06:12:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1730722366;
-	bh=qWe9yZVKp9lQnh1EpUy8j2D7QQ0wdm66TmKhai599sk=;
-	h=From:To:CC:Subject:Date;
-	b=UDfMoCJTV+OGWMHtkPnHWN9EQM+kivRS0GVX96oRPdV51uw3MbS0mQV7aMqc+cQ3w
-	 Bj2FRHFLDF2TiqyuBK10uutjHXwjvPA4V9X2ntKwYxGN+h7pLK/gyhHfU7ifa9Y3r6
-	 0DOpvYVYEsFOf/T5/IDWRjPLOssmmnEvucN57lEE=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4A4CCkk1023279
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 4 Nov 2024 06:12:46 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 4
- Nov 2024 06:12:45 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 4 Nov 2024 06:12:45 -0600
-Received: from a-dutta.dhcp.ti.com (a-dutta.dhcp.ti.com [10.24.68.112])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4A4CCfqu002463;
-	Mon, 4 Nov 2024 06:12:42 -0600
-From: Anurag Dutta <a-dutta@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vaishnav.a@ti.com>,
-        <j-keerthy@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-j784s4: Fix clock IDs for MCSPI instances
-Date: Mon, 4 Nov 2024 17:42:41 +0530
-Message-ID: <20241104121241.102027-1-a-dutta@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1730723013; c=relaxed/simple;
+	bh=ZFwj51A2gbZA7vJSStsy0TIypVjePjyNWxkZO2XfIEc=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=HKKM9EUxhkZaZD5ulikYBUaDW7wqdfV2C4GOt/prDF2+VC9BMnM0823YehLjSNlBr0tiibPXtoeLY2IClsLH0UohUxYLbLDTNui4mNstpOrKlTXqpmHph1Bd7WGfApAUXnoWT5Onw783kXeT52EpX2//LzfwXSaQqNWEPV2M2vA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a+M3vrgj; arc=none smtp.client-ip=209.85.214.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f195.google.com with SMTP id d9443c01a7336-20ce5e3b116so31260885ad.1;
+        Mon, 04 Nov 2024 04:23:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730723011; x=1731327811; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:cc:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fiCZNrw+g0MfYd+wHoshXkkg40DDzaFGOl5IzkgDf8E=;
+        b=a+M3vrgj3twLLQ4O/48ElZVQa8MFsoFKNwgdmouzjw/IZnDpJ4l8slZMTjbccF0RDM
+         fTh4sPUEG70nGnYUUoIUdVc3xz28wKTcxWG/evbf3L50HH5O/pI//QUfYVtYVj3Lorye
+         ZVuLBHnDTH7tGL0Q3YWAABB1IyJHU3EfAYKqZNxg/kpZvYcofKUtFktuCiM7pKH0xh7f
+         d09ExQWeFA7QabUimfSa0qr8crza48cRIevq0mGL1jAs+dTDstHMOqx8iljLLpv7aoFR
+         2FIaChyZZcHpodfptS4+P3ySKAXhcKzgmcTFIIhM5rwx/SY32eFwmL8khfpeT8UC3tDr
+         yOMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730723011; x=1731327811;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:cc:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fiCZNrw+g0MfYd+wHoshXkkg40DDzaFGOl5IzkgDf8E=;
+        b=M3zP9FbE86Grha/JH+6AWxwRMuMgvvXfy2dBQAA72GnwWhYv963gZgt2EykxUlhe0R
+         KZ3gz/Az53qnVpS1e87jnriyEXi/hQklh0YpvIs2AbIAoeeHUMnPXddpTZqq/GHvJnO+
+         D1/r88PSEboka+EmUyzkjCre+wrXWRFEYQJbf6pkRCp7HSOlOAiaD05kYCiwR+ZXkoIN
+         FLpdt3ie+yWPjke3OMx9C/qI6j618/4ZZPWY32A5EThul+1flCfmaySXWaQ09OwIHsOl
+         3TcrebIfP0dG6o97gUJlFcdAFeS0oKNMUIO0NBWDZrJR7HtFwmYew8rGalIoCCjK1Z6f
+         os1g==
+X-Forwarded-Encrypted: i=1; AJvYcCVyLRfogmS87XCWKNDkVtzifRK2mrvCKY486hBvzP2JcrQ6dxAsWp4PW8IUhoqvUvi6cYioAWhthETR@vger.kernel.org, AJvYcCWDLVteqvozi9ZFBG6PJiAhvP9gDKWVa1pv1sBTOmVHpXGluomkejjN3QSeFssNaRmFunMUR0dyBgHDYkpQ@vger.kernel.org, AJvYcCXQPnbq5R/H1hkggU6f3U4QiNmMXZo1c81phIfSF3jgE6aEb25QJzBeqv4FTuf8M19hd9uwOFenRMNu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4M0M0WCEQGifFJIeZni3pn3tAiMgwXGvLRTwe3J9zEH3Mg7wb
+	hJHlkrEet/Y88EqMkaNgNjHWwkdlgWiH3UgAcUelY45RLBs8xV+o
+X-Google-Smtp-Source: AGHT+IHLvWMCkXJUq+FJuMDRusJubVpqKeDmaeSEQmUKm01US5Q5+wIpwJg+l9Cfx8xC6auYaOIr6A==
+X-Received: by 2002:a17:903:2343:b0:210:e75e:4649 with SMTP id d9443c01a7336-2111af3fbfbmr177573405ad.17.1730723010690;
+        Mon, 04 Nov 2024 04:23:30 -0800 (PST)
+Received: from [127.0.0.1] ([2602:f919:106::1b8])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211057d3c3esm59811605ad.245.2024.11.04.04.23.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Nov 2024 04:23:30 -0800 (PST)
+Message-ID: <edfaccd7-ac96-47fc-a174-912c8aaf0f5e@gmail.com>
+Date: Mon, 4 Nov 2024 20:23:23 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Cc: troymitchell988@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 0/2] riscv: spacemit: add i2c support to K1 SoC
+To: Andi Shyti <andi.shyti@kernel.org>
+References: <20241028053220.346283-1-TroyMitchell988@gmail.com>
+ <stpzkggfwseaqy6kbppiog4xfbpq4r2jwix2nvredbmmjqzbsi@wkllt4jlingv>
+Content-Language: en-US
+From: Troy Mitchell <troymitchell988@gmail.com>
+In-Reply-To: <stpzkggfwseaqy6kbppiog4xfbpq4r2jwix2nvredbmmjqzbsi@wkllt4jlingv>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The clock IDs for multiple MCSPI instances across wakeup domain
-in J784s4 are incorrect when compared with documentation [1]. Fix
-the clock IDs to their appropriate values.
+On 2024/10/31 19:43, Andi Shyti wrote:
+> Hi Tony,
+> 
+> On Mon, Oct 28, 2024 at 01:32:18PM +0800, Troy Mitchell wrote:
+>> Hi all,
+>>
+>> This patch implements I2C driver for the SpacemiT K1 SoC,
+>> providing basic support for I2C read/write communication which
+>> compatible with standard I2C bus specifications.
+>>
+>> In this version, the driver defaults to use fast-speed-mode and
+>> interrupts for transmission, and does not support DMA, high-speed mode, or FIFO.
+>>
+>> The docs of I2C can be found here, in chapter 16.1 I2C [1]
+>>
+>> Link: https://developer.spacemit.com/documentation?token=Rn9Kw3iFHirAMgkIpTAcV2Arnkf#part5 [1]
+>>
+>> Troy Mitchell (2):
+>>   dt-bindings: i2c: spacemit: add support for K1 SoC
+>>   i2c: spacemit: add support for SpacemiT K1 SoC
+> 
+> As Krzysztof has asked, please do provide the changelog, it's
+> important to track the progress of your series.
+I saw a compilation warning sent to me by the robot, and I've
+fixed the warning. Should I resend V2 with the changelog
+what I miss or send V3?
 
-[1]https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j784s4/clocks.html
+Thank for your response.
+> 
+> Thanks,
+> Andi
+> 
+>>  .../bindings/i2c/spacemit,k1-i2c.yaml         |  51 ++
+>>  drivers/i2c/busses/Kconfig                    |  18 +
+>>  drivers/i2c/busses/Makefile                   |   1 +
+>>  drivers/i2c/busses/i2c-k1.c                   | 658 ++++++++++++++++++
+>>  4 files changed, 728 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+>>  create mode 100644 drivers/i2c/busses/i2c-k1.c
+>>
+>> -- 
+>> 2.34.1
+>>
 
-Fixes: e23d5a3d116d ("arm64: dts: ti: k3-j784s4: Add MCSPI nodes")
-
-Signed-off-by: Anurag Dutta <a-dutta@ti.com>
----
-
-Hi all,
-The original series is : [1]. It is a series of 4 patches out of which the first 3
-have already been applied to branch ti-k3-dts-next on [2]. However, the fourth patch 
-[4/4] arm64: dts: ti: k3-j784s4: Fix clock IDs for MCSPI instances does not apply
-cleanly because the changes should be in arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-and not in arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi.
-  
-v2: Changelog:
-- Changed the clock IDs in arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi instead of
-arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-
-Link to v1: https://lore.kernel.org/all/20241023104532.3438851-5-a-dutta@ti.com/
-
-[1] https://lore.kernel.org/all/20241023104532.3438851-1-a-dutta@ti.com/
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
- 
-.../dts/ti/k3-j784s4-j742s2-main-common.dtsi     | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-index 7721852c1f68..f27f7ae51479 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-@@ -2040,7 +2040,7 @@ main_spi0: spi@2100000 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		power-domains = <&k3_pds 376 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 376 1>;
-+		clocks = <&k3_clks 376 0>;
- 		status = "disabled";
- 	};
- 
-@@ -2051,7 +2051,7 @@ main_spi1: spi@2110000 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		power-domains = <&k3_pds 377 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 377 1>;
-+		clocks = <&k3_clks 377 0>;
- 		status = "disabled";
- 	};
- 
-@@ -2062,7 +2062,7 @@ main_spi2: spi@2120000 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		power-domains = <&k3_pds 378 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 378 1>;
-+		clocks = <&k3_clks 378 0>;
- 		status = "disabled";
- 	};
- 
-@@ -2073,7 +2073,7 @@ main_spi3: spi@2130000 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		power-domains = <&k3_pds 379 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 379 1>;
-+		clocks = <&k3_clks 379 0>;
- 		status = "disabled";
- 	};
- 
-@@ -2084,7 +2084,7 @@ main_spi4: spi@2140000 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		power-domains = <&k3_pds 380 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 380 1>;
-+		clocks = <&k3_clks 380 0>;
- 		status = "disabled";
- 	};
- 
-@@ -2095,7 +2095,7 @@ main_spi5: spi@2150000 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		power-domains = <&k3_pds 381 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 381 1>;
-+		clocks = <&k3_clks 381 0>;
- 		status = "disabled";
- 	};
- 
-@@ -2106,7 +2106,7 @@ main_spi6: spi@2160000 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		power-domains = <&k3_pds 382 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 382 1>;
-+		clocks = <&k3_clks 382 0>;
- 		status = "disabled";
- 	};
- 
-@@ -2117,7 +2117,7 @@ main_spi7: spi@2170000 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		power-domains = <&k3_pds 383 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 383 1>;
-+		clocks = <&k3_clks 383 0>;
- 		status = "disabled";
- 	};
- 
 -- 
-2.34.1
-
+Troy Mitchell
 
