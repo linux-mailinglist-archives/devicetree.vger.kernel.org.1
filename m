@@ -1,178 +1,206 @@
-Return-Path: <devicetree+bounces-118602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D72A9BAE7E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:49:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F90B9BAE9C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 09:53:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D30431F2102C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 08:49:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31AC01F21145
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 08:53:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865C41AB507;
-	Mon,  4 Nov 2024 08:48:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C72AA1AB530;
+	Mon,  4 Nov 2024 08:52:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="arkw82XE"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="w64F1RmQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A0B1AA7BE;
-	Mon,  4 Nov 2024 08:48:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D37311AAE2E
+	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 08:52:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730710135; cv=none; b=Ur74W9pmczwgVi2SApsb/xarucIB7/8J/+oeKz4gW5BQGB1OHLzG2eMOk4w0QlnZDvxfEl/6zRf0BwqjzXJp7zFFY/GfjdQZd1XvPUBwD1y+we+Rv/brLZjV7IEXba3GFhebJvRSpVRbAJ8H6hUZKoF2I/8FldLPFf1yvyDsf9g=
+	t=1730710376; cv=none; b=e2+yzAb5yNoZvmLzKOei0MENE4POCfA20a6cyxhfGW302JHQIz6YIM9HPd5iHtuK8ob5Hm9l1Z3B/5jw6/kDayqCR7ymr7pvlw3d0p4iEQUke6BQ6DtkNfTPGni0oVayFSeMnGwA4lD9Xh8XfCHAdDYfZKmUwRfRdGKBofN+p28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730710135; c=relaxed/simple;
-	bh=5+i72FmZ741eQj/KKoKDxRcngb3xinsXBjALXLspk8w=;
+	s=arc-20240116; t=1730710376; c=relaxed/simple;
+	bh=+dg7+/oeLYejz4vf4EdmY/yPLTxLAvK5rCpl1BLgxkY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eZosqDKmurhGYI7Co3nmxI9l6w88aG5YvISjl/iB2U225QvsFsxGarAyT3P9S4OqljQiaYgyt+soO05e6vlWlIpR3+0eXeWZd3ZrHtYAAl8qIml3FQozz+N2DeNYSCHD88h5UVoF/lyNY0kbBqDEOmsaPhCFLpKRhzJb4/oqMqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=arkw82XE; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5cedea84d77so382036a12.1;
-        Mon, 04 Nov 2024 00:48:53 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fKKetOdY1bpBomVljfuL7MARXqykRoosv8VYdZcQvJLUhNMr+itQiYZQ574H+FEQNEaCT2ijIl0YPa7eVAketlVdbgW05rivnEw5dKwG/utzU3pLCoFXVr71xduZKtt7AmHTjebE/wB6oMnV/5CpJ0lcyMX/uDnrkM9Mo0n7xuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=w64F1RmQ; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-37d70df0b1aso2499877f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 00:52:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730710132; x=1731314932; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730710373; x=1731315173; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+ZZ+0RjkzenRGrYKXv3Grrd59Lbf3Pn66/QGdrg4mvE=;
-        b=arkw82XEU85j/VEAMfUyq29hPO4qx8mqs6zT/faDy7jpFz9XeNBEbvzfcRNFMP4YKD
-         J6eLGiU11eGsrzwF9BWpsqJMoVhSlxedK+Df5ew70JuSriwpV7h/GymitSdw8Q/Zg01K
-         SpExxsAwJixam4OOfyGkuAHa0zQxdkzGj8WN7jZ3JRSW0jP0597rpHlmlKHuEB9OroIu
-         4OMKdNQYbOqpwFqkXk+s3rodyPuvszmFfnWnHjuqO1MNk0KtaDimEDkrKdzCzP/DiEVw
-         FYvIKMphqSOkPT5KwQKj1ywC9j18Qxn5aV8aUGCjDV6xUtURDCQx51skSbKmeNBhIc3G
-         KmnA==
+        bh=GT4c1xxWFNvifykBes4pG2L4vTvH31piGgiV/8RPSmM=;
+        b=w64F1RmQtIfoN34isRu5saJ8zOa6E3eAiE5lCu3XwCK2MDp4sjwXaLcBdTr/E7FY6s
+         /nZ+sW0svioXgsEchplLMGYbxiXKurYaTJ8dCIzPcWGrQebc/A+2mGHieCwa+LhIZlHN
+         gktKfRz58cOB06E+/OW/oUC+eNEZf6hzfPRHt3qM4wBa7P8Frn4b8FGjMCt59dHBoRz9
+         jx6xip8iwrE1QLruV8+BFzZazPKrSATdA2UAByZfylleld6VHLrWO8kffE1BW4Hykt5C
+         BSiMoBsO0c0dEArO7PUIIF6zxQ1Tg8Fg2StN9thI5oTlMHskywLrOh4iVh4pbGbb5DFQ
+         4ONA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730710132; x=1731314932;
+        d=1e100.net; s=20230601; t=1730710373; x=1731315173;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+ZZ+0RjkzenRGrYKXv3Grrd59Lbf3Pn66/QGdrg4mvE=;
-        b=NYt9nLzi6UCqGcA+abFCy3h55X1Z0Hrrxi94OrB2v4RKCyHBKCbhGYhaWb6K0VdRjS
-         +O44HTlei2PuPM9gvCQXKIDoF8KDdphL7B5X38YjBPalpphDFR456ZeOhY/IlJ3rmInO
-         ZoRdBYV2DRUQT8GfxenZw9NvNVn/AmgagD03e6WQ3Zc0RvCH0/yrQY7E3UU6HjfeOVyB
-         NXv8Q5Gk8hMFAEaxK79RtqUcqEDw/J0dn/qFpvWaGudQfSIRwl/VEui3iKMprY+8s3L7
-         iTAzILk3b2ELOLWSd9SWYzPu2ba10Ftlvr4DNuxeDRPpayUgOJ5g9FX2rl5L017wZlIx
-         LWng==
-X-Forwarded-Encrypted: i=1; AJvYcCUq8R7+k4sTI8388AVzyRud1w3P9bdOf0wFksvmYF0e6raIkd5BTluo4NcX+XaYsXVvV1mtKbuLajI=@vger.kernel.org, AJvYcCW9ozONZvKOPIx4trJ15bk1dV68MG6xFJN7uHPhhhm8c4d8i/8PPU887i0Qoeke+FZlg+rg9HGj2PuSBkR7@vger.kernel.org, AJvYcCWA1jF/GOC1fCAdTEm/e38/qTfms1C4/x8QqfGsZqaR7I9OQbVCSKMsDbyH0qxtg6D6AKzvTO9ooG0bqA==@vger.kernel.org, AJvYcCWnKIZmLudQPNh93zreF04wNJB3mNCcV7EdvzItixKOxSVsTy9huy5AieE8ySDI564qQRaMTsmkhA6U@vger.kernel.org, AJvYcCWxS/LyHlmb6OY72QaxmW8ItTfr195jopys/sNBqoFJ6V58VmL9nzkVfa14EJggdI1AhDFfk3XZvpU=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPZqZIu96MWf1NGpB0aovczcP3UqVC1l4kmRZ1CBC66uv9BbTP
-	WTizYsSDlcfvDKv8ae4JrYf2UTWf0YpKq01oM4s9dUGZLHN3DoaR
-X-Google-Smtp-Source: AGHT+IGpRKouQd21becr4NL7JTcNVTWUEzIT1ATcrtRapmmpmOnf8sfq9N/NkZy3dwUV4Zteb6HUlw==
-X-Received: by 2002:a05:6402:274b:b0:5ce:df46:70f4 with SMTP id 4fb4d7f45d1cf-5cedf467240mr505986a12.36.1730710131795;
-        Mon, 04 Nov 2024 00:48:51 -0800 (PST)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ceac76fb46sm3957953a12.26.2024.11.04.00.48.50
+        bh=GT4c1xxWFNvifykBes4pG2L4vTvH31piGgiV/8RPSmM=;
+        b=jfwyiYiusG4b2nfkIFqOhbfUXrYFrSXPdyMHxjQsn++jpLQexVA+7zmQjLtuNQExPD
+         CO9M/53InMI4N+AIeT0JctuoSCJKB2MzQrd5a3ehY3dzPVVgLaTsVne1LDMkQSgjZuIh
+         EuXNMsq7OAVzfudEmXDppqWMnAkWMpM8V8Z2Z2c8XdeXcbTkwi8iAMXSUTgSxV4efJ1a
+         G4fxgL3ChB1zGNh5vp+fN0oRL1Cup5GTeqYqXoHdDth06oBtl3UIB2VGT5MkfB8i46T9
+         6gSIZOpyPoVcFawqP3rzwSGk4Wi4SfyLbkG2AaE5I8HgfrUj8g9NnguuPx1wGSv4AF/m
+         5uaw==
+X-Forwarded-Encrypted: i=1; AJvYcCXMNMeb+vO3N2H8l+ICGz8BzDhGqd4O3Dj/ywNyMbwUxvBskXcKgSjKnX97DkY2UP31+vjDkIjHdUbt@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDb15kFipmF2UAU9KWcPaDtPCFrEHGOFbjTFn7nHPC83fdhwHU
+	ihe+EbGaD4fFiHa55v4Dq0A7FDO6DA0ZPRoi5MPKhGucQRjVJ5SVHF2eAzTUxz0=
+X-Google-Smtp-Source: AGHT+IH46ZjGucmxl6PTqFcmfDahpKMeLn2vnjDdJTD5YAvlDVhF2bkLjwJIb/MKH9YMOw8OMO2PEA==
+X-Received: by 2002:a5d:4fc4:0:b0:37d:393a:97c5 with SMTP id ffacd0b85a97d-3806115a0d7mr20711375f8f.28.1730710373108;
+        Mon, 04 Nov 2024 00:52:53 -0800 (PST)
+Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c10b7d20sm12734573f8f.7.2024.11.04.00.52.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Nov 2024 00:48:51 -0800 (PST)
-Date: Mon, 4 Nov 2024 09:48:49 +0100
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org
-Subject: [PATCH v3 2/2] dt-bindings: mfd: sprd,sc2731: reference
- sprd,sc2731-efuse bindings
-Message-ID: <cd8cc95b59c31418b174bba521dd2599a7929fda.1730709384.git.stano.jakubek@gmail.com>
-References: <efd200c3b5b75405e4e450d064b026f10ae2f8e0.1730709384.git.stano.jakubek@gmail.com>
+        Mon, 04 Nov 2024 00:52:52 -0800 (PST)
+Date: Mon, 4 Nov 2024 09:52:51 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Dimitri Fedrau <dima.fedrau@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] pwm: add support for NXPs high-side switch
+ MC33XS2410
+Message-ID: <dy5abepkqhkmbgirwjkblbmw6vwb56vaqgazluyt675qflzioz@glp4djy6fhuo>
+References: <20240927125745.38367-1-dima.fedrau@gmail.com>
+ <20240927125745.38367-3-dima.fedrau@gmail.com>
+ <oppdnsda4tqjcpsb26j5ew62t4bkkmtxuu7e2fpinnazubk5ky@tmz76o5xdrlj>
+ <20241023125221.GA197308@debian>
+ <eyom32milbbqp6floun4r5bpozuewbe5kk2htvhp5cmcytj2oy@bpcrd2aiwk6m>
+ <20241103190709.GA466098@debian>
+ <atkj7wnhl4n6frl5swjwrto6r6dhofjtnqisqrn5z6w3cmfl3h@dgqgdxovrqb4>
+ <20241103205215.GA509903@debian>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ydvmgz6gd4xioeih"
 Content-Disposition: inline
-In-Reply-To: <efd200c3b5b75405e4e450d064b026f10ae2f8e0.1730709384.git.stano.jakubek@gmail.com>
+In-Reply-To: <20241103205215.GA509903@debian>
 
-Directly reference the sc2731-efuse bindings to simplify the schema.
-Remove the duplicate example from the efuse bindings.
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
-Changes in V3:
-- new patch due to a missing dependency in the MFD tree 
+--ydvmgz6gd4xioeih
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v6 2/2] pwm: add support for NXPs high-side switch
+ MC33XS2410
+MIME-Version: 1.0
 
-Link to V2: https://lore.kernel.org/lkml/ZyExK01iprBHhGm6@standask-GA-A55M-S2HP/
-Link to V1: https://lore.kernel.org/lkml/Zr3X1RoQs7ElTnlJ@standask-GA-A55M-S2HP/
+On Sun, Nov 03, 2024 at 09:52:15PM +0100, Dimitri Fedrau wrote:
+> Hello Uwe,
+>=20
+> Am Sun, Nov 03, 2024 at 09:19:36PM +0100 schrieb Uwe Kleine-K=F6nig:
+> > Hello Dimitri,
+> >=20
+> > On Sun, Nov 03, 2024 at 08:07:09PM +0100, Dimitri Fedrau wrote:
+> > > Am Thu, Oct 24, 2024 at 11:19:16PM +0200 schrieb Uwe Kleine-K=F6nig:
+> > > > What breaks if you drop the check for state->enabled?
+> > > > =20
+> > > The device is unable to generate a 0% duty cycle, to support this you
+> > > proposed in an earlier review to disable the output. Without checking=
+ if
+> > > the output is disabled, the mc33xs2410_pwm_get_state function returns=
+ the
+> > > wrong duty cycle for a previously setted 0% duty cycle. A "0" value i=
+n the
+> > > MC33XS2410_PWM_DC register means that the relative duty cylce is 1/25=
+6. As
+> > > a result there are complaints if PWM_DEBUG is enabled.
+> >=20
+> > I fail to follow. If .enabled=3Dtrue + .duty_cycle=3D0 is requested you
+> > disable. That's fine. However it shouldn't be necessary to use
+> > state->enabled in .get_state(). I didn't look at the actual code, but if
+> > you provide a sequence of writes to /sys that trigger a PWM_DEBUG
+> > output, I'll take another look.
+> >=20
+> Apply 0% duty cycle: .enabled=3Dfalse + .duty_cycle=3D0
+> Below some writes triggering PWM_DEBUG output:
+>=20
+> # echo 488282 > /sys/class/pwm/pwmchip3/pwm0/period
+> # echo 244140 > /sys/class/pwm/pwmchip3/pwm0/duty_cycle
+> # echo 0 > /sys/class/pwm/pwmchip3/pwm0/duty_cycle
+> [   91.813513] mc33xs2410-pwm spi0.0: .apply is supposed to round down du=
+ty_cycle (requested: 0/488282, applied: 1908/488282)
 
- .../devicetree/bindings/mfd/sprd,sc2731.yaml  | 10 +------
- .../bindings/nvmem/sprd,sc2731-efuse.yaml     | 29 -------------------
- 2 files changed, 1 insertion(+), 38 deletions(-)
+I don't understand that. We're talking about=20
 
-diff --git a/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml b/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
-index 8beec7e8e4c6..bd5f2504b44b 100644
---- a/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
-+++ b/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
-@@ -67,15 +67,7 @@ patternProperties:
- 
-   "^efuse@[0-9a-f]+$":
-     type: object
--    additionalProperties: true
--    properties:
--      compatible:
--        enum:
--          - sprd,sc2720-efuse
--          - sprd,sc2721-efuse
--          - sprd,sc2723-efuse
--          - sprd,sc2730-efuse
--          - sprd,sc2731-efuse
-+    $ref: /schemas/nvmem/sprd,sc2731-efuse.yaml#
- 
-   "^fuel-gauge@[0-9a-f]+$":
-     type: object
-diff --git a/Documentation/devicetree/bindings/nvmem/sprd,sc2731-efuse.yaml b/Documentation/devicetree/bindings/nvmem/sprd,sc2731-efuse.yaml
-index dc25fe3d1841..8672bde24a9b 100644
---- a/Documentation/devicetree/bindings/nvmem/sprd,sc2731-efuse.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/sprd,sc2731-efuse.yaml
-@@ -36,33 +36,4 @@ allOf:
-   - $ref: nvmem-deprecated-cells.yaml#
- 
- unevaluatedProperties: false
+diff --git a/drivers/pwm/pwm-mc33xs2410.c b/drivers/pwm/pwm-mc33xs2410.c
+index f9a334a5e69b..14f5f7312d0a 100644
+--- a/drivers/pwm/pwm-mc33xs2410.c
++++ b/drivers/pwm/pwm-mc33xs2410.c
+@@ -244,15 +244,6 @@ static int mc33xs2410_pwm_get_relative_duty_cycle(u64 =
+period, u64 duty_cycle)
+ 	return duty_cycle - 1;
+ }
+=20
+-static void mc33xs2410_pwm_set_relative_duty_cycle(struct pwm_state *state,
+-						   u16 duty_cycle)
+-{
+-	if (!state->enabled)
+-		state->duty_cycle =3D 0;
+-	else
+-		state->duty_cycle =3D DIV_ROUND_UP_ULL((duty_cycle + 1) * state->period,=
+ 256);
+-}
 -
--examples:
--  - |
--    pmic {
--      #address-cells = <1>;
--      #size-cells = <0>;
--
--      efuse@380 {
--        compatible = "sprd,sc2731-efuse";
--        reg = <0x380>;
--        hwlocks = <&hwlock 12>;
--        #address-cells = <1>;
--        #size-cells = <1>;
--
--        /* Data cells */
--        fgu_calib: calib@6 {
--          reg = <0x6 0x2>;
--          bits = <0 9>;
--        };
--
--        adc_big_scale: calib@24 {
--          reg = <0x24 0x2>;
--        };
--
--        adc_small_scale: calib@26 {
--          reg = <0x26 0x2>;
--        };
--      };
--    };
- ...
--- 
-2.43.0
+ static int mc33xs2410_pwm_apply(struct pwm_chip *chip, struct pwm_device *=
+pwm,
+ 				const struct pwm_state *state)
+ {
+@@ -325,7 +316,7 @@ static int mc33xs2410_pwm_get_state(struct pwm_chip *ch=
+ip,
+ 	state->polarity =3D (val[2] & MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm)) ?
+ 			  PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
+ 	state->enabled =3D !!(val[3] & MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm));
+-	mc33xs2410_pwm_set_relative_duty_cycle(state, val[1]);
++	state->duty_cycle =3D DIV_ROUND_UP_ULL((duty_cycle + 1) * state->period, =
+256);
+ 	return 0;
+ }
+=20
+on top of your patch, right?
 
+`echo 0 > /sys/class/pwm/pwmchip3/pwm0/duty_cycle` should result in
+MC33XS2410_PWM_CTRL3 having MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm) cleared.
+When mc33xs2410_pwm_get_state() is called then it returns state->enabled
+=3D false and in that case the above mentioned warning doesn't trigger.
+
+Where is the misunderstanding?
+
+Best regards
+Uwe
+
+--ydvmgz6gd4xioeih
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcoi2AACgkQj4D7WH0S
+/k66+gf9EIyiCWwLCtdADfq3OdF4WI+Bfhcss7xk3MUTxyx4vcgWqEg2309SYLZw
+0117CRb6WsbnRyNo5Vj5GGkBn7eITd+k7b1TuEN+Aw0DNH24EwWNabO6DMKzUkQu
+AxFy9WXsyVr6IVHvSFK8xtiz0qexTwFSkmTI6o8cm0rAy/wyMY4dLu20WbLkZTZp
+zID7f047BkLo8T3o8k0fWmfD2s8OLT87+EDipK+D/VfosMf2BZ0Sb7/pr3tPZSMy
+loMLKgaMEGiWb5EZJ2nBeuUnGM4dimWdWI+B1JC6YeaN5/OW795ljIwyyGDELldu
+uCGcWdCXc/xONQsetMa5Mn9+tyoxrQ==
+=Ek8Z
+-----END PGP SIGNATURE-----
+
+--ydvmgz6gd4xioeih--
 
