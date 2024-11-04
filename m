@@ -1,136 +1,310 @@
-Return-Path: <devicetree+bounces-118740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46A509BB6C8
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:53:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7010B9BB6D7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:56:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7B0C1F212B4
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:53:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21ACD281081
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 13:56:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299F542A9E;
-	Mon,  4 Nov 2024 13:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 463C77DA8C;
+	Mon,  4 Nov 2024 13:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hfmE07B5"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="cf8P6HaJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4982139CFA
-	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 13:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46A3B42A9E;
+	Mon,  4 Nov 2024 13:56:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730728374; cv=none; b=NdDvVN+Wm124mSFUFAe0Ok6id+hZOfh10c0qEbdrS/KGIyRidhSQ3PcQOOaPV14Fwn6TGX75+zOL/YlXPh3FA0Ory8DyPVc2Bf7JoazrfKaPVHEw1qJeDoAHqxhwH+0FTZhNB5RaIPOQAgpW+vxS5ZgAJrzC+mQ/F6NQSyePiUs=
+	t=1730728580; cv=none; b=i0I2qiqkOaCUU1FrYMjMTQ7Gt1vLygwQkCemuG5Sgz7Acp0KY8dE16N2TtK5KLeansz1aTGPQcAJBsruQPosCpUxLj0JKlR6g3OznIRexGZAm1X1j0nnHcFH7CNd+isEz8yEDiT8YULzwvQ1lGGn3xN6FkDv8UkHadagYnb9AT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730728374; c=relaxed/simple;
-	bh=+w0U36dAEMR+Tz6mLGB2q6Y7z8YJQMQ6qtiKhCbaP/8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DWUj9AYWgsbRa3CkLm7EmiGO4M4KJj9bQKOw6TKdW3d/mUpvA41h6iqGmlHd6cm6Rzz8txHIEvMh5nYw0FTxxuW+UUFaDiBLX5LjYy3FGBwZZFesjLMz+TfvF3W+bPqakNPQefD+j4Ag6YYiClE5u86bYYR0md73uYFAJMJ7wMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hfmE07B5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A4BuuQv024066
-	for <devicetree@vger.kernel.org>; Mon, 4 Nov 2024 13:52:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	6Fc9RPWMyJisVrZOEDQeTPJ82OGC+aMZTuKQQ+ERKr0=; b=hfmE07B5Evvpzyra
-	OJM/s2wsqCtXoWnoErsU2kS1WldMkzvW+P6/0AZib7MOVveGIqgJesXZnQ2yPfIO
-	a6PFziJLLNEZSmlJc7RSu5nCBw8kWe7b8rrjr7O4wDG0eSf4Rmxvgg3tMAAdo2IJ
-	tqpO58VYHR34FKzlJbN110BOP6jsX6Vpbnmc1kkpX9LJEzctShohLSyBoLl9v40g
-	TCfqGB95ryVtC4Dw9TQkFrT1XZfPQcAXaJjoXhejPmDL4yfYgtViuZaZe+EXyl5v
-	ppjAFw18YnCTHUkU+MWTJG4F29IRRM42uNBTCELNPnzweJSN3s+Dpdv66/qc2bca
-	IcV/nQ==
-Received: from mail-oo1-f71.google.com (mail-oo1-f71.google.com [209.85.161.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd2r4d3h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 13:52:51 +0000 (GMT)
-Received: by mail-oo1-f71.google.com with SMTP id 006d021491bc7-5eb7e7cb216so107186eaf.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 05:52:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730728371; x=1731333171;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6Fc9RPWMyJisVrZOEDQeTPJ82OGC+aMZTuKQQ+ERKr0=;
-        b=lRDTJMaIg2xECwmsUM3W0UZK5RdWjswDW4uXMqYTdhFeirlnCJvhvuchWkGppWsnCN
-         diPmIP0LEjH//FIgW41MNpflMEORKv8eUaHmFofPe9XIVzVsE+UkrIe54dAaqZAyMnch
-         yGB2naUbZOnWRSrn3dpdL0eVpxqqa+GyMlsgajH2xo+yFC4SSYzLKuHHwMiIechx7sbj
-         SCHAv1QuVJYRO3WBsPh/pseiEwXaeuKZEtmiy0H8PjC84XYKPri7J/fXuhSoQRkok+/s
-         q9LkpjUmDjM7v1Hem6MfjqSsbwXnfzd8zAdT8pDT7HGZsqqjL9afRmuROBTZf2KCKJ2x
-         rtqw==
-X-Forwarded-Encrypted: i=1; AJvYcCVw/g/YHFB5GuBE2QQ98GMY0T2bwbPSUHg8Hzve2OrZhHRD2YRp0tc1jiXFxnKmTLBpdMh6bDY3+e1f@vger.kernel.org
-X-Gm-Message-State: AOJu0YycA5GNGS5xVrz59kEULJjIl3Yld7zYV5n9wB+AQD94VM7FrJJB
-	sgFpRRjKOIrA5pw4Bsv8ySxkOZZLmwr7i6lcd4wZM81Z6ebmiuCevgQAlv0r3tbVdKVQ1KN/mzl
-	nUnoxcjZLdfsIxy4cpZwXrDGp5WI/jB0flrwA3LAcFg/DDRGWBvcqchNlsnDS
-X-Received: by 2002:a05:6871:694:b0:27b:9f8b:277f with SMTP id 586e51a60fabf-29051dcd160mr5908869fac.14.1730728370848;
-        Mon, 04 Nov 2024 05:52:50 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEchYTW941Pm6zez8i4wTztMoaNYpH6TGQ2dGSCprATsnU06GAno4f2JaI16THOFTQWIZTfCw==
-X-Received: by 2002:a05:6871:694:b0:27b:9f8b:277f with SMTP id 586e51a60fabf-29051dcd160mr5908867fac.14.1730728370479;
-        Mon, 04 Nov 2024 05:52:50 -0800 (PST)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e563093e5sm552177566b.0.2024.11.04.05.52.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Nov 2024 05:52:49 -0800 (PST)
-Message-ID: <c1dbfe1e-9519-4bf9-81df-8c32e08d0126@oss.qualcomm.com>
-Date: Mon, 4 Nov 2024 14:52:46 +0100
+	s=arc-20240116; t=1730728580; c=relaxed/simple;
+	bh=LFnGHyIFnPZpnC4W0TkiCtiiQ6Tj7q5qpaFCImtsPX0=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=A75lrw3aWl5xTI8wh8d8kTFm6GI7IV9khMO5t2FGyFG8p9uWl1tHvU7C+v3Sxsk64zQDUL6ZlAHG3KPb1GreSS3LMb2R2vc116oMM3t9fGWSRvAN/nlW/7bKK9YOVN1lvBsnO1i3mnTPic3gTS4MYr+gAKeFSIHdK4WRh2YiDsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=cf8P6HaJ; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=From:Sender:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=AHIiq5Bgi/FTE/bmYNE1/BMipbYGBmIox57V0t9XEzE=; b=cf8P6HaJpBSwdOjWDt9jLXknGU
+	xbRVUw9y1lcilcRVpw7gpWcW9xvDjGY4tRMqYV5a5Dqj473gE8+fKb8momeqLs1eEjWTHIGdAGzRj
+	FemwuVr6LK5NHy2UY6O/4OKU1cvNM9dag3tCPDPgEfIlHD4slWLnYkQnbg8dO2Fk8ZSut39hphmIy
+	qC3uTAz5kwhGntFSLpeQh8oiv7owjKi2+Ilm1ZxwwvL39CgkKnD3Urd0jEfIyn5nwEB4lTQrKBOLK
+	cPYztuudPUD4if8ElH6d8ktDCoQR6XIQTJmPEQpzutQLLka4vN+FCJyaqi4I4YprF5iSIFbib4f7A
+	wNDjtSKA==;
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	Tero Kristo <kristo@kernel.org>,
+	Tony Lindgren <tony@atomide.com>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: clock: ti: Convert mux.txt to json-schema
+Date: Mon,  4 Nov 2024 14:55:49 +0100
+Message-Id: <20241104135549.38486-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/1] arm64: dts: qcom: x1e80100-dell-xps13-9345:
- Introduce retimer support
-To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Bryan.Kemp@dell.com,
-        tudor.laurentiu.oss@gmail.com
-References: <20241030182153.16256-1-alex.vinarskis@gmail.com>
- <20241030182153.16256-2-alex.vinarskis@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241030182153.16256-2-alex.vinarskis@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: m56kZo8X3PgBNoO6larYjbXrIoCSfr6Y
-X-Proofpoint-GUID: m56kZo8X3PgBNoO6larYjbXrIoCSfr6Y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=955 priorityscore=1501 malwarescore=0 bulkscore=0
- lowpriorityscore=0 suspectscore=0 clxscore=1015 phishscore=0 spamscore=0
- mlxscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411040121
+Content-Transfer-Encoding: 8bit
 
-On 30.10.2024 7:19 PM, Aleksandrs Vinarskis wrote:
-> Describe x2 Parade PS8830 retimers for left and right USB Type-C ports
-> respectively. Adjust graphs between connectors and the PHYs accordingly,
-> add the voltage regulators. Dell XPS 13" 9345's DSDT describes 3rd
-> retimer, but its not actually present.
-> 
-> Regulators are _assumed_ to be correct, since:
-> * tlmm pins match DSDT definition.
-> * tlmm and pmic gpios were tested and confirmed to be powering
->   off/resetting respective retimers.
-> * USB3.0 now works correctly in both orientation, pre and post suspend.
-> 
-> Derived from:
-> arm64: dts: qcom: x1e80100-t14s: Add external DP support
-> 
-> Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-> ---
+Convert the OMAP mux clock device tree binding to json-schema.
+Specify the creator of the original binding as a maintainer.
+Choose GPL-only license because original binding was also GPL.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+ .../bindings/clock/ti/composite.txt           |   2 +-
+ .../devicetree/bindings/clock/ti/mux.txt      |  78 -----------
+ .../bindings/clock/ti/ti,mux-clock.yaml       | 123 ++++++++++++++++++
+ 3 files changed, 124 insertions(+), 79 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/ti/mux.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
 
-Konrad
+diff --git a/Documentation/devicetree/bindings/clock/ti/composite.txt b/Documentation/devicetree/bindings/clock/ti/composite.txt
+index b02f22490dcb..238e6f7d74f8 100644
+--- a/Documentation/devicetree/bindings/clock/ti/composite.txt
++++ b/Documentation/devicetree/bindings/clock/ti/composite.txt
+@@ -16,7 +16,7 @@ merged to this clock. The component clocks shall be of one of the
+ "ti,*composite*-clock" types.
+ 
+ [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+-[2] Documentation/devicetree/bindings/clock/ti/mux.txt
++[2] Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+ [3] Documentation/devicetree/bindings/clock/ti/ti,divider-clock.yaml
+ [4] Documentation/devicetree/bindings/clock/ti/gate.txt
+ 
+diff --git a/Documentation/devicetree/bindings/clock/ti/mux.txt b/Documentation/devicetree/bindings/clock/ti/mux.txt
+deleted file mode 100644
+index cd56d3c1c09f..000000000000
+--- a/Documentation/devicetree/bindings/clock/ti/mux.txt
++++ /dev/null
+@@ -1,78 +0,0 @@
+-Binding for TI mux clock.
+-
+-This binding uses the common clock binding[1].  It assumes a
+-register-mapped multiplexer with multiple input clock signals or
+-parents, one of which can be selected as output.  This clock does not
+-gate or adjust the parent rate via a divider or multiplier.
+-
+-By default the "clocks" property lists the parents in the same order
+-as they are programmed into the register.  E.g:
+-
+-	clocks = <&foo_clock>, <&bar_clock>, <&baz_clock>;
+-
+-results in programming the register as follows:
+-
+-register value		selected parent clock
+-0			foo_clock
+-1			bar_clock
+-2			baz_clock
+-
+-Some clock controller IPs do not allow a value of zero to be programmed
+-into the register, instead indexing begins at 1.  The optional property
+-"index-starts-at-one" modified the scheme as follows:
+-
+-register value		selected clock parent
+-1			foo_clock
+-2			bar_clock
+-3			baz_clock
+-
+-The binding must provide the register to control the mux. Optionally
+-the number of bits to shift the control field in the register can be
+-supplied. If the shift value is missing it is the same as supplying
+-a zero shift.
+-
+-[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+-
+-Required properties:
+-- compatible : shall be "ti,mux-clock" or "ti,composite-mux-clock".
+-- #clock-cells : from common clock binding; shall be set to 0.
+-- clocks : link phandles of parent clocks
+-- reg : register offset for register controlling adjustable mux
+-
+-Optional properties:
+-- clock-output-names : from common clock binding.
+-- ti,bit-shift : number of bits to shift the bit-mask, defaults to
+-  0 if not present
+-- ti,index-starts-at-one : valid input select programming starts at 1, not
+-  zero
+-- ti,set-rate-parent : clk_set_rate is propagated to parent clock,
+-  not supported by the composite-mux-clock subtype
+-- ti,latch-bit : latch the mux value to HW, only needed if the register
+-  access requires this. As an example, dra7x DPLL_GMAC H14 muxing
+-  implements such behavior.
+-
+-Examples:
+-
+-sys_clkin_ck: sys_clkin_ck@4a306110 {
+-	#clock-cells = <0>;
+-	compatible = "ti,mux-clock";
+-	clocks = <&virt_12000000_ck>, <&virt_13000000_ck>, <&virt_16800000_ck>, <&virt_19200000_ck>, <&virt_26000000_ck>, <&virt_27000000_ck>, <&virt_38400000_ck>;
+-	reg = <0x0110>;
+-	ti,index-starts-at-one;
+-};
+-
+-abe_dpll_bypass_clk_mux_ck: abe_dpll_bypass_clk_mux_ck@4a306108 {
+-	#clock-cells = <0>;
+-	compatible = "ti,mux-clock";
+-	clocks = <&sys_clkin_ck>, <&sys_32k_ck>;
+-	ti,bit-shift = <24>;
+-	reg = <0x0108>;
+-};
+-
+-mcbsp5_mux_fck: mcbsp5_mux_fck {
+-	#clock-cells = <0>;
+-	compatible = "ti,composite-mux-clock";
+-	clocks = <&core_96m_fck>, <&mcbsp_clks>;
+-	ti,bit-shift = <4>;
+-	reg = <0x02d8>;
+-};
+diff --git a/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml b/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+new file mode 100644
+index 000000000000..b271ab86dde1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+@@ -0,0 +1,123 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/ti/ti,mux-clock.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments mux clock
++
++maintainers:
++  - Tero Kristo <kristo@kernel.org>
++
++description: |
++  This clock assumes a register-mapped multiplexer with multiple inpt clock
++  signals or parents, one of which can be selected as output. This clock does
++  not gate or adjust the parent rate via a divider or multiplier.
++
++  By default the "clocks" property lists the parents in the same order
++  as they are programmed into the register.  E.g:
++
++    clocks = <&foo_clock>, <&bar_clock>, <&baz_clock>;
++
++  results in programming the register as follows:
++
++  register value   selected parent clock
++  0                foo_clock
++  1                bar_clock
++  2                baz_clock
++
++  Some clock controller IPs do not allow a value of zero to be programmed
++  into the register, instead indexing begins at 1.  The optional property
++  "index-starts-at-one" modified the scheme as follows:
++
++  register value   selected clock parent
++  1                foo_clock
++  2                bar_clock
++  3                baz_clock
++
++  The binding must provide the register to control the mux. Optionally
++  the number of bits to shift the control field in the register can be
++  supplied. If the shift value is missing it is the same as supplying
++  a zero shift.
++
++properties:
++  compatible:
++    enum:
++      - ti,mux-clock
++      - ti,composite-mux-clock
++
++  "#clock-cells":
++    const: 0
++
++  clocks: true
++
++  clock-output-names:
++    maxItems: 1
++
++  reg:
++    maxItems: 1
++
++  ti,bit-shift:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      number of bits to shift the bit-mask, defaults to 0 if not present
++    maximum: 31
++    default: 0
++
++  ti,index-starts-at-one:
++    type: boolean
++    description:
++      valid input select programming starts at 1, not zero
++
++  ti,set-rate-parent:
++    type: boolean
++    description:
++      clk_set_rate is propagated to parent clock,
++      not supported by the composite-mux-clock subtype.
++  ti,latch-bit:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      latch the mux value to HW, only needed if the register
++      access requires this. As an example, dra7x DPLL_GMAC H14 muxing
++      implements such behavior.
++
++if:
++  properties:
++    compatible:
++      contains:
++        const: ti,composite-mux-clock
++then:
++  properties:
++    ti,set-rate-parent: false
++
++required:
++  - compatible
++  - "#clock-cells"
++  - clocks
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    bus {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      clock-controller@110 {
++        #clock-cells = <0>;
++        compatible = "ti,mux-clock";
++        clocks = <&virt_12000000_ck>, <&virt_13000000_ck>, <&virt_16800000_ck>;
++        reg = <0x0110>;
++        ti,index-starts-at-one;
++        ti,set-rate-parent;
++      };
++
++      clock-controller@120 {
++        #clock-cells = <0>;
++        compatible = "ti,composite-mux-clock";
++        clocks = <&core_96m_fck>, <&mcbsp_clks>;
++        ti,bit-shift = <4>;
++        reg = <0x02d8>;
++      };
++    };
+-- 
+2.39.5
+
 
