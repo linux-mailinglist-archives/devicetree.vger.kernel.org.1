@@ -1,62 +1,69 @@
-Return-Path: <devicetree+bounces-118815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 574469BB9DC
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:10:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45C769BB9E6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 17:11:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 891981C22D64
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:10:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4B31B21707
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 16:11:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5851C07F5;
-	Mon,  4 Nov 2024 16:10:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BEEA1C304B;
+	Mon,  4 Nov 2024 16:11:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JPxIZ3Qw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WPSqAL9r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE601B393D;
-	Mon,  4 Nov 2024 16:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDD4E1C3038;
+	Mon,  4 Nov 2024 16:11:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730736636; cv=none; b=HEN2n1bVqyYeh+rh9L7IU6PHKyOk71GsgoYm94RxuDfGSMTGJucJjWRkJ0OEFidVBNudTus6T36IGn2K/A8F/ZWrD5bgEPfeuua2DDv/GSZgWlD7947Tlg8REWb7psV0QICz17du+jVHVkYm0AFX8xBvdngrGcLZ117h6hVR8VQ=
+	t=1730736676; cv=none; b=Ofeyr+RTKYmsa+YoBC1UfcnNar9ELxj3lx9ctWv2RlzUnUw5XBfrybAOvY4YIbzcJYdlQbMECMYFA14GhWwlEvj/uHIZKCmcEa9lq5G8GVflZpnKiwywyc17pbGR73y038UJnJAnJMT+VGB2L5ou//UYTVBLU61SBlR8oNxbEG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730736636; c=relaxed/simple;
-	bh=0qhEJZGgBMV6CikmD2WWDctceX83RuUixIjHqPp7U24=;
+	s=arc-20240116; t=1730736676; c=relaxed/simple;
+	bh=jbyllvauex8tqMFMdTXvyGQZhUUfwaEX119Q+OwRS8Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MbtyiynPsJwEHNq6u8CMezbvwEWmsfbKGIm2VMJI9ueiyIB5p8IQeeACzXocSGl2pUqj5Yz3JBc8muuMJmjXz7rBnG7+ZitcOn3iYHVTBZ+eX4XLOMObS7D2R/IXBpx0HiAD5vRcs296VgCve5lKRQ8uzm+HGi4xpFzuL8gRzsk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JPxIZ3Qw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1213AC4CECE;
-	Mon,  4 Nov 2024 16:10:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nPVtgA62RZ+XFB3BIDUpfWK/ZYMkZuWPzjFWu2STx4Tjw9qXhhWcfXsXyJDLEwex1f7xDhNJ0fVdhXiv0cmmkdo/djIzLPAQbBaFZdlPVqYSQ5UMpj/nwSqNnlrL/69dlLZaHjSMJGGdIB36kKyN6dIvLy75rHTWpnpDjj9Oa6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WPSqAL9r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CB9AC4CECE;
+	Mon,  4 Nov 2024 16:11:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730736635;
-	bh=0qhEJZGgBMV6CikmD2WWDctceX83RuUixIjHqPp7U24=;
+	s=k20201202; t=1730736676;
+	bh=jbyllvauex8tqMFMdTXvyGQZhUUfwaEX119Q+OwRS8Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JPxIZ3QwvJh+65TMIwfy4GdFk81DJ9KrimR4ViFDAskoDigd3PRvjcLuYB2jmDq8y
-	 xLir3jkJbDkkjSWRmYm2bg4hfoklCgmkkTyoeUcrE84z5XaUMOoqC3kpD//5jgb372
-	 8V0+DcSUMbRUx8K1kGSCDYXPtgOwCmS2SIry89FjRcFRigg5OWxg16JS4a+jzHwUXd
-	 9sh6znm45Tns6eXRAhF5rWOKXV/upOD9nfCTOJZ2asMqayQ+bBXndUEEY0vqX8jL/p
-	 kBkUs8RAcBdPyVN0IBnJ9AO1LFAa23OGahENaBMuT3CEaQwBVaRy8P/bjYvqorHP2f
-	 D6gASLB+FuGgg==
-Date: Mon, 4 Nov 2024 10:10:33 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Vasileios Amoiridis <vassilisamir@gmail.com>, lars@metafoo.de,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	andriy.shevchenko@linux.intel.com, anshulusr@gmail.com,
-	gustavograzs@gmail.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 5/7] dt-bindings: iio: bosch,bme680: Add supply
- properties
-Message-ID: <20241104161033.GA228709-robh@kernel.org>
-References: <20241102131311.36210-1-vassilisamir@gmail.com>
- <20241102131311.36210-6-vassilisamir@gmail.com>
- <20241102153315.2175fd5b@jic23-huawei>
- <6sucdv4k5jdovqgtaemeer4cnluvnl3xgyn57mo3elgwdmojrx@phu4gowaqtuv>
+	b=WPSqAL9r7pR+YYgkjx32AH6bnZwqoXvXuHe/u3PpYj4MhpV0Im/igYgiP/e4/0jm6
+	 zGvkvBkHDYlrVGdmTx0WomIU9b1rg4A9JYT9Br8Zt9hKhdjVY9vE+YND95au5U9MMf
+	 feL6CE8owPys3IPt/U7E4h8OlYuEjJRYdRyWwPy/eNaw+PcNn14UeKXP2qA5FU3WD1
+	 80xjzPxXRuw8EIwnISGJBLSWTcp8Tvziz86C7rmecrIvGMwIlJNTHY2/NlnK2cCIeh
+	 tOhs+1WJ9pknlx7l3FMrLr6kLK4LLMZSzQ2fN3hHMSZ9xuEWXKWAeZgvVtqOLLQyQt
+	 kYDrgeRDu5zWQ==
+Date: Mon, 4 Nov 2024 10:11:14 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: upstream@airoha.com, Antoine Tenart <atenart@kernel.org>,
+	llvm@lists.linux.dev, Will Deacon <will@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Waiman Long <longman@redhat.com>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
+	Bill Wendling <morbo@google.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
+	Ingo Molnar <mingo@redhat.com>,
+	Justin Stitt <justinstitt@google.com>
+Subject: Re: [PATCH v6 2/3] dt-bindings: crypto: Add Inside Secure SafeXcel
+ EIP-93 crypto engine
+Message-ID: <173073667299.300346.12132353760971181964.robh@kernel.org>
+References: <20241102175045.10408-1-ansuelsmth@gmail.com>
+ <20241102175045.10408-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,54 +72,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6sucdv4k5jdovqgtaemeer4cnluvnl3xgyn57mo3elgwdmojrx@phu4gowaqtuv>
+In-Reply-To: <20241102175045.10408-2-ansuelsmth@gmail.com>
 
-On Sun, Nov 03, 2024 at 10:46:46AM +0100, Krzysztof Kozlowski wrote:
-> On Sat, Nov 02, 2024 at 03:33:15PM +0000, Jonathan Cameron wrote:
-> > On Sat,  2 Nov 2024 14:13:09 +0100
-> > Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
-> > 
-> > > Extend dt-binding for BME680 gas sensor device. The device incorporates
-> > > as well temperature, pressure and relative humidity sensors.
-> > This description should make it clear it is moving from trivial-devices.yaml
-> > 
-> > dt-bindings: iio: bosch,bme680: Move from trivial-bindings and add missing supplies.
-> > 
-> > Then say a little more on why you are moving it.
-> > 
-> > > 
-> > > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
-> > 
-> > There was an open question on the previous version about
-> > setting the supplies as required (which I see you've removed).
-> > My understanding previously was that it is fine to make that change
-> > in a binding if it reflects supplies that are required to be enabled
-> > for the device to function at all.  If there were previously missing
-> > that's a binding bug we should fix.
-> > 
-> > I'd like a clarification from the DT binding maintainers on that.
-> > Obviously doesn't work for other users of dt bindings but in
-> > Linux this would be fine as they were already on for any board
-> > that worked and the regulator framework will through us a fake
-> > regulator for cases like this.
-> > 
-> > https://lore.kernel.org/all/20241022182451.00007ac0@Huawei.com/
-> > 
-> > Jonathan
+
+On Sat, 02 Nov 2024 18:50:34 +0100, Christian Marangi wrote:
+> Add bindings for the Inside Secure SafeXcel EIP-93 crypto engine.
 > 
-> That was Rob's objection so I will leave it to him, but putting my two
-> cents in for Linux it is not an ABI break because missing regulator
-> supplies are substituted with dummy ones. Unless something changed...
+> The IP is present on Airoha SoC and on various Mediatek devices and
+> other SoC under different names like mtk-eip93 or PKTE.
+> 
+> All the compatible that currently doesn't have any user are defined but
+> rejected waiting for an actual device that makes use of them.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+> Changes v6:
+> - Add SoC specific compatible
+> - Add now supported entry for compatible with no user
+> Changes v5:
+> - Comment out compatible with no current user
+> Changes v4:
+> - Out of RFC
+> Changes v3:
+> - Add SoC compatible with generic one
+> Changes v2:
+> - Change to better compatible
+> - Add description for EIP93 models
+> 
+>  .../crypto/inside-secure,safexcel-eip93.yaml  | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+> 
 
-Shrug. I don't think we're entirely consistent on this. If we're saying 
-supplies are always required, then every device in trivial-devices.yaml 
-is wrong. Since Linux handles them missing, you can also argue that 
-supplies are never required.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-I'd prefer not to special case regulators as an exception I have to 
-remember. I have some rudimentary ABI checking I'm working on that 
-checks for things like new required properties. Though it wouldn't catch 
-this particular change given it moves the schema.
-
-Rob
 
