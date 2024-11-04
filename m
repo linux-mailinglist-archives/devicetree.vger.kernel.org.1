@@ -1,152 +1,161 @@
-Return-Path: <devicetree+bounces-118649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8E379BB152
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:40:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E7E59BB15A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:40:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87D82280F24
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:39:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2F5C1F232B8
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 10:40:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171531B21B4;
-	Mon,  4 Nov 2024 10:38:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55F9E1B219E;
+	Mon,  4 Nov 2024 10:40:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Un0vtX8r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pKO7i7hB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 364091B21A4
-	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 10:38:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 257121B0F3C;
+	Mon,  4 Nov 2024 10:40:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730716737; cv=none; b=Lm8EZXFU7hYi0v03KzBut9dWAazs5yhuBXm9zpMv+X83HQrIaW3n3nyakda36K+xkQfAiJq/nJ4hRM35MlT2SO8rvGDMBuaZoNKhsAq0bm5ufY89z/1/KGyT6btAr2ew23FFwwafEkGXYA3uGmoBCKaI+pgqfUYBvuVMx7mTBzU=
+	t=1730716818; cv=none; b=NpLAPh8pJNVYapJMY2mPSm45K7eDE46VU2FunXhK4rJKHP9y51Jljx9JO0hXkARl7Jq1T54eVXLW+2oEAofOKOB9LxNCuc1ZAgIHtlomt6CA6SVND9ChqKgnDUvlp1lV4+oidC6pJNsuvw7s56NoN3vMNut/DyaKtclTWdb+Ais=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730716737; c=relaxed/simple;
-	bh=51jGYEqZUKc37O1/8L+bDqAHylGHsKjpsXE/LC0WEuw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qe+uH+7QrCSHS3UR3u5FTx0jdIhVWdo93xj3RK4KWsgJamKSVMSmDmTeXkNi23pHTKrdWMRpuQMddvcmigkWWKgQBvAGV37sZrIQLXcMAK2O8kzPE/DCO204By4DFJ8SywRD2u8TiJ21UK85OwB/+TIX1k9VcDoo3F9m+W0JYTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Un0vtX8r; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6ea85f7f445so11718987b3.0
-        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 02:38:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730716734; x=1731321534; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZN3UQU6if0WOIwavnpYZdgDUX74h839maXyGtWEijfg=;
-        b=Un0vtX8rg/bHDap+NrcOsAB2vMg4Z7qOGiN9reRgjX7vidxf6jpqGTqfpdMdf4wzRF
-         okXSi3wxoqBevvHNFv+fEP+yLLWxe7+8OK9rEtDXtuVj6Pf4NsGhW5NSzSWY6Wa17Z0G
-         LA7PzHg4i9xy6TZHZIHAxUQcjoJ8tTSWSkUWQNMpg/7ze/jwLgCWkx2QSfzjsccSoHCU
-         7uU41V/HE4rARlADwXuHIBUMJckKM0dDlUphTH4oHAcimEOq7Ioz4hCdJufmBRUr97yz
-         5ZGiZuCHe0hAJdsJ8hNtrRGObzNII0/tFeZ3gPaQO9LiAH//3GwPLF5zQYwMB5eW23n2
-         Dv4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730716734; x=1731321534;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZN3UQU6if0WOIwavnpYZdgDUX74h839maXyGtWEijfg=;
-        b=ow3Z4Tsr/E/T4pwNqBco+OBHJbRBJBNk94tyEdHOoAIE/kK2yOEJmAHzDkbAgBrHKl
-         v78bwf9pcEPT6ewlfwWlXiwW1ORMBDsybuaOtfb+t4sPuTy+9c/Vhux11ubPbGSPP1Os
-         1KCwAWk0NtG9V/SgP+vfSK9FyULT0sZ52PwN4OPngWypNPIUp4Wr9TPtl92Y5fNYNYXo
-         1ZKD28EyLa8BY0aWikuAaItdgiWsm9oJFfyytUxedR6Ea0sQT25KsFBqaJP1AXiUyA0g
-         waC2MMii0P9xSjDzuBTaIHGhA1RJiUPRKbR5hhPkuyaENtjz59LcmNt4kqfrWK5xTLpE
-         d0FA==
-X-Forwarded-Encrypted: i=1; AJvYcCUlAZVtUVnUGkEAU9V1B00Pqf6mXyandJ3g0RWE2gRMgS3tg/7bxwbqw2/S1LApTpcucR5o7fS96HhX@vger.kernel.org
-X-Gm-Message-State: AOJu0YygB5YXt3KChJyHUuO5zRgj4kw7xLvvf2JwAu9EgNUrFVQyGSMR
-	vrY2yDFo8uivWFKIKiEHe0klhoDAQdT1GjGz+6CPYvVXU+saZUyw0ruiXPMsd6gOsbkwhmSLRa9
-	sr3+7dHqAFtpypCHU2rBbz/P5vGZhM2VohydTIA==
-X-Google-Smtp-Source: AGHT+IFdRXydCGcijxNpGwkhtTu/Ey+5ZFUBDuy7gb/66fDYNrtaMYmwYk2H7LPNBv6Ol0r0lwRj2f4zoyALIvyZzV0=
-X-Received: by 2002:a05:690c:380f:b0:6e5:de2d:39b1 with SMTP id
- 00721157ae682-6ea523215demr144706667b3.5.1730716734041; Mon, 04 Nov 2024
- 02:38:54 -0800 (PST)
+	s=arc-20240116; t=1730716818; c=relaxed/simple;
+	bh=G4c9288OmcJxGEnMh01LHClB1PmYLpAh8uZYX/n4820=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K6fKYcBYS/45h/drh3HOWt96ey5cBa8oGvIW5v6jwnlSeWxG/FVHS+KuwLL1h24+WyOIIbiYw2Q0P8KUczzMYaOB97qJMraCAlt6cQP1WXwJSsfgrvV3mt/p1SlKOBgLZpKrjXbvv1Hl9SMBy3FReGhfwH6uGIRnQU5gJ0Lee9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pKO7i7hB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9884C4CECE;
+	Mon,  4 Nov 2024 10:40:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730716816;
+	bh=G4c9288OmcJxGEnMh01LHClB1PmYLpAh8uZYX/n4820=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pKO7i7hBnz0iJiXBfyP00sHXC//1cktGR4VW0pDiBgZATfA8zQKieq4iilIQIKlWY
+	 4spvEWfia9Dg7J7WoV6+bWD+Lx506oI4jELb0FQeGUh+jvn9E0XTeQyO2xKXgDsEWO
+	 U0nSiY84gEe7warwx00BQ7lRU9u73e+6eNsgVVixO+L1pOEhZp+A1U3VwK3V44CV86
+	 V+8AQSOMdO8Y2cYo5onJI2+0zklAygW8ScAkmprOYGYr+Q+0XuSIHJJL7G4hn9XQWF
+	 EgtRaObQVCNF9E9FLyOMx9MosUNHTen1hminhi8YVtg8W+LdtOYFIMuedPZyWm9IrQ
+	 hMASU4VfiyikQ==
+Message-ID: <5567d259-dc06-455e-9ec3-56af14db3706@kernel.org>
+Date: Mon, 4 Nov 2024 11:40:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241026123058.28258-1-quic_rlaggysh@quicinc.com>
- <20241026123058.28258-2-quic_rlaggysh@quicinc.com> <7k2vnjop6xyshquqlbe22gm7o5empeluvsohfmq5ulnaas3keb@yzomhzi4w7vf>
- <2ac4604c-a765-48b1-84b2-8979f18c29a7@quicinc.com> <vljb7wwqaaqgdcm6whf5ymhnh4jbtswyibto4qpqmbgwvshudy@unh3jhbyeac6>
- <00c9feac-722a-481a-9c57-36463fe0b3ff@quicinc.com> <925202f0-7fd1-4422-88fb-138c9027ac2c@oss.qualcomm.com>
-In-Reply-To: <925202f0-7fd1-4422-88fb-138c9027ac2c@oss.qualcomm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 4 Nov 2024 10:38:41 +0000
-Message-ID: <CAA8EJpqM0vQZR5yEbGeBBPbog4KoEiTp1kWRwrjuwO4wo_umaw@mail.gmail.com>
-Subject: Re: [PATCH V2 1/3] dt-bindings: interconnect: Add EPSS L3 compatible
- for SA8775P
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>, Georgi Djakov <djakov@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Odelu Kukatla <quic_okukatla@quicinc.com>, 
-	Mike Tipton <quic_mdtipton@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH] dt-bindings: can: convert tcan4x5x.txt to DT schema
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: Sean Nyekjaer <sean@geanix.com>,
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241104085616.469862-1-sean@geanix.com>
+ <ee47c6d7-4197-4f5d-b39e-aab70a9337d6@kernel.org>
+ <20241104-upbeat-wondrous-crane-6f20a3-mkl@pengutronix.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241104-upbeat-wondrous-crane-6f20a3-mkl@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 4 Nov 2024 at 09:35, Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 4.11.2024 7:40 AM, Raviteja Laggyshetty wrote:
-> >
-> >
-> > On 11/1/2024 12:26 AM, Dmitry Baryshkov wrote:
-> >> On Wed, Oct 30, 2024 at 12:23:57PM +0530, Raviteja Laggyshetty wrote:
-> >>>
-> >>>
-> >>> On 10/26/2024 8:15 PM, Dmitry Baryshkov wrote:
-> >>>> On Sat, Oct 26, 2024 at 12:30:56PM +0000, Raviteja Laggyshetty wrote:
-> >>>>> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on
-> >>>>> SA8775P SoCs.
-> >>>>>
-> >>>>> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-> >>>>> ---
-> >>>>>  .../devicetree/bindings/interconnect/qcom,osm-l3.yaml         | 4 ++++
-> >>>>>  1 file changed, 4 insertions(+)
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> >>>>> index 21dae0b92819..042ca44c32ec 100644
-> >>>>> --- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> >>>>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> >>>>> @@ -34,6 +34,10 @@ properties:
-> >>>>>                - qcom,sm8250-epss-l3
-> >>>>>                - qcom,sm8350-epss-l3
-> >>>>>            - const: qcom,epss-l3
-> >>>>> +      - items:
-> >>>>> +          - enum:
-> >>>>> +              - qcom,sa8775p-epss-l3
-> >>>>> +          - const: qcom,epss-l3-perf
-> >>>>
-> >>>> Why is it -perf? What's so different about it?
-> >>>
-> >>> The EPSS instance in SA8775P uses PERF_STATE register instead of REG_L3_VOTE to scale L3 clocks.
-> >>> So adding new generic compatible "qcom,epss-l3-perf" for PERF_STATE register based l3 scaling.
-> >>
-> >> Neither sm8250 nor sc7280 use this compatible, while they also use
-> >> PERF_STATE register.
-> >>
-> > That is correct, both sm8250 and sc7280 use perf state register.
-> > The intention for adding "qcom,epss-l3-perf" generic compatible is to use it for the chipsets which use perf state register for l3 scaling.
-> > Using generic compatible avoids the need for adding chipset specific compatible in match table.
->
-> That is exactly what bindings guidelines forbid.
->
-> You need a SoC-specific compatible so that you can address platform-
-> specific quirks that may arise in the future while keeping backwards
-> compatibility with older device trees
+On 04/11/2024 11:31, Marc Kleine-Budde wrote:
+> On 04.11.2024 10:27:04, Krzysztof Kozlowski wrote:
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - enum:
+>>> +          - ti,tcan4552
+>>> +          - ti,tcan4553
+>>> +          - ti,tcan4x5x
+>>
+>> That's not really what old binding said.
+>>
+>> It said for example:
+>> "ti,tcan4552", "ti,tcan4x5x"
+>>
+>> Which is not allowed above. You need list. Considering there are no
+>> in-tree users of ti,tcan4x5x alone, I would allow only lists followed by
+>> ti,tcan4x5x. IOW: disallow ti,tcan4x5x alone.
+> 
+> I'd like to keep the old binding.
 
-The proposed bindings have SoC-specific compat. If that's not against
-the current rules, I'd prefer to have qcom,epss-l3-perf to be added to
-sc7280 and sm8250 too.
+Any reason why? It's against of bindings policies. If this was a new
+binding, it would be a clear NAK, so here due to lack of user we can
+make it correct.
 
+> 
+>> Mention this change to the binding in the commit message.
+> 
+> The tcan4x5x chip family has 2 registers for automatic detection of the
+> chip variant. While the ID2 register of the tcan4550 is 0x0, the
+> registers for the tcan4552 and tcan4553 contain 4552 and 4553
+> respectively in ASCII.
 
--- 
-With best wishes
-Dmitry
+This does not grant exception for wildcards. This only says that one
+model should be used as fallback.
+
+> 
+> The driver was originally added for the tcan4550 chip, but currently
+> only has a compatible for "ti,tcan4x5x".
+
+That's not really related to discussion. We do not talk about changing
+driver.
+
+Best regards,
+Krzysztof
+
 
