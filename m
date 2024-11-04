@@ -1,110 +1,186 @@
-Return-Path: <devicetree+bounces-118672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD7219BB321
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:25:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10D9E9BB330
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 12:27:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92FE8284371
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:25:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 349811C210DF
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 11:27:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BBC41B3928;
-	Mon,  4 Nov 2024 11:16:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7339A1C07CD;
+	Mon,  4 Nov 2024 11:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IPT1GkV2"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="J0RBxbUU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com [209.85.218.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48A711AF0DD;
-	Mon,  4 Nov 2024 11:16:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 816231B3935
+	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 11:17:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730718970; cv=none; b=ONFkNp8PfO6cmTosB5hhwxn4FIkEu9v2pwnRKVDBvq8piNWJmAxos66oHdg1nrGSy4H8Ay+cQ/LQkVaRcRbbxxgVkYRRBZcPHuwf/I457ZhX512BwusruHDWSjV4Yriy7QNc0J8aZQ0r32sMk3Q7OFN5u/6Elt7DiYYQUTagkzI=
+	t=1730719061; cv=none; b=s3RISfnugz8xNyLYWu8V9F0O6CLSuI44Xsgh2RCmQck6uvjRvb6WEzqMTGrBtLCiQtEwDKDOljRV2WvnvdNJVCF1hZrysLfnOAyG8dFBbjcARvF/UP8kXRlwBHj1GAoFfh3WgsJ90flvCAPvmUtGvuFElQa8ahJOSMiZ4dTDcoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730718970; c=relaxed/simple;
-	bh=6lPauIiTscqKMOQTLUHijuI2aQyYBb6lw3dYwjsi6bM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HVueEZXo/PIM1aIGkTNCssJ27r2SJ2mbYThNAAzRIvCMYtMcNUWrEk7CBFHDuIPksQt6bzqH4rXS5+1qLhL+HJ8q9C44wwbodokeigSuHxLQKK2n7HZ516mfKsAnp9e1hCs5tz5MpAeo2cOF/o29FbFfTf7GJ7BvEOQCPR1EFow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IPT1GkV2; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2fb49510250so40521801fa.0;
-        Mon, 04 Nov 2024 03:16:08 -0800 (PST)
+	s=arc-20240116; t=1730719061; c=relaxed/simple;
+	bh=m6AwtJV6JumlnupkTYJZWz+WL77mCi1FfjKbjWxYVgY=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BV/5DN18N52W3/cXH375I1J2wM1Daz/DSQ01ptwmq6yiBkxVhxq/wiZAfll6IqBTRFjw+2PUlfKRf+hvvb5o9X47RVNmBaFkXcKVwPzZg3gbpNOFwk879iF3wB6J0m+SmTbl7lsorc1QnRupqwVVRHDQgwKfI7HiwUZg/kJXAkY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=J0RBxbUU; arc=none smtp.client-ip=209.85.218.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f68.google.com with SMTP id a640c23a62f3a-a9eaaab29bcso52013966b.2
+        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 03:17:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730718967; x=1731323767; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6SMwMlud9VpFJug/GEuyhyAfU63OEE3p7Bt9+6mizC0=;
-        b=IPT1GkV2HfLgpH4LzzOO9VABJlll4PxLa3gyXXXXOLStHoUgab8ORuqK2mSAqqGIUo
-         PYgQosr9fhKGfKKZhW+0m8aLJWICBvhtaoQfkPs1OyPz6IWGb3GtWMh8vxGH+7FS5HRh
-         rEmeTqd8G7ZSajcvZE6NODVQIleKiTZR3+rEIGrpnumhVRxEf2sN//2nZcx2CJUHaw+z
-         ltNGxcwDJgTQEROb8ZOmcsbMc4hMfMrr/KHaVIkiR9S4SvEDba/9lbFk0o5gVyjKHYPf
-         iCVAQlHY+NUbThk/O04TR9EsndlYdoWH6a+ZVExWgUaMKSMeXLbcslebIxd9hcXy5mvK
-         AjYA==
+        d=suse.com; s=google; t=1730719057; x=1731323857; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zm6fQFm9ooxBDk4g90danCCrz6mePB1JIcdtVnE9xbo=;
+        b=J0RBxbUUQSiNRH22p/7fwkq/iabs82RMJh4D3bARIWUDWpsiJxgiwf1dgmLHMqC2pX
+         LNurdUvVtcz6hGWgP06Ldc1dLZDI82FzpnRbrzzZV+5ZGPPJahoheDw2MVOXR0LprYTU
+         vnX5Gq744g/h8PYemKJ/9hiI4/xvwtcyMOUIJN/IH/DsoHc4TriRH+M0yTbqNIip56Qj
+         V8awiYzWVHURXAum0E3PX/aphvVOknynsBNKGJZv67dlOo/+H0SwC5WFee4vkop6kBRX
+         9ppBDMHQYiLTOL/3pfvOG5kVEhoLKPUvX2dIWUbb7O6x/iW3bbwPWeiAo+1Jux30k/oN
+         rrEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730718967; x=1731323767;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6SMwMlud9VpFJug/GEuyhyAfU63OEE3p7Bt9+6mizC0=;
-        b=bdi5bALx09Eeygo+yJjNLZ5+SUXgPRRp8A4hpZfLeHDYbrXZx97mLHVKz0QjxDcPYo
-         JF7sIMLXWJfIuKs18HMxZgGIp2xy8heN/WAPtq6wbRRqChphGHL1c1Lr/U6y5/zHHF0C
-         fXg1H82l+9h6g0Q6cNS6co3WZHLpvvHCc08lGSPhBXFFlL1eVFRiLreBXqZRYzkgiZof
-         1wJemqyrGQiiXVn7DmPeoO/8ULhxiz1N+EEUMSSi24HHu3JMAiR9W4Q7hPJXe9E1yXXD
-         IDo0QrwHlDhh/7A0mxbO6jEmlXKs1BBRvg+zhyegr/HGQmapAVE99qJ+EsAiUaWpYq7J
-         lbfA==
-X-Forwarded-Encrypted: i=1; AJvYcCU14i62Sf5NcqQwgtmvZjlvUmQGympcNOKtCCTWPr+J26pSwSCACS07rNFGCS0rjvGo/Ypm3UtwiXE3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwYEFzzogC+W6CrKoBQs+FDtwlFoGaNHlq6IIP+BUGeQytphGb9
-	SbPnI3senTKoZDIwCOBBBp8/O06vFDM7sMZ8wAYrJDKNEyTHuI65Qmu/bnwO5Pb+zZECtUBk05Z
-	Ef6MNY88gXs3M9mYtrgiEHJ88SGw=
-X-Google-Smtp-Source: AGHT+IEzN70NkrF6BWT0VQctKNPsc9mfubq6riSTtLOV3QRjwhMFt9r3TqokctCja3a9zuoI92aSnDqOznprk9dMpPU=
-X-Received: by 2002:a2e:bc18:0:b0:2ef:2490:46fb with SMTP id
- 38308e7fff4ca-2fdecc2f714mr74133011fa.37.1730718967005; Mon, 04 Nov 2024
- 03:16:07 -0800 (PST)
+        d=1e100.net; s=20230601; t=1730719057; x=1731323857;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zm6fQFm9ooxBDk4g90danCCrz6mePB1JIcdtVnE9xbo=;
+        b=prSat9d8zB9Rh+89OiM39OquGl/OwYLjv1X37UnC3aI1nDAgSD6B5RjIdQj+5WqNuc
+         PhQceLyov++rNZ8vgn1d68+IB4oeNn66T6EZef2ltiq/DFrHR+a9xNfAiXyZiNb0KB1/
+         q7gFn7143mxxv0iJWi92dbMOVWj78FPh6YTm8VhZ6QSPt9ZCq7t3BFbKh06J7cg4kJuk
+         iZYknbTEB/WayBG/q+d0TjoewbPKqRyvCBSN2N/4eTR+vbTMTK4SkHOPo8LHtWmUBhNV
+         ZaRP3x62j1WhzV6/nkVfEIbHJMBSs9SDsy6U0U7BI8I1TygtMJpbB530JOx+2IDlxTv6
+         SbRg==
+X-Forwarded-Encrypted: i=1; AJvYcCUWO/yk4iqCT5ewssJAf0Ccix3Cz+Ol7cEqVGx9Xj5eg8e9c6jCoupJiQdBD747Arj5NPMpY73oXD2m@vger.kernel.org
+X-Gm-Message-State: AOJu0YzB+gB8/bv2oNmtazSFSZHDu8AJll432Nq6bzmxsUWznaqKe1DG
+	J6PhBRA0pKOqCtSXY4OiZxAy2IhugoCTWWptcqbUAQqDPqHhMIfkA8mvEaKzygk=
+X-Google-Smtp-Source: AGHT+IFcSLCzci43q6B6uwk+mOIVwVMzbBAMNInxtnBTc5cfQ4MVXaYIjI3lyJk3DmBUHaqfz5C5og==
+X-Received: by 2002:a17:907:7242:b0:a99:ee1c:f62f with SMTP id a640c23a62f3a-a9e5094307emr1279580066b.34.1730719056854;
+        Mon, 04 Nov 2024 03:17:36 -0800 (PST)
+Received: from localhost (host-79-35-211-193.retail.telecomitalia.it. [79.35.211.193])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e564e88a1sm544922266b.95.2024.11.04.03.17.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Nov 2024 03:17:36 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Mon, 4 Nov 2024 12:18:02 +0100
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v3 03/12] dt-bindings: pci: Add common schema for devices
+ accessible through PCI BARs
+Message-ID: <ZyitasLlDB3pXKEp@apocalypse>
+References: <cover.1730123575.git.andrea.porta@suse.com>
+ <2948fdf8ccf8d83f59814d0b2a85ce8dac938764.1730123575.git.andrea.porta@suse.com>
+ <fwqcbnub36fk4abmhbtuwsoxdlf64mx4v65mxahsxmiv2sz6er@bfjddapvb75v>
+ <ZyOSGgJ4zb31Posb@apocalypse>
+ <e2ce5f7a-6ef5-45e0-9868-11eb9106ace8@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241031151238.67753-1-hs@denx.de> <20241031151238.67753-4-hs@denx.de>
-In-Reply-To: <20241031151238.67753-4-hs@denx.de>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Mon, 4 Nov 2024 08:15:55 -0300
-Message-ID: <CAOMZO5ACMGbhySUbR8r1UUimc53YDaRbfEObyUrf0GLYZcQfjg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: imx8mp: add aristainetos3 board support
-To: Heiko Schocher <hs@denx.de>
-Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e2ce5f7a-6ef5-45e0-9868-11eb9106ace8@kernel.org>
 
-Hi Heiko,
+Hi Krzysztof,
 
-On Thu, Oct 31, 2024 at 12:12=E2=80=AFPM Heiko Schocher <hs@denx.de> wrote:
+On 19:06 Thu 31 Oct     , Krzysztof Kozlowski wrote:
+> On 31/10/2024 15:20, Andrea della Porta wrote:
+> > Hi Krzysztof,
+> > 
+> > On 08:28 Tue 29 Oct     , Krzysztof Kozlowski wrote:
+> >> On Mon, Oct 28, 2024 at 03:07:20PM +0100, Andrea della Porta wrote:
+> >>> Common YAML schema for devices that exports internal peripherals through
+> >>> PCI BARs. The BARs are exposed as simple-buses through which the
+> >>> peripherals can be accessed.
+> >>>
+> >>> This is not intended to be used as a standalone binding, but should be
+> >>> included by device specific bindings.
+> >>>
+> >>> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> >>> ---
+> >>>  .../devicetree/bindings/pci/pci-ep-bus.yaml   | 58 +++++++++++++++++++
+> >>>  MAINTAINERS                                   |  1 +
+> >>>  2 files changed, 59 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/pci/pci-ep-bus.yaml b/Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..e532621f226b
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
+> >>> @@ -0,0 +1,58 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/pci/pci-ep-bus.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Common Properties for PCI MFD Endpoints with Peripherals Addressable from BARs
+> >>> +
+> >>> +maintainers:
+> >>> +  - Andrea della Porta  <andrea.porta@suse.com>
+> >>> +
+> >>> +description:
+> >>> +  Define a generic node representing a PCI endpoint which contains several sub-
+> >>> +  peripherals. The peripherals can be accessed through one or more BARs.
+> >>> +  This common schema is intended to be referenced from device tree bindings, and
+> >>
+> >> Please wrap code according to coding style (checkpatch is not a coding
+> >> style description but only a tool).
+> >>
+> >> Above applies to all places here and other bindings.
+> > 
+> > Are you referring to the title being longer than 80 column here, right?
+> > Because the description seems correctly wrapped... or should I add a
+> > newline for each paragraph?
+> 
+> Hmm, I might commented on wrong description. I just looked at patch #2
+> and there it's passed 80.
+> 
+> Here the title is not wrapped.
 
-> +               brightness-levels =3D < 0  1  2  3  4  5  6  7  8  9
-> +                                    10 11 12 13 14 15 16 17 18 19
-> +                                    20 21 22 23 24 25 26 27 28 29
-> +                                    30 31 32 33 34 35 36 37 38 39
-> +                                    40 41 42 43 44 45 46 47 48 49
-> +                                    50 51 52 53 54 55 56 57 58 59
-> +                                    60 61 62 63 64 65 66 67 68 69
-> +                                    70 71 72 73 74 75 76 77 78 79
-> +                                    80 81 82 83 84 85 86 87 88 89
-> +                                    90 91 92 93 94 95 96 97 98 99
-> +                                   100>;
-> +               default-brightness-level =3D <80>;
+Ack.
 
-One suggestion: a more succinct way to represent this would be:
+Many thanks,
+Andrea
 
-brightness-levels =3D <0 100>;
-num-interpolated-steps =3D <100>;
+> 
+> Best regards,
+> Krzysztof
+> 
 
