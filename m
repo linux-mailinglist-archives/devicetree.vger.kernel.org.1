@@ -1,139 +1,130 @@
-Return-Path: <devicetree+bounces-118775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 545119BB828
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 15:42:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C7D29BB835
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 15:46:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85F711C21F1A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:42:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED6D21F23347
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 14:46:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A7E1B6CF6;
-	Mon,  4 Nov 2024 14:42:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE9011BBBD6;
+	Mon,  4 Nov 2024 14:46:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ONxtur4F"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dnUrk4ps"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF35E1B3929
-	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 14:42:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAEB470835
+	for <devicetree@vger.kernel.org>; Mon,  4 Nov 2024 14:46:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730731330; cv=none; b=BchUC0bth+IzRxu5pVkIN32jF9MPniUg+oMcJV95nD9BKx/AOzIgkoui4VvPEot6WHpP5TNpDY2wHSOxbtx1N60gcIk1H8HDsqIolQo4/5JMgm3vOZMSCZdl/980r4/9RRrjUuL5z9lvDKAARtIbOMNlA3hfXmWj9dmmzeORjus=
+	t=1730731570; cv=none; b=Zx0f4+/+Bh93cBWCrSiueDhb6cNxb8JdjpNTBtBea4pPXsyMfFXHoTULlFsCF1clioJt13D5nFVgRCEjpHcnXffJ7E/Z8tXOjjer4Rm5y88ozrK3iIzSZuS5+YnuqpDhVaRIr++2FPBTthV3bP8ApOqjpSmjot2exYy9zdMjc3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730731330; c=relaxed/simple;
-	bh=SO84wGYFqTt+rUJm2RCZaiMvDvMTJZ/y9NNnuC1FJVk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=L6oVFSv6rZdsHAwXpp6zsBIRtHREmBgL0dYhgUuHGqiKMCtCkkZp8b0kLq+st69LHPS/v4MyuLA3944PbDSwaoYK3jq6mRIiuUCHZ/4UOwq8aYR7wJDvPKLUcaCzd2/m34lL2ddDxiqk3QkHH60aHja10UWJk+kY1t/AtOKAreU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ONxtur4F; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-37d43a34a0cso425478f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 06:42:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730731327; x=1731336127; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xse+8Y0ibORmsTXcFf9GAQ7JBYEUIvDbYNRpRr9Ulac=;
-        b=ONxtur4F0Uc/Lj2z4Dh0/gNIiyTzOyvdC13RTYFL5xgOdtqFAM7d+rcd2sun182n6r
-         v94furB8hvnbViOoqPhn3A5b+GHoDZlSCXnaYpz0EzrpBlHgWiG5/p120pCvPVDW+Mzu
-         bJMd5IZnTPx29zKDhpZEHPf7wwGtCbrVkKLSeemRLh07263//KfpdIesmDvPjy0V0Akn
-         CKVbOofAM2T3dIcpkMcx5ZRlWn6cIqYvTCXgM3BAOClPz9m7zrr7MAVNXZQ6sq6JXQ33
-         6C1n6AGdFtz7JsS557EVvTnSYy54+kE4zFrcja+3Q2HPhYs7oBh93G2VnvLvUAjUNGCy
-         g0tg==
+	s=arc-20240116; t=1730731570; c=relaxed/simple;
+	bh=ri5gKANv6TvUTPl9+9xRfhB8LDqHtD0yB8YlHumIS9c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=h2P0rvdECkCMd9QH47FITj4L6Wj6AE7UaWHmD2tlmzD46pMqKqoRdvzheJNBrv1Anb5P6ubKyC50cKmikojdGYTq99rHq3PX4w/ddcMXjXvPG8L93Fdq7InDJEnv13jdL1OEZ3lxiEAsZLqkG84im68/Q3Lqp2bRxSp+/+7xAro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dnUrk4ps; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A4BYlH1001294
+	for <devicetree@vger.kernel.org>; Mon, 4 Nov 2024 14:46:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	iEq/Fez3KiO14L7XUIPT1fn4g59MvDWGnwPCbPiCdc8=; b=dnUrk4psxz61ql1d
+	XTAu50K15rdAPnpWd0A9Whx7RVc9UH+Mog/DM6oiw4kFxB5A4tgQugcPW4hr5erg
+	1ICb6mCY68H1TP9y+GLQPnf5K2Rzx528BCfaegzZWkXRhDZNYBelfjr9C1ZEZLaz
+	FpRvlTe0OPOMsT1zGwpO1W6a4/2E4TuGk0AZrPM3ZFIoOEbAcnSaODX9TrStjGKD
+	+Do0voXrDhMTadRVzNq8wNFrcEvcK6sU0sFUr3NGfb94WXKW6td6ahHPfV0XdyRK
+	9nWKXdmtUiYiMW1bHYdvOfDNWO6YxhrEcLEjGcFZRcBcxoC9PlPIBzH2kvzr66QG
+	SXNkHg==
+Received: from mail-oi1-f200.google.com (mail-oi1-f200.google.com [209.85.167.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42p5ye2pg6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 14:46:06 +0000 (GMT)
+Received: by mail-oi1-f200.google.com with SMTP id 5614622812f47-3df19f2433cso60478b6e.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 06:46:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730731327; x=1731336127;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xse+8Y0ibORmsTXcFf9GAQ7JBYEUIvDbYNRpRr9Ulac=;
-        b=sUNsglWmRhnaMZmlIcjXfG314Idx2HFYg9f6JoLlqDHlsX769NoTgAKv6Y8xyg/CD4
-         BP2IZyofIq2ukcZDcTyUGXF9Km1ayvS/gvkyvqhhAVbGC0ffzyCkkgHcq87J2NQZqm2V
-         LIGDAlmbUcTOIjWmoiEdjcNsi5UfOuvujdXVYjElUlXBceyfvvIXsn4QZN4RvF0WeM0i
-         zIfjlPOBOBxBg8DaajC5HprgBNNRO4IaJoiCEa+9+RNgBGjMakANc+DO3gf6uney2KTi
-         /aNWYPAlijrxxhmq3cIKTMW6lltYznm9Yi0PbheMROh4ntxTlkHhS8cLK+7OX5V3UjhS
-         S1EA==
-X-Forwarded-Encrypted: i=1; AJvYcCXvzVjgsTqVg6tIQBQ2ijFPkMUNoFhGyejhtnNGt+sc/22xBhee+WpJDxJ/GkjRTZ08fYtitfJBk9GE@vger.kernel.org
-X-Gm-Message-State: AOJu0YydaEbbymPIpgHpnwQaPu39IX2bLOYNOq9VtB2vPpQ44nM7TwIl
-	/Va1SjqGWbHs3CA9UC5MbCAkvozH1jOWtYrCP58eDztwKg4LTyqzNx5ESyIqO+k=
-X-Google-Smtp-Source: AGHT+IESYHxXdCiy8abyGwDONyQaWjmIt1sRqKhV+PO4KcL3AbtW4so9yq3KTHkBFOIwm2tU7Vmelw==
-X-Received: by 2002:a5d:5f94:0:b0:374:bde8:3b46 with SMTP id ffacd0b85a97d-380611a7665mr12316766f8f.2.1730731326951;
-        Mon, 04 Nov 2024 06:42:06 -0800 (PST)
-Received: from krzk-bin.. ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4327d5bf225sm154433685e9.11.2024.11.04.06.42.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Nov 2024 06:42:06 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ling Xu <quic_lxu5@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: sm8650: Fix CDSP context banks unit addresses
-Date: Mon,  4 Nov 2024 15:42:04 +0100
-Message-ID: <20241104144204.114279-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1730731565; x=1731336365;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iEq/Fez3KiO14L7XUIPT1fn4g59MvDWGnwPCbPiCdc8=;
+        b=ZivNTNaVjxJoSL6ElZw/x4VQtn3y7Yb1SSYdzwvIuUAomej8CmDHUgJMSJrHp0v4Zf
+         jRv6N373Bn6eM0luzEU/8CiVN+qXnxi9zfHqDyWBOsNVgaperoaE1QBYEkekuvAqYUJQ
+         kT5OpKCV2yS4ztuJ+LoKwpL3YtZToCk/IV6nfyQhh1UO0xOs/fRbkcmzwLctLEsWJtof
+         S38ZkXK0BZeAf+IUVSSXPGmt+qabaEJZPU9hgkzh8Vo8YBU5YXNakAxBoykOJglt0VqE
+         +xIGnhG5wy5tLKRGZITgk4xDj2ADWT4GpfHeML35pwfj9wuxBQ2WRoeCb4Zh1kAmTPPG
+         rK4g==
+X-Forwarded-Encrypted: i=1; AJvYcCVRxkP3VSBLCGha9xMmREudwGxHGunwWqhVuL5v/jeFe42fwI/ryRK9a/KxeG2AMoXoTJlX52HgO95q@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWy1UkDlhYvohcwH9aMI33SHK/I9NsztMOMQLNf7dPygk52weK
+	9ztQY8upUHq/ldQgTjn9UMygu0AKgKZAx7h0+hNtf0enEpIgaP6Cxtr2pAF8pSA5Ya/eXdB+CEF
+	qUCr6U6+2VOtQDf3mpo3JLpFtsDvpPwF5FpU18thSyyWzohLB2bxodWh2H0Rc
+X-Received: by 2002:a54:4713:0:b0:3e4:d640:7449 with SMTP id 5614622812f47-3e638443fcamr7064336b6e.4.1730731565117;
+        Mon, 04 Nov 2024 06:46:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGjt7yLH7obj2yJY5lX8bMi7SMYsNafpSge3M0yoLdMOlcEwQ3eZbty9K7EcZfKV6+orGjU0w==
+X-Received: by 2002:a54:4713:0:b0:3e4:d640:7449 with SMTP id 5614622812f47-3e638443fcamr7064299b6e.4.1730731563300;
+        Mon, 04 Nov 2024 06:46:03 -0800 (PST)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e566797a7sm561800866b.190.2024.11.04.06.46.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Nov 2024 06:46:02 -0800 (PST)
+Message-ID: <f0863c6a-44cc-4709-aaab-a089fb6620e6@oss.qualcomm.com>
+Date: Mon, 4 Nov 2024 15:45:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: Fix CDSP context banks unit
+ addresses
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Ling Xu <quic_lxu5@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20241104144204.114279-1-krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241104144204.114279-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: XhcT32eyF2-l4YYBEhkk8ANpGOkaiLxI
+X-Proofpoint-GUID: XhcT32eyF2-l4YYBEhkk8ANpGOkaiLxI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ mlxscore=0 spamscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0
+ suspectscore=0 priorityscore=1501 clxscore=1015 mlxlogscore=999
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411040128
 
-There is a mismatch between 'reg' property and unit address for last
-there CDSP compute context banks.  Current values were taken as-is from
-downstream source.  Considering that 'reg' is used by Linux driver as
-SID of context bank and that least significant bytes of IOMMU value
-match the 'reg', assume the unit-address is wrong and needs fixing.
-This also won't have any practical impact, except adhering to Devicetree
-spec.
+On 4.11.2024 3:42 PM, Krzysztof Kozlowski wrote:
+> There is a mismatch between 'reg' property and unit address for last
+> there CDSP compute context banks.  Current values were taken as-is from
+> downstream source.  Considering that 'reg' is used by Linux driver as
+> SID of context bank and that least significant bytes of IOMMU value
+> match the 'reg', assume the unit-address is wrong and needs fixing.
+> This also won't have any practical impact, except adhering to Devicetree
+> spec.
+> 
+> Fixes: dae8cdb0a9e1 ("arm64: dts: qcom: sm8650: Add three missing fastrpc-compute-cb nodes")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-Fixes: dae8cdb0a9e1 ("arm64: dts: qcom: sm8650: Add three missing fastrpc-compute-cb nodes")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 3d8a807a81c9..367fdd090768 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -5622,7 +5622,7 @@ compute-cb@8 {
- 
- 					/* note: secure cb9 in downstream */
- 
--					compute-cb@10 {
-+					compute-cb@12 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <12>;
- 
-@@ -5632,7 +5632,7 @@ compute-cb@10 {
- 						dma-coherent;
- 					};
- 
--					compute-cb@11 {
-+					compute-cb@13 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <13>;
- 
-@@ -5642,7 +5642,7 @@ compute-cb@11 {
- 						dma-coherent;
- 					};
- 
--					compute-cb@12 {
-+					compute-cb@14 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <14>;
- 
--- 
-2.43.0
-
+Konrad
 
