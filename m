@@ -1,260 +1,130 @@
-Return-Path: <devicetree+bounces-119206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C89D09BD621
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 20:53:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BC9A9BD664
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 21:00:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED3801C22AB8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 19:53:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26263B22CD7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 20:00:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D697721314D;
-	Tue,  5 Nov 2024 19:53:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 983D8213ED9;
+	Tue,  5 Nov 2024 19:59:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="SZ9iZapw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MBu9kNBr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBC321314B;
-	Tue,  5 Nov 2024 19:53:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 694BF20E023;
+	Tue,  5 Nov 2024 19:59:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730836401; cv=none; b=UL6t7As4nwKEOkj5RxFiH2eq019iCSO8+mSyMJ+Kb1MMn1XdSMqAbN6JZU2YFRI0qkyytYuXOLIxjGup1FII7EY3Lc+0hrg1sYza95mNiMFlE+zBvn1fe9mtKKqiYIkGvuRAN2fopjeSaGPhiLE3X2rZp5ARCu/PMORqoYRzYoo=
+	t=1730836793; cv=none; b=RZydz5lWGIuINTZ03Y8FyyOB3h0qkvjt/wAkeOePLTadRMEAkuzkc7nT2/O/8t2vnF1gq6Rp7tcVmSGDTuUbBbpEVpr1zjwNjfap88hGELvygwtX2rPnaVGd2ccNn5NMAEAIEHnyF2vBqzZfo7SkoQAJCPPR09E6rlWpLLHkC0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730836401; c=relaxed/simple;
-	bh=A8sY0W3/xH15Ghe7igmFjisVKhZ0uB8+fwINpSSIbL8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yhi430Pf6U39oUZwLODA14HKos2NWHL4KUKb/43mCUGq6YbberCxYhlY9Qbhn6MQdOZkwl/u2G5FSKXov/dJixJTqNN2fsfozCjFq5qR3WweGGic1DruQnPUmMMwOdDUCiJU54PgWhkYZJQ5iiWgu4rYwAToQahIZ78EttokJSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=SZ9iZapw; arc=none smtp.client-ip=212.227.126.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1730836391; x=1731441191;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=A8sY0W3/xH15Ghe7igmFjisVKhZ0uB8+fwINpSSIbL8=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=SZ9iZapwhiqR7ZdytEKm+h21pFY1iWpRTsq70+wUk4/f9oxeXZNr5SBKz47eVaHB
-	 lZWoVOFXfLgJIIb9J9LWRqeM6UNGEdYyF6nTp70pGuhdC7IMSPCtmaniVFYup18i0
-	 tcAhxMv+dc8nslereXronTEyir1WxlatJMeo0CuckbgIyul9dwaAa4idAK924nwws
-	 5eWskr81BaNtadRsH4lbzopUMBBA1V8MH7ovjTDWORSdbfutcRe18upmVByKb+8y0
-	 0eMgpanlF70CGwYcm02ze7VxMjg805omUocH0VzpWdIXIvHOoenrJvE9fVh4vGXzG
-	 u5X1Gw1FLC/2OY+HRQ==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.174] ([91.64.229.215]) by mrelayeu.kundenserver.de
- (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MEmIl-1t1UOJ2CPD-007mpn; Tue, 05 Nov 2024 20:27:20 +0100
-Message-ID: <dd5bad7b-d062-4028-b78a-3888dec4f934@oldschoolsolutions.biz>
-Date: Tue, 5 Nov 2024 20:27:19 +0100
+	s=arc-20240116; t=1730836793; c=relaxed/simple;
+	bh=EbMymFeRSoH9+NLlqY/J0qe19NUpw6JijuyIE3ui+mI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sShtt70hQttU6gmevZFp9uk6TkEqFmzQm/SO+O0cyfraDCHw+//3KiEAAe8BvYN7ppJPNUdzGglQ2EPoF5KAihTD0NdrrmeJlSyhT43cNpr2SHBkByXcwCGKtxs3KuHWjIzUHYooRVLfrQnAuzcUSuwTubxOwvyuOp5YWIEJcSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MBu9kNBr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5FB0C4CED1;
+	Tue,  5 Nov 2024 19:59:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730836792;
+	bh=EbMymFeRSoH9+NLlqY/J0qe19NUpw6JijuyIE3ui+mI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=MBu9kNBrUTKT9ecai7ouX6RYn9md0wlU5WDnrV9IW3zEDKNFmFmRatRLGqM80+pj8
+	 LnkK3UeO4+GsqBzcq7jqwG3H9xUkx5UD2Q3rfN5+xviimoekXKLs6RtQFYKHc93RAH
+	 rXfzaEmWdKYVvi9/U1sVeak5C1QU8/kSdKG9IHy7+3DpR25He+Twu32oLoDQZuwjiL
+	 Wuly0MaH9DdtfyCbPK1x2snn2xfgoolJKBJuBwjlaH0igbdcxy2HehR1JeY5Vlo4FH
+	 vMyRbH7qyMXAzKPDYDQmpdikksbOuVe2ZoxFV3R2Ffca1UWh3ayPBuhxmPoF87JgnW
+	 nu1ZuwJ7OWy1A==
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e29327636f3so5122840276.2;
+        Tue, 05 Nov 2024 11:59:52 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU1DXqJZAbCwMvOq/sQAc/ENjUCMefqovYNQRZqZYnPSzxutp7lwAdnBKCv9fdh+kSAzapysxn1V/Rg@vger.kernel.org, AJvYcCW9KC8YDhQ5KSn2yDbvZsrAk/vyyYrYGZvCjz81uzHtllWJWgU4LCIQUK9RMdoz7CIeFCqRy0jxbGwA@vger.kernel.org, AJvYcCXqJCRxe2eFJq7VBQmx6AEAcQ3awvjelNxWTIc2Bj1/gYoiiZxPmABgKBcXEuWHEqkFsDjrvnlPj82M7WaD@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSQU+2oqLKAEgrEeT77neoSNU6qED+IUQCdNPp+ZnyvkgkrlDg
+	BboTs3eZUbd9ZGv+CtWNBT2lphiGqXtxe2ISDHLpH9tQkNsWwzcNKhL07sVdFxJVDDAKieiACWP
+	W7zufCMtcL3t5u+VPRr9n4gNn1Q==
+X-Google-Smtp-Source: AGHT+IGJAaHDb+/VclImdFQD91atuq0Ptp9vTGB8pxv1hGMyNjDy9wa8nd83p4kPL0hlndsVs2uj4SHRnma9VOJG0nk=
+X-Received: by 2002:a05:6902:2605:b0:e2b:cfb7:b0d9 with SMTP id
+ 3f1490d57ef6-e33025622a4mr15705888276.16.1730836791971; Tue, 05 Nov 2024
+ 11:59:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/3] arm64: dts: qcom: sc8280xp-blackrock: dt
- definition for WDK2023
-To: Krishna Kurapati <quic_kriskura@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Merck Hung <merckhung@gmail.com>,
- Kalle Valo <kvalo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- xlazom00@gmail.com
-References: <20241101-jg-blackrock-for-upstream-v7-0-8295e9f545d9@oldschoolsolutions.biz>
- <20241101-jg-blackrock-for-upstream-v7-3-8295e9f545d9@oldschoolsolutions.biz>
- <945f3eae-0a68-4738-af07-74e228039508@quicinc.com>
-Content-Language: en-US
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-In-Reply-To: <945f3eae-0a68-4738-af07-74e228039508@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20241104172001.165640-1-herve.codina@bootlin.com>
+ <20241104201507.GA361448-robh@kernel.org> <20241105184433.1798fe55@bootlin.com>
+In-Reply-To: <20241105184433.1798fe55@bootlin.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 5 Nov 2024 13:59:40 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK-UhnaJ8TgV1PzCO5yO99NQq3ZZcagKvkvg0YgcxFXug@mail.gmail.com>
+Message-ID: <CAL_JsqK-UhnaJ8TgV1PzCO5yO99NQq3ZZcagKvkvg0YgcxFXug@mail.gmail.com>
+Subject: Re: [PATCH 0/6] Add support for the root PCI bus device-tree node creation.
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Lizhi Hou <lizhi.hou@amd.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
+	Allan Nielsen <allan.nielsen@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, 
+	Steen Hegelund <steen.hegelund@microchip.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:oHZwOWfWPJYJHONEoS+B+Po6BnPWWhoS5QkGiZ+0Ogh1S+XW33e
- Y6dYvD/PBeALXhPRKkol3oWmlsWpnEg6jfe+4zo4KsepjXKVUjTLbaBycKev2NEnKPPVKUf
- HkwmStYlkXn9uwI8xCzrAHIECmXJLMyu4UgMBYutAQSClf/7TZNO0hXs3DRaaiUi/+3+tJp
- 8WGB5RlBWczAGrB3GXOJw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:OmPmKdgqu3k=;4DGAUmM2cgZck8LnScFr2wIoCrT
- HAEnrfMaD5gShbtlkRY9d29YcHV6Q7pEdYf87ywyMG1/Kz90fMhhMzHNjYBR6T21C7BkENsCj
- d1Hdok7HIAoYf9ZGNff7SlW82caw9cMPngQh6CtYIbYiOcsn210+JP1GWSpIlznnPFNypYYkt
- qpMwmhS/XhaQ3Di4NrKBLPV76LW8AwfXVFzf0qLMHKTAVWx/UwZ8gasceDPIZxGIonHn+aNHK
- 9vpV7JedKMcwRiGtu3GKkF+9hRPyz4mzdF283JVSdARA7TPhgEcIsApQO5t8575b8TIZlWdUc
- 7XaW53WQamWBXJnX34ml7KzMpPnYkJgRdAh8XaoYwf+JRkAL4YZMK9cxFuYDrbR53UVWs1Cry
- V3oh0O59uCHSxow2GP25rcxbnJNY/T5HMYMATCSbY5QLsauN9/o9DrqxjFnAWEzFvM1f+JfYP
- azyBHmH5t1xRSQtsTw4mwbWNUB18vH146FFOolfDhtq9EHl35mxQv5+b1fSkZi+ddUckEZqgu
- XYKl8T8JKoe6LI1yE4SUZApmY9PXt2X7qJjLmRENJVBYAQ6r378OgP1BBIQ/DJkzKFN9fok/K
- 5qL/datSyZEERTTwpHhEuu/x4AjAY4nnwyh1ZnTKs78iS9wPmTNttoQU66J/5iTUJ9iOe4xry
- IgvP25T5dFmrdGg4mPGSq5iaC5M3EiAi+kG5p9hTmysFiQD7evPET75ikPVSPaHIrYXAXYVsY
- UpissMEOF/Lyqxr+0fFPxbXHi22NxhVTQ==
 
-On 04.11.24 05:31, Krishna Kurapati wrote:
+On Tue, Nov 5, 2024 at 11:44=E2=80=AFAM Herve Codina <herve.codina@bootlin.=
+com> wrote:
 >
+> Hi Rob,
 >
-> On 11/1/2024 11:56 PM, Jens Glathe via B4 Relay wrote:
->> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
->>
->> Device tree for the Microsoft Windows Dev Kit 2023. This work
->> is based on the initial work of Merck Hung <merckhung@gmail.com>.
->>
->> Original work:
->> https://github.com/merckhung/linux_ms_dev_kit/blob/ms-dev-kit-2023-v6.3=
-.0/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-dev-kit-2023.dts
->>
->> The Windows Dev Kit 2023 is a nice little desktop based on sc8280xp.
->> Link: https://learn.microsoft.com/en-us/windows/arm/dev-kit/
->>
->> Supported features:
->> - USB type-c and type-a ports
->> - minidp connector
->> - built-in r8152 Ethernet adapter
->> - PCIe devices
->> - nvme
->> - ath11k WiFi (WCN6855)
->> - WCN6855 Bluetooth
->> - A690 GPU
->> - ADSP and CDSP
->> - GPIO keys
->> - Audio definition (works via USB)
->>
->> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
->> ---
+> On Mon, 4 Nov 2024 14:15:07 -0600
+> Rob Herring <robh@kernel.org> wrote:
 >
-> [...]
+> ...
+> > > With those modifications, the LAN966x PCI device is working on x86 sy=
+stems.
+> >
+> > That's nice, but I don't have a LAN966x device nor do I want one. We
+> > already have the QEMU PCI test device working with the existing PCI
+> > support. Please ensure this series works with it as well.
+> >
 >
->> +&usb_2 {
->> +=C2=A0=C2=A0=C2=A0 pinctrl-0 =3D <&usb2_en_state>;
->> +=C2=A0=C2=A0=C2=A0 pinctrl-names =3D "default";
->> +
+> I will check.
 >
-> On the blackrock platform, for this controller, are there all 4 ports
-> given out for use or only one ?
+> Can you confirm that you are talking about this test:
+>   https://elixir.bootlin.com/linux/v6.12-rc6/source/drivers/of/unittest.c=
+#L4188
 >
-> Because if all 4 are there, you might need to give all 4 pinctrls (one
-> for each TS3USB221A mux select) here for usb_2 node. If only one port
-> is given out for use on the platform, then only one phy (of the 4
-> activated below) needs to be marked as active.
->
-> In my case, in [1] on the ADP platform, I marked them as always on for
-> all gpios on multiport controller since driver had no support added yet.
->
-> [1]:
-> https://lore.kernel.org/all/20240707085624.3411961-1-quic_kriskura@quici=
-nc.com/
->
-Hi Krishna,
+> The test needs QEMU with a specific setup and I found this entry point:
+>   https://lore.kernel.org/all/fa208013-7bf8-80fc-2732-814f380cebf9@amd.co=
+m/
 
-thank you for the hints. Unfortunately, I don't have any schematics for
-the box. But I tested out activation combinations for all the
-usb_2_hsphy and usb_2_qmpphy listed. All of these are also listed in the
-usb_2 node in sc8280xp.dtsi. And they all need to be activated to get
-the whole usb_2 node up. Leaving out one lets the whole node vanish.
-Maybe it is possible to define fewer phys in the usb_2_dwc3 node, I
-don't know. The definition as it is now appears to be a safe bet.
-What I noticed in the tests was that the pinctrl usb2_en_state had no
-effect here. Although, it apparently was required when it was introduced
-[1] by Merck Hung and xlazom00@gmail.com. Therefore I am hesitant to
-remove it. Also, there may be a hint that it is the enable pin of a hub:
+Yes, that's it.
 
-$lsusb -tv
-[...]
-/:=C2=A0 Bus 005.Port 001: Dev 001, Class=3Droot_hub, Driver=3Dxhci-hcd/4p=
-, 480M
- =C2=A0=C2=A0=C2=A0 ID 1d6b:0002 Linux Foundation 2.0 root hub
- =C2=A0=C2=A0=C2=A0 |__ Port 001: Dev 002, If 0, Class=3DHub, Driver=3Dhub=
-/4p, 480M
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ID 045e:0c5f Microsoft Corp.
-/:=C2=A0 Bus 006.Port 001: Dev 001, Class=3Droot_hub, Driver=3Dxhci-hcd/2p=
-, 10000M
- =C2=A0=C2=A0=C2=A0 ID 1d6b:0003 Linux Foundation 3.0 root hub
- =C2=A0=C2=A0=C2=A0 |__ Port 001: Dev 002, If 0, Class=3DHub, Driver=3Dhub=
-/4p, 10000M
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ID 045e:0c60 Microsoft Corp.
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |__ Port 001: Dev 003, If 0, C=
-lass=3DVendor Specific Class,
-Driver=3Dr8152, 5000M
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ID 045=
-e:0c5e Microsoft Corp.
+> Do you have an "official" QEMU setup on your side to run the test or any
+> other pointers related to the QEMU command/setup you use?
 
-For the IDs 045e:0c5e..045e:c60 there isnot much info, only that its
-usually a 10/100/1000 r8152 ethernet adapter, and a USB3.2 /USB2.1 4
-port hub. How this is wired, though, no idea. In the face of this I
-would suggest to keep the definition as it is now.
+No, it's just something based on what you linked. Here's what I have:
 
-[1]:
-https://github.com/linux-surface/surface-pro-x/issues/43#issuecomment-1536=
-848253
+qemu-system-aarch64 -machine virt -cpu cortex-a72 -machine type=3Dvirt
+-nographic -smp 1 -m 2048 -kernel ../linux.git/arch/arm64/boot/Image
+--append console=3DttyAMA0 -device
+pcie-root-port,port=3D0x10,chassis=3D9,id=3Dpci.9,bus=3Dpcie.0,multifunctio=
+n=3Don,addr=3D0x3
+-device pcie-root-port,port=3D0x11,chassis=3D10,id=3Dpci.10,bus=3Dpcie.0,ad=
+dr=3D0x3.0x1
+-device x3130-upstream,id=3Dpci.11,bus=3Dpci.9,addr=3D0x0 -device
+xio3130-downstream,port=3D0x0,chassis=3D11,id=3Dpci.12,bus=3Dpci.11,multifu=
+nction=3Don,addr=3D0x0
+-device i82801b11-bridge,id=3Dpci.13,bus=3Dpcie.0,addr=3D0x4 -device
+pci-bridge,chassis_nr=3D14,id=3Dpci.14,bus=3Dpci.13,addr=3D0x0 -device
+pci-testdev,bus=3Dpci.12,addr=3D0x0
 
->> +=C2=A0=C2=A0=C2=A0 status =3D "okay";
->> +};
->> +
->> +&usb_2_hsphy0 {
->> +=C2=A0=C2=A0=C2=A0 vdda-pll-supply =3D <&vreg_l1b>;
->> +=C2=A0=C2=A0=C2=A0 vdda18-supply =3D <&vreg_l1c>;
->> +=C2=A0=C2=A0=C2=A0 vdda33-supply =3D <&vreg_l7d>;
->> +
->> +=C2=A0=C2=A0=C2=A0 status =3D "okay";
->> +};
->> +
->> +&usb_2_hsphy1 {
->> +=C2=A0=C2=A0=C2=A0 vdda-pll-supply =3D <&vreg_l8d>;
->> +=C2=A0=C2=A0=C2=A0 vdda18-supply =3D <&vreg_l1c>;
->> +=C2=A0=C2=A0=C2=A0 vdda33-supply =3D <&vreg_l7d>;
->> +
->> +=C2=A0=C2=A0=C2=A0 status =3D "okay";
->> +};
->> +
->> +&usb_2_hsphy2 {
->> +=C2=A0=C2=A0=C2=A0 vdda-pll-supply =3D <&vreg_l10d>;
->> +=C2=A0=C2=A0=C2=A0 vdda18-supply =3D <&vreg_l8c>;
->> +=C2=A0=C2=A0=C2=A0 vdda33-supply =3D <&vreg_l2d>;
->> +
->> +=C2=A0=C2=A0=C2=A0 status =3D "okay";
->> +};
->> +
->> +&usb_2_hsphy3 {
->> +=C2=A0=C2=A0=C2=A0 vdda-pll-supply =3D <&vreg_l10d>;
->> +=C2=A0=C2=A0=C2=A0 vdda18-supply =3D <&vreg_l8c>;
->> +=C2=A0=C2=A0=C2=A0 vdda33-supply =3D <&vreg_l2d>;
->> +
->> +=C2=A0=C2=A0=C2=A0 status =3D "okay";
->> +};
->> +
->> +&usb_2_qmpphy0 {
->> +=C2=A0=C2=A0=C2=A0 vdda-phy-supply =3D <&vreg_l1b>;
->> +=C2=A0=C2=A0=C2=A0 vdda-pll-supply =3D <&vreg_l4d>;
->> +
->> +=C2=A0=C2=A0=C2=A0 status =3D "okay";
->> +};
->> +
->> +&usb_2_qmpphy1 {
->> +=C2=A0=C2=A0=C2=A0 vdda-phy-supply =3D <&vreg_l8d>;
->> +=C2=A0=C2=A0=C2=A0 vdda-pll-supply =3D <&vreg_l4d>;
->> +
->> +=C2=A0=C2=A0=C2=A0 status =3D "okay";
->> +};
->> +
->
-> [...]
->
->> +=C2=A0=C2=A0=C2=A0 usb2_en_state: usb2-en-state {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* TS3USB221A USB2.0 mux se=
-lect */
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pins =3D "gpio24";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 function =3D "gpio";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drive-strength =3D <2>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bias-disable;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 output-low;
->> +=C2=A0=C2=A0=C2=A0 };
->> +
->
-> Regards,
-> Krishna,
+Of course, you'll need a few changes to use ACPI.
+
+Rob
 
