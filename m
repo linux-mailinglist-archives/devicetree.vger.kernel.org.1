@@ -1,63 +1,62 @@
-Return-Path: <devicetree+bounces-119187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E39EE9BD4AD
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 19:35:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 869059BD4C5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 19:37:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BCEA1F235E8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:35:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AE40283EC7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:37:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0735C1E8854;
-	Tue,  5 Nov 2024 18:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5E531E8829;
+	Tue,  5 Nov 2024 18:37:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SA7k0fsh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KDzknkNi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCDD11E7660;
-	Tue,  5 Nov 2024 18:35:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A854E188703;
+	Tue,  5 Nov 2024 18:37:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730831729; cv=none; b=GQ8/IMY2XMlA9H0v2i51zi9qtru9S+PYp6aB9RBrK5F/OVdwL/R9484fKS8l7XBuajaT3d/3vZjVjNmeoyS93lk5HePi9kTi8e46V4GcrHBlpoRtcALg2toN0wuv0uI3XAWBCoN6XOb3zGNcj4Gb/dNI3b/DDwEMDSX8AuYZf1E=
+	t=1730831871; cv=none; b=RNcr8Dgqt9ZY/abi/5gbFuVGml9c77Ko/hPzqmw7mJmP3Okt/99pYv8jLrSMEulhUaJuL1/IGL5CI3AQKQIFwzruP7v7yorX/883dTsNW5hEyr8jnK0812AJ4W7Ornir2/ox304qc24zFugq2WOftx300LOloV45+u5st2EQS20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730831729; c=relaxed/simple;
-	bh=bMSQCGFq2evhThsweoqyuAkdfCwXzIXVb15Da3lP4qA=;
+	s=arc-20240116; t=1730831871; c=relaxed/simple;
+	bh=W3QBAev3hXK8eM532TDH1kmmBvt7KGhrn8xsk9iVzVg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tyQVClAw6Sp0y4ZBpjXWwU+HxBAZ8ggi0O2T5w8EiI8zs+T/tqk26T8sVoVtTTNAzhZ9Lb4x4phmn4BDrgFb+LEWfVFH+wHv4sgkk3Wjg1m4qBUuVve86PSx/Gyv9sDhl9VJ+IoT5Np94Sx5WnqXDiV2UttLChNKOgE6R8Tt4Fs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SA7k0fsh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51E98C4CECF;
-	Tue,  5 Nov 2024 18:35:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=F6NDvn9Wm2BH20mHm1Vou08ksnyPwR72gtiA5H3Z+sAFr/yFDH7sBbVV0X8972N0bW60s9A21hMFYpqrbWhHG94Q3sf+JA5ste7O2CNjP2/JI2ZDEu23PWCo/NaocvKNypF14kiSXQP7eG19XvtY/134xuqSC1+LATB3+JTtwK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KDzknkNi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67722C4CECF;
+	Tue,  5 Nov 2024 18:37:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730831729;
-	bh=bMSQCGFq2evhThsweoqyuAkdfCwXzIXVb15Da3lP4qA=;
+	s=k20201202; t=1730831871;
+	bh=W3QBAev3hXK8eM532TDH1kmmBvt7KGhrn8xsk9iVzVg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SA7k0fshvL5dS2I1nSkDVCJN/nEU9rdY4yzqRGiVRBs5fLQwURKO4a245i0r42cs4
-	 /h1/UYJgUwLkTUuX5xYO/d6w/lKrKZq+XMnDTvXhE0w0KhUYWqQkFWNvaXOFuXwrEj
-	 dGH4ZyatCzMdNZB6m4ipTna6Bh3DEWUE16B3rD0WG3VkV+5uAmNm862BenNBfRaxWG
-	 Xxhr6oWDCH/+AYa/7G4hSKZ/awx5NS/Q0dYCeAD1f3Q/rTG4grOY1QdVfZkn5g7cbS
-	 RPn4U6fn6XbQ1vu4811msHD1+gWruDDSn3DRZn5p8dNsA41OuCKnzOHywd62wp39M4
-	 N7f7bC7kRm9ug==
-Date: Tue, 5 Nov 2024 18:35:25 +0000
+	b=KDzknkNiNEOEfoLPTd6mu7J9wr3y/LRzX+1QFmL/NfLNX8sip7f65qR/om4VE3He5
+	 MHHNF7Kv+00lnr0wxwe6vJwX8sIL60XxRNNXXtmCirurfsd/bWlS1zIggfsMcRcNv6
+	 uy+KKmvBCBSvdUyY8eCyJn7rdKw3VkLdd8SzvlFu4HpoucMcS/pXSTxemPzEtkayGM
+	 f0XHtVw2bUsVmthvQ3UJnamY2zkhVX+wUcsfvCf2hQ3AcJ0G+XEilbofpa5C7glNFq
+	 +RYIGxXy0cNVdgWWQDOktHzaHjqzSTPNzfz02oy3XcgOEVhABnaWzniGkRRq3JGqMU
+	 mSQlz4khpIa1Q==
+Date: Tue, 5 Nov 2024 18:37:47 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Rob Herring <robh@kernel.org>, Grant Peltier <grantpeltier93@gmail.com>,
-	geert+renesas@glider.be, magnus.damm@gmail.com,
-	grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] dt-bindings: hwmon: isl68137: add bindings to
- support voltage dividers
-Message-ID: <20241105-imprecise-unharmed-ec1474ad1acc@spud>
-References: <cover.1730326915.git.grantpeltier93@gmail.com>
- <1dff1f63a2e122788e2c17f192472705491aa5b8.1730326916.git.grantpeltier93@gmail.com>
- <CAL_JsqJqhxcMu2yeqvJvUOJ_g3uDv3t1JwaMxAfZQGXFj3rAvw@mail.gmail.com>
- <0f855c81-ce0e-41e8-ae08-5f653d3ca8b0@roeck-us.net>
- <CAL_JsqK=kgoKvusMMqdtx7b4z2aveE5O9Q=UHXCgook5UBS4bA@mail.gmail.com>
- <2afabeb7-9cf7-4092-965d-55a9c0762948@roeck-us.net>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND] dt-bindings: rtc: mpfs-rtc: remove Lewis from
+ maintainers
+Message-ID: <20241105-boned-presuming-dec2b8b0da47@spud>
+References: <20241015-surcharge-caucasian-095d1fd2fa27@wendy>
+ <20241104-immodest-finishing-354430b8e386@spud>
+ <202411042055393b9cf4be@mail.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,122 +64,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="WmC+ioyJ71bF6Ooh"
+	protocol="application/pgp-signature"; boundary="aNhBK/A8u2gHdejT"
 Content-Disposition: inline
-In-Reply-To: <2afabeb7-9cf7-4092-965d-55a9c0762948@roeck-us.net>
+In-Reply-To: <202411042055393b9cf4be@mail.local>
 
 
---WmC+ioyJ71bF6Ooh
-Content-Type: text/plain; charset=utf-8
+--aNhBK/A8u2gHdejT
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 05, 2024 at 07:45:38AM -0800, Guenter Roeck wrote:
-> On 11/5/24 04:19, Rob Herring wrote:
-> > On Mon, Nov 4, 2024 at 7:20=E2=80=AFPM Guenter Roeck <linux@roeck-us.ne=
-t> wrote:
+On Mon, Nov 04, 2024 at 09:55:39PM +0100, Alexandre Belloni wrote:
+> On 04/11/2024 19:06:08+0000, Conor Dooley wrote:
+> > On Tue, Oct 15, 2024 at 07:52:05AM +0100, Conor Dooley wrote:
+> > > Lewis hasn't worked at Microchip for a while, and IIRC never actually
+> > > worked on the RTC in the first place. Remove him from the maintainers
+> > > list in the binding, leaving Daire.
 > > >=20
-> > > On 11/4/24 07:08, Rob Herring wrote:
-> > > > On Wed, Oct 30, 2024 at 5:41=E2=80=AFPM Grant Peltier <grantpeltier=
-93@gmail.com> wrote:
-> > > > >=20
-> > > > > Add devicetree bindings to support declaring optional voltage div=
-iders to
-> > > > > the rail outputs of supported digital multiphase regulators. Some
-> > > > > applications require Vout to exceed the voltage range that the Vs=
-ense pin
-> > > > > can detect. This binding definition allows users to define the
-> > > > > characteristics of a voltage divider placed between Vout and the =
-Vsense
-> > > > > pin for any rail powered by the device.
-> > > > >=20
-> > > > > These bindings copy the vout-voltage-divider property defined in =
-the
-> > > > > maxim,max20730 bindings schema since it is the best fit for the u=
-se case
-> > > > > of scaling hwmon PMBus telemetry. The generic voltage-divider pro=
-perty
-> > > > > used by many iio drivers was determined to be a poor fit because =
-that
-> > > > > schema is tied directly to iio for the purpose of scaling io-chan=
-nel
-> > > > > voltages and the isl68137 driver is not an iio driver.
-> > > > >=20
-> > > > > Signed-off-by: Grant Peltier <grantpeltier93@gmail.com>
-> > > > > ---
-> > > > >    .../hwmon/pmbus/renesas,isl68137.yaml         | 147 ++++++++++=
-++++++++
-> > > > >    1 file changed, 147 insertions(+)
-> > > > >    create mode 100644 Documentation/devicetree/bindings/hwmon/pmb=
-us/renesas,isl68137.yaml
-> > > > >=20
-> > > > > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/renesa=
-s,isl68137.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/renesas,isl=
-68137.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..ed659c2baadf
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/renesas,isl68=
-137.yaml
-> > > > > @@ -0,0 +1,147 @@
-> > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +
-> > > > > +$id: http://devicetree.org/schemas/hwmon/pmbus/renesas,isl68137.=
-yaml#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: Renesas Digital Multiphase Voltage Regulators with PMBus
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Grant Peltier <grant.peltier.jg@renesas.com>
-> > > > > +
-> > > > > +description: |
-> > > > > +  Renesas digital multiphase voltage regulators with PMBus.
-> > > > > +  https://www.renesas.com/en/products/power-management/multiphas=
-e-power/multiphase-dcdc-switching-controllers
-> > > > > +
-> > > > > +properties:
-> > > > > +  compatible:
-> > > > > +    enum:
-> > > >=20
-> > > > Somehow "isl68137" is missing from your list. "make
-> > > > dt_compatible_check" reports it as not documented.
-> > > >=20
-> > >=20
-> > > Turns out it is also documented as "isil,isl68137" in trivial-devices=
-=2Eyaml
-> > > (together with isil,isl69260). Both are referenced in .dts files. How=
- should
-> > > that be handled ?
+> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > > ---
+> > > Noticed him in the CC list of your resend, figured it was worth remov=
+ing
+> > > him.
 > >=20
-> > Move those compatibles here. And this file should be renamed to
-> > isil,isl68137.yaml or some other actual compatible value.
-> >=20
+> > Could you pick this up Alexandre? I've got no contact info for Lewis, so
+> > I doubt you'll see an ack from him...
 >=20
-> I guess that is a bit more complicated since Renesas acquired Intersil.
-> Is there a common guidance explaining how new compatibles should be defin=
-ed
-> in such situations ?
->=20
-> Anyway, I had the patches queued in linux-next. I dropped them until
-> this is sorted out.
+> I will, I'm super late on the RTC patch queue.
 
-The old ones with existing compatibles should keep their names, the new ones
-should probably match whatever is in their datasheet so that people can
-have an easier time.
+Cool, thanks.
 
---WmC+ioyJ71bF6Ooh
+--aNhBK/A8u2gHdejT
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyplbQAKCRB4tDGHoIJi
-0t9tAP0Zeky4MyfN6WerUHYooW/BMdBZjvewJj2H3t4wKAlKRQEA7nrMXj5xWETF
-4rCql8ak8bH5QQXLnEo2jmUAh71a0wM=
-=uLS9
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZypl+wAKCRB4tDGHoIJi
+0jqRAQCWam0slrqjLsuLwnxzyjrk39WsiuTsc0DQeZu2i6BNRAD/ejLc8o+ylQ25
+utRVtpygEdpp4tSWD2ZcAoUe2xRgDQE=
+=MdtU
 -----END PGP SIGNATURE-----
 
---WmC+ioyJ71bF6Ooh--
+--aNhBK/A8u2gHdejT--
 
