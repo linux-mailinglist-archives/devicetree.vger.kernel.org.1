@@ -1,136 +1,119 @@
-Return-Path: <devicetree+bounces-119058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3FD99BCD33
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 13:59:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AD699BCD45
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 14:02:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DC801F21FED
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 12:59:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4DF71F22458
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 13:02:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171B01D5AC8;
-	Tue,  5 Nov 2024 12:59:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E258F1D5CE8;
+	Tue,  5 Nov 2024 13:02:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="bfvlDpdK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TpG0MeX1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CCF41D54F7;
-	Tue,  5 Nov 2024 12:59:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B25FA1D5AA5;
+	Tue,  5 Nov 2024 13:02:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730811580; cv=none; b=bGqRL+c7yEH4m6pFnXoBb7Xe6IzJQ+RbU3u5PlY/FHtiSkwZrUgctxrftqLJ9YAJnXkdA3yu1hQH1HkTzBMIT/aoXNmc1+9lorMq4JEeGHty5Nm/osdLF6+RzatHuzwxWFPHByaFMyQNOtoxCFpFBOGAOkwGRfbVPDyDYKOppzc=
+	t=1730811736; cv=none; b=gysKpyjub4WUoJXCNLZxsUApW8FEO34+zcoHYi6DQrCtkKQXnPkeQo2x4NNZgMrWACOwLF2Acj8MTErS6qgRL7XMXYaz9XVDOpAxhZD/0JlPOjjQC1OG+p7YwSoe9nLySZNYdJiYDKepZHB+o0Ew26YNkMdcuOXC8tjxh0IqphU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730811580; c=relaxed/simple;
-	bh=f1fyhwzDrFHtSFP4vTzZuKJENU4e6knKeqbXH+P3N64=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ujRo3GyTf2LagT//ATtIdbv4Qtcl2apiHAjXaQLTjIPBildnRnuaKPzylvmnkblBHhrf56rT4n8Eplp3HLrSW8S1pvAkhIjtcVX9Lb2bSURQbi/lSVlMXXO6K7oXR68x2gWqje6rkQ6mF/u27VsJLd637O4nzvFLLYYbjNOY6Aw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=bfvlDpdK; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID; bh=XxLTtdEv77RFkBJ0GumRUG1a52HxmpFh6vs9dIwA7JU=; b=bfvlDp
-	dKutbLSGv8O9mdMr6+mY6/5hrp363YMJOxpPf+hcOuoXLQK7XzGw3awnguKh8ohH58ZEZ5qyYGMK7
-	NyL8q+sWlY46iqIfnBogBaIed6OqzaPPlDvtPd4jq79JKOZo6sS5TzKmDYqhJbIi67zd0APtCgiBj
-	hhA+Dq6aeEMFLpe9xwqFDe+a0+bFm1qBzv2N+aM4pdVdzfItMLHuk48ekVpAQyTtBjcD2gj8tLO7g
-	Cp01jLTYjNuSa7shDdbHaoKT64u4UlnRTCexvIFdtLYuEKq/e6xxRTlC85bChcYdtz0u3rFwyy2jN
-	OyvLpRf+t7olmnSDFSU/IqW8INqg==;
-Received: from sslproxy01.your-server.de ([78.46.139.224])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sean@geanix.com>)
-	id 1t8J9h-0001oS-8x; Tue, 05 Nov 2024 13:59:33 +0100
-Received: from [185.17.218.86] (helo=Seans-MacBook-Pro.local)
-	by sslproxy01.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sean@geanix.com>)
-	id 1t8J9g-000KTO-1f;
-	Tue, 05 Nov 2024 13:59:32 +0100
-Date: Tue, 5 Nov 2024 13:59:31 +0100
-From: Sean Nyekjaer <sean@geanix.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: can: convert tcan4x5x.txt to DT schema
-Message-ID: <g2knbmyi7cy4xnkospby7xtp6t4f2ppfdbtdyjteltrlnaihcp@gdjhp4n5w7u3>
-References: <20241104125342.1691516-1-sean@geanix.com>
- <dq36jlwfm7hz7dstrp3bkwd6r6jzcxqo57enta3n2kibu3e7jw@krwn5nsu6a4d>
- <wdn2rtfahf3iu6rsgxm6ctfgft7bawtp6vzhgn7dffd54i72lu@r4v5lizhae57>
- <60901c39-b649-4a20-a06a-7faa7ddc9346@kernel.org>
- <mtuev7pve5ltr6vvknp2bwtwg2m7mzxduzshzbr7y3i7mwbzy6@qjbdjyb56nrv>
- <f5a28e36-ef80-4ccf-b615-03fb10eb661e@kernel.org>
+	s=arc-20240116; t=1730811736; c=relaxed/simple;
+	bh=LJBE4I0IMy7jf525lG/+ykCGvei5KrQcg6hhR4qOr3E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sGDlmD7hHdLdLz22/7KCBWA26X4rDLfcUBM4hy0Obht7ar/hWtsrquWk2pZow3B9lx2GmN7oKn0AFKCmFYkEuKMrYRnTu+aOw5mJQ/fKf0xJpVv4wR/qkoKepvheqt1GRHrygnkG44t9ma7LK3OmdN8Uq5bFtgGKxTYFcLvR9VI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TpG0MeX1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B3C6C4CED0;
+	Tue,  5 Nov 2024 13:02:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730811736;
+	bh=LJBE4I0IMy7jf525lG/+ykCGvei5KrQcg6hhR4qOr3E=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=TpG0MeX11BO462clx65JUfLsvq7mhYbF/8TSUt0yOb/+sflQ3T/k8A9Tp9FG63RuD
+	 0636srl1MjyFyrhJc81qno/7J1qL+Mw5zrOHiBi72fuBiRN1KQ2iM+bo0HolczBHba
+	 c7Uk7UP6R729XBO1at5dQ7HRh6W40mffJRYDbnJLBHQpGPQoVPKVKqf3qQ0AJguVXF
+	 c+1bCIH1yj8fuZIYA/kHZ4fJ37aL3wZbWpVUbqicrQzs+vKZA8Z40vnynqYcP89Gbr
+	 E6FhESgpjnUQE1vUIyasS2+0nzjEvzjuarJGYp2ekKOTE1Qe1hBKH20jbM4y/8iJHi
+	 jAXlB6S3LBiqQ==
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e2918664a3fso4387126276.0;
+        Tue, 05 Nov 2024 05:02:16 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVRxEOQnvWR/2HXvLWnvoOj/RQdg9LQRAptjv1pjEaYL7SqynnnA6AZ8/lPgXietVdQRKY5ZRAfGsgH@vger.kernel.org, AJvYcCVeGy+9VEW1z/OzDmV6MjmV2PlK8maFD2XnHcLj8CyzYs3+KBMQbCEhSEVQAa4R0sNg00y5w+VLxfIGM8hy3Cg=@vger.kernel.org, AJvYcCWrlMY8JFmMchTB3hZbHVi4ZhVRtUav6RXGGLu+YPeVp4/3vDlgNcttNqqZIg/7210w0mQ7PkmNa23bk+YG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7UmIdNi73ayEMF3cPspBO3ucaFWUQJ7vV+xqJD19NU9KL2t6B
+	gJPMTdgoIz/RXlcP/bf+GUHNrObHhMDsl1/VMmSz8blAcAs9GP0uMdXZExAIsGyFwrvfj14knmL
+	KEUQDjZX6e5beudReRyeiHC0D3w==
+X-Google-Smtp-Source: AGHT+IFFLLbvPgCz9E48Dc4uvqtjg8zV3O4+z1GmI3+QqVk1B5G6UocOVyAeLNkYeXQF7e9enyX5at0Z8dFOlsu37pM=
+X-Received: by 2002:a05:690c:9b04:b0:664:74cd:5548 with SMTP id
+ 00721157ae682-6ea642e5c1bmr128709737b3.1.1730811735520; Tue, 05 Nov 2024
+ 05:02:15 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <f5a28e36-ef80-4ccf-b615-03fb10eb661e@kernel.org>
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27449/Tue Nov  5 10:36:43 2024)
+References: <20241007212434.895521-1-Frank.Li@nxp.com> <ZyPUWaINgupm7dZ3@lizhi-Precision-Tower-5810>
+ <20241105083255.GA24194@www.linux-watchdog.org>
+In-Reply-To: <20241105083255.GA24194@www.linux-watchdog.org>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 5 Nov 2024 07:02:04 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+taEhxJVhzRpZwZnrDDrjpCPXk1vgkAvqWscjH7QPXCA@mail.gmail.com>
+Message-ID: <CAL_Jsq+taEhxJVhzRpZwZnrDDrjpCPXk1vgkAvqWscjH7QPXCA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] dt-bindings: watchdog: fsl-imx-wdt: Add missing
+ 'big-endian' property
+To: Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc: Frank Li <Frank.li@nxp.com>, Guenter Roeck <linux@roeck-us.net>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	"open list:WATCHDOG DEVICE DRIVERS" <linux-watchdog@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, 
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
+	open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 05, 2024 at 01:41:26PM +0100, Krzysztof Kozlowski wrote:
+On Tue, Nov 5, 2024 at 3:00=E2=80=AFAM Wim Van Sebroeck <wim@linux-watchdog=
+.org> wrote:
+>
+> Hi Frank,
+>
+> > On Mon, Oct 07, 2024 at 05:24:33PM -0400, Frank Li wrote:
+> > > From: Animesh Agarwal <animeshagarwal28@gmail.com>
+> > >
+> > > Add missing big-endian property in watchdog/fsl-imx-wdt.yaml schema. =
+Only
+> > > allow big-endian property for ls1012a and ls1043a.
+> > >
+> > > Fix dtbs_check errors.
+> > > arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dtb: watchdog@2ad0000:
+> > >     Unevaluated properties are not allowed ('big-endian' was unexpect=
+ed)
+> > >
+> > > Cc: Daniel Baluta <daniel.baluta@nxp.com>
+> > > Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> >
+> > Wim Van Sebroeck:
+> >
+> >       Any update this patch? Kyzy already acked.
+> >
+>
+> Acked-by: Wim Van Sebroeck <wim@linux-watchdog.org>
+>
+> Via which tree will this go upsteam?
 
-[...]
+Your tree.
 
-> > Schema check will fail, but driver wize it will work just fine.
-> 
-> Schema will not fail. That's the problem - no errors will be ever
-> reported. The entire point of the schema, in contrast to TXT, is to
-> detect errors and that ridiculous wildcard used as front compatible
-> affects/reduces detection.
+DT bindings go in via $subsystem tree. I only take DT bindings if they
+don't get picked up by the subsystem maintainer.
 
-NOW I get it :)
-
-diff --git a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-index f1d18a5461e0..4fb5e5e80a03 100644
---- a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-+++ b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-@@ -169,7 +169,7 @@ examples:
-         #size-cells = <0>;
-
-         can@0 {
--            compatible = "ti,tcan4552", "ti,tcan4x5x";
-+            compatible = "ti,tcan4552";
-             reg = <0>;
-             clocks = <&can0_osc>;
-             pinctrl-names = "default";
-
-Would result in a schema check fail, but the driver will never be probed.
-
-> 
-> > Agree that is kinda broken.
-> > If I have time I can try to fix that later.
-> 
-> No, the fix is to drop the wildcard alone, as I said in your RFC.
-
-@Mark, would you be okay with fixing the wildcard in this series?
-We have some out-of-tree dtb's that will need fixing, but I get it would be
-prefered to get this fixed.
-
-> 
-> > 
-> > Please explain one more time for me. Is this a comment on the if
-> > sentence or the broken behavior of the driver?
-> 
-> This is just generic comment, nothing to change here because you decided
-> not to fix that wildcard from old binding.
-
-Thanks for the clarification!
-
-@Mark, @Krzysztof: What to do from here?
-
-/Sean
+Rob
 
