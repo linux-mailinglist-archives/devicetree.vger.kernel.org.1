@@ -1,126 +1,123 @@
-Return-Path: <devicetree+bounces-119079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C5E9BCE32
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 14:42:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 175989BCE51
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 14:53:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C8101C20F60
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 13:42:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A028B21963
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 13:53:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 638DB1D6DA3;
-	Tue,  5 Nov 2024 13:42:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E2B1D63FC;
+	Tue,  5 Nov 2024 13:53:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bWpB+y9G"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="oAufRZPB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C4F31D1738;
-	Tue,  5 Nov 2024 13:42:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7363118C938;
+	Tue,  5 Nov 2024 13:53:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730814135; cv=none; b=Ot9BM7m4H0PpuVSxkIGe4UwCOyBAWbCV/3fjrwFrXJ+U0gn6PP5VqnbRPjPMX4Wgz0LUKunAEhE1269Hcijp6Cva8lzyKc1IP0jki9g92AHSWNQeE4tWCxvUFZS9Nw5VeXItBxHRkhAsuihKVhXFaZCPy+irbkQ801feEWi4MtY=
+	t=1730814801; cv=none; b=A3HtekT+HM4u4a2KVcYHvnqqpfsUWCu2jiE01l0fMpzYKzqFRZC434zEGgNyJj//oRSnfTPoRnFhR8prJd6KlT/SlC8b/mM8ETJ5Cv4mqCOQX3L03S7IIcfPC+T2lyka/YugY1CxyOjr+3ptGlDPOEjpLMNxjg+7jNtEZ6eXa7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730814135; c=relaxed/simple;
-	bh=uBjQq4vty/Kv54JBAzOzZbTnfWxAOZe08zjGZl2RRng=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qGTdcgecMqb4CgSLihzCyQbL4SQOWH8hk5LD3fxusIgqmrFHe6qMtTe6kyzschKFFkB82P7t5wRbDQYlsajdPb5jjMV4tGsekzYLXG2Zy3kYC2xlNwJTbs5yOWjG7bbjCuZYyUpkHa/00LM9pzvHX9LtiNvC1vpwYM0YTF+02fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bWpB+y9G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 388F7C4CED0;
-	Tue,  5 Nov 2024 13:42:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730814134;
-	bh=uBjQq4vty/Kv54JBAzOzZbTnfWxAOZe08zjGZl2RRng=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bWpB+y9GcHXvT6oCWVyQ/KVxxHgXagZzJhtB/rfYNtMNty1iyCdFcWBawsmHe2GHs
-	 /oTty3u03wYvChtzTrj7ABQRgGmKSeSEsg6PKeVxsM63iUvWYSVjrSRx7oPzvLWrE4
-	 3R2OTW65d/wL7l3BXcIsIbnD4Ct6ssJICt7sm86tunxRKeLQeDP5WBxMpuvOGSwm1k
-	 IhdX4TOeybsLfPve1laLWr9W7bkOTJQOtdVBiQZSdidZtjMdUySDM4TmnGtJumra6/
-	 pMWHB1C7E4ZJCpuCmZKBJ3X8UvXUyG1o7TgGQxrl5n0halO9aMvptdfoXz9azqoEx0
-	 H7ztw+sM68i3Q==
-Date: Tue, 5 Nov 2024 13:42:06 +0000
-From: Simon Horman <horms@kernel.org>
-To: jan.petrous@oss.nxp.com
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-	Keyur Chudgar <keyur@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1730814801; c=relaxed/simple;
+	bh=xoNg+eIzxEtiIlEGndvr1nhq1j/wP8PdYBmy6bLK3pI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GIQ2PeATsk3uR6KbCJDgB/32e8zrE5ZN6scac4KKNblmgPXgY/fHMarrqZx1lW8Dj9UXTFSz/fub0pwwV4zPkYhI26SNy5NuypwMV1RKhbnwMtq2ynXh317oeSOXFT3xnkSioVaM0UeGLFITavHK7Mqj6Lvme+PznMZKSWujSY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=oAufRZPB; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 4ACEF88CF1;
+	Tue,  5 Nov 2024 14:53:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1730814797;
+	bh=5CJT2Dmd1DEjDmnpLpEgnd/PONCNFSzoP0zzP2v0lJc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=oAufRZPBq+kKftIpGDuJAZvC3Jp3ItPg45/R3KD8XElQSJ6w1OgsNSfifeHlzIuTd
+	 gthW6ThDLWsgf6MeEphWq3bx/x/YQuhT/gK0lI9o7wX9anxu4DRa4YNafZYEuTlXCG
+	 6oA4Qhh1+fGwhpWzjZpniDi2IaIoBfhc9LEX/LQSY3rv9A71d14lwx6UpQnnzm31eO
+	 PV7bktEakHZtAMBS/RXrbPT7951RLuvcTezM19Yt8D79SD+7wnqcyVEO7p6F3PWrlr
+	 8/W6aimZF4Ko5Xs9cyd8A/dyieHqUMe3DOOTJnGFe+3gCjuPPaBv97Hde8ekwyZk1T
+	 n4nZYaZkihquA==
+From: Marek Vasut <marex@denx.de>
+To: linux-hwmon@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	NXP S32 Linux Team <s32@nxp.com>
-Subject: Re: [PATCH v4 05/16] net: dwmac-dwc-qos-eth: Use helper rgmii_clock
-Message-ID: <20241105134206.GE4507@kernel.org>
-References: <20241028-upstream_s32cc_gmac-v4-0-03618f10e3e2@oss.nxp.com>
- <20241028-upstream_s32cc_gmac-v4-5-03618f10e3e2@oss.nxp.com>
+	Guenter Roeck <linux@roeck-us.net>,
+	Jean Delvare <jdelvare@suse.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document start from dead stop properties
+Date: Tue,  5 Nov 2024 14:52:15 +0100
+Message-ID: <20241105135259.101126-1-marex@denx.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241028-upstream_s32cc_gmac-v4-5-03618f10e3e2@oss.nxp.com>
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Mon, Oct 28, 2024 at 09:24:47PM +0100, Jan Petrous via B4 Relay wrote:
-> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-> 
-> Utilize a new helper function rgmii_clock().
-> 
-> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c | 11 +++--------
->  1 file changed, 3 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-> index ec924c6c76c6..5080891c33e0 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-> @@ -181,24 +181,19 @@ static void dwc_qos_remove(struct platform_device *pdev)
->  static void tegra_eqos_fix_speed(void *priv, unsigned int speed, unsigned int mode)
->  {
->  	struct tegra_eqos *eqos = priv;
-> -	unsigned long rate = 125000000;
-> +	long rate = 125000000;
->  	bool needs_calibration = false;
->  	u32 value;
->  	int err;
+Delta AFC0612DB-F00 fan has to be set to at least 30% PWM duty cycle
+to spin up from a dead stop, and can be afterward throttled down to
+lower PWM duty cycle. Introduce support for operating such fans which
+need to start at higher PWM duty cycle first and can slow down next.
 
-Hi Jan,
+Document two new DT properties, "fan-dead-stop-start-percent" and
+"fan-dead-stop-start-usec". The former describes the minimum percent
+of fan RPM at which it will surely spin up from dead stop. This value
+can be found in the fan datasheet and can be converted to PWM duty
+cycle easily. The "fan-dead-stop-start-usec" describes the minimum
+time in microseconds for which the fan has to be set to dead stop
+start RPM for the fan to surely spin up.
 
-As it seems that there will be another revision anyway,
-please update the above so that the local variable declarations
-are in reverse xmas tree order - longest line to shortest.
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Jean Delvare <jdelvare@suse.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-hwmon@vger.kernel.org
+---
+ Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-Likewise in s32_dwmac_probe() in the patch
-"net: stmmac: dwmac-s32: add basic NXP S32G/S32R glue driver".
+diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+index 4e5abf7580cc6..f1042471b5176 100644
+--- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
++++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+@@ -31,6 +31,17 @@ properties:
+       it must be self resetting edge interrupts.
+     maxItems: 1
+ 
++  fan-dead-stop-start-percent:
++    description:
++      Minimum fan RPM in percent to start from dead stop.
++    minimum: 0
++    maximum: 100
++
++  fan-dead-stop-start-usec:
++    description:
++      Time to wait in microseconds after start from dead stop.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
+   pulses-per-revolution:
+     description:
+       Define the number of pulses per fan revolution for each tachometer
+-- 
+2.45.2
 
-...
 
