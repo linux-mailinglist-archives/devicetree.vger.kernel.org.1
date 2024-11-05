@@ -1,213 +1,298 @@
-Return-Path: <devicetree+bounces-119067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EED9E9BCD87
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 14:11:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FD779BCD8C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 14:11:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D6501C21936
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 13:11:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE9041F2201D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 13:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 569E21D63F5;
-	Tue,  5 Nov 2024 13:10:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CABC1D63C7;
+	Tue,  5 Nov 2024 13:11:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b="lDKFoiNv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oi8qAm19"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2050.outbound.protection.outlook.com [40.107.103.50])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 880B81D63E8;
-	Tue,  5 Nov 2024 13:10:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730812218; cv=fail; b=jc+S4Pz9ITe7zyOFnviLBWHY8KoAOWJBg5kJLAkyO2wcZLrsCYpXWhNTcvEBq9e3RRMQBQCz1Khca98zrGmyT/Wlz6xTUb8d2EI2KXlw0W150TRpd+90k9o0ExbhrfnfGwm0UuM7xyP4SA/JualR0QnJ+Uw5rszY1rAePKu9yDA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730812218; c=relaxed/simple;
-	bh=dS0EPvrlKmpyuZD95c7kn0I5Qj6u/+zLwSdT5HG9YeQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CrFX//01NrERX2bWhM2mM3doawcuWblWfgdO8I7ZCq7jzioifXoiAhvwPGDS0SU9CYAUbGrf/V59jyZcJOJqnFOQKQOE2B/hGkuGDF6pY2GOcR7qDLVyR3/+lBAHtUecdCs0PkjYCCeCYR7aBV6GdX5sT3+W9BjSznqRndADhgQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com; spf=pass smtp.mailfrom=mt.com; dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b=lDKFoiNv; arc=fail smtp.client-ip=40.107.103.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mt.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jgGDEym0MEHaplfMVRhs3kQjEJIsqC5jdEhyXAxv3iSCzHErUcm3aeDGTyYxW65cpGCvazmqCaawrlyT2CjhBnvJOuZ+f7T3s6BRAnebgKZsmIzb8z4k/jQlKk6n3LlH+PM8x1dMXvXMyWpCnl0s1Y4fOhMEE47YLejE0DSgGPZE9LrELbqKK3coHgdGLYSO612hgwhJiLMQJBeJzDirj2LNoU3UT5okGlLct+PGjhNkOAzLNO40syUFqMUY03iqXx59hNt60zS4G/X7GM4Rf5YhbbUulJKwSk4O/q9yS3U+RA8RvGZfY2wdpe37mB9u1djpxD4Sii6zlxu9A7s00w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3cQ0GlwCUa1Pyu+/7QMAItAu+fgfDkTFS0ht19uK+x8=;
- b=yuwLboJ9/r5AgNvIH85z6NGMeoduEzI9Er//1GUm3qNdPoj2dCO8j0akcPZtXDFEo23ecy7Tv8kGk7vPOuIzI+3bYkV5qYmVZ7poxEYJ2w77JYS2iWCqpKNXKCmFtU8QZa4aaYU8fM1y9pEkFIYZgyLN4pund4xeCNPY9h4ZpDkd/Onx8Y8Bd4eXxLEzMTCFhrNAdKOcJcHu7BoyE1IelwGo6yRVasboIKLrV6pU3f67D6GUfbOVcP9RRkhmlng/IuU0WBamD/WecI9zBHFDdAoErPtFirYyO7Iz60M+PFtaXV8ep4u2MkfeWazeMwC3W+LyfZOstguHEvLWEkMj5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mt.com; dmarc=pass action=none header.from=mt.com; dkim=pass
- header.d=mt.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mt.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3cQ0GlwCUa1Pyu+/7QMAItAu+fgfDkTFS0ht19uK+x8=;
- b=lDKFoiNv0NA6R+UuI3BiwUR+mawvnsglrlp67vxd7jJYzCFgD7ZJllUl4Dnsn9kD7QluGGEMHwlYLEFD7MTAcyBXbcDU3MJDQir9lISoRe0gZ6YORRs2GyYsHCYYZxa5iuGQuI5MMCZMYUsSn4eOwS9Ebb04rXlSYEBAHEvcoEo+2gCspM+nrxsdCD7MRsc4lxUWcTi9dZL0RmU0hSjutGX/xZffe28uhJ/ueGGYXvtExSsAkxvqpS05Y3RwtdmmKAWAjC3VE48EZYaGhHTTPIInmpwK+xQhbo6BtyCWEW9sm5u4GTpuxSsgbsGIwX4Z/TCEKL/6uwtcX4qyrtrmCQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mt.com;
-Received: from DBBPR03MB5399.eurprd03.prod.outlook.com (2603:10a6:10:f5::22)
- by AS8PR03MB8468.eurprd03.prod.outlook.com (2603:10a6:20b:52e::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.30; Tue, 5 Nov
- 2024 13:10:13 +0000
-Received: from DBBPR03MB5399.eurprd03.prod.outlook.com
- ([fe80::2fec:64f5:1893:f53a]) by DBBPR03MB5399.eurprd03.prod.outlook.com
- ([fe80::2fec:64f5:1893:f53a%4]) with mapi id 15.20.8114.028; Tue, 5 Nov 2024
- 13:10:13 +0000
-From: Markus Burri <markus.burri@mt.com>
-To: linux-kernel@vger.kernel.org
-Cc: Markus Burri <markus.burri@mt.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marek.vasut@gmail.com>,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 7/7] Input: matrix_keypad - detect change during scan
-Date: Tue,  5 Nov 2024 14:03:22 +0100
-Message-Id: <20241105130322.213623-8-markus.burri@mt.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241105130322.213623-1-markus.burri@mt.com>
-References: <20241031063004.69956-1-markus.burri@mt.com>
- <20241105130322.213623-1-markus.burri@mt.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE2F71D5ADD;
+	Tue,  5 Nov 2024 13:11:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730812310; cv=none; b=aKhB2lNCsDCdaJ3ivNcudcXhbvwWilULJPZJ2XR+InpwplI0W0cu7Y5pEOe2scqlKozTtt9NauLn7pRUWUBK9NbaW5OfTbIudZ1p9ufBr8m9TbZJGr+mCpr6s1NVKW7YhYk9XM8y7i4ECLXQ7xxDM8shIZV6tKUE+danmmtzK+E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730812310; c=relaxed/simple;
+	bh=9LA+izVn3KjlbtByXoqsA++5LbbKpUdzQ/ajRY9HzXk=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=WROHPxqOFC52qICaHEeiJfJEo6ds4IE3hK8FeUuQ9gAiuHSpnss95hql2SCuXrAqp9qpQ+WcCrlrOqFmXcpTEQt8vffjGUd4ENL4TWfXvvPHc9boWZ+z1F7aCb2uM+HeAWCs42Nys7BviOkvL1GbcUaz4YETxIbHUOX3N0/WZeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oi8qAm19; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4954FC4CED0;
+	Tue,  5 Nov 2024 13:11:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730812309;
+	bh=9LA+izVn3KjlbtByXoqsA++5LbbKpUdzQ/ajRY9HzXk=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=oi8qAm19bfRpBkkLjNvuYusSfj/b6zIF7VrAuX4XmsK7upE64R2XDo1hF/jnsFzX3
+	 XFYh6iB0NDL6rRMbx7wbpsRD7v2LDJt42oyLoL/Zox/nby23FmPw/OFBFyppRUPFrj
+	 KMs3t703UuoFshq5uEtvAoQKPZCqMLNxYthu4dRBpja21LxyeqMMP75/cnjehZcYpP
+	 t1YKV9axXgOfNS37WBZ3MeRH6268cYo5HhL0r+bDYrKDwTH08i1AYuoq2jI8G4mLPE
+	 YeO0+L06kwc9XStZFtGPVSlGVo2IV6LGHsHJ0JgoTK1e+p9SlMGANNnu7KpGTQufAW
+	 yXid26PQUxISA==
+Date: Tue, 05 Nov 2024 07:11:47 -0600
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: ZR0P278CA0022.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:1c::9) To DBBPR03MB5399.eurprd03.prod.outlook.com
- (2603:10a6:10:f5::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DBBPR03MB5399:EE_|AS8PR03MB8468:EE_
-X-MS-Office365-Filtering-Correlation-Id: 23c0c6e7-0da2-4827-810a-08dcfd9b2f24
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ICH0sQE0BQikQxcLfG8p2KOAlbwGHwlukeWbfXR4K5Q0AgDDPnzLhPgInUpt?=
- =?us-ascii?Q?V/eDOOO4IkU9b/ysP3H2K3EVVoCA9papheNK23PH6OkWhr+TArEq5e3dQKDP?=
- =?us-ascii?Q?S2W1Y5Im6c+9g63mcl6sFUQS/mC2TsZezel6iZIHge2OmDMx6FcEsMVhyPHG?=
- =?us-ascii?Q?Ti8q1hfK6S0SM9sObtIz+BYp+oAHTWAtZ42Hft5l8aEGlHOR5u6tuzhXDBEC?=
- =?us-ascii?Q?NVe+J/13LKfEQRuyzWoo+jEmJ4jsvbLb25P/rYILLSCSylgeplhlqpNBaWfw?=
- =?us-ascii?Q?h/8M/tRICIgPd2ZRXKr/3+1Nm2IQaUwB/JowTMmObnrf+ripNl5/AErTXOW4?=
- =?us-ascii?Q?XEkfXYDmyVKHtrZx3pQDfjzfiiKgH44PUxGpo2F0dydPyehfuUMROCNsiwHZ?=
- =?us-ascii?Q?dTdaWb72wYh/LkLwG3exNc2HkfYNppodAX/K5vJCx+sUnnRDRRT4rZYSXtLK?=
- =?us-ascii?Q?WH8J0KCUX9T8B6cNYqzrOBhfQQQnJCdBaw6/SVZi4qJDk1pJ7JMBbC8VBh6p?=
- =?us-ascii?Q?WNUu8cwzjJGB0uRL+1eAYIAnJ1n/iYlcpbIO81lVPToKaII9DSiBPEgfFFTY?=
- =?us-ascii?Q?+hxnDrg/Gols0XL9p7YuamUoUJVO7puvbPWVVKQgbwtzY0R07KO0S6gC0Pn8?=
- =?us-ascii?Q?zs2FWanL++bSSaGnkqFQaeA1stZYU3l9Sg6unKZBtGupuQ3i5hqVxILzAC9P?=
- =?us-ascii?Q?GIEulAqw8cKpmxPtUKnfA3bmFVnZ66H+W2AEBIAxxfezxCRQKocR3cAMKY6n?=
- =?us-ascii?Q?oSwdDxKUJfF+A6vV29nubcxAl9I9ViN+vT9mNtYXL3gC+ciPoAIiDqGhHw5d?=
- =?us-ascii?Q?ru4PzWQJG76S1WeRB2a6vuOzjMiZkoKdCgjZ03lXtXyR2YZWlV0pLYNm9rM2?=
- =?us-ascii?Q?7Vr6ObuQPFCdiwUHtbV7+8CuXpUgfJVNIP144yqW6nCqAp2jRz5KCqZcTY2F?=
- =?us-ascii?Q?z9GGA9S0TGQj3QmvXq4tvKJQtQmJRN4s2g1/V0qVr+ZY5R/nbvPcS5SK4LjC?=
- =?us-ascii?Q?Oi8ispofGLpEIqHaFeKy+SPGqVQwhYHhBPGaRBkJnoeMZQzxWh0y3OGX3fY6?=
- =?us-ascii?Q?SejuYdK2J7RqRpbNbN1/nz2sNPPpPg8UwjmMNzmLp+Jri0ebbZxAt6VkxaCg?=
- =?us-ascii?Q?xG6T7RPkBFd5Xb9XsJ/yHv8g+rGmRNJixIpRTqbGydp3KkVg/V1nXDbeOiqa?=
- =?us-ascii?Q?p2ndi88HLow1jg1E9RDJsIe045ozHHZT28Jf599JgNW3Y7rAncu2Z2lM5OiA?=
- =?us-ascii?Q?6Z/TlKdJg7OMLfVOfLHFC5U20X9R0o+tO8hprzpYbd2hKekX3GrkN3hVzb/p?=
- =?us-ascii?Q?MdJkT+oDtJ2v+BCxc3ii1WshewIMZpSliEqH+dsoBAANsDD/i9Y/Naw2w5Os?=
- =?us-ascii?Q?w8zPN5w=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR03MB5399.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?IaQAChT+oA8TNfz1Hkka4TrIvRwb0G4Ni3ely7A6puEv0e6v3G3aPdWUlb+U?=
- =?us-ascii?Q?EropenZjXWUZ1DZGtj5xlxi8/ozTdj2+ZCYsmg8Isva/a1JNp85yPOSxScWF?=
- =?us-ascii?Q?JmE4jd2VXLZORJqkG3OGO9R/jEScn9wmjvolPD3Hijyb5+AdUD2MjZFTDDHD?=
- =?us-ascii?Q?9RrXFjLNoMZyU3h8PxbCajsvWsVn7oMi9Kbm7gAiCO1SmFPQx7M55XrAx3GT?=
- =?us-ascii?Q?6KPduy1o1xZ/rtB8CPpnvWFRhbm3LHXTLf6qQonRmbx8YGze8r8BHLf21aep?=
- =?us-ascii?Q?skB4TLJNTVKJOj5vX5bguDh9N4StWa4ltoORd82Cbjsl/qNbfm+AB4Wofqd8?=
- =?us-ascii?Q?YJbd8OEiQbLtkI/aUnvBuL1Fxkb4CYg92+BAu1S8mnjmNd/49BgzEq0WoXmh?=
- =?us-ascii?Q?Pk7Vz3iueOP8W4W7NMJpo0hc5WaOd6L6IPU9gJeiNjQ6Gks61py8IupWvns6?=
- =?us-ascii?Q?2bQksTy/+5WjV6I758wIRToH6FBYzie5h6OLuQVJRMUbD2q7STfhkciVrxJ+?=
- =?us-ascii?Q?IwbLgvSc9hc8uXPlelBk4kaUAg63dJ/9Tzhsqwre0Oa0Y2vnTMgjAe/1QFzf?=
- =?us-ascii?Q?YFdgiDZrmBKDvCrYHpX7mQ/3gdT+JrsYbh2tKVQtiCq/YoNQ6bJuwEbvi73S?=
- =?us-ascii?Q?DHWkyOvvArHRJgX8Z6fRDf9XIduu2NtXGL0z6dw/dktgdgbiuONddAJCGOrD?=
- =?us-ascii?Q?tFJakX7HJoKN00RyUsSEX9+HP3tzu5WWO5LoVGuG/r/ugaog5OUNWeNFScMT?=
- =?us-ascii?Q?qswqp/Svkxba7uBqUSWOtOZH61Rst2KILBxn1niZBPrqjTN4E9GfC0HGTpR8?=
- =?us-ascii?Q?wH556pX352c4nYX0CO035dkHhn2hPj4beLJLFhA8AU8Wyyx+pImn3bBpLp9S?=
- =?us-ascii?Q?nTKPb5G3hu9WjflQHV7QdTC/BAVi/seW9yaBuwScR7fINL/qRew3gfLmx0UX?=
- =?us-ascii?Q?EcoMfahnCOLCXjIDqpO5RhdhqgSk/FiKED32gkZGSiK+yowYqGZRkDtdVM88?=
- =?us-ascii?Q?xVZbMbqJv3Q0/ypyWSkimgUcn9SLZJycKC7/QEVlmGjvi7wT0Izs7fWvMngq?=
- =?us-ascii?Q?c7sV0kDC5Q8VQeiKbj1+5onzc5bNa3ygK/YLNlAAqhaJItR6/9DwZhkWpnki?=
- =?us-ascii?Q?6V1vVbL/R3qqFND2TOJ73ocb+dDTblew5yQbV2fXFKygcuCPQ4yyL4fC34Az?=
- =?us-ascii?Q?dbPxeThXBXnS12svVp+TKh7HdHWV9IhdH82+mVHDty+capFV/2wGNDGxF44s?=
- =?us-ascii?Q?58uaX67pmXd6+tSqlQXIYZ2pZ8cdsn/ESh9QrMXE5aaGj+Hg1PDn7ERTfQp+?=
- =?us-ascii?Q?p0CGbjMgxowCWnzbbdZJqSwKIa+OsJmJgJz3Z/9PkVYl/wDrB8QSIun6MWov?=
- =?us-ascii?Q?T/aS6Bti8/7lQTRkBvGJ1gkE9MYLuA9UYHVLYIXP+q0wXPrexpq4yDuovQek?=
- =?us-ascii?Q?zE/SwIl8gVJRqv7/YIjX7GNKpwTQ/tNsW7LiJxCN4oR/jAaYsDx449mo8zp8?=
- =?us-ascii?Q?5dhZyJrFb8Ah+OGRgkc+JRQ9QBq5UuPDKNo/NmogBRTXFd+73KZ9VMvNERPB?=
- =?us-ascii?Q?Ja8dmK/I0GVqtlNLgTwiBlkm/wttrOrp1st81Uo0?=
-X-OriginatorOrg: mt.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 23c0c6e7-0da2-4827-810a-08dcfd9b2f24
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR03MB5399.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2024 13:10:13.3134
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fb4c0aee-6cd2-482f-a1a5-717e7c02496b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cgpl7a5KV6jWg37qzmOxYGKWa9BuoPSqaUlBN+axYJ0YLkzTEI1ii6SA+crOH9dhQQHeZ7bPCb6eZUWyK+5cmg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR03MB8468
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: Tony Lindgren <tony@atomide.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Lubomir Rintel <lkundrak@v3.sk>, Rob Herring <robh+dt@kernel.org>, 
+ linux-gpio@vger.kernel.org, Will Deacon <will@kernel.org>, 
+ Conor Dooley <conor.dooley@microchip.com>, linux-clk@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Haojian Zhuang <haojian.zhuang@linaro.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ ~postmarketos/upstreaming@lists.sr.ht, Karel Balej <balejk@matfyz.cz>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ phone-devel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>, 
+ David Wronek <david@mainlining.org>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20241104-pxa1908-lkml-v13-0-e050609b8d6c@skole.hr>
+References: <20241104-pxa1908-lkml-v13-0-e050609b8d6c@skole.hr>
+Message-Id: <173081219572.3053014.8089203346286080020.robh@kernel.org>
+Subject: Re: [PATCH RESEND v13 00/12] Initial Marvell PXA1908 support
 
-For a setup where the matrix keypad is connected over a slow interface
-(e.g. a gpio-expansion over i2c), the scan can take a longer time to read.
 
-Interrupts need to be disabled during scan. And therefore changes in this
-period are not detected.
-To improve this situation, scan the matrix again if the row state changed
-during interrupts disabled.
+On Mon, 04 Nov 2024 17:37:02 +0100, Duje Mihanović wrote:
+> Hello,
+> 
+> This series adds initial support for the Marvell PXA1908 SoC and
+> "samsung,coreprimevelte", a smartphone using the SoC.
+> 
+> USB works and the phone can boot a rootfs from an SD card, but there are
+> some warnings in the dmesg:
+> 
+> During SMP initialization:
+> [    0.006519] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU1: 0x00000000000000
+> [    0.006542] CPU features: Unsupported CPU feature variation detected.
+> [    0.006589] CPU1: Booted secondary processor 0x0000000001 [0x410fd032]
+> [    0.010710] Detected VIPT I-cache on CPU2
+> [    0.010716] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU2: 0x00000000000000
+> [    0.010758] CPU2: Booted secondary processor 0x0000000002 [0x410fd032]
+> [    0.014849] Detected VIPT I-cache on CPU3
+> [    0.014855] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU3: 0x00000000000000
+> [    0.014895] CPU3: Booted secondary processor 0x0000000003 [0x410fd032]
+> 
+> SMMU probing fails:
+> [    0.101798] arm-smmu c0010000.iommu: probing hardware configuration...
+> [    0.101809] arm-smmu c0010000.iommu: SMMUv1 with:
+> [    0.101816] arm-smmu c0010000.iommu:         no translation support!
+> 
+> A 3.14 based Marvell tree is available on GitHub
+> acorn-marvell/brillo_pxa_kernel, and a Samsung one on GitHub
+> CoderCharmander/g361f-kernel.
+> 
+> Andreas Färber attempted to upstream support for this SoC in 2017:
+> https://lore.kernel.org/lkml/20170222022929.10540-1-afaerber@suse.de/
+> 
+> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+> 
+> Changes in v13:
+> - Better describe the hardware in bindings/arm commit message
+> - Rebase on v6.12-rc1
+> - Link to v12: https://lore.kernel.org/r/20240823-pxa1908-lkml-v12-0-cc3ada51beb0@skole.hr
+> 
+> Changes in v12:
+> - Rebase on v6.11-rc4
+> - Fix schmitt properties in accordance with 78d8815031fb ("dt-bindings: pinctrl: pinctrl-single: fix schmitt related properties")
+> - Drop a few redundant includes in clock drivers
+> - Link to v11: https://lore.kernel.org/r/20240730-pxa1908-lkml-v11-0-21dbb3e28793@skole.hr
+> 
+> Changes in v11:
+> - Rebase on v6.11-rc1 (conflict with DTS Makefile), no changes
+> - Link to v10: https://lore.kernel.org/r/20240424-pxa1908-lkml-v10-0-36cdfb5841f9@skole.hr
+> 
+> Changes in v10:
+> - Update trailers
+> - Rebase on v6.9-rc5
+> - Clock driver changes:
+>   - Add a couple of forgotten clocks in APBC
+>     - The clocks are thermal_clk, ipc_clk, ssp0_clk, ssp2_clk and swjtag
+>     - The IDs and register offsets were already present, but I forgot to
+>       actually register them
+>   - Split each controller block into own file
+>   - Drop unneeded -of in clock driver filenames
+>   - Simplify struct pxa1908_clk_unit
+>   - Convert to platform driver
+>   - Add module metadata
+> - DTS changes:
+>   - Properly name pinctrl nodes
+>   - Drop pinctrl #size-cells, #address-cells, ranges and #gpio-size-cells
+>   - Fix pinctrl input-schmitt configuration
+> - Link to v9: https://lore.kernel.org/20240402-pxa1908-lkml-v9-0-25a003e83c6f@skole.hr
+> 
+> Changes in v9:
+> - Update trailers and rebase on v6.9-rc2, no changes
+> - Link to v8: https://lore.kernel.org/20240110-pxa1908-lkml-v8-0-fea768a59474@skole.hr
+> 
+> Changes in v8:
+> - Drop SSPA patch
+> - Drop broken-cd from eMMC node
+> - Specify S-Boot hardcoded initramfs location in device tree
+> - Add ARM PMU node
+> - Correct inverted modem memory base and size
+> - Update trailers
+> - Rebase on next-20240110
+> - Link to v7: https://lore.kernel.org/20231102-pxa1908-lkml-v7-0-cabb1a0cb52b@skole.hr
+>   and https://lore.kernel.org/20231102152033.5511-1-duje.mihanovic@skole.hr
+> 
+> Changes in v7:
+> - Suppress SND_MMP_SOC_SSPA on ARM64
+> - Update trailers
+> - Rebase on v6.6-rc7
+> - Link to v6: https://lore.kernel.org/r/20231010-pxa1908-lkml-v6-0-b2fe09240cf8@skole.hr
+> 
+> Changes in v6:
+> - Address maintainer comments:
+>   - Add "marvell,pxa1908-padconf" binding to pinctrl-single driver
+> - Drop GPIO patch as it's been pulled
+> - Update trailers
+> - Rebase on v6.6-rc5
+> - Link to v5: https://lore.kernel.org/r/20230812-pxa1908-lkml-v5-0-a5d51937ee34@skole.hr
+> 
+> Changes in v5:
+> - Address maintainer comments:
+>   - Move *_NR_CLKS to clock driver from dt binding file
+> - Allocate correct number of clocks for each block instead of blindly
+>   allocating 50 for each
+> - Link to v4: https://lore.kernel.org/r/20230807-pxa1908-lkml-v4-0-cb387d73b452@skole.hr
+> 
+> Changes in v4:
+> - Address maintainer comments:
+>   - Relicense clock binding file to BSD-2
+> - Add pinctrl-names to SD card node
+> - Add vgic registers to GIC node
+> - Rebase on v6.5-rc5
+> - Link to v3: https://lore.kernel.org/r/20230804-pxa1908-lkml-v3-0-8e48fca37099@skole.hr
+> 
+> Changes in v3:
+> - Address maintainer comments:
+>   - Drop GPIO dynamic allocation patch
+>   - Move clock register offsets into driver (instead of bindings file)
+>   - Add missing Tested-by trailer to u32_fract patch
+>   - Move SoC binding to arm/mrvl/mrvl.yaml
+> - Add serial0 alias and stdout-path to board dts to enable UART
+>   debugging
+> - Rebase on v6.5-rc4
+> - Link to v2: https://lore.kernel.org/r/20230727162909.6031-1-duje.mihanovic@skole.hr
+> 
+> Changes in v2:
+> - Remove earlycon patch as it's been merged into tty-next
+> - Address maintainer comments:
+>   - Clarify GPIO regressions on older PXA platforms
+>   - Add Fixes tag to commit disabling GPIO pinctrl calls for this SoC
+>   - Add missing includes to clock driver
+>   - Clock driver uses HZ_PER_MHZ, u32_fract and GENMASK
+>   - Dual license clock bindings
+>   - Change clock IDs to decimal
+>   - Fix underscores in dt node names
+>   - Move chosen node to top of board dts
+>   - Clean up documentation
+>   - Reorder commits
+>   - Drop pxa,rev-id
+> - Rename muic-i2c to i2c-muic
+> - Reword some commits
+> - Move framebuffer node to chosen
+> - Add aliases for mmc nodes
+> - Rebase on v6.5-rc3
+> - Link to v1: https://lore.kernel.org/r/20230721210042.21535-1-duje.mihanovic@skole.hr
+> 
+> ---
+> Andy Shevchenko (1):
+>       clk: mmp: Switch to use struct u32_fract instead of custom one
+> 
+> Duje Mihanović (11):
+>       dt-bindings: pinctrl: pinctrl-single: add marvell,pxa1908-padconf compatible
+>       pinctrl: single: add marvell,pxa1908-padconf compatible
+>       dt-bindings: clock: Add Marvell PXA1908 clock bindings
+>       clk: mmp: Add Marvell PXA1908 APBC driver
+>       clk: mmp: Add Marvell PXA1908 APBCP driver
+>       clk: mmp: Add Marvell PXA1908 APMU driver
+>       clk: mmp: Add Marvell PXA1908 MPMU driver
+>       dt-bindings: marvell: Document PXA1908 SoC and samsung,coreprimevelte
+>       arm64: Kconfig.platforms: Add config for Marvell PXA1908 platform
+>       arm64: dts: Add DTS for Marvell PXA1908 and samsung,coreprimevelte
+>       MAINTAINERS: add myself as Marvell PXA1908 maintainer
+> 
+>  .../devicetree/bindings/arm/mrvl/mrvl.yaml         |   5 +
+>  .../devicetree/bindings/clock/marvell,pxa1908.yaml |  48 +++
+>  .../bindings/pinctrl/pinctrl-single.yaml           |   4 +
+>  MAINTAINERS                                        |   9 +
+>  arch/arm64/Kconfig.platforms                       |   8 +
+>  arch/arm64/boot/dts/marvell/Makefile               |   3 +
+>  .../dts/marvell/pxa1908-samsung-coreprimevelte.dts | 336 +++++++++++++++++++++
+>  arch/arm64/boot/dts/marvell/pxa1908.dtsi           | 300 ++++++++++++++++++
+>  drivers/clk/mmp/Makefile                           |   2 +-
+>  drivers/clk/mmp/clk-frac.c                         |  57 ++--
+>  drivers/clk/mmp/clk-of-mmp2.c                      |  26 +-
+>  drivers/clk/mmp/clk-of-pxa168.c                    |   4 +-
+>  drivers/clk/mmp/clk-of-pxa1928.c                   |   6 +-
+>  drivers/clk/mmp/clk-of-pxa910.c                    |   4 +-
+>  drivers/clk/mmp/clk-pxa1908-apbc.c                 | 130 ++++++++
+>  drivers/clk/mmp/clk-pxa1908-apbcp.c                |  82 +++++
+>  drivers/clk/mmp/clk-pxa1908-apmu.c                 | 121 ++++++++
+>  drivers/clk/mmp/clk-pxa1908-mpmu.c                 | 112 +++++++
+>  drivers/clk/mmp/clk.h                              |  10 +-
+>  drivers/pinctrl/pinctrl-single.c                   |   1 +
+>  include/dt-bindings/clock/marvell,pxa1908.h        |  88 ++++++
+>  21 files changed, 1299 insertions(+), 57 deletions(-)
+> ---
+> base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+> change-id: 20230803-pxa1908-lkml-6830e8da45c7
+> 
+> Best regards,
+> --
+> Duje Mihanović <duje.mihanovic@skole.hr>
+> 
+> 
 
-Signed-off-by: Markus Burri <markus.burri@mt.com>
----
- drivers/input/keyboard/matrix_keypad.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
 
-diff --git a/drivers/input/keyboard/matrix_keypad.c b/drivers/input/keyboard/matrix_keypad.c
-index 46873b8..93c8404 100644
---- a/drivers/input/keyboard/matrix_keypad.c
-+++ b/drivers/input/keyboard/matrix_keypad.c
-@@ -126,6 +126,10 @@ static void matrix_keypad_scan(struct work_struct *work)
- 	const unsigned short *keycodes = input_dev->keycode;
- 	uint32_t new_state[MATRIX_MAX_COLS];
- 	int row, col, code;
-+	u32 init_row_state, new_row_state;
-+
-+	/* read initial row state to detect changes between scan */
-+	init_row_state = read_row_state(keypad);
- 
- 	/* de-activate all columns for scanning */
- 	activate_all_cols(keypad, false);
-@@ -174,6 +178,19 @@ static void matrix_keypad_scan(struct work_struct *work)
- 	keypad->scan_pending = false;
- 	enable_row_irqs(keypad);
- 	spin_unlock_irq(&keypad->lock);
-+
-+	/* read new row state and detect if value has changed */
-+	new_row_state = read_row_state(keypad);
-+	if (init_row_state != new_row_state) {
-+		spin_lock_irq(&keypad->lock);
-+		if (likely(!keypad->scan_pending && !keypad->stopped)) {
-+			disable_row_irqs(keypad);
-+			keypad->scan_pending = true;
-+			schedule_delayed_work(&keypad->work,
-+					      msecs_to_jiffies(keypad->debounce_ms));
-+		}
-+		spin_unlock_irq(&keypad->lock);
-+	}
- }
- 
- static irqreturn_t matrix_keypad_interrupt(int irq, void *id)
--- 
-2.39.5
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y marvell/pxa1908-samsung-coreprimevelte.dtb' for 20241104-pxa1908-lkml-v13-0-e050609b8d6c@skole.hr:
+
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: /: memory: False schema does not allow {'device_type': ['memory'], 'reg': [[0, 0, 0, 0]]}
+	from schema $id: http://devicetree.org/schemas/root-node.yaml#
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: mmc@80000: pinctrl-names: ['default'] is too short
+	from schema $id: http://devicetree.org/schemas/mmc/sdhci-pxa.yaml#
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: mmc@80000: Unevaluated properties are not allowed ('pinctrl-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/mmc/sdhci-pxa.yaml#
+
+
+
+
 
 
