@@ -1,171 +1,152 @@
-Return-Path: <devicetree+bounces-119031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10D929BCAAB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 11:40:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC8359BCAC3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 11:46:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6005BB22277
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 10:40:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F0D01F2390A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 10:46:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51EF1D2B21;
-	Tue,  5 Nov 2024 10:40:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53D51D2F5C;
+	Tue,  5 Nov 2024 10:45:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="XDRTuwYl";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="f3iygS1G"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f7ha7Wju"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37B151D14E3;
-	Tue,  5 Nov 2024 10:40:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555A01D174E;
+	Tue,  5 Nov 2024 10:45:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730803240; cv=none; b=NuZKmgvvZ/VXRhTt5aIgUU5Xu5iDehpe/2J6E5L+LM6OItCP7JqFYMifmPpeYJd7Ulxa15fq/jx6RVPSv9UdR+azUrF/bo1HMafBxkJNH7+36yCz8bAAT21/eb3oDVQ2QFwu95nZTlERAmJOKuMQt6UEgL+Uz+4JJYB0hA1KzUA=
+	t=1730803558; cv=none; b=s5+8LpXea7/3cB6pvbkWc3a5KLsoKQm85t3hzNpf63lc48IEeWi439vo2kfQPdAndknvBLxNIEC+9+UPZBxI4ddi043w6bG3ifpmRmV3ZvMCQzEJFf+rf/3FNdcptRhdDVropubmah+1ATwdZ7acPexP199T6jYsfEyqC98Kyh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730803240; c=relaxed/simple;
-	bh=ZeGJ32onS1PAytPMeWyffNKx42P4Y5ebI72qKCfQPwY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=oF6Y8yozPkRjUp0wdn8hS/5BwhDBqgVaA5p3sQ5obY9sY2JxR8kiFzGP9M71lMrojhU9rIWI/qXGnLjV0fZB9+EUlGQTxYSkzfh/7C5wsnFHjAYkFgpKi4XMg3ZNAyHstncDiTGQ6Ym90KE9nLMvrN69JdQenT4aC4Klp/EC1Xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=XDRTuwYl; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=f3iygS1G reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1730803558; c=relaxed/simple;
+	bh=YAhFFdDBrQJySjuAGSSqaiwvhx73d4kURkImckkyLYw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=lIOtAaZD+wX70kOc7xzg03mlUqYJtUVVbSQ5JCxdpEaH93/4u3vE8CvvMGjXVf8tfG6TgY2kKXKyaag6WpOgGTktOHCG35Fr3Qa84OJ2ii/N83wsXORIVc2Fh6f1wRg4jAMOImtlFqD/hCue4yn21ak7WYYlLI11ird0wNo77TI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f7ha7Wju; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-7e6d04f74faso3597648a12.1;
+        Tue, 05 Nov 2024 02:45:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1730803237; x=1762339237;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=HnhOcDqM62BM39XeYtBpS6hPjPuyhp80jJ6lENbc2lQ=;
-  b=XDRTuwYly0+xQ1keRhstg8Q+kyJL1bCPp5L16H+3VTrt1+sFKm7ETqkv
-   D3IFdmkXXDKHxmVkObXL1if3Bh1R4uPf/mF4r+TyeHCiVWpfbD16zz20H
-   E1s5neF9pYZD+a2FhNqIjwIFZ+hujVxiN4sLadVi68y4zN32ifXWLoIKC
-   8gjeEP9fm5a5Jt/fSfbGdjrF9tpLpu3CI1bjvmsiJCSFNGme77bKjzi//
-   fBni5qdH/IiFLJYjUVuzBruk5q9tqJlrfoumtWilo9xNBsqKfzjFc1v9N
-   +rDFl2g/xrSyL5mRiXaLpLdI5krsZIA+84eFigbuctGsIdP8sRP3blOCE
-   w==;
-X-CSE-ConnectionGUID: AIkgqKuXSf2GqGYxRnWDAw==
-X-CSE-MsgGUID: vkGBDWlmR2O3XtYPq2HK6g==
-X-IronPort-AV: E=Sophos;i="6.11,259,1725314400"; 
-   d="scan'208";a="39855291"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 05 Nov 2024 11:40:28 +0100
-X-CheckPoint: {6729F61B-23-5736D786-D50827BE}
-X-MAIL-CPID: 51C17FF78442E03FAB7181DB78149BC6_2
-X-Control-Analysis: str=0001.0A682F22.6729F61C.004F,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 62129161302;
-	Tue,  5 Nov 2024 11:40:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1730803223;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=HnhOcDqM62BM39XeYtBpS6hPjPuyhp80jJ6lENbc2lQ=;
-	b=f3iygS1GUJvasDTnbGPHuttJdMX/2lqYoS/6+vCQ3Th8WLd+VqtaZU/BSlaJ4s76JNRSAd
-	4AVJQzH467QFo8Vhb1O3Q5/0cXAPTZQXXN2QGfFk+aPT4ZCQgrqnmFE5SCCLwBv+oBHMKu
-	6ZgBPDlVNnTJG/RauHtIV6h7Hw7SFQBOFzIV31ro/lK61PgD3/x09ma3pA4vqtLyhubA/2
-	2ooJNAQpQUUkFORsFBckki5hutdrOo+0Zx488XI3HBHwWXZEsiofyFfZjFVGy6zF8DrFQT
-	bDsPF6dlPkdL//VXddmybEYk1ZSkiApd7QJAaMaD1mH6DRCGsI8wYfXoTAgp/w==
-Message-ID: <c73cac598788ccabd1791b1232e8fd9d7ce23ac6.camel@ew.tq-group.com>
-Subject: Re: [PATCH 2/5] dt-bindings: arm: ti: Add compatible for
- AM625-based TQMa62xx SOM family and carrier board
-From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Kees Cook <kees@kernel.org>,
- Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
- <gpiccoli@igalia.com>, Felipe Balbi <balbi@kernel.org>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
- linux-hardening@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>, Hari
- Nagalla <hnagalla@ti.com>, linux@ew.tq-group.com
-Date: Tue, 05 Nov 2024 11:40:20 +0100
-In-Reply-To: <20241104-floral-dexterous-7d3fee2ff616@spud>
-References: <cover.1730299760.git.matthias.schiffer@ew.tq-group.com>
-	 <4f5ad877f44df35a3b2c7f336647f057c4e6377d.1730299760.git.matthias.schiffer@ew.tq-group.com>
-	 <20241104-floral-dexterous-7d3fee2ff616@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2 
+        d=gmail.com; s=20230601; t=1730803556; x=1731408356; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2nqCzdAinTSs6r9LINYA0htJIpUUCl9grAyzKQ3FNXw=;
+        b=f7ha7WjuWSXWzazIHOETpNuuqMc1ouumFx/c544BWjKbnubUSJ1y2WSPvjdoW7Xgh7
+         kXVTr7cHI+qMb3HVu/1Vzys/2FdIyCdzDiVe7nF7OtQ7R0ZYpACTcaYJokJhJ1qNLUYl
+         37Cqwsulpl1Exw1l80Uro1lSG3Rd8ScbfvwLbW3u+8gplL1V6kPMl6j4POSnLOpzESkK
+         nbzWCJ3E9wjDBlOEUaigEhVs4L4rRJYoXIQ/yLKPc5VzZSrCGdeIRoKq0JkAmGjEBIxu
+         NIYIXiaHJ875S1VAeXfRheFLaeqRSPet7IRTWZ1pP+xMUw9JRBbl4PxVi4hi9eKJYE52
+         PzVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730803556; x=1731408356;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2nqCzdAinTSs6r9LINYA0htJIpUUCl9grAyzKQ3FNXw=;
+        b=bEls3wX1KQ6gIoKK613qhaHjGN2ggEcSRN5JPpVUO60hrFzZH+dbKPQwG0dhHxr7zN
+         itCylmOY81aQeE5iIRBgfUCKgPzPouoDbaA8PkQTpfQd2vry26LmjKTcYvICBk1wZNEH
+         DMDoRt80Akve+rZ5YXxhOgD/Hi0a55DODaXyqgzp6a4EbjXfbsRYg2SC4BFIvI+q8O4w
+         /p5f1TOp1cl2RS97+r8jEcP6MuqiAHVkZoX5/Te7HCLKIOHg0h/oJFNd/pW4pe2GggeD
+         2kk3bjRQQeSUBl9gqWpYJs7uYQfrdNXLhGE5qbqRfaa1rhncdSnJV34tynGpxJHgasDo
+         cnlg==
+X-Forwarded-Encrypted: i=1; AJvYcCU1ZGiXJ9HZQH5qQh0ITqnXWNYGxmduImSwgBUdaSXGeIbPwnKypdQybu68j6TpWALOaum1EDBdeeXK@vger.kernel.org, AJvYcCUz3bcBgB1NoyBPv2BGverDGt3es6TVJNldHFxXLrMPjoGuhYcAekxzbKsbDsVSq96M3+LDqggpqklk9E4=@vger.kernel.org, AJvYcCX08BH4JpV52qiTTeWKeQRBboDu0O+tXCoktwbS4at3bV3QkrUOFPmLNXycAyarY49MSn5kxwz1Z0RA6WW3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNNT4aBsVeSe9zBaI3VtDU68Y1ME2Wilv7nB6sD9VMBPaKingD
+	Yf0Y1Qbi/40DCF3v/7+xxJIwy0l/LX0GpmoFUmCEkWkAjZoF1kf2
+X-Google-Smtp-Source: AGHT+IFuMzmSrFyNbomcXyCKZcD5Ptda87WpuI1YNIlIu2eTML/Qcm8QIBq7OYbQ0MNRnPuijz8Y+w==
+X-Received: by 2002:a17:902:ec88:b0:20c:6bff:fcb1 with SMTP id d9443c01a7336-21105692ebfmr310242945ad.1.1730803556481;
+        Tue, 05 Nov 2024 02:45:56 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:cbc5:8de0:c558:652c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211057c0ec7sm75358565ad.202.2024.11.05.02.45.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Nov 2024 02:45:55 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: broonie@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shengjiu.wang@nxp.com,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2 RESEND] ASoC: dt-bindings: fsl_spdif: Document imx6sl/sx compatible fallback
+Date: Tue,  5 Nov 2024 07:45:47 -0300
+Message-Id: <20241105104547.947128-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
 
-On Mon, 2024-11-04 at 18:47 +0000, Conor Dooley wrote:
-> On Mon, Nov 04, 2024 at 10:47:25AM +0100, Matthias Schiffer wrote:
-> > The TQMa62xx is a SoM family with a pluggable connector. The MBa62xx is
-> > the matching reference/starterkit carrier board.
->=20
-> Why all the wildcards? Why isn't there a compatible per device in the
-> family?
+From: Fabio Estevam <festevam@denx.de>
 
-For the compatible string we've chosen the TQMa6254 as the representative f=
-or the TQMa62xx family.
+i.MX6SL and i.MX6SX SPDIF blocks are compatible with i.MX35.
 
-MBa62xx is the proper name of the baseboard; this board can be combined wit=
-h any TQMa62xx family
-SOM.
+Document 'fsl,imx35-spdif' as a fallback compatible for these two
+chip variants.
 
-Best,
-Matthias
+This fixes the following dt-schema warnings:
 
+compatible: ['fsl,imx6sl-spdif', 'fsl,imx35-spdif'] is too long
+compatible: ['fsl,imx6sx-spdif', 'fsl,imx35-spdif'] is too long
 
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Changes since v1:
+- Keep the entries as one enum. (Rob)
 
->=20
-> >=20
-> > Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/ti/k3.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documen=
-tation/devicetree/bindings/arm/ti/k3.yaml
-> > index b0be02f9d1253..d8b52b95fba7b 100644
-> > --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> > @@ -73,6 +73,13 @@ properties:
-> >            - const: toradex,verdin-am62          # Verdin AM62 Module
-> >            - const: ti,am625
-> > =20
-> > +      - description: K3 AM625 SoC on TQ-Systems TQMa62xx SoM
-> > +        items:
-> > +          - enum:
-> > +              - tq,am625-tqma6254-mba62xx # MBa62xx base board
-> > +          - const: tq,am625-tqma6254
-> > +          - const: ti,am625
-> > +
-> >        - description: K3 AM642 SoC
-> >          items:
-> >            - enum:
-> > --=20
-> > TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, =
-Germany
-> > Amtsgericht M=C3=BCnchen, HRB 105018
-> > Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan=
- Schneider
-> > https://www.tq-group.com/
-> >=20
-> Achtung externe E-Mail:=C2=A0=C3=96ffnen Sie Anh=C3=A4nge und Links nur, =
-wenn Sie wissen, dass diese aus einer sicheren Quelle stammen und sicher si=
-nd. Leiten Sie die E-Mail im Zweifelsfall zur Pr=C3=BCfung an den IT-Helpde=
-sk weiter.
->   Attention external email:=C2=A0Open attachments and links only if you k=
-now that they are from a secure source and are safe. In doubt forward the e=
-mail to the IT-Helpdesk to check it.
->=20
-> =C2=A0
+ .../devicetree/bindings/sound/fsl,spdif.yaml  | 27 ++++++++++++-------
+ 1 file changed, 17 insertions(+), 10 deletions(-)
 
---=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-https://www.tq-group.com/
+diff --git a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
+index 204f361cea27..5654e9f61aba 100644
+--- a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
++++ b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
+@@ -16,16 +16,23 @@ description: |
+ 
+ properties:
+   compatible:
+-    enum:
+-      - fsl,imx35-spdif
+-      - fsl,vf610-spdif
+-      - fsl,imx6sx-spdif
+-      - fsl,imx8qm-spdif
+-      - fsl,imx8qxp-spdif
+-      - fsl,imx8mq-spdif
+-      - fsl,imx8mm-spdif
+-      - fsl,imx8mn-spdif
+-      - fsl,imx8ulp-spdif
++    oneOf:
++      - items:
++          - enum:
++              - fsl,imx35-spdif
++              - fsl,imx6sx-spdif
++              - fsl,imx8mm-spdif
++              - fsl,imx8mn-spdif
++              - fsl,imx8mq-spdif
++              - fsl,imx8qm-spdif
++              - fsl,imx8qxp-spdif
++              - fsl,imx8ulp-spdif
++              - fsl,vf610-spdif
++      - items:
++          - enum:
++              - fsl,imx6sl-spdif
++              - fsl,imx6sx-spdif
++          - const: fsl,imx35-spdif
+ 
+   reg:
+     maxItems: 1
+-- 
+2.34.1
+
 
