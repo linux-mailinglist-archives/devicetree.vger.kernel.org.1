@@ -1,705 +1,186 @@
-Return-Path: <devicetree+bounces-119192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 171719BD4C2
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 19:37:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E39EE9BD4AD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 19:35:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B9781C224BF
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:37:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BCEA1F235E8
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:35:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F049A1EC015;
-	Tue,  5 Nov 2024 18:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0735C1E8854;
+	Tue,  5 Nov 2024 18:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="V6BqHTLm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SA7k0fsh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE6AE1EABB3;
-	Tue,  5 Nov 2024 18:36:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCDD11E7660;
+	Tue,  5 Nov 2024 18:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730831811; cv=none; b=Krx9S7wQQn88AKgPjbAYUySVE4kVclraQJjoA/JyMUEgAlI1ctoAR+ZakAJ2ltYB/tiXeotZt1DfaPwwGXhyiTxR8AR99OVSe7ahF6HRhLAVqdViNUPOYQF8/QVf2INpUdRE+eTgNgy2/3Bmupb1Y0GSzFvydx2DjtKjw9BCUG0=
+	t=1730831729; cv=none; b=GQ8/IMY2XMlA9H0v2i51zi9qtru9S+PYp6aB9RBrK5F/OVdwL/R9484fKS8l7XBuajaT3d/3vZjVjNmeoyS93lk5HePi9kTi8e46V4GcrHBlpoRtcALg2toN0wuv0uI3XAWBCoN6XOb3zGNcj4Gb/dNI3b/DDwEMDSX8AuYZf1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730831811; c=relaxed/simple;
-	bh=FLHDeq++xVhEQkkKYRwo9y7U4znMMKvDJ8Y4iIAqeuc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ahFuDTSaw6vdqq2xnfor6O3gn1uRKl0QLAaL9OVVE7f4ToRe1WyS8IP3o4rvvvlyTvCqUOJOi+dkCZ7v69TX7h3sW5061gYyu4KvM0Jr2t/SUzW3uhxADDv3py5iNiy7WK3bJSNdV33efXdHFvkmE/8CRoOtjvKvurjmnorO11E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=V6BqHTLm; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1730831810; x=1762367810;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=FLHDeq++xVhEQkkKYRwo9y7U4znMMKvDJ8Y4iIAqeuc=;
-  b=V6BqHTLm4yEOD66I8ApJ8637Mpis+5cy1p9i6vfPSBYkG6H6NRy4lLLQ
-   NQKUrx1IWokR+sQaLueA+HsWYYqLh6tlDnuHX16hyITJrOKs0gjAjNFgP
-   Mwqg/V1V7bjSjah+7670hi1Qxn8Fc5nSjv12xSdCvJuRcOPp6WX5mUbY5
-   YqzRoXy8v7vEEARIEt08HmaCFHGH3UBfo80V0WxaUuqMDd+xcdieFTXN2
-   9iD5bZa7lonVqHA2V4WoQNZ8tpimIIP8MTx9HKieoTAU7/gphKgCuz5in
-   wmixPCaYz4KjUjkH40T+Dxvcy2U+GOsGCfzUb5KoyYN/+Bb3EPdMoLQIn
-   Q==;
-X-CSE-ConnectionGUID: Vlo3vhUxSC2d+IFPBbkdmg==
-X-CSE-MsgGUID: 0EZXqWKdSIKOxdpRPtnpVA==
-X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; 
-   d="scan'208";a="34426480"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 05 Nov 2024 11:36:48 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 5 Nov 2024 11:36:28 -0700
-Received: from valentina.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Tue, 5 Nov 2024 11:36:25 -0700
-From: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-To: <paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
-	<ycliang@andestech.com>, <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	<peterlin@andestech.com>, <samuel.holland@sifive.com>,
-	<conor.dooley@microchip.com>, <alexghiti@rivosinc.com>,
-	<ruanjinjie@huawei.com>, <takakura@valinux.co.jp>, <conor+dt@kernel.org>,
-	<jassisinghbrar@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<valentina.fernandezalanis@microchip.com>
-CC: <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: [PATCH v3 4/4] mailbox: add Microchip IPC support
-Date: Tue, 5 Nov 2024 18:35:13 +0000
-Message-ID: <20241105183513.1358736-5-valentina.fernandezalanis@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241105183513.1358736-1-valentina.fernandezalanis@microchip.com>
-References: <20241105183513.1358736-1-valentina.fernandezalanis@microchip.com>
+	s=arc-20240116; t=1730831729; c=relaxed/simple;
+	bh=bMSQCGFq2evhThsweoqyuAkdfCwXzIXVb15Da3lP4qA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tyQVClAw6Sp0y4ZBpjXWwU+HxBAZ8ggi0O2T5w8EiI8zs+T/tqk26T8sVoVtTTNAzhZ9Lb4x4phmn4BDrgFb+LEWfVFH+wHv4sgkk3Wjg1m4qBUuVve86PSx/Gyv9sDhl9VJ+IoT5Np94Sx5WnqXDiV2UttLChNKOgE6R8Tt4Fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SA7k0fsh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51E98C4CECF;
+	Tue,  5 Nov 2024 18:35:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730831729;
+	bh=bMSQCGFq2evhThsweoqyuAkdfCwXzIXVb15Da3lP4qA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SA7k0fshvL5dS2I1nSkDVCJN/nEU9rdY4yzqRGiVRBs5fLQwURKO4a245i0r42cs4
+	 /h1/UYJgUwLkTUuX5xYO/d6w/lKrKZq+XMnDTvXhE0w0KhUYWqQkFWNvaXOFuXwrEj
+	 dGH4ZyatCzMdNZB6m4ipTna6Bh3DEWUE16B3rD0WG3VkV+5uAmNm862BenNBfRaxWG
+	 Xxhr6oWDCH/+AYa/7G4hSKZ/awx5NS/Q0dYCeAD1f3Q/rTG4grOY1QdVfZkn5g7cbS
+	 RPn4U6fn6XbQ1vu4811msHD1+gWruDDSn3DRZn5p8dNsA41OuCKnzOHywd62wp39M4
+	 N7f7bC7kRm9ug==
+Date: Tue, 5 Nov 2024 18:35:25 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Rob Herring <robh@kernel.org>, Grant Peltier <grantpeltier93@gmail.com>,
+	geert+renesas@glider.be, magnus.damm@gmail.com,
+	grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] dt-bindings: hwmon: isl68137: add bindings to
+ support voltage dividers
+Message-ID: <20241105-imprecise-unharmed-ec1474ad1acc@spud>
+References: <cover.1730326915.git.grantpeltier93@gmail.com>
+ <1dff1f63a2e122788e2c17f192472705491aa5b8.1730326916.git.grantpeltier93@gmail.com>
+ <CAL_JsqJqhxcMu2yeqvJvUOJ_g3uDv3t1JwaMxAfZQGXFj3rAvw@mail.gmail.com>
+ <0f855c81-ce0e-41e8-ae08-5f653d3ca8b0@roeck-us.net>
+ <CAL_JsqK=kgoKvusMMqdtx7b4z2aveE5O9Q=UHXCgook5UBS4bA@mail.gmail.com>
+ <2afabeb7-9cf7-4092-965d-55a9c0762948@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="WmC+ioyJ71bF6Ooh"
+Content-Disposition: inline
+In-Reply-To: <2afabeb7-9cf7-4092-965d-55a9c0762948@roeck-us.net>
 
-Add a mailbox controller driver for the Microchip Inter-processor
-Communication (IPC), which is used to send and receive data between
-processors.
 
-The driver uses the RISC-V Supervisor Binary Interface (SBI) to
-communicate with software running in machine mode (M-mode) to access
-the IPC hardware block.
+--WmC+ioyJ71bF6Ooh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Additional details on the Microchip vendor extension and the IPC
-function IDs described in the driver can be found in the following
-documentation:
+On Tue, Nov 05, 2024 at 07:45:38AM -0800, Guenter Roeck wrote:
+> On 11/5/24 04:19, Rob Herring wrote:
+> > On Mon, Nov 4, 2024 at 7:20=E2=80=AFPM Guenter Roeck <linux@roeck-us.ne=
+t> wrote:
+> > >=20
+> > > On 11/4/24 07:08, Rob Herring wrote:
+> > > > On Wed, Oct 30, 2024 at 5:41=E2=80=AFPM Grant Peltier <grantpeltier=
+93@gmail.com> wrote:
+> > > > >=20
+> > > > > Add devicetree bindings to support declaring optional voltage div=
+iders to
+> > > > > the rail outputs of supported digital multiphase regulators. Some
+> > > > > applications require Vout to exceed the voltage range that the Vs=
+ense pin
+> > > > > can detect. This binding definition allows users to define the
+> > > > > characteristics of a voltage divider placed between Vout and the =
+Vsense
+> > > > > pin for any rail powered by the device.
+> > > > >=20
+> > > > > These bindings copy the vout-voltage-divider property defined in =
+the
+> > > > > maxim,max20730 bindings schema since it is the best fit for the u=
+se case
+> > > > > of scaling hwmon PMBus telemetry. The generic voltage-divider pro=
+perty
+> > > > > used by many iio drivers was determined to be a poor fit because =
+that
+> > > > > schema is tied directly to iio for the purpose of scaling io-chan=
+nel
+> > > > > voltages and the isl68137 driver is not an iio driver.
+> > > > >=20
+> > > > > Signed-off-by: Grant Peltier <grantpeltier93@gmail.com>
+> > > > > ---
+> > > > >    .../hwmon/pmbus/renesas,isl68137.yaml         | 147 ++++++++++=
+++++++++
+> > > > >    1 file changed, 147 insertions(+)
+> > > > >    create mode 100644 Documentation/devicetree/bindings/hwmon/pmb=
+us/renesas,isl68137.yaml
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/renesa=
+s,isl68137.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/renesas,isl=
+68137.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..ed659c2baadf
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/renesas,isl68=
+137.yaml
+> > > > > @@ -0,0 +1,147 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +
+> > > > > +$id: http://devicetree.org/schemas/hwmon/pmbus/renesas,isl68137.=
+yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: Renesas Digital Multiphase Voltage Regulators with PMBus
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Grant Peltier <grant.peltier.jg@renesas.com>
+> > > > > +
+> > > > > +description: |
+> > > > > +  Renesas digital multiphase voltage regulators with PMBus.
+> > > > > +  https://www.renesas.com/en/products/power-management/multiphas=
+e-power/multiphase-dcdc-switching-controllers
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    enum:
+> > > >=20
+> > > > Somehow "isl68137" is missing from your list. "make
+> > > > dt_compatible_check" reports it as not documented.
+> > > >=20
+> > >=20
+> > > Turns out it is also documented as "isil,isl68137" in trivial-devices=
+=2Eyaml
+> > > (together with isil,isl69260). Both are referenced in .dts files. How=
+ should
+> > > that be handled ?
+> >=20
+> > Move those compatibles here. And this file should be renamed to
+> > isil,isl68137.yaml or some other actual compatible value.
+> >=20
+>=20
+> I guess that is a bit more complicated since Renesas acquired Intersil.
+> Is there a common guidance explaining how new compatibles should be defin=
+ed
+> in such situations ?
+>=20
+> Anyway, I had the patches queued in linux-next. I dropped them until
+> this is sorted out.
 
-https://github.com/linux4microchip/microchip-sbi-ecall-extension
+The old ones with existing compatibles should keep their names, the new ones
+should probably match whatever is in their datasheet so that people can
+have an easier time.
 
-This SBI interface in this driver is compatible with the Mi-V Inter-hart
-Communication (IHC) IP.
+--WmC+ioyJ71bF6Ooh
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Transmitting and receiving data through the mailbox framework is done
-through struct mchp_ipc_msg.
+-----BEGIN PGP SIGNATURE-----
 
-Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
----
- drivers/mailbox/Kconfig                |  13 +
- drivers/mailbox/Makefile               |   2 +
- drivers/mailbox/mailbox-mchp-ipc-sbi.c | 504 +++++++++++++++++++++++++
- include/linux/mailbox/mchp-ipc.h       |  33 ++
- 4 files changed, 552 insertions(+)
- create mode 100644 drivers/mailbox/mailbox-mchp-ipc-sbi.c
- create mode 100644 include/linux/mailbox/mchp-ipc.h
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyplbQAKCRB4tDGHoIJi
+0t9tAP0Zeky4MyfN6WerUHYooW/BMdBZjvewJj2H3t4wKAlKRQEA7nrMXj5xWETF
+4rCql8ak8bH5QQXLnEo2jmUAh71a0wM=
+=uLS9
+-----END PGP SIGNATURE-----
 
-diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-index 6fb995778636..a61b3b0c5da3 100644
---- a/drivers/mailbox/Kconfig
-+++ b/drivers/mailbox/Kconfig
-@@ -177,6 +177,19 @@ config POLARFIRE_SOC_MAILBOX
- 
- 	  If unsure, say N.
- 
-+config MCHP_SBI_IPC_MBOX
-+	tristate "Microchip Inter-processor Communication (IPC) SBI driver"
-+	depends on RISCV_SBI || COMPILE_TEST
-+	depends on ARCH_MICROCHIP
-+	help
-+	  Mailbox implementation for Microchip devices with an
-+	  Inter-process communication (IPC) controller.
-+
-+	  To compile this driver as a module, choose M here. the
-+	  module will be called mailbox-mchp-ipc-sbi.
-+
-+	  If unsure, say N.
-+
- config QCOM_APCS_IPC
- 	tristate "Qualcomm APCS IPC driver"
- 	depends on ARCH_QCOM || COMPILE_TEST
-diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-index 3c3c27d54c13..a78d1948e331 100644
---- a/drivers/mailbox/Makefile
-+++ b/drivers/mailbox/Makefile
-@@ -45,6 +45,8 @@ obj-$(CONFIG_BCM_FLEXRM_MBOX)	+= bcm-flexrm-mailbox.o
- 
- obj-$(CONFIG_POLARFIRE_SOC_MAILBOX)	+= mailbox-mpfs.o
- 
-+obj-$(CONFIG_MCHP_SBI_IPC_MBOX)		+= mailbox-mchp-ipc-sbi.o
-+
- obj-$(CONFIG_QCOM_APCS_IPC)	+= qcom-apcs-ipc-mailbox.o
- 
- obj-$(CONFIG_TEGRA_HSP_MBOX)	+= tegra-hsp.o
-diff --git a/drivers/mailbox/mailbox-mchp-ipc-sbi.c b/drivers/mailbox/mailbox-mchp-ipc-sbi.c
-new file mode 100644
-index 000000000000..a6e52009a424
---- /dev/null
-+++ b/drivers/mailbox/mailbox-mchp-ipc-sbi.c
-@@ -0,0 +1,504 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Microchip Inter-Processor communication (IPC) driver
-+ *
-+ * Copyright (c) 2021 - 2024 Microchip Technology Inc. All rights reserved.
-+ *
-+ * Author: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-+ *
-+ */
-+
-+#include <linux/io.h>
-+#include <linux/err.h>
-+#include <linux/smp.h>
-+#include <linux/init.h>
-+#include <linux/module.h>
-+#include <linux/kernel.h>
-+#include <linux/of_device.h>
-+#include <linux/interrupt.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/platform_device.h>
-+#include <linux/mailbox/mchp-ipc.h>
-+#include <asm/sbi.h>
-+#include <asm/vendorid_list.h>
-+
-+#define IRQ_STATUS_BITS			12
-+#define NUM_CHANS_PER_CLUSTER		5
-+#define IPC_DMA_BIT_MASK		32
-+#define SBI_EXT_MICROCHIP_TECHNOLOGY	(SBI_EXT_VENDOR_START | \
-+					 MICROCHIP_VENDOR_ID)
-+
-+enum {
-+	SBI_EXT_IPC_PROBE = 0x100,
-+	SBI_EXT_IPC_CH_INIT,
-+	SBI_EXT_IPC_SEND,
-+	SBI_EXT_IPC_RECEIVE,
-+	SBI_EXT_IPC_STATUS,
-+};
-+
-+enum ipc_hw {
-+	MIV_IHC,
-+};
-+
-+/**
-+ * struct mchp_ipc_mbox_info - IPC probe message format
-+ *
-+ * @hw_type:		IPC implementation available in the hardware
-+ * @num_channels:	number of IPC channels available in the hardware
-+ *
-+ * Used to retrieve information on the IPC implementation
-+ * using the SBI_EXT_IPC_PROBE SBI function id.
-+ */
-+struct mchp_ipc_mbox_info {
-+	enum ipc_hw hw_type;
-+	u8 num_channels;
-+};
-+
-+/**
-+ * struct mchp_ipc_init - IPC channel init message format
-+ *
-+ * @max_msg_size:	maxmimum message size in bytes of a given channel
-+ *
-+ * struct used by the SBI_EXT_IPC_CH_INIT SBI function id to get
-+ * the max message size in bytes of the initialized channel.
-+ */
-+struct mchp_ipc_init {
-+	u16 max_msg_size;
-+};
-+
-+/**
-+ * struct mchp_ipc_status - IPC status message format
-+ *
-+ * @status:	interrupt status for all channels associated to a cluster
-+ * @cluster:	specifies the cluster instance that originated an irq
-+ *
-+ * struct used by the SBI_EXT_IPC_STATUS SBI function id to get
-+ * the message present and message clear interrupt status for all the
-+ * channels associated to a cluster.
-+ */
-+struct mchp_ipc_status {
-+	u32 status;
-+	u8 cluster;
-+};
-+
-+/**
-+ * struct mchp_ipc_sbi_msg - IPC SBI payload message
-+ *
-+ * @buf_addr:	physical address where the received data should be copied to
-+ * @size:	maximum size(in bytes) that can be stored in the buffer pointed to by `buf`
-+ * @irq_type:	mask representing the irq types that triggered an irq
-+ *
-+ * struct used by the SBI_EXT_IPC_SEND/SBI_EXT_IPC_RECEIVE SBI function
-+ * ids to send/receive a message from an associated processor using
-+ * the IPC.
-+ */
-+struct mchp_ipc_sbi_msg {
-+	u64 buf_addr;
-+	u16 size;
-+	u8 irq_type;
-+};
-+
-+struct mchp_ipc_cluster_cfg {
-+	void *buf_base;
-+	phys_addr_t buf_base_addr;
-+	int irq;
-+};
-+
-+struct mchp_ipc_sbi_mbox {
-+	struct device *dev;
-+	struct mbox_chan *chans;
-+	struct mchp_ipc_cluster_cfg *cluster_cfg;
-+	void *buf_base;
-+	unsigned long buf_base_addr;
-+	struct mbox_controller controller;
-+	enum ipc_hw hw_type;
-+};
-+
-+static int mchp_ipc_sbi_chan_send(u32 command, u32 channel, unsigned long address)
-+{
-+	struct sbiret ret;
-+
-+	ret = sbi_ecall(SBI_EXT_MICROCHIP_TECHNOLOGY, command, channel,
-+			address, 0, 0, 0, 0);
-+
-+	if (ret.error)
-+		return sbi_err_map_linux_errno(ret.error);
-+	else
-+		return ret.value;
-+}
-+
-+static int mchp_ipc_sbi_send(u32 command, unsigned long address)
-+{
-+	struct sbiret ret;
-+
-+	ret = sbi_ecall(SBI_EXT_MICROCHIP_TECHNOLOGY, command, address,
-+			0, 0, 0, 0, 0);
-+
-+	if (ret.error)
-+		return sbi_err_map_linux_errno(ret.error);
-+	else
-+		return ret.value;
-+}
-+
-+static struct mchp_ipc_sbi_mbox *to_mchp_ipc_mbox(struct mbox_controller *mbox)
-+{
-+	return container_of(mbox, struct mchp_ipc_sbi_mbox, controller);
-+}
-+
-+static inline void mchp_ipc_prepare_receive_req(struct mbox_chan *chan)
-+{
-+	struct mchp_ipc_sbi_chan *chan_info = (struct mchp_ipc_sbi_chan *)chan->con_priv;
-+	struct mchp_ipc_sbi_msg request;
-+
-+	request.buf_addr = chan_info->msg_buf_rx_addr;
-+	request.size = chan_info->max_msg_size;
-+	memcpy(chan_info->buf_base_rx, &request, sizeof(struct mchp_ipc_sbi_msg));
-+}
-+
-+static inline void mchp_ipc_process_received_data(struct mbox_chan *chan,
-+						  struct mchp_ipc_msg *ipc_msg)
-+{
-+	struct mchp_ipc_sbi_chan *chan_info = (struct mchp_ipc_sbi_chan *)chan->con_priv;
-+	struct mchp_ipc_sbi_msg sbi_msg;
-+
-+	memcpy(&sbi_msg, chan_info->buf_base_rx, sizeof(struct mchp_ipc_sbi_msg));
-+	ipc_msg->buf = (u32 *)chan_info->msg_buf_rx;
-+	ipc_msg->size = sbi_msg.size;
-+}
-+
-+static irqreturn_t mchp_ipc_cluster_aggr_isr(int irq, void *data)
-+{
-+	struct mbox_chan *chan;
-+	struct mchp_ipc_sbi_chan *chan_info;
-+	struct mchp_ipc_sbi_mbox *ipc = (struct mchp_ipc_sbi_mbox *)data;
-+	struct mchp_ipc_msg ipc_msg;
-+	struct mchp_ipc_status status_msg;
-+	int ret;
-+	unsigned long hartid;
-+	u32 i, chan_index, chan_id;
-+
-+	/* Find out the hart that originated the irq */
-+	for_each_online_cpu(i) {
-+		hartid = cpuid_to_hartid_map(i);
-+		if (irq == ipc->cluster_cfg[hartid].irq)
-+			break;
-+	}
-+
-+	status_msg.cluster = hartid;
-+	memcpy(ipc->cluster_cfg[hartid].buf_base, &status_msg, sizeof(struct mchp_ipc_status));
-+
-+	ret = mchp_ipc_sbi_send(SBI_EXT_IPC_STATUS, ipc->cluster_cfg[hartid].buf_base_addr);
-+	if (ret < 0) {
-+		dev_err_ratelimited(ipc->dev, "could not get IHC irq status ret=%d\n", ret);
-+		return IRQ_HANDLED;
-+	}
-+
-+	memcpy(&status_msg, ipc->cluster_cfg[hartid].buf_base, sizeof(struct mchp_ipc_status));
-+
-+	/*
-+	 * Iterate over each bit set in the IHC interrupt status register (IRQ_STATUS) to identify
-+	 * the channel(s) that have a message to be processed/acknowledged.
-+	 * The bits are organized in alternating format, where each pair of bits represents
-+	 * the status of the message present and message clear interrupts for each cluster/hart
-+	 * (from hart 0 to hart 5). Each cluster can have up to 5 fixed channels associated.
-+	 */
-+
-+	for_each_set_bit(i, (unsigned long *)&status_msg.status, IRQ_STATUS_BITS) {
-+		/* Find out the destination hart that triggered the interrupt */
-+		chan_index = i / 2;
-+
-+		/*
-+		 * The IP has no loopback channels, so we need to decrement the index when
-+		 * the target hart has a greater index than our own
-+		 */
-+		if (chan_index >= status_msg.cluster)
-+			chan_index--;
-+
-+		/*
-+		 * Calculate the channel id given the hart and channel index. Channel IDs
-+		 * are unique across all clusters of an IPC, and iterate contiguously
-+		 * across all clusters.
-+		 */
-+		chan_id = status_msg.cluster * (NUM_CHANS_PER_CLUSTER + chan_index);
-+
-+		chan = &ipc->chans[chan_id];
-+		chan_info = (struct mchp_ipc_sbi_chan *)chan->con_priv;
-+
-+		if (i % 2 == 0) {
-+			mchp_ipc_prepare_receive_req(chan);
-+			ret = mchp_ipc_sbi_chan_send(SBI_EXT_IPC_RECEIVE, chan_id,
-+						     chan_info->buf_base_rx_addr);
-+			if (ret < 0)
-+				continue;
-+
-+			mchp_ipc_process_received_data(chan, &ipc_msg);
-+			mbox_chan_received_data(&ipc->chans[chan_id], (void *)&ipc_msg);
-+
-+		} else {
-+			ret = mchp_ipc_sbi_chan_send(SBI_EXT_IPC_RECEIVE, chan_id,
-+						     chan_info->buf_base_rx_addr);
-+			mbox_chan_txdone(&ipc->chans[chan_id], ret);
-+		}
-+	}
-+	return IRQ_HANDLED;
-+}
-+
-+static int mchp_ipc_send_data(struct mbox_chan *chan, void *data)
-+{
-+	struct mchp_ipc_sbi_chan *chan_info = (struct mchp_ipc_sbi_chan *)chan->con_priv;
-+	const struct mchp_ipc_msg *msg = data;
-+	struct mchp_ipc_sbi_msg sbi_payload;
-+
-+	memcpy(chan_info->msg_buf_tx, msg->buf, msg->size);
-+	sbi_payload.buf_addr = chan_info->msg_buf_tx_addr;
-+	sbi_payload.size = msg->size;
-+	memcpy(chan_info->buf_base_tx, &sbi_payload, sizeof(sbi_payload));
-+
-+	return mchp_ipc_sbi_chan_send(SBI_EXT_IPC_SEND, chan_info->id, chan_info->buf_base_tx_addr);
-+}
-+
-+static int mchp_ipc_startup(struct mbox_chan *chan)
-+{
-+	struct mchp_ipc_sbi_chan *chan_info = (struct mchp_ipc_sbi_chan *)chan->con_priv;
-+	struct mchp_ipc_sbi_mbox *ipc = to_mchp_ipc_mbox(chan->mbox);
-+	struct mchp_ipc_init ch_init_msg;
-+	int ret;
-+
-+	/*
-+	 * The TX base buffer is used to transmit two types of messages:
-+	 * - struct mchp_ipc_init to initialize the channel
-+	 * - struct mchp_ipc_sbi_msg to transmit user data/payload
-+	 * Ensure the TX buffer size is large enough to accommodate either message type.
-+	 */
-+	size_t max_size = max(sizeof(struct mchp_ipc_init), sizeof(struct mchp_ipc_sbi_msg));
-+
-+	chan_info->buf_base_tx = kmalloc(max_size, GFP_KERNEL);
-+	if (!chan_info->buf_base_tx) {
-+		ret = -ENOMEM;
-+		goto fail;
-+	}
-+
-+	chan_info->buf_base_tx_addr = __pa(chan_info->buf_base_tx);
-+
-+	chan_info->buf_base_rx = kmalloc(max_size, GFP_KERNEL);
-+	if (!chan_info->buf_base_rx) {
-+		ret = -ENOMEM;
-+		goto fail_free_buf_base_tx;
-+	}
-+
-+	chan_info->buf_base_rx_addr = __pa(chan_info->buf_base_rx);
-+
-+	ret = mchp_ipc_sbi_chan_send(SBI_EXT_IPC_CH_INIT, chan_info->id,
-+				     chan_info->buf_base_tx_addr);
-+	if (ret < 0) {
-+		dev_err(ipc->dev, "channel %u init failed\n", chan_info->id);
-+		goto fail_free_buf_base_rx;
-+	}
-+
-+	memcpy(&ch_init_msg, chan_info->buf_base_tx, sizeof(struct mchp_ipc_init));
-+	chan_info->max_msg_size = ch_init_msg.max_msg_size;
-+
-+	chan_info->msg_buf_tx = kmalloc(chan_info->max_msg_size, GFP_KERNEL);
-+	if (!chan_info->msg_buf_tx) {
-+		ret = -ENOMEM;
-+		goto fail_free_buf_base_rx;
-+	}
-+
-+	chan_info->msg_buf_tx_addr = __pa(chan_info->msg_buf_tx);
-+
-+	chan_info->msg_buf_rx = kmalloc(chan_info->max_msg_size, GFP_KERNEL);
-+	if (!chan_info->msg_buf_rx) {
-+		ret = -ENOMEM;
-+		goto fail_free_buf_msg_tx;
-+	}
-+
-+	chan_info->msg_buf_rx_addr = __pa(chan_info->msg_buf_rx);
-+
-+	switch (ipc->hw_type) {
-+	case MIV_IHC:
-+		return 0;
-+	default:
-+		goto fail_free_buf_msg_rx;
-+	}
-+
-+	if (ret) {
-+		dev_err(ipc->dev, "failed to register interrupt(s)\n");
-+		goto fail_free_buf_msg_rx;
-+	}
-+
-+	return ret;
-+
-+fail_free_buf_msg_rx:
-+	kfree(chan_info->msg_buf_rx);
-+fail_free_buf_msg_tx:
-+	kfree(chan_info->msg_buf_tx);
-+fail_free_buf_base_rx:
-+	kfree(chan_info->buf_base_rx);
-+fail_free_buf_base_tx:
-+	kfree(chan_info->buf_base_tx);
-+fail:
-+	return ret;
-+}
-+
-+static void mchp_ipc_shutdown(struct mbox_chan *chan)
-+{
-+	struct mchp_ipc_sbi_chan *chan_info = (struct mchp_ipc_sbi_chan *)chan->con_priv;
-+
-+	kfree(chan_info->buf_base_tx);
-+	kfree(chan_info->buf_base_rx);
-+	kfree(chan_info->msg_buf_tx);
-+	kfree(chan_info->msg_buf_rx);
-+}
-+
-+static const struct mbox_chan_ops mchp_ipc_ops = {
-+	.startup = mchp_ipc_startup,
-+	.send_data = mchp_ipc_send_data,
-+	.shutdown = mchp_ipc_shutdown,
-+};
-+
-+static struct mbox_chan *mchp_ipc_mbox_xlate(struct mbox_controller *controller,
-+					     const struct of_phandle_args *spec)
-+{
-+	struct mchp_ipc_sbi_mbox *ipc = to_mchp_ipc_mbox(controller);
-+	unsigned int chan_id = spec->args[0];
-+
-+	if (chan_id >= ipc->controller.num_chans) {
-+		dev_err(ipc->dev, "invalid channel id %d\n", chan_id);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	return &ipc->chans[chan_id];
-+}
-+
-+static int mchp_ipc_get_cluster_aggr_irq(struct mchp_ipc_sbi_mbox *ipc)
-+{
-+	struct platform_device *pdev = to_platform_device(ipc->dev);
-+	char *irq_name;
-+	int cpuid, ret;
-+	unsigned long hartid;
-+	bool irq_found = false;
-+
-+	for_each_online_cpu(cpuid) {
-+		hartid = cpuid_to_hartid_map(cpuid);
-+		irq_name = devm_kasprintf(ipc->dev, GFP_KERNEL, "hart-%lu", hartid);
-+		ret = platform_get_irq_byname_optional(pdev, irq_name);
-+		if (ret <= 0)
-+			continue;
-+
-+		ipc->cluster_cfg[hartid].irq = ret;
-+		ret = devm_request_irq(ipc->dev, ipc->cluster_cfg[hartid].irq,
-+				       mchp_ipc_cluster_aggr_isr, IRQF_SHARED,
-+				       "miv-ihc-irq", ipc);
-+		if (ret)
-+			return ret;
-+
-+		ipc->cluster_cfg[hartid].buf_base = devm_kmalloc(ipc->dev,
-+								 sizeof(struct mchp_ipc_status),
-+								 GFP_KERNEL);
-+
-+		if (!ipc->cluster_cfg[hartid].buf_base)
-+			return -ENOMEM;
-+
-+		ipc->cluster_cfg[hartid].buf_base_addr = __pa(ipc->cluster_cfg[hartid].buf_base);
-+
-+		irq_found = true;
-+	}
-+
-+	return irq_found;
-+}
-+
-+static int mchp_ipc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mchp_ipc_mbox_info ipc_info;
-+	struct mchp_ipc_sbi_mbox *ipc;
-+	struct mchp_ipc_sbi_chan *priv;
-+	bool irq_avail = false;
-+	int ret;
-+	u32 chan_id;
-+
-+	ret = sbi_probe_extension(SBI_EXT_MICROCHIP_TECHNOLOGY);
-+	if (ret <= 0)
-+		return dev_err_probe(dev, ret, "Microchip SBI extension not detected\n");
-+
-+	ipc = devm_kzalloc(dev, sizeof(*ipc), GFP_KERNEL);
-+	if (!ipc)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, ipc);
-+
-+	ipc->buf_base = devm_kmalloc(dev, sizeof(struct mchp_ipc_mbox_info), GFP_KERNEL);
-+	if (!ipc->buf_base)
-+		return -ENOMEM;
-+
-+	ipc->buf_base_addr = __pa(ipc->buf_base);
-+
-+	ret = mchp_ipc_sbi_send(SBI_EXT_IPC_PROBE, ipc->buf_base_addr);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "could not probe IPC SBI service\n");
-+
-+	memcpy(&ipc_info, ipc->buf_base, sizeof(struct mchp_ipc_mbox_info));
-+	ipc->controller.num_chans = ipc_info.num_channels;
-+	ipc->hw_type = ipc_info.hw_type;
-+
-+	ipc->chans = devm_kcalloc(dev, ipc->controller.num_chans, sizeof(*ipc->chans), GFP_KERNEL);
-+	if (!ipc->chans)
-+		return -ENOMEM;
-+
-+	ipc->dev = dev;
-+	ipc->controller.txdone_irq = true;
-+	ipc->controller.dev = ipc->dev;
-+	ipc->controller.ops = &mchp_ipc_ops;
-+	ipc->controller.chans = ipc->chans;
-+	ipc->controller.of_xlate = mchp_ipc_mbox_xlate;
-+
-+	for (chan_id = 0; chan_id < ipc->controller.num_chans; chan_id++) {
-+		priv = devm_kmalloc(dev, sizeof(*priv), GFP_KERNEL);
-+		if (!priv)
-+			return -ENOMEM;
-+
-+		ipc->chans[chan_id].con_priv = priv;
-+		priv->id = chan_id;
-+	}
-+
-+	if (ipc->hw_type == MIV_IHC) {
-+		ipc->cluster_cfg = devm_kcalloc(dev, num_online_cpus(),
-+						sizeof(struct mchp_ipc_cluster_cfg),
-+						GFP_KERNEL);
-+		if (!ipc->cluster_cfg)
-+			return -ENOMEM;
-+
-+		if (mchp_ipc_get_cluster_aggr_irq(ipc))
-+			irq_avail = true;
-+	}
-+
-+	if (!irq_avail)
-+		return dev_err_probe(dev, -ENODEV, "missing interrupt property\n");
-+
-+	ret = devm_mbox_controller_register(dev, &ipc->controller);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				    "Inter-Processor communication (IPC) registration failed\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id mchp_ipc_of_match[] = {
-+	{.compatible = "microchip,sbi-ipc", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mchp_ipc_of_match);
-+
-+static struct platform_driver mchp_ipc_driver = {
-+	.driver = {
-+		.name = "microchip_ipc",
-+		.of_match_table = mchp_ipc_of_match,
-+	},
-+	.probe = mchp_ipc_probe,
-+};
-+
-+module_platform_driver(mchp_ipc_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Valentina Fernandez <valentina.fernandezalanis@microchip.com>");
-+MODULE_DESCRIPTION("Microchip Inter-Processor Communication (IPC) driver");
-diff --git a/include/linux/mailbox/mchp-ipc.h b/include/linux/mailbox/mchp-ipc.h
-new file mode 100644
-index 000000000000..f084ac9e291b
---- /dev/null
-+++ b/include/linux/mailbox/mchp-ipc.h
-@@ -0,0 +1,33 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ *Copyright (c) 2024 Microchip Technology Inc. All rights reserved.
-+ */
-+
-+#ifndef _LINUX_MCHP_IPC_H_
-+#define _LINUX_MCHP_IPC_H_
-+
-+#include <linux/mailbox_controller.h>
-+#include <linux/types.h>
-+
-+struct mchp_ipc_msg {
-+	u32 *buf;
-+	u16 size;
-+};
-+
-+struct mchp_ipc_sbi_chan {
-+	void *buf_base_tx;
-+	void *buf_base_rx;
-+	void *msg_buf_tx;
-+	void *msg_buf_rx;
-+	phys_addr_t buf_base_tx_addr;
-+	phys_addr_t buf_base_rx_addr;
-+	phys_addr_t msg_buf_tx_addr;
-+	phys_addr_t msg_buf_rx_addr;
-+	int chan_aggregated_irq;
-+	int mp_irq;
-+	int mc_irq;
-+	u32 id;
-+	u32 max_msg_size;
-+};
-+
-+#endif /* _LINUX_MCHP_IPC_H_ */
--- 
-2.34.1
-
+--WmC+ioyJ71bF6Ooh--
 
