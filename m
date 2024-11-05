@@ -1,108 +1,121 @@
-Return-Path: <devicetree+bounces-119140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 140E19BD218
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:17:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92BBA9BD23E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:23:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C80BB287C34
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 16:17:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4EE91C22588
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 16:23:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39F5D1714B6;
-	Tue,  5 Nov 2024 16:17:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 179BA1D318F;
+	Tue,  5 Nov 2024 16:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZfgdHdL0"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="x8R29AaG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDD4513E3EF;
-	Tue,  5 Nov 2024 16:16:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 478901D278B;
+	Tue,  5 Nov 2024 16:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730823422; cv=none; b=cs5u18JSxuUMblj948cBXm5auw/KiJakkd4CFho/YyW69mROSqALvdWvWhWxYuXlpJJv8Kh0xrPotph+s/huSfQbGMOn5tCf+p4OcGoQqOQ0bwGd2KAFlAaRdNl9ScHS+8vQi+jhMToB8zganCDgcspQixtZlDlZuizY0Mnn/Wk=
+	t=1730823829; cv=none; b=LucTIb0pOemdeqp/DpK7jFMEW8lKEtFDqucCaDFHvZN7NEVTQkDu9Rigj9qyglMHbaufg9HZl9hGhBQql3fxfSfRORS4/hbZLhwuSJvZYlsl/j/AkYbndSf7fpsSyPoFuo9F1noxSRnyi5HUuRXdMIAIOZjUpNXijdkxGcuqYL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730823422; c=relaxed/simple;
-	bh=r1tcWWlCoiF7Her/h61mI6QbANQB+2UXYZ63skQz0jk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lJEUtP87VF0yUbrnjoxnOCn72oZOxJC8wQAUR2GhKWtL4nib5+S6LSQZulOQLcGIX804bCX562n4Mvs4S+HeI18/wOLhFqudpW1kjs05+xSKnktyUmcefE6F7QoRLnb5JpRouDlxyMI+gpgQbKEDJegzUMejXxL2aFGT95Mw1Xk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZfgdHdL0; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D741DC0002;
-	Tue,  5 Nov 2024 16:16:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1730823415;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=b9i1yywh+snSHoIlcvM9qG34+tz1N/7OY25hu/QBJ3s=;
-	b=ZfgdHdL0YSm0aQHA/bZ2tNWpbxLtSOSTU1WoOJrA6XZOxkyL9kUpHIyR5/5Y8mM7jrCbz6
-	DbVC1Itgpu5qGotLJMyW5FJzO2bsi26OU7pRBWMucG0EWFiR+h4kggVoFA6JiwP1nCg4L3
-	+l08sMlkw45HFTOizi3s3ocrTuvv2G+FSFFu/zbCvlpxR82Gs17HUvvaadDBOjitqU+tqL
-	hckqk0cMESGnE9a81dF3cnPE4T4p5wcneVlU2yR6p0grolRNZWVRIHOXZJQCFx4Bbz4DlE
-	FgwGXgXqKZJGZu9AtprrgXcs08OBLCvqC8x0lmRdcu7muMLMWuMlA6FT/zpEDQ==
-Date: Tue, 5 Nov 2024 17:16:54 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Saravana Kannan <saravanak@google.com>, Bjorn Helgaas
- <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-pci@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
- Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org
-Subject: Re: [PATCH 2/6] PCI: of: Use device_{add,remove}_of_node() to
- attach of_node to existing device
-Message-ID: <20241105171654.3c45c80e@bootlin.com>
-In-Reply-To: <20241104202008.GB361448-robh@kernel.org>
-References: <20241104172001.165640-1-herve.codina@bootlin.com>
-	<20241104172001.165640-3-herve.codina@bootlin.com>
-	<20241104202008.GB361448-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1730823829; c=relaxed/simple;
+	bh=yrD4Mpfvmqsx+YKmWeU3tvvOcvvoTqW9VuisW5Gr4Qc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ojUO4jEhXSEDZVz5gYOgdeJoERgLLWVqi1KUW7my38nlcO0g910USMQ/w61ajE6f6Bi/GDKdeK+n+qGIwMwyHrxoBomo1CISCa9lcxyGXfLZpYsa+0qi5b/5LfaaE4iQh4DW1Monfn8a4FjyqjMfjYyieeinedTjcZov/Vu8Ghs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=x8R29AaG; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A5B9tdI023031;
+	Tue, 5 Nov 2024 17:23:30 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=aVMUkRdLkMCaG4A9wtB/vf
+	WUp+xDSUG4XcTStCzpQHM=; b=x8R29AaGuHavJqJItWuwnwmCmqYRVtYRUh3RlD
+	Gh3mrSvk9L3fagKy/uFabHvNeeQu680T3/0H/P+HcDmTEDr2Gz/bCTGS+noDPmuR
+	qWWRCmjbfD0ByoIhStT+CyrEE8qyqLZyvQ1aTUnNG/C/m0+/Szt70GBZnAUEgUAt
+	ammAUd7oMLQHp0Sua8LdImJIG/VERJzKXRe72OgIAyw3hTEl3NgUG+RsmeAYO4RQ
+	gnn72DGWz+3kllTWTdQjnMj3YBHc4JTES2q7UAgHucaVJhm1O0WhcIbQydbqZeO0
+	Szt4tgwuXhs9cLTts9OEmXbMGIscyq6LRB+byM0W3rzaJUJw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42nywnamjj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 05 Nov 2024 17:23:30 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 965C84002D;
+	Tue,  5 Nov 2024 17:22:34 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 25B3A267809;
+	Tue,  5 Nov 2024 17:22:01 +0100 (CET)
+Received: from localhost (10.252.16.126) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 5 Nov
+ 2024 17:22:00 +0100
+From: Olivier Moysan <olivier.moysan@foss.st.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: Olivier Moysan <olivier.moysan@foss.st.com>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 1/1] arm64: dts: st: add spdifrx support on stm32mp251
+Date: Tue, 5 Nov 2024 17:21:41 +0100
+Message-ID: <20241105162141.712073-1-olivier.moysan@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Hi Rob,
+Add S/PDIFRX support to STM32MP25 SoC family.
 
-On Mon, 4 Nov 2024 14:20:08 -0600
-Rob Herring <robh@kernel.org> wrote:
+Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+---
+ arch/arm64/boot/dts/st/stm32mp251.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-> On Mon, Nov 04, 2024 at 06:19:56PM +0100, Herve Codina wrote:
-> > The commit 407d1a51921e ("PCI: Create device tree node for bridge")
-> > creates of_node for PCI devices. The newly created of_node is attached
-> > to an existing device. This is done setting directly pdev->dev.of_node
-> > in the code.
-> > 
-> > Even if pdev->dev.of_node cannot be previously set, this doesn't handle
-> > the fwnode field of the struct device. Indeed, this field needs to be
-> > set if it hasn't already been set.
-> > 
-> > device_{add,remove}_of_node() have been introduced to handle this case.
-> > 
-> > Use them instead of the direct setting.
-> > 
-> > Fixes: 407d1a51921e ("PCI: Create device tree node for bridge")
-> > Cc: stable@vger.kernel.org  
-> 
-> I don't think this is stable material. What exactly would is broken 
-> which would be fixed by just the first 2 patches?
+diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+index 6fe12e3bd7dd..34970be2e0b3 100644
+--- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
++++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+@@ -267,6 +267,20 @@ spi3: spi@400c0000 {
+ 				status = "disabled";
+ 			};
+ 
++			spdifrx: audio-controller@400d0000 {
++				compatible = "st,stm32h7-spdifrx";
++				#sound-dai-cells = <0>;
++				reg = <0x400d0000 0x400>;
++				clocks = <&rcc CK_KER_SPDIFRX>;
++				clock-names = "kclk";
++				interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
++				dmas = <&hpdma 71 0x43 0x212>,
++				       <&hpdma 72 0x43 0x212>;
++				dma-names = "rx", "rx-ctrl";
++				access-controllers = <&rifsc 30>;
++				status = "disabled";
++			};
++
+ 			usart2: serial@400e0000 {
+ 				compatible = "st,stm32h7-uart";
+ 				reg = <0x400e0000 0x400>;
+-- 
+2.25.1
 
-Hum indeed, I haven't observed a broken behavior in current kernel.
-I will remove Fixes and Cc in the next iteration.
-
-Best regards,
-Hervé
 
