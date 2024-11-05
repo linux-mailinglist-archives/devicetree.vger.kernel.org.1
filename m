@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-119146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AEE09BD28F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:38:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39F699BD299
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:39:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BBD61C222AC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 16:38:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1527281276
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 16:39:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D03491DD86A;
-	Tue,  5 Nov 2024 16:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6731C1E32CF;
+	Tue,  5 Nov 2024 16:38:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZGJQOmvx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aLwZYMYU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F651DD0FC;
-	Tue,  5 Nov 2024 16:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352991D9A4B;
+	Tue,  5 Nov 2024 16:38:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730824700; cv=none; b=smsEDVTmHXUaogQNsWjFn1Y3Wz8qf+l5YF9jOqcBUoJlfjUxXfS6FlAq5jgXLMYWh48l3211FSMe8LFk4mCdI1lowDDs0uR1M4gby9OhZ1bkjKPuV0HB1Iqr4uaXKVfHKBbXq36xCaSGbCWYnJvHTKiW49dftM8Lnb/7HNLknpA=
+	t=1730824711; cv=none; b=o3m2a/VJpTni59GY4G22xZfmYzi47ck8ujbp99DFyYD8H+tPYPSL2H3Y/6V228Qd5B/mW9TWjqttkI9TmtNx+Lz705MR+vfeHMRM+CXZoU60tNq/CBX2j8dFhvnnK0BCuVodmUeS/d2tSNf4I6M1vAVtk/RCiCAJlrJkUNT4OJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730824700; c=relaxed/simple;
-	bh=X8hYb6RBCYK9495zyoYmXa26zE6IO19upKOSziGx0MQ=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=W5jfb3afsh50WMaBqMQeiWyshNvFe1CWWyuW6xyzdqdljuGfpDwkspteAU9E7H99NkvVPNADbH3IQXCOs0cGFUn0V425iejEuosWqeLmP5K2Y83LL7ydc5+TxwLc59aFY3TjeygMRH/mMzL2jWou8DsLjkN7UmttNxF/usZD348=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZGJQOmvx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 387ECC4CED5;
-	Tue,  5 Nov 2024 16:38:18 +0000 (UTC)
+	s=arc-20240116; t=1730824711; c=relaxed/simple;
+	bh=X3QevZg0rzrXDfQFtVrzDiR/bMaGBDN1CpqsOH1Ja48=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=EUDlFB7UD+RM6uqom20gkW3M9rXAQOsCoREqMHc3lILubQmfRLH7yqj03GyGS1Urf77NaZgHJnhIwhHcGD/nqo1gCyDTfvRuaaatVpHe79yda2JCIGjt+y4EpUZwkS93tg/cye8wh8sR7sK+Xyn2vGf4lYvBFXmdIUvnNHWPRlw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aLwZYMYU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ED5DC4CED2;
+	Tue,  5 Nov 2024 16:38:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730824700;
-	bh=X8hYb6RBCYK9495zyoYmXa26zE6IO19upKOSziGx0MQ=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=ZGJQOmvxwqXjlOS+rTITdHoA4FGyRD3GXgP+R2tm9jFp1joz3SuvcR0mKF8OPGU04
-	 6ytKxaDVANCp8Q4W074xUyGD/11Q2R6afZZ+pyrBAPsJOpr0l4DzAhChxEe98VeYFZ
-	 rJ34djLZB5DzSGRmlv7H4AJWwG1+95ZcuEUCMudP4zj+pjyNlq7ApNHsbPO0vpocHd
-	 KmWm9Nl3mscCpLrACeWK4/mDy80Dbop2L3QiK9rt2Wvo0QS0hLBck7gDMyW9FKuyWy
-	 rNMdVBBQDTSQEVasDUitXtlH8KSL0HKgMHMoy9h8kHK4GRp471TsQgkjoyhklgbYz9
-	 iYVe6TY8lhSvQ==
+	s=k20201202; t=1730824710;
+	bh=X3QevZg0rzrXDfQFtVrzDiR/bMaGBDN1CpqsOH1Ja48=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=aLwZYMYUdbc96SDQl4CZJP7laKG276AROeHoNAb/mbq0JLX8pGH2ErNkqqR3CVg8N
+	 wzFnZjVoe4to+XZpY9sJNCkq2NuZWXe7RB+L/RIxQawDz4LpKAaTkQ0Snkp/RocZ92
+	 V/JonNjeP1FzhAKY/9P7HCpDQh/8+WkvyZ35K1zzJmsMNtdNDlcPuf0LP39CUwV+Bu
+	 vb09gWYSP1T8UGfcjd3qkimmpy3Nfm8anUXei95OTdaq+ceTA+2hAypAq1K2R+2Z90
+	 E6USeKTASzsIsUwBQ1cB6RpFrTf+W4JEKSFJS07aA0pLz6ygCAEBzhLvmJHUNIMawB
+	 POu5V5s8j3nkg==
 From: Mark Brown <broonie@kernel.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20241101165159.370619-1-krzysztof.kozlowski@linaro.org>
-References: <20241101165159.370619-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: qcom,sm8250: Add SM8750 sound
- card
-Message-Id: <173082469795.77847.14820990076674451218.b4-ty@kernel.org>
-Date: Tue, 05 Nov 2024 16:38:17 +0000
+ Conor Dooley <conor+dt@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20241028-esai_fix-v1-0-3c1432a5613c@nxp.com>
+References: <20241028-esai_fix-v1-0-3c1432a5613c@nxp.com>
+Subject: Re: (subset) [PATCH 0/2] ASoC: fsl-esai: allow fsl,imx8qm-esai
+ fallback to fsl,imx6ull-esai
+Message-Id: <173082470778.77847.10489834906356614772.b4-ty@kernel.org>
+Date: Tue, 05 Nov 2024 16:38:27 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,9 +67,9 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-9b746
 
-On Fri, 01 Nov 2024 17:51:58 +0100, Krzysztof Kozlowski wrote:
-> Add bindings for SM8750 sound card, compatible with older SM8450
-> variant.
+On Mon, 28 Oct 2024 15:49:30 -0400, Frank Li wrote:
+> Update binding doc to allow fsl,imx8qm-esai fallback to fsl,imx6ull-esai.
+> Update dts add fsl,imx6ull-esai fallback.
 > 
 > 
 
@@ -78,10 +79,8 @@ Applied to
 
 Thanks!
 
-[1/2] ASoC: dt-bindings: qcom,sm8250: Add SM8750 sound card
-      commit: 393de01870bcf2ea1eadd21ad12f927d78cbb726
-[2/2] ASoC: qcom: sc8280xp Add SM8750 sound card
-      commit: 4b9f02b6c5376b65dac398c4f06804c914cbb7be
+[1/2] ASoC: dt-bindings: fsl-esai: allow fsl,imx8qm-esai fallback to fsl,imx6ull-esai
+      commit: adf7ea48ce05a6c5c44f0f9d3f81e83e5cb70c3e
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
