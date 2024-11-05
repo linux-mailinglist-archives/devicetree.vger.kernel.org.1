@@ -1,363 +1,171 @@
-Return-Path: <devicetree+bounces-119030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B02FC9BCA80
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 11:33:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10D929BCAAB
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 11:40:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7001E283D80
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 10:33:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6005BB22277
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 10:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9BD51D270A;
-	Tue,  5 Nov 2024 10:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51EF1D2B21;
+	Tue,  5 Nov 2024 10:40:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="tuft6Ufj"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="XDRTuwYl";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="f3iygS1G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE4C1CDA3E;
-	Tue,  5 Nov 2024 10:33:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37B151D14E3;
+	Tue,  5 Nov 2024 10:40:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730802827; cv=none; b=BFwjFZxxHmXFSSMa0OATYQEweRz5RNq2yr/tz7UCMBpr3xaVYUu7cRh65CfWIKL+Pm5AIHPy1NQL5jXTU7h7SNFBwuXa51lkgrn6rqvAulo5ikmEp28Zg8uMRJhxKVdpf6it4mJl75VzJkDKIPKgei69SFkSxiToNsas2JU18Vs=
+	t=1730803240; cv=none; b=NuZKmgvvZ/VXRhTt5aIgUU5Xu5iDehpe/2J6E5L+LM6OItCP7JqFYMifmPpeYJd7Ulxa15fq/jx6RVPSv9UdR+azUrF/bo1HMafBxkJNH7+36yCz8bAAT21/eb3oDVQ2QFwu95nZTlERAmJOKuMQt6UEgL+Uz+4JJYB0hA1KzUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730802827; c=relaxed/simple;
-	bh=/9OwNXT4wDtjPkJ6nX5NfwP0Hb8sxFz4gy3jIhzwrLg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mprJOKgTMkWcBxon7Luwi7SQ71cRZ3jTnkHdKauuRUbG+BAsZx/gTjYh2+H9uhOxmAnB5ZlkIRtejDsRPaDQPTVp8m0maSC/lMTWq1iN4/PlsWJaNZIP+QmaD5XTxe1BpbQMqYD+pL65vibFRfZPZVSy2tC5XBFTAw4HkpO2VAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=tuft6Ufj; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID; bh=hLqN6GBp0XtIX0OeaoOad30FnloMkED96JI+4XREvMc=; b=tuft6U
-	fjAfVfhulwwaoLYFKNBfLxs546+5iYfk0TMkb0Wta/KeIypynbmDI1nnzPOQ46F1nBl1PsALurCWI
-	gbKdrTlzUSVjx8Dad/5ZRF4THx1JpVS0FNY9O1f3dg92sEBaT2FJ9y6LqZ2hgwdaZmBWHKocH0PHc
-	+7Lt9hpQbMKQ1d1H3gpaUb+DR/FhiK8+eXm4cpmCL6y4D2oihd2mcvyLeYRNwRXplDCjXVqr1Nh9F
-	DjCSuE7dnrMt2IEaKGc2LutmWLi+LLD39aadIL/9e5EWgB24cWg2HcjLrkQ7gt4ShnpxNCM1o3ExO
-	CuRTzZOFNHpAPpj2glE0kaAvuRKg==;
-Received: from sslproxy05.your-server.de ([78.46.172.2])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sean@geanix.com>)
-	id 1t8GsQ-000Mkc-JR; Tue, 05 Nov 2024 11:33:34 +0100
-Received: from [185.17.218.86] (helo=Seans-MacBook-Pro.local)
-	by sslproxy05.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sean@geanix.com>)
-	id 1t8GsP-0005BF-2i;
-	Tue, 05 Nov 2024 11:33:33 +0100
-Date: Tue, 5 Nov 2024 11:33:33 +0100
-From: Sean Nyekjaer <sean@geanix.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: can: convert tcan4x5x.txt to DT schema
-Message-ID: <wdn2rtfahf3iu6rsgxm6ctfgft7bawtp6vzhgn7dffd54i72lu@r4v5lizhae57>
-References: <20241104125342.1691516-1-sean@geanix.com>
- <dq36jlwfm7hz7dstrp3bkwd6r6jzcxqo57enta3n2kibu3e7jw@krwn5nsu6a4d>
+	s=arc-20240116; t=1730803240; c=relaxed/simple;
+	bh=ZeGJ32onS1PAytPMeWyffNKx42P4Y5ebI72qKCfQPwY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=oF6Y8yozPkRjUp0wdn8hS/5BwhDBqgVaA5p3sQ5obY9sY2JxR8kiFzGP9M71lMrojhU9rIWI/qXGnLjV0fZB9+EUlGQTxYSkzfh/7C5wsnFHjAYkFgpKi4XMg3ZNAyHstncDiTGQ6Ym90KE9nLMvrN69JdQenT4aC4Klp/EC1Xo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=XDRTuwYl; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=f3iygS1G reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1730803237; x=1762339237;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=HnhOcDqM62BM39XeYtBpS6hPjPuyhp80jJ6lENbc2lQ=;
+  b=XDRTuwYly0+xQ1keRhstg8Q+kyJL1bCPp5L16H+3VTrt1+sFKm7ETqkv
+   D3IFdmkXXDKHxmVkObXL1if3Bh1R4uPf/mF4r+TyeHCiVWpfbD16zz20H
+   E1s5neF9pYZD+a2FhNqIjwIFZ+hujVxiN4sLadVi68y4zN32ifXWLoIKC
+   8gjeEP9fm5a5Jt/fSfbGdjrF9tpLpu3CI1bjvmsiJCSFNGme77bKjzi//
+   fBni5qdH/IiFLJYjUVuzBruk5q9tqJlrfoumtWilo9xNBsqKfzjFc1v9N
+   +rDFl2g/xrSyL5mRiXaLpLdI5krsZIA+84eFigbuctGsIdP8sRP3blOCE
+   w==;
+X-CSE-ConnectionGUID: AIkgqKuXSf2GqGYxRnWDAw==
+X-CSE-MsgGUID: vkGBDWlmR2O3XtYPq2HK6g==
+X-IronPort-AV: E=Sophos;i="6.11,259,1725314400"; 
+   d="scan'208";a="39855291"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 05 Nov 2024 11:40:28 +0100
+X-CheckPoint: {6729F61B-23-5736D786-D50827BE}
+X-MAIL-CPID: 51C17FF78442E03FAB7181DB78149BC6_2
+X-Control-Analysis: str=0001.0A682F22.6729F61C.004F,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 62129161302;
+	Tue,  5 Nov 2024 11:40:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1730803223;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=HnhOcDqM62BM39XeYtBpS6hPjPuyhp80jJ6lENbc2lQ=;
+	b=f3iygS1GUJvasDTnbGPHuttJdMX/2lqYoS/6+vCQ3Th8WLd+VqtaZU/BSlaJ4s76JNRSAd
+	4AVJQzH467QFo8Vhb1O3Q5/0cXAPTZQXXN2QGfFk+aPT4ZCQgrqnmFE5SCCLwBv+oBHMKu
+	6ZgBPDlVNnTJG/RauHtIV6h7Hw7SFQBOFzIV31ro/lK61PgD3/x09ma3pA4vqtLyhubA/2
+	2ooJNAQpQUUkFORsFBckki5hutdrOo+0Zx488XI3HBHwWXZEsiofyFfZjFVGy6zF8DrFQT
+	bDsPF6dlPkdL//VXddmybEYk1ZSkiApd7QJAaMaD1mH6DRCGsI8wYfXoTAgp/w==
+Message-ID: <c73cac598788ccabd1791b1232e8fd9d7ce23ac6.camel@ew.tq-group.com>
+Subject: Re: [PATCH 2/5] dt-bindings: arm: ti: Add compatible for
+ AM625-based TQMa62xx SOM family and carrier board
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Kees Cook <kees@kernel.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
+ <gpiccoli@igalia.com>, Felipe Balbi <balbi@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>, Hari
+ Nagalla <hnagalla@ti.com>, linux@ew.tq-group.com
+Date: Tue, 05 Nov 2024 11:40:20 +0100
+In-Reply-To: <20241104-floral-dexterous-7d3fee2ff616@spud>
+References: <cover.1730299760.git.matthias.schiffer@ew.tq-group.com>
+	 <4f5ad877f44df35a3b2c7f336647f057c4e6377d.1730299760.git.matthias.schiffer@ew.tq-group.com>
+	 <20241104-floral-dexterous-7d3fee2ff616@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4-0ubuntu2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <dq36jlwfm7hz7dstrp3bkwd6r6jzcxqo57enta3n2kibu3e7jw@krwn5nsu6a4d>
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27448/Mon Nov  4 10:33:38 2024)
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, Nov 05, 2024 at 10:16:30AM +0100, Krzysztof Kozlowski wrote:
-> On Mon, Nov 04, 2024 at 01:53:40PM +0100, Sean Nyekjaer wrote:
-> > Convert binding doc tcan4x5x.txt to yaml.
-> > 
-> > Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+On Mon, 2024-11-04 at 18:47 +0000, Conor Dooley wrote:
+> On Mon, Nov 04, 2024 at 10:47:25AM +0100, Matthias Schiffer wrote:
+> > The TQMa62xx is a SoM family with a pluggable connector. The MBa62xx is
+> > the matching reference/starterkit carrier board.
+>=20
+> Why all the wildcards? Why isn't there a compatible per device in the
+> family?
+
+For the compatible string we've chosen the TQMa6254 as the representative f=
+or the TQMa62xx family.
+
+MBa62xx is the proper name of the baseboard; this board can be combined wit=
+h any TQMa62xx family
+SOM.
+
+Best,
+Matthias
+
+
+
+>=20
+> >=20
+> > Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 > > ---
-> > Changes since rfc:
-> 
-> That's a v2. RFC was v1. *ALWAYS*.
-> Try by yourself:
-> b4 diff 20241104125342.1691516-1-sean@geanix.com
-> 
-> Works? No. Should work? Yes.
-> 
-> 
-
-Ok. Good to know RFC cannot be used...
-Next version would need to be? In order to fix this?
-
-I have enrolled my patch into b4, next verison will be v2 ;)
-
-> >   - Tried to re-add ti,tcan4x5x wildcard
-> >   - Removed xceiver and vdd supplies (copy paste error)
-> >   - Corrected max SPI frequency
-> >   - Copy pasted bosch,mram-cfg from bosch,m_can.yaml
-> >   - device-state-gpios and device-wake-gpios only available for tcan4x5x
-> 
-> ...
-> 
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
+> >  Documentation/devicetree/bindings/arm/ti/k3.yaml | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documen=
+tation/devicetree/bindings/arm/ti/k3.yaml
+> > index b0be02f9d1253..d8b52b95fba7b 100644
+> > --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > @@ -73,6 +73,13 @@ properties:
+> >            - const: toradex,verdin-am62          # Verdin AM62 Module
+> >            - const: ti,am625
+> > =20
+> > +      - description: K3 AM625 SoC on TQ-Systems TQMa62xx SoM
+> > +        items:
 > > +          - enum:
-> > +              - ti,tcan4552
-> > +          - const: ti,tcan4x5x
-> > +      - items:
-> > +          - enum:
-> > +              - ti,tcan4553
-> 
-> Odd syntax. Combine these two into one enum.
-> 
-> > +          - const: ti,tcan4x5x
-> > +      - items:
-> 
-> Drop items.
-> 
-> > +          - enum:
-> 
-> ... and drop enum. That's just const or do you already plan to add here
-> entries?
+> > +              - tq,am625-tqma6254-mba62xx # MBa62xx base board
+> > +          - const: tq,am625-tqma6254
+> > +          - const: ti,am625
+> > +
+> >        - description: K3 AM642 SoC
+> >          items:
+> >            - enum:
+> > --=20
+> > TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, =
+Germany
+> > Amtsgericht M=C3=BCnchen, HRB 105018
+> > Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan=
+ Schneider
+> > https://www.tq-group.com/
+> >=20
+> Achtung externe E-Mail:=C2=A0=C3=96ffnen Sie Anh=C3=A4nge und Links nur, =
+wenn Sie wissen, dass diese aus einer sicheren Quelle stammen und sicher si=
+nd. Leiten Sie die E-Mail im Zweifelsfall zur Pr=C3=BCfung an den IT-Helpde=
+sk weiter.
+>   Attention external email:=C2=A0Open attachments and links only if you k=
+now that they are from a secure source and are safe. In doubt forward the e=
+mail to the IT-Helpdesk to check it.
+>=20
+> =C2=A0
 
-Honestly I'm struggling a bit with the syntax and I feel the feedback is containing
-a lot of implicit terms :)
-
-Something like:
-properties:
-  compatible:
-    oneOf:
-      - items:
-          - enum:
-              - ti,tcan4552
-              - ti,tcan4x5x
-      - items:
-          - enum:
-              - ti,tcan4553
-              - ti,tcan4x5x
-      - const: ti,tcan4x5x
-
-Gives:
-/linux/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.example.dtb: can@0: compatible: ['ti,tcan4x5x'] is valid under each of {'items': [{'enum': ['ti,tcan4553', 'ti,tcan4x5x']}], 'type': 'array', 'minItems': 1, 'maxItems': 1}, {'items': [{'const': 'ti,tcan4x5x'}], 'type': 'array', 'minItems': 1, 'maxItems': 1}, {'items': [{'enum': ['ti,tcan4552', 'ti,tcan4x5x']}], 'type': 'array', 'minItems': 1, 'maxItems': 1}
-        from schema $id: http://devicetree.org/schemas/net/can/ti,tcan4x5x.yaml#
-/linux/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.example.dtb: can@0: compatible: 'oneOf' conditional failed, one must be fixed:
-        ['ti,tcan4552', 'ti,tcan4x5x'] is too long
-        'ti,tcan4552' is not one of ['ti,tcan4553', 'ti,tcan4x5x']
-        'ti,tcan4x5x' was expected
-        from schema $id: http://devicetree.org/schemas/net/can/ti,tcan4x5x.yaml#
-
-I can understand the original binding is broken.
-I kinda agree with Marc that we cannot break things for users of this.
-
-> 
-> > +              - ti,tcan4x5x
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +    description: The GPIO parent interrupt.
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  reset-gpios:
-> > +    description: Hardwired output GPIO. If not defined then software reset.
-> > +    maxItems: 1
-> > +
-> > +  device-state-gpios:
-> > +    description: |
-> 
-> Do not need '|' unless you need to preserve formatting.
-> 
-> Didn't you get this comment alerady?
-> 
-
-No, but I have removed the '|'
-
-> > +      Input GPIO that indicates if the device is in a sleep state or if the
-> > +      device is active. Not available with tcan4552/4553.
-> > +    maxItems: 1
-> > +
-> > +  device-wake-gpios:
-> > +    description: |
-> > +      Wake up GPIO to wake up the TCAN device.
-> > +      Not available with tcan4552/4553.
-> > +    maxItems: 1
-> > +
-> > +  bosch,mram-cfg:
-> > +    description: |
-> > +      Message RAM configuration data.
-> > +      Multiple M_CAN instances can share the same Message RAM
-> > +      and each element(e.g Rx FIFO or Tx Buffer and etc) number
-> > +      in Message RAM is also configurable, so this property is
-> > +      telling driver how the shared or private Message RAM are
-> > +      used by this M_CAN controller.
-> > +
-> > +      The format should be as follows:
-> > +      <offset sidf_elems xidf_elems rxf0_elems rxf1_elems rxb_elems txe_elems txb_elems>
-> > +      The 'offset' is an address offset of the Message RAM where
-> > +      the following elements start from. This is usually set to
-> > +      0x0 if you're using a private Message RAM. The remain cells
-> > +      are used to specify how many elements are used for each FIFO/Buffer.
-> > +
-> > +      M_CAN includes the following elements according to user manual:
-> > +      11-bit Filter	0-128 elements / 0-128 words
-> > +      29-bit Filter	0-64 elements / 0-128 words
-> > +      Rx FIFO 0		0-64 elements / 0-1152 words
-> > +      Rx FIFO 1		0-64 elements / 0-1152 words
-> > +      Rx Buffers	0-64 elements / 0-1152 words
-> > +      Tx Event FIFO	0-32 elements / 0-64 words
-> > +      Tx Buffers	0-32 elements / 0-576 words
-> > +
-> > +      Please refer to 2.4.1 Message RAM Configuration in Bosch
-> > +      M_CAN user manual for details.
-> > +    $ref: /schemas/types.yaml#/definitions/int32-array
-> > +    items:
-> > +      - description: The 'offset' is an address offset of the Message RAM where
-> > +          the following elements start from. This is usually set to 0x0 if
-> > +          you're using a private Message RAM.
-> > +        default: 0
-> > +      - description: 11-bit Filter 0-128 elements / 0-128 words
-> > +        minimum: 0
-> > +        maximum: 128
-> > +      - description: 29-bit Filter 0-64 elements / 0-128 words
-> > +        minimum: 0
-> > +        maximum: 64
-> > +      - description: Rx FIFO 0 0-64 elements / 0-1152 words
-> > +        minimum: 0
-> > +        maximum: 64
-> > +      - description: Rx FIFO 1 0-64 elements / 0-1152 words
-> > +        minimum: 0
-> > +        maximum: 64
-> > +      - description: Rx Buffers 0-64 elements / 0-1152 words
-> > +        minimum: 0
-> > +        maximum: 64
-> > +      - description: Tx Event FIFO 0-32 elements / 0-64 words
-> > +        minimum: 0
-> > +        maximum: 32
-> > +      - description: Tx Buffers 0-32 elements / 0-576 words
-> > +        minimum: 0
-> > +        maximum: 32
-> > +    minItems: 1
-> > +
-> > +  spi-max-frequency:
-> > +    description:
-> > +      Must be half or less of "clocks" frequency.
-> > +    maximum: 18000000
-> > +
-> > +  wakeup-source:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description: |
-> 
-> Do not need '|' unless you need to preserve formatting.
-> 
-
-OK
-
-> > +      Enable CAN remote wakeup.
-> > +
-> > +allOf:
-> > +  - $ref: can-controller.yaml#
-> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - ti,tcan4552
-> > +              - ti,tcan4553
-> > +    then:
-> > +      properties:
-> > +        device-state-gpios: false
-> > +        device-wake-gpios: false
-> 
-> Heh, this is a weird binding. It should have specific compatibles for
-> all other variants because above does not make sense. For 4552 one could
-> skip front compatible and use only fallback, right? And then add these
-> properties bypassing schema check. I commented on this already that
-> original binding is flawed and should be fixed, but no one cares then I
-> also don't care.
-
-To me it looks like the example you linked:
-https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/bindings/example-schema.yaml#L223
-
-If you use fallback for a 4552 then it would enable the use of the
-optional pins device-state-gpios and device-wake-gpios. But the chip
-doesn't have those so the hw guys would connect them and they won't
-be in the DT.
-
-Honestly I'm confused :/
-
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - bosch,mram-cfg
-> > +
-> > +additionalProperties: false
-> 
-> Implement feedback. Nothing changed here.
-> 
-
-Uh? feedback?
-
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    spi {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        can@0 {
-> > +            compatible = "ti,tcan4x5x";
-> > +            reg = <0>;
-> > +            clocks = <&can0_osc>;
-> > +            pinctrl-names = "default";
-> > +            pinctrl-0 = <&can0_pins>;
-> > +            spi-max-frequency = <10000000>;
-> > +            bosch,mram-cfg = <0x0 0 0 16 0 0 1 1>;
-> > +            interrupt-parent = <&gpio1>;
-> > +            interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
-> > +            device-state-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
-> > +            device-wake-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
-> > +            reset-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
-> > +            wakeup-source;
-> > +        };
-> > +    };
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    spi {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        can@0 {
-> > +            compatible = "ti,tcan4552","ti,tcan4x5x";
-> 
-> Missing space after ,.
-> 
-
-Added
-
-Thanks for the review.
-
-/Sean
+--=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+https://www.tq-group.com/
 
