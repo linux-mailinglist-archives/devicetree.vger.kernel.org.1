@@ -1,60 +1,81 @@
-Return-Path: <devicetree+bounces-119152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E239D9BD333
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:18:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A881E9BD340
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:22:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F35C81C22643
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:18:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A83B1F2349D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:22:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C4741D63E1;
-	Tue,  5 Nov 2024 17:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A469D1E231D;
+	Tue,  5 Nov 2024 17:21:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NyRuaU3m"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BYSQXAFn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50C20166F1A;
-	Tue,  5 Nov 2024 17:18:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E249E1DD0D5;
+	Tue,  5 Nov 2024 17:21:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730827111; cv=none; b=hJwLzcxQVr1vnn1G0ByLl8f/n9xYXWT1DYCTPwKBHB4EUWdH9mWsYSW5vFwSJ4xIzn5aUVA7TOx+CEO6PQNWW6U7TyVNEK7gpeo+HbDPAsngwGea9LZGqgZXMxg7zuLBX8mYAmChz0f68iEdYfbLpHU4S1i0VWE8YNaJ+mS79YE=
+	t=1730827318; cv=none; b=speiVSfu4cQQFHmtFTe5lLaE/N9HcS9XHT6AtfheFdqLvcv2wShoT0ZqLSFghyF3WPkHD0LCwJGU3PyLW+L0Bz6GZIV+dlOx4ilDe6IrbfQ/QP7XPSMW414W+DP0W2t8MkZtAVdgyoqVu+RZEvFgDpUySEqY0f4j41MoBLqBX80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730827111; c=relaxed/simple;
-	bh=9swtDu2MiH44n97pp1Y1dGpeIR7FF3ZuO/eaWS+/fms=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=FqfftHhCRr3CZPdZ9YaY5G8tHk7uE89h1CAIsJ3gx5uYx6jhZ/OW+tZZJNmwZX+tyd8xoOFCsCBIukKYvecSe2knfJpYSeQHKn9NKUK2QTozUOZe1F9ngil52qszCGilIAaeGsCiRn482MftQWRtF9SA2ZwKzqyDwAQrAbs00kY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NyRuaU3m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA699C4CECF;
-	Tue,  5 Nov 2024 17:18:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730827110;
-	bh=9swtDu2MiH44n97pp1Y1dGpeIR7FF3ZuO/eaWS+/fms=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=NyRuaU3mAqVyBJ2Cdj7wtgjmaCAPEROP8WeCLFEDLXTtWYJ8LvAEnx41zJTF19TZR
-	 WqNiCmQeYYppdQ/G7coVDO99ruUXbINQnnjX0jV0nVx2fUwsXGUeOOzB+ZVwt01Dat
-	 CwLkpQ62vQHoZM1x8Q1WPdsQfGQJsM7YuVbMbSwSL23Xo1CPBzT4h1W8HjT8TVJdUp
-	 5jng8y7vU44SbyjS4eoQ7f9aaJVsrRfw+MySbATBvgHaXdihocDaZSZxGuBXX94NbT
-	 CMqhkOdLGphKcMFR3tByCtnx/a8GPTnPkE0InsbOiM54BBtCx/7PPqTTQPHHWPncZJ
-	 ixdkddyDGx3PQ==
-Date: Tue, 5 Nov 2024 11:18:28 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-pci@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 2/2] PCI: microchip: rework reg region handing to
- support using either instance 1 or 2
-Message-ID: <20241105171828.GA1474726@bhelgaas>
+	s=arc-20240116; t=1730827318; c=relaxed/simple;
+	bh=ahMpcYHjaCoJrEVqwl/p5ZYgZE0uGGRlf/qvwZKtOYU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aeAdftOG5TMhaTn/1X1A43WMKst7jV1/Vs9QvIo3HzqirC+D/OwSeQS1i5DJj/AwqsysmQhB9c4Ct0G0Eg7ENBejOdG0als1RDpZgXtJMJC02A8Ydf9+9gap24ErypOGi+JBupAhck3r1iRNFcZxD87yDoz63/OEGb23WXFktRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BYSQXAFn; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1730827317; x=1762363317;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ahMpcYHjaCoJrEVqwl/p5ZYgZE0uGGRlf/qvwZKtOYU=;
+  b=BYSQXAFnEeox4IWRP00x24lrun7Af8zekweU9xkCG8GX58IUzKm8CmLc
+   wSwA9rJ0iQTWylNzQS8gJvAPs9nCbmxGbyvDZIQIStP3aRvMHtPuls7oM
+   qFYcYBBlI+WrQhwocWn6QS1GR11puVvaWGBzIDJVRukV/Wj3fSzSrlmqi
+   /IO1oNUEyNlHGiIsIzxgQwQ3x7JDayNxvM3Je7sVE6jmsL43FDc+jOPvS
+   5rqI7nCSXfstCIa9XjohTmqnAdItXNsOIgl3BHhLY/7UmHyYNwJwjhEeh
+   tm8VoWHa50PWwbHkUXC6wh27gRElK3L8/S8sBxX7wBLAbfuI8dA4twEXT
+   w==;
+X-CSE-ConnectionGUID: LE+AAwRqQtOx2X9LnKDgmw==
+X-CSE-MsgGUID: uLOVlENiTr6D5wsrxksC5Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11247"; a="34374977"
+X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; 
+   d="scan'208";a="34374977"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2024 09:21:42 -0800
+X-CSE-ConnectionGUID: ptVQYnX9R8K/OpI8CHr8oQ==
+X-CSE-MsgGUID: f/BDOr+bQY6kh4vjoiguDw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; 
+   d="scan'208";a="84487945"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 05 Nov 2024 09:21:40 -0800
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t8NFJ-000mI0-1r;
+	Tue, 05 Nov 2024 17:21:37 +0000
+Date: Wed, 6 Nov 2024 01:20:53 +0800
+From: kernel test robot <lkp@intel.com>
+To: Markus Burri <markus.burri@mt.com>, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Markus Burri <markus.burri@mt.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Vasut <marek.vasut@gmail.com>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/7] dt-bindings: input: matrix_keypad - convert to
+ YAML
+Message-ID: <202411060143.8tNHeidk-lkp@intel.com>
+References: <20241105130322.213623-4-markus.burri@mt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,78 +84,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241104-stabilize-friday-94705c3dc244@spud>
+In-Reply-To: <20241105130322.213623-4-markus.burri@mt.com>
 
-On Mon, Nov 04, 2024 at 11:18:43AM +0000, Conor Dooley wrote:
-> On Fri, Nov 01, 2024 at 02:51:29PM -0500, Bjorn Helgaas wrote:
-> > On Wed, Aug 14, 2024 at 09:08:42AM +0100, Conor Dooley wrote:
-> > > From: Conor Dooley <conor.dooley@microchip.com>
-> > > 
-> > > The PCI host controller on PolarFire SoC has multiple "instances", each
-> > > with their own bridge and ctrl address spaces. The original binding has
-> > > an "apb" register region, and it is expected to be set to the base
-> > > address of the host controllers register space. Defines in the driver
-> > > were used to compute the addresses of the bridge and ctrl address ranges
-> > > corresponding to instance1. Some customers want to use instance0 however
-> > > and that requires changing the defines in the driver, which is clearly
-> > > not a portable solution.
-> > 
-> > The subject mentions "instance 1 or 2".
-> > 
-> > This paragraph implies adding support for "instance0" ("customers want
-> > to use instance0").
-> > 
-> > The DT patch suggests that we're adding support for "instance2"
-> > ("customers want to use instance2").
-> > 
-> > Both patches suggest that the existing support is for "instance 1".
-> > 
-> > Maybe what's being added is "instance 2", and this commit log should
-> > s/instance0/instance 2/ ?  And probably s/instance1/instance 1/ so the
-> > style is consistent?
-> 
-> Hmm no, it would be s/instance1/instance 2/ & s/instance0/instance 1/.
-> The indices are 1-based, not 0-based.
-> 
-> > Is this a "pick one or the other but not both" situation, or does this
-> > device support two independent PCIe controllers?
-> > 
-> > I first thought this driver supported a single PCIe controller, and
-> > you were adding support for a second independent controller.
-> 
-> I don't know if they are fully independent (Daire would have to confirm)
-> but as far as the driver in linux is concerned they are. As far as I
-> know, you could operate both instances at the same time, but I've not
-> heard of any customer that is actually doing that nor tested it myself.
-> Operating both instances would require another node in the devicetree,
-> which should work fine given the private data structs are allocated at
-> runtime. I think the config space is shared.
-> 
-> > But the fact that you say "the [singular] host controller on
-> > PolarFire", and you're not changing mc_host_probe() to call
-> > pci_host_common_probe() more than once makes me think there is only a
-> > single PCIe controller, and for some reason you can choose to operate
-> > it using either register set 1 or register set 2.
-> 
-> The wording I've used mostly stems from conversations with Daire. We've
-> kinda been saying that there's a single controller with two root port
-> instances. 
+Hi Markus,
 
-If these are two separate Root Ports, can we call them "Root Ports"
-instead of "instances"?  Common terminology makes for common
-understanding.
+kernel test robot noticed the following build warnings:
 
-> Each root port instance is connected to different IOs,
-> they're more than just different registers for accessing the same thing.
+[auto build test WARNING on dtor-input/for-linus]
+[also build test WARNING on robh/for-next linus/master v6.12-rc6 next-20241105]
+[cannot apply to dtor-input/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Sounds like some customers use Root Port 1 and others use Root Port 2,
-maybe based on things like which pins are more convenient to route.
+url:    https://github.com/intel-lab-lkp/linux/commits/Markus-Burri/Input-matrix_keypad-use-fsleep-for-variable-delay-duration/20241105-211348
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git for-linus
+patch link:    https://lore.kernel.org/r/20241105130322.213623-4-markus.burri%40mt.com
+patch subject: [PATCH v2 3/7] dt-bindings: input: matrix_keypad - convert to YAML
+reproduce: (https://download.01.org/0day-ci/archive/20241106/202411060143.8tNHeidk-lkp@intel.com/reproduce)
 
-I would very much like to reword these commit logs using as much
-standard PCIe terminology as possible.  Most of these native PCIe
-controller drivers have Root Complex and Root Port concepts all mixed
-together, and anything we can do to standardize them will be a
-benefit.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411060143.8tNHeidk-lkp@intel.com/
 
-Bjorn
+All warnings (new ones prefixed by >>):
+
+>> Warning: Documentation/devicetree/bindings/power/wakeup-source.txt references a file that doesn't exist: Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt
+   Warning: Documentation/devicetree/bindings/power/wakeup-source.txt references a file that doesn't exist: Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
+   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
+   Warning: Documentation/hwmon/g762.rst references a file that doesn't exist: Documentation/devicetree/bindings/hwmon/g762.txt
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/reserved-memory/qcom
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/display/exynos/
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
