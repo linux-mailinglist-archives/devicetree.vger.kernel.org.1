@@ -1,65 +1,57 @@
-Return-Path: <devicetree+bounces-119093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 840A99BCEF9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 15:19:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3507F9BCF16
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 15:22:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49CAD284553
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 14:19:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66FC91C2349E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 14:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4F9D1D6DDD;
-	Tue,  5 Nov 2024 14:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 083F51D90A5;
+	Tue,  5 Nov 2024 14:21:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gE6oQ7H0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YUQAY2Vt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB731D63C4;
-	Tue,  5 Nov 2024 14:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D07A01D6DB9;
+	Tue,  5 Nov 2024 14:21:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730816342; cv=none; b=RPrbSrB1gyCfHMTeUonIBUTZ//FwbQZtrJsABZ2dWS2zsJus5FFm/czx9iKeHuKYcl3TOt3LcdIACI3E2AWsBFUT80LSiNLanudvSkJlM7JXJCjVOMnii+P8LbODUqDMugEV1L9K987tyHw4zK9WVkFjqkuQ2vrgyhlVZmrTmvo=
+	t=1730816495; cv=none; b=aLD8HOixSR6b0YwYpqh3+edDP2fQwK1zUl0qxk144/GE0riMZIQ9+B/OVMxHTbN6/C24LWMrLSBSMayiH+UnGKg3Gi3RvomVGK6SXErJb62v+/pMX3EhVIclwmjW4f9bFOHanRES6hhvankVUzn4jOALec63UXlTytn+jfRBML4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730816342; c=relaxed/simple;
-	bh=yDEteXzj+wkANYRbZ2/8j1vE3zjlLibNLSifgq7pYSk=;
+	s=arc-20240116; t=1730816495; c=relaxed/simple;
+	bh=DJ/kUd+DBcqBgpe9qw/202KtCsDESQxoQDuovJy9AQs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kEjMABqFTcpgWfXtCl6qzShnyR5PXA2c3egtui6/LgqShYbOjVUhYt2Fn4FekBQWvFf6zVCWqW6klK9ZTk87hYt6A3/oMx0B83i7Mr7UqBlcBD3phGNfXupsrcabiolmI4flEEB+fzD64gGw9OCVxe2Yqa3cvdSXxZgZgmUTudU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gE6oQ7H0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33020C4CECF;
-	Tue,  5 Nov 2024 14:19:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hOsRUDBZoDTCCvLgeNcYI6UfKadAD74U2YUUqC3z/HPOHABnHWnuo5YbyFpoOE0OjmWw9iDEhEYGcLuZVNiw8Bb0a48s5dJhlJLLNkbTCQItiNvnx22Y5ciQ61dwwSCSwRdhfWzKwmxQx14/DaE8JGZjgTGUT/ibHFJLNsJmpYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YUQAY2Vt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05166C4CECF;
+	Tue,  5 Nov 2024 14:21:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730816342;
-	bh=yDEteXzj+wkANYRbZ2/8j1vE3zjlLibNLSifgq7pYSk=;
+	s=k20201202; t=1730816495;
+	bh=DJ/kUd+DBcqBgpe9qw/202KtCsDESQxoQDuovJy9AQs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gE6oQ7H0EUgsS1B6FvmY2KI383i+2h3gtC3TXwM/hyZ0xw/jiwV5FyvyD1m9etQGV
-	 3j9AMRtvabcHfLWYJBuk+JdihA33Tklk5w5lY0qIafeZNQeEzk6N5yXLOc0OG1kHO9
-	 F++j/XhFppmDr230G6um/9knosDBrT9peFmEsx9HKbJYZ8lsBieNbgUmMDgh+7+nag
-	 t9ULd3afMcwLEH44KhOPTfXspCyEqp++CTFLGtkzSX6hkYIlYrav0qz1gjgw0GtlL+
-	 CNDV5LKXUJ8a3dkvA6J8dkHD7zmglXr5LkhCz5GIbQtZ9iYdESgzbHTpQd6RoNGAqe
-	 Evcp5MLdH8RNg==
-Date: Tue, 5 Nov 2024 08:19:00 -0600
-From: Rob Herring <robh@kernel.org>
-To: Hironori KIKUCHI <kikuchan98@gmail.com>
-Cc: linux-kernel@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ryan Walklin <ryan@testtoast.com>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/7] dt-bindings: display: panel: Rename
- rg35xx-plus-panel back to WL-355608-A8
-Message-ID: <20241105141900.GA3110982-robh@kernel.org>
-References: <20241105055239.1577275-1-kikuchan98@gmail.com>
- <20241105055239.1577275-2-kikuchan98@gmail.com>
+	b=YUQAY2VtS3S95xlLPJHAEpqhXhFN/LXpztOjF/kPPM/auScTwyu7fJlj83qI3qTq2
+	 eGMUVeYB1hDxalbVG1VgnVbIyoIXHF+qzzDtYl9ztg2XOxBq5Zg3a2d+Pwn/jdlWuV
+	 HoJ2oXv6Du+E9lmDC/TP2SfcdRgMT7dslgdTfMBQKvo9Sbg/+UrIcb4aNnrfPsSQTz
+	 /gY+V2FSHPwKPeQvmMTpFnFoSDkr2+uGR6RRONDrLY5rAtj1PHomzXnZWGe2g2e+jG
+	 nrrcUELFRfD0cA8IfnTBdnNRCd5QNXDt3gv0AUiVR21rvuWKqheYcs29A9oenP5Y7z
+	 hjqVsiuVbAeaQ==
+Date: Tue, 5 Nov 2024 15:21:31 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Troy Mitchell <troymitchell988@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 0/2] riscv: spacemit: add i2c support to K1 SoC
+Message-ID: <o55tg4zybyfroh7on7b6pxwbkw46fgafryzlc2gczmgecxr4ph@lptxs2timypu>
+References: <20241028053220.346283-1-TroyMitchell988@gmail.com>
+ <stpzkggfwseaqy6kbppiog4xfbpq4r2jwix2nvredbmmjqzbsi@wkllt4jlingv>
+ <edfaccd7-ac96-47fc-a174-912c8aaf0f5e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,70 +60,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241105055239.1577275-2-kikuchan98@gmail.com>
+In-Reply-To: <edfaccd7-ac96-47fc-a174-912c8aaf0f5e@gmail.com>
 
-On Tue, Nov 05, 2024 at 02:52:29PM +0900, Hironori KIKUCHI wrote:
-> A panel assembly is changed in the recent revision of Anbernic RG35XX
-> Plus, so the `anbernic,rg35xx-plus-panel` identifier is neither suitable
-> nor unique for the panel anymore.
-> 
-> Fortunately, the panel can be distinguished by a label printed on the
-> FPC cable, so use the label "WL-355608-A8" as an identifier instead.
-> 
-> Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
-> ---
->  ...rg35xx-plus-panel.yaml => anbernic,wl-355608-a8.yaml} | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
->  rename Documentation/devicetree/bindings/display/panel/{anbernic,rg35xx-plus-panel.yaml => anbernic,wl-355608-a8.yaml} (83%)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-plus-panel.yaml b/Documentation/devicetree/bindings/display/panel/anbernic,wl-355608-a8.yaml
-> similarity index 83%
-> rename from Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-plus-panel.yaml
-> rename to Documentation/devicetree/bindings/display/panel/anbernic,wl-355608-a8.yaml
-> index 1d67492ebd3..5e8afbea690 100644
-> --- a/Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-plus-panel.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/anbernic,wl-355608-a8.yaml
-> @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: http://devicetree.org/schemas/display/panel/anbernic,rg35xx-plus-panel.yaml#
-> +$id: http://devicetree.org/schemas/display/panel/anbernic,wl-355608-a8.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: Anbernic RG35XX series (WL-355608-A8) 3.5" 640x480 24-bit IPS LCD panel
-> @@ -16,13 +16,14 @@ allOf:
->  properties:
->    compatible:
->      oneOf:
-> -      - const: anbernic,rg35xx-plus-panel
-> +      - const: anbernic,wl-355608-a8
->        - items:
->            - enum:
->                - anbernic,rg35xx-2024-panel
->                - anbernic,rg35xx-h-panel
->                - anbernic,rg35xx-sp-panel
-> -          - const: anbernic,rg35xx-plus-panel
-> +              - anbernic,rg35xx-plus-panel
-> +          - const: anbernic,wl-355608-a8
->  
->    reg:
->      maxItems: 1
-> @@ -47,7 +48,7 @@ examples:
->          #size-cells = <0>;
->  
->          panel@0 {
-> -            compatible = "anbernic,rg35xx-plus-panel";
-> +            compatible = "anbernic,wl-355608-a8";
+Hy Troy,
 
-This is an ABI break. You can't just change compatibles.
+On Mon, Nov 04, 2024 at 08:23:23PM +0800, Troy Mitchell wrote:
+> On 2024/10/31 19:43, Andi Shyti wrote:
+> > Hi Tony,
 
-The old panel should correspond to the existing compatible. Add a new 
-compatible for the new panel. The names might not be ideal, but you are 
-stuck with them.
+Sorry, I misread your name :-/
 
-There's exceptions if things are new and not yet in use, but you have to 
-explain that in the commit msg.
+> > On Mon, Oct 28, 2024 at 01:32:18PM +0800, Troy Mitchell wrote:
+> >> Hi all,
+> >>
+> >> This patch implements I2C driver for the SpacemiT K1 SoC,
+> >> providing basic support for I2C read/write communication which
+> >> compatible with standard I2C bus specifications.
+> >>
+> >> In this version, the driver defaults to use fast-speed-mode and
+> >> interrupts for transmission, and does not support DMA, high-speed mode, or FIFO.
+> >>
+> >> The docs of I2C can be found here, in chapter 16.1 I2C [1]
+> >>
+> >> Link: https://developer.spacemit.com/documentation?token=Rn9Kw3iFHirAMgkIpTAcV2Arnkf#part5 [1]
+> >>
+> >> Troy Mitchell (2):
+> >>   dt-bindings: i2c: spacemit: add support for K1 SoC
+> >>   i2c: spacemit: add support for SpacemiT K1 SoC
+> > 
+> > As Krzysztof has asked, please do provide the changelog, it's
+> > important to track the progress of your series.
+> I saw a compilation warning sent to me by the robot, and I've
+> fixed the warning. Should I resend V2 with the changelog
+> what I miss or send V3?
 
-Rob
+Please send a v3. When there are compilation issues, normally
+patches are less keen to be reviewed.
+
+You can add the changelog in the Patch 0/2 to avoid editing all
+the .patch files.
+
+Thanks,
+Andi
 
