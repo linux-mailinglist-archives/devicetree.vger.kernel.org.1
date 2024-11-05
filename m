@@ -1,142 +1,94 @@
-Return-Path: <devicetree+bounces-119183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFBFA9BD468
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 19:18:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F6F89BD46D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 19:21:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DA562833FB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:18:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E4FA1C21830
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:21:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4111E7647;
-	Tue,  5 Nov 2024 18:18:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80A3B1E765A;
+	Tue,  5 Nov 2024 18:21:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W8R4Fc6w"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="EatBd6Ny"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14D5C1E571A;
-	Tue,  5 Nov 2024 18:18:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E66013D51E;
+	Tue,  5 Nov 2024 18:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730830717; cv=none; b=TtcxtW3dpIxmEHdxxeXkbzKUM3dWTlIUz6RMjdoLC2FcqhVuxs4yavvJ3HB/9nwiNXElpprH5nOg1fOpm5JhmgJS6ASXM4ke8TbRF7hr94LTGBZYwpHe8kS1a4hWT9RKeLoP2zJp1YGjSQ5oJzSyjgCJnXGZy5+OkhbROwQvMf4=
+	t=1730830873; cv=none; b=OU8ZYDxLhinmV0TU4/ybiECQgUAOIC0tSyospdMZB8l7qtU4GLRMUp/MzKr83F+uaxla9yCxXJFRqeDMte7f5/n6yqRACoBDOoA+O4tN5sdPOE+ACLpQG60Yjffm2JY3esVBVq9AzYF9/dr4VWENxHmBu5apJ9oEoHBQvpwG230=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730830717; c=relaxed/simple;
-	bh=nBIG5rWdpNBhBcj6jUFiMB071F5saYr4spyqmz/+t7I=;
+	s=arc-20240116; t=1730830873; c=relaxed/simple;
+	bh=PkRypvk37TfUhZojPbI0nNHyosApfuumWE+3MNe36Rw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gy8uWAEmefurlv7kWFCr+7uVyuWMQEIZZCQQh5AEJV0HMby0V0ZHwS1KdVlRI8xlL/LtAOOXgjXXmVgSFVLTVIaDYtR/V/IGitVEUY5Z7f4B7yf9Cydbd5aWW2ZGaxPp3CV/lT5ElERFa+9jWrrTZOl0pe/oc1wH63bQtOFPw1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W8R4Fc6w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED7D3C4CED1;
-	Tue,  5 Nov 2024 18:18:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730830716;
-	bh=nBIG5rWdpNBhBcj6jUFiMB071F5saYr4spyqmz/+t7I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W8R4Fc6wrUoJl+L+VYYKNNXlamPbGW3zwimqrRlgqwJV+A6X4bKWg1FNjRuVhEC9v
-	 rp6yTYcn82cCRnEWh95nI/euctDfBC4ont01ctK5TF8okct7C91BdWMWjqWEKHAzvH
-	 acmr4O4bj8WDA4zRhKnCvFYUW8D1huN38A2id/eN1cqiVp40AO1eaM2ZobyISQSPDV
-	 UYWeL8Le751AlpLKYSmncEEqqp9OSA3HajE0xHcOvkQYxfu6TPZDjwmK47ufaAbVay
-	 37mCD51Xa4dsYLygr+vUxGHSAhcFm7LzgGTnacx6Y5G0wAbJZOX5x1iAY99HPmg7HJ
-	 wqfcAdG2Kracg==
-Date: Tue, 5 Nov 2024 18:18:32 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-hwmon@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Jean Delvare <jdelvare@suse.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=HM4zIks8GAGp77mpW3Xl80Zzouz5kKEtlyvxwq+hCfQozop6j4nvzZXUesy5V4YsmJtNLrXq4eKWH2I1OzmqoZEUkOcg04rCCzdI9o8J5HTB31vDvnoRG4C7AMPkhJ9xBl4fXUbaVqrldPClfnZGfMTnKaohIBaSnvWKx4LG60I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=EatBd6Ny; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=QxVnYUMdQ9CRpzvJqrj2mvfqMm8FPqPdD/GeqmxgDOY=; b=EatBd6NyxsUO3/2V4PVTkblfG9
+	67yXp7Y2dUgg0df5VUb5K7Iad9ASBFSu2LATosEa7QEoGO/BfuFUaGX2csK7qeoT/f5Tk4ftjTErU
+	SPczmtI66wnHeYWTXJkqQ09WbjjIWvEmV5LiTPPmuLE/xjiwAGxR2eqWyhR8Wj4mIxcE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1t8OAn-00CEoH-KG; Tue, 05 Nov 2024 19:21:01 +0100
+Date: Tue, 5 Nov 2024 19:21:01 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Arun Ramadoss <arun.ramadoss@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document start from
- dead stop properties
-Message-ID: <20241105-sensuous-lather-d9edfb9c0196@spud>
-References: <20241105135259.101126-1-marex@denx.de>
+	Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	UNGLinuxDriver@microchip.com,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH net-next v3 5/6] net: dsa: microchip: add support for
+ side MDIO interface in LAN937x
+Message-ID: <682c0723-f9f6-466c-a33b-b364379403a0@lunn.ch>
+References: <20241105090944.671379-1-o.rempel@pengutronix.de>
+ <20241105090944.671379-6-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qGy9xWgkR3+wDVgW"
-Content-Disposition: inline
-In-Reply-To: <20241105135259.101126-1-marex@denx.de>
-
-
---qGy9xWgkR3+wDVgW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241105090944.671379-6-o.rempel@pengutronix.de>
 
-On Tue, Nov 05, 2024 at 02:52:15PM +0100, Marek Vasut wrote:
-> Delta AFC0612DB-F00 fan has to be set to at least 30% PWM duty cycle
-> to spin up from a dead stop, and can be afterward throttled down to
-> lower PWM duty cycle. Introduce support for operating such fans which
-> need to start at higher PWM duty cycle first and can slow down next.
->=20
-> Document two new DT properties, "fan-dead-stop-start-percent" and
-> "fan-dead-stop-start-usec". The former describes the minimum percent
-> of fan RPM at which it will surely spin up from dead stop. This value
-> can be found in the fan datasheet and can be converted to PWM duty
-> cycle easily. The "fan-dead-stop-start-usec" describes the minimum
-> time in microseconds for which the fan has to be set to dead stop
-> start RPM for the fan to surely spin up.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Jean Delvare <jdelvare@suse.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-hwmon@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Docum=
-entation/devicetree/bindings/hwmon/pwm-fan.yaml
-> index 4e5abf7580cc6..f1042471b5176 100644
-> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> @@ -31,6 +31,17 @@ properties:
->        it must be self resetting edge interrupts.
->      maxItems: 1
-> =20
-> +  fan-dead-stop-start-percent:
-> +    description:
-> +      Minimum fan RPM in percent to start from dead stop.
-> +    minimum: 0
-> +    maximum: 100
-> +
-> +  fan-dead-stop-start-usec:
+On Tue, Nov 05, 2024 at 10:09:43AM +0100, Oleksij Rempel wrote:
+> Implement side MDIO channel support for LAN937x switches, providing an
+> alternative to SPI for PHY management alongside existing SPI-based
+> switch configuration. This is needed to reduce SPI load, as SPI can be
+> relatively expensive for small packets compared to MDIO support.
+> 
+> Also, implemented static mappings for PHY addresses for various LAN937x
+> models to support different internal PHY configurations. Since the PHY
+> address mappings are not equal to the port indexes, this patch also
+> provides PHY address calculation based on hardware strapping
+> configuration.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-s/usec/us/ and you get the type from property-units.yaml automagically.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-> +    description:
-> +      Time to wait in microseconds after start from dead stop.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
->    pulses-per-revolution:
->      description:
->        Define the number of pulses per fan revolution for each tachometer
-> --=20
-> 2.45.2
->=20
-
---qGy9xWgkR3+wDVgW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZypheAAKCRB4tDGHoIJi
-0n5mAP99NIET0o+gGftjjKd0IQJoj5WFHzLRefxK/4uFdNI/KwD/WsljTlf8AZqq
-vISz6iB7f+zuD3DPD1nT+DuAbGj38Ak=
-=iaNX
------END PGP SIGNATURE-----
-
---qGy9xWgkR3+wDVgW--
+    Andrew
 
