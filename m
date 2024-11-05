@@ -1,94 +1,126 @@
-Return-Path: <devicetree+bounces-119184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F6F89BD46D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 19:21:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE2819BD475
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 19:22:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E4FA1C21830
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:21:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 665E41F2308E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:22:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80A3B1E765A;
-	Tue,  5 Nov 2024 18:21:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26B7D1E7668;
+	Tue,  5 Nov 2024 18:22:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="EatBd6Ny"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LfHRrdt0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E66013D51E;
-	Tue,  5 Nov 2024 18:21:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA097149C50;
+	Tue,  5 Nov 2024 18:22:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730830873; cv=none; b=OU8ZYDxLhinmV0TU4/ybiECQgUAOIC0tSyospdMZB8l7qtU4GLRMUp/MzKr83F+uaxla9yCxXJFRqeDMte7f5/n6yqRACoBDOoA+O4tN5sdPOE+ACLpQG60Yjffm2JY3esVBVq9AzYF9/dr4VWENxHmBu5apJ9oEoHBQvpwG230=
+	t=1730830961; cv=none; b=Jy2utFiDwwLBulSD3qi8I0RLCzGzGIEfcEeocfIB3f8UxQ0MlrztAQiPSvHlwkVaL9zpNj4mKc6HmUv3su+GRUcIvrkC6UfPtlsXrv+o+z4p+7RR8kTP2AOgjXYbBVpWSMPDuOnO/fipgrFj68d5H78F+mWn5MeHNrHocy8M7zA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730830873; c=relaxed/simple;
-	bh=PkRypvk37TfUhZojPbI0nNHyosApfuumWE+3MNe36Rw=;
+	s=arc-20240116; t=1730830961; c=relaxed/simple;
+	bh=SMWUsT+0Le194DUQ8L7BmPc4+N+KYrC04gQ84CBgQbE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HM4zIks8GAGp77mpW3Xl80Zzouz5kKEtlyvxwq+hCfQozop6j4nvzZXUesy5V4YsmJtNLrXq4eKWH2I1OzmqoZEUkOcg04rCCzdI9o8J5HTB31vDvnoRG4C7AMPkhJ9xBl4fXUbaVqrldPClfnZGfMTnKaohIBaSnvWKx4LG60I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=EatBd6Ny; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=QxVnYUMdQ9CRpzvJqrj2mvfqMm8FPqPdD/GeqmxgDOY=; b=EatBd6NyxsUO3/2V4PVTkblfG9
-	67yXp7Y2dUgg0df5VUb5K7Iad9ASBFSu2LATosEa7QEoGO/BfuFUaGX2csK7qeoT/f5Tk4ftjTErU
-	SPczmtI66wnHeYWTXJkqQ09WbjjIWvEmV5LiTPPmuLE/xjiwAGxR2eqWyhR8Wj4mIxcE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t8OAn-00CEoH-KG; Tue, 05 Nov 2024 19:21:01 +0100
-Date: Tue, 5 Nov 2024 19:21:01 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Arun Ramadoss <arun.ramadoss@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=HaLcBobvwB4PJIxLHZVkI6WVEi5YbvImUv1vDYcHhqsLKKcJfq8skk+sLI+OdzE6htt9y23i4PXFZwdHK52+xGTBfx+W7iEkhQsSh2SmLZOlP2YMoFQeVEMbQR6wNkYN80Ev6+8gvTpSixWN4MGb1nip4LpP0dK0NqguJHmp+iA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LfHRrdt0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9F2CC4CECF;
+	Tue,  5 Nov 2024 18:22:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730830960;
+	bh=SMWUsT+0Le194DUQ8L7BmPc4+N+KYrC04gQ84CBgQbE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LfHRrdt0lANTIl30vpFxiQkahldVEgVbUzn3x8auOXYlzmhNOhjKD3oVWAVcsUbtA
+	 oWZTzccVPzEgWG4MBTEy5Xm4vrViC79+IySPoE6Ms5toS5Nl0QybYwYSH8txMwfN+Z
+	 zYCtIRvIzJD4APnQDOKKBZEsMR3slQJH3YoHdBKIOn1/387EWK8cU90i4ASFWeyGcy
+	 pfwcsr30cxHQV2wLVHkli8IyFMX8qkMG5PowNS6JTv3mVHUTqV70sc2apumD6X07p+
+	 YwM4+J6W29HOCi1fmaFGW9jDARQX/Aj/fd5IHW/eVToiKil+sdZ2p1RHySP3YI55Z3
+	 UUh6a1p9qmU8Q==
+Date: Tue, 5 Nov 2024 18:22:36 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Markus Burri <markus.burri@mt.com>
+Cc: linux-kernel@vger.kernel.org,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	UNGLinuxDriver@microchip.com,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH net-next v3 5/6] net: dsa: microchip: add support for
- side MDIO interface in LAN937x
-Message-ID: <682c0723-f9f6-466c-a33b-b364379403a0@lunn.ch>
-References: <20241105090944.671379-1-o.rempel@pengutronix.de>
- <20241105090944.671379-6-o.rempel@pengutronix.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Vasut <marek.vasut@gmail.com>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 4/7] dt-bindings: input: matrix_keypad - add missing
+ property
+Message-ID: <20241105-earpiece-swizzle-a3e36d50b9c6@spud>
+References: <20241031063004.69956-1-markus.burri@mt.com>
+ <20241105130322.213623-1-markus.burri@mt.com>
+ <20241105130322.213623-5-markus.burri@mt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="6mbsUAwJr5R/qiqr"
+Content-Disposition: inline
+In-Reply-To: <20241105130322.213623-5-markus.burri@mt.com>
+
+
+--6mbsUAwJr5R/qiqr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241105090944.671379-6-o.rempel@pengutronix.de>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 05, 2024 at 10:09:43AM +0100, Oleksij Rempel wrote:
-> Implement side MDIO channel support for LAN937x switches, providing an
-> alternative to SPI for PHY management alongside existing SPI-based
-> switch configuration. This is needed to reduce SPI load, as SPI can be
-> relatively expensive for small packets compared to MDIO support.
-> 
-> Also, implemented static mappings for PHY addresses for various LAN937x
-> models to support different internal PHY configurations. Since the PHY
-> address mappings are not equal to the port indexes, this patch also
-> provides PHY address calculation based on hardware strapping
-> configuration.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+On Tue, Nov 05, 2024 at 02:03:19PM +0100, Markus Burri wrote:
+> Add missing property 'gpio-activelow' to DT schema.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+What do you mean "missing property"? Why isn't it sufficient to mark the
+GPIOs as GPIO_ACTIVE_LOW in the various -gpios properties?
 
-    Andrew
+>=20
+> Signed-off-by: Markus Burri <markus.burri@mt.com>
+> ---
+>  .../devicetree/bindings/input/gpio-matrix-keypad.yaml        | 5 +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.y=
+aml b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
+> index 745652b..9ea66b3 100644
+> --- a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
+> +++ b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
+> @@ -51,6 +51,11 @@ properties:
+>        (Legacy property supported: "linux,wakeup")
+>      default: false
+> =20
+> +  gpio-activelow:
+> +    type: boolean
+> +    description: The GPIOs are low active.
+> +    default: false
+
+What you want is a flag, not a boolean here btw. Flags you can check for
+the presence of, booleans you cannot.
+
+> +
+>    debounce-delay-ms:
+>      description: Debounce interval in milliseconds.
+>      default: 0
+> --=20
+> 2.39.5
+>=20
+
+--6mbsUAwJr5R/qiqr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZypibAAKCRB4tDGHoIJi
+0iEvAQC9YM3sB8CCIUOITtIZFsLlNA4XUyle+/+dcigsLhQRyAEAu5xxsl1rHSpF
+0tCx7P/3n3R+eq2/U7T+JUfxaLuMLAA=
+=poOS
+-----END PGP SIGNATURE-----
+
+--6mbsUAwJr5R/qiqr--
 
