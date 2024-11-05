@@ -1,170 +1,95 @@
-Return-Path: <devicetree+bounces-119212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93BE49BD771
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 22:10:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B65D19BD77C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 22:18:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D9D9B2238B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 21:10:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C7971F2394A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 21:18:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7387C215C7B;
-	Tue,  5 Nov 2024 21:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B38C8212198;
+	Tue,  5 Nov 2024 21:18:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LOUf7KGU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ny9sCyO6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A0761D9A48;
-	Tue,  5 Nov 2024 21:10:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A7363D81;
+	Tue,  5 Nov 2024 21:18:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730841044; cv=none; b=NEWMzX8FV++HmwwBoB274xETNNhzutKrKwhpOn4mp3TbEcGST6RGokXVG9gOYLARDus4/WYhsqCRspRQoVpYNHaJ3PaI7kT0BdEFxxbrzg8GQeAy939JU6hs0IYc8vbJtoOM1GmXUT8qI9tXuHID4JxKEcLaEw/rNm6mTDkb7KI=
+	t=1730841529; cv=none; b=dvYa7KK1f2nxopGgDWPVI+ZQHNXcWymFNV1hiOLd+EIiOz9wo3dcL2TyHKtVzO4rWpfufdOzGYd99oCHovALkGn92aS5AQySmHW93kW+bVPnKSBQmtVFm9FisMbm+4TZjLq7PHirU/ZIRSCD9q7TBn2gsoESih5SEIyxAe8/U/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730841044; c=relaxed/simple;
-	bh=vIo0NaVqwTTucukEfETbcRMwHoSkKBJsMrYGDjW+3Lw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cmjTmWfV3VyXlji9X3+Z3U6lvoQ5nnihiOsFquJsHBgWfgfNurfCdqSycmbV2JUt0YDyNWJy05jgR7cUlCNtBcMWtomG11VIjXIPm14IxRAkbVyfJo+mgAzEs6dEm4InvY7+ocmjrejLZzj8bUhNc63id/h2KlhnM6Wd+dR06vE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LOUf7KGU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6460C4CECF;
-	Tue,  5 Nov 2024 21:10:42 +0000 (UTC)
+	s=arc-20240116; t=1730841529; c=relaxed/simple;
+	bh=ITqqGq6mWtWfAtqIp8o0iLGvCeORRBMChO8HBBT5CJQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EDxF6xgESv7vZL/JQbfdmHMqDRDnBzO+w7nrDbTmhr0UmrFtlZNkZQK3XErvkPAWLHtN+OjiYl92bZn87j2Jrur7kq3l3tSowCHsPeppkT0RZX7JkTgq6TV3NfL0Bmxke9STVVPlYOv+UZZDtXBcttYodqWZpAdBluFhBgsv8a4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ny9sCyO6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08673C4CECF;
+	Tue,  5 Nov 2024 21:18:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730841043;
-	bh=vIo0NaVqwTTucukEfETbcRMwHoSkKBJsMrYGDjW+3Lw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LOUf7KGU/6wES0Z3zitERi2w3oNCyirg4QhAg+3zCjZIhXHrz8bab+q3YrBotBma8
-	 H+rwnMDlhTMhdzYfb7mUbAuGvI50ZpdGJI5bwiGtgvTxJiEW9apGiMVfdcfzi6iSPL
-	 ABNVp/GPiqQYY2lIeIUgOxjB3UgZPuDzZ4HNH//UcyiU9Fu3+o2aGXlt5p/QfVdVbm
-	 GTqDFaDF1gdmS2iDR15QOQLsFyD3QY4BkdcQ/r8lZp20qnTRJ06bM6P3v0Ecyk7kDM
-	 2k3rTO7gVzZs8NHVDVbcos+TIOwNnwy3L+fVisqxPiB5gGjq5LebluDt9M6LkhWmKP
-	 jjreq6p3eD9iQ==
-Date: Tue, 5 Nov 2024 22:10:39 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	lee@kernel.org, sre@kernel.org, tsbogend@alpha.franken.de, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH v8 7/7] i2c: Add driver for the RTL9300 I2C controller
-Message-ID: <x2ptxjqmcui6uh6qhjur5bymb6cjgikekt7bo2bnyoqbble4kh@zanxmiq3sau6>
-References: <20241031200350.274945-1-chris.packham@alliedtelesis.co.nz>
- <20241031200350.274945-8-chris.packham@alliedtelesis.co.nz>
+	s=k20201202; t=1730841529;
+	bh=ITqqGq6mWtWfAtqIp8o0iLGvCeORRBMChO8HBBT5CJQ=;
+	h=From:Subject:Date:To:Cc:From;
+	b=Ny9sCyO6mFQ3XL9ao31MrZF9ooikmFG6s6XV/aBBCvYDQrH1D1qzfCsKcSn/xTEJ7
+	 QwxvKM07WDP0NvT3wVLx/5m4JQzB4V+0UoijRdoI4+6rBeR5v3Gj6gqlVxLU73r9hu
+	 S2FHh3GZ62ZoeNFbl5OoJBWTEZniFu50rGrFpnt4wx2Y6SFml9ReW5N6BfwajOsLAT
+	 pAy7sKp9am8qMsDijiHE+Sre7aj92gnIm2M9SyLKkUCzQD/RzGhunIois98/bWr42b
+	 Md09g0x8T1UIm09ya3ZGPSNxxVx6XtpyxlUb1DkfMUeXJwtKgBKfaXlx/2pC3KSE5n
+	 AgRtFFbv2v6JA==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Subject: [PATCH RESEND v2 0/2] arm64: dts: PL022 clock fixes
+Date: Tue, 05 Nov 2024 15:18:38 -0600
+Message-Id: <20241105-dts-spi-fixes-v2-0-623501e5d1ca@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241031200350.274945-8-chris.packham@alliedtelesis.co.nz>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAK6LKmcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
+ vPSU3UzU4B8JSMDIxNDQwNT3ZSSYt3igkzdtMyK1GJdy2Qjk1RzczPjNOMkJaCegqJUsARQS7R
+ SkGuwq5+LUmxtLQDbJBfPZwAAAA==
+To: soc@kernel.org, Kuldeep Singh <singh.kuldeep87k@gmail.com>, 
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>, 
+ Tom Lendacky <thomas.lendacky@amd.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chanho Min <chanho.min@lge.com>, 
+ Vladimir Zapolskiy <vz@mleia.com>, 
+ Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.15-dev
 
-Hi Chris,
+Arnd, this series[1] from 2.5 years ago was never applied. There was 
+some discussion on the lpc32xx patch, but nothing on the first 2 
+patches. So I'm resending the first 2. Please apply directly.
 
-On Fri, Nov 01, 2024 at 09:03:50AM +1300, Chris Packham wrote:
-> Add support for the I2C controller on the RTL9300 SoC. There are two I2C
-> controllers in the RTL9300 that are part of the Ethernet switch register
-> block. Each of these controllers owns a SCL pin (GPIO8 for the fiorst
-> I2C controller, GPIO17 for the second). There are 8 possible SDA pins
-> (GPIO9-16) that can be assigned to either I2C controller. This
-> relationship is represented in the device tree with a child node for
-> each SDA line in use.
-> 
-> This is based on the openwrt implementation[1] but has been
-> significantly modified
-> 
-> [1] - https://git.openwrt.org/?p=openwrt/openwrt.git;a=blob;f=target/linux/realtek/files-5.15/drivers/i2c/busses/i2c-rtl9300.c
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Rob
 
-Looks good. As a self reminder:
+[1] https://lore.kernel.org/all/20220311093800.18778-1-singh.kuldeep87k@gmail.com/
 
-Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Kuldeep Singh (2):
+      arm64: dts: seattle: Update spi clock properties
+      arm64: dts: lg131x: Update spi clock properties
 
-Some comments below, though.
+ arch/arm64/boot/dts/amd/amd-seattle-soc.dtsi | 8 ++++----
+ arch/arm64/boot/dts/lg/lg1312.dtsi           | 8 ++++----
+ arch/arm64/boot/dts/lg/lg1313.dtsi           | 8 ++++----
+ 3 files changed, 12 insertions(+), 12 deletions(-)
+---
+base-commit: 6f2ca0f00f319c694ad5bb494b64745a43b40756
+change-id: 20241105-dts-spi-fixes-9c24e7763f3b
 
-...
+Best regards,
+-- 
+Rob Herring (Arm) <robh@kernel.org>
 
-> +#define RTL9300_I2C_MST_CTRL1			0x0
-> +#define  RTL9300_I2C_MST_CTRL1_MEM_ADDR_OFS	8
-> +#define  RTL9300_I2C_MST_CTRL1_MEM_ADDR_MASK	GENMASK(31, 8)
-> +#define  RTL9300_I2C_MST_CTRL1_SDA_OUT_SEL_OFS	4
-> +#define  RTL9300_I2C_MST_CTRL1_SDA_OUT_SEL_MASK	GENMASK(6, 4)
-> +#define  RTL9300_I2C_MST_CTRL1_GPIO_SCL_SEL	BIT(3)
-> +#define  RTL9300_I2C_MST_CTRL1_RWOP		BIT(2)
-> +#define  RTL9300_I2C_MST_CTRL1_I2C_FAIL		BIT(1)
-> +#define  RTL9300_I2C_MST_CTRL1_I2C_TRIG		BIT(0)
-> +#define RTL9300_I2C_MST_CTRL2			0x4
-> +#define  RTL9300_I2C_MST_CTRL2_RD_MODE		BIT(15)
-> +#define  RTL9300_I2C_MST_CTRL2_DEV_ADDR_OFS	8
-> +#define  RTL9300_I2C_MST_CTRL2_DEV_ADDR_MASK	GENMASK(14, 8)
-> +#define  RTL9300_I2C_MST_CTRL2_DATA_WIDTH_OFS	4
-> +#define  RTL9300_I2C_MST_CTRL2_DATA_WIDTH_MASK	GENMASK(7, 4)
-> +#define  RTL9300_I2C_MST_CTRL2_MEM_ADDR_WIDTH_OFS	2
-> +#define  RTL9300_I2C_MST_CTRL2_MEM_ADDR_WIDTH_MASK	GENMASK(3, 2)
-> +#define  RTL9300_I2C_MST_CTRL2_SCL_FREQ_OFS	0
-> +#define  RTL9300_I2C_MST_CTRL2_SCL_FREQ_MASK	GENMASK(1, 0)
-> +#define RTL9300_I2C_MST_DATA_WORD0		0x8
-> +#define RTL9300_I2C_MST_DATA_WORD1		0xc
-> +#define RTL9300_I2C_MST_DATA_WORD2		0x10
-> +#define RTL9300_I2C_MST_DATA_WORD3		0x14
-
-Not everything here is perfectly aligned, but I'm not going to
-be too picky.
-
-...
-
-> +static int rtl9300_i2c_execute_xfer(struct rtl9300_i2c *i2c, char read_write,
-> +				int size, union i2c_smbus_data *data, int len)
-
-You could align this a little better.
-
-> +{
-> +	u32 val, mask;
-> +	int ret;
-
-...
-
-> +static int rtl9300_i2c_smbus_xfer(struct i2c_adapter *adap, u16 addr, unsigned short flags,
-> +				  char read_write, u8 command, int size,
-> +				  union i2c_smbus_data *data)
-> +{
-> +	struct rtl9300_i2c_chan *chan = i2c_get_adapdata(adap);
-> +	struct rtl9300_i2c *i2c = chan->i2c;
-> +	int len = 0, ret;
-
-...
-
-> +	ret = rtl9300_i2c_execute_xfer(i2c, read_write, size, data, len);
-
-do we want to bail out if len is '0'?
-
-...
-
-> +static int rtl9300_i2c_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct rtl9300_i2c_chan *chan;
-> +	struct rtl9300_i2c *i2c;
-> +	struct i2c_adapter *adap;
-
-"chan" and "adap" can be declared inside
-the device_for_each_child_node()
-
-> +	u32 clock_freq, sda_pin;
-> +	int ret, i = 0;
-> +	struct fwnode_handle *child;
-
-...
-
-> +	device_for_each_child_node(dev, child) {
-> +		chan = &i2c->chans[i];
-> +		adap = &chan->adap;
-> +
-
-Thanks,
-Andi
 
