@@ -1,183 +1,174 @@
-Return-Path: <devicetree+bounces-119226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C0FB9BD9BA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 00:30:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7094B9BD9C4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 00:34:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F7541C209B4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 23:30:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEC88B2205C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 23:34:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F021E47B6;
-	Tue,  5 Nov 2024 23:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23474216A01;
+	Tue,  5 Nov 2024 23:34:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="onB7/sx4"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="LSI/exDI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81E061D1F79
-	for <devicetree@vger.kernel.org>; Tue,  5 Nov 2024 23:30:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 111D41D31A9;
+	Tue,  5 Nov 2024 23:34:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730849448; cv=none; b=PUwopmQOWhSxBCntje0CZeYuySllUQALgP1SgO+9kZYa+wC1vmcRTg1i5s+aPhiLSqvjUW4wGAMJpkkWKn9fE3fpBcm0il32Yy70mE5yYM5jW41tzzIee0p838wZmUawWYPPACu+Yk7Db69A6HhVue71xFg49iyHcIByXgaH4rs=
+	t=1730849690; cv=none; b=usAg5NlKPFpm7jQXaUR3PS3Gkn0MHiL39AdJ2igOMLstInwHdWkbwVqMnaCZ1X7p47JpERF7vodQ2rMKEn3s/hpWYvJhQSHnhRcTusEqRK+ZPLExbnu3plBNL6/nCYu3kK9r00LQ9+brAp5xfUj+GJMOdBiTQ00hNPNTKkMi7J8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730849448; c=relaxed/simple;
-	bh=b8lYAgrI06CTlBt9+tYNq5UWMiDMZepdu5OeizM6fn8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Gmz//FtHWW9B/0dY1hpuDKcZBQaZYLLoPDpV4z3F38RwQPKmOPAYZW2vAHejt0UNOC0JuBUYJ9x1mKe58sGyjhDVQWu9tVQXUdT93u2O/pp8htl2hhJMPehpVW7ZOdWur610FaZiiQ3MZaUWNCLZBPp2pktLSIWcL9V0bzo/3Ic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=onB7/sx4; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 4330888EBB;
-	Wed,  6 Nov 2024 00:30:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1730849444;
-	bh=GL0GAPR6jFPg/XAdj5ZTtn6Z4oNSGAhsnvnHgYMD92k=;
-	h=From:To:Cc:Subject:Date:From;
-	b=onB7/sx4/0zM8uccNeK5wlWG6kul7jeNj8h6l8EJPVXIU2aKXw0/FtBPaXOc/zaxW
-	 DdK2RD2y94KJckIJ/X3DXO2vVUK7B358aT6XyA8rrwsFzw1+faKVvjZ3cRagapzEMu
-	 ymKgp7Ls5sn4jtsvybw3rxSkFiWHOkm1A1M81HcwmRHDs3vYLxLP1Nb7CfclKSYmod
-	 asg9mm7fIh6JABMWpFxFykXIBqAUreUfkM/f8o+R3l2RP7BhEEmV9SXgYbdfobBlmU
-	 g5CCt6e3ONlUtqdpT9/Pncy1qhXyNzh1WnYGvKEfSGCdlE5+gs6E6ikpbtSNeOt3Qr
-	 oWWek9ufzpIDA==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	kernel@dh-electronics.com,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] ARM: dts: stm32: Deduplicate serial aliases and chosen node for STM32MP15xx DHCOM SoM
-Date: Wed,  6 Nov 2024 00:29:44 +0100
-Message-ID: <20241105233026.161463-1-marex@denx.de>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1730849690; c=relaxed/simple;
+	bh=SU8DwkNDTzeQ2NIK+yrgU5JF0OSH+sCfFE5Eac/5L1o=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=KbQAcLyrhZMSQqThh7VNlEWgo95fxrn1y3v87JKhvSIipzSqK/I+ggCDmHfWIXnFbRHXb/v+1KcOeteHaSjViz/zwIQLMQCCi38aqNYJtHyL+sS/pOPmfIceEaV25y7bDAknsl/jRx0T29nmoogPPBrJMyg0E9TtYCkb0p1jSKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=LSI/exDI; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1730849685;
+	bh=SU8DwkNDTzeQ2NIK+yrgU5JF0OSH+sCfFE5Eac/5L1o=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=LSI/exDIwaTfqG20PDM3xVYWO4hEIO011twPHfviMD7kYq8tmjuruuV5scTmfWXUo
+	 PLpzOR4VeZR6BazKffzpoBqfihezqQ5rqTkrB5TwxQq5xW8dU44xlRq1gb7WEDDwPM
+	 ob7xrZzfkoOG8hhZYKEBXmVPV777crqx4z59yXxBLxBUzkz35SyLmL54mlZB5eslnW
+	 Gks3AYlypU74C0L1j+bxnKGXNAbSonX93xWZn9IPSKCZGdGrOyrU3Gwz4vlwh0zuKn
+	 YAb/LJxfkEKUNb4yW2zfLW65a09HK7nwFOPOYZWOUADL+LjdoD/3oYHELgEPIq9pl7
+	 cdHCmd46bCKBg==
+Received: from [192.168.68.112] (ppp118-210-162-114.adl-adc-lon-bras34.tpg.internode.on.net [118.210.162.114])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 91CD16B1F7;
+	Wed,  6 Nov 2024 07:34:44 +0800 (AWST)
+Message-ID: <ebdc6c112457db0ec73b43a404e240052dd3c7e4.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: add IBM SBP1 board
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Conor Dooley <conor@kernel.org>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, Naresh Solanki
+ <naresh.solanki@9elements.com>, jdelvare@suse.com, Conor Dooley
+ <conor.dooley@microchip.com>, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ krzk+dt@kernel.org,  sylv@sylv.io, linux-arm-kernel@lists.infradead.org,
+ linux-hwmon@vger.kernel.org,  linux@roeck-us.net, Joel Stanley
+ <joel@jms.id.au>, conor+dt@kernel.org
+Date: Wed, 06 Nov 2024 10:04:44 +1030
+In-Reply-To: <20241105-regroup-busily-adbb9b342abc@spud>
+References: <20241104092220.2268805-1-naresh.solanki@9elements.com>
+	 <173072771091.3690717.11563964377469449295.robh@kernel.org>
+	 <20241104-saturate-device-d020a0d7321f@spud>
+	 <f468a5c0a0112cee35815fb6c7b7f9933934adc2.camel@codeconstruct.com.au>
+	 <20241105-regroup-busily-adbb9b342abc@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-Deduplicate /aliases { serialN = ... } and /chosen node into
-stm32mp15xx-dhcom-som.dtsi , since the content is identical
-on all carrier boards using the STM32MP15xx DHCOM SoM. No
-functional change.
+On Tue, 2024-11-05 at 18:53 +0000, Conor Dooley wrote:
+> On Tue, Nov 05, 2024 at 10:39:34AM +1030, Andrew Jeffery wrote:
+> > Hi Conor,
+> >=20
+> > On Mon, 2024-11-04 at 18:49 +0000, Conor Dooley wrote:
+> > > On Mon, Nov 04, 2024 at 08:39:21AM -0600, Rob Herring (Arm)
+> > > wrote:
+> > > >=20
+> > > > On Mon, 04 Nov 2024 14:52:14 +0530, Naresh Solanki wrote:
+> > > > > Document the new compatibles used on IBM SBP1.
+> > > > >=20
+> > > > > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> > > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > > ---
+> > > > > Changes in V4:
+> > > > > - Retain Acked-by from v2.
+> > > > > - Fix alphabetic order
+> > > > > ---
+> > > > > =C2=A0Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | =
+1
+> > > > > +
+> > > > > =C2=A01 file changed, 1 insertion(+)
+> > > > >=20
+> > > >=20
+> > > >=20
+> > > > My bot found new DTB warnings on the .dts files added or
+> > > > changed in
+> > > > this
+> > > > series.
+> > > >=20
+> > > > Some warnings may be from an existing SoC .dtsi. Or perhaps the
+> > > > warnings
+> > > > are fixed by another series. Ultimately, it is up to the
+> > > > platform
+> > > > maintainer whether these warnings are acceptable or not. No
+> > > > need to
+> > > > reply
+> > > > unless the platform maintainer has comments.
+> > > >=20
+> > > > If you already ran DT checks and didn't see these error(s),
+> > > > then
+> > > > make sure dt-schema is up to date:
+> > > >=20
+> > > > =C2=A0 pip3 install dtschema --upgrade
+> > > >=20
+> > > >=20
+> > > > New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ibm-
+> > > > sbp1.dtb' for
+> > > > 20241104092220.2268805-1-naresh.solanki@9elements.com:
+> > >=20
+> > > Really? This many warnings on a v6?
+> > >=20
+> >=20
+> > I understand that it's surprising and disappointing, however these
+> > warnings are from the Aspeed DTSIs and not directly from the
+> > proposed
+> > DTS. Many are an artefact of history, and I'm (slowly) working to
+> > clean
+> > them up. Recently I haven't had any time to dedicate to that
+> > effort,
+> > and as I'm somewhat responsible for the state of things, I'm not
+> > prepared to block other people's patches and push my own
+> > responsibilities onto them.
+>=20
+> Ah, you see that's where I would say "no new warnings" and get the
+> submitter to fix them ;) And were I the submitter, I'd want to
+> resolve
+> the warnings rather than run into issues down the road when things
+> get
+> "fixed"/documented.But I guess that's why I have the schmucks task of
+> reviewing bindings innit..
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
----
- arch/arm/boot/dts/st/stm32mp15xx-dhcom-drc02.dtsi   | 12 ------------
- arch/arm/boot/dts/st/stm32mp15xx-dhcom-pdk2.dtsi    | 10 ----------
- arch/arm/boot/dts/st/stm32mp15xx-dhcom-picoitx.dtsi | 10 ----------
- arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi     |  7 +++++++
- 4 files changed, 7 insertions(+), 32 deletions(-)
+I have to manage that in tension with my concern of people simply not
+upstreaming their devicetrees in response. I'd prefer to have them
+merged upstream than to encourage more forks in this corner of the
+world. If people would like to take the initiative and do the binding
+conversions, corrections and devicetree fixes themselves, I'll
+definitely review them.
 
-diff --git a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-drc02.dtsi b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-drc02.dtsi
-index bb4f8a0b937f3..abe2dfe706364 100644
---- a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-drc02.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-drc02.dtsi
-@@ -6,18 +6,6 @@
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/pwm/pwm.h>
- 
--/ {
--	aliases {
--		serial0 = &uart4;
--		serial1 = &usart3;
--		serial2 = &uart8;
--	};
--
--	chosen {
--		stdout-path = "serial0:115200n8";
--	};
--};
--
- &adc {
- 	status = "disabled";
- };
-diff --git a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-pdk2.dtsi b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-pdk2.dtsi
-index 171d7c7658fa8..0fb4e55843b9d 100644
---- a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-pdk2.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-pdk2.dtsi
-@@ -7,16 +7,6 @@
- #include <dt-bindings/pwm/pwm.h>
- 
- / {
--	aliases {
--		serial0 = &uart4;
--		serial1 = &usart3;
--		serial2 = &uart8;
--	};
--
--	chosen {
--		stdout-path = "serial0:115200n8";
--	};
--
- 	clk_ext_audio_codec: clock-codec {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
-diff --git a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-picoitx.dtsi b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-picoitx.dtsi
-index b5bc53accd6b2..01c693cc03446 100644
---- a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-picoitx.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-picoitx.dtsi
-@@ -7,16 +7,6 @@
- #include <dt-bindings/pwm/pwm.h>
- 
- / {
--	aliases {
--		serial0 = &uart4;
--		serial1 = &usart3;
--		serial2 = &uart8;
--	};
--
--	chosen {
--		stdout-path = "serial0:115200n8";
--	};
--
- 	led {
- 		compatible = "gpio-leds";
- 
-diff --git a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi
-index 74a11ccc5333f..086d3a60ccce2 100644
---- a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi
-@@ -14,6 +14,13 @@ aliases {
- 		ethernet1 = &ksz8851;
- 		rtc0 = &hwrtc;
- 		rtc1 = &rtc;
-+		serial0 = &uart4;
-+		serial1 = &usart3;
-+		serial2 = &uart8;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
- 	};
- 
- 	memory@c0000000 {
--- 
-2.45.2
+>=20
+> > I've been replying to those proposing new Aspeed-based devicetrees
+> > to
+> > separate the warnings they're introducing from the warnings that
+> > already exist, and requiring them to fix the issues they're
+> > responsible
+> > for. I hope that I'll have time to continue to improve the
+> > situation,
+> > as this is obviously a tedious task for me too.=20
+>=20
+> Well, it is your platform and if you're confident that these nodes
+> are
+> correct despite the warnings, who am I to stop you!
 
+I think where things stand currently is a bit fuzzier than anyone would
+like. The nodes are not incorrect to the point of being non-functional
+with respect to their intent, but clearly they're not so correct that
+they do not have room for improvement.
+
+Andrew
 
