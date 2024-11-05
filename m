@@ -1,60 +1,82 @@
-Return-Path: <devicetree+bounces-119106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA6199BCFFE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 16:02:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 555719BD04D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 16:26:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E1D02835C4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 15:02:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0041A1F23485
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 15:26:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314D21D9A79;
-	Tue,  5 Nov 2024 15:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 214F31D90B4;
+	Tue,  5 Nov 2024 15:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EnKCQfcj"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UwPU/yd8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F35451D9A6E;
-	Tue,  5 Nov 2024 15:02:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E5213BB21;
+	Tue,  5 Nov 2024 15:26:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730818967; cv=none; b=FyjrSIkbUcuEQNNDBjjuwws8PGeJpIMGw+Vpxlzw6dO303BtDBPAGigH+su/1Jrhorvt2eAJWZW7BS50jACjUnufKMhgNvepznZKzt/0vcfaiKLXiGsQ6Y6olDABk6Y6PD0c4de75+EghQfnZBgimfgvAeg4UfAGZx3l1fwBkR8=
+	t=1730820394; cv=none; b=ZWBHFf/ZUr7PC8xM0nvT6QQSwzJPX448r4cOQ7fccWM2izHqA9ko8lUxVx4jFoUqP255rFSvyGAy+VqoeMsS0Ol6y0c0UAD8L3Pf93ThtbZ8XQNIq+P5Q55IcSBIBierdhrD2/x5QaeJr35EeclVtu/NzSkqJ+Rk6e4dDSUL1kA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730818967; c=relaxed/simple;
-	bh=F4WltQA5cg1waDpTGeUJMLZeM55/Ra2Tw+9xSUZNrPM=;
+	s=arc-20240116; t=1730820394; c=relaxed/simple;
+	bh=RdqWiBixcG5d7PpyjfQjAg0G+vZ0+ZXGYgkm0W563Cc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Oga+wL/TZUxnjwsN48BzHxveqmp0InOGh8WGuoGP+G1jgukidFkwp5NEaLyIYKR9ubNCfIk0BP3J/MmlSyPpMYbijjLdz0Zs6Yk/cHv63vlvjLZUJng2w9lazDuUukVi1YXRIAqSntBpWsKA0llXuQgRSU9M+BviV8J4mJKgJaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EnKCQfcj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4F37C4CECF;
-	Tue,  5 Nov 2024 15:02:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730818966;
-	bh=F4WltQA5cg1waDpTGeUJMLZeM55/Ra2Tw+9xSUZNrPM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EnKCQfcjgccBD0sDZsefLbxoJ6gIKqphICvj9eBlJCI40IImHiiuETIG4v+5lI39n
-	 UFvNzzzq5UHQ36Ch287qG3mseAlo4zKR8clCaBZbRXOC7xMA53KWoro8XoXqT9Y5IJ
-	 c99VsROCKwcUtr05772b3TYBpEvr3moWV6e9wInKKrnThRuLLa0U5DJFKfVcJltiva
-	 HFyEQ9wX4EaxKFrXCqj2TS+3pQju9clS4WdZ5MTdZgcsU66byoRIdpE8J67GDxt6yK
-	 8AuylbZ2Eep6jSfmCQMnPKfcmctQAdnWfpCVs77n6U8JbWIxcSddPVU9qxQkMza5BW
-	 23o7+FZF2ojCg==
-Date: Tue, 5 Nov 2024 16:02:43 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Christophe Lizzi <clizzi@redhat.com>, 
-	Alberto Ruiz <aruizrui@redhat.com>, Enric Balletbo <eballetb@redhat.com>
-Subject: Re: [PATCH 0/2] add I2C support for S32G2/S32G3 SoCs
-Message-ID: <b2nsny2ipcd37ke7jzbjptal2b63lcss5gs2galrdfqdu4u7y6@v3swrb3vzs74>
-References: <20241104100044.3634076-1-ciprianmarian.costea@oss.nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=l4o/VOWi03HBxnm4rexm6oRy+2szUNkPm+qGnd4+A1Feasd2v9+vwG4MvV6/8tIYHXQQ1Z0si34N7uRLllG2AjsX7Oy6TIq0+GK2AtW4IokFKfptmuC/uU61EP14axIsXGzSQw1erZ062qtxPqmZKcc3JWF4aiFbuTGpEvADsKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UwPU/yd8; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1730820392; x=1762356392;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RdqWiBixcG5d7PpyjfQjAg0G+vZ0+ZXGYgkm0W563Cc=;
+  b=UwPU/yd8YBshtHnRAK4D3Rqca+fk9NEeB8uJ7tlENrlSq8IzHVnhA7ep
+   zunOoAtaP0fSPGIk3HmFG/i4gexOLkdkHnyM1OC+qOPXt+XuRFwhIUHMA
+   xkk8IJT5oNx6THVienLwLpO/4R+ScoqPGLftQeFZJ/R92f2A8loX88w+j
+   U0E4spmHdn0RfqXipE978wbsfB/dampSgI3VKTLAf/1v9++ZAqt6zYqse
+   LDK+zaS8YOT0kOmLjqRrxzHLaaMO98G29ZCmbcQ43C0lL7+DF67rc37tb
+   NDiy8pG6U4Qhu8xPKQrvG60UsxkM3D8mytAAqHIw6P0YEeNVqoxj0vUp2
+   A==;
+X-CSE-ConnectionGUID: SAp5CGy5Rcqz78spFS/tLg==
+X-CSE-MsgGUID: fadzxNO+S/yQ9TwVCxNsFg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="30452502"
+X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; 
+   d="scan'208";a="30452502"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2024 07:26:32 -0800
+X-CSE-ConnectionGUID: iOMmOyqhQCqCUZkKEUBrww==
+X-CSE-MsgGUID: 6sAoZFfFQ3menxNbEtw7Jw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; 
+   d="scan'208";a="87988913"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2024 07:26:30 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 1F99A11F9C3;
+	Tue,  5 Nov 2024 17:26:27 +0200 (EET)
+Date: Tue, 5 Nov 2024 15:26:27 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Jason Chen <jason.z.chen@intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Sergey Senozhatsky <senozhatsky@chromium.org>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 2/4] media: dt-bindings: Add OmniVision OV08X40
+Message-ID: <Zyo5I_vMwisIgNJg@kekkonen.localdomain>
+References: <20241010-b4-master-24-11-25-ov08x40-v6-0-cf966e34e685@linaro.org>
+ <20241010-b4-master-24-11-25-ov08x40-v6-2-cf966e34e685@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,17 +85,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241104100044.3634076-1-ciprianmarian.costea@oss.nxp.com>
+In-Reply-To: <20241010-b4-master-24-11-25-ov08x40-v6-2-cf966e34e685@linaro.org>
 
-Hi Ciprian,
+Hi Bryan,
 
-> Ciprian Marian Costea (2):
->   dt-bindings: i2c: imx: add SoC specific compatible strings for S32G
->   i2c: imx: add support for S32G2/S32G3 SoCs
+On Thu, Oct 10, 2024 at 01:33:18PM +0100, Bryan O'Donoghue wrote:
+> Add bindings for the already upstream OV08X40 to enable usage of this
+> sensor on DTS based systems.
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../bindings/media/i2c/ovti,ov08x40.yaml           | 120 +++++++++++++++++++++
+>  1 file changed, 120 insertions(+)
 
-with the change proposed by Frank in patch 2, I merged this
-series in i2c/i2c-host.
+I added a trivial MAINTAINERS entry to this patch while applying it:
 
-Thanks,
-Andi
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 99bab0c359c0..10249501ee62 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -17064,6 +17064,7 @@ L:      linux-media@vger.kernel.org
+ S:     Maintained
+ T:     git git://linuxtv.org/media_tree.git
+ F:     drivers/media/i2c/ov08x40.c
++F:     Documentation/devicetree/bindings/media/i2c/ovti,ov08x40.yaml
+ 
+ OMNIVISION OV13858 SENSOR DRIVER
+ M:     Sakari Ailus <sakari.ailus@linux.intel.com>
+
+-- 
+Sakari Ailus
 
