@@ -1,175 +1,158 @@
-Return-Path: <devicetree+bounces-119186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AEBF9BD488
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 19:28:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0369BD4B6
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 19:37:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00CAD283CE9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:28:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91D341F23359
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8226B1E7C14;
-	Tue,  5 Nov 2024 18:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D8BF1E8856;
+	Tue,  5 Nov 2024 18:36:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KP6DyBP6"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="RSDqWUE6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B33813D52E;
-	Tue,  5 Nov 2024 18:28:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF10E1E8850;
+	Tue,  5 Nov 2024 18:36:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730831281; cv=none; b=B6Nhx+BNzVgGgKDRAIuJSlhn+E4DkuRcHvmQn6IY2R3VLbeDFnQ86YjB9uqBtJ/joXf06R0/6LAJWt+72OtTkgjAV3uRwrgs/c5gv3HofuHBCrjcKv15qo9/HyBhHQyDSt0QlAsSX8t3iwmNemJ0MX2AO7U5uX4ymZqF7iq6H+k=
+	t=1730831807; cv=none; b=k0MV+jL8rJ3EciahdEFtiCtXJz5LcQAk18L8CihHwiDOKULZ2nE1ANT9hHoWNxip7MmoEtoMvh5GvVrK+uG6xvygD4wHrzkRpUh7aVpRoGD+L+gJ8NTsmVezz7wtv4NgOPC1HSgtFtre/fbPOw710u7BZJwOrqSuzCpx/+xeHIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730831281; c=relaxed/simple;
-	bh=jAP3GW7r+LYfHeNe78IMVIHvCpq6zsC+fpPsRxm+kUs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lk3eSFCehRjseSXPcRGX0hS3ZgUTNSoBCQo9o3S0yQMEKKw96HX7d1Z/1dyZPkPUCTrWxtVJZwMIRa7/t13Nj9/eRhwK67yI4GCvzLiT82S9AN9mPgC7/Tkb0w/TuHAc1lquLm1PL27Yo4/CPrauZv9yQpr3SFfXdyLh/+EOpPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KP6DyBP6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0600AC4CECF;
-	Tue,  5 Nov 2024 18:27:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730831280;
-	bh=jAP3GW7r+LYfHeNe78IMVIHvCpq6zsC+fpPsRxm+kUs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KP6DyBP6FYQuXObKCAicdrL3sNZf09qhW5mZxQneUWN2Ekru0Qs5FMLysQfPe8m8T
-	 AhhzVSllmmE/5ESZuWqzYrB1aPD6ZO7Yj5FGMEQjBJgYYR2t9BF/NUQdQcMDdk8P60
-	 QrB+FLOQ/LL3R+Z/OJiJ00QXA++FLM8jhf6jA60JAD6C6Zg8GhF0kA2TfKxH3DOi7b
-	 23aWyNctjGRJEqkJx+1Vqa8R3g2Pbdfj+wkxyQPhMwGJtxT6uHTwPvUP77LMKJX3rT
-	 CeAcPFs66EaIWxV8IULsfuI/TJgVrVpEvztyZ/npGUpBDBLDSez3PaHFiMb3bm2gDH
-	 ie8pSdyXuD5xg==
-Date: Tue, 5 Nov 2024 18:27:55 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Hironori KIKUCHI <kikuchan98@gmail.com>, linux-kernel@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ryan Walklin <ryan@testtoast.com>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/7] dt-bindings: display: panel: Rename
- rg35xx-plus-panel back to WL-355608-A8
-Message-ID: <20241105-maybe-chamomile-7505214f737e@spud>
-References: <20241105055239.1577275-1-kikuchan98@gmail.com>
- <20241105055239.1577275-2-kikuchan98@gmail.com>
- <20241105141900.GA3110982-robh@kernel.org>
+	s=arc-20240116; t=1730831807; c=relaxed/simple;
+	bh=sOrsKDmx9/vKQmRX+rhbt4lmfdLCgkIhjnsuTV0xE4U=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=N8PWpRCHYYHdEE+xuv7Nw78SlUwUFOOUwJEYfTlJ1RNgz+9PLg2hF10ac3fRJYyvp5dK/C/91yO6n7R7f4ARAbTKsvVPsqgIZCgu2sHEg7i76hV4+aY31TY7e5NCu+QgkPPNbrRRLOroPyZP8jBe2TI26p+s/YTNyYCslOmGnJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=RSDqWUE6; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1730831806; x=1762367806;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=sOrsKDmx9/vKQmRX+rhbt4lmfdLCgkIhjnsuTV0xE4U=;
+  b=RSDqWUE6wngdtPmCp01EBXnfHElO5xPoMKMA4WzdgRVMs0GPgYSvmEN9
+   Sb6/ha+DN6fMYWap+m9FU0hDutQkMDpZeZsiXNSVqDd0NJeR/CaJiM/9U
+   VF6RJyd4ZIxt9SvUMNM7KlE6DxbPmFcY0kk9kt5G2ZVCEbK+dlGzNaQgp
+   /RD6UaLWg9ajHcx1eriGNyPCbO/Z+AGL6F2e93kuhAAvZL3iJKngipq0u
+   PhEmPdnvyg9ZEYApYpAHWjdaOCFeQqtTjrTHPQyeEa9MZj/NPDG7IoagW
+   DYVdtBIAgLLgELECsdDJiavmzYVnhpd9Hp0MQAQR+rzx26DScXSrv/ttk
+   A==;
+X-CSE-ConnectionGUID: aPvpj/ErQpCvLHGNHY35EA==
+X-CSE-MsgGUID: EkpJYgi1RjaqiN20vBksuQ==
+X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; 
+   d="scan'208";a="33910621"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 05 Nov 2024 11:36:45 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 5 Nov 2024 11:36:14 -0700
+Received: from valentina.microchip.com (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Tue, 5 Nov 2024 11:36:11 -0700
+From: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+To: <paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
+	<ycliang@andestech.com>, <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	<peterlin@andestech.com>, <samuel.holland@sifive.com>,
+	<conor.dooley@microchip.com>, <alexghiti@rivosinc.com>,
+	<ruanjinjie@huawei.com>, <takakura@valinux.co.jp>, <conor+dt@kernel.org>,
+	<jassisinghbrar@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<valentina.fernandezalanis@microchip.com>
+CC: <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: [PATCH v3 0/4] Add Microchip IPC mailbox
+Date: Tue, 5 Nov 2024 18:35:09 +0000
+Message-ID: <20241105183513.1358736-1-valentina.fernandezalanis@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="KWrKfl/izLTBZfq2"
-Content-Disposition: inline
-In-Reply-To: <20241105141900.GA3110982-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
+Hello all,
 
---KWrKfl/izLTBZfq2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series adds support for the Microchip Inter-Processor Communication
+(IPC) mailbox driver.
 
-On Tue, Nov 05, 2024 at 08:19:00AM -0600, Rob Herring wrote:
-> On Tue, Nov 05, 2024 at 02:52:29PM +0900, Hironori KIKUCHI wrote:
-> > A panel assembly is changed in the recent revision of Anbernic RG35XX
-> > Plus, so the `anbernic,rg35xx-plus-panel` identifier is neither suitable
-> > nor unique for the panel anymore.
-> >=20
-> > Fortunately, the panel can be distinguished by a label printed on the
-> > FPC cable, so use the label "WL-355608-A8" as an identifier instead.
-> >=20
-> > Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
-> > ---
-> >  ...rg35xx-plus-panel.yaml =3D> anbernic,wl-355608-a8.yaml} | 9 +++++--=
---
-> >  1 file changed, 5 insertions(+), 4 deletions(-)
-> >  rename Documentation/devicetree/bindings/display/panel/{anbernic,rg35x=
-x-plus-panel.yaml =3D> anbernic,wl-355608-a8.yaml} (83%)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/display/panel/anbernic,r=
-g35xx-plus-panel.yaml b/Documentation/devicetree/bindings/display/panel/anb=
-ernic,wl-355608-a8.yaml
-> > similarity index 83%
-> > rename from Documentation/devicetree/bindings/display/panel/anbernic,rg=
-35xx-plus-panel.yaml
-> > rename to Documentation/devicetree/bindings/display/panel/anbernic,wl-3=
-55608-a8.yaml
-> > index 1d67492ebd3..5e8afbea690 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-p=
-lus-panel.yaml
-> > +++ b/Documentation/devicetree/bindings/display/panel/anbernic,wl-35560=
-8-a8.yaml
-> > @@ -1,7 +1,7 @@
-> >  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >  %YAML 1.2
-> >  ---
-> > -$id: http://devicetree.org/schemas/display/panel/anbernic,rg35xx-plus-=
-panel.yaml#
-> > +$id: http://devicetree.org/schemas/display/panel/anbernic,wl-355608-a8=
-=2Eyaml#
-> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> > =20
-> >  title: Anbernic RG35XX series (WL-355608-A8) 3.5" 640x480 24-bit IPS L=
-CD panel
-> > @@ -16,13 +16,14 @@ allOf:
-> >  properties:
-> >    compatible:
-> >      oneOf:
-> > -      - const: anbernic,rg35xx-plus-panel
-> > +      - const: anbernic,wl-355608-a8
-> >        - items:
-> >            - enum:
-> >                - anbernic,rg35xx-2024-panel
-> >                - anbernic,rg35xx-h-panel
-> >                - anbernic,rg35xx-sp-panel
-> > -          - const: anbernic,rg35xx-plus-panel
-> > +              - anbernic,rg35xx-plus-panel
-> > +          - const: anbernic,wl-355608-a8
-> > =20
-> >    reg:
-> >      maxItems: 1
-> > @@ -47,7 +48,7 @@ examples:
-> >          #size-cells =3D <0>;
-> > =20
-> >          panel@0 {
-> > -            compatible =3D "anbernic,rg35xx-plus-panel";
-> > +            compatible =3D "anbernic,wl-355608-a8";
->=20
-> This is an ABI break. You can't just change compatibles.
->=20
-> The old panel should correspond to the existing compatible. Add a new=20
-> compatible for the new panel. The names might not be ideal, but you are=
-=20
-> stuck with them.
->=20
-> There's exceptions if things are new and not yet in use, but you have to=
-=20
-> explain that in the commit msg.
+Microchip's family of RISC-V SoCs typically has one or more clusters
+that can be configured to run in Asymmetric Multi-Processing (AMP) mode.
 
-We already had one faff over renaming this panel a few months ago:
-d682eef93ebf ("dt-bindings: display: panel: Rename WL-355608-A8 panel to rg=
-35xx-*-panel")
-I don't agree with renaming it again.
+The Microchip IPC is used to send messages between processors using
+an interrupt signaling mechanism. The driver uses the RISC-V Supervisor
+Binary Interface (SBI) to communicate with software running in machine
+mode (M-mode) to access the IPC hardware block.
 
---KWrKfl/izLTBZfq2
-Content-Type: application/pgp-signature; name="signature.asc"
+Additional details on the Microchip vendor extension and the IPC
+function IDs described in the driver can be found in the following
+documentation:
 
------BEGIN PGP SIGNATURE-----
+https://github.com/linux4microchip/microchip-sbi-ecall-extension
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZypjqwAKCRB4tDGHoIJi
-0kZvAQDGlp5m873rhBYpE0YeWZx2FSdOgrOC4C1DUcYPF4TqsAD9EPDcRf3IgiHj
-xIFBQes+LtwbDJ9M0Ycx3wE/F34rqQ8=
-=gldU
------END PGP SIGNATURE-----
+The PIC64GX MPU has a Mi-V IHC block, this will be added to the PIC64GX
+dts after the initial upstreaming [1].
 
---KWrKfl/izLTBZfq2--
+[1] https://patchwork.kernel.org/project/linux-riscv/patch/20240725121609.13101-18-pierre-henry.moussay@microchip.com/
+
+Changes in v3:
+- Fix incorrent formatting around '=' in dt binding examples
+- Add per compatible descriptions in dt binding
+- Add '>' in certain dt binding descriptions to keep paragraphs maintained
+- export __cpuid_to_hartid_map to compile mailbox driver as module
+- Drop unused enum ipc_irq_type
+- rename struct mchp_ipc_probe to mchp_ipc_mbox_info
+- rename struct ipc_chan_info to mchp_ipc_sbi_chan
+- rename struct microchip_ipc to mchp_ipc_sbi_mbox
+- use phys_addr_t for __pa()
+- drop mchp_ipc_get_chan_id function
+- use num_chans in mbox_controller
+- Fix buf_base_tx and buf_base_rx sizes using max and kmalloc
+
+Changes in v2:
+- use kmalloc and __pa() instead of DMA API
+- fix size of buf_base to avoid potential buffer overflow
+- add kernel doc for exported functions (mchp_ipc_get_chan_id)
+- use EXPORT_SYMBOL_GPL instead of EXPORT_SYMBOL
+- drop unnecessary blank line and fix alignment issues
+- drop of_match_ptr
+- move MODULE_DEVICE_TABLE next to the definition
+- reword subject from riscv: asm: vendorid_list to riscv: sbi: vendorid_list
+- remove the word "driver" from dt-binding commit subject
+- make interrupt-names a required property for all cases
+- add dependency on COMPILE_TEST and ARCH_MICROCHIP
+
+Regards,
+Valentina
+
+Valentina Fernandez (4):
+  riscv: sbi: vendorid_list: Add Microchip Technology to the vendor list
+  riscv: export __cpuid_to_hartid_map
+  dt-bindings: mailbox: add binding for Microchip IPC mailbox controller
+  mailbox: add Microchip IPC support
+
+ .../bindings/mailbox/microchip,sbi-ipc.yaml   | 117 ++++
+ arch/riscv/include/asm/vendorid_list.h        |   1 +
+ arch/riscv/kernel/smp.c                       |   1 +
+ drivers/mailbox/Kconfig                       |  13 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/mailbox-mchp-ipc-sbi.c        | 504 ++++++++++++++++++
+ include/linux/mailbox/mchp-ipc.h              |  33 ++
+ 7 files changed, 671 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
+ create mode 100644 drivers/mailbox/mailbox-mchp-ipc-sbi.c
+ create mode 100644 include/linux/mailbox/mchp-ipc.h
+
+-- 
+2.34.1
+
 
