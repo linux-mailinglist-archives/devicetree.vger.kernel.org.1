@@ -1,145 +1,160 @@
-Return-Path: <devicetree+bounces-119121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44EAC9BD17F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:02:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E7E39BD1C6
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:10:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76EC01C22AF9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 16:02:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 712CB1C24CC0
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 16:10:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D866717C7CE;
-	Tue,  5 Nov 2024 15:59:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 710A91684AC;
+	Tue,  5 Nov 2024 16:10:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="r8DzNp6P"
+	dkim=pass (2048-bit key) header.d=remote-tech-co-uk.20230601.gappssmtp.com header.i=@remote-tech-co-uk.20230601.gappssmtp.com header.b="A28ZCbSU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E59B13D881;
-	Tue,  5 Nov 2024 15:59:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.180.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B7A15CD74
+	for <devicetree@vger.kernel.org>; Tue,  5 Nov 2024 16:10:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730822389; cv=none; b=sIs204BFk+VFMFFbVHFxOv+Z1m2CuBCxLbsWNLxh2IaTPSe7Ncysx0NgKp4ht7fWlF0KZJkzLed9aBvpFU8+RKBzp0NLnOM0InCv8RXCNJUKd0/6hALDnnIt3fi3kAppGBKYWwf4vWp8cFnQqE8ySzHgOZivMkHcVJRRpnWSv2Q=
+	t=1730823053; cv=none; b=TLXQSFUgoVkCrV3UxX8GaSvplWeh4WPAipGo10HP7UE79++1rQEAkMPicaAzzEJMLuFkT8m4QMWigAnvG58MV6EnC95nEMHaKx+paSztMmSqC0L14n70bmT0sGvUZDW8JvL8zRc2j38IC6cPE+yn0oh1DpMLD50DH7c7MKO56GM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730822389; c=relaxed/simple;
-	bh=H8DIARHN5LAhn899AhP+EfNJuCgcAkEDx/aJO8V/l9U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=ar97jzOK/sKDZaEwZC8MRTZjIP6LbnAe/cvBVCAXyC3DjOlcDqNYagGfrjaOOpSVphBoypOhL7JAL+yo6N9V/STqhwtBW4lk8hmOasSiQORjOx4zjuVRNCOrnsbLux/yhWufKJzv5BQbVdTPdyABWizdaD4JtsISGlG2wBiGjqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=r8DzNp6P; arc=none smtp.client-ip=185.132.180.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
-Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
-	by mx07-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A58CTKb021812;
-	Tue, 5 Nov 2024 15:58:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=dk201812; bh=P
-	zi2n5rq5qaQP6xCE9EQoWu5ATUTL3MLo4MRNMqXSk0=; b=r8DzNp6Plg1bnMTz6
-	KSloRvcwzqJno0HdZQEPOKLQHld/WAS7n+ZT8BAm33oz4m2D2sEXbp04pKtigNc1
-	T1XLm8TQn6Q4ZLET94fA0rXQz1QD0XKgVcl9VDr7tIewRuXo2BsziT95SLxyDfi+
-	aXtAVzG/zY6p4LletTFt/nHFSvyu9j1HKht/3cZDTTJjA8Zcs9w7DK1htEEkjMrI
-	KPNGlBbcTnMy0101spApam1mW4qacol7V+YwTg4ttRjiNytpWKEGULY+AxL5tzsf
-	uYhhSw78EUTPOekvG+LSyIuB9pXqoG5/XC1GDKZ9DnDlk26HBWon1mn2ljOkuXDo
-	F/W6Q==
-Received: from hhmail05.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
-	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 42nd212ju3-2
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Tue, 05 Nov 2024 15:58:40 +0000 (GMT)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- (172.25.16.114) by HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.37; Tue, 5 Nov 2024 15:58:39 +0000
-From: Matt Coster <matt.coster@imgtec.com>
-Date: Tue, 5 Nov 2024 15:58:27 +0000
-Subject: [PATCH 21/21] arm64: dts: ti: k3-j721s2: Add GPU node
+	s=arc-20240116; t=1730823053; c=relaxed/simple;
+	bh=GOR+kBMKKKTUIGtKRM9XCI7YPrZNWfva3GQbxSEtoSM=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=tcmQSFN0M+ApL45r0pL6cxTk9NOsWEIY5qTP7lmVBHO8q6zezmomi7aqXE12I9xA5kwo5i3yeImevlBgV9B/CqL9T3XE5Tnm8sWEn9Lqd2SnhPD35SpfQIEWb+dIw/G0tOXQvWBPkTVte0A63QJuuw7IDtxyMRCKTITt7MBxKp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=remote-tech.co.uk; spf=pass smtp.mailfrom=remote-tech.co.uk; dkim=pass (2048-bit key) header.d=remote-tech-co-uk.20230601.gappssmtp.com header.i=@remote-tech-co-uk.20230601.gappssmtp.com header.b=A28ZCbSU; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=remote-tech.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=remote-tech.co.uk
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a99f646ff1bso783168266b.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Nov 2024 08:10:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=remote-tech-co-uk.20230601.gappssmtp.com; s=20230601; t=1730823050; x=1731427850; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I8iWPAz9+BWvksPjr7PaPX4v4WYSbjtCmVf883G/l4A=;
+        b=A28ZCbSUe1sy7nr+smYopJ15aGJDyBhkG0ZSSY/Uhrw7QSx2w3rPwewWEXN3xKx8Oy
+         88ICBj4vP2tP8ZHoj29LPsCL+AS2Oao0K08YCvwuUuymC/4F4NKPkuZx0p2egP0mADgn
+         UPAjYBbmJUqrLG3YwSChwu7k0bRXofnEaaoacFRi1N7X8Gd/tWzpx8sM9Xhu7RPHzFsn
+         eviUj7y93Vv4MOx0RwJeDXV1wdbYYt0pcltIuxSxg86PYMcQlymGBGSnekJ1RZJZVBq5
+         AI9iJFqVOVfLIZnEwkVA6BmR19z42XFP2oP4kiWd8AhcHfZftDmkVMdsz12Wyz8ILyua
+         QA8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730823050; x=1731427850;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I8iWPAz9+BWvksPjr7PaPX4v4WYSbjtCmVf883G/l4A=;
+        b=ZTSdBtybBzggG4OizK8l49g4ryxBA77G94ic8UfyTEJSzJtwIECWp4BUCMU+tVFRE7
+         qyuCSO6tJOX7b3dzUNOlo/WH8sJ+mIIirw+EDCW/tDICD3NgkdBRi1k1fDqqoLCFcLLj
+         FzWL5Ctc7y9PPbk7dvd4QXHwRAZWnOaoYUlPR64mW5cH3UMM79RkaoaWeiZsASxmuVZx
+         iab0zzwLg7L2NsAvYBaUeeuRmFJjMYN8sQO7UMrhi9A/ypOFeTn79NTf9/Zgis1hbQsD
+         vTeD+CWYFxTN3urHzOjGa/j3ipyj4RiPVbqSXu9CUtS5P4pwGk1uBIrXf7hV0s40NFjO
+         jRFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVqaTTKuCll5FqBTdz1A8xc9nKR+iiSrQo7VOHGt3uWrB0UCxmAhq4P6KTcx+p26/If3Yu2Ouo6f3Sm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxn3xAO7fwoPhjpERAeNA2OLE+XFAKVl4GCNUhfgqrZ0wvbZFcm
+	DYWkSU5uncCZkHiqR3Eub6ItJ8YFkZsZEMkOtPLBiZBNzBq+SBOKs1HNSd5M2vlnTE6ymX67z3h
+	13T4PQnaLqCXhk5TJX0z1MxCHfr7W0ronUam5A1svuaxD+hNrGRBxyRMvDj4xr4MBDtaaiHbELg
+	JULif/XaMhMmmbMrrYloJfAg9f
+X-Google-Smtp-Source: AGHT+IGkmJfi7dRHZtTpmNCLlbGTZDSTQBEvMTQNo52T6AzDkPM1XFezL57iku5tpryplHLQ/GERnQ==
+X-Received: by 2002:a17:907:948a:b0:a9a:238a:381d with SMTP id a640c23a62f3a-a9e3a6ca29cmr2346666466b.52.1730823049770;
+        Tue, 05 Nov 2024 08:10:49 -0800 (PST)
+Received: from localhost.localdomain ([178.27.36.125])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9eb17f7928sm151184666b.138.2024.11.05.08.10.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Nov 2024 08:10:49 -0800 (PST)
+From: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
+To: Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: [PATCH 1/3] [PATCH v3] Documentation:leds: Add leds-st1202.rst
+Date: Tue,  5 Nov 2024 16:10:36 +0000
+Message-Id: <20241105161041.4813-1-vicentiu.galanopulo@remote-tech.co.uk>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241105-sets-bxs-4-64-patch-v1-v1-21-4ed30e865892@imgtec.com>
-References: <20241105-sets-bxs-4-64-patch-v1-v1-0-4ed30e865892@imgtec.com>
-In-Reply-To: <20241105-sets-bxs-4-64-patch-v1-v1-0-4ed30e865892@imgtec.com>
-To: Frank Binns <frank.binns@imgtec.com>,
-        Matt Coster
-	<matt.coster@imgtec.com>,
-        David Airlie <airlied@gmail.com>, Simona Vetter
-	<simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        "Vignesh
- Raghavendra" <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1576;
- i=matt.coster@imgtec.com; h=from:subject:message-id;
- bh=H8DIARHN5LAhn899AhP+EfNJuCgcAkEDx/aJO8V/l9U=;
- b=owGbwMvMwCFWuUfy8817WRsYT6slMaRrOcy/tSIl2eOW2/xHuTbqlRpc2gol/n0l+jVaK9blT
- fuZqXG3o5SFQYyDQVZMkWXHCssVan/UtCRu/CqGmcPKBDKEgYtTACbido/hf+D5a+F8zl9zFe7o
- vnCa7NVxfv06I8vsj9MrItvfLInIL2b4H/I9f56zcx+Pijh7ijN70j5bB/982XrZd/UdK8222Qe
- yAwA=
-X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
- fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
-X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
-X-Authority-Analysis: v=2.4 cv=Q9aA4J2a c=1 sm=1 tr=0 ts=672a40b0 cx=c_pps a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17 a=hzDjp0mCheYA:10 a=IkcTkHD0fZMA:10 a=VlfZXiiP6vEA:10 a=sozttTNsAAAA:8 a=r_1tXGB3AAAA:8 a=rLJv8WYccUdZFC7c5UsA:9
- a=QEXdDO2ut3YA:10 a=S-JV1fTmrHgA:10 a=j2-svP0xy3wA:10 a=t8nPyN_e6usw4ciXM-Pk:22
-X-Proofpoint-GUID: LOeMeKqUdp1x6fjOdbEc-ZDE_Y0zQzjx
-X-Proofpoint-ORIG-GUID: LOeMeKqUdp1x6fjOdbEc-ZDE_Y0zQzjx
+Content-Transfer-Encoding: 8bit
 
-The J721S2 binding is based on the TI downstream binding in 54b0f2a00d92
-("arm64: dts: ti: k3-j721s2-main: add gpu node") from [1] but with updated
-compatible strings.
+Add usage for sysfs hw_pattern entry for leds-st1202
 
-The clock[2] and power[3] indices were verified from docs, but the
-source of the interrupt index remains elusive.
-
-References for indices: clocks[1], interrupts[2], power[3].
-
-[1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel
-[2]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/clocks.html
-[3]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/devices.html
-
-Signed-off-by: Matt Coster <matt.coster@imgtec.com>
+Signed-off-by: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
 ---
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ - Changes in v3: Add leds-st1202 to index.rst
+ - Changes in v2: Implement review comments
+---
+ Documentation/leds/index.rst       |  1 +
+ Documentation/leds/leds-st1202.rst | 36 ++++++++++++++++++++++++++++++
+ 2 files changed, 37 insertions(+)
+ create mode 100644 Documentation/leds/leds-st1202.rst
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index 9ed6949b40e9dfafdaf6861944b0b128b053a44f..b2441ac9847d7e64d847a5cc220d1a79d0254bc9 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -2047,4 +2047,16 @@ watchdog8: watchdog@23f0000 {
- 		/* reserved for MAIN_R5F1_1 */
- 		status = "reserved";
- 	};
+diff --git a/Documentation/leds/index.rst b/Documentation/leds/index.rst
+index 3ade16c18328..0ab0a2128a11 100644
+--- a/Documentation/leds/index.rst
++++ b/Documentation/leds/index.rst
+@@ -28,4 +28,5 @@ LEDs
+    leds-mlxcpld
+    leds-mt6370-rgb
+    leds-sc27xx
++   leds-st1202.rst
+    leds-qcom-lpg
+diff --git a/Documentation/leds/leds-st1202.rst b/Documentation/leds/leds-st1202.rst
+new file mode 100644
+index 000000000000..e647966e496c
+--- /dev/null
++++ b/Documentation/leds/leds-st1202.rst
+@@ -0,0 +1,36 @@
++.. SPDX-License-Identifier: GPL-2.0
 +
-+	gpu: gpu@4e20000000 {
-+		compatible = "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
-+		reg = /bits/ 64 <0x4e20000000 0x80000>;
-+		clocks = <&k3_clks 130 1>;
-+		clock-names = "core";
-+		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-+		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>,
-+				<&k3_pds 373 TI_SCI_PD_EXCLUSIVE>;
-+		power-domain-names = "a", "b";
-+		dma-coherent;
-+	};
- };
-
++============================================
++Kernel driver for STMicroelectronics LED1202
++============================================
++
++/sys/class/leds/<led>/hw_pattern
++--------------------------------
++
++Specify a hardware pattern for the ST1202 LED. The LED
++controller implements 12 low-side current generators
++with independent dimming control. Internal volatile memory
++allows the user to store up to 8 different patterns.
++Each pattern is a particular output configuration in terms
++of PWM duty-cycle and duration (ms).
++
++To be compatible with the hardware pattern
++format, maximum 8 tuples of brightness (PWM) and duration must
++be written to hw_pattern.
++
++- Min pattern duration: 22 ms
++- Max pattern duration: 5660 ms
++
++The format of the hardware pattern values should be:
++"brightness duration brightness duration ..."
++
++/sys/class/leds/<led>/repeat
++----------------------------
++
++Specify a pattern repeat number, which is common for all channels.
++Default is 1; negative numbers and 0 are invalid.
++
++This file will always return the originally written repeat number.
++
++When the 255 value is written to it, all patterns will repeat
++indefinitely.
 -- 
-2.47.0
+2.25.1
 
 
