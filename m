@@ -1,121 +1,201 @@
-Return-Path: <devicetree+bounces-119141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92BBA9BD23E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:23:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3D599BD252
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:29:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4EE91C22588
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 16:23:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29CA31F22F8E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 16:29:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 179BA1D318F;
-	Tue,  5 Nov 2024 16:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C49B1D5AB2;
+	Tue,  5 Nov 2024 16:29:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="x8R29AaG"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ARvzQqc5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 478901D278B;
-	Tue,  5 Nov 2024 16:23:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 617EF17E918;
+	Tue,  5 Nov 2024 16:29:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730823829; cv=none; b=LucTIb0pOemdeqp/DpK7jFMEW8lKEtFDqucCaDFHvZN7NEVTQkDu9Rigj9qyglMHbaufg9HZl9hGhBQql3fxfSfRORS4/hbZLhwuSJvZYlsl/j/AkYbndSf7fpsSyPoFuo9F1noxSRnyi5HUuRXdMIAIOZjUpNXijdkxGcuqYL0=
+	t=1730824149; cv=none; b=JFvGmoTUwKoIYzJHhPg3GQx0JBPY+HdazCD4g837tt7fO1XGXRIHc3v9gx8r4IgqTb7123hYsI7IxBmptSiN5BcdBYluLiAqwru9ZQQC1Kq8gYazHINcQCsoYU5GP41YiTe7MeqRRpj1KaKj135Fb/Y+zmrbg/t9Pg6L2svS3b4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730823829; c=relaxed/simple;
-	bh=yrD4Mpfvmqsx+YKmWeU3tvvOcvvoTqW9VuisW5Gr4Qc=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ojUO4jEhXSEDZVz5gYOgdeJoERgLLWVqi1KUW7my38nlcO0g910USMQ/w61ajE6f6Bi/GDKdeK+n+qGIwMwyHrxoBomo1CISCa9lcxyGXfLZpYsa+0qi5b/5LfaaE4iQh4DW1Monfn8a4FjyqjMfjYyieeinedTjcZov/Vu8Ghs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=x8R29AaG; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A5B9tdI023031;
-	Tue, 5 Nov 2024 17:23:30 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=selector1; bh=aVMUkRdLkMCaG4A9wtB/vf
-	WUp+xDSUG4XcTStCzpQHM=; b=x8R29AaGuHavJqJItWuwnwmCmqYRVtYRUh3RlD
-	Gh3mrSvk9L3fagKy/uFabHvNeeQu680T3/0H/P+HcDmTEDr2Gz/bCTGS+noDPmuR
-	qWWRCmjbfD0ByoIhStT+CyrEE8qyqLZyvQ1aTUnNG/C/m0+/Szt70GBZnAUEgUAt
-	ammAUd7oMLQHp0Sua8LdImJIG/VERJzKXRe72OgIAyw3hTEl3NgUG+RsmeAYO4RQ
-	gnn72DGWz+3kllTWTdQjnMj3YBHc4JTES2q7UAgHucaVJhm1O0WhcIbQydbqZeO0
-	Szt4tgwuXhs9cLTts9OEmXbMGIscyq6LRB+byM0W3rzaJUJw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42nywnamjj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 05 Nov 2024 17:23:30 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 965C84002D;
-	Tue,  5 Nov 2024 17:22:34 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 25B3A267809;
-	Tue,  5 Nov 2024 17:22:01 +0100 (CET)
-Received: from localhost (10.252.16.126) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 5 Nov
- 2024 17:22:00 +0100
-From: Olivier Moysan <olivier.moysan@foss.st.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC: Olivier Moysan <olivier.moysan@foss.st.com>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 1/1] arm64: dts: st: add spdifrx support on stm32mp251
-Date: Tue, 5 Nov 2024 17:21:41 +0100
-Message-ID: <20241105162141.712073-1-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1730824149; c=relaxed/simple;
+	bh=dHz9b5sCGgbriiY0hHe2c5ULnhkhg06zPsGoOVDNQL4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=CSsy12Cru5+aUj5i98VRqrc2Dz0Q9b6TvTx/x54kNCIx0Q8WW/AV37HOl+avIk7cvAimgZ60N1bh3RpDxnH69QRXCHGkCo+cDLg7ZBppnHHA1RBvSAjMei8wTezSt5CQEwwEhh6dDSZKSdeZbHVff0OsbZ2fWypLAkCOEzLE7Zw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ARvzQqc5; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5E0EC60005;
+	Tue,  5 Nov 2024 16:28:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1730824138;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4AN1bWAbi3duehwYx5SBuZr7Xa5uywTWSqhm9jKKAOk=;
+	b=ARvzQqc5HPpCmHdnTV2rAb6bK/xZRs+BEcyWdS4dC/pjfvIUtH41X3QCUmZcFL2BFUml+3
+	hhNxXYZlAJrAN6HCztj7pdW8ApgO+OxeFRkGngR865q/ykH9cCRbMu2lfbDUf6Tr+RQDei
+	io4eHHm15qlQooA8v5SBu1AKl71tPBGHSgtcdexhg3OEXq3kn++qEBfSJRCsBP0R2I/zJ6
+	x8QpGvYpfvgPFXEYm0EplDvjKky8lc3PoGKpgTJtn/6NdKmVj5GfCgk45Tj3fG4BLeO4cD
+	M3SsaLCCrqNSTCyjlKD3BiiwCEloXaqBrdd0rsKR11wWyNORA48NtW6qiB2geQ==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Russell King <linux@armlinux.org.uk>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Frank Wunderlich <linux@fw-web.de>
+Subject: Re: [PATCH] arm64: dts: marvell: Drop undocumented SATA phy names
+In-Reply-To: <20241014193528.1896905-2-robh@kernel.org>
+References: <20241014193528.1896905-2-robh@kernel.org>
+Date: Tue, 05 Nov 2024 17:28:57 +0100
+Message-ID: <87r07p8x12.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: gregory.clement@bootlin.com
 
-Add S/PDIFRX support to STM32MP25 SoC family.
+"Rob Herring (Arm)" <robh@kernel.org> writes:
 
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+> While "phy-names" is allowed for sata-port nodes, the names used aren't
+> documented and are incorrect ("sata-phy" is what's documented). The name
+> for a single entry is fairly useless, so just drop the property.
+>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index 6fe12e3bd7dd..34970be2e0b3 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -267,6 +267,20 @@ spi3: spi@400c0000 {
- 				status = "disabled";
- 			};
- 
-+			spdifrx: audio-controller@400d0000 {
-+				compatible = "st,stm32h7-spdifrx";
-+				#sound-dai-cells = <0>;
-+				reg = <0x400d0000 0x400>;
-+				clocks = <&rcc CK_KER_SPDIFRX>;
-+				clock-names = "kclk";
-+				interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
-+				dmas = <&hpdma 71 0x43 0x212>,
-+				       <&hpdma 72 0x43 0x212>;
-+				dma-names = "rx", "rx-ctrl";
-+				access-controllers = <&rifsc 30>;
-+				status = "disabled";
-+			};
-+
- 			usart2: serial@400e0000 {
- 				compatible = "st,stm32h7-uart";
- 				reg = <0x400e0000 0x400>;
--- 
-2.25.1
+Applied on mvebu/dt64
 
+Thanks,
+
+Gregory
+> ---
+> Cc: Frank Wunderlich <linux@fw-web.de>
+>
+> There's also this 2 year old patch fixing other SATA errors[1] which=20
+> was never picked up. :(
+>
+> [1] https://lore.kernel.org/linux-arm-kernel/20220311210357.222830-3-linu=
+x@fw-web.de/
+>
+>  arch/arm64/boot/dts/marvell/armada-7040-db.dts             | 1 -
+>  arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts       | 2 --
+>  arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts | 1 -
+>  arch/arm64/boot/dts/marvell/armada-8040-db.dts             | 2 --
+>  arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi         | 1 -
+>  arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts    | 2 --
+>  6 files changed, 9 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/armada-7040-db.dts b/arch/arm64/=
+boot/dts/marvell/armada-7040-db.dts
+> index 5e5baf6beea4..1e0ab35cc686 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-7040-db.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
+> @@ -214,7 +214,6 @@ &cp0_sata0 {
+>=20=20
+>  	sata-port@1 {
+>  		phys =3D <&cp0_comphy3 1>;
+> -		phy-names =3D "cp0-sata0-1-phy";
+>  	};
+>  };
+>=20=20
+> diff --git a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts b/arch/=
+arm64/boot/dts/marvell/armada-7040-mochabin.dts
+> index 40b7ee7ead72..7af949092b91 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+> @@ -433,13 +433,11 @@ &cp0_sata0 {
+>  	/* 7 + 12 SATA connector (J24) */
+>  	sata-port@0 {
+>  		phys =3D <&cp0_comphy2 0>;
+> -		phy-names =3D "cp0-sata0-0-phy";
+>  	};
+>=20=20
+>  	/* M.2-2250 B-key (J39) */
+>  	sata-port@1 {
+>  		phys =3D <&cp0_comphy3 1>;
+> -		phy-names =3D "cp0-sata0-1-phy";
+>  	};
+>  };
+>=20=20
+> diff --git a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts b=
+/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+> index 67892f0d2863..7005a32a6e1e 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+> @@ -475,7 +475,6 @@ &cp1_sata0 {
+>=20=20
+>  	sata-port@1 {
+>  		phys =3D <&cp1_comphy0 1>;
+> -		phy-names =3D "cp1-sata0-1-phy";
+>  	};
+>  };
+>=20=20
+> diff --git a/arch/arm64/boot/dts/marvell/armada-8040-db.dts b/arch/arm64/=
+boot/dts/marvell/armada-8040-db.dts
+> index 92897bd7e6cf..2ec19d364e62 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-8040-db.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-8040-db.dts
+> @@ -145,11 +145,9 @@ &cp0_sata0 {
+>=20=20
+>  	sata-port@0 {
+>  		phys =3D <&cp0_comphy1 0>;
+> -		phy-names =3D "cp0-sata0-0-phy";
+>  	};
+>  	sata-port@1 {
+>  		phys =3D <&cp0_comphy3 1>;
+> -		phy-names =3D "cp0-sata0-1-phy";
+>  	};
+>  };
+>=20=20
+> diff --git a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi b/arch/ar=
+m64/boot/dts/marvell/armada-8040-mcbin.dtsi
+> index c864df9ec84d..e88ff5b179c8 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
+> @@ -245,7 +245,6 @@ &cp0_sata0 {
+>  	/* CPM Lane 5 - U29 */
+>  	sata-port@1 {
+>  		phys =3D <&cp0_comphy5 1>;
+> -		phy-names =3D "cp0-sata0-1-phy";
+>  	};
+>  };
+>=20=20
+> diff --git a/arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts b/ar=
+ch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts
+> index 42a60f3dd5d1..3e5e0651ce68 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts
+> @@ -408,12 +408,10 @@ &cp0_sata0 {
+>=20=20
+>  	sata-port@0 {
+>  		phys =3D <&cp0_comphy2 0>;
+> -		phy-names =3D "cp0-sata0-0-phy";
+>  	};
+>=20=20
+>  	sata-port@1 {
+>  		phys =3D <&cp0_comphy5 1>;
+> -		phy-names =3D "cp0-sata0-1-phy";
+>  	};
+>  };
+>=20=20
+> --=20
+> 2.45.2
+>
+
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
