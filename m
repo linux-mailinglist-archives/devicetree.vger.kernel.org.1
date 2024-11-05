@@ -1,123 +1,134 @@
-Return-Path: <devicetree+bounces-119153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A881E9BD340
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:22:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23B1F9BD36F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:33:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A83B1F2349D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:22:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC2C9284081
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A469D1E231D;
-	Tue,  5 Nov 2024 17:21:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AFAC1E1C11;
+	Tue,  5 Nov 2024 17:33:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BYSQXAFn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CgRxGmKv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E249E1DD0D5;
-	Tue,  5 Nov 2024 17:21:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A381C1D9A71
+	for <devicetree@vger.kernel.org>; Tue,  5 Nov 2024 17:33:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730827318; cv=none; b=speiVSfu4cQQFHmtFTe5lLaE/N9HcS9XHT6AtfheFdqLvcv2wShoT0ZqLSFghyF3WPkHD0LCwJGU3PyLW+L0Bz6GZIV+dlOx4ilDe6IrbfQ/QP7XPSMW414W+DP0W2t8MkZtAVdgyoqVu+RZEvFgDpUySEqY0f4j41MoBLqBX80=
+	t=1730828012; cv=none; b=LwPnkKUe+HKnzAMzfFMrzICIK/AicZrtbrHVvLOWeDUOrEVfzAIPy3wNi/ahsV3ZmszRd5IepWs0wAZvLlyiYNaYbumI8S0r5mtvZhG7kh8RBPb5n6QM3SUdiRAEXiPTJZJ3Wt7voOqBmHFwYIm9IFK8iOz7RylEQbl/f2gzzms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730827318; c=relaxed/simple;
-	bh=ahMpcYHjaCoJrEVqwl/p5ZYgZE0uGGRlf/qvwZKtOYU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aeAdftOG5TMhaTn/1X1A43WMKst7jV1/Vs9QvIo3HzqirC+D/OwSeQS1i5DJj/AwqsysmQhB9c4Ct0G0Eg7ENBejOdG0als1RDpZgXtJMJC02A8Ydf9+9gap24ErypOGi+JBupAhck3r1iRNFcZxD87yDoz63/OEGb23WXFktRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BYSQXAFn; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730827317; x=1762363317;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ahMpcYHjaCoJrEVqwl/p5ZYgZE0uGGRlf/qvwZKtOYU=;
-  b=BYSQXAFnEeox4IWRP00x24lrun7Af8zekweU9xkCG8GX58IUzKm8CmLc
-   wSwA9rJ0iQTWylNzQS8gJvAPs9nCbmxGbyvDZIQIStP3aRvMHtPuls7oM
-   qFYcYBBlI+WrQhwocWn6QS1GR11puVvaWGBzIDJVRukV/Wj3fSzSrlmqi
-   /IO1oNUEyNlHGiIsIzxgQwQ3x7JDayNxvM3Je7sVE6jmsL43FDc+jOPvS
-   5rqI7nCSXfstCIa9XjohTmqnAdItXNsOIgl3BHhLY/7UmHyYNwJwjhEeh
-   tm8VoWHa50PWwbHkUXC6wh27gRElK3L8/S8sBxX7wBLAbfuI8dA4twEXT
-   w==;
-X-CSE-ConnectionGUID: LE+AAwRqQtOx2X9LnKDgmw==
-X-CSE-MsgGUID: uLOVlENiTr6D5wsrxksC5Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11247"; a="34374977"
-X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; 
-   d="scan'208";a="34374977"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2024 09:21:42 -0800
-X-CSE-ConnectionGUID: ptVQYnX9R8K/OpI8CHr8oQ==
-X-CSE-MsgGUID: f/BDOr+bQY6kh4vjoiguDw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; 
-   d="scan'208";a="84487945"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 05 Nov 2024 09:21:40 -0800
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t8NFJ-000mI0-1r;
-	Tue, 05 Nov 2024 17:21:37 +0000
-Date: Wed, 6 Nov 2024 01:20:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Markus Burri <markus.burri@mt.com>, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Markus Burri <markus.burri@mt.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marek.vasut@gmail.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/7] dt-bindings: input: matrix_keypad - convert to
- YAML
-Message-ID: <202411060143.8tNHeidk-lkp@intel.com>
-References: <20241105130322.213623-4-markus.burri@mt.com>
+	s=arc-20240116; t=1730828012; c=relaxed/simple;
+	bh=5p5IeNeTEKhL8Xp6W+OqdaIXLw2VE5PGJNso+vOelo0=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=VtnoU/rlyY7TbKJdyGEbxobgW6PG1zdVtmb8hQp28+KhHIu+ECzbpS/nESneZtAicmtKR3U56kVRtRpPuQwVerhu0vbLs38UKCtzOUB18Y3YKuN+ekVwXcT67PYm72FaP0hggtg8WQNXGFni/QIN1cFeZCz9cirWlxfssIV3JZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CgRxGmKv; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539f72c913aso9290521e87.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Nov 2024 09:33:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1730828009; x=1731432809; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=wL1RRdJvbyow0/4Gx8okr/VQzPzKmrgzOSUtxcyZLw0=;
+        b=CgRxGmKvnsDDvM6kBaM8CKGcVt2nrtVToTwE20n54ArcJR8yV2kVu5/hdNW1y8Xws9
+         VN5FMZ5DW8ZsE+QFjSC7PLABjp42p3UtpqSmDiar1v9A3/LTXiC8MzSTDrJtCji5x4WJ
+         xkvHXgqvypv8cGAQdpKRTRMxrz0qir9A5cz0TODIEwodZaXoPLYCVgDKG7dzKeoD+4IN
+         kbTPLw7fOnL8LGCbtPKK+kDdsu/WyR4rfu5Hy2/GXVsWi5kiSyx0COvlu5XR3QHAFj4c
+         YMKPkIliiMlskENDA53uWVl6UDEQIrXMQDv38MmFq21fhgolLgitT71sSY1AKS6XuC4V
+         SF1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730828009; x=1731432809;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wL1RRdJvbyow0/4Gx8okr/VQzPzKmrgzOSUtxcyZLw0=;
+        b=Wxza5FguuSfblhW4xFTnDJc0gbWZwkN8WGTfzUZ5DaSWa/szU2rNgj6BewhBbwEaKK
+         Xo3XGHLClYCWUQX9CZP3kqCY4wIK8gp9GUn2ePYyRTGOBCyt1nPo0iQeWAZnmbDgRi6G
+         hwNcLlVt34lIiAruVUCPwKpD6P7XUOSLMH8yYbpQXvlnv8DxKWrdUz0jTz/VDYf3jQ/u
+         UHzRTiRhuPPbAzgTzQQFQWWzkWGEd888GnVBrYM4mi5TaWxefRFXjmrwk4iI6PyawrvA
+         hRd8Vopc2xmJiU3qE6XZrKihQ3VxJOyWpg78APocLdMcJq1nQakVEJgDXWgc1ZUQOrvP
+         EGGg==
+X-Forwarded-Encrypted: i=1; AJvYcCUJL9hJ2vprBSUnmQ3y9fyiAAYPUlXJvjWFpkEWnN7VoWoHfeA45yWQcf9s5kyrWtZ9vrzB+n1UyH9L@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlIYLbaHVBMYw31uR3fYeOiBxIpb6fLDSjLoS5UsiWJSSo8lob
+	gE9jGqDxndCcmUYzju96+BhVX4RpzzShqQ6fzHGvzBLdZLBI0U3WbfkBsO5hsxQ=
+X-Google-Smtp-Source: AGHT+IGi18Sva7NE2bGd9ATSS1dZp0tYBcKab71BKwIRnXTz0bTETPbOkVUJ2V8gRDOK6fT7ixUiNA==
+X-Received: by 2002:a05:6512:1307:b0:539:f886:31c6 with SMTP id 2adb3069b0e04-53b34a18f24mr19326836e87.38.1730828007874;
+        Tue, 05 Nov 2024 09:33:27 -0800 (PST)
+Received: from [127.0.0.1] (85-76-138-48-nat.elisa-mobile.fi. [85.76.138.48])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53c7bdcbc3csm2221064e87.193.2024.11.05.09.33.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Nov 2024 09:33:26 -0800 (PST)
+Date: Tue, 05 Nov 2024 17:33:21 +0000
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Maxime Ripard <mripard@kernel.org>
+CC: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Liu Ying <victor.liu@nxp.com>, andrzej.hajda@intel.com,
+ neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com,
+ maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, airlied@gmail.com,
+ simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ quic_jesszhan@quicinc.com, mchehab@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ catalin.marinas@arm.com, will@kernel.org, sakari.ailus@linux.intel.com,
+ hverkuil@xs4all.nl, tomi.valkeinen@ideasonboard.com,
+ quic_bjorande@quicinc.com, geert+renesas@glider.be, arnd@arndb.de,
+ nfraprado@collabora.com, thierry.reding@gmail.com,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, sam@ravnborg.org, marex@denx.de,
+ biju.das.jz@bp.renesas.com
+Subject: =?US-ASCII?Q?Re=3A_=28subset=29_=5BPATCH_v5_00/13=5D_Add_ITE?=
+ =?US-ASCII?Q?_IT6263_LVDS_to_HDMI_converter_support?=
+User-Agent: Thunderbird for Android
+In-Reply-To: <20241105-secret-seriema-of-anger-7acfdf@houat>
+References: <20241104032806.611890-1-victor.liu@nxp.com> <173080602214.231309.12977765173766280536.b4-ty@linaro.org> <20241105-secret-seriema-of-anger-7acfdf@houat>
+Message-ID: <CD810D31-F9C5-499D-86CF-B94BEF82449A@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241105130322.213623-4-markus.burri@mt.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Markus,
+On 5 November 2024 16:13:26 GMT, Maxime Ripard <mripard@kernel=2Eorg> wrote=
+:
+>On Tue, Nov 05, 2024 at 01:28:48PM +0200, Dmitry Baryshkov wrote:
+>> On Mon, 04 Nov 2024 11:27:53 +0800, Liu Ying wrote:
+>> > This patch series aims to add ITE IT6263 LVDS to HDMI converter on
+>> > i=2EMX8MP EVK=2E  Combined with LVDS receiver and HDMI 1=2E4a transmi=
+tter,
+>> > the IT6263 supports LVDS input and HDMI 1=2E4 output by conversion
+>> > function=2E  IT6263 product link can be found at [1]=2E
+>> >=20
+>> > Patch 1 is a preparation patch to allow display mode of an existing
+>> > panel to pass the added mode validation logic in patch 3=2E
+>> >=20
+>> > [=2E=2E=2E]
+>>=20
+>> Applied to drm-misc-next, thanks!
+>>=20
+>> [04/13] media: uapi: Add MEDIA_BUS_FMT_RGB101010_1X7X5_{SPWG, JEIDA}
+>>         commit: 5205b63099507a84458075c3ca7e648407e6c8cc
+>
+>Where's the immutable branch Laurent asked for?
 
-kernel test robot noticed the following build warnings:
+The patch set has been picked up after getting an Ack from Sakari, before =
+Laurent's email=2E I am sorry if I rushed it in=2E
 
-[auto build test WARNING on dtor-input/for-linus]
-[also build test WARNING on robh/for-next linus/master v6.12-rc6 next-20241105]
-[cannot apply to dtor-input/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Markus-Burri/Input-matrix_keypad-use-fsleep-for-variable-delay-duration/20241105-211348
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git for-linus
-patch link:    https://lore.kernel.org/r/20241105130322.213623-4-markus.burri%40mt.com
-patch subject: [PATCH v2 3/7] dt-bindings: input: matrix_keypad - convert to YAML
-reproduce: (https://download.01.org/0day-ci/archive/20241106/202411060143.8tNHeidk-lkp@intel.com/reproduce)
+>
+>Maxime
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411060143.8tNHeidk-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: Documentation/devicetree/bindings/power/wakeup-source.txt references a file that doesn't exist: Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt
-   Warning: Documentation/devicetree/bindings/power/wakeup-source.txt references a file that doesn't exist: Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
-   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
-   Warning: Documentation/hwmon/g762.rst references a file that doesn't exist: Documentation/devicetree/bindings/hwmon/g762.txt
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/reserved-memory/qcom
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/display/exynos/
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
