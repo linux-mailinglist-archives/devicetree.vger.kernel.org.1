@@ -1,131 +1,103 @@
-Return-Path: <devicetree+bounces-119157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19BBA9BD397
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:39:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20C2C9BD3A9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:44:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4ADA1F21A35
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:39:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE6872864C6
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E683D1E3761;
-	Tue,  5 Nov 2024 17:39:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F3EA15CD74;
+	Tue,  5 Nov 2024 17:44:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g9lKUavl"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="k24AvR5o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2B0B1E282C;
-	Tue,  5 Nov 2024 17:39:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E4781DD0CB;
+	Tue,  5 Nov 2024 17:44:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730828383; cv=none; b=rlK7FZ3xJt9Dwyj8pjGMZLOg0ozwA55ArDIbf8HrA1/koAowNLDRkdGqyzrd+aK8WEKNTwMHueGIbuf+5UiFT7EHPC0Aaij1qfYCRQCiUbauMpjhdgSosF9Lvaz/7X409EVtnhtXF5O0ye6pzIPmi71lCFA3O3XnxLDmPb5RVxM=
+	t=1730828680; cv=none; b=DqaHViXEpvOitWmW+xZLb5+6H6bFfDEbBsb3JUU+ziLshTVxeuTFt9nH1Bcq29aqxnl+YFa8Pd6q21e1nFYIWrq2ydSoZEX86XBf3nb/PDvtXiAnDLVmeLv989uNtQbowcKT+X+S3t6DjN9n3hv8SnYxjHuA45jQ0BvY35pbcDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730828383; c=relaxed/simple;
-	bh=QZbld1TF8KsohUr4pPq9BpKFDSwxyE2URVgltsDBIDk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CY3KgCDZ1jSFafIzXD6iO5jJ17f/Op+THTiufh3Sc4Dj80yLHqCT1bN2Tdfm2mQRb1bhURKNMRBMbWaU6muuFIQfi46lR40yx0cKppZd/hCKq8y6VMIl3zbAhbpGrvcfkQjUES4mu8e9uzx7CnzabJ2kHQEakPBY8RaitIEitXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g9lKUavl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9800EC4CED1;
-	Tue,  5 Nov 2024 17:39:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730828383;
-	bh=QZbld1TF8KsohUr4pPq9BpKFDSwxyE2URVgltsDBIDk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=g9lKUavltsMy/YgW1mRbOREkoLHT6SzFY/ltRciRGIXWeU02o3fUYrVXpC4THnNEU
-	 j7CRaD86REpFzqxNAdJng+OPBJlIFv8GWy2JPT0v6DIfnAmoRsnFcBMbjtwBfxcjsA
-	 8h3IycPpR6OxDQfSm4/f7HNDy8qdVZvDw7AAS+zb6IfbfVwpTN3qO0x6ms25HfbaOq
-	 jUrNreINqb4mmREz3gmVLvFYPMp1qJIYKQnjwiqr6FWRYKHBpPY5ebPa3FEQiiQWPy
-	 bdfRmnZWJYR2Cmu8Yg4Xm1t447d6k8aQYaGzrabZsPey/BMbtvePXCilClscDGKPU0
-	 KYmhjE1Um9yZw==
-Date: Tue, 5 Nov 2024 18:39:40 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, Liu Ying <victor.liu@nxp.com>, andrzej.hajda@intel.com, 
-	neil.armstrong@linaro.org, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, 
-	jonas@kwiboo.se, jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com, 
-	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, quic_jesszhan@quicinc.com, 
-	mchehab@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
-	sakari.ailus@linux.intel.com, hverkuil@xs4all.nl, tomi.valkeinen@ideasonboard.com, 
-	quic_bjorande@quicinc.com, geert+renesas@glider.be, arnd@arndb.de, nfraprado@collabora.com, 
-	thierry.reding@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com, sam@ravnborg.org, 
-	marex@denx.de, biju.das.jz@bp.renesas.com
-Subject: Re: (subset) [PATCH v5 00/13] Add ITE IT6263 LVDS to HDMI converter
- support
-Message-ID: <20241105-succinct-pygmy-dingo-4db79c@houat>
-References: <20241104032806.611890-1-victor.liu@nxp.com>
- <173080602214.231309.12977765173766280536.b4-ty@linaro.org>
- <20241105-secret-seriema-of-anger-7acfdf@houat>
- <CD810D31-F9C5-499D-86CF-B94BEF82449A@linaro.org>
+	s=arc-20240116; t=1730828680; c=relaxed/simple;
+	bh=llA+9A1gl8QsLp3YRm0QnpwmV8v5h7ScdeMLoZBWCdc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pphmcg+m+gfPZ9goHfw3KZlLbcOXB65RGbHCdEOzA4gK7WfuUj+agos8ItSASsKsXO4Lq+svANydmYfXa2FExPRB6nin9XUwFfC5/8nw2xcSYMjRO670PlqoJM6a5ivw0OsGtI8zEju0dpCZ1ZnlnGPYNTOABHCHSYrtsHAPS1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=k24AvR5o; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9DBF220003;
+	Tue,  5 Nov 2024 17:44:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1730828676;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9Qhl7sCE20XQrZDR2W9BC9svI9gvOmt7VBMnt9ZYunY=;
+	b=k24AvR5oTKNdMLhPSg/xgaiY9RqcLmBXVldHKvWfTRrnwRDt8bBRt0/QMGD6vTl0ERLQyF
+	0/XIBN/71IjnJKEHdnnigQniikUm3fdq3oE3My6MV5INRIcyqwY28RkP+t+oF6gevA+Sel
+	y7kfofyqRaOrOVfZrf5HOGHOtjmYqYrgEhS6svTadiLSAdGWkNQE1ZP+0I+TS4dgHnrm/n
+	+UszIyPvO0FM8FkTvdbGizsLzqTFz+c5Ht4LZiwa4cYAs2Plsq+yWR101O6Bl3ggf8Tunh
+	bwjmtzIaNmYiANuifngRIezuoa+RDKiXpwSTognVV1DwMLcDLSGtZKc25U9XYA==
+Date: Tue, 5 Nov 2024 18:44:33 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Saravana Kannan <saravanak@google.com>, Bjorn Helgaas
+ <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-pci@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 0/6] Add support for the root PCI bus device-tree node
+ creation.
+Message-ID: <20241105184433.1798fe55@bootlin.com>
+In-Reply-To: <20241104201507.GA361448-robh@kernel.org>
+References: <20241104172001.165640-1-herve.codina@bootlin.com>
+	<20241104201507.GA361448-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="lpikbxgr4ajy2ceg"
-Content-Disposition: inline
-In-Reply-To: <CD810D31-F9C5-499D-86CF-B94BEF82449A@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
+Hi Rob,
 
---lpikbxgr4ajy2ceg
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: (subset) [PATCH v5 00/13] Add ITE IT6263 LVDS to HDMI converter
- support
-MIME-Version: 1.0
+On Mon, 4 Nov 2024 14:15:07 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-On Tue, Nov 05, 2024 at 05:33:21PM +0000, Dmitry Baryshkov wrote:
-> On 5 November 2024 16:13:26 GMT, Maxime Ripard <mripard@kernel.org> wrote:
-> >On Tue, Nov 05, 2024 at 01:28:48PM +0200, Dmitry Baryshkov wrote:
-> >> On Mon, 04 Nov 2024 11:27:53 +0800, Liu Ying wrote:
-> >> > This patch series aims to add ITE IT6263 LVDS to HDMI converter on
-> >> > i.MX8MP EVK.  Combined with LVDS receiver and HDMI 1.4a transmitter,
-> >> > the IT6263 supports LVDS input and HDMI 1.4 output by conversion
-> >> > function.  IT6263 product link can be found at [1].
-> >> >=20
-> >> > Patch 1 is a preparation patch to allow display mode of an existing
-> >> > panel to pass the added mode validation logic in patch 3.
-> >> >=20
-> >> > [...]
-> >>=20
-> >> Applied to drm-misc-next, thanks!
-> >>=20
-> >> [04/13] media: uapi: Add MEDIA_BUS_FMT_RGB101010_1X7X5_{SPWG, JEIDA}
-> >>         commit: 5205b63099507a84458075c3ca7e648407e6c8cc
-> >
-> >Where's the immutable branch Laurent asked for?
->=20
-> The patch set has been picked up after getting an Ack from Sakari,
-> before Laurent's email. I am sorry if I rushed it in.
+...
+> > With those modifications, the LAN966x PCI device is working on x86 systems.  
+> 
+> That's nice, but I don't have a LAN966x device nor do I want one. We 
+> already have the QEMU PCI test device working with the existing PCI 
+> support. Please ensure this series works with it as well.
+> 
 
-I mean, this was less than a day after you've asked that question
-yourself. Waiting less than a day for a mail to be answered seems a bit
-short, especially when there's no rush to merge these patches in the
-first place.
+I will check.
 
-Maxime
+Can you confirm that you are talking about this test:
+  https://elixir.bootlin.com/linux/v6.12-rc6/source/drivers/of/unittest.c#L4188
 
---lpikbxgr4ajy2ceg
-Content-Type: application/pgp-signature; name="signature.asc"
+The test needs QEMU with a specific setup and I found this entry point:
+  https://lore.kernel.org/all/fa208013-7bf8-80fc-2732-814f380cebf9@amd.com/
 
------BEGIN PGP SIGNATURE-----
+Do you have an "official" QEMU setup on your side to run the test or any
+other pointers related to the QEMU command/setup you use?
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZypYWAAKCRAnX84Zoj2+
-dqB2AX9GZdjTPnmcByvgBSDmocLc9jx/UxPVwoxcockjnXv6ZTkFXoDJPi/fdgYU
-ZVhEdvwBgMatI1KVXAWu/endQAK5PMRNxHeFsbekB5ouNQnFLuCJ1Hnf5FHt+whO
-wHHi4EMLFA==
-=rM90
------END PGP SIGNATURE-----
-
---lpikbxgr4ajy2ceg--
+Best regards,
+Hervé
 
