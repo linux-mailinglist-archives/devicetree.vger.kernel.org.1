@@ -1,127 +1,146 @@
-Return-Path: <devicetree+bounces-119175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 960C79BD429
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 19:07:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95D2A9BD43E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 19:12:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEED01C21918
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:07:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C9F71F23E08
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0560617BEB7;
-	Tue,  5 Nov 2024 18:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DBB31DD0D9;
+	Tue,  5 Nov 2024 18:12:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KH3nvH1w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mCmUESKy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE0754D8D0;
-	Tue,  5 Nov 2024 18:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C094D8D0;
+	Tue,  5 Nov 2024 18:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730830010; cv=none; b=FILkalsFgFWIkMuV/ONMO8m4eh1POYvTWGRPX+h/Ew0/bQNPl75fdAh0golKhiBkdQ8w0V73e3WzDpO6H9b3y5jnVNvUtf3yrSjtwB1JzsC/9FdTnwNPFJ1wlBW8PYS3RJT5vR+oMpae1VlYg6iCuMXXOpx+m2PRiey9maF8SLs=
+	t=1730830373; cv=none; b=WhEDYA7ntAIxLH7lLvDPcy0lKrEwYflLwfjjCzqyvsBjOpyzuSIJua9ywA50/x6EBlpK5ePyHQbsuhieeUgowwPVQo3KUU45rkyp0C3D3aI6fIqW8I4/RA5kFQ54NuMRIkP1LEB+/hmFDwjemckqCIHuY77hfPQ6rxb6WB1TVaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730830010; c=relaxed/simple;
-	bh=ocjrByOas5NhchIJiVvTx3nmU3SUFZrLi1qRmcnrqgY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dnJep9WU0AbuGUMDJtb8P5Ffy8qIETIve79SvF6FcajfGd5TVcksHEN/FyMPFCkV1YoNUcXEdlgm6UY6IfmmgqGxTzehRXwFGEWDYwVQWJeK31Y3m+3YW5yx/xjQQVLwyYLjJfJSDyzlbX79P6jHEiLuY1SF0qp05FCzUIA8F0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KH3nvH1w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2976C4CECF;
-	Tue,  5 Nov 2024 18:06:46 +0000 (UTC)
+	s=arc-20240116; t=1730830373; c=relaxed/simple;
+	bh=Udk1VMwDN8I7xsfSbF8HU/bL4sGq932n94t1iltYcbU=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sf9MlMuJLajN+jwJKXMu6zQhn+20RYAaiZSfHX4UEci8DxDROz963bulaRSk5GqWWvp2EMXsM4Tb2THHeM0J3UQ1KjRgnuPujmg/vKavRVmBfgHQBQvfegM/Lbv+DtZMaQbJ/D0WxXe9KW//82LtxQ5X5bPF9xrDzlW14feB62Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mCmUESKy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E645C4CECF;
+	Tue,  5 Nov 2024 18:12:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730830010;
-	bh=ocjrByOas5NhchIJiVvTx3nmU3SUFZrLi1qRmcnrqgY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KH3nvH1wKtgOAdbmdI25MGBzoIlIZUU0DuJoNlsOeVJbdZaTVD/pW1K3FTVrB6Uf0
-	 FQnD2oWWlqeGpexF2tlqglZqcOcH0PB7QFh43/YKzrV5jbzi3liphlOSt343dBgHcZ
-	 Qw8qdPcknJdMN8rtEvlquuSLJnnf668tZfMgkK3MzlZvpByh+JmtXASIW6n3f08vmP
-	 fEu1+Y7fgreG8qwTvA9Coor9F2HXC7Irq258xMtSZKtHqGoR4/9Pbj0pLKmbaehTHW
-	 vG+rZB03i95oIS4gqIdT68miY3oA7HBvjIoyR3dIcH4CphIObSgiB/rg7QIBGh979K
-	 JqofCVlclV1Dw==
-Date: Tue, 5 Nov 2024 18:06:44 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Matt Coster <matt.coster@imgtec.com>
-Cc: Frank Binns <frank.binns@imgtec.com>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, Randolph Sapp <rs@ti.com>,
-	Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH 04/21] dt-bindings: gpu: img: Allow dma-coherent
-Message-ID: <20241105-linseed-steadfast-98cd8abe898c@spud>
-References: <20241105-sets-bxs-4-64-patch-v1-v1-0-4ed30e865892@imgtec.com>
- <20241105-sets-bxs-4-64-patch-v1-v1-4-4ed30e865892@imgtec.com>
+	s=k20201202; t=1730830372;
+	bh=Udk1VMwDN8I7xsfSbF8HU/bL4sGq932n94t1iltYcbU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=mCmUESKyLTIVvUyIMOlG04zS+PnHc8vwsc0/A1adU//F2uIkB7NH9IIHotDtIp87J
+	 +rWhyazK/ro3FcK1OCspxRwGpwjbsbSAmcWjhGKhaXjyulTMDte378qnKHsd8BqFNG
+	 5a89HSUKJLwizdaCgFCZsZwa63b4My277O6okqvHDz/WYozMVHRe13nhGZGNeI8ZqN
+	 JukXcqTiy1rBhoOk3Bm/xZCllGN+KLznSLwik9UF9d3kVPXgQxb5ShhqEagv8AXTLi
+	 0/+uR0m4uv4vD2qnybmxxDL+LbinLVh9+RQJRhwry58M8tyu15d+E1/cmzbE+12dYZ
+	 M5iq8ruM8cklQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1t8O2r-00A5G8-Tj;
+	Tue, 05 Nov 2024 18:12:49 +0000
+Date: Tue, 05 Nov 2024 18:12:49 +0000
+Message-ID: <86ed3p1rdq.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Sibi Sankar <quic_sibis@quicinc.com>,
+	sudeep.holla@arm.com,
+	cristian.marussi@arm.com,
+	andersson@kernel.org,
+	konrad.dybcio@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	dmitry.baryshkov@linaro.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	quic_rgottimu@quicinc.com,
+	quic_kshivnan@quicinc.com,
+	conor+dt@kernel.org,
+	quic_nkela@quicinc.com,
+	quic_psodagud@quicinc.com,
+	abel.vesa@linaro.org
+Subject: Re: [PATCH V7 0/2] qcom: x1e80100: Enable CPUFreq
+In-Reply-To: <ZypOY-NCDN9fdMAR@hovoldconsulting.com>
+References: <20241030130840.2890904-1-quic_sibis@quicinc.com>
+	<ZyTQ9QD1tEkhQ9eu@hovoldconsulting.com>
+	<86plnf11yf.wl-maz@kernel.org>
+	<ZyTjiiGc2ApoID9Y@hovoldconsulting.com>
+	<86o72z10b6.wl-maz@kernel.org>
+	<ZypOY-NCDN9fdMAR@hovoldconsulting.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jZZZ0TtrazABMAIy"
-Content-Disposition: inline
-In-Reply-To: <20241105-sets-bxs-4-64-patch-v1-v1-4-4ed30e865892@imgtec.com>
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: johan@kernel.org, quic_sibis@quicinc.com, sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org, quic_nkela@quicinc.com, quic_psodagud@quicinc.com, abel.vesa@linaro.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
+On Tue, 05 Nov 2024 16:57:07 +0000,
+Johan Hovold <johan@kernel.org> wrote:
+> 
+> On Fri, Nov 01, 2024 at 02:43:57PM +0000, Marc Zyngier wrote:
+> > On Fri, 01 Nov 2024 14:19:54 +0000,
+> > Johan Hovold <johan@kernel.org> wrote:
+> 
+> > > The side-effects and these remaining warnings are addressed by this
+> > > series:
+> > > 
+> > > 	https://lore.kernel.org/all/20241030125512.2884761-1-quic_sibis@quicinc.com/
+> > > 
+> > > but I think we should try to make the warnings a bit more informative
+> > > (and less scary) by printing something along the lines of:
+> > > 
+> > > 	arm-scmi arm-scmi.0.auto: [Firmware Bug]: Ignoring duplicate OPP 3417600 for NCC
+> > > 
+> > > instead.
+> > 
+> > Indeed. Seeing [Firmware Bug] has a comforting feeling of
+> > familiarity... :)
+> > 
+> > I wonder whether the same sort of reset happen on more "commercial"
+> > systems (such as some of the laptops). You expect that people look at
+> > the cpufreq stuff closely, and don't see things exploding like we are.
+> 
+> I finally got around to getting my Lenovo ThinkPad T14s to boot (it
+> refuses to start the kernel when using GRUB, and it's not due to the
+> known 64 GB memory issue as it only has 32 GB)
 
---jZZZ0TtrazABMAIy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+<cry>
+I know the feeling. My devkit can't use GRUB either, so I added a
+hook to the GRUB config to generate EFI scripts that directly execute
+the kernel with initrd, dtb, and command line.
 
-On Tue, Nov 05, 2024 at 03:58:10PM +0000, Matt Coster wrote:
-> This attribute will be required for the BXS-4-64 MC1 and will be enabled =
-in
-> the DTS for the TI k3-j721s2 in a subsequent patch; add it now so
-> dtbs_check doesn't complain later.
+This is probably the worse firmware I've seen in a very long while.
+</cry>
 
-Sounds like the property should be made required for that integration.
+> and can confirm that it
+> hard resets when accessing the cpufreq sysfs attributes as well.
 
->=20
-> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-> ---
->  Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml=
- b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> index 55f422be1bc5b7564e3e81f24c4b93857f3e12fe..8a1861ca960c48853b2ceef41=
-4f588cc343b49b2 100644
-> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> @@ -60,6 +60,8 @@ properties:
->            - const: a
->            - const: b
-> =20
-> +  dma-coherent: true
-> +
->  required:
->    - compatible
->    - reg
->=20
-> --=20
-> 2.47.0
->=20
+Right. So this also happens on non-abandonware machines.
 
---jZZZ0TtrazABMAIy
-Content-Type: application/pgp-signature; name="signature.asc"
+> On the bright side, at least I don't see any warnings due to duplicate
+> OPPs on this machine (x1e78100, latest UEFI fw).
 
------BEGIN PGP SIGNATURE-----
+One bug fixed...
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZypetAAKCRB4tDGHoIJi
-0kjsAQCsk2h19nWNOK2QLV16dXvVjJGuABtG2kMsJv5im2dsSgD/VsBRyWBSA9aK
-3hEs1FqMGnHBcwnC2OCwsSUNxcO2hQI=
-=QtP+
------END PGP SIGNATURE-----
+	M.
 
---jZZZ0TtrazABMAIy--
+-- 
+Without deviation from the norm, progress is not possible.
 
