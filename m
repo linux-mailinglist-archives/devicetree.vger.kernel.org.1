@@ -1,1133 +1,652 @@
-Return-Path: <devicetree+bounces-118980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D6589BC7E5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 09:21:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F037A9BC804
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 09:30:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C99E284E3A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 08:21:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F4621F2337E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 08:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E48FF188006;
-	Tue,  5 Nov 2024 08:21:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 056671CDFB8;
+	Tue,  5 Nov 2024 08:30:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Rz6r28IF"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="gXWxeCPv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com [209.85.218.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AACE7762D2;
-	Tue,  5 Nov 2024 08:21:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89EA134AB
+	for <devicetree@vger.kernel.org>; Tue,  5 Nov 2024 08:30:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730794882; cv=none; b=pt57I0vB6/O9pzsBPFodUEuJsaRl9JXeuSQWpSWxI+usiuXolTA5PgZI7OZOtFyZCQ7dVNbR5eye4LXAqOJaN29XPMMM07/xpkRnbwmMF9Ym+hLpJecWprxTlHX5JHrq7269uM+BnVBaUlMNJffDToANBZ8zw+6scKI2nyU/raA=
+	t=1730795416; cv=none; b=fFLXjbC1SWjPkRf19JsKwDCQDUVabm1NCTleglqt7AUciFnoetCnsA8JS7ObXKMJxOf1yE8oTIm3YjBxYWVPzLmF+yQWUzcdMCMBW9r2Y8H5Vvr79NuU015GFbu5GCGrDTllj7ObDdrmBMKvJb94BpwbmXHM92PMMSdo/tAYISs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730794882; c=relaxed/simple;
-	bh=bL3TfILRWD8/Ywnzh9mG1l4Nfhp1YxtRbdt+nm0L0r4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JqqVQoXj6rfiubfl+AIx7KlDmVLJm0vZ0wX4mWFSTzeybFOxKrrfWeFwg0dnLKeny3jL0YfsmvBiX5q97i5zWfKr4oH+3cguG0AEQnqGDVgUEu24XJiS4gOp5avw76Veas5igS5sUEs/CC+PX4XC2GTZV7psQBBWHqGeXmwNwek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Rz6r28IF; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (mob-5-90-48-39.net.vodafone.it [5.90.48.39])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 24EE922E;
-	Tue,  5 Nov 2024 09:21:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1730794870;
-	bh=bL3TfILRWD8/Ywnzh9mG1l4Nfhp1YxtRbdt+nm0L0r4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Rz6r28IFD3mZvX9a3qBaRZyT58NuSS5LrG543FL2mobB7KuQmLsquanWoqDtf6Buq
-	 d950gXhdcX0Tzkr6W+uRq/c72EL5+jJ1eqAZynPWnw4gAY6x/vlwW5pHl/mtSYXJ1B
-	 dh/nNXNWZ+BcABlrARNsJ9jbxLaQjXiVGZnYH9hk=
-Date: Tue, 5 Nov 2024 09:21:12 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: keke.li@amlogic.com
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kieran.bingham@ideasonboard.com, 
-	laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com
-Subject: Re: [PATCH v3 2/9] media: platform: Add c3 mipi csi2 driver
-Message-ID: <wqqazmde6i5hlr4quvk6xppct35zznnm3taxwbt6uj6x2z233q@ydcvxjhlw2n4>
-References: <20240918-c3isp-v3-0-f774a39e6774@amlogic.com>
- <20240918-c3isp-v3-2-f774a39e6774@amlogic.com>
+	s=arc-20240116; t=1730795416; c=relaxed/simple;
+	bh=FEBIAaA2LrirNuL99GbWEPrHwblsHtQGutZPgiED1Ck=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d8a6LZ1+1gWoeoagONVa57cLAwjmlYJmTE3m88pDMu3KDycs5u2RHamAIh7rdhLTRleD7dBqJngSl7kBC1QFT5D1BOyJNZteOdcl1Nv5tcO8AlgVlS7PhwRd581S4cCp5+dFMRUg/6Iwe7A//cuBHFZSzrJfKRIx4Ki0GVOKZjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=gXWxeCPv; arc=none smtp.client-ip=209.85.218.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f67.google.com with SMTP id a640c23a62f3a-a9eaaab29bcso217762966b.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Nov 2024 00:30:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1730795412; x=1731400212; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kpw01HNU/Sv0xgXPzYBXhrajrBvyrTSpHufBO5hxwkk=;
+        b=gXWxeCPvzx0V+b4004tJQpXsCedVCh8oBzHppdgo9kob3s6NcBgamATPKGKP8MR+00
+         tAqHPpTeJ/8cH/cSe7ZI3Em3Rt2n5+NUhH8pb/WrnKlSAKhXgm7FaQB5DXmjIwc6Fx5c
+         j4vczbgDoeA54+3gQlNe5jbIRb3r50TVsxA/NpXMXZMNcsHn2Sjlxlg4wMQuQVaPaq3w
+         7amZ223kAD9lpfK7OVuvLjPlkI5H5H4xmO6qXE1qhRwi4Hot7XqusET/Ld3aZ5YYZGBK
+         EVxFsWKdMK2HWVaV4Jv5fbYqwmQ/AEVf4tPCA2jsyTbpdQCzw5trS6O+uKTZvrKdfasb
+         gogA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730795412; x=1731400212;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Kpw01HNU/Sv0xgXPzYBXhrajrBvyrTSpHufBO5hxwkk=;
+        b=tPRz/lY7AtJGqvxH784gaD9bt9Y9j/FNplkUForAX6G2c7e7pdQSkKmSXV4fif1c69
+         oeiRMXtqjJTSnY3nFPqjhUSK2iPoi2vv8VKL7FHcy+N1VpBFogkvg8yZFEYMqI8nZUwR
+         bzvR3z2+kT46INhxBQqwEGT0Wt9WUkjfFUzp+5oWfll6yFpwPi1jgiw0YXCED7RDpD26
+         7c0c3tgDfVLfJNyvyHdN4zdENbJDgq/LFiatvUb576wl4XjL0PQK9fNDsDQ4ndnEFGNt
+         iCgjDkf1WGbZ/oYGwpq004RObOFKU9nRygxIJhab04hS2Dr3jwHL4uyPZtH51FPIzX7B
+         gbtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX3vOl5DoUsw2LZvcKQdUPe3XQ0iMBK5BuIlJTRWlDLEEvsbqMEHDJJSL4UbQUYFyCqqK5vWM0wMFfx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnM+0cnDJKlFULifJrFbTNRxSDmCrK3/1xUt2wSLLffOUqfBim
+	6+VEM0NlZ/3QXUnRBEc8/IMsGPBOmkXL+s9fon1MDhGaQQcaIi7Uh+bNdYS+SOI=
+X-Google-Smtp-Source: AGHT+IE4HmcRyyOJrLcIvLVZE/X26LsWeylyyS8o4KlNGwK33ooeQUPKh0OQozoC1twhQBug+FmFNg==
+X-Received: by 2002:a17:907:7e8f:b0:a99:dde6:9f42 with SMTP id a640c23a62f3a-a9e50b935bcmr1654303266b.47.1730795411966;
+        Tue, 05 Nov 2024 00:30:11 -0800 (PST)
+Received: from localhost (host-79-35-211-193.retail.telecomitalia.it. [79.35.211.193])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9eb16da0b6sm98946766b.76.2024.11.05.00.30.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Nov 2024 00:30:11 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Tue, 5 Nov 2024 09:30:38 +0100
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 07/12] clk: rp1: Add support for clocks provided by RP1
+Message-ID: <ZynXrg8OlGvPcmWb@apocalypse>
+References: <cover.1730123575.git.andrea.porta@suse.com>
+ <c20e3d6d87c71691b149cdeeafc94009953346b2.1730123575.git.andrea.porta@suse.com>
+ <01c2bb3609dcb32191a78293c1666b0a.sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240918-c3isp-v3-2-f774a39e6774@amlogic.com>
+In-Reply-To: <01c2bb3609dcb32191a78293c1666b0a.sboyd@kernel.org>
 
-Hi Keke, one more thing
+Hi Stephen,
 
-On Wed, Sep 18, 2024 at 02:07:13PM +0800, Keke Li via B4 Relay wrote:
-> From: Keke Li <keke.li@amlogic.com>
->
-> This driver is used to receive mipi data from image sensor.
->
-> Reviewed-by: Daniel Scally <dan.scally@ideasonboard.com>
-> Signed-off-by: Keke Li <keke.li@amlogic.com>
-> ---
->  MAINTAINERS                                        |   7 +
->  drivers/media/platform/amlogic/Kconfig             |   1 +
->  drivers/media/platform/amlogic/Makefile            |   2 +
->  .../media/platform/amlogic/c3-mipi-csi2/Kconfig    |  16 +
->  .../media/platform/amlogic/c3-mipi-csi2/Makefile   |   3 +
->  .../platform/amlogic/c3-mipi-csi2/c3-mipi-csi2.c   | 910 +++++++++++++++++++++
->  6 files changed, 939 insertions(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2cdd7cacec86..9e75874a6e69 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1209,6 +1209,13 @@ F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
->  F:	drivers/perf/amlogic/
->  F:	include/soc/amlogic/
->
-> +AMLOGIC MIPI CSI2 DRIVER
-> +M:	Keke Li <keke.li@amlogic.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/media/amlogic,c3-mipi-csi2.yaml
-> +F:	drivers/media/platform/amlogic/c3-mipi-csi2/
-> +
->  AMPHENOL CHIPCAP 2 HUMIDITY-TEMPERATURE IIO DRIVER
->  M:	Javier Carrasco <javier.carrasco.cruz@gmail.com>
->  L:	linux-hwmon@vger.kernel.org
-> diff --git a/drivers/media/platform/amlogic/Kconfig b/drivers/media/platform/amlogic/Kconfig
-> index 5014957404e9..b7c2de14848b 100644
-> --- a/drivers/media/platform/amlogic/Kconfig
-> +++ b/drivers/media/platform/amlogic/Kconfig
-> @@ -2,4 +2,5 @@
->
->  comment "Amlogic media platform drivers"
->
-> +source "drivers/media/platform/amlogic/c3-mipi-csi2/Kconfig"
->  source "drivers/media/platform/amlogic/meson-ge2d/Kconfig"
-> diff --git a/drivers/media/platform/amlogic/Makefile b/drivers/media/platform/amlogic/Makefile
-> index d3cdb8fa4ddb..4f571ce5d13e 100644
-> --- a/drivers/media/platform/amlogic/Makefile
-> +++ b/drivers/media/platform/amlogic/Makefile
-> @@ -1,2 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> +
-> +obj-y += c3-mipi-csi2/
->  obj-y += meson-ge2d/
-> diff --git a/drivers/media/platform/amlogic/c3-mipi-csi2/Kconfig b/drivers/media/platform/amlogic/c3-mipi-csi2/Kconfig
-> new file mode 100644
-> index 000000000000..0d7b2e203273
-> --- /dev/null
-> +++ b/drivers/media/platform/amlogic/c3-mipi-csi2/Kconfig
-> @@ -0,0 +1,16 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
-> +config VIDEO_C3_MIPI_CSI2
-> +	tristate "Amlogic C3 MIPI CSI-2 receiver"
-> +	depends on ARCH_MESON || COMPILE_TEST
-> +	depends on VIDEO_DEV
-> +	depends on OF
-> +	select MEDIA_CONTROLLER
-> +	select V4L2_FWNODE
-> +	select VIDEO_V4L2_SUBDEV_API
-> +	help
-> +	  Video4Linux2 driver for Amlogic C3 MIPI CSI-2 receiver.
-> +	  C3 MIPI CSI-2 receiver is used to receive MIPI data from
-> +	  image sensor.
-> +
-> +	  To compile this driver as a module choose m here.
-> diff --git a/drivers/media/platform/amlogic/c3-mipi-csi2/Makefile b/drivers/media/platform/amlogic/c3-mipi-csi2/Makefile
-> new file mode 100644
-> index 000000000000..cc08fc722bfd
-> --- /dev/null
-> +++ b/drivers/media/platform/amlogic/c3-mipi-csi2/Makefile
-> @@ -0,0 +1,3 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
-> +obj-$(CONFIG_VIDEO_C3_MIPI_CSI2) += c3-mipi-csi2.o
-> diff --git a/drivers/media/platform/amlogic/c3-mipi-csi2/c3-mipi-csi2.c b/drivers/media/platform/amlogic/c3-mipi-csi2/c3-mipi-csi2.c
-> new file mode 100644
-> index 000000000000..6ac60d5b26a8
-> --- /dev/null
-> +++ b/drivers/media/platform/amlogic/c3-mipi-csi2/c3-mipi-csi2.c
-> @@ -0,0 +1,910 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-> +/*
-> + * Copyright (C) 2024 Amlogic, Inc. All rights reserved
-> + */
-> +
-> +#include <linux/cleanup.h>
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +
-> +#include <media/v4l2-async.h>
-> +#include <media/v4l2-common.h>
-> +#include <media/v4l2-device.h>
-> +#include <media/v4l2-fwnode.h>
-> +#include <media/v4l2-mc.h>
-> +#include <media/v4l2-subdev.h>
-> +
-> +/* C3 CSI-2 submodule definition */
-> +enum {
-> +	SUBMD_APHY,
-> +	SUBMD_DPHY,
-> +	SUBMD_HOST,
-> +};
-> +
-> +#define CSI2_SUBMD_MASK             GENMASK(17, 16)
-> +#define CSI2_SUBMD_SHIFT            16
-> +#define CSI2_SUBMD(x)               (((x) & (CSI2_SUBMD_MASK)) >> (CSI2_SUBMD_SHIFT))
-> +#define CSI2_REG_ADDR_MASK          GENMASK(15, 0)
-> +#define CSI2_REG_ADDR(x)            ((x) & (CSI2_REG_ADDR_MASK))
-> +#define CSI2_REG_A(x)               ((SUBMD_APHY << CSI2_SUBMD_SHIFT) | (x))
-> +#define CSI2_REG_D(x)               ((SUBMD_DPHY << CSI2_SUBMD_SHIFT) | (x))
-> +#define CSI2_REG_H(x)               ((SUBMD_HOST << CSI2_SUBMD_SHIFT) | (x))
-> +
-> +#define MIPI_CSI2_CLOCK_NUM_MAX     3
-> +#define MIPI_CSI2_SUBDEV_NAME       "mipi-csi2"
-> +
-> +/* C3 CSI-2 APHY register */
-> +#define MIPI_CSI_2M_PHY2_CNTL1      CSI2_REG_A(0x44)
-> +#define MIPI_APHY_NORMAL_CNTL1      0x3f425C00
-> +
-> +#define MIPI_CSI_2M_PHY2_CNTL2      CSI2_REG_A(0x48)
-> +#define MIPI_APHY_4LANES_CNTL2      0x033a0000
-> +#define MIPI_APHY_NORMAL_CNTL2      0x333a0000
-> +
-> +#define MIPI_CSI_2M_PHY2_CNTL3      CSI2_REG_A(0x4c)
-> +#define MIPI_APHY_2LANES_CNTL3      0x03800000
-> +
-> +/* C3 CSI-2 DPHY register */
-> +#define MIPI_PHY_CTRL	            CSI2_REG_D(0x00)
-> +#define MIPI_DPHY_LANES_ENABLE      0x0
-> +
-> +#define MIPI_PHY_CLK_LANE_CTRL	    CSI2_REG_D(0x04)
-> +#define MIPI_DPHY_CLK_CONTINUE_MODE 0x3d8
+On 15:20 Mon 28 Oct     , Stephen Boyd wrote:
+> Quoting Andrea della Porta (2024-10-28 07:07:24)
+> > diff --git a/drivers/clk/clk-rp1.c b/drivers/clk/clk-rp1.c
+> > new file mode 100644
+> > index 000000000000..69b9cf037cb2
+> > --- /dev/null
+> [...]
+> > +
+> > +struct rp1_clockman {
+> > +       struct device *dev;
+> > +       void __iomem *regs;
+> 
+> Do you still need this if there's a regmap?
 
-I was checking the registers settings, and I've noticed the values
-used to configure the interface group together settings from different
-register bitfields.
+Unfortunately the clk_divider registered in rp1_register_pll_divider()
+mandates the use of a MMIO registeri, and yes, the divider and teh other
+clock shares some registers. AFAICT there were attempts to upstream generic
+regmap support for clk_divider, but right now there are just custom
+implementations (e.g. drivers/clk/qcom/clk-regmap.c).  So, in order to
+use regmap, that clock divider shoulf be first augmented with regmap
+support. Please let me know if you think it's worth the effort.
 
-I think to allow the driver to be easily consumable and extensible,
-each bit field should be described by its own macro.
+> 
+> > +       struct regmap *regmap;
+> > +       spinlock_t regs_lock; /* spinlock for all clocks */
+> 
+> Do you need this or is the spinlock in the regmap sufficient?
 
-Instead of defining a magic value like
+The original code wrapped multiple registers write/read inside the spinlock,
+so I suspect that using the internal regmap spinlock for each single
+transaciton (so to open up for interleaved register access, although I have
+no evidence of that) could have side-effects so I would prefer to stay safe
+and manage the lock from outside. I could easily use regmap_multi_reg_write()
+and friends to synchronize access across multiple registers but then we would
+have the problem above about missing regmap support in clk_divider, since now
+it's solved by passing the same spinlock to it too. I'm open to alternatives
+here...
 
-#define MIPI_DPHY_CLK_CONTINUE_MODE 0x3d8
+> 
+> > +
+> > +       /* Must be last */
+> > +       struct clk_hw_onecell_data onecell;
+> > +};
+> > +
+> > +struct rp1_pll_core_data {
+> > +       const char *name;
+> 
+> These 'name' members can move to clk_init_data?
 
-The single register bitfield should be described
+You've read my mind, I was exactly planning that for the next revision
 
-#define MIPI_PHY_CLK_LANE_CTRL                  CSI2_REG_D(0x04)
-#define MIPI_PHY_CLK_LANE_CTRL_HS_RX_EN         BIT(9)
-#define MIPI_PHY_CLK_LANE_CTRL_END_EN           BIT(8)
-#define MIPI_PHY_CLK_LANE_CTRL_LPEN_DIS         BIT(7)
-#define MIPI_PHY_CLK_LANE_CTRL_TCLK_ZERO_EN     BIT(6)
-#define MIPI_PHY_CLK_LANE_CTRL_TCLK_ZERO_HS     (0 << 3)
-#define MIPI_PHY_CLK_LANE_CTRL_TCLK_ZERO_HS_2   (1 << 3)
-#define MIPI_PHY_CLK_LANE_CTRL_TCLK_ZERO_HS_4   (2 << 3)
-#define MIPI_PHY_CLK_LANE_CTRL_TCLK_ZERO_HS_8   (3 << 3)
-#define MIPI_PHY_CLK_LANE_CTRL_TCLK_ZERO_HS_16  (4 << 3)
-#define MIPI_PHY_CLK_LANE_CTRL_FORCE_ULPS_EXIT  BIT(1)
-#define MIPI_PHY_CLK_LANE_CTRL_FORCE_ULPS_ENTER BIT(0)
+> 
+> > +       u32 cs_reg;
+> > +       u32 pwr_reg;
+> > +       u32 fbdiv_int_reg;
+> > +       u32 fbdiv_frac_reg;
+> > +       unsigned long flags;
+> 
+> And probably flags as well? It seems like clk_init_data should be
+> declared at the same time as struct rp1_pll_core_data is.
 
-and you configure it with
+Ditto.
 
-        c3_mipi_csi_write(csi, MIPI_PHY_CLK_LANE_CTRL,
-                          MIPI_PHY_CLK_LANE_CTRL_HS_RX_EN |
-                          MIPI_PHY_CLK_LANE_CTRL_END_EN |
-                          MIPI_PHY_CLK_LANE_CTRL_LPEN_DIS |
-                          MIPI_PHY_CLK_LANE_CTRL_TCLK_ZERO_EN |
-                          MIPI_PHY_CLK_LANE_CTRL_TCLK_ZERO_HS_2);
+> 
+> > +       u32 fc0_src;
+> > +};
+> > +
+> > +struct rp1_pll_data {
+> > +       const char *name;
+> > +       u32 ctrl_reg;
+> > +       unsigned long flags;
+> > +       u32 fc0_src;
+> > +};
+> > +
+> > +struct rp1_pll_ph_data {
+> > +       const char *name;
+> > +       unsigned int phase;
+> > +       unsigned int fixed_divider;
+> > +       u32 ph_reg;
+> > +       unsigned long flags;
+> > +       u32 fc0_src;
+> > +};
+> > +
+> > +struct rp1_pll_divider_data {
+> > +       const char *name;
+> > +       u32 sec_reg;
+> > +       unsigned long flags;
+> > +       u32 fc0_src;
+> > +};
+> > +
+> > +struct rp1_clock_data {
+> > +       const char *name;
+> > +       int num_std_parents;
+> > +       int num_aux_parents;
+> > +       unsigned long flags;
+> > +       u32 oe_mask;
+> > +       u32 clk_src_mask;
+> > +       u32 ctrl_reg;
+> > +       u32 div_int_reg;
+> > +       u32 div_frac_reg;
+> > +       u32 sel_reg;
+> > +       u32 div_int_max;
+> > +       unsigned long max_freq;
+> > +       u32 fc0_src;
+> > +};
+> > +
+> > +struct rp1_clk_desc {
+> > +       struct clk_hw *(*clk_register)(struct rp1_clockman *clockman,
+> > +                                      struct rp1_clk_desc *desc);
+> > +       const void *data;
+> > +       struct clk_hw hw;
+> > +       struct rp1_clockman *clockman;
+> > +       unsigned long cached_rate;
+> > +       struct clk_divider div;
+> > +};
+> > +
+> > +#define FIELD_SET(_reg, _mask, _val)           \
+> > +do {                                           \
+> > +       u32 mask = (_mask);                     \
+> > +       (_reg) &= ~mask;                        \
+> > +       (_reg) |= FIELD_PREP(mask, (_val));     \
+> 
+> Please just write
+> 
+> 	reg &= ~mask
+> 	reg |= FIELD_PREP(mask, val);
+> 
+> instead of using this macro.
 
-Otherwise iy you do
+Ack.
 
-        c3_mipi_csi_write(csi, MIPI_PHY_CLK_LANE_CTRL, MIPI_DPHY_CLK_CONTINUE_MODE);
+> 
+> > +} while (0)
+> > +
+> > +
+> [...]
+> > +
+> > +static struct clk_hw *rp1_register_pll_core(struct rp1_clockman *clockman,
+> > +                                           struct rp1_clk_desc *desc)
+> > +{
+> > +       const struct rp1_pll_core_data *pll_core_data = desc->data;
+> > +       struct clk_init_data init = { };
+> > +       int ret;
+> > +
+> > +       /* All of the PLL cores derive from the external oscillator. */
+> > +       init.parent_data = desc->hw.init->parent_data;
+> > +       init.num_parents = desc->hw.init->num_parents;
+> > +       init.name = pll_core_data->name;
+> > +       init.ops = &rp1_pll_core_ops;
+> > +       init.flags = pll_core_data->flags | CLK_IGNORE_UNUSED | CLK_IS_CRITICAL;
+> > +
+> > +       desc->clockman = clockman;
+> > +       desc->hw.init = &init;
+> > +
+> > +       ret = devm_clk_hw_register(clockman->dev, &desc->hw);
+> > +
+> > +       if (ret)
+> > +               return ERR_PTR(ret);
+> > +
+> > +       return &desc->hw;
+> > +}
+> > +
+> > +static struct clk_hw *rp1_register_pll(struct rp1_clockman *clockman,
+> > +                                      struct rp1_clk_desc *desc)
+> > +{
+> > +       const struct rp1_pll_data *pll_data = desc->data;
+> > +       struct clk_init_data init = { };
+> > +       int ret;
+> > +
+> > +       init.parent_data = desc->hw.init->parent_data;
+> > +       init.num_parents = desc->hw.init->num_parents;
+> > +       init.name = pll_data->name;
+> > +       init.ops = &rp1_pll_ops;
+> > +       init.flags = pll_data->flags | CLK_IGNORE_UNUSED | CLK_IS_CRITICAL;
+> > +
+> > +       desc->clockman = clockman;
+> > +       desc->hw.init = &init;
+> > +
+> > +       ret = devm_clk_hw_register(clockman->dev, &desc->hw);
+> > +
+> > +       if (ret)
+> > +               return ERR_PTR(ret);
+> > +
+> > +       return &desc->hw;
+> > +}
+> > +
+> > +static struct clk_hw *rp1_register_pll_ph(struct rp1_clockman *clockman,
+> > +                                         struct rp1_clk_desc *desc)
+> > +{
+> > +       const struct rp1_pll_ph_data *ph_data = desc->data;
+> > +       struct clk_init_data init = { };
+> > +       int ret;
+> > +
+> > +       init.parent_data = desc->hw.init->parent_data;
+> > +       init.num_parents = desc->hw.init->num_parents;
+> > +       init.name = ph_data->name;
+> > +       init.ops = &rp1_pll_ph_ops;
+> > +       init.flags = ph_data->flags | CLK_IGNORE_UNUSED;
+> > +
+> > +       desc->clockman = clockman;
+> > +       desc->hw.init = &init;
+> > +
+> > +       ret = devm_clk_hw_register(clockman->dev, &desc->hw);
+> > +
+> > +       if (ret)
+> > +               return ERR_PTR(ret);
+> > +
+> > +       return &desc->hw;
+> > +}
+> > +
+> > +static struct clk_hw *rp1_register_pll_divider(struct rp1_clockman *clockman,
+> > +                                              struct rp1_clk_desc *desc)
+> > +{
+> > +       const struct rp1_pll_data *divider_data = desc->data;
+> > +       struct clk_init_data init = { };
+> > +       int ret;
+> > +
+> > +       init.parent_data = desc->hw.init->parent_data;
+> > +       init.num_parents = desc->hw.init->num_parents;
+> > +       init.name = divider_data->name;
+> > +       init.ops = &rp1_pll_divider_ops;
+> > +       init.flags = divider_data->flags | CLK_IGNORE_UNUSED | CLK_IS_CRITICAL;
+> > +
+> > +       desc->div.reg = clockman->regs + divider_data->ctrl_reg;
+> 
+> Why is 'regs' used here? Isn't everything using a regmap now so it's all
+> offsets?
 
-if MIPI_DPHY_CLK_CONTINUE_MODE has to be made configurable for
-whatever reason, it's hard to untangle.
+Already explained above.
 
-The above suggestion only applies to register where it makes sense to
-describe the single fields of course.
+> 
+> > +       desc->div.shift = PLL_SEC_DIV_SHIFT;
+> > +       desc->div.width = PLL_SEC_DIV_WIDTH;
+> > +       desc->div.flags = CLK_DIVIDER_ROUND_CLOSEST;
+> > +       desc->div.flags |= CLK_IS_CRITICAL;
+> > +       desc->div.lock = &clockman->regs_lock;
+> > +       desc->div.hw.init = &init;
+> > +       desc->div.table = pll_sec_div_table;
+> > +
+> > +       desc->clockman = clockman;
+> > +
+> > +       ret = devm_clk_hw_register(clockman->dev, &desc->div.hw);
+> > +
+> > +       if (ret)
+> > +               return ERR_PTR(ret);
+> > +
+> > +       return &desc->div.hw;
+> > +}
+> > +
+> > +static struct clk_hw *rp1_register_clock(struct rp1_clockman *clockman,
+> > +                                        struct rp1_clk_desc *desc)
+> > +{
+> > +       const struct rp1_clock_data *clock_data = desc->data;
+> > +       struct clk_init_data init = { };
+> > +       int ret;
+> > +
+> > +       if (WARN_ON_ONCE(MAX_CLK_PARENTS <
+> > +              clock_data->num_std_parents + clock_data->num_aux_parents))
+> > +               return NULL;
+> > +
+> > +       /* There must be a gap for the AUX selector */
+> > +       if (WARN_ON_ONCE(clock_data->num_std_parents > AUX_SEL &&
+> > +                        desc->hw.init->parent_data[AUX_SEL].index != -1))
+> > +               return NULL;
+> > +
+> > +       init.parent_data = desc->hw.init->parent_data;
+> > +       init.num_parents = desc->hw.init->num_parents;
+> > +       init.name = clock_data->name;
+> > +       init.flags = clock_data->flags | CLK_IGNORE_UNUSED;
+> > +       init.ops = &rp1_clk_ops;
+> > +
+> > +       desc->clockman = clockman;
+> > +       desc->hw.init = &init;
+> > +
+> > +       ret = devm_clk_hw_register(clockman->dev, &desc->hw);
+> > +
+> > +       if (ret)
+> > +               return ERR_PTR(ret);
+> > +
+> > +       return &desc->hw;
+> > +}
+> > +
+> > +/* Assignment helper macros for different clock types. */
+> > +#define _REGISTER(f, ...)      { .clk_register = f, __VA_ARGS__ }
+> > +
+> > +#define PARENT_CLK(pnum, ...)  .hw.init = &(const struct clk_init_data) { \
+> 
+> Instead of this macro just use CLK_HW_INIT_HW() or
+> CLK_HW_INIT_PARENTS_DATA()?
 
-> +
-> +#define MIPI_PHY_DATA_LANE_CTRL     CSI2_REG_D(0x08)
-> +#define MIPI_DPHY_LANE_CTRL_DISABLE 0x0
-> +
-> +#define MIPI_PHY_DATA_LANE_CTRL1    CSI2_REG_D(0x0c)
-> +#define MIPI_DPHY_INSERT_ERRESC     BIT(0)
-> +#define MIPI_DPHY_HS_SYNC_CHECK     BIT(1)
-> +#define MIPI_DPHY_FIVE_HS_PIPE      GENMASK(6, 2)
-> +#define MIPI_DPHY_FIVE_HS_PIPE_SHIFT           2
-> +#define MIPI_DPHY_DATA_PIPE_SELECT  GENMASK(9, 7)
-> +#define MIPI_DPHY_DATA_PIPE_SELECT_SHIFT       7
+Ack.
 
-In example, this is done right!
+> 
+> > +                               .parent_data = (const struct               \
+> > +                                               clk_parent_data[]) {       \
+> > +                                                       __VA_ARGS__        \
+> > +                                               },                         \
+> > +                               .num_parents = pnum }
+> > +
+> > +#define CLK_DATA(type, ...)    .data = &(struct type) { __VA_ARGS__ }
+> > +
+> > +#define REGISTER_PLL_CORE(...) _REGISTER(&rp1_register_pll_core,       \
+> > +                                         __VA_ARGS__)
+> > +
+> > +#define REGISTER_PLL(...)      _REGISTER(&rp1_register_pll,            \
+> > +                                         __VA_ARGS__)
+> > +
+> > +#define REGISTER_PLL_PH(...)   _REGISTER(&rp1_register_pll_ph,         \
+> > +                                         __VA_ARGS__)
+> > +
+> > +#define REGISTER_PLL_DIV(...)  _REGISTER(&rp1_register_pll_divider,    \
+> > +                                         __VA_ARGS__)
+> > +
+> > +#define REGISTER_CLK(...)      _REGISTER(&rp1_register_clock,          \
+> > +                                         __VA_ARGS__)
+> > +
+> > +static struct rp1_clk_desc clk_desc_array[] = {
+> > +       [RP1_PLL_SYS_CORE] = REGISTER_PLL_CORE(PARENT_CLK(1, { .index = 0 }),
+> > +                               CLK_DATA(rp1_pll_core_data,
+> > +                                        .name = "pll_sys_core",
+> > +                                        .cs_reg = PLL_SYS_CS,
+> > +                                        .pwr_reg = PLL_SYS_PWR,
+> > +                                        .fbdiv_int_reg = PLL_SYS_FBDIV_INT,
+> > +                                        .fbdiv_frac_reg = PLL_SYS_FBDIV_FRAC,
+> > +                               )),
+> > +
+> > +       [RP1_PLL_AUDIO_CORE] = REGISTER_PLL_CORE(PARENT_CLK(1, { .index = 0 }),
+> > +                               CLK_DATA(rp1_pll_core_data,
+> > +                                        .name = "pll_audio_core",
+> > +                                        .cs_reg = PLL_AUDIO_CS,
+> > +                                        .pwr_reg = PLL_AUDIO_PWR,
+> > +                                        .fbdiv_int_reg = PLL_AUDIO_FBDIV_INT,
+> > +                                        .fbdiv_frac_reg = PLL_AUDIO_FBDIV_FRAC,
+> > +                               )),
+> > +
+> > +       [RP1_PLL_VIDEO_CORE] = REGISTER_PLL_CORE(PARENT_CLK(1, { .index = 0 }),
+> > +                               CLK_DATA(rp1_pll_core_data,
+> > +                                        .name = "pll_video_core",
+> > +                                        .cs_reg = PLL_VIDEO_CS,
+> > +                                        .pwr_reg = PLL_VIDEO_PWR,
+> > +                                        .fbdiv_int_reg = PLL_VIDEO_FBDIV_INT,
+> > +                                        .fbdiv_frac_reg = PLL_VIDEO_FBDIV_FRAC,
+> > +                               )),
+> > +
+> > +       [RP1_PLL_SYS] = REGISTER_PLL(PARENT_CLK(1,
+> > +                               { .hw = &clk_desc_array[RP1_PLL_SYS_CORE].hw }
+> > +                               ),
+> > +                               CLK_DATA(rp1_pll_data,
+> > +                                        .name = "pll_sys",
+> > +                                        .ctrl_reg = PLL_SYS_PRIM,
+> > +                                        .fc0_src = FC_NUM(0, 2),
+> > +                               )),
+> > +
+> > +       [RP1_CLK_ETH_TSU] = REGISTER_CLK(PARENT_CLK(1, { .index = 0 }),
+> > +                               CLK_DATA(rp1_clock_data,
+> > +                                        .name = "clk_eth_tsu",
+> > +                                        .num_std_parents = 0,
+> > +                                        .num_aux_parents = 1,
+> > +                                        .ctrl_reg = CLK_ETH_TSU_CTRL,
+> > +                                        .div_int_reg = CLK_ETH_TSU_DIV_INT,
+> > +                                        .sel_reg = CLK_ETH_TSU_SEL,
+> > +                                        .div_int_max = DIV_INT_8BIT_MAX,
+> > +                                        .max_freq = 50 * HZ_PER_MHZ,
+> > +                                        .fc0_src = FC_NUM(5, 7),
+> > +                               )),
+> > +
+> > +       [RP1_CLK_SYS] = REGISTER_CLK(PARENT_CLK(3,
+> > +                               { .index = 0 },
+> > +                               { .index = -1 },
+> > +                               { .hw = &clk_desc_array[RP1_PLL_SYS].hw }
+> > +                               ),
+> > +                               CLK_DATA(rp1_clock_data,
+> > +                                        .name = "clk_sys",
+> > +                                        .num_std_parents = 3,
+> > +                                        .num_aux_parents = 0,
+> > +                                        .ctrl_reg = CLK_SYS_CTRL,
+> > +                                        .div_int_reg = CLK_SYS_DIV_INT,
+> > +                                        .sel_reg = CLK_SYS_SEL,
+> > +                                        .div_int_max = DIV_INT_24BIT_MAX,
+> > +                                        .max_freq = 200 * HZ_PER_MHZ,
+> > +                                        .fc0_src = FC_NUM(0, 4),
+> > +                                        .clk_src_mask = 0x3,
+> > +                               )),
+> > +
+> > +       [RP1_PLL_SYS_PRI_PH] = REGISTER_PLL_PH(PARENT_CLK(1,
+> > +                               { .hw = &clk_desc_array[RP1_PLL_SYS].hw }
+> > +                               ),
+> > +                               CLK_DATA(rp1_pll_ph_data,
+> > +                                        .name = "pll_sys_pri_ph",
+> > +                                        .ph_reg = PLL_SYS_PRIM,
+> > +                                        .fixed_divider = 2,
+> > +                                        .phase = RP1_PLL_PHASE_0,
+> > +                                        .fc0_src = FC_NUM(1, 2),
+> > +                               )),
+> > +
+> > +       [RP1_PLL_SYS_SEC] = REGISTER_PLL_DIV(PARENT_CLK(1,
+> > +                               { .hw = &clk_desc_array[RP1_PLL_SYS_CORE].hw }
+> > +                               ),
+> > +                               CLK_DATA(rp1_pll_data,
+> > +                                        .name = "pll_sys_sec",
+> > +                                        .ctrl_reg = PLL_SYS_SEC,
+> > +                                        .fc0_src = FC_NUM(2, 2),
+> > +                               )),
+> > +};
+> > +
+> > +static const struct regmap_range rp1_reg_ranges[] = {
+> > +       regmap_reg_range(PLL_SYS_CS, PLL_SYS_SEC),
+> > +       regmap_reg_range(PLL_AUDIO_CS, PLL_AUDIO_TERN),
+> > +       regmap_reg_range(PLL_VIDEO_CS, PLL_VIDEO_SEC),
+> > +       regmap_reg_range(GPCLK_OE_CTRL, GPCLK_OE_CTRL),
+> > +       regmap_reg_range(CLK_SYS_CTRL, CLK_SYS_DIV_INT),
+> > +       regmap_reg_range(CLK_SYS_SEL, CLK_SYS_SEL),
+> > +       regmap_reg_range(CLK_SLOW_SYS_CTRL, CLK_SLOW_SYS_DIV_INT),
+> > +       regmap_reg_range(CLK_SLOW_SYS_SEL, CLK_SLOW_SYS_SEL),
+> > +       regmap_reg_range(CLK_DMA_CTRL, CLK_DMA_DIV_INT),
+> > +       regmap_reg_range(CLK_DMA_SEL, CLK_DMA_SEL),
+> > +       regmap_reg_range(CLK_UART_CTRL, CLK_UART_DIV_INT),
+> > +       regmap_reg_range(CLK_UART_SEL, CLK_UART_SEL),
+> > +       regmap_reg_range(CLK_ETH_CTRL, CLK_ETH_DIV_INT),
+> > +       regmap_reg_range(CLK_ETH_SEL, CLK_ETH_SEL),
+> > +       regmap_reg_range(CLK_PWM0_CTRL, CLK_PWM0_SEL),
+> > +       regmap_reg_range(CLK_PWM1_CTRL, CLK_PWM1_SEL),
+> > +       regmap_reg_range(CLK_AUDIO_IN_CTRL, CLK_AUDIO_IN_DIV_INT),
+> > +       regmap_reg_range(CLK_AUDIO_IN_SEL, CLK_AUDIO_IN_SEL),
+> > +       regmap_reg_range(CLK_AUDIO_OUT_CTRL, CLK_AUDIO_OUT_DIV_INT),
+> > +       regmap_reg_range(CLK_AUDIO_OUT_SEL, CLK_AUDIO_OUT_SEL),
+> > +       regmap_reg_range(CLK_I2S_CTRL, CLK_I2S_DIV_INT),
+> > +       regmap_reg_range(CLK_I2S_SEL, CLK_I2S_SEL),
+> > +       regmap_reg_range(CLK_MIPI0_CFG_CTRL, CLK_MIPI0_CFG_DIV_INT),
+> > +       regmap_reg_range(CLK_MIPI0_CFG_SEL, CLK_MIPI0_CFG_SEL),
+> > +       regmap_reg_range(CLK_MIPI1_CFG_CTRL, CLK_MIPI1_CFG_DIV_INT),
+> > +       regmap_reg_range(CLK_MIPI1_CFG_SEL, CLK_MIPI1_CFG_SEL),
+> > +       regmap_reg_range(CLK_PCIE_AUX_CTRL, CLK_PCIE_AUX_DIV_INT),
+> > +       regmap_reg_range(CLK_PCIE_AUX_SEL, CLK_PCIE_AUX_SEL),
+> > +       regmap_reg_range(CLK_USBH0_MICROFRAME_CTRL, CLK_USBH0_MICROFRAME_DIV_INT),
+> > +       regmap_reg_range(CLK_USBH0_MICROFRAME_SEL, CLK_USBH0_MICROFRAME_SEL),
+> > +       regmap_reg_range(CLK_USBH1_MICROFRAME_CTRL, CLK_USBH1_MICROFRAME_DIV_INT),
+> > +       regmap_reg_range(CLK_USBH1_MICROFRAME_SEL, CLK_USBH1_MICROFRAME_SEL),
+> > +       regmap_reg_range(CLK_USBH0_SUSPEND_CTRL, CLK_USBH0_SUSPEND_DIV_INT),
+> > +       regmap_reg_range(CLK_USBH0_SUSPEND_SEL, CLK_USBH0_SUSPEND_SEL),
+> > +       regmap_reg_range(CLK_USBH1_SUSPEND_CTRL, CLK_USBH1_SUSPEND_DIV_INT),
+> > +       regmap_reg_range(CLK_USBH1_SUSPEND_SEL, CLK_USBH1_SUSPEND_SEL),
+> > +       regmap_reg_range(CLK_ETH_TSU_CTRL, CLK_ETH_TSU_DIV_INT),
+> > +       regmap_reg_range(CLK_ETH_TSU_SEL, CLK_ETH_TSU_SEL),
+> > +       regmap_reg_range(CLK_ADC_CTRL, CLK_ADC_DIV_INT),
+> > +       regmap_reg_range(CLK_ADC_SEL, CLK_ADC_SEL),
+> > +       regmap_reg_range(CLK_SDIO_TIMER_CTRL, CLK_SDIO_TIMER_DIV_INT),
+> > +       regmap_reg_range(CLK_SDIO_TIMER_SEL, CLK_SDIO_TIMER_SEL),
+> > +       regmap_reg_range(CLK_SDIO_ALT_SRC_CTRL, CLK_SDIO_ALT_SRC_DIV_INT),
+> > +       regmap_reg_range(CLK_SDIO_ALT_SRC_SEL, CLK_SDIO_ALT_SRC_SEL),
+> > +       regmap_reg_range(CLK_GP0_CTRL, CLK_GP0_SEL),
+> > +       regmap_reg_range(CLK_GP1_CTRL, CLK_GP1_SEL),
+> > +       regmap_reg_range(CLK_GP2_CTRL, CLK_GP2_SEL),
+> > +       regmap_reg_range(CLK_GP3_CTRL, CLK_GP3_SEL),
+> > +       regmap_reg_range(CLK_GP4_CTRL, CLK_GP4_SEL),
+> > +       regmap_reg_range(CLK_GP5_CTRL, CLK_GP5_SEL),
+> > +       regmap_reg_range(CLK_SYS_RESUS_CTRL, CLK_SYS_RESUS_CTRL),
+> > +       regmap_reg_range(CLK_SLOW_SYS_RESUS_CTRL, CLK_SLOW_SYS_RESUS_CTRL),
+> > +       regmap_reg_range(FC0_REF_KHZ, FC0_RESULT),
+> > +       regmap_reg_range(VIDEO_CLK_VEC_CTRL, VIDEO_CLK_VEC_DIV_INT),
+> > +       regmap_reg_range(VIDEO_CLK_VEC_SEL, VIDEO_CLK_DPI_DIV_INT),
+> > +       regmap_reg_range(VIDEO_CLK_DPI_SEL, VIDEO_CLK_MIPI1_DPI_SEL),
+> > +};
+> > +
+> > +static const struct regmap_access_table rp1_reg_table = {
+> > +       .yes_ranges = rp1_reg_ranges,
+> > +       .n_yes_ranges = ARRAY_SIZE(rp1_reg_ranges),
+> > +};
+> > +
+> > +static const struct regmap_config rp1_clk_regmap_cfg = {
+> > +       .reg_bits = 32,
+> > +       .val_bits = 32,
+> > +       .reg_stride = 4,
+> > +       .max_register = PLL_VIDEO_SEC,
+> > +       .name = "rp1-clk",
+> > +       .rd_table = &rp1_reg_table,
+> > +};
+> > +
+> > +static int rp1_clk_probe(struct platform_device *pdev)
+> > +{
+> > +       const size_t asize = ARRAY_SIZE(clk_desc_array);
+> > +       struct rp1_clk_desc *desc;
+> > +       struct device *dev = &pdev->dev;
+> > +       struct rp1_clockman *clockman;
+> > +       struct clk_hw **hws;
+> > +       unsigned int i;
+> > +
+> > +       clockman = devm_kzalloc(dev, struct_size(clockman, onecell.hws, asize),
+> > +                               GFP_KERNEL);
+> > +       if (!clockman)
+> > +               return -ENOMEM;
+> > +
+> > +       spin_lock_init(&clockman->regs_lock);
+> > +       clockman->dev = dev;
+> > +
+> > +       clockman->regs = devm_platform_ioremap_resource(pdev, 0);
+> > +       if (IS_ERR(clockman->regs))
+> > +               return PTR_ERR(clockman->regs);
+> > +
+> > +       clockman->regmap = devm_regmap_init_mmio(dev, clockman->regs,
+> > +                                                &rp1_clk_regmap_cfg);
+> > +       if (IS_ERR(clockman->regmap)) {
+> > +               dev_err(dev, "could not init clock regmap\n");
+> 
+> return dev_err_probe()?
 
-> +
-> +#define MIPI_PHY_TCLK_MISS	    CSI2_REG_D(0x10)
-> +#define MIPI_DPHY_CLK_MISS          0x9
+Ack.
 
-and here you're just programming a counter, so it's of course fine to
-have the raw number.
+Many thanks,
+Andrea
 
-> +
-> +#define MIPI_PHY_TCLK_SETTLE	    CSI2_REG_D(0x14)
-> +#define MIPI_DPHY_CLK_SETTLE        0x1F
-
-nit: while at it, use small caps for hex as you're using them in most places
-
-Thanks
-  j
-
-> +
-> +#define MIPI_PHY_THS_EXIT	    CSI2_REG_D(0x18)
-> +#define MIPI_DPHY_HS_EXIT           0x8
-> +
-> +#define MIPI_PHY_THS_SKIP	    CSI2_REG_D(0x1c)
-> +#define MIPI_DPHY_HS_SKIP           0xa
-> +
-> +#define MIPI_PHY_THS_SETTLE	    CSI2_REG_D(0x20)
-> +#define MIPI_PHY_TINIT	            CSI2_REG_D(0x24)
-> +#define MIPI_DPHY_INIT_CYCLES       0x4e20
-> +
-> +#define MIPI_PHY_TULPS_C	    CSI2_REG_D(0x28)
-> +#define MIPI_DPHY_ULPS_CHECK_CYCLES 0x1000
-> +
-> +#define MIPI_PHY_TULPS_S	    CSI2_REG_D(0x2c)
-> +#define MIPI_DPHY_ULPS_START_CYCLES 0x100
-> +
-> +#define MIPI_PHY_TMBIAS             CSI2_REG_D(0x30)
-> +#define MIPI_DPHY_MBIAS_CYCLES      0x100
-> +
-> +#define MIPI_PHY_TLP_EN_W           CSI2_REG_D(0x34)
-> +#define MIPI_DPHY_ULPS_STOP_CYCLES  0xC
-> +
-> +#define MIPI_PHY_TLPOK	            CSI2_REG_D(0x38)
-> +#define MIPI_DPHY_POWER_UP_CYCLES   0x100
-> +
-> +#define MIPI_PHY_TWD_INIT	    CSI2_REG_D(0x3c)
-> +#define MIPI_DPHY_INIT_WATCH_DOG    0x400000
-> +
-> +#define MIPI_PHY_TWD_HS             CSI2_REG_D(0x40)
-> +#define MIPI_DPHY_HS_WATCH_DOG      0x400000
-> +
-> +#define MIPI_PHY_MUX_CTRL0	    CSI2_REG_D(0x284)
-> +#define MIPI_DPHY_LANE3_SELECT      GENMASK(3, 0)
-> +#define MIPI_DPHY_LANE2_SELECT      GENMASK(7, 4)
-> +#define MIPI_DPHY_LANE2_SELECT_SHIFT           4
-> +#define MIPI_DPHY_LANE1_SELECT      GENMASK(11, 8)
-> +#define MIPI_DPHY_LANE1_SELECT_SHIFT            8
-> +#define MIPI_DPHY_LANE0_SELECT      GENMASK(14, 12)
-> +
-> +#define MIPI_PHY_MUX_CTRL1	    CSI2_REG_D(0x288)
-> +#define MIPI_DPHY_LANE3_CTRL_SIGNAL GENMASK(3, 0)
-> +#define MIPI_DPHY_LANE2_CTRL_SIGNAL GENMASK(7, 4)
-> +#define MIPI_DPHY_LANE2_CTRL_SIGNAL_SHIFT      4
-> +#define MIPI_DPHY_LANE1_CTRL_SIGNAL GENMASK(11, 8)
-> +#define MIPI_DPHY_LANE1_CTRL_SIGNAL_SHIFT       8
-> +#define MIPI_DPHY_LANE0_CTRL_SIGNAL GENMASK(14, 12)
-> +#define MIPI_DPHY_CLK_SELECT        BIT(17)
-> +
-> +/* C3 CSI-2 HOST register */
-> +#define CSI2_HOST_N_LANES           CSI2_REG_H(0x04)
-> +#define CSI2_HOST_CSI2_RESETN       CSI2_REG_H(0x10)
-> +#define CSI2_HOST_RESETN_DEFAULT    0x0
-> +#define CSI2_HOST_RESETN_RST_VALUE  BIT(0)
-> +
-> +#define CSI2_HOST_MASK1             CSI2_REG_H(0x28)
-> +#define CSI2_HOST_ERROR_MASK1       GENMASK(28, 0)
-> +
-> +#define MIPI_CSI2_MAX_WIDTH         2888
-> +#define MIPI_CSI2_MIN_WIDTH         160
-> +#define MIPI_CSI2_MAX_HEIGHT        2240
-> +#define MIPI_CSI2_MIN_HEIGHT        120
-> +#define MIPI_CSI2_DEFAULT_WIDTH     1920
-> +#define MIPI_CSI2_DEFAULT_HEIGHT    1080
-> +#define MIPI_CSI2_DEFAULT_FMT       MEDIA_BUS_FMT_SRGGB10_1X10
-> +
-> +/* C3 CSI-2 pad list */
-> +enum {
-> +	MIPI_CSI2_PAD_SINK,
-> +	MIPI_CSI2_PAD_SRC,
-> +	MIPI_CSI2_PAD_MAX
-> +};
-> +
-> +/**
-> + * struct csi_info - MIPI CSI2 information
-> + *
-> + * @clocks: array of MIPI CSI2 clock names
-> + * @clock_rates: array of MIPI CSI2 clock rate
-> + * @clock_num: actual clock number
-> + */
-> +struct csi_info {
-> +	char *clocks[MIPI_CSI2_CLOCK_NUM_MAX];
-> +	u32 clock_rates[MIPI_CSI2_CLOCK_NUM_MAX];
-> +	u32 clock_num;
-> +};
-> +
-> +/**
-> + * struct csi_device - MIPI CSI2 platform device
-> + *
-> + * @dev: pointer to the struct device
-> + * @aphy: MIPI CSI2 aphy register address
-> + * @dphy: MIPI CSI2 dphy register address
-> + * @host: MIPI CSI2 host register address
-> + * @clks: array of MIPI CSI2 clocks
-> + * @sd: MIPI CSI2 sub-device
-> + * @pads: MIPI CSI2 sub-device pads
-> + * @notifier: notifier to register on the v4l2-async API
-> + * @src_sd: source sub-device
-> + * @bus: MIPI CSI2 bus information
-> + * @src_sd_pad: source sub-device pad
-> + * @lock: protect MIPI CSI2 device
-> + * @info: version-specific MIPI CSI2 information
-> + */
-> +struct csi_device {
-> +	struct device *dev;
-> +	void __iomem *aphy;
-> +	void __iomem *dphy;
-> +	void __iomem *host;
-> +	struct clk_bulk_data clks[MIPI_CSI2_CLOCK_NUM_MAX];
-> +
-> +	struct v4l2_subdev sd;
-> +	struct media_pad pads[MIPI_CSI2_PAD_MAX];
-> +	struct v4l2_async_notifier notifier;
-> +	struct v4l2_subdev *src_sd;
-> +	struct v4l2_mbus_config_mipi_csi2 bus;
-> +
-> +	u16 src_sd_pad;
-> +	struct mutex lock; /* Protect csi device */
-> +	const struct csi_info *info;
-> +};
-> +
-> +static const u32 c3_mipi_csi_formats[] = {
-> +	MEDIA_BUS_FMT_SBGGR10_1X10,
-> +	MEDIA_BUS_FMT_SGBRG10_1X10,
-> +	MEDIA_BUS_FMT_SGRBG10_1X10,
-> +	MEDIA_BUS_FMT_SRGGB10_1X10,
-> +	MEDIA_BUS_FMT_SBGGR12_1X12,
-> +	MEDIA_BUS_FMT_SGBRG12_1X12,
-> +	MEDIA_BUS_FMT_SGRBG12_1X12,
-> +	MEDIA_BUS_FMT_SRGGB12_1X12,
-> +};
-> +
-> +/* Hardware configuration */
-> +
-> +static void c3_mipi_csi_write(struct csi_device *csi, u32 reg, u32 val)
-> +{
-> +	void __iomem *addr;
-> +
-> +	switch (CSI2_SUBMD(reg)) {
-> +	case SUBMD_APHY:
-> +		addr = csi->aphy + CSI2_REG_ADDR(reg);
-> +		break;
-> +	case SUBMD_DPHY:
-> +		addr = csi->dphy + CSI2_REG_ADDR(reg);
-> +		break;
-> +	case SUBMD_HOST:
-> +		addr = csi->host + CSI2_REG_ADDR(reg);
-> +		break;
-> +	default:
-> +		dev_err(csi->dev, "Invalid sub-module: %lu\n", CSI2_SUBMD(reg));
-> +		return;
-> +	}
-> +
-> +	writel(val, addr);
-> +}
-> +
-> +static void c3_mipi_csi_update_bits(struct csi_device *csi, u32 reg,
-> +				    u32 mask, u32 val)
-> +{
-> +	void __iomem *addr;
-> +	u32 orig, tmp;
-> +
-> +	switch (CSI2_SUBMD(reg)) {
-> +	case SUBMD_APHY:
-> +		addr = csi->aphy + CSI2_REG_ADDR(reg);
-> +		break;
-> +	case SUBMD_DPHY:
-> +		addr = csi->dphy + CSI2_REG_ADDR(reg);
-> +		break;
-> +	case SUBMD_HOST:
-> +		addr = csi->host + CSI2_REG_ADDR(reg);
-> +		break;
-> +	default:
-> +		dev_err(csi->dev, "Invalid sub-module: %lu\n", CSI2_SUBMD(reg));
-> +		return;
-> +	}
-> +
-> +	orig = readl(addr);
-> +	tmp = orig & ~mask;
-> +	tmp |= val & mask;
-> +
-> +	if (tmp != orig)
-> +		writel(tmp, addr);
-> +}
-> +
-> +static void c3_mipi_csi_cfg_aphy(struct csi_device *csi, u32 lanes)
-> +{
-> +	c3_mipi_csi_write(csi, MIPI_CSI_2M_PHY2_CNTL1, MIPI_APHY_NORMAL_CNTL1);
-> +
-> +	if (lanes == 4)
-> +		c3_mipi_csi_write(csi, MIPI_CSI_2M_PHY2_CNTL2, MIPI_APHY_4LANES_CNTL2);
-> +	else
-> +		c3_mipi_csi_write(csi, MIPI_CSI_2M_PHY2_CNTL2, MIPI_APHY_NORMAL_CNTL2);
-> +
-> +	if (lanes == 2)
-> +		c3_mipi_csi_write(csi, MIPI_CSI_2M_PHY2_CNTL3, MIPI_APHY_2LANES_CNTL3);
-> +}
-> +
-> +static void c3_mipi_csi_2lanes_setting(struct csi_device *csi)
-> +{
-> +	/* Disable lane 2 and lane 3 */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL0, MIPI_DPHY_LANE3_SELECT, 0xf);
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL0, MIPI_DPHY_LANE2_SELECT,
-> +				0xf << MIPI_DPHY_LANE2_SELECT_SHIFT);
-> +	/* Select analog data lane 1 */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL0, MIPI_DPHY_LANE1_SELECT,
-> +				0x1 << MIPI_DPHY_LANE1_SELECT_SHIFT);
-> +	/* Select analog data lane 0 */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL0, MIPI_DPHY_LANE0_SELECT, 0x0);
-> +
-> +	/* Disable lane 2 and lane 3 control signal */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL1, MIPI_DPHY_LANE3_CTRL_SIGNAL, 0xf);
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL1, MIPI_DPHY_LANE2_CTRL_SIGNAL,
-> +				0xf << MIPI_DPHY_LANE2_CTRL_SIGNAL_SHIFT);
-> +	/* Select lane 1 signal */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL1, MIPI_DPHY_LANE1_CTRL_SIGNAL,
-> +				0x1 << MIPI_DPHY_LANE1_CTRL_SIGNAL_SHIFT);
-> +	/* Select lane 0 signal */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL1, MIPI_DPHY_LANE0_CTRL_SIGNAL, 0x0);
-> +	/* Select input 0 as clock */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL1, MIPI_DPHY_CLK_SELECT,
-> +				MIPI_DPHY_CLK_SELECT);
-> +}
-> +
-> +static void c3_mipi_csi_4lanes_setting(struct csi_device *csi)
-> +{
-> +	/* Select analog data lane 3 */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL0, MIPI_DPHY_LANE3_SELECT, 0x3);
-> +	/* Select analog data lane 2 */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL0, MIPI_DPHY_LANE2_SELECT,
-> +				0x2 << MIPI_DPHY_LANE2_SELECT_SHIFT);
-> +	/* Select analog data lane 1 */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL0, MIPI_DPHY_LANE1_SELECT,
-> +				0x1 << MIPI_DPHY_LANE1_SELECT_SHIFT);
-> +	/* Select analog data lane 0 */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL0, MIPI_DPHY_LANE0_SELECT, 0x0);
-> +
-> +	/* Select lane 3 signal */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL1, MIPI_DPHY_LANE3_CTRL_SIGNAL, 0x3);
-> +	/* Select lane 2 signal */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL1, MIPI_DPHY_LANE2_CTRL_SIGNAL,
-> +				0x2 << MIPI_DPHY_LANE2_CTRL_SIGNAL_SHIFT);
-> +	/* Select lane 1 signal */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL1, MIPI_DPHY_LANE1_CTRL_SIGNAL,
-> +				0x1 << MIPI_DPHY_LANE1_CTRL_SIGNAL_SHIFT);
-> +	/* Select lane 0 signal */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL1, MIPI_DPHY_LANE0_CTRL_SIGNAL, 0x0);
-> +	/* Select input 0 as clock */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_MUX_CTRL1, MIPI_DPHY_CLK_SELECT,
-> +				MIPI_DPHY_CLK_SELECT);
-> +}
-> +
-> +static void c3_mipi_csi_cfg_dphy(struct csi_device *csi, u32 lanes, s64 rate)
-> +{
-> +	u32 val;
-> +	u32 settle;
-> +
-> +	/* Calculate the high speed settle */
-> +	val = DIV_ROUND_UP(1000000000, rate);
-> +	settle = (16 * val + 230) / 10;
-> +
-> +	c3_mipi_csi_write(csi, MIPI_PHY_CLK_LANE_CTRL, MIPI_DPHY_CLK_CONTINUE_MODE);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_TCLK_MISS, MIPI_DPHY_CLK_MISS);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_TCLK_SETTLE, MIPI_DPHY_CLK_SETTLE);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_THS_EXIT, MIPI_DPHY_HS_EXIT);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_THS_SKIP, MIPI_DPHY_HS_SKIP);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_THS_SETTLE, settle);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_TINIT, MIPI_DPHY_INIT_CYCLES);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_TMBIAS, MIPI_DPHY_MBIAS_CYCLES);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_TULPS_C, MIPI_DPHY_ULPS_CHECK_CYCLES);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_TULPS_S, MIPI_DPHY_ULPS_START_CYCLES);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_TLP_EN_W, MIPI_DPHY_ULPS_STOP_CYCLES);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_TLPOK, MIPI_DPHY_POWER_UP_CYCLES);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_TWD_INIT, MIPI_DPHY_INIT_WATCH_DOG);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_TWD_HS, MIPI_DPHY_HS_WATCH_DOG);
-> +	c3_mipi_csi_write(csi, MIPI_PHY_DATA_LANE_CTRL, MIPI_DPHY_LANE_CTRL_DISABLE);
-> +
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_DATA_LANE_CTRL1, MIPI_DPHY_INSERT_ERRESC,
-> +				MIPI_DPHY_INSERT_ERRESC);
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_DATA_LANE_CTRL1, MIPI_DPHY_HS_SYNC_CHECK,
-> +				MIPI_DPHY_HS_SYNC_CHECK);
-> +	/*
-> +	 * Set 5 pipe lines to the same high speed.
-> +	 * Each bit for one pipe line.
-> +	 */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_DATA_LANE_CTRL1, MIPI_DPHY_FIVE_HS_PIPE,
-> +				0x1f << MIPI_DPHY_FIVE_HS_PIPE_SHIFT);
-> +
-> +	/* Output data with pipe line data. */
-> +	c3_mipi_csi_update_bits(csi, MIPI_PHY_DATA_LANE_CTRL1, MIPI_DPHY_DATA_PIPE_SELECT,
-> +				0x3 << MIPI_DPHY_DATA_PIPE_SELECT_SHIFT);
-> +	if (lanes == 2)
-> +		c3_mipi_csi_2lanes_setting(csi);
-> +	else
-> +		c3_mipi_csi_4lanes_setting(csi);
-> +
-> +	/* Enable digital data and clock lanes */
-> +	c3_mipi_csi_write(csi, MIPI_PHY_CTRL, MIPI_DPHY_LANES_ENABLE);
-> +}
-> +
-> +static void c3_mipi_csi_cfg_host(struct csi_device *csi, u32 lanes)
-> +{
-> +	/* Reset CSI-2 controller output */
-> +	c3_mipi_csi_write(csi, CSI2_HOST_CSI2_RESETN, CSI2_HOST_RESETN_DEFAULT);
-> +	c3_mipi_csi_write(csi, CSI2_HOST_CSI2_RESETN, CSI2_HOST_RESETN_RST_VALUE);
-> +
-> +	/* Set data lane number */
-> +	c3_mipi_csi_write(csi, CSI2_HOST_N_LANES, lanes - 1);
-> +
-> +	/* Enable error mask */
-> +	c3_mipi_csi_write(csi, CSI2_HOST_MASK1, CSI2_HOST_ERROR_MASK1);
-> +}
-> +
-> +static int c3_mipi_csi_start_stream(struct csi_device *csi)
-> +{
-> +	s64 link_freq;
-> +	s64 lane_rate;
-> +
-> +	link_freq = v4l2_get_link_freq(csi->src_sd->ctrl_handler, 0, 0);
-> +	if (link_freq < 0) {
-> +		dev_err(csi->dev, "Unable to obtain link frequency: %lld\n", link_freq);
-> +		return link_freq;
-> +	}
-> +
-> +	lane_rate = link_freq * 2;
-> +	if (lane_rate > 1500000000)
-> +		return -EINVAL;
-> +
-> +	c3_mipi_csi_cfg_aphy(csi, csi->bus.num_data_lanes);
-> +	c3_mipi_csi_cfg_dphy(csi, csi->bus.num_data_lanes, lane_rate);
-> +	c3_mipi_csi_cfg_host(csi, csi->bus.num_data_lanes);
-> +
-> +	return 0;
-> +}
-> +
-> +static int c3_mipi_csi_enable_streams(struct v4l2_subdev *sd,
-> +				      struct v4l2_subdev_state *state,
-> +				      u32 pad, u64 streams_mask)
-> +{
-> +	struct csi_device *csi = v4l2_get_subdevdata(sd);
-> +	u64 sink_streams;
-> +	int ret;
-> +
-> +	guard(mutex)(&csi->lock);
-> +
-> +	pm_runtime_resume_and_get(csi->dev);
-> +
-> +	c3_mipi_csi_start_stream(csi);
-> +
-> +	sink_streams = v4l2_subdev_state_xlate_streams(state, pad,
-> +						       MIPI_CSI2_PAD_SINK,
-> +						       &streams_mask);
-> +	ret = v4l2_subdev_enable_streams(csi->src_sd,
-> +					 csi->src_sd_pad,
-> +					 sink_streams);
-> +	if (ret) {
-> +		pm_runtime_put(csi->dev);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int c3_mipi_csi_disable_streams(struct v4l2_subdev *sd,
-> +				       struct v4l2_subdev_state *state,
-> +				       u32 pad, u64 streams_mask)
-> +{
-> +	struct csi_device *csi = v4l2_get_subdevdata(sd);
-> +	u64 sink_streams;
-> +	int ret;
-> +
-> +	guard(mutex)(&csi->lock);
-> +
-> +	sink_streams = v4l2_subdev_state_xlate_streams(state, pad,
-> +						       MIPI_CSI2_PAD_SINK,
-> +						       &streams_mask);
-> +	ret = v4l2_subdev_disable_streams(csi->src_sd,
-> +					  csi->src_sd_pad,
-> +					  sink_streams);
-> +	if (ret)
-> +		dev_err(csi->dev, "Failed to disable %s\n", csi->src_sd->name);
-> +
-> +	pm_runtime_put(csi->dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static int c3_mipi_csi_cfg_routing(struct v4l2_subdev *sd,
-> +				   struct v4l2_subdev_state *state,
-> +				   struct v4l2_subdev_krouting *routing)
-> +{
-> +	static const struct v4l2_mbus_framefmt format = {
-> +		.width = MIPI_CSI2_DEFAULT_WIDTH,
-> +		.height = MIPI_CSI2_DEFAULT_HEIGHT,
-> +		.code = MIPI_CSI2_DEFAULT_FMT,
-> +		.field = V4L2_FIELD_NONE,
-> +		.colorspace = V4L2_COLORSPACE_RAW,
-> +		.ycbcr_enc = V4L2_YCBCR_ENC_601,
-> +		.quantization = V4L2_QUANTIZATION_LIM_RANGE,
-> +		.xfer_func = V4L2_XFER_FUNC_NONE,
-> +	};
-> +	int ret;
-> +
-> +	ret = v4l2_subdev_routing_validate(sd, routing,
-> +					   V4L2_SUBDEV_ROUTING_ONLY_1_TO_1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = v4l2_subdev_set_routing_with_fmt(sd, state, routing, &format);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int c3_mipi_csi_init_routing(struct v4l2_subdev *sd,
-> +				    struct v4l2_subdev_state *state)
-> +{
-> +	struct v4l2_subdev_route routes;
-> +	struct v4l2_subdev_krouting routing;
-> +
-> +	routes.sink_pad = MIPI_CSI2_PAD_SINK;
-> +	routes.sink_stream = 0;
-> +	routes.source_pad = MIPI_CSI2_PAD_SRC;
-> +	routes.source_stream = 0;
-> +	routes.flags = V4L2_SUBDEV_ROUTE_FL_ACTIVE;
-> +
-> +	routing.num_routes = 1;
-> +	routing.routes = &routes;
-> +
-> +	return c3_mipi_csi_cfg_routing(sd, state, &routing);
-> +}
-> +
-> +static int c3_mipi_csi_set_routing(struct v4l2_subdev *sd,
-> +				   struct v4l2_subdev_state *state,
-> +				   enum v4l2_subdev_format_whence which,
-> +				   struct v4l2_subdev_krouting *routing)
-> +{
-> +	bool is_streaming = v4l2_subdev_is_streaming(sd);
-> +
-> +	if (which == V4L2_SUBDEV_FORMAT_ACTIVE && is_streaming)
-> +		return -EBUSY;
-> +
-> +	return c3_mipi_csi_cfg_routing(sd, state, routing);
-> +}
-> +
-> +static int c3_mipi_csi_enum_mbus_code(struct v4l2_subdev *sd,
-> +				      struct v4l2_subdev_state *state,
-> +				      struct v4l2_subdev_mbus_code_enum *code)
-> +{
-> +	switch (code->pad) {
-> +	case MIPI_CSI2_PAD_SINK:
-> +		if (code->index >= ARRAY_SIZE(c3_mipi_csi_formats))
-> +			return -EINVAL;
-> +
-> +		code->code = c3_mipi_csi_formats[code->index];
-> +		break;
-> +	case MIPI_CSI2_PAD_SRC:
-> +		struct v4l2_mbus_framefmt *fmt;
-> +
-> +		if (code->index > 0)
-> +			return -EINVAL;
-> +
-> +		fmt = v4l2_subdev_state_get_format(state, code->pad);
-> +		code->code = fmt->code;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int c3_mipi_csi_set_fmt(struct v4l2_subdev *sd,
-> +			       struct v4l2_subdev_state *state,
-> +			       struct v4l2_subdev_format *format)
-> +{
-> +	struct v4l2_mbus_framefmt *fmt;
-> +	unsigned int i;
-> +
-> +	if (format->pad != MIPI_CSI2_PAD_SINK)
-> +		return v4l2_subdev_get_fmt(sd, state, format);
-> +
-> +	fmt = v4l2_subdev_state_get_format(state, format->pad);
-> +
-> +	for (i = 0; i < ARRAY_SIZE(c3_mipi_csi_formats); i++)
-> +		if (format->format.code == c3_mipi_csi_formats[i])
-> +			break;
-> +
-> +	if (i == ARRAY_SIZE(c3_mipi_csi_formats))
-> +		fmt->code = c3_mipi_csi_formats[0];
-> +	else
-> +		fmt->code = c3_mipi_csi_formats[i];
-> +
-> +	fmt->width = clamp_t(u32, format->format.width,
-> +			     MIPI_CSI2_MIN_WIDTH, MIPI_CSI2_MAX_WIDTH);
-> +	fmt->height = clamp_t(u32, format->format.height,
-> +			      MIPI_CSI2_MIN_HEIGHT, MIPI_CSI2_MAX_HEIGHT);
-> +
-> +	format->format = *fmt;
-> +
-> +	/* Synchronize the format to source pad */
-> +	fmt = v4l2_subdev_state_get_format(state, MIPI_CSI2_PAD_SRC);
-> +	*fmt = format->format;
-> +
-> +	return 0;
-> +}
-> +
-> +static int c3_mipi_csi_init_state(struct v4l2_subdev *sd,
-> +				  struct v4l2_subdev_state *state)
-> +{
-> +	struct v4l2_mbus_framefmt *sink_fmt;
-> +	struct v4l2_mbus_framefmt *src_fmt;
-> +
-> +	sink_fmt = v4l2_subdev_state_get_format(state, MIPI_CSI2_PAD_SINK);
-> +	src_fmt = v4l2_subdev_state_get_format(state, MIPI_CSI2_PAD_SRC);
-> +
-> +	sink_fmt->width = MIPI_CSI2_DEFAULT_WIDTH;
-> +	sink_fmt->height = MIPI_CSI2_DEFAULT_HEIGHT;
-> +	sink_fmt->field = V4L2_FIELD_NONE;
-> +	sink_fmt->code = MIPI_CSI2_DEFAULT_FMT;
-> +	sink_fmt->colorspace = V4L2_COLORSPACE_RAW;
-> +	sink_fmt->xfer_func = V4L2_MAP_XFER_FUNC_DEFAULT(sink_fmt->colorspace);
-> +	sink_fmt->ycbcr_enc = V4L2_MAP_YCBCR_ENC_DEFAULT(sink_fmt->colorspace);
-> +	sink_fmt->quantization =
-> +		V4L2_MAP_QUANTIZATION_DEFAULT(false, sink_fmt->colorspace,
-> +					      sink_fmt->ycbcr_enc);
-> +	*src_fmt = *sink_fmt;
-> +
-> +	return c3_mipi_csi_init_routing(sd, state);
-> +}
-> +
-> +static const struct v4l2_subdev_pad_ops c3_mipi_csi_pad_ops = {
-> +	.enum_mbus_code = c3_mipi_csi_enum_mbus_code,
-> +	.get_fmt = v4l2_subdev_get_fmt,
-> +	.set_fmt = c3_mipi_csi_set_fmt,
-> +	.set_routing = c3_mipi_csi_set_routing,
-> +	.enable_streams = c3_mipi_csi_enable_streams,
-> +	.disable_streams = c3_mipi_csi_disable_streams,
-> +};
-> +
-> +static const struct v4l2_subdev_ops c3_mipi_csi_subdev_ops = {
-> +	.pad = &c3_mipi_csi_pad_ops,
-> +};
-> +
-> +static const struct v4l2_subdev_internal_ops c3_mipi_csi_internal_ops = {
-> +	.init_state = c3_mipi_csi_init_state,
-> +};
-> +
-> +/* Media entity operations */
-> +static const struct media_entity_operations c3_mipi_csi_entity_ops = {
-> +	.link_validate = v4l2_subdev_link_validate,
-> +};
-> +
-> +/* PM runtime */
-> +
-> +static int __maybe_unused c3_mipi_csi_runtime_suspend(struct device *dev)
-> +{
-> +	struct csi_device *csi = dev_get_drvdata(dev);
-> +
-> +	clk_bulk_disable_unprepare(csi->info->clock_num, csi->clks);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused c3_mipi_csi_runtime_resume(struct device *dev)
-> +{
-> +	struct csi_device *csi = dev_get_drvdata(dev);
-> +
-> +	return clk_bulk_prepare_enable(csi->info->clock_num, csi->clks);
-> +}
-> +
-> +static const struct dev_pm_ops c3_mipi_csi_pm_ops = {
-> +	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
-> +				pm_runtime_force_resume)
-> +	SET_RUNTIME_PM_OPS(c3_mipi_csi_runtime_suspend,
-> +			   c3_mipi_csi_runtime_resume, NULL)
-> +};
-> +
-> +/* Probe/remove & platform driver */
-> +
-> +static int c3_mipi_csi_subdev_init(struct csi_device *csi)
-> +{
-> +	struct v4l2_subdev *sd = &csi->sd;
-> +	int ret;
-> +
-> +	v4l2_subdev_init(sd, &c3_mipi_csi_subdev_ops);
-> +	sd->owner = THIS_MODULE;
-> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> +	sd->internal_ops = &c3_mipi_csi_internal_ops;
-> +	snprintf(sd->name, sizeof(sd->name), "%s", MIPI_CSI2_SUBDEV_NAME);
-> +
-> +	sd->entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
-> +	sd->entity.ops = &c3_mipi_csi_entity_ops;
-> +
-> +	sd->dev = csi->dev;
-> +	v4l2_set_subdevdata(sd, csi);
-> +
-> +	csi->pads[MIPI_CSI2_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
-> +	csi->pads[MIPI_CSI2_PAD_SRC].flags = MEDIA_PAD_FL_SOURCE;
-> +	ret = media_entity_pads_init(&sd->entity, MIPI_CSI2_PAD_MAX, csi->pads);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = v4l2_subdev_init_finalize(sd);
-> +	if (ret) {
-> +		media_entity_cleanup(&sd->entity);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void c3_mipi_csi_subdev_deinit(struct csi_device *csi)
-> +{
-> +	v4l2_subdev_cleanup(&csi->sd);
-> +	media_entity_cleanup(&csi->sd.entity);
-> +}
-> +
-> +/* Subdev notifier register */
-> +static int c3_mipi_csi_notify_bound(struct v4l2_async_notifier *notifier,
-> +				    struct v4l2_subdev *sd,
-> +				    struct v4l2_async_connection *asc)
-> +{
-> +	struct csi_device *csi = v4l2_get_subdevdata(notifier->sd);
-> +	struct media_pad *sink = &csi->sd.entity.pads[MIPI_CSI2_PAD_SINK];
-> +	int ret;
-> +
-> +	ret = media_entity_get_fwnode_pad(&sd->entity,
-> +					  sd->fwnode, MEDIA_PAD_FL_SOURCE);
-> +	if (ret < 0) {
-> +		dev_err(csi->dev, "Failed to find pad for %s\n", sd->name);
-> +		return ret;
-> +	}
-> +
-> +	csi->src_sd = sd;
-> +	csi->src_sd_pad = ret;
-> +
-> +	return v4l2_create_fwnode_links_to_pad(sd, sink, MEDIA_LNK_FL_ENABLED |
-> +					       MEDIA_LNK_FL_IMMUTABLE);
-> +}
-> +
-> +static const struct v4l2_async_notifier_operations c3_mipi_csi_notify_ops = {
-> +	.bound = c3_mipi_csi_notify_bound,
-> +};
-> +
-> +static int c3_mipi_csi_async_register(struct csi_device *csi)
-> +{
-> +	struct v4l2_fwnode_endpoint vep = {
-> +		.bus_type = V4L2_MBUS_CSI2_DPHY,
-> +	};
-> +	struct v4l2_async_connection *asc;
-> +	struct fwnode_handle *ep;
-> +	int ret;
-> +
-> +	v4l2_async_subdev_nf_init(&csi->notifier, &csi->sd);
-> +
-> +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(csi->dev), 0, 0,
-> +					     FWNODE_GRAPH_ENDPOINT_NEXT);
-> +	if (!ep)
-> +		return -ENOTCONN;
-> +
-> +	ret = v4l2_fwnode_endpoint_parse(ep, &vep);
-> +	if (ret)
-> +		goto err_put_handle;
-> +
-> +	csi->bus = vep.bus.mipi_csi2;
-> +	if (csi->bus.num_data_lanes != 2 && csi->bus.num_data_lanes != 4)
-> +		goto err_put_handle;
-> +
-> +	asc = v4l2_async_nf_add_fwnode_remote(&csi->notifier, ep,
-> +					      struct v4l2_async_connection);
-> +	if (IS_ERR(asc)) {
-> +		ret = PTR_ERR(asc);
-> +		goto err_put_handle;
-> +	}
-> +
-> +	csi->notifier.ops = &c3_mipi_csi_notify_ops;
-> +	ret = v4l2_async_nf_register(&csi->notifier);
-> +	if (ret)
-> +		goto err_cleanup_nf;
-> +
-> +	ret = v4l2_async_register_subdev(&csi->sd);
-> +	if (ret)
-> +		goto err_unregister_nf;
-> +
-> +	fwnode_handle_put(ep);
-> +
-> +	return 0;
-> +
-> +err_unregister_nf:
-> +	v4l2_async_nf_unregister(&csi->notifier);
-> +err_cleanup_nf:
-> +	v4l2_async_nf_cleanup(&csi->notifier);
-> +err_put_handle:
-> +	fwnode_handle_put(ep);
-> +	return ret;
-> +}
-> +
-> +static void c3_mipi_csi_async_unregister(struct csi_device *csi)
-> +{
-> +	v4l2_async_unregister_subdev(&csi->sd);
-> +	v4l2_async_nf_unregister(&csi->notifier);
-> +	v4l2_async_nf_cleanup(&csi->notifier);
-> +}
-> +
-> +static int c3_mipi_csi_ioremap_resource(struct csi_device *csi)
-> +{
-> +	struct device *dev = csi->dev;
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +
-> +	csi->aphy = devm_platform_ioremap_resource_byname(pdev, "aphy");
-> +	if (IS_ERR(csi->aphy))
-> +		return PTR_ERR(csi->aphy);
-> +
-> +	csi->dphy = devm_platform_ioremap_resource_byname(pdev, "dphy");
-> +	if (IS_ERR(csi->dphy))
-> +		return PTR_ERR(csi->dphy);
-> +
-> +	csi->host = devm_platform_ioremap_resource_byname(pdev, "host");
-> +	if (IS_ERR(csi->host))
-> +		return PTR_ERR(csi->host);
-> +
-> +	return 0;
-> +}
-> +
-> +static int c3_mipi_csi_configure_clocks(struct csi_device *csi)
-> +{
-> +	const struct csi_info *info = csi->info;
-> +	int ret;
-> +	u32 i;
-> +
-> +	for (i = 0; i < info->clock_num; i++)
-> +		csi->clks[i].id = info->clocks[i];
-> +
-> +	ret = devm_clk_bulk_get(csi->dev, info->clock_num, csi->clks);
-> +	if (ret)
-> +		return ret;
-> +
-> +	for (i = 0; i < info->clock_num; i++) {
-> +		if (!info->clock_rates[i])
-> +			continue;
-> +		ret = clk_set_rate(csi->clks[i].clk, info->clock_rates[i]);
-> +		if (ret) {
-> +			dev_err(csi->dev, "Failed to set %s rate %u\n", info->clocks[i],
-> +				info->clock_rates[i]);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int c3_mipi_csi_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct csi_device *csi;
-> +	int ret;
-> +
-> +	csi = devm_kzalloc(dev, sizeof(*csi), GFP_KERNEL);
-> +	if (!csi)
-> +		return -ENOMEM;
-> +
-> +	csi->info = of_device_get_match_data(dev);
-> +	csi->dev = dev;
-> +
-> +	ret = c3_mipi_csi_ioremap_resource(csi);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to ioremap resource\n");
-> +
-> +	ret = c3_mipi_csi_configure_clocks(csi);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to configure clocks\n");
-> +
-> +	platform_set_drvdata(pdev, csi);
-> +
-> +	mutex_init(&csi->lock);
-> +	pm_runtime_enable(dev);
-> +
-> +	ret = c3_mipi_csi_subdev_init(csi);
-> +	if (ret)
-> +		goto err_disable_runtime_pm;
-> +
-> +	ret = c3_mipi_csi_async_register(csi);
-> +	if (ret)
-> +		goto err_deinit_subdev;
-> +
-> +	return 0;
-> +
-> +err_deinit_subdev:
-> +	c3_mipi_csi_subdev_deinit(csi);
-> +err_disable_runtime_pm:
-> +	pm_runtime_disable(dev);
-> +	mutex_destroy(&csi->lock);
-> +	return ret;
-> +};
-> +
-> +static void c3_mipi_csi_remove(struct platform_device *pdev)
-> +{
-> +	struct csi_device *csi = platform_get_drvdata(pdev);
-> +
-> +	c3_mipi_csi_async_unregister(csi);
-> +	c3_mipi_csi_subdev_deinit(csi);
-> +
-> +	pm_runtime_disable(&pdev->dev);
-> +	mutex_destroy(&csi->lock);
-> +};
-> +
-> +static const struct csi_info c3_mipi_csi_info = {
-> +	.clocks = {"vapb", "phy0"},
-> +	.clock_rates = {0, 200000000},
-> +	.clock_num = 2
-> +};
-> +
-> +static const struct of_device_id c3_mipi_csi_of_match[] = {
-> +	{ .compatible = "amlogic,c3-mipi-csi2",
-> +	  .data = &c3_mipi_csi_info,
-> +	},
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, c3_mipi_csi_of_match);
-> +
-> +static struct platform_driver c3_mipi_csi_driver = {
-> +	.probe = c3_mipi_csi_probe,
-> +	.remove = c3_mipi_csi_remove,
-> +	.driver = {
-> +		.name = "c3-mipi-csi2",
-> +		.of_match_table = c3_mipi_csi_of_match,
-> +		.pm = &c3_mipi_csi_pm_ops,
-> +	},
-> +};
-> +
-> +module_platform_driver(c3_mipi_csi_driver);
-> +
-> +MODULE_AUTHOR("Keke Li <keke.li@amlogic.com>");
-> +MODULE_DESCRIPTION("Amlogic C3 MIPI CSI-2 receiver");
-> +MODULE_LICENSE("GPL");
->
-> --
-> 2.46.1
->
->
->
+> 
+> > +               return PTR_ERR(clockman->regmap);
+> > +       }
+> > +
+> > +       clockman->onecell.num = asize;
+> > +       hws = clockman->onecell.hws;
+> > +
+> > +       for (i = 0; i < asize; i++) {
+> > +               desc = &clk_desc_array[i];
+> > +               if (desc->clk_register && desc->data) {
+> > +                       hws[i] = desc->clk_register(clockman, desc);
+> > +                       if (IS_ERR_OR_NULL(hws[i]))
+> > +                               dev_err_probe(dev, PTR_ERR(hws[i]),
+> > +                                             "Unable to register clock: %s\n",
+> > +                                             clk_hw_get_name(hws[i]));
+> > +               }
+> > +       }
+> > +
+> > +       platform_set_drvdata(pdev, clockman);
+> > +
+> > +       return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> > +                                          &clockman->onecell);
+> > +}
 
