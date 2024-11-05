@@ -1,157 +1,149 @@
-Return-Path: <devicetree+bounces-118953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A7049BC738
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 08:45:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ABD49BC730
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 08:45:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 149062818B2
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 07:45:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19C9D1F21C74
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 07:45:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED8951FCC7F;
-	Tue,  5 Nov 2024 07:45:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E87A1FE0F5;
+	Tue,  5 Nov 2024 07:45:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="vobLQDZD"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="QWjcdGJW";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="CYKTbZJa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from fout-a6-smtp.messagingengine.com (fout-a6-smtp.messagingengine.com [103.168.172.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA9B282F1;
-	Tue,  5 Nov 2024 07:45:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515B02AF0B;
+	Tue,  5 Nov 2024 07:45:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730792751; cv=none; b=GAiNM+hdcQcsJEiFs544eldSgcEgjU0d+IohASORghm7IwwKH8l8SZDbS+rWveSRTNDapBcA2v/Qk4ZCdwPkRhgwOl4yjbdT1j69NjQ9cmAKlSdIEt2bgypvzzqutPNuCF1SEdKiiaWoh1cFymhxfDmgBILYZwWQ9SFoFkCmqHc=
+	t=1730792702; cv=none; b=tdSZcTQQ3/TEy6fwl+c2h8CnCY5xRJzFYcatvaLf/UCKmi8u30y8T+PWo1KH5YUfX+9A2hr9D9pExk7QY9I60UrtrzossFWanoPueGLQBrZT9voTvsOLgrGweHx5Vl885HT+asvnVpgwXzwDxuDJ4DKbxoJ1idy6PaXQWI80Z8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730792751; c=relaxed/simple;
-	bh=OaJnEkldqb8hP8lRpM/kenSEByCjXILbSKGWf1lsdc8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Odpyglh8XL58m5F7Drlms+OS56ui4gBZOx+H0ttlKjMqdoZD8VrW6v//LRURGvkZnQ9smVE86CgPThBOjd6GMr3lsN9ypphduwrFury2/dEhKnnFYAO6ZrnaHjNn5CWSkeRUi8AxBnqGEmrkJVzRR6gxe5oj8PVBLwVvAy9xGYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=vobLQDZD; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A5135JP023435;
-	Tue, 5 Nov 2024 08:45:34 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=selector1; bh=agzLPwjtyIVcmji+qBbiwXvd
-	NNXbwTGcuXy/vqd4v6s=; b=vobLQDZD2qNGcCFGeAPMOcHK1jX8XoKA7p8EXbY1
-	K7TkP1GZ/Fzwiy/clo5SiJKmvNeb6qiX5w3W/3e6ZxBG5qODvF508afDzJqHD0tc
-	LrZOPaZCFE1c5SaMzhYqES3dZrBn9vofv553ZFRnQS0xauUrqqIzPwRPjQqPDTwM
-	2TFw89arm5o/X1LQUrsIa5ef3G6WKEr5GgMiCKtPDE37F6dV44I/iz6CCoH7ovF4
-	WReqn0nR6pjMgPzFrpiKjDzG2XmdLvpaQS1IUYr85eACNf7eihE0WiTBETdLCZjE
-	HzZrLAXv6VNCjPoCp3MgE4NBdxP1P3ov4vc1JBNSX2blBA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42nxh3rmc6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 05 Nov 2024 08:45:34 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id DA23B40047;
-	Tue,  5 Nov 2024 08:44:19 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7DA3824F7A7;
-	Tue,  5 Nov 2024 08:43:23 +0100 (CET)
-Received: from gnbcxd0016.gnb.st.com (10.129.178.213) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 5 Nov
- 2024 08:43:22 +0100
-Date: Tue, 5 Nov 2024 08:43:21 +0100
-From: Alain Volmat <alain.volmat@foss.st.com>
+	s=arc-20240116; t=1730792702; c=relaxed/simple;
+	bh=miGbvf+/sqU0lRhQWVytjVytsWBjDMOz4kDCmq/yZCc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H9J9iR4rUCtfvfei3afGgmxbWh1cUinH04IohCJlkPxbxBDvpYMhi0wjvLpm3Tm9ciI2kun4QerfhSfx04gRpUliJwPCGG0tOUUBNq6SKz/GNvkc0lLBAE0UA8UyzsdBUnHfzdTsgCBnd2tkhLGCaJ2DNrYSlW/CkkjTcxIVXDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=QWjcdGJW; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=CYKTbZJa; arc=none smtp.client-ip=103.168.172.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
+	by mailfout.phl.internal (Postfix) with ESMTP id 5CD6913802C1;
+	Tue,  5 Nov 2024 02:44:59 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-04.internal (MEProxy); Tue, 05 Nov 2024 02:44:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm2; t=1730792699; x=1730879099; bh=Ym7SjV/dcJ
+	IjkJNBKLo9FclTtu+qxw9/1pp0hE1zJ/0=; b=QWjcdGJWR3sw5TQS86oG5vnUDb
+	AbrlWa9Dj1I52K1momGP0qnUnz5QBIp/R7RJMkgXUGqwzrdaWo/KCyAP3gGivOIT
+	7iTVlY1jYBqRQGTTwIDhdo6JgBpyAjSG/kw7H8mKtvxdoH/IxnbS1CafV/51HfQ/
+	wmyye/HV8QJ7Lnnf7GLY+TXaP+6SOyQxFYixmfjob+TZ4HCPAZXiQ9IoMP1OrKJ/
+	ZOPCmFN3C07/ZUGeEdtetimLFzUF7KJbsfmsRkYHDPLyrE/aHX5GfZxuNMnbaFyC
+	6x2xEXdDYKnY6EvGzN0AemYSxCeaygnAfyzvO/p6I1EIVBOHVj/HE2Pj3f7A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+	1730792699; x=1730879099; bh=Ym7SjV/dcJIjkJNBKLo9FclTtu+qxw9/1pp
+	0hE1zJ/0=; b=CYKTbZJaYJSl3jIzLRQ2OkGryMyNZEDPXMtJsDxzFjZNrSL2aW1
+	XzAYkGgF2i63sLgBjYYPv0hZCwULacFWB59t415OLzF3cwvnpy+Nrs5T4byuVWv5
+	BnIeGuyWQOLHmMGW3FBCmd1wCX4bPrW4/1vnXU2ExH5hekZsb/sFEsDiGDs88UUt
+	Xy7xDb/xTpKSOWTVsfPLRKR2qEq6E2B57kDZLhti8B3TG7sJafJkYeVFZW8eUcno
+	kggUhiMh+HOPc5jSD9VGjOMh11dhITtEQfwQXQ+ueqK/BGJbcv5/TZo6KDlLg9MA
+	vuBjj6s68atpeiG9unY9rsYdT2VO1V9blxg==
+X-ME-Sender: <xms:-cwpZ3wnCXyyr0lismuD8R6pXFOm3DrdmR4g3mcEsYrXT269jWtbwQ>
+    <xme:-cwpZ_RTpT92to-LTJkXGFG29enfWR4MC8elbgbz0lP82stG_Vk0rR60GxHjcjxuC
+    9sV4fKlPXQWT9RE7Sw>
+X-ME-Received: <xmr:-cwpZxVPIpd0lC2-hIr36Pem1OjmZOxHZZW_-osf83gPsKF4LSp-z3pSJkDSeFu5u-YxziHQucORPECYitCIbSOIV9tdzcAoCpw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdeljedgudduvdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttdej
+    necuhfhrohhmpeflrghnnhgvucfirhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqne
+    cuggftrfgrthhtvghrnhepgfduueffleefkeegueektdehkeejtedtffdtudejhfdvheet
+    gfeigfeltdeufeejnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvg
+    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjsehjrghnnhgruhdrnhgv
+    thdpnhgspghrtghpthhtohepudefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhope
+    hkrhiikheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhgrrhgtrghnsehmrghrtggr
+    nhdrshhtpdhrtghpthhtohepshhvvghnsehsvhgvnhhpvghtvghrrdguvghvpdhrtghpth
+    htoheprghlhihsshgrsehrohhsvghniiifvghighdrihhopdhrtghpthhtohepsghrohho
+    nhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdroh
+    hrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthho
+    pegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghsrghhiheslh
+    hishhtshdrlhhinhhugidruggvvh
+X-ME-Proxy: <xmx:-cwpZxj2545d2OzQOOOUm1nZrHGqKOdUqUx2V-2KvLycigdo2M64bA>
+    <xmx:-cwpZ5AcQSoMG4KKssg82ubxwnXY8srKjgRrqrQIKm1tqODhCmZcBw>
+    <xmx:-cwpZ6IlCTOSJXlUDnBNXoxahGKUggkCuUuNfpX-0UZa7yHAPvzVog>
+    <xmx:-cwpZ4AjqpLsJfHtxa2rItJ0sz2ddGV50LhWJPSeu4HPiq0vaEHBiw>
+    <xmx:-8wpZxyVsuz5RqA6v3Yo3gXt_V7f7Q6Ph83nKqvveNkJq14M50Gq1dU4>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 5 Nov 2024 02:44:57 -0500 (EST)
+Date: Tue, 5 Nov 2024 08:44:55 +0100
+From: Janne Grunau <j@jannau.net>
 To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Hans Verkuil
-	<hverkuil-cisco@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, <linux-media@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 12/15] dt-bindings: media: addition of stm32mp25
- compatible of DCMIPP
-Message-ID: <20241105074321.GB1413559@gnbcxd0016.gnb.st.com>
-References: <20241008-csi_dcmipp_mp25-v1-0-e3fd0ed54b31@foss.st.com>
- <20241008-csi_dcmipp_mp25-v1-12-e3fd0ed54b31@foss.st.com>
- <lu252oltrh6bftg2e4hpthazd4r3lwbd75mboezhz7f4bbfdip@w5k4jx6oyyzx>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] Apple SPI controller driver
+Message-ID: <20241105074455.GA923511@robin.jannau.net>
+References: <20241101-asahi-spi-v3-0-3b411c5fb8e5@jannau.net>
+ <vzulq4ewdbrk7qdurtypxpaoe4jsswddfprtdbudoxipf6d3ya@4gnbmr722pig>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <lu252oltrh6bftg2e4hpthazd4r3lwbd75mboezhz7f4bbfdip@w5k4jx6oyyzx>
-X-Disclaimer: ce message est personnel / this message is private
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+In-Reply-To: <vzulq4ewdbrk7qdurtypxpaoe4jsswddfprtdbudoxipf6d3ya@4gnbmr722pig>
 
-Hi Krzysztof,
-
-On Tue, Oct 08, 2024 at 03:41:59PM +0200, Krzysztof Kozlowski wrote:
-> On Tue, Oct 08, 2024 at 01:18:14PM +0200, Alain Volmat wrote:
-> > Addition of the stm32mp25 compatible for the DCMIPP.
-> 
-> "Add"
-> See submitting patches.
-
-Commit message corrected in the v2.
-
-> 
-> > The stm32mp25 distinguish with the stm32mp13 by the fact that:
-> >  - supports also csi inputs in addition to parallel inputs
-> >  - requires an addition csi clock to be present
+On Sat, Nov 02, 2024 at 02:11:51PM +0100, Krzysztof Kozlowski wrote:
+> On Fri, Nov 01, 2024 at 08:26:11PM +0100, Janne Grunau wrote:
+> > Hi all,
 > > 
-> > The commit also adds access-controllers, an optional property that
-> 
-> "Add", see submitting patches.
-
-Here as well.
-
-> 
-> > allows a peripheral to refer to one or more domain access controller(s).
+> > This updated series address the review comments from the original
+> > submission in 2021 [1]. It adds a new SPI controller driver for Apple
+> > SoCs and is based on spi-sifive. It has been tested with the generic
+> > jedec,spi-nor support and with a downstream driver for an Apple specific
+> > HID over SPI transport.
 > > 
-> > Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> > ---
-> >  .../devicetree/bindings/media/st,stm32-dcmipp.yaml | 53 +++++++++++++++++++---
-> >  1 file changed, 47 insertions(+), 6 deletions(-)
+> > As usual, I'm splitting off the MAINTAINERS and DT binding changes.
+> > We would rather merge the MAINTAINERS change through the Asahi-SoC
+> > tree to avoid merge conflicts as things trickle upstream, since
+> > we have other submissions touching that section of the file.
 > > 
-> > diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
-> > index 87731f3ce7bd..bda28fef0b78 100644
-> > --- a/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
-> > +++ b/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
-> > @@ -10,9 +10,40 @@ maintainers:
-> >    - Hugues Fruchet <hugues.fruchet@foss.st.com>
-> >    - Alain Volmat <alain.volmat@foss.st.com>
-> >  
-> > +allOf:
+> > The DT binding change can go via the SPI tree or via ours, but it's
+> > easier if we merge it, as then we can make the DT changes to
+> > instantiate it without worrying about DT validation failures depending
+> > on merge order.
+> > 
+> > This is mostly Hector's work with a few minor changes to address review
+> > comments from me.
+> > 
+> > [1] https://lore.kernel.org/linux-spi/20211212034726.26306-1-marcan@marcan.st/
+> > 
+> > v2:
+> > - removed '#address-cells' and '#size-cells' from the bindings and added
+> >   Rob's Rb:
 > 
-> Please put allOf: like in example schema, so after required:.
+> Where?
 
-Done in v2.
+Apparently only in my mind. fixed for v4
 
-> 
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> 
-> Best regards,
-> Krzysztof
-> 
+thanks,
+Janne
 
