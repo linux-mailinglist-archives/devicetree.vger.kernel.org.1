@@ -1,96 +1,173 @@
-Return-Path: <devicetree+bounces-119097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22B389BCF3E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 15:27:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BEB69BCF43
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 15:28:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53CAE1C21869
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 14:27:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFD6F1C22CC9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 14:28:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90C7F1D90A4;
-	Tue,  5 Nov 2024 14:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34021D8DE2;
+	Tue,  5 Nov 2024 14:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ogheu//N"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="X519f1N7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 687D51D8E05;
-	Tue,  5 Nov 2024 14:27:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 928691D2716;
+	Tue,  5 Nov 2024 14:28:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730816831; cv=none; b=XF/1GgDkyDLImBtXEb4EhWozbl/i8NzTlW13HbcDVkR79v3dCCpEkOfLt1Eh9nNW4mwjb9MJuaGYh+YCFTAZG2VPADgVBfOsw/JYvijqtSwC86nQ0qKIAgY8J9RV2luVWJg8LJLqF7zmGnl9C3QKLKVzvb+WKrARPx0FABkoHNk=
+	t=1730816892; cv=none; b=MoW6hv8R1S1+YgOmrJQSEEolel+6rCNhelyTtl85QPTpN8YQiGklb8Sr2JZ5wOXH3WtKHipn1QvNT9ZQVNm3oJkRy4bxj4+J8PtI8dyUL82g+8Okb1P1A2Bp3rS156wUcSwvJ1Rq79galpm9Xw8os9sCERuPXlUuFsXDEFEXHFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730816831; c=relaxed/simple;
-	bh=H9lnLtemQ/eUrm6ZowUvs0U4ycXB0QN6ws8h/hIo9/c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nKh88bdAqH9HFY3w/SaMgo0k6Du9vqGxyXkm4BuqzWzRK94O9d4TDqJ+vbmb1JXxG1Rk5xbI5JGV+H0DUO935KOSDhOLYJbxMitGZGIG5zkDX1ESBJASsKOECBXsmV64eBXyEilthHdvw8Sg3Di/9a6gNmYxp9ymCeHtyZVOXKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ogheu//N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6D3CC4CED0;
-	Tue,  5 Nov 2024 14:27:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730816831;
-	bh=H9lnLtemQ/eUrm6ZowUvs0U4ycXB0QN6ws8h/hIo9/c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ogheu//NIDOF8rIG04kMJnc8LFupeuSjfNXm5VShLhda4WRd4NVbJXKt4bczFS3mj
-	 FupDNUsOy7m41/xyyPuPM+vkL6JTwzVUmImMQWikHeQZaB0KRKZfEYuBJ4XicDAwAX
-	 AsMigEk1+Q728CPS52aYB6Oc3b10XMSFg57tWEYwbpKq1PA1K5xdveK45YZ9C9O6FW
-	 2owv2l+weBf2rBtzNawO1P737eFBC7v250BWjA1jaqbVThDaGiLsgGcT9FTNK6HMQp
-	 TmyBka1xWcHVWrC72ot5uxqJYbB2xB+Y6GOiohoj5aM7IWH4/RHENfyLQ0/hcuU4AW
-	 NAzSFvX/q1pvQ==
-Date: Tue, 5 Nov 2024 08:27:08 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Fei Shao <fshao@chromium.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: display: mediatek: dp: Reference common
- DAI properties
-Message-ID: <173081682847.3210195.439507232582613661.robh@kernel.org>
-References: <20241105090207.3892242-1-fshao@chromium.org>
+	s=arc-20240116; t=1730816892; c=relaxed/simple;
+	bh=sRu/2hY6/f6nJz3PWfsGf63AKy+vCNF5Yc9bNL1zAPo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AQJ0rn7K0hB5casyCAOKesxRUJM11xMU8vmXV7eUilMZiaqFwuPAS4WnJclgyONdsmr2UUxdRvWOboPOV9+Dr3v/2NWiJjnvJDLukul2I69MtPtdb61YicDzzOLekwN/AlUT7zpQli0B/ggzw3UKCKw5eYoMYxgHgkPpXgDz0Pg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=X519f1N7; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 442BA2000D;
+	Tue,  5 Nov 2024 14:28:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1730816887;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5EuwCKemNntiFUl0h9MOekWv295Bny26C7jMlRkpaQI=;
+	b=X519f1N7bg31nSp6vgbfL/qtutO+2z4BDU9JI6mEWjcb5+aI2aNBzVCuVhpXWlSop3hJSh
+	/41uUCZ7inbMSgUHQyUUwPNThJ2FjqMcWa1+UMZwTEoXgxFQ36UOK87TOcoORA6zk2YP2L
+	IrXsLCygpnZ7F2UjQA+4ZMSrz7g+n9YoIDFEXa3sjHMGVlqXMH/M6WBNPSVp4x0Z6qDSHu
+	qEUfb1JCh/kGZFUafyFdHxIQLKnFhBuokuaKqad72bNS6wi9JFIOEJTCGX5OdDqGEKpOXx
+	5T7H88qWb0udNGDYIvbygyoDx2rqPGIeutBbFkpVKvNnQ/G86uTuENc2zMElIQ==
+Date: Tue, 5 Nov 2024 15:28:05 +0100
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
+ Eric Dumazet <edumazet@google.com>, Florian Fainelli
+ <f.fainelli@gmail.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Vladimir Oltean <olteanv@gmail.com>, Woojung Huh
+ <woojung.huh@microchip.com>, Arun Ramadoss <arun.ramadoss@microchip.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, UNGLinuxDriver@microchip.com, "Russell King
+ (Oracle)" <linux@armlinux.org.uk>, devicetree@vger.kernel.org, Marek Vasut
+ <marex@denx.de>
+Subject: Re: [PATCH net-next v3 6/6] net: dsa: microchip: parse PHY config
+ from device tree
+Message-ID: <20241105152805.25f8b065@fedora.home>
+In-Reply-To: <20241105090944.671379-7-o.rempel@pengutronix.de>
+References: <20241105090944.671379-1-o.rempel@pengutronix.de>
+	<20241105090944.671379-7-o.rempel@pengutronix.de>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241105090207.3892242-1-fshao@chromium.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
+Hello Oleksij,
 
-On Tue, 05 Nov 2024 17:00:28 +0800, Fei Shao wrote:
-> The MediaTek DP hardware supports audio and exposes a DAI, so the
-> '#sound-dai-cells' property is needed for describing the DAI links.
+On Tue,  5 Nov 2024 10:09:44 +0100
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+
+> Introduce ksz_parse_dt_phy_config() to validate and parse PHY
+> configuration from the device tree for KSZ switches. This function
+> ensures proper setup of internal PHYs by checking `phy-handle`
+> properties, verifying expected PHY IDs, and handling parent node
+> mismatches. Sets the PHY mask on the MII bus if validation is
+> successful. Returns -EINVAL on configuration errors.
 > 
-> Reference the dai-common.yaml schema to allow '#sound-dai-cells' to be
-> used, and filter out non-DP compatibles as MediaTek eDP in the same
-> binding doesn't support audio.
-> 
-> This fixes dtbs_check error:
->   '#sound-dai-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> Signed-off-by: Fei Shao <fshao@chromium.org>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
+>  drivers/net/dsa/microchip/ksz_common.c | 80 ++++++++++++++++++++++++--
+>  1 file changed, 74 insertions(+), 6 deletions(-)
 > 
-> Changes in v2:
-> - reference to dai-common.yaml since the hardware exposes DAI
->   and update to `unevaluatedProperties: false`
-> - update commit message
+> diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
+> index 3909b55857430..cd1a466504180 100644
+> --- a/drivers/net/dsa/microchip/ksz_common.c
+> +++ b/drivers/net/dsa/microchip/ksz_common.c
+> @@ -2373,6 +2373,77 @@ static void ksz_irq_phy_free(struct ksz_device *dev)
+>  			irq_dispose_mapping(ds->user_mii_bus->irq[phy]);
+>  }
 > 
->  .../display/mediatek/mediatek,dp.yaml         | 19 ++++++++++++++++++-
->  1 file changed, 18 insertions(+), 1 deletion(-)
-> 
+> +/**
+> + * ksz_parse_dt_phy_config - Parse and validate PHY configuration from DT
+> + * @dev: pointer to the KSZ device structure
+> + * @bus: pointer to the MII bus structure
+> + * @mdio_np: pointer to the MDIO node in the device tree
+> + *
+> + * This function parses and validates PHY configurations for each user port
+> + * defined in the device tree for a KSZ switch device. It verifies that the
+> + * `phy-handle` properties are correctly set and that the internal PHYs match
+> + * expected IDs and parent nodes. Sets up the PHY mask in the MII bus if all
+> + * validations pass. Logs error messages for any mismatches or missing data.
+> + *
+> + * Return: 0 on success, or a negative error code on failure.
+> + */
+> +static int ksz_parse_dt_phy_config(struct ksz_device *dev, struct mii_bus *bus,
+> +				   struct device_node *mdio_np)
+> +{
+> +	struct device_node *phy_node, *phy_parent_node;
+> +	bool phys_are_valid = true;
+> +	struct dsa_port *dp;
+> +	u32 phy_id;
+> +	int ret;
+> +
+> +	dsa_switch_for_each_user_port(dp, dev->ds) {
+> +		if (!dev->info->internal_phy[dp->index])
+> +			continue;
+> +
+> +		phy_node = of_parse_phandle(dp->dn, "phy-handle", 0);
+> +		if (!phy_node) {
+> +			dev_err(dev->dev, "failed to parse phy-handle for port %d.\n",
+> +				dp->index);
+> +			phys_are_valid = false;
+> +			continue;
+> +		}
+> +
+> +		phy_parent_node = of_get_parent(phy_node);
+> +		if (!phy_parent_node) {
+> +			dev_err(dev->dev, "failed to get PHY-parent node for port %d\n",
+> +				dp->index);
+> +			phys_are_valid = false;
+> +		} else if (dev->info->internal_phy[dp->index] &&
+> +			   phy_parent_node != mdio_np) {
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+There's a check a few lines above that guarantees that at this point
+dev->info->internal_phy[dp->index] will always evaluate as true,
+so you could simplify that condition a bit :)
 
+> +			dev_err(dev->dev, "PHY-parent node mismatch for port %d, expected %pOF, got %pOF\n",
+> +				dp->index, mdio_np, phy_parent_node);
+> +			phys_are_valid = false;
+> +		} else {
+> +			ret = of_property_read_u32(phy_node, "reg", &phy_id);
+> +			if (ret < 0) {
+> +				dev_err(dev->dev, "failed to read PHY ID for port %d. Error %d\n",
+> +					dp->index, ret);
+> +				phys_are_valid = false;
+> +			} else if (phy_id != dev->phy_addr_map[dp->index]) {
+> +				dev_err(dev->dev, "PHY ID mismatch for port %d, expected 0x%x, got 0x%x\n",
+> +					dp->index, dev->phy_addr_map[dp->index],
+> +					phy_id);
+
+In this context, PHY ID might be a bit misleading, as PHY ID usually
+refers to the identifier (OUI + model id used at probe to select the
+driver). May I suggest phy_addr instead ?
+
+Thanks,
+
+Maxime
 
