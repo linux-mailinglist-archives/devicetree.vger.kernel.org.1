@@ -1,68 +1,60 @@
-Return-Path: <devicetree+bounces-119151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB7139BD2FC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:57:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E239D9BD333
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 18:18:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37C08B2183C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 16:57:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F35C81C22643
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 17:18:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 837A01DD0F8;
-	Tue,  5 Nov 2024 16:57:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C4741D63E1;
+	Tue,  5 Nov 2024 17:18:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MBVuQi2H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NyRuaU3m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52DD71DD0DF;
-	Tue,  5 Nov 2024 16:57:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50C20166F1A;
+	Tue,  5 Nov 2024 17:18:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730825829; cv=none; b=G6/iX7o89thotEHhr57Dlwe7nm21xcbdB7Sd0B7x0fU1Gc7r9COOvlrI1vNS+rQcR7D2DothoCLoBR350WwcoJNtpxSnJUgiuPfaxti8JZYcJuBIjniMuv4oc5NAZkllj4ZYrBGKLQar1ek9Se9j7rID+NEvsCXrACrnE1z1Oio=
+	t=1730827111; cv=none; b=hJwLzcxQVr1vnn1G0ByLl8f/n9xYXWT1DYCTPwKBHB4EUWdH9mWsYSW5vFwSJ4xIzn5aUVA7TOx+CEO6PQNWW6U7TyVNEK7gpeo+HbDPAsngwGea9LZGqgZXMxg7zuLBX8mYAmChz0f68iEdYfbLpHU4S1i0VWE8YNaJ+mS79YE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730825829; c=relaxed/simple;
-	bh=FUgEHS0v2wn2GNPwRwbc73yZWp4clR8jRdjvPNbU9fo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fSZK1VwnrHM76FeIjwILrOslKl0I5UXdxFvv+7LeK+is3Q4gMdQFvW7U35M2xVMKxazgCNtXMxSqlrBLMzmA12zHGdsINeAnIMkHLoaWiLh4Ot5cO3RoI1UOEowPCCKCyyUKfWhOudaikzvs6pbfg4AX6s46JU861tmx8gVPuBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MBVuQi2H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2DE5C4CECF;
-	Tue,  5 Nov 2024 16:57:08 +0000 (UTC)
+	s=arc-20240116; t=1730827111; c=relaxed/simple;
+	bh=9swtDu2MiH44n97pp1Y1dGpeIR7FF3ZuO/eaWS+/fms=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=FqfftHhCRr3CZPdZ9YaY5G8tHk7uE89h1CAIsJ3gx5uYx6jhZ/OW+tZZJNmwZX+tyd8xoOFCsCBIukKYvecSe2knfJpYSeQHKn9NKUK2QTozUOZe1F9ngil52qszCGilIAaeGsCiRn482MftQWRtF9SA2ZwKzqyDwAQrAbs00kY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NyRuaU3m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA699C4CECF;
+	Tue,  5 Nov 2024 17:18:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730825828;
-	bh=FUgEHS0v2wn2GNPwRwbc73yZWp4clR8jRdjvPNbU9fo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MBVuQi2HWmeXFd3u7bdz6E0MqpD32LJJHxSIBveYZtNVzA7RKdrX8La2YsMCAsNms
-	 2np1ZL0nKRvdQ8Qg+cvq7xFz47nNRoP/8tz0m/5M1RKZVBF8kNP8U6PktrlyHc/m/p
-	 3fjSrcnPaj7HkPxLqJMXqneOx6AzoHMtbP+BcEgZOniAgOz2GEhNgekkG161hUm7sY
-	 5fx7LxxJwbyg5s5vpg/vfisNlR8s+ePND0IP2fH9B0bOXOJdBLqoLurcOD+U7O6bmw
-	 R9TIm9Ys78vZEdnPySVziuXnFWGHvq7Bkh32oQo2qXodrm0FQHUQ9g/6/IgdUEolOA
-	 Tr7zYRODtxUIw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1t8Mrb-000000007xR-3oQa;
-	Tue, 05 Nov 2024 17:57:08 +0100
-Date: Tue, 5 Nov 2024 17:57:07 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Marc Zyngier <maz@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>
-Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org,
-	konrad.dybcio@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_rgottimu@quicinc.com,
-	quic_kshivnan@quicinc.com, conor+dt@kernel.org,
-	quic_nkela@quicinc.com, quic_psodagud@quicinc.com,
-	abel.vesa@linaro.org
-Subject: Re: [PATCH V7 0/2] qcom: x1e80100: Enable CPUFreq
-Message-ID: <ZypOY-NCDN9fdMAR@hovoldconsulting.com>
-References: <20241030130840.2890904-1-quic_sibis@quicinc.com>
- <ZyTQ9QD1tEkhQ9eu@hovoldconsulting.com>
- <86plnf11yf.wl-maz@kernel.org>
- <ZyTjiiGc2ApoID9Y@hovoldconsulting.com>
- <86o72z10b6.wl-maz@kernel.org>
+	s=k20201202; t=1730827110;
+	bh=9swtDu2MiH44n97pp1Y1dGpeIR7FF3ZuO/eaWS+/fms=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=NyRuaU3mAqVyBJ2Cdj7wtgjmaCAPEROP8WeCLFEDLXTtWYJ8LvAEnx41zJTF19TZR
+	 WqNiCmQeYYppdQ/G7coVDO99ruUXbINQnnjX0jV0nVx2fUwsXGUeOOzB+ZVwt01Dat
+	 CwLkpQ62vQHoZM1x8Q1WPdsQfGQJsM7YuVbMbSwSL23Xo1CPBzT4h1W8HjT8TVJdUp
+	 5jng8y7vU44SbyjS4eoQ7f9aaJVsrRfw+MySbATBvgHaXdihocDaZSZxGuBXX94NbT
+	 CMqhkOdLGphKcMFR3tByCtnx/a8GPTnPkE0InsbOiM54BBtCx/7PPqTTQPHHWPncZJ
+	 ixdkddyDGx3PQ==
+Date: Tue, 5 Nov 2024 11:18:28 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-pci@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 2/2] PCI: microchip: rework reg region handing to
+ support using either instance 1 or 2
+Message-ID: <20241105171828.GA1474726@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,38 +63,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <86o72z10b6.wl-maz@kernel.org>
+In-Reply-To: <20241104-stabilize-friday-94705c3dc244@spud>
 
-On Fri, Nov 01, 2024 at 02:43:57PM +0000, Marc Zyngier wrote:
-> On Fri, 01 Nov 2024 14:19:54 +0000,
-> Johan Hovold <johan@kernel.org> wrote:
-
-> > The side-effects and these remaining warnings are addressed by this
-> > series:
+On Mon, Nov 04, 2024 at 11:18:43AM +0000, Conor Dooley wrote:
+> On Fri, Nov 01, 2024 at 02:51:29PM -0500, Bjorn Helgaas wrote:
+> > On Wed, Aug 14, 2024 at 09:08:42AM +0100, Conor Dooley wrote:
+> > > From: Conor Dooley <conor.dooley@microchip.com>
+> > > 
+> > > The PCI host controller on PolarFire SoC has multiple "instances", each
+> > > with their own bridge and ctrl address spaces. The original binding has
+> > > an "apb" register region, and it is expected to be set to the base
+> > > address of the host controllers register space. Defines in the driver
+> > > were used to compute the addresses of the bridge and ctrl address ranges
+> > > corresponding to instance1. Some customers want to use instance0 however
+> > > and that requires changing the defines in the driver, which is clearly
+> > > not a portable solution.
 > > 
-> > 	https://lore.kernel.org/all/20241030125512.2884761-1-quic_sibis@quicinc.com/
+> > The subject mentions "instance 1 or 2".
 > > 
-> > but I think we should try to make the warnings a bit more informative
-> > (and less scary) by printing something along the lines of:
+> > This paragraph implies adding support for "instance0" ("customers want
+> > to use instance0").
 > > 
-> > 	arm-scmi arm-scmi.0.auto: [Firmware Bug]: Ignoring duplicate OPP 3417600 for NCC
+> > The DT patch suggests that we're adding support for "instance2"
+> > ("customers want to use instance2").
 > > 
-> > instead.
+> > Both patches suggest that the existing support is for "instance 1".
+> > 
+> > Maybe what's being added is "instance 2", and this commit log should
+> > s/instance0/instance 2/ ?  And probably s/instance1/instance 1/ so the
+> > style is consistent?
 > 
-> Indeed. Seeing [Firmware Bug] has a comforting feeling of
-> familiarity... :)
+> Hmm no, it would be s/instance1/instance 2/ & s/instance0/instance 1/.
+> The indices are 1-based, not 0-based.
 > 
-> I wonder whether the same sort of reset happen on more "commercial"
-> systems (such as some of the laptops). You expect that people look at
-> the cpufreq stuff closely, and don't see things exploding like we are.
+> > Is this a "pick one or the other but not both" situation, or does this
+> > device support two independent PCIe controllers?
+> > 
+> > I first thought this driver supported a single PCIe controller, and
+> > you were adding support for a second independent controller.
+> 
+> I don't know if they are fully independent (Daire would have to confirm)
+> but as far as the driver in linux is concerned they are. As far as I
+> know, you could operate both instances at the same time, but I've not
+> heard of any customer that is actually doing that nor tested it myself.
+> Operating both instances would require another node in the devicetree,
+> which should work fine given the private data structs are allocated at
+> runtime. I think the config space is shared.
+> 
+> > But the fact that you say "the [singular] host controller on
+> > PolarFire", and you're not changing mc_host_probe() to call
+> > pci_host_common_probe() more than once makes me think there is only a
+> > single PCIe controller, and for some reason you can choose to operate
+> > it using either register set 1 or register set 2.
+> 
+> The wording I've used mostly stems from conversations with Daire. We've
+> kinda been saying that there's a single controller with two root port
+> instances. 
 
-I finally got around to getting my Lenovo ThinkPad T14s to boot (it
-refuses to start the kernel when using GRUB, and it's not due to the
-known 64 GB memory issue as it only has 32 GB) and can confirm that it
-hard resets when accessing the cpufreq sysfs attributes as well.
+If these are two separate Root Ports, can we call them "Root Ports"
+instead of "instances"?  Common terminology makes for common
+understanding.
 
-On the bright side, at least I don't see any warnings due to duplicate
-OPPs on this machine (x1e78100, latest UEFI fw).
+> Each root port instance is connected to different IOs,
+> they're more than just different registers for accessing the same thing.
 
-Johan
+Sounds like some customers use Root Port 1 and others use Root Port 2,
+maybe based on things like which pins are more convenient to route.
+
+I would very much like to reword these commit logs using as much
+standard PCIe terminology as possible.  Most of these native PCIe
+controller drivers have Root Complex and Root Port concepts all mixed
+together, and anything we can do to standardize them will be a
+benefit.
+
+Bjorn
 
