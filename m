@@ -1,334 +1,129 @@
-Return-Path: <devicetree+bounces-119080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 871FD9BCE47
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 14:52:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 994979BCE75
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 14:59:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA417B21495
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 13:52:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 512381F22FED
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 13:59:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E63421D63F3;
-	Tue,  5 Nov 2024 13:52:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B96A41D8DF6;
+	Tue,  5 Nov 2024 13:58:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sZ4kn9Bl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g4qZAbHt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17521D63CC;
-	Tue,  5 Nov 2024 13:52:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873621D86D2;
+	Tue,  5 Nov 2024 13:58:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730814756; cv=none; b=nzAn9YD1N/zpmAUlM26G5kXTI2ppwCVzB5jFWm7n0mAhWebZ4C79Y7iHKocHfyHFX1+3k7B9A6lNd/cor3jhZVCMlnjJceMW9s5luFwA5k6LFItHqdp2+cg60knfQXuGWrKcO0nh2Db4RTZmBmutezT3oihgrgoDD3riWh79Yzc=
+	t=1730815122; cv=none; b=jV31AgDkvrSZ5TwtnL2CbsKVNkaw9qwkEkSEx9vJlLQXN0f+SmxAAPxYORoGrK3FPUlzPZaje63yOkgQJz7op6JBM4D+6PQk1z6WL1/BUnkogcxnSL+wRF69H6XjwnPmag5ANY5dVzkH9eiuNPXvkN/p8aZGpP7j0EtfDIc5dSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730814756; c=relaxed/simple;
-	bh=9RmemElWczQmjSbmF+yQD5UD6vSvu+VPFLQ/xqDnlok=;
+	s=arc-20240116; t=1730815122; c=relaxed/simple;
+	bh=h2YyTsHPIecoq/D4+stAYCx0ZPE+tzXUnwD5nOOZyYI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hjsh/ehSZTXbB8APnjTeN18J52y1M5U/q3hxt4ohl6qzA7k/fzdhlngH07xAIz1lojr7XfJ0PoyA3e3i4tT8VY3c29YVbxDLZWqGdP/i0qMyfR6QxYivtRh4q6RykNy7ypA2NVuRge67u4ei0MMBJ4kPXdl/19Kzz4e8qW2h9M4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sZ4kn9Bl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 137CEC4CED0;
-	Tue,  5 Nov 2024 13:52:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sbTTZRaGYRkpx2Fn8XfBl2R1ksYNI9dSXy0HL7qJ7xUP1k/2LjxOIPvhOx9YuhFcVN2LyxdByFhSTeVAYm0nDDX3WurvqHcNg+rPxSOhk3ZhI4I+4PMihA7s0g3j69wXsCd0FdZYc/hxcdxIOCrDV/MFPJLUqtrdLFbohTZQ+80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g4qZAbHt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC624C4CECF;
+	Tue,  5 Nov 2024 13:58:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730814756;
-	bh=9RmemElWczQmjSbmF+yQD5UD6vSvu+VPFLQ/xqDnlok=;
+	s=k20201202; t=1730815122;
+	bh=h2YyTsHPIecoq/D4+stAYCx0ZPE+tzXUnwD5nOOZyYI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sZ4kn9BlsfgtIwNVWgGErbE7ubGbKK+kvIlYvXbEYFIRoofLd14ERw/p6jFF6iXA7
-	 EpZyVlMmlhxHd3R3bO3g//6moUX4gDZFS7Ncr3EDhJQkgMPuZ/k3pR1nyXI6zrPWO4
-	 ecveh4Trj0UyYWbSa5TtUj5za1puos93SA7PZzM5L8IY1SLyXUFQDqumYNw62wUgnE
-	 OSAggZ+ZISz1E5FwsdJCJXvxaYOSP+ZLpI83m9Uu1sNyzi/d+BVlge12An1a5IaGz+
-	 lY2Q4PmeLia3mvQjGJJ/I6LG+gZos+6w6L1Smu2fUk8A2Z9eLxQXX+oHqCbpU+qmwG
-	 Y/S09ir6gbV3A==
-Date: Tue, 5 Nov 2024 07:52:34 -0600
-From: Rob Herring <robh@kernel.org>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Michael Turquette <mturquette@baylibre.com>,
+	b=g4qZAbHtQ4DIqtzwwDm32mI0YSVaHX/AgRsCjaTnM5Frn69ZFO8YlR+DmhgbOgdbK
+	 oiNNvQQlmLFwhNXuwWhH9x35Frw+LJ9460iZVhOravxJ+HXGwL+IS+6c/hdQZyB6TT
+	 XpPzjFLTgVqlUm/ymL5qcggAQ9d7oR41h8E/6kAh8AK62wOo5Euf2ktOWiw2/WGbaY
+	 2KC0/ozgfZIdyO3hM03Y6wjMj29SaRF72pRUsbmSorcvmKwNkKIeGlfD1owws/zHcD
+	 P+8xz2zgoXwyPSJyYOIZtFpFUBGNMKQMGS6gYKR2sFC8Yz4I3VVWO7EiFdrcp5Zk1Q
+	 AZmI5zu2ujmVQ==
+Date: Tue, 5 Nov 2024 13:58:36 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Janne Grunau <j@jannau.net>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-omap@vger.kernel.org, Tero Kristo <kristo@kernel.org>,
-	Tony Lindgren <tony@atomide.com>,
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: clock: ti: Convert mux.txt to json-schema
-Message-ID: <20241105135234.GA3100411-robh@kernel.org>
-References: <20241104135549.38486-1-andreas@kemnade.info>
+	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] spi: apple: Add driver for Apple SPI controller
+Message-ID: <947246c5-b9e6-43e7-a516-7b82136e6e8e@sirena.org.uk>
+References: <20241105-asahi-spi-v4-0-d9734f089fc9@jannau.net>
+ <20241105-asahi-spi-v4-2-d9734f089fc9@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="iENhY6dim+9r+yWz"
 Content-Disposition: inline
-In-Reply-To: <20241104135549.38486-1-andreas@kemnade.info>
+In-Reply-To: <20241105-asahi-spi-v4-2-d9734f089fc9@jannau.net>
+X-Cookie: I'll be Grateful when they're Dead.
 
-On Mon, Nov 04, 2024 at 02:55:49PM +0100, Andreas Kemnade wrote:
-> Convert the OMAP mux clock device tree binding to json-schema.
-> Specify the creator of the original binding as a maintainer.
-> Choose GPL-only license because original binding was also GPL.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> ---
->  .../bindings/clock/ti/composite.txt           |   2 +-
->  .../devicetree/bindings/clock/ti/mux.txt      |  78 -----------
->  .../bindings/clock/ti/ti,mux-clock.yaml       | 123 ++++++++++++++++++
->  3 files changed, 124 insertions(+), 79 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/ti/mux.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/ti/composite.txt b/Documentation/devicetree/bindings/clock/ti/composite.txt
-> index b02f22490dcb..238e6f7d74f8 100644
-> --- a/Documentation/devicetree/bindings/clock/ti/composite.txt
-> +++ b/Documentation/devicetree/bindings/clock/ti/composite.txt
-> @@ -16,7 +16,7 @@ merged to this clock. The component clocks shall be of one of the
->  "ti,*composite*-clock" types.
->  
->  [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
-> -[2] Documentation/devicetree/bindings/clock/ti/mux.txt
-> +[2] Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
->  [3] Documentation/devicetree/bindings/clock/ti/ti,divider-clock.yaml
->  [4] Documentation/devicetree/bindings/clock/ti/gate.txt
->  
-> diff --git a/Documentation/devicetree/bindings/clock/ti/mux.txt b/Documentation/devicetree/bindings/clock/ti/mux.txt
-> deleted file mode 100644
-> index cd56d3c1c09f..000000000000
-> --- a/Documentation/devicetree/bindings/clock/ti/mux.txt
-> +++ /dev/null
-> @@ -1,78 +0,0 @@
-> -Binding for TI mux clock.
-> -
-> -This binding uses the common clock binding[1].  It assumes a
-> -register-mapped multiplexer with multiple input clock signals or
-> -parents, one of which can be selected as output.  This clock does not
-> -gate or adjust the parent rate via a divider or multiplier.
-> -
-> -By default the "clocks" property lists the parents in the same order
-> -as they are programmed into the register.  E.g:
-> -
-> -	clocks = <&foo_clock>, <&bar_clock>, <&baz_clock>;
-> -
-> -results in programming the register as follows:
-> -
-> -register value		selected parent clock
-> -0			foo_clock
-> -1			bar_clock
-> -2			baz_clock
-> -
-> -Some clock controller IPs do not allow a value of zero to be programmed
-> -into the register, instead indexing begins at 1.  The optional property
-> -"index-starts-at-one" modified the scheme as follows:
-> -
-> -register value		selected clock parent
-> -1			foo_clock
-> -2			bar_clock
-> -3			baz_clock
-> -
-> -The binding must provide the register to control the mux. Optionally
-> -the number of bits to shift the control field in the register can be
-> -supplied. If the shift value is missing it is the same as supplying
-> -a zero shift.
-> -
-> -[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
-> -
-> -Required properties:
-> -- compatible : shall be "ti,mux-clock" or "ti,composite-mux-clock".
-> -- #clock-cells : from common clock binding; shall be set to 0.
-> -- clocks : link phandles of parent clocks
-> -- reg : register offset for register controlling adjustable mux
-> -
-> -Optional properties:
-> -- clock-output-names : from common clock binding.
-> -- ti,bit-shift : number of bits to shift the bit-mask, defaults to
-> -  0 if not present
-> -- ti,index-starts-at-one : valid input select programming starts at 1, not
-> -  zero
-> -- ti,set-rate-parent : clk_set_rate is propagated to parent clock,
-> -  not supported by the composite-mux-clock subtype
-> -- ti,latch-bit : latch the mux value to HW, only needed if the register
-> -  access requires this. As an example, dra7x DPLL_GMAC H14 muxing
-> -  implements such behavior.
-> -
-> -Examples:
-> -
-> -sys_clkin_ck: sys_clkin_ck@4a306110 {
-> -	#clock-cells = <0>;
-> -	compatible = "ti,mux-clock";
-> -	clocks = <&virt_12000000_ck>, <&virt_13000000_ck>, <&virt_16800000_ck>, <&virt_19200000_ck>, <&virt_26000000_ck>, <&virt_27000000_ck>, <&virt_38400000_ck>;
-> -	reg = <0x0110>;
-> -	ti,index-starts-at-one;
-> -};
-> -
-> -abe_dpll_bypass_clk_mux_ck: abe_dpll_bypass_clk_mux_ck@4a306108 {
-> -	#clock-cells = <0>;
-> -	compatible = "ti,mux-clock";
-> -	clocks = <&sys_clkin_ck>, <&sys_32k_ck>;
-> -	ti,bit-shift = <24>;
-> -	reg = <0x0108>;
-> -};
-> -
-> -mcbsp5_mux_fck: mcbsp5_mux_fck {
-> -	#clock-cells = <0>;
-> -	compatible = "ti,composite-mux-clock";
-> -	clocks = <&core_96m_fck>, <&mcbsp_clks>;
-> -	ti,bit-shift = <4>;
-> -	reg = <0x02d8>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml b/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
-> new file mode 100644
-> index 000000000000..b271ab86dde1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
-> @@ -0,0 +1,123 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
 
-Surely TI as the only author of the original binding would agree to
-dual-license this?
+--iENhY6dim+9r+yWz
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/ti/ti,mux-clock.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments mux clock
-> +
-> +maintainers:
-> +  - Tero Kristo <kristo@kernel.org>
-> +
-> +description: |
-> +  This clock assumes a register-mapped multiplexer with multiple inpt clock
-> +  signals or parents, one of which can be selected as output. This clock does
-> +  not gate or adjust the parent rate via a divider or multiplier.
-> +
-> +  By default the "clocks" property lists the parents in the same order
-> +  as they are programmed into the register.  E.g:
-> +
-> +    clocks = <&foo_clock>, <&bar_clock>, <&baz_clock>;
-> +
-> +  results in programming the register as follows:
+On Tue, Nov 05, 2024 at 09:08:30AM +0100, Janne Grunau wrote:
+> From: Hector Martin <marcan@marcan.st>
+>=20
+> This SPI controller is present in Apple SoCs such as the M1 (t8103) and
+> M1 Pro/Max (t600x). It is a relatively straightforward design with two
+> 16-entry FIFOs, arbitrary transfer sizes (up to 2**32 - 1) and fully
+> configurable word size up to 32 bits. It supports one hardware CS line
+> which can also be driven via the pinctrl/GPIO driver instead, if
+> desired. TX and RX can be independently enabled.
 
-Results
+This breaks the build with current code:
 
-> +
-> +  register value   selected parent clock
-> +  0                foo_clock
-> +  1                bar_clock
-> +  2                baz_clock
-> +
-> +  Some clock controller IPs do not allow a value of zero to be programmed
-> +  into the register, instead indexing begins at 1.  The optional property
-> +  "index-starts-at-one" modified the scheme as follows:
-> +
-> +  register value   selected clock parent
-> +  1                foo_clock
-> +  2                bar_clock
-> +  3                baz_clock
-> +
-> +  The binding must provide the register to control the mux. Optionally
-> +  the number of bits to shift the control field in the register can be
-> +  supplied. If the shift value is missing it is the same as supplying
-> +  a zero shift.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,mux-clock
-> +      - ti,composite-mux-clock
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clocks: true
-> +
-> +  clock-output-names:
-> +    maxItems: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ti,bit-shift:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      number of bits to shift the bit-mask, defaults to 0 if not present
+/build/stage/linux/drivers/spi/spi-apple.c: In function =E2=80=98apple_spi_=
+probe=E2=80=99:
+/build/stage/linux/drivers/spi/spi-apple.c:463:16: error: implicit declarat=
+ion o
+f function =E2=80=98devm_spi_alloc_master=E2=80=99; did you mean =E2=80=98d=
+evm_spi_alloc_target=E2=80=99? [-Werr
+or=3Dimplicit-function-declaration]
+  463 |         ctlr =3D devm_spi_alloc_master(&pdev->dev, sizeof(struct ap=
+ple_spi
+));
+      |                ^~~~~~~~~~~~~~~~~~~~~
+      |                devm_spi_alloc_target
+/build/stage/linux/drivers/spi/spi-apple.c:463:14: error: assignment to =E2=
+=80=98struct=20
+spi_controller *=E2=80=99 from =E2=80=98int=E2=80=99 makes pointer from int=
+eger without a cast [-Werror=3D
+int-conversion]
+  463 |         ctlr =3D devm_spi_alloc_master(&pdev->dev, sizeof(struct ap=
+ple_spi
+));
+      |              ^
+cc1: all warnings being treated as errors
 
-Number
+It needs an update for the retirement of the old API name.
 
-And on all the other descriptions...
+--iENhY6dim+9r+yWz
+Content-Type: application/pgp-signature; name="signature.asc"
 
-No need to say in prose what the constraints say. So drop "defaults to 0 
-if not present".
+-----BEGIN PGP SIGNATURE-----
 
-> +    maximum: 31
-> +    default: 0
-> +
-> +  ti,index-starts-at-one:
-> +    type: boolean
-> +    description:
-> +      valid input select programming starts at 1, not zero
-> +
-> +  ti,set-rate-parent:
-> +    type: boolean
-> +    description:
-> +      clk_set_rate is propagated to parent clock,
-> +      not supported by the composite-mux-clock subtype.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcqJIwACgkQJNaLcl1U
+h9DgKgf/ddf0YmZ4oEkNm4wgCTlT/ycNyO5dWuRJbH1oSBwFNktY2pJQsMx3JswW
+GfOvhWqiQSN7BXsCNCYwM79OA36ABMxTDU5+YhEiZVxIS2XYyLIO18tDd4KXWYUr
+D1JN7D+nGYiaLi8Cfhw3AfnXc3HFDkxW/lb0Syb+V3Z2C9ETTtpcLqqKsGZld9Go
+O0mIylw6nzdoNvBOX8acNRseCjifKTS34aFp5VHBlkjHud7wcsJ4mI2YFiMDjkUB
+r+3i/soG9MKgVQUVmFukVNqZQtQAgZAfj4OL/B0FK9YfC5ul9RaKbqYO8dznFUBX
+o5okgT+07d5QMV/0LnBW9eHfwEy9Pw==
+=PxTk
+-----END PGP SIGNATURE-----
 
-blank line.
-
-> +  ti,latch-bit:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      latch the mux value to HW, only needed if the register
-> +      access requires this. As an example, dra7x DPLL_GMAC H14 muxing
-> +      implements such behavior.
-
-Constraints?
-
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: ti,composite-mux-clock
-> +then:
-> +  properties:
-> +    ti,set-rate-parent: false
-> +
-> +required:
-> +  - compatible
-> +  - "#clock-cells"
-> +  - clocks
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    bus {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      clock-controller@110 {
-> +        #clock-cells = <0>;
-> +        compatible = "ti,mux-clock";
-> +        clocks = <&virt_12000000_ck>, <&virt_13000000_ck>, <&virt_16800000_ck>;
-> +        reg = <0x0110>;
-> +        ti,index-starts-at-one;
-> +        ti,set-rate-parent;
-> +      };
-> +
-> +      clock-controller@120 {
-
-Wrong unit-address.
-
-> +        #clock-cells = <0>;
-> +        compatible = "ti,composite-mux-clock";
-> +        clocks = <&core_96m_fck>, <&mcbsp_clks>;
-> +        ti,bit-shift = <4>;
-> +        reg = <0x02d8>;
-> +      };
-> +    };
-> -- 
-> 2.39.5
-> 
+--iENhY6dim+9r+yWz--
 
