@@ -1,118 +1,103 @@
-Return-Path: <devicetree+bounces-119223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CB129BD93B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 23:57:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 233B29BD9A6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 00:21:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EBDD1F227D2
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 22:57:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF7B01F24051
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 23:21:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8411C21643C;
-	Tue,  5 Nov 2024 22:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DB94216A0B;
+	Tue,  5 Nov 2024 23:21:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="qdTytCw9"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="i2BNR8di"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C13371F80C4
-	for <devicetree@vger.kernel.org>; Tue,  5 Nov 2024 22:57:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF70313C9DE;
+	Tue,  5 Nov 2024 23:21:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730847434; cv=none; b=sDjigNvoVaCo7DvHOsK0j7St/X0NdhECz1eOT7J4QooTaM6HhgIsYfyiiEBygL1cnIgcvOkv5X0Wzo5W5oG2+C2rTzPhW4Cdp53LQIMKPOItfiYDxQopQyFJcDpf51ONaiM8jmMDECHLTKW/ZWG0nqOQ3iaRLGgxm47AE3DuIbU=
+	t=1730848878; cv=none; b=qG2jznM5fwxKmfQPvbMUDzcOFNx3zyd8AWGJhZ4dSJIeLLfzdNX3uoMzEvTVAU2nheO00vkny0bj3ltG2/XRbHsiIXRKXo0V8FzQAN1VPXNrl4F7TT6Jza79BJ0iHhNv6gcW7rQxmsFUEJx6YTnAfGZKH2Jy5MpgMWMihU6y7Zw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730847434; c=relaxed/simple;
-	bh=SKuMRajw20hsFLFwWDU4LonUR/nJn9r53rV1YXD0Rq0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=btwxI4kYv4OGf9ksS3UgbuVZLCCGCoeuE34QCBX8Kgg6wc6Gh8Txziq/6mtQEGwERGnd5c+zli1rnJeCKkM4VXYoDuRhoC7zV1d+8dDjuunM6sbGzX95kSX3tEQwl9LRTzGcyPf37HBQnVBLZSjm6nYnMsjk6aiFjXIq1pUp0DI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=qdTytCw9; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 73B4089048;
-	Tue,  5 Nov 2024 23:47:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1730846870;
-	bh=ELy6ICW2TEmM6hKJfcyhmgjGc/1ElUN1EwN/EW7ULAc=;
-	h=From:To:Cc:Subject:Date:From;
-	b=qdTytCw9HYDNNCpo/hKZmctyr8xs//XHJDpyDtGWf0bzAUZcRplGLXX/fP4trdvyN
-	 E1lgAnqr2WTz4A3wE6csTdn9vWBHoFGdKCB22uaTUEBtUJ0P+0co6NU2IKPE6ZByZQ
-	 oQKqWPXmhpebNQnk/WPGw5pqE/x9bmdKtY5NlsbWOysVU+uw9+uAknyt/VlITqx/Iy
-	 MjGGlZR9SKVl+ASW1rCHdA9Dt4JAvQ7yM48uE/s2jrOuIfAbZlC962cnP9G5PeCrzb
-	 ldR9sK85NgqEsN4ug8UFGb0WoQoJnwVwz2ZPRKxte/J0b464ZAHtDeqy8yxc6HLVdO
-	 tAvouHy3XVz5Q==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	kernel@dh-electronics.com,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] ARM: dts: stm32: Increase CPU core voltage on STM32MP13xx DHCOR SoM
-Date: Tue,  5 Nov 2024 23:46:22 +0100
-Message-ID: <20241105224728.147384-1-marex@denx.de>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1730848878; c=relaxed/simple;
+	bh=9xVg8S5A3dEOoVAga7+s67CM1EOce2OgL3F1GFpjD6c=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=KQIumiZfyLc6GuJ9IbSMDgr9QlPvqMVMcgYZmgemD8UoOw3WrCoRxIVsUxtKJtRwpHKLofDjir7zCAyiZOquQ2tY/3+ZOgvyE2iTaMQnHjSqbru7b1qJaV46yDMI0l6MW6hvglt1tyknYhun1SidHD/eNEX8MN3oxRCD3CLEKvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=i2BNR8di; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1730848873;
+	bh=9xVg8S5A3dEOoVAga7+s67CM1EOce2OgL3F1GFpjD6c=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=i2BNR8diE+bStAGqu0zYAfibKHrcVQtX9N4pflhBAUSdqW9IEM2OcclPJ48QwPlVa
+	 GJPIcEHQ2ASnJHrarkOPjgskPbban8Hn+uqI1IOaTF34Pfo5YCoVfWsf+M2n/6+Yxe
+	 HUa69kNuNSNjMIUOTEmvYkCVcN5Q/9vBrNM23GmsBzlOUSO+nApi1KChXTFYz2UACw
+	 gBWe1Ztlchpgua51i8VwZSFqf0nNaVWpteN1aCTfocGyuikG5JnjYkFT1p4m0xtrkb
+	 nhmZHYnuBrC3msnJr5cCJa0Cba3PJcLzi6usLnTXHfmaZceCbF7l2wHkSgwbwqJjl1
+	 fivt5GIneEFaA==
+Received: from [192.168.68.112] (ppp118-210-162-114.adl-adc-lon-bras34.tpg.internode.on.net [118.210.162.114])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 52A0D6B407;
+	Wed,  6 Nov 2024 07:21:11 +0800 (AWST)
+Message-ID: <9e9bf461b2ef8993bb46206b3cdf40806a528856.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v6 2/2] ARM: dts: aspeed: sbp1: IBM sbp1 BMC board
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Guenter Roeck <linux@roeck-us.net>, Naresh Solanki
+	 <naresh.solanki@9elements.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ jdelvare@suse.com,  sylv@sylv.io, linux-hwmon@vger.kernel.org, Joel Stanley
+ <joel@jms.id.au>,  Patrick Rudolph <patrick.rudolph@9elements.com>,
+ linux-arm-kernel@lists.infradead.org,  linux-aspeed@lists.ozlabs.org
+Date: Wed, 06 Nov 2024 09:51:10 +1030
+In-Reply-To: <7d9657ff-1c4a-4167-982a-9f07e7b51f77@roeck-us.net>
+References: <20241104092220.2268805-1-naresh.solanki@9elements.com>
+	 <20241104092220.2268805-2-naresh.solanki@9elements.com>
+	 <ac9698862598f0d09d35872d0e091537f822fbcd.camel@codeconstruct.com.au>
+	 <CABqG17j8RhFpNV+nJ=nLY8+uO_XXjbN55+Ce8op=6Dj5Z=_WOA@mail.gmail.com>
+	 <7d9657ff-1c4a-4167-982a-9f07e7b51f77@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-The STM32MP13xx DHCOR DHSBC is populated with STM32MP13xx part capable
-of 1 GHz operation, increase the CPU core voltage to 1.35 V to make
-sure the SoC is stable even if the blobs unconditionally force the CPU
-to 1 GHz operation.
+On Tue, 2024-11-05 at 07:47 -0800, Guenter Roeck wrote:
+> On 11/4/24 20:10, Naresh Solanki wrote:
+> [ ... ]
+>=20
+> > > =C2=A0From a spot check, the warnings seem legitimate. Did you send
+> > > the right
+> > > patches?
+> > Just checked again. They are resolved. But I guess the dtbinding
+> > patch
+> > for the above warning are merged in hwmon-next branch & not in
+> > dt/next
+> >=20
+>=20
+> Did I apply some patches which should have been applied elsewhere ?
+>=20
+> If so, please let me know, and I'll drop them.
 
-It is not possible to make use of CPUfreq on the STM32MP13xx because
-the SCMI protocol 0x13 is not implemented by upstream OpTee-OS which
-is the SCMI provider.
+No need to drop anything for now: It was just that bindings for some
+hwmon devices defined in hwmon-next are used in Naresh's devicetree
+here.
 
-Fixes: 6331bddce649 ("ARM: dts: stm32: Add support for STM32MP13xx DHCOR SoM and DHSBC board")
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Marek Vasut <marex@denx.de>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
----
- arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Merging hwmon-next and applying his patches resolves my concerns.
 
-diff --git a/arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi b/arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi
-index 07133bd82efa6..8630de147a52b 100644
---- a/arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi
-@@ -85,8 +85,8 @@ regulators {
- 
- 			vddcpu: buck1 { /* VDD_CPU_1V2 */
- 				regulator-name = "vddcpu";
--				regulator-min-microvolt = <1250000>;
--				regulator-max-microvolt = <1250000>;
-+				regulator-min-microvolt = <1350000>;
-+				regulator-max-microvolt = <1350000>;
- 				regulator-always-on;
- 				regulator-initial-mode = <0>;
- 				regulator-over-current-protection;
--- 
-2.45.2
+Unless anyone feels otherwise, I expect we can can carry on
+independently with the understanding it will be resolved in the same
+way at the next rc1 (barring any other concerns with Naresh's patches).
+
+Andrew
 
 
