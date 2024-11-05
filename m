@@ -1,116 +1,253 @@
-Return-Path: <devicetree+bounces-118877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDE159BC1A3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 00:49:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E57B9BC1CE
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 01:09:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BCE21C2147C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2024 23:49:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81CC11C210F5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 00:09:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABF561FDFAF;
-	Mon,  4 Nov 2024 23:49:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7055C801;
+	Tue,  5 Nov 2024 00:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ntrz21As"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="bVLQHcMF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74D951A76A4;
-	Mon,  4 Nov 2024 23:49:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C51B1163;
+	Tue,  5 Nov 2024 00:09:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730764179; cv=none; b=T8nCAooRoyNh4SaIYLHu9fjvc4C9FdX01UycZUE3NXpg+1OUC2rFzzHnCkV7OXI072P4T/PlGE3wIOTLthzU1n1OGqWA0oA9CC2uCyS28m6L0FIs/liFoY4uoFxrFUPBJysOfyqwaw6nCm7iSRc05qX/d+hi+jb7jEBHI5gty2U=
+	t=1730765390; cv=none; b=J4vRPJUPZK2LQHJLZqhL6HSD+QgcJ9UIEALdBqBJvWh+hKwrthpwe7fX67S0Lb0xC8KmjZed9/y3OMPTBbdicsgf6c5Lh55BhoKYZdCNoA6OKF1JYPARMqpMb7OAzdoOjf0u3ePSDJQ1trxYN9WHBobklFGxiso7c+0BzF2KCOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730764179; c=relaxed/simple;
-	bh=iYZ8xQtA17SG7eVmEIV4S/I2ob0ny1CVlXDrXQZre+c=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=HvRLr7gyLwB8yAJdeSBCXmOCgza8bI7d9wGxH/EIzxjyu44IGecOC9dc6HYkcQXMlnMGeOJjZK1GQbOTm7r4E7fClABPCaH8sSZCEOHBeE0gImlfp2pITKWTIGOfRL1pl57d30Sq1EZ/qro5JJg6uEWZON9GrEZfpyNgKPzoowI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ntrz21As; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA3E8C4CECE;
-	Mon,  4 Nov 2024 23:49:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730764178;
-	bh=iYZ8xQtA17SG7eVmEIV4S/I2ob0ny1CVlXDrXQZre+c=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=Ntrz21As60vacLFu5p1uAmxmcX96c07NNHqwAPllOOJB9RJXakyrOXNdt4fbBnjUm
-	 DV1PpoHYRCz1U5qcb4iU4W17QW/fCzR0CO/c+y6/IZYExhQq+wESmOvX3jZyHl72DG
-	 wxwE5FARzswPmdhMRSY+monukJehqVG7Et9RHSf3aO0Qwy1N1ppG8tSBMV3PkZbqms
-	 2ZZqYtYByX9TfJTPlUtGAes7++oKDqQVSGVDp7m0JWypWvGw8UHnrPwduSWpiBhj2o
-	 EN1anG73X1epeNiI1zoJE7//PnviSJH5pFTTFJ5hYGwgsPutn7QyP3uBWPS03aAmzh
-	 lVNPTZyXfzscQ==
-Date: Mon, 4 Nov 2024 17:49:37 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v3 05/12] PCI: of_property: Assign PCI instead of CPU bus
- address to dynamic bridge nodes
-Message-ID: <20241104234937.GA1446920@bhelgaas>
+	s=arc-20240116; t=1730765390; c=relaxed/simple;
+	bh=IjJLJ70mG0yXKyq0C8oBtomjbMZt3HhC5EaMaSbO7Kc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=DeXKikmQowriSq8heZe3bn+IHbnpL4mx8PR8dUiCV/tUWTdDYcg+YpJ41rI/r9VzCQGy7eRpcb/wmpmT/UVSJfOHzx4eda8qCIdMgklsjvF/ysxPz3iUYOGKGMQQCTsItDil874SrUHROf4xUHPEEyX2jsONeHBQil9bH2N+1dY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=bVLQHcMF; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1730765380;
+	bh=IjJLJ70mG0yXKyq0C8oBtomjbMZt3HhC5EaMaSbO7Kc=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=bVLQHcMFG/lHwHLYBE5Jjz6Tdn/3U3MOp0kh+E16OhOzKDp4U5iBeRw+YCXQWWsPk
+	 7zO0yZRvC6R41KdPVVPEKAse4f0sMISbIj/SkCke5jX+bGooxZyzdEgddI7a8ALRzU
+	 3UX8aSdti7p9Ps81L/CfvzW5fiwVr30b7zbLCG0ryn35jwPSCIm8StIVEtCc8APgYU
+	 WBV95ajz/U5JmouPbpAHluo3zqSiUpDCBjPLTOYUxRULkt1Z/YyXEJLapN1Fo9Hab0
+	 s9/m3iigWtirVGX0y6IbySRHrbFYUehpwHA2OCRh7dQVbA1W3zozjclUefuqshUh3t
+	 3GefuGksYuy2w==
+Received: from [192.168.68.112] (ppp118-210-162-114.adl-adc-lon-bras34.tpg.internode.on.net [118.210.162.114])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 9758C6A3C9;
+	Tue,  5 Nov 2024 08:09:37 +0800 (AWST)
+Message-ID: <f468a5c0a0112cee35815fb6c7b7f9933934adc2.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: add IBM SBP1 board
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Conor Dooley <conor@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Naresh Solanki <naresh.solanki@9elements.com>, jdelvare@suse.com, Conor
+ Dooley <conor.dooley@microchip.com>, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ krzk+dt@kernel.org,  sylv@sylv.io, linux-arm-kernel@lists.infradead.org,
+ linux-hwmon@vger.kernel.org,  linux@roeck-us.net, Joel Stanley
+ <joel@jms.id.au>, conor+dt@kernel.org
+Date: Tue, 05 Nov 2024 10:39:34 +1030
+In-Reply-To: <20241104-saturate-device-d020a0d7321f@spud>
+References: <20241104092220.2268805-1-naresh.solanki@9elements.com>
+	 <173072771091.3690717.11563964377469449295.robh@kernel.org>
+	 <20241104-saturate-device-d020a0d7321f@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241104150521.r4hbsurw4dbzlxpg@thinkpad>
 
-On Mon, Nov 04, 2024 at 08:35:21PM +0530, Manivannan Sadhasivam wrote:
-> On Mon, Nov 04, 2024 at 09:54:57AM +0100, Andrea della Porta wrote:
-> > On 22:39 Sat 02 Nov     , Manivannan Sadhasivam wrote:
-> > > On Mon, Oct 28, 2024 at 03:07:22PM +0100, Andrea della Porta wrote:
-> > > > When populating "ranges" property for a PCI bridge, of_pci_prop_ranges()
-> > > > incorrectly use the CPU bus address of the resource. Since this is a PCI-PCI
-> > > > bridge, the window should instead be in PCI address space. Call
-> > > > pci_bus_address() on the resource in order to obtain the PCI bus
-> > > > address.
-> > > 
-> > > of_pci_prop_ranges() could be called for PCI devices also (not just PCI
-> > > bridges), right?
-> > 
-> > Correct. Please note however that while the PCI-PCI bridge has the parent
-> > address in CPU space, an endpoint device has it in PCI space: here we're
-> > focusing on the bridge part. It probably used to work before since in many
-> > cases the CPU and PCI address are the same, but it breaks down when they
-> > differ.
-> 
-> When you say 'focusing', you are specifically referring to the
-> bridge part of this API I believe. But I don't see a check for the
-> bridge in your change, which is what concerning me. Am I missing
-> something?
+Hi Conor,
 
-I think we want this change for all devices in the PCI address
-domain, including PCI-PCI bridges and endpoints, don't we?  All those
-"ranges" addresses should be in the PCI domain.
+On Mon, 2024-11-04 at 18:49 +0000, Conor Dooley wrote:
+> On Mon, Nov 04, 2024 at 08:39:21AM -0600, Rob Herring (Arm) wrote:
+> >=20
+> > On Mon, 04 Nov 2024 14:52:14 +0530, Naresh Solanki wrote:
+> > > Document the new compatibles used on IBM SBP1.
+> > >=20
+> > > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > > ---
+> > > Changes in V4:
+> > > - Retain Acked-by from v2.
+> > > - Fix alphabetic order
+> > > ---
+> > > =C2=A0Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+> > > =C2=A01 file changed, 1 insertion(+)
+> > >=20
+> >=20
+> >=20
+> > My bot found new DTB warnings on the .dts files added or changed in
+> > this
+> > series.
+> >=20
+> > Some warnings may be from an existing SoC .dtsi. Or perhaps the
+> > warnings
+> > are fixed by another series. Ultimately, it is up to the platform
+> > maintainer whether these warnings are acceptable or not. No need to
+> > reply
+> > unless the platform maintainer has comments.
+> >=20
+> > If you already ran DT checks and didn't see these error(s), then
+> > make sure dt-schema is up to date:
+> >=20
+> > =C2=A0 pip3 install dtschema --upgrade
+> >=20
+> >=20
+> > New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ibm-
+> > sbp1.dtb' for
+> > 20241104092220.2268805-1-naresh.solanki@9elements.com:
+>=20
+> Really? This many warnings on a v6?
+>=20
 
-Bjorn
+I understand that it's surprising and disappointing, however these
+warnings are from the Aspeed DTSIs and not directly from the proposed
+DTS. Many are an artefact of history, and I'm (slowly) working to clean
+them up. Recently I haven't had any time to dedicate to that effort,
+and as I'm somewhat responsible for the state of things, I'm not
+prepared to block other people's patches and push my own
+responsibilities onto them.
+
+I've been replying to those proposing new Aspeed-based devicetrees to
+separate the warnings they're introducing from the warnings that
+already exist, and requiring them to fix the issues they're responsible
+for. I hope that I'll have time to continue to improve the situation,
+as this is obviously a tedious task for me too.=20
+
+Andrew
+
+> >=20
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: timer: 'clocks'
+> > does not match any of the regexes: 'pinctrl-[0-9]+'
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /sdram@1e6e0000:
+> > failed to match any schema with compatible: ['aspeed,ast2600-sdram-
+> > edac', 'syscon']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: bus@1e600000:
+> > compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: syscon@1e6e2000:
+> > 'smp-memram@180' does not match any of the regexes: '^interrupt-
+> > controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-
+> > 9a-f]+)?$', '^silicon-id@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/apb@1e6e0000/syscon@1e6e2000/smp-memram@180: failed to match
+> > any schema with compatible: ['aspeed,ast2600-smpmem']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/apb@1e6e0000/syscon@1e6e2000/interrupt-controller@560: failed
+> > to match any schema with compatible: ['aspeed,ast2600-scu-ic0']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/apb@1e6e0000/syscon@1e6e2000/interrupt-controller@570: failed
+> > to match any schema with compatible: ['aspeed,ast2600-scu-ic1']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/apb@1e6e0000/display@1e6e6000: failed to match any schema with
+> > compatible: ['aspeed,ast2600-gfx', 'syscon']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: adc@1e6e9000:
+> > 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: adc@1e6e9100:
+> > 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: crypto@1e6fa000:
+> > 'aspeed,ahbc' does not match any of the regexes: 'pinctrl-[0-9]+'
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/video@1e700000: failed to match any schema with compatible:
+> > ['aspeed,ast2600-video-engine']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: sdc@1e740000:
+> > sdhci@1e740100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too
+> > long
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: sdc@1e740000:
+> > sdhci@1e740200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too
+> > long
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/sdc@1e740000/sdhci@1e740100: failed to match any schema with
+> > compatible: ['aspeed,ast2600-sdhci', 'sdhci']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/sdc@1e740000/sdhci@1e740200: failed to match any schema with
+> > compatible: ['aspeed,ast2600-sdhci', 'sdhci']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/apb@1e780000/timer@1e782000: failed to match any schema with
+> > compatible: ['aspeed,ast2600-timer']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: lpc@1e789000:
+> > lpc-snoop@80: 'clocks' does not match any of the regexes: 'pinctrl-
+> > [0-9]+'
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: lpc@1e789000:
+> > reg-io-width: 4 is not of type 'object'
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: kcs@24: 'clocks'
+> > does not match any of the regexes: 'pinctrl-[0-9]+'
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: kcs@28: 'clocks'
+> > does not match any of the regexes: 'pinctrl-[0-9]+'
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: kcs@2c: 'clocks'
+> > does not match any of the regexes: 'pinctrl-[0-9]+'
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: kcs@114: 'clocks'
+> > does not match any of the regexes: 'pinctrl-[0-9]+'
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/apb@1e780000/lpc@1e789000/lhc@a0: failed to match any schema
+> > with compatible: ['aspeed,ast2600-lhc']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/apb@1e780000/lpc@1e789000/ibt@140: failed to match any schema
+> > with compatible: ['aspeed,ast2600-ibt-bmc']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/apb@1e780000/bus@1e78a000/i2c@280/bmc-slave@10: failed to
+> > match any schema with compatible: ['ipmb-dev']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: fsi@1e79b000:
+> > compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/apb@1e790000/fsi@1e79b000: failed to match any schema with
+> > compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: fsi@1e79b100:
+> > compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
+> > http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/apb@1e790000/fsi@1e79b100: failed to match any schema with
+> > compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb:
+> > /ahb/apb@1e790000/dma-controller@1e79e000: failed to match any
+> > schema with compatible: ['aspeed,ast2600-udma']
+> >=20
+> >=20
+> >=20
+> >=20
+> >=20
+
 
