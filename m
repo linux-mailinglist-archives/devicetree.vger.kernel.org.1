@@ -1,157 +1,144 @@
-Return-Path: <devicetree+bounces-118898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 255CA9BC434
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 05:10:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B017E9BC463
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 05:42:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACC74282DB5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 04:10:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6211D1F22038
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 04:42:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB37218FDAC;
-	Tue,  5 Nov 2024 04:10:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4063F18E023;
+	Tue,  5 Nov 2024 04:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="HqkqACsO"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SqdWNhUv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8411D18EAD
-	for <devicetree@vger.kernel.org>; Tue,  5 Nov 2024 04:10:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874C118EAD;
+	Tue,  5 Nov 2024 04:42:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730779843; cv=none; b=i7Xn7QZTgn73zswdvsMNEc6X9N0S5JFRe+eaN0ptj2SdMxFxtm/otWDDkcUE3H2p9sCYuKf0SZjIECGOdqeiviBdzdVSCfnL3zKUUWDC7U9BmXdKaezmkOdyCVBzwI5p3xrxjLHQyyE9cAxOyyZmJDVbT3NxFRCAOl1IWapg7jQ=
+	t=1730781723; cv=none; b=UwtGYkF7yX/fxwUk4F+3LdYINxaWIhP9EHR7fxtvDNQnDwz/NDhH+r/qLI+mOJr/gWPY553XKpkQ4pDaqKH9pu+YGrlK/vN0e49owH3ciPTfm9WFEmMgg9gQDBK29iicrb7y7QCHY+ZJ3yXz+pNQZzDGkMRGpGQ8N+kI/U2+3o4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730779843; c=relaxed/simple;
-	bh=RJ5dyuCaHnEHxb2ODY/yWTobplceIiFW9Y6NsNace2w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=daoPp/jTFGbVP7TDo4yNQQH03YhA4zl+RpuEKhToqecOjdThEi0APR9WGNCPPL9AmSm9a7kfeETvV34FKbj+FY7Tl+1VzjQ0oH58q1qCG2fY2K2wmCIfacTDPgW0gfLQQwg41EDm0Q8dU8Dhzwt9CPQEIGCzhZUTB8NaNwXir28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=HqkqACsO; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2e2dcf4b153so3601953a91.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2024 20:10:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1730779840; x=1731384640; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=scJvZT2Bp+kcd/IoGZ1ogwNGrXZa1xnJU5qHOxNFIJQ=;
-        b=HqkqACsOOPux5BujQmtOUUZ6F3TzX4sJrmWMPZC8qsNn/TCXFp9cuFceIj8OddTvSh
-         /34Xd15Qbm3jU/OVLDBSzx5DN0M/2xNXlmq7NGe4aWgrJHIOzpKD/UB5SIwjSjozc3JF
-         ZJ1fPPVL1Hd4TRlj51T3l8TtOJcf53lrIEmpVVoOXSffoiBX62jUBXpFezsYZm5cZVrK
-         wqGUftcvYRXON3CzU3zWgocTqfAQb7yaTxvp13WoVb6C75LGSmhdHDOzVy3FgNQaa9BI
-         /ZnlFdSgskMbVQdSa22YCynVgvHQg5FPQg9RPd6W65h4p3zEybam2iUjmoeOApH/8qA2
-         MUUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730779840; x=1731384640;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=scJvZT2Bp+kcd/IoGZ1ogwNGrXZa1xnJU5qHOxNFIJQ=;
-        b=S2Ih4+DDqjZPAkBlvP1wjnjzMasRMzW/g0eP+VUDiFpnfKwTnqShjXpd1/8cQFA45q
-         JNZnL/bqc1GI0hiI4Mu0tLHwfikO8qMbex3jT9XBygjV4IEUUjig1UsYT8pJu56uSX3u
-         ESpNo+h5IaUQXYj8Rh9IVr7h0EJ49ymc3wX72u5poJHO1wBvrjvF4aNgReMOq0G4chBM
-         uOjWfXvbLsZiM4cig/BZsuCQKy4E78ASQs1P0CC9ijXYsC9O2XhJpd6otLXryYUHIlPx
-         IU1XcfbI9REAOQitIw5vzJCujTjHvuP2ikvriGXbiZQVw6nEPH5haAbbiEuxmlQnCK+N
-         1opQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU2FNF7OKycG8HcOKfz0KfitIZ2quwfSv2tP1hjMe+1RPn6BcyrB5baFuQ9CjTMhch1D5gc0D4LTcdS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/r5w901xK5FNq3hwya6sgYjcgz0IJeegR+pmtPuEE9w2B7nQH
-	rzkEd5CnkOtn6O9sopb1+++xZLFUYcU1GevnMrsu8FleB/smsnBZ220wnDdhSePEVg9mODYm9c3
-	W610fA6swSYm7TfbQgRbOT0ale8oqwSzTrfppUQ==
-X-Google-Smtp-Source: AGHT+IGScUy3G6UR8gz6wvjEudlraQqlt5Uia9jokVx/2PFVMQBmpLwbRPnyko1K4A9eB9MF28vFRoIVwNeA/WAajBQ=
-X-Received: by 2002:a17:90a:6446:b0:2e2:b46f:d92a with SMTP id
- 98e67ed59e1d1-2e92ce50e2emr23868289a91.14.1730779839807; Mon, 04 Nov 2024
- 20:10:39 -0800 (PST)
+	s=arc-20240116; t=1730781723; c=relaxed/simple;
+	bh=GERzyHXG1j7vDe7Sv3QECeL9y4wkacoKyJifFZB5SCc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GzsFiCinvSaW8kwqgLNDxZTu0UNH1MCmTjeUiqK19aWxqYA51Enua7/jcK6B2UAzEkaRIBsC3fZp+RcjrO3rxiLKT1PVnbtVeBh6H02RenpY3pkgGu59HjPzD1zdowz03b4skI+Er/iRVUdUomdumt72pXUSVjPl/XhhDXYO3K4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SqdWNhUv; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A4LJNlO001852;
+	Tue, 5 Nov 2024 04:41:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	M/A196zbFjuy+n7rnSJl+Mcogsu5xntqgmxXdF4fZTc=; b=SqdWNhUvqOV68GuA
+	M+B3Yx6C0xtwx8oCoeH8lA7w43IFzUQr1Ori1HeLfRrTUbEkc+xIDnDL1gHRtpuP
+	C06rfqfx4rxevl6r7v7WzmHkTozmC/kjCixl1bH9a+McYbbgvkWH3AO9xfEggOWk
+	gOhtviKBNgJXw+GuucF5rbcay3VK9rMWrFkdlua5EOaZdctE/YaZvz9XV9HRZ2mm
+	PYR0Hz1fKqp9pfdJ7cwQ1kSwaQWjo4aUwg6XEV1+mX7Eie/0o7izztbRInFbbnlu
+	NDa3Q9aL6KOMOqqXvoVovF/Imhn8r0Hr6V9FKMgav2hwe1ahk1jirXANPG7WYpmG
+	Yk+0Qg==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd2s6bj8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 05 Nov 2024 04:41:56 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A54ftuD010042
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 5 Nov 2024 04:41:55 GMT
+Received: from [10.216.1.57] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 4 Nov 2024
+ 20:41:50 -0800
+Message-ID: <59562d2d-936e-4a96-b9de-d152a503e552@quicinc.com>
+Date: Tue, 5 Nov 2024 10:11:42 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241104092220.2268805-1-naresh.solanki@9elements.com>
- <20241104092220.2268805-2-naresh.solanki@9elements.com> <ac9698862598f0d09d35872d0e091537f822fbcd.camel@codeconstruct.com.au>
-In-Reply-To: <ac9698862598f0d09d35872d0e091537f822fbcd.camel@codeconstruct.com.au>
-From: Naresh Solanki <naresh.solanki@9elements.com>
-Date: Tue, 5 Nov 2024 09:40:28 +0530
-Message-ID: <CABqG17j8RhFpNV+nJ=nLY8+uO_XXjbN55+Ce8op=6Dj5Z=_WOA@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] ARM: dts: aspeed: sbp1: IBM sbp1 BMC board
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, jdelvare@suse.com, 
-	linux@roeck-us.net, sylv@sylv.io, linux-hwmon@vger.kernel.org, 
-	Joel Stanley <joel@jms.id.au>, Patrick Rudolph <patrick.rudolph@9elements.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] dt-bindings: clock: qcom: Add GPU clocks for
+ QCS8300
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Taniya Das
+	<quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        "Satya
+ Priya Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241024-qcs8300-mm-patches-v2-0-76c905060d0a@quicinc.com>
+ <20241024-qcs8300-mm-patches-v2-1-76c905060d0a@quicinc.com>
+ <jhwf2slcwvkpxggqt42mfmnyiibhbnvwtqk3to7ueq3ppla7q7@23qrl2z56ygu>
+ <f5d24079-58e4-4ca2-a910-4e4b3feb04f7@linaro.org>
+Content-Language: en-US
+From: Imran Shaik <quic_imrashai@quicinc.com>
+In-Reply-To: <f5d24079-58e4-4ca2-a910-4e4b3feb04f7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GAP70G87Svtfkkwp3wIctEdBRA--Hh2W
+X-Proofpoint-GUID: GAP70G87Svtfkkwp3wIctEdBRA--Hh2W
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ lowpriorityscore=0 mlxlogscore=962 clxscore=1011 suspectscore=0
+ adultscore=0 priorityscore=1501 bulkscore=0 mlxscore=0 malwarescore=0
+ spamscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2409260000 definitions=main-2411050031
 
-Hi Andrew,
 
-On Tue, 5 Nov 2024 at 06:03, Andrew Jeffery <andrew@codeconstruct.com.au> wrote:
->
-> On Mon, 2024-11-04 at 14:52 +0530, Naresh Solanki wrote:
-> > From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> >
-> > Add a device tree for IBM sbp1 BMC board which is based on AST2600
-> > SOC.
-> >
-> > sbp1 baseboard has:
-> > - support for up to four Sapphire Rapids sockets having 16 DIMMS
-> > each.
-> >   - 240 core/480 threads at maximum
-> > - 32x CPU PCIe slots
-> > - 2x M.2 PCH PCIe slots
-> > - Dual 200Gbit/s NIC
-> > - SPI TPM
-> >
-> > Added the following:
-> > - Indication LEDs
-> > - I2C mux & GPIO controller, pin assignments,
-> > - Thermister,
-> > - Voltage regulator
-> > - EEPROM/VPD
-> >
-> > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> > Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> >
-> > ---
-> > Changes in V6:
-> > - Verified all regulators warning resolved.
->
-> How did you verify this? Testing the patches locally, I see:
->
->    +/home/andrew/src/kernel.org/linux/origin/build.aspeed_g5/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-cpu2@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
->    +       from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
->    +/home/andrew/src/kernel.org/linux/origin/build.aspeed_g5/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccfa-cpu2@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
->    +       from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
->    +/home/andrew/src/kernel.org/linux/origin/build.aspeed_g5/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-cpu1@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
->    +       from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
->    +/home/andrew/src/kernel.org/linux/origin/build.aspeed_g5/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccfa-cpu1@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
->    +       from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
->    +/home/andrew/src/kernel.org/linux/origin/build.aspeed_g5/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-cpu3@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
->    +       from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
->    +/home/andrew/src/kernel.org/linux/origin/build.aspeed_g5/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccfa-cpu3@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
->    +       from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
->    +/home/andrew/src/kernel.org/linux/origin/build.aspeed_g5/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
->    +       from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
->    +/home/andrew/src/kernel.org/linux/origin/build.aspeed_g5/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
->    +       from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
->    +/home/andrew/src/kernel.org/linux/origin/build.aspeed_g5/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
->    +       from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
->    +/home/andrew/src/kernel.org/linux/origin/build.aspeed_g5/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
->    +       from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
->    +/home/andrew/src/kernel.org/linux/origin/build.aspeed_g5/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-cpu0@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
->    +       from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
->    +/home/andrew/src/kernel.org/linux/origin/build.aspeed_g5/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccfa-cpu0@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
->    +       from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
->
-> From a spot check, the warnings seem legitimate. Did you send the right
-> patches?
-Just checked again. They are resolved. But I guess the dtbinding patch
-for the above warning are merged in hwmon-next branch & not in dt/next
 
-Regards,
-Naresh
->
-> Andrew
+On 10/30/2024 4:29 PM, Vladimir Zapolskiy wrote:
+> On 10/26/24 15:20, Krzysztof Kozlowski wrote:
+>> On Thu, Oct 24, 2024 at 07:01:14PM +0530, Imran Shaik wrote:
+>>> The QCS8300 GPU clock controller is mostly identical to SA8775P, but
+>>> QCS8300 has few additional clocks and minor differences. Hence, reuse
+>>> SA8775P gpucc bindings and add additional clocks required for QCS8300.
+>>
+>> IIUC, these clocks are not valid for SA8775p. How do we deal with such
+>> cases for other Qualcomm SoCs?
+>>
+> 
+> It always possible to add a new platform specific header file and
+> include the old one.
+> 
+> For reference see commit a6a61b9701d1 ("dt-bindings: clock: qcom: Add
+> SM8650 video clock controller"), I believe that's the preferred way
+> of adding new platform clocks whenever technically possible.
+> 
+
+Sure, I will follow the same approach as the commit a6a61b9701d1 and 
+post next series.
+
+Thanks,
+Imran
+
+> -- 
+> Best wishes,
+> Vladimir
+
 
