@@ -1,63 +1,41 @@
-Return-Path: <devicetree+bounces-118899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B017E9BC463
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 05:42:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 205959BC56D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 07:30:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6211D1F22038
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 04:42:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A863A280FD5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 06:30:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4063F18E023;
-	Tue,  5 Nov 2024 04:42:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34911D88DB;
+	Tue,  5 Nov 2024 06:30:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SqdWNhUv"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="G5vQ+5aY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-m1973173.qiye.163.com (mail-m1973173.qiye.163.com [220.197.31.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874C118EAD;
-	Tue,  5 Nov 2024 04:42:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 738462A1A4;
+	Tue,  5 Nov 2024 06:30:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730781723; cv=none; b=UwtGYkF7yX/fxwUk4F+3LdYINxaWIhP9EHR7fxtvDNQnDwz/NDhH+r/qLI+mOJr/gWPY553XKpkQ4pDaqKH9pu+YGrlK/vN0e49owH3ciPTfm9WFEmMgg9gQDBK29iicrb7y7QCHY+ZJ3yXz+pNQZzDGkMRGpGQ8N+kI/U2+3o4=
+	t=1730788225; cv=none; b=L14Kf5PxYcDTNpF+tuK6bQxU173jmebzT0MlkBsEfdVgFR3/znNPi3hIxKbfsoRC+sBIhu6VTXowv6d9LVP9sy+8sTORBQXwlMEa3YzDKSX3iVL/mL/5OyilMsgtJyNXTwt7d8x+1XhIGO0dvVnKYvfoCet0gnSCj4zyK3oXGOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730781723; c=relaxed/simple;
-	bh=GERzyHXG1j7vDe7Sv3QECeL9y4wkacoKyJifFZB5SCc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GzsFiCinvSaW8kwqgLNDxZTu0UNH1MCmTjeUiqK19aWxqYA51Enua7/jcK6B2UAzEkaRIBsC3fZp+RcjrO3rxiLKT1PVnbtVeBh6H02RenpY3pkgGu59HjPzD1zdowz03b4skI+Er/iRVUdUomdumt72pXUSVjPl/XhhDXYO3K4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SqdWNhUv; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A4LJNlO001852;
-	Tue, 5 Nov 2024 04:41:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	M/A196zbFjuy+n7rnSJl+Mcogsu5xntqgmxXdF4fZTc=; b=SqdWNhUvqOV68GuA
-	M+B3Yx6C0xtwx8oCoeH8lA7w43IFzUQr1Ori1HeLfRrTUbEkc+xIDnDL1gHRtpuP
-	C06rfqfx4rxevl6r7v7WzmHkTozmC/kjCixl1bH9a+McYbbgvkWH3AO9xfEggOWk
-	gOhtviKBNgJXw+GuucF5rbcay3VK9rMWrFkdlua5EOaZdctE/YaZvz9XV9HRZ2mm
-	PYR0Hz1fKqp9pfdJ7cwQ1kSwaQWjo4aUwg6XEV1+mX7Eie/0o7izztbRInFbbnlu
-	NDa3Q9aL6KOMOqqXvoVovF/Imhn8r0Hr6V9FKMgav2hwe1ahk1jirXANPG7WYpmG
-	Yk+0Qg==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd2s6bj8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 05 Nov 2024 04:41:56 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A54ftuD010042
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 5 Nov 2024 04:41:55 GMT
-Received: from [10.216.1.57] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 4 Nov 2024
- 20:41:50 -0800
-Message-ID: <59562d2d-936e-4a96-b9de-d152a503e552@quicinc.com>
-Date: Tue, 5 Nov 2024 10:11:42 +0530
+	s=arc-20240116; t=1730788225; c=relaxed/simple;
+	bh=oNpifOua4/EUNgEbXqNcIgxFeoUKjzgG/ceBaAyFxwk=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Xuk5mfynNIk/m7FW7RFsjJdkk1wuhCVWVxjuxS8e8LAe2Z51DDsfK94AQLh2p9n/YD97QUbfcv1G8i7v998qDtPqVkOLzUOBcnHXYwaZu3fe7Tg/+KPLyz0BhGJBljaNA4kRHVJo/97rb4DkATbehv+LAMH41/tAgYoNFcw/hC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=G5vQ+5aY; arc=none smtp.client-ip=220.197.31.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.45] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1ca84001;
+	Tue, 5 Nov 2024 09:54:16 +0800 (GMT+08:00)
+Message-ID: <7dc6d164-ced4-4c9b-888f-7345e8e52298@rock-chips.com>
+Date: Tue, 5 Nov 2024 09:54:16 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,80 +43,150 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: clock: qcom: Add GPU clocks for
- QCS8300
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Krzysztof Kozlowski
-	<krzk@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Taniya Das
-	<quic_tdas@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        "Satya
- Priya Kakitapalli" <quic_skakitap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20241024-qcs8300-mm-patches-v2-0-76c905060d0a@quicinc.com>
- <20241024-qcs8300-mm-patches-v2-1-76c905060d0a@quicinc.com>
- <jhwf2slcwvkpxggqt42mfmnyiibhbnvwtqk3to7ueq3ppla7q7@23qrl2z56ygu>
- <f5d24079-58e4-4ca2-a910-4e4b3feb04f7@linaro.org>
-Content-Language: en-US
-From: Imran Shaik <quic_imrashai@quicinc.com>
-In-Reply-To: <f5d24079-58e4-4ca2-a910-4e4b3feb04f7@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: GAP70G87Svtfkkwp3wIctEdBRA--Hh2W
-X-Proofpoint-GUID: GAP70G87Svtfkkwp3wIctEdBRA--Hh2W
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- lowpriorityscore=0 mlxlogscore=962 clxscore=1011 suspectscore=0
- adultscore=0 priorityscore=1501 bulkscore=0 mlxscore=0 malwarescore=0
- spamscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2411050031
+Cc: shawn.lin@rock-chips.com, Rob Herring <robh+dt@kernel.org>,
+ "James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
+ "Martin K . Petersen" <martin.petersen@oracle.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, YiFeng Zhao <zyf@rock-chips.com>,
+ Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-pm@vger.kernel.org
+Subject: Re: [PATCH v4 7/7] scsi: ufs: rockchip: initial support for UFS
+To: Ulf Hansson <ulf.hansson@linaro.org>
+References: <1730705521-23081-1-git-send-email-shawn.lin@rock-chips.com>
+ <1730705521-23081-8-git-send-email-shawn.lin@rock-chips.com>
+ <CAPDyKFrig236e5xTSeOHfNR5Z3840o6u_h7LnoAG2P8Ck348WQ@mail.gmail.com>
+Content-Language: en-GB
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <CAPDyKFrig236e5xTSeOHfNR5Z3840o6u_h7LnoAG2P8Ck348WQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ05CTlYaQk4fSkMeTR9NHx9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a92fa07a0ad09cckunm1ca84001
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PzI6NAw6MjIiOD9WLUM3MUMU
+	TzAKCStVSlVKTEhLTExKTU5DTU5OVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUhISkk3Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=G5vQ+5aYDCJavHWVQd2/JQy8pH4pXhGK7lfwRJCut5f7KgZIWvD9qns7F09wkJBKJ617KofBK4ie0DhT4tnet+0w6x1LKYxnXeGUE5jGpSvJXuPiR/Bu0ssR67I9WlqPXdQQCrV/ywqF/X2K5dDgkcTtfhhv6b8qbjSYLJNKsGk=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=Fo3iov3n5PotHG4cT/K2Z9fmQxOkM6kWWia+7CBTW+w=;
+	h=date:mime-version:subject:message-id:from;
 
 
-
-On 10/30/2024 4:29 PM, Vladimir Zapolskiy wrote:
-> On 10/26/24 15:20, Krzysztof Kozlowski wrote:
->> On Thu, Oct 24, 2024 at 07:01:14PM +0530, Imran Shaik wrote:
->>> The QCS8300 GPU clock controller is mostly identical to SA8775P, but
->>> QCS8300 has few additional clocks and minor differences. Hence, reuse
->>> SA8775P gpucc bindings and add additional clocks required for QCS8300.
+在 2024/11/4 18:57, Ulf Hansson 写道:
+> On Mon, 4 Nov 2024 at 08:34, Shawn Lin <shawn.lin@rock-chips.com> wrote:
 >>
->> IIUC, these clocks are not valid for SA8775p. How do we deal with such
->> cases for other Qualcomm SoCs?
+>> RK3576 SoC contains a UFS controller, add initial support for it.
+>> The features are:
+>> (1) support UFS 2.0 features
+>> (2) High speed up to HS-G3
+>> (3) 2RX-2TX lanes
+>> (4) auto H8 entry and exit
+>>
+>> Software limitation:
+>> (1) HCE procedure: enable controller->enable intr->dme_reset->dme_enable
+>> (2) disable unipro timeout values before power mode change
+>>
+>> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+>> ---
+>>
+>> Changes in v4:
+>> - deal with power domain of rpm and spm suggested by Ulf
+>> - Fix typo and disable clks in ufs_rockchip_remove
+>> - remove clk_disable_unprepare(host->ref_out_clk) from
+>>    ufs_rockchip_remove
 >>
 > 
-> It always possible to add a new platform specific header file and
-> include the old one.
+> [...]
 > 
-> For reference see commit a6a61b9701d1 ("dt-bindings: clock: qcom: Add
-> SM8650 video clock controller"), I believe that's the preferred way
-> of adding new platform clocks whenever technically possible.
+>> +#ifdef CONFIG_PM
+>> +static int ufs_rockchip_runtime_suspend(struct device *dev)
+>> +{
+>> +       struct ufs_hba *hba = dev_get_drvdata(dev);
+>> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+>> +
+>> +       clk_disable_unprepare(host->ref_out_clk);
+>> +
+>> +       /* Shouldn't power down if rpm_lvl is less than level 5. */
+>> +       dev_pm_genpd_rpm_always_on(dev, hba->rpm_lvl < UFS_PM_LVL_5 ? true : false);
+>> +
+>> +       return ufshcd_runtime_suspend(dev);
+>> +}
+>> +
+>> +static int ufs_rockchip_runtime_resume(struct device *dev)
+>> +{
+>> +       struct ufs_hba *hba = dev_get_drvdata(dev);
+>> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+>> +       int err;
+>> +
+>> +       err = clk_prepare_enable(host->ref_out_clk);
+>> +       if (err) {
+>> +               dev_err(hba->dev, "failed to enable ref out clock %d\n", err);
+>> +               return err;
+>> +       }
+>> +
+>> +       reset_control_assert(host->rst);
+>> +       usleep_range(1, 2);
+>> +       reset_control_deassert(host->rst);
+>> +
+>> +       return ufshcd_runtime_resume(dev);
+>> +}
+>> +#endif
+>> +
+>> +#ifdef CONFIG_PM_SLEEP
+>> +static int ufs_rockchip_system_suspend(struct device *dev)
+>> +{
+>> +       struct ufs_hba *hba = dev_get_drvdata(dev);
+>> +
+>> +       if (hba->spm_lvl < 5)
+>> +               device_set_wakeup_path(dev);
 > 
+> Please use device_set_awake_path() instead.
+> 
+> Ideally all users of device_set_wakeup_path() should convert into
+> device_set_awake_path(), it's just that we haven't been able to
+> complete the conversion yet.
 
-Sure, I will follow the same approach as the commit a6a61b9701d1 and 
-post next series.
+Will use device_set_awake_path().
 
-Thanks,
-Imran
+> 
+>> +       else
+>> +               device_clr_wakeup_path(dev);
+> 
+> This isn't needed. The flag is getting cleared in device_prepare().
+> 
+>> +
+>> +       return ufshcd_system_suspend(dev);
+> 
+> Don't you want to disable the clock during system suspend too? If the
+> device is runtime resumed at this point, the clock will be left
+> enabled, no?
 
-> -- 
-> Best wishes,
-> Vladimir
+Good point. Will fix it.
+
+> 
+>> +}
+>> +#endif
+>> +
+>> +static const struct dev_pm_ops ufs_rockchip_pm_ops = {
+>> +       SET_SYSTEM_SLEEP_PM_OPS(ufs_rockchip_system_suspend, ufshcd_system_resume)
+>> +       SET_RUNTIME_PM_OPS(ufs_rockchip_runtime_suspend, ufs_rockchip_runtime_resume, NULL)
+>> +       .prepare         = ufshcd_suspend_prepare,
+>> +       .complete        = ufshcd_resume_complete,
+>> +};
+>> +
+> 
+> [...]
+> 
+> Kind regards
+> Uffe
+> 
 
 
