@@ -1,63 +1,74 @@
-Return-Path: <devicetree+bounces-118881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-118882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D81B9BC23D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 01:58:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D341A9BC262
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 02:15:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CF5D282373
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 00:58:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A21C28225B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 01:15:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A598611CA9;
-	Tue,  5 Nov 2024 00:58:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CAAF1CAA4;
+	Tue,  5 Nov 2024 01:15:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RxYvmMZO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XG0Wh4ag"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3D4CDF5C;
-	Tue,  5 Nov 2024 00:58:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EF4A1862A;
+	Tue,  5 Nov 2024 01:15:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730768308; cv=none; b=Og0lOrrCDxSagWxgMsy6MxgHV3EIBUn2rhh94FWsbPSQCx6oZ7Hqd/c3FGVGPtpz6laifsRho2WkeK/3qPGS+jD5EfhK1TwtSXwVYJN5SGZZpX2xwiQx3zx1C9EO/s6zcgCGCKYTOoavl0u8NcbkwLj/MTtSevI5C7EjohB7zPs=
+	t=1730769302; cv=none; b=c19e2fYzLldm2qGHr+QB2PpHvXqDkJyDm3FApQydF7+aL1g2veyWj2ZCZ6r5sqh0eTb+/R31c79eVp77luHBg+fVlIkEE/ELuWSUJpwD71w5K0f19+E/FYW+TciP1E/4ke/PTUUTP95v7mw4J20K8xtZQK4b7m/3YDUyB7xwMSA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730768308; c=relaxed/simple;
-	bh=8HpIzpr8QQrsiK3rCz7mOPHzonGBwf+dtMEHHOXHVJo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=S1Dk2lkXNCZQBdTtvetPVtWwSBCE+bZTRqf1f7tlnaw1B7BtxkiAFnlnivDxBOVt32cp45pvrSsT7LjVB0i4WeAlwm1KM5LoPq6DB6ZC1YGzPaH9k2lb91s4YTpcpngmzj3oMpxolEpVWXuxt6pOzwn0vqnHslQ26qymvWR9fuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RxYvmMZO; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A4LIxSM001479;
-	Tue, 5 Nov 2024 00:58:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	thFT9R4zawQwXZDNXsi0vhiGW8TpNWoJBJ1cYQq1QF0=; b=RxYvmMZObB4ufg8q
-	P3WOfZA46hsW6Hv0zDtq9v69t8iGbkXbvebFPGTgtvGZaI+9SEA1IAtXEYRC1JDJ
-	D3EyS1JF3lzVAFafXmG7d25DgzDTOv90N5t8Q/KAZQuqOz1U2yy+YJfNhYiBGAk6
-	DcSWKPBaTAFdYzkb1AxX2Rd08EhYWCDUjre/A4DqQUMLeOo44nqyXZZJXWGUetrF
-	3r1uDejHM5c2IZqGTUvQk7eqQDoJiSiATzoTreyn5/MOo7atGcuCXnjvusWfZgFR
-	RiyQtKoIN1DbsEB0CCyZYT/CTeCNe0FHVmyeGgPMOyQ93YsC0l/Bb80m0P0T08oS
-	awaM0A==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd2s5w3n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 05 Nov 2024 00:58:18 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A50wHqn028893
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 5 Nov 2024 00:58:17 GMT
-Received: from [10.64.68.153] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 4 Nov 2024
- 16:58:13 -0800
-Message-ID: <9591930f-6ead-46d1-9dbb-114f2310f5f4@quicinc.com>
-Date: Tue, 5 Nov 2024 08:58:10 +0800
+	s=arc-20240116; t=1730769302; c=relaxed/simple;
+	bh=55po1Ly185ptJHFwAG7rk+MNxrM1YSdwN105ijD9dKg=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=MozENl3VuhZAXRmVrSxKdNcfSsjjYM8uYRmx1nwm6xTQNtKQ6klSHx9VPWT6jdsgNq/JWg/P91LLB2oBN6KPbMgNP+8fVUqBSPbVXiKQ3aNWdlmLQrtxfHeCNXLC6hEg2BYTZLPl4SJYOs1gWdITZ6qonCL7AzqWmhOzgKFRXLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XG0Wh4ag; arc=none smtp.client-ip=209.85.214.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f196.google.com with SMTP id d9443c01a7336-20c805a0753so45341975ad.0;
+        Mon, 04 Nov 2024 17:15:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730769300; x=1731374100; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:cc:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DmSZDJ+VfbjL+FInE4jqatZi0P6NlfcMiliJP8Vq75k=;
+        b=XG0Wh4agfdzbTo61wpM3rUsvFH3uK912k2ESQLxsi86aU57qhnTvvo13qQx6pePX9Z
+         XEvfuOyGdtWYBn91sEc2/iSdCbifYGKy3LBrOSLrZU64PMObxlHJxJZMNJPKCTJbIvNd
+         f5cFVrTLZFzDR1njH5iVphe/BcNiMUlMcm5aJ9Iia5/crDNABGcxg9jhq0UiYJ1olRGl
+         mOTBKM1L+dTDSezO0iuzhnaoLAiGAJbwSYohyYYOxkWCS8pxFPiHoIBIMJE9JzFSOgBb
+         HQ1z1f5k5yqu/PsN1FACGbkZYDaTEqvHFoo6ugMdYn/ksv/kyAqk4UNbC7EZt2whkyPd
+         5Lmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730769300; x=1731374100;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:cc:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DmSZDJ+VfbjL+FInE4jqatZi0P6NlfcMiliJP8Vq75k=;
+        b=FfWOE8WjnM4QHgMJrrG2+0yJmYIJdzUxfl6+Sf5+UmZ8WDdU4CEsr4HrgN6tkpf0XH
+         iQ8UDwYMKfa/gVhUbVw8EgCcIkT0aEfpNFZRi+v9oJnX+Ynk1LGo8UkxCrHGCncZVWqW
+         OMFpa08RZJU8mhpjn3iI2DWF2laNeFiBWOwa6XB37AApqP1eCzePPeiIYFKysMvNuTNA
+         G7cUvG6ufVAdNMCpc6RPIf7E/7rmWr+wps8lv2/ftw3LAjM+WjX2w1BmQaZXcWSjkXic
+         jjKdeXcUtFGWgB/rwm2H2OFDkRNyFTErVjqOFWkDXeKOoyQWTD4/I/P1RujoCRN4zy+X
+         HLlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWCXGoOp7R7/dyN6BgXNgxOFvF0Yv0vCvGIo742kwOjMH7eDb7SlVL7mXjo2B2/6b9wNE/Pcx+BHhCI@vger.kernel.org, AJvYcCWORlXVSj1WO9/+PxLQFjvO6QBsjvW3j71lSJ6BgBYkx1aKpGSAwRcoUiY8LtGVnL9H8iPvBcguTfuU@vger.kernel.org, AJvYcCWr0H1bFIJagVMsTQfK5XY8q1dXt1D7CYKr+gkKnjS9IuoJDyPUucaBI/WejdMrZ1tZXvlnwC6YxIXmioYN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJKN97SORFcUv0t1OIv8VLgoht/xYarBBnQZbPX2g2eYftnVwZ
+	boBeyleeJrUkcY+KI+dpL1UdBmPYR4K/kGTRR4bOinONN7pNDZjF
+X-Google-Smtp-Source: AGHT+IFPlCW/2yJN4y81zz/dY+QI1q450fTiiDbolhkdNOOfXKhGNXtiKw133Yda+TQppPatOPznFA==
+X-Received: by 2002:a17:903:1108:b0:20c:e262:2580 with SMTP id d9443c01a7336-210c6c3ffb6mr408256265ad.44.1730769300267;
+        Mon, 04 Nov 2024 17:15:00 -0800 (PST)
+Received: from [127.0.0.1] ([2602:f919:106::1b8])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211057a2c23sm67083465ad.143.2024.11.04.17.14.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Nov 2024 17:14:59 -0800 (PST)
+Message-ID: <a08384bf-6747-4975-b025-f8fd3685fc30@gmail.com>
+Date: Tue, 5 Nov 2024 09:14:51 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,111 +76,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: Add coresight nodes for QCS615
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao
-	<quic_jinlmao@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>
-References: <20241017030005.893203-1-quic_jiegan@quicinc.com>
- <69be09ec-e9a5-4fb6-890e-74a65f3ce404@oss.qualcomm.com>
- <3f90b3d6-9637-47b7-ad8a-ff43cb28ad32@quicinc.com>
- <e263d461-9e2b-4ffe-8221-cd9ecdd142c9@quicinc.com>
- <a41e3aeb-43b9-49c0-8243-29a78a3b1602@oss.qualcomm.com>
+Cc: troymitchell988@gmail.com, andi.shyti@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: spacemit: add support for K1 SoC
+To: Krzysztof Kozlowski <krzk@kernel.org>
+References: <20241028053220.346283-1-TroyMitchell988@gmail.com>
+ <20241028053220.346283-2-TroyMitchell988@gmail.com>
+ <6zx3tqdc5bma2vutexwigzlir6nr6adp7arg4qwl5ieyd3avbu@5yyhv57ttwcl>
+ <dbeea869-54cd-43fe-9021-783d641f1278@gmail.com>
+ <ariqiukhztgziwwgaauqy6q3pghflnoeuwtag4izwkfmtvi2kh@gnlq4d7jsaw4>
+ <6cce463e-25cc-4a07-971f-6260347cb581@gmail.com>
+ <502b0b14-0e1f-4a59-85ad-7edeb9d3033d@kernel.org>
 Content-Language: en-US
-From: Jie Gan <quic_jiegan@quicinc.com>
-In-Reply-To: <a41e3aeb-43b9-49c0-8243-29a78a3b1602@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 8XpJwqKuY7iMpw8mz6MBWuYrp6i_-Pvz
-X-Proofpoint-GUID: 8XpJwqKuY7iMpw8mz6MBWuYrp6i_-Pvz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- lowpriorityscore=0 mlxlogscore=999 clxscore=1015 suspectscore=0
- adultscore=0 priorityscore=1501 bulkscore=0 mlxscore=0 malwarescore=0
- spamscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2411050005
+From: Troy Mitchell <troymitchell988@gmail.com>
+In-Reply-To: <502b0b14-0e1f-4a59-85ad-7edeb9d3033d@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-
-On 11/4/2024 10:11 PM, Konrad Dybcio wrote:
-> On 28.10.2024 3:53 AM, Jie Gan wrote:
+On 2024/11/4 22:48, Krzysztof Kozlowski wrote:
+> On 04/11/2024 14:01, Troy Mitchell wrote:
 >>
->>
->> On 10/28/2024 8:54 AM, Jie Gan wrote:
->>>
->>>
->>> On 10/26/2024 2:47 AM, Konrad Dybcio wrote:
->>>> On 17.10.2024 5:00 AM, Jie Gan wrote:
->>>>> Add following coresight components on QCS615, EUD, TMC/ETF, TPDM, dynamic
->>>>> Funnel, TPDA, Replicator and ETM.
->>>>>
->>>>> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
->>>>> ---
->>>>> Already checked by command:dtbs_check W=1.
->>>>>
->>>>> Dependencies:
->>>>> 1. Depends on qcs615 base dtsi change:
->>>>> https://lore.kernel.org/all/20240926-add_initial_support_for_qcs615- v3-5-e37617e91c62@quicinc.com/
->>>>> 2. Depends on qcs615 AOSS_QMP change:
->>>>> https://lore.kernel.org/linux-arm-msm/20241017025313.2028120-4- quic_chunkaid@quicinc.com/
->>>>> ---
->>>>>    arch/arm64/boot/dts/qcom/qcs615.dtsi | 1632 ++++++++++++++++++++++++++
->>>>>    1 file changed, 1632 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/ dts/qcom/qcs615.dtsi
->>>>> index 856b40e20cf3..87cca5de018e 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->>>>> @@ -202,6 +202,18 @@ l3_0: l3-cache {
->>>>>            };
->>>>>        };
->>>>> +    dummy_eud: dummy_sink {
->>>>
->>>> Node names (after the ':' and before the '{' signs) can't contain
->>>> underscores, use '-' instead.
->>> Sure, will fix it.
->>>
->>>>
->>>> [...]
->>>>
->>>>> +        stm@6002000 {
->>>>> +            compatible = "arm,coresight-stm", "arm,primecell";
->>>>> +            reg = <0x0 0x6002000 0x0 0x1000>,
->>>>
->>>> Please pad the non-zero address part to 8 hex digits with leading
->>>> zeroes, across the board
->>> Will fix it.
->>>
->>>>
->>>> This looks like a lot of nodes, all enabled by default. Will this run
->>>> on a production-fused device?
->>> Yes, usually Coresight nodes are enabled by default. Those nodes can run on the commercial devices.
->> Sorry, my last clarification is not clearly. The Coresight nodes are enabled by default for commercial devices(fused), but only part of functions can run with commercial devices because it needs check fuse data before running.
->>
->> If we want enable all debug functions related to coresight nodes on commercial devices, we need APDP override(APPS debug policy override) procedure first. The APDP override procedure will override some fuse data to allow debug sessions.
+>> On 2024/10/31 16:00, Krzysztof Kozlowski wrote:
+>>> On Tue, Oct 29, 2024 at 04:36:00PM +0800, Troy Mitchell wrote:
+>>>> On 2024/10/28 15:38, Krzysztof Kozlowski wrote:
+>>>>> On Mon, Oct 28, 2024 at 01:32:19PM +0800, Troy Mitchell wrote:
+>>>>>> The I2C of K1 supports fast-speed-mode and high-speed-mode,
+>>>>>> and supports FIFO transmission.
+>>>>>>
+>>>>>> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
+>>>>>> ---
+>> Change in v2:
+>>  - Change the maxItems of reg from 1 to 2 in properties
 > 
-> In other words, will a production fused device boot with this patch
-> applied?
+> Why?
+I need the address and size. In v1, I wrote it as 1, and I got the make
+dt_binding_check error.
 > 
-Yes, a fused device can boot with this patch.
+>>  - Change 'i2c' to 'I2C' in the commit message.
+>>  - Drop fifo-disable property
+>>  - Drop alias in dts example
+>>  - Move `unevaluatedProperties` after `required:` block
+> 
+> Rest look ok.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Thanks,
-Jie
-
+-- 
+Troy Mitchell
 
