@@ -1,289 +1,118 @@
-Return-Path: <devicetree+bounces-119008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E9619BC8E4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 10:16:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25D0C9BC8F3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 10:19:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C21E01C23385
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 09:16:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 572631C21B91
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 09:19:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C95381CEAD3;
-	Tue,  5 Nov 2024 09:16:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F2B1D0BAA;
+	Tue,  5 Nov 2024 09:19:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yv9G6haA"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Pg1tl8xo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 933F118132A;
-	Tue,  5 Nov 2024 09:16:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F40B61D041D
+	for <devicetree@vger.kernel.org>; Tue,  5 Nov 2024 09:19:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730798195; cv=none; b=M8gBYASl/MCPgWDYZyxtsmPhhN6LwBVqMGc4me2Q8zBGgvGmyDlw/g+HGAtEeU8lmfcaorSfqXhtAl9iZGvxwmYRo2KBmAXd/tFXF8V3Y6xlsqmO9JhCfLAMrrBVeL/+G8zc0njkWy/5P9jmU/hwhuy+zMlVaBUdTUaQoRLo98I=
+	t=1730798364; cv=none; b=H+Em1mFpGsVmIBPaAh3sUYauJAX1Q72A9m4entUEjBVNHC6g7B04suusk3CscRudxi9r4wvAOreL78ucE8PBtxvmKCIXnh1ZdffT5An8r71rYRvKmHsZlAn1qTMeXs4SbmEaJKVxiIpXu7FR4DdFu1zuMG7Y8joS9yDPrXmC8+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730798195; c=relaxed/simple;
-	bh=WcZMe9/VfUeI82nF/gy6lNIFFjy2UM0JuNhq+6rR4XQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=As4KEpDWIigWRBVPkat8isg7kacJXZHklGneuTMluqjjF0TPisK0tMN7vRiXLJ9w+0MX+D56kmiedDigv71fTuOkLJqyB9kICn9MSnLANfE+udscoJcBAo1nI3lN99dB4ZF7Pd+wD4wGJ8VmOGxUEJHdBhUHKOaWtibctrjiSlA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yv9G6haA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A1D8C4CECF;
-	Tue,  5 Nov 2024 09:16:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730798194;
-	bh=WcZMe9/VfUeI82nF/gy6lNIFFjy2UM0JuNhq+6rR4XQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yv9G6haAugRVNUqDmDVNm9Zt+aj3atfwiskZQiuFtO2Rln71uUQcIi6iK2xqbB/gY
-	 T6GsnAiaaGRwSMIXK3UENS41UL889E7z4/Rw1v+OyGr6JUk9DxWdiaIhzpmct9rRSZ
-	 JqBfnr7HYhudu8njRT5qJHGlIQZrgn+47ELxcKRjnSoykYzEXyVNSu5iMp0/PCbu9e
-	 M6f/xwXl6CWa/hSr1FMTvRgxMttAKQwChSoLDcMnrg3qJRs55PIL7tzZmrC9BLRQBl
-	 sjo3SXwXC/CHd9Z8oyGm8EEk8WFzpKR9pXcol5bmRsdG/17Y1i+OqN+EFIqkdWlEnv
-	 bDLfVRxjK59ig==
-Date: Tue, 5 Nov 2024 10:16:30 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sean Nyekjaer <sean@geanix.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: can: convert tcan4x5x.txt to DT schema
-Message-ID: <dq36jlwfm7hz7dstrp3bkwd6r6jzcxqo57enta3n2kibu3e7jw@krwn5nsu6a4d>
-References: <20241104125342.1691516-1-sean@geanix.com>
+	s=arc-20240116; t=1730798364; c=relaxed/simple;
+	bh=T4lfPA8S9ixb3LEM2QOxvR7XTTqcM7Y8IyvOeRDKLNI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dcBl5yBTY0BvarWcHO6G5NTm7g581UDwYWmTs0ViE7Uz4nvObUt8G3/1005tqR74Q/6StyVvS1Me3IYD7lQ8UORren3y60qWjJENSeFeHWBAFzCIWE9Wr+jJBaeGBTrgnhucj0z+Fv6w8+AfZRS744WevDSx5u1BUhyiulkvDZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Pg1tl8xo; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-71e70c32cd7so4618895b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Nov 2024 01:19:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1730798362; x=1731403162; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LW99LC0Kexi86oGAcb2ljvk1jhRq1I2JS+rEVFAlaw8=;
+        b=Pg1tl8xo9t2aKiuSC/Iv0U8IZ+eCGe01RiKmydINKypkzVA/TXhfg8TbTUWSojNsWA
+         rPqEgpuJw9afTkiE6QC90FEB1cQ5BhyKdYnXa7hezPo9Z8SLomvSUosRzk+ang4SgzAY
+         aVYEiHiSNzZ+eOu+DGf6DeljFxnV3P9MJnTZw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730798362; x=1731403162;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LW99LC0Kexi86oGAcb2ljvk1jhRq1I2JS+rEVFAlaw8=;
+        b=d8KWKoe0Ii9OO8DsSeWPBJViW9hBzvN8dITIni4Hsaccl59zYHbiKgkKRf6DgPfxcL
+         FTJvRCi3H4x+M9thFec+XXTxmhlpfoa0niLJZy+6XBqWGsTTyk4XdkHqWpYbbKRdXWIY
+         0PyfvlWnPUzyZq7Wa39ei57w7euZHNab/faiNyeGx9OVF83KPSOHl55cwUeHgwDWyILH
+         BaU/VGGvAr8cw/cHgrBc7x7WNX3AxcZQEB+u7DULvKB7Iylvi9NH1++uKz+GP4WixyHg
+         YNSAFlt1n2lnPg64UZGC682n3JVLDoWHmVATP2ICcZfNFLx4IVqB6DP4JiKron5SylWT
+         SjbA==
+X-Forwarded-Encrypted: i=1; AJvYcCUK5XGqmQfRgq8XSxVlJttw6aEYBdZd29envMKuOLJ5QjxKSccTs1RjBjMXRT6pN246ewvT4lMAJm4W@vger.kernel.org
+X-Gm-Message-State: AOJu0YysNwGqx00x5V7NO7hv04E/5LesBorM2wFhqpFZz69XN7eVfIjO
+	3YvNxWMV7w3gRG9yA5MioRCDbEdPgjgMMvwKOhg6gQizQ6zVZKUEBkdxaB1KOA==
+X-Google-Smtp-Source: AGHT+IE+RQFeVzw8zbEzlCI6PqWB5TBlBgH4MxGi/9juWqisHT1+H2kFPqs8VV8Xihz0bbOqadeYvw==
+X-Received: by 2002:a05:6a00:8cf:b0:71e:587d:f276 with SMTP id d2e1a72fcca58-72063093364mr47257026b3a.25.1730798362339;
+        Tue, 05 Nov 2024 01:19:22 -0800 (PST)
+Received: from fshao-p620.tpe.corp.google.com ([2401:fa00:1:10:20ee:3712:ce0b:1ed7])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc2c58f7sm9337566b3a.140.2024.11.05.01.19.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Nov 2024 01:19:22 -0800 (PST)
+From: Fei Shao <fshao@chromium.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: Fei Shao <fshao@chromium.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Yang <yangxiaohua@everest-semi.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: everest,es8326: Document interrupt property
+Date: Tue,  5 Nov 2024 17:18:11 +0800
+Message-ID: <20241105091910.3984381-1-fshao@chromium.org>
+X-Mailer: git-send-email 2.47.0.277.g8800431eea-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241104125342.1691516-1-sean@geanix.com>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Nov 04, 2024 at 01:53:40PM +0100, Sean Nyekjaer wrote:
-> Convert binding doc tcan4x5x.txt to yaml.
-> 
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-> ---
-> Changes since rfc:
+The ES8326 audio codec has one interrupt pin for headset detection
+according to the datasheet. Document that in the binding.
 
-That's a v2. RFC was v1. *ALWAYS*.
-Try by yourself:
-b4 diff 20241104125342.1691516-1-sean@geanix.com
+This fixes dtbs_check error:
+  'interrupts-extended' does not match any of the regexes:
+  'pinctrl-[0-9]+'
 
-Works? No. Should work? Yes.
+Signed-off-by: Fei Shao <fshao@chromium.org>
+---
 
+ Documentation/devicetree/bindings/sound/everest,es8326.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
->   - Tried to re-add ti,tcan4x5x wildcard
->   - Removed xceiver and vdd supplies (copy paste error)
->   - Corrected max SPI frequency
->   - Copy pasted bosch,mram-cfg from bosch,m_can.yaml
->   - device-state-gpios and device-wake-gpios only available for tcan4x5x
-
-...
-
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - ti,tcan4552
-> +          - const: ti,tcan4x5x
-> +      - items:
-> +          - enum:
-> +              - ti,tcan4553
-
-Odd syntax. Combine these two into one enum.
-
-> +          - const: ti,tcan4x5x
-> +      - items:
-
-Drop items.
-
-> +          - enum:
-
-... and drop enum. That's just const or do you already plan to add here
-entries?
-
-> +              - ti,tcan4x5x
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: The GPIO parent interrupt.
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description: Hardwired output GPIO. If not defined then software reset.
-> +    maxItems: 1
-> +
-> +  device-state-gpios:
-> +    description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-Didn't you get this comment alerady?
-
-> +      Input GPIO that indicates if the device is in a sleep state or if the
-> +      device is active. Not available with tcan4552/4553.
-> +    maxItems: 1
-> +
-> +  device-wake-gpios:
-> +    description: |
-> +      Wake up GPIO to wake up the TCAN device.
-> +      Not available with tcan4552/4553.
-> +    maxItems: 1
-> +
-> +  bosch,mram-cfg:
-> +    description: |
-> +      Message RAM configuration data.
-> +      Multiple M_CAN instances can share the same Message RAM
-> +      and each element(e.g Rx FIFO or Tx Buffer and etc) number
-> +      in Message RAM is also configurable, so this property is
-> +      telling driver how the shared or private Message RAM are
-> +      used by this M_CAN controller.
-> +
-> +      The format should be as follows:
-> +      <offset sidf_elems xidf_elems rxf0_elems rxf1_elems rxb_elems txe_elems txb_elems>
-> +      The 'offset' is an address offset of the Message RAM where
-> +      the following elements start from. This is usually set to
-> +      0x0 if you're using a private Message RAM. The remain cells
-> +      are used to specify how many elements are used for each FIFO/Buffer.
-> +
-> +      M_CAN includes the following elements according to user manual:
-> +      11-bit Filter	0-128 elements / 0-128 words
-> +      29-bit Filter	0-64 elements / 0-128 words
-> +      Rx FIFO 0		0-64 elements / 0-1152 words
-> +      Rx FIFO 1		0-64 elements / 0-1152 words
-> +      Rx Buffers	0-64 elements / 0-1152 words
-> +      Tx Event FIFO	0-32 elements / 0-64 words
-> +      Tx Buffers	0-32 elements / 0-576 words
-> +
-> +      Please refer to 2.4.1 Message RAM Configuration in Bosch
-> +      M_CAN user manual for details.
-> +    $ref: /schemas/types.yaml#/definitions/int32-array
-> +    items:
-> +      - description: The 'offset' is an address offset of the Message RAM where
-> +          the following elements start from. This is usually set to 0x0 if
-> +          you're using a private Message RAM.
-> +        default: 0
-> +      - description: 11-bit Filter 0-128 elements / 0-128 words
-> +        minimum: 0
-> +        maximum: 128
-> +      - description: 29-bit Filter 0-64 elements / 0-128 words
-> +        minimum: 0
-> +        maximum: 64
-> +      - description: Rx FIFO 0 0-64 elements / 0-1152 words
-> +        minimum: 0
-> +        maximum: 64
-> +      - description: Rx FIFO 1 0-64 elements / 0-1152 words
-> +        minimum: 0
-> +        maximum: 64
-> +      - description: Rx Buffers 0-64 elements / 0-1152 words
-> +        minimum: 0
-> +        maximum: 64
-> +      - description: Tx Event FIFO 0-32 elements / 0-64 words
-> +        minimum: 0
-> +        maximum: 32
-> +      - description: Tx Buffers 0-32 elements / 0-576 words
-> +        minimum: 0
-> +        maximum: 32
-> +    minItems: 1
-> +
-> +  spi-max-frequency:
-> +    description:
-> +      Must be half or less of "clocks" frequency.
-> +    maximum: 18000000
-> +
-> +  wakeup-source:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +      Enable CAN remote wakeup.
-> +
-> +allOf:
-> +  - $ref: can-controller.yaml#
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - ti,tcan4552
-> +              - ti,tcan4553
-> +    then:
-> +      properties:
-> +        device-state-gpios: false
-> +        device-wake-gpios: false
-
-Heh, this is a weird binding. It should have specific compatibles for
-all other variants because above does not make sense. For 4552 one could
-skip front compatible and use only fallback, right? And then add these
-properties bypassing schema check. I commented on this already that
-original binding is flawed and should be fixed, but no one cares then I
-also don't care.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - bosch,mram-cfg
-> +
-> +additionalProperties: false
-
-Implement feedback. Nothing changed here.
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        can@0 {
-> +            compatible = "ti,tcan4x5x";
-> +            reg = <0>;
-> +            clocks = <&can0_osc>;
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&can0_pins>;
-> +            spi-max-frequency = <10000000>;
-> +            bosch,mram-cfg = <0x0 0 0 16 0 0 1 1>;
-> +            interrupt-parent = <&gpio1>;
-> +            interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
-> +            device-state-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
-> +            device-wake-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
-> +            reset-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
-> +            wakeup-source;
-> +        };
-> +    };
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        can@0 {
-> +            compatible = "ti,tcan4552","ti,tcan4x5x";
-
-Missing space after ,.
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/sound/everest,es8326.yaml b/Documentation/devicetree/bindings/sound/everest,es8326.yaml
+index d51431df7acf..b5594a9d508e 100644
+--- a/Documentation/devicetree/bindings/sound/everest,es8326.yaml
++++ b/Documentation/devicetree/bindings/sound/everest,es8326.yaml
+@@ -24,6 +24,10 @@ properties:
+     items:
+       - const: mclk
+ 
++  interrupts:
++    maxItems: 1
++    description: interrupt output for headset detection
++
+   "#sound-dai-cells":
+     const: 0
+ 
+-- 
+2.47.0.277.g8800431eea-goog
 
 
