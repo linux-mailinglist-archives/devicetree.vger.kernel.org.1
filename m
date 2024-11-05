@@ -1,48 +1,76 @@
-Return-Path: <devicetree+bounces-119090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E02879BCEB7
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 15:07:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCD059BCEC3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 15:11:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4A1828377C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 14:07:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B7881C21848
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 14:11:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CFB91DAC93;
-	Tue,  5 Nov 2024 14:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A5D1D86C0;
+	Tue,  5 Nov 2024 14:11:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JTQVzyp8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OndaoUDU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740C11D8DFD;
-	Tue,  5 Nov 2024 14:06:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9E981D5AB2;
+	Tue,  5 Nov 2024 14:11:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730815575; cv=none; b=f9OKkTIV4cbNZPXucVUd52OoJpMLaG9gkLY2GqrKPEBMXHXG5P/hMtuLWKffP41IuDWxsPg7pLfRYAyTgapZHlTztD6snJM9VMRxYk5fHvG6GinbUV7ZOsNM6BcaO4IunGXf8frJ3qqCR/H/FeIlgakhuIvwxL5EF58itl0+beY=
+	t=1730815905; cv=none; b=Rm1E+g0gH1OPJFJi7CPru6OBvarWLwhz8iP7rK5Se7iPlEo6//TkjM4OG3IKGJShkio5mYcpTNa3tNcYYbpKFAkjrZNvdiompjyQhXjsQ7AfLh/avQ34B7kror4JBc6P4MYbVTn+WWrNlN4XUBFQSMBvSt2oCbvaZx2GNaUL48M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730815575; c=relaxed/simple;
-	bh=SYt9goHZas4AHHxRIrhK5bC+IsV/Y4MON9+0jggU4ok=;
+	s=arc-20240116; t=1730815905; c=relaxed/simple;
+	bh=KAmosABcY//LvUIistxErNs0QaF+wfIpi4hAoGtVv/k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SQI2iKVmullCoAgGeWHg1/dP/MJaUVMJd0wzbbe5dbOt9AHdSWL9PZaFaSYpRMyD3Pn54tkBkQ4LtLv8Lk0cVzLllnKN7nznA2YvCaTyMgX9STl9cVC2HWJ3169OCEEhPbY1WQs7N0AV87it86HPjDMbIhLAdSVQvdZPZpPI6Eo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JTQVzyp8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8858DC4CED0;
-	Tue,  5 Nov 2024 14:06:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730815575;
-	bh=SYt9goHZas4AHHxRIrhK5bC+IsV/Y4MON9+0jggU4ok=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JTQVzyp8dTzTRDZPVbYtpXRYBssbk4jreAfjLMEUzStgwaVSFMFEWSlZVVg2OS+J8
-	 XOFMvJH64F4J5QtkrcYkpxDuG3alfV3r+RqqXYBs4I6+PMz8BBJ7N1yCwxUx4k/3hd
-	 hvPTy8bObRBAgvRCwYmTvLHXPAs51APRb7oJiuUFy1uHLUVcfiI8gtlawnMnxQY0pq
-	 b4at0Qr0tVna2gOyDTlrrXqRpBPiXc8uChPkt3BlJHuc+RtgMRUe98DXjYArNrumeL
-	 ympjm5c2Y9wTIab14XSocgGOyQhJtaKOHOiCJYX/AAVRIq/HlFyXH9OOKw63nhj9Db
-	 5vCJRyWLyR0Vg==
-Message-ID: <2e002aea-e1da-4da9-9b64-0ac4f5c0a695@kernel.org>
-Date: Tue, 5 Nov 2024 15:06:09 +0100
+	 In-Reply-To:Content-Type; b=gyyhd5mE24RwP6Mhx7SyuGy47yJkh8GqrQI6Rh45chh29zEFOsIJ4H5x9SL74jeL8wUhB7zMyGbr2aU1Y1nyCRW3D+RtofoThtpDOcW44XgsgL8dPr0oVdRUCh9twnzWA+YJyA33+1YCvuWLDCDUYWe77FTikclOg4VsOs2Xhks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OndaoUDU; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-71e7086c231so4794298b3a.0;
+        Tue, 05 Nov 2024 06:11:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730815903; x=1731420703; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jh0cQeTaKDFLnMA6STcXowxEluTjQai12rpqgAAbyVQ=;
+        b=OndaoUDUPxmz3L4yVjUnyLPj07EvWCgrnjrxx6nFc/RIbxbbcKmcK7p4XHttVqQhr9
+         U3WN1Tmh9w4Pt28GUnRWG9s5pCC1byYE6Xc2/lKJfoOgiLifd3nmvbd9FbTQXMTGLICL
+         3vCdiCDcz/xyicqsAWxd2Ws3Idz1lNUqOH9h2E2onJ0jNsZ4TyVWBn5AJGpY+zOVw9kg
+         1fTKn6TTU1uDc9hBMb+y8E2aF3bqAowAJv92fQQeSQc3Zvewpgtzati/5q5fV4Gw1+5z
+         Tia9Lodk+BpUBTnuo4JoQOClOd6ufOo/s9nyv3L3W318uc6p68gc9adDx2F/13bXtXrV
+         qYRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730815903; x=1731420703;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Jh0cQeTaKDFLnMA6STcXowxEluTjQai12rpqgAAbyVQ=;
+        b=m85ndnHmmOKWhWRZIk9kMfSlbGNwzwA5GBrvzxeXFG1b4ADvV/+wqB2l8e3BCojL2E
+         LcEwpJiF9Gtfl8xiCzzDD0ZXRVC9VSrHy7TObrSlc0lgr7Ip9qu4hdi1aVD20cOa6zLj
+         r0bZ9dafsZJEi+gnQXpssyhg30LBk/zeyUiTe3FGdKvH2mFkuQKLY/VjCY8stFP0I2hR
+         cEDsVuGtGYcX92bFrd8Joz8Zn7cxGciXiehIknFSNLvPMJ9gsDfuMR3XkC+nzgVK3yGl
+         es6S9QgsJL5xClR72VXBAjxmLU8bGgAl88fgF5bYV707NKWBN/wjXEJ7EDeIrOsIZryx
+         YOGA==
+X-Forwarded-Encrypted: i=1; AJvYcCUKa4DCOEC2hnQb57KGBBlz9p82DZQVA/mMi9KLs9K4LKFrzUlcDE9MsBL84vtkeqPc39PWcZKuJbN4@vger.kernel.org, AJvYcCWuExbML0t9snFDblFwilWRlUWA74VC7Er9toArLRjFjbKu8NYopB9hIk5YuHpmgyoF7+CMTOb7hIeOHOk=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yww0aj/WQV09GA2c0SNUPgMkRBHSNrcwMY34TNkZq04q9zUp9je
+	z+zFlLe82bhVCZRxtXGKavfFxnCd/Zo4amvxuT++F6YUAd85RuWe
+X-Google-Smtp-Source: AGHT+IEQXpfmwmcIlk/1c32YG4XNxk//3bsjHLomr42D2DhT0EpPn7qS479JNV8N8AOWNy+d2Gz1xg==
+X-Received: by 2002:a05:6a21:1193:b0:1d9:61:e779 with SMTP id adf61e73a8af0-1d9a83ab127mr52947194637.4.1730815902884;
+        Tue, 05 Nov 2024 06:11:42 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc2ebebcsm9975234b3a.172.2024.11.05.06.11.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Nov 2024 06:11:42 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <df2eaf57-a4ea-4378-8f24-a843084eb1d6@roeck-us.net>
+Date: Tue, 5 Nov 2024 06:11:40 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,79 +78,127 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: mediatek: Add MT8188 Lenovo
- Chromebook Duet (11", 9)
-To: Fei Shao <fshao@chromium.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document start from dead
+ stop properties
+To: Marek Vasut <marex@denx.de>, linux-hwmon@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20241105093222.4055774-1-fshao@chromium.org>
- <20241105093222.4055774-2-fshao@chromium.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ devicetree@vger.kernel.org
+References: <20241105135259.101126-1-marex@denx.de>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241105093222.4055774-2-fshao@chromium.org>
-Content-Type: text/plain; charset=UTF-8
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20241105135259.101126-1-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 05/11/2024 10:30, Fei Shao wrote:
-> Add entries for the MT8188-based Chromebook "Ciri", also known as
-> Lenovo Chromebook Duet (11", 9).
-> 
-> This device features a detachable design with touchscreen, detachable
-> keyboard and USI 2.0 Stylus support, and has 8 SKUs to accommodate the
-> combinations of second-source components.
-> 
-> Signed-off-by: Fei Shao <fshao@chromium.org>
+On 11/5/24 05:52, Marek Vasut wrote:
+> Delta AFC0612DB-F00 fan has to be set to at least 30% PWM duty cycle
+> to spin up from a dead stop, and can be afterward throttled down to
+> lower PWM duty cycle. Introduce support for operating such fans which
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Doesn't this imply that a minimum pwm value is needed as well ?
+Super-IO chips such as the NCT67xx series typically have two separate
+registers, one for the pwm start value and one for the minimum pwm value.
 
-Best regards,
-Krzysztof
+> need to start at higher PWM duty cycle first and can slow down next.
+> 
+> Document two new DT properties, "fan-dead-stop-start-percent" and
+> "fan-dead-stop-start-usec". The former describes the minimum percent
+> of fan RPM at which it will surely spin up from dead stop. This value
+> can be found in the fan datasheet and can be converted to PWM duty
+> cycle easily. The "fan-dead-stop-start-usec" describes the minimum
+> time in microseconds for which the fan has to be set to dead stop
+> start RPM for the fan to surely spin up.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Jean Delvare <jdelvare@suse.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-hwmon@vger.kernel.org
+> ---
+>   Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 11 +++++++++++
+>   1 file changed, 11 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+> index 4e5abf7580cc6..f1042471b5176 100644
+> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+> @@ -31,6 +31,17 @@ properties:
+>         it must be self resetting edge interrupts.
+>       maxItems: 1
+>   
+> +  fan-dead-stop-start-percent:
+
+Personally I don't think that "dead-stop" in the property name adds any value.
+On the contrary, I think it leads to confusion. I head to read the description
+to understand.
+
+
+> +    description:
+> +      Minimum fan RPM in percent to start from dead stop.
+
+"to start when stopped" should be sufficient.
+
+> +    minimum: 0
+> +    maximum: 100
+> +
+> +  fan-dead-stop-start-usec:
+> +    description:
+> +      Time to wait in microseconds after start from dead stop.
+
+Same as above for both name and description.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+>     pulses-per-revolution:
+>       description:
+>         Define the number of pulses per fan revolution for each tachometer
 
 
