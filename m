@@ -1,83 +1,76 @@
-Return-Path: <devicetree+bounces-119032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC8359BCAC3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 11:46:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95B629BCACD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 11:48:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F0D01F2390A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 10:46:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D0791F2394E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2024 10:48:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53D51D2F5C;
-	Tue,  5 Nov 2024 10:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FD691D2B26;
+	Tue,  5 Nov 2024 10:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f7ha7Wju"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TKpsVR3j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555A01D174E;
-	Tue,  5 Nov 2024 10:45:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5475518DF89;
+	Tue,  5 Nov 2024 10:48:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730803558; cv=none; b=s5+8LpXea7/3cB6pvbkWc3a5KLsoKQm85t3hzNpf63lc48IEeWi439vo2kfQPdAndknvBLxNIEC+9+UPZBxI4ddi043w6bG3ifpmRmV3ZvMCQzEJFf+rf/3FNdcptRhdDVropubmah+1ATwdZ7acPexP199T6jYsfEyqC98Kyh4=
+	t=1730803693; cv=none; b=ku2o1v/2m2QC52hyIdPB3kcprJycutgnYQgoujHz4b0MXmkh7EtfL3MUCOOUeECS1FOxx/m/Xhliz1Xz4FnR6aTsuxCF/rg3UC74lofSDe9e4vk+VC3zksMLwJCSpOtcvCPrK4AISq/fbqAx8qJ1/QEWzr2SRNHyxj3npOkAsho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730803558; c=relaxed/simple;
-	bh=YAhFFdDBrQJySjuAGSSqaiwvhx73d4kURkImckkyLYw=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=lIOtAaZD+wX70kOc7xzg03mlUqYJtUVVbSQ5JCxdpEaH93/4u3vE8CvvMGjXVf8tfG6TgY2kKXKyaag6WpOgGTktOHCG35Fr3Qa84OJ2ii/N83wsXORIVc2Fh6f1wRg4jAMOImtlFqD/hCue4yn21ak7WYYlLI11ird0wNo77TI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f7ha7Wju; arc=none smtp.client-ip=209.85.215.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-7e6d04f74faso3597648a12.1;
-        Tue, 05 Nov 2024 02:45:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730803556; x=1731408356; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2nqCzdAinTSs6r9LINYA0htJIpUUCl9grAyzKQ3FNXw=;
-        b=f7ha7WjuWSXWzazIHOETpNuuqMc1ouumFx/c544BWjKbnubUSJ1y2WSPvjdoW7Xgh7
-         kXVTr7cHI+qMb3HVu/1Vzys/2FdIyCdzDiVe7nF7OtQ7R0ZYpACTcaYJokJhJ1qNLUYl
-         37Cqwsulpl1Exw1l80Uro1lSG3Rd8ScbfvwLbW3u+8gplL1V6kPMl6j4POSnLOpzESkK
-         nbzWCJ3E9wjDBlOEUaigEhVs4L4rRJYoXIQ/yLKPc5VzZSrCGdeIRoKq0JkAmGjEBIxu
-         NIYIXiaHJ875S1VAeXfRheFLaeqRSPet7IRTWZ1pP+xMUw9JRBbl4PxVi4hi9eKJYE52
-         PzVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730803556; x=1731408356;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2nqCzdAinTSs6r9LINYA0htJIpUUCl9grAyzKQ3FNXw=;
-        b=bEls3wX1KQ6gIoKK613qhaHjGN2ggEcSRN5JPpVUO60hrFzZH+dbKPQwG0dhHxr7zN
-         itCylmOY81aQeE5iIRBgfUCKgPzPouoDbaA8PkQTpfQd2vry26LmjKTcYvICBk1wZNEH
-         DMDoRt80Akve+rZ5YXxhOgD/Hi0a55DODaXyqgzp6a4EbjXfbsRYg2SC4BFIvI+q8O4w
-         /p5f1TOp1cl2RS97+r8jEcP6MuqiAHVkZoX5/Te7HCLKIOHg0h/oJFNd/pW4pe2GggeD
-         2kk3bjRQQeSUBl9gqWpYJs7uYQfrdNXLhGE5qbqRfaa1rhncdSnJV34tynGpxJHgasDo
-         cnlg==
-X-Forwarded-Encrypted: i=1; AJvYcCU1ZGiXJ9HZQH5qQh0ITqnXWNYGxmduImSwgBUdaSXGeIbPwnKypdQybu68j6TpWALOaum1EDBdeeXK@vger.kernel.org, AJvYcCUz3bcBgB1NoyBPv2BGverDGt3es6TVJNldHFxXLrMPjoGuhYcAekxzbKsbDsVSq96M3+LDqggpqklk9E4=@vger.kernel.org, AJvYcCX08BH4JpV52qiTTeWKeQRBboDu0O+tXCoktwbS4at3bV3QkrUOFPmLNXycAyarY49MSn5kxwz1Z0RA6WW3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNNT4aBsVeSe9zBaI3VtDU68Y1ME2Wilv7nB6sD9VMBPaKingD
-	Yf0Y1Qbi/40DCF3v/7+xxJIwy0l/LX0GpmoFUmCEkWkAjZoF1kf2
-X-Google-Smtp-Source: AGHT+IFuMzmSrFyNbomcXyCKZcD5Ptda87WpuI1YNIlIu2eTML/Qcm8QIBq7OYbQ0MNRnPuijz8Y+w==
-X-Received: by 2002:a17:902:ec88:b0:20c:6bff:fcb1 with SMTP id d9443c01a7336-21105692ebfmr310242945ad.1.1730803556481;
-        Tue, 05 Nov 2024 02:45:56 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:cbc5:8de0:c558:652c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211057c0ec7sm75358565ad.202.2024.11.05.02.45.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Nov 2024 02:45:55 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: broonie@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shengjiu.wang@nxp.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2 RESEND] ASoC: dt-bindings: fsl_spdif: Document imx6sl/sx compatible fallback
-Date: Tue,  5 Nov 2024 07:45:47 -0300
-Message-Id: <20241105104547.947128-1-festevam@gmail.com>
+	s=arc-20240116; t=1730803693; c=relaxed/simple;
+	bh=9nci4TTFpI29fccUZhsQ38CiKylvkkP9B3D45Yw8JhM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=k3x1Clcm+FaEDF5uze3gu9XFmFx6Pu8V5W9X32pzHD3dvBQW0eFidXk+EOUtVGEjCT+USI6fsZPNkZz67hPmb9RnYNHMnBwU5LHqF/DQouAu6vwhyln3rNwJxCm+cAOVm0PfyhcK88fzUDxFz2xNTu/aecspcJdkyzHKg2RnlmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TKpsVR3j; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A59eqB6005247;
+	Tue, 5 Nov 2024 10:48:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=h1mQ3EIB/SODfCTJRZAJXrT+JUk0LmCmPS0
+	9GnmsJtw=; b=TKpsVR3j/gxtwJb7Zu1fnl/pG66NcItF2tduqdH0FZpq01spxCX
+	k1pq5eskAMzUh9n7FKUNbC9Ho8psoM7b+WqKYydm9Oi8mzas6UGlPUSlbPwle08y
+	AY9qpgyk8MJrNb34v4UAFnWmC6N450CQ9A2y4C53lwO4BR4hbt/JcMjz+zpo1WwC
+	gQwVW84NpVhRm5s/41MPjevXaNnZEROx60Og/yjB9Xk9Li067XYD51VCQfavLtSb
+	otliEU/SHxabjVGjYqSQ8GKb7f+l8SxyehJED+ZmR2HDw6qT19R5OxJ99iZyxsm9
+	e2HwcudkOHvFQbqphgr4oMFd5SfRYiiBMHw==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42ndc6yav6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 05 Nov 2024 10:48:08 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 4A5Am34C002819;
+	Tue, 5 Nov 2024 10:48:03 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 42nd5kx4m0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 05 Nov 2024 10:48:03 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4A5Am3xl002804;
+	Tue, 5 Nov 2024 10:48:03 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.97.252])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4A5Am2w4002800
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 05 Nov 2024 10:48:03 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4047106)
+	id B7FD74D9; Tue,  5 Nov 2024 16:18:01 +0530 (+0530)
+From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+To: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com,
+        Viken Dadhaniya <quic_vdadhani@quicinc.com>
+Subject: [PATCH v1] dt-bindings: dma: qcom,gpi: Add QCS615 compatible
+Date: Tue,  5 Nov 2024 16:17:59 +0530
+Message-Id: <20241105104759.3775672-1-quic_vdadhani@quicinc.com>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -86,66 +79,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: wOsKnzbRCcUeUB24IZL1VwxgiPBuLMmX
+X-Proofpoint-GUID: wOsKnzbRCcUeUB24IZL1VwxgiPBuLMmX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 mlxlogscore=790 adultscore=0 clxscore=1011 mlxscore=0
+ phishscore=0 impostorscore=0 suspectscore=0 malwarescore=0 bulkscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411050081
 
-From: Fabio Estevam <festevam@denx.de>
+Document compatible for GPI DMA controller on QCS615 platform.
 
-i.MX6SL and i.MX6SX SPDIF blocks are compatible with i.MX35.
-
-Document 'fsl,imx35-spdif' as a fallback compatible for these two
-chip variants.
-
-This fixes the following dt-schema warnings:
-
-compatible: ['fsl,imx6sl-spdif', 'fsl,imx35-spdif'] is too long
-compatible: ['fsl,imx6sx-spdif', 'fsl,imx35-spdif'] is too long
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
 ---
-Changes since v1:
-- Keep the entries as one enum. (Rob)
+ Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../devicetree/bindings/sound/fsl,spdif.yaml  | 27 ++++++++++++-------
- 1 file changed, 17 insertions(+), 10 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-index 204f361cea27..5654e9f61aba 100644
---- a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-+++ b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-@@ -16,16 +16,23 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - fsl,imx35-spdif
--      - fsl,vf610-spdif
--      - fsl,imx6sx-spdif
--      - fsl,imx8qm-spdif
--      - fsl,imx8qxp-spdif
--      - fsl,imx8mq-spdif
--      - fsl,imx8mm-spdif
--      - fsl,imx8mn-spdif
--      - fsl,imx8ulp-spdif
-+    oneOf:
-+      - items:
-+          - enum:
-+              - fsl,imx35-spdif
-+              - fsl,imx6sx-spdif
-+              - fsl,imx8mm-spdif
-+              - fsl,imx8mn-spdif
-+              - fsl,imx8mq-spdif
-+              - fsl,imx8qm-spdif
-+              - fsl,imx8qxp-spdif
-+              - fsl,imx8ulp-spdif
-+              - fsl,vf610-spdif
-+      - items:
-+          - enum:
-+              - fsl,imx6sl-spdif
-+              - fsl,imx6sx-spdif
-+          - const: fsl,imx35-spdif
- 
-   reg:
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+index 4ad56a409b9c..8fc94c87c421 100644
+--- a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
++++ b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+@@ -25,6 +25,7 @@ properties:
+       - items:
+           - enum:
+               - qcom,qcm2290-gpi-dma
++              - qcom,qcs615-gpi-dma
+               - qcom,qdu1000-gpi-dma
+               - qcom,sar2130p-gpi-dma
+               - qcom,sc7280-gpi-dma
 -- 
 2.34.1
 
