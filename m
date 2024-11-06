@@ -1,172 +1,122 @@
-Return-Path: <devicetree+bounces-119279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 809079BDD89
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 04:20:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70E5B9BDD9D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 04:33:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D8EA2B217D2
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 03:20:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 113D5284CE9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 03:33:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950DE18FDB1;
-	Wed,  6 Nov 2024 03:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9C7F18F2EA;
+	Wed,  6 Nov 2024 03:33:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rmzy5Nqk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FsStC9r/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD0164D;
-	Wed,  6 Nov 2024 03:20:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BE942AF07;
+	Wed,  6 Nov 2024 03:33:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730863221; cv=none; b=QRbEzLR1OkqZpmVwkqgs4zgSxByDMCxBS00AGVE4tceAkLYnH4zRH7ZQGLr2FPXkh3wLtADnhcjU/Iv6e9g9UKSLfNpJPqpCEfs0p+8+r5mRkhxV2stiAEX5NZqetT27jHaZxEYXwRdabVIBV+5RAF/jWWqvnqmPZlfPaXTb1x0=
+	t=1730863995; cv=none; b=H0l9Ra6Ydh+cAAw/lqZPBUr3rnWrIiKA+PcUVqotN7kthvg+G7Dfr3XWApPayNdsNrAz8u7ytS2aqpU0V6jFfVbDjqJJHX0J8mdTS5wBN1JgYJAugBt9249EuA+zo8gf7fY7xec09NFPlfjvJWDNiJdrfyMiuoF0t0dlr2nooaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730863221; c=relaxed/simple;
-	bh=aN1o0QCqCd7y8dyIaGM9JyyzOA52GCKParbctBQgj2Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F/p50OM1PlyEbHVOzLUZC9jPrzWYplWOZ58X7aLRIjRxjZBC5wr9c40j+/RgOZAhIMueecwarenb3bxPcy4vvWQ4TEHkNnh9JYNMO9BBxPtjZ4ecCKJatpGnbeUiq6+rtnwpnRqPtp4TmHAMew16wAjMOtZy4iduFLoxTk5FeYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rmzy5Nqk; arc=none smtp.client-ip=209.85.215.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-7ea76a12c32so4670076a12.1;
-        Tue, 05 Nov 2024 19:20:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730863218; x=1731468018; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=roLVpWUG2t/eOgCxvwMOi21FBZ2OwBsA2Wap379AGE8=;
-        b=Rmzy5NqkmWYOL+5OMTmyETKjFl89Km/iOUotrf3Lo1Z1IPZ2DH8JP/9C6SPSYVNKkP
-         Ce4TwNQXp50QYwjYLUND9yDjdP4YpTXjK/UwGLEs05jUeN/y5bxDeqY2LgOl22PyYoMr
-         qOMwsptLex/t2fNevADXV/4MVJ49nfpfHn9u6mDkrw1IzpIOvWkQl+zioKEUMq/JkdlG
-         NyIAI3s1J35Nh9YLWbNQNsIldObsSVTqOECQG6y+buZFa3R7WWMsWch1Ls1ijCgN9z5L
-         XlgjP+q2lIIbUfvKvkryMpTt0t24GHgrYedWMhKKlvnHathfp3QSmambRcSAqZ6Guksc
-         ahjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730863218; x=1731468018;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=roLVpWUG2t/eOgCxvwMOi21FBZ2OwBsA2Wap379AGE8=;
-        b=BHJfYr83LowZ27zCy2C8lL7W+EZONjR/i4NmGGvr3A7sXWdJ3VFsy5GxDrZ5O66h/9
-         WLCpnXrpyzQcwzPORtlt60wiDb/dIPJR3npDoeKVsyBAkuuTxUMWzPmt76+W3JpxjtbE
-         ZDMyeriOPQKBhKluGRHrjQXD5xU6n6iibhk2XmuYILh+Fi1SaqNcjxVXvZPRhXuzmS+7
-         GIEu85GIapNifTGF3oq9O8H/2zTHEICSl2rAF8SJGzBs5nOAkRbSCyCOF5rVzBURk6a1
-         k6bCQIv2lNN7dqnDC9l8//v1p1Sstnsio7B89QuA6rBf/qGBHUYP1wPlrfmCM2Txh0Be
-         t2oA==
-X-Forwarded-Encrypted: i=1; AJvYcCX6cnvwg5wkiLvrrhWXewV6snHiTMUPhmHSLHQxqT7vRJruasYIpN32A6qW1m4VqZVZMYuDtg2Jmp2t@vger.kernel.org, AJvYcCXTdppU6YwEnAq7i9IkVd2Yf9jZKWPIKPS9rRjMtzXmcSoBN+9aMn7qKeWYycD9XZnxmIX6+hPhO76eMlUf@vger.kernel.org, AJvYcCXX3W/NIkAck8Ri9cxAlOmD8yB+VOx7HIcGlFGME/5NPs6M4BQRh7xsQcUuHUWMVxyGNC5bQVGHZHUktGM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFg80eNZ0cYdWFVC1ctHS1ah/wKI59SkLR7KyTW89a68ZcUWXg
-	An3rXGpNqaNKZN9VRE2I+EW8Z0c7tenHF1Y20cLH8AmshZSu6/e/X6hAxiytTB0=
-X-Google-Smtp-Source: AGHT+IHMH38Cl5sTZtOnlsN2ZJ9a33Kvxdu8AHtih1m8hkeawDITg2cZNbdAyX8LKcjZejuTtRYJcQ==
-X-Received: by 2002:a05:6a20:9144:b0:1db:de89:5d18 with SMTP id adf61e73a8af0-1dbde8961d7mr12162908637.1.1730863218219;
-        Tue, 05 Nov 2024 19:20:18 -0800 (PST)
-Received: from ux-UP-WHL01 (mailgw01.goodix.com. [45.117.96.243])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc2c47e6sm10417051b3a.139.2024.11.05.19.20.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Nov 2024 19:20:17 -0800 (PST)
-Date: Wed, 6 Nov 2024 11:20:12 +0800
-From: Charles Wang <charles.goodix@gmail.com>
-To: Doug Anderson <dianders@chromium.org>
-Cc: dmitry.torokhov@gmail.com, hbarnor@chromium.org, jikos@kernel.org,
-	bentiss@kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	conor.dooley@microchip.com, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
-Message-ID: <ZyrgbC5SPe_YXoMt@ux-UP-WHL01>
-References: <20241025114642.40793-2-charles.goodix@gmail.com>
- <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3>
- <ZyLtYdwoJWx9FsdS@ux-UP-WHL01>
- <CAD=FV=UNKECLn=3VrjsJfA+HTNa9Gag1qw5jOcBvw7=ZtkZEnw@mail.gmail.com>
- <ZyQvxKi8dYOv1AOg@ux-UP-WHL01>
- <CAD=FV=WD5=2SBLD2rDtXXt0dbn-KUvnE0kPsbnyEAkSA_4w-tA@mail.gmail.com>
+	s=arc-20240116; t=1730863995; c=relaxed/simple;
+	bh=tWktqXNQ+vNgULrJsWKLMQw1pwblEP4vkR0gMo0sv4k=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=TyONHmgdgGKLTYEhYiNBoOoOlGlVNkUp83Kbj/h9poFMGfsuLJnlLdvRR+8KTpoM/AbCBkPx0UYu/mTOuUp/bxSj1qfwBN7oHPVICwZ+N1yXCtwApdTyTl3+9cPYxQBJnA8IaY7wWXsKR7xiXP0XnkdjDhk3pQonhfsQ5gM+q+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FsStC9r/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D41E9C4CECF;
+	Wed,  6 Nov 2024 03:33:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730863995;
+	bh=tWktqXNQ+vNgULrJsWKLMQw1pwblEP4vkR0gMo0sv4k=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=FsStC9r/cSc3F3P6mBzR2oBI5E4vYiqNoGuZPgapZxcI3ijF9hrCGDoBnIrPCNj7N
+	 W574nfEhXQQr2n2WzQWcEWSf8mqPVOkAk3y03XolUSYuLHnCdIzP8d/IBpXKKeMa4A
+	 j1rypdp32CbzS4L5QqmetMDWVFBs4D97BLVFZoDi1TRw7EsGNsoa2wgkmvXNN8wg44
+	 2jcuXmqHSHM2GF81gwZrC/25jbUnOGqf7pZnI6DZjHnDI6R28VA10DV9Xoq1zF+Awx
+	 xlyztuCCWigW087QNqNCbBz01ibbDZHubbb7dWepcxIs1Hf7GgnF54F2TEUvDPok7S
+	 UfYpIkHmaQGIQ==
+Date: Tue, 05 Nov 2024 21:33:12 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=WD5=2SBLD2rDtXXt0dbn-KUvnE0kPsbnyEAkSA_4w-tA@mail.gmail.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>, 
+ Jean Delvare <jdelvare@suse.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
+In-Reply-To: <20241106021559.175105-1-marex@denx.de>
+References: <20241106021559.175105-1-marex@denx.de>
+Message-Id: <173086399290.1351531.6915497131046060876.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: pwm-fan: Document start
+ from stopped state properties
 
-On Mon, Nov 04, 2024 at 11:36:50AM -0800, Doug Anderson wrote:
-> Charles,
+
+On Wed, 06 Nov 2024 03:14:36 +0100, Marek Vasut wrote:
+> Delta AFC0612DB-F00 fan has to be set to at least 30% PWM duty cycle
+> to spin up from a stopped state, and can be afterward throttled down to
+> lower PWM duty cycle. Introduce support for operating such fans which
+> need to start at higher PWM duty cycle first and can slow down next.
 > 
-> On Thu, Oct 31, 2024 at 6:33 PM Charles Wang <charles.goodix@gmail.com> wrote:
-> >
-> > Hi Doug,
-> >
-> > On Thu, Oct 31, 2024 at 10:58:07AM -0700, Doug Anderson wrote:
-> > > Hi,
-> > >
-> > > On Wed, Oct 30, 2024 at 7:37 PM Charles Wang <charles.goodix@gmail.com> wrote:
-> > > >
-> > > > > > +  goodix,hid-report-addr:
-> > > > >
-> > > > > I do not see this patch addressing previous review. Sending something
-> > > > > like this as v1 after long discussions also does not help.
-> > > > >
-> > > > > No, you keep sending the same and the same, without improvements.
-> > > > >
-> > > >
-> > > > I apologize for overlooking the discussions regarding this issue.
-> > > >
-> > > > I would like to clarify that while the current boards use the same address,
-> > > > but newly designed boards in the future may require different addresses.
-> > > >
-> > > > Retaining this property would likely offer more flexibility.
-> > >
-> > > I don't feel very strongly about it, but maybe Krzysztof does?
-> > > Possibly the path of least resistance would be:
-> > >
-> > > 1. You drop the property from the bindings.
-> > >
-> > > 2. You hardcode it in the driver to be the normal value.
-> > >
-> > > 3. If/when someone actually needs a different value then we can add it
-> > > as an optional property in the bindings and fall back to the default
-> > > value if the property isn't present.
-> > >
-> > > What do you think? If you feel strongly about keeping the
-> > > "hid-report-addr" then you can certainly keep making your case.
-> > > However, it's probably best to wait to get agreement from Krzysztof
-> > > (or one of the other DT maintainers) before sending your next version
-> > > unless you're going to take the "path of least resistance" that I talk
-> > > about above.
-> > >
-> >
-> > Agreed, let's wait and see the opinions of Krzysztof (or the other DT
-> > maintainers).
+> Document two new DT properties, "fan-stop-to-start-percent" and
+> "fan-stop-to-start-usec". The former describes the minimum percent
+> of fan RPM at which it will surely spin up from stopped state. This
+> value can be found in the fan datasheet and can be converted to PWM
+> duty cycle easily. The "fan-stop-to-start-usec" describes the minimum
+> time in microseconds for which the fan has to be set to stopped state
+> start RPM for the fan to surely spin up.
 > 
-> As I went back and looked at this again, I'm curious: I don't know
-> much about how your protocol works, but is there any reason why your
-> driver can't figure out this "hid-report-addr" dynamically? Is there
-> some reason you can't talk to the device and ask it what the
-> "hid-report-addr" should be? From skimming through your driver there
-> appear to already be a few hardcoded addresses. Can one of those
-> provide you the info you need?
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Jean Delvare <jdelvare@suse.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-hwmon@vger.kernel.org
+> ---
+> V2: - Rename fan-dead-stop-start-percent to fan-stop-to-start-percent
+>     - Rename fan-dead-stop-start-usec to fan-stop-to-start-us
+> ---
+>  Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
 
-Similar to a standard i2c-hid driver, which requires configuring the
-address for hid-descr-addr in the DTS, other address information is
-obtained using this address.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-In theory, we can dynamically obtain most of the addresses from the chip.
-However, for this chip, there always needs to be a known address for the
-driver to communicate with, whether this address is 0x0000 or 0x0001,
-and this address is related to the firmware.
+yamllint warnings/errors:
 
-Regarding this issue, since no further review comments received.
-I think I can first remove the address as your previous suggestion
-and use a default address for communication in the driver. In the
-future, we can upgrade the firmware and driver to achieve dynamic
-address acquisition.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml: properties:fan-stop-to-start-us: '$ref' should not be valid under {'const': '$ref'}
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
 
-Thanks,
-Charles
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241106021559.175105-1-marex@denx.de
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
