@@ -1,134 +1,214 @@
-Return-Path: <devicetree+bounces-119682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0FDA9BF91D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 23:19:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 004CC9BF963
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 23:40:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5947B1F22EA6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 22:19:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 318811C20C90
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 22:40:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D6C520D4E1;
-	Wed,  6 Nov 2024 22:18:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB71B1DE2BE;
+	Wed,  6 Nov 2024 22:40:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="C7zBWjkK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ejqg1IDH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B535613C67C;
-	Wed,  6 Nov 2024 22:18:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F5AA1917F3;
+	Wed,  6 Nov 2024 22:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730931533; cv=none; b=LwX3b7qdT7sxbYKC+ka9V7yShlo//R4m3Rnt02c+jwGtXsiJXIoLyweD0qLCY/BO+gYGKvxr7PX/zw9NjKHrXROPVcUb0n/IBCh1FfJsOVoN12U0Bre2ShiOIKDTVJE7qESYXNjGFliofG8Gc6seWq1Nl+lD3/8Nd8VVf8I7a2g=
+	t=1730932831; cv=none; b=M3vcjkTSm/oxqaM/nWvv2ux0/fpsMAfWvLlK1kI33ERXb2JybSOaKFcBdxLZYtB0YjTzyLfvy+XeWl540fTuzVCKME90sFwzGtNZkWranLI6g1tPdGbHlWzaEof1c9yRD0NaHS48c4vlGBbhawy928PDUSXXwAy9GxIQ5S1rRvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730931533; c=relaxed/simple;
-	bh=pSEqy3Dd13ARUfobgBIfnTgR9bWaIjSE0Fk3rV2AeD0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hD6GCLGhDli3NCjkkbHRLN833jYwK9oBUYr/MzJUw2Xu0+9Mm7F0EiDDN3HoPtKwnETA+40G7ssK4vULLn3Qk8w4E/zW5bGsBZNpCGoyFinA848U7is1imGBjOulxAdl5crIcTXnoQ/+ET5sZqk9+8E8Ig9M2reX+kIKmS1TIlM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=C7zBWjkK; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A6AGSmr003817;
-	Wed, 6 Nov 2024 22:18:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Y6umwoYj9OreXKl0xzSlbeae+yKTlKkVh5/dhD285sY=; b=C7zBWjkKMfiX6Tju
-	b11ykT+vFfcKGfkY1jkQ6k+eWsEzydPEhGQvxcw3bxUnZHY9Lod7tvZ30vjJBsNa
-	NMBoxzrQMc0nes4nF+3nkTi6ez7ikI45MjNrHkjy4NAAlw5fwk9Rg5VFZUvnPYTt
-	zClpkiG7mDNGKWrP1fF2r8OxPRFJYz0M4Mx6nY9/padiEZy/H3wsyR9Ol1jLxXDZ
-	QCy7jCvQZpXMpvjuE12sqRtZ3NO3u48Kb7wLqY/yW/BEwkjoY0uOqLCWlhmdAwTC
-	bS2HSez2qaiDX5rPLxLzjuesN7UuCsO9JQwjzaUQeuViS1VuuQXsXFDQFHArHeUp
-	V/3k/w==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42qvg3u8w4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 06 Nov 2024 22:18:41 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A6MIea0022910
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 6 Nov 2024 22:18:40 GMT
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 6 Nov 2024
- 14:18:39 -0800
-Message-ID: <e77acdfe-43b9-a28b-11e4-2ffb481c4078@quicinc.com>
-Date: Wed, 6 Nov 2024 15:18:38 -0700
+	s=arc-20240116; t=1730932831; c=relaxed/simple;
+	bh=zlGCzVAGRGtkQDBPcQQg/UhnzVd+u1CKmbHht0FUdm4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k2Amll/nbhlOSPk3jPt7mrw8Yp068AFkycrxLzuT8jm/su12/Z69ztsSDtubpX460UeUg0Xk+KDPenax6sf+owHVrwhaEStJt0ei7ropUCeSU0ecRCpAS1PBM7mpHL7LpWGBRxY09E6U7VDi3Rc5ClAKZCGkRLdX5SolLZCYkME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ejqg1IDH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C94ADC4CECD;
+	Wed,  6 Nov 2024 22:40:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730932831;
+	bh=zlGCzVAGRGtkQDBPcQQg/UhnzVd+u1CKmbHht0FUdm4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ejqg1IDHwzlcXm+gTVfHyG/fH9dn2aye1emFSVwYUpLaRVBns6ZFdN+jTqji92nya
+	 wNQ8OtReYzup80Z6PZqSGQrtWd5UQzSLLE20QAcOrK8hj36qEdKBDwf+F5g45svYtZ
+	 iJeMOJ19xgjWFFl2DmzcFcGF2pMeb/wBmIvFyFDK770WA4yBTnl7QWhm7sRWWLgZ9p
+	 46AHtzrmU3TgQdA+CkQnW9tLM7ai2LBbo+FCgDYU3HG2Q/v+6dQQ6kln27zonzGsOr
+	 B3URqqckrkan9d5iqjFR2+Jas0sW+GHEmAVYWMXYXtGXMyrbGyd+K+faKSkFK/oP7m
+	 u1um5ZFqX0uQg==
+Date: Wed, 6 Nov 2024 23:40:28 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
+	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, bhelgaas@google.com,
+	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+	nbd@nbd.name, dd@embedd.com, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH v4 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
+Message-ID: <ZyvwXHMRz0kI0J5O@lore-desk>
+References: <aca00bd672ee576ad96d279414fc0835ff31f637.1720022580.git.lorenzo@kernel.org>
+ <20241106203219.GA1530199@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH V4 1/5] dt-bindings: firmware: Document bindings for QCOM
- SCMI Generic Extension
-Content-Language: en-US
-To: Sibi Sankar <quic_sibis@quicinc.com>, <sudeep.holla@arm.com>,
-        <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
-        <conor+dt@kernel.org>, <arm-scmi@vger.kernel.org>
-References: <20241007061023.1978380-1-quic_sibis@quicinc.com>
- <20241007061023.1978380-2-quic_sibis@quicinc.com>
-From: Jeffrey Hugo <quic_jhugo@quicinc.com>
-In-Reply-To: <20241007061023.1978380-2-quic_sibis@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: OFrehKGGJi8JVLmM8D5HdD9jI8bRk7oR
-X-Proofpoint-GUID: OFrehKGGJi8JVLmM8D5HdD9jI8bRk7oR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- lowpriorityscore=0 priorityscore=1501 clxscore=1011 mlxscore=0 spamscore=0
- suspectscore=0 bulkscore=0 phishscore=0 adultscore=0 impostorscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411060171
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ICCrOV43i12jfSvz"
+Content-Disposition: inline
+In-Reply-To: <20241106203219.GA1530199@bhelgaas>
 
-On 10/7/2024 12:10 AM, Sibi Sankar wrote:
-> diff --git a/include/dt-bindings/firmware/qcom,scmi-memlat.h b/include/dt-bindings/firmware/qcom,scmi-memlat.h
-> new file mode 100644
-> index 000000000000..7ae8d8d5623b
-> --- /dev/null
-> +++ b/include/dt-bindings/firmware/qcom,scmi-memlat.h
-> @@ -0,0 +1,22 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +#ifndef __DT_BINDINGS_QCOM_SCMI_VENDOR_H
-> +#define __DT_BINDINGS_QCOM_SCMI_VENDOR
 
-The #define does not match the #ifndef (missing "_H")
+--ICCrOV43i12jfSvz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +
-> +/* Memory IDs */
-> +#define QCOM_MEM_TYPE_DDR	0x0
-> +#define QCOM_MEM_TYPE_LLCC	0x1
-> +#define QCOM_MEM_TYPE_DDR_QOS	0x2
-> +
-> +/*
-> + * QCOM_MEM_TYPE_DDR_QOS supports the following states.
-> + *
-> + * %QCOM_DDR_LEVEL_AUTO:	DDR operates with LPM enabled
-> + * %QCOM_DDR_LEVEL_PERF:	DDR operates with LPM disabled
-> + */
-> +#define QCOM_DDR_LEVEL_AUTO	0x0
-> +#define QCOM_DDR_LEVEL_PERF	0x1
-> +
-> +#endif /* __DT_BINDINGS_QCOM_SCMI_VENDOR_H */
+> On Wed, Jul 03, 2024 at 06:12:44PM +0200, Lorenzo Bianconi wrote:
+> > Introduce support for Airoha EN7581 PCIe controller to mediatek-gen3
+> > PCIe controller driver.
+> > ...
+>=20
+> > +static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
+> > +{
+> > +	struct device *dev =3D pcie->dev;
+> > +	int err;
+> > +	u32 val;
+> > +
+> > +	/*
+> > +	 * Wait for the time needed to complete the bulk assert in
+> > +	 * mtk_pcie_setup for EN7581 SoC.
+> > +	 */
+> > +	mdelay(PCIE_EN7581_RESET_TIME_MS);
 
+Hi Bjorn,
+
+>=20
+> It looks wrong to me to do the assert and deassert in different
+> places:
+>=20
+>   mtk_pcie_setup
+>     reset_control_bulk_assert(pcie->phy_resets)        <--
+>     mtk_pcie_en7581_power_up
+>       mdelay(PCIE_EN7581_RESET_TIME_MS)
+>       reset_control_bulk_deassert(pcie->phy_resets)    <--
+>       mdelay(PCIE_EN7581_RESET_TIME_MS)
+>=20
+> That makes the code hard to understand.
+
+The phy reset line was already asserted running reset_control_assert() in
+mtk_pcie_setup() and de-asserted running reset_control_deassert() in
+mtk_pcie_power_up() before adding EN7581 support. Moreover, EN7581 requires
+to run phy_init()/phy_power_on() before de-asserting the phy reset lines.
+I guess I can add a comment to make it more clear. Agree?
+
+>=20
+> > +	err =3D phy_init(pcie->phy);
+> > +	if (err) {
+> > +		dev_err(dev, "failed to initialize PHY\n");
+> > +		return err;
+> > +	}
+> > +
+> > +	err =3D phy_power_on(pcie->phy);
+> > +	if (err) {
+> > +		dev_err(dev, "failed to power on PHY\n");
+> > +		goto err_phy_on;
+> > +	}
+> > +
+> > +	err =3D reset_control_bulk_deassert(pcie->soc->phy_resets.num_resets,=
+ pcie->phy_resets);
+> > +	if (err) {
+> > +		dev_err(dev, "failed to deassert PHYs\n");
+> > +		goto err_phy_deassert;
+> > +	}
+> > +
+> > +	/*
+> > +	 * Wait for the time needed to complete the bulk de-assert above.
+> > +	 * This time is specific for EN7581 SoC.
+> > +	 */
+> > +	mdelay(PCIE_EN7581_RESET_TIME_MS);
+> > +
+> > +	pm_runtime_enable(dev);
+> > +	pm_runtime_get_sync(dev);
+> > +
+>=20
+> > +	err =3D clk_bulk_prepare(pcie->num_clks, pcie->clks);
+> > +	if (err) {
+> > +		dev_err(dev, "failed to prepare clock\n");
+> > +		goto err_clk_prepare;
+> > +	}
+> > +
+> > +	val =3D FIELD_PREP(PCIE_VAL_LN0_DOWNSTREAM, 0x47) |
+> > +	      FIELD_PREP(PCIE_VAL_LN1_DOWNSTREAM, 0x47) |
+> > +	      FIELD_PREP(PCIE_VAL_LN0_UPSTREAM, 0x41) |
+> > +	      FIELD_PREP(PCIE_VAL_LN1_UPSTREAM, 0x41);
+> > +	writel_relaxed(val, pcie->base + PCIE_EQ_PRESET_01_REG);
+> > +
+> > +	val =3D PCIE_K_PHYPARAM_QUERY | PCIE_K_QUERY_TIMEOUT |
+> > +	      FIELD_PREP(PCIE_K_PRESET_TO_USE_16G, 0x80) |
+> > +	      FIELD_PREP(PCIE_K_PRESET_TO_USE, 0x2) |
+> > +	      FIELD_PREP(PCIE_K_FINETUNE_MAX, 0xf);
+> > +	writel_relaxed(val, pcie->base + PCIE_PIPE4_PIE8_REG);
+>=20
+> Why is this equalization stuff in the middle between
+> clk_bulk_prepare() and clk_bulk_enable()?  Is the split an actual
+> requirement, or could we use clk_bulk_prepare_enable() here, like we
+> do in mtk_pcie_power_up()?
+
+Nope, we can replace clk_bulk_enable() with clk_bulk_prepare_enable() and
+remove clk_bulk_prepare() in mtk_pcie_en7581_power_up() since we actually
+implements just enable callback for EN7581 in clk-en7523.c.
+
+>=20
+> If the split is required, a comment about why would be helpful.
+>=20
+> > +	err =3D clk_bulk_enable(pcie->num_clks, pcie->clks);
+> > +	if (err) {
+> > +		dev_err(dev, "failed to prepare clock\n");
+> > +		goto err_clk_enable;
+> > +	}
+>=20
+> Per https://lore.kernel.org/r/ZypgYOn7dcYIoW4i@lore-desk,
+> REG_PCI_CONTROL is asserted/deasserted here by en7581_pci_enable().
+
+correct
+
+>=20
+> Is this where PERST# is asserted?  If so, a comment to that effect
+> would be helpful.  Where is PERST# deasserted?  Where are the required
+> delays before deassert done?
+
+I can add a comment in en7581_pci_enable() describing the PERST issue for
+EN7581. Please note we have a 250ms delay in en7581_pci_enable() after
+configuring REG_PCI_CONTROL register.
+
+https://github.com/torvalds/linux/blob/master/drivers/clk/clk-en7523.c#L396
+
+Regards,
+Lorenzo
+
+>=20
+> Bjorn
+
+--ICCrOV43i12jfSvz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZyvwXAAKCRA6cBh0uS2t
+rEp6AQCtSYy3YAUzds8hvCM6UpvkI2xTYG22JsIAv0MIYQIuXgEA0T+smyZrSC8l
+SWuzngL5C7nN60iXccYVAU+/Lr2MsAs=
+=FAIL
+-----END PGP SIGNATURE-----
+
+--ICCrOV43i12jfSvz--
 
