@@ -1,162 +1,112 @@
-Return-Path: <devicetree+bounces-119487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C48C29BE6BA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 13:05:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5502E9BE78D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 13:15:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C9BFB24AE9
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 12:05:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8B12B242BF
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 12:15:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7406C1DF991;
-	Wed,  6 Nov 2024 12:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BEEB1DED58;
+	Wed,  6 Nov 2024 12:15:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="bYQgKP0q";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="MyqruMMC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ob31dCIm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D623E1DF729;
-	Wed,  6 Nov 2024 12:03:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32B621D416E;
+	Wed,  6 Nov 2024 12:15:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730894608; cv=none; b=TDp4DX6Hs6eyRx0tqtNdalWKxX1YK15tH900o93nqputgfH4WbupLEJVtq1vCoph4tP0cflWLHcE4HcmCqASyBS3493osJoa4BAwOqT5IudjeDv7J2RLcg/3LPQCS1ylWsddOJJzBXj42KnqVPyrm3ibMVQuhHNl25q6eWVAOJU=
+	t=1730895328; cv=none; b=YmRjZgXWesHl9TE8jQLbOj4xC1jrpRsHXy5IAgCwDeX60Amyyq4Xt6+u2rvqTBbSRoMWoaZoX4SHENzr3DGkCIxwYVGaKTVxn0NdOZDVc0vRZVXVUeJe4OLjefw50RhCVNwEwJVhVfAOKAH4csny5giS1uGluHMVQAWiZasg+28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730894608; c=relaxed/simple;
-	bh=1CWv4ZrN6M3umim2LLfIUNFU4R1eAAmA4QqWSrrVLmg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=SuGF2FhNWJY8R6tSsNhGAsznvaYmadBY9rbqXBFWy8lZfVwctDibw6hqYrOw+B7Im5pFYznM7jRl2OYe0yLpvHdQi4/dMZWhAhagP+yzWYQ3yA9lR70lwMRoIAzxLJUw6SIRCfEWL5TL9ASt39VvOGS5NNY0JoXKE01gOKahutY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=bYQgKP0q; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=MyqruMMC reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1730894604; x=1762430604;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=1CWv4ZrN6M3umim2LLfIUNFU4R1eAAmA4QqWSrrVLmg=;
-  b=bYQgKP0qqXFR/BphGxdLfRgBqqblcIO1/tcgESA+sKL7tD4CeyEVCLIQ
-   CG7NefW3G9nH1Le6wqwpAtom32COZhM1YFWimJ4Deea2keAzNxV2MufD4
-   0a+gQIThGNKfHJoVX8J3wY3u3MGEc3/qlnjC8OizcLL7OgOWpXpzAVSLw
-   4pxdjx5bpyJ4bv2DtnDVnQQBqIN4eTNuP8NWkfnkiQQpqIkgyUh/x9fHR
-   En55AdWMro1KYLlQloUCe9k6dHUacXUe5GN7HcVs69wZSmDN3dYi8pIbJ
-   elBPgR4OJtryYO1pLTgNlg5uphX9BQOoWJB+Hov6k7OBKnGZ6gJG/FXfN
-   g==;
-X-CSE-ConnectionGUID: pieM1AbNRD6bZ+HIIGuvjQ==
-X-CSE-MsgGUID: 1wL/Ebm/RdSAD34uMIIljQ==
-X-IronPort-AV: E=Sophos;i="6.11,262,1725314400"; 
-   d="scan'208";a="39884327"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 06 Nov 2024 13:03:15 +0100
-X-CheckPoint: {672B5B03-9-F5DC7025-F79421CB}
-X-MAIL-CPID: B8FDA72FF4EEA00CCDDAD8EBC4F3B464_0
-X-Control-Analysis: str=0001.0A682F15.672B5B03.0084,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D4631160A4D;
-	Wed,  6 Nov 2024 13:03:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1730894590;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=1CWv4ZrN6M3umim2LLfIUNFU4R1eAAmA4QqWSrrVLmg=;
-	b=MyqruMMCwaAn1/83WQVkFqBBlZ1w8xmo0WnnBSJnD7J4C0rko59siM7kzBf59ilTvHN9+G
-	cV/4oFPHvjr3iBu/MQXsr4YrhXWnaQ1bFfQjN/aIGXgFF1ModNW+G9f+6XFw+YNrBXN+8a
-	IUnleI+sDdPKmbFxR8KyOIcZwO7LoPZha5x2dpyDPlRB+1ebpk3j4U/s/o8zJ45zxSXuWi
-	jupDOroZj1O1onje3FOuBTiYFIKbu2A8EbYxx62wKbGocRBVHD5gRrH3CpoyR1zeFED1MO
-	t/5njui1invUIQxBVKECokbIZby+fzf4m8dQXmpucYI1MnMAvFLiV8d/falphw==
-Message-ID: <7286141141fe4930cd2581dac7a1fb36a98e62c4.camel@ew.tq-group.com>
-Subject: Re: [PATCH 2/5] dt-bindings: arm: ti: Add compatible for
- AM625-based TQMa62xx SOM family and carrier board
-From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Kees Cook <kees@kernel.org>,
- Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
- <gpiccoli@igalia.com>, Felipe Balbi <balbi@kernel.org>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
- linux-hardening@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>, Hari
- Nagalla <hnagalla@ti.com>, linux@ew.tq-group.com
-Date: Wed, 06 Nov 2024 13:03:08 +0100
-In-Reply-To: <20241105-tinsmith-countable-fbb51045bc98@spud>
-References: <cover.1730299760.git.matthias.schiffer@ew.tq-group.com>
-	 <4f5ad877f44df35a3b2c7f336647f057c4e6377d.1730299760.git.matthias.schiffer@ew.tq-group.com>
-	 <20241104-floral-dexterous-7d3fee2ff616@spud>
-	 <c73cac598788ccabd1791b1232e8fd9d7ce23ac6.camel@ew.tq-group.com>
-	 <20241105-tinsmith-countable-fbb51045bc98@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2 
+	s=arc-20240116; t=1730895328; c=relaxed/simple;
+	bh=4X1EMH5tA+soi9e7aJenYXkBhoLeM5x1Oo1HusEqNdo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fHTsKdG9329xHB+d35YZsk8hLj5IJKQT22x7Jc/Ra+vb+2mnBfYRyCsY4Y7jsnATtdK7ocltbEAJ1Ez7Y7NXl86FIvhUUU9GPKHIc2fCR26Ex59YqQJpN5rUiyrPRxqeDtzzE+yDBy8w//dgolXvbpTvKyJPD2NSrhiTEQ3zjkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ob31dCIm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7F62C4CED4;
+	Wed,  6 Nov 2024 12:15:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730895327;
+	bh=4X1EMH5tA+soi9e7aJenYXkBhoLeM5x1Oo1HusEqNdo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ob31dCImiO5LUyoZ2tXR58lUtPFZlzyEZOF9idbBzHvNzVfTzMx7JvYisYtpUaqD3
+	 COaP1kllGCs2OR/UhZGHSAjT70jBBpNSEqKOsnPse6c8LBPEhdncCRTJB0fJsuk2TW
+	 W/AnHN8dM28yClpB2zZKJAcygInemHjXJOp8WcmpPue3Yb6Ld6dzPuGwc/6O+4NafQ
+	 ej+kb/HKpzY+OwU9eONrWAj8TSmOPvRkexm5+fSPXEGrFsLmROYNoKyzANPw5aPSbr
+	 Lj3b2CeZDNF7AY4BiLXxo/CQD095n/oQd2v687j2GYWDSdceVGtLrK5sMDBd511tqP
+	 DNqrSAog9Gkag==
+Date: Wed, 6 Nov 2024 13:15:23 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com, jacopo.mondi@ideasonboard.com, 
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jerome.forissier@linaro.org, 
+	kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi
+Subject: Re: [PATCH v8 05/17] dt-bindings: media: Add bindings for ARM
+ mali-c55
+Message-ID: <lag7gfpuj2hdxw6i5pumaivxl5rylt2hztd57rynjestffwool@ate7u3zhrgfn>
+References: <20241106100534.768400-1-dan.scally@ideasonboard.com>
+ <20241106100534.768400-6-dan.scally@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241106100534.768400-6-dan.scally@ideasonboard.com>
 
-On Tue, 2024-11-05 at 18:55 +0000, Conor Dooley wrote:
-> On Tue, Nov 05, 2024 at 11:40:20AM +0100, Matthias Schiffer wrote:
-> > On Mon, 2024-11-04 at 18:47 +0000, Conor Dooley wrote:
-> > > On Mon, Nov 04, 2024 at 10:47:25AM +0100, Matthias Schiffer wrote:
-> > > > The TQMa62xx is a SoM family with a pluggable connector. The MBa62x=
-x is
-> > > > the matching reference/starterkit carrier board.
-> > >=20
-> > > Why all the wildcards? Why isn't there a compatible per device in the
-> > > family?
+On Wed, Nov 06, 2024 at 10:05:22AM +0000, Daniel Scally wrote:
+> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
+> 
+> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> ---
+> Changes in v8:
+> 
+> 	- Added the video clock back in. Now that we have actual hardware it's
+> 	  clear that it's necessary.
+> 	- Added reset lines 
+> 	- Dropped R-bs
 
-Because all variants use the same Device Tree. There is also only one compa=
-tible and one (main) DTSI
-for the AM62 SoC family, which our Device Trees are based on.
+These are trivial, so I wish you kept the review... but since you ask,
+then comment further
 
-> >=20
-> > For the compatible string we've chosen the TQMa6254 as the representati=
-ve for the TQMa62xx family.
->=20
-> And all the boards in the family are the exact same?
-
-There is a single TQMa62xx PCB, which has some AM62 family SoC installed (A=
-M6254 in the case of the
-TQMa6254, but all AM62 are possible). TQMa62xx is also the name used for ma=
-rketing when not talking
-about a specific SoC variant:
-https://www.tq-group.com/en/products/tq-embedded/arm-architecture/tqma62xx/
-
-Some SoM variants with different RAM/eMMC/SPI-NOR/... do exist, but they do=
-n't have separate device
-trees (firmware may patch some variant information into the DTB however, li=
-ke the correct RAM size).
-
-Choosing one representative for the family including the SoC variant number=
-, but not distinguishing
-minor variants matches the level of detail used for our other SOMs already =
-supported by mainline
-Linux (like the TQMa64xxL and various i.MX-based platforms).
-
-Best,
-Matthias
+I recommend using b4, so your cover letter changelog comes with nice
+links to previous versions. I scrolled through entire cover letter for
+this (for me that's almost the only point of cover letter) and could
+not find them. Anyway, just a remark.
 
 
+...
 
->=20
-> >=20
-> > MBa62xx is the proper name of the baseboard; this board can be combined=
- with any TQMa62xx family
-> > SOM.
->=20
-> Then that one is fine.
->=20
+> +  resets:
+> +    items:
+> +      - description: vclk domain reset
+> +      - description: aclk domain reset
+> +      - description: hclk domain reset
+> +
+> +  reset-names:
+> +    items:
+> +      - const: vresetn
 
---=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-https://www.tq-group.com/
+drop "reset", it's redundant and rather come here with logical name. I
+wonder what "n" means as well. It's not a GPIO to be "inverted"...
+
+I wonder about reset domains for clocks as well... is this just gate
+clock misrepresented?
+
+Best regards,
+Krzysztof
+
 
