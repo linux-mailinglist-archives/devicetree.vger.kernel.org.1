@@ -1,105 +1,118 @@
-Return-Path: <devicetree+bounces-119618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E51679BF5AD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 19:50:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FC6F9BF5C6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 19:56:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2334B1C21992
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 18:50:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B1CE1C20F1D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 18:56:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C06520A5F5;
-	Wed,  6 Nov 2024 18:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E34F20822A;
+	Wed,  6 Nov 2024 18:56:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="Zhtz1ZjV"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AVU3aZZ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482A3204F72;
-	Wed,  6 Nov 2024 18:49:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E50628EF;
+	Wed,  6 Nov 2024 18:56:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730918997; cv=none; b=odtYa+gRDMosDofBujy3ddcRq4XQ7EjBX1oYPi0hL2P6ps+9Zt1HO4MCELdZv9vl1740VrKxN309VYfuTs682vMVbiM8+bTxSrkTDmqVrpaTvpSFLTP9knG+LuK02uT8zWsuU9pMmVwAk38/goZkOmUaht4dZPq65igeGemecIg=
+	t=1730919410; cv=none; b=j2+2GcFjEu1Tm0e8s4dOW1pzeTBux2ExiD3IT1JRjffvg4fr9GRVU0tpSyTbfuDYI3BeojtpPQyEmBwlvmJTEZiyJXpG/zWQ5VTPtykvgVPhhoaPEmR4Rm1DLGQ59wWpYvpwGMzVdwjQVDbnsYFma9ATIO+2pRKEMvEfBWBFQJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730918997; c=relaxed/simple;
-	bh=li6C8f3t3SYbgMpO/kXts/p8GR96Pv4j3k0vjuIusI8=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:
-	 In-Reply-To:References:Date; b=KomkemxVhlUjFjmUBJzmHIEgvmwr7no/gYpXze5zhHHxdb/7/tCHgwjG2C5tTLFRqU+81qz8B5JcN8Nw8gJJm2EZzmXLCIMguRIwpFewAUhPLpQp4qBR7jZi2ZaITB7PPwqUD0DyBnESyPcnNslNfsvQgprnhWFeCW7Cnc8jbOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=Zhtz1ZjV; arc=none smtp.client-ip=212.227.15.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1730918976; x=1731523776; i=frank-w@public-files.de;
-	bh=li6C8f3t3SYbgMpO/kXts/p8GR96Pv4j3k0vjuIusI8=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:In-Reply-To:References:Date:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=Zhtz1ZjVOmW/RaDQV1THforkPHmN56+jsPkuY3IO1PPsj/x9Q4EUztT+4gSGdPlN
-	 pxX3XQpdtgF8z0wKMxWd4/I4oJP2h5GWmzRvrjHF31uxkQJwHJubWH3gP5fKsl2d+
-	 IeFUhPdNC7Fjk/0hQjCeOsKy3QpZsmxcvjPEEYOAA05dbHyr0MvDv/CgnqyH/+qQl
-	 zMgoBWtQlNKg+OUmDT9rVWWo7rHMCTPBTlWPl1q2x4AGut2QE4hALIaj2Io1Rmbjd
-	 j5PQfJZLqx9MzxcACE8upxBzeJjEHgDevlO3iclRpceERarm1IKOZRCya7kN6rOJD
-	 UtJ/AxWNeLjtq0Fwow==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.145.66] ([217.61.145.66]) by
- trinity-msg-rest-gmx-gmx-live-c75c5fb4b-p29nc (via HTTP); Wed, 6 Nov 2024
- 18:49:35 +0000
+	s=arc-20240116; t=1730919410; c=relaxed/simple;
+	bh=WeOYK2Ugv5uXCeV4l3zpKEBTYXRLPK10LIXAB2A6XnU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PhH5qdkIqWK3BaH0nC1dBVO1ZYDWOmICsRMzFmemJptI2rD+cOKDiEPCBJ8gAkgHxeKGlHGXslwsxPqdp6Jkel40PM1glahCYv3e93jr8tLYfMUgIiJ2jeT5Wie14FBiA5JGNrCSlnb/aJgAcdfJbZvtTWo8KTCcCW5t/8iU/L4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AVU3aZZ1; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1730919408; x=1762455408;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WeOYK2Ugv5uXCeV4l3zpKEBTYXRLPK10LIXAB2A6XnU=;
+  b=AVU3aZZ15jfJCeLCNj/zh7Ue8t6pWblYxHSYi2OUcUzuCZ5ngJ2ZFyyx
+   EUJhtMT13/gp3zfi9jORCMLR9BsMSabxWF3R6uPHtKOYuf5pckeM46ZFi
+   OmxLN2UIZBZNGvJWx6G2bazOSFt9olBTbRmzDjsi0EDJWOxn43Jq6wF3g
+   Y5sVPGSi8f+WjiJoCLMrvzNbQDHyPooInC7MSH2Oy1JXAvDlrvQHPyToE
+   ZFwDGHSFKD9Rp6W3hi1ADBEn8OdhrE+klTPoaU6gbkQq4GEAoNA7fwJoj
+   8Mw53BuF6XCCZVToYHFuaWnH6IoQCXKtkolCishgVuGTlmuzjJeQPJKCj
+   A==;
+X-CSE-ConnectionGUID: u9i5Ux+5R4SaltbSAuNfLg==
+X-CSE-MsgGUID: PIRswKL8TQuTWG/nSTu95w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="41357891"
+X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; 
+   d="scan'208";a="41357891"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2024 10:56:47 -0800
+X-CSE-ConnectionGUID: W/DY7m6ORbiTLi1LGT9rSA==
+X-CSE-MsgGUID: FeROC1g6SKKjySQSZKU9AQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; 
+   d="scan'208";a="89289376"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 06 Nov 2024 10:56:32 -0800
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t8lCg-000pJU-1i;
+	Wed, 06 Nov 2024 18:56:30 +0000
+Date: Thu, 7 Nov 2024 02:56:28 +0800
+From: kernel test robot <lkp@intel.com>
+To: Marek Vasut <marex@denx.de>, linux-hwmon@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jean Delvare <jdelvare@suse.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] hwmon: (pwm-fan) Introduce start from dead stop
+ handling
+Message-ID: <202411070251.mEqY5ErJ-lkp@intel.com>
+References: <20241105135259.101126-2-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-ef654aa8-f10a-4195-82c8-65b3ea654c7b-1730918975868@trinity-msg-rest-gmx-gmx-live-c75c5fb4b-p29nc>
-From: frank-w@public-files.de
-To: angelogioacchino.delregno@collabora.com, robh+dt@kernel.org,
- matthias.bgg@gmail.com
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, daniel@makrotopia.org, linux@fw-web.de,
- leith@bade.nz
-Subject: Aw: Re: Aw: [PATCH v3 1/2] arm64: dts: mt7986: add dtbs with
- applied overlays for bpi-r3
-Content-Type: text/plain; charset=UTF-8
-In-Reply-To: <CAPDEroWUeR3iUFnjVr6WFLg3=dkML+5cbRPph9bj64F=zc1UWA@mail.gmail.com>
-Importance: normal
-References: <20240608080530.9436-1-linux@fw-web.de>
- <20240608080530.9436-2-linux@fw-web.de>
- <trinity-82c94d49-2a78-4470-83cd-3c6747e01849-1719434738199@3c-app-gmx-bs52>
- <726f2ed3-675f-45e8-94f0-d392181e7f92@collabora.com>
- <951E802C-1B53-45C4-B3E6-4A3400F47214@public-files.de>
- <CAPDEroWUeR3iUFnjVr6WFLg3=dkML+5cbRPph9bj64F=zc1UWA@mail.gmail.com>
-Date: Wed, 6 Nov 2024 18:49:35 +0000
-Sensitivity: Normal
-X-Priority: 3
-X-UI-CLIENT-META-MAIL-DROP: W10=
-X-Provags-ID: V03:K1:04HA3rCBFobkKgyJv3PRzaWDTdIiPv8aXPTy1/iJeSgOHSEJUK9hCVHSD0wn2SSqhizMD
- BevU1VpOn8iWFu/s07qAKuNevpeLaJKGWlDCyOby34HfK6pyfLyeR2LuHLLwv1u3hD14BDfsaTQ7
- kcgvrKBmvIignRFMW2hYJ0/V+ejxxM7rUvgx0uWEWJ1J7EYsmMiDtxAguxMXnlwE+0Hwp7rKP1DH
- brAeezdmDRhJwcVWEjT6xhVcGyV5ppFuTdkON75qlQpJLixEaU+BLwbWQy7+/egEPEisDSCI83ft
- 3aH8fcxuhZD6XsiVXbZKih+kPSNPKBuu0O9/un9YC37QVP3QMYPwryNmXpBQClS4u8=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:yLAILKCPSGk=;y4s2SKxblFf6I2c5Hh1WGxagP2c
- s3/HJr7M4R7iAGmMq7wRDbectAnOyqDRVNxXS6Xzt3QKbnwWpBSqY9uKvjn2bw1sci1ZyiVUT
- SjV85xR1mL1AxO6MTboC/ZaEeSdM+3Mk29biW/Ub8ZFeVxLR2sQYti0w8jMlnaJnJy2aQvo/v
- 6VMyrzcAceMplQ2fa59EyVxw0HusL6QoVLxm2q1nNL1CWLPZyzS9Stw6jJlONtIogHah1slco
- tTQWnfNCmeAd00R/SPxPgMWW1+M61D1snxM8r8RNiCIIKPDOcQMXiR71F79LZ57uLJ4bfGECj
- fS0/quA302g+2RZRHfEhi9MReQ+gqmWDzFS356kdkNOHXtCJS2OT2BntjC++Dlr4cD4BwxrNI
- t2km0ERAAngZR6sR5qfAjQlrgcBxjYxd4wbvNkjSU/ejtwocRKsFT41W+6+7uMzsJzroj7Vs7
- xPo9fmkTCG++dSTjMtk0koV/2pwtUoowt8+il1W2+8Yeru1LLvNbIHZH+Z2LFBreBUgXz4tYs
- LEf212+L/Bz4dP3ofsE+su1Za2YLt/hdd5TDy5T9ooimfTcc+sjMdUctNyhwqiQH1aG8yqtpN
- 06aXaiDnjxP7VXBTSEo3JuM8AE8c1KnsgPV2BJ2RPSiCdXUt1/ZSGEPfc62WLzVNfzbYANABU
- lMC1LJdN9+3XCAYmkHNinhbT/qUKhDWzeD1E3f+wBA==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241105135259.101126-2-marex@denx.de>
 
-Hi
+Hi Marek,
 
-any new state on this??
+kernel test robot noticed the following build errors:
 
-https://patchwork.kernel.org/project/linux-mediatek/patch/20240608080530.9436-2-linux@fw-web.de/
+[auto build test ERROR on groeck-staging/hwmon-next]
+[also build test ERROR on linus/master v6.12-rc6 next-20241106]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-regards Frank
+url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Vasut/hwmon-pwm-fan-Introduce-start-from-dead-stop-handling/20241105-215454
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20241105135259.101126-2-marex%40denx.de
+patch subject: [PATCH 2/2] hwmon: (pwm-fan) Introduce start from dead stop handling
+config: i386-randconfig-016-20241106 (https://download.01.org/0day-ci/archive/20241107/202411070251.mEqY5ErJ-lkp@intel.com/config)
+compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241107/202411070251.mEqY5ErJ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411070251.mEqY5ErJ-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: "__udivdi3" [drivers/hwmon/pwm-fan.ko] undefined!
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
