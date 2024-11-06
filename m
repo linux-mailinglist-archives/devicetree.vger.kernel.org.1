@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-119612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAD629BF543
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 19:30:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A90029BF54D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 19:33:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C771B1C234C8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 18:30:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DEB51F2555A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 18:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9637D208963;
-	Wed,  6 Nov 2024 18:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA3DE2076DE;
+	Wed,  6 Nov 2024 18:33:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ncga7DDB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j2kbkIVV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C9EC20896A;
-	Wed,  6 Nov 2024 18:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81EA836D;
+	Wed,  6 Nov 2024 18:33:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730917847; cv=none; b=ipZ9vXTyEKQsChVL5I5No32t5YVZv2tu/phVCsrSikuF1S67CbvgMTsg+lCq2tG1HzvyXq+13gUI4zyjpv0D1BFR5aPFkaEYBifWMDUhj5JGhaWm6KPv+kfjfYMHyRYuD1ed1qycy93F0CVTkjWc7jQhOA0N5cPDook/4nFdZUo=
+	t=1730918020; cv=none; b=M2oidLbcqhUPGZx7nPoXuU0QmhhssuIY3uyTH3Ee/NxA0zJy3CsAoPJFs1u1w6rcdiArX7/mtBSvQ5nrCr8x+tEicxiVkwNgunc9kzSR1bphgcqmm0QrqnGznABWxTyBx8Ih2SVekOuD2TGLcU7HH2024W7EmNCUFcXLy5vRDZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730917847; c=relaxed/simple;
-	bh=lwnwFqyElhS59Xfq7JeJ9Np9U8KffT4TejVqEqCOZp0=;
+	s=arc-20240116; t=1730918020; c=relaxed/simple;
+	bh=y2p9ZXBMTA9Kxb0m1NNUcP0JaTs+i1CzMOB0sUQFJ88=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SQ3wOJWJsod3o1yJujnBCK+7qsTArbo2HJ1X1lAWofH+CoVO1oeIkIwFwmf7lF+QmczI0ofxkcx+T9Mrg50HOy3xNM1bX3lwas3gys++9PYsV1W4njGuMuWrDNZlRIqtDv+dg0TLQ5xv2uOjGfOFba4ea2BBug/bDdVkB6F+EqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ncga7DDB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF61C4CEC6;
-	Wed,  6 Nov 2024 18:30:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BhlLdFJs5F/s5Pp+eoMmPoR/937V92mkhxOoKIU00UeXq+by0PYlURNRC2E6nQE935puBcwxC7A7fDqrEMQbT62TmBByicEkJZ88D2HY0074javK8UK6y4D8uctURZmNdLjL9OoSokAZsFLQhhezcal6pZ2Ia8qR6kCMi7V5eAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j2kbkIVV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0069C4CEC6;
+	Wed,  6 Nov 2024 18:33:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730917847;
-	bh=lwnwFqyElhS59Xfq7JeJ9Np9U8KffT4TejVqEqCOZp0=;
+	s=k20201202; t=1730918020;
+	bh=y2p9ZXBMTA9Kxb0m1NNUcP0JaTs+i1CzMOB0sUQFJ88=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ncga7DDBTtU5oQZ5uy2fj4VeVQineuf963jbAweI5cQL8TstTDlhAj0dNYtVpHgT9
-	 NjvMOiaYR8U0g+WtexhB47eFW1KxSqwXHprIWbQ+IThqovpgxFLCJq3bvaHXW0s0TH
-	 Nvi9g1U4hkfr7kVzo3/kIQYTaNqorVnhIn0+gzPIM1HaX5opU2d0i2AyDxEp0vYcWJ
-	 b3y/ndaOYgyNOiXTTHVfl/XquCmbuX9O7NV/LIAy0mb6t0sKa/Iq4Mg+Ux9O313/v/
-	 MfLvBNHGtUsRCKaSgoyYbXtpA2w2fu/DIgkl+bfeEDipcHanKFXw7VCZ2tgCJ589bg
-	 uNfuvfK34/DkQ==
-Date: Wed, 6 Nov 2024 18:30:41 +0000
+	b=j2kbkIVVWaM3yO7REJyQCuGZCGdvolulDmtWYZJ0519Ine255Oc+aU0EfsQBl5qnz
+	 ZhVvIX8tYeXL5CG1bDHiVCtWL6JSaB9HWVHfUZgUiwPJfC3+tN7AjLZr7YrAWJ+9zX
+	 huQL2/Vw2aWIHmrd1fWltvMnj2gEnIql62lTQCRJnygS54B5HtRx26fqV7u5QrhlRE
+	 nqXaQ+4jXROb6fWlsgz5HtTGJ6fPPGDPclGFwzEWUO6JQ/QMcXNJw4QeoYDHK+2QlK
+	 Y9qWRWt5TDUSMbESUMfXKUu6tXKgV3nzYV8Se/Bv1/RUunU692C2eKh45GN3w2Mxqd
+	 NfilyF32y3EWg==
+Date: Wed, 6 Nov 2024 18:33:34 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Matt Coster <Matt.Coster@imgtec.com>
 Cc: Frank Binns <Frank.Binns@imgtec.com>, David Airlie <airlied@gmail.com>,
@@ -59,12 +59,13 @@ Cc: Frank Binns <Frank.Binns@imgtec.com>, David Airlie <airlied@gmail.com>,
 	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
 	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
 	Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH 04/21] dt-bindings: gpu: img: Allow dma-coherent
-Message-ID: <20241106-dried-spoils-f6ddd8020f40@spud>
+Subject: Re: [PATCH 08/21] dt-bindings: gpu: img: Add BXS-4-64 devicetree
+ bindings
+Message-ID: <20241106-motivator-mama-5a9d8d14aece@spud>
 References: <20241105-sets-bxs-4-64-patch-v1-v1-0-4ed30e865892@imgtec.com>
- <20241105-sets-bxs-4-64-patch-v1-v1-4-4ed30e865892@imgtec.com>
- <20241105-linseed-steadfast-98cd8abe898c@spud>
- <5e26957f-dc79-42ef-a8a1-597fb386ae51@imgtec.com>
+ <20241105-sets-bxs-4-64-patch-v1-v1-8-4ed30e865892@imgtec.com>
+ <20241105-sulfite-justness-d7b7fb98905c@spud>
+ <fd3d9f34-0e8f-44a1-ac21-2ee0c49d65fa@imgtec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,51 +73,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="f01tRNt2X5Z6+tQq"
+	protocol="application/pgp-signature"; boundary="uwRbB0EuidyiYIep"
 Content-Disposition: inline
-In-Reply-To: <5e26957f-dc79-42ef-a8a1-597fb386ae51@imgtec.com>
+In-Reply-To: <fd3d9f34-0e8f-44a1-ac21-2ee0c49d65fa@imgtec.com>
 
 
---f01tRNt2X5Z6+tQq
+--uwRbB0EuidyiYIep
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 06, 2024 at 10:18:06AM +0000, Matt Coster wrote:
-> On 05/11/2024 18:06, Conor Dooley wrote:
-> > On Tue, Nov 05, 2024 at 03:58:10PM +0000, Matt Coster wrote:
-> >> This attribute will be required for the BXS-4-64 MC1 and will be enabl=
-ed in
-> >> the DTS for the TI k3-j721s2 in a subsequent patch; add it now so
-> >> dtbs_check doesn't complain later.
+On Wed, Nov 06, 2024 at 10:18:10AM +0000, Matt Coster wrote:
+> On 05/11/2024 18:03, Conor Dooley wrote:
+> > On Tue, Nov 05, 2024 at 03:58:14PM +0000, Matt Coster wrote:
+> >> +    / {
+> >> +        #address-cells =3D <2>;
+> >> +        #size-cells =3D <2>;
+> >> +        interrupt-controller;
+> >> +        #interrupt-cells =3D <3>;
+> >> +
+> >> +        gpu@4e20000000 {
+> >> +            compatible =3D "ti,j721s2-gpu", "img,img-bxs-4-64", "img,=
+img-rogue";
+> >> +            reg =3D /bits/ 64 <0x4e2000 0000 0x80000>;
 > >=20
-> > Sounds like the property should be made required for that integration.
+> > Can you format this normally please? Drop the #address/size-cells down
+> > to 1 if you're against having 0x0s.
 >=20
-> This is something I went back and forth on. Where is the line drawn
-> between things that should be enforced in bindings and things that only
-> ever need to be specified once, so should just be left to the dt itself
-> to be the source of truth?
->=20
-> Having said that, I realise TI could spin a new SoC with a new dt but
-> use the same compatible string for the GPU;
+> Sure. I thought /bits/ was the "new" way of doing things, but I'm not
+> really bothered either way.
 
-No they can't. New SoC, new compatible.
+Maybe in other cases, I've never seen it for reg. The dts coding style
+examples even have 0x0s in them. For other properties, sure this might
+be the "new" way of doing it but not for reg, probably in part because
+it makes it difficult to see if the number matches the number of cells
+in #address/size-cells.
 
-> the "single" source of truth
-> then wouldn't be so single anymore. I guess by making this property
-> required for this compatible string, we're saying any use of it must
-> behave in exactly the same way, right?
-
---f01tRNt2X5Z6+tQq
+--uwRbB0EuidyiYIep
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyu10QAKCRB4tDGHoIJi
-0oE5AP4yKMe2zZuHfZWRLLe1EVB1RY5SngwUhkXzFSPhIY8wLgEAlaS4WL2LzDDS
-8YfEDzUHezrqSxoOdDYmEg7VZOPVXwQ=
-=AxQP
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyu2fgAKCRB4tDGHoIJi
+0kWlAP9yWsCojC2B4lhypgsjcV7rscFmE6WzqejRkjQrCUmWsgD/bTWjxUFQ+uvC
+x36sUGD0EDrdVAQB+gNiLRi+EDhv7Ag=
+=VsBN
 -----END PGP SIGNATURE-----
 
---f01tRNt2X5Z6+tQq--
+--uwRbB0EuidyiYIep--
 
