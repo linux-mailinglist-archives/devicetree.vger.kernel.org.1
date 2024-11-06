@@ -1,794 +1,225 @@
-Return-Path: <devicetree+bounces-119261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6514D9BDBAA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 02:56:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50D3C9BDB80
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 02:55:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD263B226F8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 01:56:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC7A11F21F33
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 01:55:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E1D18CBE6;
-	Wed,  6 Nov 2024 01:56:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AA5E18C01E;
+	Wed,  6 Nov 2024 01:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="qeqP/Ea8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iSLnKI71"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A99418C929;
-	Wed,  6 Nov 2024 01:56:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ACB5188920;
+	Wed,  6 Nov 2024 01:55:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730858181; cv=none; b=DOlESbyKSE1slNNgRHdc2pjbBsIiihzE9JISQG5umSpmMG3VybQ1ixnMshTmX1zNxomfvzfFvzMKH3rY9jm2+ShD+DrTDv7MXjfdqFzCw+MdtPbgw5cC1skuKkYdJW6Q1IRbbzGSKTYXkoaP6EhJ+Cbja/GHwSy8PidXOj3nUSM=
+	t=1730858144; cv=none; b=D5O9R7GjkN0i3HY90/mvg5+1bguFAREML9UrixegC2ooLMKnhGMriI8R5OkPBKd62umPiaWsGd9ygTsCXZM46JBpDUv8rgl+yIkW6sKkUQ3jn8noMyfkTcaQYTBjxnw3y0HlAhLacOhdjvbncsoWEt5TIIsExWBOEH2NZSDPdH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730858181; c=relaxed/simple;
-	bh=VggNMwTYLkcQhTUeBscdZY/E2QRoVI1RA7yxz/ifiHU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RzEyMriyvcFQc9gNdz04sJnYsTag2KZ+7xJ+Njtpqr1B17mWH/h3hHLDIWdi6cABLOX7XGo3ZAhc5AWVPRYQv0hGbY/naKINtyz+fJuF2khlNi6uSZ9KALHduOn37MD9H1iB1SZg4TWs+7Pcnpf+TQ87nl8dJwhuVr8BTKJUOhg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=qeqP/Ea8; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A60Lt73032760;
-	Tue, 5 Nov 2024 20:56:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=pcTty
-	4vYcZh33FRR7YJKOwpf8Ed/XG/l2CGCQoF5MO4=; b=qeqP/Ea8Tqnpb3APd1RTk
-	4eUXWpdzbhsBHYeg90jFvsmMZAptevSDGYRSUnS5iYEYDePufkBVmnd+4uL5oUQU
-	cMxbppwqLHPHrT704a7Lq77W6YYZbgFXIg30MAH95xHUyElJ8rzS0VysSHCTqSUE
-	mVjQlmk/3k8OoScVqyXxIhHzn5mduG15SRjyYJqS35TCbqNrGLlbJOJ4TTAjjr45
-	YXBC0WDgNoKQLtDdVOMmmYEm8tADupNYqNkkR3IWSMf595oeudHdZmk8kfwQMuDz
-	vZHlX64L78PoeNIx5yH7eLKzDYtqepqU1PY5mnksEJW5ToBOES5VkXxgPCjthEYk
-	w==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 42qf1dc5a9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 05 Nov 2024 20:56:00 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 4A61txeq009778
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 5 Nov 2024 20:55:59 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 5 Nov 2024
- 20:55:59 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Tue, 5 Nov 2024 20:55:59 -0500
-Received: from kim-VirtualBox.ad.analog.com (KPALLER2-L03.ad.analog.com [10.117.223.23])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4A61tgLY006618;
-	Tue, 5 Nov 2024 20:55:50 -0500
-From: Kim Seer Paller <kimseer.paller@analog.com>
-To: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        Kim Seer Paller
-	<kimseer.paller@analog.com>
-Subject: [PATCH v2 2/2] power/supply: Add support for ltc4162-f/s and ltc4015
-Date: Wed, 6 Nov 2024 09:55:37 +0800
-Message-ID: <20241106015537.6189-2-kimseer.paller@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241106015537.6189-1-kimseer.paller@analog.com>
-References: <20241106015537.6189-1-kimseer.paller@analog.com>
+	s=arc-20240116; t=1730858144; c=relaxed/simple;
+	bh=yom5fVc1TdM0VX7YeivKBEf4JA/nOPIA/UpA6hcSE9I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k9try/RQ9Y4Lb54oxyS5RtxOaofpWi3jR5N1r86vyTUlOjTSDSVCgzYydLMk7YUn/ptbmYjWAsQbxI7f7G9u/CIFvoFr+4SOFUl2+GFvaYF7Ou9m3FkpaIL40yN2MXMa9jX642NpZlMpDsLgfMp4Ru9Dv0pKlyIjfqbmkc102sk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iSLnKI71; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-20cb47387ceso59730695ad.1;
+        Tue, 05 Nov 2024 17:55:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730858141; x=1731462941; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=yom5fVc1TdM0VX7YeivKBEf4JA/nOPIA/UpA6hcSE9I=;
+        b=iSLnKI71nCBaIUMpPV5eQmTVIJis/klJhfnEO48z0784Au5nb5GDahJFDcFATF3m1S
+         1axTFLa3klM9HG61ZhG+cRw0K9a54ZPLoM3ivGGCytKxC5cCdBGKmcFMAekV0Y3CJPdB
+         cHfvhKXNlbJJw3msU2h4rLUNJAjK5AnPbwQhEtLIT5G/xkDYK5MSgEKZaYe//C+DGXT+
+         FXoXoQPbJ/+lgxEVFDv0YwZ5y3eTLn9ff2UJ93Rs91wvlbDDT9J2GfCZbwujhbWkJmiH
+         McJLSWw5/u/DqhTBPkqKzGTpHjS3umxil6lYcXuhdd5d996AU3tSDtZ+53dDua7ny81n
+         FCjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730858141; x=1731462941;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yom5fVc1TdM0VX7YeivKBEf4JA/nOPIA/UpA6hcSE9I=;
+        b=Uw71EPbJtjaerwFMcofxU7hcKWw+ocZFC2oPAuWOlHAa9NMdhwK/EmaI4bWQPLEb12
+         n87Hx0K6Xo75yVe8Tix1c3VfUVyAbmKqn53loU4bcVeU0brykDGUEq67Q72+LZw3ev/6
+         WGyAz7qdo5nh1tDV0UxGWbg/nSFJDFtVuT7p9JR39lBgJ8lHhi7zMlWsslsgShus3dCM
+         AbdGyL+m0fWiv7XitPNPIV0yCj6As1X84qMQSMUA2I6qB44XrKDfUcxTDTW/d+Mm7oZT
+         HKjVQtWe6Y238SrVlmdpSQtD3GLe4dnHQseNyuCqURgLiKN8drLhRSK6hJfIyh+Bqxbc
+         uZ7A==
+X-Forwarded-Encrypted: i=1; AJvYcCUQ7gVl/EiBPKP0dj5nHLWsSVF1KCGkqVK2NU5PdaW6JFwRpgih9yFyhkL0ValDRwmdjRWbGwKX/bpG@vger.kernel.org, AJvYcCV+9Hcs1xxwfZNCTSfYD2+9AIcHZu/lwqSQkt/Qw9h902GqwkBeva+wq3H+3wl7G+O6W4kDZoxWuATmCiU=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGpbxLHzzcrKkccXNjQ1Az6Jnfzhb+ISWoQ7QquaSlAkjcMe7g
+	KANDFgWlEcMEfxXrEyZ2Qx5vpNlNk6Ff4HGUIoSB55TTFz3/ocyH
+X-Google-Smtp-Source: AGHT+IHy1KS3xjCkhbyJy867YDZRNdqS6YyR3EdbsH4CzcMZHpOrs5nIjwDUWitD4tpGoiI+rOnJoA==
+X-Received: by 2002:a17:902:fc4c:b0:202:26d:146c with SMTP id d9443c01a7336-210c68728f3mr519605205ad.5.1730858141348;
+        Tue, 05 Nov 2024 17:55:41 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211057087cfsm85277575ad.87.2024.11.05.17.55.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Nov 2024 17:55:40 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <1107c12b-9d1e-46d8-b356-73077c7a218a@roeck-us.net>
+Date: Tue, 5 Nov 2024 17:55:39 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document start from dead
+ stop properties
+To: Marek Vasut <marex@denx.de>, linux-hwmon@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org
+References: <20241105135259.101126-1-marex@denx.de>
+ <df2eaf57-a4ea-4378-8f24-a843084eb1d6@roeck-us.net>
+ <189cd4b5-005b-4311-a5de-2b376eb0b9d8@denx.de>
+ <1a8b0024-97db-4c1c-9d04-45057a2ba800@roeck-us.net>
+ <0b32eda6-4071-4707-a8c6-447073638707@denx.de>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
+ RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
+ nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
+ 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
+ gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
+ IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
+ kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
+ VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
+ jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
+ BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
+ ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
+ CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
+ nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
+ hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
+ c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
+ 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
+ GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
+ sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
+ Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
+ HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
+ BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
+ l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
+ 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
+ pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
+ J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
+ pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
+ 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
+ ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
+ I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
+ nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
+ HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
+ JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
+ J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
+ cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
+ wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
+ hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
+ nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
+ QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
+ trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
+ WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
+ HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <0b32eda6-4071-4707-a8c6-447073638707@denx.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: MpWy9_RlJkkxHrIk6uc6okVVgKByJSlK
-X-Proofpoint-GUID: MpWy9_RlJkkxHrIk6uc6okVVgKByJSlK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- malwarescore=0 lowpriorityscore=0 priorityscore=1501 mlxscore=0
- spamscore=0 suspectscore=0 phishscore=0 clxscore=1015 adultscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411060014
 
-LTC4162-L 35V/3.2A Multi-Cell Lithium-Ion Step-Down Battery Charger
-LTC4162-F 35V/3.2A Multi-Cell LiFePO4 Step-Down Battery Charger
-LTC4162-S 35V/3.2A Lead-Acid Step-Down Battery Charger
-LTC4015 35V/3.2A Multichemistry Buck Battery Charger Controller
+On 11/5/24 17:28, Marek Vasut wrote:
+> On 11/6/24 1:34 AM, Guenter Roeck wrote:
+>> On 11/5/24 10:53, Marek Vasut wrote:
+>>> On 11/5/24 3:11 PM, Guenter Roeck wrote:
+>>>> On 11/5/24 05:52, Marek Vasut wrote:
+>>>>> Delta AFC0612DB-F00 fan has to be set to at least 30% PWM duty cycle
+>>>>> to spin up from a dead stop, and can be afterward throttled down to
+>>>>> lower PWM duty cycle. Introduce support for operating such fans which
+>>>>
+>>>> Doesn't this imply that a minimum pwm value is needed as well ?
+>>>
+>>> It depends. For this fan, yes, it does stop at around 8% PWM duty cycle.
+>>>
+>>>> Super-IO chips such as the NCT67xx series typically have two separate
+>>>> registers, one for the pwm start value and one for the minimum pwm value.
+>>>
+>>> I use plain SoC PWM output to operate the fan. This one needs to be set to higher PWM duty cycle first, to spin up, and can be reduced to lower PWM duty cycle afterward without stopping.
+>>>
+>>
+>> Yes, exactly. That is what many fans require.
+>>
+>>>>> need to start at higher PWM duty cycle first and can slow down next.
+>>>>>
+>>>>> Document two new DT properties, "fan-dead-stop-start-percent" and
+>>>>> "fan-dead-stop-start-usec". The former describes the minimum percent
+>>>>> of fan RPM at which it will surely spin up from dead stop. This value
+>>>>> can be found in the fan datasheet and can be converted to PWM duty
+>>>>> cycle easily. The "fan-dead-stop-start-usec" describes the minimum
+>>>>> time in microseconds for which the fan has to be set to dead stop
+>>>>> start RPM for the fan to surely spin up.
+>>>>>
+>>>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>>>> ---
+>>>>> Cc: Conor Dooley <conor+dt@kernel.org>
+>>>>> Cc: Guenter Roeck <linux@roeck-us.net>
+>>>>> Cc: Jean Delvare <jdelvare@suse.com>
+>>>>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+>>>>> Cc: Rob Herring <robh@kernel.org>
+>>>>> Cc: devicetree@vger.kernel.org
+>>>>> Cc: linux-hwmon@vger.kernel.org
+>>>>> ---
+>>>>>   Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 11 +++++++++++
+>>>>>   1 file changed, 11 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/ Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>>>>> index 4e5abf7580cc6..f1042471b5176 100644
+>>>>> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>>>>> @@ -31,6 +31,17 @@ properties:
+>>>>>         it must be self resetting edge interrupts.
+>>>>>       maxItems: 1
+>>>>> +  fan-dead-stop-start-percent:
+>>>>
+>>>> Personally I don't think that "dead-stop" in the property name adds any value.
+>>>> On the contrary, I think it leads to confusion. I head to read the description
+>>>> to understand.
+>>>
+>>> The documentation refers to this behavior as a "dead stop" , hence the property name. I can change it to fan-stop-to-start-percent ?
+>>
+>> I do not understand the need for that much complexity in the property name,
+>> and I don't think it makes sense to name a property based on a specific
+>> chip documentation. I have seen that before, where different vendors use
+>> different names for the same functionality. That doesn't mean that the
+>> vendor-determined name has to make it into the property name.
+>>
+>> As an example, Nuvoton calls the values "Start-Up Value" and "Stop Value".
+>> ITE calls the start value "start PWM value" (and as far as I can see doesn't
+>> have a separate stop value). I am sure pretty much every vendor uses a
+>> different description.
+>>
+>> I am personally not a friend of long property names. Having said that,
+>> I'll let you use whatever DT maintainers accept. They may have a different
+>> opinion.
+> Do you have a different suggestion for the property name ? Else I'll just send a V2 .
 
-Add chip_info struct to hold the chip specific data. Modify functions
-for battery voltage/current, input voltage/current, charge voltage,
-die temp, and force telemetry to handle different battery chemistries.
 
-Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
----
-V1 -> V2: Modified commit message describing differences between
-	  variants/devices.
+fan-start-percent and fan-stop-percent would be good enough for me.
+However, the existing cooling-levels property uses duty cycle values
+from 0 ..255. Using % for the new properties will create an inconsistency.
+It will be up to DT maintainers to decide how the properties should be
+defined.
 
- drivers/power/supply/ltc4162-l-charger.c | 434 ++++++++++++++++++++---
- 1 file changed, 383 insertions(+), 51 deletions(-)
-
-diff --git a/drivers/power/supply/ltc4162-l-charger.c b/drivers/power/supply/ltc4162-l-charger.c
-index 2e4bc74e1..9c9ea7c5b 100644
---- a/drivers/power/supply/ltc4162-l-charger.c
-+++ b/drivers/power/supply/ltc4162-l-charger.c
-@@ -1,9 +1,14 @@
- // SPDX-License-Identifier: GPL-2.0-or-later
- /*
-- *  Driver for Analog Devices (Linear Technology) LTC4162-L charger IC.
-+ *  Driver for Analog Devices (Linear Technology)
-+ *  LTC4162-L 35V/3.2A Multi-Cell Lithium-Ion Step-Down Battery Charger
-+ *  LTC4162-F 35V/3.2A Multi-Cell LiFePO4 Step-Down Battery Charger
-+ *  LTC4162-S 35V/3.2A Lead-Acid Step-Down Battery Charger
-+ *  LTC4015 35V/3.2A Multichemistry Buck Battery Charger Controller
-  *  Copyright (C) 2020, Topic Embedded Products
-  */
- 
-+#include <linux/bitfield.h>
- #include <linux/module.h>
- #include <linux/delay.h>
- #include <linux/of.h>
-@@ -47,6 +52,20 @@
- #define LTC4162L_VBAT_FILT			0x47
- #define LTC4162L_INPUT_UNDERVOLTAGE_DAC		0x4B
- 
-+#define LTC4162L_CHEM_MASK			GENMASK(11, 8)
-+
-+enum ltc4162_chem {
-+	ltc4162_lad,
-+	ltc4162_l42,
-+	ltc4162_l41,
-+	ltc4162_l40,
-+	ltc4162_fad,
-+	ltc4162_ffs,
-+	ltc4162_fst,
-+	ltc4162_sst = 8,
-+	ltc4162_sad,
-+};
-+
- /* Enumeration as in datasheet. Individual bits are mutually exclusive. */
- enum ltc4162l_state {
- 	battery_detection = 2048,
-@@ -75,10 +94,28 @@ enum ltc4162l_charge_status {
- /* Magic number to write to ARM_SHIP_MODE register */
- #define LTC4162L_ARM_SHIP_MODE_MAGIC 21325
- 
-+struct ltc4162l_info;
-+
-+struct ltc4162l_chip_info {
-+	const char *name;
-+	int (*get_vbat)(struct ltc4162l_info *info, unsigned int reg,
-+			union power_supply_propval *val);
-+	int (*get_vcharge)(struct ltc4162l_info *info, unsigned int reg,
-+			   union power_supply_propval *val);
-+	int (*set_vcharge)(struct ltc4162l_info *info, unsigned int reg,
-+			   unsigned int value);
-+	int (*get_die_temp)(struct ltc4162l_info *info,
-+			    union power_supply_propval *val);
-+	unsigned int ibat_resolution_uv;
-+	unsigned int vin_resolution_mv;
-+	u8 telemetry_mask;
-+};
-+
- struct ltc4162l_info {
- 	struct i2c_client	*client;
- 	struct regmap		*regmap;
- 	struct power_supply	*charger;
-+	const struct ltc4162l_chip_info *chip_info;
- 	u32 rsnsb;	/* Series resistor that sets charge current, microOhm */
- 	u32 rsnsi;	/* Series resistor to measure input current, microOhm */
- 	u8 cell_count;	/* Number of connected cells, 0 while unknown */
-@@ -108,6 +145,18 @@ static u8 ltc4162l_get_cell_count(struct ltc4162l_info *info)
- 	return val;
- };
- 
-+static u8 ltc4162l_get_chem_type(struct ltc4162l_info *info)
-+{
-+	int ret;
-+	unsigned int val;
-+
-+	ret = regmap_read(info->regmap, LTC4162L_CHEM_CELLS_REG, &val);
-+	if (ret)
-+		return ret;
-+
-+	return FIELD_GET(LTC4162L_CHEM_MASK, val);
-+};
-+
- /* Convert enum value to POWER_SUPPLY_STATUS value */
- static int ltc4162l_state_decode(enum ltc4162l_state value)
- {
-@@ -223,25 +272,83 @@ static int ltc4162l_get_vbat(struct ltc4162l_info *info,
- 				  unsigned int reg,
- 				  union power_supply_propval *val)
- {
--	unsigned int regval;
-+	unsigned int regval, chem_type;
- 	int ret;
- 
- 	ret = regmap_read(info->regmap, reg, &regval);
- 	if (ret)
- 		return ret;
- 
--	/* cell_count × 192.4μV/LSB */
--	regval *= 1924;
--	regval *= ltc4162l_get_cell_count(info);
--	regval /= 10;
--	val->intval = regval;
-+	/*
-+	 * cell_count × scaling factor
-+	 * For ltc4162-s, it uses a cell_count value of 2 for each group of 3
-+	 * physical (2V) cells, thus will return 2, 4, 6, 8 for 6V, 12V, 18V,
-+	 * and 24V respectively, and has to divide by 2 to multiply the scale
-+	 * factor by 1, 2, 3, or 4 to represent a 6V, 12V, 18V, or 24V battery
-+	 * respectively.
-+	 */
-+	chem_type = ltc4162l_get_chem_type(info);
-+	switch (chem_type) {
-+	case ltc4162_lad ... ltc4162_fst:
-+		regval *= 1924;
-+		regval *= ltc4162l_get_cell_count(info);
-+		regval /= 10;
-+		val->intval = regval;
- 
--	return 0;
-+		return 0;
-+	case ltc4162_sst ... ltc4162_sad:
-+		regval *= 3848;
-+		regval *= ltc4162l_get_cell_count(info) / 2;
-+		regval /= 10;
-+		val->intval = regval;
-+
-+		return 0;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ltc4015_get_vbat(struct ltc4162l_info *info,
-+			    unsigned int reg,
-+			    union power_supply_propval *val)
-+{
-+	unsigned int regval, chem_type;
-+	int ret;
-+
-+	ret = regmap_read(info->regmap, reg, &regval);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * cell count x scaling factor
-+	 * ltc4015 lead-acid fixed and lead-acid programmable corresponds to
-+	 * 0x7 and 0x8 chem respectively
-+	 */
-+	chem_type = ltc4162l_get_chem_type(info);
-+	switch (chem_type) {
-+	case ltc4162_lad ... ltc4162_fst:
-+		regval *= 192264;
-+		regval *= ltc4162l_get_cell_count(info);
-+		regval /= 1000;
-+		val->intval = regval;
-+
-+		return 0;
-+	case ltc4162_sst - 1 ... ltc4162_sad - 1:
-+		regval *= 128176;
-+		regval *= ltc4162l_get_cell_count(info);
-+		regval /= 1000;
-+		val->intval = regval;
-+
-+		return 0;
-+	default:
-+		return -EINVAL;
-+	}
- }
- 
- static int ltc4162l_get_ibat(struct ltc4162l_info *info,
- 			     union power_supply_propval *val)
- {
-+	const struct ltc4162l_chip_info *chip_info = info->chip_info;
- 	unsigned int regval;
- 	int ret;
- 
-@@ -249,9 +356,8 @@ static int ltc4162l_get_ibat(struct ltc4162l_info *info,
- 	if (ret)
- 		return ret;
- 
--	/* Signed 16-bit number, 1.466μV / RSNSB amperes/LSB. */
- 	ret = (s16)(regval & 0xFFFF);
--	val->intval = 100 * mult_frac(ret, 14660, (int)info->rsnsb);
-+	val->intval = mult_frac(ret, chip_info->ibat_resolution_uv, info->rsnsb);
- 
- 	return 0;
- }
-@@ -260,6 +366,7 @@ static int ltc4162l_get_ibat(struct ltc4162l_info *info,
- static int ltc4162l_get_input_voltage(struct ltc4162l_info *info,
- 				      union power_supply_propval *val)
- {
-+	const struct ltc4162l_chip_info *chip_info = info->chip_info;
- 	unsigned int regval;
- 	int ret;
- 
-@@ -267,8 +374,7 @@ static int ltc4162l_get_input_voltage(struct ltc4162l_info *info,
- 	if (ret)
- 		return ret;
- 
--	/* 1.649mV/LSB */
--	val->intval =  regval * 1694;
-+	val->intval =  regval * chip_info->vin_resolution_mv;
- 
- 	return 0;
- }
-@@ -276,6 +382,7 @@ static int ltc4162l_get_input_voltage(struct ltc4162l_info *info,
- static int ltc4162l_get_input_current(struct ltc4162l_info *info,
- 				      union power_supply_propval *val)
- {
-+	const struct ltc4162l_chip_info *chip_info = info->chip_info;
- 	unsigned int regval;
- 	int ret;
- 
-@@ -283,11 +390,9 @@ static int ltc4162l_get_input_current(struct ltc4162l_info *info,
- 	if (ret)
- 		return ret;
- 
--	/* Signed 16-bit number, 1.466μV / RSNSI amperes/LSB. */
- 	ret = (s16)(regval & 0xFFFF);
--	ret *= 14660;
-+	ret *= chip_info->ibat_resolution_uv;
- 	ret /= info->rsnsi;
--	ret *= 100;
- 
- 	val->intval = ret;
- 
-@@ -336,7 +441,7 @@ static int ltc4162l_get_vcharge(struct ltc4162l_info *info,
- 				unsigned int reg,
- 				union power_supply_propval *val)
- {
--	unsigned int regval;
-+	unsigned int regval, chem_type;
- 	int ret;
- 	u32 voltage;
- 
-@@ -348,37 +453,177 @@ static int ltc4162l_get_vcharge(struct ltc4162l_info *info,
- 
- 	/*
- 	 * charge voltage setting can be computed from
--	 * cell_count × (vcharge_setting × 12.5mV + 3.8125V)
--	 * where vcharge_setting ranges from 0 to 31 (4.2V max).
-+	 * cell_count × (vcharge_setting × a + b)
-+	 * where vcharge_setting ranges from 0 to c (d).
-+	 * for ltc4162l: a = 12.5mV , b = 3.8125V, c = 31, d = 4.2Vmax
-+	 * for ltc4162f: a = 12.5mV , b = 3.4125V, c = 31, d = 3.8Vmax
-+	 *
-+	 * for ltc4162s, the charge voltage setting can be computed from
-+	 * N x (vcharge_setting x 28.571mV + 6.0V)
-+	 * where N is 1, 2, 3, or 4 for 6V, 12V, 18V, or 24V battery respectively,
-+	 * and vcharge_setting ranges from 0 to 31
- 	 */
--	voltage = 3812500 + (regval * 12500);
--	voltage *= ltc4162l_get_cell_count(info);
--	val->intval = voltage;
-+	chem_type = ltc4162l_get_chem_type(info);
-+	switch (chem_type) {
-+	case ltc4162_lad ... ltc4162_l40:
-+		voltage = 3812500 + (regval * 12500);
-+		voltage *= ltc4162l_get_cell_count(info);
-+		val->intval = voltage;
- 
--	return 0;
-+		return 0;
-+	case ltc4162_fad ... ltc4162_fst:
-+		voltage = 3412500 + (regval * 12500);
-+		voltage *= ltc4162l_get_cell_count(info);
-+		val->intval = voltage;
-+
-+		return 0;
-+	case ltc4162_sst ... ltc4162_sad:
-+		voltage = 6000000 + (regval * 28571);
-+		voltage *= ltc4162l_get_cell_count(info) / 2;
-+		val->intval = voltage;
-+
-+		return 0;
-+	default:
-+		return -EINVAL;
-+	}
- }
- 
--static int ltc4162l_set_vcharge(struct ltc4162l_info *info,
--				unsigned int reg,
--				unsigned int value)
-+static int ltc4015_get_vcharge(struct ltc4162l_info *info,
-+			       unsigned int reg,
-+			       union power_supply_propval *val)
- {
--	u8 cell_count = ltc4162l_get_cell_count(info);
-+	unsigned int regval, chem_type;
-+	int ret;
-+	u32 voltage;
-+
-+	ret = regmap_read(info->regmap, reg, &regval);
-+	if (ret)
-+		return ret;
- 
--	if (!cell_count)
--		return -EBUSY; /* Not available yet, try again later */
-+	regval &= BIT(6) - 1; /* Only the lower 5 bits */
-+
-+	/*
-+	 * charge voltage setting can be computed from:
-+	 * cell_count × (vcharge_setting × a + b)
-+	 * where vcharge_setting ranges from 0 to c (d).
-+	 * Li-Ion: a = 1/80V, b = 3.8125V, c = 31, d = 4.2Vmax
-+	 * LiFePO4: a = 1/80V, b = 3.4125V, c = 31, d = 3.8Vmax
-+	 * Lead Acid: a = 1/105V, b = 2V, c = 35, d = 2.6Vmax
-+	 */
-+	chem_type = ltc4162l_get_chem_type(info);
-+	switch (chem_type) {
-+	case ltc4162_lad ... ltc4162_l40:
-+		voltage = 3812500 + (regval * 12500);
-+		voltage *= ltc4162l_get_cell_count(info);
-+		val->intval = voltage;
-+
-+		return 0;
-+	case ltc4162_fad ... ltc4162_fst:
-+		voltage = 3412500 + (regval * 12500);
-+		voltage *= ltc4162l_get_cell_count(info);
-+		val->intval = voltage;
-+
-+		return 0;
-+	case ltc4162_sst - 1 ... ltc4162_sad - 1:
-+		voltage = 2000000 + mult_frac(regval, 1000000, 105);
-+		voltage *= ltc4162l_get_cell_count(info);
-+		val->intval = voltage;
- 
-+		return 0;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ltc4162l_vcharge(unsigned int base_voltage,
-+			    unsigned int scale_factor,
-+			    unsigned int range,
-+			    unsigned int value,
-+			    u8 cell_count)
-+{
- 	value /= cell_count;
- 
--	if (value < 3812500)
-+	if (value < base_voltage)
- 		return -EINVAL;
- 
--	value -= 3812500;
--	value /= 12500;
-+	value -= base_voltage;
-+	value /= scale_factor;
- 
--	if (value > 31)
-+	if (value > range)
- 		return -EINVAL;
- 
--	return regmap_write(info->regmap, reg, value);
-+	return value;
-+}
-+
-+static int ltc4162l_set_vcharge(struct ltc4162l_info *info,
-+				unsigned int reg,
-+				unsigned int value)
-+{
-+	unsigned int chem_type;
-+	u8 cell_count;
-+
-+	chem_type = ltc4162l_get_chem_type(info);
-+	switch (chem_type) {
-+	case ltc4162_lad ... ltc4162_l40:
-+		cell_count = ltc4162l_get_cell_count(info);
-+		if (!cell_count)
-+			return -EBUSY;
-+
-+		value = ltc4162l_vcharge(3812500, 12500, 31, value, cell_count);
-+		return regmap_write(info->regmap, reg, value);
-+	case ltc4162_fad ... ltc4162_fst:
-+		cell_count = ltc4162l_get_cell_count(info);
-+		if (!cell_count)
-+			return -EBUSY;
-+
-+		value = ltc4162l_vcharge(3412500, 12500, 31, value, cell_count);
-+		return regmap_write(info->regmap, reg, value);
-+	case ltc4162_sst ... ltc4162_sad:
-+		cell_count = ltc4162l_get_cell_count(info) / 2;
-+		if (!cell_count)
-+			return -EBUSY;
-+
-+		value = ltc4162l_vcharge(6000000, 28571, 31, value, cell_count);
-+		return regmap_write(info->regmap, reg, value);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ltc4015_set_vcharge(struct ltc4162l_info *info,
-+			       unsigned int reg,
-+			       unsigned int value)
-+{
-+	unsigned int chem_type;
-+	u8 cell_count;
-+
-+	chem_type = ltc4162l_get_chem_type(info);
-+	switch (chem_type) {
-+	case ltc4162_lad ... ltc4162_l40:
-+		cell_count = ltc4162l_get_cell_count(info);
-+		if (!cell_count)
-+			return -EBUSY;
-+
-+		value = ltc4162l_vcharge(3812500, 12500, 31, value, cell_count);
-+		return regmap_write(info->regmap, reg, value);
-+	case ltc4162_fad ... ltc4162_fst:
-+		cell_count = ltc4162l_get_cell_count(info);
-+		if (!cell_count)
-+			return -EBUSY;
-+
-+		value = ltc4162l_vcharge(3412500, 12500, 31, value, cell_count);
-+		return regmap_write(info->regmap, reg, value);
-+	case ltc4162_sst - 1 ... ltc4162_sad - 1:
-+		cell_count = ltc4162l_get_cell_count(info);
-+		if (!cell_count)
-+			return -EBUSY;
-+
-+		value = ltc4162l_vcharge(2000000, 1000000 / 105, 35,
-+					 value, cell_count);
-+		return regmap_write(info->regmap, reg, value);
-+	default:
-+		return -EINVAL;
-+	}
- }
- 
- static int ltc4162l_get_iin_limit_dac(struct ltc4162l_info *info,
-@@ -437,9 +682,30 @@ static int ltc4162l_get_die_temp(struct ltc4162l_info *info,
- 	return 0;
- }
- 
-+static int ltc4015_get_die_temp(struct ltc4162l_info *info,
-+				union power_supply_propval *val)
-+{
-+	unsigned int regval;
-+	int ret;
-+
-+	ret = regmap_read(info->regmap, LTC4162L_DIE_TEMPERATURE, &regval);
-+	if (ret)
-+		return ret;
-+
-+	/* (die_temp - 12010) / 45.6°C */
-+	ret = (s16)(regval & 0xFFFF);
-+	ret -= 12010;
-+	ret *= 1000;
-+	ret /= 456;
-+	val->intval = ret;
-+
-+	return 0;
-+}
-+
- static int ltc4162l_get_term_current(struct ltc4162l_info *info,
- 				     union power_supply_propval *val)
- {
-+	const struct ltc4162l_chip_info *chip_info = info->chip_info;
- 	unsigned int regval;
- 	int ret;
- 
-@@ -457,10 +723,9 @@ static int ltc4162l_get_term_current(struct ltc4162l_info *info,
- 	if (ret)
- 		return ret;
- 
--	/* 1.466μV / RSNSB amperes/LSB */
--	regval *= 14660u;
-+	regval *= chip_info->ibat_resolution_uv;
- 	regval /= info->rsnsb;
--	val->intval = 100 * regval;
-+	val->intval = regval;
- 
- 	return 0;
- }
-@@ -534,10 +799,11 @@ static ssize_t vbat_show(struct device *dev,
- {
- 	struct power_supply *psy = to_power_supply(dev);
- 	struct ltc4162l_info *info = power_supply_get_drvdata(psy);
-+	const struct ltc4162l_chip_info *chip_info = info->chip_info;
- 	union power_supply_propval val;
- 	int ret;
- 
--	ret = ltc4162l_get_vbat(info, LTC4162L_VBAT, &val);
-+	ret = chip_info->get_vbat(info, LTC4162L_VBAT, &val);
- 	if (ret)
- 		return ret;
- 
-@@ -550,10 +816,11 @@ static ssize_t vbat_avg_show(struct device *dev,
- {
- 	struct power_supply *psy = to_power_supply(dev);
- 	struct ltc4162l_info *info = power_supply_get_drvdata(psy);
-+	const struct ltc4162l_chip_info *chip_info = info->chip_info;
- 	union power_supply_propval val;
- 	int ret;
- 
--	ret = ltc4162l_get_vbat(info, LTC4162L_VBAT_FILT, &val);
-+	ret = chip_info->get_vbat(info, LTC4162L_VBAT_FILT, &val);
- 	if (ret)
- 		return ret;
- 
-@@ -589,7 +856,8 @@ static ssize_t force_telemetry_show(struct device *dev,
- 	if (ret)
- 		return ret;
- 
--	return sysfs_emit(buf, "%u\n", regval & BIT(2) ? 1 : 0);
-+	return sysfs_emit(buf, "%u\n", regval &
-+			  info->chip_info->telemetry_mask ? 1 : 0);
- }
- 
- static ssize_t force_telemetry_store(struct device *dev,
-@@ -607,7 +875,8 @@ static ssize_t force_telemetry_store(struct device *dev,
- 		return ret;
- 
- 	ret = regmap_update_bits(info->regmap, LTC4162L_CONFIG_BITS_REG,
--				 BIT(2), value ? BIT(2) : 0);
-+				 info->chip_info->telemetry_mask,
-+				 value ? info->chip_info->telemetry_mask : 0);
- 	if (ret < 0)
- 		return ret;
- 
-@@ -681,6 +950,7 @@ static int ltc4162l_get_property(struct power_supply *psy,
- 				 union power_supply_propval *val)
- {
- 	struct ltc4162l_info *info = power_supply_get_drvdata(psy);
-+	const struct ltc4162l_chip_info *chip_info = info->chip_info;
- 
- 	switch (psp) {
- 	case POWER_SUPPLY_PROP_STATUS:
-@@ -702,15 +972,13 @@ static int ltc4162l_get_property(struct power_supply *psy,
- 		return ltc4162l_get_icharge(info,
- 				LTC4162L_CHARGE_CURRENT_SETTING, val);
- 	case POWER_SUPPLY_PROP_CONSTANT_CHARGE_VOLTAGE:
--		return ltc4162l_get_vcharge(info,
--				LTC4162L_VCHARGE_DAC, val);
-+		return chip_info->get_vcharge(info, LTC4162L_VCHARGE_DAC, val);
- 	case POWER_SUPPLY_PROP_CONSTANT_CHARGE_VOLTAGE_MAX:
--		return ltc4162l_get_vcharge(info,
--				LTC4162L_VCHARGE_SETTING, val);
-+		return chip_info->get_vcharge(info, LTC4162L_VCHARGE_SETTING, val);
- 	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
- 		return ltc4162l_get_iin_limit_dac(info, val);
- 	case POWER_SUPPLY_PROP_TEMP:
--		return ltc4162l_get_die_temp(info, val);
-+		return chip_info->get_die_temp(info, val);
- 	case POWER_SUPPLY_PROP_CHARGE_TERM_CURRENT:
- 		return ltc4162l_get_term_current(info, val);
- 	default:
-@@ -772,7 +1040,6 @@ static enum power_supply_property ltc4162l_properties[] = {
- };
- 
- static const struct power_supply_desc ltc4162l_desc = {
--	.name		= "ltc4162-l",
- 	.type		= POWER_SUPPLY_TYPE_MAINS,
- 	.properties	= ltc4162l_properties,
- 	.num_properties	= ARRAY_SIZE(ltc4162l_properties),
-@@ -781,6 +1048,50 @@ static const struct power_supply_desc ltc4162l_desc = {
- 	.property_is_writeable = ltc4162l_property_is_writeable,
- };
- 
-+static const struct ltc4162l_chip_info ltc4162l_chip_info = {
-+	.name = "ltc4162-l",
-+	.get_vbat = ltc4162l_get_vbat,
-+	.get_vcharge = ltc4162l_get_vcharge,
-+	.set_vcharge = ltc4162l_set_vcharge,
-+	.get_die_temp = ltc4162l_get_die_temp,
-+	.ibat_resolution_uv = 1466000,
-+	.vin_resolution_mv = 1649,
-+	.telemetry_mask = BIT(2),
-+};
-+
-+static const struct ltc4162l_chip_info ltc4162f_chip_info = {
-+	.name = "ltc4162-f",
-+	.get_vbat = ltc4162l_get_vbat,
-+	.get_vcharge = ltc4162l_get_vcharge,
-+	.set_vcharge = ltc4162l_set_vcharge,
-+	.get_die_temp = ltc4162l_get_die_temp,
-+	.ibat_resolution_uv = 1466000,
-+	.vin_resolution_mv = 1649,
-+	.telemetry_mask = BIT(2),
-+};
-+
-+static const struct ltc4162l_chip_info ltc4162s_chip_info = {
-+	.name = "ltc4162-s",
-+	.get_vbat = ltc4162l_get_vbat,
-+	.get_vcharge = ltc4162l_get_vcharge,
-+	.set_vcharge = ltc4162l_set_vcharge,
-+	.get_die_temp = ltc4162l_get_die_temp,
-+	.ibat_resolution_uv = 1466000,
-+	.vin_resolution_mv = 1649,
-+	.telemetry_mask = BIT(2),
-+};
-+
-+static const struct ltc4162l_chip_info ltc4015_chip_info = {
-+	.name = "ltc4015",
-+	.get_vbat = ltc4015_get_vbat,
-+	.get_vcharge = ltc4015_get_vcharge,
-+	.set_vcharge = ltc4015_set_vcharge,
-+	.get_die_temp = ltc4015_get_die_temp,
-+	.ibat_resolution_uv = 1464870,
-+	.vin_resolution_mv = 1648,
-+	.telemetry_mask = BIT(4),
-+};
-+
- static bool ltc4162l_is_writeable_reg(struct device *dev, unsigned int reg)
- {
- 	/* all registers up to this one are writeable */
-@@ -825,6 +1136,8 @@ static int ltc4162l_probe(struct i2c_client *client)
- 	struct device *dev = &client->dev;
- 	struct ltc4162l_info *info;
- 	struct power_supply_config ltc4162l_config = {};
-+	struct power_supply_desc *desc;
-+	const struct ltc4162l_chip_info *chip_info;
- 	u32 value;
- 	int ret;
- 
-@@ -839,6 +1152,12 @@ static int ltc4162l_probe(struct i2c_client *client)
- 	info->client = client;
- 	i2c_set_clientdata(client, info);
- 
-+	chip_info = i2c_get_match_data(client);
-+	if (!chip_info)
-+		return -ENODEV;
-+
-+	info->chip_info = chip_info;
-+
- 	info->regmap = devm_regmap_init_i2c(client, &ltc4162l_regmap_config);
- 	if (IS_ERR(info->regmap)) {
- 		dev_err(dev, "Failed to initialize register map\n");
-@@ -870,8 +1189,15 @@ static int ltc4162l_probe(struct i2c_client *client)
- 	ltc4162l_config.drv_data = info;
- 	ltc4162l_config.attr_grp = ltc4162l_attr_groups;
- 
--	info->charger = devm_power_supply_register(dev, &ltc4162l_desc,
--						   &ltc4162l_config);
-+	/* Duplicate the default descriptor to set name based on chip_info. */
-+	desc = devm_kmemdup(dev, &ltc4162l_desc,
-+			    sizeof(struct power_supply_desc), GFP_KERNEL);
-+	if (!desc)
-+		return -ENOMEM;
-+
-+	desc->name = chip_info->name;
-+
-+	info->charger = devm_power_supply_register(dev, desc, &ltc4162l_config);
- 	if (IS_ERR(info->charger)) {
- 		dev_err(dev, "Failed to register charger\n");
- 		return PTR_ERR(info->charger);
-@@ -903,14 +1229,20 @@ static void ltc4162l_alert(struct i2c_client *client,
- }
- 
- static const struct i2c_device_id ltc4162l_i2c_id_table[] = {
--	{ "ltc4162-l" },
-+	{ "ltc4162-l", (kernel_ulong_t)&ltc4162l_chip_info },
-+	{ "ltc4162-f", (kernel_ulong_t)&ltc4162f_chip_info },
-+	{ "ltc4162-s", (kernel_ulong_t)&ltc4162s_chip_info },
-+	{ "ltc4015", (kernel_ulong_t)&ltc4015_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, ltc4162l_i2c_id_table);
- 
- static const struct of_device_id ltc4162l_of_match[] __maybe_unused = {
--	{ .compatible = "lltc,ltc4162-l", },
--	{ },
-+	{ .compatible = "lltc,ltc4162-l", .data = &ltc4162l_chip_info },
-+	{ .compatible = "lltc,ltc4162-f", .data = &ltc4162f_chip_info },
-+	{ .compatible = "lltc,ltc4162-s", .data = &ltc4162s_chip_info },
-+	{ .compatible = "lltc,ltc4015", .data = &ltc4015_chip_info },
-+	{ }
- };
- MODULE_DEVICE_TABLE(of, ltc4162l_of_match);
- 
--- 
-2.34.1
+Guenter
 
 
