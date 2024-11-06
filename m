@@ -1,90 +1,130 @@
-Return-Path: <devicetree+bounces-119304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 399BF9BDF4B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 08:23:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B731C9BDF53
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 08:24:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6006B235DA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 07:23:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C0C8284F4B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 07:24:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79CDA1BDAA8;
-	Wed,  6 Nov 2024 07:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 792261CC175;
+	Wed,  6 Nov 2024 07:24:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="C6Qo8LJX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCD1917995E;
-	Wed,  6 Nov 2024 07:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDFFB192580;
+	Wed,  6 Nov 2024 07:24:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730877792; cv=none; b=b2sTVe+I9Bsfwmmw2w2jG54zeXsY8cjIrPP/51mwpLCwnFw5gvcgzF6Fi/DBnlxuzeUozA3ktirPNi+LvBCvo/ZY1hGjtGz4pOtPRMp+T4ZZ0o//dz+V7KRdYoLRLEaLpztjpvtrB0PyZ+pqDX9CPjaJ+/MNcmHFm+yObq9uEto=
+	t=1730877859; cv=none; b=MpD7ECtOi8lbp50q41bxbx8gBiiD8K6F2zFNqtpGPSW8tT0v1V5wPk8FmAr2WU8vin//LsPmIrQjb1xMZIXSGpRxYX8XB2YFpcHxEJvoi2nJz21Nob4DbJhFCx9SP0QxMu/gE8BFvpTvzDQzD1KeBKeEN2Dukfw6bRtV89VcUOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730877792; c=relaxed/simple;
-	bh=x6tAi3iztnRg7xJSW0CeMk6+NpO+0l0VjsBhfzFqZFM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PIqL0NxQaCvUsuMNA51x3augFCLaG4TmvYuwszgay1r0hMWAE39AYzz0ix8gMVCosv8+vwgJHyB4SYdUV5LzgDKD1CMLBcwwiKyOoxcbXnVmT+f1EIbqv3S5AotPvwuWinGwx5xLabvFo0aBnDjb0i8wz3AT8wQDBQ1HD6yrLM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AF7671063;
-	Tue,  5 Nov 2024 23:23:39 -0800 (PST)
-Received: from usa.arm.com (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id AA44D3F66E;
-	Tue,  5 Nov 2024 23:23:07 -0800 (PST)
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: linux-arm-kernel@lists.infradead.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	arm-scmi@vger.kernel.org,
-	justin.chen@broadcom.com,
-	opendmb@gmail.com,
-	kapil.hali@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v4 0/2] Support for I/O width within ARM SCMI SHMEM
-Date: Wed,  6 Nov 2024 07:23:04 +0000
-Message-Id: <173087767267.3975373.2771980370736261734.b4-ty@arm.com>
+	s=arc-20240116; t=1730877859; c=relaxed/simple;
+	bh=ICkU33ZuvTHMbJPuStnFSL5tudikUcEnea5QF+5Ao2Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KLqw+Ixvcz+AZcQX6bggBs8LNfOVK5M1GDyAgB2/t2Iyn3/CWImdWtSP9ipQV0ABujQ7sbcJY3CbDqdoTkMtFqh0aTMSGE+j9s9GZMbX3fEUbV5YnKKSgYZeuj1mEn7ooseJkXYW1ugOH4RSDnirZBloBKa9bpQRAF1jzbN4RTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=C6Qo8LJX; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A662pIj024488;
+	Wed, 6 Nov 2024 07:24:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=itJYgGhc6H+lPelkky49wCyjosmLYrewr5s
+	RFxv5M3o=; b=C6Qo8LJXGvoQRVQqaGfWOJ6zB6Su+vxiJs/2EOJaSOqJlcq/p4f
+	ocXyYnJbVkESojmEmPOTHhonERkNeiF2SVbCh00CGkoCeG/GOSY918j3DTTwwNeB
+	wLLjerhUdU2BX0JdtMCXo7jU6FKSqlZ6ssfEVjsqx5shyCFKwMBokYqP39nFo2jO
+	y66LNA//S4MpqT+Q+5LH4gPr/SsqUsWxoS9jK2YWi+pbxFe6MeGZNUTlWajq8FvC
+	/K25qX8v6HeHO7Y7pLSKfzwvwPQuMurimnfmyWdSXxyugq3k/1sPSCfhGCLCBk6x
+	Z2WagcYRr10zvE4Lo8wZE+BZ0tbpj1w+HAw==
+Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42r2ugr7fj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 06 Nov 2024 07:24:13 +0000 (GMT)
+Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 4A67OAwU025643;
+	Wed, 6 Nov 2024 07:24:10 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 42nd5ktsg7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 06 Nov 2024 07:24:10 +0000
+Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4A67OAZ9025627;
+	Wed, 6 Nov 2024 07:24:10 GMT
+Received: from cse-cd02-lnx.ap.qualcomm.com (cse-cd02-lnx.qualcomm.com [10.64.75.246])
+	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 4A67O9Ta025622
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 06 Nov 2024 07:24:10 +0000
+Received: by cse-cd02-lnx.ap.qualcomm.com (Postfix, from userid 4571896)
+	id 3A561159C; Wed,  6 Nov 2024 15:24:08 +0800 (CST)
+From: Yuanjie Yang <quic_yuanjiey@quicinc.com>
+To: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, bhupesh.sharma@linaro.org, andersson@kernel.org,
+        konradybcio@kernel.org
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        quic_tingweiz@quicinc.com, quic_yuanjiey@quicinc.com
+Subject: [PATCH v2 0/2] Enable emmc and SD on QCS615
+Date: Wed,  6 Nov 2024 15:23:41 +0800
+Message-Id: <20241106072343.2070933-1-quic_yuanjiey@quicinc.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240827182450.3608307-1-florian.fainelli@broadcom.com>
-References: <20240827182450.3608307-1-florian.fainelli@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: j22MSu0qUuoGf_BdjosQz7h0rJyI9vVh
+X-Proofpoint-GUID: j22MSu0qUuoGf_BdjosQz7h0rJyI9vVh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 mlxscore=0 suspectscore=0 priorityscore=1501 phishscore=0
+ clxscore=1015 impostorscore=0 malwarescore=0 bulkscore=0 mlxlogscore=999
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411060059
 
-On Tue, 27 Aug 2024 11:24:48 -0700, Florian Fainelli wrote:
-> We just got our hands on hardware that only supports 32-bit access width
-> to the SRAM being used. This patch series adds support for the
-> 'reg-io-width' property and allows us to specify the exact access width
-> that the SRAM supports.
-> 
-> Changes in v4:
-> 
-> [...]
+Add SDHC1 and SDHC2 support to the QCS615 Ride platform. The SDHC1
+and SDHC2 of QCS615 are derived from SM6115. Include the relevant
+binding documents accordingly. Additionally, configure SDHC1-related
+and SDHC2-related opp, power, and interconnect settings in the device
+tree.
 
-(with some trivial rebasing)
+Signed-off-by: Yuanjie Yang <quic_yuanjiey@quicinc.com>
+---
+This patch series depends on below patch series:
+https://lore.kernel.org/all/20241104-add_initial_support_for_qcs615-v5-0-9dde8d7b80b0@quicinc.com/
+https://lore.kernel.org/all/20241105032107.9552-1-quic_qqzhou@quicinc.com/
 
-Applied to sudeep.holla/linux (for-next/scmi/updates), thanks!
+Changes in v2:
+- Improve the commit messages and cover letter
+- Remove applied patches 1
+- Pad sdhc_1 node and sdhc_2 node register addresses to 8 hex digits
+- Adjust sdhc_1 node and sdhc_2 node register addresses to hexadecimal
+- Modify sdhc_2 vqmmc-supply incorrect power configuration
+- Link to v1: https://lore.kernel.org/all/20241023092708.604195-1-quic_yuanjiey@quicinc.com/
 
-[1/2] dt-bindings: sram: Document reg-io-width property
-      https://git.kernel.org/sudeep.holla/c/14b2157a9c14
-[2/2] firmware: arm_scmi: Support 'reg-io-width' property for shared memory
-      https://git.kernel.org/sudeep.holla/c/2cd7f3db25fe
+---
+Yuanjie Yang (2):
+  arm64: dts: qcom: qcs615: add SDHC1 and SDHC2
+  arm64: dts: qcom: qcs615-ride: Enable SDHC1 and SDHC2
 
---
-Regards,
-Sudeep
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts |  31 ++++
+ arch/arm64/boot/dts/qcom/qcs615.dtsi     | 198 +++++++++++++++++++++++
+ 2 files changed, 229 insertions(+)
+
+-- 
+2.34.1
 
 
