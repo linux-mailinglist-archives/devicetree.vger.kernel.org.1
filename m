@@ -1,252 +1,122 @@
-Return-Path: <devicetree+bounces-119364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA6A89BE101
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 09:33:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84EF19BE140
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 09:43:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A80F1C2321C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 08:33:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20E23B24CD4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 08:43:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 590F41D3566;
-	Wed,  6 Nov 2024 08:33:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8761D61A7;
+	Wed,  6 Nov 2024 08:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="sDM/n7i0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vRAecVAd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 600D318FC79;
-	Wed,  6 Nov 2024 08:33:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17551917CD;
+	Wed,  6 Nov 2024 08:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730881997; cv=none; b=sGrpiVnLUqU1yCw1yRgd8L/4bRdxKJvi+Ila2GmXshN4/MWNqm8ubEtRgKtozDwyDiPn/bgJhGTC65QWm3ecX/rpF8HFC1gh27v+kMtS2mtik2mD299cs5qxBKzBoBO8spGUcmoLY4CaePMygw0uHIsLQIhpXt4mM47t5czK+3w=
+	t=1730882602; cv=none; b=KolPzaU3yC/fsmiZ5KqQ7n8Ar0+Bu/a7wrsG2Wh+muKMHOwWmFB6p6eC8xHcsCghafx/t1dj8YFKjD7eYnEQq9ju18NmziTaWMqmWxlgHezNtHs06hx/3UEaO+RjjyT7yxnA7lZSj5wSmtH+8nekVTSQYs06fggKEqnci/6meoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730881997; c=relaxed/simple;
-	bh=l/J2r2gnvW8sHdlJg1SoSDEB5itJThkr63VOiSlCIRs=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RZ4qu3Yz7ZoyYFaOGywvkBUlazGENK02I6Q9VAWaMUn2a0Bzo16X7Z35G+GPINFtn+4gg8AzdoNmm2J7auKs8MeGS8jddOrY+I9OzqnMjbSKj/LMCuEUY9/EqjPDeEP6ZpsywoIE4TZUaaW7GoqWRdLOW3EtDmzdvl1jooTzyDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=sDM/n7i0; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1730881993;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=TmaL8PPJ/UHeiTUk6acBviC2uKf2V/Awig/1ks3o27s=;
-	b=sDM/n7i0llCDpO1gtMBjWsGXMbtUl8T1D+TNuuOKe7bk9Qyz65Y6Mwy+b46gNzf/IU0Oi+
-	zAKgjbLMPi++GYk4r00/dDzqZp8VFt2SrTl9G+7n5rTykhrWFr3qsuz04ceXAuIWmEPnUv
-	pz+/p32PyMrv7dM/LF3E0C5KYt6MIWZN6ojp0D04qA/NGV9XoxrjxbJKmJDFwyI6u69SQc
-	rvy/u4W2pfQF0OSD/KPK6MbwZXfWBGCTVc9Y8LMfBPp0jlTL0+Np0RHFhm14kKXu3ivSy9
-	9ixjBHohVratdR1BPcY14eX14SRq76V+0Jdp65XRnGd7+LPn+xumj/4Hgj1Jxw==
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	alchark@gmail.com,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Subject: [PATCH v2] arm64: dts: rockchip: Add OPP voltage ranges to RK3399 OP1 SoC dtsi
-Date: Wed,  6 Nov 2024 09:33:08 +0100
-Message-Id: <dbee35c002bda99e44f8533623d94f202a60da95.1730881777.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1730882602; c=relaxed/simple;
+	bh=w49LxhkG70KI0gN8j5DWZTrcBdUddq9fKfZsQP4gzwM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XFqBbuZyDgLGrdM5vALIdbKuSK4+IkEDp4aUqLS3z4j10E6DtM+7Ol7L1/79hrDwbZTtwi7CdcpDRvWkOUbgyj5FHqGExjogGJsBlX3/MOLVwI23aS7U3JmjhJh5C0gz775G8lG0txJcIzuBj4AArZBQZ4iPCLDy+CwMEV8kj3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vRAecVAd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED581C4CECD;
+	Wed,  6 Nov 2024 08:43:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730882601;
+	bh=w49LxhkG70KI0gN8j5DWZTrcBdUddq9fKfZsQP4gzwM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vRAecVAd+Flufp11ATsduPALAzLfhE0vyh0tPWoZSNODge6Bf9LOEx341C/TvSAMy
+	 t17nWcjztEyKHgN9Gy4kG+/FEMqQPHMYqml0GSPUpps0qfohsdB8yeCO0Q6dIvzQAn
+	 afjWi/fP7ggEq5QpRRBBVbpG1tKd8Ge7u+nIJ5Ii30gmdyuYsvg+qJTQUVqN7vD6zc
+	 MiT2prpxIH3JI91PRlgys73btYLX7KU/CVRYmyZX9y81BtCQKVbyIMSYcdotiv62lf
+	 wMeKgr7MTAU72r5gUUy+07Btq52PNJoh3OvU7WTMuxEcnwrVK9/9TetIW9kgqMtXhS
+	 6Kxq29TQ+6ovA==
+Date: Wed, 6 Nov 2024 09:43:18 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Lee Jones <lee@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, benjamin.larsson@genexis.eu,
+	ansuelsmth@gmail.com, linux-pwm@vger.kernel.org
+Subject: Re: (subset) [PATCH v9 4/6] dt-bindings: mfd: Add support for Airoha
+ EN7581 GPIO System Controller
+Message-ID: <ZyssJpR7xwbMzUsm@lore-desk>
+References: <20241023-en7581-pinctrl-v9-0-afb0cbcab0ec@kernel.org>
+ <20241023-en7581-pinctrl-v9-4-afb0cbcab0ec@kernel.org>
+ <173088099542.3237297.18018729158887853624.b4-ty@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Wx+Mvx1qg95x0q+u"
+Content-Disposition: inline
+In-Reply-To: <173088099542.3237297.18018729158887853624.b4-ty@kernel.org>
 
-Add support for voltage ranges to the CPU, GPU and DMC OPPs defined in the
-SoC dtsi for Rockchip OP1, as a variant of the Rockchip RK3399.  This may be
-useful if there are any OP1-based boards whose associated voltage regulators
-are unable to deliver the exact voltages; otherwise, it causes no functional
-changes to the resulting OPP voltages at runtime.
 
-These changes cannot cause stability issues or any kind of damage, because
-it's perfectly safe to use the highest voltage from an OPP group for each OPP
-in the same group.  The only possible negative effect of using higher voltages
-is wasted energy in form of some additionally generated heat.
+--Wx+Mvx1qg95x0q+u
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reported-by: Quentin Schulz <quentin.schulz@cherry.de>
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
----
+On Nov 06, Lee Jones wrote:
+> On Wed, 23 Oct 2024 01:20:04 +0200, Lorenzo Bianconi wrote:
+> > Add support for Airoha EN7581 GPIO System Controller which provide a
+> > register map for controlling the GPIO, pinctrl and PWM of the SoC via
+> > dedicated pinctrl and pwm child nodes.
+> >=20
+> >=20
+>=20
+> Applied, thanks!
+>=20
+> [4/6] dt-bindings: mfd: Add support for Airoha EN7581 GPIO System Control=
+ler
+>       commit: f49f37f3cfe1482d4dc77d26f3e8c38eab630d52
+>=20
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+>=20
 
-Notes:
-    Changes in v2:
-      - Fixed one wrong application of a vim macro [1] that somehow slipped
-        through the cracks, as pointed out by Alexey [2]
-    
-    Link to v1: https://lore.kernel.org/linux-rockchip/806d5e2a07ae0c81d9907bbe8bec4e3e1138b392.1730838347.git.dsimic@manjaro.org/T/#u
-    
-    [1] https://lore.kernel.org/linux-rockchip/0c237c49fae03bdad99be04053285ea2@manjaro.org/
-    [2] https://lore.kernel.org/linux-rockchip/CABjd4Yyt6WiY5E5DbyjnboFvsTpp33dydkGMF7AwMB9m7bfX6A@mail.gmail.com/
+Hi Lee,
 
- arch/arm64/boot/dts/rockchip/rk3399-op1.dtsi | 52 ++++++++++----------
- 1 file changed, 26 insertions(+), 26 deletions(-)
+according to my understanding this patch has been already applied by Linus
+here:
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-op1.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-op1.dtsi
-index b24bff511513..c4f4f1ff6117 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-op1.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-op1.dtsi
-@@ -12,125 +12,125 @@ cluster0_opp: opp-table-0 {
- 
- 		opp00 {
- 			opp-hz = /bits/ 64 <408000000>;
--			opp-microvolt = <800000>;
-+			opp-microvolt = <800000 800000 1150000>;
- 			clock-latency-ns = <40000>;
- 		};
- 		opp01 {
- 			opp-hz = /bits/ 64 <600000000>;
--			opp-microvolt = <825000>;
-+			opp-microvolt = <825000 825000 1150000>;
- 		};
- 		opp02 {
- 			opp-hz = /bits/ 64 <816000000>;
--			opp-microvolt = <850000>;
-+			opp-microvolt = <850000 850000 1150000>;
- 		};
- 		opp03 {
- 			opp-hz = /bits/ 64 <1008000000>;
--			opp-microvolt = <900000>;
-+			opp-microvolt = <900000 900000 1150000>;
- 		};
- 		opp04 {
- 			opp-hz = /bits/ 64 <1200000000>;
--			opp-microvolt = <975000>;
-+			opp-microvolt = <975000 975000 1150000>;
- 		};
- 		opp05 {
- 			opp-hz = /bits/ 64 <1416000000>;
--			opp-microvolt = <1100000>;
-+			opp-microvolt = <1100000 1100000 1150000>;
- 		};
- 		opp06 {
- 			opp-hz = /bits/ 64 <1512000000>;
--			opp-microvolt = <1150000>;
-+			opp-microvolt = <1150000 1150000 1150000>;
- 		};
- 	};
- 
- 	cluster1_opp: opp-table-1 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
- 		opp00 {
- 			opp-hz = /bits/ 64 <408000000>;
--			opp-microvolt = <800000>;
-+			opp-microvolt = <800000 800000 1250000>;
- 			clock-latency-ns = <40000>;
- 		};
- 		opp01 {
- 			opp-hz = /bits/ 64 <600000000>;
--			opp-microvolt = <800000>;
-+			opp-microvolt = <800000 800000 1250000>;
- 		};
- 		opp02 {
- 			opp-hz = /bits/ 64 <816000000>;
--			opp-microvolt = <825000>;
-+			opp-microvolt = <825000 825000 1250000>;
- 		};
- 		opp03 {
- 			opp-hz = /bits/ 64 <1008000000>;
--			opp-microvolt = <850000>;
-+			opp-microvolt = <850000 850000 1250000>;
- 		};
- 		opp04 {
- 			opp-hz = /bits/ 64 <1200000000>;
--			opp-microvolt = <900000>;
-+			opp-microvolt = <900000 900000 1250000>;
- 		};
- 		opp05 {
- 			opp-hz = /bits/ 64 <1416000000>;
--			opp-microvolt = <975000>;
-+			opp-microvolt = <975000 975000 1250000>;
- 		};
- 		opp06 {
- 			opp-hz = /bits/ 64 <1608000000>;
--			opp-microvolt = <1050000>;
-+			opp-microvolt = <1050000 1050000 1250000>;
- 		};
- 		opp07 {
- 			opp-hz = /bits/ 64 <1800000000>;
--			opp-microvolt = <1150000>;
-+			opp-microvolt = <1150000 1150000 1250000>;
- 		};
- 		opp08 {
- 			opp-hz = /bits/ 64 <2016000000>;
--			opp-microvolt = <1250000>;
-+			opp-microvolt = <1250000 1250000 1250000>;
- 		};
- 	};
- 
- 	gpu_opp_table: opp-table-2 {
- 		compatible = "operating-points-v2";
- 
- 		opp00 {
- 			opp-hz = /bits/ 64 <200000000>;
--			opp-microvolt = <800000>;
-+			opp-microvolt = <800000 800000 1075000>;
- 		};
- 		opp01 {
- 			opp-hz = /bits/ 64 <297000000>;
--			opp-microvolt = <800000>;
-+			opp-microvolt = <800000 800000 1075000>;
- 		};
- 		opp02 {
- 			opp-hz = /bits/ 64 <400000000>;
--			opp-microvolt = <825000>;
-+			opp-microvolt = <825000 825000 1075000>;
- 		};
- 		opp03 {
- 			opp-hz = /bits/ 64 <500000000>;
--			opp-microvolt = <850000>;
-+			opp-microvolt = <850000 850000 1075000>;
- 		};
- 		opp04 {
- 			opp-hz = /bits/ 64 <600000000>;
--			opp-microvolt = <925000>;
-+			opp-microvolt = <925000 925000 1075000>;
- 		};
- 		opp05 {
- 			opp-hz = /bits/ 64 <800000000>;
--			opp-microvolt = <1075000>;
-+			opp-microvolt = <1075000 1075000 1075000>;
- 		};
- 	};
- 
- 	dmc_opp_table: opp-table-3 {
- 		compatible = "operating-points-v2";
- 
- 		opp00 {
- 			opp-hz = /bits/ 64 <400000000>;
--			opp-microvolt = <900000>;
-+			opp-microvolt = <900000 900000 925000>;
- 		};
- 		opp01 {
- 			opp-hz = /bits/ 64 <666000000>;
--			opp-microvolt = <900000>;
-+			opp-microvolt = <900000 900000 925000>;
- 		};
- 		opp02 {
- 			opp-hz = /bits/ 64 <800000000>;
--			opp-microvolt = <900000>;
-+			opp-microvolt = <900000 900000 925000>;
- 		};
- 		opp03 {
- 			opp-hz = /bits/ 64 <928000000>;
--			opp-microvolt = <925000>;
-+			opp-microvolt = <925000 925000 925000>;
- 		};
- 	};
- };
+https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/co=
+mmit/?h=3Ddevel&id=3D50dedb1eb1e6755ccab55f6140916c2d192be765
+
+Regards,
+Lorenzo
+
+--Wx+Mvx1qg95x0q+u
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZyssJgAKCRA6cBh0uS2t
+rBX2AP432eJMkZH/0I6xMefXrLL+NeoxIDMS0/hQjMIv70LhngD/VPpbBXZM0k6S
+cxO57ypvUMPKaDRXdqx6g7gGZKJ6KAU=
+=+WZo
+-----END PGP SIGNATURE-----
+
+--Wx+Mvx1qg95x0q+u--
 
