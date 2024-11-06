@@ -1,111 +1,153 @@
-Return-Path: <devicetree+bounces-119668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 170559BF795
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 20:51:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8352D9BF7BD
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 21:03:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48AA51C23684
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 19:51:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48779282FC4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 20:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3D0920C01F;
-	Wed,  6 Nov 2024 19:47:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="0rmALPBs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1961E20A5F4;
+	Wed,  6 Nov 2024 20:03:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B96D6209F3C
-	for <devicetree@vger.kernel.org>; Wed,  6 Nov 2024 19:47:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50B52204086;
+	Wed,  6 Nov 2024 20:03:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730922467; cv=none; b=U9HWcsq4a3aJrgOnOyzmRJB4Bn3YyLzGxnjipbiWTqjhZe2DNnPUiiBvpuhmX2UtI70rQpVRi6XH5u7nygmDdldXdS+qTilz5ioUSFwT89qZf/FWf9PUfV/RZIz+Rvw5TrhhanIiYC/6YKF8wYNgJQfN5WLyQOuZYzpoQnWh0Wc=
+	t=1730923430; cv=none; b=WhQG4/F/o1M4Ty6Vgdkt+fjcP8E4arz6hPkLWTFpVCoGZk7ZJQXiZCNcfndpXUXCco6qPL3UEHsrZfOkdcdjp+y/NlKnojWvZLB2DELMNn1MmUZb/IKdJYQLu4AzNiOqM8MsxjlaAuF1B4BBT9psyXVAVIy5myY27S7SteLa2Ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730922467; c=relaxed/simple;
-	bh=nfhOeOMNhx9ro9r5EU5bckyL1gdmm5pMCHqroYTsqXE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T6e0kIS7LS55QYkb5zqu7nIswZQUIK9tHGx2mex9o04IBD8YxJ9TpmlhzuwTnrGPtQWzr+uShlEYSJuNyEWwXkSn6lp0LZiBvLrnRaE1MnMIvUZuxY10AahYKBsWLES4XjGokd9K9omsJgxTjw11me5iDk0uORxbdgCu1inUpO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=0rmALPBs; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id A04BE2C01F6;
-	Thu,  7 Nov 2024 08:47:42 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1730922462;
-	bh=ScnBUtaeifvVVpugBAsbHCHfD79Y+oTex2Xsw6PXO/0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=0rmALPBsk3KpDQon2NIfxmI5YGmR8qtmfG47c6yl0Svgg53uDndquPoraimagPC+1
-	 MroiuHdN/1BN90MmoNhdcM87Qsozu4IkFUsY4Tc2qjljo7Y5mZDqz9hkTJkL43cp7I
-	 R8ab9gLvAgKpPBiWXxgAwxf/+l1EuhZRSSqSqf/5ZL161LtjNzAjnLj+p1vVGFXlIC
-	 QV5aLFBZ2nPlpZ/O48/GCcIcNtZwqPFlQGwRGBbcPEHUaARzQYGM/MIkimTkXEkiGD
-	 yOnahh76/7A0h06A1KW4adYKZGw4F69xegWjbgNQZDw5Rnb49aNyewHqf1pshCYGEO
-	 Mg6k4dh9WZ4Yg==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B672bc7de0000>; Thu, 07 Nov 2024 08:47:42 +1300
-Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 73C5C13ED6B;
-	Thu,  7 Nov 2024 08:47:42 +1300 (NZDT)
-Message-ID: <d7ceaf59-8e39-4c76-9b9f-88746a22176d@alliedtelesis.co.nz>
-Date: Thu, 7 Nov 2024 08:47:42 +1300
+	s=arc-20240116; t=1730923430; c=relaxed/simple;
+	bh=ivX4CiQTotWMPINucszsfz9xCMxcsuzikA7zdx2o5fA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gP3GN2PJpIaKP6ucR6PUEa5u3Fjtms0ghV+Cf2rVw1Hs/GoCFQZ3JKeCLjQK0v3oPEOpJErwh1fyv2QZjB6gfKSzMlvqI6nle2oh2I2TgxWylsj9EDUx57r6EORdGzE9M9DgP5eGXIgqnHjL4o70rADe2lhndKjpHHRMgd/fB9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2ADD7497;
+	Wed,  6 Nov 2024 12:04:16 -0800 (PST)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 490D43F528;
+	Wed,  6 Nov 2024 12:03:43 -0800 (PST)
+Date: Wed, 6 Nov 2024 20:03:30 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Johan Hovold <johan@kernel.org>
+Cc: Sibi Sankar <quic_sibis@quicinc.com>, sudeep.holla@arm.com,
+	cristian.marussi@arm.com, andersson@kernel.org,
+	konrad.dybcio@linaro.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, quic_rgottimu@quicinc.com,
+	quic_kshivnan@quicinc.com, conor+dt@kernel.org,
+	arm-scmi@vger.kernel.org
+Subject: Re: [PATCH V4 0/5] arm_scmi: vendors: Qualcomm Generic Vendor
+ Extensions
+Message-ID: <ZyvLktLUZOGP-LH5@pluto>
+References: <20241007061023.1978380-1-quic_sibis@quicinc.com>
+ <ZytnRc94iKUfMYH0@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v9 4/4] i2c: Add driver for the RTL9300 I2C controller
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- tsbogend@alpha.franken.de, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-i2c@vger.kernel.org
-References: <20241106001835.2725522-1-chris.packham@alliedtelesis.co.nz>
- <20241106001835.2725522-5-chris.packham@alliedtelesis.co.nz>
- <vn6t6qxqry2ay4tbvo3cb4rbjv53pnyl56vangul36vvvxibwp@q3pssbthesef>
-Content-Language: en-US
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <vn6t6qxqry2ay4tbvo3cb4rbjv53pnyl56vangul36vvvxibwp@q3pssbthesef>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=ca1xrWDM c=1 sm=1 tr=0 ts=672bc7de a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=VlfZXiiP6vEA:10 a=62ntRvTiAAAA:8 a=jdP34snFAAAA:8 a=VwQbUJbxAAAA:8 a=ovCuDd3x2qG2uVDzZbIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=pToNdpNmrtiFLRE6bQ9Z:22 a=jlphF6vWLdwq7oh3TaWq:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZytnRc94iKUfMYH0@hovoldconsulting.com>
+
+On Wed, Nov 06, 2024 at 01:55:33PM +0100, Johan Hovold wrote:
+> On Mon, Oct 07, 2024 at 11:40:18AM +0530, Sibi Sankar wrote:
+> > The QCOM SCMI vendor protocol provides a generic way of exposing a
+> > number of Qualcomm SoC specific features (like memory bus scaling)
+> > through a mixture of pre-determined algorithm strings and param_id
+> > pairs hosted on the SCMI controller. Introduce a client driver that
+> > uses the memlat algorithm string hosted on QCOM SCMI Vendor Protocol
+> > to detect memory latency workloads and control frequency/level of
+> > the various memory buses (DDR/LLCC/DDR_QOS).
+> > 
+> > QCOM SCMI Generic Vendor protocol background:
+> > It was found that a lot of the vendor protocol used internally was
+> > for debug/internal development purposes that would either be super
+> > SoC specific or had to be disabled because of some features being
+> > fused out during production. This lead to a large number of vendor
+> > protocol numbers being quickly consumed and were never released
+> > either. Using a generic vendor protocol with functionality abstracted
+> > behind algorithm strings gave us the flexibility of allowing such
+> > functionality exist during initial development/debugging while
+> > still being able to expose functionality like memlat once they have
+> > matured enough. The param-ids are certainly expected to act as ABI
+> > for algorithms strings like MEMLAT.
+> 
+> I wanted to give this series a quick spin on the x1e80100 CRD, but ran
+> into some issues.
+> 
+> First, I expected the drivers to be loaded automatically when built as
+> modules, but that did not happen so something appears to be missing.
+> 
+
+Hi Johan,
+
+so the SCMI stack is fully modularizable as of this release, i.e.
+
+ - SCMI core (scmi-core + scmi-module)
+ - SCMI transports (scmi_transport_{mailbox,virtio,smc,optee}
+ - optional SCMI Vendor protos
+ - Std and Vendor SCMI Drivers on top of protos
+
+....on the other side the SCMI standard protocols are still embedded
+in scmi-module (or builtin) as of now...
+
+Even though, module usage is tracked by the core AND when an SCMI Vendor
+driver tries to use protocol_X, it causes protocol_X to be initialized
+(calling its protocol_init), there is NO auto-loading for SCMI Vendor
+Protocols when bult as LKM...because there were really no ask till now
+and this stuff is in general needed so very early dburing boot...so the
+usecase of all these LKM modules is just debug/test as in your case
+(or in mine frequently)....
+
+...and I am NOT saying with this that is necessarily right or must be
+stay like this...just explaining how it is now....
+
+....anyway...it is mostly trivial to add vendor/protocols autoloading
+transparently...today I was experimenting with a patch that triggers
+autoloading based on a generic common alias pattern in the form
+'scmi-protocol-0x<NN>' (with NN the specific protocol ID of course)
+that triggers the loading as soon as the SCMI Vendor driver tries to
+access the protocol during its probe...
+
+....I will post it for the next cycle once it is clean.
+(unless I am missing something else that you want to add...)
+
+> Second, after loading the protocol and client drivers manually (in that
+> order, shouldn't the client driver pull in the protocol?), I got:
+> 
+> 	scmi_module: Loaded SCMI Vendor Protocol 0x80 - Qualcomm  20000
+> 	arm-scmi arm-scmi.0.auto: QCOM Generic Vendor Version 1.0
+> 	scmi-qcom-generic-ext-memlat scmi_dev.5: error -EOPNOTSUPP: failed to configure common events
+> 	scmi-qcom-generic-ext-memlat scmi_dev.5: probe with driver scmi-qcom-generic-ext-memlat failed with error -95
+> 
+> which seems to suggest that the firmware on my CRD does not support this
+> feature. Is that the way this should be interpreted? And does that mean
+> that non of the commercial laptops supports this either?
+
+This seems like FW rejecting the command, maybe just only for the specific
+Linux OSPM agent since it is not allowed to ask for that specific setup,
+and only Sibi can shed a light here :D
+
+...but this Vendor protocol, if I am not mistaken, AFAIU, uses a bunch
+of "algo strings" coming from tokens it picks from DT and use thsoe as
+params for the set_param() VendorProtocol ops...cannot be that a bad/missing
+DT value could cause the FW to reject the command due to the params ?
+(even if the command is supported)...
+
+...just a guess ah... I have no real knowledge of this venndor proto...
 
 
-On 6/11/24 22:57, Andi Shyti wrote:
-> Hi Chris,
->
-> On Wed, Nov 06, 2024 at 01:18:35PM +1300, Chris Packham wrote:
->> Add support for the I2C controller on the RTL9300 SoC. There are two I2C
->> controllers in the RTL9300 that are part of the Ethernet switch register
->> block. Each of these controllers owns a SCL pin (GPIO8 for the fiorst
->> I2C controller, GPIO17 for the second). There are 8 possible SDA pins
->> (GPIO9-16) that can be assigned to either I2C controller. This
->> relationship is represented in the device tree with a child node for
->> each SDA line in use.
->>
->> This is based on the openwrt implementation[1] but has been
->> significantly modified
->>
->> [1] - https://scanmail.trustwave.com/?c=20988&d=pL2r5zHAPsW8d92uECdR2T8Eh4fYX_ZwrCyklfTCzQ&u=https%3a%2f%2fgit%2eopenwrt%2eorg%2f%3fp%3dopenwrt%2fopenwrt%2egit%3ba%3dblob%3bf%3dtarget%2flinux%2frealtek%2ffiles-5%2e15%2fdrivers%2fi2c%2fbusses%2fi2c-rtl9300%2ec
->>
->> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->> Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
-> Thanks for following up with v9. I think nothing prevents us from
-> already merging this 4/4 patch, right?
->
- From my end yes it's all good to go. Lee's just applied the mfd binding.
-
-The only thing outstanding are the mips dts changes. I'll wait for a bit 
-and chase those up. Hopefully they can make it in the 6.13 window but 
-it's not the end of the world if they don't.
+Thanks,
+Cristian
 
 
