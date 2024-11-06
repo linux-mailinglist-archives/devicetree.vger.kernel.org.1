@@ -1,84 +1,57 @@
-Return-Path: <devicetree+bounces-119592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 342159BF39A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:51:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4257F9BF3A8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:53:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 669801C2334F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:51:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5540B2223E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:53:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 612112064E4;
-	Wed,  6 Nov 2024 16:51:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EFDB2064E4;
+	Wed,  6 Nov 2024 16:53:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="D4ey4KSA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A82ix3l5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8BE2038BF;
-	Wed,  6 Nov 2024 16:51:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E566205E33;
+	Wed,  6 Nov 2024 16:53:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730911892; cv=none; b=peVqGJNznJKemcL73c/JnuSSOnu6AZWTZQnaQ8XkVnmjSnCiNtV6ST6MFuUMSGuySP0/zQOnu0RvUepqhRmbkMrD/j3HyVaHSK7M3Tq2Xa/Se7TmXmgNr4qdhFEEsQcdocMOhL2QhpWh5F7f4dW67W25d6xtLE6uaJQCPfKqsDo=
+	t=1730911995; cv=none; b=mcr87bRtz3Mon1ERTvpKUdA6DFSU7Ot4ye1ZpIwmA4MPSuVHY3N8DO9ymug8aYPDXkSjvN/psFMvFEnXJY3iYMcVfmqHauLQq8LJ1IYYsOJ0NV+YQu36ge18uHWl8RmtRUP/nLQ/gKng909cALAAJ0YBNPzZ/A7N63CCp1pBIxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730911892; c=relaxed/simple;
-	bh=wEQYqndqe0EDivTZfk23TQk9AB6AZMSLB7/LXyt85mQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ECnsucYESJPbZ/OwIVvF719X8HI/MOxnLETFEwxIftopdydRQGKXPoDbWF8GMLOixcrHik094Guwe4tp61eh4A828ujyBEGfgW6Z6oglh/QcAcQOJ7vEb3UDwKYzDwPgBkKrdO7dfeTYDzPFs4W88d7j7uwZm5kSqdhD1wCpiNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=D4ey4KSA; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730911891; x=1762447891;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wEQYqndqe0EDivTZfk23TQk9AB6AZMSLB7/LXyt85mQ=;
-  b=D4ey4KSAn4GUFTQPlOJfoauO6mR5iDND1AJjubLahfIZzbjeGGqZyowS
-   nWHytHuB71vuwYnx1tFTj5hZ8yItxof9yqOwF2Vot8ywRVk0tJm6k1ETX
-   g6n85QWTAGy5JFeJadKSxdl/7cGDApnt8tBBenG4xcxfl1pBdDDSZJ1If
-   vZbVJ9QqPBc/Unw8Rb+W12w1V6iOIjbQ6PdVp93VKB7lNoxKBClPHFMQs
-   IdZDsNM+JsVLcPB2X9142mY56EtU2jj7Qk7vqEU6HBHI/B1561AbW5tRQ
-   eL2Pp1OTubdeJX2n2Iyg+1PCwtUwRScFnkturZvSu0868fkUbM30vQ7pF
-   w==;
-X-CSE-ConnectionGUID: s4zx+Z6bSMOMZVF4FthACA==
-X-CSE-MsgGUID: uwMKEnkFQbiUI2dkYesQlg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="34645426"
-X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; 
-   d="scan'208";a="34645426"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2024 08:51:30 -0800
-X-CSE-ConnectionGUID: yvSH9epuQiyx8JFoa4TdRw==
-X-CSE-MsgGUID: FT8IaTCrSNGP4tLhLWyt6Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="89425399"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 06 Nov 2024 08:51:26 -0800
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t8jFc-000p9q-0f;
-	Wed, 06 Nov 2024 16:51:24 +0000
-Date: Thu, 7 Nov 2024 00:50:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alexis Cezar Torreno <alexisczezar.torreno@analog.com>,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Radu Sabau <radu.sabau@analog.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Alexis Cezar Torreno <alexisczezar.torreno@analog.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-Subject: Re: [PATCH 2/2] hwmon: (pmbus/adp1050): Support adp1051 and adp1055
-Message-ID: <202411070017.nDsv8lMO-lkp@intel.com>
-References: <20241106090311.17536-3-alexisczezar.torreno@analog.com>
+	s=arc-20240116; t=1730911995; c=relaxed/simple;
+	bh=OzUAI9y2vdwmmvCD+XJYm4cHA0A6WZjIJsfN0+pkEiM=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=aaXhCebJbxCqKCuqfZvP09Gddz2kDhBWp0YbT81lzhkN8hk4VHrMyN3MSeE/5FkcetV+2U6M5MltzvO92QhetQIsduIack0OQwNlbyGkQrSMdjic17MAgiQMH7LFilkCCST8gXd+UEFO97erw+9xpNI1M8f6+CXlA8Pw+GO0kwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A82ix3l5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B77AFC4CED6;
+	Wed,  6 Nov 2024 16:53:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730911994;
+	bh=OzUAI9y2vdwmmvCD+XJYm4cHA0A6WZjIJsfN0+pkEiM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=A82ix3l5i8JXXCa8Ly4NI6GqAfXg70yCSN47GvTf2odoIqanT1OQSxtYQs9+EeyaO
+	 eIBz0LfxgEeQMRoq6Doq/0gu6P/tJvZPeTtHX/YLvVLjYn0h0ecehgO0i8hGW/uyL8
+	 yuZV0JKwLbKZt5/ElHWq2wkuTDzigiaa9p0aC0D4IJAq4OkzhhW7X5ACtGSXSlh4A3
+	 IoBw8U50Gm337WwW5Lb1zK781XjKvsVduYNrkM57Wb8GQn3rtUErE07jPCo6l4iWxs
+	 dFSMonjOfImmIMg5xTyHI+/KGrHBWfhB1h6wfj7vZvlquBozDtB9cMEQM950Vb2x9P
+	 +IH478GRWoebQ==
+Date: Wed, 6 Nov 2024 10:53:12 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Sricharan R <quic_srichara@quicinc.com>, bhelgaas@google.com,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+	konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V7 4/4] PCI: qcom: Add support for IPQ9574
+Message-ID: <20241106165312.GA1528877@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,55 +60,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241106090311.17536-3-alexisczezar.torreno@analog.com>
+In-Reply-To: <20241106145615.25tc7n4zcdkp47jr@thinkpad>
 
-Hi Alexis,
+On Wed, Nov 06, 2024 at 02:56:15PM +0000, Manivannan Sadhasivam wrote:
+> On Tue, Nov 05, 2024 at 07:40:24PM -0600, Bjorn Helgaas wrote:
+> > On Thu, Aug 01, 2024 at 11:18:03AM +0530, Sricharan R wrote:
+> > > From: devi priya <quic_devipriy@quicinc.com>
+> > > 
+> > > The IPQ9574 platform has four Gen3 PCIe controllers:
+> > > two single-lane and two dual-lane based on SNPS core 5.70a.
+> > > 
+> > > QCOM IP rev is 1.27.0 and Synopsys IP rev is 5.80a.
+> > > Reuse all the members of 'ops_2_9_0'.
+> > 
+> > Wow, this is confusing.
+> > 
+> > "Based on SNPS core 5.70a", but "Synopsys IP rev is 5.80a."
+> > Are those supposed to match?  Or is it 5.70a of one thing but 5.80a of
+> > a different thing?
+> 
+> Hmm, I'm not sure why 5.70a is mentioned here. It seems irrelevant
+> (even if it is the base).
+> 
+> > And where does ops_2_9_0 come in?  The code comment says:
+> > 
+> >   /* Qcom IP rev.: 2.9.0  Synopsys IP rev.: 5.00a */
+> >   static const struct qcom_pcie_ops ops_2_9_0 = {
+> > 
+> > which doesn't match 1.27.0 or 5.70a or 5.80a.  In fact there's nothing
+> > in the file that matches 1.*27.*0
+> > 
+> > Honestly, I don't really care if you have all the versions here in the
+> > commit log.  But if the versions *are* here, can we make them make
+> > sense?
+> 
+> We name the 'ops' structure based on Qcom IP revision. And we reuse
+> it across the SoCs which are compatible. That's why ops_2_9_0 is
+> used for this SoC which has Qcom IP rev 1.27.0.
 
-kernel test robot noticed the following build warnings:
+Got it.  So a family of compatible Qcom IP starts with 2.9.0 and newer
+members are 1.27.0 etc.  With no hint in the source about what the
+members of the family are.  Perfect sEnSe.
 
-[auto build test WARNING on aa8cbc0898902070f1ad093a6e036cf57f0d47bc]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Alexis-Cezar-Torreno/dt-bindings-hwmon-pmbus-adp1050-Support-adp1051-and-adp1055-add-bindings/20241106-170853
-base:   aa8cbc0898902070f1ad093a6e036cf57f0d47bc
-patch link:    https://lore.kernel.org/r/20241106090311.17536-3-alexisczezar.torreno%40analog.com
-patch subject: [PATCH 2/2] hwmon: (pmbus/adp1050): Support adp1051 and adp1055
-config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20241107/202411070017.nDsv8lMO-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241107/202411070017.nDsv8lMO-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411070017.nDsv8lMO-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/hwmon/pmbus/adp1050.c: In function 'adp1050_probe':
->> drivers/hwmon/pmbus/adp1050.c:59:39: warning: passing argument 2 of 'pmbus_do_probe' discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-      59 |         return pmbus_do_probe(client, info);
-         |                                       ^~~~
-   In file included from drivers/hwmon/pmbus/adp1050.c:12:
-   drivers/hwmon/pmbus/pmbus.h:541:73: note: expected 'struct pmbus_driver_info *' but argument is of type 'const struct pmbus_driver_info *'
-     541 | int pmbus_do_probe(struct i2c_client *client, struct pmbus_driver_info *info);
-         |                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
-
-
-vim +59 drivers/hwmon/pmbus/adp1050.c
-
-    50	
-    51	static int adp1050_probe(struct i2c_client *client)
-    52	{
-    53		const struct pmbus_driver_info *info;
-    54	
-    55		info = device_get_match_data(&client->dev);
-    56		if (!info)
-    57			return -ENODEV;
-    58	
-  > 59		return pmbus_do_probe(client, info);
-    60	}
-    61	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Bjorn
 
