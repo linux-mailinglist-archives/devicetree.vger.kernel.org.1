@@ -1,650 +1,213 @@
-Return-Path: <devicetree+bounces-119234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16A269BDA34
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 01:19:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 613F39BDA5F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 01:34:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F581B2111E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 00:19:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E10311F23427
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 00:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E5B7BAEC;
-	Wed,  6 Nov 2024 00:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D5521F16B;
+	Wed,  6 Nov 2024 00:34:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="WT64rO4a"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fbt3TQg7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93FA31E48A
-	for <devicetree@vger.kernel.org>; Wed,  6 Nov 2024 00:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 276E11E522;
+	Wed,  6 Nov 2024 00:34:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730852327; cv=none; b=azwZwY/cYvxaPLo+cqZM5kwMMUrTyy76LEeu2/g3B5QBvPEvUsjhZF3fCYrI0zuHnC1TJ2Rl6a6rkwLrW3a7Um7rlewnD6Laf38ahTpBz+oMf+HU8IHdt52CUEmw173fWomldzQ6ntg4Pp7jKTtZYeYNlm10mxOZd8fc4vxgQDY=
+	t=1730853270; cv=none; b=jmLKWpGkLP0uUYwdKYctRxp76C92dlkZJz2X0TEgFwG+Q/vQGeW7te5jXzDqYVuQCeL+13YkmEhLfCuU9nlBPgv7nULbWHvFV8xoxLDt79bQD4NESl/Sb6gnJCKOzNNvJ5gVMFbvVE/KrQfnouw2103OlYJCutvfGfRhLzpRmmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730852327; c=relaxed/simple;
-	bh=5hhQn0gCUlcplPfaXw5SwWAhdjqsP068tMF6ZfgO31g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UR2hWC+Jycj0ZezY7Qf1CSwh58yNpcgh8+sXlVg7BBeRtJ8XVojHY1PBXVs7+vZFLjIWI5lVzq6voxprelSDSUp03rlDtHdb2B7++q6lf9RsXLvt/M7tIdUuyxtJXF8ZpnO1tGgxH+lG4mUdMgEReqN2nb2ExIKL75HyMtBUerI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=WT64rO4a; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id B316E2C0613;
-	Wed,  6 Nov 2024 13:18:40 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1730852320;
-	bh=yfSE3Gx844Euoez3kmuGnTX8wZ5nFZUV7VcVXmgpKzU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=WT64rO4acDqxTp2qiPlyt2feyxzbGr+OmW7O7bRky7DqyjD1wiGCZme/43f28eu3u
-	 HbwJ6iEZp5KBZmXPERlq88+v/8e2md7vsJeQbQMnMDUbedYuNNZ78qQcGQkCtPnMbo
-	 fm6klMUHAg5iv3wqbuApCEfajX1YYTbdZ6lTjxLUr8TI6cGlW2KlhUVKKC4/P5sMfz
-	 f0DFKA5P17XJKqmgvgifFpl2qTIwUAfX+pgwQd5JxP2WQ3RqlAXERDavlB6V9qZNGo
-	 QvSTGnq6iROC+xqYG8+zdm/MML6Fm5dyvT6+83IeRAHQT/RU4o3WUs3dGWdd02cL5p
-	 jywVr2xDLX5LQ==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B672ab5e00004>; Wed, 06 Nov 2024 13:18:40 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 4117C13EE94;
-	Wed,  6 Nov 2024 13:18:40 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 3EC322804D6; Wed,  6 Nov 2024 13:18:40 +1300 (NZDT)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: lee@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	tsbogend@alpha.franken.de,
-	andi.shyti@kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v9 4/4] i2c: Add driver for the RTL9300 I2C controller
-Date: Wed,  6 Nov 2024 13:18:35 +1300
-Message-ID: <20241106001835.2725522-5-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241106001835.2725522-1-chris.packham@alliedtelesis.co.nz>
-References: <20241106001835.2725522-1-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1730853270; c=relaxed/simple;
+	bh=u8TEc0hX2TrP8CmDt/UvnD1A2cGI/ey4CDkWZ02goQ4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Mmo7DCGlH78eIc/9NqBkdKaWWjoUAO4ezIrK4vYpjHlPCFogTZImr4D/hKtOw1Xa8mDDowfnxEv8foLUoNWPxtWZone2Pb5D4HXKr1IbmOUznP74iDj4JG4E+Ha2aatU5AUrZRhaSMqXX77vHKHgxAfsbLFCOOC0Z6nFnLK/Ong=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fbt3TQg7; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-71e52582cf8so5290868b3a.2;
+        Tue, 05 Nov 2024 16:34:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730853266; x=1731458066; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=EoJomedHE1ufrTbGfCTqbnhEZxPGAgl2MOU3g1a1u4A=;
+        b=Fbt3TQg7mb/5OT7k83J/2aPIPBRnLcEu5tUjhba7SovUz4yhe+JOAnTPAmEyFJ/vfb
+         fGd2uiXy5uOY3pGv0uhwliUD49axLZudPgVH+A9ZQkDSTgPJ+RSCnHtD8jemEArDqfun
+         FFh7k+cRfu2Pt6Ey9R9Tt5FSwYlMRGS0OraLfk5prUhmMFRJLrSUrRPFHEmfHwDGVbYl
+         /qsZ7LQAOvSmyN8wJnq4tS4/KY2ub3N2tHmSKAAGcE7P2XvB90yHuic/i5MoSifnOWjB
+         Ma3HhE2RORHNK6Rqbdp9cX1ogxeLeNjAyvbKjBkE6U6Pa6ajBdramCUCQEjv4zhEpU94
+         c+Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730853266; x=1731458066;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EoJomedHE1ufrTbGfCTqbnhEZxPGAgl2MOU3g1a1u4A=;
+        b=BF2t8c//qlfP71ZTWMOfauDu3s0dKLU18bmT5/qvXNsQfZnQ46kMZI6hrmnt3IhNgj
+         r7V4jGuuK5+e0MPVKEoVyJq9yniJwnAdNrQ7Tfr2ftAKaGLNHVX4zRpDcGj+RNpVuHS2
+         vCTd+niNoHMndIwjymw8RCFGcbVhxnmVGSQYaeMgywPYGDGm5LBzzA4SZvWE2Ix96E4M
+         xxLlEDwtl2oxPkBAtm0hUtolBFqcNriyMwGwdJcRcZrJ26RbPcVYxstuCgxV8Gt+GC/H
+         ervappckUB+Aks56yxSwsjApKrrDZfq8EngNarbR/vOjA2PSiJxIz5sSyCvHJBm9Jj3J
+         B4KQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUhAHY+QfgwEPXU34OtwtYZU12f9C7k6ckHtDYc3rYrguwRpg6n7gm3H+4PfuS12F+h/CyJ9VQeo8xH@vger.kernel.org, AJvYcCX0TpU9IyjiGzhpwyXmfmVTdEBUOBc9IH8xX/yhHyz3m3e2pWnB/YH7qZMVVDy6+eJ8kcp/ZqvjpDikSgk=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzvBUQ6HUcxruF9ILG+b0LrVTsTi9oaInxj2sStUthFejS7H57v
+	+b670oe9DJ+mwtS/pcom/SjK93fzBFu3Nj0qr8lrMRsyFH/EpFGRZY4D1w==
+X-Google-Smtp-Source: AGHT+IHLGOqHgvUYNfBtvEZeGBBAknaVPyhl0n2WXVh++Ke8CLX2Uv4/UJZZ0MOI/C6fM7Kiw28IOw==
+X-Received: by 2002:a05:6a21:7886:b0:1db:e177:7737 with SMTP id adf61e73a8af0-1dbe1777839mr11149502637.8.1730853266306;
+        Tue, 05 Nov 2024 16:34:26 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e99a5a3205sm151107a91.33.2024.11.05.16.34.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Nov 2024 16:34:25 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <1a8b0024-97db-4c1c-9d04-45057a2ba800@roeck-us.net>
+Date: Tue, 5 Nov 2024 16:34:23 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=ca1xrWDM c=1 sm=1 tr=0 ts=672ab5e0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=VlfZXiiP6vEA:10 a=jdP34snFAAAA:8 a=VwQbUJbxAAAA:8 a=NEAV23lmAAAA:8 a=UgJECxHJAAAA:8 a=aaOI7ajaZ5fHE1syFM0A:9 a=3ZKOabzyN94A:10 a=jlphF6vWLdwq7oh3TaWq:22 a=-El7cUbtino8hM1DCn8D:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document start from dead
+ stop properties
+To: Marek Vasut <marex@denx.de>, linux-hwmon@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org
+References: <20241105135259.101126-1-marex@denx.de>
+ <df2eaf57-a4ea-4378-8f24-a843084eb1d6@roeck-us.net>
+ <189cd4b5-005b-4311-a5de-2b376eb0b9d8@denx.de>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <189cd4b5-005b-4311-a5de-2b376eb0b9d8@denx.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Add support for the I2C controller on the RTL9300 SoC. There are two I2C
-controllers in the RTL9300 that are part of the Ethernet switch register
-block. Each of these controllers owns a SCL pin (GPIO8 for the fiorst
-I2C controller, GPIO17 for the second). There are 8 possible SDA pins
-(GPIO9-16) that can be assigned to either I2C controller. This
-relationship is represented in the device tree with a child node for
-each SDA line in use.
+On 11/5/24 10:53, Marek Vasut wrote:
+> On 11/5/24 3:11 PM, Guenter Roeck wrote:
+>> On 11/5/24 05:52, Marek Vasut wrote:
+>>> Delta AFC0612DB-F00 fan has to be set to at least 30% PWM duty cycle
+>>> to spin up from a dead stop, and can be afterward throttled down to
+>>> lower PWM duty cycle. Introduce support for operating such fans which
+>>
+>> Doesn't this imply that a minimum pwm value is needed as well ?
+> 
+> It depends. For this fan, yes, it does stop at around 8% PWM duty cycle.
+> 
+>> Super-IO chips such as the NCT67xx series typically have two separate
+>> registers, one for the pwm start value and one for the minimum pwm value.
+> 
+> I use plain SoC PWM output to operate the fan. This one needs to be set to higher PWM duty cycle first, to spin up, and can be reduced to lower PWM duty cycle afterward without stopping.
+> 
 
-This is based on the openwrt implementation[1] but has been
-significantly modified
+Yes, exactly. That is what many fans require.
 
-[1] - https://git.openwrt.org/?p=3Dopenwrt/openwrt.git;a=3Dblob;f=3Dtarge=
-t/linux/realtek/files-5.15/drivers/i2c/busses/i2c-rtl9300.c
+>>> need to start at higher PWM duty cycle first and can slow down next.
+>>>
+>>> Document two new DT properties, "fan-dead-stop-start-percent" and
+>>> "fan-dead-stop-start-usec". The former describes the minimum percent
+>>> of fan RPM at which it will surely spin up from dead stop. This value
+>>> can be found in the fan datasheet and can be converted to PWM duty
+>>> cycle easily. The "fan-dead-stop-start-usec" describes the minimum
+>>> time in microseconds for which the fan has to be set to dead stop
+>>> start RPM for the fan to surely spin up.
+>>>
+>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>> ---
+>>> Cc: Conor Dooley <conor+dt@kernel.org>
+>>> Cc: Guenter Roeck <linux@roeck-us.net>
+>>> Cc: Jean Delvare <jdelvare@suse.com>
+>>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+>>> Cc: Rob Herring <robh@kernel.org>
+>>> Cc: devicetree@vger.kernel.org
+>>> Cc: linux-hwmon@vger.kernel.org
+>>> ---
+>>>   Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 11 +++++++++++
+>>>   1 file changed, 11 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/ Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>>> index 4e5abf7580cc6..f1042471b5176 100644
+>>> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>>> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>>> @@ -31,6 +31,17 @@ properties:
+>>>         it must be self resetting edge interrupts.
+>>>       maxItems: 1
+>>> +  fan-dead-stop-start-percent:
+>>
+>> Personally I don't think that "dead-stop" in the property name adds any value.
+>> On the contrary, I think it leads to confusion. I head to read the description
+>> to understand.
+> 
+> The documentation refers to this behavior as a "dead stop" , hence the property name. I can change it to fan-stop-to-start-percent ?
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
----
+I do not understand the need for that much complexity in the property name,
+and I don't think it makes sense to name a property based on a specific
+chip documentation. I have seen that before, where different vendors use
+different names for the same functionality. That doesn't mean that the
+vendor-determined name has to make it into the property name.
 
-Notes:
-    Changes in v9:
-    - Fix alignment of register definitions and rtl9300_i2c_execute_xfer(=
-)
-    - Reduce scope of "chan" and "adap" variables in rtl9300_i2c_probe()
-    - Add r-by from Andi
-    Changes in v8:
-    - None
-    Changes in v7:
-    - None
-    Changes in v6:
-    - Make rtl9300_i2c_quirks static
-    - Drop wildcard compatible
-    - Add SoC specific compatibles
-    Changes in v5:
-    - Make lock part of struct rtl9300_i2c
-    - Fix alignment in rtl9300_i2c_smbus_xfer
-    Changes in v4:
-    - skipped due to combining patch series
-    Changes in v3:
-    - None
-    Changes in v2:
-    - Replace a number of return 0; with tail calls
-    - Add enum rtl9300_bus_freq
-    - Use RTL9300_ prefix on new defines
-    - Use reg property for register offset
-    - Hard code RTL9300_I2C_MST_GLB_CTRL address as this does not need to
-      come from DT binding
-    - Use GENMASK() where appropriate
-    - Propagate read/write errors through to rtl9300_i2c_smbus_xfer()
-    - Don't error out on bad clock-frequency
-    - Use devm_i2c_add_adapter()
-    - Put more information in the commit message
-    - Integrated multiplexing function, an adapter is created per SDA lin=
-e
+As an example, Nuvoton calls the values "Start-Up Value" and "Stop Value".
+ITE calls the start value "start PWM value" (and as far as I can see doesn't
+have a separate stop value). I am sure pretty much every vendor uses a
+different description.
 
- MAINTAINERS                      |   7 +
- drivers/i2c/busses/Kconfig       |  10 +
- drivers/i2c/busses/Makefile      |   1 +
- drivers/i2c/busses/i2c-rtl9300.c | 423 +++++++++++++++++++++++++++++++
- 4 files changed, 441 insertions(+)
- create mode 100644 drivers/i2c/busses/i2c-rtl9300.c
+I am personally not a friend of long property names. Having said that,
+I'll let you use whatever DT maintainers accept. They may have a different
+opinion.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a27407950242..49a5cb4dd2cd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20058,6 +20058,13 @@ S:	Maintained
- T:	git https://github.com/pkshih/rtw.git
- F:	drivers/net/wireless/realtek/rtl8xxxu/
-=20
-+RTL9300 I2C DRIVER (rtl9300-i2c)
-+M:	Chris Packham <chris.packham@alliedtelesis.co.nz>
-+L:	linux-i2c@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.yaml
-+F:	drivers/i2c/busses/i2c-rtl9300.c
-+
- RTRS TRANSPORT DRIVERS
- M:	Md. Haris Iqbal <haris.iqbal@ionos.com>
- M:	Jack Wang <jinpu.wang@ionos.com>
-diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
-index 6b3ba7e5723a..e655c6ceb5db 100644
---- a/drivers/i2c/busses/Kconfig
-+++ b/drivers/i2c/busses/Kconfig
-@@ -1060,6 +1060,16 @@ config I2C_RK3X
- 	  This driver can also be built as a module. If so, the module will
- 	  be called i2c-rk3x.
-=20
-+config I2C_RTL9300
-+	tristate "Realtek RTL9300 I2C controller"
-+	depends on MACH_REALTEK_RTL || COMPILE_TEST
-+	help
-+	  Say Y here to include support for the I2C controller in Realtek
-+	  RTL9300 SoCs.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called i2c-rtl9300.
-+
- config I2C_RZV2M
- 	tristate "Renesas RZ/V2M adapter"
- 	depends on ARCH_RENESAS || COMPILE_TEST
-diff --git a/drivers/i2c/busses/Makefile b/drivers/i2c/busses/Makefile
-index ecc07c50f2a0..e99f4f327aa0 100644
---- a/drivers/i2c/busses/Makefile
-+++ b/drivers/i2c/busses/Makefile
-@@ -103,6 +103,7 @@ obj-$(CONFIG_I2C_QCOM_GENI)	+=3D i2c-qcom-geni.o
- obj-$(CONFIG_I2C_QUP)		+=3D i2c-qup.o
- obj-$(CONFIG_I2C_RIIC)		+=3D i2c-riic.o
- obj-$(CONFIG_I2C_RK3X)		+=3D i2c-rk3x.o
-+obj-$(CONFIG_I2C_RTL9300)	+=3D i2c-rtl9300.o
- obj-$(CONFIG_I2C_RZV2M)		+=3D i2c-rzv2m.o
- obj-$(CONFIG_I2C_S3C2410)	+=3D i2c-s3c2410.o
- obj-$(CONFIG_I2C_SH7760)	+=3D i2c-sh7760.o
-diff --git a/drivers/i2c/busses/i2c-rtl9300.c b/drivers/i2c/busses/i2c-rt=
-l9300.c
-new file mode 100644
-index 000000000000..e064e8a4a1f0
---- /dev/null
-+++ b/drivers/i2c/busses/i2c-rtl9300.c
-@@ -0,0 +1,423 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include <linux/bits.h>
-+#include <linux/i2c.h>
-+#include <linux/i2c-mux.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/mutex.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+enum rtl9300_bus_freq {
-+	RTL9300_I2C_STD_FREQ,
-+	RTL9300_I2C_FAST_FREQ,
-+};
-+
-+struct rtl9300_i2c;
-+
-+struct rtl9300_i2c_chan {
-+	struct i2c_adapter adap;
-+	struct rtl9300_i2c *i2c;
-+	enum rtl9300_bus_freq bus_freq;
-+	u8 sda_pin;
-+};
-+
-+#define RTL9300_I2C_MUX_NCHAN	8
-+
-+struct rtl9300_i2c {
-+	struct regmap *regmap;
-+	struct device *dev;
-+	struct rtl9300_i2c_chan chans[RTL9300_I2C_MUX_NCHAN];
-+	u32 reg_base;
-+	u8 sda_pin;
-+	struct mutex lock;
-+};
-+
-+#define RTL9300_I2C_MST_CTRL1				0x0
-+#define  RTL9300_I2C_MST_CTRL1_MEM_ADDR_OFS		8
-+#define  RTL9300_I2C_MST_CTRL1_MEM_ADDR_MASK		GENMASK(31, 8)
-+#define  RTL9300_I2C_MST_CTRL1_SDA_OUT_SEL_OFS		4
-+#define  RTL9300_I2C_MST_CTRL1_SDA_OUT_SEL_MASK		GENMASK(6, 4)
-+#define  RTL9300_I2C_MST_CTRL1_GPIO_SCL_SEL		BIT(3)
-+#define  RTL9300_I2C_MST_CTRL1_RWOP			BIT(2)
-+#define  RTL9300_I2C_MST_CTRL1_I2C_FAIL			BIT(1)
-+#define  RTL9300_I2C_MST_CTRL1_I2C_TRIG			BIT(0)
-+#define RTL9300_I2C_MST_CTRL2				0x4
-+#define  RTL9300_I2C_MST_CTRL2_RD_MODE			BIT(15)
-+#define  RTL9300_I2C_MST_CTRL2_DEV_ADDR_OFS		8
-+#define  RTL9300_I2C_MST_CTRL2_DEV_ADDR_MASK		GENMASK(14, 8)
-+#define  RTL9300_I2C_MST_CTRL2_DATA_WIDTH_OFS		4
-+#define  RTL9300_I2C_MST_CTRL2_DATA_WIDTH_MASK		GENMASK(7, 4)
-+#define  RTL9300_I2C_MST_CTRL2_MEM_ADDR_WIDTH_OFS	2
-+#define  RTL9300_I2C_MST_CTRL2_MEM_ADDR_WIDTH_MASK	GENMASK(3, 2)
-+#define  RTL9300_I2C_MST_CTRL2_SCL_FREQ_OFS		0
-+#define  RTL9300_I2C_MST_CTRL2_SCL_FREQ_MASK		GENMASK(1, 0)
-+#define RTL9300_I2C_MST_DATA_WORD0			0x8
-+#define RTL9300_I2C_MST_DATA_WORD1			0xc
-+#define RTL9300_I2C_MST_DATA_WORD2			0x10
-+#define RTL9300_I2C_MST_DATA_WORD3			0x14
-+
-+#define RTL9300_I2C_MST_GLB_CTRL			0x384
-+
-+static int rtl9300_i2c_reg_addr_set(struct rtl9300_i2c *i2c, u32 reg, u1=
-6 len)
-+{
-+	u32 val, mask;
-+	int ret;
-+
-+	val =3D len << RTL9300_I2C_MST_CTRL2_MEM_ADDR_WIDTH_OFS;
-+	mask =3D RTL9300_I2C_MST_CTRL2_MEM_ADDR_WIDTH_MASK;
-+
-+	ret =3D regmap_update_bits(i2c->regmap, i2c->reg_base + RTL9300_I2C_MST=
-_CTRL2, mask, val);
-+	if (ret)
-+		return ret;
-+
-+	val =3D reg << RTL9300_I2C_MST_CTRL1_MEM_ADDR_OFS;
-+	mask =3D RTL9300_I2C_MST_CTRL1_MEM_ADDR_MASK;
-+
-+	return regmap_update_bits(i2c->regmap, i2c->reg_base + RTL9300_I2C_MST_=
-CTRL1, mask, val);
-+}
-+
-+static int rtl9300_i2c_config_io(struct rtl9300_i2c *i2c, u8 sda_pin)
-+{
-+	int ret;
-+	u32 val, mask;
-+
-+	ret =3D regmap_update_bits(i2c->regmap, RTL9300_I2C_MST_GLB_CTRL, BIT(s=
-da_pin), BIT(sda_pin));
-+	if (ret)
-+		return ret;
-+
-+	val =3D (sda_pin << RTL9300_I2C_MST_CTRL1_SDA_OUT_SEL_OFS) |
-+		RTL9300_I2C_MST_CTRL1_GPIO_SCL_SEL;
-+	mask =3D RTL9300_I2C_MST_CTRL1_SDA_OUT_SEL_MASK | RTL9300_I2C_MST_CTRL1=
-_GPIO_SCL_SEL;
-+
-+	return regmap_update_bits(i2c->regmap, i2c->reg_base + RTL9300_I2C_MST_=
-CTRL1, mask, val);
-+}
-+
-+static int rtl9300_i2c_config_xfer(struct rtl9300_i2c *i2c, struct rtl93=
-00_i2c_chan *chan,
-+				   u16 addr, u16 len)
-+{
-+	u32 val, mask;
-+
-+	val =3D chan->bus_freq << RTL9300_I2C_MST_CTRL2_SCL_FREQ_OFS;
-+	mask =3D RTL9300_I2C_MST_CTRL2_SCL_FREQ_MASK;
-+
-+	val |=3D addr << RTL9300_I2C_MST_CTRL2_DEV_ADDR_OFS;
-+	mask |=3D RTL9300_I2C_MST_CTRL2_DEV_ADDR_MASK;
-+
-+	val |=3D ((len - 1) & 0xf) << RTL9300_I2C_MST_CTRL2_DATA_WIDTH_OFS;
-+	mask |=3D RTL9300_I2C_MST_CTRL2_DATA_WIDTH_MASK;
-+
-+	mask |=3D RTL9300_I2C_MST_CTRL2_RD_MODE;
-+
-+	return regmap_update_bits(i2c->regmap, i2c->reg_base + RTL9300_I2C_MST_=
-CTRL2, mask, val);
-+}
-+
-+static int rtl9300_i2c_read(struct rtl9300_i2c *i2c, u8 *buf, int len)
-+{
-+	u32 vals[4] =3D {};
-+	int i, ret;
-+
-+	if (len > 16)
-+		return -EIO;
-+
-+	ret =3D regmap_bulk_read(i2c->regmap, i2c->reg_base + RTL9300_I2C_MST_D=
-ATA_WORD0,
-+			       vals, ARRAY_SIZE(vals));
-+	if (ret)
-+		return ret;
-+
-+	for (i =3D 0; i < len; i++) {
-+		buf[i] =3D vals[i/4] & 0xff;
-+		vals[i/4] >>=3D 8;
-+	}
-+
-+	return 0;
-+}
-+
-+static int rtl9300_i2c_write(struct rtl9300_i2c *i2c, u8 *buf, int len)
-+{
-+	u32 vals[4] =3D {};
-+	int i;
-+
-+	if (len > 16)
-+		return -EIO;
-+
-+	for (i =3D 0; i < len; i++) {
-+		if (i % 4 =3D=3D 0)
-+			vals[i/4] =3D 0;
-+		vals[i/4] <<=3D 8;
-+		vals[i/4] |=3D buf[i];
-+	}
-+
-+	return regmap_bulk_write(i2c->regmap, i2c->reg_base + RTL9300_I2C_MST_D=
-ATA_WORD0,
-+				vals, ARRAY_SIZE(vals));
-+}
-+
-+static int rtl9300_i2c_writel(struct rtl9300_i2c *i2c, u32 data)
-+{
-+	return regmap_write(i2c->regmap, i2c->reg_base + RTL9300_I2C_MST_DATA_W=
-ORD0, data);
-+}
-+
-+static int rtl9300_i2c_execute_xfer(struct rtl9300_i2c *i2c, char read_w=
-rite,
-+				    int size, union i2c_smbus_data *data, int len)
-+{
-+	u32 val, mask;
-+	int ret;
-+
-+	val =3D read_write =3D=3D I2C_SMBUS_WRITE ? RTL9300_I2C_MST_CTRL1_RWOP =
-: 0;
-+	mask =3D RTL9300_I2C_MST_CTRL1_RWOP;
-+
-+	val |=3D RTL9300_I2C_MST_CTRL1_I2C_TRIG;
-+	mask |=3D RTL9300_I2C_MST_CTRL1_I2C_TRIG;
-+
-+	ret =3D regmap_update_bits(i2c->regmap, i2c->reg_base + RTL9300_I2C_MST=
-_CTRL1, mask, val);
-+	if (ret)
-+		return ret;
-+
-+	ret =3D regmap_read_poll_timeout(i2c->regmap, i2c->reg_base + RTL9300_I=
-2C_MST_CTRL1,
-+				       val, !(val & RTL9300_I2C_MST_CTRL1_I2C_TRIG), 100, 2000);
-+	if (ret)
-+		return ret;
-+
-+	if (val & RTL9300_I2C_MST_CTRL1_I2C_FAIL)
-+		return -EIO;
-+
-+	if (read_write =3D=3D I2C_SMBUS_READ) {
-+		if (size =3D=3D I2C_SMBUS_BYTE || size =3D=3D I2C_SMBUS_BYTE_DATA) {
-+			ret =3D regmap_read(i2c->regmap,
-+					  i2c->reg_base + RTL9300_I2C_MST_DATA_WORD0, &val);
-+			if (ret)
-+				return ret;
-+			data->byte =3D val & 0xff;
-+		} else if (size =3D=3D I2C_SMBUS_WORD_DATA) {
-+			ret =3D regmap_read(i2c->regmap,
-+					  i2c->reg_base + RTL9300_I2C_MST_DATA_WORD0, &val);
-+			if (ret)
-+				return ret;
-+			data->word =3D val & 0xffff;
-+		} else {
-+			ret =3D rtl9300_i2c_read(i2c, &data->block[0], len);
-+			if (ret)
-+				return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int rtl9300_i2c_smbus_xfer(struct i2c_adapter *adap, u16 addr, un=
-signed short flags,
-+				  char read_write, u8 command, int size,
-+				  union i2c_smbus_data *data)
-+{
-+	struct rtl9300_i2c_chan *chan =3D i2c_get_adapdata(adap);
-+	struct rtl9300_i2c *i2c =3D chan->i2c;
-+	int len =3D 0, ret;
-+
-+	mutex_lock(&i2c->lock);
-+	if (chan->sda_pin !=3D i2c->sda_pin) {
-+		ret =3D rtl9300_i2c_config_io(i2c, chan->sda_pin);
-+		if (ret)
-+			goto out_unlock;
-+		i2c->sda_pin =3D chan->sda_pin;
-+	}
-+
-+	switch (size) {
-+	case I2C_SMBUS_QUICK:
-+		ret =3D rtl9300_i2c_config_xfer(i2c, chan, addr, 0);
-+		if (ret)
-+			goto out_unlock;
-+		ret =3D rtl9300_i2c_reg_addr_set(i2c, 0, 0);
-+		if (ret)
-+			goto out_unlock;
-+		break;
-+
-+	case I2C_SMBUS_BYTE:
-+		if (read_write =3D=3D I2C_SMBUS_WRITE) {
-+			ret =3D rtl9300_i2c_config_xfer(i2c, chan, addr, 0);
-+			if (ret)
-+				goto out_unlock;
-+			ret =3D rtl9300_i2c_reg_addr_set(i2c, command, 1);
-+			if (ret)
-+				goto out_unlock;
-+		} else {
-+			ret =3D rtl9300_i2c_config_xfer(i2c, chan, addr, 1);
-+			if (ret)
-+				goto out_unlock;
-+			ret =3D rtl9300_i2c_reg_addr_set(i2c, 0, 0);
-+			if (ret)
-+				goto out_unlock;
-+		}
-+		break;
-+
-+	case I2C_SMBUS_BYTE_DATA:
-+		ret =3D rtl9300_i2c_reg_addr_set(i2c, command, 1);
-+		if (ret)
-+			goto out_unlock;
-+		ret =3D rtl9300_i2c_config_xfer(i2c, chan, addr, 1);
-+		if (ret)
-+			goto out_unlock;
-+		if (read_write =3D=3D I2C_SMBUS_WRITE) {
-+			ret =3D rtl9300_i2c_writel(i2c, data->byte);
-+			if (ret)
-+				goto out_unlock;
-+		}
-+		break;
-+
-+	case I2C_SMBUS_WORD_DATA:
-+		ret =3D rtl9300_i2c_reg_addr_set(i2c, command, 1);
-+		if (ret)
-+			goto out_unlock;
-+		ret =3D rtl9300_i2c_config_xfer(i2c, chan, addr, 2);
-+		if (ret)
-+			goto out_unlock;
-+		if (read_write =3D=3D I2C_SMBUS_WRITE) {
-+			ret =3D rtl9300_i2c_writel(i2c, data->word);
-+			if (ret)
-+				goto out_unlock;
-+		}
-+		break;
-+
-+	case I2C_SMBUS_BLOCK_DATA:
-+		ret =3D rtl9300_i2c_reg_addr_set(i2c, command, 1);
-+		if (ret)
-+			goto out_unlock;
-+		ret =3D rtl9300_i2c_config_xfer(i2c, chan, addr, data->block[0]);
-+		if (ret)
-+			goto out_unlock;
-+		if (read_write =3D=3D I2C_SMBUS_WRITE) {
-+			ret =3D rtl9300_i2c_write(i2c, &data->block[1], data->block[0]);
-+			if (ret)
-+				goto out_unlock;
-+		}
-+		len =3D data->block[0];
-+		break;
-+
-+	default:
-+		dev_err(&adap->dev, "Unsupported transaction %d\n", size);
-+		ret =3D -EOPNOTSUPP;
-+		goto out_unlock;
-+	}
-+
-+	ret =3D rtl9300_i2c_execute_xfer(i2c, read_write, size, data, len);
-+
-+out_unlock:
-+	mutex_unlock(&i2c->lock);
-+
-+	return ret;
-+}
-+
-+static u32 rtl9300_i2c_func(struct i2c_adapter *a)
-+{
-+	return I2C_FUNC_SMBUS_QUICK | I2C_FUNC_SMBUS_BYTE |
-+	       I2C_FUNC_SMBUS_BYTE_DATA | I2C_FUNC_SMBUS_WORD_DATA |
-+	       I2C_FUNC_SMBUS_BLOCK_DATA;
-+}
-+
-+static const struct i2c_algorithm rtl9300_i2c_algo =3D {
-+	.smbus_xfer	=3D rtl9300_i2c_smbus_xfer,
-+	.functionality	=3D rtl9300_i2c_func,
-+};
-+
-+static struct i2c_adapter_quirks rtl9300_i2c_quirks =3D {
-+	.flags		=3D I2C_AQ_NO_CLK_STRETCH,
-+	.max_read_len	=3D 16,
-+	.max_write_len	=3D 16,
-+};
-+
-+static int rtl9300_i2c_probe(struct platform_device *pdev)
-+{
-+	struct device *dev =3D &pdev->dev;
-+	struct rtl9300_i2c *i2c;
-+	u32 clock_freq, sda_pin;
-+	int ret, i =3D 0;
-+	struct fwnode_handle *child;
-+
-+	i2c =3D devm_kzalloc(dev, sizeof(*i2c), GFP_KERNEL);
-+	if (!i2c)
-+		return -ENOMEM;
-+
-+	i2c->regmap =3D syscon_node_to_regmap(dev->parent->of_node);
-+	if (IS_ERR(i2c->regmap))
-+		return PTR_ERR(i2c->regmap);
-+	i2c->dev =3D dev;
-+
-+	mutex_init(&i2c->lock);
-+
-+	ret =3D device_property_read_u32(dev, "reg", &i2c->reg_base);
-+	if (ret)
-+		return ret;
-+
-+	platform_set_drvdata(pdev, i2c);
-+
-+	if (device_get_child_node_count(dev) >=3D RTL9300_I2C_MUX_NCHAN)
-+		return dev_err_probe(dev, -EINVAL, "Too many channels\n");
-+
-+	device_for_each_child_node(dev, child) {
-+		struct rtl9300_i2c_chan *chan =3D &i2c->chans[i];
-+		struct i2c_adapter *adap =3D &chan->adap;
-+
-+		ret =3D fwnode_property_read_u32(child, "reg", &sda_pin);
-+		if (ret)
-+			return ret;
-+
-+		ret =3D fwnode_property_read_u32(child, "clock-frequency", &clock_freq=
-);
-+		if (ret)
-+			clock_freq =3D I2C_MAX_STANDARD_MODE_FREQ;
-+
-+		switch (clock_freq) {
-+		case I2C_MAX_STANDARD_MODE_FREQ:
-+			chan->bus_freq =3D RTL9300_I2C_STD_FREQ;
-+			break;
-+
-+		case I2C_MAX_FAST_MODE_FREQ:
-+			chan->bus_freq =3D RTL9300_I2C_FAST_FREQ;
-+			break;
-+		default:
-+			dev_warn(i2c->dev, "SDA%d clock-frequency %d not supported using defa=
-ult\n",
-+				 sda_pin, clock_freq);
-+			break;
-+		}
-+
-+		chan->sda_pin =3D sda_pin;
-+		chan->i2c =3D i2c;
-+		adap =3D &i2c->chans[i].adap;
-+		adap->owner =3D THIS_MODULE;
-+		adap->algo =3D &rtl9300_i2c_algo;
-+		adap->quirks =3D &rtl9300_i2c_quirks;
-+		adap->retries =3D 3;
-+		adap->dev.parent =3D dev;
-+		i2c_set_adapdata(adap, chan);
-+		adap->dev.of_node =3D to_of_node(child);
-+		snprintf(adap->name, sizeof(adap->name), "%s SDA%d\n", dev_name(dev), =
-sda_pin);
-+		i++;
-+
-+		ret =3D devm_i2c_add_adapter(dev, adap);
-+		if (ret)
-+			return ret;
-+	}
-+	i2c->sda_pin =3D 0xff;
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id i2c_rtl9300_dt_ids[] =3D {
-+	{ .compatible =3D "realtek,rtl9301-i2c" },
-+	{ .compatible =3D "realtek,rtl9302b-i2c" },
-+	{ .compatible =3D "realtek,rtl9302c-i2c" },
-+	{ .compatible =3D "realtek,rtl9303-i2c" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, i2c_rtl9300_dt_ids);
-+
-+static struct platform_driver rtl9300_i2c_driver =3D {
-+	.probe =3D rtl9300_i2c_probe,
-+	.driver =3D {
-+		.name =3D "i2c-rtl9300",
-+		.of_match_table =3D i2c_rtl9300_dt_ids,
-+	},
-+};
-+
-+module_platform_driver(rtl9300_i2c_driver);
-+
-+MODULE_DESCRIPTION("RTL9300 I2C controller driver");
-+MODULE_LICENSE("GPL");
---=20
-2.47.0
+Guenter
 
 
