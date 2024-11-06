@@ -1,163 +1,112 @@
-Return-Path: <devicetree+bounces-119671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 321DC9BF800
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 21:32:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0669BF822
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 21:42:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC29B283C87
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 20:32:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B76811F2386A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 20:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00A1120C309;
-	Wed,  6 Nov 2024 20:32:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73C9420C475;
+	Wed,  6 Nov 2024 20:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tZg0J0eW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sCQjTB3J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0FE120C307;
-	Wed,  6 Nov 2024 20:32:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4086617B439;
+	Wed,  6 Nov 2024 20:42:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730925141; cv=none; b=LP81ur9lE0SUliMNJU/pCGFjLn3T2DTQdgH9fproofpWKCUNA4G497NKHz9Xy/fLsBDt+cbIPNTMsUuqI+f8gyMv6PtlIs6DhFRNh9gxIEPSTWi/4wNLkFeWAC2D1DkHgx/BNTh5/2X/rQxLHj8RujvEOywiqKQlqHXhBN6b9RI=
+	t=1730925723; cv=none; b=HS7TVYIPfuDB/3hF8crS039DnLaWZ/b04+pG/abaLAs9Bl4y6JNZNEOjHHjDjlIBaLA7fzXZSibCBI/QHFOnKcZmzMOU8qKw/eY2jnrpSaClDPMeJofm9eneSYhyCKDJUkuvk/h8isB5GCOFIj8Ml9B77sAMRlkaz2Lwvwp6g5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730925141; c=relaxed/simple;
-	bh=1Ei0xMRvJVGpNZKZ8Xu5z8oPwa6biKFwhQZaFWCaniQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=iQEXL+0ShBkRcMwMxcTnoPlqhPxhw7Tt2SuQ19VzBR9UGphxjTwyPULjCWeRs+aNhBdnWDK0jkDFoX3JiSN5iF+1NofcAYAhiwrkYROrnQI9nHGGCZVT9QP5IBVkehmT0+tnExcbFKrjMLNkuYnMaay7hPWY4MxpJMW9WSlz3z8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tZg0J0eW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15120C4CEC6;
-	Wed,  6 Nov 2024 20:32:20 +0000 (UTC)
+	s=arc-20240116; t=1730925723; c=relaxed/simple;
+	bh=6xZxZRX9pJzYRY60SdV8AMMfsLpXD2gY5VSstB6NEdA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=sETRbD5ugOKL309KLbBIhh0MaxKhmGYYCUuCKNRFsA231OKEGb9aB62yua7ngEROIuISH6HzHwh0AlfzC+XhCj2ufFn0KtMWejFf5qeoFz9i/CstVqSm8+XAsEAEGo6r5tHvUkBL0lkKUBizvvVnIRa1Bj8KTuNkS4IxAv558No=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sCQjTB3J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22910C4CECD;
+	Wed,  6 Nov 2024 20:41:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730925141;
-	bh=1Ei0xMRvJVGpNZKZ8Xu5z8oPwa6biKFwhQZaFWCaniQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=tZg0J0eWyw29z9TlF5Dh4E6EQ5oPdCcO4Zz1/6he+K+beNXrwI5BYmOKhVX2TOsrL
-	 mAyajLN3o73Gvjnr3Ma+elCxVC6Ow693XoGe6S09/upNh68DhL/lmhJqnTnr1eaG2P
-	 vB982vUHSfGzwhi6hvbBmebGg7uoHTS6frYohB/PiF7IdB2PrwT1NTwcKUypN5ZWST
-	 +bDlMwFqgxqC0QYaudNUVdGHgRqi8jjbiJge483v+BpQXxLaXN5QcNCgttY6SgPyc+
-	 Q2BqAfBJ/xs1a9unoAlhKJDasaC2HI3NH5YOpLHp2NM7XuhVOU6VscBy9lyURxzNsn
-	 f8j4/RaEtgLGA==
-Date: Wed, 6 Nov 2024 14:32:19 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
-	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, bhelgaas@google.com,
-	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
-	linux-arm-kernel@lists.infradead.org,
-	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-	nbd@nbd.name, dd@embedd.com, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v4 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
-Message-ID: <20241106203219.GA1530199@bhelgaas>
+	s=k20201202; t=1730925722;
+	bh=6xZxZRX9pJzYRY60SdV8AMMfsLpXD2gY5VSstB6NEdA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=sCQjTB3J8wNAnJdCpp6NFeQ5m+qOYAnC7uz0jN9RD9r4ZDEM5gh/gdpwKuh0WnvK6
+	 6luotJKNV4CjOiMtEsLhkj1xdFDI+2hOj/SKcdroRHZ5yPedI4t08aQ1IQn/Kk0d48
+	 PbqUf56xfLmt8NCXp3G04vXlKBDErRNqvreVJrkCA4UbnJB1tmkNZu5ARxXJ5WoR/J
+	 OyqTAvnmQuL2cvVO3+F8dtWcXC8//eOzIk0RSWRcOucgfLl33PGd0w8+3PLNW/9VyB
+	 th0cStjpArlhtd6NHCVt8dlcs/U97CigsreexapnYxLfgY6Dg4bXE6KpBAxgoOOgom
+	 Mip9aKOsYV4Rw==
+From: Mark Brown <broonie@kernel.org>
+To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Janne Grunau <j@jannau.net>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Nick Chan <towinchenmi@gmail.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+In-Reply-To: <20241105-asahi-spi-v4-0-d9734f089fc9@jannau.net>
+References: <20241105-asahi-spi-v4-0-d9734f089fc9@jannau.net>
+Subject: Re: (subset) [PATCH v4 0/3] Apple SPI controller driver
+Message-Id: <173092571984.200222.14602988312951678347.b4-ty@kernel.org>
+Date: Wed, 06 Nov 2024 20:41:59 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aca00bd672ee576ad96d279414fc0835ff31f637.1720022580.git.lorenzo@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-9b746
 
-On Wed, Jul 03, 2024 at 06:12:44PM +0200, Lorenzo Bianconi wrote:
-> Introduce support for Airoha EN7581 PCIe controller to mediatek-gen3
-> PCIe controller driver.
-> ...
+On Tue, 05 Nov 2024 09:08:28 +0100, Janne Grunau wrote:
+> This updated series address the review comments from the original
+> submission in 2021 [1]. It adds a new SPI controller driver for Apple
+> SoCs and is based on spi-sifive. It has been tested with the generic
+> jedec,spi-nor support and with a downstream driver for an Apple specific
+> HID over SPI transport.
+> 
+> As usual, I'm splitting off the MAINTAINERS and DT binding changes.
+> We would rather merge the MAINTAINERS change through the Asahi-SoC
+> tree to avoid merge conflicts as things trickle upstream, since
+> we have other submissions touching that section of the file.
+> 
+> [...]
 
-> +static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
-> +{
-> +	struct device *dev = pcie->dev;
-> +	int err;
-> +	u32 val;
-> +
-> +	/*
-> +	 * Wait for the time needed to complete the bulk assert in
-> +	 * mtk_pcie_setup for EN7581 SoC.
-> +	 */
-> +	mdelay(PCIE_EN7581_RESET_TIME_MS);
+Applied to
 
-It looks wrong to me to do the assert and deassert in different
-places:
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-  mtk_pcie_setup
-    reset_control_bulk_assert(pcie->phy_resets)        <--
-    mtk_pcie_en7581_power_up
-      mdelay(PCIE_EN7581_RESET_TIME_MS)
-      reset_control_bulk_deassert(pcie->phy_resets)    <--
-      mdelay(PCIE_EN7581_RESET_TIME_MS)
+Thanks!
 
-That makes the code hard to understand.
+[1/3] dt-bindings: spi: apple,spi: Add binding for Apple SPI controllers
+      (no commit info)
+[2/3] spi: apple: Add driver for Apple SPI controller
+      commit: c36212b2610d09eb42142beb0d5613c70206c658
 
-> +	err = phy_init(pcie->phy);
-> +	if (err) {
-> +		dev_err(dev, "failed to initialize PHY\n");
-> +		return err;
-> +	}
-> +
-> +	err = phy_power_on(pcie->phy);
-> +	if (err) {
-> +		dev_err(dev, "failed to power on PHY\n");
-> +		goto err_phy_on;
-> +	}
-> +
-> +	err = reset_control_bulk_deassert(pcie->soc->phy_resets.num_resets, pcie->phy_resets);
-> +	if (err) {
-> +		dev_err(dev, "failed to deassert PHYs\n");
-> +		goto err_phy_deassert;
-> +	}
-> +
-> +	/*
-> +	 * Wait for the time needed to complete the bulk de-assert above.
-> +	 * This time is specific for EN7581 SoC.
-> +	 */
-> +	mdelay(PCIE_EN7581_RESET_TIME_MS);
-> +
-> +	pm_runtime_enable(dev);
-> +	pm_runtime_get_sync(dev);
-> +
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-> +	err = clk_bulk_prepare(pcie->num_clks, pcie->clks);
-> +	if (err) {
-> +		dev_err(dev, "failed to prepare clock\n");
-> +		goto err_clk_prepare;
-> +	}
-> +
-> +	val = FIELD_PREP(PCIE_VAL_LN0_DOWNSTREAM, 0x47) |
-> +	      FIELD_PREP(PCIE_VAL_LN1_DOWNSTREAM, 0x47) |
-> +	      FIELD_PREP(PCIE_VAL_LN0_UPSTREAM, 0x41) |
-> +	      FIELD_PREP(PCIE_VAL_LN1_UPSTREAM, 0x41);
-> +	writel_relaxed(val, pcie->base + PCIE_EQ_PRESET_01_REG);
-> +
-> +	val = PCIE_K_PHYPARAM_QUERY | PCIE_K_QUERY_TIMEOUT |
-> +	      FIELD_PREP(PCIE_K_PRESET_TO_USE_16G, 0x80) |
-> +	      FIELD_PREP(PCIE_K_PRESET_TO_USE, 0x2) |
-> +	      FIELD_PREP(PCIE_K_FINETUNE_MAX, 0xf);
-> +	writel_relaxed(val, pcie->base + PCIE_PIPE4_PIE8_REG);
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-Why is this equalization stuff in the middle between
-clk_bulk_prepare() and clk_bulk_enable()?  Is the split an actual
-requirement, or could we use clk_bulk_prepare_enable() here, like we
-do in mtk_pcie_power_up()?
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-If the split is required, a comment about why would be helpful.
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-> +	err = clk_bulk_enable(pcie->num_clks, pcie->clks);
-> +	if (err) {
-> +		dev_err(dev, "failed to prepare clock\n");
-> +		goto err_clk_enable;
-> +	}
+Thanks,
+Mark
 
-Per https://lore.kernel.org/r/ZypgYOn7dcYIoW4i@lore-desk,
-REG_PCI_CONTROL is asserted/deasserted here by en7581_pci_enable().
-
-Is this where PERST# is asserted?  If so, a comment to that effect
-would be helpful.  Where is PERST# deasserted?  Where are the required
-delays before deassert done?
-
-Bjorn
 
