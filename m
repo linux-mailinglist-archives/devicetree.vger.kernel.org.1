@@ -1,86 +1,87 @@
-Return-Path: <devicetree+bounces-119553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62F8E9BF1A7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:29:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9746A9BF1C9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:33:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E61B284E1D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 15:29:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE993B23FA2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 15:33:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9B5020371C;
-	Wed,  6 Nov 2024 15:29:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBC2F206E84;
+	Wed,  6 Nov 2024 15:31:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="srEb3s2i"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gV98/D8s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 659AF202F8A;
-	Wed,  6 Nov 2024 15:29:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 191F12036ED;
+	Wed,  6 Nov 2024 15:31:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730906959; cv=none; b=MvmNWqPzi8xaYbV8suhpUWJoA5nQx+UCIh2M/v8k3BAd0wIQR4UrSnCfwup4FO0y7ePinPRMSrpKCF0SdSHCKdzhrm8xA7jVZdGg1fo3Xgh7hrb/G2G3tR5ZuQpqn3qvYcuhmhvw5nAXj3G2QPdrsQdpqjGVb93ULS01menLoVM=
+	t=1730907108; cv=none; b=alv4ppm+SC54iCpILZoZ+RKlBtB3SuAmgl69zXpnu8Whi8VGWlmraWzdhn8ayNiOhYZcAk6FghFW88J0+E7myIh6wqgGK6B1VLFwA5tAz7LyRtV31dSZmsP0hHAUYvkCLohHQ12YNyy+OIXm/4PLvTqnT848tabwlLDSVezO/vo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730906959; c=relaxed/simple;
-	bh=zj989CJlmIdfkLgwwIuZOhnOoy+Tct/CfqFYGX2PBbs=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hTs7XgEyIvFEtikUe8Ww3AKQQJxE+A8Ae6xjdyRiLNjTKm8yQZhlWNjEXIs2+AiV78MrQQIyj3BcaK7CHAUL3PlSI8MASjf/PBWzLRES8Qj2E8QDjZE0Nrf+6O5jFz9SKqbcy4MZauERzutKpzH8++03MO2zxzveZMVJ3w3SJbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=srEb3s2i; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A6B4fQS016086;
-	Wed, 6 Nov 2024 16:28:47 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	6v690GD1bQoY7uAmDqlHHIVXU8KeGeFlzk0ZkeLKKY8=; b=srEb3s2iU8rQBYHd
-	x5/+cPGt89UP8l6ajUXOm1j2Jyfr9WR6Pa+09jc7KcO7wl6Lsvk5p8eHq/78isSK
-	R4/+9Wla7GbRiR9qKTecn9EJxbkHsqKUhyiCF5PqTIE6E7o0BXUsL0lFxYSy7JX8
-	a9RXi1lM3tr8GXoch8Gw3dmfwEBZj4KR48NdHWgfkCJjxf6BE9JkW/zpvj5/+wuJ
-	ZppFlAhnpRTmi/RpgLcMjudMB7HfsCL0iE7DWty41G1hHjiZdwYzAoLiyklZBv0m
-	IrDTTpXYEYdviFrJUauTjTGKyH0VlXmPngw1sxd0aXLqZDgJZKymhsFbsgeDnF8B
-	One9Ig==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42nywnfar5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 06 Nov 2024 16:28:47 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 87C2E40045;
-	Wed,  6 Nov 2024 16:27:33 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 821392656DF;
-	Wed,  6 Nov 2024 16:25:35 +0100 (CET)
-Received: from localhost (10.252.15.15) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 6 Nov
- 2024 16:25:35 +0100
-From: Olivier Moysan <olivier.moysan@foss.st.com>
-To: Olivier Moysan <olivier.moysan@foss.st.com>,
-        Arnaud Pouliquen
-	<arnaud.pouliquen@foss.st.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark
- Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>
-CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 1/2] ASoC: dt-bindings: add stm32mp25 support for i2s
-Date: Wed, 6 Nov 2024 16:25:27 +0100
-Message-ID: <20241106152528.939232-2-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241106152528.939232-1-olivier.moysan@foss.st.com>
-References: <20241106152528.939232-1-olivier.moysan@foss.st.com>
+	s=arc-20240116; t=1730907108; c=relaxed/simple;
+	bh=YinUtlhN21UTDpWy65DE0bx73dRSBrI4axGpunJIP4k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bjFlRn2b9DPnyk/ox02nJ/p2YSJFqoA4drumyHzSH9YMmgaI9p+stAWqoaJ4ph0fbwh1CDeNNtu1tQbd+En/GtaPd2WF7O5lk1O5mUeXs/UEyWubH6sL+yR/lZvwJqFqDCCdxbz8tzGYlAj/jXZvEcnggBNqj1J592yE3qPMEQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gV98/D8s; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a9e8522445dso731477966b.1;
+        Wed, 06 Nov 2024 07:31:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730907105; x=1731511905; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TxZUEYefO8cHk0O3pZ6pSrkyLEtM/cjRFYGqJjEkBSc=;
+        b=gV98/D8swQiWj1GoQ9w88zv+fydMA7X3Mgs8EVBU5fLTmogPtXm0EQgHPTTLnDgBEZ
+         xnQFgHYLoz8pbqT7VcErljDMrMk6cv3DKZiCH+QkJCnMWZYm2P16Yh+OAe/lRglPXuhH
+         uuTaZp4gqhcNnm+hJqSaPqID1eK5N3y7dfx9sT53HeF29uO3spXm+VupvtKt3nf6Hj5V
+         iT+dzSPe6L+PObDbskzDCMNglkJq431h53MbBvDuTFRgZbvq6Nvc5XapYifu0J3d6GVp
+         P7fIfgYbBog/FVfhRHZFXqYwFPfgsMrVyb/jXkZbyLWXTDzm7YMJqbE+y2vTkT7dJvNS
+         FhtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730907105; x=1731511905;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TxZUEYefO8cHk0O3pZ6pSrkyLEtM/cjRFYGqJjEkBSc=;
+        b=ubcaOgHqXEXSekHpJt4pS9QdVwbBOXAiMX8GA6iedZs+bb9swDSf2A1q1DOV5AOw9H
+         JthjY6MLRZNtfioD9493WiFxiL68qYE/ToVjj2szrMavPLXb7mK1j+RtSlKqZ3kq5K0k
+         n/RzO/be3sRKW3RA/1g5C6WlFjU0D5LreDXGyUUp3uKjFoafR60+/2Ob6Zex0Q+eGMwF
+         u2SZnjkO7wDlIdOSROil5044zm4Xp1mhMeiALepXogtEMnOC1aUjmOldr70gBMw65MsC
+         RrSmbSMmgzvg0/iJ7FoBi1QW+XxRK8jH/ydwNTuRfRRLNOJ2JOKYqDf1rCbUimTL7kd4
+         5JFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUmhzs+D+z1RTKAx5sv3jsB/ap6j0YOc3XUHC+UI3sUFttpSAcFkfQqvOhcdKRensZJLIz4fRoEPOWd@vger.kernel.org, AJvYcCVqMGiszqMgt5WUMdyOicUX3gGHCn86zb0ahta8udEbFhtj14T/euHrlb9qGk5jKtN6B7xjPiOoVIWY9KTz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiUzzFE0P9NSY4iMXEyMvzQk7EeRuPYpu/y74E//67dITbZ9i4
+	c7LeA350opm7MT9/qFonEirrsrihzfP4gc/BWWd3mCxHEQYrEb91
+X-Google-Smtp-Source: AGHT+IF0ZzyBdcVslRwOSTjEHqwVoJnmjkaO24ZdQOt67CgbkGTe+T3MfKCDKsQIMoe5M16dlGZRtg==
+X-Received: by 2002:a17:906:6a12:b0:a9a:1778:7024 with SMTP id a640c23a62f3a-a9e65576989mr2245715566b.20.1730907105078;
+        Wed, 06 Nov 2024 07:31:45 -0800 (PST)
+Received: from ivaylo-T580.. (miroral.stz.ddns.bulsat.com. [91.139.249.115])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9eb17cecd7sm302227066b.100.2024.11.06.07.31.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Nov 2024 07:31:44 -0800 (PST)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-actions@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: clock: actions,owl-cmu: convert to YAML
+Date: Wed,  6 Nov 2024 17:31:41 +0200
+Message-ID: <20241106153141.375389-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,113 +89,159 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Add STM32MP25 support for STM32 I2S peripheral,
-through "st,stm32mp25-i2s" compatible.
+Convert the Actions Semi Owl CMU bindings to DT schema.
 
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+Changes during conversion:
+ - Since all Actions Semi Owl SoCs utilize the internal low frequency
+   oscillator as a parent for some clocks, require it.
+
+Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
 ---
- .../bindings/sound/st,stm32-i2s.yaml          | 60 +++++++++++++++----
- 1 file changed, 47 insertions(+), 13 deletions(-)
+v2: drop address and size cells from example
+---
+ .../bindings/clock/actions,owl-cmu.txt        | 52 -----------------
+ .../bindings/clock/actions,owl-cmu.yaml       | 57 +++++++++++++++++++
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 58 insertions(+), 53 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/actions,owl-cmu.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/actions,owl-cmu.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml b/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
-index 8978f6bd63e5..8f08f1f28a1b 100644
---- a/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
-+++ b/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
-@@ -13,13 +13,11 @@ description:
-   The SPI/I2S block supports I2S/PCM protocols when configured on I2S mode.
-   Only some SPI instances support I2S.
- 
--allOf:
--  - $ref: dai-common.yaml#
+diff --git a/Documentation/devicetree/bindings/clock/actions,owl-cmu.txt b/Documentation/devicetree/bindings/clock/actions,owl-cmu.txt
+deleted file mode 100644
+index d19885b7c..000000000
+--- a/Documentation/devicetree/bindings/clock/actions,owl-cmu.txt
++++ /dev/null
+@@ -1,52 +0,0 @@
+-* Actions Semi Owl Clock Management Unit (CMU)
 -
- properties:
-   compatible:
-     enum:
-       - st,stm32h7-i2s
-+      - st,stm32mp25-i2s
- 
-   "#sound-dai-cells":
-     const: 0
-@@ -28,18 +26,12 @@ properties:
-     maxItems: 1
- 
-   clocks:
--    items:
--      - description: clock feeding the peripheral bus interface.
--      - description: clock feeding the internal clock generator.
--      - description: I2S parent clock for sampling rates multiple of 8kHz.
--      - description: I2S parent clock for sampling rates multiple of 11.025kHz.
-+    minItems: 2
-+    maxItems: 4
- 
-   clock-names:
--    items:
--      - const: pclk
--      - const: i2sclk
--      - const: x8k
--      - const: x11k
-+    minItems: 2
-+    maxItems: 4
- 
-   interrupts:
-     maxItems: 1
-@@ -79,6 +71,48 @@ required:
-   - dmas
-   - dma-names
- 
-+allOf:
-+  - $ref: dai-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: st,stm32h7-i2s
+-The Actions Semi Owl Clock Management Unit generates and supplies clock
+-to various controllers within the SoC. The clock binding described here is
+-applicable to S900, S700 and S500 SoC's.
+-
+-Required Properties:
+-
+-- compatible: should be one of the following,
+-	"actions,s900-cmu"
+-	"actions,s700-cmu"
+-	"actions,s500-cmu"
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-- clocks: Reference to the parent clocks ("hosc", "losc")
+-- #clock-cells: should be 1.
+-- #reset-cells: should be 1.
+-
+-Each clock is assigned an identifier, and client nodes can use this identifier
+-to specify the clock which they consume.
+-
+-All available clocks are defined as preprocessor macros in corresponding
+-dt-bindings/clock/actions,s900-cmu.h or actions,s700-cmu.h or
+-actions,s500-cmu.h header and can be used in device tree sources.
+-
+-External clocks:
+-
+-The hosc clock used as input for the plls is generated outside the SoC. It is
+-expected that it is defined using standard clock bindings as "hosc".
+-
+-Actions Semi S900 CMU also requires one more clock:
+- - "losc" - internal low frequency oscillator
+-
+-Example: Clock Management Unit node:
+-
+-        cmu: clock-controller@e0160000 {
+-                compatible = "actions,s900-cmu";
+-                reg = <0x0 0xe0160000 0x0 0x1000>;
+-                clocks = <&hosc>, <&losc>;
+-                #clock-cells = <1>;
+-                #reset-cells = <1>;
+-        };
+-
+-Example: UART controller node that consumes clock generated by the clock
+-management unit:
+-
+-        uart: serial@e012a000 {
+-                compatible = "actions,s900-uart", "actions,owl-uart";
+-                reg = <0x0 0xe012a000 0x0 0x2000>;
+-                interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+-                clocks = <&cmu CLK_UART5>;
+-        };
+diff --git a/Documentation/devicetree/bindings/clock/actions,owl-cmu.yaml b/Documentation/devicetree/bindings/clock/actions,owl-cmu.yaml
+new file mode 100644
+index 000000000..3504f70eb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/actions,owl-cmu.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/actions,owl-cmu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: clock feeding the peripheral bus interface.
-+            - description: clock feeding the internal clock generator.
-+            - description: I2S parent clock for sampling rates multiple of 8kHz.
-+            - description: I2S parent clock for sampling rates multiple of 11.025kHz.
++title: Actions Semi Owl Clock Management Unit (CMU)
 +
-+        clock-names:
-+          items:
-+            - const: pclk
-+            - const: i2sclk
-+            - const: x8k
-+            - const: x11k
++maintainers:
++  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 +
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: st,stm32mp25-i2s
++description: |
++  The Actions Semi Owl Clock Management Unit generates and supplies clock
++  to various controllers within the SoC.
 +
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: clock feeding the peripheral bus interface.
-+            - description: clock feeding the internal clock generator.
++  All available clocks are defined as preprocessor macros in
++  include/dt-bindings/clock/ headers.
 +
-+        clock-names:
-+          items:
-+            - const: pclk
-+            - const: i2sclk
++properties:
++  compatible:
++    enum:
++      - actions,s500-cmu
++      - actions,s700-cmu
++      - actions,s900-cmu
 +
- unevaluatedProperties: false
- 
- examples:
++  clocks:
++    items:
++      - description: Host oscillator source
++      - description: Internal low frequency oscillator source
++
++  "#clock-cells":
++    const: 1
++
++  reg:
++    maxItems: 1
++
++  "#reset-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - "#clock-cells"
++  - "#reset-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    cmu: clock-controller@e0160000 {
++       compatible = "actions,s900-cmu";
++       reg = <0xe0160000 0x1000>;
++       clocks = <&hosc>, <&losc>;
++       #clock-cells = <1>;
++       #reset-cells = <1>;
++     };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 420d06d37..652c9822a 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2016,7 +2016,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ L:	linux-actions@lists.infradead.org (moderated for non-subscribers)
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/arm/actions.yaml
+-F:	Documentation/devicetree/bindings/clock/actions,owl-cmu.txt
++F:	Documentation/devicetree/bindings/clock/actions,owl-cmu.yaml
+ F:	Documentation/devicetree/bindings/dma/owl-dma.yaml
+ F:	Documentation/devicetree/bindings/i2c/i2c-owl.yaml
+ F:	Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
 -- 
-2.25.1
+2.43.0
 
 
