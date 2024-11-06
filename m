@@ -1,118 +1,172 @@
-Return-Path: <devicetree+bounces-119278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6217F9BDD84
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 04:19:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 809079BDD89
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 04:20:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 130D81F23DC7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 03:19:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D8EA2B217D2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 03:20:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C088718FDAB;
-	Wed,  6 Nov 2024 03:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950DE18FDB1;
+	Wed,  6 Nov 2024 03:20:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iKFrk0Tw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rmzy5Nqk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68B818F2F8;
-	Wed,  6 Nov 2024 03:19:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD0164D;
+	Wed,  6 Nov 2024 03:20:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730863148; cv=none; b=G8/D7xcHRWbXv2PGAMlQZrn4lhBsvy8J09fYfhiFCuKeueIasFu6kq1MGVEXBw8m98o5c3uV2CJAUs1qIV294eEPgj6JzOYT6kdO6Ree8C+Uz04pn5dri0iROwY9E4tOhFYJWQR+sJLuPLEu/estpaW0fnh63n57P971ktMUeW4=
+	t=1730863221; cv=none; b=QRbEzLR1OkqZpmVwkqgs4zgSxByDMCxBS00AGVE4tceAkLYnH4zRH7ZQGLr2FPXkh3wLtADnhcjU/Iv6e9g9UKSLfNpJPqpCEfs0p+8+r5mRkhxV2stiAEX5NZqetT27jHaZxEYXwRdabVIBV+5RAF/jWWqvnqmPZlfPaXTb1x0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730863148; c=relaxed/simple;
-	bh=o8aQslghnk2+z70tsW+2DklDn7CG8sbivh6qhEJ0ZDw=;
+	s=arc-20240116; t=1730863221; c=relaxed/simple;
+	bh=aN1o0QCqCd7y8dyIaGM9JyyzOA52GCKParbctBQgj2Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cFrcbLrLNbsypCGb6Ge1vMtYfUGR0m6KQa3SXuBqGBDHkIIYGrsijNKqm4mnwY60KVR44dnM5hi1xmvILlmwEuQmhOg0A2uLZxCSwsQig49YPjHn8atjEyKJl+8sRT9rsdRUlgpziH5gAbVe8RxvekBWWeOqfNj1YMVqQNIPDSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iKFrk0Tw; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730863147; x=1762399147;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=o8aQslghnk2+z70tsW+2DklDn7CG8sbivh6qhEJ0ZDw=;
-  b=iKFrk0TwIVGBVt3HxtOjHyojIfP2bcgm8pVao+89GIoa9749AAHbBYyr
-   r9GZlKr0mxJ2UoGIL6ZNqZVHYdAOYX94ZagfZxu4rCdZNrgAq+oIrqSHg
-   I7uQf2Lz83hVASmgbAOoFRd4M8OFJGAuLAdhg08HceLxXih5PlzvwAosL
-   aR7pCg1epAdU17Z+aCKAlvqWgc6IvxenUpNQBpzYlrphp81+bIu7omhMr
-   dZ0MbQFimXCI4Xp3jpFqdw4mWy+WkL5E8g1H2Ibpy036NkZlGgfz710Mz
-   Yn0Ggi8wv0FWGt+iDElTyKYN29MEKnYcjFMYMS1JciJYOYTxImKhRZbGZ
-   w==;
-X-CSE-ConnectionGUID: UUH8h7HqQCOfxb2DEP62Rg==
-X-CSE-MsgGUID: DyEiXHKZS3yfG/0lLBK75g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11247"; a="30759607"
-X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; 
-   d="scan'208";a="30759607"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2024 19:19:06 -0800
-X-CSE-ConnectionGUID: C3b9hammQ5K62oSusumzvA==
-X-CSE-MsgGUID: xp94QqJRThKSfiZb/sjasA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; 
-   d="scan'208";a="84692741"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 05 Nov 2024 19:19:04 -0800
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t8WZR-000msn-04;
-	Wed, 06 Nov 2024 03:19:01 +0000
-Date: Wed, 6 Nov 2024 11:18:44 +0800
-From: kernel test robot <lkp@intel.com>
-To: Marek Vasut <marex@denx.de>, linux-hwmon@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Jean Delvare <jdelvare@suse.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] hwmon: (pwm-fan) Introduce start from dead stop
- handling
-Message-ID: <202411061031.GHHHxm19-lkp@intel.com>
-References: <20241105135259.101126-2-marex@denx.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=F/p50OM1PlyEbHVOzLUZC9jPrzWYplWOZ58X7aLRIjRxjZBC5wr9c40j+/RgOZAhIMueecwarenb3bxPcy4vvWQ4TEHkNnh9JYNMO9BBxPtjZ4ecCKJatpGnbeUiq6+rtnwpnRqPtp4TmHAMew16wAjMOtZy4iduFLoxTk5FeYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rmzy5Nqk; arc=none smtp.client-ip=209.85.215.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-7ea76a12c32so4670076a12.1;
+        Tue, 05 Nov 2024 19:20:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730863218; x=1731468018; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=roLVpWUG2t/eOgCxvwMOi21FBZ2OwBsA2Wap379AGE8=;
+        b=Rmzy5NqkmWYOL+5OMTmyETKjFl89Km/iOUotrf3Lo1Z1IPZ2DH8JP/9C6SPSYVNKkP
+         Ce4TwNQXp50QYwjYLUND9yDjdP4YpTXjK/UwGLEs05jUeN/y5bxDeqY2LgOl22PyYoMr
+         qOMwsptLex/t2fNevADXV/4MVJ49nfpfHn9u6mDkrw1IzpIOvWkQl+zioKEUMq/JkdlG
+         NyIAI3s1J35Nh9YLWbNQNsIldObsSVTqOECQG6y+buZFa3R7WWMsWch1Ls1ijCgN9z5L
+         XlgjP+q2lIIbUfvKvkryMpTt0t24GHgrYedWMhKKlvnHathfp3QSmambRcSAqZ6Guksc
+         ahjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730863218; x=1731468018;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=roLVpWUG2t/eOgCxvwMOi21FBZ2OwBsA2Wap379AGE8=;
+        b=BHJfYr83LowZ27zCy2C8lL7W+EZONjR/i4NmGGvr3A7sXWdJ3VFsy5GxDrZ5O66h/9
+         WLCpnXrpyzQcwzPORtlt60wiDb/dIPJR3npDoeKVsyBAkuuTxUMWzPmt76+W3JpxjtbE
+         ZDMyeriOPQKBhKluGRHrjQXD5xU6n6iibhk2XmuYILh+Fi1SaqNcjxVXvZPRhXuzmS+7
+         GIEu85GIapNifTGF3oq9O8H/2zTHEICSl2rAF8SJGzBs5nOAkRbSCyCOF5rVzBURk6a1
+         k6bCQIv2lNN7dqnDC9l8//v1p1Sstnsio7B89QuA6rBf/qGBHUYP1wPlrfmCM2Txh0Be
+         t2oA==
+X-Forwarded-Encrypted: i=1; AJvYcCX6cnvwg5wkiLvrrhWXewV6snHiTMUPhmHSLHQxqT7vRJruasYIpN32A6qW1m4VqZVZMYuDtg2Jmp2t@vger.kernel.org, AJvYcCXTdppU6YwEnAq7i9IkVd2Yf9jZKWPIKPS9rRjMtzXmcSoBN+9aMn7qKeWYycD9XZnxmIX6+hPhO76eMlUf@vger.kernel.org, AJvYcCXX3W/NIkAck8Ri9cxAlOmD8yB+VOx7HIcGlFGME/5NPs6M4BQRh7xsQcUuHUWMVxyGNC5bQVGHZHUktGM=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFg80eNZ0cYdWFVC1ctHS1ah/wKI59SkLR7KyTW89a68ZcUWXg
+	An3rXGpNqaNKZN9VRE2I+EW8Z0c7tenHF1Y20cLH8AmshZSu6/e/X6hAxiytTB0=
+X-Google-Smtp-Source: AGHT+IHMH38Cl5sTZtOnlsN2ZJ9a33Kvxdu8AHtih1m8hkeawDITg2cZNbdAyX8LKcjZejuTtRYJcQ==
+X-Received: by 2002:a05:6a20:9144:b0:1db:de89:5d18 with SMTP id adf61e73a8af0-1dbde8961d7mr12162908637.1.1730863218219;
+        Tue, 05 Nov 2024 19:20:18 -0800 (PST)
+Received: from ux-UP-WHL01 (mailgw01.goodix.com. [45.117.96.243])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc2c47e6sm10417051b3a.139.2024.11.05.19.20.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Nov 2024 19:20:17 -0800 (PST)
+Date: Wed, 6 Nov 2024 11:20:12 +0800
+From: Charles Wang <charles.goodix@gmail.com>
+To: Doug Anderson <dianders@chromium.org>
+Cc: dmitry.torokhov@gmail.com, hbarnor@chromium.org, jikos@kernel.org,
+	bentiss@kernel.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	conor.dooley@microchip.com, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+Message-ID: <ZyrgbC5SPe_YXoMt@ux-UP-WHL01>
+References: <20241025114642.40793-2-charles.goodix@gmail.com>
+ <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3>
+ <ZyLtYdwoJWx9FsdS@ux-UP-WHL01>
+ <CAD=FV=UNKECLn=3VrjsJfA+HTNa9Gag1qw5jOcBvw7=ZtkZEnw@mail.gmail.com>
+ <ZyQvxKi8dYOv1AOg@ux-UP-WHL01>
+ <CAD=FV=WD5=2SBLD2rDtXXt0dbn-KUvnE0kPsbnyEAkSA_4w-tA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241105135259.101126-2-marex@denx.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=WD5=2SBLD2rDtXXt0dbn-KUvnE0kPsbnyEAkSA_4w-tA@mail.gmail.com>
 
-Hi Marek,
+On Mon, Nov 04, 2024 at 11:36:50AM -0800, Doug Anderson wrote:
+> Charles,
+> 
+> On Thu, Oct 31, 2024 at 6:33 PM Charles Wang <charles.goodix@gmail.com> wrote:
+> >
+> > Hi Doug,
+> >
+> > On Thu, Oct 31, 2024 at 10:58:07AM -0700, Doug Anderson wrote:
+> > > Hi,
+> > >
+> > > On Wed, Oct 30, 2024 at 7:37 PM Charles Wang <charles.goodix@gmail.com> wrote:
+> > > >
+> > > > > > +  goodix,hid-report-addr:
+> > > > >
+> > > > > I do not see this patch addressing previous review. Sending something
+> > > > > like this as v1 after long discussions also does not help.
+> > > > >
+> > > > > No, you keep sending the same and the same, without improvements.
+> > > > >
+> > > >
+> > > > I apologize for overlooking the discussions regarding this issue.
+> > > >
+> > > > I would like to clarify that while the current boards use the same address,
+> > > > but newly designed boards in the future may require different addresses.
+> > > >
+> > > > Retaining this property would likely offer more flexibility.
+> > >
+> > > I don't feel very strongly about it, but maybe Krzysztof does?
+> > > Possibly the path of least resistance would be:
+> > >
+> > > 1. You drop the property from the bindings.
+> > >
+> > > 2. You hardcode it in the driver to be the normal value.
+> > >
+> > > 3. If/when someone actually needs a different value then we can add it
+> > > as an optional property in the bindings and fall back to the default
+> > > value if the property isn't present.
+> > >
+> > > What do you think? If you feel strongly about keeping the
+> > > "hid-report-addr" then you can certainly keep making your case.
+> > > However, it's probably best to wait to get agreement from Krzysztof
+> > > (or one of the other DT maintainers) before sending your next version
+> > > unless you're going to take the "path of least resistance" that I talk
+> > > about above.
+> > >
+> >
+> > Agreed, let's wait and see the opinions of Krzysztof (or the other DT
+> > maintainers).
+> 
+> As I went back and looked at this again, I'm curious: I don't know
+> much about how your protocol works, but is there any reason why your
+> driver can't figure out this "hid-report-addr" dynamically? Is there
+> some reason you can't talk to the device and ask it what the
+> "hid-report-addr" should be? From skimming through your driver there
+> appear to already be a few hardcoded addresses. Can one of those
+> provide you the info you need?
+> 
 
-kernel test robot noticed the following build errors:
+Similar to a standard i2c-hid driver, which requires configuring the
+address for hid-descr-addr in the DTS, other address information is
+obtained using this address.
 
-[auto build test ERROR on groeck-staging/hwmon-next]
-[also build test ERROR on linus/master v6.12-rc6 next-20241105]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+In theory, we can dynamically obtain most of the addresses from the chip.
+However, for this chip, there always needs to be a known address for the
+driver to communicate with, whether this address is 0x0000 or 0x0001,
+and this address is related to the firmware.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Vasut/hwmon-pwm-fan-Introduce-start-from-dead-stop-handling/20241105-215454
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20241105135259.101126-2-marex%40denx.de
-patch subject: [PATCH 2/2] hwmon: (pwm-fan) Introduce start from dead stop handling
-config: arm-defconfig (https://download.01.org/0day-ci/archive/20241106/202411061031.GHHHxm19-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241106/202411061031.GHHHxm19-lkp@intel.com/reproduce)
+Regarding this issue, since no further review comments received.
+I think I can first remove the address as your previous suggestion
+and use a default address for communication in the driver. In the
+future, we can upgrade the firmware and driver to achieve dynamic
+address acquisition.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411061031.GHHHxm19-lkp@intel.com/
+Thanks,
+Charles
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "__aeabi_uldivmod" [drivers/hwmon/pwm-fan.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
