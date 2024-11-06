@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-119536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 990249BF01E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 15:27:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C72B9BF04A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 15:30:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 144BEB21CB5
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 14:27:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D10101F2107E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 14:30:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6700201273;
-	Wed,  6 Nov 2024 14:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 529ED204F92;
+	Wed,  6 Nov 2024 14:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="glI76d+g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r02PlFyQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 909A2201110;
-	Wed,  6 Nov 2024 14:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29CFA20110E;
+	Wed,  6 Nov 2024 14:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730903241; cv=none; b=Cj1FoXkR9MP9cbmhs3b0BgspzNti5JWZ3V9a9PwQkFftrGf41+VjQyR1QQFgtCqJbYmxzKhQU1qyLgfkUYLAYYqSm/OXzMsH9r84Iu5ssm6B9IjEsZlw/g2PTABS5c80jidh31U0g9Iwyzj1WpSBgN/ZynxzXt0j55xnXzWEOLM=
+	t=1730903363; cv=none; b=TVTV+oM3/r2+oBX1Zu4klZuCQgCAFmli277jgB3frJfTnnisXlMYPFP77c7iTLMyXFPqURRKwC0vbKaCwoxVlSODBMbrqSo+NvwGZ932PX1zX+Qzt/G9ZvTOjI4XiL0TwJ9q5jXLv0CXqoYeTJQEfYdVUCoYDs1bE5M/tK4HhmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730903241; c=relaxed/simple;
-	bh=EO+tfnoIRUp2u0RgLpFVCzHSffk8Ne+S5BWeP0W6jxo=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=D4t2kjLYvI7wRDGTB7UNXUVtJvLaXWnHqIW5MJp5jkagZX2OdaGO2bLRhqxE4rEBNwMbc4FlYM0hQucNQ6bqfQhUc/grARScoHjqoyW+W7EAJ8pqHkSeWbYe69p7zDMw5+okQGc7ZcWDj+tKm5983BSd3H55ue+/22hhfPXRmU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=glI76d+g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4836BC4CEC6;
-	Wed,  6 Nov 2024 14:27:17 +0000 (UTC)
+	s=arc-20240116; t=1730903363; c=relaxed/simple;
+	bh=PQkhyej+3msxWtwdvICDp2SXr6agJstmZdE0qQDLpy4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DF6tGhWbLTOwN4TK0G4ohNoadWvSaQJCY5dHq/dvIwkMRFtoq4ebYZFYOATIld6epc3UUqIindBlFTywwngm55BtBYJ4rI9a0UMykBA+f9rEl+YXo6hS1wytmoXaYQH++VXCXRxGWgNHJ/+5tRIc+m9uo9fARgMyzA4AjQKKJZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r02PlFyQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEF74C4CECC;
+	Wed,  6 Nov 2024 14:29:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730903241;
-	bh=EO+tfnoIRUp2u0RgLpFVCzHSffk8Ne+S5BWeP0W6jxo=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=glI76d+gVOvm0s9xssUBKz+3Tb8/xOC3jKtX8rS3xKc9Q/w+PtKc/fUD+gqLVNO4+
-	 W4BEbYaefFpiQNZdJjV/7RXxpt/ZYxWbr6ZjgrtBlYTPSx8ftaopIY5n80J3yMAJwO
-	 oFSvPkKE2Gkt64taub/99Z0CoC0DojYnfGUPryMHypH3M98zQseSronsLeE4MjrzxJ
-	 yFqSz25EHy1tj4wafiZwI3UI5BcqOWp9rk5nOJvarrrRcCh/K4rs3T6o8mCnIHWOeu
-	 d5LLSGpOb1E87gtYhnbKYRC/WmGpQ5p5+7fqUA8y+Y0WUd698cXDwUjPnyRsI6lHU4
-	 1Zq0/yROX7Erw==
-Message-ID: <4715808e-4066-4e64-979d-2ec75cd0d210@kernel.org>
-Date: Wed, 6 Nov 2024 15:27:15 +0100
+	s=k20201202; t=1730903362;
+	bh=PQkhyej+3msxWtwdvICDp2SXr6agJstmZdE0qQDLpy4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=r02PlFyQNeF/mPFOyM7dXapPv60s9nyuscTGIwmcJUlm+YmLHl/Y6UC9kTRke3PE3
+	 NU8KIRSWQEO1G8ughJ5lg0gSJ7vre+NKbjeRPmP4ALLF5eX8St6tNiaDY2TCPOiqfz
+	 zkcTKXsvlIMeNIMjq4OSp41eFwzptOwn2rkj0B4x1Q5PmLCzukBfjFoB7Wy5LRpDlW
+	 dk78dg0NRwRTuhn822L5Gfxv+M3IGmI5azrEgOk2pV5i9T42RAVZvtzZqcJ+vRg79j
+	 qd37SwxwoxJqSMTnjFmJdxEpAcoo7q1aA5VBQLoieuDi863l8Q31rbHwEkYL/Gd8fK
+	 tYK1FYWQGFS+w==
+Message-ID: <a8cb35fd-d474-4104-b1f8-90ce5aa4a790@kernel.org>
+Date: Wed, 6 Nov 2024 15:29:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: can: convert tcan4x5x.txt to DT schema
+Subject: Re: [PATCH v8 05/17] dt-bindings: media: Add bindings for ARM
+ mali-c55
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Daniel Scally <dan.scally@ideasonboard.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Anthony.McGivern@arm.com, jacopo.mondi@ideasonboard.com,
+ nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+ sakari.ailus@iki.fi
+References: <20241106100534.768400-1-dan.scally@ideasonboard.com>
+ <20241106100534.768400-6-dan.scally@ideasonboard.com>
+ <lag7gfpuj2hdxw6i5pumaivxl5rylt2hztd57rynjestffwool@ate7u3zhrgfn>
+ <20241106135756.GI9369@pendragon.ideasonboard.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sean Nyekjaer <sean@geanix.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241105-convert-tcan-v2-1-4b320f3fcf99@geanix.com>
- <kfcs5hhpkjustyfxxjeecvyw5dbqaqkupppionovdqwyewwdcd@sodle7cc6yv6>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -107,44 +109,66 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <kfcs5hhpkjustyfxxjeecvyw5dbqaqkupppionovdqwyewwdcd@sodle7cc6yv6>
+In-Reply-To: <20241106135756.GI9369@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/11/2024 15:24, Krzysztof Kozlowski wrote:
-> On Tue, Nov 05, 2024 at 03:24:34PM +0100, Sean Nyekjaer wrote:
->> +  device-wake-gpios:
->> +    description:
->> +      Wake up GPIO to wake up the TCAN device.
->> +      Not available with tcan4552/4553.
->> +    maxItems: 1
->> +
->> +  bosch,mram-cfg:
+On 06/11/2024 14:57, Laurent Pinchart wrote:
+> Hi Krzysztof,
 > 
-> Last time I wrote:
-> "You need to mention all changes done to the binding in the commit msg."
+> On Wed, Nov 06, 2024 at 01:15:23PM +0100, Krzysztof Kozlowski wrote:
+>> On Wed, Nov 06, 2024 at 10:05:22AM +0000, Daniel Scally wrote:
+>>> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
+>>>
+>>> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+>>> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+>>> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+>>> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+>>> ---
+>>> Changes in v8:
+>>>
+>>> 	- Added the video clock back in. Now that we have actual hardware it's
+>>> 	  clear that it's necessary.
+>>> 	- Added reset lines 
+>>> 	- Dropped R-bs
+>>
+>> These are trivial, so I wish you kept the review... but since you ask,
+>> then comment further
+>>
+>> I recommend using b4, so your cover letter changelog comes with nice
+>> links to previous versions. I scrolled through entire cover letter for
+>> this (for me that's almost the only point of cover letter) and could
+>> not find them. Anyway, just a remark.
+>>
+>>
+>> ...
+>>
+>>> +  resets:
+>>> +    items:
+>>> +      - description: vclk domain reset
+>>> +      - description: aclk domain reset
+>>> +      - description: hclk domain reset
+>>> +
+>>> +  reset-names:
+>>> +    items:
+>>> +      - const: vresetn
+>>
+>> drop "reset", it's redundant and rather come here with logical name. I
+>> wonder what "n" means as well. It's not a GPIO to be "inverted"...
 > 
-> Then I wrote again:
-> "Yeah, CAREFULLY [read][//this was missing, added now] previous review
-> and respond to all comments or implement all of them (or any
-> combination). If you leave one comment ignored, it will mean reviewer
-> has to do same work twice. That's very discouraging and wasteful of my
-> time."
+> The aresetn and hresetn names come directly from a hardware manual
+> (vresetn seems to be called rstn in that document though). As far as I
+> understand, they are the names of the external signals of the IP core.
+> I tend to pick the hardware names for clock and reset names. That makes
+> it easier for integrators, and from a driver point of view it doesn't
+> change much as DT names are just a convention anyway.
 > 
-> Then I wrote:
-> "Where? I pointed out that this is a change. I cannot find it...."
-> 
-> So we are back at the same spot but I waste much more time to respond
-> and repeat the same.
-> 
-> You must address all comments: either respond, fix or ask for
-> clarifications. You cannot leave anything ignored.
-> 
-> I am not going to review the rest.
+> That being said, if there's a good reason to do otherwise (such as
+> standardizing property names to make handling through common code
+> possible), that's fine too.
 
-Uh, I am wrong. You did remove the supplies, but I just looked at wrong
-version. Apologies, everything is fine and you did implement my
-feedback. Thank you.
+If these are from manual then it is fine, although sometimes the names
+are really pointless in manual...
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
