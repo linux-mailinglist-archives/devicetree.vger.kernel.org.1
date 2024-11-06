@@ -1,120 +1,90 @@
-Return-Path: <devicetree+bounces-119303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D3729BDF3D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 08:20:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 399BF9BDF4B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 08:23:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E7121C22241
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 07:20:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6006B235DA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 07:23:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41971BDAB3;
-	Wed,  6 Nov 2024 07:20:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PGyGmiVh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79CDA1BDAA8;
+	Wed,  6 Nov 2024 07:23:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD2D1BDAA2;
-	Wed,  6 Nov 2024 07:20:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCD1917995E;
+	Wed,  6 Nov 2024 07:23:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730877604; cv=none; b=ceq75tTwEVN2m6v9sNT+f0SAj/SolyNtN3pUHMvO5WJt0tSsojO7BD1GdxqeUwmKrpPU9F6stiRagis4PuIso9E3op4LHY8DK9p8Vd57N4sSuyZlwllL05ZEanvRkzZ5ImiNzy5GBd3ZRPS1hdb65HsHdnxIdCmzZui8BROHmL0=
+	t=1730877792; cv=none; b=b2sTVe+I9Bsfwmmw2w2jG54zeXsY8cjIrPP/51mwpLCwnFw5gvcgzF6Fi/DBnlxuzeUozA3ktirPNi+LvBCvo/ZY1hGjtGz4pOtPRMp+T4ZZ0o//dz+V7KRdYoLRLEaLpztjpvtrB0PyZ+pqDX9CPjaJ+/MNcmHFm+yObq9uEto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730877604; c=relaxed/simple;
-	bh=PkD1pDNi+SE7n4FTnQ6HlbOdb3kuf8fFkjPrzdG/sQI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RWM4lua980qngQXWN/QhAcnetAOWOZ2W/9FHPnIDgfQYfTQyLqZ419tnIJ+6vd3JQlbWY2hdFfgvYciDWDBOWdwPHm4Yhpp14M9yuYbsc/V2bnFTQE7UGfpxd1gPCqnCmou9ntqQO0JF1oBSXQhgxba3hb6fbL/OVQeJfAqvo9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PGyGmiVh; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5ced377447bso4320729a12.1;
-        Tue, 05 Nov 2024 23:20:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730877601; x=1731482401; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vRtfotueanFyuwOcdsHrcVQgySi4mNzZ2NNuN1ktvAY=;
-        b=PGyGmiVhwkiNLaieoMO8Dl6YyFCDnNleUIStbXGjcNtGUhZDtHH1puuSmz+TGJxy7N
-         gErUnUv/KGaJ/Cqno+pKYOKGe/wRbQM8qUJN7ceG2qbkXxIiTaoKFYxaboCa4re2gvVm
-         JBN5vfjic+jHTacrwvVE3pvRfrq/9Gp/ep1bOeELzhEVLtqZSbnT39lheXsYbU8ISJkB
-         sksMq0Bh2i1ISgP7N9tBoehfdkvGIl+ypp7FNkCP3ArChAznD0uf9m+/NbvVJ4F6A58I
-         bAraci0nH4mUdxbvb5IFXJxQ4oKW9Vo77hEhQF8hhmkf2LL7g8WAZsegBMKFNbfE7r52
-         KqZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730877601; x=1731482401;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vRtfotueanFyuwOcdsHrcVQgySi4mNzZ2NNuN1ktvAY=;
-        b=uJDKxlk8Z4485s234EHSzvhoaSCuJ7AwhGvhRdWITiJVIOPx1cbq3dlo/oV8Z+QRXD
-         04j6sKWarLgGJwHE0okcuY0mVr0Sc1AgVLieRjm/Qy/ndCLKPeZoJ3woh9OUbujvEnVR
-         jK8g+EE57y4kV79MnSWu3Lx8tb8cHaH4zr4/N4FyEpa8WNLDyrxLYFXq9uzeEJrYRDS0
-         MdrL36W9HO37pIoUba40r/EeXZAszeuubZCcJSIg+SjCcZ1fWT4iWNP12H9j+jCjEwpF
-         fdzsnmu1cAkNroZKNl9h7TeEsa+CX+jF+H9fLN+Q0o+yAEiTFmBJFshHuKPprBNtltFB
-         Nh2A==
-X-Forwarded-Encrypted: i=1; AJvYcCUR8PIwrpog0sUpW7hpJJdfK70GwICGBpdQXEkKuS3QNhlZ+H7ZAkbhsq+UEVUxHSMTX9gzujpUyTKR@vger.kernel.org, AJvYcCV3lyx0Falb+9tFvvdxKWfr2JUvF4hlaTiSL1Wl3wy/Qs3F/u/oBYgCZRmsScUIU7rAhYvA88MXyhS/7aVr@vger.kernel.org, AJvYcCVgc7p6pRN9q92n1wpQYMYsyjIde6JFnMCACH+WQMJ4keaPWhYUytpEuYQWjUiJ53eOaZswJzlNniA=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKrg5PjfyGpkg6i2I3PC2ObbX4BYe4SDhEyr4BdkJDDXTTh4uq
-	302OVIvJ99WNzB02zYR4TJ1f033hHCCRFYduUfzKA4jQ3Kg5OJO5
-X-Google-Smtp-Source: AGHT+IH/ZAmYF8ReqMplFnxCbkC6IEJQAH0xL9boLQxzwMi1ilf/4qqxVXYZJqpVYu6kWqLSMbfZzw==
-X-Received: by 2002:a05:6402:1d4c:b0:5ce:de14:65d0 with SMTP id 4fb4d7f45d1cf-5cede146642mr6064626a12.0.1730877601136;
-        Tue, 05 Nov 2024 23:20:01 -0800 (PST)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cee6a9a3f9sm2301453a12.7.2024.11.05.23.19.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Nov 2024 23:20:00 -0800 (PST)
-Date: Wed, 6 Nov 2024 08:19:58 +0100
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1730877792; c=relaxed/simple;
+	bh=x6tAi3iztnRg7xJSW0CeMk6+NpO+0l0VjsBhfzFqZFM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PIqL0NxQaCvUsuMNA51x3augFCLaG4TmvYuwszgay1r0hMWAE39AYzz0ix8gMVCosv8+vwgJHyB4SYdUV5LzgDKD1CMLBcwwiKyOoxcbXnVmT+f1EIbqv3S5AotPvwuWinGwx5xLabvFo0aBnDjb0i8wz3AT8wQDBQ1HD6yrLM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AF7671063;
+	Tue,  5 Nov 2024 23:23:39 -0800 (PST)
+Received: from usa.arm.com (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id AA44D3F66E;
+	Tue,  5 Nov 2024 23:23:07 -0800 (PST)
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: linux-arm-kernel@lists.infradead.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: power: supply: sc27xx-fg: document
- deprecated bat-detect-gpio
-Message-ID: <ZysYnmWYTFzMBVMj@standask-GA-A55M-S2HP>
-References: <cover.1730720720.git.stano.jakubek@gmail.com>
- <f334c973dd4e6390a0cd51dbde358277a07604d7.1730720720.git.stano.jakubek@gmail.com>
- <atetahoyv7iz4hvw2avx6gs6kit6owvmfsniorkmzrqhl2gvgv@iwdz7uzcpxcy>
+	Cristian Marussi <cristian.marussi@arm.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	arm-scmi@vger.kernel.org,
+	justin.chen@broadcom.com,
+	opendmb@gmail.com,
+	kapil.hali@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH v4 0/2] Support for I/O width within ARM SCMI SHMEM
+Date: Wed,  6 Nov 2024 07:23:04 +0000
+Message-Id: <173087767267.3975373.2771980370736261734.b4-ty@arm.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240827182450.3608307-1-florian.fainelli@broadcom.com>
+References: <20240827182450.3608307-1-florian.fainelli@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <atetahoyv7iz4hvw2avx6gs6kit6owvmfsniorkmzrqhl2gvgv@iwdz7uzcpxcy>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 05, 2024 at 10:03:16AM +0100, Krzysztof Kozlowski wrote:
-> On Mon, Nov 04, 2024 at 02:03:58PM +0100, Stanislav Jakubek wrote:
-> > While the bindings have always used the correct 'battery-detect-gpios'
-> > property, the DTS and the Linux driver have been using the incorrect
-> > 'bat-detect-gpio' property. Document this property and mark it
-> > as deprecated.
+On Tue, 27 Aug 2024 11:24:48 -0700, Florian Fainelli wrote:
+> We just got our hands on hardware that only supports 32-bit access width
+> to the SRAM being used. This patch series adds support for the
+> 'reg-io-width' property and allows us to specify the exact access width
+> that the SRAM supports.
 > 
-> Well, I would just correct bindings instead - much less changes needed.
-> Document 'bat-detect-gpios' (note the 's') and drop
-> 'battery-detect-gpios'.
+> Changes in v4:
+> 
+> [...]
 
-Hi Krzysztof,
+(with some trivial rebasing)
 
-this approach was preferred by one of the Spreadtrum maintainers [1],
-so I did it this way.
+Applied to sudeep.holla/linux (for-next/scmi/updates), thanks!
 
-[1] https://lore.kernel.org/lkml/CAAfSe-uC+G8iEk_37vBr3+dQsv4a4tTTsz11hUguVRnU=r+4qQ@mail.gmail.com/
+[1/2] dt-bindings: sram: Document reg-io-width property
+      https://git.kernel.org/sudeep.holla/c/14b2157a9c14
+[2/2] firmware: arm_scmi: Support 'reg-io-width' property for shared memory
+      https://git.kernel.org/sudeep.holla/c/2cd7f3db25fe
 
+--
 Regards,
-Stanislav
+Sudeep
 
-> 
-> Best regards,
-> Krzysztof
-> 
 
