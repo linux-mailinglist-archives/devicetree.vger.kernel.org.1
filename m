@@ -1,174 +1,178 @@
-Return-Path: <devicetree+bounces-119584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 973DA9BF32F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:26:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B4C49BF34F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:35:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 31EE5B2525D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:26:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EA121C21DB6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:35:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F27F204939;
-	Wed,  6 Nov 2024 16:26:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D9F1DE4C8;
+	Wed,  6 Nov 2024 16:35:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SVgvAAkq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kxZDZc2H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 506912022EE;
-	Wed,  6 Nov 2024 16:26:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9353213C67C;
+	Wed,  6 Nov 2024 16:35:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730910367; cv=none; b=uELXKpurLOSaCAcmkTQOTpUbmQq2K5G1neSY08haU5utNMjJw//FUHWbouRp+vDkgTC3Waa0xu63n/MXCRA8W1UwTNf8deN/4wOQuVWfnCyspaWy9IE9VLlbmw5EUyJ4c+l/yUHJ+x4WY2mYl3dQvGwOwHmmo5saDEtdZ1hD3sw=
+	t=1730910938; cv=none; b=aa3q/JPfWJcavQSKiBXNg+sCbIeJmOhoLzFsljfw+CXj8IDwBn5UBXDm1EzGmPmmGgD8bp1faVWEMh1Frf+GDzPYF+tqASDVDSofGA1uuG5XwOVMukPhRn0KrM8tSA+KoGYNcm+N+E523EzZGMABterg4j8ZoCC3a4DfDZPtjpw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730910367; c=relaxed/simple;
-	bh=SEV9bd+GX/2qf2FHLXeJIP4QQb00PuGWxAb2OJDbHH4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bzGOUxm3XjXtqIKVcdfhOgCQSGVAnQyi2N4elnsevO+cHQgqVmLXMQ566G2yMofC0vEE23CRzFuvzwHjYMc21+cwR9xoCmAMG3onIHEeLAZz83h/KI2KykZwqnnv+hiSj3+9zqb0UX/jXNcjLxHFXmL9GQq/5g7gB/kDSAtwI0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SVgvAAkq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A8D1C4CEC6;
-	Wed,  6 Nov 2024 16:26:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730910366;
-	bh=SEV9bd+GX/2qf2FHLXeJIP4QQb00PuGWxAb2OJDbHH4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SVgvAAkqitwp3CRjcYwtzVTYcZps3/+UsLrpka7Kuzuwj0PL6LVYtp/VKr3YSx5b6
-	 W9uV5xvoZG8glsIw7QD7pVmQ+m5Jg7Dy8zkNIwLLbhpwUfqBlIzo5FR0UW9+zdC3HZ
-	 8ryHGTmawTKI37MqbBxPTWh4wVV0Wv6Lr/t8YXm1Y5l+0U3PCIRE0QdQUIxZoimvpu
-	 oCoIoDeo1bu4GSvQ+pYmFukpPYsGPMR9ulXkbxjP2dVOfDV28AYWLeAexY8MTuYCh9
-	 w/XMkqn7EdAT2u28KwDOWLfdrzjz9yThyRcyp1XraJo6d5RDmpiQHjLWtwuleyozIQ
-	 7OKq0beIoHrNA==
-Date: Wed, 6 Nov 2024 16:26:02 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: linux-pci@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 2/2] PCI: microchip: rework reg region handing to
- support using either instance 1 or 2
-Message-ID: <20241106-eats-anthology-657e2238e271@spud>
-References: <20241104-stabilize-friday-94705c3dc244@spud>
- <20241105171828.GA1474726@bhelgaas>
+	s=arc-20240116; t=1730910938; c=relaxed/simple;
+	bh=+226borHsYkLvmzDZ3/K0biYVEW55zEhJxTZdfLCUwo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=n36ysqZpnlXSnDty2P+JU5XlxbOX/yMpo0opGgdz3SJhZofUGF3PzJ6mt27wZILt6dWf4FhXpYxvzNe9lHnVzcGFwjWTi57jwa0Qoli3wfi5Iz3CIiy5r3ouh+8tv8y4j8LO7921lsCVKdYYpEKDunMQ/i2GSyTmW74U7Oy6qwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kxZDZc2H; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-71e7086c231so6058421b3a.0;
+        Wed, 06 Nov 2024 08:35:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730910936; x=1731515736; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=EpMoaV2UEgpT1cQjTdLpUsE/ib9jltFkw/ONf3N7WVQ=;
+        b=kxZDZc2Hd8XGQeotrZb9qKUVKtSFob8q+vzBXDZ4the16JZ07awimudpJek4zRk4TK
+         YVb/QDqoHxqGVBP+aefkAqd5+pjTa1Nlw50/mPIKj6r0xoX8dgVxOHclX4k6TiCDJpHf
+         VD9SE7du4ah9ZxLlMdo4XC1RnajnKImqKC8ACxr1DtlRtYP9mGouq8SAadnZRWcPNuiM
+         qH+clwNNoylm1GHXy4AkuX2m0bBei49HwjGyxp8J076YUO0k++VV+qDR6TYQHQyRsrjH
+         dzRWtiaM0OtJmKIauJ8ws+AFlGhKj85FHku1fewz7inuZNy5GLVjlBW8x8FU2WbrPmR4
+         WOdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730910936; x=1731515736;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EpMoaV2UEgpT1cQjTdLpUsE/ib9jltFkw/ONf3N7WVQ=;
+        b=hZ0C1qsXl4bTQCh0J93rviXcpW684hW5hH0WpDSnVQ+GvDplrl5z7VqaVukVHwZot6
+         op1OygfnWIQItQXJlqjnkSbfaFdMru1H8M8l2xAJPwrf9Ecds/s7th1rvp10PvyYOBmc
+         NvB0Zh8YJIGtDGgu0zNahJnUnxO7c69coUycPw17031mscVbkxHa0TbgnrIDqOHYzWvh
+         zMCfsIkUNQa9EjQ9oVOxzlayrP4JBYlXQnk6WScYj92ky8AD+CQQohLoaWO+YAbm2KWF
+         ArvG8Up2HH6XYrv7emcJ6OV+8wbBiYwgLKxqmO+nqtCQoqu95BP7tcRr3ONbYItGWwWV
+         jtYw==
+X-Forwarded-Encrypted: i=1; AJvYcCUnotacLAtAomSb1q7kf5gp+dkMVJdfqEJqlc/YLVhjoZ2ZXJFsK4Ti2wdzepJDV6vihV/2HMSmk5iu7FK4@vger.kernel.org, AJvYcCVbvfvZj0HqV8T5cLE4pRhk3A/Ukt/rKl3eHxC//XaQcrls+aH/zRWookGxhwNsiPtSIsDtruZzcs2xWJI=@vger.kernel.org, AJvYcCVmpvD7kL8mXf4gvJhoEyFmZn/EHuKOyfbqdD2AcSRun5zAjQZwflnLR6G8ZMbJ1IYDqvfIq7NQ7gJZ@vger.kernel.org, AJvYcCWbOVCBz8CblrUalgoX0oApQXwZJt7067f9MSOGZdGkojhSeN1N6H6SxZdjsI3QEZsZRwtsNsU/z+ir@vger.kernel.org, AJvYcCXHYqycBOsaIx6nbXUic4K1d2v1LQD+pQgoWNxRH6hxcxLww7w1EgsZydoOjOV5UgYo6Cb62X2/v+5v@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgR6aRM3nsJTAtcfEy2pF90qdV9c1vyW6nXA6U18f9h62wyZY9
+	2QHlfTiU/O0NQ7IGx8WOIyrsEVIafmqylCLsLtk30n1aUMhuDAJ8
+X-Google-Smtp-Source: AGHT+IHHKKge5OSKBhzIpKxm9NbgpPVXnRxIjk7i0bxop8MU5QW8qV55w57AqcIhgjFxkNVVq1iuGg==
+X-Received: by 2002:a05:6a00:23ca:b0:71e:6122:5919 with SMTP id d2e1a72fcca58-7206306ed56mr53099644b3a.20.1730910935859;
+        Wed, 06 Nov 2024 08:35:35 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc1ba244sm12237398b3a.19.2024.11.06.08.35.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Nov 2024 08:35:35 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <2bdc5b60-2442-4291-a2f2-2e3802b7e982@roeck-us.net>
+Date: Wed, 6 Nov 2024 08:35:33 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="00d4RwnxQ06JtKcq"
-Content-Disposition: inline
-In-Reply-To: <20241105171828.GA1474726@bhelgaas>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: trivial-devices: add ltp8800
+To: Conor Dooley <conor@kernel.org>
+Cc: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+ Jonathan Corbet <corbet@lwn.net>,
+ Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Peter Yin <peteryin.openbmc@gmail.com>,
+ Noah Wang <noahwang.wang@outlook.com>, Marek Vasut <marex@denx.de>,
+ Lukas Wunner <lukas@wunner.de>
+References: <20241106030918.24849-1-cedricjustine.encarnacion@analog.com>
+ <20241106030918.24849-2-cedricjustine.encarnacion@analog.com>
+ <8e4dc080-d779-4b06-8fd1-74784e06323a@roeck-us.net>
+ <20241106-gatherer-glancing-495dbf9d86c7@spud>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20241106-gatherer-glancing-495dbf9d86c7@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+On 11/6/24 08:06, Conor Dooley wrote:
+> On Tue, Nov 05, 2024 at 08:34:01PM -0800, Guenter Roeck wrote:
+>> On 11/5/24 19:09, Cedric Encarnacion wrote:
+>>> Add Analog Devices LTP8800-1A, LTP8800-2, and LTP8800-4A DC/DC μModule
+>>> regulator.
+> 
+> A single compatible for 3 devices is highly suspect. What is
+> different between these devices?
+> 
 
---00d4RwnxQ06JtKcq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The maximum supported current is different.
 
-On Tue, Nov 05, 2024 at 11:18:28AM -0600, Bjorn Helgaas wrote:
-> On Mon, Nov 04, 2024 at 11:18:43AM +0000, Conor Dooley wrote:
-> > On Fri, Nov 01, 2024 at 02:51:29PM -0500, Bjorn Helgaas wrote:
-> > > On Wed, Aug 14, 2024 at 09:08:42AM +0100, Conor Dooley wrote:
-> > > > From: Conor Dooley <conor.dooley@microchip.com>
-> > > >=20
-> > > > The PCI host controller on PolarFire SoC has multiple "instances", =
-each
-> > > > with their own bridge and ctrl address spaces. The original binding=
- has
-> > > > an "apb" register region, and it is expected to be set to the base
-> > > > address of the host controllers register space. Defines in the driv=
-er
-> > > > were used to compute the addresses of the bridge and ctrl address r=
-anges
-> > > > corresponding to instance1. Some customers want to use instance0 ho=
-wever
-> > > > and that requires changing the defines in the driver, which is clea=
-rly
-> > > > not a portable solution.
-> > >=20
-> > > The subject mentions "instance 1 or 2".
-> > >=20
-> > > This paragraph implies adding support for "instance0" ("customers want
-> > > to use instance0").
-> > >=20
-> > > The DT patch suggests that we're adding support for "instance2"
-> > > ("customers want to use instance2").
-> > >=20
-> > > Both patches suggest that the existing support is for "instance 1".
-> > >=20
-> > > Maybe what's being added is "instance 2", and this commit log should
-> > > s/instance0/instance 2/ ?  And probably s/instance1/instance 1/ so the
-> > > style is consistent?
-> >=20
-> > Hmm no, it would be s/instance1/instance 2/ & s/instance0/instance 1/.
-> > The indices are 1-based, not 0-based.
-> >=20
-> > > Is this a "pick one or the other but not both" situation, or does this
-> > > device support two independent PCIe controllers?
-> > >=20
-> > > I first thought this driver supported a single PCIe controller, and
-> > > you were adding support for a second independent controller.
-> >=20
-> > I don't know if they are fully independent (Daire would have to confirm)
-> > but as far as the driver in linux is concerned they are. As far as I
-> > know, you could operate both instances at the same time, but I've not
-> > heard of any customer that is actually doing that nor tested it myself.
-> > Operating both instances would require another node in the devicetree,
-> > which should work fine given the private data structs are allocated at
-> > runtime. I think the config space is shared.
-> >=20
-> > > But the fact that you say "the [singular] host controller on
-> > > PolarFire", and you're not changing mc_host_probe() to call
-> > > pci_host_common_probe() more than once makes me think there is only a
-> > > single PCIe controller, and for some reason you can choose to operate
-> > > it using either register set 1 or register set 2.
-> >=20
-> > The wording I've used mostly stems from conversations with Daire. We've
-> > kinda been saying that there's a single controller with two root port
-> > instances.=20
->=20
-> If these are two separate Root Ports, can we call them "Root Ports"
-> instead of "instances"?  Common terminology makes for common
-> understanding.
+-2:  135A
+-1A: 150A
+-4A: 200A
 
-Sure.
+Programming is exactly the same, which is why I had asked the submitter to use
+a single compatible property. Sorry for that if it is inappropriate.
 
-> > Each root port instance is connected to different IOs,
-> > they're more than just different registers for accessing the same thing.
->=20
-> Sounds like some customers use Root Port 1 and others use Root Port 2,
-> maybe based on things like which pins are more convenient to route.
+Is there some guidance explaining when to use a single vs. multiple compatible
+properties for different chip variants ?
 
-Aye, the user that motivated the patchset uses a very small package and
-was not able to use root port 1 for that reason.
+Note that there are also LTP8803-1A which supports 160A, and LTP8802A-1B
+which supports 140A. Maybe there are more, but those are the ones I can find in
+public. I don't know if there is a difference from programming perspective compared
+to the LTP8800 chip variants; the datasheets are too vague to be sure. It would be
+useful to know if those chips should get separate compatible entries if programming
+is the same.
 
-> I would very much like to reword these commit logs using as much
-> standard PCIe terminology as possible.  Most of these native PCIe
-> controller drivers have Root Complex and Root Port concepts all mixed
-> together, and anything we can do to standardize them will be a
-> benefit.
+Thanks,
+Guenter
 
-I can do that tomorrow.
-
---00d4RwnxQ06JtKcq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyuYmgAKCRB4tDGHoIJi
-0s4TAP9ih6PFRzTbgox+CHVwQgWCULG9sxCQ63YThXWRx/E+oAD/UR0qA0IMkUcN
-5OWxK/mfq+PpID6qtsDwHr1Wd0qMogE=
-=zqeK
------END PGP SIGNATURE-----
-
---00d4RwnxQ06JtKcq--
 
