@@ -1,148 +1,226 @@
-Return-Path: <devicetree+bounces-119380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19D0D9BE241
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 10:20:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 239D79BE254
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 10:23:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E25B1C22DD8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 09:20:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41F1A1C2102D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 09:23:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57B0E1D90AC;
-	Wed,  6 Nov 2024 09:20:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44C001D9591;
+	Wed,  6 Nov 2024 09:23:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K4RpLId8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VzAVVJLq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78859183CD6
-	for <devicetree@vger.kernel.org>; Wed,  6 Nov 2024 09:20:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4646D1D95A9;
+	Wed,  6 Nov 2024 09:23:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730884817; cv=none; b=q2ZWuLZDcDyazsmNbJdq6RdrYuFWhj0tSFw4k9N7kivUvGCg7ZSYFR3Stqg+hrWeAYHTSXeFuW2anyYuZ8YLpTQapy3UXmR4fQpTNd1bzdRGfu/l8aat9RLYljvc1ohJU3ibW1Y5qGoYYHxq5jQ1noLUbS548CrEqbIEMijT9ds=
+	t=1730884996; cv=none; b=uencmvORk3uZCW3UEyOFORHsZvrmB4EFYroNSvYJVRxGRxj6G9hFv7QpLb7iSYebSdrMrHpWVwuXEEDUvvxUeFlNeBXHPKQvJWdiqqN0eLAFVWp38ceACmrKOpH9zTPOPs+zaj2KxKhjFQFEM95x5ZLlnvKDebUB6x0mWnDmM3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730884817; c=relaxed/simple;
-	bh=NICnhTyDeFjw5xDNNJO75dAzGin9vebw41liMa/LWfQ=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=FNKiG65SHGPfkXJ9R3PAyMO9bLFbytbSsryjx3z83NWrxYgtEcu39dE/SKKPjVhoGYBFDYQ33JULLzF1d+ir7NZitvSqrfLTSAm1J8c2jBXUXMQCytABSfhx+TW1Wt1iTGexX+AyDoLt+DaJr8JpzEFYKO3qNdY9h1zgMP2JaQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K4RpLId8; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4315f24a6bbso50631165e9.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Nov 2024 01:20:15 -0800 (PST)
+	s=arc-20240116; t=1730884996; c=relaxed/simple;
+	bh=nxrCpqfCp7YF5rQvcpcOOqUALKRgtWKx9p44sRekEsY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EhGoqlm0E8oVVPJ8ZaYxz13Sk0IQ+l6TL2IwiCV1xpHfC/tYXITH1c4bpvLpaUELE1080lZiQNJRQ10IIhpilQPxYFCBkQTa7Z8B5mY9NWdA45vAJ37Oh5GjrwAZuyaIndsPcxkTdUXY3HQu6Zk1Ma3iyaSsoAfFrRYezzFaxFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VzAVVJLq; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a7aa086b077so832117066b.0;
+        Wed, 06 Nov 2024 01:23:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730884814; x=1731489614; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=nFpPn0d2yFLk+e22ei9wc3wv5WH7ZWHa4AxPfroJzYQ=;
-        b=K4RpLId8FOia2ZTw8xNSkQFgJeaDxHVh9Ety0ZAKGtoB895RP4mkoG+fG6bfoE3lpF
-         bM4WA8eBh1Zty75wiLDGvUOpIci7UzbbNsKDDs8YkJJt/srd7Ysz1zT84aaGrD/jR/XV
-         913KBuYwgDGjnkd2SXuTd+g9n/ZbpEISROpyDtTJsxzFNylcOdWDa5TN99p7Rzf5J2id
-         obnnCDPhXaI3gZ3DjOabw3QPNAjvuu++8+jzQVJJ8XAsngf79LoxfjbpfPWOglDVZmCi
-         Fcll7pJ44K9MC07ABWIokLr9FYFrrOZO6fI8Etny7pm2awvWDkEY9A5zzXcJlTfXig6A
-         mu8Q==
+        d=gmail.com; s=20230601; t=1730884992; x=1731489792; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uRkks3dSyRy/clHnQcnjYlOdhUaiujCRFslbnDY6mJA=;
+        b=VzAVVJLqJywk7hdR0a+cnNDq9GWnAuWAGh8o2ybLGXEhNNmTwGxJZr6MK8XefFbtVQ
+         dQ84EEM2BdOuKSwY1955/M2fCUdp0341P2PGbUJbu7wZYinb4by5zVgKC5cUUcObTQG2
+         ByC1AYj1rRF+3rott2+qqXVg7MeusT+dhcakgFos6OTNXtSQL+JzeQvsu5uCEtC97Zut
+         nsc4ggthj1CdAjEXbI4antNUfGGGstfhaKG4Cjzis2SbVYHl7AsZI9JkS8mjWOHsw/LG
+         PjzS5p218Tk79hXbAqZsJCPafzaK+aTspTKMabs1anoJ5t5f0MeeYkBq6G/B/Ln5H1Ds
+         egCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730884814; x=1731489614;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nFpPn0d2yFLk+e22ei9wc3wv5WH7ZWHa4AxPfroJzYQ=;
-        b=M597UasjLLWSuu50h+LihlUI9dZUnwq6mzx8mWVNNjUcBtELr08GTLPI599jArIVAO
-         BFj1TiIKk+QTYn4r0xqHjderdQ/ybVUBj/pQ149chYPnrAG+/QgnoKKKRh4qDo3P7Wyo
-         frkTbSTsVv6cLwh1rAmGLfdzbMyTZAf2rWUbDDMoaH4DwDTgHIxFh4fEUIwAmu1Mk47a
-         meidi7HKz+aPqE2ga3kUYY4SkkgrD2Mx0U1d+vSNLeqnvV38wXwdivdwIWS3UD+FFN1Q
-         60XL1mLp+AJ3zukdyC9RjEDkFmhWNi1bhVArJSDKki5AaCdUs4QC8svjAnpYc+/OZnrR
-         hdZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUTQchGbIMcksBsoPNe1Se0nPXwGQyLZQcl/Av1bhFCsO2Dmin26VM/vFc8exYaf4C2L8nWfdK9abdH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUVsDr6KgmigQeZfaGSxNB7GKAhYfl2L2ZtiRw4qyCKnK4I1mt
-	bGtRGpECWTHyDDhCxFiWLssHyA9Zt1nNwP5Vgy283EvXxY266MNmTYmeXQyzy98=
-X-Google-Smtp-Source: AGHT+IEYpLtbvoq+DLNXwR3nRAmR6avtTq4h+YsWpETFhBlqaeNqXWJjhte4lroosj4mGd9kd6ILbg==
-X-Received: by 2002:a05:600c:4fd3:b0:431:60d0:9088 with SMTP id 5b1f17b1804b1-4319ac9acedmr359810715e9.13.1730884813855;
-        Wed, 06 Nov 2024 01:20:13 -0800 (PST)
-Received: from [127.0.0.1] ([89.101.134.25])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432aa6da939sm15286495e9.31.2024.11.06.01.20.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Nov 2024 01:20:13 -0800 (PST)
-Date: Wed, 06 Nov 2024 09:20:12 +0000
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Maxime Ripard <mripard@kernel.org>
-CC: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- Liu Ying <victor.liu@nxp.com>, andrzej.hajda@intel.com,
- neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com,
- maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, airlied@gmail.com,
- simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- quic_jesszhan@quicinc.com, mchehab@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- catalin.marinas@arm.com, will@kernel.org, sakari.ailus@linux.intel.com,
- hverkuil@xs4all.nl, tomi.valkeinen@ideasonboard.com,
- quic_bjorande@quicinc.com, geert+renesas@glider.be, arnd@arndb.de,
- nfraprado@collabora.com, thierry.reding@gmail.com,
- prabhakar.mahadev-lad.rj@bp.renesas.com, sam@ravnborg.org, marex@denx.de,
- biju.das.jz@bp.renesas.com
-Subject: =?US-ASCII?Q?Re=3A_=28subset=29_=5BPATCH_v5_00/13=5D_Add_ITE?=
- =?US-ASCII?Q?_IT6263_LVDS_to_HDMI_converter_support?=
-User-Agent: Thunderbird for Android
-In-Reply-To: <20241105-succinct-pygmy-dingo-4db79c@houat>
-References: <20241104032806.611890-1-victor.liu@nxp.com> <173080602214.231309.12977765173766280536.b4-ty@linaro.org> <20241105-secret-seriema-of-anger-7acfdf@houat> <CD810D31-F9C5-499D-86CF-B94BEF82449A@linaro.org> <20241105-succinct-pygmy-dingo-4db79c@houat>
-Message-ID: <7C2A2BDC-07E8-4ED7-B65B-BD7E4E5DC53F@linaro.org>
+        d=1e100.net; s=20230601; t=1730884993; x=1731489793;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uRkks3dSyRy/clHnQcnjYlOdhUaiujCRFslbnDY6mJA=;
+        b=PoSN8eqsvgxeon/nEAVa6+Xe1/UuhS5/Zdt3oIRPeSUYTfUNiEzktsx4PNFmSyM2+R
+         T1r3nth944PsV3LgQk9wazbDO7vl3DvYa3Hcw1kSdzfB7hah4/sFTiWy8R3tbYH/+y6T
+         cHUjoUbs/Cql1s/t7ldTMYs7APlvZFSDLyJL9zzPrMeCa6Jwo2uDwdwLmK4FA1Lgmda4
+         iqWuPSEUxu8svZOsQXQgGcljenaPpbFqk5Tdqf82l4Gv59RCQWEkt8NwT5kptnDo/t/l
+         wSV/0esQcqU6d5zJ0LtW42Oyc49bfCeKpyi+YDbxEEmbstgd801QiaYNbhrYogi0oPWG
+         263g==
+X-Forwarded-Encrypted: i=1; AJvYcCX3E5DA8Ji8rVGTjLOcurJwSjV2q2XR8pdbSCXaKf/4pcZtYVrNLVLYavXXWEWeZ/ttxAeYh60TU3eE@vger.kernel.org, AJvYcCXEIWIRxMnRdDaFc/TOtFZGTBZWrUQvpikdKrs+K5g/4vuFp01f1dySSxn1BxGRV+jRYznjvYZ+1+MZBiSB@vger.kernel.org, AJvYcCXFpHLjM/lfZeUWUOQoClBpjby3cYOREfALYYv7jcP4cL6ZhaIQH8tuoQgILXGo4c3AVdQ+K3nPGEMn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwsJIxoHB7kYFCVSBfGNlSMW5kWiP9MyMl3X9iK2owF9WrDVv3J
+	fc4ctIJ5wqWhAyhq/UM2i8O6wEJJ8YW9dviUpRGfELMnyjgLii6BoSMcK3MGnrSQb4T0gGTsKRx
+	bc8YzPG79jzgKaGBlfzpU3e0GZuo=
+X-Google-Smtp-Source: AGHT+IFv6NXCj0PoJ3/9MebXG7UMEvSLe5/XYsXv7IOXWlLpbZrwz5OF5MmA5IiWVO83xU2p+sYbWhvM35oxrlZEs5c=
+X-Received: by 2002:a17:906:f34a:b0:a9e:c696:8f78 with SMTP id
+ a640c23a62f3a-a9ec6969260mr153549166b.51.1730884992222; Wed, 06 Nov 2024
+ 01:23:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+References: <20241106023916.440767-1-j2anfernee@gmail.com> <20241106023916.440767-2-j2anfernee@gmail.com>
+ <6c20875c-4145-4c91-b3b5-8f70ecb126f0@amperemail.onmicrosoft.com>
+In-Reply-To: <6c20875c-4145-4c91-b3b5-8f70ecb126f0@amperemail.onmicrosoft.com>
+From: Yu-Hsian Yang <j2anfernee@gmail.com>
+Date: Wed, 6 Nov 2024 17:22:35 +0800
+Message-ID: <CA+4VgcJD74ar9zQCj38M2w8FzGWpq+u5Z7ip9M7a1Lu7u8rojw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: adc: Add binding for Nuvoton
+ NCT720x ADCs
+To: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
+Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
+	jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com, 
+	javier.carrasco.cruz@gmail.com, andy@kernel.org, marcelo.schmitt@analog.com, 
+	olivier.moysan@foss.st.com, mitrutzceclan@gmail.com, 
+	matteomartelli3@gmail.com, alisadariana@gmail.com, joao.goncalves@toradex.com, 
+	marius.cristea@microchip.com, mike.looijmans@topic.nl, 
+	chanh@os.amperecomputing.com, KWLIU@nuvoton.com, yhyang2@nuvoton.com, 
+	openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 5 November 2024 17:39:40 GMT, Maxime Ripard <mripard@kernel=2Eorg> wrote=
-:
->On Tue, Nov 05, 2024 at 05:33:21PM +0000, Dmitry Baryshkov wrote:
->> On 5 November 2024 16:13:26 GMT, Maxime Ripard <mripard@kernel=2Eorg> w=
-rote:
->> >On Tue, Nov 05, 2024 at 01:28:48PM +0200, Dmitry Baryshkov wrote:
->> >> On Mon, 04 Nov 2024 11:27:53 +0800, Liu Ying wrote:
->> >> > This patch series aims to add ITE IT6263 LVDS to HDMI converter on
->> >> > i=2EMX8MP EVK=2E  Combined with LVDS receiver and HDMI 1=2E4a tran=
-smitter,
->> >> > the IT6263 supports LVDS input and HDMI 1=2E4 output by conversion
->> >> > function=2E  IT6263 product link can be found at [1]=2E
->> >> >=20
->> >> > Patch 1 is a preparation patch to allow display mode of an existin=
-g
->> >> > panel to pass the added mode validation logic in patch 3=2E
->> >> >=20
->> >> > [=2E=2E=2E]
->> >>=20
->> >> Applied to drm-misc-next, thanks!
->> >>=20
->> >> [04/13] media: uapi: Add MEDIA_BUS_FMT_RGB101010_1X7X5_{SPWG, JEIDA}
->> >>         commit: 5205b63099507a84458075c3ca7e648407e6c8cc
->> >
->> >Where's the immutable branch Laurent asked for?
->>=20
->> The patch set has been picked up after getting an Ack from Sakari,
->> before Laurent's email=2E I am sorry if I rushed it in=2E
+Dear Chanh Nguyen,
+
+Thank you for your response.
+
+Chanh Nguyen <chanh@amperemail.onmicrosoft.com> =E6=96=BC 2024=E5=B9=B411=
+=E6=9C=886=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=8812:58=E5=AF=AB=E9=
+=81=93=EF=BC=9A
 >
->I mean, this was less than a day after you've asked that question
->yourself=2E Waiting less than a day for a mail to be answered seems a bit
->short, especially when there's no rush to merge these patches in the
->first place=2E
-
-Point noted=2E I should have been more patient=2E As a lame excuse I could=
- point out that the patch has been up for review / comments for quite a whi=
-le, etc, etc, but this is really lame=2E=20
-
-
-
 >
->Maxime
+>
+> On 06/11/2024 09:39, Eason Yang wrote:
+> > This adds a binding specification for the Nuvoton NCT7201/NCT7202
+> > family of ADCs.
+> >
+> > Signed-off-by: Eason Yang <j2anfernee@gmail.com>
+> > ---
+> >   .../bindings/iio/adc/nuvoton,nct720x.yaml     | 47 ++++++++++++++++++=
++
+> >   MAINTAINERS                                   |  1 +
+> >   2 files changed, 48 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,=
+nct720x.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton,nct720x.=
+yaml b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct720x.yaml
+> > new file mode 100644
+> > index 000000000000..3052039af10e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct720x.yaml
+> > @@ -0,0 +1,47 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/adc/nuvoton,nct720x.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Nuvoton nct7202 and similar ADCs
+> > +
+> > +maintainers:
+> > +  - Eason Yang <yhyang2@nuvoton.com>
+> > +
+> > +description: |
+> > +   Family of ADCs with i2c interface.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - nuvoton,nct7201
+> > +      - nuvoton,nct7202
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  read-vin-data-size:
+>
+> Is it generic property or vendor property? I tried to find in the
+> https://github.com/torvalds/linux/tree/master/Documentation/devicetree/bi=
+ndings
+> , but it seems this property hasn't been used on other devices.
+>
+> If it is vendor property, then I think it should include a vendor
+> prefix. For examples:
+>
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bi=
+ndings/iio/adc/adi%2Cad7780.yaml#L50
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bi=
+ndings/iio/adc/fsl%2Cvf610-adc.yaml#L42
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bi=
+ndings/iio/adc/st%2Cstmpe-adc.yaml#L22
+>
+>
 
+I would add a vendor prefix for it.
+
+> > +    description: number of data bits per read vin
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [8, 16]
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - read-vin-data-size
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        nct7202@1d {
+>
+> I think the Node name should follow
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-device=
+tree-basics.html#generic-names-recommendation
+>
+>
+> For some examples that were merged before
+>
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bi=
+ndings/iio/adc/adi%2Cad7091r5.yaml#L102
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bi=
+ndings/iio/adc/maxim%2Cmax1238.yaml#L73
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bi=
+ndings/iio/adc/ti%2Cadc081c.yaml#L49
+>
+
+I would change it for the node naming.
+
+> > +            compatible =3D "nuvoton,nct7202";
+> > +            reg =3D <0x1d>;
+> > +            read-vin-data-size =3D <8>;
+> > +        };
+> > +    };
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 91d0609db61b..68570c58e7aa 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -2746,6 +2746,7 @@ L:      openbmc@lists.ozlabs.org (moderated for n=
+on-subscribers)
+> >   S:  Supported
+> >   F:  Documentation/devicetree/bindings/*/*/*npcm*
+> >   F:  Documentation/devicetree/bindings/*/*npcm*
+> > +F:   Documentation/devicetree/bindings/iio/adc/nuvoton,nct720x.yaml
+> >   F:  Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.yaml
+> >   F:  arch/arm/boot/dts/nuvoton/nuvoton-npcm*
+> >   F:  arch/arm/mach-npcm/
+>
 
