@@ -1,106 +1,190 @@
-Return-Path: <devicetree+bounces-119677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1133C9BF85D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 22:14:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 374CA9BF863
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 22:17:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42AA01C20BC3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 21:14:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A6A11C20F39
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 21:17:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A27E520C49C;
-	Wed,  6 Nov 2024 21:14:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C5A41D90D9;
+	Wed,  6 Nov 2024 21:17:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FL4mZL1L"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="LzIQnRUr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74139209668;
-	Wed,  6 Nov 2024 21:14:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84CCA1D6DDA;
+	Wed,  6 Nov 2024 21:17:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730927660; cv=none; b=BQP9cdkrj9aIov9V39ArOYtl2RvJeAItA68I8symx3/xf1ckCzBUwj/ngqG6ydk3lZLqrmOCr5uJ64sfSxU+9cajGP7xaw3dfReU3FVOzaqAujaoQgjQvb98H9PgQTC+4F0KSc4byzkpKit96W3VgREp7n+aB9mtgL4hFmwRjSU=
+	t=1730927850; cv=none; b=NysQcgWXeACTh3cPMzkfhhE5JlnhwLB6YScn8tcyyIZwX3/PFLvng9y2K7Ya+H+WjDnS3iQKXaprVcBIMrfNuTFeYNoQNp2urTPr/RZK9JFpYXgcp1pK5sg1M9MTfmK+EbXVv+WyIo+lwhIIC6pYKVwWzYU+fs2VB4RDmlHuXx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730927660; c=relaxed/simple;
-	bh=7/BdvkRmiyyxC0XnyH5pvkrr+j4iCL5yDpito59jKc8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=GrDdeXRzCNO3EdPJIpo+q7mPBaEMT//OQ8yqr8b7eAhIBD9M1nnXifogVGWHZlv3XOXfTlr8umyduhDaNdanc+emlFWb2z8RtpS7Oa9MWD4LwSw41BgbBBHTqcHfVO3xpdzinvlkqxj5xlGpu9+cWX3k7Soi1+tVl2pH6gjLi1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FL4mZL1L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C49CC4CEC6;
-	Wed,  6 Nov 2024 21:14:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730927659;
-	bh=7/BdvkRmiyyxC0XnyH5pvkrr+j4iCL5yDpito59jKc8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=FL4mZL1LEP/eoXCMb2ABDyBKV3jMPIEb4b2ONddyE0DiGDwGC12Zt6PDSoXOmLOal
-	 4Sq6sG7lTddHoYBA08gaCc6TtdQTAFfEUUYvtrFLYIo3a92Q5OzQ7WOLzgBgUOFEdp
-	 P15Uqj6IT5RZDnmrWqwyzsAra1fCMbKTpfnbeSPJ/5y82JQvnhcgknY77MlzQpkAdw
-	 vBGMZKTZxRAg3Tp1Kq7noXX1TaNJRDO5pCYLKk85OL6pHPptvwB6A2yOYKfUPZpuI6
-	 hwuGI8Z/vtwGSMz8mDtyn8DxHpQ+kPO3DIj9N0JmQiPzUCaQPGVR4SRuIBgcdRN30R
-	 f+W5WzcuxP8jA==
-From: Mark Brown <broonie@kernel.org>
-To: Fei Shao <fshao@chromium.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-sound@vger.kernel.org
-In-Reply-To: <20241105091513.3963102-1-fshao@chromium.org>
-References: <20241105091513.3963102-1-fshao@chromium.org>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: maxim,max98390: Reference common
- DAI properties
-Message-Id: <173092765728.208420.14697399337630001578.b4-ty@kernel.org>
-Date: Wed, 06 Nov 2024 21:14:17 +0000
+	s=arc-20240116; t=1730927850; c=relaxed/simple;
+	bh=zEsXT7lp8yFeWdvXkyF7krDOTtoBSR8PseVMIaWwrqI=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Xh/6nZqqcB7+wegroxQuqx3Yys7HZk/rZ3Btf+4+x71zLjdSz2N/htif9Suzywo+iygOVcmkshnbFwucjVqjPsSGHcANOIX5N69DlRs/OzKAgyzRc61S64rfgSJgDMSWj9q/BVDRSzKXjYj6UZbcA40z7zDhShHZQYN63Sw6SSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=LzIQnRUr; arc=none smtp.client-ip=134.0.28.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
+	by mxout4.routing.net (Postfix) with ESMTP id 5A4E81015D2;
+	Wed,  6 Nov 2024 21:17:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1730927845;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hBLyzvIh7CKmRzey/NIzdLIeO4OLcavrJ7K8Oj+KhKw=;
+	b=LzIQnRUr49A6oV1zsN6hj4DQg175lI5Ckwwx0fKML1DlY02b6TiyogV0L4LmgS0z10j1Cf
+	zcH+mOp5qGZaocNlvqSXhAUcYDe5fbF2cNHQq3oCkkxWUQwYybxqfC+8rUhsD1C49k5P+l
+	AI7wyL3wE5PK1RctS0hhkd7w7TES++A=
+Received: from webmail.hosting.de (unknown [134.0.26.148])
+	by mxbox1.masterlogin.de (Postfix) with ESMTPSA id B16304009E;
+	Wed,  6 Nov 2024 21:17:24 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-9b746
+Date: Wed, 06 Nov 2024 22:17:24 +0100
+From: "Frank Wunderlich (linux)" <linux@fw-web.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Gregory CLEMENT <gregory.clement@bootlin.com>, Andrew Lunn
+ <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, frank-w@public-files.de
+Subject: Re: [PATCH] arm64: dts: marvell: Drop undocumented SATA phy names
+In-Reply-To: <CAL_JsqKfpVVVh6L0PLmieBO3qMFpcDfWFwd+5=qzH_MbeZt31Q@mail.gmail.com>
+References: <20241014193528.1896905-2-robh@kernel.org>
+ <87r07p8x12.fsf@BLaptop.bootlin.com>
+ <0A5AFF77-D888-4151-9C15-15A408709857@fw-web.de>
+ <CAL_JsqKfpVVVh6L0PLmieBO3qMFpcDfWFwd+5=qzH_MbeZt31Q@mail.gmail.com>
+Message-ID: <4aa7f13e12646722d859ead240177eab@fw-web.de>
+X-Sender: linux@fw-web.de
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: 84ed6ef5-32e9-463f-b99c-fd8841002fe1
 
-On Tue, 05 Nov 2024 17:14:31 +0800, Fei Shao wrote:
-> MAX98390 is a smart amplifier and exposes one DAI, so '#sound-dai-cells'
-> property is needed for describing the DAI links.
+Am 2024-11-06 19:39, schrieb Rob Herring:
+> On Wed, Nov 6, 2024 at 12:34 PM Frank Wunderlich <linux@fw-web.de> 
+> wrote:
+>> 
+>> Am 5. November 2024 17:28:57 MEZ schrieb Gregory CLEMENT 
+>> <gregory.clement@bootlin.com>:
+>> >"Rob Herring (Arm)" <robh@kernel.org> writes:
+>> >
+>> >> While "phy-names" is allowed for sata-port nodes, the names used aren't
+>> >> documented and are incorrect ("sata-phy" is what's documented). The name
+>> >> for a single entry is fairly useless, so just drop the property.
+>> >>
+>> >> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+>> >
+>> >Applied on mvebu/dt64
+>> >
+>> >Thanks,
+>> >
+>> >Gregory
+>> >> ---
+>> >> Cc: Frank Wunderlich <linux@fw-web.de>
+>> >>
+>> >> There's also this 2 year old patch fixing other SATA errors[1] which
+>> >> was never picked up. :(
+>> >>
+>> >> [1] https://lore.kernel.org/linux-arm-kernel/20220311210357.222830-3-linux@fw-web.de/
+>> 
+>> Hi
+>> 
+>> How to deal with my patch pointed by rob?
 > 
-> Reference the dai-common.yaml schema to allow '#sound-dai-cells' to be
-> used.
+> I believe it will conflict with mine. Can you rebase on top of
+> mvebu/dt64 and resend it.
 > 
-> This fixes dtbs_check error:
->   '#sound-dai-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> [...]
+> Rob
 
-Applied to
+i have rebased my patch [1], but it seems there are much more errors 
+there (which i tried to fix there too).
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+To be honest marvell is confusing to me finding the right file to patch 
+because of many dtsi files included by each other mixed with some 
+macros.
 
-Thanks!
+at least some properties have to be documented in yaml:
 
-[1/1] ASoC: dt-bindings: maxim,max98390: Reference common DAI properties
-      commit: 9b915776e0e6a2d185498077e0ebdb154a2751ac
+arch/arm64/boot/dts/marvell/armada-8040-db.dtb: sata@540000: Unevaluated 
+properties are not allowed ('#address-cells', '#size-cells', 
+'dma-coherent', 'iommus' were unexpected)
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+sata-node itself seems to be defined in 
+arch/arm64/boot/dts/marvell/armada-cp11x.dtsi (adress/size-cells and 
+dma-coherent are defined here)
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+iommus seems to be added with
+83a3545d9c37 2020-07-15 arm64: dts: marvell: add SMMU support Marcin 
+Wojtas  (tag: mvebu-dt64-5.9-1)
+which seems not be documented in txt before i converted the binding.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+so something like adding this to the binding:
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+   '#address-cells':
+     const: 1
 
-Thanks,
-Mark
+   '#size-cells':
+     const: 0
 
+   dma-coherent: true
+
+   iommus:
+     maxItems: 1
+
+dma-coherent was there in my version and seem to be broken with
+
+6f997d4bb98b 2022-09-09 dt-bindings: ata: ahci-platform: Move 
+dma-coherent to sata-common.yaml Serge Semin
+
+but maybe i only get the error for it because of my call with my yaml 
+only
+
+ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make dtbs_check 
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/ata/ahci-platform.yaml
+
+adress/size-cells is strange to me, i'm sure i tested the yaml against 
+the example which also contains them...i guess it was defined somewhere 
+else.
+
+and this one:
+
+arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtb: sata@540000: 
+sata-port@0:phy-names:0: 'sata-phy' was expected
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+
+i guess it is taken from here:
+Documentation/devicetree/bindings/ata/ahci-common.yaml:107:        
+const: sata-phy
+
+if i understand it the right way then if phy-names is defined in 
+sata-subnode it has to be value "sata-phy"...so basicly somewhere in the 
+chains of dtsi's a phy-name is defined to another value..am i right?
+
+it looks like it is in 
+arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi...if i drop the 
+phy-names for the other sata-ports (below cp1_sata0)
+
+seems dropping them were missing from your patch as you remove another 
+one in same file (&cp0_sata0)
+
+please correct me if i'm wrong
+
+regards Frank
+
+[1] https://github.com/frank-w/BPI-Router-Linux/commits/mvebu/dt64/
 
