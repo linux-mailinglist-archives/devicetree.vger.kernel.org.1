@@ -1,190 +1,162 @@
-Return-Path: <devicetree+bounces-119486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 023459BE6B5
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 13:04:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C48C29BE6BA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 13:05:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85E011F26FA0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 12:04:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C9BFB24AE9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 12:05:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD7621DF240;
-	Wed,  6 Nov 2024 12:01:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7406C1DF991;
+	Wed,  6 Nov 2024 12:03:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="p7eZhhzi"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="bYQgKP0q";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="MyqruMMC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D82791E7677
-	for <devicetree@vger.kernel.org>; Wed,  6 Nov 2024 12:01:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D623E1DF729;
+	Wed,  6 Nov 2024 12:03:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730894513; cv=none; b=qqn3XNPJbsYlnDLpwvCIurun4HPXYXgPqnMh16qqlv8n28yhfbNoGqyNUy2Ql4xpqtdl3FjypCX2eUYzV1G806/CsLYCUlX9x+/dDoU2pzgWdJusNvjjpXVM3eEZ05wetE+15OrqAjS2Pv0LfvIs73g33QtoCePIaVpVkiIzxPs=
+	t=1730894608; cv=none; b=TDp4DX6Hs6eyRx0tqtNdalWKxX1YK15tH900o93nqputgfH4WbupLEJVtq1vCoph4tP0cflWLHcE4HcmCqASyBS3493osJoa4BAwOqT5IudjeDv7J2RLcg/3LPQCS1ylWsddOJJzBXj42KnqVPyrm3ibMVQuhHNl25q6eWVAOJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730894513; c=relaxed/simple;
-	bh=l2nLfEhXQdqdldj7HMRPD/BKF+Yo/cZTkzGKteJPuqI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=EA9LjH26n8S2w4SmlUjEpsAbWb/1I3vDstBKQxobnYVJaWmlLnytOEuj6e5w1k7xzT1lRq1WqAu7YXs39sYHtt3yQtrcfX8cCk8pJW1juuN+ynQLotr8MU6wYLfSCvXNAGjSTq2s3hMFH+N9c5VJ6ECnEOzL6yI67jXX6W6bfks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=p7eZhhzi; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2fb443746b8so58412441fa.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Nov 2024 04:01:51 -0800 (PST)
+	s=arc-20240116; t=1730894608; c=relaxed/simple;
+	bh=1CWv4ZrN6M3umim2LLfIUNFU4R1eAAmA4QqWSrrVLmg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=SuGF2FhNWJY8R6tSsNhGAsznvaYmadBY9rbqXBFWy8lZfVwctDibw6hqYrOw+B7Im5pFYznM7jRl2OYe0yLpvHdQi4/dMZWhAhagP+yzWYQ3yA9lR70lwMRoIAzxLJUw6SIRCfEWL5TL9ASt39VvOGS5NNY0JoXKE01gOKahutY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=bYQgKP0q; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=MyqruMMC reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1730894510; x=1731499310; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2JwPCGHe69m/pJb0qH1LaF4qTTUiifIIPi692eTZlzU=;
-        b=p7eZhhzip/ycZoC9bUx4Xj/Raxbv8DKTYi0hclsnVElxx1IDTDWMDv5/zujT7ImHPF
-         wl+QzTqzCAUbSiT83jzRNj1QjmEajok6udXAvz1YjO+CBItLEtdzfvJVcrlMrR2me5nQ
-         Oy+mcAQGzcu9mGqqUC3jChXcooSuEafTKKTviT0GUVpUbcY/SvG4A5ttcARCb1+DsVdL
-         VFoxJYqMPk4TSKdw3W+21R+zUCWcRP6NVyA4w+RTQ5258ECYkB76+xabnDgfJV1B7ydE
-         G4gQEvlHSKhjCT3FpxG+0MrY6BcJvtSqOR3FLmyez6BYFyTTcw2HHg4+kHBSSzURMwun
-         wbXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730894510; x=1731499310;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2JwPCGHe69m/pJb0qH1LaF4qTTUiifIIPi692eTZlzU=;
-        b=UB7dG/sodJNP+pm9T+bAh2/chc9tMNDx2GwSEYvww72cx/fzNZ39i9Mvk/IMbxeeks
-         pFSBvNaxTdw+SAEGqKRJ85hEeaSYgdxB6adty+uLzvVTCEgm05f3rUE4ibAVYOlr45XX
-         WyqOP+gv4cSJX7eDQCt69QBfU4Gvq9dBUqDR2WPbRCRgHu4OyJkmKuWIxvOW7iNdX7Nx
-         5U88xrBngIK5dmhPZ9kpJdVRu+SleIRZh5vclGb3IzvTb8aCQjP5zklwSIyjDLMEVxck
-         HR8n9mpdzX1MzsvWXQYRIVi3OHmoKlRA0araRYI84msTk1hei9hsOOls4z3rAQrZdwmS
-         JzOA==
-X-Forwarded-Encrypted: i=1; AJvYcCWiEZu8SgCyhlOELXZk3bEKfwRb1gZ7nP/uLi/RC2BDYcInAkfUOdFuZi4eiSfmOVFwxkgZWQWH9Zly@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzg4o884U/g6blnEgE03sO9lXWlRLl/Wsl3RJyZBe38QXjLDMOE
-	XxH4aVSfFwPac7Vp7qjtWVE2aEofKbrlq4504NuJtotAWxCOVeDikB58p2uBvs8=
-X-Google-Smtp-Source: AGHT+IGmZAnyNN2H3HVq8mWB2A4J8BfLSHy4gBsMu6TgAseykCSA2VwSabOZhkZzxv828ZqhYx8Qgw==
-X-Received: by 2002:a2e:b8c8:0:b0:2fb:4b0d:9092 with SMTP id 38308e7fff4ca-2fcbdf69fbemr189607851fa.1.1730894509534;
-        Wed, 06 Nov 2024 04:01:49 -0800 (PST)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.28])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cee6afe528sm2697984a12.55.2024.11.06.04.01.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Nov 2024 04:01:49 -0800 (PST)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	gregkh@linuxfoundation.org,
-	jirislaby@kernel.org,
-	p.zabel@pengutronix.de,
-	lethal@linux-sh.org,
-	g.liakhovetski@gmx.de,
-	ysato@users.sourceforge.jp,
-	ulrich.hecht+renesas@gmail.com
-Cc: claudiu.beznea@tuxon.dev,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH 9/9] arm64: dts: renesas: r9a08g045s33-smarc-pmod: Add overlay for SCIF1
-Date: Wed,  6 Nov 2024 14:01:18 +0200
-Message-Id: <20241106120118.1719888-10-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20241106120118.1719888-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20241106120118.1719888-1-claudiu.beznea.uj@bp.renesas.com>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1730894604; x=1762430604;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=1CWv4ZrN6M3umim2LLfIUNFU4R1eAAmA4QqWSrrVLmg=;
+  b=bYQgKP0qqXFR/BphGxdLfRgBqqblcIO1/tcgESA+sKL7tD4CeyEVCLIQ
+   CG7NefW3G9nH1Le6wqwpAtom32COZhM1YFWimJ4Deea2keAzNxV2MufD4
+   0a+gQIThGNKfHJoVX8J3wY3u3MGEc3/qlnjC8OizcLL7OgOWpXpzAVSLw
+   4pxdjx5bpyJ4bv2DtnDVnQQBqIN4eTNuP8NWkfnkiQQpqIkgyUh/x9fHR
+   En55AdWMro1KYLlQloUCe9k6dHUacXUe5GN7HcVs69wZSmDN3dYi8pIbJ
+   elBPgR4OJtryYO1pLTgNlg5uphX9BQOoWJB+Hov6k7OBKnGZ6gJG/FXfN
+   g==;
+X-CSE-ConnectionGUID: pieM1AbNRD6bZ+HIIGuvjQ==
+X-CSE-MsgGUID: 1wL/Ebm/RdSAD34uMIIljQ==
+X-IronPort-AV: E=Sophos;i="6.11,262,1725314400"; 
+   d="scan'208";a="39884327"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 06 Nov 2024 13:03:15 +0100
+X-CheckPoint: {672B5B03-9-F5DC7025-F79421CB}
+X-MAIL-CPID: B8FDA72FF4EEA00CCDDAD8EBC4F3B464_0
+X-Control-Analysis: str=0001.0A682F15.672B5B03.0084,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D4631160A4D;
+	Wed,  6 Nov 2024 13:03:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1730894590;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=1CWv4ZrN6M3umim2LLfIUNFU4R1eAAmA4QqWSrrVLmg=;
+	b=MyqruMMCwaAn1/83WQVkFqBBlZ1w8xmo0WnnBSJnD7J4C0rko59siM7kzBf59ilTvHN9+G
+	cV/4oFPHvjr3iBu/MQXsr4YrhXWnaQ1bFfQjN/aIGXgFF1ModNW+G9f+6XFw+YNrBXN+8a
+	IUnleI+sDdPKmbFxR8KyOIcZwO7LoPZha5x2dpyDPlRB+1ebpk3j4U/s/o8zJ45zxSXuWi
+	jupDOroZj1O1onje3FOuBTiYFIKbu2A8EbYxx62wKbGocRBVHD5gRrH3CpoyR1zeFED1MO
+	t/5njui1invUIQxBVKECokbIZby+fzf4m8dQXmpucYI1MnMAvFLiV8d/falphw==
+Message-ID: <7286141141fe4930cd2581dac7a1fb36a98e62c4.camel@ew.tq-group.com>
+Subject: Re: [PATCH 2/5] dt-bindings: arm: ti: Add compatible for
+ AM625-based TQMa62xx SOM family and carrier board
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Kees Cook <kees@kernel.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
+ <gpiccoli@igalia.com>, Felipe Balbi <balbi@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>, Hari
+ Nagalla <hnagalla@ti.com>, linux@ew.tq-group.com
+Date: Wed, 06 Nov 2024 13:03:08 +0100
+In-Reply-To: <20241105-tinsmith-countable-fbb51045bc98@spud>
+References: <cover.1730299760.git.matthias.schiffer@ew.tq-group.com>
+	 <4f5ad877f44df35a3b2c7f336647f057c4e6377d.1730299760.git.matthias.schiffer@ew.tq-group.com>
+	 <20241104-floral-dexterous-7d3fee2ff616@spud>
+	 <c73cac598788ccabd1791b1232e8fd9d7ce23ac6.camel@ew.tq-group.com>
+	 <20241105-tinsmith-countable-fbb51045bc98@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4-0ubuntu2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Tue, 2024-11-05 at 18:55 +0000, Conor Dooley wrote:
+> On Tue, Nov 05, 2024 at 11:40:20AM +0100, Matthias Schiffer wrote:
+> > On Mon, 2024-11-04 at 18:47 +0000, Conor Dooley wrote:
+> > > On Mon, Nov 04, 2024 at 10:47:25AM +0100, Matthias Schiffer wrote:
+> > > > The TQMa62xx is a SoM family with a pluggable connector. The MBa62x=
+x is
+> > > > the matching reference/starterkit carrier board.
+> > >=20
+> > > Why all the wildcards? Why isn't there a compatible per device in the
+> > > family?
 
-Add DT overlay for SCIF1 (of the Renesas RZ/G3S SoC) routed through the
-PMOD1_3A interface available on the Renesas RZ SMARC Carrier II board.
+Because all variants use the same Device Tree. There is also only one compa=
+tible and one (main) DTSI
+for the AM62 SoC family, which our Device Trees are based on.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/Makefile          |  3 ++
- .../dts/renesas/r9a08g045s33-smarc-pmod.dtso  | 48 +++++++++++++++++++
- 2 files changed, 51 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a08g045s33-smarc-pmod.dtso
+> >=20
+> > For the compatible string we've chosen the TQMa6254 as the representati=
+ve for the TQMa62xx family.
+>=20
+> And all the boards in the family are the exact same?
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 97228a3cb99c..7ad52630d350 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -137,6 +137,9 @@ r9a07g054l2-smarc-cru-csi-ov5645-dtbs := r9a07g054l2-smarc.dtb r9a07g054l2-smarc
- dtb-$(CONFIG_ARCH_R9A07G054) += r9a07g054l2-smarc-cru-csi-ov5645.dtb
- 
- dtb-$(CONFIG_ARCH_R9A08G045) += r9a08g045s33-smarc.dtb
-+dtb-$(CONFIG_ARCH_R9A07G043) += r9a08g045s33-smarc-pmod.dtbo
-+r9a08g045s33-smarc-pmod-dtbs := r9a08g045s33-smarc.dtb r9a08g045s33-smarc-pmod.dtbo
-+dtb-$(CONFIG_ARCH_R9A07G043) += r9a08g045s33-smarc-pmod.dtb
- 
- dtb-$(CONFIG_ARCH_R9A09G011) += r9a09g011-v2mevk2.dtb
- 
-diff --git a/arch/arm64/boot/dts/renesas/r9a08g045s33-smarc-pmod.dtso b/arch/arm64/boot/dts/renesas/r9a08g045s33-smarc-pmod.dtso
-new file mode 100644
-index 000000000000..7d637ab110e1
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a08g045s33-smarc-pmod.dtso
-@@ -0,0 +1,48 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree Source for the RZ/G3S SMARC Carrier II EVK PMOD parts
-+ *
-+ * Copyright (C) 2024 Renesas Electronics Corp.
-+ *
-+ *
-+ * [Connection]
-+ *
-+ * SMARC Carrier II EVK
-+ * +--------------------------------------------+
-+ * |PMOD1_3A (PMOD1 PIN HEADER)			|
-+ * |	SCIF1_CTS# (pin1)  (pin7)  PMOD1_GPIO10	|
-+ * |	SCIF1_TXD  (pin2)  (pin8)  PMOD1_GPIO11	|
-+ * |	SCIF1_RXD  (pin3)  (pin9)  PMOD1_GPIO12	|
-+ * |	SCIF1_RTS# (pin4)  (pin10) PMOD1_GPIO13	|
-+ * |	GND	   (pin5)  (pin11) GND		|
-+ * |	PWR_PMOD1  (pin6)  (pin12) GND		|
-+ * +--------------------------------------------+
-+ *
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
-+
-+&{/} {
-+	aliases {
-+		serial0 = "/soc/serial@1004bc00";
-+	};
-+};
-+
-+&pinctrl {
-+	scif1_pins: scif1-pins {
-+		pinmux = <RZG2L_PORT_PINMUX(14, 0, 1)>, /* TXD */
-+			 <RZG2L_PORT_PINMUX(14, 1, 1)>, /* RXD */
-+			 <RZG2L_PORT_PINMUX(16, 0, 1)>, /* CTS */
-+			 <RZG2L_PORT_PINMUX(16, 1, 1)>; /* RTS */
-+	};
-+};
-+
-+&scif1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&scif1_pins>;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
--- 
-2.39.2
+There is a single TQMa62xx PCB, which has some AM62 family SoC installed (A=
+M6254 in the case of the
+TQMa6254, but all AM62 are possible). TQMa62xx is also the name used for ma=
+rketing when not talking
+about a specific SoC variant:
+https://www.tq-group.com/en/products/tq-embedded/arm-architecture/tqma62xx/
 
+Some SoM variants with different RAM/eMMC/SPI-NOR/... do exist, but they do=
+n't have separate device
+trees (firmware may patch some variant information into the DTB however, li=
+ke the correct RAM size).
+
+Choosing one representative for the family including the SoC variant number=
+, but not distinguishing
+minor variants matches the level of detail used for our other SOMs already =
+supported by mainline
+Linux (like the TQMa64xxL and various i.MX-based platforms).
+
+Best,
+Matthias
+
+
+
+>=20
+> >=20
+> > MBa62xx is the proper name of the baseboard; this board can be combined=
+ with any TQMa62xx family
+> > SOM.
+>=20
+> Then that one is fine.
+>=20
+
+--=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+https://www.tq-group.com/
 
