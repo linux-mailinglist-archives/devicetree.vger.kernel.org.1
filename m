@@ -1,106 +1,134 @@
-Return-Path: <devicetree+bounces-119593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4257F9BF3A8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:53:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 111C69BF3B3
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:54:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5540B2223E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:53:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42DEC1C2173A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:54:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EFDB2064E4;
-	Wed,  6 Nov 2024 16:53:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34A9F2064FF;
+	Wed,  6 Nov 2024 16:54:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A82ix3l5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OsFhK8yD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E566205E33;
-	Wed,  6 Nov 2024 16:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D692064EF;
+	Wed,  6 Nov 2024 16:54:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730911995; cv=none; b=mcr87bRtz3Mon1ERTvpKUdA6DFSU7Ot4ye1ZpIwmA4MPSuVHY3N8DO9ymug8aYPDXkSjvN/psFMvFEnXJY3iYMcVfmqHauLQq8LJ1IYYsOJ0NV+YQu36ge18uHWl8RmtRUP/nLQ/gKng909cALAAJ0YBNPzZ/A7N63CCp1pBIxc=
+	t=1730912063; cv=none; b=bJHUhRd5w+87WyOrggEXOdI4zpxpxKujgVDbYd2hnKoR/CiyJOcDElhd9fvsENl++m14zvi4PFUlV1B3DevvwTY54HhqppQiigogQ+/8L3VlsTK7AXZvNPLUirU0psXm1PHnFcRpdTCIP6TfOlLITuosqWs81PUxW1gEbLLsOM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730911995; c=relaxed/simple;
-	bh=OzUAI9y2vdwmmvCD+XJYm4cHA0A6WZjIJsfN0+pkEiM=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=aaXhCebJbxCqKCuqfZvP09Gddz2kDhBWp0YbT81lzhkN8hk4VHrMyN3MSeE/5FkcetV+2U6M5MltzvO92QhetQIsduIack0OQwNlbyGkQrSMdjic17MAgiQMH7LFilkCCST8gXd+UEFO97erw+9xpNI1M8f6+CXlA8Pw+GO0kwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A82ix3l5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B77AFC4CED6;
-	Wed,  6 Nov 2024 16:53:13 +0000 (UTC)
+	s=arc-20240116; t=1730912063; c=relaxed/simple;
+	bh=xtIQuWH9C+ZoLXngdr14mybtrU80ohTFdeuli/KE5/I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JNDsOloKZWCZ90jDBXLWMR4uSiZh8/dMPonliJjuBQH34b6spGSKktYi+zjus0hQM6AEZrqWR11cpJzWZHaun4Ju4+Hx5gOYhUIIf7eUqQ4U4nFsaXi4JaNiWg7WlNqRRyfmkbY/VWrB8BO8EwGGf5Yv72wDGqeNl/SdHXixgVw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OsFhK8yD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9039EC4CEC6;
+	Wed,  6 Nov 2024 16:54:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730911994;
-	bh=OzUAI9y2vdwmmvCD+XJYm4cHA0A6WZjIJsfN0+pkEiM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=A82ix3l5i8JXXCa8Ly4NI6GqAfXg70yCSN47GvTf2odoIqanT1OQSxtYQs9+EeyaO
-	 eIBz0LfxgEeQMRoq6Doq/0gu6P/tJvZPeTtHX/YLvVLjYn0h0ecehgO0i8hGW/uyL8
-	 yuZV0JKwLbKZt5/ElHWq2wkuTDzigiaa9p0aC0D4IJAq4OkzhhW7X5ACtGSXSlh4A3
-	 IoBw8U50Gm337WwW5Lb1zK781XjKvsVduYNrkM57Wb8GQn3rtUErE07jPCo6l4iWxs
-	 dFSMonjOfImmIMg5xTyHI+/KGrHBWfhB1h6wfj7vZvlquBozDtB9cMEQM950Vb2x9P
-	 +IH478GRWoebQ==
-Date: Wed, 6 Nov 2024 10:53:12 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Sricharan R <quic_srichara@quicinc.com>, bhelgaas@google.com,
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
-	konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V7 4/4] PCI: qcom: Add support for IPQ9574
-Message-ID: <20241106165312.GA1528877@bhelgaas>
+	s=k20201202; t=1730912062;
+	bh=xtIQuWH9C+ZoLXngdr14mybtrU80ohTFdeuli/KE5/I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OsFhK8yDrxZ+QyrA2mZ6zyNeQz+Qu1wLOu1cHHyhz2Qk9shIkDtV5kXDgisCMj/cr
+	 +WF0WPuW56g6IDZ7qpE+qS1xG3SlIiXhK0IGlM4PNh5Z1qfHFp+4ZgCzAY6VCBDDHC
+	 CNjZ1ne1QYayTNKCiUzxkrXJrohkS6zwWhABlSqNAwIWbNQoif/5oCLBq0QDO5RewQ
+	 mO7sPmfJ9sLI14UJVHSKEkAP2K2j/VghdFKFUcXZSmdxGa6dA94AIzub+7YPk/bzYC
+	 1ELK3U5MdvKUuMt/T/qNoSU0dLrddn0VALanhl/HlraM+AyQoGYKNiD1U/ciSWg5jb
+	 CgVinIQyWnn0w==
+Date: Wed, 6 Nov 2024 16:54:17 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter Yin <peteryin.openbmc@gmail.com>,
+	Noah Wang <noahwang.wang@outlook.com>, Marek Vasut <marex@denx.de>,
+	Lukas Wunner <lukas@wunner.de>
+Subject: Re: [PATCH v2 1/2] dt-bindings: trivial-devices: add ltp8800
+Message-ID: <20241106-splurge-slaw-b4f1d33e4b09@spud>
+References: <20241106030918.24849-1-cedricjustine.encarnacion@analog.com>
+ <20241106030918.24849-2-cedricjustine.encarnacion@analog.com>
+ <8e4dc080-d779-4b06-8fd1-74784e06323a@roeck-us.net>
+ <20241106-gatherer-glancing-495dbf9d86c7@spud>
+ <20241106-overcast-yummy-9c6462ff2640@spud>
+ <2b731ba8-1b6b-41eb-bae9-3403555506ef@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TbnDRuNWZw+OcBa9"
 Content-Disposition: inline
-In-Reply-To: <20241106145615.25tc7n4zcdkp47jr@thinkpad>
+In-Reply-To: <2b731ba8-1b6b-41eb-bae9-3403555506ef@roeck-us.net>
 
-On Wed, Nov 06, 2024 at 02:56:15PM +0000, Manivannan Sadhasivam wrote:
-> On Tue, Nov 05, 2024 at 07:40:24PM -0600, Bjorn Helgaas wrote:
-> > On Thu, Aug 01, 2024 at 11:18:03AM +0530, Sricharan R wrote:
-> > > From: devi priya <quic_devipriy@quicinc.com>
-> > > 
-> > > The IPQ9574 platform has four Gen3 PCIe controllers:
-> > > two single-lane and two dual-lane based on SNPS core 5.70a.
-> > > 
-> > > QCOM IP rev is 1.27.0 and Synopsys IP rev is 5.80a.
-> > > Reuse all the members of 'ops_2_9_0'.
-> > 
-> > Wow, this is confusing.
-> > 
-> > "Based on SNPS core 5.70a", but "Synopsys IP rev is 5.80a."
-> > Are those supposed to match?  Or is it 5.70a of one thing but 5.80a of
-> > a different thing?
-> 
-> Hmm, I'm not sure why 5.70a is mentioned here. It seems irrelevant
-> (even if it is the base).
-> 
-> > And where does ops_2_9_0 come in?  The code comment says:
-> > 
-> >   /* Qcom IP rev.: 2.9.0  Synopsys IP rev.: 5.00a */
-> >   static const struct qcom_pcie_ops ops_2_9_0 = {
-> > 
-> > which doesn't match 1.27.0 or 5.70a or 5.80a.  In fact there's nothing
-> > in the file that matches 1.*27.*0
-> > 
-> > Honestly, I don't really care if you have all the versions here in the
-> > commit log.  But if the versions *are* here, can we make them make
-> > sense?
-> 
-> We name the 'ops' structure based on Qcom IP revision. And we reuse
-> it across the SoCs which are compatible. That's why ops_2_9_0 is
-> used for this SoC which has Qcom IP rev 1.27.0.
 
-Got it.  So a family of compatible Qcom IP starts with 2.9.0 and newer
-members are 1.27.0 etc.  With no hint in the source about what the
-members of the family are.  Perfect sEnSe.
+--TbnDRuNWZw+OcBa9
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Bjorn
+On Wed, Nov 06, 2024 at 08:43:54AM -0800, Guenter Roeck wrote:
+> On 11/6/24 08:11, Conor Dooley wrote:
+> > On Wed, Nov 06, 2024 at 04:06:02PM +0000, Conor Dooley wrote:
+> > > On Tue, Nov 05, 2024 at 08:34:01PM -0800, Guenter Roeck wrote:
+> > > > On 11/5/24 19:09, Cedric Encarnacion wrote:
+> > > > > Add Analog Devices LTP8800-1A, LTP8800-2, and LTP8800-4A DC/DC =
+=CE=BCModule
+> > > > > regulator.
+> > >=20
+> > > A single compatible for 3 devices is highly suspect. What is
+> > > different between these devices?
+> >=20
+> > Additionally, looking at one of the datasheets, this has several inputs
+> > that could be controlled by a GPIO, a clock input and several supply
+> > inputs. It also has a regulator output. I don't think it is suitable for
+> > trivial-devices.yaml.
+> >=20
+>=20
+> All PMBus devices are by definition regulators with input and output volt=
+ages.
+> After all, PMBus stands for "Power Management Bus". Some of them are list=
+ed
+> in trivial devices, some are not. Is that a general guidance, or in other
+> words should I (we) automatically reject patches adding PMBus devices
+> to the trivial devices file ?
+
+Personally I like what Jonathan does for iio devices, where he requires
+input supplies to be documented, which in turns means they can't go into
+trivial-devices.yaml. I wanted to add an input supply option to
+trivial-devices.yaml but ?Rob? was not a fan.
+In this case it would need a dedicated binding to document the regulator
+child node and permit things like regulator-always-on or for any
+consumers of the regulator to exist. I suppose that probably applies to
+all pmbus bindings?
+In this case, there seems to be an input "sync" clock that may need to
+be enabled, which is another nail in the coffin for
+trivial-devices.yaml.
+
+--TbnDRuNWZw+OcBa9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyufOQAKCRB4tDGHoIJi
+0ngPAP9bHw4K9auG12gOeknHWMNkjLIYFJ5jJjg/vv1Wo/ieiQD7B1Ei1oGxpsY/
+ymkEheLhj3x5JfgVpPhrS9rdabx68QY=
+=2pzv
+-----END PGP SIGNATURE-----
+
+--TbnDRuNWZw+OcBa9--
 
