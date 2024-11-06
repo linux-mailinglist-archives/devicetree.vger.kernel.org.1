@@ -1,157 +1,91 @@
-Return-Path: <devicetree+bounces-119444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5182F9BE436
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 11:26:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74B0B9BE43E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 11:28:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10D8F28323C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 10:26:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 398622839CD
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 10:28:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89331DDC0F;
-	Wed,  6 Nov 2024 10:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14AA81DDC35;
+	Wed,  6 Nov 2024 10:28:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OOfMF074"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cSkgsRLw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F9AC188CAE;
-	Wed,  6 Nov 2024 10:26:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD19D18FDA5;
+	Wed,  6 Nov 2024 10:28:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730888766; cv=none; b=HA9+vBOHsJnzf9OxFFOk8L4osqBPXGckL14SZNLUMG0JwH9ScwYahHP06xXC1gmvhqQJiWdVhSbJKu3ESfI8IRrHp1WO5NYUoaKPcq/H6kRxG4BadO6UTXM+6j8ofUQcwdE0/6UaLXetb1yrcwMXcwhf7YZXCS3imPb0/p047PM=
+	t=1730888928; cv=none; b=vAO3WMJ4Bj7rDaW+qcdNTMPj7OA3/pYJvBAZdWIlaE9oLhc+goCD84+Jji39KBRSTT59YhKyGG+HdCyFjaSvEr44ZOubsaRld/BVHe1l9cwt7KsC0hUoq0oX/A575BPVmEYZOc3hPPlg1TnPlrOB7Dz9FZM2v5EnRaB3WjpDj+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730888766; c=relaxed/simple;
-	bh=OHOSCCzUoex3Pq5CawCSNCv9Uc5SEz/0fE8jH4w6Wmo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HQYPpRaFAw7xOi2CYhvSiSLg4/E+0bAtozlZ9hRh9mJ3sUdFlgsICOJJhfoicPXRrU79P2emb5J2MFF7zDy4N8v8LcWGixld7H79nyd3nbN9mb09SHLWjiHt8ETA2EUwByyGuO2+wDVWuOYz4rehIIRRjVKFrHL5gB52Z4snj+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OOfMF074; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A632eFV001983;
-	Wed, 6 Nov 2024 10:25:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	wGZ0NZK3NF3z4vwe9RFE7hRudr4CiDJi8bjCZ4lT26E=; b=OOfMF074EOsizQ5t
-	G1KAaj3Srm3JsJCTL+jIEUnjggHi6BVCLN50tOHxhRj3NTVIVTQtYFPoDUtswaoU
-	Nh5fx88fQHc8h31AWctgUcQFtnva6Px8EnGtoIY0w8KMb0XiUItP4MOojHHFuyeJ
-	MoKR7FWgkMMYnYEAtUNqgJ8WZ7KLKYtYwWnPEyGkEIEvLvByp3d8Z9LHKLWHde6r
-	xk7qkKWU0lmAb51msVbUovZq3uTFEq+ZplPy+dQPxKLBbOR+w3AeqNKoPelOci9X
-	kaMHbnOvzyA7miYNQnryR83kCi2NZXToepMcwvtwqblDKWirxV9/BCaBeub4bkfi
-	p0Xbug==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42r072h18h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 06 Nov 2024 10:25:57 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A6APu9T024989
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 6 Nov 2024 10:25:56 GMT
-Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 6 Nov 2024
- 02:25:49 -0800
-Message-ID: <fc676574-ffac-40d2-aa47-8d7cb61b5e3f@quicinc.com>
-Date: Wed, 6 Nov 2024 15:55:46 +0530
+	s=arc-20240116; t=1730888928; c=relaxed/simple;
+	bh=2W3lHOkrvwwmFq2Br1SOMNGz4j/akgV+dPVRJ5Btkmg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kHsBTlh5UBe0bx6Jom5fmw3BiI0v1p9BnASTLz2CyvEV7gSfo6oAxGOxyqQVcFlE3vIX+3dSNzAudIkP3F8Y/QijGisoX61ViILMt7uN0agrJKJmAh7oKYXD6hdiEz0xNyfIf+iPNp+iz4RgiMb/KGQ9ASgEVlYJoutsDZAuo1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cSkgsRLw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C598C4CECD;
+	Wed,  6 Nov 2024 10:28:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730888927;
+	bh=2W3lHOkrvwwmFq2Br1SOMNGz4j/akgV+dPVRJ5Btkmg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cSkgsRLwUOmH1VC530NAKtxbFJ7XoNIoJQDmcHIwPdVlIfSuZBlu8Xep+C4E1+Qdi
+	 hle6cfWXAIjx/tj56usOZ2gFk1FfO2bpkhHWqNzreiWkO6VQQXHyiUh1Ky3aEcrjq8
+	 pYz9YAi/KzCUIVmGXqjM1IvN7IPuoOUHFOGhQm1ROgm1OhsOmd+dSZ3WNaaxseKGIl
+	 YaalrsQ0Pxk6L0nWHp9lF/yKe/lk4954It+WnvVMcdSa24ItROsOE1fVP/ADKmXm79
+	 UK/jREBk7Xty79/7MncmEfPA6+8tCZWUT1q+6SQW86Up1SXLqHzCjyBPPBI1Nom+6/
+	 a6iEKpCEoEr7w==
+Date: Wed, 6 Nov 2024 10:28:40 +0000
+From: Lee Jones <lee@kernel.org>
+To: Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc: Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
+	Arnd Bergmann <arnd@arndb.de>, soc@kernel.org,
+	Gregory CLEMENT <gregory.clement@bootlin.com>, arm@kernel.org,
+	Andy Shevchenko <andy@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH leds v5 01/12] turris-omnia-mcu-interface.h: Move command
+ execution function to global header
+Message-ID: <20241106102840.GN1807686@google.com>
+References: <20241104141924.18816-1-kabel@kernel.org>
+ <20241104141924.18816-2-kabel@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 7/7] arm64: dts: qcom: ipq5424: Add thermal zone nodes
-To: Konrad Dybcio <konradybcio@gmail.com>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>,
-        <srinivas.kandagatla@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <amitk@kernel.org>,
-        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
-        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
-        <lukasz.luba@arm.com>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20241104124413.2012794-1-quic_mmanikan@quicinc.com>
- <20241104124413.2012794-8-quic_mmanikan@quicinc.com>
- <91ea0f03-9bbe-491d-9056-ebd9fdc73bfa@oss.qualcomm.com>
- <8cb665f5-4885-4853-804a-7313decc719c@quicinc.com>
- <2c7ece9d-95e8-4d01-a9da-c1d5d7388771@gmail.com>
-Content-Language: en-US
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <2c7ece9d-95e8-4d01-a9da-c1d5d7388771@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Cx37B31ZhJkqmkO2fywRXMcj6BmASg1g
-X-Proofpoint-GUID: Cx37B31ZhJkqmkO2fywRXMcj6BmASg1g
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
- priorityscore=1501 mlxscore=0 suspectscore=0 mlxlogscore=999 spamscore=0
- adultscore=0 malwarescore=0 phishscore=0 impostorscore=0 bulkscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411060084
+In-Reply-To: <20241104141924.18816-2-kabel@kernel.org>
 
+On Mon, 04 Nov 2024, Marek Behún wrote:
 
-
-On 11/6/2024 2:42 PM, Konrad Dybcio wrote:
+> Move the command execution functions from the turris-omnia-mcu platform
+> driver private header to the global turris-omnia-mcu-interface.h header,
+> so that they can be used by the LED driver.
 > 
-> 
-> On 11/6/24 09:47, Manikanta Mylavarapu wrote:
->>
->>
->> On 11/4/2024 7:21 PM, Konrad Dybcio wrote:
->>> On 4.11.2024 1:44 PM, Manikanta Mylavarapu wrote:
->>>> Add thermal zone nodes for sensors present in IPQ5424.
->>>>
->>>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->>>> ---
->>> [...]
->>>
->>>> +
->>>> +        cpu3-thermal {
->>>> +            polling-delay-passive = <0>;
->>>> +            polling-delay = <0>;
->>>> +            thermal-sensors = <&tsens 13>;
->>>> +
->>>> +            trips {
->>>> +                cpu-critical {
->>>> +                    temperature = <120000>;
->>>> +                    hysteresis = <9000>;
->>>> +                    type = "critical";
->>>> +                };
->>>> +
->>>> +                cpu-passive {
->>>> +                    temperature = <110000>;
->>>> +                    hysteresis = <9000>;
->>>> +                    type = "passive";
->>>
->>> You have a passive trip point without passive polling
->>>
->>
->> Okay, will remove this.
-> 
-> You most likely want to preserve it, while keeping a sensible
-> polling frequency, so that userspace will be aware of the current
-> CPU temperature. <100> sounds like a sensible value here.
-> 
-> Konrad
+> Signed-off-by: Marek Behún <kabel@kernel.org>
+> ---
+>  .../platform/cznic/turris-omnia-mcu-base.c    |   1 +
+>  drivers/platform/cznic/turris-omnia-mcu.h     | 130 -----------------
+>  include/linux/turris-omnia-mcu-interface.h    | 136 +++++++++++++++++-
+>  3 files changed, 136 insertions(+), 131 deletions(-)
 
-Temperature sensor's present in IPQ5424 supports interrupts.
-Hence no need to configure polling frequency.
-I will remove polling-delay-passive/polling-delay.
+Who needs to Ack this for me to take it via the LED tree?
 
-Thanks & Regards,
-Manikanta.
+-- 
+Lee Jones [李琼斯]
 
