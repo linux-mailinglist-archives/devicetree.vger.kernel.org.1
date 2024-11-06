@@ -1,112 +1,119 @@
-Return-Path: <devicetree+bounces-119397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F4269BE2C2
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 10:37:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E9E59BE2DE
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 10:41:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B113F1C212BE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 09:37:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB81EB20A28
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 09:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DCE61DD0FF;
-	Wed,  6 Nov 2024 09:36:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7EF1D9668;
+	Wed,  6 Nov 2024 09:41:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="1YLaSw1M"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="P8IrTqVC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE461DC747;
-	Wed,  6 Nov 2024 09:36:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 025F218C00E;
+	Wed,  6 Nov 2024 09:41:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730885802; cv=none; b=eAFMBNzXZGOsO/OYluWb9OvjID2XxO6HxKc41mtf0TIpqqc36+DHrCzxMSvh53KHRTiSvfxjko46iA0dY3fzabDc/H7yA0edOSDzr5PRh5Ic3z2s4LFGAaRnSgFiGSx79LYRjn4lKd9zRjTw5iOEEUGd29o6UE8DJgWvxCRQPw8=
+	t=1730886105; cv=none; b=AQ2GY97/kBapabAas8859C7jG0QiffFH2yR6xqyUbxz9FMhfJHVpVhms+fGDFKn3i0Qnsu6Qyj/wVUkNfbKw8ZPTAAx68MOR77Enj0qAYr02V2vXg/EI9H6zWVZmTq3g0hCLDWG+TBbtzY47lyzkoabpQx/UJo1J54XBrC86Fms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730885802; c=relaxed/simple;
-	bh=sfhNgfxD/3Djavd5D660Vk0CxS/6EFO0/1T8Wa3ccko=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dgtr9YyQ/Uq0TNKwc4CMRg+LIPcpONfw8AOwWpF/Nc8EYCgmhx3F1IHRLyO/H1HOEt8A7ERE+YCR+swua7Vjdv2aUSouLBYYywdfDOYWCzS2hDiH08m7w+6eiPySteYTMaucQySZa4Mi0RTC4fLiLQ5Nhhk7wlO6Dg6O3KB1zlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=1YLaSw1M; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1730885801; x=1762421801;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=sfhNgfxD/3Djavd5D660Vk0CxS/6EFO0/1T8Wa3ccko=;
-  b=1YLaSw1M8NeQafDinUFbPAXCx7ICIc9UE8hfBE4qBhNvUx6HtMSKxiRu
-   vnjvSPmAra0gKctBTY7XSsCTXg+JEgaR37udGLpuFnaSVNpoaoD2UW9MN
-   03oDPMWhmp5W6O6DSG7aXSoVzslA8HKAXJ0k54espOWHCwfwJ63PM/+D6
-   wMUlTmRAe6iQlG0uQYKPCp+BHjTfKudz4XPyEQNfiz+TtKohTRC5v7/4R
-   BSy84DEMO6Rq/jNQICqntcEmCvrF11pjdaIsfhuwsj2mfVhESGdOliiPr
-   teHgsHa6ZgBCKWzOW0aLiulpwYme0ij6fSVw7EyJxJgsk30gdKJ4SUlEs
-   Q==;
-X-CSE-ConnectionGUID: GdrssbasS4SjtXCG3mVUjg==
-X-CSE-MsgGUID: nRT8SzJJQGymEi6NCk+q8Q==
-X-IronPort-AV: E=Sophos;i="6.11,262,1725346800"; 
-   d="scan'208";a="33940998"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 06 Nov 2024 02:35:35 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 6 Nov 2024 02:35:31 -0700
-Received: from che-lt-i67131.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Wed, 6 Nov 2024 02:35:21 -0700
-From: Manikandan Muralidharan <manikandan.m@microchip.com>
-To: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
-	<rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
-	<jernej.skrabec@gmail.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <linux@armlinux.org.uk>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <varshini.rajendran@microchip.com>,
-	<dharma.b@microchip.com>, <arnd@arndb.de>, <dri-devel@lists.freedesktop.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-CC: <manikandan.m@microchip.com>
-Subject: [PATCH v5 4/4] ARM: configs: at91: Enable Microchip's MIPI DSI Host Controller support
-Date: Wed, 6 Nov 2024 15:04:29 +0530
-Message-ID: <20241106093429.157131-5-manikandan.m@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241106093429.157131-1-manikandan.m@microchip.com>
-References: <20241106093429.157131-1-manikandan.m@microchip.com>
+	s=arc-20240116; t=1730886105; c=relaxed/simple;
+	bh=Z5roYg9oRz3yI9LK5xYLrK5CwmwJFt3kt0HhvBbnyRY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FMczB4N0zMIRy2iUy0sUSk/PypdsP+QojtyEbkumwHjZfr6esjSGuzgYQbTBp3jHqPK9oEXnd4PhTdfVkN6ZnWgdQ8ibGlJoA2b7vXOCX8qn+ESNCqsnNECSyv57I2O5hTK8zoGGV9LUAAsAfx0hrw9IQxrGHaziKxR6E0/jILA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=P8IrTqVC; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=R33AHOEKuWVl8dftmRKyPE5U6BtAYCDsZvIA1WDMh7s=; b=P8IrTqVCjorN7eadZJASD5gDV+
+	DkgY0GG4hZ4lNvGNzMranIQVOzUUk17FfkTOySdqpwtT0VB/ElK2uHdIseXsi7JazCi9gvjRaMGUH
+	ZvbopYu7W+ndp1Mdx1LHimV2R//HGArXbV45ZVybT9wm5NBZWFz4NZQkOP5nD0pW0Kw//PRtmeOhq
+	8JrBEUhzc3tV/pPX4da5cKaI04Ne5SKcOEiTkROu9S+HIs0U5a8Smmd6/Bb8zyaL5Pix4j/lqcAsw
+	haN4uGgxT/K8U1tTeTur/kQx0hkI3+wr/0K5UULXuJzRY0uvUTtgHFDJpLNy+LBs2ZSJ6htduGd8B
+	cvIMtT1A==;
+Received: from i53875b28.versanet.de ([83.135.91.40] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1t8cXh-00062B-Pe; Wed, 06 Nov 2024 10:41:37 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Dragan Simic <dsimic@manjaro.org>, linux-rockchip@lists.infradead.org,
+ Quentin Schulz <quentin.schulz@cherry.de>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, alchark@gmail.com
+Subject:
+ Re: [PATCH v2] arm64: dts: rockchip: Add OPP voltage ranges to RK3399 OP1 SoC
+ dtsi
+Date: Wed, 06 Nov 2024 10:41:36 +0100
+Message-ID: <3252308.5fSG56mABF@diego>
+In-Reply-To: <f6bb3387-4396-45d4-9cb4-594d58095510@cherry.de>
+References:
+ <dbee35c002bda99e44f8533623d94f202a60da95.1730881777.git.dsimic@manjaro.org>
+ <f6bb3387-4396-45d4-9cb4-594d58095510@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Enable the Microchip's DSI controller wrapper driver that uses
-the Synopsys DesignWare MIPI DSI host controller bridge.
+Am Mittwoch, 6. November 2024, 10:32:06 CET schrieb Quentin Schulz:
+> Hi Dragan,
+> 
+> On 11/6/24 9:33 AM, Dragan Simic wrote:
+> > Add support for voltage ranges to the CPU, GPU and DMC OPPs defined in the
+> > SoC dtsi for Rockchip OP1, as a variant of the Rockchip RK3399.  This may be
+> > useful if there are any OP1-based boards whose associated voltage regulators
+> > are unable to deliver the exact voltages; otherwise, it causes no functional
+> > changes to the resulting OPP voltages at runtime.
+> > 
+> > These changes cannot cause stability issues or any kind of damage, because
+> > it's perfectly safe to use the highest voltage from an OPP group for each OPP
+> > in the same group.  The only possible negative effect of using higher voltages
+> > is wasted energy in form of some additionally generated heat.
+> > 
+> > Reported-by: Quentin Schulz <quentin.schulz@cherry.de>
+> 
+> Well, I merely highlighted that the voltage was different on OP1 
+> compared to RK3399 for the 600MHz OPP :)
+> 
+> So... If there's ONE SoC I'm pretty sure is working as expected it's the 
+> OP1 fitted on the Gru Chromebooks with the ChromiumOS kernel fork 
+> (though yes, I believe all Gru CB are EoL since August 2023). In the 6.1 
+> kernel fork, there's also no range: 
+> https://chromium.googlesource.com/chromiumos/third_party/kernel/+/refs/heads/chromeos-6.1/arch/arm64/boot/dts/rockchip/rk3399-op1-opp.dtsi
 
-Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
----
- arch/arm/configs/at91_dt_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+yeah, this somehow goes quite a bit into the "stuff that doesn't need to
+change" area. On the one hand it does make "some" sense to unify things
+if we're using ranges everywhere else.
 
-diff --git a/arch/arm/configs/at91_dt_defconfig b/arch/arm/configs/at91_dt_defconfig
-index 2022a7fca0f9..3ff89e27e770 100644
---- a/arch/arm/configs/at91_dt_defconfig
-+++ b/arch/arm/configs/at91_dt_defconfig
-@@ -145,6 +145,7 @@ CONFIG_VIDEO_OV7740=m
- CONFIG_DRM=y
- CONFIG_DRM_ATMEL_HLCDC=y
- CONFIG_DRM_MICROCHIP_LVDS_SERIALIZER=y
-+CONFIG_DRM_MICROCHIP_DW_MIPI_DSI=y
- CONFIG_DRM_PANEL_SIMPLE=y
- CONFIG_DRM_PANEL_EDP=y
- CONFIG_FB_ATMEL=y
--- 
-2.25.1
+On the other hand, as Quentin noted below, all existing OP1 devices seem
+to run just fine, and there won't be any more entering the kernel.
+
+So what do we realisitically gain here, except hiding existing git-history
+under another layer?
+
+> So not sure we need to handle theoretical cases here. Will let 
+> maintainers decide on that one. FWIW, there are two other OP1 devices, 
+> the RockPi4A+ and RockPi4B+ which do not change the OPP either.
+
+
+Heiko
+
 
 
