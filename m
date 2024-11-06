@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-119457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A32D9BE512
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 12:01:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3301B9BE519
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 12:02:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8CFF1C21051
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 11:01:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D684D1F247C5
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 11:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E19F1DE8B2;
-	Wed,  6 Nov 2024 11:00:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E19CC1DE2DC;
+	Wed,  6 Nov 2024 11:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XUuSuoZM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nSg9NINL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421061DE89A;
-	Wed,  6 Nov 2024 11:00:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9CFA1DC734;
+	Wed,  6 Nov 2024 11:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730890853; cv=none; b=HHBjTvxXG3E8EfFz0YiVDXRntSEzyf4Di5SCLvc2BVFxkRG35+i1VEJkh+5WePvcHRPpln2BQWVm7RiD6iC0TtoPLXs0ZdG7KtBhAN+kuxjTXEa8fHJaFfs09UqVYCfS9bU1Lntbj8chbnE70CP39krmfde2ap0nj0ryxK3rLcU=
+	t=1730890922; cv=none; b=lh+qxI7gdMA5mqHQC4SmvkE0dSHLFBT+ooUONFfZxBlmqstw+cJPL38Ny7hxMFJ9Kq5MrgjHo1TLYT/OZobkieV+S2GtgHT3W6/GWN76v4Subu0jYA+lraflz0pQNROWOo786CNX3S7J/hUPIucOYggqEpYg9GtINu4Mjuoz4g8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730890853; c=relaxed/simple;
-	bh=ZC3QCMHYErbSGzgV1QmL7jUEKIIt60BFfDB2EWuwths=;
+	s=arc-20240116; t=1730890922; c=relaxed/simple;
+	bh=R4KFIpTwSYwi0uSTr4qqyTaoElUcnWINoFL/IwPq+6k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EOxuKJd54GTazP445gsNXx1NnbG1xpHo5rDs3jD3OG6uHEcY/dasmZRR6oyH0OFgffiuZ9i3LVFcrE9W9KWzBnvExw/WzhFJLyFGQwXFckYfJXfb8+x4SyqOfoaEMckca9vYLtvwOdfKspp96z5yxf+DEi+u1YeqMY+pD86QQtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XUuSuoZM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B958C4CECD;
-	Wed,  6 Nov 2024 11:00:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AhhA1T1OMZyT853N6hV6w0vaoEwXrqjOSpGwgOx6xFpPxsepCvwYDp6mHlc+goB01N0d0v1eVQat49+mr8XOY7WNKzK0bJSBvHU+Is4ge8VI/P2Pf8ODElnv3N1rTstqHSJo4FJ85jDMwmU8vYkV2wRI8+W4+O2nuFFc620+u+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nSg9NINL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54AB4C4CECD;
+	Wed,  6 Nov 2024 11:01:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730890852;
-	bh=ZC3QCMHYErbSGzgV1QmL7jUEKIIt60BFfDB2EWuwths=;
+	s=k20201202; t=1730890922;
+	bh=R4KFIpTwSYwi0uSTr4qqyTaoElUcnWINoFL/IwPq+6k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XUuSuoZMX5ra6tDJFX+mApy0pqlZxrP3Zzekuvj8cLxvq44zpJ8HVyneLV8nb9tcd
-	 599f0HCcAK8+DQ8syHeX/ve13OcssEiszKpKnBzpfXq4om3rA8ZFxaOusDddsp61UB
-	 QRpc1TMz3GH2ym4bs/eOorsMwF2o8qW7fG6Lzef5oL34qvLPcwCTlIgKmE9B5JgynG
-	 LcEqyHWuomlShygX59Xu4OdjMQMh6mN+P+i82ojlKSJ13mi+IbRiO4x/9EmUB+JnDX
-	 7tFVz1Lt1ZPNtm74MTOegeKD94UN/Qm3yeOtFHlSm6GgK7RPnTHQU+KvpiC91X4QL8
-	 OWfnY94Tq8t5g==
-Date: Wed, 6 Nov 2024 11:00:46 +0000
+	b=nSg9NINL3R1lnxQ7wJvkKF2/r1poB6BGYDQXWyGUchyJkytMyV1TsgUvAqcEv0frq
+	 WLAHXnmiRKUZipI5y/cCOmR77kqvRNA+I3wRDLI97UZIbSpcVELBKdIlOHi12B1PxV
+	 Rt8iaW/62qf0oAAyolbkPPE2p6T/6N+t/Z1qa2qJMoaBwUBijpBFZ/is6GOiQRajys
+	 Z/CDwCftb2a5U8kCBvAnok3JSCvhVCxAGxWQTINCrP5kKFomGaJgMYhdURg5uSof5v
+	 frD6XXrgfKx2JBzoT7uSs8UF+EW9YKjdGbEBvzbEQP8HlD5Peqnr/Mqrs4YcPudCRz
+	 621hjCV/w/t9w==
+Date: Wed, 6 Nov 2024 11:01:56 +0000
 From: Lee Jones <lee@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
+	Arnd Bergmann <arnd@arndb.de>, soc@kernel.org, arm@kernel.org,
+	Andy Shevchenko <andy@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com, benjamin.larsson@genexis.eu,
-	ansuelsmth@gmail.com, linux-pwm@vger.kernel.org
-Subject: Re: (subset) [PATCH v9 4/6] dt-bindings: mfd: Add support for Airoha
- EN7581 GPIO System Controller
-Message-ID: <20241106110046.GR1807686@google.com>
-References: <20241023-en7581-pinctrl-v9-0-afb0cbcab0ec@kernel.org>
- <20241023-en7581-pinctrl-v9-4-afb0cbcab0ec@kernel.org>
- <173088099542.3237297.18018729158887853624.b4-ty@kernel.org>
- <ZyssJpR7xwbMzUsm@lore-desk>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH leds v5 01/12] turris-omnia-mcu-interface.h: Move command
+ execution function to global header
+Message-ID: <20241106110156.GS1807686@google.com>
+References: <20241104141924.18816-1-kabel@kernel.org>
+ <20241104141924.18816-2-kabel@kernel.org>
+ <20241106102840.GN1807686@google.com>
+ <87msic8wh7.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,35 +71,34 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZyssJpR7xwbMzUsm@lore-desk>
+In-Reply-To: <87msic8wh7.fsf@BLaptop.bootlin.com>
 
-On Wed, 06 Nov 2024, Lorenzo Bianconi wrote:
+On Wed, 06 Nov 2024, Gregory CLEMENT wrote:
 
-> On Nov 06, Lee Jones wrote:
-> > On Wed, 23 Oct 2024 01:20:04 +0200, Lorenzo Bianconi wrote:
-> > > Add support for Airoha EN7581 GPIO System Controller which provide a
-> > > register map for controlling the GPIO, pinctrl and PWM of the SoC via
-> > > dedicated pinctrl and pwm child nodes.
-> > > 
-> > > 
-> > 
-> > Applied, thanks!
-> > 
-> > [4/6] dt-bindings: mfd: Add support for Airoha EN7581 GPIO System Controller
-> >       commit: f49f37f3cfe1482d4dc77d26f3e8c38eab630d52
-> > 
-> > --
-> > Lee Jones [李琼斯]
-> > 
+> Lee Jones <lee@kernel.org> writes:
 > 
-> Hi Lee,
+> > On Mon, 04 Nov 2024, Marek Behún wrote:
+> >
+> >> Move the command execution functions from the turris-omnia-mcu platform
+> >> driver private header to the global turris-omnia-mcu-interface.h header,
+> >> so that they can be used by the LED driver.
+> >> 
+> >> Signed-off-by: Marek Behún <kabel@kernel.org>
+> >> ---
+> >>  .../platform/cznic/turris-omnia-mcu-base.c    |   1 +
+> >>  drivers/platform/cznic/turris-omnia-mcu.h     | 130 -----------------
+> >>  include/linux/turris-omnia-mcu-interface.h    | 136 +++++++++++++++++-
+> >>  3 files changed, 136 insertions(+), 131 deletions(-)
+> >
+> > Who needs to Ack this for me to take it via the LED tree?
 > 
-> according to my understanding this patch has been already applied by Linus
-> here:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/commit/?h=devel&id=50dedb1eb1e6755ccab55f6140916c2d192be765
+> Usually, it's Arnd who takes these patches, so it could be him who needs
+> to acknowledge them. However, Marek is the maintainer of this driver, so
+> I think it's already okay for you to take it.
 
-An interesting choice.  Linus?
+Okay, let's leave it for a little while.
+
+If Arnd does not protest, I'll take it in for v6.14.
 
 -- 
 Lee Jones [李琼斯]
