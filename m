@@ -1,186 +1,120 @@
-Return-Path: <devicetree+bounces-119367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A82A09BE154
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 09:53:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CC929BE181
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 10:01:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 377671F231C7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 08:53:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FCDA1F22B1D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 09:01:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 662C01D5171;
-	Wed,  6 Nov 2024 08:53:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA8F01D223C;
+	Wed,  6 Nov 2024 09:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="DYhq2lNn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AzLpq0cj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A66DD1922EF;
-	Wed,  6 Nov 2024 08:53:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562631D5CFF;
+	Wed,  6 Nov 2024 09:01:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730883224; cv=none; b=Uv+jVm1meBSW5W8D81sMiV3wRbajxVWRJBCtb+XTZR9YnwVfdovra/HZBOf0rF5taBM25uyLByyKy8vrha61x6pTzS+mUl2pZX+kuDMzw/TF/KXmsFTniTjD6CX690KRvKPBGA7DCUM/IC1HpswE2lF2mjFfuVXuoXZZo3ffG/Q=
+	t=1730883686; cv=none; b=Mxvbmk6kex0LRqdxjOujxaj/2xMGfK1rtO5/3rZ5D3SQe0N+QIUw6n8zTQMY4v1fkcttVpsgL90C9ND10uKtfrQmlS4a9GR+g4Gjl6OArcMixU7QLFlj2DOXx/fIIeOE9C1nY/OQpiAn8srme+H4s/hGx+FOZBLHKHjCXj5x8QI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730883224; c=relaxed/simple;
-	bh=oCMN3cBxlHj1BYfN99NGQKvB16Znqro3+q9AMHvUKYw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kiayHb1PTGfoCBGng0Kq1WLI1MwuOD5Q4ewEtCdP3y9GApSLJE31nnIdL8Rhd9am8DBqd3vJq4bhqVerD7yXbKK+QmJ68ysMjUHk1q/oHi0l5RMM5RNN4NfG6kE6RnAPCO8oxFMDVKLmt5R/qohJace4g9Ba/l+preq3Xz1vYAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=DYhq2lNn; arc=none smtp.client-ip=212.227.126.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
+	s=arc-20240116; t=1730883686; c=relaxed/simple;
+	bh=4PoFtxt4Dc071+Aor3cOXjBAyVvWgANaB9cgnRPVnao=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=flK6h8DU7+GLaelXejfEa/nNnzAYnAfp5hhq4nEQTruiRiR8Q2N4HwrkVHP6H0U23y55pcMLkLAMbk9jcoLCS5/+MZ3O1JADe28BylxzcbzFdaQEjKDqpYhsO2xkadWS3Bi4q2AR3VxtcyRfhabUds9z137RT6BdWXCmSKy8hyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AzLpq0cj; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-20cd76c513cso50703425ad.3;
+        Wed, 06 Nov 2024 01:01:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1730883204; x=1731488004;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=oCMN3cBxlHj1BYfN99NGQKvB16Znqro3+q9AMHvUKYw=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=DYhq2lNnFSg+jqieWH/CzvfsS15tmT7O7p0kD7yOvjQ3RF/SS+wD37GE+BjFetvb
-	 MHi+iKtSxumltVoo36uZOYzC3DCTtFMYP+WjEs3R4sv5R/VourzOUlTeolV82oalR
-	 S+VO9zmTaCzDJYp+jjo4arD2qHB5XQ0UWuLpUaK14AtUJkGj1jGjGIct25LYtJhjb
-	 qUSwsYDwYey9CbjMOaCiWBWtECfp78N7jCppEp4BqzQw0V9GyH1RV5rGpOpOQcYhJ
-	 1fRaHSFfMD/f/XuhHvvg5Fk9YB86ov/yHQcWfV5bIJw1PkAKSRsD6zd6yuNzJVLRF
-	 qq1OFgb3eTpceyafAQ==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.174] ([91.64.229.215]) by mrelayeu.kundenserver.de
- (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MKuGD-1tOtDt0nEb-00TQbR; Wed, 06 Nov 2024 09:53:24 +0100
-Message-ID: <e13488a3-5f45-44b2-950d-5a29307d4ec4@oldschoolsolutions.biz>
-Date: Wed, 6 Nov 2024 09:53:22 +0100
+        d=gmail.com; s=20230601; t=1730883684; x=1731488484; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dN34SSgBwYUCwi/Jxu+wRXh/eB3/vsROfybEBktpwsg=;
+        b=AzLpq0cjaMOWrRD777LKtyQrWqrrpqoSqTS/iRaFrbK5XiPWBJ2G5lMzBQiomNMZgD
+         1qE/UtokEEkzeIptKBX5gYBlryuKNM7ihji8JlgwvQtW4zlSu2lTjnpc20BdzsCTNbdc
+         wV2CM/2EWldUf2wCHh1IlQ7m2Dmgb31P4sh0NAAlOXzeId/XgN6huJqM8/KVRewbC7/r
+         6rnwZgx+qnrSr9/TDDVlI3XdtUeXl5oeNjX+Q+/blf4Rvj8zPel06rO0O6uM3yAz13Lr
+         QNEX7pUaeLK1ij5Cnx6hGfh8McNmKbYkiv2YPIMQ8Lau1tUSbBw6UH4LhPP2eS4Yp8gO
+         VnBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730883685; x=1731488485;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dN34SSgBwYUCwi/Jxu+wRXh/eB3/vsROfybEBktpwsg=;
+        b=k2poSw6EcOlCehVWsbr+8gSZHI1w8hk2nhoXCYD56lwqVvemUAKLimR0vX/KTuw+ll
+         qe3gNiYZ+zsVtXY7f8AGzQRfemttw9xl7/3M0XtVrfdeBqWndspGmQkuxMrk/FXmKKvP
+         k3L5Ek2NDsbc2RJVOV97sbJ0uWBV3+gn0aoF/j+kZzZRh2jYkNz66KLKEIn2VPtsLGMo
+         eRMaKw4sGXoYbe6xS8nxQdD3cpTmXiMUvLQen/ThXP+V1PQoMteh9Lp7qhqS477bjT/t
+         ebVnrwYLAhndQv+FdpPe+T8myUVdChLiGSr6ay1JuTyybooV+C/rLEE+JgA0D3RwsQiM
+         GSZg==
+X-Forwarded-Encrypted: i=1; AJvYcCWzvsav9hQ2qomp7F6C7sekeXONB5x5s+XWqFtyYqEaSMlXjYdS6bbn3hVPb3bo5NPAa2iw8+L+ysFeqjs=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzw9dWU3VMBpRGYJvaoNd+IcsuorJU0F0kn4Y4gc1qkJSxpNLu9
+	JHpp/n5MNaI6o9jHPvmgF7e7FpwjsmBnFK03zc5d6vNSajFRH48l
+X-Google-Smtp-Source: AGHT+IGnkFWynLLU5/2Q69B9cDIhpvlGXMSFaoZSiGRLdCoNVTx1MDEWli01wkh9fzWNeKIA/izOUQ==
+X-Received: by 2002:a17:902:cec1:b0:20c:a19b:8ddd with SMTP id d9443c01a7336-210f76f2952mr385802445ad.51.1730883684628;
+        Wed, 06 Nov 2024 01:01:24 -0800 (PST)
+Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211057d380fsm91317665ad.240.2024.11.06.01.01.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Nov 2024 01:01:24 -0800 (PST)
+From: Potin Lai <potin.lai.pt@gmail.com>
+Subject: [PATCH 0/2] ARM: dts: aspeed: catalina: update CPLD IO expander
+ pin definitions
+Date: Wed, 06 Nov 2024 16:58:50 +0800
+Message-Id: <20241106-catalina-cpld-ioexp-update-v1-0-3437bcfcb608@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/3] arm64: dts: qcom: sc8280xp-blackrock: dt
- definition for WDK2023
-To: Krishna Kurapati <quic_kriskura@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Merck Hung <merckhung@gmail.com>,
- Kalle Valo <kvalo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- xlazom00@gmail.com
-References: <20241101-jg-blackrock-for-upstream-v7-0-8295e9f545d9@oldschoolsolutions.biz>
- <20241101-jg-blackrock-for-upstream-v7-3-8295e9f545d9@oldschoolsolutions.biz>
- <945f3eae-0a68-4738-af07-74e228039508@quicinc.com>
- <dd5bad7b-d062-4028-b78a-3888dec4f934@oldschoolsolutions.biz>
- <f8697f7f-f6ac-4b6d-954b-a0777770dc8e@quicinc.com>
-Content-Language: en-US
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-In-Reply-To: <f8697f7f-f6ac-4b6d-954b-a0777770dc8e@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Zo4m0JyoMSCFitOflkdfGTjh/dyTQ3ARcYFfpnp/fINWJ0U4iB1
- cIUgnOZcS0RJYWT2bc9auS4vi/e/Ec1rE2MQCjhzgfeADSZBD6jzDNArt5Sws5xXndGEYSj
- KJ5mxKN51+gAuzM/NhlX7zuhiazwPOU7+y2VsR0q7vLAH9RsDVxSRzhsdP8lmTbdRwTgMXp
- 8BrXj/uxB+hXTS7gIAY1w==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:kmthrl3YMSI=;upKPsfLSvhA6X6z4Q2GZ+pnipmv
- TLdJmAi2wcz5iu3vQ79gtVEgVBa3cHnPpZ9c+GtGN2cdYa0HFxuYaSV8HVudO/L+ViHrxOsTR
- MaDbfBRmwvcDBinFCE/adelS5i9BDSKpdZOKl8yv+0lGnHfEi4/NdOszCFPmX2YOEH2gQ/UmQ
- Q6KidggjIx5rbLNsWzoX2fSgfealnhtIsqT/e0qs7NKRq0cKQY0lZ3zx+cLhODX3HtCIz1Kwh
- dvjoBk5bxqzDRZtbWlQoNNSEh/2ajwRW6JncwhbD4zTccNYXlP7FQXQl/4tQmWIitXa7cqYrS
- zDR7EDGx5x30TVus7JbYhBlK6tx59Z6Gxd1IlJJvHPTDahqxOdOKhLGaKjtrj9CPd+zwE45TN
- xOhxTNVxgY6t+J+xDULk+KR4v+uVFd8EdFFvtqqcVGjQRbI1s4r3mKbBz0nuo0dzSAvGW4SEj
- q4NYwCg3b4lZON9eWJ8nWmq66d0WsxFlM7OWvllo3tMMvlJWIpfrO2qPSa53X8BX4ybHwkD3t
- 8SG6yonV8ElRXjR6896ygz2ZDtblZpJOxa+6015rz7p/pppoDNjNVVHldwvmzZj6zAkG2SBKh
- gNTw8AuLJNZHib4lSqf3haV9VqrOh5/8rWp4STyzxVmNd3k7wHE3SFGsmOienn8ZbzsuUR1xr
- dmbbJvwC6XZY85CfeFYYv9QTEgmLbxBFsDczVSMFmykh0Dc3818GCxWbMKe+ethjBxdId+6pF
- 3718EVkvYSthqhsehj0dNCvJ3ZxDzSCMw==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMovK2cC/x3MQQqDMBAF0KvIrB1IQijUq0gXQ+bbDkgMiRVBv
+ HtDl2/zLmqohkbTcFHFYc223OHHgdJH8hts2k3Bhei9e3CSXVbLwqmsyrbhLPwtKjsYERrdU8I
+ CpR6UisXOfz6/7vsHoiqHUWwAAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Patrick Williams <patrick@stwcx.xyz>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Potin Lai <potin.lai@quantatw.com>, Cosmo Chou <cosmo.chou@quantatw.com>, 
+ Potin Lai <potin.lai.pt@gmail.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730883681; l=613;
+ i=potin.lai.pt@gmail.com; s=20240724; h=from:subject:message-id;
+ bh=4PoFtxt4Dc071+Aor3cOXjBAyVvWgANaB9cgnRPVnao=;
+ b=5pNiHn4f7T6DPb7g/9DOVkSstHqYNgW909o72dsst+ZevKNbg7fFnzKUdhkOrOXHuHdJMWbEN
+ uRzgp41XATMAcio4YwxNRdvph8iuwYd/tCnNeLHisu1MY0Iaj+/OQka
+X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
+ pk=6Z4H4V4fJwLteH/WzIXSsx6TkuY5FOcBBP+4OflJ5gM=
 
+This patch series updates the CPLD IO expander pin definitions of PDB
+board and HDD board.
 
-On 06.11.24 05:46, Krishna Kurapati wrote:
->
->
-> On 11/6/2024 12:57 AM, Jens Glathe wrote:
->> On 04.11.24 05:31, Krishna Kurapati wrote:
->>>
->>>
->>> On 11/1/2024 11:56 PM, Jens Glathe via B4 Relay wrote:
->>>> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
->>>>
->>>> Device tree for the Microsoft Windows Dev Kit 2023. This work
->>>> is based on the initial work of Merck Hung <merckhung@gmail.com>.
->>>>
->>>> Original work:
->>>> https://github.com/merckhung/linux_ms_dev_kit/blob/ms-dev-kit-2023-v6=
-.3.0/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-dev-kit-2023.dts
->>>>
->>>>
->>>> The Windows Dev Kit 2023 is a nice little desktop based on sc8280xp.
->>>> Link: https://learn.microsoft.com/en-us/windows/arm/dev-kit/
->>>>
->>>> Supported features:
->>>> - USB type-c and type-a ports
->>>> - minidp connector
->>>> - built-in r8152 Ethernet adapter
->>>> - PCIe devices
->>>> - nvme
->>>> - ath11k WiFi (WCN6855)
->>>> - WCN6855 Bluetooth
->>>> - A690 GPU
->>>> - ADSP and CDSP
->>>> - GPIO keys
->>>> - Audio definition (works via USB)
->>>>
->>>> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
->>>> ---
->>>
->>> [...]
->>>
->>>> +&usb_2 {
->>>> +=C2=A0=C2=A0=C2=A0 pinctrl-0 =3D <&usb2_en_state>;
->>>> +=C2=A0=C2=A0=C2=A0 pinctrl-names =3D "default";
->>>> +
->>>
->>> On the blackrock platform, for this controller, are there all 4 ports
->>> given out for use or only one ?
->>>
->>> Because if all 4 are there, you might need to give all 4 pinctrls (one
->>> for each TS3USB221A mux select) here for usb_2 node. If only one port
->>> is given out for use on the platform, then only one phy (of the 4
->>> activated below) needs to be marked as active.
->>>
->>> In my case, in [1] on the ADP platform, I marked them as always on for
->>> all gpios on multiport controller since driver had no support added
->>> yet.
->>>
->>> [1]:
->>> https://lore.kernel.org/all/20240707085624.3411961-1-quic_kriskura@qui=
-cinc.com/
->>>
->>>
->> Hi Krishna,
->>
->> thank you for the hints. Unfortunately, I don't have any schematics for
->> the box. But I tested out activation combinations for all the
->
-> My point is little different.
-> Third controller supports upto 4 physical ports. How many of them have
-> been exposed on this WDK2023 ? Depending on that, the phys have to be
-> enabled in DT.
->
-Okay I took the jump and reduced usb_2_dwc3 to only one qmpphy and one
-hsphy. It works, the USB nodes look the same and work. What an odd
-design, though, but why not.
+Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+---
+Potin Lai (2):
+      ARM: dts: aspeed: catalina: update pdb board cpld ioexp linename
+      ARM: dts: aspeed: catalina: add hdd board cpld ioexp
 
-&usb_2_dwc3 {
- =C2=A0=C2=A0=C2=A0 phys =3D <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
- =C2=A0=C2=A0=C2=A0 phy-names =3D "usb2-0", "usb3-0";
-};
+ .../dts/aspeed/aspeed-bmc-facebook-catalina.dts    | 150 ++++++++++++---------
+ 1 file changed, 87 insertions(+), 63 deletions(-)
+---
+base-commit: 59b723cd2adbac2a34fc8e12c74ae26ae45bf230
+change-id: 20241106-catalina-cpld-ioexp-update-e4ed409a2fed
 
-I will do an amended V8 of the patch. Thank you for the hint again.
+Best regards,
+-- 
+Potin Lai <potin.lai.pt@gmail.com>
 
-with best regards
-
-Jens
 
