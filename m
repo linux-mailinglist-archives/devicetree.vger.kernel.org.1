@@ -1,132 +1,159 @@
-Return-Path: <devicetree+bounces-119582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFB269BF314
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:19:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40BDB9BF325
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:24:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECCBE1C214E7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:19:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECAD41F233F0
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F0E52038A1;
-	Wed,  6 Nov 2024 16:19:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7E6F2038C6;
+	Wed,  6 Nov 2024 16:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XN9UEv20"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="onHYz3TI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487401E04AC;
-	Wed,  6 Nov 2024 16:19:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890F8202F6C;
+	Wed,  6 Nov 2024 16:24:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730909961; cv=none; b=pe6mRKVUY6i1volxurdZulKaWjcvh4PPT47pxVUI4HKdC+Dv/gEeiV1WVRWCRoQTk9fLW9SCbhoUb+iYO3GxI8tij4jJMMNvZIPCjRfHpB0wiGPvB1Cpc02L8aQ2xIuRG2VCslQyOLkv0RKe/qXPADHNmuEy8T6KpFBhYzxpEVo=
+	t=1730910271; cv=none; b=n6Obp4O0ywpwqcaCwtSeRmYjaMeDFJPaIJsvl2F/RfyEHVTfkIIiY+TkXzaGO5Th7q/28SE/BeyBH2fjwfQCZQ0NMkOrCO9WZ6z7+AV1s5OOtnBnRwJd5LxZQHmTmdVbrUnT+YtAIzwVV9otbRRDDNehpE9Vp5j+7a+77GeHdTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730909961; c=relaxed/simple;
-	bh=lf4KBp9perbI55+A88ydAA2j217WM3Kc13Bf8ITCs+k=;
+	s=arc-20240116; t=1730910271; c=relaxed/simple;
+	bh=Sj2iMPVC4t8UWXhnZpLZQxauCOr7yy27q4FUElk2RYU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G07E8kM0Y4FeLnMkKg/7C4BCRm6VHUAtxCDA5YvT1t0dUFqxyTy3I1A81swCop3yiVn8U/XfNBJ5YiFy5F5x6Jqm997K8atYpS1iqSA1r9w9UHeMXNkm8D1GZzXI+ozWJa6SH8/By8XPNkv2MhW42iJW0vLpYtdPPXWOvosr5lw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XN9UEv20; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=iRksn2dUlyxiQY8SsSzJ+k2N22EHq4iZeBjynZBsjnQ=; b=XN9UEv20YjYFCljP87EAFs6m7W
-	IHXMmKKdxArReUb359DJLKSM4vEoyXzl7VtO0bRnoCDrG+6VZ/h9acwsCFwrncYruVE3q+p8Gthna
-	6cuOCIJA5v+S8QPUvRpIyuIwBsDH551uD2D8CFqR8QDFEo3M1aMwkFbyw8CBLw7jvUHM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t8ikJ-00CMAP-55; Wed, 06 Nov 2024 17:19:03 +0100
-Date: Wed, 6 Nov 2024 17:19:03 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=kdt6uQLnhQomL2zhsR3E2v98IUq/g25qrtFZiYp0iI/VWGgc0F1DoXBuyCk7UaJPm91CZScdl85uL7ZCgrqLey5CpNR+3ygM4SdPjcORfMBreCMusdn3OpZIjx/mY6v3zjwiCep0Ja4uh9wPAeJmN+Wcadxf1nXBr4pitaQ8mX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=onHYz3TI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F781C4CEC6;
+	Wed,  6 Nov 2024 16:24:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730910271;
+	bh=Sj2iMPVC4t8UWXhnZpLZQxauCOr7yy27q4FUElk2RYU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=onHYz3TIcQpi871TKla1sO2Q6ZAMq8LYGhMIbTQRlTbt8SGu8fpqzQ3UTZI4L/E6g
+	 mkSRDMJWDnx1iCoX7kzsBATcYb+EnXOgaGckevSGT/sawyhooKYVfUYowb9ppaK/Pc
+	 +yJGEmHpcHO/ImYGS6KQRWRdw35E6WbyIXVW3tNC2oVgVNbp4GRPyFIQn6aLDizeKo
+	 c9qwrtvBhZk2O5i1CIsHneXSbuBJ21Rc67eZCGvYlA0rSE0sFSxmP3EXHThqT+nIUm
+	 xzXKIG41q+DjnY5e7/1CZpyBOpWAYKXykCY7evCLxrcjeVNbeC/Ax1YlXyEmZMwlGK
+	 YWsROwdnNpjFw==
+Date: Wed, 6 Nov 2024 16:24:27 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Markus Burri <markus.burri@mt.com>, linux-kernel@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH v3 3/3] net: phy: Add Airoha AN8855 Internal
- Switch Gigabit PHY
-Message-ID: <8e5fd144-2325-43ff-b2b8-92d7f5910392@lunn.ch>
-References: <20241106122254.13228-1-ansuelsmth@gmail.com>
- <20241106122254.13228-4-ansuelsmth@gmail.com>
+	Marek Vasut <marek.vasut@gmail.com>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 4/7] dt-bindings: input: matrix_keypad - add missing
+ property
+Message-ID: <20241106-mobility-exorcist-34d53a6303a3@spud>
+References: <20241031063004.69956-1-markus.burri@mt.com>
+ <20241105130322.213623-1-markus.burri@mt.com>
+ <20241105130322.213623-5-markus.burri@mt.com>
+ <20241105-earpiece-swizzle-a3e36d50b9c6@spud>
+ <ZypumDqlw2tdllG5@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="UD1TWMaQ/sueAZ84"
+Content-Disposition: inline
+In-Reply-To: <ZypumDqlw2tdllG5@google.com>
+
+
+--UD1TWMaQ/sueAZ84
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241106122254.13228-4-ansuelsmth@gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-> +static const u8 dsa_r50ohm_table[] = {
-> +	127, 127, 127, 127, 127, 127, 127, 127, 127, 127,
-> +	127, 127, 127, 127, 127, 127, 127, 126, 122, 117,
-> +	112, 109, 104, 101,  97,  94,  90,  88,  84,  80,
-> +	78,  74,  72,  68,  66,  64,  61,  58,  56,  53,
-> +	51,  48,  47,  44,  42,  40,  38,  36,  34,  32,
-> +	31,  28,  27,  24,  24,  22,  20,  18,  16,  16,
-> +	14,  12,  11,   9
-> +};
-> +
-> +static int en8855_get_r50ohm_val(struct device *dev, const char *calib_name,
-> +				 u8 *dest)
-> +{
-> +	u32 shift_sel, val;
-> +	int ret;
-> +	int i;
-> +
-> +	ret = nvmem_cell_read_u32(dev, calib_name, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	shift_sel = FIELD_GET(AN8855_SWITCH_EFUSE_R50O, val);
-> +	for (i = 0; i < ARRAY_SIZE(dsa_r50ohm_table); i++)
-> +		if (dsa_r50ohm_table[i] == shift_sel)
-> +			break;
+On Tue, Nov 05, 2024 at 11:14:32AM -0800, Dmitry Torokhov wrote:
+> Hi Conor,
+>=20
+> On Tue, Nov 05, 2024 at 06:22:36PM +0000, Conor Dooley wrote:
+> > On Tue, Nov 05, 2024 at 02:03:19PM +0100, Markus Burri wrote:
+> > > Add missing property 'gpio-activelow' to DT schema.
+> >=20
+> > What do you mean "missing property"? Why isn't it sufficient to mark the
+> > GPIOs as GPIO_ACTIVE_LOW in the various -gpios properties?
+>=20
+> Unfortunately we do have "gpio-activelow" property already used in the
+> driver since 2012 when DT support was added to the driver. This patch
+> merely acknowledges that it is there.
+>=20
+> If DT maintainers wish to adjust known DTSes and switch to proper
+> polarity annotation through gpio property I am all for it.
 
-Is an exact match expected? Should this be >= so the nearest match is
-found?
+If that's the rationale, it should be in the commit message. It's not my
+job to figure out people's intentions :)
 
-> +
-> +	if (i < 8 || i >= ARRAY_SIZE(dsa_r50ohm_table))
-> +		*dest = dsa_r50ohm_table[25];
-> +	else
-> +		*dest = dsa_r50ohm_table[i - 8];
-> +
-> +	return 0;
-> +}
-> +
-> +static int an8855_probe(struct phy_device *phydev)
-> +{
-> +	struct device *dev = &phydev->mdio.dev;
-> +	struct device_node *node = dev->of_node;
-> +	struct air_an8855_priv *priv;
-> +	int ret;
-> +
-> +	/* If we don't have a node, skip get calib */
-> +	if (!node)
-> +		return 0;
+> > > Signed-off-by: Markus Burri <markus.burri@mt.com>
+> > > ---
+> > >  .../devicetree/bindings/input/gpio-matrix-keypad.yaml        | 5 +++=
+++
+> > >  1 file changed, 5 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/input/gpio-matrix-keyp=
+ad.yaml b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
+> > > index 745652b..9ea66b3 100644
+> > > --- a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
+> > > +++ b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
+> > > @@ -51,6 +51,11 @@ properties:
+> > >        (Legacy property supported: "linux,wakeup")
+> > >      default: false
+> > > =20
+> > > +  gpio-activelow:
+> > > +    type: boolean
+> > > +    description: The GPIOs are low active.
+> > > +    default: false
+> >=20
+> > What you want is a flag, not a boolean here btw. Flags you can check for
+> > the presence of, booleans you cannot.
+>=20
+> The behavior is fixed.
 
-phydev->priv will be a NULL pointer, causing problems in
-an8855_config_init()
+What do you mean by "fixed"? Corrected, unchangeable or something else?
 
-	Andrew
+> If the flag is true GPIO is assumed to be active
+> low, otherwise (and in the absence of the flag) GPIO is assumed to be
+> active high.
+
+Flags cannot be false only true or absent, what you have described here
+is a boolean.
+
+>=20
+> >=20
+> > > +
+> > >    debounce-delay-ms:
+> > >      description: Debounce interval in milliseconds.
+> > >      default: 0
+> > > --=20
+> > > 2.39.5
+> > >=20
+>=20
+> Thanks.
+>=20
+> --=20
+> Dmitry
+
+--UD1TWMaQ/sueAZ84
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyuYOwAKCRB4tDGHoIJi
+0qeUAPsF2DNow0eSoZP9W//jfvG6mplUYUf9qe14TyGebWKkwAD/aAd4BecuHr3n
+rEp+xCY2x/ikKJ/Pmmdgd1fa6u3s8gE=
+=bjik
+-----END PGP SIGNATURE-----
+
+--UD1TWMaQ/sueAZ84--
 
