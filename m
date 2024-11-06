@@ -1,76 +1,48 @@
-Return-Path: <devicetree+bounces-119585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B4C49BF34F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:35:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4152E9BF35D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:38:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EA121C21DB6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:35:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C162C1F22EDE
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:38:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D9F1DE4C8;
-	Wed,  6 Nov 2024 16:35:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE2D202F6A;
+	Wed,  6 Nov 2024 16:38:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kxZDZc2H"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="FkAo3Eph"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9353213C67C;
-	Wed,  6 Nov 2024 16:35:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D760918FC8C;
+	Wed,  6 Nov 2024 16:38:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730910938; cv=none; b=aa3q/JPfWJcavQSKiBXNg+sCbIeJmOhoLzFsljfw+CXj8IDwBn5UBXDm1EzGmPmmGgD8bp1faVWEMh1Frf+GDzPYF+tqASDVDSofGA1uuG5XwOVMukPhRn0KrM8tSA+KoGYNcm+N+E523EzZGMABterg4j8ZoCC3a4DfDZPtjpw=
+	t=1730911089; cv=none; b=swOYag863BneGs/V1is0RkoTPL6tCWpP9rAu9s9KGDZ/yMeT9ucbk6EZsUQdaBRZWqnilekgd30tTxri7cKDaOSS7d9MFYHhiE2/KRomZJKDy7k6Tb4SPTlzymmdKqrorqzFGEmidYblcPTloe9Q3ktcKlnMQ2jgy3FsGC4TUDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730910938; c=relaxed/simple;
-	bh=+226borHsYkLvmzDZ3/K0biYVEW55zEhJxTZdfLCUwo=;
+	s=arc-20240116; t=1730911089; c=relaxed/simple;
+	bh=JYsSg8XGpZMd/iovEqFWzxyh+o/Jbj+GO3GOPMiOkmA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n36ysqZpnlXSnDty2P+JU5XlxbOX/yMpo0opGgdz3SJhZofUGF3PzJ6mt27wZILt6dWf4FhXpYxvzNe9lHnVzcGFwjWTi57jwa0Qoli3wfi5Iz3CIiy5r3ouh+8tv8y4j8LO7921lsCVKdYYpEKDunMQ/i2GSyTmW74U7Oy6qwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kxZDZc2H; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-71e7086c231so6058421b3a.0;
-        Wed, 06 Nov 2024 08:35:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730910936; x=1731515736; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=EpMoaV2UEgpT1cQjTdLpUsE/ib9jltFkw/ONf3N7WVQ=;
-        b=kxZDZc2Hd8XGQeotrZb9qKUVKtSFob8q+vzBXDZ4the16JZ07awimudpJek4zRk4TK
-         YVb/QDqoHxqGVBP+aefkAqd5+pjTa1Nlw50/mPIKj6r0xoX8dgVxOHclX4k6TiCDJpHf
-         VD9SE7du4ah9ZxLlMdo4XC1RnajnKImqKC8ACxr1DtlRtYP9mGouq8SAadnZRWcPNuiM
-         qH+clwNNoylm1GHXy4AkuX2m0bBei49HwjGyxp8J076YUO0k++VV+qDR6TYQHQyRsrjH
-         dzRWtiaM0OtJmKIauJ8ws+AFlGhKj85FHku1fewz7inuZNy5GLVjlBW8x8FU2WbrPmR4
-         WOdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730910936; x=1731515736;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EpMoaV2UEgpT1cQjTdLpUsE/ib9jltFkw/ONf3N7WVQ=;
-        b=hZ0C1qsXl4bTQCh0J93rviXcpW684hW5hH0WpDSnVQ+GvDplrl5z7VqaVukVHwZot6
-         op1OygfnWIQItQXJlqjnkSbfaFdMru1H8M8l2xAJPwrf9Ecds/s7th1rvp10PvyYOBmc
-         NvB0Zh8YJIGtDGgu0zNahJnUnxO7c69coUycPw17031mscVbkxHa0TbgnrIDqOHYzWvh
-         zMCfsIkUNQa9EjQ9oVOxzlayrP4JBYlXQnk6WScYj92ky8AD+CQQohLoaWO+YAbm2KWF
-         ArvG8Up2HH6XYrv7emcJ6OV+8wbBiYwgLKxqmO+nqtCQoqu95BP7tcRr3ONbYItGWwWV
-         jtYw==
-X-Forwarded-Encrypted: i=1; AJvYcCUnotacLAtAomSb1q7kf5gp+dkMVJdfqEJqlc/YLVhjoZ2ZXJFsK4Ti2wdzepJDV6vihV/2HMSmk5iu7FK4@vger.kernel.org, AJvYcCVbvfvZj0HqV8T5cLE4pRhk3A/Ukt/rKl3eHxC//XaQcrls+aH/zRWookGxhwNsiPtSIsDtruZzcs2xWJI=@vger.kernel.org, AJvYcCVmpvD7kL8mXf4gvJhoEyFmZn/EHuKOyfbqdD2AcSRun5zAjQZwflnLR6G8ZMbJ1IYDqvfIq7NQ7gJZ@vger.kernel.org, AJvYcCWbOVCBz8CblrUalgoX0oApQXwZJt7067f9MSOGZdGkojhSeN1N6H6SxZdjsI3QEZsZRwtsNsU/z+ir@vger.kernel.org, AJvYcCXHYqycBOsaIx6nbXUic4K1d2v1LQD+pQgoWNxRH6hxcxLww7w1EgsZydoOjOV5UgYo6Cb62X2/v+5v@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgR6aRM3nsJTAtcfEy2pF90qdV9c1vyW6nXA6U18f9h62wyZY9
-	2QHlfTiU/O0NQ7IGx8WOIyrsEVIafmqylCLsLtk30n1aUMhuDAJ8
-X-Google-Smtp-Source: AGHT+IHHKKge5OSKBhzIpKxm9NbgpPVXnRxIjk7i0bxop8MU5QW8qV55w57AqcIhgjFxkNVVq1iuGg==
-X-Received: by 2002:a05:6a00:23ca:b0:71e:6122:5919 with SMTP id d2e1a72fcca58-7206306ed56mr53099644b3a.20.1730910935859;
-        Wed, 06 Nov 2024 08:35:35 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-720bc1ba244sm12237398b3a.19.2024.11.06.08.35.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Nov 2024 08:35:35 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <2bdc5b60-2442-4291-a2f2-2e3802b7e982@roeck-us.net>
-Date: Wed, 6 Nov 2024 08:35:33 -0800
+	 In-Reply-To:Content-Type; b=mf+cEvh6V9UMbgOPM/powOYLYaTQPPsN2NViGFm9JC8tLnIhX0E4TJ4akk/I415aYnZ+HHyr0DI1/VxrofWb+IJP0lwbHM0WYnm+NnHrzH8eneKSMKh8JwiD7/q5H7fcxwid7T3MmfVbndPetMpk9TL76ac0N1wpeI28XW5NsWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=FkAo3Eph; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6D17559D;
+	Wed,  6 Nov 2024 17:37:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1730911077;
+	bh=JYsSg8XGpZMd/iovEqFWzxyh+o/Jbj+GO3GOPMiOkmA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FkAo3EphpjzwcqhWGS5mYOA6rnUajxTEtPgd8dZEhtVXRU5F1JsTbh2YGe+7RDpQ6
+	 4lryiZEua/Q+NUjl2uIXlSOyyv6O7diiUKGEWTFLCAYQaHcoNkCR57hmMAU0DkAhP1
+	 5tQMP3s4BiTOgYBP7GcHFj+SAEJcaBuZGRs+JkBg=
+Message-ID: <636ad36f-3182-431c-ae2e-1f590a06ad7f@ideasonboard.com>
+Date: Wed, 6 Nov 2024 16:38:01 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,101 +50,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: trivial-devices: add ltp8800
-To: Conor Dooley <conor@kernel.org>
-Cc: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
- Jonathan Corbet <corbet@lwn.net>,
- Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Peter Yin <peteryin.openbmc@gmail.com>,
- Noah Wang <noahwang.wang@outlook.com>, Marek Vasut <marex@denx.de>,
- Lukas Wunner <lukas@wunner.de>
-References: <20241106030918.24849-1-cedricjustine.encarnacion@analog.com>
- <20241106030918.24849-2-cedricjustine.encarnacion@analog.com>
- <8e4dc080-d779-4b06-8fd1-74784e06323a@roeck-us.net>
- <20241106-gatherer-glancing-495dbf9d86c7@spud>
+Subject: Re: [PATCH v8 05/17] dt-bindings: media: Add bindings for ARM
+ mali-c55
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com,
+ jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com, robh+dt@kernel.org,
+ mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+ sakari.ailus@iki.fi
+References: <20241106100534.768400-1-dan.scally@ideasonboard.com>
+ <20241106100534.768400-6-dan.scally@ideasonboard.com>
+ <lag7gfpuj2hdxw6i5pumaivxl5rylt2hztd57rynjestffwool@ate7u3zhrgfn>
+ <20241106135756.GI9369@pendragon.ideasonboard.com>
+ <a8cb35fd-d474-4104-b1f8-90ce5aa4a790@kernel.org>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20241106-gatherer-glancing-495dbf9d86c7@spud>
+From: Dan Scally <dan.scally@ideasonboard.com>
+Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <a8cb35fd-d474-4104-b1f8-90ce5aa4a790@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 11/6/24 08:06, Conor Dooley wrote:
-> On Tue, Nov 05, 2024 at 08:34:01PM -0800, Guenter Roeck wrote:
->> On 11/5/24 19:09, Cedric Encarnacion wrote:
->>> Add Analog Devices LTP8800-1A, LTP8800-2, and LTP8800-4A DC/DC μModule
->>> regulator.
-> 
-> A single compatible for 3 devices is highly suspect. What is
-> different between these devices?
-> 
+Hi Krzysztof - thanks for reviewing
 
-The maximum supported current is different.
+On 06/11/2024 14:29, Krzysztof Kozlowski wrote:
+> On 06/11/2024 14:57, Laurent Pinchart wrote:
+>> Hi Krzysztof,
+>>
+>> On Wed, Nov 06, 2024 at 01:15:23PM +0100, Krzysztof Kozlowski wrote:
+>>> On Wed, Nov 06, 2024 at 10:05:22AM +0000, Daniel Scally wrote:
+>>>> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
+>>>>
+>>>> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+>>>> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+>>>> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+>>>> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+>>>> ---
+>>>> Changes in v8:
+>>>>
+>>>> 	- Added the video clock back in. Now that we have actual hardware it's
+>>>> 	  clear that it's necessary.
+>>>> 	- Added reset lines
+>>>> 	- Dropped R-bs
+>>> These are trivial, so I wish you kept the review...
 
--2:  135A
--1A: 150A
--4A: 200A
+Fair enough, I just didn't want to be presumptuous
 
-Programming is exactly the same, which is why I had asked the submitter to use
-a single compatible property. Sorry for that if it is inappropriate.
 
-Is there some guidance explaining when to use a single vs. multiple compatible
-properties for different chip variants ?
+>>> but since you ask,
+>>> then comment further
+>>>
+>>> I recommend using b4, so your cover letter changelog comes with nice
+>>> links to previous versions. I scrolled through entire cover letter for
+>>> this (for me that's almost the only point of cover letter) and could
+>>> not find them. Anyway, just a remark.
 
-Note that there are also LTP8803-1A which supports 160A, and LTP8802A-1B
-which supports 140A. Maybe there are more, but those are the ones I can find in
-public. I don't know if there is a difference from programming perspective compared
-to the LTP8800 chip variants; the datasheets are too vague to be sure. It would be
-useful to know if those chips should get separate compatible entries if programming
-is the same.
 
-Thanks,
-Guenter
+Thanks for the recommendation - I'll take a look when I get time, but either way I can add a link to 
+the previous versions next time.
 
+>>>
+>>>
+>>> ...
+>>>
+>>>> +  resets:
+>>>> +    items:
+>>>> +      - description: vclk domain reset
+>>>> +      - description: aclk domain reset
+>>>> +      - description: hclk domain reset
+>>>> +
+>>>> +  reset-names:
+>>>> +    items:
+>>>> +      - const: vresetn
+>>> drop "reset", it's redundant and rather come here with logical name. I
+>>> wonder what "n" means as well. It's not a GPIO to be "inverted"...
+>> The aresetn and hresetn names come directly from a hardware manual
+>> (vresetn seems to be called rstn in that document though). As far as I
+>> understand, they are the names of the external signals of the IP core.
+>> I tend to pick the hardware names for clock and reset names. That makes
+>> it easier for integrators, and from a driver point of view it doesn't
+>> change much as DT names are just a convention anyway.
+>>
+>> That being said, if there's a good reason to do otherwise (such as
+>> standardizing property names to make handling through common code
+>> possible), that's fine too.
+> If these are from manual then it is fine, although sometimes the names
+> are really pointless in manual...
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks
+>
+> Best regards,
+> Krzysztof
+>
 
