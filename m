@@ -1,56 +1,64 @@
-Return-Path: <devicetree+bounces-119557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3EDC9BF21F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:49:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65DCA9BF22A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:49:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8955F28581D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 15:48:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98A711C2415A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 15:49:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C5E2038CA;
-	Wed,  6 Nov 2024 15:47:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A8B220495E;
+	Wed,  6 Nov 2024 15:49:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X9HLUjdY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WKuByCz6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 802AA1DFD87;
-	Wed,  6 Nov 2024 15:47:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5901D204928;
+	Wed,  6 Nov 2024 15:49:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730908026; cv=none; b=hTHHI/mqhbVqMDrlZKjPePVjZtMfaJ8wm6bULXBoBF4mRmQ5JP0bIkQKRKfssH8FKRlATuHw5Y7MrYUmv2REivPc66Vk2Q8wkFEmiQjU2jZL3TvySL3DDKDKuO3dYVCI03XYVATcRoahotQjNnPZ7dr1yCquhD81RVv6qg11R28=
+	t=1730908140; cv=none; b=bD7WHTSM/TdPF4mn0XdfrGvqKLIf01c09e+E7UdpW/U3EyXOcPNsp572IoIRxXmupNssVbH7qNUMKbw2XBTp02ShoyHFNgZGGm4DvCMm8V4WYPSe+aPxTDbRKgMHR/bpZq3ZdeN/OLSoHF/7FlJUD/o5WgBro4+983ZQyRQTy1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730908026; c=relaxed/simple;
-	bh=8lbGqJHY73uBPSfmVU0xiiMipRoMO+tIzDfLTjIAcsA=;
+	s=arc-20240116; t=1730908140; c=relaxed/simple;
+	bh=y7EcEXTItmufqI81KnM67CUPSoCotATvKqJ0csQfsCk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QVGbzCPHTvxO2Yqn8F9P3KoqaiHJecx9BK7FQXkbnyuEqM9jBDITZzrljsjNlUJVjqq6PICCyUktw2pZGnLJwbMV4JoOx+j9nQ45TjzBLU3UCC4bLX/oujwpy6279eBmaNuEm8vLdtOvuiTxqai1Ub2TenNX7UP8XeHgpDFka00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X9HLUjdY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5410C4CEC6;
-	Wed,  6 Nov 2024 15:47:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nITh2fQ8XNSKhVVrxD735Xhkbln5Z+0+e4h9F6GiZFcU7r5s1R/hhJDaKx+F6ZVnfWNvx4qXNM6x/JueGPcwn7OtMKhAkCW4Ace/QWXlKo8CG4iE1tX7I3NCzF2kO+LHD3rJw5Xw95fo3YPGe3QDfHdmhLhC1hxxlTC9lJoxgGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WKuByCz6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3173FC4CEC6;
+	Wed,  6 Nov 2024 15:48:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730908026;
-	bh=8lbGqJHY73uBPSfmVU0xiiMipRoMO+tIzDfLTjIAcsA=;
+	s=k20201202; t=1730908139;
+	bh=y7EcEXTItmufqI81KnM67CUPSoCotATvKqJ0csQfsCk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X9HLUjdYW5h5t1seMKXIJdTeuV/CNRnbkeMRfrndnvvTDRfKUNSp6Z9XDby6clIIM
-	 bLs489/CO5wZLoo2eCGT6LqmBTL17VarDQcxBryeLBpgP/hW0HutPxG5PPf+fKr5eg
-	 Kh0Z9z/I1LbAxbjj8saNVsCFBVtf9OtuXgmhhKKxuuz8l0M7Xkkrj8FBiD51mm9TBw
-	 Is7tVVVxbYWf0zA7vRTtCF3VPdLAjONcj+ygU1VpGOyZ00ErphvqHLfduS0HfneXTI
-	 ZxeJOcrcCZ1O/R+r5ciyRNDq4TjVec9nxM17ni3alXrh/Mx9Gl7u7nCvXj+HAioA/V
-	 DbHCf8vYNaP+A==
-Date: Wed, 6 Nov 2024 15:47:01 +0000
+	b=WKuByCz6Q7OYrcaWptrTofl1N2wGIlPgTUGw4wwywZfOfS1G6ZI3q5Nh5V+/M1zH9
+	 /7XmonE6im18fAbtqSJ0jzEu6rJTV4UC5pLT8QXZHtVmlCj+ZArvtrQeNwhtIBzkm4
+	 Jhil0DB6OQIUY0xv1xiXjJQWwDXVCskHCY+3PESRw0ltSNndHl+NB2IpgbN4IiZYe5
+	 OiHiUrmsWVWqBUUompLZ/etix0NdChcsr6rED2HpeZT432hyq9hLAqh3/So4ObyoTG
+	 u/tvl26g/K92b3KkiniCHAR8fuq7ZDSg+W53Jvc/6w9LweeMh4q75RLgVy014oGHwj
+	 cGwspMk1MN2kQ==
+Date: Wed, 6 Nov 2024 15:48:55 +0000
 From: Conor Dooley <conor@kernel.org>
-To: ahaslam@baylibre.com
-Cc: jic23@kernel.org, krzk+dt@kernel.org, dlechner@baylibre.com,
-	Michael.Hennerich@analog.com, robh@kernel.org, conor+dt@kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: dac: ad5791: ldac gpio is active low
-Message-ID: <20241106-tableful-outdoors-298ad815a107@spud>
-References: <20241106103824.579292-1-ahaslam@baylibre.com>
+To: Alexis Cezar Torreno <alexisczezar.torreno@analog.com>
+Cc: linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	Radu Sabau <radu.sabau@analog.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: (pmbus/adp1050): Support adp1051
+ and adp1055: add bindings.
+Message-ID: <20241106-linoleum-kebab-decf14f54f76@spud>
+References: <20241106090311.17536-1-alexisczezar.torreno@analog.com>
+ <20241106090311.17536-2-alexisczezar.torreno@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,39 +66,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Mn0ppnsPgnjOw68c"
+	protocol="application/pgp-signature"; boundary="7vvc3r3v3f48fLLB"
 Content-Disposition: inline
-In-Reply-To: <20241106103824.579292-1-ahaslam@baylibre.com>
+In-Reply-To: <20241106090311.17536-2-alexisczezar.torreno@analog.com>
 
 
---Mn0ppnsPgnjOw68c
+--7vvc3r3v3f48fLLB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 06, 2024 at 11:38:24AM +0100, ahaslam@baylibre.com wrote:
-> From: Axel Haslam <ahaslam@baylibre.com>
+On Wed, Nov 06, 2024 at 05:03:10PM +0800, Alexis Cezar Torreno wrote:
+> Add dt-bindings for adp1051 and adp1055 pmbus.
+> ADP1051: 6 PWM for I/O Voltage, I/O Current, Temperature
+> ADP1055: 6 PWM for I/O Voltage, I/O Current, Power, Temperature
 >=20
-> On the example, the ldac gpio is flagged as active high, when in reality
-> its an active low gpio. Fix the example by using the active low flag for
-> the ldac gpio.
+> Signed-off-by: Alexis Cezar Torreno <alexisczezar.torreno@analog.com>
+> ---
+>  .../devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml | 12 ++++++++++--
+>  1 file changed, 10 insertions(+), 2 deletions(-)
 >=20
-> Fixes: baaa92d284d5 ("dt-bindings: iio: dac: ad5791: Add optional reset, =
-clr and ldac gpios")
-> Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.ya=
+ml b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+> index 10c2204bc3df..88aaa29b3bd1 100644
+> --- a/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+> @@ -10,16 +10,24 @@ maintainers:
+>    - Radu Sabau <radu.sabau@analog.com>
+> =20
+>  description: |
+> -   The ADP1050 is used to monitor system voltages, currents and temperat=
+ures.
+> +   The ADP1050 and similar devices are used to monitor system voltages,
+> +   currents, power, and temperatures.
+> +
+>     Through the PMBus interface, the ADP1050 targets isolated power suppl=
+ies
+>     and has four individual monitors for input/output voltage, input curr=
+ent
+>     and temperature.
+>     Datasheet:
+>       https://www.analog.com/en/products/adp1050.html
+> +     https://www.analog.com/en/products/adp1051.html
+> +     https://www.analog.com/en/products/adp1055.html
+> =20
+>  properties:
+> +
+
+That's an abnormal newline, leave it alone if you respin.
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---Mn0ppnsPgnjOw68c
+Cheers,
+Conor.
+
+>    compatible:
+> -    const: adi,adp1050
+> +    enum:
+> +      - adi,adp1050
+> +      - adi,adp1051
+> +      - adi,adp1055
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.34.1
+>=20
+
+--7vvc3r3v3f48fLLB
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyuPdQAKCRB4tDGHoIJi
-0vRtAQDWYbkkjwjfH/Jyh9+9Vb+PhqhYnbpRCwL+og1vGe8BAAEAnfAYAHLqHTQe
-M8c6kYLdS4J10mF3AdkqXhE34m6FqQc=
-=h8lz
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyuP5wAKCRB4tDGHoIJi
+0tkjAQCV040LJuM+7Lz+kw5HduHbQQp6TYOjvmZuFrbXqwA6agEA+TwmOPB3Djux
+yZGMVGdQjB+i8kC83cyXzJLcXe4WywE=
+=zCfB
 -----END PGP SIGNATURE-----
 
---Mn0ppnsPgnjOw68c--
+--7vvc3r3v3f48fLLB--
 
