@@ -1,104 +1,120 @@
-Return-Path: <devicetree+bounces-119529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B81839BEFC8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 15:05:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 940E09BEFD3
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 15:10:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CD682811EA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 14:05:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41CAF1F22001
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 14:10:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85E3D1E0B61;
-	Wed,  6 Nov 2024 14:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58EEE1F9ABD;
+	Wed,  6 Nov 2024 14:10:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WGC5ALmY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oxK/9pf0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A651D63DF;
-	Wed,  6 Nov 2024 14:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2554A17DFF2;
+	Wed,  6 Nov 2024 14:10:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730901926; cv=none; b=JRcVD4yx3yztrrmc5x7JvY8/n2TMKCbyOgIWDHc4H3sdse1VJGPkmvkvekoVzQ74ee2BV8/6Vc2fIzH8N/dtGHUkqBKNXlVdqdL6ttDrMTeVmyOetHss4etnucymUQSaTl/4qZYu65ZRF5WbUfXRLOS2VrXq0UK5LJSQX1k9AXg=
+	t=1730902242; cv=none; b=MfLIqMAKFeR22t0J/U/8xEHCtM0n6iLxVL+R009dOBUyRukJItNQBXLngVus+ThvhV+JL9mOP9nAWiNX/0JYmGBljRfhhiK/71RYvzJ1ozUzDpVLxlEo23Po79bAriq/y3rfBhcdTLlO9b0wKp28e0me0w5nHnSBYqwv+K45g/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730901926; c=relaxed/simple;
-	bh=j1W9k4oVkIQL68KFIkXY480BVKIr5DP71SiPlfPiec0=;
+	s=arc-20240116; t=1730902242; c=relaxed/simple;
+	bh=hR+M/12mz686XDw6qw79yyMcaey3EbYKRvazPCDOwQg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tza8rqh9eUPZFcAJYTuJp5GlAzxa9P1wwaY3aK+AYgxmcWB641VLw6ipZbs8WBR8WCdtKWG9DNdP1IMVaBX/It1ivhBAR5ttcLM2J4ZvKltcmkZPTopZotyg2rO+F/+2SEbz2qse54jNORSAMT6wN6y8bN7wxIt55jlllNK84Lo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WGC5ALmY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3D01C4CECD;
-	Wed,  6 Nov 2024 14:05:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JioNShFreW5TRsjSGnxYBvAbVYKH6RDwhLUsdqy/vAtQ/brygcO12CxiSkeveJ5Ez3i8OEhPsFdlc3fvWZyscaNoNEoU8F0LWTgdXxGFZA7umLvIFPebBzd6zHhzXQm/2HaDw0/kT6UqIidBaYnPWOoQQKywKpzBpwudexb6wzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oxK/9pf0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09C0AC4CEC6;
+	Wed,  6 Nov 2024 14:10:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730901926;
-	bh=j1W9k4oVkIQL68KFIkXY480BVKIr5DP71SiPlfPiec0=;
+	s=k20201202; t=1730902241;
+	bh=hR+M/12mz686XDw6qw79yyMcaey3EbYKRvazPCDOwQg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WGC5ALmYPQWR5iJ2S0XpFdPr7MjA8d8poSP2BqJbGh/BYlBL54G/wFDKbktAYTLfY
-	 r9fIDGuk73SjSSUaXu3ir5NPlwkCnXyzZjLy5enuQm1qK6GemkA+PjQzx4w53VY8A7
-	 lxMjqzUS+UQtIi1DwGkbt/b+WsgDcLro+ATkj9tkzCxYpol6WBsd8uUq3b28PkiFLx
-	 7OppV9IBsVa3SUGRvk3b0hBMFReSK4o8fLx+9dflAw2UAiFP5oHBuBJFo3oUAuggUS
-	 u/4/o760lT0O7ZWQ3r3hL+9SdV7fp0TDF44aWJozT5stfWXU5//2yGwxjzIDxSQehh
-	 d3vRdyBCgpxUQ==
-Date: Wed, 6 Nov 2024 14:05:21 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Kiseok Jo <kiseok.jo@irondevice.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v4 1/2] ASoC: dt-bindings: irondevice,sma1307: Add
- initial DT
-Message-ID: <092cfb04-378f-4997-88e0-35c247b8c445@sirena.org.uk>
-References: <20241106005800.7520-1-kiseok.jo@irondevice.com>
- <20241106005800.7520-2-kiseok.jo@irondevice.com>
- <kspk7qajv7r5glbcawmecbup36cv4wi3hjrgyfyyejjectwwt5@u5nx5y5zirsa>
+	b=oxK/9pf0bxWdLwkJ0XFrOHc/8z9aGFghLqiMYid+PmJ4KUJHrrf9hchG0UZuKR5sS
+	 JTk4Vhwpmmz2AcIrmkWeogxx/hS1lMNYA5JUMklzJnjthm016pojlcdRNdL66S9W4C
+	 WI0+4LoX0k54++97cUt9QpSVWeHEVHV4EsxZ4Cxr8iikxOv326+hzoeNoX8VsJl+nK
+	 uI4Ex2g18XPIbmhCvqt+R7VmC9DB3+Ms07DkgrDg7lIqG3k2bgaY8VLMDWj3/d4S4s
+	 36j9fSScrodXntyF7oIqtADJOkp26IMc2WYrgHaPQKNvbYgA3Z7spI2wV0j0abOVe/
+	 yKJ9lMPNwvqaA==
+Date: Wed, 6 Nov 2024 15:10:38 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Peng Fan <peng.fan@nxp.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v3 1/8] dt-bindings: clock: imx8m-clock: support spread
+ spectrum clocking
+Message-ID: <4bix7me5vaoyhcuffyp4btajmhy7no6ltczoesopaz2fqupyaw@fensx4nn472u>
+References: <20241106090549.3684963-1-dario.binacchi@amarulasolutions.com>
+ <20241106090549.3684963-2-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="x/ijW8mKOHC/k6vi"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <kspk7qajv7r5glbcawmecbup36cv4wi3hjrgyfyyejjectwwt5@u5nx5y5zirsa>
-X-Cookie: Include me out.
+In-Reply-To: <20241106090549.3684963-2-dario.binacchi@amarulasolutions.com>
 
+On Wed, Nov 06, 2024 at 09:57:57AM +0100, Dario Binacchi wrote:
+> The patch adds the DT bindings for enabling and tuning spread spectrum
+> clocking generation.
 
---x/ijW8mKOHC/k6vi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+We had long talks about this but nothing of it got reflected in commit
+msg. Sorry, I don't remember what I was talking in some particular patch
+month ago, so you will get the same questions over and over...
 
-On Wed, Nov 06, 2024 at 02:55:21PM +0100, Krzysztof Kozlowski wrote:
-> On Wed, Nov 06, 2024 at 09:57:59AM +0900, Kiseok Jo wrote:
-> > This adds the schema binding for the Iron Device SMA1307 Amp
+> 
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> 
+> ---
+> 
+> Changes in v3:
+> - Added in v3
+> - The dt-bindings have been moved from fsl,imx8m-anatop.yaml to
+>   imx8m-clock.yaml. The anatop device (fsl,imx8m-anatop.yaml) is
+>   indeed more or less a syscon, so it represents a memory area
+>   accessible by ccm (imx8m-clock.yaml) to setup the PLLs.
+> 
+>  .../bindings/clock/imx8m-clock.yaml           | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+> index c643d4a81478..7920393e518e 100644
+> --- a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+> @@ -43,6 +43,40 @@ properties:
+>        ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8m-clock.h
+>        for the full list of i.MX8M clock IDs.
+>  
+> +  fsl,ssc-clocks:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      Phandles of the PLL with spread spectrum generation hardware capability.
+> +    minItems: 1
+> +    maxItems: 4
 
-> That's a v5. RESEND means you send exactly the same or the same plus
-> tags.
+1. How is it possible that you change spread spectrum of some clocks from
+main Clock Controller, while this device is not a consumer of them?
+Basically this means that this device does not have these clocks but yet
+you claim that it needs to configure spread for them! It's contradictory
+to me and nohing got explained in commit msg about it. I am pretty sure
+I asked about this alrady.
 
-No, this is actually a resend - he's resending the v4 that you replied
-to just before this one which was sent with mangled subject lines and
-missing changelogs.
+2. Why is this array flexible in size?
 
---x/ijW8mKOHC/k6vi
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+Krzysztof
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcrd6AACgkQJNaLcl1U
-h9A9EQf+IMZncqsxypZL+DNHZLVibRmnJzwUQ3E0MWBrX1jUxeu1XYC1FYLY8oez
-t1TYTsBkYw+dbZt1Ia7M3PkEAo4KxcAY/nFr/wUjWt7RYRpNUEi1Fcp8qNCRumnx
-yPpanG1xxPgDx0hJ9/lQo3x781dcEOjy2wZQjyxYiiJdhSNFbXxpxSVoScG9xhXo
-1MZisRDS2wUEqORD3E+ejcDr9Sc6fnEr0fshHzfK5dlReGjDAjMw5sTfd7ww73mU
-IC63KnNvtjMSJEdLlTSYZRH7L/Hx4cgDE5JYDrAWCgybiba9MxwDPolhGNIw42Eu
-1ibvbAhNnALQEVMv61Nyke46/X60uw==
-=C9SO
------END PGP SIGNATURE-----
-
---x/ijW8mKOHC/k6vi--
 
