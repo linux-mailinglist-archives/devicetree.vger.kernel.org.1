@@ -1,159 +1,160 @@
-Return-Path: <devicetree+bounces-119254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E77779BDB2D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 02:29:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D37CE9BDB2F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 02:29:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 863D3284018
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 01:29:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B3D2284154
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 01:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA421898E9;
-	Wed,  6 Nov 2024 01:29:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFE66188A3A;
+	Wed,  6 Nov 2024 01:29:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="nsEPCaag"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i/TogcHi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12B55188920;
-	Wed,  6 Nov 2024 01:28:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C22010E5;
+	Wed,  6 Nov 2024 01:29:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730856542; cv=none; b=drWvRkXhdxaxx4aBIDU2/Pz47dVlFO39gxbi68fqGZWJnXvPE4IOtJDDTX+QCBFjT6OP5JsLavl9cwpvHAPgduc/G+iq/VyGoSaVdPCcLci0nhQA/ETXNOLdt4MWUiZTQjdhZAQoUzo7ZoxrsYF1KbrQoaMKPi7D1DlVaHfkYgs=
+	t=1730856566; cv=none; b=cZhhDe6CO7GQnL/9cR7Nfa1rS5cYGOlt7QMyexcHJYXYo0R+ikPfhDdcwjVgDekW4TEUlmLDvK0JpKQQeVp1Jwk5QVE4Iiy/8cXz5o9JsJnxWwrO/f+7mIwJcSYI8cD+jX+mO3u6U9gtXpt56xN5w5GjvhUOIAI4wgVxIoS9tiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730856542; c=relaxed/simple;
-	bh=o5Dl+Ekk7PBOSeuj0+Ib82+Q37tovreTS26Ub1zSL/o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SCLYwAV/B8NbKnDnByDc/KlR+G+McqLT2amqVkH/Xnofo3pV3O6OvHTriI5//i0GYyzSt6aBwWngXuOM5YO2I6R+jwknLWTZff5y1EevDMkw/k/taUsh0VVwbN8c6Os9iXTF37kgU0TSfyV+xE/omBTPmyGcSM2m0qAW6ZteocU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=nsEPCaag; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id CEACD880E6;
-	Wed,  6 Nov 2024 02:28:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1730856538;
-	bh=rxk1FRnn5JUygOIoLuUm7o31M1LQ3MgnCaC8+hOApbE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nsEPCaagLhbWH6PaqwKuyTtlzqpmPmAQ3s7Ak/IeTVkLfZJnsLXfar/uAfe4FYEkp
-	 NjjYIz7gOWbCuj7MwDwxy737MR9sm/DNx6nYKVuMhMm0jRQfWS447t0Y2XMlK5mmpi
-	 dhLBlyLfqgAc5KxPda8NrG8as/Z8ljVOgeRTpew5SEx4/q1ef+Q2qjGFuBTwMQIYgJ
-	 m0hJA4N0I969hRmqZqziFdAbhiE9fqGQ7QlZpkokXf+vf9yJ6aQrMDpHK50Fcl4hk5
-	 fUQdx9nnUCBL1gGyOSSrInZfy+xzUASzu+vtUcCwrtsmZAASsmdgjQq8Qx+KFyibdu
-	 3hkFBnaP0AmDw==
-Message-ID: <0b32eda6-4071-4707-a8c6-447073638707@denx.de>
-Date: Wed, 6 Nov 2024 02:28:57 +0100
+	s=arc-20240116; t=1730856566; c=relaxed/simple;
+	bh=kv4Vaq993VuistPVWc2Sk+7GuVnhfNHl2gptDJKwH7s=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=YLpxNcMARbwYK4BQ5CHhEsYrM1nLE/GISoEcNAnK5HbHfvAbs7AMvXYCsO/C9eIcv61KmlUotnU2ewzHJfw3TI453Kx041WF/6zHaAaJ7JjOUn5n7XDVzE02KqOcAHjl05GKHak91e6nTJeUNZUVcr/1ie9Uo4uTXB/3CErDwtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i/TogcHi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1195C4CECF;
+	Wed,  6 Nov 2024 01:29:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730856566;
+	bh=kv4Vaq993VuistPVWc2Sk+7GuVnhfNHl2gptDJKwH7s=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=i/TogcHiR+QdIUCkjblx1VuteiTdMK/WDkHOlJgSjVGzg/ttBbb9HGTeucO9135kk
+	 GCQwhm3Olgo4h/pPjjDhu71P6qnDGIcYJWmtQeqP+lB1xNfszESfvv7bNj5GaZyZv3
+	 NUgqq2rZIrBd4WOUqlj7wJjI3EjbQQJfDarAg3WKvCWRlWzOJoW1c8yvwuN3G27NWe
+	 Hr2YS2CIlgcabZxdWy6rVH7hbQeZp+xMDFcNSjqWoJiPekLcZPEd/K3dTVFk+n6SFW
+	 hf0rXNYFECxt+ZdI7HrCeVDfP7GX8YIB3NrbwQ9SFXEGYcJHkCmsi6Zth/MrLpaq6I
+	 pWSVZ129cO2Nw==
+Date: Tue, 05 Nov 2024 19:29:24 -0600
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document start from dead
- stop properties
-To: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org
-References: <20241105135259.101126-1-marex@denx.de>
- <df2eaf57-a4ea-4378-8f24-a843084eb1d6@roeck-us.net>
- <189cd4b5-005b-4311-a5de-2b376eb0b9d8@denx.de>
- <1a8b0024-97db-4c1c-9d04-45057a2ba800@roeck-us.net>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <1a8b0024-97db-4c1c-9d04-45057a2ba800@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: andi.shyti@kernel.org, tsbogend@alpha.franken.de, conor+dt@kernel.org, 
+ krzk+dt@kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ linux-mips@vger.kernel.org, lee@kernel.org
+In-Reply-To: <20241106001835.2725522-2-chris.packham@alliedtelesis.co.nz>
+References: <20241106001835.2725522-1-chris.packham@alliedtelesis.co.nz>
+ <20241106001835.2725522-2-chris.packham@alliedtelesis.co.nz>
+Message-Id: <173085656399.878305.11912550915250449727.robh@kernel.org>
+Subject: Re: [PATCH v9 1/4] dt-bindings: mfd: Add Realtek RTL9300 switch
+ peripherals
 
-On 11/6/24 1:34 AM, Guenter Roeck wrote:
-> On 11/5/24 10:53, Marek Vasut wrote:
->> On 11/5/24 3:11 PM, Guenter Roeck wrote:
->>> On 11/5/24 05:52, Marek Vasut wrote:
->>>> Delta AFC0612DB-F00 fan has to be set to at least 30% PWM duty cycle
->>>> to spin up from a dead stop, and can be afterward throttled down to
->>>> lower PWM duty cycle. Introduce support for operating such fans which
->>>
->>> Doesn't this imply that a minimum pwm value is needed as well ?
->>
->> It depends. For this fan, yes, it does stop at around 8% PWM duty cycle.
->>
->>> Super-IO chips such as the NCT67xx series typically have two separate
->>> registers, one for the pwm start value and one for the minimum pwm 
->>> value.
->>
->> I use plain SoC PWM output to operate the fan. This one needs to be 
->> set to higher PWM duty cycle first, to spin up, and can be reduced to 
->> lower PWM duty cycle afterward without stopping.
->>
+
+On Wed, 06 Nov 2024 13:18:32 +1300, Chris Packham wrote:
+> Add device tree schema for the Realtek RTL9300 switches. The RTL9300
+> family is made up of the RTL9301, RTL9302B, RTL9302C and RTL9303. These
+> have the same SoC differ in the Ethernet switch/SERDES arrangement.
 > 
-> Yes, exactly. That is what many fans require.
+> Currently the only supported features are the syscon-reboot and i2c
+> controllers. The syscon-reboot is needed to be able to reboot the board.
+> The I2C controllers are slightly unusual because they each own an SCL
+> pin (GPIO8 for the first controller, GPIO 17 for the second) but have 8
+> common SDA pins which can be assigned to either controller (but not
+> both).
 > 
->>>> need to start at higher PWM duty cycle first and can slow down next.
->>>>
->>>> Document two new DT properties, "fan-dead-stop-start-percent" and
->>>> "fan-dead-stop-start-usec". The former describes the minimum percent
->>>> of fan RPM at which it will surely spin up from dead stop. This value
->>>> can be found in the fan datasheet and can be converted to PWM duty
->>>> cycle easily. The "fan-dead-stop-start-usec" describes the minimum
->>>> time in microseconds for which the fan has to be set to dead stop
->>>> start RPM for the fan to surely spin up.
->>>>
->>>> Signed-off-by: Marek Vasut <marex@denx.de>
->>>> ---
->>>> Cc: Conor Dooley <conor+dt@kernel.org>
->>>> Cc: Guenter Roeck <linux@roeck-us.net>
->>>> Cc: Jean Delvare <jdelvare@suse.com>
->>>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->>>> Cc: Rob Herring <robh@kernel.org>
->>>> Cc: devicetree@vger.kernel.org
->>>> Cc: linux-hwmon@vger.kernel.org
->>>> ---
->>>>   Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 11 +++++++++++
->>>>   1 file changed, 11 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/ 
->>>> Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->>>> index 4e5abf7580cc6..f1042471b5176 100644
->>>> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->>>> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->>>> @@ -31,6 +31,17 @@ properties:
->>>>         it must be self resetting edge interrupts.
->>>>       maxItems: 1
->>>> +  fan-dead-stop-start-percent:
->>>
->>> Personally I don't think that "dead-stop" in the property name adds 
->>> any value.
->>> On the contrary, I think it leads to confusion. I head to read the 
->>> description
->>> to understand.
->>
->> The documentation refers to this behavior as a "dead stop" , hence the 
->> property name. I can change it to fan-stop-to-start-percent ?
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 > 
-> I do not understand the need for that much complexity in the property name,
-> and I don't think it makes sense to name a property based on a specific
-> chip documentation. I have seen that before, where different vendors use
-> different names for the same functionality. That doesn't mean that the
-> vendor-determined name has to make it into the property name.
+> Notes:
+>     Changes in v9:
+>     - None
+>     Changes in v8:
+>     - Add r-by from Krzysztof
+>     - At Lee's request I've separated the i2c binding into a separate patch.
+>       This one still has a $ref to it so technically the i2c one needs to go
+>       first but they'll be coming in via different trees so they may not
+>       arrive in that order.
+>     Changes in v7:
+>     - Set additionalProperties: false
+>     - Remove extraneous examples from i2c binding
+>     Changes in v6:
+>     - Drop wildcard compatible
+>     - Add specific compatibles for the 4 known SoC variants
+>     - For the i2c part of the binding accept realtek,rtl9301 as a fallback
+>       for the other compatibles
+>     - The overall switches will eventually differ because these will have
+>       different SERDES/port arrangements so they aren't getting the same
+>       fallback treatment
+>     Changes in v5:
+>       I've combined the two series I had in flight so this is the
+>       combination of adding the switch syscon, the reboot and i2c. It makes
+>       the changelog a bit meaningless so I've dropped the earlier
+>       commentary.
 > 
-> As an example, Nuvoton calls the values "Start-Up Value" and "Stop Value".
-> ITE calls the start value "start PWM value" (and as far as I can see 
-> doesn't
-> have a separate stop value). I am sure pretty much every vendor uses a
-> different description.
+>       As requested I've put a more complete example in the main
+>       rtl9300-switch.yaml.
 > 
-> I am personally not a friend of long property names. Having said that,
-> I'll let you use whatever DT maintainers accept. They may have a different
-> opinion.
-Do you have a different suggestion for the property name ? Else I'll 
-just send a V2 .
+>       I've kept rtl9300-i2c.yaml separate for now but link to it with a $ref
+>       from rtl9300-switch.yaml to reduce clutter. The example in
+>       rtl9300-i2c.yaml is technically duplicating part of the example from
+>       rtl9300-switch.yaml but I feel it's nice to be able to see the example
+>       next to where the properties are defined.
+> 
+>  .../bindings/mfd/realtek,rtl9301-switch.yaml  | 114 ++++++++++++++++++
+>  1 file changed, 114 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: ethernet-switch@1b000000: reboot@c: 'offset' is a required property
+	from schema $id: http://devicetree.org/schemas/mfd/realtek,rtl9301-switch.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: ethernet-switch@1b000000: reboot@c: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/mfd/realtek,rtl9301-switch.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: ethernet-switch@1b000000: i2c@36c: False schema does not allow {'compatible': ['realtek,rtl9301-i2c'], 'reg': [[876, 20]], '#address-cells': 1, '#size-cells': 0, 'i2c@0': {'reg': [[0]], '#address-cells': 1, '#size-cells': 0, 'gpio@20': {'compatible': ['nxp,pca9555'], 'gpio-controller': True, '#gpio-cells': 2, 'reg': [[32]]}}, 'i2c@2': {'reg': [[2]], '#address-cells': 1, '#size-cells': 0, 'gpio@20': {'compatible': ['nxp,pca9555'], 'gpio-controller': True, '#gpio-cells': 2, 'reg': [[32]]}}}
+	from schema $id: http://devicetree.org/schemas/mfd/realtek,rtl9301-switch.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: ethernet-switch@1b000000: i2c@388: False schema does not allow {'compatible': ['realtek,rtl9301-i2c'], 'reg': [[904, 20]], '#address-cells': 1, '#size-cells': 0, 'i2c@7': {'reg': [[7]], '#address-cells': 1, '#size-cells': 0, 'gpio@20': {'compatible': ['nxp,pca9555'], 'gpio-controller': True, '#gpio-cells': 2, 'reg': [[32]]}}}
+	from schema $id: http://devicetree.org/schemas/mfd/realtek,rtl9301-switch.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: reboot@c: 'offset' is a required property
+	from schema $id: http://devicetree.org/schemas/power/reset/syscon-reboot.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: reboot@c: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/power/reset/syscon-reboot.yaml#
+Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: /example-0/ethernet-switch@1b000000/i2c@36c: failed to match any schema with compatible: ['realtek,rtl9301-i2c']
+Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: /example-0/ethernet-switch@1b000000/i2c@388: failed to match any schema with compatible: ['realtek,rtl9301-i2c']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241106001835.2725522-2-chris.packham@alliedtelesis.co.nz
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
