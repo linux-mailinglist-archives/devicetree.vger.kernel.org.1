@@ -1,160 +1,121 @@
-Return-Path: <devicetree+bounces-119255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D37CE9BDB2F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 02:29:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8751F9BDB45
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 02:40:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B3D2284154
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 01:29:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8B151C2264E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 01:40:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFE66188A3A;
-	Wed,  6 Nov 2024 01:29:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E58188938;
+	Wed,  6 Nov 2024 01:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i/TogcHi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D/ae5x6X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C22010E5;
-	Wed,  6 Nov 2024 01:29:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417A8185B6E;
+	Wed,  6 Nov 2024 01:40:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730856566; cv=none; b=cZhhDe6CO7GQnL/9cR7Nfa1rS5cYGOlt7QMyexcHJYXYo0R+ikPfhDdcwjVgDekW4TEUlmLDvK0JpKQQeVp1Jwk5QVE4Iiy/8cXz5o9JsJnxWwrO/f+7mIwJcSYI8cD+jX+mO3u6U9gtXpt56xN5w5GjvhUOIAI4wgVxIoS9tiM=
+	t=1730857227; cv=none; b=dh6V0HVz711zfvKjFfXtxqc/dV6Mg0ysZlecT8xnczwUK+LtKwWXqLc7pqSeu5sndU5vngvAqqGV99PES9xzoUVdeUUWyhfe93GBMEydR5qKOY2HbtCVDp+ChNXIbbAoQ1VHW/NxLbVC2s5Yrgp+z+RNt443Gop3CIvPyjnW1kU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730856566; c=relaxed/simple;
-	bh=kv4Vaq993VuistPVWc2Sk+7GuVnhfNHl2gptDJKwH7s=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=YLpxNcMARbwYK4BQ5CHhEsYrM1nLE/GISoEcNAnK5HbHfvAbs7AMvXYCsO/C9eIcv61KmlUotnU2ewzHJfw3TI453Kx041WF/6zHaAaJ7JjOUn5n7XDVzE02KqOcAHjl05GKHak91e6nTJeUNZUVcr/1ie9Uo4uTXB/3CErDwtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i/TogcHi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1195C4CECF;
-	Wed,  6 Nov 2024 01:29:25 +0000 (UTC)
+	s=arc-20240116; t=1730857227; c=relaxed/simple;
+	bh=2qZF0UH8un2sU3i+H0aULvDk3LSIb2B4gJQw/wg2RWY=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=FUYTKpqShGy9pH+pdSHFDwUKGTZVCIPS3epXnoVKm4ELZGVlPPBcJ6TfxmzvBhX5O4oEseatFEtfL5aYUu+QJVC4I+qhpFSKHT5gZN4d1JDMbAolEm6XT48CR4a4LkdTodGhE/0WxWCxnJ5DxWfWja1/zbT9egIME/0L++8smvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D/ae5x6X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99BFAC4CECF;
+	Wed,  6 Nov 2024 01:40:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730856566;
-	bh=kv4Vaq993VuistPVWc2Sk+7GuVnhfNHl2gptDJKwH7s=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=i/TogcHiR+QdIUCkjblx1VuteiTdMK/WDkHOlJgSjVGzg/ttBbb9HGTeucO9135kk
-	 GCQwhm3Olgo4h/pPjjDhu71P6qnDGIcYJWmtQeqP+lB1xNfszESfvv7bNj5GaZyZv3
-	 NUgqq2rZIrBd4WOUqlj7wJjI3EjbQQJfDarAg3WKvCWRlWzOJoW1c8yvwuN3G27NWe
-	 Hr2YS2CIlgcabZxdWy6rVH7hbQeZp+xMDFcNSjqWoJiPekLcZPEd/K3dTVFk+n6SFW
-	 hf0rXNYFECxt+ZdI7HrCeVDfP7GX8YIB3NrbwQ9SFXEGYcJHkCmsi6Zth/MrLpaq6I
-	 pWSVZ129cO2Nw==
-Date: Tue, 05 Nov 2024 19:29:24 -0600
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=k20201202; t=1730857226;
+	bh=2qZF0UH8un2sU3i+H0aULvDk3LSIb2B4gJQw/wg2RWY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=D/ae5x6XQivZmlQd7HUdaCNYSMauQxnhSTaij4PDtzFJDvcnKuDMp93nQHW5BPr4Q
+	 yj1kDMRhtuY4pZeaMtgqr4r1g7v+oxW14PEMpKO7ZvuYvK0Fv/JEzkv5ZsZYJ4D2rg
+	 QwM0CgC+nFKubQnOt/IwVn29z6TNx+I2Ms3ApCYwMAKIlOSXbsUA5FgoVPW9jDRdwA
+	 11pYEpBupBzvm3lC/7dBvv4bXA7FWZqqOP1PBRrA0B1PpOC6K4uCY6sNT7JKqZb/81
+	 oQvM+wgTn15tXXfAK6pnLf2GH9wF2yrFgvDkqjC7cy/rBbxK1JrZ7fGO9TW4Z9SUgE
+	 tILw97FdTNqcQ==
+Date: Tue, 5 Nov 2024 19:40:24 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Sricharan R <quic_srichara@quicinc.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org,
+	manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V7 4/4] PCI: qcom: Add support for IPQ9574
+Message-ID: <20241106014024.GA1499855@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: andi.shyti@kernel.org, tsbogend@alpha.franken.de, conor+dt@kernel.org, 
- krzk+dt@kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
- linux-mips@vger.kernel.org, lee@kernel.org
-In-Reply-To: <20241106001835.2725522-2-chris.packham@alliedtelesis.co.nz>
-References: <20241106001835.2725522-1-chris.packham@alliedtelesis.co.nz>
- <20241106001835.2725522-2-chris.packham@alliedtelesis.co.nz>
-Message-Id: <173085656399.878305.11912550915250449727.robh@kernel.org>
-Subject: Re: [PATCH v9 1/4] dt-bindings: mfd: Add Realtek RTL9300 switch
- peripherals
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240801054803.3015572-5-quic_srichara@quicinc.com>
 
+On Thu, Aug 01, 2024 at 11:18:03AM +0530, Sricharan R wrote:
+> From: devi priya <quic_devipriy@quicinc.com>
+> 
+> The IPQ9574 platform has four Gen3 PCIe controllers:
+> two single-lane and two dual-lane based on SNPS core 5.70a.
+> 
+> QCOM IP rev is 1.27.0 and Synopsys IP rev is 5.80a.
+> Reuse all the members of 'ops_2_9_0'.
 
-On Wed, 06 Nov 2024 13:18:32 +1300, Chris Packham wrote:
-> Add device tree schema for the Realtek RTL9300 switches. The RTL9300
-> family is made up of the RTL9301, RTL9302B, RTL9302C and RTL9303. These
-> have the same SoC differ in the Ethernet switch/SERDES arrangement.
-> 
-> Currently the only supported features are the syscon-reboot and i2c
-> controllers. The syscon-reboot is needed to be able to reboot the board.
-> The I2C controllers are slightly unusual because they each own an SCL
-> pin (GPIO8 for the first controller, GPIO 17 for the second) but have 8
-> common SDA pins which can be assigned to either controller (but not
-> both).
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Wow, this is confusing.
+
+"Based on SNPS core 5.70a", but "Synopsys IP rev is 5.80a."
+Are those supposed to match?  Or is it 5.70a of one thing but 5.80a of
+a different thing?
+
+And where does ops_2_9_0 come in?  The code comment says:
+
+  /* Qcom IP rev.: 2.9.0  Synopsys IP rev.: 5.00a */
+  static const struct qcom_pcie_ops ops_2_9_0 = {
+
+which doesn't match 1.27.0 or 5.70a or 5.80a.  In fact there's nothing
+in the file that matches 1.*27.*0
+
+Honestly, I don't really care if you have all the versions here in the
+commit log.  But if the versions *are* here, can we make them make
+sense?
+
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 > ---
+>  [V7] Rebased on top of [1] to avoid DBI/ATU mirroring. With that dropped
+>       the need for separate ops.
+>  [1] https://lore.kernel.org/linux-arm-msm/a01404d2-2f4d-4fb8-af9d-3db66d39acf7@quicinc.com/
 > 
-> Notes:
->     Changes in v9:
->     - None
->     Changes in v8:
->     - Add r-by from Krzysztof
->     - At Lee's request I've separated the i2c binding into a separate patch.
->       This one still has a $ref to it so technically the i2c one needs to go
->       first but they'll be coming in via different trees so they may not
->       arrive in that order.
->     Changes in v7:
->     - Set additionalProperties: false
->     - Remove extraneous examples from i2c binding
->     Changes in v6:
->     - Drop wildcard compatible
->     - Add specific compatibles for the 4 known SoC variants
->     - For the i2c part of the binding accept realtek,rtl9301 as a fallback
->       for the other compatibles
->     - The overall switches will eventually differ because these will have
->       different SERDES/port arrangements so they aren't getting the same
->       fallback treatment
->     Changes in v5:
->       I've combined the two series I had in flight so this is the
->       combination of adding the switch syscon, the reboot and i2c. It makes
->       the changelog a bit meaningless so I've dropped the earlier
->       commentary.
+>  drivers/pci/controller/dwc/pcie-qcom.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
->       As requested I've put a more complete example in the main
->       rtl9300-switch.yaml.
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 6976efb8e2f0..e9371f945900 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -1752,6 +1752,7 @@ static const struct of_device_id qcom_pcie_match[] = {
+>  	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &cfg_2_1_0 },
+>  	{ .compatible = "qcom,pcie-ipq8074", .data = &cfg_2_3_3 },
+>  	{ .compatible = "qcom,pcie-ipq8074-gen3", .data = &cfg_2_9_0 },
+> +	{ .compatible = "qcom,pcie-ipq9574", .data = &cfg_2_9_0 },
+>  	{ .compatible = "qcom,pcie-msm8996", .data = &cfg_2_3_2 },
+>  	{ .compatible = "qcom,pcie-qcs404", .data = &cfg_2_4_0 },
+>  	{ .compatible = "qcom,pcie-sa8540p", .data = &cfg_sc8280xp },
+> -- 
+> 2.34.1
 > 
->       I've kept rtl9300-i2c.yaml separate for now but link to it with a $ref
->       from rtl9300-switch.yaml to reduce clutter. The example in
->       rtl9300-i2c.yaml is technically duplicating part of the example from
->       rtl9300-switch.yaml but I feel it's nice to be able to see the example
->       next to where the properties are defined.
-> 
->  .../bindings/mfd/realtek,rtl9301-switch.yaml  | 114 ++++++++++++++++++
->  1 file changed, 114 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: ethernet-switch@1b000000: reboot@c: 'offset' is a required property
-	from schema $id: http://devicetree.org/schemas/mfd/realtek,rtl9301-switch.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: ethernet-switch@1b000000: reboot@c: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/realtek,rtl9301-switch.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: ethernet-switch@1b000000: i2c@36c: False schema does not allow {'compatible': ['realtek,rtl9301-i2c'], 'reg': [[876, 20]], '#address-cells': 1, '#size-cells': 0, 'i2c@0': {'reg': [[0]], '#address-cells': 1, '#size-cells': 0, 'gpio@20': {'compatible': ['nxp,pca9555'], 'gpio-controller': True, '#gpio-cells': 2, 'reg': [[32]]}}, 'i2c@2': {'reg': [[2]], '#address-cells': 1, '#size-cells': 0, 'gpio@20': {'compatible': ['nxp,pca9555'], 'gpio-controller': True, '#gpio-cells': 2, 'reg': [[32]]}}}
-	from schema $id: http://devicetree.org/schemas/mfd/realtek,rtl9301-switch.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: ethernet-switch@1b000000: i2c@388: False schema does not allow {'compatible': ['realtek,rtl9301-i2c'], 'reg': [[904, 20]], '#address-cells': 1, '#size-cells': 0, 'i2c@7': {'reg': [[7]], '#address-cells': 1, '#size-cells': 0, 'gpio@20': {'compatible': ['nxp,pca9555'], 'gpio-controller': True, '#gpio-cells': 2, 'reg': [[32]]}}}
-	from schema $id: http://devicetree.org/schemas/mfd/realtek,rtl9301-switch.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: reboot@c: 'offset' is a required property
-	from schema $id: http://devicetree.org/schemas/power/reset/syscon-reboot.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: reboot@c: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/power/reset/syscon-reboot.yaml#
-Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: /example-0/ethernet-switch@1b000000/i2c@36c: failed to match any schema with compatible: ['realtek,rtl9301-i2c']
-Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.example.dtb: /example-0/ethernet-switch@1b000000/i2c@388: failed to match any schema with compatible: ['realtek,rtl9301-i2c']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241106001835.2725522-2-chris.packham@alliedtelesis.co.nz
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
 
