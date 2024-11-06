@@ -1,225 +1,103 @@
-Return-Path: <devicetree+bounces-119259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50D3C9BDB80
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 02:55:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 871349BDBB6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 03:00:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC7A11F21F33
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 01:55:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD8D1B230C4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 02:00:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AA5E18C01E;
-	Wed,  6 Nov 2024 01:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31D3B18D629;
+	Wed,  6 Nov 2024 02:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iSLnKI71"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QPawd+Fx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ACB5188920;
-	Wed,  6 Nov 2024 01:55:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0677718C329;
+	Wed,  6 Nov 2024 02:00:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730858144; cv=none; b=D5O9R7GjkN0i3HY90/mvg5+1bguFAREML9UrixegC2ooLMKnhGMriI8R5OkPBKd62umPiaWsGd9ygTsCXZM46JBpDUv8rgl+yIkW6sKkUQ3jn8noMyfkTcaQYTBjxnw3y0HlAhLacOhdjvbncsoWEt5TIIsExWBOEH2NZSDPdH4=
+	t=1730858422; cv=none; b=CJl0qi/d3GnEsJYACmvKpB7lxQSEkW3twriM0dIyBFl8tg5N4xMpeaan8LOxoHBYiPK2ne/VL5BSZzXl3OxCWIsJKfgdv3yDnuzn+pHQjdOS8qhyEKqOl8fc0pJatJk3Jqqc06RKpcY2tkqAgfIpDk3lHcveCxpi80nApcf1Imk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730858144; c=relaxed/simple;
-	bh=yom5fVc1TdM0VX7YeivKBEf4JA/nOPIA/UpA6hcSE9I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k9try/RQ9Y4Lb54oxyS5RtxOaofpWi3jR5N1r86vyTUlOjTSDSVCgzYydLMk7YUn/ptbmYjWAsQbxI7f7G9u/CIFvoFr+4SOFUl2+GFvaYF7Ou9m3FkpaIL40yN2MXMa9jX642NpZlMpDsLgfMp4Ru9Dv0pKlyIjfqbmkc102sk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iSLnKI71; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-20cb47387ceso59730695ad.1;
-        Tue, 05 Nov 2024 17:55:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730858141; x=1731462941; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=yom5fVc1TdM0VX7YeivKBEf4JA/nOPIA/UpA6hcSE9I=;
-        b=iSLnKI71nCBaIUMpPV5eQmTVIJis/klJhfnEO48z0784Au5nb5GDahJFDcFATF3m1S
-         1axTFLa3klM9HG61ZhG+cRw0K9a54ZPLoM3ivGGCytKxC5cCdBGKmcFMAekV0Y3CJPdB
-         cHfvhKXNlbJJw3msU2h4rLUNJAjK5AnPbwQhEtLIT5G/xkDYK5MSgEKZaYe//C+DGXT+
-         FXoXoQPbJ/+lgxEVFDv0YwZ5y3eTLn9ff2UJ93Rs91wvlbDDT9J2GfCZbwujhbWkJmiH
-         McJLSWw5/u/DqhTBPkqKzGTpHjS3umxil6lYcXuhdd5d996AU3tSDtZ+53dDua7ny81n
-         FCjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730858141; x=1731462941;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yom5fVc1TdM0VX7YeivKBEf4JA/nOPIA/UpA6hcSE9I=;
-        b=Uw71EPbJtjaerwFMcofxU7hcKWw+ocZFC2oPAuWOlHAa9NMdhwK/EmaI4bWQPLEb12
-         n87Hx0K6Xo75yVe8Tix1c3VfUVyAbmKqn53loU4bcVeU0brykDGUEq67Q72+LZw3ev/6
-         WGyAz7qdo5nh1tDV0UxGWbg/nSFJDFtVuT7p9JR39lBgJ8lHhi7zMlWsslsgShus3dCM
-         AbdGyL+m0fWiv7XitPNPIV0yCj6As1X84qMQSMUA2I6qB44XrKDfUcxTDTW/d+Mm7oZT
-         HKjVQtWe6Y238SrVlmdpSQtD3GLe4dnHQseNyuCqURgLiKN8drLhRSK6hJfIyh+Bqxbc
-         uZ7A==
-X-Forwarded-Encrypted: i=1; AJvYcCUQ7gVl/EiBPKP0dj5nHLWsSVF1KCGkqVK2NU5PdaW6JFwRpgih9yFyhkL0ValDRwmdjRWbGwKX/bpG@vger.kernel.org, AJvYcCV+9Hcs1xxwfZNCTSfYD2+9AIcHZu/lwqSQkt/Qw9h902GqwkBeva+wq3H+3wl7G+O6W4kDZoxWuATmCiU=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGpbxLHzzcrKkccXNjQ1Az6Jnfzhb+ISWoQ7QquaSlAkjcMe7g
-	KANDFgWlEcMEfxXrEyZ2Qx5vpNlNk6Ff4HGUIoSB55TTFz3/ocyH
-X-Google-Smtp-Source: AGHT+IHy1KS3xjCkhbyJy867YDZRNdqS6YyR3EdbsH4CzcMZHpOrs5nIjwDUWitD4tpGoiI+rOnJoA==
-X-Received: by 2002:a17:902:fc4c:b0:202:26d:146c with SMTP id d9443c01a7336-210c68728f3mr519605205ad.5.1730858141348;
-        Tue, 05 Nov 2024 17:55:41 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211057087cfsm85277575ad.87.2024.11.05.17.55.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Nov 2024 17:55:40 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <1107c12b-9d1e-46d8-b356-73077c7a218a@roeck-us.net>
-Date: Tue, 5 Nov 2024 17:55:39 -0800
+	s=arc-20240116; t=1730858422; c=relaxed/simple;
+	bh=iDGn6cF39S+5ch2f8pg8ENjGiBRJzy0HvH23scQjhcQ=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=e8X4E536GbaDYL/6gWMtGoivPleveb0DNwUkbM5SCbTku6rr7Sqh8g6VIFwtN9J7gGqtBrHbA0WfuGKB98eCWucWxFnwCESQXLDAUl4HxNcg1YW12pasLv/jY+N4k/YtvhuepdsK645J4RW/EgHfiP+bKEvnRXuwld4kbC6fYjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QPawd+Fx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97164C4CECF;
+	Wed,  6 Nov 2024 02:00:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730858421;
+	bh=iDGn6cF39S+5ch2f8pg8ENjGiBRJzy0HvH23scQjhcQ=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=QPawd+Fx9U769Oe0hH0VRncvrDRfzDHq5qBMs7pShUOKH+0Xrzmx7OoJrTTJhcUHC
+	 0IcO6mQpKWVUE/z//2UqZH8lE+UtMZ1hjJBN1Pr8lRj+IiNIQ09LKwmGie5eMkYDSJ
+	 81PsQJu7PSsylnThW2p8U557I2VQVL8yKTS6m0lSL8oFBLXwVLgu93t1bOHpPFvPkC
+	 tlaNXJONb9+I5Djpm7cB71PiAlh+EAQu/xrUCbKEvfsY+FXGBzEzxDJc1hCmtTUmKN
+	 VIJZrX09TUDyPoR6T7HA4PQHyQWAgAcNXVPM0wrUYf92G5ZXj5EGyvuCq9pJ3Hxlfp
+	 yNpo92C769Brg==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id AE12A3809A80;
+	Wed,  6 Nov 2024 02:00:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document start from dead
- stop properties
-To: Marek Vasut <marex@denx.de>, linux-hwmon@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org
-References: <20241105135259.101126-1-marex@denx.de>
- <df2eaf57-a4ea-4378-8f24-a843084eb1d6@roeck-us.net>
- <189cd4b5-005b-4311-a5de-2b376eb0b9d8@denx.de>
- <1a8b0024-97db-4c1c-9d04-45057a2ba800@roeck-us.net>
- <0b32eda6-4071-4707-a8c6-447073638707@denx.de>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <0b32eda6-4071-4707-a8c6-447073638707@denx.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v7 0/2] Add the dwmac driver support for T-HEAD
+ TH1520 SoC
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <173085843050.764350.5609116722213276708.git-patchwork-notify@kernel.org>
+Date: Wed, 06 Nov 2024 02:00:30 +0000
+References: <20241103-th1520-gmac-v7-0-ef094a30169c@tenstorrent.com>
+In-Reply-To: <20241103-th1520-gmac-v7-0-ef094a30169c@tenstorrent.com>
+To: Drew Fustini <dfustini@tenstorrent.com>
+Cc: andrew@lunn.ch, davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ alexandre.torgue@foss.st.com, peppe.cavallaro@st.com, joabreu@synopsys.com,
+ mcoquelin.stm32@gmail.com, emil.renner.berthing@canonical.com,
+ jszhang@kernel.org, guoren@kernel.org, wefu@redhat.com,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ andrew+netdev@lunn.ch, drew@pdp7.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, krzysztof.kozlowski@linaro.org
 
-On 11/5/24 17:28, Marek Vasut wrote:
-> On 11/6/24 1:34 AM, Guenter Roeck wrote:
->> On 11/5/24 10:53, Marek Vasut wrote:
->>> On 11/5/24 3:11 PM, Guenter Roeck wrote:
->>>> On 11/5/24 05:52, Marek Vasut wrote:
->>>>> Delta AFC0612DB-F00 fan has to be set to at least 30% PWM duty cycle
->>>>> to spin up from a dead stop, and can be afterward throttled down to
->>>>> lower PWM duty cycle. Introduce support for operating such fans which
->>>>
->>>> Doesn't this imply that a minimum pwm value is needed as well ?
->>>
->>> It depends. For this fan, yes, it does stop at around 8% PWM duty cycle.
->>>
->>>> Super-IO chips such as the NCT67xx series typically have two separate
->>>> registers, one for the pwm start value and one for the minimum pwm value.
->>>
->>> I use plain SoC PWM output to operate the fan. This one needs to be set to higher PWM duty cycle first, to spin up, and can be reduced to lower PWM duty cycle afterward without stopping.
->>>
->>
->> Yes, exactly. That is what many fans require.
->>
->>>>> need to start at higher PWM duty cycle first and can slow down next.
->>>>>
->>>>> Document two new DT properties, "fan-dead-stop-start-percent" and
->>>>> "fan-dead-stop-start-usec". The former describes the minimum percent
->>>>> of fan RPM at which it will surely spin up from dead stop. This value
->>>>> can be found in the fan datasheet and can be converted to PWM duty
->>>>> cycle easily. The "fan-dead-stop-start-usec" describes the minimum
->>>>> time in microseconds for which the fan has to be set to dead stop
->>>>> start RPM for the fan to surely spin up.
->>>>>
->>>>> Signed-off-by: Marek Vasut <marex@denx.de>
->>>>> ---
->>>>> Cc: Conor Dooley <conor+dt@kernel.org>
->>>>> Cc: Guenter Roeck <linux@roeck-us.net>
->>>>> Cc: Jean Delvare <jdelvare@suse.com>
->>>>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->>>>> Cc: Rob Herring <robh@kernel.org>
->>>>> Cc: devicetree@vger.kernel.org
->>>>> Cc: linux-hwmon@vger.kernel.org
->>>>> ---
->>>>>   Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 11 +++++++++++
->>>>>   1 file changed, 11 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/ Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->>>>> index 4e5abf7580cc6..f1042471b5176 100644
->>>>> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->>>>> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->>>>> @@ -31,6 +31,17 @@ properties:
->>>>>         it must be self resetting edge interrupts.
->>>>>       maxItems: 1
->>>>> +  fan-dead-stop-start-percent:
->>>>
->>>> Personally I don't think that "dead-stop" in the property name adds any value.
->>>> On the contrary, I think it leads to confusion. I head to read the description
->>>> to understand.
->>>
->>> The documentation refers to this behavior as a "dead stop" , hence the property name. I can change it to fan-stop-to-start-percent ?
->>
->> I do not understand the need for that much complexity in the property name,
->> and I don't think it makes sense to name a property based on a specific
->> chip documentation. I have seen that before, where different vendors use
->> different names for the same functionality. That doesn't mean that the
->> vendor-determined name has to make it into the property name.
->>
->> As an example, Nuvoton calls the values "Start-Up Value" and "Stop Value".
->> ITE calls the start value "start PWM value" (and as far as I can see doesn't
->> have a separate stop value). I am sure pretty much every vendor uses a
->> different description.
->>
->> I am personally not a friend of long property names. Having said that,
->> I'll let you use whatever DT maintainers accept. They may have a different
->> opinion.
-> Do you have a different suggestion for the property name ? Else I'll just send a V2 .
+Hello:
 
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-fan-start-percent and fan-stop-percent would be good enough for me.
-However, the existing cooling-levels property uses duty cycle values
-from 0 ..255. Using % for the new properties will create an inconsistency.
-It will be up to DT maintainers to decide how the properties should be
-defined.
+On Sun, 03 Nov 2024 08:57:58 -0800 you wrote:
+> This series adds support for dwmac gigabit ethernet in the T-Head TH1520
+> RISC-V SoC used on boards like BeagleV Ahead and the LicheePi 4A.
+> 
+> The gigabit ethernet on these boards does need pinctrl support to mux
+> the necessary pads. The pinctrl-th1520 driver, pinctrl binding, and
+> related dts patches are in linux-next. However, they are not yet in
+> net-next/main.
+> 
+> [...]
 
-Guenter
+Here is the summary with links:
+  - [net-next,v7,1/2] dt-bindings: net: Add T-HEAD dwmac support
+    https://git.kernel.org/netdev/net-next/c/f920ce04c399
+  - [net-next,v7,2/2] net: stmmac: Add glue layer for T-HEAD TH1520 SoC
+    https://git.kernel.org/netdev/net-next/c/33a1a01e3afa
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
