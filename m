@@ -1,177 +1,185 @@
-Return-Path: <devicetree+bounces-119269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0CEB9BDCEB
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 03:34:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 537749BDCEF
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 03:34:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55705289549
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 02:34:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 773401C22078
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 02:34:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9D46190058;
-	Wed,  6 Nov 2024 02:17:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="RUX0XQz/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78BD119006F;
+	Wed,  6 Nov 2024 02:20:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1FE018C903;
-	Wed,  6 Nov 2024 02:17:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDA0A18FC8C;
+	Wed,  6 Nov 2024 02:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730859440; cv=none; b=sD9RFlT+K4PpZ/4dHxraSlj0G2gmJ5uu6uNuXVT3QlR9Nxw5NjxPtNbB8mOcTd7e8J6UE1gpIla+sOOuroDpXaa27qGmH5qDDdqfcoCjLau4bRqm1vjjhOYe2281USfDKheMN0WW2Iu5d4Z9xhw/1DJTdfAdba49REt2IPuXHLg=
+	t=1730859612; cv=none; b=K7vUDXvJTCL/ZLe9ItLXJ8rExd7Et4p4x6GkoRBpFJAVXVu5ip/ibnOybM0ARHV1C/45u8yvNGT63d8pdVMqeZdF8cNAR7q4BoYY5Zr2mtoqhytOYvzmk8d3O0ouoe8J0En3N/ZXyphSIl+PEbwd6cbZEpz4wW/ziciCTomwkYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730859440; c=relaxed/simple;
-	bh=l4VprUuNRrXt6gnWP/PnRmKC/KiuwGtTaYXCRdFlpvk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gVtCz10vbE47frdKFeHquFajqJJ4rGVkSdxX1a8RcapBN4StsJrpdqUFXBwUtTf1bI89siKZFIftj6Wwvq+86WFCJjO8NkuHA1ZtlSPrwR7EZ2/XC/XETujewcAQFXHVVjQfBU6RKNQ144j+Ws/rHs2yuqlFYPvPJSFyCkLGyk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=RUX0XQz/; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id A751688E61;
-	Wed,  6 Nov 2024 03:17:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1730859437;
-	bh=OPQuIhQ8POwz/ZTvemwmq8tcT8FiDUrJlI7LDKJJwco=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RUX0XQz/XVerIZe7MzPaJ2A72iy29rPrcDVBQEVYarPSYzReaadv2dw/8AP8pVo16
-	 0xAIpGKzu6jEVhsShnGKSbX6NS4QPmtPskP8lF0L0eFPUIChfkdieXDoDirShWrBN3
-	 xDxL/Tn53zBZ3H4MChVcW/ZPEy4qntFAIqy++vsFJbFwNGLUbmHmIrATd2RADryt/k
-	 VBLLrqBrAhErqHrwW+j9iTxltHkt/m5PHXwpsw1w0V2r9wEEiskdf/v6SEjdXEIuLw
-	 X9f3J6fpj8pjNBGfNlIRYdUxhVrSfH0PrR0OZki2TzZPvyU0ok8pFMYzhbS1NkqAog
-	 miKPRrzjGj8OQ==
-Message-ID: <f741f1e5-2382-48da-8423-55e5eee25503@denx.de>
-Date: Wed, 6 Nov 2024 03:17:16 +0100
+	s=arc-20240116; t=1730859612; c=relaxed/simple;
+	bh=hciusCmQ46W/T2AcAGCqFbobcRKG3w7tjodOgj0wnp4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PShdT2At9FJhRKWhOxuE8JOHAQYfV6q/PKgck64VGZOA9y6/iHvgwoZ7KzKR23VPfmrkGrmVGCPHJvUmPSAe/rfq3YBfdzu9boldf87HYVt17PaTDUsnNTxRb/aVCg62BUxmLUnenPo0lUTUBeDGVGmvXzo/ubOXn565qRJJpt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2fb49510250so62513251fa.0;
+        Tue, 05 Nov 2024 18:20:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730859608; x=1731464408;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w8a8+IO/gHzs/8HUWMdym7QT6xBD7UjDO0WtfEtRhaE=;
+        b=N+Wez+5eJtW/41vGQw89hU8JJ6KsD6qAB42JMqTHfOvx1QeGiYQ9jBw4TfIklkYvKu
+         Nu9xbm1+GfTiS8rfHZlX9UQbn07ri6n0Oc42c0PYAfFF6DopovUN+KnHlluNBlprSjHL
+         AEHeUQ/mxT0EA4gq6VWuUmnRl20bmLArEdqFmu844vipyPJk+1hG0R9nGVyfbSL2DhxK
+         iIWCpQ2jMxOQrZBgPsEygBEikFNt3QbmwtGSNxeOClBufS4vgoepHiVhmTxQ36bVwjo8
+         mKLpebTxucn+YPuwnfKdhK3UwWHUwy3uZc5H33BHNVaEO6skirWkdtfVkjdSOEH57Yxa
+         5i9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUPsDx7Q5OAcX/WGrpCJsxrg6HJnBW0Hzrq+nKBkBNmKV2ysfhwjjNsb4zK4DlXQNkxZtJaA9O/8FP4@vger.kernel.org, AJvYcCVQnU+5cwr49wi4kuP5NewIRQKnkNMAe1OrplPoVwXchs7ox8ZIms7QpDIKS07n/PzDaJlEKPmG@vger.kernel.org, AJvYcCX1RBcvORRplmThEuBqiBO7WxRZhNE3njw7IK1sK+4uDW8hcLn1LS7Gc8E6i0wPaIvo3aIJqiLEsEHc3C1g@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9RWwjy8K6oHLC4XyXuiR7DHOYdc3eyijnw42SibSYz3E9Vd2n
+	gOjgTlY+G0Mx/9QlVzbZMdPGy1wntypr1P/178kTl5Tzb4NPm98e7EBoFn0Q
+X-Google-Smtp-Source: AGHT+IGcxaTmlUfIZV35MmsO37rFwAN/Bn8nB8A94AAzIYXbrX4UepxVRdxRMdWBuBBSTIhoPoxHVw==
+X-Received: by 2002:a2e:851:0:b0:2fa:c59d:1af3 with SMTP id 38308e7fff4ca-2fdec8534d3mr66808601fa.20.1730859607379;
+        Tue, 05 Nov 2024 18:20:07 -0800 (PST)
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com. [209.85.208.177])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fdef8a66b8sm23061321fa.78.2024.11.05.18.20.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Nov 2024 18:20:05 -0800 (PST)
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2fb59652cb9so55701921fa.3;
+        Tue, 05 Nov 2024 18:20:05 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU/Ji5Ykd3J9zQ+S2WTEY7oKmEAMujaHj4fRbqw+UzUtHfnQ9MscJYWjev6xoqCfFx+seekJFueKenB@vger.kernel.org, AJvYcCVV8en6LrGv2/cXLdJb8n/rCv8+Mq6KL7DIwk7pprWku/V6AGbnEzDqVSsLGxNAE1r/DGX/Mkj7FhDxnI2v@vger.kernel.org, AJvYcCXDkPOnWM7qnB4za1iaBYvn6xhWyAspuTA8jY9avT/SmnB/odeAEXjqRZLM9e8ClxhP8uo5KBqr@vger.kernel.org
+X-Received: by 2002:a05:651c:556:b0:2f6:649e:bf5c with SMTP id
+ 38308e7fff4ca-2fdec726444mr95931291fa.17.1730859605489; Tue, 05 Nov 2024
+ 18:20:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document start from dead
- stop properties
-To: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org
-References: <20241105135259.101126-1-marex@denx.de>
- <df2eaf57-a4ea-4378-8f24-a843084eb1d6@roeck-us.net>
- <189cd4b5-005b-4311-a5de-2b376eb0b9d8@denx.de>
- <1a8b0024-97db-4c1c-9d04-45057a2ba800@roeck-us.net>
- <0b32eda6-4071-4707-a8c6-447073638707@denx.de>
- <1107c12b-9d1e-46d8-b356-73077c7a218a@roeck-us.net>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <1107c12b-9d1e-46d8-b356-73077c7a218a@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+References: <129f0c754d071cca1db5d207d9d4a7bd9831dff7.1726773282.git.dsimic@manjaro.org>
+ <bef0570137358c6c4a55f59e7a4977c4@manjaro.org> <CAGb2v66aody60h=Bpk49pxogq93FekmO48uThPET2RKxvx=OGw@mail.gmail.com>
+ <cfc090cb87a8b926116d1a436694d17d@manjaro.org>
+In-Reply-To: <cfc090cb87a8b926116d1a436694d17d@manjaro.org>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Wed, 6 Nov 2024 10:19:51 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67fLPf-yKObuds3LC77gT_W_OmgSK5y2KotRC-Zn9aL7w@mail.gmail.com>
+Message-ID: <CAGb2v67fLPf-yKObuds3LC77gT_W_OmgSK5y2KotRC-Zn9aL7w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: allwinner: pinephone: Add mount matrix to accelerometer
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: linux-sunxi@lists.linux.dev, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
+	Ondrej Jirman <megi@xff.cz>, Andrey Skvortsov <andrej.skvortzov@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/6/24 2:55 AM, Guenter Roeck wrote:
-> On 11/5/24 17:28, Marek Vasut wrote:
->> On 11/6/24 1:34 AM, Guenter Roeck wrote:
->>> On 11/5/24 10:53, Marek Vasut wrote:
->>>> On 11/5/24 3:11 PM, Guenter Roeck wrote:
->>>>> On 11/5/24 05:52, Marek Vasut wrote:
->>>>>> Delta AFC0612DB-F00 fan has to be set to at least 30% PWM duty cycle
->>>>>> to spin up from a dead stop, and can be afterward throttled down to
->>>>>> lower PWM duty cycle. Introduce support for operating such fans which
->>>>>
->>>>> Doesn't this imply that a minimum pwm value is needed as well ?
->>>>
->>>> It depends. For this fan, yes, it does stop at around 8% PWM duty 
->>>> cycle.
->>>>
->>>>> Super-IO chips such as the NCT67xx series typically have two separate
->>>>> registers, one for the pwm start value and one for the minimum pwm 
->>>>> value.
->>>>
->>>> I use plain SoC PWM output to operate the fan. This one needs to be 
->>>> set to higher PWM duty cycle first, to spin up, and can be reduced 
->>>> to lower PWM duty cycle afterward without stopping.
->>>>
->>>
->>> Yes, exactly. That is what many fans require.
->>>
->>>>>> need to start at higher PWM duty cycle first and can slow down next.
->>>>>>
->>>>>> Document two new DT properties, "fan-dead-stop-start-percent" and
->>>>>> "fan-dead-stop-start-usec". The former describes the minimum percent
->>>>>> of fan RPM at which it will surely spin up from dead stop. This value
->>>>>> can be found in the fan datasheet and can be converted to PWM duty
->>>>>> cycle easily. The "fan-dead-stop-start-usec" describes the minimum
->>>>>> time in microseconds for which the fan has to be set to dead stop
->>>>>> start RPM for the fan to surely spin up.
->>>>>>
->>>>>> Signed-off-by: Marek Vasut <marex@denx.de>
->>>>>> ---
->>>>>> Cc: Conor Dooley <conor+dt@kernel.org>
->>>>>> Cc: Guenter Roeck <linux@roeck-us.net>
->>>>>> Cc: Jean Delvare <jdelvare@suse.com>
->>>>>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->>>>>> Cc: Rob Herring <robh@kernel.org>
->>>>>> Cc: devicetree@vger.kernel.org
->>>>>> Cc: linux-hwmon@vger.kernel.org
->>>>>> ---
->>>>>>   Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 11 ++++++ 
->>>>>> +++++
->>>>>>   1 file changed, 11 insertions(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml 
->>>>>> b/ Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->>>>>> index 4e5abf7580cc6..f1042471b5176 100644
->>>>>> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->>>>>> @@ -31,6 +31,17 @@ properties:
->>>>>>         it must be self resetting edge interrupts.
->>>>>>       maxItems: 1
->>>>>> +  fan-dead-stop-start-percent:
->>>>>
->>>>> Personally I don't think that "dead-stop" in the property name adds 
->>>>> any value.
->>>>> On the contrary, I think it leads to confusion. I head to read the 
->>>>> description
->>>>> to understand.
->>>>
->>>> The documentation refers to this behavior as a "dead stop" , hence 
->>>> the property name. I can change it to fan-stop-to-start-percent ?
->>>
->>> I do not understand the need for that much complexity in the property 
->>> name,
->>> and I don't think it makes sense to name a property based on a specific
->>> chip documentation. I have seen that before, where different vendors use
->>> different names for the same functionality. That doesn't mean that the
->>> vendor-determined name has to make it into the property name.
->>>
->>> As an example, Nuvoton calls the values "Start-Up Value" and "Stop 
->>> Value".
->>> ITE calls the start value "start PWM value" (and as far as I can see 
->>> doesn't
->>> have a separate stop value). I am sure pretty much every vendor uses a
->>> different description.
->>>
->>> I am personally not a friend of long property names. Having said that,
->>> I'll let you use whatever DT maintainers accept. They may have a 
->>> different
->>> opinion.
->> Do you have a different suggestion for the property name ? Else I'll 
->> just send a V2 .
-> 
-> 
-> fan-start-percent and fan-stop-percent would be good enough for me.
-> However, the existing cooling-levels property uses duty cycle values
-> from 0 ..255. Using % for the new properties will create an inconsistency.
-> It will be up to DT maintainers to decide how the properties should be
-> defined.
-All right, well ... I sent V2 with what I have in tree now, and let's 
-see what happens.
+On Sat, Oct 26, 2024 at 12:11=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> =
+wrote:
+>
+> Hello Chen-Yu,
+>
+> On 2024-10-25 16:47, Chen-Yu Tsai wrote:
+> > On Wed, Oct 23, 2024 at 5:11=E2=80=AFAM Dragan Simic <dsimic@manjaro.or=
+g>
+> > wrote:
+> >> On 2024-09-19 21:15, Dragan Simic wrote:
+> >> > The way InvenSense MPU-6050 accelerometer is mounted on the user-fac=
+ing
+> >> > side
+> >> > of the Pine64 PinePhone mainboard, which makes it rotated 90 degrees
+> >> > counter-
+> >> > clockwise, [1] requires the accelerometer's x- and y-axis to be
+> >> > swapped, and
+> >> > the direction of the accelerometer's y-axis to be inverted.
+> >> >
+> >> > Rectify this by adding a mount-matrix to the accelerometer definitio=
+n
+> >> > in the Pine64 PinePhone dtsi file.
+> >> >
+> >> > [1] https://files.pine64.org/doc/PinePhone/PinePhone%20mainboard%20b=
+ottom%20placement%20v1.1%2020191031.pdf
+> >> >
+> >> > Fixes: 91f480d40942 ("arm64: dts: allwinner: Add initial support for
+> >> > Pine64 PinePhone")
+> >> > Cc: stable@vger.kernel.org
+> >> > Helped-by: Ondrej Jirman <megi@xff.cz>
+> >> > Helped-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+> >> > Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+> >>
+> >> Just a brief reminder about this patch...  Please, let me know if some
+> >> further work is needed for it to become accepted.
+> >
+> > There's no "Helped-by" tag, and checkpatch would complain. The closest
+> > would be either Suggested-by or Co-developed-by, but with the latter
+> > you would also need their Signed-off-by.
+>
+> Thanks for your response.  You're totally right about checkpatch.pl
+> not supporting Helped-by tags, but including neither Suggested-by
+> nor Co-developed-by would fit very well in this case, because the
+> associated level of credit falls right somewhere between what's
+> indicated by these two tags.
+>
+> > I can change it to Suggested-by if that's OK with you.
+>
+> I've created and submitted a patch [*] that adds support for Helped-by
+> tags to checkpatch.pl.  Let's see what kind of feedback that patch
+> will receive, and then we'll be able to move forward accordingly.
+
+There doesn't seem to be any activity. Maybe also try adding it to the
+
+    Documentation/process/submitting-patches.rst
+
+document?
+
+
+ChenYu
+
+
+> [*]
+> https://lore.kernel.org/linux-kernel/0e1ef28710e3e49222c966f07958a9879fa4=
+e903.1729871544.git.dsimic@manjaro.org/T/#u
+>
+> >> > ---
+> >> >
+> >> > Notes:
+> >> >     See also the linux-sunxi thread [2] that has led to this patch,
+> >> > which
+> >> >     provides a rather detailed analysis with additional details and
+> >> > pictures.
+> >> >     This patch effectively replaces the patch submitted in that thre=
+ad.
+> >> >
+> >> >     [2]
+> >> > https://lore.kernel.org/linux-sunxi/20240916204521.2033218-1-andrej.=
+skvortzov@gmail.com/T/#u
+> >> >
+> >> >  arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 3 +++
+> >> >  1 file changed, 3 insertions(+)
+> >> >
+> >> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> >> > b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> >> > index 6eab61a12cd8..b844759f52c0 100644
+> >> > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> >> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> >> > @@ -212,6 +212,9 @@ accelerometer@68 {
+> >> >               interrupts =3D <7 5 IRQ_TYPE_EDGE_RISING>; /* PH5 */
+> >> >               vdd-supply =3D <&reg_dldo1>;
+> >> >               vddio-supply =3D <&reg_dldo1>;
+> >> > +             mount-matrix =3D "0", "1", "0",
+> >> > +                            "-1", "0", "0",
+> >> > +                            "0", "0", "1";
+> >> >       };
+> >> >  };
+> >>
 
