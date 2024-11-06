@@ -1,152 +1,152 @@
-Return-Path: <devicetree+bounces-119549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F64D9BF165
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:17:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAA669BF168
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:18:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F62228379A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 15:17:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 690FF282FE2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 15:18:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B8B20408B;
-	Wed,  6 Nov 2024 15:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE11A202F9A;
+	Wed,  6 Nov 2024 15:17:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FYK5+U5i"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="pL+UeLyI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB6802038C3
-	for <devicetree@vger.kernel.org>; Wed,  6 Nov 2024 15:17:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 005BE202F74
+	for <devicetree@vger.kernel.org>; Wed,  6 Nov 2024 15:17:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730906241; cv=none; b=b+gBYmFLkdinbCfcBqU4ASjoO1/uSEbS/uRlQSYp5qEnrfmd1G7kkhxmOyJSdXOm9gHF/R/2+9dWsUIouSHxLLjL5BRteQnN0Cc1uejKSInhTsHso3tVoT6EIAyACIb0ENQ0akMNAdnHHVS3yAEbxd7jLPlcWJ342yg1Njmz4bc=
+	t=1730906251; cv=none; b=enlEIA90BlaRc4vLeLFe04ssK6nApeXBdksCUwiCw76bxjXttj0cHV/zipiYsxpNchajpGmXKF1f+swe5hS8+iWd8LcyeejA1zZWl/Y+byp3jqamFf8dskySyMtYZGsLYFKgnbb8Et5COOwEaLd6KHfI4IqF1Hd5d4xTiu++RR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730906241; c=relaxed/simple;
-	bh=ic8cVOX8Eb6eg3pSMbWKLDgRehM3KQGs7TIkjwW/x88=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qyR6wR7zMgsh0dQfQDK750lGo86eIiZfeI+rXYCqFXwFSJ3uS6/d6qdfhjKMj3vrQUifIl1LVQMsEYi/N2PmYWrugMLUNFABJzKAlxatTGMEBG0iqtDXQdQL4E3XUWG6grNuPVcYTOW7z6Z1xnsN9zJhLOHB2md7OBKaLMIml5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FYK5+U5i; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-539f72c913aso11014516e87.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Nov 2024 07:17:19 -0800 (PST)
+	s=arc-20240116; t=1730906251; c=relaxed/simple;
+	bh=uKlUi9Sg140f0IdPzaKYU2GXQ6NZXSS0fvyz8qo/uPc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gucGBJTlRqguOleIAQRI0Uiff2G4ypL+mDnKWEpQHVwMUemo8dsV7FferAXObRJv6l6jq7EWlvQSm852GSfvm8MjsU8u8lI+ptDw3OSgvzSo3ByOd2fXtD7lZ+s0gDY8ilZ5/23KDM/+sK+hmYDMkA7nr9KCoLdj8CP4XXXkjvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=pL+UeLyI; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2fb5a9c7420so65822651fa.3
+        for <devicetree@vger.kernel.org>; Wed, 06 Nov 2024 07:17:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730906238; x=1731511038; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=fIEbwD5dLW8FMUuswU9FQws7jt6ecUWe6Cmn0F+XQJU=;
-        b=FYK5+U5ipyfre4PXeV2yxoNp2To3yjgZKWPV3QPQjzQ0k4XUajA55xQDDoF8Im7mLq
-         ZxUGW6avfrmOWrB/d/5VsJOgcAG9QFzS9hwuXDovtT4a25mBw93RRCzw1zPY2oWNK49q
-         vu1DH3VocdLByW2VveC6ec+7NPcbwlli+mq0bfamWwSxkZtRf244U8InbDHXQx4fHEo2
-         4BftKv/wicxhSUOANDlixvrPC+pGSx8iT9gzVVrqD4GD4SWDixpY2xCIZbYnP+vrxefn
-         xsHBgDAy7VUtuZ815urDWJH/2pI6is/P/hGM9mh+tgwhE+OMjxN5lSEFWqe3PhgYeTuC
-         G8tw==
+        d=tuxon.dev; s=google; t=1730906248; x=1731511048; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4MsTq/WJqlO5g9jEiiWLZqf/MRDx8MkbY/RBJULejSE=;
+        b=pL+UeLyIg4maDpaK21NrO4Hya8+56wocLDvNRoWSGJ6fKpRJiyvmJPwxmW4Tj4IjHQ
+         TfBQb7PtNcule4MZ+h4wmJfcgs2rWol6miZLACzsMMV/yBc87uRBM+KU0OKkEVq8vkkK
+         Cp/oOIpjJB4se6BvZPVdigqEMdvS7e/uOksh71Vuy0LAmwog45XRJLqgZWv+Z5NSEAiq
+         vvE4b6R3jBnev4tGq3uJmuxEmRuxgw6ZQROY7eioFnwg82ynV+5myCoyZfkN4mBtuAPg
+         94NEPkQ0Bz8NotKdcl8HNOuu6FSAUtuA2HhXXf98jIcE9Plq6U5LzloZLGqn2TpufMRZ
+         lZhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730906238; x=1731511038;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fIEbwD5dLW8FMUuswU9FQws7jt6ecUWe6Cmn0F+XQJU=;
-        b=AjWaAgWHACYMrbqKJ0TDdQUaOiUmMPgdW0QQRvhmvm33R/ynUIquxsOXdu0Wj+QZV8
-         S1qA88bk9BX2tOisxbEk7QjgCrLGhiUp0nHL8IlqLzsh6bFeAP+AZW4PRVyUUOcC7Mus
-         trrjTF/PyHAL64YG43jfTrzs1n4PgQ8bevtvgVJG8ZvpWXnyvuttXu5oQbaqUCMoyOlK
-         9LAvJ38+8QsfYAUnnlTSMtZrYOS6G8Jwr9zhb/cVy7tW15WjqIglPbWldp1ENi56oPW0
-         XvemT3Jf3t8POqhojce3mDziz4fYBiu+Xws0Rulau2Neyp9iZiYBYsldx0KAk9JErQIE
-         o0dQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXoI/WkFa7LjGcuHaIW8uebPrECNIDa9IsZkLYeydjMX+VT0uzZ/CUK9/Iq6X25HU8uTu+UbTmFDPiS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7kUl26njv4yf+LIa6KJ+l7J/HJGCDUusdmCsqyBW4is7uUb05
-	jBNcbsW2jLQrOF5XLyE91tJlMU0BpzhlfzRh13/T4pFrZhfIutHKLSO8qC1Tmrw=
-X-Google-Smtp-Source: AGHT+IG7dwaa2yN3o8y7YIOO0cvRLcrkbQ+DzFVy+RFiOkuyFesN3/6MQCXs3ZxexqpX8BK5K41+LQ==
-X-Received: by 2002:a05:6512:3b1e:b0:539:f37f:bed9 with SMTP id 2adb3069b0e04-53b348c38d4mr21239539e87.8.1730906237946;
-        Wed, 06 Nov 2024 07:17:17 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53c7bdcc305sm2520122e87.227.2024.11.06.07.17.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Nov 2024 07:17:17 -0800 (PST)
-Date: Wed, 6 Nov 2024 17:17:15 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jonathan Marek <jonathan@marek.ca>, regressions@lists.linux.dev
-Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: x1e80100: enable OTG on USB-C
- controllers
-Message-ID: <5mfq3xf2qkqyrtaybtfutx73rny737rqdd6exdbhljcebg7brs@fxaz6zhsy4pd>
-References: <20241011231624.30628-1-jonathan@marek.ca>
- <hw2pdof4ajadjsjrb44f2q4cz4yh5qcqz5d3l7gjt2koycqs3k@xx5xvd26uyef>
+        d=1e100.net; s=20230601; t=1730906248; x=1731511048;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4MsTq/WJqlO5g9jEiiWLZqf/MRDx8MkbY/RBJULejSE=;
+        b=Ra4eNcf2arkb8ps/jZFTRpLqmOmlgV246VQUK4Qud5oh8FsLIzVnXSJuhhu08sxKyD
+         sjlJ2ChOBJcUDJNcOH2FjVysPLWIHZU0h140MFQcZdARmCRsJ33Z4R0FULWVPR56/27p
+         9PU6BKGeHRhZ6oBsGK43B03CJBL0X4pfoDnEgaPB1KxExd1W/8KuvcFfYx3gr2c/7lKD
+         FjUZX/E5PxukOWR66HWFr2hngYuI00yY+gVnoq2QvdDH3ELbe95HlXPFanyc8+2ZJ/w2
+         uDWL1aQPkE30fscSBC4VE+sZTUgSh4GZpAf0E3wTpRJvOteUCszLQ4Fx67S7ySCT90b5
+         FsZA==
+X-Forwarded-Encrypted: i=1; AJvYcCUp8ET5v6QgbVNnSns/bAsutfLxaUL+FddAN5ZvA8BT4FpjIMa4SndDvG6qzKZzVc0H1EOGCS0cq8xA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxSpcSjBJBD3yypZc7IuKVkjVL8jeMB6/NIzJnf0viqpl2/1X0
+	MnIaLY0urQK7tHufhFeHG5pASuM+KEkW7pKaoFaRJL3URKSk4DkX6Kts0wvjiD4=
+X-Google-Smtp-Source: AGHT+IGnJcBdTdgjK/B0z/HelObGqjcm5AB5nzH8x/DxvLNK2CcgfKasW11Fsyv2wiAlGSAOaH7rtw==
+X-Received: by 2002:a2e:be0d:0:b0:2fb:8774:440c with SMTP id 38308e7fff4ca-2fedb7a2a10mr97785331fa.10.1730906248023;
+        Wed, 06 Nov 2024 07:17:28 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.28])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cee6a9a41bsm2855950a12.14.2024.11.06.07.17.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Nov 2024 07:17:27 -0800 (PST)
+Message-ID: <4e233ebe-b0e1-4b37-9063-bdbeb5980b13@tuxon.dev>
+Date: Wed, 6 Nov 2024 17:17:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <hw2pdof4ajadjsjrb44f2q4cz4yh5qcqz5d3l7gjt2koycqs3k@xx5xvd26uyef>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/31] ASoC: sh: rz-ssi: Use a proper bitmask for clear
+ bits
+Content-Language: en-US
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com,
+ broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org,
+ support.opensource@diasemi.com, perex@perex.cz, tiwai@suse.com,
+ p.zabel@pengutronix.de, Adam.Thomson.Opensource@diasemi.com,
+ linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20241106081826.1211088-1-claudiu.beznea.uj@bp.renesas.com>
+ <20241106081826.1211088-13-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdWxmoUQSSnAVdqhpTQJYvUCJTL0EZbdKmLLhFWi8UCGkg@mail.gmail.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CAMuHMdWxmoUQSSnAVdqhpTQJYvUCJTL0EZbdKmLLhFWi8UCGkg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Nov 06, 2024 at 02:37:43PM +0200, Dmitry Baryshkov wrote:
-> On Fri, Oct 11, 2024 at 07:16:21PM -0400, Jonathan Marek wrote:
-> > These 3 controllers support OTG and the driver requires the usb-role-switch
-> > property to enable OTG. Add the property to enable OTG by default.
-> > 
-> > Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> > ---
-> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> 
-> For some reason commit f042bc234c2e ("arm64: dts: qcom: x1e80100: enable
-> OTG on USB-C controllers") seems to break UCSI on X1E80100 CRD:
-> 
-> [   34.479352] ucsi_glink.pmic_glink_ucsi pmic_glink.ucsi.0: PPM init failed, stop trying
+Hi, Geert,
 
-#regzbot ^introduced: f042bc234c2e
+On 06.11.2024 16:56, Geert Uytterhoeven wrote:
+> Hi Claudiu,
+> 
+> On Wed, Nov 6, 2024 at 9:19 AM Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> While it is still correct to pass zero as the bit-clear mask it may be
+>> confusing. For this, use a proper bitmask for clear bits.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> Thanks for your patch!
+> 
+>> --- a/sound/soc/renesas/rz-ssi.c
+>> +++ b/sound/soc/renesas/rz-ssi.c
+>> @@ -331,7 +331,7 @@ static void rz_ssi_set_idle(struct rz_ssi_priv *ssi)
+>>                 dev_info(ssi->dev, "timeout waiting for SSI idle\n");
+>>
+>>         /* Hold FIFOs in reset */
+>> -       rz_ssi_reg_mask_setl(ssi, SSIFCR, 0, SSIFCR_FIFO_RST);
+>> +       rz_ssi_reg_mask_setl(ssi, SSIFCR, SSIFCR_FIFO_RST, SSIFCR_FIFO_RST);
+> 
+> But you're not clearing SSIFCR_FIFO_RST, you're setting it?
+
+The bits should be set to reset the FIFOs.
+
+By "Use a proper bitmask for clear bits" phrase in the patch title or
+description I was referring at the 3rd argument of the
+rz_ssi_reg_mask_setl() function, which has the following prototype:
+
+static void rz_ssi_reg_mask_setl(struct rz_ssi_priv *priv, uint reg,
+
+                                 u32 bclr, u32 bset)
+
+
+Would you prefer to rephrase it in the next version?
+
+Thank you,
+Claudiu Beznea
 
 > 
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > index 7778e17fb2610..fb16047d803c9 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > @@ -4199,6 +4199,8 @@ usb_1_ss2_dwc3: usb@a000000 {
-> >  
-> >  				dma-coherent;
-> >  
-> > +				usb-role-switch;
-> > +
-> >  				ports {
-> >  					#address-cells = <1>;
-> >  					#size-cells = <0>;
-> > @@ -4452,6 +4454,8 @@ usb_1_ss0_dwc3: usb@a600000 {
-> >  
-> >  				dma-coherent;
-> >  
-> > +				usb-role-switch;
-> > +
-> >  				ports {
-> >  					#address-cells = <1>;
-> >  					#size-cells = <0>;
-> > @@ -4550,6 +4554,8 @@ usb_1_ss1_dwc3: usb@a800000 {
-> >  
-> >  				dma-coherent;
-> >  
-> > +				usb-role-switch;
-> > +
-> >  				ports {
-> >  					#address-cells = <1>;
-> >  					#size-cells = <0>;
-> > -- 
-> > 2.45.1
-> > 
+>>  }
+>>
+>>  static int rz_ssi_start(struct rz_ssi_priv *ssi, struct rz_ssi_stream *strm)
 > 
-> -- 
-> With best wishes
-> Dmitry
-
--- 
-With best wishes
-Dmitry
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
 
