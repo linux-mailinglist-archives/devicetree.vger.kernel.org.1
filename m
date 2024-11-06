@@ -1,227 +1,134 @@
-Return-Path: <devicetree+bounces-119681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BB999BF8C1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 22:54:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0FDA9BF91D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 23:19:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2C341F22988
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 21:54:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5947B1F22EA6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 22:19:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D21CD1D86DC;
-	Wed,  6 Nov 2024 21:54:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D6C520D4E1;
+	Wed,  6 Nov 2024 22:18:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Qiq7frHc"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="C7zBWjkK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0EDB18FDA5;
-	Wed,  6 Nov 2024 21:54:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B535613C67C;
+	Wed,  6 Nov 2024 22:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730930083; cv=none; b=nkRCWOCBLC7zVi1qTNoqqvzdgHjevpc4wBSO3BMAn5yWXXIJSh0A/1PKEr7j7ptL4CHZwQMyI/j+UZLtQBISm03mVkQUBvhsOA6k85y/ecknEyl74geRTqZhv5i/FR5RPaLsiMTBvyhRFhXsbXy9DdEV+2WmsRahJh4TclRPaak=
+	t=1730931533; cv=none; b=LwX3b7qdT7sxbYKC+ka9V7yShlo//R4m3Rnt02c+jwGtXsiJXIoLyweD0qLCY/BO+gYGKvxr7PX/zw9NjKHrXROPVcUb0n/IBCh1FfJsOVoN12U0Bre2ShiOIKDTVJE7qESYXNjGFliofG8Gc6seWq1Nl+lD3/8Nd8VVf8I7a2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730930083; c=relaxed/simple;
-	bh=vENICEnWjVMqE3gmHs1z3oU013ifba25gIzbAHFqT2w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ruHVktvRX1uUEEfIWHOPyD1NxcaNhYDEFoyytmuth4rsn2FL0QjdCSsRcy3+USCZxEG5YAYHSr1WXuwRKLlhAVoII92sXT8XGk5C6cFD0WhLlTQxGdc2ZMsV7hNUaXcF2hTDYQ1eAo81jDooKvpxYLwtiteaNrjys68NLN6zFcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Qiq7frHc; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D014A670;
-	Wed,  6 Nov 2024 22:54:29 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1730930070;
-	bh=vENICEnWjVMqE3gmHs1z3oU013ifba25gIzbAHFqT2w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Qiq7frHc6wqs7Y6WaQAkle61hlwFJHd2vqhQWPVcCOPNDWyD9mq1rA8yke0EH1A7d
-	 1Buid7tZRwDWoaWzetI8D2gbDL3L+FMvSdUH76PViMZpPWTI8dQunCYVEvsTSzi/Do
-	 7dwcHh/iW88t8/KUJVHrMAmfgybuQGhoMKIUvgj8=
-Date: Wed, 6 Nov 2024 23:54:32 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com,
-	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com,
-	robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
-	sakari.ailus@iki.fi
-Subject: Re: [PATCH v8 05/17] dt-bindings: media: Add bindings for ARM
- mali-c55
-Message-ID: <20241106215432.GG21454@pendragon.ideasonboard.com>
-References: <20241106100534.768400-1-dan.scally@ideasonboard.com>
- <20241106100534.768400-6-dan.scally@ideasonboard.com>
+	s=arc-20240116; t=1730931533; c=relaxed/simple;
+	bh=pSEqy3Dd13ARUfobgBIfnTgR9bWaIjSE0Fk3rV2AeD0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=hD6GCLGhDli3NCjkkbHRLN833jYwK9oBUYr/MzJUw2Xu0+9Mm7F0EiDDN3HoPtKwnETA+40G7ssK4vULLn3Qk8w4E/zW5bGsBZNpCGoyFinA848U7is1imGBjOulxAdl5crIcTXnoQ/+ET5sZqk9+8E8Ig9M2reX+kIKmS1TIlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=C7zBWjkK; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A6AGSmr003817;
+	Wed, 6 Nov 2024 22:18:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Y6umwoYj9OreXKl0xzSlbeae+yKTlKkVh5/dhD285sY=; b=C7zBWjkKMfiX6Tju
+	b11ykT+vFfcKGfkY1jkQ6k+eWsEzydPEhGQvxcw3bxUnZHY9Lod7tvZ30vjJBsNa
+	NMBoxzrQMc0nes4nF+3nkTi6ez7ikI45MjNrHkjy4NAAlw5fwk9Rg5VFZUvnPYTt
+	zClpkiG7mDNGKWrP1fF2r8OxPRFJYz0M4Mx6nY9/padiEZy/H3wsyR9Ol1jLxXDZ
+	QCy7jCvQZpXMpvjuE12sqRtZ3NO3u48Kb7wLqY/yW/BEwkjoY0uOqLCWlhmdAwTC
+	bS2HSez2qaiDX5rPLxLzjuesN7UuCsO9JQwjzaUQeuViS1VuuQXsXFDQFHArHeUp
+	V/3k/w==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42qvg3u8w4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 06 Nov 2024 22:18:41 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A6MIea0022910
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 6 Nov 2024 22:18:40 GMT
+Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 6 Nov 2024
+ 14:18:39 -0800
+Message-ID: <e77acdfe-43b9-a28b-11e4-2ffb481c4078@quicinc.com>
+Date: Wed, 6 Nov 2024 15:18:38 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241106100534.768400-6-dan.scally@ideasonboard.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH V4 1/5] dt-bindings: firmware: Document bindings for QCOM
+ SCMI Generic Extension
+Content-Language: en-US
+To: Sibi Sankar <quic_sibis@quicinc.com>, <sudeep.holla@arm.com>,
+        <cristian.marussi@arm.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
+        <conor+dt@kernel.org>, <arm-scmi@vger.kernel.org>
+References: <20241007061023.1978380-1-quic_sibis@quicinc.com>
+ <20241007061023.1978380-2-quic_sibis@quicinc.com>
+From: Jeffrey Hugo <quic_jhugo@quicinc.com>
+In-Reply-To: <20241007061023.1978380-2-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: OFrehKGGJi8JVLmM8D5HdD9jI8bRk7oR
+X-Proofpoint-GUID: OFrehKGGJi8JVLmM8D5HdD9jI8bRk7oR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ lowpriorityscore=0 priorityscore=1501 clxscore=1011 mlxscore=0 spamscore=0
+ suspectscore=0 bulkscore=0 phishscore=0 adultscore=0 impostorscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411060171
 
-Hi Dan,
-
-Thank you for the patch.
-
-On Wed, Nov 06, 2024 at 10:05:22AM +0000, Daniel Scally wrote:
-> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
-> 
-> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
-> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> ---
-> Changes in v8:
-> 
-> 	- Added the video clock back in. Now that we have actual hardware it's
-> 	  clear that it's necessary.
-> 	- Added reset lines 
-> 	- Dropped R-bs
-> 
-> Changes in v7:
-> 
-> 	- None
-> 
-> Changes in v6:
-> 
-> 	- None
-> 
-> Changes in v5:
-> 
-> 	- None
-> 
-> Changes in v4:
-> 
-> 	- Switched to port instead of ports
-> 
-> Changes in v3:
-> 
-> 	- Dropped the video clock as suggested by Laurent. I didn't retain it
-> 	for the purposes of the refcount since this driver will call .s_stream()
-> 	for the sensor driver which will refcount the clock anyway.
-> 	- Clarified that the port is a parallel input port rather (Sakari)
-> 
-> Changes in v2:
-> 
-> 	- Added clocks information
-> 	- Fixed the warnings raised by Rob
-> 
->  .../bindings/media/arm,mali-c55.yaml          | 82 +++++++++++++++++++
->  1 file changed, 82 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/arm,mali-c55.yaml b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+On 10/7/2024 12:10 AM, Sibi Sankar wrote:
+> diff --git a/include/dt-bindings/firmware/qcom,scmi-memlat.h b/include/dt-bindings/firmware/qcom,scmi-memlat.h
 > new file mode 100644
-> index 000000000000..efc88fd2c447
+> index 000000000000..7ae8d8d5623b
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> @@ -0,0 +1,82 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM Mali-C55 Image Signal Processor
-> +
-> +maintainers:
-> +  - Daniel Scally <dan.scally@ideasonboard.com>
-> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,mali-c55
+> +++ b/include/dt-bindings/firmware/qcom,scmi-memlat.h
+> @@ -0,0 +1,22 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +#ifndef __DT_BINDINGS_QCOM_SCMI_VENDOR_H
+> +#define __DT_BINDINGS_QCOM_SCMI_VENDOR
 
-I have a feeling we may need to add an SoC-specific compatible string to
-support platform-specific integration quirks. Let's see if we will have
-a use for that in the RZ/V2H. It can also be addressed later if needed.
+The #define does not match the #ifndef (missing "_H")
 
 > +
-> +  reg:
-> +    maxItems: 1
+> +/* Memory IDs */
+> +#define QCOM_MEM_TYPE_DDR	0x0
+> +#define QCOM_MEM_TYPE_LLCC	0x1
+> +#define QCOM_MEM_TYPE_DDR_QOS	0x2
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +/*
+> + * QCOM_MEM_TYPE_DDR_QOS supports the following states.
+> + *
+> + * %QCOM_DDR_LEVEL_AUTO:	DDR operates with LPM enabled
+> + * %QCOM_DDR_LEVEL_PERF:	DDR operates with LPM disabled
+> + */
+> +#define QCOM_DDR_LEVEL_AUTO	0x0
+> +#define QCOM_DDR_LEVEL_PERF	0x1
 > +
-> +  clocks:
-> +    items:
-> +      - description: ISP Video Clock
-> +      - description: ISP AXI clock
-> +      - description: ISP AHB-lite clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vclk
-> +      - const: aclk
-> +      - const: hclk
-> +
-> +  resets:
-> +    items:
-> +      - description: vclk domain reset
-> +      - description: aclk domain reset
-> +      - description: hclk domain reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: vresetn
-> +      - const: aresetn
-> +      - const: hresetn
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description: Input parallel video bus
+> +#endif /* __DT_BINDINGS_QCOM_SCMI_VENDOR_H */
 
-Doesn't the ISP have two input ports, for two exposures ? Depending on
-the SoC integration, could they be connected to two different devices,
-with the two connections having to be modelled in DT ? Looking at the
-changelog you've switched from 'ports' to 'port' in v4, but I think we
-should either have two ports right away, or be ready for a second port
-later if SoC integrations requires that. That could be a good enough
-reason to use 'ports' right away, even with a single port.
-
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/graph.yaml#/properties/endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    mali_c55: isp@400000 {
-> +      compatible = "arm,mali-c55";
-> +      reg = <0x400000 0x200000>;
-> +      clocks = <&clk 0>, <&clk 1>, <&clk 2>;
-> +      clock-names = "vclk", "aclk", "hclk";
-> +      resets = <&resets 0>, <&resets 1>, <&resets 2>;
-> +      reset-names = "vresetn", "aresetn", "hresetn";
-> +      interrupts = <0>;
-> +
-> +      port {
-> +        isp_in: endpoint {
-> +            remote-endpoint = <&csi2_rx_out>;
-> +        };
-> +      };
-> +    };
-> +...
-
--- 
-Regards,
-
-Laurent Pinchart
 
