@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-119611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC679BF53A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 19:29:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAD629BF543
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 19:30:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 256B11F2300B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 18:29:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C771B1C234C8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 18:30:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3280D208200;
-	Wed,  6 Nov 2024 18:28:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9637D208963;
+	Wed,  6 Nov 2024 18:30:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k6AvlHU8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ncga7DDB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 007D8201104;
-	Wed,  6 Nov 2024 18:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C9EC20896A;
+	Wed,  6 Nov 2024 18:30:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730917738; cv=none; b=GQwTVdmF32MUQrzDn2HcNiJlW2x36w9TopQwITS8B+EEuRO/rdEZ5g6ch6c7Cy+Vkof/z0Z5eNyA1edeMQ4xTi3lzxCoTywuch8ihQh4FD48Rlq6ftpyNlvusyCyqSrLoDBFAVmHPgVbhB6Tn8vL1s+9EhA3HThYdZLEpGy0Z38=
+	t=1730917847; cv=none; b=ipZ9vXTyEKQsChVL5I5No32t5YVZv2tu/phVCsrSikuF1S67CbvgMTsg+lCq2tG1HzvyXq+13gUI4zyjpv0D1BFR5aPFkaEYBifWMDUhj5JGhaWm6KPv+kfjfYMHyRYuD1ed1qycy93F0CVTkjWc7jQhOA0N5cPDook/4nFdZUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730917738; c=relaxed/simple;
-	bh=rnISvQGTFbwR9aak+S3ATcpy7QlMOi9c5mamzVrM4jk=;
+	s=arc-20240116; t=1730917847; c=relaxed/simple;
+	bh=lwnwFqyElhS59Xfq7JeJ9Np9U8KffT4TejVqEqCOZp0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DWtwsjivxl/7AVRqJlktDvM8pyxY3VePCbtJ7VrX1SBCHyL2KJCr90HG+sJlNzFUKLG0xjPiN+v19Payoo1wD3R1wD9qujf3EdRfRK373qIcU6tUxHnmws8X4X9tG8bgTfEnQSBUHu9dt07wAZ1J2LLc24dLFsdpY9UFYddZkQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k6AvlHU8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31605C4CEC6;
-	Wed,  6 Nov 2024 18:28:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SQ3wOJWJsod3o1yJujnBCK+7qsTArbo2HJ1X1lAWofH+CoVO1oeIkIwFwmf7lF+QmczI0ofxkcx+T9Mrg50HOy3xNM1bX3lwas3gys++9PYsV1W4njGuMuWrDNZlRIqtDv+dg0TLQ5xv2uOjGfOFba4ea2BBug/bDdVkB6F+EqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ncga7DDB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF61C4CEC6;
+	Wed,  6 Nov 2024 18:30:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730917737;
-	bh=rnISvQGTFbwR9aak+S3ATcpy7QlMOi9c5mamzVrM4jk=;
+	s=k20201202; t=1730917847;
+	bh=lwnwFqyElhS59Xfq7JeJ9Np9U8KffT4TejVqEqCOZp0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k6AvlHU8Jr/uvOmEKqWezuwCz3WFyXNWnlCUFv5qC1UE6+mJ9eJG81Tom3ryiMhXa
-	 PDP//ewUgQSg7cQem7x+DdjGyBBZgtmEh26ML74eL8F/hInN2PSdLVNYWTb1xXNNsR
-	 FwKpwU/cSYcxiw90GVHn+sC658Eeie3iu4fdOhKjnHXrzjU8DLlUkJvh2/0A1LjiNR
-	 HB5CqKsE8oxQuxnI4W8nnkXcjsjO/FS7AQaCAzGT4QBgiRFERaJsp0i85upjREt/Oh
-	 frox1EK+O2AP8KnGqR7S2zSFNUARu2I98ILWugMqLb4pl4X0g1d0L4kxbTl76VClHm
-	 gyN/GTXYbFiTQ==
-Date: Wed, 6 Nov 2024 18:28:51 +0000
+	b=Ncga7DDBTtU5oQZ5uy2fj4VeVQineuf963jbAweI5cQL8TstTDlhAj0dNYtVpHgT9
+	 NjvMOiaYR8U0g+WtexhB47eFW1KxSqwXHprIWbQ+IThqovpgxFLCJq3bvaHXW0s0TH
+	 Nvi9g1U4hkfr7kVzo3/kIQYTaNqorVnhIn0+gzPIM1HaX5opU2d0i2AyDxEp0vYcWJ
+	 b3y/ndaOYgyNOiXTTHVfl/XquCmbuX9O7NV/LIAy0mb6t0sKa/Iq4Mg+Ux9O313/v/
+	 MfLvBNHGtUsRCKaSgoyYbXtpA2w2fu/DIgkl+bfeEDipcHanKFXw7VCZ2tgCJ589bg
+	 uNfuvfK34/DkQ==
+Date: Wed, 6 Nov 2024 18:30:41 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Matt Coster <Matt.Coster@imgtec.com>
 Cc: Frank Binns <Frank.Binns@imgtec.com>, David Airlie <airlied@gmail.com>,
@@ -59,13 +59,12 @@ Cc: Frank Binns <Frank.Binns@imgtec.com>, David Airlie <airlied@gmail.com>,
 	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
 	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
 	Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH 03/21] dt-bindings: gpu: img: Power domain details
-Message-ID: <20241106-embassy-busload-2093b80d012a@spud>
+Subject: Re: [PATCH 04/21] dt-bindings: gpu: img: Allow dma-coherent
+Message-ID: <20241106-dried-spoils-f6ddd8020f40@spud>
 References: <20241105-sets-bxs-4-64-patch-v1-v1-0-4ed30e865892@imgtec.com>
- <20241105-sets-bxs-4-64-patch-v1-v1-3-4ed30e865892@imgtec.com>
- <20241105-disarm-baggie-e2563299a24f@spud>
- <20241105-endearing-huddling-30728a002321@spud>
- <ff4e96e4-ebc2-4c50-9715-82ba3d7b8612@imgtec.com>
+ <20241105-sets-bxs-4-64-patch-v1-v1-4-4ed30e865892@imgtec.com>
+ <20241105-linseed-steadfast-98cd8abe898c@spud>
+ <5e26957f-dc79-42ef-a8a1-597fb386ae51@imgtec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,104 +72,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XVGm5v5rYcHdZP+b"
+	protocol="application/pgp-signature"; boundary="f01tRNt2X5Z6+tQq"
 Content-Disposition: inline
-In-Reply-To: <ff4e96e4-ebc2-4c50-9715-82ba3d7b8612@imgtec.com>
+In-Reply-To: <5e26957f-dc79-42ef-a8a1-597fb386ae51@imgtec.com>
 
 
---XVGm5v5rYcHdZP+b
+--f01tRNt2X5Z6+tQq
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 06, 2024 at 10:18:01AM +0000, Matt Coster wrote:
-> On 05/11/2024 18:13, Conor Dooley wrote:
-> > On Tue, Nov 05, 2024 at 06:05:54PM +0000, Conor Dooley wrote:
-> >> On Tue, Nov 05, 2024 at 03:58:09PM +0000, Matt Coster wrote:
-> >>> The single existing GPU (AXE-1-16M) only requires a single power doma=
-in.
-> >>> Subsequent patches will add support for BXS-4-64 MC1, which has two p=
-ower
-> >>> domains. Add infrastructure now to allow for this.
-> >>>
-> >>> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-> >>> ---
-> >>>  .../devicetree/bindings/gpu/img,powervr-rogue.yaml | 29 ++++++++++++=
-+++++++++-
-> >>>  1 file changed, 28 insertions(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.=
-yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> >>> index 6924831d3e9dd9b2b052ca8f9d7228ff25526532..55f422be1bc5b7564e3e8=
-1f24c4b93857f3e12fe 100644
-> >>> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> >>> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> >>> @@ -49,7 +49,16 @@ properties:
-> >>>      maxItems: 1
-> >>> =20
-> >>>    power-domains:
-> >>> -    maxItems: 1
-> >>> +    minItems: 1
-> >>> +    maxItems: 2
-> >>> +
-> >>> +  power-domain-names:
-> >>> +    oneOf:
-> >>> +      - items:
-> >>> +          - const: a
-> >>> +      - items:
-> >>> +          - const: a
-> >>> +          - const: b
+On Wed, Nov 06, 2024 at 10:18:06AM +0000, Matt Coster wrote:
+> On 05/11/2024 18:06, Conor Dooley wrote:
+> > On Tue, Nov 05, 2024 at 03:58:10PM +0000, Matt Coster wrote:
+> >> This attribute will be required for the BXS-4-64 MC1 and will be enabl=
+ed in
+> >> the DTS for the TI k3-j721s2 in a subsequent patch; add it now so
+> >> dtbs_check doesn't complain later.
 > >=20
-> > Additionally, a & b? Are those actually the names for the power domains?
+> > Sounds like the property should be made required for that integration.
 >=20
-> Sadly yes, Rogue has power domains that are literally just A, B, etc. I
-> wouldn't believe me either; the attached image is taken directly from
-> the documentation for BXS-4-64.
-
-heh, nice... Also - if you have the oneOf stuff here for the same reason
-as the locks, the same logic with min/maxItems applies here.
-
+> This is something I went back and forth on. Where is the line drawn
+> between things that should be enforced in bindings and things that only
+> ever need to be specified once, so should just be left to the dt itself
+> to be the source of truth?
 >=20
-> >>> =20
-> >>>  required:
-> >>>    - compatible
-> >>> @@ -57,10 +66,27 @@ required:
-> >>>    - clocks
-> >>>    - clock-names
-> >>>    - interrupts
-> >>> +  - power-domains
-> >>> +  - power-domain-names
-> >>
-> >> A new required property is an ABI break. Please explain why this is
-> >> acceptable in your commit message.
->=20
-> Strictly it's only necessary for multi-domain GPUs, or perhaps in
-> instances where the SoC power controller already enforces the
-> dependencies between power domains. In reality, I think it was simply an
-> oversight not to enfore this requirement in the first place. We have
-> very, very few cores that require <2 power domains so names are always
-> required if domains are enumerated in dt.
->=20
-> Would you prefer we drop the requirement for "power-domains" and gate
-> the requirement for "power-domain-names" behind >2 domains, or just
-> explain the change properly and make the ABI break now while only one
-> core is supported?
+> Having said that, I realise TI could spin a new SoC with a new dt but
+> use the same compatible string for the GPU;
 
-I dunno, depends really on whether or not it is possible to have power
-domain "a" and domain "c" in a rogue gpu. If "a" and "b" is all it will
-ever be, the order is fixed by the binding and you can do
-genpd_dev_pm_attach_by_id() instead of genpd_dev_pm_attach_by_name().
+No they can't. New SoC, new compatible.
 
---XVGm5v5rYcHdZP+b
+> the "single" source of truth
+> then wouldn't be so single anymore. I guess by making this property
+> required for this compatible string, we're saying any use of it must
+> behave in exactly the same way, right?
+
+--f01tRNt2X5Z6+tQq
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyu1YwAKCRB4tDGHoIJi
-0rU1AP9SIaKB4ki5Bfa4HQ/kdGBer+AJ//0v2m1Gst9PRFBsbQEApyGAsUh+3/nX
-giX0gYSSUx43R/EwLhcy4CoJrg7evQI=
-=tGw0
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyu10QAKCRB4tDGHoIJi
+0oE5AP4yKMe2zZuHfZWRLLe1EVB1RY5SngwUhkXzFSPhIY8wLgEAlaS4WL2LzDDS
+8YfEDzUHezrqSxoOdDYmEg7VZOPVXwQ=
+=AxQP
 -----END PGP SIGNATURE-----
 
---XVGm5v5rYcHdZP+b--
+--f01tRNt2X5Z6+tQq--
 
