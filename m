@@ -1,126 +1,110 @@
-Return-Path: <devicetree+bounces-119631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E47BE9BF613
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 20:07:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD2259BF7E6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 21:20:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BB32B2157E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 19:07:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C449C1C213E2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 20:20:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49CED204948;
-	Wed,  6 Nov 2024 19:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5348820C304;
+	Wed,  6 Nov 2024 20:19:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Hxp2xQm4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F46C20607C;
-	Wed,  6 Nov 2024 19:07:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EEDD209F47;
+	Wed,  6 Nov 2024 20:19:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730920022; cv=none; b=f5zu21tp48gh8KmOp389p7RGNXCr+lzboVEUXb1uE1K0H+DvhhizOuSIVFvUWnf/dY7CRbltmUYjRZ1F+3nKli5y/5L59PHFKqA12unXhQ7uoih+Zipe/rlQrax9l0r4kexnYNr/wwNCr7x956OHnwci7SY/0+qUZN+TpL/6QNw=
+	t=1730924376; cv=none; b=eHy5ZaGt/d0kPmpK4qRQOxnSvPMLnYyvCBpgdBTeKRmr6LhXfDttdGMO9O/BNM3/P2JDWOkhssryQ0HV7Ezm70ka3YnqSehhjPv6uLn1GL2rPTUu1gUzfvqdmhQErLvkozvU6Wr7LU7+GtizRE0Bi3Yf5XrhLV1D947jez9fGh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730920022; c=relaxed/simple;
-	bh=SOvFmyhUwT3CpaRLxO/rqdt+udzR2qrH+lXIuEhlosk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Jbi1lHrOXAaGfCgftJpJm0blcvF9B3FLmnVxaHihMQGMAN1JwdjOFr62I53DjDAF5DrNFelodoD4ZTggN2KxZfN01ABPS8rEVHfiC/fhG3uS2LHBN8SJ7FUlZCLdjfWQYzz1OBaYAkaDSqojPIJZF3eLQTHFkQAzSL5Amq75pnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5ebc9bda8c8so78828eaf.0;
-        Wed, 06 Nov 2024 11:07:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730920018; x=1731524818;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1ZfJuo7pugYHJJaS8IJNytNUoBp8GBDpjZKB6B7LHdk=;
-        b=nZE/KSC51WmpvS1VpsHwhb4b/RhLW0tc1M1oNWRC8SvZS1wT4KolhG44lFG/R0FANM
-         t5o+21LCMxvqSxDtfuPeWfwxZtyH2lZo2ykiyqLvOSdRIZqnsSnqfxt2X9Z48LQhuRSX
-         mopr2CiRXbYqBC4FJr6mdETsTZItI0wOXVjRGDeUJtxbD8lLxrykABH3pJPqq8p4Ruqc
-         HqPhpHG0Zhq06driSP9ij+BEMIR2obtrBwhMFSLyD9tyrVcRIDL97TAWPc4vxbx/FUCf
-         c3Svc1HpK1KwXBcTTpkzXXHfCpX6T0Hf2vAHo3nm92dy1UbnW1lky/wVaqkVXV0B8hI8
-         ajEA==
-X-Forwarded-Encrypted: i=1; AJvYcCUZ+Bw8H4OdbyFT8kyPFrzqwdIVNjY/MamXm3pGdRAQqikqqUOzSclWNHpCYD/o2WIKVQTqNWOwEAkCB7ibn5WfFfo=@vger.kernel.org, AJvYcCWHRrh5SffVSjh2E7oPwGCX2HvkcdPzestH4vphtLK1VwsO6RySalx5fDV+1RRG8p16bvSVPLyO@vger.kernel.org, AJvYcCXnOTO7jmtooda4KnV1NT2svI1xT1Y49/p66L/ITe1jBfS4bJWDbEVgXPLveM3HA6N8tUFe/Y572yuc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3/J1LKeS3B4PAfvC4heR16UE7Faut0+8C7LfutSGlLJFnmU8y
-	QSjJXbMBp0icP8Nj3kqCvQO3hOkzemScD1XKC24LFknEVzxTLtXIHZkeLDWm
-X-Google-Smtp-Source: AGHT+IHOEKCdklXPOl9FK7PNCQOwBwNPkJRFUa4nk8dyhp2q68r95bIX0/1hMezbxb68roOqu09ZvA==
-X-Received: by 2002:a05:6820:54c:b0:5eb:6a67:6255 with SMTP id 006d021491bc7-5ede6317636mr14450108eaf.1.1730920017834;
-        Wed, 06 Nov 2024 11:06:57 -0800 (PST)
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com. [209.85.167.179])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ec704e4af4sm2766469eaf.16.2024.11.06.11.06.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Nov 2024 11:06:55 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3e6075cba82so143020b6e.0;
-        Wed, 06 Nov 2024 11:06:55 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVMsgfsaaHQS+dTd+GZsPhSQwW81VFHMAMCMXDk/bfC8+zIA762c1hVOI9B40QpyVbvW1Utq6Y8NkMr@vger.kernel.org, AJvYcCWtKW3L0Qd+Q9Q9akWIIpNX4mfKqwpoLgb+jubjJOVWlvzNxztHboqhtS8cmD9gb3/uo9JqITB9@vger.kernel.org, AJvYcCWwrzaxrWC+UNO1xyH3Y6ZOzuOKB2tNPG04vwR599UWx/MkRJxj+Y+fW//2Z8Ff6V93QO53HgSyzuLS5GBTdofJRhs=@vger.kernel.org
-X-Received: by 2002:a05:6808:130a:b0:3e3:a99a:433f with SMTP id
- 5614622812f47-3e758c5a52bmr17620319b6e.13.1730920015121; Wed, 06 Nov 2024
- 11:06:55 -0800 (PST)
+	s=arc-20240116; t=1730924376; c=relaxed/simple;
+	bh=MJSFz27Ji55PHJ1n4fI09xN6UGtcbpYFyh32JQWDFq0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GZbrDqilljnuWQk3PPX9Uxp7ZiR2yJMV8iwLEk8SBSiGU5llZRmx/aXo0lATKl4zJ3F/mnbGdt3Q671QEu3SE55x8i6gg7srdLj869EJApVera38eMCIwATWOm2R2lM3mGNrSW0k85Sz2cbT/20gjFtyGRFO7iZYX2qA5/YA7f8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Hxp2xQm4; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id C2EF288DF1;
+	Wed,  6 Nov 2024 21:19:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1730924372;
+	bh=9N5vcEnIW/8VZ3VrzuxZ0+BS39XylvXZAjYCA4yjhPY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Hxp2xQm4PJD0Ypy2rLoS4v4kFlvUQKxQfXgAxhrrkAYAja6WkdbrU+Wy6Vg+Gk1W2
+	 GekRRf0Ipab80pH4/rQZu13tpGr1KcurSOPdb1d7GX1kMz3/lfNWnInTWa6gz6Sqvl
+	 9MaluF0QcD08Ck/0UwSkfxJ5fUi+PGmqCu8fozdDeZx+4n06JEGO0fXkS0B1EcSLDr
+	 Fm00P3e600fLN/hunUmQXQgyyeCmg3tFgMEnON0F+vke4dEiRcWltCLIG8ykjUgh5l
+	 MAhvWp5vCQRHQjgbO4L2SUasAPzU655SBALGE7ST1KiLoAEKI3pQSRE63G14Evuugz
+	 msEQKZL4j0iJg==
+Message-ID: <592f2327-c642-42bb-b01b-c601c6ece18a@denx.de>
+Date: Wed, 6 Nov 2024 19:58:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241106184935.294513-1-biju.das.jz@bp.renesas.com> <20241106184935.294513-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20241106184935.294513-3-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 6 Nov 2024 20:06:43 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWwf4iqUsOA+XajoAcN081GG95muA3m_ZxRp-BemSmajQ@mail.gmail.com>
-Message-ID: <CAMuHMdWwf4iqUsOA+XajoAcN081GG95muA3m_ZxRp-BemSmajQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: display: adi,adv7533: Drop single
- lane support
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] hwmon: (pwm-fan) Introduce start from stopped
+ state handling
+To: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org
+References: <20241106021559.175105-1-marex@denx.de>
+ <20241106021559.175105-2-marex@denx.de>
+ <eb635646-17fa-4380-bc9e-b872af227e21@roeck-us.net>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <eb635646-17fa-4380-bc9e-b872af227e21@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi Biju,
+On 11/6/24 5:26 AM, Guenter Roeck wrote:
 
-On Wed, Nov 6, 2024 at 7:49=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.com=
-> wrote:
-> As per [1], ADV7535/7533 support only 2-, 3-, or 4-lane. Drop
-> unsupported 1-lane from bindings.
->
-> [1]
-> https://www.analog.com/media/en/technical-documentation/data-sheets/ADV75=
-35.pdf
+[...]
 
-The above is for ADV7535. Fortunately
-https://www.analog.com/media/en/technical-documentation/data-sheets/ADV7533=
-.pdf
-agrees ;-)
-
-> Fixes: 1e4d58cd7f88 ("drm/bridge: adv7533: Create a MIPI DSI device")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-
-With the description updated:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+>> @@ -480,6 +497,7 @@ static int pwm_fan_probe(struct platform_device 
+>> *pdev)
+>>       struct device *hwmon;
+>>       int ret;
+>>       const struct hwmon_channel_info **channels;
+>> +    u32 pwm_min_from_stopped = 0;
+>>       u32 *fan_channel_config;
+>>       int channel_count = 1;    /* We always have a PWM channel. */
+>>       int i;
+>> @@ -620,6 +638,19 @@ static int pwm_fan_probe(struct platform_device 
+>> *pdev)
+>>           channels[1] = &ctx->fan_channel;
+>>       }
+>> +    ret = of_property_read_u32(dev->of_node, "fan-stop-to-start- 
+>> percent",
+>> +                   &pwm_min_from_stopped);
+>> +    if (!ret && pwm_min_from_stopped) {
+>> +        ctx->pwm_duty_cycle_from_stopped =
+>> +            DIV_ROUND_UP(pwm_min_from_stopped *
+>> +                     (ctx->pwm_state.period - 1),
+>> +                     100);
+> 
+> Since "period" is u64, this results in the "ERROR: modpost: 
+> "__aeabi_uldivmod"
+> [drivers/hwmon/pwm-fan.ko] undefined!" error as reported by 0-day. Or at 
+> least
+> I think that is the problem. I'd suggest to try building the driver on a 
+> 32-bit
+> system to be sure.
+Ah, right, fixed in V3. Thanks !
 
