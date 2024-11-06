@@ -1,455 +1,154 @@
-Return-Path: <devicetree+bounces-119467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 717B69BE558
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 12:15:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 486939BE572
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 12:24:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74E99B24422
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 11:15:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBBEF1F24BBC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 11:24:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E44EE1DE89E;
-	Wed,  6 Nov 2024 11:14:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 491311DD55F;
+	Wed,  6 Nov 2024 11:24:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="VOPJh4ZU"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="L2/RcPKX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4325.protonmail.ch (mail-4325.protonmail.ch [185.70.43.25])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A333E1DE89A;
-	Wed,  6 Nov 2024 11:14:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ADB71D434E;
+	Wed,  6 Nov 2024 11:24:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730891686; cv=none; b=J5VIj3RziwcbzRMRTVprTNfayD1vBv7uU++m8rxcZtOCjyridDFgCnv+ehPfin7nh96aVCxuEh/8Xciu+rt4GtAByiqtqOGIcB46+KJI2yUgo2NiTCpl4x70FkWtAO0L5ykN19rdBVRMsUORy4xgWKNEXi/ZQQLQxdRYJ04ENoE=
+	t=1730892289; cv=none; b=NImWOJXoLFIArKE55QjYziexZGq91oh9cDMJPMrHkNrfYcIuRqkFQf2TVTKVWtOTJ3KbWxyLPhSnedrnuq6l/svQ+YZ8ZbRKZGLBWG71lp4p8IVLjCLJMwSfTpCQMcR7TPGXvwTVFv+8gOouw0hvuGZ9LJYlgvwNy7hQs5jgp4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730891686; c=relaxed/simple;
-	bh=03pXt+HbCk3nApBhK6JMotbiaZ0oM+N5e5rfP3p/mRk=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=R+u5EH62JLHck76xbPBGkr4Egq4X9kt4tHldHSzx+JiU5SFSjCCQQyNEEbht3zbyzznKjTRhsixWoMEld0/v+MtZ1z+hnWNrhBABFgmqzF628ZREq2pmWvAdWi642OKA2CoX3OQKuLqxWXmLTCy92TZs7drW1/9B/4TyOZ8JffU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=VOPJh4ZU; arc=none smtp.client-ip=185.70.43.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1730891681; x=1731150881;
-	bh=qM3SFd960LUQ6qJ9SIEr3BThy8+THmQ1ZjQTavl+/+Y=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
-	b=VOPJh4ZUDC3lfmyz9SRbVX2kET4FLzs8fcJMvGuVJE5cGirkQdufazFm/bCphbKwX
-	 UgFIETVo8sMfahj3dirEb+KhXsuz5oVH3i/zfIrtIo8HlsW1m+etN/fkQdzZd2VDm4
-	 5T+VSkOlUX88JJFEYsQrDS3w0SsLIs93UmAzmYvgHUCBeiqScDq912fZea2WOXfyeA
-	 nHtvPiapaCujzRqZsnNNDqPvVHx9K//15T+P/Qwe+n3IGuGliXtlTVtyRMZLRFNJTJ
-	 iUhqDCGvdDodgmUx5qXcxgfqeoT9p2h6SySZnDGkrocLkLOK3T1INaYBapIaaG5+Jg
-	 c2X39oVYCAjTg==
-Date: Wed, 06 Nov 2024 11:14:37 +0000
-To: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>, Sam Shih <sam.shih@mediatek.com>, Lukas Bulwahn <lukas.bulwahn@redhat.com>, Daniel Golle <daniel@makrotopia.org>
-From: Yassine Oudjana <y.oudjana@protonmail.com>
-Cc: Yassine Oudjana <y.oudjana@protonmail.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 2/2] clk: mediatek: Add drivers for MT6735 syscon clock and reset controllers
-Message-ID: <20241106111402.200940-3-y.oudjana@protonmail.com>
-In-Reply-To: <20241106111402.200940-1-y.oudjana@protonmail.com>
-References: <20241106111402.200940-1-y.oudjana@protonmail.com>
-Feedback-ID: 6882736:user:proton
-X-Pm-Message-ID: 1eb11f123cf4723be67fb6c20ef154d39bc46bd0
+	s=arc-20240116; t=1730892289; c=relaxed/simple;
+	bh=RTAqQBFM4eL/55l9MZ6dHjOtX8cN0Yp8Bv3+++6PFRk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LMz4eQgU9iJ2qUHdg5uw0t2tnDNvC5xrpj1ta8vj5cb22jTCgQY+fVsp5D/CkbOXalSfII6ddTE02qkZJ+NW2TcPxqZx8OlHSxZ3ZgBJufex9FKDea7wCIPHphM0x9LQG2yKSkzWWnxnryZ4GK0/caDN1mtBnbNAAEgJkCvQ8Vg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=L2/RcPKX; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=vis9DrxowZ/AktTU/z9vKtuDIMJQDhrIDdxt5nA9NwY=; b=L2/RcPKXHIPU7IIHUAjSMoHx/t
+	8HwvGQ4D+Nx8SxCH+ld24GX/I1F/AGJa2YN4UCFEzlmJGCv++/nfFb08IIaFlmVOo6P+WahmEAgdX
+	PKfAHuLOoHEBE4AL2RZv3nCcBGB0F8oIhz7M/B3474NeBCIzHwG2BGGuHnOR4pvmMkpNd+IkNIXAa
+	+c08jdnycrbGBoB3aq3Z3ZgHyxaux14UQ7flR3AIWzNhtSNoBMRT89eKjSAbzMY3NWilBGd9tk4TD
+	AsN45eQSfr4wBAeKg4K/OZWeoG0QbyVWnwW1qBKDiWSNIHZpQEeMFAaNEgq1qNREZyhL1meX+AIHn
+	+V6T2c3Q==;
+Received: from i53875b28.versanet.de ([83.135.91.40] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1t8e9S-0006fE-Av; Wed, 06 Nov 2024 12:24:42 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: linux-rockchip@lists.infradead.org,
+ Quentin Schulz <quentin.schulz@cherry.de>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, alchark@gmail.com
+Subject:
+ Re: [PATCH v2] arm64: dts: rockchip: Add OPP voltage ranges to RK3399 OP1 SoC
+ dtsi
+Date: Wed, 06 Nov 2024 12:24:41 +0100
+Message-ID: <3515804.QJadu78ljV@diego>
+In-Reply-To: <77bc2898bbbd2633d6713b4935bd5ee3@manjaro.org>
+References:
+ <dbee35c002bda99e44f8533623d94f202a60da95.1730881777.git.dsimic@manjaro.org>
+ <3252308.5fSG56mABF@diego> <77bc2898bbbd2633d6713b4935bd5ee3@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Add drivers for IMGSYS, MFGCFG, VDECSYS and VENCSYS clocks and resets
-on MT6735.
+Am Mittwoch, 6. November 2024, 11:45:06 CET schrieb Dragan Simic:
+> Hello Heiko,
+>=20
+> On 2024-11-06 10:41, Heiko St=FCbner wrote:
+> > Am Mittwoch, 6. November 2024, 10:32:06 CET schrieb Quentin Schulz:
+> >> On 11/6/24 9:33 AM, Dragan Simic wrote:
+> >> > Add support for voltage ranges to the CPU, GPU and DMC OPPs defined =
+in the
+> >> > SoC dtsi for Rockchip OP1, as a variant of the Rockchip RK3399.  Thi=
+s may be
+> >> > useful if there are any OP1-based boards whose associated voltage re=
+gulators
+> >> > are unable to deliver the exact voltages; otherwise, it causes no fu=
+nctional
+> >> > changes to the resulting OPP voltages at runtime.
+> >> >
+> >> > These changes cannot cause stability issues or any kind of damage, b=
+ecause
+> >> > it's perfectly safe to use the highest voltage from an OPP group for=
+ each OPP
+> >> > in the same group.  The only possible negative effect of using highe=
+r voltages
+> >> > is wasted energy in form of some additionally generated heat.
+> >> >
+> >> > Reported-by: Quentin Schulz <quentin.schulz@cherry.de>
+> >>=20
+> >> Well, I merely highlighted that the voltage was different on OP1
+> >> compared to RK3399 for the 600MHz OPP :)
+> >>=20
+> >> So... If there's ONE SoC I'm pretty sure is working as expected it's=20
+> >> the
+> >> OP1 fitted on the Gru Chromebooks with the ChromiumOS kernel fork
+> >> (though yes, I believe all Gru CB are EoL since August 2023). In the=20
+> >> 6.1
+> >> kernel fork, there's also no range:
+> >> https://chromium.googlesource.com/chromiumos/third_party/kernel/+/refs=
+/heads/chromeos-6.1/arch/arm64/boot/dts/rockchip/rk3399-op1-opp.dtsi
+> >=20
+> > yeah, this somehow goes quite a bit into the "stuff that doesn't need=20
+> > to
+> > change" area. On the one hand it does make "some" sense to unify things
+> > if we're using ranges everywhere else.
+>=20
+> I agree that it might be unneeded, but there's no possible harm, and
+> unifying the things may be seen as beneficial.
+>=20
+> > On the other hand, as Quentin noted below, all existing OP1 devices=20
+> > seem
+> > to run just fine, and there won't be any more entering the kernel.
+>=20
+> Hmm, why can't we add more OP1-based devices?  As I mentioned in my
+> earlier response to Quentin, my plan is to implement the board dts
+> for OP1-based TinkerBoard 2S, so I'd like to know is there something
+> that might prevent that board dts from becoming merged?
+>=20
+> > So what do we realisitically gain here, except hiding existing=20
+> > git-history
+> > under another layer?
+>=20
+> Sorry, I'm not sure what would become hidden by this patch?
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
----
- MAINTAINERS                               |  4 ++
- drivers/clk/mediatek/Kconfig              | 28 ++++++++
- drivers/clk/mediatek/Makefile             |  4 ++
- drivers/clk/mediatek/clk-mt6735-imgsys.c  | 57 ++++++++++++++++
- drivers/clk/mediatek/clk-mt6735-mfgcfg.c  | 61 +++++++++++++++++
- drivers/clk/mediatek/clk-mt6735-vdecsys.c | 79 +++++++++++++++++++++++
- drivers/clk/mediatek/clk-mt6735-vencsys.c | 53 +++++++++++++++
- 7 files changed, 286 insertions(+)
- create mode 100644 drivers/clk/mediatek/clk-mt6735-imgsys.c
- create mode 100644 drivers/clk/mediatek/clk-mt6735-mfgcfg.c
- create mode 100644 drivers/clk/mediatek/clk-mt6735-vdecsys.c
- create mode 100644 drivers/clk/mediatek/clk-mt6735-vencsys.c
+When you change a part of the file, a git blame points to you,
+hiding the previous blame, so it makes traversing history a tiny
+bit harder.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0ddb557f7fef9..16480ccd197a7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14621,9 +14621,13 @@ L:=09linux-clk@vger.kernel.org
- L:=09linux-mediatek@lists.infradead.org (moderated for non-subscribers)
- S:=09Maintained
- F:=09drivers/clk/mediatek/clk-mt6735-apmixedsys.c
-+F:=09drivers/clk/mediatek/clk-mt6735-imgsys.c
- F:=09drivers/clk/mediatek/clk-mt6735-infracfg.c
-+F:=09drivers/clk/mediatek/clk-mt6735-mfgcfg.c
- F:=09drivers/clk/mediatek/clk-mt6735-pericfg.c
- F:=09drivers/clk/mediatek/clk-mt6735-topckgen.c
-+F:=09drivers/clk/mediatek/clk-mt6735-vdecsys.c
-+F:=09drivers/clk/mediatek/clk-mt6735-vencsys.c
- F:=09include/dt-bindings/clock/mediatek,mt6735-apmixedsys.h
- F:=09include/dt-bindings/clock/mediatek,mt6735-imgsys.h
- F:=09include/dt-bindings/clock/mediatek,mt6735-infracfg.h
-diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-index 7a33f9e92d963..5f8e6d68fa148 100644
---- a/drivers/clk/mediatek/Kconfig
-+++ b/drivers/clk/mediatek/Kconfig
-@@ -133,6 +133,34 @@ config COMMON_CLK_MT6735
- =09  by apmixedsys, topckgen, infracfg and pericfg on the
- =09  MediaTek MT6735 SoC.
-=20
-+config COMMON_CLK_MT6735_IMGSYS
-+=09tristate "Clock driver for MediaTek MT6735 imgsys"
-+=09depends on COMMON_CLK_MT6735
-+=09help
-+=09  This enables a driver for clocks provided by imgsys
-+=09  on the MediaTek MT6735 SoC.
-+
-+config COMMON_CLK_MT6735_MFGCFG
-+=09tristate "Clock driver for MediaTek MT6735 mfgcfg"
-+=09depends on COMMON_CLK_MT6735
-+=09help
-+=09  This enables a driver for clocks and resets provided
-+=09  by mfgcfg on the MediaTek MT6735 SoC.
-+
-+config COMMON_CLK_MT6735_VDECSYS
-+=09tristate "Clock driver for MediaTek MT6735 vdecsys"
-+=09depends on COMMON_CLK_MT6735
-+=09help
-+=09  This enables a driver for clocks and resets provided
-+=09  by vdecsys on the MediaTek MT6735 SoC.
-+
-+config COMMON_CLK_MT6735_VENCSYS
-+=09tristate "Clock driver for MediaTek MT6735 vencsys"
-+=09depends on COMMON_CLK_MT6735
-+=09help
-+=09  This enables a driver for clocks provided by vencsys
-+=09  on the MediaTek MT6735 SoC.
-+
- config COMMON_CLK_MT6765
-        bool "Clock driver for MediaTek MT6765"
-        depends on (ARCH_MEDIATEK && ARM64) || COMPILE_TEST
-diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-index 70456ffc6c492..6efec95406bd5 100644
---- a/drivers/clk/mediatek/Makefile
-+++ b/drivers/clk/mediatek/Makefile
-@@ -3,6 +3,10 @@ obj-$(CONFIG_COMMON_CLK_MEDIATEK) +=3D clk-mtk.o clk-pll.o=
- clk-gate.o clk-apmixed.
- obj-$(CONFIG_COMMON_CLK_MEDIATEK_FHCTL) +=3D clk-fhctl.o clk-pllfh.o
-=20
- obj-$(CONFIG_COMMON_CLK_MT6735) +=3D clk-mt6735-apmixedsys.o clk-mt6735-in=
-fracfg.o clk-mt6735-pericfg.o clk-mt6735-topckgen.o
-+obj-$(CONFIG_COMMON_CLK_MT6735_IMGSYS) +=3D clk-mt6735-imgsys.o
-+obj-$(CONFIG_COMMON_CLK_MT6735_MFGCFG) +=3D clk-mt6735-mfgcfg.o
-+obj-$(CONFIG_COMMON_CLK_MT6735_VDECSYS) +=3D clk-mt6735-vdecsys.o
-+obj-$(CONFIG_COMMON_CLK_MT6735_VENCSYS) +=3D clk-mt6735-vencsys.o
- obj-$(CONFIG_COMMON_CLK_MT6765) +=3D clk-mt6765.o
- obj-$(CONFIG_COMMON_CLK_MT6765_AUDIOSYS) +=3D clk-mt6765-audio.o
- obj-$(CONFIG_COMMON_CLK_MT6765_CAMSYS) +=3D clk-mt6765-cam.o
-diff --git a/drivers/clk/mediatek/clk-mt6735-imgsys.c b/drivers/clk/mediate=
-k/clk-mt6735-imgsys.c
-new file mode 100644
-index 0000000000000..c564f8f724324
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt6735-imgsys.c
-@@ -0,0 +1,57 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2022 Yassine Oudjana <y.oudjana@protonmail.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+
-+#include "clk-gate.h"
-+#include "clk-mtk.h"
-+
-+#include <dt-bindings/clock/mediatek,mt6735-imgsys.h>
-+
-+#define IMG_CG_CON=09=09=090x00
-+#define IMG_CG_SET=09=09=090x04
-+#define IMG_CG_CLR=09=09=090x08
-+
-+static struct mtk_gate_regs imgsys_cg_regs =3D {
-+=09.set_ofs =3D IMG_CG_SET,
-+=09.clr_ofs =3D IMG_CG_CLR,
-+=09.sta_ofs =3D IMG_CG_CON,
-+};
-+
-+static const struct mtk_gate imgsys_gates[] =3D {
-+=09GATE_MTK(CLK_IMG_SMI_LARB2, "smi_larb2", "mm_sel", &imgsys_cg_regs, 0, =
-&mtk_clk_gate_ops_setclr),
-+=09GATE_MTK(CLK_IMG_CAM_SMI, "cam_smi", "mm_sel", &imgsys_cg_regs, 5, &mtk=
-_clk_gate_ops_setclr),
-+=09GATE_MTK(CLK_IMG_CAM_CAM, "cam_cam", "mm_sel", &imgsys_cg_regs, 6, &mtk=
-_clk_gate_ops_setclr),
-+=09GATE_MTK(CLK_IMG_SEN_TG, "sen_tg", "mm_sel", &imgsys_cg_regs, 7, &mtk_c=
-lk_gate_ops_setclr),
-+=09GATE_MTK(CLK_IMG_SEN_CAM, "sen_cam", "mm_sel", &imgsys_cg_regs, 8, &mtk=
-_clk_gate_ops_setclr),
-+=09GATE_MTK(CLK_IMG_CAM_SV, "cam_sv", "mm_sel", &imgsys_cg_regs, 9, &mtk_c=
-lk_gate_ops_setclr),
-+=09GATE_MTK(CLK_IMG_SUFOD, "sufod", "mm_sel", &imgsys_cg_regs, 10, &mtk_cl=
-k_gate_ops_setclr),
-+=09GATE_MTK(CLK_IMG_FD, "fd", "mm_sel", &imgsys_cg_regs, 11, &mtk_clk_gate=
-_ops_setclr),
-+};
-+
-+static const struct mtk_clk_desc imgsys_clks =3D {
-+=09.clks =3D imgsys_gates,
-+=09.num_clks =3D ARRAY_SIZE(imgsys_gates),
-+};
-+
-+static const struct of_device_id of_match_mt6735_imgsys[] =3D {
-+=09{ .compatible =3D "mediatek,mt6735-imgsys", .data =3D &imgsys_clks },
-+=09{ /* sentinel */ }
-+};
-+
-+static struct platform_driver clk_mt6735_imgsys =3D {
-+=09.probe =3D mtk_clk_simple_probe,
-+=09.remove =3D mtk_clk_simple_remove,
-+=09.driver =3D {
-+=09=09.name =3D "clk-mt6735-imgsys",
-+=09=09.of_match_table =3D of_match_mt6735_imgsys,
-+=09},
-+};
-+module_platform_driver(clk_mt6735_imgsys);
-+
-+MODULE_AUTHOR("Yassine Oudjana <y.oudjana@protonmail.com>");
-+MODULE_DESCRIPTION("MediaTek MT6735 imgsys clock driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/mediatek/clk-mt6735-mfgcfg.c b/drivers/clk/mediate=
-k/clk-mt6735-mfgcfg.c
-new file mode 100644
-index 0000000000000..1f5aedddf209d
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt6735-mfgcfg.c
-@@ -0,0 +1,61 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2022 Yassine Oudjana <y.oudjana@protonmail.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+
-+#include "clk-gate.h"
-+#include "clk-mtk.h"
-+
-+#include <dt-bindings/clock/mediatek,mt6735-mfgcfg.h>
-+
-+#define MFG_CG_CON=09=09=090x00
-+#define MFG_CG_SET=09=09=090x04
-+#define MFG_CG_CLR=09=09=090x08
-+#define MFG_RESET=09=09=090x0c
-+
-+static struct mtk_gate_regs mfgcfg_cg_regs =3D {
-+=09.set_ofs =3D MFG_CG_SET,
-+=09.clr_ofs =3D MFG_CG_CLR,
-+=09.sta_ofs =3D MFG_CG_CON,
-+};
-+
-+static const struct mtk_gate mfgcfg_gates[] =3D {
-+=09GATE_MTK(CLK_MFG_BG3D, "bg3d", "mfg_sel", &mfgcfg_cg_regs, 0, &mtk_clk_=
-gate_ops_setclr),
-+};
-+
-+static u16 mfgcfg_rst_ofs[] =3D { MFG_RESET };
-+
-+static const struct mtk_clk_rst_desc mfgcfg_resets =3D {
-+=09.version =3D MTK_RST_SIMPLE,
-+=09.rst_bank_ofs =3D mfgcfg_rst_ofs,
-+=09.rst_bank_nr =3D ARRAY_SIZE(mfgcfg_rst_ofs)
-+};
-+
-+static const struct mtk_clk_desc mfgcfg_clks =3D {
-+=09.clks =3D mfgcfg_gates,
-+=09.num_clks =3D ARRAY_SIZE(mfgcfg_gates),
-+
-+=09.rst_desc =3D &mfgcfg_resets
-+};
-+
-+static const struct of_device_id of_match_mt6735_mfgcfg[] =3D {
-+=09{ .compatible =3D "mediatek,mt6735-mfgcfg", .data =3D &mfgcfg_clks },
-+=09{ /* sentinel */ }
-+};
-+
-+static struct platform_driver clk_mt6735_mfgcfg =3D {
-+=09.probe =3D mtk_clk_simple_probe,
-+=09.remove =3D mtk_clk_simple_remove,
-+=09.driver =3D {
-+=09=09.name =3D "clk-mt6735-mfgcfg",
-+=09=09.of_match_table =3D of_match_mt6735_mfgcfg,
-+=09},
-+};
-+module_platform_driver(clk_mt6735_mfgcfg);
-+
-+MODULE_AUTHOR("Yassine Oudjana <y.oudjana@protonmail.com>");
-+MODULE_DESCRIPTION("Mediatek MT6735 mfgcfg clock and reset driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/mediatek/clk-mt6735-vdecsys.c b/drivers/clk/mediat=
-ek/clk-mt6735-vdecsys.c
-new file mode 100644
-index 0000000000000..8817085fc1db4
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt6735-vdecsys.c
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2022 Yassine Oudjana <y.oudjana@protonmail.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+
-+#include "clk-gate.h"
-+#include "clk-mtk.h"
-+
-+#include <dt-bindings/clock/mediatek,mt6735-vdecsys.h>
-+#include <dt-bindings/reset/mediatek,mt6735-vdecsys.h>
-+
-+#define VDEC_CKEN_SET=09=09=090x00
-+#define VDEC_CKEN_CLR=09=09=090x04
-+#define SMI_LARB1_CKEN_SET=09=090x08
-+#define SMI_LARB1_CKEN_CLR=09=090x0c
-+#define VDEC_RESETB_CON=09=09=090x10
-+#define SMI_LARB1_RESETB_CON=09=090x14
-+
-+#define RST_NR_PER_BANK=09=09=0932
-+
-+static struct mtk_gate_regs vdec_cg_regs =3D {
-+=09.set_ofs =3D VDEC_CKEN_SET,
-+=09.clr_ofs =3D VDEC_CKEN_CLR,
-+=09.sta_ofs =3D VDEC_CKEN_SET,
-+};
-+
-+static struct mtk_gate_regs smi_larb1_cg_regs =3D {
-+=09.set_ofs =3D SMI_LARB1_CKEN_SET,
-+=09.clr_ofs =3D SMI_LARB1_CKEN_CLR,
-+=09.sta_ofs =3D SMI_LARB1_CKEN_SET,
-+};
-+
-+static const struct mtk_gate vdecsys_gates[] =3D {
-+=09GATE_MTK(CLK_VDEC_VDEC, "vdec", "vdec_sel", &vdec_cg_regs, 0, &mtk_clk_=
-gate_ops_setclr_inv),
-+=09GATE_MTK(CLK_VDEC_SMI_LARB1, "smi_larb1", "vdec_sel", &smi_larb1_cg_reg=
-s, 0, &mtk_clk_gate_ops_setclr_inv),
-+};
-+
-+static u16 vdecsys_rst_bank_ofs[] =3D { VDEC_RESETB_CON, SMI_LARB1_RESETB_=
-CON };
-+
-+static u16 vdecsys_rst_idx_map[] =3D {
-+=09[MT6735_VDEC_RST0_VDEC]=09=09=3D 0 * RST_NR_PER_BANK + 0,
-+=09[MT6735_VDEC_RST1_SMI_LARB1]=09=3D 1 * RST_NR_PER_BANK + 0,
-+};
-+
-+static const struct mtk_clk_rst_desc vdecsys_resets =3D {
-+=09.version =3D MTK_RST_SIMPLE,
-+=09.rst_bank_ofs =3D vdecsys_rst_bank_ofs,
-+=09.rst_bank_nr =3D ARRAY_SIZE(vdecsys_rst_bank_ofs),
-+=09.rst_idx_map =3D vdecsys_rst_idx_map,
-+=09.rst_idx_map_nr =3D ARRAY_SIZE(vdecsys_rst_idx_map)
-+};
-+
-+static const struct mtk_clk_desc vdecsys_clks =3D {
-+=09.clks =3D vdecsys_gates,
-+=09.num_clks =3D ARRAY_SIZE(vdecsys_gates),
-+=09.rst_desc =3D &vdecsys_resets
-+};
-+
-+static const struct of_device_id of_match_mt6735_vdecsys[] =3D {
-+=09{ .compatible =3D "mediatek,mt6735-vdecsys", .data =3D &vdecsys_clks },
-+=09{ /* sentinel */ }
-+};
-+
-+static struct platform_driver clk_mt6735_vdecsys =3D {
-+=09.probe =3D mtk_clk_simple_probe,
-+=09.remove =3D mtk_clk_simple_remove,
-+=09.driver =3D {
-+=09=09.name =3D "clk-mt6735-vdecsys",
-+=09=09.of_match_table =3D of_match_mt6735_vdecsys,
-+=09},
-+};
-+module_platform_driver(clk_mt6735_vdecsys);
-+
-+MODULE_AUTHOR("Yassine Oudjana <y.oudjana@protonmail.com>");
-+MODULE_DESCRIPTION("MediaTek MT6735 vdecsys clock and reset driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/mediatek/clk-mt6735-vencsys.c b/drivers/clk/mediat=
-ek/clk-mt6735-vencsys.c
-new file mode 100644
-index 0000000000000..8dec7f98492ac
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt6735-vencsys.c
-@@ -0,0 +1,53 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2022 Yassine Oudjana <y.oudjana@protonmail.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+
-+#include "clk-gate.h"
-+#include "clk-mtk.h"
-+
-+#include <dt-bindings/clock/mediatek,mt6735-vencsys.h>
-+
-+#define VENC_CG_CON=09=09=090x00
-+#define VENC_CG_SET=09=09=090x04
-+#define VENC_CG_CLR=09=09=090x08
-+
-+static struct mtk_gate_regs venc_cg_regs =3D {
-+=09.set_ofs =3D VENC_CG_SET,
-+=09.clr_ofs =3D VENC_CG_CLR,
-+=09.sta_ofs =3D VENC_CG_CON,
-+};
-+
-+static const struct mtk_gate vencsys_gates[] =3D {
-+=09GATE_MTK(CLK_VENC_SMI_LARB3, "smi_larb3", "mm_sel", &venc_cg_regs, 0, &=
-mtk_clk_gate_ops_setclr_inv),
-+=09GATE_MTK(CLK_VENC_VENC, "venc", "mm_sel", &venc_cg_regs, 4, &mtk_clk_ga=
-te_ops_setclr_inv),
-+=09GATE_MTK(CLK_VENC_JPGENC, "jpgenc", "mm_sel", &venc_cg_regs, 8, &mtk_cl=
-k_gate_ops_setclr_inv),
-+=09GATE_MTK(CLK_VENC_JPGDEC, "jpgdec", "mm_sel", &venc_cg_regs, 12, &mtk_c=
-lk_gate_ops_setclr_inv),
-+};
-+
-+static const struct mtk_clk_desc vencsys_clks =3D {
-+=09.clks =3D vencsys_gates,
-+=09.num_clks =3D ARRAY_SIZE(vencsys_gates),
-+};
-+
-+static const struct of_device_id of_match_mt6735_vencsys[] =3D {
-+=09{ .compatible =3D "mediatek,mt6735-vencsys", .data =3D &vencsys_clks },
-+=09{ /* sentinel */ }
-+};
-+
-+static struct platform_driver clk_mt6735_vencsys =3D {
-+=09.probe =3D mtk_clk_simple_probe,
-+=09.remove =3D mtk_clk_simple_remove,
-+=09.driver =3D {
-+=09=09.name =3D "clk-mt6735-vencsys",
-+=09=09.of_match_table =3D of_match_mt6735_vencsys,
-+=09},
-+};
-+module_platform_driver(clk_mt6735_vencsys);
-+
-+MODULE_AUTHOR("Yassine Oudjana <y.oudjana@protonmail.com>");
-+MODULE_DESCRIPTION("Mediatek MT6735 vencsys clock driver");
-+MODULE_LICENSE("GPL");
---=20
-2.47.0
+If you're actually doing the Tinkerboard and thus adding new things this
+changes the whole judgement a bit too.
+Like I was on the mindset-road of rk3399 is mostly done in terms of new
+boards, so what's in the kernel now will at max get some new peripherals
+but is in general already mostly working.
+
+If we're still adding new rk3399 boards, it does make more sense to go
+back and make the underlying parts nicer :-)
+
+
+Heiko
 
 
 
