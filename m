@@ -1,86 +1,87 @@
-Return-Path: <devicetree+bounces-119302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EE109BDF26
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 08:09:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D3729BDF3D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 08:20:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A008F1C22241
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 07:09:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E7121C22241
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 07:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEC42198836;
-	Wed,  6 Nov 2024 07:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41971BDAB3;
+	Wed,  6 Nov 2024 07:20:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ONT95VoX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PGyGmiVh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E48A193084;
-	Wed,  6 Nov 2024 07:09:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD2D1BDAA2;
+	Wed,  6 Nov 2024 07:20:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730876958; cv=none; b=L8wxpntjjtWkc3A5G9EvzECQ5/DieHH94Ub08m5w7zFQIrjbvgBxrPWRBo3Nv2i/mxOrlmCycT7T7gr8JRDFLHJJK1OXJdSwtub9l3CAjUJmFr+xh0U9VeekBdrxoeRHEPTce1v8fnZKKTag3hoJ5fE+07YyWhq2ebfNa+EhI7k=
+	t=1730877604; cv=none; b=ceq75tTwEVN2m6v9sNT+f0SAj/SolyNtN3pUHMvO5WJt0tSsojO7BD1GdxqeUwmKrpPU9F6stiRagis4PuIso9E3op4LHY8DK9p8Vd57N4sSuyZlwllL05ZEanvRkzZ5ImiNzy5GBd3ZRPS1hdb65HsHdnxIdCmzZui8BROHmL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730876958; c=relaxed/simple;
-	bh=Aik0BlK9GpCBPc4NaR4/Gdl2TUZQRHDvQtSQx1TcZJA=;
+	s=arc-20240116; t=1730877604; c=relaxed/simple;
+	bh=PkD1pDNi+SE7n4FTnQ6HlbOdb3kuf8fFkjPrzdG/sQI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gR/teQ+vBjZWMtC9NLpZiPd0PZSfpFyW/DGNB1arp6q4MTb5M7ixCUma63nwsoGlop/e3gcZBYj2lpd/WJFdpcW7SYUlcGQpXR3Wh5spRFLwoofBFgi3vj2tvBYHC+Ap9KkD63HmqdLZCPXhvt3sbu5urOsxA1FE5Gw+GMNpsLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ONT95VoX; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1730876958; x=1762412958;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Aik0BlK9GpCBPc4NaR4/Gdl2TUZQRHDvQtSQx1TcZJA=;
-  b=ONT95VoXb4qoHQuU2BXF6jeFKQXdKNOhsSVoBnICXixw81DqKlL3uicr
-   v4KAPbU+lrs7xf4d2ncl4OKMQLqm/QYxJbmX7xtZuYdEo4UW/7cGpp5C8
-   zt/CYBmRXSpimB5C3VRdVzEDnPdFhag5w5okQQ3q+3i4pGXJbNNK9bsD3
-   syj2CzIG+nsVphwPrJ8t6vSbp2f2IOKa6vY6rHX2XBV6g2S08vCPFpChP
-   RouPQ8H2h6U6eHyDmIrH9heMfRXac9JQWuE0Y1Cj5oBt721DWa1DvSiYy
-   ic8nZ5S917lhjKPfuuYDtmLGJtNrBeNgq/T2qid9jMJyTAFZsZGJRUMo9
-   A==;
-X-CSE-ConnectionGUID: 4quSh+AiSDaRd3GlCb7ccA==
-X-CSE-MsgGUID: 1RXvsbRPQDyK8jAkddg7Lg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30819280"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="30819280"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2024 23:09:17 -0800
-X-CSE-ConnectionGUID: g+ijCVvvQJaH0WlrizcASQ==
-X-CSE-MsgGUID: 5U6qr/TmQ2KoaYtWCIxuDg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,262,1725346800"; 
-   d="scan'208";a="89213837"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 05 Nov 2024 23:09:13 -0800
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t8aAA-000n2A-0k;
-	Wed, 06 Nov 2024 07:09:10 +0000
-Date: Wed, 6 Nov 2024 15:08:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Hironori KIKUCHI <kikuchan98@gmail.com>, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Hironori KIKUCHI <kikuchan98@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=RWM4lua980qngQXWN/QhAcnetAOWOZ2W/9FHPnIDgfQYfTQyLqZ419tnIJ+6vd3JQlbWY2hdFfgvYciDWDBOWdwPHm4Yhpp14M9yuYbsc/V2bnFTQE7UGfpxd1gPCqnCmou9ntqQO0JF1oBSXQhgxba3hb6fbL/OVQeJfAqvo9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PGyGmiVh; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5ced377447bso4320729a12.1;
+        Tue, 05 Nov 2024 23:20:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730877601; x=1731482401; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vRtfotueanFyuwOcdsHrcVQgySi4mNzZ2NNuN1ktvAY=;
+        b=PGyGmiVhwkiNLaieoMO8Dl6YyFCDnNleUIStbXGjcNtGUhZDtHH1puuSmz+TGJxy7N
+         gErUnUv/KGaJ/Cqno+pKYOKGe/wRbQM8qUJN7ceG2qbkXxIiTaoKFYxaboCa4re2gvVm
+         JBN5vfjic+jHTacrwvVE3pvRfrq/9Gp/ep1bOeELzhEVLtqZSbnT39lheXsYbU8ISJkB
+         sksMq0Bh2i1ISgP7N9tBoehfdkvGIl+ypp7FNkCP3ArChAznD0uf9m+/NbvVJ4F6A58I
+         bAraci0nH4mUdxbvb5IFXJxQ4oKW9Vo77hEhQF8hhmkf2LL7g8WAZsegBMKFNbfE7r52
+         KqZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730877601; x=1731482401;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vRtfotueanFyuwOcdsHrcVQgySi4mNzZ2NNuN1ktvAY=;
+        b=uJDKxlk8Z4485s234EHSzvhoaSCuJ7AwhGvhRdWITiJVIOPx1cbq3dlo/oV8Z+QRXD
+         04j6sKWarLgGJwHE0okcuY0mVr0Sc1AgVLieRjm/Qy/ndCLKPeZoJ3woh9OUbujvEnVR
+         jK8g+EE57y4kV79MnSWu3Lx8tb8cHaH4zr4/N4FyEpa8WNLDyrxLYFXq9uzeEJrYRDS0
+         MdrL36W9HO37pIoUba40r/EeXZAszeuubZCcJSIg+SjCcZ1fWT4iWNP12H9j+jCjEwpF
+         fdzsnmu1cAkNroZKNl9h7TeEsa+CX+jF+H9fLN+Q0o+yAEiTFmBJFshHuKPprBNtltFB
+         Nh2A==
+X-Forwarded-Encrypted: i=1; AJvYcCUR8PIwrpog0sUpW7hpJJdfK70GwICGBpdQXEkKuS3QNhlZ+H7ZAkbhsq+UEVUxHSMTX9gzujpUyTKR@vger.kernel.org, AJvYcCV3lyx0Falb+9tFvvdxKWfr2JUvF4hlaTiSL1Wl3wy/Qs3F/u/oBYgCZRmsScUIU7rAhYvA88MXyhS/7aVr@vger.kernel.org, AJvYcCVgc7p6pRN9q92n1wpQYMYsyjIde6JFnMCACH+WQMJ4keaPWhYUytpEuYQWjUiJ53eOaZswJzlNniA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKrg5PjfyGpkg6i2I3PC2ObbX4BYe4SDhEyr4BdkJDDXTTh4uq
+	302OVIvJ99WNzB02zYR4TJ1f033hHCCRFYduUfzKA4jQ3Kg5OJO5
+X-Google-Smtp-Source: AGHT+IH/ZAmYF8ReqMplFnxCbkC6IEJQAH0xL9boLQxzwMi1ilf/4qqxVXYZJqpVYu6kWqLSMbfZzw==
+X-Received: by 2002:a05:6402:1d4c:b0:5ce:de14:65d0 with SMTP id 4fb4d7f45d1cf-5cede146642mr6064626a12.0.1730877601136;
+        Tue, 05 Nov 2024 23:20:01 -0800 (PST)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cee6a9a3f9sm2301453a12.7.2024.11.05.23.19.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Nov 2024 23:20:00 -0800 (PST)
+Date: Wed, 6 Nov 2024 08:19:58 +0100
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Ryan Walklin <ryan@testtoast.com>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/7] dt-bindings: display: panel: Add YLM-LBV0345001H-V2
- panel
-Message-ID: <202411061425.Qitk3g1Q-lkp@intel.com>
-References: <20241105055239.1577275-5-kikuchan98@gmail.com>
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: power: supply: sc27xx-fg: document
+ deprecated bat-detect-gpio
+Message-ID: <ZysYnmWYTFzMBVMj@standask-GA-A55M-S2HP>
+References: <cover.1730720720.git.stano.jakubek@gmail.com>
+ <f334c973dd4e6390a0cd51dbde358277a07604d7.1730720720.git.stano.jakubek@gmail.com>
+ <atetahoyv7iz4hvw2avx6gs6kit6owvmfsniorkmzrqhl2gvgv@iwdz7uzcpxcy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,50 +90,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241105055239.1577275-5-kikuchan98@gmail.com>
+In-Reply-To: <atetahoyv7iz4hvw2avx6gs6kit6owvmfsniorkmzrqhl2gvgv@iwdz7uzcpxcy>
 
-Hi Hironori,
+On Tue, Nov 05, 2024 at 10:03:16AM +0100, Krzysztof Kozlowski wrote:
+> On Mon, Nov 04, 2024 at 02:03:58PM +0100, Stanislav Jakubek wrote:
+> > While the bindings have always used the correct 'battery-detect-gpios'
+> > property, the DTS and the Linux driver have been using the incorrect
+> > 'bat-detect-gpio' property. Document this property and mark it
+> > as deprecated.
+> 
+> Well, I would just correct bindings instead - much less changes needed.
+> Document 'bat-detect-gpios' (note the 's') and drop
+> 'battery-detect-gpios'.
 
-kernel test robot noticed the following build warnings:
+Hi Krzysztof,
 
-[auto build test WARNING on next-20241104]
-[also build test WARNING on v6.12-rc6]
-[cannot apply to robh/for-next linus/master v6.12-rc6 v6.12-rc5 v6.12-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+this approach was preferred by one of the Spreadtrum maintainers [1],
+so I did it this way.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Hironori-KIKUCHI/dt-bindings-display-panel-Rename-rg35xx-plus-panel-back-to-WL-355608-A8/20241105-135601
-base:   next-20241104
-patch link:    https://lore.kernel.org/r/20241105055239.1577275-5-kikuchan98%40gmail.com
-patch subject: [PATCH 4/7] dt-bindings: display: panel: Add YLM-LBV0345001H-V2 panel
-config: csky-randconfig-051-20241106 (https://download.01.org/0day-ci/archive/20241106/202411061425.Qitk3g1Q-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 14.2.0
-dtschema version: 2024.10.dev6+g12c3cd5
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241106/202411061425.Qitk3g1Q-lkp@intel.com/reproduce)
+[1] https://lore.kernel.org/lkml/CAAfSe-uC+G8iEk_37vBr3+dQsv4a4tTTsz11hUguVRnU=r+4qQ@mail.gmail.com/
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411061425.Qitk3g1Q-lkp@intel.com/
+Regards,
+Stanislav
 
-All warnings (new ones prefixed by >>):
-
-   Documentation/devicetree/bindings/net/snps,dwmac.yaml: mac-mode: missing type definition
->> Warning: Duplicate compatible "anbernic,rg35xx-h-panel" found in schemas matching "$id":
-   	http://devicetree.org/schemas/display/panel/anbernic,wl-355608-a8.yaml#
-   	http://devicetree.org/schemas/display/panel/anbernic,ylm-lbv0345001h-v2.yaml#
->> Warning: Duplicate compatible "anbernic,rg35xx-sp-panel" found in schemas matching "$id":
-   	http://devicetree.org/schemas/display/panel/anbernic,wl-355608-a8.yaml#
-   	http://devicetree.org/schemas/display/panel/anbernic,ylm-lbv0345001h-v2.yaml#
->> Warning: Duplicate compatible "anbernic,rg35xx-plus-panel" found in schemas matching "$id":
-   	http://devicetree.org/schemas/display/panel/anbernic,wl-355608-a8.yaml#
-   	http://devicetree.org/schemas/display/panel/anbernic,ylm-lbv0345001h-v2.yaml#
->> Warning: Duplicate compatible "anbernic,rg35xx-2024-panel" found in schemas matching "$id":
-   	http://devicetree.org/schemas/display/panel/anbernic,wl-355608-a8.yaml#
-   	http://devicetree.org/schemas/display/panel/anbernic,ylm-lbv0345001h-v2.yaml#
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> Best regards,
+> Krzysztof
+> 
 
