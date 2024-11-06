@@ -1,223 +1,118 @@
-Return-Path: <devicetree+bounces-119277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A83E49BDD81
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 04:17:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6217F9BDD84
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 04:19:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12052B22855
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 03:17:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 130D81F23DC7
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 03:19:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89FFE190059;
-	Wed,  6 Nov 2024 03:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C088718FDAB;
+	Wed,  6 Nov 2024 03:19:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YfRrBN2M"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iKFrk0Tw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86F8318FDB1;
-	Wed,  6 Nov 2024 03:17:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68B818F2F8;
+	Wed,  6 Nov 2024 03:19:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730863027; cv=none; b=FpzBqaJ/r1hVNqSVA4CHBUX1q523NDrhAcnDtm5OZGjv4Nq6TAAGC8EAI1N3oze0Ut8WqISz3WDRAkOSa2CPk0M3mz8fJZt9Ltov9prUvBHuxmj7tBHTfoJnzTAo+zs5BePuEx6jrj15TqhL0pxFo7AxiCmBhVJB2Kd68riF+Aw=
+	t=1730863148; cv=none; b=G8/D7xcHRWbXv2PGAMlQZrn4lhBsvy8J09fYfhiFCuKeueIasFu6kq1MGVEXBw8m98o5c3uV2CJAUs1qIV294eEPgj6JzOYT6kdO6Ree8C+Uz04pn5dri0iROwY9E4tOhFYJWQR+sJLuPLEu/estpaW0fnh63n57P971ktMUeW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730863027; c=relaxed/simple;
-	bh=DACGt92rTFPfameQs8D2whJQLHsEhqs7UbOv2+TxXPQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=m0RdGi2wUgMh3meNJlkLGeGe0RiWFhX5Lbp5gppkVcZDclQlhpSqHRW9g/0YOidqTr51X92+rGLOx2DMpt3cK+/dYVbg6ZMZrSAuwD4Iu/gdKJuiEYHVgyhsGzEAvMhUlTLxxd8S5GWaL4MbJ9UJbmFUJb/2lqgL/bc31HdZTkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YfRrBN2M; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A5KABKI009100;
-	Wed, 6 Nov 2024 03:16:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1J8mfxCbiCDTDsZI2fUKWhtK0rZUEtEtd+IltNnj4C0=; b=YfRrBN2MDCDDCErh
-	p2ZPkAtvYwpBILfpkXLweswe0uB9e56nEQ/Yr+issXriljA/FD37Q1evbfWNnmVj
-	CrZm67ZGpCRglTcMs91zHyChwV0bk4E5slNFwSBbOIHa+2N9wE10bRaX3JZISIRj
-	JbYIbQOvd0JXF9QUX4Ugzx8U0Cy0MbM095rrETD2uu72zUPEMw48hqC6CexNbEDA
-	s37/GY04QHHrIEAVhVA7YbhJdZMBGi8GBygH9RGr4w96ZGLvxv9frIrOo8rW4eNp
-	imIhf8vgWJ4F8wgVzqdjTjizeLIjzh952Sg7qws2HXxu4oS06oAYuP10AAjCsStD
-	Wb28Ig==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd4usrjx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 06 Nov 2024 03:16:46 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A63Gjqh029314
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 6 Nov 2024 03:16:45 GMT
-Received: from [10.253.14.204] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 5 Nov 2024
- 19:16:40 -0800
-Message-ID: <9b3a4f00-59f2-48d1-8916-c7d7d65df063@quicinc.com>
-Date: Wed, 6 Nov 2024 11:16:37 +0800
+	s=arc-20240116; t=1730863148; c=relaxed/simple;
+	bh=o8aQslghnk2+z70tsW+2DklDn7CG8sbivh6qhEJ0ZDw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cFrcbLrLNbsypCGb6Ge1vMtYfUGR0m6KQa3SXuBqGBDHkIIYGrsijNKqm4mnwY60KVR44dnM5hi1xmvILlmwEuQmhOg0A2uLZxCSwsQig49YPjHn8atjEyKJl+8sRT9rsdRUlgpziH5gAbVe8RxvekBWWeOqfNj1YMVqQNIPDSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iKFrk0Tw; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1730863147; x=1762399147;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=o8aQslghnk2+z70tsW+2DklDn7CG8sbivh6qhEJ0ZDw=;
+  b=iKFrk0TwIVGBVt3HxtOjHyojIfP2bcgm8pVao+89GIoa9749AAHbBYyr
+   r9GZlKr0mxJ2UoGIL6ZNqZVHYdAOYX94ZagfZxu4rCdZNrgAq+oIrqSHg
+   I7uQf2Lz83hVASmgbAOoFRd4M8OFJGAuLAdhg08HceLxXih5PlzvwAosL
+   aR7pCg1epAdU17Z+aCKAlvqWgc6IvxenUpNQBpzYlrphp81+bIu7omhMr
+   dZ0MbQFimXCI4Xp3jpFqdw4mWy+WkL5E8g1H2Ibpy036NkZlGgfz710Mz
+   Yn0Ggi8wv0FWGt+iDElTyKYN29MEKnYcjFMYMS1JciJYOYTxImKhRZbGZ
+   w==;
+X-CSE-ConnectionGUID: UUH8h7HqQCOfxb2DEP62Rg==
+X-CSE-MsgGUID: DyEiXHKZS3yfG/0lLBK75g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11247"; a="30759607"
+X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; 
+   d="scan'208";a="30759607"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2024 19:19:06 -0800
+X-CSE-ConnectionGUID: C3b9hammQ5K62oSusumzvA==
+X-CSE-MsgGUID: xp94QqJRThKSfiZb/sjasA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; 
+   d="scan'208";a="84692741"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 05 Nov 2024 19:19:04 -0800
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t8WZR-000msn-04;
+	Wed, 06 Nov 2024 03:19:01 +0000
+Date: Wed, 6 Nov 2024 11:18:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Marek Vasut <marex@denx.de>, linux-hwmon@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jean Delvare <jdelvare@suse.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] hwmon: (pwm-fan) Introduce start from dead stop
+ handling
+Message-ID: <202411061031.GHHHxm19-lkp@intel.com>
+References: <20241105135259.101126-2-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 3/5] net: pcs: qcom-ipq: Add PCS create and
- phylink operations for IPQ9574
-To: Andrew Lunn <andrew@lunn.ch>
-CC: "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiner Kallweit
-	<hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
-        <quic_pavir@quicinc.com>, <quic_linchen@quicinc.com>,
-        <quic_luoj@quicinc.com>, <srinivas.kandagatla@linaro.org>,
-        <bartosz.golaszewski@linaro.org>, <vsmuthu@qti.qualcomm.com>,
-        <john@phrozen.org>
-References: <20241101-ipq_pcs_rc1-v1-0-fdef575620cf@quicinc.com>
- <20241101-ipq_pcs_rc1-v1-3-fdef575620cf@quicinc.com>
- <d7782a5e-2f67-4f62-a594-0f52144a368f@lunn.ch>
-Content-Language: en-US
-From: Lei Wei <quic_leiwei@quicinc.com>
-In-Reply-To: <d7782a5e-2f67-4f62-a594-0f52144a368f@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: xEBCrXy7c1m6E8BxoqRRcRdiq2ueaRo_
-X-Proofpoint-ORIG-GUID: xEBCrXy7c1m6E8BxoqRRcRdiq2ueaRo_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- lowpriorityscore=0 bulkscore=0 phishscore=0 priorityscore=1501
- mlxlogscore=999 impostorscore=0 suspectscore=0 spamscore=0 mlxscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411060024
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241105135259.101126-2-marex@denx.de>
 
+Hi Marek,
 
+kernel test robot noticed the following build errors:
 
-On 11/1/2024 9:21 PM, Andrew Lunn wrote:
->> +static int ipq_pcs_config_mode(struct ipq_pcs *qpcs,
->> +			       phy_interface_t interface)
->> +{
->> +	unsigned int val;
->> +	int ret;
->> +
->> +	/* Configure PCS interface mode */
->> +	switch (interface) {
->> +	case PHY_INTERFACE_MODE_SGMII:
->> +		/* Select Qualcomm SGMII AN mode */
->> +		ret = regmap_update_bits(qpcs->regmap, PCS_MODE_CTRL,
->> +					 PCS_MODE_SEL_MASK | PCS_MODE_AN_MODE,
->> +					 PCS_MODE_SGMII);
-> 
-> How does Qualcomm SGMII AN mode differ from Cisco SGMII AN mode?
-> 
+[auto build test ERROR on groeck-staging/hwmon-next]
+[also build test ERROR on linus/master v6.12-rc6 next-20241105]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Qualcomm SGMII AN mode extends Cisco SGMII spec Revision 1.8 by adding 
-pause bit support in the SGMII word format. It re-uses two of the 
-reserved bits 1..9 for this purpose. The PCS supports both Qualcomm 
-SGMII AN and Cisco SGMII AN modes.
+url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Vasut/hwmon-pwm-fan-Introduce-start-from-dead-stop-handling/20241105-215454
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20241105135259.101126-2-marex%40denx.de
+patch subject: [PATCH 2/2] hwmon: (pwm-fan) Introduce start from dead stop handling
+config: arm-defconfig (https://download.01.org/0day-ci/archive/20241106/202411061031.GHHHxm19-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241106/202411061031.GHHHxm19-lkp@intel.com/reproduce)
 
->> +static int ipq_pcs_config_sgmii(struct ipq_pcs *qpcs,
->> +				int index,
->> +				unsigned int neg_mode,
->> +				phy_interface_t interface)
->> +{
->> +	int ret;
->> +
->> +	/* Access to PCS registers such as PCS_MODE_CTRL which are
->> +	 * common to all MIIs, is lock protected and configured
->> +	 * only once. This is required only for interface modes
->> +	 * such as QSGMII.
->> +	 */
->> +	if (interface == PHY_INTERFACE_MODE_QSGMII)
->> +		mutex_lock(&qpcs->config_lock);
-> 
-> Is there a lot of contention on this lock? Why not take it for every
-> interface mode? It would make the code simpler.
-> 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411061031.GHHHxm19-lkp@intel.com/
 
-I agree, the contention should be minimal since the lock is common for 
-all MII ports in a PCS and is used only during configuration time. I 
-will remove the interface mode check.
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
->> +struct phylink_pcs *ipq_pcs_create(struct device_node *np)
->> +{
->> +	struct platform_device *pdev;
->> +	struct ipq_pcs_mii *qpcs_mii;
->> +	struct device_node *pcs_np;
->> +	struct ipq_pcs *qpcs;
->> +	int i, ret;
->> +	u32 index;
->> +
->> +	if (!of_device_is_available(np))
->> +		return ERR_PTR(-ENODEV);
->> +
->> +	if (of_property_read_u32(np, "reg", &index))
->> +		return ERR_PTR(-EINVAL);
->> +
->> +	if (index >= PCS_MAX_MII_NRS)
->> +		return ERR_PTR(-EINVAL);
->> +
->> +	pcs_np = of_get_parent(np);
->> +	if (!pcs_np)
->> +		return ERR_PTR(-ENODEV);
->> +
->> +	if (!of_device_is_available(pcs_np)) {
->> +		of_node_put(pcs_np);
->> +		return ERR_PTR(-ENODEV);
->> +	}
-> 
-> How have you got this far if the parent is not available?
-> 
+>> ERROR: modpost: "__aeabi_uldivmod" [drivers/hwmon/pwm-fan.ko] undefined!
 
-This check can fail only if the parent node is disabled in the board 
-DTS. I think this error situation may not be caught earlier than this 
-point.
-However I agree, the above check is redundant, since this check is 
-immediately followed by a validity check on the 'pdev' of the parent 
-node, which should be able cover any such errors as well.
-
->> +	for (i = 0; i < PCS_MII_CLK_MAX; i++) {
->> +		qpcs_mii->clk[i] = of_clk_get_by_name(np, pcs_mii_clk_name[i]);
->> +		if (IS_ERR(qpcs_mii->clk[i])) {
->> +			dev_err(qpcs->dev,
->> +				"Failed to get MII %d interface clock %s\n",
->> +				index, pcs_mii_clk_name[i]);
->> +			goto err_clk_get;
->> +		}
->> +
->> +		ret = clk_prepare_enable(qpcs_mii->clk[i]);
->> +		if (ret) {
->> +			dev_err(qpcs->dev,
->> +				"Failed to enable MII %d interface clock %s\n",
->> +				index, pcs_mii_clk_name[i]);
->> +			goto err_clk_en;
->> +		}
->> +	}
-> 
-> Maybe devm_clk_bulk_get() etc will help you here? I've never actually
-> used them, so i don't know for sure.
-> 
-
-We don't have a 'device' associated with the 'np', so we could not 
-consider using the "devm_clk_bulk_get()" API.
-
-> 	Andrew
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
