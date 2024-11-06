@@ -1,135 +1,126 @@
-Return-Path: <devicetree+bounces-119630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE749BF60D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 20:06:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E47BE9BF613
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 20:07:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F9D31F227A5
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 19:06:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BB32B2157E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 19:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3142A209667;
-	Wed,  6 Nov 2024 19:06:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aefVvPlb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49CED204948;
+	Wed,  6 Nov 2024 19:07:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9926D20823B;
-	Wed,  6 Nov 2024 19:06:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F46C20607C;
+	Wed,  6 Nov 2024 19:07:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730919965; cv=none; b=epfNIueQ3/X5Go6B6hbxN00KA7wfUl3UEmi76j5brOu4dnev4jpLYqDSMVgEd7dqXTkR78W6A02Xy3ZyP/a7GUwxCoBp7Lz5UEgyvG9KjIQeVMgeALxLAJPq0bCJjFFCy+VrJmUBIqmGOhH4rVuRCj73KZzqAOne4UAYfeaAzHc=
+	t=1730920022; cv=none; b=f5zu21tp48gh8KmOp389p7RGNXCr+lzboVEUXb1uE1K0H+DvhhizOuSIVFvUWnf/dY7CRbltmUYjRZ1F+3nKli5y/5L59PHFKqA12unXhQ7uoih+Zipe/rlQrax9l0r4kexnYNr/wwNCr7x956OHnwci7SY/0+qUZN+TpL/6QNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730919965; c=relaxed/simple;
-	bh=R6KQynz/e0fXEKEnL4JMvH5TU3YB7IKAqun5AWRELE4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GVzg+5g0JwnwGAX3hD2u852Ft66yYM0jpwObmN12icD4giAdHmZfriAPR0YSGLzG3v4TGDJe/CvhF5/adijZjh1C8veI1wL2jBM3qitnRJtaT1LKIEzwmtuqCBlzdWFuzQ6a9vjq5CpXtPDmPy8dE9RIS9EfetdqWkkd7c/OqgY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aefVvPlb; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1730920022; c=relaxed/simple;
+	bh=SOvFmyhUwT3CpaRLxO/rqdt+udzR2qrH+lXIuEhlosk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Jbi1lHrOXAaGfCgftJpJm0blcvF9B3FLmnVxaHihMQGMAN1JwdjOFr62I53DjDAF5DrNFelodoD4ZTggN2KxZfN01ABPS8rEVHfiC/fhG3uS2LHBN8SJ7FUlZCLdjfWQYzz1OBaYAkaDSqojPIJZF3eLQTHFkQAzSL5Amq75pnY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a9e8522c10bso25880366b.1;
-        Wed, 06 Nov 2024 11:06:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730919962; x=1731524762; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IgGvRXAJpj726ODsHfIG2S7bKnZ+OBr0kVdo6l+s/Hc=;
-        b=aefVvPlbiPf2V/WbXA/2nS5m/BTk8FdDrSYaSBYQGqXTfjGQJcO+vDOAuDVO+Ela/v
-         6oH2k4XvapR2tgwAI2Zc7TzXZNWdj/Kuz16kAuqkMIKUXEPRlgt08+RakCXiioSpZoG9
-         GHDU4Z4630dSPIyTPS+ab797tF0WMXhROgzu9w6t2TAlJQ0Ur79hMgGn1HK3utXe5q92
-         f8q9Szv03Md0Nlvxh8gHknY/+0gJzdS+Mnl0wInmuIfcgi1jLMvxglvD+lU5rCQH3WqK
-         j2fo9sTeN0KXOyMchmhGc/tKPFw9vKyBOT0Y+H0bFQVFGDlUMMRhpj2rhSCPc5X1RHKT
-         D9ag==
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5ebc9bda8c8so78828eaf.0;
+        Wed, 06 Nov 2024 11:07:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730919962; x=1731524762;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IgGvRXAJpj726ODsHfIG2S7bKnZ+OBr0kVdo6l+s/Hc=;
-        b=FLQBj1PZWl0ckC6QQge6cijW9O7JgHx2TIajB7x15JtTnk8aGu+4CpgQRGrY36MF/a
-         ZLxZ9SqUUuHvkftKvqT9UK1DPuh6HATHGDAww3bBh3VJb7moOClmtg2bMoKtrn5KXkOv
-         LhL5luo+bWX+wl4BzPPe6TRGlHXbmd5hm3H5OHsjp8wcwwXs60G5qG+R4pxatP9XE2F+
-         +d/OEdm+8cG+oxsQfX4Ur0L9idx5OyB7rDgGpDafwXF9R5o1j2EtArmpaNYLmGHuA32s
-         dN5MHje3ZCEO/DTzxrSuHEUjCc/fs3YHC38VuH3eEQ4vn4+RrzWCWYG/8JLl8vvSfFa1
-         Qj5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWL/DMXuwUO36Ox41w1enXCcI2H9FyKjjE47PRUIDc3bkbYX8B0YD/gc7XljwqZaASWLA8M1X1XtnX0cnk=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8hB8uLtjlwumqI7FYwQz+rE+L1NiktPdyW8aG023NDYlaRD9z
-	ywrufoNMi5JEF3im+K94dvQb1dB3kesVGKQH+iN+CR9cWkAMgaN0
-X-Google-Smtp-Source: AGHT+IHJzr9hbdLpV0PDZSH3MlBedQIIjCpH5cN/ogIiMjoiS6oKXKwoy7Qju43dBWT7plFuZ3cNUw==
-X-Received: by 2002:a17:906:d542:b0:a9e:b08f:867e with SMTP id a640c23a62f3a-a9ed4cb4df9mr40078066b.16.1730919961922;
-        Wed, 06 Nov 2024 11:06:01 -0800 (PST)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9eb16d9774sm324040166b.65.2024.11.06.11.06.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Nov 2024 11:06:01 -0800 (PST)
-Date: Wed, 6 Nov 2024 20:05:59 +0100
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 5/5] arm64: dts: sprd: sc9863a: reorder clocks,
- clock-names per bindings
-Message-ID: <d235438fbbd53c28b63cada2cf7e1234c120355e.1730918663.git.stano.jakubek@gmail.com>
-References: <cover.1730918663.git.stano.jakubek@gmail.com>
+        d=1e100.net; s=20230601; t=1730920018; x=1731524818;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1ZfJuo7pugYHJJaS8IJNytNUoBp8GBDpjZKB6B7LHdk=;
+        b=nZE/KSC51WmpvS1VpsHwhb4b/RhLW0tc1M1oNWRC8SvZS1wT4KolhG44lFG/R0FANM
+         t5o+21LCMxvqSxDtfuPeWfwxZtyH2lZo2ykiyqLvOSdRIZqnsSnqfxt2X9Z48LQhuRSX
+         mopr2CiRXbYqBC4FJr6mdETsTZItI0wOXVjRGDeUJtxbD8lLxrykABH3pJPqq8p4Ruqc
+         HqPhpHG0Zhq06driSP9ij+BEMIR2obtrBwhMFSLyD9tyrVcRIDL97TAWPc4vxbx/FUCf
+         c3Svc1HpK1KwXBcTTpkzXXHfCpX6T0Hf2vAHo3nm92dy1UbnW1lky/wVaqkVXV0B8hI8
+         ajEA==
+X-Forwarded-Encrypted: i=1; AJvYcCUZ+Bw8H4OdbyFT8kyPFrzqwdIVNjY/MamXm3pGdRAQqikqqUOzSclWNHpCYD/o2WIKVQTqNWOwEAkCB7ibn5WfFfo=@vger.kernel.org, AJvYcCWHRrh5SffVSjh2E7oPwGCX2HvkcdPzestH4vphtLK1VwsO6RySalx5fDV+1RRG8p16bvSVPLyO@vger.kernel.org, AJvYcCXnOTO7jmtooda4KnV1NT2svI1xT1Y49/p66L/ITe1jBfS4bJWDbEVgXPLveM3HA6N8tUFe/Y572yuc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3/J1LKeS3B4PAfvC4heR16UE7Faut0+8C7LfutSGlLJFnmU8y
+	QSjJXbMBp0icP8Nj3kqCvQO3hOkzemScD1XKC24LFknEVzxTLtXIHZkeLDWm
+X-Google-Smtp-Source: AGHT+IHOEKCdklXPOl9FK7PNCQOwBwNPkJRFUa4nk8dyhp2q68r95bIX0/1hMezbxb68roOqu09ZvA==
+X-Received: by 2002:a05:6820:54c:b0:5eb:6a67:6255 with SMTP id 006d021491bc7-5ede6317636mr14450108eaf.1.1730920017834;
+        Wed, 06 Nov 2024 11:06:57 -0800 (PST)
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com. [209.85.167.179])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ec704e4af4sm2766469eaf.16.2024.11.06.11.06.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Nov 2024 11:06:55 -0800 (PST)
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3e6075cba82so143020b6e.0;
+        Wed, 06 Nov 2024 11:06:55 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVMsgfsaaHQS+dTd+GZsPhSQwW81VFHMAMCMXDk/bfC8+zIA762c1hVOI9B40QpyVbvW1Utq6Y8NkMr@vger.kernel.org, AJvYcCWtKW3L0Qd+Q9Q9akWIIpNX4mfKqwpoLgb+jubjJOVWlvzNxztHboqhtS8cmD9gb3/uo9JqITB9@vger.kernel.org, AJvYcCWwrzaxrWC+UNO1xyH3Y6ZOzuOKB2tNPG04vwR599UWx/MkRJxj+Y+fW//2Z8Ff6V93QO53HgSyzuLS5GBTdofJRhs=@vger.kernel.org
+X-Received: by 2002:a05:6808:130a:b0:3e3:a99a:433f with SMTP id
+ 5614622812f47-3e758c5a52bmr17620319b6e.13.1730920015121; Wed, 06 Nov 2024
+ 11:06:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1730918663.git.stano.jakubek@gmail.com>
+References: <20241106184935.294513-1-biju.das.jz@bp.renesas.com> <20241106184935.294513-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20241106184935.294513-3-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 6 Nov 2024 20:06:43 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWwf4iqUsOA+XajoAcN081GG95muA3m_ZxRp-BemSmajQ@mail.gmail.com>
+Message-ID: <CAMuHMdWwf4iqUsOA+XajoAcN081GG95muA3m_ZxRp-BemSmajQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: display: adi,adv7533: Drop single
+ lane support
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-DT bindings expect the SC9863A clock-controller clocks/clock-names to be
-in a specific order, reorder them.
+Hi Biju,
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
-Changes in V2:
-- new patch
+On Wed, Nov 6, 2024 at 7:49=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.com=
+> wrote:
+> As per [1], ADV7535/7533 support only 2-, 3-, or 4-lane. Drop
+> unsupported 1-lane from bindings.
+>
+> [1]
+> https://www.analog.com/media/en/technical-documentation/data-sheets/ADV75=
+35.pdf
 
- arch/arm64/boot/dts/sprd/sc9863a.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+The above is for ADV7535. Fortunately
+https://www.analog.com/media/en/technical-documentation/data-sheets/ADV7533=
+.pdf
+agrees ;-)
 
-diff --git a/arch/arm64/boot/dts/sprd/sc9863a.dtsi b/arch/arm64/boot/dts/sprd/sc9863a.dtsi
-index 31172ac44adc..e97000e560e7 100644
---- a/arch/arm64/boot/dts/sprd/sc9863a.dtsi
-+++ b/arch/arm64/boot/dts/sprd/sc9863a.dtsi
-@@ -163,18 +163,18 @@ gic: interrupt-controller@14000000 {
- 		ap_clk: clock-controller@21500000 {
- 			compatible = "sprd,sc9863a-ap-clk";
- 			reg = <0 0x21500000 0 0x1000>;
--			clocks = <&ext_32k>, <&ext_26m>;
--			clock-names = "ext-32k", "ext-26m";
-+			clocks = <&ext_26m>, <&ext_32k>;
-+			clock-names = "ext-26m", "ext-32k";
- 			#clock-cells = <1>;
- 		};
- 
- 		aon_clk: clock-controller@402d0000 {
- 			compatible = "sprd,sc9863a-aon-clk";
- 			reg = <0 0x402d0000 0 0x1000>;
--			clocks = <&ext_26m>, <&rco_100m>,
--				 <&ext_32k>, <&ext_4m>;
--			clock-names = "ext-26m", "rco-100m",
--				      "ext-32k", "ext-4m";
-+			clocks = <&ext_26m>, <&ext_32k>,
-+				 <&ext_4m>, <&rco_100m>;
-+			clock-names = "ext-26m", "ext-32k",
-+				      "ext-4m", "rco-100m";
- 			#clock-cells = <1>;
- 		};
- 
--- 
-2.43.0
+> Fixes: 1e4d58cd7f88 ("drm/bridge: adv7533: Create a MIPI DSI device")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
+With the description updated:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
