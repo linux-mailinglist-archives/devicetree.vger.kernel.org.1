@@ -1,121 +1,137 @@
-Return-Path: <devicetree+bounces-119524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B8DA9BEF9A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 14:57:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76B689BEFA4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 14:58:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FC6C1C242EE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 13:57:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BC652842DC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 13:58:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78855201011;
-	Wed,  6 Nov 2024 13:56:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD7A201018;
+	Wed,  6 Nov 2024 13:58:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="civDo1qo"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="l7cFdtyr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta1.migadu.com (out-171.mta1.migadu.com [95.215.58.171])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 083291E0DC4;
-	Wed,  6 Nov 2024 13:56:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53B17200CBB;
+	Wed,  6 Nov 2024 13:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730901406; cv=none; b=CWNHF88z4siK+KUzT5Z4bcr22J5AcAc+i7aQaq7yy2N64SkZ41KvBe32LGPnhTr4TjRjCSzsuffAUSI+25rKNB4AXu7QGcwGTm3mlS3HHxQzoymBZHmpr7cVnDTEImZMQtSr6R8yNh5rwijYNiIPKXG90+pLzoQrTfWNggYNAts=
+	t=1730901486; cv=none; b=mhdETCglv0pVvxwXMlnxmBtY1ZjHwL+s62932ZCkmWNqRAkgZcvE413QmAoIbiIvqrdEF911E7SD00TR0NGN4O1xfe4HdtCxzVLHBTaP0tQJ4vFtHnEmOSx7fbn7vDl5iCQKC8k30Wu2xhBZcUlDrvuxc9u5XXyy5TsxYX7DA3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730901406; c=relaxed/simple;
-	bh=7J7DnXd/AUvMjHWLvIl/lim+ofnGteAjqqRMdS9BgGw=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=FS3jsq0CvRePI4+gexZi9v9FyGEUnplfNSllaM5mMlwx8Lu9xyQeOkCP8YoPvfIAeDwuMu5tQLYviz36172xbIHW0QEyWe7WLsfOWiL0dQxCWM+1e8z0AkQrVz6IVw1O8sb2NZ4yZ/mmigHqB6ajLD4WdHcN0X+EmNREFlEQhSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=civDo1qo; arc=none smtp.client-ip=95.215.58.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1730901486; c=relaxed/simple;
+	bh=JHxLQgSLWdft8dSzdvbt7oLzbR8ccNpS8nioRv0vsWc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KBEuswAIYTZQsFTRxaZD/28sl0jc+dXQeM97rghqIQ6PJOXvt3Tdv79mNKirhqWn4RiwzDvrQLF5/R7jpf1OZq5iXimX6ttwp9wDPg1GgQziRmA8f4dkjxwWaeHynxIF7fpDT+pBG/YHuWoJR519SVPXXKDj9vscIVesMlMTaCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=l7cFdtyr; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 60E85475;
+	Wed,  6 Nov 2024 14:57:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1730901474;
+	bh=JHxLQgSLWdft8dSzdvbt7oLzbR8ccNpS8nioRv0vsWc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=l7cFdtyrLuTL573iQmGDrUByPoITVRPQxVYPi2KCf4Z/HiY8P4yZM8J5yLQi1eEJa
+	 HEU2+dt6x9zxxzatiMNtPjyM60RInhwTuyv+f9hEaoEkuOzFo7oaEZuMTvHN7fPsCz
+	 RVAjsnjvYS14JVV9hzz6PM2uqTSBptXcZWDCBsek=
+Date: Wed, 6 Nov 2024 15:57:56 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Daniel Scally <dan.scally@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com,
+	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com,
+	robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+	sakari.ailus@iki.fi
+Subject: Re: [PATCH v8 05/17] dt-bindings: media: Add bindings for ARM
+ mali-c55
+Message-ID: <20241106135756.GI9369@pendragon.ideasonboard.com>
+References: <20241106100534.768400-1-dan.scally@ideasonboard.com>
+ <20241106100534.768400-6-dan.scally@ideasonboard.com>
+ <lag7gfpuj2hdxw6i5pumaivxl5rylt2hztd57rynjestffwool@ate7u3zhrgfn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1730901402;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NHHYML0BEoPmu07uEuVWCMR6UzMbCnRMamSxbmnkn0o=;
-	b=civDo1qoh0TP45iFIHWo4U31+mpvHe8lkbDh3GuEa0ZZmzQA7y+buDTUPY8xijrRBFSqrA
-	zb3ECm1xYuV+iBNrn1zt5jb/GJLTMj06G+kgpeUfKzmgfNYRKy3DE3naaYSbrmmPFeYAg/
-	9x2nE4nLfvRsjInfpYCYoa0zGncOLDL2YA3n0tAYHybQEsTG6oqYJmsL4ywlHV9x6iHVij
-	txY05WsCJ9qvX8B72j01ZStfRUv20+6gxHIhIWisOLMziav2EQ8BjtmVp0OHdG/qHfOb4Z
-	V3j4BzFKr+Owb0XOY3mlV9SJIJCzEdOJgxJIINdOjazassPtDa5APqVneEMwag==
-Content-Type: multipart/signed;
- boundary=012b4e88e5ada0d79e0d754e24911a278ebf87aafc76bd346a02ee35533f;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Wed, 06 Nov 2024 14:56:31 +0100
-Message-Id: <D5F5C1RWVHG5.TSHPO29TXYEF@cknow.org>
-Cc: <quentin.schulz@cherry.de>, <devicetree@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- "Heiko Stuebner" <heiko.stuebner@cherry.de>
-Subject: Re: [PATCH 1/3] arm64: dts: rockchip: add mipi dcphy nodes to
- rk3588
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Heiko Stuebner" <heiko@sntech.de>
-References: <20241106123758.423584-1-heiko@sntech.de>
- <20241106123758.423584-2-heiko@sntech.de>
- <D5F525WYXDO1.3I92CTU67RVF6@cknow.org>
-In-Reply-To: <D5F525WYXDO1.3I92CTU67RVF6@cknow.org>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <lag7gfpuj2hdxw6i5pumaivxl5rylt2hztd57rynjestffwool@ate7u3zhrgfn>
 
---012b4e88e5ada0d79e0d754e24911a278ebf87aafc76bd346a02ee35533f
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+Hi Krzysztof,
 
-Hi,
-
-On Wed Nov 6, 2024 at 2:43 PM CET, Diederik de Haas wrote:
-> On Wed Nov 6, 2024 at 1:37 PM CET, Heiko Stuebner wrote:
-> > From: Heiko Stuebner <heiko.stuebner@cherry.de>
-> >
-> > Add the two MIPI-DC-phy nodes to the RK3588, that will be used by the
-> > DSI2 controllers and hopefully in some future also for camera input.
-> >
-> > Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
+On Wed, Nov 06, 2024 at 01:15:23PM +0100, Krzysztof Kozlowski wrote:
+> On Wed, Nov 06, 2024 at 10:05:22AM +0000, Daniel Scally wrote:
+> > Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
+> > 
+> > Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+> > Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
 > > ---
-> >  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 42 +++++++++++++++++++
-> >  1 file changed, 42 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64=
-/boot/dts/rockchip/rk3588-base.dtsi
-> > index 51ba7563f7d0..8c95c56e8097 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> > @@ -576,6 +576,16 @@ sys_grf: syscon@fd58c000 {
-> >  		reg =3D <0x0 0xfd58c000 0x0 0x1000>;
-> >  	};
-> > =20
->
-> No power-domains property?
-> RK3588 TRM v1.0 part 1 page 1097 has ALIVE(PD_BUS) for
-> MIPI_DC_PHY0~MIPI_DC_PHY1
+> > Changes in v8:
+> > 
+> > 	- Added the video clock back in. Now that we have actual hardware it's
+> > 	  clear that it's necessary.
+> > 	- Added reset lines 
+> > 	- Dropped R-bs
+> 
+> These are trivial, so I wish you kept the review... but since you ask,
+> then comment further
+> 
+> I recommend using b4, so your cover letter changelog comes with nice
+> links to previous versions. I scrolled through entire cover letter for
+> this (for me that's almost the only point of cover letter) and could
+> not find them. Anyway, just a remark.
+> 
+> 
+> ...
+> 
+> > +  resets:
+> > +    items:
+> > +      - description: vclk domain reset
+> > +      - description: aclk domain reset
+> > +      - description: hclk domain reset
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: vresetn
+> 
+> drop "reset", it's redundant and rather come here with logical name. I
+> wonder what "n" means as well. It's not a GPIO to be "inverted"...
 
-Please ignore. They're defined in patch 2 of the series.
+The aresetn and hresetn names come directly from a hardware manual
+(vresetn seems to be called rstn in that document though). As far as I
+understand, they are the names of the external signals of the IP core.
+I tend to pick the hardware names for clock and reset names. That makes
+it easier for integrators, and from a driver point of view it doesn't
+change much as DT names are just a convention anyway.
 
-Cheers,
-  Diederik
+That being said, if there's a good reason to do otherwise (such as
+standardizing property names to make handling through common code
+possible), that's fine too.
 
+> I wonder about reset domains for clocks as well... is this just gate
+> clock misrepresented?
 
---012b4e88e5ada0d79e0d754e24911a278ebf87aafc76bd346a02ee35533f
-Content-Type: application/pgp-signature; name="signature.asc"
+No, those are real reset signals. There can be clock gates external to
+the IP, and those are handled by the clock providers. The IP has three
+domains of logical that are synchronous to three different clocks, and
+they have one reset signal each, hence the description mentioning "clock
+domain".
 
------BEGIN PGP SIGNATURE-----
+-- 
+Regards,
 
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZyt1kwAKCRDXblvOeH7b
-btIaAP9GEyWWHj2Ucfg8SHEqGPFXB1DOlzMCnFSxDRzE8HkkHQEAoDu8i0KMPRAh
-xQ0hirMyEoP9TjRU/1stf0TaofvvzQQ=
-=oNr/
------END PGP SIGNATURE-----
-
---012b4e88e5ada0d79e0d754e24911a278ebf87aafc76bd346a02ee35533f--
+Laurent Pinchart
 
