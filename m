@@ -1,95 +1,91 @@
-Return-Path: <devicetree+bounces-119452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 115259BE4E3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 11:55:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AD029BE4EC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 11:56:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86B3F281D7D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 10:55:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D45AE285B53
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 10:55:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C3251DE3C4;
-	Wed,  6 Nov 2024 10:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D0981DE3D3;
+	Wed,  6 Nov 2024 10:55:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PLZwFhBq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uRFzni32"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EFCF1DD525;
-	Wed,  6 Nov 2024 10:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03A371DA622;
+	Wed,  6 Nov 2024 10:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730890500; cv=none; b=uOS+HLVE/o5S9dsNBjSW4Vl2/7HjXUolY/Alglh3BofAn6+YrciKdg/dWm/1d3ZwQe+VkVKKq67mwX6b3eZOVPp1m8sDzv39SaCRCAglHtP1k2lV9H+s8mL99B05cVhNy9Q2MTZ8XePRcPUnzELSUsg+/BClL4b1KuKyyPxKB/0=
+	t=1730890548; cv=none; b=sM38JXe90cDwMrkiuVQ37G2uBAIx6Ub+tqEu6rzYoUIDmSXXlr1qXkbKveI4vioeYcjz+vgi1ORRA7trvt480TS8FdYsFTA3jQwKcXPoD302lhRwK0Ni5z8R+d86N/XixeDJubTDqIPoZ1nweDf5lhbttyt4D4S6mpN51ZqkTCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730890500; c=relaxed/simple;
-	bh=JzJ2jvVWeRAP+hj95hcIGJu+zeCkaii11+p1DMnnk5U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CCJ4WOKo5rttdQrIwAOSxPc53YSgmlR4UHuQFPT2z4XRTDCHg2SfSIBM7EU6KHBbZwA8y/F4rxwWc/REqlBYYYiAUD1faqlgeIDcDhWL3XagaMpRYH/dPHf1oxagCWKKgRIdIb9RQxsE4N9kFxBoCapKyd6dy1SzvnwfoW6LeTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PLZwFhBq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D515C4CECD;
-	Wed,  6 Nov 2024 10:54:57 +0000 (UTC)
+	s=arc-20240116; t=1730890548; c=relaxed/simple;
+	bh=3QNhdLfaFoqKHebi4TF2CAzndgVvZujHDKpOb5+/9Ws=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=uHRPwSuYq6nmP7/fFI9x+sT5ftIJMxIBkyu0JRJ+b/Vgw5twywG1UiCYphRUSa4p2DluYwa4VuLepqlhbp++YTYKgkRBbTbWkw42JiX+3dNGvR+25c6UDdc+l4AoQplm4HaO5GbpJCq072UAOXWpM8368Ht6slRudvu6Hz+qexM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uRFzni32; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D3C5C4CECD;
+	Wed,  6 Nov 2024 10:55:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730890500;
-	bh=JzJ2jvVWeRAP+hj95hcIGJu+zeCkaii11+p1DMnnk5U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PLZwFhBqTFsT7DIjmlEAaVVk2YeEJ00EI3QxsgEubH18WHZLRTcOzTg3E1snQn4hD
-	 yq9E5XrjyAMmStXBlvindVdaWDB3ZQJJuRRcwRAB6uIEM7c9H8UXf5gtmKVq83LsrH
-	 CCx2oay3Y78ESI5g6tiTVvfKBq0kGbeKtAWCJyVDF/nAzmIF9/tp9Q7xW0b1FxK6qv
-	 7kXn5WwOddhgS5ndHNA5s6ryr6T7/UTkyNClaA+YGmaPMKFALa62UjDrdp8fKrIcpN
-	 iBMc7n3KBPdtYvF10hWll2slpe7wEMIqwdL6/3we089+PCgel2IPkZB8AtcERX0+gH
-	 qY5FBvQkQq34A==
-Date: Wed, 6 Nov 2024 10:54:55 +0000
+	s=k20201202; t=1730890547;
+	bh=3QNhdLfaFoqKHebi4TF2CAzndgVvZujHDKpOb5+/9Ws=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=uRFzni32xjLNM+M0TZe2xWbHmRUxAdYUw+ibMTkRpgX8EZljDuAghAlconbqitZsF
+	 oXFv/4X66CDoGXnx49ZzqNlpckHchuJ0F+xLDHoX4w2QKBmhw3dleTqixTHMn8AhNE
+	 ayjr1CSltQPO0EZBTBpiEUt8s1oioBo9RlfuLKCnLpF5kXTv2+/IrBLQbtH2rk+vgz
+	 lDTpppvGcahpRIBC/ujmoozezpQS8VYAYR6aNUDcc2LwNBELG7A/nbpiPnKMV+U1Tb
+	 PCg3eCRRje0WL1xBKmdRUxA6OVygJkaxnTRyIN4gC4N2d1PHmqGF31545q4rBlD57k
+	 iUJIg88rbLB7w==
 From: Lee Jones <lee@kernel.org>
-To: George Stark <gnstark@salutedevices.com>
-Cc: pavel@ucw.cz, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, kernel@salutedevices.com
-Subject: Re: [RESEND PATCH v2 0/2] leds: pwm: Add default-brightness property
-Message-ID: <20241106105455.GQ1807686@google.com>
-References: <20241105185006.1380166-1-gnstark@salutedevices.com>
+To: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, lee@kernel.org, sre@kernel.org, 
+ tsbogend@alpha.franken.de, 
+ Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-mips@vger.kernel.org
+In-Reply-To: <20241031200350.274945-5-chris.packham@alliedtelesis.co.nz>
+References: <20241031200350.274945-1-chris.packham@alliedtelesis.co.nz>
+ <20241031200350.274945-5-chris.packham@alliedtelesis.co.nz>
+Subject: Re: (subset) [PATCH v8 4/7] dt-bindings: mfd: Add Realtek RTL9300
+ switch peripherals
+Message-Id: <173089054492.3329096.14087747490130064328.b4-ty@kernel.org>
+Date: Wed, 06 Nov 2024 10:55:44 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241105185006.1380166-1-gnstark@salutedevices.com>
+X-Mailer: b4 0.13.0
 
-On Tue, 05 Nov 2024, George Stark wrote:
+On Fri, 01 Nov 2024 09:03:47 +1300, Chris Packham wrote:
+> Add device tree schema for the Realtek RTL9300 switches. The RTL9300
+> family is made up of the RTL9301, RTL9302B, RTL9302C and RTL9303. These
+> have the same SoC differ in the Ethernet switch/SERDES arrangement.
+> 
+> Currently the only supported features are the syscon-reboot and i2c
+> controllers. The syscon-reboot is needed to be able to reboot the board.
+> The I2C controllers are slightly unusual because they each own an SCL
+> pin (GPIO8 for the first controller, GPIO 17 for the second) but have 8
+> common SDA pins which can be assigned to either controller (but not
+> both).
+> 
+> [...]
 
-> led-pwm driver supports default-state DT property and if that state is on then
-> the driver during initialization turns on the LED setting maximum brightness.
-> Sometimes it's desirable to use lower initial brightness.
-> This patch series adds support for DT property default-brightness.
-> 
-> Things to discuss:
-> If such a property is acceptable it could be moved to leds/common.yaml due to
-> several drivers support multiple brightness levels and could support the property
-> too.
-> 
-> Changes in v2:
->   leds: pwm: Add optional DT property default-brightness
->     - refactor patch to make it more accurate
->   link to v1: [1]
-> 
-> [1] https://lore.kernel.org/lkml/20241015151410.2158102-3-gnstark@salutedevices.com/T/
-> 
-> George Stark (2):
->   dt-bindings: leds: pwm: Add default-brightness property
->   leds: pwm: Add optional DT property default-brightness
-> 
->  .../devicetree/bindings/leds/leds-pwm.yaml      |  6 ++++++
->  drivers/leds/leds-pwm.c                         | 17 ++++++++++++++++-
->  2 files changed, 22 insertions(+), 1 deletion(-)
+Applied, thanks!
 
-The set doesn't apply.  Please rebase it.
+[4/7] dt-bindings: mfd: Add Realtek RTL9300 switch peripherals
+      commit: 0c64e7496717779ff60249d5aafd5c18aceee982
 
--- 
+--
 Lee Jones [李琼斯]
+
 
