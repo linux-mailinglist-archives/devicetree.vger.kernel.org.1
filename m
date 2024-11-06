@@ -1,76 +1,63 @@
-Return-Path: <devicetree+bounces-119287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E39B19BDDF6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 05:34:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E70A09BDE0F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 05:46:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB0A3284DD8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 04:34:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D718E1C22825
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 04:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F03185949;
-	Wed,  6 Nov 2024 04:34:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50F9518F2DD;
+	Wed,  6 Nov 2024 04:46:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bw+4AYHM"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="duPuEpOY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C7A16A943;
-	Wed,  6 Nov 2024 04:34:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8642E13541B;
+	Wed,  6 Nov 2024 04:46:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730867647; cv=none; b=MQSF2M+ykAW3R+5Zk/rfK0y8iw05u0FYh6qnTCxyfXZxfqrbL4Apx2ndj7hGM1s8TlIFm4/btY6dFVnKU/aQgYHAlmZ0aEHUmfePfV1Q2TOlffQFyNBiDtDVfrroQd6rp4+9czb745dzYBX2vHahEgixWe6UKN3glDe0zPDwkoM=
+	t=1730868412; cv=none; b=bcnb2LDYCifYywsLJABd8sIr0ilgXy5IOa+wfBl0r6frVLNzolbG65+ypzWFEQlEsUYo0Tw6zF+yvkCvDrPrd1Cy2LQoOvWUaSd0yW+Z0TnD8RGfMmGcqW4K3B9sG8JCTCMHBmHy2DSOARoNMHmbB/fO3RgmEvzIQT5+shLH4uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730867647; c=relaxed/simple;
-	bh=HheYRP+RgsWn9uNIev/5lyG8eqoOCfRT8hOdlJ3GEsw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ffyb7yd5Ixvn4jJhY57D9fc2XP53cNJrtFWbufxcyLASy0qcWGeUflsv4L2YhPJuMoqOXcZL8I9Mzu0/remWy0ZQfdevPjcY1wCB5mRPB9SCl8TYzUWiSKh1NrszuR68CdYPP58PwQJmImxUE8plsPdeg8XoYWtxdCcpJ8WEHAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bw+4AYHM; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2e34a089cd3so4947564a91.3;
-        Tue, 05 Nov 2024 20:34:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730867645; x=1731472445; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=87jVHtd1KnAMU7ICz51A+0/GbUj8xK29s4iCvFn6sec=;
-        b=Bw+4AYHMm7+G5e9X22Q+cdV/a047hd4qDpug6yD/Lyx3R98vGoAb4AmJnropMDERVt
-         3smkUkzo0n6GtW0q7LglkW4+imfo5eKCI7MkoBP2HZtu9xrb4zEHFymgkMKLzCMUVVtF
-         6Xo3c/N1a4M7xFR/zjxcs76XWKkhRPgudlj0IoJoyTO6qb89+h6SoQMferqj1p7PtZUY
-         4eW/TFoe0QVHrsXfHKhUdgqcZAmoDDEWzgf6P2YIzCWW0xU956OLz9xefhgG2Y1QF+T2
-         VIqdnIK9YylmGVoTmGZoxZt3XaJ85SqwT1d8FU2K+5J2lB9NJUm8E5iRBgZ3p0k0097w
-         ivTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730867645; x=1731472445;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=87jVHtd1KnAMU7ICz51A+0/GbUj8xK29s4iCvFn6sec=;
-        b=t2hFkOJr74d2A7Moc34oRiCyTuXDJOQsiy/sX53T7+TeHJXlQDPAV9ZxQk4yUKBIe5
-         uGG73mX2JxUQIMYp/1TtHlatlUJCYwBBJ2CA1a9X30ZMOhiyWGbGmAbcRI4mrWWWcHHr
-         zT4zlBKlxX1atEn49VRnwJoB0t3k4smh2BHiO7PQBVxOQRTZGJeedMNAXOsQ3r9HXsHU
-         itkbGcpjUK5jqg8yMr1dQxMPl6AGWgyJwJVpB90/pRo8HtVIOesSYTDCV1RVzUnG3+mP
-         KJA8VcaphBgaAkxGjolfvaitcsAogQQ5vG7yrLgyrnjvcaI5QB1q9UKPRq1E+1oY5hh8
-         AK/A==
-X-Forwarded-Encrypted: i=1; AJvYcCUMrfI4Zl8lUKgtPwIbLfjLHVGAQ7Z9orsEE13ALr7hP+kzq6z8NkTVwmhE/UzwaCO4XNNHDLgd3faG+ygZ@vger.kernel.org, AJvYcCUVqNNVRY2Y2/TE5wWTq78U5eZcTuIXWLzUq3KeNkI+grorBFlfCDPGT9iKPpNGkZ2uoff+Ps1UUmY0z2k=@vger.kernel.org, AJvYcCVVX9MLTwJpmQnbDR8OrTlT8ShZ7xmWO6VgQ4cP5hC1Ah9RCl8QiY4hQDPvr4IFSBj7MI6j9p4XIJ3t@vger.kernel.org, AJvYcCVz0btiFBgQCJ0MqltaxAjUpruWu9519i3x60H+QWKMUWJCnnkAPvwFRiEKR3yD9RkMLOYUrl62mvVF@vger.kernel.org, AJvYcCXgPqMB//GjzjR0VXcFFMzsvReoB+MbiIsmIV/k79G+6xvHkxngl6W2bjy3jY97ZTNQgTXq9VExLSnG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxg4X1uOm1bVUZqg5v+YX5KK2334dc+HAvNlI0celmlNqUtcMPP
-	LkR4FqyEgDCnXnioRxZCS3X3Kq53ojdz5KPeXV6hUxHO4z9XEZgn
-X-Google-Smtp-Source: AGHT+IESFCvZDl/6c+yFKwLdqcJSIb4eE2eXBWbzf541CLu50KDraET1/2dT5FhwK79ymVWXadVEVw==
-X-Received: by 2002:a17:90a:f406:b0:2e0:d693:7884 with SMTP id 98e67ed59e1d1-2e8f0f55a2bmr42611639a91.5.1730867645184;
-        Tue, 05 Nov 2024 20:34:05 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e99a4f97b2sm424422a91.8.2024.11.05.20.34.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Nov 2024 20:34:04 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <8e4dc080-d779-4b06-8fd1-74784e06323a@roeck-us.net>
-Date: Tue, 5 Nov 2024 20:34:01 -0800
+	s=arc-20240116; t=1730868412; c=relaxed/simple;
+	bh=ClrK/IHwCExCxbijAAdGJnaDpWHbinT5bAVkRKyX6rA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=DQioQeclI1yMMuS76VEoxMSPTOM9wZUcaJUikxAU88SQGyrP5JgRBgzHos4jbvTsLnL+BnfzfNr8zkTk/0VAmYFxSy7Sj9jD7OFA1y8VT2O/rCe0avfWlbxaeAaFDC6q5Ud31H+yMlJJwHNbGYPIHDrYxppSmuG8BhgkIBEvEXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=duPuEpOY; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A5Jq8Oq015613;
+	Wed, 6 Nov 2024 04:46:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5QdeTYD4pNvhDGcfJ/gRkXGjGR6HGKdRgv7UciU+g8k=; b=duPuEpOYrtzjot1g
+	R/hCvJ2qzI6+fZ2y+Y1mGIXEMoAzth6gcGzlgBHkAKcIj3BOujNmWJfEmCi8JdaN
+	ySesNZKWeolj/PF6GkjHbATiZTAe5ecfkKTekz6TfT7SiTavI0blH5nbiD74zC94
+	hfhXGeze/q6rqwnhHl3AoKgFY424gEqvel38h1w3FumMwl0QRsVLjwEuaS8uyNZZ
+	vDtVANTR8xV0J33lOgdg7oGZeOwBwJ/rwRAOtXMYobVelakAeK9d+vuKTFyvBzF3
+	zXx1FT5gm1Xqc/OcNFa+qllGZL59ncOdVS3jND1v+1gJvOkrGHT/bsE5YbfKF4is
+	Y6bptA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42q5n8mdj7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 06 Nov 2024 04:46:44 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A64khmp001208
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 6 Nov 2024 04:46:43 GMT
+Received: from [10.216.39.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 5 Nov 2024
+ 20:46:39 -0800
+Message-ID: <f8697f7f-f6ac-4b6d-954b-a0777770dc8e@quicinc.com>
+Date: Wed, 6 Nov 2024 10:16:35 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,111 +65,137 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: trivial-devices: add ltp8800
-To: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-hwmon@vger.kernel.org
-Cc: Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
- Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Peter Yin <peteryin.openbmc@gmail.com>,
- Noah Wang <noahwang.wang@outlook.com>, Marek Vasut <marex@denx.de>,
- Lukas Wunner <lukas@wunner.de>
-References: <20241106030918.24849-1-cedricjustine.encarnacion@analog.com>
- <20241106030918.24849-2-cedricjustine.encarnacion@analog.com>
+Subject: Re: [PATCH v7 3/3] arm64: dts: qcom: sc8280xp-blackrock: dt
+ definition for WDK2023
+To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Merck Hung <merckhung@gmail.com>,
+        Kalle Valo
+	<kvalo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, <xlazom00@gmail.com>
+References: <20241101-jg-blackrock-for-upstream-v7-0-8295e9f545d9@oldschoolsolutions.biz>
+ <20241101-jg-blackrock-for-upstream-v7-3-8295e9f545d9@oldschoolsolutions.biz>
+ <945f3eae-0a68-4738-af07-74e228039508@quicinc.com>
+ <dd5bad7b-d062-4028-b78a-3888dec4f934@oldschoolsolutions.biz>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
- nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
- hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
- c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
- 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
- GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
- sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
- Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
- HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
- BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
- l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
- J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
- cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
- wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
- hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
- nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
- QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
- trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
- WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
- HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20241106030918.24849-2-cedricjustine.encarnacion@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+In-Reply-To: <dd5bad7b-d062-4028-b78a-3888dec4f934@oldschoolsolutions.biz>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: OfyvmQc4XR8rzaxVHqiyNI8FJ281dVVy
+X-Proofpoint-ORIG-GUID: OfyvmQc4XR8rzaxVHqiyNI8FJ281dVVy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
+ suspectscore=0 lowpriorityscore=0 mlxlogscore=999 mlxscore=0
+ priorityscore=1501 bulkscore=0 adultscore=0 malwarescore=0 phishscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411060036
 
-On 11/5/24 19:09, Cedric Encarnacion wrote:
-> Add Analog Devices LTP8800-1A, LTP8800-2, and LTP8800-4A DC/DC μModule
-> regulator.
+
+
+On 11/6/2024 12:57 AM, Jens Glathe wrote:
+> On 04.11.24 05:31, Krishna Kurapati wrote:
+>>
+>>
+>> On 11/1/2024 11:56 PM, Jens Glathe via B4 Relay wrote:
+>>> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>>>
+>>> Device tree for the Microsoft Windows Dev Kit 2023. This work
+>>> is based on the initial work of Merck Hung <merckhung@gmail.com>.
+>>>
+>>> Original work:
+>>> https://github.com/merckhung/linux_ms_dev_kit/blob/ms-dev-kit-2023-v6.3.0/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-dev-kit-2023.dts
+>>>
+>>> The Windows Dev Kit 2023 is a nice little desktop based on sc8280xp.
+>>> Link: https://learn.microsoft.com/en-us/windows/arm/dev-kit/
+>>>
+>>> Supported features:
+>>> - USB type-c and type-a ports
+>>> - minidp connector
+>>> - built-in r8152 Ethernet adapter
+>>> - PCIe devices
+>>> - nvme
+>>> - ath11k WiFi (WCN6855)
+>>> - WCN6855 Bluetooth
+>>> - A690 GPU
+>>> - ADSP and CDSP
+>>> - GPIO keys
+>>> - Audio definition (works via USB)
+>>>
+>>> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>>> ---
+>>
+>> [...]
+>>
+>>> +&usb_2 {
+>>> +    pinctrl-0 = <&usb2_en_state>;
+>>> +    pinctrl-names = "default";
+>>> +
+>>
+>> On the blackrock platform, for this controller, are there all 4 ports
+>> given out for use or only one ?
+>>
+>> Because if all 4 are there, you might need to give all 4 pinctrls (one
+>> for each TS3USB221A mux select) here for usb_2 node. If only one port
+>> is given out for use on the platform, then only one phy (of the 4
+>> activated below) needs to be marked as active.
+>>
+>> In my case, in [1] on the ADP platform, I marked them as always on for
+>> all gpios on multiport controller since driver had no support added yet.
+>>
+>> [1]:
+>> https://lore.kernel.org/all/20240707085624.3411961-1-quic_kriskura@quicinc.com/
+>>
+> Hi Krishna,
 > 
-> Signed-off-by: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
-> ---
->   Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->   MAINTAINERS                                            | 5 +++++
->   2 files changed, 7 insertions(+)
+> thank you for the hints. Unfortunately, I don't have any schematics for
+> the box. But I tested out activation combinations for all the
+
+My point is little different.
+Third controller supports upto 4 physical ports. How many of them have 
+been exposed on this WDK2023 ? Depending on that, the phys have to be 
+enabled in DT.
+
+> usb_2_hsphy and usb_2_qmpphy listed. All of these are also listed in the
+> usb_2 node in sc8280xp.dtsi. And they all need to be activated to get
+> the whole usb_2 node up. Leaving out one lets the whole node vanish.
+> Maybe it is possible to define fewer phys in the usb_2_dwc3 node, I
+> don't know. The definition as it is now appears to be a safe bet.
+> What I noticed in the tests was that the pinctrl usb2_en_state had no
+> effect here. Although, it apparently was required when it was introduced
+> [1] by Merck Hung and xlazom00@gmail.com. Therefore I am hesitant to
+> remove it. Also, there may be a hint that it is the enable pin of a hub:
+>  > $lsusb -tv
+> [...]
+> /:  Bus 005.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/4p, 480M
+>      ID 1d6b:0002 Linux Foundation 2.0 root hub
+>      |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 480M
+>          ID 045e:0c5f Microsoft Corp.
+> /:  Bus 006.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/2p, 10000M
+>      ID 1d6b:0003 Linux Foundation 3.0 root hub
+>      |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 10000M
+>          ID 045e:0c60 Microsoft Corp.
+>          |__ Port 001: Dev 003, If 0, Class=Vendor Specific Class,
+> Driver=r8152, 5000M
+>              ID 045e:0c5e Microsoft Corp.
 > 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 90a7c0a3dc48..72877d00b8dd 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -43,6 +43,8 @@ properties:
->             - adi,adp5589
->               # Analog Devices LT7182S Dual Channel 6A, 20V PolyPhase Step-Down Silent Switcher
->             - adi,lt7182s
-> +            # Analog Devices LTP8800-1A/-2/-4A 150A/135A/200A, 54V DC/DC μModule regulator
-> +          - adi,ltp8800
->               # AMS iAQ-Core VOC Sensor
->             - ams,iaq-core
->               # Temperature monitoring of Astera Labs PT5161L PCIe retimer
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7c357800519a..6ca691500fb7 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -13555,6 +13555,11 @@ S:	Maintained
->   F:	Documentation/devicetree/bindings/iio/light/liteon,ltr390.yaml
->   F:	drivers/iio/light/ltr390.c
->   
-> +LTP8800 HARDWARE MONITOR DRIVER
-> +M:	Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
-> +L:	linux-hwmon@vger.kernel.org
-> +S:	Supported
-> +
+> For the IDs 045e:0c5e..045e:c60 there isnot much info, only that its
+> usually a 10/100/1000 r8152 ethernet adapter, and a USB3.2 /USB2.1 4
+> port hub. How this is wired, though, no idea. In the face of this I
+> would suggest to keep the definition as it is now.
+> 
 
-This entry doesn't make sense in this patch.
-
-Guenter
-
->   LYNX 28G SERDES PHY DRIVER
->   M:	Ioana Ciornei <ioana.ciornei@nxp.com>
->   L:	netdev@vger.kernel.org
-
+Regards,
+Krishna,
 
