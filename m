@@ -1,99 +1,165 @@
-Return-Path: <devicetree+bounces-119684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 689639BF978
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 23:51:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AB879BF994
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 00:00:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F31F8B21903
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 22:51:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 524A6283AF8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 23:00:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C931620821F;
-	Wed,  6 Nov 2024 22:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D2D208989;
+	Wed,  6 Nov 2024 23:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B8HolJVn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ekx2C9jZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95AB2645;
-	Wed,  6 Nov 2024 22:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2303813A244;
+	Wed,  6 Nov 2024 23:00:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730933467; cv=none; b=Y4TBWq93vjVsqIeSAoi81B6ylr9OtgFnxfxSKMjZvGOh/YHjXrh3tDgdrSmbmfEO7LUN+0VzqoI29hdFzBGWUgSBz68Z9IaYn9vef0l+K+aM9gAywC4peM0btEB7K2jui6RufJ4RQEcKvvaWSZ4+dJgrr7+Y9vsXuEhz5D+Fmcs=
+	t=1730934022; cv=none; b=Zgk3prvk8jSR1DFVC0a11kS2J1fZer5nGoXAuOB6fHTWMfB1i+q7M5UUvHBtKUYYjKbRnJfKDX9FU5M+2eqDMZG6mOVm8YQjZB/CBau3sXCjMCSpq1gQm1yIg8zWMxO3hMseT31SHahOG/nE0yyaedRnmxVkb/cVd5PekVcpbyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730933467; c=relaxed/simple;
-	bh=E/ODYE/ywA2Cf3WzILMrMNxcnC1oEYAE5QrdYiNFvK0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=StFTf4PKVOgTPFfH86LrUJ5fepbbiiH86QtcX0rylBs/irDm/1nA2/ncTSNpdUETMU53fAaDhC75+Pkwk3CwrCnMGg74vvcWQPBf5Xi+Qmg/6V7Ome9HBhbkXhm5F/CVOkpSr1PTGrfVFDV6EaLuIlrXyXWBCmJDwBhfzXJKDOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B8HolJVn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D13EC4CEC6;
-	Wed,  6 Nov 2024 22:51:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730933467;
-	bh=E/ODYE/ywA2Cf3WzILMrMNxcnC1oEYAE5QrdYiNFvK0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B8HolJVncn6CKk+vzhFUCoI5ooliC6ctEQu0fiZC28MiF6+8PhBOlstDYZgUfohYS
-	 DjzliJZY+wT2MIlplkTTBCn9Yxxh/SHeEFGN3TMNvz3wWG4sqZZZdVK7WVOWv4H+JR
-	 ZHVdHELmaqzptLS1GMbXf4OMMXmSmXgloO1yL4/ojlblC1KXNPqd+a0QL2NOmQdZv/
-	 K+9/V2zBS60ADB23npqa+Tkf+40RnqkEM5J/OUoLCl/hsrpOlBmrWFQ1bo2rtH9fRV
-	 bqE7z5vO7D9XMxdNgIO+DNXjVUOQ8iipKXf0/AQBgEN02ZA0eoERybBPgDBKsnKd04
-	 nluYMgqGHQNHg==
-Date: Wed, 6 Nov 2024 23:51:01 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, tsbogend@alpha.franken.de, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v9 4/4] i2c: Add driver for the RTL9300 I2C controller
-Message-ID: <jwwh6m4z3xjqczn5tcf2jt7v4qhx6e6atvxyrxrauynfazzghn@cxy7ugncaesn>
-References: <20241106001835.2725522-1-chris.packham@alliedtelesis.co.nz>
- <20241106001835.2725522-5-chris.packham@alliedtelesis.co.nz>
- <vn6t6qxqry2ay4tbvo3cb4rbjv53pnyl56vangul36vvvxibwp@q3pssbthesef>
- <d7ceaf59-8e39-4c76-9b9f-88746a22176d@alliedtelesis.co.nz>
+	s=arc-20240116; t=1730934022; c=relaxed/simple;
+	bh=ekYSaQc3UpI6lAdcOHKDSEFeDzRTnrJnU6bzQ5VCZ+Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OaihDPO4JdnPZ3THx3IVW2aClCQI19yJ3a7qOe2eetBCL8EYQj1PMC0+2vZk04IK/e+D5I7M66jihHnBnyk2PxjvXPseCxRk+T1wtl3RkIzHc2S8m+Qs2RUOJYQTjNjaoX7nJzlBITMbGg6SPU05/nW9preNUP2wFfVzFCQ4Z0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ekx2C9jZ; arc=none smtp.client-ip=209.85.222.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-84ff612ca93so134618241.0;
+        Wed, 06 Nov 2024 15:00:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730934020; x=1731538820; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mCr20x8z8sRkhTPvZqrUzLvN/Ib1WmukL+yzAP4ZNi0=;
+        b=Ekx2C9jZLNuWC9K1Bjd59xLxpbjIMy4oBU+7KMnFb4Y73uxXPWVLYEv75dXnsvl1Sn
+         dA2Vn2Dyzeqw8Om4dwfTf+oEQGI606edBvTICalpyMIFFZsYNzlndxFXF/Q1TFeBMO3w
+         syEB4Q5mrqaVxUQPvDTwwcQ2tQhO6BPIt+EW4mNZfd0co9MF+UzxfhOiGltj22r90sQ1
+         sczGE6MhwiGqeyc5uj56wQhXepB16V8VUuSZcK+pSpn6huwFdbyMCBl1aJNeCMjKe/02
+         zS8tdmL4iQpK9sKiEJqYg7TRQ9SQ2JpQIBavCKJeJgaemxn7bPma5AyEEd12cJHt6fc6
+         8jdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730934020; x=1731538820;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mCr20x8z8sRkhTPvZqrUzLvN/Ib1WmukL+yzAP4ZNi0=;
+        b=T3yj2HidSI/YzVMYWHsr8yFbql8DBsmYLldRtbwpjNgeCfRETZWIS9KQGp6G7aVVYf
+         BauYTNKNibymdGnLd5vENtrE7Oyd9AmGlBirpqpzgYRwTJkKLHaHLiJl3n4yvMirQ4dd
+         +88O3kX0LUl4JA4vrj8puLCS09e+QMIK8pS+vJOX7FdQzdnD/EbIQdzv6Hxtf5BiOThV
+         JJ4+jif+aVaoz6F1npyc/wMQc51V5awM5hnEEB4hafb5GBNH5RXmxDIjKHOX/e2Xe5PD
+         aI2CB8hi7W1RjeKY7yOFdyhzurXBTLe0nuvuZpCRyN0/4a95MQAtacYPVykwxlD6Hd0K
+         XP5w==
+X-Forwarded-Encrypted: i=1; AJvYcCVBeiftRjYlQO+4tZpsjSVJU5BbFgJo3xpGEgPDZxgTbYS/Vg2mfffvt+p346bbabYWTFy6Og01QNBb@vger.kernel.org, AJvYcCWCfwkt2KyE0T6qhiBCGgQi4pS6Xb0bTerztAYSSmJu2unJFo1OF9PubLPlYBwLV45QK5YT6lvkonmv@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWehM2oMwiR2D0dEN5edpFfeKGYErPYp3LtLawetIZZz5pEXJN
+	NS00kkjkHOxXn6mQHOxWqWWz2ME/9gUvyk1Xr+/QPdRxwsG90jBE3g1ORUtnAS0H5ogOs9wWG30
+	BhAxMpdMeQjX/m/KrgQXOovaYWd8=
+X-Google-Smtp-Source: AGHT+IFo1RR/AdVhpssmUpxzpPIge7KofwhVYW5Ad3uzitsFg+8Ea84XoncezE1UFB6bQpJj6zNAhVjXGdNO8YtEVEY=
+X-Received: by 2002:a05:6102:cd2:b0:4a5:ada5:7b27 with SMTP id
+ ada2fe7eead31-4a8cfb4c602mr40754597137.9.1730934019692; Wed, 06 Nov 2024
+ 15:00:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d7ceaf59-8e39-4c76-9b9f-88746a22176d@alliedtelesis.co.nz>
+References: <aca00bd672ee576ad96d279414fc0835ff31f637.1720022580.git.lorenzo@kernel.org>
+ <20241105213339.GA1487624@bhelgaas>
+In-Reply-To: <20241105213339.GA1487624@bhelgaas>
+From: Jim Quinlan <jim2101024@gmail.com>
+Date: Wed, 6 Nov 2024 18:00:08 -0500
+Message-ID: <CANCKTBuxKA8JdfYMCcGS=CpyuXGiLz1NdereCjqo-_2Er3Pfww@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, linux-pci@vger.kernel.org, ryder.lee@mediatek.com, 
+	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kw@linux.com, 
+	robh@kernel.org, bhelgaas@google.com, linux-mediatek@lists.infradead.org, 
+	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org, 
+	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, nbd@nbd.name, 
+	dd@embedd.com, upstream@airoha.com, angelogioacchino.delregno@collabora.com, 
+	Jim Quinlan <james.quinlan@broadcom.com>, 
+	Krishna Chaitanya Chundru <quic_krichai@quicinc.com>, Vidya Sagar <vidyas@nvidia.com>, 
+	Shashank Babu Chinta Venkata <quic_schintav@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Chris,
+On Tue, Nov 5, 2024 at 4:33=E2=80=AFPM Bjorn Helgaas <helgaas@kernel.org> w=
+rote:
+>
+> [+cc Jim, Krishna, Vidya, Shashank]
+>
+> On Wed, Jul 03, 2024 at 06:12:44PM +0200, Lorenzo Bianconi wrote:
+> > Introduce support for Airoha EN7581 PCIe controller to mediatek-gen3
+> > PCIe controller driver.
+>
+> > +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
+>
+> > +#define PCIE_EQ_PRESET_01_REG                0x100
+> > +#define PCIE_VAL_LN0_DOWNSTREAM              GENMASK(6, 0)
+> > +#define PCIE_VAL_LN0_UPSTREAM                GENMASK(14, 8)
+> > +#define PCIE_VAL_LN1_DOWNSTREAM              GENMASK(22, 16)
+> > +#define PCIE_VAL_LN1_UPSTREAM                GENMASK(30, 24)
+> > ...
+>
+> > +static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
+> > +{
+> > ...
+>
+> > +     val =3D FIELD_PREP(PCIE_VAL_LN0_DOWNSTREAM, 0x47) |
+> > +           FIELD_PREP(PCIE_VAL_LN1_DOWNSTREAM, 0x47) |
+> > +           FIELD_PREP(PCIE_VAL_LN0_UPSTREAM, 0x41) |
+> > +           FIELD_PREP(PCIE_VAL_LN1_UPSTREAM, 0x41);
+> > +     writel_relaxed(val, pcie->base + PCIE_EQ_PRESET_01_REG);
 
-On Thu, Nov 07, 2024 at 08:47:42AM +1300, Chris Packham wrote:
-> On 6/11/24 22:57, Andi Shyti wrote:
-> > On Wed, Nov 06, 2024 at 01:18:35PM +1300, Chris Packham wrote:
-> > > Add support for the I2C controller on the RTL9300 SoC. There are two I2C
-> > > controllers in the RTL9300 that are part of the Ethernet switch register
-> > > block. Each of these controllers owns a SCL pin (GPIO8 for the fiorst
-> > > I2C controller, GPIO17 for the second). There are 8 possible SDA pins
-> > > (GPIO9-16) that can be assigned to either I2C controller. This
-> > > relationship is represented in the device tree with a child node for
-> > > each SDA line in use.
-> > > 
-> > > This is based on the openwrt implementation[1] but has been
-> > > significantly modified
-> > > 
-> > > [1] - https://scanmail.trustwave.com/?c=20988&d=pL2r5zHAPsW8d92uECdR2T8Eh4fYX_ZwrCyklfTCzQ&u=https%3a%2f%2fgit%2eopenwrt%2eorg%2f%3fp%3dopenwrt%2fopenwrt%2egit%3ba%3dblob%3bf%3dtarget%2flinux%2frealtek%2ffiles-5%2e15%2fdrivers%2fi2c%2fbusses%2fi2c-rtl9300%2ec
-> > > 
-> > > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> > > Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
-> > Thanks for following up with v9. I think nothing prevents us from
-> > already merging this 4/4 patch, right?
-> > 
-> From my end yes it's all good to go. Lee's just applied the mfd binding.
-> 
-> The only thing outstanding are the mips dts changes. I'll wait for a bit and
-> chase those up. Hopefully they can make it in the 6.13 window but it's not
-> the end of the world if they don't.
+Not sure it is worth the trouble to define fields.  In fact, you are
+already combining fields (rec+trans) so why not go further and just
+write each lane as a u16?
+>
+> This looks like it might be for the Lane Equalization Control
+> registers (PCIe r6.0, sec 7.7.3.4)?
+>
+> I would expect those values (0x47, 0x41) to be related to the platform
+> design, so maybe not completely determined by the SoC itself?  Jim and
+> Krishna have been working on DT schema for the equalization values,
+> which seems like the right place for them:
+>
+> https://lore.kernel.org/linux-pci/20241018182247.41130-2-james.quinlan@br=
+oadcom.com/
+> https://lore.kernel.org/r/77d3a1a9-c22d-0fd3-5942-91b9a3d74a43@quicinc.co=
+m
+>
+> Maybe that would be applicable here as well?  It would at least be
+> nice to use a common #define for the Lane Equalization Control
+> register offset from the capability base.
 
-Cool, I just wanted to confirm. Applied to i2c/i2c-host.
+FWIW, these registers are HwInit/RO.  In our (Broadcom) case we have
+to write them using an internal  register block that is not visible in
+the config space.  In other words, we do not use the cap offset.
 
-Thanks,
-Andi
+Regards,
+Jim
+Broadcom STB/CM
+>
+> Although I see that no such #define exists in pci_regs.h, so I guess
+> there's nothing to do here yet.
+>
+> The only users of equalization settings I could find so far are:
+>
+>   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/drivers/pci/controller/dwc/pcie-tegra194.c?id=3Dv6.11#n832
+>   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/drivers/pci/controller/dwc/pcie-qcom-common.c?id=3Dv6.12-rc1#n11
+>   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/drivers/pci/controller/pcie-mediatek-gen3.c?id=3Dv6.12-rc1#n909
+>
+> Bjorn
+>
 
