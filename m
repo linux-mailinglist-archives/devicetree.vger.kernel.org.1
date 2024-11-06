@@ -1,180 +1,135 @@
-Return-Path: <devicetree+bounces-119506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E9779BED29
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 14:09:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CBF89BED48
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 14:10:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E22602861F7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 13:09:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31EDC284479
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 13:10:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 224E71F81A5;
-	Wed,  6 Nov 2024 13:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 826D31F8EF6;
+	Wed,  6 Nov 2024 13:04:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UThJZYRW"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="iF+f2JrO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ED1B1F4705;
-	Wed,  6 Nov 2024 13:03:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6891F8EE3;
+	Wed,  6 Nov 2024 13:04:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730898213; cv=none; b=XG93l3yZmN+HQVudPCbpUoCyugaOpzZZUYndckAhvGcG8kdB0paD80qGPC0r844FzmM3WlYlnOnjffarfq6oCms+p6j/yojx37aQmLScFZK4YmpEcj1zFZ06QqIAwfmwLGD7N9no33/FnCAIS9GBXQe+lvJdV0GObMTb038ssC4=
+	t=1730898287; cv=none; b=Ny/KlYp0RRxz/qW1tca17KLw4HqIiXssjMfuEeQaB9YasI3xy9UxC058scXTb/Qq13zi0b2aMMy/TkkxCg4md0+aK/VWDpzuaUiZk86Y9cq1QkhsbbnO1PDlLVZ3EhysYUDdlysaz06ckVq9mK2cfbSe+dOlWQ/Vaz+xcIHxsO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730898213; c=relaxed/simple;
-	bh=7giponiOuQq1rzvl3AEox8TcdeVJ+n6H0wGGzfIDkAM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LFkRlQwx0yOenPoLVraASdshLHmz1ItKjtGMDBm1MQuvpLyLoLy+/gzx31NuxaZ+PcTeLqnsvhcq4jIOWPURCkzwWs9O69oA8nWFE3aohf+GOqaFHyC27jcB73+2287lBBrzRSZ8IQZn2DqKhW9fQFtJA/D9skS2Hk0kasyDWH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UThJZYRW; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a9ec86a67feso119065366b.1;
-        Wed, 06 Nov 2024 05:03:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730898210; x=1731503010; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AkhTqMAEy+wfKt4c1zlkHxKZoS9y22psXlk3N9SJC2I=;
-        b=UThJZYRWKYvwK7MzM8Ja1d0U4Cy6oqVIPdmDNsh7BfCt6HC3c9iQ3zqpY+gby2keMs
-         woqv1XedHUguHOwIdtmpO6a5Vcne2Cl+jU8tEnFsITnJPzq5xgukHIFjurZM6f68ghuh
-         pP729198EG+uPquhUwrMR79oQQ6+J8Cc6QIN13g2mWo7ynmBa/LkZ+LeZ+Y0Wur8jIyy
-         Tk/8yFPNKSE3giUVGLpdrXHY32798Dn16+YW9vrOlbflL2cvztnDHOzTdzyrAjsod9yQ
-         K5Pk/+q1RNrQCzQyzuITqDwnImRqjQMO7Sv3m2Lf05ncUC1ByE8sfdq1b75+b3sdXtjn
-         M1Ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730898210; x=1731503010;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AkhTqMAEy+wfKt4c1zlkHxKZoS9y22psXlk3N9SJC2I=;
-        b=vGcMeNhTW/UARAL6578WzQPKCpWixomsobFgyEIAKoJDu0AON7NfTagWU4P1u2Y5wl
-         naz2seV/BQDdnoJiYhzo1ilQShsjnroE9GvepqJ8/E3fpHZ0ao3x2FxxhxmjYSA0ps07
-         qqJCDxOymKMQOFv3w2eC8gso8oMo100JkkAj+lHzvQszd8ae06muA4cVv9sednmLVGi2
-         asCBGUwo+PCLd4lUvz/qg/JszdEJJC3Do8a+alQNW7BZ+Bh4lrBm4VSvPe+EWOTTgwjS
-         0ZzX7Owdy16MvBA7LFYksbmsqadNous5HLAYqNkep18lTXn92toOiVNnlcFMN5lRr1Hk
-         KcWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUBP1v2S2DDI2q2OHHYRGCyJOhG6GfxDyFAWLYXSc0Sn0tii+ynAz3p1+IFZRPcYlEtNyY//01uhSF+@vger.kernel.org, AJvYcCWbWCtlqdzEsM04ZjjmtKkpHTzHpnbEGpQKOQR0kz0NEzfXXA6ngvq8g4z/kYOt0+d95M8ITNXHSdFrag7I@vger.kernel.org
-X-Gm-Message-State: AOJu0YycxQHCIm7i3LMYKGllzoUEBKvmD8yf8tWsCGqUxB395kTFDH2a
-	NL5BD95lzrDUK83HMT74Rflzyn3xmaZBWUQCVPJwFYJ+2Dp1s8r0
-X-Google-Smtp-Source: AGHT+IEqBTEWgsrzkfZOna1FwJf1E2BQ8X3eInejzxvLIxEo2OwtK5vRIp0mlLmeUW8b3wBaksf0Kg==
-X-Received: by 2002:a17:906:db0d:b0:a9a:129a:1862 with SMTP id a640c23a62f3a-a9de61a17cemr4108748466b.60.1730898209309;
-        Wed, 06 Nov 2024 05:03:29 -0800 (PST)
-Received: from A13PC04R.einet.ad.eivd.ch ([193.134.219.72])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9eb16a4836sm279603666b.11.2024.11.06.05.03.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Nov 2024 05:03:28 -0800 (PST)
-From: Rick Wertenbroek <rick.wertenbroek@gmail.com>
-To: 
-Cc: rick.wertenbroek@heig-vd.ch,
-	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
-	John Clark <inindev@gmail.com>,
-	Hugh Cole-Baker <sigmaris@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: enable USB3 on NanoPC-T6
-Date: Wed,  6 Nov 2024 14:03:13 +0100
-Message-Id: <20241106130314.1289055-1-rick.wertenbroek@gmail.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1730898287; c=relaxed/simple;
+	bh=682rZ4W8M3E5mVOEB3/2mrEAAw15OgHnlpXKz526rA0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RT6qeKQu3qb/bgAre/5lwbFpw4qcwI+cex6T6xwggSgPHPX+0q6iYRxt6sAHZukRr5VuEB5V6GxnllTcp6Ff7WxhngOihH/Ow6EVrXQ/hlRZIDUN9NH4T/2q1I643lwh2QXB2+WS4eNxmfXg4SViHCSXLPCnD7mWs7hva8+XlGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=iF+f2JrO; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0B6BA475;
+	Wed,  6 Nov 2024 14:04:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1730898275;
+	bh=682rZ4W8M3E5mVOEB3/2mrEAAw15OgHnlpXKz526rA0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iF+f2JrOf8LKiTjHV1UChMRbmf6ckq9rA1BPUFp1xg1DRGXF+rkuI5950BTGfwpL+
+	 Yu4AWc7mmgpAU2nekPMMSN1CPfv8fof6p/lUxd1J/aU5O1aWQByo6hUgRFK9fVFltt
+	 vI+mieU5JY7lKw6pBcmWAlmuai8Wap7Qb23EoTFI=
+Date: Wed, 6 Nov 2024 15:04:37 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: CK Hu =?utf-8?B?KOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+Cc: "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>,
+	"christian.koenig@amd.com" <christian.koenig@amd.com>,
+	"mchehab@kernel.org" <mchehab@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Shu-hsiang Yang =?utf-8?B?KOaliuiIkue/lCk=?= <Shu-hsiang.Yang@mediatek.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"yunkec@chromium.org" <yunkec@chromium.org>,
+	"linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Yaya Chang =?utf-8?B?KOW8tembhea4hSk=?= <Yaya.Chang@mediatek.com>,
+	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	Teddy Chen =?utf-8?B?KOmZs+S5vuWFgyk=?= <Teddy.Chen@mediatek.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"hidenorik@chromium.org" <hidenorik@chromium.org>,
+	Shun-Yi Wang =?utf-8?B?KOeOi+mghuWEhCk=?= <Shun-Yi.Wang@mediatek.com>
+Subject: Re: [PATCH v1 10/10] uapi: linux: add mediatek isp_7x camsys user api
+Message-ID: <20241106130437.GA16791@pendragon.ideasonboard.com>
+References: <20241009111551.27052-1-Shu-hsiang.Yang@mediatek.com>
+ <20241009111551.27052-11-Shu-hsiang.Yang@mediatek.com>
+ <ff96b314cdd3d52a14a5e91f79ec3097d04c4380.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ff96b314cdd3d52a14a5e91f79ec3097d04c4380.camel@mediatek.com>
 
-Enable the USB3 port on FriendlyELEC NanoPC-T6.
+On Mon, Oct 14, 2024 at 05:56:40AM +0000, CK Hu (胡俊光) wrote:
+> Hi, Shu-hsiang:
+> 
+> On Wed, 2024-10-09 at 19:15 +0800, Shu-hsiang Yang wrote:
+> > Add UAPI for MediaTek ISP platform, providing user-space
+> > interfaces for the new camsys driver.
+> > 
+> > Signed-off-by: Shu-hsiang Yang <Shu-hsiang.Yang@mediatek.com>
+> > ---
+> 
+> [snip]
+> 
+> > +
+> > +/* MTK ISP camsys controls */
+> > +#define V4L2_CID_MTK_CAM_USED_ENGINE_LIMIT	(V4L2_CID_USER_MTK_CAM_BASE + 1)
+> > +#define V4L2_CID_MTK_CAM_BIN_LIMIT		(V4L2_CID_USER_MTK_CAM_BASE + 2)
+> > +#define V4L2_CID_MTK_CAM_FRZ_LIMIT		(V4L2_CID_USER_MTK_CAM_BASE + 3)
+> > +#define V4L2_CID_MTK_CAM_RESOURCE_PLAN_POLICY	(V4L2_CID_USER_MTK_CAM_BASE + 4)
+> > +#define V4L2_CID_MTK_CAM_USED_ENGINE		(V4L2_CID_USER_MTK_CAM_BASE + 5)
+> > +#define V4L2_CID_MTK_CAM_BIN			(V4L2_CID_USER_MTK_CAM_BASE + 6)
+> > +#define V4L2_CID_MTK_CAM_FRZ			(V4L2_CID_USER_MTK_CAM_BASE + 7)
+> > +#define V4L2_CID_MTK_CAM_USED_ENGINE_TRY	(V4L2_CID_USER_MTK_CAM_BASE + 8)
+> > +#define V4L2_CID_MTK_CAM_BIN_TRY		(V4L2_CID_USER_MTK_CAM_BASE + 9)
+> > +#define V4L2_CID_MTK_CAM_FRZ_TRY		(V4L2_CID_USER_MTK_CAM_BASE + 10)
+> > +#define V4L2_CID_MTK_CAM_PIXEL_RATE		(V4L2_CID_USER_MTK_CAM_BASE + 11)
+> > +#define V4L2_CID_MTK_CAM_FEATURE		(V4L2_CID_USER_MTK_CAM_BASE + 12)
+> > +#define V4L2_CID_MTK_CAM_SYNC_ID		(V4L2_CID_USER_MTK_CAM_BASE + 13)
+> > +#define V4L2_CID_MTK_CAM_RAW_PATH_SELECT	(V4L2_CID_USER_MTK_CAM_BASE + 14)
+> > +#define V4L2_CID_MTK_CAM_HSF_EN			(V4L2_CID_USER_MTK_CAM_BASE + 15)
+> > +#define V4L2_CID_MTK_CAM_PDE_INFO		(V4L2_CID_USER_MTK_CAM_BASE + 16)
+> > +#define V4L2_CID_MTK_CAM_MSTREAM_EXPOSURE	(V4L2_CID_USER_MTK_CAM_BASE + 17)
+> > +#define V4L2_CID_MTK_CAM_RAW_RESOURCE_CALC	(V4L2_CID_USER_MTK_CAM_BASE + 18)
+> > +#define V4L2_CID_MTK_CAM_TG_FLASH_CFG		(V4L2_CID_USER_MTK_CAM_BASE + 19)
+> > +#define V4L2_CID_MTK_CAM_RAW_RESOURCE_UPDATE	(V4L2_CID_USER_MTK_CAM_BASE + 20)
+> > +#define V4L2_CID_MTK_CAM_CAMSYS_HW_MODE		(V4L2_CID_USER_MTK_CAM_BASE + 21)
+> > +
+> 
+> Please give introduction of how to use these user space interface.
 
-Signed-off-by: Rick Wertenbroek <rick.wertenbroek@gmail.com>
----
- .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
+I'm very, very *not* thrilled by all this. It looks like a big pile of
+hacks really. Every single parameter used by those controls needs to be
+clearly documented, including explaining how they are used, in order for
+us to review the API. I suspect that many of the parameters should
+instead be handled through the ISP parameters buffers, or be controlled
+from standard V4L2 APIs.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-index bf8e1f1116d1..b93c2590feb5 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-@@ -171,6 +171,20 @@ vbus5v0_typec: vbus5v0-typec-regulator {
- 		vin-supply = <&vcc5v0_sys>;
- 	};
- 
-+	vbus5v0_usb: vbus5v0-usb-regulator {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb5v_pwren>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-name = "vbus5v0_usb";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
- 	vcc3v3_pcie2x1l0: vcc3v3-pcie2x1l0-regulator {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -607,6 +621,10 @@ typec5v_pwren: typec5v-pwren {
- 			rockchip,pins = <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 
-+		usb5v_pwren: usb5v_pwren {
-+			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
- 		usbc0_int: usbc0-int {
- 			rockchip,pins = <0 RK_PD3 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
-@@ -1005,6 +1023,14 @@ &u2phy0_otg {
- 	status = "okay";
- };
- 
-+&u2phy1 {
-+	status = "okay";
-+};
-+
-+&u2phy1_otg {
-+	status = "okay";
-+};
-+
- &u2phy2_host {
- 	status = "okay";
- };
-@@ -1044,6 +1070,11 @@ usbdp_phy0_typec_sbu: endpoint@1 {
- 	};
- };
- 
-+&usbdp_phy1 {
-+	phy-supply = <&vbus5v0_usb>;
-+	status = "okay";
-+};
-+
- &usb_host0_ehci {
- 	status = "okay";
- };
-@@ -1064,6 +1095,11 @@ usb_host0_xhci_drd_sw: endpoint {
- 	};
- };
- 
-+&usb_host1_xhci {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
- &usb_host1_ehci {
- 	status = "okay";
- };
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
 
