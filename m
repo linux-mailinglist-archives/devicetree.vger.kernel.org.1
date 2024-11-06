@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-119595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D43A99BF3C9
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:57:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4228F9BF3EA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 18:07:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23F9BB20BED
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:57:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEA642866A0
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23323205137;
-	Wed,  6 Nov 2024 16:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B0A4206957;
+	Wed,  6 Nov 2024 17:06:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S3yxVTiB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ApH/yve7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAFBC201115;
-	Wed,  6 Nov 2024 16:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0188320694E;
+	Wed,  6 Nov 2024 17:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730912268; cv=none; b=ik+ZhHWzkQyIKmucqXOhC4saX3k/so6mE1+a7Njxrt6e7x2hLTpzO0Vjsb2gg6q07OOhSpi8uG59l5J/sxyCgRdOvYhsqjLrW9AphW1zHnv4W9cn+k6N1yJX18QIepC2+ytGWNIs0z/kSx/iAUWsG1cAN8vjY7/jjs/+uHK13o4=
+	t=1730912807; cv=none; b=O1t9X4fVochBZSU2PMI5BkYky46mRRdtjsBpCuSD1ZK1I5l/O/gmTp4wS1oQjzb4euzgkDJqArrJDeC1qGJZIQMaoOUUXDq23aP1od9TVVj6gn4FwuYVAaOfkc6E05VvDKUpxBuFxKmWCMmy+DBUkHd88izcleIN3MTlQ/qrMpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730912268; c=relaxed/simple;
-	bh=kFDRCa0XKMHFYOR3uG48ep5LCFtGy7INevzQqLdyhe0=;
+	s=arc-20240116; t=1730912807; c=relaxed/simple;
+	bh=Osy2vFRVeMd9d4xPWdCbKDRnNTUTz3AzLAA1gmYcZWs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uRpJoTtRYhMiM7lp4RiwkaMYKoHumvyEX6O4HbSDaqrqN4OjwhNmI2Zwcekmqyf05h8JrtHhN8/aEFTlTLaw1kSU7Pmi8D7R0wf1QL2cEauj1ZC7NlfNvITJf5PEfdWXs3WwJ0Pwl+PXTNOH+tLz3n8DzZ7PCKkD09zGTA5AaGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S3yxVTiB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9119CC4CEC6;
-	Wed,  6 Nov 2024 16:57:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mrayTS6EIWalbbrz0t5Zb5VtI3Co9VqIEiHwIRaLUCzd4PEH3v5X36nIqsFCvt9vsEEWywiyOB4m3xxXZhp22OY5yyV/qRxCnUdteJUg7xQqHWlO1mNLId0+f7U9LY0gCJlwsjHeiiX3F0hRInfZ6ZhBfxaXMCeEm6y6FrUIVDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ApH/yve7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD25BC4CECD;
+	Wed,  6 Nov 2024 17:06:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730912267;
-	bh=kFDRCa0XKMHFYOR3uG48ep5LCFtGy7INevzQqLdyhe0=;
+	s=k20201202; t=1730912806;
+	bh=Osy2vFRVeMd9d4xPWdCbKDRnNTUTz3AzLAA1gmYcZWs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S3yxVTiBm47hSjot2DdT1qMfPqitnfZ1ftMpEVbNszJEhXknaWzfPwufHIOB9g9hK
-	 m7hMugw2ooCnuVEOFYWW3nMazspNkD/Q2GhHm+uDCZTPb0wQd7L7R3G1q6S3z8mdye
-	 8UJvWwrSxOqCq1P3bSBFad2iRMkbwXzjG/ySfkt8wMpm99V3euPdc4YDNncU3sB8gM
-	 pNRerVg25YNkCWuBJ25s99UHUBADlbgvA0nJFF1yGP+WfYECnFNiWxcqanNqk5J5Kv
-	 t4+2g/l2/U4pgnlbF1L8mmkY6hi8+J73TSwopd+NvcaT2yC8ccxHT14CfNS5heyo6P
-	 UWQEjZHCE5b2A==
-Date: Wed, 6 Nov 2024 16:57:41 +0000
+	b=ApH/yve7hfFkIWz8NxQI4YWwvUKSSr2K0uNrGI9klXB3LWLiZGNYs8aRlsKRuGfIj
+	 VeR6RqxMVFmLW3pFprKcjapbxD1pgJo7zdQkYeVsAVXS8iQBMa69l2634SxB7Kp8KU
+	 Bpzc2AeuuVggLHHN3wb3cG/5W4e6x7isacM6schd59G/mlAOsY4FwLVOtBXnRfzOO3
+	 JmCubQh3b/LNlCJuof5tT/ZPg8qLOqZ7g0R+e+1ysPzxz7Af+9xzeUobz80bRrPhaE
+	 cnEPbpcRby6mYK3i3AtzeC6DJscubyPnX25UPDaNcaHRIPHLPmfwjWf2qZrEGH1OjJ
+	 /ximySYwjsXow==
+Date: Wed, 6 Nov 2024 17:06:40 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Matt Coster <Matt.Coster@imgtec.com>
 Cc: Frank Binns <Frank.Binns@imgtec.com>, David Airlie <airlied@gmail.com>,
@@ -59,13 +59,12 @@ Cc: Frank Binns <Frank.Binns@imgtec.com>, David Airlie <airlied@gmail.com>,
 	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
 	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
 	Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH 01/21] dt-bindings: gpu: img: More explicit compatible
- strings
-Message-ID: <20241106-flagstone-mandarin-8caf9da78f19@spud>
+Subject: Re: [PATCH 02/21] dt-bindings: gpu: img: Further constrain clocks
+Message-ID: <20241106-fragment-luckiness-51ccb4bd2b4e@spud>
 References: <20241105-sets-bxs-4-64-patch-v1-v1-0-4ed30e865892@imgtec.com>
- <20241105-sets-bxs-4-64-patch-v1-v1-1-4ed30e865892@imgtec.com>
- <20241105-matron-gangway-64e78576ec47@spud>
- <d70a01d3-24d5-4e31-92ab-7f6626452852@imgtec.com>
+ <20241105-sets-bxs-4-64-patch-v1-v1-2-4ed30e865892@imgtec.com>
+ <20241105-blooper-unflawed-6181022944d9@spud>
+ <5b26e693-d37f-41ee-b119-32ef648de6f4@imgtec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,79 +72,119 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tUKQCQPIgKD2Ml6c"
+	protocol="application/pgp-signature"; boundary="7/EssgUtkRYKje0N"
 Content-Disposition: inline
-In-Reply-To: <d70a01d3-24d5-4e31-92ab-7f6626452852@imgtec.com>
+In-Reply-To: <5b26e693-d37f-41ee-b119-32ef648de6f4@imgtec.com>
 
 
---tUKQCQPIgKD2Ml6c
+--7/EssgUtkRYKje0N
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 06, 2024 at 10:17:47AM +0000, Matt Coster wrote:
-> On 05/11/2024 18:13, Conor Dooley wrote:
-> > On Tue, Nov 05, 2024 at 03:58:07PM +0000, Matt Coster wrote:
-> >> The current compatible strings are not specific enough to constrain the
-> >> hardware in devicetree. For example, the current "img,img-axe" string
-> >> refers to the entire family of Series AXE GPUs. The more specific
-> >> "img,img-axe-1-16m" string refers to the AXE-1-16M GPU which, unlike t=
-he
-> >> rest of its family, only uses a single power domain.
+On Wed, Nov 06, 2024 at 10:17:53AM +0000, Matt Coster wrote:
+> On 05/11/2024 18:16, Conor Dooley wrote:
+> > On Tue, Nov 05, 2024 at 03:58:08PM +0000, Matt Coster wrote:
+> >> All Imagination GPUs use three clocks: core, mem and sys. All reasonab=
+ly
+> >> modern Imagination GPUs also support a single-clock mode where the SoC
+> >> only hooks up core and the other two are derived internally. On GPUs w=
+hich
+> >> support this mode, it is the default and most commonly used integratio=
+n.
+> >>
+> >> Codify this "1 or 3" constraint in our bindings and hang the specifics=
+ off
+> >> the vendor compatible string to mirror the integration-time choice.
+> >>
+> >> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
+> >> ---
+> >>  .../devicetree/bindings/gpu/img,powervr-rogue.yaml | 27 +++++++++++++=
+++-------
+> >>  1 file changed, 19 insertions(+), 8 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.y=
+aml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+> >> index ef7070daf213277d0190fe319e202fdc597337d4..6924831d3e9dd9b2b052ca=
+8f9d7228ff25526532 100644
+> >> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+> >> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+> >> @@ -30,15 +30,20 @@ properties:
+> >>      maxItems: 1
+> >> =20
+> >>    clocks:
+> >> -    minItems: 1
+> >> -    maxItems: 3
+> >> +    oneOf:
+> >> +      - minItems: 1
+> >> +        maxItems: 1
+> >> +      - minItems: 3
+> >> +        maxItems: 3
 > >=20
-> > That's not true, you could apply the rules using the ti,am62-gpu
-> > compatible, no?
->=20
-> The intent here is to draw a line between properties inherent to the IP
-> core and choices made by the silicon vendor at integration time. The
-> number of power domains is a property of the IP core, whereas the
-> decision to use one or three clocks (next patch) is a vendor choice.
-
-That's a different argument than the one in your commit message, but I
-will accept it.
-
-> >> Work is currently underway to add support for volcanic-based Imaginati=
-on
-> >> GPUs; also add a generic top-level "img,img-rogue" compatible string to
-> >> allow for simpler differentiation in devicetrees.
+> > Just put the outer constraints here and...
 > >=20
-> > This makes no sense, how does adding another fallback compatible make
-> > it simpler? I have to assume that this means there will be geothermally
-> > powered axes in the future and you want to tell the difference between
-> > them and those pesky rogue axes that chop the heads off of naughty
-> > children?
+> >>    clock-names:
+> >> -    items:
+> >> -      - const: core
+> >> -      - const: mem
+> >> -      - const: sys
+> >> -    minItems: 1
+> >> +    oneOf:
+> >> +      - items:
+> >> +          - const: core
+> >> +      - items:
+> >> +          - const: core
+> >> +          - const: mem
+> >> +          - const: sys
+> >> =20
+> >>    interrupts:
+> >>      maxItems: 1
+> >> @@ -56,15 +61,21 @@ required:
+> >>  additionalProperties: false
+> >> =20
+> >>  allOf:
+> >> +  # Vendor integrations using a single clock domain
+> >>    - if:
+> >>        properties:
+> >>          compatible:
+> >>            contains:
+> >> -            const: ti,am62-gpu
+> >> +            anyOf:
+> >> +              - const: ti,am62-gpu
+> >>      then:
+> >>        properties:
+> >>          clocks:
+> >> +          minItems: 1
+> >>            maxItems: 1
+> >=20
+> > ...adjust the constraints in conditional bits. Setting minItems to 1
+> > should be a nop too. Pretty sure what you already had here was actually
+> > already sufficient.
+> >=20
+> > Cheers,
+> > Conor.
 >=20
-> The intent is to add Volcanic bindings in img,powervr-volcanic.yaml, but
-> the split between Rogue and Volcanic is... a bit weird. The BXS-4-64
-> we're adding support for here is Rogue but, for example, the BXS-32-1024
-> is Volcanic. I figured it would be nice to be able to grok from the
-> devicetree which architecture a core is using without having to refer
-> back to the bindings.
+> Is there an implicit constraint ensuring "clocks" and "clock-names" are
+> the same size? I wasn't sure if we could rely on that, hence the
+> slightly odd constraint on "clocks". The only real goal here is to
+> codify that you can't have one of "mem" or "sys". it's both or nothing.
 
-So not geothermally powered axes, but it was the rationale.
+You can just constrain clock-names: maxItems: 1 like you have already
+done for clocks. The items list that was already in the file enforces
+that the first clock provided must be core. When you add your new
+compatible you can set clock{-names}: minItems: 3 for it, and that will
+ensure that either 1 clock (core) or all 3 are the only options.
 
-> The primary differentiator from a dt perspective is power topology. In
-> Rogue, there are few (poorly named) power domains. Volcanic has (a)
-> better domain names and (b) typically more granularity in domains,
-> leading to actual dependency trees we need to care about besides the
-> trivial A->B->... in Rogue.
-
-Please add that detail to the commit message. Not all of it, but the
-bits in the first paragraph.
-
-Cheers,
-Conor.
-
---tUKQCQPIgKD2Ml6c
+--7/EssgUtkRYKje0N
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyugBQAKCRB4tDGHoIJi
-0o5WAP9qdPoidxf7Wb9XEMajnxOl7aWPCFarHIxFdXJMcNDRsAD/SjbnAVWJB8zS
-+/+GsnqRLs/GRLCfNIKRr1NjFUN4uw4=
-=QMO4
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyuiIAAKCRB4tDGHoIJi
+0jRkAQDGZQfnlzA6wVW+zIxouu+T1KIMoChkv7UzyuIaXs06nAEAmyPWR4iVUQZq
+mzvYlkKzFEVKWuN3OjfBXjh9lFrzVQI=
+=IFE4
 -----END PGP SIGNATURE-----
 
---tUKQCQPIgKD2Ml6c--
+--7/EssgUtkRYKje0N--
 
