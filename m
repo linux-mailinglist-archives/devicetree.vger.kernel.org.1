@@ -1,207 +1,119 @@
-Return-Path: <devicetree+bounces-119447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68CFD9BE460
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 11:37:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 851069BE468
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 11:38:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E654FB23716
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 10:37:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 168241F23A96
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 10:38:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A4B1DC720;
-	Wed,  6 Nov 2024 10:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020F31DE2C3;
+	Wed,  6 Nov 2024 10:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c7stQKbv"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Edm/wyRZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5A001D358B;
-	Wed,  6 Nov 2024 10:37:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C9531DE2D6
+	for <devicetree@vger.kernel.org>; Wed,  6 Nov 2024 10:38:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730889433; cv=none; b=BvjIDtgAra0PNxpjIubk4N7pXr7DfNOO8RkRIENh4N+H1KKya/1rZAwSHqsh+9nlk2dW4KqlR6vuQlMDrRZ94egFo1ZOckHVosreuZ+DcP/HE/SEJg89EbjwaFsDcTdCyZwiJx9mcV1+WC0J6YkptAfjvIobflAt9aaL7RK3J4k=
+	t=1730889513; cv=none; b=G6uJSQhoWYFLhWJLA8aXDFPM8objwonDrVzMA4NwH3Mb6Rv0KfHgREjWSgPtHZi0nmX8Z5Fl3ggYcNFzywtL1DQf3JCjP5iT+YTEEYOH/Q+R1o5JKfE4UAJiRWWlEEEsAZTsKIkBWTr2UGyhg8lUKpfY8qzK2hhSj3tWUfQAAdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730889433; c=relaxed/simple;
-	bh=SyN0BUUE8vNmc14UElwkyTklWam+fc6Pwz1elb5EFK0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FzS7zbJoKyR6dJaRP1EYhlHZpcZOQRKXMPe+AMBuVieY5Y11AbzC6qN2Y2uu1hoFz3LUqX4tBWlKIdQLXEoWzDhpvj9uIxaaMtRVtW4t21b79cBP4OdU5XanbE7LjLXkzVfeGflxiTEU8GeeASX2K0WBAwPQGgFL4GZpt7fa2GI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c7stQKbv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 702C0C4CECD;
-	Wed,  6 Nov 2024 10:37:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730889432;
-	bh=SyN0BUUE8vNmc14UElwkyTklWam+fc6Pwz1elb5EFK0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c7stQKbvzSYGtXaumP8DyzzSAbZ76+cgJwizkFvB/f2GUYjrIckTu7L1v3+8yzA6m
-	 uYaxND4M3410Jmt+apcbF7Dd43OdKbRzCvt5uemnAXPsKjlTOQW8lbWy2RPYLhQVRI
-	 I8ikaNeBTgg9eyXERA4TpPF66oNs0RROsWIofmjK7RsvDe3WPOSg+lhj9633qPvmbp
-	 mfP9raFYEhiDfRcL16g+KqakzsfRJXF7pFSIC9uZmY3KtzJWQ7qbGmcAejdxCfnJmO
-	 O23zJHfaHbjBPYVkuAO03CPdDtLgqNA7fh8M5J+rCzV/8u/AWM/1+HrS3ebVvWE4qx
-	 M+JiX4n+KDSnQ==
-Date: Wed, 6 Nov 2024 10:37:06 +0000
-From: Lee Jones <lee@kernel.org>
-To: Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc: Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
-	Arnd Bergmann <arnd@arndb.de>, soc@kernel.org,
-	Gregory CLEMENT <gregory.clement@bootlin.com>, arm@kernel.org,
-	Andy Shevchenko <andy@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH leds v5 07/12] leds: turris-omnia: Notify sysfs on MCU
- global LEDs brightness change
-Message-ID: <20241106103706.GP1807686@google.com>
-References: <20241104141924.18816-1-kabel@kernel.org>
- <20241104141924.18816-8-kabel@kernel.org>
+	s=arc-20240116; t=1730889513; c=relaxed/simple;
+	bh=xfVECVyPhstuVzixwnpeD2YetzBptltzs/LNlYU8a0I=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GdJ+f6DuyhMDi2YA1vIXCQ5/gdBStukIf6c6/TO6NH6jVl2rc8IHPI6zdL6MIrAMVI6rDRXQbNe71E0+TZjXVZtZWOiSLq/dC+V+bSZok8KV7hMwB2WNxqYMjpzA6HLLR2Cn1g1YgJ/J3rL4siMVqZqXf66OQdvjFxpuJOeXXfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Edm/wyRZ; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-431688d5127so51306785e9.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Nov 2024 02:38:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730889510; x=1731494310; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VY6uZFvxEU5LyK6YK1tW8F5ABPl0h8dIQVI4hDIvL6U=;
+        b=Edm/wyRZ3h2Z0upEfBE5EFTB2uqTUKD+iMYH1BJt8Bms242NbnzlEJt6ITQZmhnbzD
+         bOGdG6IBt3OD0fdBHKKJnM7B8zXzAYknpX7KYm2kCsW+dgNp0qc2HpOeG9zfKtGyDg6W
+         3VXMoUJz8wMPg0gMYZGJ3dr4xA5OZPCFjzJoF6fcpnQ62abHi2VWWbYUkM3HYAbLH7ih
+         KbqHfWqLVbLbGn3R82EMTT1XAQHesiG15W1lv92Xl0Xz75mXzxseLDTUwzCD+KGq8Qao
+         VNm5mQSBigR0heCmnbEaUlVHnkmjNozai+eRQrADHzTpImxTSf0E2N0MA8PnurJPo+EO
+         6W/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730889510; x=1731494310;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VY6uZFvxEU5LyK6YK1tW8F5ABPl0h8dIQVI4hDIvL6U=;
+        b=JVhjkAnvIdae7FpBVzjO0KWwco0gPE+Omwvfwh4V3wc1JJ6WNH2WuVk2aCiWMBcohR
+         b8YC3QMlE2S46Lils/mRgPGJ5ADwwfxK84SgeP+aigMVeZR15Q0o43STarckon5Qo+yx
+         4ME8GSl61Q13EYXBnO9bJqfY9g+dtE/gZH7JEN9mYpbshMj0+rftoyWHNVwxC4Q0hQlw
+         tLMqP3e3nFMP+7/VGxw3mgOJbVWwvG7Diz7w/2B1bHoC3uJgOrHFb6h2AZeBQ1RbFYv3
+         Un8YAEiELvivlQVh57/3sCVes5obLlyBuSRqN+ET/pOc1iK1F1O6gIPGn2JBBBVj1RRQ
+         3Abg==
+X-Forwarded-Encrypted: i=1; AJvYcCUcLNZxbRlXKDLpSAYzLkiuVUzDZzf4KNZdqQDkyBXwMmXPtMasFW2fs5nwt2yghhW11EAv8rzfdEP4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnOmlL7XWWBuAYPx6TBnKTUBUJ718Mxojv5oTgklg0VYkMkygs
+	ENcN5Z0sW+O0s6Q4evEBity2Jlaucd93c9d79EEVhBODc1xApuXr5HlWiGpyokU=
+X-Google-Smtp-Source: AGHT+IG0moN4/ZDGzWYlA0aTjJYKTQ0jeyFFEkAKoyArrCWMEt0WHKRL7KNUzqDgf3nMKBqq7+I6Ng==
+X-Received: by 2002:a05:600c:2d81:b0:431:93dd:8e77 with SMTP id 5b1f17b1804b1-431b172b3bemr312880835e9.31.1730889509969;
+        Wed, 06 Nov 2024 02:38:29 -0800 (PST)
+Received: from axel-x1.baylibre (amontpellier-556-1-151-252.w109-210.abo.wanadoo.fr. [109.210.7.252])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432aa6da89bsm17667715e9.30.2024.11.06.02.38.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Nov 2024 02:38:29 -0800 (PST)
+From: ahaslam@baylibre.com
+To: jic23@kernel.org,
+	krzk+dt@kernel.org,
+	dlechner@baylibre.com
+Cc: Michael.Hennerich@analog.com,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	ahaslam@baylibre.com,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: iio: dac: ad5791: ldac gpio is active low
+Date: Wed,  6 Nov 2024 11:38:24 +0100
+Message-Id: <20241106103824.579292-1-ahaslam@baylibre.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241104141924.18816-8-kabel@kernel.org>
 
-On Mon, 04 Nov 2024, Marek Behún wrote:
+From: Axel Haslam <ahaslam@baylibre.com>
 
-> Recall that on Turris Omnia, the LED controller has a global brightness
-> property, which allows the user to make the front LED panel dimmer.
-> 
-> There is also a button on the front panel, which by default is
-> configured so that pressing it changes the global brightness to a lower
-> value (unless it is at 0%, in which case pressing the button changes the
-> global brightness to 100%).
-> 
-> Newer versions of the MCU firmware support informing the SOC that the
-> brightness was changed by button press event via an interrupt.
-> 
-> Now that we have the turris-omnia-mcu driver, which adds support for MCU
-> interrupts, add the ability to inform the userspace (via a sysfs
-> notification) that the global brightness was changed.
-> 
-> Signed-off-by: Marek Behún <kabel@kernel.org>
-> ---
->  drivers/leds/Kconfig             |  2 +-
->  drivers/leds/leds-turris-omnia.c | 48 ++++++++++++++++++++++++++++++++
->  2 files changed, 49 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> index fcbe93b61e49..148384aacdcc 100644
-> --- a/drivers/leds/Kconfig
-> +++ b/drivers/leds/Kconfig
-> @@ -217,7 +217,7 @@ config LEDS_TURRIS_OMNIA
->  	depends on I2C
->  	depends on MACH_ARMADA_38X || COMPILE_TEST
->  	depends on OF
-> -	depends on TURRIS_OMNIA_MCU
-> +	depends on TURRIS_OMNIA_MCU_GPIO
->  	select LEDS_TRIGGERS
->  	help
->  	  This option enables basic support for the LEDs found on the front
-> diff --git a/drivers/leds/leds-turris-omnia.c b/drivers/leds/leds-turris-omnia.c
-> index 7d2ed0c6500a..168ce362fd14 100644
-> --- a/drivers/leds/leds-turris-omnia.c
-> +++ b/drivers/leds/leds-turris-omnia.c
-> @@ -43,12 +43,15 @@ struct omnia_led {
->   * @client:			I2C client device
->   * @lock:			mutex to protect
->   * @has_gamma_correction:	whether the MCU firmware supports gamma correction
-> + * @brightness_knode:		kernel node of the "brightness" device sysfs attribute (this is the
-> + *				driver specific global brightness, not the LED classdev brightness)
->   * @leds:			flexible array of per-LED data
->   */
->  struct omnia_leds {
->  	struct i2c_client *client;
->  	struct mutex lock;
->  	bool has_gamma_correction;
-> +	struct kernfs_node *brightness_knode;
->  	struct omnia_led leds[];
->  };
->  
-> @@ -373,6 +376,30 @@ static struct attribute *omnia_led_controller_attrs[] = {
->  };
->  ATTRIBUTE_GROUPS(omnia_led_controller);
->  
-> +static irqreturn_t omnia_brightness_changed_threaded_fn(int irq, void *data)
-> +{
-> +	struct omnia_leds *leds = data;
-> +
-> +	if (unlikely(!leds->brightness_knode)) {
-> +		/*
-> +		 * It would be nicer to get this dirent in the driver probe method, before the IRQ
-> +		 * is requested. But the really_probe() function in drivers/base/dd.c registers
-> +		 * driver's .dev_groups only after probe is finished, so during driver probe the
-> +		 * "brightness" sysfs node is not yet present.
+On the example, the ldac gpio is flagged as active high, when in reality
+its an active low gpio. Fix the example by using the active low flag for
+the ldac gpio.
 
-Right, but this is known and therefore never called from probe making
-this comment superfluous.  Either do something about it or remove the
-comment and carry-on working with what you have. :)
+Fixes: baaa92d284d5 ("dt-bindings: iio: dac: ad5791: Add optional reset, clr and ldac gpios")
+Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
+---
+ Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> +		 *
-> +		 * Note that sysfs_get_dirent() may sleep. This is okay, because we are in threaded
-> +		 * context.
-> +		 */
-> +		leds->brightness_knode = sysfs_get_dirent(leds->client->dev.kobj.sd, "brightness");
-> +		if (!leds->brightness_knode)
-> +			return IRQ_NONE;
-> +	}
-> +
-> +	sysfs_notify_dirent(leds->brightness_knode);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
->  static int omnia_mcu_get_features(const struct i2c_client *mcu_client)
->  {
->  	u16 reply;
-> @@ -459,6 +486,14 @@ static int omnia_leds_probe(struct i2c_client *client)
->  			 "Consider upgrading MCU firmware with the omnia-mcutool utility.\n");
->  	}
->  
-> +	if (client->irq && (ret & OMNIA_FEAT_BRIGHTNESS_INT)) {
-> +		ret = devm_request_threaded_irq(dev, client->irq, NULL,
-> +						omnia_brightness_changed_threaded_fn, IRQF_ONESHOT,
-> +						"leds-turris-omnia", leds);
-> +		if (ret < 0)
-> +			return dev_err_probe(dev, ret, "Cannot request brightness IRQ\n");
-> +	}
-> +
->  	mutex_init(&leds->lock);
->  
->  	ret = devm_led_trigger_register(dev, &omnia_hw_trigger);
-> @@ -481,6 +516,19 @@ static int omnia_leds_probe(struct i2c_client *client)
->  
->  static void omnia_leds_remove(struct i2c_client *client)
->  {
-> +	struct omnia_leds *leds = i2c_get_clientdata(client);
-> +
-> +	/*
-> +	 * We need to free the brightness IRQ here, before putting away the brightness sysfs node.
-> +	 * Otherwise devres would free the interrupt only after the sysfs node is removed, and if
-> +	 * an interrupt occurred between those two events, it would use a removed sysfs node.
-> +	 */
-> +	devm_free_irq(&client->dev, client->irq, leds);
-> +
-> +	/* Now put away the sysfs node we got the first time the interrupt handler was called */
-> +	if (leds->brightness_knode)
-> +		sysfs_put(leds->brightness_knode);
-> +
->  	/* put all LEDs into default (HW triggered) mode */
->  	omnia_cmd_write_u8(client, OMNIA_CMD_LED_MODE, OMNIA_CMD_LED_MODE_LED(OMNIA_BOARD_LEDS));
->  
-> -- 
-> 2.45.2
-> 
-
+diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
+index 79cb4b78a88a..2bd89e0aa46b 100644
+--- a/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
+@@ -91,7 +91,7 @@ examples:
+             vrefn-supply = <&dac_vrefn>;
+             reset-gpios = <&gpio_bd 16 GPIO_ACTIVE_LOW>;
+             clear-gpios = <&gpio_bd 17 GPIO_ACTIVE_LOW>;
+-            ldac-gpios = <&gpio_bd 18 GPIO_ACTIVE_HIGH>;
++            ldac-gpios = <&gpio_bd 18 GPIO_ACTIVE_LOW>;
+         };
+     };
+ ...
 -- 
-Lee Jones [李琼斯]
+2.34.1
+
 
