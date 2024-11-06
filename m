@@ -1,190 +1,98 @@
-Return-Path: <devicetree+bounces-119596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4228F9BF3EA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 18:07:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 518E09BF3F9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 18:08:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEA642866A0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:07:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 165622879C8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:08:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B0A4206957;
-	Wed,  6 Nov 2024 17:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0EAC206509;
+	Wed,  6 Nov 2024 17:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ApH/yve7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P4vfBNAD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0188320694E;
-	Wed,  6 Nov 2024 17:06:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75EB72064FB;
+	Wed,  6 Nov 2024 17:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730912807; cv=none; b=O1t9X4fVochBZSU2PMI5BkYky46mRRdtjsBpCuSD1ZK1I5l/O/gmTp4wS1oQjzb4euzgkDJqArrJDeC1qGJZIQMaoOUUXDq23aP1od9TVVj6gn4FwuYVAaOfkc6E05VvDKUpxBuFxKmWCMmy+DBUkHd88izcleIN3MTlQ/qrMpA=
+	t=1730912895; cv=none; b=szrbionO6vuN2kzbJ0RB9pj8W4OP/QNTqZHh0GbjZTDYsY8kyKOnAfh8dbfkqP6/xfHuItuH6s5qZ8ZD9kXycStbMwr8avfi3lQ6VrlB+bsump+jkBsUPSXdfr5TeSp+UcRwSwxKSAdFC7HAV9UIYbjSASDekO4i5mjVH1Jmg3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730912807; c=relaxed/simple;
-	bh=Osy2vFRVeMd9d4xPWdCbKDRnNTUTz3AzLAA1gmYcZWs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mrayTS6EIWalbbrz0t5Zb5VtI3Co9VqIEiHwIRaLUCzd4PEH3v5X36nIqsFCvt9vsEEWywiyOB4m3xxXZhp22OY5yyV/qRxCnUdteJUg7xQqHWlO1mNLId0+f7U9LY0gCJlwsjHeiiX3F0hRInfZ6ZhBfxaXMCeEm6y6FrUIVDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ApH/yve7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD25BC4CECD;
-	Wed,  6 Nov 2024 17:06:42 +0000 (UTC)
+	s=arc-20240116; t=1730912895; c=relaxed/simple;
+	bh=pUYkLg+G7KLaAY9aCiiGAzu9EW9W5zVLNsTbTO5Ljks=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Nlb50YjkDRTHPuIwBhtrWsLmgj468eMlCdaPiH7Na/9CN13F7lh280gH7zM3yx7XCFDcqoPuz403v+zubXR0VGakw+aUX2vwnuUga/Ejb2eS1ICTC8YkebxzQ5piFTYfjnLGCfQ7teDiNWQCXLJPG8ZhFBTfHarp717nK3YE5pQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P4vfBNAD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2652C4CECC;
+	Wed,  6 Nov 2024 17:08:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730912806;
-	bh=Osy2vFRVeMd9d4xPWdCbKDRnNTUTz3AzLAA1gmYcZWs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ApH/yve7hfFkIWz8NxQI4YWwvUKSSr2K0uNrGI9klXB3LWLiZGNYs8aRlsKRuGfIj
-	 VeR6RqxMVFmLW3pFprKcjapbxD1pgJo7zdQkYeVsAVXS8iQBMa69l2634SxB7Kp8KU
-	 Bpzc2AeuuVggLHHN3wb3cG/5W4e6x7isacM6schd59G/mlAOsY4FwLVOtBXnRfzOO3
-	 JmCubQh3b/LNlCJuof5tT/ZPg8qLOqZ7g0R+e+1ysPzxz7Af+9xzeUobz80bRrPhaE
-	 cnEPbpcRby6mYK3i3AtzeC6DJscubyPnX25UPDaNcaHRIPHLPmfwjWf2qZrEGH1OjJ
-	 /ximySYwjsXow==
-Date: Wed, 6 Nov 2024 17:06:40 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Matt Coster <Matt.Coster@imgtec.com>
-Cc: Frank Binns <Frank.Binns@imgtec.com>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH 02/21] dt-bindings: gpu: img: Further constrain clocks
-Message-ID: <20241106-fragment-luckiness-51ccb4bd2b4e@spud>
-References: <20241105-sets-bxs-4-64-patch-v1-v1-0-4ed30e865892@imgtec.com>
- <20241105-sets-bxs-4-64-patch-v1-v1-2-4ed30e865892@imgtec.com>
- <20241105-blooper-unflawed-6181022944d9@spud>
- <5b26e693-d37f-41ee-b119-32ef648de6f4@imgtec.com>
+	s=k20201202; t=1730912895;
+	bh=pUYkLg+G7KLaAY9aCiiGAzu9EW9W5zVLNsTbTO5Ljks=;
+	h=From:To:Cc:Subject:Date:From;
+	b=P4vfBNADblD7j1alhLNaEOT/tMszPj1erIsShjcZr3fmeDW5addHB+D5Svy5FtFRc
+	 ZZo0AlSYjr+U233wIgMK1yKJNvABVz2irggmUatlfPCHWbsQ2pj64ZF3mhP5QQglYP
+	 G5jn2ATLSdOvEK375OfXiWo297TfEE4IS+emU9iY1eCT4D5/tXxmngoAcUHs7OE1EV
+	 LuCaKwEW82cKpvm6Gt9zEWUEJoEHe0RG45t2PUhUKreuq0dAX92xt+BrUFSxDo+9wY
+	 K0r8lkFAHTW0GsTOigENfRErjK5Hjte9fHCEizTXc8DQqCew5MgTno66PeyD3glCfE
+	 TwvwYgkuTBbPg==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Saravana Kannan <saravanak@google.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] of/fdt: Don't use default address cell sizes for address translation
+Date: Wed,  6 Nov 2024 11:08:07 -0600
+Message-ID: <20241106170808.3827790-1-robh@kernel.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7/EssgUtkRYKje0N"
-Content-Disposition: inline
-In-Reply-To: <5b26e693-d37f-41ee-b119-32ef648de6f4@imgtec.com>
+Content-Transfer-Encoding: 8bit
 
+FDT systems should never be relying on default cell sizes. It's been a
+warning in dtc since 2007. The behavior here doesn't even match the
+unflattened code which will walk the parent nodes looking for the cell
+size properties (also deprecated). Furthermore, the FDT address
+translation code is only used in one spot by SH and for earlycon which
+was added 2014 and certainly isn't used on Powerpc systems.
 
---7/EssgUtkRYKje0N
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Returning -1 values will result in an error message.
 
-On Wed, Nov 06, 2024 at 10:17:53AM +0000, Matt Coster wrote:
-> On 05/11/2024 18:16, Conor Dooley wrote:
-> > On Tue, Nov 05, 2024 at 03:58:08PM +0000, Matt Coster wrote:
-> >> All Imagination GPUs use three clocks: core, mem and sys. All reasonab=
-ly
-> >> modern Imagination GPUs also support a single-clock mode where the SoC
-> >> only hooks up core and the other two are derived internally. On GPUs w=
-hich
-> >> support this mode, it is the default and most commonly used integratio=
-n.
-> >>
-> >> Codify this "1 or 3" constraint in our bindings and hang the specifics=
- off
-> >> the vendor compatible string to mirror the integration-time choice.
-> >>
-> >> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-> >> ---
-> >>  .../devicetree/bindings/gpu/img,powervr-rogue.yaml | 27 +++++++++++++=
-++-------
-> >>  1 file changed, 19 insertions(+), 8 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.y=
-aml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> >> index ef7070daf213277d0190fe319e202fdc597337d4..6924831d3e9dd9b2b052ca=
-8f9d7228ff25526532 100644
-> >> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> >> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> >> @@ -30,15 +30,20 @@ properties:
-> >>      maxItems: 1
-> >> =20
-> >>    clocks:
-> >> -    minItems: 1
-> >> -    maxItems: 3
-> >> +    oneOf:
-> >> +      - minItems: 1
-> >> +        maxItems: 1
-> >> +      - minItems: 3
-> >> +        maxItems: 3
-> >=20
-> > Just put the outer constraints here and...
-> >=20
-> >>    clock-names:
-> >> -    items:
-> >> -      - const: core
-> >> -      - const: mem
-> >> -      - const: sys
-> >> -    minItems: 1
-> >> +    oneOf:
-> >> +      - items:
-> >> +          - const: core
-> >> +      - items:
-> >> +          - const: core
-> >> +          - const: mem
-> >> +          - const: sys
-> >> =20
-> >>    interrupts:
-> >>      maxItems: 1
-> >> @@ -56,15 +61,21 @@ required:
-> >>  additionalProperties: false
-> >> =20
-> >>  allOf:
-> >> +  # Vendor integrations using a single clock domain
-> >>    - if:
-> >>        properties:
-> >>          compatible:
-> >>            contains:
-> >> -            const: ti,am62-gpu
-> >> +            anyOf:
-> >> +              - const: ti,am62-gpu
-> >>      then:
-> >>        properties:
-> >>          clocks:
-> >> +          minItems: 1
-> >>            maxItems: 1
-> >=20
-> > ...adjust the constraints in conditional bits. Setting minItems to 1
-> > should be a nop too. Pretty sure what you already had here was actually
-> > already sufficient.
-> >=20
-> > Cheers,
-> > Conor.
->=20
-> Is there an implicit constraint ensuring "clocks" and "clock-names" are
-> the same size? I wasn't sure if we could rely on that, hence the
-> slightly odd constraint on "clocks". The only real goal here is to
-> codify that you can't have one of "mem" or "sys". it's both or nothing.
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ drivers/of/fdt_address.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-You can just constrain clock-names: maxItems: 1 like you have already
-done for clocks. The items list that was already in the file enforces
-that the first clock provided must be core. When you add your new
-compatible you can set clock{-names}: minItems: 3 for it, and that will
-ensure that either 1 clock (core) or all 3 are the only options.
+diff --git a/drivers/of/fdt_address.c b/drivers/of/fdt_address.c
+index 1dc15ab78b10..9804d7f06705 100644
+--- a/drivers/of/fdt_address.c
++++ b/drivers/of/fdt_address.c
+@@ -55,7 +55,7 @@ static void __init fdt_bus_default_count_cells(const void *blob, int parentoffse
+ 		if (prop)
+ 			*addrc = be32_to_cpup(prop);
+ 		else
+-			*addrc = dt_root_addr_cells;
++			*addrc = -1;
+ 	}
+ 
+ 	if (sizec) {
+@@ -63,7 +63,7 @@ static void __init fdt_bus_default_count_cells(const void *blob, int parentoffse
+ 		if (prop)
+ 			*sizec = be32_to_cpup(prop);
+ 		else
+-			*sizec = dt_root_size_cells;
++			*sizec = -1;
+ 	}
+ }
+ 
+-- 
+2.45.2
 
---7/EssgUtkRYKje0N
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyuiIAAKCRB4tDGHoIJi
-0jRkAQDGZQfnlzA6wVW+zIxouu+T1KIMoChkv7UzyuIaXs06nAEAmyPWR4iVUQZq
-mzvYlkKzFEVKWuN3OjfBXjh9lFrzVQI=
-=IFE4
------END PGP SIGNATURE-----
-
---7/EssgUtkRYKje0N--
 
