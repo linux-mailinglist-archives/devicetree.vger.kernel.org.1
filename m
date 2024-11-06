@@ -1,140 +1,114 @@
-Return-Path: <devicetree+bounces-119590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF8099BF387
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:46:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B357A9BF391
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 17:48:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C7E11C228D5
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:46:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E53C01C2213C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 16:48:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26D0D18FDB4;
-	Wed,  6 Nov 2024 16:46:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FFDE1DFE33;
+	Wed,  6 Nov 2024 16:47:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ExvJn/FR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iI4Ih2R3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E851115383D;
-	Wed,  6 Nov 2024 16:46:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13FA884039;
+	Wed,  6 Nov 2024 16:47:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730911576; cv=none; b=PdQ78EzIi6Hoxa5uSYiG3VUJFc3O+Z3NuyT7rHYc5tGcmoOctQylM0Dr83K12pVoB1tWJhWqTtdkXTPqPT4TezaGZcHH3wh6vP+pxpTzZRj114vMru6RcLH7+PsBAZbwunr7Em/GViUdr17dilLgMjHc+DTtKe4tLqkuWFSccxo=
+	t=1730911678; cv=none; b=YGdyo6PEhCnnDj0/4dfjUfMQ/p3LYdnVsbqyHwFtOKBU0C02uLR9iB8qZUUQ/MGGndEK4tvRHpBcQ8SYJapJ8+62hgV8Etw3VajYeGPRnPaXHI/uwaaG6tPN0HfuXWT1QIPBQ8TKCXbffHBRN3qt+O0T1iGROJmrKYo+JpOuGS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730911576; c=relaxed/simple;
-	bh=G9AL7p4BSYUkCsmnj5n+S5wrrMS9UUh/oXlI6Z/z7ns=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zq6CI6LX8cvb1Jn5td7NJh3KEHu5mC6pt30qZZPiD6e52OYorCcStzVhpwyjy3v9WUMmmnfRHAhB6MyOeVFtqcM1dxWooE0iV4zOApD656fc4oJaKBWm94J0qauAqdwR9mui2Lltll6/EsutG/VfDWTUJx4hWlnxE2sW0Df+Kf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ExvJn/FR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4448DC4CECC;
-	Wed,  6 Nov 2024 16:46:12 +0000 (UTC)
+	s=arc-20240116; t=1730911678; c=relaxed/simple;
+	bh=8/28ZXF6liVR5ii+4iEPUl/93rvhaj5K2WgWuUMkhmA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=Ot9qTiRK+QtPl4TCEu5oByCMz2jFekGDHjhHCg+6A0Z9aOiNsx9dCkPICaRlPNOWc/DdDELX+oGf2hImMXA8x4Cqq3FZv7mlOZnx+Y2NDih6MTCqNlAlMu97XEMVSD6iJ+zT4UllYayxbT7lQfJJTO+veE8PfV26UOj3Bt3bxJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iI4Ih2R3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 854F9C4CEC6;
+	Wed,  6 Nov 2024 16:47:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730911575;
-	bh=G9AL7p4BSYUkCsmnj5n+S5wrrMS9UUh/oXlI6Z/z7ns=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ExvJn/FR1eK4WVdVa6E/Dzq454584zLnLnxRKkqAjf4ImzZ5w0HTcuFUY+tsRiygf
-	 VzV1jj5Rn+GF0duuJl3yR2pvmcyzNb5ljw8f1k4Mt07r/mcqxs34w105t6ilHb23Pi
-	 gwu+8HV55FmXFlNi8Y430NjD6Sf9P79EBBHBFQqeVGzcrCZqk0estEa9/KcrMv1iwH
-	 TTBiKaNzdLj79ZOiARP2bW4LxHvApGEPQeeT/9S6Vo35bzFkA3VEcYqbXxR3FPaLMu
-	 kMyHgriPEe7jO29uUy4ChBdynbhKaBUrSI9gvWeTRf2LiYz6KvNsemIH3mjhzXMnUT
-	 rZrtodNhQz7aw==
-Date: Wed, 6 Nov 2024 16:46:10 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	s=k20201202; t=1730911677;
+	bh=8/28ZXF6liVR5ii+4iEPUl/93rvhaj5K2WgWuUMkhmA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=iI4Ih2R3pul6EgFgyE7mMPfsh6ZyLL10RmDbg61lvNmMFKMi3IrzalREXQgp94rw2
+	 RJimCTua9l37J9HTzjDe+2nDrgjPGIBQbC676ffbG962rB3aeOn4EfPNT0SprbnaZ2
+	 wJhFjLW1CqfiNjB1Zfd/UbvyCJjXp70nNnX5ah5alHK27e/5F0fvuc53zQvzRmbh5J
+	 Co/m5A8Hicr7H+4PMk2/yB4gfmDn1nvvbYMqlprIQ+BVNbDaUmDvYfr8dNqNZaGzIN
+	 dQqa7tqQr0PB2V2qG2s7M1n043Yk+iDOCTWPjdbyaRCHROpU+gMBKCWaDu3PSIS1j7
+	 2/9DDQnB8aZeA==
+Date: Wed, 6 Nov 2024 10:47:55 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	Noah Wang <noahwang.wang@outlook.com>, Marek Vasut <marex@denx.de>,
-	Lukas Wunner <lukas@wunner.de>
-Subject: Re: [PATCH v2 1/2] dt-bindings: trivial-devices: add ltp8800
-Message-ID: <20241106-rancidity-unexpired-bd3baf858fef@spud>
-References: <20241106030918.24849-1-cedricjustine.encarnacion@analog.com>
- <20241106030918.24849-2-cedricjustine.encarnacion@analog.com>
- <8e4dc080-d779-4b06-8fd1-74784e06323a@roeck-us.net>
- <20241106-gatherer-glancing-495dbf9d86c7@spud>
- <2bdc5b60-2442-4291-a2f2-2e3802b7e982@roeck-us.net>
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 6/6] PCI: of: Create device-tree root bus node
+Message-ID: <20241106164755.GA1528530@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="SDdygy8xL5Th8pSv"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2bdc5b60-2442-4291-a2f2-2e3802b7e982@roeck-us.net>
+In-Reply-To: <20241106155353.4ffd3825@bootlin.com>
 
+On Wed, Nov 06, 2024 at 03:53:53PM +0100, Herve Codina wrote:
+> On Tue, 5 Nov 2024 12:59:01 -0600
+> Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > On Mon, Nov 04, 2024 at 06:20:00PM +0100, Herve Codina wrote:
+> > > PCI devices device-tree nodes can be already created. This was
+> > > introduced by commit 407d1a51921e ("PCI: Create device tree node for
+> > > bridge").  
+> ...
 
---SDdygy8xL5Th8pSv
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> > > Indeed, this component is not described
+> > > in a device-tree used at boot.  
+> > 
+> > But maybe I'm on the wrong track, because obviously PCI host
+> > controllers *are* described in DTs used at boot.
+> 
+> They are described in a device-tree used at boot on device-tree based
+> systems.
+> On x86, we are on ACPI based system -> No DT used at boot -> PCI host
+> controller not described in DT.
 
-On Wed, Nov 06, 2024 at 08:35:33AM -0800, Guenter Roeck wrote:
-> On 11/6/24 08:06, Conor Dooley wrote:
-> > On Tue, Nov 05, 2024 at 08:34:01PM -0800, Guenter Roeck wrote:
-> > > On 11/5/24 19:09, Cedric Encarnacion wrote:
-> > > > Add Analog Devices LTP8800-1A, LTP8800-2, and LTP8800-4A DC/DC =CE=
-=BCModule
-> > > > regulator.
-> >=20
-> > A single compatible for 3 devices is highly suspect. What is
-> > different between these devices?
-> >=20
->=20
-> The maximum supported current is different.
->=20
-> -2:  135A
-> -1A: 150A
-> -4A: 200A
->=20
-> Programming is exactly the same, which is why I had asked the submitter t=
-o use
-> a single compatible property. Sorry for that if it is inappropriate.
->=20
-> Is there some guidance explaining when to use a single vs. multiple compa=
-tible
-> properties for different chip variants ?
+Right, I was thinking of the devicetree-based systems, where the host
+controller must be described in DT.
 
-TBH, I'm biased and a bit paranoid, so I'd probably give them all
-compatibles and set one of them as a fallback. If the programming model
-is actually identical, then it's probably fair to use a single
-compatible (provided the commit message explains exactly why it's safe
-to do) unless the different output conditions require using different
-regulator output constraints that different compatibles would be
-required to enforce.
+> > > +	name = kasprintf(GFP_KERNEL, "pci-root@%x,%x", pci_domain_nr(bus),
+> > > +			 bus->number);  
+> > 
+> > Should this be "pci%d@%x,%x" to match the typical descriptions of PCI
+> > host bridges in DT?
+> 
+> What do you think I should use for the %d you proposed.
 
-> Note that there are also LTP8803-1A which supports 160A, and LTP8802A-1B
-> which supports 140A. Maybe there are more, but those are the ones I can f=
-ind in
-> public. I don't know if there is a difference from programming perspectiv=
-e compared
-> to the LTP8800 chip variants; the datasheets are too vague to be sure. It=
- would be
-> useful to know if those chips should get separate compatible entries if p=
-rogramming
-> is the same.
+Based on the .dts files, I think the %d is just an index to
+distinguish multiple PCI host bridges.  Maybe that's not relevant
+here, I dunno.
 
---SDdygy8xL5Th8pSv
-Content-Type: application/pgp-signature; name="signature.asc"
+> Also I supposed your "@%x,%x" is still pci_domain_nr(bus), bus->number.
 
------BEGIN PGP SIGNATURE-----
+Yes.  I think we're basically constructing a DT node to correspond to
+an ACPI PNP0A03 device.  ACPI does support updating the root bus
+number via _CRS/_PRS/_SRS, but Linux doesn't have support for that, so
+the root bus number is basically constant.  The pci_domain_nr(bus)
+should be coming from _SEG, and that's definitely constant.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZyudUgAKCRB4tDGHoIJi
-0hpzAQCKZm4sPjl0CL9dK9niNy59ZH+wV+7FOHUqCuKgv63+ngD+KMBuUoP6vMZc
-zMGwT3X92RXWaouw4DgcKP5tzL4f0wU=
-=bFU0
------END PGP SIGNATURE-----
-
---SDdygy8xL5Th8pSv--
+Bjorn
 
