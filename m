@@ -1,214 +1,99 @@
-Return-Path: <devicetree+bounces-119683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004CC9BF963
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 23:40:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 689639BF978
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 23:51:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 318811C20C90
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 22:40:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F31F8B21903
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 22:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB71B1DE2BE;
-	Wed,  6 Nov 2024 22:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C931620821F;
+	Wed,  6 Nov 2024 22:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ejqg1IDH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B8HolJVn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F5AA1917F3;
-	Wed,  6 Nov 2024 22:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95AB2645;
+	Wed,  6 Nov 2024 22:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730932831; cv=none; b=M3vcjkTSm/oxqaM/nWvv2ux0/fpsMAfWvLlK1kI33ERXb2JybSOaKFcBdxLZYtB0YjTzyLfvy+XeWl540fTuzVCKME90sFwzGtNZkWranLI6g1tPdGbHlWzaEof1c9yRD0NaHS48c4vlGBbhawy928PDUSXXwAy9GxIQ5S1rRvw=
+	t=1730933467; cv=none; b=Y4TBWq93vjVsqIeSAoi81B6ylr9OtgFnxfxSKMjZvGOh/YHjXrh3tDgdrSmbmfEO7LUN+0VzqoI29hdFzBGWUgSBz68Z9IaYn9vef0l+K+aM9gAywC4peM0btEB7K2jui6RufJ4RQEcKvvaWSZ4+dJgrr7+Y9vsXuEhz5D+Fmcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730932831; c=relaxed/simple;
-	bh=zlGCzVAGRGtkQDBPcQQg/UhnzVd+u1CKmbHht0FUdm4=;
+	s=arc-20240116; t=1730933467; c=relaxed/simple;
+	bh=E/ODYE/ywA2Cf3WzILMrMNxcnC1oEYAE5QrdYiNFvK0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k2Amll/nbhlOSPk3jPt7mrw8Yp068AFkycrxLzuT8jm/su12/Z69ztsSDtubpX460UeUg0Xk+KDPenax6sf+owHVrwhaEStJt0ei7ropUCeSU0ecRCpAS1PBM7mpHL7LpWGBRxY09E6U7VDi3Rc5ClAKZCGkRLdX5SolLZCYkME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ejqg1IDH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C94ADC4CECD;
-	Wed,  6 Nov 2024 22:40:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=StFTf4PKVOgTPFfH86LrUJ5fepbbiiH86QtcX0rylBs/irDm/1nA2/ncTSNpdUETMU53fAaDhC75+Pkwk3CwrCnMGg74vvcWQPBf5Xi+Qmg/6V7Ome9HBhbkXhm5F/CVOkpSr1PTGrfVFDV6EaLuIlrXyXWBCmJDwBhfzXJKDOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B8HolJVn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D13EC4CEC6;
+	Wed,  6 Nov 2024 22:51:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730932831;
-	bh=zlGCzVAGRGtkQDBPcQQg/UhnzVd+u1CKmbHht0FUdm4=;
+	s=k20201202; t=1730933467;
+	bh=E/ODYE/ywA2Cf3WzILMrMNxcnC1oEYAE5QrdYiNFvK0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ejqg1IDHwzlcXm+gTVfHyG/fH9dn2aye1emFSVwYUpLaRVBns6ZFdN+jTqji92nya
-	 wNQ8OtReYzup80Z6PZqSGQrtWd5UQzSLLE20QAcOrK8hj36qEdKBDwf+F5g45svYtZ
-	 iJeMOJ19xgjWFFl2DmzcFcGF2pMeb/wBmIvFyFDK770WA4yBTnl7QWhm7sRWWLgZ9p
-	 46AHtzrmU3TgQdA+CkQnW9tLM7ai2LBbo+FCgDYU3HG2Q/v+6dQQ6kln27zonzGsOr
-	 B3URqqckrkan9d5iqjFR2+Jas0sW+GHEmAVYWMXYXtGXMyrbGyd+K+faKSkFK/oP7m
-	 u1um5ZFqX0uQg==
-Date: Wed, 6 Nov 2024 23:40:28 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
-	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, bhelgaas@google.com,
-	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
-	linux-arm-kernel@lists.infradead.org,
-	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-	nbd@nbd.name, dd@embedd.com, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v4 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
-Message-ID: <ZyvwXHMRz0kI0J5O@lore-desk>
-References: <aca00bd672ee576ad96d279414fc0835ff31f637.1720022580.git.lorenzo@kernel.org>
- <20241106203219.GA1530199@bhelgaas>
+	b=B8HolJVncn6CKk+vzhFUCoI5ooliC6ctEQu0fiZC28MiF6+8PhBOlstDYZgUfohYS
+	 DjzliJZY+wT2MIlplkTTBCn9Yxxh/SHeEFGN3TMNvz3wWG4sqZZZdVK7WVOWv4H+JR
+	 ZHVdHELmaqzptLS1GMbXf4OMMXmSmXgloO1yL4/ojlblC1KXNPqd+a0QL2NOmQdZv/
+	 K+9/V2zBS60ADB23npqa+Tkf+40RnqkEM5J/OUoLCl/hsrpOlBmrWFQ1bo2rtH9fRV
+	 bqE7z5vO7D9XMxdNgIO+DNXjVUOQ8iipKXf0/AQBgEN02ZA0eoERybBPgDBKsnKd04
+	 nluYMgqGHQNHg==
+Date: Wed, 6 Nov 2024 23:51:01 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, tsbogend@alpha.franken.de, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v9 4/4] i2c: Add driver for the RTL9300 I2C controller
+Message-ID: <jwwh6m4z3xjqczn5tcf2jt7v4qhx6e6atvxyrxrauynfazzghn@cxy7ugncaesn>
+References: <20241106001835.2725522-1-chris.packham@alliedtelesis.co.nz>
+ <20241106001835.2725522-5-chris.packham@alliedtelesis.co.nz>
+ <vn6t6qxqry2ay4tbvo3cb4rbjv53pnyl56vangul36vvvxibwp@q3pssbthesef>
+ <d7ceaf59-8e39-4c76-9b9f-88746a22176d@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ICCrOV43i12jfSvz"
-Content-Disposition: inline
-In-Reply-To: <20241106203219.GA1530199@bhelgaas>
-
-
---ICCrOV43i12jfSvz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <d7ceaf59-8e39-4c76-9b9f-88746a22176d@alliedtelesis.co.nz>
 
-> On Wed, Jul 03, 2024 at 06:12:44PM +0200, Lorenzo Bianconi wrote:
-> > Introduce support for Airoha EN7581 PCIe controller to mediatek-gen3
-> > PCIe controller driver.
-> > ...
->=20
-> > +static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
-> > +{
-> > +	struct device *dev =3D pcie->dev;
-> > +	int err;
-> > +	u32 val;
-> > +
-> > +	/*
-> > +	 * Wait for the time needed to complete the bulk assert in
-> > +	 * mtk_pcie_setup for EN7581 SoC.
-> > +	 */
-> > +	mdelay(PCIE_EN7581_RESET_TIME_MS);
+Hi Chris,
 
-Hi Bjorn,
+On Thu, Nov 07, 2024 at 08:47:42AM +1300, Chris Packham wrote:
+> On 6/11/24 22:57, Andi Shyti wrote:
+> > On Wed, Nov 06, 2024 at 01:18:35PM +1300, Chris Packham wrote:
+> > > Add support for the I2C controller on the RTL9300 SoC. There are two I2C
+> > > controllers in the RTL9300 that are part of the Ethernet switch register
+> > > block. Each of these controllers owns a SCL pin (GPIO8 for the fiorst
+> > > I2C controller, GPIO17 for the second). There are 8 possible SDA pins
+> > > (GPIO9-16) that can be assigned to either I2C controller. This
+> > > relationship is represented in the device tree with a child node for
+> > > each SDA line in use.
+> > > 
+> > > This is based on the openwrt implementation[1] but has been
+> > > significantly modified
+> > > 
+> > > [1] - https://scanmail.trustwave.com/?c=20988&d=pL2r5zHAPsW8d92uECdR2T8Eh4fYX_ZwrCyklfTCzQ&u=https%3a%2f%2fgit%2eopenwrt%2eorg%2f%3fp%3dopenwrt%2fopenwrt%2egit%3ba%3dblob%3bf%3dtarget%2flinux%2frealtek%2ffiles-5%2e15%2fdrivers%2fi2c%2fbusses%2fi2c-rtl9300%2ec
+> > > 
+> > > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> > > Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
+> > Thanks for following up with v9. I think nothing prevents us from
+> > already merging this 4/4 patch, right?
+> > 
+> From my end yes it's all good to go. Lee's just applied the mfd binding.
+> 
+> The only thing outstanding are the mips dts changes. I'll wait for a bit and
+> chase those up. Hopefully they can make it in the 6.13 window but it's not
+> the end of the world if they don't.
 
->=20
-> It looks wrong to me to do the assert and deassert in different
-> places:
->=20
->   mtk_pcie_setup
->     reset_control_bulk_assert(pcie->phy_resets)        <--
->     mtk_pcie_en7581_power_up
->       mdelay(PCIE_EN7581_RESET_TIME_MS)
->       reset_control_bulk_deassert(pcie->phy_resets)    <--
->       mdelay(PCIE_EN7581_RESET_TIME_MS)
->=20
-> That makes the code hard to understand.
+Cool, I just wanted to confirm. Applied to i2c/i2c-host.
 
-The phy reset line was already asserted running reset_control_assert() in
-mtk_pcie_setup() and de-asserted running reset_control_deassert() in
-mtk_pcie_power_up() before adding EN7581 support. Moreover, EN7581 requires
-to run phy_init()/phy_power_on() before de-asserting the phy reset lines.
-I guess I can add a comment to make it more clear. Agree?
-
->=20
-> > +	err =3D phy_init(pcie->phy);
-> > +	if (err) {
-> > +		dev_err(dev, "failed to initialize PHY\n");
-> > +		return err;
-> > +	}
-> > +
-> > +	err =3D phy_power_on(pcie->phy);
-> > +	if (err) {
-> > +		dev_err(dev, "failed to power on PHY\n");
-> > +		goto err_phy_on;
-> > +	}
-> > +
-> > +	err =3D reset_control_bulk_deassert(pcie->soc->phy_resets.num_resets,=
- pcie->phy_resets);
-> > +	if (err) {
-> > +		dev_err(dev, "failed to deassert PHYs\n");
-> > +		goto err_phy_deassert;
-> > +	}
-> > +
-> > +	/*
-> > +	 * Wait for the time needed to complete the bulk de-assert above.
-> > +	 * This time is specific for EN7581 SoC.
-> > +	 */
-> > +	mdelay(PCIE_EN7581_RESET_TIME_MS);
-> > +
-> > +	pm_runtime_enable(dev);
-> > +	pm_runtime_get_sync(dev);
-> > +
->=20
-> > +	err =3D clk_bulk_prepare(pcie->num_clks, pcie->clks);
-> > +	if (err) {
-> > +		dev_err(dev, "failed to prepare clock\n");
-> > +		goto err_clk_prepare;
-> > +	}
-> > +
-> > +	val =3D FIELD_PREP(PCIE_VAL_LN0_DOWNSTREAM, 0x47) |
-> > +	      FIELD_PREP(PCIE_VAL_LN1_DOWNSTREAM, 0x47) |
-> > +	      FIELD_PREP(PCIE_VAL_LN0_UPSTREAM, 0x41) |
-> > +	      FIELD_PREP(PCIE_VAL_LN1_UPSTREAM, 0x41);
-> > +	writel_relaxed(val, pcie->base + PCIE_EQ_PRESET_01_REG);
-> > +
-> > +	val =3D PCIE_K_PHYPARAM_QUERY | PCIE_K_QUERY_TIMEOUT |
-> > +	      FIELD_PREP(PCIE_K_PRESET_TO_USE_16G, 0x80) |
-> > +	      FIELD_PREP(PCIE_K_PRESET_TO_USE, 0x2) |
-> > +	      FIELD_PREP(PCIE_K_FINETUNE_MAX, 0xf);
-> > +	writel_relaxed(val, pcie->base + PCIE_PIPE4_PIE8_REG);
->=20
-> Why is this equalization stuff in the middle between
-> clk_bulk_prepare() and clk_bulk_enable()?  Is the split an actual
-> requirement, or could we use clk_bulk_prepare_enable() here, like we
-> do in mtk_pcie_power_up()?
-
-Nope, we can replace clk_bulk_enable() with clk_bulk_prepare_enable() and
-remove clk_bulk_prepare() in mtk_pcie_en7581_power_up() since we actually
-implements just enable callback for EN7581 in clk-en7523.c.
-
->=20
-> If the split is required, a comment about why would be helpful.
->=20
-> > +	err =3D clk_bulk_enable(pcie->num_clks, pcie->clks);
-> > +	if (err) {
-> > +		dev_err(dev, "failed to prepare clock\n");
-> > +		goto err_clk_enable;
-> > +	}
->=20
-> Per https://lore.kernel.org/r/ZypgYOn7dcYIoW4i@lore-desk,
-> REG_PCI_CONTROL is asserted/deasserted here by en7581_pci_enable().
-
-correct
-
->=20
-> Is this where PERST# is asserted?  If so, a comment to that effect
-> would be helpful.  Where is PERST# deasserted?  Where are the required
-> delays before deassert done?
-
-I can add a comment in en7581_pci_enable() describing the PERST issue for
-EN7581. Please note we have a 250ms delay in en7581_pci_enable() after
-configuring REG_PCI_CONTROL register.
-
-https://github.com/torvalds/linux/blob/master/drivers/clk/clk-en7523.c#L396
-
-Regards,
-Lorenzo
-
->=20
-> Bjorn
-
---ICCrOV43i12jfSvz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZyvwXAAKCRA6cBh0uS2t
-rEp6AQCtSYy3YAUzds8hvCM6UpvkI2xTYG22JsIAv0MIYQIuXgEA0T+smyZrSC8l
-SWuzngL5C7nN60iXccYVAU+/Lr2MsAs=
-=FAIL
------END PGP SIGNATURE-----
-
---ICCrOV43i12jfSvz--
+Thanks,
+Andi
 
