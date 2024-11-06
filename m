@@ -1,88 +1,90 @@
-Return-Path: <devicetree+bounces-119372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD5879BE1B9
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 10:07:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 520CB9BE1E3
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 10:09:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF1441C23696
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 09:07:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08EF41F25450
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 09:09:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 677551DE4D4;
-	Wed,  6 Nov 2024 09:04:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 278181DDC0D;
+	Wed,  6 Nov 2024 09:06:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="db4YKDwC"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="bzY/9+IA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B408B1DE3D2;
-	Wed,  6 Nov 2024 09:03:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472C81DD0D0
+	for <devicetree@vger.kernel.org>; Wed,  6 Nov 2024 09:06:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730883841; cv=none; b=iTcRW4E1bIkAgXVqKGzWziw9grMDI3O3IE+C2YBYextDMg9cfh45gJuTfoTz6VIzbD7VdQjYGIlP1q6nvIbwojaHxFMS5QE4ogDtkftqXclc6CQJK2pb7ImAoIFJC6rMrjP0KD+z3Hn2dPq+hwUkaolP1y3b+i7xTbgKkd0+Kls=
+	t=1730883973; cv=none; b=aC3f75Ml56uVP66ug3d2DU5cF9mXDrt9Ph0cqX/6RDRBUg8kEgXJZwthxA52dDDAhMvaqIyWKp+HbCzxVRRhMD4eCzhBDwEaNUVDV7MnXJIFyq4EnG265Yuq8ny4RVTLFZrzsSa7Sqdn1ai2qYVm5l6OX4rot8a9BpK2FnTpJ9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730883841; c=relaxed/simple;
-	bh=Bpy069ACzgc7e7Moyha828kZ71GmAEXp8ONHRxpvlag=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dc3DcAFVaIOoH2mTWBTf3K936xBi+i/DjCa0mpkHgRA6wm+tegfXIV127v3NwMkV9afFIgU4+hh89PuLpyr7wnyFAMlAJewUy6BaZ5ZERfhXWuD8BfcM9pVC4FBTI8eIRdrfpcfHVjJGK5CxJdvZbY5qjLPD2kBeVwv1EJh0Z6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=db4YKDwC; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A67q3sG006663;
-	Wed, 6 Nov 2024 04:03:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=SO/j1
-	7HAPPvNkemEtM6dBfKDRozRSFU0Ql1OyvSW1Zw=; b=db4YKDwCBSMYZN4FWjteR
-	tIwM2SMEaXGBB4JOOtDtovYUHsyr/+NaT9vnPzGjFV68V6DNxw/uGW7cJ+wzvEk5
-	svycm4LSxs7UiZpFBKNs88w3DX9XjLPSTCe0Vf1BVmCtYLi8Pq4X5r/c3GBHewSi
-	qSfaD+8uCre3xvjzPg0YmsXwiHsRs0/Cr47gqqUR+PcLMBHp3oYfP82+S2Ekv0vK
-	HzZlPjsY8p/6sAfclvSdqT01v9bnCdhFlJAymROFtnY8Cwfb7aw5OAtyEf6feSul
-	wVFIgoes4QD7jZA8tmWZTG/BLNwZAllyXpvP8Ggusd+noLRfzq+FT/XbYkCMG8xp
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 42r4eq89hf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 06 Nov 2024 04:03:41 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 4A693eN4025336
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 6 Nov 2024 04:03:40 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Wed, 6 Nov 2024
- 04:03:40 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Wed, 6 Nov 2024 04:03:40 -0500
-Received: from ATORRENO-L02.ad.analog.com (ATORRENO-L02.ad.analog.com [10.116.44.137])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4A693GTD006260;
-	Wed, 6 Nov 2024 04:03:32 -0500
-From: Alexis Cezar Torreno <alexisczezar.torreno@analog.com>
-To: <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-hwmon@vger.kernel.org>
-CC: Radu Sabau <radu.sabau@analog.com>, Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jonathan
- Corbet <corbet@lwn.net>,
-        Alexis Cezar Torreno
-	<alexisczezar.torreno@analog.com>,
-        Andy Shevchenko
-	<andriy.shevchenko@linux.intel.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?=
-	<u.kleine-koenig@pengutronix.de>
-Subject: [PATCH 1/2] dt-bindings: hwmon: (pmbus/adp1050): Support adp1051 and adp1055: add bindings.
-Date: Wed, 6 Nov 2024 17:03:10 +0800
-Message-ID: <20241106090311.17536-2-alexisczezar.torreno@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241106090311.17536-1-alexisczezar.torreno@analog.com>
-References: <20241106090311.17536-1-alexisczezar.torreno@analog.com>
+	s=arc-20240116; t=1730883973; c=relaxed/simple;
+	bh=LtDcq5GNGdpLQi/gwT3VpDWdk4u/M9CX5RZIK3YonB0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LSZvR48B0DlYmxrUdB3vC/lp1HQ6oVRN/FcxKRhVpYk79wS+aYiYgYffW55YseQsolgGusTMevVVlM7FkzgfwZtXaRnw6lmtEMZ/UmmRL3N0VtetKtF+cE3IXsZdkrkPmyGdkndQilDDH8O2jy2yic+G5am/fowiB40mEbVIvZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=bzY/9+IA; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a86e9db75b9so976240566b.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Nov 2024 01:06:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1730883968; x=1731488768; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EQGfCgtGxny3+etN5uPGt5VE9z/U2oT3XLy2KTaMLtM=;
+        b=bzY/9+IAG4+vCRjEKg2vUR2P2hwk3khkxoYqPa/u1nDk1bTL1snzWVQWXxEERxk2yq
+         VTmVOrD9HwwSRhzYlwP0GJoMfUJE/jUWVlA3jfoqsM2xuGkrrCFOahL/WQPdOqAOukG9
+         YGV6fWldwCAT6H27GK7F+LHz80a7mjg5nXyQw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730883968; x=1731488768;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EQGfCgtGxny3+etN5uPGt5VE9z/U2oT3XLy2KTaMLtM=;
+        b=Gh0RuL4xQkdyyQCp0fN3Z5iJPJ3Pw9Z8dEqmCHxWNOkhxXTdXeOysV99WWRuZZbZ2l
+         m7t2G2fK4Gjn+jBvdx9nSPm2/nIFGUh7AFRzwTuVzl7ZAHa0FD1YVoeeVx/MV8F1yQQa
+         Eyz0ohyqcTK2EmEsJD6QRxxhJEpztKAKn1VS3SQ+AdhonZc0v/Y766zoZvEcLsNkAd/k
+         +iqNMUxvOSgFR8y8V8F25jQZzFzvRepcqkYRm0Yo+8oeqSs4q6Q1D6la13VsXtQB3iwl
+         eWWxKm++B5RPsTw0JoHKscw/xdCJ6374Ujn2Fu76+eUGPF8iq3fnOAzgIlc/TQuJbR9u
+         j8qg==
+X-Forwarded-Encrypted: i=1; AJvYcCWCNzM5f/u2itHvpXqNoOD1sC5B7/Fjooei7p0pFM1YFK/Rys6MooGzTv3X/KosgbNhJZMcVsYFm1TE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxYxGx0ksok9NOmG27wjUmG6wSvLk8joplg1FbcEuLSe8uXwEp
+	G+2VLrUP6NCErJMt8Kj0kRJ9WWHibbxn1nTQVYkHoBVP77DdWoLAl/NtUey3uEk=
+X-Google-Smtp-Source: AGHT+IHS33PWmczfWikAhpAdNlCU+a9+IAsnRCa7MMogy1tCzBHrZ2XtY5RmjifBnJRTUzSpIvQdoQ==
+X-Received: by 2002:a17:907:724d:b0:a9a:bbcc:5092 with SMTP id a640c23a62f3a-a9e50978806mr1335979766b.39.1730883968287;
+        Wed, 06 Nov 2024 01:06:08 -0800 (PST)
+Received: from localhost.localdomain ([2001:b07:6474:ebbf:afb5:f524:6416:8e3])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9eb17f9422sm247781366b.139.2024.11.06.01.06.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Nov 2024 01:06:07 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Abel Vesa <abelvesa@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH v3 0/8] Support spread spectrum clocking for i.MX8{M,N,P} PLLs
+Date: Wed,  6 Nov 2024 09:57:56 +0100
+Message-ID: <20241106090549.3684963-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,60 +92,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: NHAQiB_jUTGrv5vKSkAZ1P2w2_7grV-P
-X-Proofpoint-GUID: NHAQiB_jUTGrv5vKSkAZ1P2w2_7grV-P
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 impostorscore=0
- lowpriorityscore=0 phishscore=0 mlxlogscore=999 mlxscore=0 clxscore=1015
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411060073
 
-Add dt-bindings for adp1051 and adp1055 pmbus.
-ADP1051: 6 PWM for I/O Voltage, I/O Current, Temperature
-ADP1055: 6 PWM for I/O Voltage, I/O Current, Power, Temperature
+The series adds support for spread spectrum clocking for i.MX8M{N,M,P}
+PLLs (audio, video and DRAM). It has been tested for the video PLL on
+boards using i.MX8MN and i.MX8MP.
 
-Signed-off-by: Alexis Cezar Torreno <alexisczezar.torreno@analog.com>
----
- .../devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+Changes in v3:
+- Patches 1/8 has been added in version 3. The dt-bindings have
+  been moved from fsl,imx8m-anatop.yaml to imx8m-clock.yaml. The
+  anatop device (fsl,imx8m-anatop.yaml) is indeed more or less a
+  syscon, so it represents a memory area accessible by ccm
+  (imx8m-clock.yaml) to setup the PLLs.
+- Patches {3,5}/8 have been added in version 3.
+- Patches {4,6,8}/8 use ccm device node instead of the anatop one.
 
-diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
-index 10c2204bc3df..88aaa29b3bd1 100644
---- a/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
-@@ -10,16 +10,24 @@ maintainers:
-   - Radu Sabau <radu.sabau@analog.com>
- 
- description: |
--   The ADP1050 is used to monitor system voltages, currents and temperatures.
-+   The ADP1050 and similar devices are used to monitor system voltages,
-+   currents, power, and temperatures.
-+
-    Through the PMBus interface, the ADP1050 targets isolated power supplies
-    and has four individual monitors for input/output voltage, input current
-    and temperature.
-    Datasheet:
-      https://www.analog.com/en/products/adp1050.html
-+     https://www.analog.com/en/products/adp1051.html
-+     https://www.analog.com/en/products/adp1055.html
- 
- properties:
-+
-   compatible:
--    const: adi,adp1050
-+    enum:
-+      - adi,adp1050
-+      - adi,adp1051
-+      - adi,adp1055
- 
-   reg:
-     maxItems: 1
+Changes in v2:
+- Add "allOf:" and place it after "required:" block, like in the
+  example schema.
+- Move the properties definition to the top-level.
+- Drop unit types as requested by the "make dt_binding_check" command.
+
+Dario Binacchi (8):
+  dt-bindings: clock: imx8m-clock: support spread spectrum clocking
+  clk: imx: pll14xx: support spread spectrum clock generation
+  clk: imx: imx8mm: distinguish between ccm and anatop references
+  clk: imx8mm: support spread spectrum clock generation
+  clk: imx: imx8mn: distinguish between ccm and anatop references
+  clk: imx8mn: support spread spectrum clock generation
+  clk: imx8mp: don't lose the anatop device node
+  clk: imx8mp: support spread spectrum clock generation
+
+ .../bindings/clock/imx8m-clock.yaml           |  46 ++++++++
+ drivers/clk/imx/clk-imx8mm.c                  |  99 +++++++++--------
+ drivers/clk/imx/clk-imx8mn.c                  | 102 +++++++++---------
+ drivers/clk/imx/clk-imx8mp-audiomix.c         |   2 +-
+ drivers/clk/imx/clk-imx8mp.c                  |  21 ++--
+ drivers/clk/imx/clk-pll14xx.c                 | 102 +++++++++++++++++-
+ drivers/clk/imx/clk.h                         |  24 ++++-
+ 7 files changed, 289 insertions(+), 107 deletions(-)
+
 -- 
-2.34.1
+2.43.0
 
 
