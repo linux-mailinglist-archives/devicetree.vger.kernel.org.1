@@ -1,150 +1,134 @@
-Return-Path: <devicetree+bounces-119675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFCB59BF84A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 22:02:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25F4A9BF856
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 22:12:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82FC6283B74
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 21:02:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE1B92838CD
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 21:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613791C3050;
-	Wed,  6 Nov 2024 21:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B72020CCC5;
+	Wed,  6 Nov 2024 21:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ocOJjefK"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XcB9DYIK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3003C1514CC;
-	Wed,  6 Nov 2024 21:02:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 816F620C489;
+	Wed,  6 Nov 2024 21:12:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730926944; cv=none; b=Da7qcSG1eFN8UZpPe7tHaV+LGrm0CIxzriz/BSAldxq6Cej7W3GZZrraWN6y6nTNaZzfu0d1F4z+Bn4u8qt6knRnh4qUOBvYtUVtvv9XjOAbDg95Zy3GmKRmi2LaZCzJBGOIaocKHF1hd3KZjPPvAN3DEdUx8gaux7P2Cf/txmA=
+	t=1730927525; cv=none; b=e9xDyxtRmAqkgd8I2g4ctnF3cIG0p/jVfMTmQHdxkZCAWAoxrnjQ00PHWv7WXax0zqNYrVwy0jjlvuSMvv8yImsoX2BreIHujE1TGnucWwblMD7hwDbpVLfjZjH6+m/I2LLGD2V4Bb15c8hcY3nOKYuWdht2QB5Dk5BBMgsZpxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730926944; c=relaxed/simple;
-	bh=DLZ+xT7FS54/kaVDeqPCFh6lOCpCqzZIMMnQ9XE6XMs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=jnDSkBL7+3OoUl66DkmuxMVW4zN5OelKfaY4cenY4xC9OFsgwIosRpeO2BC0PKy3u4yrAdn2LY/PugnHCZD4b+pSlN7VWBK4qvH+mQwLoa/8TNK4vlQEzXa7ioeDKffHpFr8k6JaP27Yjp8L5QqObgvT7wGee1qJAD8RgYviWX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ocOJjefK; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1730926940;
-	bh=DLZ+xT7FS54/kaVDeqPCFh6lOCpCqzZIMMnQ9XE6XMs=;
-	h=From:Date:Subject:To:Cc:From;
-	b=ocOJjefKZmTy6knNbSNW/ZiMuNCvnESs2KF1Q1Py5pKtFGxtABGwYk6Y+Z9Tm0ryo
-	 qa/efwBBYcmCLhThgvifgngBCqjbq1zQfool60Cv8Wz/6/KH0FioQVNgWLLjDp8U7h
-	 /brvxEiCvZQQWA7QcTHPAsBqluJsBOU34CWWj2tXPfinx+iXyae9QJzoZmj1q2hRW6
-	 34eJnXd1UWSzEUDFE4h4NcCXD0QcQR95y3Volpk7dF8tViwftbBMRwfelUM9XdgZ4J
-	 z2zXaETUFgJVR2MHr2RjxOHPE1Z/M0QPNe6ZDQnxy9MaT0Uejoh4aep9+4MGalBtEk
-	 vLT+fIFkuoy6Q==
-Received: from [192.168.1.51] (pool-100-2-116-133.nycmny.fios.verizon.net [100.2.116.133])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 529FF17E3786;
-	Wed,  6 Nov 2024 22:02:18 +0100 (CET)
-From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Date: Wed, 06 Nov 2024 16:01:45 -0500
-Subject: [PATCH] arm64: dts: mediatek: mt8186: Move wakeup to MTU3 to get
- working suspend
+	s=arc-20240116; t=1730927525; c=relaxed/simple;
+	bh=zrZe+fid+09uUIx8uhiwUTZMog/OC/hedzszsms8RNM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZfjAEGTstGS6UjRQdZj3M9KCEdSRRdz5gEZEVxzPpviS7osr4lG43beYcp/9qJfl5vGOMYZKsNYWjKR6Q3cG29fM1FEPycUrIalGGdDMGOeA1SWoCuopMnlhPN4YlcFSRB9bl7na5ylQHg33+pQGf6+MFsOt/WBE6v76FS25Vm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XcB9DYIK; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1730927524; x=1762463524;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zrZe+fid+09uUIx8uhiwUTZMog/OC/hedzszsms8RNM=;
+  b=XcB9DYIKAyuZ9r2RqnoGIRxj1dQc5tYn+oDIUGhUPILDj76NhK+n15fQ
+   GscdiBZ5QtKmypXtq+GxpJQV5QMEussbGAut7NpI2SghSzt7+96b64n4g
+   3uH0vx6p3F4uSnjGky5rhaN+EWbqC0hpzMuxqRuj2ekOBl/1gqPVswrIC
+   y/WDbS96/dlKqHNj8OveZY3vehsuXGalUOUbYY6CdKWTsGKwpJexo/sTr
+   iUaLE5Nixuh4EC02S1OZo7PblwOHpXJrNDQfPH0m07YKmCmVeafUCDrEX
+   wOv63pINiipoZ+O3KaGAvwq3EUdnImTgoGIER4Rpnl2aI5q/IYmTnxx1V
+   A==;
+X-CSE-ConnectionGUID: ttlMVc9qQCu69eCGbHmtDQ==
+X-CSE-MsgGUID: 02ZSY2EJT4akO8jndmVQ/Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="33588540"
+X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; 
+   d="scan'208";a="33588540"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2024 13:12:03 -0800
+X-CSE-ConnectionGUID: eoL8m8VYSUWZwLMM2UAn4Q==
+X-CSE-MsgGUID: IjKBEYDHQBO/Utx6NyVuPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; 
+   d="scan'208";a="84925348"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 06 Nov 2024 13:11:36 -0800
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t8nJO-000pQo-29;
+	Wed, 06 Nov 2024 21:11:34 +0000
+Date: Thu, 7 Nov 2024 05:11:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alexis Cezar Torreno <alexisczezar.torreno@analog.com>,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Radu Sabau <radu.sabau@analog.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Alexis Cezar Torreno <alexisczezar.torreno@analog.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+Subject: Re: [PATCH 2/2] hwmon: (pmbus/adp1050): Support adp1051 and adp1055
+Message-ID: <202411070427.lkz6nVFX-lkp@intel.com>
+References: <20241106090311.17536-3-alexisczezar.torreno@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241106-mt8186-suspend-with-usb-wakeup-v1-1-07734a4c8236@collabora.com>
-X-B4-Tracking: v=1; b=H4sIADjZK2cC/x3NwQqDMAyA4VeRnBdo6nTiq4wd4owzjNXS2CmI7
- 76y43f5/wNMkopBXx2Q5KumSyigSwXPmcNLUMdi8M5fiVyLn7WjrkXLFiWMuOk6Y7YBN35Ljsg
- 1i3Dj6eYGKJGYZNL9P7g/zvMHw+83JHAAAAA=
-X-Change-ID: 20241106-mt8186-suspend-with-usb-wakeup-a3aeea52170b
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, Wojciech Macek <wmacek@google.com>, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241106090311.17536-3-alexisczezar.torreno@analog.com>
 
-The current DT has the wakeup-source and mediatek,syscon-wakeup
-properties in the XHCI nodes, which configures USB wakeup after powering
-down the XHCI hardware block. However, since the XHCI controller is
-behind an MTU3 (USB3 DRD controller), the MTU3 only gets powered down
-after USB wakeup has been configured, causing the system to detect a
-wakeup, and results in broken suspend support as the system resumes
-immediately.
+Hi Alexis,
 
-Move the wakeup properties to the MTU3 nodes so that USB wakeup is only
-enabled after the MTU3 has powered down.
+kernel test robot noticed the following build warnings:
 
-With this change in place, it is possible to suspend and resume, and
-also to wakeup through USB, as tested on the Google Steelix (Lenovo 300e
-Yoga Chromebook Gen 4).
+[auto build test WARNING on aa8cbc0898902070f1ad093a6e036cf57f0d47bc]
 
-Fixes: f6c3e61c5486 ("arm64: dts: mediatek: mt8186: Add MTU3 nodes")
-Reported-by: Wojciech Macek <wmacek@google.com>
-Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8186.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Alexis-Cezar-Torreno/dt-bindings-hwmon-pmbus-adp1050-Support-adp1051-and-adp1055-add-bindings/20241106-170853
+base:   aa8cbc0898902070f1ad093a6e036cf57f0d47bc
+patch link:    https://lore.kernel.org/r/20241106090311.17536-3-alexisczezar.torreno%40analog.com
+patch subject: [PATCH 2/2] hwmon: (pmbus/adp1050): Support adp1051 and adp1055
+config: x86_64-randconfig-r123-20241106 (https://download.01.org/0day-ci/archive/20241107/202411070427.lkz6nVFX-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241107/202411070427.lkz6nVFX-lkp@intel.com/reproduce)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-index d3c3c2a40adcdf439a1c74586c35cf63a1c7cb30..b91f88ffae0e8b81b70269ea2d058b016a50232b 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-@@ -1577,6 +1577,8 @@ ssusb0: usb@11201000 {
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-+			wakeup-source;
-+			mediatek,syscon-wakeup = <&pericfg 0x420 2>;
- 			status = "disabled";
- 
- 			usb_host0: usb@11200000 {
-@@ -1590,8 +1592,6 @@ usb_host0: usb@11200000 {
- 					 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_XHCI>;
- 				clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
- 				interrupts = <GIC_SPI 294 IRQ_TYPE_LEVEL_HIGH 0>;
--				mediatek,syscon-wakeup = <&pericfg 0x420 2>;
--				wakeup-source;
- 				status = "disabled";
- 			};
- 		};
-@@ -1643,6 +1643,8 @@ ssusb1: usb@11281000 {
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-+			wakeup-source;
-+			mediatek,syscon-wakeup = <&pericfg 0x424 2>;
- 			status = "disabled";
- 
- 			usb_host1: usb@11280000 {
-@@ -1656,8 +1658,6 @@ usb_host1: usb@11280000 {
- 					 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_XHCI>;
- 				clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck","xhci_ck";
- 				interrupts = <GIC_SPI 324 IRQ_TYPE_LEVEL_HIGH 0>;
--				mediatek,syscon-wakeup = <&pericfg 0x424 2>;
--				wakeup-source;
- 				status = "disabled";
- 			};
- 		};
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411070427.lkz6nVFX-lkp@intel.com/
 
----
-base-commit: 5b913f5d7d7fe0f567dea8605f21da6eaa1735fb
-change-id: 20241106-mt8186-suspend-with-usb-wakeup-a3aeea52170b
+sparse warnings: (new ones prefixed by >>)
+>> drivers/hwmon/pmbus/adp1050.c:59:39: sparse: sparse: incorrect type in argument 2 (different modifiers) @@     expected struct pmbus_driver_info *info @@     got struct pmbus_driver_info const *[assigned] info @@
+   drivers/hwmon/pmbus/adp1050.c:59:39: sparse:     expected struct pmbus_driver_info *info
+   drivers/hwmon/pmbus/adp1050.c:59:39: sparse:     got struct pmbus_driver_info const *[assigned] info
 
-Best regards,
+vim +59 drivers/hwmon/pmbus/adp1050.c
+
+    50	
+    51	static int adp1050_probe(struct i2c_client *client)
+    52	{
+    53		const struct pmbus_driver_info *info;
+    54	
+    55		info = device_get_match_data(&client->dev);
+    56		if (!info)
+    57			return -ENODEV;
+    58	
+  > 59		return pmbus_do_probe(client, info);
+    60	}
+    61	
+
 -- 
-Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
