@@ -1,52 +1,51 @@
-Return-Path: <devicetree+bounces-119695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D958D9BFA46
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 00:42:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC8DA9BFA4E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 00:42:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E20B1C203AC
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 23:42:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4D241F22554
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 23:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6561420D4F8;
-	Wed,  6 Nov 2024 23:41:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE76520E007;
+	Wed,  6 Nov 2024 23:42:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="JX+IWwM2"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="KS40TnrW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79DBA383;
-	Wed,  6 Nov 2024 23:41:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43830383;
+	Wed,  6 Nov 2024 23:42:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730936519; cv=none; b=c6XUi1fPHVmA/Jl0oSvWcPetPHAUcELf8EMzA4/sGwgt9eQvcezSV1XY23Ok9YQoF78lOurDmpFHPiNCR90v7pf6l2sNyZZDE2XUmwO9AVr3nzvpQeYUpE4Z9nLvrD5f7FIAKr1r4XsyRhxKY0Q5RGRl8B+vXXsuA5sqLqoWXUE=
+	t=1730936569; cv=none; b=igVG1e8DjuH4paD31D/UJVwPLnXXnW8ebfBwYFihtD8fgOwMcoBCKUYOhrJWbhAXmv6oW+PhD7wWtAX2EdJf1d6WVXnpi+jvsNc3ORroGQOHGV4vgmoUQZ1P0GaB6msTxCRSDu1qCTyVFIzO3iI1t4/KM6ckwAjNJnDv4P+MbSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730936519; c=relaxed/simple;
-	bh=V35WscTPJJZa0kbCQI1v1lpPEhxmxrS3QjHONqjJA1Y=;
+	s=arc-20240116; t=1730936569; c=relaxed/simple;
+	bh=RbaXcDiI9VKQ24EWX+KiopF96b7wPeWxBZ4dioG1uoM=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=IGwHyfZc0Jfhb6Yu5kGUdpxQklz+4+XHVn+IGJmW/IYUW4vrFVQDiZ+PJkjtgViKUlzNuaxRwPMn2OzN1SQlV51WKmQ8NBX4vb40xtxyuIoACStESxqdd7DhNu3eXJpV3TXChVfXBDdOg0gzGCQT+4YUEvL5CAtm6xTimhRaiJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=JX+IWwM2; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=ar5GBmSfk9Bst24oRzGq5q4sZUMADFs6mks71pXdFt7PyvucaBwg49bfCDyQzoy+SWBnmMWuqOX8PnZx1cYwnhDi4ECuHGSNccPNJvE8Q/JJfpt8OgxbkH7BE3X1XeDtLJGvQ1aPAvHTtCNQIQ/51Y9+fa8VoYX/UhOboduh4kQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=KS40TnrW; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1730936515;
-	bh=V35WscTPJJZa0kbCQI1v1lpPEhxmxrS3QjHONqjJA1Y=;
+	d=codeconstruct.com.au; s=2022a; t=1730936566;
+	bh=RbaXcDiI9VKQ24EWX+KiopF96b7wPeWxBZ4dioG1uoM=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=JX+IWwM2IZKC33djCGZllfdL1g6kzRmzqS2dbraQZ9yX2gxdN200kEeNQAPxmmw/b
-	 3ZMLeAZDM+IUbU0IczUPvUIwlK6HBNfxcl9jnimW+gI7Jaj4ksKEPptl6vsCwcJ6/L
-	 ppnYjq2NZn7T/gev1C9gOlYyPKpqbbYowo7vxCe62tCqYwkyUbK/GJfc/lBonbPuiQ
-	 +d+NIVAYzSMPNg7nBfjM8+KNC6BrRxWd2rs/mTn/Yfe5UPGuLs/5+rCXQVYLHW6/aB
-	 80pi1JjzLatvGOxIJ/rJvF9fpjD9Idt5igM0JL7oKKTnNpFoltR4hj5HzItHyUh9sd
-	 lLSpdH2zzHWNQ==
+	b=KS40TnrW8Q4bk1DyTkKfLOstKJyzBhfs5ZulLiWbEpfar7mxzWJ3GXGlcfD+5+93l
+	 zr3C+mL+qwB39ZIWNMJEvyFAl6UzFgJ86J39fiM/68WrJQSfXlimFGquBaG+eQKmqS
+	 xSYc7YkYYDT2dTzqPpFdCqU1Yb0fbIq2jI7oa5+wsm8V3onLLAtbXQkzTUjLR0D685
+	 hwLFYEplpiSWky/Jqv6+gFhqGqxQVDZCiY5hOSO991mliNUYT5BXyu8dev0r3iSLpT
+	 LtzmQPPbhvZzhUKiwxWEQLla6BjzFYVPjXdcgSF97fD75+Gq8l3qS6WPrIli+iRsHS
+	 WzAC2aVletFAw==
 Received: from [192.168.68.112] (203-173-7-89.dyn.iinet.net.au [203.173.7.89])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 0F8706B4F1;
-	Thu,  7 Nov 2024 07:41:54 +0800 (AWST)
-Message-ID: <8e858e760c78ddf533e9e03c20b34fce29862c2e.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 1/2] ARM: dts: aspeed: catalina: update pdb board cpld
- ioexp linename
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 780016B4F1;
+	Thu,  7 Nov 2024 07:42:45 +0800 (AWST)
+Message-ID: <361ed68842698f0f07f01bbd474367908b699bbf.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: catalina: add hdd board cpld ioexp
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
 To: Potin Lai <potin.lai.pt@gmail.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski
@@ -55,11 +54,11 @@ To: Potin Lai <potin.lai.pt@gmail.com>, Rob Herring <robh@kernel.org>,
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, Potin Lai
 	 <potin.lai@quantatw.com>, Cosmo Chou <cosmo.chou@quantatw.com>
-Date: Thu, 07 Nov 2024 10:11:53 +1030
-In-Reply-To: <20241106-catalina-cpld-ioexp-update-v1-1-3437bcfcb608@gmail.com>
+Date: Thu, 07 Nov 2024 10:12:45 +1030
+In-Reply-To: <20241106-catalina-cpld-ioexp-update-v1-2-3437bcfcb608@gmail.com>
 References: 
 	<20241106-catalina-cpld-ioexp-update-v1-0-3437bcfcb608@gmail.com>
-	 <20241106-catalina-cpld-ioexp-update-v1-1-3437bcfcb608@gmail.com>
+	 <20241106-catalina-cpld-ioexp-update-v1-2-3437bcfcb608@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -71,15 +70,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
 On Wed, 2024-11-06 at 16:58 +0800, Potin Lai wrote:
-> Update the GPIO linename of each PDB CPLD IO expander based on latest
-> CPLD firmware.
+> Add HDD board CPLD IO expender based on latest CPLD firmware support.
 
-What version is the latest CPLD firmware? What was the previous version
-with the old pin assignments?
-
-I'm also interested in some discussion of the coordination between CPLD
-firmware, the devicetree and the BMC userspace configuration. This
-change feels pretty painful.
+Can you please be more specific regarding CPLD firmware versions?
 
 Andrew
 
