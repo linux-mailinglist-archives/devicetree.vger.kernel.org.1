@@ -1,166 +1,115 @@
-Return-Path: <devicetree+bounces-119515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D5A49BEF49
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 14:42:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA9619BEF54
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 14:43:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A66F8B23923
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 13:42:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE4E5B23A67
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 13:43:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 699BE1F9EA6;
-	Wed,  6 Nov 2024 13:41:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3651F9EAC;
+	Wed,  6 Nov 2024 13:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cIh5rp+7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qfRrOfXm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B1D338F82;
-	Wed,  6 Nov 2024 13:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D991F9EAB;
+	Wed,  6 Nov 2024 13:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730900516; cv=none; b=TaV9vHBVBJZreGF/9r6qH2fhyqHIW//oK3EZzVe6LlzDz4MXes2S9XB8+DRmvcnxQLDFqOXnsE+FCvUkg/o4A7991zAjLfLklaqwMmDYS8G/5/sTCqss+w3ZEGFdqqUlWFDsMcBFswfURyCqb7bh1o6EhJEUGOybaUTZyZ/qp2I=
+	t=1730900621; cv=none; b=Ba8EaKXXmZ21ZuZz100zAMfnCptiIGeW0/BfV8Qt0xKuUxNr9h5JPdr/JIFjYNPzd64MJR+Sytziyt8nhBn7LAYhvMKIsxLqGT5qJMDTk9sdtE3UfzT8XaJjKuVRMRjeO1C5PRLN50tfIesTxt+SjTnqAMRnDfZp6QSjKh7j9IY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730900516; c=relaxed/simple;
-	bh=EFG53mEydKCKSJT/C1IsByRYB1S6NmRrwlYedTgxejs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GCdGAyfm6lfmiTr8LXMIJPD0N+lQ20UZpR/Cq0aNW95frMYZeQNt5gKPqOD4sap02MuHHxOuKszxy+3Ut8qyrJINDTAi0kaDZJ/lpTblOBs0oCgxAS+CizyXvThORyB8yOV4eEVvjTLDMfkUxjZr330xKeFchG0PRtiXTv7k6MY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cIh5rp+7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B0C4C4CED4;
-	Wed,  6 Nov 2024 13:41:47 +0000 (UTC)
+	s=arc-20240116; t=1730900621; c=relaxed/simple;
+	bh=AvHJghciWDhD/x8KUXSpLz7qHkc2aFQiPOOMs5V1Fv0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F4dcQivjX19G5DWDcUjkdb8fqqx7RE9J0/tq1kHBzu18VGS4rwEJlHbUjyGsrTRBcUYq7v489Gwgh0OEz8BhUulzg3GA92Kl08em1JTTkFjOOYui2oEe8s1Fg9JZLNJvKbo9krA51SHgVRtYgy8AK3iGwB02UCc0NzSbkpNSwaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qfRrOfXm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69956C4CECD;
+	Wed,  6 Nov 2024 13:43:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730900515;
-	bh=EFG53mEydKCKSJT/C1IsByRYB1S6NmRrwlYedTgxejs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cIh5rp+7c9a9J6AAyDaH+yf99dNCTwG3xbWsXPSSrk0JLMyMJpf1ckqYk9cAkk2z7
-	 JSnLm5wffym9YxeNu3wpZ/Ul7ervL0pSIbiFjiwHxB+RfevmZunIGNHc3J8dtznwkU
-	 nacgE3vWF/vuJdZ+qFoeDO82j/YzUIEMvX/OZsoqLFizNAgSPyOwiJ4+KRfyIMN0S9
-	 WABTlmVddVduvM7PAi/cBkeyZhwzZCYgQnrcesJlb2rNeYT/DsS5pjTopmW61hWfXK
-	 +5pXy8fadb8N+jEZVdBkOCxVm36NcYsdQTUqP4VhBOJ2o8HCwdsSDl4+iHGzczWZwo
-	 gu0SCLL9bRfBA==
-Message-ID: <fd4db31d-4e55-4f0e-a96d-d193c28fd784@kernel.org>
-Date: Wed, 6 Nov 2024 14:41:45 +0100
+	s=k20201202; t=1730900621;
+	bh=AvHJghciWDhD/x8KUXSpLz7qHkc2aFQiPOOMs5V1Fv0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qfRrOfXmESwZyDQhPNkDJgGi8YWbap+zQSnnKTjNRq0K9d9rKEeLHS6ISBOc0j2kr
+	 T0QHzq7K9ZnLcN6d6mrBJQs6WBeU6BUvOvI/eGFXtWd9TAftn+cVheqed+TaW5m+CV
+	 +4GOrYK3gQL5KFhzalL9L/zI3KX4CE9yoQE/PygkdsjA1rOozplLuj2atjLsNY74RU
+	 BymKoASK8FGh9ttmyKOwg/REy7cughmQAKD0hJ1tXZl19CBJPWndXjjJ9UDHX3Ogy2
+	 GIxlLPsQIpKQyIWgT71PrAPTYYG03xd8zkC8uFT4SjN9JjkOjnwZVM8KoDdGea14Ou
+	 9k0LUcU284nkw==
+Date: Wed, 6 Nov 2024 13:43:33 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
+	lgirdwood@gmail.com, magnus.damm@gmail.com,
+	linus.walleij@linaro.org, support.opensource@diasemi.com,
+	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de,
+	Adam.Thomson.Opensource@diasemi.com,
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH 22/31] ASoC: da7213: Populate max_register to
+ regmap_config
+Message-ID: <d3c28a8b-878c-4894-aa23-5b360153b85d@sirena.org.uk>
+References: <20241106081826.1211088-1-claudiu.beznea.uj@bp.renesas.com>
+ <20241106081826.1211088-23-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] iio: adc: add Nuvoton NCT720x ADC driver
-To: Eason Yang <j2anfernee@gmail.com>, avifishman70@gmail.com,
- tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
- yuenn@google.com, benjaminfair@google.com, jic23@kernel.org,
- lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- nuno.sa@analog.com, dlechner@baylibre.com, javier.carrasco.cruz@gmail.com,
- andy@kernel.org, marcelo.schmitt@analog.com, olivier.moysan@foss.st.com,
- mitrutzceclan@gmail.com, matteomartelli3@gmail.com, alisadariana@gmail.com,
- joao.goncalves@toradex.com, marius.cristea@microchip.com,
- mike.looijmans@topic.nl, chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
- yhyang2@nuvoton.com
-Cc: openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241106023916.440767-1-j2anfernee@gmail.com>
- <20241106023916.440767-3-j2anfernee@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241106023916.440767-3-j2anfernee@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 06/11/2024 03:39, Eason Yang wrote:
-> Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
-> 
-> NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up to
-> 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins for
-> independent alarm signals, and the all threshold values could be set for
-> system protection without any timing delay. It also supports reset input
-> RSTIN# to recover system from a fault condition.
-> 
-> Currently, only single-edge mode conversion and threshold events support.
-> 
-> Signed-off-by: Eason Yang <j2anfernee@gmail.com>
-
-...
-
-> +
-> +static int nct720x_probe(struct i2c_client *client)
-> +{
-> +	const struct i2c_device_id *id = i2c_client_get_device_id(client);
-> +	struct nct720x_chip_info *chip;
-> +	struct iio_dev *indio_dev;
-> +	int ret;
-> +	u32 tmp;
-> +
-> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*chip));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +	chip = iio_priv(indio_dev);
-> +
-> +	if (client->dev.of_node)
-> +		chip->type = (enum nct720x_chips)device_get_match_data(&client->dev);
-> +	else
-> +		chip->type = i2c_match_id(nct720x_id, client)->driver_data;
-
-I believe there is a I2C wrapper for above.
-
-> +
-> +	chip->vin_max = (chip->type == nct7201) ? NCT7201_VIN_MAX : NCT7202_VIN_MAX;
-> +
-> +	ret = of_property_read_u32(client->dev.of_node, "read-vin-data-size", &tmp);
-> +	if (ret < 0) {
-> +		pr_err("read-vin-data-size property not found\n");
-
-Please use dev_xxx in your driver code.
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="qgBjwTwv0FsyKsIO"
+Content-Disposition: inline
+In-Reply-To: <20241106081826.1211088-23-claudiu.beznea.uj@bp.renesas.com>
+X-Cookie: Include me out.
 
 
-Best regards,
-Krzysztof
+--qgBjwTwv0FsyKsIO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Nov 06, 2024 at 10:18:17AM +0200, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>=20
+> On the Renesas RZ/G3S SMARC Carrier II board having a DA7212 codec (using
+> da7213 driver) connected to one SSIF-2 available on the Renesas RZ/G3S SoC
+> it has been discovered that using the runtime PM API for suspend/resume
+> (as will be proposed in the following commits) leads to the codec not
+> being propertly initialized after resume. This is because w/o
+> max_register populated to regmap_config the regcache_rbtree_sync()
+> breaks on base_reg > max condition and the regcache_sync_block() call is
+> skipped.
+>=20
+> Fixes: ef5c2eba2412 ("ASoC: codecs: Add da7213 codec")
+> Cc: stable@vger.kernel.org
+
+Why is this a stable fix when it only enables further work?
+
+--qgBjwTwv0FsyKsIO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcrcoQACgkQJNaLcl1U
+h9B+uAf/T9UHiIXHURIt+YX7P9zWTkwxOYzQrVtIxV9Uz16GFNImxUT3T7ZkDJPm
+Erxp7p9mSMTejwQKY8qPBDBgFh00UE8ZNhdcb1PmRZTJ4DeK1mOmjl2SulAB/EM9
+v5g+3Cv95GmCpE0FfpsEwuhtz+wPWdJU3lqpG1rVtjMyXzuPqH5Ie4viG/I2pGO5
+RNoUFDOHu2pc7f3i3WzmmywjEDJIhOHXv/rQRy8ZG8TZyvNDDX0sP/+y0ElBUBsB
+81GcYxUjx+0h5uiE0XlXcfdemDG3L73XccwdWEJZ0xh+XKmrVLm1jFoJqLAiY7gM
+jGFGeURWY9VEnaDqJCf33O0nhkmAGQ==
+=RpAB
+-----END PGP SIGNATURE-----
+
+--qgBjwTwv0FsyKsIO--
 
