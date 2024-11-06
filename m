@@ -1,181 +1,149 @@
-Return-Path: <devicetree+bounces-119603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 120589BF4E3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 19:11:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49B229BF5C3
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 19:53:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72573283CEA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 18:11:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C42E1C211EA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 18:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57A1B207A36;
-	Wed,  6 Nov 2024 18:11:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E09209F5F;
+	Wed,  6 Nov 2024 18:51:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hYoIsGG6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eAHus6AP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC3E207A30;
-	Wed,  6 Nov 2024 18:11:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18F74209F57;
+	Wed,  6 Nov 2024 18:51:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730916687; cv=none; b=kB6WRUmH28enueo/a7ydtqzuUNylmbLcfZR/SvnqKJ+6gzWnJE2CuBODBJt1hSDTF3Q65RVOhYT8a5yyV3iEEDIJvHkBRek5sna6nLtuByNnE836lC/TvElRXXlHK6FNOIg1udeJI6Ix6Qg6jM3dk7DFpD3Ag3EYKf2GDUPYm4s=
+	t=1730919073; cv=none; b=mjhYdpPlKMTHQmfcnUxtvGHVaqRF3c4JvWn0WjVKVBZMq7QL9JzJ7QebKnhlRGxeRB/YD0cr1w/mPGBwsnZsbER7E3SqsdIJPdsqKMP7wKyWqahAQsabdmz1WlJiVd5p7/qgT4Bh8RYlwpjrsdfBD/uH44E2eL7w7Bljqdjbx+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730916687; c=relaxed/simple;
-	bh=I7+NKSCuuixm+p2hfzimwphRUWRKZgzh+vHWC2ltDPs=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tYhBU/RAk4Ea9XLeP+1x/5tl3OrblBcYRK3C7IRt8WS2fpWA0iI8fsLiAshqFkeOqYYG6D9hNdMyQqSGEgmggc670tCUFLOgbIEvklSYVzZ+UQs0lljnQBwvUyU1/ojxMbDFyKWDdZd5qH+KJQazsaWM0KqGsp+8TfvuJ889FtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hYoIsGG6; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-539eb97f26aso5014036e87.2;
-        Wed, 06 Nov 2024 10:11:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730916684; x=1731521484; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=KUerZBQbd4+bg88hhFJvKSj9QgEJ2Ngk8f4x34asRYo=;
-        b=hYoIsGG6mQdpY+w5zg2eLm+PZ0PNhtnT52WQ65vtbwVrurOcRoO/it6Y6y3n8SOCId
-         El7zCoMKPIg0yDYiMo+fk5UkagvqQ5DkTbinv0QIJZsNp+lH5JHYaFFj/i+YjgUCfm00
-         JzjcdNJJ+TohLbsRPVq5D134quriy6JspyAF9V2r8D6448CN8yn0Ayagm5BW5vo8ihjA
-         5jI5OHoUVb5QRA6cFSjYTQdQyHO/9l34409SBrLhX6JUsduhzy3o8I/TX3XqQUy0s6eZ
-         vi0qOYt+mTF5ob0lSBmZt0l7M9x7DvHEH/lW8/XTUdav5RIgv1/iVEz8HRdQuoas1TMr
-         mFRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730916684; x=1731521484;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KUerZBQbd4+bg88hhFJvKSj9QgEJ2Ngk8f4x34asRYo=;
-        b=NfWlc6ujDVVaaB6eq+0LvVGhmR6k+0ngAWp3INv3i4DpYw3A8vnaR2IXiBhxg0TBXY
-         LxseexSBzY7Q3DFtalrFLj+cGP6r/n4Wd0H1MXiGcaIt/ozjx3o3k86t9a+lIlSCT2jV
-         i8BqXAOsUIdI4iLUCoPInqx05kwnvCuiwSofKxaLyeQKu9q0AycCHwZHA3wQyswxfHiz
-         EMIRzy4+ZDsQIku9VxF8+CmXxsqT2vmf09+9U5yU5E1OYOnap6lBtCvA+jd45tshh++j
-         e7AVMs2u8XfRY+dxgvw7RNXFFShkcDW3sQ7PjVfbtn05nn3DH7wYHrceuyNs+MYlfimk
-         BtAA==
-X-Forwarded-Encrypted: i=1; AJvYcCWAENh+pWak/RpqFG3XGBxzcRSbKiqUlNS40iIinK0mj4aXgxTffSiQPUfLcj/BmnozCaJ2C9WUBYIu@vger.kernel.org, AJvYcCWRbaiCsEdkwUr3pU5R77hIIg9dt5XzMLDqQ9hEAhxAcOTjhwcEdyXlMm9BmQEnZNEdylOHDw83pF8lnw7g@vger.kernel.org, AJvYcCX2D2CfoL23tE62jLxsY/waDDdhF2hYzVAYSHSW00TAPkw0mkTM+seY2vKTybef8KkL5ibRdV/6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyC4VORbYEVo/UXe1iEnvg2DuVIbMPN5qDgHIW0/UCLIAGXLzO3
-	jXwoL9kLmD/qjkUcWcovmK6jLZHb3EsimxmUnQAy0DGCyv2GUs4o
-X-Google-Smtp-Source: AGHT+IHJTwLvOEJYl2C7zDFAHdl4m70ftFJabHTUXZMihSXo6FUmYq+cdgH2knrHNo0VFTQR6uSKnA==
-X-Received: by 2002:a05:6512:ace:b0:52e:9fe0:bee4 with SMTP id 2adb3069b0e04-53b7ecd5807mr13588636e87.9.1730916683288;
-        Wed, 06 Nov 2024 10:11:23 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432aa6b60e9sm31713315e9.14.2024.11.06.10.11.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Nov 2024 10:11:22 -0800 (PST)
-Message-ID: <672bb14a.7b0a0220.fded0.9db6@mx.google.com>
-X-Google-Original-Message-ID: <ZyuxRvbygg7SfgAO@Ansuel-XPS.>
-Date: Wed, 6 Nov 2024 19:11:18 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH v3 3/3] net: phy: Add Airoha AN8855 Internal
- Switch Gigabit PHY
-References: <20241106122254.13228-1-ansuelsmth@gmail.com>
- <20241106122254.13228-4-ansuelsmth@gmail.com>
- <8e5fd144-2325-43ff-b2b8-92d7f5910392@lunn.ch>
+	s=arc-20240116; t=1730919073; c=relaxed/simple;
+	bh=rNV5yK4BcBpjeQ1Z2ShecGmi+JipJLJZbv2B4dnvGnI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=rbStjpRourlY2Ww8W+hfZ3ueuEH0eqn9DPoHnsFsBk/MWMb+SZdEvn3Qq84f3J4uP7rcJwbnJnB9BHjQt19vtP4HcPiaMmV8XxJNe+lwMAlowUTQSNWH6JWPozeORgJg8fw6Rd2aNZCQGCfLWDUyWmUeYN2Ul6rhsl1Flp8QPSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eAHus6AP; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A67go0s028867;
+	Wed, 6 Nov 2024 18:14:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	FjvD3qX+EAPmeXpT7UbAYaWLeDhSrxmRaHTC9QU1h7Q=; b=eAHus6APjVEIJvhz
+	RWodF6hoCg4EY4RSkKqYycPM9LxHZZh/HBgWGQvGTUV56ZKPxeadzq1FjgOH+BRC
+	QuixY4NPDTKlnLmJtzJwh4xX6qWy52TeFUXrh7DR7e1Fs3xoM9rDrpOqbBhNbP8z
+	x0KaVXd7M9xm4VlouTM+4jtyzixwA6D8X8aeFbX6husATZYS7gKsoahRVuBj8593
+	gZr8iVmBMjzi4KCopEkdcWm9PQEQQUHYhtWjmzoawfB1d5PwYK0VYwoco7HLOqQg
+	Ah31AZ3JEOEV5FB0C1++aNEMrEg4P3aBw92SU0JYmIXBIwzPwcy7qT3mA4o6oyDO
+	waBoSg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42nd28c3h4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 06 Nov 2024 18:14:50 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A6IEnZI013538
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 6 Nov 2024 18:14:49 GMT
+Received: from [10.216.22.206] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 6 Nov 2024
+ 10:14:45 -0800
+Message-ID: <6486448c-15b3-4c46-8104-e5c8c1b5ec2e@quicinc.com>
+Date: Wed, 6 Nov 2024 23:44:41 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8e5fd144-2325-43ff-b2b8-92d7f5910392@lunn.ch>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] dt-bindings: clock: qcom-rpmhcc: Add RPMHCC bindings
+ for SM8750
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Melody Olvera
+	<quic_molvera@quicinc.com>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Satya Durga
+ Srinivasu Prabhala --cc=linux-arm-msm @ vger . kernel . org"
+	<quic_satyap@quicinc.com>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20241021230359.2632414-1-quic_molvera@quicinc.com>
+ <20241021230359.2632414-2-quic_molvera@quicinc.com>
+ <l7bs5xhoddlwggdd2ufc5lc2d33zkm2ewguwnd4t3gste2gjak@4qmcvkututzm>
+Content-Language: en-US
+From: Taniya Das <quic_tdas@quicinc.com>
+In-Reply-To: <l7bs5xhoddlwggdd2ufc5lc2d33zkm2ewguwnd4t3gste2gjak@4qmcvkututzm>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: R3X1VpG6yZBDGeZCJgSIn09czhsxFKQz
+X-Proofpoint-GUID: R3X1VpG6yZBDGeZCJgSIn09czhsxFKQz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=757
+ clxscore=1015 lowpriorityscore=0 impostorscore=0 priorityscore=1501
+ spamscore=0 phishscore=0 bulkscore=0 malwarescore=0 suspectscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411060141
 
-On Wed, Nov 06, 2024 at 05:19:03PM +0100, Andrew Lunn wrote:
-> > +static const u8 dsa_r50ohm_table[] = {
-> > +	127, 127, 127, 127, 127, 127, 127, 127, 127, 127,
-> > +	127, 127, 127, 127, 127, 127, 127, 126, 122, 117,
-> > +	112, 109, 104, 101,  97,  94,  90,  88,  84,  80,
-> > +	78,  74,  72,  68,  66,  64,  61,  58,  56,  53,
-> > +	51,  48,  47,  44,  42,  40,  38,  36,  34,  32,
-> > +	31,  28,  27,  24,  24,  22,  20,  18,  16,  16,
-> > +	14,  12,  11,   9
-> > +};
-> > +
-> > +static int en8855_get_r50ohm_val(struct device *dev, const char *calib_name,
-> > +				 u8 *dest)
-> > +{
-> > +	u32 shift_sel, val;
-> > +	int ret;
-> > +	int i;
-> > +
-> > +	ret = nvmem_cell_read_u32(dev, calib_name, &val);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	shift_sel = FIELD_GET(AN8855_SWITCH_EFUSE_R50O, val);
-> > +	for (i = 0; i < ARRAY_SIZE(dsa_r50ohm_table); i++)
-> > +		if (dsa_r50ohm_table[i] == shift_sel)
-> > +			break;
+
+
+On 10/22/2024 11:46 AM, Krzysztof Kozlowski wrote:
+> On Mon, Oct 21, 2024 at 04:03:53PM -0700, Melody Olvera wrote:
+>> From: Taniya Das <quic_tdas@quicinc.com>
+>>
+>> Add bindings and update documentation for clock rpmh driver on SM8750
+>> SoCs.
+>>
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>> ---
 > 
-> Is an exact match expected? Should this be >= so the nearest match is
-> found?
->
-
-As strange as this is, yes this is what the original code does.
-
-> > +
-> > +	if (i < 8 || i >= ARRAY_SIZE(dsa_r50ohm_table))
-> > +		*dest = dsa_r50ohm_table[25];
-> > +	else
-> > +		*dest = dsa_r50ohm_table[i - 8];
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int an8855_probe(struct phy_device *phydev)
-> > +{
-> > +	struct device *dev = &phydev->mdio.dev;
-> > +	struct device_node *node = dev->of_node;
-> > +	struct air_an8855_priv *priv;
-> > +	int ret;
-> > +
-> > +	/* If we don't have a node, skip get calib */
-> > +	if (!node)
-> > +		return 0;
+> A nit, subject: drop second/last, redundant "bindings for". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 > 
-> phydev->priv will be a NULL pointer, causing problems in
-> an8855_config_init()
+> This applies to all your patches.
 > 
 
-Quite unlikely scenario since for the switch, defining the internal PHY
-in an MDIO node is mandatory but yes it's a fragility.
+I will remove the extra "bindings" in the next patch and also cleanup 
+where ever required.
 
-2 solution:
-- I check priv in config_init and skip that section
-- I always set phydev->priv 
+> There is already CXO clock, so why pad is needed? All of these clocks
+> come via some pad, right? Commit msg could explain here this. Otherwise
+> it just duplicates the diff.
+> 
 
-Solution 1 is safer (handle case where for some reason
-en8855_get_r50ohm_val fails (it's really almost impossible)) but error
-prone if the PHY gets extended with other parts and priv starts to gets
-used for other thing.
+Yes, I will fix the CXO clock and remove the newly added pad clock in 
+the next patch.
 
-Solution 2 require an extra bool to signal full calibrarion read and is
-waste more resource (in case calib is not needed...)
-
-Anyway thanks for the review!
+> Best regards,
+> Krzysztof
+> 
 
 -- 
-	Ansuel
+Thanks & Regards,
+Taniya Das.
 
