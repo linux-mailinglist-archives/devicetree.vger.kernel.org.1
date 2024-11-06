@@ -1,266 +1,113 @@
-Return-Path: <devicetree+bounces-119503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5C539BEA64
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 13:44:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F83B9BEC73
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 14:05:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64C63285111
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 12:44:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51F2C1C23B53
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 13:05:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E137E1F942F;
-	Wed,  6 Nov 2024 12:38:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E8B01FC7C8;
+	Wed,  6 Nov 2024 12:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="FSEk2wbb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DQQkL6aj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 669051F8F18;
-	Wed,  6 Nov 2024 12:38:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA6191FC7C6;
+	Wed,  6 Nov 2024 12:55:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730896692; cv=none; b=RsPtKN+dnbJX6Qf5Tr4XNmJPpvBdJWfyHUj2MXq/0EicfgOvMGZEYy9j8MVoYiLoQHzGkAmslE4I7xY2ko/ni13yIh3NmXdxqPU8yYNl393cDzq8k8OKOcS8TZ72sZSWlu+MzixUgVPiVwBVNBW3IvZVjJRJjshuzpNSPFaw+CU=
+	t=1730897734; cv=none; b=Bcgmk+he5Fuw9wfYPys63jIsslTvbhONeLfDqWgfQQaI3DGlheZfTiVc5ZhaxAlT/A5StdclrIFhWKLyCw47ofVMbmaMdz37MDEGhbGXSyzTz5d0XyMZT66hupvmbWWJ/dsvCkNV/3c1uCwEGIYvF3dVUINDngT9FS2ROR2kDYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730896692; c=relaxed/simple;
-	bh=tMjpxvbngeNlNIlcaBFOupaNvK9ipw97vj5olVqIvoU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OsVJErcpIvTG620WMVfC6gbz+809u9nKrCNjunPIihh0oM6VE0x8x1svaopfQnckAXZwEifB86IITvz8eTTleR+IvWK8MJOMjzQjlHtaIj7xBL8T2RSkRXPC58pk0MZj8rHnGRMY6xDOYvJVFaqmUUDsxwVLo2Nf4rUb7Zq+F4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=FSEk2wbb; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=tgQ2wpFMOWfjeLb3bc1gmQMurl5R7B/AfYWdQuioG5k=; b=FSEk2wbbVXfw4R5fvPJc+K5Vcm
-	9LZSKXSjjOJUeUxSe4F1TP2U73GY6pT9elXAN1L0PJrm80e4vuoJ2yRXT4OvYzjvN3eASn7CRo3af
-	QgURrN4OxL8lfsnW4G6vqYe+ucgI3PTp7C6QAacFXvRNvc2BMi5MZ0zMILBU8oT5Un+HUrFtqzR4+
-	5A/SWWb2ec2u42gbpOac4RQc8AynO3boIaypuCU5N83uMTtdgLJPZv7ZZYEJmZPUtcpqCgHfo8eru
-	+h+xJYub8knsyCel3WJ+X2nuA7bvkVSFtkN8mULdAH7KBSDEIHDBb+LMVFr+Jeaam8gIY3v54r9wl
-	tfX/IlVQ==;
-Received: from i53875b28.versanet.de ([83.135.91.40] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1t8fIW-0007A8-Ko; Wed, 06 Nov 2024 13:38:08 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: heiko@sntech.de
-Cc: quentin.schulz@cherry.de,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: [PATCH 3/3] arm64: dts: rockchip: add overlay for tiger-haikou video-demo adapter
-Date: Wed,  6 Nov 2024 13:37:58 +0100
-Message-ID: <20241106123758.423584-4-heiko@sntech.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241106123758.423584-1-heiko@sntech.de>
-References: <20241106123758.423584-1-heiko@sntech.de>
+	s=arc-20240116; t=1730897734; c=relaxed/simple;
+	bh=THiRwHU/ItganQsalp7zDHwVZ+vTaXjEv86N7QtU7B8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bH8urew+0Grk04gTKXMXlLzlH7HifiMwrRZ1oTWs9Zn0+5Nkj97a4vELaxa+40A9h7ZFKxiRrVPhOIBapcQgeQ+C3OWKBBMQ7YbqR1idsSDV0yeapSKVkv3TDw2Lt5t5jbTxcuBDlKrUriJis9h02EbgxhOotV3HlO+SBWXs7QQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DQQkL6aj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A6ADC4CECD;
+	Wed,  6 Nov 2024 12:55:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730897733;
+	bh=THiRwHU/ItganQsalp7zDHwVZ+vTaXjEv86N7QtU7B8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DQQkL6ajzVfBy7VuWlIeA14Z9c6xGyE0EjjHhJSHhqQ2Tq+PpAz5Ih5Qw5GfsvRwy
+	 nIna14Oawmgfg0q1Iv7bLgSvL1uS+kNZkVwv9no652K+qH4C1khxWhrG+NVpZmclyv
+	 WYCL5WhEGMheZcIsnr6U1DCj4GClNjsq4R+cc5ptLxT6bvkLa7AwgpFg5RjxS6zK1Y
+	 SdWrgrBJY3MxZNtGkCQmZXQzY2kWtRmAO3jR3qcm040qw7KGtUDyXz7acpYl4PoBbF
+	 2byFOOlU33Xsl85JKyyvrj8UNo/yuTj+fImQ9OSE3qnvD51FyidCU39jesLyD4EP7R
+	 pJx6Q9wJbK6oA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1t8fZN-000000003aV-31o8;
+	Wed, 06 Nov 2024 13:55:34 +0100
+Date: Wed, 6 Nov 2024 13:55:33 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org,
+	konrad.dybcio@linaro.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, quic_rgottimu@quicinc.com,
+	quic_kshivnan@quicinc.com, conor+dt@kernel.org,
+	arm-scmi@vger.kernel.org
+Subject: Re: [PATCH V4 0/5] arm_scmi: vendors: Qualcomm Generic Vendor
+ Extensions
+Message-ID: <ZytnRc94iKUfMYH0@hovoldconsulting.com>
+References: <20241007061023.1978380-1-quic_sibis@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241007061023.1978380-1-quic_sibis@quicinc.com>
 
-From: Heiko Stuebner <heiko.stuebner@cherry.de>
+On Mon, Oct 07, 2024 at 11:40:18AM +0530, Sibi Sankar wrote:
+> The QCOM SCMI vendor protocol provides a generic way of exposing a
+> number of Qualcomm SoC specific features (like memory bus scaling)
+> through a mixture of pre-determined algorithm strings and param_id
+> pairs hosted on the SCMI controller. Introduce a client driver that
+> uses the memlat algorithm string hosted on QCOM SCMI Vendor Protocol
+> to detect memory latency workloads and control frequency/level of
+> the various memory buses (DDR/LLCC/DDR_QOS).
+> 
+> QCOM SCMI Generic Vendor protocol background:
+> It was found that a lot of the vendor protocol used internally was
+> for debug/internal development purposes that would either be super
+> SoC specific or had to be disabled because of some features being
+> fused out during production. This lead to a large number of vendor
+> protocol numbers being quickly consumed and were never released
+> either. Using a generic vendor protocol with functionality abstracted
+> behind algorithm strings gave us the flexibility of allowing such
+> functionality exist during initial development/debugging while
+> still being able to expose functionality like memlat once they have
+> matured enough. The param-ids are certainly expected to act as ABI
+> for algorithms strings like MEMLAT.
 
-This adds support for the video-demo-adapter for the Haikou devkit with
-Tiger RK3588 SoM.
+I wanted to give this series a quick spin on the x1e80100 CRD, but ran
+into some issues.
 
-The Video Demo adapter is an adapter connected to the fake PCIe slot
-labeled "Video Connector" on the Haikou devkit.
+First, I expected the drivers to be loaded automatically when built as
+modules, but that did not happen so something appears to be missing.
 
-It's main feature is a Leadtek DSI-display with touchscreen. To drive these
-components a number of additional regulators are grouped on the adapter as
-well as a PCA9670 gpio-expander to provide the needed additional gpio-lines.
+Second, after loading the protocol and client drivers manually (in that
+order, shouldn't the client driver pull in the protocol?), I got:
 
-Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../rk3588-tiger-haikou-video-demo.dtso       | 153 ++++++++++++++++++
- 2 files changed, 154 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou-video-demo.dtso
+	scmi_module: Loaded SCMI Vendor Protocol 0x80 - Qualcomm  20000
+	arm-scmi arm-scmi.0.auto: QCOM Generic Vendor Version 1.0
+	scmi-qcom-generic-ext-memlat scmi_dev.5: error -EOPNOTSUPP: failed to configure common events
+	scmi-qcom-generic-ext-memlat scmi_dev.5: probe with driver scmi-qcom-generic-ext-memlat failed with error -95
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 09423070c992..0c4ee6a767b8 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -143,6 +143,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou-video-demo.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-toybrick-x0.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-turing-rk1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-coolpi-4b.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou-video-demo.dtso b/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou-video-demo.dtso
-new file mode 100644
-index 000000000000..c7416349e7d5
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou-video-demo.dtso
-@@ -0,0 +1,153 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * DT-overlay for the camera / DSI demo appliance for Haikou boards.
-+ * In the flavour for use with a Tiger system-on-module.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
-+
-+&{/} {
-+	video-adapter-leds {
-+		compatible = "gpio-leds";
-+		status = "okay";
-+
-+		video-adapter-led {
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pca9670 7 GPIO_ACTIVE_HIGH>;
-+			label = "video-adapter-led";
-+			linux,default-trigger = "none";
-+		};
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		power-supply = <&dc_12v>;
-+		pwms = <&pwm0 0 25000 0>;
-+	};
-+
-+	hdmi-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi0_out_con>;
-+			};
-+		};
-+	};
-+
-+	vcc1v8_video: regulator-vcc1v8-video {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc1v8-video";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc3v3_baseboard>;
-+	};
-+
-+	vcc2v8_video: regulator-vcc2v8-video {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc2v8-video";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&vcc3v3_baseboard>;
-+	};
-+};
-+
-+&dsi0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "leadtek,ltk050h3148w";
-+		reg = <0>;
-+		backlight = <&backlight>;
-+		iovcc-supply = <&vcc1v8_video>;
-+		reset-gpios = <&pca9670 0 GPIO_ACTIVE_LOW>;
-+		vci-supply = <&vcc2v8_video>;
-+
-+		port {
-+			mipi_panel_in: endpoint {
-+				remote-endpoint = <&dsi0_out_panel>;
-+			};
-+		};
-+	};
-+};
-+
-+&dsi0_in {
-+	dsi0_in_vp3: endpoint {
-+		remote-endpoint = <&vp3_out_dsi0>;
-+	};
-+};
-+
-+&dsi0_out {
-+	dsi0_out_panel: endpoint {
-+		remote-endpoint = <&mipi_panel_in>;
-+	};
-+};
-+
-+&i2c6 {
-+	/* OV5675, GT911, DW9714 are limited to 400KHz */
-+	clock-frequency = <400000>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	touchscreen@14 {
-+		compatible = "goodix,gt911";
-+		reg = <0x14>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <RK_PC3 IRQ_TYPE_LEVEL_LOW>;
-+		irq-gpios = <&gpio3 RK_PC3 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&touch_int>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&pca9670 1 GPIO_ACTIVE_HIGH>;
-+		AVDD28-supply = <&vcc2v8_video>;
-+		VDDIO-supply = <&vcc3v3_baseboard>;
-+	};
-+
-+	pca9670: gpio@27 {
-+		compatible = "nxp,pca9670";
-+		reg = <0x27>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+};
-+
-+&mipidcphy0 {
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	touch {
-+		touch_int: touch-int {
-+			rockchip,pins = <3 RK_PC3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pwm0 {
-+	pinctrl-0 = <&pwm0m1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&vp3 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	vp3_out_dsi0: endpoint@ROCKCHIP_VOP2_EP_MIPI0 {
-+		reg = <ROCKCHIP_VOP2_EP_MIPI0>;
-+		remote-endpoint = <&dsi0_in_vp3>;
-+	};
-+};
--- 
-2.45.2
+which seems to suggest that the firmware on my CRD does not support this
+feature. Is that the way this should be interpreted? And does that mean
+that non of the commercial laptops supports this either?
 
+Johan
 
