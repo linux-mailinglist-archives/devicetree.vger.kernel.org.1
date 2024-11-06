@@ -1,104 +1,60 @@
-Return-Path: <devicetree+bounces-119362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D8329BE0DD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 09:27:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA6A89BE101
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 09:33:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5ECBC1C22E21
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 08:27:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A80F1C2321C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 08:33:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE721E1C0A;
-	Wed,  6 Nov 2024 08:20:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 590F41D3566;
+	Wed,  6 Nov 2024 08:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="GlHz16Qw"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="sDM/n7i0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F391E1020
-	for <devicetree@vger.kernel.org>; Wed,  6 Nov 2024 08:20:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 600D318FC79;
+	Wed,  6 Nov 2024 08:33:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730881226; cv=none; b=KohO5pSn1Aj4d+b5wY6bA8mWkdsU6SCwMANgvPeSOIBisdpcPFvegOmlZZsc58/BioUrBqWtGY5nU0fXdZmt0AyaWaikXYx/9K9F5QkbjgGCqVNX4vxNjaNVSa2q4sfJbK5o/el151c40Lca/b5HUuujv6ly+UerKWmPDpAv0LE=
+	t=1730881997; cv=none; b=sGrpiVnLUqU1yCw1yRgd8L/4bRdxKJvi+Ila2GmXshN4/MWNqm8ubEtRgKtozDwyDiPn/bgJhGTC65QWm3ecX/rpF8HFC1gh27v+kMtS2mtik2mD299cs5qxBKzBoBO8spGUcmoLY4CaePMygw0uHIsLQIhpXt4mM47t5czK+3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730881226; c=relaxed/simple;
-	bh=6ZBS8yoSl8e7ZPTGMg2UyhR7znZ3Gc2T8qHVSpD0i8U=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=METlwPlhB2VC/7TKSyxWBTX3wdrOi3RByg4r3PBeXgOC8FlHtHrUC2PYdrCzsSE9Spzrq9TxkFLOza+9VfDZ7SuKsjrit506CnyrizlPXZtNutBW8R0pavTfUJQ9GWFIswpuzv74aKf+eRBtuxBKcJNlTvqHl1HTaKApplrucOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=GlHz16Qw; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a9e8522445dso662095366b.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Nov 2024 00:20:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1730881223; x=1731486023; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MBiWX6XkkMqXMqcrSsPCTgbOs43GqvRK4CKUfvJFsTU=;
-        b=GlHz16Qw2aO92U/o5c8JeSPUcTCOib6PKq+0gmKujjQ5auyDXFm6cIpL6V3Juad9n4
-         0XGTGGTaHWsX1eJRig5ZGzpUFV8qwYS4EJiEqgEIqKn8SvkA3pJoyy+j8PnD8+SF9bz9
-         gXM6FocTS3PUt3yXH6DQdFIYsi5+itTBnJgebjDb3IQWRVgu3iWkiifXSFa6pP/dzvDO
-         dAD9X/iHzVRKxZZ4Uvz7inxrstjClygriM4Fd7FRgxQReFFrdlO0Q+J+9F3VawEnB0Jh
-         EDrQ9l9FBAb4r++RnPxBzncex6oRD9Iyio9D/EZk265mDp53brX1NMcpuKP/pUzaydtc
-         QIwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730881223; x=1731486023;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MBiWX6XkkMqXMqcrSsPCTgbOs43GqvRK4CKUfvJFsTU=;
-        b=jAo9X2hgtoKwaWshBSvIIVfCS4WkBD5z4hSezb2UHhr1hRw34am1knn2i/3jkG9JNX
-         Yq+jbvrMr6TY3T/T1A33IPCajGUUoJwA0A22ZTKucnh2n/hm2nbli2VpIJYBeURgOPVd
-         axz+pfhnq3VHj1wJ5pID5Id3Ryfwmm/GgtKsYKwsiCy+WLKwZUMIrNXlu5bdMsQPCgPB
-         Li8pVMv5UDc1MbPhXNHrN9zrvxoswGCWP88W49CClyCJVJ1YrGSeZckTwMlDYDcnOa9a
-         0jsmnUZ/5W71fTIfN25MoUZenHJMm31U5qi9zIyrhZMmpmpH+e8/2w7KFl5Df0x2QF9x
-         U8ow==
-X-Forwarded-Encrypted: i=1; AJvYcCVBuRJa8fax9ch1KxYK8FpJrry+MWQcO82vGMx6NJwypViw7MktcElYicGFViIhI5Tysj0CcBhPmmNf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2RvzfBNa6OBBLDavBQ6dg53PxboVfKf94Y6EQLyvUIvmA4/f8
-	UKEfgrIADtG7i4rvyF/56b2VuRSnMAyUfR5Qjos0ctR6XITcQ0lJHn0OJ6W836w=
-X-Google-Smtp-Source: AGHT+IG7wiJJ9E52zFHeR6gwhEEB0zfvQGumHjoKijM/1DIeDaxswQrTqJ71Q4hjn7DJ8sgHmyJ14A==
-X-Received: by 2002:a17:907:3f05:b0:a99:375f:4523 with SMTP id a640c23a62f3a-a9e6587e27dmr1931943266b.44.1730881222848;
-        Wed, 06 Nov 2024 00:20:22 -0800 (PST)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.28])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9eb16a2dbcsm241369766b.40.2024.11.06.00.20.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Nov 2024 00:20:22 -0800 (PST)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: geert+renesas@glider.be,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
+	s=arc-20240116; t=1730881997; c=relaxed/simple;
+	bh=l/J2r2gnvW8sHdlJg1SoSDEB5itJThkr63VOiSlCIRs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RZ4qu3Yz7ZoyYFaOGywvkBUlazGENK02I6Q9VAWaMUn2a0Bzo16X7Z35G+GPINFtn+4gg8AzdoNmm2J7auKs8MeGS8jddOrY+I9OzqnMjbSKj/LMCuEUY9/EqjPDeEP6ZpsywoIE4TZUaaW7GoqWRdLOW3EtDmzdvl1jooTzyDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=sDM/n7i0; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1730881993;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=TmaL8PPJ/UHeiTUk6acBviC2uKf2V/Awig/1ks3o27s=;
+	b=sDM/n7i0llCDpO1gtMBjWsGXMbtUl8T1D+TNuuOKe7bk9Qyz65Y6Mwy+b46gNzf/IU0Oi+
+	zAKgjbLMPi++GYk4r00/dDzqZp8VFt2SrTl9G+7n5rTykhrWFr3qsuz04ceXAuIWmEPnUv
+	pz+/p32PyMrv7dM/LF3E0C5KYt6MIWZN6ojp0D04qA/NGV9XoxrjxbJKmJDFwyI6u69SQc
+	rvy/u4W2pfQF0OSD/KPK6MbwZXfWBGCTVc9Y8LMfBPp0jlTL0+Np0RHFhm14kKXu3ivSy9
+	9ixjBHohVratdR1BPcY14eX14SRq76V+0Jdp65XRnGd7+LPn+xumj/4Hgj1Jxw==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	biju.das.jz@bp.renesas.com,
-	prabhakar.mahadev-lad.rj@bp.renesas.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	magnus.damm@gmail.com,
-	linus.walleij@linaro.org,
-	support.opensource@diasemi.com,
-	perex@perex.cz,
-	tiwai@suse.com,
-	p.zabel@pengutronix.de,
-	Adam.Thomson.Opensource@diasemi.com
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH 31/31] arm64: dts: renesas: rzg3s-smarc: Add sound card
-Date: Wed,  6 Nov 2024 10:18:26 +0200
-Message-Id: <20241106081826.1211088-32-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20241106081826.1211088-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20241106081826.1211088-1-claudiu.beznea.uj@bp.renesas.com>
+	alchark@gmail.com,
+	Quentin Schulz <quentin.schulz@cherry.de>
+Subject: [PATCH v2] arm64: dts: rockchip: Add OPP voltage ranges to RK3399 OP1 SoC dtsi
+Date: Wed,  6 Nov 2024 09:33:08 +0100
+Message-Id: <dbee35c002bda99e44f8533623d94f202a60da95.1730881777.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,45 +62,191 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Add support for voltage ranges to the CPU, GPU and DMC OPPs defined in the
+SoC dtsi for Rockchip OP1, as a variant of the Rockchip RK3399.  This may be
+useful if there are any OP1-based boards whose associated voltage regulators
+are unable to deliver the exact voltages; otherwise, it causes no functional
+changes to the resulting OPP voltages at runtime.
 
-Add sound card with SSI3 as CPU DAI and DA7212 as codec DAI.
+These changes cannot cause stability issues or any kind of damage, because
+it's perfectly safe to use the highest voltage from an OPP group for each OPP
+in the same group.  The only possible negative effect of using higher voltages
+is wasted energy in form of some additionally generated heat.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Reported-by: Quentin Schulz <quentin.schulz@cherry.de>
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
 ---
- arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-index 6dd439e68bd4..89673bbaee6d 100644
---- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-@@ -44,6 +44,23 @@ key-3 {
+Notes:
+    Changes in v2:
+      - Fixed one wrong application of a vim macro [1] that somehow slipped
+        through the cracks, as pointed out by Alexey [2]
+    
+    Link to v1: https://lore.kernel.org/linux-rockchip/806d5e2a07ae0c81d9907bbe8bec4e3e1138b392.1730838347.git.dsimic@manjaro.org/T/#u
+    
+    [1] https://lore.kernel.org/linux-rockchip/0c237c49fae03bdad99be04053285ea2@manjaro.org/
+    [2] https://lore.kernel.org/linux-rockchip/CABjd4Yyt6WiY5E5DbyjnboFvsTpp33dydkGMF7AwMB9m7bfX6A@mail.gmail.com/
+
+ arch/arm64/boot/dts/rockchip/rk3399-op1.dtsi | 52 ++++++++++----------
+ 1 file changed, 26 insertions(+), 26 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-op1.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-op1.dtsi
+index b24bff511513..c4f4f1ff6117 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-op1.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-op1.dtsi
+@@ -12,125 +12,125 @@ cluster0_opp: opp-table-0 {
+ 
+ 		opp00 {
+ 			opp-hz = /bits/ 64 <408000000>;
+-			opp-microvolt = <800000>;
++			opp-microvolt = <800000 800000 1150000>;
+ 			clock-latency-ns = <40000>;
+ 		};
+ 		opp01 {
+ 			opp-hz = /bits/ 64 <600000000>;
+-			opp-microvolt = <825000>;
++			opp-microvolt = <825000 825000 1150000>;
+ 		};
+ 		opp02 {
+ 			opp-hz = /bits/ 64 <816000000>;
+-			opp-microvolt = <850000>;
++			opp-microvolt = <850000 850000 1150000>;
+ 		};
+ 		opp03 {
+ 			opp-hz = /bits/ 64 <1008000000>;
+-			opp-microvolt = <900000>;
++			opp-microvolt = <900000 900000 1150000>;
+ 		};
+ 		opp04 {
+ 			opp-hz = /bits/ 64 <1200000000>;
+-			opp-microvolt = <975000>;
++			opp-microvolt = <975000 975000 1150000>;
+ 		};
+ 		opp05 {
+ 			opp-hz = /bits/ 64 <1416000000>;
+-			opp-microvolt = <1100000>;
++			opp-microvolt = <1100000 1100000 1150000>;
+ 		};
+ 		opp06 {
+ 			opp-hz = /bits/ 64 <1512000000>;
+-			opp-microvolt = <1150000>;
++			opp-microvolt = <1150000 1150000 1150000>;
  		};
  	};
  
-+	snd_rzg3s: sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,bitclock-master = <&cpu_dai>;
-+		simple-audio-card,frame-master = <&cpu_dai>;
-+		simple-audio-card,mclk-fs = <256>;
-+
-+		cpu_dai: simple-audio-card,cpu {
-+			sound-dai = <&ssi3>;
-+		};
-+
-+		codec_dai: simple-audio-card,codec {
-+			sound-dai = <&da7212>;
-+			clocks = <&versa3 1>;
-+		};
-+	};
-+
- 	vcc_sdhi1: regulator-vcc-sdhi1 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "SDHI1 Vcc";
--- 
-2.39.2
-
+ 	cluster1_opp: opp-table-1 {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+ 		opp00 {
+ 			opp-hz = /bits/ 64 <408000000>;
+-			opp-microvolt = <800000>;
++			opp-microvolt = <800000 800000 1250000>;
+ 			clock-latency-ns = <40000>;
+ 		};
+ 		opp01 {
+ 			opp-hz = /bits/ 64 <600000000>;
+-			opp-microvolt = <800000>;
++			opp-microvolt = <800000 800000 1250000>;
+ 		};
+ 		opp02 {
+ 			opp-hz = /bits/ 64 <816000000>;
+-			opp-microvolt = <825000>;
++			opp-microvolt = <825000 825000 1250000>;
+ 		};
+ 		opp03 {
+ 			opp-hz = /bits/ 64 <1008000000>;
+-			opp-microvolt = <850000>;
++			opp-microvolt = <850000 850000 1250000>;
+ 		};
+ 		opp04 {
+ 			opp-hz = /bits/ 64 <1200000000>;
+-			opp-microvolt = <900000>;
++			opp-microvolt = <900000 900000 1250000>;
+ 		};
+ 		opp05 {
+ 			opp-hz = /bits/ 64 <1416000000>;
+-			opp-microvolt = <975000>;
++			opp-microvolt = <975000 975000 1250000>;
+ 		};
+ 		opp06 {
+ 			opp-hz = /bits/ 64 <1608000000>;
+-			opp-microvolt = <1050000>;
++			opp-microvolt = <1050000 1050000 1250000>;
+ 		};
+ 		opp07 {
+ 			opp-hz = /bits/ 64 <1800000000>;
+-			opp-microvolt = <1150000>;
++			opp-microvolt = <1150000 1150000 1250000>;
+ 		};
+ 		opp08 {
+ 			opp-hz = /bits/ 64 <2016000000>;
+-			opp-microvolt = <1250000>;
++			opp-microvolt = <1250000 1250000 1250000>;
+ 		};
+ 	};
+ 
+ 	gpu_opp_table: opp-table-2 {
+ 		compatible = "operating-points-v2";
+ 
+ 		opp00 {
+ 			opp-hz = /bits/ 64 <200000000>;
+-			opp-microvolt = <800000>;
++			opp-microvolt = <800000 800000 1075000>;
+ 		};
+ 		opp01 {
+ 			opp-hz = /bits/ 64 <297000000>;
+-			opp-microvolt = <800000>;
++			opp-microvolt = <800000 800000 1075000>;
+ 		};
+ 		opp02 {
+ 			opp-hz = /bits/ 64 <400000000>;
+-			opp-microvolt = <825000>;
++			opp-microvolt = <825000 825000 1075000>;
+ 		};
+ 		opp03 {
+ 			opp-hz = /bits/ 64 <500000000>;
+-			opp-microvolt = <850000>;
++			opp-microvolt = <850000 850000 1075000>;
+ 		};
+ 		opp04 {
+ 			opp-hz = /bits/ 64 <600000000>;
+-			opp-microvolt = <925000>;
++			opp-microvolt = <925000 925000 1075000>;
+ 		};
+ 		opp05 {
+ 			opp-hz = /bits/ 64 <800000000>;
+-			opp-microvolt = <1075000>;
++			opp-microvolt = <1075000 1075000 1075000>;
+ 		};
+ 	};
+ 
+ 	dmc_opp_table: opp-table-3 {
+ 		compatible = "operating-points-v2";
+ 
+ 		opp00 {
+ 			opp-hz = /bits/ 64 <400000000>;
+-			opp-microvolt = <900000>;
++			opp-microvolt = <900000 900000 925000>;
+ 		};
+ 		opp01 {
+ 			opp-hz = /bits/ 64 <666000000>;
+-			opp-microvolt = <900000>;
++			opp-microvolt = <900000 900000 925000>;
+ 		};
+ 		opp02 {
+ 			opp-hz = /bits/ 64 <800000000>;
+-			opp-microvolt = <900000>;
++			opp-microvolt = <900000 900000 925000>;
+ 		};
+ 		opp03 {
+ 			opp-hz = /bits/ 64 <928000000>;
+-			opp-microvolt = <925000>;
++			opp-microvolt = <925000 925000 925000>;
+ 		};
+ 	};
+ };
 
