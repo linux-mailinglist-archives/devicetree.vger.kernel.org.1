@@ -1,120 +1,289 @@
-Return-Path: <devicetree+bounces-119781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3791F9C01AC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:00:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 991689C01B2
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:00:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1447B225EA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:00:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13718B22EEB
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:00:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A1091E7C02;
-	Thu,  7 Nov 2024 10:00:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF231EABC7;
+	Thu,  7 Nov 2024 10:00:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="mGDFZ0Mv"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="YHkQTghs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 581E51E3DCC
-	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 10:00:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D75921E7658
+	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 10:00:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730973605; cv=none; b=rt7tzuIs6AqubXvbW2vKrebfAlVqrBEiJVB2XpBCjEgOI8LLSEIsW5sb0dgBIeuJ7KMpIrc1rn565KCAn/qyL0R/aHnnughOap4r79+vlw1Pl5icsRow1rBa2vICYA+DMGXB/J4TfCodUR7ECvjoOXFcrLfcx5STSup/y01luDQ=
+	t=1730973613; cv=none; b=Vaj9JNCrneqgI9mK+zGbIl43VddVz+E/wNbemkkeu2NDUy383gG2EUyosAVKcMQlgXx5ddA5aYL6vXhOcyJimocPVlsxr/ErSpw/uuOOuEqxs5tmCUrU9lvOx4Tm5wvsLMPpwD34vjXCr70vFO34xgoO7C8/B2RlnIOydpnUqU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730973605; c=relaxed/simple;
-	bh=po4N9CwjBZgXso+4pKcXeUTXi6JnMCQw0mFDrt6dX5o=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=BlCMtxqLViCDBMYkOtyMCUrlzD3Q4Vw3VN58qJkKafsYkQBcVBfqun8eUDo6DEXCF0+jEE+5IYXQzlksMw8Ji8lGQoxN3Z83+cKftcsE0RIs0GHAmYNda05A1K0obe2EQqJ2RaQXFegCJm7lP2/5YCrbqqKFWkoq0xIIN8VVPh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=mGDFZ0Mv; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2fb5fa911aaso10457301fa.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 02:00:02 -0800 (PST)
+	s=arc-20240116; t=1730973613; c=relaxed/simple;
+	bh=TRanJs9ePaxX/riCnO0so01k5BCuXb4pkZrMsFxRULg=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=XXNSL/y7DZMyOLnoar6fVScEwFlfLsh4FeftdsfxYDHh6VZRhhRpkIKyzBzhnOhl/Pi/datAY2uPFymW7Up6GNheA6jw5+Q6BG5DoJeuHZgQ2qoStrxaYIWWZb++XcpFJKwwZiV6gET/rWGKfiDQCPHCGojzly/+bKB7SNzdulA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=YHkQTghs; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-37d473c4bb6so624778f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 02:00:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730973600; x=1731578400; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=IN95TsZhKzuxf3wXQLN3cqZMNtXRheqBLbmEr8nS2fc=;
-        b=mGDFZ0MvUE/paBZLUgxGbyQWAPUfW/c4iCqJdwRR+SDZhpKwUBwnv8dQq4XlBF94bm
-         b0HRrFzeYNGhNLdMWwpwiOYs8JUcn4NN75n3fbHuGDhG4sUpKPGGOGa2EPRmWzKZX/CD
-         Ho1tXF6SJU0+NUy9N0icCBhLHiOpqMEc3zydfGTcyHju9REmhXzn+NJ5rO2NSQNtpZF3
-         1USblkO7oz4RYi34trwql9KLuJbxG7NyjQyWQXIHu1PmfI6/hzjKHIEO6EWwaNx/z9z9
-         CWdqtsd30r2iiazJtH/3d0+cV2qybboyTxH8VvcDR+BkhK9YIETcpIAVilWNmY1DFQz0
-         Kd/A==
+        d=tuxon.dev; s=google; t=1730973609; x=1731578409; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=R02EDs+did3sWf/l/M/xZDeb+Ibpap6rP6djlTEoJvs=;
+        b=YHkQTghsBm8V784J7+Uy1a9e45npNlPTkNMHwKGvvccALUdtY7Y3DSgvLv6t2CoSR9
+         iDGQfJSo2WZQKzkCvec5xreljkCLVEiPkDsnoEP1cKWVrI3cWzIxkLtLSdgk7W4hMjb7
+         IHvXrPpdAGAWAg7dPI+TwdQcUS3trnVTbCARUyqv1KRGEniQnES5K5Xjo368fGR7V5X4
+         8d3KqDTQVT2kVteDXmwsmP4h2cl2BusSTE2ulxbkq/84qVBqaFpNc0kJ5Z064/n+0mLW
+         aaPiS+lYG1kk9yMak5DbiVrHlbIFM2nvmAOJi8lEhQH6bkNWeYgnISB6KgZ2kde9SCtE
+         +aUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730973600; x=1731578400;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IN95TsZhKzuxf3wXQLN3cqZMNtXRheqBLbmEr8nS2fc=;
-        b=ZHjqPD7F8eg9ZxUucK/Mpf45K/QnKXmBwG5i0ddbqg8VnQLXQ+X060e5PbMEjBPq4y
-         it6yQC2qaO3im7TBaSYlwBfm6n6iXvDFwwKFFTiiureWx120q0QUjGSCKpckZCPz6V50
-         bqtPMQWc6VtTlM20vFwjB4U4nQsCbEBfNROFZerA0P2Nxzx3tINNQ5+VgqwVDPRZ8IEx
-         xY+yEE13XcBriNGWh3566dg2gdVb5wuAfswySBn+qfuu5fdPiEpqsKMfpWtt0vcLgWgo
-         8L2L2d4/M3WutB6p0pIns3MX/EnnB38ykAjsn2d075J1zFtCPR+LWZvMkTMBNpJB4z1I
-         cLQA==
-X-Forwarded-Encrypted: i=1; AJvYcCWNRbsLOXVjm5SF9J1B33RgbuddBpr/mkHq2yt9gDSz/vNzRAvKGZu8QjxySrNj3+tTHBaz8VhxkxDH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWkafuRB/1xAgMKnkKY8cSGnil5hBk49w7Y/rLRHP2e5U1j1CN
-	K4DwKykqGxPcW//wMYbNgQbN9r/ZLK/E3qZ02uUZKdW7IVste0X7rGyiLevJSVQ=
-X-Google-Smtp-Source: AGHT+IFCiFNbVvRuQfoFDwv+RPdYoiKrDS08WoKMvLYSNKcFfmHvemOy+zCjZFBgqMyl2WR5wPEciQ==
-X-Received: by 2002:a05:651c:19a5:b0:2fa:de13:5c34 with SMTP id 38308e7fff4ca-2fedb7c7ad4mr180086761fa.19.1730973599705;
-        Thu, 07 Nov 2024 01:59:59 -0800 (PST)
-Received: from localhost (p200300f65f28bb0063ffae39110fa2df.dip0.t-ipconnect.de. [2003:f6:5f28:bb00:63ff:ae39:110f:a2df])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9ee0dc577fsm70612366b.93.2024.11.07.01.59.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Nov 2024 01:59:59 -0800 (PST)
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Dinh Nguyen <dinguyen@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] ARM: dts: socfpga_cyclone5_mcvevk: Drop unused #address-cells/#size-cells
-Date: Thu,  7 Nov 2024 10:59:52 +0100
-Message-ID: <20241107095952.73926-2-u.kleine-koenig@baylibre.com>
-X-Mailer: git-send-email 2.45.2
+        d=1e100.net; s=20230601; t=1730973609; x=1731578409;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=R02EDs+did3sWf/l/M/xZDeb+Ibpap6rP6djlTEoJvs=;
+        b=OaWFXDmq6p6Y4fjKN83qqtmvrKWMtXoi2j0hMXA8shSftn3yq0fWK5XnpJXy5OVinU
+         79/K/24ejrNwszIQ79Ht1aV7EZVnyDBA/mEkLgRxyhKTWS3fPtO2B0M13wrplkoPInaA
+         Nk1Pocy5F/TKdBVSX3jDkX32Jd9b1Hh4Q/vnn1101Mo8Q1vqS9QyuzFzCbh91XdFmkqu
+         7lVqarWCA2rdwOUk98BP/fUxY34TmP/SQjdWFLE5xUKO7qbATq2BW8otFnrB8v55tvFK
+         uQqpucpyyXEesJnwp6bV7KhKUJLDGch3iBgY1fbfekXM4nzconubuoNLEQUqVExVgjga
+         yZFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVbC/IZJOZUiGNYkY8CCuNazY12UL+DGRDoHc8MmM6l/n8UpeJeLV25wSCWHLMAxQMpYpdXcLczq8R4@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPnPDWRj2v0a9NnAw+rtJEPuBvtXZ9fVk9w4qEIw7I9xIUUejL
+	iEgxZFHLRYIQbo+3C0F6FAH+rRY+6B1jbtueeSAkUe1iikIi/HAKawXGd8Ct8oo=
+X-Google-Smtp-Source: AGHT+IEffb2xJDgmV6dLSuFyO1fmxJvqSnlcu1KUumgCd4EHyMTsYXx5V2d5rZ79w6rYl9OZ0LDdOw==
+X-Received: by 2002:a5d:47ac:0:b0:37d:48f2:e749 with SMTP id ffacd0b85a97d-381c7a4636cmr23082414f8f.10.1730973608986;
+        Thu, 07 Nov 2024 02:00:08 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.28])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432b05e5871sm17547405e9.37.2024.11.07.02.00.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Nov 2024 02:00:07 -0800 (PST)
+Message-ID: <91916297-8156-44d9-b56f-9a67e651a9a4@tuxon.dev>
+Date: Thu, 7 Nov 2024 12:00:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
+Content-Language: en-US
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: "vkoul@kernel.org" <vkoul@kernel.org>,
+ "kishon@kernel.org" <kishon@kernel.org>, "robh@kernel.org"
+ <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
+ "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+ "mturquette@baylibre.com" <mturquette@baylibre.com>,
+ "sboyd@kernel.org" <sboyd@kernel.org>,
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
+ <35dc7414-f5bd-4ed4-bfa1-f723f4f0078c@tuxon.dev>
+ <TY3PR01MB11346A4814F83FE296A1DED8886922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <TY3PR01MB1134648BF51F1B52BFE34DD6D86932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <fbfa9179-2f52-429f-8b69-f7f4064e796b@tuxon.dev>
+ <TYCPR01MB11332EF1A8D064C491D8F261286932@TYCPR01MB11332.jpnprd01.prod.outlook.com>
+ <f7c57e76-b890-491f-880d-62d060b7b31e@tuxon.dev>
+ <TYCPR01MB11332BE2EDB318950B9C7B54C86932@TYCPR01MB11332.jpnprd01.prod.outlook.com>
+ <TY3PR01MB113469FC8A9F49D9B1FA432FD86932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <0b73544b-0253-43b9-b631-6578b48eaca8@tuxon.dev>
+ <TY3PR01MB1134689573A785E91A9041E1886932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <5bcdc677-e61e-4312-a19b-57b4600685d3@tuxon.dev>
+ <TY3PR01MB1134690F9D37E3BB4814D864386932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <d64243fe-48ea-4cb5-b6d6-e9f820e1b8a3@tuxon.dev>
+In-Reply-To: <d64243fe-48ea-4cb5-b6d6-e9f820e1b8a3@tuxon.dev>
 Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1146; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=po4N9CwjBZgXso+4pKcXeUTXi6JnMCQw0mFDrt6dX5o=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBnLI+ZUNMbOpZaUhvAo4+rsYExY3P3TcxuIcfsx yHtGtx40nGJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZyyPmQAKCRCPgPtYfRL+ Ti2OCAC6JZMVR/TlHLkoWK1XnqrgoC8ZZ2/KnTklmBleznsLFzrRmKwimHfjj7lBCrchzlbjYfQ KiAKaTL3IJX5dpbfAoJauRk9uEiR0MCl8RJ6C17ScGXwqkI7FyiQYS5G4tkkoK55iHj9Vav+rZS LsxP0DrkXwLrqn9g3K91sYTTdLu9udPA1987cNSIW1m1i93/HOCRZSCnY99emZvVzyUykNo+Y8i U78MceAWFPNbq9lUcuhS/jDDc+T1f1n+IwAzYcI28+roXklobnbT6doOCT+zju7REwT3vbKqokp BLMRbDkITSm5E90lkK8LyDOjlN9eSw/qmyg45n1To/0nJ0r4
-X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-The properties #address-cells and #size-cells are only useful if there
-is a ranges property or child nodes with "reg" properties.
+Hi, all,
 
-This fixes a W=1 warning:
+On 03.09.2024 17:48, claudiu beznea wrote:
+> 
+> 
+> On 03.09.2024 16:45, Biju Das wrote:
+>> Hi Claudiu,
+>>
+>>> -----Original Message-----
+>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
+>>> Sent: Tuesday, September 3, 2024 1:57 PM
+>>> Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
+>>>
+>>>
+>>>
+>>> On 03.09.2024 15:37, Biju Das wrote:
+>>>>
+>>>>
+>>>>> -----Original Message-----
+>>>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
+>>>>> Sent: Tuesday, September 3, 2024 1:26 PM
+>>>>> To: Biju Das <biju.das.jz@bp.renesas.com>; Ulf Hansson
+>>>>> <ulf.hansson@linaro.org>
+>>>>> Cc: vkoul@kernel.org; kishon@kernel.org; robh@kernel.org;
+>>>>> krzk+dt@kernel.org; conor+dt@kernel.org; p.zabel@pengutronix.de;
+>>>>> geert+renesas@glider.be; magnus.damm@gmail.com;
+>>>>> gregkh@linuxfoundation.org; mturquette@baylibre.com;
+>>>>> sboyd@kernel.org; Yoshihiro Shimoda
+>>>>> <yoshihiro.shimoda.uh@renesas.com>;
+>>>>> linux-phy@lists.infradead.org; devicetree@vger.kernel.org;
+>>>>> linux-kernel@vger.kernel.org; linux- renesas-soc@vger.kernel.org;
+>>>>> linux-usb@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>>>>> linux- clk@vger.kernel.org; linux-pm@vger.kernel.org; Claudiu Beznea
+>>>>> <claudiu.beznea.uj@bp.renesas.com>
+>>>>> Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas
+>>>>> RZ/G3S SoC
+>>>>>
+>>>>>
+>>>>>
+>>>>> On 03.09.2024 15:00, Biju Das wrote:
+>>>>>>
+>>>>>>
+>>>>>>> -----Original Message-----
+>>>>>>> From: Biju Das <biju.das.jz@bp.renesas.com>
+>>>>>>> Sent: Tuesday, September 3, 2024 12:07 PM
+>>>>>>> To: Claudiu.Beznea <claudiu.beznea@tuxon.dev>; Ulf Hansson
+>>>>>>> <ulf.hansson@linaro.org>
+>>>>>>> Cc: vkoul@kernel.org; kishon@kernel.org; robh@kernel.org;
+>>>>>>> krzk+dt@kernel.org; conor+dt@kernel.org; p.zabel@pengutronix.de;
+>>>>>>> geert+renesas@glider.be; magnus.damm@gmail.com;
+>>>>>>> gregkh@linuxfoundation.org; mturquette@baylibre.com;
+>>>>>>> sboyd@kernel.org; Yoshihiro Shimoda
+>>>>>>> <yoshihiro.shimoda.uh@renesas.com>;
+>>>>>>> linux-phy@lists.infradead.org; devicetree@vger.kernel.org;
+>>>>>>> linux-kernel@vger.kernel.org; linux- renesas-soc@vger.kernel.org;
+>>>>>>> linux-usb@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>>>>>>> linux- clk@vger.kernel.org; linux-pm@vger.kernel.org; Claudiu
+>>>>>>> Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>>>> Subject: RE: [PATCH 00/16] Add initial USB support for the Renesas
+>>>>>>> RZ/G3S SoC
+>>>>>>>
+>>>>>>> Hi Claudiu,
+>>>>>>>
+>>>>>>>> -----Original Message-----
+>>>>>>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
+>>>>>>>> Sent: Tuesday, September 3, 2024 12:00 PM
+>>>>>>>> Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas
+>>>>>>>> RZ/G3S SoC
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> On 03.09.2024 13:31, Biju Das wrote:
+>>>>>>>>>>> During boot clr USB PWR READY signal in TF-A.
+>>>>>>>>>>> STR case, suspend set USB PWR READY signal in TF-A.
+>>>>>>>>>>> STR case, resume clr USB PWR READY signal in TF-A.
+>>>>>>>>>> As I said previously, it can be done in different ways. My point
+>>>>>>>>>> was to let Linux set what it needs for all it's devices to work.
+>>>>>>>>>> I think the way to go forward is a
+>>>>>>>> maintainer decision.
+>>>>>>>>>
+>>>>>>>>> I agree, there can be n number of solution for a problem.
+>>>>>>>>>
+>>>>>>>>> Since you modelled system state signal (USB PWRRDY) as reset
+>>>>>>>>> control signal, it is reset/DT maintainer's decision to say the
+>>>>>>>>> final word whether this signal fits in reset
+>>>>>>>> system framework or not?
+>>>>>>>>
+>>>>>>>> I was thinking:
+>>>>>>>> 1/ Geert would be the best to say if he considers it OK to handle this
+>>>>>>>>    in Linux
+>>>>>>>
+>>>>>>> I agree Geert is the right person for taking SYSTEM decisions,
+>>>>>>> since the signal is used only during state transitions (Table
+>>>>>>> 41.6.4 AWO to ALL_ON and 41.6.3 ALL_ON to AWO)
+>>>>>>
+>>>>>> One more info, as per [1], this USB PWRRDY signal setting to be before Linux kernel boots.
+>>>>>
+>>>>> The "controlled by" column mentions CA-55 on PWRRDY signal control
+>>>>> line and it is b/w steps "DDR exits from retention mode" and  "clock
+>>>>> start settings for system bus and peripheral modules". AFAICT, after DDR exists retention mode
+>>> Linux is ready to run.
+>>>>
+>>>> DDR retention exit happens in TF-A and it jumps into reset code where it executes BL2 in TF_A. Bl2
+>>> checks for warm or cold reset.
+>>>> If it is warm reset, it sets required minimal clocks/resets and pass
+>>>> the control to linux by calling the SMC callback handler. Which in turn calls resume(step 11-->14)
+>>> path.
+>>>
+>>> Is this from HW manual or some specific documentation? I'm referring at "resume" == "steps 11-->14"
+>>>
+>>>>
+>>>> Step 8, Cortex-A55 Exit from DDR retention mode (when using) Setting
+>>>> for exiting form DDR retention mode Step 9, Cortex-A55 USB PHY PWRRDY
+>>>> signal control (if use USB) SYS_USB_PWRRDY Step 10, Cortex-A55 PCIe
+>>>> RST_RSM_B signal control (if use PCIe) SYS_PCIE_RST_RSM_B
+>>>
+>>> Note *if use*: how does the TF-A know if USB/PCIe is used by Linux? The documentation mention to set
+>>> it *if use*. Same note is on ALL_ON to VBATT transition documentation (namely "if using USB", "if
+>>> using PCIe"). If TF-A will do this it should set this signals unconditionally. It will not be
+>>> something wrong though. We don't know at the moment what this involves in terms of power consumption,
+>>> if it means something...
+>>
+>> IIUC,
+>> The only information we have is,
+>>
+>> "SYS_USB_PWRRDY and SYS_PCIE_RST_RSM_B are used when transition from ALL_ON to AWO (or from AWO to ALL_ON).
+>> "When turning off USB PHY and PCIe PHY, if they are not controlled, PHY may break"
+>>
+>> ALL_ON to AWO_MODE state transition: 
+>> USB/PCIe are part of PD_ISOVCC power domain and before turning PD_ISOVCC to off,
+>> we need to set USBPWRRDY signal.
+>>
+>> AWO_MODE to ALL_ON state transition:
+>>
+>> Turn on PD_ISOVCC first, then clr USBPWRRDY signal for USB usage in linux.
+>>
+>> Maybe we need to ask hw team, exact usage of USBPWRRDY signal other than state transition.
+> 
+> As you may already know, this is open for quite some time and is ongoing.
 
-	arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mcvevk.dts:51.22-72.4: Warning (avoid_unnecessary_addr_size): /soc/i2c@ffc04000/stmpe811@41: unnecessary #address-cells/#size-cells without "ranges", "dma-ranges" or child "reg" property
+I got more clarification about the USB PWRRDY signal from the HW team.
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
----
- arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mcvevk.dts | 2 --
- 1 file changed, 2 deletions(-)
+The conclusion is that the USB PWRRDY is a signal controlled by SYSC
+controller that goes to the USB PHY and it tells the USB PHY if the power
+supply is ready or not.
 
-diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mcvevk.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mcvevk.dts
-index ceaec29770c6..c1e1264bcb09 100644
---- a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mcvevk.dts
-+++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mcvevk.dts
-@@ -50,8 +50,6 @@ &i2c0 {
- 
- 	stmpe1: stmpe811@41 {
- 		compatible = "st,stmpe811";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		reg = <0x41>;
- 		id = <0>;
- 		blocks = <0x5>;
+In the diagram at [1] the PWRRDY signal need to be asserted/de-asserted
+before/after G6, G7, G8, G9, G10 signals.
 
-base-commit: 5b913f5d7d7fe0f567dea8605f21da6eaa1735fb
--- 
-2.45.2
+Philipp,
 
+Can you please confirm that you don't want this signal to be implemented as
+a reset signal to know clearly your input on it? I would like to start
+looking for another approach in that case.
+
+Thank you,
+Claudiu Beznea
+
+[1] https://pasteboard.co/0a1zYBFZXZVb.png
+
+> 
+>>
+>> Cheers,
+>> Biju
+>>
+>>
 
