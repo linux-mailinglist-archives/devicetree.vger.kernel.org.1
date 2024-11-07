@@ -1,305 +1,123 @@
-Return-Path: <devicetree+bounces-119966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C99279C0B93
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 17:27:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A63C79C0BF0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 17:46:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88E9A285463
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 16:27:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D78481C215FB
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 16:46:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A119B215F71;
-	Thu,  7 Nov 2024 16:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D360F212D3A;
+	Thu,  7 Nov 2024 16:46:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dql3Dcdi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB18216443
-	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 16:22:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB48FDDBE;
+	Thu,  7 Nov 2024 16:46:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730996571; cv=none; b=eUIWuWImcU+GHcWR9P4mXDFg/R1MJfwm0WeQljZUuXBxrMdUT93CQqpZM1ieOdelYg4oJEDZ5PIgrUAlNKJdIIDq6AUwfpamN4HDMsAKOisXSln5R9VbCFGCgImqb4mDO2UFAKm0hbe77L9ASPxp9HGCARMK3ttYGydxAylrFqo=
+	t=1730997987; cv=none; b=N/smJPaLxl+neIfpvbQwAFf3OSJ9GeJ3LX1eEJc3++B/sb6GIYkeOXjnevkcRunoR612TPOvbj84aQ/NlGGIZZrS4Hp04RQ+DG9vnnJ5i6j8fJ3ksF70D41sYvrrkW4LvXu9xC8ZmGRGaTmPe5jIB5fV6eXTd5M5VRXI8ufON4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730996571; c=relaxed/simple;
-	bh=2/bRKqcIgv50s+uci/nHRLio45G6bn5b9DhmqYan3Sg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JQJyymgj2uYzM/FXao0pjigPJ0PMcplbkXlXdNOpXs2REB2Y+9zJemRT6cfEyX3PYYswIbbiWx3b840NHxciK2pwQ9nJrp4cgByRddMmeAB+NpS3gsyroy8cmH1QY7ZqFaLzmgxfoeKbho4wpuWNHXjfgeoecIX0m+IzuLsoKYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1t95H5-0001Ei-FD; Thu, 07 Nov 2024 17:22:23 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1t95H3-002UGY-2S;
-	Thu, 07 Nov 2024 17:22:21 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1t95H3-000Ci2-28;
-	Thu, 07 Nov 2024 17:22:21 +0100
-Message-ID: <7a9bf4649ea1cb89cb6478833ab84dc480065308.camel@pengutronix.de>
-Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>, Biju Das
-	 <biju.das.jz@bp.renesas.com>, Ulf Hansson <ulf.hansson@linaro.org>
-Cc: "vkoul@kernel.org" <vkoul@kernel.org>, "kishon@kernel.org"
- <kishon@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
- <conor+dt@kernel.org>,  "geert+renesas@glider.be"
- <geert+renesas@glider.be>, "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
-  "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org"
- <sboyd@kernel.org>, Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "linux-clk@vger.kernel.org"
- <linux-clk@vger.kernel.org>, "linux-pm@vger.kernel.org"
- <linux-pm@vger.kernel.org>, Claudiu Beznea
- <claudiu.beznea.uj@bp.renesas.com>
-Date: Thu, 07 Nov 2024 17:22:21 +0100
-In-Reply-To: <91916297-8156-44d9-b56f-9a67e651a9a4@tuxon.dev>
-References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
-	 <35dc7414-f5bd-4ed4-bfa1-f723f4f0078c@tuxon.dev>
-	 <TY3PR01MB11346A4814F83FE296A1DED8886922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-	 <TY3PR01MB1134648BF51F1B52BFE34DD6D86932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-	 <fbfa9179-2f52-429f-8b69-f7f4064e796b@tuxon.dev>
-	 <TYCPR01MB11332EF1A8D064C491D8F261286932@TYCPR01MB11332.jpnprd01.prod.outlook.com>
-	 <f7c57e76-b890-491f-880d-62d060b7b31e@tuxon.dev>
-	 <TYCPR01MB11332BE2EDB318950B9C7B54C86932@TYCPR01MB11332.jpnprd01.prod.outlook.com>
-	 <TY3PR01MB113469FC8A9F49D9B1FA432FD86932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-	 <0b73544b-0253-43b9-b631-6578b48eaca8@tuxon.dev>
-	 <TY3PR01MB1134689573A785E91A9041E1886932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-	 <5bcdc677-e61e-4312-a19b-57b4600685d3@tuxon.dev>
-	 <TY3PR01MB1134690F9D37E3BB4814D864386932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-	 <d64243fe-48ea-4cb5-b6d6-e9f820e1b8a3@tuxon.dev>
-	 <91916297-8156-44d9-b56f-9a67e651a9a4@tuxon.dev>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1730997987; c=relaxed/simple;
+	bh=GZHWeP89CUKrAe3MvpLoueZH/R99ojWtvbeyFfi7yj8=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=cISBXn8/aMBJRwNJmoL7Wnz122NmzifG2gP9EmbDC+Jn0Y5Pz5AClBu080zXGbJsNUw/npwCUw2+HXhcbC1CZqKVPc75KVYi7zeW4qWn6WiYbfvmAtFRDVxOuvvOsLNH7KUPialL8Sab1Gp46NA18bSIWXccVU8uLALYz+vwO+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dql3Dcdi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 595F2C4CECC;
+	Thu,  7 Nov 2024 16:46:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730997987;
+	bh=GZHWeP89CUKrAe3MvpLoueZH/R99ojWtvbeyFfi7yj8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Dql3DcdiSw6/w7rk8GoAlnLI5jh2cZBXjjhWoLwNBf+/GdHMPonOD9UzeB4iCMyTF
+	 lAmTyLyimvHtMztSWzboGnqigMuXV3j6FQzHwJ+ShPSCkovNPd0L74a3vaynKnR+2n
+	 UQi7zJzODcelksrznG50+NHfaFiKvM305FehRCXCm8edyq8AupKpqqsrDL60T5cq4B
+	 GlFZBItAKrfRPuhIOspE+Q6hcdqDgASwQlJjJrbsJrk5qH8SeU5jyqhmQzCEKgbfgg
+	 tb4RVylua4obd8Wgh2FBkSoFMHUC959fBxncGWpklUukNZwBYhugy02bU5/vbL6yiD
+	 7Fs8zgD+Mm8JQ==
+Date: Thu, 7 Nov 2024 10:46:24 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
+	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, bhelgaas@google.com,
+	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+	nbd@nbd.name, dd@embedd.com, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH v4 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
+Message-ID: <20241107164624.GA1618716@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZyzpGSyAVe6bz9H2@lore-desk>
 
-Hi Claudiu,
+On Thu, Nov 07, 2024 at 05:21:45PM +0100, Lorenzo Bianconi wrote:
+> On Nov 07, Bjorn Helgaas wrote:
+> > On Thu, Nov 07, 2024 at 08:39:43AM +0100, Lorenzo Bianconi wrote:
+> > > > On Wed, Nov 06, 2024 at 11:40:28PM +0100, Lorenzo Bianconi wrote:
+> > > > > > On Wed, Jul 03, 2024 at 06:12:44PM +0200, Lorenzo Bianconi wrote:
+> > > > > > > Introduce support for Airoha EN7581 PCIe controller to mediatek-gen3
+> > > > > > > PCIe controller driver.
+> > > > > > > ...
+> > 
+> > > > > > Is this where PERST# is asserted?  If so, a comment to that effect
+> > > > > > would be helpful.  Where is PERST# deasserted?  Where are the required
+> > > > > > delays before deassert done?
+> > > > > 
+> > > > > I can add a comment in en7581_pci_enable() describing the PERST issue for
+> > > > > EN7581. Please note we have a 250ms delay in en7581_pci_enable() after
+> > > > > configuring REG_PCI_CONTROL register.
+> > > > > 
+> > > > > https://github.com/torvalds/linux/blob/master/drivers/clk/clk-en7523.c#L396
+> > > > 
+> > > > Does that 250ms delay correspond to a PCIe mandatory delay, e.g.,
+> > > > something like PCIE_T_PVPERL_MS?  I think it would be nice to have the
+> > > > required PCI delays in this driver if possible so it's easy to verify
+> > > > that they are all covered.
+> > > 
+> > > IIRC I just used the delay value used in the vendor sdk. I do not
+> > > have a strong opinion about it but I guess if we move it in the
+> > > pcie-mediatek-gen3 driver, we will need to add it in each driver
+> > > where this clock is used. What do you think?
+> > 
+> > I don't know what the 250ms delay is for.  If it is for a required PCI
+> > delay, we should use the relevant standard #define for it, and it
+> > should be in the PCI controller driver.  Otherwise it's impossible to
+> > verify that all the drivers are doing the correct delays.
+> 
+> ack, fine to me. Do you prefer to keep 250ms after clk_bulk_prepare_enable()
+> in mtk_pcie_en7581_power_up() or just use PCIE_T_PVPERL_MS (100)?
+> I can check if 100ms works properly.
 
-On Do, 2024-11-07 at 12:00 +0200, Claudiu Beznea wrote:
-> Hi, all,
->=20
-> On 03.09.2024 17:48, claudiu beznea wrote:
-> >=20
-> >=20
-> > On 03.09.2024 16:45, Biju Das wrote:
-> > > Hi Claudiu,
-> > >=20
-> > > > -----Original Message-----
-> > > > From: claudiu beznea <claudiu.beznea@tuxon.dev>
-> > > > Sent: Tuesday, September 3, 2024 1:57 PM
-> > > > Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas =
-RZ/G3S SoC
-> > > >=20
-> > > >=20
-> > > >=20
-> > > > On 03.09.2024 15:37, Biju Das wrote:
-> > > > >=20
-> > > > >=20
-> > > > > > -----Original Message-----
-> > > > > > From: claudiu beznea <claudiu.beznea@tuxon.dev>
-> > > > > > Sent: Tuesday, September 3, 2024 1:26 PM
-> > > > > > To: Biju Das <biju.das.jz@bp.renesas.com>; Ulf Hansson
-> > > > > > <ulf.hansson@linaro.org>
-> > > > > > Cc: vkoul@kernel.org; kishon@kernel.org; robh@kernel.org;
-> > > > > > krzk+dt@kernel.org; conor+dt@kernel.org; p.zabel@pengutronix.de=
-;
-> > > > > > geert+renesas@glider.be; magnus.damm@gmail.com;
-> > > > > > gregkh@linuxfoundation.org; mturquette@baylibre.com;
-> > > > > > sboyd@kernel.org; Yoshihiro Shimoda
-> > > > > > <yoshihiro.shimoda.uh@renesas.com>;
-> > > > > > linux-phy@lists.infradead.org; devicetree@vger.kernel.org;
-> > > > > > linux-kernel@vger.kernel.org; linux- renesas-soc@vger.kernel.or=
-g;
-> > > > > > linux-usb@vger.kernel.org; linux-arm-kernel@lists.infradead.org=
-;
-> > > > > > linux- clk@vger.kernel.org; linux-pm@vger.kernel.org; Claudiu B=
-eznea
-> > > > > > <claudiu.beznea.uj@bp.renesas.com>
-> > > > > > Subject: Re: [PATCH 00/16] Add initial USB support for the Rene=
-sas
-> > > > > > RZ/G3S SoC
-> > > > > >=20
-> > > > > >=20
-> > > > > >=20
-> > > > > > On 03.09.2024 15:00, Biju Das wrote:
-> > > > > > >=20
-> > > > > > >=20
-> > > > > > > > -----Original Message-----
-> > > > > > > > From: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > > > > > Sent: Tuesday, September 3, 2024 12:07 PM
-> > > > > > > > To: Claudiu.Beznea <claudiu.beznea@tuxon.dev>; Ulf Hansson
-> > > > > > > > <ulf.hansson@linaro.org>
-> > > > > > > > Cc: vkoul@kernel.org; kishon@kernel.org; robh@kernel.org;
-> > > > > > > > krzk+dt@kernel.org; conor+dt@kernel.org; p.zabel@pengutroni=
-x.de;
-> > > > > > > > geert+renesas@glider.be; magnus.damm@gmail.com;
-> > > > > > > > gregkh@linuxfoundation.org; mturquette@baylibre.com;
-> > > > > > > > sboyd@kernel.org; Yoshihiro Shimoda
-> > > > > > > > <yoshihiro.shimoda.uh@renesas.com>;
-> > > > > > > > linux-phy@lists.infradead.org; devicetree@vger.kernel.org;
-> > > > > > > > linux-kernel@vger.kernel.org; linux- renesas-soc@vger.kerne=
-l.org;
-> > > > > > > > linux-usb@vger.kernel.org; linux-arm-kernel@lists.infradead=
-.org;
-> > > > > > > > linux- clk@vger.kernel.org; linux-pm@vger.kernel.org; Claud=
-iu
-> > > > > > > > Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > > > > > > > Subject: RE: [PATCH 00/16] Add initial USB support for the =
-Renesas
-> > > > > > > > RZ/G3S SoC
-> > > > > > > >=20
-> > > > > > > > Hi Claudiu,
-> > > > > > > >=20
-> > > > > > > > > -----Original Message-----
-> > > > > > > > > From: claudiu beznea <claudiu.beznea@tuxon.dev>
-> > > > > > > > > Sent: Tuesday, September 3, 2024 12:00 PM
-> > > > > > > > > Subject: Re: [PATCH 00/16] Add initial USB support for th=
-e Renesas
-> > > > > > > > > RZ/G3S SoC
-> > > > > > > > >=20
-> > > > > > > > >=20
-> > > > > > > > >=20
-> > > > > > > > > On 03.09.2024 13:31, Biju Das wrote:
-> > > > > > > > > > > > During boot clr USB PWR READY signal in TF-A.
-> > > > > > > > > > > > STR case, suspend set USB PWR READY signal in TF-A.
-> > > > > > > > > > > > STR case, resume clr USB PWR READY signal in TF-A.
-> > > > > > > > > > > As I said previously, it can be done in different way=
-s. My point
-> > > > > > > > > > > was to let Linux set what it needs for all it's devic=
-es to work.
-> > > > > > > > > > > I think the way to go forward is a
-> > > > > > > > > maintainer decision.
-> > > > > > > > > >=20
-> > > > > > > > > > I agree, there can be n number of solution for a proble=
-m.
-> > > > > > > > > >=20
-> > > > > > > > > > Since you modelled system state signal (USB PWRRDY) as =
-reset
-> > > > > > > > > > control signal, it is reset/DT maintainer's decision to=
- say the
-> > > > > > > > > > final word whether this signal fits in reset
-> > > > > > > > > system framework or not?
-> > > > > > > > >=20
-> > > > > > > > > I was thinking:
-> > > > > > > > > 1/ Geert would be the best to say if he considers it OK t=
-o handle this
-> > > > > > > > >    in Linux
-> > > > > > > >=20
-> > > > > > > > I agree Geert is the right person for taking SYSTEM decisio=
-ns,
-> > > > > > > > since the signal is used only during state transitions (Tab=
-le
-> > > > > > > > 41.6.4 AWO to ALL_ON and 41.6.3 ALL_ON to AWO)
-> > > > > > >=20
-> > > > > > > One more info, as per [1], this USB PWRRDY signal setting to =
-be before Linux kernel boots.
-> > > > > >=20
-> > > > > > The "controlled by" column mentions CA-55 on PWRRDY signal cont=
-rol
-> > > > > > line and it is b/w steps "DDR exits from retention mode" and  "=
-clock
-> > > > > > start settings for system bus and peripheral modules". AFAICT, =
-after DDR exists retention mode
-> > > > Linux is ready to run.
-> > > > >=20
-> > > > > DDR retention exit happens in TF-A and it jumps into reset code w=
-here it executes BL2 in TF_A. Bl2
-> > > > checks for warm or cold reset.
-> > > > > If it is warm reset, it sets required minimal clocks/resets and p=
-ass
-> > > > > the control to linux by calling the SMC callback handler. Which i=
-n turn calls resume(step 11-->14)
-> > > > path.
-> > > >=20
-> > > > Is this from HW manual or some specific documentation? I'm referrin=
-g at "resume" =3D=3D "steps 11-->14"
-> > > >=20
-> > > > >=20
-> > > > > Step 8, Cortex-A55 Exit from DDR retention mode (when using) Sett=
-ing
-> > > > > for exiting form DDR retention mode Step 9, Cortex-A55 USB PHY PW=
-RRDY
-> > > > > signal control (if use USB) SYS_USB_PWRRDY Step 10, Cortex-A55 PC=
-Ie
-> > > > > RST_RSM_B signal control (if use PCIe) SYS_PCIE_RST_RSM_B
-> > > >=20
-> > > > Note *if use*: how does the TF-A know if USB/PCIe is used by Linux?=
- The documentation mention to set
-> > > > it *if use*. Same note is on ALL_ON to VBATT transition documentati=
-on (namely "if using USB", "if
-> > > > using PCIe"). If TF-A will do this it should set this signals uncon=
-ditionally. It will not be
-> > > > something wrong though. We don't know at the moment what this invol=
-ves in terms of power consumption,
-> > > > if it means something...
-> > >=20
-> > > IIUC,
-> > > The only information we have is,
-> > >=20
-> > > "SYS_USB_PWRRDY and SYS_PCIE_RST_RSM_B are used when transition from =
-ALL_ON to AWO (or from AWO to ALL_ON).
-> > > "When turning off USB PHY and PCIe PHY, if they are not controlled, P=
-HY may break"
-> > >=20
-> > > ALL_ON to AWO_MODE state transition:=20
-> > > USB/PCIe are part of PD_ISOVCC power domain and before turning PD_ISO=
-VCC to off,
-> > > we need to set USBPWRRDY signal.
-> > >=20
-> > > AWO_MODE to ALL_ON state transition:
-> > >=20
-> > > Turn on PD_ISOVCC first, then clr USBPWRRDY signal for USB usage in l=
-inux.
-> > >=20
-> > > Maybe we need to ask hw team, exact usage of USBPWRRDY signal other t=
-han state transition.
-> >=20
-> > As you may already know, this is open for quite some time and is ongoin=
-g.
->=20
-> I got more clarification about the USB PWRRDY signal from the HW team.
->=20
-> The conclusion is that the USB PWRRDY is a signal controlled by SYSC
-> controller that goes to the USB PHY and it tells the USB PHY if the power
-> supply is ready or not.
->=20
-> In the diagram at [1] the PWRRDY signal need to be asserted/de-asserted
-> before/after G6, G7, G8, G9, G10 signals.
->=20
-> Philipp,
->=20
-> Can you please confirm that you don't want this signal to be implemented =
-as
-> a reset signal to know clearly your input on it? I would like to start
-> looking for another approach in that case.
+It's not clear to me where the relevant events are for these chips.
 
-If this is not a reset signal I don't want it to be implemented as one.
+Do you have access to the PCIe CEM spec?  The diagram in r6.0, sec
+2.2.1, is helpful.  It shows the required timings for Power Stable,
+REFCLK Stable, PERST# deassert, etc.
 
-regards
-Philipp
+Per sec 2.11.2, PERST# must be asserted for at least 100us (T_PERST),
+PERST# must be asserted for at least 100ms after Power Stable
+(T_PVPERL), and PERST# must be asserted for at least 100us after
+REFCLK Stable.
+
+It would be helpful if we could tell by reading the source where some
+of these critical events happen, and that the relevant delays are
+there.  For example, if PERST# is asserted/deasserted by
+"clk_enable()" or similar, it's not at all obvious from the code, so
+we should have a comment to that effect.
+
+Bjorn
 
