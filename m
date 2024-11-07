@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-119795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 535219C0242
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:24:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D17039C0250
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:27:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84B331C20831
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:24:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96B95283900
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:27:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B7991E7676;
-	Thu,  7 Nov 2024 10:24:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB631EC00D;
+	Thu,  7 Nov 2024 10:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PZoO3a2k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Depln833"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D356B1DFE30;
-	Thu,  7 Nov 2024 10:24:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5DA91EBA1B;
+	Thu,  7 Nov 2024 10:27:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730975058; cv=none; b=BSiQp6GY/+J/nUOOtqcV2u4DjPi3zjlIRPT+cXYu5CKTsN37wyt/TChwLhVt4paN9klLOJUsrIYjPe6PPJiQW1BWzIciaO/Ob7n10PRV2sjU0TqELyCy91iv15jkMja1yd0ZCN7ZzhAIPGVyY/GpqDcF3cYWOld6WfqOzvCKs4o=
+	t=1730975240; cv=none; b=uDmDy1LZWQQKjOuyVWPzTjsGnYu2GKtTINeb7UvdjTNukiiu+htzpa+ViBTnq56GtzlfLxmuCzBfmLAaPrirIVEpLoepivZ97XR871jzc5Thnoy+W4o/2O0XfUEMmMeRdBLbmkqs8Zb0JN/CftK5oRjHTjOvJDR/5uuv5+INrrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730975058; c=relaxed/simple;
-	bh=DBeMWR51I+1Rtf9+Dq6nWXoymfTOOib8j5IglKwsQx4=;
+	s=arc-20240116; t=1730975240; c=relaxed/simple;
+	bh=En01lEFzgOPGQXLGM59354SFtFYp8jJ+HyqefB6L7B0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fDmj7BwSLS1s3nD37AgUesWRQ71EFbyIHVRakJta036DaGWD6mWpr7SoCP0HRYCSGO90HyV+v5f/owcmD/ctx2HuZlUMih7Mc1zbm01ZnooOG+22XPVfl5y0FcPNt4v/3GJdpp6nA/l3pgqMMRGp+mU3k+Umg8K4cp91lenCQY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PZoO3a2k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E92CC4CECC;
-	Thu,  7 Nov 2024 10:24:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oAGtyQ9Yzjp/ti2M1oSsjfvHNazlgSaCYvS+3C7mrsHBi8kbVdrfKQ/Okfq6Okylpm8DD7PeGiWGagNGyuQ3Fz4YXV8EDbT5JL0A9tXtd9BUGt2fBH4hSthc/RWA3VN0ykGL0nDUwIDDqPZ/jsrPR4zYbANolvh6eEIojFnmKn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Depln833; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA31EC4CECC;
+	Thu,  7 Nov 2024 10:27:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730975058;
-	bh=DBeMWR51I+1Rtf9+Dq6nWXoymfTOOib8j5IglKwsQx4=;
+	s=k20201202; t=1730975239;
+	bh=En01lEFzgOPGQXLGM59354SFtFYp8jJ+HyqefB6L7B0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PZoO3a2k3GiD7E0k2KNXFJKBYN7H3XjbtLl5YjFrHrJ+pCwxt2ML5ZKBA1YIEq/Ad
-	 RmUK7rny61kbhxM2hySFecSKl9fhr4W23uBHs0aj7gmPmvRoAWgNvx8XNNsoaIlui5
-	 DfKiteqh9Zpw/Z1WTz6oxyMR0EyWwLY87mFS2aoEjx+kpdEW33iLQShKTFaHvFKe7O
-	 iSN6o+q9KuolB1qocr9ahke+7tM9dob2mABztaWR3uQWSoT9CCK3HXg+fWBU5zc6cM
-	 UcxQPCLb0C7EbCDdg2O48iy61+0C9DL9RBOIcwG5DhUWbG1ua3/nNxJWL4w0DlK8Pe
-	 kUyN/yS8K7qLQ==
-Date: Thu, 7 Nov 2024 11:24:15 +0100
+	b=Depln833HUhQdWj9mbw7EYMsxsRGv2PNoy+lUZeWyuRLxx0wfT8A4KxsOh6/D0pjm
+	 zmfZhbqIZgxZvnnFkc5xsx+gfu8+yLISkeWawf/I6ZOdgiiqI45TWBM6IrB70TcDJx
+	 CIpo9I3A8xm/fEorK2F1kxHvCmBr33eSjqiN+5RvtiEmo2BmdTafi4svI/CV4IjWZS
+	 kNTNomDUQZ8gsebRCoKCgC+j5RXvvQ5aWCjQ44Cs3ELTFBbFg5VvFoWiLZbBuARtuz
+	 FsvFYSWyxDq5PKqDW/ono8JE818OcmG99A6wL+9xEZ+3DtsxmEX60tCRbgEi7oF/88
+	 zlYolXFD+nOHA==
+Date: Thu, 7 Nov 2024 11:27:14 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: display: adi,adv7533: Drop single
- lane support
-Message-ID: <3cs6rkd7tdsvqi4aqagpfmexeikustpnzoq3yfxjidnegruvns@pinbsj3vfrs3>
-References: <20241106184935.294513-1-biju.das.jz@bp.renesas.com>
- <20241106184935.294513-3-biju.das.jz@bp.renesas.com>
+To: Vabhav Sharma <vabhav.sharma@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dong Aisheng <aisheng.dong@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, frank.li@nxp.com, 
+	pankaj.gupta@nxp.com, daniel.baluta@nxp.com, silvano.dininno@nxp.com, V.Sethi@nxp.com, 
+	meenakshi.aggarwal@nxp.com
+Subject: Re: [PATCH v3 1/4] dt-bindings: firmware: imx: add nvmem phandle
+Message-ID: <tot4nynjw7mjvb34jxkjdcdvumhxmkhrjucle3dgcqionbjaqr@mqeo3rcj2b4o>
+References: <20241107-secvio-v3-0-ea27f1e9ced4@nxp.com>
+ <20241107-secvio-v3-1-ea27f1e9ced4@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,22 +64,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241106184935.294513-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20241107-secvio-v3-1-ea27f1e9ced4@nxp.com>
 
-On Wed, Nov 06, 2024 at 06:49:29PM +0000, Biju Das wrote:
-> As per [1], ADV7535/7533 support only 2-, 3-, or 4-lane. Drop
-> unsupported 1-lane from bindings.
+On Thu, Nov 07, 2024 at 06:42:39AM +0100, Vabhav Sharma wrote:
+> nvmem phandle is required by secvio driver to
+> read fuse.
 > 
-> [1]
-> https://www.analog.com/media/en/technical-documentation/data-sheets/ADV7535.pdf
-> 
-> Fixes: 1e4d58cd7f88 ("drm/bridge: adv7533: Create a MIPI DSI device")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Vabhav Sharma <vabhav.sharma@nxp.com>
 > ---
-> v3:
+>  Documentation/devicetree/bindings/firmware/fsl,scu.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/fsl,scu.yaml b/Documentation/devicetree/bindings/firmware/fsl,scu.yaml
+> index 557e524786c2..1cc86fed6c27 100644
+> --- a/Documentation/devicetree/bindings/firmware/fsl,scu.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/fsl,scu.yaml
+> @@ -112,6 +112,9 @@ properties:
+>            - const: rx2
+>            - const: rx3
+>            - const: gip3
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Missing blank line
+
+> +  nvmem:
+> +    description:
+> +      phandle of NVMEM driver provided by the SCU
+
+driver? Please describe hardware, not driver. I think I gave you such
+comment last time.
 
 Best regards,
 Krzysztof
