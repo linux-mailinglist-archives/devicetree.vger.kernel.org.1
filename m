@@ -1,86 +1,83 @@
-Return-Path: <devicetree+bounces-119716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0590F9BFCF1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 04:23:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67C359BFD48
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 05:15:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 62225B2248E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 03:23:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5707B21F00
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 04:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6074F839E4;
-	Thu,  7 Nov 2024 03:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81BC61917D7;
+	Thu,  7 Nov 2024 04:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kznDy4A8"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Vu5bxE0A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A2E128689;
-	Thu,  7 Nov 2024 03:23:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E411613A26F
+	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 04:15:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730949812; cv=none; b=bQUQXr10+LRmxlKRO5H3GbdL5Di4TvssxY3scmB3U2udHCqb/phhcWRo0QJk7lVNO0V5ScI1F2J+cKCv2Mg1ffHQtAanyoVCZOdcYyoPAgOy6WgpnKL1IEY4+ab2p59lB8lPr3KNfXQBXVqqSSbPdEVnhk27wT2XMRfrsxz5+Jw=
+	t=1730952924; cv=none; b=HHBOyYhR4u9cFZCBf2DPhXoolnNsO5t0CUJU45e4C0y6PJjGA/Tn3L6Q86TiVtrJSsE7GCfdnxj1NnB9XBdKhR92YSaUaw0WlQ1NNUlUz99lU/GPQma8/u41owpkBkf3qRldV5rRWoUoszCsyth06qexVWgxQ6Zn25vuE6ghxT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730949812; c=relaxed/simple;
-	bh=9I9tvAbDrCRj6kFW3Ln53D2FSsYye54f5kA9wfXQly8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aqcq3/UD44uEmZB6P/8SUW8PFGaTE5jQcvAoXKRj3Z6kH5VuCfhMdAVFdjNNoCh5E546jNzLTDfVp7VmyNkbP1zJVYOjHl2MsIgAcJkSKYX8vR60ZnPnDly8sIXDreaVGWp3QMoYzPzOyCbVsYFVNZbNoTiYF4c7ZmdGE3ov1II=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kznDy4A8; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-20cdbe608b3so5185595ad.1;
-        Wed, 06 Nov 2024 19:23:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730949810; x=1731554610; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mW6FFSBTEVZu0HRd5LnYlhO4N7G7lPxJ4XP+X7YSnjQ=;
-        b=kznDy4A8C+6fd8I3i+nj+vKcnJRmOQMw7zPEWGWCrZQzX/Vl7EuvK8fIpe8W+frmWk
-         gLpnaSW9swk/PIw37sPwuhjLcXYAzkp3hYkJQLPvIg7woLkv2/VOrVBaRzEH4KUivQqu
-         wWj10is9hba31ZUavOI/kexeHmrNFjREU/5SHIsKZPyUXU5yoowJO0fBdc72i26afPjl
-         c2QqgAQHbaRToZU+HuINBg2b7vwrTJR6EPwHnddH0WMoMFAnzvJSvFUP2MNx0MPqydz9
-         d8rcdPyW3bD93w1/ckVBA7+zFKgIFIevY5YdQIU4PN156CTo2t5evTes0q1JgWkmarnG
-         HGCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730949810; x=1731554610;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mW6FFSBTEVZu0HRd5LnYlhO4N7G7lPxJ4XP+X7YSnjQ=;
-        b=ML8WkIYuHJTRxk6SQwPI0ervR9hnsyUcYFExrFCgYFyatUzFAeq1duCYL8Ea99PiHp
-         8eh4DmN6ONeHiGCvkubj/Ps6N2pybs5fByFV1B/bmVvSruTfg2x44VUI+/76aQKqS6n/
-         3oKWvW3/ucRHbdOAK/jmmz500/wYcBco4umdk1ss/bSprwtlOYa3f6EFM41WtUpzXehK
-         /NJ2vAbv2VZ9kHKlaqCIyAcYzjKRi2VLK8xN+lWxygX34jEVlQXM3s0nuKW/C7/J9Hq7
-         PIKRCGjaJstB8gZnqPAhHrXYgYPZH1cX/t0kg5D159EQPiY+O+qbFLOobJ9xKtpRnsxh
-         4YgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUIn54hjwhdMOjX3sAcJoNrGaUUoaKJ7GVALNrcK46yI+RRg27lYG8fHjZ0evmd6gUJ79jxP0CiFdvLOOI0@vger.kernel.org, AJvYcCWULRI8Q58dmrEcr2TgGGTEmKfSHLtTjWbhrGMX6U0PyfZkQzw9sc67VznOvM/EL1T1vMZrSMsA3UraMoA=@vger.kernel.org, AJvYcCXnpwvHUtjCmE2vAwMzM+kUSYrbnvaM/Wdi4j4vmBXAeSSM0vLCedYqTukGeM9Ne3lMkDkYWvZhS29V@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQImDIN0TsjaD69+8GX9zcIJEu+G9ADDuGQIVPS3rVkPUssFAx
-	2mou7e34hlZheVl4BDSNDeBa52/domHizFaQeDTib2ZzdBXaY/Zt
-X-Google-Smtp-Source: AGHT+IEcemfgbEWs6tmtNw848/UFNwJTUBFuFXhQfXgm7zPqrE9iXo+PVztggOrMR6fvdZKrQY95AA==
-X-Received: by 2002:a17:902:fc46:b0:207:1708:734c with SMTP id d9443c01a7336-211785eb91emr6055885ad.11.1730949809793;
-        Wed, 06 Nov 2024 19:23:29 -0800 (PST)
-Received: from ux-UP-WHL01.. (mailgw01.gttektw.com. [45.117.96.243])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177dde2f7sm2227485ad.77.2024.11.06.19.23.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Nov 2024 19:23:29 -0800 (PST)
-From: Charles Wang <charles.goodix@gmail.com>
-To: krzk@kernel.org,
-	hbarnor@chromium.org,
-	dianders@chromium.org,
-	conor.dooley@microchip.com
-Cc: dmitry.torokhov@gmail.com,
-	jikos@kernel.org,
-	bentiss@kernel.org,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Charles Wang <charles.goodix@gmail.com>
-Subject: [PATCH v2] dt-bindings: input: Goodix SPI HID Touchscreen
-Date: Thu,  7 Nov 2024 11:23:13 +0800
-Message-ID: <20241107032313.64390-1-charles.goodix@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1730952924; c=relaxed/simple;
+	bh=SiPaqL+BmeOd+7FyFcnJgWc3ggue09Sw8p1+SLXG/JU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=p8NE1uoX/ItHpRPj9jcojg9hGDN6nC5uaxyl1Qb70FBqMp6I0PfRYieg2CrpvMmu7gnd6Egh6miyirWXpj/9Lufz0+KIi2tMtB1wtFIlPFfcDeczKgrVnEVPgd76w897KrEKxdLqdy8qhyfF+pu2LkFDLdhditSKjdjNUsPzB5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Vu5bxE0A; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20241107041512epoutp021fd98bf4d12ae035a9c47c3f23d83aff~FlIDLT1i11265012650epoutp029
+	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 04:15:12 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20241107041512epoutp021fd98bf4d12ae035a9c47c3f23d83aff~FlIDLT1i11265012650epoutp029
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1730952912;
+	bh=ZnbRqmEV1gtYIYxvir7XRo+fymtToxWX3JyVjsq//eI=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=Vu5bxE0AEjgpEKwNnuDMj3E//kCi3uHqJjg34bEAPOFVdK7sTvYdFE5pzZRZuPN1J
+	 oB/VVh8lG1RB5uL4sm4CcP7Z74e4REnNnddRQTWiOzlWgpIn/m4L18rnH/ItZzvPdI
+	 3EZ2UMXxcnuwlLI5DKJChj7dAi+dEAMVjzPhPprg=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20241107041512epcas2p160a7a279f07e2c115de95bee2ca07d45~FlICszDrX1077410774epcas2p1B;
+	Thu,  7 Nov 2024 04:15:12 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.101]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4XkTHz1JJBz4x9Q2; Thu,  7 Nov
+	2024 04:15:11 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+	epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+	A9.D9.09776.FCE3C276; Thu,  7 Nov 2024 13:15:11 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+	20241107041510epcas2p28a5506042eeca912da5b665a04c3a6f0~FlIBefeMC0980409804epcas2p2c;
+	Thu,  7 Nov 2024 04:15:10 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20241107041510epsmtrp255e89777f10f1d6af0ed3ff3cee9118a~FlIBdr45r2957029570epsmtrp2N;
+	Thu,  7 Nov 2024 04:15:10 +0000 (GMT)
+X-AuditID: b6c32a47-d53fa70000002630-24-672c3ecf44f2
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	A3.DF.35203.ECE3C276; Thu,  7 Nov 2024 13:15:10 +0900 (KST)
+Received: from asswp146.dsn.sec.samsung.com (unknown [10.229.19.146]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20241107041510epsmtip246f6e995016448fdb6742e05465d4422~FlIBMeNXk1198011980epsmtip2y;
+	Thu,  7 Nov 2024 04:15:10 +0000 (GMT)
+From: Sowon Na <sowon.na@samsung.com>
+To: robh@kernel.org, krzk@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
+	alim.akhtar@samsung.com, kishon@kernel.org
+Cc: krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	sowon.na@samsung.com
+Subject: [PATCH 0/3] Support exynosautov920 ufs phy driver
+Date: Thu,  7 Nov 2024 13:15:01 +0900
+Message-ID: <20241107041509.824457-1-sowon.na@samsung.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,96 +85,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpjk+LIzCtJLcpLzFFi42LZdljTXPe8nU66wdvT7BYP5m1js1iz9xyT
+	xfwj51gtjrb+Z7Z4Oesem8X58xvYLS7vmsNmMeP8PiaL/3t2sFv8/nmIyWLnnRPMDtwem1Z1
+	snn0bVnF6PF5k1wAc1S2TUZqYkpqkUJqXnJ+SmZeuq2Sd3C8c7ypmYGhrqGlhbmSQl5ibqqt
+	kotPgK5bZg7QQUoKZYk5pUChgMTiYiV9O5ui/NKSVIWM/OISW6XUgpScAvMCveLE3OLSvHS9
+	vNQSK0MDAyNToMKE7Ix1HXuYCvrZKpa9m8TewPiCpYuRk0NCwESieelDxi5GLg4hgR2MEicP
+	vWKDcD4xShz6dZEFwvnGKPFo4yX2LkYOsJZnndoQ8b2MEhPuH4Zq/8UoMXHvHCaQIjYBVYlr
+	DVUgpohApcTcZc4gJcwCvYwS/XfWgq0WFrCSuDb5GzOIzQJUvvL9P3YQmxcovufSGWaI8+Ql
+	Lq55zgYRF5Q4OfMJWC8zULx562yomnvsEuc+ukDYLhI3bl2Eek1Y4tXxLewQtpTE53d72SDs
+	fIn1D+9C2RUSdw/9h6q3l1h05ifYj8wCmhLrd+lDvKssceQW1FY+iY7Df6GhwCvR0SYE0agk
+	0XEe5G8QW0Ji1YvJUMM9JGZt+Q52pJBArET//bVMExjlZyH5ZRaSX2Yh7F3AyLyKUSy1oDg3
+	PbXYqMAYHqPJ+bmbGMEJUst9B+OMtx/0DjEycTAeYpTgYFYS4fWP0k4X4k1JrKxKLcqPLyrN
+	SS0+xGgKDN2JzFKiyfnAFJ1XEm9oYmlgYmZmaG5kamCuJM57r3VuipBAemJJanZqakFqEUwf
+	EwenVAOT672E2zHSm5/MW/1u5ux/E7tlNu9/MVtf6mfPU2P1I3u/bo57wctva8nxUHz9v+pd
+	s98taP+8IVzi9225tKodvKrVT6N9mP4IyCqo6K49GJWXGKDOu+/hxW1Mpwqmrtx36eMSh2sL
+	tjW6WHncstMP26nYN7P/gIK8+cLjx8Pry9K9/Sq2Cby4FcK6idVj4fwpUYWnAnUuTpEyikh8
+	Uvi/7SHblc6761ZOZi5686Y+5O+7OsEjK5IUAoUzO9fE6TB/ab1RdiOZY9KX5Qc5Is9f+KbF
+	4/L396vpL46Zc7vdVa4LzFr1QVPvYO5Ru+vdxRGHuw4vEj3292dg5N/L4elzdLWzlNOu8m0v
+	r1S7fGUHjxJLcUaioRZzUXEiACb0YxgZBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJLMWRmVeSWpSXmKPExsWy7bCSvO45O510g+lztS0ezNvGZrFm7zkm
+	i/lHzrFaHG39z2zxctY9Novz5zewW1zeNYfNYsb5fUwW//fsYLf4/fMQk8XOOyeYHbg9Nq3q
+	ZPPo27KK0ePzJrkA5igum5TUnMyy1CJ9uwSujHUde5gK+tkqlr2bxN7A+IKli5GDQ0LAROJZ
+	p3YXIxeHkMBuRolPh/cxdTFyAsUlJL692QNlC0vcbznCClH0g1Fid1c3K0gzm4CqxLWGKpC4
+	iEAjo8TzD5OZQRxmgYmMEufnHWEH6RYWsJK4NvkbM4jNAtSw8v0/sDgvUHzPpTPMEBvkJS6u
+	ec4GEReUODnzCQuIzQwUb946m3kCI98sJKlZSFILGJlWMUqmFhTnpucWGxYY5qWW6xUn5haX
+	5qXrJefnbmIEh66W5g7G7as+6B1iZOJgPMQowcGsJMLrH6WdLsSbklhZlVqUH19UmpNafIhR
+	moNFSZxX/EVvipBAemJJanZqakFqEUyWiYNTqoFpSsbKLWmPDNj2+t5wV924Lo+ZQ1Y6gOOF
+	xoqacI5ulbVep34KFh3qt5OUcy1Wddec2Peqx1aXZ+YZ+xtOhzR+/ePc9odhpnxte1/v/JsR
+	Wj7cJiIeCSsnebvxO8+WXabTMDfP049D+rd7x/viCc5C253lHf6L8j23+3vEO+Dbb0W5POPE
+	GTN7Z5cePxZwZd1sOf7crvN8MuvZL7tfaXzo3PH3lFKl9avfP44UKv592f3e2u/sZo0jRQlc
+	1nW8VUrFLHyOq/lYrWatqPY9sOC3WOmM/B9Bhoc/X479Pd1y6rN7DzOeNs/8nT5r1/JTFQHL
+	tLv+F53eUFIdfeq7WM17p7zr5/V44kqX8f7+FazEUpyRaKjFXFScCADUHDMqzAIAAA==
+X-CMS-MailID: 20241107041510epcas2p28a5506042eeca912da5b665a04c3a6f0
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20241107041510epcas2p28a5506042eeca912da5b665a04c3a6f0
+References: <CGME20241107041510epcas2p28a5506042eeca912da5b665a04c3a6f0@epcas2p2.samsung.com>
 
-The Goodix GT7986U touch controller report touch data according to the
-HID protocol through the SPI bus. However, it is incompatible with
-Microsoft's HID-over-SPI protocol.
+This patchset introduces ExynosAuto v920 SoC ufs phy driver as
+Generic PHY driver framework.
 
-Signed-off-by: Charles Wang <charles.goodix@gmail.com>
----
-Changes in v2:
-- Change compatible to 'goodix,gt7986u-spifw'.
-- Remove 'goodix,hid-report-addr' property.
-- Change additionalProperties to unevaluatedProperties.
-- v1: https://lore.kernel.org/all/20241025114642.40793-2-charles.goodix@gmail.com/
----
- .../bindings/input/goodix,gt7986u.yaml        | 66 +++++++++++++++++++
- 1 file changed, 66 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
+Sowon Na (3):
+  dt-bindings: phy: Add ExynosAutov920 UFS PHY bindings
+  phy: samsung-ufs: support exynosauto ufs phy driver
+  arm64: dts: exynosautov920: add ufs phy for exynosautov920 SoC
 
-diff --git a/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
-new file mode 100644
-index 000000000..b7afa21fb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/goodix,gt7986u.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Goodix GT7986U SPI HID Touchscreen
-+
-+maintainers:
-+  - Charles Wang <charles.goodix@gmail.com>
-+
-+description: Supports the Goodix GT7986U touchscreen.
-+  This touch controller reports data packaged according to the HID protocol
-+  over the SPI bus, but it is incompatible with Microsoft's HID-over-SPI protocol.
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+properties:
-+  compatible:
-+    description:
-+      Add the 'spifw' suffix to distinguish it from the general GT7986U I2C-HID
-+      touchscreen, as it runs a substantially different firmware than GT7986U
-+      I2C-HID touchscreens.
-+    enum:
-+      - goodix,gt7986u-spifw
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  spi-max-frequency: true
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - reset-gpios
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      touchscreen@0 {
-+        compatible = "goodix,gt7986u-spifw";
-+        reg = <0>;
-+        interrupt-parent = <&gpio>;
-+        interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
-+        reset-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-+        spi-max-frequency = <10000000>;
-+      };
-+    };
-+
-+...
+ .../bindings/phy/samsung,ufs-phy.yaml         |   1 +
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi |  11 ++
+ drivers/phy/samsung/Makefile                  |   1 +
+ drivers/phy/samsung/phy-exynosautov920-ufs.c  | 159 ++++++++++++++++++
+ drivers/phy/samsung/phy-samsung-ufs.c         |   9 +-
+ drivers/phy/samsung/phy-samsung-ufs.h         |   4 +
+ 6 files changed, 182 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/phy/samsung/phy-exynosautov920-ufs.c
+
 -- 
-2.43.0
+2.45.2
 
 
