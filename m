@@ -1,59 +1,58 @@
-Return-Path: <devicetree+bounces-119805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 517999C0286
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:39:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84F789C0292
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:40:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 162A92842FF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:39:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEEFAB2154C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:40:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F279A1EE011;
-	Thu,  7 Nov 2024 10:38:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1971EF0A7;
+	Thu,  7 Nov 2024 10:40:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vdVvd2Sa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VADCOzFP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E19601E906B;
-	Thu,  7 Nov 2024 10:38:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5101E1325;
+	Thu,  7 Nov 2024 10:40:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730975938; cv=none; b=bCpJpc/Ju6DSIv7pR3b8StlKBFK7ZuPN13Xz+Mb72qic8X34ovSsW9VwDOXBRbYcL9f/l5JIuAWiPGbcZ8EsWSWuJATHXS8TzgU7Lbu3nr5ZRcESH7P8xjSFnPKM/x6pI/zrEHbBVZsSx8JaLnFkM+xSjp3f3j9NcraoSc8IfzA=
+	t=1730976022; cv=none; b=UwcfvW3pudKjDOBt3W9ANpO71bWMuTdGDpTbv6pfl2t8s2l53Bv16OTeMmhlzm94QMmRPi4cXR76cBkdhl9UUHX20AWvUq7XVv5w/z+7kCFJxPkMARqwHZYXT2StYe/dgxLnveelaRxQJf2ftGNH6f7GEMj31KbAttRMtgTC5Jc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730975938; c=relaxed/simple;
-	bh=9JXJLE2UCZqL9f5A5UEMnMSs0QQUpXkttzmtdtPCASs=;
+	s=arc-20240116; t=1730976022; c=relaxed/simple;
+	bh=VRa2mI7dVpDSpKy9Wwljp/gFO/T3/KSxHI247WS5TrU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GLe1Zki9ZnIWukKDO6CPfX62KqckAWbiratsD5Snn2w1SCNPDF3Dwp+YjUyignLYE1/jLgtMokbcQgK92ADIuk+uX+t/6ZWdrmSTwlpPA9aIgc3sS8pdRqeck/pacDP9DC/TjLAzetesa29YiBVAmbj77nVr+HTktkQcOx1DCcM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=vdVvd2Sa; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 254EB5B3;
-	Thu,  7 Nov 2024 11:38:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1730975920;
-	bh=9JXJLE2UCZqL9f5A5UEMnMSs0QQUpXkttzmtdtPCASs=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=DFc1rrZPT2mCcX9eH0E+r8zi3D7y1ECE3bAY8Ksjzg+jzoXz5MoBvMWlYorwDexrviHdVBe2p5cSfh8GlEOLCO2HsZ2g9mx4bG0jdDNRDEwKV38kuz3KAfOC1OB45nC2Mk1rQjc5RLWO4N3b2Tda1BxZJY7Su1rqGmTJ6r4/gGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VADCOzFP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DC7EC4CECC;
+	Thu,  7 Nov 2024 10:40:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730976022;
+	bh=VRa2mI7dVpDSpKy9Wwljp/gFO/T3/KSxHI247WS5TrU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vdVvd2Sao3MO61mi8VFuGklTDTfku19NW3PET1gujfcR0eLhvP2sqqBa0YtEeODZI
-	 vU++EdUtkHy3XJcERVNfhuUc/PEYHEudJ2ONUH7qPvna9x9IvYufspsGIJ5A8lZTEC
-	 vv2wRvVn1BPXo/HAh9Afl0pOpTwjEPETSTzEQ0lc=
-Date: Thu, 7 Nov 2024 11:38:45 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: keke.li@amlogic.com
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kieran.bingham@ideasonboard.com, 
-	laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com
-Subject: Re: [PATCH v3 8/9] Documentation: media: add documentation file
- metafmt-c3-isp.rst
-Message-ID: <fabf3avbsswq5wx2f2nvyqjny6ps3y2am3ordfffkv7tqwndns@ypix6ms6conb>
-References: <20240918-c3isp-v3-0-f774a39e6774@amlogic.com>
- <20240918-c3isp-v3-8-f774a39e6774@amlogic.com>
+	b=VADCOzFPpJ4Ika22a9Ctfw75oRTQdgYokAlAjZd7OPy2rtj96ZMEvXjBocKAby9Sj
+	 LNDIf1+TNqRu9rzfDXyfZGArMqnzr5eD29925xfyx2xbKcm1+kFHQQz1ULdYqt5IUi
+	 xzXk2O8tgvikkGJnkUJbf00OfoN5fMdTuOf01iVZaCBCRakNRvw1zzcsdB8pdbrSFx
+	 /zSVDyHU/BRFTb1/BtXuJi1e3AR6GVVUZfpsNTmpnOpDoosHtpr3fOVmKHIiYfMdBZ
+	 K80KZOxtyfYqsQtuLxFCIbVIm5W1Xurj/6Vws6p7gBL/LO8dDcVGrfaTQ8e9Uik1Nn
+	 rQGnyoryKt0Eg==
+Date: Thu, 7 Nov 2024 11:40:16 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: clock: actions,owl-cmu: convert to YAML
+Message-ID: <4kmt23n5v5ppqf3sc5bdag76r7vxsnryazh5xytfevt25c3wrq@ptnk5wpb67ol>
+References: <20241106153141.375389-1-ivo.ivanov.ivanov1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,98 +61,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240918-c3isp-v3-8-f774a39e6774@amlogic.com>
+In-Reply-To: <20241106153141.375389-1-ivo.ivanov.ivanov1@gmail.com>
 
-Hi Keke
-
-On Wed, Sep 18, 2024 at 02:07:19PM +0800, Keke Li via B4 Relay wrote:
-> From: Keke Li <keke.li@amlogic.com>
->
-> Add the file 'metafmt-c3-isp.rst' that documents
-> the meta format of c3-isp.
-
-Do not break lines too early!
-
->
-> Signed-off-by: Keke Li <keke.li@amlogic.com>
+On Wed, Nov 06, 2024 at 05:31:41PM +0200, Ivaylo Ivanov wrote:
+> Convert the Actions Semi Owl CMU bindings to DT schema.
+> 
+> Changes during conversion:
+>  - Since all Actions Semi Owl SoCs utilize the internal low frequency
+>    oscillator as a parent for some clocks, require it.
+> 
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
 > ---
->  .../userspace-api/media/v4l/meta-formats.rst       |  1 +
->  .../userspace-api/media/v4l/metafmt-c3-isp.rst     | 39 ++++++++++++++++++++++
->  2 files changed, 40 insertions(+)
->
-> diff --git a/Documentation/userspace-api/media/v4l/meta-formats.rst b/Documentation/userspace-api/media/v4l/meta-formats.rst
-> index c6e56b5888bc..3a420747f6e7 100644
-> --- a/Documentation/userspace-api/media/v4l/meta-formats.rst
-> +++ b/Documentation/userspace-api/media/v4l/meta-formats.rst
-> @@ -12,6 +12,7 @@ These formats are used for the :ref:`metadata` interface only.
->  .. toctree::
->      :maxdepth: 1
->
-> +    metafmt-c3-isp
->      metafmt-d4xx
->      metafmt-generic
->      metafmt-intel-ipu3
-> diff --git a/Documentation/userspace-api/media/v4l/metafmt-c3-isp.rst b/Documentation/userspace-api/media/v4l/metafmt-c3-isp.rst
-> new file mode 100644
-> index 000000000000..bbaf3542c1ca
-> --- /dev/null
-> +++ b/Documentation/userspace-api/media/v4l/metafmt-c3-isp.rst
-> @@ -0,0 +1,39 @@
-> +.. SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-> +
-> +.. _v4l2-meta-fmt-c3isp-stats:
-> +.. _v4l2-meta-fmt-c3isp-params:
-> +
-> +***********************************************************************
-> +V4L2_META_FMT_C3ISP_STATS ('CSTS'), V4L2_META_FMT_C3ISP_PARAMS ('CPRM')
-> +***********************************************************************
-> +
-> +.. c3_isp_stats_info
+> v2: drop address and size cells from example
 
-This does not seem to be used
+...
+
+> +description: |
+> +  The Actions Semi Owl Clock Management Unit generates and supplies clock
+> +  to various controllers within the SoC.
+> +
+> +  All available clocks are defined as preprocessor macros in
+> +  include/dt-bindings/clock/ headers.
+
+You could list the headers. Otherwise it is pretty obvious and could be
+skipped.
 
 > +
-> +3A statistics
-> +=============
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - actions,s500-cmu
+> +      - actions,s700-cmu
+> +      - actions,s900-cmu
 > +
-> +The C3 ISP can collect different statistics over an input Bayer frame.
-> +Those statistics are obtained from the "isp-stats" metadata capture video nodes,
-> +using the :c:type:`v4l2_meta_format` interface.
-> +They are formatted as described by the :c:type:`c3_isp_stats_info` structure.
+> +  clocks:
+> +    items:
+> +      - description: Host oscillator source
+> +      - description: Internal low frequency oscillator source
 > +
-> +The statistics collected are  Auto-white balance,
-> +Auto-exposure and Auto-focus information.
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#clock-cells"
 
-Do not break lines too early
+In the future: please keep the same order of items here in required: as
+in properties:. No need to resend just for that... but:
 
-> +
-> +.. c3_isp_params_buffer
+The clocks property were required in the old binding.
 
-Unsued as well ?
 
+> +  - "#reset-cells"
 > +
-> +Pipeline parameters
-> +===================
+> +additionalProperties: false
 > +
-> +The pipeline parameters are passed to the "isp-params" metadata
-> +output video nodes, using the :c:type:`v4l2_meta_format` interface. They are
-> +formatted as described by the :c:type:`c3_isp_params_buffer` structure.
-> +
-> +The structure c3_isp_params_buffer includes the necessary parameters
-> +required by the ISP.
-> +These parameters are written to the ISP hardware.
-> +
-> +Amlogic C3 ISP uAPI data types
-> +===============================
+> +examples:
+> +  - |
+> +    cmu: clock-controller@e0160000 {
 
-Additional = at the end
+Drop unused label 'cmu'
 
-> +
-> +.. kernel-doc:: drivers/media/platform/amlogic/c3-isp/include/uapi/c3-isp-config.h
->
-> --
-> 2.46.1
->
->
->
+Best regards,
+Krzysztof
+
 
