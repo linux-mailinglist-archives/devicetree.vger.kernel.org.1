@@ -1,85 +1,152 @@
-Return-Path: <devicetree+bounces-119840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A487D9C043A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 12:37:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2DF9C043E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 12:37:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33BF2B24013
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:36:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8041C284297
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:37:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23AD820C48D;
-	Thu,  7 Nov 2024 11:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D365820CCEA;
+	Thu,  7 Nov 2024 11:36:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b="Natq8Mpc"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sNqKVIz1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B933220C483;
-	Thu,  7 Nov 2024 11:36:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAFFE20B203;
+	Thu,  7 Nov 2024 11:36:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730979365; cv=none; b=cdAT8h1YUq9axjn0mhan8JS/C63qBXu04OOUk7EdvtcsdQvyZM2GD4lZ9UAF3cRMwrl1b9ftVlcsZE1KZQadQjo2xsx6ieu4C1CCMJYEF5jsiWwwx3qElkA9PE8y1m1sFAW1eiixqZoXtyJP9d4D9KLjuyM6IruC7viDUKA04u0=
+	t=1730979392; cv=none; b=itReK8ThBBY3PDX70FSOhfOokjq5pqyWrCDrDlYCLgtFSsKluNtW1cQYrewZEKx3wsvTSsuif7iJNEJhyL/+GYh5b+ailEAJoDjya/i42JfCDH3tEEeNIEfpE1Yr5++LcZQ1qAhHNpY+dhVGSiHlSvPoyTF1y1u86TVPuVJ6W5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730979365; c=relaxed/simple;
-	bh=Qu3sLBuA2l/huyDUtQbZTBU6aoM9vYd0HPB2dAFL//0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=ViEy5ccXfws94WQwXesZYGEXTz87mJC3dgSlUq2Szxbk4fcTOKSJcKQSH7sMThSUS9yh5/AsL22byvIQz/Kcwt7/sWkSvm/0EzJjbZwgC5pAM+waEMsgCFfAYBpgoKuZ7sxczp3YN9YPH4qe763/bl81BtMbYK2sCsuISRHN1ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au; spf=pass smtp.mailfrom=ellerman.id.au; dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b=Natq8Mpc; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ellerman.id.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
-	s=201909; t=1730979357;
-	bh=Qu3sLBuA2l/huyDUtQbZTBU6aoM9vYd0HPB2dAFL//0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=Natq8MpcvRLo8792rq10uzgXADLxKDmvQR4WmIHLsNxlKVbDwwFth3TYqjZr4rF4f
-	 gbBSMOgDumUl8QS5BAsImk31g+X1EIm7PcQ7W1hQf3D5i/bZWR0wEiH1qNLjHIOD89
-	 sb6MEmnQXSOUhDinrRe0qAMVoeR7Mbf+mqXGn2upl0UP93H8E36bVAS9UNDw8U6ykS
-	 7lLZyEqWobbNGobltBU3x358guCheZHNAlhYLEq4lLNDuOhDlRvYYGhVneQWCbEkVV
-	 LIxlox5M6HKta8CaHTeKnEy0FEzFicWDFg4P1t2Mcs0P4mN32rBKNBEKLHNWb1UWw8
-	 tCwLk+K4i2zeg==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by mail.ozlabs.org (Postfix) with ESMTPSA id 4Xkg4Y5S1pz4x1w;
-	Thu,  7 Nov 2024 22:35:57 +1100 (AEDT)
-From: Michael Ellerman <mpe@ellerman.id.au>
-To: "Rob Herring (Arm)" <robh@kernel.org>, Saravana Kannan
- <saravanak@google.com>
-Cc: linuxppc-dev@lists.ozlabs.org, Conor Dooley <conor@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] of: WARN on deprecated #address-cells/#size-cells
- handling
-In-Reply-To: <20241106171028.3830266-1-robh@kernel.org>
-References: <20241106171028.3830266-1-robh@kernel.org>
-Date: Thu, 07 Nov 2024 22:35:58 +1100
-Message-ID: <87jzdfcm3l.fsf@mpe.ellerman.id.au>
+	s=arc-20240116; t=1730979392; c=relaxed/simple;
+	bh=GF5AHixkReSD2riGo0l+2r0QMuQOilOzP0GE3uMYLrM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TsLQdq4ren8921765jSFSHNUzNugEt5yMmblDf4JvuDAK6rgTnqka9/EnpknCMe5f/FXp5H0N9Xo8Nl8t2piwKYDS8PNc9sZbzcmm4daBJ7BJ7GkXe/jvl6YejadfxGfqSquk7vDiweh60E0znPBD7UuE6ET5Zkip3ixZTuNDi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sNqKVIz1; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4A7BaNBO055275;
+	Thu, 7 Nov 2024 05:36:23 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1730979383;
+	bh=9Cj5IJyE4rxnvpPnUVWzeAgGlJZVWNKjg29ev+YTrS4=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=sNqKVIz1kynTrYCn4I4kYfNdF+KHUn7D5shoJY3gcOTfkv7UpvVyi9E6IsNgMHsqG
+	 rHMaevWTfglj6qzCq8rNQ72Q4WzeA0IXCyalp3mcZe2dh/nAksRNQsqsBbQvPzTOBw
+	 MRyVH2/F+uwEnSb+ANukU25FTGm+ltWxJKyI8scI=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4A7BaNkZ076465
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 7 Nov 2024 05:36:23 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 7
+ Nov 2024 05:36:23 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 7 Nov 2024 05:36:23 -0600
+Received: from [10.24.69.25] (danish-tpc.dhcp.ti.com [10.24.69.25])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4A7BaISi092269;
+	Thu, 7 Nov 2024 05:36:19 -0600
+Message-ID: <8156fd61-c476-4b58-b3b2-e8bc4f93035e@ti.com>
+Date: Thu, 7 Nov 2024 17:06:18 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: Add clocks for ICSSG
+To: Krzysztof Kozlowski <krzk@kernel.org>, <conor+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>, <ssantosh@kernel.org>,
+        <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>, <kristo@kernel.org>,
+        <srk@ti.com>, Roger Quadros <rogerq@kernel.org>
+References: <20241107104557.1442800-1-danishanwar@ti.com>
+ <20241107104557.1442800-2-danishanwar@ti.com>
+ <7f0a73c3-9977-4d07-b996-683ed18e4724@kernel.org>
+Content-Language: en-US
+From: MD Danish Anwar <danishanwar@ti.com>
+In-Reply-To: <7f0a73c3-9977-4d07-b996-683ed18e4724@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-"Rob Herring (Arm)" <robh@kernel.org> writes:
-> While OpenFirmware originally allowed walking parent nodes and default
-> root values for #address-cells and #size-cells, FDT has long required
-> explicit values. It's been a warning in dtc for the root node since the
-> beginning (2005) and for any parent node since 2007. Of course, not all
-> FDT uses dtc, but that should be the majority by far. The various
-> extracted OF devicetrees I have dating back to the 1990s (various
-> PowerMac, OLPC, PASemi Nemo) all have explicit root node properties.
 
-I have various old device trees that have been given to me over the
-years, and as far as I can tell they all have these properties (some of
-them are partial trees so it's hard to be 100% sure).
 
-So LGTM.
+On 07/11/24 5:01 pm, Krzysztof Kozlowski wrote:
+> On 07/11/2024 11:45, MD Danish Anwar wrote:
+>> Add clocks, assigned-clocks and assigned-clock-parents for ICSSG
+> 
+> Why? We see what you are doing from the diff, no point to repeat it. I
+> don't understand why you are doing it.
+> 
+>>
+>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>> ---
+>>  .../devicetree/bindings/soc/ti/ti,pruss.yaml          | 11 +++++++++++
+>>  1 file changed, 11 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>> index 3cb1471cc6b6..cf4c5884d8be 100644
+>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>> @@ -92,6 +92,17 @@ properties:
+>>      description: |
+>>        This property is as per sci-pm-domain.txt.
+>>  
+>> +  clocks:
+>> +    items:
+>> +      - description: ICSSG_CORE Clock
+>> +      - description: ICSSG_ICLK Clock
+>> +
+>> +  assigned-clocks:
+>> +    maxItems: 1
+>> +
+>> +  assigned-clock-parents:
+>> +    maxItems: 1
+> 
+> Why? This is really not needed, so you need to explain why you are doing
+> things differently than entire Linux kernel / DT bindings.
+> 
 
-cheers
+I need to add this to the device tree node
+
++		clocks = <&k3_clks 81 0>,  /* icssg0_core_clk */
++			 <&k3_clks 81 20>; /* icssg0_iclk */
++		assigned-clocks = <&k3_clks 81 0>;
++		assigned-clock-parents = <&k3_clks 81 2>;
+
+But without the above change in the binding I am getting below errors
+while running dtbs check.
+
+/workdir/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: icssg@30000000:
+'assigned-clock-parents', 'assigned-clocks' do not match any of the
+regexes: '^(pru|rtu|txpru)@[0-9a-f]+$', '^pa-stats@[a-f0-9]+$',
+'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$', 'interrupt-controller@[a-f0-9]+$',
+'mdio@[a-f0-9]+$', 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$',
+'mii-rt@[a-f0-9]+$', 'pinctrl-[0-9]+'
++/workdir/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: icssg@30080000:
+'anyOf' conditional failed, one must be fixed:
+
+To fix this warning I added these in the binding and the warnings were
+fixed.
+
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+Thanks and Regards,
+Danish
 
