@@ -1,115 +1,126 @@
-Return-Path: <devicetree+bounces-119882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EF3C9C05F3
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 13:38:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D0D89C0608
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 13:42:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B70491F21393
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 12:38:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61C8E2844B6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 12:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8728E20EA26;
-	Thu,  7 Nov 2024 12:38:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 135AB20F5BC;
+	Thu,  7 Nov 2024 12:42:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="R9HyUJpL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fDuW0tWu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8045F20C474;
-	Thu,  7 Nov 2024 12:38:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81DCD20EA5F;
+	Thu,  7 Nov 2024 12:42:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730983104; cv=none; b=Ko0fl20lUZ3gAXY7suwdThc0745RjTK7/9MhDKko+e3GYe8z9E4B/SPcaapdAcXPsidBeUV4K0eYg/eXD8At4uuvDUeEagWIc7M2KDxpxX0KJ5aNP4M4eRoEEdDswVRM3x2mkRHIomU92Uja7xQjBD8EkvK/r0oa4umXK3/r62c=
+	t=1730983343; cv=none; b=LY7Mtz3gpkQizElSTH3dJaij4LmmtUU60y8n3c4nUp7vTrMcdS9/0aaRhpqtQFp+ok6p1p1d9xy1FJWrqEsXkvDacdePRFo43nUWAaR6ZdGUo3W8tRkTvhPlAnNcudzOH/a1UltO8LyNCzZdqtUPsqU/XxZFq7WWHgXNVuvGXDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730983104; c=relaxed/simple;
-	bh=vFiERqnygHn3dr9TR3qxLRfo6JZ2UddHPaEnWrTKUfk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mbs3WgXCa1k4bBLR6z68lv3U9afFN8Vxf9B3Y/Uun+4eST2+vpbSVosDmUbdjddmvYP4yR5ZkbhlqUTfhd9Pzly40vMOrhUJGpykesNhcYT17a1oPbU/DcJ8/gCBSwAJgyHFmbX6JG2kqhPA/W40VYvmFYnVtpp4wnFOTqXjZcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=R9HyUJpL; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 46DEA24000C;
-	Thu,  7 Nov 2024 12:38:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1730983093;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Tyx5a0QDkKjhE4rESQdw3bFYGMukiTeG8k9jhLmbkS8=;
-	b=R9HyUJpLWhc1mwO9J/AUA9d2qLiwIC3vp7jozhc3KUsJ/8YpKDLC+L9Afk5bG7CO83Oz2Y
-	P+ti95xNATjZ0+7tIL1Y3aHaYT0bavvMvg4WvYHkYjISbl0K5iQENtzyHdbdSR8F4ZrmJ+
-	a5hwXpFz5XNcSNOfrAfPtb47k3liaadkbC4aswhhUVmoov0w9f7ZQVsPTvz8SpOVo2IYia
-	ka3zUBot18dhUbV4IzX1Zvdrr6MtlvHybwIkc6w6Km5QrR1zsfOJW4W8PGzh1Rlt/iWZUr
-	ZOY9m7/LxmN8uRwQ3n+9yVk6iI3XYCju+0Hlme+QDoa0wsmJw8tJQ9KZvZm8fg==
-Date: Thu, 7 Nov 2024 13:38:11 +0100
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: <andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
- <kuba@kernel.org>, <pabeni@redhat.com>, <robh@kernel.org>,
- <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <p.zabel@pengutronix.de>,
- <ratbert@faraday-tech.com>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [net-next 3/3] net: ftgmac100: Support for AST2700
-Message-ID: <20241107133811.3109d98a@fedora.home>
-In-Reply-To: <20241107111500.4066517-4-jacky_chou@aspeedtech.com>
-References: <20241107111500.4066517-1-jacky_chou@aspeedtech.com>
-	<20241107111500.4066517-4-jacky_chou@aspeedtech.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1730983343; c=relaxed/simple;
+	bh=fDEBLfyJb9nAn3ipO12nV6wnAto2tMxREdWJ9q5mc7U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fDbKjW0vYLgp/vLHhvy99ayWGMpdT8T6Nk2zdqjhygxHTrZ+Y8KHBNfljuR4A4kjNUQEu0NbHRHO//9AZa8sdEDd8AURWMPiN6KAIOoCVI59n+xGDUW8KUmrDc+hiSo5kIK4w8tKFju/jxzsNf0SYNeyGlubwckyR6mogpg06gE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fDuW0tWu; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-20c803787abso7972715ad.0;
+        Thu, 07 Nov 2024 04:42:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730983341; x=1731588141; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=youLRMmo0sKknJq3kY6wxMpo14aMmgxOgYUVVaBBx1Q=;
+        b=fDuW0tWuuZSkZjxzCNe2e1a5SasvQEFu1XrDBPP0kOqJchKfMX9lD37XYaZMF8606i
+         OUgm+XUfsAlKCdoHKRPUfATzJe+GVOt5tJeWFljr/yz2Fo6Bhf3KwkLPAuY84eGc+skI
+         g53SsNJWeGNVTKWmrXLua+/4hrOASOuZbdoe6SpwKxMtt1WNNUGdUIwHH/DQMNYSiGqF
+         wMd5y3pkF3EEiEmWG/IC3aNulif1iqTI7eKnjCD1ID0IlSjnNwJNTG4AsFWzMRabpCew
+         AHsrZyDlRlS7UmyiTlK2/IZvWUdC3waDffB6/1avfByaWiLVTeL1BBYMBHgqO73qV8xm
+         DY8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730983341; x=1731588141;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=youLRMmo0sKknJq3kY6wxMpo14aMmgxOgYUVVaBBx1Q=;
+        b=fFQmnXhL1tGqq+5SgPxmMWsyAfcRXuG/2UirHTEENiYhrEBGw86Vzfk07JoRbNKxuC
+         04CBNj0BYVfe6Dtg4//g5btuuiLpJO9Fcpx4Zke4VjMPBiie3PhVG2F7Tw+8Ov/ivQTR
+         aXw5P4MWDT4w7vedLFmXiWqHorz3j+ys3dFbILyF8uoIpv1ACJKUuZFCXacwUasjZDxO
+         l2Xq9JZxiEv0P2fovH/v1dnn1lsT62/RpuLueKtFGdV+GyhZchmcagENXSwiT/Ps37eT
+         Q2aC4HpsP9AeCbWK7e+5O9+hS79+OPwTFqND8sFQ8plIurp4+a5FlZpjfQRKOeAoXcU+
+         eEZg==
+X-Forwarded-Encrypted: i=1; AJvYcCUXjIvqI/A5lTtKK7yJAvgv8dV3qQwiNOwnnlAGXSqLgAe9wg0tTf3US2JywMZOMT10Mft9SK6vmBt+csE=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4J+zLTntF0F95mdiBmO9Uh3VoJI+PjYU3m85epzApm/gSxP4B
+	1FMZnhqJ+iiBqpoxibiYXFDfqkE4LdQxYBqaFQSmDtjXrv7qcHw+
+X-Google-Smtp-Source: AGHT+IGEXo60WK+bnzWKZpp/tb3i21nIWbMBqygL8tAiAdUOQebmGHeK1uuGJEibdV7evN/corYGzw==
+X-Received: by 2002:a17:902:d48b:b0:20c:da7c:6e8c with SMTP id d9443c01a7336-21175a93c02mr52725505ad.3.1730983340762;
+        Thu, 07 Nov 2024 04:42:20 -0800 (PST)
+Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177e412d8sm11101975ad.113.2024.11.07.04.42.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Nov 2024 04:42:20 -0800 (PST)
+From: Potin Lai <potin.lai.pt@gmail.com>
+Subject: [PATCH v2 0/2] ARM: dts: aspeed: catalina: update CPLD IO expander
+ pin definitions
+Date: Thu, 07 Nov 2024 20:39:56 +0800
+Message-Id: <20241107-catalina-cpld-ioexp-update-v2-0-d7742eabc0e6@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-GND-Sasl: maxime.chevallier@bootlin.com
+X-B4-Tracking: v=1; b=H4sIABy1LGcC/43NTQ6DIBCG4auYWXcaQGJ/Vt6jcYEw6iQqBKyxM
+ d691BN0+XyL99shUWRK8Cx2iLRyYj9nqEsBdjBzT8guG5RQWkpRoTWLGXk2aMPokD1tAd/BmYW
+ QNDktHkZ15CAHQqSOtzP+arIHTouPn/Nrlb/1r+wqUWCpy1trO9tW4l73k+Hxav0EzXEcXxrhO
+ nXEAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Patrick Williams <patrick@stwcx.xyz>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Potin Lai <potin.lai@quantatw.com>, Cosmo Chou <cosmo.chou@quantatw.com>, 
+ Potin Lai <potin.lai.pt@gmail.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730983338; l=783;
+ i=potin.lai.pt@gmail.com; s=20240724; h=from:subject:message-id;
+ bh=fDEBLfyJb9nAn3ipO12nV6wnAto2tMxREdWJ9q5mc7U=;
+ b=EKVMgmy3zl5agoZHAZ4L/s+CG8X+hFuX+tTz28Z0g2vxOKOPzhCqGMqrJw48x6vluGrArZFlA
+ FR3h5HtOXxxBC6dMyMqO51uFbZ63ua2/BTAb8HexQTzfXHtdyEkt81E
+X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
+ pk=6Z4H4V4fJwLteH/WzIXSsx6TkuY5FOcBBP+4OflJ5gM=
 
-Hi,
+This patch series updates the CPLD IO expander pin definitions of PDB
+board and HDD board.
 
-On Thu, 7 Nov 2024 19:15:00 +0800
-Jacky Chou <jacky_chou@aspeedtech.com> wrote:
+Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+---
+Changes in v2:
+- add more description in commit message
+- Link to v1: https://lore.kernel.org/r/20241106-catalina-cpld-ioexp-update-v1-0-3437bcfcb608@gmail.com
 
-> The AST2700 is the 7th generation SoC from Aspeed, featuring three GPIO
-> controllers that are support 64-bit DMA capability.
-> Adding features is shown in the following list.
-> 1.Support 64-bit DMA
->   Add the high address (63:32) registers for description address and the
->   description field for packet buffer with high address part.
->   These registers and fields in legacy Aspeed SoC are reserved.
->   This 64-bit DMA changing has verified on legacy Aspeed Soc, like
->   AST2600.
+---
+Potin Lai (2):
+      ARM: dts: aspeed: catalina: update pdb board cpld ioexp linename
+      ARM: dts: aspeed: catalina: add hdd board cpld ioexp
 
-Maybe each of these features should be in a dedicated patch ?
+ .../dts/aspeed/aspeed-bmc-facebook-catalina.dts    | 150 ++++++++++++---------
+ 1 file changed, 87 insertions(+), 63 deletions(-)
+---
+base-commit: 59b723cd2adbac2a34fc8e12c74ae26ae45bf230
+change-id: 20241106-catalina-cpld-ioexp-update-e4ed409a2fed
 
-> 2.Set RMII pin strap in AST2700 compitable
-				  compatible
+Best regards,
+-- 
+Potin Lai <potin.lai.pt@gmail.com>
 
->   Use bit 20 of MAC 0x50 to represent the pin strap of AST2700 RMII and
->   RGMII. Set to 1 is RMII pin, otherwise is RGMII.
->   This bis is also reserved in legacy Aspeed SoC.
-> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
-
-[...]
-
-> @@ -349,6 +354,10 @@ static void ftgmac100_start_hw(struct ftgmac100 *priv)
->  	if (priv->netdev->features & NETIF_F_HW_VLAN_CTAG_RX)
->  		maccr |= FTGMAC100_MACCR_RM_VLAN;
->  
-> +	if (of_device_is_compatible(priv->dev->of_node, "aspeed,ast2700-mac") &&
-> +	    priv->netdev->phydev->interface == PHY_INTERFACE_MODE_RMII)
-> +		maccr |= FTGMAC100_MACCR_RMII_ENABLE;
-
-The driver code takes the assumption that netdev->phydev might be NULL,
-I think you should therefore add an extra check here as well before
-getting the interface mode.
-
-Thanks,
-
-Maxime
 
