@@ -1,95 +1,142 @@
-Return-Path: <devicetree+bounces-119954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A72CE9C0AA0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 16:59:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21B8B9C0AAE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 17:02:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14C75B23A01
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 15:59:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAC391F256D7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 16:02:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43EC2144DE;
-	Thu,  7 Nov 2024 15:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A49C2212181;
+	Thu,  7 Nov 2024 16:02:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rgBBwYSn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ubuq8N3t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE340212D2F;
-	Thu,  7 Nov 2024 15:59:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E513C185B56;
+	Thu,  7 Nov 2024 16:02:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730995165; cv=none; b=Ov+WTshb27RYFASga8ogxYvH6+/RreIDi2rvIPXcqFzxBtVCV6S4I5cF8bioi/lLvG0x2Nf7ZM6DnoQL7ShSqM1HwpOqDKstdtG/pG+UvptuQ5sTocF2UfugzbSMV6Tx/pRou+nd/gt3/iANZj5g//PHGVgKY540ttfW3NMptvI=
+	t=1730995361; cv=none; b=MIvCxNbx44cv41RYOa028dgI788ltQgEURh/XpXvdjX2NcSHX8rTlDyP/mrDxk8Nkm5/E2tCIErsZOYIrh4mWla0ZjFjNiszcjuYSW3s/3X7iHYIfumulw0c2n9Xp1IAotR1NVdoR5jRK7iVaiBbema116OVxLerjAYC0j5QygU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730995165; c=relaxed/simple;
-	bh=EY9bRUE7pktK1ylVK13Q0axY1miNx65wET8k5SsvSYw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pB7JdX+6ArOfa4fSny/MDgcuIZYpLrmGytrf7rznTkLSuQ1EaD/Dtqv0Ex5a6Ze8xWUNRigKm8//WSGkv4vaazdu8gC4Gi/tZPOVYpNCKY406IkZGvWk16pyAO1WBNGty69bpS5+V/hDJmxAmaCgF1oSVk4WE5AxYHaJ+xVnMX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rgBBwYSn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60631C4CECC;
-	Thu,  7 Nov 2024 15:59:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730995165;
-	bh=EY9bRUE7pktK1ylVK13Q0axY1miNx65wET8k5SsvSYw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rgBBwYSng15I1Sj9CukemsB8r92eeFNBu9UjOzjVelqyl+on+q7BOE9BfGXxrCg3C
-	 cFuhr/Dg0Bc8ndaWjoD7aPFzlYKLHrY9aIseyUra+dYylkrfgUrfPFCuOU5BMa6A7F
-	 Aqe3rIOTDqgXniwsdQXWPTdEv3aCMPFc5DUVJIhA2mCGEf3cnLkpM3sTg0iTnGEMEP
-	 ZW6/cH0bEH0V/fxft/hZ3X9DnnN1TOLaoud22Od5ccjuUjr67GoCNA0ZtI3EPumnre
-	 YMJtE52eqaqSvTur9DqroifGPDIsJuRuT9apQEdSA41ms/lzfu+OgDQfUpIL9EmeJM
-	 JZ3MEVrEMofMA==
-Date: Thu, 7 Nov 2024 09:59:23 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Abhinav Saxena <xandfury@gmail.com>,
-	linux-kernel-mentees@lists.linuxfoundation.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-	linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	linux-arm-kernel@lists.infradead.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>
-Subject: Re: [PATCH 2/2] Documentation: dt-bindings: Remove trailing
- whitespace
-Message-ID: <20241107155923.GA2770783-robh@kernel.org>
-References: <20241107061124.105930-1-xandfury@gmail.com>
- <20241107061124.105930-3-xandfury@gmail.com>
- <gjxevyovxhymwm2ps37hfq3vmpmmr4pqmohq67llxrb2plb5zz@pvsmkqmhemx7>
+	s=arc-20240116; t=1730995361; c=relaxed/simple;
+	bh=5H8VYUSsa/rmfbbmvwzdB/Qh2fQw/jZe072rqC3lTN0=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=raDmNgBgMgd3S4ETZreOzNQOhASrMCH6Sv/E1L3TrL+ywwgVqvp/ZqGFBDD+uYvgFfyFtjKoORJUAp6mO0aSS8MuNG9AmYb24sGcz3tVG+frSIaWWkha/49VUZvQmVNu0jt8Ps1/ai2oVW0xndS2MnmgdKnXlaM2xeGxCrods4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ubuq8N3t; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a9a6acac4c3so175423566b.0;
+        Thu, 07 Nov 2024 08:02:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730995357; x=1731600157; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=TJvjIBgWdRVHGu4BERauGlILYwLjHhOYN8wmcaPbpjw=;
+        b=Ubuq8N3tI8Qg0vV8VaXaMhxCTqpTHIVby5L0egHdaRtWt7h8dYryXNb566Yz9kbalN
+         UqLt1ACzjlGJDyxcMBj7ujmVIrCl/4a7YMZEvWmjP6RYKhnKsei8CQDEzP+4Bvp8gnqb
+         UlCb3GU7nhEaUjIQHSxhEdS9LuQnVAgR4yLlrqeq+5bOd8Lm1Oly5mYmLbGCXiebfyDF
+         6KpXfwOKT+nHlu6AY2b93CK/9Eb5TrY8aHsJrdMHbeGBsltqGSS/+Bz5sUUPvFHlfDv5
+         stfhpywIhlHRNmbvsjGN1gCJAfwxt5yq7HySfFTc1GGMH1jj230ZzCpYT75b8lnlJCZe
+         xkeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730995357; x=1731600157;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TJvjIBgWdRVHGu4BERauGlILYwLjHhOYN8wmcaPbpjw=;
+        b=ecc6esPhJzJ7HryVKAQawfslCEvPHszzUb5CfwMKndYRSsiIfNF1HlVYiopb9hgtcK
+         qskcsRbEvv3tckFNZcXO/HMnXwYPQHT5BQb8R+Xh5G1tVkP2tJ65Njkg1HBWNRXFUCtO
+         CrybtGN/mMgO+cqKAZYJbZqpq4+xNVpq6p4s/zQtyrh9kQ9ps1iGprm2sQBY61khLgO8
+         /JN03FjLQm02IAlTf3PvTatpJOjbncd1ufPx+5ld50eLohRsDEwVOpN853pvruUjj37h
+         +IHw+onZaYT0D6IP180HTRyHYmT1bC9Vrf1STPqfJLGV+IPouvHSwlUU/whXLOT7y9hU
+         +IHg==
+X-Forwarded-Encrypted: i=1; AJvYcCUa9OFZVZtLo8Hl4xY0t3NXA7zkMZT61GCsh83bkuEP/UhsxCvw0QWnR08/QovoDI1Bu65nXPhglnEB@vger.kernel.org, AJvYcCX1JDhpR8W60Xx4KB+jUHgPJf+hItKpiy5WThhLcHrNlF0Z8JMyzyq+PiS24qBE4DGM1CoR3TbtdbwVnzzF@vger.kernel.org
+X-Gm-Message-State: AOJu0YywP0u/ej5IG4nIk1O3xfGK4iYUPsTcAW7V33qxFPAe3T+iSIyZ
+	nFtbR571mewTzbG8kOT4qt9gxY7lN4//94pA1NXECwcoWxqWyTVu
+X-Google-Smtp-Source: AGHT+IFIPPiN4cxhxgS9k3tSd7lQ8QWj5rw6OUhe8AjJY3X7cg7WQ56GBHxgkVfInFoc7myICEPjJg==
+X-Received: by 2002:a17:907:9413:b0:a9a:1f8:6c9b with SMTP id a640c23a62f3a-a9de5fe7455mr4423365066b.37.1730995355539;
+        Thu, 07 Nov 2024 08:02:35 -0800 (PST)
+Received: from [192.168.1.105] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9ee0dc4c7asm108284566b.96.2024.11.07.08.02.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Nov 2024 08:02:34 -0800 (PST)
+Message-ID: <cd326e01-75b8-495c-bc15-1d9ebde8c4fc@gmail.com>
+Date: Thu, 7 Nov 2024 18:02:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <gjxevyovxhymwm2ps37hfq3vmpmmr4pqmohq67llxrb2plb5zz@pvsmkqmhemx7>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/5] arm64: dts: exynos8895: Add cmu, mct, serial_0/1
+ and spi_0/1
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Mark Brown <broonie@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>
+Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241023091734.538682-1-ivo.ivanov.ivanov1@gmail.com>
+ <172994467264.24870.11860096857422265131.b4-ty@linaro.org>
+ <f232dbb0-9036-46d6-83f9-27363813930d@gmail.com>
+Content-Language: en-US
+In-Reply-To: <f232dbb0-9036-46d6-83f9-27363813930d@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 07, 2024 at 12:07:46PM +0100, Krzysztof Kozlowski wrote:
-> On Wed, Nov 06, 2024 at 11:11:24PM -0700, Abhinav Saxena wrote:
-> > Remove trailing whitespace from devicetree binding documentation files:
-> > - regulator/regulator-max77620.txt
-> > - interrupt-controller/nvidia,tegra20-ictlr.txt
-> > - interrupt-controller/msi.txt
-> > 
-> > No functional changes. Issues detected using checkpatch.pl script.
-> 
-> Instead I would prefer these files to be converted to DT schema which
-> would result in their full removal.
 
-Yes. I don't take fixes for .txt bindings.
 
-Rob
+
+On 10/26/24 15:18, Ivaylo Ivanov wrote:
+>
+>
+> On 10/26/24 15:12, Krzysztof Kozlowski wrote:
+>> On Wed, 23 Oct 2024 12:17:29 +0300, Ivaylo Ivanov wrote:
+>>> Hey folks,
+>>>
+>>> This patchset adds device tree nodes for multiple clock management unit
+>>> blocks, MCT, SPI and UART for Exynos8895.
+>>>
+>>> Exynos8895 uses USIv1 for most of its serial buses, except a few that
+>>> have been implemented in this series. Support for USIv1 and HSI2C will
+>>> be added in the future.
+>>>
+>>> [...]
+>> NOT applied patch 4/5 - I wait for bindings to be accepted by Greg.
+> Alright, thanks for applying the rest!
+>
+> Best regards, Ivo.
+
+Bump - now that the uart patches are merged, are you gonna merge the DT
+changes after the merge window? If not, I can send a new patchset that
+includes them and also adds PMU compatible node for the mongoose cores,
+since that got merged with exynos9810.
+
+Best regards, Ivo.
+
+>
+>> Applied, thanks!
+>>
+>> [1/5] dt-bindings: timer: exynos4210-mct: Add samsung,exynos8895-mct compatible
+>>       https://git.kernel.org/krzk/linux/c/e54eb0465e548a7c6115e336ec5cfec04bbe8747
+>> [2/5] arm64: dts: exynos8895: Add clock management unit nodes
+>>       https://git.kernel.org/krzk/linux/c/fa986d1073805154888a788eda38d46a796346e8
+>> [3/5] arm64: dts: exynos8895: Add Multi Core Timer (MCT) node
+>>       https://git.kernel.org/krzk/linux/c/9ad6c3bd1bcbb73e2a5723e13b9d06e2296b07e4
+>> [5/5] arm64: dts: exynos8895: Add spi_0/1 nodes
+>>       https://git.kernel.org/krzk/linux/c/a5541d737c8de71948bcdaee912bcb6b0781af7e
+>>
+>> Best regards,
+
 
