@@ -1,58 +1,41 @@
-Return-Path: <devicetree+bounces-119942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45AC79C0A10
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 16:26:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ACFD9C0A35
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 16:36:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 777CE1C22067
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 15:26:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7C321F24F5A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 15:36:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54720212F13;
-	Thu,  7 Nov 2024 15:26:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11C0215002;
+	Thu,  7 Nov 2024 15:35:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3557338DC8;
-	Thu,  7 Nov 2024 15:26:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F4045214421
+	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 15:35:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730993198; cv=none; b=DXEjJ3fw56WGhbnszNlM2NWmHea97MjAbkr4SlldLa+ijwusIeJL5zkt0RtqRUHaRc1K19/q38bWXzLTxH/oEo5EC3nmrKotEAHDnZ0grHNBpPz8YARIitLp166svOvVbIRl3J+Xv9Dlj/voooPoCU+BRm4MsLzacdm4qUqev1s=
+	t=1730993740; cv=none; b=rQ1ZyQ/vb2sPv32V9kV0oeukoJAC83KD3fVo2EGhnyUfkHsjRY7eqJvgn5da3i32cf2/WjVvOituGQkn5VDc3Q+sHlmLg3N1iGi5fh1KsEbaITafU3n82LmGHKiCN2yZ0hpDL0Rjr0Ovwy0nzLSqGAzIqRIi/EO47nBs9dnXMdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730993198; c=relaxed/simple;
-	bh=IVATSo4A5/rDZWgfIflL/vhr9/60fc4D3ww2fSxo93k=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=MRfU1lWVWwm4b0h63MiP3/xT9iTw/nfjQSzSu4fiCNdg8NzSFckg1+jUEEG9e5UOG0sn4+n/Q/SdOL0n86SkQBPJZTxU9hogRI64Lq5GeX2MqDh0tLBUgv1y4C0iuhDtHuP5+D5xZ4QaVUX49t0+t/KHQof0Ko513OgL3zYEPyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4EA6C4CED0;
-	Thu,  7 Nov 2024 15:26:37 +0000 (UTC)
-Received: from wens.tw (localhost [127.0.0.1])
-	by wens.tw (Postfix) with ESMTP id 010B55F836;
-	Thu,  7 Nov 2024 23:26:34 +0800 (CST)
-From: Chen-Yu Tsai <wens@csie.org>
-To: Andre Przywara <andre.przywara@arm.com>, 
- Florian Fainelli <f.fainelli@gmail.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Enric Balletbo i Serra <eballetbo@gmail.com>, 
- Alexandre TORGUE <alexandre.torgue@st.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Cs=C3=B3k=C3=A1s=2C_Bence?= <csokas.bence@prolan.hu>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Tony Lindgren <tony@atomide.com>, 
- Shawn Guo <shawnguo@kernel.org>, 
- Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-In-Reply-To: <20241104230628.3736186-1-csokas.bence@prolan.hu>
-References: <20241104230628.3736186-1-csokas.bence@prolan.hu>
-Subject: Re: [PATCH] ARM: dts: allwinner: Remove accidental suniv
- duplicates
-Message-Id: <173099319493.2335414.3613270726802144836.b4-ty@csie.org>
-Date: Thu, 07 Nov 2024 23:26:34 +0800
+	s=arc-20240116; t=1730993740; c=relaxed/simple;
+	bh=YqDuZZASfsbZbJh36sPWJxerqHJHk525rmka0yjYpsY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fEvxSc0yaZaOAWqsgDm6QcXsgl/3IUsrtCNJGvSmeIEwlnsZgocrQrq4X3jyFw1OGz988iiaDZt9X4NXJLvahEdEss2IZGAZfYwteu9OhEFmPjLANwnVHbVR48o5g6jmMpTif816Ll+ZWx29VATfReCT5JPPfeNzNNhDVAwbUSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <jre@pengutronix.de>)
+	id 1t94Xf-0005DD-Pg; Thu, 07 Nov 2024 16:35:27 +0100
+From: Jonas Rebmann <jre@pengutronix.de>
+Subject: [PATCH 0/2] spi: imx: support word delay in ecspi
+Date: Thu, 07 Nov 2024 16:35:19 +0100
+Message-Id: <20241107-imx-spi-word-delay-v1-0-2a969214d796@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,23 +43,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADfeLGcC/x3MTQqAIBBA4avErBsYpUV2lWgROtVAaSj0g3j3p
+ OW3eC9D4iicYGgyRL4kSfAVqm3AbrNfGcVVgybdKSKDcjyYTsE7RIeO9/lFrZwltZDprYUanpE
+ Xef7pOJXyAebrH9VkAAAA
+X-Change-ID: 20241009-imx-spi-word-delay-21dc01f098cc
+To: Mark Brown <broonie@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-spi@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, kernel@pengutronix.de, 
+ Jonas Rebmann <jre@pengutronix.de>
 X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::ac
+X-SA-Exim-Mail-From: jre@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, 05 Nov 2024 00:06:27 +0100, Csókás, Bence wrote:
-> Allwinner suniv boards' DT files were accidentally duplicated
-> in the Makefile when they were moved to the new directory
-> structure. Remove these duplicates for code cleanness.
-> 
-> 
+The i.MX SPI controller supports inserting a configurable delay between
+subsequent words, which is needed for some slower devices that couldn't
+keep up otherwise.
 
-Applied to dt-for-6.13 in git@github.com:linux-sunxi/linux-sunxi.git, thanks!
+This patch series introduces support for the word delay parameters for
+i.MX51 onwards.
 
-[1/1] ARM: dts: allwinner: Remove accidental suniv duplicates
-      commit: 2ccfecbf9d48edfd866259feb464f62ace681323
+The SPI clock (CSRC=0) was chosen as the clock source over the also
+available 32.768 KHz Low-Frequency Reference Clock (CSRC=1). The sample
+period control bits (SAMPLE_PERIOD) are set to the selected word delay
+converted to SPI clock cycles. A deviation from the requested number of
+wait cycles and the actual word delay was observed via both software
+timings and oscilloscope measurements and accounted for.
+
+The Chip Select Delay Control bits in the Sample Period Control Register
+remain zero.
+
+Behaviour on i.MX35 and earlier, where the CSPI interface is used,
+remains unchanged.
+
+Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
+---
+Jonas Rebmann (2):
+      spi: imx: pass struct spi_transfer to prepare_transfer()
+      spi: imx: support word delay
+
+ drivers/spi/spi-imx.c | 106 ++++++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 90 insertions(+), 16 deletions(-)
+---
+base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+change-id: 20241009-imx-spi-word-delay-21dc01f098cc
 
 Best regards,
 -- 
-Chen-Yu Tsai <wens@csie.org>
+Jonas Rebmann <jre@pengutronix.de>
 
 
