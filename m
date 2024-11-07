@@ -1,160 +1,104 @@
-Return-Path: <devicetree+bounces-120000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C74A9C111B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 22:39:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CA1F9C114B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 22:52:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 417792856D4
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 21:39:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CAF7BB20FA8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 21:52:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 882F82178F2;
-	Thu,  7 Nov 2024 21:39:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8233A21892A;
+	Thu,  7 Nov 2024 21:52:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="QywBcDtR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YH2EdexX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [207.246.76.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3D66FC08
-	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 21:39:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.246.76.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B8772170C2;
+	Thu,  7 Nov 2024 21:52:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731015592; cv=none; b=DKWc+POfN7qpkeFp41DmbpLkQLeN51BcQNMyoHxhwkQAhGRrMk6xgdfcvbmmdOdD1Is0z6AUb/jUf8j1keOHYpu71U9/rLKUSARYmPzPSJtGk5DlTMZKGcxtV41sq8tOyJE9Ypi9FRo/ZvzN+k7Sos05NvrWitR87AQq9619Bfk=
+	t=1731016339; cv=none; b=kYHn1BcFurwATRcZPKHoV/gw7DXrFc9CFhIIBb0II+lLBw8SqkozqVahQREV70pxu3D9yvNxUY767mv0BIkiwfKERjiqfvEpLUO3P6abplLHsUPjVhbCjOt1+NhPrsQW7P49yPsONvK2K2hqzpC9qY5U/oFQmdtdvhT1UEnGzHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731015592; c=relaxed/simple;
-	bh=IIeNYUYuYaFiyzLOAr4iTD5wPp3/tt/9ZOcK8jIg4Lg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VXf0+FMR8iSmz0cgVyxeWoRSX7BxGIpi3OZRio61ZTxoxfiPEhCAh/HuVhAaoLok57fnS/yXNcYnkqSiHJm/xlD3LBpfh8QVVMGhLdlVq0q9GagFdd7sni1qH8CLQaaeq0XNVj5ln/TnQVz89JfnbKsa5pS5RbDCm3D/Ax4kxqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=QywBcDtR; arc=none smtp.client-ip=207.246.76.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
- Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1731015583; bh=s35hfQLt9bSo6W0C/uoTYaEkOoDd04wiZKrv3+ugeqU=;
- b=QywBcDtRYGwojvpFNYA+XzifeQuAuBGeabBT7vC7BWAo8RBythhMWOeDKriFlTGsNzIGG+MlQ
- twUqaKPFY8C3QzlKUTPWCIV3ahshgq9KvefZ78WNuiwc2LvcK4BVwRmceuWrghW+jGpy4Oa6Jc0
- gd1G56jJxdk+MjPs2oOHir9pXkAssDbguT26iaCGip4X9ouB7DEri8HQjQ+QWuK1g3SX1AgC5Z4
- dup7nUOy7PDIa/oNHi0m0bbAmNWcjXJJVfGshL7JzvuR4Pf+U12lC2B6qrzbRhFGIfAslOlUAwZ
- A3Zkd7ULyaByGdVZ+/09Q0TeOSdwdtJcSanMf2Vzxkig==
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH 2/2] arm64: dts: rockchip: Enable HDMI on NanoPi R6C/R6S
-Date: Thu,  7 Nov 2024 21:29:10 +0000
-Message-ID: <20241107212913.1322666-3-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.46.2
-In-Reply-To: <20241107212913.1322666-1-jonas@kwiboo.se>
-References: <20241107212913.1322666-1-jonas@kwiboo.se>
+	s=arc-20240116; t=1731016339; c=relaxed/simple;
+	bh=wSfUGIR63ir+DpqRwf9z1fSRhrUzDgrtDr7l6TxiiTU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=TXFpEjLeacDcPH9V+u3W8IascMdnD47oKv+ZwHCwSb2p/4Uhp7WWfrPi7hHxAPqJqSD7zdBNZuQu+hjoqStg/UQTRS+JmFkCLGrBlVuB8n/nAhk6p3uLVfjF93RXF1EeflvnqFZ0UqOAVKr/rlQq/RuE5lnvcuH/rg5YFG4nJBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YH2EdexX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B546CC4CECC;
+	Thu,  7 Nov 2024 21:52:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731016338;
+	bh=wSfUGIR63ir+DpqRwf9z1fSRhrUzDgrtDr7l6TxiiTU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=YH2EdexX3KvdkaJuasETWrxZJrzJsauhEYBdAoaVi5Vm5WUBGV+efceHhgDHPaiAp
+	 3UPHpiZqTJ9JRaaKqe/uINtvLoshWcCyKenJWuhtLk7qIx8pjM9sdnW0ZZisDqbciQ
+	 Uan9oGdSiAAG7ukVbG3/7sMkNCjlg1Jof/9XE4RjYbPrvfggcmzg05zYuYlrjS/wiI
+	 A7+TH7s7AlB43qVvKT6G7aTvnnUCcDfl2bnE2u0Kxd/tPt6ytmzv4fh4TiHo8ilciT
+	 CM4KHTfMHE5B3LbMdR201Rn53XPMlsSL29jSS0YNm6IpphEEaLgDhXlsHg8qeoOXbe
+	 TD+gLwCDcWnrw==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Ki-Seok Jo <kiseok.jo@irondevice.com>
+Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <SL2P216MB23377A60BEC4396ADFA78A6A8C512@SL2P216MB2337.KORP216.PROD.OUTLOOK.COM>
+References: <20241104-irondevice-sma1307-v3-0-4bbe79895f54@irondevice.com>
+ <20241104-irondevice-sma1307-v3-1-4bbe79895f54@irondevice.com>
+ <SL2P216MB23377A60BEC4396ADFA78A6A8C512@SL2P216MB2337.KORP216.PROD.OUTLOOK.COM>
+Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: irondevice,sma1307: Add
+ initial DT binding
+Message-Id: <173101633645.271800.734453630790415201.b4-ty@kernel.org>
+Date: Thu, 07 Nov 2024 21:52:16 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 207.246.76.47
-X-ForwardEmail-ID: 672d31406ff4b179fef288d5
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-9b746
 
-Add the necessary DT changes to enable HDMI on NanoPi R6C/R6S.
+On Mon, 04 Nov 2024 07:33:47 +0000, Ki-Seok Jo wrote:
+> This adds the schema binding for the Iron Device SMA1307 Amp
+> 
+> 
 
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
- .../boot/dts/rockchip/rk3588s-nanopi-r6.dtsi  | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
+Applied to
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi
-index dc16d60b8228..2e22a49000e5 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi
-@@ -5,6 +5,7 @@
- #include <dt-bindings/pinctrl/rockchip.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
- #include "rk3588s.dtsi"
- 
- / {
-@@ -45,6 +46,17 @@ button-user {
- 		};
- 	};
- 
-+	hdmi-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi0_out_con>;
-+			};
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -223,6 +235,26 @@ &gpu {
- 	status = "okay";
- };
- 
-+&hdmi0 {
-+	status = "okay";
-+};
-+
-+&hdmi0_in {
-+	hdmi0_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi0>;
-+	};
-+};
-+
-+&hdmi0_out {
-+	hdmi0_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
-+&hdptxphy_hdmi0 {
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0m2_xfer>;
-@@ -763,3 +795,18 @@ &usb_host0_ehci {
- &usb_host0_ohci {
- 	status = "okay";
- };
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-+		remote-endpoint = <&hdmi0_in_vp0>;
-+	};
-+};
--- 
-2.46.2
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: dt-bindings: irondevice,sma1307: Add initial DT binding
+      (no commit info)
+[2/2] ASoC: sma1307: Add driver for Iron Device SMA1307
+      commit: 576c57e6b4c1d734bcb7cc33dde9a99a9383b520
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
