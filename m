@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-119708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEBF39BFBC7
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 02:40:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F303E9BFBCB
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 02:42:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 934E22823EA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 01:40:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B77DF283A3C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 01:42:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5575D179BF;
-	Thu,  7 Nov 2024 01:39:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76246748F;
+	Thu,  7 Nov 2024 01:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="K9C7ho5a"
+	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="v+LVVOWL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out30-131.freemail.mail.aliyun.com (out30-131.freemail.mail.aliyun.com [115.124.30.131])
+Received: from out30-132.freemail.mail.aliyun.com (out30-132.freemail.mail.aliyun.com [115.124.30.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9EFD1854;
-	Thu,  7 Nov 2024 01:39:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51B6A168BD;
+	Thu,  7 Nov 2024 01:42:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730943582; cv=none; b=ShCfsHQsOW9Bs+vD9F2ip1CQmAQeflYlyBZu6hd5VyJiKjSFKX62RyVLe/lg38/TbPdic7FdTG/ae/0extDIfOJ5PVC3WT2JoQ3HkrmKFSxoRg9ASBX5rWp1Kf4qzj1KNg/8DToIivak0yevP92lwC/BDKH5NAPFeBvjG67kZbQ=
+	t=1730943765; cv=none; b=VoLeXj/iY5oZSfjDJ2wv0k+P+Q/XTZCMOFFLlgMAn0fKyUOmXamRIkwgL2PIk1pH1Zg6zXE6SR83QQXojsl9HMYI62Cz67vzmJWXora0aEnLoRBHv8zvabkXLMZmp22RxoRMtmAFpVw7+Df0hzNM9o2Lmx3QhbscbynH71UU5WE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730943582; c=relaxed/simple;
-	bh=v+wSnkxB7K8ZEE4ZN48hk/OOcNbesDZwgQE7ZDFhLoA=;
+	s=arc-20240116; t=1730943765; c=relaxed/simple;
+	bh=rS5mIAW9zXMYkNUzSNcqwWdPlnH3xrdHBhLSEnks//M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JuVrFhRA24zf7XSSV0/kPZ9itRQnym4nduhq1C79RvrylLIt8rl0eNZOkDprTl92Ky0H5xY8W4Ggu7VmBF+cjR6VZxbeKKZtItxP1CVEccuViJRMqx8M2oUdqb98LQKubrSMnr5FDf9PIprigGtMTsSV0Dzke1mAxebVce//rPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=K9C7ho5a; arc=none smtp.client-ip=115.124.30.131
+	 In-Reply-To:Content-Type; b=Xy2W3w+kcKKT0wy7Pqsp4O3jYUsFLlsuW5TzXrYBxhuJ3+yMxF+PWhcOB/Dju53UR22OHZNO50pIcYPKlJbksgHwBklirYLw3S1qQdL+PXmyI9ASrwOgMcS/DChxcZZ8OPsHdndt2HBRhDeHc4bTMjc3gwRugPPE7iwCeIi/BQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=v+LVVOWL; arc=none smtp.client-ip=115.124.30.132
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
 DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=linux.alibaba.com; s=default;
-	t=1730943576; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	bh=H7nMDuaCmHzuDu+vzqYAf2Ao4YDpMJQ1LC3DQ9Aqn/w=;
-	b=K9C7ho5ay4idmQnra9UP+1CAbHC4BZhFkImts3t/RQ3AfCwKstTgzy55/fByz334PotzNPUUzrEYi46U0w3WjIP3GPzkBZ6V8zsPgKOdzU1P0BeXCqKR2SF1X6n7e4o+J8x4zcUXERiuNnO3ezG7Yxf8ogogggYyc2+++pKCKd4=
-Received: from 30.74.144.126(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0WIthrqX_1730943574 cluster:ay36)
+	t=1730943754; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	bh=1Kv0j8n6OgbyEtl8S2ISVzAkmC/lfSFUHPm7gO3mtUM=;
+	b=v+LVVOWLqgMHXKZQk76OqcKALzr277MyVpkOfswcS55P+atfh12Eybks+cOWbNw13QZtjDm3tY9p6X6SRF0TL3qHYQzCDAmSZ5LmAQ97fILCY7UwIikakaB+BorFaaUacoZEw6Io4O/M/12G02aHcTLEY8+G6ucwSrYZnrBe9SM=
+Received: from 30.74.144.126(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0WItht-N_1730943752 cluster:ay36)
           by smtp.aliyun-inc.com;
-          Thu, 07 Nov 2024 09:39:36 +0800
-Message-ID: <ef09f0d0-c8c1-408f-85d9-31fa8de13a92@linux.alibaba.com>
-Date: Thu, 7 Nov 2024 09:39:34 +0800
+          Thu, 07 Nov 2024 09:42:33 +0800
+Message-ID: <d410c617-7917-4776-967b-058817f40022@linux.alibaba.com>
+Date: Thu, 7 Nov 2024 09:42:32 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,7 +48,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/5] arm64: dts: sprd: sc9863a: fix in-ports property
+Subject: Re: [PATCH v2 5/5] arm64: dts: sprd: sc9863a: reorder clocks,
+ clock-names per bindings
 To: Stanislav Jakubek <stano.jakubek@gmail.com>, Rob Herring
  <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
@@ -56,40 +57,57 @@ To: Stanislav Jakubek <stano.jakubek@gmail.com>, Rob Herring
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <cover.1730918663.git.stano.jakubek@gmail.com>
- <5318a47282b8c15a3135fd12dacedb8aa70592e2.1730918663.git.stano.jakubek@gmail.com>
+ <d235438fbbd53c28b63cada2cf7e1234c120355e.1730918663.git.stano.jakubek@gmail.com>
 From: Baolin Wang <baolin.wang@linux.alibaba.com>
-In-Reply-To: <5318a47282b8c15a3135fd12dacedb8aa70592e2.1730918663.git.stano.jakubek@gmail.com>
+In-Reply-To: <d235438fbbd53c28b63cada2cf7e1234c120355e.1730918663.git.stano.jakubek@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
 On 2024/11/7 03:05, Stanislav Jakubek wrote:
-> This property is called "in-ports", not "in-port", fix it.
+> DT bindings expect the SC9863A clock-controller clocks/clock-names to be
+> in a specific order, reorder them.
 > 
 > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 
-LGTM.
+Thanks.
 Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>
 
 > ---
 > Changes in V2:
 > - new patch
 > 
->   arch/arm64/boot/dts/sprd/sc9863a.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   arch/arm64/boot/dts/sprd/sc9863a.dtsi | 12 ++++++------
+>   1 file changed, 6 insertions(+), 6 deletions(-)
 > 
 > diff --git a/arch/arm64/boot/dts/sprd/sc9863a.dtsi b/arch/arm64/boot/dts/sprd/sc9863a.dtsi
-> index e5a2857721e2..31172ac44adc 100644
+> index 31172ac44adc..e97000e560e7 100644
 > --- a/arch/arm64/boot/dts/sprd/sc9863a.dtsi
 > +++ b/arch/arm64/boot/dts/sprd/sc9863a.dtsi
-> @@ -288,7 +288,7 @@ etf_little_out: endpoint {
->   				};
->   			};
+> @@ -163,18 +163,18 @@ gic: interrupt-controller@14000000 {
+>   		ap_clk: clock-controller@21500000 {
+>   			compatible = "sprd,sc9863a-ap-clk";
+>   			reg = <0 0x21500000 0 0x1000>;
+> -			clocks = <&ext_32k>, <&ext_26m>;
+> -			clock-names = "ext-32k", "ext-26m";
+> +			clocks = <&ext_26m>, <&ext_32k>;
+> +			clock-names = "ext-26m", "ext-32k";
+>   			#clock-cells = <1>;
+>   		};
 >   
-> -			in-port {
-> +			in-ports {
->   				port {
->   					etf_little_in: endpoint {
->   						remote-endpoint =
+>   		aon_clk: clock-controller@402d0000 {
+>   			compatible = "sprd,sc9863a-aon-clk";
+>   			reg = <0 0x402d0000 0 0x1000>;
+> -			clocks = <&ext_26m>, <&rco_100m>,
+> -				 <&ext_32k>, <&ext_4m>;
+> -			clock-names = "ext-26m", "rco-100m",
+> -				      "ext-32k", "ext-4m";
+> +			clocks = <&ext_26m>, <&ext_32k>,
+> +				 <&ext_4m>, <&rco_100m>;
+> +			clock-names = "ext-26m", "ext-32k",
+> +				      "ext-4m", "rco-100m";
+>   			#clock-cells = <1>;
+>   		};
+>   
 
