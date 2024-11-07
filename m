@@ -1,228 +1,159 @@
-Return-Path: <devicetree+bounces-119804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 524BB9C027F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:37:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 517999C0286
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:39:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C80A2842E7
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:37:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 162A92842FF
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:39:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48B3C1EC012;
-	Thu,  7 Nov 2024 10:37:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F279A1EE011;
+	Thu,  7 Nov 2024 10:38:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="dh7LiPnQ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vdVvd2Sa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113D01E906B;
-	Thu,  7 Nov 2024 10:37:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E19601E906B;
+	Thu,  7 Nov 2024 10:38:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730975859; cv=none; b=q5qk4dC3Hbpuf+fTkgWHAAfpa7XsIVwyPD4oY5L4TclWgGNjgV5sD/Dwb2u2x4ANfKfG/PoxVBIiWZspkRuf88beOzHfXEwgPzQaQkH6jQZx/cbxsLRK+NAR1fBO9v2jolJniT2LCWToU1l5JGuiyMXmxlhXGQPThXDwE3TePDM=
+	t=1730975938; cv=none; b=bCpJpc/Ju6DSIv7pR3b8StlKBFK7ZuPN13Xz+Mb72qic8X34ovSsW9VwDOXBRbYcL9f/l5JIuAWiPGbcZ8EsWSWuJATHXS8TzgU7Lbu3nr5ZRcESH7P8xjSFnPKM/x6pI/zrEHbBVZsSx8JaLnFkM+xSjp3f3j9NcraoSc8IfzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730975859; c=relaxed/simple;
-	bh=jRvsshBvtU/WBgIHhfAeu/Lb0e0oxCz8G6yAfOku9p0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BKLq/z3apix/0kNVqnx9JaYPHLAk9CCFqrzrIgQWlbd3nsPef4X0KkJ/O1ieEZGVR5O2DoiKh7PVuqfDwqlC2igu/UlqkBxS3g/ojA5id5KhTISRlqgvaxUFOieQsRjZkqL1fBs3yxMN5tX+iH7PHkzuY9UxKA5028JMqlnRxrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=dh7LiPnQ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1730975855;
-	bh=jRvsshBvtU/WBgIHhfAeu/Lb0e0oxCz8G6yAfOku9p0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dh7LiPnQl8luK4lXoov3CcdVUIXDM0d4+LzuIqO0dFGeYrmNwA2HtxutzHJ6Yoa9m
-	 VoFOSZIHtd9yzP3ssnHOBGW+p4DPeBQds+FUXwJC1EPurG6JCbmTTvbptIRVn6Eu1s
-	 EIz5obxv8S5gMR+NYZZYdMMkWcsQD0l6tUHPqJOxNCsOhKwjjgk3TDE2K4sPiKs12A
-	 LiV62UIWXOc0yRHa307dOKLCsZdCqJblBYz/KrjEn6hyTip8Hw2fbKFu4ota9klOwj
-	 slQiT/OqZQDXVKopjaUodcWkuZZW8HVn+6u8yZkeL8Vi4Tgd2/UDJYh4TUjUNYu0tA
-	 nBvmKjihEomvw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0700917E35CB;
-	Thu,  7 Nov 2024 11:37:34 +0100 (CET)
-Message-ID: <59f4bcc1-c752-4f2f-8e55-349cc2432b8a@collabora.com>
-Date: Thu, 7 Nov 2024 11:37:34 +0100
+	s=arc-20240116; t=1730975938; c=relaxed/simple;
+	bh=9JXJLE2UCZqL9f5A5UEMnMSs0QQUpXkttzmtdtPCASs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GLe1Zki9ZnIWukKDO6CPfX62KqckAWbiratsD5Snn2w1SCNPDF3Dwp+YjUyignLYE1/jLgtMokbcQgK92ADIuk+uX+t/6ZWdrmSTwlpPA9aIgc3sS8pdRqeck/pacDP9DC/TjLAzetesa29YiBVAmbj77nVr+HTktkQcOx1DCcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=vdVvd2Sa; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 254EB5B3;
+	Thu,  7 Nov 2024 11:38:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1730975920;
+	bh=9JXJLE2UCZqL9f5A5UEMnMSs0QQUpXkttzmtdtPCASs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vdVvd2Sao3MO61mi8VFuGklTDTfku19NW3PET1gujfcR0eLhvP2sqqBa0YtEeODZI
+	 vU++EdUtkHy3XJcERVNfhuUc/PEYHEudJ2ONUH7qPvna9x9IvYufspsGIJ5A8lZTEC
+	 vv2wRvVn1BPXo/HAh9Afl0pOpTwjEPETSTzEQ0lc=
+Date: Thu, 7 Nov 2024 11:38:45 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: keke.li@amlogic.com
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kieran.bingham@ideasonboard.com, 
+	laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com
+Subject: Re: [PATCH v3 8/9] Documentation: media: add documentation file
+ metafmt-c3-isp.rst
+Message-ID: <fabf3avbsswq5wx2f2nvyqjny6ps3y2am3ordfffkv7tqwndns@ypix6ms6conb>
+References: <20240918-c3isp-v3-0-f774a39e6774@amlogic.com>
+ <20240918-c3isp-v3-8-f774a39e6774@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: mediatek: Introduce MT8188 Geralt
- platform based Ciri
-To: Fei Shao <fshao@chromium.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org
-References: <20241105093222.4055774-1-fshao@chromium.org>
- <20241105093222.4055774-3-fshao@chromium.org>
- <b66dbf9e-b35b-482c-9eb7-112ef1f398d6@collabora.com>
- <CAC=S1ngozo11g1vF2jnHjTLcNmP8tOMsQhK+LR0QWqoeXwSJjg@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAC=S1ngozo11g1vF2jnHjTLcNmP8tOMsQhK+LR0QWqoeXwSJjg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240918-c3isp-v3-8-f774a39e6774@amlogic.com>
 
-Il 07/11/24 07:58, Fei Shao ha scritto:
-> On Wed, Nov 6, 2024 at 9:19 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 05/11/24 10:30, Fei Shao ha scritto:
->>> Introduce MT8188-based Chromebook Ciri, also known commercially as
->>> Lenovo Chromebook Duet (11", 9).
->>>
->>> Ciri is a detachable device based on the Geralt design, where Geralt is
->>> the codename for the MT8188 platform. Ciri offers 8 SKUs to accommodate
->>> different combinations of second-source components, including:
->>> - audio codecs (RT5682S and ES8326)
->>> - speaker amps (TAS2563 and MAX98390)
->>> - MIPI-DSI panels (BOE nv110wum-l60 and IVO t109nw41)
->>>
->>> Signed-off-by: Fei Shao <fshao@chromium.org>
->>> ---
->>>
->>> Changes in v2:
->>> - remove invalid or undocumented properties
->>>       e.g. mediatek,dai-link, maxim,dsm_param_name etc.
->>> - remove touchscreen as the driver is not yet accepted in upstream
->>> - update sound DAI link node name to match the binding
->>> - add missing pinctrls in audio codec nodes
->>>
->>>    arch/arm64/boot/dts/mediatek/Makefile         |    8 +
->>>    .../dts/mediatek/mt8188-geralt-ciri-sku0.dts  |   11 +
->>>    .../dts/mediatek/mt8188-geralt-ciri-sku1.dts  |   60 +
->>>    .../dts/mediatek/mt8188-geralt-ciri-sku2.dts  |   56 +
->>>    .../dts/mediatek/mt8188-geralt-ciri-sku3.dts  |   15 +
->>>    .../dts/mediatek/mt8188-geralt-ciri-sku4.dts  |   43 +
->>>    .../dts/mediatek/mt8188-geralt-ciri-sku5.dts  |   73 +
->>>    .../dts/mediatek/mt8188-geralt-ciri-sku6.dts  |   69 +
->>>    .../dts/mediatek/mt8188-geralt-ciri-sku7.dts  |   47 +
->>>    .../boot/dts/mediatek/mt8188-geralt-ciri.dtsi |  397 +++++
->>>    .../boot/dts/mediatek/mt8188-geralt.dtsi      | 1492 +++++++++++++++++
->>>    11 files changed, 2271 insertions(+)
->>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dts
->>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dts
->>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku2.dts
->>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.dts
->>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku4.dts
->>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku5.dts
->>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku6.dts
->>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku7.dts
->>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri.dtsi
->>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
->>>
-> [...]
-> 
+Hi Keke
 
-[...]
+On Wed, Sep 18, 2024 at 02:07:19PM +0800, Keke Li via B4 Relay wrote:
+> From: Keke Li <keke.li@amlogic.com>
+>
+> Add the file 'metafmt-c3-isp.rst' that documents
+> the meta format of c3-isp.
 
->>> +&pmic {
->>> +     interrupts-extended = <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
->>> +};
->>> +
->>> +&scp {
->>
->> Is this SCP-dual or SCP?
->> I see SCP, but I also see a SCP-Dual memory region... what's going on here?
->>
->> Of course, the SCP-Dual won't work if you don't override the compatible string...
-> 
-> To clarify, the second SCP core is used for MIPI camera in downstream,
-> and I deliberately only describe the first SCP core here since the MTK
-> camera ISP driver isn't in upstream at the moment.
-> I had a fixup patch for removing the scp-dual reserved memory region,
-> but likely it was missing during the rebase... let me check again if
-> it can be removed, just in case there's firmware protecting the region
-> and the kernel shouldn't access it.
-> 
+Do not break lines too early!
 
-Hmm... but the second SCP core can still be brought up, even if the MIPI Camera
-driver is not upstreamed yet, right?
+>
+> Signed-off-by: Keke Li <keke.li@amlogic.com>
+> ---
+>  .../userspace-api/media/v4l/meta-formats.rst       |  1 +
+>  .../userspace-api/media/v4l/metafmt-c3-isp.rst     | 39 ++++++++++++++++++++++
+>  2 files changed, 40 insertions(+)
+>
+> diff --git a/Documentation/userspace-api/media/v4l/meta-formats.rst b/Documentation/userspace-api/media/v4l/meta-formats.rst
+> index c6e56b5888bc..3a420747f6e7 100644
+> --- a/Documentation/userspace-api/media/v4l/meta-formats.rst
+> +++ b/Documentation/userspace-api/media/v4l/meta-formats.rst
+> @@ -12,6 +12,7 @@ These formats are used for the :ref:`metadata` interface only.
+>  .. toctree::
+>      :maxdepth: 1
+>
+> +    metafmt-c3-isp
+>      metafmt-d4xx
+>      metafmt-generic
+>      metafmt-intel-ipu3
+> diff --git a/Documentation/userspace-api/media/v4l/metafmt-c3-isp.rst b/Documentation/userspace-api/media/v4l/metafmt-c3-isp.rst
+> new file mode 100644
+> index 000000000000..bbaf3542c1ca
+> --- /dev/null
+> +++ b/Documentation/userspace-api/media/v4l/metafmt-c3-isp.rst
+> @@ -0,0 +1,39 @@
+> +.. SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+> +
+> +.. _v4l2-meta-fmt-c3isp-stats:
+> +.. _v4l2-meta-fmt-c3isp-params:
+> +
+> +***********************************************************************
+> +V4L2_META_FMT_C3ISP_STATS ('CSTS'), V4L2_META_FMT_C3ISP_PARAMS ('CPRM')
+> +***********************************************************************
+> +
+> +.. c3_isp_stats_info
 
-That shouldn't cause lockups and/or other kinds of bad behavior, and should
-bring up a core and just never use it, without any particular issues.
+This does not seem to be used
 
-If we can enable the secondary core, let's just go for it.. as that will help
-specifying the exact memory layout of this board (and failing to do that may
-create some other issues, that's why I'm proposing to enable that even if it
-is not really used in this case).
+> +
+> +3A statistics
+> +=============
+> +
+> +The C3 ISP can collect different statistics over an input Bayer frame.
+> +Those statistics are obtained from the "isp-stats" metadata capture video nodes,
+> +using the :c:type:`v4l2_meta_format` interface.
+> +They are formatted as described by the :c:type:`c3_isp_stats_info` structure.
+> +
+> +The statistics collected are  Auto-white balance,
+> +Auto-exposure and Auto-focus information.
 
-What do you think? :-)
+Do not break lines too early
 
->>
->>> +     firmware-name = "mediatek/mt8188/scp.img";
->>> +     memory-region = <&scp_mem>;
->>> +     pinctrl-names = "default";
->>> +     pinctrl-0 = <&scp_pins>;
->>> +     status = "okay";
->>> +
->>> +     cros-ec-rpmsg {
->>> +             compatible = "google,cros-ec-rpmsg";
->>> +             mediatek,rpmsg-name = "cros-ec-rpmsg";
->>> +     };
->>> +};
->>> +
->>> +&sound {
->>> +     compatible = "mediatek,mt8188-nau8825";
->>> +     model = "mt8188_m98390_8825";
->>> +     pinctrl-names = "aud_etdm_hp_on",
->>> +                     "aud_etdm_hp_off",
->>> +                     "aud_etdm_spk_on",
->>> +                     "aud_etdm_spk_off",
->>> +                     "aud_mtkaif_on",
->>> +                     "aud_mtkaif_off";
->>
->>          pinctrl-names = "aud_etdm_hp_on", "aud_etdm_hp_off",
->>                          "aud_etdm_spk_on", "aud_etdm_spk_off",
->>                          "aud_mtkaif_on", "aud_mtkaif_off";
-> 
-> Acked.
-> 
->>
->>> +     pinctrl-0 = <&aud_etdm_hp_on>;
->>> +     pinctrl-1 = <&aud_etdm_hp_off>;
->>> +     pinctrl-2 = <&aud_etdm_spk_on>;
->>> +     pinctrl-3 = <&aud_etdm_spk_off>;
->>> +     pinctrl-4 = <&aud_mtkaif_on>;
->>> +     pinctrl-5 = <&aud_mtkaif_off>;
->>
->> Add a comment:
->>
->>          /* The audio-routing is defined in each board dts */
->>
->>> +     audio-routing = "ETDM1_OUT", "ETDM_SPK_PIN",
->>> +                     "ETDM2_OUT", "ETDM_HP_PIN",
->>> +                     "ETDM1_IN", "ETDM_SPK_PIN",
->>> +                     "ETDM2_IN", "ETDM_HP_PIN",
->>> +                     "ADDA Capture", "MTKAIF_PIN",
->>> +                     "Headphone Jack", "HPOL",
->>> +                     "Headphone Jack", "HPOR",
->>> +                     "MIC", "Headset Mic",
->>> +                     "Left Spk", "Front Left BE_OUT",
->>> +                     "Right Spk", "Front Right BE_OUT",
->>> +                     "Rear Left Spk", "Rear Left BE_OUT",
->>> +                     "Rear Right Spk", "Rear Right BE_OUT";
->>> +
->>
->> ...and remove the audio-routing from this dtsi; it's anyway being
->> overridden by the -ciri.dtsi devicetree...
-> 
-> Acknowledged, and thanks for all the feedback here.
-> 
+> +
+> +.. c3_isp_params_buffer
 
-You're welcome :-)
+Unsued as well ?
 
-Cheers,
-Angelo
+> +
+> +Pipeline parameters
+> +===================
+> +
+> +The pipeline parameters are passed to the "isp-params" metadata
+> +output video nodes, using the :c:type:`v4l2_meta_format` interface. They are
+> +formatted as described by the :c:type:`c3_isp_params_buffer` structure.
+> +
+> +The structure c3_isp_params_buffer includes the necessary parameters
+> +required by the ISP.
+> +These parameters are written to the ISP hardware.
+> +
+> +Amlogic C3 ISP uAPI data types
+> +===============================
 
+Additional = at the end
+
+> +
+> +.. kernel-doc:: drivers/media/platform/amlogic/c3-isp/include/uapi/c3-isp-config.h
+>
+> --
+> 2.46.1
+>
+>
+>
 
