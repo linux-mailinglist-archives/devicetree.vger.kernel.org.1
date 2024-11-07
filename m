@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-119874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D81A69C0578
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 13:17:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 031D09C058D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 13:21:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 672891F22E40
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 12:17:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57DF7B21420
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 12:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DD721DE4F0;
-	Thu,  7 Nov 2024 12:17:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069FB1F4FD2;
+	Thu,  7 Nov 2024 12:21:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ryA6Q4qV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JI/dkj1H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEBDD17BB0D;
-	Thu,  7 Nov 2024 12:17:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF0BE19AA68;
+	Thu,  7 Nov 2024 12:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730981822; cv=none; b=KXDuHM+BtHYHCN2r6ZKTWmoewZ/hWc+9oz5Epg+OM/+/jYJdp2Bt80DfZaoNhVbv8JWTuaU2UAa7g0rR5Y0UhfEeN7YXcEZTnhnt0JkzWL0iEJgPzPJ6P/cYECmTxg2GX8/uqX7mvP4VTy4EHWneCnyCBgN8d+P3k8Ox7dWb/7c=
+	t=1730982075; cv=none; b=kXDtvV/0lyMt2fWakwo7gIEVpeQ91G3hPSB0bYChcjDVV6LD+SeZyErNtnopF4SxlDUmAfMr33B5ajbxH7HUP1z2AUP8RPM1alJeNFmAfNTNk7XAMGe4b3+XwIukxppr3a/lbcLJ0CzT84JAjxopX5MZwbqcqKxrP9SmYuFAV8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730981822; c=relaxed/simple;
-	bh=EIyzkWslkWt3z9X5/Kx+ztKigmF58WmnDqUUe3ffxEY=;
+	s=arc-20240116; t=1730982075; c=relaxed/simple;
+	bh=k4GBBOI75qvrX0Uu+GJj3FvULt+lX5B9mBxpJ4ccQBk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d4sy5lTyJWBysne6jpuaou+0vLEVbMiMEkb2C8X6Y8WfDMUVXknJwLFffiYjcJemkPhaSRhLB/JsgQLsZG4Vb4gYlyJF/fvB8ane34vXnYl8DhAYmV2EiAIyghf6seKDYz6Fp/+sFl1uaQga/HH6uyVycOB5RMGb1MoPIdmpMC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ryA6Q4qV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7019C4CECC;
-	Thu,  7 Nov 2024 12:16:58 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Y9/8jV7vl4arSrLN3nB4EmdR6P3S5lbpm/vktu+HYlPuIp46jpS8lwrewwsJHk6EUkik6chBksLdrLnfVatzQLumlYaaCKu13rlIY5B4AoX1h/GV/UnJLcCi0T2NzCSV7FVP5qsfzijMP86pET+oaupQVN6frDJowkQIYX8q0gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JI/dkj1H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97D0AC4CECE;
+	Thu,  7 Nov 2024 12:21:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730981822;
-	bh=EIyzkWslkWt3z9X5/Kx+ztKigmF58WmnDqUUe3ffxEY=;
+	s=k20201202; t=1730982075;
+	bh=k4GBBOI75qvrX0Uu+GJj3FvULt+lX5B9mBxpJ4ccQBk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ryA6Q4qV9QVvx2vOqi74IWrkCacGjAuIxRVyqu/QjCx+tvBBGd6zjYLU5VPC4N2gV
-	 Sxq5nOE55+AlNfP0Rzgp8uQv0rDVkm9+TxCwd01JdNW+C+5ni7TPWWDXvMUVzD0kOV
-	 2/JOWUw6WtWObo1PQEdVUCL3dOPW5TWRrP+n3HoF6WuJpckNlACbf1ZTcr3DnR1HAC
-	 8WNLwPcs2hqXZvhCGLIKCTpOkzJThdc9CMQl8Y1vjFSCmyHG48GKPRZsih2s85pbne
-	 tNF2pUqBdlXfnUzHIjSWZlau2+UdUG2A1zrc9v1dXncSdgJeJUfY1cAWVWOZ04DsWi
-	 Ek2zC2CQ87zjw==
-Message-ID: <9d158c25-197a-49fd-b639-45287a46438f@kernel.org>
-Date: Thu, 7 Nov 2024 13:16:56 +0100
+	b=JI/dkj1HbL4i1pVUW/WKr5BEN+StGYV0iPXORJl3jfI7RLcdAB72MHQ/ncEmX5wBZ
+	 tU9aA9GVHN049r92kLlAVfPuWDf2P4hS6VTPSzqW6639xfzxiZWtZOI2/hsbOYVr8j
+	 ADddbOpR2LpoAL7UKeGSrS27UtyC8BlIxCoc5GDXIK5Q/GPSxZ+52gdBFlkU8FaCYs
+	 dUlHUrhpZUhp6gZPAMwlM9RfsUUvlZhcEdkkwoHQcSmv8KPSl2XLgrSbdvbiNgARA1
+	 F3pBREYxbJEGMvxEAcnc1dt1qiPUZle83eZQSo/t7fe3zg+ZqEZ8Msx/FZzRLwFNJt
+	 gPHZd/KTY6gQg==
+Message-ID: <1fa4323b-4cee-4dfe-9c68-55f4465999cf@kernel.org>
+Date: Thu, 7 Nov 2024 13:21:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v3 0/5] wifi: ath12k: Add wifi device node with WSI
- for QCN9274 in RDP433
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org,
- linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20241105180444.770951-1-quic_rajkbhag@quicinc.com>
- <49a6ec0d-8a0b-49aa-a9eb-1174cff930f6@kernel.org>
- <cmvfpctliqggra33u6ituguoxh3jxcuxiyjpbtcjbcgpu6lhoi@4zdthfkc2ed3>
- <692503b8-cf39-4d6b-b70e-910fcc710d69@kernel.org>
- <CAA8EJpqMCbyK0dodMNyfs8dNjV2QoB2nyWm233eOS9xo8BaFJg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: Add clocks for ICSSG
+To: MD Danish Anwar <danishanwar@ti.com>, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, ssantosh@kernel.org, nm@ti.com,
+ Vignesh Raghavendra <vigneshr@ti.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, s-anna@ti.com, kristo@kernel.org, srk@ti.com,
+ Roger Quadros <rogerq@kernel.org>
+References: <20241107104557.1442800-1-danishanwar@ti.com>
+ <20241107104557.1442800-2-danishanwar@ti.com>
+ <7f0a73c3-9977-4d07-b996-683ed18e4724@kernel.org>
+ <8156fd61-c476-4b58-b3b2-e8bc4f93035e@ti.com>
+ <2c368f5a-4b58-45de-8140-21b2f7af4d12@kernel.org>
+ <4ba0381b-d30a-4469-a7c4-327f6ac20c9c@ti.com>
+ <2e7a1eb6-df8f-44d4-9342-1bc6d8b5ad11@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,62 +109,139 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAA8EJpqMCbyK0dodMNyfs8dNjV2QoB2nyWm233eOS9xo8BaFJg@mail.gmail.com>
+In-Reply-To: <2e7a1eb6-df8f-44d4-9342-1bc6d8b5ad11@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 07/11/2024 13:03, Dmitry Baryshkov wrote:
-> On Thu, 7 Nov 2024 at 11:29, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 07/11/2024 12:06, Dmitry Baryshkov wrote:
->>> On Thu, Nov 07, 2024 at 11:23:20AM +0100, Krzysztof Kozlowski wrote:
->>>> On 05/11/2024 19:04, Raj Kumar Bhagat wrote:
->>>>> The RDP433 is a Qualcomm Reference Design Platform based on the
->>>>> IPQ9574. It features three QCN9274 WiFi devices connected to PCIe1,
->>>>> PCIe2, and PCIe3. These devices are also interconnected via a WLAN
->>>>> Serial Interface (WSI) connection. This WSI connection is essential
->>>>> for exchanging control information among these devices.
->>>>>
->>>>> This patch series describes the WSI interface found in QCN9274 in
->>>>> device tree and uses this device tree node in the Ath12k driver to get the
->>>>> details of WSI connection for Multi Link Operation (MLO) among multiple
->>>>> QCN9274 devices.
->>>>>
->>>>> NOTES:
->>>>> 1. As ath12k MLO patches are not ready yet, this patchset does not apply
->>>>>    to the ath.git ath-next branch and that's why the patchset is marked
->>>>>    as RFC. These are the work-in-progress patches we have at the moment.
->>>>>    The full set of MLO patches is available at:
->>>>>    https://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git/log/?h=ath12k-mlo-qcn9274
->>>>>
->>>>> 2. The dependency marked below applies only to the DTS patch. The
->>>>>    dt-bindings patches do not have this dependency.
->>>>>
->>>>> Depends-On: [PATCH V7 0/4] Add PCIe support for IPQ9574
->>>>> Link: https://lore.kernel.org/linux-pci/20240801054803.3015572-1-quic_srichara@quicinc.com/
->>>>>
->>>>> v3:
->>>>> - Created a separate binding "qcom,ath12k-wsi.yaml" to describe ath12k PCI
->>>>>   devices with WSI interface.
->>>>
->>>> Thanks for the changes. When you finish with testing/RFC, please send
->>>> proper version for review (just remember to keep numbering, next one is
->>>> v4 regardless whether this is RFC or not).
->>>
->>> Isn't the 'RFC' being an invitation for review per the nature of the tag
->>> itself?
->>
->> No, RFC means patch is not ready, might change. This was brought on the
->> lists multiple times and some maintainers clearly ignore RFC. Including me.
+On 07/11/2024 12:58, MD Danish Anwar wrote:
 > 
-> Thanks, point noted. I'll stop marking my patches with RFC tag.
+> 
+> On 07/11/24 5:16 pm, MD Danish Anwar wrote:
+>>
+>>
+>> On 07/11/24 5:14 pm, Krzysztof Kozlowski wrote:
+>>> On 07/11/2024 12:36, MD Danish Anwar wrote:
+>>>>
+>>>>
+>>>> On 07/11/24 5:01 pm, Krzysztof Kozlowski wrote:
+>>>>> On 07/11/2024 11:45, MD Danish Anwar wrote:
+>>>>>> Add clocks, assigned-clocks and assigned-clock-parents for ICSSG
+>>>>>
+>>>>> Why? We see what you are doing from the diff, no point to repeat it. I
+>>>>> don't understand why you are doing it.
+>>>>>
+>>>>>>
+>>>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>>>>> ---
+>>>>>>  .../devicetree/bindings/soc/ti/ti,pruss.yaml          | 11 +++++++++++
+>>>>>>  1 file changed, 11 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>>>> index 3cb1471cc6b6..cf4c5884d8be 100644
+>>>>>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>>>> @@ -92,6 +92,17 @@ properties:
+>>>>>>      description: |
+>>>>>>        This property is as per sci-pm-domain.txt.
+>>>>>>  
+>>>>>> +  clocks:
+>>>>>> +    items:
+>>>>>> +      - description: ICSSG_CORE Clock
+>>>>>> +      - description: ICSSG_ICLK Clock
+>>>>>> +
+>>>>>> +  assigned-clocks:
+>>>>>> +    maxItems: 1
+>>>>>> +
+>>>>>> +  assigned-clock-parents:
+>>>>>> +    maxItems: 1
+>>>>>
+>>>>> Why? This is really not needed, so you need to explain why you are doing
+>>>>> things differently than entire Linux kernel / DT bindings.
+>>>>>
+>>>>
+>>>> I need to add this to the device tree node
+>>>>
+>>>> +		clocks = <&k3_clks 81 0>,  /* icssg0_core_clk */
+>>>> +			 <&k3_clks 81 20>; /* icssg0_iclk */
+>>>> +		assigned-clocks = <&k3_clks 81 0>;
+>>>> +		assigned-clock-parents = <&k3_clks 81 2>;
+>>>>
+>>>> But without the above change in the binding I am getting below errors
+>>>> while running dtbs check.
+>>>>
+>>>> /workdir/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: icssg@30000000:
+>>>> 'assigned-clock-parents', 'assigned-clocks' do not match any of the
+>>>> regexes: '^(pru|rtu|txpru)@[0-9a-f]+$', '^pa-stats@[a-f0-9]+$',
+>>>> 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$', 'interrupt-controller@[a-f0-9]+$',
+>>>> 'mdio@[a-f0-9]+$', 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$',
+>>>> 'mii-rt@[a-f0-9]+$', 'pinctrl-[0-9]+'
+>>>> +/workdir/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: icssg@30080000:
+>>>> 'anyOf' conditional failed, one must be fixed:
+>>>>
+>>>> To fix this warning I added these in the binding and the warnings were
+>>>> fixed.
+>>>
+>>> nah, cannot reproduce. Just be sure you work on recent kernel (last time
+>>> you were sending it on some ancient stuff) and your packages are
+>>> updated, including dt schema and other kernel dependencies.
+>>>
+>>
+>> I have posted this series on the latest kernel. Base commit
+>> 5b913f5d7d7fe0f567dea8605f21da6eaa1735fb
+>>
+>> Let me check if the schema is up to date or not. I will re test and
+>> reply. Thanks for pointing it out.
+>>
+> 
+> Krzysztof, I re-checked.
+> I am on the latest kernel (commit
+> 5b913f5d7d7fe0f567dea8605f21da6eaa1735fb (tag: next-20241106,
+> origin/master, origin/HEAD)) and I am using the lastest dtschema v2024.9
+> 
+> ❯ python3 -m pip list|grep 'dtschema'
+> dtschema                      2024.9
+> 
+> Still I am getting the below dtbs check errors while running `make
+> CHECK_DTBS=y ti/k3-am642-evm.dtb` without the binding change.
+> 
+> Let me know if I am missing something else.
+> 
+> /home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
+> icssg@30000000: 'assigned-clock-parents', 'assigned-clocks', 'clocks' do
 
-Wait, you can keep marking them RFC! It all depends what do you want to
-achieve. Get some comments on early work or actual review for something
-you believe is a finished work.
+Wait, what? That's different error. You have clocks documented. To
+remind: we talk about previous error so only, *only* assigned-clocks.
 
-I looked here briefly, no comments from me and I assume that was the
-intention of RFC.
+> not match any of the regexes: '^(pru|rtu|txpru)@[0-9a-f]+$',
+> '^pa-stats@[a-f0-9]+$', 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$',
+> 'interrupt-controller@[a-f0-9]+$', 'mdio@[a-f0-9]+$',
+> 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$', 'mii-rt@[a-f0-9]+$',
+> 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml#
+> /home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
+> icssg@30000000: 'assigned-clock-parents', 'assigned-clocks', 'clocks' do
+> not match any of the regexes: '^(pru|rtu|txpru)@[0-9a-f]+$',
+> '^pa-stats@[a-f0-9]+$', 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$',
+> 'interrupt-controller@[a-f0-9]+$', 'mdio@[a-f0-9]+$',
+> 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$', 'mii-rt@[a-f0-9]+$',
+> 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml#
+> /home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
+> icssg@30080000: 'assigned-clock-parents', 'assigned-clocks', 'clocks' do
+> not match any of the regexes: '^(pru|rtu|txpru)@[0-9a-f]+$',
+> '^pa-stats@[a-f0-9]+$', 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$',
+> 'interrupt-controller@[a-f0-9]+$', 'mdio@[a-f0-9]+$',
+> 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$', 'mii-rt@[a-f0-9]+$',
+> 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml#
+> /home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
+> icssg@30080000: 'assigned-clock-parents', 'assigned-clocks', 'clocks' do
+> not match any of the regexes: '^(pru|rtu|txpru)@[0-9a-f]+$',
+> '^pa-stats@[a-f0-9]+$', 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$',
+
+I don't understand these, either.  All of them have clocks. What are you
+testing? You add clocks to DTS but not to the binding? What would be the
+point of that test?
 
 Best regards,
 Krzysztof
