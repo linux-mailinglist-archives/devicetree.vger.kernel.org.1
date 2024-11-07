@@ -1,170 +1,95 @@
-Return-Path: <devicetree+bounces-119951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B7D69C0A7B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 16:55:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 620AE9C0A70
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 16:52:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C78171F23AE2
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 15:55:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2838E2839D8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 15:52:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA1CB2144BF;
-	Thu,  7 Nov 2024 15:55:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9A422144D1;
+	Thu,  7 Nov 2024 15:52:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="dqTLO5o5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cu9+qsIu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88B501DFDAD;
-	Thu,  7 Nov 2024 15:54:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C7C2144A5;
+	Thu,  7 Nov 2024 15:52:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730994901; cv=none; b=WQvt5/zbnLbXqVAEqlqSGQ1MTxyAqCjCkF/dRPHt+3ChY77aL6hDVrf4wEhH4ztJ6yI2XjWWote3JWXp7Ynz/s6IIglezeohtqlhJE0O5nDy0MQimNiv3fV/4/qdrlDA4UQ6VCdHlm2kKDuPmAv6G+mTihgAkNDhNfUSGxtb9aM=
+	t=1730994721; cv=none; b=UGIPSem/Clrbe/lXf9EWuPE3HTZRHEflmUnMJwHp5yy7Cl5rnvQ/f0gI18l0KDtc2XwbWF7k5505hOLeRp9AlomYbwDKqnxVgqQxwpTkkUdGGpOmcHGzXdaBN0ZDtMxrb+VxN/GwgsofJ/hHiUsdsOYKazFyeG06d0Nj5rH3VT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730994901; c=relaxed/simple;
-	bh=i05yoQ81D9So2rHWrDdV0mDezvBKpfjM8FU6238MQOk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VQOysJoYRsX3twW0bSVmk+p4gG1tVTwGnf9FuIUqmwK+Pi3jd14cRrDvV+AHVV799Hl5F28kDXIl6/NpI5riDN5i4DKGAP2o0CztVc/8hkvY27KafVQdX9R1iNHji8cs0yf14Ez1JMY/SFS+NL//QhApU0QTIbUIVm+Ar9so73g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=dqTLO5o5; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A7Ap0oi001233;
-	Thu, 7 Nov 2024 16:54:43 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	DdQ63519VTwDDYOb2ko9io8ZGiOolYAXq3k/7DS5g7Q=; b=dqTLO5o5EoF+cjp9
-	WQj/kqPQSsBdtHKkEjAJ2ge82+b0WHRCd26G5Oaao5bHaTmeVUnfa76STxJXqwtC
-	mnZzHEFhfsVOM6Q/2FjGZlN6lL8QtkmzBd1Mf4o55TTiKnYKX3J5tR8sTwUuInMf
-	ajeGPPzxNSjCLtWluzu6s1HCUBmfi2ne61uYhNzocSqmmhQIPdzrCbZ46/gqhX3b
-	ZHMQhBM/j3gTetLawEjT7zuELoP4NOhjFitIDFAnY8jLRBKx/+kVLqA5NR4H6dfz
-	Yj7tfN00ZzoG0ovrRo0v49mYKTQJ+ovPF92qFY2XmBIZi4tVUOyU38rQUs968DZw
-	gQ7MlQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42r9765y3j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Nov 2024 16:54:43 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 07AA140048;
-	Thu,  7 Nov 2024 16:53:49 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A95982B7342;
-	Thu,  7 Nov 2024 16:52:01 +0100 (CET)
-Received: from localhost (10.48.86.132) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 7 Nov
- 2024 16:52:01 +0100
-From: Olivier Moysan <olivier.moysan@foss.st.com>
-To: Olivier Moysan <olivier.moysan@foss.st.com>,
-        Arnaud Pouliquen
-	<arnaud.pouliquen@foss.st.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark
- Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>
-CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 1/2] ASoC: dt-bindings: add stm32mp25 support for sai
-Date: Thu, 7 Nov 2024 16:51:41 +0100
-Message-ID: <20241107155143.1340523-2-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241107155143.1340523-1-olivier.moysan@foss.st.com>
-References: <20241107155143.1340523-1-olivier.moysan@foss.st.com>
+	s=arc-20240116; t=1730994721; c=relaxed/simple;
+	bh=f+KXBENsmoNNMukSkOnmzKaUFO1dC8kFhS5KRSuuJHE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qvqq8KPco4dv2HsYjvlkoZkMrNg6vdBsclshBuDZiB6TgCIfegGt9+EjO9Owmjk1AzFGkU1qEi8B1lpt+qdeKAb7+jxPip8DxHckoSeQ/lCTlvazSO0WMJKE2ZNFXNdIywH4SulLURYRkx+ozK5OERoUMneorrurKRgD3u9gLUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cu9+qsIu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CD88C4CECC;
+	Thu,  7 Nov 2024 15:52:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730994721;
+	bh=f+KXBENsmoNNMukSkOnmzKaUFO1dC8kFhS5KRSuuJHE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Cu9+qsIuGgslK6gaMJvw+dFv1QvgkBuNJ4Jr3P+99lqd6liN9qLEgm/tfg/C2rm42
+	 icW5Ciw2mhgSJzfX5/dpieDZTsKuBEArYy89skFRpbo09M8i0OE4auiBr9GRLO+cV3
+	 QBkhVmgdIZZwl91Sp2vbDGEAWaJT5yTMuKIdzA68Y0ljvQOFZlY/N39GOC/kKKy3gH
+	 bdgpln+rWvgLKttCeGheEb8FBZAt0jdOGLIrSeA00GYWlKudCrwYZJ/qtXaygeVNn8
+	 C+wDfnkeqaXOHfEZwn/xwdzEgQKVOvOwRFsXr27/0hCNiJ139lKDyKvp2sqxnw26q7
+	 bXyMPEMGx56YQ==
+Date: Thu, 7 Nov 2024 09:51:59 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: devicetree@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>,
+	linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 01/10] dt-bindings: soc: mobileye: set `#clock-cells =
+ <1>` for all compatibles
+Message-ID: <173099471894.2769888.8233833580662075395.robh@kernel.org>
+References: <20241106-mbly-clk-v2-0-84cfefb3f485@bootlin.com>
+ <20241106-mbly-clk-v2-1-84cfefb3f485@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+In-Reply-To: <20241106-mbly-clk-v2-1-84cfefb3f485@bootlin.com>
 
-Add STM32MP25 support for STM32 SAI peripheral,
-through "st,stm32mp25-sai" compatible.
 
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
----
- .../bindings/sound/st,stm32-sai.yaml          | 26 ++++++++++++++++++-
- 1 file changed, 25 insertions(+), 1 deletion(-)
+On Wed, 06 Nov 2024 17:03:52 +0100, Théo Lebrun wrote:
+> Some compatibles expose a single clock. For those, we used to let them
+> using `#clock-cells = <0>` (ie <&olb> reference rather than <&olb 0>).
+> 
+> Switch away from that: enforce a cell for all compatibles. This is more
+> straight forward, and avoids devicetree changes whenever a compatible
+> goes from exposing a single clock to multiple ones. Also, dt-bindings
+> get simpler.
+> 
+> *This is an ABI break*. Change it while EyeQ5 platform support is at its
+> infancy, without any user. More clocks might hide in each OLB as some
+> registers are still unknown.
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  | 24 +---------------------
+>  1 file changed, 1 insertion(+), 23 deletions(-)
+> 
 
-diff --git a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
-index 68f97b462598..4a7129d0b157 100644
---- a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
-+++ b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
-@@ -20,6 +20,7 @@ properties:
-     enum:
-       - st,stm32f4-sai
-       - st,stm32h7-sai
-+      - st,stm32mp25-sai
- 
-   reg:
-     items:
-@@ -43,9 +44,11 @@ properties:
-     const: 1
- 
-   clocks:
-+    minItems: 1
-     maxItems: 3
- 
-   clock-names:
-+    minItems: 1
-     maxItems: 3
- 
-   access-controllers:
-@@ -156,7 +159,13 @@ allOf:
-           items:
-             - const: x8k
-             - const: x11k
--    else:
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: st,stm32mph7-sai
-+    then:
-       properties:
-         clocks:
-           items:
-@@ -170,6 +179,21 @@ allOf:
-             - const: x8k
-             - const: x11k
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: st,stm32mp25-sai
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: pclk feeds the peripheral bus interface.
-+
-+        clock-names:
-+          items:
-+            - const: pclk
-+
- additionalProperties: false
- 
- examples:
--- 
-2.25.1
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
