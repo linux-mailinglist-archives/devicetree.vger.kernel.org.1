@@ -1,361 +1,114 @@
-Return-Path: <devicetree+bounces-119768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FECE9C0108
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:21:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77F679C011B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:28:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B33691C216C3
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 09:21:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CD3B283098
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 09:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89B91E3763;
-	Thu,  7 Nov 2024 09:20:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C02ED1DF273;
+	Thu,  7 Nov 2024 09:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k6/3aCrL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IQllOons"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D86011E261C;
-	Thu,  7 Nov 2024 09:20:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E92196D8F;
+	Thu,  7 Nov 2024 09:28:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730971225; cv=none; b=JmSPPPd+0Vyl/++OKW5MuLs+G9pMq1NLAUnvslg1YbW2w+1nKRyUZ64gDniDKAQ2P3fYsRD4d4+Kgk04adQIQSmnVgPdqluiE0R1QDGFuRGOPAVfd8TDrkbFmkDB54dhURWsfrcVVAXBzlHw/mH4c5BiyWZiUK2FHSwL8tSNJAo=
+	t=1730971692; cv=none; b=SflT7TSkwRh/WXPuVdQ/WWAson2NQYoBJBO1T/4cpU6xQ3Uc3PQJtGIcNCcBmiEttVIrAFpgANMwj2NMTnOQjUSHEpFjLB2oz2tuAx5Ev1vn6bfoE+jvxCQ/gQNYqKQwN5EinPTPE8HdekRKzw3fbMdi/qvxmjTDuP+KQpGWrFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730971225; c=relaxed/simple;
-	bh=qcVQKBxN0F6baKWfAFHd5n9gYoMcBRYNhU4G/s72Xrs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WFLWj6cSS3QyO89VCzmdChx1Oly3/6kMA6hn52utvKJZbABUJ2f5uqi48rhfsbkn8q3gTDoCHPRZbCRmSGBJWpphAzC5jcnHvSNz2UUj1ZepX92Z9EETiLA3x55iD9j/wPnm+/pAOYgPeYQKpspR7asjmDAqArWCNf7LRzGGaO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k6/3aCrL; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539ee1acb86so708681e87.0;
-        Thu, 07 Nov 2024 01:20:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730971222; x=1731576022; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QK1XdOVmAUkQ2fTe+YuCgvHp77+BHuIFQXUOx8rf0ug=;
-        b=k6/3aCrLJ+HuQLPAzsEfR0aNGKnT1WJxHYTupShUaZyTRcP6HVBhbPf/A68OLXw6cF
-         QxlmLSdM5bVFC45J9VEWSAmY0j2SaEMilKl4TKQhzNBLKeHYp1jEBTh5jeH6Xf6mtPxN
-         V8AtMFlpcfDW15A5MI+xxqm60VAw9LNrvF+VO2nNoVC0B3RAfHiN9jls4E92+3rRGUFD
-         4Ii4lnaYF0VSHReKsvkrQDnHKWSmbHl9cpXb2f4yPMOy+fdY682rIUTWIFMkDxWIjgw9
-         5kjswWZhgWr1x8peBIthjG/IzcySxLVsBGLDuHWeUYtIYTgjllN45LO1vdJhAtBsPyvf
-         dlmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730971222; x=1731576022;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QK1XdOVmAUkQ2fTe+YuCgvHp77+BHuIFQXUOx8rf0ug=;
-        b=jELwNx3ZjtSwHUU7LMBvEwPlalpct9qgXoA7pbyvkdY+1zisBC8OL2aNMd0pCKQ1NX
-         JjghbXwGvFQaUxvs6gfH/+GSfuOogrPZnSMyAtHgT5+6daB1XUW6kx7jpt16y3AyyX00
-         wx8pHUyYO/ypNmtcjwMValrx7D9qXBmyg9U5DlBNYt+5/tulIMvPX0tj83gDnP8xF/fX
-         fLB/fiUMovC4wzZcprw51GhLGI0e6xVjYTOxoXj2mFWWLK0MxiJvLAkF+Qnh+bVvqG7f
-         6hPlSMhH1o/ts6ChnLcdbwKOdUcY0Fn5SU+L2Bpyxe8oX+frMuD3AZF4+mXOePiSzKYX
-         ArRg==
-X-Forwarded-Encrypted: i=1; AJvYcCUFKElHX2cC+y9zr/jMpUJi4qq7fGsfGlF3xcVVF0iSgoLw6omx57esexAMTRZEwyCrA7pNJ6uM26qc@vger.kernel.org, AJvYcCVFGeqGM7MkLbLSCwhKFeVQsnEcFJgjQXTQN0j5wK+AynrbDG0PiQQIHwoWPnIQ99lN5FH50OhrwQkD02P6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOs9IQc0FCKlX+h2B1lKCxLCUhJFzRUywYieEQW4Nb5AUUqOgA
-	U9NxRC+0Vul8lXTpXLDL4ZfRunYxSUc3JLq+12PPC7hF51+Se0HoxfZajyrd
-X-Google-Smtp-Source: AGHT+IEEQWtPYTw/UAfp3xustQoSg0MSdAth22EFd3NaHj0cAEhDqoMH8t3n/7QUg9JZseSLN9VyCA==
-X-Received: by 2002:a05:6512:3caa:b0:539:f827:2fbc with SMTP id 2adb3069b0e04-53d65df7c5cmr11667995e87.26.1730971221265;
-        Thu, 07 Nov 2024 01:20:21 -0800 (PST)
-Received: from [192.168.1.11] (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53d826a9b50sm139509e87.182.2024.11.07.01.20.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Nov 2024 01:20:19 -0800 (PST)
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-Date: Thu, 07 Nov 2024 10:19:54 +0100
-Subject: [PATCH v6 2/2] dt-bindings: mtd: davinci: convert to yaml
+	s=arc-20240116; t=1730971692; c=relaxed/simple;
+	bh=inInmAOEGIQYmj1++GbuXfyk7lHVgFnSJgJOGWipTjk=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=t56FrU0hZ7G0q3mBaM9AErQZsYS2k43CKhGSwAk18ZFYXPz3bk1xR8fF+N6iQIYK+mHodch3UqikRJpunIzj5TUk//ulbXOZpURylTp4LDqaV92oBrKe7PW1JfEQWLP8YBQHltz4AUrTKlVsiNA9NVlbU8A96Rop8rm+I2wwvus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IQllOons; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B895EC4CECC;
+	Thu,  7 Nov 2024 09:28:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730971692;
+	bh=inInmAOEGIQYmj1++GbuXfyk7lHVgFnSJgJOGWipTjk=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=IQllOons9q1GW676npTQaZgApYsAUUlpYXvsxx/H2b1czH53GlLQ3lQKvskzA86pC
+	 0j49vyiVHHTYAAqthSAER06O3cssf/XyzD8kSMiwa+FeLfW1xMKr4B6hSwqHKTFMi5
+	 RsSF58uhhEnJqidtGbkPffwbQTs9aD6M4whwKPy/8GhS/hsm9H9lx6jqAug7E2VC4E
+	 zQ4HGlIYp/nLbWYhgzo4HYlPynQnOroCiqTF4jmykZwN/78FHLysdum6vXgbu28p7/
+	 f1IRWTu9tTqzLj1y1Gmk+7LP+n8j5XvHk2eFpXrw9a5hcOYXO+fknGoNrmTvnUZJC+
+	 J6UmAfPIyoWxg==
+Date: Thu, 07 Nov 2024 03:28:10 -0600
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241107-ondie-v6-2-f70905dc12bf@gmail.com>
-References: <20241107-ondie-v6-0-f70905dc12bf@gmail.com>
-In-Reply-To: <20241107-ondie-v6-0-f70905dc12bf@gmail.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7516;
- i=marcus.folkesson@gmail.com; h=from:subject:message-id;
- bh=qcVQKBxN0F6baKWfAFHd5n9gYoMcBRYNhU4G/s72Xrs=;
- b=owEBbQKS/ZANAwAIAYiATm9ZXVIyAcsmYgBnLIZG1343w/337NBzc1ONG4UdeNT8FL9DnYAzN
- CjKDumVhAGJAjMEAAEIAB0WIQQFUaLotmy1TWTBLGWIgE5vWV1SMgUCZyyGRgAKCRCIgE5vWV1S
- MgqDD/wIYhvhmKLHzq4wjW0lIg4Dgrg/017ks9Vj+CkmlPtLeN4QNsQPGrJ1K1MlAQG22+MfUIA
- dC8iC+khIWro6pEJBKvPi8TBQviJKYHft2cGqQJ+e2k+I4InhQ4lnPtxzu1WV+9cYTXSulTBFZW
- StwzddKVQT8JeBN+Vv9IEIruj1jMzVSV2DSsshQLdE3KhWCxJo43urvBLhSKv2vSqz7TjRXu9Wx
- yvpw4FSTsQCEB/D2KPTUIkLenPoYv2LerenZkpDQ8N6SMgs46K0AjdMSglmYX6MlQ6c4e1P/mC5
- MoDzIO87sW+bNHEaT8uFb7pc/z/5Sah7bjbryiLZ01LFuIvBHaiYmLpJ6OSRxHmLO9h7+OGpNLg
- 5ievr0gOpdaEoZz7teL3ig/730QUPr8IEgb7ZVCBQ7JxTHB3MkDlItPg0vln2wUWqvlWkaY6UTu
- eJ4MN9OC5Blna3of1UZ0FYl0gHmRKMA9KwPbvE+KL8tb3X1lQxyme3DJ1hcsQVm9/BmAi2RGAu7
- 2Q/EV+KUVxY+o485DhPNPyvBQ6ydB7cChgYPOozsUTiSTuOiwRoK2u49Exq1mQEZwBhoWLB0tzr
- dE32FX15AkThDpDdihFn+xzvsvnkvTmjzsMe5zQE71HK7FZyDGRaiGE7ExjNq/+G0YvfyC/OrF0
- 1/ZdcGLXku550vA==
-X-Developer-Key: i=marcus.folkesson@gmail.com; a=openpgp;
- fpr=AB91D46C7E0F6E6FB2AB640EC0FE25D598F6C127
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Sarthak Garg <quic_sartgarg@quicinc.com>
+Cc: Adrian Hunter <adrian.hunter@intel.com>, quic_rampraka@quicinc.com, 
+ Conor Dooley <conor+dt@kernel.org>, quic_nguyenb@quicinc.com, 
+ Ulf Hansson <ulf.hansson@linaro.org>, linux-kernel@vger.kernel.org, 
+ quic_pragalla@quicinc.com, quic_bhaskarv@quicinc.com, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, quic_sachgupt@quicinc.com, 
+ Bhupesh Sharma <bhupesh.sharma@linaro.org>, devicetree@vger.kernel.org, 
+ quic_nitirawa@quicinc.com, quic_cang@quicinc.com, quic_narepall@quicinc.com, 
+ quic_sayalil@quicinc.com, linux-mmc@vger.kernel.org, kernel@quicinc.com, 
+ linux-arm-msm@vger.kernel.org
+In-Reply-To: <20241107080505.29244-2-quic_sartgarg@quicinc.com>
+References: <20241107080505.29244-1-quic_sartgarg@quicinc.com>
+ <20241107080505.29244-2-quic_sartgarg@quicinc.com>
+Message-Id: <173097168998.1358564.6585218093768664587.robh@kernel.org>
+Subject: Re: [PATCH V1 1/3] dt-bindings: mmc: qcom: Document level shifter
+ flag for SD card
 
-Convert the bindings to yaml format.
 
-Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
----
- .../devicetree/bindings/mtd/davinci-nand.txt       |  94 ---------------
- .../devicetree/bindings/mtd/ti,davinci-nand.yaml   | 134 +++++++++++++++++++++
- 2 files changed, 134 insertions(+), 94 deletions(-)
+On Thu, 07 Nov 2024 13:35:03 +0530, Sarthak Garg wrote:
+> Introduce a flag to indicate if the Qualcomm platform has a level
+> shifter for SD cards. With level shifter addition some extra delay is
+> seen on RX data path leading to CRC errors. To compensate these delays
+> and avoid CRC errors below things needs to be done:
+> 
+> 1) Enable tuning for SDR50 mode
+> 2) Limit HS mode frequency to 37.5MHz from 50MHz
+> 
+> Add this flag for all targets with a level shifter to handle these
+> issues for SD card.
+> 
+> Signed-off-by: Sarthak Garg <quic_sartgarg@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
 
-diff --git a/Documentation/devicetree/bindings/mtd/davinci-nand.txt b/Documentation/devicetree/bindings/mtd/davinci-nand.txt
-deleted file mode 100644
-index eb8e2ff4dbd2901b3c396f2e66c1f590a32dcf67..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/mtd/davinci-nand.txt
-+++ /dev/null
-@@ -1,94 +0,0 @@
--Device tree bindings for Texas instruments Davinci/Keystone NAND controller
--
--This file provides information, what the device node for the davinci/keystone
--NAND interface contains.
--
--Documentation:
--Davinci DM646x - https://www.ti.com/lit/ug/sprueq7c/sprueq7c.pdf
--Kestone - https://www.ti.com/lit/ug/sprugz3a/sprugz3a.pdf
--
--Required properties:
--
--- compatible:			"ti,davinci-nand"
--				"ti,keystone-nand"
--
--- reg:				Contains 2 offset/length values:
--				- offset and length for the access window.
--				- offset and length for accessing the AEMIF
--				control registers.
--
--- ti,davinci-chipselect:	number of chipselect. Indicates on the
--				davinci_nand driver which chipselect is used
--				for accessing the nand.
--				Can be in the range [0-3].
--
--Recommended properties :
--
--- ti,davinci-mask-ale:		mask for ALE. Needed for executing address
--				phase. These offset will be added to the base
--				address for the chip select space the NAND Flash
--				device is connected to.
--				If not set equal to 0x08.
--
--- ti,davinci-mask-cle:		mask for CLE. Needed for executing command
--				phase. These offset will be added to the base
--				address for the chip select space the NAND Flash
--				device is connected to.
--				If not set equal to 0x10.
--
--- ti,davinci-mask-chipsel:	mask for chipselect address. Needed to mask
--				addresses for given chipselect.
--
--- nand-ecc-mode:		operation mode of the NAND ecc mode. ECC mode
--				valid values for davinci driver:
--				- "none"
--				- "soft"
--				- "hw"
--
--- ti,davinci-ecc-bits:		used ECC bits, currently supported 1 or 4.
--
--- nand-bus-width:		buswidth 8 or 16. If not present 8.
--
--- nand-on-flash-bbt:		use flash based bad block table support. OOB
--				identifier is saved in OOB area. If not present
--				false.
--
--Deprecated properties:
--
--- ti,davinci-ecc-mode:		operation mode of the NAND ecc mode. ECC mode
--				valid values for davinci driver:
--				- "none"
--				- "soft"
--				- "hw"
--
--- ti,davinci-nand-buswidth:	buswidth 8 or 16. If not present 8.
--
--- ti,davinci-nand-use-bbt:	use flash based bad block table support. OOB
--				identifier is saved in OOB area. If not present
--				false.
--
--Nand device bindings may contain additional sub-nodes describing partitions of
--the address space. See mtd.yaml for more detail. The NAND Flash timing
--values must be programmed in the chip select’s node of AEMIF
--memory-controller (see Documentation/devicetree/bindings/memory-controllers/
--davinci-aemif.txt).
--
--Example(da850 EVM ):
--
--nand_cs3@62000000 {
--	compatible = "ti,davinci-nand";
--	reg = <0x62000000 0x807ff
--	       0x68000000 0x8000>;
--	ti,davinci-chipselect = <1>;
--	ti,davinci-mask-ale = <0>;
--	ti,davinci-mask-cle = <0>;
--	ti,davinci-mask-chipsel = <0>;
--	nand-ecc-mode = "hw";
--	ti,davinci-ecc-bits = <4>;
--	nand-on-flash-bbt;
--
--	partition@180000 {
--		label = "ubifs";
--		reg = <0x180000 0x7e80000>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml b/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..fffdaa9bf85ac2ffb1b177bdc693c995d2a8ea20
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml
-@@ -0,0 +1,134 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/ti,davinci-nand.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI DaVinci NAND controller
-+
-+maintainers:
-+  - Marcus Folkesson <marcus.folkesson@gmail.com>
-+
-+allOf:
-+  - $ref: nand-controller.yaml
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,davinci-nand
-+      - ti,keystone-nand
-+
-+  reg:
-+    items:
-+      - description:
-+          Access window.
-+      - description:
-+          AEMIF control registers
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  partitions:
-+    $ref: /schemas/mtd/partitions/partitions.yaml
-+
-+  ti,davinci-chipselect:
-+    description:
-+      Number of chipselect. Indicate on the davinci_nand driver which
-+      chipselect is used for accessing the nand.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2, 3]
-+
-+  ti,davinci-mask-ale:
-+    description:
-+      Mask for ALE. Needed for executing address phase. These offset will be
-+      added to the base address for the chip select space the NAND Flash
-+      device is connected to.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0x08
-+
-+  ti,davinci-mask-cle:
-+    description:
-+      Mask for CLE. Needed for executing command phase. These offset will be
-+      added to the base address for the chip select space the NAND Flash device
-+      is connected to.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0x10
-+
-+  ti,davinci-mask-chipsel:
-+    description:
-+      Mask for chipselect address. Needed to mask addresses for given
-+      chipselect.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+
-+  ti,davinci-ecc-bits:
-+    description: Used ECC bits.
-+    enum: [1, 4]
-+
-+  ti,davinci-ecc-mode:
-+    description: Operation mode of the NAND ECC mode.
-+    $ref: /schemas/types.yaml#/definitions/string
-+    enum: [none, soft, hw, on-die]
-+    deprecated: true
-+
-+  ti,davinci-nand-buswidth:
-+    description: Bus width to the NAND chip
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [8, 16]
-+    default: 8
-+    deprecated: true
-+
-+  ti,davinci-nand-use-bbt:
-+    type: boolean
-+    description:
-+      Use flash based bad block table support. OOB identifier is saved in OOB
-+      area.
-+    deprecated: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+  - ti,davinci-chipselect
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+      #address-cells = <2>;
-+      #size-cells = <1>;
-+
-+      nand-controller@2000000,0 {
-+        compatible = "ti,davinci-nand";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        reg = <0 0x02000000 0x02000000
-+        1 0x00000000 0x00008000>;
-+
-+        ti,davinci-chipselect = <1>;
-+        ti,davinci-mask-ale = <0>;
-+        ti,davinci-mask-cle = <0>;
-+        ti,davinci-mask-chipsel = <0>;
-+
-+        ti,davinci-nand-buswidth = <16>;
-+        ti,davinci-ecc-mode = "hw";
-+        ti,davinci-ecc-bits = <4>;
-+        ti,davinci-nand-use-bbt;
-+
-+        partitions {
-+          compatible = "fixed-partitions";
-+          #address-cells = <1>;
-+          #size-cells = <1>;
-+
-+          partition@0 {
-+            label = "u-boot env";
-+            reg = <0 0x020000>;
-+          };
-+        };
-+      };
-+    };
+My bot found errors running 'make dt_binding_check' on your patch:
 
--- 
-2.47.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml: qcom,use-level-shifter: missing type definition
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241107080505.29244-2-quic_sartgarg@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
