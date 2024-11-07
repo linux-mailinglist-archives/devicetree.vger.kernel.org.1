@@ -1,332 +1,126 @@
-Return-Path: <devicetree+bounces-119835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC6199C03A3
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 12:16:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C9E19C03C9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 12:22:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57EA61F231C8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:16:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DC5F1C21705
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:22:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 528C01F7075;
-	Thu,  7 Nov 2024 11:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1893C1F4290;
+	Thu,  7 Nov 2024 11:22:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FIvdzGVU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E78C11F668E;
-	Thu,  7 Nov 2024 11:15:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 554511F1303;
+	Thu,  7 Nov 2024 11:22:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730978119; cv=none; b=mHEaXXsr8Wlj2Evrs8g3iVUjPiWCXV3ALxXrg8i2GfCWoAIM5S4Bg9Y/C++A7TOZTqNm42BIfOjbBOFjVIp2j0w2Ri/YFpBFuyNsvusVGD0henvw0gDwAybNtd4jOfcNZofhbMIxLywb9dVmo/NBBAsRhGi/pVI2RMlItbNLZkA=
+	t=1730978548; cv=none; b=FGn2OjAEEvbKsx/w55pHb5d8HwU6Fc1R5XshsDAikltaDVRDTFMGfKwAKGWh4pdCqvia6HhH2IKnz/nymGHdOEKlP9SaafVm5qO4ghmdoc9/4AJeyOTgoVJYyFN1l+TZcbzQwQ98ugTTsIv7nN+L6CfSUDWYDEfzw3ts9kyd5fE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730978119; c=relaxed/simple;
-	bh=ouXVzZQh7DqUjSaVgY9AgYWW7Wh0B6mj6XjR3ouPsJk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fpW3FRkjPDU4VoSpKl5uptYUZX08xVmGPL41WzaTCcZnKBEgfeIklOCH3x/kUxuQPeMOV7xj0J7TeVjCDSoUzE0lTBtHOsQK2DWPXPudQOFr5RsMV2FPC2aTC/txDfilFlsJX3CCqEJdc90FIxylNqkKc0LGcZ+7VQBcbzFTwOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Thu, 7 Nov
- 2024 19:15:01 +0800
-Received: from mail.aspeedtech.com (192.168.10.10) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
- Transport; Thu, 7 Nov 2024 19:15:01 +0800
-From: Jacky Chou <jacky_chou@aspeedtech.com>
-To: <andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
-	<kuba@kernel.org>, <pabeni@redhat.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <p.zabel@pengutronix.de>,
-	<ratbert@faraday-tech.com>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <jacky_chou@aspeedtech.com>
-Subject: [net-next 3/3] net: ftgmac100: Support for AST2700
-Date: Thu, 7 Nov 2024 19:15:00 +0800
-Message-ID: <20241107111500.4066517-4-jacky_chou@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241107111500.4066517-1-jacky_chou@aspeedtech.com>
-References: <20241107111500.4066517-1-jacky_chou@aspeedtech.com>
+	s=arc-20240116; t=1730978548; c=relaxed/simple;
+	bh=iyCDl7ZPUt6a//yr/835EBnfK0zGbZXT8k2phIEStMM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tfN2jZFS2KoW/DQHnqXvQI0t+OFdYm/7rX/xjfQljBPq+fPKsDuIenlHj8+Rd/KVsSf/8QvY2+CQuZjtZBIePo1O2wqHwX822sCIcIpTQ241DWn3PYp3SJVa2KOH/BqE/LOY4+BJxwQm3R5Cn40pTtcDKZE73YN8dJO4u9iPDqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FIvdzGVU; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a9ed7d8d4e0so116282166b.1;
+        Thu, 07 Nov 2024 03:22:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730978545; x=1731583345; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iyCDl7ZPUt6a//yr/835EBnfK0zGbZXT8k2phIEStMM=;
+        b=FIvdzGVU/5lKGIufePv9mlEQxNuHIK1dcaf/4A5K55LtQBW4ANCjtLCGofd5rBNuCj
+         BcIA1xsdCFsmgoQyBj6Wj/mfD3cGzrHU7skKVzy7z+U1GBiYLv9VrYHAc5uCSxq5hqM/
+         Rn2mDFMdgy0LLyxGxvp+6JteT+VwkkZ/469rjANoaqDXjVFwD4mvY8g/ME1QcETtya2P
+         cLdq/Z0CpdIIV2ik4cbRv0Fw6lZOHKlmS6idjZT38md7EpfmbAAxsIo7ENzJsxy6eWIm
+         mJeTti+pw9cCUY2AhxbXAFI6wMuU83B6kO+MOLIrhOofrBvztmJ6UpRSFqT427vWcOjT
+         IQmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730978545; x=1731583345;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iyCDl7ZPUt6a//yr/835EBnfK0zGbZXT8k2phIEStMM=;
+        b=hiKART7sXAMY8SGwOaRZhwYvV5YW1bcrKOKnynwBlNNeFYp56HlOUjz3TVfFR/Fmgp
+         0IOtKvgodSCsg2z/uPUEfENzy1aD+mSiLh7J6eSEY1ElPShj/Sh/QFqWOgHoVQeYMiw2
+         11e/B1uST3xZSC3+oLLVjpvW9g30/U8X5HUPGQPaJDH+jqwdXTwn+wdl7FKinkgAY46r
+         bMd2ac8ewRyU8J/REGaZNTaAsi5XejVlQfyCKMA1b3OpMMLDyEJPZ1ZH3k998AztVZdm
+         c/65+bbgcTiaa8tIwA3DiSpjhf7Ewvm6xaCQU/Xbz1JZtTziz8smxUffGtKXdv0PncnC
+         Ed1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUJP74vg9EWW3/duiH1iolZtakr8Z6v+mqQVak+elqGsGz3UNr6duqweVwFO8cCXT4gUrwcR683tyzWak81@vger.kernel.org, AJvYcCWnN4MECNEmJtCX4dGqaViT69mzsmhqnItcs5CnTJATyeAwNx6z5OmaVGIHm5fFlaojcbeAkKchwA1h@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqW5swiMagAlhuUkHHaLXfatMu1jr1j0KA1JTzi9ywDabPDsKv
+	r7NK/ukGWX4blAi2ZeRnEPJ3bjRM0M/4cUOH2zldBel/vBUii5JHntiIcfwgTaVJgD6cUcGg1Zb
+	BhJpEFdadKko9ClGN0JvV/6Gg7vU=
+X-Google-Smtp-Source: AGHT+IHGsPapN8RHF9Qpx6NuCKBBsmhdkYBPLxie1jdxHa0MnvuH1vKs6Dy7tAmC0sQgjvTv9FyEtEoss4jejQxSaY8=
+X-Received: by 2002:a17:906:8415:b0:a9e:c940:d154 with SMTP id
+ a640c23a62f3a-a9ec940d1ebmr412325866b.17.1730978544331; Thu, 07 Nov 2024
+ 03:22:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20241106-catalina-cpld-ioexp-update-v1-0-3437bcfcb608@gmail.com>
+ <20241106-catalina-cpld-ioexp-update-v1-1-3437bcfcb608@gmail.com> <8e858e760c78ddf533e9e03c20b34fce29862c2e.camel@codeconstruct.com.au>
+In-Reply-To: <8e858e760c78ddf533e9e03c20b34fce29862c2e.camel@codeconstruct.com.au>
+From: Potin Lai <potin.lai.pt@gmail.com>
+Date: Thu, 7 Nov 2024 19:22:13 +0800
+Message-ID: <CAGfYmwVxwaZk-si1OkP4xeaODhAO74Hv43U=SpzOsGOBkTH8Bw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: aspeed: catalina: update pdb board cpld
+ ioexp linename
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	Patrick Williams <patrick@stwcx.xyz>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org, Potin Lai <potin.lai@quantatw.com>, 
+	Cosmo Chou <cosmo.chou@quantatw.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The AST2700 is the 7th generation SoC from Aspeed, featuring three GPIO
-controllers that are support 64-bit DMA capability.
-Adding features is shown in the following list.
-1.Support 64-bit DMA
-  Add the high address (63:32) registers for description address and the
-  description field for packet buffer with high address part.
-  These registers and fields in legacy Aspeed SoC are reserved.
-  This 64-bit DMA changing has verified on legacy Aspeed Soc, like
-  AST2600.
-2.Set RMII pin strap in AST2700 compitable
-  Use bit 20 of MAC 0x50 to represent the pin strap of AST2700 RMII and
-  RGMII. Set to 1 is RMII pin, otherwise is RGMII.
-  This bis is also reserved in legacy Aspeed SoC.
+On Thu, Nov 7, 2024 at 7:41=E2=80=AFAM Andrew Jeffery
+<andrew@codeconstruct.com.au> wrote:
+>
+> On Wed, 2024-11-06 at 16:58 +0800, Potin Lai wrote:
+> > Update the GPIO linename of each PDB CPLD IO expander based on latest
+> > CPLD firmware.
+>
+> What version is the latest CPLD firmware? What was the previous version
+> with the old pin assignments?
 
-Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
----
- drivers/net/ethernet/faraday/ftgmac100.c | 62 +++++++++++++++++-------
- drivers/net/ethernet/faraday/ftgmac100.h | 10 ++++
- 2 files changed, 55 insertions(+), 17 deletions(-)
+Because the hardware changes from EVT to DVT, the CPLD firmware
+reallocated the IOEXP pin mapping in DVT version.
+I will add more description into the commit message in the next version.
 
-diff --git a/drivers/net/ethernet/faraday/ftgmac100.c b/drivers/net/ethernet/faraday/ftgmac100.c
-index 17ec35e75a65..0f4f161d0a90 100644
---- a/drivers/net/ethernet/faraday/ftgmac100.c
-+++ b/drivers/net/ethernet/faraday/ftgmac100.c
-@@ -9,6 +9,7 @@
- #define pr_fmt(fmt)	KBUILD_MODNAME ": " fmt
- 
- #include <linux/clk.h>
-+#include <linux/reset.h>
- #include <linux/dma-mapping.h>
- #include <linux/etherdevice.h>
- #include <linux/ethtool.h>
-@@ -19,6 +20,7 @@
- #include <linux/of.h>
- #include <linux/of_mdio.h>
- #include <linux/phy.h>
-+#include <linux/phy/phy.h>
- #include <linux/platform_device.h>
- #include <linux/property.h>
- #include <linux/crc32.h>
-@@ -98,6 +100,7 @@ struct ftgmac100 {
- 	struct work_struct reset_task;
- 	struct mii_bus *mii_bus;
- 	struct clk *clk;
-+	struct reset_control *rst;
- 
- 	/* AST2500/AST2600 RMII ref clock gate */
- 	struct clk *rclk;
-@@ -265,10 +268,12 @@ static void ftgmac100_init_hw(struct ftgmac100 *priv)
- 	iowrite32(reg, priv->base + FTGMAC100_OFFSET_ISR);
- 
- 	/* Setup RX ring buffer base */
--	iowrite32(priv->rxdes_dma, priv->base + FTGMAC100_OFFSET_RXR_BADR);
-+	iowrite32(lower_32_bits(priv->rxdes_dma), priv->base + FTGMAC100_OFFSET_RXR_BADR);
-+	iowrite32(upper_32_bits(priv->rxdes_dma), priv->base + FTGMAC100_OFFSET_RXR_BADDR_HIGH);
- 
- 	/* Setup TX ring buffer base */
--	iowrite32(priv->txdes_dma, priv->base + FTGMAC100_OFFSET_NPTXR_BADR);
-+	iowrite32(lower_32_bits(priv->txdes_dma), priv->base + FTGMAC100_OFFSET_NPTXR_BADR);
-+	iowrite32(upper_32_bits(priv->txdes_dma), priv->base + FTGMAC100_OFFSET_TXR_BADDR_HIGH);
- 
- 	/* Configure RX buffer size */
- 	iowrite32(FTGMAC100_RBSR_SIZE(RX_BUF_SIZE),
-@@ -349,6 +354,10 @@ static void ftgmac100_start_hw(struct ftgmac100 *priv)
- 	if (priv->netdev->features & NETIF_F_HW_VLAN_CTAG_RX)
- 		maccr |= FTGMAC100_MACCR_RM_VLAN;
- 
-+	if (of_device_is_compatible(priv->dev->of_node, "aspeed,ast2700-mac") &&
-+	    priv->netdev->phydev->interface == PHY_INTERFACE_MODE_RMII)
-+		maccr |= FTGMAC100_MACCR_RMII_ENABLE;
-+
- 	/* Hit the HW */
- 	iowrite32(maccr, priv->base + FTGMAC100_OFFSET_MACCR);
- }
-@@ -425,7 +434,8 @@ static int ftgmac100_alloc_rx_buf(struct ftgmac100 *priv, unsigned int entry,
- 	priv->rx_skbs[entry] = skb;
- 
- 	/* Store DMA address into RX desc */
--	rxdes->rxdes3 = cpu_to_le32(map);
-+	rxdes->rxdes2 = FIELD_PREP(FTGMAC100_RXDES2_RXBUF_BADR_HI, upper_32_bits(map));
-+	rxdes->rxdes3 = lower_32_bits(map);
- 
- 	/* Ensure the above is ordered vs clearing the OWN bit */
- 	dma_wmb();
-@@ -551,7 +561,7 @@ static bool ftgmac100_rx_packet(struct ftgmac100 *priv, int *processed)
- 				       csum_vlan & 0xffff);
- 
- 	/* Tear down DMA mapping, do necessary cache management */
--	map = le32_to_cpu(rxdes->rxdes3);
-+	map = le32_to_cpu(rxdes->rxdes3) | ((rxdes->rxdes2 & FTGMAC100_RXDES2_RXBUF_BADR_HI) << 16);
- 
- #if defined(CONFIG_ARM) && !defined(CONFIG_ARM_DMA_USE_IOMMU)
- 	/* When we don't have an iommu, we can save cycles by not
-@@ -563,7 +573,6 @@ static bool ftgmac100_rx_packet(struct ftgmac100 *priv, int *processed)
- 	dma_unmap_single(priv->dev, map, RX_BUF_SIZE, DMA_FROM_DEVICE);
- #endif
- 
--
- 	/* Resplenish rx ring */
- 	ftgmac100_alloc_rx_buf(priv, pointer, rxdes, GFP_ATOMIC);
- 	priv->rx_pointer = ftgmac100_next_rx_pointer(priv, pointer);
-@@ -628,7 +637,9 @@ static void ftgmac100_free_tx_packet(struct ftgmac100 *priv,
- 				     struct ftgmac100_txdes *txdes,
- 				     u32 ctl_stat)
- {
--	dma_addr_t map = le32_to_cpu(txdes->txdes3);
-+	dma_addr_t map = le32_to_cpu(txdes->txdes3) |
-+			 ((txdes->txdes2 & FTGMAC100_TXDES2_TXBUF_BADR_HI) << 16);
-+
- 	size_t len;
- 
- 	if (ctl_stat & FTGMAC100_TXDES0_FTS) {
-@@ -784,7 +795,8 @@ static netdev_tx_t ftgmac100_hard_start_xmit(struct sk_buff *skb,
- 	f_ctl_stat |= FTGMAC100_TXDES0_FTS;
- 	if (nfrags == 0)
- 		f_ctl_stat |= FTGMAC100_TXDES0_LTS;
--	txdes->txdes3 = cpu_to_le32(map);
-+	txdes->txdes2 = FIELD_PREP(FTGMAC100_TXDES2_TXBUF_BADR_HI, upper_32_bits((ulong)map));
-+	txdes->txdes3 = lower_32_bits(map);
- 	txdes->txdes1 = cpu_to_le32(csum_vlan);
- 
- 	/* Next descriptor */
-@@ -812,7 +824,9 @@ static netdev_tx_t ftgmac100_hard_start_xmit(struct sk_buff *skb,
- 			ctl_stat |= FTGMAC100_TXDES0_LTS;
- 		txdes->txdes0 = cpu_to_le32(ctl_stat);
- 		txdes->txdes1 = 0;
--		txdes->txdes3 = cpu_to_le32(map);
-+		txdes->txdes2 =
-+			FIELD_PREP(FTGMAC100_TXDES2_TXBUF_BADR_HI, upper_32_bits((ulong)map));
-+		txdes->txdes3 = lower_32_bits(map);
- 
- 		/* Next one */
- 		pointer = ftgmac100_next_tx_pointer(priv, pointer);
-@@ -887,7 +901,8 @@ static void ftgmac100_free_buffers(struct ftgmac100 *priv)
- 	for (i = 0; i < priv->rx_q_entries; i++) {
- 		struct ftgmac100_rxdes *rxdes = &priv->rxdes[i];
- 		struct sk_buff *skb = priv->rx_skbs[i];
--		dma_addr_t map = le32_to_cpu(rxdes->rxdes3);
-+		dma_addr_t map = le32_to_cpu(rxdes->rxdes3) |
-+				 ((rxdes->rxdes2 & FTGMAC100_RXDES2_RXBUF_BADR_HI) << 16);
- 
- 		if (!skb)
- 			continue;
-@@ -986,7 +1001,9 @@ static void ftgmac100_init_rings(struct ftgmac100 *priv)
- 	for (i = 0; i < priv->rx_q_entries; i++) {
- 		rxdes = &priv->rxdes[i];
- 		rxdes->rxdes0 = 0;
--		rxdes->rxdes3 = cpu_to_le32(priv->rx_scratch_dma);
-+		rxdes->rxdes2 = FIELD_PREP(FTGMAC100_RXDES2_RXBUF_BADR_HI,
-+					   upper_32_bits(priv->rx_scratch_dma));
-+		rxdes->rxdes3 = lower_32_bits(priv->rx_scratch_dma);
- 	}
- 	/* Mark the end of the ring */
- 	rxdes->rxdes0 |= cpu_to_le32(priv->rxdes0_edorr_mask);
-@@ -1249,7 +1266,6 @@ static int ftgmac100_poll(struct napi_struct *napi, int budget)
- 		more = ftgmac100_rx_packet(priv, &work_done);
- 	} while (more && work_done < budget);
- 
--
- 	/* The interrupt is telling us to kick the MAC back to life
- 	 * after an RX overflow
- 	 */
-@@ -1339,7 +1355,6 @@ static void ftgmac100_reset(struct ftgmac100 *priv)
- 	if (priv->mii_bus)
- 		mutex_lock(&priv->mii_bus->mdio_lock);
- 
--
- 	/* Check if the interface is still up */
- 	if (!netif_running(netdev))
- 		goto bail;
-@@ -1438,7 +1453,6 @@ static void ftgmac100_adjust_link(struct net_device *netdev)
- 
- 	if (netdev->phydev)
- 		mutex_lock(&netdev->phydev->lock);
--
- }
- 
- static int ftgmac100_mii_probe(struct net_device *netdev)
-@@ -1882,7 +1896,8 @@ static int ftgmac100_probe(struct platform_device *pdev)
- 	np = pdev->dev.of_node;
- 	if (np && (of_device_is_compatible(np, "aspeed,ast2400-mac") ||
- 		   of_device_is_compatible(np, "aspeed,ast2500-mac") ||
--		   of_device_is_compatible(np, "aspeed,ast2600-mac"))) {
-+		   of_device_is_compatible(np, "aspeed,ast2600-mac") ||
-+		   of_device_is_compatible(np, "aspeed,ast2700-mac"))) {
- 		priv->rxdes0_edorr_mask = BIT(30);
- 		priv->txdes0_edotr_mask = BIT(30);
- 		priv->is_aspeed = true;
-@@ -1965,16 +1980,27 @@ static int ftgmac100_probe(struct platform_device *pdev)
- 			dev_err(priv->dev, "MII probe failed!\n");
- 			goto err_ncsi_dev;
- 		}
--
- 	}
- 
- 	if (priv->is_aspeed) {
-+		struct reset_control *rst;
-+
- 		err = ftgmac100_setup_clk(priv);
- 		if (err)
- 			goto err_phy_connect;
- 
--		/* Disable ast2600 problematic HW arbitration */
--		if (of_device_is_compatible(np, "aspeed,ast2600-mac"))
-+		rst = devm_reset_control_get_optional(priv->dev, NULL);
-+		if (IS_ERR(rst))
-+			goto err_register_netdev;
-+
-+		priv->rst = rst;
-+		err = reset_control_assert(priv->rst);
-+		mdelay(10);
-+		err = reset_control_deassert(priv->rst);
-+
-+		/* Disable some aspeed platform problematic HW arbitration */
-+		if (of_device_is_compatible(np, "aspeed,ast2600-mac") ||
-+		    of_device_is_compatible(np, "aspeed,ast2700-mac"))
- 			iowrite32(FTGMAC100_TM_DEFAULT,
- 				  priv->base + FTGMAC100_OFFSET_TM);
- 	}
-@@ -2010,6 +2036,8 @@ static int ftgmac100_probe(struct platform_device *pdev)
- 		goto err_register_netdev;
- 	}
- 
-+	dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(64));
-+
- 	netdev_info(netdev, "irq %d, mapped at %p\n", netdev->irq, priv->base);
- 
- 	return 0;
-diff --git a/drivers/net/ethernet/faraday/ftgmac100.h b/drivers/net/ethernet/faraday/ftgmac100.h
-index 4968f6f0bdbc..ac39b864a80c 100644
---- a/drivers/net/ethernet/faraday/ftgmac100.h
-+++ b/drivers/net/ethernet/faraday/ftgmac100.h
-@@ -57,6 +57,13 @@
- #define FTGMAC100_OFFSET_RX_RUNT	0xc0
- #define FTGMAC100_OFFSET_RX_CRCER_FTL	0xc4
- #define FTGMAC100_OFFSET_RX_COL_LOST	0xc8
-+/* reserved 0xcc - 0x174 */
-+#define FTGMAC100_OFFSET_TXR_BADDR_LOW		0x178	/* ast2700 */
-+#define FTGMAC100_OFFSET_TXR_BADDR_HIGH		0x17c	/* ast2700 */
-+#define FTGMAC100_OFFSET_HPTXR_BADDR_LOW	0x180	/* ast2700 */
-+#define FTGMAC100_OFFSET_HPTXR_BADDR_HIGH	0x184	/* ast2700 */
-+#define FTGMAC100_OFFSET_RXR_BADDR_LOW		0x188	/* ast2700 */
-+#define FTGMAC100_OFFSET_RXR_BADDR_HIGH		0x18C	/* ast2700 */
- 
- /*
-  * Interrupt status register & interrupt enable register
-@@ -166,6 +173,7 @@
- #define FTGMAC100_MACCR_RX_MULTIPKT	(1 << 16)
- #define FTGMAC100_MACCR_RX_BROADPKT	(1 << 17)
- #define FTGMAC100_MACCR_DISCARD_CRCERR	(1 << 18)
-+#define FTGMAC100_MACCR_RMII_ENABLE	(1 << 20) /* defined in ast2700 */
- #define FTGMAC100_MACCR_FAST_MODE	(1 << 19)
- #define FTGMAC100_MACCR_SW_RST		(1 << 31)
- 
-@@ -225,6 +233,7 @@ struct ftgmac100_txdes {
- #define FTGMAC100_TXDES1_TX2FIC		(1 << 30)
- #define FTGMAC100_TXDES1_TXIC		(1 << 31)
- 
-+#define FTGMAC100_TXDES2_TXBUF_BADR_HI	GENMASK(18, 16)
- /*
-  * Receive descriptor, aligned to 16 bytes
-  */
-@@ -271,4 +280,5 @@ struct ftgmac100_rxdes {
- #define FTGMAC100_RXDES1_UDP_CHKSUM_ERR	(1 << 26)
- #define FTGMAC100_RXDES1_IP_CHKSUM_ERR	(1 << 27)
- 
-+#define FTGMAC100_RXDES2_RXBUF_BADR_HI	GENMASK(18, 16)
- #endif /* __FTGMAC100_H */
--- 
-2.25.1
+>
+> I'm also interested in some discussion of the coordination between CPLD
+> firmware, the devicetree and the BMC userspace configuration. This
+> change feels pretty painful.
 
+I am not from the CPLD firmware team, I only know our CPLD team was
+redesigning the entire struct which causes the huge changes of IOEXP
+pins.
+
+This is probably a different topic, I am curious about is it possible
+to assign the linename in userspace?
+In OpenBMC, there are many services that depend on GPIO linename, it
+will be more flexible if I can assign the linename before service
+starts.
+
+Thanks,
+Potin
+
+>
+> Andrew
 
