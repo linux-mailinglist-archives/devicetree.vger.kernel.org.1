@@ -1,250 +1,174 @@
-Return-Path: <devicetree+bounces-119756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9AA99C0019
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 09:36:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 768A69C005A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 09:47:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18EED1C21476
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 08:36:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D98C1F21EDE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 08:47:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB2A61DD88F;
-	Thu,  7 Nov 2024 08:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF9CB19992B;
+	Thu,  7 Nov 2024 08:47:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TOO5+qqd"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="iEyYs2Nz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 880D51D95B0;
-	Thu,  7 Nov 2024 08:35:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89FA4FBF0;
+	Thu,  7 Nov 2024 08:47:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730968543; cv=none; b=s1TQyRDuHJ/6k8+W0rPW+Fe9XkarhGuFuiwZiP+8pt/HA8/kkVwHFsTAxbqlQxA17kBbgqFcAJ4R6uSHuG/fsdP5qqgEKGcxWMyK54DcJMicN553qE2UBn+tBC08vCiu5QeGPZOkmx38nCfc0IZJ+mFT9VwSyypaxleGlBxuXFM=
+	t=1730969245; cv=none; b=QbWcDJYkeqVNyb1VSNJGyrlDYkDjKiwc2HpLIh6lWqxwOea3kROo+rUS7lbNv/PM6XPzA2exaAyKxFNTX7gmXL+o9OBgEa48P7slPSan+GL+ZGWoeprGHnd9U+GZbyrRytC1cpjHLF48t0lhXFyxj+0D2DSjuGoWcqy5wRuaDK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730968543; c=relaxed/simple;
-	bh=OtHkvSzY7Hvuvo4YCkKafCJ18MmrwQN1TkFnnwVphoA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VUvWWewxfqdRq2qv/mSKc28MORlkwDe0PfZLXRRysN+rYNmk5WnlwnoQ7draV8QJqS43Q9mBb3C2MavWojTI4qgrIhY2ON//RY0cPxmoXni8AMZ0gL3rZOG2pV4CRfq/UHw6MeYxCojVSJaAvj/6h1a2R88/vT1iIrHiCsqhBu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TOO5+qqd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A77sgMG028176;
-	Thu, 7 Nov 2024 08:35:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EU5fv84/us5sPyb11pUCWJk8w0u4VIUjv4dGwsM2+f0=; b=TOO5+qqdbJLBok1k
-	xLTp+xD0416HTOw4SGU9HhN1kw1Rn13irE9aT9JKBCLaX3YwzgtlqtZYzTf18PlU
-	9OWJVNjs1nv7FsU0NBycnk6edmEsCIgQZ2TW86Wi2pgIP+v0xvT+P0ggy46ea0js
-	t/1XC8lGrQzBy5vDtxLLFCct1NO+yBB/4OhAwvheXBXViUp3L0QoC6eq6H86Tdyi
-	EboevTwLupDODnHJ0W/Mg8VKb08mRdyPNscojiFQsyQHMbFk4cskhWIe4efzylCf
-	thOoBZPWzIK7roDQCHDPBuPQ4M2kNbjZeLgNeIC1iTi+QZSkhmTOTugzfMj9c4ZD
-	QtBDqg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42r3c1bpg1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Nov 2024 08:35:34 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A78ZXE4030604
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 7 Nov 2024 08:35:33 GMT
-Received: from [10.218.39.189] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 7 Nov 2024
- 00:35:29 -0800
-Message-ID: <f2d46c4c-e410-a49b-2511-50cd3a636f3e@quicinc.com>
-Date: Thu, 7 Nov 2024 14:05:16 +0530
+	s=arc-20240116; t=1730969245; c=relaxed/simple;
+	bh=9/KGz9Eqf8L6AckABuzu+EnLUD9DwMieaH9zCgdF3uY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tOflHzBPrHCpSpaivq6D4nBwfIh8CHiJf8eSNJdZ1XayXyLQI8vGlYnQI67xd+vnOX6xNYBy3ZxJbtVf/Wc+QVTkpvtQe07yCu8xTNOrfg/jjyYplOy9BY/zLE77ZQ+m58t9K0xBF7sqPU321LWg5l6vKNITKbu1ZT93AzEz0mQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=iEyYs2Nz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5117C4CECC;
+	Thu,  7 Nov 2024 08:47:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1730969245;
+	bh=9/KGz9Eqf8L6AckABuzu+EnLUD9DwMieaH9zCgdF3uY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iEyYs2NzyAXwOllRBBtt61ypuqxImxlWvXnXclkI+SY0H11AsXGNwgA4M28QqrGx1
+	 cTP6PdDqgbXb/ad96I9TiWi4/nFjzo245/xxRb1HYzvT8a20x0obqGnSVnu4vgrPdT
+	 WUqBeuazkGU+kk8ysYcvbheWdPOl/e7uyTJxviJg=
+Date: Thu, 7 Nov 2024 09:47:05 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: geert+renesas@glider.be, magnus.damm@gmail.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
+	sboyd@kernel.org, jirislaby@kernel.org, p.zabel@pengutronix.de,
+	lethal@linux-sh.org, g.liakhovetski@gmx.de,
+	ysato@users.sourceforge.jp, ulrich.hecht+renesas@gmail.com,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH 2/9] serial: sh-sci: Check if TX data was written to
+ device in .tx_empty()
+Message-ID: <2024110747-kite-pacemaker-6216@gregkh>
+References: <20241106120118.1719888-1-claudiu.beznea.uj@bp.renesas.com>
+ <20241106120118.1719888-3-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 2/2] usb: dwc3: core: Add support to ignore single SE0
- glitches
-To: AKASH KUMAR <quic_akakum@quicinc.com>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>
-References: <20241017114055.13971-1-quic_uaggarwa@quicinc.com>
- <20241017114055.13971-3-quic_uaggarwa@quicinc.com>
- <6094d537-cbdb-445e-9435-1d186b4c3266@quicinc.com>
-Content-Language: en-US
-From: UTTKARSH AGGARWAL <quic_uaggarwa@quicinc.com>
-In-Reply-To: <6094d537-cbdb-445e-9435-1d186b4c3266@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: CicwZnWD_K1XezagBUAn7eSKYovguwhZ
-X-Proofpoint-ORIG-GUID: CicwZnWD_K1XezagBUAn7eSKYovguwhZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- lowpriorityscore=0 impostorscore=0 mlxlogscore=999 clxscore=1015
- spamscore=0 phishscore=0 priorityscore=1501 adultscore=0 malwarescore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411070064
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241106120118.1719888-3-claudiu.beznea.uj@bp.renesas.com>
+
+On Wed, Nov 06, 2024 at 02:01:11PM +0200, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> On the Renesas RZ/G3S, when doing suspend to RAM, the uart_suspend_port()
+> is called. The uart_suspend_port() calls 3 times the
+> struct uart_port::ops::tx_empty() before shutting down the port.
+> 
+> According to the documentation, the struct uart_port::ops::tx_empty()
+> API tests whether the transmitter FIFO and shifter for the port is
+> empty.
+> 
+> The Renesas RZ/G3S SCIFA IP reports the number of data units stored in the
+> transmit FIFO through the FDR (FIFO Data Count Register). The data units
+> in the FIFOs are written in the shift register and transmitted from there.
+> The TEND bit in the Serial Status Register reports if the data was
+> transmitted from the shift register.
+> 
+> In the previous code, in the tx_empty() API implemented by the sh-sci
+> driver, it is considered that the TX is empty if the hardware reports the
+> TEND bit set and the number of data units in the FIFO is zero.
+> 
+> According to the HW manual, the TEND bit has the following meaning:
+> 
+> 0: Transmission is in the waiting state or in progress.
+> 1: Transmission is completed.
+> 
+> It has been noticed that when opening the serial device w/o using it and
+> then switch to a power saving mode, the tx_empty() call in the
+> uart_port_suspend() function fails, leading to the "Unable to drain
+> transmitter" message being printed on the console. This is because the
+> TEND=0 if nothing has been transmitted and the FIFOs are empty. As the
+> TEND=0 has double meaning (waiting state, in progress) we can't
+> determined the scenario described above.
+> 
+> Add a software workaround for this. This sets a variable if any data has
+> been sent on the serial console (when using PIO) or if the DMA callback has
+> been called (meaning something has been transmitted).
+> 
+> Fixes: 73a19e4c0301 ("serial: sh-sci: Add DMA support.")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>  drivers/tty/serial/sh-sci.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
+> index df523c744423..8e2d534401fa 100644
+> --- a/drivers/tty/serial/sh-sci.c
+> +++ b/drivers/tty/serial/sh-sci.c
+> @@ -153,6 +153,7 @@ struct sci_port {
+>  	int				rx_trigger;
+>  	struct timer_list		rx_fifo_timer;
+>  	int				rx_fifo_timeout;
+> +	atomic_t			first_time_tx;
+
+Don't use an atomic variable for an informational thing like this, it is
+racy and doesn't work properly.  Either use a real lock (because you
+care about the locking stuff here), or just use a boolean and live with
+any potential races.
 
 
-On 10/18/2024 4:32 PM, AKASH KUMAR wrote:
-> Hi Uttkarsh, Thinh,
->
-> On 10/17/2024 5:10 PM, Uttkarsh Aggarwal wrote:
->> Currently in few of Qualcomm chips USB (Low speed) mouse not
->> detected showing following errors:
->>
->>    usb 1-1: Device not responding to setup address.
->>    usb 1-1: device not accepting address 2, error -71
->>    usb 1-1: new low-speed USB device number 3 using xhci-hcd
->>    usb 1-1: Device not responding to setup address.
->>    usb 1-1: Device not responding to setup address.
->>    usb 1-1: device not accepting address 3, error -71
->>    usb usb1-port1: attempt power cycle
->>
->> Based on the Logic analyzer waveforms, It has been identified that there
->> is skew of about 8nS b/w DP & DM linestate signals (o/p of PHY & i/p to
->> controller) at the UTMI interface, Due to this controller is seeing SE0
->> glitch condition, this is causing controller to pre-maturely assume that
->> PHY has sent all the data & is initiating next packet much early, though
->> in reality PHY is still busy sending previous packets.
->>
->> Enabling the GUCTL1.FILTER_SE0_FSLS_EOP bit29 allows the controller to
->> ignore single SE0 glitches on the linestate during transmission. Only 
->> two
->> or more SE0 signals are recognized as a valid EOP.
->>
->> When this feature is activated, SE0 signals on the linestate are 
->> validated
->> over two consecutive UTMI/ULPI clock edges for EOP detection.
->>
->> Device mode (FS): If GUCTL1.FILTER_SE0_FSLS_EOP is set, then for 
->> device LPM
->> handshake, the controller ignores single SE0 glitch on the linestate 
->> during
->> transmit. Only two or more SE0 is considered as a valid EOP on FS port.
->>
->> Host mode (FS/LS): If GUCTL1.FILTER_SE0_FSLS_EOP is set, then the 
->> controller
->> ignores single SE0 glitch on the linestate during transmit.
->>
->> Signed-off-by: Uttkarsh Aggarwal<quic_uaggarwa@quicinc.com>
->> ---
->>   drivers/usb/dwc3/core.c | 13 +++++++++++++
->>   drivers/usb/dwc3/core.h |  4 ++++
->>   2 files changed, 17 insertions(+)
->>
->> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
->> index 86b37881aab4..4edd32c44e73 100644
->> --- a/drivers/usb/dwc3/core.c
->> +++ b/drivers/usb/dwc3/core.c
->> @@ -222,6 +222,17 @@ static void __dwc3_set_mode(struct work_struct 
->> *work)
->>         switch (desired_dr_role) {
->>       case DWC3_GCTL_PRTCAP_HOST:
->> +           /*
->> +        * Setting GUCTL1 bit 29 so that controller
->> +        * will ignore single SE0 glitch on the linestate
->> +        * during transmit.
->> +        */
->> +        if (dwc->filter_se0_fsls_eop_quirk) {
->> +            reg = dwc3_readl(dwc->regs, DWC3_GUCTL1);
->> +            reg |= DWC3_GUCTL1_FILTER_SE0_FSLS_EOP;
->> +            dwc3_writel(dwc->regs, DWC3_GUCTL1, reg);
->> +        }
->> +
-> Since this bit is useful for device mode as well along with host 
-> mode,we should set this in dwc3_core_init
-> where we are already writing for GUCTL1 bit disable parkmode, instead 
-> of host mode only. Like below
->
-> --- a/drivers/usb/dwc3/core.c
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -1444,6 +1444,9 @@ static int dwc3_core_init(struct dwc3 *dwc)
->                 if (dwc->parkmode_disable_hs_quirk)
->                         reg |= DWC3_GUCTL1_PARKMODE_DISABLE_HS;
->
-> +               if (dwc->filter_se0_fsls_eop_quirk)
-> +                       reg |= DWC3_GUCTL1_FILTER_SE0_FSLS_EOP;
+
+>  	u16				hscif_tot;
+>  
+>  	bool has_rtscts;
+> @@ -850,6 +851,7 @@ static void sci_transmit_chars(struct uart_port *port)
+>  {
+>  	struct tty_port *tport = &port->state->port;
+>  	unsigned int stopped = uart_tx_stopped(port);
+> +	struct sci_port *s = to_sci_port(port);
+>  	unsigned short status;
+>  	unsigned short ctrl;
+>  	int count;
+> @@ -885,6 +887,7 @@ static void sci_transmit_chars(struct uart_port *port)
+>  		}
+>  
+>  		sci_serial_out(port, SCxTDR, c);
+> +		atomic_set(&s->first_time_tx, 1);
+>  
+>  		port->icount.tx++;
+>  	} while (--count > 0);
+> @@ -1241,6 +1244,8 @@ static void sci_dma_tx_complete(void *arg)
+>  	if (kfifo_len(&tport->xmit_fifo) < WAKEUP_CHARS)
+>  		uart_write_wakeup(port);
+>  
+> +	atomic_set(&s->first_time_tx, 1);
 > +
->                 if (DWC3_VER_IS_WITHIN(DWC3, 290A, ANY)) {
->                         if (dwc->maximum_speed == USB_SPEED_FULL ||
->                             dwc->maximum_speed == USB_SPEED_HIGH)
->>           ret = dwc3_host_init(dwc);
->>           if (ret) {
->>               dev_err(dwc->dev, "failed to initialize host\n");
->> @@ -1788,6 +1799,8 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->>         dwc->tx_de_emphasis_quirk = device_property_read_bool(dev,
->>                   "snps,tx_de_emphasis_quirk");
->> +    dwc->filter_se0_fsls_eop_quirk = device_property_read_bool(dev,
->> +                "snps,filter-se0-fsls-eop-quirk");
->>       device_property_read_u8(dev, "snps,tx_de_emphasis",
->>                   &tx_de_emphasis);
->>       device_property_read_string(dev, "snps,hsphy_interface",
->> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
->> index cc3f32acfaf5..33d53a436fd7 100644
->> --- a/drivers/usb/dwc3/core.h
->> +++ b/drivers/usb/dwc3/core.h
->> @@ -276,6 +276,7 @@
->>     /* Global User Control 1 Register */
->>   #define DWC3_GUCTL1_DEV_DECOUPLE_L1L2_EVT    BIT(31)
->> +#define DWC3_GUCTL1_FILTER_SE0_FSLS_EOP        BIT(29)
->>   #define DWC3_GUCTL1_TX_IPGAP_LINECHECK_DIS    BIT(28)
->>   #define DWC3_GUCTL1_DEV_FORCE_20_CLK_FOR_30_CLK    BIT(26)
->>   #define DWC3_GUCTL1_DEV_L1_EXIT_BY_HW        BIT(24)
->> @@ -1140,6 +1141,8 @@ struct dwc3_scratchpad_array {
->>    * @gfladj_refclk_lpm_sel: set if we need to enable SOF/ITP counter
->>    *                          running based on ref_clk
->>    * @tx_de_emphasis_quirk: set if we enable Tx de-emphasis quirk
->> + * @filter_se0_fsls_eop_quirk: set to ignores single
->> + *                SE0 glitch on the linestate during transmit.
->>    * @tx_de_emphasis: Tx de-emphasis value
->>    *    0    - -6dB de-emphasis
->>    *    1    - -3.5dB de-emphasis
->> @@ -1373,6 +1376,7 @@ struct dwc3 {
->>       unsigned        gfladj_refclk_lpm_sel:1;
->>         unsigned        tx_de_emphasis_quirk:1;
->> +    unsigned        filter_se0_fsls_eop_quirk:1;
->>       unsigned        tx_de_emphasis:2;
->>         unsigned        dis_metastability_quirk:1;
->
-> Thanks,
-> Akash
+>  	if (!kfifo_is_empty(&tport->xmit_fifo)) {
+>  		s->cookie_tx = 0;
+>  		schedule_work(&s->work_tx);
+> @@ -2076,6 +2081,10 @@ static unsigned int sci_tx_empty(struct uart_port *port)
+>  {
+>  	unsigned short status = sci_serial_in(port, SCxSR);
+>  	unsigned short in_tx_fifo = sci_txfill(port);
+> +	struct sci_port *s = to_sci_port(port);
+> +
+> +	if (!atomic_read(&s->first_time_tx))
+> +		return TIOCSER_TEMT;
 
+See, what happens here if the value changes right after you check it?
+Being an atomic doesn't mean anything :(
 
-Hi Akash,
+thanks,
 
-Apologies for a late reply.
-
-About device mode use case of this bit, there is the possibility that a 
-device may enter L1 earlier than
-
-the Host LPM Retry Time in the case when a device ACK handshake is 
-dropped due to errors.
-
-Thus, this bit is not normally required to be set in device mode.
-
-
-Thanks,
-
-Uttkarsh
-
-
-
+greg k-h
 
