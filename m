@@ -1,159 +1,198 @@
-Return-Path: <devicetree+bounces-119737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C24C59BFE58
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 07:17:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 302C49BFEB6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 07:58:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B5C2B21706
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 06:17:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5447D1C2149A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 06:58:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E555193064;
-	Thu,  7 Nov 2024 06:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DED61953A1;
+	Thu,  7 Nov 2024 06:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lkuNCTVM"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="IGxcMCrA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45418192D7E;
-	Thu,  7 Nov 2024 06:17:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75DA192590;
+	Thu,  7 Nov 2024 06:58:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730960262; cv=none; b=SR/s+Gz5Q4tO3nGnY7dPLs6nLXbtzr1R/B2rOTVaOaJQSadqcUaNlv1VgSs+1ri9AyJeryFDMf7ieEiQHVZ9qaPQGxKW7OKPWXEPfUotf69RI9gBGDh9lLJsdLt6Dpz5EA/4edkq+1JPDufAtciLjm24E6bobPfoxNaRfDQjqlw=
+	t=1730962690; cv=none; b=sOYxvrZTcrukZ+tKpuPBE8MMU0KNcJ6KLl6inFvPObEiXGu9bZB7SNfb7hKjQP2kAs+2YnElgxl/OMSdxH7OARIvGCSeefgi10WAGGI9nzZs9A4wiYmRNVRSwi2Na+/qUAESIvLy7jGlatm2iJfMrrocCWscdtx5pasEkxptwgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730960262; c=relaxed/simple;
-	bh=Lcd87M6/Gc7wKV0eGqeEbc5b8cege8gnv1IKK0N4DKw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bJcFvFZwnsay/lWC4wFnrANB+ex49hsbN5hpQm61DHIwmZRA5hFji1Sz71MzOrrvPewhn/7NIo45XwppQgF4EoC+iby1HdyXkf9dy8PZh9dAeSqC6JgxZcwsiGTos66vuWvru2ZvZdzBoBk34qUM8adt/FRKe+tKVRyhNDLelQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lkuNCTVM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A6G9DRd028492;
-	Thu, 7 Nov 2024 06:17:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pt8i0eEfIpkL9Duhpru2rPlJlEJZ2RbBvR99uKTgRko=; b=lkuNCTVMRq3bSeqM
-	j0QF9gkl3Ns+DTepZKy3oExNwtu73GAZand7Z2bwvNm+MJY8vsLl/Wxi8lNJQGeN
-	CLt8RzXTYYGsVyR0B+wvnxkiMy8jS+csAlbz7WP06+X6otRUYbepFdzr0eyAmtIq
-	J+TMgHPS4a7qO0MWrob0woAMjYFhFYjXWaOzUkV81aUNLBM9DAonOZF9MABtvntW
-	XTpR1BknDFMpjp3aYhxun1kSwumqBUHdLjYJPQJp6S8eOGVnkNbi/g6fpgIAdutj
-	uBeIY866jSmI70jg7XCeKHR9RITT08h8/Jxpp+M+rt5Px1nX9ZifukR8bRnrc0Dy
-	jDaRag==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42r3c1bbd0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Nov 2024 06:17:33 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A76HWiB029074
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 7 Nov 2024 06:17:32 GMT
-Received: from [10.216.63.45] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 6 Nov 2024
- 22:17:22 -0800
-Message-ID: <1129e0a7-6bd0-416e-8c56-6b8d75600c4e@quicinc.com>
-Date: Thu, 7 Nov 2024 11:47:11 +0530
+	s=arc-20240116; t=1730962690; c=relaxed/simple;
+	bh=keiYDqsfxuTmEyZ3nOD1/zbM2Gk/uctKZhrJHUkxTtU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Z0DMU0AYequ3wCjQvkCLPImBvEGzBxd0se0jx+FZtTxvQpNg9Ad7JcposV9NncnQkSN6+rRhB+zN6qRS63zaKLD5e6oI35dcqUH8zD6BgSLM98a7QyWWZu57DEIN6ivozKKFBtNz0scGVgkFU0O/AyHV4rxOEZhXcMKqAfLEmfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=IGxcMCrA; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=ozu4lJq1INd+BvR07joZAIc5IzJSrpGXfnC3IH2pifE=; b=IGxcMCrAdxnFpoqyEPDcuhhVp5
+	oNAn5D/YB9twq3WH6XLdnXXhgf66yYkizxuqvABEfnGZlXuCMz8N13vExIkmFur9oyUOKEBp3vbad
+	WL7SLH2DTEUtdTEDbfrmrG82xDt6CMfUxCts/OToztcoS2oL6iqGYo1UJErVRimwXFERIrDxRnLE9
+	3SqPQxVZZcEMyzFxXUxkKNFp7+yv3IdKAC2wSYR7U+uKYAv1zh/YLplMuKaF829mRSwH2W19sRA6g
+	rIjdQLIJomvKP4jB2v99d9qaYx9eegQ7kE6/ciw/kIcO/pJIkLZ9+nLdeD8acosseDDZf9ZAF5wia
+	9K7TEnFQ==;
+Date: Thu, 7 Nov 2024 07:58:03 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Rob Herring <robh@kernel.org>, Tero Kristo <kristo@kernel.org>,
+ rogerq@kernel.org
+Cc: Michael Turquette <mturquette@baylibre.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-omap@vger.kernel.org, Tony Lindgren
+ <tony@atomide.com>, Conor Dooley <conor+dt@kernel.org>, Stephen Boyd
+ <sboyd@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: clock: ti: Convert mux.txt to json-schema
+Message-ID: <20241107075803.2cf33ab4@akair>
+In-Reply-To: <20241105135234.GA3100411-robh@kernel.org>
+References: <20241104135549.38486-1-andreas@kemnade.info>
+	<20241105135234.GA3100411-robh@kernel.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: snps,dwc3: Add
- snps,filter-se0-fsls-eop quirk
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Uttkarsh Aggarwal
-	<quic_uaggarwa@quicinc.com>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Thinh Nguyen
-	<Thinh.Nguyen@synopsys.com>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
-References: <20241017114055.13971-1-quic_uaggarwa@quicinc.com>
- <20241017114055.13971-2-quic_uaggarwa@quicinc.com>
- <gclvciv5cmrcut6qvo3kh3ycutqt5sot5k4i2nwics6myhuxvq@cf6ajwflxdlc>
-Content-Language: en-US
-From: Krishna Kurapati <quic_kriskura@quicinc.com>
-In-Reply-To: <gclvciv5cmrcut6qvo3kh3ycutqt5sot5k4i2nwics6myhuxvq@cf6ajwflxdlc>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: BcZeyWLFOw1xxl1s6ucnZCO6c25cRzE-
-X-Proofpoint-ORIG-GUID: BcZeyWLFOw1xxl1s6ucnZCO6c25cRzE-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- lowpriorityscore=0 impostorscore=0 mlxlogscore=944 clxscore=1011
- spamscore=0 phishscore=0 priorityscore=1501 adultscore=0 malwarescore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411070046
 
+Am Tue, 5 Nov 2024 07:52:34 -0600
+schrieb Rob Herring <robh@kernel.org>:
 
-
-On 10/18/2024 11:57 AM, Krzysztof Kozlowski wrote:
-> On Thu, Oct 17, 2024 at 05:10:54PM +0530, Uttkarsh Aggarwal wrote:
->> Adding a new 'snps,filter-se0-fsls-eop quirk' DT quirk to dwc3 core to set
->> GUCTL1 BIT 29. When set, controller will ignore single SE0 glitch on the
->> linestate during transmission. Only two or more SE0 is considered as
->> valid EOP on FS/LS port. This bit is applicable only in FS in device mode
->> and FS/LS mode of operation in host mode.
+> On Mon, Nov 04, 2024 at 02:55:49PM +0100, Andreas Kemnade wrote:
+> > Convert the OMAP mux clock device tree binding to json-schema.
+> > Specify the creator of the original binding as a maintainer.
+> > Choose GPL-only license because original binding was also GPL.
+> > 
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > ---
+> >  .../bindings/clock/ti/composite.txt           |   2 +-
+> >  .../devicetree/bindings/clock/ti/mux.txt      |  78 -----------
+> >  .../bindings/clock/ti/ti,mux-clock.yaml       | 123 ++++++++++++++++++
+> >  3 files changed, 124 insertions(+), 79 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/clock/ti/mux.txt
+> >  create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/ti/composite.txt b/Documentation/devicetree/bindings/clock/ti/composite.txt
+> > index b02f22490dcb..238e6f7d74f8 100644
+> > --- a/Documentation/devicetree/bindings/clock/ti/composite.txt
+> > +++ b/Documentation/devicetree/bindings/clock/ti/composite.txt
+> > @@ -16,7 +16,7 @@ merged to this clock. The component clocks shall be of one of the
+> >  "ti,*composite*-clock" types.
+> >  
+> >  [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+> > -[2] Documentation/devicetree/bindings/clock/ti/mux.txt
+> > +[2] Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+> >  [3] Documentation/devicetree/bindings/clock/ti/ti,divider-clock.yaml
+> >  [4] Documentation/devicetree/bindings/clock/ti/gate.txt
+> >  
+> > diff --git a/Documentation/devicetree/bindings/clock/ti/mux.txt b/Documentation/devicetree/bindings/clock/ti/mux.txt
+> > deleted file mode 100644
+> > index cd56d3c1c09f..000000000000
+> > --- a/Documentation/devicetree/bindings/clock/ti/mux.txt
+> > +++ /dev/null
+> > @@ -1,78 +0,0 @@
+> > -Binding for TI mux clock.
+> > -
+> > -This binding uses the common clock binding[1].  It assumes a
+> > -register-mapped multiplexer with multiple input clock signals or
+> > -parents, one of which can be selected as output.  This clock does not
+> > -gate or adjust the parent rate via a divider or multiplier.
+> > -
+> > -By default the "clocks" property lists the parents in the same order
+> > -as they are programmed into the register.  E.g:
+> > -
+> > -	clocks = <&foo_clock>, <&bar_clock>, <&baz_clock>;
+> > -
+> > -results in programming the register as follows:
+> > -
+> > -register value		selected parent clock
+> > -0			foo_clock
+> > -1			bar_clock
+> > -2			baz_clock
+> > -
+> > -Some clock controller IPs do not allow a value of zero to be programmed
+> > -into the register, instead indexing begins at 1.  The optional property
+> > -"index-starts-at-one" modified the scheme as follows:
+> > -
+> > -register value		selected clock parent
+> > -1			foo_clock
+> > -2			bar_clock
+> > -3			baz_clock
+> > -
+> > -The binding must provide the register to control the mux. Optionally
+> > -the number of bits to shift the control field in the register can be
+> > -supplied. If the shift value is missing it is the same as supplying
+> > -a zero shift.
+> > -
+> > -[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+> > -
+> > -Required properties:
+> > -- compatible : shall be "ti,mux-clock" or "ti,composite-mux-clock".
+> > -- #clock-cells : from common clock binding; shall be set to 0.
+> > -- clocks : link phandles of parent clocks
+> > -- reg : register offset for register controlling adjustable mux
+> > -
+> > -Optional properties:
+> > -- clock-output-names : from common clock binding.
+> > -- ti,bit-shift : number of bits to shift the bit-mask, defaults to
+> > -  0 if not present
+> > -- ti,index-starts-at-one : valid input select programming starts at 1, not
+> > -  zero
+> > -- ti,set-rate-parent : clk_set_rate is propagated to parent clock,
+> > -  not supported by the composite-mux-clock subtype
+> > -- ti,latch-bit : latch the mux value to HW, only needed if the register
+> > -  access requires this. As an example, dra7x DPLL_GMAC H14 muxing
+> > -  implements such behavior.
+> > -
+> > -Examples:
+> > -
+> > -sys_clkin_ck: sys_clkin_ck@4a306110 {
+> > -	#clock-cells = <0>;
+> > -	compatible = "ti,mux-clock";
+> > -	clocks = <&virt_12000000_ck>, <&virt_13000000_ck>, <&virt_16800000_ck>, <&virt_19200000_ck>, <&virt_26000000_ck>, <&virt_27000000_ck>, <&virt_38400000_ck>;
+> > -	reg = <0x0110>;
+> > -	ti,index-starts-at-one;
+> > -};
+> > -
+> > -abe_dpll_bypass_clk_mux_ck: abe_dpll_bypass_clk_mux_ck@4a306108 {
+> > -	#clock-cells = <0>;
+> > -	compatible = "ti,mux-clock";
+> > -	clocks = <&sys_clkin_ck>, <&sys_32k_ck>;
+> > -	ti,bit-shift = <24>;
+> > -	reg = <0x0108>;
+> > -};
+> > -
+> > -mcbsp5_mux_fck: mcbsp5_mux_fck {
+> > -	#clock-cells = <0>;
+> > -	compatible = "ti,composite-mux-clock";
+> > -	clocks = <&core_96m_fck>, <&mcbsp_clks>;
+> > -	ti,bit-shift = <4>;
+> > -	reg = <0x02d8>;
+> > -};
+> > diff --git a/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml b/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+> > new file mode 100644
+> > index 000000000000..b271ab86dde1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+> > @@ -0,0 +1,123 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only  
 > 
-> Why this is not device/compatible specific? Just like all other quirks
-> pushed last one year.
-
-Hi Krzysztof,
-
-  Apologies for a late reply from our end.
-
-  In DWC3 core/dwc3-qcom atleast, there have been no compatible specific 
-quirks added. Also since this is a property of the Synopsys controller 
-hardware and not QC specific one, can we add it in bindings itself. 
-Because this is a property other vendors might also use and adding it 
-via compatible might not be appropriate.
-
-  Let us know your thoughts on this.
+> Surely TI as the only author of the original binding would agree to
+> dual-license this?
+> 
+So there is a question mark. So you are waiting for some confirmation
+form TI?
 
 Regards,
-Krishna,
-
-> 
->>
->> Signed-off-by: Uttkarsh Aggarwal <quic_uaggarwa@quicinc.com>
->> ---
->>   Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> index 1cd0ca90127d..d9e813bbcd80 100644
->> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> @@ -180,6 +180,12 @@ properties:
->>       description: When set core will set Tx de-emphasis value
->>       type: boolean
->>   
->> +  snps,filter-se0-fsls-eop-quirk:
->> +    description:
->> +      When set controller will ignore single SE0 glitch on the linestate during transmit
-> 
-> Does not look like wrapped according to coding style (checkpatch is not
-> a coding style document).
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+Andreas
 
