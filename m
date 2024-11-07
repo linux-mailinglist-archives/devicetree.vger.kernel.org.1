@@ -1,114 +1,133 @@
-Return-Path: <devicetree+bounces-119769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77F679C011B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:28:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A46D19C012B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:33:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CD3B283098
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 09:28:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D72F11C21372
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 09:33:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C02ED1DF273;
-	Thu,  7 Nov 2024 09:28:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9CF1DF26F;
+	Thu,  7 Nov 2024 09:32:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IQllOons"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ah3yTj9K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E92196D8F;
-	Thu,  7 Nov 2024 09:28:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E950BA2D;
+	Thu,  7 Nov 2024 09:32:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730971692; cv=none; b=SflT7TSkwRh/WXPuVdQ/WWAson2NQYoBJBO1T/4cpU6xQ3Uc3PQJtGIcNCcBmiEttVIrAFpgANMwj2NMTnOQjUSHEpFjLB2oz2tuAx5Ev1vn6bfoE+jvxCQ/gQNYqKQwN5EinPTPE8HdekRKzw3fbMdi/qvxmjTDuP+KQpGWrFQ=
+	t=1730971976; cv=none; b=q4M2WPl/GG0hN51grBaKk9Ry/gee6VkpZw93v0Yw9oQGPRIgY1rkIhXDHXn7HDM48nZ2ykAVrgrmwCbU84dCoisRpp4lfXcjiEWkQbXge55hNXokdLxoACt14wM8zTw9oKUOtGmy29Yf5Yk7zZaKjSEQC1V/ZPh3jAZQz3sA/rQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730971692; c=relaxed/simple;
-	bh=inInmAOEGIQYmj1++GbuXfyk7lHVgFnSJgJOGWipTjk=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=t56FrU0hZ7G0q3mBaM9AErQZsYS2k43CKhGSwAk18ZFYXPz3bk1xR8fF+N6iQIYK+mHodch3UqikRJpunIzj5TUk//ulbXOZpURylTp4LDqaV92oBrKe7PW1JfEQWLP8YBQHltz4AUrTKlVsiNA9NVlbU8A96Rop8rm+I2wwvus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IQllOons; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B895EC4CECC;
-	Thu,  7 Nov 2024 09:28:11 +0000 (UTC)
+	s=arc-20240116; t=1730971976; c=relaxed/simple;
+	bh=hRGJJEiH2gPekF0iqZ0/h+ayhMMcIyNJ65HQsDcSF6A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZpSd4k2BFVsSvmGZUBlb+4DhCsWqQQXBVPaj7jncsvMb27DQG+Ys/RsIUtP8vNO56AYLgTVxzN+OaGcPjXhZeRqwNa39pvasRoXvmqdYnOXEJgp+4TfJtWVsENp0Md4UB4SeN1i3/D0QvgzVoloJg3mxqGA8W6JlqiTFz7Y8oM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ah3yTj9K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB3C0C4CECC;
+	Thu,  7 Nov 2024 09:32:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730971692;
-	bh=inInmAOEGIQYmj1++GbuXfyk7lHVgFnSJgJOGWipTjk=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=IQllOons9q1GW676npTQaZgApYsAUUlpYXvsxx/H2b1czH53GlLQ3lQKvskzA86pC
-	 0j49vyiVHHTYAAqthSAER06O3cssf/XyzD8kSMiwa+FeLfW1xMKr4B6hSwqHKTFMi5
-	 RsSF58uhhEnJqidtGbkPffwbQTs9aD6M4whwKPy/8GhS/hsm9H9lx6jqAug7E2VC4E
-	 zQ4HGlIYp/nLbWYhgzo4HYlPynQnOroCiqTF4jmykZwN/78FHLysdum6vXgbu28p7/
-	 f1IRWTu9tTqzLj1y1Gmk+7LP+n8j5XvHk2eFpXrw9a5hcOYXO+fknGoNrmTvnUZJC+
-	 J6UmAfPIyoWxg==
-Date: Thu, 07 Nov 2024 03:28:10 -0600
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=k20201202; t=1730971975;
+	bh=hRGJJEiH2gPekF0iqZ0/h+ayhMMcIyNJ65HQsDcSF6A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ah3yTj9Kd4H5/Da7x8iNF+Dr/PmQpA/a4U6xQHaOAo4gvUKVWrZv+7EtLPpVk1hk6
+	 JCfqjYfxAi7HDpARtDnXEvzEYluNfBoh0r+vjpUxDmwqS0UXGeO6uBg5cTSWazPegq
+	 RjG/PbI78i5YdmkPspjvNC2QG58UFoMdpMBvJ7uL3Z80GErwwCrN4AAenj8THdknsd
+	 pYw8b7V6+Jry+zssOtVYcLXmi986/cYmM1+YbnIGDFFm60TdVzQ4kQZCpkGDEvkfqW
+	 eO6y2B+jc0eCgD6o6k1wAqJAzCRwN0olDz0mcr/ETa29hZ44yp12BEYOc38XLfT4m1
+	 q2FUfzf1bIbAw==
+Message-ID: <961e1aca-cd90-4db1-87d7-afd2e542421e@kernel.org>
+Date: Thu, 7 Nov 2024 10:32:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Sarthak Garg <quic_sartgarg@quicinc.com>
-Cc: Adrian Hunter <adrian.hunter@intel.com>, quic_rampraka@quicinc.com, 
- Conor Dooley <conor+dt@kernel.org>, quic_nguyenb@quicinc.com, 
- Ulf Hansson <ulf.hansson@linaro.org>, linux-kernel@vger.kernel.org, 
- quic_pragalla@quicinc.com, quic_bhaskarv@quicinc.com, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, quic_sachgupt@quicinc.com, 
- Bhupesh Sharma <bhupesh.sharma@linaro.org>, devicetree@vger.kernel.org, 
- quic_nitirawa@quicinc.com, quic_cang@quicinc.com, quic_narepall@quicinc.com, 
- quic_sayalil@quicinc.com, linux-mmc@vger.kernel.org, kernel@quicinc.com, 
- linux-arm-msm@vger.kernel.org
-In-Reply-To: <20241107080505.29244-2-quic_sartgarg@quicinc.com>
-References: <20241107080505.29244-1-quic_sartgarg@quicinc.com>
- <20241107080505.29244-2-quic_sartgarg@quicinc.com>
-Message-Id: <173097168998.1358564.6585218093768664587.robh@kernel.org>
-Subject: Re: [PATCH V1 1/3] dt-bindings: mmc: qcom: Document level shifter
- flag for SD card
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] arm64: dts: exynosautov920: add watchdog DT node
+To: Taewan Kim <trunixs.kim@samsung.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, Byoungtae Cho <bt.cho@samsung.com>
+References: <20241021063903.793166-1-trunixs.kim@samsung.com>
+ <CGME20241021063938epcas2p1c01c89badb532f08a46087a4907df7dc@epcas2p1.samsung.com>
+ <20241021063903.793166-4-trunixs.kim@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241021063903.793166-4-trunixs.kim@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Thu, 07 Nov 2024 13:35:03 +0530, Sarthak Garg wrote:
-> Introduce a flag to indicate if the Qualcomm platform has a level
-> shifter for SD cards. With level shifter addition some extra delay is
-> seen on RX data path leading to CRC errors. To compensate these delays
-> and avoid CRC errors below things needs to be done:
+On 21/10/2024 08:39, Taewan Kim wrote:
+> From: Byoungtae Cho <bt.cho@samsung.com>
 > 
-> 1) Enable tuning for SDR50 mode
-> 2) Limit HS mode frequency to 37.5MHz from 50MHz
+> Adds two watchdog devices for ExynosAutoV920 SoC.
 > 
-> Add this flag for all targets with a level shifter to handle these
-> issues for SD card.
-> 
-> Signed-off-by: Sarthak Garg <quic_sartgarg@quicinc.com>
+> Signed-off-by: Byoungtae Cho <bt.cho@samsung.com>
+> Signed-off-by: Taewan Kim <trunixs.kim@samsung.com>
 > ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+>  .../arm64/boot/dts/exynos/exynosautov920.dtsi | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
 
-My bot found errors running 'make dt_binding_check' on your patch:
+How did this happen that this patch was taken to watchdog? There is no
+Ack here from me.
 
-yamllint warnings/errors:
+Drop this patch from watchdog, I do no agree to take it via that tree.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml: qcom,use-level-shifter: missing type definition
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241107080505.29244-2-quic_sartgarg@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
 
