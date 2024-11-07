@@ -1,168 +1,111 @@
-Return-Path: <devicetree+bounces-119901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19D189C0667
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 13:57:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23B169C06C4
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 14:06:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BE381C2206B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 12:57:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE6781F21FA5
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 13:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09B36216DE5;
-	Thu,  7 Nov 2024 12:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FCA82101BE;
+	Thu,  7 Nov 2024 12:59:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Mg9vj6xl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iD63z4HW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0BAB215F7D;
-	Thu,  7 Nov 2024 12:53:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14E672101A1;
+	Thu,  7 Nov 2024 12:59:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730983990; cv=none; b=PxdZP5RGaEERW7gTWKQcPmWzGDn4TZCoLSJ5ZCvMXyedgqo6bFb9+awL5YCst/XyV/WsKaerkHfCn0h0Qz0msuxmTRY+nxw4CFE1XlE2P2iP+FE/9rn58j62uewEC+JbIcXEuwBuy77VVCW/JAl4BWHDqJenln/Y2xPy8mhP5Uk=
+	t=1730984348; cv=none; b=trDtV2cqoFq9dbBfRg/HB0XdP++V3ziJMBSi6Y7k59DcBxozZNI+R59WAKKTQsNmHd338RRdJgVwLf6AxBZh1CidB1uuAjcrdTGKuWLCV82V6jnndepM65ZhQ/gGlso7DHJYW1crnyq0P4NpU8HCc2icnc2PqqpmHzNHfjQet9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730983990; c=relaxed/simple;
-	bh=O4JIEnkWMQ605+o0syIyHSWT27O1VQEtWWa9lopfQjk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Q8gvyfPUkDfYm4DWObWac81VcJIkj5fiRLhKkSxxefoUDlpGqG1B1G3ZMayucJ9NG3F26IK27OgyeSv/VgVpV6X0hpOU6elLnwMA/seViHH1ApkBd8Cfqrbd6MTAdcTj2ZIdF/afN75VGHS9CRm/tTtapVYtGPh8731vQKxetYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Mg9vj6xl; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4A7Cr2kS041981;
-	Thu, 7 Nov 2024 06:53:02 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1730983982;
-	bh=3Bf1eq+WdZi+EdwuJ3Oe2U0adIIvW8vJSFGrZiaYIY4=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Mg9vj6xlmDOvw+fcrSzarLS0aouuxdOSzzMtKPth3FVE6HDCH/MC+iGDpgQB40eHC
-	 pcRZkjItif7Z0BR9QOv5wBOsY+cKenMCFExi1HW8ss0bfu4NC2uPLK/B1eURnIOV+P
-	 DD7zvUyQrr7vXyaZX/9ChH/ZbITwjyLhzCKL0x40=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4A7Cr2f3116182
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 7 Nov 2024 06:53:02 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 7
- Nov 2024 06:53:02 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 7 Nov 2024 06:53:02 -0600
-Received: from localhost (udb0389739.dhcp.ti.com [137.167.1.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4A7Cr1vX038593;
-	Thu, 7 Nov 2024 06:53:01 -0600
-From: Michael Nemanov <michael.nemanov@ti.com>
-To: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-wireless@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: Sabeeh Khan <sabeeh-khan@ti.com>, Michael Nemanov <michael.nemanov@ti.com>
-Subject: [PATCH v5 17/17] wifi: cc33xx: Add Kconfig, Makefile
-Date: Thu, 7 Nov 2024 14:52:09 +0200
-Message-ID: <20241107125209.1736277-18-michael.nemanov@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241107125209.1736277-1-michael.nemanov@ti.com>
-References: <20241107125209.1736277-1-michael.nemanov@ti.com>
+	s=arc-20240116; t=1730984348; c=relaxed/simple;
+	bh=O2jEPTTUJi8YuBrD4uo+6+5CJE7GCRdzMd3WNJyIb5Y=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=t4cwznAuAehwUFU9S+2q5s7305TCIeWFYv9F+imj+nnqj9Rby9Sam3YFF892ArXz/3Jyd2Kc1durds2lWasL1jfHU2E1jrn+v0by+Rm/9/C73cY+iovs68ll9cSmhgPR1Ru3WuerWlhWkRkZFZDRv3eFFavZsF1kqJTBOtfjLPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iD63z4HW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BC64C4CED0;
+	Thu,  7 Nov 2024 12:59:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730984347;
+	bh=O2jEPTTUJi8YuBrD4uo+6+5CJE7GCRdzMd3WNJyIb5Y=;
+	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+	b=iD63z4HWcMWir7bHC1m9R+CT/cgDL1VVsJnEYKSEV2jU7HGI+2dVFuZypj0yOnSMM
+	 mn3gjCdYb+BdncyjpsM7aAENfKfDqDXnjHN+2pZzXcAtNKO7WmYhwE7RzeUBCUKw2h
+	 Nup1Iz0s1HgQ3Gb4OUa/iOOIVQiZ4CeVgWd2UBMnORr7GbcAdAEXM1MgcLuoSUbXms
+	 X6tG5gVUTPfyBUebk8mkJuHitQAqBK1utoJ6fBjCahU4wIHzJtNHElOGwm7LDcPfaW
+	 MRn8cczXOJQV1BRqGDf6dCM2YXKLjO2zUv3syEb+P+BmVoRQB7n7BShvU1hPmmuX3Q
+	 BivsrE6XS583g==
+Date: Thu, 7 Nov 2024 13:59:04 +0100 (CET)
+From: Jiri Kosina <jikos@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+cc: lee@kernel.org, jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+    conor+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net, 
+    srinivas.pandruvada@linux.intel.com, bentiss@kernel.org, 
+    dmitry.torokhov@gmail.com, pavel@ucw.cz, ukleinek@debian.org, 
+    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+    linux-hwmon@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+    linux-rockchip@lists.infradead.org, linux-input@vger.kernel.org, 
+    linux-iio@vger.kernel.org, linux-leds@vger.kernel.org, 
+    stable@vger.kernel.org
+Subject: Re: [PATCH v9 1/9] HID: hid-sensor-hub: don't use stale platform-data
+ on remove
+In-Reply-To: <20241107114712.538976-2-heiko@sntech.de>
+Message-ID: <nycvar.YFH.7.76.2411071358210.20286@cbobk.fhfr.pm>
+References: <20241107114712.538976-1-heiko@sntech.de> <20241107114712.538976-2-heiko@sntech.de>
+User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=US-ASCII
 
-Integrate cc33xx into wireless/ti folder
+On Thu, 7 Nov 2024, Heiko Stuebner wrote:
 
-Signed-off-by: Michael Nemanov <michael.nemanov@ti.com>
----
- drivers/net/wireless/ti/Kconfig         |  1 +
- drivers/net/wireless/ti/Makefile        |  1 +
- drivers/net/wireless/ti/cc33xx/Kconfig  | 24 ++++++++++++++++++++++++
- drivers/net/wireless/ti/cc33xx/Makefile | 10 ++++++++++
- 4 files changed, 36 insertions(+)
- create mode 100644 drivers/net/wireless/ti/cc33xx/Kconfig
- create mode 100644 drivers/net/wireless/ti/cc33xx/Makefile
+> The hid-sensor-hub creates the individual device structs and transfers them
+> to the created mfd platform-devices via the platform_data in the mfd_cell.
+> 
+> Before e651a1da442a ("HID: hid-sensor-hub: Allow parallel synchronous reads")
+> the sensor-hub was managing access centrally, with one "completion" in the
+> hub's data structure, which needed to be finished on removal at the latest.
+> 
+> The mentioned commit then moved this central management to each hid sensor
+> device, resulting on a completion in each struct hid_sensor_hub_device.
+> The remove procedure was adapted to go through all sensor devices and
+> finish any pending "completion".
+> 
+> What this didn't take into account was, platform_device_add_data() that is
+> used by mfd_add{_hotplug}_devices() does a kmemdup on the submitted
+> platform-data. So the data the platform-device gets is a copy of the
+> original data, meaning that the device worked on a different completion
+> than what sensor_hub_remove() currently wants to access.
+> 
+> To fix that, use device_for_each_child() to go through each child-device
+> similar to how mfd_remove_devices() unregisters the devices later and
+> with that get the live platform_data to finalize the correct completion.
+> 
+> Fixes: e651a1da442a ("HID: hid-sensor-hub: Allow parallel synchronous reads")
+> Cc: stable@vger.kernel.org
+> Acked-by: Benjamin Tissoires <bentiss@kernel.org>
+> Acked-by: Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
 
-diff --git a/drivers/net/wireless/ti/Kconfig b/drivers/net/wireless/ti/Kconfig
-index 3fcd9e395f72..fa7214d6018c 100644
---- a/drivers/net/wireless/ti/Kconfig
-+++ b/drivers/net/wireless/ti/Kconfig
-@@ -14,6 +14,7 @@ if WLAN_VENDOR_TI
- source "drivers/net/wireless/ti/wl1251/Kconfig"
- source "drivers/net/wireless/ti/wl12xx/Kconfig"
- source "drivers/net/wireless/ti/wl18xx/Kconfig"
-+source "drivers/net/wireless/ti/cc33xx/Kconfig"
- 
- # keep last for automatic dependencies
- source "drivers/net/wireless/ti/wlcore/Kconfig"
-diff --git a/drivers/net/wireless/ti/Makefile b/drivers/net/wireless/ti/Makefile
-index 05ee016594f8..4356f58b4b98 100644
---- a/drivers/net/wireless/ti/Makefile
-+++ b/drivers/net/wireless/ti/Makefile
-@@ -3,3 +3,4 @@ obj-$(CONFIG_WLCORE)			+= wlcore/
- obj-$(CONFIG_WL12XX)			+= wl12xx/
- obj-$(CONFIG_WL1251)			+= wl1251/
- obj-$(CONFIG_WL18XX)			+= wl18xx/
-+obj-$(CONFIG_CC33XX)			+= cc33xx/
-diff --git a/drivers/net/wireless/ti/cc33xx/Kconfig b/drivers/net/wireless/ti/cc33xx/Kconfig
-new file mode 100644
-index 000000000000..0c3ff97dacc7
---- /dev/null
-+++ b/drivers/net/wireless/ti/cc33xx/Kconfig
-@@ -0,0 +1,24 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+config CC33XX
-+	tristate "TI CC33XX support"
-+	depends on MAC80211
-+	select FW_LOADER
-+	help
-+	  This module contains the main code for TI CC33XX WLAN chips. It abstracts
-+	  hardware-specific differences among different chipset families.
-+	  Each chipset family needs to implement its own lower-level module
-+	  that will depend on this module for the common code.
-+
-+	  If you choose to build a module, it will be called cc33xx. Say N if
-+	  unsure.
-+
-+config CC33XX_SDIO
-+	tristate "TI CC33XX SDIO support"
-+	depends on CC33XX && MMC
-+	help
-+	  This module adds support for the SDIO interface of adapters using
-+	  TI CC33XX WLAN chipsets.  Select this if your platform is using
-+	  the SDIO bus.
-+
-+	  If you choose to build a module, it'll be called cc33xx_sdio.
-+	  Say N if unsure.
-diff --git a/drivers/net/wireless/ti/cc33xx/Makefile b/drivers/net/wireless/ti/cc33xx/Makefile
-new file mode 100644
-index 000000000000..6156f778edee
---- /dev/null
-+++ b/drivers/net/wireless/ti/cc33xx/Makefile
-@@ -0,0 +1,10 @@
-+# SPDX-License-Identifier: GPL-2.0
-+
-+cc33xx-objs		= main.o cmd.o io.o event.o tx.o rx.o ps.o acx.o \
-+					boot.o init.o scan.o
-+
-+cc33xx_sdio-objs	= sdio.o
-+
-+cc33xx-$(CONFIG_NL80211_TESTMODE)	+= testmode.o
-+obj-$(CONFIG_CC33XX)				+= cc33xx.o
-+obj-$(CONFIG_CC33XX_SDIO)			+= cc33xx_sdio.o
+Acked-by: Jiri Kosina <jkosina@suse.com>
+
+Are you planning to merge this together with the rest of the set, or do 
+you want me to expedite it? I'll be happy to apply it separately as a 
+proper fix.
+
+Thanks,
+
 -- 
-2.34.1
+Jiri Kosina
+SUSE Labs
 
 
