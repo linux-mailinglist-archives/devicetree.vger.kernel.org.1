@@ -1,142 +1,127 @@
-Return-Path: <devicetree+bounces-119697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50B649BFA56
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 00:45:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0799C9BFAA9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 01:22:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82CEF1C220C3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2024 23:45:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFB47283751
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 00:22:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B08F1DE3DE;
-	Wed,  6 Nov 2024 23:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62F1CEC0;
+	Thu,  7 Nov 2024 00:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="cTT8TQfj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FSi6Nn+f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746E61D966A;
-	Wed,  6 Nov 2024 23:45:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730936724; cv=pass; b=Uauh3+XaJpJd72NhRdR4poz5Y3GD3O7QwzuLJ5J+7J15Ej637oqRFBm0qDff5VG0FnhesuY+L1kmtJjYRqjXf+I2BDwrUToJszvUtzMbTDfTSo3cnqP+UlZk2RO0pHojsv2G8sfW/dL7oY1Vu3RdM4hne4lWMh/vSSWY8fzlgjk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730936724; c=relaxed/simple;
-	bh=w9RBdGBrQqRvP4QVYXJHPuVD77PpiUcpzIMOVebp6nc=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=bNBKlThnjCcfs7Wz8afDAV4W0HIFj08nVMG4aXpHPU8wbZoevv+jWTV5k5JHX0rzDyZIBtQ1UOABH4i0i/+qahVXbYqs3opL+1FzUmOFXTY34bVsXFNCj7hTfx06I+Vyff6lL4O24KYSVXM5HByCIWifGuBcrpgbhMxsCxjp7qs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b=cTT8TQfj; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1730936695; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=R6HMMUHtc1LGPVEXrD5PNCVUxuA7BNkb7qJL3b0pLjLv8KPrIoadLVYSoabQ3Z+dYr67mzJPDqk/klYxmCyN1pZjEL4TFpbrIa/ruLX0WAV5YTwj4qgQXrVd1NZP9xJ/sg3VtgwMoaE2n2XRNUbiyFJfhoPtoeSxNv7H4Xsf8c8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1730936695; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=w9RBdGBrQqRvP4QVYXJHPuVD77PpiUcpzIMOVebp6nc=; 
-	b=RXsjqdDFZQ9QelySvS1PT8h+kkEyaqZOHzHv477RVO68k+djASH4mQZcOoGs4jU7GagDjlOuSd/TDOH6AgQ0wSgDtC60AmAog+s3Ux5EmBnHhhCPpkU3CNN47P9ocdI2umln9L1hWbpG9cqA8CiSj2cAoJ/K2xa2WHvbG58n/nc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
-	dmarc=pass header.from=<daniel.almeida@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1730936695;
-	s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
-	h=Content-Type:Mime-Version:Subject:Subject:From:From:In-Reply-To:Date:Date:Cc:Cc:Content-Transfer-Encoding:Message-Id:Message-Id:References:To:To:Reply-To;
-	bh=w9RBdGBrQqRvP4QVYXJHPuVD77PpiUcpzIMOVebp6nc=;
-	b=cTT8TQfjqYSX70R+jyXBXf3BreIvqkS/bPYdo1zcpQqYXavSLEcTWfuKhcb/sFB/
-	c9+YbkfqcF5ndTea00wwVd7HXbcGw7u9YZr3XhaKwno6pflglCl+Kr+3fHn9/GkfQ6x
-	IfqTxL1p3uzUoEE0DKAu4CHGUxwEeNcfWMmQdFfU=
-Received: by mx.zohomail.com with SMTPS id 1730936692453913.7917799009244;
-	Wed, 6 Nov 2024 15:44:52 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2614B161;
+	Thu,  7 Nov 2024 00:21:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1730938915; cv=none; b=IddyKXujnt7SLmPl8XelVfUgGGHJ8bNmQA53/Y/xA4VXdfFZn64YpB5sAtyt8Gt0Ks13i4FdhgYdGtdU4d6XYxxeyLtlZ8AuLWJjiJkWok6X8xPJRIQUKsQLsV07hoJzYaHwXU11kip4dC4bELvRD98j4yjC53LKIZESDJpi3Uo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1730938915; c=relaxed/simple;
+	bh=+CNWzMeB071PME8CXmstzWM4w5EMF9AzDs7sv42HsIc=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=uaeu5qZXrqc5c6q8WvkFvS0YIWRwAw3dTEgHRwjwCKFY7r3EF6B7yZGvhP27D45BBEUHhoJQN1YyEUkwzByZ5/0wr00MDXb5G/g7XOfu4kjlEDGwNn90YR8yJCZ7Pku1tf5BLTVlmtNB7GIp8n7LswrKGiAKh+ReA6wql/MVsZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FSi6Nn+f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54DB9C4CEC6;
+	Thu,  7 Nov 2024 00:21:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730938914;
+	bh=+CNWzMeB071PME8CXmstzWM4w5EMF9AzDs7sv42HsIc=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=FSi6Nn+fZyQj7dKxHIZK7DT+LTkZfbwqFASaTgkoGMlINncNpG1lbmos3IUyB+kWR
+	 CtVJfQv5WBnN0qiss3L6VkLe8dn7SmaHZlDGrW4HfGyufCid71CoiZkmEmXkwmjYe3
+	 NQq+FodDM5h773Dq2XtMGw7fGqRi8oJWlrDrUCPvSPFHPq2zXRhGXgcjdeXw3QNpoU
+	 +M21tQeGCmbJmcrDe7i0Scvrk88eWdN8o+LtiYkBkD7+c/uHZORrEkkU9FdlkYnArr
+	 gB3iNcLbiQsfRCDVuBtG2XgkQn1ae9A7c3q6fbxkR0zPBQsrMXj5mJzGA5Xvrrkbiu
+	 NbmmDAP3XPMew==
+From: Mark Brown <broonie@kernel.org>
+To: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org, 
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+ lgirdwood@gmail.com, magnus.damm@gmail.com, linus.walleij@linaro.org, 
+ support.opensource@diasemi.com, perex@perex.cz, tiwai@suse.com, 
+ p.zabel@pengutronix.de, Adam.Thomson.Opensource@diasemi.com, 
+ Claudiu <claudiu.beznea@tuxon.dev>
+Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20241106081826.1211088-1-claudiu.beznea.uj@bp.renesas.com>
+References: <20241106081826.1211088-1-claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: (subset) [PATCH 00/31] Add audio support for the Renesas
+ RZ/G3S SoC
+Message-Id: <173093891006.248820.1343956081297583948.b4-ty@kernel.org>
+Date: Thu, 07 Nov 2024 00:21:50 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.200.121\))
-Subject: Re: [PATCH v3 09/16] rust: add `io::Io` base type
-From: Daniel Almeida <daniel.almeida@collabora.com>
-In-Reply-To: <CAH5fLgjC5Rcq5VJbEFSVP_rE0xjj8CGdqxZexhPVsGcTZ+85HA@mail.gmail.com>
-Date: Wed, 6 Nov 2024 20:44:35 -0300
-Cc: Danilo Krummrich <dakr@kernel.org>,
- gregkh@linuxfoundation.org,
- rafael@kernel.org,
- bhelgaas@google.com,
- ojeda@kernel.org,
- alex.gaynor@gmail.com,
- boqun.feng@gmail.com,
- gary@garyguo.net,
- bjorn3_gh@protonmail.com,
- benno.lossin@proton.me,
- tmgross@umich.edu,
- a.hindborg@samsung.com,
- airlied@gmail.com,
- fujita.tomonori@gmail.com,
- lina@asahilina.net,
- pstanner@redhat.com,
- ajanulgu@redhat.com,
- lyude@redhat.com,
- robh@kernel.org,
- saravanak@google.com,
- rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <A309C141-E390-44C1-A2B7-A7A9CDB132D7@collabora.com>
-References: <20241022213221.2383-1-dakr@kernel.org>
- <20241022213221.2383-10-dakr@kernel.org>
- <CAH5fLggFD7pq0WCfMPYTZcFkvrXajPbxTBtkvSeh-N2isT1Ryw@mail.gmail.com>
- <ZyCo9SRP4aFZ6KsZ@pollux>
- <CAH5fLgjC5Rcq5VJbEFSVP_rE0xjj8CGdqxZexhPVsGcTZ+85HA@mail.gmail.com>
-To: Alice Ryhl <aliceryhl@google.com>
-X-Mailer: Apple Mail (2.3826.200.121)
-X-ZohoMailClient: External
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-9b746
 
-Sorry, I didn=E2=80=99t see this:
+On Wed, 06 Nov 2024 10:17:55 +0200, Claudiu wrote:
+> Series enables the audio support for the Renesas RZ/G3S
+> SoC along with runtime PM and suspend to RAM.
+> 
+> Patches:
+> -    01/31 - add clock, reset and power domain support
+> - 02-04/31 - update versaclock3 clock generator driver to support the
+>              5L35023 hardware variant; versaclock3 provides clocks for
+>              the audio devices (SSIF, DA7212 codec)
+> -    05/31 - add pin control support for audio
+> - 06-21/31 - add SSIF support for the RZ/G3S SoC; fixes and cleanups
+>              were also included
+> - 22-26/31 - updates the da7213 codec driver to support the DA7212
+>              hardware variant; suspend to RAM code was adjusted
+>              to cope with the RZ/G3S power saving modes
+> - 27-31/31 - add device tree support
+> 
+> [...]
 
-> On 29 Oct 2024, at 07:18, Alice Ryhl <aliceryhl@google.com> wrote:
->=20
-> What you're doing now is a bit awkward to use. You have to make sure
-> that it never escapes the struct it's created for, so e.g. you can't
-> give out a mutable reference as the user could otherwise `mem::swap`
-> it with another Io. Similarly, the Io can never be in a public field.
-> Your safety comment on Io::new really needs to say something like
-> "while this struct exists, the `addr` must be a valid I/O region",
-> since I assume such regions are not valid forever? Similarly if we
+Applied to
 
-Io is meant to be a private member within a wrapper type that actually
-acquires the underlying I/O region, like `pci::Bar` or =
-`Platform::IoMem`.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Doesn=E2=80=99t that fix the above?
+Thanks!
 
-> look at [1], the I/O region actually gets unmapped *before* the Io is
-> destroyed since IoMem::drop runs before the fields of IoMem are
-> destroyed, so you really need something like "until the last use of
-> this Io" and not "until this Io is destroyed" in the safety comment.
->=20
-> If you compare similar cases in Rust, then they also do what I
-> suggested. For example, Vec<T> holds a raw pointer, and it uses unsafe
-> to assert that it's valid on each use of the raw pointer - it does not
-> create e.g. an `&'static mut [T]` to hold in a field of the Vec<T>.
-> Having an IoRaw<S> and an Io<'a, S> corresponds to what Vec<T> does
-> with IoRaw being like NonNull<T> and Io<'a, S> being like &'a T.
->=20
-> [1]: =
-https://lore.kernel.org/all/20241024-topic-panthor-rs-platform_io_support-=
-v1-1-3d1addd96e30@collabora.com/
+[22/31] ASoC: da7213: Populate max_register to regmap_config
+        commit: 9d4f9f6a7bb1afbde57d08c98f2db4ff019ee19d
+[23/31] ASoC: da7213: Return directly the value of regcache_sync()
+        commit: 841256954037ad80a57b8fa17a794ae9a01b2e23
+[24/31] ASoC: da7213: Add suspend to RAM support
+        commit: 431e040065c814448ffcc2fac493f7dbbfb2e796
+[25/31] ASoC: da7213: Avoid setting PLL when closing audio stream
+        commit: 1e1a2ef95b571825ca9c0113f6bef51e9cec98b0
+[26/31] ASoC: da7213: Extend support for the MCK in range [2, 50] MHz
+        commit: b3296f9095d6ad24723e5ad89c28acc317d0c3cf
 
-What I was trying to say in my last message is that the wrapper type, =
-i.e.:
-IoMem and so on, should not have a lifetime parameter, but IIUC this is =
-not
-what you=E2=80=99re suggesting here, right?
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-=E2=80=94 Daniel=
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
