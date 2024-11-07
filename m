@@ -1,209 +1,172 @@
-Return-Path: <devicetree+bounces-120005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967F99C1160
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 22:55:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0362C9C1166
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 22:56:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 291591F268AF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 21:55:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34BB71C21503
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 21:56:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E7421893D;
-	Thu,  7 Nov 2024 21:54:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5172218939;
+	Thu,  7 Nov 2024 21:56:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dcMqVnjh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="snaNZ8tS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43E2218939
-	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 21:54:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B2792170C2;
+	Thu,  7 Nov 2024 21:56:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731016495; cv=none; b=VUylqMNNJDQ1c+/l2SCiFJc0QBWlbIQxrFnrLehH2h17OeRuZRgTotabtdfw8bK1XikaxcLZN6wkGDFkHljzpkB4DDbwJw8IKKrIXcFs2ACHtOMAcYP7Y7K7uVl3Qd1JqDQpCHr2YpTE1xVHKFnwh+6tesJYQfS0WlNmhxqC/SM=
+	t=1731016582; cv=none; b=FFHzczQo7gj++4XB+weDzNgNsANyWOhziJMuVGBihyehLeC2B6HR+/rJAJYsyVLw5BLhgEfpjLCNIlLo4BXWL+sctgFWYg8p5vwsFLMxtcQHHCM0/kIE9GDIqpfV1yFWxtP375izsOGe82bdPIdgAPuPuXL5Gs2iGYvjg+3m0P0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731016495; c=relaxed/simple;
-	bh=jZ2w6qtCWGTKq+KsmMFcXlp9RX+AIWYwztbPZfJLwwc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R5lULfCNHn3RGTf5sn4MI/j/zu8u220JlsTFk7u4UGO7pxLgQBe8MT82xJkphBo1vdnIZLKMPncYjBOR4Z5pkMO3VmP3dHeXgZs2MuDj0vVsMBH1Qa0W7MPy/1RDkjP02Jw005RYXizROuZel97028pEbcBKF3aj1aNHmR+RkZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=dcMqVnjh; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-53b34ed38easo1388379e87.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 13:54:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1731016491; x=1731621291; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HaiaDeIPx1kjruXBuj52b+ZclV2Vhqc5U8qWhq/Gx0o=;
-        b=dcMqVnjhNPHK0c+SLazIMwGTGKCDN/Zbr4u6tillybH6tDDfioH0QdAc3E8Pn+zZO5
-         zgiqdpjOXfbf61/eAUOQS1b2QfjWCQ1Oy23p1ntaJoAG/K/HFcXDoCv65vSVNbodg8WD
-         YhMINz+DpzB9QMo444ogou33k0m3xu0+m6nqY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731016491; x=1731621291;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HaiaDeIPx1kjruXBuj52b+ZclV2Vhqc5U8qWhq/Gx0o=;
-        b=gp4VqyRq+S7Qcep8AGy5PsXqkwd0zfkses6qCaggdc9jwbOOHKTGPwGEgQEoXVivQo
-         0Y821Bl/Ibz81wcJWQ7+cbpRFdhwnk9btyLXY8MKISJ6/b0EXlp0oM38F80WF8rlSC56
-         88ebgj3cQOwO/GwhK6S7+wW8PGt4LohJzn2SjBS3uyhneOi60LMLGB69+HlWpOY4B5Cu
-         xSsLNBPGHUL+RIVc0QpRoky8guz4HWgEGt4wB9Hgl3BcCwZLGYmTfaS/HHz5elXIjG88
-         zwWQtTm3MQM6UDJqDkVH1Sd826Paz3D/gfmUlaNzbrqcY1Nq1dEUdr/61j3T1D0GV9yd
-         3nng==
-X-Forwarded-Encrypted: i=1; AJvYcCWeYvTjU0oZ8J6G+XEfTeUYlLj3w0djvNd66qH5if/vIWei8oAgF8v6e6Np/vfMXWL3nAikvo4LQpqZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjEwVC/bx0Au4yE2Q9jGJRgOy8oQPhYUKu+rIwNaTEKc6aXMj4
-	N9hMIuKhApR1GT4HEIwadFh/PohzYyiJTs5sIVS2B3N3Fiij8ZNz1vnvI9BY6vpr9uXVmWD3orK
-	Yzw==
-X-Google-Smtp-Source: AGHT+IES+yrHjj1UkhajaSRAF/R1ANJ4A7+C/kceSgqbPWPDWoUSvdP+e+1QQ7w7O/Xv3Ip8bYtsJA==
-X-Received: by 2002:a05:6512:b8f:b0:539:e88f:23a1 with SMTP id 2adb3069b0e04-53d862e4cfbmr332337e87.44.1731016490906;
-        Thu, 07 Nov 2024 13:54:50 -0800 (PST)
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com. [209.85.167.44])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53d826aed06sm365710e87.257.2024.11.07.13.54.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Nov 2024 13:54:49 -0800 (PST)
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-539f1292a9bso1573143e87.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 13:54:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWOSz8shaRpnoHLWjUhuBarSvq7rmk2yDxSTwYfwsxkBu3TclwSGdGeVRpQnuOzBsTvLtl81PLCaWRk@vger.kernel.org
-X-Received: by 2002:a05:6512:e88:b0:539:ee0d:2bb4 with SMTP id
- 2adb3069b0e04-53d862e5c0bmr287074e87.45.1731016489173; Thu, 07 Nov 2024
- 13:54:49 -0800 (PST)
+	s=arc-20240116; t=1731016582; c=relaxed/simple;
+	bh=5Eo6qcoFVa2y7T4CA1LjJm2ItuxSl1cXVLYwgGdG78A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fQRhbCF3e6Ar5o5sRQE8VnAcNDQsYtjepnLBGAzrFCGf1nBrHYncIgAZqtITJBCuoo1AAcsBVOTiAKAbmhV+qpvpCUDW5RTOVuM9CFHLh6qwbbTrVv8dVOSBz078+PklUo2xigEdsXHlh+GLu+Mkqb2W5IspDqCvFz+Xo74wbas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=snaNZ8tS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8D54C4CECC;
+	Thu,  7 Nov 2024 21:56:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731016582;
+	bh=5Eo6qcoFVa2y7T4CA1LjJm2ItuxSl1cXVLYwgGdG78A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=snaNZ8tSicUvWD7PrD0LYJBkh3bGKBJbprEa1e+L3I9yynNSTobD5JQQuUlyw1qa4
+	 Dee43LquYgLNye0D58HYWkPeK3vv1Fjl0PXXslYuvC/3FzXfQISP8Pcb0zMXYgFz6m
+	 cHamLikSD3g7zIowC61gJhcQ6Dzrt2BQgKRDoFdySc2MndGz9iPb5vcRGQdzAvC7Z6
+	 HGDMn/bHcXYLINTIT8HTZQ+glD+27KI5EUbkg5H4pd2BskirInQW74jUwTvq/3MSq1
+	 MHi0wzGVR3iunnxMS2AQJf0gXVODH79ifsLJyVx7jKw2SbAk3eVgwUXVxrhrF6xmBt
+	 22vW8hoSJemEg==
+Date: Thu, 7 Nov 2024 22:56:19 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
+	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, bhelgaas@google.com,
+	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+	nbd@nbd.name, dd@embedd.com, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com, Hui.Ma@airoha.com
+Subject: Re: [PATCH v4 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
+Message-ID: <Zy03gz7czVIMQUcD@lore-desk>
+References: <ZyzpGSyAVe6bz9H2@lore-desk>
+ <20241107164624.GA1618716@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241107032313.64390-1-charles.goodix@gmail.com>
-In-Reply-To: <20241107032313.64390-1-charles.goodix@gmail.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Thu, 7 Nov 2024 13:54:33 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=UQr_6L_UhdCSr3cbxfGO2aEEYgTEpBh+gseYeapr-5iA@mail.gmail.com>
-Message-ID: <CAD=FV=UQr_6L_UhdCSr3cbxfGO2aEEYgTEpBh+gseYeapr-5iA@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: input: Goodix SPI HID Touchscreen
-To: Charles Wang <charles.goodix@gmail.com>
-Cc: krzk@kernel.org, hbarnor@chromium.org, conor.dooley@microchip.com, 
-	dmitry.torokhov@gmail.com, jikos@kernel.org, bentiss@kernel.org, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="1W+fFQH7ARG+B5PJ"
+Content-Disposition: inline
+In-Reply-To: <20241107164624.GA1618716@bhelgaas>
+
+
+--1W+fFQH7ARG+B5PJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+> On Thu, Nov 07, 2024 at 05:21:45PM +0100, Lorenzo Bianconi wrote:
+> > On Nov 07, Bjorn Helgaas wrote:
+> > > On Thu, Nov 07, 2024 at 08:39:43AM +0100, Lorenzo Bianconi wrote:
+> > > > > On Wed, Nov 06, 2024 at 11:40:28PM +0100, Lorenzo Bianconi wrote:
+> > > > > > > On Wed, Jul 03, 2024 at 06:12:44PM +0200, Lorenzo Bianconi wr=
+ote:
+> > > > > > > > Introduce support for Airoha EN7581 PCIe controller to medi=
+atek-gen3
+> > > > > > > > PCIe controller driver.
+> > > > > > > > ...
+> > >=20
+> > > > > > > Is this where PERST# is asserted?  If so, a comment to that e=
+ffect
+> > > > > > > would be helpful.  Where is PERST# deasserted?  Where are the=
+ required
+> > > > > > > delays before deassert done?
+> > > > > >=20
+> > > > > > I can add a comment in en7581_pci_enable() describing the PERST=
+ issue for
+> > > > > > EN7581. Please note we have a 250ms delay in en7581_pci_enable(=
+) after
+> > > > > > configuring REG_PCI_CONTROL register.
+> > > > > >=20
+> > > > > > https://github.com/torvalds/linux/blob/master/drivers/clk/clk-e=
+n7523.c#L396
+> > > > >=20
+> > > > > Does that 250ms delay correspond to a PCIe mandatory delay, e.g.,
+> > > > > something like PCIE_T_PVPERL_MS?  I think it would be nice to hav=
+e the
+> > > > > required PCI delays in this driver if possible so it's easy to ve=
+rify
+> > > > > that they are all covered.
+> > > >=20
+> > > > IIRC I just used the delay value used in the vendor sdk. I do not
+> > > > have a strong opinion about it but I guess if we move it in the
+> > > > pcie-mediatek-gen3 driver, we will need to add it in each driver
+> > > > where this clock is used. What do you think?
+> > >=20
+> > > I don't know what the 250ms delay is for.  If it is for a required PCI
+> > > delay, we should use the relevant standard #define for it, and it
+> > > should be in the PCI controller driver.  Otherwise it's impossible to
+> > > verify that all the drivers are doing the correct delays.
+> >=20
+> > ack, fine to me. Do you prefer to keep 250ms after clk_bulk_prepare_ena=
+ble()
+> > in mtk_pcie_en7581_power_up() or just use PCIE_T_PVPERL_MS (100)?
+> > I can check if 100ms works properly.
+>=20
+> It's not clear to me where the relevant events are for these chips.
+>=20
+> Do you have access to the PCIe CEM spec?  The diagram in r6.0, sec
+> 2.2.1, is helpful.  It shows the required timings for Power Stable,
+> REFCLK Stable, PERST# deassert, etc.
+>=20
+> Per sec 2.11.2, PERST# must be asserted for at least 100us (T_PERST),
+> PERST# must be asserted for at least 100ms after Power Stable
+> (T_PVPERL), and PERST# must be asserted for at least 100us after
+> REFCLK Stable.
+>=20
+> It would be helpful if we could tell by reading the source where some
+> of these critical events happen, and that the relevant delays are
+> there.  For example, if PERST# is asserted/deasserted by
+> "clk_enable()" or similar, it's not at all obvious from the code, so
+> we should have a comment to that effect.
 
-On Wed, Nov 6, 2024 at 7:23=E2=80=AFPM Charles Wang <charles.goodix@gmail.c=
-om> wrote:
->
-> The Goodix GT7986U touch controller report touch data according to the
-> HID protocol through the SPI bus. However, it is incompatible with
-> Microsoft's HID-over-SPI protocol.
+I reviewed the vendor sdk and it just do something like in clk_enable():
 
-I think it was requested that both the yaml file and the commit
-message mention why there are two different yaml file that both talk
-about "gt7986u". In the commit message I think it would be valuable to
-point to the previous discussion. AKA, maybe say:
+	...
+	val =3D readl(0x88);
+	writel(val | BIT(16) | BIT(29) | BIT(26), 0x88);
+	/*wait link up*/
+	mdelay(1000);
+	...
 
-NOTE: these bindings are distinct from the bindings used with the
-GT7986U when the chip is running I2C firmware. For some background,
-see discussion on the mailing lists in the thread:
+@Hui.Ma: is it fine use msleep(100) (so PCIE_T_PVPERL_MS) instead of msleep=
+(1000)
+(so PCIE_LINK_RETRAIN_TIMEOUT_MS)?
 
-https://lore.kernel.org/r/20241018020815.3098263-2-charles.goodix@gmail.com
+Regards,
+Lorenzo
 
+>=20
+> Bjorn
 
-> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
-> ---
-> Changes in v2:
-> - Change compatible to 'goodix,gt7986u-spifw'.
-> - Remove 'goodix,hid-report-addr' property.
+--1W+fFQH7ARG+B5PJ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Probably this should be a two-patch series now. The first is this
-bindings file and the second changes the firmware (which never got
-reverted) to default to a hid-report-addr of 1.
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZy03gwAKCRA6cBh0uS2t
+rJ64AP40vgr/oweTeYBRjXYZBVQY5QwDDuhEhSNWwtsmfHK6fAEAtiON0J6fTwIC
+3wlDpNdKoaRVFQc7zFP/K1csNJqSNgk=
+=KhIT
+-----END PGP SIGNATURE-----
 
-> - Change additionalProperties to unevaluatedProperties.
-> - v1: https://lore.kernel.org/all/20241025114642.40793-2-charles.goodix@g=
-mail.com/
-> ---
->  .../bindings/input/goodix,gt7986u.yaml        | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7986=
-u.yaml
-
-The name of the file needs to match the primary compatible, so it
-should include the "-spifw" part.
-
-
-> diff --git a/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml =
-b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
-> new file mode 100644
-> index 000000000..b7afa21fb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/goodix,gt7986u.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Goodix GT7986U SPI HID Touchscreen
-> +
-> +maintainers:
-> +  - Charles Wang <charles.goodix@gmail.com>
-> +
-> +description: Supports the Goodix GT7986U touchscreen.
-> +  This touch controller reports data packaged according to the HID proto=
-col
-> +  over the SPI bus, but it is incompatible with Microsoft's HID-over-SPI=
- protocol.
-
-I probably would have put the note about the compatible here instead
-of below. Something like:
-
-NOTE: these bindings are distinct from the bindings used with the
-GT7986U when the chip is running I2C firmware. This is because there's
-not a single device that talks over both I2C and SPI but rather
-distinct touchscreens that happen to be built with the same ASIC but
-that are distinct products running distinct firmware.
-
-
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    description:
-> +      Add the 'spifw' suffix to distinguish it from the general GT7986U =
-I2C-HID
-> +      touchscreen, as it runs a substantially different firmware than GT=
-7986U
-> +      I2C-HID touchscreens.
-
-As per above, I'd remove the "description" here. It's not common for a
-compatible to have a "description".
-
-
-> +    enum:
-> +      - goodix,gt7986u-spifw
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency: true
-> +
-> +unevaluatedProperties: false
-
-I believe "unevaluatedProperties" is supposed to be moved down below
-"required" according to previous comments on your patches.
+--1W+fFQH7ARG+B5PJ--
 
