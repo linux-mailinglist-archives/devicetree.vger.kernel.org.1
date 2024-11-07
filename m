@@ -1,316 +1,256 @@
-Return-Path: <devicetree+bounces-119925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44BD09C08E8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 15:31:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 267719C0903
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 15:35:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68A331C24904
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 14:31:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A1A71C22A1B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 14:35:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17DC6212654;
-	Thu,  7 Nov 2024 14:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CC5B212F01;
+	Thu,  7 Nov 2024 14:34:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kmoD10Sq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UgEAApSE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE02212622
-	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 14:31:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4876212EF4;
+	Thu,  7 Nov 2024 14:34:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730989872; cv=none; b=qhSEDC/+/oqoI81UfO5K8hJMchDL7TGgGQrxdZ2xUv3K2E0OFre/p9WydxFkCDZ6YIyUea+zejFb4Uskye45MQRnRbO72FWDjGK7t3MuZtQi9ebHM6Joaj3LmycPUtpiau/502hjX5lmPOuO/iYA15giTQSxy4c2pCItpBcUFOg=
+	t=1730990081; cv=none; b=egk6dPg4dauq0HpFhdkk1JhmGHDIIUKXjzIz7ze0/WJSweIx3+Y+TUn0FAgSg2P6jMcIDdPNzr09SEKmCivQj1Vn8i0jr9NXqaMZZlup4YSG8ZO6oMuV0QC2QgsIf52YyXYFofAWHcu9qV5fW8sT4CDjJefnYaPHq1+mDMTRPMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730989872; c=relaxed/simple;
-	bh=BZ5oTKHBKMEtyTEuiNUO32t+G7u472nOePKIEpkjFPk=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=lJzCbaUvc/hVlmhyLNAR5btN8YevS7o6vEedYvuhrL/sdxU5nA65dup0qAkQrsWl4DBJD2msOFgT9I0EG5uTxvP3PsfIoDGCDRYpkOwxW9ZKIY6t5XnCJFzUF6Ru1dYbBoy8+NhCovz/gRIsdVMkcFpV19LtTTVkTD4CoXoYYmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kmoD10Sq; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-37ed3bd6114so616822f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 06:31:09 -0800 (PST)
+	s=arc-20240116; t=1730990081; c=relaxed/simple;
+	bh=+VXnf4L4+EUCWLwDDfo++V6wLUGKACpR+5t67b887/k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KUjvuOD7DGDMO3WQ7l5BTslTfsYgp4NaWDQclKckdxk8z1fRXe2r7uaxAAX74ATS5xw7lK3R1gS9/cJRyJZFxmHxfWHXovCPee1L+JnHyf3VIDR3k7v/Sy2jp1STlzTGQ2tevUD2lEn5jC4B9NCqwZGSDWypKV9pTtsajZodHrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UgEAApSE; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5c9c28c1ecbso1305620a12.0;
+        Thu, 07 Nov 2024 06:34:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730989868; x=1731594668; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=52spWhmFBKhhJZSyR9FLJzET+EvHavBhysGOe9CL+hQ=;
-        b=kmoD10SqEQEhXpS+YHThSaRuHI7ncIVELSNULAtZ8RQl0OV3H+h/zqxFvezQU+NUNV
-         7pDwdr/AbsefB6xhhnpUsnUXo5tKuToSSjHKiHOl9juGKQX65bHngPygpt8gQfMUtIPX
-         uhRObp7DuEknttOlDO+/LhDTsMPnCxzxNyzFBxMgM7N4+SQREe4yuZ79nNUk9PEOAkok
-         BhWiMEp62m8sCVdt1yd7cGXUUndFWa+zLkCCey2zBHZVJy/RIJLY2Qz6q26Tzt5EbPX7
-         ao+ZY1GeVfmLkAWKkahXrJESpyDv9dU6QMHPir5Clru8WWo/77xkBWTcoUbGcMcTr1BB
-         WUcg==
+        d=gmail.com; s=20230601; t=1730990078; x=1731594878; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=F75piWahFu3xEvjEvyJygjFoe6Wvi89gUM0KanR4MpI=;
+        b=UgEAApSEtFKXlkZE1aCTy+Y6B8ZzSxcPSCtfvDVhaZ39Iwx180Cth7QESwVCduOT6l
+         lYRpsU133msEZqjtdQacBaRilM59Wv5ulMZtzTq3Oj9m+GRU5gdFvbqJwM4IGrcdNVT6
+         R05JvKbef3yh+bZEyrsOohcBiFhAzrYSXbTV07wPaiOTNGZOk610eFdhgN6Fbl4+vNz2
+         /odtplgVzEPe1Nw0Vyik7rOadcvUnTR65TyGx5YT63Jhir4ToVBwUoWsmjRHB3D4IN94
+         M1Oc8m9nXCy6jD8Lt7/WYlJMtbprL5Y32Q4zLOqBXVOjkGKrgC3Myq0IbFNBaCLU8IQv
+         9COg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730989868; x=1731594668;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=52spWhmFBKhhJZSyR9FLJzET+EvHavBhysGOe9CL+hQ=;
-        b=vGX42Bwq6URhs5X1DB/inheuOPhTylNomW+USxH5XHADWhP5TSEn/7rEfRVuAQCUni
-         roYNOVFrJMX1kGCL48xDbgn7dTSVP1ji1qP8ahUadzHEr6kiH3tB8jCSjzw+nW4CZv9o
-         txTUTNZcvacjxEe6YSZRUlnxp90KcU6JfTiyc+WEDGqyGhfVPVcWNlJM47wBEhC55kBw
-         5mlOyF7Elc5Vrlg5k+5dkq4R7T6vMK/waTJMSkbLFHfpBHd6IRI/11snbjiDv122W3fA
-         Zfcp9Rgh6CGk1HbhgY7YcM32doXdfvgTmG1SvW6Zt9KeLIlETD7GQkWb/aBHKZzhIqLF
-         NOxA==
-X-Forwarded-Encrypted: i=1; AJvYcCWfQ8W1R4kTWvahRPlg+L7yeqWBp8ehLDNtdAzRq4fgHdGMWnqemLA4T42FTfwv+RFYSKWg5eyfQq1D@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpFLBmH9Lb9vuUztuQ8E/HQu9bFBRImrZpsOSiQZU+q7+t7FbU
-	XNLy94K+FtKSvx1t589WBHxDBOiLCW9b70bgm7TfJRbkcEfckXJ7O4QuQhQ95lY=
-X-Google-Smtp-Source: AGHT+IH1XW54uNic2Zsxikuj4la1QpramzsNuBrwv0oti7++/bg6c3Sof5I5A2uO5KaEWXSxgWOsoA==
-X-Received: by 2002:a05:6000:1569:b0:37d:5103:8894 with SMTP id ffacd0b85a97d-381c7aa4a56mr20990212f8f.42.1730989867777;
-        Thu, 07 Nov 2024 06:31:07 -0800 (PST)
-Received: from [172.16.23.252] ([89.101.134.25])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381ed9719easm1930183f8f.9.2024.11.07.06.31.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Nov 2024 06:31:07 -0800 (PST)
-Message-ID: <85eaeaca-850d-47d4-b81d-b23f25084d81@linaro.org>
-Date: Thu, 7 Nov 2024 15:31:05 +0100
+        d=1e100.net; s=20230601; t=1730990078; x=1731594878;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F75piWahFu3xEvjEvyJygjFoe6Wvi89gUM0KanR4MpI=;
+        b=BgL3UGp974SOuobeGZNSqBDtsxul+BDEsbt8QE7NawDXfJBxXbrS61XpuFZY4vOZmS
+         OH0IqwdCDH8wL6Ncv9uLL9kQgcC+9OfY4u6/UFt89P4btHRis+gUQjXurRVLatUD4V9O
+         X8fOA3WWuzoK5t9uI0SiHi/qBqDtoJuwiVRWb9Sd2mnodgewMLhK5di4DpDdzx9379DG
+         XPwYga3A93yg/OLPE4R6KMw7A0bbY06Mrk1WqLWUbqu1jo54jPmBuXPgUi5ib4Olxm8B
+         P7dBu4+PN0GIKBZ6xS5CnZ9GwhectjuYdECaWvn8WEphk+MEDbJH82Ornj176ynUL0+s
+         y+JQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWd9T7VfcyFsosenOAbMvmJTEnVnLtje5KqlqokubZkHUG2N3e1QigTinXm3jrWr8bXmfUEZyT84CP0aYdM@vger.kernel.org, AJvYcCXj3ZDLYoyJZXeIMuCCKGc4/EnZbc+lAdBJzKnlafJy7L+Kt2ztA40Mb4x1qiQNTE6xJFruDAW+E12f@vger.kernel.org
+X-Gm-Message-State: AOJu0YyECZmnakiNOmQXiMrScbxY17F0O7oYd1jY+QeBklZVnSCD0LtA
+	1yasaofP3qv4wgSbPZjJCSyL0PN/1AeuOIxMbySL2aa92+sydqPM
+X-Google-Smtp-Source: AGHT+IGd4G0KS5uDfvxPoW9U4SNRhx7uhG/Wy5chDr4KEWTlLa8sOsBZ4tHb3V9I4IDAQQJgFfqRmg==
+X-Received: by 2002:a05:6402:50cc:b0:5cb:7780:f1f6 with SMTP id 4fb4d7f45d1cf-5cbbf94ebeamr31344872a12.33.1730990077700;
+        Thu, 07 Nov 2024 06:34:37 -0800 (PST)
+Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cf03bb7fcasm880381a12.52.2024.11.07.06.34.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Nov 2024 06:34:37 -0800 (PST)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-actions@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: clock: actions,owl-cmu: convert to YAML
+Date: Thu,  7 Nov 2024 16:34:31 +0200
+Message-ID: <20241107143431.728669-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH RFC 1/3] drm/msm/adreno: Add support for ACD
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>, Rob Clark
- <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20241012-gpu-acd-v1-0-1e5e91aa95b6@quicinc.com>
- <20241012-gpu-acd-v1-1-1e5e91aa95b6@quicinc.com>
- <4aeec9f1-720b-400c-9582-d02847db2ac7@linaro.org>
- <43404449-1830-4651-a85a-54404b1d35bc@quicinc.com>
- <56a976d6-7dd6-4001-b6a8-268ed7d787d2@linaro.org>
- <49e1a6b6-683f-4826-b67e-8354a10a785d@quicinc.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <49e1a6b6-683f-4826-b67e-8354a10a785d@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 07/11/2024 13:46, Akhil P Oommen wrote:
-> On 11/7/2024 2:25 PM, neil.armstrong@linaro.org wrote:
->> On 06/11/2024 02:44, Akhil P Oommen wrote:
->>> On 11/4/2024 9:14 PM, neil.armstrong@linaro.org wrote:
->>>> On 11/10/2024 22:29, Akhil P Oommen wrote:
->>>>> ACD a.k.a Adaptive Clock Distribution is a feature which helps to
->>>>> reduce
->>>>> the power consumption. In some chipsets, it is also a requirement to
->>>>> support higher GPU frequencies. This patch adds support for GPU ACD by
->>>>> sending necessary data to GMU and AOSS. The feature support for the
->>>>> chipset is detected based on devicetree data.
->>>>>
->>>>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->>>>> ---
->>>>>     drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 81 +++++++++++++++++++++++++
->>>>> +++-------
->>>>>     drivers/gpu/drm/msm/adreno/a6xx_gmu.h |  1 +
->>>>>     drivers/gpu/drm/msm/adreno/a6xx_hfi.c | 36 ++++++++++++++++
->>>>>     drivers/gpu/drm/msm/adreno/a6xx_hfi.h | 21 +++++++++
->>>>>     4 files changed, 124 insertions(+), 15 deletions(-)
->>>>>
->>>>
->>>> <snip>
->>>>
->>>>> +
->>>>> +static int a6xx_hfi_enable_acd(struct a6xx_gmu *gmu)
->>>>> +{
->>>>> +    struct a6xx_hfi_acd_table *acd_table = &gmu->acd_table;
->>>>> +    struct a6xx_hfi_msg_feature_ctrl msg = {
->>>>> +        .feature = HFI_FEATURE_ACD,
->>>>> +        .enable = 1,
->>>>> +        .data = 0,
->>>>> +    };
->>>>> +    int ret;
->>>>> +
->>>>> +    if (!acd_table->enable_by_level)
->>>>> +        return 0;
->>>>> +
->>>>> +    /* Enable ACD feature at GMU */
->>>>> +    ret = a6xx_hfi_send_msg(gmu, HFI_H2F_FEATURE_CTRL, &msg,
->>>>> sizeof(msg), NULL, 0);
->>>>> +    if (ret) {
->>>>> +        DRM_DEV_ERROR(gmu->dev, "Unable to enable ACD (%d)\n", ret);
->>>>> +        return ret;
->>>>> +    }
->>>>> +
->>>>> +    /* Send ACD table to GMU */
->>>>> +    ret = a6xx_hfi_send_msg(gmu, HFI_H2F_MSG_ACD, &msg, sizeof(msg),
->>>>> NULL, 0);
->>>>
->>>> This looks wrong, in this exact code, you never use the acd_table...
->>>> perhaps it should be acd_table here
->>>
->>> Whoops! Weirdly gmu didn't explode when I tested.
->>>
->>> Thanks for your keen eye.
->>
->> You're welcome !
->>
->> I've been trying to enable this on SM8650, but HFI_H2F_MSG_ACD fails.
->>
->> My changes:
->> ================><================================
->> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_hfi.c b/drivers/gpu/drm/
->> msm/adreno/a6xx_hfi.c
->> index 7c96d6f8aaa9..bd9d586f245e 100644
->> --- a/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
->> +++ b/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
->> @@ -682,7 +682,7 @@ static int a6xx_hfi_enable_acd(struct a6xx_gmu *gmu)
->>          }
->>
->>          /* Send ACD table to GMU */
->> -       ret = a6xx_hfi_send_msg(gmu, HFI_H2F_MSG_ACD, &acd_table,
->> sizeof(*acd_table), NULL, 0);
->> +       ret = a6xx_hfi_send_msg(gmu, HFI_H2F_MSG_ACD, &acd_table,
-> 
-> &acd_table -> acd_table here?
+Convert the Actions Semi Owl CMU bindings to DT schema.
 
-Damn, good catch !
+Changes during conversion:
+ - Since all Actions Semi Owl SoCs utilize the internal low frequency
+   oscillator as a parent for some clocks, require it.
 
-Ok so it didn't explode anymore, but still fails:
-=====
-[    7.083258] platform 3d6a000.gmu: [drm:a6xx_hfi_send_msg.constprop.0 [msm]] *ERROR* Message HFI_H2F_MSG_GX_BW_PERF_VOTE id 7 timed out waiting for response
-[    7.149709] platform 3d6a000.gmu: [drm:a6xx_hfi_send_msg.constprop.0 [msm]] *ERROR* Unexpected message id 7 on the response queue
-[    7.149744] platform 3d6a000.gmu: [drm:a6xx_hfi_send_msg.constprop.0 [msm]] *ERROR* The HFI response queue is unexpectedly empty
-[    7.165163] platform 3d6a000.gmu: [drm:a6xx_hfi_send_msg.constprop.0 [msm]] *ERROR* Unexpected message id 8 on the response queue
-[    7.165188] platform 3d6a000.gmu: [drm:a6xx_hfi_send_msg.constprop.0 [msm]] *ERROR* The HFI response queue is unexpectedly empty
-====
+Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+---
+v3: list the headers in the description
+v3: match properties: order with required:
+v3: add clocks as a required property
+v3: drop unused example node label
+v3: use the preferred four-space indentation for dts example
 
-Seems with ACD enabled, first vote can take up to 100ms, and downstream has 1s timeout, with a larger timeout I got it to work !
+v2: drop address and size cells from example
+---
+ .../bindings/clock/actions,owl-cmu.txt        | 52 ----------------
+ .../bindings/clock/actions,owl-cmu.yaml       | 60 +++++++++++++++++++
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 61 insertions(+), 53 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/actions,owl-cmu.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/actions,owl-cmu.yaml
 
-Thanks,
-Neil
-> 
-> -Akhil
-> 
->> sizeof(struct a6xx_hfi_acd_table), NULL, 0);
->>          if (ret) {
->>                  DRM_DEV_ERROR(gmu->dev, "Unable to send ACD table
->> (%d)\n", ret);
->>                  return ret;
->> ================><================================
->>
->> with the appropriate qcom,opp-acd-level in DT taken from downstream, I get:
->> [    6.946184] platform 3d6a000.gmu: [drm:a6xx_hfi_send_msg.constprop.0
->> [msm]] *ERROR* Message (null) id 4 timed out waiting for response
->> [    6.958697] platform 3d6a000.gmu: [drm:a6xx_hfi_start [msm]] *ERROR*
->> Unable to send ACD table (-110)
->>
->> is there something missing ?
->>
->> Neil
->>
->>>
->>> -Akhil.
->>>
->>>>
->>>>> +    if (ret) {
->>>>> +        DRM_DEV_ERROR(gmu->dev, "Unable to ACD table (%d)\n", ret);
->>>>> +        return ret;
->>>>> +    }
->>>>> +
->>>>> +    return 0;
->>>>> +}
->>>>> +
->>>>>     static int a6xx_hfi_send_test(struct a6xx_gmu *gmu)
->>>>>     {
->>>>>         struct a6xx_hfi_msg_test msg = { 0 };
->>>>> @@ -756,6 +788,10 @@ int a6xx_hfi_start(struct a6xx_gmu *gmu, int
->>>>> boot_state)
->>>>>         if (ret)
->>>>>             return ret;
->>>>>     +    ret = a6xx_hfi_enable_acd(gmu);
->>>>> +    if (ret)
->>>>> +        return ret;
->>>>> +
->>>>>         ret = a6xx_hfi_send_core_fw_start(gmu);
->>>>>         if (ret)
->>>>>             return ret;
->>>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_hfi.h b/drivers/gpu/drm/
->>>>> msm/adreno/a6xx_hfi.h
->>>>> index 528110169398..51864c8ad0e6 100644
->>>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_hfi.h
->>>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_hfi.h
->>>>> @@ -151,12 +151,33 @@ struct a6xx_hfi_msg_test {
->>>>>         u32 header;
->>>>>     };
->>>>>     +#define HFI_H2F_MSG_ACD 7
->>>>> +#define MAX_ACD_STRIDE 2
->>>>> +
->>>>> +struct a6xx_hfi_acd_table {
->>>>> +    u32 header;
->>>>> +    u32 version;
->>>>> +    u32 enable_by_level;
->>>>> +    u32 stride;
->>>>> +    u32 num_levels;
->>>>> +    u32 data[16 * MAX_ACD_STRIDE];
->>>>> +};
->>>>> +
->>>>>     #define HFI_H2F_MSG_START 10
->>>>>       struct a6xx_hfi_msg_start {
->>>>>         u32 header;
->>>>>     };
->>>>>     +#define HFI_H2F_FEATURE_CTRL 11
->>>>> +
->>>>> +struct a6xx_hfi_msg_feature_ctrl {
->>>>> +    u32 header;
->>>>> +    u32 feature;
->>>>> +    u32 enable;
->>>>> +    u32 data;
->>>>> +};
->>>>> +
->>>>>     #define HFI_H2F_MSG_CORE_FW_START 14
->>>>>       struct a6xx_hfi_msg_core_fw_start {
->>>>>
->>>>
->>>> Thanks,
->>>> Neil
->>>
->>
-> 
+diff --git a/Documentation/devicetree/bindings/clock/actions,owl-cmu.txt b/Documentation/devicetree/bindings/clock/actions,owl-cmu.txt
+deleted file mode 100644
+index d19885b7c..000000000
+--- a/Documentation/devicetree/bindings/clock/actions,owl-cmu.txt
++++ /dev/null
+@@ -1,52 +0,0 @@
+-* Actions Semi Owl Clock Management Unit (CMU)
+-
+-The Actions Semi Owl Clock Management Unit generates and supplies clock
+-to various controllers within the SoC. The clock binding described here is
+-applicable to S900, S700 and S500 SoC's.
+-
+-Required Properties:
+-
+-- compatible: should be one of the following,
+-	"actions,s900-cmu"
+-	"actions,s700-cmu"
+-	"actions,s500-cmu"
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-- clocks: Reference to the parent clocks ("hosc", "losc")
+-- #clock-cells: should be 1.
+-- #reset-cells: should be 1.
+-
+-Each clock is assigned an identifier, and client nodes can use this identifier
+-to specify the clock which they consume.
+-
+-All available clocks are defined as preprocessor macros in corresponding
+-dt-bindings/clock/actions,s900-cmu.h or actions,s700-cmu.h or
+-actions,s500-cmu.h header and can be used in device tree sources.
+-
+-External clocks:
+-
+-The hosc clock used as input for the plls is generated outside the SoC. It is
+-expected that it is defined using standard clock bindings as "hosc".
+-
+-Actions Semi S900 CMU also requires one more clock:
+- - "losc" - internal low frequency oscillator
+-
+-Example: Clock Management Unit node:
+-
+-        cmu: clock-controller@e0160000 {
+-                compatible = "actions,s900-cmu";
+-                reg = <0x0 0xe0160000 0x0 0x1000>;
+-                clocks = <&hosc>, <&losc>;
+-                #clock-cells = <1>;
+-                #reset-cells = <1>;
+-        };
+-
+-Example: UART controller node that consumes clock generated by the clock
+-management unit:
+-
+-        uart: serial@e012a000 {
+-                compatible = "actions,s900-uart", "actions,owl-uart";
+-                reg = <0x0 0xe012a000 0x0 0x2000>;
+-                interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+-                clocks = <&cmu CLK_UART5>;
+-        };
+diff --git a/Documentation/devicetree/bindings/clock/actions,owl-cmu.yaml b/Documentation/devicetree/bindings/clock/actions,owl-cmu.yaml
+new file mode 100644
+index 000000000..1717099b7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/actions,owl-cmu.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/actions,owl-cmu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Actions Semi Owl Clock Management Unit (CMU)
++
++maintainers:
++  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
++
++description: |
++  The Actions Semi Owl Clock Management Unit generates and supplies clock
++  to various controllers within the SoC.
++
++  See also::
++    include/dt-bindings/clock/actions,s500-cmu.h
++    include/dt-bindings/clock/actions,s700-cmu.h
++    include/dt-bindings/clock/actions,s900-cmu.h
++
++properties:
++  compatible:
++    enum:
++      - actions,s500-cmu
++      - actions,s700-cmu
++      - actions,s900-cmu
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Host oscillator source
++      - description: Internal low frequency oscillator source
++
++  "#clock-cells":
++    const: 1
++
++  "#reset-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - "#clock-cells"
++  - "#reset-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    clock-controller@e0160000 {
++        compatible = "actions,s900-cmu";
++        reg = <0xe0160000 0x1000>;
++        clocks = <&hosc>, <&losc>;
++        #clock-cells = <1>;
++        #reset-cells = <1>;
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 420d06d37..652c9822a 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2016,7 +2016,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ L:	linux-actions@lists.infradead.org (moderated for non-subscribers)
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/arm/actions.yaml
+-F:	Documentation/devicetree/bindings/clock/actions,owl-cmu.txt
++F:	Documentation/devicetree/bindings/clock/actions,owl-cmu.yaml
+ F:	Documentation/devicetree/bindings/dma/owl-dma.yaml
+ F:	Documentation/devicetree/bindings/i2c/i2c-owl.yaml
+ F:	Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
+-- 
+2.43.0
 
 
