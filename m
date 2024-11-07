@@ -1,144 +1,203 @@
-Return-Path: <devicetree+bounces-119771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6162F9C013D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:36:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D8F99C0171
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:51:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26ED6283B19
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 09:36:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70F291C21C2C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 09:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E4701E1036;
-	Thu,  7 Nov 2024 09:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEFB71E8856;
+	Thu,  7 Nov 2024 09:51:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="hdFeNR1X"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="a7I5uQGf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C49E91E0DE8;
-	Thu,  7 Nov 2024 09:36:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 477241D90D9;
+	Thu,  7 Nov 2024 09:51:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730972169; cv=none; b=kX1qJSMrJDvQLuZR3muIGNSihBX7hiqJpraS9aApWrgG561teWVrRL4OwMNL/bgfVFeS3WLArb8UXWwlszOaNDCITT3K1eXu4nsEfu5DUJ3lQJCTcOqiCd1jRpuOJ3C+mhPzRuowF+1ccQxjgL0KK8QIqvC1mIkIVd3t0Y/7d04=
+	t=1730973066; cv=none; b=MI1h1Rh7MrmZ4mzWBrPHE/cHGsnBlR5mISjXMBFbNI6IijGgrmXg3SBot6H3Aa3jsQqi71O4h7m0Frr4cKjWeWW/NZTDUxLW50guZQ/zSUgXNvMi0Uw6Xhj0VCA0ck790wlqJJOcKLcuhaqBvCgZHtYbVAThJ1eOctfdHHXmdlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730972169; c=relaxed/simple;
-	bh=VZvqD/3rqm30CRWbcS650csR314AAmf8WEqce0jmsKo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qtb8gkLh9/SRibMw5vMLsXWzBv1xEmdHUvLoacyDSyqbc4U16JgxV6R3a7GDQiEJ9ZI5MOV8bsYW7AkBKzk2D5iuen3QQAo67PM2lK4MBFSK6tDMP7KP2Wx4WCVCgAhXY8Y3aq9kEvhMwaxFzjrbWA6KIAbRkEiD455sM7XIbsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=hdFeNR1X; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=ccsASbRCwb8II3GzvWH2KtdPgRwKffYmzn9YbOSRDZI=; b=hdFeNR1XZP5ifd9Ddr/QyILLaf
-	Kg2ptPi4q7C/QiC6JW8YyZBUTezoLBcbC234684GE9AU0/XTl2UmlWmhAbo16TSgBeTjocDI5rCqI
-	oI6jWO5wHLDvB/ZnfPvEUCBxccy+y8svncMgVLiiUmv/4vRjCMOn1/f9Bg2wW5tr4rUXsZf/JnQOR
-	reX32IHRVdUsmabSMIu1ky56r5hp9S7keLSt4u5vjJvu1/BwI+tydfexEMwF5JpwuPb/B+R8nZZ4s
-	tVXSS36fKlHmUhAI6lGDRwCfXXXl7yHycd9IsGWAOkcjviwh0pAnQMhc0Scj6einyzg1BWDgLYQgj
-	a8D1wSZA==;
-Date: Thu, 7 Nov 2024 10:35:52 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Tony Lindgren <tony@atomide.com>
-Cc: Adam Ford <aford173@gmail.com>, bcousson@baylibre.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, "H. Nikolaus Schaller" <hns@goldelico.com>
-Subject: Re: [PATCH] ARM: dts: gta04: fix excess dma channel usage
-Message-ID: <20241107103552.22583403@akair>
-In-Reply-To: <20230122100852.32ae082c@aktux>
-References: <20230113211151.2314874-1-andreas@kemnade.info>
-	<CAHCN7xJH+c41Yas+xnWA57KNi9arOOJDxJ=joEDEJr2k6jrRrw@mail.gmail.com>
-	<Y8VkjQ2yZQssx/wJ@atomide.com>
-	<20230116173922.585904bf@aktux>
-	<Y8WBuKt6mw6TN1Cp@atomide.com>
-	<CAHCN7x+b2_dnpRs8RarhhgTfBrTVfGfmcQNbfHLoWBwkZ_3Puw@mail.gmail.com>
-	<Y8WEoxiOXgZNB1Oc@atomide.com>
-	<Y8jxjBZrPV0n363P@atomide.com>
-	<20230122100852.32ae082c@aktux>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1730973066; c=relaxed/simple;
+	bh=5kbzNcbAZj8QpGrrA3FC5qDCk10gOd175RlJc6GjLqg=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=PU7EJXSJRMIqqSoqPJwJlUdj6/k3s9Jl9S/gaZAG63nabvkfzzx+iqmTXMP7Jqalb5Ea6uCcV5Ug7FTUMoeP3EGiQJazBVAN59in8g7k2D/+7ST57/EDRY8Eaz0LZLgAGL0k9Amucqr0PXCLCk/VN/KiQFdeyxpvQwe10xBwYZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=a7I5uQGf; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A71m6mw009985;
+	Thu, 7 Nov 2024 09:50:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=ykczVAQCVn8icr6q7ZxvKn
+	SQiBxYxtgjmMGkJhg/1Vs=; b=a7I5uQGf7aQVOiz74aCI10vHYDZvEOUDtgWhhH
+	aXmRAQpmVPxBoXXCv4xud0QrMchu0MRwUhBpTRUaIjIsqNCEg21R0CjotvO505AL
+	taetKe5R2YdqHNlqITIJ7B+ej9aOXXOqjw9gDbajVJLsWn1+yCqIZHyrfSQYJlQ/
+	N5J8xz11kgF/cX5PwFA892g+bHSFVnQPtVQ8G9SZssTlVBlTbjNgNSIp1gfcanbu
+	Qbge2PLQa4+9x5I0S7TChQyOrGD68GrEGrMG6N9HRdn0GWRYbkcjvwudijl8l74A
+	aXZQpEf/rongAot7QwPwWO7vTdRspiHnz9bfOvJb+Zg/AXcQ==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42rm6vs31j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 07 Nov 2024 09:50:35 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A79oY3R016527
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 7 Nov 2024 09:50:34 GMT
+Received: from nsssdc-sh01-lnx.ap.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 7 Nov 2024 01:50:28 -0800
+From: Luo Jie <quic_luoj@quicinc.com>
+Subject: [PATCH v6 0/5] Add CMN PLL clock controller driver for IPQ9574
+Date: Thu, 7 Nov 2024 17:50:21 +0800
+Message-ID: <20241107-qcom_ipq_cmnpll-v6-0-a5cfe09de485@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF6NLGcC/2XOyw6CQAwF0F8hs3ZM5wWDK//DGCJDkSYwvJRoC
+ P/uwMJoWN6m97QzG3EgHNkpmtmAE43U+hDiQ8RcdfN35FSEzCRILUBo3ru2yajrM9f4rq55XiD
+ EypZaiJiFVjdgSa9NvFxDrmh8tMN7OzCpdbpZYGWysybFgVsESB06tLk8909y5N0xLLJVm/RXC
+ N+YvaCDIBMrkjJHZcDsBfMjSLsXTBCUStNU56CsLf6FZVk+56daOTQBAAA=
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <quic_kkumarcs@quicinc.com>,
+        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>,
+        <bartosz.golaszewski@linaro.org>, <srinivas.kandagatla@linaro.org>,
+        Luo Jie
+	<quic_luoj@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730973028; l=3999;
+ i=quic_luoj@quicinc.com; s=20240808; h=from:subject:message-id;
+ bh=5kbzNcbAZj8QpGrrA3FC5qDCk10gOd175RlJc6GjLqg=;
+ b=3urSDtRT7g4SdrvgORhCM4ArdGJgVzCxwebKPreZTJpr51L1kuMtS8tFnup9pAMevNMICd9zZ
+ RWYM2Z2X7pUBeyFHkuoiSrUs+Jfxp/Jk1UG9lnRuqjQbASkFGvd3qsX
+X-Developer-Key: i=quic_luoj@quicinc.com; a=ed25519;
+ pk=P81jeEL23FcOkZtXZXeDDiPwIwgAHVZFASJV12w3U6w=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: rXOIJdV284SSKKHlU89NGD4oRGNw1dHR
+X-Proofpoint-GUID: rXOIJdV284SSKKHlU89NGD4oRGNw1dHR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 spamscore=0
+ clxscore=1015 phishscore=0 malwarescore=0 lowpriorityscore=0
+ priorityscore=1501 mlxscore=0 adultscore=0 mlxlogscore=999 impostorscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411070075
 
-Revisiting it again...
+The CMN PLL clock controller in Qualcomm IPQ chipsets provides
+the clocks to the networking hardware blocks that are internal
+or external to the SoC, and to the GCC. This driver configures
+the CMN PLL clock controller to enable the output clocks. The
+networking blocks include the internal blocks such as PPE
+(Packet Process Engine) and PCS blocks, and external hardware
+such as Ethernet PHY or switch. The CMN PLL block also outputs
+fixed rate clocks to GCC, such as 24 MHZ as XO clock and 32 KHZ
+as sleep clock supplied to GCC.
 
-Am Sun, 22 Jan 2023 10:08:52 +0100
-schrieb Andreas Kemnade <andreas@kemnade.info>:
+The controller expects the input reference clock from the internal
+Wi-Fi block acting as the clock source. The output clocks supplied
+by the controller are fixed rate clocks.
 
-> On Thu, 19 Jan 2023 09:30:20 +0200
-> Tony Lindgren <tony@atomide.com> wrote:
-> 
-> > * Tony Lindgren <tony@atomide.com> [230116 17:33]:  
-> > > * Adam Ford <aford173@gmail.com> [230116 17:00]:    
-> > > > Doesn't this imply the target-module stuff needs to be implemented for
-> > > > the drivers?  It looks like a lot of the omap3 drivers are still using
-> > > > hwmods although some have target-modules. In this case, the mcspi
-> > > > drivers that Andreas is disabling don't appear to have target-module
-> > > > stuff configured.    
-> > > 
-> > > Sorry I don't remember if omap_device.c ignores status disabled or not.
-> > > But in any case, it should be trivial to update omap3.dtsi to configure
-> > > some of the devices like mcspi to probe with device tree data and ti-sysc
-> > > as needed.    
-> > 
-> > So as long as gta04 power management still behaves with this patch it
-> > should good to go.
-> >   
-> # sleep 10 ; /usr/local/bin/idledump
->      CM_IDLEST1_CORE 00000042
+The CMN PLL hardware block does not include any other function
+other than enabling the clocks to the networking hardware blocks
+and GCC.
 
-RAM + SCM on, no issue, cross-checked, force-enabling mcspi brings more
-activity, so this an indication thet mcspi is off.
+The driver is being enabled to support IPQ9574 SoC initially, and
+will be extended for other SoCs.
 
->      CM_IDLEST3_CORE 00000000
->      CM_FCLKEN1_CORE 00000000
+Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+---
+Changes in v6:
+- Rename the reference clock of CMN PLL to ref_48mhz_clk.
+- Add the patch to update xo_board_clk to use fixed factor clock.
+- Link to v5: https://lore.kernel.org/r/20241028-qcom_ipq_cmnpll-v5-0-339994b0388d@quicinc.com
 
-same here with force-enabling mcspi, brings in some bits set.
+Changes in v5:
+- Move the hardware configurations into set_rate() from determine_rate().
+- Remove the dependency on IPQ_GCC_9574.
+- Correct the header files included.
+- Update reference clock of CMN PLL to use fixed factor clock.
+- Link to v4: https://lore.kernel.org/r/20241015-qcom_ipq_cmnpll-v4-0-27817fbe3505@quicinc.com
 
->      CM_FCLKEN3_CORE 00000002
+Changes in v4:
+- Rename driver file to ipq-cmn-pll.c
+- Register CMN PLL as a 12 GHZ clock.
+- Configure CMN PLL input ref clock using clk_ops::determine_rate().
+  Add the additional output clocks to GCC and PCS.
+- Update the same information in dtbindings.
+- Use PM clock APIs for input clock enablement.
+- Link to v3: https://lore.kernel.org/r/20240827-qcom_ipq_cmnpll-v3-0-8e009cece8b2@quicinc.com
 
-see comments below.
+Changes in v3:
+- Update description of dt-binding to explain scope of 'CMN' in CMN PLL.
+- Collect Reviewed-by tags for dtbindings and defconfig patches.
+- Enable PLL_LOCKED check for the stability of output clocks.
+- Link to v2: https://lore.kernel.org/r/20240820-qcom_ipq_cmnpll-v2-0-b000dd335280@quicinc.com
 
->      CM_CLKSTST_CORE 00000003
->      CM_IDLEST_CKGEN 00000209
+Changes in v2:
+- Rename the dt-binding file with the compatible.
+- Remove property 'clock-output-names' from dt-bindings and define
+  names in the driver. Add qcom,ipq-cmn-pll.h to export the output
+  clock specifier.
+- Alphanumeric ordering of 'cmn_pll_ref_clk' node in DTS.
+- Fix allmodconfig error reported by test robot.
+- Replace usage of "common" to "CMN" to match the name with the
+  hardware specification.
+- Clarify in commit message on scope of CMN PLL function.
+- Link to v1: https://lore.kernel.org/r/20240808-qcom_ipq_cmnpll-v1-0-b0631dcbf785@quicinc.com
 
-this becomes 1 without this patch.
+---
+Luo Jie (5):
+      dt-bindings: clock: qcom: Add CMN PLL clock controller for IPQ SoC
+      clk: qcom: Add CMN PLL clock controller driver for IPQ SoC
+      arm64: defconfig: Enable Qualcomm IPQ CMN PLL clock controller
+      arm64: dts: qcom: Add CMN PLL node for IPQ9574 SoC
+      arm64: dts: qcom: Update IPQ9574 xo_board_clk to use fixed factor clock
 
->     CM_IDLEST2_CKGEN 00000000
->        CM_FCLKEN_DSS 00000000
->        CM_IDLEST_DSS 00000000
->        CM_FCLKEN_CAM 00000000
->        CM_IDLEST_CAM 00000000
->        CM_FCLKEN_PER 00000000
->        CM_IDLEST_PER 00000000
-> 
-> 
-> FCLKEN3_CORE becomes 0 after unbinding the bandgap sensor.
-> 
-> but...
-> # cat /sys/kernel/debug/pm_debug/time 
-> usbhost_pwrdm (ON),OFF:830267486567,RET:0,INA:0,ON:12202880865
-> sgx_pwrdm (INA),OFF:0,RET:0,INA:841224365234,ON:1245971680
-> core_pwrdm (ON),OFF:0,RET:0,INA:0,ON:842470336914
-> per_pwrdm (ON),OFF:520406799328,RET:30043365464,INA:0,ON:292020111087
-> 
-> hmmm.... 
-> 
-> but does not look like anything related to mcspi*.
-> 
-it does not look like, but it is, but how... There is something below
-my radar.
+ .../bindings/clock/qcom,ipq9574-cmn-pll.yaml       |  85 ++++
+ arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi   |  23 +-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi              |  27 +-
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/clk/qcom/Kconfig                           |   9 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/ipq-cmn-pll.c                     | 436 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,ipq-cmn-pll.h       |  22 ++
+ 8 files changed, 601 insertions(+), 3 deletions(-)
+---
+base-commit: d61a00525464bfc5fe92c6ad713350988e492b88
+change-id: 20241014-qcom_ipq_cmnpll-bde0638f4116
 
-Regards,
-Andreas
+Best regards,
+-- 
+Luo Jie <quic_luoj@quicinc.com>
+
 
