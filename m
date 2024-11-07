@@ -1,105 +1,108 @@
-Return-Path: <devicetree+bounces-119822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1FE09C0318
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 12:01:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A74919C0274
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:34:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F37251C2171E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:01:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D83651C218EC
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:34:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA9861DDC02;
-	Thu,  7 Nov 2024 11:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5C31EF927;
+	Thu,  7 Nov 2024 10:34:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux-watchdog.org header.i=@linux-watchdog.org header.b="QmV8O2Os"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i719SMyb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www.linux-watchdog.org (www.linux-watchdog.org [185.87.125.42])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09A71373;
-	Thu,  7 Nov 2024 11:01:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.87.125.42
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3AC1EF0B7;
+	Thu,  7 Nov 2024 10:34:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730977264; cv=none; b=ubuTf34+Ev0NkWiVADo7AbEYNhf8/zngkiExkwht1uQh3KtHC5XTeyD2zkOBKwCUJNuOPg9odNJ5JB0UKN574KsQh9jjqQYhXRPTti/fY2FbdGvWCATckcwcm+/3d8nuNZ6w0I4GsptCgFP2v2VfqrTxdISh2JsAlTbrUco4V70=
+	t=1730975659; cv=none; b=a+crOnWGIR++kfPFXEyiPip1gBFTlEpFgqDlCWttg/7WZm6YAc0/Dr8EzuejEy+OLqbEQZ7G9bS1l2U02tTyVCiEk6CFuAETwN3o4luxkkA0mQhzL+k0fm3XjKr0BO3zJ4+j3d3a7Dw+YtwOuEaYO0wKS13i04AWMRnYlyuHCgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730977264; c=relaxed/simple;
-	bh=bkxxQT0ywZ+RAU3jBxc18hVZFtgf6aogb7G4KtK1nhk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lNQyL7Yf/41jj8Xn9vL487imNIqz/Ikj+NWlIU6HIwTsPzsYmvA3umq5+E5N7rkc4C9LWBb09eS1vAd2lY3MlgPqHKJb1S/5b6SxsUIfTde+qiaOh9hh4VJ0U/OdvWC7CyFbuW7dyaIFnyQjIElR9f7sCAwpVHx3FhGjb8owBWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=linux-watchdog.org; spf=pass smtp.mailfrom=linux-watchdog.org; dkim=pass (1024-bit key) header.d=linux-watchdog.org header.i=@linux-watchdog.org header.b=QmV8O2Os; arc=none smtp.client-ip=185.87.125.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=linux-watchdog.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux-watchdog.org
-Received: by www.linux-watchdog.org (Postfix, from userid 500)
-	id 0485940A06; Thu,  7 Nov 2024 11:33:31 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.11.0 www.linux-watchdog.org 0485940A06
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-watchdog.org;
-	s=odk20180602; t=1730975612;
-	bh=bkxxQT0ywZ+RAU3jBxc18hVZFtgf6aogb7G4KtK1nhk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QmV8O2OsnEKHTeXWL2yUMNdkZmtV18s3l1A0wMrvm/yCqpCvsfwDX1WwKx+YsZgmv
-	 1D9NAG0ffFkeFhzcPoEbOuKInQOHo0AWuMmXPO7bIY0PcVyJ+gZ1WCi8FNqAqZ+eZu
-	 SyFHUaZxyptoPue5zAt/M/pKYi0mId8MFOI9oMFI=
-Date: Thu, 7 Nov 2024 11:33:31 +0100
-From: Wim Van Sebroeck <wim@linux-watchdog.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Taewan Kim <trunixs.kim@samsung.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	Byoungtae Cho <bt.cho@samsung.com>
-Subject: Re: [PATCH v3 3/3] arm64: dts: exynosautov920: add watchdog DT node
-Message-ID: <20241107103331.GA4818@www.linux-watchdog.org>
-References: <20241021063903.793166-1-trunixs.kim@samsung.com>
- <CGME20241021063938epcas2p1c01c89badb532f08a46087a4907df7dc@epcas2p1.samsung.com>
- <20241021063903.793166-4-trunixs.kim@samsung.com>
- <961e1aca-cd90-4db1-87d7-afd2e542421e@kernel.org>
+	s=arc-20240116; t=1730975659; c=relaxed/simple;
+	bh=uNbbwI0t3CnnRoq+xAfBqxnkdHvi8cAUfxzw4z32a18=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tsBf9iTUY1ozLXCmfcVZ55jYsM0InLBnF2vsWZH5sA82+0pUPYOFK0eJV6yzhCYhCv6hOD7elj2ycMAQVSASMGOLSx1a5Wr/qdKxRO3XFs+W4qo9YjazMt0CdsFUDz2gw1+0ExCM8lDUPvfJ6doMveaIvWmMMcb7m6uRngZCl+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i719SMyb; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-20ca388d242so8399655ad.2;
+        Thu, 07 Nov 2024 02:34:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730975657; x=1731580457; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qHCnQjwtQk6Ee4qEjCK4DR0rfCUXjzBPqylzEtsbdRg=;
+        b=i719SMybg7xh7+xQFf5Va0HkbC60BnwGYUcUEMHD/fxkuZeJKhE7Zk4aSozuUpOV3J
+         agzX3nHyjKZ+Ce7jIcxwAryfTVCOEOHSfRnX0p3OdQys6IZJnr+ACH1fFLh0esYLr8xl
+         H29fJREJA0Ae0H30JoQKtq6TWOBpGeFw2GczW+cJdZJ+rg1dHWyQe9zIWgJJkOCVcspv
+         B1k/2mrRC7Nb++nlJCEHJcASzmlWFQ3hsRflgbIZppgB0MQownfIyOvpx5USa4G8M3ZT
+         tuYehg/eldmaIn1ufrXKrJbtysPWSAwyaK3QH4AAvVLEodvdxWvfFfJPgN8EKpRneEmo
+         zd9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730975657; x=1731580457;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qHCnQjwtQk6Ee4qEjCK4DR0rfCUXjzBPqylzEtsbdRg=;
+        b=B/UECp1nVASw/MBzBfeDu01ppCtZx2i2HvShqZf7upwPXSkKnzpVnvpl/kdlHhCGkb
+         65iITGuwhT347UCJV7sTkZ7cquOa6w31GaUCZBjCY0KxobwZ3tV/WYKgYlJk2eRUi08O
+         nsaBx0+X2NlWzR7M8arIeLReIG+GyKHf/zNRU58TNr+VcFapjJOm1VaWFjkT2X+AWZXy
+         Ydg4n+SEouGBwsOJTCjXx8a++PeAYA0Rdpwt0/btjjXanZ23pmMiett4w02SjYkMf5U2
+         vaLEzN0FmUV9mqnpm4/Dz7gOVyzt5nQ8cHXTAatFJqt4a31AiGwmxyNkjpNTIamvgYxw
+         G8Fg==
+X-Forwarded-Encrypted: i=1; AJvYcCUgtcExybXz7x32jH5znF2R9vxG7Inzxn3BW1rA7OCyLWaWHSqqK1RawYJi9U4s6cacbPvJab+dJ0CZ@vger.kernel.org, AJvYcCUpfr107qErkeMstdGa5ZalOPNBKo83oXYuob2PvGM3Kelufgoh3h+HSAU1Qp7Gt1GvWmk6omZRKfp26DQV@vger.kernel.org, AJvYcCXm+Tl4PXno9Q2N+1ZOVzw46Fa4Ojiqd8tWlmQPO5EQWIHdovaI5Pm+wllw2j7NEJgX3J/NJwuz@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywx6pofLVpaBV+0w8Y8tQ9dWv715lJJBZkBjO5wC4xyvz5Nzww7
+	3pSG2V6jWdhrL9MvjnJayHQQqlSPdazyxigOi6qh3CzbVyAd1GU+
+X-Google-Smtp-Source: AGHT+IHkZfIEbD222fQn11aAU/4JCGtUmB7xX2nq1qct7iJZBs/q3eDUArv4HK7B8GzG/yGYnzOsoQ==
+X-Received: by 2002:a17:902:e884:b0:20b:3f70:2e05 with SMTP id d9443c01a7336-2111afd6c99mr328557145ad.41.1730975656993;
+        Thu, 07 Nov 2024 02:34:16 -0800 (PST)
+Received: from [192.168.0.104] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177e42b8csm9056135ad.131.2024.11.07.02.34.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Nov 2024 02:34:16 -0800 (PST)
+Message-ID: <61a76bb1-f247-4e9e-b6ba-163fd8af4f69@gmail.com>
+Date: Thu, 7 Nov 2024 18:34:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <961e1aca-cd90-4db1-87d7-afd2e542421e@kernel.org>
-User-Agent: Mutt/1.5.20 (2009-12-10)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: net: nuvoton: Add schema for Nuvoton
+ MA35 family GMAC
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
+ alexandre.torgue@foss.st.com, joabreu@synopsys.com, ychuang3@nuvoton.com,
+ schung@nuvoton.com, yclu4@nuvoton.com, linux-arm-kernel@lists.infradead.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20241106111930.218825-1-a0987203069@gmail.com>
+ <20241106111930.218825-2-a0987203069@gmail.com>
+ <12f4ea21-d83b-412c-9904-d9fe8f8a0167@lunn.ch>
+Content-Language: en-US
+From: Joey Lu <a0987203069@gmail.com>
+In-Reply-To: <12f4ea21-d83b-412c-9904-d9fe8f8a0167@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Krzystof,
 
-> On 21/10/2024 08:39, Taewan Kim wrote:
-> > From: Byoungtae Cho <bt.cho@samsung.com>
-> > 
-> > Adds two watchdog devices for ExynosAutoV920 SoC.
-> > 
-> > Signed-off-by: Byoungtae Cho <bt.cho@samsung.com>
-> > Signed-off-by: Taewan Kim <trunixs.kim@samsung.com>
-> > ---
-> >  .../arm64/boot/dts/exynos/exynosautov920.dtsi | 20 +++++++++++++++++++
-> >  1 file changed, 20 insertions(+)
-> 
-> How did this happen that this patch was taken to watchdog? There is no
-> Ack here from me.
-> 
-> Drop this patch from watchdog, I do no agree to take it via that tree.
-> 
-> Best regards,
-> Krzysztof
-> 
-
-Seems like you are having a hard day. 
-The 3 patches are dropped. I presume that you will take them all through your tree then?
-
-Kind regards,
-Wim.
-
-PS: the patches are:
-[PATCH v3 1/3] dt-bindings: watchdog: Document ExynosAutoV920 watchdog bindings
-[PATCH v3 2/3] watchdog: s3c2410_wdt: add support for exynosautov920 SoC
-[PATCH v3 3/3] arm64: dts: exynosautov920: add watchdog DT node
-
+Andrew Lunn 於 11/7/2024 2:13 AM 寫道:
+>> +  mac-id:
+>> +    maxItems: 1
+>> +    description:
+>> +      The interface of MAC.
+> Please could you expand on what this is?
+This property will be removed. Thanks.
+> 	Andrew
 
