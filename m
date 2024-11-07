@@ -1,118 +1,156 @@
-Return-Path: <devicetree+bounces-119908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A9289C0718
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 14:19:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20C529C0720
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 14:20:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82CED1C22125
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 13:19:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3CDF1F221F0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 13:20:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34D6420EA54;
-	Thu,  7 Nov 2024 13:19:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48B80210180;
+	Thu,  7 Nov 2024 13:20:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="qoPZCD8f"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aBpCtart"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A7581E1048;
-	Thu,  7 Nov 2024 13:19:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBEC8201034
+	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 13:20:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730985557; cv=none; b=qMxSB26wMCRWpkn+wsWmlVF0wUpIR0hSwU1Fo0WdYM8KB5uop63OphiLenLKJJPCSTBLfU108vkfZMJS7EezFPC9Zxnn8+PfgxhyT3Qlk72Tbt2WD0NQW8BqyWDfyJDG2M71T0D0NcMug80W0trtxE4DjL01mTiZ1mu9y5fbnpU=
+	t=1730985644; cv=none; b=bGEm1k4W6hUgXvXYKN9IbKZhUjQDN8ZLTO/j4SRufqcgIo62N9W0C94gDfwujzo4nSnKokTGh36fWz5/9nfb+BzoBPtRJGE9jzVwVRStDYb1DF/hSo5nkgAT74kuDKOjPZDQQEMpjbqRFlMIPA4CKuhAUGtIyxN6pSaakr+i69k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730985557; c=relaxed/simple;
-	bh=30P4jNopQuStNnLTtJAXBWFkFvii1xYHKPCCcFEL/Cw=;
+	s=arc-20240116; t=1730985644; c=relaxed/simple;
+	bh=50XRUp+6v+8lIyPj82iw5ic/E9OGU7yi8wfNqwwZulQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=We0WCtIQDmiYOpyGp473EeFlNCbxxSjOiWiPpNROcynHE0Lwc5aqGQ3//VfgN+c0CdLGgfw1YDiOAsUQAoEGsf9SwkCD9FMhHQHYLXh75StInpiu0w5Y/Qbm6t4GfmHfRBJsq+UlZfGwUJlAhZrP0AYYVSdSow6fWfvNK+4fzlw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=qoPZCD8f; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=1o0PT+VvYeF2Yc1hTEqEhN6nNmR8jwyG9x4O7dGE/Wk=; b=qo
-	PZCD8fmKsuqe8MM0+5HAxgA1V6sLxp1dxWT6dgRzFLKJ+Uj612/2my5BcrbEkzNKu2cGnhqk12oGB
-	/a4BAt4NCaZn7xVX092i/qM2JCfjxaohRr5xqBfTcg7hjl+yJ2+6TiiQ3PRLlum+gfT49bcro6kXI
-	u2un0pipZbINs5Y=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t92PO-00CSlH-Qe; Thu, 07 Nov 2024 14:18:46 +0100
-Date: Thu, 7 Nov 2024 14:18:46 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Joey Lu <a0987203069@gmail.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
-	richardcochran@gmail.com, alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com, ychuang3@nuvoton.com, schung@nuvoton.com,
-	yclu4@nuvoton.com, linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 1/3] dt-bindings: net: nuvoton: Add schema for Nuvoton
- MA35 family GMAC
-Message-ID: <9455e2f6-b41d-476e-bda9-fc01958e48d5@lunn.ch>
-References: <20241106111930.218825-1-a0987203069@gmail.com>
- <20241106111930.218825-2-a0987203069@gmail.com>
- <f3c6b67f-5c15-43e2-832e-28392fbe52ec@lunn.ch>
- <21a00f02-7f2f-46da-a67f-be3e64019303@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VKSOqcaSF1BE6bfVM5LXwPDtLwnncTfYQhwBsypm/7erzI9H7ne7hDjd4dZZVJ5ozapsNavNelRKDjlAyvZ3iAsBbjV4bWWDOoSl5wFOM9Vr1nWy3Uf4LtVnOPM65wAViHRvjf0lW7POTYvXjdnPZ43x1SkLl9L6xtFeukvOWt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aBpCtart; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-539fe76e802so957572e87.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 05:20:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1730985640; x=1731590440; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=wTJTU1/WgMnMhMsHkYEBclEMuS9M1UtJvjgM/eI3K/8=;
+        b=aBpCtartE+0TI7CzNPxwbnusU/tOiF7kK0HRiIYFvtgSUzN4FFPjcNHJW2dqMngeN6
+         c/DN0Bgh+zOw/Gwpl23IQp2HFQjUZqHtxqwYI8/E2vIWVVVaotGSAktyXflhYFCokThA
+         6F4d6nwx5Ar2SCSXF40u6tikBEERq3FLpkYZlB7bl4hQxG2SLyT3ZdSa8YG8RdxWcR18
+         L/rd5rrboNG8QJTJV6S1O7eSnVosV529MaVk/T8EnraJiqpI5FozuViVbsRNB80aZAUe
+         nsUrQBaYGybDdOlbI07aZ2epTvw/PbabSXRC+NGRBndCmKHY0N0UTmDv6ArsmQ76/mgF
+         v5Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730985640; x=1731590440;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wTJTU1/WgMnMhMsHkYEBclEMuS9M1UtJvjgM/eI3K/8=;
+        b=Y2vL8ek2a6MLJcbvIiOobSE0RHli6ikNW7VmXnQxF6pEXEhNdus1EleByyTNAZMtFi
+         /JnHvWCxJHR0oxY1fWAfclQq7Wp+9v6OiSVMXyveCiMf4/3uRW2sgkBXY+TyxxlrS0oq
+         a2WoDtH/U0qqJhPrVx6SXmMlye94n+CDPEpbPJxl4V5vTaDy6hGIaHYx5b2EpSXuNaXw
+         fY+H76o4idyemM2zuZfkq+N9UYyz6+eO10U/GyuCOzYDBk5J2zQMhq3ir+bSWYO7epYb
+         lMLHGPHYJt2Z5bOd8tfmLIIalV/SomOOti5pZ7drQkyfUeP2w7T1JdfOKc5TRqD0GPaR
+         kDMw==
+X-Forwarded-Encrypted: i=1; AJvYcCUqBwlWg/2WYFLJN2IYuSCquuQOx/kuIZs3KGHw2KO2EQF6PP3gXuGB8txuGF7Eev+CPd5+SFyvIsJO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyM/6FG3FYV7tX5R78UKvvMCAYTi8K+WS6+0aRSxeHM9DEWp5uf
+	tBO0t1IIIXX1yuM/VHEuEir4G/6ZJMPxF4/VqaKnW44ZIPsGNHBo7ga8//4sY/c=
+X-Google-Smtp-Source: AGHT+IFvkWpQMrorpEfz69D8hdyKknrpmvGBejcMWnvwqudlmWyULPvb4Uly1A/kUgo7+RzonjdO+w==
+X-Received: by 2002:a05:6512:1282:b0:537:a855:7d6f with SMTP id 2adb3069b0e04-53d65df4b65mr11452598e87.34.1730985640002;
+        Thu, 07 Nov 2024 05:20:40 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53d826a739dsm212002e87.158.2024.11.07.05.20.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Nov 2024 05:20:38 -0800 (PST)
+Date: Thu, 7 Nov 2024 15:20:36 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, 
+	ath12k@lists.infradead.org, linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [RFC PATCH v3 0/5] wifi: ath12k: Add wifi device node with WSI
+ for QCN9274 in RDP433
+Message-ID: <x2ch5ahotd6kfqg7tjvaav5kaxi7mfij4nsakxegp6j5pecomd@rhzytgayfoek>
+References: <20241105180444.770951-1-quic_rajkbhag@quicinc.com>
+ <49a6ec0d-8a0b-49aa-a9eb-1174cff930f6@kernel.org>
+ <cmvfpctliqggra33u6ituguoxh3jxcuxiyjpbtcjbcgpu6lhoi@4zdthfkc2ed3>
+ <692503b8-cf39-4d6b-b70e-910fcc710d69@kernel.org>
+ <CAA8EJpqMCbyK0dodMNyfs8dNjV2QoB2nyWm233eOS9xo8BaFJg@mail.gmail.com>
+ <9d158c25-197a-49fd-b639-45287a46438f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <21a00f02-7f2f-46da-a67f-be3e64019303@gmail.com>
+In-Reply-To: <9d158c25-197a-49fd-b639-45287a46438f@kernel.org>
 
-On Thu, Nov 07, 2024 at 06:31:26PM +0800, Joey Lu wrote:
-> Dear Andrew,
-> 
-> Thank you for your reply.
-> 
-> Andrew Lunn 於 11/7/2024 2:13 AM 寫道:
-> > > +  phy-mode:
-> > > +    enum:
-> > > +      - rmii
-> > > +      - rgmii-id
-> > The phy-mode deepened on the board design. All four rgmii values are
-> > valid.
-> I will add them.
-> > > +
-> > > +  tx_delay:
-> > > +    maxItems: 1
-> > > +    description:
-> > > +      Control transmit clock path delay in nanoseconds.
-> > > +
-> > > +  rx_delay:
-> > > +    maxItems: 1
-> > > +    description:
-> > > +      Control receive clock path delay in nanoseconds.
-> > If you absolutely really need these, keep them, but i suggest you drop
-> > them. They just cause confusion, when ideally we want the PHY to be
-> > adding RGMII delays, not the MAC.
+On Thu, Nov 07, 2024 at 01:16:56PM +0100, Krzysztof Kozlowski wrote:
+> On 07/11/2024 13:03, Dmitry Baryshkov wrote:
+> > On Thu, 7 Nov 2024 at 11:29, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >>
+> >> On 07/11/2024 12:06, Dmitry Baryshkov wrote:
+> >>> On Thu, Nov 07, 2024 at 11:23:20AM +0100, Krzysztof Kozlowski wrote:
+> >>>> On 05/11/2024 19:04, Raj Kumar Bhagat wrote:
+> >>>>> The RDP433 is a Qualcomm Reference Design Platform based on the
+> >>>>> IPQ9574. It features three QCN9274 WiFi devices connected to PCIe1,
+> >>>>> PCIe2, and PCIe3. These devices are also interconnected via a WLAN
+> >>>>> Serial Interface (WSI) connection. This WSI connection is essential
+> >>>>> for exchanging control information among these devices.
+> >>>>>
+> >>>>> This patch series describes the WSI interface found in QCN9274 in
+> >>>>> device tree and uses this device tree node in the Ath12k driver to get the
+> >>>>> details of WSI connection for Multi Link Operation (MLO) among multiple
+> >>>>> QCN9274 devices.
+> >>>>>
+> >>>>> NOTES:
+> >>>>> 1. As ath12k MLO patches are not ready yet, this patchset does not apply
+> >>>>>    to the ath.git ath-next branch and that's why the patchset is marked
+> >>>>>    as RFC. These are the work-in-progress patches we have at the moment.
+> >>>>>    The full set of MLO patches is available at:
+> >>>>>    https://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git/log/?h=ath12k-mlo-qcn9274
+> >>>>>
+> >>>>> 2. The dependency marked below applies only to the DTS patch. The
+> >>>>>    dt-bindings patches do not have this dependency.
+> >>>>>
+> >>>>> Depends-On: [PATCH V7 0/4] Add PCIe support for IPQ9574
+> >>>>> Link: https://lore.kernel.org/linux-pci/20240801054803.3015572-1-quic_srichara@quicinc.com/
+> >>>>>
+> >>>>> v3:
+> >>>>> - Created a separate binding "qcom,ath12k-wsi.yaml" to describe ath12k PCI
+> >>>>>   devices with WSI interface.
+> >>>>
+> >>>> Thanks for the changes. When you finish with testing/RFC, please send
+> >>>> proper version for review (just remember to keep numbering, next one is
+> >>>> v4 regardless whether this is RFC or not).
+> >>>
+> >>> Isn't the 'RFC' being an invitation for review per the nature of the tag
+> >>> itself?
+> >>
+> >> No, RFC means patch is not ready, might change. This was brought on the
+> >> lists multiple times and some maintainers clearly ignore RFC. Including me.
 > > 
-> > If you do need them, then they should be in pS.
+> > Thanks, point noted. I'll stop marking my patches with RFC tag.
 > 
-> I will fix it.
+> Wait, you can keep marking them RFC! It all depends what do you want to
+> achieve. Get some comments on early work or actual review for something
+> you believe is a finished work.
 > 
-> We have customers who use a fixed link instead of a PHY, so these properties
-> may be necessary.
+> I looked here briefly, no comments from me and I assume that was the
+> intention of RFC.
 
-That is a legitimate use case which can require the MAC to add delays,
-but i generally try to get the switch on the other end to add the
-delays, just to keep with the uniform setup.
+Okay
 
-Also, please take a look at ethernet-controller.yaml, these should be
-called rx-internal-delay-ps & tx-internal-delay-ps.
-
-	Andrew
+-- 
+With best wishes
+Dmitry
 
