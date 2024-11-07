@@ -1,302 +1,153 @@
-Return-Path: <devicetree+bounces-119765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10F759C00D8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:07:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C79D9C00FF
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:20:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E8511F22DA9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 09:07:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D25B01F22021
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 09:20:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB4C61DF983;
-	Thu,  7 Nov 2024 09:07:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 634591DC05D;
+	Thu,  7 Nov 2024 09:20:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="guRqLKOT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Sbmskvcb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A03E81D7E4E;
-	Thu,  7 Nov 2024 09:07:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA63192B73;
+	Thu,  7 Nov 2024 09:20:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730970439; cv=none; b=ttd9UeMe5SPG5Prh/YGtsNKm3Kw8+RovmwhZSWiz/niBkpLnM5akPCZE0+bXdRbTVUx5NWYYXVdhPAMBbW25Uy7ma/yxwCmfUPlrWD0KrIfLrw5pVXvT7hge8Jcxk/FRG9aFdFRkY022cSZzCwgdH1fPB6Bm7eUpR6MJ61ssFjc=
+	t=1730971219; cv=none; b=IFqiI3mnt73dtuc7cKtWBUt8v8yAjbpf0Xl/VSlQX3EFJZAKoBNkY/8jZkxO7hRxRhMjN5Z+uXzD4HnyFdnA++fnuM5MzJr3xM5tdkC9ut2JF0ZoWDEkyraZ/hMz708AUcx1Vz591AK7shIFN0WENb4EPIIp+0+z1dkP1rwA2I8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730970439; c=relaxed/simple;
-	bh=qQ+Mq1PoHmzYYRhW4t7moV2q9f1V3YSFI/uBar/82WQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G9TgZ45tn3u8pV8rvlK+jZ40tMTaq453dYMz6sW0ER0vmVczP6UwdbssMOK1hjVBfn0JDf782yipLofpP8Zklr9w8IFx+vrQC652Ivp6hGzJGQ8tnVwPOLipPX9xggpX6dqppSF8rtyauWvg3/bmb3/QlcnkH95/jB0e0YzMvTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=guRqLKOT; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DB0A55B3;
-	Thu,  7 Nov 2024 10:07:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1730970427;
-	bh=qQ+Mq1PoHmzYYRhW4t7moV2q9f1V3YSFI/uBar/82WQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=guRqLKOTQRpbZjH72oFhlsZ7w4beOJNsF9CKJAVOb+PRQuOyW/W7M1EJyOqLsBQ8I
-	 Nh2T4gs7d6jeQwljwTyKvxu68i3z5RLXr5MV4h+vJTxZxcUF+H1tyKA4gvvTVXD1j1
-	 M8YKXtsb11X08UJnErz0xgKbCh4aqWiy6HCgeusU=
-Date: Thu, 7 Nov 2024 10:07:12 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: keke.li@amlogic.com
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kieran.bingham@ideasonboard.com, 
-	laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com
-Subject: Re: [PATCH v3 9/9] Documentation: media: add documentation file
- c3-isp.rst
-Message-ID: <eob4pf23npxbo5g4cqtke5c3u2ikp2zpg6qz2hvc4gxh644n4q@x57p3h4v3pnp>
-References: <20240918-c3isp-v3-0-f774a39e6774@amlogic.com>
- <20240918-c3isp-v3-9-f774a39e6774@amlogic.com>
+	s=arc-20240116; t=1730971219; c=relaxed/simple;
+	bh=5jlkJyomE6DfZDoE1w6hrt0hHvrFRjvdP6lxVp7uq8k=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rkyapCEWaUko38Rani+daeGORjbMuSnchzmDtx0Pr44qitSoevxLGkouYMfXsTM6HVi06HlIflK/edmrkHDndW9MyuQs9+h7QLv9uaY9CA9dgrAoB/A3ik3vG0nf94zbAuMB2iArLifOy5XW6qt69tKEYBHixG8LTdjCBircFqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Sbmskvcb; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-539e6c754bdso553111e87.2;
+        Thu, 07 Nov 2024 01:20:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730971215; x=1731576015; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3651cek48NeZz9A/pb2JfiUOC/sc5HtWdmGHZb/MRSQ=;
+        b=Sbmskvcb5D5qAlDFWYmVGW4AcTfbVBCxNtFi2oAX9bCdFoWVsXvpIWMKmDwNnVEQkt
+         v1zuSajDTaV9czKh0PKL9zOjHJN8ZgPeNbXayWdjaSqj5Gkx6KqPzLnd/oPyJBtgFI1w
+         McBXE+vqTzFPXgBcpFt2BmVlj1I5gVzh3MOkmXtI5q7BVyrOy7+OCAL2ztr66pwaVtU6
+         ROhyGAFdGMOfPX9kU1Q4yX5PaDcC1LNaRVcUZS79MOSbRQlJpgLBBJ/BzdxvFaqr5nY8
+         A6buvvxsojfEIfWcQXy1CsX4hK3ArFHXj0sz6WjFOEpzUxnKJlmO+VOrwoWe7omlJv5y
+         Jo/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730971215; x=1731576015;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3651cek48NeZz9A/pb2JfiUOC/sc5HtWdmGHZb/MRSQ=;
+        b=TKHOr/eiJo5IosNBtTpZ9+DINa6dFgbT15gquqlWyk/8Fsok/RQcK7Orxu7sqd5PxY
+         cSTKnEadb9lPzx9+5SZFkceXyAcpQ4I+RuWsIhspNu9P9po9GWbgWiXj4viqPf7G4wQ5
+         SS07OmnlAV6oh7paXhn7vo+YDOt0Q12yG2IDGcC4q5wKsG1BlRyG/G+M+91ixxSLI5oK
+         so2FB4bmIdbDw4HZF4wCtYM7JHSTUxCg5Ko9PzCEKuZw+Z/zeeBoLPIbtKZU1bwFDRvv
+         z5I77SxrMEg4GnoQUsa3stjMkOf6qFVdBCJwELXAyBK9bk8528g6CDG/jLQXzBa7dDjT
+         i+Nw==
+X-Forwarded-Encrypted: i=1; AJvYcCWd0TGhvA/528454cbb/uTjNGrw/C5ReX95/N+ZWGlWpBE6xtPPN6w1k7gkYX8WTYBnL2F/eV+57ZnHrOoE@vger.kernel.org, AJvYcCWoIIbfZ/eoTbj/1ICSgG1NBwv66tYm7QBXIWw5bkcZ2YaOOfEDt9oOBYO8ukpbw5bX1pDY9xiCre1Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZ+hRfXa5Rab9UmGwcdfL9xX2V6kgSo2ozttfKxcNIMxreUR6n
+	UKViDj6/S0P5+WyIWXJ9yTJABJu+5xxVjHJYt2bdGPOO5Jn/enHFLHBp9qbY
+X-Google-Smtp-Source: AGHT+IGMz/+uze56D22bk4S6NEoAUjQkOYYD4ynOIKx/3GTeCzY4+lzBKIqEvvNJaSoYLinRiOM5VQ==
+X-Received: by 2002:a05:6512:3988:b0:536:9f72:c427 with SMTP id 2adb3069b0e04-53d84085e5dmr189216e87.28.1730971214867;
+        Thu, 07 Nov 2024 01:20:14 -0800 (PST)
+Received: from [192.168.1.11] (83-233-6-197.cust.bredband2.com. [83.233.6.197])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53d826a9b50sm139509e87.182.2024.11.07.01.20.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Nov 2024 01:20:13 -0800 (PST)
+From: Marcus Folkesson <marcus.folkesson@gmail.com>
+Subject: [PATCH v6 0/2] Add support for "on-die" ECC on Davinci.
+Date: Thu, 07 Nov 2024 10:19:52 +0100
+Message-Id: <20241107-ondie-v6-0-f70905dc12bf@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240918-c3isp-v3-9-f774a39e6774@amlogic.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADiGLGcC/2XOwQoCIRDG8VcJzxnOqJt26j2ig41jCbUbu7EUs
+ e+eBQuyHb/B3x/fYuA+8yB2q7foecxD7toymvVK0CW0Z5Y5li1QoQGlQHZtzCyD4kgJXXKmEeX
+ tveeUn7/O4Vj2JQ+Prn/9siN8r8vCCFLJoGMIDJacj/vzLeTrhrqb+BZGrBXOCovS4MA20dH2Z
+ JZK18rOShdlrI+eNCJaWipTq2ZWpqiU/Mmn6IODvx/aWrlZ2aKUAQqGiCxzraZp+gDQ/oUJcgE
+ AAA==
+X-Change-ID: 20241001-ondie-a0edcf28f846
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1568;
+ i=marcus.folkesson@gmail.com; h=from:subject:message-id;
+ bh=5jlkJyomE6DfZDoE1w6hrt0hHvrFRjvdP6lxVp7uq8k=;
+ b=owEBbQKS/ZANAwAIAYiATm9ZXVIyAcsmYgBnLIY6G6Nlk3NfPIe9Hidmf95exOo1gFpPgkgjm
+ wfk4xGjA4mJAjMEAAEIAB0WIQQFUaLotmy1TWTBLGWIgE5vWV1SMgUCZyyGOgAKCRCIgE5vWV1S
+ MgntEADZC8TWSRg567xCulsZBgj0w6oebflUeUlV6l96cFLfiIHaaavU5YqyuUAo8im1ntHu6cZ
+ UyK2XSlUeOgYKa2Muj3snCI38SNswIthKxQaH9uYACSY5cQ1DbCznONSp0lFiYpKgWVz0sGXbIw
+ I+g4ojK56WzdOg0GKkct8ARwOa8Ji6Vzts6VrU54OQOchXT9zTEaMshiTXgUx3mRqcU4SOXUkZu
+ Ya2gzETCwdUAbmnS9CCSAexlCKRbMGA430RrWiYUGpKrmSqmDEvi7E8hieBcYZpngOeXn1e5Xf1
+ Lsie7Qv+6ae/E1CD05onUOrjY/NlKTeM9d88BzQU8AOPeCG5OeJlgm6wIovu6Vmt2oM6llxItKO
+ 5tTV1/BR2QQPKcCrzMKOv6ugOWuDfs+K2tQ1Ung/7F7pC32lzKZAK+4/GPpkSR1z1K29NoRNYwA
+ JAB+USBaHIbxSA5w7V2esDFvFFkP4PURM9oWdYV4YuSnBh3lbzpSyRLpwFMT0UVd20G+ckYo+HA
+ MRE7qvW2DwVG7YJyDyPyzkFQx6jkgnOiMXCDqsLW52eFmF1w5tnnCpM8E42ms4whrckpoqifems
+ 2Xq7OxjaYhpr/cPTK3BhfSfXLvJhcAQNHqdo+iRRxuoDxM64vW7sDbyvpCQ48qUyUrYOU38LSzn
+ uHfuH/ssgw+dNIQ==
+X-Developer-Key: i=marcus.folkesson@gmail.com; a=openpgp;
+ fpr=AB91D46C7E0F6E6FB2AB640EC0FE25D598F6C127
 
-Hi Keke
+Some chips, e.g. Micron MT29F1G08ABBFAH4, has a mandatory on-die ECC.
+Add "on-die" as ECC engine type in order to be compatible with those.
 
-On Wed, Sep 18, 2024 at 02:07:20PM +0800, Keke Li via B4 Relay wrote:
-> From: Keke Li <keke.li@amlogic.com>
->
-> Add the file 'c3-isp.rst' that documents the c3-isp driver.
->
-> Signed-off-by: Keke Li <keke.li@amlogic.com>
-> ---
->  Documentation/admin-guide/media/c3-isp.dot      | 26 +++++++
->  Documentation/admin-guide/media/c3-isp.rst      | 96 +++++++++++++++++++++++++
->  Documentation/admin-guide/media/v4l-drivers.rst |  1 +
->  MAINTAINERS                                     | 10 +++
->  4 files changed, 133 insertions(+)
->
-> diff --git a/Documentation/admin-guide/media/c3-isp.dot b/Documentation/admin-guide/media/c3-isp.dot
-> new file mode 100644
-> index 000000000000..0cc1b8b96404
-> --- /dev/null
-> +++ b/Documentation/admin-guide/media/c3-isp.dot
-> @@ -0,0 +1,26 @@
-> +digraph board {
-> +	rankdir=TB
-> +	n00000001 [label="{{<port0> 0 | <port1> 1} | isp-core\n/dev/v4l-subdev0 | {<port2> 2 | <port3> 3}}", shape=Mrecord, style=filled, fillcolor=green]
-> +	n00000001:port3 -> n00000006:port0 [style=bold]
-> +	n00000001:port3 -> n00000009:port0 [style=bold]
-> +	n00000001:port3 -> n0000000c:port0 [style=bold]
-> +	n00000001:port2 -> n00000020 [style=bold]
-> +	n00000006 [label="{{<port0> 0} | isp-resizer0\n/dev/v4l-subdev1 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-> +	n00000006:port1 -> n00000014 [style=bold]
-> +	n00000009 [label="{{<port0> 0} | isp-resizer1\n/dev/v4l-subdev2 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-> +	n00000009:port1 -> n00000018 [style=bold]
-> +	n0000000c [label="{{<port0> 0} | isp-resizer2\n/dev/v4l-subdev3 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-> +	n0000000c:port1 -> n0000001c [style=bold]
-> +	n0000000f [label="{{<port0> 0} | mipi-adapter\n/dev/v4l-subdev4 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-> +	n0000000f:port1 -> n00000001:port0 [style=bold]
-> +	n00000014 [label="isp-video0\n/dev/video0", shape=box, style=filled, fillcolor=yellow]
-> +	n00000018 [label="isp-video1\n/dev/video1", shape=box, style=filled, fillcolor=yellow]
-> +	n0000001c [label="isp-video2\n/dev/video2", shape=box, style=filled, fillcolor=yellow]
-> +	n00000020 [label="isp-stats\n/dev/video3", shape=box, style=filled, fillcolor=yellow]
-> +	n00000024 [label="isp-params\n/dev/video4", shape=box, style=filled, fillcolor=yellow]
-> +	n00000024 -> n00000001:port1 [style=bold]
-> +	n00000038 [label="{{<port0> 0} | mipi-csi2\n/dev/v4l-subdev5 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-> +	n00000038:port1 -> n0000000f:port0 [style=bold]
-> +	n0000003d [label="{{} | imx290 2-001a\n/dev/v4l-subdev6 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
-> +	n0000003d:port0 -> n00000038:port0 [style=bold]
-> +}
-> diff --git a/Documentation/admin-guide/media/c3-isp.rst b/Documentation/admin-guide/media/c3-isp.rst
-> new file mode 100644
-> index 000000000000..fab10c962465
-> --- /dev/null
-> +++ b/Documentation/admin-guide/media/c3-isp.rst
-> @@ -0,0 +1,96 @@
-> +.. SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-> +
-> +.. include:: <isonum.txt>
-> +
-> +=================================================
-> +Amlogic C3 Image Signal Processing (C3ISP) driver
-> +=================================================
-> +
-> +Introduction
-> +============
-> +
-> +This file documents the Amlogic C3ISP driver located under
-> +drivers/media/platform/amlogic/c3-isp.
-> +
-> +The current version of the driver supports the C3ISP found on
-> +Amlogic C308L processor.
-> +
-> +The driver implements V4L2, Media controller and V4L2 subdev interfaces.
-> +Camera sensor using V4L2 subdev interface in the kernel is supported.
+Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+---
+Changes in v6:
+- Rework the example snippet
+- Link to v5: https://lore.kernel.org/r/20241008-ondie-v5-0-041ca4ccc5ee@gmail.com
 
-I would drop this last statement
+Changes in v5:
+- change "additionalProperties: true" to "unevaluatedProperties: false"
+- Link to v4: https://lore.kernel.org/r/20241006-ondie-v4-0-ff9b9fd9a81d@gmail.com
 
-> +
-> +The driver has been tested on AW419-C308L-Socket platform.
-> +
-> +Anlogic Camera hardware
+Changes in v4:
+- Silent errors in `make  dt_binding_check  DT_SCHEMA_FILES=ti,davinci-nand.yaml`
+- Link to v3: https://lore.kernel.org/r/20241005-ondie-v3-0-459d9c32225c@gmail.com
 
-Amlogic
+Changes in v3:
+- Fix formatting issues in yaml file
+- Link to v2: https://lore.kernel.org/r/20241002-ondie-v2-0-318156d8c7b4@gmail.com
 
-> +=======================
-> +
-> +The Camera hardware found on C308L processors and supported by
-> +the driver consists of:
-> +
-> +- 1 MIPI-CSI2 module. It handle the Physical layer of the CSI2 receivers and
-> +  receive MIPI data.
+Changes in v2:
+- Convert dt-bindings file to yaml
+- Link to v1: https://lore.kernel.org/r/20241001-ondie-v1-0-a3daae15c89d@gmail.com
 
-Do not break lines if you do not break it to new paragraphs
+---
+Marcus Folkesson (2):
+      mtd: nand: davinci: add support for on-die ECC engine type
+      dt-bindings: mtd: davinci: convert to yaml
 
-     What I mean is not to.
-     Do this but instead:
+ .../devicetree/bindings/mtd/davinci-nand.txt       |  94 ---------------
+ .../devicetree/bindings/mtd/ti,davinci-nand.yaml   | 134 +++++++++++++++++++++
+ drivers/mtd/nand/raw/davinci_nand.c                |   5 +-
+ 3 files changed, 138 insertions(+), 95 deletions(-)
+---
+base-commit: 200289db261f0c8131a5756133e9d30966289c3b
+change-id: 20241001-ondie-a0edcf28f846
 
-     Either do this on multiple lines if you go beyond 80 columns in
-     writing your text without breaking earlier.
+Best regards,
+-- 
+Marcus Folkesson <marcus.folkesson@gmail.com>
 
-     Or break it.
-
-     To separate paragraphs.
-
-> +  A separate camera sensor can be connected to MIPI-CSi2 module.
-
-I would drop "separate" and mention that both RAW and YUV/RGB sensors
-are supported
-
-> +- 1 MIPI-ADAPTER module. Organize MIPI data to meet ISP input requirements and
-> +  send MIPI data to ISP
-> +- 1 ISP (Image Signal Processing) module. Contain a pipeline of image processing
-> +  hardware blocks.
-> +  The ISP pipeline contains three scalers at the end.
-> +  The ISP also contains the DMA interface which writes the output data to memory.
-> +
-> +Supported functionality
-> +=======================
-> +
-> +The current version of the driver supports:
-> +
-> +- Input from camera sensor via MIPI-CSI2;
-> +
-> +- Pixel output interface of ISP
-> +
-> +  - Scaling support. Configuration of the scaler module
-> +    for downscalling with ratio up to 8x.
-
-No need to break line before 80-cols
-
-> +
-> +Driver Architecture and Design
-> +==============================
-> +
-> +The driver implements the V4L2 subdev interface. With the goal to model the
-> +hardware links between the modules and to expose a clean, logical and usable
-> +interface, the driver is split into V4L2 sub-devices as follows:
-> +
-> +- 1 mipi-csi2 sub-device - mipi-csi2 is represented by a single sub-device.
-> +- 1 mipi-adapter sub-device - mipi-adapter is represented by a single sub-devices.
-> +- 1 isp-core sub-device - isp-core is represented by a single sub-devices.
-> +- 3 isp-resizer sub-devices - isp-resizer is represented by a number of sub-devices
-> +  equal to the number of capture device.
-> +
-> +isp-core sub-device is linked to 2 separate video device nodes and
-> +3 isp-resizer sub-devices nodes.
-> +
-> +- 1 capture statistics video device node.
-> +- 1 output parameters video device node.
-> +- 3 isp-resizer sub-device nodes.
-> +
-> +isp-resizer sub-device is linked to capture video device node.
-> +
-> +- isp-resizer0 is linked to isp-cap0
-> +- isp-resizer1 is linked to isp-cap1
-> +- isp-resizer2 is linked to isp-cap2
-> +
-> +The media controller pipeline graph is as follows (with connected a
-> +IMX290 camera sensor):
-> +
-> +.. _isp_topology_graph:
-> +
-> +.. kernel-figure:: c3-isp.dot
-> +    :alt:   c3-isp.dot
-> +    :align: center
-> +
-> +    Media pipeline topology
-> +
-> +Implementation
-> +==============
-> +
-> +Runtime configuration of the hardware via 'isp-params' video device node.
-> +Acquiring statistics of ISP hardware via 'isp-stats' video device node.
-> +Acquiring output image of ISP hardware via 'isp-video[0, 2]' video device node.
-
-The text above names them 'isp-cap[0, 2]'
-
-> +
-> +The output size of the scaler module in the ISP is configured with
-> +the pixel format of 'isp-video[0, 2]' video device node.
-
-I haven't looked yet at how this is implemented, but I presume the
-correct sizes should be configured on the isp-resizerX sub-device as
-well. I would drop this last pharse as it might be misleading ?
-
-> diff --git a/Documentation/admin-guide/media/v4l-drivers.rst b/Documentation/admin-guide/media/v4l-drivers.rst
-> index b6af448b9fe9..be0a8a860f39 100644
-> --- a/Documentation/admin-guide/media/v4l-drivers.rst
-> +++ b/Documentation/admin-guide/media/v4l-drivers.rst
-> @@ -10,6 +10,7 @@ Video4Linux (V4L) driver-specific documentation
->  	:maxdepth: 2
->
->  	bttv
-> +	c3-isp
->  	cafe_ccic
->  	cx88
->  	fimc
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 31168c05f304..954dd9bdf77e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1209,6 +1209,16 @@ F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
->  F:	drivers/perf/amlogic/
->  F:	include/soc/amlogic/
->
-> +AMLOGIC ISP DRIVER
-> +M:	Keke Li <keke.li@amlogic.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-
-I would add the entry to MAINTAINERS when introducing the ISP driver
-and only add
-
-> +F:	Documentation/admin-guide/media/c3-isp.dot
-> +F:	Documentation/admin-guide/media/c3-isp.rst
-
-These two files in this patch
-
-> +F:	Documentation/devicetree/bindings/media/amlogic,c3-isp.yaml
-> +F:	Documentation/userspace-api/media/v4l/metafmt-c3-isp.rst
-> +F:	drivers/media/platform/amlogic/c3-isp/
-
-And also the uAPI header is missing from the files list it seems
-
-Thanks
-  j
-
-> +
->  AMLOGIC MIPI ADAPTER DRIVER
->  M:	Keke Li <keke.li@amlogic.com>
->  L:	linux-media@vger.kernel.org
->
-> --
-> 2.46.1
->
->
->
 
