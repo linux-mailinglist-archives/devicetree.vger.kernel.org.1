@@ -1,89 +1,95 @@
-Return-Path: <devicetree+bounces-119909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20C529C0720
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 14:20:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD6059C07D2
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 14:43:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3CDF1F221F0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 13:20:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F5011F21959
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 13:43:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48B80210180;
-	Thu,  7 Nov 2024 13:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95668212160;
+	Thu,  7 Nov 2024 13:43:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aBpCtart"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Uzm/ufhS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBEC8201034
-	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 13:20:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F2F421019E
+	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 13:43:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730985644; cv=none; b=bGEm1k4W6hUgXvXYKN9IbKZhUjQDN8ZLTO/j4SRufqcgIo62N9W0C94gDfwujzo4nSnKokTGh36fWz5/9nfb+BzoBPtRJGE9jzVwVRStDYb1DF/hSo5nkgAT74kuDKOjPZDQQEMpjbqRFlMIPA4CKuhAUGtIyxN6pSaakr+i69k=
+	t=1730987007; cv=none; b=kqUlasy9GOd2XkOgpBM+jN7eu8yS7iZd8RtpQF+NJ6x4LMprWSqVC6cKy0EdfG5JcNCpnirQe8BS68ZAYlpbkkXrcmWO5iDPg7m2xYMh5WjH2G0hIlepSW/b/fWbn9oa83j+enA3UD5OAg1ueFJf6T+VYcmvbSU3gYubdsWjEBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730985644; c=relaxed/simple;
-	bh=50XRUp+6v+8lIyPj82iw5ic/E9OGU7yi8wfNqwwZulQ=;
+	s=arc-20240116; t=1730987007; c=relaxed/simple;
+	bh=CdrkMSC49tDl2mQv1mqeIdQHcjwZw0A1/AnqT+7ETn8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VKSOqcaSF1BE6bfVM5LXwPDtLwnncTfYQhwBsypm/7erzI9H7ne7hDjd4dZZVJ5ozapsNavNelRKDjlAyvZ3iAsBbjV4bWWDOoSl5wFOM9Vr1nWy3Uf4LtVnOPM65wAViHRvjf0lW7POTYvXjdnPZ43x1SkLl9L6xtFeukvOWt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aBpCtart; arc=none smtp.client-ip=209.85.167.54
+	 Content-Type:Content-Disposition:In-Reply-To; b=PWls3sNRRvFbf9xtzXlekQdyRfT9qudDEwarnNP0oKp0arrxi3T05jiP48c9TIQgYp4X3JGqp7xftkHmoeuxeE9MEMLJTFpwfgO59PCOekt5LDxU7f0FtzqfqrNffLuMI4vjQDrb0VfftDW+BSecclLL2rX14aX6gMBjkfGSH/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Uzm/ufhS; arc=none smtp.client-ip=209.85.208.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-539fe76e802so957572e87.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 05:20:41 -0800 (PST)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2fb57f97d75so10279761fa.2
+        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 05:43:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730985640; x=1731590440; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1730987004; x=1731591804; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wTJTU1/WgMnMhMsHkYEBclEMuS9M1UtJvjgM/eI3K/8=;
-        b=aBpCtartE+0TI7CzNPxwbnusU/tOiF7kK0HRiIYFvtgSUzN4FFPjcNHJW2dqMngeN6
-         c/DN0Bgh+zOw/Gwpl23IQp2HFQjUZqHtxqwYI8/E2vIWVVVaotGSAktyXflhYFCokThA
-         6F4d6nwx5Ar2SCSXF40u6tikBEERq3FLpkYZlB7bl4hQxG2SLyT3ZdSa8YG8RdxWcR18
-         L/rd5rrboNG8QJTJV6S1O7eSnVosV529MaVk/T8EnraJiqpI5FozuViVbsRNB80aZAUe
-         nsUrQBaYGybDdOlbI07aZ2epTvw/PbabSXRC+NGRBndCmKHY0N0UTmDv6ArsmQ76/mgF
-         v5Rg==
+        bh=lTaMwPBJtQ/LdLyLH+A1iubTYFAHCFT/bM+1zUoljkk=;
+        b=Uzm/ufhSu0N3h3v3dXOQuvMA13OYmBekUA6S/NXSDYzShXiRBx2lvB5xJAGIUwh3Fy
+         6C5exFZP2KgHc62/ErY+9rUpVCzktIc11MWuY+40oBv0RB3sbnzmy3HYJTKSqeuJjBpy
+         uAIMgO02RElc5jAapyp5zuVKtBJTmv9JnwTQVaj8r1UYpoQbP7Myr1XVUz+ujXPcVt6x
+         9YUfr52K/eXrbV7EJKhx45U2zmQKkLWcmGSc8pesII5u4qdMNv71Ieb6VFLJV1IktX1u
+         SBDNaRy8JRfd931I2Mp+7vtkCwGursYpJFARprx5YdUXrJnooVvJ2r06MoK95ACIOSxH
+         XuoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730985640; x=1731590440;
+        d=1e100.net; s=20230601; t=1730987004; x=1731591804;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wTJTU1/WgMnMhMsHkYEBclEMuS9M1UtJvjgM/eI3K/8=;
-        b=Y2vL8ek2a6MLJcbvIiOobSE0RHli6ikNW7VmXnQxF6pEXEhNdus1EleByyTNAZMtFi
-         /JnHvWCxJHR0oxY1fWAfclQq7Wp+9v6OiSVMXyveCiMf4/3uRW2sgkBXY+TyxxlrS0oq
-         a2WoDtH/U0qqJhPrVx6SXmMlye94n+CDPEpbPJxl4V5vTaDy6hGIaHYx5b2EpSXuNaXw
-         fY+H76o4idyemM2zuZfkq+N9UYyz6+eO10U/GyuCOzYDBk5J2zQMhq3ir+bSWYO7epYb
-         lMLHGPHYJt2Z5bOd8tfmLIIalV/SomOOti5pZ7drQkyfUeP2w7T1JdfOKc5TRqD0GPaR
-         kDMw==
-X-Forwarded-Encrypted: i=1; AJvYcCUqBwlWg/2WYFLJN2IYuSCquuQOx/kuIZs3KGHw2KO2EQF6PP3gXuGB8txuGF7Eev+CPd5+SFyvIsJO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyM/6FG3FYV7tX5R78UKvvMCAYTi8K+WS6+0aRSxeHM9DEWp5uf
-	tBO0t1IIIXX1yuM/VHEuEir4G/6ZJMPxF4/VqaKnW44ZIPsGNHBo7ga8//4sY/c=
-X-Google-Smtp-Source: AGHT+IFvkWpQMrorpEfz69D8hdyKknrpmvGBejcMWnvwqudlmWyULPvb4Uly1A/kUgo7+RzonjdO+w==
-X-Received: by 2002:a05:6512:1282:b0:537:a855:7d6f with SMTP id 2adb3069b0e04-53d65df4b65mr11452598e87.34.1730985640002;
-        Thu, 07 Nov 2024 05:20:40 -0800 (PST)
+        bh=lTaMwPBJtQ/LdLyLH+A1iubTYFAHCFT/bM+1zUoljkk=;
+        b=AnJ0zwuOPdinUwn8iyGfFFfxcL5PPaXZ0YECuN0SNUI+a3kbxihR24TRREBchCvn5x
+         /JyRqMw6RmW8dj42pOLAd26xNxwlJVj44lC/fR0On2kSJjBDoGz/P6gcPu/Lxcq/riAI
+         0BShjTCiHFuLjVQXxOhF05RpVchJdENV090ySwxunq++D6Eo2ouMqtwaJYj4a2DpmOiM
+         yTrscWRrszYhD6riKuryU1ZBosA6SUivvT8TWYMeGtf0DtSDxRPX2YtteSjabmzvl1lO
+         q6JfPEQcak7bhrVgsgcXlWNHfv6lmz5ncBvG3GTNADE1JC3Puhi4Gb1i+EogtjKzQjjW
+         gO0g==
+X-Forwarded-Encrypted: i=1; AJvYcCWD8T9ed5XZ9RH/Wa2Yc+AUnxC4ehzaB7fGTM3PiIPNgzx6vOnpk9kEW20G6OJeEx+jXcXOSBOrENAw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwG1j0EZvjMVKZejexip6TGJrNPeEyu01rHejE/gZ+ldLVht4x7
+	dBRUbzZL+ws0CELsEWiaE/f/fcLVYag8tqdT6uj6cxVg3Z338pUQp1VtHk6+fxo=
+X-Google-Smtp-Source: AGHT+IEEXrpAS4axbz2EtICI+fGeaZacL297HQJJZ5R8O8wDOSGkjXWDf4lfkDOD+6Bag7+pFG1qiQ==
+X-Received: by 2002:a05:651c:2209:b0:2fb:4c08:be08 with SMTP id 38308e7fff4ca-2fcbdf6ff42mr222407471fa.11.1730987003678;
+        Thu, 07 Nov 2024 05:43:23 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53d826a739dsm212002e87.158.2024.11.07.05.20.37
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ff178dfe0asm2220701fa.23.2024.11.07.05.43.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Nov 2024 05:20:38 -0800 (PST)
-Date: Thu, 7 Nov 2024 15:20:36 +0200
+        Thu, 07 Nov 2024 05:43:22 -0800 (PST)
+Date: Thu, 7 Nov 2024 15:43:20 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, 
-	ath12k@lists.infradead.org, linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [RFC PATCH v3 0/5] wifi: ath12k: Add wifi device node with WSI
- for QCN9274 in RDP433
-Message-ID: <x2ch5ahotd6kfqg7tjvaav5kaxi7mfij4nsakxegp6j5pecomd@rhzytgayfoek>
-References: <20241105180444.770951-1-quic_rajkbhag@quicinc.com>
- <49a6ec0d-8a0b-49aa-a9eb-1174cff930f6@kernel.org>
- <cmvfpctliqggra33u6ituguoxh3jxcuxiyjpbtcjbcgpu6lhoi@4zdthfkc2ed3>
- <692503b8-cf39-4d6b-b70e-910fcc710d69@kernel.org>
- <CAA8EJpqMCbyK0dodMNyfs8dNjV2QoB2nyWm233eOS9xo8BaFJg@mail.gmail.com>
- <9d158c25-197a-49fd-b639-45287a46438f@kernel.org>
+To: Sandor Yu <sandor.yu@nxp.com>
+Cc: "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>, 
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	"jonas@kwiboo.se" <jonas@kwiboo.se>, "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, 
+	"airlied@gmail.com" <airlied@gmail.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>, 
+	"robh+dt@kernel.org" <robh+dt@kernel.org>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>, 
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, 
+	"vkoul@kernel.org" <vkoul@kernel.org>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, "mripard@kernel.org" <mripard@kernel.org>, 
+	"kernel@pengutronix.de" <kernel@pengutronix.de>, dl-linux-imx <linux-imx@nxp.com>, 
+	Oliver Brown <oliver.brown@nxp.com>, 
+	"alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>, "sam@ravnborg.org" <sam@ravnborg.org>
+Subject: Re: [PATCH v18 6/8] phy: freescale: Add DisplayPort/HDMI Combo-PHY
+ driver for i.MX8MQ
+Message-ID: <z6p6bewmykmufsghdojr4lvziurmmfpnrr5m4w3pfjlqzobpwr@zq2d2ukjvtac>
+References: <cover.1730172244.git.Sandor.yu@nxp.com>
+ <411e42c70e71dce33a80059f663fb6c58fb2ac8c.1730172244.git.Sandor.yu@nxp.com>
+ <efciuvoptv7qxwauswfseb6zlt5w4fmjdbm3huxfsn63a6bm7u@kfgkkvqoz5x4>
+ <PAXPR04MB9448F638D47B5495CF78007AF4522@PAXPR04MB9448.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,63 +98,127 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9d158c25-197a-49fd-b639-45287a46438f@kernel.org>
+In-Reply-To: <PAXPR04MB9448F638D47B5495CF78007AF4522@PAXPR04MB9448.eurprd04.prod.outlook.com>
 
-On Thu, Nov 07, 2024 at 01:16:56PM +0100, Krzysztof Kozlowski wrote:
-> On 07/11/2024 13:03, Dmitry Baryshkov wrote:
-> > On Thu, 7 Nov 2024 at 11:29, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >>
-> >> On 07/11/2024 12:06, Dmitry Baryshkov wrote:
-> >>> On Thu, Nov 07, 2024 at 11:23:20AM +0100, Krzysztof Kozlowski wrote:
-> >>>> On 05/11/2024 19:04, Raj Kumar Bhagat wrote:
-> >>>>> The RDP433 is a Qualcomm Reference Design Platform based on the
-> >>>>> IPQ9574. It features three QCN9274 WiFi devices connected to PCIe1,
-> >>>>> PCIe2, and PCIe3. These devices are also interconnected via a WLAN
-> >>>>> Serial Interface (WSI) connection. This WSI connection is essential
-> >>>>> for exchanging control information among these devices.
-> >>>>>
-> >>>>> This patch series describes the WSI interface found in QCN9274 in
-> >>>>> device tree and uses this device tree node in the Ath12k driver to get the
-> >>>>> details of WSI connection for Multi Link Operation (MLO) among multiple
-> >>>>> QCN9274 devices.
-> >>>>>
-> >>>>> NOTES:
-> >>>>> 1. As ath12k MLO patches are not ready yet, this patchset does not apply
-> >>>>>    to the ath.git ath-next branch and that's why the patchset is marked
-> >>>>>    as RFC. These are the work-in-progress patches we have at the moment.
-> >>>>>    The full set of MLO patches is available at:
-> >>>>>    https://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git/log/?h=ath12k-mlo-qcn9274
-> >>>>>
-> >>>>> 2. The dependency marked below applies only to the DTS patch. The
-> >>>>>    dt-bindings patches do not have this dependency.
-> >>>>>
-> >>>>> Depends-On: [PATCH V7 0/4] Add PCIe support for IPQ9574
-> >>>>> Link: https://lore.kernel.org/linux-pci/20240801054803.3015572-1-quic_srichara@quicinc.com/
-> >>>>>
-> >>>>> v3:
-> >>>>> - Created a separate binding "qcom,ath12k-wsi.yaml" to describe ath12k PCI
-> >>>>>   devices with WSI interface.
-> >>>>
-> >>>> Thanks for the changes. When you finish with testing/RFC, please send
-> >>>> proper version for review (just remember to keep numbering, next one is
-> >>>> v4 regardless whether this is RFC or not).
-> >>>
-> >>> Isn't the 'RFC' being an invitation for review per the nature of the tag
-> >>> itself?
-> >>
-> >> No, RFC means patch is not ready, might change. This was brought on the
-> >> lists multiple times and some maintainers clearly ignore RFC. Including me.
+On Tue, Nov 05, 2024 at 02:05:51PM +0000, Sandor Yu wrote:
 > > 
-> > Thanks, point noted. I'll stop marking my patches with RFC tag.
-> 
-> Wait, you can keep marking them RFC! It all depends what do you want to
-> achieve. Get some comments on early work or actual review for something
-> you believe is a finished work.
-> 
-> I looked here briefly, no comments from me and I assume that was the
-> intention of RFC.
+> > On Tue, Oct 29, 2024 at 02:02:14PM +0800, Sandor Yu wrote:
+> > > Add Cadence HDP-TX DisplayPort and HDMI PHY driver for i.MX8MQ.
+> > >
+> > > Cadence HDP-TX PHY could be put in either DP mode or
+> > > HDMI mode base on the configuration chosen.
+> > > DisplayPort or HDMI PHY mode is configured in the driver.
+> > >
+> > > Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > ---
+> > > v17->v18:
+> > > - fix build error as code rebase to latest kernel version.
+> > >
+> > >  drivers/phy/freescale/Kconfig                |   10 +
+> > >  drivers/phy/freescale/Makefile               |    1 +
+> > >  drivers/phy/freescale/phy-fsl-imx8mq-hdptx.c | 1337
+> > ++++++++++++++++++
+> > >  3 files changed, 1348 insertions(+)
+> > >  create mode 100644 drivers/phy/freescale/phy-fsl-imx8mq-hdptx.c
+> > >
+> > > diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
+> > > index dcd9acff6d01a..2b1210367b31c 100644
+> > > --- a/drivers/phy/freescale/Kconfig
+> > > +++ b/drivers/phy/freescale/Kconfig
 
-Okay
+[...]
+
+I'm sorry, my email client cut the email.
+
+> > > +static int cdns_hdptx_dp_configure(struct phy *phy,
+> > > +                                union phy_configure_opts *opts)
+> > > +{
+> > > +     struct cdns_hdptx_phy *cdns_phy = phy_get_drvdata(phy);
+> > > +
+> > > +     cdns_phy->dp.link_rate = opts->dp.link_rate;
+> > > +     cdns_phy->dp.lanes = opts->dp.lanes;
+> > 
+> > Shouldn't this be conditional on set_rate / set_lanes ?
+> 
+> PHY do not support reconfigure link rate and lane count.
+
+So, you don't support reconfiguring the rate / count, but you still copy
+the new rate and lanes into your driver data. That sounds strange.
+
+[...]
+
+> 
+> > 
+> > > +
+> > > +static int cdns_hdptx_phy_set_mode(struct phy *phy, enum phy_mode
+> > mode, int submode)
+> > > +{
+> > > +     struct cdns_hdptx_phy *cdns_phy = phy_get_drvdata(phy);
+> > > +     int ret = 0;
+> > > +
+> > > +     if (mode == PHY_MODE_DP) {
+> > > +             hdptx_dp_phy_ref_clock_type(cdns_phy);
+> > > +
+> > > +             /* PHY power up */
+> > > +             ret = hdptx_dp_phy_power_up(cdns_phy);
+> > > +             if (ret < 0)
+> > > +                     return ret;
+> > > +
+> > > +             hdptx_dp_aux_cfg(cdns_phy);
+> > 
+> > Why? Don't power up the PHY if you haven't been told to.
+> 
+> Power on the PHY to enable DP AUX, which is necessary for reading EDID and training the link.
+
+Call phy_power_on() from the DP driver.
+
+> 
+> > 
+> > > +     } else if (mode != PHY_MODE_HDMI) {
+> > > +             dev_err(&phy->dev, "Invalid PHY mode: %u\n", mode);
+> > > +             return -EINVAL;
+> > > +     }
+> > > +
+> > > +     return ret;
+> > > +}
+> > > +
+> > > +static int cdns_hdptx_hdmi_configure(struct phy *phy,
+> > > +                                  union phy_configure_opts
+> > *opts)
+> > > +{
+> > > +     struct cdns_hdptx_phy *cdns_phy = phy_get_drvdata(phy);
+> > > +     int ret;
+> > > +
+> > > +     cdns_phy->hdmi.tmds_char_rate = opts->hdmi.tmds_char_rate;
+> > > +
+> > > +     /* Check HDMI FW alive before HDMI PHY init */
+> > > +     ret = hdptx_phy_check_alive(cdns_phy);
+> > > +     if (!ret) {
+> > > +             dev_err(cdns_phy->dev, "NO HDMI FW running\n");
+> > > +             return -ENXIO;
+> > > +     }
+> > > +
+> > > +     /* Configure PHY */
+> > > +     if (hdptx_hdmi_phy_cfg(cdns_phy, cdns_phy->hdmi.tmds_char_rate)
+> > < 0) {
+> > > +             dev_err(cdns_phy->dev, "failed to set phy pclock\n");
+> > > +             return -EINVAL;
+> > > +     }
+> > > +
+> > > +     ret = hdptx_hdmi_phy_power_up(cdns_phy);
+> > 
+> > it seems to be all over the place :-(
+> 
+> The PHY has different power-up rules depending on whether it's in DP or HDMI mode. 
+> In DP mode, it needs to power up first to enable DP AUX. 
+> In HDMI mode, it can power up last.
+
+The main question is why are you powering the PHY from the configure
+path at all? There is a phy_power_on() API which should be used by your
+HDMI / DP driver instead of handling that in an automagic way.
+
+> 
 
 -- 
 With best wishes
