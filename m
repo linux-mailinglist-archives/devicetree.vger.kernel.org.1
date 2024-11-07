@@ -1,128 +1,183 @@
-Return-Path: <devicetree+bounces-119715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130CB9BFCC3
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 03:50:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0590F9BFCF1
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 04:23:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44EB41C2140F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 02:50:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 62225B2248E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 03:23:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F030A5FB95;
-	Thu,  7 Nov 2024 02:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6074F839E4;
+	Thu,  7 Nov 2024 03:23:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MgrRiFhE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kznDy4A8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 765B82746C;
-	Thu,  7 Nov 2024 02:50:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A2E128689;
+	Thu,  7 Nov 2024 03:23:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730947853; cv=none; b=DlzCagJMrlnhv12wCDyQcCPFlcXooNxretGyBJpWC00KQlPSC3udTzxrHL7jOB/3L7zQz2ZTwI/l2f8Q/+YCOHSiXZ5UbrxehOLnRSHntW11V94JrgpvqKqCGpRLql0XYlqHS6RYsgKYrA9gyxwwR/7AKa/iGQFiBfGGVeqyNfg=
+	t=1730949812; cv=none; b=bQUQXr10+LRmxlKRO5H3GbdL5Di4TvssxY3scmB3U2udHCqb/phhcWRo0QJk7lVNO0V5ScI1F2J+cKCv2Mg1ffHQtAanyoVCZOdcYyoPAgOy6WgpnKL1IEY4+ab2p59lB8lPr3KNfXQBXVqqSSbPdEVnhk27wT2XMRfrsxz5+Jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730947853; c=relaxed/simple;
-	bh=cNwPsuiIyGxQeUIdb617CjxuRvDwe1uwZCuRptONgxI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EzhqPXyomg2/MwkFrMUh5yawZmtkEe/BYs8M2gaFOQZ24RXxdn/FPcPeVoxBo6OinE1uMjNK6WXnJ5OPoskCVJ0kWzg2tJbn7Y3ezGQOvWjzRaprhSjF4RwRrmcyqI9P/HmE3dg/B1HLEfxGYdmW/ffUJrtWhv1bIBx43g9d6m0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MgrRiFhE; arc=none smtp.client-ip=209.85.161.54
+	s=arc-20240116; t=1730949812; c=relaxed/simple;
+	bh=9I9tvAbDrCRj6kFW3Ln53D2FSsYye54f5kA9wfXQly8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aqcq3/UD44uEmZB6P/8SUW8PFGaTE5jQcvAoXKRj3Z6kH5VuCfhMdAVFdjNNoCh5E546jNzLTDfVp7VmyNkbP1zJVYOjHl2MsIgAcJkSKYX8vR60ZnPnDly8sIXDreaVGWp3QMoYzPzOyCbVsYFVNZbNoTiYF4c7ZmdGE3ov1II=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kznDy4A8; arc=none smtp.client-ip=209.85.214.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-5ebc04d495aso260820eaf.2;
-        Wed, 06 Nov 2024 18:50:52 -0800 (PST)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-20cdbe608b3so5185595ad.1;
+        Wed, 06 Nov 2024 19:23:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730947851; x=1731552651; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ATfgC0XLRvBm06fDERV6Ea2aikqvpiSPnuP6UzWHmyg=;
-        b=MgrRiFhEtolOmv88SjXD8nBREQEIfdqllBvMwSIjNUKOMZ4Fv0PPm4RCtYR8rsU3M+
-         5IqR6+c4RX2SVJLob2j3bHRtkEikQ7jgSerfuHF8rg+eQDeUfn3GxA3IJ6wqKM+hfdDY
-         ojreZjrYbyVPTwQjv5OooS87H9KkZCJXKARRxquKavKXvCfygkc4mEcZdVBLQ5nXCrqn
-         W+JWvhVPZzNoFYPZOUAY1+2kadEu/nvE56yAJvBiWwwD8y7HBQgxcRz24/rCPsOzbM2D
-         TjntMSDaO2DhnXC/N4OXUABBbsuGqS1bJ91N0WJoG5F0x1DjgauaU5yL/9f7xJuIBnKu
-         u2DA==
+        d=gmail.com; s=20230601; t=1730949810; x=1731554610; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mW6FFSBTEVZu0HRd5LnYlhO4N7G7lPxJ4XP+X7YSnjQ=;
+        b=kznDy4A8C+6fd8I3i+nj+vKcnJRmOQMw7zPEWGWCrZQzX/Vl7EuvK8fIpe8W+frmWk
+         gLpnaSW9swk/PIw37sPwuhjLcXYAzkp3hYkJQLPvIg7woLkv2/VOrVBaRzEH4KUivQqu
+         wWj10is9hba31ZUavOI/kexeHmrNFjREU/5SHIsKZPyUXU5yoowJO0fBdc72i26afPjl
+         c2QqgAQHbaRToZU+HuINBg2b7vwrTJR6EPwHnddH0WMoMFAnzvJSvFUP2MNx0MPqydz9
+         d8rcdPyW3bD93w1/ckVBA7+zFKgIFIevY5YdQIU4PN156CTo2t5evTes0q1JgWkmarnG
+         HGCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730947851; x=1731552651;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1730949810; x=1731554610;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ATfgC0XLRvBm06fDERV6Ea2aikqvpiSPnuP6UzWHmyg=;
-        b=QwIHmnkDbPTCKIuQ+pzRWMQDOOBPPI3wS2SaBF+GqO6qMeKORjnBV1vxqF70+7rq/V
-         ACFDULWCnR0FGXn5ZyL16vI3wWo0jlgURZNH5kgqmquyzHdg++174vV0wXRQa9U94ce2
-         9CTKY564it8sqwH1wI5HEqxH+rLwJRFhbSAvd8BnWUBynq79szT3OHh+5BVITPphZHpb
-         DnKek2/pjVugdj9W+p/Xf9TsvghTSI3n6nQZk1td+tMGMP/mVeKkv/jQv2dwz4wKYnP2
-         1JxqQ69CUHaZi08N/GqG4l5VyBRKpSFKezmDsxVMeizyfmakQX/kB43yPED4Vvb12FFt
-         /3aA==
-X-Forwarded-Encrypted: i=1; AJvYcCUTalDNFnlhlR0edAFlXZwRuP3eaOKS6nlvlzusmt8F4FBJCgnIhb0lz9LRmd1DH0N7XC0kUJtDPqvd@vger.kernel.org, AJvYcCWfospffdTxiD1qbjOFW4PBoX2UwZuAElB0JAtZR4Xmn0Jbdt9QWLNKqglNNk/ebtGlU56ZG/1SFyU=@vger.kernel.org, AJvYcCXtfB8mxXYGK2Dz6l8Qc/cw/VHVXmJbipez2vZDSgdQUKC/xUmAJpNoElVbbNUiKlqjRBea95mv1sO4ouZa@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoQJnLa4u7K3ijw2ToaMWo+q7Dpuk2WLwnjw8l/5el3EhoFifr
-	zlPpIOYw4PrsigF0XNtGaGRu93mH6DPBl8FyeX7RzUVN736KGOhLsHCo0Rs39Jiizyb1CnwVH+R
-	v2fY/JWRMZ6ze+LKUX4caOvYZCFk=
-X-Google-Smtp-Source: AGHT+IHL3m7QA0Uy6taccrukDMm7SpxKN4v3xW2DK80sYwTstNUcojSaxTpgyZJ7ZxwcVu7QNkxKdF9c6CZesXfGNWA=
-X-Received: by 2002:a05:6820:1ca2:b0:5eb:b282:5916 with SMTP id
- 006d021491bc7-5ec23a8d4c4mr30471047eaf.7.1730947851535; Wed, 06 Nov 2024
- 18:50:51 -0800 (PST)
+        bh=mW6FFSBTEVZu0HRd5LnYlhO4N7G7lPxJ4XP+X7YSnjQ=;
+        b=ML8WkIYuHJTRxk6SQwPI0ervR9hnsyUcYFExrFCgYFyatUzFAeq1duCYL8Ea99PiHp
+         8eh4DmN6ONeHiGCvkubj/Ps6N2pybs5fByFV1B/bmVvSruTfg2x44VUI+/76aQKqS6n/
+         3oKWvW3/ucRHbdOAK/jmmz500/wYcBco4umdk1ss/bSprwtlOYa3f6EFM41WtUpzXehK
+         /NJ2vAbv2VZ9kHKlaqCIyAcYzjKRi2VLK8xN+lWxygX34jEVlQXM3s0nuKW/C7/J9Hq7
+         PIKRCGjaJstB8gZnqPAhHrXYgYPZH1cX/t0kg5D159EQPiY+O+qbFLOobJ9xKtpRnsxh
+         4YgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUIn54hjwhdMOjX3sAcJoNrGaUUoaKJ7GVALNrcK46yI+RRg27lYG8fHjZ0evmd6gUJ79jxP0CiFdvLOOI0@vger.kernel.org, AJvYcCWULRI8Q58dmrEcr2TgGGTEmKfSHLtTjWbhrGMX6U0PyfZkQzw9sc67VznOvM/EL1T1vMZrSMsA3UraMoA=@vger.kernel.org, AJvYcCXnpwvHUtjCmE2vAwMzM+kUSYrbnvaM/Wdi4j4vmBXAeSSM0vLCedYqTukGeM9Ne3lMkDkYWvZhS29V@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQImDIN0TsjaD69+8GX9zcIJEu+G9ADDuGQIVPS3rVkPUssFAx
+	2mou7e34hlZheVl4BDSNDeBa52/domHizFaQeDTib2ZzdBXaY/Zt
+X-Google-Smtp-Source: AGHT+IEcemfgbEWs6tmtNw848/UFNwJTUBFuFXhQfXgm7zPqrE9iXo+PVztggOrMR6fvdZKrQY95AA==
+X-Received: by 2002:a17:902:fc46:b0:207:1708:734c with SMTP id d9443c01a7336-211785eb91emr6055885ad.11.1730949809793;
+        Wed, 06 Nov 2024 19:23:29 -0800 (PST)
+Received: from ux-UP-WHL01.. (mailgw01.gttektw.com. [45.117.96.243])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177dde2f7sm2227485ad.77.2024.11.06.19.23.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Nov 2024 19:23:29 -0800 (PST)
+From: Charles Wang <charles.goodix@gmail.com>
+To: krzk@kernel.org,
+	hbarnor@chromium.org,
+	dianders@chromium.org,
+	conor.dooley@microchip.com
+Cc: dmitry.torokhov@gmail.com,
+	jikos@kernel.org,
+	bentiss@kernel.org,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Charles Wang <charles.goodix@gmail.com>
+Subject: [PATCH v2] dt-bindings: input: Goodix SPI HID Touchscreen
+Date: Thu,  7 Nov 2024 11:23:13 +0800
+Message-ID: <20241107032313.64390-1-charles.goodix@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1730720720.git.stano.jakubek@gmail.com> <f334c973dd4e6390a0cd51dbde358277a07604d7.1730720720.git.stano.jakubek@gmail.com>
-In-Reply-To: <f334c973dd4e6390a0cd51dbde358277a07604d7.1730720720.git.stano.jakubek@gmail.com>
-From: Chunyan Zhang <zhang.lyra@gmail.com>
-Date: Thu, 7 Nov 2024 10:50:15 +0800
-Message-ID: <CAAfSe-vdf59GAhCsVZzSYYYpYmhj0eQBDTwLaJnTMVYvFM6Rtw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: power: supply: sc27xx-fg: document
- deprecated bat-detect-gpio
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Mon, 4 Nov 2024 at 21:04, Stanislav Jakubek <stano.jakubek@gmail.com> wrote:
->
-> While the bindings have always used the correct 'battery-detect-gpios'
-> property, the DTS and the Linux driver have been using the incorrect
-> 'bat-detect-gpio' property. Document this property and mark it
-> as deprecated.
->
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+The Goodix GT7986U touch controller report touch data according to the
+HID protocol through the SPI bus. However, it is incompatible with
+Microsoft's HID-over-SPI protocol.
 
-Reviewed-by: Chunyan Zhang <zhang.lyra@gmail.com>
+Signed-off-by: Charles Wang <charles.goodix@gmail.com>
+---
+Changes in v2:
+- Change compatible to 'goodix,gt7986u-spifw'.
+- Remove 'goodix,hid-report-addr' property.
+- Change additionalProperties to unevaluatedProperties.
+- v1: https://lore.kernel.org/all/20241025114642.40793-2-charles.goodix@gmail.com/
+---
+ .../bindings/input/goodix,gt7986u.yaml        | 66 +++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
 
-Thanks,
-Chunyan
+diff --git a/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
+new file mode 100644
+index 000000000..b7afa21fb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/goodix,gt7986u.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Goodix GT7986U SPI HID Touchscreen
++
++maintainers:
++  - Charles Wang <charles.goodix@gmail.com>
++
++description: Supports the Goodix GT7986U touchscreen.
++  This touch controller reports data packaged according to the HID protocol
++  over the SPI bus, but it is incompatible with Microsoft's HID-over-SPI protocol.
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++properties:
++  compatible:
++    description:
++      Add the 'spifw' suffix to distinguish it from the general GT7986U I2C-HID
++      touchscreen, as it runs a substantially different firmware than GT7986U
++      I2C-HID touchscreens.
++    enum:
++      - goodix,gt7986u-spifw
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  spi-max-frequency: true
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - reset-gpios
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      touchscreen@0 {
++        compatible = "goodix,gt7986u-spifw";
++        reg = <0>;
++        interrupt-parent = <&gpio>;
++        interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
++        reset-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
++        spi-max-frequency = <10000000>;
++      };
++    };
++
++...
+-- 
+2.43.0
 
-> ---
-> Changes in V2:
-> - new patch
->
->  .../devicetree/bindings/power/supply/sc27xx-fg.yaml          | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml b/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml
-> index 9108a2841caf..b10f155afe68 100644
-> --- a/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml
-> +++ b/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml
-> @@ -27,6 +27,11 @@ properties:
->    battery-detect-gpios:
->      maxItems: 1
->
-> +  bat-detect-gpio:
-> +    maxItems: 1
-> +    deprecated: true
-> +    description: use battery-detect-gpios instead
-> +
->    interrupts:
->      maxItems: 1
->
-> --
-> 2.43.0
->
 
