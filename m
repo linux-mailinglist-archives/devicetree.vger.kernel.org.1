@@ -1,153 +1,134 @@
-Return-Path: <devicetree+bounces-119932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 948E19C094B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 15:51:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1415D9C0967
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 15:57:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C0E61F20F64
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 14:51:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD186284E39
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 14:57:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924042139C9;
-	Thu,  7 Nov 2024 14:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AF90210186;
+	Thu,  7 Nov 2024 14:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jzaGTWfp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nUKjHHmn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAD7921315F
-	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 14:50:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F029F1DFDB8;
+	Thu,  7 Nov 2024 14:57:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730991047; cv=none; b=Wo1DEJboq9leqgD7+MlQr41AMmrn8JkwyyHEyZfv1EtCsQ0Bf95u3bJ4F2se97T4u5zZYl3CQwYsT5U+LW38aMvKGUnPL+iF6FImGT5wsjbEm5+iHV2oevm3HVPKhVnKF0R0urhYCKBdRl6Mjxm8zJUhjMwIScNPT/0rLxHu9eY=
+	t=1730991439; cv=none; b=PJyAWfL4d0TvaSt0ctNuQNPMiafNGlxJTTZPtRd759cuSaUxGlXclwEs6zdPVtUqjEQdU1uBX8jfQfp254MT6AkmFsQyUUHsXHgm2ylAi09F29nSQql3fSvKRezfUFOCq/RCdH1aiJysb4kEv01eKCRzJ2aHXog4hrZ+DkrU+tA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730991047; c=relaxed/simple;
-	bh=c/xTRIrJ5nBsiRyw55IV13bqiTCl2MenC3obfPMlG1I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a4jAFzeuT+TtDd7KZksnkhBWPZddLe8w6fIvcHWhfx9+Ac9wmBW8p21ClE9Lg+AJuW1W/xOf0vuJ9k3tjvhAqBfU0kuT0U/e458Fq1GkQO/rLP26S9wG+rDkpQ3E/eNGQLx/Al8zBi0fo6l4pyZUvknjdK5cL3iy2Dd37AuIYEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jzaGTWfp; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A7BSA8m026843
-	for <devicetree@vger.kernel.org>; Thu, 7 Nov 2024 14:50:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	orOKMQLBCv2h1c195dYm+Nmc2xLy3QnFjG1e5d7Rl/o=; b=jzaGTWfp/NtUodwA
-	RsSZofrgtVYoE9CVJy8F23qqbIjw9F7tczczFR+lApvRxRH45Cmo0Ou4ufqTME8H
-	8OKHwd5+vAGiZMizIVSXxKIP7ZLHyrlWzH3qPfqGqzdc6W+/54AV9hqcwjW41EiC
-	/jYhvl47YZKoMPRUvx4bQ+8ij39K5Pd0Qx7ny/4cu3fOhbdrY0zRZ5IkfyyRxQyq
-	tE6GeIwMTg4YkRkguQZWR780z6kfZpY1QrQ3T55wivy68XEXnOD0wR3I6AwwTxwf
-	OqgvtaFhHBS0fVPivTMdWWMAMFoL01Gcnq0kMyAi2+BV2Vu287zJg6kaRwmaypOs
-	SYzzCQ==
-Received: from mail-vk1-f198.google.com (mail-vk1-f198.google.com [209.85.221.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42qfdx7v59-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 14:50:45 +0000 (GMT)
-Received: by mail-vk1-f198.google.com with SMTP id 71dfb90a1353d-50db4564821so11753e0c.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 06:50:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730991044; x=1731595844;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=orOKMQLBCv2h1c195dYm+Nmc2xLy3QnFjG1e5d7Rl/o=;
-        b=gxEJJoACgN2MHO7fwVkqCTzWztKbYkC+I4wRoH1/LaPkt8NNeSJRhdNC71w8Sm9Kgk
-         kaCq7ypY+3Kd3M+NZX5GFv2tZ+JPIwQ1UvE5W4lR/jrDHR+mSa5ApkDBBYKirF5pgy+9
-         ladS3j6v/GlI1RVQNs7nCu8dy44TV0nIS/R4NP2649j1Vqjab4LqiOy+PXCpFmLwTvQ+
-         1lK/PfUWlnvPmqdZ6Nzku8dvnmeBqR+m86R4vPOcpqegT5BwBu+O3H/70LA7cj4fxXwn
-         Nnl8gfcJ/l3ijLmP762WDMmw4eOesRVgyMDhdhh2rUjPnFg952cvLoDFR/nrnn+Yd7xS
-         j9Ug==
-X-Forwarded-Encrypted: i=1; AJvYcCX3+nNlfP9eU4x+23IK6RHEfQZ184UJ83Qy02vlhbFsx4GKUUZQxwUUOFgmd+f2uDGBnHy8ZOo9WiyX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwP6fkZp++kMYaeV9wN5bcoo+cvPJqW0TfBlJ6qbPlX75n6IIdt
-	AlCun3ug+Ye420pENhdXIlPhM3Vw5ojIse2IC5AA48mLVPanRLd+lJ+i4nPOabmiRkJrZ7T27/B
-	wDQ8D4txgBkir+s2DEjuuPc6WUKGHOb7moaTyG7zRNQ2xplLvmSAgRk8s6RGA
-X-Received: by 2002:a1f:d1c4:0:b0:50d:6f0:5879 with SMTP id 71dfb90a1353d-513fe8bbd35mr120063e0c.1.1730991043635;
-        Thu, 07 Nov 2024 06:50:43 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHus393ipmlzutzTG3KT0B8ynjWizWAAq7Gzr52l40pNnylVkHVxH+LD0GcjNXGrfSrQrhO9A==
-X-Received: by 2002:a1f:d1c4:0:b0:50d:6f0:5879 with SMTP id 71dfb90a1353d-513fe8bbd35mr120026e0c.1.1730991042981;
-        Thu, 07 Nov 2024 06:50:42 -0800 (PST)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9ee0a18872sm103586466b.11.2024.11.07.06.50.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Nov 2024 06:50:42 -0800 (PST)
-Message-ID: <69000e68-c1ef-4cdd-8fc0-2a04a6d38e02@oss.qualcomm.com>
-Date: Thu, 7 Nov 2024 15:50:39 +0100
+	s=arc-20240116; t=1730991439; c=relaxed/simple;
+	bh=C9KmSDR5KFc0giels4Al9MLQh0c4mvvugPsBEyIlPMc=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=SpXhsujsiO+k5KWM5nnmIvyba4h16mNKnmS5S0L5PhjL8tl8M1VI3EzOu6geX5H8ZhMgjX3zNvQ97dLnd25W32hgmr5PJBmmaI1Cf7g+E4lOl305+stxRBlxA/+XKe1Y3VINn1SSIc5JwB6WHCcb2F31wVcKfVFmhek1jCcHvyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nUKjHHmn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 446C9C4CECC;
+	Thu,  7 Nov 2024 14:57:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730991438;
+	bh=C9KmSDR5KFc0giels4Al9MLQh0c4mvvugPsBEyIlPMc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=nUKjHHmnRqq4bsnJZ+OZuFrB9YXvC6X4M5misHrpPT1KzbLdS5E4/MVzrNxOkCJV6
+	 I2rbgYr86mPtqiO0a1lrHhXuM2ewfE48sz2vOaMGawmaIK1eTa7uBoXQzs2J69gPdS
+	 wCXAA/t6HurHqQpmnUvMjzytKtu4ZZn/d2/eU4nJ3nyc4aWJwPsl+0tuoshvxECg77
+	 Ptqrj0ON5PC8Cc14u0bbyJeuvq3JBG8EdqeAu1I038TXCm+DGkTUtTaOVXNNsDyGXK
+	 0Ua807riaRFvirBS6h+ZWu6YQvkuDwwbncZLaoAxl9nykMT3L1j8ebFBrLbWNbipgG
+	 rvnAqAZbPUiHA==
+Date: Thu, 7 Nov 2024 08:57:15 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-pci@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v6 0/2] PCI: microchip: support using either instance 1
+ or 2
+Message-ID: <20241107145715.GA1613568@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/7] arm64: dts: qcom: ipq5332: Add tsens node
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
-        srinivas.kandagatla@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, amitk@kernel.org, thara.gopinath@gmail.com,
-        rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
-        lukasz.luba@arm.com, andersson@kernel.org, konradybcio@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com
-References: <20241104124413.2012794-1-quic_mmanikan@quicinc.com>
- <20241104124413.2012794-5-quic_mmanikan@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241104124413.2012794-5-quic_mmanikan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: TVZyybg-_OwNDGHgznfeEdtAwDKlor6z
-X-Proofpoint-ORIG-GUID: TVZyybg-_OwNDGHgznfeEdtAwDKlor6z
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- lowpriorityscore=0 suspectscore=0 phishscore=0 priorityscore=1501
- impostorscore=0 mlxscore=0 bulkscore=0 spamscore=0 mlxlogscore=946
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411070115
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241107-aqueduct-petroleum-c002480ba291@spud>
 
-On 4.11.2024 1:44 PM, Manikanta Mylavarapu wrote:
-> From: Praveenkumar I <quic_ipkumar@quicinc.com>
+On Thu, Nov 07, 2024 at 10:59:33AM +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> IPQ5332 has tsens v2.3.3 peripheral. This patch adds the tsense
-> node with nvmem cells for calibration data.
+> The current driver and binding for PolarFire SoC's PCI controller assume
+> that the root port instance in use is instance 1. The second reg
+> property constitutes the region encompassing both "control" and "bridge"
+> registers for both instances. In the driver, a fixed offset is applied to
+> find the base addresses for instance 1's "control" and "bridge"
+> registers. The BeagleV Fire uses root port instance 2, so something must
+> be done so that software can differentiate. This series splits the
+> second reg property in two, with dedicated "control" and "bridge"
+> entries so that either instance can be used.
 > 
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-> ---
-> Changes in V6:
-> 	- No change
+> Cheers,
+> Conor.
 > 
->  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 66 +++++++++++++++++++++++++++
->  1 file changed, 66 insertions(+)
+> v6:
+> - rework commit messages to use Bjorn's preferred "root port" and "root
+>   complex" wording
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> index d3c3e215a15c..94dca05fdc2a 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> @@ -177,6 +177,46 @@ cpu_speed_bin: cpu-speed-bin@1d {
->  				reg = <0x1d 0x2>;
->  				bits = <7 2>;
->  			};
-> +
-> +			s11: s11@3a5 {
+> v5:
+> - rebase on top of 6.11-rc1, which brought about a lot of driver change
+>   due to the plda common driver creation - although little actually
+>   changed in terms of the lines edited in this patch.
+> 
+> v4:
+> - fix a cocci warning reported off list about an inconsistent variable
+>   used between IS_ERR() and PTR_ERR() calls.
+> 
+> v3:
+> - rename a variable in probe s/axi/apb/
+> 
+> v2:
+> - try the new reg format before the old one to avoid warnings in the
+>   good case
+> - reword $subject for 2/2
+> 
+> CC: Daire McNamara <daire.mcnamara@microchip.com>
+> CC: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> CC: Krzysztof Wilczyński <kw@linux.com>
+> CC: Rob Herring <robh@kernel.org>
+> CC: Bjorn Helgaas <bhelgaas@google.com>
+> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> CC: Conor Dooley <conor+dt@kernel.org>
+> CC: linux-pci@vger.kernel.org
+> CC: devicetree@vger.kernel.org
+> CC: linux-kernel@vger.kernel.org
+> CC: linux-riscv@lists.infradead.org
+> 
+> Conor Dooley (2):
+>   dt-bindings: PCI: microchip,pcie-host: fix reg properties
+>   PCI: microchip: rework reg region handing to support using either root
+>     port 1 or 2
+> 
+>  .../bindings/pci/microchip,pcie-host.yaml     |  11 +-
+>  .../pci/plda,xpressrich3-axi-common.yaml      |  14 ++-
+>  .../bindings/pci/starfive,jh7110-pcie.yaml    |   7 ++
+>  .../pci/controller/plda/pcie-microchip-host.c | 116 +++++++++---------
+>  4 files changed, 87 insertions(+), 61 deletions(-)
 
-You're adding 's11' etc. to the global label namespace. Please make
-the names more specific, like tsens_sens11_off
+Thanks!  The patches themselves are unchanged between v5 and v6.  I
+replaced the v5 patches on pci/controller/microchip with these.
 
-[...]
-
-> +		tsens: thermal-sensor@4a9000 {
-> +			compatible = "qcom,ipq5332-tsens";
-> +			reg = <0x4a9000 0x1000>,
-> +			      <0x4a8000 0x1000>;
-
-Please pad the address part to 8 hex digits with leading zeroes.
-
-Konrad
+I also capitalized "Root Port" and "Root Complex" to give a hint that
+they are proper nouns defined by the PCIe spec.
 
