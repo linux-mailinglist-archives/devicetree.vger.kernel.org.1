@@ -1,228 +1,253 @@
-Return-Path: <devicetree+bounces-119699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D897C9BFAC1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 01:30:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C80529BFACB
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 01:37:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 077AC1C21582
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 00:30:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86FDC283B86
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 00:37:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAA693D64;
-	Thu,  7 Nov 2024 00:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7806B10F9;
+	Thu,  7 Nov 2024 00:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="QkA/XWXt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Li37jDdn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74A14EC0
-	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 00:29:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98AA06FBF;
+	Thu,  7 Nov 2024 00:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730939401; cv=none; b=KZY9HsJL1lsEjZqIggHDkTctVTxFIXPFNnEPluUVQVSY+fQ5p3fSYNwoJL0eAZ8yVafI1tLoUqH/+18IhAS8Yj/c9ZtTYZv7wXUxaoc77o2itr2u+Mpq18FzEcexQRM3nCAk1zurOBl9U8dd6zTasAn1DuSpR5S+vnlkiBokNwQ=
+	t=1730939817; cv=none; b=C1kXuo2Q7UuWBhB9V5a1q7ieHnfUgh8Bcn47CJUwo7M14R/nEZcheC34AXhPZFRHxg0uuAFgkVCuJa3DKpEAC9x4CJJOvS82VCL0YXOKGGazwB/4bNh980cmjPIMkM6TkL4AtgSTi0tjGNd1MFiLyFU4Z29nBSUFYCMKJThhxsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730939401; c=relaxed/simple;
-	bh=McX3HCdht9EKGC5tsGAU7Hm6qKwhCcuRe91FXqG4oNk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e2wUdU3SXbUQUV8IOpAmoo206ierOGyFt6f2iS3Ix0Y9hN5mvtVO0qxgXy8joEv/lm88B0dD7qFvAOFD9o589dPL3vw6VSQ3Zhv6GjAzS/MVs4IXL7HIrz8QS6py2hr390dmL7Eb4EVSb73xJZr0nMpHYSEp7/qfwAmLKhrLsFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=QkA/XWXt; arc=none smtp.client-ip=209.85.166.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-83b430a4cfdso18277139f.2
-        for <devicetree@vger.kernel.org>; Wed, 06 Nov 2024 16:29:59 -0800 (PST)
+	s=arc-20240116; t=1730939817; c=relaxed/simple;
+	bh=mMqrFTabFjPuJ5L1SvFAqtifseKaAG/U8UbokBKH5dM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WQ7rqnvb3iEgRHMbPWPnsAxrQtVfgzRzgjZz0wtsd44cOAnCT1OBnQSlxWfAdZTNiUCdt4OyMU9Cp5oZhkZa8FYtV6dGACgOEuNrXY0HNgweI2P96Z3FHVFFEa9stZemoQ+X9XUs7n0bjEIt8hYe3f39c08xZkzLLLe2cj/DuVw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Li37jDdn; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a9a850270e2so59370066b.0;
+        Wed, 06 Nov 2024 16:36:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1730939398; x=1731544198; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=E3Z19IHRqfxS578Ys483rX+/hvz8ULIan1ekFWOQaVI=;
-        b=QkA/XWXtzwhXM/h+5lapcBkGyUj1Kd9xDAp82yQFgBUobK68GRWbXcnq/AZ339PJDU
-         PDL0Qn7mPltsobBMfNjvWi+MG5x+69o+dTcDKLn91WC7YbE83+8YXrrHygy1PR5tmPY7
-         aTKA7GNAs9wOe6sZyh8CAR6T5oNk2GJi5yNO52fqXmZLwRHIncecKl13x9nkjE1j+Mmg
-         3DELnIFwr/JPIanV22FO0SvlJoTKFgvfOMFUkC5i2wAjc10GEO7nWKuLm5ZiFFLLuflY
-         4nLMeIKuOgZs1WfV+oXQE+lW3St149+95mlfIunw7jpVP0Sda4KmWUoqgjXO0TQk6r4E
-         oi7A==
+        d=gmail.com; s=20230601; t=1730939814; x=1731544614; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VZ2KJqDDlr0BpJVm1jVxEVWBDpJgOHV/yUofgteoeys=;
+        b=Li37jDdnNuHAttHwwT61+MT7hLIcufOiAxdQ6cAR7yM2lunrhK5aGR4CMXWIqlzC1K
+         +Ngq459Rl8GSX9RWNEucA4kLHA5a4E5kRv4aNTijv1b8xooXSRuA+GxhcT6kkptRIX1J
+         oxI5//1qF0HDWefK2G+DiAzpsfGdqYekQAGok3gwwdp92a2bMcL7d4v/zwUEUv3Jd5Jd
+         xqufnttrRaZh+OapKGM+USUCVPhGScYktJjbIxDgv8wMCxnStA9vT57y+z9NV7cY1NFx
+         aIRGHJAMHeZBgJacxVzj8dXwfr/VKW23DcBGLiL5tHmKYBh+oFjwb4x/b6tk04H6f+jw
+         B3+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730939398; x=1731544198;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E3Z19IHRqfxS578Ys483rX+/hvz8ULIan1ekFWOQaVI=;
-        b=ikegso/u/eXT1pFDp4bHK9adv8nArK0tNplTaJiSFsNNUHbrGw/tWIxIHHmFGmmrwX
-         GZaAdncxR07b3dPfuAsJL3BqWV13JkwCjPiAfboQb6Pp0ZT6SgA50w/BlaHEQJJ8AO5A
-         iWP3p+qhJRKTMTfOHrbUqRn8/bdRJRirjUFTkYF6w6wA6NxO5/Ck2CY3lRmOUYfZwzD7
-         7tG2KBH4l1P5GTURm1cfyWWyCwlOHKDhJsI7VrfBj7cKx/R5USCy1XnGpJ6ai3/+8kKU
-         Kb6vmXrAEXwcrEkCRzU1uTNHO3kR+bOMBGjD2YX4g7yLac/su00oqCdBakqFH2hnnBPc
-         k21g==
-X-Forwarded-Encrypted: i=1; AJvYcCX4X5Pk1M+pW+gH/HMitAeBJP4W5xflIgUY9Hc9jQG4o4mvnk/0agd1dBTMsGeugDw8gx4To/Tn2SRU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUCaziiIQlCmMcq4dkqPyy4k9jQa4mmoDKop6EPTkyqQjPK1hW
-	ld5VcKvtI5qrOH9ERf+mgsNA8Sv/gyNNYh2kfSU33TnqO4U51TrbDQ+xUrJ4YmY=
-X-Google-Smtp-Source: AGHT+IEHbvezWSNRUJM0X1HoonUf45bTn5xrbNazcCjs5Xe/xtZ22FiANoIgp4EDA+vYIihd3QT+SA==
-X-Received: by 2002:a05:6602:3413:b0:83a:b235:2d74 with SMTP id ca18e2360f4ac-83b1c40d531mr4199202539f.7.1730939398525;
-        Wed, 06 Nov 2024 16:29:58 -0800 (PST)
-Received: from [100.64.0.1] ([147.124.94.167])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4de5f8d0ba8sm64230173.110.2024.11.06.16.29.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Nov 2024 16:29:58 -0800 (PST)
-Message-ID: <a9f59ffb-23e9-4c83-8d44-4c766e32b3bf@sifive.com>
-Date: Wed, 6 Nov 2024 18:29:56 -0600
+        d=1e100.net; s=20230601; t=1730939814; x=1731544614;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VZ2KJqDDlr0BpJVm1jVxEVWBDpJgOHV/yUofgteoeys=;
+        b=Kpecj5KOebA3toC8wvplaA9otnUbBdbVxIumXkG8D+5/EO8iJfw/f729ofgbwWbo5f
+         CR1NN+trSZYL6iltScT2mZ4iD3SFfyGHYYeMs2wuqLb86+A9OEmt2gAmGu9NNYnVQ24p
+         v4Buwg4qDcF5qnZfKU7yyx6inRveoN+X6nr9nWAHV/5/o+QwsK4Q92V4mrg16NwEDA+/
+         lHzQqB1TjShGh8z6+h3gb7jKxiVR4wn8wa2QmO2mR2EGyfiMyXVBnABVGjk5uJfIPBue
+         2VedGN4v1s4JG5N4akr85ZwfruxMf7O4r0MKCHfvRG+ZOmJRmTGmkIKSA4imYWipiy5b
+         Z7WA==
+X-Forwarded-Encrypted: i=1; AJvYcCUo4Pjec20LB+7oilL+ohJ7fdxoQerv8MEXj2xb+1jYRcdrH1XgQPOpBtT6T7eZL9NSQxyrhx8hiast@vger.kernel.org, AJvYcCVsyHXdbBoOvg+QgyX21qoJHb7YnXWpv8kARJGtC1FoXJdKIqSSMWyRqCVyV1jZkxL0xeNnA2RVu0tJigkX@vger.kernel.org, AJvYcCWL5T38/7jP/oiA0TcWERj55jGxXvjQ8NwPwqAZAhT58eF6OuhHWV1qA7k/gbNFywQPpAu8Yu44/HSy@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkP6fegaChhWkWKrDJKm1nA56jvvyamDxmOx0BUgCQxQLKcT8i
+	qTCsDsjJ0kIfuym6EhP2VsGNtBFwT6AOfBgmBQ4P3nIbefyTKnQMHtAaYrX3PbwTa5gCkYbtVyx
+	7WJfXrFI1c+FCKSva0KWQWt/w8O2yUU826cE=
+X-Google-Smtp-Source: AGHT+IETkScOSUxZd3ErqQbo+kcXH+PXR3sYrQW1guLOYuIVBc/zfUsa7sINCKMLWwhvbWzDzuqURQ9iowF7aNpXvoo=
+X-Received: by 2002:a17:907:2d91:b0:a9a:80cc:c972 with SMTP id
+ a640c23a62f3a-a9e655a8980mr2108644366b.27.1730939813501; Wed, 06 Nov 2024
+ 16:36:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: spacemit: add support for K1 SoC
-To: Troy Mitchell <troymitchell988@gmail.com>, andi.shyti@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20241028053220.346283-1-TroyMitchell988@gmail.com>
- <20241028053220.346283-2-TroyMitchell988@gmail.com>
- <846b4f2a-602e-431e-affc-0e995db5eee5@sifive.com>
- <9dfb250c-d8a1-4536-8658-48b3a2585abd@gmail.com>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <9dfb250c-d8a1-4536-8658-48b3a2585abd@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241106023916.440767-3-j2anfernee@gmail.com> <202411062051.TLRkJSSL-lkp@intel.com>
+In-Reply-To: <202411062051.TLRkJSSL-lkp@intel.com>
+From: Yu-Hsian Yang <j2anfernee@gmail.com>
+Date: Thu, 7 Nov 2024 08:36:16 +0800
+Message-ID: <CA+4VgcKXQ4padSHBpnmw_vN5WWL+GfcJqOCtthN88C1hwicb6A@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] iio: adc: add Nuvoton NCT720x ADC driver
+To: kernel test robot <lkp@intel.com>
+Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
+	jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com, 
+	javier.carrasco.cruz@gmail.com, andy@kernel.org, marcelo.schmitt@analog.com, 
+	olivier.moysan@foss.st.com, mitrutzceclan@gmail.com, 
+	matteomartelli3@gmail.com, alisadariana@gmail.com, joao.goncalves@toradex.com, 
+	marius.cristea@microchip.com, mike.looijmans@topic.nl, 
+	chanh@os.amperecomputing.com, KWLIU@nuvoton.com, yhyang2@nuvoton.com, 
+	llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, openbmc@lists.ozlabs.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Troy,
+Dear kernel test robot,
 
-On 2024-11-06 1:58 AM, Troy Mitchell wrote:
-> On 2024/11/2 11:48, Samuel Holland wrote:
->> On 2024-10-28 12:32 AM, Troy Mitchell wrote:
->>> The I2C of K1 supports fast-speed-mode and high-speed-mode,
->>> and supports FIFO transmission.
->>>
->>> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
->>> ---
->>>  .../bindings/i2c/spacemit,k1-i2c.yaml         | 51 +++++++++++++++++++
->>>  1 file changed, 51 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
->>> new file mode 100644
->>> index 000000000000..57af66f494e7
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
->>> @@ -0,0 +1,51 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/i2c/spacemit,k1-i2c.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: I2C controller embedded in SpacemiT's K1 SoC
->>> +
->>> +maintainers:
->>> +  - Troy Mitchell <troymitchell988@gmail.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: spacemit,k1-i2c
->>> +
->>> +  reg:
->>> +    maxItems: 2
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>
->> Looking at the K1 user manual (9.1.4.77 RCPU I2C0 CLOCK RESET CONTROL
->> REGISTER(RCPU_I2C0_CLK_RST)), I see two clocks (pclk, fclk) and a reset, which
->> looks to be standard across the peripherals in this SoC. Please be sure that the
->> binding covers all resources needed to use this peripheral.
+Thank you for your response.
+I would check these warnings.
+
+kernel test robot <lkp@intel.com> =E6=96=BC 2024=E5=B9=B411=E6=9C=886=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=888:32=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> RCPU stands for Real-time CPU, which is typically used for low power consumption
-> applications.
-> We should be using the APBC_TWSIx_CLK_RST register, but it's not listed in the
-> user manual. However, you can find this register referenced in the K1 clock patch:
-> https://lore.kernel.org/all/SEYPR01MB4221AA2CA9C91A695FEFA777D7602@SEYPR01MB4221.apcprd01.prod.exchangelabs.com/
-
-Ah, well that driver is missing most of the bus clocks. For example, from a
-quick comparison with the manual, the driver includes sdh_axi_aclk, but misses
-all of the PWM APB clocks at APBC_PWMx_CLK_RST bit 0.
-
-If the clock gate exists in the hardware, even if it is enabled by default, it
-needs to be modeled in the devicetree.
-
-> Also, to see how to enable the I2C clock in the device tree (note that the
-> spacemit,apb_clock property is unused in the driver), check out the example here:
-> https://gitee.com/bianbu-linux/linux-6.1/blob/bl-v1.0.y/arch/riscv/boot/dts/spacemit/k1-x.dtsi#L1048
-
-The devicetree describes the hardware, irrespective of which features the driver
-may or may not use.
-
->>> +
->>> +  clock-frequency:
->>> +    description:
->>> +      Desired I2C bus clock frequency in Hz. As only fast and high-speed
->>> +      modes are supported by hardware, possible values are 100000 and 400000.
->>> +    enum: [100000, 400000]
->>
->> This looks wrong. In the manual I see:
->>
->> * Supports standard-mode operation up to 100 Kbps
->> * Supports fast-mode operation up to 400Kbps
->> * Supports high-speed mode (HS mode) slave operation up to 3.4Mbps(High-speed
->> I2C only)
->> * Supports high-speed mode (HS mode) master operation up to 3.3 Mbps (High-speed
->> I2C only)
->>
->> So even ignoring HS mode, 100 kHz and 400 kHz are only the maximums, not fixed
->> frequencies.
-> okay. I will fix it in next version.
-> and should I keep to ignore high-speed mode here?
-> if not, how about this:
-> 
->   clock-frequency:
->     description:
->       Desired I2C bus clock frequency in Hz.
->       K1 supports standard, fast, high-speed modes, from 1 to 3300000.
->     default: 100000
->     minimum: 1
->     maximum: 3300000
-
-I don't know if high-speed mode should be included, since it requires some extra
-negotiation to use. Assuming it should be, that looks reasonable.
-
-Regards,
-Samuel
-
->>
->> Regards,
->> Samuel
->>
->>> +    default: 100000
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +  - clocks
->>> +
->>> +unevaluatedProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    i2c@d4010800 {
->>> +        compatible = "spacemit,k1-i2c";
->>> +        reg = <0x0 0xd4010800 0x0 0x38>;
->>> +        interrupt-parent = <&plic>;
->>> +        interrupts = <36>;
->>> +        clocks = <&ccu 90>;
->>> +        clock-frequency = <100000>;
->>> +    };
->>> +
->>> +...
->>
-> 
-
+> Hi Eason,
+>
+> kernel test robot noticed the following build warnings:
+>
+> [auto build test WARNING on jic23-iio/togreg]
+> [also build test WARNING on linus/master v6.12-rc6 next-20241106]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Eason-Yang/dt-bind=
+ings-iio-adc-Add-binding-for-Nuvoton-NCT720x-ADCs/20241106-104046
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git tog=
+reg
+> patch link:    https://lore.kernel.org/r/20241106023916.440767-3-j2anfern=
+ee%40gmail.com
+> patch subject: [PATCH v1 2/2] iio: adc: add Nuvoton NCT720x ADC driver
+> config: s390-allmodconfig (https://download.01.org/0day-ci/archive/202411=
+06/202411062051.TLRkJSSL-lkp@intel.com/config)
+> compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 5=
+92c0fe55f6d9a811028b5f3507be91458ab2713)
+> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archi=
+ve/20241106/202411062051.TLRkJSSL-lkp@intel.com/reproduce)
+>
+> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
+ion of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202411062051.TLRkJSSL-lkp=
+@intel.com/
+>
+> All warnings (new ones prefixed by >>):
+>
+>    In file included from drivers/iio/adc/nct720x.c:9:
+>    In file included from include/linux/device.h:32:
+>    In file included from include/linux/device/driver.h:21:
+>    In file included from include/linux/module.h:19:
+>    In file included from include/linux/elf.h:6:
+>    In file included from arch/s390/include/asm/elf.h:181:
+>    In file included from arch/s390/include/asm/mmu_context.h:11:
+>    In file included from arch/s390/include/asm/pgalloc.h:18:
+>    In file included from include/linux/mm.h:2213:
+>    include/linux/vmstat.h:504:43: warning: arithmetic between different e=
+numeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-=
+enum-conversion]
+>      504 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+>          |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+>      505 |                            item];
+>          |                            ~~~~
+>    include/linux/vmstat.h:511:43: warning: arithmetic between different e=
+numeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-=
+enum-conversion]
+>      511 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+>          |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+>      512 |                            NR_VM_NUMA_EVENT_ITEMS +
+>          |                            ~~~~~~~~~~~~~~~~~~~~~~
+>    include/linux/vmstat.h:518:36: warning: arithmetic between different e=
+numeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-c=
+onversion]
+>      518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip =
+"nr_"
+>          |                               ~~~~~~~~~~~ ^ ~~~
+>    include/linux/vmstat.h:524:43: warning: arithmetic between different e=
+numeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-=
+enum-conversion]
+>      524 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+>          |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+>      525 |                            NR_VM_NUMA_EVENT_ITEMS +
+>          |                            ~~~~~~~~~~~~~~~~~~~~~~
+> >> drivers/iio/adc/nct720x.c:526:16: warning: cast to smaller integer typ=
+e 'enum nct720x_chips' from 'const void *' [-Wvoid-pointer-to-enum-cast]
+>      526 |                 chip->type =3D (enum nct720x_chips)device_get_=
+match_data(&client->dev);
+>          |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~~~~~~~~~~~~~~~~~~~~~
+>    5 warnings generated.
+>
+>
+> vim +526 drivers/iio/adc/nct720x.c
+>
+>    511
+>    512  static int nct720x_probe(struct i2c_client *client)
+>    513  {
+>    514          const struct i2c_device_id *id =3D i2c_client_get_device_=
+id(client);
+>    515          struct nct720x_chip_info *chip;
+>    516          struct iio_dev *indio_dev;
+>    517          int ret;
+>    518          u32 tmp;
+>    519
+>    520          indio_dev =3D devm_iio_device_alloc(&client->dev, sizeof(=
+*chip));
+>    521          if (!indio_dev)
+>    522                  return -ENOMEM;
+>    523          chip =3D iio_priv(indio_dev);
+>    524
+>    525          if (client->dev.of_node)
+>  > 526                  chip->type =3D (enum nct720x_chips)device_get_mat=
+ch_data(&client->dev);
+>    527          else
+>    528                  chip->type =3D i2c_match_id(nct720x_id, client)->=
+driver_data;
+>    529
+>    530          chip->vin_max =3D (chip->type =3D=3D nct7201) ? NCT7201_V=
+IN_MAX : NCT7202_VIN_MAX;
+>    531
+>    532          ret =3D of_property_read_u32(client->dev.of_node, "read-v=
+in-data-size", &tmp);
+>    533          if (ret < 0) {
+>    534                  pr_err("read-vin-data-size property not found\n")=
+;
+>    535                  return ret;
+>    536          }
+>    537
+>    538          if (tmp =3D=3D 8) {
+>    539                  chip->use_read_byte_vin =3D true;
+>    540          } else if (tmp =3D=3D 16) {
+>    541                  chip->use_read_byte_vin =3D false;
+>    542          } else {
+>    543                  pr_err("invalid read-vin-data-size (%d)\n", tmp);
+>    544                  return -EINVAL;
+>    545          }
+>    546
+>    547          mutex_init(&chip->access_lock);
+>    548
+>    549          /* this is only used for device removal purposes */
+>    550          i2c_set_clientdata(client, indio_dev);
+>    551
+>    552          chip->client =3D client;
+>    553
+>    554          ret =3D nct720x_init_chip(chip);
+>    555          if (ret < 0)
+>    556                  return ret;
+>    557
+>    558          indio_dev->name =3D id->name;
+>    559          indio_dev->channels =3D nct720x_channels;
+>    560          indio_dev->num_channels =3D ARRAY_SIZE(nct720x_channels);
+>    561          indio_dev->info =3D &nct720x_info;
+>    562          indio_dev->modes =3D INDIO_DIRECT_MODE;
+>    563
+>    564          iio_device_register(indio_dev);
+>    565
+>    566          return 0;
+>    567  }
+>    568
+>
+> --
+> 0-DAY CI Kernel Test Service
+> https://github.com/intel/lkp-tests/wiki
 
