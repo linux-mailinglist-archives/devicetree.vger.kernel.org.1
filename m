@@ -1,886 +1,918 @@
-Return-Path: <devicetree+bounces-119739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA8C19BFEB9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 07:59:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 062749BFEFA
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 08:20:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD5A01C214E8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 06:59:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 294111C2132F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 07:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC98F1953BD;
-	Thu,  7 Nov 2024 06:59:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80AE0198840;
+	Thu,  7 Nov 2024 07:18:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Zj5zB8pl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Syb1HNTw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75041194C94
-	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 06:59:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE879196DB1;
+	Thu,  7 Nov 2024 07:18:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730962746; cv=none; b=NXH9wjuY7VXwUKE5OvqDHvLi+9aApgJdGPbd/I3kjikFurhJc9+vvJ2/OQhHAAa6i2gWqmWrNJO/4ccZxXkjuVySzq3hqrEhvLDtghTenHyWcMzwVz7TRhw0tqOebcUHJsxYXjo1dsF2fHJzz11lQwGJhpP8zpzrH0YcFsvtzXk=
+	t=1730963915; cv=none; b=JV4tO2k/ymcNcEV2hpZSTUjcFtYbE7zFPWDeL8dxkpVxjA+LMLrAAxRHh2ao2Hdx2JDnJiKsoDSH5AqQmf53gdxwl8h3NEP09yilz6cm+fj8B45ZpNN8QZLJ/eBakOCSz/5rugs7dv2SxXoMxefdeLpvntU1PMogV/0QYvYF7Zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730962746; c=relaxed/simple;
-	bh=vQZTYMYvqksOScm3WlYZlLYYUUgQUvzesgn+HsAureM=;
+	s=arc-20240116; t=1730963915; c=relaxed/simple;
+	bh=z+D6KISEcKgXSC+nWZPz3HQRPGs1NxeqFESRfAwqt/Y=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=h+ARWotLByj6eELTAXXDVH1IVdDIE/mv2VKQ0ee41VjT7uqtXp1TbjEj4FhZedcL0K/qO4R8I6AjqOSA2UWXpujO8dcoNYtcl4J49a4qXXNgyvpbWC2Tl1C72hOy55wDv+dTnJrTATEYKZLdYcklSlaocVqu+HqWjvKZ1DPFa0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Zj5zB8pl; arc=none smtp.client-ip=209.85.222.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-84fc7b58d4dso233087241.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Nov 2024 22:59:04 -0800 (PST)
+	 To:Cc:Content-Type; b=cXqbS1jVrFGvv9UQl03U8VQH8D9T+/KNo5IVFxbGvxHgdEDpqoAp8rux6fS3B+mUdXjp4cijBUUK+1W1f9sOwsNFKF+QV+7IaanMdXhn74tpMW3TNQkFnL21m3w89WthGeK1NHHGQ68gZrtn1iwgPLkOWY2wnROoyLuqvyp4psQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Syb1HNTw; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a99cc265e0aso84655766b.3;
+        Wed, 06 Nov 2024 23:18:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1730962743; x=1731567543; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1730963911; x=1731568711; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=V02Q+hBZd7IKoOvbggj5lIvd5lTBVFB0kCkzN1VjvB0=;
-        b=Zj5zB8plxzy1Zxvh8kEAxQq4knKn0OaWS86wyM6VR/s6eMPX2Qw+qsW/T+tRyHIGTo
-         bnleivoOVMJYwpGXb0Lc0LpynHltC0MwflD5Rg7KslGiUuVELrBfHimuhLWC7Ntec3LG
-         D0/8Z14CtYzWSL0dnfGSNLa4yX6IsomE0KFQ0=
+        bh=f2jIb005VHkLPaJj7mJavlobYzw9NA/Jp7zlZ62Su6E=;
+        b=Syb1HNTwHW6SU0jI5jlpIBb43K5bmnR/gs5y7HkTkRfYjsZ7Dva2ktyCq6EsnUpa/x
+         dTy2xGab7RDd2LUCwfRUljfm3/9icuIp6FvIdm4mcxNle9I7Ii8Mzt3SeKvVnxrQi8vc
+         U+Lci77auZc5Kbvizu3AT1HS3CBA6ufGxvdm8Et1hYXBTAKoXhFy1KrdKIRWZpJ9gmyo
+         1dua5zEGKzxvI5qVv+bEPvgQHkUOtCGC9WVntQtWY1FU7NN5Xs5arCXc+hnBXW1dKHZl
+         JnOj8nCnSRb1MirJEg345OQ7cRIHbkYVH5pU+2ZnM+eNe5wrL53hVI65ITnLI/szCm3Q
+         VBwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730962743; x=1731567543;
+        d=1e100.net; s=20230601; t=1730963911; x=1731568711;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=V02Q+hBZd7IKoOvbggj5lIvd5lTBVFB0kCkzN1VjvB0=;
-        b=eC5rP/arrjQcOmXDGZPoO8f+fZCcmGaSv/5iqYtv2o0mabQPrkbUcCGHXgpVYYc1Lm
-         N9/38lKklQhuHUUbvHecJkXHpSw2NNgBmN39EagwgIDTRX1YyE62PtvT6mqvjRz+vp35
-         S1OgXOvmygtVCreZaLO4N3lFsLUDJTJo8YPPnJ25ap652rWRPxJnLd7DMuj2bblhRT+2
-         DFQ4lezoqFVfPlDPj9DOFZ+1lGtwRsw//cZTvIORl1jBnlrEQiNbZ9jqbWLZqPTgcVXI
-         1+PC96ZM2bRBzDSn3E9CBTw0Va9E4gChj+mJE59wQ0O6ynEISnD8k7n2V6yLZE72beTv
-         POOA==
-X-Forwarded-Encrypted: i=1; AJvYcCXbuY6yLgv92ooyVklEKpWECmz0VfWMYE/oqPXzHqt4d4y0dz3JCVhGqkomOXTuggoN+O3zyy9ySiOI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqjeDEvsrBkON8gcq7LPRMgkO8nsjDtb3PinWK2G4Wn9cz/OXs
-	MBbFy1w7L4nMJ462AF4q6RonD6sMG9IJKtAB53CrEyHKwxY45cVAfGTO+uqGzvEjK2HdJdrOcyo
-	=
-X-Google-Smtp-Source: AGHT+IEPKSb9CvCgHx5zGSC3xtOiKThHWIQATlx6IGT3BBbX91g5iKbO/CSjcgjEiDAlB83IrtX71A==
-X-Received: by 2002:a05:6102:54ac:b0:4a4:841f:bb98 with SMTP id ada2fe7eead31-4aada3f38c4mr17997137.24.1730962743009;
-        Wed, 06 Nov 2024 22:59:03 -0800 (PST)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4aa9ef0a008sm144591137.19.2024.11.06.22.59.01
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Nov 2024 22:59:02 -0800 (PST)
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-84fc9005dccso232756241.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Nov 2024 22:59:01 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVeUYsonmlwr9GaiUxigJfu80HT1KjGBlr2RYZWxmHVAIdaXDfSBmhMv08mo68fnk4tJrrYDqagkYMQ@vger.kernel.org
-X-Received: by 2002:a05:6102:c0d:b0:4a4:9363:b84c with SMTP id
- ada2fe7eead31-4aada0603aemr55330137.6.1730962741133; Wed, 06 Nov 2024
- 22:59:01 -0800 (PST)
+        bh=f2jIb005VHkLPaJj7mJavlobYzw9NA/Jp7zlZ62Su6E=;
+        b=V369pl1qvW6jkdw5bzF9PUL4ZgQ6EKOOxzHLNFM+cC5g2cCGMGgFa9c/aPX00Ki7+U
+         DvcyF6SYOFS4HfEYlX0hPP/i2xtQQ4W9EgA0wuC3QyYLZ0pTQKySCSpvnEPYWUvnQkjC
+         0K/FUhlxoDn4DXy/O6x31P5A6pw29lLGwRPDEnyVYbXCMlC20HEKSZkGaMAyDA8RyHBY
+         xpKUgeoswmxfCjcCIaMfXIS1ff2aI6AzzVUyP2h3osvjaIWxqFrbv7K6ewFJIc62jBHv
+         pzFW1nwDzSmasHPXesDMtPA00TfYrjcU9wtFVzPbBH41P54qD0pT0U5I6ZOF+RZBra3C
+         8o+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUMw4gEcxNPysnZ/JeltHglUZzG++TgqmyuX44kt323qu2j0buDNDleE0vQuUJK1dihJ1JWfrhJzPBO@vger.kernel.org, AJvYcCVLdEqXpfAu6U0AbYaCElLFbZ7xNXQ0YEAQNu2HIUxstyIJ5ojvAzTpzCqmpe2p+hdBSisZMS3+ByuR@vger.kernel.org, AJvYcCWDOxfGB5j7ANyiDstDHv3WDx35lXz/wrdRCM5Qi2Spx1uEssS1q7WrN/yZlutbnLNb67WrQzk9D0S0cKLY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrhrWjKACIUV5vu0nGVu9Hw36rkM14bCIawLhVc06/kTdNj5mf
+	azN/KwPHB3ufHpg1q0yRsXAfoD6nXcUgEo641uDXb2P0KqZ/f3MXmZ+l4qtUdOkVOt6I5YCUrs+
+	1wsMzWTTJV48blOBbPc+LqEIrwz8=
+X-Google-Smtp-Source: AGHT+IHWiw2lsUEO/CiTOYQA7r99OMPUMR3UNUx+cOBFFLhfLYtrqUPfTMSphoh80fz8+stbF7Ybx/kk+U9eaCsWvMs=
+X-Received: by 2002:a17:907:7d8d:b0:a9a:1e4d:856d with SMTP id
+ a640c23a62f3a-a9de5edb084mr4278424566b.22.1730963910604; Wed, 06 Nov 2024
+ 23:18:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241105093222.4055774-1-fshao@chromium.org> <20241105093222.4055774-3-fshao@chromium.org>
- <b66dbf9e-b35b-482c-9eb7-112ef1f398d6@collabora.com>
-In-Reply-To: <b66dbf9e-b35b-482c-9eb7-112ef1f398d6@collabora.com>
-From: Fei Shao <fshao@chromium.org>
-Date: Thu, 7 Nov 2024 14:58:25 +0800
-X-Gmail-Original-Message-ID: <CAC=S1ngozo11g1vF2jnHjTLcNmP8tOMsQhK+LR0QWqoeXwSJjg@mail.gmail.com>
-Message-ID: <CAC=S1ngozo11g1vF2jnHjTLcNmP8tOMsQhK+LR0QWqoeXwSJjg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: mediatek: Introduce MT8188 Geralt
- platform based Ciri
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org
+References: <20241106023916.440767-1-j2anfernee@gmail.com> <20241106023916.440767-3-j2anfernee@gmail.com>
+ <CABCoZhB_FeELfFD-QrzX3Md7TOdhYu4CPKzQKC=Mv-RZawRgoA@mail.gmail.com>
+In-Reply-To: <CABCoZhB_FeELfFD-QrzX3Md7TOdhYu4CPKzQKC=Mv-RZawRgoA@mail.gmail.com>
+From: Yu-Hsian Yang <j2anfernee@gmail.com>
+Date: Thu, 7 Nov 2024 15:17:54 +0800
+Message-ID: <CA+4VgcKLaMDB1Hw1YpznYxMjBmumj2O_rcAhJ=EBEfkcL-g2Aw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] iio: adc: add Nuvoton NCT720x ADC driver
+To: anish kumar <yesanishhere@gmail.com>
+Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
+	jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com, 
+	javier.carrasco.cruz@gmail.com, andy@kernel.org, marcelo.schmitt@analog.com, 
+	olivier.moysan@foss.st.com, mitrutzceclan@gmail.com, 
+	matteomartelli3@gmail.com, alisadariana@gmail.com, joao.goncalves@toradex.com, 
+	marius.cristea@microchip.com, mike.looijmans@topic.nl, 
+	chanh@os.amperecomputing.com, KWLIU@nuvoton.com, yhyang2@nuvoton.com, 
+	openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 6, 2024 at 9:19=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
+Dear anish kumar,
+
+Thank you for your response.
+
+anish kumar <yesanishhere@gmail.com> =E6=96=BC 2024=E5=B9=B411=E6=9C=887=E6=
+=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=882:14=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> Il 05/11/24 10:30, Fei Shao ha scritto:
-> > Introduce MT8188-based Chromebook Ciri, also known commercially as
-> > Lenovo Chromebook Duet (11", 9).
+> On Tue, Nov 5, 2024 at 6:39=E2=80=AFPM Eason Yang <j2anfernee@gmail.com> =
+wrote:
 > >
-> > Ciri is a detachable device based on the Geralt design, where Geralt is
-> > the codename for the MT8188 platform. Ciri offers 8 SKUs to accommodate
-> > different combinations of second-source components, including:
-> > - audio codecs (RT5682S and ES8326)
-> > - speaker amps (TAS2563 and MAX98390)
-> > - MIPI-DSI panels (BOE nv110wum-l60 and IVO t109nw41)
+> > Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
 > >
-> > Signed-off-by: Fei Shao <fshao@chromium.org>
+> > NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up =
+to
+> > 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins fo=
+r
+> > independent alarm signals, and the all threshold values could be set fo=
+r
+> > system protection without any timing delay. It also supports reset inpu=
+t
+> > RSTIN# to recover system from a fault condition.
+> >
+> > Currently, only single-edge mode conversion and threshold events suppor=
+t.
+> >
+> > Signed-off-by: Eason Yang <j2anfernee@gmail.com>
 > > ---
+> >  MAINTAINERS               |   1 +
+> >  drivers/iio/adc/Kconfig   |   9 +
+> >  drivers/iio/adc/Makefile  |   1 +
+> >  drivers/iio/adc/nct720x.c | 617 ++++++++++++++++++++++++++++++++++++++
+> >  4 files changed, 628 insertions(+)
+> >  create mode 100644 drivers/iio/adc/nct720x.c
 > >
-> > Changes in v2:
-> > - remove invalid or undocumented properties
-> >      e.g. mediatek,dai-link, maxim,dsm_param_name etc.
-> > - remove touchscreen as the driver is not yet accepted in upstream
-> > - update sound DAI link node name to match the binding
-> > - add missing pinctrls in audio codec nodes
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 68570c58e7aa..9940de0ddca2 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -2753,6 +2753,7 @@ F:        arch/arm/mach-npcm/
+> >  F:     arch/arm64/boot/dts/nuvoton/
+> >  F:     drivers/*/*/*npcm*
+> >  F:     drivers/*/*npcm*
+> > +F:     drivers/iio/adc/nct720x.c
+> >  F:     drivers/rtc/rtc-nct3018y.c
+> >  F:     include/dt-bindings/clock/nuvoton,npcm7xx-clock.h
+> >  F:     include/dt-bindings/clock/nuvoton,npcm845-clk.h
+> > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> > index 6c4e74420fd2..adbbf0ca6f57 100644
+> > --- a/drivers/iio/adc/Kconfig
+> > +++ b/drivers/iio/adc/Kconfig
+> > @@ -1008,6 +1008,15 @@ config NAU7802
+> >           To compile this driver as a module, choose M here: the
+> >           module will be called nau7802.
 > >
-> >   arch/arm64/boot/dts/mediatek/Makefile         |    8 +
-> >   .../dts/mediatek/mt8188-geralt-ciri-sku0.dts  |   11 +
-> >   .../dts/mediatek/mt8188-geralt-ciri-sku1.dts  |   60 +
-> >   .../dts/mediatek/mt8188-geralt-ciri-sku2.dts  |   56 +
-> >   .../dts/mediatek/mt8188-geralt-ciri-sku3.dts  |   15 +
-> >   .../dts/mediatek/mt8188-geralt-ciri-sku4.dts  |   43 +
-> >   .../dts/mediatek/mt8188-geralt-ciri-sku5.dts  |   73 +
-> >   .../dts/mediatek/mt8188-geralt-ciri-sku6.dts  |   69 +
-> >   .../dts/mediatek/mt8188-geralt-ciri-sku7.dts  |   47 +
-> >   .../boot/dts/mediatek/mt8188-geralt-ciri.dtsi |  397 +++++
-> >   .../boot/dts/mediatek/mt8188-geralt.dtsi      | 1492 ++++++++++++++++=
-+
-> >   11 files changed, 2271 insertions(+)
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sk=
-u0.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sk=
-u1.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sk=
-u2.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sk=
-u3.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sk=
-u4.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sk=
-u5.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sk=
-u6.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sk=
-u7.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri.dt=
-si
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-> >
-[...]
-
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri.dtsi b/arc=
-h/arm64/boot/dts/mediatek/mt8188-geralt-ciri.dtsi
+> > +config NCT720X
+> > +       tristate "Nuvoton Instruments NCT7201 and NCT7202 Power Monitor=
+"
+> > +       depends on I2C
+> > +       help
+> > +         If you say yes here you get support for the Nuvoton NCT7201 a=
+nd
+> > +         NCT7202 Voltage Monitor.
+> > +         This driver can also be built as a module. If so, the module
+> > +         will be called nct720x.
+> > +
+> >  config NPCM_ADC
+> >         tristate "Nuvoton NPCM ADC driver"
+> >         depends on ARCH_NPCM || COMPILE_TEST
+> > diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> > index 7b91cd98c0e0..f53318e5aa04 100644
+> > --- a/drivers/iio/adc/Makefile
+> > +++ b/drivers/iio/adc/Makefile
+> > @@ -91,6 +91,7 @@ obj-$(CONFIG_MESON_SARADC) +=3D meson_saradc.o
+> >  obj-$(CONFIG_MP2629_ADC) +=3D mp2629_adc.o
+> >  obj-$(CONFIG_MXS_LRADC_ADC) +=3D mxs-lradc-adc.o
+> >  obj-$(CONFIG_NAU7802) +=3D nau7802.o
+> > +obj-$(CONFIG_NCT720X) +=3D nct720x.o
+> >  obj-$(CONFIG_NPCM_ADC) +=3D npcm_adc.o
+> >  obj-$(CONFIG_PAC1921) +=3D pac1921.o
+> >  obj-$(CONFIG_PAC1934) +=3D pac1934.o
+> > diff --git a/drivers/iio/adc/nct720x.c b/drivers/iio/adc/nct720x.c
 > > new file mode 100644
-> > index 000000000000..62c8a37a4c3d
+> > index 000000000000..e589479fd06e
 > > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri.dtsi
-> > @@ -0,0 +1,397 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +++ b/drivers/iio/adc/nct720x.c
+> > @@ -0,0 +1,617 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
 > > +/*
-> > + * Copyright 2023 Google LLC
+> > + * Driver for Nuvoton nct7201 and nct7202 power monitor chips.
+> > + *
+> > + * Copyright (c) 2022 Nuvoton Inc.
 > > + */
-> > +/dts-v1/;
-> > +#include "mt8188-geralt.dtsi"
 > > +
-> > +/delete-node/ &pp3300_edp_disp;
+> > +#include <linux/delay.h>
+> > +#include <linux/device.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/iio/events.h>
+> > +#include <linux/iio/iio.h>
+> > +#include <linux/iio/sysfs.h>
+> > +#include <linux/init.h>
+> > +#include <linux/module.h>
+> > +#include <linux/mutex.h>
 > > +
-> > +&aud_etdm_hp_on {
-> > +     pins-mclk {
-> > +             pinmux =3D <PINMUX_GPIO114__FUNC_O_I2SO2_MCK>;
-> > +     };
+> > +#define REG_CHIP_ID                    0xFD
+> > +#define NCT720X_ID                     0xD7
+> > +#define REG_VENDOR_ID                  0xFE
+> > +#define NUVOTON_ID                     0x50
+> > +#define REG_DEVICE_ID                  0xFF
+> > +#define NCT720X_DEVICE_ID              0x12
+> > +#define VIN_MAX                                12      /* Counted from=
+ 1 */
+> > +#define NCT7201_VIN_MAX                        8
+> > +#define NCT7202_VIN_MAX                        12
+> > +#define NCT720X_IN_SCALING             4995
+> > +
+> > +#define REG_INTERRUPT_STATUS_1         0x0C
+> > +#define REG_INTERRUPT_STATUS_2         0x0D
+> > +#define REG_VOLT_LOW_BYTE              0x0F
+> > +#define REG_CONFIGURATION              0x10
+> > +#define  CONFIGURATION_START           BIT(0)
+> > +#define  CONFIGURATION_ALERT_MSK       BIT(1)
+> > +#define  CONFIGURATION_CONV_RATE       BIT(2)
+> > +#define  CONFIGURATION_INIT            BIT(7)
+> > +
+> > +#define REG_ADVANCED_CONFIGURATION     0x11
+> > +#define  ADVANCED_CONF_MOD_ALERT       BIT(0)
+> > +#define  ADVANCED_CONF_MOD_STS         BIT(1)
+> > +#define  ADVANCED_CONF_FAULT_QUEUE     BIT(2)
+> > +#define  ADVANCED_CONF_EN_DEEP_SHUTDOWN        BIT(4)
+> > +#define  ADVANCED_CONF_EN_SMB_TIMEOUT  BIT(5)
+> > +#define  ADVANCED_CONF_MOD_RSTIN       BIT(7)
+> > +
+> > +#define REG_CHANNEL_INPUT_MODE         0x12
+> > +#define REG_CHANNEL_ENABLE_1           0x13
+> > +#define REG_CHANNEL_ENABLE_2           0x14
+> > +#define REG_INTERRUPT_MASK_1           0x15
+> > +#define REG_INTERRUPT_MASK_2           0x16
+> > +#define REG_BUSY_STATUS                        0x1E
+> > +#define REG_ONE_SHOT                   0x1F
+> > +#define REG_SMUS_ADDRESS               0xFC
+> > +
+> > +static const u8 REG_VIN[VIN_MAX] =3D { 0x00, 0x01, 0x02, 0x03, 0x04, 0=
+x05,
+> > +                                    0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B=
+};
+> > +static const u8 REG_VIN_HIGH_LIMIT[VIN_MAX] =3D { 0x20, 0x22, 0x24, 0x=
+26, 0x28, 0x2A,
+> > +                                               0x2C, 0x2E, 0x30, 0x32,=
+ 0x34, 0x36};
+> > +static const u8 REG_VIN_LOW_LIMIT[VIN_MAX] =3D { 0x21, 0x23, 0x25, 0x2=
+7, 0x29, 0x2B,
+> > +                                              0x2D, 0x2F, 0x31, 0x33, =
+0x35, 0x37};
+> > +static const u8 REG_VIN_HIGH_LIMIT_LSB[VIN_MAX] =3D { 0x40, 0x42, 0x44=
+, 0x46, 0x48, 0x4A,
+> > +                                                   0x4C, 0x4E, 0x50, 0=
+x52, 0x54, 0x56};
+> > +static const u8 REG_VIN_LOW_LIMIT_LSB[VIN_MAX] =3D { 0x41, 0x43, 0x45,=
+ 0x47, 0x49, 0x4B,
+> > +                                                  0x4D, 0x4F, 0x51, 0x=
+53, 0x55, 0x57};
+> > +static u8 nct720x_chan_to_index[] =3D {
+> > +       0,      /* Not used */
+> > +       0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 > > +};
 > > +
-> > +&aud_etdm_hp_off {
-> > +     pins-mclk {
-> > +             pinmux =3D <PINMUX_GPIO114__FUNC_B_GPIO114>;
-> > +             bias-pull-down;
-> > +             input-enable;
-> > +     };
+> > +
+> > +/* List of supported devices */
+> > +enum nct720x_chips {
+> > +       nct7201, nct7202
 > > +};
 > > +
-> > +&aud_etdm_spk_on {
-> > +     pins-bus {
-> > +             drive-strength =3D <8>;
-> > +     };
+> > +struct nct720x_chip_info {
+> > +       struct i2c_client       *client;
+> > +       enum nct720x_chips      type;
+> > +       struct mutex            access_lock;    /* for multi-byte read =
+and write operations */
+> > +       int vin_max;                            /* number of VIN channe=
+ls */
+> > +       u32 vin_mask;
+> > +       bool use_read_byte_vin;
 > > +};
 > > +
-> > +/* Ciri's TDP design target is 90 degrees */
->
-> ...and there's only Ciri in this submission, so move that to -geralt.dtsi
-
-In response to the "there's only Ciri, so move to / don't declare
-unused stuff in -geralt.dtsi" and similar comments - I'll adjust each
-of the mentioned lines.
-
-My intention was to clearly describe the differences between Ciri and
-the proto hardware, but I understand and also agree with your point
-that these deltas should be introduced only when a real product
-utilizes them.
-I will follow this approach in the next revision.
-
->
-> > +&cpu_little0_alert0 {
-> > +     temperature =3D <90000>;
-> > +     hysteresis =3D <2000>;
-> > +     type =3D "passive";
+> > +static const struct iio_event_spec nct720x_events[] =3D {
+> > +       {
+> > +               .type =3D IIO_EV_TYPE_THRESH,
+> > +               .dir =3D IIO_EV_DIR_RISING,
+> > +               .mask_separate =3D BIT(IIO_EV_INFO_VALUE) |
+> > +                                BIT(IIO_EV_INFO_ENABLE),
+> > +       }, {
+> > +               .type =3D IIO_EV_TYPE_THRESH,
+> > +               .dir =3D IIO_EV_DIR_FALLING,
+> > +               .mask_separate =3D BIT(IIO_EV_INFO_VALUE) |
+> > +                                BIT(IIO_EV_INFO_ENABLE),
+> > +       },
 > > +};
 > > +
-> > +&cpu_little1_alert0 {
-> > +     temperature =3D <90000>;
-> > +     hysteresis =3D <2000>;
-> > +     type =3D "passive";
+> > +#define NCT720X_VOLTAGE_CHANNEL(chan, addr)                           =
+ \
+> > +       {                                                              =
+ \
+> > +               .type =3D IIO_VOLTAGE,                                 =
+   \
+> > +               .indexed =3D 1,                                        =
+   \
+> > +               .channel =3D chan,                                     =
+   \
+> > +               .info_mask_separate =3D BIT(IIO_CHAN_INFO_PROCESSED),  =
+   \
+> > +               .address =3D addr,                                     =
+   \
+> > +               .event_spec =3D nct720x_events,                        =
+   \
+> > +               .num_event_specs =3D ARRAY_SIZE(nct720x_events),       =
+   \
+> > +       }
+> > +
+> > +#define NCT720X_VOLTAGE_CHANNEL_DIFF(chan1, chan2, addr)              =
+ \
+> > +       {                                                              =
+ \
+> > +               .type =3D IIO_VOLTAGE,                                 =
+   \
+> > +               .indexed =3D 1,                                        =
+   \
+> > +               .channel =3D (chan1),                                  =
+   \
+> > +               .channel2 =3D (chan2),                                 =
+   \
+> > +               .differential =3D 1,                                   =
+   \
+> > +               .info_mask_separate =3D BIT(IIO_CHAN_INFO_PROCESSED),  =
+   \
+> > +               .address =3D addr,                                     =
+   \
+> > +               .event_spec =3D nct720x_events,                        =
+   \
+> > +               .num_event_specs =3D ARRAY_SIZE(nct720x_events),       =
+   \
+> > +       }
+> > +
+> > +static const struct iio_chan_spec nct720x_channels[] =3D {
+> > +       NCT720X_VOLTAGE_CHANNEL(1, 1),
+> > +       NCT720X_VOLTAGE_CHANNEL(2, 2),
+> > +       NCT720X_VOLTAGE_CHANNEL(3, 3),
+> > +       NCT720X_VOLTAGE_CHANNEL(4, 4),
+> > +       NCT720X_VOLTAGE_CHANNEL(5, 5),
+> > +       NCT720X_VOLTAGE_CHANNEL(6, 6),
+> > +       NCT720X_VOLTAGE_CHANNEL(7, 7),
+> > +       NCT720X_VOLTAGE_CHANNEL(8, 8),
+> > +       NCT720X_VOLTAGE_CHANNEL(9, 9),
+> > +       NCT720X_VOLTAGE_CHANNEL(10, 10),
+> > +       NCT720X_VOLTAGE_CHANNEL(11, 11),
+> > +       NCT720X_VOLTAGE_CHANNEL(12, 12),
+> > +       NCT720X_VOLTAGE_CHANNEL_DIFF(1, 2, 1),
+> > +       NCT720X_VOLTAGE_CHANNEL_DIFF(3, 4, 3),
+> > +       NCT720X_VOLTAGE_CHANNEL_DIFF(5, 6, 5),
+> > +       NCT720X_VOLTAGE_CHANNEL_DIFF(7, 8, 7),
+> > +       NCT720X_VOLTAGE_CHANNEL_DIFF(9, 10, 9),
+> > +       NCT720X_VOLTAGE_CHANNEL_DIFF(11, 12, 11),
 > > +};
 > > +
-> > +&cpu_little2_alert0 {
-> > +     temperature =3D <90000>;
-> > +     hysteresis =3D <2000>;
-> > +     type =3D "passive";
-> > +};
+> > +/* Read 1-byte register. Returns unsigned byte data or -ERRNO on error=
+. */
+> > +static int nct720x_read_reg(struct nct720x_chip_info *chip, u8 reg)
+> > +{
+> > +       struct i2c_client *client =3D chip->client;
 > > +
-> > +&cpu_little3_alert0 {
-> > +     temperature =3D <90000>;
-> > +     hysteresis =3D <2000>;
-> > +     type =3D "passive";
-> > +};
+> > +       return i2c_smbus_read_byte_data(client, reg);
+> > +}
 > > +
-> > +&cpu_big0_alert0 {
-> > +     temperature =3D <90000>;
-> > +     hysteresis =3D <2000>;
-> > +     type =3D "passive";
-> > +};
+> > +/* Read 1-byte register. Returns unsigned word data or -ERRNO on error=
+. */
+> > +static int nct720x_read_word_swapped_reg(struct nct720x_chip_info *chi=
+p, u8 reg)
+> > +{
+> > +       struct i2c_client *client =3D chip->client;
 > > +
-> > +&cpu_big1_alert0 {
-> > +     temperature =3D <90000>;
-> > +     hysteresis =3D <2000>;
-> > +     type =3D "passive";
-> > +};
+> > +       return i2c_smbus_read_word_swapped(client, reg);
+> > +}
 > > +
-> > +&dp_intf0 {
-> > +     /delete-node/ port;
->
-> Just don't add dp_intf0 if there's none, instead of removing the port her=
-e.
->
-> > +};
-> > +
-> > +&dsi_panel {
-> > +     compatible =3D "boe,nv110wum-l60", "himax,hx83102";
->
-> Move this to each SKU dts file.
-
-Will do.
-
->
-> > +};
-> > +
-> > +&edp_tx {
-> > +     /delete-node/ ports;
-> > +     /delete-node/ aux-bus;
-> > +};
-> > +
-> > +&i2c0 {
-> > +     /delete-node/ audio-codec@1a;
-> > +     /delete-node/ amplifier@3a;
-> > +     /delete-node/ amplifier@3b;
->
-> No board ever uses those three nodes, because it's all Ciri and nothing e=
-lse.
-> Just never declare these in -geralt.dtsi and never delete them here.
->
-> > +
-> > +     rt5682s: audio-codec@1a {
-> > +             compatible =3D "realtek,rt5682s";
-> > +             reg =3D <0x1a>;
-> > +             interrupts-extended =3D <&pio 108 IRQ_TYPE_EDGE_BOTH>;
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&audio_codec_pins>;
-> > +             #sound-dai-cells =3D <1>;
-> > +
-> > +             AVDD-supply =3D <&mt6359_vio18_ldo_reg>;
-> > +             DBVDD-supply =3D <&mt6359_vio18_ldo_reg>;
-> > +             LDO1-IN-supply =3D <&mt6359_vio18_ldo_reg>;
-> > +             MICVDD-supply =3D <&pp3300_s3>;
-> > +             realtek,jd-src =3D <1>;
-> > +     };
-> > +};
-> > +
-> > +&i2c2 {
-> > +     status =3D "disabled";
->
-> ...and if there's no i2c2, just don't add it to -geralt.dtsi in the first=
- place...
-> but I believe that you just wanted to avoid probing the device that you d=
-eclared
-> in -geralt.dtsi on this bus, so you can either remove the nodes for all o=
-f the
-> unused i2c busses in your board designs, or you can keep them but remove =
-all of
-> the devices that aren't actually there.
->
-> It's your choice in the end, but disabling this here doesn't make much se=
-nse imo.
-
-I think I'll follow the latter to describe the pinctrl and clock
-frequency of the i2c buses, so future board DT (if any) can just focus
-on declaring the devices on the bus.
-
->
-> > +};
-> > +
-> > +&i2c_tunnel {
-> > +     /delete-node/ sbs-battery@b;
->
-> Since nothing ever uses sbs-battery@b, just remove sbs-battery@b entirely
-> from -geralt.dtsi instead of deleting it here.
->
-> Non-Ciri boards, if any, will define the @b one if necessary in their own
-> dts/dtsi file(s).
->
-> > +
-> > +     battery: sbs-battery@f {
-> > +             compatible =3D "sbs,sbs-battery";
-> > +             reg =3D <0xf>;
-> > +             sbs,i2c-retry-count =3D <2>;
-> > +             sbs,poll-retry-count =3D <1>;
-> > +     };
-> > +};
-> > +
-> > +&max98390_38 {
-> > +     sound-name-prefix =3D "Front Right";
->
-> Move to -geralt.dtsi
->
-> > +};
-> > +
-> > +&max98390_39 {
-> > +     sound-name-prefix =3D "Front Left";
->
-> ditto
->
-> > +};
-> > +
-> > +&mipi_tx_config0 {
-> > +     drive-strength-microamp =3D <5200>;
-> > +};
-> > +
-> > +&mmc1 {
-> > +     status =3D "disabled";
->
-> Why are you configuring mmc1 in -geralt.dtsi if no board uses it at all?
-
-This is for the SD cards, though Ciri didn't adopt that in the end...
-I'll remove it.
-
->
-> > +};
-> > +
-> > +&mt6359_vm18_ldo_reg {
-> > +     regulator-min-microvolt =3D <1800000>;
-> > +     regulator-max-microvolt =3D <1900000>;
-> > +     regulator-microvolt-offset =3D <100000>;
-> > +};
-> > +
-> > +&sound {
-> > +     compatible =3D "mediatek,mt8188-rt5682s";
-> > +     model =3D "mt8188_m98390_5682";
-> > +
-> > +     audio-routing =3D
-> > +             "ETDM1_OUT", "ETDM_SPK_PIN",
-> > +             "ETDM2_OUT", "ETDM_HP_PIN",
-> > +             "ETDM1_IN", "ETDM_SPK_PIN",
-> > +             "ETDM2_IN", "ETDM_HP_PIN",
-> > +             "ADDA Capture", "MTKAIF_PIN",
-> > +             "Headphone Jack", "HPOL",
-> > +             "Headphone Jack", "HPOR",
-> > +             "IN1P", "Headset Mic",
-> > +             "Left Spk", "Front Left BE_OUT",
-> > +             "Right Spk", "Front Right BE_OUT";
->
-> Please move compatible, model and audio-routing to SKU0 (and also copy th=
-at to
-> SKU3): as you're continuously overriding it in all other SKUs, having it =
-here
-> can only confuse people...
-
-I agree. I'll update it.
-
->
-> > +     status =3D "okay";
-> > +
-> > +     dai-link-0 {
-> > +             dai-format =3D "i2s";
->
-> ...and move dai-format to -geralt.dtsi.
->
-> > +     };
-> > +
-> > +     dai-link-1 {
-> > +             dai-format =3D "i2s";
-> > +             codec {
-> > +                     sound-dai =3D <&max98390_38>,
-> > +                                 <&max98390_39>;
-> > +             };
-> > +     };
-> > +
-> > +     dai-link-2 {
-> > +             codec {
-> > +                     sound-dai =3D <&rt5682s 0>;
-> > +             };
-> > +     };
-> > +
-> > +     dai-link-3 {
-> > +             codec {
-> > +                     sound-dai =3D <&rt5682s 0>;
-> > +             };
-> > +     };
-> > +};
-> > +
-> > +&spi1 {
-> > +     pinctrl-names =3D "default", "sleep";
-> > +     pinctrl-0 =3D <&spi1_pins_default>;
-> > +     pinctrl-1 =3D <&spi1_pins_sleep>;
->
-> Also move this to -geralt.dtsi, it's even the same pins...!
-> P.S.: Of course, move the spi1_pins_sleep to -geralt.dtsi as well.
->
-> > +     num-cs =3D <1>;
-> > +     #address-cells =3D <1>;
-> > +     #size-cells =3D <0>;
->
-> ...address and size cells, but no children nodes?
-
-Oh because the Himax touchscreen was removed in v2... I'll drop them.
-
->
-> > +};
-> > +
-> > +&pio {
->
-> ..snip..
->
-> > +
-> > +     touchscreen_rst: touchscreen-rst-pins {
-> > +             pins-tchscr-rst {
-> > +                     pinmux =3D <PINMUX_GPIO5__FUNC_B_GPIO5>;
-> > +                     output-high;
-> > +             };
-> > +     };
->
-> touchscreen_rst is unused - either use it or remove it.
-
-Will do.
-
->
-> > +
-> > +     spi1_pins_default: spi1-default-pins {
-> > +             pins-bus {
-> > +                     pinmux =3D <PINMUX_GPIO75__FUNC_O_SPIM1_CSB>,
-> > +                              <PINMUX_GPIO76__FUNC_O_SPIM1_CLK>,
-> > +                              <PINMUX_GPIO77__FUNC_B0_SPIM1_MOSI>,
-> > +                              <PINMUX_GPIO78__FUNC_B0_SPIM1_MISO>;
-> > +                     bias-disable;
-> > +                     drive-strength =3D <10>;
-> > +             };
-> > +     };
-> > +
-> > +     spi1_pins_sleep: spi1-sleep-pins {
-> > +             pins-bus {
-> > +                     pinmux =3D <PINMUX_GPIO75__FUNC_B_GPIO75>,
-> > +                              <PINMUX_GPIO76__FUNC_B_GPIO76>,
-> > +                              <PINMUX_GPIO77__FUNC_B_GPIO77>,
-> > +                              <PINMUX_GPIO78__FUNC_B_GPIO78>;
-> > +                     bias-pull-down;
-> > +                     input-enable;
-> > +             };
-> > +     };
-> > +};
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi b/arch/arm=
-64/boot/dts/mediatek/mt8188-geralt.dtsi
-> > new file mode 100644
-> > index 000000000000..0d33ae82f0eb
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-> > @@ -0,0 +1,1492 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 > > +/*
-> > + * Copyright (C) 2022 MediaTek Inc.
+> > + * Read 2-byte register. Returns register in big-endian format or
+> > + * -ERRNO on error.
 > > + */
-> > +/dts-v1/;
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include "mt8188.dtsi"
-> > +#include "mt6359.dtsi"
+> > +static int nct720x_read_reg16(struct nct720x_chip_info *chip, u8 reg)
+> > +{
+> > +       struct i2c_client *client =3D chip->client;
+> > +       int ret, low;
 > > +
-> > +/ {
-> > +     aliases {
-> > +             i2c0 =3D &i2c0;
-> > +             i2c1 =3D &i2c1;
-> > +             i2c2 =3D &i2c2;
-> > +             i2c3 =3D &i2c3;
-> > +             i2c4 =3D &i2c4;
-> > +             i2c5 =3D &i2c5;
-> > +             i2c6 =3D &i2c6;
-> > +             mmc0 =3D &mmc0;
-> > +             mmc1 =3D &mmc1;
-> > +             serial0 =3D &uart0;
-> > +     };
+> > +       mutex_lock(&chip->access_lock);
+> > +       ret =3D i2c_smbus_read_byte_data(client, reg);
+> > +       if (ret >=3D 0) {
+> > +               low =3D ret;
+> > +               ret =3D i2c_smbus_read_byte_data(client, reg + 1);
+> > +               if (ret >=3D 0)
+> > +                       ret =3D low | (ret << 8);
+> > +       }
 > > +
-> > +     backlight_lcd0: backlight-lcd0 {
-> > +             compatible =3D "pwm-backlight";
-> > +             brightness-levels =3D <0 1023>;
-> > +             default-brightness-level =3D <576>;
-> > +             enable-gpios =3D <&pio 1 GPIO_ACTIVE_HIGH>;
-> > +             num-interpolated-steps =3D <1023>;
-> > +             power-supply =3D <&ppvar_sys>;
-> > +             pwms =3D <&disp_pwm0 0 500000>;
-> > +     };
+> > +       mutex_unlock(&chip->access_lock);
+> > +       return ret;
+> > +}
 > > +
-> > +     chosen {
-> > +             stdout-path =3D "serial0:115200n8";
-> > +     };
+> > +/* Write 1-byte register. Returns 0 or -ERRNO on error. */
+> > +static int nct720x_write_reg(struct nct720x_chip_info *chip, u8 reg, u=
+8 val)
+> > +{
+> > +       struct i2c_client *client =3D chip->client;
+> > +       int err;
 > > +
-> > +     dmic-codec {
-> > +             compatible =3D "dmic-codec";
-> > +             num-channels =3D <2>;
-> > +             wakeup-delay-ms =3D <100>;
-> > +     };
+> > +       err =3D i2c_smbus_write_byte_data(client, reg, val);
+> > +       /* wait for write command to be finished */
+> > +       mdelay(10);
 > > +
-> > +     memory@40000000 {
-> > +             device_type =3D "memory";
+> > +       return err;
+> > +}
+> > +
+> > +static int nct720x_read_raw(struct iio_dev *indio_dev,
+> > +                           struct iio_chan_spec const *chan,
+> > +                           int *val, int *val2, long mask)
+> > +{
+> > +       int index =3D nct720x_chan_to_index[chan->address];
+> > +       int v1, v2, volt, err;
+> > +       struct nct720x_chip_info *chip =3D iio_priv(indio_dev);
+> > +
+> > +       if (chan->type !=3D IIO_VOLTAGE)
+> > +               return -EOPNOTSUPP;
+> > +
+> > +       switch (mask) {
+> > +       case IIO_CHAN_INFO_PROCESSED:
+> > +               mutex_lock(&chip->access_lock);
+> > +               if (chip->use_read_byte_vin) {
+> > +                       /*
+> > +                        * MNTVIN Low Byte together with MNTVIN High By=
+te
+> > +                        * forms the 13-bit count value. If MNTVIN High
+> > +                        * Byte readout is read successively, the
+> > +                        * NCT7201/NCT7202 will latch the MNTVIN Low By=
+te
+> > +                        * for next read.
+> > +                        */
+> > +                       v1 =3D nct720x_read_reg(chip, REG_VIN[index]);
+> > +                       if (v1 < 0) {
+> > +                               err =3D v1;
+> > +                               goto abort;
+> > +                       }
+> > +
+> > +                       v2 =3D nct720x_read_reg(chip, REG_VOLT_LOW_BYTE=
+);
+> > +                       if (v2 < 0) {
+> > +                               err =3D v2;
+> > +                               goto abort;
+> > +                       }
+> > +                       volt =3D (v1 << 8) | v2;  /* Convert back to 16=
+-bit value */
+> > +               } else {
+> > +                       /* NCT7201/NCT7202 also supports read word-size=
+ data */
+> > +                       volt =3D nct720x_read_word_swapped_reg(chip, RE=
+G_VIN[index]);
+> > +               }
+> > +
+> > +               /* Voltage(V) =3D 13bitCountValue * 0.0004995 */
+> > +               volt =3D (volt >> 3) * NCT720X_IN_SCALING;
+> > +               *val =3D volt / 10000;
+> > +               mutex_unlock(&chip->access_lock);
+> > +               return IIO_VAL_INT;
+> > +       default:
+> > +               return -EINVAL;
+> > +       }
+> > +abort:
+> > +       mutex_unlock(&chip->access_lock);
+> > +       return err;
+> > +}
+> > +
+> > +static int nct720x_read_event_value(struct iio_dev *indio_dev,
+> > +                                   const struct iio_chan_spec *chan,
+> > +                                   enum iio_event_type type,
+> > +                                   enum iio_event_direction dir,
+> > +                                   enum iio_event_info info,
+> > +                                   int *val, int *val2)
+> > +{
+> > +       struct nct720x_chip_info *chip =3D iio_priv(indio_dev);
+> > +       int v1, v2, err;
+> > +       int volt =3D 0;
+> > +       int index =3D nct720x_chan_to_index[chan->address];
+> > +
+> > +       if (chan->type !=3D IIO_VOLTAGE)
+> > +               return -EOPNOTSUPP;
+> > +
+> > +       if (info =3D=3D IIO_EV_INFO_VALUE) {
+> > +               if (dir =3D=3D IIO_EV_DIR_FALLING) {
+> > +                       if (chip->use_read_byte_vin) {
+> > +                               /*
+> > +                                * Low limit VIN Low Byte together with=
+ Low limit VIN High Byte
+> > +                                  forms the 13-bit count value
+> > +                                */
+> > +                               mutex_lock(&chip->access_lock);
+> > +                               v1 =3D nct720x_read_reg(chip, REG_VIN_L=
+OW_LIMIT[index]);
+> > +                               if (v1 < 0) {
+> > +                                       err =3D v1;
+> > +                                       goto abort;
+> > +                               }
+> > +
+> > +                               v2 =3D nct720x_read_reg(chip, REG_VIN_L=
+OW_LIMIT_LSB[index]);
+> > +                               if (v2 < 0) {
+> > +                                       err =3D v2;
+> > +                                       goto abort;
+> > +                               }
+> > +                               mutex_unlock(&chip->access_lock);
+> > +                               volt =3D (v1 << 8) | v2;  /* Convert ba=
+ck to 16-bit value */
+> > +                       } else {
+> > +                               /* NCT7201/NCT7202 also supports read w=
+ord-size data */
+> > +                               volt =3D nct720x_read_word_swapped_reg(=
+chip,
+> > +                                       REG_VIN_LOW_LIMIT[index]);
+> > +                       }
+> > +               } else {
+> > +                       if (chip->use_read_byte_vin) {
+> > +                               /*
+> > +                                * High limit VIN Low Byte together wit=
+h high limit VIN High Byte
+> > +                                * forms the 13-bit count value
+> > +                                */
+> > +                               mutex_lock(&chip->access_lock);
+> > +                               v1 =3D nct720x_read_reg(chip, REG_VIN_H=
+IGH_LIMIT[index]);
+> > +                               if (v1 < 0) {
+> > +                                       err =3D v1;
+> > +                                       goto abort;
+> > +                               }
+> > +
+> > +                               v2 =3D nct720x_read_reg(chip, REG_VIN_H=
+IGH_LIMIT_LSB[index]);
+> > +                               if (v2 < 0) {
+> > +                                       err =3D v2;
+> > +                                       goto abort;
+> > +                               }
+> > +                               mutex_unlock(&chip->access_lock);
+> > +                               volt =3D (v1 << 8) | v2;  /* Convert ba=
+ck to 16-bit value */
+> > +                       } else {
+> > +                               /* NCT7201/NCT7202 also supports read w=
+ord-size data */
+> > +                               volt =3D nct720x_read_word_swapped_reg(=
+chip,
+> > +                                       REG_VIN_HIGH_LIMIT[index]);
+> > +                       }
+> > +               }
+> > +       }
+> > +       /* Voltage(V) =3D 13bitCountValue * 0.0004995 */
+> > +       volt =3D (volt >> 3) * NCT720X_IN_SCALING;
+> > +       *val =3D volt / 10000;
+> > +
+> > +       return IIO_VAL_INT;
+> > +abort:
+> > +       mutex_unlock(&chip->access_lock);
+> > +       return err;
+> > +}
+> > +
+> > +static int nct720x_write_event_value(struct iio_dev *indio_dev,
+> > +                                    const struct iio_chan_spec *chan,
+> > +                                    enum iio_event_type type,
+> > +                                    enum iio_event_direction dir,
+> > +                                    enum iio_event_info info,
+> > +                                    int val, int val2)
+> > +{
+> > +       struct nct720x_chip_info *chip =3D iio_priv(indio_dev);
+> > +       int index, err =3D 0;
+> > +       long v1, v2, volt;
+> > +
+> > +       index =3D nct720x_chan_to_index[chan->address];
+> > +       volt =3D (val * 10000) / NCT720X_IN_SCALING;
+> > +       v1 =3D volt >> 5;
+> > +       v2 =3D (volt & 0x1f) << 3;
+> > +
+> > +       if (chan->type !=3D IIO_VOLTAGE)
+> > +               return -EOPNOTSUPP;
+> > +
+> > +       if (info =3D=3D IIO_EV_INFO_VALUE) {
+> > +               if (dir =3D=3D IIO_EV_DIR_FALLING) {
+> > +                       mutex_lock(&chip->access_lock);
+> > +                       err =3D nct720x_write_reg(chip, REG_VIN_LOW_LIM=
+IT[index], v1);
+> > +                       if (err < 0) {
+> > +                               pr_err("Failed to write REG_VIN%d_LOW_L=
+IMIT\n", index + 1);
+> > +                               goto abort;
+> > +                       }
+> > +
+> > +                       err =3D nct720x_write_reg(chip, REG_VIN_LOW_LIM=
+IT_LSB[index], v2);
+> > +                       if (err < 0) {
+> > +                               pr_err("Failed to write REG_VIN%d_LOW_L=
+IMIT_LSB\n", index + 1);
+> > +                               goto abort;
+> > +                       }
+> > +               } else {
+> > +                       mutex_lock(&chip->access_lock);
+> > +                       err =3D nct720x_write_reg(chip, REG_VIN_HIGH_LI=
+MIT[index], v1);
+> > +                       if (err < 0) {
+> > +                               pr_err("Failed to write REG_VIN%d_HIGH_=
+LIMIT\n", index + 1);
+> > +                               goto abort;
+> > +                       }
+> > +
+> > +                       err =3D nct720x_write_reg(chip, REG_VIN_HIGH_LI=
+MIT_LSB[index], v2);
+> > +                       if (err < 0) {
+> > +                               pr_err("Failed to write REG_VIN%d_HIGH_=
+LIMIT_LSB\n", index + 1);
+> > +                               goto abort;
+> > +                       }
+> > +               }
+> > +       }
+> > +abort:
+> > +       mutex_unlock(&chip->access_lock);
+> > +       return err;
+> > +}
+> > +
+> > +static int nct720x_read_event_config(struct iio_dev *indio_dev,
+> > +                                    const struct iio_chan_spec *chan,
+> > +                                    enum iio_event_type type,
+> > +                                    enum iio_event_direction dir)
+> > +{
+> > +       struct nct720x_chip_info *chip =3D iio_priv(indio_dev);
+> > +       int index =3D nct720x_chan_to_index[chan->address];
+> > +
+> > +       if (chan->type !=3D IIO_VOLTAGE)
+> > +               return -EOPNOTSUPP;
+> > +
+> > +       return !!(chip->vin_mask & BIT(index));
+> > +}
+> > +
+> > +static int nct720x_write_event_config(struct iio_dev *indio_dev,
+> > +                                     const struct iio_chan_spec *chan,
+> > +                                     enum iio_event_type type,
+> > +                                     enum iio_event_direction dir,
+> > +                                     int state)
+> > +{
+> > +       int err =3D 0;
+> > +       struct nct720x_chip_info *chip =3D iio_priv(indio_dev);
+> > +       int index =3D nct720x_chan_to_index[chan->address];
+> > +       unsigned int mask;
+> > +
+> > +       mask =3D BIT(index);
 >
->                 /* The size will be filled in by the bootloader */
->                 reg =3D <0 0x40000000 0 0>;
+> nitpick:
+> You can set the mask near to the place where it is used i.e.
+> just after below if statement and one added advantage will
+> be in case below "return -EOPNOTSUPP" gets executed,
+> you don't even have to set mask.
+>
+Got it.
 
-Acknowledged.
-
->
->
-> > +             reg =3D <0 0x40000000 0 0x80000000>;
-> > +     };
 > > +
->
-> ..snip..
->
+> > +       if (chan->type !=3D IIO_VOLTAGE)
+> > +               return -EOPNOTSUPP;
 > > +
-> > +&disp_dsi0 {
-> > +     #address-cells =3D <1>;
-> > +     #size-cells =3D <0>;
-> > +     status =3D "okay";
+> > +       if (!state && (chip->vin_mask & mask))
+> > +               chip->vin_mask &=3D ~mask;
+> > +       else if (state && !(chip->vin_mask & mask))
+> > +               chip->vin_mask |=3D mask;
 > > +
-> > +     dsi_panel: panel@0 {
-> > +             compatible =3D "boe,tv110c9m-ll3";
->
-> Remove the compatible string, then add a comment (93 cols, it's ok in one=
- line):
->
-> /* Compatible string for different panels can be found in each device dts=
- */
-
-Acknowledged.
-
->
-> > +             reg =3D <0>;
-> > +             enable-gpios =3D <&pio 25 GPIO_ACTIVE_HIGH>;
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&mipi_dsi_pins>;
+> > +       mutex_lock(&chip->access_lock);
 > > +
-> > +             backlight =3D <&backlight_lcd0>;
-> > +             avdd-supply =3D <&ppvar_mipi_disp_avdd>;
-> > +             avee-supply =3D <&ppvar_mipi_disp_avee>;
-> > +             pp1800-supply =3D <&mt6359_vm18_ldo_reg>;
-> > +             rotation =3D <270>;
+> > +       err =3D nct720x_write_reg(chip, REG_CHANNEL_ENABLE_1, chip->vin=
+_mask & 0xff);
+> > +       if (err < 0) {
+> > +               pr_err("Failed to write REG_CHANNEL_ENABLE_1\n");
+> > +               goto abort;
+> > +       }
 > > +
-> > +             status =3D "okay";
+> > +       if (chip->type =3D=3D nct7202) {
+> > +               err =3D nct720x_write_reg(chip, REG_CHANNEL_ENABLE_2, c=
+hip->vin_mask >> 8);
+> > +               if (err < 0) {
+> > +                       pr_err("Failed to write REG_CHANNEL_ENABLE_2\n"=
+);
+> > +                       goto abort;
+> > +               }
+> > +       }
+> > +abort:
+> > +       mutex_unlock(&chip->access_lock);
+> > +       return err;
+> > +}
 > > +
-> > +             port {
-> > +                     dsi_panel_in: endpoint {
-> > +                             remote-endpoint =3D <&dsi_out>;
-> > +                     };
-> > +             };
-> > +     };
+> > +static int nct720x_detect(struct i2c_client *client,
+> > +                         struct i2c_board_info *info)
+> > +{
+> > +       struct i2c_adapter *adapter =3D client->adapter;
 > > +
-> > +     port {
-> > +             dsi_out: endpoint {
-> > +                     remote-endpoint =3D <&dsi_panel_in>;
-> > +             };
-> > +     };
+> > +       if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_BYTE_DATA =
+|
+> > +                                    I2C_FUNC_SMBUS_WORD_DATA))
+> > +               return -ENODEV;
+> > +
+> > +       /* Determine the chip type. */
+> > +       if (i2c_smbus_read_byte_data(client, REG_VENDOR_ID) !=3D NUVOTO=
+N_ID ||
+> > +           i2c_smbus_read_byte_data(client, REG_CHIP_ID) !=3D NCT720X_=
+ID ||
+> > +           i2c_smbus_read_byte_data(client, REG_DEVICE_ID) !=3D NCT720=
+X_DEVICE_ID)
+> > +               return -ENODEV;
+> > +
+> > +       strscpy(info->type, "nct720x", I2C_NAME_SIZE);
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static const struct iio_info nct720x_info =3D {
+> > +       .read_raw =3D &nct720x_read_raw,
+> > +       .read_event_config =3D &nct720x_read_event_config,
+> > +       .write_event_config =3D &nct720x_write_event_config,
+> > +       .read_event_value =3D &nct720x_read_event_value,
+> > +       .write_event_value =3D &nct720x_write_event_value,
 > > +};
 > > +
-> > +&disp_pwm0 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&disp_pwm0_pins>;
-> > +     status =3D "okay";
+> > +static const struct i2c_device_id nct720x_id[];
+> > +
+> > +static int nct720x_init_chip(struct nct720x_chip_info *chip)
+> > +{
+> > +       int value =3D 0;
+> > +       int err =3D 0;
+>
+> Nit pick:
+> You don't need to initialize err and value.
+>
+Got it.
+
+> > +
+> > +       /* Initial reset */
+> > +       err =3D nct720x_write_reg(chip, REG_CONFIGURATION, CONFIGURATIO=
+N_INIT);
+> > +       if (err) {
+> > +               pr_err("Failed to write REG_CONFIGURATION\n");
+> > +               return err;
+> > +       }
+> > +
+> > +       /* Enable Channel */
+> > +       err =3D nct720x_write_reg(chip, REG_CHANNEL_ENABLE_1, 0xff);
+> > +       if (err) {
+> > +               pr_err("Failed to write REG_CHANNEL_ENABLE_1\n");
+> > +               return err;
+> > +       }
+> > +
+> > +       if (chip->type =3D=3D nct7202) {
+> > +               err =3D nct720x_write_reg(chip, REG_CHANNEL_ENABLE_2, 0=
+xf);
+> > +               if (err) {
+> > +                       pr_err("Failed to write REG_CHANNEL_ENABLE_2\n"=
+);
+> > +                       return err;
+> > +               }
+> > +       }
+> > +
+> > +       value =3D nct720x_read_reg16(chip, REG_CHANNEL_ENABLE_1);
+> > +       if (value < 0)
+> > +               return value;
+> > +       chip->vin_mask =3D value;
+> > +
+> > +       /* Start monitoring if needed */
+> > +       value =3D nct720x_read_reg(chip, REG_CONFIGURATION);
+> > +       if (value < 0) {
+> > +               pr_err("Failed to read REG_CONFIGURATION\n");
+> > +               return value;
+> > +       }
+> > +
+> > +       value |=3D CONFIGURATION_START;
+> > +       err =3D nct720x_write_reg(chip, REG_CONFIGURATION, value);
+> > +       if (err < 0) {
+> > +               pr_err("Failed to write REG_CONFIGURATION\n");
+> > +               return err;
+> > +       }
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static int nct720x_probe(struct i2c_client *client)
+> > +{
+> > +       const struct i2c_device_id *id =3D i2c_client_get_device_id(cli=
+ent);
+> > +       struct nct720x_chip_info *chip;
+> > +       struct iio_dev *indio_dev;
+> > +       int ret;
+> > +       u32 tmp;
+> > +
+> > +       indio_dev =3D devm_iio_device_alloc(&client->dev, sizeof(*chip)=
+);
+> > +       if (!indio_dev)
+> > +               return -ENOMEM;
+> > +       chip =3D iio_priv(indio_dev);
+> > +
+> > +       if (client->dev.of_node)
+> > +               chip->type =3D (enum nct720x_chips)device_get_match_dat=
+a(&client->dev);
+> > +       else
+> > +               chip->type =3D i2c_match_id(nct720x_id, client)->driver=
+_data;
+> > +
+> > +       chip->vin_max =3D (chip->type =3D=3D nct7201) ? NCT7201_VIN_MAX=
+ : NCT7202_VIN_MAX;
+> > +
+> > +       ret =3D of_property_read_u32(client->dev.of_node, "read-vin-dat=
+a-size", &tmp);
+> > +       if (ret < 0) {
+> > +               pr_err("read-vin-data-size property not found\n");
+> > +               return ret;
+>
+> nit: dev_err_probe
+>
+I would use dev_err_probe to replace pr_err in probe function
+
+> > +       }
+> > +
+> > +       if (tmp =3D=3D 8) {
+> > +               chip->use_read_byte_vin =3D true;
+> > +       } else if (tmp =3D=3D 16) {
+> > +               chip->use_read_byte_vin =3D false;
+> > +       } else {
+> > +               pr_err("invalid read-vin-data-size (%d)\n", tmp);
+> > +               return -EINVAL;
+>
+> nit: dev_err_probe
+>
+I would use dev_err_probe to replace pr_err in probe function.
+
+> > +       }
+> > +
+> > +       mutex_init(&chip->access_lock);
+> > +
+> > +       /* this is only used for device removal purposes */
+> > +       i2c_set_clientdata(client, indio_dev);
+> > +
+> > +       chip->client =3D client;
+> > +
+> > +       ret =3D nct720x_init_chip(chip);
+> > +       if (ret < 0)
+> > +               return ret;
+> > +
+> > +       indio_dev->name =3D id->name;
+> > +       indio_dev->channels =3D nct720x_channels;
+> > +       indio_dev->num_channels =3D ARRAY_SIZE(nct720x_channels);
+> > +       indio_dev->info =3D &nct720x_info;
+> > +       indio_dev->modes =3D INDIO_DIRECT_MODE;
+> > +
+> > +       iio_device_register(indio_dev);
+>
+> devm_iio_device_register?
+>
+Yes, I would use devm_iio_device_registe to replace
+iio_device_register and no need to use remove function.
+
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static void nct720x_remove(struct i2c_client *client)
+> > +{
+> > +       struct iio_dev *indio_dev =3D i2c_get_clientdata(client);
+> > +
+> > +       iio_device_unregister(indio_dev);
+>
+> wouldn't need if used devm_ version
+
+Got it.
+
+> > +}
+> > +
+> > +static const unsigned short nct720x_address_list[] =3D {
+> > +       0x1d, 0x1e, 0x35, 0x36, I2C_CLIENT_END
 > > +};
 > > +
-> > +&disp_pwm1 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&disp_pwm1_pins>;
+> > +static const struct i2c_device_id nct720x_id[] =3D {
+> > +       { "nct7201", nct7201 },
+> > +       { "nct7202", nct7202 },
+> > +       {}
+> > +};
+> > +MODULE_DEVICE_TABLE(i2c, nct720x_id);
+> > +
+> > +static const struct of_device_id nct720x_of_match[] =3D {
+> > +       {
+> > +               .compatible =3D "nuvoton,nct7201",
+> > +               .data =3D (void *)nct7201
+> > +       },
+> > +       {
+> > +               .compatible =3D "nuvoton,nct7202",
+> > +               .data =3D (void *)nct7202
+> > +       },
+> > +       { },
 > > +};
 > > +
-> > +&dp_intf0 {
-> > +     port {
-> > +             dp_intf0_out: endpoint {
-> > +                     remote-endpoint =3D <&edp_in>;
-> > +             };
-> > +     };
+> > +MODULE_DEVICE_TABLE(of, nct720x_of_match);
+> > +
+> > +static struct i2c_driver nct720x_driver =3D {
+> > +       .driver =3D {
+> > +               .name   =3D "nct720x",
+> > +               .of_match_table =3D nct720x_of_match,
+> > +       },
+> > +       .probe =3D nct720x_probe,
+> > +       .remove =3D nct720x_remove,
+> > +       .id_table =3D nct720x_id,
+> > +       .detect =3D nct720x_detect,
+> > +       .address_list =3D nct720x_address_list,
 > > +};
 > > +
-> > +&dp_intf1 {
-> > +     status =3D "okay";
+> > +module_i2c_driver(nct720x_driver);
 > > +
-> > +     port {
-> > +             dp_intf1_out: endpoint {
-> > +                     remote-endpoint =3D <&dptx_in>;
-> > +             };
-> > +     };
-> > +};
-> > +
-> > +&dp_tx {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&dp_tx_hpd>;
-> > +     #sound-dai-cells =3D <0>;
-> > +     status =3D "okay";
-> > +
-> > +     ports {
-> > +             #address-cells =3D <1>;
-> > +             #size-cells =3D <0>;
-> > +
-> > +             port@0 {
-> > +                     reg =3D <0>;
-> > +                     dptx_in: endpoint {
-> > +                             remote-endpoint =3D <&dp_intf1_out>;
-> > +                     };
-> > +             };
-> > +
-> > +             port@1 {
-> > +                     reg =3D <1>;
-> > +                     dptx_out: endpoint {
-> > +                             data-lanes =3D <0 1 2 3>;
-> > +                     };
-> > +             };
-> > +     };
-> > +};
-> > +
-> > +&edp_tx {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&edp_tx_hpd>;
-> > +
-> > +     ports {
-> > +             #address-cells =3D <1>;
-> > +             #size-cells =3D <0>;
-> > +
-> > +             port@0 {
-> > +                     reg =3D <0>;
-> > +                     edp_in: endpoint {
-> > +                             remote-endpoint =3D <&dp_intf0_out>;
-> > +                     };
-> > +             };
-> > +
-> > +             port@1 {
-> > +                     reg =3D <1>;
-> > +                     edp_out: endpoint {
-> > +                             data-lanes =3D <0 1 2 3>;
-> > +                             remote-endpoint =3D <&edp_panel_in>;
-> > +                     };
-> > +             };
-> > +     };
-> > +
-> > +     /*
-> > +      * Geralt also supports eDP OLED panels, which control panel
-> > +      * brightness via the AUX channel and don't require PWM pin
-> > +      * control.
-> > +      * This is an auxiliary panel path for hardware layout
-> > +      * validation and demonstration, so it's disabled by default.
-> > +      * Boards adopting MIPI-DSI panels may not have this path.
-> > +      **/
->
-> There's no board using this: please remove edp_tx entirely, as this is
-> only adding lines to this device tree for no useful reason.
->
-> If a board with that appears, you can reintroduce this here, or if it is
-> a single board, you can add that in the board dts.
-
-Acknowledged.
-
->
-> > +     aux-bus {
-> > +             edp_panel: panel {
-> > +                     compatible =3D "lg,lp120up1";
-> > +                     pinctrl-names =3D "default";
-> > +                     pinctrl-0 =3D <&edp_bl_en>;
-> > +                     power-supply =3D <&pp3300_edp_disp>;
-> > +                     status =3D "disabled";
-> > +
-> > +                     port {
-> > +                             edp_panel_in: endpoint {
-> > +                                     remote-endpoint =3D <&edp_out>;
-> > +                             };
-> > +                     };
-> > +             };
-> > +     };
-> > +};
-> > +
->
-> ..snip..
-> > +     edp_bl_en: edp-bl-en-pins {
-> > +             pins-ap-disp-bklten {
-> > +                     pinmux =3D <PINMUX_GPIO1__FUNC_B_GPIO1>;
-> > +                     output-low;
-> > +             };
-> > +     };
-> > +
-> > +     edp_disp_en: edp-disp-en-pins {
-> > +             pins-en-pp3300-edp-disp {
-> > +                     pinmux =3D <PINMUX_GPIO27__FUNC_B_GPIO27>;
-> > +                     output-low;
-> > +             };
-> > +     };
-> > +
-> > +     edp_tx_hpd: edp-tx-hpd-pins {
-> > +             pins-dp-tx-hpd {
-> > +                     pinmux =3D <PINMUX_GPIO17__FUNC_I0_EDP_TX_HPD>;
-> > +             };
-> > +     };
->
-> After removing the always disabled edp nodes, you can also remove these p=
-ins
-> as they are then unused.
-
-Will do.
-
->
-> > +
-> > +     gsc_int: gsc-int-pins {
-> > +             pins-gsc-ap-int-odl {
-> > +                     pinmux =3D <PINMUX_GPIO0__FUNC_B_GPIO0>;
-> > +                     input-enable;
-> > +             };
-> > +     };
-> > +
->
-> ..snip..
->
-> > +&pmic {
-> > +     interrupts-extended =3D <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
-> > +};
-> > +
-> > +&scp {
->
-> Is this SCP-dual or SCP?
-> I see SCP, but I also see a SCP-Dual memory region... what's going on her=
-e?
->
-> Of course, the SCP-Dual won't work if you don't override the compatible s=
-tring...
-
-To clarify, the second SCP core is used for MIPI camera in downstream,
-and I deliberately only describe the first SCP core here since the MTK
-camera ISP driver isn't in upstream at the moment.
-I had a fixup patch for removing the scp-dual reserved memory region,
-but likely it was missing during the rebase... let me check again if
-it can be removed, just in case there's firmware protecting the region
-and the kernel shouldn't access it.
-
->
-> > +     firmware-name =3D "mediatek/mt8188/scp.img";
-> > +     memory-region =3D <&scp_mem>;
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&scp_pins>;
-> > +     status =3D "okay";
-> > +
-> > +     cros-ec-rpmsg {
-> > +             compatible =3D "google,cros-ec-rpmsg";
-> > +             mediatek,rpmsg-name =3D "cros-ec-rpmsg";
-> > +     };
-> > +};
-> > +
-> > +&sound {
-> > +     compatible =3D "mediatek,mt8188-nau8825";
-> > +     model =3D "mt8188_m98390_8825";
-> > +     pinctrl-names =3D "aud_etdm_hp_on",
-> > +                     "aud_etdm_hp_off",
-> > +                     "aud_etdm_spk_on",
-> > +                     "aud_etdm_spk_off",
-> > +                     "aud_mtkaif_on",
-> > +                     "aud_mtkaif_off";
->
->         pinctrl-names =3D "aud_etdm_hp_on", "aud_etdm_hp_off",
->                         "aud_etdm_spk_on", "aud_etdm_spk_off",
->                         "aud_mtkaif_on", "aud_mtkaif_off";
-
-Acked.
-
->
-> > +     pinctrl-0 =3D <&aud_etdm_hp_on>;
-> > +     pinctrl-1 =3D <&aud_etdm_hp_off>;
-> > +     pinctrl-2 =3D <&aud_etdm_spk_on>;
-> > +     pinctrl-3 =3D <&aud_etdm_spk_off>;
-> > +     pinctrl-4 =3D <&aud_mtkaif_on>;
-> > +     pinctrl-5 =3D <&aud_mtkaif_off>;
->
-> Add a comment:
->
->         /* The audio-routing is defined in each board dts */
->
-> > +     audio-routing =3D "ETDM1_OUT", "ETDM_SPK_PIN",
-> > +                     "ETDM2_OUT", "ETDM_HP_PIN",
-> > +                     "ETDM1_IN", "ETDM_SPK_PIN",
-> > +                     "ETDM2_IN", "ETDM_HP_PIN",
-> > +                     "ADDA Capture", "MTKAIF_PIN",
-> > +                     "Headphone Jack", "HPOL",
-> > +                     "Headphone Jack", "HPOR",
-> > +                     "MIC", "Headset Mic",
-> > +                     "Left Spk", "Front Left BE_OUT",
-> > +                     "Right Spk", "Front Right BE_OUT",
-> > +                     "Rear Left Spk", "Rear Left BE_OUT",
-> > +                     "Rear Right Spk", "Rear Right BE_OUT";
-> > +
->
-> ...and remove the audio-routing from this dtsi; it's anyway being
-> overridden by the -ciri.dtsi devicetree...
-
-Acknowledged, and thanks for all the feedback here.
-
-Regards,
-Fei
-
->
-> > +     mediatek,adsp =3D <&adsp>;
-> > +
-> > +     status =3D "okay";
-> > +
-> > +     dai-link-0 {
-> > +             link-name =3D "ETDM1_IN_BE";
-> > +             dai-format =3D "dsp_b";
-> > +             mediatek,clk-provider =3D "cpu";
-> > +     };
-> > +
-> > +     dai-link-1 {
-> > +             link-name =3D "ETDM1_OUT_BE";
-> > +             dai-format =3D "dsp_b";
-> > +             mediatek,clk-provider =3D "cpu";
-> > +
-> > +             codec {
-> > +                     sound-dai =3D <&max98390_38>,
-> > +                                 <&max98390_39>,
-> > +                                 <&max98390_3a>,
-> > +                                 <&max98390_3b>;
-> > +             };
-> > +     };
-> > +
-> > +     dai-link-2 {
-> > +             link-name =3D "ETDM2_IN_BE";
-> > +             mediatek,clk-provider =3D "cpu";
-> > +
-> > +             codec {
-> > +                     sound-dai =3D <&nau8825>;
-> > +             };
-> > +     };
-> > +
-> > +     dai-link-3 {
-> > +             link-name =3D "ETDM2_OUT_BE";
-> > +             mediatek,clk-provider =3D "cpu";
-> > +
-> > +             codec {
-> > +                     sound-dai =3D <&nau8825>;
-> > +             };
-> > +     };
-> > +
-> > +     dai-link-4 {
-> > +             link-name =3D "DPTX_BE";
-> > +
-> > +             codec {
-> > +                     sound-dai =3D <&dp_tx>;
-> > +             };
-> > +     };
-> > +};
-> > +
->
-> Cheers,
-> Angelo
->
+> > +MODULE_AUTHOR("Eason Yang <YHYANG2@nuvoton.com>");
+> > +MODULE_DESCRIPTION("Nuvoton NCT720x voltage monitor driver");
+> > +MODULE_LICENSE("GPL");
+> > --
+> > 2.34.1
+> >
+> >
 
