@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-119947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EC399C0A49
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 16:43:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 308939C0A68
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 16:51:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C23BF1C20DA7
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 15:43:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3095283E29
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 15:51:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 427ED213EC7;
-	Thu,  7 Nov 2024 15:43:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6319A2144B8;
+	Thu,  7 Nov 2024 15:51:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o1023zAF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RNHypDoW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44174212D2F
-	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 15:42:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58F112144B1
+	for <devicetree@vger.kernel.org>; Thu,  7 Nov 2024 15:51:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730994180; cv=none; b=OcU6/vyPsE6GQuEQbK6oFz/iNEsOX9L8zLqz4tLavaiohGlJj0fOjc3K7xcGeRndYOx+mvHbv240q5lISHWnABQ/3sNCcypTM1bFJj9K4C4Y3NLdFmSdlxOOnTTXte58ZOXAwLPJLGkYBWa0P7BHSsZ0ah+3H2ALTC1ncvkegTY=
+	t=1730994695; cv=none; b=H88GPmUdqVNv9nb/2k+sjwbas0fp00rd6brJmif5ErVyhmNQyV7Ced+8MGF376sEi/D7pcBuuj4p91cw1Cb385VGu/CkQi7q3HE+IuB5PYczgD/+FDbdiSDGfq+LgO8pJsqYShzkRFpU0ysDUcX/bzbVFXQfM6Xd8/yG9OsaVZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730994180; c=relaxed/simple;
-	bh=Ocmes03GIEV9WM7tB2F9fJ9RCQvkMK/gGRTXEm0UrE4=;
+	s=arc-20240116; t=1730994695; c=relaxed/simple;
+	bh=3OIf/gX0ZDNOZhMPo00YXj5sJSXF/V2U3ogbTioMzBA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VmtVPPAgf+zzzcHcGfVRMxBsKrdvdk0tczQbmkltRq+1/tt+LxNNpVsfGaXItIcX6NwqE3RtaAM6BOy7LDA6Jr1gxaOfiUx8waMkJAVAB/YkEgUww6y8VtdwEzEzFwl4LmbYVynXsqqZ1MvHJG/aG5DG7W7bXedlHCu6CkXRBVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o1023zAF; arc=none smtp.client-ip=209.85.221.54
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lij9CCBoP913clHkdf9GOWB8bDhvxGLmRlKxNSfQ4833NGsRO+N1BHc4uz1IVdk8yn8KnycBUWYtmM66+t0YyIv6+Olw5Dmzri8mlVv9xcDsYfrvfOwbrlhweeSAd7pypJDC3nMv+/j/MkvTu/XomkRXDJkHBtA3X+qoLjNKrHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RNHypDoW; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-37d473c4bb6so929800f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 07:42:58 -0800 (PST)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43193678216so10232195e9.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 07:51:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730994176; x=1731598976; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1730994691; x=1731599491; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=YobGRMTq6r2m1GLqKYMeMjlD+pYxCKxFlYRpMg1uhDo=;
-        b=o1023zAFp0lte7Ic7ugx0xUfx3RWv3ska/IsS8tip11XrDXzOj6tUT2POZjl3NQwN1
-         pIy5zGN95mOmDAZP12Bsz6YJn0HWJ1AdT/g01eGbAEgHTcM4xHaME6SWIzpgW1wj1Maz
-         7a9wDJtiU7w9NLvgdrO5lr78t3SXiUXx/S1tmwFS6OYXfOSloa8slYQyQUTVlQsNYS/b
-         zoeisTcpWav6tRfwORBI3aUkHIajsqDbcXL4Z/Agbd9JVsgFxLp4QWjWr1GaFpZQuHCH
-         cBQjbe3jr52E0gfegQFoW9HbP4dhTL/MF3qNdcpJn7WvkAbKUNgEnrOiuAni4ggKY9GQ
-         MgYw==
+        bh=BR0AsIIvsAZoNbnhltKsghMop/uYVJqzbFLsrpgQQDQ=;
+        b=RNHypDoW7vDwNsAMZnKx3q5/Sc2TlNvKBj0MVde11xUXSvzHGC3wpMEZL4tpgEPXE+
+         QIZJn9Ms2RAPZka1UD02VxywD1ZDSvTeELDLyEcrWwj1KykU5WLsUT7Eqyl0f0Zxwt5r
+         GSr2RGnHMEL7QeJmGzvKZ20+leekQBt1/dpKWQ3PIH8hvVXHMSnas3IvtSjPbrlmxlvd
+         KibuFVmBSpJqbBnhI14QEoWlrNmwwoPPQpuAotOXHETUWvRSjVnwVtkl+ivtmOalR8QZ
+         5/ZVh1tKXCYpF5BGX6sQNI19F1ujHxvhXrXtkn52XfPXYsnBXVgoeFz198Pf63QytAqO
+         xmlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730994176; x=1731598976;
+        d=1e100.net; s=20230601; t=1730994691; x=1731599491;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YobGRMTq6r2m1GLqKYMeMjlD+pYxCKxFlYRpMg1uhDo=;
-        b=dS/rmu6G4YH3cl6K0pb5WRAYDGcA1ovS21AvWICh4TZZeAmcDTh8Yu66fr5KKz/o+S
-         1WbuHXwfm4NtahSAr5pqCROmGmCkvTK6KpamfzE4uHGKHi5a8w0cuhG40+/fmJ0iJTms
-         y/36fiL9D6IKNWpt478G8VLc2yeLQB+eZEzpzPvrkMxQq2cBwef+R3ahH+1YwdiXE8JF
-         0IFA5/YOlKwj7s8U2neb+ue+tI/yzQyYzjrfSNBJuvjuqWLjGZKcVceQiK8obKzFC6fM
-         mRqWzHSsg6D5iAvT9LkF40uli6/56CHUN6SX8mpAgrrupTpEwl7CbVbsiMUyjbHg5jXK
-         zceQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU/eKoySNDxsRVw6cpCEs0WDTLg7J/FdnQuGQxVh1CJihmcAhm5XfL3WJVHFY5zt4PHUwE7ulPkigE2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzwh/R9tZCiI9O44jyUBQIPPk1zqHPqUxB2nlLVrXBwTct6jBVn
-	1FBSoCvvPyJzELt5iNR124xOU+c4FSwh9P6PdJ4bG4T9mqAjbZamJ18PPtO+uA==
-X-Google-Smtp-Source: AGHT+IFCgk8JSit4kcsOrIG5RALXryrUw/ReDwKvQwa/P1qPxT2aNSJYDBHM8/WH1Pr9qfT9F1GZig==
-X-Received: by 2002:a5d:64c5:0:b0:37d:4c40:699 with SMTP id ffacd0b85a97d-381c7a467admr27117943f8f.5.1730994176383;
-        Thu, 07 Nov 2024 07:42:56 -0800 (PST)
+        bh=BR0AsIIvsAZoNbnhltKsghMop/uYVJqzbFLsrpgQQDQ=;
+        b=xEJ7q4jrSPoX0CjuJuR7wI088v/IfN1E+RrJydMn7kEyQFv1xH7+xKlA6ltrR/rxcb
+         5Ksy3N9Szm83mmbtff4T8dx84H6rsUcUCZogg1gxzGIsI7oJ3vJp2KUC2wy6DQS+7l7Q
+         tXPHw2VCtkROsIMxZ9kibqcv4Jsv4S/0hQyQybNy3fZo5dClqwRU3ncUY1t9l6rBxSzV
+         2LIw7gs8KkThqwrR6WM4hN5PWvlnJif7fWOVdzFnbjsZYXsZ0H+LGO+yBMMm7VffOrIy
+         hnF8ghsFrGZIOHzvx/A3J23lmxO7BqRPxck9T+zCvCWaVTvVSVMtMgdi74Wn2KOHGxO3
+         5SIw==
+X-Forwarded-Encrypted: i=1; AJvYcCVD3hr7kVFLYu98iZ6gVE4OdfEvtlwv7YGros9s5gzi5db2wZHDA03rtE9tKxbe34+EhW2L9zqZUbXQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2KuFgAYCj03nB5fHQCMCIUBLgBX/Gm/iFBq0jsvoVWWHTZvRp
+	IVRK0v03FFgpklPFRgrdZL9vPAbqaFqkn1UpQVl6mymqSz4GsaC37Ktxa1qTgA==
+X-Google-Smtp-Source: AGHT+IEVBKlv9ftF8S0QzkPYuWh8G8yEuAdxmNVdUuhvUI45faLCdmmUAl+VK6pETw5Od9JRQmScxA==
+X-Received: by 2002:a05:600c:4a88:b0:431:9397:9ac9 with SMTP id 5b1f17b1804b1-431aa292eb4mr312298635e9.15.1730994690676;
+        Thu, 07 Nov 2024 07:51:30 -0800 (PST)
 Received: from thinkpad ([89.101.134.25])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381eda0ed16sm2021217f8f.107.2024.11.07.07.42.55
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432aa6c11f8sm64356935e9.25.2024.11.07.07.51.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Nov 2024 07:42:55 -0800 (PST)
-Date: Thu, 7 Nov 2024 15:42:54 +0000
+        Thu, 07 Nov 2024 07:51:29 -0800 (PST)
+Date: Thu, 7 Nov 2024 15:51:28 +0000
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Shawn Lin <shawn.lin@rock-chips.com>
 Cc: Rob Herring <robh+dt@kernel.org>,
@@ -84,11 +84,11 @@ Cc: Rob Herring <robh+dt@kernel.org>,
 	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
 	linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
 	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v4 2/7] dt-bindings: ufs: Document Rockchip UFS host
- controller
-Message-ID: <20241107154254.bpuqspdrymyg3qsa@thinkpad>
+Subject: Re: [PATCH v4 1/7] scsi: ufs: core: Add
+ UFSHCI_QUIRK_DME_RESET_ENABLE_AFTER_HCE
+Message-ID: <20241107155128.paqyo7een2ggzejs@thinkpad>
 References: <1730705521-23081-1-git-send-email-shawn.lin@rock-chips.com>
- <1730705521-23081-3-git-send-email-shawn.lin@rock-chips.com>
+ <1730705521-23081-2-git-send-email-shawn.lin@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,148 +98,92 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1730705521-23081-3-git-send-email-shawn.lin@rock-chips.com>
+In-Reply-To: <1730705521-23081-2-git-send-email-shawn.lin@rock-chips.com>
 
-On Mon, Nov 04, 2024 at 03:31:56PM +0800, Shawn Lin wrote:
-> Document Rockchip UFS host controller for RK3576 SoC.
+On Mon, Nov 04, 2024 at 03:31:55PM +0800, Shawn Lin wrote:
+> HCE on Rockchip SoC is different from both of ufshcd_hba_execute_hce()
+> and UFSHCI_QUIRK_BROKEN_HCE case. It need to do dme_reset and dme_enable
+> after enabling HCE. So in order not to abuse UFSHCI_QUIRK_BROKEN_HCE, add
+> a new quirk UFSHCI_QUIRK_DME_RESET_ENABLE_AFTER_HCE, to deal with that
+> limitation.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Suggested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
 > ---
 > 
 > Changes in v4:
-> - properly describe reset-gpios
+> - fix typo
 > 
-> Changes in v3:
-> - rename the file to rockchip,rk3576-ufshc.yaml
-> - add description for reset-gpios
-> - use rockchip,rk3576-ufshc as compatible
+> Changes in v3: None
+> Changes in v2: None
 > 
-> Changes in v2:
-> - rename the file
-> - add reset-gpios
+>  drivers/ufs/core/ufshcd.c | 17 +++++++++++++++++
+>  include/ufs/ufshcd.h      |  6 ++++++
+>  2 files changed, 23 insertions(+)
 > 
->  .../bindings/ufs/rockchip,rk3576-ufshc.yaml        | 105 +++++++++++++++++++++
->  1 file changed, 105 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml b/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml
-> new file mode 100644
-> index 0000000..bc4c3de
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml
-> @@ -0,0 +1,105 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ufs/rockchip,rk3576-ufshc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip UFS Host Controller
-> +
-> +maintainers:
-> +  - Shawn Lin <shawn.lin@rock-chips.com>
-> +
-> +allOf:
-> +  - $ref: ufs-common.yaml
-> +
-> +properties:
-> +  compatible:
-> +    const: rockchip,rk3576-ufshc
-> +
-> +  reg:
-> +    maxItems: 5
-> +
-> +  reg-names:
-> +    items:
-> +      - const: hci
-> +      - const: mphy
-> +      - const: hci_grf
-> +      - const: mphy_grf
-> +      - const: hci_apb
-> +
-> +  clocks:
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    items:
-> +      - const: core
-> +      - const: pclk
-> +      - const: pclk_mphy
-> +      - const: ref_out
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 4
-> +
-> +  reset-names:
-> +    items:
-> +      - const: biu
-> +      - const: sys
-> +      - const: ufs
-> +      - const: grf
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: |
-> +      GPIO specifiers for host to reset the whole UFS device including PHY and
-> +      memory. This gpio is active low and should choose the one whose high output
-> +      voltage is lower than 1.5V based on the UFS spec.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - power-domains
-> +  - resets
-> +  - reset-names
-> +  - reset-gpios
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rockchip,rk3576-cru.h>
-> +    #include <dt-bindings/reset/rockchip,rk3576-cru.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/rockchip,rk3576-power.h>
-> +    #include <dt-bindings/pinctrl/rockchip.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        ufs: ufs@2a2d0000 {
+> diff --git a/drivers/ufs/core/ufshcd.c b/drivers/ufs/core/ufshcd.c
+> index 7cab1031..4084bf9 100644
+> --- a/drivers/ufs/core/ufshcd.c
+> +++ b/drivers/ufs/core/ufshcd.c
+> @@ -4819,6 +4819,7 @@ static int ufshcd_hba_execute_hce(struct ufs_hba *hba)
+>  {
+>  	int retry_outer = 3;
+>  	int retry_inner;
+> +	int ret;
+>  
+>  start:
+>  	if (ufshcd_is_hba_active(hba))
+> @@ -4865,6 +4866,22 @@ static int ufshcd_hba_execute_hce(struct ufs_hba *hba)
+>  	/* enable UIC related interrupts */
+>  	ufshcd_enable_intr(hba, UFSHCD_UIC_MASK);
+>  
+> +	/*
+> +	 * Do dme_reset and dme_enable if a UFS host controller needs
+> +	 * this procedure to actually finish HCE.
+> +	 */
+> +	if (hba->quirks & UFSHCI_QUIRK_DME_RESET_ENABLE_AFTER_HCE) {
+> +		ret = ufshcd_dme_reset(hba);
+> +		if (!ret) {
+> +			ret = ufshcd_dme_enable(hba);
+> +			if (ret)
+> +				dev_err(hba->dev,
+> +					"Failed to do dme_enable after HCE.\n");
 
-Could you please use 'ufshc' as the node name as documented in the devicetree
-spec?
+Don't you need to return failure for this and below error paths? Probably you
+need to skip post change notification as well in the case of failure.
+
+> +		} else {
+> +			dev_err(hba->dev, "Failed to do dme_reset after HCE.\n");
+> +		}
+> +	}
+> +
+>  	ufshcd_vops_hce_enable_notify(hba, POST_CHANGE);
+
+Is it possible for you to carry out dme_reset() and dme_enable() in the post
+change notifier of the rockchip glue driver? I'm trying to see if we can avoid
+having the quirk which is only specific to Rockchip.
 
 - Mani
 
-> +              compatible = "rockchip,rk3576-ufshc";
-> +              reg = <0x0 0x2a2d0000 0x0 0x10000>,
-> +                    <0x0 0x2b040000 0x0 0x10000>,
-> +                    <0x0 0x2601f000 0x0 0x1000>,
-> +                    <0x0 0x2603c000 0x0 0x1000>,
-> +                    <0x0 0x2a2e0000 0x0 0x10000>;
-> +              reg-names = "hci", "mphy", "hci_grf", "mphy_grf", "hci_apb";
-> +              clocks = <&cru ACLK_UFS_SYS>, <&cru PCLK_USB_ROOT>, <&cru PCLK_MPHY>,
-> +                      <&cru CLK_REF_UFS_CLKOUT>;
-> +              clock-names = "core", "pclk", "pclk_mphy", "ref_out";
-> +              interrupts = <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>;
-> +              power-domains = <&power RK3576_PD_USB>;
-> +              resets = <&cru SRST_A_UFS_BIU>, <&cru SRST_A_UFS_SYS>, <&cru SRST_A_UFS>,
-> +                        <&cru SRST_P_UFS_GRF>;
-> +              reset-names = "biu", "sys", "ufs", "grf";
-> +              reset-gpios = <&gpio4 RK_PD0 GPIO_ACTIVE_LOW>;
-> +        };
-> +    };
+>  
+>  	return 0;
+> diff --git a/include/ufs/ufshcd.h b/include/ufs/ufshcd.h
+> index a95282b..e939af8 100644
+> --- a/include/ufs/ufshcd.h
+> +++ b/include/ufs/ufshcd.h
+> @@ -685,6 +685,12 @@ enum ufshcd_quirks {
+>  	 * single doorbell mode.
+>  	 */
+>  	UFSHCD_QUIRK_BROKEN_LSDBS_CAP			= 1 << 25,
+> +
+> +	/*
+> +	 * This quirk needs to be enabled if host controller need to
+> +	 * do dme_reset and dme_enable after hce.
+> +	 */
+> +	UFSHCI_QUIRK_DME_RESET_ENABLE_AFTER_HCE		= 1 << 26,
+>  };
+>  
+>  enum ufshcd_caps {
 > -- 
 > 2.7.4
 > 
