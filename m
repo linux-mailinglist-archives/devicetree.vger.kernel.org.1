@@ -1,140 +1,105 @@
-Return-Path: <devicetree+bounces-119801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBCC39C0265
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:31:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1FE09C0318
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 12:01:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 945781F21E05
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 10:31:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F37251C2171E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2024 11:01:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9A571EBFE4;
-	Thu,  7 Nov 2024 10:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA9861DDC02;
+	Thu,  7 Nov 2024 11:01:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JsQmeBLw"
+	dkim=pass (1024-bit key) header.d=linux-watchdog.org header.i=@linux-watchdog.org header.b="QmV8O2Os"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68CEB126C01;
-	Thu,  7 Nov 2024 10:31:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+Received: from www.linux-watchdog.org (www.linux-watchdog.org [185.87.125.42])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09A71373;
+	Thu,  7 Nov 2024 11:01:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.87.125.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730975492; cv=none; b=lnPPAlVWHQ5mF3hNxT9T8p6Ppj1f82YuTLPgSQMTvn8CFpvcz9arXGcYimoV7hUzc23t3C/BG5p9gWmJK81QTe7BhkQY+ORZFBS0an+3CSQWjiPjaLKLAK6N4XUoq7OoenCyMddl0abbKvsm4ZUswWV8GdTF5PtKQ39Gc7M6LCg=
+	t=1730977264; cv=none; b=ubuTf34+Ev0NkWiVADo7AbEYNhf8/zngkiExkwht1uQh3KtHC5XTeyD2zkOBKwCUJNuOPg9odNJ5JB0UKN574KsQh9jjqQYhXRPTti/fY2FbdGvWCATckcwcm+/3d8nuNZ6w0I4GsptCgFP2v2VfqrTxdISh2JsAlTbrUco4V70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730975492; c=relaxed/simple;
-	bh=s01lhGxF6c+BY6hecobKUX5p0GXhI8o0kpCOdT8gEm8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OEQFqipLuvOz6bmvfvVKgMFHB7iH/nk+FtYX7b5xsEWU0rcj/bozoWFlZiKWcXlbNTVtdU+HrHia6L448jufGtPoZx/Cl1vpR+3BulrqXdYyc9gmSOMgJpx+35EDmeymY+bM/FV3c/mktptG3Zab5NuLgTM6vpRAycySiXz4mME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JsQmeBLw; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-720be27db74so631429b3a.1;
-        Thu, 07 Nov 2024 02:31:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730975491; x=1731580291; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YkraiRUrks+s5pcHcVdDbNI0v0htZdI4Vc5A2KCgS+Q=;
-        b=JsQmeBLwHEBVZ66qeR1s+AlGm4poFvCNduM00c+xKnwxiUd5drEMViG0//8Mo1jtAB
-         XXM2ToIwa1XTJtJnDLr/XUV6LzGbS9bmBcZxhPGEVbYyFl8d5IitDCLGA4VHMZF4h5Ru
-         Oyt2dRShhuJxhLzXKAEPNP6gzp5+sXieFbe8HbRHHWfYQOztHdx6AdJExq043dLLDpO/
-         jelbxwDKXyh1ZX1U+fD4CF0ZM7/VnHZCu1OChUwE+8jwJzaV9NnRjeEp4Wj4/Qz6jgPF
-         GuocvQiOqHFRFSoP+pb8GtbTloCa1CU6hvpxZiM8etdtlV0TqI9A6aO6gNnZRSbT/wyq
-         kRlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730975491; x=1731580291;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YkraiRUrks+s5pcHcVdDbNI0v0htZdI4Vc5A2KCgS+Q=;
-        b=UIzIMoLFz2lUC6g+k+C4GC2Ev4FuaKOhTuuvg+yUgJED1kYvU/dPfme57ydc67e7cL
-         LB5gKWQKTIO0H7rxI4rBWJIYKCMQ3jb4Zm3ib+H9+9/DnDciDC4X8J8j2NoY3GGHb8bj
-         vjT+pjvceI+jVpRRNy1KZJ686uJ0SlOlu6BC1JSm845k1zN5xI0eTi5WnRcoWzwA6U48
-         8FUOdxAbLtV49xRkWf4wejcnxuNAgnabi5kof2maIIAFhPUEj61ZO/zhgxw6JTiRZuex
-         EpTIm1b2SEOTy+4aXYZvXlMymgTD3bp/caz2v0+tJiybK+LFaDXPZ8ETMtMBuRK+bMs1
-         KgOg==
-X-Forwarded-Encrypted: i=1; AJvYcCU5QRRVRl5yVlxH+yeQ77VSZWOjSTozR7TSspYnH5N9eEZbWz6ok2o2SR6/iLu88x8DICz4F8c/@vger.kernel.org, AJvYcCV3zQXZE8Hr5fdXBnIehYjVoTFlZv2lsEvJmkaXG4bJHO4UoLpa5LeUN67DQOjmv3x3bS6CPP2CxEm9I/q9@vger.kernel.org, AJvYcCW8axgcyZap6UWKGt17fcjSotaiccm0xOp+BmhXmO6ee5KeNMwfZ3+jZ6w2nbUp/wCJJTPGOnqNi9S9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+RyQkuTK3fOLBmPlrDlNXNblFPeaBxa8RqUNZSuWNBfnas0OO
-	+hhqDkeqJw62k6d7hqhmSJLybiBr/5FPCCk++SLzEM62rfL2R7xr
-X-Google-Smtp-Source: AGHT+IGNwXAlJHaBXrnsGeXwGA4utGjnJr02l8IicuB7Vk/ooEjnqYAWwWmqFY6U2v0+nQynuABSkQ==
-X-Received: by 2002:a05:6a00:3ccf:b0:71e:60d9:910d with SMTP id d2e1a72fcca58-7240c8b7bbemr916513b3a.6.1730975490635;
-        Thu, 07 Nov 2024 02:31:30 -0800 (PST)
-Received: from [192.168.0.104] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724078609ddsm1196578b3a.22.2024.11.07.02.31.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Nov 2024 02:31:30 -0800 (PST)
-Message-ID: <21a00f02-7f2f-46da-a67f-be3e64019303@gmail.com>
-Date: Thu, 7 Nov 2024 18:31:26 +0800
+	s=arc-20240116; t=1730977264; c=relaxed/simple;
+	bh=bkxxQT0ywZ+RAU3jBxc18hVZFtgf6aogb7G4KtK1nhk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lNQyL7Yf/41jj8Xn9vL487imNIqz/Ikj+NWlIU6HIwTsPzsYmvA3umq5+E5N7rkc4C9LWBb09eS1vAd2lY3MlgPqHKJb1S/5b6SxsUIfTde+qiaOh9hh4VJ0U/OdvWC7CyFbuW7dyaIFnyQjIElR9f7sCAwpVHx3FhGjb8owBWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=linux-watchdog.org; spf=pass smtp.mailfrom=linux-watchdog.org; dkim=pass (1024-bit key) header.d=linux-watchdog.org header.i=@linux-watchdog.org header.b=QmV8O2Os; arc=none smtp.client-ip=185.87.125.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=linux-watchdog.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux-watchdog.org
+Received: by www.linux-watchdog.org (Postfix, from userid 500)
+	id 0485940A06; Thu,  7 Nov 2024 11:33:31 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 www.linux-watchdog.org 0485940A06
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-watchdog.org;
+	s=odk20180602; t=1730975612;
+	bh=bkxxQT0ywZ+RAU3jBxc18hVZFtgf6aogb7G4KtK1nhk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QmV8O2OsnEKHTeXWL2yUMNdkZmtV18s3l1A0wMrvm/yCqpCvsfwDX1WwKx+YsZgmv
+	 1D9NAG0ffFkeFhzcPoEbOuKInQOHo0AWuMmXPO7bIY0PcVyJ+gZ1WCi8FNqAqZ+eZu
+	 SyFHUaZxyptoPue5zAt/M/pKYi0mId8MFOI9oMFI=
+Date: Thu, 7 Nov 2024 11:33:31 +0100
+From: Wim Van Sebroeck <wim@linux-watchdog.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Taewan Kim <trunixs.kim@samsung.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	Byoungtae Cho <bt.cho@samsung.com>
+Subject: Re: [PATCH v3 3/3] arm64: dts: exynosautov920: add watchdog DT node
+Message-ID: <20241107103331.GA4818@www.linux-watchdog.org>
+References: <20241021063903.793166-1-trunixs.kim@samsung.com>
+ <CGME20241021063938epcas2p1c01c89badb532f08a46087a4907df7dc@epcas2p1.samsung.com>
+ <20241021063903.793166-4-trunixs.kim@samsung.com>
+ <961e1aca-cd90-4db1-87d7-afd2e542421e@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: net: nuvoton: Add schema for Nuvoton
- MA35 family GMAC
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
- alexandre.torgue@foss.st.com, joabreu@synopsys.com, ychuang3@nuvoton.com,
- schung@nuvoton.com, yclu4@nuvoton.com, linux-arm-kernel@lists.infradead.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20241106111930.218825-1-a0987203069@gmail.com>
- <20241106111930.218825-2-a0987203069@gmail.com>
- <f3c6b67f-5c15-43e2-832e-28392fbe52ec@lunn.ch>
-Content-Language: en-US
-From: Joey Lu <a0987203069@gmail.com>
-In-Reply-To: <f3c6b67f-5c15-43e2-832e-28392fbe52ec@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <961e1aca-cd90-4db1-87d7-afd2e542421e@kernel.org>
+User-Agent: Mutt/1.5.20 (2009-12-10)
 
-Dear Andrew,
+Hi Krzystof,
 
-Thank you for your reply.
+> On 21/10/2024 08:39, Taewan Kim wrote:
+> > From: Byoungtae Cho <bt.cho@samsung.com>
+> > 
+> > Adds two watchdog devices for ExynosAutoV920 SoC.
+> > 
+> > Signed-off-by: Byoungtae Cho <bt.cho@samsung.com>
+> > Signed-off-by: Taewan Kim <trunixs.kim@samsung.com>
+> > ---
+> >  .../arm64/boot/dts/exynos/exynosautov920.dtsi | 20 +++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> 
+> How did this happen that this patch was taken to watchdog? There is no
+> Ack here from me.
+> 
+> Drop this patch from watchdog, I do no agree to take it via that tree.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Andrew Lunn 於 11/7/2024 2:13 AM 寫道:
->> +  phy-mode:
->> +    enum:
->> +      - rmii
->> +      - rgmii-id
-> The phy-mode deepened on the board design. All four rgmii values are
-> valid.
-I will add them.
->> +
->> +  tx_delay:
->> +    maxItems: 1
->> +    description:
->> +      Control transmit clock path delay in nanoseconds.
->> +
->> +  rx_delay:
->> +    maxItems: 1
->> +    description:
->> +      Control receive clock path delay in nanoseconds.
-> If you absolutely really need these, keep them, but i suggest you drop
-> them. They just cause confusion, when ideally we want the PHY to be
-> adding RGMII delays, not the MAC.
->
-> If you do need them, then they should be in pS.
+Seems like you are having a hard day. 
+The 3 patches are dropped. I presume that you will take them all through your tree then?
 
-I will fix it.
+Kind regards,
+Wim.
 
-We have customers who use a fixed link instead of a PHY, so these 
-properties may be necessary.
-
-> 	Andrew
-
-Thanks!
-
-BR,
-
-Joey
+PS: the patches are:
+[PATCH v3 1/3] dt-bindings: watchdog: Document ExynosAutoV920 watchdog bindings
+[PATCH v3 2/3] watchdog: s3c2410_wdt: add support for exynosautov920 SoC
+[PATCH v3 3/3] arm64: dts: exynosautov920: add watchdog DT node
 
 
