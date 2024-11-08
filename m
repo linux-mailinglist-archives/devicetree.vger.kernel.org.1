@@ -1,208 +1,244 @@
-Return-Path: <devicetree+bounces-120340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 220369C224D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:45:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C64399C2275
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:54:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3DB21F23C65
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 16:45:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85562281F75
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 16:54:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FA4519415E;
-	Fri,  8 Nov 2024 16:45:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D0D51991D7;
+	Fri,  8 Nov 2024 16:54:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="GSmAPH8i"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="EML1E7QN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2045.outbound.protection.outlook.com [40.107.20.45])
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BAF81803A;
-	Fri,  8 Nov 2024 16:45:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DADF1990B3;
+	Fri,  8 Nov 2024 16:54:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731084327; cv=fail; b=baDgrRi5F5JkNcsJ4nZk3jcxt0jVr2ZLy9pUxGcSA8LDTSQ9YFKz68589qoz9I74FPT1ZZlzUY4AUjcRgHNcRJwPm1FX3OzF10iFhht+ozgBNvKBpwP0dqYROszFgZd9+Jw/cU3dDiedfZD/1QAr/sWDuJoB1J+oNBWzwqHll/w=
+	t=1731084869; cv=pass; b=LZuBCebt7oodEbZzd92exKR+i4dVJWWZHyfAJDiivpDMmLh/rJXiaXst59LlMMuJ8IpFocwKv4OS777/hfRVsjFJtpS9ohqFkDpkdXS78dTZiMNP4c65hXIGfoyia/UXali5ZkMjlmVHMmQTHhkxEGj1RgwoxSHsHGkkdrEsk90=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731084327; c=relaxed/simple;
-	bh=29Q2MRzMBaU4Nz8mfrF+vPARfG8GmT+PRkw5JXJHB/w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=BRLSfFwch/DcNRQ5t2+K/s82xMk9BHpn4AyME1TrmKu+jJEFMRVDVi9pw2E+2zDrMsZsSoM9ndeJv2QLh55j6CVr/I7LLzOoH7Lma5zrgGeMR/WHrPhiJeT88pvVekQDgtFDPWIY5kQBw+AMLC9kJH8Wo/zbIaHcOnl6VRDGDxA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=GSmAPH8i; arc=fail smtp.client-ip=40.107.20.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rXm6qndDotZAF0JyxJWyYHcvuTytKXLWlpgPfXvd76V8q7Kpo0vikM5+hk643EkiQ8BjJb5dvx2zK6DEHdvOq5Q9r7cQ++c4c63j7GyZdlOQX5sRRgp/6BIV97MOTRDKukRtOd5/fNN4RDCOIAE8p8fv3TIuD5w/HEvdLOV1YN1uGEbxMaatoxJuppxD1n5XBJWWCauVnNlpIkAcQ/bL9gqrDRNGhU10yh6+ew2AKejC2y8Q2WM7riTExhGzrWvHrCWNWebYb8TUiiUkiGnqhRddDL4phLRs+QD9dc72CzjeRIDfDOeqevo4DvnjAspmLtEFLZ8YDG8u04FxGiXYlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=29Q2MRzMBaU4Nz8mfrF+vPARfG8GmT+PRkw5JXJHB/w=;
- b=MfPCQAZKoOkXJrB94wwtysLOippAbI53k3/qCOg+jD56ndeKbrRpS19+stGO0JFbY2qKphNLSh2JMuVrIyTr1eGxTfyOGYZGO0Au8CcTwEKQrh7QwB8173YwK5wXybj5B73zlnn5b29mdH6tqr7aeDUGDCsa4mDXTzJhHhyMLRwSKuKeETOk54/vWZ/5z7S1zwlCvrMnH+6HLpdZL0s4wYB5xicfXfvkLjDfqa5XQXzQMU+lYw/xNT7/oLSLsvxnk/uclsk3ThaBeZw0LcZQVyFBuOQ9n0t+MB8EbjRun9RD2ZeVGWANjIfSUu1OL450xgIDLfS4h2ZGonSW7Cmwew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=29Q2MRzMBaU4Nz8mfrF+vPARfG8GmT+PRkw5JXJHB/w=;
- b=GSmAPH8ikVSo7V36twdrYDiJyXr9tNQ5pg16bXpa2hRUA71cdXZrAqLj4zI7re9O+C4IYdbj4Cy5EPnOdSFbrtkWPB21v2IZcuz97Oq+0/HmATSneftyvQqSGSx6LIicZNcR4o1IfjhhHevdpeZRkLi+zvS0mjvvgw3TlQEFRprr/XyaWFUe3zFVkt8Kx5Qf6l3pIQrwcLz/JQVXleQT32URQGzgEmOERe8MgMzygCawypG8s4piZFkXDmDo/C4foPAjksChOexTOh58vITzRujIjis5q7ppJ6eWLqAF54ya6Tv907INr92hofU7NBAETy6VbMIoW8fjL8h3dMTf3w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS1PR04MB9681.eurprd04.prod.outlook.com (2603:10a6:20b:480::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.19; Fri, 8 Nov
- 2024 16:45:22 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8137.018; Fri, 8 Nov 2024
- 16:45:22 +0000
-Date: Fri, 8 Nov 2024 11:45:11 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Carlos Song <carlos.song@nxp.com>,
-	Clark Wang <xiaoning.wang@nxp.com>,
-	Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH 0/3] iio: temperature: Add support for P3T1085
-Message-ID: <Zy5AFxdkxIvB37M/@lizhi-Precision-Tower-5810>
-References: <20241107-p3t1085-v1-0-9a76cb85673f@nxp.com>
- <20241108152856.000042ed@huawei.com>
- <e566ee56-523c-4cfd-999d-1cd9ca8eb7a6@roeck-us.net>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e566ee56-523c-4cfd-999d-1cd9ca8eb7a6@roeck-us.net>
-X-ClientProxiedBy: BYAPR01CA0060.prod.exchangelabs.com (2603:10b6:a03:94::37)
- To PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+	s=arc-20240116; t=1731084869; c=relaxed/simple;
+	bh=1RoMv/rYXCT+mRbb8firftnoI4gHYWxACN7qAEhWN18=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XEoHR1xpqxAMKg/qvDJXp1o8TLuRaZzNhr6W2BRk+veJqVsJc6/9/VRbihPUJd3vWAVh7DG1/vIHJE1Ba7G3L+YsGm8eApVldf/L39aIrFpAZtWk6K+cTDoFPf0LEdQkkOD7g8oBFzMJ4sMa90CpgHf1amW0TytAXthmkcQ4u60=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=EML1E7QN; arc=pass smtp.client-ip=136.143.188.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1731084832; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=UggnLDiT8L9h57CG1XTcCfDiHQTXq+nrtR8IlMCdsDbCjMC12O0QmOUG5DYJ9hlBoxKSVzHlmb7SE5o+L9nIqBIELrBg4dKAvSs3vWYGwMTGLY7IAVxrFKlXHc41oR21rkGMi2NN4BZjIeZdO6D8NVkJQyo3N90gDqXBDrVHPcs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1731084832; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=+Ud2Wm0N9rBWA5JqD8doezigwT2uqET+VTznhZjAgh0=; 
+	b=EyN1Pjj0KhgVMYXN5flONkrptqDwA4lmKqBXQmxOzULXNfFsUry8W/i0OULXyaqTGRLHHZOdblapSY34PXuJAqbliQihEPtdTDk40MSynfLuwZHdRPnXbC0C6VjQNf74BOZFdggtg8GwZhZdBWvKL7XHIVWKfOMkh/HYUROY8/0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1731084832;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=+Ud2Wm0N9rBWA5JqD8doezigwT2uqET+VTznhZjAgh0=;
+	b=EML1E7QNShCWastiTijne32mVrnn3qFFsmBIAi4841Os7zoO6t0f/jF16PUmmi+o
+	2uLnjTKlfLxHBZ/9QWEw7YKcc3PFCo3mEIoHSiiv3cMGNTjXL/Msudldjy8cWnkF3Bn
+	+cpN0tQ+AxU9Ye10reiLJRqJnMRMqfkpZQY5U51g=
+Received: by mx.zohomail.com with SMTPS id 1731084830585742.5608083703597;
+	Fri, 8 Nov 2024 08:53:50 -0800 (PST)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: Andy Yan <andyshrk@163.com>
+Cc: linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko.stuebner@cherry.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Dragan Simic <dsimic@manjaro.org>, Chris Morgan <macromorgan@hotmail.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ kernel@collabora.com
+Subject: Re: [PATCH v2 1/3] vop2: Add clock resets support
+Date: Fri, 08 Nov 2024 11:53:47 -0500
+Message-ID: <1901885.tdWV9SEqCh@trenzalore>
+In-Reply-To: <4605629.LvFx2qVVIh@trenzalore>
+References:
+ <20240522185924.461742-1-detlev.casanova@collabora.com>
+ <6a3d3fb1.3755.18fa893239e.Coremail.andyshrk@163.com>
+ <4605629.LvFx2qVVIh@trenzalore>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS1PR04MB9681:EE_
-X-MS-Office365-Filtering-Correlation-Id: 40df34f8-fafe-4041-611b-08dd0014bc7e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|1800799024|366016|376014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?VuP4FbkHUYSbAaTy9eMKgIUi/2udooT8wrt5yeXVynYLnFwcb/dpncT+GAaX?=
- =?us-ascii?Q?0mR93UxSXVYqL6MK4JPWti9o72oUFISsAMALhEc/oRajVPZThTv6fyYIzsrh?=
- =?us-ascii?Q?F0l1+Hsr2RcsevFStoogazE6rhNK6lkbEdIfjTxW2jtE32wa9oqSlJYshWBV?=
- =?us-ascii?Q?m2GOVAQnVyCaQoW4h7hVu7HdZ5ZkQKURfNx5ufIsV2KWbAMz8kFPxRutuVQS?=
- =?us-ascii?Q?YZcLfBGoNtagSovCIjnaH93aDUPnuPXPaFiR5PEI24jhLbOksTrV72gMsmoh?=
- =?us-ascii?Q?f4CTZM69YGSSUh9hdGURnZGiNjOh8iPaQ09eFg+FJHhrhDjTAHpKX687n7Ba?=
- =?us-ascii?Q?nzd68/4k9lCuJcjRFY7ywwJwSl7bujshhfg6CV6DEOA79uuRv1MaHFemuu67?=
- =?us-ascii?Q?5TLqZtSe3dZlFsR2OjaD2QCno1WvGBTu4jsWUfixnctfOKe2hCk1es8y2/dW?=
- =?us-ascii?Q?RT8bFdz/tmkC9K7v3Xzqo86OmZGSv3lVSVc1Qy2TOYxfIY661KtNvP3tk2Vj?=
- =?us-ascii?Q?ZyGFvrJCS359z0G2HgF2Ew+j/e5Q+QD7Lg3XluWrJwMfJ/QqrLJPzSReLSth?=
- =?us-ascii?Q?KxeU6KBye5Ykgu7LjD7gwArROGCcJ6qGThGcPOBh/mYwNPjRpUc2qTz/NvL9?=
- =?us-ascii?Q?Zyt/HGbnbuWD8mkHZWvzhlmshFjac011Fda6V7y9Z9z3r6Q4nJRVZiqlKMyb?=
- =?us-ascii?Q?K/5mJIosn2ynCErySFF2rm5Gknj8d/dGRI7b3eTPggGvVlrOlif/+d7x2X7T?=
- =?us-ascii?Q?xdiW73yUkcdKc+e/CAdtLBLHteYQ4l+ssDu6u82ruyKEyDKFuC80WMRS/kd5?=
- =?us-ascii?Q?C0RiGFPU1s0tT6qJcJ9WmsSDq4DHlHTX6XMBL8g7iYo7Esy4pY1LYPSql6lB?=
- =?us-ascii?Q?O8LN9y4mPAHazkicV7rAZLi8nhpG65xhxKN0i4byJ/wjFQbqwRk3OTBhKpxm?=
- =?us-ascii?Q?EqSUmqzeEeSvsEeNGz46ExaZ5RPfUATfvqOVmDDip4dPYFTa6+Y+iyfjbAXM?=
- =?us-ascii?Q?WjNaW27a4d+QYUzgXr0WdoHl0RmPWs67ueZxrFY7BUY0HdvTFQuoRrNRBGIZ?=
- =?us-ascii?Q?4+aBOtckKgY0v7DpeWRWI39zeLlCnwDuOkXLbS1sG2IQ6qp4u2xhRnShPAMm?=
- =?us-ascii?Q?wKQqCa3NkZb/agb/eqYsQpSMBL7qwHww6T2qZq9aN5LDmDuKUdyksKNgKJSa?=
- =?us-ascii?Q?/Or8cmyLzF1dkV5/5Zk5qSasvUlsaVFqvh9gBzeDj6p5UGQETs8sjnj5iJZY?=
- =?us-ascii?Q?2vHWI2nyfSgiQvvXzv6aXu/7B+jQnbVWzQdG8lIHfa1Po7y98eSg5uZVpunu?=
- =?us-ascii?Q?6Vem131wQzD9hzSD4F2Wxpj3CHtHLDBqxIZeyg+HvpXKYt+HHPupCnD2se7+?=
- =?us-ascii?Q?F/+IxPE=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(366016)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?DHnp8/PClE6Y7+BZ4coJ2kHf9dFLlsuCcy84th4BIJdnQCjxqchvoP/VwzW+?=
- =?us-ascii?Q?OOZlWwietRFJp9TULKcck1JV8wI5K2HgD4zIpAu3U6VHg5Lc7LFp76wIrIpD?=
- =?us-ascii?Q?LxCzewLxJbiMjDZ07qCk6aSNx4s94xSWKUFk7XZWsxQEY8B3diwRG/XRiN2p?=
- =?us-ascii?Q?7ZjUEsgSDokvmNkBO4bE8JbaTtU55Uc5nnZVmQkSQvRqWhMgNt5cBXqHRsf8?=
- =?us-ascii?Q?tDabtJ9kz5ERS77tuMR8panRx84cwigZb8+X7f+CQxj1OgvwxUabL6dJDm3w?=
- =?us-ascii?Q?vNvbI6PFL2vM+2pvLZF8JNrCPKfcF95k0z9H0ZcV/ENdnXAKxYD6ME5+yoVN?=
- =?us-ascii?Q?4BiQwcHlU5YX8GYJ11Fu1Ly8bF79slAMjgAHqcordPGS89kppIcaUUe0XJBd?=
- =?us-ascii?Q?jOXyZu71h+Bj41CceroA/VTXy5tOsWij0RbdFDFW6ObvmKvSvVmbXMj1AnRB?=
- =?us-ascii?Q?u7+2llMcjfouwhTZxRA7ElBifdWXNayNs2fSTWBc1QJkY7rX7+FeWX3SXSUp?=
- =?us-ascii?Q?udAhgWMN4z3wCVsOieu5r9S8pJ7igo9Tig2cqMfKJ5ooRaDXTzlGhK0A+yp/?=
- =?us-ascii?Q?+dZOIW1o6MSxCqYT5uq4ZSFQxz3d7X6OURJXDdQKj+RvYW9QDoMy7DkOkWSX?=
- =?us-ascii?Q?M8Rq2QnWl7itQ0OPzlVsW/K1SWq95PmaYglP21VRs1oQhQSPUKIcYv/QApek?=
- =?us-ascii?Q?cgLnEYKqAgAOJyTYCzxpvi7tPV6hdKeZLKs37eh1u+WXPHcXN+W9j7IA/UmL?=
- =?us-ascii?Q?DvLmuKn4Vjmbhi+KQ4b6ZRnJeFci1NVie8sdOiW3LcmTEdvio7NWLqAwQXW1?=
- =?us-ascii?Q?3iGcnSbq3afPWWVxZAojpT1RN3hmXElE1RUrTP/71Fgsod8Yv30N8pWIgQZa?=
- =?us-ascii?Q?V8cU75K+SShaIjI3RVZAK/xzFifyFxiFQNgtuXf/elTGvXKzrMzcPTenttYN?=
- =?us-ascii?Q?MpjHtPVLNCWM7/6C5ktHrfKNMiUVch8DYXWEEZqcWCsIeuO+HXV4xBqhhlj7?=
- =?us-ascii?Q?d0YI4iQaaKtk4dDTcU5eF2DEh5vpsqxu6qQAxQWZ4jRaoa3Z2jVSVgnCaXY7?=
- =?us-ascii?Q?9yuqraVhTSfff4nomCjjWBXvobPGQ7C5xCUVLnqzZR+l/cHUaKC/hIg7DKT6?=
- =?us-ascii?Q?kG2bnzGsCp/2halYByNFX2kTEIFn3kvUiTUVLhLkHnTc97KyZxWY5N4+LUMo?=
- =?us-ascii?Q?r0jmHALgo6+dTRm6fjHBt3nVRPPN+PlWSYIX88bH7TcrDj6+OhIdTQIAVRuc?=
- =?us-ascii?Q?IcHxVm8hNAQidGeL+rtdhSOsqo503P1uP+shhe1V5qEsdXqU+dQFLzIb0Pq0?=
- =?us-ascii?Q?PIVO9meDXaCAKpeOsdPPwJVN92btTS0TkGyhyxNIEgEOvU15wudHFmRmRFoR?=
- =?us-ascii?Q?6IDsjYdQ4pThPphjK2P4moqZPjZCkasnZz7QrSc3/bJxnqBSwcSCXDAV9iAC?=
- =?us-ascii?Q?YvZ/BqSBNwn0DLpGo5mCt6hvheCTTz56YezoNSfe2tQnx9e/xp518VjxhU8S?=
- =?us-ascii?Q?UJDh3iw13dYrSyqeH6acqd0Knc6GWxZbqrwkPNHN7Lh5Pb+xx4U+0+a/xfFh?=
- =?us-ascii?Q?E9t/XusWKo53nJ6mcic=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40df34f8-fafe-4041-611b-08dd0014bc7e
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2024 16:45:22.6413
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dqIiu3D7IILXGltPiA9cNAor1KBfxjlR7QL2DgK/HnhnqhMl5RGkWPDbk+pd1IzTDGd34/IFyxLvXSCpeGgnrA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9681
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
 
-On Fri, Nov 08, 2024 at 07:49:54AM -0800, Guenter Roeck wrote:
-> On 11/8/24 07:28, Jonathan Cameron wrote:
-> > On Thu, 07 Nov 2024 18:02:26 -0500
-> > Frank Li <Frank.Li@nxp.com> wrote:
-> >
-> > > Add basic function support for P3T1085 temperature sensor.
-> > > - Add binding doc trivial.yaml
-> > > - Add basic read temperature driver
-> > Hi Frank,
-> >
-> > For a simple temperature sensor the usual question is why IIO rather
-> > than hwmon?
-> >
->
-> From looking into the datasheet, this is a chip which will be typically
-> used for hardware monitoring.
->
-> > Previous reasons have been:
-> > - Very high performmance / accuracy part (i.e. expensive)
->
-> 0.25 Hz ... 16 Hz sampling rate. No.
->
-> > - Remote temperature so not typically hw monitoring.
->
-> Local only.
->
-> > - Same silicon with a more complex sensor (typically humidity or similar).
-> >
-> No.
->
-> It looks like the I2C part of the chip is is compatible to TMP108, so
-> another question would be why to implement a new driver in the first place.
+On Friday, 8 November 2024 11:39:57 EST Detlev Casanova wrote:
+> On Thursday, 23 May 2024 23:09:26 EST Andy Yan wrote:
+> > Hi Detlev=EF=BC=8C
+> >=20
+> > At 2024-05-23 02:57:48, "Detlev Casanova" <detlev.casanova@collabora.co=
+m>
+>=20
+> wrote:
+> > >At the end of initialization, each VP clock needs to be reset before
+> > >they can be used.
+> > >
+> > >Failing to do so can put the VOP in an undefined state where the
+> > >generated HDMI signal is either lost or not matching the selected mode.
+> >=20
+> > Would you please provide a detailed description of your test case?
+>=20
+> The test case was to switch modes (using modetest) until the HDMI signal =
+was
+> lost on the TV side. It was also possible to detect the issue by tracking
+> the HDMI TX Controller_VIDEO_MONITOR_STATUS[1-6] registers, especially at
+> address 0x890, where the register would take the value `0x0000018c`.
+>=20
+> After adding these resets, the issue cannot be reproduced. I can share a
+> script that reproduced this in the past (but this is an old patchset now,=
+ so
+> things could have changed)
+>=20
+> > >Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> > >---
+> > >
+> > > drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 30 ++++++++++++++++++++
+> > > 1 file changed, 30 insertions(+)
+> > >
+> > >diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> > >b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c index
+> > >fdd768bbd487c..e81a67161d29a 100644
+> > >--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> > >+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> > >@@ -17,6 +17,7 @@
+> > >
+> > > #include <linux/platform_device.h>
+> > > #include <linux/pm_runtime.h>
+> > > #include <linux/regmap.h>
+> > >
+> > >+#include <linux/reset.h>
+> > >
+> > > #include <linux/swab.h>
+> > >=20
+> > > #include <drm/drm.h>
+> > >
+> > >@@ -157,6 +158,7 @@ struct vop2_win {
+> > >
+> > > struct vop2_video_port {
+> > >=20
+> > > 	struct drm_crtc crtc;
+> > > 	struct vop2 *vop2;
+> > >
+> > >+	struct reset_control *dclk_rst;
+> > >
+> > > 	struct clk *dclk;
+> > > 	unsigned int id;
+> > > 	const struct vop2_video_port_data *data;
+> > >
+> > >@@ -1915,6 +1917,26 @@ static int us_to_vertical_line(struct
+> > >drm_display_mode *mode, int us)>
+> > >
+> > > 	return us * mode->clock / mode->htotal / 1000;
+> > >=20
+> > > }
+> > >
+> > >+static int vop2_clk_reset(struct vop2_video_port *vp)
+> > >+{
+> > >+	struct reset_control *rstc =3D vp->dclk_rst;
+> > >+	struct vop2 *vop2 =3D vp->vop2;
+> > >+	int ret;
+> > >+
+> > >+	if (!rstc)
+> > >+		return 0;
+> >=20
+> > In fact, this check is not necessary here.  The following reset control
+> > api
+> > will check for NULL pointer
+>=20
+> Agreed, I'll do a rebased v3 and remove the check.
 
-Thanks, let me check TMP108.
+Actually, re-thinking about it, the check is done to avoid the udelay(10); =
+if=20
+there is no resets configured, so I'd rather keep it that way.
 
-Frank
->
-> Guenter
->
->
+> > >+
+> > >+	ret =3D reset_control_assert(rstc);
+> > >+	if (ret < 0)
+> > >+		drm_warn(vop2->drm, "failed to assert reset\n");
+> > >+	udelay(10);
+> > >+	ret =3D reset_control_deassert(rstc);
+> > >+	if (ret < 0)
+> > >+		drm_warn(vop2->drm, "failed to deassert reset\n");
+> > >+
+> > >+	return ret;
+> > >+}
+> > >+
+> > >
+> > > static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+> > >=20
+> > > 				    struct drm_atomic_state
+>=20
+> *state)
+>=20
+> > > {
+> > >
+> > >@@ -2055,6 +2077,8 @@ static void vop2_crtc_atomic_enable(struct drm_c=
+rtc
+> > >*crtc,>
+> > >
+> > > 	vop2_vp_write(vp, RK3568_VP_DSP_CTRL, dsp_ctrl);
+> > >
+> > >+	vop2_clk_reset(vp);
+> > >+
+> > >
+> > > 	drm_crtc_vblank_on(crtc);
+> > > =09
+> > > 	vop2_unlock(vop2);
+> > >
+> > >@@ -2706,6 +2730,12 @@ static int vop2_create_crtcs(struct vop2 *vop2)
+> > >
+> > > 		vp->data =3D vp_data;
+> > > 	=09
+> > > 		snprintf(dclk_name, sizeof(dclk_name), "dclk_vp%d", vp-
+> >
+> >id);
+> >
+> > >+		vp->dclk_rst =3D devm_reset_control_get_optional(vop2-
+> >
+> >dev, dclk_name);
+> >
+> > >+		if (IS_ERR(vp->dclk_rst)) {
+> > >+		        drm_err(vop2->drm, "failed to get %s reset\n",
+>=20
+> dclk_name);
+>=20
+> > >+		        return PTR_ERR(vp->dclk_rst);
+> > >+		}
+> > >+
+> > >
+> > > 		vp->dclk =3D devm_clk_get(vop2->dev, dclk_name);
+> > > 		if (IS_ERR(vp->dclk)) {
+> > > 	=09
+> > > 			drm_err(vop2->drm, "failed to get %s\n",
+>=20
+> dclk_name);
+
+
+
+
 
