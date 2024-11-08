@@ -1,91 +1,100 @@
-Return-Path: <devicetree+bounces-120382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B94D19C26F2
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 22:13:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECD449C270D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 22:35:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D739285185
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 21:13:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E69B1F215E8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 21:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAA01D63F2;
-	Fri,  8 Nov 2024 21:13:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1BA01C1F34;
+	Fri,  8 Nov 2024 21:34:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JiRAIUQ/"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="B0TATyu9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC8801AA1F9;
-	Fri,  8 Nov 2024 21:13:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1CFA198823;
+	Fri,  8 Nov 2024 21:34:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731100404; cv=none; b=bAY4M3YTmH4OaDYc870YbY7xOol++2GNshQmzegztpGxHiY/0HWgoqNim0TVK6kWFOFyHx4yxgBhLJ6iEi+5ugLv1A/iKL4gweYYxKBGT/xMFpq2rLv0+cuxNOJ1NyMzko4Vk8OFlyrHAipuxzzlFVu/tAa0VdAGS8TnOFOkkgk=
+	t=1731101698; cv=none; b=CZd5IPAIBbY9qyrWvxNPPc4PVE+bL/rgUoufgH4/T4eKkGPsjCGLX2arbFXJsqMXuTIZyDQ9l4eN9DilJXGUDVi4LStGMk+2j7Yn6EDPYUXrye1i+tScYeKF/7oR3cnBxY5Pt7LJDpnQU8lkOo+UBdcIC+LBTwyAXWCsdNH7t+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731100404; c=relaxed/simple;
-	bh=JqqUEnZISSBjlEVJHEp2gifVmpZJR6UqrvGG5n6Q1+0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CsNbT8RCgqTAtcqsHk1MPVgx9acg5olyZpKTK0dPb6P4ZZ9K6YppWatxrddAsox9qn3GAWHZlE6q6C0LIZp9bPWEkUmrQxR/+p39pUmyDczZbVxusGwTE3ZT9/2/4sSnO50ZlSTUCyOD4GUihws2Hg7QloHX34wUHodFI7jkEF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JiRAIUQ/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A3E3C4CECD;
-	Fri,  8 Nov 2024 21:13:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731100404;
-	bh=JqqUEnZISSBjlEVJHEp2gifVmpZJR6UqrvGG5n6Q1+0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JiRAIUQ/h06A0rEMbeXI/r8p8Kfuo2FICZju2ct0mlIkRlDgbUSp62XHeNGSoP391
-	 b39k1H+ynNiYKtDnxlTsP8SzP8ls+0CPDDDxz01Iu0YlDogZ/RWuDz8Ql9pwAr3Qvl
-	 GoTm2Ccz979UG0FfqFqYbidFEcJalNW0SZRMs2fgtpgak0sUMltrX8K/OWQkuJa5Vw
-	 lj/SnjOYCucS7BYXhY+87eSzFOOqqzNX96u0zXRRIv3jOCcQ681djs0fZdQtwTmkcX
-	 2dvO993Nf3fKV6CtDen6x+FNghz3WO29zzlqiRAjz/deZHRGlz3rAzr7WX4bwv2/BG
-	 W1rOX/B7kxDgg==
-Date: Fri, 8 Nov 2024 15:13:22 -0600
-From: Rob Herring <robh@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
+	s=arc-20240116; t=1731101698; c=relaxed/simple;
+	bh=CG5O0aBXAGi4FDAzWkIA2qBzxYUOk1Yt2uloAymezk4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ew5pCL8OBTn4eBMoOoJp5piMmgfVUyo6nSEE5jCcg2tgD1XYRFJbjBo6BBSgvP0xfgRyvkck+UoloXgTbjiUkh4jpYk07hcXxgcET93SPn5BkCykTohPlkRtf+e0H+e2ln78QXn/e6vNt7YpuqIrZi84B3eC6EY9wd4+k2e3heY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=B0TATyu9; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1731101694;
+	bh=CG5O0aBXAGi4FDAzWkIA2qBzxYUOk1Yt2uloAymezk4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=B0TATyu93JB58fz0X5PBVvGj6TAz+RnFZXLYcJGrAZv3OmxCyTMlmTkFB0OgL4wd1
+	 LtS0dpWK16E2zrANDjmgfSgGE6FL+uXGAF5BGP47PFwbI0A66kRAFzz9EWEVp90RjG
+	 EEq5oMhrFQpAypIhDuslSOI5LmFelKhtyoNHmT58gFi48OM+gcf6UCpxS+6Rg3AeLq
+	 OlNVSesqxy6JN+YXQPxl/34h2QeEn2cE+csbMqT75BI7suDyhPShMGlC3JcpJHqE83
+	 ePIfm+1vdYG0jxhyWzqQmlN8ujpWV8e3y3lwMTTaHziVb6hx7n31z2uxj/JI1qbclr
+	 4IQTqOoJ3WUDg==
+Received: from trenzalore.hitronhub.home (unknown [23.233.251.139])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: detlev)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B6A3717E37A4;
+	Fri,  8 Nov 2024 22:34:52 +0100 (CET)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: qcom,pdc: Add
- SAR2130P compatible
-Message-ID: <20241108211322.GA2849214-robh@kernel.org>
-References: <20241017-sar2130p-pdc-v1-1-cf9ccd9c37da@linaro.org>
- <t2trcojqskryzbuh6cbuqev35eioduarneskwtcm5aeeqlvbkv@3kj4x36ebkqk>
+	Heiko Stuebner <heiko@sntech.de>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Andy Yan <andyshrk@163.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Weizhao Ouyang <weizhao.ouyang@arm.com>,
+	Jimmy Hon <honyuenkwun@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	kernel@collabora.com
+Subject: [PATCH] dts: arm64: rk3576-sige5: Remove non-removable flag from sdmmc
+Date: Fri,  8 Nov 2024 16:33:57 -0500
+Message-ID: <20241108213357.268002-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <t2trcojqskryzbuh6cbuqev35eioduarneskwtcm5aeeqlvbkv@3kj4x36ebkqk>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 31, 2024 at 07:34:41PM +0200, Dmitry Baryshkov wrote:
-> On Thu, Oct 17, 2024 at 09:13:01PM +0300, Dmitry Baryshkov wrote:
-> > Document compatible for PDC interrupt controller on SAR2130P platform.
-> > 
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> 
-> Gracious ping, the patch has been acked by DT maintainers, but is still
-> not present in linux-next and got no other reviews.
+The sdmmc node represents a removable SD card host. Make sure it is
+considered removable so that SD cards are detected when inserted.
 
-Applied.
+Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-> Krzysztof mentioned that the patch should be picked up by Bjorn, but all
-> previous patches for PDC schema were picked up by Rob Herring or by Marc
-> Zyngier (and one stray patch was picked up by Linus Walleij).
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+index a56109b4f071..7c7331936a7f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+@@ -646,7 +646,6 @@ &sdmmc {
+ 	max-frequency = <200000000>;
+ 	no-sdio;
+ 	no-mmc;
+-	non-removable;
+ 	sd-uhs-sdr104;
+ 	vmmc-supply = <&vcc_3v3_s3>;
+ 	vqmmc-supply = <&vccio_sd_s0>;
+-- 
+2.47.0
 
-My preference is for it to be applied with the driver or dts changes. 
-For standalone patches, I only pick them up if the $subsystem maintainer 
-does not.
-
-Rob
 
