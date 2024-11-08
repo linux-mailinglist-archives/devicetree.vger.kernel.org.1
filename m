@@ -1,56 +1,63 @@
-Return-Path: <devicetree+bounces-120220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B8EC9C1C59
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:43:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EF4B9C1C7C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:57:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D115BB22F5B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 11:43:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46D9F1F242FF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 11:57:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94C7D1E47BE;
-	Fri,  8 Nov 2024 11:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C9E51E47C4;
+	Fri,  8 Nov 2024 11:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JwPKEtgK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kdAskxrU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B2401E411C;
-	Fri,  8 Nov 2024 11:43:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E9041E0E10;
+	Fri,  8 Nov 2024 11:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731066195; cv=none; b=jOCky1eBOq4ZI5rYq6EJL+vcmovIwqzEzi6kSGhbJNn+NoNTpCEht0NRo7XVBcvCugeDeeA3/v7DNAEoz8bEezpZMi6aXKbll8ZWM4zzCgezZMO4/0+pF2/2E2Di9Z5ZomeQQGWXhIoNOzkNpY2aF0TCVbcUaq9LQhZVfBbDFis=
+	t=1731067027; cv=none; b=PXYbAmp6SGnmSzAySTLXUt1+eft3+BesE8kuelBv13VL9wJizKFo+y+Vq308iklIyIM6uHEjpJPZFwKxwEr1x2DRGYCuM1DFib5YxOWKIE2uLhDcaA68tgS5Y9xitv4xc7LvtMFr5rgd4F9b2/eDiHkcN+z1wd+1CX1SU87puJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731066195; c=relaxed/simple;
-	bh=8zaJ33eL6o1+wVR92icQ0rxE6wt94nUld/Us/a4aZpU=;
+	s=arc-20240116; t=1731067027; c=relaxed/simple;
+	bh=QbmFVfadbo8uXdqtT81Hz2hqVSegNMI1xnbOcKgH/94=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kfj37eN0wEZolo/No70PjN6jewwAutdzdIgNAEYt8+w/2BTRduiDUnqEsjoEHvEx+PmaoBekcNI4MRgMSNJklVT6jLeTeNx3xK9dLsVQEgjHK6iQX7m+ZpbbJFBAnVZZeTf7r2sflCgmKTD6oYMMh4rFU6o+FSrqmYBPFuQKszg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JwPKEtgK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87EE7C4CECD;
-	Fri,  8 Nov 2024 11:43:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=neDS3yDzIL/HEoP7Y9IjLCGEJsP0S0fjCgsxmgQSXuHCR6xeQ9mftAoySVAelg3sPIo0m//vNR7BK5GpBKXiWq2c1W0xBM9jQ98JetbdKspcvdpWqDgDGjm9UuGQrSZA0qq/XP71b24TtLQYIslKqZsll3Uvo+JLEw2cAzMGzlQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kdAskxrU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC1EAC4CECD;
+	Fri,  8 Nov 2024 11:57:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731066194;
-	bh=8zaJ33eL6o1+wVR92icQ0rxE6wt94nUld/Us/a4aZpU=;
+	s=k20201202; t=1731067026;
+	bh=QbmFVfadbo8uXdqtT81Hz2hqVSegNMI1xnbOcKgH/94=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JwPKEtgKFJpBmRRPq/RyEhl4//oELyueeAhtNFqoFEFYMNvlSRSnGA38v1ey6qvC+
-	 skgKwROXWdzgElvH26Ahn0X6XoB4dmoSj62IsTsu2eMyXe2TLruFY4aPgUF0xukJM2
-	 1WMyKCqlgTbtxpgDRSnQWPHp+AZKOve1j5f83gDGAybpuSJh1KcE7p2yimsHcmLkOm
-	 HiyDXxlKQg3en33EXlzhzWRDfwmqt4OBGGTYnhNQogU3etOZlWK01tHcFdPQXYMGl/
-	 XidtFG1QdryARAk+YOW+05RP1ATpswcivG8eoaO6MaulWZtcPSW8iaqf3YWzBp0z2K
-	 c+iwcWAdxZgcQ==
-Date: Fri, 8 Nov 2024 12:43:07 +0100
+	b=kdAskxrUCnQqARtdBdT1Xjji1CjZcDU39CU3w1LtZyMuDCq8L7NJq1eNyy3OsErH6
+	 H7idgmY241VJ0qZbnoi/AdkHYqDllUAj8DILDvzKtmuX4T4HS86Hbs9+6gIsa+HKff
+	 +RYqGGLLSL8u4MAQnLM+QnJhzC3/VKIwZmlmzne0L7MeSoLEbB2NYaRqumbcLIWr7x
+	 gp3D8JQUAwIrCZuHORoMvmLdXzl+qxbw7LEqXvUQiSfWDN49Jb/qT8nmW5ymJK/6Vd
+	 ktQavmGa2pkSzJGp4dboY5qnjVVDtCWnOFv5hohswKtzE7NR9KHVbnGdPzHGLa8rWT
+	 in6s0lfz+w4Eg==
+Date: Fri, 8 Nov 2024 12:57:03 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Ramon Cristopher M. Calam" <ramoncristopher.calam@analog.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: regulator: Add adi,lt8722-regulator.yaml
-Message-ID: <qr72zky2xfy4uzcm7vqnipgx3nkic4hp377jbtha46cktnxncy@52ms2zg3sf7w>
-References: <20241108093544.9492-1-ramoncristopher.calam@analog.com>
- <20241108093544.9492-3-ramoncristopher.calam@analog.com>
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>, "Martin K . Petersen" <martin.petersen@oracle.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
+	Bart Van Assche <bvanassche@acm.org>, YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>, 
+	linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v5 1/7] dt-bindings: ufs: Document Rockchip UFS host
+ controller
+Message-ID: <bpxlah7lewfhbpe6555d6pb6sfj6eziu2ski5iiazu7pwpwc5j@jrhvjyke5rzl>
+References: <1731048987-229149-1-git-send-email-shawn.lin@rock-chips.com>
+ <1731048987-229149-2-git-send-email-shawn.lin@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,54 +66,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241108093544.9492-3-ramoncristopher.calam@analog.com>
+In-Reply-To: <1731048987-229149-2-git-send-email-shawn.lin@rock-chips.com>
 
-On Fri, Nov 08, 2024 at 05:35:44PM +0800, Ramon Cristopher M. Calam wrote:
-> Add documentation for device tree bindings of LT8722.
-> 
-> Signed-off-by: Ramon Cristopher M. Calam <ramoncristopher.calam@analog.com>
-> ---
->  .../regulator/adi,lt8722-regulator.yaml       | 178 ++++++++++++++++++
->  1 file changed, 178 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/adi,lt8722-regulator.yaml
-> 
-
-This wasn't tested, so limited review follows.
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
-> diff --git a/Documentation/devicetree/bindings/regulator/adi,lt8722-regulator.yaml b/Documentation/devicetree/bindings/regulator/adi,lt8722-regulator.yaml
-> new file mode 100644
-> index 000000000000..3fbf788d4154
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/adi,lt8722-regulator.yaml
-> @@ -0,0 +1,178 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (c) 2023 Analog Devices, Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/adi,lt8722-regulator.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On Fri, Nov 08, 2024 at 02:56:20PM +0800, Shawn Lin wrote:
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - power-domains
+> +  - resets
+> +  - reset-names
+> +  - reset-gpios
 > +
-> +title: Analog Devices LT8722 Ultracompact Full Bridge Driver
-
-Driver like motor driver or regulator? Or Linux driver? If the latter
-then, drop. Describe the hardware please.
-
-
+> +unevaluatedProperties: false
 > +
-> +maintainers:
-> +  - Ramon Cristopher Calam <ramoncristopher.calam@analog.com>
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rockchip,rk3576-cru.h>
+> +    #include <dt-bindings/reset/rockchip,rk3576-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/power/rockchip,rk3576-power.h>
+> +    #include <dt-bindings/pinctrl/rockchip.h>
+> +    #include <dt-bindings/gpio/gpio.h>
 > +
-> +description: |
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        ufshc: ufshc@2a2d0000 {
+> +              compatible = "rockchip,rk3576-ufshc";
 
-Do not need '|' unless you need to preserve formatting.
-
-That's all folks! More review when this is tested, please.
+Odd alignment.
 
 Best regards,
 Krzysztof
