@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-120235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BA1C9C1CE7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:26:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 503299C1CEA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:27:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6BDFB21501
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:26:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05CF01F22DB3
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:27:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4EE1E7C06;
-	Fri,  8 Nov 2024 12:26:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B5941E7C03;
+	Fri,  8 Nov 2024 12:27:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FJVlOg6C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nk3+Al7p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 242291DED55;
-	Fri,  8 Nov 2024 12:26:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45BD27B3E1;
+	Fri,  8 Nov 2024 12:27:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731068812; cv=none; b=BWmTRYP88wiGIz/Dc9Vv19jFREVv4DmjvEvPI+uxDpBNVRDYfKt0D5L7JH9shGIgHOTrSajav+oe2sz2F7MeIqEZkzMJh/U63ED1iNNIUYKmLFtYuITbvVI07QGWJmKxCnMYFmVD/6+ZJX8bbUSipws/FvVnTpPKEB9XaDahx5E=
+	t=1731068848; cv=none; b=GN6GwA6o1/gBymNrowwxbmZm2iI8gxpMZ7yCgRaKAvFzd2z163UTGUJYluLG4hjFENH8bZxa5dnKhcepladPGGKDSnkc2pOhonbd9Y7C+3UhD56nh8+Gyt1/meGB4BiKfrt/ldK09sWLbKeeltTZuwBsdacKGtKOYhDiZI3GNkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731068812; c=relaxed/simple;
-	bh=LE5ViNZC097yakLUhcdt/2Wuhu+SiSGw5zfIBA0XZD4=;
+	s=arc-20240116; t=1731068848; c=relaxed/simple;
+	bh=VJQoN1YcVQJtLA//yK1+saQlRJH8EZXmp3hpluZXlgU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Do+cyn6EJ7dmItgDFISJZeTGEBrjZNENt2m8X9qnXtft2wk1YiuS3ztBGQ3OvlR9e3wVTQt8le5wCGpc7PEBIoi5jq3yQ5cnhONnlLtcVLi/yBEJdBdzVIxo6QShk+ol59MM1z2/RRNTOl3E0u6z9JbLX148qZjGc41bf5Ahr80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FJVlOg6C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AE97C4CECD;
-	Fri,  8 Nov 2024 12:26:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ozmsw8huErDyijzukDw9CrpsOB6a5Te1Py44EQwRffN67pPg7NiTIf4lvMBUYVlJoiL6u8V3if5yZBbVWP1/QoDKKkCOK61F8CCMAucIXNnPbgzBXV6nhuTlvR5xV25Lzwq2RNpVGx44vTq1IP8dlV7eNwAcC/ZeA9pwGoK/EOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nk3+Al7p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF183C4CECD;
+	Fri,  8 Nov 2024 12:27:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731068811;
-	bh=LE5ViNZC097yakLUhcdt/2Wuhu+SiSGw5zfIBA0XZD4=;
+	s=k20201202; t=1731068846;
+	bh=VJQoN1YcVQJtLA//yK1+saQlRJH8EZXmp3hpluZXlgU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FJVlOg6CB9NqZpkXXZWGGcE3xtciRj+3e9/6HOJDc/uN+fGb14cuq6eovzph8pA/y
-	 OkmjJNmdX3lQk56OKAeVIqGCp1iBiM95I3dV5p6DtCcH2bsB6Ll2o++rdMMvrZNo0o
-	 FCdAD9FaqEJNDpXPW1NoCdTswVTUbOxO5vTzaqC6r6IfrSTvibhQt9tk8SeGc/MhCe
-	 x+2RtXnmW0c47VR3F72rr+M6i+r58uhBu6OIc7SM24V9Z8SKmuoR7CcmeAcQ6blkX0
-	 furKlzwOWdP417FrJgP5ZA3BE2zAudQw/ZGFdCXziNd342imkYHmt+faIv7IBRbjVl
-	 FaPGOE2NK5vLA==
-Date: Fri, 8 Nov 2024 13:26:48 +0100
+	b=nk3+Al7pPQkfntj7+HgIjJPTV3IcHoa4IkW4+p5ob4/Es02j4L7K1otGpZrg3EKuy
+	 ZhOQ7YceE46J0t3lqJeJP2fvGr1rMpweji/ONWrAI4ddWBPjF404lO45gyOOkGYBrs
+	 8WN0I93MN8lmNA7gmuyIFceOwx0b0tUfWexUnPjiD/lvJBwNW+PJaG4U/Toqgt908r
+	 4DmLqjk4rosmdTXXR7Z3l7rIriXt7aqFJ/I4cDVnQUoI9txQyswIZkWS1o2/cocrYN
+	 F/2G44ZV/GgL55RzuUnM7y3QPYMwMm5umSSXpKc6Y8WN8KEPdW0rKanHVMU+2eCRdf
+	 Sb/5xG+karW/g==
+Date: Fri, 8 Nov 2024 13:27:23 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: add stm32mp25 support for i2s
-Message-ID: <vbdhp4q6ymyf6skjqblb3f77l2x6po7djhlu5zmh75tbqigaqg@hjyhyzpfklsf>
-References: <20241107144712.1305638-1-olivier.moysan@foss.st.com>
- <20241107144712.1305638-2-olivier.moysan@foss.st.com>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: abelvesa@kernel.org, peng.fan@nxp.com, mturquette@baylibre.com, 
+	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, imx@lists.linux.dev, shengjiu.wang@gmail.com, 
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: imx93: Add SPDIF IPG clk
+Message-ID: <hlnlunxtfs2a2i6gnw7ysws3hrfncyn7whjf4ws2zmw3p3j5a6@itbzs3bzooqs>
+References: <20241108100759.682260-1-shengjiu.wang@nxp.com>
+ <20241108100759.682260-2-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +62,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241107144712.1305638-2-olivier.moysan@foss.st.com>
+In-Reply-To: <20241108100759.682260-2-shengjiu.wang@nxp.com>
 
-On Thu, Nov 07, 2024 at 03:47:11PM +0100, Olivier Moysan wrote:
-> Add STM32MP25 support for STM32 I2S peripheral,
-> through "st,stm32mp25-i2s" compatible.
+On Fri, Nov 08, 2024 at 06:07:57PM +0800, Shengjiu Wang wrote:
+> Add SPDIF IPG clk. The SPDIF IPG clock and root clock
+> share same clock gate.
 > 
-> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../bindings/sound/st,stm32-i2s.yaml          | 36 +++++++++++++++++--
->  1 file changed, 33 insertions(+), 3 deletions(-)
+>  include/dt-bindings/clock/imx93-clock.h | 1 +
+>  1 file changed, 1 insertion(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
