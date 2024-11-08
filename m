@@ -1,100 +1,99 @@
-Return-Path: <devicetree+bounces-120383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECD449C270D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 22:35:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5BC9C2712
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 22:41:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E69B1F215E8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 21:35:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90C96283863
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 21:41:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1BA01C1F34;
-	Fri,  8 Nov 2024 21:34:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA7871A9B55;
+	Fri,  8 Nov 2024 21:41:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="B0TATyu9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GUXaO3hr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1CFA198823;
-	Fri,  8 Nov 2024 21:34:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 958D329CF4;
+	Fri,  8 Nov 2024 21:41:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731101698; cv=none; b=CZd5IPAIBbY9qyrWvxNPPc4PVE+bL/rgUoufgH4/T4eKkGPsjCGLX2arbFXJsqMXuTIZyDQ9l4eN9DilJXGUDVi4LStGMk+2j7Yn6EDPYUXrye1i+tScYeKF/7oR3cnBxY5Pt7LJDpnQU8lkOo+UBdcIC+LBTwyAXWCsdNH7t+k=
+	t=1731102083; cv=none; b=YpjCb+bP+pGApuW12mTsQ3jKC1ntYKUMK/KFdnZv8dT4UnII4vatFHEc+p3Iyt3MY3n8Yed15bEHPHCBVcb4S6M8iLbtM2HUTAv94RJjxsOM3/zFLMkRa70fkjcDY8dpJXZjRLax4lLWtRSLFGXlW9jcT0zv+42d0f/V21Vpb2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731101698; c=relaxed/simple;
-	bh=CG5O0aBXAGi4FDAzWkIA2qBzxYUOk1Yt2uloAymezk4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ew5pCL8OBTn4eBMoOoJp5piMmgfVUyo6nSEE5jCcg2tgD1XYRFJbjBo6BBSgvP0xfgRyvkck+UoloXgTbjiUkh4jpYk07hcXxgcET93SPn5BkCykTohPlkRtf+e0H+e2ln78QXn/e6vNt7YpuqIrZi84B3eC6EY9wd4+k2e3heY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=B0TATyu9; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1731101694;
-	bh=CG5O0aBXAGi4FDAzWkIA2qBzxYUOk1Yt2uloAymezk4=;
-	h=From:To:Cc:Subject:Date:From;
-	b=B0TATyu93JB58fz0X5PBVvGj6TAz+RnFZXLYcJGrAZv3OmxCyTMlmTkFB0OgL4wd1
-	 LtS0dpWK16E2zrANDjmgfSgGE6FL+uXGAF5BGP47PFwbI0A66kRAFzz9EWEVp90RjG
-	 EEq5oMhrFQpAypIhDuslSOI5LmFelKhtyoNHmT58gFi48OM+gcf6UCpxS+6Rg3AeLq
-	 OlNVSesqxy6JN+YXQPxl/34h2QeEn2cE+csbMqT75BI7suDyhPShMGlC3JcpJHqE83
-	 ePIfm+1vdYG0jxhyWzqQmlN8ujpWV8e3y3lwMTTaHziVb6hx7n31z2uxj/JI1qbclr
-	 4IQTqOoJ3WUDg==
-Received: from trenzalore.hitronhub.home (unknown [23.233.251.139])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B6A3717E37A4;
-	Fri,  8 Nov 2024 22:34:52 +0100 (CET)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Andy Yan <andyshrk@163.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Weizhao Ouyang <weizhao.ouyang@arm.com>,
-	Jimmy Hon <honyuenkwun@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	kernel@collabora.com
-Subject: [PATCH] dts: arm64: rk3576-sige5: Remove non-removable flag from sdmmc
-Date: Fri,  8 Nov 2024 16:33:57 -0500
-Message-ID: <20241108213357.268002-1-detlev.casanova@collabora.com>
-X-Mailer: git-send-email 2.47.0
+	s=arc-20240116; t=1731102083; c=relaxed/simple;
+	bh=Fc7x2e49eRNe2PcnnAqLpxs6d9cdEu0pLWh8RwaMBfo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XJ8pfjv1zdUVSIG9nkC1YmhZUjEeaBw0EP1PR1ploMrlpbvszoLbUuTW+rFh3+e2bIdnU2OZe1hHvMOSygqojmFvIxRaJ/0S79e8PZ8asIasKL1mEbFyrLx4UwHFIzHRSaQpTqgehJtdtpE1laNY97eP5SGc8pXs32krhfSUjRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GUXaO3hr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47066C4CED7;
+	Fri,  8 Nov 2024 21:41:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731102083;
+	bh=Fc7x2e49eRNe2PcnnAqLpxs6d9cdEu0pLWh8RwaMBfo=;
+	h=From:Subject:Date:To:Cc:From;
+	b=GUXaO3hrUddhIbiP209FXXBqdYiUnp3m3f758LE+F5JFiUiDzbyrjWofAHvl9/92c
+	 yN+vajjmmDiq+ADvDDBPUz/DGSmU2NZ9gcN/rCf4qzfaCyYZ/dM6aq6uR5eSvUVCCx
+	 Qclqgut4uU/XcIfITTcXniwbGst6oDAr4BAi1rBwJkKvnWiy1vBacTaJ8zja7442AB
+	 lIE5eqdkwYFRH+flvHjCd3F1fkpp/NtJoIJTQbFXmFi2SU9Lcx5rbXlC03gilXNjEl
+	 0oM4K19M/Lemo6Yf3NDvlzgYeVkm+D9IZKafYsXW0pe3TfwKyG/3LF6eHEzfhjNI7M
+	 qIrueaOU+Clwg==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH 0/2] Add SA8775P GPI DMA compatible
+Date: Fri, 08 Nov 2024 22:41:16 +0100
+Message-Id: <20241108-topic-sa8775_dma2-v1-0-1d3b0d08d153@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHyFLmcC/2WNywrCMBBFf6VkbWSSPiZ25X+IyCSZasBa22lFE
+ P/d+Ng5iwvnwj3zUMJTYlFt8VAT35Kk4ZLBrAoVTnQ5sk4xs7JgK2PA6Xm4pqCFHGJ9iD1ZbR1
+ Y33WdCxRU3l0n7tL949ztvzzxuGT1/C1VzyL0UbfFT4x/Yn0z2mj2TVkyoAfA7SCyHhc6h6Hv1
+ zne3zwJ63eR5rbACitDUIPHTSxNdNFyPmMDIpZNvWkiUOOt2j+fL3TdMCj7AAAA
+X-Change-ID: 20241108-topic-sa8775_dma2-2802bfff8cac
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Viken Dadhaniya <quic_vdadhani@quicinc.com>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1731102079; l=791;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=Fc7x2e49eRNe2PcnnAqLpxs6d9cdEu0pLWh8RwaMBfo=;
+ b=PRZIDdsEil2u0ih14ylgtr8AgvXPzinOh7j2IGgR4mj3QA9CpbmL3f3ZQDVXhXpwKEcXz6Bt5
+ 2GcB90QlSQlCBBd8MAy3+4QLyiSnVd7lgVhXv2ze9P7QKlGaPrUlpDL
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-The sdmmc node represents a removable SD card host. Make sure it is
-considered removable so that SD cards are detected when inserted.
+Fill in the missing parts of the initial submission
 
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts | 1 -
- 1 file changed, 1 deletion(-)
+Konrad Dybcio (2):
+      dt-bindings: dma: qcom,gpi: Add SA8775P compatible
+      arm64: dts: qcom: sa8775p: Use a SoC-specific compatible for GPI DMA
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-index a56109b4f071..7c7331936a7f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-@@ -646,7 +646,6 @@ &sdmmc {
- 	max-frequency = <200000000>;
- 	no-sdio;
- 	no-mmc;
--	non-removable;
- 	sd-uhs-sdr104;
- 	vmmc-supply = <&vcc_3v3_s3>;
- 	vqmmc-supply = <&vccio_sd_s0>;
+ Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi               | 8 ++++----
+ 2 files changed, 5 insertions(+), 4 deletions(-)
+---
+base-commit: 74741a050b79d31d8d2eeee12c77736596d0a6b2
+change-id: 20241108-topic-sa8775_dma2-2802bfff8cac
+prerequisite-message-id: 20241107-topic-sa8775_dma-v1-1-eb633e07b007@oss.qualcomm.com
+prerequisite-patch-id: f4eea36e64f43f421b6f1bae15d802f7dd514768
+
+Best regards,
 -- 
-2.47.0
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
 
