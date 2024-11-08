@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-120229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C56B9C1CA6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:07:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E40039C1CB1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:12:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41F5F281596
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:07:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 148C51C20C1A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:12:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C662B1E570E;
-	Fri,  8 Nov 2024 12:07:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1094E1E5703;
+	Fri,  8 Nov 2024 12:12:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lSYsmY6e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ex/rNDSQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 928A31946CD;
-	Fri,  8 Nov 2024 12:07:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF79A1D2B05;
+	Fri,  8 Nov 2024 12:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731067672; cv=none; b=XXdUt2ULRJyh/7RK9KDpilEzCxvYWhSOT1j4uvCoQ8MG+ZhspqoeGZVYwsQ/l09moWLHYYUlnkdvqJ4V3r/WA81MDn+M3Q5SAWCultXxfIJ03+sBSG1TRfRXk0xyox39S23MC+Akhk5/cTiDiqNpbSIgxunhBxyQ8PrS8TBlf1M=
+	t=1731067962; cv=none; b=Cca814VVTzfQJ8Qb7T7b+/R/MiWzLLqlQm5TW4CCsXCa6v7epMgRAUmKwhbBupEwntgIDCcWRfUibZ0PskPm+KOD3QLCxIT8S++weDIo2TsSadu9rL8Y9cdo4psuHwW5yOD4KzaBSGmRVTKT3I0t6M60Zk6M0b3E7D+os0BGrMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731067672; c=relaxed/simple;
-	bh=AkeX75D7fsgoiqxx+TUSbZzUavTmnlL55rnC91lxH4w=;
+	s=arc-20240116; t=1731067962; c=relaxed/simple;
+	bh=cK8xFRnGlMnoguSnAHELwh/X2hSfv4FZcBJxGPPrDx4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oKokvKkMsKGeCokB5OTBJ8YP6mlNOtcSAjIYZhwarwh5KzcjkuCovU7yrJJYdDgbIl2/SJXc2i0aKxnkcDV+JEXVHr9SUT/xELOzAiRSmVqlJh0HFMiXymROpf1pgFtl3eAl7WNi0cYUc9HWgCnihoNKQxJDIRC6+ihgKBabx8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lSYsmY6e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5033AC4CECE;
-	Fri,  8 Nov 2024 12:07:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Z8d31t0eSxCqMpnKAKpj3vR5jQMLKU3vCc6RzQh2SCunl/4dZxJKpas+0YZ9uvrxgWORLud33oIdN8N/+19sSQQqZMD+V0LTUtWeV9kJvYoqeNgWHvKjV7XsaIlmAngcR7rzEDH3qkCo/ie7W92XYanI8CvK2YX/digSotSycZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ex/rNDSQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A90B2C4CECD;
+	Fri,  8 Nov 2024 12:12:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731067672;
-	bh=AkeX75D7fsgoiqxx+TUSbZzUavTmnlL55rnC91lxH4w=;
+	s=k20201202; t=1731067961;
+	bh=cK8xFRnGlMnoguSnAHELwh/X2hSfv4FZcBJxGPPrDx4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lSYsmY6ek7SRYC/1upg4dVxXLB39sUprkhxGj3rGCXJ7TpXIrAhdlke1NYMPXmxN7
-	 JrpKEBpLLmElfF2a/glJlX44IQYu7kNS8WkyPW7q8Am1qoQXzJ5t6UIlkRFg/A1kwZ
-	 R3pQOR2dXf/1JZMLF1vmjxGWgCdbDSl8CwlusMVSfqNmH0Pn3gQ1VlxhHryQezVR6x
-	 w2KXth04ko8WvbfQB0NY+ia0Kz6QkbPljo/05Ueat5bj0cQbrGzjoD2TnFykdb3V02
-	 +qtMJ95qhsxkf8YXlBbc/ewJ4XGGKSP8xQk0jyMN23IJXucUJ9tExkzx3oJ1yywsHy
-	 m/K8D3k1WKuZw==
-Message-ID: <ccdf16f9-0c75-49bc-98d7-9471bd1e0ae5@kernel.org>
-Date: Fri, 8 Nov 2024 13:07:46 +0100
+	b=Ex/rNDSQeT20fYIkjQJpsLYv4tjEA9YSllOzlvGS/NCqKc9aJUYQHAhskeTKRLiYO
+	 F6DQT0WXwIShtI/V5UEV7CTbJd9mnHyK+7JbOjpKrRGd3qaTzktbwkGKhCr+DwePF9
+	 MniLuA8wRGKJIh2Ad39g8vR5yYEedE6dd/ciavrtOSM1KI6W0KkJfogh3m2qHXpE1L
+	 CP0L6jQ10gBi4RMJgZtgpEwpusmD0k2BaDWuq7qAvIYLWwex+hEl6KxaiEgGCKN2pQ
+	 thsMvWUANmnvvBucIMnajW99pVOgnJrucKAWeAxhx6acVuF1pDH5ZqSnkBuQN4scmu
+	 9+TJN9a5Kh60A==
+Message-ID: <54dd6ae6-b992-451e-b1c6-8a1968955f4a@kernel.org>
+Date: Fri, 8 Nov 2024 13:12:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/17] dt-bindings: net: wireless: cc33xx: Add
- ti,cc33xx.yaml
-To: Michael Nemanov <michael.nemanov@ti.com>, Kalle Valo <kvalo@kernel.org>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Sabeeh Khan <sabeeh-khan@ti.com>
-References: <20241107125209.1736277-1-michael.nemanov@ti.com>
- <20241107125209.1736277-2-michael.nemanov@ti.com>
-Content-Language: en-US
+Subject: Re: [PATCH v3 1/8] dt-bindings: clock: imx8m-clock: support spread
+ spectrum clocking
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+ Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Peng Fan <peng.fan@nxp.com>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org
+References: <20241106090549.3684963-1-dario.binacchi@amarulasolutions.com>
+ <20241106090549.3684963-2-dario.binacchi@amarulasolutions.com>
+ <4bix7me5vaoyhcuffyp4btajmhy7no6ltczoesopaz2fqupyaw@fensx4nn472u>
+ <b7c1499b-8337-421c-9734-6e518d678ff8@kernel.org>
+ <CABGWkvrYJL9=zrPSFuEAgKO+9gDHD6RmCJM6Br6Le_eh578ETQ@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -108,45 +113,62 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241107125209.1736277-2-michael.nemanov@ti.com>
+In-Reply-To: <CABGWkvrYJL9=zrPSFuEAgKO+9gDHD6RmCJM6Br6Le_eh578ETQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/11/2024 13:51, Michael Nemanov wrote:
-> Add device-tree bindings for the CC33xx family.
+On 07/11/2024 15:57, Dario Binacchi wrote:
+>     clocks = <&osc_32k>, <&osc_24m>, <&clk_ext1>, <&clk_ext2>,
+>                   <&clk_ext3>, <&clk_ext4>;
+>     clock-names = "osc_32k", "osc_24m", "clk_ext1", "clk_ext2",
+>                              "clk_ext3", "clk_ext4";
+>     assigned-clocks = <&clk IMX8MN_CLK_A53_SRC>,
+>                                   <&clk IMX8MN_CLK_A53_CORE>,
+>                                   <&clk IMX8MN_CLK_NOC>,
+>                                   <&clk IMX8MN_CLK_AUDIO_AHB>,
+>                                   <&clk IMX8MN_CLK_IPG_AUDIO_ROOT>,
+>                                   <&clk IMX8MN_SYS_PLL3>,
+>                                   <&clk IMX8MN_AUDIO_PLL1>,
+>                                   <&clk IMX8MN_AUDIO_PLL2>;
+>     assigned-clock-parents = <&clk IMX8MN_SYS_PLL1_800M>,
+>                                              <&clk IMX8MN_ARM_PLL_OUT>,
+>                                              <&clk IMX8MN_SYS_PLL3_OUT>,
+>                                              <&clk IMX8MN_SYS_PLL1_800M>;
+>     assigned-clock-rates = <0>, <0>, <0>,
+>                                          <400000000>,
+>                                          <400000000>,
+>                                          <600000000>,
+>                                          <393216000>,
+>                                          <361267200>;
+> };
 > 
-> Signed-off-by: Michael Nemanov <michael.nemanov@ti.com>
-> ---
->  .../bindings/net/wireless/ti,cc33xx.yaml      | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml b/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
-> new file mode 100644
-> index 000000000000..fd6e1ee8426e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/wireless/ti,cc33xx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments CC33xx Wireless LAN Controller
-> +
-> +maintainers:
-> +  - Michael Nemanov <michael.nemanov@ti.com>
-> +
-> +description:
-> +  The CC33xx is a family of IEEE 802.11ax chips from Texas Instruments.
-> +  These chips must be connected via SDIO and support in-band / out-of-band IRQ.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^wifi@2"
+> The spread spectrum is not configurable on these clocks or, more
+> generally, may not be
+> configurable (only 4 PLLs have this capability). Therefore, I need the
+> "fsl,ssc-clocks"
 
-As I asked, drop.
+No. That's not true. You do not need it.
+
+First, the clock inputs for this device are listed in clocks *only*.
+What is no there, is not an input to the device. Including also Linux
+aspect (missing devlinks etc). Therefore how can you configure spread
+spectrum on clocks which are not connected to this device?
+
+Second, I do no ask you to configure spread spectrum on other clocks,
+only on the ones you intent to. List is fixed and ordered, so no problem
+with that.
+
+> property to list the PLLs on which I want to enable and configure
+> spread spectrum.
+> 
+> Furthermore, spread spectrum cannot be considered a new device but
+> rather a property
+> available only for some of the clocks managed by the clock controller
+> manager (CCM).
+> 
+
+My comment stands and that's a disagreement from me. Feel free to get
+second DT maintainer opinion, though.
 
 Best regards,
 Krzysztof
