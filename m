@@ -1,101 +1,117 @@
-Return-Path: <devicetree+bounces-120274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6E609C1E15
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 14:30:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 301F79C1E26
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 14:33:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33A1B1C210B2
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:30:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED72FB2230F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9FA51F4267;
-	Fri,  8 Nov 2024 13:29:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9C3F1EC015;
+	Fri,  8 Nov 2024 13:33:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sWjwjNMf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lX7otQVr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C961EF0A6;
-	Fri,  8 Nov 2024 13:29:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81CAB1EBFEC;
+	Fri,  8 Nov 2024 13:33:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731072581; cv=none; b=avnm+yEq/uIGUnbOM5Fe44LAAuccyssrNpJmyq55yQzJbw5EwPxUhzAevKrNxqKZdfqPCWFjto+FN0Ki2XzSeBsONEPIuKfU0XTlgoV4XfegPJrEjeqElfYrMcOd6zNX/W8XwfcOdXNpur8gWdEJtB6CO4W9FW85QGylFvyQb5o=
+	t=1731072816; cv=none; b=aqDYvw8wVCHDWzheUyV37W5b4uH9H8U65dx3O+aYT8NyqpVUq+5QPYaQ2GIA8OfRJKKsvtfGHbY4y8PyoACcqSqV45SwCXUPq2JGvq4Nxwu5p16QOM763AfDqZJMri2UL01YIjzBGKquApkiLIwY5+HfYlORl9ZtwCviBJgDQlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731072581; c=relaxed/simple;
-	bh=02cumqv7Pptd8Tkhcc6pofXSXkHGb+wYsFd9giydYr4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ifbepzR7CfaVeUWv5CYqgOVOvIS5USHrv49Qlt1HK18GmpUxVJl5JkmxRa39cv/Aw7x5Codef8TjOec8dvGwaupH2fUqBq13Y4j4KnYosZnnTeUDzB4GZfC4KHy1nZ7aQPGthmzDLwpDxqUdmdyEzJtQdTSZgn6Z08YMp7i+BpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sWjwjNMf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E70F7C4CED6;
-	Fri,  8 Nov 2024 13:29:37 +0000 (UTC)
+	s=arc-20240116; t=1731072816; c=relaxed/simple;
+	bh=0+9I6a17DhDluTMcO1f3FyZp7HLkpHtnP3pCVCnjzsk=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=BUbVnhhXTT7QUcaqvgZEsMU1pCDU15UIqv3cPAXZ+Qej5FNBAyOyOgKHkEpys4TIrUKTM88Emr0jIS4EDnRY4G9beG4GoI+hr2dtKlHniHQfkh93sfs3EZ3+cUpCOFU9UY2l91oFzCwtf5vVplNwC8mcdBn8JnlJSGUfooIqjW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lX7otQVr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 119BFC4CECD;
+	Fri,  8 Nov 2024 13:33:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731072581;
-	bh=02cumqv7Pptd8Tkhcc6pofXSXkHGb+wYsFd9giydYr4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=sWjwjNMfM53MoeZUD0FiH+R/36amSOCKTUXOFuBZ+72Ycl8Cbfn61KEiKAujBXgoW
-	 E1VwEZnhqMzPRiIUsCKy8hZu4TCIqjKR03PQDB/lc9ozqgf+IDgkkRBgbRJG3Pm7La
-	 JiBPgUA3Q6MjJ2oVOaSJhL2BIfybZmCkUu2ziaaZGhLhzvc5Mt4eDGdpLIk5fiCaCp
-	 uUC8sNrpzs2ed5jJ36bQkPvtPJeZ72XpLuhBqQ66k4uQlEVyzKzAJdsA0aaEPqaAaP
-	 pPhgEYf0iXu7U/5cMZBYlsCzkQdd8ttcNViH2Ks8PwCCE8WdaSdXvi+E79lEQ1Y/SB
-	 +eDELQqLaLrzQ==
-From: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Pavel Machek <pavel@ucw.cz>,
-	linux-leds@vger.kernel.org,
-	Arnd Bergmann <arnd@arndb.de>,
-	soc@kernel.org,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	arm@kernel.org,
-	Andy Shevchenko <andy@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Subject: [PATCH leds v6 12/12] ARM: dts: turris-omnia: Add global LED brightness change interrupt
-Date: Fri,  8 Nov 2024 14:28:45 +0100
-Message-ID: <20241108132845.31005-13-kabel@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241108132845.31005-1-kabel@kernel.org>
-References: <20241108132845.31005-1-kabel@kernel.org>
+	s=k20201202; t=1731072816;
+	bh=0+9I6a17DhDluTMcO1f3FyZp7HLkpHtnP3pCVCnjzsk=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=lX7otQVrBkqMWgJFBkbg0DVYa92IZL+Ucqodfh5Xw8gJJ2QBPpBSdhkAICBPS3A7X
+	 dP1tfsTcDFmUEk8+TeO8wZjcEOtMXGqn/ioWLePPHkNiRJcWBoIA8zoLLSf8PwfP1z
+	 fZAN6hw/TkYJkJBSwL2xV5J0wHcXGIGMNLwtAcdlHVqQN/ZiQo5C9AOSHmoCpXqkCO
+	 1t2Iy+OrZXKug71713zhiihWHtyZWsg4qNomQjZhuuic0YgPlC6MBoeFZZQtWoVTWc
+	 W4tIN9Jp1GJPKngM+YysUVYedGPuko+svalu9oU8464h+DRlhjWVOecNMtKxfq4pFc
+	 OZBHlWOM1GdFQ==
+Date: Fri, 08 Nov 2024 07:33:34 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Charles Wang <charles.goodix@gmail.com>
+Cc: conor.dooley@microchip.com, linux-input@vger.kernel.org, 
+ bentiss@kernel.org, linux-kernel@vger.kernel.org, dmitry.torokhov@gmail.com, 
+ hbarnor@chromium.org, devicetree@vger.kernel.org, dianders@chromium.org, 
+ jikos@kernel.org, krzk@kernel.org
+In-Reply-To: <20241108120311.87795-2-charles.goodix@gmail.com>
+References: <20241108120311.87795-1-charles.goodix@gmail.com>
+ <20241108120311.87795-2-charles.goodix@gmail.com>
+Message-Id: <173107281349.1752060.15353696141928017835.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: input: Goodix GT7986U SPI HID
+ Touchscreen
 
-When global LED brightness is changed by pressing the front button on
-Turris Omnia, the MCU can produce an interrupt to the CPU. Add the
-description of this interrupt to the LED controller node.
 
-Signed-off-by: Marek Behún <kabel@kernel.org>
----
- arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts | 1 +
- 1 file changed, 1 insertion(+)
+On Fri, 08 Nov 2024 20:03:10 +0800, Charles Wang wrote:
+> The Goodix GT7986U touch controller report touch data according to the
+> HID protocol through the SPI bus. However, it is incompatible with
+> Microsoft's HID-over-SPI protocol.
+> 
+> NOTE: these bindings are distinct from the bindings used with the
+> GT7986U when the chip is running I2C firmware. For some background,
+> see discussion on the mailing lists in the thread:
+> 
+> https://lore.kernel.org/r/20241018020815.3098263-2-charles.goodix@gmail.com
+> 
+> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
+> ---
+>  .../bindings/input/goodix,gt7986u-spifw.yaml  | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7986u-spifw.yaml
+> 
 
-diff --git a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts b/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-index 43202890c959..83fe00abd652 100644
---- a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-+++ b/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-@@ -251,6 +251,7 @@ mcu: system-controller@2a {
- 			led-controller@2b {
- 				compatible = "cznic,turris-omnia-leds";
- 				reg = <0x2b>;
-+				interrupts-extended = <&mcu 11 IRQ_TYPE_NONE>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "okay";
--- 
-2.45.2
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/input/goodix,gt7986u-spifw.yaml:16:7: [error] syntax error: mapping values are not allowed here (syntax)
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/goodix,gt7986u-spifw.yaml: ignoring, error parsing file
+./Documentation/devicetree/bindings/input/goodix,gt7986u-spifw.yaml:16:7: mapping values are not allowed in this context
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/input/goodix,gt7986u-spifw.example.dts'
+Documentation/devicetree/bindings/input/goodix,gt7986u-spifw.yaml:16:7: mapping values are not allowed in this context
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/input/goodix,gt7986u-spifw.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1442: dt_binding_check] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241108120311.87795-2-charles.goodix@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
