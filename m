@@ -1,146 +1,175 @@
-Return-Path: <devicetree+bounces-120049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 338BF9C14C7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 04:41:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0A659C14D4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 04:49:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF865285526
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 03:40:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 556D9282BEE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 03:49:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 431BD192D80;
-	Fri,  8 Nov 2024 03:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB89C199926;
+	Fri,  8 Nov 2024 03:49:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="hI0+FeSo"
+	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="E+ALW2Mn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16790185B62;
-	Fri,  8 Nov 2024 03:40:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+Received: from classfun.cn (unknown [129.204.178.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 724A88F54;
+	Fri,  8 Nov 2024 03:49:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731037235; cv=none; b=JIe/HT+yfW2Kqq+KFjYwEmTmzM0nlvJQKAVKgbQiVPSS7PKeaWE80MjwADYfRO+zL8CSxOMwhrMf5y/M4mGdguk4BR+jdnnYXoPLL5WUHT4UCB0Z1NrY/OmKhu4dQqD3zwfyUYaNzW70V7GuqrA8hGTi2DGxb0Gwz9L+SG7V0sI=
+	t=1731037755; cv=none; b=gvaLsWNhShKBwQL/oxCFpJIPAOuNDIYRChr7BoXc+hX/w/vQwnErWkgrE++BVE2wU7axPnXKk5946oLlKiaQLfnagxjEMLz7uu1fTg2KTVS7OWiZzqALaVKQSVMaojYnhDOuI9cBFZ74wgdv6Lno42J0shjtHaFfzf9K1EuzTZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731037235; c=relaxed/simple;
-	bh=pREqPZnl7emeyhp72BZQ+WOPDFhyb+XJrHNqEUHddec=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LJWc5I9jGrirtUduajO/M1aZBuRAFA6eyYTu3KYVO3R6/h2JT3uHUThogv2DM+W5TCpaHl58xZnd8bladuGixApLqGlG2rGfJuHHiZ+lCuWv/rCnxJ5ldnGAfV78RC0HZr+qcb+NzkcDmrralJnNg+vgzUsDSLKeglEzjGg0Snk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=hI0+FeSo; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 31fce6f69d8311efb88477ffae1fc7a5-20241108
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=1ftcH+N9F+aEUhbxneOfSb5rYHmfkO21YWF7Mbk1RLs=;
-	b=hI0+FeSo4S3ExhwyC0W5hsUBL0X9t707aIt1HNvWn0iAHCXpqqce/iTDtlW8LXJ0PqtT4UpSN0U03Tf2iOlsUo2gqi/2R33MU7JnQA3fNqZ8cJ4COwL61INgL6c56b8Y1b2elQTckxe/yMQ5JWV0vQySJFGJeLoXapanfD+a+SE=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.42,REQID:f8aab5d5-88d7-4e6e-a951-feb60b8ada45,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:b0fcdc3,CLOUDID:a27db6ca-91e6-4060-9516-6ba489b4e2dc,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 31fce6f69d8311efb88477ffae1fc7a5-20241108
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-	(envelope-from <yunfei.dong@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1550924117; Fri, 08 Nov 2024 11:40:27 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 8 Nov 2024 11:40:24 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 8 Nov 2024 11:40:23 +0800
-From: Yunfei Dong <yunfei.dong@mediatek.com>
-To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
-	<nfraprado@collabora.com>, Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil
-	<hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>
-CC: Hsin-Yi Wang <hsinyi@chromium.org>, Chen-Yu Tsai <wenst@chromium.org>,
-	Fritz Koenig <frkoenig@chromium.org>, Daniel Vetter <daniel@ffwll.ch>, "Steve
- Cho" <stevecho@chromium.org>, Yunfei Dong <yunfei.dong@mediatek.com>,
-	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v4 3/3] media: mediatek: vcodec: add description for vsi struct
-Date: Fri, 8 Nov 2024 11:40:12 +0800
-Message-ID: <20241108034019.20064-4-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20241108034019.20064-1-yunfei.dong@mediatek.com>
-References: <20241108034019.20064-1-yunfei.dong@mediatek.com>
+	s=arc-20240116; t=1731037755; c=relaxed/simple;
+	bh=MXe6IYQzEOrzfZcmjrcC+xeinHkhz6G2TN1/BMXAynw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=H0gg32oJrdu4jzrfONHZRE1fp2rUPOf/U6xJeW9r2o37DnkOj9qjNB82xLkRVk3HWex3JVFxyp+WbAjPdDhd2k2vjWIcSYWNjj1rk2rAgB5qjnKSmor3xGJUbzHzM1va1WNAPo/YIgBwJkRHlvmgwTS/MFlXcME09fJLlCsXa3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=E+ALW2Mn; arc=none smtp.client-ip=129.204.178.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
+Received: from [192.168.0.160] (unknown [120.32.101.155])
+	(Authenticated sender: bigfoot)
+	by classfun.cn (Postfix) with ESMTPSA id 2CD777892D;
+	Fri,  8 Nov 2024 11:49:04 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 2CD777892D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
+	s=default; t=1731037750;
+	bh=3B/wDt2bOqNsA638987AnsCuaRwFSHdyN6e3dd6uRWs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=E+ALW2MnvftkIzO17VOsGIQg22QbPsXe9/be2g7Px6bhaYtwj8TYvzBsOxmMG9qxZ
+	 TaZetswj/qwGv/3WW0NWlFX5iLYKHNEgI9fru2ysjzYR5Ehb05WjLXS6Ve1oIADmei
+	 eoZTqSBOtrKCyPPAWju58G0dTUgIIQ8za1/rhogE=
+Message-ID: <6e748aa6-de2c-4a90-b07f-7a9d3e441d19@classfun.cn>
+Date: Fri, 8 Nov 2024 11:48:50 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--5.519500-8.000000
-X-TMASE-MatchedRID: +ngMWxkROpD4Q348LKfXODTV/B1Uu+XCIfZjRfGTydh30F1387KCPeFC
-	6BP4FUP+tPz1mNVqu0woX6fjWPUAloJiDh6eUBMR4RtSDjG+z7ACnYfpEgyUOJsoi2XrUn/Jn6K
-	dMrRsL14qtq5d3cxkNZd/mwLf2BVUtX6FTdeBEpDL97e0jrsKJNgI91Ytj1EagfpknKz4xIGUTG
-	VAhB5EbQ==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--5.519500-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: F4778ECA64CBFF029DEE0544CE99F8F850A81C507F4D2D16539D5C45192053932000:8
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/9] leds: add Photonicat PMU LED driver
+To: Lee Jones <lee@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+ Sebastian Reichel <sre@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chukun Pan <amadeus@jmu.edu.cn>, Junhao Xie <bigfoot@classfun.cn>
+References: <20240906093630.2428329-1-bigfoot@classfun.cn>
+ <20240906093630.2428329-8-bigfoot@classfun.cn>
+ <20241002153536.GG7504@google.com>
+Content-Language: en-US
+From: Junhao Xie <bigfoot@classfun.cn>
+In-Reply-To: <20241002153536.GG7504@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-If the video shared information (vsi) is changed accidentally,
-will leading to play h264 bitstream fail if the firmware won't
-be changed at the same time. Marking the shared struct with
-"shared interface with firmware".
+On 2024/10/2 23:35, Lee Jones wrote:
+> On Fri, 06 Sep 2024, Junhao Xie wrote:
+> 
+>> Photonicat has a network status LED that can be controlled by system.
+>> The LED status can be set through command 0x19.
+[...]
+>> +config LEDS_PHOTONICAT_PMU
+>> +	tristate "LED Support for Photonicat PMU"
+>> +	depends on LEDS_CLASS
+>> +	depends on MFD_PHOTONICAT_PMU
+>> +	help
+>> +	  Photonicat has a network status LED that can be controlled by system,
+> 
+> "the system"
+> 
+>> +	  this option enables support for LEDs connected to the Photonicat PMU.
+[...]
+>> +++ b/drivers/leds/leds-photonicat.c
+>> @@ -0,0 +1,75 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2024 Junhao Xie <bigfoot@classfun.cn>
+>> + */
+>> +
+>> +#include <linux/mfd/photonicat-pmu.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/leds.h>
+> 
+> Alphabetical.
+> 
+>> +struct pcat_leds {
+>> +	struct device *dev;
+> 
+> Where is this used?
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
----
- .../mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c    | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+I used it to print logs, but now it doesn't, I will remove it.
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
-index 238639a07703..eef6dd548625 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
-@@ -30,6 +30,7 @@ enum vdec_h264_core_dec_err_type {
- 
- /**
-  * struct vdec_h264_slice_lat_dec_param  - parameters for decode current frame
-+ *        (shared interface with firmware)
-  *
-  * @sps:		h264 sps syntax parameters
-  * @pps:		h264 pps syntax parameters
-@@ -48,7 +49,7 @@ struct vdec_h264_slice_lat_dec_param {
- };
- 
- /**
-- * struct vdec_h264_slice_info - decode information
-+ * struct vdec_h264_slice_info - decode information (shared interface with firmware)
-  *
-  * @nal_info:		nal info of current picture
-  * @timeout:		Decode timeout: 1 timeout, 0 no timeout
-@@ -72,7 +73,7 @@ struct vdec_h264_slice_info {
- 
- /**
-  * struct vdec_h264_slice_vsi - shared memory for decode information exchange
-- *        between SCP and Host.
-+ *        between SCP and Host (shared interface with firmware).
-  *
-  * @wdma_err_addr:		wdma error dma address
-  * @wdma_start_addr:		wdma start dma address
--- 
-2.46.0
+> 
+>> +	struct pcat_pmu *pmu;
+> 
+> Why do you need to store this?
+> 
+> Can't you get this at the call-site by:
+> 
+>   dev_get_drvdata(cdev->dev->parent)
 
+Yes, I will change it.
+
+>> +	struct led_classdev cdev;
+>> +};
+[...]
+>> +static int pcat_leds_probe(struct platform_device *pdev)
+>> +{
+>> +	int ret;
+> 
+> Small sized variables at the bottom please.
+> 
+>> +	struct device *dev = &pdev->dev;
+>> +	struct pcat_leds *leds;
+>> +	const char *label;
+>> +
+>> +	leds = devm_kzalloc(dev, sizeof(*leds), GFP_KERNEL);
+>> +	if (!leds)
+>> +		return -ENOMEM;
+>> +
+>> +	leds->dev = dev;
+> 
+> Where is this used?
+> 
+>> +	leds->pmu = dev_get_drvdata(dev->parent);
+>> +	platform_set_drvdata(pdev, leds);
+> 
+> Where do you platform_get_drvdata()
+> 
+>> +	ret = of_property_read_string(dev->of_node, "label", &label);
+[...]
+>> +static const struct of_device_id pcat_leds_dt_ids[] = {
+>> +	{ .compatible = "ariaboard,photonicat-pmu-leds", },
+> 
+> How many LEDs are there?
+
+Photonicat has three LEDs:
+ - system operation status indicator
+ - charging status indicator
+ - network status indicator
+and currently only one LED (network status indicator) can be controlled.
+
+>> +	{ /* sentinel */ }
+>> +};
+[...]
+>> -- 
+>> 2.46.0
+
+Thanks for your review, I will fix all problems in next version!
+
+Best regards,
+Junhao
 
