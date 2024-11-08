@@ -1,130 +1,213 @@
-Return-Path: <devicetree+bounces-120362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EB559C2537
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 19:57:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F1489C2556
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 20:09:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE112B23F0A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 18:57:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22DA3285801
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 19:09:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC1D1AA1C8;
-	Fri,  8 Nov 2024 18:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D2AA1AA1FA;
+	Fri,  8 Nov 2024 19:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="neTlQ0cI"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KebCbmGh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63AEC233D96
-	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 18:57:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01ADF1AA1EB;
+	Fri,  8 Nov 2024 19:09:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731092241; cv=none; b=NF/Avm67YTbE3CmUlvOd7aOf2RFVOKZkKJLqOmIX4Zxl+ErKwHLZwBXkq2cF9X/gNgmOCml27Th6idzVsZ5blJ2W7n6TltifRNMOWQAEZDf8AI4J76sXhsabgd94R50J8oiR2RLwTERqnBg7oqwVxdcwvCcL1DIHmQTCd1tM860=
+	t=1731092962; cv=none; b=Y2WDLCAX8A67uUx/NKdNCdW5Cd8clIgm4WSwa/lvi8LdhJ4iiuKcIgepgfu67kbR8EnifpQiXaIZXf3t1ib0zsraBWerZS/HvtFp1AF1CmoFK4vEyg7bM6P9uN0B8v1a9w4MpY34FWE+bxoyRQ66QQdkimQNm47+5ksqLyM/HjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731092241; c=relaxed/simple;
-	bh=DSG+8An8EiWvy6/TXjRBl0J05k0pgUbGk4Fqi49SjmE=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LT6nbhtBBCIo/Zf3tX3jMk3a61Q7nAMoqWyznYilKlsNQj5D4xujLBEPvhkO9QQzu8QNzhWgzwfar7DE8drHYUkp/RmCnkWskhqEWkT6k/1NBMmSP/aHsIN89fyGxVK8jM7Vx3OQgPQ1d7D3RqykXZIQ8bw2Dj0UJv7dUKfmPYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=neTlQ0cI; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e29047bec8fso2880400276.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 10:57:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1731092238; x=1731697038; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GFhrTTpiQ0I2IodQiHI+ZaiAC6+TEUbpNWIml06w79Y=;
-        b=neTlQ0cI6JqIGSOgGJEoMXPH0SM1upsN/u+2CluCnv1tWTn7QcQ0KEt+4H8t05RglT
-         /8RWA0xRbI0bOzdDgVJGrlTYHCws1lbi3AwK+ijvPcww5ea9rh8fXmWsYPKwJikkQnFt
-         AGa4QgHSHobpXY7XoNgHREQEYAmLptGMnGh8s=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731092238; x=1731697038;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GFhrTTpiQ0I2IodQiHI+ZaiAC6+TEUbpNWIml06w79Y=;
-        b=tdMY/aA4OUUxS9O8qn1dHmaxfLW8MKfZqVPuWCK5YFdCdtrwPEepIZtHpZS1GXmAyK
-         rnTHxWINneSw8BMfs9QYmA67kwsws0ACEqQL7dSGHdvQ2NQ348s5UPdu6lRE9fLqKlnC
-         lNmEe5mKqP7tZsoJi/oi92C7N8lX4qAGIVQKD1samsEzYdTmzMjt8Pl0JXre7Ag0ZXg+
-         mpBZ2e6ylbCrkXvtpbJrJ5cZmk2dw1uwPIMbu9DjUIiYMVMm7yfG/BztN/s6ahlFmGW3
-         9WHMMgtlbAzd/u502cUyrUefCkV8+0CGTPMY+xkidsxTOauIP4E/F1g3/YBkNpkbzMBl
-         UF+g==
-X-Forwarded-Encrypted: i=1; AJvYcCXxzAbt/OnAO30YuNbDuHbdLjBMYhzibkEtLXTJWifEJWWKSo52UGv4CDgAEzw9FpIltocOKV7o3P+i@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeK4QwtDF9biK9l4aI1Q3BSCf454Z8yigTlSk1uXF46s0N8Cr9
-	lENHxfnQ9+1RDK09fgVtPAaD3t0gzDz42dedXwtlqxVbzGQePm5TmNw90dXOd7Kg4HDXnk2aOKj
-	bsR6WAaEpgH5J5EkDOXXEehoA9ke8LzGsnCeF
-X-Google-Smtp-Source: AGHT+IHfC5tJ6whbDS7S3SlhCnoJBwUgDNoRBmtsYN3YKtsv214Yxvv3stXcgF9ZacsGjD0iMrYs07O4YZn2INdER/w=
-X-Received: by 2002:a05:690c:d8f:b0:6e3:ceb:9e5c with SMTP id
- 00721157ae682-6eade52f876mr34629017b3.17.1731092238352; Fri, 08 Nov 2024
- 10:57:18 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 8 Nov 2024 10:57:17 -0800
+	s=arc-20240116; t=1731092962; c=relaxed/simple;
+	bh=R+CGtLg7J7cZFkaK6iEbxTqVB/sl271eFJkHFX8PQlI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IusGCqn759Hu1FkFnVgdqIzJYz0hDUaPlH+3E5Ih80JHIAgm1Og+rdWsPJUbdt72lRDa/2lN+XUck+oRvlAckdDFVl5SY/ZaNS27xIK6ST1Z18cDUIrPd5qnczr5CWO+yr+j4pqEDuJjplR8BxXpiKdYZeYmi492uGFlVcCbjpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KebCbmGh; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1731092961; x=1762628961;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=R+CGtLg7J7cZFkaK6iEbxTqVB/sl271eFJkHFX8PQlI=;
+  b=KebCbmGh19EEBAcHD3JOc6i0JRSGd/9MQXY2t7pITZRqSUFd9h0ei+IG
+   CLPYXI18NAXQfL4VIvxZaNccch7aQR7IIxBYIacwxd3DAHQ2l7GLSB6g0
+   /8c4Ie9SfB7/qLyOjyzFofdZZCPu5mwhxOsBoCfOxr2MJmeeSZl1gz26W
+   BUzBOOhaj6kSJ8u9oFhnQxJEe0/YVF+maFvWfj7gUgETrmQEqXKRk0F/i
+   /maBcl5xSCFsZrgpZt/XgJuj9NVD4N+314ulRA7L4yEPVz2jbTIqgha04
+   ZqQ6nj9ozbhFZWoBLTaBh8d6GOEELYDJwoRWlcl95p1cXIX8AtsDDtQcW
+   w==;
+X-CSE-ConnectionGUID: DMqkhL3GT7monTCuWSujyg==
+X-CSE-MsgGUID: Es9/yF12SSuq3cIG1SFRIw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="42086783"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="42086783"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2024 11:09:20 -0800
+X-CSE-ConnectionGUID: XD1n0tMySAq3Ut+3KlDDLQ==
+X-CSE-MsgGUID: YGwNEXImR2OgQ2epJ63MLA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,138,1728975600"; 
+   d="scan'208";a="90231501"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 08 Nov 2024 11:09:15 -0800
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t9UM5-000ria-11;
+	Fri, 08 Nov 2024 19:09:13 +0000
+Date: Sat, 9 Nov 2024 03:08:22 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alexey Romanov <avromanov@salutedevices.com>, neil.armstrong@linaro.org,
+	clabbe@baylibre.com, herbert@gondor.apana.org.au,
+	davem@davemloft.net, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com, vadim.fedorenko@linux.dev
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com,
+	Alexey Romanov <avromanov@salutedevices.com>
+Subject: Re: [PATCH v10 09/22] crypto: amlogic - Process more than MAXDESCS
+ descriptors
+Message-ID: <202411090235.a7vEgZQo-lkp@intel.com>
+References: <20241108102907.1788584-10-avromanov@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20241107-arm-psci-system_reset2-vendor-reboots-v8-3-e8715fa65cb5@quicinc.com>
-References: <20241107-arm-psci-system_reset2-vendor-reboots-v8-0-e8715fa65cb5@quicinc.com>
- <20241107-arm-psci-system_reset2-vendor-reboots-v8-3-e8715fa65cb5@quicinc.com>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date: Fri, 8 Nov 2024 10:57:17 -0800
-Message-ID: <CAE-0n50-h_h=oWt7BZ5ncX8JYfXmEpN7-HrZeC8wHrHZnGsJMA@mail.gmail.com>
-Subject: Re: [PATCH v8 3/6] firmware: psci: Read and use vendor reset types
-To: Andy Yan <andy.yan@rock-chips.com>, Arnd Bergmann <arnd@arndb.de>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Elliot Berman <quic_eberman@quicinc.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Olof Johansson <olof@lixom.net>, Rob Herring <robh@kernel.org>, 
-	Sebastian Reichel <sre@kernel.org>, Vinod Koul <vkoul@kernel.org>, Will Deacon <will@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org
-Cc: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, Melody Olvera <quic_molvera@quicinc.com>, 
-	Shivendra Pratap <quic_spratap@quicinc.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, linux-pm@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241108102907.1788584-10-avromanov@salutedevices.com>
 
-Quoting Elliot Berman (2024-11-07 15:38:27)
-> SoC vendors have different types of resets and are controlled through
-> various registers. For instance, Qualcomm chipsets can reboot to a
-> "download mode" that allows a RAM dump to be collected. Another example
-> is they also support writing a cookie that can be read by bootloader
-> during next boot. PSCI offers a mechanism, SYSTEM_RESET2, for these
-> vendor reset types to be implemented without requiring drivers for every
-> register/cookie.
->
-> Add support in PSCI to statically map reboot mode commands from
-> userspace to a vendor reset and cookie value using the device tree.
->
-> A separate initcall is needed to parse the devicetree, instead of using
-> psci_dt_init because mm isn't sufficiently set up to allocate memory.
->
-> Reboot mode framework is close but doesn't quite fit with the
-> design and requirements for PSCI SYSTEM_RESET2. Some of these issues can
-> be solved but doesn't seem reasonable in sum:
->  1. reboot mode registers against the reboot_notifier_list, which is too
->     early to call SYSTEM_RESET2. PSCI would need to remember the reset
->     type from the reboot-mode framework callback and use it
->     psci_sys_reset.
->  2. reboot mode assumes only one cookie/parameter is described in the
->     device tree. SYSTEM_RESET2 uses 2: one for the type and one for
->     cookie.
->  3. psci cpuidle driver already registers a driver against the
->     arm,psci-1.0 compatible. Refactoring would be needed to have both a
->     cpuidle and reboot-mode driver.
->
-> Tested-by: Florian Fainelli <florian.fainelli@broadcom.com>
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
+Hi Alexey,
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on herbert-cryptodev-2.6/master]
+[also build test WARNING on next-20241108]
+[cannot apply to herbert-crypto-2.6/master robh/for-next linus/master v6.12-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Alexey-Romanov/crypto-amlogic-Don-t-hardcode-IRQ-count/20241108-183503
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git master
+patch link:    https://lore.kernel.org/r/20241108102907.1788584-10-avromanov%40salutedevices.com
+patch subject: [PATCH v10 09/22] crypto: amlogic - Process more than MAXDESCS descriptors
+config: x86_64-buildonly-randconfig-002-20241109 (https://download.01.org/0day-ci/archive/20241109/202411090235.a7vEgZQo-lkp@intel.com/config)
+compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241109/202411090235.a7vEgZQo-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411090235.a7vEgZQo-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/crypto/amlogic/amlogic-gxl-cipher.c:14:
+   In file included from include/crypto/scatterwalk.h:16:
+   In file included from include/linux/highmem.h:8:
+   In file included from include/linux/cacheflush.h:5:
+   In file included from arch/x86/include/asm/cacheflush.h:5:
+   In file included from include/linux/mm.h:2213:
+   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/crypto/amlogic/amlogic-gxl-cipher.c:235:13: warning: variable 'new_iv_phys' set but not used [-Wunused-but-set-variable]
+     235 |         dma_addr_t new_iv_phys;
+         |                    ^
+   2 warnings generated.
+
+
+vim +/new_iv_phys +235 drivers/crypto/amlogic/amlogic-gxl-cipher.c
+
+   220	
+   221	static int meson_kick_hardware(struct cipher_ctx *ctx)
+   222	{
+   223		struct meson_cipher_req_ctx *rctx = skcipher_request_ctx(ctx->areq);
+   224		struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(ctx->areq);
+   225		struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
+   226		struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
+   227		struct meson_alg_template *algt = container_of(alg,
+   228							       struct meson_alg_template,
+   229							       alg.skcipher.base);
+   230		struct meson_dev *mc = op->mc;
+   231		unsigned int ivsize = crypto_skcipher_ivsize(tfm);
+   232		unsigned int blockmode = algt->blockmode;
+   233		enum dma_data_direction new_iv_dir;
+   234		struct scatterlist *sg_head;
+ > 235		dma_addr_t new_iv_phys;
+   236		void *new_iv;
+   237		int err;
+   238	
+   239		if (blockmode == DESC_OPMODE_CBC) {
+   240			struct scatterlist *sg_current;
+   241			unsigned int offset;
+   242	
+   243			if (rctx->op_dir == MESON_ENCRYPT) {
+   244				sg_current = ctx->dst_sg;
+   245				sg_head = ctx->areq->dst;
+   246				offset = ctx->dst_offset;
+   247				new_iv_dir = DMA_FROM_DEVICE;
+   248			} else {
+   249				sg_current = ctx->src_sg;
+   250				sg_head = ctx->areq->src;
+   251				offset = ctx->src_offset;
+   252				new_iv_dir = DMA_TO_DEVICE;
+   253			}
+   254	
+   255			if (ctx->areq->src == ctx->areq->dst)
+   256				new_iv_dir = DMA_BIDIRECTIONAL;
+   257	
+   258			offset -= ivsize;
+   259			new_iv = sg_virt(sg_current) + offset;
+   260			new_iv_phys = sg_dma_address(sg_current) + offset;
+   261		}
+   262	
+   263		if (blockmode == DESC_OPMODE_CBC &&
+   264		    rctx->op_dir == MESON_DECRYPT) {
+   265			dma_sync_sg_for_cpu(mc->dev, sg_head,
+   266					    sg_nents(sg_head), new_iv_dir);
+   267			memcpy(ctx->areq->iv, new_iv, ivsize);
+   268		}
+   269	
+   270		reinit_completion(&mc->chanlist[rctx->flow].complete);
+   271		meson_dma_start(mc, rctx->flow);
+   272		err = wait_for_completion_interruptible_timeout(&mc->chanlist[rctx->flow].complete,
+   273								msecs_to_jiffies(500));
+   274		if (err == 0) {
+   275			dev_err(mc->dev, "DMA timeout for flow %d\n", rctx->flow);
+   276			return -EINVAL;
+   277		} else if (err < 0) {
+   278			dev_err(mc->dev, "Waiting for DMA completion is failed (%d)\n", err);
+   279			return err;
+   280		}
+   281	
+   282		if (blockmode == DESC_OPMODE_CBC &&
+   283		    rctx->op_dir == MESON_ENCRYPT) {
+   284			dma_sync_sg_for_cpu(mc->dev, sg_head,
+   285					    sg_nents(sg_head), new_iv_dir);
+   286			memcpy(ctx->areq->iv, new_iv, ivsize);
+   287		}
+   288	
+   289		ctx->tloffset = 0;
+   290	
+   291		return 0;
+   292	}
+   293	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
