@@ -1,74 +1,82 @@
-Return-Path: <devicetree+bounces-120376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60F3E9C269B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 21:31:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1413B9C26C3
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 21:45:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 169431F212C6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 20:31:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A06E11F213B1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 20:45:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DDB81A9B52;
-	Fri,  8 Nov 2024 20:31:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00EC21F26E0;
+	Fri,  8 Nov 2024 20:42:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SP6vAW2D"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="msVIlfGJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BFF91C1F11;
-	Fri,  8 Nov 2024 20:31:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE19B1D271F
+	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 20:42:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731097864; cv=none; b=WxAo/iNMRXp0Rt4F3cS4jYipdNzFKhF13jtnthpzpfvslWjM2peG9U19xZ75U8x1hIHpKhe9ZoYGluNFCuQp3FaJw6qPLCJjf8tFZUVl52SerkBQRNTX5y0hW6KCO8P6V4P6QbEXop9a038aFQDgFNi7iCU5BrM+1SycYaVgq8M=
+	t=1731098561; cv=none; b=Hqw1bHMro3eB2dexGx4HnS5smBYvlP/9keKQsJ6eLLeNquJS8mGBzDfGG9dL8vZnyKV1uYODQ6wTv4rM+uC0Bn58GXiHRt4BX1C9pl6PyoKz07KcE0UK9OewG3/wRUJ3oqU0sVzSRNIkq/w8ZG89P4tzUCuaXIGtrASQtS6PWQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731097864; c=relaxed/simple;
-	bh=eRCb2WzMBlgHzf350SW31GIAQjE4jPD10X4h87w82IU=;
+	s=arc-20240116; t=1731098561; c=relaxed/simple;
+	bh=1pGppec8DWHYLSw8JbIxLQYVhHnp1a3bUK1q0iqJ0Ow=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ouaQbiaFh7nynWjlpK+FAEOsZlxNPZrXWeFvRSkS7xcF5y9zY9vbb/PY7gHr+7WSRr9+YPMe2ix3r2xtiSyHKpQfQ8FFSTqPSxnmyytjj4ZPr3ywRY/W8eY9YxbZomfrhJtQJirYa06IkiuZW+pAcGyzIXxYLSimkZ10j/mRuJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SP6vAW2D; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5c9362c26d8so6296689a12.1;
-        Fri, 08 Nov 2024 12:31:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731097859; x=1731702659; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=975RhISS9snOVR5cT+Z99sFnn60KIbe7YuBqYHMl/W4=;
-        b=SP6vAW2DMcVrxTVHPo/o8P9kMFBqx/z00bnXB3aKqJpxKiBEehi1t5dtveRGF1JRwy
-         wLWVHyCmBTPsh1RQ2eATg+cK1S7vfUqsA0Ot2LlD0bDHIafX3wABhBYy+UkVHvMiJvo5
-         ujESwYd4iW+/yaFfJD8y5vqj+B36aF61wFUsGM3k/1lWJinRKHetYtmhqT9CUvhucIwL
-         HC9yF64MWLLxbAhu+RQwsA9/+OP35WSYX8OXpmV8uj1tTPajRNefbfAV2Q6d1h53UGCC
-         ur6QLLXf8ppgTJfrHchKJJoJGptGfrkaY+fb5MpK19An6nCEJX6xoqWUkCba01QKYzLx
-         NawA==
+	 In-Reply-To:Content-Type; b=LDE066NEd4m603aKFF+FBhDDEEGNrrpQFqtMHyfFlU0uH3JyHydfOID45qXbqb/1yFS6/NFPThaR83E7IiEVOZMqvLR0fgpJ9/43n2Y6ez49fYLqqmiUOhTxTJO83SrqGwd3ubp8acd5vxNchzx8V1mElQxNbGDHVeLdih0lZho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=msVIlfGJ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A8F0sgo028583
+	for <devicetree@vger.kernel.org>; Fri, 8 Nov 2024 20:42:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Cs4riM3bHa8k5Bz+RTTdkcSvQ4WfTHc0avDjKefuDVE=; b=msVIlfGJmYYq4RsO
+	Bts3cVJc41YLj/q+wQ4jlIlKXERWkayuE7XW7C2biT6xHcTD49tB5Qm0VvgNppsN
+	6kAcfPGUPNydfjEiUVNOi98Zg6LNLNE3K0CN8hLinDzZ2d56mQLAzcgo2FqfZafO
+	S7GU6Fo0sOUT1+QMt2gSZL3VvkrM1BrVen0dUHceH/UXTYbAjuIT85DWn+4a6+35
+	0Yk6bxhuSU7wBD5GZ/mCmiF6cACO3TjAsPTH9tnxyAV9wdtytEymrwm+otESx4aj
+	tM5uWjSLnGLdRZmlVLD58i0Z/GLnUi/Tx3MOAk7AQ5WMj9gunM/H1Xzfbfp7zzqx
+	J5y1HA==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42s6gdak8p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 20:42:37 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6cbf4770c18so6592426d6.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 12:42:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731097859; x=1731702659;
+        d=1e100.net; s=20230601; t=1731098557; x=1731703357;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=975RhISS9snOVR5cT+Z99sFnn60KIbe7YuBqYHMl/W4=;
-        b=kXQolZWcOct0Pj/Fao2pBgCu4BAQFXPU/Fa9jftaibcysCo1gLH6tjwq2g2khzssIJ
-         axeQqGVcYnXRYzeGrICqu9Cx4HIioIgNp5Yyo5anvXgrg+ljZ3ayiuHCUDMk6+ZXK/c4
-         beQmZ02KZKt+kIsaTOVCcrD4/k9TcJCHYn60SGHUc+3kY75cj6dmNPAkWmQSjOuKMmSj
-         M3M4pDQyU0qUSdWjlqjDyAgCHRioMbaB7itNu7QMx7ueaT6NXiw+VuFCIvlKtTXoa7WP
-         DTt7Sd7UQgRzegfeOxkrK6ba47lySHXQuPUJfokeZrTe91D4Vwl5UamD/LmFYfEuE+cF
-         UbtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW4SRlSDWbO5B7SjHx2LNGcc0I/5Q8tJ2E6Z1fSzA/8RZk+JOPR7PLegFKAt20vrDNhdF/q5w7vnR69@vger.kernel.org, AJvYcCXCjkSlY/u7IXFB0arI+aPsJmpkgdpdj/2UuAjNckTVC+pg0vbws0M7Srnr3U2hzWe6vFmDMmYi2q3R7Kt/@vger.kernel.org, AJvYcCXnJJ5z/dUC7dhEOKZD6u8moTPjMJowyvT7E8U71IlmkEEDjnhZESWyb852SFNlDP3ygBtTstlq19io@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzK1jS1rDt9U/VKcidMat06lLC3XAy7Di0vsc9ecMvnoKl+Lwr
-	zJN6K+n3vBTXHSh/t6lBDzDwl6x3PL8qGI/lPU9bwUNVeO2RtaTT
-X-Google-Smtp-Source: AGHT+IFnA8B3gdMncl9joVkiKED9mz5HN7VDKygr8RmfOVjjuIdQIDKMdQdT9VxpfjiqrYuVhJu+RQ==
-X-Received: by 2002:a05:6402:2552:b0:5ce:c7b1:e052 with SMTP id 4fb4d7f45d1cf-5cf0a49307cmr3860824a12.9.1731097858843;
-        Fri, 08 Nov 2024 12:30:58 -0800 (PST)
-Received: from [172.20.10.2] ([37.63.10.207])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cf03b5d7c3sm2329997a12.16.2024.11.08.12.30.57
+        bh=Cs4riM3bHa8k5Bz+RTTdkcSvQ4WfTHc0avDjKefuDVE=;
+        b=jdFFPEUTayj8k259mQhQ6vRMcbQJxV0jVOjHyeU9Nsv0V43dSX8XR3XOgrQbrUyulq
+         TOqUQ74/2nKf7l7TO3My7mUgFADbzEWIPlLAG0YjPl4qIxrMj7Wg3sAmmRumEi3wG0hY
+         qql9AV1nCAFjko8D2lxxboFNsWzEP/bFXFhysewYU/ttsadKmniNrD+qIDfJ2DQwrvp5
+         y+iHFuIi3YqpcU4Lf+S5Nec8D5E83QmZ5aChEJ4hekwwRIsDjOc0lzmW3xJ8R44JY87j
+         Zsi7AAoIdsxffUmsU63gcHx1LWyAiQdNnpxngF7EsuyXgGG793BGkwNM/1TLFUk2931y
+         irEg==
+X-Forwarded-Encrypted: i=1; AJvYcCX0P05ndW23I+lY+11MWPaKtWSuId5miHv2PD6o+/n3BUgMXd/5JpngoL5jYTiPHBXic0BTa9nbT5x0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5IQxlKditwQIWk5lTwCq9eChJxoB8BD5zkDSJHc8mzUXuehH/
+	1W/+wZqAogiOZPjXVe8ieuqImBj+qFdvzkRkR7z9ONZxtqLIkUaN0zcZKflrHYxHNFuR8WOXCsz
+	Ot+NtPORbQ39C1QjIDorELuH4ndwA0kbD8PU6gm2tleDpewhIjfjev+jjuye6
+X-Received: by 2002:a05:620a:2995:b0:7b1:aeb3:8cc8 with SMTP id af79cd13be357-7b331d473f2mr259704885a.0.1731098556961;
+        Fri, 08 Nov 2024 12:42:36 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHmGYROupge46jG1nBI6/BcoZ4PyhzcR055xXlljdy1aNTPHHNIcEdgg6Cg0UU3ilkctF1xDw==
+X-Received: by 2002:a05:620a:2995:b0:7b1:aeb3:8cc8 with SMTP id af79cd13be357-7b331d473f2mr259703185a.0.1731098556608;
+        Fri, 08 Nov 2024 12:42:36 -0800 (PST)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9ee0dc56f1sm275188566b.92.2024.11.08.12.42.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Nov 2024 12:30:58 -0800 (PST)
-Message-ID: <d5d3f934-4f1c-43d9-aaf9-8de194d1f3b7@gmail.com>
-Date: Fri, 8 Nov 2024 22:30:56 +0200
+        Fri, 08 Nov 2024 12:42:36 -0800 (PST)
+Message-ID: <1c5b3bc1-0e35-45a7-9895-27e3b4982426@oss.qualcomm.com>
+Date: Fri, 8 Nov 2024 21:42:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,89 +84,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: clock: actions,owl-cmu: convert to YAML
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-actions@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20241107143431.728669-1-ivo.ivanov.ivanov1@gmail.com>
- <a4begcrmbtotl2imd3eaxpdveagvwridy6ev5zmwzvjqt3ovfq@wyj2dj73xe3e>
+Subject: Re: [PATCH v8 5/6] arm64: dts: qcom: qcs6490-rb3gen2: Add PSCI
+ SYSTEM_RESET2 types
+To: Elliot Berman <quic_eberman@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+        Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Shivendra Pratap <quic_spratap@quicinc.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Stephen Boyd <swboyd@chromium.org>, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20241107-arm-psci-system_reset2-vendor-reboots-v8-0-e8715fa65cb5@quicinc.com>
+ <20241107-arm-psci-system_reset2-vendor-reboots-v8-5-e8715fa65cb5@quicinc.com>
 Content-Language: en-US
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <a4begcrmbtotl2imd3eaxpdveagvwridy6ev5zmwzvjqt3ovfq@wyj2dj73xe3e>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241107-arm-psci-system_reset2-vendor-reboots-v8-5-e8715fa65cb5@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: eCtvWEi1FQ_YLJLiQ3t3sRMQFkLLgcgg
+X-Proofpoint-ORIG-GUID: eCtvWEi1FQ_YLJLiQ3t3sRMQFkLLgcgg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ mlxlogscore=806 lowpriorityscore=0 spamscore=0 clxscore=1015 mlxscore=0
+ adultscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411080170
 
+On 8.11.2024 12:38 AM, Elliot Berman wrote:
+> qcs6490-rb3gen2 firmware supports vendor-defined SYSTEM_RESET2 types.
+> Describe the reset types: "bootloader" will cause device to reboot and
+> stop in the bootloader's fastboot mode. "edl" will cause device to
+> reboot into "emergency download mode", which permits loading images via
+> the Firehose protocol.
+> 
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> ---
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-
-On 11/8/24 14:16, Krzysztof Kozlowski wrote:
-> On Thu, Nov 07, 2024 at 04:34:31PM +0200, Ivaylo Ivanov wrote:
->> Convert the Actions Semi Owl CMU bindings to DT schema.
->>
->> Changes during conversion:
->>  - Since all Actions Semi Owl SoCs utilize the internal low frequency
->>    oscillator as a parent for some clocks, require it.
->>
->> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> <form letter>
-> This is a friendly reminder during the review process.
->
-> It looks like you received a tag and forgot to add it.
->
-> If you do not know the process, here is a short explanation: Please add
-> Acked-by/Reviewed-by/Tested-by tags when posting new versions, under
-> or above your Signed-off-by tag. Tag is "received", when provided
-> in a message replied to you on the mailing list. Tools like b4 can help
-> here. However, there's no need to repost patches *only* to add the tags.
-> The upstream maintainer will do that for tags received on the version
-> they apply.
->
-> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
->
-> If a tag was not added on purpose, please state why and what changed.
-> </form letter>
->
-> I cannot add other people's tags - toolsets ignore it.
->
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->
-> ...
->
->> +maintainers:
->> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->> +
->> +description: |
->> +  The Actions Semi Owl Clock Management Unit generates and supplies clock
->> +  to various controllers within the SoC.
->> +
->> +  See also::
-> Single ':'.
-
-$ rg --files-with-matches "See also:" | wc -l
-110
-
-$ rg --files-with-matches "See also::" | wc -l
-94
-
-Having 94 matches of that out of all 110 definitely leads me to
-think that this has been done on purpose, and is still being done.
-
-Could you elaborate a bit more? If it's wrong, then shouldn't we
-clean all the other bindings from that mistake?
-
-Best regards, Ivo.
-
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> Best regards,
-> Krzysztof
->
-
+Konrad
 
