@@ -1,125 +1,127 @@
-Return-Path: <devicetree+bounces-120103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A484D9C1844
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 09:46:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA4CC9C1851
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 09:47:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A09C284C03
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 08:46:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC2501C22B9F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 08:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 036901D2239;
-	Fri,  8 Nov 2024 08:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4965F1DE88C;
+	Fri,  8 Nov 2024 08:47:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uuGbqETA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E8CC1CC161
-	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 08:45:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED4041DED5A
+	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 08:47:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731055560; cv=none; b=fY8oQC1RiVcypuBkgIuFB13N9sc9b2tXEnFlbZeyM03I6fReNqeKpEhliucuKrCzUZ/eacIA/9R6hfeg+ovc2gDjocXeSBaZmqVHTWduiYCjdmn7xNESIJEP2X0lZD8Qflc3r579BKXPeAAmqc5+aVsxt/mxl7SA/uBNKMFlyqs=
+	t=1731055662; cv=none; b=ebD06ZP7DcXnYPLjBWO0lnKwn7TdrTdH+DNJs1do3Av0F1LwZtYZHB793JHHQowBUuC7B1VM+94ZRt4SulyeFZ//ZsgbXWfFSsTrdRb2YC1mSfx8pAyCJ569v2SxbkIRck9CtOAh8nLWjY5Cyo37q8SZAVQvjkeOFanU81t6U1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731055560; c=relaxed/simple;
-	bh=FaOK6/VoquYLDg3s64g2kbmOgn3XY3DLadlvoXBaMXs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IopIrJJ2454VI4FibtMQpb2AZRgtG6DqZwEvcBV0sRYlNNBW3hVgA2kH00E9pVttaaHhu+RPoV/2jMN/Ws+oi3ivYDCcI4iI3TSweL97CPXvUOdCGUHhO1ZVFNSmDE9c1LeUZzGTPJXHvMz5qGl1dboGy64su3dm0NEJ7Flj2kI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1t9Kcm-0001lQ-8f; Fri, 08 Nov 2024 09:45:48 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1t9Kcl-002alM-2d;
-	Fri, 08 Nov 2024 09:45:47 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1t9Kcl-0004JW-2H;
-	Fri, 08 Nov 2024 09:45:47 +0100
-Date: Fri, 8 Nov 2024 09:45:47 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: trivial-devices: Add NXP P3T1085UK
- I3C/I2C temperature sensor
-Message-ID: <20241108084547.dzmxgdwllwvbiw5n@pengutronix.de>
-References: <20241107-p3t1085-v1-0-9a76cb85673f@nxp.com>
- <20241107-p3t1085-v1-1-9a76cb85673f@nxp.com>
+	s=arc-20240116; t=1731055662; c=relaxed/simple;
+	bh=Kw5vsWimu0DEEJoOvAz3DPc5YUBq+0ME6wv92iHkafY=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Gf5pfSu/LH+6APiKqacd07CgjLDS/cuGgsdJhtc59CRz+nrh8zJxF5w1FM9KNlqzuo0Awrru/7zwgFov+CKPusMh61UTCu0E3aNPCF6+13j+KpQbJ7/+m0N7Av21Cm6GQ9I/WFqEGSKmaVA5rB0E6k9Kcl6ZmpLvaMs9QsV2yjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=uuGbqETA; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37d6a2aa748so1131214f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 00:47:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731055658; x=1731660458; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=A9AD8kCT+nT+KZ2MXqSRYTX2q6sk9d7vkvCTtFjV2TU=;
+        b=uuGbqETA371S6SHpohC0xK3YcB5FlvBkXXCwMnvgs2IxyBSKc/dM2wgbrbxhtSV745
+         +SdrlLisixi8yis2r3mmxfRxlTNeGxNnAvyvorKa21ue2p0IvieF2sKG3EAeJxxwsNLX
+         uD9kRGbXKAXIcu9qenHA/4xF+CMmWHIQsuWbJ52fkDZU7+PkXcKtfCtvdAohO7dV8lZM
+         vJOKw2sLHfp/Pdj827FjGwckhAL1Y0s/NMbYMfMMjS15rfIMwUmoAn2efOLku/vGf/ZO
+         3i7yM7aVOQNbBGTt8yImhG2/ueR/jeGgiFhPPn2nW80LrY7NOU8IW5vSDByrXiVBFtd3
+         ngJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731055658; x=1731660458;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=A9AD8kCT+nT+KZ2MXqSRYTX2q6sk9d7vkvCTtFjV2TU=;
+        b=WHzB/fNVB8IZUKTBB3KJksjrNPf5/3fD3AHhneVYQmdhQ6RDRHYrknIXjGfipuXwdm
+         yQXOspyGsG5zASCa1cO2aTM6uwvpvxZ2jfY91KwQPilnzdHqOOOc34ZnYW17kOD59jbD
+         kIy40dDZA9Gf4hqxaeGt3w2Rb6+IjcW8ZfJilLqPqqsSsH8fWyzFGACNNw+j+PD615Lu
+         vxo/EhZxLkW2kpqZsAoNwGO3JIM1fxph9mpa20yOwFOvk/FkUbggxKa94RwYti7ArdvR
+         P1/ADMb6FnoUlPdNl1xWUCJdF/yjWrL/mtpBAgyG0HQbiVyTn3r8RNmrxFqED0HwmU8/
+         74Jw==
+X-Forwarded-Encrypted: i=1; AJvYcCUjPvKyw5l092dG9+Jp18EuiXGiNcDtKgcxJocU/Px4QL07FlBsE4UoVTX5bnMyBjvjEkcgCGNfVc2F@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgYAh+okESu71LxthSRhXaqdm/cQI+eFo9arlZazUtaLfqhmhy
+	PK2Vn2buwLAxET5VCGXeVC9Qe+/nvT3glThAA/MBZo4OrOZZAc9kqz2+JkFgboiyykvXL4gkh1H
+	q
+X-Google-Smtp-Source: AGHT+IEGxCmPOWLzM0bzj/TXKrnSrKDuB1/okZ3cbyLHE4zCDXwSir+KcCmZbuM3Pt/+K5DFnkIxNg==
+X-Received: by 2002:a05:6000:2aa:b0:37e:f1ed:67e8 with SMTP id ffacd0b85a97d-381f186dd5cmr1454470f8f.35.1731055658002;
+        Fri, 08 Nov 2024 00:47:38 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:ecfd:9f8d:62a3:6ba8])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381ed970e23sm3930442f8f.18.2024.11.08.00.47.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Nov 2024 00:47:37 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Jean Delvare <jdelvare@suse.com>,  Jonathan Corbet <corbet@lwn.net>,
+  Patrick Rudolph <patrick.rudolph@9elements.com>,  Naresh Solanki
+ <naresh.solanki@9elements.com>,  Rob Herring <robh@kernel.org>,  Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
+  Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+  linux-hwmon@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-doc@vger.kernel.org,  devicetree@vger.kernel.org,
+  linux-i2c@vger.kernel.org,  Vaishnav Achath <vaishnav.a@ti.com>
+Subject: Re: [PATCH v4 7/7] hwmon: (pmbus/tps25990): add initial support
+In-Reply-To: <df0db75a-b5e1-4bd8-8a59-de85b0a77fa5@roeck-us.net> (Guenter
+	Roeck's message of "Wed, 6 Nov 2024 10:59:11 -0800")
+References: <20241105-tps25990-v4-0-0e312ac70b62@baylibre.com>
+	<20241105-tps25990-v4-7-0e312ac70b62@baylibre.com>
+	<df0db75a-b5e1-4bd8-8a59-de85b0a77fa5@roeck-us.net>
+Date: Fri, 08 Nov 2024 09:47:36 +0100
+Message-ID: <1jpln62jtj.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241107-p3t1085-v1-1-9a76cb85673f@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
 
-On 24-11-07, Frank Li wrote:
-> P3T1085UK is a temperature-to-digital converter with a -40 °C to +125 °C
-> range. The device can be communicated by a controller via the 2-wire serial
-> I3C (up to 12.5 MHz) and I2C (up to 3.4 MHz) interface.
-> 
-> Add it to trivial-devices.yaml because only one 'reg' and 'interrupts'
-> needs.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 6ecd6432b021b..361943b3d73bc 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -301,6 +301,8 @@ properties:
->            - national,lm92
->              # Nuvoton Temperature Sensor
->            - nuvoton,w83773g
-> +            # NXP I2C/I3C Temperature Sensor (-40 °C to +125 °C)
-> +          - nxp,p3t1085
+On Wed 06 Nov 2024 at 10:59, Guenter Roeck <linux@roeck-us.net> wrote:
 
-The description of this binding says:
+>> +
+>> +static int tps25990_mfr_write_protect_set(struct i2c_client *client,
+>> +					  u8 protect)
+>> +{
+>> +	/*
+>> +	 * The chip has a single protection mode, set it regardless of
+>> +	 * the specific protection requested
+>> +	 */
+>> +	return pmbus_write_byte_data(client, -1, TPS25990_MFR_WRITE_PROTECT,
+>> +				     protect ? 0x0 : 0xa2);
+>
+> After some thought, I think it would be better to reject all protect values
+> other than 0 (no write protection) and PB_WP_ALL because that is what the chip
+> supports. Something like
 
-"This is a list of trivial I2C and SPI devices ..."
+Since operation would not be allowed, it's maps the closest indeed.
 
-but you add a I2C and I3C device.
+>
+> 	if (protect & ~PB_WP_ALL)
+> 		return -ENXIO;		// or -EINVAL ? Not really sure.
 
-Also I really like to see that you add a "power-supply" property which
-is most the time missing for such simple devices but always required.
+The command is supported but the argument would not be, so -EINVAL seems
+appropriate to me.
 
-Regards,
-  Marco
+>
+> Thanks,
+> Guenter
 
->              # OKI ML86V7667 video decoder
->            - oki,ml86v7667
->              # ON Semiconductor ADT7462 Temperature, Voltage Monitor and Fan Controller
-> 
-> -- 
-> 2.34.1
-> 
-> 
-> 
+-- 
+Jerome
 
