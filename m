@@ -1,135 +1,83 @@
-Return-Path: <devicetree+bounces-120030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6994D9C1401
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 03:23:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B96B59C1468
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 04:05:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 09D6EB2516C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 02:23:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA4751C21036
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 03:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 712C617996;
-	Fri,  8 Nov 2024 02:23:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PH0+7OV7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14581494D4;
+	Fri,  8 Nov 2024 03:04:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lgeamrelo11.lge.com (lgeamrelo12.lge.com [156.147.23.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED46C1BD9E5;
-	Fri,  8 Nov 2024 02:23:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63641CFBC
+	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 03:04:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.147.23.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731032582; cv=none; b=h5KS6pvtcwDgphSDMKId1ooT2zpd5QzWFs4yLgqpFmiuFa5e7jIDaakj/ySy3EMYbgWaHW6Aw5O6Cg4+6/PTLePLv8+JrvPCQqLOp9h3Fx28MTzDnfT35i/UmIEt14KgH/RW/3CryU/u6mVJp7Xk9s0YkQYeR3nYr9XC/+FfZds=
+	t=1731035099; cv=none; b=gsg+AHZvv7vxTUCroFSPXxUHIZtQD1BmDk1JoJWDNfzbM/y9/pw4uXaLnzNSzuHyFPzVjjTw9Z4xx0gLt7nUuJi7JYxopZsgAp6Txq2Zcm5saeeQ7jiGNs3sjhmp+X8Tngx8jpe1m0uVGx1URKVHQmQGffYBiwBkmlfuqTNNbEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731032582; c=relaxed/simple;
-	bh=APyRPtDpOSsz2jYrIwghzGR2bt5juoTmWmJTI3E01SI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XyQemkoivcKqktlQJpiaCT2HtO+oic1QrKhQbFgmEbff4FuLkB0xycSeKXVTHU2WqGjpsXw+Cl984mvo+cUo/VO+5Qrjx28gumGuxUxNDs8MvIojb6F/h+XPBpVU9+D0yVMuz323AJdis60jHt3qrViegIoa0ObzEz1kxvIxAhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PH0+7OV7; arc=none smtp.client-ip=209.85.166.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-83b430a4cfdso65229139f.2;
-        Thu, 07 Nov 2024 18:23:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731032580; x=1731637380; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eR7AyViXmeWGMVONEZ/pRYURocoexzHBT2dgSZdiLJc=;
-        b=PH0+7OV78FktjzbAzGnpQ+abNnFE4Q9THdTtcSovQIzPO4uzUEFCtdtiCmXRVoHnoG
-         HO0GsJznOb9j1xPEJlrB7oTgyBjzLX51iU6TxIRcT/Nw0u75pfIL1LabasSHdzO5F/Nl
-         7GSdLKPFTdXaybUyJR03UkRxgJOC5uLY4gYA65dVCBNnsi5OYSbzcWd3GQMZkpCELQ5Y
-         WigTW1c+euGe/hViR61wMyp7+khn6iZcABWS7++KY2YQiX9Dsk0LS7H3DRlaSS55vbV/
-         XWAgAWprzzgKu+dCWDZ4G352lX49+OWifT+CB6sO/mOgqOxvucXqrIPQx151SSwKbQaL
-         UWyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731032580; x=1731637380;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eR7AyViXmeWGMVONEZ/pRYURocoexzHBT2dgSZdiLJc=;
-        b=fN8pmBgFr3M1NzGHZqbNlyefC6myQuALLRHRgOrZnNycQrnK+hOqlD8HOSWgBCYNT3
-         /YGFWZvS3AZxxNPsZid+e9OwMn5aE39WK/XRk3Atg5607d0vPURZVIki69jOZq1dQkAo
-         jz3EJwhJpC70zOxWnCJo5RFNb23n7OVaSuoT7iEyxUdTaQssIf+1QciITuywDo4K06tP
-         veGIFO0KvfguCrdH0PoElfAxhdDHsUMFIxQe9v+pOEhTDyqaD5XcWkzpinZhmsGz3uqf
-         KJsf5JdbLl6q2RTqDBEDbFQaTq2LhHPn4QOMm3NOWf0oMgRMN2r3zFOLklV21R3zXAon
-         j0Qw==
-X-Forwarded-Encrypted: i=1; AJvYcCVy26YY/00d3ondo02iVpsP+KJlvae05CeQ8Xv5RewqrAvxYED69ACvsMyRFN82K4hKGwyKzx1kQLDMbnnd@vger.kernel.org, AJvYcCWA4CwNS61iKAIXVihxt5wQKNMoEf3I40S95KegSzZxCo9P5u37iXSg2Bf2ZfCL+4sMjYtr/foE//P0@vger.kernel.org, AJvYcCWIpgnnfaLtiysNK+Aurv0lhWEMaYQ/iqZSirDPGbWTSO0CI/p3EyZ6PkuJEJVjzkfOWj/xtfnTEg+R@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpUfWymNObWIQQE8HVfWD8MNfhxB4cQRKZibb/sqS2K1fSfUZK
-	r0RTyDLNtrSf2/pFXGMwErrXnkQqic11ubFKpZDvImcTShLOWEYMVXxJFBkwT7SB5TxoBqZOngV
-	vuwtAHRUxwBWR/GruKhmkUA9DbXg=
-X-Google-Smtp-Source: AGHT+IGQ7gpv66XfauvZZ5t0zmt5b2BZyWV862s4RrmNacvxmqQJFFeOQYZ68mwOrld/NXiqMMkWEyD3aFFzolHNfM0=
-X-Received: by 2002:a05:6e02:1350:b0:3a6:da79:12bc with SMTP id
- e9e14a558f8ab-3a6f199ff96mr15159245ab.7.1731032579956; Thu, 07 Nov 2024
- 18:22:59 -0800 (PST)
+	s=arc-20240116; t=1731035099; c=relaxed/simple;
+	bh=irY7N4XgLzbsh89KzfS8ChgO9E/eqWRqoWagU/0HZ4o=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=ZnhNf8h1Zvh15qBwHEAHUTs/yfYOVj6VR5//nl8g0uybia7Y5h0eFFg/Ko5mZ0qpf/rN7yhDixCNawcEFVaXqQq41BXdx1s2ZztuBvAE20GmPRqB9zroOK4ZOIa0EXHUXbG+qDlC+aua6GO48w5PUhrYSjg2bXVyfjlNy9Ot7pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com; spf=pass smtp.mailfrom=lge.com; arc=none smtp.client-ip=156.147.23.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lge.com
+Received: from unknown (HELO lgeamrelo02.lge.com) (156.147.1.126)
+	by 156.147.23.52 with ESMTP; 8 Nov 2024 11:34:53 +0900
+X-Original-SENDERIP: 156.147.1.126
+X-Original-MAILFROM: chanho.min@lge.com
+Received: from unknown (HELO localhost.localdomain) (10.178.31.96)
+	by 156.147.1.126 with ESMTP; 8 Nov 2024 11:34:53 +0900
+X-Original-SENDERIP: 10.178.31.96
+X-Original-MAILFROM: chanho.min@lge.com
+From: Chanho Min <chanho.min@lge.com>
+To: Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: gunho.lee@lge.com,
+	Chanho Min <chanho.min@lge.com>
+Subject: [PATCH] of/irq: Fix a missed udpate of out_irq->np
+Date: Fri,  8 Nov 2024 11:34:40 +0900
+Message-Id: <20241108023440.29509-1-chanho.min@lge.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20241107102008.3626023-1-shengjiu.wang@nxp.com>
- <20241107102008.3626023-4-shengjiu.wang@nxp.com> <Zyzod4k+LNkpJdMA@lizhi-Precision-Tower-5810>
-In-Reply-To: <Zyzod4k+LNkpJdMA@lizhi-Precision-Tower-5810>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Fri, 8 Nov 2024 10:22:44 +0800
-Message-ID: <CAA+D8ANhznTNCt5RqaF17GMYHqYdggMpR_LOWuP4GX5ECApHzw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: imx93: Use IMX93_CLK_SPDIF_IPG as SPDIF
- IPG clock
-To: Frank Li <Frank.li@nxp.com>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org, peng.fan@nxp.com, 
-	mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	imx@lists.linux.dev, linux-clk@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 8, 2024 at 12:19=E2=80=AFAM Frank Li <Frank.li@nxp.com> wrote:
->
-> On Thu, Nov 07, 2024 at 06:20:08PM +0800, Shengjiu Wang wrote:
-> > IMX93_CLK_BUS_WAKEUP is not accurate IPG clock, which missed
-> > the clock gate. IMX93_CLK_SPDIF_IPG is the correct clock.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
->
-> This should be fixup. Add fixes tags.
+Since commit 935df1bd40d4 ("of/irq: Factor out parsing of interrupt-map parent
+phandle+args from of_irq_parse_raw()"), An interrupt tree without
+an interrupt-map is not updated to the parent interrupt and it causes the irq
+domain not to be found in some out-of-tree device-tree.
 
-I will update them. Thanks.
+Fixes: 935df1bd40d4 ("of/irq: Factor out parsing of interrupt-map parent phandle+args from of_irq_parse_raw()")
 
-Best regards
-Shengjiu Wang
+Signed-off-by: Chanho Min <chanho.min@lge.com>
+---
+ drivers/of/irq.c | 1 +
+ 1 file changed, 1 insertion(+)
 
->
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
->
-> >  arch/arm64/boot/dts/freescale/imx93.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot=
-/dts/freescale/imx93.dtsi
-> > index 688488de8cd2..56766fdb0b1e 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > @@ -925,7 +925,7 @@ xcvr: xcvr@42680000 {
-> >                               reg-names =3D "ram", "regs", "rxfifo", "t=
-xfifo";
-> >                               interrupts =3D <GIC_SPI 203 IRQ_TYPE_LEVE=
-L_HIGH>,
-> >                                            <GIC_SPI 204 IRQ_TYPE_LEVEL_=
-HIGH>;
-> > -                             clocks =3D <&clk IMX93_CLK_BUS_WAKEUP>,
-> > +                             clocks =3D <&clk IMX93_CLK_SPDIF_IPG>,
-> >                                        <&clk IMX93_CLK_SPDIF_GATE>,
-> >                                        <&clk IMX93_CLK_DUMMY>,
-> >                                        <&clk IMX93_CLK_AUD_XCVR_GATE>;
-> > --
-> > 2.34.1
-> >
+diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+index 8fd63100ba8f..3fa3c833e2dc 100644
+--- a/drivers/of/irq.c
++++ b/drivers/of/irq.c
+@@ -315,6 +315,7 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
+ 
+ 	skiplevel:
+ 		/* Iterate again with new parent */
++		out_irq->np = newpar;
+ 		pr_debug(" -> new parent: %pOF\n", newpar);
+ 		of_node_put(ipar);
+ 		ipar = newpar;
+-- 
+2.17.1
+
 
