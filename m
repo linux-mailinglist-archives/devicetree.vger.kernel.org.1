@@ -1,106 +1,210 @@
-Return-Path: <devicetree+bounces-120239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F7829C1D0B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:32:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAFE69C1D15
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:35:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC0881F21E5C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:32:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D71EB25CB5
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:35:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 309672B9A5;
-	Fri,  8 Nov 2024 12:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA4091E7C17;
+	Fri,  8 Nov 2024 12:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="thlXps8Z"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="u11yTsBC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 007BB1DA21;
-	Fri,  8 Nov 2024 12:32:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70321E5000;
+	Fri,  8 Nov 2024 12:35:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731069129; cv=none; b=FbL2hOpF+/ICsc4MwG9355uSvhXW99Qzh65OFjQP8PEoHcyX1WU79AKZka5I2JLpbNy4BUyjFET4nB+YzD+u60TM8IMFMYwpRya31M7gb/4a1PV8BE3SDILFX3AdnKE2u6WYWMXgkSFmFjJHcgTsDXsJ8xty64rV0fqIObHXZu4=
+	t=1731069329; cv=none; b=jLA8fCc3us7QgLs7QhVm+XFA9DVinoxzUz4baK89LytLmX/Uth/+zsLZeNEEj5P9Oaaf1G3GbhjQ2AExpyTjPnTIHyQf01irxSEiEIJOihkRdXxznKsLiMz09WaatDrrL+mWxjaNVzt2t76tSq9123xfVDulnB9WST5NE5PJ+0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731069129; c=relaxed/simple;
-	bh=OTSjLYZ9CZLdTvXs6M+Ao3qZ+7v2e9k19DVGtbucSic=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eh07bxZzXjE0sDVA157DKyxGG+ZN7JruqWWGuLr1V+sBhVYyiHAFU2IQAO/7ah6MgAwfrXUqZPsRO9kQZsa80F/1YH7Y47jn62S69bCxdQQUuqqAZmAEXlCzn+/XTBG1+sR5kOE2iifuRCdZol1p/Glm8lkWGheCya2whjiK3x4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=thlXps8Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 185C2C4CECD;
-	Fri,  8 Nov 2024 12:32:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731069128;
-	bh=OTSjLYZ9CZLdTvXs6M+Ao3qZ+7v2e9k19DVGtbucSic=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=thlXps8ZJocdFA3UPRDrvXaiiCEru2GJimSp8zo+cSiFyBtaPPVWIyjv57IESI9AF
-	 O+xIRj7hmQNOrdrK2C4kxu+ngrYBxXEI2vtqxr1FKjF2RTeDqxUh9hTOhEm6zxWy9+
-	 NmbH/K0z8F/UVdswFtDc7uGiKtR7enBggiINeMQdk6Lp1F4UuEW/B/K/y3xGkEc5xQ
-	 QX8HnYdMQu/mpsx7Y1DEDpQjDI+XfRi5EfDAUult+xkXxwYgYqeG43PuRkTXq61bIe
-	 kne8JaI1PlfgdR+0LoHJhCNE7vAuzNdvHmvs0//W4jVFSEQ4tS9iR+KnLt18rulb8p
-	 yAX6LV9uPrztg==
-Date: Fri, 8 Nov 2024 13:32:03 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: add stm32mp25 support for sai
-Message-ID: <3nkoutm4uixuhetf5cputloooqzpvwhcnq6wklhu3euazmrybe@mjtjqnehfnvg>
-References: <20241107155143.1340523-1-olivier.moysan@foss.st.com>
- <20241107155143.1340523-2-olivier.moysan@foss.st.com>
+	s=arc-20240116; t=1731069329; c=relaxed/simple;
+	bh=8jlqo1E4M8vcisv6CdLQ5vpJsIWBjsCNBFNXF02BGpY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=AgBRheQXgetFk2xmDsZlWEjtEj4g4t6JyuESdHIW/6ajzZdVkjmucBF/ODrfzlHbT/FsmqSVpbNeIugsdZOFOkqgcHJGXaQDTd5JhPXb9ZFrJtVh6aSqyK4rGOs8pqcDMTL7aC/sjzoZGqZ2Yymjpgji8ZkEdr3iSGc8VuprZxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=u11yTsBC; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4A8CYVfQ065687;
+	Fri, 8 Nov 2024 06:34:31 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1731069271;
+	bh=OuN++dLfzXhna1qxmErJ0FWUgMTzln4qtKp2RrTbq84=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=u11yTsBC0oUA2BMalASCtqwi9eWE05qGsYJOwG2FCCXXXYroPC00MkmETnS9HQCPc
+	 ym8mE3gk9GqX6/COt7mPb+gxnrElGJDCXXQ2YX0kchl9D/gtub3ZFA0AwMwqfK6dXL
+	 NMbLbBUk9cgtlOzkdpqs1LQUmwcfjpZYpK3Xhu3g=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4A8CYVxZ112419
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 8 Nov 2024 06:34:31 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 8
+ Nov 2024 06:34:31 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 8 Nov 2024 06:34:31 -0600
+Received: from [10.249.129.69] ([10.249.129.69])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4A8CYPgW009281;
+	Fri, 8 Nov 2024 06:34:26 -0600
+Message-ID: <62f3902e-8ee4-4cdb-864c-cfe57c7e3839@ti.com>
+Date: Fri, 8 Nov 2024 18:04:24 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241107155143.1340523-2-olivier.moysan@foss.st.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: Add clocks for ICSSG
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: MD Danish Anwar <danishanwar@ti.com>, <conor+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>, <ssantosh@kernel.org>,
+        <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>, <kristo@kernel.org>,
+        <srk@ti.com>, Roger Quadros
+	<rogerq@kernel.org>
+References: <20241107104557.1442800-1-danishanwar@ti.com>
+ <20241107104557.1442800-2-danishanwar@ti.com>
+ <7f0a73c3-9977-4d07-b996-683ed18e4724@kernel.org>
+ <8156fd61-c476-4b58-b3b2-e8bc4f93035e@ti.com>
+ <2c368f5a-4b58-45de-8140-21b2f7af4d12@kernel.org>
+ <4ba0381b-d30a-4469-a7c4-327f6ac20c9c@ti.com>
+ <2e7a1eb6-df8f-44d4-9342-1bc6d8b5ad11@ti.com>
+ <1fa4323b-4cee-4dfe-9c68-55f4465999cf@kernel.org>
+ <2a3c54e8-46fc-48f9-8c01-f3bb0c4907af@ti.com>
+ <c7llcnzthr2ydp4zlyk7rhovwauy5cqeqllvmgmyluypxq3opv@c4suatmd7k3w>
+Content-Language: en-US
+From: "Anwar, Md Danish" <a0501179@ti.com>
+In-Reply-To: <c7llcnzthr2ydp4zlyk7rhovwauy5cqeqllvmgmyluypxq3opv@c4suatmd7k3w>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Nov 07, 2024 at 04:51:41PM +0100, Olivier Moysan wrote:
-> Add STM32MP25 support for STM32 SAI peripheral,
-> through "st,stm32mp25-sai" compatible.
+
+
+On 11/8/2024 6:00 PM, Krzysztof Kozlowski wrote:
+> On Fri, Nov 08, 2024 at 05:49:54PM +0530, Anwar, Md Danish wrote:
+>> Hi Krzysztof,
+>>
+>> On 11/7/2024 5:51 PM, Krzysztof Kozlowski wrote:
+>>> On 07/11/2024 12:58, MD Danish Anwar wrote:
+>>>>
+>>>>
+>>>> On 07/11/24 5:16 pm, MD Danish Anwar wrote:
+>>>>>
+>>>>>
+>>>>> On 07/11/24 5:14 pm, Krzysztof Kozlowski wrote:
+>>>>>> On 07/11/2024 12:36, MD Danish Anwar wrote:
+>>>>>>>
+>>>>>>>
+>>>>>>> On 07/11/24 5:01 pm, Krzysztof Kozlowski wrote:
+>>>>>>>> On 07/11/2024 11:45, MD Danish Anwar wrote:
+>>>>>>>>> Add clocks, assigned-clocks and assigned-clock-parents for ICSSG
+>>>>>>>>
+>>>>>>>> Why? We see what you are doing from the diff, no point to repeat it. I
+>>>>>>>> don't understand why you are doing it.
+>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>>>>>>>> ---
+>>>>>>>>>  .../devicetree/bindings/soc/ti/ti,pruss.yaml          | 11 +++++++++++
+>>>>>>>>>  1 file changed, 11 insertions(+)
+>>>>>>>>>
+>>>>>>>>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>>>>>>> index 3cb1471cc6b6..cf4c5884d8be 100644
+>>>>>>>>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>>>>>>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>>>>>>> @@ -92,6 +92,17 @@ properties:
+>>>>>>>>>      description: |
+>>>>>>>>>        This property is as per sci-pm-domain.txt.
+>>>>>>>>>  
+>>>>>>>>> +  clocks:
+>>>>>>>>> +    items:
+>>>>>>>>> +      - description: ICSSG_CORE Clock
+>>>>>>>>> +      - description: ICSSG_ICLK Clock
+>>>>>>>>> +
+>>>>>>>>> +  assigned-clocks:
+>>>>>>>>> +    maxItems: 1
+>>>>>>>>> +
+>>>>>>>>> +  assigned-clock-parents:
+>>>>>>>>> +    maxItems: 1
+>>>>>>>>
+>>>>>>>> Why? This is really not needed, so you need to explain why you are doing
+>>>>>>>> things differently than entire Linux kernel / DT bindings.
+>>>>>>>>
+>>>>>>>
+>>>>>>> I need to add this to the device tree node
+>>>>>>>
+>>>>>>> +		clocks = <&k3_clks 81 0>,  /* icssg0_core_clk */
+>>>>>>> +			 <&k3_clks 81 20>; /* icssg0_iclk */
+>>>>>>> +		assigned-clocks = <&k3_clks 81 0>;
+>>>>>>> +		assigned-clock-parents = <&k3_clks 81 2>;
+>>>>>>>
+>>>>>>> But without the above change in the binding I am getting below errors
+>>>>>>> while running dtbs check.
+>>>>>>>
+>>>>>>> /workdir/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: icssg@30000000:
+>>>>>>> 'assigned-clock-parents', 'assigned-clocks' do not match any of the
+>>>>>>> regexes: '^(pru|rtu|txpru)@[0-9a-f]+$', '^pa-stats@[a-f0-9]+$',
+>>>>>>> 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$', 'interrupt-controller@[a-f0-9]+$',
+>>>>>>> 'mdio@[a-f0-9]+$', 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$',
+>>>>>>> 'mii-rt@[a-f0-9]+$', 'pinctrl-[0-9]+'
+>>>>>>> +/workdir/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: icssg@30080000:
+>>>>>>> 'anyOf' conditional failed, one must be fixed:
+>>>>>>>
+>>>>>>> To fix this warning I added these in the binding and the warnings were
+>>>>>>> fixed.
+>>>>>>
+>>>>>> nah, cannot reproduce. Just be sure you work on recent kernel (last time
+>>>>>> you were sending it on some ancient stuff) and your packages are
+>>>>>> updated, including dt schema and other kernel dependencies.
+>>>>>>
+>>
+>> The purpose of this series is to add 'assigned-clock-parents',
+>> 'assigned-clocks' to the DT node. Initially I was only trying to add
+>> these two nodes to DT and at that time I got the above error. I also got
+>>  the below error as well
 > 
-> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
-> ---
->  .../bindings/sound/st,stm32-sai.yaml          | 26 ++++++++++++++++++-
->  1 file changed, 25 insertions(+), 1 deletion(-)
+> So you pasted different error, not related to topic we discussed.
+> assigned-clock* depend on clocks. You must have clocks to assign them,
+> obviously. Device should no assign rates to clocks which are not its
+> inputs. :/
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
-> index 68f97b462598..4a7129d0b157 100644
-> --- a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
-> +++ b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
-> @@ -20,6 +20,7 @@ properties:
->      enum:
->        - st,stm32f4-sai
->        - st,stm32h7-sai
-> +      - st,stm32mp25-sai
->  
->    reg:
->      items:
-> @@ -43,9 +44,11 @@ properties:
->      const: 1
->  
->    clocks:
-> +    minItems: 1
->      maxItems: 3
->  
->    clock-names:
-> +    minItems: 1
+> 
+>>
+>> /home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
+>> icssg@30000000: 'anyOf' conditional failed, one must be fixed:
+>>         'clocks' is a required property
+>>         '#clock-cells' is a required property
+>>         from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
+>>
+>>
+>> To fix this I added 'assigned-clock-parents', 'assigned-clocks' to the
+>> binding and at this time I got only the below error,
+> 
+> To fix this you must add clocks. The error tells you this.
+> 
+> So again: drop assigned properties. No error msg asked you to add them.
+> 
 
-This actually fixes the binding because it lacked minItems before :/
+Yes, I will drop assigned properties from binding and post a v2.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Best regards,
+> Krzysztof
+> 
 
-Best regards,
-Krzysztof
-
+-- 
+Thanks and Regards,
+Md Danish Anwar
 
