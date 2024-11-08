@@ -1,463 +1,219 @@
-Return-Path: <devicetree+bounces-120031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5A369C1424
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 03:36:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 295069C1446
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 03:51:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 226B9B25287
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 02:36:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2AD6282D50
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 02:51:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A2D213CF82;
-	Fri,  8 Nov 2024 02:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B12E1AAD7;
+	Fri,  8 Nov 2024 02:51:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="VlAvpI9u"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xey+BlMf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D452940B
-	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 02:36:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560C51BD9F3;
+	Fri,  8 Nov 2024 02:51:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731033370; cv=none; b=ko/kTMkQSa/EzLvaHz8OpuZebDD2UyXXRNew3hMopgVHcoF4wh+LdsQR3r6bUEDSggkr2C23D82iaGw+Lz9+8c4hjQwVJedQiC19Lj/DQQS5Etm/pw3MdWDAwL0F3qkgcKkt4od5Kv2nEY+ksHcxoVVHvN6FpJFiFvUXBdzky/w=
+	t=1731034270; cv=none; b=HjeRy1gexINZGpfb9oMcvPXT5miFWMC2hx/sB5Exb/fPoIyoE+gtsaXceB1+6QmIlWk3QSQtktl+kif1+RmrIXrCtuP718BiZrEJSHZpxOEUwpbDJEX7mOBiBDi7QUKjklbsqb/AryrwAnaLO1ER7eycMHlEbirt5/OXiDM1o8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731033370; c=relaxed/simple;
-	bh=qDJ5LmtmPUriFCnpMhMc5scGbNBSa6mmdMKJ8KLdCU8=;
+	s=arc-20240116; t=1731034270; c=relaxed/simple;
+	bh=lSQEIgpKDv3f26NYR8QFCbDnNgVJHCatRuxO+lIMyyw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UaEI0tN9U500vQbCvsN3XcnQ9sybFSKEA5XYhJpnARw4CBJOxdfD0Zt4HxhzJE/mZfw4N2Fuj+sG2z+uQQlZtmdqGBo/wJEYW8Nl4socKrNMVGHWRxmv3L4E8suef0/iNEoeAs+D1OxupJpWhffJqYwG3GP66sKAODucHocstkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=VlAvpI9u; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-720be27db27so1298859b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 18:36:08 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qB4GDIkvP+rlW15L8aC1IGqi74Tg3ecfTMyZHBXU0lUEvQ2v25ESb885ZFyVPWY7z15xexfGiLzKtb/WaFwWX1TiLJ9mD23f9hIH9/MaOnU0uH0gr0RRdE9NNVxqTNKXCSKQ+nOrK3ZJsCb31GSmu3izMP6VQiLJKBLL3MUiAPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xey+BlMf; arc=none smtp.client-ip=209.85.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-71808b6246bso1016879a34.2;
+        Thu, 07 Nov 2024 18:51:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1731033368; x=1731638168; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=s+jyeFz5qLcpNF1wQeUyeaIh19p1lD8bQtGka/s8n1Q=;
-        b=VlAvpI9uFes87YdjurMLNeFumSqm9D320j3fdwTBFbw7m863VZjseyrd4tXvxGJuZh
-         V1ln6844jIlV9E+rWyQ5fN5u6CLwI7mWgQrPsItKJPYPfTKtBnqrWG45vnz+uQygE4v7
-         YcdGrUmWD+JhkvP9YL2MQ+l+fZuVxm4R+NrkKCSsg4MUKj6S3ZWJ41txKjVTzLSfOArt
-         VamVI36DZf8LPHfMRi4sTaId70gAnI2gF7eXHNy1u8soBO1P3YpTxb1cQaD2aj9Z3Hsi
-         zbmAEAHEoKnW2O6cmRws5Lt06KCFZPOcVDfxoTyGK0oEO3WmbaLlnDrnSROdccUnfsPs
-         NIDg==
+        d=gmail.com; s=20230601; t=1731034268; x=1731639068; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=/EXjIMqHBmMIAGv5jp2hlycZHcXVd0mCL3d1IYu3e5U=;
+        b=Xey+BlMfBVZh7gOCXVTIqEBANqz2+fhiGoRTbmrF3a2SUZsHYo4YGHN98z8jNvX2R4
+         G2cGFPEMGgprE0rNQV0PbUk3c79R9mVij82OLWT0jSMx/dSbfa+YYjwFLkO4iPwLHBpQ
+         zZ+qg7YwJ90Wtfy+uXKhPVvJkGKvgyxL0G7FwO42a78hqWywU6kT8oZlQKM4OLEjG1MU
+         35Ztgy97v7EGM4AQBZ3UF/7YQvOjMjRRkqV8c62j4VTn4fNktYNZNjlAcQkEQr1lFBUf
+         IQZABEizidyRdw3cbijqe/Xpe2QzSzHhMf3j8ZvMd1weGTsxoiRrWhNLVmL4dOicyD0O
+         skvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731033368; x=1731638168;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s+jyeFz5qLcpNF1wQeUyeaIh19p1lD8bQtGka/s8n1Q=;
-        b=gGTdDXHB1Pg9Ra3sjuRrEd/MK/upGrQ5VvIZRLoNaFbK2s7xmQGSlRj2oVOwwRZqVJ
-         qUbHjct27EUCxUQMmrpjiuOIg1P0sZxbVBXzalZy30Sjp3Yz8XIzZJA/GJsw1JRCMNoR
-         +rpAuiiKmHWVWwHRrLSnoN5el1TNfC803Vqq7DevTcPL+zZPUDYRib0EZb0G0LYxtzwB
-         awltEmRlLcARoJJ3bgHIlCFolj6gZGIW8oqzaLDbaGM6wtzIdhn/R9E8JwwX11F3bNWE
-         RVal8tzw0D1JbQsS7TYF2pBpjb/j1XvcgcFr4uF6QwJbcH+9a/jUBvU1CUcGmTVE57mE
-         XJBw==
-X-Forwarded-Encrypted: i=1; AJvYcCXsNwBKpkAsNPaiRYx55D5umg44BdVvsrEE2VCoX1dYjxw2YKLWHtREQ24tmcGQV6WQnlJUbnofU3tU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzoggll1TyXgxwmZYl0bb/H/ha0a3QDiy16lCXwlN/nVWCxWfP1
-	JHyNtd46pL+zOAoDa3vSiOTGCeAsRzQCBdpRJW/dqgAhewRg1eoqfCEcn4YesT0=
-X-Google-Smtp-Source: AGHT+IFkTBYmvuaObrf/NhsL6bgy8VSLe5N8eK2nw/1LxrZ9F9SMeNiCvMwnlaaGOCdkpjvr4IsokQ==
-X-Received: by 2002:a05:6a00:1819:b0:71d:f510:b791 with SMTP id d2e1a72fcca58-724132cd1b1mr1832008b3a.12.1731033367828;
-        Thu, 07 Nov 2024 18:36:07 -0800 (PST)
-Received: from x1 (71-34-69-82.ptld.qwest.net. [71.34.69.82])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72407a17ed3sm2541107b3a.142.2024.11.07.18.36.06
+        d=1e100.net; s=20230601; t=1731034268; x=1731639068;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/EXjIMqHBmMIAGv5jp2hlycZHcXVd0mCL3d1IYu3e5U=;
+        b=NEOXxBvgPFrQIYmaLwBHwxVbBsIvfFuUEeFXjx9lt/6j+Lixr8pEy8FQIduIKpq67D
+         YjeVOp8pYRzwC8/1Wvk+Z5AXiGNZQOqr7DOMIvqzJAqjJsn6mJlnFl3MFLDnJBX6hZN3
+         hfiRjgnPLI7RTRk8bfoS0gR9/2tvH4qOxXJohkNPYsdEMBWw075JnNM+IwrPKNN88Nsp
+         w6aSWHXZMGa3Y+i8Vqh/OjhRgXs7nHOduDJaeTz6Py5ItjLvFqh8D0bYospwz0JQgbmg
+         tNHuCWDsCZRtD5P9nRyA9BhmyBopz3bxFCFzQHSVj0os0kUjIidBW9hSVt+HCJMAV97Q
+         VWWg==
+X-Forwarded-Encrypted: i=1; AJvYcCXVfNE2a7vrBnZqJogsFCGdbvmJJLgBo7KJJg5XeSMYB3qX8qj7xgX9/cGbd18pMrdtae8JT6eo61A0YVg=@vger.kernel.org, AJvYcCXbeWyoL74OcNmnEA9Di393XetL24p9rzhJpLAf5HE1c7NXPHtX9M4BH5EKi4YBDhgEkkLTjnUMoGn070c9@vger.kernel.org, AJvYcCXfeWQDWRZxmRgyPiDaWK9CV/m1GmpAassSLmvwgLUOHBYs9xzkO5omVGBWQb1aFrnJ4IB3mqCVFYZf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yywhas2+/Jx8iCpEiBtB2xMy/qo+BLYU5mRja+JVPr3b/vx+XA5
+	TzchLX8oqBU2kpopDvumkHVlRs2ENclZOgGPoLwg9bgCClLc52Dn
+X-Google-Smtp-Source: AGHT+IEElLZEABRWyjEIWGCuNoaAThPE7ptq0c3Gr/sJWPeAj85WKpXmwxpGDHpsPfsBPn6ESYu5rg==
+X-Received: by 2002:a05:6870:7d07:b0:291:467:ee42 with SMTP id 586e51a60fabf-2955ffecf54mr1450360fac.8.1731034268248;
+        Thu, 07 Nov 2024 18:51:08 -0800 (PST)
+Received: from ux-UP-WHL01 (mailgw01.gttektw.com. [45.117.96.243])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7f423414bcesm2047171a12.4.2024.11.07.18.51.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Nov 2024 18:36:07 -0800 (PST)
-Date: Thu, 7 Nov 2024 18:36:04 -0800
-From: Drew Fustini <drew@pdp7.com>
-To: Drew Fustini <dfustini@tenstorrent.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Andrew Lunn <andrew+netdev@lunn.ch>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH net-next v4 3/3] riscv: dts: thead: Add TH1520 ethernet
- nodes
-Message-ID: <Zy15FJZrOFA2t687@x1>
-References: <20241020-th1520-dwmac-v4-0-c77acd33ccef@tenstorrent.com>
- <20241020-th1520-dwmac-v4-3-c77acd33ccef@tenstorrent.com>
+        Thu, 07 Nov 2024 18:51:07 -0800 (PST)
+Date: Fri, 8 Nov 2024 10:51:02 +0800
+From: Charles Wang <charles.goodix@gmail.com>
+To: Doug Anderson <dianders@chromium.org>
+Cc: krzk@kernel.org, hbarnor@chromium.org, conor.dooley@microchip.com,
+	dmitry.torokhov@gmail.com, jikos@kernel.org, bentiss@kernel.org,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: input: Goodix SPI HID Touchscreen
+Message-ID: <Zy18ljw66z53C2Yv@ux-UP-WHL01>
+References: <20241107032313.64390-1-charles.goodix@gmail.com>
+ <CAD=FV=UQr_6L_UhdCSr3cbxfGO2aEEYgTEpBh+gseYeapr-5iA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241020-th1520-dwmac-v4-3-c77acd33ccef@tenstorrent.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=UQr_6L_UhdCSr3cbxfGO2aEEYgTEpBh+gseYeapr-5iA@mail.gmail.com>
 
-On Sun, Oct 20, 2024 at 07:36:02PM -0700, Drew Fustini wrote:
-> From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+On Thu, Nov 07, 2024 at 01:54:33PM -0800, Doug Anderson wrote:
+> Hi,
 > 
-> Add gmac, mdio, and phy nodes to enable the gigabit Ethernet ports on
-> the BeagleV Ahead and Sipeed Lichee Pi 4a boards.
+> On Wed, Nov 6, 2024 at 7:23 PM Charles Wang <charles.goodix@gmail.com> wrote:
+> >
+> > The Goodix GT7986U touch controller report touch data according to the
+> > HID protocol through the SPI bus. However, it is incompatible with
+> > Microsoft's HID-over-SPI protocol.
 > 
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> [drew: change apb registers from syscon to second reg of gmac node,
->        add phy reset delay properties for beaglev ahead]
-> Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
-> ---
->  arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts |  91 ++++++++++++++++
->  .../boot/dts/thead/th1520-lichee-module-4a.dtsi    | 119 +++++++++++++++++++++
->  arch/riscv/boot/dts/thead/th1520.dtsi              |  50 +++++++++
->  3 files changed, 260 insertions(+)
+> I think it was requested that both the yaml file and the commit
+> message mention why there are two different yaml file that both talk
+> about "gt7986u". In the commit message I think it would be valuable to
+> point to the previous discussion. AKA, maybe say:
 > 
-> diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> index 86feb3df02c8..21c33f165ba9 100644
-> --- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> @@ -15,6 +15,7 @@ / {
->  	compatible = "beagle,beaglev-ahead", "thead,th1520";
->  
->  	aliases {
-> +		ethernet0 = &gmac0;
->  		gpio0 = &gpio0;
->  		gpio1 = &gpio1;
->  		gpio2 = &gpio2;
-> @@ -98,6 +99,25 @@ &emmc {
->  	status = "okay";
->  };
->  
-> +&gmac0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&gmac0_pins>;
-> +	phy-handle = <&phy0>;
-> +	phy-mode = "rgmii-id";
-> +	status = "okay";
-> +};
-> +
-> +&mdio0 {
-> +	phy0: ethernet-phy@1 {
-> +		reg = <1>;
-> +		interrupt-parent = <&gpio3>;
-> +		interrupts = <22 IRQ_TYPE_LEVEL_LOW>;
-> +		reset-gpios = <&gpio3 21 GPIO_ACTIVE_LOW>;
-> +		reset-delay-us = <10000>;
-> +		reset-post-delay-us = <50000>;
-> +	};
-> +};
-> +
->  &padctrl_aosys {
->  	led_pins: led-0 {
->  		led-pins {
-> @@ -116,6 +136,77 @@ led-pins {
->  };
->  
->  &padctrl0_apsys {
-> +	gmac0_pins: gmac0-0 {
-> +		tx-pins {
-> +			pins = "GMAC0_TX_CLK",
-> +			       "GMAC0_TXEN",
-> +			       "GMAC0_TXD0",
-> +			       "GMAC0_TXD1",
-> +			       "GMAC0_TXD2",
-> +			       "GMAC0_TXD3";
-> +			function = "gmac0";
-> +			bias-disable;
-> +			drive-strength = <25>;
-> +			input-disable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +
-> +		rx-pins {
-> +			pins = "GMAC0_RX_CLK",
-> +			       "GMAC0_RXDV",
-> +			       "GMAC0_RXD0",
-> +			       "GMAC0_RXD1",
-> +			       "GMAC0_RXD2",
-> +			       "GMAC0_RXD3";
-> +			function = "gmac0";
-> +			bias-disable;
-> +			drive-strength = <1>;
-> +			input-enable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +
-> +		mdc-pins {
-> +			pins = "GMAC0_MDC";
-> +			function = "gmac0";
-> +			bias-disable;
-> +			drive-strength = <13>;
-> +			input-disable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +
-> +		mdio-pins {
-> +			pins = "GMAC0_MDIO";
-> +			function = "gmac0";
-> +			bias-disable;
-> +			drive-strength = <13>;
-> +			input-enable;
-> +			input-schmitt-enable;
-> +			slew-rate = <0>;
-> +		};
-> +
-> +		phy-reset-pins {
-> +			pins = "GMAC0_COL"; /* GPIO3_21 */
-> +			bias-disable;
-> +			drive-strength = <3>;
-> +			input-disable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +
-> +		phy-interrupt-pins {
-> +			pins = "GMAC0_CRS"; /* GPIO3_22 */
-> +			function = "gpio";
-> +			bias-pull-up;
-> +			drive-strength = <1>;
-> +			input-enable;
-> +			input-schmitt-enable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
-> +
->  	uart0_pins: uart0-0 {
->  		tx-pins {
->  			pins = "UART0_TXD";
-> diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> index 724d9645471d..8e76b63e0100 100644
-> --- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> @@ -11,6 +11,11 @@ / {
->  	model = "Sipeed Lichee Module 4A";
->  	compatible = "sipeed,lichee-module-4a", "thead,th1520";
->  
-> +	aliases {
-> +		ethernet0 = &gmac0;
-> +		ethernet1 = &gmac1;
-> +	};
-> +
->  	memory@0 {
->  		device_type = "memory";
->  		reg = <0x0 0x00000000 0x2 0x00000000>;
-> @@ -45,6 +50,22 @@ &emmc {
->  	status = "okay";
->  };
->  
-> +&gmac0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&gmac0_pins>, <&mdio0_pins>;
-> +	phy-handle = <&phy0>;
-> +	phy-mode = "rgmii-id";
-> +	status = "okay";
-> +};
-> +
-> +&gmac1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&gmac1_pins>;
-> +	phy-handle = <&phy1>;
-> +	phy-mode = "rgmii-id";
-> +	status = "okay";
-> +};
-> +
->  &gpio0 {
->  	gpio-line-names = "", "", "", "", "", "", "", "", "", "",
->  			  "", "", "", "", "", "", "", "", "", "",
-> @@ -78,6 +99,104 @@ &gpio3 {
->  			  "GPIO10";
->  };
->  
-> +&mdio0 {
-> +	phy0: ethernet-phy@1 {
-> +		reg = <1>;
-> +	};
-> +
-> +	phy1: ethernet-phy@2 {
-> +		reg = <2>;
-> +	};
-> +};
-> +
-> +&padctrl0_apsys {
-> +	gmac0_pins: gmac0-0 {
-> +		tx-pins {
-> +			pins = "GMAC0_TX_CLK",
-> +			       "GMAC0_TXEN",
-> +			       "GMAC0_TXD0",
-> +			       "GMAC0_TXD1",
-> +			       "GMAC0_TXD2",
-> +			       "GMAC0_TXD3";
-> +			function = "gmac0";
-> +			bias-disable;
-> +			drive-strength = <25>;
-> +			input-disable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +
-> +		rx-pins {
-> +			pins = "GMAC0_RX_CLK",
-> +			       "GMAC0_RXDV",
-> +			       "GMAC0_RXD0",
-> +			       "GMAC0_RXD1",
-> +			       "GMAC0_RXD2",
-> +			       "GMAC0_RXD3";
-> +			function = "gmac0";
-> +			bias-disable;
-> +			drive-strength = <1>;
-> +			input-enable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
-> +
-> +	gmac1_pins: gmac1-0 {
-> +		tx-pins {
-> +			pins = "GPIO2_18", /* GMAC1_TX_CLK */
-> +			       "GPIO2_20", /* GMAC1_TXEN */
-> +			       "GPIO2_21", /* GMAC1_TXD0 */
-> +			       "GPIO2_22", /* GMAC1_TXD1 */
-> +			       "GPIO2_23", /* GMAC1_TXD2 */
-> +			       "GPIO2_24"; /* GMAC1_TXD3 */
-> +			function = "gmac1";
-> +			bias-disable;
-> +			drive-strength = <25>;
-> +			input-disable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +
-> +		rx-pins {
-> +			pins = "GPIO2_19", /* GMAC1_RX_CLK */
-> +			       "GPIO2_25", /* GMAC1_RXDV */
-> +			       "GPIO2_30", /* GMAC1_RXD0 */
-> +			       "GPIO2_31", /* GMAC1_RXD1 */
-> +			       "GPIO3_0",  /* GMAC1_RXD2 */
-> +			       "GPIO3_1";  /* GMAC1_RXD3 */
-> +			function = "gmac1";
-> +			bias-disable;
-> +			drive-strength = <1>;
-> +			input-enable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
-> +
-> +	mdio0_pins: mdio0-0 {
-> +		mdc-pins {
-> +			pins = "GMAC0_MDC";
-> +			function = "gmac0";
-> +			bias-disable;
-> +			drive-strength = <13>;
-> +			input-disable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +
-> +		mdio-pins {
-> +			pins = "GMAC0_MDIO";
-> +			function = "gmac0";
-> +			bias-disable;
-> +			drive-strength = <13>;
-> +			input-enable;
-> +			input-schmitt-enable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
-> +};
-> +
->  &sdio0 {
->  	bus-width = <4>;
->  	max-frequency = <198000000>;
-> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> index cd835aea07d2..acfe030e803a 100644
-> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> @@ -223,6 +223,12 @@ aonsys_clk: clock-73728000 {
->  		#clock-cells = <0>;
->  	};
->  
-> +	stmmac_axi_config: stmmac-axi-config {
-> +		snps,wr_osr_lmt = <15>;
-> +		snps,rd_osr_lmt = <15>;
-> +		snps,blen = <0 0 64 32 0 0 0>;
-> +	};
-> +
->  	soc {
->  		compatible = "simple-bus";
->  		interrupt-parent = <&plic>;
-> @@ -274,6 +280,50 @@ uart0: serial@ffe7014000 {
->  			status = "disabled";
->  		};
->  
-> +		gmac1: ethernet@ffe7060000 {
-> +			compatible = "thead,th1520-gmac", "snps,dwmac-3.70a";
-> +			reg = <0xff 0xe7060000 0x0 0x2000>, <0xff 0xec004000 0x0 0x1000>;
-> +			reg-names = "dwmac", "apb";
-> +			interrupts = <67 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "macirq";
-> +			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC1>;
-> +			clock-names = "stmmaceth", "pclk";
-> +			snps,pbl = <32>;
-> +			snps,fixed-burst;
-> +			snps,multicast-filter-bins = <64>;
-> +			snps,perfect-filter-entries = <32>;
-> +			snps,axi-config = <&stmmac_axi_config>;
-> +			status = "disabled";
-> +
-> +			mdio1: mdio {
-> +				compatible = "snps,dwmac-mdio";
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +
-> +		gmac0: ethernet@ffe7070000 {
-> +			compatible = "thead,th1520-gmac", "snps,dwmac-3.70a";
-> +			reg = <0xff 0xe7070000 0x0 0x2000>, <0xff 0xec003000 0x0 0x1000>;
-> +			reg-names = "dwmac", "apb";
-> +			interrupts = <66 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "macirq";
-> +			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC0>;
-> +			clock-names = "stmmaceth", "pclk";
-> +			snps,pbl = <32>;
-> +			snps,fixed-burst;
-> +			snps,multicast-filter-bins = <64>;
-> +			snps,perfect-filter-entries = <32>;
-> +			snps,axi-config = <&stmmac_axi_config>;
-> +			status = "disabled";
-> +
-> +			mdio0: mdio {
-> +				compatible = "snps,dwmac-mdio";
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +
->  		emmc: mmc@ffe7080000 {
->  			compatible = "thead,th1520-dwcmshc";
->  			reg = <0xff 0xe7080000 0x0 0x10000>;
+> NOTE: these bindings are distinct from the bindings used with the
+> GT7986U when the chip is running I2C firmware. For some background,
+> see discussion on the mailing lists in the thread:
 > 
-> -- 
-> 2.34.1
+> https://lore.kernel.org/r/20241018020815.3098263-2-charles.goodix@gmail.com
 > 
 
-The dwmac-thead driver and dt binding have been applied to net-next [1]
-so I have now applied this dts patch to thead-dt-for-next [2].
+Ack,
 
--Drew
+> 
+> > Signed-off-by: Charles Wang <charles.goodix@gmail.com>
+> > ---
+> > Changes in v2:
+> > - Change compatible to 'goodix,gt7986u-spifw'.
+> > - Remove 'goodix,hid-report-addr' property.
+> 
+> Probably this should be a two-patch series now. The first is this
+> bindings file and the second changes the firmware (which never got
+> reverted) to default to a hid-report-addr of 1.
+> 
 
-[1] https://lore.kernel.org/linux-riscv/173085843050.764350.5609116722213276708.git-patchwork-notify@kernel.org/
-[2] https://github.com/pdp7/linux/commit/7e756671a664b73b2a3c0cc37fd25abf6bcd851e
+Ack,
+
+> 
+> > - Change additionalProperties to unevaluatedProperties.
+> > - v1: https://lore.kernel.org/all/20241025114642.40793-2-charles.goodix@gmail.com/
+> > ---
+> >  .../bindings/input/goodix,gt7986u.yaml        | 66 +++++++++++++++++++
+> >  1 file changed, 66 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
+> 
+> The name of the file needs to match the primary compatible, so it
+> should include the "-spifw" part.
+> 
+
+Ack,
+
+> 
+> > diff --git a/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
+> > new file mode 100644
+> > index 000000000..b7afa21fb
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
+> > @@ -0,0 +1,66 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/input/goodix,gt7986u.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Goodix GT7986U SPI HID Touchscreen
+> > +
+> > +maintainers:
+> > +  - Charles Wang <charles.goodix@gmail.com>
+> > +
+> > +description: Supports the Goodix GT7986U touchscreen.
+> > +  This touch controller reports data packaged according to the HID protocol
+> > +  over the SPI bus, but it is incompatible with Microsoft's HID-over-SPI protocol.
+> 
+> I probably would have put the note about the compatible here instead
+> of below. Something like:
+> 
+> NOTE: these bindings are distinct from the bindings used with the
+> GT7986U when the chip is running I2C firmware. This is because there's
+> not a single device that talks over both I2C and SPI but rather
+> distinct touchscreens that happen to be built with the same ASIC but
+> that are distinct products running distinct firmware.
+>
+
+Ack,
+
+> 
+> > +allOf:
+> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    description:
+> > +      Add the 'spifw' suffix to distinguish it from the general GT7986U I2C-HID
+> > +      touchscreen, as it runs a substantially different firmware than GT7986U
+> > +      I2C-HID touchscreens.
+> 
+> As per above, I'd remove the "description" here. It's not common for a
+> compatible to have a "description".
+>
+
+Ack,
+
+> 
+> > +    enum:
+> > +      - goodix,gt7986u-spifw
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +
+> > +  spi-max-frequency: true
+> > +
+> > +unevaluatedProperties: false
+> 
+> I believe "unevaluatedProperties" is supposed to be moved down below
+> "required" according to previous comments on your patches.
+
+Ack,
+
+Thank you very much,
+Charles
+
 
