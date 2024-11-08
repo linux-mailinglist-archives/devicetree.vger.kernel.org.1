@@ -1,101 +1,91 @@
-Return-Path: <devicetree+bounces-120276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B90A9C1E29
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 14:34:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3720C9C1E3A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 14:41:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB264B21438
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:33:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64E7E1C210B2
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:41:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E96C91EF929;
-	Fri,  8 Nov 2024 13:33:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6BD1E9062;
+	Fri,  8 Nov 2024 13:41:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HBOmfKI4"
+	dkim=pass (1024-bit key) header.d=nic.cz header.i=@nic.cz header.b="P41qRvLL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.nic.cz (mail.nic.cz [217.31.204.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDCD91EF0BA;
-	Fri,  8 Nov 2024 13:33:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD8F4137E;
+	Fri,  8 Nov 2024 13:41:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.31.204.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731072818; cv=none; b=V0FFMldOd22NjUzbmBUbxmRYd8VMVTslerNlgVL76joaAWwtB2DmHv6Gd9lGKmbUJPNDndgbDkZPmN04GVsmiqUms3yY0UHmVwMR1tv/9OQBcthLqjA71Hz5NvSR/wEcM4TAn3UIlg7hd6qPFqlQV+oC2gBNyHaeO9DHPda/3Js=
+	t=1731073298; cv=none; b=ABmYGB8Du5LR428842Rn3RErSFwWfJIRxhqMMxyhwd/zHAuFAS2R/8i6AXsj3aCHAuGdCNJ7GdDJ7nw9vj4l7bdWQ9Mvjg30C92wxxS07zrVUF56k7bgh+oZ9nr9wCHqoJZbxoASYGGSpGNw7sJMoSBvWR/KZvOVKFQSNF7QMjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731072818; c=relaxed/simple;
-	bh=zCA/JpP4hG7Cm20AZD8gvPB3WdwCtYmRnnxOWoGkJzg=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=piiVd17WcTVv9hqZNWtjUnvgC35v4h4VzdpmsInCtnSfxxl/ze5sDjwPOxBVuikcrhls5RtyVfWaRD3OIWo3dYUmAsu1bLp5g08KTX7NgcGirriXHzXzqqq8F42A+TlJj2TghV5lliwGsPWZPIiYWgnc92w7PuBt2rLM5gYU+rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HBOmfKI4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10BB0C4CED0;
-	Fri,  8 Nov 2024 13:33:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731072818;
-	bh=zCA/JpP4hG7Cm20AZD8gvPB3WdwCtYmRnnxOWoGkJzg=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=HBOmfKI4MYUGQmfoz99SmLEyR+oQTtmsCkxsFQjjg77I4+/KwV9b1kTX/cRUXTg+H
-	 nkOR6UugCu4E29ZHZQlIkvFxgaIvEUPbgNot+qXnfMjh8tNJPCiEJllTRqcp2X6SMn
-	 Cv7Sc2uArxknk7VLL2r34ocwJol7/LYFiKfhnZ/O60XwJoUTcCW2C3Fx87uut591t3
-	 zihwpCf2gD24zqoDTGJ5QRIjUvgZaWBkZptx1tqBPMyanpyHuwKMKdy03KTPX6I1Z0
-	 A03Kzt+nngk8Ny1NBItb9gU4N3ZFrX5dmDOOPwY5L9GFS1prVNbSYjm96TFuPKMPDa
-	 FEx0gp+TJdEkw==
-Date: Fri, 08 Nov 2024 07:33:36 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1731073298; c=relaxed/simple;
+	bh=5vpA3Mko9N7bNZwskXZr7hvY9tRZatGTnf174+DZG6A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XwjUpySeu//m/gsvfpXcHp4HWBURwxYcYdiDa7HK1w47jg4CbAr8NEOgE5/drvQ/TWkuoipreGKNqeKaO3QTm8bUsFZDNnB2v5RzZ3wwbBYZMBxPd94Er8ooAYZzV9VQa6rPna4puJejoqr7fXSNLcD2tp4TrkqU+kTxSURqOqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nic.cz; spf=pass smtp.mailfrom=nic.cz; dkim=pass (1024-bit key) header.d=nic.cz header.i=@nic.cz header.b=P41qRvLL; arc=none smtp.client-ip=217.31.204.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nic.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nic.cz
+Received: from solitude (unknown [172.20.6.88])
+	by mail.nic.cz (Postfix) with ESMTPS id 7AD541C12A8;
+	Fri,  8 Nov 2024 14:34:00 +0100 (CET)
+Authentication-Results: mail.nic.cz;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
+	t=1731072841; bh=5vpA3Mko9N7bNZwskXZr7hvY9tRZatGTnf174+DZG6A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From:Reply-To:
+	 Subject:To:Cc;
+	b=P41qRvLLqv6KnddUiZK7d9VfBkmbnrY+WCf52XecBz+LgaTUt28D+K4Bp+ESAmxWy
+	 lXvfemJQPbHqgwcQL6V7ddBsqe31xOCcnuBzoqU/H5lr96wgraoWkjcarZ+7yzf5ah
+	 hF/j6hT1sdXGoONjMC606Hm97aaL0O1wWveGbeMg=
+Date: Fri, 8 Nov 2024 14:34:00 +0100
+From: Marek =?utf-8?B?QmVow7pu?= <marek.behun@nic.cz>
+To: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>, 
+	linux-leds@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, soc@kernel.org, 
+	Gregory CLEMENT <gregory.clement@bootlin.com>, arm@kernel.org, Andy Shevchenko <andy@kernel.org>, 
+	Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH leds v6 12/12] ARM: dts: turris-omnia: Add global LED
+ brightness change interrupt
+Message-ID: <ksioz5fsdzt5gtszwlvxedtuqj3hehciv2gcpmbxof3ekczm3b@of2lhmsrmgb2>
+References: <20241108132845.31005-1-kabel@kernel.org>
+ <20241108132845.31005-13-kabel@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Charles Wang <charles.goodix@gmail.com>
-Cc: bentiss@kernel.org, linux-kernel@vger.kernel.org, 
- conor.dooley@microchip.com, hbarnor@chromium.org, krzk@kernel.org, 
- dianders@chromium.org, linux-input@vger.kernel.org, 
- dmitry.torokhov@gmail.com, jikos@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20241108120311.87795-3-charles.goodix@gmail.com>
-References: <20241108120311.87795-1-charles.goodix@gmail.com>
- <20241108120311.87795-3-charles.goodix@gmail.com>
-Message-Id: <173107281430.1752099.17871606474453144556.robh@kernel.org>
-Subject: Re: [PATCH v3 2/2] dt-bindings: input: gt7986u-spifw: Remove
- hid-report-addr property
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241108132845.31005-13-kabel@kernel.org>
+X-Spamd-Result: default: False [-0.10 / 16.00];
+	MIME_GOOD(-0.10)[text/plain];
+	ARC_NA(0.00)[];
+	WHITELISTED_IP(0.00)[172.20.6.88];
+	MIME_TRACE(0.00)[0:+];
+	FROM_EQ_ENVFROM(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-Rspamd-Action: no action
+X-Rspamd-Pre-Result: action=no action;
+	module=multimap;
+	Matched map: WHITELISTED_IP
+X-Rspamd-Server: mail
+X-Spamd-Bar: /
+X-Rspamd-Queue-Id: 7AD541C12A8
 
+Forgot to drop this patch (Gregory already applied it on mvebu/dt).
+Sorry.
 
-On Fri, 08 Nov 2024 20:03:11 +0800, Charles Wang wrote:
-> Since all boards use the same address, drop the goodix,hid-report-addr
-> property and hardcode it in the driver as a default value.
-> 
-> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
-> ---
->  .../devicetree/bindings/input/goodix,gt7986u-spifw.yaml    | 7 -------
->  1 file changed, 7 deletions(-)
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241108120311.87795-3-charles.goodix@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Marek
 
