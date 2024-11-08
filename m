@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-120387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C6919C2746
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 23:05:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 698ED9C2749
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 23:05:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5775D1C21D75
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 22:05:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7B2EB222F7
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 22:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC9F1F26ED;
-	Fri,  8 Nov 2024 22:05:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11DFA1F4FD7;
+	Fri,  8 Nov 2024 22:05:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QX9pofzi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xO9QnGQV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C4401D0E04
-	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 22:05:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7079A1F26CA
+	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 22:05:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731103508; cv=none; b=DL2X5n+6ECHFKjMR5tQ6dp/qtabbRV+jnMgKKorpubIg3PC5L4dyb0fnmt+4AuPmK6YkvORybVJ799upnH4HzSUYpLrJZ2bh819WBusFvdkpJVFR7HVHrjZbEA3D7wU4RpaXCdUs1KjN8qQu9PcGJ6cS+ZzJkExIGPl+V2BAbWw=
+	t=1731103509; cv=none; b=DvBi97CoJLdZyj/ArI64VgME8Evy8XLcsarG28BE1FSyNHchiDIper/NljWjUM4qqzjlvNME/lg0dpZ/lIETE8KNYdmyG4pLHXhG4jLK8swAkg8g4GGnxvAOkNY3JC93yKvB7wEH2IgHtOkIMc4v6D7Lb88E9kbq+OD+tgOFThc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731103508; c=relaxed/simple;
-	bh=folrRXsAeb+ENu8kV9TfjzBD9Uhz32kMFNIm9kKd7kI=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=H/DJUnWgYgsiKM4Sy0TKaIEyEzQy1Xj//2iE70J5j1mg6GcrVTL6v08gln1ZxsNa5NNPdc+eMr6A1iEB5bhPywOCaYmIgsSeh7Z3WAjbt7G6mDcxDvOY0luJUhzbk3cm/i6wltPC/iQeSNQgtdk8QUJ35RL9NhbC9UDOE/ybNJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QX9pofzi; arc=none smtp.client-ip=209.85.128.48
+	s=arc-20240116; t=1731103509; c=relaxed/simple;
+	bh=tzRvrPfLe7iWeS2C76flaewroFWUd6tFwInDUjg4GKk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=JB469ceyKV7eN7NzTX2+ZEi0vwj7T2GW6NLsU+q1t+NxMVU5HTJQ+AOnnMuazowXjl/ACCGAfsZl3A/8kim5x+hhtXu5FCeGo5zE2AfJD/ExlsU+zwFFl6wgAGHhnuxIrnhtRZsUtPadMPq5muM2ph5mXT7fkVc//61rcmYYKNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xO9QnGQV; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4315baa51d8so22781795e9.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 14:05:05 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-37d538fe5f2so1810820f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 14:05:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731103504; x=1731708304; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aBpGH28+GUUnK2OzUs1bj1BJKf1BkndClHI8Nl42LUI=;
-        b=QX9pofziyhXdukVnMrLVN9AJuyTEYit8HnTw2Xpdf/5WU+wm+c4R8HbQFiSk0ajUZx
-         azYq13s1CLEywcEycuvDgqhHU7yc/bArSUORlTtkTHodeiWv9sH+Zo7DWFDIYYXMEZzu
-         lGaOn9h0vG+ILAMXVNxrxAYyDt80erx4vqcXElSxUJI9cSmfQg5gPvzIkOPt6CVhLO5B
-         0XUQ4O6cXkELlJ4FVknJFX8Jqc8AIuhxVbQafvc+A+xrRNHwbtAdzBcylfIkUrHUXoyo
-         Oom01I3E3kf7qw3n6lMshAoL5YSFOJ/wSBMhes3/7hxUoLP+SkOTfQ3jXxqf0lE2CJDE
-         xRFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731103504; x=1731708304;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1731103506; x=1731708306; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=aBpGH28+GUUnK2OzUs1bj1BJKf1BkndClHI8Nl42LUI=;
-        b=WUl8mchkhw/owWGtwkUazwT5Wpfqna7b3I9+5auR6DLKD0JiYIS19VlkeKcWJv9EMP
-         RBzbcLdnLyip4MEfr3TZye5S2zO0NJiRNH+yhBTfV/mzoM5CSTPuLfUPCjhR77Gn6TU3
-         Zl+oAvAISaCDQmkVQ0iPI5OhulwPhsfiFG/YI+AFXGp2MEpWykz66KBbIp4od35NkLIs
-         JlsJmuGTz5urs8n97GUIJDlWZMU+kBdWjtu6WgZHTgnirpaEYbNUzaPc1uW06hvQLTNr
-         uSdWgqGvowYXTaMis7280JhJgVEnTZ32GYwRvOV+VX2b66JKYmYs7XFILwLJGzYBq402
-         LjkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVOCItWnbM9ob31cDPIGiLYxpFk9DTnbJM9GWuO7ksCHNvKptHWdpPrRa/MM2Q+wx4hoG8x8O7pmbM1@vger.kernel.org
-X-Gm-Message-State: AOJu0YxL1IPnOynLHOTnaJfscSEgVxh0QRGjBdo6ml5Y9Fw5pvBUUL1u
-	qOrUfXFfqmYKcISfGxsTZ/2VxEpmpcqpUk3MOGM+PmpISPJCmxmXam88vzn25ow=
-X-Google-Smtp-Source: AGHT+IGw33yXAKsR4OVH86UVc5UWoiKsARXvGM36K4NBRLK4gICNvRgCk9C8QaaVzXL+PAGrNakB1g==
-X-Received: by 2002:a05:600c:1911:b0:431:5043:87c3 with SMTP id 5b1f17b1804b1-432b751b5f8mr37116345e9.22.1731103503593;
-        Fri, 08 Nov 2024 14:05:03 -0800 (PST)
+        bh=LabBZ7pXmSsIG+c0Vbg7ntPmSxTFqGGL+H7IqzvgOxQ=;
+        b=xO9QnGQVdMY4pVLARvYNfcUHRIfYTedAk5ceoaoPEuSZgPgOUT1AxdNNQwA6qSe1rR
+         moHZ2w5V3WdE+TP0SBmFIIILI3ackAyshNGp94k7M21Vhm/aPfwGzHESeVzKfljQee8X
+         8ToNnJ75+yg1G7piIwJODXmO0uyZh8tDiPPfSXJytA3vZIedSmYK8/j7l7rDUtv4Tpkq
+         ORPyKjfJSITUDEgkWprsVf5ZqmhMKDfn9E1PTGAgairx3hjo+22qk9l5+E/DNwXbXC1g
+         MmcSnBuM4GpRzEDQ+OwnUCPYI98XZtGn02WID+79wIZGjvOdZK7RrksrxZ8rN9Bwk9AS
+         7Liw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731103506; x=1731708306;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LabBZ7pXmSsIG+c0Vbg7ntPmSxTFqGGL+H7IqzvgOxQ=;
+        b=tDUO2S+TO92T80tUgst8nGG2yaGS+ppZ/xOwaiD82DppgjmS6aKDmHqa8tskXeI9jO
+         RVvhZXyE1agHRZzrtTaAa8iwQsnDzTomoX5rBkSrAwGQcIRm3joSshgboezfNP+7MqCF
+         u39Ap1lRngbU4LT0sO9y834NqQAIm1ckUEYBzP+XASKSR+X2yyXOPBDAicmdWX9OPLqn
+         xKkhbqkKTNKbeLGbB8C23qk5ALp5FuW1CAPeC66DsvBDotxrhUUh/mzJ0rMgGaLJBvrJ
+         XQlQEJA5zm2VzEb1lAtzxUrZS4GmD00WaSI6ib5mHYfwj70WT5fgHOWN9tMZu6B5L+H/
+         E6wA==
+X-Forwarded-Encrypted: i=1; AJvYcCVhJvPRDXgxhQ/rL7x8mCNOhHpK6FCBFZiJ3yPMqPXhPFs5Pl0dKzZ54UxlRq5/txvzwdGZuj6uhED3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7Ieykv/PdivxYZILRLvsYpJ/MvDWo+qYhKlN/Wb0EcgL6I1G/
+	CrJXmua1ZlfF/iJpqwWEPAwvHGeppsES2BcufC+scp1dqcDGC123q3G4mauTPeA=
+X-Google-Smtp-Source: AGHT+IFZMd0c0pnccFI6OtFt+IbR/gQoFAtEILkbI82ropQR1aDb6w/C+eP/MDntzIQHfYB6aRH57w==
+X-Received: by 2002:a05:6000:2a09:b0:381:f443:21e0 with SMTP id ffacd0b85a97d-381f443256bmr2030735f8f.6.1731103505800;
+        Fri, 08 Nov 2024 14:05:05 -0800 (PST)
 Received: from [127.0.1.1] ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432b054ad23sm81676125e9.13.2024.11.08.14.05.02
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432b054ad23sm81676125e9.13.2024.11.08.14.05.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Nov 2024 14:05:03 -0800 (PST)
+        Fri, 08 Nov 2024 14:05:04 -0800 (PST)
 From: Abel Vesa <abel.vesa@linaro.org>
-Subject: [PATCH 0/3] arm64: dts: qcom: x1e80100: Fix missing address/size
- cells warnings
-Date: Sat, 09 Nov 2024 00:04:41 +0200
-Message-Id: <20241109-x1e80100-fix-address-size-cells-missing-warnings-v1-0-c1e173369657@linaro.org>
+Date: Sat, 09 Nov 2024 00:04:42 +0200
+Subject: [PATCH 1/3] arm64: dts: qcom: x1e80100: Add missing
+ #address-cells/#size-cells to firmware node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,10 +79,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAPmKLmcC/x2NQQrCQAxFr1KyNjApLkqvIi5mJpk2UEdJQIuld
- ze4erzF+/8AF1NxmIcDTN7q+uwhdBmgrrkvgsrhMKbxSpQm3EmmRClh0x0zs4k7un4Fq2yb40P
- dtS/4ydaDjlRbyUSlcWGI2ZdJpP/L2/08f0WHpCeCAAAA
-X-Change-ID: 20241108-x1e80100-fix-address-size-cells-missing-warnings-1cfba11bfdbd
+Message-Id: <20241109-x1e80100-fix-address-size-cells-missing-warnings-v1-1-c1e173369657@linaro.org>
+References: <20241109-x1e80100-fix-address-size-cells-missing-warnings-v1-0-c1e173369657@linaro.org>
+In-Reply-To: <20241109-x1e80100-fix-address-size-cells-missing-warnings-v1-0-c1e173369657@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -93,48 +93,63 @@ Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
  Abel Vesa <abel.vesa@linaro.org>, stable+noautosel@kernel.org
 X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1067; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=folrRXsAeb+ENu8kV9TfjzBD9Uhz32kMFNIm9kKd7kI=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnLosDzxzt58sDF2iUUDPuv5NrS3YfdV843HMmI
- ZDOV4LmJsWJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZy6LAwAKCRAbX0TJAJUV
- VvexD/9SOG6qEJsMazxPLxIb6ETSAczrqBgmB7V9MBZyQj3Z2MNBxBmdHhEmF2+ptYCs7sosU2B
- hCh0frSuIK/epVgYZmjY/zjts91TwRzPRGrWAmcUfwaNSRQOAf5bJWIYYCLe3WBOMyDrdaJxYI5
- VTPTFOaWq3MjrP7YNskGUzSGGrhGhajIzM6yiV7PgQvZSUufZg9x7Ntmu+NobitcTxE5gz/GfJu
- efLgSxXkQ0iGW4Xqf1NwgahFUSyFFvg9JFlYeMkdPK1HxwldUZPjolWKDYlYvJ4he2DyzvOSexJ
- CSTEN8xG4FhaRvwrdZg5mB5LHZpexaZKqFDTaFHnsKl5cbXRdMb2lq3oL4FysXtaZoe4EApLUDc
- JYsY2VO2tph0iGySJKuwtadV6aYrER0zZphiqjp9o8JiMIiIVsLSCWQ2SgjC6660dHSDVoN/bct
- r61a1ALOGxfPPD7LIAiHhLRRKNUcfMpBOFwb9+wq2/2kHVLKA2uQnxUStVgxYLPBrpqFXU7YVb3
- uxogIuWvnAO1kwoCXap9GKV8yRJHWq6Jl3TqTCmQMPx1zv1zTNmteCPYL7QGOKMLFQT1M/29UBa
- aXFyePseei6Smc1T1T31I+cTrURzr5DdcoFwxzJJoo+bXDxVC80SaC7B/qwU3lRz06qQ3Gq37G1
- FQYPtD/T7NxwCuQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1401; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=tzRvrPfLe7iWeS2C76flaewroFWUd6tFwInDUjg4GKk=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnLosI/V+//bph4jPMF6iW7B1BXTZi5i+2TtU5N
+ 8Q6aIa11D2JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZy6LCAAKCRAbX0TJAJUV
+ Vi4iD/9j+gv/wPw1DjsiQEE4wFGyy3nVGa3/xV4ROJISqplyNPft1CZ9TUsnuk6RF7m2BRSc2wG
+ zNTVRc3KzI3eldTMP6HNk8lV6Pt31GhVcfrx511ztwHpBJnEiaito+5Vur+fyM/OHmmCJC5Our+
+ be9O0FWp89q15j2o1f6Dp5Shy1+sro2EhISiGQdN6i2jO4vwtBwhA3XDoMANQwDwxiFy8jZYmox
+ E4pwBhCZ+9UTxItAtuISHvUWHWoIl4TgOFZJEKMBsVpAfYwna9AWGR9YtZeK4ZBbJ/tpo7Go4h8
+ L5OeFL3aEn5PwZ/S8d27j/Ju6fDCl5vfj0/IK1JlTFC2nj3XRpmfqRUzbcjwsUoZtC3zhUz+w7w
+ 2IWK0Xg5uTl+7eeonJAZnQ1mXKpskz/1fwr6/eWCBqjTYdskJe4m5QJ6aBSwpCX3IguFzBJxmrl
+ 7T9Hu9cOHpPlYxeRCUy+qzTGbpneHjvhqj6P5lnFisJ/kuj7B3c37NlyF6FzVLNvhciX+rjASw8
+ U18YDxTEEFb8ptV7Ag+yL6kAvtiZcFlFz9HuCnljt3vlyzBYZ4GWlkSOAtoZdu60hnZ1oCGtv/e
+ TcQILa05Ti5BJB0e+e8Xzj6qpV5RecJb0PHGcjNN9XyePVbbuj3LzhRbEQ+/z2pMDQF6QiJgGho
+ vLy2icEEvKrUEQw==
 X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
  fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
 The commit 4b28a0dec185 ("of: WARN on deprecated #address-cells/#size-cells
-handling") now forces all parent nodes to describe the #adress-cells
+handling") now forces the parent nodes to specify #adddress-cells
 and #size-cells, otherwise it will throw a warning.
 
-Note that this patch is currently only in -next.
+So add the #address-cells and #size-cells properties to the firmware node
+to get rid of those warnings.
 
-Fix all warnings on the X Elite by adding these two properties to all
-parent nodes that don't have them.
-
+Cc: <stable+noautosel@kernel.org> # Depends on commit 4b28a0dec185
+Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
-Abel Vesa (3):
-      arm64: dts: qcom: x1e80100: Add missing #address-cells/#size-cells to firmware node
-      arm64: dts: qcom: x1e80100: Add missing #address-cells/#size-cells to ADSP GPR nodes
-      arm64: dts: qcom: x1e80100-pmics: Add missing #address-cells/#size-cells to pmk8550_pon
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
- arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi |  3 +++
- arch/arm64/boot/dts/qcom/x1e80100.dtsi       | 10 ++++++++++
- 2 files changed, 13 insertions(+)
----
-base-commit: 929beafbe7acce3267c06115e13e03ff6e50548a
-change-id: 20241108-x1e80100-fix-address-size-cells-missing-warnings-1cfba11bfdbd
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index 88805629ed2bf052ea6ec152794066217489cf52..c6b554bac616b9ea6a183e894d4e3d58516fbcd7 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -304,6 +304,9 @@ cluster_cl5: cluster-sleep-1 {
+ 	};
+ 
+ 	firmware {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
+ 		scm: scm {
+ 			compatible = "qcom,scm-x1e80100", "qcom,scm";
+ 			interconnects = <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
+@@ -5804,6 +5807,9 @@ apps_rsc: rsc@17500000 {
+ 			label = "apps_rsc";
+ 			power-domains = <&system_pd>;
+ 
++			#address-cells = <1>;
++			#size-cells = <0>;
++
+ 			apps_bcm_voter: bcm-voter {
+ 				compatible = "qcom,bcm-voter";
+ 			};
 
-Best regards,
 -- 
-Abel Vesa <abel.vesa@linaro.org>
+2.34.1
 
 
