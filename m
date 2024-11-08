@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-120051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0A659C14D4
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 04:49:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1322D9C150C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 05:00:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 556D9282BEE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 03:49:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C79BF2824B4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 04:00:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB89C199926;
-	Fri,  8 Nov 2024 03:49:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12DE812C530;
+	Fri,  8 Nov 2024 04:00:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="E+ALW2Mn"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nGeNOhLT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from classfun.cn (unknown [129.204.178.38])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 724A88F54;
-	Fri,  8 Nov 2024 03:49:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E83F23AD;
+	Fri,  8 Nov 2024 04:00:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731037755; cv=none; b=gvaLsWNhShKBwQL/oxCFpJIPAOuNDIYRChr7BoXc+hX/w/vQwnErWkgrE++BVE2wU7axPnXKk5946oLlKiaQLfnagxjEMLz7uu1fTg2KTVS7OWiZzqALaVKQSVMaojYnhDOuI9cBFZ74wgdv6Lno42J0shjtHaFfzf9K1EuzTZ8=
+	t=1731038451; cv=none; b=jxR0bPmet2LwgnfPNBs6x2y7PRw9qX4n7cGBAaKmlOI7pKpFhrxqbES2FD7tTd3cyncrMq4E+sViRM3kbksoW3yaaxfy+H3fo2oRdj8VTRba6O+P9bd6xp4905xX9dzJZuyxxzwZjgf1hJMSVFWTKH1Mew+XjzwXQWUE5b8duOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731037755; c=relaxed/simple;
-	bh=MXe6IYQzEOrzfZcmjrcC+xeinHkhz6G2TN1/BMXAynw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H0gg32oJrdu4jzrfONHZRE1fp2rUPOf/U6xJeW9r2o37DnkOj9qjNB82xLkRVk3HWex3JVFxyp+WbAjPdDhd2k2vjWIcSYWNjj1rk2rAgB5qjnKSmor3xGJUbzHzM1va1WNAPo/YIgBwJkRHlvmgwTS/MFlXcME09fJLlCsXa3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=E+ALW2Mn; arc=none smtp.client-ip=129.204.178.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
-Received: from [192.168.0.160] (unknown [120.32.101.155])
-	(Authenticated sender: bigfoot)
-	by classfun.cn (Postfix) with ESMTPSA id 2CD777892D;
-	Fri,  8 Nov 2024 11:49:04 +0800 (CST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 2CD777892D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
-	s=default; t=1731037750;
-	bh=3B/wDt2bOqNsA638987AnsCuaRwFSHdyN6e3dd6uRWs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=E+ALW2MnvftkIzO17VOsGIQg22QbPsXe9/be2g7Px6bhaYtwj8TYvzBsOxmMG9qxZ
-	 TaZetswj/qwGv/3WW0NWlFX5iLYKHNEgI9fru2ysjzYR5Ehb05WjLXS6Ve1oIADmei
-	 eoZTqSBOtrKCyPPAWju58G0dTUgIIQ8za1/rhogE=
-Message-ID: <6e748aa6-de2c-4a90-b07f-7a9d3e441d19@classfun.cn>
-Date: Fri, 8 Nov 2024 11:48:50 +0800
+	s=arc-20240116; t=1731038451; c=relaxed/simple;
+	bh=/0W1b+ZJEjv9f9XWOfmkghdU8OqsG4b4j3HrlBlvc1o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=DyzZYwYd5xv6knSmZ2cgaaLKalLO8v/p49WRVanI043beE3jluPwezypm9QgcZ6bwy+npI5Vh+Avd/EoLE/Wath+0CGZu4XVpwFXW5V419yomkJKrdAFuYHCIKg/djVDFSOD1H79IRFr09tfvXzSF9+uCq8qZ2a7tfNEcOBVyUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nGeNOhLT; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A7Mam3D030538;
+	Fri, 8 Nov 2024 04:00:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TpYfHpat2FxRifMRu2pBkOIkBVRPnVxltBZdPg4v8UE=; b=nGeNOhLTcy+SGieM
+	5W5gqeSzTx23aEUhUWfazGn1BI/ZXCEef7a6EC9FnuCI6MwJ5MKggdzE0ixIQDOs
+	U3SQsKX0WxJdXBqq9vGnxU1tzQv51l7R8VTuuZFgtJqZgE50J3pLAqKdlr9QAAfo
+	rQhfqb2vrIlS/kGhbAhS+FQ5jx8+XKv1YemNEub4mdPwH0h8GRjf8TLdgpGpHyoe
+	zpAV7NEeNdGVa8foNfvK8YP5i9458iD9sKgCucU4x6CrFelHEqCyWZeri8aR3HKI
+	S/5cPRBFjAZ54YnlLStV4X4/Bnz+Bnn+Vikf6tkJz57lOZZIu3uXDLFDzEI274Qc
+	sCieIQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42s6gdrk2u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 08 Nov 2024 04:00:13 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A840CQR032019
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 8 Nov 2024 04:00:12 GMT
+Received: from [10.216.24.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 7 Nov 2024
+ 20:00:06 -0800
+Message-ID: <90323c59-acca-488a-b957-f36634787858@quicinc.com>
+Date: Fri, 8 Nov 2024 09:30:03 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,126 +65,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/9] leds: add Photonicat PMU LED driver
-To: Lee Jones <lee@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
- Sebastian Reichel <sre@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Heiko Stuebner <heiko@sntech.de>,
- Chukun Pan <amadeus@jmu.edu.cn>, Junhao Xie <bigfoot@classfun.cn>
-References: <20240906093630.2428329-1-bigfoot@classfun.cn>
- <20240906093630.2428329-8-bigfoot@classfun.cn>
- <20241002153536.GG7504@google.com>
+Subject: Re: [PATCH v2 04/11] clk: qcom: camcc-qcs615: Add QCS615 camera clock
+ controller driver
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Abhishek Sahu <absahu@codeaurora.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20241101-qcs615-mm-clockcontroller-v2-0-d1a4870a4aed@quicinc.com>
+ <20241101-qcs615-mm-clockcontroller-v2-4-d1a4870a4aed@quicinc.com>
+ <7be231c6-a5b6-41ec-b43d-cbba07e7c448@linaro.org>
 Content-Language: en-US
-From: Junhao Xie <bigfoot@classfun.cn>
-In-Reply-To: <20241002153536.GG7504@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Taniya Das <quic_tdas@quicinc.com>
+In-Reply-To: <7be231c6-a5b6-41ec-b43d-cbba07e7c448@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 817rQhPLlNRdG_GCEig1bwpWLQoKLAbT
+X-Proofpoint-ORIG-GUID: 817rQhPLlNRdG_GCEig1bwpWLQoKLAbT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
+ mlxscore=0 mlxlogscore=999 lowpriorityscore=0 bulkscore=0 phishscore=0
+ adultscore=0 suspectscore=0 clxscore=1015 priorityscore=1501
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411080032
 
-On 2024/10/2 23:35, Lee Jones wrote:
-> On Fri, 06 Sep 2024, Junhao Xie wrote:
-> 
->> Photonicat has a network status LED that can be controlled by system.
->> The LED status can be set through command 0x19.
-[...]
->> +config LEDS_PHOTONICAT_PMU
->> +	tristate "LED Support for Photonicat PMU"
->> +	depends on LEDS_CLASS
->> +	depends on MFD_PHOTONICAT_PMU
->> +	help
->> +	  Photonicat has a network status LED that can be controlled by system,
-> 
-> "the system"
-> 
->> +	  this option enables support for LEDs connected to the Photonicat PMU.
-[...]
->> +++ b/drivers/leds/leds-photonicat.c
->> @@ -0,0 +1,75 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2024 Junhao Xie <bigfoot@classfun.cn>
->> + */
->> +
->> +#include <linux/mfd/photonicat-pmu.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/leds.h>
-> 
-> Alphabetical.
-> 
->> +struct pcat_leds {
->> +	struct device *dev;
-> 
-> Where is this used?
 
-I used it to print logs, but now it doesn't, I will remove it.
 
+On 11/1/2024 5:59 PM, Bryan O'Donoghue wrote:
+> On 01/11/2024 10:38, Taniya Das wrote:
+>> +    .vco_val = 0x2 << 20,
 > 
->> +	struct pcat_pmu *pmu;
+> vco_val = BIT(21)
 > 
-> Why do you need to store this?
-> 
-> Can't you get this at the call-site by:
-> 
->   dev_get_drvdata(cdev->dev->parent)
 
-Yes, I will change it.
+Will fix it in the next patch.
 
->> +	struct led_classdev cdev;
->> +};
-[...]
->> +static int pcat_leds_probe(struct platform_device *pdev)
->> +{
->> +	int ret;
+>> +    .vco_mask = 0x3 << 20,
 > 
-> Small sized variables at the bottom please.
+> Instead of bit shifting couldn't we just use GENMASK ?
 > 
->> +	struct device *dev = &pdev->dev;
->> +	struct pcat_leds *leds;
->> +	const char *label;
->> +
->> +	leds = devm_kzalloc(dev, sizeof(*leds), GFP_KERNEL);
->> +	if (!leds)
->> +		return -ENOMEM;
->> +
->> +	leds->dev = dev;
+> Aside from anything else shifting a hex value by a decimal value isn't 
+> the clearest code in the world.
 > 
-> Where is this used?
+> vco_mask = GENMASK(21, 20)
 > 
->> +	leds->pmu = dev_get_drvdata(dev->parent);
->> +	platform_set_drvdata(pdev, leds);
+> Much cleaner.
 > 
-> Where do you platform_get_drvdata()
+> drivers/clk/qcom/gcc-sm6115.c
 > 
->> +	ret = of_property_read_string(dev->of_node, "label", &label);
-[...]
->> +static const struct of_device_id pcat_leds_dt_ids[] = {
->> +	{ .compatible = "ariaboard,photonicat-pmu-leds", },
+> Same comment for all of the bit-shifts in the series, I appreciate the 
+> shifts are what the downstream code does but BIT/GENMASK does this job 
+> better.
 > 
-> How many LEDs are there?
+I agree, will fix it in the next patch.
 
-Photonicat has three LEDs:
- - system operation status indicator
- - charging status indicator
- - network status indicator
-and currently only one LED (network status indicator) can be controlled.
+> Once fixed you can add my
+> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> 
+> to this file
 
->> +	{ /* sentinel */ }
->> +};
-[...]
->> -- 
->> 2.46.0
 
-Thanks for your review, I will fix all problems in next version!
-
-Best regards,
-Junhao
+-- 
+Thanks & Regards,
+Taniya Das.
 
