@@ -1,102 +1,127 @@
-Return-Path: <devicetree+bounces-120261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA30C9C1DED
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 14:27:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AD7A9C1DF2
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 14:29:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED08E287297
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:27:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EC1828769B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:28:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2702A1EF082;
-	Fri,  8 Nov 2024 13:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 186001EB9E6;
+	Fri,  8 Nov 2024 13:28:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pFG2eQ8o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 217EB1EE022;
-	Fri,  8 Nov 2024 13:26:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E42951E2857;
+	Fri,  8 Nov 2024 13:28:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731072390; cv=none; b=Ukt/JRedC9wFZHWfzfrIrdAJbm6r+unsV/Frawy26XQ3zcfKBv0bPr3xZicV3pLbZPmwNGKXcKCV4N/qeImD8VpQ7Cfpq4NKWRWg1YNEqFrnoXKdjqgJad9GT3rI5IYoWLgpuMhjL9KssC/Uut13Olsesb5S9qsR+3b9rDvjMZc=
+	t=1731072536; cv=none; b=eCYwAx37RPfXEE1ZmSYVeyIZr4Wx0LVLp/DLImLZ1zpXFQtXjYtQ6QUv2/ZzNoHBF1wF+su7brzicnV35aQW7AwExYQupR37I2MIgJ1ARet/vS5na+ImVN69S2TFNdHNznaCJQMx3sDEWVI9NeiMKpWoK+aflZvIBP5bsks16YM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731072390; c=relaxed/simple;
-	bh=S96fuz0VgAfN94TOyJ8HhG78xLZAJuZ52sWSC8Aa35c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G3OAM3TlhT0hEOcVFN8zUr0ftI2Zj3ki6jGqiKRQqhZr6AtKuIEXsOmFYLqROyI6CYh84u4vN2yQWgX1JfnENFeevP1PVuUnpQ44bFOYe//F+V5ToxQXClcv330+z81t5hccHloRCAorWTqUijwf/UZk7HeSLyf/Ly13YhxT9vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1E6D1339;
-	Fri,  8 Nov 2024 05:26:57 -0800 (PST)
-Received: from [10.1.38.24] (e122027.cambridge.arm.com [10.1.38.24])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1C8793F528;
-	Fri,  8 Nov 2024 05:26:24 -0800 (PST)
-Message-ID: <73eacca6-b6cd-4689-8ccd-f7e2e8b716f3@arm.com>
-Date: Fri, 8 Nov 2024 13:26:23 +0000
+	s=arc-20240116; t=1731072536; c=relaxed/simple;
+	bh=vE8iR6QfJRhyKJgIeYq6EXyPw9EA/H6FA/A7mtsq4cs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=W4pvhpcAn5AUrsa0HOx24JdfVvxAN8ESc2f6SCoZb2DiK7VeM5BSB4fv4swWh780fbHKTEiHwvEsU9T0UOf9SKjuAd2WyJBRQfdN/Yjc14hsCq1fWm5LodOpJDARMTCk6KK0I56zdjvKYeZQru6fR/dDfnaDKFm9gSd32HjEb+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pFG2eQ8o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28988C4CECD;
+	Fri,  8 Nov 2024 13:28:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731072535;
+	bh=vE8iR6QfJRhyKJgIeYq6EXyPw9EA/H6FA/A7mtsq4cs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=pFG2eQ8o7BaOyaFAY9L/LlVNII8fZmllTnZ7VfXFfY2qiIDe8yxF5b/THYlapBPZC
+	 4GkKqXecWLh4zsaNOSR3JHptD97sdpYjYHDuqSxAGh8regkaFynroGDwR/V3huSzWL
+	 l6KausEg5rbyY5mEbFHGHrfe6ocISD7WA1caGfTeXFgaOm1WFL1AXBAVgZrrRdzKZk
+	 nydEcLikwMiW3tNoSnVahacl0c3wVUV1bWlLgDhkFf2St8dCScXl/HnNq7s+OhHThk
+	 uzz8Fp+r+KvsNUVQIsYFn/5VDcqhM0gh6TG/qXbuXAi5p91VbXankJ5UFmodh5rDSz
+	 XzZ8FPiAyDNQg==
+From: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+To: Lee Jones <lee@kernel.org>
+Cc: Pavel Machek <pavel@ucw.cz>,
+	linux-leds@vger.kernel.org,
+	Arnd Bergmann <arnd@arndb.de>,
+	soc@kernel.org,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	arm@kernel.org,
+	Andy Shevchenko <andy@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+Subject: [PATCH leds v6 00/12] Turris Omnia LED driver changes
+Date: Fri,  8 Nov 2024 14:28:33 +0100
+Message-ID: <20241108132845.31005-1-kabel@kernel.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] of: WARN on deprecated #address-cells/#size-cells
- handling
-To: Marek Szyprowski <m.szyprowski@samsung.com>,
- "Rob Herring (Arm)" <robh@kernel.org>, Saravana Kannan
- <saravanak@google.com>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linuxppc-dev@lists.ozlabs.org, Conor Dooley <conor@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- 'Linux Samsung SOC' <linux-samsung-soc@vger.kernel.org>
-References: <20241106171028.3830266-1-robh@kernel.org>
- <CGME20241108110444eucas1p20cbed7533af31573dac30dbb435c3d9d@eucas1p2.samsung.com>
- <3706d174-fadd-485f-be7b-f7ef4b11cf84@samsung.com>
-From: Steven Price <steven.price@arm.com>
-Content-Language: en-GB
-In-Reply-To: <3706d174-fadd-485f-be7b-f7ef4b11cf84@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 08/11/2024 11:04, Marek Szyprowski wrote:
-> Hi Rob,
-> 
-> On 06.11.2024 18:10, Rob Herring (Arm) wrote:
->> While OpenFirmware originally allowed walking parent nodes and default
->> root values for #address-cells and #size-cells, FDT has long required
->> explicit values. It's been a warning in dtc for the root node since the
->> beginning (2005) and for any parent node since 2007. Of course, not all
->> FDT uses dtc, but that should be the majority by far. The various
->> extracted OF devicetrees I have dating back to the 1990s (various
->> PowerMac, OLPC, PASemi Nemo) all have explicit root node properties. The
->> warning is disabled for Sparc as there are known systems relying on
->> default root node values.
->>
->> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->> ---
->> v2:
->>   - Add a define for excluded platforms to help clarify the intent
->>     is to have an exclude list and make adding platforms easier.
->>   - Also warn when walking parent nodes.
->> ---
->>   drivers/of/base.c | 28 ++++++++++++++++++++++------
->>   drivers/of/fdt.c  |  4 ++--
->>   2 files changed, 24 insertions(+), 8 deletions(-)
-> 
-> This patch landed in today's linux-next as commit 4b28a0dec185 ("of: 
-> WARN on deprecated #address-cells/#size-cells handling"). In my tests I 
-> found that it introduces warnings on almost all of my test systems. I 
-> took a look at the first one I got in my logs (Samsung Exynos Rinato 
-> board: arch/arm/boot/dts/samsung/exynos3250-rinato.dts):
+Hello Lee,
 
-Just a "me too" for rk3288-firefly.dtb:
+this is v6 of Turris Omnia LED driver changes.
+v1 to v5 can be found at
+  https://lore.kernel.org/linux-leds/20240902124104.14297-1-kabel@kernel.org/
+  https://lore.kernel.org/linux-leds/20240903101930.16251-1-kabel@kernel.org/
+  https://lore.kernel.org/linux-leds/20240913123103.21226-1-kabel@kernel.org/
+  https://lore.kernel.org/linux-leds/20241029135621.12546-1-kabel@kernel.org/
+  https://lore.kernel.org/linux-leds/20241104141924.18816-1-kabel@kernel.org/
 
-[    0.138735] WARNING: CPU: 0 PID: 1 at drivers/of/base.c:106 of_bus_n_addr_cells+0x9c/0xd8
-[    0.138776] Missing '#address-cells' in /power-management@ff730000
+Changes since v5:
+- patch 7: dropped the comment regarding drivers/base/dd.c as you
+  suggested
+- patch 7: fixed kernel test robot warning (hopefully)
+- patch 7: fixed brightness_knode destruction on driver removal if
+  brightness change interrupt isn't supported by the firmware or
+  described in the device-tree
+- patch 7: added info message if brightness change interrupt is
+  supported by the MCU but not described in the device-tree
 
-I'm sure it's easy to fix up the DTB, but we shouldn't be breaking long existing DTBs.
+Marek
 
-Steve
+Marek Behún (12):
+  turris-omnia-mcu-interface.h: Move command execution function to
+    global header
+  leds: turris-omnia: Use command execution functions from the MCU
+    driver
+  turris-omnia-mcu-interface.h: Add LED commands related definitions to
+    global header
+  leds: turris-omnia: Use global header for MCU command definitions
+  dt-bindings: leds: cznic,turris-omnia-leds: Allow interrupts property
+  leds: turris-omnia: Document driver private structures
+  leds: turris-omnia: Notify sysfs on MCU global LEDs brightness change
+  platform: cznic: turris-omnia-mcu: Inform about missing LED panel
+    brightness change interrupt feature
+  leds: turris-omnia: Inform about missing LED gamma correction feature
+    in the MCU driver
+  leds: turris-omnia: Use dev_err_probe() where appropriate
+  leds: turris-omnia: Use uppercase first letter in all comments
+  ARM: dts: turris-omnia: Add global LED brightness change interrupt
+
+ .../leds/cznic,turris-omnia-leds.yaml         |   8 +
+ .../dts/marvell/armada-385-turris-omnia.dts   |   1 +
+ drivers/leds/Kconfig                          |   2 +
+ drivers/leds/leds-turris-omnia.c              | 336 +++++++++---------
+ .../platform/cznic/turris-omnia-mcu-base.c    |   3 +
+ drivers/platform/cznic/turris-omnia-mcu.h     | 130 -------
+ include/linux/turris-omnia-mcu-interface.h    | 148 +++++++-
+ 7 files changed, 329 insertions(+), 299 deletions(-)
+
+-- 
+2.45.2
 
 
