@@ -1,138 +1,289 @@
-Return-Path: <devicetree+bounces-120064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A87739C154A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 05:13:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EDE89C154E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 05:13:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6819A2874C2
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 04:13:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72D771C21089
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 04:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9375B1D89EF;
-	Fri,  8 Nov 2024 04:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C184D1C3F0B;
+	Fri,  8 Nov 2024 04:12:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HWzlD2nz"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="OrBgzCEG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CFDC1946DF;
-	Fri,  8 Nov 2024 04:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFC221946DF
+	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 04:12:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731039070; cv=none; b=ut6NlleBvn0DZ0tbFicO/8/RNCXiaGeE4ynlz8DLi64waV8eaH7TCKzb85CzjkIJjzE579HrTsVtL2mWZk2dd75tZfkVMKjzQEgg5Zqsrjc03d/fbVC39JAHeHFIUcfyQiGT4aqvqY5rggTW4NHkdizw68Fs8fOqWD9qVgG4zss=
+	t=1731039158; cv=none; b=ARpx/hO/7U7p4py7U+UiWRjLSLZ828FY5XjCNvbGa2Q8IBUcyz0BPVoReOLPvka5DeCqsahujQIe1lDBYV6byWf+vwRC5YzVyUrTCrMRWzagb+r+q3kAUKsmDQDG1ppqXgPL1a7v+FgNfI58smm4+Clg/jy+ltfMtlhQx8OVErs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731039070; c=relaxed/simple;
-	bh=LB0ERSXQL/Llu9CsxiUVYqiS/OzFA+1sg2d30cc2eNI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=cgIBVvpIPj9L2xMkOwOGt7On3cgdE8NzZgwp7ZLo0XPyphayAJBMAs7Qlbqlp3IXGamlvZEsLT9TMn+hH4ClcjBNrmQJn1/r6AItMPqrIFndRKqMduiOfbhOPzVsZFa8+CopGijTnNDjFTJzYTsLOprO2lWL1kzByc8knRXSUq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HWzlD2nz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A7Mb2bV030659;
-	Fri, 8 Nov 2024 04:10:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	t1cA9NDwFLH5+vfmPGgF5z/CRZpfWRBSGlRVBz5PXQE=; b=HWzlD2nzjTsPUkYW
-	4GZDqH7hqdwse2TbOtJ78C+VGiDXfdXwfJahU/OurYTWsa4GKY/F13nIwaFcrJfE
-	L1YzmndH8h/jUSn5DRr5k3n3fqeWv9JRozSbMLwv375TSkxau56XP5M+T5EQp2Io
-	z5tkGc9TB2dqgn6eS1uN0kwwmUSrtH7ba1y/Ox37nFl75YP3ao/CWFtXeazQf3hq
-	nQZjH3KKntd/36HxyPAGw8fTIj+ef7ZomwS/tcmPG8CvDEb5p0bVxynuZzP0+w6q
-	ZyDK4ICaUG6P5WtQcPkV5GSU775A/h6wMmidwjcqQJWEMNlSrVLGIMzyIodV3UDm
-	Av52NA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42s6gdrkpu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 08 Nov 2024 04:10:40 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A84AdI1017790
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 8 Nov 2024 04:10:39 GMT
-Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 7 Nov 2024 20:10:34 -0800
-From: Taniya Das <quic_tdas@quicinc.com>
-Date: Fri, 8 Nov 2024 09:39:28 +0530
-Subject: [PATCH v3 11/11] arm64: defconfig: Enable QCS615 clock controllers
+	s=arc-20240116; t=1731039158; c=relaxed/simple;
+	bh=Ig8OfnRGbLlZcoupOSdoVbW4aN+FUi8kSSPgFc3gUdk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Z5Xdcujhlvv3OXcvZw04Z69ys3IvzhaZTmURy9YhVweo6c9WDpnURshKbkPtI2MMtCPEyljA2HMMcn67b2tRjnlbyn/rQRI996thma8bs0JZVsiAtK/u2dDwWvuxXFWHy5/zT0UcYoyYuguMZiMiyi4W/PUjcN6a+Ww+VLa0VI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=OrBgzCEG; arc=none smtp.client-ip=209.85.222.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-851d2a36e6dso2142943241.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 20:12:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1731039155; x=1731643955; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rQMqtLphVcnPY0+PnZHagIpPa7d9fieRvTBwtPiHmJ8=;
+        b=OrBgzCEG2RPTD2fqIINe05lj7H/zicb/POrsaLJHfw6QxHBlJVSkSppy1ck/Hoe/rP
+         iCz0yfevNbu2ki+pO5OBxqs44nff/VwnujGe/KMvbzoziltZEB6owjT9e9NbT0feUM5X
+         +x/rxgcn4yVVxqyIS6WHEYGRmt2snDf9doLb4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731039155; x=1731643955;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rQMqtLphVcnPY0+PnZHagIpPa7d9fieRvTBwtPiHmJ8=;
+        b=oMngCCIQg25A7jpe6O+IpoRjZZx9d4nAwO0zS1IWTNUeVOE38a0MrfBvSB2KntyLmC
+         MFg04TaUDHWfuxICiCJKaUJCSlghvaPl18j/4I9sWbsXxXrnjG8c0ajqnjsBDMh3ZJgf
+         JDkNd9Lns/0aW5eMQTtfFPb8vhvyEk6PIeZBOkIO1OImIZrTfeEY9GwcibN0YMP0UD9y
+         OWHNK9PkPhsn7qoDp1RivrczphA5FGcIE1udeuGFJH0U9Jm6ka8o8sb/xKpGEYRd580Y
+         PnhlDGxdTZ0k3mV3QnKebxx4juyDqv5q9UNAmXA/MdcTkWaAvhc09yNDmRfAGV8E8wZu
+         cJKw==
+X-Forwarded-Encrypted: i=1; AJvYcCWjwV86VxSXlg0z7Se6iTHzuXDj/UmWDHmVuLh6c2ANhTMMBrXyxwa/pKdruCcgIZOLQYBzCBwPoKjs@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlNm9cZb9V3u401SgqIx+O2V14VsfbxsUCMw2jL926MP1bwfPW
+	j8221KbJvbR4HwTsmJlBeyPvWJWOGrn/YNkmE9ckPb0emWWWRIW74SXfodVMsOXQNJchERsRnGc
+	=
+X-Google-Smtp-Source: AGHT+IGJ3u2CLeyRfVB4m0Cayv52TYKtHtxG0wy8zEvnIRN+1HwHSoEasfWOtTOgnsPJdu4qricQXg==
+X-Received: by 2002:a05:6102:f09:b0:4a4:4868:cfd9 with SMTP id ada2fe7eead31-4aae2155d07mr1180333137.1.1731039155448;
+        Thu, 07 Nov 2024 20:12:35 -0800 (PST)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4aa94088b01sm492613137.7.2024.11.07.20.12.34
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Nov 2024 20:12:34 -0800 (PST)
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-84fcb020503so1215935241.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2024 20:12:34 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWpifYyvvDOXRm4uLXVdow78lrsWrqIVlIp/LjXTzZGnPMsEar0Up8JIthc3/dHVMaenCBlB7u0wQ0U@vger.kernel.org
+X-Received: by 2002:a67:ad07:0:b0:4a5:b1f5:ba93 with SMTP id
+ ada2fe7eead31-4aadfdcbb33mr2266607137.6.1731039153643; Thu, 07 Nov 2024
+ 20:12:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241108-qcs615-mm-clockcontroller-v3-11-7d3b2d235fdf@quicinc.com>
-References: <20241108-qcs615-mm-clockcontroller-v3-0-7d3b2d235fdf@quicinc.com>
-In-Reply-To: <20241108-qcs615-mm-clockcontroller-v3-0-7d3b2d235fdf@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Abhishek Sahu
-	<absahu@codeaurora.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-X-Mailer: b4 0.15-dev-aa3f6
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: lzLao80oBNAttmrh5-Ggi8TzDY48jHFT
-X-Proofpoint-ORIG-GUID: lzLao80oBNAttmrh5-Ggi8TzDY48jHFT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- mlxscore=0 mlxlogscore=693 lowpriorityscore=0 bulkscore=0 phishscore=0
- adultscore=0 suspectscore=0 clxscore=1015 priorityscore=1501
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411080034
+References: <20241105093222.4055774-1-fshao@chromium.org> <20241105093222.4055774-3-fshao@chromium.org>
+ <b66dbf9e-b35b-482c-9eb7-112ef1f398d6@collabora.com> <CAC=S1ngozo11g1vF2jnHjTLcNmP8tOMsQhK+LR0QWqoeXwSJjg@mail.gmail.com>
+ <59f4bcc1-c752-4f2f-8e55-349cc2432b8a@collabora.com>
+In-Reply-To: <59f4bcc1-c752-4f2f-8e55-349cc2432b8a@collabora.com>
+From: Fei Shao <fshao@chromium.org>
+Date: Fri, 8 Nov 2024 12:11:57 +0800
+X-Gmail-Original-Message-ID: <CAC=S1nhhfwHU5K5ZyUhZBhvz38LOZGLnGN-Rc1ZAup_VTfkpvA@mail.gmail.com>
+Message-ID: <CAC=S1nhhfwHU5K5ZyUhZBhvz38LOZGLnGN-Rc1ZAup_VTfkpvA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: mediatek: Introduce MT8188 Geralt
+ platform based Ciri
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Enable the QCS615 display, video, camera and graphics clock controller
-for their respective functionalities on the Qualcomm QCS615 ride
-platform.
+On Thu, Nov 7, 2024 at 6:37=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 07/11/24 07:58, Fei Shao ha scritto:
+> > On Wed, Nov 6, 2024 at 9:19=E2=80=AFPM AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@collabora.com> wrote:
+> >>
+> >> Il 05/11/24 10:30, Fei Shao ha scritto:
+> >>> Introduce MT8188-based Chromebook Ciri, also known commercially as
+> >>> Lenovo Chromebook Duet (11", 9).
+> >>>
+> >>> Ciri is a detachable device based on the Geralt design, where Geralt =
+is
+> >>> the codename for the MT8188 platform. Ciri offers 8 SKUs to accommoda=
+te
+> >>> different combinations of second-source components, including:
+> >>> - audio codecs (RT5682S and ES8326)
+> >>> - speaker amps (TAS2563 and MAX98390)
+> >>> - MIPI-DSI panels (BOE nv110wum-l60 and IVO t109nw41)
+> >>>
+> >>> Signed-off-by: Fei Shao <fshao@chromium.org>
+> >>> ---
+> >>>
+> >>> Changes in v2:
+> >>> - remove invalid or undocumented properties
+> >>>       e.g. mediatek,dai-link, maxim,dsm_param_name etc.
+> >>> - remove touchscreen as the driver is not yet accepted in upstream
+> >>> - update sound DAI link node name to match the binding
+> >>> - add missing pinctrls in audio codec nodes
+> >>>
+> >>>    arch/arm64/boot/dts/mediatek/Makefile         |    8 +
+> >>>    .../dts/mediatek/mt8188-geralt-ciri-sku0.dts  |   11 +
+> >>>    .../dts/mediatek/mt8188-geralt-ciri-sku1.dts  |   60 +
+> >>>    .../dts/mediatek/mt8188-geralt-ciri-sku2.dts  |   56 +
+> >>>    .../dts/mediatek/mt8188-geralt-ciri-sku3.dts  |   15 +
+> >>>    .../dts/mediatek/mt8188-geralt-ciri-sku4.dts  |   43 +
+> >>>    .../dts/mediatek/mt8188-geralt-ciri-sku5.dts  |   73 +
+> >>>    .../dts/mediatek/mt8188-geralt-ciri-sku6.dts  |   69 +
+> >>>    .../dts/mediatek/mt8188-geralt-ciri-sku7.dts  |   47 +
+> >>>    .../boot/dts/mediatek/mt8188-geralt-ciri.dtsi |  397 +++++
+> >>>    .../boot/dts/mediatek/mt8188-geralt.dtsi      | 1492 +++++++++++++=
+++++
+> >>>    11 files changed, 2271 insertions(+)
+> >>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri=
+-sku0.dts
+> >>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri=
+-sku1.dts
+> >>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri=
+-sku2.dts
+> >>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri=
+-sku3.dts
+> >>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri=
+-sku4.dts
+> >>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri=
+-sku5.dts
+> >>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri=
+-sku6.dts
+> >>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri=
+-sku7.dts
+> >>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri=
+.dtsi
+> >>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+> >>>
+> > [...]
+> >
+>
+> [...]
+>
+> >>> +&pmic {
+> >>> +     interrupts-extended =3D <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
+> >>> +};
+> >>> +
+> >>> +&scp {
+> >>
+> >> Is this SCP-dual or SCP?
+> >> I see SCP, but I also see a SCP-Dual memory region... what's going on =
+here?
+> >>
+> >> Of course, the SCP-Dual won't work if you don't override the compatibl=
+e string...
+> >
+> > To clarify, the second SCP core is used for MIPI camera in downstream,
+> > and I deliberately only describe the first SCP core here since the MTK
+> > camera ISP driver isn't in upstream at the moment.
+> > I had a fixup patch for removing the scp-dual reserved memory region,
+> > but likely it was missing during the rebase... let me check again if
+> > it can be removed, just in case there's firmware protecting the region
+> > and the kernel shouldn't access it.
+> >
+>
+> Hmm... but the second SCP core can still be brought up, even if the MIPI =
+Camera
+> driver is not upstreamed yet, right?
 
-Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
----
- arch/arm64/configs/defconfig | 4 ++++
- 1 file changed, 4 insertions(+)
+Well, that's true... and it should pave the way for validating the
+driver with the upstreamed DT whenever that becomes available.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 730f303350c36a75661dc267fdd0f8f3088153fc..2fa666156b88b44a8298651e276c196cded9a7f8 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1322,7 +1322,11 @@ CONFIG_MSM_GCC_8998=y
- CONFIG_MSM_MMCC_8998=m
- CONFIG_QCM_GCC_2290=y
- CONFIG_QCM_DISPCC_2290=m
-+CONFIG_QCS_DISPCC_615=m
-+CONFIG_QCS_CAMCC_615=m
- CONFIG_QCS_GCC_404=y
-+CONFIG_QCS_GPUCC_615=m
-+CONFIG_QCS_VIDEOCC_615=m
- CONFIG_QDU_GCC_1000=y
- CONFIG_SC_CAMCC_8280XP=m
- CONFIG_SC_DISPCC_7280=m
+>
+> That shouldn't cause lockups and/or other kinds of bad behavior, and shou=
+ld
+> bring up a core and just never use it, without any particular issues.
+>
+> If we can enable the secondary core, let's just go for it.. as that will =
+help
+> specifying the exact memory layout of this board (and failing to do that =
+may
+> create some other issues, that's why I'm proposing to enable that even if=
+ it
+> is not really used in this case).
+>
+> What do you think? :-)
+>
 
--- 
-2.45.2
+Sure, that sounds good to me, too.
+I started only with the essential DT bits to ensure the device can
+boot, which it does, so I guess it's time to bring that back. I'll
+incorporate that in v3.
+I plan to fix up the single SCP core node to SCP-dual directly, so
+please let me know if you prefer seeing that as an individual patch on
+top (either option works for me).
 
+Regards,
+Fei
+
+
+> >>
+> >>> +     firmware-name =3D "mediatek/mt8188/scp.img";
+> >>> +     memory-region =3D <&scp_mem>;
+> >>> +     pinctrl-names =3D "default";
+> >>> +     pinctrl-0 =3D <&scp_pins>;
+> >>> +     status =3D "okay";
+> >>> +
+> >>> +     cros-ec-rpmsg {
+> >>> +             compatible =3D "google,cros-ec-rpmsg";
+> >>> +             mediatek,rpmsg-name =3D "cros-ec-rpmsg";
+> >>> +     };
+> >>> +};
+> >>> +
+> >>> +&sound {
+> >>> +     compatible =3D "mediatek,mt8188-nau8825";
+> >>> +     model =3D "mt8188_m98390_8825";
+> >>> +     pinctrl-names =3D "aud_etdm_hp_on",
+> >>> +                     "aud_etdm_hp_off",
+> >>> +                     "aud_etdm_spk_on",
+> >>> +                     "aud_etdm_spk_off",
+> >>> +                     "aud_mtkaif_on",
+> >>> +                     "aud_mtkaif_off";
+> >>
+> >>          pinctrl-names =3D "aud_etdm_hp_on", "aud_etdm_hp_off",
+> >>                          "aud_etdm_spk_on", "aud_etdm_spk_off",
+> >>                          "aud_mtkaif_on", "aud_mtkaif_off";
+> >
+> > Acked.
+> >
+> >>
+> >>> +     pinctrl-0 =3D <&aud_etdm_hp_on>;
+> >>> +     pinctrl-1 =3D <&aud_etdm_hp_off>;
+> >>> +     pinctrl-2 =3D <&aud_etdm_spk_on>;
+> >>> +     pinctrl-3 =3D <&aud_etdm_spk_off>;
+> >>> +     pinctrl-4 =3D <&aud_mtkaif_on>;
+> >>> +     pinctrl-5 =3D <&aud_mtkaif_off>;
+> >>
+> >> Add a comment:
+> >>
+> >>          /* The audio-routing is defined in each board dts */
+> >>
+> >>> +     audio-routing =3D "ETDM1_OUT", "ETDM_SPK_PIN",
+> >>> +                     "ETDM2_OUT", "ETDM_HP_PIN",
+> >>> +                     "ETDM1_IN", "ETDM_SPK_PIN",
+> >>> +                     "ETDM2_IN", "ETDM_HP_PIN",
+> >>> +                     "ADDA Capture", "MTKAIF_PIN",
+> >>> +                     "Headphone Jack", "HPOL",
+> >>> +                     "Headphone Jack", "HPOR",
+> >>> +                     "MIC", "Headset Mic",
+> >>> +                     "Left Spk", "Front Left BE_OUT",
+> >>> +                     "Right Spk", "Front Right BE_OUT",
+> >>> +                     "Rear Left Spk", "Rear Left BE_OUT",
+> >>> +                     "Rear Right Spk", "Rear Right BE_OUT";
+> >>> +
+> >>
+> >> ...and remove the audio-routing from this dtsi; it's anyway being
+> >> overridden by the -ciri.dtsi devicetree...
+> >
+> > Acknowledged, and thanks for all the feedback here.
+> >
+>
+> You're welcome :-)
+>
+> Cheers,
+> Angelo
+>
 
