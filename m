@@ -1,75 +1,63 @@
-Return-Path: <devicetree+bounces-120214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 150A99C1BE5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:11:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FD259C1C2F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:32:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCD4E2820DF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 11:11:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E37D6B21E24
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 11:32:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF0031E32A6;
-	Fri,  8 Nov 2024 11:11:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E56911E2858;
+	Fri,  8 Nov 2024 11:32:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S8S9cjpN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="m0zxBBMt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 067F71D0400
-	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 11:11:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0BA1DC04A;
+	Fri,  8 Nov 2024 11:32:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731064286; cv=none; b=rZClGOJwPSYmyGJ+7aZa9fmwGgwtFiaj433Bgnlv54Edl6m7wjdQGwhZximcKHCWsECqVbM3hQjYV/vDYwMjIqcXayUaJ/Dqy5MA7yo936gmB9ASoLmHX1EpmyFamzgnKb2jhpjkPrLHnJt5rBz+TvQfVXOQLyeKstlaX4xTav4=
+	t=1731065523; cv=none; b=It/D1rYr+jEG1+Ktw97BDnQFVgHiJLknIRSyTqRwDWEtk88Hx/wWo3rAkIovfzsDPNSXc85+KK7SILgzFjSSuIbpHAhb8qYgqypQ5QFnPEJXeHrj/SsnJGzuXED15df8en8OO2jdtXXr+X1sll9Ga9gReP9sn/3AJd/z9pE+MEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731064286; c=relaxed/simple;
-	bh=/rKPoOVH8eRIys8U2r+JvZFcF5RMOArqD+nswYHDrvQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LOMlEA8KlS5wzRi6xTWKIBCCCI/Eepbh25mRQYseHu/R84e4luHVtnraQNxQ7WMWTXL/HNwWAolp1NcrJq+xyxIFFBtUgeDoOvbDCg0HvZlqusqL00Kgax1h4gStTuJ4NQD7Oed4g2FELlqkgXEmaGcuAPxC5jL/rdWfLQgeMxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S8S9cjpN; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43152fa76aaso1802505e9.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 03:11:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731064283; x=1731669083; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=QDLNS/qPby703vO1F+zowX9M9g0jDDg8xaH4NFHT2lM=;
-        b=S8S9cjpNGS3c8gCnNR6adWmyFGFQkrEdXCdIWMYPLJYa3RNymimWQp/DYvJMKUsveH
-         L7B0DK647NNOw1Lvn75qQ2JDV6NjbeUC9styB1y9uLq1A5KnV429SDwY2QPYTX66fS51
-         5NMjPKZRuYmeLeghX46cXNtUqrmbe1cqPpdmk7OexSFQgkUbHUZ7wASxTT66SxKEPJ95
-         /g95Zrq0neD+k6w/nQaRablX6V41HE3bQ7r/Y0wrdylrwgdKBvhiiNXMMxMCN7n/VA0y
-         VQmAtttEWcp7/nAMWhaQwpGcvbOE4AV/8vUZyZO55p1YbFRvysuHj++xuLGP9zAznNxE
-         M5pQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731064283; x=1731669083;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QDLNS/qPby703vO1F+zowX9M9g0jDDg8xaH4NFHT2lM=;
-        b=GxTea6ZP5OSOczQhyr5OrbYo7gvN+48T1QygrklKCVSJYLc/QU/bh8P3qCBeUFbCn6
-         4JXPUfJuwGxr0eDNiKMZP0LI/u2/NtnL2iYICJaDnJWozv5Btc5J8lIHLwPvj5Ihf9J+
-         PpZlNO0lc16fVJtF0Z0Tnev29XPvO20fGnoi5X+9FhYiO95Sw9w8cbO7WfN4ZyteQWV7
-         e6uztRGWxKNWDkHDxcF1V0kPpEGHYyYx2bHSYXXdnHwK+tbGa+kBOHNSp+7B0mNBn3I6
-         gdzpARPISRI7eJ5Lxd7AuGo+tTB7biYgqoyy6OqBA5UABJXuGZ5IHVb2sAa+La3cjIp1
-         HexA==
-X-Forwarded-Encrypted: i=1; AJvYcCXCqxiBYoTbgLDDD/mszHs3qBZO5be2LkEcE9yjUEi5iQvQEgvb1Rk9gT4Yw75tuXsR5nBF8Tj7fR+r@vger.kernel.org
-X-Gm-Message-State: AOJu0YycU7nL6PBTYqumPwKvgm6CyojW0E+dGeC/2g2X7vx232NWdCHv
-	LxR94pnutI+iKqfKEX7pU+U+2ywYLQrQ3IOFfOvPR2hx8QwxBvfisCNG1fc29zU=
-X-Google-Smtp-Source: AGHT+IGgoDiDtUOfkG5Qw2tR51xgA+74Y2eRmiyJYpAZtUIt17I/3OpoI+McKMfI86SYpBbPB+XszQ==
-X-Received: by 2002:a05:600c:1c27:b0:42c:aeee:80a with SMTP id 5b1f17b1804b1-432b752038cmr9147825e9.7.1731064283374;
-        Fri, 08 Nov 2024 03:11:23 -0800 (PST)
-Received: from [172.16.24.83] ([154.14.63.34])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381ed97ce1bsm4266761f8f.36.2024.11.08.03.11.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Nov 2024 03:11:22 -0800 (PST)
-Message-ID: <fccee5aa-9ced-4773-809e-1ee66ccb74cc@linaro.org>
-Date: Fri, 8 Nov 2024 12:11:21 +0100
+	s=arc-20240116; t=1731065523; c=relaxed/simple;
+	bh=REa7naDZj3JE7RUcIMiSHnLL4NFsApqsLC4+dzdJdJA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=baVXUf8ZFG04io8c6vDj97nM5UexhuWSN5+xjBwdWc8/BWqwAb4xZV9+d8lTrvkYqm8g/x2KwTw1/aC+eARHwtK6+ZTz6fKapSsuNhYoGnSKYRyCUtWpX0cpimiEReqtoLXIPQYlXl6w1ee+2claagB+CFN5GvfsQID1NWw2dVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=m0zxBBMt; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A7MbmvK002026;
+	Fri, 8 Nov 2024 11:31:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jg3g8CJOE6XNShK7pgdFE6gzH3yIryU6VXF/O/un2Xs=; b=m0zxBBMtWuuw24qc
+	Oyttr6YEz1oQiKT5A4CAvZwbEtR6Gcn6LRtVPOVK/N8gM89+fUEm831DXyANi3qS
+	ZWwlXZd6rUGJ7ujkyG5K6c8uVS4nK46ZVMrjdlK2sE+4i9kJaAnXAIwx+YA0mc6D
+	V/gvhL8zTU7HI51VHKx0F2KahEqa49NN1ft0EsWa5xEso7N8ZMt/To9t2XiBTZS/
+	7NiNxsCO6IHo+OFemE24mbo3TOu32QtiD33HHJPMglp8ZQuF/YnflxBHAAB4Udvu
+	0twJCmvwwrU2LXIEqzIJcjpm+bR+wVfPRz9Ae9QUNgkaAY1gpNRF3duY0OxmvJ93
+	o5dItw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42s6gksfja-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 08 Nov 2024 11:31:39 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A8BVc4D030220
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 8 Nov 2024 11:31:38 GMT
+Received: from [10.253.8.252] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 8 Nov 2024
+ 03:31:33 -0800
+Message-ID: <9b7def00-e900-4c5e-ba95-671bd1ef9240@quicinc.com>
+Date: Fri, 8 Nov 2024 19:31:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,106 +65,307 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/5] arm64: dts: exynos8895: Add cmu, mct, serial_0/1
- and spi_0/1
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Mark Brown <broonie@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>
-Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241023091734.538682-1-ivo.ivanov.ivanov1@gmail.com>
- <172994467264.24870.11860096857422265131.b4-ty@linaro.org>
- <f232dbb0-9036-46d6-83f9-27363813930d@gmail.com>
- <cd326e01-75b8-495c-bc15-1d9ebde8c4fc@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH net-next 3/5] net: pcs: qcom-ipq: Add PCS create and
+ phylink operations for IPQ9574
+To: Andrew Lunn <andrew@lunn.ch>
+CC: "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiner Kallweit
+	<hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
+        <quic_pavir@quicinc.com>, <quic_linchen@quicinc.com>,
+        <quic_luoj@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <bartosz.golaszewski@linaro.org>, <vsmuthu@qti.qualcomm.com>,
+        <john@phrozen.org>
+References: <20241101-ipq_pcs_rc1-v1-0-fdef575620cf@quicinc.com>
+ <20241101-ipq_pcs_rc1-v1-3-fdef575620cf@quicinc.com>
+ <d7782a5e-2f67-4f62-a594-0f52144a368f@lunn.ch>
+ <9b3a4f00-59f2-48d1-8916-c7d7d65df063@quicinc.com>
+ <a0826aa8-703c-448d-8849-47808f847774@lunn.ch>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <cd326e01-75b8-495c-bc15-1d9ebde8c4fc@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Lei Wei <quic_leiwei@quicinc.com>
+In-Reply-To: <a0826aa8-703c-448d-8849-47808f847774@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: YoCC3ZLv-_OZF95wD0AnM6UbU5n2hiPc
+X-Proofpoint-GUID: YoCC3ZLv-_OZF95wD0AnM6UbU5n2hiPc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 adultscore=0 phishscore=0 malwarescore=0
+ impostorscore=0 mlxlogscore=999 suspectscore=0 lowpriorityscore=0
+ spamscore=0 mlxscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2409260000 definitions=main-2411080095
 
-On 07/11/2024 17:02, Ivaylo Ivanov wrote:
-> 
-> 
-> 
-> On 10/26/24 15:18, Ivaylo Ivanov wrote:
+
+
+On 11/6/2024 11:43 AM, Andrew Lunn wrote:
+> On Wed, Nov 06, 2024 at 11:16:37AM +0800, Lei Wei wrote:
 >>
 >>
->> On 10/26/24 15:12, Krzysztof Kozlowski wrote:
->>> On Wed, 23 Oct 2024 12:17:29 +0300, Ivaylo Ivanov wrote:
->>>> Hey folks,
->>>>
->>>> This patchset adds device tree nodes for multiple clock management unit
->>>> blocks, MCT, SPI and UART for Exynos8895.
->>>>
->>>> Exynos8895 uses USIv1 for most of its serial buses, except a few that
->>>> have been implemented in this series. Support for USIv1 and HSI2C will
->>>> be added in the future.
->>>>
->>>> [...]
->>> NOT applied patch 4/5 - I wait for bindings to be accepted by Greg.
->> Alright, thanks for applying the rest!
+>> On 11/1/2024 9:21 PM, Andrew Lunn wrote:
+>>>> +static int ipq_pcs_config_mode(struct ipq_pcs *qpcs,
+>>>> +			       phy_interface_t interface)
+>>>> +{
+>>>> +	unsigned int val;
+>>>> +	int ret;
+>>>> +
+>>>> +	/* Configure PCS interface mode */
+>>>> +	switch (interface) {
+>>>> +	case PHY_INTERFACE_MODE_SGMII:
+>>>> +		/* Select Qualcomm SGMII AN mode */
+>>>> +		ret = regmap_update_bits(qpcs->regmap, PCS_MODE_CTRL,
+>>>> +					 PCS_MODE_SEL_MASK | PCS_MODE_AN_MODE,
+>>>> +					 PCS_MODE_SGMII);
+>>>
+>>> How does Qualcomm SGMII AN mode differ from Cisco SGMII AN mode?
+>>>
 >>
->> Best regards, Ivo.
+>> Qualcomm SGMII AN mode extends Cisco SGMII spec Revision 1.8 by adding pause
+>> bit support in the SGMII word format. It re-uses two of the reserved bits
+>> 1..9 for this purpose. The PCS supports both Qualcomm SGMII AN and Cisco
+>> SGMII AN modes.
 > 
-> Bump - now that the uart patches are merged, are you gonna merge the DT
-> changes after the merge window? If not, I can send a new patchset that
-> includes them and also adds PMU compatible node for the mongoose cores,
-> since that got merged with exynos9810.
+> Is Qualcomm SGMII AN actually needed? I assume it only works against a
+> Qualcomm PHY? What interoperability testing have you do against
+> non-Qualcomm PHYs?
 > 
-> Best regards, Ivo.
 
-It is too late in the cycle for me to pick it up. I will take it after
-the merge window, so feel free to send new version with some other changes.
+I agree that using Cisco SGMII AN mode as default is more appropriate,
+since is more commonly used with PHYs. I will make this change.
+
+Qualcomm SGMII AN is an extension of top of Cisco SGMII AN (only
+pause bits difference). So it is expected to be compatible with
+non-Qualcomm PHYs which use Cisco SGMII AN.
+
+>>>> +struct phylink_pcs *ipq_pcs_create(struct device_node *np)
+>>>> +{
+>>>> +	struct platform_device *pdev;
+>>>> +	struct ipq_pcs_mii *qpcs_mii;
+>>>> +	struct device_node *pcs_np;
+>>>> +	struct ipq_pcs *qpcs;
+>>>> +	int i, ret;
+>>>> +	u32 index;
+>>>> +
+>>>> +	if (!of_device_is_available(np))
+>>>> +		return ERR_PTR(-ENODEV);
+>>>> +
+>>>> +	if (of_property_read_u32(np, "reg", &index))
+>>>> +		return ERR_PTR(-EINVAL);
+>>>> +
+>>>> +	if (index >= PCS_MAX_MII_NRS)
+>>>> +		return ERR_PTR(-EINVAL);
+>>>> +
+>>>> +	pcs_np = of_get_parent(np);
+>>>> +	if (!pcs_np)
+>>>> +		return ERR_PTR(-ENODEV);
+>>>> +
+>>>> +	if (!of_device_is_available(pcs_np)) {
+>>>> +		of_node_put(pcs_np);
+>>>> +		return ERR_PTR(-ENODEV);
+>>>> +	}
+>>>
+>>> How have you got this far if the parent is not available?
+>>>
+>>
+>> This check can fail only if the parent node is disabled in the board DTS. I
+>> think this error situation may not be caught earlier than this point.
+>> However I agree, the above check is redundant, since this check is
+>> immediately followed by a validity check on the 'pdev' of the parent node,
+>> which should be able cover any such errors as well.
+> 
+> This was also because the driver does not work as i expected. I was
+> expecting the PCS driver to walk its own DT and instantiate the PCS
+> devices listed. If the parent is disabled, it is clearly not going to
+> start its own children.  But it is in fact some other device which
+> walks the PCS DT blob, and as a result the child/parent relationship
+> is broken, a child could exist without its parent.
+> 
+
+Currently the PCS driver walks the DT and instantiates the parent PCS 
+nodes during probe, where as the child PCS (the per-MII PCS instance) is 
+instantiated later by the network device that is associated with the MII.
+
+Alternatively as you mention, we could instantiate the child PCS during 
+probe itself. The network driver when it comes up, can just issue a 
+'get' operation on the PCS driver, to retrieve the PCS phylink given the 
+PCS node associated with the MAC. Agree that this is architecturally 
+simpler for instantiating the PCS nodes, and the interaction between 
+network driver and PCS is simpler (single 'get_phylink_pcs' API exported 
+from PCS driver instead of PCS create/destroy API exported). The PCS 
+instances are freed up during platform device remove.
+
+>>>> +	for (i = 0; i < PCS_MII_CLK_MAX; i++) {
+>>>> +		qpcs_mii->clk[i] = of_clk_get_by_name(np, pcs_mii_clk_name[i]);
+>>>> +		if (IS_ERR(qpcs_mii->clk[i])) {
+>>>> +			dev_err(qpcs->dev,
+>>>> +				"Failed to get MII %d interface clock %s\n",
+>>>> +				index, pcs_mii_clk_name[i]);
+>>>> +			goto err_clk_get;
+>>>> +		}
+>>>> +
+>>>> +		ret = clk_prepare_enable(qpcs_mii->clk[i]);
+>>>> +		if (ret) {
+>>>> +			dev_err(qpcs->dev,
+>>>> +				"Failed to enable MII %d interface clock %s\n",
+>>>> +				index, pcs_mii_clk_name[i]);
+>>>> +			goto err_clk_en;
+>>>> +		}
+>>>> +	}
+>>>
+>>> Maybe devm_clk_bulk_get() etc will help you here? I've never actually
+>>> used them, so i don't know for sure.
+>>>
+>>
+>> We don't have a 'device' associated with the 'np', so we could not consider
+>> using the "devm_clk_bulk_get()" API.
+> 
+> Another artefact of not have a child-parent relationship. I wounder if
+> it makes sense to change the architecture. Have the PCS driver
+> instantiate the PCS devices as its children. They then have a device
+> structure for calls like clk_bulk_get(), and a more normal
+> consumer/provider setup.
+> 
+
+I think you may be suggesting to drop the child node usage in the DTS, 
+so that we can attach all the MII clocks to the single PCS node, to 
+facilitate usage of bulk get() API to retrieve the MII clocks for that 
+PCS. We reviewed this option, and believe that retaining the current 
+parent-child relationship is a better option instead. This is because 
+this option allows us the flexibility to enable/disable the MII channels 
+(child nodes) in the board DTS as per the ethernet/MII configuration 
+relevant for the board.
+
+We would like to explain this using an example of SoC/board DTSI below.
+
+For IPQ9574, port5 can be connected with PCS0 (PCS0: PSGMII, PCS1 not 
+used) or PCS1 (PCS0: QSGMII, PCS1: USXGMII).
+
+IPQ9574 SoC DTSI for PCS0 (5 max MII channels) and PCS1:
+--------------------------------------------------------
+pcs0: ethernet-pcs@7a00000 {
+	clocks = <&gcc GCC_UNIPHY0_SYS_CLK>,
+		 <&gcc GCC_UNIPHY0_AHB_CLK>;
+	clock-names = "sys",
+		      "ahb";
+
+	status = "disabled";
+
+	pcs0_mii0: pcs-mii@0 {
+		reg = <0>;
+		status = "disabled";
+	};
+
+	......
+
+	pcs0_mii3: pcs-mii@3 {
+		reg = <3>;
+		status = "disabled";
+	};
+	pcs0_mii4: pcs-mii@3 {
+		reg = <4>;
+		status = "disabled";
+	};
+};
+
+pcs1: ethernet-pcs@7a10000 {
+	clocks = <&gcc GCC_UNIPHY1_SYS_CLK>,
+		 <&gcc GCC_UNIPHY1_AHB_CLK>;
+	clock-names = "sys",
+		      "ahb";
+
+	status = "disabled";
+
+	pcs1_mii0: pcs-mii@0 {
+		reg = <0>;
+		status = "disabled";
+	};	
+};
 
 
-Best regards,
-Krzysztof
+board1 DTS (PCS0 - QSGMII (port1 - port4), PCS1 USXGMII (port 5))
+-----------------------------------------------------------------
+&pcs0 {
+	status = "okay";
+};
+
+/* Enable only four MII channels for PCS0 for this board */
+&pcs0_mii0 {
+	clocks = <&nsscc NSS_CC_UNIPHY_PORT1_RX_CLK>,
+		 <&nsscc NSS_CC_UNIPHY_PORT1_TX_CLK>;
+	clock-names = "mii_rx",
+		      "mii_tx";
+	status = "okay";
+};
+
+......
+
+&pcs0_mii3 {
+	clocks = <&nsscc NSS_CC_UNIPHY_PORT4_RX_CLK>,
+		 <&nsscc NSS_CC_UNIPHY_PORT4_TX_CLK>;
+	clock-names = "mii_rx",
+		      "mii_tx";
+	status = "okay";
+};
+
+&pcs1 {
+	status = "okay";
+};
+
+&pcs1_mii0 {
+	clocks = <&nsscc NSS_CC_UNIPHY_PORT5_RX_CLK>,
+		 <&nsscc NSS_CC_UNIPHY_PORT5_TX_CLK>;
+	clock-names = "mii_rx",
+		      "mii_tx";
+	status = "okay";
+};
+
+board2 DTS: (PCS0 - PSGMII (port1 - port5), PCS1 - disabled):
+-------------------------------------------------------------
+&pcs0 {
+	status = "okay";
+};
+
+/* For PCS0, Enable all 5 MII channels for this board,
+    PCS1 is disabled */
+&pcs0_mii0 {
+	clocks = <&nsscc NSS_CC_UNIPHY_PORT1_RX_CLK>,
+		 <&nsscc NSS_CC_UNIPHY_PORT1_TX_CLK>;
+	clock-names = "mii_rx",
+		      "mii_tx";
+	status = "okay";
+};
+
+......
+
+&pcs0_mii4 {
+	clocks = <&nsscc NSS_CC_UNIPHY_PORT5_RX_CLK>,
+		 <&nsscc NSS_CC_UNIPHY_PORT5_TX_CLK>;
+	clock-names = "mii_rx",
+		      "mii_tx";
+	status = "okay";
+};
+
+If we drop the child node in DTS, then all MII clocks will have to be 
+combined with the SoC clocks (AHB/SYS) and added to the board DTS, which 
+may not be correct. Also, I think the child-parent relationship in DTS 
+will make it more clear to reflect the PCS-to--MII-channel relationship.
+
+Kindly let us know if this approach is fine.
+
+> 	Andrew
 
 
