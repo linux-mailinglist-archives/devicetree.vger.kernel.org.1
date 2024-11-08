@@ -1,221 +1,113 @@
-Return-Path: <devicetree+bounces-120356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D3B59C24DB
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 19:23:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 325819C2521
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 19:52:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 964781C28A1B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 18:23:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCA161F24082
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 18:52:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F14D519994F;
-	Fri,  8 Nov 2024 18:23:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 814E21A9B3F;
+	Fri,  8 Nov 2024 18:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FK23fbaV"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="e9yPG+j+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC6D9194A49;
-	Fri,  8 Nov 2024 18:23:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 721DE233D96;
+	Fri,  8 Nov 2024 18:52:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731090223; cv=none; b=kVTMbl6hNA+kq53t3h3lqmc93GQV5gVFnKpYJYYOmr3eSbm2eyR+PaXq0jfb1ufNvFl+T0rmOmvFsk6gpy2n5Ymo7AVvK5OLqt9gEspP3HMhjWTdQPZbSV22UOYb7E+3iCyp1Y1a7G9JTvS6D2jQlh27AxoPOBKnlrlOFu8dNlg=
+	t=1731091951; cv=none; b=EyWzOlAORXEJ20xWrcWpQl1VA9TtlOpjg9dmYe8+sU8x/MFNjPcDazenIskzwnAKJvgkS7mKyptq9iGvRC56+5XF7QOk6GMGUYBy/9/Aa+V1SJJj6CKAOX1jI0bueZxnyO4NnlTGA2kSsFws0budBbnKtyE+0MlG2Pf84FtuAEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731090223; c=relaxed/simple;
-	bh=E1qodTO23N6fEjVBbWnX+Cjij/DtB0PL/py4ryiE1zs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p+qGNdii5zi4iuLd/+4wX0+T7gCS/6ebUAxU6OForH0q6Yx1xcMGtcC3bVS/BoERNagisk3c0lYPYuHSwQyQHc6HILYqhJef/mopV8MvMaKE8MmbIU5GhxoL3B6JlR8NMdEiM7qlKJnWE9npTC22HIUZfKFQFEWXjSfNyCP4HaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FK23fbaV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDF39C4CECD;
-	Fri,  8 Nov 2024 18:23:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731090223;
-	bh=E1qodTO23N6fEjVBbWnX+Cjij/DtB0PL/py4ryiE1zs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FK23fbaVjFEmYrm2ufOVC6VW/ctWgPcF83kUbqX6tG2xVRNotZtrl9nP18CMQfRbD
-	 Bpsxy/XeMSbuQZSwQTw8G49TwnP5+lWGaWKSjNYsR74T29Y1QqO2suD2LruS6y6zqq
-	 sNjBwFWRPi2+pzzsvLVWpN1YpI3u3UcgZTvro/yszMCHhLNuVZ88ifYS5SPA2s9qiV
-	 OC6Ah3er9ZV7KbI8SH4HYMmqrGUoRJ4KXgs27WYockdUHewfRp8mxTaoLjrur0pRoU
-	 7d7RSXUO6pA8YCEdqJYfbLMsCQDtP32DgOE7RNS+p0kchQ2lZNtVg32ubh+vX9SV4H
-	 R/Oeu0JW2oHFg==
-Date: Fri, 8 Nov 2024 18:23:37 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1731091951; c=relaxed/simple;
+	bh=L9PZiEX333+Du0NXmYmoMzUp2gsXJVu8bc+StkfIx1E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=m45TDsD0xP6i1McrX/ZyBYeW/nbhYHYEror1lIY/CXwnPdGVAVBoR6jmoB9beTrusEE9ZkAa3eiNIXEFuqH4DLjcfAnLGwedLau4uypa/i/Zoum4eLBHG48Y+xxSVi3RRpDv4NtFxNW6Bjnrvk9CbvKq5JY/vIAOz2UM5BnxCNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=e9yPG+j+; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1731091947;
+	bh=L9PZiEX333+Du0NXmYmoMzUp2gsXJVu8bc+StkfIx1E=;
+	h=From:To:Cc:Subject:Date:From;
+	b=e9yPG+j+tbA5rv4eGyOBc65gC2rIW8aGsxtTc9tEA/EDmnlJSTPeqedHOMGE/qtvE
+	 VFV5mJ3KU5wl1hez1BGe7Z24yN3t9gAIp2IE5zR9Du9rC4eTHovO2caopGpD6s2nFS
+	 voNFKk8l0a0umITXRWRn23jlyl7M+GjNcWDXRmYujFQBAuwYqDg7qvHVXomWG0vksF
+	 C+WDDA6e6t2wbaib40Xv+vqgT67Xhezt684ituQIMFvxRnMKb/tJhwM2Lc761Ba3L2
+	 YNugjQnn/5mlBwa58HLzbkYbQz47qwflIebsA1Vt5VlNvfQ4V+tueJEuJ47GHV7V17
+	 U3wtA5O+Ms4uw==
+Received: from trenzalore.hitronhub.home (unknown [23.233.251.139])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: detlev)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8903117E376A;
+	Fri,  8 Nov 2024 19:52:24 +0100 (CET)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: Sandy Huang <hjc@rock-chips.com>,
+	Heiko Stubner <heiko@sntech.de>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH 1/9] dt-bindings: misc: Describe TI FPC202 dual port
- controller
-Message-ID: <20241108-reimburse-saucy-2682e370469a@spud>
-References: <20241108-fpc202-v1-0-fe42c698bc92@bootlin.com>
- <20241108-fpc202-v1-1-fe42c698bc92@bootlin.com>
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Alexey Charkov <alchark@gmail.com>,
+	Jianfeng Liu <liujianfeng1994@gmail.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	kernel@collabora.com,
+	Detlev Casanova <detlev.casanova@collabora.com>
+Subject: [PATCH v3 0/3] drm: rockchip: vop2: Add VP clock resets support
+Date: Fri,  8 Nov 2024 13:50:38 -0500
+Message-ID: <20241108185212.198603-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XDNiCDMGHlNuJKcl"
-Content-Disposition: inline
-In-Reply-To: <20241108-fpc202-v1-1-fe42c698bc92@bootlin.com>
+Content-Transfer-Encoding: 8bit
 
+The clock reset must be used when the VOP is configured. Skipping it can
+put the VOP in an unknown state where the HDMI signal is either lost or
+not matching the selected mode.
 
---XDNiCDMGHlNuJKcl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This adds support for rk3588(s) based SoCs.
 
-On Fri, Nov 08, 2024 at 04:36:53PM +0100, Romain Gantois wrote:
-> The FPC202 dual port controller serves as a low speed signal aggregator f=
-or
-> common port types, notably SFP. It provides access to I2C and low-speed
-> GPIO signals of a downstream device through a single upstream control
-> interface.
->=20
-> Up to two logical I2C addresses can be accessed on each of the FPC202's
-> ports. The port controller acts as an I2C translator (ATR). It converts
-> addresses of incoming and outgoing I2C transactions. One use case of this
-> is accessing two SFP modules at logical address 0x50 from the same upstre=
-am
-> I2C controller, using two different client aliases.
->=20
-> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
-> ---
->  .../devicetree/bindings/misc/ti,fpc202.yaml        | 75 ++++++++++++++++=
-++++++
->  1 file changed, 75 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/misc/ti,fpc202.yaml b/Docu=
-mentation/devicetree/bindings/misc/ti,fpc202.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..ad11abe11e68aa266acdd6b43=
-a5b425340bbbba8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/ti,fpc202.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/misc/ti,fpc202.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI FPC202 dual port controller with expanded IOs
-> +
-> +maintainers:
-> +  - Romain Gantois <romain.gantois@bootlin.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-atr.yaml#
+Changes since v2:
+- Rebase on latest master
+- Add details on how to reproduce the issue
 
-Gotta say, this looks absolutely nothing like the other i2c-atr user!
+Changes since v1:
+- Add AXI and AHB clock resets
+- Set maxItems for !rk3588 in vop2 bindings
 
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,fpc202
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  enable-gpios:
-> +    description:
-> +      Specifier for the GPIO connected to the EN pin.
-> +    maxItems: 1
-> +
-> +  port0:
+Detlev Casanova (3):
+  vop2: Add clock resets support
+  arm64: dts: rockchip: Add VOP clock resets for rk3588s
+  dt-bindings: display: vop2: Add VP clock resets
 
-ports usually go in a ports node, and are port@0 not port0. That said,
-these are i2c buses, so the node name would usually be i2c@ for those.
-In fact, given you have i2c-mux as your node name, the binding for that
-expects you to format your child nodes like '^i2c@[0-9a-f]+$'. Is there
-a reason you can't just drop this ports business and go with a pattern
-property here that restricts the pattern to '^i2c@[0-1]$'?
+ .../display/rockchip/rockchip-vop2.yaml       | 40 +++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 12 ++++++
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 30 ++++++++++++++
+ 3 files changed, 82 insertions(+)
 
-> +    $ref: /schemas/i2c/i2c-controller.yaml
-> +    description:
-> +      Device port 0, accessible over I2C.
-> +
-> +  port1:
-> +    $ref: /schemas/i2c/i2c-controller.yaml
-> +    description:
-> +      Device port 1, accessible over I2C.
-> +
-> +
-> +required:
-> +  - compatible
-> +  - gpio-controller
-> +  - "#gpio-cells"
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        fpc202: i2c-mux@f {
+-- 
+2.47.0
 
-The label here is uused, you should drop it.
-
-Cheers,
-Conor.
-
-> +            compatible =3D "ti,fpc202";
-> +            reg =3D <0xf>;
-> +
-> +            gpio-controller;
-> +            #gpio-cells =3D <2>;
-> +
-> +            port0 {
-> +                #address-cells =3D <1>;
-> +                #size-cells =3D <0>;
-> +            };
-> +
-> +            port1 {
-> +                #address-cells =3D <1>;
-> +                #size-cells =3D <0>;
-> +            };
-> +        };
-> +    };
-> +...
->=20
-> --=20
-> 2.47.0
->=20
-
---XDNiCDMGHlNuJKcl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZy5XKQAKCRB4tDGHoIJi
-0h9BAP9BYW2dWfo7u+4uzLkmUh2erBiw5UUBSxqs4nj2SJvUKwD/ao7/K//aEknK
-8sFWsA91FTWT8u/rWbOrsZl9gP9JJAM=
-=i7XM
------END PGP SIGNATURE-----
-
---XDNiCDMGHlNuJKcl--
 
