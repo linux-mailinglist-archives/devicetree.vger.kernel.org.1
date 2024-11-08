@@ -1,122 +1,129 @@
-Return-Path: <devicetree+bounces-120334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F9C9C21BD
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:14:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A6E79C2206
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:26:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B2A3282591
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 16:14:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6C5D1F233C6
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 16:26:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C497146D40;
-	Fri,  8 Nov 2024 16:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5EA190665;
+	Fri,  8 Nov 2024 16:26:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uWEtsAbt"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="CP8IuocG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.web.de (mout.web.de [212.227.15.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E90813B29F;
-	Fri,  8 Nov 2024 16:13:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 794AA18B09;
+	Fri,  8 Nov 2024 16:26:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731082433; cv=none; b=V11Qfu9ShxEEHbsuB988arZeK9IlfbfhZ8iZzkKgNhDhl5gvqy0HmEe8FbDyPVBjpBuiP+g79lGOcuqZtc7gjpxR1b9txa2cgSRs6NJq5MPjOrAYFHaW3J30sfBC/faGERtPVZWCZJchxx4YClR591s4O3M3d7wW5F0CvACM4vw=
+	t=1731083190; cv=none; b=prsL2q/EzxHG2ptznzPrypnMSBF1N24wP0XIkm7dfXc40eBm5sOg+NzU9XQ7wuXX63fLPdUeVeCH3J17W2gX6xzo3Rru+QTjxGEBiweaDHMaqUiV9CXDjGxxuhDUZs+uM4rq5bLH/n0Uk5J+FM9ySPXxwtIuUUt4pL3donk/m+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731082433; c=relaxed/simple;
-	bh=q+pj4CsKKVOJkRtrq3XZI2SWz5Z+xBXMT9k2KfygvEM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O/kfygchvBn/iV4aQrBdeFtFhK4hTh6h0JWmAtuIYiLIEWsDTvDy2taW7wswuPgIQPbuh4ZYqm/EoM7OjLt22Ndne+6Djt+MVUVnWj1YlS7mH/CLHiETlCNGij2vI/HuULP9e2dSZifKHaHnytqfzZOu/LFDKnGXvKwCXrVn20k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uWEtsAbt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CA50C4CECD;
-	Fri,  8 Nov 2024 16:13:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731082432;
-	bh=q+pj4CsKKVOJkRtrq3XZI2SWz5Z+xBXMT9k2KfygvEM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uWEtsAbt40kdv09DSyV2FM6o9bmE2kSr3UHzWy8bLTrZdogVmHJH4LOZIqdMy6KTP
-	 z87E/8ICfhfHeEMnU58i3Y7mhWHfRpxkqBR0Usmsz8FZSvNx6YlAvDt8uH81j2tB1F
-	 SqYUGi6GUbPeQcm1yWtmbPgvZIQmy5Yz7TRwm1ey2KEgCNrsrShcwNVjUX2ufvZJdh
-	 BmC4YGyU/ffmoMnjmD+R5rN+fydz8cqE0bcW0WUrQT8SzhYK/j/RluT/fPZMUm2WPs
-	 oPvUHqPCHbu/RfMFHFRe6SxAj5VeRZLb1sHjsj/q7G2RGCMSChEpCRadZjYTwqmMOZ
-	 4EvW7RDqJcRRA==
-Date: Fri, 8 Nov 2024 10:13:50 -0600
-From: Rob Herring <robh@kernel.org>
-To: Charles Wang <charles.goodix@gmail.com>
-Cc: krzk@kernel.org, hbarnor@chromium.org, dianders@chromium.org,
-	conor.dooley@microchip.com, dmitry.torokhov@gmail.com,
-	jikos@kernel.org, bentiss@kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: input: gt7986u-spifw: Remove
- hid-report-addr property
-Message-ID: <20241108161350.GA2313139-robh@kernel.org>
-References: <20241108120311.87795-1-charles.goodix@gmail.com>
- <20241108120311.87795-3-charles.goodix@gmail.com>
+	s=arc-20240116; t=1731083190; c=relaxed/simple;
+	bh=3mqsLDsEJoqwjI9HvUfDwlPxiJr4yDQLDVMDWRt1DVI=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=LvrRUvfpG6mOZxrLjI23tcHaOrv4sDvum52BbhLeqrgFG+FXTe1c6+yjXGeO0a0uWufbFDY112vtYWcCNRwc4aJtNeDwvreUSE0/W5b3sevsc4jPU3SE9CWtUXyBFFsJqUQNhl2dYluF+Ipn4mzIjItzKQhTt+LZRHDqOdz93FM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=CP8IuocG; arc=none smtp.client-ip=212.227.15.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1731083160; x=1731687960; i=markus.elfring@web.de;
+	bh=VUWzv8LrvIWA8ImsvyiR/6cd2EOKf5wJRkCX4vH4NoA=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=CP8IuocGGHD5URq/63LeC/3fmDzoljQJO5d0AqkwBfNyM7jiu8PaqBeCZ2SdMJSy
+	 xZGjvMLCkdLO+M+fDP2mR21WMp1yQ8+NX4NO/N1ymAd2HfQLZmAthUMtrstcSQscE
+	 rVTu2i/ZinZOVHp8rNuuUvkVbJfn2bYLh3Sucl5+C3oQpOQtAJdoAWYqvNV+vxkFh
+	 Rgsa682UbDS9ykrjGSbSt5yiTcdLssDMLQzLitqgcWcMuopJLH95RoMXD6objVGNu
+	 0PGHmy0yrN2TIAen0hwkEbOnOBH+uKYvGQstSN+Z+abVDr/hBtYUPdUc3JGQyYAx5
+	 T2RKBN+bGWkhRhJnMg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.80.95]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MVaYi-1tHBbI0wMe-00Nvtn; Fri, 08
+ Nov 2024 17:26:00 +0100
+Message-ID: <5a707eb5-8695-4f0d-bb08-6de95017d2b1@web.de>
+Date: Fri, 8 Nov 2024 17:25:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241108120311.87795-3-charles.goodix@gmail.com>
+User-Agent: Mozilla Thunderbird
+To: Michael Nemanov <michael.nemanov@ti.com>, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ Kalle Valo <kvalo@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, Sabeeh Khan <sabeeh-khan@ti.com>,
+ Simon Horman <horms@kernel.org>
+References: <20241107125209.1736277-6-michael.nemanov@ti.com>
+Subject: Re: [PATCH v5 05/17] wifi: cc33xx: Add cmd.c, cmd.h
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20241107125209.1736277-6-michael.nemanov@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:kCejPMohxqmb4402vvVYhccZ9wh2wv6TVh1jzzZXVxjdncvL2ET
+ 53vZwdWPFjuyS0q8f0oDfTe+LtQUk00Mv+sqUdvH+EjtzuSiAAidCgVhZQ5tqnvBITkjtsP
+ +aJcmAzFYk8n312MiU/eAxRfJaagHa23iqjTjt+zunmJCVgCyOuEf8p4l0yvBxSYNJz2VIx
+ CZMCPWzsfQoLQ0ZUUoeHA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:S6CwSfd+LOc=;P9Wg40faTP/Ttw0CrWOuNvN+G3O
+ rhLHdGT5u7OzXQelvdwgcrI1PUA/Huuyei/Nz4oNptn/AE8UpDeG8qc1D5klR+U+uU1SmuG0j
+ 0kB7lFau2y18CbZ+NAzYvGuYURA0ky1BTqwHsPBaogO38Hh2llhbLXblIjI8DXzYQHsHVWz1+
+ X6xbZVam9+2BYZ+EXv3VWXHFhH7BaMJm/I+XY+5ostG8fyZneehcZIB+I3tQbv7Mg4h1ymrWf
+ 6aU11MSBDUKs+5KFsq7UjjxJeCfeE0fJokUdnBhb7VDJBYkmD9y1h32Y/GvnVL8xQkU8ncHBN
+ zFFEzO+z2OsNiO3dhvCVCaaikVnlh/Yj8NG7rT1myAmOPB3fwvv12XsHKDZyfeP1LGP+T/XYK
+ iQjMaKrKx77JwsC27eAqvp146wIOntJl/SXNnBym3DcOHI+OcTO0VDuN0vj1pH8crglboiJ4Q
+ ktVissq+ZITbeVUKOlOXVf6tKLr4pC2BQnr3Vb59jJA7Rb0oBomZh1w15xzJ3w4OVIub+mFua
+ f5i31UDV9e+Bsd3qduNJQ4urgFZIFKqkLK0BQTPbMaVDnbLpcwPlZIpW5pjLEGQu1KPUOhUpH
+ mIEzozOM+SRGAG0gjatyi5a7JHz45jf9HRX2r2lLvvog2ixR7NcRqFchIMBqWE1WJbmBae9C7
+ nVWKrf5ZiSt3Du7M4fRXzwYcQFgFxx3lJk0JQGMFaY7uZ+T0AqIXfV2r8fopmO8n4T+Wnw3qs
+ xaz9/UARNiLOH8+5nPwej9l982t/lhQo7bTFWEi4rALqqvpcG8BVtCg8V8S9/ELpfdTgcOpmw
+ QAYKupqVKXr3F01tC2Arh7ZatclUivECKKMqNQvui2P7zyJQ0ffTC2ly1XlLqCCL2CX90u+CT
+ jjwKAyZNGisp3DWu5qXN3JxNHr8QxT51Mjgz1fPUcdkJrAvTFQKUKsNAQ
 
-On Fri, Nov 08, 2024 at 08:03:11PM +0800, Charles Wang wrote:
-> Since all boards use the same address, drop the goodix,hid-report-addr
-> property and hardcode it in the driver as a default value.
+=E2=80=A6
+> Similar to wlcore, all commands eventually reach
+> __cc33xx_cmd_send which fills a generic command
+> header and send the buffer via the IO abstraction layer.
+=E2=80=A6
 
-Where's the driver change?
+You may occasionally put more than 56 characters into text lines
+for an improved change description.
 
-I don't see the point in defining this and then removing it in the next 
-patch.
 
-> 
-> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
-> ---
->  .../devicetree/bindings/input/goodix,gt7986u-spifw.yaml    | 7 -------
->  1 file changed, 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/goodix,gt7986u-spifw.yaml b/Documentation/devicetree/bindings/input/goodix,gt7986u-spifw.yaml
-> index 8105b9ce2..c9e346a60 100644
-> --- a/Documentation/devicetree/bindings/input/goodix,gt7986u-spifw.yaml
-> +++ b/Documentation/devicetree/bindings/input/goodix,gt7986u-spifw.yaml
-> @@ -36,11 +36,6 @@ properties:
->    reset-gpios:
->      maxItems: 1
->  
-> -  goodix,hid-report-addr:
-> -    $ref: /schemas/types.yaml#/definitions/uint32
-> -    description:
-> -      The register address for retrieving HID report data.
-> -
->    spi-max-frequency: true
->  
->  required:
-> @@ -48,7 +43,6 @@ required:
->    - reg
->    - interrupts
->    - reset-gpios
-> -  - goodix,hid-report-addr
+=E2=80=A6
+> +++ b/drivers/net/wireless/ti/cc33xx/cmd.c
+> @@ -0,0 +1,1920 @@
+=E2=80=A6
+> +int cc33xx_set_link(struct cc33xx *cc, struct cc33xx_vif *wlvif, u8 lin=
+k)
+> +{
+> +	unsigned long flags;
+> +
+> +	/* these bits are used by op_tx */
+> +	spin_lock_irqsave(&cc->cc_lock, flags);
+> +	__set_bit(link, cc->links_map);
+> +	__set_bit(link, wlvif->links_map);
+> +	spin_unlock_irqrestore(&cc->cc_lock, flags);
+=E2=80=A6
 
-Dropping a required property is an ABI break.
+Under which circumstances would you become interested to apply a macro cal=
+l
+like =E2=80=9Cscoped_guard(spinlock_irqsave, &cc->cc_lock)=E2=80=9D?
+https://elixir.bootlin.com/linux/v6.12-rc6/source/include/linux/spinlock.h=
+#L572
 
-A devicetree that passes with the schema will not work on current 
-kernels that require this property.
-
->  
->  unevaluatedProperties: false
->  
-> @@ -68,7 +62,6 @@ examples:
->          interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
->          reset-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
->          spi-max-frequency = <10000000>;
-> -        goodix,hid-report-addr = <0x22c8c>;
->        };
->      };
->  
-> -- 
-> 2.43.0
-> 
+Regards,
+Markus
 
