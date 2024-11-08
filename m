@@ -1,119 +1,115 @@
-Return-Path: <devicetree+bounces-120217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BE389C1C42
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:37:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 398DA9C1C49
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:40:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4013B1C22C2E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 11:37:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B85A4B223B6
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 11:40:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE331E47A2;
-	Fri,  8 Nov 2024 11:37:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EDC11E3DFC;
+	Fri,  8 Nov 2024 11:40:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="QUgJbql/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YRHy3NH7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC4191E22FA;
-	Fri,  8 Nov 2024 11:37:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49B3E1E378D;
+	Fri,  8 Nov 2024 11:39:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731065838; cv=none; b=NnudPMUky9XQZ5hwnBfJPN8wCi/SwvLlvr5jH6r+usu1UbZB2rRn5bdv24M/wxG0Z5kTVvoz2jZBc3mdpUYV30aH8rtXwYIW7Ur3OshdQbscA4/O1Zvr9qdcHeuNz+qv4dx6/gTLfotiHJtWispZ5fziXJytt0r5+J8Urkq2ZGU=
+	t=1731066000; cv=none; b=eZc+Pm7hN+TwKAX6cx9xBgk+Cbchw9A1O9HdxTorX5ALGowXMVw3ai0UCXIqZ8G/kxFJN2Hq4g2I3RS5L0a9GeBqqWdzrgySsIz7SYVS0Ky3EPAFS3ueuiP0A324VK5K1QiTBMd8RZvff8XyypN0WjA+yK3PZKcXwprRgUjcqjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731065838; c=relaxed/simple;
-	bh=9q9uVvLqHBGdEXJFJ+lqyHUhiXg3rvlAytAtHyinnIU=;
+	s=arc-20240116; t=1731066000; c=relaxed/simple;
+	bh=530C77pHMSYwx7wryvABLre4iXGbGSVU8Iaii1O2Cy0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Orr3VQrmOwMN7N6P1ciYTyQHmu3xK6QkMYNnSGx4ENOZv9YPZ2bGefPO+0aqSx4jWn8wqo3Q5lIiibaXkIJh0sVo+FGmciJoHpBIAWRoB0jymwZtyjSuAbFTBl1gwqB/8VxcsuST3hTGVs5ydATZbQDUzT5lipzR9CC+9EpOjmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=QUgJbql/; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=EejnXOL6AJ8kMqdm0i2xcZanHtQNUcxhRjUP4k55h+k=; b=QUgJbql/k5OgkEBg8SmAJYS29T
-	B6mTbk9y3xIYzklSnufSDRl0yZiHr+R5OIEdtAJm8KNe5foj8vcDyTX/h557sS+7qO1mAU9OU1yR+
-	AYjwEZlkYqTwgPrAbko+oLzaPb4AOSGh0wMGjZhgqLOIG0QWqJ/Piq1Y/i0PtHWiUNLSaBYP1MqJG
-	GOdYK0cPvk0/jOxShOwMoUIknQuS+sS5W52CY5BrkCWjIM6GQMiAnD+gd6keaTdCx+jwgsvn3+4d3
-	DW2ZtnZAW16GnVH+uEOAAg+b5j0P4MGT8A5rIo+VMZrAYYXQoKUO0LyC/atIlemBcbxM5R852Mr4e
-	TTDRlM9A==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56186)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1t9NIW-000533-2q;
-	Fri, 08 Nov 2024 11:37:05 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1t9NIU-0002Ez-2Z;
-	Fri, 08 Nov 2024 11:37:02 +0000
-Date: Fri, 8 Nov 2024 11:37:02 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Lei Wei <quic_leiwei@quicinc.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com,
-	quic_pavir@quicinc.com, quic_linchen@quicinc.com,
-	quic_luoj@quicinc.com, srinivas.kandagatla@linaro.org,
-	bartosz.golaszewski@linaro.org, vsmuthu@qti.qualcomm.com,
-	john@phrozen.org
-Subject: Re: [PATCH net-next 3/5] net: pcs: qcom-ipq: Add PCS create and
- phylink operations for IPQ9574
-Message-ID: <Zy333s8o77qE5F_-@shell.armlinux.org.uk>
-References: <20241101-ipq_pcs_rc1-v1-0-fdef575620cf@quicinc.com>
- <20241101-ipq_pcs_rc1-v1-3-fdef575620cf@quicinc.com>
- <d7782a5e-2f67-4f62-a594-0f52144a368f@lunn.ch>
- <9b3a4f00-59f2-48d1-8916-c7d7d65df063@quicinc.com>
- <a0826aa8-703c-448d-8849-47808f847774@lunn.ch>
- <9b7def00-e900-4c5e-ba95-671bd1ef9240@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=IkL/71SpmF3IumFgxqhn5QwF7mhQVho2+Q0bTvHMjIE3RYGHAowrKP67Ek7Dc3ghgCh/ypNdNg+YMwr/sEESApFddJU7IuX6gvXpZgf5q4gGFbG1tq4wg/uLUP1JqteQEkW/fb+0PMVhPd94JQcVyx8NF2GJd5S+Ii5t0h9Jn5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YRHy3NH7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5222BC4CECD;
+	Fri,  8 Nov 2024 11:39:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731065999;
+	bh=530C77pHMSYwx7wryvABLre4iXGbGSVU8Iaii1O2Cy0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YRHy3NH7ogg5lgWteZRyQaQOGeuc4yz8zUMIxhr6LmrH17cIZnmIfkzHrKvyBeA5z
+	 nIhDySh7yt+7v5B3jo7ISrCc39mTpGjqh0YIN1F1qK9zCM8VrGmcmj88JP5veHx135
+	 gcGw31avgtXGmfagXTt1xQeUysCSBWaCZ8jm9Une0WKmFC457qPhukugy16fSgcbnk
+	 Lbn/ZbFPZXzkPUpPX+w0fq8VXJLA7zkZNwvGKNQhZregl7xOKjydvZ4jk4dC57fZ+B
+	 RUdrnDa41Sp9Kx67esLqFfV4oceLM6fvP0wR7V5qC/bhs4p8RgCc1TGem9u/o66b73
+	 8dfUM2slJVcAw==
+Date: Fri, 8 Nov 2024 12:39:56 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Taniya Das <quic_tdas@quicinc.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+	Imran Shaik <quic_imrashai@quicinc.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>
+Subject: Re: [PATCH v3 05/11] dt-bindings: clock: Add Qualcomm QCS615 Display
+ clock controller
+Message-ID: <s5rie2osuh2ngkwd2jinly7ulogqqeqois724h3e54a7rqrn2w@wn3yypxi7wca>
+References: <20241108-qcs615-mm-clockcontroller-v3-0-7d3b2d235fdf@quicinc.com>
+ <20241108-qcs615-mm-clockcontroller-v3-5-7d3b2d235fdf@quicinc.com>
+ <173104478441.565041.9851772057058427001.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <9b7def00-e900-4c5e-ba95-671bd1ef9240@quicinc.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <173104478441.565041.9851772057058427001.robh@kernel.org>
 
-On Fri, Nov 08, 2024 at 07:31:31PM +0800, Lei Wei wrote:
-> On 11/6/2024 11:43 AM, Andrew Lunn wrote:
-> > On Wed, Nov 06, 2024 at 11:16:37AM +0800, Lei Wei wrote:
-> > > On 11/1/2024 9:21 PM, Andrew Lunn wrote:
-> > > > How does Qualcomm SGMII AN mode differ from Cisco SGMII AN mode?
-> > > 
-> > > Qualcomm SGMII AN mode extends Cisco SGMII spec Revision 1.8 by adding pause
-> > > bit support in the SGMII word format. It re-uses two of the reserved bits
-> > > 1..9 for this purpose. The PCS supports both Qualcomm SGMII AN and Cisco
-> > > SGMII AN modes.
+On Thu, Nov 07, 2024 at 11:46:26PM -0600, Rob Herring (Arm) wrote:
+> 
+> On Fri, 08 Nov 2024 09:39:22 +0530, Taniya Das wrote:
+> > Add DT bindings for the Display clock on QCS615 platforms. Add the
+> > relevant DT include definitions as well.
 > > 
-> > Is Qualcomm SGMII AN actually needed? I assume it only works against a
-> > Qualcomm PHY? What interoperability testing have you do against
-> > non-Qualcomm PHYs?
+> > Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> > ---
+> >  .../bindings/clock/qcom,qcs615-dispcc.yaml         | 73 ++++++++++++++++++++++
+> >  include/dt-bindings/clock/qcom,qcs615-dispcc.h     | 52 +++++++++++++++
+> >  2 files changed, 125 insertions(+)
+> > 
 > 
-> I agree that using Cisco SGMII AN mode as default is more appropriate,
-> since is more commonly used with PHYs. I will make this change.
+> My bot found errors running 'make dt_binding_check' on your patch:
 > 
-> Qualcomm SGMII AN is an extension of top of Cisco SGMII AN (only
-> pause bits difference). So it is expected to be compatible with
-> non-Qualcomm PHYs which use Cisco SGMII AN.
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/clock/qcom,qcs615-dispcc.example.dts:19:18: fatal error: dt-bindings/clock/qcom,qcs615-gcc.h: No such file or directory
+>    19 |         #include <dt-bindings/clock/qcom,qcs615-gcc.h>
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> compilation terminated.
+> make[2]: *** [scripts/Makefile.dtbs:129: Documentation/devicetree/bindings/clock/qcom,qcs615-dispcc.example.dtb] Error 1
+> make[2]: *** Waiting for unfinished jobs....
+> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1442: dt_binding_check] Error 2
+> make: *** [Makefile:224: __sub-make] Error 2
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241108-qcs615-mm-clockcontroller-v3-5-7d3b2d235fdf@quicinc.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
 
-I believe Marvell have similar extensions.
+I see this patchset being sent again without changes and receiving same
+errors again, so maybe you expect different results, like some review? I
+don't know, but just in case that's the case please carefully read
+message you got.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+If lack of review is expected, then of course no problem here.
+
+Best regards,
+Krzysztof
+
 
