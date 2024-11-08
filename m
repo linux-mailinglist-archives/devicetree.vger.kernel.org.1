@@ -1,168 +1,123 @@
-Return-Path: <devicetree+bounces-120310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 519529C1FD5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 15:58:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CF8F9C2019
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 16:11:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0532A284BD8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 14:58:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67CEE1C218FF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 15:11:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 190871F5844;
-	Fri,  8 Nov 2024 14:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E03891F5831;
+	Fri,  8 Nov 2024 15:11:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WK+BhFva"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="bKnoG/0+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCFC21F5839;
-	Fri,  8 Nov 2024 14:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02CD41F4FD6
+	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 15:11:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731077920; cv=none; b=No+3W0KRN17YzhcP32HNDYRDbdHHDMZXC/4W6l6Gh9Mv3iY4yfLRpkIHkXKEWqbUhytGtpMDFEYeDq+LrOWHu/+TGm9NFPaRZJWeyUTp5jUEgAK47cW9IzijXeHhOx3UouKiy+03CK8TSHPG+b/5GuTR57qtg6xPCEfxyoG54oQ=
+	t=1731078708; cv=none; b=TdDfoau9G66d3J2mPUWZxyBmpTkFK2oEyXQRN5WqyX1920r23Mig3Uv0MPgtDa3fj9tn3ez2Es8WRP5ORS4DckVAVjsBEw6CVybpXFNcj7rOb+G5Zg0TLFfNjV9bVBXTtve+/HG0Wr73PCQV5getbcbQA3tfAnAmHzoDjUEN9yI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731077920; c=relaxed/simple;
-	bh=LpG39qqU1URrHICuGs7ygOJgOeEZduFX4Mef0Sou4KU=;
+	s=arc-20240116; t=1731078708; c=relaxed/simple;
+	bh=7AbutvFdmgvjtotNL0xr9HRKPZ3PcvOcSlbj0hwvXMI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=j18gj3X4AGC3vf+gW74FwbRdQoFvYBiCsP5qJwGFnKfGKxXixO8chDLMN3VEEb+r5NllSt3aixyqG3AGtSwP8gdqhWlNzDPfkIsQOg6N1cmV/Bit0PSQB0SE9Hq9R1ECkfxnOewPYPPHOH3gKFX2BCosi9SvWLE2BLQq37ITl0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WK+BhFva; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DD86C4CECD;
-	Fri,  8 Nov 2024 14:58:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731077919;
-	bh=LpG39qqU1URrHICuGs7ygOJgOeEZduFX4Mef0Sou4KU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=WK+BhFvasjIaKvlDTSittKA3PF+kBXMecJ6pH/MtfGiQPZnZzAoVqnBYRS4GRXZRl
-	 WVNoqt8GnDV0x2+mmZrxxptn6WKtZPTs36jQguBLaQjOnWQPJ4zFUkzAGDjZuAubGX
-	 TddvV1DpwPRBC4rcNmAkHYAcaTKp27UdjAPW1HcoQNwaM0rGAYJg0LLphBHPEBt5rw
-	 B+bx4sqqYBftInWDe0w1UQNp5TRt45ElNm5NG3Qntu/NqNdMlLJHgvoBen6eiZCyEi
-	 glA2IYD7aaHLo6XW4ZUxgRmu2Yul8XnRLPMYt8WaV/ut+FRpLgwK2y5uUCILpDNyv0
-	 L4DoEKO8VpgEA==
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e290222fdd0so2319845276.2;
-        Fri, 08 Nov 2024 06:58:39 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU3zJHm2S1eKvjye1vJ/N4HjXlvI1DuhneC27ohj80Krxdgv+dDllk5Ugwzt8Vb3R7IM4i0583PDorJ8P5B@vger.kernel.org, AJvYcCUAzlbkwP4YQ9CXZNd50xsa2fXRfanL6pr10NZHu5BWePuJLbGasRRDkmOm5JW4PboC+EIoQmeRtMAl@vger.kernel.org, AJvYcCXgAkqZnpQy+5QnwZda+cFthsOPHWlu+wtqXxrOf7xUucyVJoFvb+ca3w72prRbdW7nRV15XtJOCNDS6HBJFF9dH60=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAQ719+E6VEPSU+Gxjhm/Iox2rnILIoPHl4fcZivC4stcWyM50
-	RMGKsEBpoto0UZ+sgSxB7rgriFxYl+hb2mZUVSPOnapn1C9lhjJS2Keod2sispLdvOBU/FUFl+v
-	sK5Faulv3nUxzDkwh+QQ6bjl1jA==
-X-Google-Smtp-Source: AGHT+IFTijkWBoFuDrAuQlURtR/GqlKnV1aE+tc3/ggelsz1fdahHEgBLcMYQ94HPKN48fC3aaYfm0kx1I18FcNf4Xs=
-X-Received: by 2002:a05:6902:68b:b0:e29:566d:c30 with SMTP id
- 3f1490d57ef6-e337f860db3mr2498969276.16.1731077918830; Fri, 08 Nov 2024
- 06:58:38 -0800 (PST)
+	 To:Cc:Content-Type; b=CvK6YPDw8Baq/0QqffByXzI+WVe3YUHIeRqGftmZZbP/URy1RSffabC0fFFLGakcJ28AnY5kvRvcOypBOXWAZ5C6FgU0qDhqqcnNAJpDm+/rMgTkOF4chaFYXkMLYG1jLSKCL7wQt7pa/T/TzBJaz0w6syJluxu+WHIQ/N0agcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=bKnoG/0+; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-539e13375d3so2713322e87.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 07:11:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1731078705; x=1731683505; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7AbutvFdmgvjtotNL0xr9HRKPZ3PcvOcSlbj0hwvXMI=;
+        b=bKnoG/0+aarS9H4jOxRQDzKVK0A2JtgdqfOPhGlYK6VlSjdRv+DalLZi/BFFW7urW0
+         kxZkrYCy8oVhnvllbTmG2xZ2d3VfFAkc5x+oO0nrGgTtITOX7jaXixeyoSitutCHLOm9
+         yiHLQ5rICroz4O2IECtSFVvTsYdXhlgwLY5OE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731078705; x=1731683505;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7AbutvFdmgvjtotNL0xr9HRKPZ3PcvOcSlbj0hwvXMI=;
+        b=XkddFUfDdReI3r+Opm7kTHPqVin3mwUnIqMTWiw4unIjwYzjKdih5IyahFiDd08xWo
+         hI7KdPyLb+wDVqjZYzU6QSv6kQkGh735IgV5bt0C5n25+6USSPNBqTGiR/ZKGa5z9dAo
+         s4MMMB5mphMVkESITcRsM7LX5Cg5EGDHfK1SeJGDtDBFyYbJebJkpit7a22z+LcqtGun
+         ZkTjyrDCySRZHjKFfZI2wZ9pR5Zie3NJKimJUupyAdlNz3Q6P8mrPdChF2u3JdoHBT6J
+         LDm4QWcDxO0B+BXUjjd5xjPtmBXrc7MylRsBJ0a1TW4lL60nqJQw70mOPyFi86X+N240
+         mWQg==
+X-Forwarded-Encrypted: i=1; AJvYcCXBjcR4ApFJl2cYF7nwb+oknd2aHn+IbGdqNsTP70fLONkRYsrg2+GquehPmGx3ficgjDI9guyJVcos@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIP3mzSb0MVnH+GHQI0ND8rPPSUQOjLYScStxB4jQmvK1A5hg0
+	mkXIp6g00UZmVQH63SWZIihn4BWQmeIXz5BpVfJq5V2+cQsI0xB8FfqCMShWyZg8meRh0UhNCBd
+	bQQ==
+X-Google-Smtp-Source: AGHT+IF+3dPHDNXHKy1uLQiXBKSBqJ5CSNTQzqZbTDyN30LXz67zUfwiZVtB/fpVKkfT23W1upZfkQ==
+X-Received: by 2002:a05:6512:3d19:b0:53c:74a7:43e1 with SMTP id 2adb3069b0e04-53d86230a01mr2105946e87.13.1731078704488;
+        Fri, 08 Nov 2024 07:11:44 -0800 (PST)
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com. [209.85.167.47])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53d826a71e5sm639982e87.119.2024.11.08.07.11.43
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Nov 2024 07:11:44 -0800 (PST)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539e6c754bdso2223822e87.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 07:11:43 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV/XU7nI+ilHwwTN710kU0bykHKPaSUR2YqUI06be9moMR8J/u1mpUeSG/CjFRxySln4NNkw+3/5YoO@vger.kernel.org
+X-Received: by 2002:a2e:9a16:0:b0:2fb:3881:35d8 with SMTP id
+ 38308e7fff4ca-2ff201513dbmr19941421fa.14.1731078703279; Fri, 08 Nov 2024
+ 07:11:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241106171028.3830266-1-robh@kernel.org> <CGME20241108110444eucas1p20cbed7533af31573dac30dbb435c3d9d@eucas1p2.samsung.com>
- <3706d174-fadd-485f-be7b-f7ef4b11cf84@samsung.com> <73eacca6-b6cd-4689-8ccd-f7e2e8b716f3@arm.com>
- <CAL_JsqLyFV85w1kf397AcvZ7+Oewpe3vYeZdz_uvQrYwb1B8ag@mail.gmail.com> <e23ecbab-66ba-478c-b720-fb045a08bc9c@arm.com>
-In-Reply-To: <e23ecbab-66ba-478c-b720-fb045a08bc9c@arm.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 8 Nov 2024 08:58:27 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLyuQaKpoq7wQeQs38HBu+_=SfgbMOGyGYtns6Dm-Y2Vw@mail.gmail.com>
-Message-ID: <CAL_JsqLyuQaKpoq7wQeQs38HBu+_=SfgbMOGyGYtns6Dm-Y2Vw@mail.gmail.com>
-Subject: Re: [PATCH v2] of: WARN on deprecated #address-cells/#size-cells handling
-To: Steven Price <steven.price@arm.com>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>, Saravana Kannan <saravanak@google.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, linuxppc-dev@lists.ozlabs.org, 
-	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
+References: <20241108120311.87795-1-charles.goodix@gmail.com>
+In-Reply-To: <20241108120311.87795-1-charles.goodix@gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Fri, 8 Nov 2024 07:11:27 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=WNcdbdn4tzNyVWaZugma3RdqmvTPa2NsTyuhH4yA3Raw@mail.gmail.com>
+Message-ID: <CAD=FV=WNcdbdn4tzNyVWaZugma3RdqmvTPa2NsTyuhH4yA3Raw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/2] dt-bindings: input: Goodix GT7986U SPI HID Touchscreen
+To: Charles Wang <charles.goodix@gmail.com>
+Cc: krzk@kernel.org, hbarnor@chromium.org, conor.dooley@microchip.com, 
+	dmitry.torokhov@gmail.com, jikos@kernel.org, bentiss@kernel.org, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 8, 2024 at 8:33=E2=80=AFAM Steven Price <steven.price@arm.com> =
-wrote:
->
-> On 08/11/2024 14:04, Rob Herring wrote:
-> > On Fri, Nov 8, 2024 at 7:26=E2=80=AFAM Steven Price <steven.price@arm.c=
+Hi,
+
+On Fri, Nov 8, 2024 at 4:03=E2=80=AFAM Charles Wang <charles.goodix@gmail.c=
 om> wrote:
-> >>
-> >> On 08/11/2024 11:04, Marek Szyprowski wrote:
-> >>> Hi Rob,
-> >>>
-> >>> On 06.11.2024 18:10, Rob Herring (Arm) wrote:
-> >>>> While OpenFirmware originally allowed walking parent nodes and defau=
-lt
-> >>>> root values for #address-cells and #size-cells, FDT has long require=
-d
-> >>>> explicit values. It's been a warning in dtc for the root node since =
-the
-> >>>> beginning (2005) and for any parent node since 2007. Of course, not =
-all
-> >>>> FDT uses dtc, but that should be the majority by far. The various
-> >>>> extracted OF devicetrees I have dating back to the 1990s (various
-> >>>> PowerMac, OLPC, PASemi Nemo) all have explicit root node properties.=
- The
-> >>>> warning is disabled for Sparc as there are known systems relying on
-> >>>> default root node values.
-> >>>>
-> >>>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> >>>> ---
-> >>>> v2:
-> >>>>   - Add a define for excluded platforms to help clarify the intent
-> >>>>     is to have an exclude list and make adding platforms easier.
-> >>>>   - Also warn when walking parent nodes.
-> >>>> ---
-> >>>>   drivers/of/base.c | 28 ++++++++++++++++++++++------
-> >>>>   drivers/of/fdt.c  |  4 ++--
-> >>>>   2 files changed, 24 insertions(+), 8 deletions(-)
-> >>>
-> >>> This patch landed in today's linux-next as commit 4b28a0dec185 ("of:
-> >>> WARN on deprecated #address-cells/#size-cells handling"). In my tests=
- I
-> >>> found that it introduces warnings on almost all of my test systems. I
-> >>> took a look at the first one I got in my logs (Samsung Exynos Rinato
-> >>> board: arch/arm/boot/dts/samsung/exynos3250-rinato.dts):
-> >>
-> >> Just a "me too" for rk3288-firefly.dtb:
-> >>
-> >> [    0.138735] WARNING: CPU: 0 PID: 1 at drivers/of/base.c:106 of_bus_=
-n_addr_cells+0x9c/0xd8
-> >> [    0.138776] Missing '#address-cells' in /power-management@ff730000
-> >>
-> >> I'm sure it's easy to fix up the DTB, but we shouldn't be breaking lon=
-g existing DTBs.
-> >
-> > What broke?
 >
-> Nothing 'broke' as such (the board continued booting) but the WARN
-> shouldn't be happening. My CI treats the WARN as a failure as these
-> shouldn't occur unless there's a programming error.
+> The Goodix GT7986U touch controller report touch data according to the
+> HID protocol through the SPI bus. However, it is incompatible with
+> Microsoft's HID-over-SPI protocol.
 >
-> > The intent here is to exclude any platforms/arch which actually need
-> > the deprecated behavior, not change DTBs. That's spelled out at the
-> > WARN which I assume people would read before fixing "Missing
-> > '#address-cells' in /power-management@ff730000". I tried to make the
-> > warn message indicate that on v1 with:
-> >
-> > WARN_ONCE(!IS_ENABLED(CONFIG_SPARC), "Only listed platforms should
-> > rely on default '#address-cells'\n");
+> The patchset introduces the following two changes:
+> 1) Add goodix,gt7986u-spifw.yaml.
+> 2) Drop the 'goodix,hid-report-addr' property.
 >
-> So one possibility is to include this platform in the exclusion list -
-> but I'm not sure how to do that, I assume including CONFIG_ARM in the
-> list would rather defeat the point of the patch. But my feeling is that
-> it would involve a lot of playing whack-a-mole to identify individual
-> platforms.
+> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
+> ---
+> Changes in v3:
+> - Split the commit into two patches.
 
-Please see my posted fix in this thread. Things "broke" quite a bit
-more widely than anticipated.
+LOL, this isn't what I meant. You should have one patch adding the
+proper bindings, but you need a second patch to _the "driver_. Right
+now the driver (AKA the file "drivers/hid/hid-goodix-spi.c" in Linux)
+is still looking for "goodix,hid-report-addr". The driver needs to be
+updated and that was what I was saying should be patch #2. You'll also
+need to fix the driver to update the compatible string it's looking
+for.
 
-> One obvious idea would be to look at the DTBs in the kernel tree and see
-> which are affected by this currently, that might be a good place to
-> start with an exclusion list.
-
-It's been a dtc warning since 2007, so I can say all of the in tree
-dts's are fine. The problem for these reported platforms is the
-kernel, not the DT.
-
-> You could also downgrade the warning to a pr_warn() or similar.
-
-I find that pr_warn() may or may not get noticed, but WARN for sure
-will which is what I want here.
-
-Rob
+-Doug
 
