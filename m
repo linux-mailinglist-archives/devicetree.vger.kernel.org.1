@@ -1,155 +1,149 @@
-Return-Path: <devicetree+bounces-120318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B11B9C2063
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 16:30:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D64439C207C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 16:33:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E47EE1C21C1A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 15:30:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 112881C21F2B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 15:33:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF78206E91;
-	Fri,  8 Nov 2024 15:29:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 928EF21A701;
+	Fri,  8 Nov 2024 15:33:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="elpK4eCk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDEDE206E94;
-	Fri,  8 Nov 2024 15:29:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD5AC1E5708;
+	Fri,  8 Nov 2024 15:33:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731079795; cv=none; b=CGdRBYKdX5icXf6Iz6K5yILVwVGWckrtmndf+0S+PuS82wCD3P7MUv3bubZBWBxApD0aSp1LxIT3pe3CmFoFbAJWgRTTLof/S+kI3drqcosiQp4XrVMMpjVRrH6KaLhXwPw3zlrPzQP0xTxvdwMM+Fc0V1W6GmzAVXp7E0xy5Rk=
+	t=1731080024; cv=none; b=AP0fTUNwJ5oJgoOzCQ2OacYM3iOeAjhgfkkLIcFbtaL1TvczlAuKoGd/yKeoV1C7Vt5qNVG9A+f9ayapm3TMfGWgHp2+4/Wi6+r1NudqRAGKIWHFuk2nATRafWLzJ5XQr7LOeNbv5IA5qe/7LspPQR4Ie2D+VImJyoOl+CmOCQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731079795; c=relaxed/simple;
-	bh=2XoxB6i6Oy50ACcPhmOg51VKYY7h6KdQVjyk9yddsEQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QayZllttQL0/BuH2ATqgY6xs28VObYY8i/ihjtEJnMoAHYExxY5w3mv52Oz7pMpVZXNQw4znO7L+uyI3jNaPpqEWgCgsMynfxMHLoLP8eiomikUSUVTIXx/TNUpyVMh0xplH75rmD/wfnDAXBD4p1DCg0ZzDS9a+G9T9j9VVjkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E6303339;
-	Fri,  8 Nov 2024 07:30:21 -0800 (PST)
-Received: from [10.1.38.24] (e122027.cambridge.arm.com [10.1.38.24])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 01B8C3F528;
-	Fri,  8 Nov 2024 07:29:49 -0800 (PST)
-Message-ID: <994eb729-91d3-4e96-a63e-fa0ea49f4cb7@arm.com>
-Date: Fri, 8 Nov 2024 15:29:48 +0000
+	s=arc-20240116; t=1731080024; c=relaxed/simple;
+	bh=jFmMnUeuC+ny2eEdkRs99LX3eAoH4643Yv0UWsCgWwg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NFD7meYBpUZSYFmMo2CGMdhPStwFbGEGlcOPCoerfHs6sgLlX6UtvxQlXxzpzps5xb4xgJhCESwCJ2uzckNzNPJ4cnYH1LTcdlSU+Hn86tG2xVd9HJ6aXl69XZh3RYYGhZX8XaAdwLD+wkQo9BNCLj140t3R4sfzPsdJFMzDju4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=elpK4eCk; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53b13ea6b78so3958691e87.2;
+        Fri, 08 Nov 2024 07:33:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731080021; x=1731684821; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3tUwRMCHHdqZVRtxZCk5aPJdbR5inXLEUzSQYIspWM0=;
+        b=elpK4eCkch8SmK4PW4/rRuK+wzmTeDU8OXEBkbd30Ka6w5WxkkOyynSKYiu9fTPJMg
+         Vmt5ftm2sZheMF+efU5SNBnFfUcJC+vDONDlWjoqcXi29a+8NUrSscsyBaFjMPSpk5Ut
+         31mm1BzW1CW8/jl4goC3jiUIXVBK97yenSj2mxxTYagQKTiF5NhfAYEL93ugPwxCA6fX
+         k65VPKWaMwHJzsOXkVc2VAJdPNnpi82NBhPDZPEhoJawmPAzMRaxHpsU3YdYct72HiJj
+         Jzk3CxkatMrCEodX9MBN+fyjPtcrI+t1Sexqu/cIrbpC43FczNwgQFLmgHvLqjQcpZjz
+         Lj7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731080021; x=1731684821;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3tUwRMCHHdqZVRtxZCk5aPJdbR5inXLEUzSQYIspWM0=;
+        b=cqi+CXZBvfDQx6ZxAfRFM9QVbKEPmvvnzkB1prsQpxfNOtZLuVfsnNCEouiBeXWChw
+         zIEMMPjhXJZmRv/xZQSKmUhfVd0w22z0VnhC+Ye3xgPrPPyz/XaF1f7nOZsLM/MqQMLB
+         0Xh5YGZp2jkkLKUQHJ9Z1z21NZn7mO6lSMu+riHkKTQIct0OmdBUWVqfUykOH+hKjcfo
+         T/l2Z5jVPzJkMNxldIW2mao55s5SXcZ24zzDyo3mHSwzPMjcMP8atumpDFEDEEK+Ive/
+         R6wAdjjj4ZCB87fHmpV/enBDDuT7ig4tGHiJAhhcqc0a1t3nGLUjJYqGZc6pTAVRi8ve
+         hHmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW7FYhqqm4P3W6rYDD5d1g219+HLaAVTRQ518j9LZKxQfoY8NFTBH3zk7M9GVwrQtBAIQ5eaqGBcT+I@vger.kernel.org, AJvYcCWrMsOFORQAylWSmG2EZdFnJgdojjHfOrW9+B9fzdJfqpWXj4/FoNWLLVpX96/TtIETpVZF43LvYSOP@vger.kernel.org, AJvYcCWt6AaXwZCNNRBCh0L5wUGON6FlS1+R53qpCBZ1Csba251gNodVsTCJKLzle8BYaSKJdA2GRf4D7sJ/9U8K@vger.kernel.org
+X-Gm-Message-State: AOJu0YzX6HyY2lJEJpjvxODdi5qHbGUNVtvjzTfHpZfpM6gSN5fonerd
+	1MZHlULzTBXGHOqQBY+yzWvFvesYRrM67Rt5Xh3vi/47DovpTZaau4vevHvP
+X-Google-Smtp-Source: AGHT+IH6QlPf0c6ztccp5zye1I+rJwIhnxrhIVUrE/U2zUAMlS2cVf9rlvp4D1Xd2iX5jOQ4HGOkBw==
+X-Received: by 2002:a05:6512:3084:b0:539:8a50:6ee8 with SMTP id 2adb3069b0e04-53d862f84cdmr2869650e87.57.1731080020655;
+        Fri, 08 Nov 2024 07:33:40 -0800 (PST)
+Received: from localhost ([94.19.228.143])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53d82678474sm662970e87.42.2024.11.08.07.33.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Nov 2024 07:33:40 -0800 (PST)
+Date: Fri, 8 Nov 2024 18:33:37 +0300
+From: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Wolfram Sang <wsa@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v11 5/7] i2c: of-prober: Add GPIO support to simple
+ helpers
+Message-ID: <Zy4vUQj26-rkXrgk@skv.local>
+Mail-Followup-To: Andrey Skvortsov <andrej.skvortzov@gmail.com>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Wolfram Sang <wsa@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	linux-i2c@vger.kernel.org
+References: <20241106093335.1582205-1-wenst@chromium.org>
+ <20241106093335.1582205-6-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] of: WARN on deprecated #address-cells/#size-cells
- handling
-To: Rob Herring <robh@kernel.org>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>,
- Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski
- <krzk@kernel.org>, linuxppc-dev@lists.ozlabs.org,
- Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
-References: <20241106171028.3830266-1-robh@kernel.org>
- <CGME20241108110444eucas1p20cbed7533af31573dac30dbb435c3d9d@eucas1p2.samsung.com>
- <3706d174-fadd-485f-be7b-f7ef4b11cf84@samsung.com>
- <73eacca6-b6cd-4689-8ccd-f7e2e8b716f3@arm.com>
- <CAL_JsqLyFV85w1kf397AcvZ7+Oewpe3vYeZdz_uvQrYwb1B8ag@mail.gmail.com>
- <e23ecbab-66ba-478c-b720-fb045a08bc9c@arm.com>
- <CAL_JsqLyuQaKpoq7wQeQs38HBu+_=SfgbMOGyGYtns6Dm-Y2Vw@mail.gmail.com>
-From: Steven Price <steven.price@arm.com>
-Content-Language: en-GB
-In-Reply-To: <CAL_JsqLyuQaKpoq7wQeQs38HBu+_=SfgbMOGyGYtns6Dm-Y2Vw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241106093335.1582205-6-wenst@chromium.org>
 
-On 08/11/2024 14:58, Rob Herring wrote:
-> On Fri, Nov 8, 2024 at 8:33 AM Steven Price <steven.price@arm.com> wrote:
->>
->> On 08/11/2024 14:04, Rob Herring wrote:
->>> On Fri, Nov 8, 2024 at 7:26 AM Steven Price <steven.price@arm.com> wrote:
->>>>
->>>> On 08/11/2024 11:04, Marek Szyprowski wrote:
->>>>> Hi Rob,
->>>>>
->>>>> On 06.11.2024 18:10, Rob Herring (Arm) wrote:
->>>>>> While OpenFirmware originally allowed walking parent nodes and default
->>>>>> root values for #address-cells and #size-cells, FDT has long required
->>>>>> explicit values. It's been a warning in dtc for the root node since the
->>>>>> beginning (2005) and for any parent node since 2007. Of course, not all
->>>>>> FDT uses dtc, but that should be the majority by far. The various
->>>>>> extracted OF devicetrees I have dating back to the 1990s (various
->>>>>> PowerMac, OLPC, PASemi Nemo) all have explicit root node properties. The
->>>>>> warning is disabled for Sparc as there are known systems relying on
->>>>>> default root node values.
->>>>>>
->>>>>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->>>>>> ---
->>>>>> v2:
->>>>>>   - Add a define for excluded platforms to help clarify the intent
->>>>>>     is to have an exclude list and make adding platforms easier.
->>>>>>   - Also warn when walking parent nodes.
->>>>>> ---
->>>>>>   drivers/of/base.c | 28 ++++++++++++++++++++++------
->>>>>>   drivers/of/fdt.c  |  4 ++--
->>>>>>   2 files changed, 24 insertions(+), 8 deletions(-)
->>>>>
->>>>> This patch landed in today's linux-next as commit 4b28a0dec185 ("of:
->>>>> WARN on deprecated #address-cells/#size-cells handling"). In my tests I
->>>>> found that it introduces warnings on almost all of my test systems. I
->>>>> took a look at the first one I got in my logs (Samsung Exynos Rinato
->>>>> board: arch/arm/boot/dts/samsung/exynos3250-rinato.dts):
->>>>
->>>> Just a "me too" for rk3288-firefly.dtb:
->>>>
->>>> [    0.138735] WARNING: CPU: 0 PID: 1 at drivers/of/base.c:106 of_bus_n_addr_cells+0x9c/0xd8
->>>> [    0.138776] Missing '#address-cells' in /power-management@ff730000
->>>>
->>>> I'm sure it's easy to fix up the DTB, but we shouldn't be breaking long existing DTBs.
->>>
->>> What broke?
->>
->> Nothing 'broke' as such (the board continued booting) but the WARN
->> shouldn't be happening. My CI treats the WARN as a failure as these
->> shouldn't occur unless there's a programming error.
->>
->>> The intent here is to exclude any platforms/arch which actually need
->>> the deprecated behavior, not change DTBs. That's spelled out at the
->>> WARN which I assume people would read before fixing "Missing
->>> '#address-cells' in /power-management@ff730000". I tried to make the
->>> warn message indicate that on v1 with:
->>>
->>> WARN_ONCE(!IS_ENABLED(CONFIG_SPARC), "Only listed platforms should
->>> rely on default '#address-cells'\n");
->>
->> So one possibility is to include this platform in the exclusion list -
->> but I'm not sure how to do that, I assume including CONFIG_ARM in the
->> list would rather defeat the point of the patch. But my feeling is that
->> it would involve a lot of playing whack-a-mole to identify individual
->> platforms.
+On 24-11-06 17:33, Chen-Yu Tsai wrote:
+> Add GPIO support to the simple helpers for the I2C OF component prober.
+> Components that the prober intends to probe likely require their
+> regulator supplies be enabled, and GPIOs be toggled to enable them or
+> bring them out of reset before they will respond to probe attempts.
+> Regulator supplies were handled in the previous patch.
 > 
-> Please see my posted fix in this thread. Things "broke" quite a bit
-> more widely than anticipated.
+> The assumption is that the same class of components to be probed are
+> always connected in the same fashion with the same regulator supply
+> and GPIO. The names may vary due to binding differences, but the
+> physical layout does not change.
+> 
+> This supports at most one GPIO pin. The user must specify the GPIO name,
+> the polarity, and the amount of time to wait after the GPIO is toggled.
+> Devices with more than one GPIO pin likely require specific power
+> sequencing beyond what generic code can easily support.
+> 
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Thanks for the pointer. Yes that fix seems to work for my board!
+> ---
+> Changes since v10:
+> - Added include of linux/types.h for |bool|
 
-Thanks,
-Steve
+Tested-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
 
->> One obvious idea would be to look at the DTBs in the kernel tree and see
->> which are affected by this currently, that might be a good place to
->> start with an exclusion list.
-> 
-> It's been a dtc warning since 2007, so I can say all of the in tree
-> dts's are fine. The problem for these reported platforms is the
-> kernel, not the DT.
-> 
->> You could also downgrade the warning to a pr_warn() or similar.
-> 
-> I find that pr_warn() may or may not get noticed, but WARN for sure
-> will which is what I want here.
-> 
-> Rob
+Patches 1-5 from this patchset were successfully tested with hardware
+prober for i2c magnetometer on PinePhone on next-20241107. [1]
 
+1. https://github.com/AndreySV/linux-stable/commits/in-kernel-i2c-hwprober-magnetometer/
+
+-- 
+Best regards,
+Andrey Skvortsov
 
