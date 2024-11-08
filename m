@@ -1,153 +1,112 @@
-Return-Path: <devicetree+bounces-120352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 739A39C2429
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 18:52:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE749C242F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 18:53:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33D1328283A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:52:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C1361C25191
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:53:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F10E20DD7D;
-	Fri,  8 Nov 2024 17:40:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB39D20B7E4;
+	Fri,  8 Nov 2024 17:41:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NwXAzx19"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="E3Bi/Sjy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E484E233D6D;
-	Fri,  8 Nov 2024 17:40:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB47A206E7C;
+	Fri,  8 Nov 2024 17:41:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731087610; cv=none; b=Xr5lMqgqbr3Ujd04C2MXQm9BoscjdYKsvoxJZhmx+hwL39pyY6O4z6avXLTRUIEaOC6JJQHHnfHjbmtCVz/1bdDdMm9PGbVwspk+mYqRAj7ue8kg++r8sEzezY3glxTz2IR3FLxCLyset3vMmJ3q0qLnr8Y7dYNGbilgoQEeQXU=
+	t=1731087696; cv=none; b=RwH9Hp+Qzt6VAmQhYaE2GtRPQHR5kFO4kA2LhjXSXthpYqWIxYCpr1yJzuQDXhBV+glkiv3DzgrFACKpdj6eajBP6fxs2G1nEICzDDV1nArVV2MwTuGNhTHFXwKbkhASQR4VAshW7pRYEc2d+8LUQXum4owfMEOh8cmcsFHOLs0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731087610; c=relaxed/simple;
-	bh=iiARu0Nk8CVwQ3QQGwPP6meCN98PtNxkPO57n5KBjcg=;
+	s=arc-20240116; t=1731087696; c=relaxed/simple;
+	bh=xTBJQ3DHiqjQGaHvCuOnOqcxQvtxoUV/KnD4Xz/Z1lM=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=O8XfrDEQkC1IgGk5QIutUQwP2qcnqp1iXcYxH/vCYWK6uKv3gTSpavyRo2vYBPqV6OdctSlaTHw5kvoZF1vKLqcXw+2wJVrkbyfxsgaFXy3tcpoyOFwLF/S7vjTA2Wt/8hXUywQcybio1LsZFV1KOZrxFRwSIbtUBwiXo8s44VI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NwXAzx19; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E556FFF806;
-	Fri,  8 Nov 2024 17:39:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1731087599;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BKjz3h86srqcmGB/4sy6wbmzDtox3/nU1f7+fBVoTIw=;
-	b=NwXAzx19offAOxoDGjSswAn7NfEKz//W0s4o79RGt3hwiTkahsETewN16ig6ShFREDru8S
-	C1nLnyJJQsdEWHSAcSwYZ/vG9JdFtIMZzvYHP6H2vw+I8JQoEkYeKO38trMzHuvxo/urni
-	YKJCffIOyETc+3i2SNGyxveinhfCwkP5f65yqJ20P8p+Dayhfn8gCqGPl0gxfD7nKOYsvq
-	YVQo2PbUf8hvNZYA4StEpzUdPbzqpg6QwjSq5qKxj4JYCwGl2oeiYWO13htsEyYGv9GtFV
-	cLIW3F1BL/kLGSaxdF1XVwMB+LnFwqTpJW2SgfvquhmCrhWiYGpEY3TNtP8Glg==
-Date: Fri, 8 Nov 2024 18:39:58 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Saravana Kannan <saravanak@google.com>, Bjorn Helgaas
- <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-pci@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
- Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 5/6] of: Add #address-cells/#size-cells in the
- device-tree root empty node
-Message-ID: <20241108183958.0f136e01@bootlin.com>
-In-Reply-To: <CAL_JsqLWUSCJMU5LMz8X_0gU74YNy6-vRXGvY24ZpVj+EZW-sA@mail.gmail.com>
-References: <20241108143600.756224-1-herve.codina@bootlin.com>
-	<20241108143600.756224-6-herve.codina@bootlin.com>
-	<CAL_JsqJ-05tB7QSjmGvFLbKFGmzezJhukDGS3fP9GFtp2=BWOA@mail.gmail.com>
-	<20241108172946.7233825e@bootlin.com>
-	<CAL_JsqLWUSCJMU5LMz8X_0gU74YNy6-vRXGvY24ZpVj+EZW-sA@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	 MIME-Version:Content-Type; b=cV0zAVEqcWWaxZSlz97V61G+gKrj2zqHXnzxQKh2SG1rcu9o/VbRrdU+TB0P1tpDpVs5UM0zalRbnpYalb7IG9rEXm8YhqWxrvuqLKk7I9MUXGePFMR9xZUp7ajHWqYLkgYZkRCRRhoMBGxJR7vaJYymHT4hJJ06f6jl3A4K7tI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=E3Bi/Sjy; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=wBB+8hCTyd2m7Z6GTXu25olXNiRTxVMEW+Jjw45zRYQ=; b=E3Bi/SjyYTGX8PGyP5yMVmcZEi
+	Vk14b7t/g8S6znduaPSiyT8TdaF5dglB1h3Cq2qdgdbC+ZK2VTTAyrk7hlltdu6qEq8mgkpzyn2kL
+	EsAOmn+ExKStIAXH+GKT+4bb7mQYlGcIq1cnRIpXPrf1XWwf+9hU+fNlRlv2Tot0ZP5RUUpXweMmv
+	Uh1/5SZUXcLaVIWKJVD3f0ckM+SAuYPB9ly4UY1r3Db6oLUczjudKiIs1iXEDPgK1BuGfSmwdN1rf
+	9uXVYdnaaxTB5lIBYRlu9PuRKdWhr7t5nOfPF8y0DuI7+MT0uoTegyvgRb3T8yxT9OQsJpCu10OjI
+	1Hut1v2A==;
+Date: Fri, 8 Nov 2024 18:41:18 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Roger Quadros <rogerq@kernel.org>
+Cc: tony@atomide.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, hns@goldelico.com, linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ aaro.koskinen@iki.fi, khilman@baylibre.com, stable@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: ti/omap: gta04: fix pm issues caused by spi
+ module
+Message-ID: <20241108184118.5ee8114c@akair>
+In-Reply-To: <b26c1fa8-b3b7-4aa9-bc78-793ddfa3bc6b@kernel.org>
+References: <20241107225100.1803943-1-andreas@kemnade.info>
+	<b26c1fa8-b3b7-4aa9-bc78-793ddfa3bc6b@kernel.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, 8 Nov 2024 11:24:36 -0600
-Rob Herring <robh@kernel.org> wrote:
+Am Fri, 8 Nov 2024 14:42:14 +0200
+schrieb Roger Quadros <rogerq@kernel.org>:
 
-> On Fri, Nov 8, 2024 at 10:29 AM Herve Codina <herve.codina@bootlin.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Fri, 8 Nov 2024 10:03:31 -0600
-> > Rob Herring <robh@kernel.org> wrote:
+> > diff --git a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
+> > index 3661340009e7a..11f8af34498b1 100644
+> > --- a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
+> > +++ b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
+> > @@ -612,19 +612,23 @@ &i2c3 {
+> >  };
 > >  
-> > > On Fri, Nov 8, 2024 at 8:36 AM Herve Codina <herve.codina@bootlin.com> wrote:  
-> > > >
-> > > > On systems where ACPI is enabled or when a device-tree is not passed to
-> > > > the kernel by the bootloader, a device-tree root empty node is created.
-> > > > This device-tree root empty node doesn't have the #address-cells and the  
+> >  &mcspi1 {
+> > -	status = "disabled";  
 > 
-> > > > +       /*
-> > > > +        * #address-cells/#size-cells are required properties at root node
-> > > > +        * according to the devicetree specification. Use same values as default
-> > > > +        * values mentioned for #address-cells/#size-cells properties.  
-> > >
-> > > Which default? We have multiple...  
-> >
-> > I will reword:
-> >   Use values mentioned in the devicetree specification as default values
-> >   for #address-cells and #size-cells properties  
+> But according to commit a622310f7f01 ("ARM: dts: gta04: fix excess dma channel usage"),
+> these mcspi modules are not used. So it doesn't make sense to enable them even if it
+> seems to solve the power management issue?
 > 
-> My point was that "default" is meaningless because there are multiple
-> sources of what's default.
+They are not used, if they are just disabled, kernel does not touch
+them, so if it is there, the kernel can handle
+pm. At least as long as it is not under ti,sysc.
 
-I see thanks.
-I will update the code comment.
+There are probably cleaner solutions for this, but for a CC: stable I
+would prefer something less invasive.
 
-> 
-> > >
-> > > There's also dtc's idea of default which IIRC is 2 and 1 like OpenFirmware.  
-> >
-> > I can re-add this part in the commit log:
-> >   The device tree compiler already uses 2 as default value for address cells
-> >   and 1 for size cells. The powerpc PROM code also use 2 as default value
-> >   for #address-cells and 1 for #size-cells. Modern implementation should
-> >   have the #address-cells and the #size-cells properties set and should
-> >   not rely on default values.
-> >
-> > In your opinion, does it make sense?
-> >  
-> > >  
-> > > > +        */
-> > > > +       #address-cells = <0x02>;
-> > > > +       #size-cells = <0x01>;  
-> > >
-> > > I think we should just do 2 cells for size.  
-> >
-> > Why using 2 for #size-cells?
-> >
-> > I understand that allows to have size defined on 64bits but is that needed?
-> > How to justify this value here?  
-> 
-> Most systems are 64-bit today. And *all* ACPI based systems are. Not
-> that the DT has to match 32 vs 64 bit CPU, most of the time it does.
-> 
-> It also doesn't actually change anything for you because you're going
-> to have "pci" nodes and the "ranges" there takes #size-cells from the
-> pci node, not the parent.
-> 
+I can try a ti-sysc based fix in parallel.
 
-Right.
-I will set:
-  #address-cells = <0x02>;
-  #size-cells = <0x02>;
+> Does bootloader leave the mcspi modules in a unwanted state?
 
-Best regards,
-Hervé
+Or at least something related to them. 
+As said, for the blamed patch I checked only for CM_IDLEST1_CORE
+and CM_FCLKEN1_CORE.
+
+> Would it make sense for the bus driver to explicitly turn off all modules?
+
+Hmm, not very clear what you mean. AFAIK everything below ti-sysc gets
+turned off if a disable is in the child node. Explicitly disabling such
+stuff in the dtsi and enable it in the board dts sound sane
+to me at first glance. I think it is a common pattern. The question is
+whether that causes confusion with not ti-sysc stuff. Well, having
+status=okay everywhere in the dts should not harm.
+But as said for a regression fix some overhaul affecting every device 
+is out of scope.
+
+Regards,
+Andreas
 
