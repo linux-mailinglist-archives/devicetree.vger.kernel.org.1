@@ -1,127 +1,120 @@
-Return-Path: <devicetree+bounces-120105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA4CC9C1851
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 09:47:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E0DE9C185A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 09:49:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC2501C22B9F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 08:47:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB1CDB23109
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 08:48:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4965F1DE88C;
-	Fri,  8 Nov 2024 08:47:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uuGbqETA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DDF91E0DD4;
+	Fri,  8 Nov 2024 08:48:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED4041DED5A
-	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 08:47:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F45B1DEFEA;
+	Fri,  8 Nov 2024 08:48:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731055662; cv=none; b=ebD06ZP7DcXnYPLjBWO0lnKwn7TdrTdH+DNJs1do3Av0F1LwZtYZHB793JHHQowBUuC7B1VM+94ZRt4SulyeFZ//ZsgbXWfFSsTrdRb2YC1mSfx8pAyCJ569v2SxbkIRck9CtOAh8nLWjY5Cyo37q8SZAVQvjkeOFanU81t6U1Q=
+	t=1731055718; cv=none; b=J4J81BPiqixW09lyvXoQiMq4l9u5nGkWR3otAV9ee1VL9isYZwinkx8rH2RSZuYxTjsu5eLkgNWUNlUPcir5QWiEtjz+r2GQxHkHXAh+jeB+6cfwXHCMpqsqnKDNNmp7vyRgfkJijiVnagrdbT96sZK0FbHyp8MiOT0S8wRkWaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731055662; c=relaxed/simple;
-	bh=Kw5vsWimu0DEEJoOvAz3DPc5YUBq+0ME6wv92iHkafY=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Gf5pfSu/LH+6APiKqacd07CgjLDS/cuGgsdJhtc59CRz+nrh8zJxF5w1FM9KNlqzuo0Awrru/7zwgFov+CKPusMh61UTCu0E3aNPCF6+13j+KpQbJ7/+m0N7Av21Cm6GQ9I/WFqEGSKmaVA5rB0E6k9Kcl6ZmpLvaMs9QsV2yjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=uuGbqETA; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37d6a2aa748so1131214f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 00:47:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731055658; x=1731660458; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=A9AD8kCT+nT+KZ2MXqSRYTX2q6sk9d7vkvCTtFjV2TU=;
-        b=uuGbqETA371S6SHpohC0xK3YcB5FlvBkXXCwMnvgs2IxyBSKc/dM2wgbrbxhtSV745
-         +SdrlLisixi8yis2r3mmxfRxlTNeGxNnAvyvorKa21ue2p0IvieF2sKG3EAeJxxwsNLX
-         uD9kRGbXKAXIcu9qenHA/4xF+CMmWHIQsuWbJ52fkDZU7+PkXcKtfCtvdAohO7dV8lZM
-         vJOKw2sLHfp/Pdj827FjGwckhAL1Y0s/NMbYMfMMjS15rfIMwUmoAn2efOLku/vGf/ZO
-         3i7yM7aVOQNbBGTt8yImhG2/ueR/jeGgiFhPPn2nW80LrY7NOU8IW5vSDByrXiVBFtd3
-         ngJw==
+	s=arc-20240116; t=1731055718; c=relaxed/simple;
+	bh=1qAixj43NVFBvzsuUWAIQWmgXDo5KhH78TyCF5Iew/U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iLsYvtb4s8S9aZYcV5jCDw87/ByQ7d6IJv7PxGc2sWmdtNMqUBQBgSabiwegm5GycWJ9y77xVn2EqKDbUjRN89dmJgAyfjiug+X9C1r52fGo29yzTOjxXT6wfVSmTPN7/kPp/7+ARX9zVjnrR48wDtaVc7BkHoytdeJrga1LKMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e290200a560so1887754276.1;
+        Fri, 08 Nov 2024 00:48:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731055658; x=1731660458;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A9AD8kCT+nT+KZ2MXqSRYTX2q6sk9d7vkvCTtFjV2TU=;
-        b=WHzB/fNVB8IZUKTBB3KJksjrNPf5/3fD3AHhneVYQmdhQ6RDRHYrknIXjGfipuXwdm
-         yQXOspyGsG5zASCa1cO2aTM6uwvpvxZ2jfY91KwQPilnzdHqOOOc34ZnYW17kOD59jbD
-         kIy40dDZA9Gf4hqxaeGt3w2Rb6+IjcW8ZfJilLqPqqsSsH8fWyzFGACNNw+j+PD615Lu
-         vxo/EhZxLkW2kpqZsAoNwGO3JIM1fxph9mpa20yOwFOvk/FkUbggxKa94RwYti7ArdvR
-         P1/ADMb6FnoUlPdNl1xWUCJdF/yjWrL/mtpBAgyG0HQbiVyTn3r8RNmrxFqED0HwmU8/
-         74Jw==
-X-Forwarded-Encrypted: i=1; AJvYcCUjPvKyw5l092dG9+Jp18EuiXGiNcDtKgcxJocU/Px4QL07FlBsE4UoVTX5bnMyBjvjEkcgCGNfVc2F@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgYAh+okESu71LxthSRhXaqdm/cQI+eFo9arlZazUtaLfqhmhy
-	PK2Vn2buwLAxET5VCGXeVC9Qe+/nvT3glThAA/MBZo4OrOZZAc9kqz2+JkFgboiyykvXL4gkh1H
-	q
-X-Google-Smtp-Source: AGHT+IEGxCmPOWLzM0bzj/TXKrnSrKDuB1/okZ3cbyLHE4zCDXwSir+KcCmZbuM3Pt/+K5DFnkIxNg==
-X-Received: by 2002:a05:6000:2aa:b0:37e:f1ed:67e8 with SMTP id ffacd0b85a97d-381f186dd5cmr1454470f8f.35.1731055658002;
-        Fri, 08 Nov 2024 00:47:38 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:ecfd:9f8d:62a3:6ba8])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381ed970e23sm3930442f8f.18.2024.11.08.00.47.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Nov 2024 00:47:37 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Jean Delvare <jdelvare@suse.com>,  Jonathan Corbet <corbet@lwn.net>,
-  Patrick Rudolph <patrick.rudolph@9elements.com>,  Naresh Solanki
- <naresh.solanki@9elements.com>,  Rob Herring <robh@kernel.org>,  Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-  linux-hwmon@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-doc@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-i2c@vger.kernel.org,  Vaishnav Achath <vaishnav.a@ti.com>
-Subject: Re: [PATCH v4 7/7] hwmon: (pmbus/tps25990): add initial support
-In-Reply-To: <df0db75a-b5e1-4bd8-8a59-de85b0a77fa5@roeck-us.net> (Guenter
-	Roeck's message of "Wed, 6 Nov 2024 10:59:11 -0800")
-References: <20241105-tps25990-v4-0-0e312ac70b62@baylibre.com>
-	<20241105-tps25990-v4-7-0e312ac70b62@baylibre.com>
-	<df0db75a-b5e1-4bd8-8a59-de85b0a77fa5@roeck-us.net>
-Date: Fri, 08 Nov 2024 09:47:36 +0100
-Message-ID: <1jpln62jtj.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20230601; t=1731055715; x=1731660515;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ecEDt1lJOmPu8q4ArxHuiYSrzWLT2wQdzWYf+ZUa9tQ=;
+        b=gRs8WAMbDafGYFwFz1fbqciISHGh2lpNUav70htaEDVxri8SWL47l01zbvK+zB3tmn
+         bCTbfTFa/h77lQ9wShdE0SuSA2f0DvM43bPE9dX2j01bgEPmJ3paz6yWJ+EZ+qZp66Vu
+         i3SKIa6+B35LDZSR7c7kqyL69WGT0FjYlnM9Owu+EOrZ3ee9SYPv/RypGhf81SUp5z0s
+         A1Eu3dZYd7WhDlbkNfWqvVih0zo+jPUnP3321Qkw+SyXyBd/Zw3U24flYZ9pucCmKnOI
+         pD6/7K9x/Gk2JYypOv19yiuHl4peG4bjf1gp3NQA25rGGMkGCVLrv+jmFq8D++A2c2cq
+         Tg0A==
+X-Forwarded-Encrypted: i=1; AJvYcCUlNfPPk4j0pnVczqoB5hq3crd0DV5bgdscgOXpCh2x/tcXbmC1W7lhn8K7MuZ5y1bIKpaivXs4bvj2xk33@vger.kernel.org, AJvYcCXQ6MQk/ZZddcrw6T2PRvqzj/iN3I6rKAoEQsHjTrLfPe/Nlw2MSXVcqHm5HRjUGsOuC9Iw9c/UKzEt@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywv7CY7m4V728AwubXmlZJ5Zo40f5DKmbu2Ffgg+5Q9cLSzXxwd
+	TkFZVuR/0QQCTzIcp7PBJ7nQWcRYGagvNrqL679oZj1AA4Mhecwun4W6F703
+X-Google-Smtp-Source: AGHT+IGspKFfiqyL2wYQxw2XmN4TgucJ1RzYLDvHmzEYKNDVReuvUgme6jtR5GFyxKCoAb5qwZgeUg==
+X-Received: by 2002:a05:6902:2b0c:b0:e30:e2c1:cf4a with SMTP id 3f1490d57ef6-e337f83f0c3mr2361825276.2.1731055714855;
+        Fri, 08 Nov 2024 00:48:34 -0800 (PST)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e336ee155f1sm652916276.11.2024.11.08.00.48.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Nov 2024 00:48:34 -0800 (PST)
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e30eca40dedso1864361276.3;
+        Fri, 08 Nov 2024 00:48:34 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVeAnsw2xQbiXScWg1nS8k4LdJ/5tqTXkOct7YoXbwhWD2R3E9Gu/2s6+Z19EY+r3xLYeXLv6C8a3ksGSDF@vger.kernel.org, AJvYcCWetFctMRNHT9OD8c+4Kp5m445G8hP1c67HtTkbUo8+7quiQghvCU0wKj4m3EVcn7+U/EJWA7xYV2Lh@vger.kernel.org
+X-Received: by 2002:a05:690c:4c0b:b0:6e3:31e8:7155 with SMTP id
+ 00721157ae682-6eaddfb8f93mr20220047b3.40.1731055714114; Fri, 08 Nov 2024
+ 00:48:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20241106171028.3830266-1-robh@kernel.org> <87jzdfcm3l.fsf@mpe.ellerman.id.au>
+In-Reply-To: <87jzdfcm3l.fsf@mpe.ellerman.id.au>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 8 Nov 2024 09:48:22 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWk83QpTcbuBz=m6UZ+ShFM4rTt_UL-frzR3LmAf_Tb2Q@mail.gmail.com>
+Message-ID: <CAMuHMdWk83QpTcbuBz=m6UZ+ShFM4rTt_UL-frzR3LmAf_Tb2Q@mail.gmail.com>
+Subject: Re: [PATCH v2] of: WARN on deprecated #address-cells/#size-cells handling
+To: Michael Ellerman <mpe@ellerman.id.au>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, linuxppc-dev@lists.ozlabs.org, 
+	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed 06 Nov 2024 at 10:59, Guenter Roeck <linux@roeck-us.net> wrote:
-
->> +
->> +static int tps25990_mfr_write_protect_set(struct i2c_client *client,
->> +					  u8 protect)
->> +{
->> +	/*
->> +	 * The chip has a single protection mode, set it regardless of
->> +	 * the specific protection requested
->> +	 */
->> +	return pmbus_write_byte_data(client, -1, TPS25990_MFR_WRITE_PROTECT,
->> +				     protect ? 0x0 : 0xa2);
+On Thu, Nov 7, 2024 at 12:37=E2=80=AFPM Michael Ellerman <mpe@ellerman.id.a=
+u> wrote:
+> "Rob Herring (Arm)" <robh@kernel.org> writes:
+> > While OpenFirmware originally allowed walking parent nodes and default
+> > root values for #address-cells and #size-cells, FDT has long required
+> > explicit values. It's been a warning in dtc for the root node since the
+> > beginning (2005) and for any parent node since 2007. Of course, not all
+> > FDT uses dtc, but that should be the majority by far. The various
+> > extracted OF devicetrees I have dating back to the 1990s (various
+> > PowerMac, OLPC, PASemi Nemo) all have explicit root node properties.
 >
-> After some thought, I think it would be better to reject all protect values
-> other than 0 (no write protection) and PB_WP_ALL because that is what the chip
-> supports. Something like
+> I have various old device trees that have been given to me over the
+> years, and as far as I can tell they all have these properties (some of
+> them are partial trees so it's hard to be 100% sure).
 
-Since operation would not be allowed, it's maps the closest indeed.
+Apparently CHRP LongTrail only had #address-cells in the root node.
+Interestingly, /cpus does have a (zero) @size-cells property.
+http://g33rt.be/migrated/Linux/PPC/root.html
+http://g33rt.be/migrated/Linux/PPC/DeviceTree.html
 
->
-> 	if (protect & ~PB_WP_ALL)
-> 		return -ENXIO;		// or -EINVAL ? Not really sure.
+No idea if any of them are still alive.
 
-The command is supported but the argument would not be, so -EINVAL seems
-appropriate to me.
+> So LGTM.
 
->
-> Thanks,
-> Guenter
+Indeed.
 
--- 
-Jerome
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
