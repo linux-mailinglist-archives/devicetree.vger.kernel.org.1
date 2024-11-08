@@ -1,109 +1,153 @@
-Return-Path: <devicetree+bounces-120350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E1749C23EF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 18:47:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 739A39C2429
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 18:52:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC0C1B257D5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:47:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33D1328283A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29CF021CF9B;
-	Fri,  8 Nov 2024 17:36:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F10E20DD7D;
+	Fri,  8 Nov 2024 17:40:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IT942eBZ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NwXAzx19"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BA68231C93
-	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 17:36:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E484E233D6D;
+	Fri,  8 Nov 2024 17:40:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731087376; cv=none; b=QLyz8oA8JcEiJACpCXv9HPUDNK4JNCYcQ68LMLDNoegIJ5oFS/RS/EmTl8v06V/n3DjwbgoVUy/Lc/yqMSdV6cAA9eC7CdHHDtPbS972uWmHLlAHBj2zTyO+Fb/MbE9+M5XEt9d/w4qjzxcb9fUtSc8uG0neijjqAb1jXwwTpy8=
+	t=1731087610; cv=none; b=Xr5lMqgqbr3Ujd04C2MXQm9BoscjdYKsvoxJZhmx+hwL39pyY6O4z6avXLTRUIEaOC6JJQHHnfHjbmtCVz/1bdDdMm9PGbVwspk+mYqRAj7ue8kg++r8sEzezY3glxTz2IR3FLxCLyset3vMmJ3q0qLnr8Y7dYNGbilgoQEeQXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731087376; c=relaxed/simple;
-	bh=UBSwk2uyPAnNAEqDMvDOCQ3Cpd7emo8eshhstWEooXs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gFKf5CHheniZzVP5aFu7TR1haUOo8KTy1CTVYivoY4I+zrI/E74H2U3YH0tOYa7HTFolFBOMxnDRgmOju9umestkquaRm2aTKozbeV3UNEW59WsCKtLClSs2YunhXi7nIYpW7LAmu/vyChRQaDSMUSuK7YE8fArBtBjKY3d5u4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IT942eBZ; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43168d9c6c9so20247775e9.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 09:36:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731087373; x=1731692173; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=24rUIfwiGyBziK1kSY2+b5Nvpi1meTWCMZaQMdMFtck=;
-        b=IT942eBZUyAp9jQJTzBlfn6GqNP4Y97xDyHuWe7L5T2oEqM4U2ZIo274CEGZ+aagkf
-         oyrSrnJ7b9ehFsPtGvPpP4Fzm7P6At/B6XUTHZba80JFT8ITOKXMTaHq4KpgZwhGdGWy
-         TcYF52pKH4ds19C6GX7JRJz5uTJUDavXKPxgWHX3v5K1Et230oAG8t3YvVOIOCSmjKXR
-         KBRfgy97ybgdu2yFx2XoO+7NKNdT8kKl4sT5NFA7m/lCBMeBSJuxdVUarptPcjYpjDfI
-         u6WXFk72YbAT1odpHrnwPl2kY5Y4pef2WX5RolGcXCPD9zVEhtjmTKW8AFJ5qPvRvS9q
-         yxVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731087373; x=1731692173;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=24rUIfwiGyBziK1kSY2+b5Nvpi1meTWCMZaQMdMFtck=;
-        b=ISRHRIoXJnWJvvFBuhD5Dro2EYcq/SMWjIXZHAiJ866ZHvd2408V8wYIgykXx1AoUu
-         w/s1DHC9u0NQgJgccPlZe8E0Sh+ZOH7XeVVLAKIteJq+by7k5KUNTQs3oF9noEMjQIpc
-         00s+7DFcKRy+F5jM3PP7NdvPxl6nffNtvXR7/G2qC1HGmNznfchxYmF3VXkJs+WuPvRI
-         M9GnVIZP4Q6BNPX67U2gu04kUkB4V/PJdy3c9DdMrs0Y79ZII8Tg6aVAneApoCaVaT3P
-         4OZWNSzu+NHF/qaeGtqTj9tYWYVAZuxE2vgmv5078tRZ5QO13JyT2KDsRY9GJZgp3X0X
-         trnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX2o94yc9Q2il7vBZayB4DJGfuwXr30eYxeabMc48W/KM+WAUGYSm9bfWgvQkl+us/CVQwb2Od1yVO+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5gusCGmQTl4dkQQ8vaEKCIaq/VSxP3Iyu8uUcq1gMErm7FW9E
-	Bnn23qUjxkTx9ARMZgglH1LqreIcLxPirQnbpHI9ns/wALv/fy9C7RRXsg0tl2E=
-X-Google-Smtp-Source: AGHT+IFB4cQNv5E0di1VK1U5QifG33FuDYlnKtO6ciqXhye/GnzodGjwkiWo7tPy7OZ37dGOU9CmJQ==
-X-Received: by 2002:a5d:59a6:0:b0:37d:4d3f:51e6 with SMTP id ffacd0b85a97d-381f186bf72mr3099046f8f.14.1731087372779;
-        Fri, 08 Nov 2024 09:36:12 -0800 (PST)
-Received: from [192.168.0.48] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381ed97cfaesm5482406f8f.38.2024.11.08.09.36.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Nov 2024 09:36:12 -0800 (PST)
-Message-ID: <f6c2aea7-3363-4c29-bdd8-ee3f6dd1a642@linaro.org>
-Date: Fri, 8 Nov 2024 17:36:18 +0000
+	s=arc-20240116; t=1731087610; c=relaxed/simple;
+	bh=iiARu0Nk8CVwQ3QQGwPP6meCN98PtNxkPO57n5KBjcg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=O8XfrDEQkC1IgGk5QIutUQwP2qcnqp1iXcYxH/vCYWK6uKv3gTSpavyRo2vYBPqV6OdctSlaTHw5kvoZF1vKLqcXw+2wJVrkbyfxsgaFXy3tcpoyOFwLF/S7vjTA2Wt/8hXUywQcybio1LsZFV1KOZrxFRwSIbtUBwiXo8s44VI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NwXAzx19; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E556FFF806;
+	Fri,  8 Nov 2024 17:39:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1731087599;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BKjz3h86srqcmGB/4sy6wbmzDtox3/nU1f7+fBVoTIw=;
+	b=NwXAzx19offAOxoDGjSswAn7NfEKz//W0s4o79RGt3hwiTkahsETewN16ig6ShFREDru8S
+	C1nLnyJJQsdEWHSAcSwYZ/vG9JdFtIMZzvYHP6H2vw+I8JQoEkYeKO38trMzHuvxo/urni
+	YKJCffIOyETc+3i2SNGyxveinhfCwkP5f65yqJ20P8p+Dayhfn8gCqGPl0gxfD7nKOYsvq
+	YVQo2PbUf8hvNZYA4StEpzUdPbzqpg6QwjSq5qKxj4JYCwGl2oeiYWO13htsEyYGv9GtFV
+	cLIW3F1BL/kLGSaxdF1XVwMB+LnFwqTpJW2SgfvquhmCrhWiYGpEY3TNtP8Glg==
+Date: Fri, 8 Nov 2024 18:39:58 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Saravana Kannan <saravanak@google.com>, Bjorn Helgaas
+ <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-pci@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 5/6] of: Add #address-cells/#size-cells in the
+ device-tree root empty node
+Message-ID: <20241108183958.0f136e01@bootlin.com>
+In-Reply-To: <CAL_JsqLWUSCJMU5LMz8X_0gU74YNy6-vRXGvY24ZpVj+EZW-sA@mail.gmail.com>
+References: <20241108143600.756224-1-herve.codina@bootlin.com>
+	<20241108143600.756224-6-herve.codina@bootlin.com>
+	<CAL_JsqJ-05tB7QSjmGvFLbKFGmzezJhukDGS3fP9GFtp2=BWOA@mail.gmail.com>
+	<20241108172946.7233825e@bootlin.com>
+	<CAL_JsqLWUSCJMU5LMz8X_0gU74YNy6-vRXGvY24ZpVj+EZW-sA@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 04/11] clk: qcom: camcc-qcs615: Add QCS615 camera clock
- controller driver
-To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20241108-qcs615-mm-clockcontroller-v3-0-7d3b2d235fdf@quicinc.com>
- <20241108-qcs615-mm-clockcontroller-v3-4-7d3b2d235fdf@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20241108-qcs615-mm-clockcontroller-v3-4-7d3b2d235fdf@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 08/11/2024 04:09, Taniya Das wrote:
-> +	.alpha_en_mask = BIT(24),
-> +	.vco_val = BIT(21),
-> +	.vco_mask = GENMASK(21, 20),
+On Fri, 8 Nov 2024 11:24:36 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-Thanks for following up on this.
+> On Fri, Nov 8, 2024 at 10:29 AM Herve Codina <herve.codina@bootlin.com> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Fri, 8 Nov 2024 10:03:31 -0600
+> > Rob Herring <robh@kernel.org> wrote:
+> >  
+> > > On Fri, Nov 8, 2024 at 8:36 AM Herve Codina <herve.codina@bootlin.com> wrote:  
+> > > >
+> > > > On systems where ACPI is enabled or when a device-tree is not passed to
+> > > > the kernel by the bootloader, a device-tree root empty node is created.
+> > > > This device-tree root empty node doesn't have the #address-cells and the  
+> 
+> > > > +       /*
+> > > > +        * #address-cells/#size-cells are required properties at root node
+> > > > +        * according to the devicetree specification. Use same values as default
+> > > > +        * values mentioned for #address-cells/#size-cells properties.  
+> > >
+> > > Which default? We have multiple...  
+> >
+> > I will reword:
+> >   Use values mentioned in the devicetree specification as default values
+> >   for #address-cells and #size-cells properties  
+> 
+> My point was that "default" is meaningless because there are multiple
+> sources of what's default.
 
----
-bod
+I see thanks.
+I will update the code comment.
+
+> 
+> > >
+> > > There's also dtc's idea of default which IIRC is 2 and 1 like OpenFirmware.  
+> >
+> > I can re-add this part in the commit log:
+> >   The device tree compiler already uses 2 as default value for address cells
+> >   and 1 for size cells. The powerpc PROM code also use 2 as default value
+> >   for #address-cells and 1 for #size-cells. Modern implementation should
+> >   have the #address-cells and the #size-cells properties set and should
+> >   not rely on default values.
+> >
+> > In your opinion, does it make sense?
+> >  
+> > >  
+> > > > +        */
+> > > > +       #address-cells = <0x02>;
+> > > > +       #size-cells = <0x01>;  
+> > >
+> > > I think we should just do 2 cells for size.  
+> >
+> > Why using 2 for #size-cells?
+> >
+> > I understand that allows to have size defined on 64bits but is that needed?
+> > How to justify this value here?  
+> 
+> Most systems are 64-bit today. And *all* ACPI based systems are. Not
+> that the DT has to match 32 vs 64 bit CPU, most of the time it does.
+> 
+> It also doesn't actually change anything for you because you're going
+> to have "pci" nodes and the "ranges" there takes #size-cells from the
+> pci node, not the parent.
+> 
+
+Right.
+I will set:
+  #address-cells = <0x02>;
+  #size-cells = <0x02>;
+
+Best regards,
+Hervé
 
