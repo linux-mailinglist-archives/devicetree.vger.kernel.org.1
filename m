@@ -1,167 +1,230 @@
-Return-Path: <devicetree+bounces-120338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8E899C222A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:33:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A58979C2248
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:41:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34AEC1F22469
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 16:33:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C81BD1C26148
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 16:41:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 557D018EFDE;
-	Fri,  8 Nov 2024 16:33:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA9B1993BD;
+	Fri,  8 Nov 2024 16:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lv9ltHn0"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="g3nGu8Bt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 266C11BD9DB;
-	Fri,  8 Nov 2024 16:33:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731083620; cv=none; b=QovavDLXiXKE2mVM5zvl87z63WLtfQKWZtJMX5AMoPppkNMjSeocHQpFmazwwzy86R8sV3lJ7MFPYrfJPiZv0G9EBVcmxs4aRne/kNCcpmSSCN+5FRMmo46a5Xbz+cMIjrTTkFlhBmIadyyRhU0Gglsmg7VzYWBfXtvQ3bomhvQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731083620; c=relaxed/simple;
-	bh=Xy9SXkJxDKG4wi0f9Sva0OdceC+je7kXOaR1Fvhuk4Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=ZaMwaPu/9JcGl4PBrq4ncsWAGSiu4/pwnDWQDs5DVFBAfTsDLiohRNNt6pdgu6OKdlB1dNq0PjTFU6KmX6N831MqJox8gYFUABR1EmMo7ffcEQKI+uv3Ecu+zryrXGP6BVlgyp0TcjAMiL+9MWljutSI6ADDtzviS/mrxeLuxSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lv9ltHn0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87664C4CED3;
-	Fri,  8 Nov 2024 16:33:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731083619;
-	bh=Xy9SXkJxDKG4wi0f9Sva0OdceC+je7kXOaR1Fvhuk4Q=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=lv9ltHn0wFgSpHXb8kslpVm8PArdkSIuQuJE5snpS1yI2IVOWksdVjn8nUo7aykjq
-	 VF3j8ToVG0p5CUcoMmdui72l9m+UABLLU+2fviSDfOQwzw5La16QIau1UGD1TpY+4m
-	 Wpgfwsi2SUAzEOunb8IhHZWjJIgl9vK6FWbxUZVcMGXhWZOD2FFiNqROABA2M8BsdU
-	 J/bByy2pPBtM+wRvtPfQkEjUNJ9VdOlrD/PdgKJiBhCPEc1AJnHa9yeTVQbni7lfhR
-	 BWx5efRqQx6QPf/CAKmr07g17TCcFAyzUDRXIa7NPlqjO3g5NUbd9/6zcb01tNejWM
-	 nV2w2n4JvRklQ==
-Date: Fri, 8 Nov 2024 10:33:38 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Hui Ma =?utf-8?B?KOmprOaFpyk=?= <Hui.Ma@airoha.com>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	Ryder Lee <Ryder.Lee@mediatek.com>,
-	Jianjun Wang =?utf-8?B?KOeOi+W7uuWGmyk=?= <Jianjun.Wang@mediatek.com>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
-	"bhelgaas@google.com" <bhelgaas@google.com>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"lorenzo.bianconi83@gmail.com" <lorenzo.bianconi83@gmail.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"nbd@nbd.name" <nbd@nbd.name>, "dd@embedd.com" <dd@embedd.com>,
-	upstream <upstream@airoha.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: Re: =?utf-8?B?5Zue5aSNOiBbUEFUQw==?= =?utf-8?Q?H?= v4 4/4] PCI:
- mediatek-gen3: Add Airoha EN7581 support
-Message-ID: <20241108163338.GA1663274@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E4FB19414A;
+	Fri,  8 Nov 2024 16:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731084052; cv=pass; b=cdY/6fztuFoJ8W2o70s3QT6UEONyz+gVZBVlXrll03Wr4SpTJZyrNZW0iJZp+6WfcJfJZ7pZmMPKexpJ2xI5ziskr23kj3UoQ8Ijcg5mBYZSHOGEMbYoy0SHvtcvW8aXrUTdDA3kCu5FOGDw4jaJCmLGj+EAyVJc06B8zx0jHrk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731084052; c=relaxed/simple;
+	bh=9akKl0Fm3dQUhvXK24huAwurs1YZRTNPplRT0fsWtnw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tg1eq7cm2Qv88dIVd2+5X0M0ZLRr4HiXAL+kEMsp9Udau3SgYDAEihxVWJIBe64kzjrbndOiEk63+v710YkqKVK4O8jSnfBlc8G6V00LOzYPl3WBUwGbRHNRGSX87ufyUT9TPIhffOpFbx1UvyLoBn0NLnYU8gG0WjFkBwFmmlI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=g3nGu8Bt; arc=pass smtp.client-ip=136.143.188.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1731084007; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=kMBT7aXZMRHb9dlcAQR0f39OWKGOMxfoMaV3v0k3ji9AISTCzGboFxVq3Mtd09FaUo8E3E6k8CjPbxU+WhIvFv2YLpw8/sDTR+0hrXXnUKPREQz6rtgE+m5pHK5BwEt2BcAfoyBwn/hzC+mRmZu4bZn8DkPwZxUwTlwquCKXpVI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1731084007; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=zGW5K4Z5kc/vSl3bz25b30mPWd8sGZbhmSQVIloBb6Y=; 
+	b=K2QHm+eD9NrEzfdLEakHRuzUtYiQBZ1YpWKRU4H/yxNcf8C9nRZ8r3oTiq1QUtdLVsVl3xQc+jo+fhZH9IZWmyZFBVHE8sdPwWDOBWrWatdpX4yHlyLyDuNHiNmoGD7B5ilHVmj6tX4i0Y/jYg8eyOQHUxZ/H/XSUaN9nVny6Ts=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1731084007;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=zGW5K4Z5kc/vSl3bz25b30mPWd8sGZbhmSQVIloBb6Y=;
+	b=g3nGu8BtvOegMI7iWOw8v6SERxvHosLnzsy4xET800NfmNh6cDKO1EHbiF62ilEH
+	dF0IMNC23rV2s8u8kDnC8LDcWwIAHMmIaMOp94mf4coSiKAObUGHQV0196EryvqdyU/
+	Z1tmu6hJrxcg8uFagT48w19VlNx0ezT1/ytIgEF4=
+Received: by mx.zohomail.com with SMTPS id 1731084004452888.298092585493;
+	Fri, 8 Nov 2024 08:40:04 -0800 (PST)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: Andy Yan <andyshrk@163.com>
+Cc: linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko.stuebner@cherry.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Dragan Simic <dsimic@manjaro.org>, Chris Morgan <macromorgan@hotmail.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ kernel@collabora.com
+Subject: Re: [PATCH v2 1/3] vop2: Add clock resets support
+Date: Fri, 08 Nov 2024 11:39:57 -0500
+Message-ID: <4605629.LvFx2qVVIh@trenzalore>
+In-Reply-To: <6a3d3fb1.3755.18fa893239e.Coremail.andyshrk@163.com>
+References:
+ <20240522185924.461742-1-detlev.casanova@collabora.com>
+ <20240522185924.461742-2-detlev.casanova@collabora.com>
+ <6a3d3fb1.3755.18fa893239e.Coremail.andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <KL1PR03MB6350EF22DE289B293D34FD6FFF5D2@KL1PR03MB6350.apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
 
-On Fri, Nov 08, 2024 at 01:23:35AM +0000, Hui Ma (马慧) wrote:
-> > On Thu, Nov 07, 2024 at 05:21:45PM +0100, Lorenzo Bianconi wrote:
-> > > On Nov 07, Bjorn Helgaas wrote:
-> > > > On Thu, Nov 07, 2024 at 08:39:43AM +0100, Lorenzo Bianconi wrote:
-> > > > > > On Wed, Nov 06, 2024 at 11:40:28PM +0100, Lorenzo Bianconi wrote:
-> > > > > > > > On Wed, Jul 03, 2024 at 06:12:44PM +0200, Lorenzo Bianconi wrote:
-> > > > > > > > > Introduce support for Airoha EN7581 PCIe controller to 
-> > > > > > > > > mediatek-gen3 PCIe controller driver.
-> > > > > > > > > ...
-> > > > 
-> > > > > > > > Is this where PERST# is asserted?  If so, a comment to 
-> > > > > > > > that effect would be helpful.  Where is PERST# deasserted?  
-> > > > > > > > Where are the required delays before deassert done?
-> > > > > > > 
-> > > > > > > I can add a comment in en7581_pci_enable() describing the 
-> > > > > > > PERST issue for EN7581. Please note we have a 250ms delay in 
-> > > > > > > en7581_pci_enable() after configuring REG_PCI_CONTROL register.
-> > > > > > > 
-> > > > > > > https://github.com/torvalds/linux/blob/master/drivers/clk/cl
-> > > > > > > k-en7523.c#L396
-> > > > > > 
-> > > > > > Does that 250ms delay correspond to a PCIe mandatory delay, 
-> > > > > > e.g., something like PCIE_T_PVPERL_MS?  I think it would be 
-> > > > > > nice to have the required PCI delays in this driver if 
-> > > > > > possible so it's easy to verify that they are all covered.
-> > > > > 
-> > > > > IIRC I just used the delay value used in the vendor sdk. I
-> > > > > do not have a strong opinion about it but I guess if we move
-> > > > > it in the pcie-mediatek-gen3 driver, we will need to add it
-> > > > > in each driver where this clock is used. What do you think?
-> > > > 
-> > > > I don't know what the 250ms delay is for.  If it is for a required 
-> > > > PCI delay, we should use the relevant standard #define for it, and 
-> > > > it should be in the PCI controller driver.  Otherwise it's 
-> > > > impossible to verify that all the drivers are doing the correct delays.
-> > > 
-> > > ack, fine to me. Do you prefer to keep 250ms after 
-> > > clk_bulk_prepare_enable() in mtk_pcie_en7581_power_up() or just use PCIE_T_PVPERL_MS (100)?
-> > > I can check if 100ms works properly.
-> > 
-> > It's not clear to me where the relevant events are for these chips.
-> > 
-> > Do you have access to the PCIe CEM spec?  The diagram in r6.0, sec 
-> > 2.2.1, is helpful.  It shows the required timings for Power Stable, 
-> > REFCLK Stable, PERST# deassert, etc.
-> > 
-> > Per sec 2.11.2, PERST# must be asserted for at least 100us (T_PERST), 
-> > PERST# must be asserted for at least 100ms after Power Stable 
-> > (T_PVPERL), and PERST# must be asserted for at least 100us after 
-> > REFCLK Stable.
-> > 
-> > It would be helpful if we could tell by reading the source where some 
-> > of these critical events happen, and that the relevant delays are 
-> > there.  For example, if PERST# is asserted/deasserted by 
-> > "clk_enable()" or similar, it's not at all obvious from the code, so 
-> > we should have a comment to that effect.
-> 
-> >I reviewed the vendor sdk and it just do something like in clk_enable():
+On Thursday, 23 May 2024 23:09:26 EST Andy Yan wrote:
+> Hi Detlev=EF=BC=8C
+>=20
+> At 2024-05-23 02:57:48, "Detlev Casanova" <detlev.casanova@collabora.com>=
+=20
+wrote:
+> >At the end of initialization, each VP clock needs to be reset before
+> >they can be used.
 > >
-> >	...
-> >	val = readl(0x88);
-> >	writel(val | BIT(16) | BIT(29) | BIT(26), 0x88);
-> >	/*wait link up*/
-> >	mdelay(1000);
-> >	...
+> >Failing to do so can put the VOP in an undefined state where the
+> >generated HDMI signal is either lost or not matching the selected mode.
+>=20
+> Would you please provide a detailed description of your test case?
+
+The test case was to switch modes (using modetest) until the HDMI signal wa=
+s=20
+lost on the TV side. It was also possible to detect the issue by tracking t=
+he=20
+HDMI TX Controller_VIDEO_MONITOR_STATUS[1-6] registers, especially at addre=
+ss=20
+0x890, where the register would take the value `0x0000018c`.
+
+After adding these resets, the issue cannot be reproduced. I can share a=20
+script that reproduced this in the past (but this is an old patchset now, s=
+o=20
+things could have changed)
+
+> >Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> >---
 > >
-> >@Hui.Ma: is it fine use msleep(100) (so PCIE_T_PVPERL_MS) instead
-> >of msleep(1000) (so PCIE_LINK_RETRAIN_TIMEOUT_MS)?
->
-> 	I think msleep(1000) will be safer, because some device won't
-> 	link up with msleep(100).
+> > drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 30 ++++++++++++++++++++
+> > 1 file changed, 30 insertions(+)
+> >
+> >diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> >b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c index
+> >fdd768bbd487c..e81a67161d29a 100644
+> >--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> >+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> >@@ -17,6 +17,7 @@
+> >
+> > #include <linux/platform_device.h>
+> > #include <linux/pm_runtime.h>
+> > #include <linux/regmap.h>
+> >
+> >+#include <linux/reset.h>
+> >
+> > #include <linux/swab.h>
+> >=20
+> > #include <drm/drm.h>
+> >
+> >@@ -157,6 +158,7 @@ struct vop2_win {
+> >
+> > struct vop2_video_port {
+> >=20
+> > 	struct drm_crtc crtc;
+> > 	struct vop2 *vop2;
+> >
+> >+	struct reset_control *dclk_rst;
+> >
+> > 	struct clk *dclk;
+> > 	unsigned int id;
+> > 	const struct vop2_video_port_data *data;
+> >
+> >@@ -1915,6 +1917,26 @@ static int us_to_vertical_line(struct
+> >drm_display_mode *mode, int us)>
+> > 	return us * mode->clock / mode->htotal / 1000;
+> >=20
+> > }
+> >
+> >+static int vop2_clk_reset(struct vop2_video_port *vp)
+> >+{
+> >+	struct reset_control *rstc =3D vp->dclk_rst;
+> >+	struct vop2 *vop2 =3D vp->vop2;
+> >+	int ret;
+> >+
+> >+	if (!rstc)
+> >+		return 0;
+>=20
+> In fact, this check is not necessary here.  The following reset control a=
+pi
+> will check for NULL pointer
 
-Do you have details about this?  I guess it only hurts mediatek, but
-increasing the minimum time to bring up a PCI hierarchy by almost an
-entire second is a pretty big deal.
+Agreed, I'll do a rebased v3 and remove the check.
 
-If this delay corresponds to the required T_PVPERL delay and 100ms
-isn't enough for some endpoints, those endpoints should fail with many
-host controllers, not just mediatek, so I would suspect the mediatek
-controller or a certain platform, not the endpoint itself.
+> >+
+> >+	ret =3D reset_control_assert(rstc);
+> >+	if (ret < 0)
+> >+		drm_warn(vop2->drm, "failed to assert reset\n");
+> >+	udelay(10);
+> >+	ret =3D reset_control_deassert(rstc);
+> >+	if (ret < 0)
+> >+		drm_warn(vop2->drm, "failed to deassert reset\n");
+> >+
+> >+	return ret;
+> >+}
+> >+
+> >
+> > static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+> >=20
+> > 				    struct drm_atomic_state=20
+*state)
+> >=20
+> > {
+> >
+> >@@ -2055,6 +2077,8 @@ static void vop2_crtc_atomic_enable(struct drm_crtc
+> >*crtc,>
+> > 	vop2_vp_write(vp, RK3568_VP_DSP_CTRL, dsp_ctrl);
+> >
+> >+	vop2_clk_reset(vp);
+> >+
+> >
+> > 	drm_crtc_vblank_on(crtc);
+> > =09
+> > 	vop2_unlock(vop2);
+> >
+> >@@ -2706,6 +2730,12 @@ static int vop2_create_crtcs(struct vop2 *vop2)
+> >
+> > 		vp->data =3D vp_data;
+> > 	=09
+> > 		snprintf(dclk_name, sizeof(dclk_name), "dclk_vp%d", vp-
+>id);
+> >
+> >+		vp->dclk_rst =3D devm_reset_control_get_optional(vop2-
+>dev, dclk_name);
+> >+		if (IS_ERR(vp->dclk_rst)) {
+> >+		        drm_err(vop2->drm, "failed to get %s reset\n",=20
+dclk_name);
+> >+		        return PTR_ERR(vp->dclk_rst);
+> >+		}
+> >+
+> >
+> > 		vp->dclk =3D devm_clk_get(vop2->dev, dclk_name);
+> > 		if (IS_ERR(vp->dclk)) {
+> > 	=09
+> > 			drm_err(vop2->drm, "failed to get %s\n",=20
+dclk_name);
 
-If this corresponds to T_PVPERL and mediatek needs longer, I would
-document that by using "PCIE_T_PVPERL_MS * 10" and adding a comment
-about why (affected platform/device, hardware erratum, etc).
 
-Bottom line, I don't really care what the value is, but I *would* like
-to be able to read pcie-mediatek-gen3.c and see the point where PCI
-power is stable, a delay of at least T_PVPERL, and where PERST# is
-deasserted because that's the main timing requirement on software.
 
-Bjorn
+
 
