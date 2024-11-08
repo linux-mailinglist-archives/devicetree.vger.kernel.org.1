@@ -1,125 +1,155 @@
-Return-Path: <devicetree+bounces-120317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A8099C205A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 16:29:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B11B9C2063
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 16:30:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76DCE1C221BF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 15:29:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E47EE1C21C1A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 15:30:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 855CC206E83;
-	Fri,  8 Nov 2024 15:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF78206E91;
+	Fri,  8 Nov 2024 15:29:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A77D205145;
-	Fri,  8 Nov 2024 15:29:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDEDE206E94;
+	Fri,  8 Nov 2024 15:29:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731079744; cv=none; b=HyGVI6clEBbsFe8immM6HW+xib5hkYSoCZ/XBCDCV1btyzzeNaMdUoR01JFpWV9k6hYaKcYLONCqO9LVC70U2ePFI5MpBebZBkaum8gDI0gv5+WBzLjSzta+LXcvrtjG3CXTKcKKtK6vPoyGOz0Luotg1W3MywF0Ba6qnksHPxY=
+	t=1731079795; cv=none; b=CGdRBYKdX5icXf6Iz6K5yILVwVGWckrtmndf+0S+PuS82wCD3P7MUv3bubZBWBxApD0aSp1LxIT3pe3CmFoFbAJWgRTTLof/S+kI3drqcosiQp4XrVMMpjVRrH6KaLhXwPw3zlrPzQP0xTxvdwMM+Fc0V1W6GmzAVXp7E0xy5Rk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731079744; c=relaxed/simple;
-	bh=C8Akrgaf1ocHN+nK6Q93L1JBKd8GM74wo4hUrqK3hbs=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dFqeFUOue5ub0cVMPOGaGxFC/+AQB9+wm5bEy4n0LtslUnP/aykJnJv8KXrV/lMfTNVZexKbblGiLJspa6p8qgHAMqeJ/tqHrJW1kPK7Tmzo/xnTh6N4tJtAXLNT21xTjdfpWVFyFptZYgvXefYGPjEUNwJjvUhuruRsUXEPxfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4XlNBs1hWmz6J7gR;
-	Fri,  8 Nov 2024 23:28:53 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id CBC7B140133;
-	Fri,  8 Nov 2024 23:28:58 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 8 Nov
- 2024 16:28:57 +0100
-Date: Fri, 8 Nov 2024 15:28:56 +0000
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Frank Li <Frank.Li@nxp.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-iio@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, Carlos Song <carlos.song@nxp.com>,
-	Clark Wang <xiaoning.wang@nxp.com>, Jean Delvare <jdelvare@suse.com>, Guenter
- Roeck <linux@roeck-us.net>, <linux-hwmon@vger.kernel.org>
-Subject: Re: [PATCH 0/3] iio: temperature: Add support for P3T1085
-Message-ID: <20241108152856.000042ed@huawei.com>
-In-Reply-To: <20241107-p3t1085-v1-0-9a76cb85673f@nxp.com>
-References: <20241107-p3t1085-v1-0-9a76cb85673f@nxp.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1731079795; c=relaxed/simple;
+	bh=2XoxB6i6Oy50ACcPhmOg51VKYY7h6KdQVjyk9yddsEQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QayZllttQL0/BuH2ATqgY6xs28VObYY8i/ihjtEJnMoAHYExxY5w3mv52Oz7pMpVZXNQw4znO7L+uyI3jNaPpqEWgCgsMynfxMHLoLP8eiomikUSUVTIXx/TNUpyVMh0xplH75rmD/wfnDAXBD4p1DCg0ZzDS9a+G9T9j9VVjkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E6303339;
+	Fri,  8 Nov 2024 07:30:21 -0800 (PST)
+Received: from [10.1.38.24] (e122027.cambridge.arm.com [10.1.38.24])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 01B8C3F528;
+	Fri,  8 Nov 2024 07:29:49 -0800 (PST)
+Message-ID: <994eb729-91d3-4e96-a63e-fa0ea49f4cb7@arm.com>
+Date: Fri, 8 Nov 2024 15:29:48 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100010.china.huawei.com (7.191.174.197) To
- frapeml500008.china.huawei.com (7.182.85.71)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] of: WARN on deprecated #address-cells/#size-cells
+ handling
+To: Rob Herring <robh@kernel.org>
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>,
+ Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski
+ <krzk@kernel.org>, linuxppc-dev@lists.ozlabs.org,
+ Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
+References: <20241106171028.3830266-1-robh@kernel.org>
+ <CGME20241108110444eucas1p20cbed7533af31573dac30dbb435c3d9d@eucas1p2.samsung.com>
+ <3706d174-fadd-485f-be7b-f7ef4b11cf84@samsung.com>
+ <73eacca6-b6cd-4689-8ccd-f7e2e8b716f3@arm.com>
+ <CAL_JsqLyFV85w1kf397AcvZ7+Oewpe3vYeZdz_uvQrYwb1B8ag@mail.gmail.com>
+ <e23ecbab-66ba-478c-b720-fb045a08bc9c@arm.com>
+ <CAL_JsqLyuQaKpoq7wQeQs38HBu+_=SfgbMOGyGYtns6Dm-Y2Vw@mail.gmail.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <CAL_JsqLyuQaKpoq7wQeQs38HBu+_=SfgbMOGyGYtns6Dm-Y2Vw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, 07 Nov 2024 18:02:26 -0500
-Frank Li <Frank.Li@nxp.com> wrote:
-
-> Add basic function support for P3T1085 temperature sensor.
-> - Add binding doc trivial.yaml
-> - Add basic read temperature driver
-Hi Frank,
-
-For a simple temperature sensor the usual question is why IIO rather
-than hwmon?
-
-Previous reasons have been:
-- Very high performmance / accuracy part (i.e. expensive)
-- Remote temperature so not typically hw monitoring.
-- Same silicon with a more complex sensor (typically humidity or similar).
-
-Any of those apply?  Or some other reason?
-
-+CC hwmon maintainers and list.
-
-Jonathan
-
-> - Update imx93-9x9-qsb.dts
+On 08/11/2024 14:58, Rob Herring wrote:
+> On Fri, Nov 8, 2024 at 8:33 AM Steven Price <steven.price@arm.com> wrote:
+>>
+>> On 08/11/2024 14:04, Rob Herring wrote:
+>>> On Fri, Nov 8, 2024 at 7:26 AM Steven Price <steven.price@arm.com> wrote:
+>>>>
+>>>> On 08/11/2024 11:04, Marek Szyprowski wrote:
+>>>>> Hi Rob,
+>>>>>
+>>>>> On 06.11.2024 18:10, Rob Herring (Arm) wrote:
+>>>>>> While OpenFirmware originally allowed walking parent nodes and default
+>>>>>> root values for #address-cells and #size-cells, FDT has long required
+>>>>>> explicit values. It's been a warning in dtc for the root node since the
+>>>>>> beginning (2005) and for any parent node since 2007. Of course, not all
+>>>>>> FDT uses dtc, but that should be the majority by far. The various
+>>>>>> extracted OF devicetrees I have dating back to the 1990s (various
+>>>>>> PowerMac, OLPC, PASemi Nemo) all have explicit root node properties. The
+>>>>>> warning is disabled for Sparc as there are known systems relying on
+>>>>>> default root node values.
+>>>>>>
+>>>>>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+>>>>>> ---
+>>>>>> v2:
+>>>>>>   - Add a define for excluded platforms to help clarify the intent
+>>>>>>     is to have an exclude list and make adding platforms easier.
+>>>>>>   - Also warn when walking parent nodes.
+>>>>>> ---
+>>>>>>   drivers/of/base.c | 28 ++++++++++++++++++++++------
+>>>>>>   drivers/of/fdt.c  |  4 ++--
+>>>>>>   2 files changed, 24 insertions(+), 8 deletions(-)
+>>>>>
+>>>>> This patch landed in today's linux-next as commit 4b28a0dec185 ("of:
+>>>>> WARN on deprecated #address-cells/#size-cells handling"). In my tests I
+>>>>> found that it introduces warnings on almost all of my test systems. I
+>>>>> took a look at the first one I got in my logs (Samsung Exynos Rinato
+>>>>> board: arch/arm/boot/dts/samsung/exynos3250-rinato.dts):
+>>>>
+>>>> Just a "me too" for rk3288-firefly.dtb:
+>>>>
+>>>> [    0.138735] WARNING: CPU: 0 PID: 1 at drivers/of/base.c:106 of_bus_n_addr_cells+0x9c/0xd8
+>>>> [    0.138776] Missing '#address-cells' in /power-management@ff730000
+>>>>
+>>>> I'm sure it's easy to fix up the DTB, but we shouldn't be breaking long existing DTBs.
+>>>
+>>> What broke?
+>>
+>> Nothing 'broke' as such (the board continued booting) but the WARN
+>> shouldn't be happening. My CI treats the WARN as a failure as these
+>> shouldn't occur unless there's a programming error.
+>>
+>>> The intent here is to exclude any platforms/arch which actually need
+>>> the deprecated behavior, not change DTBs. That's spelled out at the
+>>> WARN which I assume people would read before fixing "Missing
+>>> '#address-cells' in /power-management@ff730000". I tried to make the
+>>> warn message indicate that on v1 with:
+>>>
+>>> WARN_ONCE(!IS_ENABLED(CONFIG_SPARC), "Only listed platforms should
+>>> rely on default '#address-cells'\n");
+>>
+>> So one possibility is to include this platform in the exclusion list -
+>> but I'm not sure how to do that, I assume including CONFIG_ARM in the
+>> list would rather defeat the point of the patch. But my feeling is that
+>> it would involve a lot of playing whack-a-mole to identify individual
+>> platforms.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Carlos Song (1):
->       iio: temperature: Add support for P3T1085
+> Please see my posted fix in this thread. Things "broke" quite a bit
+> more widely than anticipated.
+
+Thanks for the pointer. Yes that fix seems to work for my board!
+
+Thanks,
+Steve
+
+>> One obvious idea would be to look at the DTBs in the kernel tree and see
+>> which are affected by this currently, that might be a good place to
+>> start with an exclusion list.
 > 
-> Frank Li (2):
->       dt-bindings: trivial-devices: Add NXP P3T1085UK I3C/I2C temperature sensor
->       arm64: dts: imx93-9x9-qsb: add temp-sensor nxp,p3t1085
+> It's been a dtc warning since 2007, so I can say all of the in tree
+> dts's are fine. The problem for these reported platforms is the
+> kernel, not the DT.
 > 
->  .../devicetree/bindings/trivial-devices.yaml       |  2 +
->  arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts    |  5 ++
->  drivers/iio/temperature/Kconfig                    |  1 +
->  drivers/iio/temperature/Makefile                   |  2 +
->  drivers/iio/temperature/p3t/Kconfig                | 29 ++++++++
->  drivers/iio/temperature/p3t/Makefile               |  5 ++
->  drivers/iio/temperature/p3t/p3t1085.h              | 31 +++++++++
->  drivers/iio/temperature/p3t/p3t1085_core.c         | 79 ++++++++++++++++++++++
->  drivers/iio/temperature/p3t/p3t1085_i2c.c          | 68 +++++++++++++++++++
->  drivers/iio/temperature/p3t/p3t1085_i3c.c          | 59 ++++++++++++++++
->  10 files changed, 281 insertions(+)
-> ---
-> base-commit: 74741a050b79d31d8d2eeee12c77736596d0a6b2
-> change-id: 20241107-p3t1085-fbd8726cbc0e
+>> You could also downgrade the warning to a pr_warn() or similar.
 > 
-> Best regards,
-> ---
-> Frank Li <Frank.Li@nxp.com>
+> I find that pr_warn() may or may not get noticed, but WARN for sure
+> will which is what I want here.
 > 
-> 
+> Rob
 
 
