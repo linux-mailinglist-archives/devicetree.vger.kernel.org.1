@@ -1,66 +1,69 @@
-Return-Path: <devicetree+bounces-120355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C36869C2462
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 18:58:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D3B59C24DB
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 19:23:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C1CE1F27DA0
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:58:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 964781C28A1B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 18:23:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E64FD21CFB6;
-	Fri,  8 Nov 2024 17:48:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F14D519994F;
+	Fri,  8 Nov 2024 18:23:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oQlw8ioA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FK23fbaV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5EEA21CFA7;
-	Fri,  8 Nov 2024 17:48:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC6D9194A49;
+	Fri,  8 Nov 2024 18:23:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731088085; cv=none; b=mXDgKHDMjyUqbtb+zw4CAOG9IHw8NkIy2s7F/nCxdHQNadye+kTDVAw9OE2m2UZjdB9m/doY+ENWB2c+nUVBb5bDzOHeVsr7y4smw9FQRrggohZCYUNdUNbb/dTu9IcZ0EhS6YO4rFvE08iFXF0o7JzfRrnqoJG5nxvUgLooZKc=
+	t=1731090223; cv=none; b=kVTMbl6hNA+kq53t3h3lqmc93GQV5gVFnKpYJYYOmr3eSbm2eyR+PaXq0jfb1ufNvFl+T0rmOmvFsk6gpy2n5Ymo7AVvK5OLqt9gEspP3HMhjWTdQPZbSV22UOYb7E+3iCyp1Y1a7G9JTvS6D2jQlh27AxoPOBKnlrlOFu8dNlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731088085; c=relaxed/simple;
-	bh=1aUgru2o3+ohxnEw3ic1aU0QZvsJMvqqwbA9o6Tjhco=;
+	s=arc-20240116; t=1731090223; c=relaxed/simple;
+	bh=E1qodTO23N6fEjVBbWnX+Cjij/DtB0PL/py4ryiE1zs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fzUlMov7IsfhKnGJiBXxG17QDKRpTNe2FYM5FRuHLm/71k8EXGCm/IItxzZxWOWpraMM+FIwh2Vjoj54aeqVgZ81Z5caSsu47ICjPksfBzyxGTe/wMq8yd+09krCaxYYQUznDERrvF2vwnjpVOZjPPWRKvv0mvHXpVcyolXQqNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oQlw8ioA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47B6BC4CECF;
-	Fri,  8 Nov 2024 17:48:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=p+qGNdii5zi4iuLd/+4wX0+T7gCS/6ebUAxU6OForH0q6Yx1xcMGtcC3bVS/BoERNagisk3c0lYPYuHSwQyQHc6HILYqhJef/mopV8MvMaKE8MmbIU5GhxoL3B6JlR8NMdEiM7qlKJnWE9npTC22HIUZfKFQFEWXjSfNyCP4HaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FK23fbaV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDF39C4CECD;
+	Fri,  8 Nov 2024 18:23:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731088085;
-	bh=1aUgru2o3+ohxnEw3ic1aU0QZvsJMvqqwbA9o6Tjhco=;
+	s=k20201202; t=1731090223;
+	bh=E1qodTO23N6fEjVBbWnX+Cjij/DtB0PL/py4ryiE1zs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oQlw8ioAsLCZR6EGz/lj/mKtMcg0xuyBdUiP8Gt2ouPpGWJmc+4eZB3115pN/YO6d
-	 JwZErhkqXOhlI2yZfsMLSWPqXNjdOqA3bBruP7vihKmqQs+Mbt+o3thgLahp/nX4Ay
-	 sxLjzvtwI2jQDrB2TpRwIuy8tkiOrYJTMuerD+DxJQssWlr87HbaqI1FrsrJi+iP8D
-	 CYq2MEpR6qjH+E92NwbJhYcZDcTot/o0Z1Ye1EuZmCBVXmSZPBhOC89D/321DrB/9Q
-	 bbBZ3VkC6+KxlUaeUKL6sXdxRUIvuZwrEKap5gUsAUDzM21g0s/q/NwRKIfIcHnvOn
-	 vpC98j+VSXRmw==
-Date: Fri, 8 Nov 2024 17:47:59 +0000
+	b=FK23fbaVjFEmYrm2ufOVC6VW/ctWgPcF83kUbqX6tG2xVRNotZtrl9nP18CMQfRbD
+	 Bpsxy/XeMSbuQZSwQTw8G49TwnP5+lWGaWKSjNYsR74T29Y1QqO2suD2LruS6y6zqq
+	 sNjBwFWRPi2+pzzsvLVWpN1YpI3u3UcgZTvro/yszMCHhLNuVZ88ifYS5SPA2s9qiV
+	 OC6Ah3er9ZV7KbI8SH4HYMmqrGUoRJ4KXgs27WYockdUHewfRp8mxTaoLjrur0pRoU
+	 7d7RSXUO6pA8YCEdqJYfbLMsCQDtP32DgOE7RNS+p0kchQ2lZNtVg32ubh+vX9SV4H
+	 R/Oeu0JW2oHFg==
+Date: Fri, 8 Nov 2024 18:23:37 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: trivial-devices: Add NXP P3T1085UK
- I3C/I2C temperature sensor
-Message-ID: <20241108-deuce-skimpily-a1d2149edd64@spud>
-References: <20241107-p3t1085-v1-0-9a76cb85673f@nxp.com>
- <20241107-p3t1085-v1-1-9a76cb85673f@nxp.com>
- <20241108084547.dzmxgdwllwvbiw5n@pengutronix.de>
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Kory Maincent <kory.maincent@bootlin.com>,
+	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH 1/9] dt-bindings: misc: Describe TI FPC202 dual port
+ controller
+Message-ID: <20241108-reimburse-saucy-2682e370469a@spud>
+References: <20241108-fpc202-v1-0-fe42c698bc92@bootlin.com>
+ <20241108-fpc202-v1-1-fe42c698bc92@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,65 +71,151 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7nHnTVEESqYlNb9S"
+	protocol="application/pgp-signature"; boundary="XDNiCDMGHlNuJKcl"
 Content-Disposition: inline
-In-Reply-To: <20241108084547.dzmxgdwllwvbiw5n@pengutronix.de>
+In-Reply-To: <20241108-fpc202-v1-1-fe42c698bc92@bootlin.com>
 
 
---7nHnTVEESqYlNb9S
-Content-Type: text/plain; charset=iso-8859-1
+--XDNiCDMGHlNuJKcl
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 08, 2024 at 09:45:47AM +0100, Marco Felsch wrote:
-> On 24-11-07, Frank Li wrote:
-> > P3T1085UK is a temperature-to-digital converter with a -40 =B0C to +125=
- =B0C
-> > range. The device can be communicated by a controller via the 2-wire se=
-rial
-> > I3C (up to 12.5 MHz) and I2C (up to 3.4 MHz) interface.
-> >=20
-> > Add it to trivial-devices.yaml because only one 'reg' and 'interrupts'
-> > needs.
-> >=20
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/D=
-ocumentation/devicetree/bindings/trivial-devices.yaml
-> > index 6ecd6432b021b..361943b3d73bc 100644
-> > --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> > +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> > @@ -301,6 +301,8 @@ properties:
-> >            - national,lm92
-> >              # Nuvoton Temperature Sensor
-> >            - nuvoton,w83773g
-> > +            # NXP I2C/I3C Temperature Sensor (-40 =B0C to +125 =B0C)
-> > +          - nxp,p3t1085
+On Fri, Nov 08, 2024 at 04:36:53PM +0100, Romain Gantois wrote:
+> The FPC202 dual port controller serves as a low speed signal aggregator f=
+or
+> common port types, notably SFP. It provides access to I2C and low-speed
+> GPIO signals of a downstream device through a single upstream control
+> interface.
 >=20
-> The description of this binding says:
+> Up to two logical I2C addresses can be accessed on each of the FPC202's
+> ports. The port controller acts as an I2C translator (ATR). It converts
+> addresses of incoming and outgoing I2C transactions. One use case of this
+> is accessing two SFP modules at logical address 0x50 from the same upstre=
+am
+> I2C controller, using two different client aliases.
 >=20
-> "This is a list of trivial I2C and SPI devices ..."
+> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+> ---
+>  .../devicetree/bindings/misc/ti,fpc202.yaml        | 75 ++++++++++++++++=
+++++++
+>  1 file changed, 75 insertions(+)
 >=20
-> but you add a I2C and I3C device.
->=20
-> Also I really like to see that you add a "power-supply" property which
-> is most the time missing for such simple devices but always required.
+> diff --git a/Documentation/devicetree/bindings/misc/ti,fpc202.yaml b/Docu=
+mentation/devicetree/bindings/misc/ti,fpc202.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..ad11abe11e68aa266acdd6b43=
+a5b425340bbbba8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/ti,fpc202.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/ti,fpc202.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI FPC202 dual port controller with expanded IOs
+> +
+> +maintainers:
+> +  - Romain Gantois <romain.gantois@bootlin.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-atr.yaml#
 
-Aye, the done thing in iio land is to make the supplies required too.
+Gotta say, this looks absolutely nothing like the other i2c-atr user!
 
---7nHnTVEESqYlNb9S
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,fpc202
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  enable-gpios:
+> +    description:
+> +      Specifier for the GPIO connected to the EN pin.
+> +    maxItems: 1
+> +
+> +  port0:
+
+ports usually go in a ports node, and are port@0 not port0. That said,
+these are i2c buses, so the node name would usually be i2c@ for those.
+In fact, given you have i2c-mux as your node name, the binding for that
+expects you to format your child nodes like '^i2c@[0-9a-f]+$'. Is there
+a reason you can't just drop this ports business and go with a pattern
+property here that restricts the pattern to '^i2c@[0-1]$'?
+
+> +    $ref: /schemas/i2c/i2c-controller.yaml
+> +    description:
+> +      Device port 0, accessible over I2C.
+> +
+> +  port1:
+> +    $ref: /schemas/i2c/i2c-controller.yaml
+> +    description:
+> +      Device port 1, accessible over I2C.
+> +
+> +
+> +required:
+> +  - compatible
+> +  - gpio-controller
+> +  - "#gpio-cells"
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        fpc202: i2c-mux@f {
+
+The label here is uused, you should drop it.
+
+Cheers,
+Conor.
+
+> +            compatible =3D "ti,fpc202";
+> +            reg =3D <0xf>;
+> +
+> +            gpio-controller;
+> +            #gpio-cells =3D <2>;
+> +
+> +            port0 {
+> +                #address-cells =3D <1>;
+> +                #size-cells =3D <0>;
+> +            };
+> +
+> +            port1 {
+> +                #address-cells =3D <1>;
+> +                #size-cells =3D <0>;
+> +            };
+> +        };
+> +    };
+> +...
+>=20
+> --=20
+> 2.47.0
+>=20
+
+--XDNiCDMGHlNuJKcl
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZy5OzwAKCRB4tDGHoIJi
-0jokAP9Dkn068XT6Vudin7/GU6TzC36mN4490js3el82D0oMagD+PARCNk+APpU1
-AkdWfs0ES1SrzM+YIhQFAXt20uDgCwQ=
-=3YSF
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZy5XKQAKCRB4tDGHoIJi
+0h9BAP9BYW2dWfo7u+4uzLkmUh2erBiw5UUBSxqs4nj2SJvUKwD/ao7/K//aEknK
+8sFWsA91FTWT8u/rWbOrsZl9gP9JJAM=
+=i7XM
 -----END PGP SIGNATURE-----
 
---7nHnTVEESqYlNb9S--
+--XDNiCDMGHlNuJKcl--
 
