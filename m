@@ -1,252 +1,193 @@
-Return-Path: <devicetree+bounces-120295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E248C9C1F33
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 15:28:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EBE89C1F0D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 15:19:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BCC2282D69
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 14:28:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C96CD2852BB
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 14:19:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 763E11F1309;
-	Fri,  8 Nov 2024 14:28:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8587D1F12FD;
+	Fri,  8 Nov 2024 14:19:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=BLAIZE.COM header.i=@BLAIZE.COM header.b="Cjn7xzXo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dkSfIlzZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-0063e101.pphosted.com (mx08-0063e101.pphosted.com [185.183.31.155])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5346D1E0B66;
-	Fri,  8 Nov 2024 14:28:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.183.31.155
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731076116; cv=fail; b=APNxDgcevqJqdmtRyoQCWIZp86FhY4D3a44fN2x/y4LVh4Emy7PGjYpf6cdwbGGydCcYfVCValICXAJMKHsF5938ScCqOxiwv5cZeJ+lwSlGZXl0iYHednKd6GdvLzqakZ9UGfM/GGQP3c4HQhnWxYc9kWyinpSoOTa5MILK+IQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731076116; c=relaxed/simple;
-	bh=Yfj7tAoZ/73zFxfHTxBtW3rLy8RUBr+qlGP39/7wbdI=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=fkwPMQydcvh2qYSAizMpr0dCOyJb3ZUPVsPQYxfzPCkT7zz1dKejwsPmpRu2P4+2e+vWeDkSScdgALgK3uOu6EA9fhxHI/6Z+gVhlWjAfQjhoTKFiXes9A/TtDOoSmuMbO5dbc7oLzSj/jAX3EB99yW9U98CkeyTvTnqyDt6iBM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blaize.com; spf=pass smtp.mailfrom=blaize.com; dkim=pass (1024-bit key) header.d=BLAIZE.COM header.i=@BLAIZE.COM header.b=Cjn7xzXo; arc=fail smtp.client-ip=185.183.31.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blaize.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=blaize.com
-Received: from pps.filterd (m0247494.ppops.net [127.0.0.1])
-	by mx08-0063e101.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A8E9TmQ010200;
-	Fri, 8 Nov 2024 14:18:44 GMT
-Received: from ma0pr01cu012.outbound.protection.outlook.com (mail-southindiaazlp17011026.outbound.protection.outlook.com [40.93.131.26])
-	by mx08-0063e101.pphosted.com (PPS) with ESMTPS id 42s6f0g9ex-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 08 Nov 2024 14:18:43 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=orN8a30h3AoyQ9OojjpuD2Ffu1jkod2tDbnZpTSjcQbSIwKkppa9g/uVQeBhfpmxKLtCWpd8if8tGiyatHly5stTUFyF/34IMVYme3TFoPeKyFPxFUIxO4rfsik8kIJSgj67JHobgar2A+7dQoe4LoSgqv3Y/0vq74oL0VK4aYS3J+wLzwFINg8mIMzmXyDFXufJBRHpqV4xhXEWFlO5Prd636aKBB1ukynKvutzKHFVWq9J8y2/DIuQ555KcOpk9X1EWP5a/zRnFrA/XDmMt2kaHUuN40G8BeEHd9vFsNwntuXsFP8/zUWpcgcGidHX9ur9HaF6yy9l1DRCxkfE1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Yfj7tAoZ/73zFxfHTxBtW3rLy8RUBr+qlGP39/7wbdI=;
- b=g41V7p3QRgVo46xbyhF6tVc55RnQTD00hP0B4K9thbzlrKmzeE93xGvJLD+pcgoJWHsdcmUSDupzL8DT0Vt5qeAyeOgs3kTg8FhUBPUyVSWIvQ5rVPiBw7ZB56aTXs4RUlGE4saqIxyod1r0FW22CboPf7MDweZjAN4Y2d5XFdfJbV7d5XFxQSMBJuERTrFr/EOckQ1spQhMlfAfKGtWcWvYdPZK0V3ExXcUYGCBRSwhbOccauJ2S6lp+gl7WRdab61HbjvhUBPil7Oz1QJl28iGm2nrAa0yrXyYNnMi/VKwuwEfE8XONijCwEtHJP6i/iYzJQblWwM+iyb8mh6g1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=blaize.com; dmarc=pass action=none header.from=blaize.com;
- dkim=pass header.d=blaize.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=BLAIZE.COM;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Yfj7tAoZ/73zFxfHTxBtW3rLy8RUBr+qlGP39/7wbdI=;
- b=Cjn7xzXoQQn8Z/1bG8hW2qdk2sYSbkaV7t7LSN9Sjh2d2czSwq2zLeCAKBdSgIsWjQO7ho/f+7D5EZ5kg7XRxgZuH8vAxm7mqtrcmJo9NL9TAT0f1qwlWaoQfzh/BbKJR7ThDxOjqFMEbOGSp8qh3bCWf8js/e9kO6+GO83Uurk=
-Received: from MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:12a::5)
- by PN0PR01MB7624.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:c9::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.21; Fri, 8 Nov
- 2024 14:18:38 +0000
-Received: from MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::309a:12cf:74a4:5655]) by MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::309a:12cf:74a4:5655%4]) with mapi id 15.20.8137.019; Fri, 8 Nov 2024
- 14:18:37 +0000
-Message-ID: <0c20e9a2-4ab3-47b0-88cd-a68f7d5c6515@blaize.com>
-Date: Fri, 8 Nov 2024 14:18:28 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/6] dt-bindings: Add Blaize vendor prefix
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        James Cowgill <james.cowgill@blaize.com>,
-        Matt Redfearn <matthew.redfearn@blaize.com>,
-        Neil Jones <neil.jones@blaize.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
-        "olof@lixom.net" <olof@lixom.net>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>,
-        "andre.przywara@arm.com" <andre.przywara@arm.com>,
-        "rafal@milecki.pl" <rafal@milecki.pl>,
-        "andersson@kernel.org" <andersson@kernel.org>,
-        "konrad.dybcio@linaro.org" <konrad.dybcio@linaro.org>,
-        "angelogioacchino.delregno@collabora.com"
- <angelogioacchino.delregno@collabora.com>,
-        "nm@ti.com" <nm@ti.com>,
-        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-        "nfraprado@collabora.com" <nfraprado@collabora.com>,
-        "johan+linaro@kernel.org" <johan+linaro@kernel.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20241108103120.9955-1-nikolaos.pasaloukos@blaize.com>
- <20241108103120.9955-2-nikolaos.pasaloukos@blaize.com>
- <c2438649-eddd-4a35-b50f-3faa065615c3@linaro.org>
-Content-Language: en-US
-From: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
-In-Reply-To: <c2438649-eddd-4a35-b50f-3faa065615c3@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO2P265CA0338.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:d::14) To MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:12a::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 665EE1EB9F7
+	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 14:19:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731075587; cv=none; b=Gl7N7mVX8+x4w5mi7/o68WElNK2AbCbJw4pueyfUrALxaIFskLZ2jrLPcFuOXUPXnujSn8Vb2Db3kRgF5LfVHK/5QcXuI5W5RNB26yE2iVa6LDDwkEfBtEEepjqwBJ7HF5gYbKHRF7lRTVy5gb89o+F3yiSKMWG+/S5Bw/Ji8KY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731075587; c=relaxed/simple;
+	bh=ZLLRMH49n6WaYFzMYL7hdn+IuXPLKE4cMZuz6YX2Flw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=cLkeW3fr9ksyjXeYCRqWMBVqadTUd8fGn4sGhm8oqs1+nV8G3jkfxN9GCzbkv7Q/9bzaAITE4pbo7jwq/zx+oAtsII6GT03wPUDY6lqpQhpZKNmCURNU/fXLXbaYCVMFcuJ521RdEjlXXdMIpp7LeA1b2J478peeKnLE41cSh10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dkSfIlzZ; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5c9404c0d50so2623051a12.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 06:19:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731075584; x=1731680384; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VGA9Y6BP3dpROBWYVYwafi2ecYshZ4WbiAsNU+E9Uq0=;
+        b=dkSfIlzZ01tuUyCJu2Q/ceX4tVXfWxnQIXSJAiL+uxqLTewekRdBIFo8/qfK/gccZX
+         w3YJA84ky8AnDTxm2w6A757YV7YhU19lT8/CX/4gGlhrATqdsotN/EI+HWFdTpPgp0u9
+         RL12LsIzXLLbh4CifnLIoW6P49qsWPmLdRByDt4IMO2ZNnC8O90waHBTB5TN8k/GL/KU
+         Th/X3JLD1mwX73RYNJhKK8tLxwfZ0w5yDB4pqboiWiEttVAE+AeRzU/Pk/RGdP3+tbYH
+         fnYt4lVqdpLLVZfXkrTb2+KTl4NyZMiFCwgWo/F3EgokYIgJFcT5WCL7+tBFrwu9i8oB
+         VL7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731075584; x=1731680384;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VGA9Y6BP3dpROBWYVYwafi2ecYshZ4WbiAsNU+E9Uq0=;
+        b=dOGjEhVO6BiXVzZyZO+EsV3+NZb4CG/DTd3egoYbQ6yPLXNtaZtEiSguce0is6B0Dm
+         9nQxg7A1ZKPsakF7K9ru3yvBQggUBrKUYBhXAQhXCfIYizsIe9tpJ94ln8UcL3/ugK3H
+         Jouv1Oz11UBf7UUmrI0Z96CImKbMmk1C8/9hm159PBORprO7k3F0i/A6HRG7Qdt0iaO5
+         NaQ1rTXzCK/HoyWuWF/qlzys/FAZBdUV8UhtQvnBm8uBFIdQdBMPzk52jj54Zkn6rZOU
+         xCwWlS7QyesOYddq/7vsmRAQi5ILPGdRk4BPNOPqbS/aWSLzHbSuFnODg3VN0Ny0fJxq
+         ljIw==
+X-Forwarded-Encrypted: i=1; AJvYcCXV4oKxUCHIFP4LVJ18beSHCbIjscGPOdBrHbjX+9ByCZ+sOyAb3+6+Z+RFOowgYl3caX9pro0u660I@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjV88TxfIKjOqmt3YYdun49wbJOrW2y1R35hueE1Tf0knWpeGr
+	dXMujQ7rl1wZoHKBWHwsOSTIWwTDuJLsj8PyKsUh8CKlwi6/drOV9/Muoj1IN4M=
+X-Google-Smtp-Source: AGHT+IHmXybQiAHW1OqbfUTN22sas0nIZd7gHqCAPHOaYdpQEeD0jrEFikAP+yhuHydY+dzM1edQDw==
+X-Received: by 2002:a05:6402:d0d:b0:5ca:151a:b84c with SMTP id 4fb4d7f45d1cf-5cf0a320706mr2220233a12.18.1731075583567;
+        Fri, 08 Nov 2024 06:19:43 -0800 (PST)
+Received: from localhost ([154.14.63.34])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cf03bb765asm2025429a12.48.2024.11.08.06.19.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Nov 2024 06:19:43 -0800 (PST)
+Date: Fri, 8 Nov 2024 17:19:41 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Shawn Lin <shawn.lin@rock-chips.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+	linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v4 4/7] pmdomain: core: Introduce
+ dev_pm_genpd_rpm_always_on()
+Message-ID: <54ad5572-3ad6-4c8d-80cd-b2f975ad91bf@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0PR01MB10184:EE_|PN0PR01MB7624:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0c746acd-6e21-41a9-8b3b-08dd00003c95
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Q1Nla3pGTVB5dW1TV01JakQwNnBwcEFxVnY4eXBJenN5SEt4RGY4U0hZbWpj?=
- =?utf-8?B?YXZDMXJCSi9JVjh6UGdpcWZldkZTZGpqWUY2L3o2N1o5b2M2S1VsSkVJa0xy?=
- =?utf-8?B?LzNwMEVXVEtqTXRzeGFYM3NydFlxK2hjTGczY1ZNVHkxcVFDbCtOaFIxNmFp?=
- =?utf-8?B?ZEwvMDlxYXBqVjRhUzVXckthNy8xdTRiRDAweXRMUkwxTHN6TXQrT0ljNWF1?=
- =?utf-8?B?Z1poMlVxL1NaVitXOG9uV1gzRGhjdFBYM1Y0aUJrNkhzTys3VnE0Zmc5cENF?=
- =?utf-8?B?djlwVVhTK25TbnJ4NXRZTmsvQ1NpY0YyK3Zrd2JUb3JJNE1KYVRYbVNwclIy?=
- =?utf-8?B?Z2VQYmpGUkFYRTc2Ni93bDlveHJwMXBmbXBzbENqb0RQb3hkdDdTbDhyUEtY?=
- =?utf-8?B?NHJtOGdjdTM3MTNXVmI3QWsrUkNYbUN5QTV6dFhGQjk1UEYwTEMzZmtvcmlu?=
- =?utf-8?B?QXpuL21tMkYyUGRDV0JmTlkzSnJvK243cm9CWTNPN011bmJEcVhCMEFJMkNt?=
- =?utf-8?B?WTlUN0U0MnZjQ0JGVFpZdHFOc0dJdkdoeXNlMVp0d0JyWDFHWUlUZUpQODgy?=
- =?utf-8?B?STNYL3dkem16RS9aTm5IeEowZFRNYVdlbmc4c09IZ3NpNk5iQ3MwakU4eVda?=
- =?utf-8?B?NzQ2RHhwY0tuQnRPSGNxRmtTOEVPUDB4T0g3WVYrTDB2aXg3cWQ0dlRYSGZM?=
- =?utf-8?B?OE1ZblQxVmw0SFFIb0R3em5wdCtHdTg5Mi9mT2wyMkpSbG5rRStPUmdKV0Zp?=
- =?utf-8?B?dEtsZDZFeUk2eW5rR25SdTNuT3BzTzAxeHFWSU8rSjZoaUFEaDVSYUFURGF4?=
- =?utf-8?B?WHdwQnlaYVBMR05PVWpVMjhDUkdtUXRLQjRHamRHN0xpQUdoSzFiVnJIcU9Z?=
- =?utf-8?B?WjNES0pZamgwZUVrdmlIc1lHNGxtWkxIcVlkcVB0TFNDL1FscXNjWGRtQkEr?=
- =?utf-8?B?Umh5ZitFS1pqTHpDcWJ1YmtyRU0vbHRUaE5ySUl0aVFCNWk1azRMWjhGSURE?=
- =?utf-8?B?L0N0OThvVWFOY0N4NHhuMU5WSGd0bGlYMmlMd0V5M09zK1Z2TDA0SzhYek41?=
- =?utf-8?B?ZW4xcVlPSFBaSjBzcUlDM3NYR2dpWHBucGlESzh6YVkxUHNDaWZsVVhTTGQ0?=
- =?utf-8?B?RnM5cURZWUttRzNPZDVCK2NsdUdqM01rcTJUeVgwYmF2eHBaTFp3N0lOWDdz?=
- =?utf-8?B?a2ZjMzcyaVBBcjJSUXJOWVpBS3k3RTZVNnlrem9vRDJFQUVoeDdLWmJucEND?=
- =?utf-8?B?ajFUSTlGcTFPbWJ4MFpPSmhFVXZ6bGtCaWFsSEh0UjlCUGRwY0YxYkk2M3Fn?=
- =?utf-8?B?VXhjYkd1SWN1cU5RaDdPc2VGQWhXbTUxQ0t1bEVzNzJrL3AzOEx2Q2gvSlpR?=
- =?utf-8?B?MS9FbnVzTWVPdHV1U1AxMU5IVW1rZmJvZHI1MkdlQjVsQ0ZSbGloTW1KNmN6?=
- =?utf-8?B?SDk1R3pYcmJkbjBBUnJ2N3JtSTNJKzBYc2hxa2ljY0kxb1BXV0F6NlpoSlNt?=
- =?utf-8?B?aDZkS1pBV2IxREVsdnNnRmVRNlc4WU9WNzRHaVVWb25nSWMwaE1haFltaXdk?=
- =?utf-8?B?NkRxWHNZZmtlUC9aUDNwbU9xeG1YNk93Z3lFRmtNdmV4dXh0eDdKSXc3SjJZ?=
- =?utf-8?B?K0gyOTNPczZiTjFlVnEwUkQzcTN3cy9LQXNBVmhzUFV2ZkRpOWs3eDJCY1N6?=
- =?utf-8?B?dGFYL0UzTTBreVJSaE50UFpCWXNYVUZhcWl0UnJiMVYrVWF2Zmd1ZXhRdith?=
- =?utf-8?Q?tRWZrlY+jga1Udk6SQ=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OUhvNG5XVmV5dmNHcE0wbVYxc01sN3BKTWVtZHdWM2V6eGhENFJURVdNQ1ZZ?=
- =?utf-8?B?dkxJcjdLd21aZTRtTTJ1bG1DR1VUYXorVzZiQytoU2RZUGNseEN5S1hsQmRN?=
- =?utf-8?B?SUNrY04xTG9OQ2hVSkl0dGhZenBMRzlRSjZRRmVRMUthL0tBNXZCeTY5UGR6?=
- =?utf-8?B?djVEd0NHZXFPa0JPN2VMc3JLSTNMQ3NjRGdsakllcTRjWCs0QUdjbFk4cnZD?=
- =?utf-8?B?NHhOejU2ZWt2YnM0NnlQRmtKWXpZL0FGNnNNYitzUUpMU1VoY3VnaVBNZGVq?=
- =?utf-8?B?dkpMSkVOY1Q5R0dSSmhvMlllbHVkVzJhTktHbVQ4WE9hb3hUeFBCN2wxNzN3?=
- =?utf-8?B?RWtra0NadURTWnllUEhUd2lXREE3VGdwc0x6Ujg0WkJyQ052dHJvRXkzTjdz?=
- =?utf-8?B?NTdIK09kYWFBTW5mb21Sa3FnejJrYmtNK1hZclZBdDhncks2aGMwdXBIaDBs?=
- =?utf-8?B?WmJDTGRxYXFoVnU5VFZ5NVEzUlFhclJXakVWcnNSM1VGREl5YWhmOXlSYVNz?=
- =?utf-8?B?Z3BmUWtKL0I2Qjc0RTNWTm5XZ0lFd0ljanpCRzkzZzdzY25mQ2RHbmhwTDJO?=
- =?utf-8?B?MVphUll5SE5PT3EwMnFOY1lLWFBHMEtta29MVGE1UjVKK0RhMmZDY2VtelRy?=
- =?utf-8?B?YUtIQlBtQkVhd0JXT0Z3MFR2RDBDVHVUUFRxZHQxTUdVYjFKakVTcHh2K2Rr?=
- =?utf-8?B?eVFwY2tBRDR5bExOcUxvV0d2RU5RQnJFaDUzS3ZNS2FRYzliaGtFVTFSSk90?=
- =?utf-8?B?WjF5czVRRktkdHA4Vlk0cnFpSHA4Wm9SNFk3TjBLOXlzV1BWZkE5UUxPYk05?=
- =?utf-8?B?SkY1dDdWbkFRTWZmSkM4cDJKNlkxVlpZZldaaWgzejNJSEVra3QrZDhoUWt1?=
- =?utf-8?B?bDN1NTk4TS82UnRqelptanRjMWg2bXZJUktoOTRNaFlGdllWRm5vbGhWYW5S?=
- =?utf-8?B?dTdXdytTZWgyTDFGVlBHVGFVcUxDTDJwRnlKQ3VySUp1UWxoNkdFbC8ySEIv?=
- =?utf-8?B?QWc2cEE0eFJDMkZwa3Y4NVpDZ0VhaXVrTG14WnpsQnVhbG5rYW9lSnpPZ2di?=
- =?utf-8?B?R3pNdmZtRi94aFR3RThvZUJvMjVhMDZwZzBRQjlYZ2hTaTN1NG9zMS9jSjNR?=
- =?utf-8?B?R094djBVQ1VIZllFeHpBZ1pIUGIvdGo4Uk5ReE02b1VDMFN1dzRuekRoNkli?=
- =?utf-8?B?Ym5YWlFLYVFtcDBiSHhtUHZQRGkvcDh3U1FSVnRaWlFuOWhtb05EZjF0blR5?=
- =?utf-8?B?S0JMWnNOeDMyRHFFWWZHc3BuSlpVZUE0TCtSVEd4V2ZwVFBVZUdCY0R4czJX?=
- =?utf-8?B?SDgzOXYyS0hRc0FsRUxaUTY0NUhJTS9kRE0wYkVNZ3ZHTmlDM3RHN2l2NkJj?=
- =?utf-8?B?eWg0RXhGSzNKdmtDd1M3Q3VTTXpWeTFlWERtaFJjU29TaVArNnBWOHFDejFr?=
- =?utf-8?B?MVN3NkZzZ0VyVnNLV3N3OEtMSU9hT2t1TitTSkNNSURGd2UzYlhMTkt6S0Np?=
- =?utf-8?B?OXRDLzlxZVNPQXgxU0pNelpYa2lLZFJzNmI3WERvQjVnR2cvMi8yVU9jeXFS?=
- =?utf-8?B?OTgxZm92SWh5bjRNSXdDOWVkMk9FZkNKbklHZ2Ftc1hCclZsYXFxcXJ1NDRq?=
- =?utf-8?B?dXN4YjVkY1hFelZTby9LYlB4YzVUUjVJYzZFM2xveUNkaHNLc2hienlLZXFv?=
- =?utf-8?B?RjFybyt1OElBamNPK29uQnJ6K3ZHNUllbC9ZejREUEFJSVdMZTM3TlQ2cjBr?=
- =?utf-8?B?V2wyRkpyM3NrdkFxeUUyU3VVcEJCNmVjTVo2RlNtR3lQcEt5bTNyUFMrYXNY?=
- =?utf-8?B?UloreFQ3eG4rY1BuTlRxWERRMkRZNS9vU25KelpTK2x1eWE1YlB2eStTWm5F?=
- =?utf-8?B?OHlVcWZTYVRyT1hhSWZKNkFuZlZrY3dkSEVmbTlsZ01mUVhScnYvV0wwSHJ5?=
- =?utf-8?B?Nm5xTUQ0YXJ6ckNrMlNTZFRIQS9LMFdOYXdNdytrOWR4cHRnV3poS0hpU1Rq?=
- =?utf-8?B?ZjVVSTZvM3lQbEVQU2JyS1JZZHJBQkVhdVJCL2pXNzFqWmJEai92SGpPRk5w?=
- =?utf-8?B?RzBsa0phRjhGcHdJN05zeU9pbUdyTGVmM0grTmFJeDBoaEwrT1EwRytjM1dl?=
- =?utf-8?B?UzV4Y0Z3NWVrTW9uaGdQVEdwWnJodUd3Vk5zQTZJV0Q3bEh4UVk1LzdjL25J?=
- =?utf-8?Q?UesX9mJVYKWxXyV4StKk1Hg=3D?=
-X-OriginatorOrg: blaize.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c746acd-6e21-41a9-8b3b-08dd00003c95
-X-MS-Exchange-CrossTenant-AuthSource: MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2024 14:18:37.5829
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 9d1c3c89-8615-4064-88a7-bb1a8537c779
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fS3rE19nFFXbBqVaN+Rvi42i1AZu7MKtDZ+VtxoWWREhvmq/1tdjpIrSfnH66rV23U8cVo2ZTMDTDGDoouFH9c8XR/nY3ODLnM0BtPE0eWQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0PR01MB7624
-X-Authority-Analysis: v=2.4 cv=JJlpsNKb c=1 sm=1 tr=0 ts=672e1dc4 cx=c_pps a=KVJtB2hM+tsqvTPeBUBRDw==:117 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=VlfZXiiP6vEA:10 a=4MthsM0t3ikA:10
- a=-5LYVjoNHPMA:10 a=SrsycIMJAAAA:8 a=-efVfFQXF6NVvEpH-LcA:9 a=QEXdDO2ut3YA:10 a=zapPnUM7SFj2ezx6rUw-:22
-X-Proofpoint-GUID: 84LddYPKsnQ7HgSpUD0WOyzzcz-XjEz2
-X-Proofpoint-ORIG-GUID: 84LddYPKsnQ7HgSpUD0WOyzzcz-XjEz2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.62.30
- definitions=2024-11-08_11,2024-11-08_01,2024-09-30_01
-X-Proofpoint-Spam-Reason: orgsafe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1730705521-23081-5-git-send-email-shawn.lin@rock-chips.com>
 
-On 08/11/2024 10:54, Krzysztof Kozlowski wrote:
-> On 08/11/2024 11:31, Niko Pasaloukos wrote:
->> Blaize, Inc. (www.blaize.com) is a SoC manufacturer with integrated
->> programmable Graph-Streaming-Processors for AI and ML.
->>
->> Resolves: PESW-2604
-> What is this? The tag and the meaning? How does it matter for the upstream?
+Hi Shawn,
 
-Hi Krzysztof,
+kernel test robot noticed the following build warnings:
 
-First of all, thank you very much for your fast review.
-Apologies for not rebasing to the correct branch and having so many people in the list.
-Also, adding the --no-git-fallback reduced the list even more. Thank you very much.
-Apologies for not deleting the internal tags and causing confusion. V5 will have all these fixed.
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Best regards,
-Niko
+url:    https://github.com/intel-lab-lkp/linux/commits/Shawn-Lin/dt-bindings-ufs-Document-Rockchip-UFS-host-controller/20241104-191810
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jejb/scsi.git for-next
+patch link:    https://lore.kernel.org/r/1730705521-23081-5-git-send-email-shawn.lin%40rock-chips.com
+patch subject: [PATCH v4 4/7] pmdomain: core: Introduce dev_pm_genpd_rpm_always_on()
+config: loongarch-randconfig-r073-20241107 (https://download.01.org/0day-ci/archive/20241108/202411080432.5dWP6wRt-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 14.2.0
 
->
-> I do not see you using b4 so I do no understand why you Cc stale
-> addresses. Standard reply - please fix your process:
->
-> <form letter>
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC (and consider --no-git-fallback argument, so you will
-> not CC people just because they made one commit years ago). It might
-> happen, that command when run on an older kernel, gives you outdated
-> entries. Therefore please be sure you base your patches on recent Linux
-> kernel.
->
-> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-> people, so fix your workflow. Tools might also fail if you work on some
-> ancient tree (don't, instead use mainline) or work on fork of kernel
-> (don't, instead use mainline). Just use b4 and everything should be
-> fine, although remember about `b4 prep --auto-to-cc` if you added new
-> patches to the patchset.
-> </form letter>
->
-> Best regards,
-> Krzysztof
->
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202411080432.5dWP6wRt-lkp@intel.com/
+
+New smatch warnings:
+drivers/pmdomain/core.c:898 genpd_power_off() warn: curly braces intended?
+
+vim +898 drivers/pmdomain/core.c
+
+2da835452a08758 drivers/base/power/domain.c Ulf Hansson     2017-02-17  850  static int genpd_power_off(struct generic_pm_domain *genpd, bool one_dev_on,
+2da835452a08758 drivers/base/power/domain.c Ulf Hansson     2017-02-17  851  			   unsigned int depth)
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  852  {
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  853  	struct pm_domain_data *pdd;
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  854  	struct gpd_link *link;
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  855  	unsigned int not_suspended = 0;
+f63816e43d90442 drivers/base/power/domain.c Ulf Hansson     2020-09-24  856  	int ret;
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  857  
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  858  	/*
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  859  	 * Do not try to power off the domain in the following situations:
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  860  	 * (1) The domain is already in the "power off" state.
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  861  	 * (2) System suspend is in progress.
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  862  	 */
+41e2c8e0060db25 drivers/base/power/domain.c Ulf Hansson     2017-03-20  863  	if (!genpd_status_on(genpd) || genpd->prepared_count > 0)
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  864  		return 0;
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  865  
+ffaa42e8a40b7f1 drivers/base/power/domain.c Ulf Hansson     2017-03-20  866  	/*
+ffaa42e8a40b7f1 drivers/base/power/domain.c Ulf Hansson     2017-03-20  867  	 * Abort power off for the PM domain in the following situations:
+ffaa42e8a40b7f1 drivers/base/power/domain.c Ulf Hansson     2017-03-20  868  	 * (1) The domain is configured as always on.
+ffaa42e8a40b7f1 drivers/base/power/domain.c Ulf Hansson     2017-03-20  869  	 * (2) When the domain has a subdomain being powered on.
+ffaa42e8a40b7f1 drivers/base/power/domain.c Ulf Hansson     2017-03-20  870  	 */
+ed61e18a4b4e445 drivers/base/power/domain.c Leonard Crestez 2019-04-30  871  	if (genpd_is_always_on(genpd) ||
+ed61e18a4b4e445 drivers/base/power/domain.c Leonard Crestez 2019-04-30  872  			genpd_is_rpm_always_on(genpd) ||
+ed61e18a4b4e445 drivers/base/power/domain.c Leonard Crestez 2019-04-30  873  			atomic_read(&genpd->sd_count) > 0)
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  874  		return -EBUSY;
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  875  
+e7d90cfac5510f8 drivers/base/power/domain.c Ulf Hansson     2022-02-17  876  	/*
+e7d90cfac5510f8 drivers/base/power/domain.c Ulf Hansson     2022-02-17  877  	 * The children must be in their deepest (powered-off) states to allow
+e7d90cfac5510f8 drivers/base/power/domain.c Ulf Hansson     2022-02-17  878  	 * the parent to be powered off. Note that, there's no need for
+e7d90cfac5510f8 drivers/base/power/domain.c Ulf Hansson     2022-02-17  879  	 * additional locking, as powering on a child, requires the parent's
+e7d90cfac5510f8 drivers/base/power/domain.c Ulf Hansson     2022-02-17  880  	 * lock to be acquired first.
+e7d90cfac5510f8 drivers/base/power/domain.c Ulf Hansson     2022-02-17  881  	 */
+e7d90cfac5510f8 drivers/base/power/domain.c Ulf Hansson     2022-02-17  882  	list_for_each_entry(link, &genpd->parent_links, parent_node) {
+e7d90cfac5510f8 drivers/base/power/domain.c Ulf Hansson     2022-02-17  883  		struct generic_pm_domain *child = link->child;
+e7d90cfac5510f8 drivers/base/power/domain.c Ulf Hansson     2022-02-17  884  		if (child->state_idx < child->state_count - 1)
+e7d90cfac5510f8 drivers/base/power/domain.c Ulf Hansson     2022-02-17  885  			return -EBUSY;
+e7d90cfac5510f8 drivers/base/power/domain.c Ulf Hansson     2022-02-17  886  	}
+e7d90cfac5510f8 drivers/base/power/domain.c Ulf Hansson     2022-02-17  887  
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  888  	list_for_each_entry(pdd, &genpd->dev_list, list_node) {
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  889  		/*
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  890  		 * Do not allow PM domain to be powered off, when an IRQ safe
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  891  		 * device is part of a non-IRQ safe domain.
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  892  		 */
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  893  		if (!pm_runtime_suspended(pdd->dev) ||
+7a02444b8fc25ac drivers/base/power/domain.c Ulf Hansson     2022-05-11  894  			irq_safe_dev_in_sleep_domain(pdd->dev, genpd))
+
+{
+
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  895  			not_suspended++;
+f0f6da10152fb8f drivers/pmdomain/core.c     Ulf Hansson     2024-11-04  896  
+f0f6da10152fb8f drivers/pmdomain/core.c     Ulf Hansson     2024-11-04  897  			/* The device may need its PM domain to stay powered on. */
+f0f6da10152fb8f drivers/pmdomain/core.c     Ulf Hansson     2024-11-04 @898  			if (to_gpd_data(pdd)->rpm_always_on)
+f0f6da10152fb8f drivers/pmdomain/core.c     Ulf Hansson     2024-11-04  899  				return -EBUSY;
+
+}
+
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  900  	}
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  901  
+3c64649d1cf9f32 drivers/base/power/domain.c Ulf Hansson     2017-02-17  902  	if (not_suspended > 1 || (not_suspended == 1 && !one_dev_on))
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  903  		return -EBUSY;
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  904  
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  905  	if (genpd->gov && genpd->gov->power_down_ok) {
+1f8728b7adc4c2b drivers/base/power/domain.c Ulf Hansson     2017-02-17  906  		if (!genpd->gov->power_down_ok(&genpd->domain))
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
