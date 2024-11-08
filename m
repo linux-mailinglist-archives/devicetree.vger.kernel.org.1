@@ -1,375 +1,126 @@
-Return-Path: <devicetree+bounces-120308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07ADF9C1F76
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 15:37:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 318B89C1F9B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 15:48:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80A131F26090
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 14:37:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E399828159F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 14:48:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF1E1F76A4;
-	Fri,  8 Nov 2024 14:36:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 806C11E9078;
+	Fri,  8 Nov 2024 14:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FjSSh+c7"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JCKxbPX4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6B51F5825;
-	Fri,  8 Nov 2024 14:36:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50FCE1803A;
+	Fri,  8 Nov 2024 14:48:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731076574; cv=none; b=JTUOb3w2F2csgcaE4u3M6LWYP2tEZOcO1IWcpm5QcT+5SYKUarnN2ZjS/ICc8M62mKDJQ0BA27L8B7U7oLb8aEgKfaRdrAvZ6Upaz426DOdFaLpV705gI7NfCTqTr6yc5Fs7BC7Uwdvyast89NyCLpm+xeXRF1UTedPrZmxpJ/o=
+	t=1731077299; cv=none; b=dDGM4K527iBd4QDi9MuQ7351MIYi9S7zlyEPqITtwIpFmm1gZrSii9B9LKgOo5qjZFjw41mfO4s5xpXXAGMEhp/ztvqjcNFlXEtiWM+ty8eGN8J+Ppn7Fh+N5r1VwtqUE7lZBPPE9RwzCVUMPUfF+uAzUP2HbOuQyl8sYm7wRb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731076574; c=relaxed/simple;
-	bh=3kvlDqV0tXgEzAPAtwg8yui0NrIq88s4pdVp/yxJzfE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oWsuVdXlBHh5oLwyUxFZRkh7TStCiA8tSzVzsdROHK0FrHUJjWBc9zFnxsbNRI4szrwkXAdBKtdu52V530VRhBKKWEqaiJma54dKpvyPjs0JXyLoLaMjLXf4qnShyBW7wRU1eJ+VVRgLqx+YO9wiWnhIinEyA/CbDq1Aue6kTFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FjSSh+c7; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 3C4D72000E;
-	Fri,  8 Nov 2024 14:36:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1731076568;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XOigWkMO2U2ofXPZcVrSkjfciW4tfAlRbP7bVVv6C6w=;
-	b=FjSSh+c7WVylQYQ7FJsL/nQafsc3e0SiFcQ7GKRpymQbkVTOOZ050LrcDH9bav1s4IgLHN
-	DUarGQ20f0pKh/x7PXklVUXkfDI93KmXvArPtl8UBGT9q5jNFlGQOk/q6O6jiEcy5zY9Qa
-	ni18uyoML8rqQwhSuauXR3nhWUT9OjANZENHFLJiCbpOKgtsxJd4gy8EEorwQvhMHCMrJp
-	Nyv1vgSvVXnTkEew2XFz5D0MS3V7YW3l7oT4339OqIckqxoFstOaWQAlnyQODLXOVv3bqF
-	EK74wrOlFHLgYnE+Q0l8zapl7Zgzz7tU1+iku0H2oedtrKEM2pwEgasQdZkYQg==
-From: Herve Codina <herve.codina@bootlin.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lizhi Hou <lizhi.hou@amd.com>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH v2 6/6] PCI: of: Create device-tree PCI host bridge node
-Date: Fri,  8 Nov 2024 15:35:59 +0100
-Message-ID: <20241108143600.756224-7-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.46.2
-In-Reply-To: <20241108143600.756224-1-herve.codina@bootlin.com>
-References: <20241108143600.756224-1-herve.codina@bootlin.com>
+	s=arc-20240116; t=1731077299; c=relaxed/simple;
+	bh=7Vh423k2v5rDiz9e5aaLWERcHQiPBA3gPcPJh9+KSjE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MpIBHCzX/fEPHBpBWScG9EVTbf+MIDrXQ/P77wr1jJbBy0flrEQnxdX/XurTUaDF+/FhBe0wfY2CQ06VweVz70vMlKYhpN0X5/HrnG9PRg5oo/ZXhpwdQg45x+jvO7ZR4QatYo+AF2KXONpQMksfr1OByWNGoingUeK5EsXnjxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JCKxbPX4; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4A8Em0fs090318;
+	Fri, 8 Nov 2024 08:48:00 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1731077280;
+	bh=Qb5W5ggwcyRExagNeS8k1z2C/XU9B9OpyZND0Okpr+k=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=JCKxbPX4DVN8tneV7P3AMBuhJNPuYU0QfitzY4gmH83N9yBfhPKrr+qoKhslW5c38
+	 d6vNtQX1F2y/O58SBJbogUS9lKLOlSE3nAkvo07bBobpJJlMHgRukB/tjZXHMwnjUg
+	 OD9b/jR4ZBrwUmcbtx1bNFE2n8eEdhU7CnNXul/s=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4A8Em0GJ083470;
+	Fri, 8 Nov 2024 08:48:00 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 8
+ Nov 2024 08:48:00 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 8 Nov 2024 08:48:00 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4A8Em0LU031896;
+	Fri, 8 Nov 2024 08:48:00 -0600
+Date: Fri, 8 Nov 2024 08:48:00 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Roger Quadros <rogerq@kernel.org>
+CC: Andreas Kemnade <andreas@kemnade.info>, Rob Herring <robh@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>, Tony Lindgren
+	<tony@atomide.com>,
+        Conor Dooley <conor+dt@kernel.org>, Stephen Boyd
+	<sboyd@kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: clock: ti: Convert mux.txt to json-schema
+Message-ID: <20241108144800.ks7owznyt4fpcdap@thrive>
+References: <20241104135549.38486-1-andreas@kemnade.info>
+ <20241105135234.GA3100411-robh@kernel.org>
+ <20241107075803.2cf33ab4@akair>
+ <36b61684-fede-4422-bd54-0421e6a0fc23@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <36b61684-fede-4422-bd54-0421e6a0fc23@kernel.org>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-PCI devices device-tree nodes can be already created. This was
-introduced by commit 407d1a51921e ("PCI: Create device tree node for
-bridge").
+On 15:03-20241108, Roger Quadros wrote:
+> >>> diff --git a/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml b/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..b271ab86dde1
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+> >>> @@ -0,0 +1,123 @@
+> >>> +# SPDX-License-Identifier: GPL-2.0-only  
+> >>
+> >> Surely TI as the only author of the original binding would agree to
+> >> dual-license this?
+> >>
+> > So there is a question mark. So you are waiting for some confirmation
+> > form TI?
+> 
+> TI code uses below license clause. So better to stick to that.
+> 
+> # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 
-In order to have device-tree nodes related to PCI devices attached on
-their PCI root bus (the PCI bus handled by the PCI host bridge), a PCI
-root bus device-tree node is needed. This root bus node will be used as
-the parent node of the first level devices scanned on the bus. On
-device-tree based systems, this PCI root bus device tree node is set to
-the node of the related PCI host bridge. The PCI host bridge node is
-available in the device-tree used to describe the hardware passed at
-boot.
+Just my 2 cents:
 
-On non device-tree based system (such as ACPI), a device-tree node for
-the PCI host bridge or for the root bus do not exist. Indeed, the PCI
-host bridge is not described in a device-tree used at boot simply
-because no device-tree are passed at boot.
+Just to be clear, as a corporate, as TI contributor we have approval for the
+following two:
 
-The device-tree PCI host bridge node creation needs to be done at
-runtime. This is done in the same way as for the creation of the PCI
-device nodes. I.e. node and properties are created based on computed
-information done by the PCI core. Also, as is done on device-tree based
-systems, this PCI host bridge node is used for the PCI root bus.
+For new stuff:  GPL-2.0-only OR MIT
+for legacy stuff, we had GPL-2.0-only.
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- drivers/pci/of.c          |  94 ++++++++++++++++++++++++++++++++++-
- drivers/pci/of_property.c | 102 ++++++++++++++++++++++++++++++++++++++
- drivers/pci/pci.h         |   6 +++
- drivers/pci/probe.c       |   2 +
- drivers/pci/remove.c      |   2 +
- 5 files changed, 205 insertions(+), 1 deletion(-)
+There are indeed instances of community contributions with
+GPL-2.0-only OR BSD-2-Clause, but that is definitely something community
+is free to do. Looking at history of
+Documentation/devicetree/bindings/clock/ti/mux.txt, I believe, at least
+from TI perspective, we are fine with GPL-2.0-only OR MIT and I think it
+will let other s/w ecosystems consume the same as well.
 
-diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-index 141ffbb1b3e6..316c31d13aa8 100644
---- a/drivers/pci/of.c
-+++ b/drivers/pci/of.c
-@@ -726,7 +726,99 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
- out_free_name:
- 	kfree(name);
- }
--#endif
-+
-+void of_pci_remove_host_bridge_node(struct pci_host_bridge *bridge)
-+{
-+	struct device_node *np;
-+
-+	np = pci_bus_to_OF_node(bridge->bus);
-+	if (!np || !of_node_check_flag(np, OF_DYNAMIC))
-+		return;
-+
-+	device_remove_of_node(&bridge->bus->dev);
-+	device_remove_of_node(&bridge->dev);
-+	of_changeset_revert(np->data);
-+	of_changeset_destroy(np->data);
-+	of_node_put(np);
-+}
-+
-+void of_pci_make_host_bridge_node(struct pci_host_bridge *bridge)
-+{
-+	struct device_node *np = NULL;
-+	struct of_changeset *cset;
-+	const char *name;
-+	int ret;
-+
-+	/*
-+	 * If there is already a device-tree node linked to the PCI bus handled
-+	 * by this bridge (i.e. the PCI root bus), nothing to do.
-+	 */
-+	if (pci_bus_to_OF_node(bridge->bus))
-+		return;
-+
-+	/* The root bus has no node. Check that the host bridge has no node too */
-+	if (bridge->dev.of_node) {
-+		pr_err("PCI host bridge of_node already set");
-+		return;
-+	}
-+
-+	/* Check if there is a DT root node to attach the created node */
-+	if (!of_root) {
-+		pr_err("of_root node is NULL, cannot create PCI host bridge node\n");
-+		return;
-+	}
-+
-+	name = kasprintf(GFP_KERNEL, "pci@%x,%x", pci_domain_nr(bridge->bus),
-+			 bridge->bus->number);
-+	if (!name)
-+		return;
-+
-+	cset = kmalloc(sizeof(*cset), GFP_KERNEL);
-+	if (!cset)
-+		goto out_free_name;
-+	of_changeset_init(cset);
-+
-+	np = of_changeset_create_node(cset, of_root, name);
-+	if (!np)
-+		goto out_destroy_cset;
-+
-+	ret = of_pci_add_host_bridge_properties(bridge, cset, np);
-+	if (ret)
-+		goto out_free_node;
-+
-+	/*
-+	 * This of_node will be added to an existing device. The of_node parent
-+	 * is the root OF node and so this node will be handled by the platform
-+	 * bus. Avoid any new device creation.
-+	 */
-+	of_node_set_flag(np, OF_POPULATED);
-+	np->fwnode.dev = &bridge->dev;
-+	fwnode_dev_initialized(&np->fwnode, true);
-+
-+	ret = of_changeset_apply(cset);
-+	if (ret)
-+		goto out_free_node;
-+
-+	np->data = cset;
-+
-+	/* Add the of_node to host bridge and the root bus */
-+	device_add_of_node(&bridge->dev, np);
-+	device_add_of_node(&bridge->bus->dev, np);
-+
-+	kfree(name);
-+
-+	return;
-+
-+out_free_node:
-+	of_node_put(np);
-+out_destroy_cset:
-+	of_changeset_destroy(cset);
-+	kfree(cset);
-+out_free_name:
-+	kfree(name);
-+}
-+
-+#endif /* CONFIG_PCI_DYNAMIC_OF_NODES */
- 
- #endif /* CONFIG_PCI */
- 
-diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
-index e56159cc48e8..e8e2c3ecc255 100644
---- a/drivers/pci/of_property.c
-+++ b/drivers/pci/of_property.c
-@@ -394,3 +394,105 @@ int of_pci_add_properties(struct pci_dev *pdev, struct of_changeset *ocs,
- 
- 	return 0;
- }
-+
-+static bool of_pci_is_range_resource(const struct resource *res, u32 *flags)
-+{
-+	if (!(resource_type(res) & IORESOURCE_MEM) &&
-+	    !(resource_type(res) & IORESOURCE_MEM_64))
-+		return false;
-+
-+	if (of_pci_get_addr_flags(res, flags))
-+		return false;
-+
-+	return true;
-+}
-+
-+static int of_pci_host_bridge_prop_ranges(struct pci_host_bridge *bridge,
-+					  struct of_changeset *ocs,
-+					  struct device_node *np)
-+{
-+	struct resource_entry *window;
-+	unsigned int ranges_sz = 0;
-+	unsigned int n_range = 0;
-+	struct resource *res;
-+	int n_addr_cells;
-+	u32 *ranges;
-+	u64 val64;
-+	u32 flags;
-+	int ret;
-+
-+	n_addr_cells = of_n_addr_cells(np);
-+	if (n_addr_cells <= 0 || n_addr_cells > 2)
-+		return -EINVAL;
-+
-+	resource_list_for_each_entry(window, &bridge->windows) {
-+		res = window->res;
-+		if (!of_pci_is_range_resource(res, &flags))
-+			continue;
-+		n_range++;
-+	}
-+
-+	if (!n_range)
-+		return 0;
-+
-+	ranges = kcalloc(n_range,
-+			 (OF_PCI_ADDRESS_CELLS + OF_PCI_SIZE_CELLS +
-+			  n_addr_cells) * sizeof(*ranges),
-+			 GFP_KERNEL);
-+	if (!ranges)
-+		return -ENOMEM;
-+
-+	resource_list_for_each_entry(window, &bridge->windows) {
-+		res = window->res;
-+		if (!of_pci_is_range_resource(res, &flags))
-+			continue;
-+
-+		/* PCI bus address */
-+		val64 = res->start;
-+		of_pci_set_address(NULL, &ranges[ranges_sz], val64 - window->offset,
-+				   0, flags, false);
-+		ranges_sz += OF_PCI_ADDRESS_CELLS;
-+
-+		/* Host bus address */
-+		if (n_addr_cells == 2)
-+			ranges[ranges_sz++] = upper_32_bits(val64);
-+		ranges[ranges_sz++] = lower_32_bits(val64);
-+
-+		/* Size */
-+		val64 = resource_size(res);
-+		ranges[ranges_sz] = upper_32_bits(val64);
-+		ranges[ranges_sz + 1] = lower_32_bits(val64);
-+		ranges_sz += OF_PCI_SIZE_CELLS;
-+	}
-+
-+	ret = of_changeset_add_prop_u32_array(ocs, np, "ranges", ranges, ranges_sz);
-+	kfree(ranges);
-+	return ret;
-+}
-+
-+int of_pci_add_host_bridge_properties(struct pci_host_bridge *bridge,
-+				      struct of_changeset *ocs,
-+				      struct device_node *np)
-+{
-+	int ret;
-+
-+	ret = of_changeset_add_prop_string(ocs, np, "device_type", "pci");
-+	if (ret)
-+		return ret;
-+
-+	ret = of_changeset_add_prop_u32(ocs, np, "#address-cells",
-+					OF_PCI_ADDRESS_CELLS);
-+	if (ret)
-+		return ret;
-+
-+	ret = of_changeset_add_prop_u32(ocs, np, "#size-cells",
-+					OF_PCI_SIZE_CELLS);
-+	if (ret)
-+		return ret;
-+
-+	ret = of_pci_host_bridge_prop_ranges(bridge, ocs, np);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-index 14d00ce45bfa..f2092a119f2c 100644
---- a/drivers/pci/pci.h
-+++ b/drivers/pci/pci.h
-@@ -802,9 +802,15 @@ void of_pci_make_dev_node(struct pci_dev *pdev);
- void of_pci_remove_node(struct pci_dev *pdev);
- int of_pci_add_properties(struct pci_dev *pdev, struct of_changeset *ocs,
- 			  struct device_node *np);
-+void of_pci_make_host_bridge_node(struct pci_host_bridge *bridge);
-+void of_pci_remove_host_bridge_node(struct pci_host_bridge *bridge);
-+int of_pci_add_host_bridge_properties(struct pci_host_bridge *bridge, struct of_changeset *ocs,
-+				      struct device_node *np);
- #else
- static inline void of_pci_make_dev_node(struct pci_dev *pdev) { }
- static inline void of_pci_remove_node(struct pci_dev *pdev) { }
-+static inline void of_pci_make_host_bridge_node(struct pci_host_bridge *bridge) { }
-+static inline void of_pci_remove_host_bridge_node(struct pci_host_bridge *bridge) { }
- #endif
- 
- #ifdef CONFIG_PCIEAER
-diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-index 4f68414c3086..bfe89ce8d800 100644
---- a/drivers/pci/probe.c
-+++ b/drivers/pci/probe.c
-@@ -1049,6 +1049,8 @@ static int pci_register_host_bridge(struct pci_host_bridge *bridge)
- 		dev_info(&bus->dev, "root bus resource %pR%s\n", res, addr);
- 	}
- 
-+	of_pci_make_host_bridge_node(bridge);
-+
- 	down_write(&pci_bus_sem);
- 	list_add_tail(&bus->node, &pci_root_buses);
- 	up_write(&pci_bus_sem);
-diff --git a/drivers/pci/remove.c b/drivers/pci/remove.c
-index e4ce1145aa3e..2c379c9ab5b4 100644
---- a/drivers/pci/remove.c
-+++ b/drivers/pci/remove.c
-@@ -160,6 +160,8 @@ void pci_stop_root_bus(struct pci_bus *bus)
- 					 &bus->devices, bus_list)
- 		pci_stop_bus_device(child);
- 
-+	of_pci_remove_host_bridge_node(host_bridge);
-+
- 	/* stop the host bridge */
- 	device_release_driver(&host_bridge->dev);
- }
 -- 
-2.46.2
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
