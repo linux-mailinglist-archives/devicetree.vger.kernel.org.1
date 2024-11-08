@@ -1,244 +1,110 @@
-Return-Path: <devicetree+bounces-120341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C64399C2275
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:54:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EBAD9C2280
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:55:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85562281F75
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 16:54:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FB321C230E7
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 16:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D0D51991D7;
-	Fri,  8 Nov 2024 16:54:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FA4619994F;
+	Fri,  8 Nov 2024 16:55:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="EML1E7QN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d4BTTqei"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DADF1990B3;
-	Fri,  8 Nov 2024 16:54:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731084869; cv=pass; b=LZuBCebt7oodEbZzd92exKR+i4dVJWWZHyfAJDiivpDMmLh/rJXiaXst59LlMMuJ8IpFocwKv4OS777/hfRVsjFJtpS9ohqFkDpkdXS78dTZiMNP4c65hXIGfoyia/UXali5ZkMjlmVHMmQTHhkxEGj1RgwoxSHsHGkkdrEsk90=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731084869; c=relaxed/simple;
-	bh=1RoMv/rYXCT+mRbb8firftnoI4gHYWxACN7qAEhWN18=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XEoHR1xpqxAMKg/qvDJXp1o8TLuRaZzNhr6W2BRk+veJqVsJc6/9/VRbihPUJd3vWAVh7DG1/vIHJE1Ba7G3L+YsGm8eApVldf/L39aIrFpAZtWk6K+cTDoFPf0LEdQkkOD7g8oBFzMJ4sMa90CpgHf1amW0TytAXthmkcQ4u60=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=EML1E7QN; arc=pass smtp.client-ip=136.143.188.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1731084832; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=UggnLDiT8L9h57CG1XTcCfDiHQTXq+nrtR8IlMCdsDbCjMC12O0QmOUG5DYJ9hlBoxKSVzHlmb7SE5o+L9nIqBIELrBg4dKAvSs3vWYGwMTGLY7IAVxrFKlXHc41oR21rkGMi2NN4BZjIeZdO6D8NVkJQyo3N90gDqXBDrVHPcs=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1731084832; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=+Ud2Wm0N9rBWA5JqD8doezigwT2uqET+VTznhZjAgh0=; 
-	b=EyN1Pjj0KhgVMYXN5flONkrptqDwA4lmKqBXQmxOzULXNfFsUry8W/i0OULXyaqTGRLHHZOdblapSY34PXuJAqbliQihEPtdTDk40MSynfLuwZHdRPnXbC0C6VjQNf74BOZFdggtg8GwZhZdBWvKL7XHIVWKfOMkh/HYUROY8/0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1731084832;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=+Ud2Wm0N9rBWA5JqD8doezigwT2uqET+VTznhZjAgh0=;
-	b=EML1E7QNShCWastiTijne32mVrnn3qFFsmBIAi4841Os7zoO6t0f/jF16PUmmi+o
-	2uLnjTKlfLxHBZ/9QWEw7YKcc3PFCo3mEIoHSiiv3cMGNTjXL/Msudldjy8cWnkF3Bn
-	+cpN0tQ+AxU9Ye10reiLJRqJnMRMqfkpZQY5U51g=
-Received: by mx.zohomail.com with SMTPS id 1731084830585742.5608083703597;
-	Fri, 8 Nov 2024 08:53:50 -0800 (PST)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Andy Yan <andyshrk@163.com>
-Cc: linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko.stuebner@cherry.de>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Dragan Simic <dsimic@manjaro.org>, Chris Morgan <macromorgan@hotmail.com>,
- Diederik de Haas <didi.debian@cknow.org>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- kernel@collabora.com
-Subject: Re: [PATCH v2 1/3] vop2: Add clock resets support
-Date: Fri, 08 Nov 2024 11:53:47 -0500
-Message-ID: <1901885.tdWV9SEqCh@trenzalore>
-In-Reply-To: <4605629.LvFx2qVVIh@trenzalore>
-References:
- <20240522185924.461742-1-detlev.casanova@collabora.com>
- <6a3d3fb1.3755.18fa893239e.Coremail.andyshrk@163.com>
- <4605629.LvFx2qVVIh@trenzalore>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6960D1991BD;
+	Fri,  8 Nov 2024 16:55:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731084935; cv=none; b=speIbh9LSFKEpij16jOmStJI3OrI2kfiFluGE0X7M9SOuHQpLlFlTRC/BNYXjGVZyQrJjgRF/ee2RMwGE/3lYqnhMi4u6lGviKPhXVD638gvky6WIeIg1EjEJahuOw7AW5qlDWRjiIdYm2UkYs3ru9T5KcrZWFxMWpacBH/cOO4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731084935; c=relaxed/simple;
+	bh=kICkJghl4CqQ5MV25sHO+sQ4MhXX6W6lZJNTy62c1I0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=knYF4Gcx21K2BGPu8VyCXqnzK0WgGMHJIS2Hmj4gp1ZIoNOlxmmhil4EKdZOSORAOgBCT839fyspsUoXT/GdocbzOrjwjvhLP2m5h5nWAguH2a74ueSCOov8F4geUZiHxf9fZw3xAq8RGWizWj+eyZfLeouNYJ0LeAD4CMHFAhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d4BTTqei; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A787FC4CECD;
+	Fri,  8 Nov 2024 16:55:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731084933;
+	bh=kICkJghl4CqQ5MV25sHO+sQ4MhXX6W6lZJNTy62c1I0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=d4BTTqeiIYW6gVnnPCHN6OSIdoa7+aiamxw/x0XPnSje0elpy6fxPKnDrKmIOEgBv
+	 /NLEtZONtpvjdPn2nf+iUKAqenZ1uoyq2bX6kdawp3xzhIpgrvE7YNhxDR09iEJICL
+	 jvdt2zYGgBFyCE3bdGNlQiW2CFKPsmhAg4nujn+9lcX5iw5PVwsnvWlqsHaeuOyVqn
+	 M09qy6R7blBnQ99IlwnoS98dre6aCHiqiSmjHSd2f29cymxPkOfM1MAQHe/EXvaeRg
+	 qixMDqJrGAU92L3MVfs5Lpr75b/eoNHlKPE2b1GfuCAbq7Vthtkc7Lvxo84JpFrHhy
+	 58MmyoXipJL/g==
+Date: Fri, 8 Nov 2024 10:55:32 -0600
+From: Rob Herring <robh@kernel.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Stephen Boyd <sboyd@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, linux-kernel@vger.kernel.org,
+	patches@lists.linux.dev, devicetree@vger.kernel.org,
+	kunit-dev@googlegroups.com
+Subject: Re: [PATCH] of: Allow overlay kunit tests to run CONFIG_OF_OVERLAY=n
+Message-ID: <20241108165532.GA2411452-robh@kernel.org>
+References: <20241016212016.887552-1-sboyd@kernel.org>
+ <20241017203810.GA814469-robh@kernel.org>
+ <38153cbf2616a4a6706412952778eec1.sboyd@kernel.org>
+ <CAMuHMdWp84u66Y-ELtbbRmySYwQch_=2qQiXzWJzrSkGeLZYBA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdWp84u66Y-ELtbbRmySYwQch_=2qQiXzWJzrSkGeLZYBA@mail.gmail.com>
 
-On Friday, 8 November 2024 11:39:57 EST Detlev Casanova wrote:
-> On Thursday, 23 May 2024 23:09:26 EST Andy Yan wrote:
-> > Hi Detlev=EF=BC=8C
-> >=20
-> > At 2024-05-23 02:57:48, "Detlev Casanova" <detlev.casanova@collabora.co=
-m>
->=20
-> wrote:
-> > >At the end of initialization, each VP clock needs to be reset before
-> > >they can be used.
+On Fri, Nov 08, 2024 at 09:56:15AM +0100, Geert Uytterhoeven wrote:
+> Hi Stephen,
+> 
+> On Sat, Oct 19, 2024 at 12:21 AM Stephen Boyd <sboyd@kernel.org> wrote:
+> > Quoting Rob Herring (2024-10-17 13:38:10)
+> > > On Wed, Oct 16, 2024 at 02:20:15PM -0700, Stephen Boyd wrote:
+> > > > Some configurations want to enable CONFIG_KUNIT without enabling
+> > > > CONFIG_OF_OVERLAY. The kunit overlay code already skips if
+> > > > CONFIG_OF_OVERLAY isn't enabled, so this select here isn't really doing
+> > > > anything besides making it easier to run the tests without them
+> > > > skipping. Remove the select and move the config setting to the
+> > > > drivers/of/.kunitconfig file so that the overlay tests can be run with
+> > > > or without CONFIG_OF_OVERLAY set to test either behavior.
+> 
+> Thanks for your patch, which is now commit 027af8c26fdc0642 ("of: Allow
+> overlay kunit tests to run CONFIG_OF_OVERLAY=n") in dt-rh/for-next.
+> 
+> > > > Fixes: 5c9dd72d8385 ("of: Add a KUnit test for overlays and test managed APIs")
 > > >
-> > >Failing to do so can put the VOP in an undefined state where the
-> > >generated HDMI signal is either lost or not matching the selected mode.
-> >=20
-> > Would you please provide a detailed description of your test case?
->=20
-> The test case was to switch modes (using modetest) until the HDMI signal =
-was
-> lost on the TV side. It was also possible to detect the issue by tracking
-> the HDMI TX Controller_VIDEO_MONITOR_STATUS[1-6] registers, especially at
-> address 0x890, where the register would take the value `0x0000018c`.
->=20
-> After adding these resets, the issue cannot be reproduced. I can share a
-> script that reproduced this in the past (but this is an old patchset now,=
- so
-> things could have changed)
->=20
-> > >Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > >---
-> > >
-> > > drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 30 ++++++++++++++++++++
-> > > 1 file changed, 30 insertions(+)
-> > >
-> > >diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> > >b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c index
-> > >fdd768bbd487c..e81a67161d29a 100644
-> > >--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> > >+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> > >@@ -17,6 +17,7 @@
-> > >
-> > > #include <linux/platform_device.h>
-> > > #include <linux/pm_runtime.h>
-> > > #include <linux/regmap.h>
-> > >
-> > >+#include <linux/reset.h>
-> > >
-> > > #include <linux/swab.h>
-> > >=20
-> > > #include <drm/drm.h>
-> > >
-> > >@@ -157,6 +158,7 @@ struct vop2_win {
-> > >
-> > > struct vop2_video_port {
-> > >=20
-> > > 	struct drm_crtc crtc;
-> > > 	struct vop2 *vop2;
-> > >
-> > >+	struct reset_control *dclk_rst;
-> > >
-> > > 	struct clk *dclk;
-> > > 	unsigned int id;
-> > > 	const struct vop2_video_port_data *data;
-> > >
-> > >@@ -1915,6 +1917,26 @@ static int us_to_vertical_line(struct
-> > >drm_display_mode *mode, int us)>
-> > >
-> > > 	return us * mode->clock / mode->htotal / 1000;
-> > >=20
-> > > }
-> > >
-> > >+static int vop2_clk_reset(struct vop2_video_port *vp)
-> > >+{
-> > >+	struct reset_control *rstc =3D vp->dclk_rst;
-> > >+	struct vop2 *vop2 =3D vp->vop2;
-> > >+	int ret;
-> > >+
-> > >+	if (!rstc)
-> > >+		return 0;
-> >=20
-> > In fact, this check is not necessary here.  The following reset control
-> > api
-> > will check for NULL pointer
->=20
-> Agreed, I'll do a rebased v3 and remove the check.
-
-Actually, re-thinking about it, the check is done to avoid the udelay(10); =
-if=20
-there is no resets configured, so I'd rather keep it that way.
-
-> > >+
-> > >+	ret =3D reset_control_assert(rstc);
-> > >+	if (ret < 0)
-> > >+		drm_warn(vop2->drm, "failed to assert reset\n");
-> > >+	udelay(10);
-> > >+	ret =3D reset_control_deassert(rstc);
-> > >+	if (ret < 0)
-> > >+		drm_warn(vop2->drm, "failed to deassert reset\n");
-> > >+
-> > >+	return ret;
-> > >+}
-> > >+
-> > >
-> > > static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
-> > >=20
-> > > 				    struct drm_atomic_state
->=20
-> *state)
->=20
-> > > {
-> > >
-> > >@@ -2055,6 +2077,8 @@ static void vop2_crtc_atomic_enable(struct drm_c=
-rtc
-> > >*crtc,>
-> > >
-> > > 	vop2_vp_write(vp, RK3568_VP_DSP_CTRL, dsp_ctrl);
-> > >
-> > >+	vop2_clk_reset(vp);
-> > >+
-> > >
-> > > 	drm_crtc_vblank_on(crtc);
-> > > =09
-> > > 	vop2_unlock(vop2);
-> > >
-> > >@@ -2706,6 +2730,12 @@ static int vop2_create_crtcs(struct vop2 *vop2)
-> > >
-> > > 		vp->data =3D vp_data;
-> > > 	=09
-> > > 		snprintf(dclk_name, sizeof(dclk_name), "dclk_vp%d", vp-
+> > > Doesn't really seem like a fix.
 > >
-> >id);
+> > Ok. Feel free to drop the tag.
 > >
-> > >+		vp->dclk_rst =3D devm_reset_control_get_optional(vop2-
+> > > Does this need to go into 6.12?
 > >
-> >dev, dclk_name);
-> >
-> > >+		if (IS_ERR(vp->dclk_rst)) {
-> > >+		        drm_err(vop2->drm, "failed to get %s reset\n",
->=20
-> dclk_name);
->=20
-> > >+		        return PTR_ERR(vp->dclk_rst);
-> > >+		}
-> > >+
-> > >
-> > > 		vp->dclk =3D devm_clk_get(vop2->dev, dclk_name);
-> > > 		if (IS_ERR(vp->dclk)) {
-> > > 	=09
-> > > 			drm_err(vop2->drm, "failed to get %s\n",
->=20
-> dclk_name);
+> > It's only important for 6.12 if kernel configurators want to build the
+> > kernel with OF_OVERLAY_KUNIT_TEST enabled and not be forced to enable
+> > CONFIG_OF_OVERLAY. I don't mind if it waits a while.
+> 
+> I'd say it's a fix, so please keep at last the Fixes tag. Merely
+> enabling kunit tests (which can be modular) should not increase the
+> possible attack vector on a product by enabling extra unneeded code.
 
+Not sure I buy that that is an actual problem. However, not worth 
+arguing over. I only really care because if there's a Fixes, then this 
+really should go to Linus for 6.12 rather than eventually get 
+auto-selected from 6.13 to go to stable. So I moved it to send to Linus, 
+but I found that CONFIG_OF_OVERLAY is still selected with this patch. 
+That's because the clock kunit tests also select CONFIG_OF_OVERLAY. 
+That's fixed in next, but it's not queued up for 6.12.
 
-
-
+Rob
 
