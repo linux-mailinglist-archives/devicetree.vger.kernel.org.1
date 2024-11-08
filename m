@@ -1,159 +1,181 @@
-Return-Path: <devicetree+bounces-120346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 154309C22BD
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 18:14:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 488F09C22CC
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 18:22:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDA1B285E19
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:14:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F32331F22BEF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 17:22:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 447841991D7;
-	Fri,  8 Nov 2024 17:14:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 835101EB9F5;
+	Fri,  8 Nov 2024 17:22:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="S7/LwjT6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UtUCnpyT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [207.246.76.47])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC19C1DFD1
-	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 17:14:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.246.76.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87E341E9091
+	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 17:22:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731086087; cv=none; b=OdGbGIUE3zmIAEy0A9CRXGaikblNSQYDnXHxnYTkT9KBzYO8kYe63yWPewewlsb9c+3OZUckV7WoDipsBqrFISYsL0beefFKBWqpXEp+UnBrVbZH10HAOLcQ0I+pB4HX7b+F1wDlexYDJea6MHoKrPzSILJqnHp/70dGaMBOWD8=
+	t=1731086567; cv=none; b=thzEYwlzTRGUlMiX5zXVCq9Hk1H4NrMVtN46/fDMzo94ieP3rn83i/wsfseysIUnYUSxMq3BNibGowYbgQOCt4tS1t3XGHwOFirLdZ1c6DlSDUuIJVoQEKfitUkUVR0qaoUTKmZxfV3pA6B7zkzkMOF7YQK0Yp1MPjlTlHypsOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731086087; c=relaxed/simple;
-	bh=qXxdk8lZHAHh5/hGF7BktM8jAG0FFBHhC47+v/TURxQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=O0Ksy+BqqteJoBT7e7PzO1IDlBxaZUDMdW01YwvX7xQs1+w4KUU6yjiP9d7vuhVxxuONJtj7aoZCe9OqGz8RHdBsKb3FAcYSkzP0V8rAb+sSscC1bxeLS92ww1KF/tgGttYGMyf5kF1sv0yZWvfJTIivUTtLOwYFy/J3bE3aajM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=S7/LwjT6; arc=none smtp.client-ip=207.246.76.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
- To: From; q=dns/txt; s=fe-e1b5cab7be; t=1731086073;
- bh=TS2gLOjQjFV6cYijRKcDLkRYjhtlEXXGFVSSgqynX+0=;
- b=S7/LwjT6RrrOoOPpoX8j7fT6pvrM9FJPPNvCA46Lx5Ehz12dE2LjDgV2BADueA/ceVI7dEYIl
- H5rZu5ruJncXOvjzBY1sP+RuLSlJgRDKmJQHfovbO07j4q8dMQbROtWnoAgvsuuiqRFrpHEl5Bi
- aCklkowmL7CVLxmSQgDMSUjvCdqpQmU8Sv+U6NPMXs/X1bya8SaH6kmCo6e8quSQyL4r4l0cUs5
- 5tfWn51szFGA45bcodTA/5Xo79QZLS3ib1X0LGnLRyF5d5G9mdbxp/eE+VhXf8gWzwNVxluy0aG
- uUNhdS8Kz6WXq3+IVLnF/E4PYdNVC26yG2Rq5WpB0N9w==
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Jonas Karlman <jonas@kwiboo.se>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Enable HDMI0 on FriendlyElec CM3588 NAS
-Date: Fri,  8 Nov 2024 17:14:19 +0000
-Message-ID: <20241108171423.835496-1-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.46.2
+	s=arc-20240116; t=1731086567; c=relaxed/simple;
+	bh=AZeXblRqUA+athYMQ8PexgeQYbRAQdfZV5DIZ5kLB0w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WwRY6YQb5DM0Gaop8v8B9no5/n/SETXSyYnhl6Xy3/I7/azwCbDytABC1gRLJyRmw3D3g8yZ0XYjCOYUZMYX77nib7THaxc/pYcLbODmD7Sdd4u5em3iA1em1Fv7TYOPIiLmOkP7XqVLYNKsYmu7fmJkOsIWusTlNXL4w1yCJ+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UtUCnpyT; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-539f58c68c5so4513899e87.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 09:22:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731086564; x=1731691364; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=IuMsjEWNzhW+6P3eECc9hh/03bxywxtcZPQ/jBAhyYE=;
+        b=UtUCnpyT695O8bCaSLpXzcTn/y5tE0pJTdVXgzqtSmLS2ObyJeehT2+dvL/hZ6gkus
+         zgkwqquYU1mPfPuSaQ3SecgJwvX0hhyhgzifwDP/tn7btgr6/Nn5DoOdsDGJnKHSSFea
+         uvCTDHHc1XGFB6RQjUibVFRaD/AoMRw4O81+44wtCzqsgO0lNscHejAOwT8HarTSza+z
+         pxcdzqhHGb9E062meeMjbIOtbFY3RkPtDzY+vryXyMPChKgSv6tjF5JAC4GIhwRNPTSH
+         usNPFi0FsxhMsrgRSh8EtFhW5x5Z7axNpbRUVzds0mRihtrWFudG1ChC0CN7QdSOwln2
+         jtGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731086564; x=1731691364;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IuMsjEWNzhW+6P3eECc9hh/03bxywxtcZPQ/jBAhyYE=;
+        b=LUuPJ9A0Y3z5ySyT97xlOE4rG3IlzSgoCXVCQ5+5s99y7oTAgQAMQtGPa0fypT6uuz
+         fkMPDbCGoZ9tVvbWKQa9YcWDTUXEES2EtvEqRE5/vPw1FKIuk2SNwbkCb01Go2oKURrH
+         2SxmRKxylyVtC7KXAG1Y1Ye0ua08TNXzm4QAk09wwCEklu0Pf8VbzMVe4QfFqW2FSRH7
+         EnN4+gYAwp2A2xFG3Oo4DQ94nLpngsyrWdAnW/+Qb/fv8RrHldQp3Zyy/bF8GI2Lii1w
+         PYqfnozZEJFZoGTLgRn6wGP8NTE3WupKEizf/a9eAAJg7Scjtd6+mvQdUeybkhfZ0TN/
+         nMdw==
+X-Forwarded-Encrypted: i=1; AJvYcCXNLSGDhMQWENaBjYtYJG3h0bXT6G+XyQDZDmiej20zZBYzaAlFovhk2UELTZM9ylOm9YNaiLQNax6N@vger.kernel.org
+X-Gm-Message-State: AOJu0YzldkHW8PbO9k5dCj7GVFbANUWPLCYUm+P4RaJVMQ//pje9tKAb
+	Iq+lqaQOH94gjFDvpo2x8mYrn9su6kuZFRzsi91j2tl6um2H769+SPXhLn5HQo8=
+X-Google-Smtp-Source: AGHT+IG/kHT7uoJA9pS6MJzi5G/TAbHC1g+M286p5WIMFKq0cH1FOM6xU7xjhvQPNXqOerM7diDKNA==
+X-Received: by 2002:a05:651c:1551:b0:2fc:9674:60b5 with SMTP id 38308e7fff4ca-2ff2028afd3mr36644341fa.25.1731086563412;
+        Fri, 08 Nov 2024 09:22:43 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ff179ff9f7sm7271371fa.119.2024.11.08.09.22.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Nov 2024 09:22:42 -0800 (PST)
+Date: Fri, 8 Nov 2024 19:22:39 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Abhishek Sahu <absahu@codeaurora.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 03/11] dt-bindings: clock: Add Qualcomm QCS615 Camera
+ clock controller
+Message-ID: <be4blr2wvnc7b4iubexxnzqevjpgnfhdt7azcuwdtqgp6xbdvh@c3txmpuo5lot>
+References: <20241108-qcs615-mm-clockcontroller-v3-0-7d3b2d235fdf@quicinc.com>
+ <20241108-qcs615-mm-clockcontroller-v3-3-7d3b2d235fdf@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 207.246.76.47
-X-ForwardEmail-ID: 672e46f71f83b87ca0e8e60e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241108-qcs615-mm-clockcontroller-v3-3-7d3b2d235fdf@quicinc.com>
 
-Add the necessary DT changes to enable HDMI0 on FriendlyElec CM3588 NAS.
+On Fri, Nov 08, 2024 at 09:39:20AM +0530, Taniya Das wrote:
+> Add DT bindings for the Camera clock on QCS615 platforms. Add the
+> relevant DT include definitions as well.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
+>  .../bindings/clock/qcom,qcs615-camcc.yaml          |  60 +++++++++++
+>  include/dt-bindings/clock/qcom,qcs615-camcc.h      | 110 +++++++++++++++++++++
+>  2 files changed, 170 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,qcs615-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,qcs615-camcc.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..0abd277aa3ddd2e1384d0af59699dc1deda5575b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,qcs615-camcc.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,qcs615-camcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Camera Clock & Reset Controller on QCS615
+> +
+> +maintainers:
+> +  - Taniya Das <quic_tdas@quicinc.com>
+> +
+> +description: |
+> +  Qualcomm camera clock control module provides the clocks, resets and power
+> +  domains on QCS615
+> +
+> +  See also: include/dt-bindings/clock/qcom,qcs615-camcc.h
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,qcs615-camcc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Board XO source
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +  '#power-domain-cells':
+> +    const: 1
 
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
-Tested and working with video=1920x1080@60 cmdline on a CM3588 NAS
----
- .../rk3588-friendlyelec-cm3588-nas.dts        | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
+Please use qcom,gcc.yaml instead of copying the same set of properties
+over and over.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
-index 411007cb8118..b3a04ca370bb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
-@@ -11,6 +11,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
- #include <dt-bindings/usb/pd.h>
- #include "rk3588-friendlyelec-cm3588.dtsi"
- 
-@@ -89,6 +90,17 @@ button-user {
- 		};
- 	};
- 
-+	hdmi0-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi0_con_in: endpoint {
-+				remote-endpoint = <&hdmi0_out_con>;
-+			};
-+		};
-+	};
-+
- 	ir-receiver {
- 		compatible = "gpio-ir-receiver";
- 		gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_LOW>;
-@@ -307,6 +319,26 @@ &gpio4 {
- 		"", "", "", "";
- };
- 
-+&hdmi0 {
-+	status = "okay";
-+};
-+
-+&hdmi0_in {
-+	hdmi0_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi0>;
-+	};
-+};
-+
-+&hdmi0_out {
-+	hdmi0_out_con: endpoint {
-+		remote-endpoint = <&hdmi0_con_in>;
-+	};
-+};
-+
-+&hdptxphy_hdmi0 {
-+	status = "okay";
-+};
-+
- /* Connected to MIPI-DSI0 */
- &i2c5 {
- 	pinctrl-names = "default";
-@@ -776,3 +808,18 @@ usbdp_phy0_dp_altmode_mux: endpoint@1 {
- &usbdp_phy1 {
- 	status = "okay";
- };
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-+		remote-endpoint = <&hdmi0_in_vp0>;
-+	};
-+};
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - '#clock-cells'
+> +  - '#reset-cells'
+> +  - '#power-domain-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,rpmh.h>
+> +    clock-controller@ad00000 {
+> +      compatible = "qcom,qcs615-camcc";
+> +      reg = <0xad00000 0x10000>;
+> +      clocks = <&rpmhcc RPMH_CXO_CLK>;
+> +
+> +      #clock-cells = <1>;
+> +      #reset-cells = <1>;
+> +      #power-domain-cells = <1>;
+> +    };
+> +...
+
 -- 
-2.46.2
-
+With best wishes
+Dmitry
 
