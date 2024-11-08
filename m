@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-120035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A817F9C1486
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 04:24:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A2FD9C14A1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 04:31:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB2AFB21361
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 03:24:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A24BB1F22750
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 03:31:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C21B7E76D;
-	Fri,  8 Nov 2024 03:24:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E77514012;
+	Fri,  8 Nov 2024 03:31:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LuaXZf2D"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MYkJiQ3H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D567014012;
-	Fri,  8 Nov 2024 03:24:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6AC15C0;
+	Fri,  8 Nov 2024 03:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731036253; cv=none; b=uGtTx6L0Lv4r/VASmdm8h7o2NTX1iro8YqEB1SjAvtnB0AOAqDgbGtITsS8lgZYzcPvf+abx5oN5Cr/+rpBIqKXQiJP+zghqQiAChDyGvABI1yKAGp8dkERgFUs+AN5CIJb+TVCdHDIprLbcC9E0rgPW+ABGfN8FTc0Lwi7DlZM=
+	t=1731036670; cv=none; b=Tooa+uLksS/muQCTr5Vp3V1gtt8akPNrz7zVklHiMz1Ysfbja4DHgau854F8Hd+FT/fmleMajKPA3RhHwKgFxbo2yeKqKcGuLwPqJxZ/UKcLlXJaMlzr1g9rmpbEZMsFL3kIGs79bXf9kqxk38r+KBWB/xknG0ZwdjO6im2Op4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731036253; c=relaxed/simple;
-	bh=IYaperpEdtSoZ06BR7dEbW6DPyyiwzWseXt2Fpea7Dc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DJt3yKVYdhnSDGl9/JaCUGF2/AZlFjAdSXBdfOX/eLJ47sQcdNsigEE3zUltpyhj4m4wjRkDjXjR0V0xNaLKwL9rNLmEVY1S5SKXzXpwOsVY+TFgt/hhUVVT5213uGQKiKzlA3VAaeLJYLLXMXDk9dsrB4odziWVslVRy9SCqVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LuaXZf2D; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-723db2798caso1870627b3a.0;
-        Thu, 07 Nov 2024 19:24:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731036251; x=1731641051; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FiQi+zVrti/4lwYHeXMzDjh6Y9tSUZHidpZ6r5DzMFs=;
-        b=LuaXZf2DI1AyA3TscXf6GhthunB73JMfzDVO0hNfzx33AMwL7+O0cKDbgr7yRZaNOE
-         uMxpUs8zpnmbpDVp2O86+p/PCBKGwviWEfb+OsLJJ2J5Y+8PafFWKPwLTKuJ9OU5Uinp
-         wq8CInKynUsS7MQnk3RJFXmORnF1VZd7NzcXw7PrnuveHWB+IU8f4b0xp3kMUIIRkriW
-         ZFDaCNFPwr0t8NgGZiO2CYs7uTaMo7GbkpUlJbwHjJutsOqshuvKkhF04X44axJJv4QS
-         o01V0serPSkf6bwiVBMuXBZCCULEO+NFQKlW/u7r2WQRKKN1OIOF/CxI+6zKBojD1E0t
-         UTvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731036251; x=1731641051;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FiQi+zVrti/4lwYHeXMzDjh6Y9tSUZHidpZ6r5DzMFs=;
-        b=DbFcNYqarDnf3AAmmeJ9sXJDh8Pvk6LuBEy3kNwYZI5uIKfMLWOcqFxI1Wdi9twt4u
-         2+bfFioybolyn1yw1gbbkoNiueOmtZ8La3Sx8+WgB7R+3lxD2Fc7OKbyw0rKZiKqal+F
-         oMHC/15ogL2rOOaXtcHP9EpIDcw7k5hflKgdhdv7OOhdIjDmcuQKCkhgbHHsG9IeByNq
-         7I3OttQyZIgbkKJs/la08GH4YabsqDAiYDMUpkKclnU5Qsw9u+xJGpA4NA/MWOHub7Nz
-         EvjiV8JSSKoewqV/fdlhalt/EA9cWmWiL6bdH8lc8BzPHw1ve6F85QUrYVl6+RoqZKTd
-         jm3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUV32pIPtYUrpRBM7Nz5ChdP6O0CmpNEUNH7DhzvxW92Xn7g4Chn0VYMt3Bjdfqmr1ewkfPutdGMyYHgPu4@vger.kernel.org, AJvYcCUo3Q6RohNRJiasNP++8KJetcF7S02SW2NTBwkIlwC48FJy6nYxQ7p3UbskS7zXuux5DYCPZbeb@vger.kernel.org, AJvYcCUpvwIbTxFIwe8tBlrF3fNtMa6Edk/etbngpzcSRJ5zmEEcn4qFhtElfECikhszK4ax9C4y6YPcGR5D@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBwTimZFeoJcF3Gh34mjq+orNIOHzr0UM+XXOKt6Y8Ogq4tIyX
-	khhsfqLKEtBb/hyEWZAo4dnBajdOCR28DGSgPw4Chh7HlqnM67cy
-X-Google-Smtp-Source: AGHT+IEuCqDHEhTNFZCpyyg20d0b3Zu/p1XC6BTzBjuWov+1G8DqVUKH6K6wMKylQPRL5ggF5yB5RQ==
-X-Received: by 2002:a05:6a00:1a89:b0:71e:4ee1:6d78 with SMTP id d2e1a72fcca58-7241327a424mr1559577b3a.1.1731036250950;
-        Thu, 07 Nov 2024 19:24:10 -0800 (PST)
-Received: from [192.168.0.104] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7240785fbe9sm2556540b3a.37.2024.11.07.19.24.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Nov 2024 19:24:10 -0800 (PST)
-Message-ID: <7a476087-9efc-4271-bd2c-d04a0c1d0dff@gmail.com>
-Date: Fri, 8 Nov 2024 11:24:04 +0800
+	s=arc-20240116; t=1731036670; c=relaxed/simple;
+	bh=JkQh8XYwnlilA6SEE/9kW0praINZcYq+IeG3F/0i+d0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=M4DlAOqDJwAN2FoMk3mSdHvxwjSekzptUQKMoXJfQqocbCthIVeGj9gB775AdvAMD4VzKZFWyMW1OcSHMqteiD30whc4Tg8ZfBGEpQQXR5Wux9PLeUSj4aXztfZdWxUMVW75a3QdDWiKgoDMIzk2fOIx9jO9VihYQ3GRuIusDa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MYkJiQ3H; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A7MapVN028440;
+	Fri, 8 Nov 2024 03:31:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ORIrw/wQ3+MD9XwhIuNt1gF+0lFMQSagBq0smIgoJiA=; b=MYkJiQ3HB21kQX8k
+	CFp5yLDPseUsnE7PVWC02c7z6OpGCr7pW5IqJ3gwTqXsP2JqVJ5o4REvYnlSzJsQ
+	y4wgHW+GqNMYXvKrckrOfeRWQVTg1F54ZtjsXKnT3efSXKZS6TYGBNbiw+7wFoDB
+	CF2BoidlhUY0CPdfL1O25J8Ikds0sDqJ+etMaNlYelpZ87S9Us+pmVroxxnK2uuD
+	Tf0sQThftr5LYC0os2A6Zdfl4DTY2VPEnesNrl0aC9K0rytE9emV3IVaJaxmwjVL
+	MKLmwiXiDk0HvbsiU2n4Qoscph1YEDkVmVi9Pwtx0GK/AIO1ybNrsqgi6x4tnudx
+	vBwnwQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42s6gd8hpw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 08 Nov 2024 03:31:00 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A83UxvC032243
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 8 Nov 2024 03:30:59 GMT
+Received: from [10.216.46.51] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 7 Nov 2024
+ 19:30:55 -0800
+Message-ID: <f26bd7ac-5a01-4c9b-b2a0-aa9e65dff6e5@quicinc.com>
+Date: Fri, 8 Nov 2024 09:00:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,68 +65,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: net: nuvoton: Add schema for Nuvoton
- MA35 family GMAC
-To: Conor Dooley <conor@kernel.org>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
- alexandre.torgue@foss.st.com, joabreu@synopsys.com, ychuang3@nuvoton.com,
- schung@nuvoton.com, yclu4@nuvoton.com, linux-arm-kernel@lists.infradead.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20241106111930.218825-1-a0987203069@gmail.com>
- <20241106111930.218825-2-a0987203069@gmail.com>
- <20241106-bloated-ranch-be94506d360c@spud>
- <7c2f6af3-5686-452a-8d8a-191899b3d225@gmail.com>
- <20241107-slip-graceful-767507d20d1b@spud>
+Subject: Re: [PATCH] RFC: arm64: dts: qcom: Disable USB U1/U2 entry for QC
+ targets
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
+References: <20241107073650.13473-1-quic_kriskura@quicinc.com>
+ <trrbjd574futtatooisumtqp4idqerb5ji2g3nvdesiedlitdd@c6u7wuqhh4r3>
 Content-Language: en-US
-From: Joey Lu <a0987203069@gmail.com>
-In-Reply-To: <20241107-slip-graceful-767507d20d1b@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+In-Reply-To: <trrbjd574futtatooisumtqp4idqerb5ji2g3nvdesiedlitdd@c6u7wuqhh4r3>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: _4vL-IUvzjBrenR3pNazxHrQ-uzI2Ld5
+X-Proofpoint-ORIG-GUID: _4vL-IUvzjBrenR3pNazxHrQ-uzI2Ld5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ mlxlogscore=415 lowpriorityscore=0 spamscore=0 clxscore=1015 mlxscore=0
+ adultscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411080029
 
 
-Conor Dooley 於 11/8/2024 1:09 AM 寫道:
-> On Thu, Nov 07, 2024 at 06:15:51PM +0800, Joey Lu wrote:
->> Conor Dooley 於 11/6/2024 11:44 PM 寫道:
->>> On Wed, Nov 06, 2024 at 07:19:28PM +0800, Joey Lu wrote:
->>>> +  nuvoton,sys:
->>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>> +    description: phandle to access GCR (Global Control Register) registers.
->>> Why do you need a phandle to this? You appear to have multiple dwmacs on
->>> your device if the example is anything to go by, how come you don't need
->>> to access different portions of this depending on which dwmac instance
->>> you are?
->> On our platform, a system register is required to specify the TX/RX clock
->> path delay control, switch modes between RMII and RGMII, and configure other
->> related settings.
->>>> +  resets:
->>>> +    maxItems: 1
->>>> +
->>>> +  reset-names:
->>>> +    items:
->>>> +      - const: stmmaceth
->>>> +
->>>> +  mac-id:
->>>> +    maxItems: 1
->>>> +    description:
->>>> +      The interface of MAC.
->>> A vendor prefix is required for custom properties, but I don't think you
->>> need this and actually it is a bandaid for some other information you're
->>> missing. Probably related to your nuvoton,sys property only being a
->>> phandle with no arguments.
->> This property will be removed.
-> I'm almost certain you can't just remove this property, because you need
-> it to tell which portion of the GCR is applicable to the dwmac instance
-> in question. Instead, you need to ad an argument to your phandle. The
-> starfive dwmac binding/driver has an example of what you can do.
 
-Yes, I will use this method instead.🙂
+On 11/7/2024 4:33 PM, Dmitry Baryshkov wrote:
+> On Thu, Nov 07, 2024 at 01:06:50PM +0530, Krishna Kurapati wrote:
+>> Enabling U1 and U2 power-saving states can lead to stability and
+>> performance issues, particularly for latency-sensitive or high-
+>> throughput applications. These low-power link states are intended
+>> to reduce power consumption by allowing the device to enter partial
+>> low-power modes during idle periods. However, they can sometimes
+>> result in unexpected behavior. Over the years, some of the issues
+>> seen are as follows:
+>>
+>> 1. In device mode of operation, when UVC is active, enabling U1/U2
+>> is sometimes causing packets drops due to delay in entry/exit of
+>> intermittent low power states. These packet drops are often reflected
+>> as Missed Isochronous transfers as the controller was not able to
+>> send the packet in that microframe interval and hence glitches are
+>> seen on the final transmitted video output.
+>>
+>> 2. On QCS6490-Rb3Gen2 Vision kit, ADB connection is heavily unstable
+>> when U1/U2 is enabled. Often when link enters U2, there is a re-
+>> enumeration seen and device is unusable for many use cases.
+>>
+>> 3. On QCS8300/QCS9100, it is observed that when Link enters U2, when
+>> the cable is disconnected and reconnected to host PC in HS, there
+>> is no link status change interrupt seen and the plug-in in HS doesn't
+>> show up a bus reset and enumeration failure happens.
+>>
+>> 4. On older targets like SM8150/SM8250/SM8350, there have been
+>> throughput issues seen during tethering use cases.
+>>
+>> To avoid such issues, the USB team at Qualcomm added these quirks
+>> to all targets in the past 4-5 years and extensive testing was done.
+>> Although these are intermittent power states, disabling them didn't
+>> cause any major increase in power numbers.
+>>
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>> ---
+>> If this is fine, the patch would be made into a series, disabling
+>> U1/U2 for all mobile and QCS targets.
+>>
+>>   arch/arm64/boot/dts/qcom/sm8150.dtsi | 4 ++++
+>>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 4 ++++
+>>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 4 ++++
+>>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 ++
+> 
+> Should the same set of quirks be applied to SAR2130P too?
 
-mac-id and tx/rx-delay will be arguments of syscon.
+Yes, these two quirks have been added to and tested on SAR2130 
+downstream. I see that you have added them in your upstream DTSI file 
+too. Thanks for that.
 
-Thanks!
-
+Regards,
+Krishna,
 
