@@ -1,150 +1,117 @@
-Return-Path: <devicetree+bounces-120251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C72329C1D58
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:51:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C2BE9C1D3B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:44:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4A0EB257D6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:51:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C644AB22BF1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:44:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5425A1E8824;
-	Fri,  8 Nov 2024 12:51:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D0C61E8824;
+	Fri,  8 Nov 2024 12:44:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U+co3kpu"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="ADjZUYns"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B571E7C2E;
-	Fri,  8 Nov 2024 12:51:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D15481E511;
+	Fri,  8 Nov 2024 12:44:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731070274; cv=none; b=ODLTPsmSI1kfRXxt29Zf9ZYgk57bw7aQqt28EyMp5iQJwxgPXdXXqkILw64rs22xcGv3I2hc15hPfNJ4BIV3ZUN/fI3lk4RpVFa8hUJGUVMbfIm/j4oFCMMGeV+933kO9NYI3CMH+QG6QhTJ25NlP0IMLXZWFlgaQbKD9UVka7Y=
+	t=1731069891; cv=none; b=qrrJqFeIq2TNct+uFFrKXWUN6LrHaiGHPCtaLPxS0jeD7Sk/QNtOORXh7CxL4D7h54JSiuUTDU+FkPdui1OD4PTDwmPIFh+DVpJsbmmwiM+AmXSvrPjiO/caqEqxLMQQALCOAWXlnspaPKWb2idSr23JIkWDg4fCyZsVxb3o0+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731070274; c=relaxed/simple;
-	bh=9a3QZrzaYMtnDbILPbZ0qAy+WIpCJcwEcFNIQSsw3js=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UD7i/x1mT2cdjCDK8rLCLD6k5+AByXswxp2IbZcwd0DOZc0oazpPfXmgaZaziEGlJRLhXvh42rC7CimbUbu+6w5/6y0nzKZqFlIT8f6b/IytS6LG/Cnpi5VZytaPUA60RtSdYx7cDwl7L5f8/hzRNWZdq0rxyNf1ioTPUaL8Nmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U+co3kpu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50732C4CECD;
-	Fri,  8 Nov 2024 12:51:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731070273;
-	bh=9a3QZrzaYMtnDbILPbZ0qAy+WIpCJcwEcFNIQSsw3js=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U+co3kpuN5yJJbb5w3dxeLoPhFeO5wKcx1aVJZ2TulD+VA5hLSuNhfh97ldfIbN5u
-	 KwZJZflkxQARss6dyhWQgKjeUWw91itUQ1eg2XPCHFUeUevUWyH3SMaaVyJLiSLCva
-	 3whqKdwbv51o50J8b3PxPKXskAeIAePev2SlIqqSHWmYSj7xSmIrhk8Sxzp3+ztEAf
-	 r7T2VYC9vjxudHUHLcf1Hz/I5HPWJIx93VkY5xZOCZ4LYG9G2igRvOLyaq+5r+iBOK
-	 AJkDrCKxLutFslb9LU+COZO/x4Ppv0Z10xwRoB+JhpABBfeJwMEwczEuJ8gtCRniZw
-	 Ay+BJcKP0AZ4Q==
-Date: Fri, 8 Nov 2024 12:51:07 +0000
-From: Mark Brown <broonie@kernel.org>
-To: "Ramon Cristopher M. Calam" <ramoncristopher.calam@analog.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/2] regulator: lt8722: Add driver for LT8722
-Message-ID: <2cce3ad8-7a3a-47db-a18c-33c32e96c009@sirena.org.uk>
-References: <20241108093544.9492-1-ramoncristopher.calam@analog.com>
- <20241108093544.9492-2-ramoncristopher.calam@analog.com>
+	s=arc-20240116; t=1731069891; c=relaxed/simple;
+	bh=VxAWivFUEmSR1sHlx4cQ19rKA4wRFTXr6ZAX4Z/WaiY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=h2AcoRwRDusopggelLBZShgAeIZUkufXuXoLuTh/MwvjfsLCc4b2j1ZRiwDpNFaUKUYYuhz6LgIahueyidyLGg/dswCB+maHYOtCFzMVN9Th/pK/IDG4I9YaZTWQrNAEQhZ/ylYTtz+/KtyOBcNkxWBC6edkGxO55sOLMFWKbTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=ADjZUYns; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A8AlxPC018409;
+	Fri, 8 Nov 2024 07:44:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=dA1YLsdCaCS/8y/Ngu7ogxG/GOE
+	BFopfyix9BrzJi28=; b=ADjZUYnsd/gzIkDGF+DGYbEqitH6i0284KYem6ajFjW
+	AgYbTF0Rta7QYlZpE9NS/lMfpU9EfuedwCvHkawtV1NF05MvYkAIoyUn8zYhGwJt
+	IhgBm56i95KMpF9OcCpbphxmVHW/DVTzmT8IRpg6hRF3KT+NKKuwM7p/iLoJplxJ
+	EMEN6Z8puzQYlNhrbMz8BEWzWb3AoXVBfLtZ0QKMXcFmpOeW4U/4O8GkMR5ahahG
+	ZICx23wSjjnTTHpb+njB7HRfuZukb9wNlY7hAn1jguXDNQwvKXmeSZQYZofL6BwO
+	C5F23NkOI7VN15TgzWRcKt3KU9FzXax11oT58sc4lCg==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 42s6g7k745-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 08 Nov 2024 07:44:35 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 4A8CiXcD020345
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 8 Nov 2024 07:44:33 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 8 Nov 2024 07:44:33 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 8 Nov 2024 07:44:33 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 8 Nov 2024 07:44:33 -0500
+Received: from localhost.localdomain ([10.48.65.12])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4A8CiNcX003412;
+	Fri, 8 Nov 2024 07:44:25 -0500
+From: Darius Berghe <darius.berghe@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <alexandru.tachici@analog.com>, <lars@metafoo.de>,
+        <Michael.Hennerich@analog.com>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <darius.berghe@analog.com>
+Subject: [PATCH v3 0/3] iio: imu: add devices to adis16480 driver
+Date: Fri, 8 Nov 2024 14:58:11 +0200
+Message-ID: <20241108125814.3097213-1-darius.berghe@analog.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="eHxyWZJTCIL+iSkB"
-Content-Disposition: inline
-In-Reply-To: <20241108093544.9492-2-ramoncristopher.calam@analog.com>
-X-Cookie: Do not overtax your powers.
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: pkDzyvyx8KVJNiimEQrj2jdY23ihg_H3
+X-Proofpoint-GUID: pkDzyvyx8KVJNiimEQrj2jdY23ihg_H3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
+ adultscore=0 bulkscore=0 impostorscore=0 priorityscore=1501
+ mlxlogscore=757 suspectscore=0 clxscore=1011 spamscore=0 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411080106
 
+Changes in v3:
+ - resend v2 using get_maintainers.pl script, hopefully everyone is in
+   the email list now
+ - edited the dt-bindings patch to use oneOf
 
---eHxyWZJTCIL+iSkB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Darius Berghe (3):
+  iio: imu: adis16480: add devices to adis16480 driver
+  iio: imu: adis16480: add devices to adis16480 - docs
+  dt-bindings: iio: adis16480: add devices to adis16480
 
-On Fri, Nov 08, 2024 at 05:35:43PM +0800, Ramon Cristopher M. Calam wrote:
-> Add ADI LT8722 full bridge DC/DC converter driver.
+ .../bindings/iio/imu/adi,adis16480.yaml       | 42 ++++++-----
+ Documentation/iio/adis16480.rst               |  3 +
+ drivers/iio/imu/adis16480.c                   | 75 +++++++++++++++++++
+ 3 files changed, 102 insertions(+), 18 deletions(-)
 
-> +++ b/drivers/regulator/lt8722-regulator.c
-> @@ -0,0 +1,701 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Analog Devices LT8722 Ultracompact Full Bridge Driver with SPI driver
-> + *
+-- 
+2.46.1
 
-Please make the entire comment a C++ one so things look more intentional.
-
-> +static int lt8722_reg_read(struct spi_device *spi, u8 reg, u32 *val)
-> +{
-
-> +static int lt8722_reg_write(struct spi_device *spi, u8 reg, u32 val)
-> +{
-
-You can use these as reg_read() and reg_write() operations in regmap
-which will allow the driver to use all the standard helpers and vastly
-reduce the size of the driver.
-
-> +static int lt8722_parse_fw(struct lt8722_chip_info *chip,
-> +			   struct regulator_init_data *init_data)
-> +{
-> +	int ret;
-> +
-> +	/* Override the min_uV constraint with the minimum output voltage */
-> +	init_data->constraints.min_uV = LT8722_MIN_VOUT;
-
-Any modification of the constraints by the driver is a bug.  Adjust the
-information the driver provides about the voltages it supports if you
-need to do this.
-
-> +static int lt8722_is_enabled(struct regulator_dev *rdev)
-> +{
-> +	struct lt8722_chip_info *chip = rdev_get_drvdata(rdev);
-> +	int ret;
-> +	u32 reg_val;
-> +	bool en_req, en_pin;
-> +
-> +	ret = lt8722_reg_read(chip->spi, LT8722_SPIS_COMMAND, &reg_val);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	en_req = FIELD_GET(LT8722_EN_REQ_MASK, reg_val);
-> +	en_pin = gpiod_get_value(chip->en_gpio);
-> +
-> +	return en_req && en_pin;
-> +}
-
-Always adjusting both the GPIO and register all the time like this is
-pointless, it turns the GPIO into just pure overhead.  Just use the
-standard support for setting enables via registrers and GPIOs.  When
-there's a GPIO leave the register permanently enabld.
-
-> +	chip->en_gpio = devm_gpiod_get(&spi->dev, "enable", GPIOD_OUT_LOW);
-> +	if (IS_ERR(chip->en_gpio))
-> +		return PTR_ERR(chip->en_gpio);
-
-Presumably this is optional, it could just be tied off.
-
---eHxyWZJTCIL+iSkB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcuCTsACgkQJNaLcl1U
-h9Cftgf/ZTZxCRv40vL8Cljm3uFRe5gz803VmW8ca1bO3d6mepvvo8smNZWtA1pG
-Es1LbSDwa5HCH07wAW2Gw42Fb06JJJ0ZROT0KEwWydC3VPfcOeq80Hdt1mbZOEsj
-ThqBegTd6SAaIHw6B2q66Huf2rbcOD3GpKsOU6/dIaPyCQ5bj9drHEiDpNMTbkAm
-R6sPoWmaZFN205JIKGej0+qEBrN14IkS5bqPsUA8MP8DsZlc1c3qPfTlO/PaHH8F
-dRWU11L2XuPPfMkgtcXfr+BnprL/ZAxTmpZOVfXxxp61ihqu9PGsLRiYlgoYIlla
-126Da0zFh+JmgfDc4m1q3Cjnr8NJYA==
-=bsjE
------END PGP SIGNATURE-----
-
---eHxyWZJTCIL+iSkB--
 
