@@ -1,198 +1,191 @@
-Return-Path: <devicetree+bounces-120401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D33669C2874
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 00:56:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45AE69C287B
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 00:58:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 036BA1C20ECA
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 23:56:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E933A282912
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 23:58:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C011F666F;
-	Fri,  8 Nov 2024 23:56:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB3FA1FF051;
+	Fri,  8 Nov 2024 23:58:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rja7OR7d"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SQKwTKmo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 907241F427F;
-	Fri,  8 Nov 2024 23:56:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70E91F26DB
+	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 23:58:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731110178; cv=none; b=g+dyJkgNhZ+B5NS0YYq3cLEJ0u2v4FaVTukufZT7fqG0v6gb0MVwGlOcP/rD57N8RxNUAEPyKOopMgLUa2V+qWOctAG2dr4qVNuc6vAsebJtzrDi4xeRCQvHZd4hM8pIxiplhCQvmyB7PPxj2qtNKmtPM/rsI8zwBUPi8zdsM7Q=
+	t=1731110304; cv=none; b=TyfxxT0qmNF1IQONTkUtBeI10tzJiZ+K+GMSFZELPQwpBns5/5RJxBjZ9rloom6dzn6mtRJ2+wHUu1I/cLoriT7Q3SrSxWhSmAQ7aLlS79sIfWuAIoymqtiTuL+/tDLjiTXYroKljm21apDh+0L7aj/XhGcG1lMmye+6kzK5lYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731110178; c=relaxed/simple;
-	bh=jidXx8xjMfUUKMzb1OMMVrlp9v9xArbausR3H7CwDD0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fto5PRO17DzIO1/vpbiVuLEgCmY1vk/HJ5YMxxPEsbCsclbVOvWHvQKiQCXIVI7K9tO/IK072obKuDn8A1/BIuR92Du8J5SRE6rU9mHTVEBiqHgPRdZKyzOJlrZbGjy5XeCu3GOIdke7Lfxh2ozHruBjkEdsHx7SWISOOMXGWW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rja7OR7d; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2e2dc61bc41so2037830a91.1;
-        Fri, 08 Nov 2024 15:56:16 -0800 (PST)
+	s=arc-20240116; t=1731110304; c=relaxed/simple;
+	bh=NWV3hIirFAqmOrQUMeQOd4BuSvi/vnJgLG5uotTW7BY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=skOnYkfVNT1tb3RdQZb+jFcf3G+qTt8f1K3NLQXKYdAE1XHoFa3tE4EHsziFYGKpa/D/k330ZGAz57SDKJGQIQROYt13cGtVE0Npet4Qu4DlgYuOq+EGvXxzi8kWs8esv0zd4r6NeMFhM1KxZxEFhESVzhLAtY9Ys/jhfM2djiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SQKwTKmo; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2fb4fa17044so26660251fa.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 15:58:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731110176; x=1731714976; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ko5ntTtP2w+Sz2PCh54+SIltSsYjcVHYUqvHuhsGxIM=;
-        b=Rja7OR7dVShz4g5fXLzvuws+YpU6IgB41DWU+E2YAuIbYhCojc2Brz3/beyKPMx/sq
-         nNq3ZYZV/4nM4yE5Y6KVPX7ex68l54nIx9VK7bi3kj1hE2yEtpcgotWhj3rFLX1WgMfZ
-         NgKbEoO1Zz8hmJtNYazdG5nJ5qpUnhW27umefnbr3Ay94yWy2MBwk+PW1RK7PFNHRArw
-         Uda5V07B4zpRKAZUiwBlyJ6yFUtNJjepAxBiuUhJd4HrAgO9MkMCrCoTgSpkLC62Qxmo
-         K/5BAM80Pk8ROjerYkuBWBlo4VxCZ5DtAvZZNQv9Om4Hgz+IsR8FHFH7/1ZVyWEU7QgC
-         W/EQ==
+        d=linaro.org; s=google; t=1731110300; x=1731715100; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=q/6/ikER5LJxRRsz/OAmgjtbWvnUlAJKIhGNW1dp240=;
+        b=SQKwTKmoybYngm7vYTj7D8EQ3rPfl1PLO5aeojdq3IkxsQwjjbiN+2qO6DYurdMFNS
+         Z8+42TKHpvgrLqmZvS4gS4fwtJPRtRZGJQWZHfS6P3g/sMBpmYpgZpd32p2BJFcofqff
+         wTq9V7cHTgZtmb8EfgOze13pk4r8+ukCCBl7adnjU2JEVlPI5fWoGC9ctkhdaoexPO2C
+         GoEC01O9hfCoEp3lRAuYJ8fIJMDPq1eVRG7ogHoXkV91ct/xjK7TEnyDo9pEHJMK4UDa
+         fijlVTPuRHdYUTM8ZK4OKTaISRrk7KVTUT1IqkZxy/jNsUhSRCPKoGeEcRLMY7pFRGM7
+         9N+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731110176; x=1731714976;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1731110300; x=1731715100;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Ko5ntTtP2w+Sz2PCh54+SIltSsYjcVHYUqvHuhsGxIM=;
-        b=IyOrrkSNb0jyJwe2ME4VbgMidw46yH58iXlNqjGcPiASPDZw4B3UDSvmC9ohv1TqZY
-         XFcf8I9PGX8KT87YAhOHy2ONdPLukjWfbSCHdghdHgt2VSD0DDx/CNHeT1Vp1Wq0BeUM
-         uBUiyrl+UKZQ8ravnSATtDeQ6RslfnI3ZAh34cSq1VZKl90gZYLfLhbtN47nvZXYTeYR
-         adN8uwQViFrNFyt6RQ+bTpZOX+gTEmMFipX3yJPwbK0BwpXMGbDJmT+Xz4e1HdfdnlEN
-         dq3RF7Hg0+0PS6RJ2yX7nzgvjXM6KkL5/G2RXHgt2Ah3fNTLRzsMuesp2tPdqsdranSc
-         SjnA==
-X-Forwarded-Encrypted: i=1; AJvYcCU35zboMz2+XJAOwdi3oThPkxjC8EMDTE0rjjCpg533i6DcUxRKsUEa9XgFtF6Ot12rwL7xFR8WiFq2spM5@vger.kernel.org, AJvYcCVwl2bWTAygiRnF7AtUGeAQmHzaM744JZD8n/1GAEw0EUMKPd5hkF39leQOR8S6nwlXXwbMSMw1epwU@vger.kernel.org, AJvYcCWNtvZogeqhVoeE9UC4372CMxjJtphjVfgqRk6CshoNPIJf3Qw3wdE4rLVg+rPCkaHIBI4AGa/BAgrPmw==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvDl6NboqVyHw8vaKNOkCYDWf0hLgWTBwc1lI6U0B0pUKSNFqN
-	1CB+6V4iBO2KM3KQi7s8V5tArQjlc1lJsDxzGVJZmKXZaKzbVybZ
-X-Google-Smtp-Source: AGHT+IHEarQoWl4dFgmCs28SBfigzcnSWnoyL4xgpkZl9Jj3lgLAj0yFFM0e/MUEUbjsP+pQ2Qtcog==
-X-Received: by 2002:a17:90b:1f8b:b0:2e5:5ff9:bee1 with SMTP id 98e67ed59e1d1-2e9b177bd4fmr6176123a91.29.1731110175789;
-        Fri, 08 Nov 2024 15:56:15 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177e59f1dsm36081805ad.182.2024.11.08.15.56.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Nov 2024 15:56:15 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <94871adf-c2d7-496b-bf05-c3a773f9c919@roeck-us.net>
-Date: Fri, 8 Nov 2024 15:56:13 -0800
+        bh=q/6/ikER5LJxRRsz/OAmgjtbWvnUlAJKIhGNW1dp240=;
+        b=t2x6I7VubLHMZwFRp/H3VXAYwzTFxegTb+3elOwKOfEBgzw3aPHMrrCIxyZoZpqib7
+         gtfs4HrwfyQE1VYn6Z9/agXM7wb4vT5P2syuRGzMe2vVThcAhREZHV+fRvmqkIliJKkI
+         sEZoKR898pR7HzxnFiCXDJj9rv3tfIYIJGsVwOIdWejzzMw5sq1VnMXROYp93v5FKewd
+         9Ji8i3rv2LnQk+ZhvmDa6hhDqmKRUTr9yTZ8jKo9yuxQPckcL5LPbfKiZ6qXw+NHE+9j
+         pQwyDL5F6nPQbxvnAR+/GF5Sz/dY4d0yMBKxNYltImb7ta4/2AHN6gi8eSAmSxv2bnHa
+         Verg==
+X-Forwarded-Encrypted: i=1; AJvYcCXdvqUdr5LFMCd6mE4TuIVjhhopUMtyfw9MbcFTBfyXuvKG7ta1vcuXa1mwb3CLCPM0pprCKQu66MCz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7WX1ax4lvS++lP3x67NMeEYnS7+7xWlVpGxerWS0Saat2HnSn
+	vbdgr/iV2ZdOhSHL4yzuGn5jUlzvWap/NrHuogDFPA7u9neemtHJdoa3efjkND9QdkXwDdqk7mc
+	1+ss=
+X-Google-Smtp-Source: AGHT+IH9m+3BnNKw63J1oaaPKlmo3VgzPxpr4dI0cUE60Np6PRNXf81YxQDZtwHLR70UIHYfwCA1GQ==
+X-Received: by 2002:a05:651c:1542:b0:2f1:a30c:cd15 with SMTP id 38308e7fff4ca-2ff202ad40fmr27545941fa.36.1731110299678;
+        Fri, 08 Nov 2024 15:58:19 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ff179069d5sm8345481fa.66.2024.11.08.15.58.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Nov 2024 15:58:18 -0800 (PST)
+Date: Sat, 9 Nov 2024 01:58:15 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: Add clock nodes for multimedia
+ clock
+Message-ID: <7imdhfeq5tvjy43337xryqrhom2r5xezu2kx4jzasafsfsberj@c7zcab5scegv>
+References: <20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com>
+ <20241108-qcs615-mm-dt-nodes-v1-1-b2669cac0624@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/4] iio: temperature: Add support for P3T1085
-To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Jean Delvare <jdelvare@suse.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Krzysztof Kozlowski <krzk@kernel.org>,
- linux-hwmon@vger.kernel.org
-References: <20241108-p3t1085-v2-0-6a8990a59efd@nxp.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20241108-p3t1085-v2-0-6a8990a59efd@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241108-qcs615-mm-dt-nodes-v1-1-b2669cac0624@quicinc.com>
 
-On 11/8/24 14:26, Frank Li wrote:
-> Add basic function support for P3T1085 temperature sensor.
-> - reuse tmp108 driver
-> - Update imx93-9x9-qsb.dts
+On Fri, Nov 08, 2024 at 11:54:04AM +0530, Taniya Das wrote:
+> Add support for video, camera, display and gpu clock controller nodes
+> for QCS615 platform.
 > 
-
-Subject 'iio' is now misleading.
-
-Thanks,
-Guenter
-
-> To: Rob Herring <robh@kernel.org>
-> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> To: Jonathan Cameron <jic23@kernel.org>
-> To: Lars-Peter Clausen <lars@metafoo.de>
-> To: Shawn Guo <shawnguo@kernel.org>
-> To: Sascha Hauer <s.hauer@pengutronix.de>
-> To: Pengutronix Kernel Team <kernel@pengutronix.de>
-> To: Fabio Estevam <festevam@gmail.com>
-> To: Jean Delvare <jdelvare@suse.com>
-> To: Guenter Roeck <linux@roeck-us.net>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-iio@vger.kernel.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: Krzysztof Kozlowski <krzk@kernel.org>
-> Cc: linux-hwmon@vger.kernel.org
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> 
-> Changes in v2:
-> - Amost rewrite and reuse existed TMP108 driver
-> - Link to v1: https://lore.kernel.org/r/20241107-p3t1085-v1-0-9a76cb85673f@nxp.com
-> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 > ---
-> Frank Li (4):
->        dt-bindings: hwmon: ti,tmp108: Add nxp,p3t1085 compatible string
->        hwmon: tmp108: Add help function tmp108_common_probe()
->        hwmon: tmp108: Add support for I3C device
->        arm64: dts: imx93-9x9-qsb: add temp-sensor nxp,p3t1085
+>  arch/arm64/boot/dts/qcom/qcs615.dtsi | 51 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
 > 
->   .../devicetree/bindings/hwmon/ti,tmp108.yaml       |  8 ++-
->   arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts    |  5 ++
->   drivers/hwmon/tmp108.c                             | 71 ++++++++++++++++------
->   3 files changed, 64 insertions(+), 20 deletions(-)
-> ---
-> base-commit: 74741a050b79d31d8d2eeee12c77736596d0a6b2
-> change-id: 20241107-p3t1085-fbd8726cbc0e
+> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> index 868808918fd2cdf3f23fcb43ead61b2abfc776f7..8c98ac77dc5c665ef296e65ac76c1b59be485abb 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> @@ -3,7 +3,11 @@
+>   * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+>   */
+>  
+> +#include <dt-bindings/clock/qcom,qcs615-camcc.h>
+> +#include <dt-bindings/clock/qcom,qcs615-dispcc.h>
+>  #include <dt-bindings/clock/qcom,qcs615-gcc.h>
+> +#include <dt-bindings/clock/qcom,qcs615-gpucc.h>
+> +#include <dt-bindings/clock/qcom,qcs615-videocc.h>
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+>  #include <dt-bindings/interconnect/qcom,icc.h>
+>  #include <dt-bindings/interconnect/qcom,qcs615-rpmh.h>
+> @@ -488,6 +492,18 @@ qup_uart0_rx: qup-uart0-rx-state {
+>  			};
+>  		};
+>  
+> +		gpucc: clock-controller@5090000 {
+> +			compatible = "qcom,qcs615-gpucc";
+> +			reg = <0 0x5090000 0 0x9000>;
+
+Please pad address field to 8 digits (just the address, not the size)
+
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&gcc GPLL0>;
+> +
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +		};
+> +
+>  		dc_noc: interconnect@9160000 {
+>  			reg = <0x0 0x09160000 0x0 0x3200>;
+>  			compatible = "qcom,qcs615-dc-noc";
+> @@ -502,6 +518,41 @@ gem_noc: interconnect@9680000 {
+>  			qcom,bcm-voters = <&apps_bcm_voter>;
+>  		};
+>  
+> +		videocc: clock-controller@ab00000 {
+> +			compatible = "qcom,qcs615-videocc";
+> +			reg = <0 0xab00000 0 0x10000>;
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&sleep_clk>;
+> +
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +		};
+> +
+> +		camcc: clock-controller@ad00000 {
+> +			compatible = "qcom,qcs615-camcc";
+> +			reg = <0 0xad00000 0 0x10000>;
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
+> +
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +		};
+> +
+> +		dispcc: clock-controller@af00000 {
+> +			compatible = "qcom,qcs615-dispcc";
+> +			reg = <0 0xaf00000 0 0x20000>;
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&gcc GCC_DISP_GPLL0_DIV_CLK_SRC>;
+> +
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +		};
+> +
+>  		pdc: interrupt-controller@b220000 {
+>  			compatible = "qcom,qcs615-pdc", "qcom,pdc";
+>  			reg = <0x0 0x0b220000 0x0 0x30000>,
 > 
-> Best regards,
-> ---
-> Frank Li <Frank.Li@nxp.com>
+> -- 
+> 2.45.2
 > 
 
+-- 
+With best wishes
+Dmitry
 
