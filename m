@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-120232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEA919C1CCB
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:19:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43E409C1CD0
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:20:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF4362842E9
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:19:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C246A1F223B0
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:20:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA1291E6DDE;
-	Fri,  8 Nov 2024 12:19:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F1A1E47C0;
+	Fri,  8 Nov 2024 12:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="URZmWQz5"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XvbQOidz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 995C41E631B
-	for <devicetree@vger.kernel.org>; Fri,  8 Nov 2024 12:19:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 241E51E47CC;
+	Fri,  8 Nov 2024 12:20:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731068350; cv=none; b=twcBfmqAxRASpTGMxG7J8ECYxgH11EFr27jAp49DWLTqYpf8DuC1gCno/Yz4u2EaEnZmk9ppSKwByPpSpZBdGdW+Qwd/vg83k9C9TPXPYn6KJlrL/E6Hp/Hk/oZ+GHiEpu5z5zUH49Qf9HgiP4hWg3WSXB3ziyhUZviZJq0Vn0E=
+	t=1731068414; cv=none; b=I1UfRGazqejAHUa7wSYZrpCCZXGMOT5H+DeYffvRTahmV1Nfc/yz3u7YGkuphE6+lWvW2fKN9Ulf/23yGn/1xlmHBlGe0uvVsPKfUVPHo1OnJYEn0dR04YHFAooy31YqfjGusEABk399roIjek8uYwG6l3Tyr1YhnjZVqPc6pmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731068350; c=relaxed/simple;
-	bh=E4hEyj64Y9ak1ZD0SXt2+VnHjsiH3Ux2FturG9AliIQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MtKlL/Vt07XYjx64HaZvgYCMr/tkojCWy06sYNJuvlcdx0Kek8TvUcZKUEKj4vteRFaLSrVDGD8i5vZxpbFFwwrOn0dmx02KYxVrHlfTXUtJ570L7M/yNPToxAq1brvDIWhdAyGj760AiUMWSyrZdgzLSxSsmaNt35D79GHw9dE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=URZmWQz5; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a9ec267b879so331458566b.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 04:19:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1731068346; x=1731673146; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SNZul4H1oMCNnykvJMOdWlF4kN9Sf3IXvwJGAyLoPjc=;
-        b=URZmWQz56oQyU3m8aoud3pJR5Ovsu+F84EqLMLVPiIRbIhzJ5wsOaly2HtoaTaRZIk
-         0q10lZ9OD1gf0kA4d3F3WzcW6Vk02S6nE2Ru4HgxuBnoxetkzg/Rds9BfiMi1doVwqPn
-         +rFEnmC+fQMd/DFklEMGj0oyagGLEOCUSCwNLDZQWbBoO4j3dZ+bSwi2gbDidr+gLDlZ
-         bWily5vEsWjxnlMiNDxr8q4zsN17zuRrcZRNUnKDMfxR7idPAMLG2l3GCU+iKZsOPHhT
-         Tds6ZKzuATJJzb1joDh4Pfjw1McTd+V3rWXEiqlzDnfg0A3BNotOSS8St06V6P/bplf5
-         Jn8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731068346; x=1731673146;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SNZul4H1oMCNnykvJMOdWlF4kN9Sf3IXvwJGAyLoPjc=;
-        b=lKkqIGJoyFy4JEbss9bLGwx2Oa5TtVIqbHJm2kZwhOZMoCAXo/7DKlOsQECaESoxl9
-         Q9DnElik9F6b0BfgOuMY+UfIytqEEEQjL2SvlKkoXkQ40OwyfPirMAXc18E4cGb707Ix
-         cn18mUpd+jpfZ2/BNz6ITgwgrQpyk6buuB579mOn1ropYdIE4P38Hz56F5FUxQXkDppy
-         4D9oDHf9GhAqSceqdaviRi3ojCtAfP2x8K5ucRNeIB9/nFB1T0EwNWrxOsNVRr+hTyxp
-         X2qjwuGDxwDggrpYkMdaIbcat3zGon9oQ7HDv+JrfaCiOsYLqw+UwmF54mbOWVH+s9oh
-         N+Iw==
-X-Forwarded-Encrypted: i=1; AJvYcCV56tNAE0T/J0BtzomyC3jPuQyuUAdryScY3XqroeujZA23ZLx6kokmj8D3sGUnoGu+JYrYrGUAFRnK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yww1FxxLfmWQaM4Mm+UxmdcNjJkJN0msPxiPLkwpK2RQdTulBQ0
-	tq3fohE7MQF5oH0wB8yTm1xJfk3etmJI9pDOZYbA4h/CrbRXivfAKhLcr6kv8ug=
-X-Google-Smtp-Source: AGHT+IGoWl/C9/mrxka0P/xeIR6D/+yIUWsRutPZMQtY4LzR5g4j1yykV4TLsvWsuHbCY7xpoS7sEg==
-X-Received: by 2002:a17:907:728a:b0:a9e:43d9:402d with SMTP id a640c23a62f3a-a9eeff0e43fmr227236166b.21.1731068345746;
-        Fri, 08 Nov 2024 04:19:05 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.28])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9ee0a4b82csm229764266b.67.2024.11.08.04.19.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Nov 2024 04:19:05 -0800 (PST)
-Message-ID: <3711546e-a551-4cc9-a378-17aab5b426ef@tuxon.dev>
-Date: Fri, 8 Nov 2024 14:19:02 +0200
+	s=arc-20240116; t=1731068414; c=relaxed/simple;
+	bh=MoTi/dYS7hHyJMOXtzhCKDV+lOAYDaThzUaFOBTiDa0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=IXQnvuHirDYPuvdwS7z1Ik5LHzkd1BBZKZUMBlz1tubjgh8rOqQQBVifkIwMwlPKGa810MOJN1YG8MQx67etoBzJk1KYqdwYBFX+MhMYlUZaQVKV06hL13NysQd5ifurokq/ciDAPv2dY60keMDnjS7O/zdqd8/MXNvF6sPrfho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XvbQOidz; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4A8CK2Ie104732;
+	Fri, 8 Nov 2024 06:20:02 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1731068402;
+	bh=mWj+Y3X9SnOAh3+a4cFNqzSCflZ6mMnuYM7SYahU/ww=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=XvbQOidz8W05245Nc/1tJp1BTZSSWiTlBEb8xL0wCDoFztBpO/7WaLxwuGGW7P6Ip
+	 QkYrl38vXR+Pmi5Evt7lFNSmgKJAYtbFN0cmuLBcYbjO1V6yRWNAiBukaR6Dkqv8m4
+	 XBnTa9h9qvrbL2IJK/cay5O92uAlfTSckv5nWEhw=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4A8CK29n104549
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 8 Nov 2024 06:20:02 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 8
+ Nov 2024 06:20:01 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 8 Nov 2024 06:20:01 -0600
+Received: from [10.249.129.69] ([10.249.129.69])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4A8CJtUB123140;
+	Fri, 8 Nov 2024 06:19:56 -0600
+Message-ID: <2a3c54e8-46fc-48f9-8c01-f3bb0c4907af@ti.com>
+Date: Fri, 8 Nov 2024 17:49:54 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,161 +65,231 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/8] serial: sh-sci: Check if TX data was written to
- device in .tx_empty()
+Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: Add clocks for ICSSG
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        MD Danish Anwar
+	<danishanwar@ti.com>, <conor+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>, <ssantosh@kernel.org>,
+        <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>, <kristo@kernel.org>,
+        <srk@ti.com>, Roger Quadros <rogerq@kernel.org>
+References: <20241107104557.1442800-1-danishanwar@ti.com>
+ <20241107104557.1442800-2-danishanwar@ti.com>
+ <7f0a73c3-9977-4d07-b996-683ed18e4724@kernel.org>
+ <8156fd61-c476-4b58-b3b2-e8bc4f93035e@ti.com>
+ <2c368f5a-4b58-45de-8140-21b2f7af4d12@kernel.org>
+ <4ba0381b-d30a-4469-a7c4-327f6ac20c9c@ti.com>
+ <2e7a1eb6-df8f-44d4-9342-1bc6d8b5ad11@ti.com>
+ <1fa4323b-4cee-4dfe-9c68-55f4465999cf@kernel.org>
 Content-Language: en-US
-To: Jiri Slaby <jirislaby@kernel.org>, geert+renesas@glider.be,
- magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- gregkh@linuxfoundation.org, p.zabel@pengutronix.de, g.liakhovetski@gmx.de,
- lethal@linux-sh.org
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-serial@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, stable@vger.kernel.org
-References: <20241108100513.2814957-1-claudiu.beznea.uj@bp.renesas.com>
- <20241108100513.2814957-3-claudiu.beznea.uj@bp.renesas.com>
- <530f4a8e-b71a-4db1-a2cc-df1fcfa132ec@kernel.org>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <530f4a8e-b71a-4db1-a2cc-df1fcfa132ec@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+From: "Anwar, Md Danish" <a0501179@ti.com>
+In-Reply-To: <1fa4323b-4cee-4dfe-9c68-55f4465999cf@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi, Jiri,
+Hi Krzysztof,
 
-On 08.11.2024 12:57, Jiri Slaby wrote:
-> On 08. 11. 24, 11:05, Claudiu wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 11/7/2024 5:51 PM, Krzysztof Kozlowski wrote:
+> On 07/11/2024 12:58, MD Danish Anwar wrote:
 >>
->> On the Renesas RZ/G3S, when doing suspend to RAM, the uart_suspend_port()
->> is called. The uart_suspend_port() calls 3 times the
->> struct uart_port::ops::tx_empty() before shutting down the port.
 >>
->> According to the documentation, the struct uart_port::ops::tx_empty()
->> API tests whether the transmitter FIFO and shifter for the port is
->> empty.
+>> On 07/11/24 5:16 pm, MD Danish Anwar wrote:
+>>>
+>>>
+>>> On 07/11/24 5:14 pm, Krzysztof Kozlowski wrote:
+>>>> On 07/11/2024 12:36, MD Danish Anwar wrote:
+>>>>>
+>>>>>
+>>>>> On 07/11/24 5:01 pm, Krzysztof Kozlowski wrote:
+>>>>>> On 07/11/2024 11:45, MD Danish Anwar wrote:
+>>>>>>> Add clocks, assigned-clocks and assigned-clock-parents for ICSSG
+>>>>>>
+>>>>>> Why? We see what you are doing from the diff, no point to repeat it. I
+>>>>>> don't understand why you are doing it.
+>>>>>>
+>>>>>>>
+>>>>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>>>>>> ---
+>>>>>>>  .../devicetree/bindings/soc/ti/ti,pruss.yaml          | 11 +++++++++++
+>>>>>>>  1 file changed, 11 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>>>>> index 3cb1471cc6b6..cf4c5884d8be 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>>>>> @@ -92,6 +92,17 @@ properties:
+>>>>>>>      description: |
+>>>>>>>        This property is as per sci-pm-domain.txt.
+>>>>>>>  
+>>>>>>> +  clocks:
+>>>>>>> +    items:
+>>>>>>> +      - description: ICSSG_CORE Clock
+>>>>>>> +      - description: ICSSG_ICLK Clock
+>>>>>>> +
+>>>>>>> +  assigned-clocks:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +  assigned-clock-parents:
+>>>>>>> +    maxItems: 1
+>>>>>>
+>>>>>> Why? This is really not needed, so you need to explain why you are doing
+>>>>>> things differently than entire Linux kernel / DT bindings.
+>>>>>>
+>>>>>
+>>>>> I need to add this to the device tree node
+>>>>>
+>>>>> +		clocks = <&k3_clks 81 0>,  /* icssg0_core_clk */
+>>>>> +			 <&k3_clks 81 20>; /* icssg0_iclk */
+>>>>> +		assigned-clocks = <&k3_clks 81 0>;
+>>>>> +		assigned-clock-parents = <&k3_clks 81 2>;
+>>>>>
+>>>>> But without the above change in the binding I am getting below errors
+>>>>> while running dtbs check.
+>>>>>
+>>>>> /workdir/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: icssg@30000000:
+>>>>> 'assigned-clock-parents', 'assigned-clocks' do not match any of the
+>>>>> regexes: '^(pru|rtu|txpru)@[0-9a-f]+$', '^pa-stats@[a-f0-9]+$',
+>>>>> 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$', 'interrupt-controller@[a-f0-9]+$',
+>>>>> 'mdio@[a-f0-9]+$', 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$',
+>>>>> 'mii-rt@[a-f0-9]+$', 'pinctrl-[0-9]+'
+>>>>> +/workdir/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: icssg@30080000:
+>>>>> 'anyOf' conditional failed, one must be fixed:
+>>>>>
+>>>>> To fix this warning I added these in the binding and the warnings were
+>>>>> fixed.
+>>>>
+>>>> nah, cannot reproduce. Just be sure you work on recent kernel (last time
+>>>> you were sending it on some ancient stuff) and your packages are
+>>>> updated, including dt schema and other kernel dependencies.
+>>>>
+
+The purpose of this series is to add 'assigned-clock-parents',
+'assigned-clocks' to the DT node. Initially I was only trying to add
+these two nodes to DT and at that time I got the above error. I also got
+ the below error as well
+
+/home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
+icssg@30000000: 'anyOf' conditional failed, one must be fixed:
+        'clocks' is a required property
+        '#clock-cells' is a required property
+        from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
+
+
+To fix this I added 'assigned-clock-parents', 'assigned-clocks' to the
+binding and at this time I got only the below error,
+
+/home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
+icssg@30000000: 'anyOf' conditional failed, one must be fixed:
+        'clocks' is a required property
+        '#clock-cells' is a required property
+        from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
+
+So to fix this, I added clocks to the binding as well as DT and after
+that all the errors got resolved and I posted the series.
+
+>>>
+>>> I have posted this series on the latest kernel. Base commit
+>>> 5b913f5d7d7fe0f567dea8605f21da6eaa1735fb
+>>>
+>>> Let me check if the schema is up to date or not. I will re test and
+>>> reply. Thanks for pointing it out.
+>>>
 >>
->> The Renesas RZ/G3S SCIFA IP reports the number of data units stored in the
->> transmit FIFO through the FDR (FIFO Data Count Register). The data units
->> in the FIFOs are written in the shift register and transmitted from there.
->> The TEND bit in the Serial Status Register reports if the data was
->> transmitted from the shift register.
+>> Krzysztof, I re-checked.
+>> I am on the latest kernel (commit
+>> 5b913f5d7d7fe0f567dea8605f21da6eaa1735fb (tag: next-20241106,
+>> origin/master, origin/HEAD)) and I am using the lastest dtschema v2024.9
 >>
->> In the previous code, in the tx_empty() API implemented by the sh-sci
->> driver, it is considered that the TX is empty if the hardware reports the
->> TEND bit set and the number of data units in the FIFO is zero.
+>> ❯ python3 -m pip list|grep 'dtschema'
+>> dtschema                      2024.9
 >>
->> According to the HW manual, the TEND bit has the following meaning:
+>> Still I am getting the below dtbs check errors while running `make
+>> CHECK_DTBS=y ti/k3-am642-evm.dtb` without the binding change.
 >>
->> 0: Transmission is in the waiting state or in progress.
->> 1: Transmission is completed.
+>> Let me know if I am missing something else.
 >>
->> It has been noticed that when opening the serial device w/o using it and
->> then switch to a power saving mode, the tx_empty() call in the
->> uart_port_suspend() function fails, leading to the "Unable to drain
->> transmitter" message being printed on the console. This is because the
->> TEND=0 if nothing has been transmitted and the FIFOs are empty. As the
->> TEND=0 has double meaning (waiting state, in progress) we can't
->> determined the scenario described above.
->>
->> Add a software workaround for this. This sets a variable if any data has
->> been sent on the serial console (when using PIO) or if the DMA callback has
->> been called (meaning something has been transmitted).
->>
->> Fixes: 73a19e4c0301 ("serial: sh-sci: Add DMA support.")
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>
->> Changes in v2:
->> - use bool type instead of atomic_t
->>
->>   drivers/tty/serial/sh-sci.c | 11 +++++++++++
->>   1 file changed, 11 insertions(+)
->>
->> diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
->> index 136e0c257af1..65514d37bfe2 100644
->> --- a/drivers/tty/serial/sh-sci.c
->> +++ b/drivers/tty/serial/sh-sci.c
->> @@ -157,6 +157,7 @@ struct sci_port {
->>         bool has_rtscts;
->>       bool autorts;
->> +    bool first_time_tx;
+>> /home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
+>> icssg@30000000: 'assigned-clock-parents', 'assigned-clocks', 'clocks' do
 > 
-> This is a misnomer. It suggests to be set only during the first TX. 
-
-I chose this naming as this was the scenario I discovered it didn't work.
-Reproducible though these steps:
-
-1/ open the serial device (w/o running any TX/RX)
-2/ call tx_empty()
-
-What
-> about ::did_tx, ::performed_tx, ::transmitted, or alike?
-
-I have nothing against any of these. Can you please let me know if you have
-a preferred one?
-
+> Wait, what? That's different error. You have clocks documented. To
+> remind: we talk about previous error so only, *only* assigned-clocks.
 > 
->> @@ -885,6 +887,7 @@ static void sci_transmit_chars(struct uart_port *port)
->>           }
->>             sci_serial_out(port, SCxTDR, c);
->> +        s->first_time_tx = true;
->>             port->icount.tx++;
->>       } while (--count > 0);
->> @@ -1241,6 +1244,8 @@ static void sci_dma_tx_complete(void *arg)
->>       if (kfifo_len(&tport->xmit_fifo) < WAKEUP_CHARS)
->>           uart_write_wakeup(port);
->>   +    s->first_time_tx = true;
+
+I agree. This is a different error. I encountered this error when I
+dropped the binding patch of this series and tested only the DT patch.
+
+When you commented on Binding patch mentioning it's not needed, I
+thought you were referring to the entire diff. So I dropped the patch
+and tested the DT patch only. And at this time I got this error.
+
+>> not match any of the regexes: '^(pru|rtu|txpru)@[0-9a-f]+$',
+>> '^pa-stats@[a-f0-9]+$', 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$',
+>> 'interrupt-controller@[a-f0-9]+$', 'mdio@[a-f0-9]+$',
+>> 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$', 'mii-rt@[a-f0-9]+$',
+>> 'pinctrl-[0-9]+'
+>> 	from schema $id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml#
+>> /home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
+>> icssg@30000000: 'assigned-clock-parents', 'assigned-clocks', 'clocks' do
+>> not match any of the regexes: '^(pru|rtu|txpru)@[0-9a-f]+$',
+>> '^pa-stats@[a-f0-9]+$', 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$',
+>> 'interrupt-controller@[a-f0-9]+$', 'mdio@[a-f0-9]+$',
+>> 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$', 'mii-rt@[a-f0-9]+$',
+>> 'pinctrl-[0-9]+'
+>> 	from schema $id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml#
+>> /home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
+>> icssg@30080000: 'assigned-clock-parents', 'assigned-clocks', 'clocks' do
+>> not match any of the regexes: '^(pru|rtu|txpru)@[0-9a-f]+$',
+>> '^pa-stats@[a-f0-9]+$', 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$',
+>> 'interrupt-controller@[a-f0-9]+$', 'mdio@[a-f0-9]+$',
+>> 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$', 'mii-rt@[a-f0-9]+$',
+>> 'pinctrl-[0-9]+'
+>> 	from schema $id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml#
+>> /home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
+>> icssg@30080000: 'assigned-clock-parents', 'assigned-clocks', 'clocks' do
+>> not match any of the regexes: '^(pru|rtu|txpru)@[0-9a-f]+$',
+>> '^pa-stats@[a-f0-9]+$', 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$',
 > 
-> This is too late IMO. The first in-flight dma won't be accounted in
-> sci_tx_empty(). From DMA submit up to now.
-
-If it's in-flight we can't determine it's status anyway with one variable.
-We can set this variable later but it wouldn't tell the truth as the TX
-might be in progress anyway or may have been finished?
-
-The hardware might help with this though the TEND bit. According to the HW
-manual, the TEND bit has the following meaning:
-
-0: Transmission is in the waiting state or in progress.
-1: Transmission is completed.
-
-But the problem, from my point of view, is that the 0 has double meaning.
-
-I noticed the tx_empty() is called in kernel multiple times before
-declaring TX is empty or not. E.g., uart_suspend_port() call it 3 times,
-uart_wait_until_sent() call it in a while () look with a timeout. There is
-the uart_ioctl() which calls it though uart_get_lsr_info() only one time
-but I presumed the user space might implement the same multiple trials
-approach before declaring it empty.
-
-Because of this I considered it wouldn't be harmful for the scenario you
-described "The first in-flight dma won't be accounted in sci_tx_empty()"
-as the user may try again later to check the status. For this reason I also
-chose to have no extra locking around this variable.
-
-Please let me know if you consider otherwise.
-
-Thank you,
-Claudiu Beznea
-
+> I don't understand these, either.  All of them have clocks. What are you
+> testing? You add clocks to DTS but not to the binding? What would be the
+> point of that test?
 > 
->> @@ -2076,6 +2081,10 @@ static unsigned int sci_tx_empty(struct uart_port
->> *port)
->>   {
->>       unsigned short status = sci_serial_in(port, SCxSR);
->>       unsigned short in_tx_fifo = sci_txfill(port);
->> +    struct sci_port *s = to_sci_port(port);
->> +
->> +    if (!s->first_time_tx)
->> +        return TIOCSER_TEMT;
+
+I did some more testing. Turns out just adding clocks to dt binding is
+enough. Clocks will need to be added to binding however
+'assigned-clock-parents', 'assigned-clocks' are not needed in the binding.
+
+I will drop the 'assigned-clock-parents', 'assigned-clocks' from
+dt-binding and only keep below diff. Where as for DT patch (2/2) - I
+will keep it as it is.
+
+diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+index 3cb1471cc6b6..12350409d154 100644
+--- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
++++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+@@ -92,6 +92,11 @@ properties:
+     description: |
+       This property is as per sci-pm-domain.txt.
+
++  clocks:
++    items:
++      - description: ICSSG_CORE Clock
++      - description: ICSSG_ICLK Clock
++
+ patternProperties:
+
+   memories@[a-f0-9]+$:
+
+Let me know if this looks ok to you. Thanks for your feedback.
+
+> Best regards,
+> Krzysztof
 > 
-> So perhaps check if there is a TX DMA running here too?
-> 
->>         return (status & SCxSR_TEND(port)) && !in_tx_fifo ? TIOCSER_TEMT
->> : 0;
->>   }
-> 
-> thanks,
+
+-- 
+Thanks and Regards,
+Md Danish Anwar
 
