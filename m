@@ -1,295 +1,105 @@
-Return-Path: <devicetree+bounces-120233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43E409C1CD0
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:20:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BFCB9C1CDC
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 13:24:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C246A1F223B0
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:20:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C62B1F245F6
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2024 12:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F1A1E47C0;
-	Fri,  8 Nov 2024 12:20:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 245BA1E764A;
+	Fri,  8 Nov 2024 12:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XvbQOidz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZI2Pr8n3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 241E51E47CC;
-	Fri,  8 Nov 2024 12:20:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBC511E47CE;
+	Fri,  8 Nov 2024 12:24:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731068414; cv=none; b=I1UfRGazqejAHUa7wSYZrpCCZXGMOT5H+DeYffvRTahmV1Nfc/yz3u7YGkuphE6+lWvW2fKN9Ulf/23yGn/1xlmHBlGe0uvVsPKfUVPHo1OnJYEn0dR04YHFAooy31YqfjGusEABk399roIjek8uYwG6l3Tyr1YhnjZVqPc6pmQ=
+	t=1731068655; cv=none; b=J1X3AEoyfdV66oCCe2HAUiEYCq0k7/fra2IKOG81dnurLuFE8m35lFJU0/hI2zhd7CauuRatXdXa5q/fEQ/nl7HhA7ClgS2D3+QPJMDA8+3MZopiLYmnMIfbtya4SgRkkoMw7lLK8jlETfzgD7p4Os4kUQzDodVprnuNX3wRC78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731068414; c=relaxed/simple;
-	bh=MoTi/dYS7hHyJMOXtzhCKDV+lOAYDaThzUaFOBTiDa0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=IXQnvuHirDYPuvdwS7z1Ik5LHzkd1BBZKZUMBlz1tubjgh8rOqQQBVifkIwMwlPKGa810MOJN1YG8MQx67etoBzJk1KYqdwYBFX+MhMYlUZaQVKV06hL13NysQd5ifurokq/ciDAPv2dY60keMDnjS7O/zdqd8/MXNvF6sPrfho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XvbQOidz; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4A8CK2Ie104732;
-	Fri, 8 Nov 2024 06:20:02 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1731068402;
-	bh=mWj+Y3X9SnOAh3+a4cFNqzSCflZ6mMnuYM7SYahU/ww=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=XvbQOidz8W05245Nc/1tJp1BTZSSWiTlBEb8xL0wCDoFztBpO/7WaLxwuGGW7P6Ip
-	 QkYrl38vXR+Pmi5Evt7lFNSmgKJAYtbFN0cmuLBcYbjO1V6yRWNAiBukaR6Dkqv8m4
-	 XBnTa9h9qvrbL2IJK/cay5O92uAlfTSckv5nWEhw=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4A8CK29n104549
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 8 Nov 2024 06:20:02 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 8
- Nov 2024 06:20:01 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 8 Nov 2024 06:20:01 -0600
-Received: from [10.249.129.69] ([10.249.129.69])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4A8CJtUB123140;
-	Fri, 8 Nov 2024 06:19:56 -0600
-Message-ID: <2a3c54e8-46fc-48f9-8c01-f3bb0c4907af@ti.com>
-Date: Fri, 8 Nov 2024 17:49:54 +0530
+	s=arc-20240116; t=1731068655; c=relaxed/simple;
+	bh=ysuLhuMYEEC7oX4y0iwjBEgPL1C/5lpgDLTDYdB0KFs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W07JqtE7jol6PHptWAQmdrferfjMTiOA7UtB5P18R42c2KurGwr+I9c0lHYfkiMDcQ+bJ8ugVrTxmjzdT3GG9AhrB7SaFTXhDxADJ0p9gZS/Iae9qZROVRZAFEUws8QLMXgPcxmYdLhIjW5imvW/XBUlQ08poC8aOTPV84QKDQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZI2Pr8n3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08A0EC4CECD;
+	Fri,  8 Nov 2024 12:24:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731068654;
+	bh=ysuLhuMYEEC7oX4y0iwjBEgPL1C/5lpgDLTDYdB0KFs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZI2Pr8n3D33cVl/heubKCb1AtALRbMn0WDX2jXxKZvqNOBSAr3+XQKZPF9yNCFWrZ
+	 Wf1wLykw0HBLbfov4EzKLHUQhk4XEdKt02QUbFNxvCbA+mZvTFybivzwlPM668X4PU
+	 1bd9DSyVEYXsTHUazZinuQ3i5j7DXLfR3H/3GC5f14Fu02esA6XLSJhCH5aAS5h/Vr
+	 NUXSBwWbCjBob32hiPpy3Nb/j627PV1BP/U4adaBUaTdKHHR7FVCdEUmg4DqihjvRn
+	 ntTXDLYVW5mQOddiSLgh3hIOUlcJI36fwRfzNOUXOj/HepNR2VEByg33eFfiOmtc8r
+	 2/wyK8i0RTl1g==
+Date: Fri, 8 Nov 2024 13:24:09 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Lee Jones <lee@kernel.org>, Amit Kucheria <amitk@kernel.org>, 
+	Thara Gopinath <thara.gopinath@gmail.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, iommu@lists.linux.dev
+Subject: Re: [PATCH v3 06/14] dt-bindings: pinctrl: qcom: Add MSM8917 pinctrl
+Message-ID: <ufamoryw2k3oquvusqzs2e7ixu6iptfbpmdevqthbps5w7szw3@6c7enohqv537>
+References: <20241107-msm8917-v3-0-6ddc5acd978b@mainlining.org>
+ <20241107-msm8917-v3-6-6ddc5acd978b@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: Add clocks for ICSSG
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        MD Danish Anwar
-	<danishanwar@ti.com>, <conor+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>, <ssantosh@kernel.org>,
-        <nm@ti.com>, Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>, <kristo@kernel.org>,
-        <srk@ti.com>, Roger Quadros <rogerq@kernel.org>
-References: <20241107104557.1442800-1-danishanwar@ti.com>
- <20241107104557.1442800-2-danishanwar@ti.com>
- <7f0a73c3-9977-4d07-b996-683ed18e4724@kernel.org>
- <8156fd61-c476-4b58-b3b2-e8bc4f93035e@ti.com>
- <2c368f5a-4b58-45de-8140-21b2f7af4d12@kernel.org>
- <4ba0381b-d30a-4469-a7c4-327f6ac20c9c@ti.com>
- <2e7a1eb6-df8f-44d4-9342-1bc6d8b5ad11@ti.com>
- <1fa4323b-4cee-4dfe-9c68-55f4465999cf@kernel.org>
-Content-Language: en-US
-From: "Anwar, Md Danish" <a0501179@ti.com>
-In-Reply-To: <1fa4323b-4cee-4dfe-9c68-55f4465999cf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241107-msm8917-v3-6-6ddc5acd978b@mainlining.org>
 
-Hi Krzysztof,
+On Thu, Nov 07, 2024 at 06:02:47PM +0100, Barnab=C3=A1s Cz=C3=A9m=C3=A1n wr=
+ote:
+> +$defs:
+> +  qcom-msm8917-tlmm-state:
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configu=
+ration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          List of gpio pins affected by the properties specified in this
+> +          subnode.
+> +        items:
+> +          oneOf:
+> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-3][0-3])$"
 
-On 11/7/2024 5:51 PM, Krzysztof Kozlowski wrote:
-> On 07/11/2024 12:58, MD Danish Anwar wrote:
->>
->>
->> On 07/11/24 5:16 pm, MD Danish Anwar wrote:
->>>
->>>
->>> On 07/11/24 5:14 pm, Krzysztof Kozlowski wrote:
->>>> On 07/11/2024 12:36, MD Danish Anwar wrote:
->>>>>
->>>>>
->>>>> On 07/11/24 5:01 pm, Krzysztof Kozlowski wrote:
->>>>>> On 07/11/2024 11:45, MD Danish Anwar wrote:
->>>>>>> Add clocks, assigned-clocks and assigned-clock-parents for ICSSG
->>>>>>
->>>>>> Why? We see what you are doing from the diff, no point to repeat it. I
->>>>>> don't understand why you are doing it.
->>>>>>
->>>>>>>
->>>>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>>>>>> ---
->>>>>>>  .../devicetree/bindings/soc/ti/ti,pruss.yaml          | 11 +++++++++++
->>>>>>>  1 file changed, 11 insertions(+)
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>>>>>> index 3cb1471cc6b6..cf4c5884d8be 100644
->>>>>>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>>>>>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>>>>>> @@ -92,6 +92,17 @@ properties:
->>>>>>>      description: |
->>>>>>>        This property is as per sci-pm-domain.txt.
->>>>>>>  
->>>>>>> +  clocks:
->>>>>>> +    items:
->>>>>>> +      - description: ICSSG_CORE Clock
->>>>>>> +      - description: ICSSG_ICLK Clock
->>>>>>> +
->>>>>>> +  assigned-clocks:
->>>>>>> +    maxItems: 1
->>>>>>> +
->>>>>>> +  assigned-clock-parents:
->>>>>>> +    maxItems: 1
->>>>>>
->>>>>> Why? This is really not needed, so you need to explain why you are doing
->>>>>> things differently than entire Linux kernel / DT bindings.
->>>>>>
->>>>>
->>>>> I need to add this to the device tree node
->>>>>
->>>>> +		clocks = <&k3_clks 81 0>,  /* icssg0_core_clk */
->>>>> +			 <&k3_clks 81 20>; /* icssg0_iclk */
->>>>> +		assigned-clocks = <&k3_clks 81 0>;
->>>>> +		assigned-clock-parents = <&k3_clks 81 2>;
->>>>>
->>>>> But without the above change in the binding I am getting below errors
->>>>> while running dtbs check.
->>>>>
->>>>> /workdir/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: icssg@30000000:
->>>>> 'assigned-clock-parents', 'assigned-clocks' do not match any of the
->>>>> regexes: '^(pru|rtu|txpru)@[0-9a-f]+$', '^pa-stats@[a-f0-9]+$',
->>>>> 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$', 'interrupt-controller@[a-f0-9]+$',
->>>>> 'mdio@[a-f0-9]+$', 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$',
->>>>> 'mii-rt@[a-f0-9]+$', 'pinctrl-[0-9]+'
->>>>> +/workdir/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: icssg@30080000:
->>>>> 'anyOf' conditional failed, one must be fixed:
->>>>>
->>>>> To fix this warning I added these in the binding and the warnings were
->>>>> fixed.
->>>>
->>>> nah, cannot reproduce. Just be sure you work on recent kernel (last time
->>>> you were sending it on some ancient stuff) and your packages are
->>>> updated, including dt schema and other kernel dependencies.
->>>>
+That's not a good pattern, unless really gpio129 is not existing?
 
-The purpose of this series is to add 'assigned-clock-parents',
-'assigned-clocks' to the DT node. Initially I was only trying to add
-these two nodes to DT and at that time I got the above error. I also got
- the below error as well
+> +            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc1_rclk, sdc2_clk,
+> +                      sdc2_cmd, sdc2_data, qdsd_clk, qdsd_cmd, qdsd_data=
+0,
+> +                      qdsd_data1, qdsd_data2, qdsd_data3 ]
+> +        minItems: 1
+> +        maxItems: 16
 
-/home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
-icssg@30000000: 'anyOf' conditional failed, one must be fixed:
-        'clocks' is a required property
-        '#clock-cells' is a required property
-        from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
+Best regards,
+Krzysztof
 
-
-To fix this I added 'assigned-clock-parents', 'assigned-clocks' to the
-binding and at this time I got only the below error,
-
-/home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
-icssg@30000000: 'anyOf' conditional failed, one must be fixed:
-        'clocks' is a required property
-        '#clock-cells' is a required property
-        from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
-
-So to fix this, I added clocks to the binding as well as DT and after
-that all the errors got resolved and I posted the series.
-
->>>
->>> I have posted this series on the latest kernel. Base commit
->>> 5b913f5d7d7fe0f567dea8605f21da6eaa1735fb
->>>
->>> Let me check if the schema is up to date or not. I will re test and
->>> reply. Thanks for pointing it out.
->>>
->>
->> Krzysztof, I re-checked.
->> I am on the latest kernel (commit
->> 5b913f5d7d7fe0f567dea8605f21da6eaa1735fb (tag: next-20241106,
->> origin/master, origin/HEAD)) and I am using the lastest dtschema v2024.9
->>
->> ❯ python3 -m pip list|grep 'dtschema'
->> dtschema                      2024.9
->>
->> Still I am getting the below dtbs check errors while running `make
->> CHECK_DTBS=y ti/k3-am642-evm.dtb` without the binding change.
->>
->> Let me know if I am missing something else.
->>
->> /home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
->> icssg@30000000: 'assigned-clock-parents', 'assigned-clocks', 'clocks' do
-> 
-> Wait, what? That's different error. You have clocks documented. To
-> remind: we talk about previous error so only, *only* assigned-clocks.
-> 
-
-I agree. This is a different error. I encountered this error when I
-dropped the binding patch of this series and tested only the DT patch.
-
-When you commented on Binding patch mentioning it's not needed, I
-thought you were referring to the entire diff. So I dropped the patch
-and tested the DT patch only. And at this time I got this error.
-
->> not match any of the regexes: '^(pru|rtu|txpru)@[0-9a-f]+$',
->> '^pa-stats@[a-f0-9]+$', 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$',
->> 'interrupt-controller@[a-f0-9]+$', 'mdio@[a-f0-9]+$',
->> 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$', 'mii-rt@[a-f0-9]+$',
->> 'pinctrl-[0-9]+'
->> 	from schema $id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml#
->> /home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
->> icssg@30000000: 'assigned-clock-parents', 'assigned-clocks', 'clocks' do
->> not match any of the regexes: '^(pru|rtu|txpru)@[0-9a-f]+$',
->> '^pa-stats@[a-f0-9]+$', 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$',
->> 'interrupt-controller@[a-f0-9]+$', 'mdio@[a-f0-9]+$',
->> 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$', 'mii-rt@[a-f0-9]+$',
->> 'pinctrl-[0-9]+'
->> 	from schema $id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml#
->> /home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
->> icssg@30080000: 'assigned-clock-parents', 'assigned-clocks', 'clocks' do
->> not match any of the regexes: '^(pru|rtu|txpru)@[0-9a-f]+$',
->> '^pa-stats@[a-f0-9]+$', 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$',
->> 'interrupt-controller@[a-f0-9]+$', 'mdio@[a-f0-9]+$',
->> 'memories@[a-f0-9]+$', 'mii-g-rt@[a-f0-9]+$', 'mii-rt@[a-f0-9]+$',
->> 'pinctrl-[0-9]+'
->> 	from schema $id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml#
->> /home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
->> icssg@30080000: 'assigned-clock-parents', 'assigned-clocks', 'clocks' do
->> not match any of the regexes: '^(pru|rtu|txpru)@[0-9a-f]+$',
->> '^pa-stats@[a-f0-9]+$', 'cfg@[a-f0-9]+$', 'iep@[a-f0-9]+$',
-> 
-> I don't understand these, either.  All of them have clocks. What are you
-> testing? You add clocks to DTS but not to the binding? What would be the
-> point of that test?
-> 
-
-I did some more testing. Turns out just adding clocks to dt binding is
-enough. Clocks will need to be added to binding however
-'assigned-clock-parents', 'assigned-clocks' are not needed in the binding.
-
-I will drop the 'assigned-clock-parents', 'assigned-clocks' from
-dt-binding and only keep below diff. Where as for DT patch (2/2) - I
-will keep it as it is.
-
-diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-index 3cb1471cc6b6..12350409d154 100644
---- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-+++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-@@ -92,6 +92,11 @@ properties:
-     description: |
-       This property is as per sci-pm-domain.txt.
-
-+  clocks:
-+    items:
-+      - description: ICSSG_CORE Clock
-+      - description: ICSSG_ICLK Clock
-+
- patternProperties:
-
-   memories@[a-f0-9]+$:
-
-Let me know if this looks ok to you. Thanks for your feedback.
-
-> Best regards,
-> Krzysztof
-> 
-
--- 
-Thanks and Regards,
-Md Danish Anwar
 
