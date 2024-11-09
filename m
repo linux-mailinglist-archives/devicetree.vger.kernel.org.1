@@ -1,102 +1,209 @@
-Return-Path: <devicetree+bounces-120445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD9029C2C15
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 12:05:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2042F9C2C17
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 12:07:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FAA01C210C9
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 11:05:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0F8C1C20C10
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 11:07:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BD74148FEB;
-	Sat,  9 Nov 2024 11:05:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5152714D2A0;
+	Sat,  9 Nov 2024 11:07:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h1Qayx0t"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XQTa6kdW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CFD913D886;
-	Sat,  9 Nov 2024 11:05:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 935602233B;
+	Sat,  9 Nov 2024 11:07:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731150301; cv=none; b=m5zcBEfIvaBFSQc2YmCr8T29r/5YT0zdO5xa+286iCOpItPulUWbj8C01YUfAMMml7xa+FJ1KTl9PcwVcsNs10TLwhJ8pO1zsON3bq+UaOrsAZ7opLsSboogctHMW3ZIXSdoCHs9yIqv1YQHN/y1AMIa2UPE8MhuCdem9KtXwCg=
+	t=1731150463; cv=none; b=MocdyEZhcGhEZlqvb1Y7IVwPRqnjNrl0vr2OG+wX2V0iMo/SAp81WXbDYiy38PPdAVeKievJ+TqnZaiXrAZiM+TqsDkbdGVvvf4/kKUz5F4oujn2Sme9/ncXRi6nEEtCXaD0PbPU7TT4nxDUNaFNDnhYtg2U/s0uKuiuwxrh7zk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731150301; c=relaxed/simple;
-	bh=euqJK0ntVjQw+QOGivI7fOl8DgX26ZTRRMEWEMAcpIw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SgNoXT1NrarfilqHYp10XI7M9+9gbcx3mnmn7A1684mMtWFf8RjyzhOOQlJuxlPd4sa+6Gi1VtqCCeVdBsGOy6SFS/9kgwM2iI5UxphZNTLVDvFzau0bo3xQ9uH6Ii0uxIpigbA64FtcUz03QT9j/V9InNwGFteQq3fCUAvyl3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h1Qayx0t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E826C4CECE;
-	Sat,  9 Nov 2024 11:05:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731150300;
-	bh=euqJK0ntVjQw+QOGivI7fOl8DgX26ZTRRMEWEMAcpIw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h1Qayx0tdzHz3ogJQWZ7gcb117WFpIxOt92gsgRdNiHUDLqlF9kC6OvZAKris6b4B
-	 S2QCoDB6S/xtxpdH/yGV3Rhl/8FTdAAxjD+4ccDxbb1IkHgJlHrPYKf+nq1Vgnyvto
-	 mciowh+BpR9k0CIbcemuKV7Wc7/lGJQC0+tD8GRE2ENH9NoIDLUmJ7oh1riWjw9Mvl
-	 Nt8wwVfeS9o0m+RV7P9pNyRy6oKCQFiwpZ7LghKycDEcyem8IAdR2TWmE2Nv8htPSe
-	 Zo8QrDDcoPlT82RjCa69oVHB9iZ9xbS+8EYUCe/wMBLj8D1t6G2fpKHErt1HJUoAXB
-	 Ix3HLRQgokqHw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1t9jH5-000000001KK-1JVj;
-	Sat, 09 Nov 2024 12:05:03 +0100
-Date: Sat, 9 Nov 2024 12:05:03 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Abel Vesa <abel.vesa@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	stable+noautosel@kernel.org
-Subject: Re: [PATCH 0/3] arm64: dts: qcom: x1e80100: Fix missing address/size
- cells warnings
-Message-ID: <Zy9B3wjv_ODlKBxW@hovoldconsulting.com>
-References: <20241109-x1e80100-fix-address-size-cells-missing-warnings-v1-0-c1e173369657@linaro.org>
- <CAA8EJprX=2i335rm5JovkBYAYd=ku=yaNgFJVXh03BYEantGAw@mail.gmail.com>
+	s=arc-20240116; t=1731150463; c=relaxed/simple;
+	bh=QS9QXHA9aIA753MlX+rgP6S52wu6QOzrQQPQXLb4Oug=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NqpDCYcQ/KVvotVs/jwP8UqPRxH9c1VCAYRoy4iB9/71MnV/rEiqk3qgza/I1HM0HS9d3x+NjsXGZuTKTab/DiBtklGP1DPTT0nJss1TDVHMY1zsGJ3k8bRtP7YkkOOfx/Aaf14S7kk9UpMIytzeEwBJrGbjOJ47WQebcD8B65Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XQTa6kdW; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5ceccffadfdso4009864a12.2;
+        Sat, 09 Nov 2024 03:07:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731150460; x=1731755260; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=awye95iv1yEMNkGuGKMnnPe3aEgESR2qeEte2B8YfLU=;
+        b=XQTa6kdWr8x+Fn1LGIemSbQE30tUal3TRYv/x/VU10t1Q1qYqnf9xoeTu9jwAb1+hX
+         l1MENe9ScEsR5F329kJZqM+WWMPx1fMJv7AbKWywEztqhcaZiFSFr9ypelwKiADfDDob
+         vRcI9GRNrLrmaIIF2vk8epsVHmnBBBZt6vnLASE9frBSo+nscNB9kC081d5YFLM/JgXM
+         mVAtsFY4zgaolfsKaRb3rc44HmhpjPvLzRGGZ/2/opTvE12HNZP6EzjZ3KJLBgaVukkm
+         sYuMP79L87EY/La+/NVPwj+cpCC2fFcmMMutT0gUICmWEJSl6JjkrdLNZEFTyIzSK1Ns
+         BgUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731150460; x=1731755260;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=awye95iv1yEMNkGuGKMnnPe3aEgESR2qeEte2B8YfLU=;
+        b=wG2F2HZIZGAvpOrukOE/1FiKWjpu2Ty5jAYN2Vlro89z4eXOnohV3AxuyriCD1PFFl
+         om5SDjt92pPthTiuHYQK3ujMH+cHYtUuLUnJwxpUAQ1OtvSD+jkwasHR2Bny12bws5hY
+         RUQhzHaLL2jT9fSEb7bFo4uqJlHTA5hzT8GrDlaWJ2duAYP1+TD7OwhsfwoXstGY87+d
+         gZhdMGBjCHSf6aCC+tzEzSx+sxBnideAvv/nhrV5MjgPQe3a8B6stGP4YzgXvSo8aaEC
+         L/OFm9zz0D4QkjIF4+OqDpC4C12CM9mwxMtx240VHuRdKds/1Azl3+Ze0oV9YfddDWlN
+         NSJg==
+X-Forwarded-Encrypted: i=1; AJvYcCUJxZYhAx1jWXFokrHyTzMkE5wW+v7c7B2wIonYdcuFBAPq2MpOiaArkZjVxVnuGNuJ2nUhvnu4Hz2U@vger.kernel.org, AJvYcCWHp4CCM9kfb70tFPkafzxe0AGnwyl9ZHHJJxRfYairJCPtzRUl0QaYj/OT/oqe8OmzLmLKj/YZohX5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSrtr/ctTXJuu1W2hijI1SUq8R5ajpqe2sudYzAh9yTURnCU2X
+	lUGl4tLWGhANPfiEKoT2bwhXMhebz3piDCarZ91qmeTWBwI07Mvg4QLNE1Leg4SL9MMX0DRHfGx
+	qjBZ3MRZG9BQdgxz54tZiwI6A+Js=
+X-Google-Smtp-Source: AGHT+IE7QnnwmUPJHAhpYjQ53+P2XjG8mYIekPucikrnAm6nBdhxXkmutfFnCQ+ZZUdwIEe3sKpwxcnrh3kFtMAUPPU=
+X-Received: by 2002:a05:6402:40d6:b0:5cf:1b53:1bf4 with SMTP id
+ 4fb4d7f45d1cf-5cf1b531cfemr1676430a12.17.1731150459603; Sat, 09 Nov 2024
+ 03:07:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJprX=2i335rm5JovkBYAYd=ku=yaNgFJVXh03BYEantGAw@mail.gmail.com>
+References: <cover.1729583747.git.zhoubinbin@loongson.cn>
+In-Reply-To: <cover.1729583747.git.zhoubinbin@loongson.cn>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Sat, 9 Nov 2024 17:07:24 +0600
+Message-ID: <CAMpQs4Lv0_RjoyzJHtrekbHB+OiV5Si6yPEgp_u1ZZKkthGzhw@mail.gmail.com>
+Subject: Re: [PATCH v7 0/2] pwm: Introduce pwm driver for the Loongson family chips
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Huacai Chen <chenhuacai@loongson.cn>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	Sean Young <sean@mess.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Nov 09, 2024 at 12:49:16AM +0200, Dmitry Baryshkov wrote:
-> On Sat, 9 Nov 2024 at 00:05, Abel Vesa <abel.vesa@linaro.org> wrote:
-> >
-> > The commit 4b28a0dec185 ("of: WARN on deprecated #address-cells/#size-cells
-> > handling") now forces all parent nodes to describe the #adress-cells
-> > and #size-cells, otherwise it will throw a warning.
-> >
-> > Note that this patch is currently only in -next.
-> >
-> > Fix all warnings on the X Elite by adding these two properties to all
-> > parent nodes that don't have them.
-> 
-> The individual patches are incorrect per my understanding. None of
-> those child nodes use addressing, so adding #address-cells = <1> is
-> incorrect. Maybe it should be #address-cells = <0>, but that looks a
-> bit ridiculous to me.
+On Tue, Oct 22, 2024 at 3:04=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
+> wrote:
+>
+> Hi all:
+>
+> This patchset introduce a generic PWM framework driver for Loongson famil=
+y.
+> Each PWM has one pulse width output signal and one pulse input signal to =
+be measured.
+>
+> It can be found on Loongson-2K series cpus and Loongson LS7A bridge chips=
+.
+>
+> Thanks.
+>
+> -------
+> V7:
+> Thanks for Sean's advice.
+> patch (2/2):
+>  - Set chip->atomic to keep pwm_apply_atomic() can be used with the pwm.
+>  - Test with CONFIG_PWM_DEBUG and CONFIG_DEBUG_ATOMIC_SLEEP enabled.
+>
+> Link to V6:
+> https://lore.kernel.org/all/cover.1728463622.git.zhoubinbin@loongson.cn/
 
-Yeah, the warnings are bogus. Rob merged a fix last night:
+Hi Uwe:
 
-	https://lore.kernel.org/lkml/20241108193547.2647986-2-robh@kernel.org/
+Gentle ping.
+Any comments about this patchset ?
 
-so this should be resolved in linux-next on Monday or so.
+>
+> V6:
+> patch (2/2):
+>  - Rebase on pwm/for-next;
+>  - Add Reference Manual;
+>  - Shortcut if !pwm->state.enabled;
+>  - When state->enabled is true, unconditionally execute
+>    pwm_loongson_set_polarity() to avoid that the polarity register is
+>    not set correctly.
+>
+> Link to V5:
+> https://lore.kernel.org/all/cover.1720516327.git.zhoubinbin@loongson.cn/
+>
+> V5:
+> patch (2/2):
+>  - Rebase on pwm/for-next;
+>  - Test with PWM_DEBUG enabled.
+>  - In pwm_loongson_apply(), the pwm state is determined before the pwm
+>    polarity, avoid test failures when PWM_DEBUG is enabled;
+>  - Added DIV64_U64_ROUND_UP in pwm_loongson_get_state() to avoid
+>    precision loss and to avoid test failures when PWM_DEBUG is enabled.
+>
+> Link to V4:
+> https://lore.kernel.org/all/cover.1716795485.git.zhoubinbin@loongson.cn/
+>
+> V4:
+> patch (2/2):
+>  - Rebase on pwm/for-next;
+>  - Addressed Uwe's review comments:
+>    - Make use of devm_pwmchip_alloc() function;
+>    - Add Limitations description;
+>    - Add LOONGSON_ prefix for Loongson pwm register defines;
+>    - Keep regs written only once;
+>    - Rewrite duty/period calculation;
+>    - Add dev_err_probe() in .probe();
+>    - Fix some code style.
+>
+> Link to V3:
+> https://lore.kernel.org/linux-pwm/cover.1713164810.git.zhoubinbin@loongso=
+n.cn/
+>
+> V3:
+> patch (1/2):
+>  - Add Reviewed-by tag from Krzysztof, thanks.
+> patch (2/2):
+>  - Several code stlye adjustments, such as line breaks.
+>
+> Link to V2:
+> https://lore.kernel.org/all/cover.1712732719.git.zhoubinbin@loongson.cn/
+>
+> v2:
+> - Remove the dts-related patches and update dts at once after all
+> relevant drivers are complete.
+> patch (1/2):
+>  - The dt-binding filename should match compatible, rename it as
+>    loongson,ls7a-pwm.yaml;
+>  - Update binding description;
+>  - Add description for each pwm cell;
+>  - Drop '#pwm-cells' from required, for pwm.yaml makes it required alread=
+y.
+>
+> Link to v1:
+> https://lore.kernel.org/linux-pwm/cover.1711953223.git.zhoubinbin@loongso=
+n.cn/
+>
+> Binbin Zhou (2):
+>   dt-bindings: pwm: Add Loongson PWM controller
+>   pwm: Add Loongson PWM controller support
+>
+>  .../bindings/pwm/loongson,ls7a-pwm.yaml       |  66 ++++
+>  MAINTAINERS                                   |   7 +
+>  drivers/pwm/Kconfig                           |  12 +
+>  drivers/pwm/Makefile                          |   1 +
+>  drivers/pwm/pwm-loongson.c                    | 288 ++++++++++++++++++
+>  5 files changed, 374 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/loongson,ls7a-p=
+wm.yaml
+>  create mode 100644 drivers/pwm/pwm-loongson.c
+>
+>
+> base-commit: c13bce43b32b06f2273c7961940c391cdaf13d1e
+> --
+> 2.43.5
+>
 
-Johan
+
+--
+Thanks.
+Binbin
 
