@@ -1,173 +1,112 @@
-Return-Path: <devicetree+bounces-120406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAEBA9C28A0
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 01:11:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 428ED9C28B9
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 01:16:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAE472826DD
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 00:11:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EED7D1F2241C
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 00:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA90138B;
-	Sat,  9 Nov 2024 00:11:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0891E4A00;
+	Sat,  9 Nov 2024 00:16:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VyVmD5Cp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="taiwZRae"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5752B322A;
-	Sat,  9 Nov 2024 00:11:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A08B4437
+	for <devicetree@vger.kernel.org>; Sat,  9 Nov 2024 00:16:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731111093; cv=none; b=C6wOmQqGwDcvqb7jSPn7r604A6OiQqjok2O4WuH/qouGT05wz4JE8QZ8eWvMyvOWe0/TKEfyV3uXaSUyTGreVUq0MBD04IivjsD/lGJYu5I7I0MLKwVAvpGYa2LNjipjAoya0WtsfEjVB360KCd5ljO2rAEdf3O7KzTrSlN47Qo=
+	t=1731111374; cv=none; b=pGr8yNDjeebh2cGkRBUmWA88yCGdfnJmGBOXEa52EUZzk/vBuUog8yT3HPOBA9T2O/0LtdJF1JrxbeouXK5Gf8j+Y9TwD9+hjNSjBCnSHa6khbPLVwIGCAJUSjdDV9mKqH5NzZHN5sIvDNgAyUj1sIjW619Zb8m6+iECW2fsGkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731111093; c=relaxed/simple;
-	bh=9NwaDc+sH59d+cHFwqfcTVbsIdXs0neqNpY43IxGzbY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=cAN9ZuOlOvt73T4Uj1JVoTJsS9CS59gz1Byi4rgiTF/3of1U5nttnqAXW2+3M1f6z9+Pxtk2JR6fWJ4xUci181et4HGeyEkERClZcfwp84BUZuki0HZ/tdcGYFqkMzo3e1HqAlUxazzyK24BsHtcbEVVrnVfbkrjcRA6SIScrtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VyVmD5Cp; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-7eae96e6624so1960240a12.2;
-        Fri, 08 Nov 2024 16:11:32 -0800 (PST)
+	s=arc-20240116; t=1731111374; c=relaxed/simple;
+	bh=KOv7yLqvrL7i5RWY8vGm6ti84TeK4M0M8cCt+d+gOyw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xv5iqbKnPLwEcYt5YiYgjXBt64MxjTNFP9chxv6UIrklIAzRkda2xDhTiM/dU2Kixt8z6h/2ef/U9/BqqQGJlq3wmLiRjZ4xESX5U+jzyYIhPFbzWJubAfsjD+njiUy5v9ZM5/f23GVpeJT2NedYlsLTgD1VF3b1FOfjlmZsvw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=taiwZRae; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-539f4d8ef66so4268009e87.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Nov 2024 16:16:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731111091; x=1731715891; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=3IZGLZAVK1oqGbVkQTDsgw2qviq88uDM6MYfmQbYgOw=;
-        b=VyVmD5CpaPsZAX7poP8BatyMebflBOY5rJYIUJT0pPKmS/ZJsCoZAlDjlEIFpYpQ5g
-         HdpcUk7MzqYZfrAAD9Coo6Ts+GslSy/D1KV9hwAJKZGKGL1RscQp9MaxX+WA4nhlJRWG
-         FHWcfVwYv8EMYFzYey76a9FNk8VgRfj5MsrWq6BOk2Tcz2eTo2hXXlYlwvG2SVQlpEM9
-         Mc1AzHe+cf9t7Fh/LX5UX1l2BxM8ut4FFttm/U1qroa/V+p4YqJfg5yoCYP/KgWwFsh7
-         HDnHSafrYkwyt5bxkdns0G2UYEeq7rASEi3TcZkA53h08eS8eKRg3yyKuaty+J4jXSEi
-         XcfQ==
+        d=linaro.org; s=google; t=1731111371; x=1731716171; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mGhilPTYeg4CyrC1ajXDu2yJKamxL4VSKRjoPuRcjU8=;
+        b=taiwZRae3KYDamT00SKF+F8tikFlyqVcHM6H1v1JFx93/TrEJuRRRJ4LCrqHfwkr2B
+         s8ZC9v/MM3nPP+hhn904ntR/MyUtwlch4rZMnz55esCa/sILFniLi7s23wiq0hEbVzed
+         fh/y+oN6pWr9AlTvSMphscEy/aWuX6nIcdmspkEHhAdmf3W4MejNjA3a0E+4fYjyd2Qi
+         J+Iqhaumol1jSJUdutV5w6RWWpD4kFjgETH4kRvBmarjBaITl8uCeU3+1DIJHDVHZJcI
+         bRgwNOITreZ7FVMnj/4YOsjoepOELUX91faRBVJ8WV4nJphRWZO+ZpBr9mf/tcbZ1RyV
+         qgdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731111091; x=1731715891;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:sender:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1731111371; x=1731716171;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3IZGLZAVK1oqGbVkQTDsgw2qviq88uDM6MYfmQbYgOw=;
-        b=I5j+WsYo2F38VB7Ahwv/DBah+uWvNyj1g/xwKd0T1SfJJs6PUBXdRFuT9simlUqw7e
-         r049pyJHzVG1k6g6Win1VPhsd2SbGaFAyQlHegH/e15PdNNmot5pyqTCseBaYvyAxOjz
-         N2gHO+uOU3OSnHNAVa+LVuPdV0DQeHf0MUe9TCB4WNA24ZDNol5K6n6b+9iZUILK9o2K
-         P4UJpqnCJJ9q+xliCcuL3Bw7lR6oQ+mY09isFcrXO7ageXs0qRSIyqdjvfR7RnF5tBfJ
-         9U4/GW9Q+Qev/4h7SEcSa196OcLkpy32ehJOS7A7fLZufvb8T1XCkaV7xoGD0TVukyl6
-         bKkA==
-X-Forwarded-Encrypted: i=1; AJvYcCUTPkF9iTkK2R6v4tjppRalkL3KlmgXn9ENcVz87HB9HoMghoLDWZicMMKWTB6v4PyZDX3xgSQT1q3S@vger.kernel.org, AJvYcCWaWxUC/b9yKIPx1ngKtw/gVF4tGQtdcf8xkFRIzLclWYK9u/PZE3CVeW1pwlp/spJQeIK9xUb9EGiZ9QD5@vger.kernel.org, AJvYcCWfIehGoPCBFgHNcCRRUIhN63+MTuGGMP7TBJ3J45F9/L9Egg8RP8F8sn27vWK6tOfQ9S/qYSwziEZlyQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKr6UIglfekm9B9EdXRVYn8BI3ZPSbC8hXIY6wlO6WtStjcsBv
-	5qtYLymrp7Z8c3lSyN4UyVavmEw6A6v7XcVZzRMMswI6aJQY1u8S
-X-Google-Smtp-Source: AGHT+IGuXcqZTQ3uvvLT9UskUYdxGCdtqXC8QEEu9t5fHd+ir4QXBLBtFwW74giJKCVZUtxSJ6Qjqg==
-X-Received: by 2002:a17:90b:314a:b0:2d6:1981:bbf7 with SMTP id 98e67ed59e1d1-2e9b17947a4mr6159364a91.32.1731111091548;
-        Fri, 08 Nov 2024 16:11:31 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e9a5f8f1dasm4677556a91.25.2024.11.08.16.11.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Nov 2024 16:11:30 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <b262ff19-dc57-4a72-9395-25d81e48a476@roeck-us.net>
-Date: Fri, 8 Nov 2024 16:11:29 -0800
+        bh=mGhilPTYeg4CyrC1ajXDu2yJKamxL4VSKRjoPuRcjU8=;
+        b=as01MQ9fBgJ+XQMrATIg2hbA5GetAZTU6/4fJdGeATtCUGelAEawipoFLU6yEcV+bw
+         iVvDKi3Z82OYzMGJP79OCJdqcV91sPyNsFFvJGswGgwUwkNBFyZd4e1C0CNC+NwCgIzc
+         vq8zcDng9XqgnvIpFXf0mfRbf3aqJtBt7s23i1KLiatqyBdRrNzK/zfwDFjp5fH5yV56
+         zAnV4sHwe9Vrn0MPN3shwubRdQMHyr8XB9gbqrwxwO+NkQgys7MDpnRDodvNov/uuuKH
+         H4IHM6453ha1iTKsWHNKVawFuMbE2+nfKGX4nggafOm2NIC68LDZWcbLQbKVb+plQ7hV
+         /VAw==
+X-Forwarded-Encrypted: i=1; AJvYcCUohFXmVXDjibIDfOxDbSyso4LB4XkJ84sT+hxGCalQlxRMB+63Q3XEDeyoRq1GbEI42aDJbz5O02g5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhEBgo5ejSxthkU8wRU5TkVTlOgv3zaUPrylkDqaqcJlezS/Ow
+	Pd/Ck/IrtQM/ul8RA2U1Hxpy2VCTG6UpEIr16YoH5y2y0k/sWzzvZgYRNDViNYs=
+X-Google-Smtp-Source: AGHT+IEqYf9aBjOBoEcwnsK9UikKIHqLQGQCIxw7C+lbTDny8+xpVnselPyLLsqGg72umh99e0IEgA==
+X-Received: by 2002:a05:6512:687:b0:539:f696:777c with SMTP id 2adb3069b0e04-53d862cb2e1mr2782918e87.29.1731111371244;
+        Fri, 08 Nov 2024 16:16:11 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53d826856d2sm791159e87.65.2024.11.08.16.16.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Nov 2024 16:16:09 -0800 (PST)
+Date: Sat, 9 Nov 2024 02:16:07 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Abhishek Sahu <absahu@codeaurora.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 10/11] clk: qcom: videocc-qcs615: Add QCS615 video
+ clock controller driver
+Message-ID: <cwiai67gs2o3tj3bjziao26uxg3yrbd35dknkvjerbe7cbgfca@qhjtij23yn26>
+References: <20241108-qcs615-mm-clockcontroller-v3-0-7d3b2d235fdf@quicinc.com>
+ <20241108-qcs615-mm-clockcontroller-v3-10-7d3b2d235fdf@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] hwmon: tmp108: Add help function
- tmp108_common_probe()
-From: Guenter Roeck <linux@roeck-us.net>
-To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Jean Delvare <jdelvare@suse.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Krzysztof Kozlowski <krzk@kernel.org>,
- linux-hwmon@vger.kernel.org
-References: <20241108-p3t1085-v2-0-6a8990a59efd@nxp.com>
- <20241108-p3t1085-v2-2-6a8990a59efd@nxp.com>
- <c1b77ef0-f01b-4926-8259-e387166d0750@roeck-us.net>
-Content-Language: en-US
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <c1b77ef0-f01b-4926-8259-e387166d0750@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241108-qcs615-mm-clockcontroller-v3-10-7d3b2d235fdf@quicinc.com>
 
-On 11/8/24 15:55, Guenter Roeck wrote:
-> On 11/8/24 14:26, Frank Li wrote:
->> Add help function tmp108_common_probe() to pave road to support i3c for
+On Fri, Nov 08, 2024 at 09:39:27AM +0530, Taniya Das wrote:
+> Add support for the video clock controller for video clients to
+> be able to request for the clocks on QCS615 platform.
 > 
-> help -> helper
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
+>  drivers/clk/qcom/Kconfig          |   8 +
+>  drivers/clk/qcom/Makefile         |   1 +
+>  drivers/clk/qcom/videocc-qcs615.c | 332 ++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 341 insertions(+)
 > 
->> P3T1085(NXP) chip.
->>
->> Using dev_err_probe() simple code.
-> 
-> Use dev_err_probe() to simplify the code.
-> 
->>
->> Add compatible string "nxp,p3t1085".
->>
-> 
-> This is borderline and problematic. First, it is the one functional change,
-> and second, that functional change is not mentioned in the subject. At the very
-> least it needs to be mentioned in the subject. I would, however, prefer two
-> separate patches, even if that is just a one-liner.
-> 
-I forgot: The additional chip support should also be mentioned in Kconfig and in
-Documentation/hwmon/tmp108.rst.
 
-Thanks,
-Guenter
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
+-- 
+With best wishes
+Dmitry
 
