@@ -1,132 +1,131 @@
-Return-Path: <devicetree+bounces-120514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9C599C2F75
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 21:20:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00E119C2FFD
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 00:04:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA2FB1C21271
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 20:20:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F99A282250
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 23:04:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED6041A08C6;
-	Sat,  9 Nov 2024 20:20:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0F301A08BC;
+	Sat,  9 Nov 2024 23:04:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="h9iM346J"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JLAPuVpA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F9C919DF8D;
-	Sat,  9 Nov 2024 20:20:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B6598C07;
+	Sat,  9 Nov 2024 23:04:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731183604; cv=none; b=rElUmIhXUS5xN3mHRTS2XpEIiDi4ZSf0PpYCT1QoKKUjiPsq6Jon/sNv3hiEpaC+aC7AMLy5t9yKw57RQBaGrRR3JG/+AB+MuFX6Npgc/IQ1cJhZaYwndVle3CLEuCIGCIfv3qNLmQF7JpT8mBqEpMgIEH7Pq+ZzHthQs293ve0=
+	t=1731193461; cv=none; b=eskOsWaH9WvBDGVYuN2zSh1z7/nVFsyn9d/+FXB4zfuL5H2ppvqtEJV77U99lb/dYvfxaoWJhf1ar7lOkoESdk9Y3+JESmeMEm6/F1rZC1SMSxgoriVI1AZD6ki4YBkGOruQBknNkgfVX+R41ydFnMyVohPYo9F2WcpO2uiogh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731183604; c=relaxed/simple;
-	bh=k1SNTfKh5aZYqQJx6ZACI0/uVQVUJ/Vb3beFxFxNBRs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Prm/Zy/jF+J7T9A61EavfiXhrAQfnE2p0W+ehZtpcOZ1AVw8u1dKxzDN+rvxSJWomNQtiuXpV+xfE/B7CNNewUVzZGanWgv2ZFKtkj44XlAkazX03z1AioPalR2BlNrfWnSLmzViMJ32fbP1ExBJKeMkTM/OFgSiJmUXk47FqGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=h9iM346J; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1731183603; x=1762719603;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=k1SNTfKh5aZYqQJx6ZACI0/uVQVUJ/Vb3beFxFxNBRs=;
-  b=h9iM346Jh07psTvt723Ehfxo8bGbaRDhvkIIs1w+lgmiLb1/Qo70QZWC
-   r4TCiUOHldMl1srcWaw0OnYgrY7zo+OvHHQzcEYfc5CmJJFQq9GJSblHX
-   81AIDg99E8Hm3C5JR7qNx02Wax8KOrypr73sdECS/ZRB3Jy0fwX/4MFNd
-   NR1ZLgKoCRvp268dapOxJm2qYjlNOBIGRcioP4IEK20otz9CmVNgTLHNV
-   begCu6+Q8um0CXfzFdHbVF5GQK6GXSbMcQmuBlQuqX6czvTlpF/NPuUTL
-   4TQclUbx6/p+E+CedluAU4aZ7C7jDrbojgxh+tUt8c/Fxj9PjcV5flACV
-   Q==;
-X-CSE-ConnectionGUID: 7OsTWqG6SZWsuZQS13RU4g==
-X-CSE-MsgGUID: UwjUFuUXR6CmtW8sk2tzlQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11251"; a="33901674"
-X-IronPort-AV: E=Sophos;i="6.12,141,1728975600"; 
-   d="scan'208";a="33901674"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2024 12:20:02 -0800
-X-CSE-ConnectionGUID: EaNgekS5RXOF8qipqvVGCg==
-X-CSE-MsgGUID: 8ujJZnVnS0eRwRiV/lCqpQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,141,1728975600"; 
-   d="scan'208";a="86090487"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 09 Nov 2024 12:19:58 -0800
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t9rw4-000sbe-0B;
-	Sat, 09 Nov 2024 20:19:56 +0000
-Date: Sun, 10 Nov 2024 04:19:43 +0800
-From: kernel test robot <lkp@intel.com>
-To: Romain Gantois <romain.gantois@bootlin.com>,
-	Wolfram Sang <wsa-dev@sang-engineering.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1731193461; c=relaxed/simple;
+	bh=YDc64g70KXmRUfUMR9OpmEHuYok64UWyLD7xaEiRKTQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pJdhJq5XshBT+sMbbVoETLsKuP/SdGOIzcYXeHnrUGmGaaMJm1kL3sjRwmMX1SHisBTVCE0rDvt5aVywRNJYAITul1vjHthGDqVoXl7rNvkWVCZG8FsFLf8i6W1JgtEhkRs7jJqElersFE0Id4Xx6EYjmSirtG/JTi7Tc18tWwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JLAPuVpA; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-210e5369b7dso35697885ad.3;
+        Sat, 09 Nov 2024 15:04:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731193458; x=1731798258; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tDnEol/sO6VqVywxS7JlKi6+yDV4PyqK7/lKBRL3LN4=;
+        b=JLAPuVpADS01H4asYf/GKI6+DURAZ1u0xJjvQOOdHCfz2n1X2w3vAVBBDfZh7uHCof
+         pkIUY00JVqlWQzNDh8wDZbZuJcqzewq1OdUkhxuVYcLxAvOD0KVkRFePtqmaU0iB0zLH
+         JBxqr8pR91w5NHjdNhGPIWj0meu660kOFcXubfvy6aDSSxeA2DMobYTH41Ph9rFLI3Ef
+         6pT2MaI9n6ukVOMd+HHkmu0fJKOpWHZlIbph/EFOO/0fDvwz6TCUowrMzKaeXBm5mgz/
+         IOUVDIl9648Qa5f6WPx/kfTQlXEHCe1IXJP/8L+BBd3YK4766BHTOR3/y3R9M8dBFyBh
+         EcKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731193458; x=1731798258;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tDnEol/sO6VqVywxS7JlKi6+yDV4PyqK7/lKBRL3LN4=;
+        b=KN57s9kVZArL6yue2+35USFKx9TMd2/MFNDMU9QA3PhyUYv/X94ULc7AJf/Z2cy5Sm
+         nvuAbeDqTnF0951l0UNJl78hG7cFC5ZVJ/0VMH1MwmOEGzhLDR0127H2KClVk99YKyRx
+         AoYR23L5HS/xAVmrSWqcqGbf2q1afalsdf2SXzNkoSraLk0mHGYZViKR5tzIzfiXKGsk
+         hoWmAPr311L6U7B9+YWiomIYZMtMD1Tp6hnGoOj+lnbvfMNtre3HpY/rfcGq91XyJkYF
+         o2gaO7ByM226MU1GhODNfrPYhStxBETRPyS7/DwLbie+kxppfqFLW+FULrcd6di2awaS
+         deOg==
+X-Forwarded-Encrypted: i=1; AJvYcCUbtoYLAgSnYBVRXzzxKkN91biFsKi3imYOLFi+/5XNFuF4vCcgy8myEjV8xLPQsnFl8yoYvhMPG7CklUOG@vger.kernel.org, AJvYcCWKZYQDKUYMZZ08sd/wg3VGfdotBoTEEP9iKg5HKrOdEWWv7gTxtrRBuLo3zx2rwgfCt2AKkYfaNIt3@vger.kernel.org, AJvYcCXtE9k5D/ecLpby6x/yoQnwa206kPx50qpDdpoPQaMaO68jiZ9N/aV3LO1K7nYCK087kGu8nsOFW92Z6x4BWkzSPZE=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzch3jwd5lVs6x0GptsLXQVKEMcC8fW4BRfgiXN9HnieBmdm1I5
+	ANvOKSb/OvlArH/EKv5nyPxbAkNNtufA83nK0GyTIi1qMo3amXTo
+X-Google-Smtp-Source: AGHT+IFe/igCtkT6IZ/6bhwjaaHJHxUvojfaLWGRCzpaPWVdfzmPczFY2/Rfp8J8r5utBgsFvW60Lg==
+X-Received: by 2002:a17:902:ea12:b0:20c:c086:4998 with SMTP id d9443c01a7336-21183d7cd04mr86046655ad.55.1731193458233;
+        Sat, 09 Nov 2024 15:04:18 -0800 (PST)
+Received: from localhost.localdomain ([38.44.237.182])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e9a5feb50bsm5847991a91.53.2024.11.09.15.04.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 09 Nov 2024 15:04:17 -0800 (PST)
+From: Sota4Ever <wachiturroxd150@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Romain Gantois <romain.gantois@bootlin.com>
-Subject: Re: [PATCH 9/9] misc: add FPC202 dual port controller driver
-Message-ID: <202411100412.QeOt1w0W-lkp@intel.com>
-References: <20241108-fpc202-v1-9-fe42c698bc92@bootlin.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] Add support for Samsung Galaxy S20 FE (SM-G780F/r8s) [SoC Exynos990]
+Date: Sat,  9 Nov 2024 23:04:00 +0000
+Message-Id: <20241109230402.831-1-wachiturroxd150@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241108-fpc202-v1-9-fe42c698bc92@bootlin.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Romain,
+Hello :),
 
-kernel test robot noticed the following build warnings:
+I'm a newbie and I started getting interested 1 year ago.
+Well, that's the beginning,
+until I learn more about kernels and the C language,
+which is important in that.
 
-[auto build test WARNING on 9852d85ec9d492ebef56dc5f229416c925758edc]
+Well, bluntly, here it is:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Romain-Gantois/dt-bindings-misc-Describe-TI-FPC202-dual-port-controller/20241108-234053
-base:   9852d85ec9d492ebef56dc5f229416c925758edc
-patch link:    https://lore.kernel.org/r/20241108-fpc202-v1-9-fe42c698bc92%40bootlin.com
-patch subject: [PATCH 9/9] misc: add FPC202 dual port controller driver
-config: openrisc-randconfig-r123-20241109 (https://download.01.org/0day-ci/archive/20241110/202411100412.QeOt1w0W-lkp@intel.com/config)
-compiler: or1k-linux-gcc (GCC) 14.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20241110/202411100412.QeOt1w0W-lkp@intel.com/reproduce)
+That Samsung Galaxy S20 FE device is part of the Exynos990 SoC family,
+I saw that Igor supported that processor,
+I took advantage of it.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411100412.QeOt1w0W-lkp@intel.com/
+It has the same functions of:
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/misc/ti_fpc202.c:270:20: sparse: sparse: symbol 'fpc202_atr_ops' was not declared. Should it be static?
+* CPU
+* pintrl
+* gpio-keys
+* simple-framebuffer
 
-vim +/fpc202_atr_ops +270 drivers/misc/ti_fpc202.c
+Just enough to reach a shell in an initramfs.
 
-   269	
- > 270	struct i2c_atr_ops fpc202_atr_ops = {
-   271		.attach_addr = fpc202_attach_addr,
-   272		.detach_addr = fpc202_detach_addr,
-   273	};
-   274	
+The preferred way to boot the upstream kernel is by using a
+shim bootloader, called uniLoader.
+Changes: - Simply add dts from S20 FE device
+
+Special thanks to Igor for helping me with that :)
+
+Sota4Ever (2):
+  dt-bindings: arm: samsung: Add compatible for Samsung Galaxy S20 FE
+    (SM-G780F)
+  arm64: dts: Add initial support for Samsung Galaxy S20 FE (r8s)
+
+ .../bindings/arm/samsung/samsung-boards.yaml  |   1 +
+ arch/arm64/boot/dts/exynos/Makefile           |   1 +
+ arch/arm64/boot/dts/exynos/exynos990-r8s.dts  | 115 ++++++++++++++++++
+ 3 files changed, 117 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos990-r8s.dts
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
