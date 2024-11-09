@@ -1,63 +1,68 @@
-Return-Path: <devicetree+bounces-120467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72D999C2D7E
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 14:16:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D784C9C2D96
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 14:42:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37DB42822D4
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 13:16:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E091C1C210BA
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 13:42:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDF0C1448DC;
-	Sat,  9 Nov 2024 13:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A22DC19343B;
+	Sat,  9 Nov 2024 13:42:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jdQl9hCm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sgfdn+OL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9888B233D6B;
-	Sat,  9 Nov 2024 13:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 748D6170A26;
+	Sat,  9 Nov 2024 13:42:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731158176; cv=none; b=fJkInRB3+vZxPDzb23rwxTEERqxx6HuvzBY3Fza0/TXAd5cX7HcR7Ngy2iXCewYqbh00oYSFF4nErd/lgc/T9SfQ/plU/VeCPEv1xgyyPXQ0zr38pRdvunk0RuCQF5Jm8L5PbipKZdQhMCeJ6m6pYMxn9feIkk8VJ+SngIFxGQk=
+	t=1731159761; cv=none; b=uUOj9tySshyeHv1Skd8zTE9XWn9flltG7dgt9IBdC7H/iSeKtPolI9YmeP0cIfIFjrU91LpWkYIgO5vj2PRWlR5GXaKTX2JA8RAYkIalXpuTiz/LCmC17dojyv9dXFFAjkScGF6t7nQ0UkdLk/sMjvcaDCBtO2roDGMSSWS7Gz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731158176; c=relaxed/simple;
-	bh=W8bqZLpt4rrtBzLA5A6KOuK7kihkpV/PaF/68GqkGYc=;
+	s=arc-20240116; t=1731159761; c=relaxed/simple;
+	bh=t3t+ysfKKtXS17fLmXkD4LYR/AhPzUkC7huhFUxrLeY=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fo26iZBjfkaauRSiJkqzHvaxFJ2TXWlGpu9JRI9+X/4P96kbirdbIuWm7go+UTnhpvrakBo6bJDfDz+TbrR7c87EZcx0SNoN5Y1J8Hw5V9X22BHQOYoCZkDz2gon/rpObnlG3zrUhC+62oUNK48YC+ZoujCsDNuQ5u5HojYO+So=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jdQl9hCm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9964C4CECE;
-	Sat,  9 Nov 2024 13:16:09 +0000 (UTC)
+	 MIME-Version:Content-Type; b=VWOFNkJPId+Yl+KuSDPLiuVwdv5JjyNKyIUE0lQRwohpwdL88CyBBEQ8P8vHbGDj6m1+ZOsVuvLQXFrsvcb9dsIXnizNihyCQToIbczSZZHa1S7hNMte7z9dIdEi88g/tv4svVE4tzYOgVN/QtS/+jokLbi1wChcIb5WnPcJPl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sgfdn+OL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26118C4CECE;
+	Sat,  9 Nov 2024 13:42:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731158176;
-	bh=W8bqZLpt4rrtBzLA5A6KOuK7kihkpV/PaF/68GqkGYc=;
+	s=k20201202; t=1731159761;
+	bh=t3t+ysfKKtXS17fLmXkD4LYR/AhPzUkC7huhFUxrLeY=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=jdQl9hCmLhD1qtr2s0+I48Op0yghNG8fgHQw7ehzVh+/6TSFo7sX8tGvLkuuHLmxZ
-	 2Dmi/0WNBxgljjxrnYXnJ3l+MJvEhLEPQqIwPx7LkA3mPIbTv/jRiwilWJsEQK5dWk
-	 bse3kCWLGmJwThuqA6axk5wAOyw0SM1wKe/Fx7BFEZ7lWT3a5zKBx5vmLv2mb1aIur
-	 aPkJ1U4609C9BbexDRUyPyK+tIW3DKLw8e8wiorkzwQ863UgLCUdy+Wbyn0U9LP8I2
-	 RDEr/ZNvW/Ar2FaYA7Wk9qpw6xbsj4IZS8+UrqUl+SCLzC6owZvh7GU1IH9+IPz/pX
-	 OhG/J3lDZMCow==
-Date: Sat, 9 Nov 2024 13:16:04 +0000
+	b=sgfdn+OLEx56qBN0CAsq6HQH0f+cpAppZT7lpAXOQ77nFEvYjVOMXXM4mLx0oAjG7
+	 TNsIT/VFr5+hCUAuSunaNFD7cllDJS+a0uSWnQWd5I99A+FmruUaZfnql834zNpLGR
+	 +awEbbDHSqWlLFHp/N6O3JQvV+4RcZ7wtKt7XATwSXC74jbWAFV8d3ksfStgGmId55
+	 xLNxLw5luJurTUpk3u145dqgqF02K5UYM/D2J3ifHeD3Y2uY+mJtOOab/4R7ZHKbfi
+	 f1FOCie9XDCypmAkzm7Z8xiCTsmCRgt+tEX4F121qp2rg47S9dsfhCKRZXWU6hneK7
+	 AP2LJM0o9DGbw==
+Date: Sat, 9 Nov 2024 13:42:28 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, Jean Delvare <jdelvare@suse.com>, Guenter Roeck
- <linux@roeck-us.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Krzysztof
- Kozlowski <krzk@kernel.org>, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] hwmon: tmp108: Add support for I3C device
-Message-ID: <20241109131604.5d8b701a@jic23-huawei>
-In-Reply-To: <20241108-p3t1085-v2-3-6a8990a59efd@nxp.com>
-References: <20241108-p3t1085-v2-0-6a8990a59efd@nxp.com>
-	<20241108-p3t1085-v2-3-6a8990a59efd@nxp.com>
+To: Yu-Hsian Yang <j2anfernee@gmail.com>
+Cc: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>, avifishman70@gmail.com,
+ tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
+ yuenn@google.com, benjaminfair@google.com, lars@metafoo.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ nuno.sa@analog.com, dlechner@baylibre.com, javier.carrasco.cruz@gmail.com,
+ andy@kernel.org, marcelo.schmitt@analog.com, olivier.moysan@foss.st.com,
+ mitrutzceclan@gmail.com, matteomartelli3@gmail.com, alisadariana@gmail.com,
+ joao.goncalves@toradex.com, marius.cristea@microchip.com,
+ mike.looijmans@topic.nl, chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
+ yhyang2@nuvoton.com, openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: adc: Add binding for Nuvoton
+ NCT720x ADCs
+Message-ID: <20241109134228.4359d803@jic23-huawei>
+In-Reply-To: <CA+4VgcJD74ar9zQCj38M2w8FzGWpq+u5Z7ip9M7a1Lu7u8rojw@mail.gmail.com>
+References: <20241106023916.440767-1-j2anfernee@gmail.com>
+	<20241106023916.440767-2-j2anfernee@gmail.com>
+	<6c20875c-4145-4c91-b3b5-8f70ecb126f0@amperemail.onmicrosoft.com>
+	<CA+4VgcJD74ar9zQCj38M2w8FzGWpq+u5Z7ip9M7a1Lu7u8rojw@mail.gmail.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,81 +70,153 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 08 Nov 2024 17:26:57 -0500
-Frank Li <Frank.Li@nxp.com> wrote:
+On Wed, 6 Nov 2024 17:22:35 +0800
+Yu-Hsian Yang <j2anfernee@gmail.com> wrote:
 
-> Add support for I3C device in the tmp108 driver to handle the P3T1085
-> sensor. Register the I3C device driver to enable I3C functionality for the
-> sensor.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  drivers/hwmon/tmp108.c | 31 +++++++++++++++++++++++++++++++
->  1 file changed, 31 insertions(+)
-> 
-> diff --git a/drivers/hwmon/tmp108.c b/drivers/hwmon/tmp108.c
-> index bfbea6349a95f..83d6847cb542c 100644
-> --- a/drivers/hwmon/tmp108.c
-> +++ b/drivers/hwmon/tmp108.c
-> @@ -13,6 +13,8 @@
->  #include <linux/mutex.h>
->  #include <linux/of.h>
->  #include <linux/i2c.h>
-> +#include <linux/i3c/device.h>
-> +#include <linux/i3c/master.h>
+> Dear Chanh Nguyen,
+>=20
+> Thank you for your response.
+>=20
+> Chanh Nguyen <chanh@amperemail.onmicrosoft.com> =E6=96=BC 2024=E5=B9=B411=
+=E6=9C=886=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=8812:58=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+> >
+> >
+> >
+> > On 06/11/2024 09:39, Eason Yang wrote: =20
+> > > This adds a binding specification for the Nuvoton NCT7201/NCT7202
+> > > family of ADCs.
+> > >
+> > > Signed-off-by: Eason Yang <j2anfernee@gmail.com>
+> > > ---
+> > >   .../bindings/iio/adc/nuvoton,nct720x.yaml     | 47 ++++++++++++++++=
++++
+> > >   MAINTAINERS                                   |  1 +
+> > >   2 files changed, 48 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoto=
+n,nct720x.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton,nct720=
+x.yaml b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct720x.yaml
+> > > new file mode 100644
+> > > index 000000000000..3052039af10e
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct720x.yaml
+> > > @@ -0,0 +1,47 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/adc/nuvoton,nct720x.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Nuvoton nct7202 and similar ADCs
+> > > +
+> > > +maintainers:
+> > > +  - Eason Yang <yhyang2@nuvoton.com>
+> > > +
+> > > +description: |
+> > > +   Family of ADCs with i2c interface.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - nuvoton,nct7201
+> > > +      - nuvoton,nct7202
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  read-vin-data-size: =20
+> >
+> > Is it generic property or vendor property? I tried to find in the
+> > https://github.com/torvalds/linux/tree/master/Documentation/devicetree/=
+bindings
+> > , but it seems this property hasn't been used on other devices.
+> >
+> > If it is vendor property, then I think it should include a vendor
+> > prefix. For examples:
+> >
+> > https://github.com/torvalds/linux/blob/master/Documentation/devicetree/=
+bindings/iio/adc/adi%2Cad7780.yaml#L50
+> > https://github.com/torvalds/linux/blob/master/Documentation/devicetree/=
+bindings/iio/adc/fsl%2Cvf610-adc.yaml#L42
+> > https://github.com/torvalds/linux/blob/master/Documentation/devicetree/=
+bindings/iio/adc/st%2Cstmpe-adc.yaml#L22
+> >
+> > =20
+>=20
+> I would add a vendor prefix for it.
 
-Seems odd you need master.h in a device driver.
-I'll guess that's because you should be using i3cdev_to_device()
-and not looking in the i3c_device structure at all.
+Why do we want this at all?  Is this device sufficiently high
+performance that Linux will ever want to trade of resolution against
+sampling speed?
+
+If so that seems like a policy control that belongs in userspace. Note
+that to support that in IIO I would want a strong justification for why we =
+dno't
+just set it to 16 always. We just go for maximum resolution in the vast maj=
+ority
+of drivers that support control of this.
 
 
->  #include <linux/init.h>
->  #include <linux/jiffies.h>
->  #include <linux/regmap.h>
-> @@ -442,6 +444,35 @@ static struct i2c_driver tmp108_driver = {
->  
->  module_i2c_driver(tmp108_driver);
->  
-> +#ifdef CONFIG_REGMAP_I3C
-> +static const struct i3c_device_id p3t1085_i3c_ids[] = {
-> +	I3C_DEVICE(0x011b, 0x1529, NULL),
-> +	{},
-
-Trivial, but no trailing comma needed here as nothing can come after
-this terminator entry.  That is also consistent with existing similar
-tables in this driver.
-
-> +};
-> +MODULE_DEVICE_TABLE(i3c, p3t1085_i3c_ids);
-> +
-> +static int p3t1085_i3c_probe(struct i3c_device *i3cdev)
-> +{
-> +	struct regmap *regmap;
-> +
-> +	regmap = devm_regmap_init_i3c(i3cdev, &tmp108_regmap_config);
-> +	if (IS_ERR(regmap))
-> +		return dev_err_probe(&i3cdev->dev, PTR_ERR(regmap),
-> +				     "Failed to register i3c regmap\n");
-> +
-> +	return tmp108_common_probe(&i3cdev->dev, regmap, "p3t1085_i3c");
-> +}
-> +
-> +static struct i3c_driver p3t1085_driver = {
-> +	.driver = {
-> +		.name = "p3t1085_i3c",
-> +	},
-> +	.probe = p3t1085_i3c_probe,
-> +	.id_table = p3t1085_i3c_ids,
-> +};
-> +module_i3c_driver(p3t1085_driver);
-> +#endif
-> +
->  MODULE_AUTHOR("John Muir <john@jmuir.com>");
->  MODULE_DESCRIPTION("Texas Instruments TMP108 temperature sensor driver");
->  MODULE_LICENSE("GPL");
-> 
+>=20
+> > > +    description: number of data bits per read vin
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    enum: [8, 16]
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - read-vin-data-size
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    i2c {
+> > > +        #address-cells =3D <1>;
+> > > +        #size-cells =3D <0>;
+> > > +
+> > > +        nct7202@1d { =20
+> >
+> > I think the Node name should follow
+> > https://devicetree-specification.readthedocs.io/en/latest/chapter2-devi=
+cetree-basics.html#generic-names-recommendation
+> >
+> >
+> > For some examples that were merged before
+> >
+> > https://github.com/torvalds/linux/blob/master/Documentation/devicetree/=
+bindings/iio/adc/adi%2Cad7091r5.yaml#L102
+> > https://github.com/torvalds/linux/blob/master/Documentation/devicetree/=
+bindings/iio/adc/maxim%2Cmax1238.yaml#L73
+> > https://github.com/torvalds/linux/blob/master/Documentation/devicetree/=
+bindings/iio/adc/ti%2Cadc081c.yaml#L49
+> > =20
+>=20
+> I would change it for the node naming.
+>=20
+> > > +            compatible =3D "nuvoton,nct7202";
+> > > +            reg =3D <0x1d>;
+> > > +            read-vin-data-size =3D <8>;
+> > > +        };
+> > > +    };
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index 91d0609db61b..68570c58e7aa 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -2746,6 +2746,7 @@ L:      openbmc@lists.ozlabs.org (moderated for=
+ non-subscribers)
+> > >   S:  Supported
+> > >   F:  Documentation/devicetree/bindings/*/*/*npcm*
+> > >   F:  Documentation/devicetree/bindings/*/*npcm*
+> > > +F:   Documentation/devicetree/bindings/iio/adc/nuvoton,nct720x.yaml
+> > >   F:  Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.yaml
+> > >   F:  arch/arm/boot/dts/nuvoton/nuvoton-npcm*
+> > >   F:  arch/arm/mach-npcm/ =20
+> > =20
 
 
