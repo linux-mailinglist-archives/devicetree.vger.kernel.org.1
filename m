@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-120503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E7A69C2F1A
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 19:28:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B369C2F24
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 19:29:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5F291F2206D
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 18:28:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1353F1F233FD
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 18:29:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1DD01A3BC3;
-	Sat,  9 Nov 2024 18:27:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B6C19FA8D;
+	Sat,  9 Nov 2024 18:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="w7rLpJLz"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="IjqO2O87"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC3F1A0BFE
-	for <devicetree@vger.kernel.org>; Sat,  9 Nov 2024 18:27:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5C519E96B;
+	Sat,  9 Nov 2024 18:29:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731176859; cv=none; b=sX/R9eI2r5zvXG5xjjcOfM0LjM54nZgS7NF3BCJSTRZf5LkRVuKwBaPKbWFL6fkWBAATq8wOY2H5scB53UX93JafJS17S2I/qoLK/3be92bJPzMZt/ztA1WjymMPKuvOBvj7Y0PN2V2kaSugS9PZkc/uZjuQUuHgL3Bcix41jqI=
+	t=1731176975; cv=none; b=EnQfW2LSoyXBJSY72hhyoO9PdawzEBdu32j88coLMdr8SLM/WaYmW8p4mhh2Og2VIEzLNJlWBWtBF31m/i0LfjSwW8pozTgPhiKLbOt8nn0YnQvgLMpc4Fi4YOlGM0iyk2rar81gI22ws+2eDSYCYqSjD5NcxN6UxWxTTibjUm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731176859; c=relaxed/simple;
-	bh=gq0vA3VQBp7YoZksmqWYcuylxgsa+/EUSloaVXwuvXM=;
+	s=arc-20240116; t=1731176975; c=relaxed/simple;
+	bh=msJJEkd7o3dp4be5DSGQK2rwe1g3p+MgmZvlvfGZuI4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=swOelflOruWD/+XAVDKAD3cNZRMrU52uqxpduifCXb/OY5e0vUNbH9MpgUb90OTncgnrXCbKr6e9Ytunm1WLYHwTE9sd2zC5yOpHbHJ0kmOH8QqxJZrh7hMD/6F5x7QmMg1UFQZaNWqPJSxovVrO53wubTvZAQzGF6U61mIuoEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=w7rLpJLz; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=WdSuIiorkynFcnySO7lqsfRei6ZFTnAQq0AQSs96o03hvTBDo46z1N76zs/C7RIUISUjLhp8tbtEEp/GFP/NFEx1/AmT3WaD0LucKTA1wDxU9Pr6pxDJR+s4uOp2yOtFKa4MLAJPkmKoyucOEe42GvMoJclpEIKwb3XpL1QAMwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=IjqO2O87; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,33 +37,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=JDGs9A1WezTegs9NR6XUrH27k79I2r3hym5QiPs0B40=; b=w7rLpJLzci1KJ2Mzn3+w3dAznG
-	ZeOKs49lkOr9oITAdsI9/G0MBNIFm3IvFiRFQ0Yxsto/6G5pO3NWicdIdf4r9+KrQ2468j4aJ+iPE
-	af41MdG5WF0ZDPLOR0RQcz0WlEWOeCt2vbZQ92MOA6xO7YblI/+6wGhG1jX0l3SU5EogkAWHnVa/e
-	ir7jLgqlFl2LBW2CYoYXx5jGCtfQw/NH/yBy7YMCU8FPo2b6gChe3/cobp3VNAeqA08gHoQTOpa1I
-	TKTYioa+c8DELGjBci/Kl2pkHitSWAAyCWyAGd9otw/sfMALHuNA0vVgUShv0+hMaJaN+fe5Pu2ns
-	vJBGrlzA==;
+	bh=4G1FjBzeSEZRf8IgX5k3R4WKY6Al61s+kAOhnejUrYg=; b=IjqO2O87kJ7ViWtF/ZP+EajbGN
+	lNpusQ15opEQcU+RKo7Z0OFSsB04XwN7kN/tw83vyefBtxeMkLGfMsWT+PKGaPw7/vk/d9Ttki3BW
+	ylGuSp5OaOGbh2YR0DnKGpLvR3qdbYKNol3h98rdsGBN0EU2mHdOYpgQ9CP8zh8wThEAwnrvdTvxK
+	apjuElOJiiZUZszMZ0EEffvsG5HhSPDukEd+QGV5gQDiEAV4PVdVwDwMqZDrTman5PvZaqpZWntpK
+	sAEZ9pcxMC6KRgpeBC5IwIDNivy8taoWGnvBdbNNb7jwNCrW0Oxle39ncy9AoEprPqb49Uh5agG23
+	LYxXjaNg==;
 Received: from i53875b28.versanet.de ([83.135.91.40] helo=localhost.localdomain)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1t9qBJ-0007Km-Ql; Sat, 09 Nov 2024 19:27:33 +0100
+	id 1t9qBK-0007Km-K9; Sat, 09 Nov 2024 19:27:34 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org,
-	Chris Morgan <macroalpha82@gmail.com>
+To: Rick Wertenbroek <rick.wertenbroek@gmail.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	conor+dt@kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Hugh Cole-Baker <sigmaris@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
-	honyuenkwun@gmail.com,
-	krzk+dt@kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH V3 0/3] Indiedroid Nova Audio/HDMI Updates
-Date: Sat,  9 Nov 2024 19:27:17 +0100
-Message-ID: <173117675957.1131306.16704328576582239641.b4-ty@sntech.de>
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
+	John Clark <inindev@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-rockchip@lists.infradead.org,
+	rick.wertenbroek@heig-vd.ch
+Subject: Re: [PATCH] arm64: dts: rockchip: enable USB3 on NanoPC-T6
+Date: Sat,  9 Nov 2024 19:27:19 +0100
+Message-ID: <173117675955.1131306.3275734524301023495.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241031150505.967909-1-macroalpha82@gmail.com>
-References: <20241031150505.967909-1-macroalpha82@gmail.com>
+In-Reply-To: <20241106130314.1289055-1-rick.wertenbroek@gmail.com>
+References: <20241106130314.1289055-1-rick.wertenbroek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,24 +77,15 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Thu, 31 Oct 2024 10:05:02 -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Wed, 6 Nov 2024 14:03:13 +0100, Rick Wertenbroek wrote:
+> Enable the USB3 port on FriendlyELEC NanoPC-T6.
 > 
-> This series is for a handful of fixes and updates for the Indiedroid
-> Nova. This series corrects the device name of the audio card to stop
-> a kernel log error, and adds support for both the HDMI and GPU (now
-> that HDMI support has been queued for linux-next).
 > 
-> [...]
 
 Applied, thanks!
 
-[1/3] arm64: dts: rockchip: correct analog audio name on Indiedroid Nova
-      commit: 42d85557527266804579bc5d20c101d93f6be3c6
-[2/3] arm64: dts: rockchip: Enable GPU on Indiedroid Nova
-      commit: 3143ef4f01757b7069d3d7d7b02e4dcb5790d285
-[3/3] arm64: dts: rockchip: Enable HDMI0 on Indiedroid Nova
-      commit: 2f4a0c2b29c9d82f9c322a641a59fddc41af1289
+[1/1] arm64: dts: rockchip: enable USB3 on NanoPC-T6
+      commit: 2b47332134e4cd29078b3fb7d30b0a0555af01f3
 
 Best regards,
 -- 
