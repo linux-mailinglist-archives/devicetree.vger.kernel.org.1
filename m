@@ -1,251 +1,95 @@
-Return-Path: <devicetree+bounces-120498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F7A49C2F0F
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 19:24:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6568D9C2F12
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 19:27:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98B5CB21793
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 18:24:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E380528242B
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 18:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8952E19DF75;
-	Sat,  9 Nov 2024 18:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867EE19E993;
+	Sat,  9 Nov 2024 18:27:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="eN72TLBD"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Aa0iroWy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDA92155726
-	for <devicetree@vger.kernel.org>; Sat,  9 Nov 2024 18:23:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A5529CF4;
+	Sat,  9 Nov 2024 18:27:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731176639; cv=none; b=lBTHa536lh6qMxcvM5M8g/VhogDgMwrDP1xhs9sSC47P/a1OInNGLL/mx61WZe8cvUxoqTD+RkCsHz9kkeQmV3jvQU1MkOUz2MMWXNoqVpgPxvhzyppGfqulaUHfNEyy14MEdv94j9OuTBqexXcfJmgHxGzU/5NUn943WD+VBf0=
+	t=1731176855; cv=none; b=dCp8LeUirDXGymgoAklxg3cSYTEZ/2HPgOFoJ5zcvLq+q+Ul4CpEW2WnQK19l5UT3vM5ZNvlLZIufkyV11aDKcB1CXEoof/B7OF2VZrX8Ead3OSCWAeaWZrweBzHvM0RM3DnOEk5lb4zgbjXKc5LBAE/KPNhkTbyXuWHODn3MF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731176639; c=relaxed/simple;
-	bh=kq0HgFgMu68fbhfk5wbA8RXjzuNO2opVm2h7sGJm1UM=;
+	s=arc-20240116; t=1731176855; c=relaxed/simple;
+	bh=KZd61uct5PufcA9pe1EvblTIuxz3bTaA8lt5EJS1M94=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OahBPe4Ffq1z7YmNi30AaNCNqT6sbAEA4wEyaX8OrasMdENZdSNOCDYQjh/at0sUgxKDPYpfg6nFOFLP9VLqCSfILI6uBa6B5EHyvHnn7Ycey6SEKBYT9rHiSCs3DeBNlEvdK3XUwf6M5tmtdpVKQfh0VXTT3Qyj8EexlSj8k9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=eN72TLBD; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=YWEs3CWCtDyjddnmC8/TkIWT6L9eWPWkprly3EqvxVdI8c0Y3RH3U+W9CJX1u1mLCEySPOW8Zc/91bOnT9yuW7GJQO6PJj35bIFRa5hLDHqkf6XpwzFtoPRtQhk4h/dKCBeKHMvfyLtFEsQacl5/oiUJi7dlEcr7IioMYH4ug/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Aa0iroWy; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=vvB5H31tgUpM4qG4v/0WcfNheT0JvDREJderLKJjrc4=; b=eN72TLBDCHOtblxBReVKBpU1df
-	LD5vtrb00VQtoi3tv/EemDP0CCvYvqCeTwW9+KGZbyyPJR0sAfNytjKr6o06y07xpPD9+64BgUp9K
-	lEQ3Uc+olS0xmYx0RhxK/T4yMSEdsjF3B2l2qiYexLeb80WUhIm6GOxxXx8/ap1tKHULRoMV9YhZT
-	0KIAF2lkqCDU9u0GVBLy7Fh4RlO6ubKGP5lFj/EOLBgIsrgya0V9ZhFb9SnXq8A+4h8BW27Hsr3pI
-	A0RhC295gEio6HVwed+1fiQo7h29z8Vbm54aLK7mXSmUVkzEDTsAYMuNpYIGf8be3VRgT6IHkT1Jc
-	z18jf8kg==;
-Received: from i53875b28.versanet.de ([83.135.91.40] helo=diego.localnet)
+	bh=8OT/9xhzsuunennS7C104FhK0rCK8MTqKWihkPOvx/k=; b=Aa0iroWyzMYGB3rTtRj/3LHgXy
+	ZQu1saWGK6eKDThzgVEgOknBNIYlUjGxT5UB3oi4qvwWQxg+Dc6X/h8V7TJa0vC//BHc4sPkRiZZz
+	+sKEYV6eC41dKGoA3VvUPPZs2uC+QyEV54x3woGDdVI9AiOb/gCZkdlw47T2Jffohx+rnBc54qcbs
+	/hY4tkW/+gEX6x6x8QGRDivWJ0FOOZdp0PmAesj9f49aLPTzto/tEWaVTfsAxbgkPsvt6bMiyceAW
+	3v93UJ+8OvrAWriINBXBElEPFDBLZGgUlzzh4dgrkTgonHuxcTC+JGqKDHRF4WLtgeJ1mt/xXx2/5
+	uklga59g==;
+Received: from i53875b28.versanet.de ([83.135.91.40] helo=localhost.localdomain)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1t9q7f-0007Jz-54; Sat, 09 Nov 2024 19:23:47 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Jimmy Hon <honyuenkwun@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Jimmy Hon <honyuenkwun@gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add Orange Pi 5 Max board
-Date: Sat, 09 Nov 2024 19:23:46 +0100
-Message-ID: <23718124.6Emhk5qWAg@diego>
-In-Reply-To: <20241031031528.23428-4-honyuenkwun@gmail.com>
-References:
- <20241031031528.23428-2-honyuenkwun@gmail.com>
- <20241031031528.23428-4-honyuenkwun@gmail.com>
+	id 1t9qBG-0007Km-7i; Sat, 09 Nov 2024 19:27:30 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+	linux-kernel@vger.kernel.org
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Weizhao Ouyang <weizhao.ouyang@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Jimmy Hon <honyuenkwun@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Andy Yan <andyshrk@163.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-rockchip@lists.infradead.org,
+	kernel@collabora.com
+Subject: Re: [PATCH] dts: arm64: rk3576-sige5: Remove non-removable flag from sdmmc
+Date: Sat,  9 Nov 2024 19:27:09 +0100
+Message-ID: <173117675954.1131306.9520031721535619598.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241108213357.268002-1-detlev.casanova@collabora.com>
+References: <20241108213357.268002-1-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Jimmy,
+On Fri, 8 Nov 2024 16:33:57 -0500, Detlev Casanova wrote:
+> The sdmmc node represents a removable SD card host. Make sure it is
+> considered removable so that SD cards are detected when inserted.
+> 
+> 
 
-Am Donnerstag, 31. Oktober 2024, 04:14:51 CET schrieb Jimmy Hon:
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts
-> new file mode 100644
-> index 000000000000..d31b13f99fdc
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts
-> @@ -0,0 +1,887 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/pinctrl/rockchip.h>
-> +#include <dt-bindings/soc/rockchip,vop2.h>
-> +#include "rk3588.dtsi"
+Applied, thanks!
 
-can you check how similar the rk3588-orangepi--5-max is to the
-already existing orangepi-5-plus please?
+[1/1] dts: arm64: rk3576-sige5: Remove non-removable flag from sdmmc
+      commit: cfa3d63c8b4c8e14a5a0059407969ffa92fbbb04
 
-For rk3588s-orangepi-5 and orangepi-5b we already have this nicely
-shared dtsi for commit things, and somehow I assume this might be
-similar for 5-plus vs 5-max.
-
-> +
-> +/ {
-> +	model = "Xunlong Orange Pi 5 Max";
-> +	compatible = "xunlong,orangepi-5-max", "rockchip,rk3588";
-> +
-
-[...]
-
-> +	/* PMIC_EXT_EN */
-> +	vcc_1v1_nldo_s3: vcc-1v1-ndlo-s3-regulator {
-
-vcc_1v1_nldo_s3: regulator-vcc-1v1-ndlo-s3 {
-
-preferred pattern for fixed-regulator nodenames is regulator-......
-
-Same for the othe fixed regulators below.
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_1v1_nldo_s3";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <1100000>;
-> +		regulator-max-microvolt = <1100000>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +	};
-> +
-> +	/* pcie eth. not a real regulator. 33VAUX */
-> +	vcc_3v3_aux: vcc-3v3-aux-regulator {
-> +		compatible = "regulator-fixed";
-> +		/* Ethernet_power_en */
-> +		gpios = <&gpio0 RK_PD3 GPIO_ACTIVE_LOW>;
-> +		regulator-name = "33vaux";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		startup-delay-us = <50000>;
-> +		vin-supply = <&vcc_3v3_s3>;
-> +	};
-> +
-> +	vcc3v3_pcie30: vcc3v3-pcie30-regulator {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		/* PCIE_PWREN_H */
-> +		gpios = <&gpio2 RK_PB6 GPIO_ACTIVE_HIGH>;
-> +		regulator-name = "vcc3v3_pcie30";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		startup-delay-us = <5000>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +	};
-> +
-> +	/* Regulator is enabled whenever vcc_1v8_s0 is on */
-> +	vcc_3v3_s0: vcc-3v3-s0-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_3v3_s0";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vcc_3v3_s3>;
-> +
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
-> +
-> +	vcc5v0_sys: vcc5v0-sys-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc5v0_sys";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +	};
-> +
-> +	/* Represents the vcc5v0_usb20 in the schematic */
-> +	/* Also represents the vcc5v0_usb30 in the schematic,
-> +	   both regulators share the same enable gpio */
-
-please make that one comment block and use appropriate formatting
-
-/*
- * Represents the vcc5v0_usb20 and vcc5v0_usb30 in the schematic,
- * both regulators share the same enable gpio
- */
-
-
-> +	vcc5v0_host: vcc5v0-host-regulator {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		/* USB_HOST_PWREN */
-> +		gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&usb_host_pwren>;
-> +		regulator-name = "vcc5v0_host";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +	};
-> +
-> +	vcc5v0_usb30_otg: vcc5v0-usb30-otg-regulator {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		/* USB_OTG_PWREN */
-> +		gpios = <&gpio4 RK_PB3 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&usb_otg_pwren>;
-> +		regulator-name = "vcc5v0_usb30_otg";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +	};
-> +};
-
-
-> +	hym8563: rtc@51 {
-> +		compatible = "haoyu,hym8563";
-> +		reg = <0x51>;
-> +		/* RTC_INT_L */
-
-what does this comment try to explain? If that is the name of the pin,
-just name the pinctrl below accordingly (instead of hym8563_int
-if applicable) .
-
-> +		interrupt-parent = <&gpio0>;
-> +		interrupts = <RK_PC4 IRQ_TYPE_LEVEL_LOW>;
-> +		#clock-cells = <0>;
-> +		clock-output-names = "hym8563";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&hym8563_int>;
-> +		wakeup-source;
-> +	};
-> +};
-> +
-> +&pwm9 {
-> +	pinctrl-names = "active";
-
-this needs to be "default" to actually work
-
-> +	pinctrl-0 = <&pwm9m2_pins>;
-> +	status = "okay";
-> +};
-
-
-Thanks
-Heiko
-
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
