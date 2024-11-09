@@ -1,181 +1,470 @@
-Return-Path: <devicetree+bounces-120479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C6669C2DE0
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 15:53:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC38F9C2E06
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 16:10:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83C091F218E3
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 14:53:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 238121F21261
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 15:10:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD500195F28;
-	Sat,  9 Nov 2024 14:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2D1199FC6;
+	Sat,  9 Nov 2024 15:10:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AIT1FVEc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nPXXeaFO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CAFC1E4B2;
-	Sat,  9 Nov 2024 14:53:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11EF19994D;
+	Sat,  9 Nov 2024 15:10:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731164014; cv=none; b=S4gVpTvj/aDx4R18KptllC/kpOZmltou6QNwdNC/TB1pY2O2dojYrjuUmMVQEQ5T5D2aK5/1X56B+fjgcFju2wG2+Q9Zfsk1jxqrgfAnD3SEqhHOBqcBy6s5bSGGJTBbToCuBNlBduQezXuM595Dkx36fBXPJuapJ4jai8ExvKg=
+	t=1731165000; cv=none; b=WHwuMcIdoMphnLlQoJUIvfMz9tJOZjrLK5vGOu6Rzw5pJe0joyVFBsrjvq3JVTnBMvY+RWmw8yTLXrVijoYYvzgCDwzLKTlwxBJeWYsg64dgY/qwm/lGHl1Y/op4CSGBR1TcPpIwDWWAMawheirZGoMiVd0tuAv8cIYp+XJiGow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731164014; c=relaxed/simple;
-	bh=VJ8ompsICNZ2GHQCxcP7VzkTwKcmU79VWOQb7QIr5no=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uz1k7C0l5z0LlbCmHml233Hv2j307jizAKD18m3sSRMA9L5poLchQKRyTfJkFV7mGWmvogVVqZCBG/s0fSF2obTeZOtqyd0M3WH31c4jSt7nRu2y6Sy5rar33v2vT8Deoga+2IPal0HILN9GuLr8S1U7KoyOeyqclk37CJIYXx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AIT1FVEc; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-207115e3056so31853875ad.2;
-        Sat, 09 Nov 2024 06:53:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731164012; x=1731768812; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=ghbuLAThgkIRMv7v5y1QI1mRj61wYj6v1lVWxgIrotk=;
-        b=AIT1FVEc0vIcd47afY7hX/2FWX0kLMDfSqa4nVBWJLulUGsH9kP2nu9iJENXWyzu/E
-         WuocH0mxd56iDeXP7guxuGzfXbD6GqDdaV3RTlAiRBoDe74+T5cx/aMUNDt9cofIyAu3
-         wd9i0tzYFenaTYs8rwSrNAqZqF5JssOnGf+8qQ9fywvyA6/gUmZEtkGwkMbRgwJJS8Z6
-         TYbEtdsa4UK9QNJr3c3kA3VGhTxZscx11NKBWMAwrZITmWXkuHEiZeHKPsdtv1ObdRzi
-         CQQT1G+W2hdMMpokD/8/8DcB1GJOMrQqqNOtbTZ6Czcf/91sxKm9370coFwAwClY74JC
-         QSdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731164012; x=1731768812;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ghbuLAThgkIRMv7v5y1QI1mRj61wYj6v1lVWxgIrotk=;
-        b=PqCQfusZHFBS6wrvDc5+1uOTXMIn7SzYBgpMjfhr4WP6OUYnV6fPJAf3hgJZRRqS0O
-         qMezBDS9/Bw84YfJefvNGQWeTLwRKRv//7qpS+TQABiKu/CrnjHsroGKKGUiuZsNpgaX
-         Bm3wexZaXjKc6NpdjeU/kfTdyouOfR6Z+FSBtCweXYvXAylzL6QXEBacUjxZ7DPDeEL9
-         GirM3akQxCbYco+kmm06Lbw8lxlLambpxdsjFHk6z8vi+IdtcsSU9xBkx8MeCX5melKq
-         WpkbZz+Rt7Fos2tjypboBtNb3ttnPjqL8WPxNXMuSwpEWJ9h2RyZmIJPO/E+iQZMv+WZ
-         vY1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU7dA0unGgDnxc82T1BJwAd4kTYVch981gJ02SpZwoEmzL9RpRUe+yJIddJCUqYY84bFHdstSLNxzU3GnE=@vger.kernel.org, AJvYcCUag75IE+b7x8N8meKpbvEOheu9j/0xJgvpk1V+swdnLpbeyRXmf5vQDHho35AlIOkwnGAO/xtuWugVaLb4@vger.kernel.org, AJvYcCWDGdlNnhUk/jQcu3anqnHE+wJWxABXpihfiDOu1679rvWfYefp5bpEKiOlqC11nBbaKLOHj8OJ7FbK@vger.kernel.org, AJvYcCWXJXxl2NzqELiSAv3o/8bb7nsiyLSnXBWcNjVDhRRpVkuh+/RZ1eFM+fxYO+6Ua6JgBgme98mVa3rw@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvJ7luks1umXL3Bkyi+QvFHc8BZUXJqkVEHbKGfmfZSQIWKqkf
-	AZK+2+D2RT50w0NbD1nViPKTXHbEcvi1zNdKWTV5nS2iQ5BZj4e7
-X-Google-Smtp-Source: AGHT+IHH537SxY8wFxXvHEldQOX00jSQbhq86kY8P4E7+gzAi230SDoUD4kLOapioickwHuD7+FOwA==
-X-Received: by 2002:a17:902:c40b:b0:20d:2848:2bee with SMTP id d9443c01a7336-21183507aa0mr95841435ad.16.1731164012349;
-        Sat, 09 Nov 2024 06:53:32 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177e87544sm46034065ad.283.2024.11.09.06.53.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Nov 2024 06:53:31 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <014410fc-8a4c-440f-a6eb-1fafccc444a6@roeck-us.net>
-Date: Sat, 9 Nov 2024 06:53:28 -0800
+	s=arc-20240116; t=1731165000; c=relaxed/simple;
+	bh=mRph8EVaPEejEg+ESFNOmA5jgnJVCj518ZEkO7JBl28=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XdIIrDsJ6QZdm69+nu1qbecU3P628FiyIiKC1+etWXXW9Wtlx/cWz2RwY5Oeg05fKqKRNHpPrBt/+0prvJAo8jq00BWZxoEALaDtDsfbOZl4Za7MMzblaEskvPBZDdhSllYDv/AmfsKSdtr02zI8GbZiAXlJIB/Mj4u66HmJzY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nPXXeaFO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 639F2C4CED2;
+	Sat,  9 Nov 2024 15:09:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731165000;
+	bh=mRph8EVaPEejEg+ESFNOmA5jgnJVCj518ZEkO7JBl28=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=nPXXeaFO3jR+8TQX2Ll1x5ZwJkvkaTseS/SLiTIkYHGgaKj4EZCLONd/Mp+kotmjq
+	 iUhE+p2KEnkU88IyuCL7hTtnP65/021KmIK/BYpqD4kjrsDOeT2J4e0aa0nkjaX1r6
+	 g2b1Hww0Yw9SK2C3f7AoxZAuhd/+9yVh4cgY/54SClvRCfy8kLi+5K9+fuY4np/xS5
+	 rO/F3gpJUbRG6XyiaDqw9vQ5R/+h4k7+JyVWBAQ9SB3oc3UiKC39aarqH526trtJJM
+	 QmtsL9QTd+faG8oqPCHxg1YtgIgGaCK0oI9LC6oTnm77pNyY4jcAgflasnCyylRQRv
+	 ka9M87zqKJ8Sg==
+Date: Sat, 9 Nov 2024 15:09:55 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Per-Daniel Olsson <perdaniel.olsson@axis.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <rickard.andersson@axis.com>, <kernel@axis.com>
+Subject: Re: [PATCH v5 2/2] iio: light: Add support for TI OPT4060 color
+ sensor
+Message-ID: <20241109150955.7526c416@jic23-huawei>
+In-Reply-To: <20241106120036.986755-3-perdaniel.olsson@axis.com>
+References: <20241106120036.986755-1-perdaniel.olsson@axis.com>
+	<20241106120036.986755-3-perdaniel.olsson@axis.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] hwmon: tmp108: Add support for I3C device
-To: Jonathan Cameron <jic23@kernel.org>, Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Jean Delvare <jdelvare@suse.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Krzysztof Kozlowski <krzk@kernel.org>,
- linux-hwmon@vger.kernel.org
-References: <20241108-p3t1085-v2-0-6a8990a59efd@nxp.com>
- <20241108-p3t1085-v2-3-6a8990a59efd@nxp.com>
- <20241109131604.5d8b701a@jic23-huawei>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20241109131604.5d8b701a@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 11/9/24 05:16, Jonathan Cameron wrote:
-> On Fri, 08 Nov 2024 17:26:57 -0500
-> Frank Li <Frank.Li@nxp.com> wrote:
+On Wed, 6 Nov 2024 13:00:36 +0100
+Per-Daniel Olsson <perdaniel.olsson@axis.com> wrote:
+
+> Add support for Texas Instruments OPT4060 RGBW Color sensor.
 > 
->> Add support for I3C device in the tmp108 driver to handle the P3T1085
->> sensor. Register the I3C device driver to enable I3C functionality for the
->> sensor.
->>
->> Signed-off-by: Frank Li <Frank.Li@nxp.com>
->> ---
->>   drivers/hwmon/tmp108.c | 31 +++++++++++++++++++++++++++++++
->>   1 file changed, 31 insertions(+)
->>
->> diff --git a/drivers/hwmon/tmp108.c b/drivers/hwmon/tmp108.c
->> index bfbea6349a95f..83d6847cb542c 100644
->> --- a/drivers/hwmon/tmp108.c
->> +++ b/drivers/hwmon/tmp108.c
->> @@ -13,6 +13,8 @@
->>   #include <linux/mutex.h>
->>   #include <linux/of.h>
->>   #include <linux/i2c.h>
->> +#include <linux/i3c/device.h>
->> +#include <linux/i3c/master.h>
+> Signed-off-by: Per-Daniel Olsson <perdaniel.olsson@axis.com>
+Hi Per-Daniel
+
+Main comment in here is that the ABI is standard (though oddly
+missing in some cases from the main ABI doc). Annoyingly the
+docs build process (try make htmldocs) does not work if there
+are multiple entries for the same ABI, so we need to ensure that
+the documentation for common ABI is in just one place.
+That makes device specific ABI docs tricky, so instead we tend
+to use extra rst files in Documentation/iio/ to provide more details.
+
+Jonathan
+
+
+> ---
+>  .../ABI/testing/sysfs-bus-iio-light-opt4060   |   66 +
+>  drivers/iio/light/Kconfig                     |   13 +
+>  drivers/iio/light/Makefile                    |    1 +
+>  drivers/iio/light/opt4060.c                   | 1282 +++++++++++++++++
+>  4 files changed, 1362 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-light-opt4060
+>  create mode 100644 drivers/iio/light/opt4060.c
 > 
-> Seems odd you need master.h in a device driver.
-> I'll guess that's because you should be using i3cdev_to_device()
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-light-opt4060 b/Documentation/ABI/testing/sysfs-bus-iio-light-opt4060
+> new file mode 100644
+> index 000000000000..187e750602ee
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio-light-opt4060
+> @@ -0,0 +1,66 @@
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_intensity_red_raw
 
-I assume you mean i3cdev_to_dev() ?
+Huh... This is general ABI but not present in the sysfs-bus-iio
+where it should be.  There are some control parameters on these channels
+but not the actual channels.
 
-Good point, but there are not many examples to draw from. The one
-existing iio driver (st_lsm6dsx) doesn't use it either. I'll send
-a patch shortly to fix that to prevent others from making the same
-mistake.
+Please add them there instead of in a device specific file.
+Also group the 3 colors together as done for intensity_x, _y, _z
 
-Thanks,
-Guenter
+> +KernelVersion:
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Unit-less raw value for red intensity.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_intensity_red_scale
+> +KernelVersion:
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Decimal value for the red component of the light. The value
+> +		is normalized to give the relative red component
+> +		independently of the light intensity.
 
+I'm not sure I understand this text.   Also why Decimal?
+Maybe something like:
+
+"Scales the raw value so that for a particular test light source, typically
+white, the measurement intensity is the same across different colour channels."
+
+>  The raw value for red
+> +		is multiplied by 2.4 before being normalized, this to adapt
+> +		to the relative sensitivity of the red filter of the sensor.
+> +		The factor for green is 1.0 and the factor for blue is 1.3.
+An unfortunately characteristic of the ABI docs is we can't have duplication so
+once this is moved to the general docs this detail will have to go in favour
+of generality.  You could add a little 'footnote' to the entry to say that
+for this particular device the meaning is this.
+
+
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_intensity_green_raw
+> +KernelVersion:
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Unit-less raw value for green intensity.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_intensity_green_scale
+> +KernelVersion:
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Decimal value for the green component of the light. The
+> +		value is normalized to give the relative green component
+> +		independently of the light intensity. The raw value for
+> +		green is multiplied by 1.0 before being normalized, this to
+> +		adapt to the relative sensitivity of the green filter of
+> +		the sensor. The factor for red is 2.4 and the factor for
+> +		blue is 1.3.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_intensity_blue_raw
+> +KernelVersion:
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Unit-less raw value for blue intensity.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_intensity_blue_scale
+> +KernelVersion:
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Decimal value for the blue component of the light. The
+> +		value is normalized to give the relative blue component
+> +		independently of the light intensity. The raw value for
+> +		blue is multiplied by 1.3 before being normalized, this to
+> +		adapt to the relative sensitivity of the blue filter of the
+> +		sensor. The factor for red is 2.4 and the factor for green
+> +		is 1.0.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_intensity_clear_raw
+> +KernelVersion:
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Unit-less raw value for clear intensity.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_illuminance_input
+This is already in the main ABI doc. 
+> +KernelVersion:
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Lux value for the light illuminance. The value is
+> +		calculated using the wide spectrum green channel and
+> +		multiplied by 2.15e-3.
+It may be worth capturing these details in an rst file under 
+Documentation/iio/  Just remember to add an entry in the index.rst file
+there so that they get included in the docs buidl.
+
+> diff --git a/drivers/iio/light/opt4060.c b/drivers/iio/light/opt4060.c
+> new file mode 100644
+> index 000000000000..218ca3fd74f5
+> --- /dev/null
+> +++ b/drivers/iio/light/opt4060.c
+> @@ -0,0 +1,1282 @@
+
+> +
+> +static int opt4060_trigger_set_state(struct iio_trigger *trig, bool state)
+> +{
+> +	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
+> +	struct opt4060_chip *chip = iio_priv(indio_dev);
+> +	int ret = 0;
+> +
+> +	if (state) {
+> +		ret = opt4060_set_int_state(chip, OPT4060_INT_CTRL_ALL_CH);
+> +		if (ret)
+> +			return ret;
+> +		ret = opt4060_set_continous_mode(chip, true);
+> +	} else {
+> +		if (!opt4060_event_active(chip) && chip->irq) {
+> +			ret = opt4060_set_continous_mode(chip, false);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +		ret = opt4060_set_int_state(chip, OPT4060_INT_CTRL_THRESHOLD);
+> +	}
+> +	return ret;
+return in the if / else as nothing common to do down ehre.
+
+> +}
+> +
+> +static ssize_t opt4060_read_ev_period(struct opt4060_chip *chip, int *val,
+> +				     int *val2)
+> +{
+> +	int ret, pers, fault_count, int_time;
+> +	u64 uval;
+> +
+> +	int_time = opt4060_int_time_reg[chip->int_time][0];
+> +
+> +	ret = regmap_read(chip->regmap, OPT4060_CTRL, &fault_count);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	fault_count = fault_count & OPT4060_CTRL_FAULT_COUNT_MASK;
+> +	switch (fault_count) {
+> +	case OPT4060_CTRL_FAULT_COUNT_2:
+> +		pers = 2;
+> +		break;
+> +	case OPT4060_CTRL_FAULT_COUNT_4:
+> +		pers = 4;
+> +		break;
+> +	case OPT4060_CTRL_FAULT_COUNT_8:
+> +		pers = 8;
+> +		break;
+> +
+> +	default:
+> +		pers = 1;
+break from here too.  Not strictly necessary of course.
+
+> +	}
+> +
+> +	uval = mul_u32_u32(int_time, pers);
+> +	*val = div_u64_rem(uval, MICRO, val2);
+> +
+> +	return IIO_VAL_INT_PLUS_MICRO;
+> +}
+
+> +
+> +static irqreturn_t opt4060_trigger_handler(int irq, void *p)
+> +{
+> +	struct iio_poll_func *pf = p;
+> +	struct iio_dev *idev = pf->indio_dev;
+> +	struct opt4060_chip *chip = iio_priv(idev);
+> +	struct opt4060_buffer raw;
+
+Type only used in here, bring the definition down here as well.
+
+> +	int ret, chan = 0, i = 0;
+I'd prefer you don't mix assigned and unassign declarations on one line.
+	int chan = 0, i = 0;
+	int ret;
+
+> +
+> +	memset(&raw, 0, sizeof(raw));
+> +
+> +	iio_for_each_active_channel(idev, chan) {
+Fairly sure that will init chan for you so shouldn't be needed above.
+> +		if (chan == OPT4060_ILLUM)
+> +			ret = opt4060_calc_illuminance(chip, &raw.chan[i++]);
+> +		else
+> +			ret = opt4060_read_raw_value(chip,
+> +						     idev->channels[chan].address,
+> +						     &raw.chan[i++]);
+> +		if (ret) {
+> +			dev_err(chip->dev, "Reading channel data failed\n");
+> +			goto err_read;
+> +		}
+> +	}
+> +
+> +	iio_push_to_buffers_with_timestamp(idev, &raw, pf->timestamp);
+> +err_read:
+> +	iio_trigger_notify_done(idev->trig);
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static irqreturn_t opt4060_irq_thread(int irq, void *private)
+> +{
+> +	struct iio_dev *idev = private;
+> +	struct opt4060_chip *chip = iio_priv(idev);
+> +	int ret, dummy;
+> +	unsigned int int_res;
+> +
+> +	ret = regmap_read(chip->regmap, OPT4060_RES_CTRL, &int_res);
+> +	if (ret < 0) {
+> +		dev_err(chip->dev, "Failed to read interrupt reasons.\n");
+> +		return IRQ_NONE;
+> +	}
+> +
+> +	/* Read OPT4060_CTRL to clear interrupt */
+> +	ret = regmap_read(chip->regmap, OPT4060_CTRL, &dummy);
+> +	if (ret < 0) {
+> +		dev_err(chip->dev, "Failed to clear interrupt\n");
+> +		return IRQ_NONE;
+> +	}
+> +
+> +	/* Handle events */
+> +	if (int_res & (OPT4060_RES_CTRL_FLAG_H | OPT4060_RES_CTRL_FLAG_L)) {
+> +		u64 code;
+> +		int chan = 0;
+> +
+> +		ret = opt4060_get_channel_sel(chip, &chan);
+> +		if (ret) {
+> +			dev_err(chip->dev, "Failed to read threshold channel.\n");
+> +			return IRQ_NONE;
+> +		}
+> +
+> +		/* Check if the interrupt is from the lower threshold */
+> +		if (int_res & OPT4060_RES_CTRL_FLAG_L) {
+> +			code = IIO_UNMOD_EVENT_CODE(IIO_INTENSITY,
+> +						    chan,
+> +						    IIO_EV_TYPE_THRESH,
+> +						    IIO_EV_DIR_FALLING);
+> +			iio_push_event(idev, code, iio_get_time_ns(idev));
+> +		}
+> +		/* Check if the interrupt is from the upper threshold */
+> +		if (int_res & OPT4060_RES_CTRL_FLAG_H) {
+> +			code = IIO_UNMOD_EVENT_CODE(IIO_INTENSITY,
+Unmodified?  Your channels are modified so this should be as well I think.
+
+
+
+> +						    chan,
+> +						    IIO_EV_TYPE_THRESH,
+> +						    IIO_EV_DIR_RISING);
+> +			iio_push_event(idev, code, iio_get_time_ns(idev));
+> +		}
+> +	}
+> +
+> +	/* Handle conversion ready */
+> +	if (int_res & OPT4060_RES_CTRL_CONV_READY) {
+> +		/* Signal completion for potentially waiting reads */
+> +		complete(&chip->completion);
+> +
+> +		/* Handle data ready triggers */
+> +		if (iio_buffer_enabled(idev))
+> +			iio_trigger_poll_nested(chip->trig);
+> +	}
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int opt4060_setup_triggers(struct opt4060_chip *chip, struct iio_dev *idev)
+> +{
+> +	struct iio_trigger *data_trigger;
+> +	char *name;
+> +	int ret;
+> +
+> +	ret = devm_iio_triggered_buffer_setup(chip->dev, idev,
+> +					      &iio_pollfunc_store_time,
+> +					      opt4060_trigger_handler, NULL);
+> +	if (ret)
+> +		return dev_err_probe(chip->dev, ret,
+> +				     "iio_triggered_buffer_setup_ext FAIL\n");
+>
+Note using the ext form. Also I'd talk about what failed (buffer setup) rather
+than the function that failed.
+
+> +
+> +static int opt4060_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct opt4060_chip *chip;
+> +	struct iio_dev *indio_dev;
+> +	int ret;
+> +	uint dev_id;
+uint usages is unusual. and regmap takes an unsigned int
+so spell it out fully.
+
+
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*chip));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	chip = iio_priv(indio_dev);
+> +
+> +	ret = devm_regulator_get_enable(dev, "vdd");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to enable vdd supply\n");
+> +
+> +	chip->regmap = devm_regmap_init_i2c(client, &opt4060_regmap_config);
+> +	if (IS_ERR(chip->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(chip->regmap),
+> +				     "regmap initialization failed\n");
+> +
+> +	chip->dev = dev;
+> +	chip->irq = client->irq;
+> +	init_completion(&chip->completion);
+
+Perhaps move to be dependent on the irq actually being available as I don't
+think it is used otherwise.
+
+> +
+> +	indio_dev->info = &opt4060_info;
+> +
+> +	ret = regmap_reinit_cache(chip->regmap, &opt4060_regmap_config);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to reinit regmap cache\n");
+> +
+> +	ret = regmap_read(chip->regmap, OPT4060_DEVICE_ID, &dev_id);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret,
+> +			"Failed to read the device ID register\n");
+> +
+> +	dev_id = FIELD_GET(OPT4060_DEVICE_ID_MASK, dev_id);
+
+Use a different variable for the register value and the field.
+It is less confusing to read that way.
+
+> +	if (dev_id != OPT4060_DEVICE_ID_VAL)
+> +		dev_info(dev, "Device ID: %#04x unknown\n", dev_id);
+> +
+> +	if (chip->irq) {
+> +		indio_dev->channels = opt4060_channels;
+> +		indio_dev->num_channels = ARRAY_SIZE(opt4060_channels);
+> +	} else {
+> +		indio_dev->channels = opt4060_channels_no_events;
+> +		indio_dev->num_channels = ARRAY_SIZE(opt4060_channels_no_events);
+> +	}
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->name = "opt4060";
+> +
+> +	ret = opt4060_load_defaults(chip);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to set sensor defaults\n");
+> +
+> +	ret = devm_add_action_or_reset(dev, opt4060_chip_off_action, chip);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to setup power off action\n");
+> +
+> +	if (chip->irq) {
+> +		ret = opt4060_setup_triggers(chip, indio_dev);
+Currently you only restrict the trigger to definitely be used with this device
+but the device can be used with other triggers.  If that's intentional
+you should setup the buffer whether or not the irq is available.
+
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
 
