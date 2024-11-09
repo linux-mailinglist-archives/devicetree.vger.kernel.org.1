@@ -1,123 +1,102 @@
-Return-Path: <devicetree+bounces-120444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 684E69C2C07
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 12:00:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD9029C2C15
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 12:05:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8B71B21D5C
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 11:00:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FAA01C210C9
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 11:05:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06AB9152166;
-	Sat,  9 Nov 2024 11:00:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BD74148FEB;
+	Sat,  9 Nov 2024 11:05:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IK37qql/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h1Qayx0t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1447233D7D;
-	Sat,  9 Nov 2024 10:59:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CFD913D886;
+	Sat,  9 Nov 2024 11:05:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731149999; cv=none; b=qlDbo6jpMq5Cj9YkU+jdj6rGUfsfgUKg5+9eOZn5ftfS/6sm6eiUaYXnP0TGjuDX/ogmXcOuZuEd/tem4bq4KK+VFiKRPEXVdSR5I2QHIzb9r/CUQ1ppvedDYfEC95zR7C5L3n8GurR7nefTtFdO7+MvIwsNAPbBf85i500pvTA=
+	t=1731150301; cv=none; b=m5zcBEfIvaBFSQc2YmCr8T29r/5YT0zdO5xa+286iCOpItPulUWbj8C01YUfAMMml7xa+FJ1KTl9PcwVcsNs10TLwhJ8pO1zsON3bq+UaOrsAZ7opLsSboogctHMW3ZIXSdoCHs9yIqv1YQHN/y1AMIa2UPE8MhuCdem9KtXwCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731149999; c=relaxed/simple;
-	bh=jk6rHlRRfUzrbYgf6VIEwAwXUaMTbUPj5VvnKJwWE+Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QjKZUzxUBU4KZc6B52nhvNrVD50uVsPEtNddveVuZqAXIJX1pPi5rR/R0wSWkEMuo7qbNbII26RfYdwWjsUHNHV7uD2+tlOhajDJmEEz09bEXWQ4QwP8TOcuzGYJHAfXiHphUTyq+avCGvAbkphkjb2f24QMRPpCXPn0EORRE6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IK37qql/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA982C4CED4;
-	Sat,  9 Nov 2024 10:59:56 +0000 (UTC)
+	s=arc-20240116; t=1731150301; c=relaxed/simple;
+	bh=euqJK0ntVjQw+QOGivI7fOl8DgX26ZTRRMEWEMAcpIw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SgNoXT1NrarfilqHYp10XI7M9+9gbcx3mnmn7A1684mMtWFf8RjyzhOOQlJuxlPd4sa+6Gi1VtqCCeVdBsGOy6SFS/9kgwM2iI5UxphZNTLVDvFzau0bo3xQ9uH6Ii0uxIpigbA64FtcUz03QT9j/V9InNwGFteQq3fCUAvyl3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h1Qayx0t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E826C4CECE;
+	Sat,  9 Nov 2024 11:05:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731149999;
-	bh=jk6rHlRRfUzrbYgf6VIEwAwXUaMTbUPj5VvnKJwWE+Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IK37qql/W0qlfxy2DnjH8czJHBkvaqH3RMrQObHpHDFtpwj++jM0xWbHEHewMWqZz
-	 Ast3DvEnD3vGn3iTpjKMLicVSAEwl91QKDbJ0JvkFC+PY5QL4g+IJ7ql4hLitTJ8ox
-	 OriQPE+o9L9/VVTK7OXkweTOmI6cqxTl8qt9lrRgQwd8dpkpiv06qyjuoegkkJZdy2
-	 eFcsFTn0onjIo4Ef3Z0a5OTw5rvtmgfGxa3VwkDUX8T64/J8lMgcifQU1SrS0bj3Nv
-	 w60BuL/6w+06gcr2NdbSojhbnswQD1naO5nrHWbngNgP0+SIZfjbQ9/GW6y61ov/vH
-	 pktSu9RKNO/xQ==
-Message-ID: <145ee4ab-14e9-41c6-bedb-b2af55ae9f43@kernel.org>
-Date: Sat, 9 Nov 2024 12:59:54 +0200
+	s=k20201202; t=1731150300;
+	bh=euqJK0ntVjQw+QOGivI7fOl8DgX26ZTRRMEWEMAcpIw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h1Qayx0tdzHz3ogJQWZ7gcb117WFpIxOt92gsgRdNiHUDLqlF9kC6OvZAKris6b4B
+	 S2QCoDB6S/xtxpdH/yGV3Rhl/8FTdAAxjD+4ccDxbb1IkHgJlHrPYKf+nq1Vgnyvto
+	 mciowh+BpR9k0CIbcemuKV7Wc7/lGJQC0+tD8GRE2ENH9NoIDLUmJ7oh1riWjw9Mvl
+	 Nt8wwVfeS9o0m+RV7P9pNyRy6oKCQFiwpZ7LghKycDEcyem8IAdR2TWmE2Nv8htPSe
+	 Zo8QrDDcoPlT82RjCa69oVHB9iZ9xbS+8EYUCe/wMBLj8D1t6G2fpKHErt1HJUoAXB
+	 Ix3HLRQgokqHw==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1t9jH5-000000001KK-1JVj;
+	Sat, 09 Nov 2024 12:05:03 +0100
+Date: Sat, 9 Nov 2024 12:05:03 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Abel Vesa <abel.vesa@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	stable+noautosel@kernel.org
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: x1e80100: Fix missing address/size
+ cells warnings
+Message-ID: <Zy9B3wjv_ODlKBxW@hovoldconsulting.com>
+References: <20241109-x1e80100-fix-address-size-cells-missing-warnings-v1-0-c1e173369657@linaro.org>
+ <CAA8EJprX=2i335rm5JovkBYAYd=ku=yaNgFJVXh03BYEantGAw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: ti/omap: gta04: fix pm issues caused by spi
- module
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: tony@atomide.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, hns@goldelico.com, linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- aaro.koskinen@iki.fi, khilman@baylibre.com, stable@vger.kernel.org
-References: <20241107225100.1803943-1-andreas@kemnade.info>
- <b26c1fa8-b3b7-4aa9-bc78-793ddfa3bc6b@kernel.org>
- <20241108184118.5ee8114c@akair>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20241108184118.5ee8114c@akair>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJprX=2i335rm5JovkBYAYd=ku=yaNgFJVXh03BYEantGAw@mail.gmail.com>
 
+On Sat, Nov 09, 2024 at 12:49:16AM +0200, Dmitry Baryshkov wrote:
+> On Sat, 9 Nov 2024 at 00:05, Abel Vesa <abel.vesa@linaro.org> wrote:
+> >
+> > The commit 4b28a0dec185 ("of: WARN on deprecated #address-cells/#size-cells
+> > handling") now forces all parent nodes to describe the #adress-cells
+> > and #size-cells, otherwise it will throw a warning.
+> >
+> > Note that this patch is currently only in -next.
+> >
+> > Fix all warnings on the X Elite by adding these two properties to all
+> > parent nodes that don't have them.
+> 
+> The individual patches are incorrect per my understanding. None of
+> those child nodes use addressing, so adding #address-cells = <1> is
+> incorrect. Maybe it should be #address-cells = <0>, but that looks a
+> bit ridiculous to me.
 
+Yeah, the warnings are bogus. Rob merged a fix last night:
 
-On 08/11/2024 19:41, Andreas Kemnade wrote:
-> Am Fri, 8 Nov 2024 14:42:14 +0200
-> schrieb Roger Quadros <rogerq@kernel.org>:
-> 
->>> diff --git a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
->>> index 3661340009e7a..11f8af34498b1 100644
->>> --- a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
->>> +++ b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
->>> @@ -612,19 +612,23 @@ &i2c3 {
->>>  };
->>>  
->>>  &mcspi1 {
->>> -	status = "disabled";  
->>
->> But according to commit a622310f7f01 ("ARM: dts: gta04: fix excess dma channel usage"),
->> these mcspi modules are not used. So it doesn't make sense to enable them even if it
->> seems to solve the power management issue?
->>
-> They are not used, if they are just disabled, kernel does not touch
-> them, so if it is there, the kernel can handle
-> pm. At least as long as it is not under ti,sysc.
-> 
-> There are probably cleaner solutions for this, but for a CC: stable I
-> would prefer something less invasive.
-> 
-> I can try a ti-sysc based fix in parallel.
-> 
->> Does bootloader leave the mcspi modules in a unwanted state?
-> 
-> Or at least something related to them. 
-> As said, for the blamed patch I checked only for CM_IDLEST1_CORE
-> and CM_FCLKEN1_CORE.
-> 
->> Would it make sense for the bus driver to explicitly turn off all modules?
-> 
-> Hmm, not very clear what you mean. AFAIK everything below ti-sysc gets
-> turned off if a disable is in the child node. Explicitly disabling such
-> stuff in the dtsi and enable it in the board dts sound sane
-> to me at first glance. I think it is a common pattern. The question is
-> whether that causes confusion with not ti-sysc stuff. Well, having
-> status=okay everywhere in the dts should not harm.
-> But as said for a regression fix some overhaul affecting every device 
-> is out of scope.
+	https://lore.kernel.org/lkml/20241108193547.2647986-2-robh@kernel.org/
 
-McSPI modules have Revision, Syconfig and Sysstatus registers.
-Is it because we are missing the ti-sysc representation for it
-that the module power is not being correctly handled in Linux
-if module is kept disabled?
+so this should be resolved in linux-next on Monday or so.
 
--- 
-cheers,
--roger
+Johan
 
