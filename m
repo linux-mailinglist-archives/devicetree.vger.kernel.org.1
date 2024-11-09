@@ -1,93 +1,200 @@
-Return-Path: <devicetree+bounces-120447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EE879C2C1F
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 12:22:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5E9E9C2C34
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 12:37:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B5471C20F78
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 11:22:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1422AB21C9A
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 11:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD36D154C03;
-	Sat,  9 Nov 2024 11:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DD79154BE9;
+	Sat,  9 Nov 2024 11:36:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kbDND7ON"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="bcu1HUbV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABC6E1547E2;
-	Sat,  9 Nov 2024 11:22:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 718CF13B586;
+	Sat,  9 Nov 2024 11:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731151342; cv=none; b=kEEFMye+1JOWXw/x7672JT9HKutegu4TfY0stP46R/e94/dHgGcbaWnf3sw65FIBt2W7t6t+6TRsyX3ArbrR314ZQivWU+P9DIoRnb3GUwwhV6WaAK8fJVrq32WPLk9JkroDb+umwdARmNVCrvOwCoXs/D8F6ywve2qedA0AjS8=
+	t=1731152218; cv=none; b=NsM3u2VDwytTBBx36qsqTIqCvfr0G+Wf7mbBPJUvrisezw4ZgHqwkOmBfzJzTI1w8dQ7qdb8bJkpJfJb+xFwe2SPMmRdHqXPakvUEr8XMySv62GggwS2uwZ/2XmVJdqSBf7s8jhmLaX381DTTPS0uW6py6Xjy86df3MZoR/cB6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731151342; c=relaxed/simple;
-	bh=On7OLyIbvHvdcY/4ueFsMOMwkor9DkHgs48QxTfn8oI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PKpvzZkjLwpGhdTDIgM68VGK39s6rGl6BQW+Yq/1cnZUbVWJx+Ud82iw/5Tr9MBScZGUqDnn7K0bPM4uU+huM6NGTE908d9V5eFVRsIlQNthcg36YXfZM1YGcY2ynkNn+d2pRm7nyM1VWnB3gFXa4JPFlEXLLgPtQarElpPJFNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kbDND7ON; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF36BC4CECE;
-	Sat,  9 Nov 2024 11:22:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731151342;
-	bh=On7OLyIbvHvdcY/4ueFsMOMwkor9DkHgs48QxTfn8oI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=kbDND7ONngLyyE/aBO6g+6F1pzNe0ik9jXNDu4WdDYEsqYhIr9o8L3F1ymkBaRffF
-	 t+EioGaU9G7YLZBbosNnf5yToiinNDgBbXJjAC8vW36lkJ4k8rCkDe9AAVzAbxtzxH
-	 A1B+Nx1agq/yqaYhwFLaDwgH4UrP5O8svNIS1aHgpWFiLSU0nbKOyxFGEobSbVfo2q
-	 XaQF096genfWS5g2y34zwImd+qxwRfGkUZVeoLbczeC/gsmaMCGr37qFD+6VAS/ena
-	 ggKM/A5houZLYQ5z1a7bGQMWSNeQPBBB7JeflYA8ECZO7tAuXKootlsWiqpMbGwJMW
-	 oW33QvK4rexOw==
-Date: Sat, 9 Nov 2024 11:22:12 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Darius Berghe <darius.berghe@analog.com>
-Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <corbet@lwn.net>, <alexandru.tachici@analog.com>, <lars@metafoo.de>,
- <Michael.Hennerich@analog.com>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v3 0/3] iio: imu: add devices to adis16480 driver
-Message-ID: <20241109112212.437a4a96@jic23-huawei>
-In-Reply-To: <20241108125814.3097213-1-darius.berghe@analog.com>
-References: <20241108125814.3097213-1-darius.berghe@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1731152218; c=relaxed/simple;
+	bh=V1UawUSDKQW4GamWm1KN87sxKxsFCibHuJXW0u4nnCQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=AIlaJoBR7C2Mff0iPgbkULhxXIHXEzOrEfsGDcfIc81RXco/qLJM4K/tt5DySdJQJ6TzIRKyh0cDBWCClokMPyIed//ZVA/9uZOstiZ5brx/nsMJx52a5fi5APGlhBzG9IbMxTiZus5MyV+pNMmG1IMVdpIYhVQEwZ32BVE+Whw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=bcu1HUbV; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from localhost (docker-mailserver-web-1.docker-mailserver_default [172.22.0.5])
+	by mail.mainlining.org (Postfix) with ESMTPSA id 2CCDEE45BA;
+	Sat,  9 Nov 2024 11:36:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1731152207;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/Dx0/KnrxwnvRNW36+xQiAUbPoQ6tYjBRsSRnWhRWk4=;
+	b=bcu1HUbVDy9meZVKzU8eCUsjf5urftgsK6KzM/sY+hono5BBF5hWBf8MQVkavPzRbkT7Kh
+	TFt4toHg5hETpJEpNcQvFqbdc5Mytha4r+MrNHd4auFZJvgQardAOd7w0XlNSbTdizCNdj
+	2SwJ7Q8HgG6VXmMx4ogdMFIb7ljlfJJFaRA5YWj+vLfH3jRtiUwUa86Ly6V43DWJ+Q22X7
+	1qu7CqZZSNJqdxgOzSkHl7mnT9JRbDaBDrwEmmBi4dv5ECe1QAfN9QiL1OUR7v8jT66HJu
+	wdeFHedKnefqtIIP4/+9MY8iQ7fFrsTTwiSfcUbZWBtl8eYYxFVm2vdbsubJrg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Date: Sat, 09 Nov 2024 12:36:47 +0100
+From: barnabas.czeman@mainlining.org
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Konrad
+ Dybcio <konradybcio@kernel.org>, Lee Jones <lee@kernel.org>, Amit Kucheria
+ <amitk@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>, "Rafael J.
+ Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Joerg
+ Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy
+ <robin.murphy@arm.com>, Srinivas Kandagatla
+ <srinivas.kandagatla@linaro.org>, linux-arm-msm@vger.kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ iommu@lists.linux.dev, =?UTF-8?Q?Otto_Pfl=C3=BCger?=
+ <otto.pflueger@abscue.de>
+Subject: Re: [PATCH v3 12/14] arm64: dts: qcom: Add initial support for
+ MSM8917
+In-Reply-To: <0293b1c5-d405-4021-b9c1-205271107350@oss.qualcomm.com>
+References: <20241107-msm8917-v3-0-6ddc5acd978b@mainlining.org>
+ <20241107-msm8917-v3-12-6ddc5acd978b@mainlining.org>
+ <0293b1c5-d405-4021-b9c1-205271107350@oss.qualcomm.com>
+Message-ID: <2c5f429d01fc04b2b40251e841bd4f64@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, 8 Nov 2024 14:58:11 +0200
-Darius Berghe <darius.berghe@analog.com> wrote:
-
-> Changes in v3:
->  - resend v2 using get_maintainers.pl script, hopefully everyone is in
->    the email list now
->  - edited the dt-bindings patch to use oneOf
+On 2024-11-08 18:03, Konrad Dybcio wrote:
+> On 7.11.2024 6:02 PM, Barnabás Czémán wrote:
+>> From: Otto Pflüger <otto.pflueger@abscue.de>
+>> 
+>> Add initial support for MSM8917 SoC.
+>> 
+>> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
+>> [reword commit, rebase, fix schema errors]
+>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>> ---
 > 
-> Darius Berghe (3):
->   iio: imu: adis16480: add devices to adis16480 driver
->   iio: imu: adis16480: add devices to adis16480 - docs
->   dt-bindings: iio: adis16480: add devices to adis16480
+> [...]
 > 
->  .../bindings/iio/imu/adi,adis16480.yaml       | 42 ++++++-----
->  Documentation/iio/adis16480.rst               |  3 +
->  drivers/iio/imu/adis16480.c                   | 75 +++++++++++++++++++
->  3 files changed, 102 insertions(+), 18 deletions(-)
+>> +		domain-idle-states {
+>> +			cluster_pwrdn: cluster-gdhs {
 > 
-
-Applied to the testing branch of iio.git
-Note that I'll be rebasing this on 6.13-rc1 once available so
-it won't be picked up by linux-next until after that (when I'll
-push it out as togreg).
-
-In the meantime, 0-day can have a first look at this.
-
-Jonathan
+> Please rename these to cluster-sleep-<n> and sort from shallowest to
+> deepest sleep state, in this case: ret, pwrdn, pc
+> 
+> [...]
+> 
+>> +
+>> +		l2_0: l2-cache {
+>> +			compatible = "cache";
+>> +			cache-level = <2>;
+>> +			cache-unified;
+>> +		};
+> 
+> Please put this under the cpu0 node
+> 
+> [...]
+> 
+>> +		restart@4ab000 {
+>> +			compatible = "qcom,pshold";
+>> +			reg = <0x4ab000 0x4>;
+> 
+> Please also pad all address parts to 8 hex digits with leading zeroes
+> 
+> [...]
+> 
+>> +			gpu_opp_table: opp-table {
+>> +				compatible = "operating-points-v2";
+>> +
+>> +				opp-598000000 {
+>> +					opp-hz = /bits/ 64 <598000000>;
+>> +				};
+>> +
+>> +				opp-523200000 {
+>> +					opp-hz = /bits/ 64 <523200000>;
+>> +				};
+>> +
+>> +				opp-484800000 {
+>> +					opp-hz = /bits/ 64 <484800000>;
+>> +				};
+>> +
+>> +				opp-400000000 {
+>> +					opp-hz = /bits/ 64 <400000000>;
+>> +				};
+>> +
+>> +				opp-270000000 {
+>> +					opp-hz = /bits/ 64 <270000000>;
+>> +				};
+>> +
+>> +				opp-19200000 {
+>> +					opp-hz = /bits/ 64 <19200000>;
+>> +				};
+> 
+> Does the GPU actually function at 19.2 MHz? You can check this by 
+> removing
+> all other entries and starting some gpu workload
+Yes
+> 
+> [...]
+> 
+>> +		cpuss1-thermal {
+>> +			polling-delay-passive = <250>;
+>> +			polling-delay = <1000>;
+> 
+> You can remove polling-delay (not -passive), as we have an interrupt
+> that fires on threshold crossing
+> 
+>> +
+>> +			thermal-sensors = <&tsens 4>;
+>> +
+>> +			cooling-maps {
+>> +				map0 {
+>> +					trip = <&cpuss1_alert0>;
+>> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>> +							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>> +							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>> +							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>> +				};
+>> +			};
+>> +
+>> +			trips {
+>> +				cpuss1_crit: cpuss1-crit {
+>> +					temperature = <100000>;
+>> +					hysteresis = <2000>;
+>> +					type = "critical";
+>> +				};
+>> +
+>> +				cpuss1_alert0: trip-point0 {
+>> +					temperature = <75000>;
+>> +					hysteresis = <2000>;
+>> +					type = "passive";
+>> +				};
+>> +
+>> +				cpuss1_alert1: trip-point1 {
+>> +					temperature = <85000>;
+>> +					hysteresis = <2000>;
+>> +					type = "hot";
+>> +				};
+> 
+> Sorting these by temperature, rising would be nice
+> 
+> Konrad
 
