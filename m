@@ -1,92 +1,117 @@
-Return-Path: <devicetree+bounces-120481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31EA29C2E11
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 16:13:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD40E9C2E16
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 16:15:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D09341F21DB8
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 15:13:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C82E1F21A28
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 15:15:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 397AA19AA56;
-	Sat,  9 Nov 2024 15:13:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6886198A01;
+	Sat,  9 Nov 2024 15:15:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="xRraR0Xg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zvs42O4D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B2EA155C94;
-	Sat,  9 Nov 2024 15:13:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E25022083;
+	Sat,  9 Nov 2024 15:15:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731165226; cv=none; b=oMtCDg1cj54budFptAuYnYCn3pa8u84Noix0f26pASy6NdMzf4hwsX2lIr4YtydAhLMiDE62f0tH497odErapxOYNlkUARjtvWK7ApRyZeZA4K2lcuLWsG+c8jukNU3asgjObUfxmRwLS2SNBAh26b0sb5sAKjlpVzhniEq+bek=
+	t=1731165342; cv=none; b=aiHz4MBspDEAgsRn3cbdUw6HJO2kndgTV+XoDC99kG29VDhvpk6f9cEPx3ZkvcikMZ86SIFOAOXwuL1FQbCFbGoLmpDnCrX23v+gPrzq6tfsuum3d5no+JQ3SNL+KT9bSAObmfkpayRWJgN/pvsL6W8iH6RJ4C1lZGR+YGFW1G8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731165226; c=relaxed/simple;
-	bh=JPuYZYFQoSS3IfqKdEvXWAGb671M99LKqnTQkNA0cDg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JuHTS28Pn3tAYZVFOz81U77IKQRPR3vXoZLcQ1iBe/N/y3hQNkw4yByeeQOobY1x4I59C0jVaxmHi8hC7sXKS6lZR01NtJJcckcgIf4wGRFhMt65kSOwLhaSzDuPd/qFYaoqIt/Y4BYOxrXb0o3W7yFeQixD/HVVTFNjZAggMGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=xRraR0Xg; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=xyZTJo9f8gsK10SkI8qjNVOpiFFkSOls53vDKWxDbVo=; b=xRraR0XgPrKBa604t1HRU1Yt64
-	yWeuU7ynYoJQ7iq2OrJI4nFN+M5RIHArwlj8j8F6tMVa+NfV1IBEUaBMzy/KKyuSNC8h+yW2/+5kw
-	H8XdZloyyH1V+DN0mWh2lqEFaqviH8IMWAf+3dDFH4aYsicGCgXZKXM4hSiqvJI0l+lk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t9n9Q-00CiQC-16; Sat, 09 Nov 2024 16:13:24 +0100
-Date: Sat, 9 Nov 2024 16:13:24 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Tristram.Ha@microchip.com
-Cc: Woojung Huh <woojung.huh@microchip.com>,
-	Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Marek Vasut <marex@denx.de>, UNGLinuxDriver@microchip.com,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: dsa: microchip: Add SGMII port support
- to KSZ9477 switch
-Message-ID: <784a33e2-c877-4d0e-b3a5-7fe1a04c9217@lunn.ch>
-References: <20241109015633.82638-1-Tristram.Ha@microchip.com>
- <20241109015633.82638-3-Tristram.Ha@microchip.com>
+	s=arc-20240116; t=1731165342; c=relaxed/simple;
+	bh=VJ9+yL4/Qo6csHxmltBLugUE69mq36tQ6mfEaJh/YeA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qsS6WASH8eN5JxEMjyEgvuzCVwlb+ux1/eTeeB5agCxCiOfRDLnjZeho6lDg3GGAi+lqIwXeoLAtS9LuyyDlteuHV4Dol00+Eg6IkqvF5LDVps0iHBb2jf+mt62RHjH9cIlrfzag5AcUTPk98U9Dzti5XI1jR9DEjzTZz9cGqeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zvs42O4D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0187C4CECE;
+	Sat,  9 Nov 2024 15:15:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731165342;
+	bh=VJ9+yL4/Qo6csHxmltBLugUE69mq36tQ6mfEaJh/YeA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Zvs42O4DOgKodK1TVptRlfMe7K+kCM9K8JReUjWCtsRxb4rOuLx+ukaDcddGAw08S
+	 n+JN/YPByhxF+1e4uXRfSWBJacmuZ3EblQXlJDlhIerAX9Cqulav7Sd0N3JS+13g4X
+	 49r5rgRcL0ECJ9jO992a6gDZWlHk7PQlWgm9zhQLtxQiK6TcB0tmQO1ccDDpHVqELZ
+	 BbQT0U/if5IY6+aFbvj8bUiCGVLEDkD/ittWQwzY4INH7vWXL+9Gk1yJwLOhpyjJhd
+	 GqDn2v75wOJj7fhsnM7t+gY3HSf5dcwr//sP2Zd567f+ZYOm0+G50npKVSwdjHexTU
+	 JvgJBUoPbgioA==
+Date: Sat, 9 Nov 2024 15:15:31 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Jean Delvare
+ <jdelvare@suse.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Krzysztof
+ Kozlowski <krzk@kernel.org>, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] hwmon: tmp108: Add support for I3C device
+Message-ID: <20241109151531.37ac4226@jic23-huawei>
+In-Reply-To: <014410fc-8a4c-440f-a6eb-1fafccc444a6@roeck-us.net>
+References: <20241108-p3t1085-v2-0-6a8990a59efd@nxp.com>
+	<20241108-p3t1085-v2-3-6a8990a59efd@nxp.com>
+	<20241109131604.5d8b701a@jic23-huawei>
+	<014410fc-8a4c-440f-a6eb-1fafccc444a6@roeck-us.net>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241109015633.82638-3-Tristram.Ha@microchip.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, Nov 08, 2024 at 05:56:33PM -0800, Tristram.Ha@microchip.com wrote:
-> From: Tristram Ha <tristram.ha@microchip.com>
+On Sat, 9 Nov 2024 06:53:28 -0800
+Guenter Roeck <linux@roeck-us.net> wrote:
+
+> On 11/9/24 05:16, Jonathan Cameron wrote:
+> > On Fri, 08 Nov 2024 17:26:57 -0500
+> > Frank Li <Frank.Li@nxp.com> wrote:
+> >   
+> >> Add support for I3C device in the tmp108 driver to handle the P3T1085
+> >> sensor. Register the I3C device driver to enable I3C functionality for the
+> >> sensor.
+> >>
+> >> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> >> ---
+> >>   drivers/hwmon/tmp108.c | 31 +++++++++++++++++++++++++++++++
+> >>   1 file changed, 31 insertions(+)
+> >>
+> >> diff --git a/drivers/hwmon/tmp108.c b/drivers/hwmon/tmp108.c
+> >> index bfbea6349a95f..83d6847cb542c 100644
+> >> --- a/drivers/hwmon/tmp108.c
+> >> +++ b/drivers/hwmon/tmp108.c
+> >> @@ -13,6 +13,8 @@
+> >>   #include <linux/mutex.h>
+> >>   #include <linux/of.h>
+> >>   #include <linux/i2c.h>
+> >> +#include <linux/i3c/device.h>
+> >> +#include <linux/i3c/master.h>  
+> > 
+> > Seems odd you need master.h in a device driver.
+> > I'll guess that's because you should be using i3cdev_to_device()  
 > 
-> The SGMII module of KSZ9477 switch can be setup in 3 ways: 0 for direct
-> connect, 1 for 1000BaseT/1000BaseX SFP, and 2 for 10/100/1000BaseT SFP.
+> I assume you mean i3cdev_to_dev() ?
+> 
+Indeed! :(
 
-This naming is rather odd. First off, i would drop 'SFP'. It does not
-have to be an SFP on the other end, it could be another switch for
-example. 1 is PHY_INTERFACE_MODE_1000BASEX and 2 is
-PHY_INTERFACE_MODE_SGMII.
+> Good point, but there are not many examples to draw from. The one
+> existing iio driver (st_lsm6dsx) doesn't use it either. I'll send
+> a patch shortly to fix that to prevent others from making the same
+> mistake.
+Excellent.
+> 
+> Thanks,
+> Guenter
+> 
 
-> SFP is typically used so the default is 1.  The driver can detect
-> 10/100/1000BaseT SFP and change the mode to 2.
-
-phylink will tell you want mode to use. I would ignore what the
-hardware detects, so this driver is just the same as every other
-driver, making it easier to maintain.
-
-	Andrew
 
