@@ -1,115 +1,107 @@
-Return-Path: <devicetree+bounces-120412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43EAF9C2954
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 02:48:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 976779C295C
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 02:57:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D03C2B242EB
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 01:48:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01745B2142F
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2024 01:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B8CC1EB44;
-	Sat,  9 Nov 2024 01:48:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450CE2556E;
+	Sat,  9 Nov 2024 01:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QlD3jwbU"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="d5xQJdrK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AEFD53A7;
-	Sat,  9 Nov 2024 01:48:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 961EDC8FF;
+	Sat,  9 Nov 2024 01:56:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731116921; cv=none; b=Nk8JrcGRi5mBJxNqOibpUjnE0VmWivp68nZNKmSPNP12ydTQ/qAx6/2t7nVMJLILmf44mLeGn10E0hygVWuk2XSwyxWr/X7kf6YWX8DgIy/lgGlm8pVRaxWhisG0HCAVyGETMu0iwgx2at6MrC/i7tGuxUtz3V7b4GH25YvoIKU=
+	t=1731117417; cv=none; b=tsE9R2+h/wKDq5BN789Zi3cD72LveDJNlWkrMz+Fu9xgQ23cYsCf6keBRzW90SXRHWj5DLfvFPWKohVx4ax4kiDERj5GSfiA0/axxUH2mJjSW0yxnnwal6B25B9g/a2RmtkU6KUzr9LutJPueizkFgqXdsX8sdysCsjqeyb9zVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731116921; c=relaxed/simple;
-	bh=hclgpLx1u2thY5Z106IKKLi95qjbn5TRUXM80nF2DhQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=DAiw4/dlJLghUrD9lzgr5vLmuq1ZgsPM3hkgRO/BiC/ksaPIrQWOa8pSSsvhqTo6eGkYNmoecsSvbbD8/zzL7FYbXFTL/xBa+ZCawMfI1Ur7Lr3CWDw+a9mePlyCdpzFnbTAr8H4a5MKDuklMIdgv1clG92DajeORC5Nz2ZgZOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QlD3jwbU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A569FC4CECD;
-	Sat,  9 Nov 2024 01:48:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731116920;
-	bh=hclgpLx1u2thY5Z106IKKLi95qjbn5TRUXM80nF2DhQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=QlD3jwbUPMhO0wAmxenZoBqw4+Iv7j8dLfsMK7H5PIx/RPu9Aj8ZnLwvgfN43KDaI
-	 +5t9l8KLlPt4+QSXCmrpjUnSQqrBM5Mep7BGsv/bBEudHkGL7B5f8c04qwdH+a+CCQ
-	 ++7RfQSiYMNtSS+mPa+yh7oZhFQX2WbVowoIa5ek/O5tUVBsl8gAZIlZX9k6tYbBma
-	 N2cVM+c+nrgVN4EWSOA4HWBHus+HDtUpZT7cY+NQOTpPZTh+2nlDuMo0lQTkeNfAYT
-	 +nr/iw0DRnj8uwTJgtPu7xVeTVm1To1ANHJ8ulJjI+0A8HS3J7lMK/oTvMvyf5ZoeN
-	 KEGReDo9Q+Ihg==
-From: Mark Brown <broonie@kernel.org>
-To: linux-sound@vger.kernel.org, srinivas.kandagatla@linaro.org, 
- Alexey Klimov <alexey.klimov@linaro.org>
-Cc: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
- perex@perex.cz, tiwai@suse.com, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org, 
- krzysztof.kozlowski@linaro.org, caleb.connolly@linaro.org, 
- linux-kernel@vger.kernel.org, a39.skl@gmail.com
-In-Reply-To: <20241018025452.1362293-1-alexey.klimov@linaro.org>
-References: <20241018025452.1362293-1-alexey.klimov@linaro.org>
-Subject: Re: (subset) [PATCH v3 0/5] rb4210-rb2: add HDMI audio playback
- support
-Message-Id: <173111691639.152465.4987333033665920086.b4-ty@kernel.org>
-Date: Sat, 09 Nov 2024 01:48:36 +0000
+	s=arc-20240116; t=1731117417; c=relaxed/simple;
+	bh=AWPqbOO0+t8R3A7scf6Z0vPzZdC3RCpRKm8ZnKPpomg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=HbuQiolwQYEkMv7E5hxG2FAzhhEkQR1lzzUqI2dAZL0f7/1lfYqQdCfcD/G3/2Nf7v5BTmWbQQ8BU2PZPMQuzkkTIXWTf0VVgHHUOtga85WvMC48euP8C+hvZZzIYP5oS1f4K+fs0ucPZOnVnkTYRXDLIe4KQNJa3BWZfCyoHNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=d5xQJdrK; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1731117415; x=1762653415;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=AWPqbOO0+t8R3A7scf6Z0vPzZdC3RCpRKm8ZnKPpomg=;
+  b=d5xQJdrKSY6H/D+RJOB4Zv89kl9OHke48ms54cbjqtpR1rpCm6f4/Hng
+   eA+8gnkm2nurU7oDLiGbrc1XEuLmZF9kqA1hvd7mlHYDfdKuwF2iR9yhF
+   hSQApsPWRJnXwjFCz8SMnLVtdBR27SvzYXKtCorbv9HD0j5s1dR3bZD/8
+   fq60t0HZ8bFLay6oUjlD7rWQ/8YSkh618fLvQTJ6zr8TyDGnRT0mmX/vU
+   CvhFgPvTDeeqHUtiqKoMA9htMTJn6DrJyBuJKKhq7+DbESxQHYNBfA97A
+   X/7Ipp7kSUy1/oA2fKEPmqvuaCKT/mTSdxTyjHFyGM2D9x8Jy31zO9Hmf
+   g==;
+X-CSE-ConnectionGUID: 5vaTV7aQT/yecz//2xjQUw==
+X-CSE-MsgGUID: ZdOyrHF+Tbmo3CFPNLhYeA==
+X-IronPort-AV: E=Sophos;i="6.12,139,1728975600"; 
+   d="scan'208";a="37590946"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Nov 2024 18:56:54 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 8 Nov 2024 18:56:33 -0700
+Received: from pop-os.microchip.com (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Fri, 8 Nov 2024 18:56:33 -0700
+From: <Tristram.Ha@microchip.com>
+To: Woojung Huh <woojung.huh@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Marek Vasut <marex@denx.de>,
+	<UNGLinuxDriver@microchip.com>, <devicetree@vger.kernel.org>,
+	<netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Tristram Ha
+	<tristram.ha@microchip.com>
+Subject: [PATCH net-next 0/2] net: dsa: microchip: Add SGMII port support to KSZ9477 switch
+Date: Fri, 8 Nov 2024 17:56:31 -0800
+Message-ID: <20241109015633.82638-1-Tristram.Ha@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-9b746
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Fri, 18 Oct 2024 03:54:46 +0100, Alexey Klimov wrote:
-> Rebased on top of -next, re-tested.
-> 
-> Changes since v2:
-> -- added tags, updated commit messages, added Cc;
-> -- updated LT9611 -> LT9611UXC comment in qrb4210-rb2.dts;
-> -- updated addresses in DT to 8 hex digits as requested by Dmitry;
-> -- added lpass pinctrl to sm6115.dtsi as suggested by Dmitry;
-> -- added lpass pinctrl override and pins description to sm4250.dtsi,
-> pins are the property of sm4250;
-> -- verified with make dtbs_check as suggested by Krzysztof and Rob's bot.
-> -- dropped two patches (they seem to be merged):
-> [PATCH v2 1/7] ASoC: dt-bindings: qcom,sm8250: add qrb4210-rb2-sndcard
-> [PATCH v2 2/7] ASoC: qcom: sm8250: add qrb4210-rb2-sndcard compatible string
-> -- stopped Cc-ing out-of-date emails;
-> 
-> [...]
+From: Tristram Ha <tristram.ha@microchip.com>
 
-Applied to
+This series of patches is to add SGMII port support to KSZ9477 switch.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+This one replaces the one submitted before with added PCS driver to use
+with SFP cage.
 
-Thanks!
+Tristram Ha (2):
+  dt-bindings: net: dsa: microchip: Add SGMII port support to KSZ9477
+    switch
+  net: dsa: microchip: Add SGMII port support to KSZ9477 switch
 
-[1/5] ASoC: qcom: sm8250: add handling of secondary MI2S clock
-      commit: ed7bca5b2b891caedf2ed3ffc427eba23559da95
+ .../bindings/net/dsa/microchip,ksz.yaml       |   7 +
+ drivers/net/dsa/microchip/ksz9477.c           | 450 +++++++++++++++++-
+ drivers/net/dsa/microchip/ksz9477.h           |   7 +-
+ drivers/net/dsa/microchip/ksz9477_reg.h       |   6 +
+ drivers/net/dsa/microchip/ksz_common.c        |  94 +++-
+ drivers/net/dsa/microchip/ksz_common.h        |  21 +
+ 6 files changed, 578 insertions(+), 7 deletions(-)
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+2.34.1
 
 
