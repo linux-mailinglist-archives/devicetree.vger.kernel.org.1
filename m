@@ -1,177 +1,300 @@
-Return-Path: <devicetree+bounces-120535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 567929C317D
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 10:41:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA6589C318F
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 11:21:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DDA01C20A7B
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 09:41:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DC7E1C208E5
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 10:21:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A31B153808;
-	Sun, 10 Nov 2024 09:41:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78AA314B075;
+	Sun, 10 Nov 2024 10:21:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="vc85F1+q";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="xbtDXHoB";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="SIg2cies";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="e7ZZrLlE"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="o07JoO8R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C94431537AA;
-	Sun, 10 Nov 2024 09:41:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70ECA2563;
+	Sun, 10 Nov 2024 10:21:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731231688; cv=none; b=EYgVOsEaN2b2GhdGgbsY8JlSasX5EAQ89PWRR86qEjWnVx9GIr4AS9r10os0SPY5L1ugPLnRrx3T1KV/nPrhDSZxCJf3xCNsfmnNKgLeCzLVT0oSRC1SS8XTm6PL87vo4gWhAFj0d4EMrhAY/BD45RUVB5Wods4yST3NzXNwDb8=
+	t=1731234067; cv=none; b=heHWLMItXPFvjybcaJ+/WId/Rfooy7j4IxL9bs/J3vi1a/UkbEDNNKH2JIn+yanfp/ASt5MS794xuLGTjFCPsclkwVUqEcwi5BTVZim0uMW5yBEv1vPvvQWEQJ3sQK2uMaiUvLXE9Ml30CbkdXF/+34zF1gZBlC5DjGcUsyjW9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731231688; c=relaxed/simple;
-	bh=4qvdpQkT3SlRFIlu6TD25SeR7NwDjNqtyUfySTP5Dbw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OiW+cJPKTgX00WHUWDl0kdg7n/uobAm+4Ju5w6rlAXq6c625RJ2ker7VeMNB3ahyBFLWQt2KN6ZED52TEk/2EuyUDWnX6tYVtLTvKE1h+EHOQmihykHUUfsvhL63cGCHSsEQhP2Q0Qof1Ps9NVLzaqvj0ohBny5TlHAw5QWhS+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=vc85F1+q; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=xbtDXHoB; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=SIg2cies; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=e7ZZrLlE; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id CC68921A73;
-	Sun, 10 Nov 2024 09:41:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1731231685; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iVJB3Qkd5+VbKsHz2eRls6oNz9FZXUF6a+d/UpC1v0A=;
-	b=vc85F1+qXSlODxZaLhmNcZrstutruYw4x2I0CBroDXHmysmrEDftTJABxh9ZovWyDp/kYa
-	hAHrpOfIzZAtsoPFkLxL3ASV/DSv8R4HvP9asGScEqI8e/BrEGrJViIXTG1tb/UyouURWZ
-	bDj0mPuAuPA/5oSpeGuMfbZ3fQcrcAc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1731231685;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iVJB3Qkd5+VbKsHz2eRls6oNz9FZXUF6a+d/UpC1v0A=;
-	b=xbtDXHoBGiX6KQaqAz0fV/teTf19uPjPeWisqeq4Va4sKwKMIR6cGCxbfB9wsnF8t4DaQM
-	u+HESoWYH0ETEeAQ==
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=SIg2cies;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=e7ZZrLlE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1731231684; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iVJB3Qkd5+VbKsHz2eRls6oNz9FZXUF6a+d/UpC1v0A=;
-	b=SIg2ciesrB2kCBhM4fo5FIaTlEodFUvLoaQrC3cx2yA8YwIfKP1VFZEYoYGkcyk5vMqESM
-	DGacZ+DeJgSQ3BY3HXyqBK3lAaAfkNriiQSEeCKYmXNh95ebcx4h0DoKuuFUFJnKQ867i7
-	fAfPURE0kigQaZPnz1TgoJlnNmz03/Y=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1731231684;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iVJB3Qkd5+VbKsHz2eRls6oNz9FZXUF6a+d/UpC1v0A=;
-	b=e7ZZrLlEkEfpRFMd1jnS8waLpaAogHYsT9Klum1apOlrYGFGliQr3gykKwWvKnC6lG2+aa
-	QAFl9wRDGAd41XDw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D018C13980;
-	Sun, 10 Nov 2024 09:41:23 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id 7erzL8N/MGfcFQAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Sun, 10 Nov 2024 09:41:23 +0000
-Message-ID: <3724f8ff-4b89-465c-ac9d-1dec7c86fb62@suse.de>
-Date: Sun, 10 Nov 2024 11:41:11 +0200
+	s=arc-20240116; t=1731234067; c=relaxed/simple;
+	bh=b0orM1whYBf/oNXTiwqSx6Kvzd/1fyGJiGI31iywyCo=;
+	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:
+	 In-Reply-To:References:Date; b=jjub76i9VA3BWEnuehOD2/Tl1VE/S+5zBRAE/f5MOVIVMjmgwiV1NoOB/DcEvpYeae+8q8y6Fq2EfY1Hbel2BtPwNPTf99WERWMSbFihxwZMdErHpQlOMJk0EvBSEzq1nOSB4thK/8JhKJJCqHgD4DZ73mWqGgOJxmgScUSzVZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=o07JoO8R; arc=none smtp.client-ip=212.227.15.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1731234046; x=1731838846; i=frank-w@public-files.de;
+	bh=seuUOA8EujvZMml8ixlG9ZE12iNZkVTraJ0yEC7Fi9s=;
+	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Reply-To:
+	 Subject:Content-Type:In-Reply-To:References:Date:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=o07JoO8R5tmZsHEKrzbrtKciCUIbKdWYyerlGFRofRIYF4gDNZYKgqpK2h36SAi1
+	 uWaDhWMZlA6X4JALFt7E45zZvDHt2S+Ps1B0bGJMK5umQLJC6D7/mp8HBnLokQ3Fb
+	 28BSvlESLym7FVYx2HG9kGSdqOkUn/GR3C0lRx+mENVRtRtCZ6IDSpFn1B46+mnAp
+	 h+jXVevoMXkP51cjZ3XzUI5RzSwhCeh2on3/lsnq15xiVBVSmLQ7fnZcvWUzSjIi7
+	 i76TeR9gHjqSroKKaC9yWEd2CRYBHe3DUecHu0KIEYjxUbolZ4EIFcgEfPivHQpH7
+	 qXK8sEE1xBrmUnKb5g==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [217.61.152.71] ([217.61.152.71]) by
+ trinity-msg-rest-gmx-gmx-live-c75c5fb4b-6zcvs (via HTTP); Sun, 10 Nov 2024
+ 10:20:46 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/10] PCI: brcmstb: Enable external MSI-X if available
-To: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Jim Quinlan <jim2101024@gmail.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andrea della Porta <andrea.porta@suse.com>,
- Phil Elwell <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>
-References: <20241025124515.14066-1-svarbanov@suse.de>
- <20241025124515.14066-7-svarbanov@suse.de>
-Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <20241025124515.14066-7-svarbanov@suse.de>
+Message-ID: <trinity-d08557e5-9d2e-45e0-b9e2-45864ef192ff-1731234046657@trinity-msg-rest-gmx-gmx-live-c75c5fb4b-6zcvs>
+From: Frank Wunderlich <frank-w@public-files.de>
+To: frank-w@public-files.de, andrew@lunn.ch, linux@fw-web.de
+Cc: dlemoal@kernel.org, cassel@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, gregory.clement@bootlin.com,
+ sebastian.hesselbarth@gmail.com, linux@armlinux.org.uk,
+ hdegoede@redhat.com, axboe@kernel.dk, linux-ide@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Reply-To: frank-w@public-files.de
+Subject: Aw: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditional
+ failed
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: CC68921A73
-X-Spam-Level: 
-X-Spamd-Result: default: False [-3.01 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	ARC_NA(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_ALL(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[linutronix.de,kernel.org,broadcom.com,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -3.01
+In-Reply-To: <9B1A5D20-3DE5-40C1-8B2D-B1C4F53FA5F4@public-files.de>
+Importance: normal
+References: <20241109094623.37518-1-linux@fw-web.de>
+ <20241109094623.37518-2-linux@fw-web.de>
+ <e534c723-6d65-433f-8ab5-1c0d424d7367@lunn.ch>
+ <9B1A5D20-3DE5-40C1-8B2D-B1C4F53FA5F4@public-files.de>
+Date: Sun, 10 Nov 2024 10:20:46 +0000
+Sensitivity: Normal
+X-Priority: 3
+X-UI-CLIENT-META-MAIL-DROP: W10=
+X-Provags-ID: V03:K1:ofniCum0AvYQ8ubV9b8nMhto0JeMMH1eGUsoVeFPoZXM7JMo/IMCVLU/0UtOCudn0Sl6T
+ lsA6vSDdnRuB8tHW5xXutUEojj2mEKzSGe1oOBsfEGcX35ZC4B1qzSwWj77o0XThBHPb/i5KaaAz
+ 8KaLWtDlnWADBL4QhMTpErH8Y03Sy3lhFVW6+vpiF8GlFcR3LUoeqLbmGZiJEDdce5VXNLhHC2n6
+ nLaDm8p9vslys/BZSR5h69U+/T7HNd06NutJSf6VjekHYeCspYrbRST/I2qqg4isQvP45jehgWZe
+ xFr/7y1ebsDTX3Q/IFkBFBnzs6AHSpmNmZuNU0FB1GIxdk3FzDpKmzRxJgxfFKkHYE=
 X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:NFFR1Mehv0c=;qGX+JdGSm20nkSCpeFlKUqK3WB3
+ 6e2t7vSlIIRWpRZaRCnKVC//DFOhao2S8W9dKr9nNaZOVq6bhXQ48iqIQwC+KZYOYqhqIX9hg
+ 8bAkN4QjTvS+5glJ9gSNnXfKu9l0IWz743a+ipNvOtegdPPzh7LZoDDNoC2H/hOb64uQ/5XuU
+ OnmSBuZLBc/a3PWVUILfZoX/4nStjNU4gdACkJURSv7c05rANOAgM2ZKqLt/BD8Y/vYxDKIvR
+ HKQ2/ZYnClafyyzsJ0bovfb6V+t5nutv72XzETpBk9xqcThi2GV6R2Dbv179DygoVnYLxneZr
+ gDEkVQHRYskzv5mi50MzRjZhlZuSIEv3w9e3UdzvyCJ8Qy4W+FMF1XzPZS6w6yKS+MEuDGx0z
+ tD9yc3y//u3JDspDgZ4yo7jDvHcg8qjkDiYMJIiDg0cQRTF0U83cceduKHVQeDlQ47hkWTmfc
+ wnXlCktacIZZQbWs7ypAdUXLTHFokpGEmF1LTKX7Y/TF/WRuZch2wvVtstPO6pAs4oTIoFh6A
+ ZiVv6qUsZs9OnWH4Pbam04mnU+Om9F+t5vLIRs6AdsZABE872TLP24xJP9r7i9qF1BnzG8ZE4
+ /encu4l5vk48kl3rILuDcyu0iwRu6mSL+2HnAc25QMeNx0ULUawJYV2sS7OMeEpamanwefR0/
+ 2QNZiyYyb4YfGCB9+c99C8WNnm9vHW71rBRxKY1slQ==
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+&gt; Gesendet: Sonntag, 10. November 2024 um 10:25
+&gt; Von: "Frank Wunderlich" <frank-w@public-files.de>
+&gt; Am 9. November 2024 18:29:44 MEZ schrieb Andrew Lunn <andrew@lunn.ch>=
+:
+&gt; &gt;On Sat, Nov 09, 2024 at 10:46:19AM +0100, Frank Wunderlich wrote:
+&gt; &gt;&gt; From: Frank Wunderlich <frank-w@public-files.de>
+&gt; &gt;&gt;
+&gt; &gt;&gt; after converting the ahci-platform binding to yaml the follo=
+wing files
+&gt; &gt;&gt; reporting "'anyOf' conditional failed" on
+&gt; &gt;&gt;
+&gt; &gt;&gt; sata@540000: sata-port@0
+...
+&gt; &gt;
+&gt; &gt;I don't know the yaml too well, but it is not obvious how adding =
+a few
+&gt; &gt;status =3D "disabled"; status =3D "okay"; fixes a "'anyOf' condit=
+ional failed".
+&gt; &gt;
+&gt; &gt;Maybe you can expand the explanation a bit?
+&gt; &gt;
+&gt; &gt;	Andrew
+&gt;
+&gt; Hi angelo,
+&gt;
+&gt; I guess the dtbs_check only checks required properties from yaml if t=
+he node is enabled.
+&gt;
+&gt; As you know, phys that can supply different types (sata,usb,pcie,*gmi=
+i,...),but only one mode can be used per phy. So only one controller can b=
+e used with it,the other(s) can not. I do not know marvell,but there are s=
+imilar in mediatek (xsphy) and rockchip (combphy).
+&gt;
+&gt; From my PoV it makes sense to check only enabled nodes for required p=
+roperties,but i do not know internals of dtbs_check. This patch is 2 years=
+ old and i only rebased it and run dtbs check with the others to have a cl=
+ean result...i can test again without this one to check if anyOf is shown =
+again.
+&gt;
+&gt; regards Frank
 
-Jim, Florian there is no review comments on this patch. Could you please
-take a look.
+Hi
 
-regards,
-~Stan
+issue is still there and patch is still needed...without it i get these me=
+ssages:
 
-On 10/25/24 15:45, Stanimir Varbanov wrote:
-> On RPi5 there is an external MIP MSI-X interrupt controller
-> which can handle up to 64 interrupts.
-> 
-> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> ---
-> v3 -> v4:
->  - no changes.
-> 
->  drivers/pci/controller/pcie-brcmstb.c | 63 +++++++++++++++++++++++++--
->  1 file changed, 59 insertions(+), 4 deletions(-)
-> 
+$ ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- make dtbs_check DT_SCHEM=
+A_FILES=3DDocumentation/devicetree/bindings/ata/ahci-platform.yaml
+  UPD     include/config/kernel.release
+  DTC [C] arch/arm64/boot/dts/marvell/armada-7040-db.dtb
+arch/arm64/boot/dts/marvell/armada-7040-db.dtb: sata@540000: sata-port@0: =
+'anyOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/armada-7040-mochabin.dtb
+  DTC [C] arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dtb
+arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dtb: sata@540000: s=
+ata-port@0: 'anyOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/armada-8040-db.dtb
+  DTC [C] arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtb
+arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtb: sata@540000: sata-port@=
+0: 'anyOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/armada-8040-mcbin-singleshot.dtb
+arch/arm64/boot/dts/marvell/armada-8040-mcbin-singleshot.dtb: sata@540000:=
+ sata-port@0: 'anyOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dtb
+  DTC [C] arch/arm64/boot/dts/marvell/cn9130-db.dtb
+arch/arm64/boot/dts/marvell/cn9130-db.dtb: sata@540000: sata-port@0: 'anyO=
+f' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/cn9130-db-B.dtb
+arch/arm64/boot/dts/marvell/cn9130-db-B.dtb: sata@540000: sata-port@0: 'an=
+yOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/cn9131-db.dtb
+arch/arm64/boot/dts/marvell/cn9131-db.dtb: sata@540000: sata-port@0: 'anyO=
+f' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+/media/data_ext/git/kernel/BPI-R2-4.14/arch/arm64/boot/dts/marvell/cn9131-=
+db.dtb: sata@540000: sata-port@0: 'anyOf' conditional failed, one must be =
+fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/cn9131-db-B.dtb
+arch/arm64/boot/dts/marvell/cn9131-db-B.dtb: sata@540000: sata-port@0: 'an=
+yOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+arch/arm64/boot/dts/marvell/cn9131-db-B.dtb: sata@540000: sata-port@0: 'an=
+yOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/cn9132-db.dtb
+arch/arm64/boot/dts/marvell/cn9132-db.dtb: sata@540000: sata-port@0: 'anyO=
+f' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+arch/arm64/boot/dts/marvell/cn9132-db.dtb: sata@540000: sata-port@0: 'anyO=
+f' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+arch/arm64/boot/dts/marvell/cn9132-db.dtb: sata@540000: sata-port@1: 'anyO=
+f' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/cn9132-db-B.dtb
+arch/arm64/boot/dts/marvell/cn9132-db-B.dtb: sata@540000: sata-port@0: 'an=
+yOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+arch/arm64/boot/dts/marvell/cn9132-db-B.dtb: sata@540000: sata-port@0: 'an=
+yOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+arch/arm64/boot/dts/marvell/cn9132-db-B.dtb: sata@540000: sata-port@1: 'an=
+yOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/cn9130-crb-A.dtb
+  DTC [C] arch/arm64/boot/dts/marvell/cn9130-crb-B.dtb
+arch/arm64/boot/dts/marvell/cn9130-crb-B.dtb: sata@540000: sata-port@1: 'a=
+nyOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/ac5x-rd-carrier-cn9131.dtb
+arch/arm64/boot/dts/marvell/ac5x-rd-carrier-cn9131.dtb: sata@540000: sata-=
+port@0: 'anyOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+arch/arm64/boot/dts/marvell/ac5x-rd-carrier-cn9131.dtb: sata@540000: sata-=
+port@0: 'anyOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/cn9130-cf-base.dtb
+arch/arm64/boot/dts/marvell/cn9130-cf-base.dtb: sata@540000: sata-port@1: =
+'anyOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/cn9130-cf-pro.dtb
+arch/arm64/boot/dts/marvell/cn9130-cf-pro.dtb: sata@540000: sata-port@1: '=
+anyOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dtb
+arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dtb: sata@540000: sata-port=
+@0: 'anyOf' conditional failed, one must be fixed:
+	'phys' is a required property
+	'target-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+  DTC [C] arch/arm64/boot/dts/marvell/cn9132-clearfog.dtb
 
-<cut>
+that imho confirms my guess that only enabled nodes are checked and withou=
+t the disabled this node is always enabled and
+by disabling the SoC-node and enabling at board-level let the others (here=
+ printed) disabled and so not need the required
+properties.
+
+i can try to add short description about it, something like this:
+
+The dtbs-check only checks enabled nodes and there required nodes must be =
+present. Nodes are enabled by default (current state for sata@540000 node)=
+, but some boards seem to use the phy somewhere else or just not want to u=
+se the sata contoller and so miss the required properties 'phys' and 'targ=
+et-supply'. So disable the sata@540000 node at SoC level and enable it whe=
+re it is filled with required properties.
+
+maybe adding this phrase to commit is enough?
+
+regards Frank</frank-w@public-files.de></andrew@lunn.ch></frank-w@public-f=
+iles.de>
 
