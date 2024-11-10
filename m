@@ -1,138 +1,124 @@
-Return-Path: <devicetree+bounces-120537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2436E9C31C0
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 12:16:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BA379C31DC
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 12:59:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A78991F20D49
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 11:16:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A01B1281618
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 11:59:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A4701531DB;
-	Sun, 10 Nov 2024 11:16:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF38155756;
+	Sun, 10 Nov 2024 11:59:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TfrZefiI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X0v1M+Oc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F176013D600;
-	Sun, 10 Nov 2024 11:16:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2220142E7C;
+	Sun, 10 Nov 2024 11:59:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731237404; cv=none; b=pJoJv+c8KJFwDfnY9oWneGMv3qLkzEE232PYPlj4uBefhJx/MZVkzTGETsgHKgv/mRQvWkOD+A8e2SNOEd4Tggpy3I7ATd7Ud4VzgAbJlhbCiQMWoelcyoTJ+kaC4bsuc1RRPxQRG4aINJ2/XicqVvymlRksxVZyde91/TTFa2s=
+	t=1731239976; cv=none; b=WEhHruf3B/qQ7Q22elRmJ4Li+Jju2gDUS1HfycyUut4fnyBWlEW/XpowvB1oZpRb7EWmBWSb0vPJA6lqZZEnihKth/rLBjrugT4eT4glUXyCucb6IkRAK0U1EPIxDmGz7oFNOuIEqKkSjaXmzr/LVeqzg8lztDqyTiRPwIgn8sE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731237404; c=relaxed/simple;
-	bh=OZq9vlY9kg8nMFQ9iEn/BhUcSlMehFtK5IV3YHw9HC8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=a4xSEAntPQn/Ss2He0bHQ+V8IgDUtzzaNX+YY2yozVzpaXeEmCmJHTwvNBPrUKZvDr5Jj29R1oxsZYPrUu0xYZQMIRvBni9/fKWgPfMKRqX78E+sL+CEIK9NqAFEeXQZ/eAHDVpp3S7oHCjsr0j2rcYkfDrx1nBopmGiiEHnuQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TfrZefiI; arc=none smtp.client-ip=209.85.216.46
+	s=arc-20240116; t=1731239976; c=relaxed/simple;
+	bh=zfgHxG2V7R6MBYczHFOAGh8VsRb1hk8pspj/yDEss10=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DKf/jq2+VYbSwSzK4LNl4wErS+TcxUeEMMawrsMC2vx9zdOzm3DSOagMvAAINNqdNSyBX06G25ZRzhqfr5C9B6LASFOtx4e3Shax5AcFva0zPf+mGZlhFpX5XckwqUDB7MbCjQ28Cy7bjF1iHgwCK2U5DdJk2+iUKAO7G1Gj85s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X0v1M+Oc; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2e2bd0e2c4fso2908566a91.3;
-        Sun, 10 Nov 2024 03:16:42 -0800 (PST)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-37d47b38336so2843693f8f.3;
+        Sun, 10 Nov 2024 03:59:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731237402; x=1731842202; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QWLoy1wYXdVgZ3Zzo/mgTNAnxY3fZNEXmyBhaGh3Xds=;
-        b=TfrZefiIi93OLr6+GdwWL27ufVOSjanvpwlvUHt54VRTme63C5cAfMryP73beXumHX
-         UPUFTj3qeQKgg9QZgHi/ssmmMBWLJP67BbcHy6qIjHGPMxKcQwiZuViye9vRRUQi4IDj
-         fHACmMOLu5DJSO0hXFbSBAakaj9uCiPuBRkvWCM0oMW5DwzQyYqOgxQM1EAjrZDWZVyu
-         J54XnqTcWUh1uc56s1NYISH6wIscWX8OlomAsOpmj4RLfVg+ggOvlW2uh0rZrfBWUbUT
-         xBBQxKT7Pf9ZciAHyp/IJkfXlTIE9pHyVxYvVpA9O2peCHIWEoMKRClRhrsl5rL6kOWY
-         k8OA==
+        d=gmail.com; s=20230601; t=1731239973; x=1731844773; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=yFaKqABtVje41PveytIEZx/xFmb5usiiYyWy+vMnsAA=;
+        b=X0v1M+OcYsO2giFnVbywt70Tm0ZDtANNSMRha1Yt6I+WLtBYsigIc/gBWFC0ONqUVZ
+         cTv+4NQgeropFbbzZX80lvn0riHgkT3DQJSrQNx2BSmOMn+TR4SmqVJD7XLS9SY4+Q+T
+         FDGQ8Xb6jzoHwnXVslssB0l+LKYRmeUDTCzyzL/Bt+msUmGcZJ2SBuS2WTYuZCujiLyV
+         Osgw+ujL+urqqIg6NZJ4pB9BN3axIHiO45z+hF95qghFXj6kk7GYpxEgsztrxVUbCz0A
+         mNIi7/PBy6eWFOAAI7k1gd80oTgI4y71vNWeoxJmr8o46Cvg/TVXJg3CgjgJP32cyaZf
+         TVlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731237402; x=1731842202;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QWLoy1wYXdVgZ3Zzo/mgTNAnxY3fZNEXmyBhaGh3Xds=;
-        b=OSpGUtRrF9wFBNNNOFTHs2FXXSGkE9Q4PY97Pg4bhPwkqF+5autCVZTfeUlNHEhCgb
-         CItc66BNL52G2NKJFzrbKtHqUDvSUcUmukj/u+Bhk5epnChMpXLdsY844743x6IKbi7S
-         13Fihi9nR7w+kJu6U+xnjiezNtjFKHoPnAfdNdZsvQLKLDSi6yLNdxrpC7KxaZldrUOX
-         p0GX/jknhHW3R8Rf6BnahvbGb3QyJkDqkAIfBs8gWCh2fFx6F0i3UpmPyNL+eL3zuJAt
-         ESN/qbG6I4DrMHeDNSOkyr9/FfN5KdLKnzpMA+NyE9fJES5JiMFxHEt82Te2EO7vpIAD
-         3/cA==
-X-Forwarded-Encrypted: i=1; AJvYcCWZrRrhujFlNAplAKjlLfz4dHcZGll/rsmt57zWXo2vYOCzQqKXTykCrXKHv2tyg+iR2GOjC5c2jKaC@vger.kernel.org, AJvYcCXMDcpHjIdRoeYsbegEhN5Kk34oAHuEVGLd6vNFNp9VGZ8D/YBr3XNX6RDP6bvSaWVneUGahOlzJb7V@vger.kernel.org, AJvYcCXmoeYfQhTxjPuiCVSbdoIC5rtmdW4y4gtljRBbxaSCZj03nVTjcK6CFKxp6oKhfjzWLI+j0XxPGAEdOaGT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLeq69xN4HeWH2nTvDe5LKgai3VcKazklwcvwIqzWq1K05OKW9
-	MGQ1PFCY3OrF3qtYel1vCBc3Cudc9nre/hZr6JDaCPsq4je8EY3bZbGiXab7L2qjr7PdqugH8oR
-	hXBXAm5MEDYI2iwck3dCHiHnm7g==
-X-Google-Smtp-Source: AGHT+IGasTpM/6LzeFT5yJG2TU6X3TKSkJ385a+2Pbzh0IgAuKC/AoNByQH4zEUJkFnY3DZ/d/AESg6jv7LXg1ObLTE=
-X-Received: by 2002:a17:90b:4a91:b0:2e2:a3aa:6509 with SMTP id
- 98e67ed59e1d1-2e9b1697bf5mr11996579a91.14.1731237402258; Sun, 10 Nov 2024
- 03:16:42 -0800 (PST)
+        d=1e100.net; s=20230601; t=1731239973; x=1731844773;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yFaKqABtVje41PveytIEZx/xFmb5usiiYyWy+vMnsAA=;
+        b=UUX+hPPlBrZx/bn+sHPvZqvjEuQuqM+1WJHinlgVLtGi+ifDcDleB+D5H03Xls130q
+         L4QHhcKmSuhEPFGgo20JetMUYP5nVf1P1KRN5+1CukzlwKCoPGUQGZLjZ13RSutG84Bu
+         9x/99b73A6PrN5bxJdGwxwl7O4wzKCx2/ll3tIsYhN9TLckcsJDVRb3THAhKi7AePoQD
+         v8gmI3tcAXJkWdSCsIQdbc/vb6O+S/HM5l1bBMdYWd0NPcmB59jOO03Y8kjVZ+0beEmf
+         Ks0HJeQV8+IwIAs5VmSestwtUifqAmuH5PbFdmBFXLqtgKcxSpbapW8PTu5ocfnqzZJb
+         1WFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVAmgAUBtELjLPZ2qyiwvTcqdUtLoa7V6p+UU8Ega6CuAYNREAqiUhmrjDvQVs7EP4kBkN7ka1SjU/v@vger.kernel.org, AJvYcCW3FeyN8Pv6d7uzyHzUId4Uvwrea50Sj9DwRrLcnhiFngiYCm13Xxk22cfafaRoKQsb/KneAujk1EjQ5EcV@vger.kernel.org, AJvYcCW5tnq5F7yIutJblgi3ZNu47kRiw+mhCY+f2reKi5fpfURdQ3UDREXxyLuytqweqBjYV+VYnAVUCXHCGXma@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZ7+eHFsZP+Krqol79aczK2U8JRqqRnEEIXgqbFfWY/YBEOf7/
+	ZpfjWy+e0WnFaC+TLgKHQP6VG6DGeLhc/UBCqU2H5zKzu3oCbRkD
+X-Google-Smtp-Source: AGHT+IE+w+f1yqAk37VzarCVULMGirAo8M7q+uexJAXDVO4xf99ztjU27W78o86exqp0sU3HrqQqpQ==
+X-Received: by 2002:a05:6000:402c:b0:37c:d183:a8f8 with SMTP id ffacd0b85a97d-381f186b35bmr6512046f8f.19.1731239972786;
+        Sun, 10 Nov 2024 03:59:32 -0800 (PST)
+Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432aa74abb9sm179621495e9.42.2024.11.10.03.59.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Nov 2024 03:59:32 -0800 (PST)
+Message-ID: <6730a024.050a0220.17c784.0c41@mx.google.com>
+X-Google-Original-Message-ID: <ZzCgIUla8ENQPT_5@Ansuel-XPS.>
+Date: Sun, 10 Nov 2024 12:59:29 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Herbert Xu <herbert@gondor.apana.org.au>
+Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Antoine Tenart <atenart@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	llvm@lists.linux.dev, upstream@airoha.com,
+	Richard van Schagen <vschagen@icloud.com>
+Subject: Re: [PATCH v6 3/3] crypto: Add Mediatek EIP-93 crypto engine support
+References: <20241102175045.10408-1-ansuelsmth@gmail.com>
+ <20241102175045.10408-3-ansuelsmth@gmail.com>
+ <ZzAskOZyclM9dWsg@gondor.apana.org.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241011102751.153248-1-privatesub2@gmail.com>
- <20241011102751.153248-2-privatesub2@gmail.com> <4ioz6f6efs2uhf5mitb4xhebqeryyz5ukple4fkn54wpqep3c4@4ktefld35c3s>
-In-Reply-To: <4ioz6f6efs2uhf5mitb4xhebqeryyz5ukple4fkn54wpqep3c4@4ktefld35c3s>
-From: =?UTF-8?B?0JDQu9C10LrRgdCw0L3QtNGAINCo0YPQsdC40L0=?= <privatesub2@gmail.com>
-Date: Sun, 10 Nov 2024 14:16:31 +0300
-Message-ID: <CAF4idNmDMQpFppUvCBbC1=SNMQBrTOqmFO60SMvKvaHvNJy=Bg@mail.gmail.com>
-Subject: Re: [PATCH v10 1/3] dt-bindings: pwm: Add binding for Allwinner
- D1/T113-S3/R329 PWM controller
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Cheo Fusi <fusibrandon13@gmail.com>, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZzAskOZyclM9dWsg@gondor.apana.org.au>
 
-Hello Uwe,
+On Sun, Nov 10, 2024 at 11:46:24AM +0800, Herbert Xu wrote:
+> On Sat, Nov 02, 2024 at 06:50:35PM +0100, Christian Marangi wrote:
+> >
+> > +static int eip93_hash_import(struct ahash_request *req, const void *in)
+> > +{
+> > +	struct eip93_hash_reqctx *rctx = ahash_request_ctx(req);
+> > +	const struct eip93_hash_export_state *state = in;
+> > +	int ret;
+> > +
+> > +	ret = _eip93_hash_init(req, state->sa_state, state->sa_state_base);
+> 
+> You cannot export/import any kernel pointers.  The state is meant
+> to be a serialised version of the hash state.
+> 
+> So state->sa_state_base has got to go.
+>
 
-I appreciate your suggestion to use a more standardized
-property name like "pwm-number" instead of vendor-specific names.
+Hoped it was OK since it greatly simplify the logic but OK will do this
+change.
 
-Since the name "pwm-number" is present in two drivers,
-we could consider using this name here as an option.
-Or perhaps we should choose a new common name "npwms"
-as you suggested?
-
-Please let me know what you think about this.
-
-Best regards,
-Aleksandr.
-
-=D0=B2=D1=82, 29 =D0=BE=D0=BA=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2 11:56, Uwe=
- Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com>:
->
-> Hello,
->
-> On Fri, Oct 11, 2024 at 01:27:32PM +0300, Aleksandr Shubin wrote:
-> > +  allwinner,pwm-channels:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: The number of PWM channels configured for this instan=
-ce
-> > +    enum: [6, 9]
->
-> I wonder if the number of channels is a property common enough that we
-> can use "num-pwm-channels" here instead of a vendor specific property.
-> Or would you suggest a different name? gpio-controller nodes have
-> "ngpios", so maybe "npwms"?
->
-> A quick grep suggests we already have:
->
->         fsl,pwm-number in mxs-pwm.yaml
->         st,pwm-num-chan in pwm-st.txt
->         snps,pwm-number in snps,dw-apb-timers-pwm2.yaml
->
-> As a follow up this could then be used by pwmchip_alloc() to determine
-> the number of channels if the passed npwm value is 0.
->
-> Best regards
-> Uwe
+-- 
+	Ansuel
 
