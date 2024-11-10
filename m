@@ -1,89 +1,168 @@
-Return-Path: <devicetree+bounces-120577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BEAC9C3486
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 21:14:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8E049C3496
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 21:47:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA1892812C0
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 20:13:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A875E28180A
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 20:47:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3586213C683;
-	Sun, 10 Nov 2024 20:13:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE624143725;
+	Sun, 10 Nov 2024 20:47:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="S5wwPJIr"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="fzQRJyNl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E72426AD3;
-	Sun, 10 Nov 2024 20:13:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B71291386C9;
+	Sun, 10 Nov 2024 20:47:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731269636; cv=none; b=HmOChAkC6LNobIjxSr4HzWox9bIZonKk3HqWlzzxzl3b8Gqq2EvmJUV7g06hXjTzlXPKj3J21Pk0tSqjVcH0seWOBt20h3nmwFD8Xb0tJTDNbWHM5tQHkzkVM0CO4xfBy6mYBCE4AF/ItWFXXVTn2Vb+dCaQ54cz0Ecp6FCFEzI=
+	t=1731271639; cv=none; b=TfxPCO3/6tUv6CNRnC797t/sgLQ59kwJzneqWY/xiVC97Lvh3Ls7meZmVR9EZRMYTnQuvU8NRZ6reGb6CW+nOyNFOOm25PvlPxt7lesp3EnU1iQNAk44QnoFxr1i0VrUOc0cpwWPBYY5CFNqkjzXKuEt7fAM0q5kZRDpGQs9VZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731269636; c=relaxed/simple;
-	bh=C9HsFIh+Eh4zf+xDUJQ3mrYxCqpkzo7JtxVzG47FDgE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GmD7IPjq2gzJ4PmI/F80KdkJoLT2zJK/SAVrILvkwtMCxos/qEonN5mYf/pKKj8n/bbG3jeyjvEwA5bd2BuoLT6Uwt44wlwBZNBlBRAGAQrxPJdKA9IK5EtuSux1A/JQDUPgIfH/ZMrm0JSZYEe0ZqcCx0D0msNQ4dJkMjF4nGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=S5wwPJIr; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=TDWmgip3DngD0WSpM90Yi3gjWO6wAcgOvU2+84kSLeE=; b=S5wwPJIrHk0JA4HlAJJQVQQaE5
-	mXroOqQZdoQvH3dFzv1BCceZ7xGfBThBlbQnEpZLMH0A6bcT2nlkcImC6S03q4/balPTsIJsc+e7/
-	uXlFY+fVXQcr7yECUSMyAQwwGVQFzkev0bF/Dgt5KZmgUBRsbfQA1Jo0DMbZVTp7bxelMSn1uCzfX
-	9FAUhU5NKW8fUoAcddK57xhMiVRENAneHZcsSMX1Qqh/NQTUSAa7vrWdxCIfxNszRBz/S6prO4+3i
-	y4hFN/my0OrwZVqI2HzcuwQBy2JxEOhI9DDieoOEAEP8aAiriDj7zbBrIK0n6k3mc58hElQ6AR2Cq
-	aY0biM6w==;
-Received: from i53875b28.versanet.de ([83.135.91.40] helo=phil..)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tAEJh-0006eU-I2; Sun, 10 Nov 2024 21:13:49 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: orangepi-5-plus: Enable GPU
-Date: Sun, 10 Nov 2024 21:13:43 +0100
-Message-ID: <173126942616.136493.2934640786889277471.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241025175409.886260-1-wens@kernel.org>
-References: <20241025175409.886260-1-wens@kernel.org>
+	s=arc-20240116; t=1731271639; c=relaxed/simple;
+	bh=zc8NKS13iX4iibiy8m8tItY5i99PREFHvVcdkSImP04=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=EQ7K3yIuBP7LzBKJM7Ix08rzsS8fUHLEBgZVu7v3PD2mGKd412CF+9gxDSgvta3M8O+Lf9kNgyRVnWZPJgvpXYf+GP35JdgttVXQ46l4FZLBRAmohODC8nQjfBkSd1S7zMC4jdh1yX3+k3vCaVqo1/+qeHxtojag1Iv+j6ZAN8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=fzQRJyNl; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1731271635;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=fE5VOA6KuTjnNYq44e0OK4y8UXNT3ZzXaRBBD23Kw9o=;
+	b=fzQRJyNl79XOFtkcXecX9QesKQ+w0dR5wqTkVeTCqmTSlhjQq2YgVauWWn0PmmCpEo53Dx
+	NYurR7lpapDRp4/2pTqqs0rvP7lJS4tcCpJuPInGhJCKhunal76raAuh52KK3+EvApvsgp
+	0OJCdUVAIYpO5uhjMxbpXMeNaduy7xSqemW6gaKwR/xjpeevX7MrpRlYCDgbPqqqmrCniz
+	J1mjfbyA0EK8x4jxEEjk4O6PhOKYEIZk+1+PMZ0UYIU9pc/y94DDInoJxJWQqet8UQSph3
+	qx04O0kgmXu2gcig+EUGKo6Of+ig/g5KG7hssiSIpYKDs23emvPB4BnYMCKQmA==
+Date: Sun, 10 Nov 2024 21:47:15 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix vdd_gpu voltage constraints on
+ PinePhone Pro
+In-Reply-To: <4386271.ejJDZkT8p0@diego>
+References: <0718feb8e95344a0b615f61e6d909f6e105e3bf9.1731264205.git.dsimic@manjaro.org>
+ <4386271.ejJDZkT8p0@diego>
+Message-ID: <fb3700f2d67c7f062c66cb8eb0f59b17@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Sat, 26 Oct 2024 01:54:09 +0800, Chen-Yu Tsai wrote:
-> From: Chen-Yu Tsai <wens@csie.org>
+Hello Heiko,
+
+On 2024-11-10 21:08, Heiko Stübner wrote:
+> Am Sonntag, 10. November 2024, 19:44:31 CET schrieb Dragan Simic:
+>> The regulator-{min,max}-microvolt values for the vdd_gpu regulator in 
+>> the
+>> PinePhone Pro device dts file are too restrictive, which prevents the 
+>> highest
+>> GPU OPP from being used, slowing the GPU down unnecessarily.  Let's 
+>> fix that
+>> by making the regulator-{min,max}-microvolt values less strict, using 
+>> the
+>> voltage range that the Silergy SYR838 chip used for the vdd_gpu 
+>> regulator is
+>> actually capable of producing. [1][2]
+>> 
+>> This also eliminates the following error messages from the kernel log:
+>> 
+>>   core: _opp_supported_by_regulators: OPP minuV: 1100000 maxuV: 
+>> 1150000, not supported by regulator
+>>   panfrost ff9a0000.gpu: _opp_add: OPP not supported by regulators 
+>> (800000000)
+>> 
+>> These changes to the regulator-{min,max}-microvolt values make the 
+>> PinePhone
+>> Pro device dts consistent with the dts files for other Rockchip 
+>> RK3399-based
+>> boards and devices.  It's possible to be more strict here, by 
+>> specifying the
+>> regulator-{min,max}-microvolt values that don't go outside of what the 
+>> GPU
+>> actually may use, as the consumer of the vdd_gpu regulator, but those 
+>> changes
+>> are left for a later directory-wide regulator cleanup.
 > 
-> Enable the Mali GPU in the Orange Pi 5 Plus.
-> 
-> 
+> With the Pinephone Pro using some sort of special-rk3399, how much of
+> "the soc variant cannot use the highest gpu opp" is in there, and just 
+> the
+> original implementation is wrong?
 
-Applied, thanks!
+Good question, I already asked it myself.  I'm unaware of any kind of
+GPU-OPP-related restrictions when it comes to the PinePhone-Pro-specific
+RK3399S.  Furthermore, "the word on the street" is that the RK3399S can
+work perfectly fine even at the couple of "full-fat" RK3399 CPU OPPs
+that are not defined for the RK3399S, and the only result would be the
+expected higher power consumption and a bit more heat generated.
 
-[1/1] arm64: dts: rockchip: orangepi-5-plus: Enable GPU
-      commit: cdaf2acc401c691105baa3ee3e9fda3b19dc570d
+This just reaffirms that no known GPU OPP restrictions exist.  Even
+if they existed, enforcing them _primarily_ through the constraints of
+the associated voltage regulator would be the wrong approach.  Instead,
+the restrictions should be defined primarily through the per-SoC-variant
+GPU OPPs, which are, to my best knowledge, not known to be existing for
+the RK3399S SoC variant.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+> Did you run this on actual hardware?
+
+I rushed a bit to submit the patch before being able to test in on the
+actual hardware, but there's already one person willing to test the 
+patch
+on their PinePhone Pro and provide their Tested-By.  I see no reasons 
+why
+it shouldn't work as expected, as explained above, which is why I 
+decided
+it's safe to submit the patch before detailed testing.
+
+I'm very careful when it comes to changes like this one, but I'm quite
+confident there should be no issues, just a nice performance boost. :)
+I also checked and compared the schematics of the PinePhone Pro and
+a couple of other Pine64 RK3399-based boards and devices, to make sure
+there are no differences in the GPU regulators that would make the
+PinePhone Pro an exception.  I saw no such differences.
+
+>> Fixes: 78a21c7d5952 ("arm64: dts: rockchip: Add initial support for 
+>> Pine64 PinePhone Pro")
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>> 
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts 
+>> b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+>> index 1a44582a49fb..956d64f5b271 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+>> @@ -410,8 +410,8 @@ vdd_gpu: regulator@41 {
+>>  		pinctrl-names = "default";
+>>  		pinctrl-0 = <&vsel2_pin>;
+>>  		regulator-name = "vdd_gpu";
+>> -		regulator-min-microvolt = <875000>;
+>> -		regulator-max-microvolt = <975000>;
+>> +		regulator-min-microvolt = <712500>;
+>> +		regulator-max-microvolt = <1500000>;
+>>  		regulator-ramp-delay = <1000>;
+>>  		regulator-always-on;
+>>  		regulator-boot-on;
 
