@@ -1,130 +1,128 @@
-Return-Path: <devicetree+bounces-120558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 051F19C336D
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 16:50:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A541D9C33DA
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 17:55:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 284551C20AD3
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 15:50:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5856F280D29
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 16:55:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7ADE61FF2;
-	Sun, 10 Nov 2024 15:50:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B29F27A13A;
+	Sun, 10 Nov 2024 16:55:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bn/FJD54"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l/ferP/k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04AEC22097;
-	Sun, 10 Nov 2024 15:50:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842EE4778E;
+	Sun, 10 Nov 2024 16:55:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731253817; cv=none; b=k8+bmU/P3tmc4q+FCYMLuiTpW0AzLqLRxAKUi64A2vL9Jm76+952CuPE9U0cX1iuaoe4W7w80YuzC5wE8l0Jc9OFDYRrebtmJPo2a9YrWbKfB8C8ZJ1/tC5STFK8madjsNtix/4fDeSAyZ2koZpIj06FGmvjtbhHtXaLnwQg6yA=
+	t=1731257713; cv=none; b=i0eLTtu+995lmt2ZF6w9azIzBFrRMjCgY2KENi2Q8h/Uc2dRX7DmWOG2+nXCu3+urejp+XTNpu7PANBJrHQZ44LLhrZiqPEM97f+8CR+3io+Bs1IRqK3CIA8btOIG7RYTmtkLRip1w2znzCbEnNkNpWY2Low0QpeU4ZZadFof0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731253817; c=relaxed/simple;
-	bh=X2WODjlo5k6M6C+3y9/0HbRt/kyKqfDqB/5oktD9bWo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L5h2MtFxg8XMFtRYCplJghKpqxQPI+UucFIeOgOhTyIaveItokc6xyN7ViYYCH6hNi6czORGIslT0e/h4gmiKJjYy1BPGywg0DBk6lhT7X6wiRLSoC+uvBiLZ2QQKX454Uo9omyqR8OrAgfCcsb3ST72pgVUtGFCdZYtcCiMUwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bn/FJD54; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e28fc8affdaso569678276.1;
-        Sun, 10 Nov 2024 07:50:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731253814; x=1731858614; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=431engaI3ETj/ECuLKJ1/FXiWtPiKP8c1q4cS9zRAsI=;
-        b=Bn/FJD54yGvdxE0aOUQOyExaESiidTU2T3T+tPY01HtlXRor1yNzVKcOv5PHBlNHT/
-         Ba2LheaIw94DnDx33Hj2WTpdPvxfB8fYwCRG9OeEQYUUoRpSbrK6qrpei7hZjyELnKd4
-         d+dfEFzAnTQ4chi70T7fyo8ODpby00cPGLrYrTkpcFujlu+FDBIc1FJ0qWNvPMItFZbu
-         3HHAbckYF0bsUCPRp9wPcNdSHkDKclQCUubwmjrQGnQC3BYcBnI0KpbXnp0LmgxWqYCJ
-         Mk2rta+nGgjUYJnCN2vDc4h5SVzcmJqChP5svve/lAd/rf8lJSbB0JH4j2Qx21+AlAp1
-         Wf0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731253814; x=1731858614;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=431engaI3ETj/ECuLKJ1/FXiWtPiKP8c1q4cS9zRAsI=;
-        b=P4Qy40Oc7O7lKbhAHHD+oXjDhSCWHF+pNzKmDvkZ7sw1hafHWQwvZgWVB/Mh2hny3W
-         au9qxeSU/x8mWWHbx7Gl4ZVpwzL7pbLyMWhJUZLtXs4xn9g8A/iGOf2KB/Vxv8FLqqVU
-         K4JuaoAwsd5M2Clj+WVeb1yX9V8hL44xht+wBtHIPpg+c0cVRQpqGAUZLcJnn9IAM4u5
-         smJ5oWdVsJ8Qr01yWgFe3Ra4FJq1qyybUeEcqpL/IjmLBAHUEdA+KQFCFkwwiDG16VLO
-         xkBZhYgkWxrbo2Bg7fwjgslI+RJ/gdVvQln+00WqvNhxa4Vg/odCsAw6+wnAbH5vyB4i
-         uP1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU/76csbG2aKkR5iI7F1UZdntDx+Whxh0xWwhhPl6G09YFYGDjFK1U2Fhk9/Y73QIQzWiKSucuIB2AI@vger.kernel.org, AJvYcCU72T0JAirjqxjogtZ8ZCov7Mr/Y+X8fudtiuBNi/Cjc8bjiOXmoQbivoEcz8mCrENnkhb8enX3@vger.kernel.org, AJvYcCVE0ayCIciJVikmfMSyN0lKZmKU1hag7YXBww/tIQpC09qSb4r6RUuytWRzzDNBjCywG3sZ1liTOm/eSDCs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6P6tc4slKyL3X/p+tQjrDoNuR54PiY8J8YgPVqSJFJHK+Y0gu
-	Mrgq1jaMVNYnULW5XNdn73sYdYTtur/ly22tOCldn7Coy82VErEB95sKQEXf3k7Ncu2ziV2KIIj
-	xfZYDKCYmfJDhxEno9Sl4gh4I1+M=
-X-Google-Smtp-Source: AGHT+IHPN/wBuMSlYobvPfwyK0eBpeDQCeS36N5ParCeUsQxZMu7SQ7a+5vgzU74VvQQ+ZK1sH5FzhoeWhu1JvyCyy4=
-X-Received: by 2002:a05:690c:9b08:b0:630:ed11:e751 with SMTP id
- 00721157ae682-6eaddd9f19fmr34550727b3.3.1731253813818; Sun, 10 Nov 2024
- 07:50:13 -0800 (PST)
+	s=arc-20240116; t=1731257713; c=relaxed/simple;
+	bh=AUZskdJBYevNYTGe0KPeZyYfuq+MaJc1K9ZNMQotNl4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RDVsapV0s8jvdJ5IHAOg3tt8Ane/NdGgtnOHAY6bhosaacxxolMyBrxP5w36d+xqLszj0swOz7RVqEQ1SIRwkGw8jEHLKq1SKHAZ3lXI20gBu6K+XEhkNHg2mqf5Sa3cYsj8Zt75zcbU4GBWKd9h8zghoEDV3o1jeLK7Vd9dBwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l/ferP/k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DFACC4CECD;
+	Sun, 10 Nov 2024 16:55:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731257713;
+	bh=AUZskdJBYevNYTGe0KPeZyYfuq+MaJc1K9ZNMQotNl4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=l/ferP/khg0VXEakjcXIw7NF5yuPND+LsEIV15NV0+NvMWryrmeWMr162LPPXgj2h
+	 mdehU44PqpqDruH9xl+MOV6WSXeX4EN1Vo7lYrvOrubIbEF0Q0eh9aEVx7Y3nUyxg6
+	 0gXgBkIbnna7dGvQE/uueuNn8Xk11JBdjpywWR7Jea7cag7bkFoy1SPJRaJD5i4OvU
+	 A0AGRyUCu1kuwSXVWOCGwEWyg1h1brXEUzTHUrdQFd8Jj0hmOoDixpDW+HsrdXvNWB
+	 0oOv1hVZyhxAkfgSBy6PNioJBebTIXScAZUSYCwjojUTdX2OzKEv4lurwGArCSRF7x
+	 c231OwRtXn8cQ==
+Date: Sun, 10 Nov 2024 10:55:10 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: maud_spierings@hotmail.com
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] enable the gpu node
+Message-ID: <rfdg37xvvfqumw6xjk6fod5iwsrdq3okadsz62eygymllh3pv3@llvipo64oz37>
+References: <20241110-qcom-asus-gpu-v1-1-13d7b05784b8@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241109015633.82638-1-Tristram.Ha@microchip.com> <20241109015633.82638-3-Tristram.Ha@microchip.com>
-In-Reply-To: <20241109015633.82638-3-Tristram.Ha@microchip.com>
-From: Vladimir Oltean <olteanv@gmail.com>
-Date: Sun, 10 Nov 2024 17:50:02 +0200
-Message-ID: <CA+h21hqWPHHqMQONY2bKZ2uA2pUzm2Rqwo7LTX+guj7CHo4skQ@mail.gmail.com>
-Subject: Re: [PATCH net-next 2/2] net: dsa: microchip: Add SGMII port support
- to KSZ9477 switch
-To: Tristram.Ha@microchip.com
-Cc: Woojung Huh <woojung.huh@microchip.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Marek Vasut <marex@denx.de>, 
-	UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241110-qcom-asus-gpu-v1-1-13d7b05784b8@hotmail.com>
 
-On Sat, 9 Nov 2024 at 03:56, <Tristram.Ha@microchip.com> wrote:
-> diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-> index f73833e24622..8163342d778a 100644
-> --- a/drivers/net/dsa/microchip/ksz_common.c
-> +++ b/drivers/net/dsa/microchip/ksz_common.c
-> @@ -354,10 +354,30 @@ static void ksz9477_phylink_mac_link_up(struct phylink_config *config,
->                                         int speed, int duplex, bool tx_pause,
->                                         bool rx_pause);
->
-> +static struct phylink_pcs *
-> +ksz_phylink_mac_select_pcs(struct phylink_config *config,
-> +                          phy_interface_t interface)
-> +{
-> +       struct dsa_port *dp = dsa_phylink_to_port(config);
-> +       struct ksz_device *dev = dp->ds->priv;
-> +       struct ksz_port *p = &dev->ports[dp->index];
-> +
-> +       if (!p->sgmii)
-> +               return ERR_PTR(-EOPNOTSUPP);
+On Sun, Nov 10, 2024 at 01:46:12PM +0100, maud spierings via B4 Relay wrote:
 
-Since commit 7530ea26c810 ("net: phylink: remove "using_mac_select_pcs""),
-returning ERR_PTR(-EOPNOTSUPP) here would actually be fatal. This error
-code no longer carries any special meaning.
+Please run 
+  git log --oneline -- arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+and add a prefix to your subject line to make your change match others
+to this file.
 
-It would be a good idea to Cc Russell King for phylink changes.
+Please also drop "node", as it's the GPU you're actually enabling.
 
-> +       switch (interface) {
-> +       case PHY_INTERFACE_MODE_SGMII:
-> +       case PHY_INTERFACE_MODE_1000BASEX:
-> +               return &p->pcs_priv->pcs;
-> +       default:
-> +               return NULL;
-> +       }
-> +}
-> +
->  static const struct phylink_mac_ops ksz9477_phylink_mac_ops = {
->         .mac_config     = ksz_phylink_mac_config,
->         .mac_link_down  = ksz_phylink_mac_link_down,
->         .mac_link_up    = ksz9477_phylink_mac_link_up,
-> +       .mac_select_pcs = ksz_phylink_mac_select_pcs,
+> From: maud spierings <maud_spierings@hotmail.com>
+> 
+> enable the gpu node on the snapdragon powered asus vivobook s15
+
+Looks good, please capitalize the 'e' at the beginning of your sentence.
+
+> 
+> ---
+
+Anything below the '---' line is omitted from the git history,
+including your Signed-off-by. So move that above this line (and remove
+the "enables..."-line below.
+
+> enables the gpu on the asus vivobook s15
+> 
+> Signed-off-by: maud spierings <maud_spierings@hotmail.com>
+
+It would make me happy if you capitalized the 'm' and 's' in your
+name...
+
+Regards,
+Bjorn
+
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+> index 8515c254e15868a5d7f378b0dc0bf8f339fc7b19..f25991b887de3fca0092c5f81c881c5d8bd71aac 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+> @@ -328,6 +328,14 @@ vreg_l3j_0p8: ldo3 {
+>  	};
 >  };
+>  
+> +&gpu {
+> +	status = "okay";
+> +
+> +	zap-shader {
+> +		firmware-name = "qcom/x1e80100/ASUSTeK/vivobook-s15/qcdxkmsuc8380.mbn";
+> +	};
+> +};
+> +
+>  &i2c0 {
+>  	clock-frequency = <400000>;
+>  	status = "okay";
+> 
+> ---
+> base-commit: 929beafbe7acce3267c06115e13e03ff6e50548a
+> change-id: 20241110-qcom-asus-gpu-870c7c22935c
+> 
+> Best regards,
+> -- 
+> maud spierings <maud_spierings@hotmail.com>
+> 
+> 
 
