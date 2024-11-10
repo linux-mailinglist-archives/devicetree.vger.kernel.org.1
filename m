@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-120574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52EFB9C3479
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 20:52:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3B419C347B
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 20:53:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C33F1F21AA9
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 19:52:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CD80B20C2A
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 19:53:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F8B1459E4;
-	Sun, 10 Nov 2024 19:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7815A1474A2;
+	Sun, 10 Nov 2024 19:52:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fgw23-7.mail.saunalahti.fi (fgw23-7.mail.saunalahti.fi [62.142.5.84])
+Received: from fgw21-7.mail.saunalahti.fi (fgw21-7.mail.saunalahti.fi [62.142.5.82])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3087813C9A4
-	for <devicetree@vger.kernel.org>; Sun, 10 Nov 2024 19:52:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C062F145348
+	for <devicetree@vger.kernel.org>; Sun, 10 Nov 2024 19:52:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.82
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731268365; cv=none; b=BK+3DTTSrFQmhG3tTzpO4T+OczVpmzav9gmRuyCfTjODwhIEVdUOhDI8JFmEgdn9IbVPLUAWqr6p8+aUi0w1XuVuTdJmpxl7eQ6mChKbFJ8oofqozltFyZDYDVbBSJ/sS0ewpAa+oYHh1yWSRQ1uqPW1FmtAUFXufTBDuBFKHGU=
+	t=1731268370; cv=none; b=rSWi3h+q/B8Na4gGcC8opbwMf8NqcbY5zxSYvq9CY53wgR75qV4a9lq0w/UTzq0lONjU6FrZo64TbZId1qt/x17lvBEIk1qTlqZGs0I9TpvDMQYYhkIAtg29vCmQPO50JA454QHB+kuVJQ4dGlPK+LX0dLCwiDaJPoiayIf3qms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731268365; c=relaxed/simple;
-	bh=PgYesiTdPA5OVXXO/NUazx9gOX69ohmxZNRoY8rs0cw=;
+	s=arc-20240116; t=1731268370; c=relaxed/simple;
+	bh=9Z/pDoqd+qplmP5YdyAJMIIHWDi+W2hpCCQf7xbBy0c=;
 	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZtNQw23ufzHyj41eDqkfxqAIk2ZbMSJp1Ho4A+8guST5/df/pTa901DslNA0E6TjavvGCXglv3HbCMDqhkdoGY9jMWOfRtvIQ78h6m6aq9I0wUgYklGGSGxG/EH0XkdgVCedwUV3ZmneCAILlhHI95hy48apbQvf3TsgT6AY3nk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.84
+	 Content-Type:Content-Disposition:In-Reply-To; b=XxXIXF/WFBn5HfJmJz6F7RF7Smq3Rcc3+IKaxC7uyTJTVd+fpMtNKIvD1jmsmaenxYpiVlaKGCzotW0gQuhy5Q1G7UcsnNT8BIOKee7DNLiwEBJdLBXtRZ9wTwQ3Yblpq1hSsIRFUapTTHqhWNfSc9hcINvDy/mRsoOsXOIpqhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.82
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
 Received: from localhost (88-113-24-75.elisa-laajakaista.fi [88.113.24.75])
-	by fgw20.mail.saunalahti.fi (Halon) with ESMTP
-	id 1eef05fe-9f9d-11ef-9aff-005056bd6ce9;
-	Sun, 10 Nov 2024 21:51:07 +0200 (EET)
+	by fgw21.mail.saunalahti.fi (Halon) with ESMTP
+	id 5376b6f1-9f9d-11ef-8874-005056bdd08f;
+	Sun, 10 Nov 2024 21:52:33 +0200 (EET)
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Sun, 10 Nov 2024 21:51:04 +0200
+Date: Sun, 10 Nov 2024 21:52:32 +0200
 To: Aren <aren@peacevolution.org>
 Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
 	Jonathan Cameron <jic23@kernel.org>,
@@ -51,13 +51,13 @@ Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
 	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev, Dragan Simic <dsimic@manjaro.org>,
 	phone-devel@vger.kernel.org
-Subject: Re: [PATCH v4 2/6] iio: light: stk3310: handle all remove logic with
- devm callbacks
-Message-ID: <ZzEOqC9dAHCRX5a9@surfacebook.localdomain>
+Subject: Re: [PATCH v4 4/6] iio: light: stk3310: use dev_err_probe where
+ possible
+Message-ID: <ZzEPACoblmcQD9yu@surfacebook.localdomain>
 References: <20241102195037.3013934-3-aren@peacevolution.org>
- <20241102195037.3013934-7-aren@peacevolution.org>
- <ZyiGiK6bSd_d0VQ6@smile.fi.intel.com>
- <mlvzaskgxqjfu6yiib2u7m3pczsifsluc4mqnzy6w3xzxblvm6@xrxvvruzftn2>
+ <20241102195037.3013934-11-aren@peacevolution.org>
+ <ZyiIcDaANjxwtCz-@smile.fi.intel.com>
+ <m7x526sv5krgt4t2whn5ykyktoz5u7ihsxv3qa5yue3ucbk6lb@37spwsmlcylm>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,26 +66,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <mlvzaskgxqjfu6yiib2u7m3pczsifsluc4mqnzy6w3xzxblvm6@xrxvvruzftn2>
+In-Reply-To: <m7x526sv5krgt4t2whn5ykyktoz5u7ihsxv3qa5yue3ucbk6lb@37spwsmlcylm>
 
-Sun, Nov 10, 2024 at 01:38:39PM -0500, Aren kirjoitti:
-> On Mon, Nov 04, 2024 at 10:32:08AM +0200, Andy Shevchenko wrote:
-> > On Sat, Nov 02, 2024 at 03:50:37PM -0400, Aren Moynihan wrote:
+Sun, Nov 10, 2024 at 02:14:24PM -0500, Aren kirjoitti:
+> On Mon, Nov 04, 2024 at 10:40:16AM +0200, Andy Shevchenko wrote:
+> > On Sat, Nov 02, 2024 at 03:50:41PM -0400, Aren Moynihan wrote:
 
 ...
 
-> > > +	ret = devm_add_action_or_reset(&client->dev, stk3310_set_state_disable, data);
+> > >  #define STK3310_REGFIELD(name)						    \
+> > >  	do {								    \
+> > >  		data->reg_##name =					    \
+> > > -			devm_regmap_field_alloc(&client->dev, regmap,	    \
+> > > +			devm_regmap_field_alloc(dev, regmap,		    \
+> > >  				stk3310_reg_field_##name);		    \
+> > > -		if (IS_ERR(data->reg_##name)) {				    \
+> > > -			dev_err(&client->dev, "reg field alloc failed.\n"); \
+> > > -			return PTR_ERR(data->reg_##name);		    \
+> > > -		}							    \
+> > > +		if (IS_ERR(data->reg_##name))				    \
 > > 
-> > Why not simply 'dev' as in below call?
+> > > +			return dev_err_probe(dev,			    \
+> > > +				PTR_ERR(data->reg_##name),		    \
+> > 
+> > AFAICS these two can be put on one.
 > 
-> I was trying to avoid refactoring the entire function to replace
-> &client->dev with dev, I'll add a patch for that to the next revision.
+> This doesn't leave room for whitespace between the end of line and "\",
 
-I'm not talking about refactoring, I'm talking only about the lines that you
-have touched / added.
+Is it a problem?
 
-> > > +	if (ret)
-> > > +		return dev_err_probe(dev, ret, "failed to register cleanup function\n");
+> replacing "do { } while (0)" with "({ })" and deindenting could make
+> enough room to clean this up the formatting of this macro though.
+
+do {} while (0) is C standard, ({}) is not.
+
+> > > +				"reg field alloc failed.\n");		    \
+> > >  	} while (0)
 
 -- 
 With Best Regards,
