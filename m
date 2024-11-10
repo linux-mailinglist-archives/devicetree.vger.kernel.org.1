@@ -1,190 +1,130 @@
-Return-Path: <devicetree+bounces-120559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 287CB9C33C2
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 17:06:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 051F19C336D
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 16:50:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D45981F20C82
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 16:06:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 284551C20AD3
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 15:50:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7D3D5A7B8;
-	Sun, 10 Nov 2024 16:06:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7ADE61FF2;
+	Sun, 10 Nov 2024 15:50:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bn/FJD54"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m17248.xmail.ntesmail.com (mail-m17248.xmail.ntesmail.com [45.195.17.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DE2D1BC2A;
-	Sun, 10 Nov 2024 16:06:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.195.17.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04AEC22097;
+	Sun, 10 Nov 2024 15:50:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731254781; cv=none; b=qQmBIHKF7594KrE/upoQmyFkwL7bAEV2tpEjhFzF+n1Lhr7DUKYfKrlhJtnqY4MSVZPE2iRXwmsp2LAkYlU0luPMM1ND0oL/e4QWvR7P4rLea/g38zh/gn572HgGf7CrhNw/fHXtvl9oYXzCKAYRBrm4WBPe62SWrOdrLlUT6E4=
+	t=1731253817; cv=none; b=k8+bmU/P3tmc4q+FCYMLuiTpW0AzLqLRxAKUi64A2vL9Jm76+952CuPE9U0cX1iuaoe4W7w80YuzC5wE8l0Jc9OFDYRrebtmJPo2a9YrWbKfB8C8ZJ1/tC5STFK8madjsNtix/4fDeSAyZ2koZpIj06FGmvjtbhHtXaLnwQg6yA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731254781; c=relaxed/simple;
-	bh=VEiCcVBUQAXwHu1ffrHgeG5LsZdIgEmHmhV+woKGDz4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ADQiof4dycjY30TWPoJ2TTH6aUXTnTEeU/PK9LBH57CAKwXbNJRaS5bu/pq3zu8FqU7L44FywiigaWrMPxjvemGBB60mH12qmwBunPHWY5iTL4N10aKM+T5bj/6dK/hMNQ6OsEqVVYDMej0PD6Wn05keiZzFQJ3MGLQ0qyS6qP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.195.17.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c03:51e0::1])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 250d5e7c;
-	Sun, 10 Nov 2024 23:30:41 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: amadeus@jmu.edu.cn
-Cc: andersson@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/4] arm64: dts: qcom: ipq6018: move mp5496 regulator out of soc dtsi
-Date: Sun, 10 Nov 2024 23:30:36 +0800
-Message-Id: <20241110153036.3645169-2-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241110153036.3645169-1-amadeus@jmu.edu.cn>
-References: <20241110140019.3426181-1-amadeus@jmu.edu.cn>
- <20241110153036.3645169-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1731253817; c=relaxed/simple;
+	bh=X2WODjlo5k6M6C+3y9/0HbRt/kyKqfDqB/5oktD9bWo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=L5h2MtFxg8XMFtRYCplJghKpqxQPI+UucFIeOgOhTyIaveItokc6xyN7ViYYCH6hNi6czORGIslT0e/h4gmiKJjYy1BPGywg0DBk6lhT7X6wiRLSoC+uvBiLZ2QQKX454Uo9omyqR8OrAgfCcsb3ST72pgVUtGFCdZYtcCiMUwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bn/FJD54; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e28fc8affdaso569678276.1;
+        Sun, 10 Nov 2024 07:50:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731253814; x=1731858614; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=431engaI3ETj/ECuLKJ1/FXiWtPiKP8c1q4cS9zRAsI=;
+        b=Bn/FJD54yGvdxE0aOUQOyExaESiidTU2T3T+tPY01HtlXRor1yNzVKcOv5PHBlNHT/
+         Ba2LheaIw94DnDx33Hj2WTpdPvxfB8fYwCRG9OeEQYUUoRpSbrK6qrpei7hZjyELnKd4
+         d+dfEFzAnTQ4chi70T7fyo8ODpby00cPGLrYrTkpcFujlu+FDBIc1FJ0qWNvPMItFZbu
+         3HHAbckYF0bsUCPRp9wPcNdSHkDKclQCUubwmjrQGnQC3BYcBnI0KpbXnp0LmgxWqYCJ
+         Mk2rta+nGgjUYJnCN2vDc4h5SVzcmJqChP5svve/lAd/rf8lJSbB0JH4j2Qx21+AlAp1
+         Wf0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731253814; x=1731858614;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=431engaI3ETj/ECuLKJ1/FXiWtPiKP8c1q4cS9zRAsI=;
+        b=P4Qy40Oc7O7lKbhAHHD+oXjDhSCWHF+pNzKmDvkZ7sw1hafHWQwvZgWVB/Mh2hny3W
+         au9qxeSU/x8mWWHbx7Gl4ZVpwzL7pbLyMWhJUZLtXs4xn9g8A/iGOf2KB/Vxv8FLqqVU
+         K4JuaoAwsd5M2Clj+WVeb1yX9V8hL44xht+wBtHIPpg+c0cVRQpqGAUZLcJnn9IAM4u5
+         smJ5oWdVsJ8Qr01yWgFe3Ra4FJq1qyybUeEcqpL/IjmLBAHUEdA+KQFCFkwwiDG16VLO
+         xkBZhYgkWxrbo2Bg7fwjgslI+RJ/gdVvQln+00WqvNhxa4Vg/odCsAw6+wnAbH5vyB4i
+         uP1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU/76csbG2aKkR5iI7F1UZdntDx+Whxh0xWwhhPl6G09YFYGDjFK1U2Fhk9/Y73QIQzWiKSucuIB2AI@vger.kernel.org, AJvYcCU72T0JAirjqxjogtZ8ZCov7Mr/Y+X8fudtiuBNi/Cjc8bjiOXmoQbivoEcz8mCrENnkhb8enX3@vger.kernel.org, AJvYcCVE0ayCIciJVikmfMSyN0lKZmKU1hag7YXBww/tIQpC09qSb4r6RUuytWRzzDNBjCywG3sZ1liTOm/eSDCs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6P6tc4slKyL3X/p+tQjrDoNuR54PiY8J8YgPVqSJFJHK+Y0gu
+	Mrgq1jaMVNYnULW5XNdn73sYdYTtur/ly22tOCldn7Coy82VErEB95sKQEXf3k7Ncu2ziV2KIIj
+	xfZYDKCYmfJDhxEno9Sl4gh4I1+M=
+X-Google-Smtp-Source: AGHT+IHPN/wBuMSlYobvPfwyK0eBpeDQCeS36N5ParCeUsQxZMu7SQ7a+5vgzU74VvQQ+ZK1sH5FzhoeWhu1JvyCyy4=
+X-Received: by 2002:a05:690c:9b08:b0:630:ed11:e751 with SMTP id
+ 00721157ae682-6eaddd9f19fmr34550727b3.3.1731253813818; Sun, 10 Nov 2024
+ 07:50:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCQkoeVk8YTRhJThhLH0hOT1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtIQU5KHktBQUpZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
-	5VSktLVUpCS0tZBg++
-X-HM-Tid: 0a9316b2df5b03a2kunm250d5e7c
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Kzo6TAw5GTIaPC0DMwssAkgc
-	NgIKCQtVSlVKTEhKSU5JTU9JSU9NVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS0hBTkoeS0FBSllXWQgBWUFIT0lNNwY+
+References: <20241109015633.82638-1-Tristram.Ha@microchip.com> <20241109015633.82638-3-Tristram.Ha@microchip.com>
+In-Reply-To: <20241109015633.82638-3-Tristram.Ha@microchip.com>
+From: Vladimir Oltean <olteanv@gmail.com>
+Date: Sun, 10 Nov 2024 17:50:02 +0200
+Message-ID: <CA+h21hqWPHHqMQONY2bKZ2uA2pUzm2Rqwo7LTX+guj7CHo4skQ@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/2] net: dsa: microchip: Add SGMII port support
+ to KSZ9477 switch
+To: Tristram.Ha@microchip.com
+Cc: Woojung Huh <woojung.huh@microchip.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Marek Vasut <marex@denx.de>, 
+	UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Some IPQ60xx SoCs don't come with the mp5496 pmic chip. The mp5496
-pmic was never part of the IPQ60xx SoC, it's optional, so we moved
-it out of the soc dtsi.
+On Sat, 9 Nov 2024 at 03:56, <Tristram.Ha@microchip.com> wrote:
+> diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
+> index f73833e24622..8163342d778a 100644
+> --- a/drivers/net/dsa/microchip/ksz_common.c
+> +++ b/drivers/net/dsa/microchip/ksz_common.c
+> @@ -354,10 +354,30 @@ static void ksz9477_phylink_mac_link_up(struct phylink_config *config,
+>                                         int speed, int duplex, bool tx_pause,
+>                                         bool rx_pause);
+>
+> +static struct phylink_pcs *
+> +ksz_phylink_mac_select_pcs(struct phylink_config *config,
+> +                          phy_interface_t interface)
+> +{
+> +       struct dsa_port *dp = dsa_phylink_to_port(config);
+> +       struct ksz_device *dev = dp->ds->priv;
+> +       struct ksz_port *p = &dev->ports[dp->index];
+> +
+> +       if (!p->sgmii)
+> +               return ERR_PTR(-EOPNOTSUPP);
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts |  2 +-
- arch/arm64/boot/dts/qcom/ipq6018-mp5496.dtsi | 35 ++++++++++++++++++++
- arch/arm64/boot/dts/qcom/ipq6018.dtsi        | 14 --------
- 3 files changed, 36 insertions(+), 15 deletions(-)
- create mode 100644 arch/arm64/boot/dts/qcom/ipq6018-mp5496.dtsi
+Since commit 7530ea26c810 ("net: phylink: remove "using_mac_select_pcs""),
+returning ERR_PTR(-EOPNOTSUPP) here would actually be fatal. This error
+code no longer carries any special meaning.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
-index f5f4827c0e17..9c69d3027b43 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
-@@ -7,7 +7,7 @@
- 
- /dts-v1/;
- 
--#include "ipq6018.dtsi"
-+#include "ipq6018-mp5496.dtsi"
- 
- / {
- 	model = "Qualcomm Technologies, Inc. IPQ6018/AP-CP01-C1";
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018-mp5496.dtsi b/arch/arm64/boot/dts/qcom/ipq6018-mp5496.dtsi
-new file mode 100644
-index 000000000000..fe2152df69f4
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/ipq6018-mp5496.dtsi
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * ipq6018-mp5496.dtsi describes common properties (e.g. regulators) that
-+ * apply to most devices that make use of the IPQ6018 SoC and MP5496 PMIC.
-+ */
-+
-+#include "ipq6018.dtsi"
-+
-+&cpu0 {
-+	cpu-supply = <&ipq6018_s2>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&ipq6018_s2>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&ipq6018_s2>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&ipq6018_s2>;
-+};
-+
-+&rpm_requests {
-+	regulators {
-+		compatible = "qcom,rpm-mp5496-regulators";
-+
-+		ipq6018_s2: s2 {
-+			regulator-min-microvolt = <725000>;
-+			regulator-max-microvolt = <1062500>;
-+			regulator-always-on;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 7514919132b6..a02aa641cb90 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -43,7 +43,6 @@ cpu0: cpu@0 {
- 			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
- 			clock-names = "cpu";
- 			operating-points-v2 = <&cpu_opp_table>;
--			cpu-supply = <&ipq6018_s2>;
- 			#cooling-cells = <2>;
- 		};
- 
-@@ -56,7 +55,6 @@ cpu1: cpu@1 {
- 			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
- 			clock-names = "cpu";
- 			operating-points-v2 = <&cpu_opp_table>;
--			cpu-supply = <&ipq6018_s2>;
- 			#cooling-cells = <2>;
- 		};
- 
-@@ -69,7 +67,6 @@ cpu2: cpu@2 {
- 			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
- 			clock-names = "cpu";
- 			operating-points-v2 = <&cpu_opp_table>;
--			cpu-supply = <&ipq6018_s2>;
- 			#cooling-cells = <2>;
- 		};
- 
-@@ -82,7 +79,6 @@ cpu3: cpu@3 {
- 			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
- 			clock-names = "cpu";
- 			operating-points-v2 = <&cpu_opp_table>;
--			cpu-supply = <&ipq6018_s2>;
- 			#cooling-cells = <2>;
- 		};
- 
-@@ -184,16 +180,6 @@ glink-edge {
- 			rpm_requests: rpm-requests {
- 				compatible = "qcom,rpm-ipq6018", "qcom,glink-smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
--
--				regulators {
--					compatible = "qcom,rpm-mp5496-regulators";
--
--					ipq6018_s2: s2 {
--						regulator-min-microvolt = <725000>;
--						regulator-max-microvolt = <1062500>;
--						regulator-always-on;
--					};
--				};
- 			};
- 		};
- 	};
--- 
-2.25.1
+It would be a good idea to Cc Russell King for phylink changes.
 
+> +       switch (interface) {
+> +       case PHY_INTERFACE_MODE_SGMII:
+> +       case PHY_INTERFACE_MODE_1000BASEX:
+> +               return &p->pcs_priv->pcs;
+> +       default:
+> +               return NULL;
+> +       }
+> +}
+> +
+>  static const struct phylink_mac_ops ksz9477_phylink_mac_ops = {
+>         .mac_config     = ksz_phylink_mac_config,
+>         .mac_link_down  = ksz_phylink_mac_link_down,
+>         .mac_link_up    = ksz9477_phylink_mac_link_up,
+> +       .mac_select_pcs = ksz_phylink_mac_select_pcs,
+>  };
 
