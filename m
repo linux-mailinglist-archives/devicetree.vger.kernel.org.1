@@ -1,51 +1,61 @@
-Return-Path: <devicetree+bounces-120561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0CB49C33F7
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 18:26:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA8529C340F
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 18:42:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 517971F21165
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 17:26:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9AA11B21379
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 17:42:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1BA91386BF;
-	Sun, 10 Nov 2024 17:26:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7A8D82D91;
+	Sun, 10 Nov 2024 17:42:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SUTMBr+6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N+hRPrHU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3F4D136347;
-	Sun, 10 Nov 2024 17:26:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A3C11CA0;
+	Sun, 10 Nov 2024 17:42:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731259562; cv=none; b=fzQ8cXLxS0mpu9/AvaqELPLslKCmXri1UjLNdkoC0V2w/SO0IbEQDgHZvR65wCrnCtGC953jsQXPGkjpYELrLhapSOIMgdPC7IpN/q3geF2v/jD8bsUeQYpi0h9ptyBcHebS4uCiQDk11wknULHKPp65v7IcpOJbCxigiK4cNQE=
+	t=1731260551; cv=none; b=dJiO+5VwOW3s0T2AdK+1BWwmgfjxKEEGMJpSTNCbDIcTkq/R/ApIyjw1GNZ3Ak0pCJErzECPdq/2hY+GBebj5GVP9ef/4++db7P1PVOzp+zSxIQykWQ9ZDyRYKo+LU7ge2OofWVoWgTql5JdkXFFLvemCdPnn5IKi4FgGeWAf0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731259562; c=relaxed/simple;
-	bh=+bOJYNr8rgNyxe2oByOD2odiN3NGYNjQl2flqFtSe9M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=GPb+SpmpVsMHA9YYkt06IeWxWkeIbVSNFd0a3B5mQ3V2a2VVr98MAQI5EOo5ZGHgaHrRQJtoOm0AEOjdYuuhUgvrr0BaujCLt9L+860la1tcby8ouV4Vn0u6CfElzAqhexrQ2GJT4euf61fOYPEOBk3+gTT94366Usf+f/vkV0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SUTMBr+6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 27E4EC4CECD;
-	Sun, 10 Nov 2024 17:26:02 +0000 (UTC)
+	s=arc-20240116; t=1731260551; c=relaxed/simple;
+	bh=a+Yzz8UCbtk8eEmeOw1rIDJBMKGTpkx1OkymYSdKWaU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=B+EyurKH30wxrYlerwValtmW11q2t8lgUuxjIPtd2DyDyzb4Q1uSbkfVCy1EX9mFusD8JYBEeagBZOXsZHtKhA+UuI3gUC1cziXr9XxGXmC7G42MXBTnHN9cb/R5oPZzxcHj+TiTi0MowJH2KmQU0TE8PNvTj4ndjEJGNb5Yp54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N+hRPrHU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94537C4CECD;
+	Sun, 10 Nov 2024 17:42:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731259562;
-	bh=+bOJYNr8rgNyxe2oByOD2odiN3NGYNjQl2flqFtSe9M=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=SUTMBr+6WQPnrav6WlSQkExIq6EfuxL46u6Uo92E9TTH3tFXKPwd2BFs9WCDFggQG
-	 9VyN5ThaqTipy7fXoCPxSfczfMjjUYHlrCF8QlBq0LNP1GMRfaWh6iI4NmhCLpopcL
-	 p0Q6Nz4R1BwdirhJ4jpjpn7sctHP8dorCqglxunQbToxozdfI6FiCvAMprINXZjm+5
-	 I249ol/84kKuqr2mdi2Hbr4JM2RMvplCWC7+j/AShwiRGR3Yq4mL9UOcJ/VlfgGmsn
-	 j3JW9kP5+HkzTU/zqi5PD5AfKAu4+POH68HQv4bAky9zXOB6RiKPN9/Ws3IkkV+Aiq
-	 PTIe1GMQbpR8g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1E5ABD12D4C;
-	Sun, 10 Nov 2024 17:26:02 +0000 (UTC)
-From: Maud Spierings via B4 Relay <devnull+maud_spierings.hotmail.com@kernel.org>
-Date: Sun, 10 Nov 2024 18:25:57 +0100
-Subject: [PATCH v2] arm64: dts: qcom: x1e80100-vivobook-s15: Enable the gpu
+	s=k20201202; t=1731260551;
+	bh=a+Yzz8UCbtk8eEmeOw1rIDJBMKGTpkx1OkymYSdKWaU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=N+hRPrHU6FTYzK3xoH1cJTD5iwq+4HJEriMt0yR7t4XqtOi+IbxqB1n5IcCeBAigM
+	 anjFpMbEyuLS52NnwWnW5muHl9bIQW8hGjyS0YFqnNXbiO9Qm3GVfLpY/F7Jh+JF6c
+	 syeQL/wmJWAyn+EmFSR2jyGsF1dpZ3jrP3ihPT0fRb6iHgp7zIxboqbWvDohvRzc5Z
+	 PaOvO4evOUR9B8rz5PpU1PISXia5GcdUEKCm7qblWfp7xe+bgDpxriNN9VMsnbLI6l
+	 B9D13Fhw5ygIk4Gb92u698j47P/8XXeuyAvQ1UtR/c0YvVhHJGAbb+DZPyNsIRRTFm
+	 AMJpIQDP8cdXA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maud Spierings <maud_spierings@hotmail.com>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100-vivobook-s15: Enable the gpu
+Date: Sun, 10 Nov 2024 11:42:27 -0600
+Message-ID: <173126054421.115040.135821795025229401.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241110-qcom-asus-gpu-v2-1-5f774b17ced8@hotmail.com>
+References: <20241110-qcom-asus-gpu-v2-1-5f774b17ced8@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,71 +63,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241110-qcom-asus-gpu-v2-1-5f774b17ced8@hotmail.com>
-X-B4-Tracking: v=1; b=H4sIAKTsMGcC/3WMQQ6DIBREr2L+ujSAGmhXvUfjApHKT6pYvpI2h
- ruXum9m9SYzbwdyER3BtdohuoSEYS4gTxVYb+bRMRwKg+SyEUJw9rJhYoY2YuOyMa24VVbKS91
- aKJ8luge+D9+9K+yR1hA/hz6JX/vPlAQrqQfV81bpptc3H9bJ4PNcZtDlnL9+my8XrAAAAA==
-X-Change-ID: 20241110-qcom-asus-gpu-870c7c22935c
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Maud Spierings <maud_spierings@hotmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1731259560; l=1174;
- i=maud_spierings@hotmail.com; s=20241110; h=from:subject:message-id;
- bh=GQznThV+46C0yZ1o8eInWLmC6i4Kl8cR+JfdVp1PeJk=;
- b=yjtC5wcK9nIcFq++TbCIQjTGbE9pz/7vZ3NUI48TZbB6BvMKVvbY/EKQE0QZ4KDWKE3lT7SED
- akyaNSXz3mSC9SI7Wm8toLDsSBGhtjBB+pI0b3u/io/FmRt2M3EgKdo
-X-Developer-Key: i=maud_spierings@hotmail.com; a=ed25519;
- pk=CeFKVnZvRfX2QjB1DpdiAe2N+MEjwLEB9Yhx/OAcxRc=
-X-Endpoint-Received: by B4 Relay for maud_spierings@hotmail.com/20241110
- with auth_id=273
-X-Original-From: Maud Spierings <maud_spierings@hotmail.com>
-Reply-To: maud_spierings@hotmail.com
+Content-Transfer-Encoding: 8bit
 
-From: Maud Spierings <maud_spierings@hotmail.com>
 
-Enable the gpu on the snapdragon powered asus vivobook s15
+On Sun, 10 Nov 2024 18:25:57 +0100, Maud Spierings wrote:
+> Enable the gpu on the snapdragon powered asus vivobook s15
+> 
+> 
 
-Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
----
-Changes in v2:
-- Apply comments made by Bjorn Anderson
-- Link to v1: https://lore.kernel.org/r/20241110-qcom-asus-gpu-v1-1-13d7b05784b8@hotmail.com
----
- arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Applied, thanks!
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-index 8515c254e15868a5d7f378b0dc0bf8f339fc7b19..f25991b887de3fca0092c5f81c881c5d8bd71aac 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-@@ -328,6 +328,14 @@ vreg_l3j_0p8: ldo3 {
- 	};
- };
- 
-+&gpu {
-+	status = "okay";
-+
-+	zap-shader {
-+		firmware-name = "qcom/x1e80100/ASUSTeK/vivobook-s15/qcdxkmsuc8380.mbn";
-+	};
-+};
-+
- &i2c0 {
- 	clock-frequency = <400000>;
- 	status = "okay";
-
----
-base-commit: 929beafbe7acce3267c06115e13e03ff6e50548a
-change-id: 20241110-qcom-asus-gpu-870c7c22935c
+[1/1] arm64: dts: qcom: x1e80100-vivobook-s15: Enable the gpu
+      commit: 798515297c19d2b5b006049a3e75f57322ffe9d9
 
 Best regards,
 -- 
-Maud Spierings <maud_spierings@hotmail.com>
-
-
+Bjorn Andersson <andersson@kernel.org>
 
