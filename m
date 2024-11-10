@@ -1,163 +1,138 @@
-Return-Path: <devicetree+bounces-120580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEFFE9C34BF
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 22:16:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78AE69C34C9
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 22:34:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 675E01F2110D
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 21:16:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 398E6281641
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 21:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73C1C14F9E2;
-	Sun, 10 Nov 2024 21:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C0EF156880;
+	Sun, 10 Nov 2024 21:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="NnUPrlCT"
+	dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b="f9tVVIwx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from a.peacevolution.org (a.peacevolution.org [206.189.193.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38A5061FE9;
-	Sun, 10 Nov 2024 21:16:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC89418E1F;
+	Sun, 10 Nov 2024 21:34:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.193.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731273410; cv=none; b=T1a4r3W3cI0U4fpedJ3OHPi3S8lx4XrRSbb3a3CF4qw4Ywv8qytRn3wlQ3ouyWwwxmXNXKVM1MK2kqa0aY6jgu2lZaKEnohoIOJKN4MzPSgzRhJiiopGHWxsmVc2tljaAfVjJjtcX2qgg/ZxvSQCbA0qPm5FiL69EtIYfq0yKrw=
+	t=1731274477; cv=none; b=L9eK90h+IuBdPcMXEytqQ5xodqMlR+oxWb4RMIzWdncoiSvWA3p2i9ce1CmPIdTUrHTiWGgtviHN6EDMjb1AC2zm84YNrkBiwOFoyaKso6dKsKx/QcZS2+aaGp6mLV9I9w3n4a90XHUZcR054U3eZOybii+6CnvpntTdIU+xqpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731273410; c=relaxed/simple;
-	bh=SOb6+PCqPezk//gqKgeQow+owfg+gFpAZFc8g+4YUd4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=N4oJ+Z2Zo5kvIT270fuK0x37MpFXVNmqS3a6kcntQganAdmPXt2UTYKB8JQQVtv/qKQCktKnXL4dqEWW4Au0hCfLHz9lvAvFnM7wr5sEkmKuHqc4Ft9qvxGK2+U6n7Pd1qpxMt08mBdF5Na10FcAvg6K+pQK1EKl48pmYOTonds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=NnUPrlCT; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=+rZ6R6+emkG1vIh+xndKO9B1+qYVh3QHCutdQutXlKE=; b=NnUPrlCTnmzmH/8JFVsLNY/gVt
-	Q+NZJrc6k+eaANoAusGXscEaxYD0IvNNWFYn46mTOkdwv9jPAoIVs9Db1NYV2k4KhUcrSpT5w4Mv7
-	/QwB+FzrhW7awQ8yFqx0SaNH4QOZNjNqMeuDvqjhL/9lp0NbNLrIqn+HfFruoQOvq0Yxm4F4e7+8F
-	sKRnQWeE50imeZcub+IfMd2f0sS9o1bJIWAaAWjlXRMVpsWwB+D6Io8pcS07uq9+0mmbJ6o8srZrr
-	BqGnPE7YXZ/GywRajtSpzxgMUr3vfgjWe0WRI5laYIagGllkyELSBO1/WgLIZQTMCXmjoFEyRop20
-	Db2Xlsig==;
-Received: from i53875b28.versanet.de ([83.135.91.40] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tAFIY-0006tu-Sn; Sun, 10 Nov 2024 22:16:42 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, stable@vger.kernel.org
-Subject:
- Re: [PATCH] arm64: dts: rockchip: Fix vdd_gpu voltage constraints on
- PinePhone Pro
-Date: Sun, 10 Nov 2024 22:16:42 +0100
-Message-ID: <865640012.0ifERbkFSE@diego>
-In-Reply-To: <fb3700f2d67c7f062c66cb8eb0f59b17@manjaro.org>
-References:
- <0718feb8e95344a0b615f61e6d909f6e105e3bf9.1731264205.git.dsimic@manjaro.org>
- <4386271.ejJDZkT8p0@diego> <fb3700f2d67c7f062c66cb8eb0f59b17@manjaro.org>
+	s=arc-20240116; t=1731274477; c=relaxed/simple;
+	bh=OgL/qoT3LYnj9w1Et57aGyhc6u3/rI4DxO7jGiTe47I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=abAtHU9d7n64VNQhEwnCymlieQ78ma3fNSD/rU59LvUAjqdRjOLRQR18jeRpUvrHamwcw+2HkZ5lAiaXB9eL2XSEZJ2yREBm4G/6NY7XD7KbBba+HvxdzJ0dTrT9IJVuL5gsKZIHGGvS1/pvYYybQ8R7OXR6seb+PNLS+Q/vwx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org; spf=pass smtp.mailfrom=peacevolution.org; dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b=f9tVVIwx; arc=none smtp.client-ip=206.189.193.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=peacevolution.org
+Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
+	by a.peacevolution.org (Postfix) with ESMTPA id 2763C4C949;
+	Sun, 10 Nov 2024 21:34:33 +0000 (UTC)
+Date: Sun, 10 Nov 2024 16:34:30 -0500
+From: Aren <aren@peacevolution.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Kaustabh Chakraborty <kauschluss@disroot.org>, =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>, 
+	Ondrej Jirman <megi@xff.cz>, 
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, Dragan Simic <dsimic@manjaro.org>, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v4 4/6] iio: light: stk3310: use dev_err_probe where
+ possible
+Message-ID: <xubjmxig4luag27ifnmqmv3x3bvzhwczwvw34kw6tssaa2d24t@ysnqh5e3g7sz>
+References: <20241102195037.3013934-3-aren@peacevolution.org>
+ <20241102195037.3013934-11-aren@peacevolution.org>
+ <ZyiIcDaANjxwtCz-@smile.fi.intel.com>
+ <m7x526sv5krgt4t2whn5ykyktoz5u7ihsxv3qa5yue3ucbk6lb@37spwsmlcylm>
+ <ZzEPACoblmcQD9yu@surfacebook.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZzEPACoblmcQD9yu@surfacebook.localdomain>
+X-Spamd-Bar: /
+Authentication-Results: auth=pass smtp.auth=aren@peacevolution.org smtp.mailfrom=aren@peacevolution.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=peacevolution.org;
+	s=dkim; t=1731274474;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:references;
+	bh=oZcPhgVogTXytMRM2X3xlfPRj/xPsn3yw0hTKHL8ttU=;
+	b=f9tVVIwxnKGQLg6bmCXySmWScp8LSpvZQfexKo1/aOdBOYhvxAdyTpFbVZUj3C2ce1hshi
+	iixMbVEkA1qUwuAwFnlTEC1qAYNUMd6D5MeRodWpF/VCKgPS9VXM1nAPOtNjlKcSsYiodK
+	L6nJMhaEPdkFvEp7pHwo/J+aFEuiEbQ=
 
-Am Sonntag, 10. November 2024, 21:47:15 CET schrieb Dragan Simic:
-> Hello Heiko,
->=20
-> On 2024-11-10 21:08, Heiko St=FCbner wrote:
-> > Am Sonntag, 10. November 2024, 19:44:31 CET schrieb Dragan Simic:
-> >> The regulator-{min,max}-microvolt values for the vdd_gpu regulator in=
-=20
-> >> the
-> >> PinePhone Pro device dts file are too restrictive, which prevents the=
-=20
-> >> highest
-> >> GPU OPP from being used, slowing the GPU down unnecessarily.  Let's=20
-> >> fix that
-> >> by making the regulator-{min,max}-microvolt values less strict, using=
-=20
-> >> the
-> >> voltage range that the Silergy SYR838 chip used for the vdd_gpu=20
-> >> regulator is
-> >> actually capable of producing. [1][2]
-> >>=20
-> >> This also eliminates the following error messages from the kernel log:
-> >>=20
-> >>   core: _opp_supported_by_regulators: OPP minuV: 1100000 maxuV:=20
-> >> 1150000, not supported by regulator
-> >>   panfrost ff9a0000.gpu: _opp_add: OPP not supported by regulators=20
-> >> (800000000)
-> >>=20
-> >> These changes to the regulator-{min,max}-microvolt values make the=20
-> >> PinePhone
-> >> Pro device dts consistent with the dts files for other Rockchip=20
-> >> RK3399-based
-> >> boards and devices.  It's possible to be more strict here, by=20
-> >> specifying the
-> >> regulator-{min,max}-microvolt values that don't go outside of what the=
-=20
-> >> GPU
-> >> actually may use, as the consumer of the vdd_gpu regulator, but those=
-=20
-> >> changes
-> >> are left for a later directory-wide regulator cleanup.
-> >=20
-> > With the Pinephone Pro using some sort of special-rk3399, how much of
-> > "the soc variant cannot use the highest gpu opp" is in there, and just=
-=20
-> > the
-> > original implementation is wrong?
->=20
-> Good question, I already asked it myself.  I'm unaware of any kind of
-> GPU-OPP-related restrictions when it comes to the PinePhone-Pro-specific
-> RK3399S.  Furthermore, "the word on the street" is that the RK3399S can
-> work perfectly fine even at the couple of "full-fat" RK3399 CPU OPPs
-> that are not defined for the RK3399S, and the only result would be the
-> expected higher power consumption and a bit more heat generated.
+On Sun, Nov 10, 2024 at 09:52:32PM +0200, Andy Shevchenko wrote:
+> Sun, Nov 10, 2024 at 02:14:24PM -0500, Aren kirjoitti:
+> > On Mon, Nov 04, 2024 at 10:40:16AM +0200, Andy Shevchenko wrote:
+> > > On Sat, Nov 02, 2024 at 03:50:41PM -0400, Aren Moynihan wrote:
+> 
+> ...
+> 
+> > > >  #define STK3310_REGFIELD(name)						    \
+> > > >  	do {								    \
+> > > >  		data->reg_##name =					    \
+> > > > -			devm_regmap_field_alloc(&client->dev, regmap,	    \
+> > > > +			devm_regmap_field_alloc(dev, regmap,		    \
+> > > >  				stk3310_reg_field_##name);		    \
+> > > > -		if (IS_ERR(data->reg_##name)) {				    \
+> > > > -			dev_err(&client->dev, "reg field alloc failed.\n"); \
+> > > > -			return PTR_ERR(data->reg_##name);		    \
+> > > > -		}							    \
+> > > > +		if (IS_ERR(data->reg_##name))				    \
+> > > 
+> > > > +			return dev_err_probe(dev,			    \
+> > > > +				PTR_ERR(data->reg_##name),		    \
+> > > 
+> > > AFAICS these two can be put on one.
+> > 
+> > This doesn't leave room for whitespace between the end of line and "\",
+> 
+> Is it a problem?
 
-In the past we already had people submit higher cpu OPPs with the
-reasoning "the cpu runs fine with it", but which where outside of the
-officially specified frequencies and were essentially overclocking the
-CPU cores and thus possibly reducing its lifetime.
+It feels a bit camped and not as readable to me:
 
-So "it runs fine" is a bit of thin argument ;-) . I guess for the gpu it
-might not matter too much, compared to the cpu cores, but I still like
-the safe sides - especially for the mainline sources.
+#define STK3310_REGFIELD(name)						    \
+	do {								    \
+		data->reg_##name =					    \
+			devm_regmap_field_alloc(dev, regmap,		    \
+				stk3310_reg_field_##name);		    \
+		if (IS_ERR(data->reg_##name))				    \
+			return dev_err_probe(dev, PTR_ERR(data->reg_##name),\
+					     "reg field alloc failed.\n");  \
+	} while (0)
 
-I guess we'll wait for people to test the change and go from there ;-) .
+Removing a level of indentation makes it much better
 
+#define STK3310_REGFIELD(name) ({						\
+	data->reg_##name = devm_regmap_field_alloc(dev, regmap,			\
+						   stk3310_reg_field_##name);   \
+	if (IS_ERR(data->reg_##name))						\
+		return dev_err_probe(dev, PTR_ERR(data->reg_##name),		\
+				     "reg field alloc failed\n");		\
+})
 
-> This just reaffirms that no known GPU OPP restrictions exist.  Even
-> if they existed, enforcing them _primarily_ through the constraints of
-> the associated voltage regulator would be the wrong approach.  Instead,
-> the restrictions should be defined primarily through the per-SoC-variant
-> GPU OPPs, which are, to my best knowledge, not known to be existing for
-> the RK3399S SoC variant.
+> > replacing "do { } while (0)" with "({ })" and deindenting could make
+> > enough room to clean this up the formatting of this macro though.
+> 
+> do {} while (0) is C standard, ({}) is not.
 
-Yes, that is what I was getting at, if that is a limiting implementation
-it is of course not done correctly, but I'd like to make sure.
+({ }) is used throughout the kernel, and is documented as such[1]. I
+don't see a reason to avoid it, if it helps readability.
 
-Of course Pine's development model doesn't help at all in that regard.
-There isn't even a "vendor" kernel source it seems. [0]
+1: the "GNU Extensions" section of Documentation/kernel-hacking/hacking.rst
 
-
-Heiko
-
-
-[0] https://wiki.pine64.org/wiki/PinePhone_Pro_Development#Kernel
-states "There's no canonical location for Pinephone Pro Linux kernel develo=
-pment,"
-
-
-
+ - Aren
 
