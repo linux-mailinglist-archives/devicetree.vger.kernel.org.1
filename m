@@ -1,300 +1,138 @@
-Return-Path: <devicetree+bounces-120536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA6589C318F
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 11:21:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2436E9C31C0
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 12:16:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DC7E1C208E5
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 10:21:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A78991F20D49
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 11:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78AA314B075;
-	Sun, 10 Nov 2024 10:21:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A4701531DB;
+	Sun, 10 Nov 2024 11:16:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="o07JoO8R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TfrZefiI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70ECA2563;
-	Sun, 10 Nov 2024 10:21:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F176013D600;
+	Sun, 10 Nov 2024 11:16:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731234067; cv=none; b=heHWLMItXPFvjybcaJ+/WId/Rfooy7j4IxL9bs/J3vi1a/UkbEDNNKH2JIn+yanfp/ASt5MS794xuLGTjFCPsclkwVUqEcwi5BTVZim0uMW5yBEv1vPvvQWEQJ3sQK2uMaiUvLXE9Ml30CbkdXF/+34zF1gZBlC5DjGcUsyjW9c=
+	t=1731237404; cv=none; b=pJoJv+c8KJFwDfnY9oWneGMv3qLkzEE232PYPlj4uBefhJx/MZVkzTGETsgHKgv/mRQvWkOD+A8e2SNOEd4Tggpy3I7ATd7Ud4VzgAbJlhbCiQMWoelcyoTJ+kaC4bsuc1RRPxQRG4aINJ2/XicqVvymlRksxVZyde91/TTFa2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731234067; c=relaxed/simple;
-	bh=b0orM1whYBf/oNXTiwqSx6Kvzd/1fyGJiGI31iywyCo=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:
-	 In-Reply-To:References:Date; b=jjub76i9VA3BWEnuehOD2/Tl1VE/S+5zBRAE/f5MOVIVMjmgwiV1NoOB/DcEvpYeae+8q8y6Fq2EfY1Hbel2BtPwNPTf99WERWMSbFihxwZMdErHpQlOMJk0EvBSEzq1nOSB4thK/8JhKJJCqHgD4DZ73mWqGgOJxmgScUSzVZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=o07JoO8R; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1731234046; x=1731838846; i=frank-w@public-files.de;
-	bh=seuUOA8EujvZMml8ixlG9ZE12iNZkVTraJ0yEC7Fi9s=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Reply-To:
-	 Subject:Content-Type:In-Reply-To:References:Date:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=o07JoO8R5tmZsHEKrzbrtKciCUIbKdWYyerlGFRofRIYF4gDNZYKgqpK2h36SAi1
-	 uWaDhWMZlA6X4JALFt7E45zZvDHt2S+Ps1B0bGJMK5umQLJC6D7/mp8HBnLokQ3Fb
-	 28BSvlESLym7FVYx2HG9kGSdqOkUn/GR3C0lRx+mENVRtRtCZ6IDSpFn1B46+mnAp
-	 h+jXVevoMXkP51cjZ3XzUI5RzSwhCeh2on3/lsnq15xiVBVSmLQ7fnZcvWUzSjIi7
-	 i76TeR9gHjqSroKKaC9yWEd2CRYBHe3DUecHu0KIEYjxUbolZ4EIFcgEfPivHQpH7
-	 qXK8sEE1xBrmUnKb5g==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.152.71] ([217.61.152.71]) by
- trinity-msg-rest-gmx-gmx-live-c75c5fb4b-6zcvs (via HTTP); Sun, 10 Nov 2024
- 10:20:46 +0000
+	s=arc-20240116; t=1731237404; c=relaxed/simple;
+	bh=OZq9vlY9kg8nMFQ9iEn/BhUcSlMehFtK5IV3YHw9HC8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=a4xSEAntPQn/Ss2He0bHQ+V8IgDUtzzaNX+YY2yozVzpaXeEmCmJHTwvNBPrUKZvDr5Jj29R1oxsZYPrUu0xYZQMIRvBni9/fKWgPfMKRqX78E+sL+CEIK9NqAFEeXQZ/eAHDVpp3S7oHCjsr0j2rcYkfDrx1nBopmGiiEHnuQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TfrZefiI; arc=none smtp.client-ip=209.85.216.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2e2bd0e2c4fso2908566a91.3;
+        Sun, 10 Nov 2024 03:16:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731237402; x=1731842202; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QWLoy1wYXdVgZ3Zzo/mgTNAnxY3fZNEXmyBhaGh3Xds=;
+        b=TfrZefiIi93OLr6+GdwWL27ufVOSjanvpwlvUHt54VRTme63C5cAfMryP73beXumHX
+         UPUFTj3qeQKgg9QZgHi/ssmmMBWLJP67BbcHy6qIjHGPMxKcQwiZuViye9vRRUQi4IDj
+         fHACmMOLu5DJSO0hXFbSBAakaj9uCiPuBRkvWCM0oMW5DwzQyYqOgxQM1EAjrZDWZVyu
+         J54XnqTcWUh1uc56s1NYISH6wIscWX8OlomAsOpmj4RLfVg+ggOvlW2uh0rZrfBWUbUT
+         xBBQxKT7Pf9ZciAHyp/IJkfXlTIE9pHyVxYvVpA9O2peCHIWEoMKRClRhrsl5rL6kOWY
+         k8OA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731237402; x=1731842202;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QWLoy1wYXdVgZ3Zzo/mgTNAnxY3fZNEXmyBhaGh3Xds=;
+        b=OSpGUtRrF9wFBNNNOFTHs2FXXSGkE9Q4PY97Pg4bhPwkqF+5autCVZTfeUlNHEhCgb
+         CItc66BNL52G2NKJFzrbKtHqUDvSUcUmukj/u+Bhk5epnChMpXLdsY844743x6IKbi7S
+         13Fihi9nR7w+kJu6U+xnjiezNtjFKHoPnAfdNdZsvQLKLDSi6yLNdxrpC7KxaZldrUOX
+         p0GX/jknhHW3R8Rf6BnahvbGb3QyJkDqkAIfBs8gWCh2fFx6F0i3UpmPyNL+eL3zuJAt
+         ESN/qbG6I4DrMHeDNSOkyr9/FfN5KdLKnzpMA+NyE9fJES5JiMFxHEt82Te2EO7vpIAD
+         3/cA==
+X-Forwarded-Encrypted: i=1; AJvYcCWZrRrhujFlNAplAKjlLfz4dHcZGll/rsmt57zWXo2vYOCzQqKXTykCrXKHv2tyg+iR2GOjC5c2jKaC@vger.kernel.org, AJvYcCXMDcpHjIdRoeYsbegEhN5Kk34oAHuEVGLd6vNFNp9VGZ8D/YBr3XNX6RDP6bvSaWVneUGahOlzJb7V@vger.kernel.org, AJvYcCXmoeYfQhTxjPuiCVSbdoIC5rtmdW4y4gtljRBbxaSCZj03nVTjcK6CFKxp6oKhfjzWLI+j0XxPGAEdOaGT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLeq69xN4HeWH2nTvDe5LKgai3VcKazklwcvwIqzWq1K05OKW9
+	MGQ1PFCY3OrF3qtYel1vCBc3Cudc9nre/hZr6JDaCPsq4je8EY3bZbGiXab7L2qjr7PdqugH8oR
+	hXBXAm5MEDYI2iwck3dCHiHnm7g==
+X-Google-Smtp-Source: AGHT+IGasTpM/6LzeFT5yJG2TU6X3TKSkJ385a+2Pbzh0IgAuKC/AoNByQH4zEUJkFnY3DZ/d/AESg6jv7LXg1ObLTE=
+X-Received: by 2002:a17:90b:4a91:b0:2e2:a3aa:6509 with SMTP id
+ 98e67ed59e1d1-2e9b1697bf5mr11996579a91.14.1731237402258; Sun, 10 Nov 2024
+ 03:16:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-d08557e5-9d2e-45e0-b9e2-45864ef192ff-1731234046657@trinity-msg-rest-gmx-gmx-live-c75c5fb4b-6zcvs>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: frank-w@public-files.de, andrew@lunn.ch, linux@fw-web.de
-Cc: dlemoal@kernel.org, cassel@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, gregory.clement@bootlin.com,
- sebastian.hesselbarth@gmail.com, linux@armlinux.org.uk,
- hdegoede@redhat.com, axboe@kernel.dk, linux-ide@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Reply-To: frank-w@public-files.de
-Subject: Aw: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditional
- failed
-Content-Type: text/plain; charset=UTF-8
-In-Reply-To: <9B1A5D20-3DE5-40C1-8B2D-B1C4F53FA5F4@public-files.de>
-Importance: normal
-References: <20241109094623.37518-1-linux@fw-web.de>
- <20241109094623.37518-2-linux@fw-web.de>
- <e534c723-6d65-433f-8ab5-1c0d424d7367@lunn.ch>
- <9B1A5D20-3DE5-40C1-8B2D-B1C4F53FA5F4@public-files.de>
-Date: Sun, 10 Nov 2024 10:20:46 +0000
-Sensitivity: Normal
-X-Priority: 3
-X-UI-CLIENT-META-MAIL-DROP: W10=
-X-Provags-ID: V03:K1:ofniCum0AvYQ8ubV9b8nMhto0JeMMH1eGUsoVeFPoZXM7JMo/IMCVLU/0UtOCudn0Sl6T
- lsA6vSDdnRuB8tHW5xXutUEojj2mEKzSGe1oOBsfEGcX35ZC4B1qzSwWj77o0XThBHPb/i5KaaAz
- 8KaLWtDlnWADBL4QhMTpErH8Y03Sy3lhFVW6+vpiF8GlFcR3LUoeqLbmGZiJEDdce5VXNLhHC2n6
- nLaDm8p9vslys/BZSR5h69U+/T7HNd06NutJSf6VjekHYeCspYrbRST/I2qqg4isQvP45jehgWZe
- xFr/7y1ebsDTX3Q/IFkBFBnzs6AHSpmNmZuNU0FB1GIxdk3FzDpKmzRxJgxfFKkHYE=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:NFFR1Mehv0c=;qGX+JdGSm20nkSCpeFlKUqK3WB3
- 6e2t7vSlIIRWpRZaRCnKVC//DFOhao2S8W9dKr9nNaZOVq6bhXQ48iqIQwC+KZYOYqhqIX9hg
- 8bAkN4QjTvS+5glJ9gSNnXfKu9l0IWz743a+ipNvOtegdPPzh7LZoDDNoC2H/hOb64uQ/5XuU
- OnmSBuZLBc/a3PWVUILfZoX/4nStjNU4gdACkJURSv7c05rANOAgM2ZKqLt/BD8Y/vYxDKIvR
- HKQ2/ZYnClafyyzsJ0bovfb6V+t5nutv72XzETpBk9xqcThi2GV6R2Dbv179DygoVnYLxneZr
- gDEkVQHRYskzv5mi50MzRjZhlZuSIEv3w9e3UdzvyCJ8Qy4W+FMF1XzPZS6w6yKS+MEuDGx0z
- tD9yc3y//u3JDspDgZ4yo7jDvHcg8qjkDiYMJIiDg0cQRTF0U83cceduKHVQeDlQ47hkWTmfc
- wnXlCktacIZZQbWs7ypAdUXLTHFokpGEmF1LTKX7Y/TF/WRuZch2wvVtstPO6pAs4oTIoFh6A
- ZiVv6qUsZs9OnWH4Pbam04mnU+Om9F+t5vLIRs6AdsZABE872TLP24xJP9r7i9qF1BnzG8ZE4
- /encu4l5vk48kl3rILuDcyu0iwRu6mSL+2HnAc25QMeNx0ULUawJYV2sS7OMeEpamanwefR0/
- 2QNZiyYyb4YfGCB9+c99C8WNnm9vHW71rBRxKY1slQ==
+References: <20241011102751.153248-1-privatesub2@gmail.com>
+ <20241011102751.153248-2-privatesub2@gmail.com> <4ioz6f6efs2uhf5mitb4xhebqeryyz5ukple4fkn54wpqep3c4@4ktefld35c3s>
+In-Reply-To: <4ioz6f6efs2uhf5mitb4xhebqeryyz5ukple4fkn54wpqep3c4@4ktefld35c3s>
+From: =?UTF-8?B?0JDQu9C10LrRgdCw0L3QtNGAINCo0YPQsdC40L0=?= <privatesub2@gmail.com>
+Date: Sun, 10 Nov 2024 14:16:31 +0300
+Message-ID: <CAF4idNmDMQpFppUvCBbC1=SNMQBrTOqmFO60SMvKvaHvNJy=Bg@mail.gmail.com>
+Subject: Re: [PATCH v10 1/3] dt-bindings: pwm: Add binding for Allwinner
+ D1/T113-S3/R329 PWM controller
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Cheo Fusi <fusibrandon13@gmail.com>, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-&gt; Gesendet: Sonntag, 10. November 2024 um 10:25
-&gt; Von: "Frank Wunderlich" <frank-w@public-files.de>
-&gt; Am 9. November 2024 18:29:44 MEZ schrieb Andrew Lunn <andrew@lunn.ch>=
-:
-&gt; &gt;On Sat, Nov 09, 2024 at 10:46:19AM +0100, Frank Wunderlich wrote:
-&gt; &gt;&gt; From: Frank Wunderlich <frank-w@public-files.de>
-&gt; &gt;&gt;
-&gt; &gt;&gt; after converting the ahci-platform binding to yaml the follo=
-wing files
-&gt; &gt;&gt; reporting "'anyOf' conditional failed" on
-&gt; &gt;&gt;
-&gt; &gt;&gt; sata@540000: sata-port@0
-...
-&gt; &gt;
-&gt; &gt;I don't know the yaml too well, but it is not obvious how adding =
-a few
-&gt; &gt;status =3D "disabled"; status =3D "okay"; fixes a "'anyOf' condit=
-ional failed".
-&gt; &gt;
-&gt; &gt;Maybe you can expand the explanation a bit?
-&gt; &gt;
-&gt; &gt;	Andrew
-&gt;
-&gt; Hi angelo,
-&gt;
-&gt; I guess the dtbs_check only checks required properties from yaml if t=
-he node is enabled.
-&gt;
-&gt; As you know, phys that can supply different types (sata,usb,pcie,*gmi=
-i,...),but only one mode can be used per phy. So only one controller can b=
-e used with it,the other(s) can not. I do not know marvell,but there are s=
-imilar in mediatek (xsphy) and rockchip (combphy).
-&gt;
-&gt; From my PoV it makes sense to check only enabled nodes for required p=
-roperties,but i do not know internals of dtbs_check. This patch is 2 years=
- old and i only rebased it and run dtbs check with the others to have a cl=
-ean result...i can test again without this one to check if anyOf is shown =
-again.
-&gt;
-&gt; regards Frank
+Hello Uwe,
 
-Hi
+I appreciate your suggestion to use a more standardized
+property name like "pwm-number" instead of vendor-specific names.
 
-issue is still there and patch is still needed...without it i get these me=
-ssages:
+Since the name "pwm-number" is present in two drivers,
+we could consider using this name here as an option.
+Or perhaps we should choose a new common name "npwms"
+as you suggested?
 
-$ ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- make dtbs_check DT_SCHEM=
-A_FILES=3DDocumentation/devicetree/bindings/ata/ahci-platform.yaml
-  UPD     include/config/kernel.release
-  DTC [C] arch/arm64/boot/dts/marvell/armada-7040-db.dtb
-arch/arm64/boot/dts/marvell/armada-7040-db.dtb: sata@540000: sata-port@0: =
-'anyOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/armada-7040-mochabin.dtb
-  DTC [C] arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dtb
-arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dtb: sata@540000: s=
-ata-port@0: 'anyOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/armada-8040-db.dtb
-  DTC [C] arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtb
-arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtb: sata@540000: sata-port@=
-0: 'anyOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/armada-8040-mcbin-singleshot.dtb
-arch/arm64/boot/dts/marvell/armada-8040-mcbin-singleshot.dtb: sata@540000:=
- sata-port@0: 'anyOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dtb
-  DTC [C] arch/arm64/boot/dts/marvell/cn9130-db.dtb
-arch/arm64/boot/dts/marvell/cn9130-db.dtb: sata@540000: sata-port@0: 'anyO=
-f' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/cn9130-db-B.dtb
-arch/arm64/boot/dts/marvell/cn9130-db-B.dtb: sata@540000: sata-port@0: 'an=
-yOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/cn9131-db.dtb
-arch/arm64/boot/dts/marvell/cn9131-db.dtb: sata@540000: sata-port@0: 'anyO=
-f' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-/media/data_ext/git/kernel/BPI-R2-4.14/arch/arm64/boot/dts/marvell/cn9131-=
-db.dtb: sata@540000: sata-port@0: 'anyOf' conditional failed, one must be =
-fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/cn9131-db-B.dtb
-arch/arm64/boot/dts/marvell/cn9131-db-B.dtb: sata@540000: sata-port@0: 'an=
-yOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-arch/arm64/boot/dts/marvell/cn9131-db-B.dtb: sata@540000: sata-port@0: 'an=
-yOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/cn9132-db.dtb
-arch/arm64/boot/dts/marvell/cn9132-db.dtb: sata@540000: sata-port@0: 'anyO=
-f' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-arch/arm64/boot/dts/marvell/cn9132-db.dtb: sata@540000: sata-port@0: 'anyO=
-f' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-arch/arm64/boot/dts/marvell/cn9132-db.dtb: sata@540000: sata-port@1: 'anyO=
-f' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/cn9132-db-B.dtb
-arch/arm64/boot/dts/marvell/cn9132-db-B.dtb: sata@540000: sata-port@0: 'an=
-yOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-arch/arm64/boot/dts/marvell/cn9132-db-B.dtb: sata@540000: sata-port@0: 'an=
-yOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-arch/arm64/boot/dts/marvell/cn9132-db-B.dtb: sata@540000: sata-port@1: 'an=
-yOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/cn9130-crb-A.dtb
-  DTC [C] arch/arm64/boot/dts/marvell/cn9130-crb-B.dtb
-arch/arm64/boot/dts/marvell/cn9130-crb-B.dtb: sata@540000: sata-port@1: 'a=
-nyOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/ac5x-rd-carrier-cn9131.dtb
-arch/arm64/boot/dts/marvell/ac5x-rd-carrier-cn9131.dtb: sata@540000: sata-=
-port@0: 'anyOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-arch/arm64/boot/dts/marvell/ac5x-rd-carrier-cn9131.dtb: sata@540000: sata-=
-port@0: 'anyOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/cn9130-cf-base.dtb
-arch/arm64/boot/dts/marvell/cn9130-cf-base.dtb: sata@540000: sata-port@1: =
-'anyOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/cn9130-cf-pro.dtb
-arch/arm64/boot/dts/marvell/cn9130-cf-pro.dtb: sata@540000: sata-port@1: '=
-anyOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dtb
-arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dtb: sata@540000: sata-port=
-@0: 'anyOf' conditional failed, one must be fixed:
-	'phys' is a required property
-	'target-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-  DTC [C] arch/arm64/boot/dts/marvell/cn9132-clearfog.dtb
+Please let me know what you think about this.
 
-that imho confirms my guess that only enabled nodes are checked and withou=
-t the disabled this node is always enabled and
-by disabling the SoC-node and enabling at board-level let the others (here=
- printed) disabled and so not need the required
-properties.
+Best regards,
+Aleksandr.
 
-i can try to add short description about it, something like this:
-
-The dtbs-check only checks enabled nodes and there required nodes must be =
-present. Nodes are enabled by default (current state for sata@540000 node)=
-, but some boards seem to use the phy somewhere else or just not want to u=
-se the sata contoller and so miss the required properties 'phys' and 'targ=
-et-supply'. So disable the sata@540000 node at SoC level and enable it whe=
-re it is filled with required properties.
-
-maybe adding this phrase to commit is enough?
-
-regards Frank</frank-w@public-files.de></andrew@lunn.ch></frank-w@public-f=
-iles.de>
+=D0=B2=D1=82, 29 =D0=BE=D0=BA=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2 11:56, Uwe=
+ Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com>:
+>
+> Hello,
+>
+> On Fri, Oct 11, 2024 at 01:27:32PM +0300, Aleksandr Shubin wrote:
+> > +  allwinner,pwm-channels:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: The number of PWM channels configured for this instan=
+ce
+> > +    enum: [6, 9]
+>
+> I wonder if the number of channels is a property common enough that we
+> can use "num-pwm-channels" here instead of a vendor specific property.
+> Or would you suggest a different name? gpio-controller nodes have
+> "ngpios", so maybe "npwms"?
+>
+> A quick grep suggests we already have:
+>
+>         fsl,pwm-number in mxs-pwm.yaml
+>         st,pwm-num-chan in pwm-st.txt
+>         snps,pwm-number in snps,dw-apb-timers-pwm2.yaml
+>
+> As a follow up this could then be used by pwmchip_alloc() to determine
+> the number of channels if the passed npwm value is 0.
+>
+> Best regards
+> Uwe
 
