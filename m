@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-120578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 312BB9C3488
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 21:14:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BEAC9C3486
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 21:14:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63A811C20C31
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 20:14:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA1892812C0
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2024 20:13:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0404B13DDD3;
-	Sun, 10 Nov 2024 20:14:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3586213C683;
+	Sun, 10 Nov 2024 20:13:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Y8RfFiE+"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="S5wwPJIr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B67C26AD3
-	for <devicetree@vger.kernel.org>; Sun, 10 Nov 2024 20:14:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E72426AD3;
+	Sun, 10 Nov 2024 20:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731269646; cv=none; b=ihSn33bzfBoMRjGiWaw1p4N1s1upWwCVRpkK/UNiXeznzB1ShuQFtJTQOjlXq+6VJwhCEB/CftnKO5FeMY5l/HUMPe9LmglCsPDia2hrhya8OwLAeoUz3FU5Ypm14Hvp5qiwK9EUWBQljN7PQlNy0mG/B10lzaHgSesmc8RrOSI=
+	t=1731269636; cv=none; b=HmOChAkC6LNobIjxSr4HzWox9bIZonKk3HqWlzzxzl3b8Gqq2EvmJUV7g06hXjTzlXPKj3J21Pk0tSqjVcH0seWOBt20h3nmwFD8Xb0tJTDNbWHM5tQHkzkVM0CO4xfBy6mYBCE4AF/ItWFXXVTn2Vb+dCaQ54cz0Ecp6FCFEzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731269646; c=relaxed/simple;
-	bh=0OKTD7COkS60SZpLafwBNUn/Xk5uwu6s82tYR4Anw2c=;
+	s=arc-20240116; t=1731269636; c=relaxed/simple;
+	bh=C9HsFIh+Eh4zf+xDUJQ3mrYxCqpkzo7JtxVzG47FDgE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EjE6b8L1punv7FF8hRQwhLglSnnemPz+ssOQ4ZV9nwuhV3ZeQmvRz0sbIVjEIgEsCBAcXUuMfmKKkvbgqbsv8/WRB2pKl+544trVMikVilSmf4SBUzZIHdm0Dc6J8+NFKtbywVWmzA1XRAWYn4LlwalRP5K0CKEacT81i980rXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Y8RfFiE+; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=GmD7IPjq2gzJ4PmI/F80KdkJoLT2zJK/SAVrILvkwtMCxos/qEonN5mYf/pKKj8n/bbG3jeyjvEwA5bd2BuoLT6Uwt44wlwBZNBlBRAGAQrxPJdKA9IK5EtuSux1A/JQDUPgIfH/ZMrm0JSZYEe0ZqcCx0D0msNQ4dJkMjF4nGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=S5wwPJIr; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,42 +37,31 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=DKLfZL7Lw//8nae5fm6x5bXe/N6woQGIMim2E2GSipA=; b=Y8RfFiE+0jxpI5NUTojx4Ss1m9
-	D7ZnPy+dIRiawnLd1U3juJqU5ux3hrTS8NBnSCYPIWaXC04evu/wRpglkbfe6cAzUd9sVAsQnZZuw
-	upBOn7xZmfd2PWtthgQYRxOE6Ohl6ldxyQ4/eLprSjd7knsHLtQ4dP0dj+ndTiPxGxBv2dqA8m0Cy
-	knr1xVJpYRRcExxfmEIpxHMMjEjHWLC1Vag7nClTN0BweRfXesh/YF0uh2T1SZnemGCnaV85QuE4w
-	C9VVdG/0o0mMtYdZF6F6cZ+sOwEBWaPG3uynsXiCOgFJypSWIlv1FRHbYAhap/CCJGOIJLVg2FXRb
-	8IPMDz5w==;
+	bh=TDWmgip3DngD0WSpM90Yi3gjWO6wAcgOvU2+84kSLeE=; b=S5wwPJIrHk0JA4HlAJJQVQQaE5
+	mXroOqQZdoQvH3dFzv1BCceZ7xGfBThBlbQnEpZLMH0A6bcT2nlkcImC6S03q4/balPTsIJsc+e7/
+	uXlFY+fVXQcr7yECUSMyAQwwGVQFzkev0bF/Dgt5KZmgUBRsbfQA1Jo0DMbZVTp7bxelMSn1uCzfX
+	9FAUhU5NKW8fUoAcddK57xhMiVRENAneHZcsSMX1Qqh/NQTUSAa7vrWdxCIfxNszRBz/S6prO4+3i
+	y4hFN/my0OrwZVqI2HzcuwQBy2JxEOhI9DDieoOEAEP8aAiriDj7zbBrIK0n6k3mc58hElQ6AR2Cq
+	aY0biM6w==;
 Received: from i53875b28.versanet.de ([83.135.91.40] helo=phil..)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tAEJh-0006eU-5w; Sun, 10 Nov 2024 21:13:49 +0100
+	id 1tAEJh-0006eU-I2; Sun, 10 Nov 2024 21:13:49 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: FUKAUMI Naoki <naoki@radxa.com>
+To: Chen-Yu Tsai <wens@kernel.org>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	jagan@edgeble.ai,
-	conor+dt@kernel.org,
-	jing@jing.rocks,
-	macromorgan@hotmail.com,
-	michael.riesch@wolfvision.net,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	jonas@kwiboo.se,
-	andyshrk@163.com,
-	cfsworks@gmail.com,
-	tim@feathertop.org,
-	kever.yang@rock-chips.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
-	robh@kernel.org,
-	dsimic@manjaro.org,
-	sebastian.reichel@collabora.com
-Subject: Re: [PATCH v2 RESEND 1/3] dt-bindings: arm: rockchip: add Radxa ROCK 5C
-Date: Sun, 10 Nov 2024 21:13:42 +0100
-Message-ID: <173126942620.136493.15655197689835452655.b4-ty@sntech.de>
+	devicetree@vger.kernel.org,
+	Chen-Yu Tsai <wens@csie.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: orangepi-5-plus: Enable GPU
+Date: Sun, 10 Nov 2024 21:13:43 +0100
+Message-ID: <173126942616.136493.2934640786889277471.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241021090548.1052-1-naoki@radxa.com>
-References: <20241021090548.1052-1-naoki@radxa.com>
+In-Reply-To: <20241025175409.886260-1-wens@kernel.org>
+References: <20241025175409.886260-1-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,25 +71,17 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Mon, 21 Oct 2024 09:05:46 +0000, FUKAUMI Naoki wrote:
-> Add devicetree binding for the Radxa ROCK 5C.
+On Sat, 26 Oct 2024 01:54:09 +0800, Chen-Yu Tsai wrote:
+> From: Chen-Yu Tsai <wens@csie.org>
 > 
-> Radxa ROCK 5C is a 8K computer for everything[1] using the Rockchip
-> RK3588S2 chip.
+> Enable the Mali GPU in the Orange Pi 5 Plus.
 > 
-> [1] https://radxa.com/products/rock5/5c
 > 
-> [...]
 
 Applied, thanks!
 
-[1/3] dt-bindings: arm: rockchip: add Radxa ROCK 5C
-      commit: 3920c37ea8ddc43e8f54083ed227f123acfa6ed2
-[2/3] arm64: dts: rockchip: add Radxa ROCK 5C
-      commit: 0173113ea6d7646fa0d7fd4d09b272d38a9ab9af
-[3/3] arm64: dts: rockchip: Enable HDMI0 on rock-5c
-      --> I've folded this patch into patch2, as the hdmi
-          controller on rk3588 was added earlier.
+[1/1] arm64: dts: rockchip: orangepi-5-plus: Enable GPU
+      commit: cdaf2acc401c691105baa3ee3e9fda3b19dc570d
 
 Best regards,
 -- 
