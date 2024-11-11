@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-120853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13DDF9C466C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 21:15:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AC8E9C4671
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 21:18:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD64E281ECA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:15:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3015C2832FB
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:18:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742C21A2653;
-	Mon, 11 Nov 2024 20:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7889519E81F;
+	Mon, 11 Nov 2024 20:18:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LHsVV3WU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gqxqfibK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF4A15533B
-	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 20:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EDC41BC4E;
+	Mon, 11 Nov 2024 20:18:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731356121; cv=none; b=BdHsXH4h4QKVwNZhlycqbnNMrmn8DlWbdW06R+PVBAIp2m+qbf7w4SX0CQVBlF4/DEN+IH+bgC9V6nXeolrrW5DeGLufdP18BZ9HlUYsZr8cNkK+OB689fGkCD3lNwbXP2buZwtRsRiqSySGCoiRxhScfCe1inY30hgG7V88aUk=
+	t=1731356329; cv=none; b=JpP+lNumWBxMxvSCnqeEJsKEdsuS4rSMjFKdy1FCKHtBvf3x6bI0FfucooUfbtkjHMrk9IZMT4VsPl7a/Gdj9hTJJfbNcU6GhG9tsZ+OJQNuxSFUbr653oHqpTFry+GmHb8w314zuo6wR8TwnT7UzpNWK9N9zGdkKQ9Rdtk0Heg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731356121; c=relaxed/simple;
-	bh=aiKvwrtTrJ0YB7W0NmjeDDdzE5hHsJ4Nb2c3nZtzNvM=;
+	s=arc-20240116; t=1731356329; c=relaxed/simple;
+	bh=t5DsLHsfXVJLaZWit2f4WmFMkD0tUkZhk7FpjCALETo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mYldJh/t6E119V8LbWnaewO8xWIC3Usn2w8REyv3ZCwH1J2DlYrEo6+QrjD3GYYQLLeJZcIrjOHIxBDcinEJO9DXPXDoVHlonjC1e9wP6RWE+K0mpFRUG8EnXPwLo57RocyXaPGCKsywbY59poPVFOW4dD/upxI0XcfiOivuB2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LHsVV3WU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09CCEC4CECF;
-	Mon, 11 Nov 2024 20:15:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oTevicbxBOAmWracM6uXHtVMXwXmoLUZ0YHqQDZ782X94ctUXmbWy/sbHqayohP0H2exbLmsxK44ffJMk/Y+6/QkB6pfWS8B2zs1AY34IUMq/v3z97ekJ8islIZxD+QbB4FAyDN994UwabHwlrrbh3r8NlDMdQFH8NH4o0oAtok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gqxqfibK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18B07C4CECF;
+	Mon, 11 Nov 2024 20:18:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731356120;
-	bh=aiKvwrtTrJ0YB7W0NmjeDDdzE5hHsJ4Nb2c3nZtzNvM=;
+	s=k20201202; t=1731356328;
+	bh=t5DsLHsfXVJLaZWit2f4WmFMkD0tUkZhk7FpjCALETo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LHsVV3WUFY+iOv+WkGKICY4Buc1z2XqejSWteivdHFUqqBIb2oinJ2ZSdqk4hLFkU
-	 bjDSN/I4PUJxOV9l8zu/80aQjSiteWXgAbidWelBQi51MK/N/WmAawppevIc/rwl5y
-	 ZlxwhdGlAAEJ2bSJv844gELPmeeoamTBTUhloEGOicvlYuyvKdpOzXE6/521zAg3BF
-	 g07+oc90LFPlEVh1wpn+Uojs3rpyxdJLPMv2vJKuEbSjKRrSSCXAK7rOOJlkHqqt6o
-	 1SHWPq+RBK+3WhPgyc+Y1izwmzEn7G95XJ5psiGAiYdiGiQMz2lGdZstYTRCXDUv+h
-	 HDV/IvchZfU9A==
-Date: Mon, 11 Nov 2024 20:15:16 +0000
+	b=gqxqfibKGViofJ8HKYz5PSJPB7/H6OvWWhJ/kb7COtar9EoQ1MgLDvNlR1bmXyw5h
+	 EfYGFIq0amhZd+Ig3cP4u4pSXVCWFo85owkKMFuAjzwS6En24XVQzwpQ38m3qpdOny
+	 FecvGyxmlWvNZNaZXaNvj60n4qs8+PkYOPfxh9GiSAC+D0qFhXsgMkz42TOspX0Zlb
+	 M6YZRSzEDvNA6GIY6QdVdW2a3VHf7GkDMWWkQ96jwp0jPXwyBEOC7GdQ6V5kW+orht
+	 iA+5UA5Nz7BCL5j4f69dTYmc3A1GQxLXj7Wqdsc9/PLNtaADoBXVpzIWJz+51Iejqc
+	 IQLLGUsjqZ8uw==
+Date: Mon, 11 Nov 2024 20:18:44 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Jimmy Hon <honyuenkwun@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Ondrej Jirman <megi@xff.cz>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+To: Sota4Ever <wachiturroxd150@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 2/3 v3] dt-bindings: arm: rockchip: Add Xunlong Orange Pi
- 5 Max
-Message-ID: <20241111-status-reaffirm-c00e7a6f7240@spud>
-References: <20241111045408.1922-1-honyuenkwun@gmail.com>
- <20241111045408.1922-5-honyuenkwun@gmail.com>
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: samsung: Add compatible for
+ Samsung Galaxy S20 FE (SM-G780F)
+Message-ID: <20241111-dreadlock-anaconda-e164c85d1ae7@spud>
+References: <20241109230402.831-1-wachiturroxd150@gmail.com>
+ <20241109230402.831-2-wachiturroxd150@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,36 +62,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="3yHonPgt7DdqftVb"
+	protocol="application/pgp-signature"; boundary="MPVSYDEanEQ+DG5z"
 Content-Disposition: inline
-In-Reply-To: <20241111045408.1922-5-honyuenkwun@gmail.com>
+In-Reply-To: <20241109230402.831-2-wachiturroxd150@gmail.com>
 
 
---3yHonPgt7DdqftVb
+--MPVSYDEanEQ+DG5z
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Nov 10, 2024 at 10:53:25PM -0600, Jimmy Hon wrote:
-> Add devicetree binding for the Xunlong Orange Pi 5 Max board.
+On Sat, Nov 09, 2024 at 11:04:01PM +0000, Sota4Ever wrote:
+> Add binding for the Samsung Galaxy S20 FE (SM-G780F) board, which is
+> based on the Samsung Exynos990 SoC.
 >=20
-> The Orange Pi 5 Max is a single board computer powered by the Rockchip
-> RK3588 similar to the Orange Pi 5 Plus.
+> Signed-off-by: Sota4Ever <wachiturroxd150@gmail.com>
+
+I doubt "sota4ever" is an known alias, can you use your name here
+please?
+
+> ---
+>  .../devicetree/bindings/arm/samsung/samsung-boards.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
 >=20
-> Signed-off-by: Jimmy Hon <honyuenkwun@gmail.com>
+> diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards=
+=2Eyaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+> index b5ba5ffc3..168e77375 100644
+> --- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+> +++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+> @@ -240,6 +240,7 @@ properties:
+>          items:
+>            - enum:
+>                - samsung,c1s                     # Samsung Galaxy Note20 =
+5G (SM-N981B)
+> +              - samsung,r8s                     # Samsung Galaxy S20 FE =
+(SM-G780F)
+>            - const: samsung,exynos990
+> =20
+>        - description: Exynos Auto v9 based boards
+> --=20
+> 2.34.1
+>=20
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---3yHonPgt7DdqftVb
+--MPVSYDEanEQ+DG5z
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzJl1AAKCRB4tDGHoIJi
-0uw8AP458XwimgHVrn7gO//5n/RSwrWa9lCbkyXLZJP7JBZVjAEAkaa6Pi3KkTzd
-NMsKQECdrz06LBCT0NasZp/yGotx5AQ=
-=dHrm
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzJmpAAKCRB4tDGHoIJi
+0rizAP42h+6ryK5OuKYwHGBlhnYmZRsNL+6V9i7RBw14mZ5NXAD/WnsmQirug9Uy
+IvnvhlHbzmHxe/KvQJfQvQfNxwJr/wU=
+=oo5p
 -----END PGP SIGNATURE-----
 
---3yHonPgt7DdqftVb--
+--MPVSYDEanEQ+DG5z--
 
