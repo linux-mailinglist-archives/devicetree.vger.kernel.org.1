@@ -1,110 +1,119 @@
-Return-Path: <devicetree+bounces-120792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F1889C42CB
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:41:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C705E9C42D9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:43:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11EAF1F21CCE
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 16:41:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9383D280CAD
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 16:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3605E1A263F;
-	Mon, 11 Nov 2024 16:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DA211A2C32;
+	Mon, 11 Nov 2024 16:43:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SMt+8H06"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nsUWRn5p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE1EF1A0B13;
-	Mon, 11 Nov 2024 16:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 383A61A2567;
+	Mon, 11 Nov 2024 16:43:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731343232; cv=none; b=MRqnJ6XiKjKtY9nNarI6/k3HODRTYtZXvsGLClIm/QbauV7UXvRsAvRURi8c96ldRJTTWPK486C5vFnRPb0/kjTJ/x40mVEiV5rkIKgBB42YHgaKAjQMpQglIPcrUHk5HZK8N7PPJmwUJqUo9EVWtUVPH38fgO1zR5pgJvqDZQA=
+	t=1731343389; cv=none; b=ed6dB909f0FH7ywWTvg2YwjQkyuyEbKqHC+zMA55RV8lIfT60I6e1hFIY3tgFWyjTOqPfeS/dmJs7KENDegVLFdtQxZ1m8vX+6U6JUNtVHF7dhIiTt9o0JEcp7hTei3TPjuAkdYnm8lN2opBCHW23EGUJumHdDLLYDd++mW7s3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731343232; c=relaxed/simple;
-	bh=4+LfvrNrOJzDJzYO94ZEFGs1qWzyzDFuwT9KH8sin3s=;
+	s=arc-20240116; t=1731343389; c=relaxed/simple;
+	bh=8LcuKBa4qQ//6vbLQtCbLIDn7Tu0SEyNaNQfDlz9+W4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lt7jsKWyzx2mKtW1CCvnRGjdrL4afPW1s5Sil2PlXpDa8kOzDwAEBp2JVYh6DyiO5CeKO/BkbE5cXgjfU0shxHwOsIkF0xDo/0seQSvPje+LRx2LRWgkU+fLVv+mHpgoNuvk+8gj9+/G6c9q3uT8ogFM0xJkS/Att5h9SucVYf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SMt+8H06; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A88BC4CECF;
-	Mon, 11 Nov 2024 16:40:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sTlf2GIoIxPsStGzVTnWP3EREK6FX9vrGOBwXOqTiSQxfw1HoBRTRz2X+X/rtBWjaQJWJinwROOi2w7B9pYLHAMd1l0VU9VRtTNexgi+QToBqDXQyNi4SbeCXm3o4j3EBN9hkmgFKypFqWq91lgTLCbgWtXd9lKBphtOrF4sQR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nsUWRn5p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC4B0C4CED5;
+	Mon, 11 Nov 2024 16:43:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731343231;
-	bh=4+LfvrNrOJzDJzYO94ZEFGs1qWzyzDFuwT9KH8sin3s=;
+	s=k20201202; t=1731343388;
+	bh=8LcuKBa4qQ//6vbLQtCbLIDn7Tu0SEyNaNQfDlz9+W4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SMt+8H06+j+UMFnKWqdWYpA/uT0dG5C32IVkPJFy1ekeDpFk/xR3CP19Bas/1t/HQ
-	 HIGWbBx78ZPGrWAA1EMeBKidsMpzoBFLN4Xvj4evuMC2bwtwpvyv2McSfZyxFS7eq+
-	 vlSAD0fCzCgCbZHDUFrPMoNRCFi/VRY+YgVU5QpcdDRbe8+cBz0kDx/2Yl1czjc0xO
-	 SuBfQMWBaqi2nLzFN4i9aiBK0r3cdDSLyj8lv2mpkur8WkwW3u/WWdZCjsFKRS84Y/
-	 Q2JOn4aJALdnlrPXu8mnW5P5sNdg+zkwiIAFs9g8LbOO48J+I35rggVV3eQdHJ4iTW
-	 0cyGV/M5pj5LA==
-Date: Mon, 11 Nov 2024 16:40:24 +0000
-From: Lee Jones <lee@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Stanislav Jakubek <stano.jakubek@gmail.com>,
+	b=nsUWRn5pQ9zAC+vEhSOk2nBLpS4RtWPGeYp58OoprG91H/lXfGr8fsrwrWCooDlHH
+	 lt/Xm59Tj1q/Ulh309ingSrN0Ss6wiMuJnllOp9K9mMH7RsEorG5bz1bB4tIXZOivt
+	 +mgoJyNBIKihujDaq0aQS0sDS89kOm4sHb9PxwWg1WZuK65C85ya+QtwqxSCFd3+SO
+	 VLXSxq7SnJpAbc4JyYoGWbiMitxQW0PAxG54qACqB2jnl/jXw3PEU8yoqxQ+fTJ7/a
+	 Tvk6sUDJSM4ss+TKDp0yD0NVXRRzojCU/z/5z0+iKjBmOb7KkHkgXV+ODF3NVGD773
+	 pM2jefdJJcPKQ==
+Date: Mon, 11 Nov 2024 16:43:00 +0000
+From: Will Deacon <will@kernel.org>
+To: Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc: Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: mfd: sprd,sc2731: reference
- sprd,sc2731-efuse bindings
-Message-ID: <20241111164024.GC8552@google.com>
-References: <efd200c3b5b75405e4e450d064b026f10ae2f8e0.1730709384.git.stano.jakubek@gmail.com>
- <cd8cc95b59c31418b174bba521dd2599a7929fda.1730709384.git.stano.jakubek@gmail.com>
- <20241106090509.GL1807686@google.com>
- <20241107155806.GA2774753-robh@kernel.org>
+	Andrea Parri <parri.andrea@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>, Waiman Long <longman@redhat.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+	Leonardo Bras <leobras@redhat.com>, Guo Ren <guoren@kernel.org>,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-arch@vger.kernel.org
+Subject: Re: [PATCH v6 13/13] riscv: Add qspinlock support
+Message-ID: <20241111164259.GA20042@willie-the-truck>
+References: <20241103145153.105097-1-alexghiti@rivosinc.com>
+ <20241103145153.105097-14-alexghiti@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241107155806.GA2774753-robh@kernel.org>
+In-Reply-To: <20241103145153.105097-14-alexghiti@rivosinc.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-On Thu, 07 Nov 2024, Rob Herring wrote:
-
-> On Wed, Nov 06, 2024 at 09:05:09AM +0000, Lee Jones wrote:
-> > On Mon, 04 Nov 2024, Stanislav Jakubek wrote:
-> > 
-> > > Directly reference the sc2731-efuse bindings to simplify the schema.
-> > > Remove the duplicate example from the efuse bindings.
-> > > 
-> > > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-> > > ---
-> > > Changes in V3:
-> > > - new patch due to a missing dependency in the MFD tree 
-> > > 
-> > > Link to V2: https://lore.kernel.org/lkml/ZyExK01iprBHhGm6@standask-GA-A55M-S2HP/
-> > > Link to V1: https://lore.kernel.org/lkml/Zr3X1RoQs7ElTnlJ@standask-GA-A55M-S2HP/
-> > > 
-> > >  .../devicetree/bindings/mfd/sprd,sc2731.yaml  | 10 +------
-> > >  .../bindings/nvmem/sprd,sc2731-efuse.yaml     | 29 -------------------
-> > 
-> > Srini, you happy for this to go in via MFD?
+On Sun, Nov 03, 2024 at 03:51:53PM +0100, Alexandre Ghiti wrote:
+> In order to produce a generic kernel, a user can select
+> CONFIG_COMBO_SPINLOCKS which will fallback at runtime to the ticket
+> spinlock implementation if Zabha or Ziccrse are not present.
 > 
-> Can you? AIUI, you don't have nvmem/sprd,sc2731-efuse.yaml in your tree.
-> 
-> So take patch 1 now and this one will have to go next cycle.
+> Note that we can't use alternatives here because the discovery of
+> extensions is done too late and we need to start with the qspinlock
+> implementation because the ticket spinlock implementation would pollute
+> the spinlock value, so let's use static keys.
 
-Works for me.
+I think the static key toggling takes a mutex (jump_label_lock()) which
+can take a spinlock (lock->wait_lock) internally, so I don't grok how
+this works:
 
--- 
-Lee Jones [李琼斯]
+> +static void __init riscv_spinlock_init(void)
+> +{
+> +	char *using_ext = NULL;
+> +
+> +	if (IS_ENABLED(CONFIG_RISCV_TICKET_SPINLOCKS)) {
+> +		pr_info("Ticket spinlock: enabled\n");
+> +		return;
+> +	}
+> +
+> +	if (IS_ENABLED(CONFIG_RISCV_ISA_ZABHA) &&
+> +	    IS_ENABLED(CONFIG_RISCV_ISA_ZACAS) &&
+> +	    riscv_isa_extension_available(NULL, ZABHA) &&
+> +	    riscv_isa_extension_available(NULL, ZACAS)) {
+> +		using_ext = "using Zabha";
+> +	} else if (riscv_isa_extension_available(NULL, ZICCRSE)) {
+> +		using_ext = "using Ziccrse";
+> +	}
+> +#if defined(CONFIG_RISCV_COMBO_SPINLOCKS)
+> +	else {
+> +		static_branch_disable(&qspinlock_key);
+> +		pr_info("Ticket spinlock: enabled\n");
+> +		return;
+> +	}
+> +#endif
+
+i.e. we've potentially already used the qspinlock at this point.
+
+Will
 
