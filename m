@@ -1,150 +1,207 @@
-Return-Path: <devicetree+bounces-120787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 301429C4290
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:25:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A26D79C42AB
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:31:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB3FA1F25C02
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 16:25:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 635D2280ED7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 16:31:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3BC91A0B13;
-	Mon, 11 Nov 2024 16:25:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F7B1A08A3;
+	Mon, 11 Nov 2024 16:30:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gwCAwIah"
+	dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b="V5PhpvXo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C381A08DC;
-	Mon, 11 Nov 2024 16:25:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8806819C575;
+	Mon, 11 Nov 2024 16:30:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731342324; cv=none; b=Te1D+qMINo/zplRN9gHFjb6b4lI4raJ3l/+XCHHw37ESPfnKmyMJP2yFEVIkE4hNEoyv5boYX9ZMXz0hLZnKI1IPkn59cP2ZmnqcFHp+2qLDcIoY8nhiRbCcozK/CuTZnm9TorMRY7K/xttLNiCJuvcYsaHximfRkUZxH5RsoXw=
+	t=1731342657; cv=none; b=GTCExmJqgetgL9Yi7yMZSJlMyqbZFWQxFuzD8EHuFn/cPdUqWJdewVanwlrzWNX0+C/S+OHYOBsLyA4ciHTO577RYk77snyzK44R4EbRuGUmxbGyuqLjZ3iNbYtfv2OdYpfIKMV2NmU1M2AsarZdjo6DlzJvrEqGSV0MghqY8Fc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731342324; c=relaxed/simple;
-	bh=Wwua9rM/eFjlcLBoqht7hKp/jTU0DE2ZmMf2om0pkZ8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=amxTQ9f6tw6e7e2MEUpnOjV8cNGMB2R+eEMw0Yh2YKkg+nvjYsyc+RWakWpnb/LAtz5ooOxlNKhBDuUuIcFgt07lb1ItpwhUbmAm+U4uyLdPVfJPdzaNEw9+rR+/yQlT44Oo57QbwYVOWAWEsG69/3TVm7rHbH4yEe5lstBmWAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gwCAwIah; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D543C4CEDC;
-	Mon, 11 Nov 2024 16:25:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731342324;
-	bh=Wwua9rM/eFjlcLBoqht7hKp/jTU0DE2ZmMf2om0pkZ8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=gwCAwIah0XWESGZkINHTyQONcGjWsr17M3Nkdxmicdt5J0LWNYRckE/6O9H1FoEQQ
-	 6yEjFE0lI0CRyrZN6gcYpB7/6TZCEXy8gmbfETDhAain94qkDgrg5GvujYgSpdakdw
-	 gVjfuqa9eFpHral/HyN9sRLo1PEKohks5W9ZcE9GLV99C/9d0QgF2RsrCChevk+swp
-	 r8hxWHMx7giIvSb67NI1D5es0KsJA6LZI+z9MuYnxtjRKu2wrwkq9RMMYulnf3DHsz
-	 iVnz8cmakjHxfSSxQT6poq1sPhUMdXrF8+sZpbneXN+zXlfAPWuw8dwpohlz7iC3MG
-	 7iPO2Z7cHuDuw==
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6ea053b5929so35473087b3.0;
-        Mon, 11 Nov 2024 08:25:24 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU7q8ZuTisw2zCjDnGjHbHx/hYww+QxHWWNtFl0HLvruihXyd1361x+QCgcWskq0iNL12Z53aEPRPim@vger.kernel.org, AJvYcCVOVmt0CvP1kpbd7edOeQIGmSkots/ZTSW4QvJCJoNJJJbMzo9uYuzK6QC0oSgcDliaKpqdetdQ0bqT@vger.kernel.org, AJvYcCVahpICIS2alNt4aCpcP38MHjkEP0kOcYoaKQW+hBFDONg/tHcVWIYxxUqUFIfWdJGIob7hQcKPRHgD+zJy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVKGcIBMZB0bxSVrfrTE50Hus6y6Qf/xhLAxCd/nTc/6Lqo9od
-	/llMpOGBe7vu5hCbZ/tnhMA60MFlYO5PA9YeqleKposfJn2qjVAP/WUdvKJ6QhTu1LtdGly2h35
-	NwwmLH/e3xILYP1m9M7xUxzYcUg==
-X-Google-Smtp-Source: AGHT+IF4kcrYPr6qGNlb61JHlqDrziPuuMKkOuCDy9aGGNeK0oSpWCmd5c+AxY1XqkIut1o43W6AINGN8ePvB0xLAJI=
-X-Received: by 2002:a05:690c:690f:b0:6d3:be51:6d03 with SMTP id
- 00721157ae682-6eadddbced8mr119662107b3.23.1731342323163; Mon, 11 Nov 2024
- 08:25:23 -0800 (PST)
+	s=arc-20240116; t=1731342657; c=relaxed/simple;
+	bh=+x8bnIxKFSLgLd0LiO4UJ5+z4gmDHKrgkS3pxB6CIcE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M9ruMw5zgzb3ZX1cSXC0M953PD+S7htW4KIzmqXFvPtAK7HoAHr6+Ld163/WFxeENU0ukCLkMyTf/S0KBQMBepsQRr/mdOrV4w6kke7dIh2lOzA5FvDGREz0WhVRi1PcOlurHZo3+bwYKxRRz6YeuzBybWfLZz7SENzL4fqIQzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net; spf=pass smtp.mailfrom=weissschuh.net; dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b=V5PhpvXo; arc=none smtp.client-ip=159.69.126.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=weissschuh.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
+	s=mail; t=1731342651;
+	bh=+x8bnIxKFSLgLd0LiO4UJ5+z4gmDHKrgkS3pxB6CIcE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=V5PhpvXoJi6Mra+JvR4Eg+IKph3+MR9f/gberukS05wwjidHQUIK0FqSI/pZhmfuQ
+	 JezkGkYvRViJxjXucl5DxB1pN/m/Aw/S4jnp0dro8nrt7adguYUogAw3Xv1K5X34LH
+	 rpABCe6qEcZtOSG+HsWHepf8K1K29uEmxK+B5O2Q=
+Date: Mon, 11 Nov 2024 17:30:51 +0100
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@weissschuh.net>
+To: Sung-Chi <lschyi@chromium.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, Guenter Roeck <groeck@chromium.org>, 
+	Jean Delvare <jdelvare@suse.com>, devicetree@vger.kernel.org, chrome-platform@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v2] hwmon: (cros_ec) register thermal sensors to thermal
+ framework
+Message-ID: <a469852b-4cbd-467c-89de-b1acf6de1402@t-8ch.de>
+References: <20241111074904.1059268-1-lschyi@chromium.org>
+ <20241111095045.1218986-1-lschyi@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241109094623.37518-1-linux@fw-web.de> <20241109094623.37518-2-linux@fw-web.de>
- <e534c723-6d65-433f-8ab5-1c0d424d7367@lunn.ch> <9B1A5D20-3DE5-40C1-8B2D-B1C4F53FA5F4@public-files.de>
-In-Reply-To: <9B1A5D20-3DE5-40C1-8B2D-B1C4F53FA5F4@public-files.de>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 11 Nov 2024 10:25:12 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJnOa_9Poz86vOWBCQigvv-Ab4Tt1hrwTxSa5zNraVxXQ@mail.gmail.com>
-Message-ID: <CAL_JsqJnOa_9Poz86vOWBCQigvv-Ab4Tt1hrwTxSa5zNraVxXQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditional failed
-To: frank-w@public-files.de
-Cc: Andrew Lunn <andrew@lunn.ch>, Frank Wunderlich <linux@fw-web.de>, Damien Le Moal <dlemoal@kernel.org>, 
-	Niklas Cassel <cassel@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Gregory Clement <gregory.clement@bootlin.com>, 
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	Hans de Goede <hdegoede@redhat.com>, Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241111095045.1218986-1-lschyi@chromium.org>
 
-On Sun, Nov 10, 2024 at 3:25=E2=80=AFAM Frank Wunderlich
-<frank-w@public-files.de> wrote:
->
-> Am 9. November 2024 18:29:44 MEZ schrieb Andrew Lunn <andrew@lunn.ch>:
-> >On Sat, Nov 09, 2024 at 10:46:19AM +0100, Frank Wunderlich wrote:
-> >> From: Frank Wunderlich <frank-w@public-files.de>
-> >>
-> >> after converting the ahci-platform binding to yaml the following files
-> >> reporting "'anyOf' conditional failed" on
-> >>
-> >> sata@540000: sata-port@0
-> >> diff --git a/arch/arm64/boot/dts/marvell/armada-7040-db.dts b/arch/arm=
-64/boot/dts/marvell/armada-7040-db.dts
-> >> index 1e0ab35cc686..2b5e45d2c5a6 100644
-> >> --- a/arch/arm64/boot/dts/marvell/armada-7040-db.dts
-> >> +++ b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
-> >> @@ -214,6 +214,7 @@ &cp0_sata0 {
-> >>
-> >>      sata-port@1 {
-> >>              phys =3D <&cp0_comphy3 1>;
-> >> +            status =3D "okay";
-> >>      };
-> >>  };
-> >
-> >>
-> >> diff --git a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts b/ar=
-ch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
-> >> index 7af949092b91..6bdc4f1e6939 100644
-> >> --- a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
-> >> +++ b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
-> >> @@ -433,11 +433,13 @@ &cp0_sata0 {
-> >>      /* 7 + 12 SATA connector (J24) */
-> >>      sata-port@0 {
-> >>              phys =3D <&cp0_comphy2 0>;
-> >> +            status =3D "okay";
-> >>      };
-> >>
-> >>      /* M.2-2250 B-key (J39) */
-> >>      sata-port@1 {
-> >>              phys =3D <&cp0_comphy3 1>;
-> >> +            status =3D "okay";
-> >>      };
-> >>  };
-> >> diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm6=
-4/boot/dts/marvell/armada-cp11x.dtsi
-> >> index 7e595ac80043..161beec0b6b0 100644
-> >> --- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-> >> +++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-> >> @@ -347,10 +347,12 @@ CP11X_LABEL(sata0): sata@540000 {
-> >>
-> >>                      sata-port@0 {
-> >>                              reg =3D <0>;
-> >> +                            status =3D "disabled";
-> >>                      };
-> >
-> >I don't know the yaml too well, but it is not obvious how adding a few
-> >status =3D "disabled"; status =3D "okay"; fixes a "'anyOf' conditional f=
-ailed".
-> >
-> >Maybe you can expand the explanation a bit?
-> >
-> >       Andrew
->
-> Hi angelo,
->
-> I guess the dtbs_check only checks required properties from yaml if the n=
-ode is enabled.
+On 2024-11-11 17:50:30+0800, Sung-Chi wrote:
+> From: "Sung-Chi, Li" <lschyi@chromium.org>
+> 
+> cros_ec hwmon driver probes available thermal sensors when probing the
+> driver.  Register these thermal sensors to the thermal framework, such
+> that thermal framework can adopt these sensors as well.
 
-Yes, that is exactly how it works.
+The driver also supports fan readings. These could also be wired up as
+cooling devices.
 
-Rob
+> To make cros_ec registrable to thermal framework, the cros_ec dts need
+> the corresponding changes:
+> 
+> &cros_ec {
+> 	#thermal-sensor-cells = <1>;
+> };
+
+If this is the only thing that is meant to be configured I'm wondering
+why the OF variant is needed in the first place.
+Why not register a non-OF thermal device?
+
+Please send the next revision also to the maintainers of the THERMAL
+subsystem so we can figure out the most correct way forward.
+
+> Change-Id: I29b638427c715cb44391496881fc61ad53abccaf
+> Signed-off-by: Sung-Chi, Li <lschyi@chromium.org>
+> ---
+>  Changes in v2:
+>    - Rename `cros_ec_sensor_data` to `cros_ec_hwmon_thermal_zone_data`.
+>    - Rename `addr` in struct `cros_ec_hwmon_thermal_zone_data` to `idx`.
+>    - Use `cros_ec_hwmon_temp_to_millicelsius` to do value conversion in 
+>      `cros_ec_thermal_get_temp` function.
+>    - Rename `cros_ec_thermal_get_temp` to `cros_ec_hwmon_thermal_get_temp` to
+>      make `cros_ec_hwmon` a prefix.
+>    - Use `%pe` in `cros_ec_hwmon_probe_temp_sensors` when printing out
+>      `data->tz_dev` if failed register thermal device.
+>    - Remove `cros_ec_hwmon_remove`, and the `.remove` value in
+>      `cros_ec_hwmon_driver` since there is no need to call
+>      `devm_thermal_of_zone_unregister` for clean up.
+>    - Revert function signature of `cros_ec_hwmon_probe_temp_sensors` since all
+>      needed parameters are presented.
+>    - Revert include of `linux/list.h` because no list data structure is used.
+> ---
+>  drivers/hwmon/cros_ec_hwmon.c | 41 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 41 insertions(+)
+> 
+> diff --git a/drivers/hwmon/cros_ec_hwmon.c b/drivers/hwmon/cros_ec_hwmon.c
+> index 5514cf780b8b..81e563e0455f 100644
+> --- a/drivers/hwmon/cros_ec_hwmon.c
+> +++ b/drivers/hwmon/cros_ec_hwmon.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/platform_data/cros_ec_commands.h>
+>  #include <linux/platform_data/cros_ec_proto.h>
+> +#include <linux/thermal.h>
+>  #include <linux/types.h>
+>  #include <linux/units.h>
+>  
+> @@ -23,6 +24,12 @@ struct cros_ec_hwmon_priv {
+>  	u8 usable_fans;
+>  };
+>  
+> +struct cros_ec_hwmon_thermal_zone_data {
+> +	struct cros_ec_device *cros_ec;
+> +	struct thermal_zone_device *tz_dev;
+> +	int idx;
+> +};
+> +
+>  static int cros_ec_hwmon_read_fan_speed(struct cros_ec_device *cros_ec, u8 index, u16 *speed)
+>  {
+>  	int ret;
+> @@ -185,11 +192,30 @@ static const struct hwmon_chip_info cros_ec_hwmon_chip_info = {
+>  	.info = cros_ec_hwmon_info,
+>  };
+>  
+> +static int cros_ec_hwmon_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
+> +{
+> +	struct cros_ec_hwmon_thermal_zone_data *data =
+> +		thermal_zone_device_priv(tz);
+> +	int ret;
+> +	u8 val;
+> +
+> +	ret = cros_ec_hwmon_read_temp(data->cros_ec, data->idx, &val);
+> +	if (ret || cros_ec_hwmon_is_error_temp(temp))
+> +		return -ENODATA;
+> +	*temp = cros_ec_hwmon_temp_to_millicelsius(val);
+> +	return 0;
+> +}
+> +
+> +static const struct thermal_zone_device_ops thermal_ops = {
+
+Symbol still needs namespacing.
+
+> +	.get_temp = cros_ec_hwmon_thermal_get_temp,
+> +};
+> +
+>  static void cros_ec_hwmon_probe_temp_sensors(struct device *dev, struct cros_ec_hwmon_priv *priv,
+>  					     u8 thermal_version)
+>  {
+>  	struct ec_params_temp_sensor_get_info req = {};
+>  	struct ec_response_temp_sensor_get_info resp;
+> +	struct cros_ec_hwmon_thermal_zone_data *data;
+>  	size_t candidates, i, sensor_name_size;
+>  	int ret;
+>  	u8 temp;
+> @@ -216,6 +242,21 @@ static void cros_ec_hwmon_probe_temp_sensors(struct device *dev, struct cros_ec_
+>  		priv->temp_sensor_names[i] = devm_kasprintf(dev, GFP_KERNEL, "%.*s",
+>  							    (int)sensor_name_size,
+>  							    resp.sensor_name);
+> +
+> +		data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +		if (!data)
+> +			continue;
+> +
+> +		data->idx = i;
+> +		data->cros_ec = priv->cros_ec;
+> +		data->tz_dev = devm_thermal_of_zone_register(
+> +			priv->cros_ec->dev, i, data, &thermal_ops);
+
+Doesn't this also automatically create new hwmon device off of the
+thermal device? That shouldn't happen.
+
+In general I'm not sure how the hwmon and thermal subsystems are meant
+to interact. Is one recommended over the other?
+Should the driver become a first-class thermal driver and use the
+automatic hwmon functionality?
+
+> +		if (IS_ERR_VALUE(data->tz_dev)) {
+> +			dev_err(dev,
+> +				"failed to register %zu thermal sensor, err = %pe",
+> +				i, data->tz_dev);
+
+If !CONFIG_OF || !CONFIG_THERMAL this will always log an error.
+EOPNOTSUP should not trigger that logging.
+
+> +			continue;
+> +		}
+>  	}
+>  }
+>  
+> -- 
+> 2.47.0.277.g8800431eea-goog
+> 
 
