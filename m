@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-120854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AC8E9C4671
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 21:18:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 602599C46D6
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 21:30:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3015C2832FB
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:18:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 249E3287ED7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:30:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7889519E81F;
-	Mon, 11 Nov 2024 20:18:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BA311A7AFD;
+	Mon, 11 Nov 2024 20:30:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gqxqfibK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UtqK3ele"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EDC41BC4E;
-	Mon, 11 Nov 2024 20:18:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 496F2145346;
+	Mon, 11 Nov 2024 20:30:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731356329; cv=none; b=JpP+lNumWBxMxvSCnqeEJsKEdsuS4rSMjFKdy1FCKHtBvf3x6bI0FfucooUfbtkjHMrk9IZMT4VsPl7a/Gdj9hTJJfbNcU6GhG9tsZ+OJQNuxSFUbr653oHqpTFry+GmHb8w314zuo6wR8TwnT7UzpNWK9N9zGdkKQ9Rdtk0Heg=
+	t=1731357051; cv=none; b=ZtqySZ+RFj08XKvoXcVOQ+hds8OVTg4CHYg8AoMMVi0y8aTNS5/DshO06yHlKctnxKDWbCupDI008O1bQHUjj5RLUdhonzPL2kA7W2UMYcx4nPYJqZ1RBxZcghi7Z1q5Ltd6soeEDEF7cX6jchfy0QA1qv8JHJ70LLT91R/wQmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731356329; c=relaxed/simple;
-	bh=t5DsLHsfXVJLaZWit2f4WmFMkD0tUkZhk7FpjCALETo=;
+	s=arc-20240116; t=1731357051; c=relaxed/simple;
+	bh=WGz13CZe+VKZX/rdxUUf7kIQc8SZ1agbogHAyM7xm4A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oTevicbxBOAmWracM6uXHtVMXwXmoLUZ0YHqQDZ782X94ctUXmbWy/sbHqayohP0H2exbLmsxK44ffJMk/Y+6/QkB6pfWS8B2zs1AY34IUMq/v3z97ekJ8islIZxD+QbB4FAyDN994UwabHwlrrbh3r8NlDMdQFH8NH4o0oAtok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gqxqfibK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18B07C4CECF;
-	Mon, 11 Nov 2024 20:18:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BblTsEpmKrYNrZ5GycK/MVrRkJfCckvKtcgq49aygWCt2fxm/GAFZVXGXQMrpOrBwXW3FkfFpz5Z8Umb66cXdH6XO3tY7y6WbsqVPFp+n5XRxvMHnU4rluAYYGRThPw13J3Jmd2uZHG0wZQaNpuYpusLLupGDifj6GrHMf9SmM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UtqK3ele; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94885C4CECF;
+	Mon, 11 Nov 2024 20:30:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731356328;
-	bh=t5DsLHsfXVJLaZWit2f4WmFMkD0tUkZhk7FpjCALETo=;
+	s=k20201202; t=1731357050;
+	bh=WGz13CZe+VKZX/rdxUUf7kIQc8SZ1agbogHAyM7xm4A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gqxqfibKGViofJ8HKYz5PSJPB7/H6OvWWhJ/kb7COtar9EoQ1MgLDvNlR1bmXyw5h
-	 EfYGFIq0amhZd+Ig3cP4u4pSXVCWFo85owkKMFuAjzwS6En24XVQzwpQ38m3qpdOny
-	 FecvGyxmlWvNZNaZXaNvj60n4qs8+PkYOPfxh9GiSAC+D0qFhXsgMkz42TOspX0Zlb
-	 M6YZRSzEDvNA6GIY6QdVdW2a3VHf7GkDMWWkQ96jwp0jPXwyBEOC7GdQ6V5kW+orht
-	 iA+5UA5Nz7BCL5j4f69dTYmc3A1GQxLXj7Wqdsc9/PLNtaADoBXVpzIWJz+51Iejqc
-	 IQLLGUsjqZ8uw==
-Date: Mon, 11 Nov 2024 20:18:44 +0000
+	b=UtqK3eleeS+IR8r9f119Olaf76MrcX6pSyrNXS7x+FZjRQrGBdI9soR3JUiY492+H
+	 P7PYLvi7POUG9LdFzYb3TBpgKGyPm6feJKnsuld5v1aZ89ZMVsx+5fw0TymPW7ojP1
+	 KtkiN+ug3ki++x4OGIFscQ/WI5iHxEGZix81xjcONdhPCK/tPyp4nvXs1aUFu/hKGD
+	 5dA+cWHj1XgIVX37ia1dg4SqKD0v2DLnKzlw4HumnZkPI8j/hpFlmXeQ9lD1PX6JlA
+	 tIOE/o5nkkjNb3WyFZPnNqid9q1puKehdZooPyh9dNKPZOaWvr3yP1WFsFzGqRlfLi
+	 MXXHt21tRZetg==
+Date: Mon, 11 Nov 2024 20:30:46 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Sota4Ever <wachiturroxd150@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: samsung: Add compatible for
- Samsung Galaxy S20 FE (SM-G780F)
-Message-ID: <20241111-dreadlock-anaconda-e164c85d1ae7@spud>
-References: <20241109230402.831-1-wachiturroxd150@gmail.com>
- <20241109230402.831-2-wachiturroxd150@gmail.com>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Stephen Boyd <sboyd@kernel.org>, linux-omap@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: clock: ti: Convert mux.txt to json-schema
+Message-ID: <20241111-finished-jinx-e810458a3381@spud>
+References: <20241108231453.247660-1-andreas@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,58 +61,119 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MPVSYDEanEQ+DG5z"
+	protocol="application/pgp-signature"; boundary="Trh0whuzKXWjCbWM"
 Content-Disposition: inline
-In-Reply-To: <20241109230402.831-2-wachiturroxd150@gmail.com>
+In-Reply-To: <20241108231453.247660-1-andreas@kemnade.info>
 
 
---MPVSYDEanEQ+DG5z
+--Trh0whuzKXWjCbWM
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Nov 09, 2024 at 11:04:01PM +0000, Sota4Ever wrote:
-> Add binding for the Samsung Galaxy S20 FE (SM-G780F) board, which is
-> based on the Samsung Exynos990 SoC.
->=20
-> Signed-off-by: Sota4Ever <wachiturroxd150@gmail.com>
+On Sat, Nov 09, 2024 at 12:14:53AM +0100, Andreas Kemnade wrote:
+> diff --git a/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml=
+ b/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+> new file mode 100644
+> index 000000000000..4a6f349ba2b0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+> @@ -0,0 +1,125 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/ti/ti,mux-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments mux clock
+> +
+> +maintainers:
+> +  - Tero Kristo <kristo@kernel.org>
+> +
+> +description: |
+> +  This clock assumes a register-mapped multiplexer with multiple inpt cl=
+ock
+> +  signals or parents, one of which can be selected as output. This clock=
+ does
+> +  not gate or adjust the parent rate via a divider or multiplier.
+> +
+> +  By default the "clocks" property lists the parents in the same order
+> +  as they are programmed into the register.  E.g:
+> +
+> +    clocks =3D <&foo_clock>, <&bar_clock>, <&baz_clock>;
+> +
+> +  Results in programming the register as follows:
+> +
+> +  register value   selected parent clock
+> +  0                foo_clock
+> +  1                bar_clock
+> +  2                baz_clock
+> +
+> +  Some clock controller IPs do not allow a value of zero to be programmed
+> +  into the register, instead indexing begins at 1.  The optional property
+> +  "index-starts-at-one" modified the scheme as follows:
 
-I doubt "sota4ever" is an known alias, can you use your name here
-please?
+Not your doing, but this is a crock. How is someone meant to know when
+to use the property or not? Par for the course for ancient bindings I
+guess..
 
-> ---
->  .../devicetree/bindings/arm/samsung/samsung-boards.yaml          | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards=
-=2Eyaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-> index b5ba5ffc3..168e77375 100644
-> --- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-> +++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-> @@ -240,6 +240,7 @@ properties:
->          items:
->            - enum:
->                - samsung,c1s                     # Samsung Galaxy Note20 =
-5G (SM-N981B)
-> +              - samsung,r8s                     # Samsung Galaxy S20 FE =
-(SM-G780F)
->            - const: samsung,exynos990
-> =20
->        - description: Exynos Auto v9 based boards
+> +
+> +  register value   selected clock parent
+> +  1                foo_clock
+> +  2                bar_clock
+> +  3                baz_clock
+> +
+> +  The binding must provide the register to control the mux. Optionally
+> +  the number of bits to shift the control field in the register can be
+> +  supplied. If the shift value is missing it is the same as supplying
+> +  a zero shift.
+> +  - |
+> +    bus {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      clock-controller@110 {
+> +        #clock-cells =3D <0>;
+> +        compatible =3D "ti,mux-clock";
+> +        clocks =3D <&virt_12000000_ck>, <&virt_13000000_ck>, <&virt_1680=
+0000_ck>;
+> +        reg =3D <0x0110>;
+> +        ti,index-starts-at-one;
+> +        ti,set-rate-parent;
+> +      };
+> +
+> +      clock-controller@120 {
+> +        #clock-cells =3D <0>;
+> +        compatible =3D "ti,composite-mux-clock";
+> +        clocks =3D <&core_96m_fck>, <&mcbsp_clks>;
+> +        ti,bit-shift =3D <4>;
+> +        reg =3D <0x0120>;
+
+Ordering here should be compatible, reg, clock properties, vendor
+properties.
+
+With that,=20
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> +      };
+> +    };
 > --=20
-> 2.34.1
+> 2.39.5
 >=20
 
---MPVSYDEanEQ+DG5z
+--Trh0whuzKXWjCbWM
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzJmpAAKCRB4tDGHoIJi
-0rizAP42h+6ryK5OuKYwHGBlhnYmZRsNL+6V9i7RBw14mZ5NXAD/WnsmQirug9Uy
-IvnvhlHbzmHxe/KvQJfQvQfNxwJr/wU=
-=oo5p
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzJpdgAKCRB4tDGHoIJi
+0pRrAP9IAMMC4QQ1XmcaRQcIxjloiEmGeCoz/KUhen7MTd7ZcQD+O8dU04TD/eW1
+EzJCZAsNA+kwHG4eR4aM+L8k5NoJzAo=
+=VTPP
 -----END PGP SIGNATURE-----
 
---MPVSYDEanEQ+DG5z--
+--Trh0whuzKXWjCbWM--
 
