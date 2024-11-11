@@ -1,160 +1,183 @@
-Return-Path: <devicetree+bounces-120698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0491E9C3B43
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 10:47:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E3E39C3B2A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 10:45:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD904280FF7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 09:47:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D0F51C21F18
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 09:45:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA8061865E0;
-	Mon, 11 Nov 2024 09:46:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OyiqCCNB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C12A155342;
+	Mon, 11 Nov 2024 09:45:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 463F317C990;
-	Mon, 11 Nov 2024 09:46:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A37CF143C72;
+	Mon, 11 Nov 2024 09:45:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731318367; cv=none; b=sJdhkmyLpVB9S8Qm6iV2cL0f34mhsLb9kiYLqZJdvw4YvRv41Ob8M2azOjscCCpNLyMSs+LdP7LiqiCtEQMee/eX/pgoh/Ofq5c4w0hIhTmhmyH3zkCQvuFQ0IunKVoTdfc4GDODOujwygNdwABepVX5aoJMuY9ffOe3OgXl130=
+	t=1731318302; cv=none; b=vBlNh5QNopoEr36AZxoFWRijZsQx12ZI+d+ZQsCF1Rr7zZfNQBjbpSFHMlnFqkqSX1bBUnhj44+Q3diay6Smcf1aJxvzN7C5SaEej+S/F2xm001Fp6UvkB+Z6fgyEjoTMmczAh+FlzBw4+b5zyyWxw/hjt+0NBP26EU43lVpAhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731318367; c=relaxed/simple;
-	bh=Zoej5bs/m8hJTMD3G6AdGwEKkQ5iouMMeKxD1Smvb2U=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qXVUVBK/7TF3LDUsCTDTu9kpqUkuCN+SGX3jqz1J/itTAnITXM7RcLwWQx9UCC8RXPDgbHXd6lKh5fcU8DbkAwrjIHQv9/6g+1p9W6qVvIA2nDgoMFntfOwKlWYMGuRlULh9B/SAYWaOiXeWl1EbW3GoFGUV3S4kw70HZJEM73s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OyiqCCNB; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-20cf6eea3c0so41527915ad.0;
-        Mon, 11 Nov 2024 01:46:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731318365; x=1731923165; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eNks32tb/xOghmG+mNYQSKO0C3AuMd7n2d+nPZVJVl4=;
-        b=OyiqCCNB1jy7a81dA2JaZDvYUVKn4BSrIJlryQDyx4WHht2AkW0H4OdbwyNJ2bYwHk
-         edMrLwtGAW9EZvi97xodPqP3n+B63oY+KkrwEbkd521fhOZNwJpiw3wsUoWDtQWHtaoy
-         77Z8glK5sUKrdRznmHRwoC1RkLyG1QDykmDLZH9IKWVj9d7+eamP0W54vjmjyR8jCx0I
-         7sPwCrE9cmqoJigHAgev+sBIYHBI4X6S/bRy73Z9fLGA5ccwEQND0Kvk/Hu1odybYPMD
-         NBXWI8PNfHFqJ3oSdL+AKlSc2gUzxk6Zu/igUpc31FebxUUe1LFSQpS/BEerpeydj+qo
-         BiNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731318365; x=1731923165;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eNks32tb/xOghmG+mNYQSKO0C3AuMd7n2d+nPZVJVl4=;
-        b=vEAdq8FidasxXozYcXkR2vLonbALyILErluJkuaWsoUltChHiPzwfRnpm9/C51zsXn
-         R4Yp6f6YscROqpE1PVOKblPAFbFGVywiO6MHvLZPVud2rPeIL2/E2n/x46uq9XYeGh4q
-         Q6rSuWLUz5De+EkfjazOPkuymmZEXMNo0YVJ80a4IhWMN8quODfWcaOIQDqgtq4gNR1t
-         wXn5AjT0mYsUelLid+2hm+e9xH8R0Uw90972gEWmXHdslkE/JYXRJeDLhrswgjB6GyaQ
-         eN5v8HFgkC8XciUyCpNiPfVRubx7uja6QYsg/cIydFezykpTS56NLfdM5lu8hZ0QW/Mx
-         o7rA==
-X-Forwarded-Encrypted: i=1; AJvYcCUfdOMdpios/wqmIrlgXKRM11lcZEby4DhXt4QFhEzZWaXAvxjZCKuGLX1hzJAz9cx2kK5FGjYyDTYTbGB7@vger.kernel.org, AJvYcCVe4Ab1Dm19BGYBauClzG64EVE+cSw1v6TjgrsuGPPkjSuJzprn1bAPv13FxluYFfaCLuNnDpg1aNCz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkBLGmbmJqM27DCRKdEO97cuDdbwCBItDFsVrvjeFx95X3R3Y/
-	jSVG/SnZfuMixYPpeC8wQ8LCuiSzPV9P+rKBOmiP702vqvWnL+Yl
-X-Google-Smtp-Source: AGHT+IE1c5elCHCi3OEQodIARSHjGMgZMZMY65tQlUc5wZSO5OedFsdVLtGbaV9F3x5W+AiCReKDzg==
-X-Received: by 2002:a17:903:2b08:b0:20c:f292:3a21 with SMTP id d9443c01a7336-21183507b88mr163069235ad.15.1731318365569;
-        Mon, 11 Nov 2024 01:46:05 -0800 (PST)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177dc826fsm72248725ad.11.2024.11.11.01.46.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Nov 2024 01:46:05 -0800 (PST)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 5/5] ARM: dts: aspeed: Harma: fan board io-expander
-Date: Mon, 11 Nov 2024 17:43:49 +0800
-Message-Id: <20241111094349.2894060-6-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241111094349.2894060-1-peteryin.openbmc@gmail.com>
-References: <20241111094349.2894060-1-peteryin.openbmc@gmail.com>
+	s=arc-20240116; t=1731318302; c=relaxed/simple;
+	bh=fZNzFehdsn1KYuBdyXoOclvk0TirGAtQUi7fLN6E00Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tbb0RbQOohiJTWFxHs/aPYElqBXDxo0+YS0z2AYbEBlowKWbHFjcI/YJJzA7pLrsViU2bChQ4fe5MQKFkBwgqF1kpnXtjO3W7Dc+R+AE8mdoHcFe52RGba4W469a+hXf7kWw9fFYeZk3QPY+EtKF6M+oFyIdXZe/sEaIo8f5Tw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
+X-CSE-ConnectionGUID: QdeBMHObTxqGGq77nM22kA==
+X-CSE-MsgGUID: MsWjFg1cSiWCavtgXzfRRA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30972332"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="30972332"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2024 01:45:00 -0800
+X-CSE-ConnectionGUID: /eX76d9LRjOk6/8VeX37PA==
+X-CSE-MsgGUID: UvJCofyfTlmID8eXgH3kkA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; 
+   d="scan'208";a="91926457"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2024 01:44:55 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andy.shevchenko@gmail.com>)
+	id 1tAQya-0000000DXxa-0N1Q;
+	Mon, 11 Nov 2024 11:44:52 +0200
+Date: Mon, 11 Nov 2024 11:44:51 +0200
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+To: Aren <aren@peacevolution.org>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Kaustabh Chakraborty <kauschluss@disroot.org>,
+	=?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <trabarni@gmail.com>,
+	Ondrej Jirman <megi@xff.cz>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, Dragan Simic <dsimic@manjaro.org>,
+	phone-devel@vger.kernel.org
+Subject: Re: [PATCH v4 4/6] iio: light: stk3310: use dev_err_probe where
+ possible
+Message-ID: <ZzHSE9Nrf4YySJrq@smile.fi.intel.com>
+References: <20241102195037.3013934-3-aren@peacevolution.org>
+ <20241102195037.3013934-11-aren@peacevolution.org>
+ <ZyiIcDaANjxwtCz-@smile.fi.intel.com>
+ <m7x526sv5krgt4t2whn5ykyktoz5u7ihsxv3qa5yue3ucbk6lb@37spwsmlcylm>
+ <ZzEPACoblmcQD9yu@surfacebook.localdomain>
+ <xubjmxig4luag27ifnmqmv3x3bvzhwczwvw34kw6tssaa2d24t@ysnqh5e3g7sz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <xubjmxig4luag27ifnmqmv3x3bvzhwczwvw34kw6tssaa2d24t@ysnqh5e3g7sz>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Add fan board gpio io-expander to check fan board status.
+On Sun, Nov 10, 2024 at 04:34:30PM -0500, Aren wrote:
+> On Sun, Nov 10, 2024 at 09:52:32PM +0200, Andy Shevchenko wrote:
+> > Sun, Nov 10, 2024 at 02:14:24PM -0500, Aren kirjoitti:
+> > > On Mon, Nov 04, 2024 at 10:40:16AM +0200, Andy Shevchenko wrote:
+> > > > On Sat, Nov 02, 2024 at 03:50:41PM -0400, Aren Moynihan wrote:
 
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
- .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
+...
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-index 9d7e7208562b..58eba5fb6262 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-@@ -218,6 +218,25 @@ temperature-sensor@4b {
- 		compatible = "ti,tmp75";
- 		reg = <0x4b>;
- 	};
-+
-+	gpio@12 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x12>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&sgpiom0>;
-+		interrupts = <116 IRQ_TYPE_LEVEL_LOW>;
-+
-+		gpio-line-names =
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","fcb1-activate",
-+		"","";
-+	};
- };
- 
- &i2c1 {
-@@ -273,6 +292,25 @@ temperature-sensor@4b {
- 		compatible = "ti,tmp75";
- 		reg = <0x4b>;
- 	};
-+
-+	gpio@12 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x12>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&sgpiom0>;
-+		interrupts = <114 IRQ_TYPE_LEVEL_LOW>;
-+
-+		gpio-line-names =
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","fcb0-activate",
-+		"","";
-+	};
- };
- 
- &i2c3 {
+> > > > >  #define STK3310_REGFIELD(name)						    \
+> > > > >  	do {								    \
+> > > > >  		data->reg_##name =					    \
+> > > > > -			devm_regmap_field_alloc(&client->dev, regmap,	    \
+> > > > > +			devm_regmap_field_alloc(dev, regmap,		    \
+> > > > >  				stk3310_reg_field_##name);		    \
+> > > > > -		if (IS_ERR(data->reg_##name)) {				    \
+> > > > > -			dev_err(&client->dev, "reg field alloc failed.\n"); \
+> > > > > -			return PTR_ERR(data->reg_##name);		    \
+> > > > > -		}							    \
+> > > > > +		if (IS_ERR(data->reg_##name))				    \
+> > > > 
+> > > > > +			return dev_err_probe(dev,			    \
+> > > > > +				PTR_ERR(data->reg_##name),		    \
+> > > > 
+> > > > AFAICS these two can be put on one.
+> > > 
+> > > This doesn't leave room for whitespace between the end of line and "\",
+> > 
+> > Is it a problem?
+> 
+> It feels a bit camped and not as readable to me:
+> 
+> #define STK3310_REGFIELD(name)						    \
+> 	do {								    \
+> 		data->reg_##name =					    \
+> 			devm_regmap_field_alloc(dev, regmap,		    \
+> 				stk3310_reg_field_##name);		    \
+> 		if (IS_ERR(data->reg_##name))				    \
+> 			return dev_err_probe(dev, PTR_ERR(data->reg_##name),\
+> 					     "reg field alloc failed.\n");  \
+> 	} while (0)
+
+Rather this way (besides the fact of having spaces instead of TABs for
+the last formatting, in such case you even can simply add yet another
+column with spaces):
+
+#define STK3310_REGFIELD(name)								\
+	do {										\
+		data->reg_##name =							\
+			devm_regmap_field_alloc(dev, regmap, stk3310_reg_field_##name);	\
+		if (IS_ERR(data->reg_##name))						\
+			return dev_err_probe(dev, PTR_ERR(data->reg_##name),		\
+					     "reg field alloc failed.\n");		\
+	} while (0)
+
+> Removing a level of indentation makes it much better
+
+You can do it differently
+
+#define STK3310_REGFIELD(name)							\
+do {										\
+	data->reg_##name =							\
+		devm_regmap_field_alloc(dev, regmap, stk3310_reg_field_##name);	\
+	if (IS_ERR(data->reg_##name))						\
+		return dev_err_probe(dev, PTR_ERR(data->reg_##name),		\
+				     "reg field alloc failed.\n");		\
+} while (0)
+
+> #define STK3310_REGFIELD(name) ({						\
+> 	data->reg_##name = devm_regmap_field_alloc(dev, regmap,			\
+> 						   stk3310_reg_field_##name);   \
+> 	if (IS_ERR(data->reg_##name))						\
+> 		return dev_err_probe(dev, PTR_ERR(data->reg_##name),		\
+> 				     "reg field alloc failed\n");		\
+> })
+
+I am against unneeded use of GNU extensions.
+
+> > > replacing "do { } while (0)" with "({ })" and deindenting could make
+> > > enough room to clean this up the formatting of this macro though.
+> > 
+> > do {} while (0) is C standard, ({}) is not.
+> 
+> ({ }) is used throughout the kernel, and is documented as such[1]. I
+> don't see a reason to avoid it, if it helps readability.
+
+I don't see how it makes things better here, and not everybody is familiar with
+the concept even if it's used in the kernel here and there. Also if a tool is
+being used in one case it doesn't mean it's suitable for another.
+
+> 1: the "GNU Extensions" section of Documentation/kernel-hacking/hacking.rst
+
 -- 
-2.25.1
+With Best Regards,
+Andy Shevchenko
+
 
 
