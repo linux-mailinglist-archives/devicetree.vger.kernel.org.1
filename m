@@ -1,222 +1,126 @@
-Return-Path: <devicetree+bounces-120831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACFE29C4559
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:53:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7DB49C4575
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:00:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E1DC283A24
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 18:53:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D0111F2166D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 224FF1A3056;
-	Mon, 11 Nov 2024 18:50:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E1E19F133;
+	Mon, 11 Nov 2024 19:00:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="oGlIN2uu"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="wjEnW+dP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [207.246.76.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3361F19B3F9;
-	Mon, 11 Nov 2024 18:50:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7C9B13B58A
+	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 19:00:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.246.76.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731351030; cv=none; b=coXdSC5HFZQkbHmsfMMTOafhUwiZ3xpIJZK1dU69U2yQ4nOBamxlPyYGV0Mp31/3KZ0YaEIxQCBTQCiy6q5QSV6odpNjTiQQwvG5Bf2RCJRNUOzJUip3Mzc+/q0EmG4Wk/pT0gKfE0pfNaIQRldLRcJsgwOhUuLq6GY2FiZqOt0=
+	t=1731351640; cv=none; b=AMANBeb0g7GmSg9mmIPAGStKi7wj5c83f+YDRxalDXeFdpOomr2pxgUNctx1z+YbVd6Kihf/XOphb8RLcdPQvaFdYgBslpYZ9NJ4XaHFhzi/5seS5isX5Si8/gwlZoERxZouQ3qaD2yQsd4M1CdmM8m2lfTwi42jdklK1vXOKXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731351030; c=relaxed/simple;
-	bh=y5vtfq2Cf3dQpqUQecvOkB5OhwQcaUej1WI0Wb2c2tc=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:
-	 In-Reply-To:References:Date; b=UrJVdXbrZ+KnfxhSwCP0HUwOiib/WIMVb1J4w6llIV7FNctQNpjXJb63xAjJzdv7LNiglMyFHeVQZNj6aduOieU4M8bFeO7Hb/X4ZuV5/xAwt/M0zNbumIhQQCLxQ9ZLNYATuQofU5ibg2kI0SHrs+PPD4oCC7M7SABYaOIgXic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=oGlIN2uu; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1731351004; x=1731955804; i=frank-w@public-files.de;
-	bh=mTLhO1kTOoQKkiWNympYWNxRE9YaSNUlDtJFuAoJjS8=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:In-Reply-To:References:Date:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=oGlIN2uuTLEjOgWZF4hAVcHiLRweuVkBpJ6c3hkDHkQnnjxZAzaKDJWY3QEnTKpt
-	 qQ9FOvPa5hCYFzUB+YuY9ERq92ceJ+7fT+J5lbhjHUfgdkzMMbjNprQEqYW2JbNTP
-	 mqMfa0gpNapyvfXqxiMTdC3Ha+I1BK2Qt+7yQ5leQmJ6d15Llk2AUoWaiRXPkoDlM
-	 q/3lFLrKRNlf0KIYHqUJeWgmUfwcn9KtW5tPzdy68+9GC0w+vmeiBmnnVAKzikUOE
-	 PLXtTjChM0BjbsNMBvk5Nd1gur3o2dm29Sx/CtcFwDeIrG84DuKxYNutecaZAHJX5
-	 kZ3tEynFtzvEbLQwdw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.144.196] ([217.61.144.196]) by
- trinity-msg-rest-gmx-gmx-live-67cd9ff8f8-fkcfn (via HTTP); Mon, 11 Nov 2024
- 18:50:04 +0000
+	s=arc-20240116; t=1731351640; c=relaxed/simple;
+	bh=hX+rHXdatZ2voTuWx8KqYE8gzjC8I8oX4LQTcNL1uuo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
+	 In-Reply-To:Content-Type; b=IwmbKhzzGKcBf9E6v//i1PpNi4i3vtNHBFvXd2tJd/NzqIIW03nflkOn3VWvKD6f/0On5AMWwI5wx23K1hIIG7sXtWrZ+1ChQ2n/1unuK363iZ2CJAW+P1o/BaP4Lw982Qk5WO9TXncHJfigChwztduamLF0mKGW7axAJdWN0so=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=wjEnW+dP; arc=none smtp.client-ip=207.246.76.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: Cc: From:
+ References: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1731351608;
+ bh=CMsuVaCWcGbn+PNUEsDJOg5Je/VIwxR3vM5XvB5rDGk=;
+ b=wjEnW+dPyV8k2P+3CBh7Ltj4le8kHlTqFdSeaSBOH2HJd6/7dSRDsUnBdRpPhx5uSnoR8n8a6
+ CquRSd9JzlX5gHK9FRamWJFBfGZyPQNbPuFkAN3J1IwK3z4rAdFqLxxQO8f388Maw+PLf+vI+Ax
+ o8WjTmD3D6kXetL8UGtbHwl7AIo3cvMPFcpsZPAapG5IgaB917oqAp+raRHLa1cpW+KK2K90iuq
+ cM/sbyzX2q8g/nOaSUenRRZ3b+FSVsUFWvgkkTJHJPhqyUXTp3LES6wcHGtHBcvZLUeU3lhYKVR
+ 8H8tOalRiKcfTUojUUtvUdT0LnCb3DcFHDBOy+jqNjSQ==
+Message-ID: <c89c2f16-ffb0-4b61-a962-9705f9f1e0e2@kwiboo.se>
+Date: Mon, 11 Nov 2024 20:00:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-e3cbc89b-e051-436f-95d8-a912f2b880b3-1731351004644@trinity-msg-rest-gmx-gmx-live-67cd9ff8f8-fkcfn>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: andrew@lunn.ch, robh@kernel.org
-Cc: linux@fw-web.de, dlemoal@kernel.org, cassel@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, gregory.clement@bootlin.com,
- sebastian.hesselbarth@gmail.com, linux@armlinux.org.uk,
- hdegoede@redhat.com, axboe@kernel.dk, linux-ide@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Aw: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditional
- failed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Add supported UHS-I rates to
+ sdmmc0 on rock-3b
+To: =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@linux.com>
+References: <20241111181807.13211-1-tszucs@linux.com>
+ <20241111181807.13211-2-tszucs@linux.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
+ Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20241111181807.13211-2-tszucs@linux.com>
 Content-Type: text/plain; charset=UTF-8
-In-Reply-To: <e7a8e087-fb92-4911-b7fb-34521635e8da@lunn.ch>
-Importance: normal
-References: <20241109094623.37518-1-linux@fw-web.de>
- <20241109094623.37518-2-linux@fw-web.de>
- <e534c723-6d65-433f-8ab5-1c0d424d7367@lunn.ch>
- <9B1A5D20-3DE5-40C1-8B2D-B1C4F53FA5F4@public-files.de>
- <CAL_JsqJnOa_9Poz86vOWBCQigvv-Ab4Tt1hrwTxSa5zNraVxXQ@mail.gmail.com>
- <e7a8e087-fb92-4911-b7fb-34521635e8da@lunn.ch>
-Date: Mon, 11 Nov 2024 18:50:04 +0000
-Sensitivity: Normal
-Content-Transfer-Encoding: quoted-printable
-X-Priority: 3
-X-UI-CLIENT-META-MAIL-DROP: W10=
-X-Provags-ID: V03:K1:QcPAxYStbZ35Ke0xAH5VF0tjiIpqa05M6016qw5Np2evzRUk8kv4okCbkw0Yd+7SOLhSu
- KexxLb4is4p5HYU/AdHrFAKaHrIr3fFEBzOYBA4rZuiLb+hfC3/mBuJvS3U1It6D40+fBvsx/Got
- bYkeIA/GisT4MYpiNRgj+IktwwHBD5uEf72CQTG8A68k4UFuA3qCKx5/MKPMIiJNDnTL28AHh9Nv
- qmnAaMZDdi0gcqYRGGTJDUBGklrghyvfd9JBbFG5oZt509TBf3al8F0kTUdMCx6iZBH8RiQq3CkG
- xZ6geXmHsD1qofX5o3ySoymHnnWBhg8Wo6ThdwmJ71fMIkNdC6PmHFIxORNB1TMy90=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:diK5IeRk6GA=;mGuyRpDPt3CMfRTiluWb5Fd35Dd
- K2HhjBpSHyemMJtMQCtJNRocDcjwgjjTP6pxwTl+dil4q5TmB5cxB2If5/MtNEVv9fZ99YekV
- 2ZGCTYYjn4vexENc5lEk1SNIMtf7EdBBQi8mOgrlp0UhekAUJr5oXaPk4XkaqwKHVA6G9iAV1
- dv0ZaaSPwqOIwKMNFPrpCGLrVlbWxJNRto88lr7fDeNPjMxLhG9u6XG6YkSbX2rsI/o19QcBV
- TDVjnNdgWLc5phjwK8lfNScdW4RqcQ/0GGw1MucRPmjEl42U/Vsxs8qvkj2w3km74EP/y45nh
- u5fU7EAMkzSlN33WiWSyBScmt4B8jPtyrT7eVi7bPVJPfGbwYu8TEkjsdiOAcs72PTFyJ3WrI
- qupVmNt8G5L/y36RFWrFrSHTIPCkYp0uroC4wVv5SBkEW2XbC8W8rgmiCR1L+JCmbLSqImewO
- VlMzL03bqQbCiJSgUm5BPHMpOB2jVooy9r95GKVF42/NnHHcUBRLCnSOpGIu5x84WebDseCvf
- zXon+ErjJwR6YD+OKPOj5VVaaGQG2H8LByzIURaPmY+YwNNPvTNOYOI3/uDl36l4mUorS5VRC
- C3JAMXXfd7cK8r+DyI/TyTEJoWkRpII+Z8ZMWO7d6snmGoIW8A7mcbrUxZl+0a4WVp5c7Tg1M
- BdpnyLenm24ZUxIgei9ac3D/ocUQeOqaTyx6j9RcLw==
+Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 207.246.76.47
+X-ForwardEmail-ID: 673254361b4710f318d5ef3b
 
-&gt; Gesendet: Montag, 11=2E November 2024 um 18:15
-&gt; Von: "Andrew Lunn" <andrew@lunn=2Ech>
-&gt; An: "Rob Herring" <robh@kernel=2Eorg>
-&gt; CC: frank-w@public-files=2Ede, "Frank Wunderlich" <linux@fw-web=2Ede>=
-, "Damien Le Moal" <dlemoal@kernel=2Eorg>, "Niklas Cassel" <cassel@kernel=
-=2Eorg>, "Krzysztof Kozlowski" <krzk+dt@kernel=2Eorg>, "Conor Dooley" <cono=
-r+dt@kernel=2Eorg>, "Gregory Clement" <gregory=2Eclement@bootlin=2Ecom>, "S=
-ebastian Hesselbarth" <sebastian=2Ehesselbarth@gmail=2Ecom>, "Russell King"=
- <linux@armlinux=2Eorg=2Euk>, "Hans de Goede" <hdegoede@redhat=2Ecom>, "Jen=
-s Axboe" <axboe@kernel=2Edk>, linux-ide@vger=2Ekernel=2Eorg, devicetree@vge=
-r=2Ekernel=2Eorg, linux-kernel@vger=2Ekernel=2Eorg, linux-arm-kernel@lists=
-=2Einfradead=2Eorg
-&gt; Betreff: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditiona=
-l failed
-&gt;
-&gt; On Mon, Nov 11, 2024 at 10:25:12AM -0600, Rob Herring wrote:
-&gt; &gt; On Sun, Nov 10, 2024 at 3:25=E2=80=AFAM Frank Wunderlich
-&gt; &gt; <frank-w@public-files=2Ede> wrote:
-&gt; &gt; &gt;
-&gt; &gt; &gt; Am 9=2E November 2024 18:29:44 MEZ schrieb Andrew Lunn <and=
-rew@lunn=2Ech>:
-&gt; &gt; &gt; &gt;On Sat, Nov 09, 2024 at 10:46:19AM +0100, Frank Wunderl=
-ich wrote:
-&gt; &gt; &gt; &gt;&gt; From: Frank Wunderlich <frank-w@public-files=2Ede>
-&gt; &gt; &gt; &gt;&gt;
-&gt; &gt; &gt; &gt;&gt; after converting the ahci-platform binding to yaml=
- the following files
-&gt; &gt; &gt; &gt;&gt; reporting "'anyOf' conditional failed" on
-&gt; &gt; &gt; &gt;&gt;
-&gt; &gt; &gt; &gt;&gt; sata@540000: sata-port@0
-&gt; &gt; &gt; &gt;&gt; diff --git a/arch/arm64/boot/dts/marvell/armada-70=
-40-db=2Edts b/arch/arm64/boot/dts/marvell/armada-7040-db=2Edts
-&gt; &gt; &gt; &gt;&gt; index 1e0ab35cc686=2E=2E2b5e45d2c5a6 100644
-&gt; &gt; &gt; &gt;&gt; --- a/arch/arm64/boot/dts/marvell/armada-7040-db=
-=2Edts
-&gt; &gt; &gt; &gt;&gt; +++ b/arch/arm64/boot/dts/marvell/armada-7040-db=
-=2Edts
-&gt; &gt; &gt; &gt;&gt; @@ -214,6 +214,7 @@ &amp;cp0_sata0 {
-&gt; &gt; &gt; &gt;&gt;
-&gt; &gt; &gt; &gt;&gt;      sata-port@1 {
-&gt; &gt; &gt; &gt;&gt;              phys =3D &lt;&amp;cp0_comphy3 1&gt;;
-&gt; &gt; &gt; &gt;&gt; +            status =3D "okay";
-&gt; &gt; &gt; &gt;&gt;      };
-&gt; &gt; &gt; &gt;&gt;  };
-&gt; &gt; &gt; &gt;
-&gt; &gt; &gt; &gt;&gt;
-&gt; &gt; &gt; &gt;&gt; diff --git a/arch/arm64/boot/dts/marvell/armada-70=
-40-mochabin=2Edts b/arch/arm64/boot/dts/marvell/armada-7040-mochabin=2Edts
-&gt; &gt; &gt; &gt;&gt; index 7af949092b91=2E=2E6bdc4f1e6939 100644
-&gt; &gt; &gt; &gt;&gt; --- a/arch/arm64/boot/dts/marvell/armada-7040-moch=
-abin=2Edts
-&gt; &gt; &gt; &gt;&gt; +++ b/arch/arm64/boot/dts/marvell/armada-7040-moch=
-abin=2Edts
-&gt; &gt; &gt; &gt;&gt; @@ -433,11 +433,13 @@ &amp;cp0_sata0 {
-&gt; &gt; &gt; &gt;&gt;      /* 7 + 12 SATA connector (J24) */
-&gt; &gt; &gt; &gt;&gt;      sata-port@0 {
-&gt; &gt; &gt; &gt;&gt;              phys =3D &lt;&amp;cp0_comphy2 0&gt;;
-&gt; &gt; &gt; &gt;&gt; +            status =3D "okay";
-&gt; &gt; &gt; &gt;&gt;      };
-&gt; &gt; &gt; &gt;&gt;
-&gt; &gt; &gt; &gt;&gt;      /* M=2E2-2250 B-key (J39) */
-&gt; &gt; &gt; &gt;&gt;      sata-port@1 {
-&gt; &gt; &gt; &gt;&gt;              phys =3D &lt;&amp;cp0_comphy3 1&gt;;
-&gt; &gt; &gt; &gt;&gt; +            status =3D "okay";
-&gt; &gt; &gt; &gt;&gt;      };
-&gt; &gt; &gt; &gt;&gt;  };
-&gt; &gt; &gt; &gt;&gt; diff --git a/arch/arm64/boot/dts/marvell/armada-cp=
-11x=2Edtsi b/arch/arm64/boot/dts/marvell/armada-cp11x=2Edtsi
-&gt; &gt; &gt; &gt;&gt; index 7e595ac80043=2E=2E161beec0b6b0 100644
-&gt; &gt; &gt; &gt;&gt; --- a/arch/arm64/boot/dts/marvell/armada-cp11x=2Ed=
-tsi
-&gt; &gt; &gt; &gt;&gt; +++ b/arch/arm64/boot/dts/marvell/armada-cp11x=2Ed=
-tsi
-&gt; &gt; &gt; &gt;&gt; @@ -347,10 +347,12 @@ CP11X_LABEL(sata0): sata@540=
-000 {
-&gt; &gt; &gt; &gt;&gt;
-&gt; &gt; &gt; &gt;&gt;                      sata-port@0 {
-&gt; &gt; &gt; &gt;&gt;                              reg =3D &lt;0&gt;;
-&gt; &gt; &gt; &gt;&gt; +                            status =3D "disabled"=
-;
-&gt; &gt; &gt; &gt;&gt;                      };
-&gt; &gt; &gt; &gt;
-&gt; &gt; &gt; &gt;I don't know the yaml too well, but it is not obvious h=
-ow adding a few
-&gt; &gt; &gt; &gt;status =3D "disabled"; status =3D "okay"; fixes a "'any=
-Of' conditional failed"=2E
-&gt; &gt; &gt; &gt;
-&gt; &gt; &gt; &gt;Maybe you can expand the explanation a bit?
-&gt; &gt; &gt; &gt;
-&gt; &gt; &gt; &gt;       Andrew
-&gt; &gt; &gt;
-&gt; &gt; &gt; Hi angelo,
-&gt; &gt; &gt;
-&gt; &gt; &gt; I guess the dtbs_check only checks required properties from=
- yaml if the node is enabled=2E
-&gt; &gt;=20
-&gt; &gt; Yes, that is exactly how it works=2E
-&gt;=20
-&gt; So from this, can i imply that phys is a required property?
-&gt;=20
-&gt; Looking at the above patch, it appears that for armada-*=2Edts,
-&gt; sata-port@0 always uses phys =3D &lt;&amp;cp0_comphy2 0&gt; and sata-=
-port@1 uses
-&gt; phys =3D &lt;&amp;cp0_comphy3 1&gt;=2E Is this an actual SoC property=
-? Could it be
-&gt; moved up into the =2Edtsi file? Or is it really a board property?
+Hi Tamás,
 
-as i said the phy may operate in different modes (not know marvell here, b=
-ut on other vendors phys are defined at board level), maybe the boards wher=
-e the phy is missing the phy is used in another mode=2E Without knowing the=
- SoC and boards disable it at SoC-level and enable only the nodes containin=
-g a phys property is all i can do here to fix the issue=2E Imho it is alway=
-s a good idea to enable only the conrollers a board will use=2E
+On 2024-11-11 19:17, Tamás Szűcs wrote:
+> Add all supported UHS-I rates to sdmmc0 and allow 200 MHz maximum clock to
+> benefit modern SD cards.
+> 
+> Signed-off-by: Tamás Szűcs <tszucs@linux.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> index 3d0c1ccfaa79..242af5337cdf 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> @@ -670,8 +670,14 @@ &sdmmc0 {
+>  	bus-width = <4>;
+>  	cap-sd-highspeed;
+>  	disable-wp;
+> +	max-frequency = <200000000>;
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
+> +	sd-uhs-sdr12;
+> +	sd-uhs-sdr25;
+> +	sd-uhs-sdr50;
+> +	sd-uhs-sdr104;
+> +	sd-uhs-ddr50;
 
-&gt; 	Andrew
-&gt; </frank-w@public-files=2Ede></andrew@lunn=2Ech></frank-w@public-files=
-=2Ede></axboe@kernel=2Edk></hdegoede@redhat=2Ecom></linux@armlinux=2Eorg=2E=
-uk></sebastian=2Ehesselbarth@gmail=2Ecom></gregory=2Eclement@bootlin=2Ecom>=
-</conor+dt@kernel=2Eorg></krzk+dt@kernel=2Eorg></cassel@kernel=2Eorg></dlem=
-oal@kernel=2Eorg></linux@fw-web=2Ede></robh@kernel=2Eorg></andrew@lunn=2Ech=
->
+There is an issue with io-domain driver not always being probed before
+mmc driver, this typically result in io-domain being configured wrong,
+and mmc tuning happen before io-domain is correctly configured.
+
+You can usually observe this by looking at the tuning value during boot
+and comparing it to the tuning value after removing and re-insering a
+sd-card.
+
+Because of this uhs modes was left out from initial DT submission, some
+cards will work others wont, sd-uhs-sdr50 is known to be working with
+most cards even with the probe order issue.
+
+Also I thought that lower speeds where implied?
+
+Regards,
+Jonas
+
+>  	vmmc-supply = <&vcc3v3_sd>;
+>  	vqmmc-supply = <&vccio_sd>;
+>  	status = "okay";
+
 
