@@ -1,108 +1,206 @@
-Return-Path: <devicetree+bounces-120824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 546139C44DF
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:21:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2C09C44E2
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:22:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19775284837
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 18:21:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8C581F25D14
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 18:22:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E0771C1F30;
-	Mon, 11 Nov 2024 18:18:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C17621A725A;
+	Mon, 11 Nov 2024 18:22:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="P+dWOpS4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 913C31AB51E;
-	Mon, 11 Nov 2024 18:18:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7E791A76CC;
+	Mon, 11 Nov 2024 18:22:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731349097; cv=none; b=tH8Vgxhk5Pi4cyCqDu3z25wPIK4+27XEK+d/2fbSeB6wcGU4Mvgoz2u1pJwguLF1iRuGsSL7sFuRGWLaZT+sztk4k5XNGMzq880fmWGjdE/cCATsYHv05Myr71I8ajaBxmCMX+qi8UBkozJynzBNPaGcfvLtmINEm9FvldgXtWo=
+	t=1731349329; cv=none; b=dA1FBmbQet64bHeEkOgsQti0/P6lLMly9qdEfE6i4eNNEOVaaQx+3aHjfqfiiylfIvvAC+kMs9PrdlW4ObQ5zQ+iHwSpfaYtollZSTVucdpVxIHM2SplfQmmEBjcbwDFQZAkP8ESvbHw1ZuLlwEn2oMup6P5hIpHrXVjuV4qf8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731349097; c=relaxed/simple;
-	bh=K91dOhOmskhPTGyTEdB1NS0r2O6vcuoC9unnmwrJeXE=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uWX5oJYEPiYDwIzKclY5Tx4wpDDRJRZ1AkHR7gCS2VTXCGmHQ/fuqpe7VcEKkP6Ini/3Rd2lS6TkX/x4/jQjFWsFyavoAAZ/jfm5QuXR6+kPH4JfED74wf+qZd6QUG6IXBaiLUdWsDg/j8MyzFn8myH8Rjn4ftW7lX7SdBhMPoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a9a68480164so711879166b.3;
-        Mon, 11 Nov 2024 10:18:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731349094; x=1731953894;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DIW7DyS2WH6Cyrvm/ebpRPiFw91e/Lrg2SI8ILkhrNY=;
-        b=tXvuXM49qGAsyjwXTlriu3gia/MN+2bIHrB/6AthrpWuqrRvYcmcYOoKhuHfDw3Z78
-         jqtVc+m+7NyUF1uO9xmoQXzuyde2GA9xyqhKr7EDgRxKOX5zJ0kTqYDPLUIJrF6oylBf
-         7z1cJb7g48C+nYcnmGoxQKgaf0Qoznip+se/GG0AA7PXrSDLhtTzvS0ZN9UkUJRzJsAd
-         CpwlB3C/Sl1Ahyd+3fyUSfGgkuISiFAze/wztsY9bhaSh6LqiqGBuOEpt/fATEMCWCoQ
-         ql+WxYA6ZXTn40+kRbqyw0yTCIi6x6RFTrOVi0WIx3jMpYfb6rcwlGO3e7j2dFoEc6Jt
-         a+LA==
-X-Forwarded-Encrypted: i=1; AJvYcCUnmYP6rqSYx+JGS2Lco3b0e4S0dH7p3mdcv8q88zehzScdfz82UKw1skX8WHwV3IGRdgU1vKGjXzJ5@vger.kernel.org, AJvYcCXVZt4+FLaCBOLZ3GxL4FwkdV/up7xujReagiZmxGchpTpK63Ns34Tc2YcAqxNmPMDlT+rDWhq6QbVIi8r9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIeewf4LHtwTBkL3Xwx3gLO+OXpugaixZDHo5ImvAv+1JCa7yz
-	oG/f+Y9qVmn9C2DeQsZ8EvOMQNw9ldBUoWyGPSrlfti7bSb/NGQy
-X-Google-Smtp-Source: AGHT+IErIzWT0CMgys4ztmmaJblBGh0zeoh24ympSdB4fT+d0iex40LKQpmMSIi+f5EOJn7E8Pss8w==
-X-Received: by 2002:a17:907:a4b:b0:a99:fc3d:7c76 with SMTP id a640c23a62f3a-a9ef001915amr1385377366b.37.1731349093673;
-        Mon, 11 Nov 2024 10:18:13 -0800 (PST)
-Received: from localhost.localdomain ([193.142.191.186])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9ee0a17b64sm617868466b.39.2024.11.11.10.18.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Nov 2024 10:18:13 -0800 (PST)
-From: =?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <tszucs@linux.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	=?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <tszucs@linux.com>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: rockchip: Enable UART8 on rock-3b
-Date: Mon, 11 Nov 2024 19:17:27 +0100
-Message-ID: <20241111181807.13211-4-tszucs@linux.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241111181807.13211-1-tszucs@linux.com>
-References: <20241111181807.13211-1-tszucs@linux.com>
+	s=arc-20240116; t=1731349329; c=relaxed/simple;
+	bh=PutfDBf0Mx9OWmqvjfRpMgbqwDTWo42qlTELEX0R0Bk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=quPlH53d3W8dLUAl931rr5lyT//1FURdjAgngW6Mym0ckyiLHa+9dBl8DEPMnd+AQvgnGvHjdZEOz2w1fAL+JtJO9JSToEjJkVpRxA6F3ECBtYxuv6+cJprwYgRJXtnnqryNyqJcwwkz00wViUPG/osUJa8xxJpCuhoZzq0l5ZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=P+dWOpS4; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 49EFE1C0005;
+	Mon, 11 Nov 2024 18:22:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1731349324;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m5qBMJyupmVmP3WenwgqG6fxdPxLJkkXl5JQ5DHXwD0=;
+	b=P+dWOpS4lvwV7ml2Qfzzvid2JahTF5umrRz6pPlZxfoDSVN7P7RBPC5/L1AoCYDmEGs0z6
+	GdDwxm/e9vaPg8V5YM6NfeSx4yMOUgh42kO+kgWriWfrwiFd8aP0fwgcKoIOcEyJxICjcT
+	cZdji2E5SwsT6f8SzmW7zJzfOPv0P2496z5WA7e+5h4ZOpCkf1LCJdaCVT24l8Wngjqc2Y
+	mYK/iiOEOP4qlB4TdWuml/EGZm+obhm5ZNr5y9qhERlkvscEShimeq1nJc5xtuWmMyZEUI
+	BoLHmgJDkaqq/JTSpjMR3HbpocvPW8UvZmSp4xJEkexDK7lIJ+dgKPl/tg/hnw==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Hui-Ping Chen <hpchen0nvt@gmail.com>
+Cc: richard@nod.at,  vigneshr@ti.com,  robh@kernel.org,  krzk+dt@kernel.org,
+  conor+dt@kernel.org,  nikita.shubin@maquefel.me,  arnd@arndb.de,
+  vkoul@kernel.org,  esben@geanix.com,
+  linux-arm-kernel@lists.infradead.org,  linux-mtd@lists.infradead.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 2/2] mtd: rawnand: nuvoton: add new driver for the
+ Nuvoton MA35 SoC
+In-Reply-To: <20241023092617.108021-3-hpchen0nvt@gmail.com> (Hui-Ping Chen's
+	message of "Wed, 23 Oct 2024 09:26:17 +0000")
+References: <20241023092617.108021-1-hpchen0nvt@gmail.com>
+	<20241023092617.108021-3-hpchen0nvt@gmail.com>
+User-Agent: mu4e 1.12.1; emacs 29.4
+Date: Mon, 11 Nov 2024 19:22:02 +0100
+Message-ID: <87y11p1vhx.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-Enable UART lines on Radxa ROCK 3 Model B M.2 Key E.
+Hello,
 
-Signed-off-by: Tamás Szűcs <tszucs@linux.com>
----
- arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> +static int ma35_nand_attach_chip(struct nand_chip *chip)
+> +{
+> +	struct ma35_nand_info *nand =3D nand_get_controller_data(chip);
+> +	struct ma35_nand_chip *nvtnand =3D to_ma35_nand(chip);
+> +	struct mtd_info *mtd =3D nand_to_mtd(chip);
+> +	struct device *dev =3D mtd->dev.parent;
+> +	u32 reg;
+> +
+> +	if (chip->options & NAND_BUSWIDTH_16) {
+> +		dev_err(dev, "16 bits bus width not supported");
+> +		return -EINVAL;
+> +	}
+> +
+> +	nvtnand->nchunks =3D mtd->writesize / chip->ecc.steps;
+> +	nvtnand->nchunks =3D (nvtnand->nchunks < 4) ? 1 : nvtnand->nchunks / 4;
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-index b7527ba418f7..61d4ba2d312a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-@@ -732,7 +732,7 @@ &uart8 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart8m0_xfer &uart8m0_ctsn &uart8m0_rtsn>;
- 	uart-has-rtscts;
--	status = "disabled";
-+	status = "okay";
- };
- 
- &usb_host0_ehci {
--- 
-2.45.2
+This second division looks broken. Also, you probably don't want to do
+that outside of the ON_HOST situation. Finally, you should probably
+update chip->ecc.steps and chip->ecc.size to your final choice.
 
+> +
+> +	reg =3D readl(nand->regs + MA35_NFI_REG_NANDCTL) & (~PSIZE_MASK);
+> +	if (mtd->writesize =3D=3D 2048)
+> +		writel(reg | PSIZE_2K, nand->regs + MA35_NFI_REG_NANDCTL);
+> +	else if (mtd->writesize =3D=3D 4096)
+> +		writel(reg | PSIZE_4K, nand->regs + MA35_NFI_REG_NANDCTL);
+> +	else if (mtd->writesize =3D=3D 8192)
+> +		writel(reg | PSIZE_8K, nand->regs + MA35_NFI_REG_NANDCTL);
+> +
+> +	switch (chip->ecc.engine_type) {
+> +	case NAND_ECC_ENGINE_TYPE_ON_HOST:
+> +		chip->options |=3D NAND_NO_SUBPAGE_WRITE | NAND_USES_DMA;
+
+What is the reason for refusing subpage writes? This is not something
+you can do later, so unless there is a good reason, please do not set
+this flag.
+
+> +		chip->ecc.write_page =3D ma35_nand_write_page_hwecc;
+> +		chip->ecc.read_page  =3D ma35_nand_read_page_hwecc;
+> +		chip->ecc.read_oob   =3D ma35_nand_read_oob_hwecc;
+> +		return ma35_nand_hwecc_init(chip, nand);
+> +	case NAND_ECC_ENGINE_TYPE_NONE:
+> +	case NAND_ECC_ENGINE_TYPE_SOFT:
+> +	case NAND_ECC_ENGINE_TYPE_ON_DIE:
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+
+...
+
+> +static int ma35_nand_chip_init(struct device *dev, struct ma35_nand_info=
+ *nand,
+> +				 struct device_node *np)
+> +{
+> +	struct ma35_nand_chip *nvtnand;
+> +	struct nand_chip *chip;
+> +	struct mtd_info *mtd;
+> +	int nsels;
+> +	u32 tmp;
+> +	int ret;
+> +	int i;
+> +
+> +	if (!of_get_property(np, "reg", &nsels))
+
+Please convert to device_property_ helpers. And remove the of include
+once you no longer need it.
+
+> +		return -ENODEV;
+> +
+> +	nsels /=3D sizeof(u32);
+> +	if (!nsels || nsels > MA35_MAX_NSELS) {
+> +		dev_err(dev, "invalid reg property size %d\n", nsels);
+> +		return -EINVAL;
+> +	}
+> +
+> +	nvtnand =3D devm_kzalloc(dev, struct_size(nvtnand, sels, nsels),
+> +			      GFP_KERNEL);
+> +	if (!nvtnand)
+> +		return -ENOMEM;
+> +
+> +	nvtnand->nsels =3D nsels;
+> +	for (i =3D 0; i < nsels; i++) {
+> +		ret =3D of_property_read_u32_index(np, "reg", i, &tmp);
+> +		if (ret) {
+> +			dev_err(dev, "reg property failure : %d\n", ret);
+> +			return ret;
+> +		}
+> +
+> +		if (tmp >=3D MA35_MAX_NSELS) {
+> +			dev_err(dev, "invalid CS: %u\n", tmp);
+> +			return -EINVAL;
+> +		}
+> +
+> +		if (test_and_set_bit(tmp, &nand->assigned_cs)) {
+> +			dev_err(dev, "CS %u already assigned\n", tmp);
+> +			return -EINVAL;
+> +		}
+> +
+> +		nvtnand->sels[i] =3D tmp;
+> +	}
+> +
+
+...
+
+> +
+> +	ret =3D mtd_device_register(mtd, NULL, 0);
+> +	if (ret) {
+> +		dev_err(dev, "MTD parse partition error\n");
+
+probably useless error message?
+
+> +		nand_cleanup(chip);
+> +		return ret;
+> +	}
+> +
+> +	list_add_tail(&nvtnand->node, &nand->chips);
+> +
+> +	return 0;
+> +}
+
+I believe next iteration should be the one, I'm rather happy with the
+overall look.
+
+Thanks,
+Miqu=C3=A8l
 
