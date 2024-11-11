@@ -1,137 +1,152 @@
-Return-Path: <devicetree+bounces-120801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A01A09C432F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 18:07:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 417709C4353
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 18:14:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F7EB283D46
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:06:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDC6C1F21B19
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:14:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1A291A3A80;
-	Mon, 11 Nov 2024 17:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E110C1A7262;
+	Mon, 11 Nov 2024 17:14:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fPLqLaiz"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="vP/sPaGN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8419013E022;
-	Mon, 11 Nov 2024 17:06:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBF751A7255
+	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 17:14:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731344813; cv=none; b=XqBAkzD19AMvVkbSbt45Z1Ys5qs1eujMDo5PSxwb+kbgBukzr/Y2poGr5zdJpsRoiTB6KxvvxWF4MkaCG5QoAHAjq082yrPE5Ez3XiaEnPzS4ahQ/S/5LQG5qFXK2SfeHQIJDXSz3G48HpjQpuC8vtI/zPJ+0p1dIzD/pZcsYdQ=
+	t=1731345247; cv=none; b=Y2wVMrTB1NiSs10FQKW8Q0vjtTu/7pvvDfBS02Pt6YfE251fuIC7xVe8DvO54wyGR+xMixNrjJm5mwgCI4AKnA8jeQQI/1qg8cHq17yhieDRQXp3St4ZYFKEUAZRvV3QYv1tigPcp/nV120miuMYgB6ueNDWcNzU6LinmngOAU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731344813; c=relaxed/simple;
-	bh=feWL9fgmmw9QG92svt4ITVSK7A6maEehKtjcSkF0SEQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=o50wWiiuZsSkF54vsbZ187VQ80I0FV+FR05NtD/mdixIT2PLqBw5tcWaSF8TV9wqs0NbXqalHvdDt7HsNp1jV9/d1MZHAns6XQSvtMBwMsDzF0b953bQTWYdM8Y69vAJ//tS48Zcc+1jg3Jbb30ZPmawECf9bbdhpBcFu2gYrT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fPLqLaiz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 025BBC4CED5;
-	Mon, 11 Nov 2024 17:06:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731344813;
-	bh=feWL9fgmmw9QG92svt4ITVSK7A6maEehKtjcSkF0SEQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=fPLqLaizjJbk1Iwqs/BZnTbAdagLPzisXvNNbhWyaLKHrvoma1CBBYF7FS2u1c1mP
-	 fNo+21tb+XpqWV9rtA1eu3k+EXUI8oVtYBw4VUEqs6oQeP7TqMjRbXi3nmI4MKwl++
-	 GqYN0LNBrqpByijyayZtqlTrMS8b2c3aiLsrXo+0m4zDrCjnJ2ylKgbYSKn3AN0L/q
-	 RQGf5ZdjWBjOQk9Hk9KZyqPnQDfk6CqEQc/U/LSlvdnN8HzKdCKG321AOFGHWToTIT
-	 XefUPtjAP5ftbSDo9XtJ98BzT8jON61E2gHMiFOfTITNSsLHNrVZ8KaylrOobLQNIF
-	 zP7ygysk+2nDg==
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e2903a48ef7so4334127276.2;
-        Mon, 11 Nov 2024 09:06:52 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVdmluuRj7S/ab+SU4G+Jcf4dNoH/xmN6vW2zEugmuXV0pEosEPL46fYsGR8H+SzV4k5kbnVM6+R81o@vger.kernel.org, AJvYcCWOlMcC400Wf0DbyjlKkoX5qf7V++ynbPZQcWiOpWEZMvfdOEJ43+PYpJzGeL+oK4yFX+HSf0R3P0EB5Nt+GQ==@vger.kernel.org, AJvYcCXTfACVb3gNRnlGGeaaqd7/ARQqo+YYzrmgDGyovCDxFxPZ5542JF+8REiGnZvL5cHCcVypPplBe3L30Okj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhJizdROnF+gxtwgcprlc1mj/sJYtj4W4pk7tFFZYFpHgruhYi
-	DePt2+sm9cW3OC+50A5nSie2lTo/RKqAuO7sLzWDgGJAkv7UasrjtdehPAooOIsZulnLMt+dTj3
-	D4oJQM2nDzj4UKJcPEvGNcvcP8g==
-X-Google-Smtp-Source: AGHT+IEg+ZdXyhSVjowIdMTiFtczDqq6/O1NAD+xe1ZO9PXm0V/eW6I+PrJSsMZu5rrCYy4oAydNqSZhcQKsejZ/zxs=
-X-Received: by 2002:a05:690c:6b11:b0:6e2:ab93:8c68 with SMTP id
- 00721157ae682-6eadddaf35cmr116692697b3.25.1731344812198; Mon, 11 Nov 2024
- 09:06:52 -0800 (PST)
+	s=arc-20240116; t=1731345247; c=relaxed/simple;
+	bh=3Q6uao6+hgf+7cigQULGQb1eC8zzAjVmlImprrPNtzA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rO361aYcRt8BLvpLX3RpN0VCpE9uKcQcanmPLv/vOG6bkM5clyYsEclfnHCwo0m/QzZSlMzaD0mm0zR3hUxDzm5yAcEHdVUJEShrTTM64wPJZXfjPdvTxZkUprJcgzR477/qFs0/1L8K4GTIHemGC0pjexj8mBfywU5zJCu5OCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=vP/sPaGN; arc=none smtp.client-ip=209.85.161.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-5ebc1af9137so2149924eaf.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 09:14:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731345245; x=1731950045; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xHhQX9dLBXKUZ4ddho1L9OkyErwYL/K98ij6HZC9tXE=;
+        b=vP/sPaGNvx7/JZ2s6B8A3tuoVFOk/HmiRoDniCZKagcUlX9iJR0+hb+aamlmx37RJM
+         SGW9214YoxjwmpqcMY/+ILdA22HOoJXJR9R/odOWP+qAdLv1kx4Rza8TgdzPX+gcnuDY
+         /Zi+zF1AUi0hbNurxi1Oe5sSqc+y6t42l4uaoaYsEggtNCN4xMHHSujI69GsimI0YFD/
+         RZCAnV1LZ4na/f543PWameCQAdjofAlMQU1IYlAf2per7vnyg6EQyj49LfI/YZnIY2ai
+         YkxorNwTaslEz8f4S1RvTWxM9tk//XvDDzepqXsCLBH34H0iR3EAmNl6Pve8xxhe+KWD
+         a7dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731345245; x=1731950045;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xHhQX9dLBXKUZ4ddho1L9OkyErwYL/K98ij6HZC9tXE=;
+        b=u08gi/Zlc4X0H+ei/DEKPbAxFVPcAPKmpxZtCRDl4e9zRyQXn7JZDELIMHQUbEsq7V
+         jVZoQBWEVW/6rXANFC1xI9eCzKvKA8pepLXFCSjTYi82vDe4OgaKDR9LXVtkxiAwlE9U
+         RJbW4LFE2XYwa0gRotrfuNDQ/6uBY5ei131zBCKJlDbHReZjHeRe+2tJpB3V3D1Ki4dz
+         8OkGCwlMTnoblzDksgLW3ZzU6dIoE55YtRTachlUL+gGMtu6/Yqi2ezQN9kDKwhMwYxr
+         E8Nop6kdmAUtZqMa9uen02YDGKH1no+CS9c+WTCOlMyTIcUFLT5/q/U3KWrtyJGdkAro
+         NqCg==
+X-Forwarded-Encrypted: i=1; AJvYcCXinTCZ9+XlPnStOJwHFqglNfjRnIuzfh87/OglIwnmXp3TZV7uPA2KnU6ClBEx1sWwgvKldraeqYwx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3a3vSsoFQPF2UABrHJa4C23oMoRzAPINl2yFX/kUS/Nig2D08
+	XJhVWpX8JJtCbDBT/0gayeuxCexvlahSLGNQ2IDJHDoRxt9SGLIFzdyW00oorVHaJPEdzDmEce/
+	J
+X-Google-Smtp-Source: AGHT+IF3GCiZjWfr7xWBoGgZ81GYnxm9pAH/iF3fOY2T/R1DiZIJojhpwe+oKLoYI62MFyjsBFrMIQ==
+X-Received: by 2002:a05:6820:1f08:b0:5e1:e748:7ad with SMTP id 006d021491bc7-5ee57c77c36mr8888000eaf.7.1731345244850;
+        Mon, 11 Nov 2024 09:14:04 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ee496afdd5sm1993171eaf.31.2024.11.11.09.14.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Nov 2024 09:14:03 -0800 (PST)
+Message-ID: <66b3e462-bb17-4806-b991-8f0eb33b1233@baylibre.com>
+Date: Mon, 11 Nov 2024 11:14:01 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241009-patchv3_1-v4-0-cd683a9ca554@quicinc.com>
- <20241009-patchv3_1-v4-1-cd683a9ca554@quicinc.com> <ugkiv4m3etpydvosjkyzwr4qus74xnwccow7xrpvr77kzcx6bv@odlz7dzldqc5>
-In-Reply-To: <ugkiv4m3etpydvosjkyzwr4qus74xnwccow7xrpvr77kzcx6bv@odlz7dzldqc5>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 11 Nov 2024 11:06:40 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ0zoyaZAgZtyJ8xMsPY+YzrbF-YG1vPN6tFoFXQaW09w@mail.gmail.com>
-Message-ID: <CAL_JsqJ0zoyaZAgZtyJ8xMsPY+YzrbF-YG1vPN6tFoFXQaW09w@mail.gmail.com>
-Subject: Re: [PATCH v4 1/5] dt-bindings: display/msm: Document MDSS on SA8775P
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Mahadevan <quic_mahap@quicinc.com>, Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Kalyan Thota <quic_kalyant@quicinc.com>, 
-	Jayaprakash Madisetty <quic_jmadiset@quicinc.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v4 02/15] spi: add basic support for SPI offloading
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
+ Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
+References: <20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
+ <20241023-dlech-mainline-spi-engine-offload-2-v4-2-f8125b99f5a1@baylibre.com>
+ <20241026160521.52205cb0@jic23-huawei>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20241026160521.52205cb0@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Oct 18, 2024 at 6:00=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Wed, Oct 09, 2024 at 08:02:01PM +0530, Mahadevan wrote:
-> > Document the MDSS hardware found on the Qualcomm SA8775P platform.
-> >
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
-> > ---
-> >  .../bindings/display/msm/qcom,sa8775p-mdss.yaml    | 241 +++++++++++++=
-++++++++
-> >  1 file changed, 241 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p=
--mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mds=
-s.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..37c04ae6876f873c2cddc51=
-b5160b1f54e2b5118
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.y=
-aml
->
-> [...]
->
-> > +
-> > +        display-controller@ae01000 {
-> > +            compatible =3D "qcom,sa8775p-dpu";
-> > +            reg =3D <0x0ae01000 0x8f000>,
-> > +                  <0x0aeb0000 0x2008>;
-> > +            reg-names =3D "mdp", "vbif";
-> > +
-> > +            clocks =3D <&gcc GCC_DISP_HF_AXI_CLK>,
-> > +                     <&dispcc_ahb_clk>,
-> > +                     <&dispcc_mdp_lut_clk>,
-> > +                     <&dispcc_mdp_clk>,
-> > +                     <&dispcc_mdp_vsync_clk>;
-> > +            clock-names =3D "bus",
-> > +                          "iface",
-> > +                          "lut",
-> > +                          "core",
-> > +                          "vsync";
-> > +
->
-> It's been more than a week since Rob reported issues with the bindings.
-> Any updates? Obviously I can not pick up patches with binding errors.
+On 10/26/24 10:05 AM, Jonathan Cameron wrote:
+> On Wed, 23 Oct 2024 15:59:09 -0500
+> David Lechner <dlechner@baylibre.com> wrote:
+> 
 
-Well, someone picked up this version rather than v5 which appears to
-have fixed it. So, probably need an incremental patch to fix the
-warning in linux-next.
+...
 
-Rob
+>> +struct spi_offload *devm_spi_offload_get(struct device *dev,
+>> +					 struct spi_device *spi,
+>> +					 const struct spi_offload_config *config)
+>> +{
+>> +	struct spi_offload *offload;
+>> +	int ret;
+>> +
+>> +	if (!spi || !config)
+>> +		return ERR_PTR(-EINVAL);
+>> +
+>> +	if (!spi->controller->get_offload)
+>> +		return ERR_PTR(-ENODEV);
+>> +
+>> +	offload = spi->controller->get_offload(spi, config);
+> 
+> Why let this return an offload that is already in use?
+> Maybe make that a problem for the spi controller
+> Seems odd to pass it spi then set it later.
+> 
+> I.e. have this return ERR_PTR(-EBUSY);
+
+I would expect that to effectively be handled by the
+if (IS_ERR(offload)) below. Only the controller can
+know which offloads are already in use, so the callback
+should return the appropriate -EBUSY in that case.
+
+> 
+> 
+>> +	if (IS_ERR(offload))
+>> +		return offload;
+>> +
+>> +	if (offload->spi)
+>> +		return ERR_PTR(-EBUSY);
+>> +
+>> +	offload->spi = spi;
+>> +	get_device(offload->provider_dev);
+>> +
+>> +	ret = devm_add_action_or_reset(dev, spi_offload_put, offload);
+>> +	if (ret)
+>> +		return ERR_PTR(ret);
+>> +
+>> +	return offload;
+>> +}
+>> +EXPORT_SYMBOL_GPL(devm_spi_offload_get);
+
 
