@@ -1,122 +1,115 @@
-Return-Path: <devicetree+bounces-120662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815959C383E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 07:14:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAD179C38B8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 07:56:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 091B828129B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 06:14:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECA631C2017F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 06:56:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F38914AD2B;
-	Mon, 11 Nov 2024 06:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B593414F9F9;
+	Mon, 11 Nov 2024 06:55:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="hfg7tzu7"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="kvg7Qyqo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 973601EA80;
-	Mon, 11 Nov 2024 06:14:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F481487F4;
+	Mon, 11 Nov 2024 06:55:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731305679; cv=none; b=Hg92KOODhjTemYcFrohdRQVF7/3RPqw71EFpGkDcM3xDa1C/8XfGQBzwzAp3hM8qxRG8yOEltA0rFURqd24G7D0N/jI3uFptxRYWArHBJrwrE6EALDjaBI6/u7uN85USQgaJSjjeHlAjI2WN96KPBDyaCMHUEdUg7wcwy2aL830=
+	t=1731308156; cv=none; b=Gz0iCWmePBrpucbYrd1arh0h4Lwu0LIh4gKDaq4IZnrV9cGrJ5CTHIK869w4InYi0NUvzZi+zCPjRTvBT9GomkcG/QsSRWZxNaYrGgR2yOxEcNj1jmpEuaLfwcoo0ooBldwWJ4hOWK7dnWR9ailjtfRJ1vnrlsOVCVSGa1bXBmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731305679; c=relaxed/simple;
-	bh=r00k13bJOtFaWOaYvtCwbROOQSCXB6VqNkV5/x6pz8I=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=WXJ8xwNxKDT1Ghpg1LJ/5+d225guXGbAs3V1NVKLsjfNvylEev/ilEHxWDl6nbpNztxlSiMGEG6d+MHGS+Zp9FE/1X2skXI7r84wL0Q/suw4BEED/vFVPHBNCmP335T/25Q0jKyUc61NB9BM8/a/t7AHlzH+zdFOYmbKfkzsQYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=hfg7tzu7; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1731305657; x=1731910457; i=frank-w@public-files.de;
-	bh=r00k13bJOtFaWOaYvtCwbROOQSCXB6VqNkV5/x6pz8I=;
-	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
-	 References:Message-ID:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=hfg7tzu7K0UMRwCqkjh6HUY82atbVacbqfe0PkrxTuj2yRI3J8ED8IRAuvN9tzbv
-	 /9LZ+DyTF0g9lq/UBsYnq8SkTU61zvrWqCp2BMKdukqHvJCdCGyhc/+dFGTYJHdK2
-	 GFvzKRe1j7xbkfbIlI8cx+bLSaq2TiHpMhSmoSZhmvTYUqrZUS6SIwTpZL1Arlper
-	 jOdF//6tb8oJ0r4/2BfaT4CBhi70hSVliTnKHadIKs6OjlJXbR6I7knZr/F100aPH
-	 jjuP79bxXldXvISmek9hZrbuatoo0nIVjTVITqNh9AHALFFQEkK5Wz0z56tkU7Ev+
-	 Bj/eD+kudPLEIVkN1A==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [127.0.0.1] ([217.61.144.196]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MFKGP-1sz6Cf3dJR-002K9U; Mon, 11
- Nov 2024 07:14:17 +0100
-Date: Mon, 11 Nov 2024 07:14:16 +0100
-From: Frank Wunderlich <frank-w@public-files.de>
-To: Damien Le Moal <dlemoal@kernel.org>, Frank Wunderlich <linux@fw-web.de>,
- Niklas Cassel <cassel@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Russell King <linux@armlinux.org.uk>
-CC: Hans de Goede <hdegoede@redhat.com>, Jens Axboe <axboe@kernel.dk>,
- linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v1_2/3=5D_arm64=3A_dts=3A_marvel?=
- =?US-ASCII?Q?l=3A_drop_additional_phy-names_for_sata?=
-User-Agent: K-9 Mail for Android
-Reply-to: frank-w@public-files.de
-In-Reply-To: <c6dade2e-fd8a-4a7b-89a1-b1276d8e9106@kernel.org>
-References: <20241109094623.37518-1-linux@fw-web.de> <20241109094623.37518-3-linux@fw-web.de> <c6dade2e-fd8a-4a7b-89a1-b1276d8e9106@kernel.org>
-Message-ID: <C415B917-DE36-42DE-96A8-E1A90A049375@public-files.de>
+	s=arc-20240116; t=1731308156; c=relaxed/simple;
+	bh=aPMrsjI+c6iPJKbzOjnFcwEzzSVmYfrtlku2cTvvpw0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EHJGgA6ijJglvVxWixKGZnKDi+xqvgIF5qyuAXNz+pSX5ebij9iP1u4fL49psXrU7WQ2BC6M3G4rNplMJUbSWHOBg3Q7hDvaMSFrFBXjRapx3f6Xd95vS3xhXNwdYCZXsZ3IUteZVJwP2oA2dRM5zQJEjxKoRkFFefxFDbli1T0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=kvg7Qyqo; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1731308156; x=1762844156;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=aPMrsjI+c6iPJKbzOjnFcwEzzSVmYfrtlku2cTvvpw0=;
+  b=kvg7QyqoM/0ZQakMiKA8C/nJHMArbl0c4iTT6BLu5Ej9fxIrhJUIF0q9
+   rsQ92XO4QWBd/X5qiRSTnD6MH5B950bFx/dvajxJHRm0JQ+BixenmtG5r
+   lr1IkuW1atGLjhgJXslpY1oPnmdPrCbvOtBDpfrRPoqvR3CEWDIOOESkT
+   UDjRCyKHsErl61IJ8G5VJo5Ve5wAzNQlsTbnt4gIVkYC+uQGKYvG1p1uV
+   yiYMG4Hn31lbWUj/aRF8uF1j+jjHDVESdWSgiWSz+EhWTQ92xfoZqEl2u
+   xzAoNEPaopUNJGoL8aTdouebtTFmtp3gUTL/Q60Zr+SNdXxP9yDI0pQHV
+   w==;
+X-CSE-ConnectionGUID: ep4875LgSx6tm9VmeD6HJQ==
+X-CSE-MsgGUID: Xs8eyJPZSGinRZUJIbtNZw==
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; 
+   d="scan'208";a="265270146"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 10 Nov 2024 23:55:55 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Sun, 10 Nov 2024 23:55:15 -0700
+Received: from che-lt-i67131.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Sun, 10 Nov 2024 23:55:06 -0700
+From: Manikandan Muralidharan <manikandan.m@microchip.com>
+To: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+	<rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+	<jernej.skrabec@gmail.com>, <maarten.lankhorst@linux.intel.com>,
+	<mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
+	<simona@ffwll.ch>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <linux@armlinux.org.uk>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <dharma.b@microchip.com>,
+	<hari.prasathge@microchip.com>, <varshini.rajendran@microchip.com>,
+	<arnd@arndb.de>, <dri-devel@lists.freedesktop.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+CC: <manikandan.m@microchip.com>
+Subject: [PATCH v6 0/4] MIPI DSI Controller support for SAM9X75 series
+Date: Mon, 11 Nov 2024 12:24:58 +0530
+Message-ID: <20241111065502.411710-1-manikandan.m@microchip.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:BKOFQ1Mi9FnHIK8Ipfu90R0zSkYFQC5djJf+f2dKjZ+vdGbr2/0
- O9nRetLYm6jx/ouWj9NqiQoZo1SYKtJukrGPlVSoeqhDpASqWXBB+3V/QZuGzcaWNZV1svd
- Sb69X2rjnCjoheHZJ9hj8cKBMPs5IXq9f319YzgnWRjycWmVcUwbiXCTZeHvvFh55DcRogM
- BMPs9oUhvNKkBI+39kmzA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:tD1zr+Lt7VM=;Rb6j5Bsy/H8+ktsYyjKppjnEP6S
- iwfCAZskY7YuYdTIhzwCOL/+d9ea7hSGaRF9OutD3sRG7G2iIZK5NALMRuPRuaZjdt1PgGBOv
- 4AIWIUN32VJYSz4ODf++vGe5dqRdTTeG/kFKwkRtrXHpyqrqTXmgo0Wx0CVC49hvND5gg3v2Z
- aPIiDbXw4K/4zYQZi/iPJvktkwfcst8TEbW/42pLP2cqDSL96VHhww29vc+BnXvYa2740zC36
- q62b7KU+iIcTAIflflVfJSMx2xNiS9JVvw2ZFSSoVi5YvqRbjpx/cTyGp2OTgnIDwwPabfMtG
- Un8+hD2dAOyDusPIEZOg+COJ3JHZS16Cagj/2SyVm5qz3fIfjuUp58H6lRQL/IeFMK799pm3R
- Jnfnj9K1/CZ7Qqz1ucpSOcKbHIS9vs3IVorS2YDBS3D0nED474+H1ZTTs92sOAev12h8FDafM
- 2aYlk5hJD0icP9+mTCgozNXrbqnKDODTE39aPME9LCdqkWChhPzONOw3cqsKynMqML+ZsIXuo
- Plw0b6c5kUQGoUBex6NdS8DfB1BqerYTh2DmKHFoojoltHNCZLitZq0/446WAUTDtzpmTkw07
- do33YEn9FnzNBG1Q8Ap1riBKhjjFXQ84vw+NBm2YPseZWLEWMsY2UaBxjhHgkXX2NPgRZq+h1
- AV/9NAU0U+r3g8DMRCS24UTS1yChT/RXBpCQgkJJ6IgAet5+YT736WiNdYlPPKBvfNb5nknaL
- ixX/jQ+MRw+oEkBCJOR/IxqKsjZOlNKQGH83ZiYn6sEzST3+0yVz5p781jytl8XrKdckLqp2G
- KXWuFRqBJpa89tvWWRI7Bk2Q==
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi
+This patch series adds support for the Microchip's MIPI DSI Controller
+wrapper driver that uses the Synopsys DesignWare MIPI DSI host controller
+bridge for SAM9X75 SoC series.
 
-Am 11=2E November 2024 01:05:48 MEZ schrieb Damien Le Moal <dlemoal@kernel=
-=2Eorg>:
->On 11/9/24 18:46, Frank Wunderlich wrote:
->> From: Frank Wunderlich <frank-w@public-files=2Ede>
->>=20
->> Commit facbe7092f8a ("arm64: dts: marvell: Drop undocumented SATA phy n=
-ames")
->
->Isn't a Fixes tag for the above commit desired here ?
+Changelogs are available in respective patches.
 
-I have not added one and deopped from first part because of this:
+Manikandan Muralidharan (4):
+  dt-bindings: display: bridge: add sam9x75-mipi-dsi binding
+  drm/bridge: add Microchip DSI controller support for sam9x7 SoC series
+  MAINTAINERS: add SAM9X7 SoC's Microchip's MIPI DSI host wrapper driver
+  ARM: configs: at91: Enable Microchip's MIPI DSI Host Controller
+    support
 
-<https://lore=2Ekernel=2Eorg/linux-arm-kernel/20220315024952=2E3we7hiwrksk=
-b4tsy@vireshk-i7/>
-
->> drops some phy-names from devicetrees but misses some=2E Drop them too=
-=2E
->>=20
->> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
+ .../bridge/microchip,sam9x75-mipi-dsi.yaml    | 109 ++++
+ MAINTAINERS                                   |   7 +
+ arch/arm/configs/at91_dt_defconfig            |   1 +
+ drivers/gpu/drm/bridge/Kconfig                |   8 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/dw-mipi-dsi-mchp.c     | 545 ++++++++++++++++++
+ 6 files changed, 671 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/microchip,sam9x75-mipi-dsi.yaml
+ create mode 100644 drivers/gpu/drm/bridge/dw-mipi-dsi-mchp.c
 
 
-regards Frank
+base-commit: 4f537776340dab2b680a4d8554567f6884240d0b
+-- 
+2.25.1
+
 
