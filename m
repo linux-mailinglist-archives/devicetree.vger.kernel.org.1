@@ -1,153 +1,222 @@
-Return-Path: <devicetree+bounces-120830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A739C4551
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:53:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACFE29C4559
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:53:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F4451F22BA0
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 18:53:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E1DC283A24
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 18:53:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFAE81AB6FD;
-	Mon, 11 Nov 2024 18:48:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 224FF1A3056;
+	Mon, 11 Nov 2024 18:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bYIY0HeQ"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="oGlIN2uu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B1EF1ABEA1;
-	Mon, 11 Nov 2024 18:48:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3361F19B3F9;
+	Mon, 11 Nov 2024 18:50:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731350934; cv=none; b=q9oaWrMVFLmOasdAXd9TWnHiAJQOgNKNmWWDaix3cU5lUNV2e8dzycimgSBcaEFtUwhB+qA+FoNGgVcJcUtB0TQe1DEAFpWIXRFDnwOnWXLxXC7YIm6jedF5D3NMZHnU3tqFabbIz869V6ws8TPoyztMdTZ9MZNWUH6uxJOlkC0=
+	t=1731351030; cv=none; b=coXdSC5HFZQkbHmsfMMTOafhUwiZ3xpIJZK1dU69U2yQ4nOBamxlPyYGV0Mp31/3KZ0YaEIxQCBTQCiy6q5QSV6odpNjTiQQwvG5Bf2RCJRNUOzJUip3Mzc+/q0EmG4Wk/pT0gKfE0pfNaIQRldLRcJsgwOhUuLq6GY2FiZqOt0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731350934; c=relaxed/simple;
-	bh=JMOvddGlVUUn5PbEfdRyr/Yb4oKvX/AtszQtlSEx+H4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n6TXuvYBBCGiToT2/yv/KmlxT+txqVdfoFPsRiNZXlbcOJwX3DFHVVl4g/yaPI/YpJYh9MvSlNXFIZJPQ3bf82LSiZcLWcKdBHI5joJRPd793kC4T0wgP0MV758HjZpCecw30oVMB27RaqJ4kKgMqXVE0X91cY+AyTRkLoZaeLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bYIY0HeQ; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5c9404c0d50so5888128a12.3;
-        Mon, 11 Nov 2024 10:48:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731350931; x=1731955731; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4XdHTI/HJZSh8vbEXy77DENjUEe/9jP9nGPccb1xD5I=;
-        b=bYIY0HeQSV5TQ5BB8mnNQYd8iduwJYJMZsbgvPRGtcr7NLCbnezYllGwb4stWnh2kN
-         L3aUKT1n7X1NIcDms3f5ya7veJ5ibV7fm36Q/rKKZdiAv0Bh7edSDKkq/9UUZuxoTlSv
-         hKI/BxtyVNYNFwdjHzkEV8ELOjQoucyE81pZLiWQtd98H1E8xRgPafltW0MYq5tbOReN
-         mfSgB0YAmO6byb8vREyCKzU8T9Fh59W+DJ+QBdq41T/mBMofMVCCG9PKDHsf4UDjzJ/+
-         7RPf2kQ0xF8ytfWJXemDKvOl9tDArsLX9m4MRhF1hdf+3rfF1ldZrhFexOXiOMHeOy0r
-         tAxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731350931; x=1731955731;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4XdHTI/HJZSh8vbEXy77DENjUEe/9jP9nGPccb1xD5I=;
-        b=nQubZdPK9NiZgeA1RYbqfJrEtuB/6tNiAdx52dtSglC/AsMw+ShhZnmUAbGlYbvOQ+
-         2vofzuGOZyi5mS9Ayjz/KIvmdXvaOak/3AXrZ2+Kyg7ho6gcCaZHqI3VSElYvzkiLg/B
-         KSuhSUk9eP4oGDfIZ6NaT8ZAlhXHFmSxalLRkOgMYSLQEPtJzva6Dmpf9kEMoH94p/nS
-         l1gQmgHEZ1eChbE2+Y3b1UmYzsYTpEyLMpOAacbVdwROE2dKAh2fffnn++U0QnqJKmKh
-         DYuWpY4tB8+lEMfAUCyekRAVFg5nC4pk7XhrLm1q6DrtUlsHLJ9wO2hff/VYgxsHu1gJ
-         /CJg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOST3Qulhw6k8qN0za/nXaAPXd+mLO89RD17MhkvphO1y9XjZREzixHRnGaEayyXYgrumw1d7utVpp@vger.kernel.org, AJvYcCV3MFX2guA1wtDgXk3w0soIEJGt62d/W5c6Y8cWF1v6nxLhWqGhc21bjgac25o1DqEU9o47DtxqQyp/@vger.kernel.org, AJvYcCXtf/xl8+PtdxlCFp/SQcyf1ki3YTO8gmQs3X4f+lQ5ZSdZEZ6digrEgyRqJ+dlBkfHOBPDCUg1rRSb45ZH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxR6GdSoepVpU7pJUcY+HD2IUx1VF5anTnH1dU6OrgfS42Q+gB9
-	yhX3bV/pgFFn/wjYk67FbytIunMlbcKZec0lGU5Vr3LB8JQQixF5
-X-Google-Smtp-Source: AGHT+IGWP7F7ndgMCLdojMgtv9NaG/u0qq46mQOTfnF0NbVu2NGu/6E9mZTsbfy7GNEPfnbFt7krYQ==
-X-Received: by 2002:a17:907:60c8:b0:a9a:46:83ee with SMTP id a640c23a62f3a-a9eefff1531mr1240286266b.48.1731350931162;
-        Mon, 11 Nov 2024 10:48:51 -0800 (PST)
-Received: from vamoirid-laptop ([2a04:ee41:82:7577:6ce0:6054:c068:6bfe])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9ee0a4c3f5sm627341466b.76.2024.11.11.10.48.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Nov 2024 10:48:50 -0800 (PST)
-Date: Mon, 11 Nov 2024 19:48:48 +0100
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>, lars@metafoo.de,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	andriy.shevchenko@linux.intel.com, anshulusr@gmail.com,
-	gustavograzs@gmail.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 5/7] dt-bindings: iio: bosch,bme680: Add supply
- properties
-Message-ID: <ZzJRkCJcbCFSMcat@vamoirid-laptop>
-References: <20241102131311.36210-1-vassilisamir@gmail.com>
- <20241102131311.36210-6-vassilisamir@gmail.com>
- <20241102153315.2175fd5b@jic23-huawei>
- <6sucdv4k5jdovqgtaemeer4cnluvnl3xgyn57mo3elgwdmojrx@phu4gowaqtuv>
- <20241104161033.GA228709-robh@kernel.org>
+	s=arc-20240116; t=1731351030; c=relaxed/simple;
+	bh=y5vtfq2Cf3dQpqUQecvOkB5OhwQcaUej1WI0Wb2c2tc=;
+	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:
+	 In-Reply-To:References:Date; b=UrJVdXbrZ+KnfxhSwCP0HUwOiib/WIMVb1J4w6llIV7FNctQNpjXJb63xAjJzdv7LNiglMyFHeVQZNj6aduOieU4M8bFeO7Hb/X4ZuV5/xAwt/M0zNbumIhQQCLxQ9ZLNYATuQofU5ibg2kI0SHrs+PPD4oCC7M7SABYaOIgXic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=oGlIN2uu; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1731351004; x=1731955804; i=frank-w@public-files.de;
+	bh=mTLhO1kTOoQKkiWNympYWNxRE9YaSNUlDtJFuAoJjS8=;
+	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
+	 Content-Type:In-Reply-To:References:Date:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=oGlIN2uuTLEjOgWZF4hAVcHiLRweuVkBpJ6c3hkDHkQnnjxZAzaKDJWY3QEnTKpt
+	 qQ9FOvPa5hCYFzUB+YuY9ERq92ceJ+7fT+J5lbhjHUfgdkzMMbjNprQEqYW2JbNTP
+	 mqMfa0gpNapyvfXqxiMTdC3Ha+I1BK2Qt+7yQ5leQmJ6d15Llk2AUoWaiRXPkoDlM
+	 q/3lFLrKRNlf0KIYHqUJeWgmUfwcn9KtW5tPzdy68+9GC0w+vmeiBmnnVAKzikUOE
+	 PLXtTjChM0BjbsNMBvk5Nd1gur3o2dm29Sx/CtcFwDeIrG84DuKxYNutecaZAHJX5
+	 kZ3tEynFtzvEbLQwdw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [217.61.144.196] ([217.61.144.196]) by
+ trinity-msg-rest-gmx-gmx-live-67cd9ff8f8-fkcfn (via HTTP); Mon, 11 Nov 2024
+ 18:50:04 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241104161033.GA228709-robh@kernel.org>
+Message-ID: <trinity-e3cbc89b-e051-436f-95d8-a912f2b880b3-1731351004644@trinity-msg-rest-gmx-gmx-live-67cd9ff8f8-fkcfn>
+From: Frank Wunderlich <frank-w@public-files.de>
+To: andrew@lunn.ch, robh@kernel.org
+Cc: linux@fw-web.de, dlemoal@kernel.org, cassel@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, gregory.clement@bootlin.com,
+ sebastian.hesselbarth@gmail.com, linux@armlinux.org.uk,
+ hdegoede@redhat.com, axboe@kernel.dk, linux-ide@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Aw: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditional
+ failed
+Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <e7a8e087-fb92-4911-b7fb-34521635e8da@lunn.ch>
+Importance: normal
+References: <20241109094623.37518-1-linux@fw-web.de>
+ <20241109094623.37518-2-linux@fw-web.de>
+ <e534c723-6d65-433f-8ab5-1c0d424d7367@lunn.ch>
+ <9B1A5D20-3DE5-40C1-8B2D-B1C4F53FA5F4@public-files.de>
+ <CAL_JsqJnOa_9Poz86vOWBCQigvv-Ab4Tt1hrwTxSa5zNraVxXQ@mail.gmail.com>
+ <e7a8e087-fb92-4911-b7fb-34521635e8da@lunn.ch>
+Date: Mon, 11 Nov 2024 18:50:04 +0000
+Sensitivity: Normal
+Content-Transfer-Encoding: quoted-printable
+X-Priority: 3
+X-UI-CLIENT-META-MAIL-DROP: W10=
+X-Provags-ID: V03:K1:QcPAxYStbZ35Ke0xAH5VF0tjiIpqa05M6016qw5Np2evzRUk8kv4okCbkw0Yd+7SOLhSu
+ KexxLb4is4p5HYU/AdHrFAKaHrIr3fFEBzOYBA4rZuiLb+hfC3/mBuJvS3U1It6D40+fBvsx/Got
+ bYkeIA/GisT4MYpiNRgj+IktwwHBD5uEf72CQTG8A68k4UFuA3qCKx5/MKPMIiJNDnTL28AHh9Nv
+ qmnAaMZDdi0gcqYRGGTJDUBGklrghyvfd9JBbFG5oZt509TBf3al8F0kTUdMCx6iZBH8RiQq3CkG
+ xZ6geXmHsD1qofX5o3ySoymHnnWBhg8Wo6ThdwmJ71fMIkNdC6PmHFIxORNB1TMy90=
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:diK5IeRk6GA=;mGuyRpDPt3CMfRTiluWb5Fd35Dd
+ K2HhjBpSHyemMJtMQCtJNRocDcjwgjjTP6pxwTl+dil4q5TmB5cxB2If5/MtNEVv9fZ99YekV
+ 2ZGCTYYjn4vexENc5lEk1SNIMtf7EdBBQi8mOgrlp0UhekAUJr5oXaPk4XkaqwKHVA6G9iAV1
+ dv0ZaaSPwqOIwKMNFPrpCGLrVlbWxJNRto88lr7fDeNPjMxLhG9u6XG6YkSbX2rsI/o19QcBV
+ TDVjnNdgWLc5phjwK8lfNScdW4RqcQ/0GGw1MucRPmjEl42U/Vsxs8qvkj2w3km74EP/y45nh
+ u5fU7EAMkzSlN33WiWSyBScmt4B8jPtyrT7eVi7bPVJPfGbwYu8TEkjsdiOAcs72PTFyJ3WrI
+ qupVmNt8G5L/y36RFWrFrSHTIPCkYp0uroC4wVv5SBkEW2XbC8W8rgmiCR1L+JCmbLSqImewO
+ VlMzL03bqQbCiJSgUm5BPHMpOB2jVooy9r95GKVF42/NnHHcUBRLCnSOpGIu5x84WebDseCvf
+ zXon+ErjJwR6YD+OKPOj5VVaaGQG2H8LByzIURaPmY+YwNNPvTNOYOI3/uDl36l4mUorS5VRC
+ C3JAMXXfd7cK8r+DyI/TyTEJoWkRpII+Z8ZMWO7d6snmGoIW8A7mcbrUxZl+0a4WVp5c7Tg1M
+ BdpnyLenm24ZUxIgei9ac3D/ocUQeOqaTyx6j9RcLw==
 
-On Mon, Nov 04, 2024 at 10:10:33AM -0600, Rob Herring wrote:
-> On Sun, Nov 03, 2024 at 10:46:46AM +0100, Krzysztof Kozlowski wrote:
-> > On Sat, Nov 02, 2024 at 03:33:15PM +0000, Jonathan Cameron wrote:
-> > > On Sat,  2 Nov 2024 14:13:09 +0100
-> > > Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
-> > > 
-> > > > Extend dt-binding for BME680 gas sensor device. The device incorporates
-> > > > as well temperature, pressure and relative humidity sensors.
-> > > This description should make it clear it is moving from trivial-devices.yaml
-> > > 
-> > > dt-bindings: iio: bosch,bme680: Move from trivial-bindings and add missing supplies.
-> > > 
-> > > Then say a little more on why you are moving it.
-> > > 
-> > > > 
-> > > > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
-> > > 
-> > > There was an open question on the previous version about
-> > > setting the supplies as required (which I see you've removed).
-> > > My understanding previously was that it is fine to make that change
-> > > in a binding if it reflects supplies that are required to be enabled
-> > > for the device to function at all.  If there were previously missing
-> > > that's a binding bug we should fix.
-> > > 
-> > > I'd like a clarification from the DT binding maintainers on that.
-> > > Obviously doesn't work for other users of dt bindings but in
-> > > Linux this would be fine as they were already on for any board
-> > > that worked and the regulator framework will through us a fake
-> > > regulator for cases like this.
-> > > 
-> > > https://lore.kernel.org/all/20241022182451.00007ac0@Huawei.com/
-> > > 
-> > > Jonathan
-> > 
-> > That was Rob's objection so I will leave it to him, but putting my two
-> > cents in for Linux it is not an ABI break because missing regulator
-> > supplies are substituted with dummy ones. Unless something changed...
-> 
-> Shrug. I don't think we're entirely consistent on this. If we're saying 
-> supplies are always required, then every device in trivial-devices.yaml 
-> is wrong. Since Linux handles them missing, you can also argue that 
-> supplies are never required.
-> 
-> I'd prefer not to special case regulators as an exception I have to 
-> remember. I have some rudimentary ABI checking I'm working on that 
-> checks for things like new required properties. Though it wouldn't catch 
-> this particular change given it moves the schema.
-> 
-> Rob
+&gt; Gesendet: Montag, 11=2E November 2024 um 18:15
+&gt; Von: "Andrew Lunn" <andrew@lunn=2Ech>
+&gt; An: "Rob Herring" <robh@kernel=2Eorg>
+&gt; CC: frank-w@public-files=2Ede, "Frank Wunderlich" <linux@fw-web=2Ede>=
+, "Damien Le Moal" <dlemoal@kernel=2Eorg>, "Niklas Cassel" <cassel@kernel=
+=2Eorg>, "Krzysztof Kozlowski" <krzk+dt@kernel=2Eorg>, "Conor Dooley" <cono=
+r+dt@kernel=2Eorg>, "Gregory Clement" <gregory=2Eclement@bootlin=2Ecom>, "S=
+ebastian Hesselbarth" <sebastian=2Ehesselbarth@gmail=2Ecom>, "Russell King"=
+ <linux@armlinux=2Eorg=2Euk>, "Hans de Goede" <hdegoede@redhat=2Ecom>, "Jen=
+s Axboe" <axboe@kernel=2Edk>, linux-ide@vger=2Ekernel=2Eorg, devicetree@vge=
+r=2Ekernel=2Eorg, linux-kernel@vger=2Ekernel=2Eorg, linux-arm-kernel@lists=
+=2Einfradead=2Eorg
+&gt; Betreff: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditiona=
+l failed
+&gt;
+&gt; On Mon, Nov 11, 2024 at 10:25:12AM -0600, Rob Herring wrote:
+&gt; &gt; On Sun, Nov 10, 2024 at 3:25=E2=80=AFAM Frank Wunderlich
+&gt; &gt; <frank-w@public-files=2Ede> wrote:
+&gt; &gt; &gt;
+&gt; &gt; &gt; Am 9=2E November 2024 18:29:44 MEZ schrieb Andrew Lunn <and=
+rew@lunn=2Ech>:
+&gt; &gt; &gt; &gt;On Sat, Nov 09, 2024 at 10:46:19AM +0100, Frank Wunderl=
+ich wrote:
+&gt; &gt; &gt; &gt;&gt; From: Frank Wunderlich <frank-w@public-files=2Ede>
+&gt; &gt; &gt; &gt;&gt;
+&gt; &gt; &gt; &gt;&gt; after converting the ahci-platform binding to yaml=
+ the following files
+&gt; &gt; &gt; &gt;&gt; reporting "'anyOf' conditional failed" on
+&gt; &gt; &gt; &gt;&gt;
+&gt; &gt; &gt; &gt;&gt; sata@540000: sata-port@0
+&gt; &gt; &gt; &gt;&gt; diff --git a/arch/arm64/boot/dts/marvell/armada-70=
+40-db=2Edts b/arch/arm64/boot/dts/marvell/armada-7040-db=2Edts
+&gt; &gt; &gt; &gt;&gt; index 1e0ab35cc686=2E=2E2b5e45d2c5a6 100644
+&gt; &gt; &gt; &gt;&gt; --- a/arch/arm64/boot/dts/marvell/armada-7040-db=
+=2Edts
+&gt; &gt; &gt; &gt;&gt; +++ b/arch/arm64/boot/dts/marvell/armada-7040-db=
+=2Edts
+&gt; &gt; &gt; &gt;&gt; @@ -214,6 +214,7 @@ &amp;cp0_sata0 {
+&gt; &gt; &gt; &gt;&gt;
+&gt; &gt; &gt; &gt;&gt;      sata-port@1 {
+&gt; &gt; &gt; &gt;&gt;              phys =3D &lt;&amp;cp0_comphy3 1&gt;;
+&gt; &gt; &gt; &gt;&gt; +            status =3D "okay";
+&gt; &gt; &gt; &gt;&gt;      };
+&gt; &gt; &gt; &gt;&gt;  };
+&gt; &gt; &gt; &gt;
+&gt; &gt; &gt; &gt;&gt;
+&gt; &gt; &gt; &gt;&gt; diff --git a/arch/arm64/boot/dts/marvell/armada-70=
+40-mochabin=2Edts b/arch/arm64/boot/dts/marvell/armada-7040-mochabin=2Edts
+&gt; &gt; &gt; &gt;&gt; index 7af949092b91=2E=2E6bdc4f1e6939 100644
+&gt; &gt; &gt; &gt;&gt; --- a/arch/arm64/boot/dts/marvell/armada-7040-moch=
+abin=2Edts
+&gt; &gt; &gt; &gt;&gt; +++ b/arch/arm64/boot/dts/marvell/armada-7040-moch=
+abin=2Edts
+&gt; &gt; &gt; &gt;&gt; @@ -433,11 +433,13 @@ &amp;cp0_sata0 {
+&gt; &gt; &gt; &gt;&gt;      /* 7 + 12 SATA connector (J24) */
+&gt; &gt; &gt; &gt;&gt;      sata-port@0 {
+&gt; &gt; &gt; &gt;&gt;              phys =3D &lt;&amp;cp0_comphy2 0&gt;;
+&gt; &gt; &gt; &gt;&gt; +            status =3D "okay";
+&gt; &gt; &gt; &gt;&gt;      };
+&gt; &gt; &gt; &gt;&gt;
+&gt; &gt; &gt; &gt;&gt;      /* M=2E2-2250 B-key (J39) */
+&gt; &gt; &gt; &gt;&gt;      sata-port@1 {
+&gt; &gt; &gt; &gt;&gt;              phys =3D &lt;&amp;cp0_comphy3 1&gt;;
+&gt; &gt; &gt; &gt;&gt; +            status =3D "okay";
+&gt; &gt; &gt; &gt;&gt;      };
+&gt; &gt; &gt; &gt;&gt;  };
+&gt; &gt; &gt; &gt;&gt; diff --git a/arch/arm64/boot/dts/marvell/armada-cp=
+11x=2Edtsi b/arch/arm64/boot/dts/marvell/armada-cp11x=2Edtsi
+&gt; &gt; &gt; &gt;&gt; index 7e595ac80043=2E=2E161beec0b6b0 100644
+&gt; &gt; &gt; &gt;&gt; --- a/arch/arm64/boot/dts/marvell/armada-cp11x=2Ed=
+tsi
+&gt; &gt; &gt; &gt;&gt; +++ b/arch/arm64/boot/dts/marvell/armada-cp11x=2Ed=
+tsi
+&gt; &gt; &gt; &gt;&gt; @@ -347,10 +347,12 @@ CP11X_LABEL(sata0): sata@540=
+000 {
+&gt; &gt; &gt; &gt;&gt;
+&gt; &gt; &gt; &gt;&gt;                      sata-port@0 {
+&gt; &gt; &gt; &gt;&gt;                              reg =3D &lt;0&gt;;
+&gt; &gt; &gt; &gt;&gt; +                            status =3D "disabled"=
+;
+&gt; &gt; &gt; &gt;&gt;                      };
+&gt; &gt; &gt; &gt;
+&gt; &gt; &gt; &gt;I don't know the yaml too well, but it is not obvious h=
+ow adding a few
+&gt; &gt; &gt; &gt;status =3D "disabled"; status =3D "okay"; fixes a "'any=
+Of' conditional failed"=2E
+&gt; &gt; &gt; &gt;
+&gt; &gt; &gt; &gt;Maybe you can expand the explanation a bit?
+&gt; &gt; &gt; &gt;
+&gt; &gt; &gt; &gt;       Andrew
+&gt; &gt; &gt;
+&gt; &gt; &gt; Hi angelo,
+&gt; &gt; &gt;
+&gt; &gt; &gt; I guess the dtbs_check only checks required properties from=
+ yaml if the node is enabled=2E
+&gt; &gt;=20
+&gt; &gt; Yes, that is exactly how it works=2E
+&gt;=20
+&gt; So from this, can i imply that phys is a required property?
+&gt;=20
+&gt; Looking at the above patch, it appears that for armada-*=2Edts,
+&gt; sata-port@0 always uses phys =3D &lt;&amp;cp0_comphy2 0&gt; and sata-=
+port@1 uses
+&gt; phys =3D &lt;&amp;cp0_comphy3 1&gt;=2E Is this an actual SoC property=
+? Could it be
+&gt; moved up into the =2Edtsi file? Or is it really a board property?
 
-Hi Jonathan,
+as i said the phy may operate in different modes (not know marvell here, b=
+ut on other vendors phys are defined at board level), maybe the boards wher=
+e the phy is missing the phy is used in another mode=2E Without knowing the=
+ SoC and boards disable it at SoC-level and enable only the nodes containin=
+g a phys property is all i can do here to fix the issue=2E Imho it is alway=
+s a good idea to enable only the conrollers a board will use=2E
 
-According to Rob's answer, do you think that we can move on with the
-last 3 patches as they are or do you want some changes?
-
-Cheers,
-Vasilis
+&gt; 	Andrew
+&gt; </frank-w@public-files=2Ede></andrew@lunn=2Ech></frank-w@public-files=
+=2Ede></axboe@kernel=2Edk></hdegoede@redhat=2Ecom></linux@armlinux=2Eorg=2E=
+uk></sebastian=2Ehesselbarth@gmail=2Ecom></gregory=2Eclement@bootlin=2Ecom>=
+</conor+dt@kernel=2Eorg></krzk+dt@kernel=2Eorg></cassel@kernel=2Eorg></dlem=
+oal@kernel=2Eorg></linux@fw-web=2Ede></robh@kernel=2Eorg></andrew@lunn=2Ech=
+>
 
