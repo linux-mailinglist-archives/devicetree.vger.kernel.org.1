@@ -1,141 +1,113 @@
-Return-Path: <devicetree+bounces-120841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E32E9C45D4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:29:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B8029C45ED
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:33:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D90FB1F2150C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:29:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFBB7B26B0F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:32:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4B91AB6E9;
-	Mon, 11 Nov 2024 19:29:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493D91AC423;
+	Mon, 11 Nov 2024 19:32:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GW1a2Pal"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VLWqoeO6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9494419C569;
-	Mon, 11 Nov 2024 19:29:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B620B1AB6E6;
+	Mon, 11 Nov 2024 19:32:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731353377; cv=none; b=o0O/L7mf8HakU5O+ffi/wqJU+yuYmWYdAO3MqpqOv+TAT8JeC6zzMZeULSqbbgNJQqNG9IeMVpaC57fMtPooUouGstyGeFwhTLHgAxN+dPFoSt98OLm1S+PY90qTB6keyuVovwnNgxYsAMDnjblD+yyDmZblITVDU4jozNe48Wk=
+	t=1731353540; cv=none; b=onRaf6FMbJXtP3ZV65fkCLrEqgIAnAOhHyul3KJDI8WtGu0hzoIF9nXf+7UPpRE7c0NkjZqoDcIYmPhrwnHwmklmP+MvigMwKXW7pQ/jIA76bQr5wn/c6X+B/e0c5SNmOyvM4r7Pp6ImxTFW1OYpZDiOl2s3erC/XDUUZJUonRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731353377; c=relaxed/simple;
-	bh=MGrDoVZBKCJUqSFuDTy6drHVcYGi4i0VUnifK1k48Fo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ODGRH0q9+cb9fF7nkLF/4Yvpqc5qrU2XuF/EhO5dODsCZXUdHyUtVnGCYnttSuX++zHCsm/Jb1TxxRnGuJ6rdk2KOqeNJJMIiNWPEHrmDWcJ3NStksDo8FFmsUXQM54GGDWExWfVxreFD0/sXLlas1pxz1IH7izzN5YxSF3gMxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GW1a2Pal; arc=none smtp.client-ip=209.85.160.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1731353540; c=relaxed/simple;
+	bh=FrUbdVoOLBu7nebxd/Fm4MXxSUtoIkGwy33uXzfApKo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=snoUsua23PpNfkUkEpcmK1O6okV4Yli+EzNPohNC+t9hrLCxyRGOy+2XpiS7HUhU1lDTq6P9B8pdOztxiRT/P/tRWBQW61tz1EX6fbUTbWMOw0iwqHrtAJrucdHH1pVPseeOuJix4Ym2S+1ZdovBg5POyDgZS3Od7GbMAhZHzJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VLWqoeO6; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-28c654c9e79so3505453fac.0;
-        Mon, 11 Nov 2024 11:29:35 -0800 (PST)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-20cb7139d9dso44705465ad.1;
+        Mon, 11 Nov 2024 11:32:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731353374; x=1731958174; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h1vUWXu4zDKdaSJZeWtM1voreY4yk9aTKqi7yYAqNXw=;
-        b=GW1a2PalpjRylFhvt86UKMdRjpa5M0fB937AsLZcmYWtfzJ2OTVhDujlfUYI/DBP5x
-         UMBemsKaJHGH2gt7XV9vv8PRjrzJHkoCZVQh769iTonPR8u9JDZQiXxoH5p1tfojhfHc
-         eG+KJPSyY0C/CZKwTnhdQCkcxoXlulP1lJwlwaNMd+SOXiFLSAESjd/3TygKWA++LXZp
-         m0UjPlmzSs8o9GNuyxmVAIkR27CO4+DDclt+nevSnRxM+p18sbNsSDYmHpSrgMNUlYFz
-         ABchJt2qWCfQykvvTqj/bJKszsmhnaggWFxbS70Wne3TH0hOvMZ4WUOpTK/4hHjjn07N
-         O8iQ==
+        d=gmail.com; s=20230601; t=1731353538; x=1731958338; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sUGrslVlG4qG18Wp+uQ/Za/lzfs7LZhHC0YpFJ/sO78=;
+        b=VLWqoeO6XHl3uV3iCX0vSuYvr7kCR1mX3JjPQQ/gJ7EnckTBJfVbfy8Vbfy31FY8ln
+         QRvyUsxvh81lRfe0nRPE8uO7MEA6HGvBrDNxL2RlbpH/cMhtpYBfkiyPeO6q0GXEv6P2
+         cB7MvUoj0171Z9kySIEgeimMXmlxdsdm6kOtxptN2ktwtAIMDHEQkuA56848mIdcfNm7
+         6tJ14Sj285TpXfQ4lLBjiHL4jK8dAJLJKTrVaaGADMP/KWs1s0hZJVGnkT0UAbAWvi8c
+         jRKAy+crVNjb1iUJAiO6vZGYqXJSwrpizJ7edaIrsA76Oa4ua+oOxKj1DYwZflPBdrH+
+         2Vsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731353374; x=1731958174;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1731353538; x=1731958338;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=h1vUWXu4zDKdaSJZeWtM1voreY4yk9aTKqi7yYAqNXw=;
-        b=Qyv1zo0cBKAcYjOtK4rWzmOhKJC0TOjOL+RH0dri7ElsiGnVtUoCVHdeo5QpCQ08XI
-         CwxcJFPbprT7RJL5FPpORkYjcvTY/HFf9F3nOOAUFP+GZE44IVRgAOkhIsfry9Lfvkcp
-         EIdmtFqbta4PhC1yfH6K1X6BpgB/fObJiNMq02c6GgsnCvLqMMCtwwXZTZXOyfRdD8Ib
-         zGOsvIbIx7cV549RG2F0pgc/O+BXMRvfrD+bG7YoiN20I0RYPQtp8cwlBdj/0fxR22n5
-         pi9faSzaCYBzFUP/AS738GNRc1SUdOFNZJ6lUPz1+bOcNCLtLUvlMtbKZlmpg8j8xd+i
-         jvUg==
-X-Forwarded-Encrypted: i=1; AJvYcCWM7J5tNG2UBAwVCosYgCNg3zEfvInDrUD4u8ZweYrlulxmgjgGfUczKBOc2UDoY0M8/tuml0IK0tju@vger.kernel.org, AJvYcCWn6jQFU+zVMjOtZHFBH1BhNsOx8kZKVc1uFAWEBMULe5a2yWsO4B1ptJy8p1nJjZuzqpPg+IcIsVrJFwjh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yylv9cMN9FEKRqH6Whajf8GlMLxaToCPG1SFIiTRHMC/1Xz8FNR
-	pLt0qEMftl78qEg1eeRWvDKHcDkmL8vWFVhW/EMPxBqwx9cHWjN9DQNdcPFguLHzny8NSYPcedB
-	cOR/FJhEAJUGT0Ny/7rPqp1tvAqM=
-X-Google-Smtp-Source: AGHT+IGHBbFAE824Z7ejSxwNuhavp9mnBTJDMnAcM9e5ShF/vhmJU9L9bJA8yQotfmv6no01sHmmXUuBPlpSARUN7sc=
-X-Received: by 2002:a05:6870:b06:b0:288:4eb9:5541 with SMTP id
- 586e51a60fabf-2955ff9c48cmr8070771fac.0.1731353374567; Mon, 11 Nov 2024
- 11:29:34 -0800 (PST)
+        bh=sUGrslVlG4qG18Wp+uQ/Za/lzfs7LZhHC0YpFJ/sO78=;
+        b=nO/UWeM1ITnCbuQmzl7kZ9tz/sLKUv/ub3vYTpLDdm9NxBZ+iENk17N64C3wQsYsAI
+         EpGcLSigNddvdi25Hq8PE9c4uF3dniV26flmuR7ku2VPidwKzToAB2qB14ocRr2EbnHY
+         ho3o/N7t3ftIKATd+VecRdsDGroi+TDCGvuHGfplt/qV8+Tf0Ou2HKtWYAiaYwgDtLQN
+         bNKYtIXKii0CQ4ku+2ef+AjvDnwHGQCMQxsW0Hp15dsN9uy+8Bx0S+PtfwFj5PFLBeHY
+         dumN37MyodvuD2UTNIvG39Q/P9sFtN2nlENHJwJRX09PprnSBtN/eyuzDjbHOWEoQUxx
+         veLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX6hTvLCL0S7cyw/E4i4Er/hpU+Wt2Qxo6Q8O7EyEnCMKJh0LR82NUN9xWnRQEajHPS4hv4siffjUrL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUIHLGKrgvtvOQpkolzfLTdcHXPGGEGFf5K6Dj/ezYjkaDB3vQ
+	uSPWA8yRVAg0dKWaxUEwiQZdWUXyG6fdLfrWMjyUNmp7V5i/oyOa
+X-Google-Smtp-Source: AGHT+IExs/+IHuv1ud56eQgfZVzXrveAzwV6uINoFDUkGASzBu5PJt+E1H2YOwuZWE08mzLd+IjlPw==
+X-Received: by 2002:a17:903:2c7:b0:20c:b810:13a5 with SMTP id d9443c01a7336-21183d3788dmr175588425ad.21.1731353537839;
+        Mon, 11 Nov 2024 11:32:17 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177e58e4fsm77772665ad.203.2024.11.11.11.32.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Nov 2024 11:32:16 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 11 Nov 2024 11:32:15 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-hwmon@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: pwm-fan: Document start from
+ stopped state properties
+Message-ID: <4799061e-603c-4fd2-bbf7-43205ea22846@roeck-us.net>
+References: <20241106185925.223736-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241108134926.1324626-1-alexander.stein@ew.tq-group.com> <499869db340b2d4c257e12d20e15c200d0f815b1.camel@ew.tq-group.com>
-In-Reply-To: <499869db340b2d4c257e12d20e15c200d0f815b1.camel@ew.tq-group.com>
-From: Bruno Thomsen <bruno.thomsen@gmail.com>
-Date: Mon, 11 Nov 2024 20:29:18 +0100
-Message-ID: <CAH+2xPDip+mTxhMUHVXQfmYN5cROiMyFxMb1xzxT54y9cP5Acw@mail.gmail.com>
-Subject: Re: [PATCH 0/8] TQMa7x DT cleanup
-To: Markus.Niebel@ew.tq-group.com
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, =?UTF-8?Q?Jo=C3=A3o_Rodrigues?= <jrodrigues@ubimet.com>, 
-	linux@ew.tq-group.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241106185925.223736-1-marex@denx.de>
 
-Den fre. 8. nov. 2024 kl. 15.03 skrev Niebel, Markus
-<Markus.Niebel@ew.tq-group.com>:
->
-> On Fri, 2024-11-08 at 14:49 +0100, Alexander Stein wrote:
-> > Hi all,
-> >
-> > this series fixes some DT binding check warnings as well as removing
-> > duplicated nodes. Eventually IRQ support for thernet PHYs was added.
-> > Additionally add CONFIG_JC42 to imx_v6_v7_defconfig.
-> >
-> > Best regards,
-> > Alexander
-> >
-> > Alexander Stein (8):
-> >   ARM: dts: imx7-mba7: remove LVDS transmitter regulator
-> >   ARM: dts: imx7-tqma7: Remove superfluous status=3D"okay" property
-> >   ARM: dts: imx7-tqma7: add missing vs-supply for LM75A (rev. 01xxx)
-> >   ARM: dts: imx7-mba7: Add 3.3V and 5.0V regulators
-> >   ARM: dts: imx7-mba7: Fix SD card vmmc-supply
-> >   ARM: dts: imx7-mba7: Remove duplicated power supply
-> >   ARM: dts: imx7[d]-mba7: add Ethernet PHY IRQ support
-> >   ARM: imx_v6_v7_defconfig: enable JC42 for TQMa7x
-> >
-> >  arch/arm/boot/dts/nxp/imx/imx7-mba7.dtsi  | 61 +++++++----------------
-> >  arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi |  3 +-
-> >  arch/arm/boot/dts/nxp/imx/imx7d-mba7.dts  |  3 +-
-> >  arch/arm/configs/imx_v6_v7_defconfig      |  1 +
-> >  4 files changed, 21 insertions(+), 47 deletions(-)
-> >
->
-> For the whole series:
+On Wed, Nov 06, 2024 at 07:59:04PM +0100, Marek Vasut wrote:
+> Delta AFC0612DB-F00 fan has to be set to at least 30% PWM duty cycle
+> to spin up from a stopped state, and can be afterward throttled down to
+> lower PWM duty cycle. Introduce support for operating such fans which
+> need to start at higher PWM duty cycle first and can slow down next.
+> 
+> Document two new DT properties, "fan-stop-to-start-percent" and
+> "fan-stop-to-start-usec". The former describes the minimum percent
+> of fan RPM at which it will surely spin up from stopped state. This
+> value can be found in the fan datasheet and can be converted to PWM
+> duty cycle easily. The "fan-stop-to-start-usec" describes the minimum
+> time in microseconds for which the fan has to be set to stopped state
+> start RPM for the fan to surely spin up.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Reviewed-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+Applied.
 
-Thanks for the cleanup.
-
-/Bruno
-
-> Reviewed-by: Markus Niebel <markus.niebel@ew.tq-group.com>
->
-> Thank you
-> Markus
->
-> --
-> TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Ge=
-rmany
-> Amtsgericht M=C3=BCnchen, HRB 105018
-> Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan S=
-chneider
-> http://www.tq-group.com/
+Thanks,
+Guenter
 
