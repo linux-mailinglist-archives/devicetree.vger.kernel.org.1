@@ -1,97 +1,99 @@
-Return-Path: <devicetree+bounces-120904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 763079C47C3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 22:12:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2242F9C4805
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 22:28:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A99E1F21457
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 21:12:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9413B2741C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:38:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A39751BCA1B;
-	Mon, 11 Nov 2024 21:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 064BC1B0F2B;
+	Mon, 11 Nov 2024 20:38:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MAVkRchX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RqzaXjvB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AAB31BD000;
-	Mon, 11 Nov 2024 21:04:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA0B813A250;
+	Mon, 11 Nov 2024 20:38:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731359092; cv=none; b=bvXgQBR51m/C8SVkdfMkuXFs2XYNnMxA8RYNlOnCf9xIF/JI5GX8bRC2xvoDnrphGrttMFVqHVbGU8ebFeI0kKfmOonph5tMyP5u5C4zIzzprJKNrkqusjksF4ArAMuLvReITLSmHh5gFclKiaWgLvbh2JeUYisFu6vJi5brNeo=
+	t=1731357522; cv=none; b=IO6WHQSWCnT2pz3hO9itwqaUf1m4evvLn3jPHlbKDEEZFKYv6beWFdzKhZUJ5fJRcSt9zZexdVUZOFNtZLO6Kgv9V9x0m3u5VyaUVAdeCtUrLOjIr7obDYLcyZsILcr97prIbkTF1OmhqRz64VkrVMP4lLnOlO+lZdExgTbk7xY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731359092; c=relaxed/simple;
-	bh=iB24JtsBeFLIFaXulkr/dFKm+SEgcBjFNMAFM0/AtNQ=;
+	s=arc-20240116; t=1731357522; c=relaxed/simple;
+	bh=152E4AMyrFyVth6NJr4o1obdZxNFdCxTvLupPgHqcR4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EkHkfGywvexLBskHZC5jhR9Ro/k3z0NONAuzPZ3fvoxzfSr+MYJ+ZE6YVfMWG02FsFxmVvsQ9k7Nk+hUiG3O4mDH637UkYuOGMkFAByeDWFCyx1vxJsFe0K4gvXsMY39lst7WDpyUGJUImFpoLJZDicgrwtb2wqn+/BKz4nJePg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MAVkRchX; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8DBEDFF807;
-	Mon, 11 Nov 2024 21:04:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1731359088;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LObrxn3R4XtlprnERAFFhmw2ApkNAoiNEB3fkoJZITE=;
-	b=MAVkRchXggZBxDxPHd6AZX2qiAifA7ijtIEZo1438VSGrVZamdo414JKLILgKBS/E/GudL
-	K7eJdXQd1BSX/kXpLhu1oVKxXHBbkvOgEoz/kbVdeotMDe4m8cF5zmI6vGXN0p6bgGZJLq
-	bd4f8CJKP9ALVDp7JfHogGIhiVdXK7sTK58s0XJMRqgUnRkAcxaGzoLe3EF4rj8dCSmHu3
-	JF/WmZq+GxWgyj08XEoGRTnZHBaGYeZmv4qvAkYslCF4qKufG5VBQC6HFSUhFjf4t3cylk
-	xRsBYTHFsNO17OAdY17sdmGz6dpSn66m3NsZTyNJV9/BR6Lmzr/pBPLTm5jHyQ==
-Date: Mon, 11 Nov 2024 22:04:44 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: lee@kernel.org,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, eddie.huang@mediatek.com,
-	sean.wang@mediatek.com, sen.chu@mediatek.com,
-	macpaul.lin@mediatek.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org,
-	kernel@collabora.com
-Subject: Re: (subset) [PATCH v1 0/3] rtc: mt6359: Cleanup and support
- start-year property
-Message-ID: <173135898216.3303301.4242491728556386052.b4-ty@bootlin.com>
-References: <20240923100010.97470-1-angelogioacchino.delregno@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TvjnB1oV/SflyzlHbhF9OuVFQYvrwvKuVEvenbLjj5XrZ3bqnASd40PJ3uSxbpkU9SvZQ7F8fcvHbBclb7xsI+c16faTbhy2UkteSWZIV6+/oEmrXZ9HQJZokFuVagqIgK01VFXOm27NQRKPCGBuCNb+bK4JtMkVOXr9U+OZq64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RqzaXjvB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 128AFC4CECF;
+	Mon, 11 Nov 2024 20:38:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731357522;
+	bh=152E4AMyrFyVth6NJr4o1obdZxNFdCxTvLupPgHqcR4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RqzaXjvB+eygq7637ZG7G/eJ5DM9U1D/pEckw3OihBILO29k9uU9UKAExc6gUejDR
+	 NJRBYI445rRLUb6+SifOvLM3JKo4XiK6GcF6W7ueCowXgkGbvn0CPV/ekjADy238BN
+	 W6tuP1tdsLspbn5ebmUEBoAOvg253VHyT8CbzcUZnte5wvuKjc/im1hHhCBJL7yTC9
+	 goRxy6NBkKIOikKE5/j4uO3wN6Gu7wqW2jp2TdOejvH9Vn6MXrshK9g9LsEX7+sTgX
+	 DFmWoRu5n9xsopGs+4zkGjKmOesHtKiCFl7aWZJeG3BMq3wg9/PIJXDvyToaxTHHbN
+	 l06hr/n1QyR2Q==
+Date: Mon, 11 Nov 2024 20:38:37 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org
+Subject: Re: [PATCH 08/14] dt-bindings: usb: sunxi-musb: add Allwinner A523
+ compatible string
+Message-ID: <20241111-harvest-excusably-5e53d1fd362d@spud>
+References: <20241111013033.22793-1-andre.przywara@arm.com>
+ <20241111013033.22793-9-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="pIS1unl9HesvjYym"
+Content-Disposition: inline
+In-Reply-To: <20241111013033.22793-9-andre.przywara@arm.com>
+
+
+--pIS1unl9HesvjYym
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240923100010.97470-1-angelogioacchino.delregno@collabora.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 23 Sep 2024 12:00:07 +0200, AngeloGioacchino Del Regno wrote:
-> This series adds support for the start-year property and removes the
-> custom handling of the RTC_MIN_YEAR_OFFSET (which is, effectively, doing
-> the exact same).
-> 
-> The start_secs timestamp was set to match the previous one from the
-> custom behavior so that there is no time drift on any device after
-> applying this.
-> 
-> [...]
+On Mon, Nov 11, 2024 at 01:30:27AM +0000, Andre Przywara wrote:
+> The Allwinner A523/T527 SoCs have a MUSB controller fully compatible to
+> the D1 (and ultimately the A33), with five endpoints.
+>=20
+> Add the new name to the list of compatible strings.
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Applied, thanks!
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-[2/3] rtc: mt6359: Add RTC hardware range and add support for start-year
-      https://git.kernel.org/abelloni/c/34bbdc12d04e
-[3/3] rtc: mt6359: Use RTC_TC_DOW hardware register for wday
-      https://git.kernel.org/abelloni/c/d6f471a74790
+--pIS1unl9HesvjYym
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzJrTQAKCRB4tDGHoIJi
+0sMOAP950SFaA8lr6xbPJAxQ1ITCDG/C0OzjBW9aD/2hFBhNHQEAnY4Gt9XMpOdC
+iHYyvhfePxdmMQPg4fhAUFLOEusEBQk=
+=KMGT
+-----END PGP SIGNATURE-----
+
+--pIS1unl9HesvjYym--
 
