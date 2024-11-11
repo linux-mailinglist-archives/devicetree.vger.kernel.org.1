@@ -1,112 +1,125 @@
-Return-Path: <devicetree+bounces-120835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AD0C9C45A1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:13:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D7919C45A4
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:13:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3B361F214B1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:13:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24D0B1F2121B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:13:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DDD1AA7A4;
-	Mon, 11 Nov 2024 19:12:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="ES5D7iaJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AEBC1AAE3A;
+	Mon, 11 Nov 2024 19:13:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [207.246.76.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDABA14B965
-	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 19:12:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.246.76.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4A61AAE2C
+	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 19:13:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731352378; cv=none; b=SAwFVLcYwCHDVhqah94/UKtjSmcm/EK9GTijKhza394s9tqFAeMK3/hyZFPTdQmcx+jLRRjMmyL4TYfuXV8/jeLd3UDuNZXhOAYKr62O6vbdD9S1Yh4g5Qyr+RZpJob++YRbJq67nZJ5E2cLUjPPI2J+PtXU1xNrtX5XM2Gyv5A=
+	t=1731352414; cv=none; b=t7UZ4mwSxR2vmngimMOq6PTuYhdBVX1Vb2hg8mQLHLZsRCMpQgKhL+rDNutbGK/X43JKmXkHk56H1TTuKWQn+j++1gO8R7FCqWiwpEcEW0LSnLk+fMlIC0iPbzSMV/jcHLlxJlbNfo6fdsnXZRqPWcAYnCDudYLDBuS5Qieosec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731352378; c=relaxed/simple;
-	bh=UC8FylXasmQ/h9DEQIESvrU6CHINib7lDFqz/rQnwZA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:Cc:From:
-	 In-Reply-To:Content-Type; b=dXbiMEbkxk5nsRkBGOz3+9gAnVakjCmehmAdnlpuVedr6bBVmx4xMf7DdQKT+xkkJRpK365yxLwUw9FuBW0W666b5IybrLZfOkS8qTwd2dc2M/EmbX9O/lQREpf6YmgtuRJ0cSi+1XniMd6ORzbJ2IobfrYCY80W+kMgZUE0Up0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=ES5D7iaJ; arc=none smtp.client-ip=207.246.76.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: Cc:
- References: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1731352364;
- bh=VoOvd60Z5sJEGwTfTCFOEcWAXUKH/B7ofE6eDnjYJDw=;
- b=ES5D7iaJBf3vI/JUt0lYxAsqV+V9Ppes5SXnaMMg76LS3frlUD+nJG5OQNLbT768lEwZoYDNl
- SFwkFnNX4TnGCBDIl5i7QVEJBrdbBTtsjGRAvpVhPDq5MnYD2RbsJTl7ZAlPrIMEIq7uiYYSqed
- CAYHUkDtRlTTj55mbTa0CWPjdCjKta+jVTjFZ8Omlef04wvPu8Mcg4PTcGUEwmk2VqFyXo7fkCH
- 6OHfNsirVg1jYHgmbpnwuLFDagyYGgs5vDodOJZhGYhOyoKaTi5cRWnx7B+9IcWvOnpsMvvNJil
- PrMcTb8NVNMswWj5XRHuGZroubsRys+ILm9g9ATaorsQ==
-Message-ID: <4ba81dfa-f276-4e05-b46b-92f50dbcfcc4@kwiboo.se>
-Date: Mon, 11 Nov 2024 20:12:37 +0100
+	s=arc-20240116; t=1731352414; c=relaxed/simple;
+	bh=rNCETCsFbwJ3MZxiiirkV28BI1ZQDxtrLsU5IoQRMJs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jOcza06QZhvIyPbutsW8X4oYxmy+c+Hv4/38Ct0tLPujf6NnGr+Y1SqB05sA8CfoWLmKkMtUeCFiQpFAoNRY8uTTtTHWXlJAOT9tYGCRgR7qDscK602qIDBNehDJUSvCAugmyqWBRErF6yOPbVtzgfWyo6TjRd75A2sZ2cVZcD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tAZqa-0002SF-2g; Mon, 11 Nov 2024 20:13:12 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tAZqZ-000IHO-10;
+	Mon, 11 Nov 2024 20:13:11 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tAZqZ-0060xb-0c;
+	Mon, 11 Nov 2024 20:13:11 +0100
+Date: Mon, 11 Nov 2024 20:13:11 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 5/5] arm64: dts: imx93-9x9-qsb: add temp-sensor
+ nxp,p3t1085
+Message-ID: <20241111191311.qallf3xrz2vlylak@pengutronix.de>
+References: <20241111-p3t1085-v3-0-bff511550aad@nxp.com>
+ <20241111-p3t1085-v3-5-bff511550aad@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Enable UART8 on rock-3b
-To: =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@linux.com>
-References: <20241111181807.13211-1-tszucs@linux.com>
- <20241111181807.13211-4-tszucs@linux.com>
-Content-Language: en-US
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
- Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20241111181807.13211-4-tszucs@linux.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 207.246.76.47
-X-ForwardEmail-ID: 673257291b4710f318d5f54d
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241111-p3t1085-v3-5-bff511550aad@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Tamás,
+Hi,
 
-On 2024-11-11 19:17, Tamás Szűcs wrote:
-> Enable UART lines on Radxa ROCK 3 Model B M.2 Key E.
+On 24-11-11, Frank Li wrote:
+> Add temp-sensor nxp,p3t1085 for imx93-9x9-qsb boards.
 > 
-> Signed-off-by: Tamás Szűcs <tszucs@linux.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> change from v1 to v3
+> - none
+> ---
+>  arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> index b7527ba418f7..61d4ba2d312a 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> @@ -732,7 +732,7 @@ &uart8 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&uart8m0_xfer &uart8m0_ctsn &uart8m0_rtsn>;
->  	uart-has-rtscts;
-> -	status = "disabled";
-> +	status = "okay";
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
+> index 20ec5b3c21f42..36f2995acbe29 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
+> @@ -221,6 +221,11 @@ wm8962: audio-codec@1a {
+>  		>;
+>  	};
+>  
+> +	p3t1085: temperature-sensor@48 {
+> +		compatible = "nxp,p3t1085";
+> +		reg = <0x48>;
+> +	};
 
-This should probably be enabled using an dt-overlay, there is no UART
-device embedded on the board and the reason I left it disabled in
-original board DT submission.
-
-On second thought maybe they should be enabled, think PCIe and USB lines
-on the M.2 Key E is already enabled by default. I probably only tested
-with a pcie/usb wifi/bt card and not a sido/uart wifi/bt card.
+Out of curiosity, did you tested that the I3C is working on a real
+device, since you added the node here as I2C device? If not, please skip
+adding the I3C part and keep it as TODO for later.
 
 Regards,
-Jonas
+  Marco
 
->  };
->  
->  &usb_host0_ehci {
-
+>  	ptn5110: tcpc@50 {
+>  		compatible = "nxp,ptn5110", "tcpci";
+>  		reg = <0x50>;
+> 
+> -- 
+> 2.34.1
+> 
+> 
+> 
 
