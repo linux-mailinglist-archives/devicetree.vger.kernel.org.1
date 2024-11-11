@@ -1,187 +1,122 @@
-Return-Path: <devicetree+bounces-120638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A92F9C372D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 04:49:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A03669C373A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 05:01:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14CEAB20926
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 03:49:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35CDEB20A15
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 04:01:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA7E14831C;
-	Mon, 11 Nov 2024 03:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFA196F06B;
+	Mon, 11 Nov 2024 04:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mGdTcS62"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TXqI5LVR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69946288B1;
-	Mon, 11 Nov 2024 03:49:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 582B02595;
+	Mon, 11 Nov 2024 04:01:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731296942; cv=none; b=pyU+1NZxFCvNBGHnkKI6pbr9KujrmAl7kgkXzm/c8i+pgsOQhggViiE5sotYasQ90M1R5q46pNxQMKgG5MDtIsfY25HK5UyCyQXE9lNod7uQk8P1QCKr7JizpfaGtnFkDeGzrBqRanGZRsXbgERlKvXyhgbrWNTeUcxJn1q97zk=
+	t=1731297686; cv=none; b=OpFEsho89Njzszvo/vFw4kmlVq4ZOdjQjIWavYKBqjxYqAePz9AauUy0n8pyDNeDhNtAPWT3XIq6H2+W8TXtLugDVhD+54ddDd+EbNSMk1z/3gulDJrPLVs2BWLVJ5CZXZu98/w0LFAIe+jLCGNN6JRkHCDPmWeXEdErB4mSksM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731296942; c=relaxed/simple;
-	bh=GNdEUWzAyIgSlNNedw2qimCp1Gqeo16UMOHXLJs0siM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=G8ySEWCM26YQMFQzu35g6klO19Pb90Ra7KwbemYzXXlPp+M62P14SZSmsvRr7lYxXDEqwuypuxb3QFf9hclhFu+lFnGxtOCy0K6F4neGvGDDrIO5H2YSPYlrMm+DU7wHay1+VLq0v3pKTputwMQ74ic9+gbaOBTTHDTGmNkagfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mGdTcS62; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AALvacq006661;
-	Mon, 11 Nov 2024 03:44:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	yG/N73WbiaCBaSJcWEGfw81oQaDhMKagaRX64zNWUEc=; b=mGdTcS622VVvDrus
-	B80zcKvpYLLPGDHp1YhUMeE0KnVCmgAW+jHtSRIJb7NWjDujywkWkEyhR20t1fCH
-	JioSJpMb2d8oTwXKHisT0qkYA2/gu3tZWb/pWDCGprGjlTZpDzL9Z69+MQ+WGz3J
-	eWzNqpHZzbia8z+vvnuyVh9yy8Z2r2DGc0oOxI7zcSYB/DwEkYolEkSJVBLUArFp
-	xIMo3J9W1gCMSt/uwLpJuQ+40fXQufEoX6Ai5YFeJlo4ra1aLGI/b8R4Nw5IwDHp
-	WkpoNyHq7GIhxAc+P3OFkIaDbU0vbdzSdhdQqC5jgyZ/CYLRG/JuBAiq/POOwDBP
-	Vn0l6w==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42t046340j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Nov 2024 03:44:26 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AB3iPnm020632
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Nov 2024 03:44:25 GMT
-Received: from [10.239.29.179] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 10 Nov
- 2024 19:44:20 -0800
-Message-ID: <c558f9eb-d190-4b77-b5a3-7af6b7de68d8@quicinc.com>
-Date: Mon, 11 Nov 2024 11:44:17 +0800
+	s=arc-20240116; t=1731297686; c=relaxed/simple;
+	bh=l44EnT1b015bbMDywEHP9XMBLv3778FsGTDMvcCV9zc=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=WUiShi4TqCpz8+ecDX7l01wh3hbPM1stCW4Do0GLznSeYRGMAIdUC/LMQu2t2zXhNL5aBMskpNOnH1u9bBvhK31QMkR2B/jjgI+imdSLG0311PTf/IxQMKPHy+UIbteR3hX8a15zxqwJT6+28tGprcNsF5xRYBq8Rbx6BYiDKKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TXqI5LVR; arc=none smtp.client-ip=209.85.210.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-715716974baso2593431a34.1;
+        Sun, 10 Nov 2024 20:01:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731297684; x=1731902484; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hy8jT9Ue/QY/D9ejeEuTCpC9OQ+qg6j+m/BJDWm3iVw=;
+        b=TXqI5LVRwtGYAcU1xvv8rWmYI56HdnG6oVi+v6IAgBG0Zf9CTsn5WazO9H8EnTpw7+
+         2V6F91gE1Fh9znQ/ZxNYK5XISlwQVLYQNX49ZASbPe8z2u/U68GNwP2JeFMSPK3LsCD1
+         fe/xop0GdZnLAPdctfuw8QuPm5Ch3oh+WoVWNYDkscxfYxk9spj1YX+5Xd5ffk/a04AA
+         bwPR9B6bcgfSROP3zfqaMn6ogltn2n9AF4h/899YBxPzmZzXMs0+FecTgHiPnXu7PUj7
+         8IqGZWzAJEC3rSVyfTw3jkREr0658cMtXGIzew/zrOzjtG6RRYZkBUk37HN03kooXxf4
+         4UMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731297684; x=1731902484;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hy8jT9Ue/QY/D9ejeEuTCpC9OQ+qg6j+m/BJDWm3iVw=;
+        b=vsvAqLwSjEfFVnqaxvQUhQCP34CmzQ+GCCtmVxDQ/ieJc5mORzciSo95pEhMd849zF
+         snkzmfQRAz81AcJ0HH9ymWp5pD5a67nkL6zZgFsXB/plGayKyfJ0CFnBIMKE9vOxFMgI
+         yblfU21U4CTMJJJ5xdqNQMi7QCVgBScbexzCO3loXvSueuu0N7UU+fIkbJXtYtumoNTx
+         Fw0ueP5Mnwtprmu3r7PQlOgkk4C+Lv3JfL8YTO8T+oWNHOhJ+/7M9sKo2NjfaHkKk9sF
+         8bjgte+kGhzX0qwy4Z1Wxvo7+jRgbmnphCemyKh73Sfxt+8WKzLcmXhQbcnc0sm61WL3
+         1Cng==
+X-Forwarded-Encrypted: i=1; AJvYcCUC8GzwB3264DWUb5CYpJixxQIodh2I0OgjSJ50GTrMJZJMqqBsG5MXdTFFlK0eFY+FCUh8kpn7o3jpPZvY@vger.kernel.org, AJvYcCV/+7et/Fa2BOqLEUG9TVXPxsjaTFz4xRFsXrXLFa4ba8YjlmRqmnloFz+X/NR5PGwbnFSiU2nRCCMK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZZkWaOXMvTSd2dBDH8x1kFl8YUomUAGHp9nYGuXbGep6BNVYq
+	9g9u8pacdWZR1MSYDM4pY2/vFWwv55NgNfkdFAg9zI9XXA4oiTea
+X-Google-Smtp-Source: AGHT+IEU0F2CPMWmhtTpRyOGW29QngOAi4sHzqAOqOtg2OfvHnGdY/3OvOLJcSlVD7vH7oOQ1i8hMw==
+X-Received: by 2002:a05:6830:600d:b0:718:99a0:2168 with SMTP id 46e09a7af769-71a1c1de347mr8513477a34.4.1731297684455;
+        Sun, 10 Nov 2024 20:01:24 -0800 (PST)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71a109210d7sm2107427a34.60.2024.11.10.20.01.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Nov 2024 20:01:23 -0800 (PST)
+From: Chen Wang <unicornxw@gmail.com>
+To: u.kleine-koenig@baylibre.com,
+	aou@eecs.berkeley.edu,
+	arnd@arndb.de,
+	unicorn_wang@outlook.com,
+	conor+dt@kernel.org,
+	guoren@kernel.org,
+	inochiama@outlook.com,
+	krzk+dt@kernel.org,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	robh@kernel.org,
+	tglx@linutronix.de,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	fengchun.li@sophgo.com
+Subject: [PATCH 0/3] irqchip: Add Sophgo SG2042 MSI controller
+Date: Mon, 11 Nov 2024 12:01:13 +0800
+Message-Id: <cover.1731296803.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 5/5] arm64: dts: qcom: x1e80100: Add support for PCIe3
- on x1e80100
-From: Qiang Yu <quic_qianyu@quicinc.com>
-To: Johan Hovold <johan@kernel.org>
-CC: <manivannan.sadhasivam@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <abel.vesa@linaro.org>,
-        <quic_msarkar@quicinc.com>, <quic_devipriy@quicinc.com>,
-        <dmitry.baryshkov@linaro.org>, <kw@linux.com>, <lpieralisi@kernel.org>,
-        <neil.armstrong@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <johan+linaro@kernel.org>
-References: <20241101030902.579789-1-quic_qianyu@quicinc.com>
- <20241101030902.579789-6-quic_qianyu@quicinc.com>
- <ZyjbrLEn8oSJjaZN@hovoldconsulting.com>
- <de5f40ab-90b7-4c75-b981-dd5824650660@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <de5f40ab-90b7-4c75-b981-dd5824650660@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6CLDlkiXpATCHQED5YVP_aSUHQtsFrX9
-X-Proofpoint-ORIG-GUID: 6CLDlkiXpATCHQED5YVP_aSUHQtsFrX9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 clxscore=1015 priorityscore=1501 spamscore=0 suspectscore=0
- mlxlogscore=999 impostorscore=0 adultscore=0 phishscore=0 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411110030
+
+From: Chen Wang <unicorn_wang@outlook.com>
+
+This controller is on the Sophgo SG2042 SoC to transform interrupts from
+PCIe MSI to PLIC interrupts.
+
+Chen Wang (3):
+  dt-bindings: interrupt-controller: Add Sophgo SG2042 MSI
+  irqchip: Add the Sophgo SG2042 MSI interrupt controller
+  riscv: sophgo: dts: add msi controller for SG2042
+
+ .../sophgo,sg2042-msi.yaml                    |  78 ++++++
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |  13 +
+ drivers/irqchip/Kconfig                       |   8 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-sg2042-msi.c              | 255 ++++++++++++++++++
+ 5 files changed, 355 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/sophgo,sg2042-msi.yaml
+ create mode 100644 drivers/irqchip/irq-sg2042-msi.c
 
 
-On 11/5/2024 1:28 PM, Qiang Yu wrote:
->
-> On 11/4/2024 10:35 PM, Johan Hovold wrote:
->> On Thu, Oct 31, 2024 at 08:09:02PM -0700, Qiang Yu wrote:
->>> Describe PCIe3 controller and PHY. Also add required system 
->>> resources like
->>> regulators, clocks, interrupts and registers configuration for PCIe3.
->>>
->>> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
->>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->>> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
->>> +        pcie3: pcie@1bd0000 {
->>> +            device_type = "pci";
->>> +            compatible = "qcom,pcie-x1e80100";
->>> +            reg = <0x0 0x01bd0000 0x0 0x3000>,
->>> +                  <0x0 0x78000000 0x0 0xf1d>,
->>> +                  <0x0 0x78000f40 0x0 0xa8>,
->>> +                  <0x0 0x78001000 0x0 0x1000>,
->>> +                  <0x0 0x78100000 0x0 0x100000>,
->>> +                  <0x0 0x01bd3000 0x0 0x1000>;
->>> +            reg-names = "parf",
->>> +                    "dbi",
->>> +                    "elbi",
->>> +                    "atu",
->>> +                    "config",
->>> +                    "mhi";
->>> +            #address-cells = <3>;
->>> +            #size-cells = <2>;
->>> +            ranges = <0x01000000 0x0 0x00000000 0x0 0x78200000 0x0 
->>> 0x100000>,
->>> +                 <0x02000000 0x0 0x78300000 0x0 0x78300000 0x0 
->>> 0x3d00000>,
->> Can you double check the size here so that it is indeed correct and not
->> just copied from the other nodes which initially got it wrong:
->>
->>     https://lore.kernel.org/lkml/20240710-topic-barman-v1-1-5f63fca8d0fc@linaro.org/
-BTW, regions of PCIe6a, PCIe4, PCIe5 are 64MB, 32MB, 32MB, respectively.
-Why range size is set to 0x1d00000 for PCIe6a, any issue is reported on 
-PCIe6a?
+base-commit: 2d5404caa8c7bb5c4e0435f94b28834ae5456623
+-- 
+2.34.1
 
-Thanks,
-Qiang Yu
-> From memory maps, region of PCIe3 is 64MB, the size here is correct.
->
-> Thanks,
-> Qiang Yu
->>
->>> +                 <0x03000000 0x7 0x40000000 0x7 0x40000000 0x0 
->>> 0x40000000>;
->>> +            bus-range = <0x00 0xff>;
->>> +            clocks = <&gcc GCC_PCIE_3_AUX_CLK>,
->>> +                 <&gcc GCC_PCIE_3_CFG_AHB_CLK>,
->>> +                 <&gcc GCC_PCIE_3_MSTR_AXI_CLK>,
->>> +                 <&gcc GCC_PCIE_3_SLV_AXI_CLK>,
->>> +                 <&gcc GCC_PCIE_3_SLV_Q2A_AXI_CLK>,
->>> +                 <&gcc GCC_CFG_NOC_PCIE_ANOC_NORTH_AHB_CLK>,
->>> +                 <&gcc GCC_CNOC_PCIE_NORTH_SF_AXI_CLK>;
->>> +            clock-names = "aux",
->>> +                      "cfg",
->>> +                      "bus_master",
->>> +                      "bus_slave",
->>> +                      "slave_q2a",
->>> +                      "noc_aggr",
->>> +                      "cnoc_sf_axi";
->>> +
->>> +            assigned-clocks = <&gcc GCC_PCIE_3_AUX_CLK>;
->>> +            assigned-clock-rates = <19200000>;
->>> +
->>> +            interconnects = <&pcie_south_anoc MASTER_PCIE_3 
->>> QCOM_ICC_TAG_ALWAYS
->> This should be &pcie_north_anoc
->>
->>> +                     &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->>> +                    <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
->>> +                     &cnoc_main SLAVE_PCIE_3 QCOM_ICC_TAG_ALWAYS>;
->>> +            interconnect-names = "pcie-mem",
->>> +                         "cpu-pcie";
->> With the above addressed, feel free to keep my Reviewed-by tag.
->>
->> Johan
 
