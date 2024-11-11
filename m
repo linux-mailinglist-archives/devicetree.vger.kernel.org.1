@@ -1,159 +1,104 @@
-Return-Path: <devicetree+bounces-120856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94FE9C46D8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 21:31:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA5389C46DF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 21:31:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58F351F26213
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:31:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FBBE2899EF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:31:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89B631A3A8F;
-	Mon, 11 Nov 2024 20:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E59991B4F13;
+	Mon, 11 Nov 2024 20:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FDi5WtVu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tMWfXXUN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D6B18468;
-	Mon, 11 Nov 2024 20:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B88711AA78A;
+	Mon, 11 Nov 2024 20:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731357067; cv=none; b=iE3mRe5g+PctQirNi+3/L0bV6O6l9Jb0bO4N/baZ6TXpdH0aJ3JQ4yN1bQLDtWSwb9Tl5oLgp5XPSks3NDWE58P+tf6/ccCBq5SXv8QuRxwC17AsVY84Qjvpa/u8bxrUcjmjYKgJ4WR1jLbDptHZCmhSmknNnSDFzKjPZwncgTs=
+	t=1731357096; cv=none; b=Iw+XWtXkHINYEWpTQxiTk7gHmLS9zu/5n5Ng3lIocNqlX+4EQKHUfFfa8tGCuefsfkI0RY5dEpEebU6iqI4Tscrl6lSxXqDKXFYH9cfFAsC2fyv2Sl3hSs/BKf1jUA2Enp5OymrwCUpqbdnUW63W75T2u6bS35XmrIhFdaFjoPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731357067; c=relaxed/simple;
-	bh=4I34QEy3zPSWv8GHju8qDWe1DpbrSW7bMCIC8u+UuPc=;
+	s=arc-20240116; t=1731357096; c=relaxed/simple;
+	bh=x9aXapsZuaqPnOXzfdDhI/RnimcdxYeMxnTT1TJaOFQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i5hrQWYFXczRtlxBSo4EkJYhgcW7NI0ODOYGdyO3MC7EovhwpT7oi09K9X/gkYxva+tlVuK2FyyTepv4+IOuvDxkVAllpuPoyKx5/tqH19EcpFA43dpiaoiff2zFXbYIVDTHhpqRDf4HBBM16cgUE8cOBVsAVVJ+YeUCShg8xeo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FDi5WtVu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D830FC4CED4;
-	Mon, 11 Nov 2024 20:31:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=INANpV/fI/SbsX7Ls0oqACRgA0SB8samFO9u7ZboZuLio+OroB6k8bPfuynvmdxJvLXZ7b3YHijmlO0E3CYqsLZwJGIRo/q4j1ElwLJW1zWPw1EiABpUx/Kqy8DxEgrQhmKIWBU7ru6NjYlQGAs9szRbj5CYgJtODAfj7Y4mDqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tMWfXXUN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD95FC4CECF;
+	Mon, 11 Nov 2024 20:31:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731357067;
-	bh=4I34QEy3zPSWv8GHju8qDWe1DpbrSW7bMCIC8u+UuPc=;
+	s=k20201202; t=1731357096;
+	bh=x9aXapsZuaqPnOXzfdDhI/RnimcdxYeMxnTT1TJaOFQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FDi5WtVu4/m62hLrLsWTmk+k2LQyfuFh2Di+SeiUbIBR4tcvNGp1PTDZECpd5/M7B
-	 kcwCf7mOYQ+IB3u+JdsD07YtrdVR80HS25oNVRB8luHJ3BznoQZa/CNFvYmtOQOL3e
-	 vE9w4qkbpH7V5641kh3S/jhvdduolCXX74m/JPaGKCOFo23ocjb4s58a5N9jktW64N
-	 6rISV0mb/5V5H1q7FV4iKwxMr5B64iyYbaEOECgYuoHi9/RcIAdogZIx8E7yrfKDPG
-	 xY92J3IvGrDIQ617rHDbwCnffqHuzDNbLQfOV2O/DzSKd57MYqjIJkLVSNxpGTAJ2B
-	 +hFLCiyJtTRdA==
-Date: Mon, 11 Nov 2024 14:31:04 -0600
-From: Rob Herring <robh@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: frank-w@public-files.de, Frank Wunderlich <linux@fw-web.de>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
+	b=tMWfXXUNORLhTI3cTOwE0A1ETqw8UqTMRqqc7Wc0Bkt653CuvRspCpYP7fc0Y36y6
+	 U8WaealJUt2xHAtYBFe7eZDTV2jeYuHZvELjZas9GEzTFAMZhY9ZpEU3HteYQzDCsg
+	 hYkUkXN0ydmkAUTk1BViQWHmDzMi0rPfRobRsB3dHgb7YKio9ls4wiN0KhCYPcdwPc
+	 gFbE+AQGN/10ogmpEeLNejEXBa7K/y8IBOngyxuU+EeHnU+Xpd9ab7w+ZHA5lPMj/f
+	 FbuMeh0dsk0ekGZ+MaZwgfb3g4QYNHQaOSW+3UWVMRt/nPXwsWmMdWphKd8IscJCLU
+	 khb2nGadcHbcQ==
+Date: Mon, 11 Nov 2024 20:31:31 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Hans de Goede <hdegoede@redhat.com>, Jens Axboe <axboe@kernel.dk>,
-	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditional failed
-Message-ID: <20241111203104.GA1887580-robh@kernel.org>
-References: <20241109094623.37518-1-linux@fw-web.de>
- <20241109094623.37518-2-linux@fw-web.de>
- <e534c723-6d65-433f-8ab5-1c0d424d7367@lunn.ch>
- <9B1A5D20-3DE5-40C1-8B2D-B1C4F53FA5F4@public-files.de>
- <CAL_JsqJnOa_9Poz86vOWBCQigvv-Ab4Tt1hrwTxSa5zNraVxXQ@mail.gmail.com>
- <e7a8e087-fb92-4911-b7fb-34521635e8da@lunn.ch>
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Icenowy Zheng <uwu@icenowy.me>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/7] dt-bindings: clk: sunxi-ng: add compatible for the
+ A523 CCU
+Message-ID: <20241111-deepness-escapable-0a3bac2b3505@spud>
+References: <20241111004722.10130-1-andre.przywara@arm.com>
+ <20241111004722.10130-5-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Asf0m3qumdcixdxJ"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e7a8e087-fb92-4911-b7fb-34521635e8da@lunn.ch>
+In-Reply-To: <20241111004722.10130-5-andre.przywara@arm.com>
 
-On Mon, Nov 11, 2024 at 06:15:16PM +0100, Andrew Lunn wrote:
-> On Mon, Nov 11, 2024 at 10:25:12AM -0600, Rob Herring wrote:
-> > On Sun, Nov 10, 2024 at 3:25 AM Frank Wunderlich
-> > <frank-w@public-files.de> wrote:
-> > >
-> > > Am 9. November 2024 18:29:44 MEZ schrieb Andrew Lunn <andrew@lunn.ch>:
-> > > >On Sat, Nov 09, 2024 at 10:46:19AM +0100, Frank Wunderlich wrote:
-> > > >> From: Frank Wunderlich <frank-w@public-files.de>
-> > > >>
-> > > >> after converting the ahci-platform binding to yaml the following files
-> > > >> reporting "'anyOf' conditional failed" on
-> > > >>
-> > > >> sata@540000: sata-port@0
-> > > >> diff --git a/arch/arm64/boot/dts/marvell/armada-7040-db.dts b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
-> > > >> index 1e0ab35cc686..2b5e45d2c5a6 100644
-> > > >> --- a/arch/arm64/boot/dts/marvell/armada-7040-db.dts
-> > > >> +++ b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
-> > > >> @@ -214,6 +214,7 @@ &cp0_sata0 {
-> > > >>
-> > > >>      sata-port@1 {
-> > > >>              phys = <&cp0_comphy3 1>;
-> > > >> +            status = "okay";
-> > > >>      };
-> > > >>  };
-> > > >
-> > > >>
-> > > >> diff --git a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
-> > > >> index 7af949092b91..6bdc4f1e6939 100644
-> > > >> --- a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
-> > > >> +++ b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
-> > > >> @@ -433,11 +433,13 @@ &cp0_sata0 {
-> > > >>      /* 7 + 12 SATA connector (J24) */
-> > > >>      sata-port@0 {
-> > > >>              phys = <&cp0_comphy2 0>;
-> > > >> +            status = "okay";
-> > > >>      };
-> > > >>
-> > > >>      /* M.2-2250 B-key (J39) */
-> > > >>      sata-port@1 {
-> > > >>              phys = <&cp0_comphy3 1>;
-> > > >> +            status = "okay";
-> > > >>      };
-> > > >>  };
-> > > >> diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-> > > >> index 7e595ac80043..161beec0b6b0 100644
-> > > >> --- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-> > > >> +++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-> > > >> @@ -347,10 +347,12 @@ CP11X_LABEL(sata0): sata@540000 {
-> > > >>
-> > > >>                      sata-port@0 {
-> > > >>                              reg = <0>;
-> > > >> +                            status = "disabled";
-> > > >>                      };
-> > > >
-> > > >I don't know the yaml too well, but it is not obvious how adding a few
-> > > >status = "disabled"; status = "okay"; fixes a "'anyOf' conditional failed".
-> > > >
-> > > >Maybe you can expand the explanation a bit?
-> > > >
-> > > >       Andrew
-> > >
-> > > Hi angelo,
-> > >
-> > > I guess the dtbs_check only checks required properties from yaml if the node is enabled.
-> > 
-> > Yes, that is exactly how it works.
-> 
-> So from this, can i imply that phys is a required property?
-> 
-> Looking at the above patch, it appears that for armada-*.dts,
-> sata-port@0 always uses phys = <&cp0_comphy2 0> and sata-port@1 uses
-> phys = <&cp0_comphy3 1>. Is this an actual SoC property? Could it be
-> moved up into the .dtsi file? Or is it really a board property?
 
-Depends if the phy connection/assignment is really fixed or all boards 
-so far just happen to use the same one. If it is fixed and it's just a 
-matter of only one user can be active at a time, then yes, moving to the 
-SoC dtsi makes sense. The connection in the h/w is there, enabled or 
-not. Also, then the board is only dealing with "status" like many of the 
-blocks.
+--Asf0m3qumdcixdxJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+On Mon, Nov 11, 2024 at 12:47:19AM +0000, Andre Przywara wrote:
+> The Allwinner A523/T527 SoCs have four CCUs, this adds the binding for
+> the main CCU.
+>=20
+> Add the new compatible string, along with the required input clock
+> lists.
+> Also add the DT binding headers, listing all the clocks with their ID
+> numbers.
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--Asf0m3qumdcixdxJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzJpowAKCRB4tDGHoIJi
+0tv9AP4nwUN0sO11WBtf8cOH5uXB5Pv2Hk5WrGcCfONvtDz1IgD9EYWzRej9LYZ/
+B8R9KRR9KHpIv6Sm0pXaJ7C7pqYOSAA=
+=4MSE
+-----END PGP SIGNATURE-----
+
+--Asf0m3qumdcixdxJ--
 
