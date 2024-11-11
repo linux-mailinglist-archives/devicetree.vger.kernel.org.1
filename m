@@ -1,178 +1,115 @@
-Return-Path: <devicetree+bounces-120681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CFB69C3A0B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 09:51:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1A7E9C3A3E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 09:55:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6BDCB20E1C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 08:51:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6899A1F21FC6
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 08:55:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB7716C453;
-	Mon, 11 Nov 2024 08:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7668316F0EC;
+	Mon, 11 Nov 2024 08:55:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="md+reXsE"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="aBT1mmxC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23402158520;
-	Mon, 11 Nov 2024 08:51:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 648AE1662FA;
+	Mon, 11 Nov 2024 08:55:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731315084; cv=none; b=SodN0ncEV3sqPVpR8XEBF9z1eaSHAVPyRibISrfMUe3FfeA2ARb+0EzDkiTBaVZfG3Ik/VwMhjqVu9QApzTOo4CQVRHMyR6xZnzsFDLddAoqu/skcp7Bd11kSqfN/TAbwMem6Svqz+gJq3DpSgbXzTe4A4GQPIZhdwiorQvtQtk=
+	t=1731315323; cv=none; b=a5D9/8cOuuxx+AaY/w8511U/OJ6oV/c7gqxMgHghZJ25vsQnmzhHR+h/zWOtBwQlM/V5FFQP3kqnTEeYJIHUtfsGGhWaCk2L+TjHoqs1rjD5pbA4+7/QM8uQWG9/7ZlrSHpbfARLOO7MosBxPWJB4tTM7wCu7qIXLvYHYRLCYI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731315084; c=relaxed/simple;
-	bh=HRMmBN1pXte79XcyI39yX0w4WWuQRllWbQZ9jWsmwck=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IUfbqSrMtKTDyDsyPz2k95w0AX+MEDvS1BKO8pPQk9l8liErcFseiE8wjlL1spZxILDC/ViAXCYzAX4LgNYweZbFVQMjG4dG+hj1YGTxEHN04MEpMVaGtpY+8iQwA5GmmvjWZZ+sDzdYTQqfi0S4OLQT9IdVGbgE4PT7FeGhaXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=md+reXsE; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1731315082; x=1762851082;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=HRMmBN1pXte79XcyI39yX0w4WWuQRllWbQZ9jWsmwck=;
-  b=md+reXsEtGblQOqdT86yXB584g+WMluQWuRf84ELpyjhgE+ztpHmw+CZ
-   xF6gikI0tGsIS4WtrDdH7S9WXj1L+MSNaDlKcN6E+X2FJG2M2XOZ9bsgC
-   rbxOOwMPvgL07fbQ0pIWFoI4INLTirP4NrFXKysZ+FCalhe+ncmU6RBIb
-   wYs9JRWxsJOYzrOQ+iWNyWABO79oCZUdsNbCZBA53fFNUvbd8umw/qvpr
-   2ePjlE9aLPsg8/DwmJJvW1UFuMaaECGg/MD8JW+RCId5A3qupSUJj+YuK
-   RvvpkrktVFnM0vfT6wo3dxmVFvFGaY1wDlml3fI0z9cFJFW1AqyXOTImR
-   w==;
-X-CSE-ConnectionGUID: vlDY4y2jTkOTWVHBYWM6IQ==
-X-CSE-MsgGUID: X8xf9NYMSweTuOOs1BoBAg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="31272663"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="31272663"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2024 00:51:22 -0800
-X-CSE-ConnectionGUID: 0HhvCOoBRsaBaTqBG8QYQg==
-X-CSE-MsgGUID: F0bATbuXRCiG0k7fNo679Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; 
-   d="scan'208";a="86759263"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.245.89.141])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2024 00:51:16 -0800
-Message-ID: <4e4870b5-4491-4f65-9a41-1a5e9e1bdf68@intel.com>
-Date: Mon, 11 Nov 2024 10:51:12 +0200
+	s=arc-20240116; t=1731315323; c=relaxed/simple;
+	bh=vImf0sA5riq0WF7KE4d6yEm3YzSNUorhQRg1MjeTB24=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NX8mL/gNdbSp5bNhTRKSA8CR5MQUCUOoCUt5aMbfftv0DMjNx5G3wTIK6A5XDNaDHx8aDTk3t+KGVucTig21rC0tgwNpC0cpK6GfWjnOqOOQPlG7/dleSN2IGcU+Lk2TrohAxEtsT53GTx+wuR2+qqOTxrC7uV22Oqcp/najdis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=aBT1mmxC; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References; bh=Xod8IIugEE8GAGPvkEgpU7xU4C05DUpCikeTF13nrqM=; b=aB
+	T1mmxCcbuaYTawlICP4HpaYAXnft6aCGMx7KMQQMZNZfWGCs/L7vgTN12WFqXcQHB8OsOrWgE9jFw
+	ow3ha4qGZMZygwJDlgsTEFiBOhpKTDPhMcYA7OEGOcbBQJcMou6Cuxs3AZXrci9yZv1CNomTq0kk4
+	1CrIPHHAmAITY9Et9+R/JfDNtfcqrQJYAZnIFUaij9oAsVhRsQ66ssT55pdnJb27ArVliLBLIbpwj
+	TR/JdHIzdW9+B2TZjr1iLSCZO63KKSsWoiXCBFCXHFs37wW4ce60OyvS2OTRm4ihPiY6U935cJitE
+	BWKdx3TT3qdL/sScROYDLucMQvcjAazQ==;
+Received: from sslproxy01.your-server.de ([78.46.139.224])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sean@geanix.com>)
+	id 1tAQCV-0005w2-GL; Mon, 11 Nov 2024 09:55:11 +0100
+Received: from [185.17.218.86] (helo=zen.localdomain)
+	by sslproxy01.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sean@geanix.com>)
+	id 1tAQCU-000LxI-2T;
+	Mon, 11 Nov 2024 09:55:10 +0100
+From: Sean Nyekjaer <sean@geanix.com>
+Subject: [PATCH v2 0/2] can: tcan4x5x: add option for selecting nWKRQ
+ voltage
+Date: Mon, 11 Nov 2024 09:54:48 +0100
+Message-Id: <20241111-tcan-wkrqv-v2-0-9763519b5252@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 2/3] mmc: sdhci-msm: Enable tuning for SDR50 mode for
- SD card
-To: Sarthak Garg <quic_sartgarg@quicinc.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- quic_cang@quicinc.com, quic_nguyenb@quicinc.com, quic_rampraka@quicinc.com,
- quic_pragalla@quicinc.com, quic_sayalil@quicinc.com,
- quic_nitirawa@quicinc.com, quic_sachgupt@quicinc.com,
- quic_bhaskarv@quicinc.com, quic_narepall@quicinc.com, kernel@quicinc.com
-References: <20241107080505.29244-1-quic_sartgarg@quicinc.com>
- <20241107080505.29244-3-quic_sartgarg@quicinc.com>
-Content-Language: en-US
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20241107080505.29244-3-quic_sartgarg@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFjGMWcC/02PS27DMAxErxJoXRUULat2Vr1HkYU+VCIUthtJV
+ RIEuXvpGEW7nAHn4fEuCuVERex3d5GppZKWmQO+7IQ/2flIMgXOAgG1gg5k9XaWl898btIbdCM
+ YgD5YwYOvTDFdn7CPA+dTKnXJtye7qbX9xaj/mKYkyAG74ILCSNq+H8nO6frql0kcHhs40/mb5
+ epG/3Nj1RWpoJd+mRvluqG165XRqMlHs2+46jlbiI+mKVVeObSjhSEOEfgJTRadNyq4rnvTGpW
+ DOGptDQs8fgBieb3YJQEAAA==
+X-Change-ID: 20241030-tcan-wkrqv-c62b906005da
+To: Marc Kleine-Budde <mkl@pengutronix.de>, 
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-can@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Sean Nyekjaer <sean@geanix.com>
+X-Mailer: b4 0.14.2
+X-Authenticated-Sender: sean@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27454/Sun Nov 10 10:45:07 2024)
 
-On 7/11/24 10:05, Sarthak Garg wrote:
-> For Qualcomm SoCs which needs level shifter for SD card, extra delay is
-> seen on receiver data path.
-> 
-> To compensate this delay enable tuning for SDR50 mode for targets which
-> has level shifter.
-> 
-> Signed-off-by: Sarthak Garg <quic_sartgarg@quicinc.com>
-> ---
->  drivers/mmc/host/sdhci-msm.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-> index e00208535bd1..16325c21de52 100644
-> --- a/drivers/mmc/host/sdhci-msm.c
-> +++ b/drivers/mmc/host/sdhci-msm.c
-> @@ -81,6 +81,7 @@
->  #define CORE_IO_PAD_PWR_SWITCH_EN	BIT(15)
->  #define CORE_IO_PAD_PWR_SWITCH	BIT(16)
->  #define CORE_HC_SELECT_IN_EN	BIT(18)
-> +#define CORE_HC_SELECT_IN_SDR50	(4 << 19)
->  #define CORE_HC_SELECT_IN_HS400	(6 << 19)
->  #define CORE_HC_SELECT_IN_MASK	(7 << 19)
->  
-> @@ -1124,6 +1125,10 @@ static bool sdhci_msm_is_tuning_needed(struct sdhci_host *host)
->  {
->  	struct mmc_ios *ios = &host->mmc->ios;
->  
-> +	if (ios->timing == MMC_TIMING_UHS_SDR50 &&
-> +			host->flags & SDHCI_SDR50_NEEDS_TUNING)
+This series adds support for setting the nWKRQ voltage.
 
-Please do line up code as suggested by checkpatch:
+Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+---
+Changes in v2:
+- Converted tcan4x5x.txt to DT schema. In
+  https://lore.kernel.org/linux-can/20241105-convert-tcan-v2-1-4b320f3fcf99@geanix.com/
+- Reworked ti,nwkrq-voltage-sel, to DH schema style.
+- Link to v1: https://lore.kernel.org/r/20241031-tcan-wkrqv-v1-0-823dbd12fe4a@geanix.com
 
-CHECK: Alignment should match open parenthesis
-#35: FILE: drivers/mmc/host/sdhci-msm.c:1129:
-+       if (ios->timing == MMC_TIMING_UHS_SDR50 &&
-+                       host->flags & SDHCI_SDR50_NEEDS_TUNING)
+---
+Sean Nyekjaer (2):
+      can: tcan4x5x: add option for selecting nWKRQ voltage
+      dt-bindings: can: tcan4x5x: Document the ti,nwkrq-voltage-sel option
 
-CHECK: Alignment should match open parenthesis
-#55: FILE: drivers/mmc/host/sdhci-msm.c:1219:
-+       if (ios.timing == MMC_TIMING_UHS_SDR50 &&
-+                       host->flags & SDHCI_SDR50_NEEDS_TUNING) {
+ .../devicetree/bindings/net/can/ti,tcan4x5x.yaml   | 13 ++++++++
+ drivers/net/can/m_can/tcan4x5x-core.c              | 35 ++++++++++++++++++++++
+ drivers/net/can/m_can/tcan4x5x.h                   |  2 ++
+ 3 files changed, 50 insertions(+)
+---
+base-commit: 2b2a9a08f8f0b904ea2bc61db3374421b0f944a6
+change-id: 20241030-tcan-wkrqv-c62b906005da
+prerequisite-change-id: 20241105-convert-tcan-4b516424ecf6:v2
+prerequisite-patch-id: a652b1a16dadd5ff525d0b58fec56f605a976aa3
 
-total: 0 errors, 0 warnings, 2 checks, 40 lines checked
-
-
-> +		return true;
-> +
->  	/*
->  	 * Tuning is required for SDR104, HS200 and HS400 cards and
->  	 * if clock frequency is greater than 100MHz in these modes.
-> @@ -1192,6 +1197,8 @@ static int sdhci_msm_execute_tuning(struct mmc_host *mmc, u32 opcode)
->  	struct mmc_ios ios = host->mmc->ios;
->  	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->  	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
-> +	const struct sdhci_msm_offset *msm_offset = msm_host->offset;
-> +	u32 config;
->  
->  	if (!sdhci_msm_is_tuning_needed(host)) {
->  		msm_host->use_cdr = false;
-> @@ -1208,6 +1215,15 @@ static int sdhci_msm_execute_tuning(struct mmc_host *mmc, u32 opcode)
->  	 */
->  	msm_host->tuning_done = 0;
->  
-> +	if (ios.timing == MMC_TIMING_UHS_SDR50 &&
-> +			host->flags & SDHCI_SDR50_NEEDS_TUNING) {
-
-Ditto alignment
-
-> +		config = readl_relaxed(host->ioaddr + msm_offset->core_vendor_spec);
-> +		config |= CORE_HC_SELECT_IN_EN;
-> +		config &= ~CORE_HC_SELECT_IN_MASK;
-> +		config |= CORE_HC_SELECT_IN_SDR50;
-
-Perhaps clear bits first, then set bits e.g.
-
-		config &= ~CORE_HC_SELECT_IN_MASK;
-		config |= CORE_HC_SELECT_IN_EN | CORE_HC_SELECT_IN_SDR50;
-
-> +		writel_relaxed(config, host->ioaddr + msm_offset->core_vendor_spec);
-> +	}
-> +
->  	/*
->  	 * For HS400 tuning in HS200 timing requires:
->  	 * - select MCLK/2 in VENDOR_SPEC
+Best regards,
+-- 
+Sean Nyekjaer <sean@geanix.com>
 
 
