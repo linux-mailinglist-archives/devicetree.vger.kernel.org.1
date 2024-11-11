@@ -1,183 +1,212 @@
-Return-Path: <devicetree+bounces-120692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E3E39C3B2A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 10:45:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0934E9C3B5D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 10:51:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D0F51C21F18
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 09:45:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C7C31F23033
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 09:51:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C12A155342;
-	Mon, 11 Nov 2024 09:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7116F16F8E5;
+	Mon, 11 Nov 2024 09:51:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="YxeTgsKn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A37CF143C72;
-	Mon, 11 Nov 2024 09:45:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1CA51662FA
+	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 09:51:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731318302; cv=none; b=vBlNh5QNopoEr36AZxoFWRijZsQx12ZI+d+ZQsCF1Rr7zZfNQBjbpSFHMlnFqkqSX1bBUnhj44+Q3diay6Smcf1aJxvzN7C5SaEej+S/F2xm001Fp6UvkB+Z6fgyEjoTMmczAh+FlzBw4+b5zyyWxw/hjt+0NBP26EU43lVpAhA=
+	t=1731318670; cv=none; b=gXxgHDyCnAZjZsuMjIT/WNbgg+oBpmxbYcx74SIVBuqzp8x4kuOGsRM40OVdS8obNyFFzmMHChQJ2UHSpyWLkJa77ptp781R8pyiHTlscZvLU5rlwzYyj6KsNpzWSiCvezMDgRqbQ/8cMGLCGtVMxsDsEPcuWhJVS6ju9xT6izo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731318302; c=relaxed/simple;
-	bh=fZNzFehdsn1KYuBdyXoOclvk0TirGAtQUi7fLN6E00Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tbb0RbQOohiJTWFxHs/aPYElqBXDxo0+YS0z2AYbEBlowKWbHFjcI/YJJzA7pLrsViU2bChQ4fe5MQKFkBwgqF1kpnXtjO3W7Dc+R+AE8mdoHcFe52RGba4W469a+hXf7kWw9fFYeZk3QPY+EtKF6M+oFyIdXZe/sEaIo8f5Tw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-X-CSE-ConnectionGUID: QdeBMHObTxqGGq77nM22kA==
-X-CSE-MsgGUID: MsWjFg1cSiWCavtgXzfRRA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30972332"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="30972332"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2024 01:45:00 -0800
-X-CSE-ConnectionGUID: /eX76d9LRjOk6/8VeX37PA==
-X-CSE-MsgGUID: UvJCofyfTlmID8eXgH3kkA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; 
-   d="scan'208";a="91926457"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2024 01:44:55 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andy.shevchenko@gmail.com>)
-	id 1tAQya-0000000DXxa-0N1Q;
-	Mon, 11 Nov 2024 11:44:52 +0200
-Date: Mon, 11 Nov 2024 11:44:51 +0200
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-To: Aren <aren@peacevolution.org>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1731318670; c=relaxed/simple;
+	bh=sp4pn0wWQK7ChYYcdXe+OIJh/ROCFwgRZjc3zKjTGZA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=PZheld0cepgnb/vV2nCATnr0Lmhv+LVA02YuArqzKPylKbQMKzmst0UFWvu+2HB0NqZ0EcECt6ShJs68fCZPqJfH91snJu/UwnKiKOBzTUlkC0Nw43Zcxle16+AYHwhaPBkD5WDW701lbUb22v3s8PYoQslUZnejOItqmZw1Mck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=YxeTgsKn; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-7ea7ad1e01fso3111211a12.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 01:51:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1731318668; x=1731923468; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EsBmZ6wvsxhHYMiMEORqbpmYgtlxpguU0B8wVsIYt9U=;
+        b=YxeTgsKnVnhaBxJaTNh91pcCr4dbmow1pidFILbS71w2V9LuGzjbWnWaxJ8Scov2ZN
+         L07aNn1UHCjd/jqg6+8m0/4WRU9HtUN/r9kKDnGzPFor9oehxdfEhWrsqp+wi+7p/lt4
+         5ZoGjNBIExuRpfmBCoOmG7pXYc5mALKgCmiW4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731318668; x=1731923468;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EsBmZ6wvsxhHYMiMEORqbpmYgtlxpguU0B8wVsIYt9U=;
+        b=Zj+7B7xadPEBSmx9TG209gIi+RgV1U03lTM1PbEZaCqgARJnt2fjQhvw0laIiFbImV
+         dKuiPmhNM1OZ5JLxV0HQCYrFDtINQbWtFQvxI1VxxQtxobT2x2dH8Rc7wKo5xf8hiAkP
+         63SKtDlZAc4djXHXSgZUaVjavMCmchjtVcgxcFKEygN0m38vjp+adBDH1mIy2bZiIbEO
+         07jI/L4+47t1KvRR66peMtsAKEcfhJqXmHq3JUL71sQR9vDhe0WWtf1Oupe9HCjzMTaV
+         hd8y539i+C58Vp2VhgaLAXtylAQIhvEcO6eszWCuuenc48xgOTMWR/vy+usF75/RncQJ
+         6bSw==
+X-Forwarded-Encrypted: i=1; AJvYcCUPp3PuevfVTNmCAndoNkJ7+bLP4ud85Ev+s5Trr3OV24AKDfQDgbx5W2JaVWboHa7gVcvOHPZQhNsx@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywimy0ZwY6UwdUlDYnW18XHGKfmvG/ATcrXo3CXnCfPZ/axxXks
+	JjQnOrcPIJAeWW86fMxpBxJajXm8XlOe90MnswThFetNwvKTRUNOClxWR6Y8og==
+X-Google-Smtp-Source: AGHT+IF4cIHOSz9YUbrlkgDalw7i2qTBSh2GpPn9ItPJYV3QmoVJ3liH1W72fcX2j9qhdsgx/XaTeQ==
+X-Received: by 2002:a05:6a21:6d9e:b0:1d7:1288:8338 with SMTP id adf61e73a8af0-1dc23321c12mr18771135637.8.1731318668153;
+        Mon, 11 Nov 2024 01:51:08 -0800 (PST)
+Received: from lschyi-p920.tpe.corp.google.com ([2401:fa00:1:10:ec9f:d26:733c:7acf])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7f41f5b48c6sm8075164a12.18.2024.11.11.01.51.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Nov 2024 01:51:07 -0800 (PST)
+From: Sung-Chi <lschyi@chromium.org>
+To: 
+Cc: "Sung-Chi, Li" <lschyi@chromium.org>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Kaustabh Chakraborty <kauschluss@disroot.org>,
-	=?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <trabarni@gmail.com>,
-	Ondrej Jirman <megi@xff.cz>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, Dragan Simic <dsimic@manjaro.org>,
-	phone-devel@vger.kernel.org
-Subject: Re: [PATCH v4 4/6] iio: light: stk3310: use dev_err_probe where
- possible
-Message-ID: <ZzHSE9Nrf4YySJrq@smile.fi.intel.com>
-References: <20241102195037.3013934-3-aren@peacevolution.org>
- <20241102195037.3013934-11-aren@peacevolution.org>
- <ZyiIcDaANjxwtCz-@smile.fi.intel.com>
- <m7x526sv5krgt4t2whn5ykyktoz5u7ihsxv3qa5yue3ucbk6lb@37spwsmlcylm>
- <ZzEPACoblmcQD9yu@surfacebook.localdomain>
- <xubjmxig4luag27ifnmqmv3x3bvzhwczwvw34kw6tssaa2d24t@ysnqh5e3g7sz>
+	Conor Dooley <conor+dt@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	=?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <thomas@weissschuh.net>,
+	Jean Delvare <jdelvare@suse.com>,
+	devicetree@vger.kernel.org,
+	chrome-platform@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org
+Subject: [PATCH v2] hwmon: (cros_ec) register thermal sensors to thermal framework
+Date: Mon, 11 Nov 2024 17:50:30 +0800
+Message-ID: <20241111095045.1218986-1-lschyi@chromium.org>
+X-Mailer: git-send-email 2.47.0.277.g8800431eea-goog
+In-Reply-To: <20241111074904.1059268-1-lschyi@chromium.org>
+References: <20241111074904.1059268-1-lschyi@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <xubjmxig4luag27ifnmqmv3x3bvzhwczwvw34kw6tssaa2d24t@ysnqh5e3g7sz>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 
-On Sun, Nov 10, 2024 at 04:34:30PM -0500, Aren wrote:
-> On Sun, Nov 10, 2024 at 09:52:32PM +0200, Andy Shevchenko wrote:
-> > Sun, Nov 10, 2024 at 02:14:24PM -0500, Aren kirjoitti:
-> > > On Mon, Nov 04, 2024 at 10:40:16AM +0200, Andy Shevchenko wrote:
-> > > > On Sat, Nov 02, 2024 at 03:50:41PM -0400, Aren Moynihan wrote:
+From: "Sung-Chi, Li" <lschyi@chromium.org>
 
-...
+cros_ec hwmon driver probes available thermal sensors when probing the
+driver.  Register these thermal sensors to the thermal framework, such
+that thermal framework can adopt these sensors as well.
 
-> > > > >  #define STK3310_REGFIELD(name)						    \
-> > > > >  	do {								    \
-> > > > >  		data->reg_##name =					    \
-> > > > > -			devm_regmap_field_alloc(&client->dev, regmap,	    \
-> > > > > +			devm_regmap_field_alloc(dev, regmap,		    \
-> > > > >  				stk3310_reg_field_##name);		    \
-> > > > > -		if (IS_ERR(data->reg_##name)) {				    \
-> > > > > -			dev_err(&client->dev, "reg field alloc failed.\n"); \
-> > > > > -			return PTR_ERR(data->reg_##name);		    \
-> > > > > -		}							    \
-> > > > > +		if (IS_ERR(data->reg_##name))				    \
-> > > > 
-> > > > > +			return dev_err_probe(dev,			    \
-> > > > > +				PTR_ERR(data->reg_##name),		    \
-> > > > 
-> > > > AFAICS these two can be put on one.
-> > > 
-> > > This doesn't leave room for whitespace between the end of line and "\",
-> > 
-> > Is it a problem?
-> 
-> It feels a bit camped and not as readable to me:
-> 
-> #define STK3310_REGFIELD(name)						    \
-> 	do {								    \
-> 		data->reg_##name =					    \
-> 			devm_regmap_field_alloc(dev, regmap,		    \
-> 				stk3310_reg_field_##name);		    \
-> 		if (IS_ERR(data->reg_##name))				    \
-> 			return dev_err_probe(dev, PTR_ERR(data->reg_##name),\
-> 					     "reg field alloc failed.\n");  \
-> 	} while (0)
+To make cros_ec registrable to thermal framework, the cros_ec dts need
+the corresponding changes:
 
-Rather this way (besides the fact of having spaces instead of TABs for
-the last formatting, in such case you even can simply add yet another
-column with spaces):
+&cros_ec {
+	#thermal-sensor-cells = <1>;
+};
 
-#define STK3310_REGFIELD(name)								\
-	do {										\
-		data->reg_##name =							\
-			devm_regmap_field_alloc(dev, regmap, stk3310_reg_field_##name);	\
-		if (IS_ERR(data->reg_##name))						\
-			return dev_err_probe(dev, PTR_ERR(data->reg_##name),		\
-					     "reg field alloc failed.\n");		\
-	} while (0)
+Change-Id: I29b638427c715cb44391496881fc61ad53abccaf
+Signed-off-by: Sung-Chi, Li <lschyi@chromium.org>
+---
+ Changes in v2:
+   - Rename `cros_ec_sensor_data` to `cros_ec_hwmon_thermal_zone_data`.
+   - Rename `addr` in struct `cros_ec_hwmon_thermal_zone_data` to `idx`.
+   - Use `cros_ec_hwmon_temp_to_millicelsius` to do value conversion in 
+     `cros_ec_thermal_get_temp` function.
+   - Rename `cros_ec_thermal_get_temp` to `cros_ec_hwmon_thermal_get_temp` to
+     make `cros_ec_hwmon` a prefix.
+   - Use `%pe` in `cros_ec_hwmon_probe_temp_sensors` when printing out
+     `data->tz_dev` if failed register thermal device.
+   - Remove `cros_ec_hwmon_remove`, and the `.remove` value in
+     `cros_ec_hwmon_driver` since there is no need to call
+     `devm_thermal_of_zone_unregister` for clean up.
+   - Revert function signature of `cros_ec_hwmon_probe_temp_sensors` since all
+     needed parameters are presented.
+   - Revert include of `linux/list.h` because no list data structure is used.
+---
+ drivers/hwmon/cros_ec_hwmon.c | 41 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
-> Removing a level of indentation makes it much better
-
-You can do it differently
-
-#define STK3310_REGFIELD(name)							\
-do {										\
-	data->reg_##name =							\
-		devm_regmap_field_alloc(dev, regmap, stk3310_reg_field_##name);	\
-	if (IS_ERR(data->reg_##name))						\
-		return dev_err_probe(dev, PTR_ERR(data->reg_##name),		\
-				     "reg field alloc failed.\n");		\
-} while (0)
-
-> #define STK3310_REGFIELD(name) ({						\
-> 	data->reg_##name = devm_regmap_field_alloc(dev, regmap,			\
-> 						   stk3310_reg_field_##name);   \
-> 	if (IS_ERR(data->reg_##name))						\
-> 		return dev_err_probe(dev, PTR_ERR(data->reg_##name),		\
-> 				     "reg field alloc failed\n");		\
-> })
-
-I am against unneeded use of GNU extensions.
-
-> > > replacing "do { } while (0)" with "({ })" and deindenting could make
-> > > enough room to clean this up the formatting of this macro though.
-> > 
-> > do {} while (0) is C standard, ({}) is not.
-> 
-> ({ }) is used throughout the kernel, and is documented as such[1]. I
-> don't see a reason to avoid it, if it helps readability.
-
-I don't see how it makes things better here, and not everybody is familiar with
-the concept even if it's used in the kernel here and there. Also if a tool is
-being used in one case it doesn't mean it's suitable for another.
-
-> 1: the "GNU Extensions" section of Documentation/kernel-hacking/hacking.rst
-
+diff --git a/drivers/hwmon/cros_ec_hwmon.c b/drivers/hwmon/cros_ec_hwmon.c
+index 5514cf780b8b..81e563e0455f 100644
+--- a/drivers/hwmon/cros_ec_hwmon.c
++++ b/drivers/hwmon/cros_ec_hwmon.c
+@@ -12,6 +12,7 @@
+ #include <linux/platform_device.h>
+ #include <linux/platform_data/cros_ec_commands.h>
+ #include <linux/platform_data/cros_ec_proto.h>
++#include <linux/thermal.h>
+ #include <linux/types.h>
+ #include <linux/units.h>
+ 
+@@ -23,6 +24,12 @@ struct cros_ec_hwmon_priv {
+ 	u8 usable_fans;
+ };
+ 
++struct cros_ec_hwmon_thermal_zone_data {
++	struct cros_ec_device *cros_ec;
++	struct thermal_zone_device *tz_dev;
++	int idx;
++};
++
+ static int cros_ec_hwmon_read_fan_speed(struct cros_ec_device *cros_ec, u8 index, u16 *speed)
+ {
+ 	int ret;
+@@ -185,11 +192,30 @@ static const struct hwmon_chip_info cros_ec_hwmon_chip_info = {
+ 	.info = cros_ec_hwmon_info,
+ };
+ 
++static int cros_ec_hwmon_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
++{
++	struct cros_ec_hwmon_thermal_zone_data *data =
++		thermal_zone_device_priv(tz);
++	int ret;
++	u8 val;
++
++	ret = cros_ec_hwmon_read_temp(data->cros_ec, data->idx, &val);
++	if (ret || cros_ec_hwmon_is_error_temp(temp))
++		return -ENODATA;
++	*temp = cros_ec_hwmon_temp_to_millicelsius(val);
++	return 0;
++}
++
++static const struct thermal_zone_device_ops thermal_ops = {
++	.get_temp = cros_ec_hwmon_thermal_get_temp,
++};
++
+ static void cros_ec_hwmon_probe_temp_sensors(struct device *dev, struct cros_ec_hwmon_priv *priv,
+ 					     u8 thermal_version)
+ {
+ 	struct ec_params_temp_sensor_get_info req = {};
+ 	struct ec_response_temp_sensor_get_info resp;
++	struct cros_ec_hwmon_thermal_zone_data *data;
+ 	size_t candidates, i, sensor_name_size;
+ 	int ret;
+ 	u8 temp;
+@@ -216,6 +242,21 @@ static void cros_ec_hwmon_probe_temp_sensors(struct device *dev, struct cros_ec_
+ 		priv->temp_sensor_names[i] = devm_kasprintf(dev, GFP_KERNEL, "%.*s",
+ 							    (int)sensor_name_size,
+ 							    resp.sensor_name);
++
++		data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
++		if (!data)
++			continue;
++
++		data->idx = i;
++		data->cros_ec = priv->cros_ec;
++		data->tz_dev = devm_thermal_of_zone_register(
++			priv->cros_ec->dev, i, data, &thermal_ops);
++		if (IS_ERR_VALUE(data->tz_dev)) {
++			dev_err(dev,
++				"failed to register %zu thermal sensor, err = %pe",
++				i, data->tz_dev);
++			continue;
++		}
+ 	}
+ }
+ 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.47.0.277.g8800431eea-goog
 
 
