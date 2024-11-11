@@ -1,183 +1,145 @@
-Return-Path: <devicetree+bounces-120798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8075B9C4312
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:57:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A79A99C42F9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:52:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E9D9B2BC7B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 16:51:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BE2B2841AE
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 16:52:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E65F1A7045;
-	Mon, 11 Nov 2024 16:50:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7AE1A4F09;
+	Mon, 11 Nov 2024 16:51:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gb4wGY5G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kUHL+oSz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAD7814AD3F;
-	Mon, 11 Nov 2024 16:50:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B98A1A38C4;
+	Mon, 11 Nov 2024 16:51:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731343851; cv=none; b=CDTcyIsgBEhxLgKU38E88vUNPR7ZScBhxAxmSxbfPA4sn65TQHrVr3hObGHAHEVNlk848cGI3r7OKx6TQ4Tdc90qbS53kLCZWYtar6yPmKGVpxfksJiBForAeaR4+At7VDE+aDdyAC0hVsT1J6DkAySdJnbognFh7CRl5uY6RM4=
+	t=1731343888; cv=none; b=fdWvtgsUWBYmhK+EYXfJO8rdYGzcHfkCrd7YZ+Ya7QM3iELdUJHRDtvO9s+3rThbXGM8gX46WUQ/SspJIDTMkL1Ydy3GzK1MMw6+SiGg+RGTtnACnEiqZ7RchQHn7fWWNfmXC56E3uwVaVFPau6+8Ln+/+pctoKgA+t/bWvv9jM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731343851; c=relaxed/simple;
-	bh=nWVegVIO1iqmGgX3sTrds12vV7pNS01/SOYJetl0QIA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Q/ywT5JWNPq4Garcp3cTq6Xu6JTfAJyHlscxcP9gDnc9A3kYzN+PHSBny4C7TfhWbVkZHby3vPDt/HoquZ1UR9sqiklHL9PYPWVeba88s9i676FoJCjTsTdmChu0itYJjNgeOBEjzaXyCbcmrpqo9bJ68eQAV0hxhBEStVuhvYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gb4wGY5G; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-71e710c5d0dso103560b3a.0;
-        Mon, 11 Nov 2024 08:50:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731343849; x=1731948649; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gfIh7QFf8oEaQfYkdv6ZpaO6sL/ncFNHIot8BWk/VIc=;
-        b=gb4wGY5GRlQIAhpzK4K5khEa0uGFXkyqJoP3ZVuqJpX0EI/6Ku0bSYeyHS7cXNKncx
-         59hb/lsh+YdpkddXgkuJ2yb2DmbtKiIQ+dVreHH0zbbj40VdwYLs0WTUshmcuIgDQ+Jh
-         SPp3KNqN1X2W91EO1k82h/xqzWYiZY8OMkeLHsJnpUX+6Kt6aTr1pGJMtjnakpY9dXXq
-         5ZzbpLRviq9w24uWnXDA2r1mGGAF8bBiUl7oC+QFn5VqFsxLXtVk0MencrhHvJIbkrHk
-         0Fp28CsiTSiEEyWmsNAd6746lPUwMTmhbQnePJmIs7sNCqf7tFCyhqAFQb5vWvrNtgZF
-         HUbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731343849; x=1731948649;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gfIh7QFf8oEaQfYkdv6ZpaO6sL/ncFNHIot8BWk/VIc=;
-        b=AcdVXJydEWoQ66eqT9ym18iiYicKO3BBlWMPij2Ci2Q5526ZA/Zk7MwAcA3Rd9WlXA
-         gtDcqLZ4cMAwHpTv1vL/xLv54WnWtmtF9Hb7jf/nm4T4XvrcWSs7rpYLh8+o2+PbaLkQ
-         X/6ashmSIS6RloPJ6sL6Nl0T1EKATR0oG+wcyJZwI+BT3feUu+HW5kcwu5WjMeJm/DMM
-         /x7lbIiDQZQeFCRnGy1Of+KWQ6IaHO0dqd5HrprR2hOV3yyMvzzKEk+ntsw0eGQMcfzU
-         aE5Cir1dSI7D1W4oXBAMVjYgXWpaC1STl5PsMWg+MdOiwBCNpAX6CobmW13PlAZq18zL
-         jdGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUWkLCLcOq+9RpjeGzYXM7E/5DkDqeKFrLNi8vARiyHASyNrkACgZYXtIF19e3JJD8fCLLRgcOgUMefRTvb@vger.kernel.org, AJvYcCW25M1MkaO1VwZaxapaeotHFBaDGwGuEljD7+awuu7gw2H0vR7MgG/trxvWQE2/F1MWtaME65vX5P51@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOD7AK+uPoe4Aywq/u206qcRqO4e2sda8zUDRZnrVXNCNzXMiQ
-	xsgfBXfylLTQO8rOZs/gxDIUeCFdEl/f8DrcGtQE/LqhE72LtLSK
-X-Google-Smtp-Source: AGHT+IHfynhJtyo2TYb9cgYePvmyNGNyO/FFedYkfCOY6PP3kqTXtwUZx7toT125k2vM6Ak06pC67g==
-X-Received: by 2002:a05:6a00:4614:b0:71e:5e9a:2db with SMTP id d2e1a72fcca58-7241338307amr7053453b3a.6.1731343849040;
-        Mon, 11 Nov 2024 08:50:49 -0800 (PST)
-Received: from rock-5b.. ([221.220.134.31])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72407a19dd8sm9401955b3a.157.2024.11.11.08.50.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Nov 2024 08:50:48 -0800 (PST)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: Jianfeng Liu <liujianfeng1994@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
+	s=arc-20240116; t=1731343888; c=relaxed/simple;
+	bh=xsTBACz35DuVfvJ2nfBri71Zv06IBtqdNgFneESDmWE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sfau0sLVI9mjCR4/QiF9eeVxELQ+J3K6DmG3yEhq/jMuPwGpv8aMRLcyUS7RZEwsXZouEqgB3KVTmr2UOpZ4ocmrhvENEwW3RWzwlbWG5Nj9+EjoiJ9ux4AheSy4vA9fWyrmw3zaHIkHNKnUetb3eJBpKiWaclWem8VIfiBw6V8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kUHL+oSz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49836C4CECF;
+	Mon, 11 Nov 2024 16:51:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731343887;
+	bh=xsTBACz35DuVfvJ2nfBri71Zv06IBtqdNgFneESDmWE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kUHL+oSzBDGxagLpoqTwLI49QBEK+/rlOA5HYofVHGmHvdxe96FyjWp8Vj+mYIiv1
+	 J3FxAaxhrO06O+SudaXeTCb1GPXm2HcHQvzNfgb+dNQirCDKcfIdndnn1UtPhKVJkL
+	 SATk2EnO1+6EicQpiqVzuoFjTk+Q9JoISNQXd1vJQ6mfOepGw81rsR526c0L4jnlE3
+	 8bEE03TxIBws8MRZUpGlcirTOAQSU9zCzWyP0ocJz9TxfiAbGp/rSsxo12RyN503cn
+	 VQOsFFBg94gbm19rUaEYL5x/yAPfrKul+DlAFFTkkSxXRFwDvuddVZnjTzjTKMHwcN
+	 QPF9ZqwKu3I2g==
+Date: Mon, 11 Nov 2024 16:51:20 +0000
+From: Lee Jones <lee@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Stephen Rothwell <sfr@canb.auug.org.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: rockchip: Enable HDMI0 on armsom-w3
-Date: Tue, 12 Nov 2024 00:50:04 +0800
-Message-ID: <20241111165026.60805-3-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241111165026.60805-1-liujianfeng1994@gmail.com>
-References: <20241111165026.60805-1-liujianfeng1994@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, benjamin.larsson@genexis.eu,
+	ansuelsmth@gmail.com, linux-pwm@vger.kernel.org
+Subject: Re: (subset) [PATCH v9 4/6] dt-bindings: mfd: Add support for Airoha
+ EN7581 GPIO System Controller
+Message-ID: <20241111165120.GD8552@google.com>
+References: <20241023-en7581-pinctrl-v9-0-afb0cbcab0ec@kernel.org>
+ <20241023-en7581-pinctrl-v9-4-afb0cbcab0ec@kernel.org>
+ <173088099542.3237297.18018729158887853624.b4-ty@kernel.org>
+ <ZyssJpR7xwbMzUsm@lore-desk>
+ <20241106110046.GR1807686@google.com>
+ <CACRpkdbf4Pb+n-F-K-JaUvytwCGUHHh8d2rYP4A9KgVTzqSnGw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdbf4Pb+n-F-K-JaUvytwCGUHHh8d2rYP4A9KgVTzqSnGw@mail.gmail.com>
 
-Add the necessary DT changes to enable HDMI0 on ArmSoM W3.
+On Wed, 06 Nov 2024, Linus Walleij wrote:
 
-Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+> On Wed, Nov 6, 2024 at 12:00 PM Lee Jones <lee@kernel.org> wrote:
+> > On Wed, 06 Nov 2024, Lorenzo Bianconi wrote:
+> >
+> > > On Nov 06, Lee Jones wrote:
+> > > > On Wed, 23 Oct 2024 01:20:04 +0200, Lorenzo Bianconi wrote:
+> > > > > Add support for Airoha EN7581 GPIO System Controller which provide a
+> > > > > register map for controlling the GPIO, pinctrl and PWM of the SoC via
+> > > > > dedicated pinctrl and pwm child nodes.
+> > > > >
+> > > > >
+> > > >
+> > > > Applied, thanks!
+> > > >
+> > > > [4/6] dt-bindings: mfd: Add support for Airoha EN7581 GPIO System Controller
+> > > >       commit: f49f37f3cfe1482d4dc77d26f3e8c38eab630d52
+> > > >
+> > > > --
+> > > > Lee Jones [李琼斯]
+> > > >
+> > >
+> > > Hi Lee,
+> > >
+> > > according to my understanding this patch has been already applied by Linus
+> > > here:
+> > >
+> > > https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/commit/?h=devel&id=50dedb1eb1e6755ccab55f6140916c2d192be765
+> >
+> > An interesting choice.  Linus?
+> 
+> Yes I suggested that I merge patches 1-5 on oct 29 and applied the
+> day after:
+> https://lore.kernel.org/linux-gpio/CACRpkdYshPusdA7bDW2y8H_wp-Fm3N-YCsY1_Qn=dZqRiFy12w@mail.gmail.com/
+> 
+> It's because the bindings are dependent on each other, this one patch has:
+> 
+> +  pinctrl:
+> +    type: object
+> +    $ref: /schemas/pinctrl/airoha,en7581-pinctrl.yaml
+> +    description:
+> +      Child node definition for EN7581 Pin controller
+> +
+> +  pwm:
+> +    type: object
+> +    $ref: /schemas/pwm/airoha,en7581-pwm.yaml
+> +    description:
+> +      Child node definition for EN7581 PWM controller
+> 
+> Those refs will explode unless the two others are merged at the same
+> time.
+> 
+> Usually we merge the whole shebang through MFD but this one felt
+> different because there is no actual MFD driver, just using simple-mfd.
+> 
+> In hindsight I should probs not have been so trigger happy and give
+> some more time for this to settle... Merge window stress I guess. :/
+> 
+> It's fine to apply textually identical patches to two trees though as
+> git will sort
+> that out so technically it's no big deal, you can keep it applied if you
+> want.
 
----
+It's okay.  Life will be easier for everyone if I remove it.
 
- .../boot/dts/rockchip/rk3588-armsom-w3.dts    | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-armsom-w3.dts b/arch/arm64/boot/dts/rockchip/rk3588-armsom-w3.dts
-index 779cd1b1798..5b5a18c8edf 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-armsom-w3.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-armsom-w3.dts
-@@ -4,6 +4,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/leds/common.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
- #include "rk3588-armsom-lm7.dtsi"
- 
- / {
-@@ -32,6 +33,17 @@ analog-sound {
- 		pinctrl-0 = <&hp_detect>;
- 	};
- 
-+	hdmi0-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi0_con_in: endpoint {
-+				remote-endpoint = <&hdmi0_out_con>;
-+			};
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 		pinctrl-names = "default";
-@@ -138,6 +150,26 @@ &combphy2_psu {
- 	status = "okay";
- };
- 
-+&hdmi0 {
-+	status = "okay";
-+};
-+
-+&hdmi0_in {
-+	hdmi0_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi0>;
-+	};
-+};
-+
-+&hdmi0_out {
-+	hdmi0_out_con: endpoint {
-+		remote-endpoint = <&hdmi0_con_in>;
-+	};
-+};
-+
-+&hdptxphy_hdmi0 {
-+	status = "okay";
-+};
-+
- &i2c6 {
- 	status = "okay";
- 
-@@ -406,3 +438,18 @@ &usb_host1_xhci {
- &usb_host2_xhci {
- 	status = "okay";
- };
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-+		remote-endpoint = <&hdmi0_in_vp0>;
-+	};
-+};
 -- 
-2.43.0
-
+Lee Jones [李琼斯]
 
