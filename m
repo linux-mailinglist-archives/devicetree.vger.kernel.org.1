@@ -1,120 +1,103 @@
-Return-Path: <devicetree+bounces-120716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64E89C3BD6
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 11:27:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CAFE9C3BFC
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 11:31:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AE841F220F1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 10:27:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E94401F2227D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 10:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1D4517B4F6;
-	Mon, 11 Nov 2024 10:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CBAD18732C;
+	Mon, 11 Nov 2024 10:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="vqlNucr5"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="dWIWUSEZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACAC7178368;
-	Mon, 11 Nov 2024 10:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97F8118594A;
+	Mon, 11 Nov 2024 10:31:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731320838; cv=none; b=jxxLebGZeCGYHJypgIKu+JpRlVAtWSlqy+bbM+aunVbZ8GE+9ICpwbWr6uQL5sCEwNoDCm5uZyXyZjlaoRNZ0ayHm35OgnPtrrgo/qeJQdMwdbomRDi5Cfvs11ohBFzcnkjGrDZkjORRfu0H8VIHyUwnhqJTXvBo0RD5HhlDJ8c=
+	t=1731321083; cv=none; b=dLll2OGOyFqXxbNUkyDxX2XkQMUrCAKds8om4MN70bEt5ZqMizO6J0JQLMQm4uSGFdembyPLSPrAzPh3ZZQilMmtcFNTt7MS5f5jh2SOwACq3kZ7XaXW9yvPhZ5K8pTZakhUUID+INAbFrL3++mzTLcPVLHMHFCJxr3yNphl9R8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731320838; c=relaxed/simple;
-	bh=qX0tOYFqdWmuVqzHqRPWO3tk21m/yO9VzTojXGyzIUI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JbSThanmPqqDk72CPL1InSYeaNAU8LF362OYvwOPMzmlgGT53IdL4AwIfhTeK7d7D9tnCHfFBNjk8S5/X2HHJDZhMcWdHEGC80OT6kmFkS/pH1YGo2Pd1w3OMu8x8wjSZ/LLdqlT2XET7ImZMeLNbKe/qJ7lQICh09cf12Ddres=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=vqlNucr5; arc=none smtp.client-ip=178.238.236.174
+	s=arc-20240116; t=1731321083; c=relaxed/simple;
+	bh=ZKQ7GVkeqUob/khkwvundJ6JdgGPdQEfhXUdhRs1FwA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MjhYQFJRcn/Qr6gOyZ20hTBS1G3WygSrYrSe5hGnSRJzGpDo1fbWf+Cvd3pw62ul5719h5O3TJ7LO+ksiA3rTeU34Fr9MEuM2zhBUQrsI1XV7jcg/XoMlFFeXWwpZlrDlyR78pXsd/eK8uqd+RggUu74rhGmzkSVulzi4RTFUJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=dWIWUSEZ; arc=none smtp.client-ip=178.238.236.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References;
-	bh=n9I/rsmSPkccC1qV3PhdqkeMEIkBVG7v4CKI1grF8vI=; b=vqlNucr5OrPliBOoYg4LK2nrG8
-	+l2fK1YdtaqFOk8wG83po4WzeXgBgBwcCKvMI8tBhlq9+r4vvXWucaCDEQ8/+qD+w1HV0CMwvqv8T
-	IJR3pjs1nPjq26EUEfgXlS+cO4sAhWIMUzFYiQLSShpeE5CzZqzvanxedgOlqpXutNQ5EpkDMYidD
-	omYjwbOXSV8UIV0wO45TWZznjoGjWg8IwBaSyD/aoQJmRLf3HwtK35pomRCrry7/TitImQuRaWtL6
-	X/PptMbWvq2rgkFeWq+hN7FX6bdEY8damEuoBJvypk4HlErm4uGJn24HQgK8SIGrNpZQgAHlS5S7L
-	k9+yMVGA==;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=ydWcSWI2vdusMYOZVZQTuPuP5niMzB8uG4sljUSYqD4=; b=dWIWUSEZNVfIINixABLQEzq+zA
+	WWLRJ6HpmXQH6J6HClEaRklxK/tQr/4vk6jit2+CGOCA2utIgAVnfweyQrXwSyGbawC/WJ8KXxvRY
+	hXWHq2qgdGe28sKZ52xHP6RS9reALiuQjyeUwbMYJscBryziZhroIYWYEaA5Ka6pzHl/Sed7bLMDd
+	aAtq189XePapmYQS0sf6d+LQi//G31xTpmLRbbuOAnU3ycAIL24lLSeHx2T+ZdlpXIk1My1D+TcLl
+	dGi9sthaYGbodGMFNxBm90dbuBpmRmtPkHjLq4m4oeknSfDZCh9EScM0zYCjcqg1z7fuS/NLNVlAO
+	CwDKU2Tg==;
+Date: Mon, 11 Nov 2024 11:31:17 +0100
 From: Andreas Kemnade <andreas@kemnade.info>
-To: lee@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mazziesaccount@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Andreas Kemnade <andreas@kemnade.info>,
-	sre@kernel.org
-Subject: [PATCH v2] dt-bindings: mfd: bd71828: Use charger resistor in mOhm instead of MOhm
-Date: Mon, 11 Nov 2024 11:27:01 +0100
-Message-Id: <20241111102701.358133-1-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.5
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, lee@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, sre@kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: bd71828: Use charger resistor in mOhm
+ instead of MOhm
+Message-ID: <20241111113117.2392d4d8@akair>
+In-Reply-To: <bf50b6c0-af1a-4c7f-9c3e-ffbd3da87a80@gmail.com>
+References: <20241029111112.33386-1-andreas@kemnade.info>
+	<20241101192705.GA4062121-robh@kernel.org>
+	<bf50b6c0-af1a-4c7f-9c3e-ffbd3da87a80@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Apparently there was some confusion regarding milliohm vs. megaohm.
-(m/M). Use microohms to be able to properly specify the charger
-resistor like other drivers do. This is not used yet by mainline code
-yet. Specify a current sense resistor in milliohms range rather then
-megaohms range in the examples.
+Am Mon, 4 Nov 2024 08:06:53 +0200
+schrieb Matti Vaittinen <mazziesaccount@gmail.com>:
 
-CC: sre@kernel.org
-Reported-by: Matti Vaittinen <mazziesaccount@gmail.com>
-Closes: https://lore.kernel.org/imx/6dcd724a-a55c-4cba-a45b-21e76b1973b0@gmail.com/T/#mf590875a9f4d3955cd1041d7196ff0c65c0a7e9d
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
----
-Changes in V2:
-- typo fix
+> On 01/11/2024 21:27, Rob Herring wrote:
+> > On Tue, Oct 29, 2024 at 12:11:12PM +0100, Andreas Kemnade wrote:  
+> >> Apparently there was some confusion regarding milliohm vs. megaohm.
+> >> (m/M). Use microohms to be able to properly specify the charger
+> >> resistor like other drivers do. This is not used yet by mainline code
+> >> yet. Specify a current sense resistor in milliohms range rathes then
+> >> megaohms range in the examples.  
+> > 
+> > milliohms?
+> > 
+> > rathes?
+> >   
+> >>
+> >> CC: sre@kernel.org
+> >> Reported-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> >> Closes: https://lore.kernel.org/imx/6dcd724a-a55c-4cba-a45b-21e76b1973b0@gmail.com/T/#mf590875a9f4d3955cd1041d7196ff0c65c0a7e9d
+> >> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> >> ---
+> >>   .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml  | 13 +++++++------
+> >>   1 file changed, 7 insertions(+), 6 deletions(-)  
+> > 
+> > Looks like rohm,bd71815-pmic.yaml has the same problem.  
+> 
+> Yes! Thanks for pointing it out. I'll wait for a while if Andreas wants 
+> to fix them both at the same go. I'll send a fix for BD71815 if I've not 
+> seen one in a week or so :)
+> 
+There is more debris left from an apparently copy-paste-modify process
+from bd71828. That should be checked. At least there are several
+occurances of the BD71828 string in there. So a brush is needed.
 
- .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml  | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-index fa17686a64f7..09e7d68e92bf 100644
---- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-+++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-@@ -55,14 +55,15 @@ properties:
-     minimum: 0
-     maximum: 1
- 
--  rohm,charger-sense-resistor-ohms:
--    minimum: 10000000
--    maximum: 50000000
-+  rohm,charger-sense-resistor-micro-ohms:
-+    minimum: 10000
-+    maximum: 50000
-+    default: 30000
-     description: |
-       BD71827 and BD71828 have SAR ADC for measuring charging currents.
-       External sense resistor (RSENSE in data sheet) should be used. If some
--      other but 30MOhm resistor is used the resistance value should be given
--      here in Ohms.
-+      other but 30mOhm resistor is used the resistance value should be given
-+      here in microohms.
- 
-   regulators:
-     $ref: /schemas/regulator/rohm,bd71828-regulator.yaml
-@@ -114,7 +115,7 @@ examples:
-             #gpio-cells = <2>;
-             gpio-reserved-ranges = <0 1>, <2 1>;
- 
--            rohm,charger-sense-resistor-ohms = <10000000>;
-+            rohm,charger-sense-resistor-micro-ohms = <10000>;
- 
-             regulators {
-                 buck1: BUCK1 {
--- 
-2.39.5
-
+Regards,
+Andreas
 
