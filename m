@@ -1,152 +1,152 @@
-Return-Path: <devicetree+bounces-120802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 417709C4353
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 18:14:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D89F9C435D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 18:15:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDC6C1F21B19
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:14:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65A4D283557
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:15:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E110C1A7262;
-	Mon, 11 Nov 2024 17:14:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1231A2658;
+	Mon, 11 Nov 2024 17:15:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="vP/sPaGN"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="fh6FlBFB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBF751A7255
-	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 17:14:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D5F3189BA4;
+	Mon, 11 Nov 2024 17:15:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731345247; cv=none; b=Y2wVMrTB1NiSs10FQKW8Q0vjtTu/7pvvDfBS02Pt6YfE251fuIC7xVe8DvO54wyGR+xMixNrjJm5mwgCI4AKnA8jeQQI/1qg8cHq17yhieDRQXp3St4ZYFKEUAZRvV3QYv1tigPcp/nV120miuMYgB6ueNDWcNzU6LinmngOAU8=
+	t=1731345330; cv=none; b=Jh6NowwNzlBEO/Ye/cWfjiMcUgHwXwzwcAF8cwr+1G9BV+gmN1D+ilPZ/9jNFf4uVgRsSwhO/IVSEXANBYll3DDE1XzNbRWTv4zIqPj9Ej/Kmh7UgeRbRR8ULJrNfmXMuBRrb/QscPU0vDmhYnBNMHN4jgXSDM1tC+0ouPvAc1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731345247; c=relaxed/simple;
-	bh=3Q6uao6+hgf+7cigQULGQb1eC8zzAjVmlImprrPNtzA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rO361aYcRt8BLvpLX3RpN0VCpE9uKcQcanmPLv/vOG6bkM5clyYsEclfnHCwo0m/QzZSlMzaD0mm0zR3hUxDzm5yAcEHdVUJEShrTTM64wPJZXfjPdvTxZkUprJcgzR477/qFs0/1L8K4GTIHemGC0pjexj8mBfywU5zJCu5OCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=vP/sPaGN; arc=none smtp.client-ip=209.85.161.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-5ebc1af9137so2149924eaf.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 09:14:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731345245; x=1731950045; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xHhQX9dLBXKUZ4ddho1L9OkyErwYL/K98ij6HZC9tXE=;
-        b=vP/sPaGNvx7/JZ2s6B8A3tuoVFOk/HmiRoDniCZKagcUlX9iJR0+hb+aamlmx37RJM
-         SGW9214YoxjwmpqcMY/+ILdA22HOoJXJR9R/odOWP+qAdLv1kx4Rza8TgdzPX+gcnuDY
-         /Zi+zF1AUi0hbNurxi1Oe5sSqc+y6t42l4uaoaYsEggtNCN4xMHHSujI69GsimI0YFD/
-         RZCAnV1LZ4na/f543PWameCQAdjofAlMQU1IYlAf2per7vnyg6EQyj49LfI/YZnIY2ai
-         YkxorNwTaslEz8f4S1RvTWxM9tk//XvDDzepqXsCLBH34H0iR3EAmNl6Pve8xxhe+KWD
-         a7dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731345245; x=1731950045;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xHhQX9dLBXKUZ4ddho1L9OkyErwYL/K98ij6HZC9tXE=;
-        b=u08gi/Zlc4X0H+ei/DEKPbAxFVPcAPKmpxZtCRDl4e9zRyQXn7JZDELIMHQUbEsq7V
-         jVZoQBWEVW/6rXANFC1xI9eCzKvKA8pepLXFCSjTYi82vDe4OgaKDR9LXVtkxiAwlE9U
-         RJbW4LFE2XYwa0gRotrfuNDQ/6uBY5ei131zBCKJlDbHReZjHeRe+2tJpB3V3D1Ki4dz
-         8OkGCwlMTnoblzDksgLW3ZzU6dIoE55YtRTachlUL+gGMtu6/Yqi2ezQN9kDKwhMwYxr
-         E8Nop6kdmAUtZqMa9uen02YDGKH1no+CS9c+WTCOlMyTIcUFLT5/q/U3KWrtyJGdkAro
-         NqCg==
-X-Forwarded-Encrypted: i=1; AJvYcCXinTCZ9+XlPnStOJwHFqglNfjRnIuzfh87/OglIwnmXp3TZV7uPA2KnU6ClBEx1sWwgvKldraeqYwx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3a3vSsoFQPF2UABrHJa4C23oMoRzAPINl2yFX/kUS/Nig2D08
-	XJhVWpX8JJtCbDBT/0gayeuxCexvlahSLGNQ2IDJHDoRxt9SGLIFzdyW00oorVHaJPEdzDmEce/
-	J
-X-Google-Smtp-Source: AGHT+IF3GCiZjWfr7xWBoGgZ81GYnxm9pAH/iF3fOY2T/R1DiZIJojhpwe+oKLoYI62MFyjsBFrMIQ==
-X-Received: by 2002:a05:6820:1f08:b0:5e1:e748:7ad with SMTP id 006d021491bc7-5ee57c77c36mr8888000eaf.7.1731345244850;
-        Mon, 11 Nov 2024 09:14:04 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ee496afdd5sm1993171eaf.31.2024.11.11.09.14.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Nov 2024 09:14:03 -0800 (PST)
-Message-ID: <66b3e462-bb17-4806-b991-8f0eb33b1233@baylibre.com>
-Date: Mon, 11 Nov 2024 11:14:01 -0600
+	s=arc-20240116; t=1731345330; c=relaxed/simple;
+	bh=957efawPGLRyECm/y7zGvsJmyIZht8h+zBAgeR28fg4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aBZ0oOGJBC2PwZ4Fn3CSkwSkE88Cn2VueTkDlxECWPPxiG9qdM076l9hX17EXW0DJqNnsHjPuQ/RiQspNvD27mBFcnCFCrA6iaJ9fIhOytEhVM24zlQ89CNnB+dOHcHJHbnDEK1Mf5LP3P9Mfc/iVdTR6yW0biRGoCPHKI0rI44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=fh6FlBFB; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=W8thwsB+ljS0lWZ4b7dnqxQ/N/kDhQQW1Jd7+/GQSOs=; b=fh
+	6FlBFBQS/bFlsT6PMKK5U9LH02C+3Qm02iYV3yichYa6m0FTJQpA2gLUXF+/BtZxhn02GWnJJyU6P
+	9KmOiQDg7WTWYu4AAjLHWd2nSFd+vtLRHcioSOTzvGFv38olkVrLzVA36NBm7nPqEWDyOM0yvyR9u
+	Maz6pNxDnCtMFm4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tAY0S-00Cunp-No; Mon, 11 Nov 2024 18:15:16 +0100
+Date: Mon, 11 Nov 2024 18:15:16 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Rob Herring <robh@kernel.org>
+Cc: frank-w@public-files.de, Frank Wunderlich <linux@fw-web.de>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Hans de Goede <hdegoede@redhat.com>, Jens Axboe <axboe@kernel.dk>,
+	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditional failed
+Message-ID: <e7a8e087-fb92-4911-b7fb-34521635e8da@lunn.ch>
+References: <20241109094623.37518-1-linux@fw-web.de>
+ <20241109094623.37518-2-linux@fw-web.de>
+ <e534c723-6d65-433f-8ab5-1c0d424d7367@lunn.ch>
+ <9B1A5D20-3DE5-40C1-8B2D-B1C4F53FA5F4@public-files.de>
+ <CAL_JsqJnOa_9Poz86vOWBCQigvv-Ab4Tt1hrwTxSa5zNraVxXQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v4 02/15] spi: add basic support for SPI offloading
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
- Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
- <20241023-dlech-mainline-spi-engine-offload-2-v4-2-f8125b99f5a1@baylibre.com>
- <20241026160521.52205cb0@jic23-huawei>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20241026160521.52205cb0@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqJnOa_9Poz86vOWBCQigvv-Ab4Tt1hrwTxSa5zNraVxXQ@mail.gmail.com>
 
-On 10/26/24 10:05 AM, Jonathan Cameron wrote:
-> On Wed, 23 Oct 2024 15:59:09 -0500
-> David Lechner <dlechner@baylibre.com> wrote:
+On Mon, Nov 11, 2024 at 10:25:12AM -0600, Rob Herring wrote:
+> On Sun, Nov 10, 2024 at 3:25 AM Frank Wunderlich
+> <frank-w@public-files.de> wrote:
+> >
+> > Am 9. November 2024 18:29:44 MEZ schrieb Andrew Lunn <andrew@lunn.ch>:
+> > >On Sat, Nov 09, 2024 at 10:46:19AM +0100, Frank Wunderlich wrote:
+> > >> From: Frank Wunderlich <frank-w@public-files.de>
+> > >>
+> > >> after converting the ahci-platform binding to yaml the following files
+> > >> reporting "'anyOf' conditional failed" on
+> > >>
+> > >> sata@540000: sata-port@0
+> > >> diff --git a/arch/arm64/boot/dts/marvell/armada-7040-db.dts b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
+> > >> index 1e0ab35cc686..2b5e45d2c5a6 100644
+> > >> --- a/arch/arm64/boot/dts/marvell/armada-7040-db.dts
+> > >> +++ b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
+> > >> @@ -214,6 +214,7 @@ &cp0_sata0 {
+> > >>
+> > >>      sata-port@1 {
+> > >>              phys = <&cp0_comphy3 1>;
+> > >> +            status = "okay";
+> > >>      };
+> > >>  };
+> > >
+> > >>
+> > >> diff --git a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+> > >> index 7af949092b91..6bdc4f1e6939 100644
+> > >> --- a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+> > >> +++ b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+> > >> @@ -433,11 +433,13 @@ &cp0_sata0 {
+> > >>      /* 7 + 12 SATA connector (J24) */
+> > >>      sata-port@0 {
+> > >>              phys = <&cp0_comphy2 0>;
+> > >> +            status = "okay";
+> > >>      };
+> > >>
+> > >>      /* M.2-2250 B-key (J39) */
+> > >>      sata-port@1 {
+> > >>              phys = <&cp0_comphy3 1>;
+> > >> +            status = "okay";
+> > >>      };
+> > >>  };
+> > >> diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> > >> index 7e595ac80043..161beec0b6b0 100644
+> > >> --- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> > >> +++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> > >> @@ -347,10 +347,12 @@ CP11X_LABEL(sata0): sata@540000 {
+> > >>
+> > >>                      sata-port@0 {
+> > >>                              reg = <0>;
+> > >> +                            status = "disabled";
+> > >>                      };
+> > >
+> > >I don't know the yaml too well, but it is not obvious how adding a few
+> > >status = "disabled"; status = "okay"; fixes a "'anyOf' conditional failed".
+> > >
+> > >Maybe you can expand the explanation a bit?
+> > >
+> > >       Andrew
+> >
+> > Hi angelo,
+> >
+> > I guess the dtbs_check only checks required properties from yaml if the node is enabled.
 > 
+> Yes, that is exactly how it works.
 
-...
+So from this, can i imply that phys is a required property?
 
->> +struct spi_offload *devm_spi_offload_get(struct device *dev,
->> +					 struct spi_device *spi,
->> +					 const struct spi_offload_config *config)
->> +{
->> +	struct spi_offload *offload;
->> +	int ret;
->> +
->> +	if (!spi || !config)
->> +		return ERR_PTR(-EINVAL);
->> +
->> +	if (!spi->controller->get_offload)
->> +		return ERR_PTR(-ENODEV);
->> +
->> +	offload = spi->controller->get_offload(spi, config);
-> 
-> Why let this return an offload that is already in use?
-> Maybe make that a problem for the spi controller
-> Seems odd to pass it spi then set it later.
-> 
-> I.e. have this return ERR_PTR(-EBUSY);
+Looking at the above patch, it appears that for armada-*.dts,
+sata-port@0 always uses phys = <&cp0_comphy2 0> and sata-port@1 uses
+phys = <&cp0_comphy3 1>. Is this an actual SoC property? Could it be
+moved up into the .dtsi file? Or is it really a board property?
 
-I would expect that to effectively be handled by the
-if (IS_ERR(offload)) below. Only the controller can
-know which offloads are already in use, so the callback
-should return the appropriate -EBUSY in that case.
-
-> 
-> 
->> +	if (IS_ERR(offload))
->> +		return offload;
->> +
->> +	if (offload->spi)
->> +		return ERR_PTR(-EBUSY);
->> +
->> +	offload->spi = spi;
->> +	get_device(offload->provider_dev);
->> +
->> +	ret = devm_add_action_or_reset(dev, spi_offload_put, offload);
->> +	if (ret)
->> +		return ERR_PTR(ret);
->> +
->> +	return offload;
->> +}
->> +EXPORT_SYMBOL_GPL(devm_spi_offload_get);
-
+	Andrew
 
