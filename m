@@ -1,119 +1,179 @@
-Return-Path: <devicetree+bounces-120929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A1FC9C4A4A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 01:02:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 519FA9C4A44
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 01:01:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 657ABB32C85
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 00:00:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11381282D86
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 00:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F2051C7B63;
-	Mon, 11 Nov 2024 23:53:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1734A1CB50A;
+	Mon, 11 Nov 2024 23:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="kzYM1tMm"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="DVglK+ff"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29ABC1BDAA1;
-	Mon, 11 Nov 2024 23:53:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731369217; cv=none; b=RPj0c9s1rOhKUOGokrjskoOIEcLR5pEE5Gr7BI1QWbsxDZf5YZSAhsEzRyYLoZglpp+tHBDK/iMOIDFy1CC/He7VyO8/gAEA5lx6q+ruByT5+5vhLHQAhmRba4x3YHIUJjn5fQefNYpoUG5XykIYSyrNY52/q3AqhxqK7Pa88Q0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731369217; c=relaxed/simple;
-	bh=/1kbnaXoTlpDzhR7Und7m0yG1HUq2WsmOLWdk0VxH2U=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HumY01kdeWd02nsDbgO0ithJIG10CnPtxBRwnz+okHN8y4zEGuElqL6i8mlojkzEGl9fW0K+lSWN7CvvaPJwzG0M9XTZKyO06PyYGzhFyXpdCGx/OWslnFGiUbPYqsmGvByEXPjx/VsGa3JwuENtp3ToBhb9EFRfhN0h4lGzHek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=kzYM1tMm; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1731369206;
-	bh=/1kbnaXoTlpDzhR7Und7m0yG1HUq2WsmOLWdk0VxH2U=;
-	h=Subject:From:To:Date:In-Reply-To:References;
-	b=kzYM1tMmRXj67bu5aN2rYgWXRdBhCtsYVc1CRiDHRq0DMX6IBCZzXs/b3TDGtWyn6
-	 8InZgahjgAodowhz+RAX9ztwkB3hwkk66PVyQSN1Ewcbkc048gbBvs5G81SJHk7myO
-	 yjh71q0HyINmvgElK7mRITBEanF3XaDA0jD8vAnnpB0uUOW4JfIdHWI26yMQOVMtdP
-	 njvoialn2fQdzvn828mP02TFz7IFzkt1aqfG87xSVumEocXTC53xo7XLjozG6vjvGl
-	 LdWP+iZXCDay/2Ox1GtDy2SZsyNQ4Y50s3UqlUUhtIwh8lZF+t5GrsGuxC3DekiLC9
-	 CEM+G/OcxQ8IA==
-Received: from [192.168.68.112] (ppp118-210-164-236.adl-adc-lon-bras34.tpg.internode.on.net [118.210.164.236])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 1E96566029;
-	Tue, 12 Nov 2024 07:53:25 +0800 (AWST)
-Message-ID: <434b2dab17050643badc60c50b361153631b7cdd.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v1 3/5] ARM: dts: aspeed: Harma: Revise GPIO line name
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Peter Yin <peteryin.openbmc@gmail.com>, Rob Herring
- <robh+dt@kernel.org>,  Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Joel Stanley <joel@jms.id.au>,  devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,  linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-Date: Tue, 12 Nov 2024 10:23:24 +1030
-In-Reply-To: <20241111094349.2894060-4-peteryin.openbmc@gmail.com>
-References: <20241111094349.2894060-1-peteryin.openbmc@gmail.com>
-	 <20241111094349.2894060-4-peteryin.openbmc@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47CB01CB516;
+	Mon, 11 Nov 2024 23:56:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731369380; cv=pass; b=Z8xLJIHTceh8DVaTZ1VSfnP7bO3sA650l8VYjV+DX3edkPzTfKH5kfQQ1GFx2pWkYOKoAYxGbYWHx6G4WT3ndsza1Dh97IPLU/oBK7WzVmH3Lu4Sf2NxYUS8laC/jpR/l7HApy9wzRXaI3gpoTGBjbX7XXtI/YTmevwF+apvl1g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731369380; c=relaxed/simple;
+	bh=ud95gvMBGBa41h/bRFu6Eojb5cJU7Yr9UdVCiRzc1Ec=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Me2w3wfUWvs58MU7O/YBorjrWf8fMcp75/6pz4Jq+T8weVK9BQ4aszdQ0PeydFqE/ifsTLajHJJKfNyz6dfVcFFwtDedenY9Hio1F8W5ei+Veahfx21ZWmCNOP+I6Yc+AmyZKLkSUGP12Ie2ueyuej1RgeXbnzFXcnuUdi9U8W4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=DVglK+ff; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1731369370; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Q1FLDvAiXrfTfUTrHNWCHG6L8Agzb/kYqFYDDYotEfb9PkrJr9/ccYuzNGs3Oos3cHOcUhrNLv7A5/gFaxJkGxliYw0DxuhJ7hBcoR4ZU+GqqcEnzb+N7JgMg2XGuCHNQePbbor4mKD6zlaLn/gj5jwCMhu+9G2naH9dxbtfkjU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1731369370; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=jNvl6udLNgyFKVctpSe/fO9SGXV7DDfSTAk8MAjzB0E=; 
+	b=AoryRf8LyIyALjXqdNuwKoywpkDOvylL6lGL8NeQwZd3XbkJZQs+l0yM7t5QmRXhhyXVSnQ38mSpk7kbjjk0s02NtbH34VxZxkuBHKJt8quECrnQH7iab0qQ9jmonQHjKc9c8rML+FItC5GTA9FdOyxFoPnpRtX0QMXOjdlS5WM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1731369370;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=jNvl6udLNgyFKVctpSe/fO9SGXV7DDfSTAk8MAjzB0E=;
+	b=DVglK+ffhvNwaOlHfWzLD4mBJQaTUqcmVt6WOc+zHCKsyrBY/6vJHSvJOs+KCdna
+	aRE4g5LHcM/FeakrBXEDDET1bWZXM2t5fU/SCgDtVw4pQ33ZJpZWMGB0eAgVdcsI64x
+	U8vgKjwosDENQqcfsflslClaWICS/xATYC40bI14=
+Received: by mx.zohomail.com with SMTPS id 1731369368152367.7930729178679;
+	Mon, 11 Nov 2024 15:56:08 -0800 (PST)
+Received: by mercury (Postfix, from userid 1000)
+	id 650B61060457; Tue, 12 Nov 2024 00:56:04 +0100 (CET)
+Date: Tue, 12 Nov 2024 00:56:04 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, mazziesaccount@gmail.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: mfd: bd71828: Use charger resistor in
+ mOhm instead of MOhm
+Message-ID: <izttmmwg6f5c3nkccabsfskvkvvaf65c7tzqirb537dtwerels@ihhsvyaveelj>
+References: <20241111102701.358133-1-andreas@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rzvxwbbfqfr6n5qq"
+Content-Disposition: inline
+In-Reply-To: <20241111102701.358133-1-andreas@kemnade.info>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.3.1/231.261.35
+X-ZohoMailClient: External
 
-Hi Peter,
 
-On Mon, 2024-11-11 at 17:43 +0800, Peter Yin wrote:
-> =C2=A0 Add:
-> =C2=A0=C2=A0=C2=A0 "ac-power-button",
-> =C2=A0=C2=A0=C2=A0 "asic0-card-type-detection0-n"
-> =C2=A0=C2=A0=C2=A0 "asic0-card-type-detection1-n"
-> =C2=A0=C2=A0=C2=A0 "asic0-card-type-detection2-n"
->=20
-> =C2=A0=C2=A0=C2=A0 "cpu0-prochot-alert",
-> =C2=A0=C2=A0=C2=A0 "cpu0-thermtrip-alert",
->=20
-> =C2=A0=C2=A0=C2=A0 "irq-uv-detect-alert",
-> =C2=A0=C2=A0=C2=A0 "irq-hsc-alert",
->=20
-> =C2=A0=C2=A0=C2=A0 "uart-switch-button"
-> =C2=A0=C2=A0=C2=A0 "uart-switch-lsb"
-> =C2=A0=C2=A0=C2=A0 "uart-switch-msb"
->=20
-> =C2=A0=C2=A0=C2=A0 "leakage-detect-alert",
->=20
-> =C2=A0=C2=A0=C2=A0 "power-card-enable",
-> =C2=A0=C2=A0=C2=A0 "power-fault-n",
-> =C2=A0=C2=A0=C2=A0 "power-hsc-good",
-> =C2=A0=C2=A0=C2=A0 "power-chassis-good"
-> =C2=A0=C2=A0=C2=A0 "presence-post-card",
-> =C2=A0=C2=A0=C2=A0 "presence-cmm"
-> =C2=A0=C2=A0=C2=A0 "pvdd11-ocp-alert"
->=20
-> =C2=A0=C2=A0=C2=A0 "reset-control-cmos-clear"
-> =C2=A0=C2=A0=C2=A0 "reset-cause-pcie",
-> =C2=A0=C2=A0=C2=A0 "reset-cause-platrst",
->=20
-> =C2=A0=C2=A0=C2=A0 "P0_I3C_APML_ALERT_L",
+--rzvxwbbfqfr6n5qq
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2] dt-bindings: mfd: bd71828: Use charger resistor in
+ mOhm instead of MOhm
+MIME-Version: 1.0
 
-Rather than list the identifiers that are already contained in the
-patch, can you please discuss what functionality these identifiers
-enable, how different functions are related, and why this must all be
-done in one patch?
+Hi,
 
+On Mon, Nov 11, 2024 at 11:27:01AM +0100, Andreas Kemnade wrote:
+> Apparently there was some confusion regarding milliohm vs. megaohm.
+> (m/M). Use microohms to be able to properly specify the charger
+> resistor like other drivers do. This is not used yet by mainline code
+> yet. Specify a current sense resistor in milliohms range rather then
+> megaohms range in the examples.
 >=20
-> =C2=A0 Rename:
-> =C2=A0=C2=A0=C2=A0 "power-cpu-good" to "host0-ready",
-> =C2=A0=C2=A0=C2=A0 "host-ready-n" to "post-end-n
+> CC: sre@kernel.org
+> Reported-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> Closes: https://lore.kernel.org/imx/6dcd724a-a55c-4cba-a45b-21e76b1973b0@=
+gmail.com/T/#mf590875a9f4d3955cd1041d7196ff0c65c0a7e9d
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> ---
 
-On the other-hand, explicitly calling out these changes is helpful, but
-please also discuss the motivation and impact.
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Andrew
+-- Sebastian
+
+> Changes in V2:
+> - typo fix
+>=20
+>  .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml  | 13 +++++++------
+>  1 file changed, 7 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml=
+ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+> index fa17686a64f7..09e7d68e92bf 100644
+> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+> @@ -55,14 +55,15 @@ properties:
+>      minimum: 0
+>      maximum: 1
+> =20
+> -  rohm,charger-sense-resistor-ohms:
+> -    minimum: 10000000
+> -    maximum: 50000000
+> +  rohm,charger-sense-resistor-micro-ohms:
+> +    minimum: 10000
+> +    maximum: 50000
+> +    default: 30000
+>      description: |
+>        BD71827 and BD71828 have SAR ADC for measuring charging currents.
+>        External sense resistor (RSENSE in data sheet) should be used. If =
+some
+> -      other but 30MOhm resistor is used the resistance value should be g=
+iven
+> -      here in Ohms.
+> +      other but 30mOhm resistor is used the resistance value should be g=
+iven
+> +      here in microohms.
+> =20
+>    regulators:
+>      $ref: /schemas/regulator/rohm,bd71828-regulator.yaml
+> @@ -114,7 +115,7 @@ examples:
+>              #gpio-cells =3D <2>;
+>              gpio-reserved-ranges =3D <0 1>, <2 1>;
+> =20
+> -            rohm,charger-sense-resistor-ohms =3D <10000000>;
+> +            rohm,charger-sense-resistor-micro-ohms =3D <10000>;
+> =20
+>              regulators {
+>                  buck1: BUCK1 {
+> --=20
+> 2.39.5
+>=20
+
+--rzvxwbbfqfr6n5qq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmcymY0ACgkQ2O7X88g7
++pqSmg/9E/dcR51zVmIqu/B5MHIgvP42GiEOI979hlNpU/DkKCYNFlPc+G8hxfDk
+mc1jzFu9nLBHc0X6zps5p3EM3C900/84PlDSgYD/N+U+vUmy32omIu5+jGxz4RD4
+iD8dynfvjo3H4TSt7CSwbU8KPPF59IS6PQUqvkKALy6i904SVExGz4BeuQmkBvTI
+Recwey+fMIStUBc3n+TpkI6y5eY6eo0gfyx+NTk4WILKiGbZjF2QBlYSNV0s6lvZ
+Fr6kVcxDDB2LI128TtcQgyp2Cx9WJZYecNVH6cdc2DnOQq8HLtHKhe/7MTBNXKiR
+BP20OfQ4djZmBhKwHEgyMivjh5fVwcgO6X+KiHqaGAOAk+6kuZSQp3AU16xlyPTd
+YJD3bpANYEEAU0TlbkGGJkJxbdlnNyz6HcIV5gQcRe6u9q8nOsxeQWBWav4N0Rwp
+l7l7SRaj3QfG0Lci/k2MO2b0qMvb66UE4E3tuH9Vu/AaAlHgz6EQ491C0QQ/KomE
+/tZHQsadileGH/auWulngxYXDGot09JDhvv8eiJw8Nxyri8YJg6rRp1FUInpN33L
+XXJ7YTbZcUIBvxPZLgmVxdtDsB9WCEvCAMQK8PHpumJ1nGNSudtQ4vt56AWG0PQo
+ae3QBEozFplaI59JmLF7VMAog38wU6Y+k8wFywTiYQd42VAukH0=
+=c5oN
+-----END PGP SIGNATURE-----
+
+--rzvxwbbfqfr6n5qq--
 
