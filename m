@@ -1,150 +1,135 @@
-Return-Path: <devicetree+bounces-120737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41F9C9C3DDE
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 13:01:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E9ED9C3E15
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 13:12:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F92C280A73
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 12:01:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA8101F22221
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 12:12:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F52D15855C;
-	Mon, 11 Nov 2024 12:01:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D00D919D074;
+	Mon, 11 Nov 2024 12:12:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ufns7pd4"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="m/CVh7iW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB84717C91;
-	Mon, 11 Nov 2024 12:01:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B50A19C569;
+	Mon, 11 Nov 2024 12:12:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731326484; cv=none; b=Zsh52CxMhrBHmpy4pK6F3otfdSnGqDEl4wtSRsHOCfZLiohPig8MI/Abh/XVTs5JIgmV/0wnUCstR+vkrv0mMYpPtTOgTMfFE52kBs3Uk66LO6drzd7mfRUxnoWzloP2a+/L7Q59jC0ZbrPT9iOeRgxkYcu+rSKtW57L5QYAE/4=
+	t=1731327153; cv=none; b=XKiM/jkA8DqS8amd2b9bnLWuiKTiK5wvuBCzZz6cQ8eO9K0ZraWG9poTaHnAy4etHXnadYKu7REvY8e9hmMh188+RfYK2ZGoTh5NceNDTXTnx/NK3v4Bi6IHLva6xptvu/Nsw8Cba9PSeBbTaY+HAaHnojipGwJspXVxwJ2m4So=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731326484; c=relaxed/simple;
-	bh=zVuvjtKAs+LjZH1OYuewCYgzwIIhVlFF6h3ovVOjueM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sBqlhPMdKL43q10KgzfFBijdSieErjt3by9JtqFPRCjsIXtmVquCMNuDeODO5HloJCw7XSXNN8TITgS4xa7GWQEXu3J9rGjI0+eo6bYjFPlHS3by2eSu/xoNmZkOfHRmFmuLGY3/RKYFN4UMlKxmlUqidviPpHHCZ+zvTDYnWxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ufns7pd4; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1731326483; x=1762862483;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zVuvjtKAs+LjZH1OYuewCYgzwIIhVlFF6h3ovVOjueM=;
-  b=Ufns7pd4OP0DNefefIumqxTm8QQpSUGZ78Zca4AWP6VNXVkwETXBXUFJ
-   P192/UyLct6zxFJ43w1LUeIZHMy7aAy1kAVUozdOmO+1xUgvOZPZ6qnZh
-   xuI3hMKtxkgaWSOcHUfbezGgzPurkgOrkUU3ZdRmzUowxzCYrCuPOnxUf
-   GSCI6bb7GmKdgLIO5gWDKpLW1wiXxeiU7v/Wx6Qc3kW2L2a7TFDLAdw7Q
-   Cj2wcmXCW65+vgw2vVV4NF/Qjdp1Nspq7eL3u0vD7gHkU89qRZCZYJxSW
-   Z4Zq8wc53cOuJwJ4fT6drD6SV4lP4NRZ0XnXFwOGiXro8IKc/PTFayFyu
-   A==;
-X-CSE-ConnectionGUID: Z7nn/L/ITDaLvCZf/pFRkQ==
-X-CSE-MsgGUID: d+22ClzqTDKRMUFgF8ZusQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="31088993"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="31088993"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2024 04:01:22 -0800
-X-CSE-ConnectionGUID: rcCRq3O5TAKxfIenzt6Qsw==
-X-CSE-MsgGUID: Vp/HE32DSgeoXzxisVcxYg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; 
-   d="scan'208";a="124453001"
-Received: from lkp-server01.sh.intel.com (HELO dc8184e5aea1) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 11 Nov 2024 04:01:19 -0800
-Received: from kbuild by dc8184e5aea1 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tAT6a-0000G9-1N;
-	Mon, 11 Nov 2024 12:01:16 +0000
-Date: Mon, 11 Nov 2024 20:01:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Zhao Qunqin <zhaoqunqin@loongson.cn>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, chenhuacai@kernel.org,
-	bp@alien8.de
-Cc: oe-kbuild-all@lists.linux.dev, linux-edac@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@xen0n.name, tony.luck@intel.com, james.morse@arm.com,
-	mchehab@kernel.org, rric@kernel.org, loongarch@lists.linux.dev,
-	Zhao Qunqin <zhaoqunqin@loongson.cn>
-Subject: Re: [PATCH v7 2/2] EDAC: Add EDAC driver for loongson memory
- controller
-Message-ID: <202411111918.lhNjQmXB-lkp@intel.com>
-References: <20241111060939.5349-3-zhaoqunqin@loongson.cn>
+	s=arc-20240116; t=1731327153; c=relaxed/simple;
+	bh=Zljfv92krEPvd9pBshB3SSyFBSh2rKBlbOMEX0xCtTw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dghFV60lkNVm4sJtaBJx3KED1lOGizIVSHD3mtp8qIenLmos2i13B9satoY6Xqnk036xqQM1oECrlelbB/yAzDXi2C72c5+OyC09Gry4omyB465OqoQqhn7YlidB8ZdWcaAHeuM+u5o8y1PEhL0OTTqn8n7vYjy0XcvSpmA4TWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=m/CVh7iW; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AB8p5gN016099;
+	Mon, 11 Nov 2024 07:12:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=DomZdjxDJxOIJzigVdyuwK3ZEyR
+	ZY4e/zacRd1lbIHs=; b=m/CVh7iW0BX8V1xgTVBT7qS99wfvprxbM3IKvQn+XEE
+	XxH6XFLOyiidbAdohQATl4z4vczxBnPaXP08bsQLaDHSpLxf4UCP5VDWIuGsEV67
+	f/OdJk1BMWLCQ+7wmtxYrVe+o40Tm115TYphfRWuW7bmbnbNHWf66FNdtXMFzhvS
+	Sg2zmdbygFfAG6+ysV1HVjWyok6INkesGagZR7l69tmF4Gt0qugegY9mLauT3oqt
+	L/GBhjwlRLHbGQS0156ZiAwGh5U8G+D/8QrfDdLvpovKm4iJpQfd3aCiYI/VMQ01
+	fbKNdN0w4qnW/8B/5BB16ZWua4TbH1Wb9arw3OUxEpQ==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 42uesdgr95-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Nov 2024 07:12:27 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 4ABCCQi1025098
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 11 Nov 2024 07:12:26 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 11 Nov
+ 2024 07:12:26 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 11 Nov 2024 07:12:26 -0500
+Received: from amiclaus-VirtualBox.ad.analog.com ([10.65.36.213])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4ABCCFEJ010000;
+	Mon, 11 Nov 2024 07:12:18 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <dlechner@baylibre.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v6 0/8] *** Add support for AD485x DAS Family ***
+Date: Mon, 11 Nov 2024 14:11:55 +0200
+Message-ID: <20241111121203.3699-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241111060939.5349-3-zhaoqunqin@loongson.cn>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: MZ4n5VYq51pabZOT0SiY6rk7EmEnJzj2
+X-Proofpoint-ORIG-GUID: MZ4n5VYq51pabZOT0SiY6rk7EmEnJzj2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ malwarescore=0 priorityscore=1501 phishscore=0 adultscore=0 clxscore=1015
+ mlxlogscore=999 lowpriorityscore=0 suspectscore=0 spamscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411110101
 
-Hi Zhao,
+Add support for AD485X fully buffered, 8-channel simultaneous sampling,
+16/20-bit, 1 MSPS data acquisition system (DAS) with differential, wide
+common-mode range inputs.
 
-kernel test robot noticed the following build errors:
+Some particularities:
+1. softspan - the devices support multiple softspans which are represented in iio
+              through offset/scale. The current handling implies changing both
+              the scale and the offset separately via IIO, therefore in order to
+              properly set the softspan, each time the offset changes the softspan
+              is set to the default value. And only after changing also the scale
+              the desired softspan is set. This is the approach we are suggesting
+              since we need the softspan configurable from userspace and not from
+              devicetree.
 
-[auto build test ERROR on e14232afa94445e03fc3a0291b07a68f3408c120]
+2. packet format - Data provided on the CMOS and LVDS conversion data output buses
+                   are packaged into eight channel packets. This is currently handled
+                   as extended info.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Zhao-Qunqin/dt-bindings-EDAC-for-ls3a5000-memory-controller/20241111-141155
-base:   e14232afa94445e03fc3a0291b07a68f3408c120
-patch link:    https://lore.kernel.org/r/20241111060939.5349-3-zhaoqunqin%40loongson.cn
-patch subject: [PATCH v7 2/2] EDAC: Add EDAC driver for loongson memory controller
-config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20241111/202411111918.lhNjQmXB-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241111/202411111918.lhNjQmXB-lkp@intel.com/reproduce)
+Antoniu Miclaus (8):
+  iio: backend: add API for interface get
+  iio: backend: add support for data size set
+  iio: backend: add API for oversampling
+  iio: adc: adi-axi-adc: add interface type
+  iio: adc: adi-axi-adc: set data format
+  iio: adc: adi-axi-adc: add oversampling
+  dt-bindings: iio: adc: add ad4851
+  iio: adc: ad4851: add ad485x driver
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411111918.lhNjQmXB-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/edac/loongson_edac.c: In function 'read_ecc':
->> drivers/edac/loongson_edac.c:28:15: error: implicit declaration of function 'readq'; did you mean 'readl'? [-Werror=implicit-function-declaration]
-      28 |         ecc = readq(pvt->ecc_base + ECC_CS_COUNT_REG);
-         |               ^~~~~
-         |               readl
-   cc1: some warnings being treated as errors
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for GET_FREE_REGION
-   Depends on [n]: SPARSEMEM [=n]
-   Selected by [m]:
-   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
-
-
-vim +28 drivers/edac/loongson_edac.c
-
-    18	
-    19	static int read_ecc(struct mem_ctl_info *mci)
-    20	{
-    21		struct loongson_edac_pvt *pvt = mci->pvt_info;
-    22		u64 ecc;
-    23		int cs;
-    24	
-    25		if (!pvt->ecc_base)
-    26			return pvt->last_ce_count;
-    27	
-  > 28		ecc = readq(pvt->ecc_base + ECC_CS_COUNT_REG);
-    29		/* cs0 -- cs3 */
-    30		cs = ecc & 0xff;
-    31		cs += (ecc >> 8) & 0xff;
-    32		cs += (ecc >> 16) & 0xff;
-    33		cs += (ecc >> 24) & 0xff;
-    34	
-    35		return cs;
-    36	}
-    37	
+ .../bindings/iio/adc/adi,ad4851.yaml          |  103 ++
+ drivers/iio/adc/Kconfig                       |   13 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/ad4851.c                      | 1190 +++++++++++++++++
+ drivers/iio/adc/adi-axi-adc.c                 |   63 +
+ drivers/iio/industrialio-backend.c            |   59 +
+ include/linux/iio/backend.h                   |   17 +
+ 7 files changed, 1446 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4851.yaml
+ create mode 100644 drivers/iio/adc/ad4851.c
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.47.0
+
 
