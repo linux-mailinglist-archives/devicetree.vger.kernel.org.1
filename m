@@ -1,103 +1,411 @@
-Return-Path: <devicetree+bounces-120717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CAFE9C3BFC
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 11:31:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDFFC9C3C57
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 11:46:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E94401F2227D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 10:31:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C30A281423
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 10:46:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CBAD18732C;
-	Mon, 11 Nov 2024 10:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EDD718A93E;
+	Mon, 11 Nov 2024 10:44:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="dWIWUSEZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BSsVdZ1u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97F8118594A;
-	Mon, 11 Nov 2024 10:31:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBDCD17C7BD
+	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 10:44:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731321083; cv=none; b=dLll2OGOyFqXxbNUkyDxX2XkQMUrCAKds8om4MN70bEt5ZqMizO6J0JQLMQm4uSGFdembyPLSPrAzPh3ZZQilMmtcFNTt7MS5f5jh2SOwACq3kZ7XaXW9yvPhZ5K8pTZakhUUID+INAbFrL3++mzTLcPVLHMHFCJxr3yNphl9R8=
+	t=1731321855; cv=none; b=pdnIpIO9ikXKpS1JhHZmrzk8ao1vW5AArQJhf5Dz9RaSOH8QHI3Vk2mwm5SuO7S28l3n5gi5XKgJ3Z640IscLUnBeoIXFuoyhmXHZ3ZeJE+W7/8HxqgTZLWcPRDw5HHdRd/lW+rl4RXnUzSqNAdQY2yizXnTab/ABDwZW8zGXpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731321083; c=relaxed/simple;
-	bh=ZKQ7GVkeqUob/khkwvundJ6JdgGPdQEfhXUdhRs1FwA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MjhYQFJRcn/Qr6gOyZ20hTBS1G3WygSrYrSe5hGnSRJzGpDo1fbWf+Cvd3pw62ul5719h5O3TJ7LO+ksiA3rTeU34Fr9MEuM2zhBUQrsI1XV7jcg/XoMlFFeXWwpZlrDlyR78pXsd/eK8uqd+RggUu74rhGmzkSVulzi4RTFUJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=dWIWUSEZ; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=ydWcSWI2vdusMYOZVZQTuPuP5niMzB8uG4sljUSYqD4=; b=dWIWUSEZNVfIINixABLQEzq+zA
-	WWLRJ6HpmXQH6J6HClEaRklxK/tQr/4vk6jit2+CGOCA2utIgAVnfweyQrXwSyGbawC/WJ8KXxvRY
-	hXWHq2qgdGe28sKZ52xHP6RS9reALiuQjyeUwbMYJscBryziZhroIYWYEaA5Ka6pzHl/Sed7bLMDd
-	aAtq189XePapmYQS0sf6d+LQi//G31xTpmLRbbuOAnU3ycAIL24lLSeHx2T+ZdlpXIk1My1D+TcLl
-	dGi9sthaYGbodGMFNxBm90dbuBpmRmtPkHjLq4m4oeknSfDZCh9EScM0zYCjcqg1z7fuS/NLNVlAO
-	CwDKU2Tg==;
-Date: Mon, 11 Nov 2024 11:31:17 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, lee@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, sre@kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: bd71828: Use charger resistor in mOhm
- instead of MOhm
-Message-ID: <20241111113117.2392d4d8@akair>
-In-Reply-To: <bf50b6c0-af1a-4c7f-9c3e-ffbd3da87a80@gmail.com>
-References: <20241029111112.33386-1-andreas@kemnade.info>
-	<20241101192705.GA4062121-robh@kernel.org>
-	<bf50b6c0-af1a-4c7f-9c3e-ffbd3da87a80@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1731321855; c=relaxed/simple;
+	bh=viI1zXUB7rgBr9BKaHg9ecokLINqTsbbL1vWFmyx5sA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F05O1gfmm1an/RRFuWJuk97os40Kr3Y6gUomluwrmizFiaMuZ9SfHqjr71/ZAkNnOop3WCMt92owqvX5hbTYlFWC6HxyGzlMjj8P43XQSIhnA9Dxvp42Vf2ARKd3XPXePX73CX9sIgjZmCo+gIhBR4Y7fvogcI+4XzmUDA3OzBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BSsVdZ1u; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43167ff0f91so38210435e9.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 02:44:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731321850; x=1731926650; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=uzxzm9xXLTbZgUXHxeJ9mNLyYRjtxj0f3W1XXKiT9+0=;
+        b=BSsVdZ1udYrSYrs7Uxf97JblrqPvOh1cfT3s1XK/iToj7ENuXtBenCrIW+xz6pUtqi
+         HGLwFNHl2NOFSB/JQIvYKs5DOYyADHNz9hU6tuP5AnsCUaXYivK0A6nBXmH7BWZkIChL
+         VHAOU7hXJgIXpJsrbYA3NfjlqVQlw8OHkxTbt5lEAP5mT4wLg6nAlzoAmSXWjEPOC00J
+         0Bl2reWpFE3hads8AAeYjkaydlUTiIDZI75p1tJCdKkkKKCAsTqKqPYHWgyALvX1lsyL
+         e2Dco15a9XKLWBN537BuwndSfFfcJYU4kDaLLx589ehy7RN/Mcqv2802wyXXZ4x/4io/
+         sU1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731321850; x=1731926650;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uzxzm9xXLTbZgUXHxeJ9mNLyYRjtxj0f3W1XXKiT9+0=;
+        b=oT3mGsCgBTPGr0Xb8ygZNCfz5K5OxOqeo3j4AiIneDs1EhujotE9/fO95IfCBVNTzq
+         yH2ntHKnQpysu0wJGtFSf64uDdXTFIaBiNwDzlMboytXju2G1ttlzHPsOLD3/lOTCzfO
+         LYg8Qbb8zLSoRCveadVcRjtEtdSovyhQTdS9buc3IaCnYQ267by0JAMK3fs4SFJaDZid
+         W5koUKJPit3W1CkXFU1Ffr2RuwcMsAbi8FCmY97NG79rMO8CgRJjgo3K5HDSBxOYt23f
+         b7ulIXe5euQrxMEgbsC8V82JPmdScOzkzuSMN8nttsbqtehHyHHF6lOl2aJKcalBoVez
+         VBXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWYhvgrA/dYtmi3WCpTQYy+n2u+7RYfs8GyUK22+Ubkiw4fVkZrlzaa+C8FVne0PRHAiuqcOuTmkW1+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+gMDi37eMsuepGHhu/I8T02k1N4RGRXsfJgL9V0gXTjYZfC/6
+	DfUQaSKg+08docGBthDyw+QwS8dLxHhkfcVfgJF3AVU9N6WF0KXwXPuh+hyfnoY=
+X-Google-Smtp-Source: AGHT+IFWbm5G98XNys1mSFOeg/rULU9TcIwIPAzzQ5wDgRA27UVUt+JopDpTX1ttncoYAk1OkBdKHA==
+X-Received: by 2002:a05:600c:4f04:b0:431:5f1c:8359 with SMTP id 5b1f17b1804b1-432b75091cdmr85229145e9.15.1731321849412;
+        Mon, 11 Nov 2024 02:44:09 -0800 (PST)
+Received: from linaro.org ([2a02:2454:ff21:ef80:11f:3141:b8c5:27b4])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432aa6bee9asm213622655e9.19.2024.11.11.02.44.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Nov 2024 02:44:09 -0800 (PST)
+Date: Mon, 11 Nov 2024 11:44:04 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: =?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <barnabas.czeman@mainlining.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Amit Kucheria <amitk@kernel.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-pm@vger.kernel.org, iommu@lists.linux.dev,
+	Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
+Subject: Re: [PATCH v4 08/10] arm64: dts: qcom: Add initial support for
+ MSM8917
+Message-ID: <ZzHf9J0Y2uB7_vy4@linaro.org>
+References: <20241109-msm8917-v4-0-8be9904792ab@mainlining.org>
+ <20241109-msm8917-v4-8-8be9904792ab@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241109-msm8917-v4-8-8be9904792ab@mainlining.org>
 
-Am Mon, 4 Nov 2024 08:06:53 +0200
-schrieb Matti Vaittinen <mazziesaccount@gmail.com>:
-
-> On 01/11/2024 21:27, Rob Herring wrote:
-> > On Tue, Oct 29, 2024 at 12:11:12PM +0100, Andreas Kemnade wrote:  
-> >> Apparently there was some confusion regarding milliohm vs. megaohm.
-> >> (m/M). Use microohms to be able to properly specify the charger
-> >> resistor like other drivers do. This is not used yet by mainline code
-> >> yet. Specify a current sense resistor in milliohms range rathes then
-> >> megaohms range in the examples.  
-> > 
-> > milliohms?
-> > 
-> > rathes?
-> >   
-> >>
-> >> CC: sre@kernel.org
-> >> Reported-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> >> Closes: https://lore.kernel.org/imx/6dcd724a-a55c-4cba-a45b-21e76b1973b0@gmail.com/T/#mf590875a9f4d3955cd1041d7196ff0c65c0a7e9d
-> >> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> >> ---
-> >>   .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml  | 13 +++++++------
-> >>   1 file changed, 7 insertions(+), 6 deletions(-)  
-> > 
-> > Looks like rohm,bd71815-pmic.yaml has the same problem.  
+On Sat, Nov 09, 2024 at 01:08:10PM +0100, Barnabás Czémán wrote:
+> From: Otto Pflüger <otto.pflueger@abscue.de>
 > 
-> Yes! Thanks for pointing it out. I'll wait for a while if Andreas wants 
-> to fix them both at the same go. I'll send a fix for BD71815 if I've not 
-> seen one in a week or so :)
+> Add initial support for MSM8917 SoC.
 > 
-There is more debris left from an apparently copy-paste-modify process
-from bd71828. That should be checked. At least there are several
-occurances of the BD71828 string in there. So a brush is needed.
+> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
+> [reword commit, rebase, fix schema errors]
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8917.dtsi | 1997 +++++++++++++++++++++++++++++++++
+>  1 file changed, 1997 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8917.dtsi b/arch/arm64/boot/dts/qcom/msm8917.dtsi
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..f866843772684c695069debfc764f7a0a58843bb
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/msm8917.dtsi
+> @@ -0,0 +1,1997 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +
+> +#include <dt-bindings/clock/qcom,gcc-msm8917.h>
+> +#include <dt-bindings/clock/qcom,rpmcc.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/power/qcom-rpmpd.h>
+> +#include <dt-bindings/soc/qcom,apr.h>
+> +#include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
+> +#include <dt-bindings/thermal/thermal.h>
+> +
+> +/ {
+> +	interrupt-parent = <&intc>;
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		mmc0 = &sdhc_1; /* SDC1 eMMC slot */
+> +		mmc1 = &sdhc_2; /* SDC2 SD card slot */
+> +	};
 
-Regards,
-Andreas
+I think we put aliases in each board separately nowadays, see e.g.
+commit 154f23a8d70c ("arm64: dts: qcom: msm8916: Move aliases to
+boards").
+
+> [...]
+> +		domain-idle-states {
+> +			cluster_sleep_0: cluster-sleep-0 {
+> +				compatible = "domain-idle-state";
+> +				arm,psci-suspend-param = <0x41000023>;
+> +				entry-latency-us = <700>;
+> +				exit-latency-us = <650>;
+> +				min-residency-us = <1972>;
+> +			};
+> +
+> +			cluster_sleep_1: cluster-sleep-1 {
+> +				compatible = "domain-idle-state";
+> +				arm,psci-suspend-param = <0x41000043>;
+> +				entry-latency-us = <240>;
+> +				exit-latency-us = <280>;
+> +				min-residency-us = <806>;
+> +			};
+
+This is strange, the deeper sleep state has lower timings than the
+previous one?
+
+> +
+> +			cluster_sleep_2: cluster-sleep-2 {
+> +				compatible = "domain-idle-state";
+> +				arm,psci-suspend-param = <0x41000053>;
+> +				entry-latency-us = <700>;
+> +				exit-latency-us = <1000>;
+> +				min-residency-us = <6500>;
+> +			};
+> +		};
+> [...]
+> +
+> +	rpm: remoteproc {
+> +		compatible = "qcom,msm8917-rpm-proc", "qcom,rpm-proc";
+> +
+> +		smd-edge {
+> +			interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
+> +			qcom,ipc = <&apcs 8 0>;
+
+Can you use mboxes here?
+
+> +			qcom,smd-edge = <15>;
+> +
+> [...]
+> +
+> +		mpss_mem: mpss@86800000 {
+> +			/*
+> +			 * The memory region for the mpss firmware is generally
+> +			 * relocatable and could be allocated dynamically.
+> +			 * However, many firmware versions tend to fail when
+> +			 * loaded to some special addresses, so it is hard to
+> +			 * define reliable alloc-ranges.
+> +			 *
+> +			 * alignment = <0x0 0x400000>;
+> +			 * alloc-ranges = <0x0 0x86800000 0x0 0x8000000>;
+> +			 */
+
+Not sure how many devices you have access to, but have you tried if this
+is actually still the case? I'd have hoped they fixed those issues in
+the firmware.
+
+Thanks for using alloc-ranges instead of fixed addresses BTW :)
+
+> +			reg = <0x0 0x86800000 0x0 0>; /* size is device-specific */
+> +			no-map;
+> +			status = "disabled";
+> +		};
+> +
+> [...]
+> +	smp2p-adsp {
+> +		compatible = "qcom,smp2p";
+> +		qcom,smem = <443>, <429>;
+> +
+> +		interrupts = <GIC_SPI 291 IRQ_TYPE_EDGE_RISING>;
+> +
+> +		mboxes = <&apcs 10>;
+> +
+> +		qcom,local-pid = <0>;
+> +		qcom,remote-pid = <2>;
+> +
+> +		adsp_smp2p_out: master-kernel {
+> +			qcom,entry-name = "master-kernel";
+> +
+> +			#qcom,smem-state-cells = <1>;
+> +		};
+> +
+> +		adsp_smp2p_in: slave-kernel {
+> +			qcom,entry-name = "slave-kernel";
+> +
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +
+> +	smp2p-modem {
+> +		compatible = "qcom,smp2p";
+> +		qcom,smem = <435>, <428>;
+> +
+> +		interrupts = <GIC_SPI 27 IRQ_TYPE_EDGE_RISING>;
+> +
+> +		qcom,ipc = <&apcs 8 14>;
+
+You have mboxes for adsp above, what about modem and
+
+> +
+> +		qcom,local-pid = <0>;
+> +		qcom,remote-pid = <1>;
+> +
+> +		modem_smp2p_out: master-kernel {
+> +			qcom,entry-name = "master-kernel";
+> +
+> +			#qcom,smem-state-cells = <1>;
+> +		};
+> +
+> +		modem_smp2p_in: slave-kernel {
+> +			qcom,entry-name = "slave-kernel";
+> +
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +
+> +	smp2p-wcnss {
+> +		compatible = "qcom,smp2p";
+> +		qcom,smem = <451>, <431>;
+> +
+> +		interrupts = <GIC_SPI 143 IRQ_TYPE_EDGE_RISING>;
+> +
+> +		qcom,ipc = <&apcs 8 18>;
+
+... wcnss?
+
+> +
+> +		qcom,local-pid = <0>;
+> +		qcom,remote-pid = <4>;
+> +
+> +		wcnss_smp2p_out: master-kernel {
+> +			qcom,entry-name = "master-kernel";
+> +
+> +			#qcom,smem-state-cells = <1>;
+> +		};
+> +
+> +		wcnss_smp2p_in: slave-kernel {
+> +			qcom,entry-name = "slave-kernel";
+> +
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +
+> [...]
+> +
+> +		restart@4ab000 {
+> +			compatible = "qcom,pshold";
+> +			reg = <0x004ab000 0x4>;
+> +		};
+
+You have PSCI for shutting down, do you actually need this?
+
+> [...]
+> +		blsp_i2c4: i2c@78b8000 {
+> +			compatible = "qcom,i2c-qup-v2.2.1";
+> +			reg = <0x078b8000 0x500>;
+> +			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>,
+> +				 <&gcc GCC_BLSP1_AHB_CLK>;
+> +			clock-names = "core", "iface";
+> +			dmas = <&blsp1_dma 10>, <&blsp1_dma 11>;
+> +			dma-names = "tx", "rx";
+> +			pinctrl-0 = <&i2c4_default>;
+> +			pinctrl-1 = <&i2c4_sleep>;
+> +			pinctrl-names = "default", "sleep";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		blsp_i2c5: i2c@7af5000 {
+
+Please use a full label here with the BLSP number and QUP instance
+(&blspX_i2cY). This corresponds to the name of the clock, so this node
+is actually
+
+> +			compatible = "qcom,i2c-qup-v2.2.1";
+> +			reg = <0x07af5000 0x600>;
+> +			interrupts = <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc GCC_BLSP2_QUP1_I2C_APPS_CLK>,
+
+... &blsp2_i2c1.
+
+I guess the current naming is taken from downstream, but I think they
+just assigned consecutive numbers to all the QUP instances they needed.
+This will cause headaches in the future if someone wants to add an
+instance that wasn't used by QC in the reference designs.
+
+> +				 <&gcc GCC_BLSP2_AHB_CLK>;
+> +			clock-names = "core", "iface";
+> +			dmas = <&blsp2_dma 4>, <&blsp2_dma 5>;
+> +			dma-names = "tx", "rx";
+> +			pinctrl-0 = <&i2c5_default>;
+> +			pinctrl-1 = <&i2c5_sleep>;
+
+&blsp2_i2c1_default/sleep for clarity
+
+> +			pinctrl-names = "default", "sleep";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		blsp_spi6: spi@7af6000 {
+
+&blsp2_spi2
+
+> +			compatible = "qcom,spi-qup-v2.2.1";
+> +			reg = <0x07af6000 0x600>;
+> +			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc GCC_BLSP2_QUP2_SPI_APPS_CLK>,
+> +				 <&gcc GCC_BLSP2_AHB_CLK>;
+> +			clock-names = "core", "iface";
+> +			dmas = <&blsp2_dma 6>, <&blsp2_dma 7>;
+> +			dma-names = "tx", "rx";
+> +			pinctrl-0 = <&spi6_default>;
+> +			pinctrl-1 = <&spi6_sleep>;
+
+&blsp2_spi2_default/sleep
+
+> +			pinctrl-names = "default", "sleep";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> [...]
+> +		timer@b120000 {
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+> +			compatible = "arm,armv7-timer-mem";
+> +			reg = <0x0b120000 0x1000>;
+> +			clock-frequency = <19200000>;
+
+Should be unneeded unless the firmware is broken. Can you try dropping
+it and see if you get a warning in dmesg?
+
+> [...]
+> +		};
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+> +		clock-frequency = <19200000>;
+
+Same here.
+
+Thanks,
+Stephan
 
