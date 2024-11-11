@@ -1,135 +1,147 @@
-Return-Path: <devicetree+bounces-120909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7181E9C48D4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 23:10:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 619269C48C2
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 23:06:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22537B2BB22
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 21:39:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B352BB326A2
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 21:44:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D581BBBE4;
-	Mon, 11 Nov 2024 21:39:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40221BCA01;
+	Mon, 11 Nov 2024 21:41:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="IzZ7oBQO"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="JakcHvMD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7C341ACDE7;
-	Mon, 11 Nov 2024 21:39:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 889D61AA7AF;
+	Mon, 11 Nov 2024 21:41:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731361158; cv=none; b=H0izaI4Ej1GCzTOybt4Wu2x7KmI8uYA/kSb3D7JkWtb3eMf97ejiZ0Kc/pk8TEeONZ3Kg38+gdfmUuqnrRceb4XmiFxCBBHUqp4U6LgieyeHAGFrUBsKp8r4uSB3+VgHXMzRMcTztW8ZYNskZi8nmhODrpVLI6X1cf0Vy7rryk4=
+	t=1731361302; cv=none; b=E0O14foaW9wIAhQdIS4zGFgkKy3/+yDzhvZ3goSrzslN4RwnqTmJ29b/MdF44kPSbVYFs2QQZIA6cMW33rQB39a7SvzZx2CQvzXUpTZfbCT3KFbi7F6fgUPLdU654MuC65pYF24YeplVWqZBtPHFAda/kse9QU/vB4NwZ6j1cEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731361158; c=relaxed/simple;
-	bh=k9fi/wMt05QJl0EOikn4hjFaFoyDi5Lzu8k77A/z9Vg=;
+	s=arc-20240116; t=1731361302; c=relaxed/simple;
+	bh=rAnzzK5zdRKn2L0gzXe9C5T7wps3+4L97bJig/V80l4=;
 	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:
-	 In-Reply-To:References:Date; b=Z1IjIsqbLHSSlcZb0vaClSPM05hmMaly2xAMJ+CDKxOahhjc3a8IVZ63wGCW3bXmxuYi38qtgUpaV8VqehIkpzX5k1DeZo1H2i21qUe3M4nYvGGA7X47au/Ka7bSkSUA843wAhqhrYTaDsqu/h9r+S6jmAE42RoXQ3uS+BgUJz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=IzZ7oBQO; arc=none smtp.client-ip=212.227.17.20
+	 In-Reply-To:References:Date; b=HWbMSIm/5XMxJvz1n8qrCQl7gCA1nA5XJzNpuiE5NzdGOeflpwfmm/UKoyfvl79zBOfQhgKA4acalBkouMsSwRFJETRQHaHY6b78CskZ4XWB17Df41yWOS+foGxRRdR96onfPhLJyD8IEB4+WutoVBsf3ZfJql5Du16W5NgTLc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=JakcHvMD; arc=none smtp.client-ip=212.227.17.21
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1731361135; x=1731965935; i=frank-w@public-files.de;
-	bh=k9fi/wMt05QJl0EOikn4hjFaFoyDi5Lzu8k77A/z9Vg=;
+	s=s31663417; t=1731361279; x=1731966079; i=frank-w@public-files.de;
+	bh=6aJ7+7tAZ00QWBqGIx3TLXHhs8RBVJf18eC8WQggc1I=;
 	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
 	 Content-Type:In-Reply-To:References:Date:
 	 Content-Transfer-Encoding:cc:content-transfer-encoding:
 	 content-type:date:from:message-id:mime-version:reply-to:subject:
 	 to;
-	b=IzZ7oBQOyEiCrH8prKN3AoowZ+tzYyhgKeLfodvK3Us+ijPIy+lGQaDfKLBHHpGx
-	 L9kZ48UpR+vQvTdxj+MCBx4EWixuiLaqy+GZWgA73QT7cu6B3rvVC+b9XwICAjZSX
-	 YYVByP6c7aSrTKKq3gaexYRLR81+UL1SKC79G2Ohgtp8P7TnZGiY3v1FdAh4ovW6W
-	 S8cKbdlxTQfLzvSnRif2hIw6BJJlg/f5BmDlgw6i5LTY350u9HpOwSPJe3lsr0fVx
-	 MzRtIrAEcJLdM7wf1kmBMAK149oRPiSQfpnRZJvZ9F+CxmhBMJL/eN1GRDqQKQlsV
-	 ED0jYQw7HoUfvn3l/Q==
+	b=JakcHvMDEcpFlELbXSTKoXlcb5SwyEHL0MxwTh+Z/5lArev21g99vCVHIKJVKack
+	 wVGZNxyhco+frD3tEdR/Tb27phfJjAL/lOjK2a3R0UTOgz1m9Tqc1l3Gu7lm6fbK9
+	 KLzJzWeYTEiEENUG8eLQuqkXmFVrslUzL01S5U20PDqwEOdI/6dq7pjN+As3Uw7SJ
+	 KY94cHFUFy2txQWC4lfIgp5SGT0HxtOqF0JA6y9WCOhx/Vs+1YD0yAAD9IHUts403
+	 CLoPotKo3JiKLJ4SovYkGtc0TNVfiHfRDfs7qGmUuXA/QS3kVujmKJYa0IOQheWQm
+	 muFvbbsfYxAP/RMeKA==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from [217.61.144.196] ([217.61.144.196]) by
- trinity-msg-rest-gmx-gmx-live-67cd9ff8f8-2ghzq (via HTTP); Mon, 11 Nov 2024
- 21:38:55 +0000
+ trinity-msg-rest-gmx-gmx-live-67cd9ff8f8-qxw8q (via HTTP); Mon, 11 Nov 2024
+ 21:41:19 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-eac86f41-95be-444f-b081-796766a36d74-1731361135346@trinity-msg-rest-gmx-gmx-live-67cd9ff8f8-2ghzq>
+Message-ID: <trinity-57bdaab7-5f4f-463d-9657-377ccfe7df25-1731361278993@trinity-msg-rest-gmx-gmx-live-67cd9ff8f8-qxw8q>
 From: Frank Wunderlich <frank-w@public-files.de>
 To: robh@kernel.org, linux@fw-web.de
-Cc: dlemoal@kernel.org, cassel@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
- sebastian.hesselbarth@gmail.com, linux@armlinux.org.uk,
- hdegoede@redhat.com, axboe@kernel.dk, linux-ide@vger.kernel.org,
+Cc: broonie@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+ leilk.liu@mediatek.com, linux-spi@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Aw: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditional
- failed
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Aw: Re: [PATCH] dt-bindings: spi: add compatibles for mt7988
 Content-Type: text/plain; charset=UTF-8
-In-Reply-To: <20241111203611.GB1887580-robh@kernel.org>
+In-Reply-To: <20241111203803.GA1917413-robh@kernel.org>
 Importance: normal
-References: <20241109094623.37518-1-linux@fw-web.de>
- <20241109094623.37518-2-linux@fw-web.de>
- <20241111203611.GB1887580-robh@kernel.org>
-Date: Mon, 11 Nov 2024 21:38:55 +0000
+References: <20241109105029.52748-1-linux@fw-web.de>
+ <20241111203803.GA1917413-robh@kernel.org>
+Date: Mon, 11 Nov 2024 21:41:19 +0000
 Sensitivity: Normal
 X-Priority: 3
 X-UI-CLIENT-META-MAIL-DROP: W10=
-X-Provags-ID: V03:K1:lZR0DvsH3QX1w4bKctCowevKaTXuw4Ks9EBIr2FuJm2doKGM884LhonhVb8nA2lv5ILF5
- f7N7GMRSrRZwrTC8GMLJ3Q8qkVVevozVl3WYlcAZ5tG2WxptRB6HGt964d/Y3lotAh7Wp2U77o7I
- jp1UNl1j0T4tD/9cjCiOeWiaSDw99XPXBoT75DkcDMn0JWLQ3Xm2xz+VzmLjR0GtAI0rDrNUGy0G
- cZ+2lwLxIUABcArbWOwOLv96kRmBm4wq4kVQJo7g06KjZj0zDqYQM9dMxa9oIWOLO129Ovnuda/z
- qJ79hHbvkOVg2cAo8EW5+EuPfda0hmPdyKavi1rfjMw9ypQKKoPOjzWtzqJ6CNWOAw=
+X-Provags-ID: V03:K1:lhWuv2tYMHpt7DO7Z/Dm56Q7NZVx3nihPbPFXJJSEf5DPtX75eGDbSyV4XaE9W5I2YcGW
+ WKtcggTre7VQtvMYnR0+UCnrmrQqQ4YDQglMCWGW0SLXrWdy0kNMJqDC8k2ifbJmS6+Aiw42glBb
+ z88/SvPlEczxqExLblIRyHVbcn9fPdCDh7zMIG3OFQKqUjJufbGxQl/jVL2LZwbFd1nRejHbCcPP
+ myMMaooIhnQZZjzPlOpCrf5jc+WwQ2Kvve7SGPImdsQqzVSYYUUT5aWX/CmTaW9npY63ELcrMwfu
+ jRG5SbNgmAWLsy9JZImnJh43koRoozoCZ0Z7vVBrYArvOeMMjdFlUcJs5VeXi6IEXc=
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:nKyzwVksTyQ=;xsBUYsyaU+Khx5EKGnKqsTpKBJ+
- 4EOGZ9kt9eJt4K4wvxj03PJ3hU9VnZQSoJEC4H5LygCPdpz5gpBetVqQ3CdlYk3yM8cFo63hk
- HZnBrBpnn7tnIsJSanrudi/Q5psnqmApnwu0BoV5lYKzRHQqWr7ondBeblc8qwYhWgQhCkuPj
- rWzQvDdQ0nNN0xYwin6HMpBPqPbPFSknn+TlIlnt6NSq2d7RxgeRHsnjwNMg/gvTxz/w3Ydju
- wwJKOwDvv3EaKefgbcZLW143Ikrn/jT4RyzMaIKLwBDvWIj4xAz8YHWFg1AmcANWdad0oCsM/
- WDlbZnqNqVDFaiuMUARgp1qlFjtIB2P7VYuML7t6F03BJQsDDErDhO+anUjclENCH2X744yMF
- o56RAWYpv4+AR1DkeTspOYqCF2KnswZgLAJTuOu2c1MUrfspuCjLTG2NXvE8XdFWeAHHE2KTD
- KZGnxQlTeXVDjSXhEJ/9x/DP5R6+gER5i9DIR4a2Lapp1K3cxLRcySeM3o3I4u1xCHvKXczp7
- k5Zj8Pnv00lvZ2VPVohAc0DYSQkZo9uxURT6psmhKaz2Mo9CBCaqyabdskzNNSg0nwFe03qn6
- ayHThBl+wiYNJfDKifTt9VEFxs2bwy9pLvLMvHtezwcccW4RaE2Iy7ZcGVmNXYPPpkBQlfE47
- s+y+vsxpLKtrMhE5qbNa+peJx1ixRvqWx09pMGbdIA==
+UI-OutboundReport: notjunk:1;M01:P0:2iLa3uBn1KI=;niY7MlI2EUB5Nlxhv6aaM1TMYCo
+ 55wGD8AOhwrMB31IDL4MsTkyZk1d9UybNK9Z34MaSrpVRzXjE6VH7YrMG+UBgghcJc5zmK+Af
+ 4VgYUDbUQ3bMAmF4mBX5W1dZ7ugyfOcOYsdPoZvycG0k308wrinC/IloXV1/fBDiodJ0mtTK/
+ SavEaYcVK9pyhEBo4jm7F4wVeazCuvCaArYi/trYAtCo4CPb8RsDYLmX2wmM9Tt3d4CAmpW0Q
+ kqd0mR6GnsnLAvd3bm4Gu+wZLWXlIcFORGVwC1WIXFsh4PHqbPulLmVkqnVqmlzRFPV2ZzUpM
+ z2ch847wRtPVyehjJajW7ofxfvPV/Twev297EDbF6jq3yEr01HYOIWrzB/PUB5SD/uBGlK49/
+ UCDocskb7i9mpjTB78NA63q2pGop5l6JLhn0GLGulLEFYLEw9Yd3Lr8kvychbpQu9tYJo+d8s
+ krnaQh1Lpc/I2fHYq+6T3Aqc2sTxhL7/NnBH0fIt1Duoiw0RfV6WgAwWs6GUwq2XbcypIIkZA
+ h0c+6h0fjpaREmRQoV1VmoTyJ4J6bfkFP3Tx/eZhHApLduWQxSlPorx5vMdy0br0+TfNhqueV
+ JiApG+yF5EUWqOc/DIkMJ4nVBOeKufHUeSW/1urz8s4j8y+nRyZUt9Szxy0fY7d25gyiy+xr+
+ c/2j4p6lSFwRQB4S1HcTESkgSk0S1weiffTTgTUKUw==
 Content-Transfer-Encoding: quoted-printable
 
-&gt; Gesendet: Montag, 11. November 2024 um 21:36
+&gt; Gesendet: Montag, 11. November 2024 um 21:38
 &gt; Von: "Rob Herring" <robh@kernel.org>
 &gt; An: "Frank Wunderlich" <linux@fw-web.de>
-&gt; CC: "Damien Le Moal" <dlemoal@kernel.org>, "Niklas Cassel" <cassel@ke=
-rnel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <con=
-or+dt@kernel.org>, "Andrew Lunn" <andrew@lunn.ch>, "Gregory Clement" <greg=
-ory.clement@bootlin.com>, "Sebastian Hesselbarth" <sebastian.hesselbarth@g=
-mail.com>, "Russell King" <linux@armlinux.org.uk>, "Frank Wunderlich" <fra=
-nk-w@public-files.de>, "Hans de Goede" <hdegoede@redhat.com>, "Jens Axboe"=
- <axboe@kernel.dk>, linux-ide@vger.kernel.org, devicetree@vger.kernel.org,=
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-&gt; Betreff: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditiona=
-l failed
+&gt; CC: "Mark Brown" <broonie@kernel.org>, "Krzysztof Kozlowski" <krzk+dt=
+@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Matthias Brugger" <ma=
+tthias.bgg@gmail.com>, "AngeloGioacchino Del Regno" <angelogioacchino.delr=
+egno@collabora.com>, "Frank Wunderlich" <frank-w@public-files.de>, "Leilk =
+Liu" <leilk.liu@mediatek.com>, linux-spi@vger.kernel.org, devicetree@vger.=
+kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead=
+.org, linux-mediatek@lists.infradead.org
+&gt; Betreff: Re: [PATCH] dt-bindings: spi: add compatibles for mt7988
 &gt;
-&gt; On Sat, Nov 09, 2024 at 10:46:19AM +0100, Frank Wunderlich wrote:
+&gt; On Sat, Nov 09, 2024 at 11:50:28AM +0100, Frank Wunderlich wrote:
 &gt; &gt; From: Frank Wunderlich <frank-w@public-files.de>
+&gt; &gt;
+&gt; &gt; MT7988 has 2 different spi controllers. Add their compatibles.
+&gt; &gt;
+&gt; &gt; Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+&gt; &gt; ---
+&gt; &gt;  Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml =
+| 2 ++
+&gt; &gt;  1 file changed, 2 insertions(+)
+&gt; &gt;
+&gt; &gt; diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-=
+mt65xx.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.ya=
+ml
+&gt; &gt; index e1f5bfa4433c..ed17815263a8 100644
+&gt; &gt; --- a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.=
+yaml
+&gt; &gt; +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.=
+yaml
+&gt; &gt; @@ -35,6 +35,8 @@ properties:
+&gt; &gt;            - enum:
+&gt; &gt;                - mediatek,mt7981-spi-ipm
+&gt; &gt;                - mediatek,mt7986-spi-ipm
+&gt; &gt; +              - mediatek,mt7988-spi-quad
+&gt; &gt; +              - mediatek,mt7988-spi-single
+&gt; &gt;                - mediatek,mt8188-spi-ipm
+&gt; &gt;            - const: mediatek,spi-ipm
 &gt;
-&gt; Thanks for reviving these.
-&gt;
-&gt; &gt; after converting the ahci-platform binding to yaml the following=
- files
-&gt; &gt; reporting "'anyOf' conditional failed" on
-&gt;
-&gt; Here and the subject, "fixing anyOf" isn't very specific and is just =
-an
-&gt; implementation detail of the schema. "Add missing required 'phys'
-&gt; property" would be more exact.
+&gt; Does the fallback make sense for both? Is there some common subset of
+&gt; functionality where they are the same?
 
-imho it does not match what patch does...i do not add required phys...i ju=
-st disable the nodes and enable them only where phys is set.
+currently they work only with the fallback compatible, but we see in SDK t=
+hat there are 2 types...in SDK non-soc specific compatibles are used which=
+ was rejected last time.
 
 &gt; Rob
-&gt; </frank-w@public-files.de></axboe@kernel.dk></hdegoede@redhat.com></f=
-rank-w@public-files.de></linux@armlinux.org.uk></sebastian.hesselbarth@gma=
-il.com></gregory.clement@bootlin.com></andrew@lunn.ch></conor+dt@kernel.or=
-g></krzk+dt@kernel.org></cassel@kernel.org></dlemoal@kernel.org></linux@fw=
--web.de></robh@kernel.org>
+&gt; </frank-w@public-files.de></frank-w@public-files.de></leilk.liu@media=
+tek.com></frank-w@public-files.de></angelogioacchino.delregno@collabora.co=
+m></matthias.bgg@gmail.com></conor+dt@kernel.org></krzk+dt@kernel.org></br=
+oonie@kernel.org></linux@fw-web.de></robh@kernel.org>
 
