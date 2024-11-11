@@ -1,207 +1,110 @@
-Return-Path: <devicetree+bounces-120791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A26D79C42AB
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:31:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F1889C42CB
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:41:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 635D2280ED7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 16:31:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11EAF1F21CCE
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 16:41:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F7B1A08A3;
-	Mon, 11 Nov 2024 16:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3605E1A263F;
+	Mon, 11 Nov 2024 16:40:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b="V5PhpvXo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SMt+8H06"
 X-Original-To: devicetree@vger.kernel.org
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8806819C575;
-	Mon, 11 Nov 2024 16:30:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE1EF1A0B13;
+	Mon, 11 Nov 2024 16:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731342657; cv=none; b=GTCExmJqgetgL9Yi7yMZSJlMyqbZFWQxFuzD8EHuFn/cPdUqWJdewVanwlrzWNX0+C/S+OHYOBsLyA4ciHTO577RYk77snyzK44R4EbRuGUmxbGyuqLjZ3iNbYtfv2OdYpfIKMV2NmU1M2AsarZdjo6DlzJvrEqGSV0MghqY8Fc=
+	t=1731343232; cv=none; b=MRqnJ6XiKjKtY9nNarI6/k3HODRTYtZXvsGLClIm/QbauV7UXvRsAvRURi8c96ldRJTTWPK486C5vFnRPb0/kjTJ/x40mVEiV5rkIKgBB42YHgaKAjQMpQglIPcrUHk5HZK8N7PPJmwUJqUo9EVWtUVPH38fgO1zR5pgJvqDZQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731342657; c=relaxed/simple;
-	bh=+x8bnIxKFSLgLd0LiO4UJ5+z4gmDHKrgkS3pxB6CIcE=;
+	s=arc-20240116; t=1731343232; c=relaxed/simple;
+	bh=4+LfvrNrOJzDJzYO94ZEFGs1qWzyzDFuwT9KH8sin3s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M9ruMw5zgzb3ZX1cSXC0M953PD+S7htW4KIzmqXFvPtAK7HoAHr6+Ld163/WFxeENU0ukCLkMyTf/S0KBQMBepsQRr/mdOrV4w6kke7dIh2lOzA5FvDGREz0WhVRi1PcOlurHZo3+bwYKxRRz6YeuzBybWfLZz7SENzL4fqIQzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net; spf=pass smtp.mailfrom=weissschuh.net; dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b=V5PhpvXo; arc=none smtp.client-ip=159.69.126.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=weissschuh.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
-	s=mail; t=1731342651;
-	bh=+x8bnIxKFSLgLd0LiO4UJ5+z4gmDHKrgkS3pxB6CIcE=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=lt7jsKWyzx2mKtW1CCvnRGjdrL4afPW1s5Sil2PlXpDa8kOzDwAEBp2JVYh6DyiO5CeKO/BkbE5cXgjfU0shxHwOsIkF0xDo/0seQSvPje+LRx2LRWgkU+fLVv+mHpgoNuvk+8gj9+/G6c9q3uT8ogFM0xJkS/Att5h9SucVYf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SMt+8H06; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A88BC4CECF;
+	Mon, 11 Nov 2024 16:40:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731343231;
+	bh=4+LfvrNrOJzDJzYO94ZEFGs1qWzyzDFuwT9KH8sin3s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V5PhpvXoJi6Mra+JvR4Eg+IKph3+MR9f/gberukS05wwjidHQUIK0FqSI/pZhmfuQ
-	 JezkGkYvRViJxjXucl5DxB1pN/m/Aw/S4jnp0dro8nrt7adguYUogAw3Xv1K5X34LH
-	 rpABCe6qEcZtOSG+HsWHepf8K1K29uEmxK+B5O2Q=
-Date: Mon, 11 Nov 2024 17:30:51 +0100
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@weissschuh.net>
-To: Sung-Chi <lschyi@chromium.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Guenter Roeck <groeck@chromium.org>, 
-	Jean Delvare <jdelvare@suse.com>, devicetree@vger.kernel.org, chrome-platform@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v2] hwmon: (cros_ec) register thermal sensors to thermal
- framework
-Message-ID: <a469852b-4cbd-467c-89de-b1acf6de1402@t-8ch.de>
-References: <20241111074904.1059268-1-lschyi@chromium.org>
- <20241111095045.1218986-1-lschyi@chromium.org>
+	b=SMt+8H06+j+UMFnKWqdWYpA/uT0dG5C32IVkPJFy1ekeDpFk/xR3CP19Bas/1t/HQ
+	 HIGWbBx78ZPGrWAA1EMeBKidsMpzoBFLN4Xvj4evuMC2bwtwpvyv2McSfZyxFS7eq+
+	 vlSAD0fCzCgCbZHDUFrPMoNRCFi/VRY+YgVU5QpcdDRbe8+cBz0kDx/2Yl1czjc0xO
+	 SuBfQMWBaqi2nLzFN4i9aiBK0r3cdDSLyj8lv2mpkur8WkwW3u/WWdZCjsFKRS84Y/
+	 Q2JOn4aJALdnlrPXu8mnW5P5sNdg+zkwiIAFs9g8LbOO48J+I35rggVV3eQdHJ4iTW
+	 0cyGV/M5pj5LA==
+Date: Mon, 11 Nov 2024 16:40:24 +0000
+From: Lee Jones <lee@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Stanislav Jakubek <stano.jakubek@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] dt-bindings: mfd: sprd,sc2731: reference
+ sprd,sc2731-efuse bindings
+Message-ID: <20241111164024.GC8552@google.com>
+References: <efd200c3b5b75405e4e450d064b026f10ae2f8e0.1730709384.git.stano.jakubek@gmail.com>
+ <cd8cc95b59c31418b174bba521dd2599a7929fda.1730709384.git.stano.jakubek@gmail.com>
+ <20241106090509.GL1807686@google.com>
+ <20241107155806.GA2774753-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241111095045.1218986-1-lschyi@chromium.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241107155806.GA2774753-robh@kernel.org>
 
-On 2024-11-11 17:50:30+0800, Sung-Chi wrote:
-> From: "Sung-Chi, Li" <lschyi@chromium.org>
+On Thu, 07 Nov 2024, Rob Herring wrote:
+
+> On Wed, Nov 06, 2024 at 09:05:09AM +0000, Lee Jones wrote:
+> > On Mon, 04 Nov 2024, Stanislav Jakubek wrote:
+> > 
+> > > Directly reference the sc2731-efuse bindings to simplify the schema.
+> > > Remove the duplicate example from the efuse bindings.
+> > > 
+> > > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> > > ---
+> > > Changes in V3:
+> > > - new patch due to a missing dependency in the MFD tree 
+> > > 
+> > > Link to V2: https://lore.kernel.org/lkml/ZyExK01iprBHhGm6@standask-GA-A55M-S2HP/
+> > > Link to V1: https://lore.kernel.org/lkml/Zr3X1RoQs7ElTnlJ@standask-GA-A55M-S2HP/
+> > > 
+> > >  .../devicetree/bindings/mfd/sprd,sc2731.yaml  | 10 +------
+> > >  .../bindings/nvmem/sprd,sc2731-efuse.yaml     | 29 -------------------
+> > 
+> > Srini, you happy for this to go in via MFD?
 > 
-> cros_ec hwmon driver probes available thermal sensors when probing the
-> driver.  Register these thermal sensors to the thermal framework, such
-> that thermal framework can adopt these sensors as well.
-
-The driver also supports fan readings. These could also be wired up as
-cooling devices.
-
-> To make cros_ec registrable to thermal framework, the cros_ec dts need
-> the corresponding changes:
+> Can you? AIUI, you don't have nvmem/sprd,sc2731-efuse.yaml in your tree.
 > 
-> &cros_ec {
-> 	#thermal-sensor-cells = <1>;
-> };
+> So take patch 1 now and this one will have to go next cycle.
 
-If this is the only thing that is meant to be configured I'm wondering
-why the OF variant is needed in the first place.
-Why not register a non-OF thermal device?
+Works for me.
 
-Please send the next revision also to the maintainers of the THERMAL
-subsystem so we can figure out the most correct way forward.
-
-> Change-Id: I29b638427c715cb44391496881fc61ad53abccaf
-> Signed-off-by: Sung-Chi, Li <lschyi@chromium.org>
-> ---
->  Changes in v2:
->    - Rename `cros_ec_sensor_data` to `cros_ec_hwmon_thermal_zone_data`.
->    - Rename `addr` in struct `cros_ec_hwmon_thermal_zone_data` to `idx`.
->    - Use `cros_ec_hwmon_temp_to_millicelsius` to do value conversion in 
->      `cros_ec_thermal_get_temp` function.
->    - Rename `cros_ec_thermal_get_temp` to `cros_ec_hwmon_thermal_get_temp` to
->      make `cros_ec_hwmon` a prefix.
->    - Use `%pe` in `cros_ec_hwmon_probe_temp_sensors` when printing out
->      `data->tz_dev` if failed register thermal device.
->    - Remove `cros_ec_hwmon_remove`, and the `.remove` value in
->      `cros_ec_hwmon_driver` since there is no need to call
->      `devm_thermal_of_zone_unregister` for clean up.
->    - Revert function signature of `cros_ec_hwmon_probe_temp_sensors` since all
->      needed parameters are presented.
->    - Revert include of `linux/list.h` because no list data structure is used.
-> ---
->  drivers/hwmon/cros_ec_hwmon.c | 41 +++++++++++++++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
-> 
-> diff --git a/drivers/hwmon/cros_ec_hwmon.c b/drivers/hwmon/cros_ec_hwmon.c
-> index 5514cf780b8b..81e563e0455f 100644
-> --- a/drivers/hwmon/cros_ec_hwmon.c
-> +++ b/drivers/hwmon/cros_ec_hwmon.c
-> @@ -12,6 +12,7 @@
->  #include <linux/platform_device.h>
->  #include <linux/platform_data/cros_ec_commands.h>
->  #include <linux/platform_data/cros_ec_proto.h>
-> +#include <linux/thermal.h>
->  #include <linux/types.h>
->  #include <linux/units.h>
->  
-> @@ -23,6 +24,12 @@ struct cros_ec_hwmon_priv {
->  	u8 usable_fans;
->  };
->  
-> +struct cros_ec_hwmon_thermal_zone_data {
-> +	struct cros_ec_device *cros_ec;
-> +	struct thermal_zone_device *tz_dev;
-> +	int idx;
-> +};
-> +
->  static int cros_ec_hwmon_read_fan_speed(struct cros_ec_device *cros_ec, u8 index, u16 *speed)
->  {
->  	int ret;
-> @@ -185,11 +192,30 @@ static const struct hwmon_chip_info cros_ec_hwmon_chip_info = {
->  	.info = cros_ec_hwmon_info,
->  };
->  
-> +static int cros_ec_hwmon_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
-> +{
-> +	struct cros_ec_hwmon_thermal_zone_data *data =
-> +		thermal_zone_device_priv(tz);
-> +	int ret;
-> +	u8 val;
-> +
-> +	ret = cros_ec_hwmon_read_temp(data->cros_ec, data->idx, &val);
-> +	if (ret || cros_ec_hwmon_is_error_temp(temp))
-> +		return -ENODATA;
-> +	*temp = cros_ec_hwmon_temp_to_millicelsius(val);
-> +	return 0;
-> +}
-> +
-> +static const struct thermal_zone_device_ops thermal_ops = {
-
-Symbol still needs namespacing.
-
-> +	.get_temp = cros_ec_hwmon_thermal_get_temp,
-> +};
-> +
->  static void cros_ec_hwmon_probe_temp_sensors(struct device *dev, struct cros_ec_hwmon_priv *priv,
->  					     u8 thermal_version)
->  {
->  	struct ec_params_temp_sensor_get_info req = {};
->  	struct ec_response_temp_sensor_get_info resp;
-> +	struct cros_ec_hwmon_thermal_zone_data *data;
->  	size_t candidates, i, sensor_name_size;
->  	int ret;
->  	u8 temp;
-> @@ -216,6 +242,21 @@ static void cros_ec_hwmon_probe_temp_sensors(struct device *dev, struct cros_ec_
->  		priv->temp_sensor_names[i] = devm_kasprintf(dev, GFP_KERNEL, "%.*s",
->  							    (int)sensor_name_size,
->  							    resp.sensor_name);
-> +
-> +		data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +		if (!data)
-> +			continue;
-> +
-> +		data->idx = i;
-> +		data->cros_ec = priv->cros_ec;
-> +		data->tz_dev = devm_thermal_of_zone_register(
-> +			priv->cros_ec->dev, i, data, &thermal_ops);
-
-Doesn't this also automatically create new hwmon device off of the
-thermal device? That shouldn't happen.
-
-In general I'm not sure how the hwmon and thermal subsystems are meant
-to interact. Is one recommended over the other?
-Should the driver become a first-class thermal driver and use the
-automatic hwmon functionality?
-
-> +		if (IS_ERR_VALUE(data->tz_dev)) {
-> +			dev_err(dev,
-> +				"failed to register %zu thermal sensor, err = %pe",
-> +				i, data->tz_dev);
-
-If !CONFIG_OF || !CONFIG_THERMAL this will always log an error.
-EOPNOTSUP should not trigger that logging.
-
-> +			continue;
-> +		}
->  	}
->  }
->  
-> -- 
-> 2.47.0.277.g8800431eea-goog
-> 
+-- 
+Lee Jones [李琼斯]
 
