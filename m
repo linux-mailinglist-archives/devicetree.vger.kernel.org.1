@@ -1,206 +1,156 @@
-Return-Path: <devicetree+bounces-120825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E2C09C44E2
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:22:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D755B9C44F0
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:27:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8C581F25D14
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 18:22:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99825282DCE
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 18:27:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C17621A725A;
-	Mon, 11 Nov 2024 18:22:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4571AA79E;
+	Mon, 11 Nov 2024 18:27:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="P+dWOpS4"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="IEQp9E1O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-25.smtpout.orange.fr [80.12.242.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7E791A76CC;
-	Mon, 11 Nov 2024 18:22:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754CF1AA1E6;
+	Mon, 11 Nov 2024 18:27:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731349329; cv=none; b=dA1FBmbQet64bHeEkOgsQti0/P6lLMly9qdEfE6i4eNNEOVaaQx+3aHjfqfiiylfIvvAC+kMs9PrdlW4ObQ5zQ+iHwSpfaYtollZSTVucdpVxIHM2SplfQmmEBjcbwDFQZAkP8ESvbHw1ZuLlwEn2oMup6P5hIpHrXVjuV4qf8M=
+	t=1731349635; cv=none; b=FTARXYhPIkxJyurSasUb430j0ltHZLtx9cO6wZedHLrBBi32OXuMEbUiHR7PlwV7BKJhq4/TiqJsYr0NXFyJ69GvzoQKfzG//L4aelmdeUXAeptXcxHLwCEInqeZUQ3akJQJOX5bstkUsE6z8OWBhYLxvJiTR5nWv4jWCo1D9HY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731349329; c=relaxed/simple;
-	bh=PutfDBf0Mx9OWmqvjfRpMgbqwDTWo42qlTELEX0R0Bk=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=quPlH53d3W8dLUAl931rr5lyT//1FURdjAgngW6Mym0ckyiLHa+9dBl8DEPMnd+AQvgnGvHjdZEOz2w1fAL+JtJO9JSToEjJkVpRxA6F3ECBtYxuv6+cJprwYgRJXtnnqryNyqJcwwkz00wViUPG/osUJa8xxJpCuhoZzq0l5ZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=P+dWOpS4; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 49EFE1C0005;
-	Mon, 11 Nov 2024 18:22:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1731349324;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=m5qBMJyupmVmP3WenwgqG6fxdPxLJkkXl5JQ5DHXwD0=;
-	b=P+dWOpS4lvwV7ml2Qfzzvid2JahTF5umrRz6pPlZxfoDSVN7P7RBPC5/L1AoCYDmEGs0z6
-	GdDwxm/e9vaPg8V5YM6NfeSx4yMOUgh42kO+kgWriWfrwiFd8aP0fwgcKoIOcEyJxICjcT
-	cZdji2E5SwsT6f8SzmW7zJzfOPv0P2496z5WA7e+5h4ZOpCkf1LCJdaCVT24l8Wngjqc2Y
-	mYK/iiOEOP4qlB4TdWuml/EGZm+obhm5ZNr5y9qhERlkvscEShimeq1nJc5xtuWmMyZEUI
-	BoLHmgJDkaqq/JTSpjMR3HbpocvPW8UvZmSp4xJEkexDK7lIJ+dgKPl/tg/hnw==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Hui-Ping Chen <hpchen0nvt@gmail.com>
-Cc: richard@nod.at,  vigneshr@ti.com,  robh@kernel.org,  krzk+dt@kernel.org,
-  conor+dt@kernel.org,  nikita.shubin@maquefel.me,  arnd@arndb.de,
-  vkoul@kernel.org,  esben@geanix.com,
-  linux-arm-kernel@lists.infradead.org,  linux-mtd@lists.infradead.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 2/2] mtd: rawnand: nuvoton: add new driver for the
- Nuvoton MA35 SoC
-In-Reply-To: <20241023092617.108021-3-hpchen0nvt@gmail.com> (Hui-Ping Chen's
-	message of "Wed, 23 Oct 2024 09:26:17 +0000")
-References: <20241023092617.108021-1-hpchen0nvt@gmail.com>
-	<20241023092617.108021-3-hpchen0nvt@gmail.com>
-User-Agent: mu4e 1.12.1; emacs 29.4
-Date: Mon, 11 Nov 2024 19:22:02 +0100
-Message-ID: <87y11p1vhx.fsf@bootlin.com>
+	s=arc-20240116; t=1731349635; c=relaxed/simple;
+	bh=H98voKyvWfmFH5FHDNg2+2JwkogOHgxkhhXiO/Lf8BU=;
+	h=Message-ID:Date:MIME-Version:Subject:References:From:Cc:To:
+	 In-Reply-To:Content-Type; b=LuWCfQzPQPbLb7EP6m5/1wjiYaOThIW149JZYYMdcsZLEQyQ+lkyFOU1MQ7F1diMsaCqBbZzDZn039wRJMUmnVi1+JB84OA+EwR8T9k6xqSSjuScpB3M3oS7wWLFjRWtex1uPqr/bi5cP8Odd3jztjosygFicNf5FCfaRnaTqKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=IEQp9E1O; arc=none smtp.client-ip=80.12.242.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id AZ81tY9XfYmvZAZ81tRILo; Mon, 11 Nov 2024 19:27:10 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1731349630;
+	bh=6iSNGJIj/L5H1tDzc7I6XRTBhhNW/UI47rF6bdVasZw=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To;
+	b=IEQp9E1OoraT/XXDkJ2xjg1yMoktRcZCUkI5vVAGyWVfR4GuyRP02FWtnd8HdYsP1
+	 sBNmW1yT1PhkEw23gynO6IL5UlUrrFHrwC4ZzJTKgG/ya8uQJuS35A9uOFYztr4NDa
+	 wytQ1iL+dnWKuHcW+xJAErMpFbnqzI4J3agA1ggXbggbg2n3MS+Uxh0aOTHfMRVDUf
+	 7VMxIgT7YEU9XPK22Aa2467xw6xK7QDCfN2OtV1w9IFGQngI6P9CWwmWitZ4ovqRqJ
+	 0/8kPnL7B0eFRTMPBYAdWjxf6K9BSm+IbHA6jYJCQmRvNcX+VD6h/4dUcwsGmTeakU
+	 1TCaeim7tBPkg==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Mon, 11 Nov 2024 19:27:10 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <1a27d9d1-4d18-4495-af15-b48be1f13139@wanadoo.fr>
+Date: Mon, 11 Nov 2024 19:27:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] rtc: pcf2127: Add 'nxp,battery-switchover' DT
+ property to enable battery switch-over
+References: <20241111154144.163604-1-p.rosenberger@kunbus.com>
+ <20241111154144.163604-3-p.rosenberger@kunbus.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: Lino Sanfilippo <l.sanfilippo@kunbus.com>,
+ =?UTF-8?Q?Thomas_B=C3=B6hler?= <t.boehler@kunbus.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Philipp Rosenberger <p.rosenberger@kunbus.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+To: Philipp Rosenberger <p.rosenberger@kunbus.com>
+In-Reply-To: <20241111154144.163604-3-p.rosenberger@kunbus.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hello,
+Le 11/11/2024 à 16:41, Philipp Rosenberger a écrit :
+> The PCF2127, PCF2129, and PCA2129 RTCs have the battery switch-over function
+> enabled by default. However, the newer PCF2131 RTC has the opposite default
+> behavior, requiring explicit enablement for battery backup.
+> 
+> Add support for the `nxp,battery-backed` device tree property to enable battery
+> switch-over in standard mode for the rtc-pcf2127 driver. If this property is set
+> and no battery switch-over mode is already configured, the driver will enable
+> standard mode; otherwise, existing configurations remain unchanged.
+> 
+> Signed-off-by: Philipp Rosenberger <p.rosenberger-pnUOlEj4XnTQT0dZR+AlfA@public.gmane.org>
+> ---
+>   drivers/rtc/rtc-pcf2127.c | 76 +++++++++++++++++++++++++++++++--------
+>   1 file changed, 61 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
+> index 9c04c4e1a49c..c80e31fec134 100644
+> --- a/drivers/rtc/rtc-pcf2127.c
+> +++ b/drivers/rtc/rtc-pcf2127.c
+> @@ -48,6 +48,7 @@
+>   #define PCF2127_BIT_CTRL3_BLF			BIT(2)
+>   #define PCF2127_BIT_CTRL3_BF			BIT(3)
+>   #define PCF2127_BIT_CTRL3_BTSE			BIT(4)
+> +#define PCF2127_BIT_CTRL3_PWRMNG_MASK		(BIT(5) | BIT(6) | BIT(7))
 
-> +static int ma35_nand_attach_chip(struct nand_chip *chip)
+GENMASK(7, 5)?
+
+>   /* Time and date registers */
+>   #define PCF2127_REG_TIME_BASE		0x03
+>   #define PCF2127_BIT_SC_OSF			BIT(7)
+> @@ -529,6 +530,64 @@ static int pcf2127_watchdog_init(struct device *dev, struct pcf2127 *pcf2127)
+>   	return devm_watchdog_register_device(dev, &pcf2127->wdd);
+>   }
+>   
+> +static int pcf2127_battery_init(struct device *dev, struct pcf2127 *pcf2127)
 > +{
-> +	struct ma35_nand_info *nand =3D nand_get_controller_data(chip);
-> +	struct ma35_nand_chip *nvtnand =3D to_ma35_nand(chip);
-> +	struct mtd_info *mtd =3D nand_to_mtd(chip);
-> +	struct device *dev =3D mtd->dev.parent;
-> +	u32 reg;
-> +
-> +	if (chip->options & NAND_BUSWIDTH_16) {
-> +		dev_err(dev, "16 bits bus width not supported");
-> +		return -EINVAL;
-> +	}
-> +
-> +	nvtnand->nchunks =3D mtd->writesize / chip->ecc.steps;
-> +	nvtnand->nchunks =3D (nvtnand->nchunks < 4) ? 1 : nvtnand->nchunks / 4;
-
-This second division looks broken. Also, you probably don't want to do
-that outside of the ON_HOST situation. Finally, you should probably
-update chip->ecc.steps and chip->ecc.size to your final choice.
-
-> +
-> +	reg =3D readl(nand->regs + MA35_NFI_REG_NANDCTL) & (~PSIZE_MASK);
-> +	if (mtd->writesize =3D=3D 2048)
-> +		writel(reg | PSIZE_2K, nand->regs + MA35_NFI_REG_NANDCTL);
-> +	else if (mtd->writesize =3D=3D 4096)
-> +		writel(reg | PSIZE_4K, nand->regs + MA35_NFI_REG_NANDCTL);
-> +	else if (mtd->writesize =3D=3D 8192)
-> +		writel(reg | PSIZE_8K, nand->regs + MA35_NFI_REG_NANDCTL);
-> +
-> +	switch (chip->ecc.engine_type) {
-> +	case NAND_ECC_ENGINE_TYPE_ON_HOST:
-> +		chip->options |=3D NAND_NO_SUBPAGE_WRITE | NAND_USES_DMA;
-
-What is the reason for refusing subpage writes? This is not something
-you can do later, so unless there is a good reason, please do not set
-this flag.
-
-> +		chip->ecc.write_page =3D ma35_nand_write_page_hwecc;
-> +		chip->ecc.read_page  =3D ma35_nand_read_page_hwecc;
-> +		chip->ecc.read_oob   =3D ma35_nand_read_oob_hwecc;
-> +		return ma35_nand_hwecc_init(chip, nand);
-> +	case NAND_ECC_ENGINE_TYPE_NONE:
-> +	case NAND_ECC_ENGINE_TYPE_SOFT:
-> +	case NAND_ECC_ENGINE_TYPE_ON_DIE:
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-
-...
-
-> +static int ma35_nand_chip_init(struct device *dev, struct ma35_nand_info=
- *nand,
-> +				 struct device_node *np)
-> +{
-> +	struct ma35_nand_chip *nvtnand;
-> +	struct nand_chip *chip;
-> +	struct mtd_info *mtd;
-> +	int nsels;
-> +	u32 tmp;
+> +	unsigned int ctrl3;
+> +	unsigned int pwrmng;
 > +	int ret;
-> +	int i;
 > +
-> +	if (!of_get_property(np, "reg", &nsels))
-
-Please convert to device_property_ helpers. And remove the of include
-once you no longer need it.
-
-> +		return -ENODEV;
-> +
-> +	nsels /=3D sizeof(u32);
-> +	if (!nsels || nsels > MA35_MAX_NSELS) {
-> +		dev_err(dev, "invalid reg property size %d\n", nsels);
-> +		return -EINVAL;
-> +	}
-> +
-> +	nvtnand =3D devm_kzalloc(dev, struct_size(nvtnand, sels, nsels),
-> +			      GFP_KERNEL);
-> +	if (!nvtnand)
-> +		return -ENOMEM;
-> +
-> +	nvtnand->nsels =3D nsels;
-> +	for (i =3D 0; i < nsels; i++) {
-> +		ret =3D of_property_read_u32_index(np, "reg", i, &tmp);
-> +		if (ret) {
-> +			dev_err(dev, "reg property failure : %d\n", ret);
-> +			return ret;
-> +		}
-> +
-> +		if (tmp >=3D MA35_MAX_NSELS) {
-> +			dev_err(dev, "invalid CS: %u\n", tmp);
-> +			return -EINVAL;
-> +		}
-> +
-> +		if (test_and_set_bit(tmp, &nand->assigned_cs)) {
-> +			dev_err(dev, "CS %u already assigned\n", tmp);
-> +			return -EINVAL;
-> +		}
-> +
-> +		nvtnand->sels[i] =3D tmp;
-> +	}
-> +
-
-...
-
-> +
-> +	ret =3D mtd_device_register(mtd, NULL, 0);
+> +	/*
+> +	 * Disable battery low/switch-over timestamp and interrupts.
+> +	 * Clear battery interrupt flags which can block new trigger events.
+> +	 * Note: This is the default chip behaviour but added to ensure
+> +	 * correct tamper timestamp and interrupt function.
+> +	 */
+> +	ret = regmap_update_bits(pcf2127->regmap, PCF2127_REG_CTRL3,
+> +				 PCF2127_BIT_CTRL3_BTSE |
+> +				 PCF2127_BIT_CTRL3_BIE |
+> +				 PCF2127_BIT_CTRL3_BLIE, 0);
 > +	if (ret) {
-> +		dev_err(dev, "MTD parse partition error\n");
+> +		dev_err(dev, "%s: interrupt config (ctrl3) failed\n",
+> +			__func__);
 
-probably useless error message?
+dev_err_probe() could be used.
 
-> +		nand_cleanup(chip);
 > +		return ret;
 > +	}
 > +
-> +	list_add_tail(&nvtnand->node, &nand->chips);
+> +	if (!device_property_read_bool(dev, "nxp,battery-backed"))
+> +		return 0;
 > +
-> +	return 0;
-> +}
+> +	ret = regmap_read(pcf2127->regmap, PCF2127_REG_CTRL3, &ctrl3);
+> +	if (ret) {
+> +		dev_err(dev, "%s: read ctrl3 faild\n", __func__);
 
-I believe next iteration should be the one, I'm rather happy with the
-overall look.
+s/faild/failed/
 
-Thanks,
-Miqu=C3=A8l
+dev_err_probe() could be used.
+
+> +		return ret;
+> +	}
+
+...
+
+CJ
+
 
