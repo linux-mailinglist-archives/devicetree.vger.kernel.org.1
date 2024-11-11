@@ -1,135 +1,136 @@
-Return-Path: <devicetree+bounces-120721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CFB99C3CD1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 12:16:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90B1C9C3CFD
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 12:21:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE2F01C216D1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 11:16:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 487D91F22FEA
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 11:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 888AF189521;
-	Mon, 11 Nov 2024 11:16:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 365AB18BB8B;
+	Mon, 11 Nov 2024 11:19:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="RFe5ho+3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZmcGw1wK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F45A154439
-	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 11:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5FA5189BAD
+	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 11:19:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731323775; cv=none; b=LtDLRaC+96f+LiTj8WmD0oQToJNgtQuNnqRftTPFORYlivDx14F2gX8obMvo+EQlTe8KmnjDdXKyIuf9hNm9bazbD2YLx1bXVGqbCe9uKDJRpAekpMsFak8W7rrh3PRH+vgCDs0+ye/ZM3mBHBTwBUuETM46LuOdbGvXDp4hUO8=
+	t=1731323995; cv=none; b=PMZMjmXKphNmzi6AyGr5QrA/F8NCv+kutaYV658BwEumS+zRC9wiW4IBX+KNZwdoG2zTKK2ls2u60iAj0y0soNfZPylJtKHUXN73zVz0d/btIFYWnCPf9oXefvzE9W+mEyiIXRIjOt8ra1o2B5DJHWouFY/08OOauFtseZt+GxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731323775; c=relaxed/simple;
-	bh=driMdGrMh2CQU3EhaccQrwFYyIsDDb/uDW3/8Wb/CZc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mG3aIqxLiAe1jSKOkQCgftGm9hg1IkSSiL3d4uZIk5RxbkDJKF45RZ9l/myhmQepmNwZtOVEHiS0b2pJx68VYqK36WC/yFEFkdxFnlCvhmnsiUD9h43iiIpN90zvitfc6ZXwGjFlMhdIA01F1idh8zbRDg1j+bU3BIkUOOEUF1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=RFe5ho+3; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a9ed7d8d4e0so682201466b.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 03:16:13 -0800 (PST)
+	s=arc-20240116; t=1731323995; c=relaxed/simple;
+	bh=yR0gR1vAjLhs0FBNDgPv2TANgg/seBwdhhtk/Rr/WUY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=mdo7B3bZK0bT/IAqza2f2r0Sd+mFiwnvoH1sJwjLfMpzS4k5lS1JJWDJjm8XZ/IZfO86wBBNyE+3vumT9stv7lxxr2Yl51WRm2gxv243fw4cRLVC1Gpbcq1Lr1zN9yCGReydN9FYo5sDVE8WQ2HhE6NKwDdiCuIQ+mcnCaiCV+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZmcGw1wK; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a9a68480164so655525566b.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 03:19:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1731323772; x=1731928572; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ymcL/BmbTqU8qfDUCoVyraAtY6xWOZahvC7lOWoyBMo=;
-        b=RFe5ho+3CKXVrNqbTNxvWa0N7t7htxFN003LZo5VhmJnf/rpIjbJlwJSuSDMCk34HT
-         ym6NvcChK8jlHp1xmwcUF/sollyFfXuyI2aJhHO5vgEBTZi+hyUNwOdcer02RyNG95rQ
-         zkrnQfHhVFxjO2M50eMNe5imd6UR62YiAbwRBK0XrQgv8cB6LEs+MmUel1rsjcmzVkcQ
-         Y6B0DI9cIhuakDYR329jKK8rLZOf3kIZScynlsYNig1wh5C+L5G8WjOoeoRtdiwjhaQt
-         MLp9Grht7RMNPitkE3Bf8PUAG2IsbGWZdRu3iNcEPZJTKWGdAM8Jp31KdqX/mrg6mkLi
-         2hew==
+        d=linaro.org; s=google; t=1731323991; x=1731928791; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lMrSmta7fHOUctB/5AJidvIZnIncGO2UNey3bSwk2a4=;
+        b=ZmcGw1wKE444veothWeskSeb2CjaP9Pnm9KR6cbdc4MNrG1i72aCIj4TLhnwX5aXO+
+         s6zR05hCtBQOajgu9AV9S6jqEgIvnlgAfy5nrKBPib7phzCYMO729kNvMb2974Vfn5cO
+         4GWYWe1x6OpAqw9REXdVLGkyMOImgXx3Tx47KFeecHoFGu2rEesBqlX5UEZTWq+SYHXM
+         Zk7wZuCQzCxS/iwmryY8qIE/cZ+iJT+yyun3qRKEUJBCQouRF4OxTgwo0G0zFwMqxrJk
+         oxfl9p+qP6zPtZKUnr8Zx9NpA7oo3TpoE3XnXJB6c4CAwTHn7+5KJbHNHMWx63q74v6A
+         gAgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731323772; x=1731928572;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ymcL/BmbTqU8qfDUCoVyraAtY6xWOZahvC7lOWoyBMo=;
-        b=oICKTy8JN/+1/FWrGdmLhyKMyytYhSTQwIY3NsFZ00gEJRiniwulIU8RIVRyEEjTXz
-         B8f+gjv71MEB75izjV3WuwyZ1bMN1C0+8OK2gd+qirJC3z3bat1LRtrjE2lKG9qcn/wJ
-         RpXRlTEIMgctACZnafjhBDQz8lEIGgyq63dGYDiRsDwoN115wdxxR9UrYeXf+tFTMwbU
-         A116czKVuBlJKqcPbMV1kSeYkK7AmV3g0hDlacbO7LkLjW57b1wgI/ue5lX8h6cygEyD
-         6mQgRvIFLoz98IUHta0Xc2JTB0RPsf3aShJ3el5TfWklsUftX5LpAcCAll4/nVDcPmdb
-         xwpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVFDr1Lj0MuIorNMesiCPI8EHwZvYPKehjxOPHIRxeFK0J1wacY1GVf3LVORHJH3TReRVDcw0/afwvO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw73exvgQssH+MSz8nNXZpq1v4KCeLQ+o+ckh4FiI1hylUHYTg/
-	QFkWMJDE0bd3wsdpWNbk6gNIb33SKlUg6GJ8cPz0PQR8uQIUnuMwxd2Ncaq7LFo=
-X-Google-Smtp-Source: AGHT+IEIXXKEeW8AK/XEUpMILAea87VIswegaWQL9LSGa2DctrGMApRhmo53B5f76Sl4Kpl0fHqtKw==
-X-Received: by 2002:a17:907:94ca:b0:a99:2ab0:d973 with SMTP id a640c23a62f3a-a9ef001b427mr1296793366b.55.1731323771938;
-        Mon, 11 Nov 2024 03:16:11 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.28])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9ee0a176cbsm593593066b.23.2024.11.11.03.16.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Nov 2024 03:16:11 -0800 (PST)
-Message-ID: <42c5da73-466e-4238-8862-dbe727d3bf3f@tuxon.dev>
-Date: Mon, 11 Nov 2024 13:16:08 +0200
+        d=1e100.net; s=20230601; t=1731323991; x=1731928791;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lMrSmta7fHOUctB/5AJidvIZnIncGO2UNey3bSwk2a4=;
+        b=b2dpYANxEAwMp2k3Y0FJvtCVIHBxku0YnHZTQrV8zzfuKGiMMuxtZGbj1yq5PAFz5h
+         fcboCKIa15Q/UN7ffv4hUMiirqG55R98PWQoZI0SE4lE5BHxOsU5UKgsJqxAZT4vmB8i
+         gFOUGJpLK6kwQz6R4jnTsxqCjFCd2JamUbeGpTEUloU/FNGacf6sPsGeGisAhGjhSnvi
+         LWG+hODguRV+xuq3ESY/aQ49U69G8zNpuc+IMU5MtNnIig2R5Yj/1uZWnGHdy/kPZAJe
+         nFYN+VMPLsYu+8th01+kMxDEL3xegpqT+yTuqlVE9Iv5T+m06m2BV2lD7iciFVrBDIIx
+         MvMw==
+X-Forwarded-Encrypted: i=1; AJvYcCUl3DIGi+6W3u5h3MKbAM9Os/ZVJ/c+ZjcKraKsmjL9/EMynrp5Jt4D3OX9bR1ZfpDg6qXRc2rLadEa@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAb+PEEG/FUxpW7L2gnqEgv7FE9hOX9Xov6eX4WMuee6kDNCj+
+	rnnvB+7bOyoRcABTSEzAbswS1TkY9x/j8ZoEsy5QGEuWD7/P0SuVR/cJNxSa7sc=
+X-Google-Smtp-Source: AGHT+IHOXkjlkrDrtvlnPceOnN5si90LVUaiVILWy4AO1guCrPxVvXLDLxRd0s7RMfvfwDzqJwxOIw==
+X-Received: by 2002:a17:907:3f13:b0:a9a:b9d:bd93 with SMTP id a640c23a62f3a-a9eefebd119mr1154918666b.4.1731323991120;
+        Mon, 11 Nov 2024 03:19:51 -0800 (PST)
+Received: from 1.. ([79.115.63.225])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9ee0e2e922sm582530866b.193.2024.11.11.03.19.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Nov 2024 03:19:50 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: peng.fan@oss.nxp.com,
+	m.felsch@pengutronix.de
+Cc: pratyush@kernel.org,
+	mwalle@kernel.org,
+	miquel.raynal@bootlin.com,
+	richard@nod.at,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH v5 1/3] dt-bindings: mtd: jedec,spi-nor: add optional vcc-supply
+Date: Mon, 11 Nov 2024 13:19:44 +0200
+Message-Id: <20241111111946.9048-1-tudor.ambarus@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/25] ASoC: sh: rz-ssi: Terminate all the DMA
- transactions
-Content-Language: en-US
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
- lgirdwood@gmail.com, broonie@kernel.org, magnus.damm@gmail.com,
- linus.walleij@linaro.org, perex@perex.cz, tiwai@suse.com,
- p.zabel@pengutronix.de, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
- linux-gpio@vger.kernel.org, Claudiu Beznea
- <claudiu.beznea.uj@bp.renesas.com>, stable@vger.kernel.org
-References: <20241108104958.2931943-1-claudiu.beznea.uj@bp.renesas.com>
- <20241108104958.2931943-7-claudiu.beznea.uj@bp.renesas.com>
- <87ldxqmwdc.wl-kuninori.morimoto.gx@renesas.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <87ldxqmwdc.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1010; i=tudor.ambarus@linaro.org; h=from:subject; bh=/+Hab6B4EJ5Dh9SCHmRGYARDt8d1ozFiUUdntiL5/lk=; b=owEBbQGS/pANAwAKAUtVT0eljRTpAcsmYgBnMehSLAOWEq2QisQo/KwTNHCKeQe1lOWHd82ps 5T1iSUMhUKJATMEAAEKAB0WIQQdQirKzw7IbV4d/t9LVU9HpY0U6QUCZzHoUgAKCRBLVU9HpY0U 6RatCAC4xwOyECtAGIseOOgysDe7h7v7SgsjEr0sfn28ZspNaS/95AIqQMCfPSy2qy0reu67pKZ pCg8oRQQfb3u2HfTFOANgCtFAvUU7byNiliCO09Xw/vU9C9LdcuY8F6L/FvGyghiMvel2oXw9Ht jm506UJHfuIDMw1XINeUG68aULrEnhlGPJQfJIVn2XMCxiAq3u8l/3KN7r+bNbltYTHoiXnHXSA hKoSjlCj2GvfWO1ADnETrU7j9ckN4gikrHQvgxc2MSXGg6MDrI5p5PZJcsKjq+PjslQVcnEro6j sz+KTxRqSUMXxVLeIuVuiSw6EVHibHzUNsjqTuJGpAfOBm7O
+X-Developer-Key: i=tudor.ambarus@linaro.org; a=openpgp; fpr=280B06FD4CAAD2980C46DDDF4DB1B079AD29CF3D
+Content-Transfer-Encoding: 8bit
 
-Hi, Kuninori,
+From: Peng Fan <peng.fan@nxp.com>
 
-On 11.11.2024 02:45, Kuninori Morimoto wrote:
-> 
-> Hi Claudiu
-> 
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> In case of full duplex the 1st closed stream doesn't benefit from the
->> dmaengine_terminate_async(). Call it after the companion stream is
->> closed.
->>
->> Fixes: 26ac471c5354 ("ASoC: sh: rz-ssi: Add SSI DMAC support")
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> (snip)
->>  sound/soc/renesas/rz-ssi.c | 8 ++++++--
-> 
-> We are now using "renesas" dir, so, you want to use "ASoC: renesas:"
-> instead of "ASoC: sh:" in Subject ?
+Introduce optional vcc-supply property, SPI NOR flashes needs power supply
+to work properly. The power supply maybe software controlable per board
+design.
 
-You're right! I'll update it.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+v4, v5: no changes
 
-Thank you,
-Claudiu Beznea
+ Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+index 6e3afb42926e..335f8204aa1e 100644
+--- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
++++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+@@ -96,6 +96,10 @@ properties:
+       If "broken-flash-reset" is present then having this property does not
+       make any difference.
+ 
++  vcc-supply:
++    description:
++      Supply for the SPI NOR power.
++
+   spi-cpol: true
+   spi-cpha: true
+ 
+-- 
+2.34.1
 
-> 
-> 
-> Thank you for your help !!
-> 
-> Best regards
-> ---
-> Kuninori Morimoto
 
