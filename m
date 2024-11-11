@@ -1,100 +1,97 @@
-Return-Path: <devicetree+bounces-120863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D7329C46F5
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 21:36:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 020859C46FB
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 21:38:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55B431F22E8F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:36:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADECA1F2332F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:38:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07E5B1B5829;
-	Mon, 11 Nov 2024 20:36:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 084B21AE014;
+	Mon, 11 Nov 2024 20:38:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t9YXFbsg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s+ImfXkP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB8C31B4F04;
-	Mon, 11 Nov 2024 20:36:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D201213A250;
+	Mon, 11 Nov 2024 20:38:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731357376; cv=none; b=pWaiDqM3Ru4roQXl0h1hc8J+s8tTC/HFhVMRhremxxd1tmN8OnSmo7lWvyIeZCK83HIx/i6TzB3oX2hTrr9KpRRsXsZo3FvxeGI5Hl5JP3jGUvQsDAxZESFVUB8uNmzccjqgtpKrSXD6hPmkI7qGycOoxFFu2fqGphZSMi60kF4=
+	t=1731357485; cv=none; b=hvsUtYEtxNQeSPuzh+F+Uyi41O9A3olZvJPdtvl7f25qmoi3+ZAHBjSfmjzxpreCuLqaum1UtzT4Nnq7B0xVQuspRdmYP1w91IK/XTWpRwuY2ck4MV23trhlr2dCGGa4SIIJRbnvx/Jyu7YWkGRic7fUtED2OhDb7mwjbfiCEuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731357376; c=relaxed/simple;
-	bh=sowLwZu699PwyfGqXSwrO59uwPduv6eDK5d+b6fSKH4=;
+	s=arc-20240116; t=1731357485; c=relaxed/simple;
+	bh=KwaHLfJUIhXroumjHZ4bZlkQwpn6earNMC5wOJS8F3o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZeLgjLc/Q+yBy+e5y7unVdxiL/h3sYp3YzPac8NRaool55484O2mn0XPiwkGQHfhvYWIXBtbsINVWEFyIqbVNEU88rGl8H7au/qvzLwtQJ1r12xXnHaeutQntI9TNzzesawyjIkeObMpjiK0smIcRKP3IgAhrq/ExoKQoF7q/ns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t9YXFbsg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E484C4CED7;
-	Mon, 11 Nov 2024 20:36:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NFADYrDxMPf4jNRC2/mBNmkm5OneZ4v4o3BQt+lWljIJYZRuOPN2aV6xP3FRh3jnVUBMAlji85qoeC9WLwTt21tkE/abRNfmaPv3RTYguAj0DMJ3PrwS3Nyu6LZHOfRXYP89KUX7JNwaK0GY6mQjKfZv8YlxK2k1AuAT0wn38y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s+ImfXkP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D41CC4CECF;
+	Mon, 11 Nov 2024 20:38:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731357376;
-	bh=sowLwZu699PwyfGqXSwrO59uwPduv6eDK5d+b6fSKH4=;
+	s=k20201202; t=1731357485;
+	bh=KwaHLfJUIhXroumjHZ4bZlkQwpn6earNMC5wOJS8F3o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t9YXFbsgp6NcANX/elk3FSTRwcO8Fvpileari4s9tVapV7npfw54WspALkK/FOB1j
-	 AVN1dRXjV9OXonqa/iHVklbsIDNm5WopfEAHA84dyK9UD5+06b0Ny6uNsourJoGSuK
-	 fFgzyzHnd89To/F3FyF1D0F/LL4qGj6ksErK4h51fqaKPsXpQhZtSCQrNIGmqRecay
-	 5psoMITvoWeAd2oYdxX5fZd4sYtTjSs0z9FlwRAeEHGiS1NAGttRCVxp/Nrx987tdm
-	 Wy0OvgebxLuibe3TlE5UonBit+MxkiQtiIKq3NBCpMf4vMKP+kjZn+wpdlgNiMgbhb
-	 CRha8wNyWaxdA==
-Date: Mon, 11 Nov 2024 20:36:12 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Andi Shyti <andi.shyti@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH 05/14] dt-bindings: i2c: mv64xxx: Add Allwinner A523
- compatible string
-Message-ID: <20241111-yogurt-slacks-ae8993881216@spud>
-References: <20241111013033.22793-1-andre.przywara@arm.com>
- <20241111013033.22793-6-andre.przywara@arm.com>
+	b=s+ImfXkPI1O4CAQC7LGmSngp4INKqyeJCveS2DSuVJVX1UgzHimen+i0RyVKBvEk6
+	 hQN4Z9wDYJzrqvLNKWD7+hhjC761myQjPqeqfGAb9PwqGcW0JzjQF8UtGdneSpGBho
+	 qitioKlKlvo5kwuGk61r6IeO/Ve+XjrpQkXg+xWY1vizwq/d7F2ZpCLLBMUKfQMqWK
+	 bYiq2qedk57RKVeHa6XzX+cOI7Qsjr2GqkiJ17Jwl/dCS77Foo2Qhla7+yuLsWyC/+
+	 3A8d2XysWw8y7QiUgl3smDorGRCHuTQ+0t54NHPTGgJqXGgciIoN6HKu0R7Il42VPM
+	 t12XXSrSSZFCg==
+Date: Mon, 11 Nov 2024 14:38:03 -0600
+From: Rob Herring <robh@kernel.org>
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Leilk Liu <leilk.liu@mediatek.com>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: spi: add compatibles for mt7988
+Message-ID: <20241111203803.GA1917413-robh@kernel.org>
+References: <20241109105029.52748-1-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="pTTvxdvgtpuRqDjB"
-Content-Disposition: inline
-In-Reply-To: <20241111013033.22793-6-andre.przywara@arm.com>
-
-
---pTTvxdvgtpuRqDjB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241109105029.52748-1-linux@fw-web.de>
 
-On Mon, Nov 11, 2024 at 01:30:24AM +0000, Andre Przywara wrote:
-> The I2C controller IP used in the Allwinner A523/T527 SoCs is
-> compatible with the ones used in the other recent Allwinner SoCs.
->=20
-> Add the A523 specific compatible string to the list of existing names
-> falling back to the allwinner,sun8i-v536-i2c string.
->=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+On Sat, Nov 09, 2024 at 11:50:28AM +0100, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> MT7988 has 2 different spi controllers. Add their compatibles.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+>  Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
+> index e1f5bfa4433c..ed17815263a8 100644
+> --- a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
+> +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
+> @@ -35,6 +35,8 @@ properties:
+>            - enum:
+>                - mediatek,mt7981-spi-ipm
+>                - mediatek,mt7986-spi-ipm
+> +              - mediatek,mt7988-spi-quad
+> +              - mediatek,mt7988-spi-single
+>                - mediatek,mt8188-spi-ipm
+>            - const: mediatek,spi-ipm
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Does the fallback make sense for both? Is there some common subset of 
+functionality where they are the same?
 
---pTTvxdvgtpuRqDjB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzJquwAKCRB4tDGHoIJi
-0sVCAP9FkjAH3fFo2Hcf+ZlfmmpDqgcCj8g44kJp6QWk/3cgIwD9Es+QU04KS2Yf
-VkVqm2TK30nhRTNCt9eLkYyTwtRGGwI=
-=NaZD
------END PGP SIGNATURE-----
-
---pTTvxdvgtpuRqDjB--
+Rob
 
