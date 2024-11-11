@@ -1,121 +1,120 @@
-Return-Path: <devicetree+bounces-120715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC13B9C3BA8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 11:04:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E64E89C3BD6
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 11:27:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED6EC1C21C5A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 10:04:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AE841F220F1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 10:27:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A925176228;
-	Mon, 11 Nov 2024 10:04:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1D4517B4F6;
+	Mon, 11 Nov 2024 10:27:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JeB31ULG"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="vqlNucr5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32CB7149C4D;
-	Mon, 11 Nov 2024 10:04:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACAC7178368;
+	Mon, 11 Nov 2024 10:27:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731319484; cv=none; b=mvflhRv4THFqBDPidwHGAmEHYhDPA+/t5SBG6KWlXUGOuNY88Z/IHSGF48eVur+O7p7NVsd0pYfF0MIL6EP+0F196bN2Ss5LOrtElpNH9/qFuoVVDh0vfy3wFaw2CQa0sK1Zd3ODUY7KIqi7gOfq1wn0ZI83rO4nCIdeDvQzBvg=
+	t=1731320838; cv=none; b=jxxLebGZeCGYHJypgIKu+JpRlVAtWSlqy+bbM+aunVbZ8GE+9ICpwbWr6uQL5sCEwNoDCm5uZyXyZjlaoRNZ0ayHm35OgnPtrrgo/qeJQdMwdbomRDi5Cfvs11ohBFzcnkjGrDZkjORRfu0H8VIHyUwnhqJTXvBo0RD5HhlDJ8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731319484; c=relaxed/simple;
-	bh=kXWKak3NFWbVEuxA3fSpdYQ6LarXKFsQoaxaZk/VptM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=s17HJ9TyJRjrrpjOuYIc6f9rR0JAKoO5MKEiG8X2vUT1exd3PHeQVj77ZbWJfV4wUhokprvvddZFy1EERVasWleSY8HVXPxzwSO4prjRug3BwG+E/mpjWVESBeh22rPtLIaY5K6dESpcMupsZoHTZwbx7qUvfjYKih0ogTz0yk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JeB31ULG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2E74C4CEDA;
-	Mon, 11 Nov 2024 10:04:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731319484;
-	bh=kXWKak3NFWbVEuxA3fSpdYQ6LarXKFsQoaxaZk/VptM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=JeB31ULG6XltmK6J9IIVybD65d8x+SgB7XQD9JeYXa3nUOVgc8wujZvLzLUx9oLke
-	 hMkTK2bkMv29QBFF+wXsd92b7UcpHwl14kJaUlv3Hh8x7fOViaUTfZKlje8tHT26vS
-	 CEoD348Uu6riXv3+J3VJapXRKiV6l2Dr3kN7JqtcHX7t+cRBdFcr49tU5PcbbOhVwO
-	 DgqrNn5GYlmirl4Z6qZnms0Bp/5Vl3r6k/uIIBCjB82dOgHJyIx5jv5g+Lc1o8N351
-	 SmTgiMYdGKfjmhdk7hFq67B1PLww3ayUSykegHEdtXo8n2fCzZRdspR2IDRc/EICj5
-	 Wtj2MFsCc1yRQ==
-From: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Pavel Machek <pavel@ucw.cz>,
-	linux-leds@vger.kernel.org,
-	Arnd Bergmann <arnd@arndb.de>,
-	soc@kernel.org,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	arm@kernel.org,
-	Andy Shevchenko <andy@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=arc-20240116; t=1731320838; c=relaxed/simple;
+	bh=qX0tOYFqdWmuVqzHqRPWO3tk21m/yO9VzTojXGyzIUI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JbSThanmPqqDk72CPL1InSYeaNAU8LF362OYvwOPMzmlgGT53IdL4AwIfhTeK7d7D9tnCHfFBNjk8S5/X2HHJDZhMcWdHEGC80OT6kmFkS/pH1YGo2Pd1w3OMu8x8wjSZ/LLdqlT2XET7ImZMeLNbKe/qJ7lQICh09cf12Ddres=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=vqlNucr5; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=n9I/rsmSPkccC1qV3PhdqkeMEIkBVG7v4CKI1grF8vI=; b=vqlNucr5OrPliBOoYg4LK2nrG8
+	+l2fK1YdtaqFOk8wG83po4WzeXgBgBwcCKvMI8tBhlq9+r4vvXWucaCDEQ8/+qD+w1HV0CMwvqv8T
+	IJR3pjs1nPjq26EUEfgXlS+cO4sAhWIMUzFYiQLSShpeE5CzZqzvanxedgOlqpXutNQ5EpkDMYidD
+	omYjwbOXSV8UIV0wO45TWZznjoGjWg8IwBaSyD/aoQJmRLf3HwtK35pomRCrry7/TitImQuRaWtL6
+	X/PptMbWvq2rgkFeWq+hN7FX6bdEY8damEuoBJvypk4HlErm4uGJn24HQgK8SIGrNpZQgAHlS5S7L
+	k9+yMVGA==;
+From: Andreas Kemnade <andreas@kemnade.info>
+To: lee@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mazziesaccount@gmail.com,
 	devicetree@vger.kernel.org,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Subject: [PATCH leds v7 11/11] leds: turris-omnia: Use uppercase first letter in all comments
-Date: Mon, 11 Nov 2024 11:03:55 +0100
-Message-ID: <20241111100355.6978-12-kabel@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241111100355.6978-1-kabel@kernel.org>
-References: <20241111100355.6978-1-kabel@kernel.org>
+	linux-kernel@vger.kernel.org
+Cc: Andreas Kemnade <andreas@kemnade.info>,
+	sre@kernel.org
+Subject: [PATCH v2] dt-bindings: mfd: bd71828: Use charger resistor in mOhm instead of MOhm
+Date: Mon, 11 Nov 2024 11:27:01 +0100
+Message-Id: <20241111102701.358133-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Change first letter of 4 more comments to uppercase to make the driver
-comments uniform.
+Apparently there was some confusion regarding milliohm vs. megaohm.
+(m/M). Use microohms to be able to properly specify the charger
+resistor like other drivers do. This is not used yet by mainline code
+yet. Specify a current sense resistor in milliohms range rather then
+megaohms range in the examples.
 
-Signed-off-by: Marek Behún <kabel@kernel.org>
+CC: sre@kernel.org
+Reported-by: Matti Vaittinen <mazziesaccount@gmail.com>
+Closes: https://lore.kernel.org/imx/6dcd724a-a55c-4cba-a45b-21e76b1973b0@gmail.com/T/#mf590875a9f4d3955cd1041d7196ff0c65c0a7e9d
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
 ---
- drivers/leds/leds-turris-omnia.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Changes in V2:
+- typo fix
 
-diff --git a/drivers/leds/leds-turris-omnia.c b/drivers/leds/leds-turris-omnia.c
-index 4fdd5d9b55fe..b3dd6af769c6 100644
---- a/drivers/leds/leds-turris-omnia.c
-+++ b/drivers/leds/leds-turris-omnia.c
-@@ -253,13 +253,13 @@ static int omnia_led_register(struct i2c_client *client, struct omnia_led *led,
- 	 */
- 	cdev->default_trigger = omnia_hw_trigger.name;
+ .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml  | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+index fa17686a64f7..09e7d68e92bf 100644
+--- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
++++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
+@@ -55,14 +55,15 @@ properties:
+     minimum: 0
+     maximum: 1
  
--	/* put the LED into software mode */
-+	/* Put the LED into software mode */
- 	ret = omnia_cmd_write_u8(client, OMNIA_CMD_LED_MODE, OMNIA_CMD_LED_MODE_LED(led->reg) |
- 							     OMNIA_CMD_LED_MODE_USER);
- 	if (ret)
- 		return dev_err_probe(dev, ret, "Cannot set LED %pOF to software mode\n", np);
+-  rohm,charger-sense-resistor-ohms:
+-    minimum: 10000000
+-    maximum: 50000000
++  rohm,charger-sense-resistor-micro-ohms:
++    minimum: 10000
++    maximum: 50000
++    default: 30000
+     description: |
+       BD71827 and BD71828 have SAR ADC for measuring charging currents.
+       External sense resistor (RSENSE in data sheet) should be used. If some
+-      other but 30MOhm resistor is used the resistance value should be given
+-      here in Ohms.
++      other but 30mOhm resistor is used the resistance value should be given
++      here in microohms.
  
--	/* disable the LED */
-+	/* Disable the LED */
- 	ret = omnia_cmd_write_u8(client, OMNIA_CMD_LED_STATE, OMNIA_CMD_LED_STATE_LED(led->reg));
- 	if (ret)
- 		return dev_err_probe(dev, ret, "Cannot set LED %pOF brightness\n", np);
-@@ -519,10 +519,10 @@ static int omnia_leds_probe(struct i2c_client *client)
+   regulators:
+     $ref: /schemas/regulator/rohm,bd71828-regulator.yaml
+@@ -114,7 +115,7 @@ examples:
+             #gpio-cells = <2>;
+             gpio-reserved-ranges = <0 1>, <2 1>;
  
- static void omnia_leds_remove(struct i2c_client *client)
- {
--	/* put all LEDs into default (HW triggered) mode */
-+	/* Put all LEDs into default (HW triggered) mode */
- 	omnia_cmd_write_u8(client, OMNIA_CMD_LED_MODE, OMNIA_CMD_LED_MODE_LED(OMNIA_BOARD_LEDS));
+-            rohm,charger-sense-resistor-ohms = <10000000>;
++            rohm,charger-sense-resistor-micro-ohms = <10000>;
  
--	/* set all LEDs color to [255, 255, 255] */
-+	/* Set all LEDs color to [255, 255, 255] */
- 	omnia_cmd_set_color(client, OMNIA_BOARD_LEDS, 255, 255, 255);
- }
- 
+             regulators {
+                 buck1: BUCK1 {
 -- 
-2.45.2
+2.39.5
 
 
