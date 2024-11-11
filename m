@@ -1,62 +1,65 @@
-Return-Path: <devicetree+bounces-120845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 154D39C4614
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:45:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D24409C461C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 20:46:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B843C1F22601
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:45:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97F082860E1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 19:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5671015A843;
-	Mon, 11 Nov 2024 19:45:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A33F1AA1FC;
+	Mon, 11 Nov 2024 19:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nr0d2xAf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gkYuYxdZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2729A2AEE0;
-	Mon, 11 Nov 2024 19:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F173E1A7AFD;
+	Mon, 11 Nov 2024 19:46:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731354338; cv=none; b=iAGyLz0cKY1GjOJF3nBrXefnxAvoRQ3pU6J7CuTUPoECVoJLk741ZbZhimZFlM7yJMFvoa1O5pAeY8g6QwNNiRZvFDsaxDLxfQTC/H9Y/iTy6rUSLelvlFJJHCpoDbiUr8PEP4PctT2xeshrHlUlNNa9+XPUDQkMir6LqeTuS8Y=
+	t=1731354380; cv=none; b=YOOzQXxSXrZr9OLC/IzxW2bR2SR307eyfEE342XZpzQ7HWixpTJdzJI9G1SO9dbR85CaTYLFE6XxPuHrsweoMSQXbWrPYe/Nulm0FHxcfYiXGI7vZ2fU6DOufn6NJH7GRvUenHQIOv6a/hB5MGyRHuukqgV6O9BcXNKfv08+wRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731354338; c=relaxed/simple;
-	bh=d4MgOboHDGtArnfKiEq9gLM88LKKae7ra0P3dbQQh+o=;
+	s=arc-20240116; t=1731354380; c=relaxed/simple;
+	bh=RTX8JtmfQXicA6NSmzoFj+EWO3qXcohs8dzjns8VwpM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rPoEfnIney3NSqA4ZKNWl3xpi8rAAK8sr3X2/eoyLOdkZ/zfFwJd1ZXIxXpk3L0yjxf51oUxj9CBF5YhWd4z7FFdaPnypNsImn/GnJn0wceaFQGpSZYSpq1BJ6t1Z98r7jLSjMugaPsTiplTkZqap/rZ4qxmDNIHJ7ftYl4+x7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nr0d2xAf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2182CC4CECF;
-	Mon, 11 Nov 2024 19:45:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RBGPevvckC9Dt33xAy1FX8l1sk9XAQ7rXZBSPq41AwFoqVzcLekeesHT8ZpP/Fv7BPFnp4AFSyPPiSYdJDKTMtTl33NmUhHP0TMHOGd5QXDoh5Ljf3ApTo44itEWcLo+HtstRmLXII6Yye8ujFdwBJVZIRjzhuRvusZR7D0TNQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gkYuYxdZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8EBFC4CECF;
+	Mon, 11 Nov 2024 19:46:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731354337;
-	bh=d4MgOboHDGtArnfKiEq9gLM88LKKae7ra0P3dbQQh+o=;
+	s=k20201202; t=1731354378;
+	bh=RTX8JtmfQXicA6NSmzoFj+EWO3qXcohs8dzjns8VwpM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nr0d2xAfMpq6SNZ2t+tAWHRm/SOmakiGQ9MWVnJfK+KhLB/SeyZ8RFVtTDTx9CYcM
-	 GzzCHp3/npKlx6jVZ97g01NSgbyUVMhbtHMmmSFu323D36vo5XVFNUdipdozTJCxHd
-	 ZyfmA8KBfNMRUjHCV+KqOm38DLJG/V+2lEEUNKgf2LkYMiQ8Y1DknmdSoNa1P9pTBU
-	 BCyZNXIlX+svZbS9VKhjg0zNgHYrTHYubQ8OzDNgXPpsOrrHDlen7axLHaq7jIoZeb
-	 pZ3SjyxYz7EjQBQBZ+TRuvnxyNpX0ScEIvjfYJ1WxoHz+J6x7TmIqLeDCogfmWt12m
-	 JqtJvQDScsWfQ==
-Date: Mon, 11 Nov 2024 19:45:32 +0000
+	b=gkYuYxdZWNHKM3Tkh62KdVOx8gsraV/by+6vW/t2oO9qo3Rzu32kwu7cfwZxbvvUw
+	 V24fkCBzbu3iXCUUNeMhfckeBPIi6odWs1HfRW2QjP7pTGTn8pBX2QO1Mg0h6rYHOS
+	 KRsnABD/ktmkV2LzLFNoe1HOGEEMGCb6KQXse81WnCczF56avB/ksVdpjTpS8sFjOZ
+	 w2FTlXbN16huJrk+19UmXhRgqNpPRk3YiRsMRbACH+0Mv2v5qw2SWR9t36W1aM7mAo
+	 vEUtzoenEcjQLGDtgedzh8vSR/M5ti9BGBpGTJULEO/f6/p6Sr31u1XgWDrLctPuIh
+	 npUaEo7b41bKg==
+Date: Mon, 11 Nov 2024 19:46:13 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Frank Wunderlich <linux@fw-web.de>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+Cc: Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
 	Frank Wunderlich <frank-w@public-files.de>,
-	Leilk Liu <leilk.liu@mediatek.com>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: spi: add compatibles for mt7988
-Message-ID: <20241111-progress-prowling-218c6deeb80d@spud>
-References: <20241109105029.52748-1-linux@fw-web.de>
+	Hans de Goede <hdegoede@redhat.com>, Jens Axboe <axboe@kernel.dk>,
+	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 3/3] dt-bindings: ata: ahci-platform: add missing
+ iommus property
+Message-ID: <20241111-pasted-primarily-7f665b0b2fa4@spud>
+References: <20241109094623.37518-1-linux@fw-web.de>
+ <20241109094623.37518-4-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,35 +67,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="9tiAjd6YQ+IiB3Gu"
+	protocol="application/pgp-signature"; boundary="iY8L1hmlHO5MfZf9"
 Content-Disposition: inline
-In-Reply-To: <20241109105029.52748-1-linux@fw-web.de>
+In-Reply-To: <20241109094623.37518-4-linux@fw-web.de>
 
 
---9tiAjd6YQ+IiB3Gu
+--iY8L1hmlHO5MfZf9
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Nov 09, 2024 at 11:50:28AM +0100, Frank Wunderlich wrote:
+On Sat, Nov 09, 2024 at 10:46:21AM +0100, Frank Wunderlich wrote:
 > From: Frank Wunderlich <frank-w@public-files.de>
 >=20
-> MT7988 has 2 different spi controllers. Add their compatibles.
+> fix dtbs_check errors in following files:
+>=20
+> arch/arm64/boot/dts/marvell/armada-7040-db.dtb: sata@540000:
+> arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dtb: sata@540000:
+> arch/arm64/boot/dts/marvell/armada-8040-db.dtb: sata@540000:
+> arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtb: sata@540000:
+> arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dtb: sata@540000:
+>   Unevaluated properties are not allowed ('iommus' was unexpected)
 >=20
 > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---9tiAjd6YQ+IiB3Gu
+--iY8L1hmlHO5MfZf9
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzJe3AAKCRB4tDGHoIJi
-0mw1AQCb5apX26pqvjtNd0u/x/gAxpqpZjI5yV2+/RYZnNyFvQEA9vWKqaUMxxMG
-5FhEkO64XoDuZC7W0YM+ELEVVtXM0g8=
-=X0+9
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzJfBQAKCRB4tDGHoIJi
+0kZYAP49wOpCPn1XV1CuML8Mzii0hAR7itUchMtHNweyWK5AEAD/WWr+kQyWWHM7
+kPsQBx1TogUJmrldrEIbDvuBrCcWjgE=
+=UM60
 -----END PGP SIGNATURE-----
 
---9tiAjd6YQ+IiB3Gu--
+--iY8L1hmlHO5MfZf9--
 
