@@ -1,161 +1,173 @@
-Return-Path: <devicetree+bounces-120804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BFEA9C4365
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 18:17:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E56A49C4380
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 18:25:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B53C31F223D6
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:17:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 741E01F22554
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 17:25:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F671A4F0A;
-	Mon, 11 Nov 2024 17:17:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D29261A76B0;
+	Mon, 11 Nov 2024 17:25:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XngVegXb"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="B39U4mHe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3971A302E
-	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 17:17:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE4AF1A706A
+	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 17:24:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731345466; cv=none; b=MSFjsG85DpR/TGdIWtE9yw47OyJ4avCjd7U5c1bqrWJFiHiWYdawJ5Mig4787FfIMlNui3x5e7p5oZcssIhlpcRbId8tqfWExbSW6Cv+hh0+fQx1nN33eLmFEX8vhEvoQgUEohm6ogscOlBa3WWmXoga/xfcVJ4m0cw7lxgWRww=
+	t=1731345901; cv=none; b=WjFuB1epcLGes9e7qOsIWgBJtrteXVTRxxOWZ8455gkaiKd4thWofGLFZC6VV1JGSW1INe4VJiFqe76TvbdfK9LToj/3wdKNrWNDNZR2bBoVbXpVFJT9gr/+blmJRmhLZfsg4yrjEVKi0oygh/siTK9t5oTj4snJHvca5HHoPLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731345466; c=relaxed/simple;
-	bh=EDZ3mHnLpjUN9aHt8g/8fj2vRwXsfUyj8HSmBX+UHAA=;
+	s=arc-20240116; t=1731345901; c=relaxed/simple;
+	bh=+bsSX+Ra+NomURtV4l48KCn7neeBpILpjUckN375Gyc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UvbWL/SQZsn+Ldzy9SXpt3u1SfBUgT9gp+Js2jPUUB9uQV2UbrtPjlmvYS0mZ7y0JoHDNzZrwuPJUB7xV/JonBYh7sAQKGz5gap5vSUJVx6UBvELOTnnpn8iSEUK1UKycgLASL9/cF5TmrvaHP/AwpscAgGmuRiLjP0N1a9zpmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XngVegXb; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e291f1d659aso4466023276.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 09:17:44 -0800 (PST)
+	 To:Cc:Content-Type; b=DMoeFWs64m/laBadJpTGKYHFLHxO0XoT8VS2LMY0m5LiTo8rNvFcNxDavNnO/srN4/gL4ZLlMapLKiXHdniTV+8JTf6IUsGlaV8G+O5WXeSLDZrmHOXdoOU27rNZzs+X+AbIaUY1l9c02w8KLUmXo1e0xCRRfG2G9KsS52QnQVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=B39U4mHe; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-539f72c913aso8242437e87.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 09:24:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731345464; x=1731950264; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1731345896; x=1731950696; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EVAoKlYuwhpxemTCYwh1Tkj7l1J7a1J0FZ6n/pZvepA=;
-        b=XngVegXby8CiBbvSREBpcITB2/01b72froGCUbGGzuBgxO5CRHvcn/HwtGLKpW32om
-         VdQacOJXtPx5RThT06bWtIdOUxLNhMvo3Gbie7Yweb0cG/pYkY4xYOheZ8RKjR1g14gg
-         CaELrnXf7bdD+E33xZkiJ/XGuSulFhMzZtNOLyIUuDygHkVIQek42XbLs9+Kp2Y1Vt3e
-         hdVE9KlQ5FPRwV0Y1w/jMnoysa0MHFD7hBbVAnV+vlY+75LvLxss5ECRK/ND33KRMDzc
-         ngh9vfSiQHx4EQ9HjHvNZc+BklAB2A0XPfnyEirRqvHEEViA2RdGgNlP2lIlkdDTxBf/
-         NjMw==
+        bh=Tn3wlhPcjYAmpGIs9KYtyq4CcNrw701MWptcU9EAyJw=;
+        b=B39U4mHerm97k55LMPpOBqoFQY3TlScmvYzLlA8OFF0cHv82pnUKPEHOql2M8Bn5r9
+         +36sg/cs+Zeih/Xn4CtFq8bNasTUCwa0AKUuYIysdF2BIua9hBSX5pXfiAFXYOQzPlgE
+         lzIgIEQs7UBCbJAKfhdVsnlgC2RcLG/o9hUeo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731345464; x=1731950264;
+        d=1e100.net; s=20230601; t=1731345896; x=1731950696;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EVAoKlYuwhpxemTCYwh1Tkj7l1J7a1J0FZ6n/pZvepA=;
-        b=lhBfEvZ7WI3jlLFD9//Ly63TV+cieHg9bro/ChJrx+eKkYUVZBh5m2A9dY2Dy2jhiN
-         LW+xwwKEHO8fCgD2FGqPFsU66da4WhriCjuCjc4IDTwV8U4iF/8Wg4S8/n1YEKHtTUib
-         K+qS+OVGuIHpyqNtyMOD+7K8kkaaUiQ5LtV9dhDTaQtGqdhnzDZr1Gh3/WHVznMTZ4PK
-         R0A5rcGn2J1lIv/7COmuWXRB1WLnjPIvjpeQzVJWeupcOLNoyrFDrGUArWwAcxHQm8M3
-         Y4c6+dFhnWL1nfGpGErAjyVYqm1sze2oS33FskotdYSMmw+ANblWQOzUEPj6mGkZ3WdJ
-         qplw==
-X-Forwarded-Encrypted: i=1; AJvYcCXxlnl1TuH+0aEpdqbQbDJaVNvSTQjVQk6XtXR3VdnXHiLgdRIvfQY9c9f8ma5MSM8AdRGHwLk6o9sM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWw7RPkK0yOD1VF6+BaCF22b+5YqDD3aCiL8IaP8MQdlpe6YBL
-	FUWZc7aWB4yS5KlgrUaRz5c9U88IwUvtdwd3Y9K9j7iWk8Wgn34RysOTZ//ov1YpTjEcHg+r4sY
-	R+I6PiEQGZle/swb/Xk+5hw+DokMAJS+kDlZktQ==
-X-Google-Smtp-Source: AGHT+IEIfKEgS8SXTmAU6JUeTqa2pA45BLVA8WQCryDvQyLebwuTTv0iL8Ym7trTq+NnT9YNlkjR5YyXNUj+tHbLJUc=
-X-Received: by 2002:a05:690c:dc7:b0:6e3:34b9:961d with SMTP id
- 00721157ae682-6eaddfbe812mr106611157b3.38.1731345463717; Mon, 11 Nov 2024
- 09:17:43 -0800 (PST)
+        bh=Tn3wlhPcjYAmpGIs9KYtyq4CcNrw701MWptcU9EAyJw=;
+        b=LWtzgTKtueH9L4AmfY2w63TjLbiip7ElcQOoHmIFKipfIrxZxzySyM9qG/0pwQER04
+         6/uKe0xtT/0tWW5zvdv05d+U60mGsqqxdc+O0hpKkX1FNOawyV4UYavwRibk4jG2R1/Z
+         lSGOLi9VH4ESNCtotBWM8ffHWF9Ick4/T1MRWrdMU2e7PEjCXhLzC9XdhswbW5KUOkqp
+         wOWrsor+/MlAnE6ZRPmoJa9UvbXlIafQHU/oE2adLdht3tulwgcKgEKMYYMt/NRLYIXo
+         Pvnk3VMkeoCvgZjHnAAfQdbUxvZBimC9w/tVjdi8GliFhoBu+NhWaOgKkYp4q0wAr4lH
+         a65A==
+X-Forwarded-Encrypted: i=1; AJvYcCWjDeQO4nrf5+xFyrPpv16LlhR7RkdGvIUV8TFbFkItu/eEpS19/5SxcqeA2w1HGMFyLIVDNQoaOCcl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5UCdxsdYdqht4YhVO+OgeWP0gP6D8iBxMGmRV2gLcn31t6+ZV
+	fYsF12xcbignAPIHgvJNrzw18i9MVXqhbB6suytnQNN0u5kxexbAW5AVzlidQBmHkMitT03Tfqt
+	oiQ==
+X-Google-Smtp-Source: AGHT+IGEWizhZ9+Zy/rIC6oZRjkw83RjkSJbKBc9xjVslC5vD4Omtzw5N274o5iFq8JkDmojMBDgsA==
+X-Received: by 2002:a05:6512:3185:b0:539:e761:c21a with SMTP id 2adb3069b0e04-53d862f7a62mr5441084e87.48.1731345895776;
+        Mon, 11 Nov 2024 09:24:55 -0800 (PST)
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com. [209.85.167.46])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53d826af020sm1621447e87.268.2024.11.11.09.24.54
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Nov 2024 09:24:54 -0800 (PST)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-539e5c15fd3so4732992e87.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 09:24:54 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUOMjR9F9ElouBEpGKKEBGE//oOoFzkBecM6dQzVRWzxGyt0wpqQMumo6WkAGWHPX6BOOQsSW9sjyf3@vger.kernel.org
+X-Received: by 2002:a05:6512:e88:b0:539:fb49:c47a with SMTP id
+ 2adb3069b0e04-53d862be63fmr7008281e87.4.1731345893812; Mon, 11 Nov 2024
+ 09:24:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241009-patchv3_1-v4-0-cd683a9ca554@quicinc.com>
- <20241009-patchv3_1-v4-1-cd683a9ca554@quicinc.com> <ugkiv4m3etpydvosjkyzwr4qus74xnwccow7xrpvr77kzcx6bv@odlz7dzldqc5>
- <CAL_JsqJ0zoyaZAgZtyJ8xMsPY+YzrbF-YG1vPN6tFoFXQaW09w@mail.gmail.com>
-In-Reply-To: <CAL_JsqJ0zoyaZAgZtyJ8xMsPY+YzrbF-YG1vPN6tFoFXQaW09w@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 11 Nov 2024 19:17:32 +0200
-Message-ID: <CAA8EJppkv-BoiX-UQZ2S6iL5KQZMBAMREarHxxhc45dEq5U84g@mail.gmail.com>
-Subject: Re: [PATCH v4 1/5] dt-bindings: display/msm: Document MDSS on SA8775P
-To: Rob Herring <robh@kernel.org>
-Cc: Mahadevan <quic_mahap@quicinc.com>, Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Kalyan Thota <quic_kalyant@quicinc.com>, 
-	Jayaprakash Madisetty <quic_jmadiset@quicinc.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20241111075000.111509-1-charles.goodix@gmail.com> <20241111075000.111509-3-charles.goodix@gmail.com>
+In-Reply-To: <20241111075000.111509-3-charles.goodix@gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Mon, 11 Nov 2024 09:24:39 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=WKU2Wwfwg1EACYgJtUKJjYH2OOQn6ELXbBK=B-jzbTZQ@mail.gmail.com>
+Message-ID: <CAD=FV=WKU2Wwfwg1EACYgJtUKJjYH2OOQn6ELXbBK=B-jzbTZQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] HID: hid-goodix: Add OF supports
+To: Charles Wang <charles.goodix@gmail.com>
+Cc: robh@kernel.org, krzk@kernel.org, hbarnor@chromium.org, 
+	conor.dooley@microchip.com, dmitry.torokhov@gmail.com, jikos@kernel.org, 
+	bentiss@kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, 11 Nov 2024 at 19:06, Rob Herring <robh@kernel.org> wrote:
+Hi,
+
+On Sun, Nov 10, 2024 at 11:50=E2=80=AFPM Charles Wang <charles.goodix@gmail=
+.com> wrote:
 >
-> On Fri, Oct 18, 2024 at 6:00=E2=80=AFAM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > On Wed, Oct 09, 2024 at 08:02:01PM +0530, Mahadevan wrote:
-> > > Document the MDSS hardware found on the Qualcomm SA8775P platform.
-> > >
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
-> > > ---
-> > >  .../bindings/display/msm/qcom,sa8775p-mdss.yaml    | 241 +++++++++++=
-++++++++++
-> > >  1 file changed, 241 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sa877=
-5p-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-m=
-dss.yaml
-> > > new file mode 100644
-> > > index 0000000000000000000000000000000000000000..37c04ae6876f873c2cddc=
-51b5160b1f54e2b5118
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss=
-.yaml
-> >
-> > [...]
-> >
-> > > +
-> > > +        display-controller@ae01000 {
-> > > +            compatible =3D "qcom,sa8775p-dpu";
-> > > +            reg =3D <0x0ae01000 0x8f000>,
-> > > +                  <0x0aeb0000 0x2008>;
-> > > +            reg-names =3D "mdp", "vbif";
-> > > +
-> > > +            clocks =3D <&gcc GCC_DISP_HF_AXI_CLK>,
-> > > +                     <&dispcc_ahb_clk>,
-> > > +                     <&dispcc_mdp_lut_clk>,
-> > > +                     <&dispcc_mdp_clk>,
-> > > +                     <&dispcc_mdp_vsync_clk>;
-> > > +            clock-names =3D "bus",
-> > > +                          "iface",
-> > > +                          "lut",
-> > > +                          "core",
-> > > +                          "vsync";
-> > > +
-> >
-> > It's been more than a week since Rob reported issues with the bindings.
-> > Any updates? Obviously I can not pick up patches with binding errors.
+> This patch introduces the following changes:
+> - Adds OF match table.
+> - Hardcodes hid-report-addr in the driver rather than fetching it
+>   from the device property.
 >
-> Well, someone picked up this version rather than v5 which appears to
-> have fixed it. So, probably need an incremental patch to fix the
-> warning in linux-next.
+> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
+> ---
+>  drivers/hid/hid-goodix-spi.c | 17 +++++++++++------
+>  1 file changed, 11 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/hid/hid-goodix-spi.c b/drivers/hid/hid-goodix-spi.c
+> index 6ae2300a6..80c0288a3 100644
+> --- a/drivers/hid/hid-goodix-spi.c
+> +++ b/drivers/hid/hid-goodix-spi.c
+> @@ -20,6 +20,7 @@
+>  #define GOODIX_HID_REPORT_DESC_ADDR    0x105AA
+>  #define GOODIX_HID_SIGN_ADDR           0x10D32
+>  #define GOODIX_HID_CMD_ADDR            0x10364
+> +#define GOODIX_HID_REPORT_ADDR         0x22C8C
+>
+>  #define GOODIX_HID_GET_REPORT_CMD      0x02
+>  #define GOODIX_HID_SET_REPORT_CMD      0x03
+> @@ -701,12 +702,7 @@ static int goodix_spi_probe(struct spi_device *spi)
+>                 return dev_err_probe(dev, PTR_ERR(ts->reset_gpio),
+>                                      "failed to request reset gpio\n");
+>
+> -       error =3D device_property_read_u32(dev, "goodix,hid-report-addr",
+> -                                        &ts->hid_report_addr);
+> -       if (error)
+> -               return dev_err_probe(dev, error,
+> -                                    "failed get hid report addr\n");
+> -
+> +       ts->hid_report_addr =3D GOODIX_HID_REPORT_ADDR;
+>         error =3D goodix_dev_confirm(ts);
+>         if (error)
+>                 return error;
+> @@ -790,6 +786,14 @@ static const struct acpi_device_id goodix_spi_acpi_m=
+atch[] =3D {
+>  MODULE_DEVICE_TABLE(acpi, goodix_spi_acpi_match);
+>  #endif
+>
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id goodix_spi_of_match[] =3D {
+> +       { .compatible =3D "goodix,gt7986u-spifw", },
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(of, goodix_spi_of_match);
+> +#endif
+> +
+>  static const struct spi_device_id goodix_spi_ids[] =3D {
+>         { "gt7986u" },
+>         { },
+> @@ -800,6 +804,7 @@ static struct spi_driver goodix_spi_driver =3D {
+>         .driver =3D {
+>                 .name =3D "goodix-spi-hid",
+>                 .acpi_match_table =3D ACPI_PTR(goodix_spi_acpi_match),
+> +               .of_match_table =3D of_match_ptr(goodix_spi_of_match),
 
-Well, I picked up v5, [1]. I will check if there are warnings and send
-a patch targeting linux-next / msm-fixes.
+I can never quite remember what the current preference is in regards
+to "OF" tables (whether to use #ifdef like you've done or mark them
+`__maybe_unused`), so maybe someone will request you change it. ...but
+IMO what you have is fine and looks to be properly guarded with
+of_match_ptr(). As far as I'm concerned, this patch looks OK.
 
-[1] https://gitlab.freedesktop.org/lumag/msm/-/commit/409685915f00
+Oh, I guess the one "nit" is that I would have put "spi" in the
+subject, making it "HID: hid-goodix-spi: Add OF supports". It might be
+worth sending a v5 for that (after waiting a day or two) unless a
+maintainer tells you not to.
 
+In any case:
 
---=20
-With best wishes
-Dmitry
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
