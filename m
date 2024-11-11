@@ -1,127 +1,208 @@
-Return-Path: <devicetree+bounces-120700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 587FC9C3B62
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 10:51:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73F429C3B7B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 10:59:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA703B2298D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 09:51:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5C94B21F38
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 09:59:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 981ED15696E;
-	Mon, 11 Nov 2024 09:51:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB291179972;
+	Mon, 11 Nov 2024 09:59:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="odeVkTyJ"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="PuCA/Y8B";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="K2zNtide"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10980156C76
-	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 09:51:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 495011714B2;
+	Mon, 11 Nov 2024 09:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731318685; cv=none; b=S1X5jGNBlXu45WT1HqxyylToKdjcuwj4pXZqnRJhy45EU3tR29jd3sQ+g0vu9tGMvpUbsHBEXDFm8EKA/ddiPeaAKE736TnE9kqE8ZoEpSZnXCscdC4YHgW3fC5xU+yG60BgMUzJrlfmajje94P/WN5DiKBj1HELtTB6e09hOm4=
+	t=1731319157; cv=none; b=CngMn8Lki12hz5pTTbyMWuidUWFtAgWcwxnKqZpkI9u4RDpnPAqCEGUOWdV7R/UOgX13aKMZjveqleAxAkgV3JLhuWPDKRGo99G+coes0g+xRs+TzYlhuKBm1CLY2hKg6R4enXlbtwphmbEpkmaYx+TglTaVF37AiaAjk3rRjmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731318685; c=relaxed/simple;
-	bh=FAFR0+tSOv4I8gRENdRAuULdCjfZHDr1M0BGBxx8hmc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rW13RpSpNyXqPyLVjq1res507iGF+UnY3GSbaaw/Y+ZlNeir3rtdXlweoP19TvwzH9tgdqWKKj/0p3U9jb5RAtrHZfeRpJE6IdHBN6p9S09deXiBmDHf7y4x1ql8KlYas7bIIw3oIierZ2vLr1qPqak8d16FFB9Pp0PPEtj9gdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=odeVkTyJ; arc=none smtp.client-ip=209.85.167.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3e60d3adecbso2354214b6e.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 01:51:23 -0800 (PST)
+	s=arc-20240116; t=1731319157; c=relaxed/simple;
+	bh=oqchIAOV+ujAuuqGpj2VFndIG4Bf4mSoSDUOyVmgWy0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=qFtpHfaZbJefGalnuc3qMxbyEb2JmSXdbuiyKxjygrgVWB62wx0Vt4PUAVuCdDjxOrOIIOcKJg3Ho5/pCkWi3DVZt/E7/AOJVq0YtJ5ALoaysVceBBX5ktKvJEKya56Ea29CZZKG38n40QmxT99zxqKRRyjX2RwS8sojJ5Fu1vE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=PuCA/Y8B; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=K2zNtide reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1731318683; x=1731923483; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=guSru76DQNk4jTAiYkWrlXoJU1Cr/ZCthqHp1IjuiWw=;
-        b=odeVkTyJv1v2P0UX/0OcEwDEvehyj4DRJKNr8/0dAvf6PVUx3iCPfW5Xq99Jghuczv
-         /A04CRdkwaHSKwWcc/5JC5+a+JBiU4KpCne5vKThi2gDfJRWHZw68x2W9MxccmjLqdUt
-         t8uKL1BDdNUH3DoVkU/H4+kNIAK6+U/lKca0U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731318683; x=1731923483;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=guSru76DQNk4jTAiYkWrlXoJU1Cr/ZCthqHp1IjuiWw=;
-        b=r/uaaY3QbhIBqAmBKhLntrLMT/xPiQCm8zxOHJ6hm89Ez4UAiBYYi9zgQXTwi/ff+R
-         hpUeC/NCzPIigcA5O6CmQ25ifoX92CFPIAlPz1PzkURt7yIygpyRrAVBJtGhAmX1N6Kc
-         x2e0EwGVk+aMwMBlP/ndWSfqAJHm7kN9XmkivnrG8D9J3iv4w257AG5a5Hd66tzUKBdp
-         yFmIXIDvkEcSRAmV/DA0t3kkbuBYIn2sQJVQ/0LJGRyfx00Ecr/ikJzSQOze8fYx1Y9r
-         UGyzSTzqdm8EhV6TwLGGsBeC/ujGNagaloJqGtIDHMZzkRTLZa8X6NW7PD45ba3Qjp5W
-         sBCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVAov9W0mHyD+2gUduGJN12IQkoUp7VUmEiuG0FC2vpLywjQcA4oAdmtkVkzn94pi9nwJPS29fAatdU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdYcNDUOmg+gdMGjG22lonDvRfPn31zbgTtcw3JK54JLfY8G6S
-	9KY+db5QxdxVttt5dT3QVV6ATQHwqS42UChJjBHsZv1Jpl9NtXnRk6d2MX3ltA==
-X-Google-Smtp-Source: AGHT+IG0E+pWn2Nhc1Tx7OrG49FBDcEDXCgNq4jPe83YpmSRM4g+0j589dM2a8bt6edqHtXly6EVuA==
-X-Received: by 2002:a05:6808:1a01:b0:3e6:5908:1776 with SMTP id 5614622812f47-3e7946952camr11345320b6e.15.1731318682973;
-        Mon, 11 Nov 2024 01:51:22 -0800 (PST)
-Received: from lschyi-p920.tpe.corp.google.com ([2401:fa00:1:10:ec9f:d26:733c:7acf])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7f41f5b48c6sm8075164a12.18.2024.11.11.01.51.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Nov 2024 01:51:22 -0800 (PST)
-From: Sung-Chi <lschyi@chromium.org>
-To: 
-Cc: Sung-Chi <lschyi@chromium.org>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Benson Leung <bleung@chromium.org>,
-	Guenter Roeck <groeck@chromium.org>,
-	=?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <thomas@weissschuh.net>,
-	Jean Delvare <jdelvare@suse.com>,
-	devicetree@vger.kernel.org,
-	chrome-platform@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: mfd: Add properties for thermal sensor cells
-Date: Mon, 11 Nov 2024 17:50:31 +0800
-Message-ID: <20241111095045.1218986-2-lschyi@chromium.org>
-X-Mailer: git-send-email 2.47.0.277.g8800431eea-goog
-In-Reply-To: <20241111095045.1218986-1-lschyi@chromium.org>
-References: <20241111074904.1059268-1-lschyi@chromium.org>
- <20241111095045.1218986-1-lschyi@chromium.org>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1731319154; x=1762855154;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=oqchIAOV+ujAuuqGpj2VFndIG4Bf4mSoSDUOyVmgWy0=;
+  b=PuCA/Y8Boy6Je5SH6lPqNK7ey7Xc4gNXw5/M3mxRgFHUsqW47uRLF4Wm
+   g5z8Sl4LQQRymaPXZKcQk53NXMGcZpq3bGyCNDgnnLYoNaKrjTXcLbH+k
+   wd8nagAGQhrUyHAQCyDwS3BIF/Q6mFK54dQiwclVoRApW4MGdiHEnAA4q
+   jAm1CuM6w+FT8jleelBxWAuduiC6mc2cDfpRIjt+ZSGfaimrmxc+1tO3X
+   essB63JxJ6liRJvAONeQfWQ/XJTemih+2PSNxnJP7eyCNH6PTUazP2xt+
+   gY9efh+LzfB16Xrfp2QEWkTafwAuA61jlPnVrzVNpa0GmcJJnvuGFbB25
+   Q==;
+X-CSE-ConnectionGUID: bLzZoMNiTlC78uJSz6rOag==
+X-CSE-MsgGUID: fLtsWKQiRT+AHbmP2bbOBQ==
+X-IronPort-AV: E=Sophos;i="6.12,144,1728943200"; 
+   d="scan'208";a="39960460"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 11 Nov 2024 10:59:04 +0100
+X-CheckPoint: {6731D568-30-D31EDE1A-D52D6119}
+X-MAIL-CPID: 072718E0F89994E832C944FEBBA3E4C7_5
+X-Control-Analysis: str=0001.0A682F25.6731D569.005A,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 01EFA165700;
+	Mon, 11 Nov 2024 10:58:57 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1731319140;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oqchIAOV+ujAuuqGpj2VFndIG4Bf4mSoSDUOyVmgWy0=;
+	b=K2zNtideaFnscstKqfITpwJxPHlZA+t9kTzTL9KSiI52w4VBrqmDKo1sX/5+uHpgJMPpGi
+	/KJV7gskuxM30VoCmQSkQEA3Ou/4t3wdza8k8GL2qQVfyBFSVPuIASlfHaIhBve4siYqcu
+	o8Fe86VdngGAsIuOIqMy+NWrg+Ycj0tCDAMplZP8KRMjXOooVjmxHPt4QLUQF4uGR4fW33
+	Z0ycB9lqfIxhALVFWdHv6iNmmzcRKCGcSVEF89XxYZN35jJwpi+Wd/ExWPGdLjKRHfGagp
+	d8XRWCbP7Zi94OJhOHMIgoXCtGZ8iWiyfwV53JxTFOQyARUUaJDOMbSWV9Qdgg==
+Message-ID: <068c22af19c07a7c79bb4abb0366a2505b4b1aae.camel@ew.tq-group.com>
+Subject: Re: [PATCH 2/5] dt-bindings: arm: ti: Add compatible for
+ AM625-based TQMa62xx SOM family and carrier board
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Kees Cook <kees@kernel.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
+ <gpiccoli@igalia.com>, Felipe Balbi <balbi@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>, Hari
+ Nagalla <hnagalla@ti.com>, linux@ew.tq-group.com
+Date: Mon, 11 Nov 2024 10:58:57 +0100
+In-Reply-To: <20241106-happy-anything-46f7293f6aca@spud>
+References: <cover.1730299760.git.matthias.schiffer@ew.tq-group.com>
+	 <4f5ad877f44df35a3b2c7f336647f057c4e6377d.1730299760.git.matthias.schiffer@ew.tq-group.com>
+	 <20241104-floral-dexterous-7d3fee2ff616@spud>
+	 <c73cac598788ccabd1791b1232e8fd9d7ce23ac6.camel@ew.tq-group.com>
+	 <20241105-tinsmith-countable-fbb51045bc98@spud>
+	 <7286141141fe4930cd2581dac7a1fb36a98e62c4.camel@ew.tq-group.com>
+	 <20241106-happy-anything-46f7293f6aca@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4-0ubuntu2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-The cros_ec supports reading thermal values from thermal sensors
-connect to it. Add the property '#thermal-sensor-cells' bindings, such
-that thermal framework can recognize cros_ec as a valid thermal device.
+On Wed, 2024-11-06 at 16:40 +0000, Conor Dooley wrote:
+> On Wed, Nov 06, 2024 at 01:03:08PM +0100, Matthias Schiffer wrote:
+> > On Tue, 2024-11-05 at 18:55 +0000, Conor Dooley wrote:
+> > > On Tue, Nov 05, 2024 at 11:40:20AM +0100, Matthias Schiffer wrote:
+> > > > On Mon, 2024-11-04 at 18:47 +0000, Conor Dooley wrote:
+> > > > > On Mon, Nov 04, 2024 at 10:47:25AM +0100, Matthias Schiffer wrote=
+:
+> > > > > > The TQMa62xx is a SoM family with a pluggable connector. The MB=
+a62xx is
+> > > > > > the matching reference/starterkit carrier board.
+> > > > >=20
+> > > > > Why all the wildcards? Why isn't there a compatible per device in=
+ the
+> > > > > family?
+> >=20
+> > Because all variants use the same Device Tree. There is also only one c=
+ompatible and one (main) DTSI
+> > for the AM62 SoC family, which our Device Trees are based on.
+>=20
+> So what varies between the members of the family?
 
-Change-Id: I95a22c0f1a69de547fede5f0f9c43cbd60820789
-Signed-off-by: Sung-Chi <lschyi@chromium.org>
----
- Changes in v2:
-   - Add changes for DTS binding.
----
- Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+There are currently 6 SoCs in the family:
+- AM6254
+- AM6252
+- AM6251
+- AM6234
+- AM6232
+- AM6231
 
-diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-index aac8819bd00b..c7d63e3aacd2 100644
---- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-+++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-@@ -96,6 +96,9 @@ properties:
-   '#gpio-cells':
-     const: 2
- 
-+  '#thermal-sensor-cells':
-+    const: 1
-+
-   gpio-controller: true
- 
-   typec:
--- 
-2.47.0.277.g8800431eea-goog
+They differ in:
+- Existence of GPU (AM625 vs AM623)
+- Number of Cortex-A53 cores (last digit)
+=20
+All of these use ti,am625 as their SoC-level compatible. The differences ar=
+e currently handled by U-
+Boot, which checks various feature flags in the SoC registers and patches t=
+he OS DTB accordingly by
+removing CPU nodes and disabling the GPU node if necessary.
 
+>=20
+> > > > For the compatible string we've chosen the TQMa6254 as the represen=
+tative for the TQMa62xx family.
+> > >=20
+> > > And all the boards in the family are the exact same?
+> >=20
+> > There is a single TQMa62xx PCB, which has some AM62 family SoC installe=
+d (AM6254 in the case of the
+> > TQMa6254, but all AM62 are possible). TQMa62xx is also the name used fo=
+r marketing when not talking
+> > about a specific SoC variant:
+> > https://www.tq-group.com/en/products/tq-embedded/arm-architecture/tqma6=
+2xx/
+> >=20
+> > Some SoM variants with different RAM/eMMC/SPI-NOR/... do exist, but the=
+y don't have separate device
+> > trees (firmware may patch some variant information into the DTB however=
+, like the correct RAM size).
+> >=20
+> > Choosing one representative for the family including the SoC variant nu=
+mber, but not distinguishing
+> > minor variants matches the level of detail used for our other SOMs alre=
+ady supported by mainline
+> > Linux (like the TQMa64xxL and various i.MX-based platforms).
+>=20
+> I don't like any of this wildcard stuff at all, who is to say that the
+> next soc you put on your SoM won't be an am62a7, which has a specific
+> compatible in the kernel? Your fallback then would be ti,am62a7 not
+> ti,am625. Probably someone will say "that's the am62a family not the
+> am62 family" - but that exact thing is why I hate all of this
+> wildcarding. It's barely any more effort to have a tqm6231 and a tqm6254
+> compatible than what you're doing with wildcard but it is unambiguous.
+
+Our intention here is to have one SOM compatible string for each SoC compat=
+ible string. As all SoC
+variants use the same compatible ti,am625, we've chosen to do the same (usi=
+ng tq,am625-tqma6254 as
+the representative.) A hypothetical SOM using a ti,am62a7 would obviously n=
+ot use the
+tq,am625-tqma6254 compatible string.
+
+At no point we're including wildcards in our compatible strings - we're reu=
+sing a specific
+compatible string for multiple compatible variants. Or is what you're takin=
+g issue with the wildcard
+in the description string in the YAML? That one I don't have much of an opi=
+nion on.
+
+Best,
+Matthias
+
+
+>=20
+>=20
+> =C2=A0
+
+--=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+https://www.tq-group.com/
 
