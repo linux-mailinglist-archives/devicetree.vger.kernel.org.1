@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-120911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B8EA9C4879
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 22:48:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D3969C488A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 22:52:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE959B22871
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 21:48:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54F851F25494
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 21:52:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 286C01AC89A;
-	Mon, 11 Nov 2024 21:47:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1F251B6541;
+	Mon, 11 Nov 2024 21:52:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ORgrNDsA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s7DI2uWT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39AD038F83;
-	Mon, 11 Nov 2024 21:47:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A908838F83;
+	Mon, 11 Nov 2024 21:52:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731361679; cv=none; b=GEwyzeVv4jKwOa+/qjxfDhOYjVFXGXnWJRKe717Ms8gWx2wy3PmDSc3Q3aaJ9BGRLSrVKkeF/H3RUqPVFX7wH7qp7XYeBaH62FViWcq/iWwqmFuwYEmT+mIqGUuNZxv7715wPchU5lmBZUJMZwvbjZWIGCuSg0cZxYbxhZlROqk=
+	t=1731361943; cv=none; b=KpicagwdJe93AblWdyU9odhAK5zwaTYrTw8lWv1gH0YvsTT7v+aaYLk/D4ZCMUcuf2YvAI+GbXKZ1JWYHsm4uLuZYZDnsS4BD6TsXgI6eYrlRAoUarLAemfQjsR15kuxKkA3A15MUYJZF6imFxNQ693eSkEJ1siTKEBJlnxqTvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731361679; c=relaxed/simple;
-	bh=BSBxAtTcGQpXnmN5PIotiHJ3HpTUs4yvl5mk0Ne2Zpc=;
+	s=arc-20240116; t=1731361943; c=relaxed/simple;
+	bh=4gGY0BakKCULl1EI2o6BesQyxfC5cfKegCtI7RsK0Xo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KfbGNBexRdljwxzufNSGnkeQqpRroc2K5uoejaJERkKmcgjNOl1Z64NaXrIY5TNZLorMxLNauB11e5vt1ty4UXf+NsOv59xzgTXxf56KDi9nkpPk88e8jGDr5VDT2u9HqnougnBpvcWHHmPNMP06lVLs8aPhYR5YGrjtIsddZFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ORgrNDsA; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 30A8640006;
-	Mon, 11 Nov 2024 21:47:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1731361674;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=g2b4scH3PheFozFLPBiOdBcm1frxxscZgJklXEJTI+E=;
-	b=ORgrNDsApFJAXIlghO7ADZBZShp2JPVY1Y2q72fERJMhFQQ0H0WGk/ugUaRe4z0Rhcti6v
-	gg5YRX3ujHhU5Z0GU/nnqnjIfyjakgMolvoxkLQbBpqDQAOjhPozKghR+zYY/eMYPox8Br
-	8fOs23Vdb8h+h6rODi8IvccP+ILAeBso/HRis3257iSqm4GrGmw8/sbDKHr90Q8rh30Vh4
-	9U7+5osF9YvsVOp05UXXo0fUzcvcAzTiqkuFBuEmMdB2vGBqSdVH2qb+lO2LqGKek1mG9p
-	HenFUlRYr5aGhwth98wy7TjGlEhvw2m4UzpHLQsn8FAEKuqqMifoxaZTuf9I2Q==
-Date: Mon, 11 Nov 2024 22:47:51 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Yiting Deng <yiting.deng@amlogic.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v5 0/3] support for amlogic rtc
-Message-ID: <173136163495.3310623.12434068921554307587.b4-ty@bootlin.com>
-References: <20241108-rtc-v5-0-0194727c778b@amlogic.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=a2c/okH91noZ77Voc3GfJphHAuZBuDK7Uip2bbMdlIpeAC3FtHwc3lxMRqcHAWdKxJQygijSzekApZdc+l8pf/eyFg2z/uyxt+SfjUX7YhSvvLDaEMGlHD2K21m1s5G5J9Tuu6+FzksGEqISe+AT8QC2O93TaJHC08VAPu9zB6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s7DI2uWT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1604C4CECF;
+	Mon, 11 Nov 2024 21:52:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731361943;
+	bh=4gGY0BakKCULl1EI2o6BesQyxfC5cfKegCtI7RsK0Xo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s7DI2uWTRzBMis8GWa0zWTWnE0IX4lkODgsn+ZUirM+/6DIJHVSlfaxw/u5LCNXdX
+	 yjvtnWzP7pdNBs8E3jy8G7k+ayEd5JI+xOaZ5VcRMsn6uehLPkQ+qRyxVSmVaTtCVj
+	 l/umt6fk+5tiOtqSE4Vqq4xMgZ/gDqTEVg1HyiY4sPyfNUMyNv2KbCc7rgZKPSkPsm
+	 Li27Q/BLdcO68ZlqBUzcdAiUttWxP66HjIC4/TwkXtHeRTB2pBRQ758ZWVLBC9ug7Q
+	 GGlnyYH0T5lItmc/57NEm3n8DUbkuwKvyFVyPlO49jbhjFZtfxN2YXjXM1xXrjNOfZ
+	 UrUBXGaVJre9g==
+Date: Mon, 11 Nov 2024 15:52:20 -0600
+From: Rob Herring <robh@kernel.org>
+To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	ycliang@andestech.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
+	peterlin@andestech.com, samuel.holland@sifive.com,
+	conor.dooley@microchip.com, alexghiti@rivosinc.com,
+	ruanjinjie@huawei.com, takakura@valinux.co.jp, conor+dt@kernel.org,
+	jassisinghbrar@gmail.com, krzk+dt@kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] riscv: export __cpuid_to_hartid_map
+Message-ID: <20241111215220.GA1993016-robh@kernel.org>
+References: <20241105183513.1358736-1-valentina.fernandezalanis@microchip.com>
+ <20241105183513.1358736-3-valentina.fernandezalanis@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,27 +64,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241108-rtc-v5-0-0194727c778b@amlogic.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+In-Reply-To: <20241105183513.1358736-3-valentina.fernandezalanis@microchip.com>
 
-On Fri, 08 Nov 2024 13:54:40 +0800, Xianwei Zhao wrote:
-> Add rtc driver and bindigns for the amlogic A4(A113L2) and A5(A113X2) SoCs.
+On Tue, Nov 05, 2024 at 06:35:11PM +0000, Valentina Fernandez wrote:
+> EXPORT_SYMBOL_GPL() is missing for __cpuid_to_hartid_map array.
+> Export this symbol to allow drivers compiled as modules to use
+> cpuid_to_hartid_map().
 > 
+> Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+> ---
+>  arch/riscv/kernel/smp.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
+> diff --git a/arch/riscv/kernel/smp.c b/arch/riscv/kernel/smp.c
+> index c180a647a30e..d58b5e751286 100644
+> --- a/arch/riscv/kernel/smp.c
+> +++ b/arch/riscv/kernel/smp.c
+> @@ -43,6 +43,7 @@ enum ipi_message_type {
+>  unsigned long __cpuid_to_hartid_map[NR_CPUS] __ro_after_init = {
+>  	[0 ... NR_CPUS-1] = INVALID_HARTID
+>  };
+> +EXPORT_SYMBOL_GPL(__cpuid_to_hartid_map);
 
-Applied, thanks!
+Why can't riscv implement cpu_logical_map() like other arches?
 
-[1/3] dt-bindings: rtc: Add Amlogic A4 and A5 RTC
-      https://git.kernel.org/abelloni/c/12defbf1429c
-[2/3] rtc: support for the Amlogic on-chip RTC
-      https://git.kernel.org/abelloni/c/db26c3d6eb01
-[3/3] MAINTAINERS: Add an entry for Amlogic RTC driver
-      https://git.kernel.org/abelloni/c/cf6f2ddfd039
+We really should have a common implementation too, but that's probably 
+too much to ask I guess.
 
-Best regards,
+Rob
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
