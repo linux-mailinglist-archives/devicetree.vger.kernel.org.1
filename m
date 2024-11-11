@@ -1,215 +1,135 @@
-Return-Path: <devicetree+bounces-120724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AE789C3CFF
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 12:21:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADB709C3D44
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 12:30:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEAAB1C21AE9
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 11:21:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45F26B24196
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2024 11:30:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4101F190074;
-	Mon, 11 Nov 2024 11:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61CA818C00A;
+	Mon, 11 Nov 2024 11:29:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="EO/Dtp0I"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UETxca2u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70588189BB0
-	for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 11:19:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B433D197A72;
+	Mon, 11 Nov 2024 11:29:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731323997; cv=none; b=HAQWOttshU0Q0k1fJJ5KQofRpgX1IOrJPqvzlYoRn/v2OHX0R5ooJbmo5PR2OrU3ZkQtBYqggXrSwmBeRwHWXtC/u8wjWKl988d2hp/smqGw3B9FYGXBVxG5gjHwrcO3QUp3YWjzyS/cvXj9Px7hKHzfS51pNbS4yXBHxdX2oHQ=
+	t=1731324565; cv=none; b=YChAKIwPgtmWtpmZbFr/zh8mfDOpNFjHmvgtJw3LfUpaBys8XmOn1u+lpgy2q0ysVNweTWp34Oc163dYFUQsJLUFfGlDulOJICvAbhQzpsfCgOaw4P9JtNEST84U2f9r7FWCAPWfwsLjUNWE+YWLWjnIE0AhtJ8gJybtA98ZOTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731323997; c=relaxed/simple;
-	bh=doVS2FjDRkq4c2IHXmTNPcOL4I0Od2rKyJgRrUG5QOQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c3EwTokRsZ62tvwe/9crSvEccqJcVhjIzLPykmRn5f1QnrIt6YB9seUPQrt4HMF2JFDF9I9YevVX/d3eefbWj7uBLP3cu7uQoTMjjh6G3avOTnII3U0eLBxGftPLkAM/CH7RobjR37HlJ7Nwo8O8bRVjUuNCMZwDW7/L79jLAqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=EO/Dtp0I; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43193678216so41855135e9.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 03:19:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1731323994; x=1731928794; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Rw4WfXknbvTv9k5vxcl4gUNbP7Ohsij/aCpukU/A3Vk=;
-        b=EO/Dtp0IV154LpqV4SO5kkDTm/hZXoBCP82EUWwjf4E2wPCFP4m0NBGGeQEatIiwph
-         gKt6hscJpqiKDJKSD4kj/0k4CDmpkEhBGfZhdtcbHQ+S/0g6MHPRrBVlx9WlFndpulDD
-         eOa/TXZN8+KY8MYt8jGHfdbted8Bqm+yt3DHxLOy9zA+13eDzCgm8hhNYB/XukWf1p2t
-         1Mztkgwi42tBpEmDcIQxvcPt6uz94ULFaNFB6c1Vi08Mn8uOd3rT1wl0lAkoFtDLe1CJ
-         011irTrJSuX+DYxx+B798HbhW86uw36Vtw8NP6lOJO3l5pPuGfzIcgijnkb1Ibd2cYSi
-         eAPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731323994; x=1731928794;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rw4WfXknbvTv9k5vxcl4gUNbP7Ohsij/aCpukU/A3Vk=;
-        b=IqwJuGFpY4Wokg9X7SHq5pxSJA7rH2Zpt/apg4B8xMmHqe0fUs2XhxT5zOZ5bTf+Zo
-         nQIBbgzejTB2dq7xnedysgRHTYkMKZdePOv7H/6QLWJX25iO2yXAVvan0dBQUd0aos9y
-         uTlHjNer+FiUDZ2luLjGcO/Ezy2BL4M+udP/aCWBrOm6PIfEgVo83aZPJSQKt8k0cuxF
-         YxhHIFHT7eVwDG6/1Bci7BDPutwuLeGe3B2vyR28rqlR/q4dhIAKVvTaqhgTXvBeQq1P
-         ffpueOouqHy/uXm537rWBu+utW4vAjBTVGjpbGioBjs2fw1tccBazc9fVzqLVZ5Kw4OQ
-         sEwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWKqvdNie6vM9/dadJJ4lobV9O1Nf8QuiVL6vx//RkW0HOrrLxjX7bsVDPyCLaGo7ZrtMJKu8oIxWmq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYixcFsdr3cHwmwakKZTi4/f9PfhWlaL2LovBxUpYxLy0Ptw4I
-	zVOvax7EgZSkRypR5j2Sezi9tmXUgsrSZe77NfEzevLVISWM5o1SsH8LzamyCVA=
-X-Google-Smtp-Source: AGHT+IEPlE7s7WR+Igk2ywhz8l2p851jHgVb2oB6ZyOPVQBtqGnlCuUDU91Ga3Z/F8+t6vhFYowZqw==
-X-Received: by 2002:a05:6000:2588:b0:381:c8fe:20b1 with SMTP id ffacd0b85a97d-381f18855b8mr10158643f8f.42.1731323993363;
-        Mon, 11 Nov 2024 03:19:53 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.28])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381ed99a0efsm12691906f8f.58.2024.11.11.03.19.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Nov 2024 03:19:52 -0800 (PST)
-Message-ID: <c15bb621-6cd9-4be3-beec-20fecd411547@tuxon.dev>
-Date: Mon, 11 Nov 2024 13:19:50 +0200
+	s=arc-20240116; t=1731324565; c=relaxed/simple;
+	bh=TNR8Irg9SFGemO0CwPl7apQbYEX5kMn4q8DdQYuF7iA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PN+vxkquA385ieXLChjmMjidrMXyHwwIGHMmeowWrIJN90vsgXXjepMNtop+Ry3S4PuKbzNMiImjYB2+Jm/FuCjzr02fD7kjNYS54eGMxngMN86J9rRVdI8hCJtqqemJ+cxiRNBiz7C8neiRRN1I1dcEqczCP3+FNLyPYTVNrko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UETxca2u; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1731324564; x=1762860564;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TNR8Irg9SFGemO0CwPl7apQbYEX5kMn4q8DdQYuF7iA=;
+  b=UETxca2u9AOqoPmwLnper04cOOSd4VhU6bmx9lTcQmf7omjIZJwvEp0E
+   LRRu/OkhOAWTsYSIkkXGGJGqiwqw1Ug54ZBOXSSaBmWoJBnfHfCeIAIid
+   LVZP694Relj+g+eGlWY9qPSjhxux9TiZHBQgJH4yoc9gAtQrPS/5dTRC3
+   hAoFqmJtLv03EjwTmNlk30hxdUx0zQnajwQdT2dXXYjUSpxoIdId4aCNO
+   2M+TfOkPp66aSMOjbOpHwjMGWm4+Vhz2EKREG73twroC5dkioO1O7mPO2
+   6germDAIlZPrLlAQ95hS1znhkYEZ81aiftij2U1UGRGovuMF05uSuvwsJ
+   g==;
+X-CSE-ConnectionGUID: d6ktAX7wR8qdlNu97nc8kw==
+X-CSE-MsgGUID: EOU7AvM7SaeFJp7u1Fzvdw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="34814594"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="34814594"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2024 03:29:21 -0800
+X-CSE-ConnectionGUID: 7qdCuUaNROSsRPwhQ+1cLA==
+X-CSE-MsgGUID: TNENUA3HTw6mQg31NfiN1Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; 
+   d="scan'208";a="86992621"
+Received: from lkp-server01.sh.intel.com (HELO dc8184e5aea1) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 11 Nov 2024 03:29:16 -0800
+Received: from kbuild by dc8184e5aea1 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tASbZ-0000En-1o;
+	Mon, 11 Nov 2024 11:29:13 +0000
+Date: Mon, 11 Nov 2024 19:29:12 +0800
+From: kernel test robot <lkp@intel.com>
+To: Chen Wang <unicornxw@gmail.com>, kw@linux.com,
+	u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu, arnd@arndb.de,
+	bhelgaas@google.com, unicorn_wang@outlook.com, conor+dt@kernel.org,
+	guoren@kernel.org, inochiama@outlook.com, krzk+dt@kernel.org,
+	lee@kernel.org, lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org, palmer@dabbelt.com,
+	paul.walmsley@sifive.com, pbrobinson@gmail.com, robh@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com, xiaoguang.xing@sophgo.com,
+	fengchun.li@sophgo.com
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 2/5] PCI: sg2042: Add Sophgo SG2042 PCIe driver
+Message-ID: <202411111935.kqORCWuE-lkp@intel.com>
+References: <5051f2375ff6218e7d44ce0c298efd5f9ee56964.1731303328.git.unicorn_wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 24/25] arm64: dts: renesas: rzg3s-smarc: Enable SSI3
-Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
- "perex@perex.cz" <perex@perex.cz>, "tiwai@suse.com" <tiwai@suse.com>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20241108104958.2931943-1-claudiu.beznea.uj@bp.renesas.com>
- <20241108104958.2931943-25-claudiu.beznea.uj@bp.renesas.com>
- <TYCPR01MB113329FE5E9E610BEF45DC001865F2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <TYCPR01MB113329FE5E9E610BEF45DC001865F2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5051f2375ff6218e7d44ce0c298efd5f9ee56964.1731303328.git.unicorn_wang@outlook.com>
 
-Hi, Biju,
+Hi Chen,
 
-On 10.11.2024 10:54, Biju Das wrote:
-> Hi Claudiu,
-> 
-> Thanks for the patch.
-> 
-> 
->> -----Original Message-----
->> From: Claudiu <claudiu.beznea@tuxon.dev>
->> Sent: 08 November 2024 10:50
->> Subject: [PATCH v2 24/25] arm64: dts: renesas: rzg3s-smarc: Enable SSI3
->>
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> Enable SSI3.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>
->> Changes in v2:
->> - none
->>
->>  arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi | 26 ++++++++++++++++++++
->>  1 file changed, 26 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-
->> smarc.dtsi
->> index 4aa99814b808..6dd439e68bd4 100644
->> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
->> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
->> @@ -64,6 +64,11 @@ vccq_sdhi1: regulator-vccq-sdhi1 {
->>  	};
->>  };
->>
-> 
-> &audio_clk1 {
->        assigned-clocks = <&versa3 xx>;
->        clock-frequency = <11289600>;
-> };
+kernel test robot noticed the following build warnings:
 
-audio_clk1 node is in the RZ/G3S dtsi to keep the compilation happy.
+[auto build test WARNING on 2d5404caa8c7bb5c4e0435f94b28834ae5456623]
 
-For this board the audio clock1 for the SSI 3 is from <&versa3 2>.
+url:    https://github.com/intel-lab-lkp/linux/commits/Chen-Wang/dt-bindings-pci-Add-Sophgo-SG2042-PCIe-host/20241111-140237
+base:   2d5404caa8c7bb5c4e0435f94b28834ae5456623
+patch link:    https://lore.kernel.org/r/5051f2375ff6218e7d44ce0c298efd5f9ee56964.1731303328.git.unicorn_wang%40outlook.com
+patch subject: [PATCH 2/5] PCI: sg2042: Add Sophgo SG2042 PCIe driver
+config: um-allyesconfig (https://download.01.org/0day-ci/archive/20241111/202411111935.kqORCWuE-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241111/202411111935.kqORCWuE-lkp@intel.com/reproduce)
 
-If we fill in the audio_clk1 here it will be useless, there will be no
-consumers for it and it is not available on board.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411111935.kqORCWuE-lkp@intel.com/
 
-Thank you,
-Claudiu Beznea
+All warnings (new ones prefixed by >>):
 
-> 
-> Maybe add audio_clk1, so that it described properly in clock tree??
-> 
-> Cheers,
-> Biju
-> 
->> +&audio_clk2 {
->> +	clock-frequency = <12288000>;
->> +	status = "okay";
->> +};
->> +
->>  &i2c0 {
->>  	status = "okay";
->>
->> @@ -94,6 +99,11 @@ da7212: codec@1a {
->>  };
->>
->>  &pinctrl {
->> +	audio_clock_pins: audio-clock {
->> +		pins = "AUDIO_CLK1", "AUDIO_CLK2";
->> +		input-enable;
->> +	};
->> +
->>  	key-1-gpio-hog {
->>  		gpio-hog;
->>  		gpios = <RZG2L_GPIO(18, 0) GPIO_ACTIVE_LOW>; @@ -151,6 +161,13 @@ cd {
->>  			pinmux = <RZG2L_PORT_PINMUX(0, 2, 1)>; /* SD1_CD */
->>  		};
->>  	};
->> +
->> +	ssi3_pins: ssi3 {
->> +		pinmux = <RZG2L_PORT_PINMUX(18, 2, 8)>, /* BCK */
->> +			 <RZG2L_PORT_PINMUX(18, 3, 8)>, /* RCK */
->> +			 <RZG2L_PORT_PINMUX(18, 4, 8)>, /* TXD */
->> +			 <RZG2L_PORT_PINMUX(18, 5, 8)>; /* RXD */
->> +	};
->>  };
->>
->>  &scif0 {
->> @@ -171,3 +188,12 @@ &sdhi1 {
->>  	max-frequency = <125000000>;
->>  	status = "okay";
->>  };
->> +
->> +&ssi3 {
->> +	clocks = <&cpg CPG_MOD R9A08G045_SSI3_PCLK2>,
->> +		 <&cpg CPG_MOD R9A08G045_SSI3_PCLK_SFR>,
->> +		 <&versa3 2>, <&audio_clk2>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&ssi3_pins>, <&audio_clock_pins>;
->> +	status = "okay";
->> +};
->> --
->> 2.39.2
-> 
+>> drivers/pci/controller/cadence/pcie-sg2042.c:141:12: warning: 'sg2042_pcie_msi_irq_set_affinity' defined but not used [-Wunused-function]
+     141 | static int sg2042_pcie_msi_irq_set_affinity(struct irq_data *d,
+         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/sg2042_pcie_msi_irq_set_affinity +141 drivers/pci/controller/cadence/pcie-sg2042.c
+
+   140	
+ > 141	static int sg2042_pcie_msi_irq_set_affinity(struct irq_data *d,
+   142						    const struct cpumask *mask,
+   143						    bool force)
+   144	{
+   145		if (d->parent_data)
+   146			return irq_chip_set_affinity_parent(d, mask, force);
+   147	
+   148		return -EINVAL;
+   149	}
+   150	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
