@@ -1,361 +1,100 @@
-Return-Path: <devicetree+bounces-121256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CEFC9C60F4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:01:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34AE69C603E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 19:19:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7E6DBE0E3F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:39:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A158B29AA9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:46:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85DB4212F03;
-	Tue, 12 Nov 2024 17:33:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F403213120;
+	Tue, 12 Nov 2024 17:46:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="uZsD40JD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ALyCMJsv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2459209664;
-	Tue, 12 Nov 2024 17:33:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1B61A4F21;
+	Tue, 12 Nov 2024 17:46:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731432789; cv=none; b=kePQbzVA4LyM5hXCQjzkCcvl44nx6eYIpti7R3pYBNBY1o9x7MrolwDzOGTp0ciVmQhgBymPRWvX1sWqS2reeOjmZFpNxb4osCr/qs85wCAw5MTmv1K578XJLyKeTJAqp886XADr7+6OcorxK4+B7rliOnoPKqX+fdvH6pUV7Q8=
+	t=1731433564; cv=none; b=AorQLm+bwe/lgN3z2wzESEYIg6/euNhDJcUGMLX1R4U3lycMMvljZTGT8NX00nhWPSOVzn/PKL7DiBbLGE44yngwo2VZmiRXUm07KnH2LBf9Aj1pamblu2uEqWzduMjq3FyhY1zF+oTRkrBY0Yr3wwVQypYwbkdACxThx/tu9hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731432789; c=relaxed/simple;
-	bh=ZMippwGJIxIyDlx7CchqU2+81i9sMtpxdtNshqEH+FA=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=rvoTc8Hk+ZpX0s5a78myB8hmVwbPiG9buPqbvvyWvZmwpe6H8HRg4lLx3qZh+aT9PKeyvtxkUQEmsyArYZAneJ6uygbd5DqTzTUKv+R4awR9hlQpPuqS2sPRvL1p6X4vL8eWv+gNcL/Aoar8zPuO6t0fCGqSyEfWwJ9ZhK1+7+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=uZsD40JD; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-Received: from localhost (docker-mailserver-web-1.docker-mailserver_default [172.22.0.5])
-	by mail.mainlining.org (Postfix) with ESMTPSA id 460B6E45C8;
-	Tue, 12 Nov 2024 17:33:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
-	s=psm; t=1731432784;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Z2MTZMjG68b3T6cJYBnCLBnnuL4jBK+EhuaLspP8FtU=;
-	b=uZsD40JDUj+xKRaOPkpL6nf3J8klFmsRTOn6vreQuN1wSp87ovX6mpEFCQOBx58K8QYta7
-	VzVeaQ4h8EQJbmNZQR+3u28BgKJQqiIQ0wd/2yJ5UmCqdzO49ZieHlQVATtN9X/viRhm5C
-	AUV+br4PKChFi23R1r9xuXklYwx3712wZPJxv46CzHpYZklv7+Oe2u+rTRzoIQ//eVZ0Lv
-	cEqWoiXSf3J2nKS3tXALl0/PqfhhoPBizRmQRGV2ZBEXo3Ih9UrwyCPjV+BH13swivY/EO
-	WX28pBohIXGSjWiBqxQgD7VOTo/Kymv3m11hIsYqhRGe8YX1N9lteGUehAvx8g==
+	s=arc-20240116; t=1731433564; c=relaxed/simple;
+	bh=FYqoPFYrwvLuyx28eQcUzR0RgOVazKdDDyp0xfXcmhM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U0DchZwbjterXO82ga+cxj7RT9jNOggEZfioTUvVKydUGWzm0ec5GiN025UDvD2j7i0+4fppQJU1pGkWEDkOZdXk9CQO/NB8e1e1ogQjjM/P9mnzCL0PS48+S2GuyAWRklH2nKsrxB29ShAitj5ul+M4nUckL1lT0noDk8HjGTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ALyCMJsv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA232C4CECD;
+	Tue, 12 Nov 2024 17:46:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731433563;
+	bh=FYqoPFYrwvLuyx28eQcUzR0RgOVazKdDDyp0xfXcmhM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ALyCMJsvDL5DSsX2uc3VXK/FIfxoPaKy5rin8YjJyqrGqzv5cAR00nWAHnIKe4Gru
+	 qoXL4+x6tplC+JDI1pKY+a7p1U7LBo/qpVj0t5ssEPW+iosdkaPOGp4TAKkQDjarsp
+	 UzIdr1/sIcguMN7RhT/nuI8TLUMI0fUunqF2Mq3gUH55ezTd5ceONhmgWwWyW7C+dl
+	 NAT3NduKG6E1Q07kGKnpFc+6HYaVJXF3rvzBMhqmGCVNzlW9Lr/AO2FILHgpI/zLVv
+	 +ppRyjj7Jfoqk625EcRMZkLEuN7YDANyroAC3xMuD2FazhBwcdM3N53Voo71Zfdr6H
+	 oMS/LBxU/LEYQ==
+Date: Tue, 12 Nov 2024 17:45:59 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andreas Kemnade <andreas@kemnade.info>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: bd71815: Fix rsense and typos
+Message-ID: <20241112-surgery-clean-f1f6c0bb5248@spud>
+References: <0efd8e9de0ae8d62ee4c6b78cc565b04007a245d.1731430700.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 12 Nov 2024 18:33:04 +0100
-From: barnabas.czeman@mainlining.org
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Amit Kucheria <amitk@kernel.org>, Thara Gopinath
- <thara.gopinath@gmail.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Daniel
- Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz
- Luba <lukasz.luba@arm.com>, Joerg Roedel <joro@8bytes.org>, Will Deacon
- <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Srinivas Kandagatla
- <srinivas.kandagatla@linaro.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org, iommu@lists.linux.dev,
- =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-Subject: Re: [PATCH v5 08/10] arm64: dts: qcom: Add initial support for
- MSM8917
-In-Reply-To: <ZzOQEgLLhkH-IymV@linaro.org>
-References: <20241112-msm8917-v5-0-3ca34d33191b@mainlining.org>
- <20241112-msm8917-v5-8-3ca34d33191b@mainlining.org>
- <ZzOQEgLLhkH-IymV@linaro.org>
-Message-ID: <8d4cddf01b29cbd4b86c13081bb1ce0d@mainlining.org>
-X-Sender: barnabas.czeman@mainlining.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="tJUu9GKmxcfm3z/Q"
+Content-Disposition: inline
+In-Reply-To: <0efd8e9de0ae8d62ee4c6b78cc565b04007a245d.1731430700.git.mazziesaccount@gmail.com>
 
-On 2024-11-12 18:27, Stephan Gerhold wrote:
-> On Tue, Nov 12, 2024 at 04:49:38PM +0100, Barnabás Czémán wrote:
->> From: Otto Pflüger <otto.pflueger@abscue.de>
->> 
->> Add initial support for MSM8917 SoC.
->> 
->> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
->> [reword commit, rebase, fix schema errors]
->> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
->> ---
->>  arch/arm64/boot/dts/qcom/msm8917.dtsi | 1974 
->> +++++++++++++++++++++++++++++++++
->>  1 file changed, 1974 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/msm8917.dtsi 
->> b/arch/arm64/boot/dts/qcom/msm8917.dtsi
->> new file mode 100644
->> index 
->> 0000000000000000000000000000000000000000..cf0a0eec1141e11faca0ee9705d6348ab32a0f50
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/msm8917.dtsi
->> @@ -0,0 +1,1974 @@
->> [...]
->> +		domain-idle-states {
->> +			cluster_sleep_0: cluster-sleep-0 {
->> +				compatible = "domain-idle-state";
->> +				arm,psci-suspend-param = <0x41000023>;
->> +				entry-latency-us = <700>;
->> +				exit-latency-us = <650>;
->> +				min-residency-us = <1972>;
->> +			};
->> +
->> +			cluster_sleep_1: cluster-sleep-1 {
->> +				compatible = "domain-idle-state";
->> +				arm,psci-suspend-param = <0x41000043>;
->> +				entry-latency-us = <240>;
->> +				exit-latency-us = <280>;
->> +				min-residency-us = <806>;
->> +			};
-> 
-> I think my comment here is still open:
-> 
-> This is strange, the deeper sleep state has lower timings than the
-> previous one?
-> 
->> +
->> +			cluster_sleep_2: cluster-sleep-2 {
->> +				compatible = "domain-idle-state";
->> +				arm,psci-suspend-param = <0x41000053>;
->> +				entry-latency-us = <700>;
->> +				exit-latency-us = <1000>;
->> +				min-residency-us = <6500>;
->> +			};
->> +		};
->> +
->> [...]
->> +		restart@4ab000 {
->> +			compatible = "qcom,pshold";
->> +			reg = <0x004ab000 0x4>;
->> +		};
-> 
-> This one too:
-> 
-> You have PSCI for shutting down, do you actually need this?
-Yes, power off is not working without this.
-> 
->> +
->> +		tlmm: pinctrl@1000000 {
->> +			compatible = "qcom,msm8917-pinctrl";
->> +			reg = <0x01000000 0x300000>;
->> +			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
->> +			gpio-controller;
->> +			gpio-ranges = <&tlmm 0 0 134>;
->> +			#gpio-cells = <2>;
->> +			interrupt-controller;
->> +			#interrupt-cells = <2>;
->> +
->> [...]
->> +			sdc1_clk_on: sdc1-clk-on-state {
->> +				pins = "sdc1_clk";
->> +				bias-disable;
->> +				drive-strength = <16>;
->> +			};
->> +
->> +			sdc1_clk_off: sdc1-clk-off-state {
->> +				pins = "sdc1_clk";
->> +				bias-disable;
->> +				drive-strength = <2>;
->> +			};
->> +
->> +			sdc1_cmd_on: sdc1-cmd-on-state {
->> +				pins = "sdc1_cmd";
->> +				bias-disable;
->> +				drive-strength = <10>;
->> +			};
->> +
->> +			sdc1_cmd_off: sdc1-cmd-off-state {
->> +				pins = "sdc1_cmd";
->> +				bias-disable;
->> +				drive-strength = <2>;
->> +			};
->> +
->> +			sdc1_data_on: sdc1-data-on-state {
->> +				pins = "sdc1_data";
->> +				bias-pull-up;
->> +				drive-strength = <10>;
->> +			};
->> +
->> +			sdc1_data_off: sdc1-data-off-state {
->> +				pins = "sdc1_data";
->> +				bias-pull-up;
->> +				drive-strength = <2>;
->> +			};
->> +
->> +			sdc1_rclk_on: sdc1-rclk-on-state {
->> +				pins = "sdc1_rclk";
->> +				bias-pull-down;
->> +			};
->> +
->> +			sdc1_rclk_off: sdc1-rclk-off-state {
->> +				pins = "sdc1_rclk";
->> +				bias-pull-down;
->> +			};
->> +
->> +			sdc2_clk_on: sdc2-clk-on-state {
->> +				pins = "sdc2_clk";
->> +				drive-strength = <16>;
->> +				bias-disable;
->> +			};
->> +
->> +			sdc2_clk_off: sdc2-clk-off-state {
->> +				pins = "sdc2_clk";
->> +				bias-disable;
->> +				drive-strength = <2>;
->> +			};
->> +
->> +			sdc2_cmd_on: sdc2-cmd-on-state {
->> +				pins = "sdc2_cmd";
->> +				bias-pull-up;
->> +				drive-strength = <10>;
->> +			};
->> +
->> +			sdc2_cmd_off: sdc2-cmd-off-state {
->> +				pins = "sdc2_cmd";
->> +				bias-pull-up;
->> +				drive-strength = <2>;
->> +			};
-> 
-> These are not referenced anywhere? Not here in the sdhc_X nodes, and
-> also not in your msm8917-xiaomi-riva.dts. Would also recommend
-> consolidating these to a single node like in msm8916.dtsi, see commit
-> c943e4c58b2f ("arm64: dts: qcom: msm8916/39: Consolidate SDC pinctrl").
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=c943e4c58b2ffb0dcd497f8b12f284f5e8fc477e
-> 
->> +
->> +			sdc2_cd_on: cd-on-state {
->> +				pins = "gpio67";
->> +				function = "gpio";
->> +				drive-strength = <2>;
->> +				bias-pull-up;
->> +			};
->> +
->> +			sdc2_cd_off: cd-off-state {
->> +				pins = "gpio67";
->> +				function = "gpio";
->> +				drive-strength = <2>;
->> +				bias-disable;
->> +			};
-> 
-> It does not make sense to have different on/off states for the card
-> detect (CD) pin of the SD card. It needs to work even when the SD card
-> is suspended so we can detect insertions/removals. Also should be 
-> placed
-> in the board-specific DT part.
-> 
-> See commit dfbda20dabaa ("arm64: dts: qcom: msm8916/39: Fix SD card
-> detect pinctrl").
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=dfbda20dabaa1f284abd550035db5887384c8e4c
-> 
-> 
->> +
->> +			sdc2_data_on: sdc2-data-on-state {
->> +				pins = "sdc2_data";
->> +				bias-pull-up;
->> +				drive-strength = <10>;
->> +			};
->> +
->> +			sdc2_data_off: sdc2-data-off-state {
->> +				pins = "sdc2_data";
->> +				bias-pull-up;
->> +				drive-strength = <2>;
->> +			};
->> +
->> [...]
->> +		blsp1_i2c4: i2c@78b8000 {
->> +			compatible = "qcom,i2c-qup-v2.2.1";
->> +			reg = <0x078b8000 0x500>;
->> +			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>,
->> +				 <&gcc GCC_BLSP1_AHB_CLK>;
->> +			clock-names = "core", "iface";
->> +			dmas = <&blsp1_dma 10>, <&blsp1_dma 11>;
->> +			dma-names = "tx", "rx";
->> +			pinctrl-0 = <&blsp1_i2c4_default>;
->> +			pinctrl-1 = <&blsp1_i2c4_sleep>;
->> +			pinctrl-names = "default", "sleep";
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			status = "disabled";
->> +		};
->> +
->> +		blsp2_i2c5: i2c@7af5000 {
-> 
-> This is actually blsp2_i2c1 if you look at the clock name below:
-> 
->> +			compatible = "qcom,i2c-qup-v2.2.1";
->> +			reg = <0x07af5000 0x600>;
->> +			interrupts = <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&gcc GCC_BLSP2_QUP1_I2C_APPS_CLK>,
-> 
-> here ^
-> 
-> But I realize now that the pinctrl functions are consecutively numbered
-> without the BLSP number. Sorry for the confusion.
-> 
-> Basically:
->   - blsp1_i2c2 == blsp_i2c2
->   - blsp2_i2c1 == blsp_i2c5
-> 
-> Looking at some other examples upstream I guess you can choose between
-> one of the following options:
-> 
->  1. msm8974/msm8976/msm8996/msm8998: Use &blspX_i2cY labels for the 
-> i2c@
->     node and pinctrl and only have the slightly confusing pinctrl
->     function. E.g. this in msm8976.dtsi:
-> 
-> 			/* 4 (not 6!) interfaces per QUP, BLSP2 indexes are numbered (n)+4 
-> */
-> 			blsp2_i2c2_default: blsp2-i2c2-default-state {
-> 				pins = "gpio22", "gpio23";
-> 				function = "blsp_i2c6";
-> 				drive-strength = <2>;
-> 				bias-disable;
-> 			};
-> 
->     Note how blsp2_i2c2 == blsp_i2c6.
-> 
->  2. msm8994: Use &blspX_i2cY labels for the i2c@ node, but keep pinctrl
->     named &i2cN_default. E.g. this in msm8994.dtsi:
-> 
-> 		blsp2_i2c1: i2c@f9963000 {
-> 			/* ... */
-> 			pinctrl-names = "default", "sleep";
-> 			pinctrl-0 = <&i2c7_default>;
-> 			pinctrl-1 = <&i2c7_sleep>;
-> 			/* ... */
-> 		};
-> 
->     Note how blsp2_i2c1 == i2c7_default here.
-> 
->  3. msm8953: Use &i2c_N labels everywhere like on downstream. E.g. this
->     in msm8953.dtsi. This is pretty much what you had originally:
-> 
-> 		i2c_5: i2c@7af5000 {
-> 			/* ... */
-> 			pinctrl-names = "default", "sleep";
-> 			pinctrl-0 = <&i2c_5_default>;
-> 			pinctrl-1 = <&i2c_5_sleep>;
-> 			/* ... */
-> 		};
-> 
-> All of these are fine for me. Feel free to pick the one you prefer. But
-> let's not introduce a new confusing variant of this. :-)
-> 
-> Thanks,
-> Stephan
+
+--tJUu9GKmxcfm3z/Q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Nov 12, 2024 at 07:01:06PM +0200, Matti Vaittinen wrote:
+> The sense resistor used for measuring currents is typically some tens of
+> milli Ohms. It has accidentally been documented to be tens of mega Ohms.
+> Fix the size of this resistor and a few copy-paste errors while at it.
+>=20
+> Drop the unsuitable 'rohm,charger-sense-resistor-ohms' property (which
+> can't represent resistors smaller than one Ohm), and introduce a new
+> 'rohm,charger-sense-resistor-micro-ohms' property with appropriate
+> minimum, maximum and default values instead.
+>=20
+> Fixes: 4238dc1e6490 ("dt_bindings: mfd: Add ROHM BD71815 PMIC")
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--tJUu9GKmxcfm3z/Q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzOUVwAKCRB4tDGHoIJi
+0lWgAP45+Y1GowIP1Po4Q4NZAG32naTgDZYWqPixI9b8VI/eSQD/Z4FcBK1IX+Tt
+KALW4R1IyiVjqCHlvjIsmEIC3QbW2Q0=
+=0mRa
+-----END PGP SIGNATURE-----
+
+--tJUu9GKmxcfm3z/Q--
 
