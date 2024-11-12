@@ -1,207 +1,125 @@
-Return-Path: <devicetree+bounces-121214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C4EE9C6262
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 21:17:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B03B9C62A9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 21:37:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B71E1B8384C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 16:28:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89142B26945
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 16:37:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA77620604B;
-	Tue, 12 Nov 2024 16:28:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14BD9206949;
+	Tue, 12 Nov 2024 16:37:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="tiy4gtBq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UQaYjSTz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D639A205AB0;
-	Tue, 12 Nov 2024 16:28:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D81BE206067;
+	Tue, 12 Nov 2024 16:37:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731428889; cv=none; b=U3KEaKCILf1XpZm4uu56zGz4Xf6D86mnj53VQ+wq2GOk+7ZlKzfOony8GZW7Cf+d6vmzn1fA2CzMfxyx23byy6f+59oc/WINyxbE0dimmXK73CantSC9t0bxbkctPDrswGkG/b2RAUfKw0+H+RNLFVsp+xGBXu+EqYS61dU1Tk4=
+	t=1731429446; cv=none; b=cddvYETCXQGU3IeFIC0l0vS4a/1VAe1Jl0fqnYnVsBnOZUwZGU8gz9/xWJ+gFSHzulXx2o0TcSj//ba504zo8X/k0tCm2DxOAohgQ7EXMadm5LWgLtHSTbrwjF8OVDxrbckXfG8ZENGdCNj1DNE+rF1QmNxbUIviOWp9Hp2YN9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731428889; c=relaxed/simple;
-	bh=BQBq2KwyTn0BX6cEv2Ucx0Vx/gddarbz/pp8l7bdnbg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hzmvX5WSmlxO+ZfwvRU+1UwmeIVz7bQqVgqdp0ONysm1rwcD4w3/pgwsLKx4odsNc+qvuveDgMyuSDmTcGAPvnt908gRBBYupG2e09HgAygxhfEgHuNyjfQzLtgBsKzJiblASeqaghrGwGpcs+S1hfWhrAhogUIENLCkOkv39fY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=tiy4gtBq; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ACCREXx025206;
-	Tue, 12 Nov 2024 17:24:42 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	M79B9yXRhahhsdQQ5jt3NuyPZPc3ZVTz3ctnb7+EBi4=; b=tiy4gtBq+20FlFJ1
-	tY1F6oe843WF14AFHeJzF37W2dZbs4848CWrC2xdgw/TPSVXPmEgAwp97F+zcqxC
-	6xyjsWcuMEcCIFNpkKPb8TcTK5Yt1t4Zt1cUu8rK82wzWbDTYVloPOP+ZV/uVBoe
-	ad4Cfgs2EsI2usGlg/jZMDSxh51ZLRpdtiQFRX1Jkp0fgnLpGHePs+CynbRaOnIY
-	ib3TPh2ZUPqLV0DV0OeqNzfCpLTjZZQ1tcq3+fLDnRK+GxP5JShR9p+aSaHNVCj4
-	6pHRaWTiKuZplFW/uxdTGpr3E6hc/K1Wl/8/nh2K0+39FFYcGDfUikULFKm8APoG
-	H0g9VQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42syy1ndgb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Nov 2024 17:24:42 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 9773840059;
-	Tue, 12 Nov 2024 17:23:21 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 16E912AC00C;
-	Tue, 12 Nov 2024 17:20:28 +0100 (CET)
-Received: from localhost (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 12 Nov
- 2024 17:20:27 +0100
-From: Christian Bruel <christian.bruel@foss.st.com>
-To: <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
-        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>
-CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Christian Bruel <christian.bruel@foss.st.com>
-Subject: [PATCH 3/5] dt-bindings: PCI: Add STM32MP25 PCIe endpoint bindings
-Date: Tue, 12 Nov 2024 17:19:23 +0100
-Message-ID: <20241112161925.999196-4-christian.bruel@foss.st.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241112161925.999196-1-christian.bruel@foss.st.com>
-References: <20241112161925.999196-1-christian.bruel@foss.st.com>
+	s=arc-20240116; t=1731429446; c=relaxed/simple;
+	bh=0Gd9BBi3w/ks72jwpBlBm8kmgsSoikaY5omKdoods7E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P1ksTuZTtJES8BLbSMyn+qJ5ejhMyeJHRGULiMjWwJLnJhkY5mkd+QTWl8UNB3BaDkdG50PnbqESqOmX/r2hkR3gMdnrtPBZKfVOHi2Wp69I1UOA9uVRq4/HX5MqQkx58bYKwKwc4ox6q6IxAwQTtUJUZFYV3hdvSTyH7k8JK5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UQaYjSTz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C5A6C4CECD;
+	Tue, 12 Nov 2024 16:37:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731429445;
+	bh=0Gd9BBi3w/ks72jwpBlBm8kmgsSoikaY5omKdoods7E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UQaYjSTzIUtruQCkG7i8elZIjAfPq4ts1dJGlR7iG79h43GhySj+6iV6f1SXmPzvQ
+	 MbyYwKfjI7UJS0xmCwwO/0BSaeRSCXOU0NQTDdQCYNkGx6moa0+a8IMroSrbGn+Reu
+	 O8SHQxW9s7O0cCMikyNjOaat2rdp4bl//t4FttqP4M84tRQZoYhheeGCGZ1XDCCZoZ
+	 LvXsgbvkSB6Q9R6P56W6HB6vkOLuiB0r8alQxwjaAkRoSLdvTNmSrTHjYq7JjZ6uDq
+	 4ROllXcc/6b2M8LW/q2WumWONLV9Gvh6D9wVFQVJNde6woJmiTBxbDQCKP9NwdMjZU
+	 m36uFZe0dgUWw==
+Date: Tue, 12 Nov 2024 10:37:23 -0600
+From: Rob Herring <robh@kernel.org>
+To: Sean Nyekjaer <sean@geanix.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: can: tcan4x5x: Document the
+ ti,nwkrq-voltage-sel option
+Message-ID: <20241112163723.GA1142553-robh@kernel.org>
+References: <20241111-tcan-wkrqv-v2-0-9763519b5252@geanix.com>
+ <20241111-tcan-wkrqv-v2-2-9763519b5252@geanix.com>
+ <20241112-sincere-warm-quetzal-e854ac-mkl@pengutronix.de>
+ <jd5ausjx726rem4iscupwfxilc2fsfkshw3pim2ps3i5btstge@sz6qnqjfvwx2>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <jd5ausjx726rem4iscupwfxilc2fsfkshw3pim2ps3i5btstge@sz6qnqjfvwx2>
 
-STM32MP25 PCIe Controller is based on the DesignWare core configured as
-end point mode from the SYSCFG register.
+On Tue, Nov 12, 2024 at 08:40:56AM +0100, Sean Nyekjaer wrote:
+> Hi Marc,
+> 
+> On Tue, Nov 12, 2024 at 08:35:43AM +0100, Marc Kleine-Budde wrote:
+> > On 11.11.2024 09:54:50, Sean Nyekjaer wrote:
+> > > nWKRQ supports an output voltage of either the internal reference voltage
+> > > (3.6V) or the reference voltage of the digital interface 0 - 6V.
+> > > Add the devicetree option ti,nwkrq-voltage-sel to be able to select
+> > > between them.
+> > > 
+> > > Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml | 13 +++++++++++++
+> > >  1 file changed, 13 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
+> > > index f1d18a5461e05296998ae9bf09bdfa1226580131..a77c560868d689e92ded08b9deb43e5a2b89bf2b 100644
+> > > --- a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
+> > > @@ -106,6 +106,18 @@ properties:
+> > >        Must be half or less of "clocks" frequency.
+> > >      maximum: 18000000
+> > >  
+> > > +  ti,nwkrq-voltage-sel:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint8
+> > > +    description:
+> > > +      nWKRQ Pin GPO buffer voltage rail configuration.
+> > > +      The option of this properties will tell which
+> > > +      voltage rail is used for the nWKRQ Pin.
+> > > +    oneOf:
+> > > +      - description: Internal voltage rail
+> > > +        const: 0
+> > > +      - description: VIO voltage rail
+> > > +        const: 1
+> > 
+> > We usually don't want to put register values into the DT. Is 0, i.e. the
+> > internal voltage rail the default? Is using a boolean better here?
+> > 
+> > regards,
+> > Marc
+> > 
+> 
+> Thanks for the review :)
+> 
+> Can you come up with a sane naming?
+> A boolean that equals true when it's set to VIO voltage? Or the other
+> way around?
 
-Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
----
- .../bindings/pci/st,stm32-pcie-ep.yaml        | 97 +++++++++++++++++++
- 1 file changed, 97 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml
+Make the property named/present for the less common case if there is 
+one. That might not be known here.
 
-diff --git a/Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml
-new file mode 100644
-index 000000000000..f0d215982794
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml
-@@ -0,0 +1,97 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/st,stm32-pcie-ep.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STM32MP25 PCIe endpoint driver
-+
-+maintainers:
-+  - Christian Bruel <christian.bruel@foss.st.com>
-+
-+description:
-+  PCIe endpoint controller based on the Synopsys DesignWare PCIe core.
-+
-+allOf:
-+  - $ref: /schemas/pci/snps,dw-pcie-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: st,stm32mp25-pcie-ep
-+
-+  reg:
-+    items:
-+      - description: Data Bus Interface (DBI) registers.
-+      - description: PCIe configuration registers.
-+
-+  reg-names:
-+    items:
-+      - const: dbi
-+      - const: addr_space
-+
-+  clocks:
-+    maxItems: 1
-+    description: PCIe system clock
-+
-+  clock-names:
-+    const: core
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    const: core
-+
-+  phys:
-+    maxItems: 1
-+
-+  phy-names:
-+    const: pcie-phy
-+
-+  reset-gpios:
-+    description: GPIO controlled connection to PERST# signal
-+    maxItems: 1
-+
-+  access-controllers:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - resets
-+  - reset-names
-+  - clocks
-+  - clock-names
-+  - phys
-+  - phy-names
-+  - reset-gpios
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/st,stm32mp25-rcc.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/phy/phy.h>
-+    #include <dt-bindings/reset/st,stm32mp25-rcc.h>
-+
-+    pcie-ep@48400000 {
-+        compatible = "st,stm32mp25-pcie-ep";
-+        num-lanes = <1>;
-+        reg = <0x48400000 0x400000>,
-+              <0x10000000 0x8000000>;
-+        reg-names = "dbi", "addr_space";
-+        clocks = <&rcc CK_BUS_PCIE>;
-+        clock-names = "core";
-+        phys = <&combophy PHY_TYPE_PCIE>;
-+        phy-names = "pcie-phy";
-+        resets = <&rcc PCIE_R>;
-+        reset-names = "core";
-+        pinctrl-names = "default", "init";
-+        pinctrl-0 = <&pcie_pins_a>;
-+        pinctrl-1 = <&pcie_init_pins_a>;
-+        reset-gpios = <&gpioj 8 GPIO_ACTIVE_LOW>;
-+        power-domains = <&CLUSTER_PD>;
-+        access-controllers = <&rifsc 68>;
-+    };
--- 
-2.34.1
-
+Rob
 
