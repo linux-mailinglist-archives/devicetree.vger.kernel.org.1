@@ -1,132 +1,136 @@
-Return-Path: <devicetree+bounces-121020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E95C9C4EE3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 07:44:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 088F79C4EE8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 07:46:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9079DB20A26
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 06:44:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92FEA285CF5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 06:46:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F82D20A5DC;
-	Tue, 12 Nov 2024 06:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F4DF20A5DE;
+	Tue, 12 Nov 2024 06:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NSlZdqE7"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eclWhf2q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFCEA208230
-	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 06:44:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9EAB4C91;
+	Tue, 12 Nov 2024 06:46:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731393845; cv=none; b=sBhUr5KnWIeff1Z/udI+UmMPNlnennRZcgZ1CulbThQDV3bVUn07oFWoJuR1/DZnnfudbpdZFM7QHVoMHBLE5QY1yt127bfLk+3LLibpgLb8+HQ9quFs84mGYWAmWZ5dsgnH63joYHkur+tQKF+jJM2Fxhya3yBp8gv2n7KuG7c=
+	t=1731393980; cv=none; b=t4akFgDT1WLqMVGgEdxv+ORXLp2Tb5VrZfdbUemgHdY4XetbWUY4EEz9dId9tS3iMkdXWgPOP+Nk2uRanNN6inC5ii3Acjf8DGaFHVvXljYAHquT5og4ijz2LE6kyHytue5pm5qWiSzKOpL+Q8IXQXOQfApdYzo+zxVym1BNvg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731393845; c=relaxed/simple;
-	bh=FY6WFOJXqCfbzedEEbqnXaBCPjvQ/+RzjiOySYoM/Lk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l1rZm7nWOEueC/hNfiKHM8jFTSJeCSkr9IAmme5AaDHPwfo58DaZVYErY47xyGVljWYhgjLSloqL1YzsEnZoJLiiSkLSgCZJid3zkG2C1seFAlTHLD9q1fAdGlibkCAdfYJ29s0eFnO6bp1hANr8wzPAvoSq4wbdw7XapiT5sFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NSlZdqE7; arc=none smtp.client-ip=209.85.215.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-7ede82dbb63so2636922a12.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 22:44:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731393843; x=1731998643; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=JPlc0iWn23rPv1Yelqqb+UADsrKyk5eLdXjS43qvnhE=;
-        b=NSlZdqE7owQlczD41Q00zD6PwMCU+CZ5tWA8IoplXkNgDsmgv3AW7bgXJDhHzPM5iL
-         PgcmtnDRzO+ZrC9uR2jV2BdXJ8KfKkFwAbe+LJkQ5XSPOIG+yX4ACoDproJ/wFr9HDr5
-         ez0EQDg0Tjr9g4TBL0yonNTBUjTygatx0/aeEWtSVsS8VGXrzJy/53XSwUJ2LQespSy4
-         gDyaffp15tE5lgjwbpJIPnUAY/aBRRwI9VduLsCOQMt1vM+/giSWUCn3V2BQzp5b/wRv
-         /+0MPIr3yfsvXSEGAFONLMKEPgBS9woB76ZK35rbfvth1z8qYFN65FTH0QmavhYs3Qm2
-         Uevg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731393843; x=1731998643;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JPlc0iWn23rPv1Yelqqb+UADsrKyk5eLdXjS43qvnhE=;
-        b=xK+pgseS9nkirlNg1Ri7GOZmb2sUSyXProuS6ndJicBOgNQeKQyDMyVmaddxmv6/uA
-         yWkQNnFe1Hgp/2Ow4C7D9Xs1Sgxh8ziaszwxc4dZp2Ed/93V3cf1i+6434ksb+iAyp4I
-         l78HYCHB0lfHsbr6FLlIP7UqIFKj9w6G7/UiOnjAMuNBRWEYn4PHngS+LHqqYZ0PAv+F
-         3k1FSqpkj/vf7INTLRPs3Nfd0vxpzFS6ithPc8Pe0KdbUyOkbVAEuBU/UxQAK8JiY1U5
-         AKdk4qR+T8TIo4tPHQfQAerDUj1rGs0ImurrVS+rHk9TrRN1DjU1oPOrV43bg+s+UvRy
-         giQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXMS9LxhnJXBnAb1xIs2/ZDY6FxUR0WNufOGkRd44NSCeDjwjLWtZziNMn/xGc2nfrrIFgAAwRIfR5f@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0FHmY4SueiCBc6HsNcHYOm8xSjChsiMJKILBGuNkbFw45Boi3
-	Uqe043DYoo8bvWzutJfvZu0aihHeXIAe1UbRiq0mwtTvYlb3PMuGz6KEQgIr9Q==
-X-Google-Smtp-Source: AGHT+IFK7EbTW8j6RbaesACTxS+4wyWWBFBogZmLwWGxzhBM+sg2NEDsPKsDx80UIoPC1dThJW6KHg==
-X-Received: by 2002:a05:6a20:2d1f:b0:1db:e90a:6b24 with SMTP id adf61e73a8af0-1dc22985104mr21818819637.25.1731393843104;
-        Mon, 11 Nov 2024 22:44:03 -0800 (PST)
-Received: from thinkpad ([117.213.103.248])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7240799bb78sm10282483b3a.95.2024.11.11.22.43.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Nov 2024 22:44:02 -0800 (PST)
-Date: Tue, 12 Nov 2024 12:13:54 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
-	linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v4 7/7] scsi: ufs: rockchip: initial support for UFS
-Message-ID: <20241112064354.g634ca5w2gagfyko@thinkpad>
-References: <1730705521-23081-1-git-send-email-shawn.lin@rock-chips.com>
- <1730705521-23081-8-git-send-email-shawn.lin@rock-chips.com>
- <20241109121249.vncqbacvpnpf6d34@thinkpad>
- <13ad21bb-9f5a-4a4b-8b65-55243f6fe817@rock-chips.com>
+	s=arc-20240116; t=1731393980; c=relaxed/simple;
+	bh=VX9N36lARRqzMlNgWNjXqZec+VAuskDFhLy+Txu1Lwg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=OeM3oZOGS5fmmzzjHbkSKdOwtmE84KpCx3CBtqij/38+5yXjXlj+DIKAmo9WMooIt15qS6nWZIDYR7JhubCiQkchlSkAm4jtZfWuixsM5BWe4rz8F6ONCIzngJH8qCroMq2MCD/oNKXUmi2tiKR3GLLsG7Pngi2/qsO09nW6isc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eclWhf2q; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4AC6jtlY076588;
+	Tue, 12 Nov 2024 00:45:55 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1731393955;
+	bh=SHKLsrMhF1OLae930Bz/9un5AiYrRlutqYBk9lsUp60=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=eclWhf2qiB9WkGR5ub4qr3ubstyuvulIWLf8h3bpVvyyUy6bdaJK7sy1bcgV0WqJ/
+	 Wl8x8zW/sywdCB1h3GzGFbB8DraZonu+xSz1cbcVeLAeg9BSp62ZF8MNBFcfyMUPO6
+	 bHsNufvo5nZYSCyxGaWa7yKa2mRPXY8L78vmMg74=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4AC6jt5I067443
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 12 Nov 2024 00:45:55 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 12
+ Nov 2024 00:45:54 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 12 Nov 2024 00:45:54 -0600
+Received: from [10.250.214.214] ([10.250.214.214])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AC6joPB087798;
+	Tue, 12 Nov 2024 00:45:51 -0600
+Message-ID: <2b0e95be-8192-416f-8655-631d6cecc336@ti.com>
+Date: Tue, 12 Nov 2024 08:45:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <13ad21bb-9f5a-4a4b-8b65-55243f6fe817@rock-chips.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 01/17] dt-bindings: net: wireless: cc33xx: Add
+ ti,cc33xx.yaml
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Sabeeh Khan
+	<sabeeh-khan@ti.com>
+References: <20241107125209.1736277-1-michael.nemanov@ti.com>
+ <20241107125209.1736277-2-michael.nemanov@ti.com>
+ <y4ffzjekeccqg2tv7d54ilwbz3nhm4jkcq3fyg5tmpbupsqirn@dq3kjtwkllds>
+Content-Language: en-US
+From: "Nemanov, Michael" <michael.nemanov@ti.com>
+In-Reply-To: <y4ffzjekeccqg2tv7d54ilwbz3nhm4jkcq3fyg5tmpbupsqirn@dq3kjtwkllds>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, Nov 11, 2024 at 09:10:39AM +0800, Shawn Lin wrote:
-
-[...]
-
-> > > +static void ufs_rockchip_remove(struct platform_device *pdev)
-> > > +{
-> > > +	struct ufs_hba *hba = platform_get_drvdata(pdev);
-> > > +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
-> > > +
-> > > +	pm_runtime_forbid(&pdev->dev);
-> > > +	pm_runtime_get_noresume(&pdev->dev);
-> > 
-> > Why do you need these? You are not incrementing the refcount in probe() and
-> > there is no auto PM involved.
+On 11/8/2024 2:02 PM, Krzysztof Kozlowski wrote:
+> On Thu, Nov 07, 2024 at 02:51:53PM +0200, Michael Nemanov wrote:
+>> Add device-tree bindings for the CC33xx family.
+>>
+>> Signed-off-by: Michael Nemanov <michael.nemanov@ti.com>
+>> ---
+>>   .../bindings/net/wireless/ti,cc33xx.yaml      | 59 +++++++++++++++++++
+>>   1 file changed, 59 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
+>>
 > 
-> Oh, it was a leftover from former version I haven't noticed. Will
-> remove.
+> <form letter>
+> This is a friendly reminder during the review process.
+> 
+> It seems my or other reviewer's previous comments were not fully
+> addressed. Maybe the feedback got lost between the quotes, maybe you
+> just forgot to apply it. Please go back to the previous discussion and
+> either implement all requested changes or keep discussing them.
+> 
+> Thank you.
+> </form letter>
+> 
+> Best regards,
+> Krzysztof
 > 
 
-I've sent a series [1] that addresses the runtime PM issues. Could you please
-give it a try and give your tested-by maybe?
+Are you referring to
 
-- Mani
+> diff --git a/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml b/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
 
-[1] https://lore.kernel.org/linux-scsi/20241111-ufs_bug_fix-v1-0-45ad8b62f02e@linaro.org/
+...
 
--- 
-மணிவண்ணன் சதாசிவம்
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^wifi@2"
+
+?
+
+If so, I replied here
+https://lore.kernel.org/linux-wireless/8024aa1c-5bd1-40d8-b0c3-14b5fcd992e2@ti.com/#t
+But if you don't think it's worthwhile I'll remove it.
+
+Regards,
+Michael.
 
