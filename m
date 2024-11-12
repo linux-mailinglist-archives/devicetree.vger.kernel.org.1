@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-121260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C2399C624A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 21:12:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF169C6179
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:30:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8D12B2B39F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:53:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB283B2F9B0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 18:04:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9B6A213EFC;
-	Tue, 12 Nov 2024 17:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E646B2144DD;
+	Tue, 12 Nov 2024 18:03:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HZ8phrHB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kLOottUA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9750E212F05;
-	Tue, 12 Nov 2024 17:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1A8E214431;
+	Tue, 12 Nov 2024 18:03:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731433983; cv=none; b=SCJ5yDiD5Z5CuWl5LTcuvRP2sAwazNcadF8HwcbPWrUlHMTFxIPIL8EZJl3troqzCxbgRf7PGY0OlqSxfDCrUgIpbQPS8WbVszteq4zdDoeB6BMKr7LkZsIcX0W70FU+nfdaA5jwmbqMgBbOwNHhoZQHvJQF2toZV6vHNzb/qaE=
+	t=1731434638; cv=none; b=ZqbmSJdQgCEoa2jsg8sMiYctpvY6rUko9XAayPa9DODuYu0pbQZx2H9eHBnXhZ3x9N4qhfNf9RCuv0FGXXFUMTky17g08ABs37WOeSBx6XAAbz0Fqsmlm/48XtpiN2BPQbr8mfPjpgc+jetcPvMrVW7YU2o9lAKJApHRIpQ9ju8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731433983; c=relaxed/simple;
-	bh=XqUNyTnAoGvRFc6NJPZM4dR65hK+xRVPAx60WZKWV8s=;
+	s=arc-20240116; t=1731434638; c=relaxed/simple;
+	bh=kqF92FnpSa2OXbqzYAFWSrZYSfupDZ8zTDehmduwQM0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N58ciHEklMV3LJqv6CPiZBQr2gJBnljlFVFMj+TM4u8ERB1r25Qo0iJ0krvfE9Lq6b+Wj49YfG07gxJK3AcYlygA44cEcQP4T2cATlzFwi7WdHBgVv0+2bTQz62nJ4mE5A3g/daY/bTFp0WTYkUyGzIvxfVIuaXCOW5txTk3vAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HZ8phrHB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31227C4CECD;
-	Tue, 12 Nov 2024 17:52:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ece+b9jv7dgRW3NJ9NrVwY0y3ZysVQmcOD2uGqVgpTRYa7Jctgveurj4fMbnOBgvi6kGKi/H+8S1k+Wz1R0Xr5nXfAJa4R57eJg3XEIK96rVx3e/Pt7SS5NFEWW6PDJGEzGJMEvV2Cfg7YSOG9l6exgF6/XsaSs1+hd8euhzzU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kLOottUA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD84CC4CECD;
+	Tue, 12 Nov 2024 18:03:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731433983;
-	bh=XqUNyTnAoGvRFc6NJPZM4dR65hK+xRVPAx60WZKWV8s=;
+	s=k20201202; t=1731434638;
+	bh=kqF92FnpSa2OXbqzYAFWSrZYSfupDZ8zTDehmduwQM0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HZ8phrHBXgWmY6Le3uWwD8HAdgijCmsUqHlhDEFOTv2h+sUwCGIKvJeU+Cnm1Dd8s
-	 junEAQHfwv1QFWuPQ/A2AP8Zp/VF7q8NOP40eaeN/5lV9pfUcmSa4k0p72FgvaKDDT
-	 MKQuGnSk/47MqHH4VhUOAOzPjFMl4Hex1sVg3fjVAQ2Gt5peQ9W/4VPWMG08mY7vGo
-	 x0k42M2WmIQ7ugO1t7nWlwzC+D92/xoV56n0IrH8rURnFAkIUubgSko4UMKqJ7ov5r
-	 eN1IMDMt8ctRwYSTNBxfCBgYJw4zLpRzH0SuJGE64sNzETVR42x0ewo3sj16bLDs3C
-	 z4Z83R/RQJXQA==
-Date: Tue, 12 Nov 2024 17:52:56 +0000
+	b=kLOottUAHgXyuaS5FZ7OFzdzu2OTg/oAzzpsqUYRe679Go3sEJL3g7LL3TvuXKQuk
+	 kJLtqwgjzF4IRoHXQ/ovpRcMp9KVydXxhdY+BDVMmeAUTwui5EJbJh+73Q9Dk/bSsT
+	 L3K5KjlKOKuIXuyz1MsPurXFFMgUBf0liqQJjIf4FpHhxhw+Tq6XoerTiuWe59eA7b
+	 7aNPWrwpUH9saLrfUwsTao0yghQeqUECpbPEDYKdUKDkxj8J2lKO4knfMx1mIv7Fg3
+	 BuGXXqqCkzwQI3PqJ/NXxmQu9skJgUekwOpP/ePQyLJiTqmtxXjwe96kUeZAhD3O+R
+	 8Z2SQdJHdisEw==
+Date: Tue, 12 Nov 2024 18:03:51 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org,
-	andersson@kernel.org, konradybcio@kernel.org,
-	dmitry.baryshkov@linaro.org, mantas@8devices.com,
-	quic_rohiagar@quicinc.com, johan+linaro@kernel.org,
-	quic_kriskura@quicinc.com, abel.vesa@linaro.org,
-	quic_kbajaj@quicinc.com, quic_wcheng@quicinc.com,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org
-Subject: Re: [PATCH v1 5/6] dt-bindings: usb: qcom,dwc3: Add IPQ5424 to USB
- DWC3 bindings
-Message-ID: <20241112-elderly-dole-796d0fdb373c@spud>
-References: <20241112091355.2028018-1-quic_varada@quicinc.com>
- <20241112091355.2028018-6-quic_varada@quicinc.com>
+To: h1k0n <ybzjyhk@gmail.com>
+Cc: charlie@rivosinc.com, ajones@ventanamicro.com, andy.chiu@sifive.com,
+	aou@eecs.berkeley.edu, conor.dooley@microchip.com, corbet@lwn.net,
+	devicetree@vger.kernel.org, evan@rivosinc.com, guoren@kernel.org,
+	jernej.skrabec@gmail.com, jrtc27@jrtc27.com, jszhang@kernel.org,
+	krzk+dt@kernel.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	palmer@dabbelt.com, paul.walmsley@sifive.com, robh@kernel.org,
+	samuel.holland@sifive.com, samuel@sholland.org, shuah@kernel.org,
+	wens@csie.org
+Subject: Re: D1 vlenb
+Message-ID: <20241112-blooming-reheat-d9a23401f6d6@spud>
+References: <20240911-xtheadvector-v10-3-8d3930091246@rivosinc.com>
+ <20241112021227.357-1-ybzjyhk@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,33 +65,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="b67RiRvDG6Y2cJDb"
+	protocol="application/pgp-signature"; boundary="3sbg3BDZLVHaW7eG"
 Content-Disposition: inline
-In-Reply-To: <20241112091355.2028018-6-quic_varada@quicinc.com>
+In-Reply-To: <20241112021227.357-1-ybzjyhk@gmail.com>
 
 
---b67RiRvDG6Y2cJDb
+--3sbg3BDZLVHaW7eG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 12, 2024 at 02:43:54PM +0530, Varadarajan Narayanan wrote:
-> Update dt-bindings to add IPQ5424 to USB DWC3 controller list.
->=20
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+On Tue, Nov 12, 2024 at 10:12:26AM +0800, h1k0n wrote:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+This message is entirely empty FYI
 
---b67RiRvDG6Y2cJDb
+--3sbg3BDZLVHaW7eG
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzOV+AAKCRB4tDGHoIJi
-0hFaAQCvFgly9dNrOCutUGFvxUKQ846YGdIJo7xDmgt0KhovzAEA50rIU3ptcPUJ
-7NP5qXgIXb0vtITBaxLJjOe5F6QwKA4=
-=6Woy
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzOYhwAKCRB4tDGHoIJi
+0hjfAQCqq2U6n0j4CEI1t2O0Z7i8ABrvQx9u4Yq+TaBYhwtgLAEArAZcyVMA30do
+BQbGW+93CZzpOrFMDM6b5Zs06UPQUgE=
+=yLsb
 -----END PGP SIGNATURE-----
 
---b67RiRvDG6Y2cJDb--
+--3sbg3BDZLVHaW7eG--
 
