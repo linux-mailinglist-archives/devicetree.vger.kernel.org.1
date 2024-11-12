@@ -1,141 +1,281 @@
-Return-Path: <devicetree+bounces-121287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8BE79C624D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 21:12:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25AD69C62AF
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 21:38:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D5EC2834AD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:12:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8779285B18
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:38:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA58219E21;
-	Tue, 12 Nov 2024 20:12:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1864219E34;
+	Tue, 12 Nov 2024 20:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PimX1dvG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BA0pKXCt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2085F219CA1
-	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 20:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 837E91FC7F8;
+	Tue, 12 Nov 2024 20:38:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731442349; cv=none; b=tmIELSDe78U0Hm+ry0TE6i+5sQ+mijXlBxZs0n2O9OyJQ7UJd2e8PNKEpRi/DfR1frHs172b9EhMg5XtjR4SHO6qGvCI1B/HAqowdbKZsjDTH/8KS4ABj+o5E9x+UGQf3HxO6wA5fSffbx+2YCkP35g+nACZVf8Yol5bd7l8xC8=
+	t=1731443928; cv=none; b=EX0i88APVNNrnWQFxJbMeyS7GpiMCExBKLCzU1j5syjrYB+yFHKcDBMkLV4s30CgV+JJCvmeE2W6ph6mfW+EHVpMXf5SQorVYwmXVvPaPV4dVW8/MUc/RbKU0QITmpOpFSYfBNjOWU5o4KTJQnCpgjVM9LW+uQPklxTmp/W+9H0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731442349; c=relaxed/simple;
-	bh=bPv/feaj5Glj0pCE0a7gtustT0zmFafSOmethJidReU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=qkGh0L6aWXPSZjDi6B9nVomW29OB8p7p22pXeS0xxHkmt90/yyh0ABiYMJCt5Zz6yGOVMpIbxdJw20gOp5XzisB+RZhvkEejq4ERywhlhr8v71surjeiLakzo/aWaIncxN3IakGuPldO1904zJBjiSw9v9knUGUU7qQOLgbPVeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=PimX1dvG; arc=none smtp.client-ip=209.85.167.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3e5ffbc6acbso3621658b6e.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 12:12:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731442345; x=1732047145; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Dl6oW+royBVKzJh6c3nIJ5U6CjfR2o5cVhOS2LXCTeg=;
-        b=PimX1dvG4+SY+HOhJqrNDzieDq007r98POZ9V4XmKYNGB3Eh9R1XmfKUXb5dgxfPaP
-         w2i5UK7WMfg046ERjmeILTQOTTCQi7jmID5T3FnUOEs0Euk7bel3HThScgpHi7Mpxu+A
-         3AirrmeEmB9fG5KKGfahPXtyqmMU0kUBcPVpZu7NZOxJIQt+GA+FYRd8y/tgALk1bfKH
-         3ZmzK0NJ2xi1J1IFxxd3DtmwZ1ImrC2zIDJft38iPoC9YlmHp39+JhGpC5kF25ij/4l5
-         fUeXmHUKHlr+YkTu4VXCgCdpDlCfBvu6K6sPq/fMxZVgAhVXzDgPOi8fkg99+w0y0He0
-         xt+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731442345; x=1732047145;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dl6oW+royBVKzJh6c3nIJ5U6CjfR2o5cVhOS2LXCTeg=;
-        b=vuuElWS64AYDnkEXQzl0SIj0WkTxIybL/E1sXP8ZxEo81/uGHdTFsgJ5qjYN27BAcN
-         VDBeWeLSRmHIDvkqT+qkmJhjRyNgcMg4AHqN/HYxa5VnhzwRmdg4cRGK0rkKLdoiaWvz
-         c84C/TGv4DFfssAy7z+3MpU3NJ3cR0ufTPA4IsikfivurywSNwvxErq6P+W5ZD0ANTWZ
-         X7MwGwzhcyV8xjHpMtEUDEgXT8RSxkvf5c3pAFWqhHiZHheBnNM2qb3loRzT2XG9LWFN
-         uQKZmgCUOWBiO/IaryXaTJocicIJkp4Xb+8+3c3zsl+rcCDvP85VUqcfUCtMV1o3yNB2
-         QciA==
-X-Forwarded-Encrypted: i=1; AJvYcCXtUsrks6ySdukKdry8QjwHz1cbBwqZR9rvxBXPdAyXKCwpoM2IEiZf6S8X3rc3bUTeo7uhpn0jIedS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx85osWTPHrkGDAqoZ0YLsfX9NIA2BmUi3x7lnugNt7mmUFOPbV
-	OeQNVsxJIEMsgYGYtZW3wMzyRd6gVQaivqwmczDpxLiwZ+psfnZIIrBswibZsEE=
-X-Google-Smtp-Source: AGHT+IEUK1lwL53dpSjHoatFyNXNN93/2KKOkopUDAWIapQKMOXvlEOPLtpAZYQbhUpekTLpeop8UA==
-X-Received: by 2002:a05:6808:11c7:b0:3e5:d591:c9a9 with SMTP id 5614622812f47-3e7947031famr17094130b6e.26.1731442345040;
-        Tue, 12 Nov 2024 12:12:25 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3e7b096b5dcsm47591b6e.20.2024.11.12.12.12.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Nov 2024 12:12:24 -0800 (PST)
-Message-ID: <35d88f91-b4bd-426e-aa75-40741b8c3bd0@baylibre.com>
-Date: Tue, 12 Nov 2024 14:12:22 -0600
+	s=arc-20240116; t=1731443928; c=relaxed/simple;
+	bh=wjtOHj4y8gsqVuXZ+1yV34w0MIivyofWbJzXM/nn8Sw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=M1cqj1jQ6/5S2Xnk9MQlTnHU1tnUvhFv/adtCVG1Xy/Z+JD8EtbD+guaRTPEhpAWCnLOyKG58A6tvfzPoY3T0IBhJXQ187b0YfV1yWdSFiASgpUfrb+kdRcDsHU+iwuNVLKBRF28K4oc0F/UctFKI7lIsKBtlCw1Qu+ulOrauzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BA0pKXCt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9EE4C4CECD;
+	Tue, 12 Nov 2024 20:38:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731443928;
+	bh=wjtOHj4y8gsqVuXZ+1yV34w0MIivyofWbJzXM/nn8Sw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=BA0pKXCtrB6bXbyJc5/bhgCtmP1XSUID+NiHe7zHFrfqvpmWNmF3D2aGum5+nECng
+	 ggnZjjkiI/iYLRk/th4/W0JVBEVMULjtkB8St8Kx1uCBHzG34Nx/m99Ef/askGXsDU
+	 6xaSAQ2ZBZWMTfP2PWG1zRXCtZQ2myZ6YJJMGK/bP6BOcEHUh2Dzao/hgug/rpXh78
+	 KLUfrHT09PAtDVAulD20wOIJkubxpKul2IdQky38pwjhKiGJ0oQS3JWXGFmHGQioue
+	 YFVVAXSVCFa/ON+B9KPjFHzyvYvNfUIthQAM40xLCtyFnVY9YYLPhlplKru4Dx7WT1
+	 eGv70+SZ+xadA==
+Date: Tue, 12 Nov 2024 14:38:46 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Christian Bruel <christian.bruel@foss.st.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
+	robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, p.zabel@pengutronix.de,
+	cassel@kernel.org, quic_schintav@quicinc.com,
+	fabrice.gasnier@foss.st.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/5] PCI: stm32: Add PCIe endpoint support for STM32MP25
+Message-ID: <20241112203846.GA1856246@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 6/8] iio: adc: adi-axi-adc: add oversampling
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org
-References: <20241111121203.3699-1-antoniu.miclaus@analog.com>
- <20241111121203.3699-7-antoniu.miclaus@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20241111121203.3699-7-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241112161925.999196-5-christian.bruel@foss.st.com>
 
-On 11/11/24 6:12 AM, Antoniu Miclaus wrote:
-> Add support for enabling/disabling oversampling.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> changes in v6:
->  - add support for oversampling enable/disable.
->  drivers/iio/adc/adi-axi-adc.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
-> index 9bf967d5b730..8ec668f59c88 100644
-> --- a/drivers/iio/adc/adi-axi-adc.c
-> +++ b/drivers/iio/adc/adi-axi-adc.c
-> @@ -46,6 +46,7 @@
->  #define    ADI_AXI_ADC_CTRL_DDR_EDGESEL_MASK	BIT(1)
->  
->  #define ADI_AXI_ADC_REG_CNTRL_3			0x004c
-> +#define   AD485X_CNTRL_3_CUSTOM_CTRL_OS_EN_MSK	BIT(2)
->  #define   AD485X_CNTRL_3_CUSTOM_CTRL_PACKET_FORMAT_MSK	GENMASK(1, 0)
->  #define   AD485X_PACKET_FORMAT_20BIT		0x0
->  #define   AD485X_PACKET_FORMAT_24BIT		0x1
-> @@ -341,6 +342,14 @@ static int axi_adc_data_size_set(struct iio_backend *back, unsigned int size)
->  				  AD485X_CNTRL_3_CUSTOM_CTRL_PACKET_FORMAT_MSK, val);
->  }
->  
-> +static int axi_adc_oversampling_en(struct iio_backend *back, bool en)
-> +{
-> +	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
+On Tue, Nov 12, 2024 at 05:19:24PM +0100, Christian Bruel wrote:
+> Add driver to configure the STM32MP25 SoC PCIe Gen2 controller based on the
+> DesignWare PCIe core in endpoint mode.
+> Uses the common reference clock provided by the host.
+
+> +++ b/drivers/pci/controller/dwc/Kconfig
+
+> +config PCIE_STM32_EP
+> +	tristate "STMicroelectronics STM32MP25 PCIe Controller (endpoint mode)"
+> +	depends on ARCH_STM32 || COMPILE_TEST
+> +	depends on PCI_ENDPOINT
+> +	select PCIE_DW_EP
+> +	help
+> +	  Enables endpoint support for DesignWare core based PCIe controller in found
+> +	  in STM32MP25 SoC.
 > +
-> +	return regmap_update_bits(st->regmap, ADI_AXI_ADC_REG_CNTRL_3,
-> +				  AD485X_CNTRL_3_CUSTOM_CTRL_OS_EN_MSK, en);
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called pcie-stm32-ep.
 
-This needs FIELD_PREP() to apply the correct shift to en.
+Move as for the host mode entry.
 
+> +++ b/drivers/pci/controller/dwc/pcie-stm32-ep.c
+
+> +static const struct of_device_id stm32_pcie_ep_of_match[] = {
+> +	{ .compatible = "st,stm32mp25-pcie-ep" },
+> +	{},
+> +};
+
+Move next to stm32_pcie_ep_driver.
+
+> +static void stm32_pcie_ep_init(struct dw_pcie_ep *ep)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+> +	enum pci_barno bar;
+> +
+> +	for (bar = BAR_0; bar <= PCI_STD_NUM_BARS; bar++)
+
+Most users just use "bar = 0".  BAR_0 is 0, but there's no real
+connection with PCI_STD_NUM_BARS, so I think 0 is probably better.
+
+Looks like this should be "bar < PCI_STD_NUM_BARS"?
+
+> +		dw_pcie_ep_reset_bar(pci, bar);
+> +
+> +	/* Defer Completion Requests until link started */
+
+Not sure what a Completion Request is.  Is this some internal STM or
+DWC thing?  Or is this related to Request Retry Status completions for
+config requests?
+
+> +	regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
+> +			   STM32MP25_PCIECR_REQ_RETRY_EN,
+> +			   STM32MP25_PCIECR_REQ_RETRY_EN);
+> +}
+
+> +static int stm32_pcie_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+> +				unsigned int type, u16 interrupt_num)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+> +
+> +	switch (type) {
+> +	case PCI_IRQ_INTX:
+> +		return dw_pcie_ep_raise_intx_irq(ep, func_no);
+> +	case PCI_IRQ_MSI:
+> +		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
+> +	default:
+> +		dev_err(pci->dev, "UNKNOWN IRQ type\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+
+Is the compiler not smart enough to notice that this is unreachable?
+
+> +static void stm32_pcie_perst_deassert(struct dw_pcie *pci)
+> +{
+> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+> +	struct device *dev = pci->dev;
+> +	struct dw_pcie_ep *ep = &pci->ep;
+> +	int ret;
+> +
+> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_ENABLED) {
+> +		dev_dbg(pci->dev, "Link is already enabled\n");
+> +		return;
+> +	}
+> +
+> +	dev_dbg(dev, "PERST de-asserted by host. Starting link training\n");
+> +
+> +	ret = pm_runtime_resume_and_get(dev);
+> +	if (ret < 0) {
+> +		dev_err(dev, "pm runtime resume failed: %d\n", ret);
+> +		return;
+> +	}
+> +
+> +	ret = stm32_pcie_enable_resources(stm32_pcie);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to enable resources: %d\n", ret);
+> +		pm_runtime_put_sync(dev);
+> +		return;
+> +	}
+> +
+> +	ret = dw_pcie_ep_init_registers(ep);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to complete initialization: %d\n", ret);
+> +		stm32_pcie_disable_resources(stm32_pcie);
+> +		pm_runtime_put_sync(dev);
+> +		return;
+> +	}
+> +
+> +	pci_epc_init_notify(ep->epc);
+> +
+> +	ret = stm32_pcie_enable_link(pci);
+> +	if (ret) {
+> +		dev_err(dev, "PCIe Cannot establish link: %d\n", ret);
+> +		stm32_pcie_disable_resources(stm32_pcie);
+> +		pm_runtime_put_sync(dev);
+> +		return;
+> +	}
+> +
+> +	stm32_pcie->link_status = STM32_PCIE_EP_LINK_ENABLED;
+> +}
+
+> +static int stm32_add_pcie_ep(struct stm32_pcie *stm32_pcie,
+> +			     struct platform_device *pdev)
+> +{
+> +	struct dw_pcie *pci = stm32_pcie->pci;
+> +	struct dw_pcie_ep *ep = &pci->ep;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	ret = regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
+> +				 STM32MP25_PCIECR_TYPE_MASK,
+> +				 STM32MP25_PCIECR_EP);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = pm_runtime_resume_and_get(dev);
+> +	if (ret < 0) {
+> +		dev_err(dev, "pm runtime resume failed: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	reset_control_assert(stm32_pcie->rst);
+> +	reset_control_deassert(stm32_pcie->rst);
+> +
+> +	ep->ops = &stm32_pcie_ep_ops;
+> +
+> +	ret = dw_pcie_ep_init(ep);
+> +	if (ret) {
+> +		dev_err(dev, "failed to initialize ep: %d\n", ret);
+> +		pm_runtime_put_sync(dev);
+> +		return ret;
+> +	}
+> +
+> +	ret = stm32_pcie_enable_resources(stm32_pcie);
+> +	if (ret) {
+> +		dev_err(dev, "failed to enable resources: %d\n", ret);
+> +		dw_pcie_ep_deinit(ep);
+> +		pm_runtime_put_sync(dev);
+> +		return ret;
+> +	}
+> +
+> +	ret = dw_pcie_ep_init_registers(ep);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to initialize DWC endpoint registers\n");
+> +		stm32_pcie_disable_resources(stm32_pcie);
+> +		dw_pcie_ep_deinit(ep);
+> +		pm_runtime_put_sync(dev);
+> +		return ret;
+> +	}
+
+Consider gotos for the error cases with a cleanup block at the end.
+There's a fair bit of repetition there as more things get initialized,
+and it's error-prone to extend this in the future.
+
+Same applies in stm32_pcie_perst_deassert().
+
+> +	pci_epc_init_notify(ep->epc);
+> +
+> +	return 0;
 > +}
 > +
->  static struct iio_buffer *axi_adc_request_buffer(struct iio_backend *back,
->  						 struct iio_dev *indio_dev)
->  {
-> @@ -390,6 +399,7 @@ static const struct iio_backend_ops adi_axi_adc_ops = {
->  	.chan_status = axi_adc_chan_status,
->  	.interface_type_get = axi_adc_interface_type_get,
->  	.data_size_set = axi_adc_data_size_set,
-> +	.oversampling_en = axi_adc_oversampling_en,
->  	.debugfs_reg_access = iio_backend_debugfs_ptr(axi_adc_reg_access),
->  	.debugfs_print_chan_status = iio_backend_debugfs_ptr(axi_adc_debugfs_print_chan_status),
->  };
+> +static int stm32_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct stm32_pcie *stm32_pcie;
+> +	struct dw_pcie *dw;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	stm32_pcie = devm_kzalloc(dev, sizeof(*stm32_pcie), GFP_KERNEL);
+> +	if (!stm32_pcie)
+> +		return -ENOMEM;
+> +
+> +	dw = devm_kzalloc(dev, sizeof(*dw), GFP_KERNEL);
+> +	if (!dw)
+> +		return -ENOMEM;
 
+Add blank line here.
+
+> +	stm32_pcie->pci = dw;
+
+> +static struct platform_driver stm32_pcie_ep_driver = {
+> +	.probe = stm32_pcie_probe,
+> +	.remove_new = stm32_pcie_remove,
+
+.remove().
+
+> +	.driver = {
+> +		.name = "stm32-ep-pcie",
+> +		.of_match_table = stm32_pcie_ep_of_match,
+> +	},
+> +};
 
