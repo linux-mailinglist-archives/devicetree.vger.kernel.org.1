@@ -1,99 +1,120 @@
-Return-Path: <devicetree+bounces-121164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 837B39C5A8F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:40:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 337E79C5AA4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:42:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AE201F22AF5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:40:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC26628A34A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC1D62003D2;
-	Tue, 12 Nov 2024 14:37:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61A822003BB;
+	Tue, 12 Nov 2024 14:40:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g10uLWKn"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="uPy/zGqA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91A441FF02D;
-	Tue, 12 Nov 2024 14:37:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0945920012F;
+	Tue, 12 Nov 2024 14:40:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731422259; cv=none; b=ODAhOCfakVy3lIz+A4/KnrF1qFKuiEvsAWhpogR3jObx/pgHVIYWVAb/J6uA2PONLQ4aDJEYCuun/RovxGpK3UccavIY6RlGmWWHjrYvF4itwAJq2GaUo27Opg/qsgYl7Fk2H9SMp7GdBlq063iIM8nGAF+7hqs98PcegN98Kos=
+	t=1731422415; cv=none; b=qjZu/pltNEBDuHq/rpGl082XcIF8foRmAhF+zjBlFjmWYoTsleDoFA2GYDjrunvTa6Kfb4lGGkA8UWWT4/DC5IFlavMdIUBUZZrtkFG5L4WX+Xrh18HKnBeA5vY+mHD1cFW3+Q7zQs4IH/clSpHalJVnBpzInXXq/H7sqfqsUuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731422259; c=relaxed/simple;
-	bh=yW75lJPp4kqCgCVPMkIbHw2p/49v6BgJKGW8dcF7ODw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NpX8Sj2EcJgbkTCPRWfHTJAHVH34zYXNyXRLUoKeRR+FKXqdaiY3SQgAlH0cpy43C4CeiNYMgL/ypB/4qYveWu7PELEQ3+VHyGTZamIJjnALhXfrbavXB2IaICAnJVoiaiVjEvz+Dm0BY3/fzu0zGkLhd5HrM3x7ciDzY5on7oA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g10uLWKn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 614C8C4CED6;
-	Tue, 12 Nov 2024 14:37:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731422259;
-	bh=yW75lJPp4kqCgCVPMkIbHw2p/49v6BgJKGW8dcF7ODw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=g10uLWKnMoNs8UBqNHWcGrgdFo2m2PeXfTpO5UC9XQTIoFUcEsj3IY5u3+5ybgzCp
-	 GwHzpvY8kxER14I30jltzkbfM01s2SLLvSrUoc9ZCd81AKxJJnXSmBsnD0D5lJwwYZ
-	 4ynd1xeQEFia4kPiBk92ofykCyf7yp3dsojpsHWkEdIoFEbNCjGUJ/n2IKjkflaHPq
-	 8V+c3lMxepIlwBUy1XOERaOsQSwogtCCJNZGs7mXLIbzmpGbS3qUEEgKVrCF1b4S4z
-	 9rAnGcwHL6gUWUkKPNh67Tkg42dJENV5bwX7Y1I/T5STRR7Qe0qREvnIBoBc0vO2Qb
-	 FTnqEQxf40XFA==
-Date: Tue, 12 Nov 2024 14:37:32 +0000
-From: Lee Jones <lee@kernel.org>
-To: Jiri Kosina <jikos@kernel.org>
-Cc: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>, jic23@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	jdelvare@suse.com, linux@roeck-us.net,
-	srinivas.pandruvada@linux.intel.com, bentiss@kernel.org,
-	dmitry.torokhov@gmail.com, pavel@ucw.cz, ukleinek@debian.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-input@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v9 1/9] HID: hid-sensor-hub: don't use stale
- platform-data on remove
-Message-ID: <20241112143732.GG8552@google.com>
-References: <20241107114712.538976-1-heiko@sntech.de>
- <20241107114712.538976-2-heiko@sntech.de>
- <nycvar.YFH.7.76.2411071358210.20286@cbobk.fhfr.pm>
- <4934964.GXAFRqVoOG@diego>
- <nycvar.YFH.7.76.2411071534110.20286@cbobk.fhfr.pm>
+	s=arc-20240116; t=1731422415; c=relaxed/simple;
+	bh=tLiyOYdn4NNHt5BE+18n/llcdobkAXi4c2H9DIp4KNE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gfpxPnmA2QsQA9iqTtxZNdONY1drKAMDcYAhfkyMz9TaOwj88fNslj5kjAb0ibSz5uqCfHF+EP2DsuhQtb2PBH3M0mKvryLwsrbEaq3wBHzH0Famm16dfoOStJ0wNLI23mgrxDxmTt/MLRwRKIZg59MJcEuTEiGAGmDXsGi0CVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=uPy/zGqA; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References; bh=5z0qkzpzTaqSRLBhyPcrkLXrKVsaoXL9ogzup9TZNgc=; b=uP
+	y/zGqA0JxsIP8vPe0DX+A2dovawAxa4z4elKpGrGTiE10jtMtc8/iBrSj8PvGMG6be0nD+0Wc9xfP
+	M+YSHq7JSPna2qWaXChLZ6pkP+hnKadK5DxNeBlhdVAZlVJFpdZ+FrUS2GgZXAxteN4R55LuLhTsQ
+	NrGko00lHOf6oXjzC8ks/s/gLhY0CQlD/tQggZ7uuq0sdkquUFBe02947Fcv6h0Wkemf1cjndrAvF
+	lhNrawXNwnxqed/xru5ebSSOV/p13sWMjZc8zKOefBBoiUT3dwP+3vXsgl8yvxE2Ti1V+yEHy99jf
+	MupIhBJWxQFRErZz7D7FqWTAtN7VLvBQ==;
+Received: from sslproxy01.your-server.de ([78.46.139.224])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sean@geanix.com>)
+	id 1tAs3p-000Mzs-5H; Tue, 12 Nov 2024 15:40:05 +0100
+Received: from [185.17.218.86] (helo=zen.localdomain)
+	by sslproxy01.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sean@geanix.com>)
+	id 1tAs3o-000GXH-19;
+	Tue, 12 Nov 2024 15:40:04 +0100
+From: Sean Nyekjaer <sean@geanix.com>
+Subject: [PATCH can-next v3 0/2] can: tcan4x5x: add option for selecting
+ nWKRQ voltage
+Date: Tue, 12 Nov 2024 15:39:38 +0100
+Message-Id: <20241112-tcan-wkrqv-v3-0-c66423fba26d@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <nycvar.YFH.7.76.2411071534110.20286@cbobk.fhfr.pm>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKpoM2cC/1WQ3W7DIAxGXyXiekxgfprkau8x7QKIadGUpCWMZ
+ ar67vOSVVu5s+xz/JkrWzAnXFjfXFnGmpY0T1Sop4aFk5uOyNNANQMBWgoleAlu4p/v+VJ5sOA
+ 7YYUwg2MEnDPGtG6yV/YzNuFa2Bt1Tmkpc/7atlS59X+F8r+wSi54C2rwg4SI2r0c0U1pfQ7zu
+ Hkq/LH0HlggtjtYZWTnDRh4YG97vIyXDzqx3DPeL+ybXSkMD/NUMZddrb2RVoPGEG1Py8ni3YI
+ 0NI6pEOXBdU60sY2CvkKjAx+sHLxSB61BehE7rZ2lALdvOR3hiGsBAAA=
+X-Change-ID: 20241030-tcan-wkrqv-c62b906005da
+To: Marc Kleine-Budde <mkl@pengutronix.de>, 
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-can@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Sean Nyekjaer <sean@geanix.com>
+X-Mailer: b4 0.14.2
+X-Authenticated-Sender: sean@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27456/Tue Nov 12 10:49:43 2024)
 
-On Thu, 07 Nov 2024, Jiri Kosina wrote:
+This series adds support for setting the nWKRQ voltage.
 
-> On Thu, 7 Nov 2024, Heiko Stübner wrote:
-> 
-> > This change was more or less a surprise find, because I wanted to make
-> > the platform_data pointer in the mfd_cell struct const and this the hid
-> > sensor hub stood out as doing something strange ;-) .
-> > 
-> > So patch 2 of this series actually depends on this change to not cause
-> > build errors.
-> 
-> Ah, right.
-> 
-> > But seeing that we're after -rc6 alredy, I would assume the brunt of the 
-> > mcu series might need to wait after 6.13-rc1 anyway - but I guess that 
-> > depends on how Lee sees things ;-) .
-> 
-> OK, I am keeping my hands off it for the time being.
+Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+---
+Changes in v3:
+- Switched the order of patches, yaml patch first and then code change.
+- Switched to a boolean ti,nwkrq-voltage-vio.
+- Switched internal variable to a bool.
+- Link to v2: https://lore.kernel.org/r/20241111-tcan-wkrqv-v2-0-9763519b5252@geanix.com
 
-I can take it now with an Ack.
+Changes in v2:
+- Converted tcan4x5x.txt to DT schema. In
+  https://lore.kernel.org/linux-can/20241105-convert-tcan-v2-1-4b320f3fcf99@geanix.com/
+- Reworked ti,nwkrq-voltage-sel, to DH schema style.
+- Link to v1: https://lore.kernel.org/r/20241031-tcan-wkrqv-v1-0-823dbd12fe4a@geanix.com
 
+---
+Sean Nyekjaer (2):
+      dt-bindings: can: tcan4x5x: Document the ti,nwkrq-voltage-vio option
+      can: tcan4x5x: add option for selecting nWKRQ voltage
+
+ .../devicetree/bindings/net/can/ti,tcan4x5x.yaml     |  8 ++++++++
+ drivers/net/can/m_can/tcan4x5x-core.c                | 20 ++++++++++++++++++++
+ drivers/net/can/m_can/tcan4x5x.h                     |  2 ++
+ 3 files changed, 30 insertions(+)
+---
+base-commit: 2b2a9a08f8f0b904ea2bc61db3374421b0f944a6
+change-id: 20241030-tcan-wkrqv-c62b906005da
+prerequisite-change-id: 20241105-convert-tcan-4b516424ecf6:v2
+prerequisite-patch-id: a652b1a16dadd5ff525d0b58fec56f605a976aa3
+
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Sean Nyekjaer <sean@geanix.com>
+
 
