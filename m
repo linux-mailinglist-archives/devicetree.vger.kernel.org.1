@@ -1,172 +1,162 @@
-Return-Path: <devicetree+bounces-121161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 121A79C5D82
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:39:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B3029C5E09
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 18:00:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6ED6B35C01
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:37:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89674B656DB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:37:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9749A1FCC66;
-	Tue, 12 Nov 2024 14:36:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FB0B1FF615;
+	Tue, 12 Nov 2024 14:36:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lLYgBylq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D18291FCF6C;
-	Tue, 12 Nov 2024 14:36:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A344978289
+	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 14:36:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731422176; cv=none; b=AEWOxDfKWxjEOeqUcwSbj6qa33ndnPkeNU8taA8qqVhUeGOKhss56gBNC0jm+RIfuaTlqV8p+5FHuLl9qRKBwNF0PTrISTUdkBQRVU4XmvfDAdAIyhMC/q9671f+3Rjlz2ENrabFuwacy9nyOTuXzNL4iYDqYb7O+N2ej+pRv8s=
+	t=1731422210; cv=none; b=GFVXRURPINPwSqCjU+enAwtpwLTn1T+mHnP6Wzc2kbnnRcNcIk9Pcl0x+1CVOXhuUmmiE6Oa3Ua4rxEB1ivGnxB7x2FKDJ41HahdzuXM/MlorHu9a/xDlbzYdxkxvHH97HxXewTNGZDjLOtv5FlbAbA9NeD/wtd8EZDhfekLi30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731422176; c=relaxed/simple;
-	bh=Swj4SJsULX+YIa8TLSPmrrh1lNABYWXUZCNeI6pAgC8=;
+	s=arc-20240116; t=1731422210; c=relaxed/simple;
+	bh=nGSESZ6LNWlBpxc8EUBXwUNaqDZlgGKDnCYvlQF63Zg=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ofDxr9m1kuhrYoBrqMLzgQi4hCeteCgYB87n6hb7l/Su4/HlUYqJM2JW61mqyhPfvifg1xD1rP/g82jG1PE7MRJpatxl4nLjklolZocAyh9RwdK0kt16Y0/LlQJ7Fy6eQ6oiJpJsdd4Vq3UdVKf7xjXKTQriAKcaQlcREmsorFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-20cb7139d9dso53249235ad.1;
-        Tue, 12 Nov 2024 06:36:14 -0800 (PST)
+	 To:Cc:Content-Type; b=i6eiJB2tklT1HRZfbqeZF9fjAmYI/oI1EMNzCcvgOwWfZNASUgO6ehafxFL6N3IdaCA96kBnchDD0ZVaEjTsSLooghJGfiEUE6LMnOvJAV2xCq45K3EOoPWv2Y/GFcTVkF8hro4qYOMVhqL/2Vr5trhIBwMNL3t9gx0fE7KuAzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lLYgBylq; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6e33c65d104so47772897b3.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 06:36:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731422206; x=1732027006; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=cgmhvMmvsAX1eZX0S9Wvwi35LFfEY0JKL1PQexUj2Y4=;
+        b=lLYgBylqf4JGYHIAG9Pej55FryJ3xC7hckui+u97hmGezb4Nyre1pd/c1tO55pFggh
+         Lj2UHnnJxPmYZkcpds7nqAfNwonKfPQe2KcNTa/pZ/bSoOnHEmHhNqIYsnJdeQ8+oFbq
+         Vd+2Dbce87vv2DotmBo23gj2G4zxvwh4Kw5Xkpl+4I9SEbS0GshUOAsFE0+INM6zseim
+         zHjdDNHwlYwjkkS3PS3Ktiyak9X0fv5GqExTAaEUIl94RK/EajtkhANtbt1tRGiyJGCs
+         lwhk5g3Zsd3F7+fDLpRxq3mGGxtaQ17bEt7LBgft9GtLoqg/3tc2HnGmTy4KY8kw2vTP
+         TTrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731422174; x=1732026974;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fU6W7rKC1LDOoPqE+zgv8rY63qL2TykSBZFtxfoHqJQ=;
-        b=b4fG0o/09cBIx8Z6h4prwEcRDFmVomAXLOQC8+FBVg4RDIU1iI6WtVIfqpbzr6aqAt
-         +9eYCkXbWkWUfGbjMPNtMifED+7NJWm7d6sExSUBWg4pfXTYG3GOULVxNYJeqdDE4zFn
-         fBFLo8nlGBLuEmp5H8F9fe1wLwwIeGFCSIcIG4Ur9HiFiWP4rde+iToDhpITnklwqykf
-         XmO5dLnz/ht5BHeZ6wYUcQUZz4ovLsLggZzKd2/9c4chw0cxQBFCsY42RO21jRJx9FeY
-         KHSemnr8JuB4N2cH6X+gpGRTqXVmGOr+VWkWJRD3n29UTJAbgweM0Hps0V0R8LaeGZL7
-         g2ng==
-X-Forwarded-Encrypted: i=1; AJvYcCUKgXyw0OjfYUeFN2UDNDZUi6lfaC6VrY031lvZ9FtNOs2DFepKyL8fLWsTgFn+La0w6wN1hUdXQ8vr@vger.kernel.org, AJvYcCURrRJCinDSGoj1l87h5prVHPB1T3YvXEEcLo1r/LA0ZyFN24SjrUd4si0l23hSBEhqX42smEVQys1dfZeb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXtTVuaA2tfjHHLznWpMF7A1Yww9lnMcYbW4yvJaFNcd0JPaaQ
-	s9oflgf57+6IwEBY3KpgYQNVzB5iNzIsrxl2+clEtx+xumDAnDAkpfXoASedTeNGwQ==
-X-Google-Smtp-Source: AGHT+IEBldIykjeOMBEw6JcPYD1BWPf3DRE9rWz+yBHxL0qv7kC4+C6xg5z6GXyXJDwsL3vajYna2Q==
-X-Received: by 2002:a17:903:2a8b:b0:20c:cd23:449d with SMTP id d9443c01a7336-21183e1eff6mr220783885ad.46.1731422174169;
-        Tue, 12 Nov 2024 06:36:14 -0800 (PST)
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com. [209.85.216.41])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177e418bfsm94417445ad.169.2024.11.12.06.36.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Nov 2024 06:36:13 -0800 (PST)
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2e2eba31d3aso4337669a91.2;
-        Tue, 12 Nov 2024 06:36:13 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUgvaXPA9XYnoRtoCvbCwh+/grG+Tp865E/nRl+alZIpNGLewv97gjfnrug954E4r9yJan6WglUX1rUbZ+8@vger.kernel.org, AJvYcCVEn1NLIHaw0i14pE/4Eh0imt5OpGkoqiAYfSgZ0Ps9MfpNgb0s9RBxoioqSZHxKLP6H1w92Hdn0cwi@vger.kernel.org
-X-Received: by 2002:a17:90b:3c0e:b0:2e2:dcea:2b8c with SMTP id
- 98e67ed59e1d1-2e9b16eeb4emr22784902a91.6.1731422173348; Tue, 12 Nov 2024
- 06:36:13 -0800 (PST)
+        d=1e100.net; s=20230601; t=1731422206; x=1732027006;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cgmhvMmvsAX1eZX0S9Wvwi35LFfEY0JKL1PQexUj2Y4=;
+        b=oz8Xv7FqIJKIbTf5guZO0bMKkrELe5VCbbBOyR2rYVxobxy+LEaTrriXHYQ1BWeFb/
+         Q10OISc8IVTdKicMFDQMb4Q6lfBIpABW6vJ3H7hMSPFN1K3+eOUO4//hNeBO2+KZbVL2
+         vXBTT1YN1iyFFmV+TAV0CqeEYiItdlMWreZZZqYnb6rBZuJewk3RU2k+h5hKoFFEwLA0
+         wqj31Qwo51PziqAtTmXj+zBKUtz1dGVF/0Oi6iCZ6ktYCgL1qe1jr3icFbiAmr4+gGTH
+         dKW1/NZ1sPbN7tfZh3x8i/dpjLAeuVh951SHkCUJ45gebEbrFVGI+d4npkFAJCqYd/ga
+         G+lA==
+X-Forwarded-Encrypted: i=1; AJvYcCUIpIJrNBkXXdDLSBYStwHFZOj32bSGxsBEk6bn1SvQ3gAr+REudiLwczH3q0QPsYm/TGUsKRs1Hd8i@vger.kernel.org
+X-Gm-Message-State: AOJu0YwChNSs8P10eosYUAoHmyKdgBp/AgZSzE+7KUWyio84AVX+Jwi6
+	LpVdzfAToOFJoJwi2g4jUgxsVElZPJ5IM4mJR/8Vau8P3KQ9j/iYaxnJcoaiJvnsrmHMqchwcNF
+	KIOhKSP66/PgWiwmEJGFJUX9IgGv3xUhmz2ZI6g==
+X-Google-Smtp-Source: AGHT+IH9rSK+tLCTRixNouZv18mLFyvn8FHIuZnQADkcw+GhR4qfmbtPJ/eLDOrbx7U/Aj+xJlWgGqMHWo5EW1qAGx8=
+X-Received: by 2002:a05:690c:6885:b0:6ea:90b6:ab48 with SMTP id
+ 00721157ae682-6eaddd98875mr166222807b3.18.1731422206552; Tue, 12 Nov 2024
+ 06:36:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241111181807.13211-1-tszucs@linux.com> <20241111181807.13211-2-tszucs@linux.com>
- <c89c2f16-ffb0-4b61-a962-9705f9f1e0e2@kwiboo.se>
-In-Reply-To: <c89c2f16-ffb0-4b61-a962-9705f9f1e0e2@kwiboo.se>
-From: =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@linux.com>
-Date: Tue, 12 Nov 2024 15:36:02 +0100
-X-Gmail-Original-Message-ID: <CA+GksrJzkxffSQbuseGFL0=2PDxV+TRevX0-NOkc6FNYLmNgYA@mail.gmail.com>
-Message-ID: <CA+GksrJzkxffSQbuseGFL0=2PDxV+TRevX0-NOkc6FNYLmNgYA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Add supported UHS-I rates to
- sdmmc0 on rock-3b
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@linux.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>, 
-	Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+References: <1731048987-229149-1-git-send-email-shawn.lin@rock-chips.com> <1731048987-229149-4-git-send-email-shawn.lin@rock-chips.com>
+In-Reply-To: <1731048987-229149-4-git-send-email-shawn.lin@rock-chips.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 12 Nov 2024 15:36:09 +0100
+Message-ID: <CAPDyKFp0LKaqhdybGow7T72Vac52=bP3PjYL2920=SJzmYB06Q@mail.gmail.com>
+Subject: Re: [PATCH v5 3/7] pmdomain: core: Introduce dev_pm_genpd_rpm_always_on()
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>, 
+	"Martin K . Petersen" <martin.petersen@oracle.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
+	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Jonas,
-
-Thank you for pointing this out! I haven't noticed this before. I've
-done some testing and I believe I am able to reproduce the issue you
-described, although I cannot confirm the reason.
-The only occasion I encounter any problems is when a UHS SD card or
-SDIO device is connected to sdmmc0 during bootup. Sometimes the device
-is recognized as HS only. Obviously no tuning value reported. Also,
-sdmmc2 cuts out completely. I'm booting from eMMC and when the SD card
-is removed in this state I lose my rootfs. Certainly, this needs more
-attention but it seems to be unrelated to the changes here.
-
-I need more time to check but are you sure this SD card during bootup
-issue is gone with UHS-I disabled?
-
-Also, in every other case, when you connect any device to sdmmc0 after
-bootup, performance and stability is perfect.
-Interestingly I also don't experience this behavior with an eMMC
-device and / or an SDIO device connected to sdmmc2 during bootup. Only
-sdmmc0 is problematic and only during bootup.
-
-Any more thoughts on this are very welcome.
-
-Kind regards,
-Tamas
-
-
-
-Tam=C3=A1s Sz=C5=B1cs
-tszucs@linux.com
-
-On Mon, Nov 11, 2024 at 8:00=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se> wro=
-te:
+On Fri, 8 Nov 2024 at 07:57, Shawn Lin <shawn.lin@rock-chips.com> wrote:
 >
-> Hi Tam=C3=A1s,
+> From: Ulf Hansson <ulf.hansson@linaro.org>
 >
-> On 2024-11-11 19:17, Tam=C3=A1s Sz=C5=B1cs wrote:
-> > Add all supported UHS-I rates to sdmmc0 and allow 200 MHz maximum clock=
- to
-> > benefit modern SD cards.
-> >
-> > Signed-off-by: Tam=C3=A1s Sz=C5=B1cs <tszucs@linux.com>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm=
-64/boot/dts/rockchip/rk3568-rock-3b.dts
-> > index 3d0c1ccfaa79..242af5337cdf 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> > @@ -670,8 +670,14 @@ &sdmmc0 {
-> >       bus-width =3D <4>;
-> >       cap-sd-highspeed;
-> >       disable-wp;
-> > +     max-frequency =3D <200000000>;
-> >       pinctrl-names =3D "default";
-> >       pinctrl-0 =3D <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
-> > +     sd-uhs-sdr12;
-> > +     sd-uhs-sdr25;
-> > +     sd-uhs-sdr50;
-> > +     sd-uhs-sdr104;
-> > +     sd-uhs-ddr50;
+> For some usecases a consumer driver requires its device to remain power-on
+> from the PM domain perspective during runtime. Using dev PM qos along with
+> the genpd governors, doesn't work for this case as would potentially
+> prevent the device from being runtime suspended too.
 >
-> There is an issue with io-domain driver not always being probed before
-> mmc driver, this typically result in io-domain being configured wrong,
-> and mmc tuning happen before io-domain is correctly configured.
+> To support these usecases, let's introduce dev_pm_genpd_rpm_always_on() to
+> allow consumers drivers to dynamically control the behaviour in genpd for a
+> device that is attached to it.
 >
-> You can usually observe this by looking at the tuning value during boot
-> and comparing it to the tuning value after removing and re-insering a
-> sd-card.
+> Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> ---
 >
-> Because of this uhs modes was left out from initial DT submission, some
-> cards will work others wont, sd-uhs-sdr50 is known to be working with
-> most cards even with the probe order issue.
+> Changes in v5: None
+> Changes in v4: None
+> Changes in v3: None
+> Changes in v2: None
 >
-> Also I thought that lower speeds where implied?
+>  drivers/pmdomain/core.c   | 34 ++++++++++++++++++++++++++++++++++
+>  include/linux/pm_domain.h |  7 +++++++
+>  2 files changed, 41 insertions(+)
 >
-> Regards,
-> Jonas
+> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
+> index 5ede0f7..2ccfcb7 100644
+> --- a/drivers/pmdomain/core.c
+> +++ b/drivers/pmdomain/core.c
+> @@ -692,6 +692,36 @@ bool dev_pm_genpd_get_hwmode(struct device *dev)
+>  }
+>  EXPORT_SYMBOL_GPL(dev_pm_genpd_get_hwmode);
 >
-> >       vmmc-supply =3D <&vcc3v3_sd>;
-> >       vqmmc-supply =3D <&vccio_sd>;
-> >       status =3D "okay";
->
+> +/**
+> + * dev_pm_genpd_rpm_always_on() - Control if the PM domain can be powered off.
+> + *
+> + * @dev: Device for which the PM domain may need to stay on for.
+> + * @on: Value to set or unset for the condition.
+> + *
+> + * For some usecases a consumer driver requires its device to remain power-on
+> + * from the PM domain perspective during runtime. This function allows the
+> + * behaviour to be dynamically controlled for a device attached to a genpd.
+> + *
+> + * It is assumed that the users guarantee that the genpd wouldn't be detached
+> + * while this routine is getting called.
+> + *
+> + * Return: Returns 0 on success and negative error values on failures.
+> + */
+> +int dev_pm_genpd_rpm_always_on(struct device *dev, bool on)
+> +{
+> +       struct generic_pm_domain *genpd;
+> +
+> +       genpd = dev_to_genpd_safe(dev);
+> +       if (!genpd)
+> +               return -ENODEV;
+> +
+> +       genpd_lock(genpd);
+> +       dev_gpd_data(dev)->rpm_always_on = on;
+> +       genpd_unlock(genpd);
+> +
+> +       return 0;
+> +}
+
+We need and EXPORT_SYMBOL_GPL() here too.
+
+[...]
+
+Kind regards
+Uffe
 
