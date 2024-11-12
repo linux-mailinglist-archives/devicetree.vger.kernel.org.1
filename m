@@ -1,126 +1,95 @@
-Return-Path: <devicetree+bounces-121015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76C9C9C4EA1
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 07:17:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86BED9C4ED4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 07:39:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0ECF91F22EF2
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 06:17:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A986289954
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 06:39:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D10E205ADF;
-	Tue, 12 Nov 2024 06:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E8EE208239;
+	Tue, 12 Nov 2024 06:39:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J9875zWw"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="1kelb72c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E826E19EED4;
-	Tue, 12 Nov 2024 06:17:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77A3F5234;
+	Tue, 12 Nov 2024 06:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731392271; cv=none; b=FkSUhyOP/mRSw3Yv49rsCZZEV77DNaiLWBiaT5nIBoUGVIAUIdnVZJdkwZR/XDp07WCldZ5yj8Bbm0lPwASkKIkV9tnOytIOyLO6MvmQkDPfGj5rF2ki43swJuSQAK/rnAgS1f0vB0/ue6Xuuo7MlJAzpJr978j1jP17ZheZxks=
+	t=1731393562; cv=none; b=TDQlyNNn5kpVnTTFDasEQFwD918Cd7UrmTTpuSmzikEOfk1kpYyju61GRNFds9qB6gRAe2LkI2Pn3KJxNkoXsDpFzqu4it6xDI7wRcDmZjyyc0s67/K5iPQqCBjMi2AjcKS++GGOLLgvp/bWrygw0HJqp37d5r7HcH7U+58XwMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731392271; c=relaxed/simple;
-	bh=FjWfuxbaFsptLDDLdKjT29NXwqNi6LmI9HVJ+sz1XRg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=FBfpPkyd74P7MX5qbxKCh47bnk7IqSLJiWZctxwJzysBH+jM+OPzXrmBjwwcVgZ+duC1hYgRlYyRCZJlrmnyHnrDbFE5XVwaNGyeeLvSyZZ5ElrlP34wB1Ub5KMjTyQzu3cMjnWlnFy+wZ6mzEFVjbMS3CGseKNRCMJiunB2jDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=J9875zWw; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AC1vdTm005745;
-	Tue, 12 Nov 2024 06:17:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4b2Dl8YQKJ26ieLnPOJHIP3dB1v1fV6KV5TDF2LPOTQ=; b=J9875zWwz5VU/65U
-	OL8srDVURyPfquSn3rPeC9ngTUpAETREbPLXmiKeEr9vnobTXN24wuv6Y9cx7JtR
-	6mLx9Cncv+ODPQmFd0npk8WNtqOqVXlv4+Wk6xKjNc65zTb9nXSxV+5E6Cgn2EYC
-	nd40xq3y1J7175nMsrsY67P8w4IaGCs3Gveg8+F9D2o93E5qIU00FRW44yS4mbRX
-	s6R2lFCg6vsv1XpFKXXXeTlzZlibgXIkrAaToVV5RYZ/rz32eEk4J4LArBWwL6tW
-	5kPCnkbxhc1qm3yRbHdzs0FLnlxGvjZR4LXQ8/UboQDFBFJhX2f6qb6Fq5RX7gk8
-	0YEUJg==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42uwt5gg4d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Nov 2024 06:17:45 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AC6Hiol015524
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Nov 2024 06:17:44 GMT
-Received: from [10.206.111.70] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 11 Nov
- 2024 22:17:41 -0800
-Message-ID: <78e6ff6b-efe1-496c-a1fb-c9a0a4aba2d2@quicinc.com>
-Date: Tue, 12 Nov 2024 11:47:09 +0530
+	s=arc-20240116; t=1731393562; c=relaxed/simple;
+	bh=qBZiGi1u8iJrl5166Fw1rBfClz9HCNwg6W87v0hoOjs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tYRjnFXcqHnFzvei560eSnB9sRqgzA+OSJoiVkDLfTqTb85RcwQZpsAID2SSouRpDUtx5RtIK/k8d+PSXMttxaO9KWO3bbEPk6gFXD0Mk6wa8i+te3KcHSyaO1bg0TXRTJ4eY0Cg0Yi177U+CT7oxvwfjl2CSHCn2/Aa0Bt6WAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=1kelb72c; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID; bh=DMBzvsCGMw6qfR4K0jMLHbUMUuG0vgDO025DsOZ7Tv4=; b=1kelb7
+	2cZXNysGmHSwC/aAZ3zikdKshn2km2x26JXQmwIFkM7DW+8QFicJmIRj+H27B7GWoqzBe6dGEB6oT
+	RLLhp5Zc700i1weTf+Ws7UZaHO6qKSRI7yb+0Yqzm8GhNq68efxk6e5wpGFhxuCODg6NEM5RRCP0q
+	pxT7yOwnioffiuInvyjvE9RE8KWolPRHdp8HAyzCxJtRvEcv4WYQuw4hGri6RZ594X+U4rFuUyw7A
+	TZlziQoYgVPuN1vEeNNz+bzs26SQuRht2lboFIG+H0x/yyM0NqEwdORtSEdO02NH+CftX8uIaBdQb
+	i4ciYB7NfaIzufyyDC/RdHK91i2w==;
+Received: from sslproxy07.your-server.de ([78.47.199.104])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sean@geanix.com>)
+	id 1tAkYU-000Giw-5O; Tue, 12 Nov 2024 07:39:14 +0100
+Received: from [185.17.218.86] (helo=Seans-MacBook-Pro.local)
+	by sslproxy07.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sean@geanix.com>)
+	id 1tAkYT-000NhT-1L;
+	Tue, 12 Nov 2024 07:39:13 +0100
+Date: Tue, 12 Nov 2024 07:39:12 +0100
+From: Sean Nyekjaer <sean@geanix.com>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] can: tcan4x5x: add option for selecting nWKRQ
+ voltage
+Message-ID: <fatpdmg5k2vlwzr3nhz47esxv7nokzdebd7ziieic55o5opzt6@axccyqm6rjts>
+References: <20241111-tcan-wkrqv-v2-0-9763519b5252@geanix.com>
+ <20241111101011.30e04701@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: enable venus node
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <cros-qcom-dts-watchers@chromium.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20241004-venus_sc7280-v1-1-4d7d8fd7e95b@quicinc.com>
- <kezh3lmysij56g2tjwwuas5r26ro5i777yxxitsdcjeg7zp67v@oknrdbkzison>
-Content-Language: en-US
-From: Vedang Nagar <quic_vnagar@quicinc.com>
-In-Reply-To: <kezh3lmysij56g2tjwwuas5r26ro5i777yxxitsdcjeg7zp67v@oknrdbkzison>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: gNoc8bsv_U6pjTkxOuoHla7nC6Y2Oyn9
-X-Proofpoint-ORIG-GUID: gNoc8bsv_U6pjTkxOuoHla7nC6Y2Oyn9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=234
- priorityscore=1501 lowpriorityscore=0 bulkscore=0 clxscore=1011
- malwarescore=0 impostorscore=0 adultscore=0 suspectscore=0 mlxscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411120049
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241111101011.30e04701@kernel.org>
+X-Authenticated-Sender: sean@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27455/Mon Nov 11 10:58:33 2024)
 
+Hi Jakub,
 
-
-On 10/7/2024 1:20 AM, Dmitry Baryshkov wrote:
-> On Fri, Oct 04, 2024 at 04:22:31PM GMT, Vedang Nagar wrote:
->> Enable the venus node on Qualcomm sc7280. It was made disabled
->> earlier to avoid bootup crash, which is fixed now with [1].
+On Mon, Nov 11, 2024 at 10:10:11AM +0100, Jakub Kicinski wrote:
+> On Mon, 11 Nov 2024 09:54:48 +0100 Sean Nyekjaer wrote:
+> > This series adds support for setting the nWKRQ voltage.
 > 
-> NAK, there might be other reasons to keep venus disabled, like the lack
-> of the vendor-signed firmware for the particular device.
-Can you pls elaborate more on this? Any device with sc7280 SOC can use
-venus.mbn which is already present in linux-firmware git.
+> There is no need to CC netdev@ on pure drivers/net/can changes.
+> Since these changes are not tagged in any way I have to manually
+> go and drop all of them from our patchwork.
 
-Regards,
-Vedang Nagar
-> 
->>
->> [1]
->> https://lore.kernel.org/linux-media/20231201-sc7280-venus-pas-v3-2-bc132dc5fc30@fairphone.com/
->>
->> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 --
->>  1 file changed, 2 deletions(-)
-> 
+Oh sorry for that.
+I'm using b4's --auto-to-cc feature, any way to fix that?
+
+Br,
+/Sean
 
