@@ -1,88 +1,207 @@
-Return-Path: <devicetree+bounces-121303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D8939C63FA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 23:04:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D47C9C6430
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 23:22:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12E792812BE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 22:04:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34C621F26593
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 22:22:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DBCE21C189;
-	Tue, 12 Nov 2024 22:03:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 122A821A4A7;
+	Tue, 12 Nov 2024 22:22:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rLaHEMOa"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="V31rFO1C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62F1D21C183;
-	Tue, 12 Nov 2024 22:03:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E4411EC006
+	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 22:22:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731449015; cv=none; b=hMbp+2bntZ0GxYtkGoTKNlobSnSp1x1TKs99+5iwuCUDDWgDxwk2Az8Hh4dI1LlNiSp5Z//A2j+92IMNqAZpHgjlVrvKheg9QLWMHtHGnxrm80ys9cDma5e2d7Hl/3cTT2h28EqLWK2+oNQL71rmzrJ2AULHfhKpnVPLfws9ISs=
+	t=1731450139; cv=none; b=uBWBdJHTkCaBgMOFxHDcCGbxZebaugCA2e+7h0iqY0UEKZaU8T7xyWVsjljb4NdSWXyBgTr4E9p6OUJQUeRVJdp5SZ2/DqLUjfeicMQEH0/pvb22FoC9S1C4wEWPrkdgsUWn5Vg1sETM83WSDy6J2bOnhy6XmkkZ6vAoxTXdnao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731449015; c=relaxed/simple;
-	bh=KeJGsxNdwMDblU+WLQlC0Bhbh2V9aAhYOvAhwgxySbI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o6yPnyYAlA7HIhSF/KZTCJWDLNYvBr1/rtBBpgTpXkQ3IBHGyVNd+nhN/H1LPeZFkbBufGOb5qZs9UrY2mtG119DPDw+1uzovNAcQ8dxHBAs9qKqNRg59gl86HjFPiT6K3aIFT9SUwxnkSuyU0zlFF9k9Mdwi+kj56fSgwe7fkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rLaHEMOa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06974C4CECD;
-	Tue, 12 Nov 2024 22:03:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731449015;
-	bh=KeJGsxNdwMDblU+WLQlC0Bhbh2V9aAhYOvAhwgxySbI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=rLaHEMOa+bLds5ARNZvbtZ+aASRK5VG+VxxvHp5Su/q8bLn1/VwS/Wfvw8BInYQHy
-	 JHE9zH/yXvXsTkVdh5cyHDLt0nPIIu3KsSQtg3rbGmcG73AMo5y/8GWE7rS3mEPBRL
-	 nIELYwSMGCDfa2d88xmum2FXIyZ/CCVtu/X98zJLue6P6ZMUDJG39HTc3yEKNFoL7b
-	 2KsLJ7NSGvw47dNK2ZU6guzA28UAgsL/UcPqz6PH99CfomgeOQLpTtbP+ibEyK1QRi
-	 N6+iDMBK7JQH5ZFBA+tTA6zwxUdfE8azPkeD/NQC5jaf69uIQXAVNOrj8Aj9Lymywn
-	 DKP3O4hl6Mvdg==
-From: Bjorn Andersson <andersson@kernel.org>
-To: konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Qiang Yu <quic_qianyu@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	quic_cang@quicinc.com,
-	quic_mrana@quicinc.com,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: Re: (subset) [PATCH v9 1/1] arm64: dts: qcom: x1e80100: Add support for PCIe3 on x1e80100
-Date: Tue, 12 Nov 2024 16:03:28 -0600
-Message-ID: <173144900026.331728.17768587034144952108.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241105073615.3076979-1-quic_qianyu@quicinc.com>
-References: <20241105073615.3076979-1-quic_qianyu@quicinc.com>
+	s=arc-20240116; t=1731450139; c=relaxed/simple;
+	bh=XvcRH2z9Mk+KcQ/n1l1PXqkDGa7TDpKW5lJrqcOjVQs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WdNH1JazcJjAaHKARxN+heGPR6fHIJTm4DpJNsXy4oZW0il2k1cFOdxag5QaNMqPtn4Cx09UsOUYVH5Qt/65gSsrwqyFG40GVyM7U/IkZ8yf2VZUF3odAVX48GQYzEDR/8zSFy/TEX1RSUUxPTY4ryz65+MBsvZ8jXsb4QpHTCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=V31rFO1C; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1731450113;
+ bh=AuUhsWmnwS3Wq04jwBtV8xlb7rkCU2Qg5LzNdH/FNA4=;
+ b=V31rFO1Cs7EX8K1z/q0Z0B+MvegdFxr9jea0Z53oW3CjvNvvaf0N84dNRTFF/ecESeUL4ecU2
+ TgUtD12239FwfIO3uJWdKyAwZM3Qzt8x/ix7XlAkK2OPQ/9kOTJvnFRFtEmszlYhV7BBeKW59Du
+ tmOIcssHgcwBtTTX7im0mnMmCUO760w0q6/W5YlZhH8si3SyvDURRhIm8WYigKUbYSc3fT/P0aI
+ dw0SphJ9zNJ516rAPeYLWy+HBa12R2bdQMdAqyml/7IiiyF/E2HW77KbRS5KGvfo9cRg8Ktc0Oc
+ kbB+GXkCv1Pq/zdci3ssnHeVZEWTIhMfOHiohVX9+ECg==
+Message-ID: <79f13cef-1630-491f-8525-b2b44c0d42fb@kwiboo.se>
+Date: Tue, 12 Nov 2024 23:21:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Enable UART8 on rock-3b
+To: =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@linux.com>,
+ Dragan Simic <dsimic@manjaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ FUKAUMI Naoki <naoki@radxa.com>, Chukun Pan <amadeus@jmu.edu.cn>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241111181807.13211-1-tszucs@linux.com>
+ <20241111181807.13211-4-tszucs@linux.com>
+ <4ba81dfa-f276-4e05-b46b-92f50dbcfcc4@kwiboo.se>
+ <CA+GksrJLpeU8x-kjR1Ng3ySf+giiufCsJuBssng9qoX1PjAunA@mail.gmail.com>
+ <9330ebb370780c001fd2aaee49aec9e8@manjaro.org>
+ <CA+GksrJjDPve29Vh7ZFhM+JFp058xmXZAPeuLuFth7v=JeiH2w@mail.gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <CA+GksrJjDPve29Vh7ZFhM+JFp058xmXZAPeuLuFth7v=JeiH2w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 6733d4fe9402f7538d196cc3
 
+Hi Tamás,
 
-On Mon, 04 Nov 2024 23:36:14 -0800, Qiang Yu wrote:
-> Describe PCIe3 controller and PHY. Also add required system resources like
-> regulators, clocks, interrupts and registers configuration for PCIe3.
+On 2024-11-12 22:04, Tamás Szűcs wrote:
+> Hi Dragan,
 > 
+> On Tue, Nov 12, 2024 at 4:07 PM Dragan Simic <dsimic@manjaro.org> wrote:
+>> Please correct me if I'm wrong, but isn't this UART supposed to be
+>> used for the Bluetooth part of an SDIO WiFi + Bluetooth module, in
+>> form of a non-standard M.2 module that Radxa sells?
 > 
+> UART8 is supposed to be used for any radio module connected to the M2E
+> connector.
+> It will typically be responsible for Bluetooth or BLE but it could be
+> 802.15.4 or whatever. In any case, all wanting to use it will need the
+> uart8 node enabled.
 
-Applied, thanks!
+Do you have any specific sdio+uart module you are testing these changes
+with? The pinout for sdio+uart on Radxa's M.2 Key E slot is their own,
+pinout for pcie and usb should be closer to a common standard.
 
-[1/1] arm64: dts: qcom: x1e80100: Add support for PCIe3 on x1e80100
-      commit: f8af195beeb0096cdcd1610ac70b544fa1831f2e
+https://dl.radxa.com/accessories/wireless-module/ROCKPi_M2_Wireless_Module_Pinout_v10.xlsx
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+> 
+>>
+>> With that in mind, I see very little sense in just enabling the UART,
+>> without defining the entire Bluetooth interface, which AFAIK produces
+> 
+> Defining a bluetooth node would hardwire idiosyncrasies of a given
+> radio module's Bluetooth core. Sure you could add a sleep clock, all
+> kind of sideband signals for wakeups, reset, power down, etc. But hey,
+> some will use them, some won't. I think it's undesirable and
+> unnecessary. You can hciattach from here and most will work just like
+> that. Tighter integration or anything special, module specific on top
+> should be handled individially, on a case-by-case basis. This is a dev
+> board after all. I say trick of all trades.
+
+Changing to status=okay for sdmmc2 and uart8 should be fine, it does not
+cause any issue for my pcie wifi module testing with a Radxa A8 module.
+
+Testing with a Radxa A2 module (sdio+uart), the sdio/wifi part is
+automatically discovered, however bluetooth require a DT overlay for
+automatic probe. Something like this seem to work:
+
+diff --git a/rk3568-rock-3b-radxa-a2.dtso b/rk3568-rock-3b-radxa-a2.dtso
+new file mode 100644
+index 000000000000..746b04e601af
+--- /dev/null
++++ b/dts/rk3568-rock-3b-radxa-a2.dtso
+@@ -0,0 +1,46 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * DT-overlay for Radxa ROCK Pi Wireless Module A2.
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/pinctrl/rockchip.h>
++
++&sdmmc2 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	status = "okay";
++
++	wifi@1 {
++		compatible = "brcm,bcm43456-fmac", "brcm,bcm4329-fmac";
++		reg = <1>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PD6 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "host-wake";
++		pinctrl-names = "default";
++		pinctrl-0 = <&wifi_wake_host_h>;
++	};
++};
++
++&uart8 {
++	status = "okay";
++
++	bluetooth {
++		compatible = "brcm,bcm4345c5";
++		clocks = <&rk809 1>;
++		clock-names = "lpo";
++		interrupt-parent = <&gpio4>;
++		interrupts = <RK_PB5 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "host-wakeup";
++		device-wakeup-gpios = <&gpio4 RK_PB4 GPIO_ACTIVE_HIGH>;
++		shutdown-gpios = <&gpio4 RK_PB2 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&bt_reg_on_h &bt_wake_host_h &host_wake_bt_h>;
++		vbat-supply = <&vcc3v3_sys2>;
++		vddio-supply = <&vcc_1v8>;
++	};
++};
+
+With that applied wifi and bt module is detected and firmware loaded
+during startup:
+
+[    4.684687] mmc_host mmc2: Bus speed (slot 0) = 150000000Hz (slot req 150000000Hz, actual 150000000HZ div = 0)
+[    4.699412] dwmmc_rockchip fe000000.mmc: Successfully tuned phase to 360
+[    4.707429] mmc2: new ultra high speed SDR104 SDIO card at address 0001
+[    4.717034] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac43456-sdio for chip BCM4345/9
+[    4.760907] Bluetooth: hci0: BCM: chip id 130
+[    4.763736] Bluetooth: hci0: BCM: features 0x0f
+[    4.787714] Bluetooth: hci0: BCM4345C5
+[    4.788482] Bluetooth: hci0: BCM4345C5 (003.006.006) build 0000
+[   11.417553] Bluetooth: hci0: BCM: features 0x0f
+[   11.441621] Bluetooth: hci0: BCM4345C5 Ampak_CL1 UART 37.4 MHz BT 5.2 [Version: 1039.1086]
+[   11.442423] Bluetooth: hci0: BCM4345C5 (003.006.006) build 1086
+
+Regards,
+Jonas
+
+> 
+>> nasty looking error messages in the kernel log when there's actually
+>> nothing connected to the UART.
+> 
+> My dmesg is clean as a whistle
+> root@rock-3b:~# dmesg | grep -E 'fe6c0000|ttyS0'
+> [    0.344818] fe6c0000.serial: ttyS0 at MMIO 0xfe6c0000 (irq = 26,
+> base_baud = 1500000) is a 16550A
+> What kind of nasty errors do you recall?
+> 
+> Kind regards,
+> Tamas
+
 
