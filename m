@@ -1,127 +1,128 @@
-Return-Path: <devicetree+bounces-121193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FB7D9C5C14
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 16:40:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72ADC9C5D68
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:36:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 644E62817E3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:40:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 408F7B3D47D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:36:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1DD9201267;
-	Tue, 12 Nov 2024 15:39:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9C61FE11C;
+	Tue, 12 Nov 2024 14:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sipsolutions.net header.i=@sipsolutions.net header.b="n+25dFhC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PThhpsVR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sipsolutions.net (s3.sipsolutions.net [168.119.38.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18B7F1FEFA8;
-	Tue, 12 Nov 2024 15:39:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.38.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E3581FCF55;
+	Tue, 12 Nov 2024 14:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731425994; cv=none; b=WWQkbWaWc1fjU3NvqUBhYJePTCWGppcqbRE/dnseAFnXslOX9KuhQTMFEwgNZwxEe+sc4CIC+zcIzHBHrunSN7ZPAmhEcxFXAaBck0AL8qPUYGdt35hAHkxeOWEv6VXdIIDc2DZWHa86qYAYqsrbDHnE5LUALHgTgNfTYZxnF4E=
+	t=1731422159; cv=none; b=LUYMBPLBZY2AF3FlPVDbCemVzOjtctYP+Rq2T6QDtMLQLPqhv178zRPrApwjzlNagvcu/ermn9CBSd3ldNkdAsnbRwhZeQ5GpUWT1cQytiskbnkoAyKpjjOXdBqu2ZXheWyf1xCcxEu1N7I5NFv7oxNpdpOCSJHiL6dHbLgfPSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731425994; c=relaxed/simple;
-	bh=fvrNxzwDp2P3iPosrFRowJKvdfK7Cu3AryWdKt0N3Ls=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=eiCp7cBwobU3vo5wU7Oz8Wk7qNMvBr63xuPwkwFsyC6GpfjFpFMBexEh696PyvIkbHydEzLqKyIhE+PpfByQPTPwmBcI2BIlM33k0fpxO/t3xH4pwGq9+SJ1+ZNOIvbvIlYF4NRowj3MtxIHnFrj4UjYcqEDG/3KRPODh+vyd6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sipsolutions.net; spf=pass smtp.mailfrom=sipsolutions.net; dkim=pass (2048-bit key) header.d=sipsolutions.net header.i=@sipsolutions.net header.b=n+25dFhC; arc=none smtp.client-ip=168.119.38.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sipsolutions.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sipsolutions.net
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=yC4PgO0iUg1E/9QX5QiVdbAl0FhMlHnWwAy+hx8zLyU=;
-	t=1731425993; x=1732635593; b=n+25dFhCEMsvZSJ+77KWS4+QeyK3HpzmWVj3lDZbVhXkBVK
-	iw9POVHy/1O36NwC8m1YrTkNw3NHwxlqSP4OnvNlw1HVcJrhFevAeT1Zzw0BH9QJCIARISV+Mpfc4
-	MXLu/wyejOcVmwSzslUW3HyOeo2xwD920oTB+yRrnbU3e8DALso3CO/h62kbtIoE19sMz88YsiMwu
-	GrMRaMlywOCenNPEtD8R76dNEr9QyRTPe4dsCq0HfLImkZgdwpwDnnl/5Z9GgdAwrhxuo9Z3EsHku
-	RzmrbxbfjTCFOtw5f059uYS4yw7gpTSYHLSMD6Epp+51Y+YKGO9IdivU7Wk7wpIQ==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.98)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1tAszb-000000031hp-0UTN;
-	Tue, 12 Nov 2024 16:39:47 +0100
-Message-ID: <59b318b2d6719a009189e10949df35f855790d63.camel@sipsolutions.net>
-Subject: Re: [PATCH v5 09/17] wifi: cc33xx: Add main.c
-From: Johannes Berg <johannes@sipsolutions.net>
-To: "Nemanov, Michael" <michael.nemanov@ti.com>, Kalle Valo
- <kvalo@kernel.org>,  "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Sabeeh Khan <sabeeh-khan@ti.com>
-Date: Tue, 12 Nov 2024 16:39:45 +0100
-In-Reply-To: <2dbf1cba-0b16-413b-947e-dacf32c85687@ti.com>
-References: <20241107125209.1736277-1-michael.nemanov@ti.com>
-	 <20241107125209.1736277-10-michael.nemanov@ti.com>
-	 <685d782d68bfc664c4fcc594dff96546ffc30e5f.camel@sipsolutions.net>
-	 <2dbf1cba-0b16-413b-947e-dacf32c85687@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
+	s=arc-20240116; t=1731422159; c=relaxed/simple;
+	bh=Z2NJKOZ80m23Hs6ZpODlXPTw2PK6JAxwWTKiu7L1XNw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QmztT1WSQb6YZrAmMWSx3vthmvvBKN9GJ7jATir9mie8wQixOzYQA/nABkffZByDgvmKPtuIQ5Mz0+AAJtJkAraqT+A/gYhEL1xFOi1aVACeoqUA1jz6ZuNw9ucNCzyBQFog5z2gqpOnTGtQXIq/3IvbInpwsNpwYx9ra4w8298=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PThhpsVR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0157AC4CED0;
+	Tue, 12 Nov 2024 14:35:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731422159;
+	bh=Z2NJKOZ80m23Hs6ZpODlXPTw2PK6JAxwWTKiu7L1XNw=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=PThhpsVRXNp9m1870inWzUgadxqlcDbDb2l5xeQ/CvLQJec9dbfmnqbuUa7RLoVC3
+	 bouFA1eMND7HmoShFhH/6BuNj2ZSQ6D5+SFeqDZ6qZ1U63ZtEpJ4gmQmSXvKSzehhR
+	 puAVV+GUuFwbp4fgUSZveLUT6kmXtR+JQHg6edVtwqYp1RwtR9uGgzKeObYoSgskDm
+	 wbqECTvloNFv6vKxXaJ1vJdNFjRpHc7fbiUgTexSCcbh+W5vlAlwEKgBocsUEyyA/P
+	 9pzD2D90SiXvqbDUdfi+7X19gx+6cIr3AjaulUJjmO0lk5fraCM9Cuz6ZoFlF+CD3Y
+	 aSb7mTvr/JJnQ==
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e33a8c84b9aso2075964276.0;
+        Tue, 12 Nov 2024 06:35:58 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVBGsKzVDa7yY5C7hU6o1OAheV1i14RgBtjD0rQGN/I4oLe+Bu4UdezI1nOkFsh7cFuTgZ5j9gyOHVSMhsv@vger.kernel.org, AJvYcCVNBICYNR0n9LG78tezWYHR1quJTf/t0ywuThzBb9yCRqkwRZkOR/6NaIAFwjZLAVNqzBOd43YAYbFa@vger.kernel.org, AJvYcCXlvJXxtzMlA3DyxLjwzb/FIjOo/DhJb8Xd2UyWk02MazMrZC3I2R6A/GArHeJm6etlNFiSCc6OI6zI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIugYKYFRF1Qyp4xFipcBNlImdr1iF+IQGjDJCA65ig03wvEFe
+	MKuSGJ2vAZ0NSqf8LJBdmnMFdHxitmlKG1IW98pwd5RfNg/6bIKJE8v70/ZtE3e03sZZfka9n19
+	SSsXpTwUfjKfFd/Ecukl+UmNEzg==
+X-Google-Smtp-Source: AGHT+IFI5tDoN6E7Kqk7Gw+xDL7rKQexAuiQ6Yq/THb9/Zw6ePjvaoIFxIHVn5lbaA5+r4C6IEYEi87Hkak2D5U5HD8=
+X-Received: by 2002:a05:6902:3401:b0:e30:b345:9a09 with SMTP id
+ 3f1490d57ef6-e337f9054f4mr12761822276.50.1731422158152; Tue, 12 Nov 2024
+ 06:35:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+References: <20241112072704.767569-1-jpatel2@marvell.com>
+In-Reply-To: <20241112072704.767569-1-jpatel2@marvell.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 12 Nov 2024 08:35:47 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL8JVhWNC4qefysLm+4uHYmR2Arwq3wTumS3XV=ncgU3g@mail.gmail.com>
+Message-ID: <CAL_JsqL8JVhWNC4qefysLm+4uHYmR2Arwq3wTumS3XV=ncgU3g@mail.gmail.com>
+Subject: Re: [PATCH 1/1] dt-bindings: pci: change reset to reset controller phandle
+To: Jenishkumar Maheshbhai Patel <jpatel2@marvell.com>
+Cc: thomas.petazzoni@bootlin.com, lpieralisi@kernel.org, kw@linux.com, 
+	manivannan.sadhasivam@linaro.org, bhelgaas@google.com, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-pci@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, salee@marvell.com, dingwei@marvell.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2024-11-12 at 17:34 +0200, Nemanov, Michael wrote:
->=20
-> > > +static int parse_control_message(struct cc33xx *cc,
-> > > +				 const u8 *buffer, size_t buffer_length)
-> > > +{
-> > > +	u8 *const end_of_payload =3D (u8 *const)buffer + buffer_length;
-> > > +	u8 *const start_of_payload =3D (u8 *const)buffer;
-> >=20
-> > I don't think the "u8 *const" is useful here, and the cast is awkward.
-> > If anything you'd want "const u8 *const" (which should make it not need
-> > the cast), but the const you have adds no value... do you even know wha=
-t
-> > it means? ;-)
-> >=20
->=20
-> My intent was to express that start and end pointers are fixed and will=
-=20
-> not change in the loop below. When reading this again I agree this hurts=
-=20
-> more than it helps, I'll drop it.
+On Tue, Nov 12, 2024 at 1:27=E2=80=AFAM Jenishkumar Maheshbhai Patel
+<jpatel2@marvell.com> wrote:
+>
+> replace reset bit mask and system controller
+> with reset controller and reset bit phandle
 
-Well, I don't even mind the const so much rather than the cast, I'd
-probably not have commented on it if it were
+The diff tells us "what" already. The commit msg needs to answer "why".
 
-	const u8 *const end_of_payload =3D buffer + buffer_length;
-	const u8 *const start_of_payload =3D buffer;
+The DT is an ABI. You can't just replace property(ies) with a new
+property. There's exceptions if there are no platforms in use or
+similar.
 
-I'd still think the second const (for the variable) isn't all that
-useful, but really the lack of first const (for the object pointed to)
-makes the casts necessary and (IMHO) that's what hurts.
+This binding needs to be converted to dtschema before adding to it.
 
-> const u8 *buffer in the prototype illustrates that parse_control_message=
-=20
-> will not change the data so I'll keep it if there a re no objections.
-
-Sure.
-
-> > > +	struct NAB_header *nab_header;
-> >=20
-> > surely checkpatch complained about CamelCase or so with the struct name
-> > like that?
-> >=20
->=20
-> Double-checked, no warnings from checkpatch:
-
-Hah, ok :) I'm surprised because it complained about _Generic in my
-patch, and that's something you really can't even change since it's C11
-standard ...
-
-johannes
+>
+> Signed-off-by: Jenishkumar Maheshbhai Patel <jpatel2@marvell.com>
+> ---
+>  Documentation/devicetree/bindings/pci/pci-armada8k.txt | 10 ++++------
+>  1 file changed, 4 insertions(+), 6 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/pci/pci-armada8k.txt b/Doc=
+umentation/devicetree/bindings/pci/pci-armada8k.txt
+> index a177b971a9a0..a9a71d77b261 100644
+> --- a/Documentation/devicetree/bindings/pci/pci-armada8k.txt
+> +++ b/Documentation/devicetree/bindings/pci/pci-armada8k.txt
+> @@ -24,10 +24,9 @@ Optional properties:
+>  - phy-names: names of the PHYs corresponding to the number of lanes.
+>         Must be "cp0-pcie0-x4-lane0-phy", "cp0-pcie0-x4-lane1-phy" for
+>         2 PHYs.
+> -- marvell,system-controller: address of system controller needed
+> -       in order to reset MAC used by link-down handle
+> -- marvell,mac-reset-bit-mask: MAC reset bit of system controller
+> -       needed in order to reset MAC used by link-down handle
+> +- resets: phandle reset controller with int reset controller bit.
+> +         needed in order to reset MAC used by link-down handle.
+> +
+>
+>  Example:
+>
+> @@ -49,6 +48,5 @@ Example:
+>                 interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+>                 num-lanes =3D <1>;
+>                 clocks =3D <&cpm_syscon0 1 13>;
+> -               marvell,system-controller =3D <&CP11X_LABEL(syscon0)>;
+> -               marvell,mac-reset-bit-mask =3D <CP11X_PCIEx_MAC_RESET_BIT=
+_MASK(1)>;
+> +               resets =3D <&CP11X_LABEL(pcie_mac_reset) CP11X_PCIEx_MAC_=
+RESET_BIT(0)>;
+>         };
+> --
+> 2.25.1
+>
 
