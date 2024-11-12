@@ -1,100 +1,104 @@
-Return-Path: <devicetree+bounces-121149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD0179C5A44
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:27:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 312C59C5972
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:46:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1860AB3E489
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 13:40:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB38D28234F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 13:46:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 560C215B10C;
-	Tue, 12 Nov 2024 13:39:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ACB61F8921;
+	Tue, 12 Nov 2024 13:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eXc2Ku8/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VNoZer1X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D11E146588;
-	Tue, 12 Nov 2024 13:39:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 629B91F81AC;
+	Tue, 12 Nov 2024 13:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731418758; cv=none; b=JPsWngXwV+ZENCOui6le1RQQ2hQZqCIUVf/7RGP15+fyNtXI4xvMV0nwViEy8Ih+Mdw8XaY2rkJHHH/2W0tZxJ5ESkrlveCc01RYq2UWsS3eoXyN8C/i5vDn/h0mca/DLUcdSqc1FnupmvFdqJ2hNYopj3/134cLLXd+Gnid4VU=
+	t=1731419182; cv=none; b=ecRlGaWf1m9oATbrn20xs6E/AkvJYbJD9dvXADfMS1e4M+wDLu8xHCLe2dRCYFlPh2I/1V3aPFMUJmoRo9PIT5+vPHCmIjRlZSi24P98wommMLM2RwtaLZgcZYzmUTaWyHkLurDoQ6QUY8IJTmbQ71NqBe+0vx52M83+wtVeUoc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731418758; c=relaxed/simple;
-	bh=HTj17UKyqcpA32aPMJQ3rZjYn3JmkdLEXjK/gMdzqCA=;
+	s=arc-20240116; t=1731419182; c=relaxed/simple;
+	bh=k6W+HKSuc4CzrIJX0IoN770edZbxi3Ko9sF7Bizv6jw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Yxw5TQwRx1z6u7aqRkvEoEgpJHqytDS2mL5bAOY3YxQTzqROx/m2TFJbLC6vIOYBA447sd9FFaCT8ajP8fQbLTM9EBhg+6OawifDyrU+jH2Ct2akQTq30+L0YjHnqR+BqAEFgBi73Makmtcj7yLdeiqH9kEm1CZBQUfgornarGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eXc2Ku8/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7F80C4CEDB;
-	Tue, 12 Nov 2024 13:39:17 +0000 (UTC)
+	 To:Cc:Content-Type; b=EqQROuQpVV9hs2Ob5O+vlZKUkoG3wI0l0HS4xBXuFS2/lacT9eh6tMDiMQqkJi0TjWDYQRDFHxYw5C/vWBiMJNrOYulg4WZ7irtGyon4eiVTjm/QOi64wTrwd550h475zoJIXvs1Ecbkmu+rVihpkGquSxYrOHGBv6HG/CNTB2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VNoZer1X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F160DC4CED9;
+	Tue, 12 Nov 2024 13:46:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731418757;
-	bh=HTj17UKyqcpA32aPMJQ3rZjYn3JmkdLEXjK/gMdzqCA=;
+	s=k20201202; t=1731419182;
+	bh=k6W+HKSuc4CzrIJX0IoN770edZbxi3Ko9sF7Bizv6jw=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=eXc2Ku8/olNbsZEVPMf2palHyjma7qRQoxzHjERM5iQpNDbcxZLbXo/UiBevB+Lhh
-	 E9q4n3mKGwqFVZnPiAD8J90B76XifpzX5JUdf7pWSe2puJS2CpVs4p3LE8FaG5BBLq
-	 dSQyWUNosd/dgF8MyFLvZsYNE5cLRX4dEMyNAlm169VZcYicVeKGIWsUCClemBMSaN
-	 bQdI4axDcgspd7KUkNBWTWB3Z019OKfBFBkqJEHw7PzLq8YHz+/P3NfGLWh60Qsi9Q
-	 MlGLLuoyNih0/rVkWkTasPlMXZAUpsVAxW9VY8a+DiCeHTwvtwZy2mXF8SwJ/KtqKA
-	 NONyY4J+evjsw==
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e28fd8cdfb8so5410042276.3;
-        Tue, 12 Nov 2024 05:39:17 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUpPYnvUF4Ur9iYUthXLFbxIXea0CXiwwSvJsPyHke5L47cFqy76jAIQx0u04uZQZYG+CnXlqiPZuBB@vger.kernel.org, AJvYcCWTH7BuEJ/0UcYrbQfin/l7jE1k8mJ1MfHw/c5HJtn/96pCitmjkPDPNY3cqLVJB03M6JAStH5RH6AmrY7J@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxg1nSH5vPyt4696s5nTgJYBQ9Or7qTv6buz8uDoCXiZYMutD9b
-	kYxi4ou5beS+RNo2eZNYPqA5UKcVkVNDVKtOJhV7HI1Byf79GGtnlexBgyfLSI85WuWFEommi+W
-	fUW5X6Hb9qAvLC7izeL3ogJMPQw==
-X-Google-Smtp-Source: AGHT+IGc8OfE6fahX5PrDtu1pkdAInjlDFVeCPxxhNJ8gOu0N6jx2xL+Bj/4hQIgNw4xoSxx9H8K2P1VyeuKsAdP/ss=
-X-Received: by 2002:a05:6902:150b:b0:e29:1630:785c with SMTP id
- 3f1490d57ef6-e337f840d8emr15583204276.10.1731418756964; Tue, 12 Nov 2024
- 05:39:16 -0800 (PST)
+	b=VNoZer1X/koJEZkkYAW1p0Z0nOFRO0+PMkNpldz6DxOUXGN+OlMI7iisT8AJDWnrK
+	 OkMROkHg2++QDnze9P3GkePn3jfLgM7Ks9HLn7N20/LQO+v1rZs7QFOZB2mn5B5Lyx
+	 8q1+qafWxSs+PZCR6PtnK8NDwfH872dw4mL6JALKeW8iK3MXvY90Igb2zUHVuKyOn0
+	 fITIpv4TlPNBsdPgoFXgHxYW5umzTuzvDzbvCCtpyCssd9LSy3ptPKfpJ5jPvNEwPA
+	 ox12mW2Fth/lucCe6rjtEEgha/+i8ZzYRLVTufz7IcuRDM8WpvBa+0Z3jN+RLwZvOt
+	 TyRuE76r+7zcw==
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e29218d34f8so4053074276.1;
+        Tue, 12 Nov 2024 05:46:21 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXBkUaVQNChELmampcuxwx98SlPJ9c3Mdc2MJ9d1Rv7zsrQk6Vc6XpV5LyGAT8x94DUITzDTfAxuJ/V@vger.kernel.org, AJvYcCXiDWlJAyCJsBGP712Rt08Cac4M8i6W6Qpz5mDJbsrt9/qVvWJ3ly7CCmqVphnH2AZZyyNK198nOtVfOe3T@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPjABTmpUui31XR4CWXYaY3HwjpBJnR71mVd8YkTnk3B8b40K7
+	Nk4kC7JgepCgdb2Fg98mqRJ6jcA3DA4N9ikcdrCj88B9MQFmVYUIUK5vN2QNTEpOajsFnRxjJhT
+	3dfloNaQ+w0WrQ+QJ2v24286mog==
+X-Google-Smtp-Source: AGHT+IEn0C0WfCG7tbpSyf5xX7DxWFdOpXhSBoAZ5hwE4Pr7xdWiEcgqvO/UcDsq9RdhhFj/OdlcAN30PYOvXPkThlA=
+X-Received: by 2002:a05:6902:1507:b0:e28:e700:2821 with SMTP id
+ 3f1490d57ef6-e3380067b96mr12346210276.25.1731419181152; Tue, 12 Nov 2024
+ 05:46:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241110-of-alias-v2-0-16da9844a93e@beagleboard.org>
-In-Reply-To: <20241110-of-alias-v2-0-16da9844a93e@beagleboard.org>
+References: <20241112-am64-overlay-bool-v1-0-b9d1faff444e@solid-run.com>
+In-Reply-To: <20241112-am64-overlay-bool-v1-0-b9d1faff444e@solid-run.com>
 From: Rob Herring <robh@kernel.org>
-Date: Tue, 12 Nov 2024 07:39:06 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+72Q6LyOj1va_qcyCVkSRwqGNvBFfB9NNOgYXasAFYJQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+72Q6LyOj1va_qcyCVkSRwqGNvBFfB9NNOgYXasAFYJQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Update aliases when added or removed
-To: Ayush Singh <ayush@beagleboard.org>
-Cc: Saravana Kannan <saravanak@google.com>, d-gole@ti.com, jkridner@beagleboard.org, 
-	lorforlinux@beagleboard.org, Geert Uytterhoeven <geert@linux-m68k.org>, 
-	Andrew Davis <afd@ti.com>, robertcnelson@beagleboard.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+Date: Tue, 12 Nov 2024 07:46:09 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJAQswTo2eWxLw62wqb-2i=_9W84_v_tW+TSW4kgNK3_A@mail.gmail.com>
+Message-ID: <CAL_JsqJAQswTo2eWxLw62wqb-2i=_9W84_v_tW+TSW4kgNK3_A@mail.gmail.com>
+Subject: Re: [PATCH 0/2] of: add support for value "false" to of_property_read_bool
+To: Josua Mayer <josua@solid-run.com>
+Cc: Saravana Kannan <saravanak@google.com>, Nishanth Menon <nm@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Geert Uytterhoeven <geert@linux-m68k.org>, Jon Nettleton <jon@solid-run.com>, 
+	Yazan Shhady <yazan.shhady@solid-run.com>, rabeeh@solid-run.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Nov 9, 2024 at 1:52=E2=80=AFPM Ayush Singh <ayush@beagleboard.org> =
+On Tue, Nov 12, 2024 at 12:41=E2=80=AFAM Josua Mayer <josua@solid-run.com> =
 wrote:
 >
-> Currently the list of aliases is not updated when a DT overlay that adds
-> an alias is loaded or unloaded. This break drivers (e.g. serial) that
-> rely on of_alias_get_id().
-
-Drivers use the non-existent alias numbers for instances without an
-alias. So what happens if an index is already in use and then an
-overlay uses the same index.
-
-I don't see how this can work reliably unless the alias name doesn't
-exist in the base DT.
-
-> This picks up the original patch series from Geert Uytterhoeven.
+> Boolean type properties are usually considered true if present and false
+> when they do not exist. This works well for many in-tree board dts and
+> existing drivers.
 >
-> I have not added unittests in this version since I am not sure if kunit
-> tests should be added, or if the runtime unittests (CONFIG_OF_UNITTEST)
-> need to be added. Additionally, it would be great if someone can inform
-> me how to run the runtime unittests since the unittests seem to fail in
-> my current setup (tried running on qemu x86_64 and beagleplay).
+> When users need to overrride boolean values from included dts,
+> /delete-property/ is recommend. This however does not work in overlays
+> (addons).
 
-You enable the config and boot.
+As soon as someone needs to delete a non-boolean property, we're back
+to the same problem. If you want to fix it, you need to fix it for any
+property.
+
+
+> Geert pointed out [1] that there are several invitations for using
+> strings "true" and "false" on boolean properties: [1], [2], [3].
+
+There's always bad examples...
+
+> Add support for a string value "false" to be considered false on boolean
+> properties by changing of_property_read_bool implementation.
+
+Any existing s/w will treat 'foo =3D "false"' as true. It's an ABI.
 
 Rob
 
