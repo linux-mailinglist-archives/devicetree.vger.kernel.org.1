@@ -1,106 +1,141 @@
-Return-Path: <devicetree+bounces-120965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 061DD9C4B68
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 02:00:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 948CE9C4C06
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 02:49:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FE8C283A32
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 01:00:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A62B1F224D7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 01:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C3E420403D;
-	Tue, 12 Nov 2024 01:00:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8DC2200C80;
+	Tue, 12 Nov 2024 01:49:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ngKCCbg6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DDxDDeN4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD19A204036;
-	Tue, 12 Nov 2024 01:00:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 984AD487A5;
+	Tue, 12 Nov 2024 01:49:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731373222; cv=none; b=mNMB8KVyYo1hOH8aeBzrOUoePgjUmjkghbXcqn3WF0MUBmMa1+OJPK4ve7Gqfv2vKpzkZd+mKxymgyAUnJEjmlnM665aTrZx4MkIcCRMx7xnqYuav/54gNIPzBc+ijlwvApecAfA/mNwDpIo+7J1CvfCfnuldrlVKDIp6e+s/e8=
+	t=1731376169; cv=none; b=frmXxk9oOJP895MY4sFXc9hqqseHCYbqaXQcfktewh5wFUy6SnX4G7maXvPU2J6gD3yGNoblL4YkMCxsS0bwpoAJDqGIkiEEzhMKG7dx0EIzUkHc7qj1KSqjfwk31dmlryDn9l3fepeCSk0t0i/n5ZlAMZ8BVMPQ2hnKEjy7L4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731373222; c=relaxed/simple;
-	bh=8jvHoe4EKiy6FD9P4lh3ZUNiEORm+PtSiSJ+oHh38SY=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=YY4MLElkR2b4zsnnWskj3/cYaowe1XEvKzDfHiW6DWvTBagMGxveLFRglF7AMNIYYdX5xJyGeGMceKpoxtuzB67uTEqPaG0eWIX10+LTVvM2oSaYLPn58rP8aBP/7qdg9Nfq3oLapBG4b0Dfhvr5IP8EcfC8HWc+OQ9bmxeXmLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ngKCCbg6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69139C4CECF;
-	Tue, 12 Nov 2024 01:00:21 +0000 (UTC)
+	s=arc-20240116; t=1731376169; c=relaxed/simple;
+	bh=ByKIsg+PetC3KQaRoDtbKrjNkQjVD4fuhk6Vg3U7JJg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hBWT3oxQmx8oAY+mdZ5EnTHiUwgtI3lBe68N41SmY646t27Tv6n3WUAM37rY37huBu+7k56PdSxDBQxPMApLcln0m86buodIYTzf7OtbE6rKnjPTkBKl36blnzvqRiRX2mK1iwwAwQ0KfvDA5FkJHfUY4c9INrGXgMHc6tKLSJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DDxDDeN4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3348EC4CED9;
+	Tue, 12 Nov 2024 01:49:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731373221;
-	bh=8jvHoe4EKiy6FD9P4lh3ZUNiEORm+PtSiSJ+oHh38SY=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=ngKCCbg6exlZgZ2yaLi6xjjVtz3/Jsdh7X9VpVOxhoKFyHPOzVNMDVTuotVenBvUl
-	 DFVDwFonTrXV3ek4Yvnak/W5VVUf7KYraz3I3YZ9hIgrs0l72b65xWSvPC1w/qtwHy
-	 BuPmW0LtcCaPyq/d36JPi2W51O14HDjo+XpTRSTGXHIbb7vnsygOwzSkgQ3aYzf7+v
-	 qzvLhjtlW+jlV8zv/4QW5DGCY0zSHVj1iwWy95XXWUh1/5EZd+1EJzTv07cia1tkW8
-	 X1DGWAJ4+yEpy9d/Ne0f+ITpu7LhP1VAEReg8eWE3ku/Y4HpUx9JXS4cz7Yq3A1M3C
-	 3ObC+Hc8p37eA==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADDFB3809A80;
-	Tue, 12 Nov 2024 01:00:32 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1731376169;
+	bh=ByKIsg+PetC3KQaRoDtbKrjNkQjVD4fuhk6Vg3U7JJg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=DDxDDeN4mEvU6Kc2yLJX8rrfify0h0aWcVNfF1CMLSZWHg34z2y+fxEbDGf/4bEXj
+	 KqYjJV6P/Q+8CuscNdNFoZqtHu63aLwUhcC+gyseaOQxKZ+oKpi3dTAUK/eXZGbCdw
+	 bKONFMn05p3OtcZQhf/5KQXvIKX2KJxygw73nT9qTqez2IpU4un7e13pTJwu98HZmI
+	 1Vnq1RAqSljFewaHJJwCX0tvMEW7zJXSPvPVDxSgnQCiVmCBU7+lR5INEwNnV3GM6g
+	 KAMG3LxRUTKWsiSD65eRqC911CJm/ESAZUtLSxzL3g6lw871/NKD65r+EAnuBUbqm4
+	 VP0NTHOLnm4OA==
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-37d447de11dso3798957f8f.1;
+        Mon, 11 Nov 2024 17:49:29 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUJzpMwEq31U2c2jC8mh1drCHjNGCuhbyWe+WLnm09oob1DlXDEXjVu1wlQzqITCWIpqmfDGQhGC5Ih@vger.kernel.org, AJvYcCVvGmKihp4puTq6Xnr+93ADkBYoMnYjU3TP5BodGInKZaajtKGfOZq4H/l9engnbn2JBrJ4AcAdwS8bCg==@vger.kernel.org, AJvYcCW99RezUVDysU/zCL9EwjYWNhcgjyvoYbXfAi6xQwkCcwZqQBM7immxQrlukE95CN5Xq1uAGjLwDzxx@vger.kernel.org, AJvYcCXzQvuX4hZ28HZDelqp80Xb+/gD3CrLRtwhON54mWD7e45e15jUYXFUHCZNZFqolKCtaNgrcOsPEPIx/MDa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw97v3kFRXu/Byu2n127UEz+5lFizp6QAUqoZ6rM9RBgUZT+V0P
+	mxHqKE8dr0IYXYSZzclJ/gIISL02ztxWDFfolus2jp5ZmJlvMx/M5DgapfkBz/J3dU4p51A3XSr
+	WeXfAiNBT7P3VFPAMb5rcQgg+jcQ=
+X-Google-Smtp-Source: AGHT+IHkAppdGB9GR9FwSzrOwP4MyzWExRQCh4+xsHRQeI1xYcQFKz01kJl5kYDubLhJev1P+/wAGQeEYzYwz9A8wSk=
+X-Received: by 2002:a5d:6d0c:0:b0:37d:4657:ea7d with SMTP id
+ ffacd0b85a97d-381f1835301mr12111736f8f.49.1731376167620; Mon, 11 Nov 2024
+ 17:49:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v4 0/6] Side MDIO Support for LAN937x Switches
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <173137323151.33228.6980879889205647360.git-patchwork-notify@kernel.org>
-Date: Tue, 12 Nov 2024 01:00:31 +0000
-References: <20241106075942.1636998-1-o.rempel@pengutronix.de>
-In-Reply-To: <20241106075942.1636998-1-o.rempel@pengutronix.de>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: davem@davemloft.net, andrew@lunn.ch, edumazet@google.com,
- f.fainelli@gmail.com, kuba@kernel.org, pabeni@redhat.com, olteanv@gmail.com,
- woojung.huh@microchip.com, arun.ramadoss@microchip.com, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh+dt@kernel.org, kernel@pengutronix.de,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- UNGLinuxDriver@microchip.com, linux@armlinux.org.uk,
- devicetree@vger.kernel.org, marex@denx.de
+References: <20241103145153.105097-1-alexghiti@rivosinc.com>
+ <20241103145153.105097-14-alexghiti@rivosinc.com> <20241111164259.GA20042@willie-the-truck>
+In-Reply-To: <20241111164259.GA20042@willie-the-truck>
+From: Guo Ren <guoren@kernel.org>
+Date: Tue, 12 Nov 2024 09:49:15 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTTuvmtmKVFMZCTMxEWHrpSpqPE8QO4MC5njPAskGEmpig@mail.gmail.com>
+Message-ID: <CAJF2gTTuvmtmKVFMZCTMxEWHrpSpqPE8QO4MC5njPAskGEmpig@mail.gmail.com>
+Subject: Re: [PATCH v6 13/13] riscv: Add qspinlock support
+To: Will Deacon <will@kernel.org>
+Cc: Alexandre Ghiti <alexghiti@rivosinc.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Andrea Parri <parri.andrea@gmail.com>, 
+	Nathan Chancellor <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Leonardo Bras <leobras@redhat.com>, linux-doc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-arch@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello:
+On Tue, Nov 12, 2024 at 12:43=E2=80=AFAM Will Deacon <will@kernel.org> wrot=
+e:
+>
+> On Sun, Nov 03, 2024 at 03:51:53PM +0100, Alexandre Ghiti wrote:
+> > In order to produce a generic kernel, a user can select
+> > CONFIG_COMBO_SPINLOCKS which will fallback at runtime to the ticket
+> > spinlock implementation if Zabha or Ziccrse are not present.
+> >
+> > Note that we can't use alternatives here because the discovery of
+> > extensions is done too late and we need to start with the qspinlock
+> > implementation because the ticket spinlock implementation would pollute
+> > the spinlock value, so let's use static keys.
+>
+> I think the static key toggling takes a mutex (jump_label_lock()) which
+> can take a spinlock (lock->wait_lock) internally, so I don't grok how
+> this works:
+>
+> > +static void __init riscv_spinlock_init(void)
+> > +{
+> > +     char *using_ext =3D NULL;
+> > +
+> > +     if (IS_ENABLED(CONFIG_RISCV_TICKET_SPINLOCKS)) {
+> > +             pr_info("Ticket spinlock: enabled\n");
+> > +             return;
+> > +     }
+> > +
+> > +     if (IS_ENABLED(CONFIG_RISCV_ISA_ZABHA) &&
+> > +         IS_ENABLED(CONFIG_RISCV_ISA_ZACAS) &&
+> > +         riscv_isa_extension_available(NULL, ZABHA) &&
+> > +         riscv_isa_extension_available(NULL, ZACAS)) {
+> > +             using_ext =3D "using Zabha";
+> > +     } else if (riscv_isa_extension_available(NULL, ZICCRSE)) {
+> > +             using_ext =3D "using Ziccrse";
+> > +     }
+> > +#if defined(CONFIG_RISCV_COMBO_SPINLOCKS)
+> > +     else {
+> > +             static_branch_disable(&qspinlock_key);
+> > +             pr_info("Ticket spinlock: enabled\n");
+> > +             return;
+> > +     }
+> > +#endif
+>
+> i.e. we've potentially already used the qspinlock at this point.
+Yes, I've used qspinlock here. But riscv_spinlock_init is called with
+irq_disabled and smp_off. That means this qspinlock only performs a
+test-set lock behavior by qspinlock fast-path.
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+The qspinlock is a clean implementation. After qspin_unlock, the lock
+value remains at zero, but the ticket lock makes the value dirty. So
+we use Qspinlock at first or change it to ticket-lock before irq & smp
+up.
 
-On Wed,  6 Nov 2024 08:59:35 +0100 you wrote:
-> This patch set introduces support for an internal MDIO bus in LAN937x
-> switches, enabling the use of a side MDIO channel for PHY management
-> while keeping SPI as the main interface for switch configuration.
-> 
-> changes v3:
-> - add "net: dsa: microchip: parse PHY config from device tree" patch
-> 
-> [...]
-
-Here is the summary with links:
-  - [net-next,v4,1/6] dt-bindings: net: dsa: microchip: add internal MDIO bus description
-    https://git.kernel.org/netdev/net-next/c/7eb4c2571443
-  - [net-next,v4,2/6] dt-bindings: net: dsa: microchip: add mdio-parent-bus property for internal MDIO
-    https://git.kernel.org/netdev/net-next/c/698b20a679be
-  - [net-next,v4,3/6] net: dsa: microchip: Refactor MDIO handling for side MDIO access
-    https://git.kernel.org/netdev/net-next/c/9afaf0eec2ab
-  - [net-next,v4,4/6] net: dsa: microchip: cleanup error handling in ksz_mdio_register
-    https://git.kernel.org/netdev/net-next/c/8bbba4161b65
-  - [net-next,v4,5/6] net: dsa: microchip: add support for side MDIO interface in LAN937x
-    https://git.kernel.org/netdev/net-next/c/f47e6e1e79a1
-  - [net-next,v4,6/6] net: dsa: microchip: parse PHY config from device tree
-    https://git.kernel.org/netdev/net-next/c/34125ac851b8
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+>
+> Will
 
 
+
+--=20
+Best Regards
+ Guo Ren
 
