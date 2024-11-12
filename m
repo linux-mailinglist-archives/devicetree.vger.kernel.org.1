@@ -1,90 +1,152 @@
-Return-Path: <devicetree+bounces-121169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C419C5AAC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:43:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 749B59C5AC3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:46:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7494B1F22E0A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:43:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C7631F2094E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:46:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D5A21FF043;
-	Tue, 12 Nov 2024 14:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD733200117;
+	Tue, 12 Nov 2024 14:44:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Fajmlr73"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uQkBdyJI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E4D1FE103;
-	Tue, 12 Nov 2024 14:40:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA4D20010A;
+	Tue, 12 Nov 2024 14:44:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731422450; cv=none; b=VaW7FahFQxaVPXmyydRrVDyYJudfUa26LniqXQx3MXOWE60VVqeH/l71IWLS+LGXx+flmZywkveaYsw2ejCXgirkjbGMllAJisRwNMIjvT92QePbt6MkqmGns6ZaZsbrJi03tW2dkBfiHwPCYzOVGX3fwXIPOWZmM7ZBKhTkMYw=
+	t=1731422673; cv=none; b=KPHJnNRihufnqR/HcUhNJrAcaTL5/iodm8aZttaBWLmew9TSHaRo2dmbvBfrP2Z2HcXesszgHBLghW/Y/03d+WA9cNpvDsVQ7uMrNdm6ukvfzLyzgMxmtdEWb96AMqMmY/3BnyttZtiSYEvAR1mCn61rrU7Ul0X6PgJvMYDRdyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731422450; c=relaxed/simple;
-	bh=COoOuj+jFQPeqRyljb5rMOtI1BxvmrGJEHBKEmrwSDY=;
+	s=arc-20240116; t=1731422673; c=relaxed/simple;
+	bh=EjPK34+AC2Pfhya/hAO/+gef3LLKikFCHohkMhTY3fI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nj7cZ4EDo0XxgPw1GS86EsQ86aJRdwv+PlagDFWe6XLlGZJEswx22SYUT3FD8Gh5GAJpWpil1O1kvUQJhVvEm2V62X1JClucobupz80urC0zBM3bHOho5CYz+eB0FAdtpuyuel2RPpqBlnadl9lypwtXd2rXe5dN6J9YUdH5UBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Fajmlr73; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 838DA1C0007;
-	Tue, 12 Nov 2024 14:40:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1731422445;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nTKxTYuHxpsEfa5uoloGupR++LJq3u7SmDUHPOZk4Zo=;
-	b=Fajmlr73GJK0QIOTpMqiS/IXudOf0W2iauFh+mvW+N2zb7/4u9almQ1luDrG6EJLhDzHQT
-	0Roq/G7OzftOB99PzTD20VAAC7teWtZd78uQ1FJtgH1MhaKHHwTMhs3Ju6hqPBU3oabDLd
-	T0JnRy/G6Vxd35RCj/nXsyCwS9Dk4+XhbfyqPNGPulx8xBveJMAKipKSRNJzW8moJLZ8yM
-	TWcLt36Yuk6jPIUISzyxZCt0/gfJDk5smXSr6sgoeUcYhjceeyV4WSUvFwGGmh+QmPGfm4
-	rEuIUJKGLWEfuHrRgLvG6Z3Tfvlu8b2GiFbGs3k/BSiN9TdFzgkh4BI0eYm/rg==
-Date: Tue, 12 Nov 2024 15:40:44 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Yiting Deng <yiting.deng@amlogic.com>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=pH0O+723Y20RYot48oSYP9IrMq8HCzRdFIhkbSgK/1k65WQRneevcZswg/HFiLARmMl3KOmaQivBnS+LQRf1XBVtjKtRvDIkPrI29Kv3OeQYqp7GVb4+o00dcTvkalvNXylVTHW2ytVIfFRvyeDC4VNk+Cb0tNZc+6/twJfhO1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uQkBdyJI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D8B7C4CED0;
+	Tue, 12 Nov 2024 14:44:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731422673;
+	bh=EjPK34+AC2Pfhya/hAO/+gef3LLKikFCHohkMhTY3fI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uQkBdyJIPNx6GWYU+T7x82rGzvF8PeuQfl+zs/tOQRDrp2LJbaCDsytTuAlUH0nKQ
+	 CrX2QB6TyMhise0BmTtJRqJrEqwTUYLiVqRKSdXW8kTwoM5jYxXrY9mtWd73RAmiu7
+	 sXIhil1Q71nmi0K7oCMXIt8/aSH3EMQJuRs/RLsPuxJfNYmamJXsHZjRZYlLafXb1q
+	 nXE/pO6NON06KK6vDHDkJBqa2QPHDH/Isva5SRn4c2+qPRcGBZ5Yh6fG1JOZOKQI45
+	 MGy11AdgoqVsSGitWcvmduyYXmzKW+UEbGvYdnWMyWg4itCsl3YzwMhegY+dty5nZ6
+	 h7LyGhAFVB9Ig==
+Date: Tue, 12 Nov 2024 14:44:27 +0000
+From: Lee Jones <lee@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v6 0/3] support for amlogic rtc
-Message-ID: <173142240907.3446466.9470229685878821309.b4-ty@bootlin.com>
-References: <20241112-rtc-v6-0-a71b60d2f354@amlogic.com>
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, benjamin.larsson@genexis.eu,
+	ansuelsmth@gmail.com, linux-pwm@vger.kernel.org
+Subject: Re: (subset) [PATCH v9 4/6] dt-bindings: mfd: Add support for Airoha
+ EN7581 GPIO System Controller
+Message-ID: <20241112144427.GI8552@google.com>
+References: <20241023-en7581-pinctrl-v9-0-afb0cbcab0ec@kernel.org>
+ <20241023-en7581-pinctrl-v9-4-afb0cbcab0ec@kernel.org>
+ <173088099542.3237297.18018729158887853624.b4-ty@kernel.org>
+ <ZyssJpR7xwbMzUsm@lore-desk>
+ <20241106110046.GR1807686@google.com>
+ <CACRpkdbf4Pb+n-F-K-JaUvytwCGUHHh8d2rYP4A9KgVTzqSnGw@mail.gmail.com>
+ <20241111165120.GD8552@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241112-rtc-v6-0-a71b60d2f354@amlogic.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241111165120.GD8552@google.com>
 
-On Tue, 12 Nov 2024 11:10:13 +0800, Xianwei Zhao wrote:
-> Add rtc driver and bindigns for the amlogic A4(A113L2) and A5(A113X2) SoCs.
+On Mon, 11 Nov 2024, Lee Jones wrote:
+
+> On Wed, 06 Nov 2024, Linus Walleij wrote:
 > 
+> > On Wed, Nov 6, 2024 at 12:00 PM Lee Jones <lee@kernel.org> wrote:
+> > > On Wed, 06 Nov 2024, Lorenzo Bianconi wrote:
+> > >
+> > > > On Nov 06, Lee Jones wrote:
+> > > > > On Wed, 23 Oct 2024 01:20:04 +0200, Lorenzo Bianconi wrote:
+> > > > > > Add support for Airoha EN7581 GPIO System Controller which provide a
+> > > > > > register map for controlling the GPIO, pinctrl and PWM of the SoC via
+> > > > > > dedicated pinctrl and pwm child nodes.
+> > > > > >
+> > > > > >
+> > > > >
+> > > > > Applied, thanks!
+> > > > >
+> > > > > [4/6] dt-bindings: mfd: Add support for Airoha EN7581 GPIO System Controller
+> > > > >       commit: f49f37f3cfe1482d4dc77d26f3e8c38eab630d52
+> > > > >
+> > > > > --
+> > > > > Lee Jones [李琼斯]
+> > > > >
+> > > >
+> > > > Hi Lee,
+> > > >
+> > > > according to my understanding this patch has been already applied by Linus
+> > > > here:
+> > > >
+> > > > https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/commit/?h=devel&id=50dedb1eb1e6755ccab55f6140916c2d192be765
+> > >
+> > > An interesting choice.  Linus?
+> > 
+> > Yes I suggested that I merge patches 1-5 on oct 29 and applied the
+> > day after:
+> > https://lore.kernel.org/linux-gpio/CACRpkdYshPusdA7bDW2y8H_wp-Fm3N-YCsY1_Qn=dZqRiFy12w@mail.gmail.com/
+> > 
+> > It's because the bindings are dependent on each other, this one patch has:
+> > 
+> > +  pinctrl:
+> > +    type: object
+> > +    $ref: /schemas/pinctrl/airoha,en7581-pinctrl.yaml
+> > +    description:
+> > +      Child node definition for EN7581 Pin controller
+> > +
+> > +  pwm:
+> > +    type: object
+> > +    $ref: /schemas/pwm/airoha,en7581-pwm.yaml
+> > +    description:
+> > +      Child node definition for EN7581 PWM controller
+> > 
+> > Those refs will explode unless the two others are merged at the same
+> > time.
+> > 
+> > Usually we merge the whole shebang through MFD but this one felt
+> > different because there is no actual MFD driver, just using simple-mfd.
+> > 
+> > In hindsight I should probs not have been so trigger happy and give
+> > some more time for this to settle... Merge window stress I guess. :/
+> > 
+> > It's fine to apply textually identical patches to two trees though as
+> > git will sort
+> > that out so technically it's no big deal, you can keep it applied if you
+> > want.
 > 
+> It's okay.  Life will be easier for everyone if I remove it.
 
-Applied, thanks!
+Okay, I dropped it from my tree.
 
-[1/3] dt-bindings: rtc: Add Amlogic A4 and A5 RTC
-      https://git.kernel.org/abelloni/c/ce57cf7319e5
-[2/3] rtc: support for the Amlogic on-chip RTC
-      https://git.kernel.org/abelloni/c/c89ac9182ee2
-[3/3] MAINTAINERS: Add an entry for Amlogic RTC driver
-      https://git.kernel.org/abelloni/c/a012d430a4f2
-
-Best regards,
+Next time I would like a say/opportunity to Ack please.
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Lee Jones [李琼斯]
 
