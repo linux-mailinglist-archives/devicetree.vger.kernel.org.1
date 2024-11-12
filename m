@@ -1,222 +1,456 @@
-Return-Path: <devicetree+bounces-121299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9799D9C630E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 22:05:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B21559C6346
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 22:21:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29D4B1F229DB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 21:05:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DB441F2391D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 21:21:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF5C1219E31;
-	Tue, 12 Nov 2024 21:05:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787DA219E5F;
+	Tue, 12 Nov 2024 21:20:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EiP7BQL/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46A0C21745E;
-	Tue, 12 Nov 2024 21:05:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AC8B215018;
+	Tue, 12 Nov 2024 21:20:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731445515; cv=none; b=f5SktIfo8ZjKhP7PR2BeEg5xrVgWGzzsVXhvG/BqvcUB2VXEMJg4yMZlDENxoXwy89nb2aJgBRiP9ugoyOqxx2HRdE0gAibN47bacmE4JbifbAlU+Ru7YWB0/o219TxrtynnzXOFV826mj3d/YPP8DGmSScCnxs3faucszah6g8=
+	t=1731446457; cv=none; b=nhSahuZ6Vt3X5+vCY+7fVam7JukiTVHYI0r1nsl/MalWhoxVb5dru5vO/BNGjgOTdi+/l5xrL4hfF6y9vDfMJUL+YYqEdHhLflz4drgjfmNia/1VqTMETGidFe0SumDZmFXghOnh8FJyoiKdmIRp1Nt+Sfme6nlmhggzqv0R8a4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731445515; c=relaxed/simple;
-	bh=Mz4zDUojrg/ba8beeO++QWMcwibvf6eVZyXmiCDU+m8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bdQ51UsgKp3uMsXjgJH6Xpz3Idhc0i1V+JLzbSOC3zq++OOcXl+YPuApeF91mab39FuNe/QRnseEArKP4YTf1XCIDeBNCLCqUaQ5IRsKaTiromz7q5RKQaJx2SX2cHvvXJfAWMWdvzTTQ0BjU8BWP9eGTMsX8OdBMelPFCWdo3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-20cceb8d8b4so405545ad.1;
-        Tue, 12 Nov 2024 13:05:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731445514; x=1732050314;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qvfLiy46zAAc4YpHFE3RBOLl5fq2FOHK1NiPPVPoB5Q=;
-        b=leax9RzGTMUdkMk3L6lXojEf/Pgv48v4k7YqydE8rZ/Je0lqFLvIZlh1VFI8DbHAkB
-         bHjaFYo3/Y33knr3F3xpIXbVpHP3b+rw0lNI3oRO4bp01rOtJceAlokHIhVbZ+Yn2Gwc
-         Vc7eG8PrLvKvPWLL6uASadVrkKi2MIJOaBnGTSi0PAIbATgA3TQDo+nlHJmXwEiGDtYs
-         84a6R+s3rkpEPBHBjUmzKHf/j6tvKb7MgfE9ei8LMoVO0dqNh+P5Ht+sECTkfcb9Fjdl
-         iyGcc2dsTyGsRGsa2xEaht+UwF0fVvX4j+CZ3HJ/OVQEfyTyOk9aiy4ZpVNKQZyKGIJ+
-         HDMA==
-X-Forwarded-Encrypted: i=1; AJvYcCUrGyztvIZQ9Fn2oV69rkX2Duda9KAd6D0ohjOIOcW38Mh9M6/xG1HowjXH4jCdFYbzdPejtjec3rmUFlBm@vger.kernel.org, AJvYcCVLLkcMAL+NOPwkPrf9Sg8TCzb771+BLtgWITCRgBIAUXa+yTgj6nE4zj9FUnbQrQCypElLIdooEGAA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJ+6J/f3ZZJjXnRt91+RFHGXbUv7J4WTkFK6I1xpch70dKfMVZ
-	ermj2yxHbOScI/DKD7nTtGn0axTUJQqgqg/TMnywbWR5FNIdB0r4KngSFq0m
-X-Google-Smtp-Source: AGHT+IHxa5gE5b1F1A7q7oo7jC17jD22gNAknD/zzvYzgfasK6hs4n9unaYyQQtRfEzcphLv8qUO8w==
-X-Received: by 2002:a17:902:c942:b0:20b:c043:3873 with SMTP id d9443c01a7336-2118379faefmr249556005ad.21.1731445513595;
-        Tue, 12 Nov 2024 13:05:13 -0800 (PST)
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com. [209.85.215.179])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177ddf754sm98826165ad.98.2024.11.12.13.05.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Nov 2024 13:05:13 -0800 (PST)
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-7ea7ad1e01fso52021a12.0;
-        Tue, 12 Nov 2024 13:05:12 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWCtovP52fbN/3XfhmpAB+6MjNgX03Pvk5a4wgS1fM4gvnGmH0v7Dk+AI1jbqYlA7VarXlbLODLiXG0@vger.kernel.org, AJvYcCWr5760NkMu+ENdI3ULwtX3Y3zeIPZLx0MQ54ZozReC8hrgHDj4eDUwjsWLtIWGpDmgk6rRSEu7OjncLK5C@vger.kernel.org
-X-Received: by 2002:a17:90b:1e45:b0:2c9:6abd:ca64 with SMTP id
- 98e67ed59e1d1-2e9b1f074b1mr28605933a91.9.1731445512591; Tue, 12 Nov 2024
- 13:05:12 -0800 (PST)
+	s=arc-20240116; t=1731446457; c=relaxed/simple;
+	bh=IFMZFZBhCUNYubCEPHGSu+s7QSSDpO5QvnNKF/M3GBk=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=cgOeJFec+2xyoWhBcmWzo4319DBAyXYUq0XqohP28NHI6sx6wCDhWAe5YXfWXXy68yxaWTx5YSVYL8l9ejavqSXwZ25OEM0KvxobIyEHTOUDSajWOUdK9MSsnzMSChsIilydkncyFV6mLgH5s20t2gIooe7Dn8uqBpMqfjnEbjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EiP7BQL/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9F14C4CECD;
+	Tue, 12 Nov 2024 21:20:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731446456;
+	bh=IFMZFZBhCUNYubCEPHGSu+s7QSSDpO5QvnNKF/M3GBk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=EiP7BQL/7uLAyNeuD0fnQfqRAeBkMgGuHkg9XAN4B4CEMfAc2ZydJdiOQPGH1oZZf
+	 pku+3Z/JMt/27JrCJL7jvZpy6e3QxaBo5HLBXdMbSg3v7UT41aBRGkYHMPTB8qaQGW
+	 3ucBaaQYU+u5F0IzLn5kfy4eWJpIrJLLON/A9/OFLQNH7aG8rIaltjhIDcphYNF/zK
+	 j3+/dIKSGClBSVdLEejcdedTcUu5fz4oHbliAgGYs80FuIpnbKJmvhNNaGSw9/4LQi
+	 JJTrnWyTZL39Qe91uDyDMz7PPif+ks4J/vEu/ycuPSsv7TKlxLBWi8HboP3j7mMMxQ
+	 s05gy9gBpCLqw==
+Date: Tue, 12 Nov 2024 15:20:55 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Chen Wang <unicornxw@gmail.com>
+Cc: kw@linux.com, u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu,
+	arnd@arndb.de, bhelgaas@google.com, unicorn_wang@outlook.com,
+	conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com,
+	krzk+dt@kernel.org, lee@kernel.org, lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org, palmer@dabbelt.com,
+	paul.walmsley@sifive.com, pbrobinson@gmail.com, robh@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com, xiaoguang.xing@sophgo.com,
+	fengchun.li@sophgo.com
+Subject: Re: [PATCH 2/5] PCI: sg2042: Add Sophgo SG2042 PCIe driver
+Message-ID: <20241112212055.GA1859446@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241111181807.13211-1-tszucs@linux.com> <20241111181807.13211-3-tszucs@linux.com>
- <9fbdf05c-42e6-4ac5-9542-805200bc8c87@kwiboo.se> <260af427ae64d6f3b02a1579ee83eb3b@manjaro.org>
- <CA+Gksr+WvS-S+jeYYG=Bo9cemvnJmjsmU4aj9YnD3t8-HY7wbw@mail.gmail.com> <303ad3910668e852d6670d1c79dc22e0@manjaro.org>
-In-Reply-To: <303ad3910668e852d6670d1c79dc22e0@manjaro.org>
-From: =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@linux.com>
-Date: Tue, 12 Nov 2024 22:05:00 +0100
-X-Gmail-Original-Message-ID: <CA+GksrLLbfyHdvu1VYB4S+W78C0T1DEWu5W6pP2-g3KdBeT-LQ@mail.gmail.com>
-Message-ID: <CA+GksrLLbfyHdvu1VYB4S+W78C0T1DEWu5W6pP2-g3KdBeT-LQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Enable sdmmc2 on rock-3b and
- set it up for SDIO devices
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@linux.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki <naoki@radxa.com>, Chukun Pan <amadeus@jmu.edu.cn>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5051f2375ff6218e7d44ce0c298efd5f9ee56964.1731303328.git.unicorn_wang@outlook.com>
 
-Hi Dragan,
+On Mon, Nov 11, 2024 at 01:59:56PM +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
+> 
+> Add support for PCIe controller in SG2042 SoC. The controller
+> uses the Cadence PCIe core programmed by pcie-cadence*.c. The
+> PCIe controller will work in host mode only.
 
-On Tue, Nov 12, 2024 at 4:16=E2=80=AFPM Dragan Simic <dsimic@manjaro.org> w=
-rote:
->
-> Hello Tamas,
->
-> On 2024-11-12 15:35, Tam=C3=A1s Sz=C5=B1cs wrote:
-> > I think it was totally fine to disable sdmmc2 at first, especially if
-> > it couldn=E2=80=99t be tested or wasn=E2=80=99t needed right away. From=
- what I=E2=80=99ve
-> > seen, this board works great even at higher clock speeds than what
-> > rk356x-base.dtsi suggests. I don=E2=80=99t have access to the RK3568 er=
-rata,
-> > and there don=E2=80=99t seem to be any limits mentioned in the TRM eith=
-er.
-> > Overall, this board is doing just fine as it is.
->
-> Sorry, I'm missing the point of mentioning some clock speeds?  Any
-> chances, please, to clarify that a bit?
+> +++ b/drivers/pci/controller/cadence/Kconfig
+> @@ -67,4 +67,15 @@ config PCI_J721E_EP
+>  	  Say Y here if you want to support the TI J721E PCIe platform
+>  	  controller in endpoint mode. TI J721E PCIe controller uses Cadence PCIe
+>  	  core.
+> +
+> +config PCIE_SG2042
+> +	bool "Sophgo SG2042 PCIe controller (host mode)"
+> +	depends on ARCH_SOPHGO || COMPILE_TEST
+> +	depends on OF
+> +	select PCIE_CADENCE_HOST
+> +	help
+> +	  Say Y here if you want to support the Sophgo SG2042 PCIe platform
+> +	  controller in host mode. Sophgo SG2042 PCIe controller uses Cadence
+> +	  PCIe core.
 
-It's all about stress scenarios, right. Sustained transfer at maximum
-clock, multiple SD/MMC blocks used concurrently. That kind of thing.
-Different data rates forced. I hope that answers your question.
+Reorder to keep these menu items in alphabetical order by vendor.
 
->
-> > Regarding device tree overlays, they would be ideal for implementing
-> > secondary functions, such as PCIe endpoint mode for users with
-> > specific requirements. However, the primary functions for PCIe on the
-> > M2E will be root complex mode, along with SDIO host, etc. In my view,
-> > the hardware is well-designed and interconnected. Users have a
-> > reasonable expectation that these primary functions should work
-> > seamlessly without additional configuration, right out of the box.
->
-> That's basically what I referred to in my earlier response, and in my
-> previous response regarding the UART.  Users would expect the Bluetooth
-> part to work as well, but the error messages I mentioned look nasty, so
-> perhaps something should be done about that first.
+> +++ b/drivers/pci/controller/cadence/pcie-sg2042.c
 
-I'm not aware of any nasty error messages especially related to UART.
-Well, MMC core will acknowledge when the platform part fails to
-enumerate a device on sdmmc2, but there's nothing wrong with this.
-It's not even an error -- certainly not a nasty one.
+> + * SG2042 PCIe controller supports two ways to report MSI:
+> + * - Method A, the PICe controller implements an MSI interrupt controller inside,
+> + *   and connect to PLIC upward through one interrupt line. Provides
+> + *   memory-mapped msi address, and by programming the upper 32 bits of the
+> + *   address to zero, it can be compatible with old pcie devices that only
+> + *   support 32-bit msi address.
+> + * - Method B, the PICe controller connects to PLIC upward through an
+> + *   independent MSI controller "sophgo,sg2042-msi" on the SOC. The MSI
+> + *   controller provides multiple(up to 32) interrupt sources to PLIC.
+> + *   Compared with the first method, the advantage is that the interrupt source
+> + *   is expanded, but because for SG2042, the msi address provided by the MSI
+> + *   controller is fixed and only supports 64-bit address(> 2^32), it is not
+> + *   compatible with old pcie devices that only support 32-bit msi address.
+> + * Method A & B can be configured in DTS with property "sophgo,internal-msi",
+> + * default is Method B.
 
-[    1.799703] mmc_host mmc2: card is non-removable.
-[    1.935011] mmc_host mmc2: Bus speed (slot 0) =3D 375000Hz (slot req
-400000Hz, actual 375000HZ div =3D 0)
-[    7.195009] mmc_host mmc2: Bus speed (slot 0) =3D 375000Hz (slot req
-375000Hz, actual 375000HZ div =3D 0)
-[   13.029540] mmc2: Failed to initialize a non-removable card
+s/PICe/PCIe/ (multiple)
+s/msi/MSI/ (multiple)
+s/pcie/PCIe/ (multiple)
 
->
-> > Dragan, what did you mean by SDIO related power timing requirements?
->
-> Whenever there's an SDIO module, there's usually some required timing
-> of the power rails.  Though, I don't know what's that like with the
-> non-standard M.2 SDIO modules that Radxa sells, which are intended to
-> be used on Radxa boards with "hybrid" M.2 slots.
+Wrap comment (and code below) to fit in 80 columns.  Add blank lines
+between paragraphs.
 
-Ok, I see. Not always. I can't comment on Radxa's SDIO module but I'm
-sure it's reasonably standard. And so is the M.2 Key E on this board.
-Actually, part of the appeal is that all standard buses are very
-nicely wired up. I want everybody to be able to use them.
+> +#define SG2042_CDNS_PLAT_CPU_TO_BUS_ADDR	0xCFFFFFFFFF
 
+Remove (see below).
 
->
-> Once again, please use inline replying. [*]
->
-> [*] https://en.wikipedia.org/wiki/Posting_style
->
-> > On Tue, Nov 12, 2024 at 5:41=E2=80=AFAM Dragan Simic <dsimic@manjaro.or=
-g>
-> > wrote:
-> >>
-> >> Hello Jonas and Tamas,
-> >>
-> >> On 2024-11-11 20:06, Jonas Karlman wrote:
-> >> > On 2024-11-11 19:17, Tam=C3=A1s Sz=C5=B1cs wrote:
-> >> >> Enable SDIO on Radxa ROCK 3 Model B M.2 Key E. Add all supported UH=
-S-I
-> >> >> rates and
-> >> >> enable 200 MHz maximum clock. Also, allow host wakeup via SDIO IRQ.
-> >> >>
-> >> >> Signed-off-by: Tam=C3=A1s Sz=C5=B1cs <tszucs@linux.com>
-> >> >> ---
-> >> >>  arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 8 +++++++-
-> >> >>  1 file changed, 7 insertions(+), 1 deletion(-)
-> >> >>
-> >> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> >> >> b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> >> >> index 242af5337cdf..b7527ba418f7 100644
-> >> >> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> >> >> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> >> >> @@ -688,14 +688,20 @@ &sdmmc2 {
-> >> >>      cap-sd-highspeed;
-> >> >>      cap-sdio-irq;
-> >> >>      keep-power-in-suspend;
-> >> >> +    max-frequency =3D <200000000>;
-> >> >>      mmc-pwrseq =3D <&sdio_pwrseq>;
-> >> >>      non-removable;
-> >> >>      pinctrl-names =3D "default";
-> >> >>      pinctrl-0 =3D <&sdmmc2m0_bus4 &sdmmc2m0_clk &sdmmc2m0_cmd>;
-> >> >> +    sd-uhs-sdr12;
-> >> >> +    sd-uhs-sdr25;
-> >> >> +    sd-uhs-sdr50;
-> >> >
-> >> > I thought that lower speeds was implied by uhs-sdr104?
-> >>
-> >> Last time I went through the MMC drivers, they were implied.  IIRC,
-> >> such backward mode compatibility is actually a requirement made by
-> >> the MMC specification.
-> >>
-> >> >>      sd-uhs-sdr104;
-> >> >> +    sd-uhs-ddr50;
-> >> >>      vmmc-supply =3D <&vcc3v3_sys2>;
-> >> >>      vqmmc-supply =3D <&vcc_1v8>;
-> >> >> -    status =3D "disabled";
-> >> >> +    wakeup-source;
-> >> >> +    status =3D "okay";
-> >> >
-> >> > This should probably be enabled using an dt-overlay, there is no
-> >> > SDIO device embedded on the board and the reason I left it disabled
-> >> > in original board DT submission.
-> >>
-> >> Just went through the ROCK 3B schematic, version 1.51, and I think
-> >> there should be no need for a separate overlay, because sdmmc2 goes
-> >> to the M.2 slot on the board, which any user can plug an M.2 module
-> >> into, and the SDIO interface is kind-of self-discoverable.
-> >>
-> >> Of course, all that unless there are some horribly looking :) error
-> >> messages emitted to the kernel log when nothing is actually found,
-> >> in which case the SDIO/MMC driers should be fixed first.  Also, I'm
-> >> not sure what do we do with the possible SDIO-related power timing
-> >> requirements?
+> +static void sg2042_pcie_msi_irq_compose_msi_msg(struct irq_data *d,
+> +						struct msi_msg *msg)
+> +{
+> +	struct sg2042_pcie *pcie = irq_data_get_irq_chip_data(d);
+> +	struct device *dev = pcie->cdns_pcie->dev;
+> +
+> +	msg->address_lo = lower_32_bits(pcie->msi_phys) + BYTE_NUM_PER_MSI_VEC * d->hwirq;
+> +	msg->address_hi = upper_32_bits(pcie->msi_phys);
+> +	msg->data = 1;
+> +
+> +	pcie->num_applied_vecs = d->hwirq;
+
+This looks questionable.  How do you know d->hwirq increases every
+time this is called?
+
+> +	dev_info(dev, "compose msi msg hwirq[%d] address_hi[%#x] address_lo[%#x]\n",
+> +		 (int)d->hwirq, msg->address_hi, msg->address_lo);
+
+This seems too verbose to be a dev_info().  Maybe a dev_dbg() or
+remove it altogether.
+
+> + * We use the usual two domain structure, the top one being a generic PCI/MSI
+> + * domain, the bottom one being SG2042-specific and handling the actual HW
+> + * interrupt allocation.
+> + * At the same time, for internal MSI controller(Method A), bottom chip uses a
+> + * chained handler to handle the controller's MSI IRQ edge triggered.
+
+Add blank line between paragraphs.
+
+> +static int sg2042_pcie_setup_msi_external(struct sg2042_pcie *pcie)
+> +{
+> +	struct device *dev = pcie->cdns_pcie->dev;
+> +	struct device_node *np = dev->of_node;
+> +	struct irq_domain *parent_domain;
+> +	struct device_node *parent_np;
+> +
+> +	if (!of_find_property(np, "interrupt-parent", NULL)) {
+> +		dev_err(dev, "Can't find interrupt-parent!\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	parent_np = of_irq_find_parent(np);
+> +	if (!parent_np) {
+> +		dev_err(dev, "Can't find node of interrupt-parent!\n");
+
+Can you use some kind of %pOF format to include more information here?
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/core-api/printk-formats.rst?id=v6.11#n463
+
+> +		return -ENXIO;
+> +	}
+> +
+> +	parent_domain = irq_find_host(parent_np);
+> +	of_node_put(parent_np);
+> +	if (!parent_domain) {
+> +		dev_err(dev, "Can't find domain of interrupt-parent!\n");
+
+And here?
+
+> +		return -ENXIO;
+> +	}
+> +
+> +	return sg2042_pcie_create_msi_domain(pcie, parent_domain);
+> +}
+
+> +static int sg2042_pcie_init_msi_data(struct sg2042_pcie *pcie)
+> +{
+> +	struct device *dev = pcie->cdns_pcie->dev;
+> +	u32 value;
+> +	int ret;
+> +
+> +	raw_spin_lock_init(&pcie->lock);
+> +
+> +	/*
+> +	 * Though the PCIe controller can address >32-bit address space, to
+> +	 * facilitate endpoints that support only 32-bit MSI target address,
+> +	 * the mask is set to 32-bit to make sure that MSI target address is
+> +	 * always a 32-bit address
+> +	 */
+> +	ret = dma_set_coherent_mask(dev, DMA_BIT_MASK(32));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	pcie->msi_virt = dma_alloc_coherent(dev, BYTE_NUM_PER_MSI_VEC * MAX_MSI_IRQS,
+> +					    &pcie->msi_phys, GFP_KERNEL);
+> +	if (!pcie->msi_virt)
+> +		return -ENOMEM;
+> +
+> +	/* Program the msi address and size */
+
+s/msi/MSI/
+
+> +	if (pcie->link_id == 1) {
+> +		regmap_write(pcie->syscon, REG_LINK1_MSI_ADDR_LOW,
+> +			     lower_32_bits(pcie->msi_phys));
+> +		regmap_write(pcie->syscon, REG_LINK1_MSI_ADDR_HIGH,
+> +			     upper_32_bits(pcie->msi_phys));
+> +
+> +		regmap_read(pcie->syscon, REG_LINK1_MSI_ADDR_SIZE, &value);
+> +		value = (value & REG_LINK1_MSI_ADDR_SIZE_MASK) | MAX_MSI_IRQS;
+> +		regmap_write(pcie->syscon, REG_LINK1_MSI_ADDR_SIZE, value);
+> +	} else {
+> +		regmap_write(pcie->syscon, REG_LINK0_MSI_ADDR_LOW,
+> +			     lower_32_bits(pcie->msi_phys));
+> +		regmap_write(pcie->syscon, REG_LINK0_MSI_ADDR_HIGH,
+> +			     upper_32_bits(pcie->msi_phys));
+> +
+> +		regmap_read(pcie->syscon, REG_LINK0_MSI_ADDR_SIZE, &value);
+> +		value = (value & REG_LINK0_MSI_ADDR_SIZE_MASK) | (MAX_MSI_IRQS << 16);
+> +		regmap_write(pcie->syscon, REG_LINK0_MSI_ADDR_SIZE, value);
+> +	}
+
+Lot of pcie->link_id checking going on here.  Consider saving these
+offsets in the struct sg2042_pcie so you don't need to test
+everywhere.
+
+> +	return 0;
+> +}
+
+> +static int sg2042_pcie_setup_msi(struct sg2042_pcie *pcie, struct platform_device *pdev)
+> +{
+> +	struct device *dev = pcie->cdns_pcie->dev;
+> +	struct fwnode_handle *fwnode = of_node_to_fwnode(dev->of_node);
+> +	struct irq_domain *parent_domain;
+> +	int ret = 0;
+> +
+> +	parent_domain = irq_domain_create_linear(fwnode, MSI_DEF_NUM_VECTORS,
+> +						 &sg2042_pcie_msi_domain_ops, pcie);
+> +	if (!parent_domain) {
+> +		dev_err(dev, "Failed to create IRQ domain\n");
+> +		return -ENOMEM;
+> +	}
+> +	irq_domain_update_bus_token(parent_domain, DOMAIN_BUS_NEXUS);
+> +
+> +	ret = sg2042_pcie_create_msi_domain(pcie, parent_domain);
+> +	if (ret) {
+> +		irq_domain_remove(parent_domain);
+> +		return ret;
+> +	}
+> +
+> +	ret = sg2042_pcie_init_msi_data(pcie);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to initialize msi data!\n");
+
+s/msi/MSI/
+
+> +		return ret;
+> +	}
+> +
+> +	ret = platform_get_irq_byname(pdev, "msi");
+> +	if (ret <= 0) {
+> +		dev_err(dev, "failed to get MSI irq\n");
+> +		return ret;
+> +	}
+> +	pcie->msi_irq = ret;
+> +
+> +	irq_set_chained_handler_and_data(pcie->msi_irq,
+> +					 sg2042_pcie_msi_chained_isr, pcie);
+> +
+> +	return 0;
+> +}
+> +
+> +static void sg2042_pcie_free_msi(struct sg2042_pcie *pcie)
+> +{
+> +	struct device *dev = pcie->cdns_pcie->dev;
+> +
+> +	if (pcie->msi_irq)
+> +		irq_set_chained_handler_and_data(pcie->msi_irq, NULL, NULL);
+> +
+> +	if (pcie->msi_virt)
+> +		dma_free_coherent(dev, BYTE_NUM_PER_MSI_VEC * MAX_MSI_IRQS,
+> +				  pcie->msi_virt, pcie->msi_phys);
+> +}
+> +
+> +static u64 sg2042_cdns_pcie_cpu_addr_fixup(struct cdns_pcie *pcie, u64 cpu_addr)
+> +{
+> +	return cpu_addr & SG2042_CDNS_PLAT_CPU_TO_BUS_ADDR;
+> +}
+
+Remove.  This translation between CPU and PCI bus addresses should be
+described in the DT "ranges" property of the PCI host bridge.
+
+See
+https://lore.kernel.org/linux-pci/20241029-pci_fixup_addr-v7-3-8310dc24fb7c@nxp.com/
+for a similar fix.
+
+> +static const struct cdns_pcie_ops sg2042_cdns_pcie_ops = {
+> +	.cpu_addr_fixup = sg2042_cdns_pcie_cpu_addr_fixup,
+> +};
+> +
+> +/*
+> + * SG2042 only support 4-byte aligned access, so for the rootbus (i.e. to read
+> + * the PCIe controller itself, read32 is required. For non-rootbus (i.e. to read
+> + * the PCIe peripheral registers, supports 1/2/4 byte aligned access, so
+> + * directly use read should be fine.
+> + * The same is true for write.
+
+Add blank line between paragraphs or rewrap into a single paragraph.
+
+> +static int sg2042_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev->of_node;
+> +	struct pci_host_bridge *bridge;
+> +	struct device_node *np_syscon;
+> +	struct cdns_pcie *cdns_pcie;
+> +	struct sg2042_pcie *pcie;
+> +	struct cdns_pcie_rc *rc;
+> +	struct regmap *syscon;
+> +	int ret;
+> +
+> +	if (!IS_ENABLED(CONFIG_PCIE_CADENCE_HOST))
+> +		return -ENODEV;
+> +
+> +	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+> +	if (!pcie)
+> +		return -ENOMEM;
+> +
+> +	bridge = devm_pci_alloc_host_bridge(dev, sizeof(*rc));
+> +	if (!bridge) {
+> +		dev_err(dev, "Failed to alloc host bridge!\n");
+> +		return -ENOMEM;
+> +	}
+
+Add blank line.
+
+> +	bridge->ops = &sg2042_pcie_host_ops;
+> +
+> +	rc = pci_host_bridge_priv(bridge);
+> +	cdns_pcie = &rc->pcie;
+> +	cdns_pcie->dev = dev;
+> +	cdns_pcie->ops = &sg2042_cdns_pcie_ops;
+> +	pcie->cdns_pcie = cdns_pcie;
+> +
+> +	np_syscon = of_parse_phandle(np, "sophgo,syscon-pcie-ctrl", 0);
+> +	if (!np_syscon) {
+> +		dev_err(dev, "Failed to get syscon node\n");
+> +		return -ENOMEM;
+> +	}
+> +	syscon = syscon_node_to_regmap(np_syscon);
+> +	if (IS_ERR(syscon)) {
+> +		dev_err(dev, "Failed to get regmap for syscon\n");
+> +		return -ENOMEM;
+> +	}
+> +	pcie->syscon = syscon;
+> +
+> +	if (of_property_read_u32(np, "sophgo,link-id", &pcie->link_id)) {
+> +		dev_err(dev, "Unable to parse link ID\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	pcie->internal_msi = 0;
+> +	if (of_property_read_bool(np, "sophgo,internal-msi"))
+> +		pcie->internal_msi = 1;
+> +
+> +	platform_set_drvdata(pdev, pcie);
+> +
+> +	pm_runtime_enable(dev);
+> +
+> +	ret = pm_runtime_get_sync(dev);
+> +	if (ret < 0) {
+> +		dev_err(dev, "pm_runtime_get_sync failed\n");
+> +		goto err_get_sync;
+> +	}
+> +
+> +	if (pcie->internal_msi) {
+> +		ret = sg2042_pcie_setup_msi(pcie, pdev);
+> +		if (ret < 0)
+> +			goto err_setup_msi;
+> +	} else {
+> +		ret = sg2042_pcie_setup_msi_external(pcie);
+> +		if (ret < 0)
+> +			goto err_setup_msi;
+> +	}
+> +
+> +	ret = cdns_pcie_init_phy(dev, cdns_pcie);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to init phy!\n");
+> +		goto err_setup_msi;
+> +	}
+> +
+> +	ret = cdns_pcie_host_setup(rc);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to setup host!\n");
+> +		goto err_host_setup;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_host_setup:
+> +	cdns_pcie_disable_phy(cdns_pcie);
+> +
+> +err_setup_msi:
+> +	sg2042_pcie_free_msi(pcie);
+> +
+> +err_get_sync:
+> +	pm_runtime_put(dev);
+> +	pm_runtime_disable(dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static void sg2042_pcie_shutdown(struct platform_device *pdev)
+> +{
+> +	struct sg2042_pcie *pcie = platform_get_drvdata(pdev);
+> +	struct cdns_pcie *cdns_pcie = pcie->cdns_pcie;
+> +	struct device *dev = &pdev->dev;
+> +
+> +	sg2042_pcie_free_msi(pcie);
+> +
+> +	cdns_pcie_disable_phy(cdns_pcie);
+> +
+> +	pm_runtime_put(dev);
+> +	pm_runtime_disable(dev);
+> +}
+> +
+> +static const struct of_device_id sg2042_pcie_of_match[] = {
+> +	{ .compatible = "sophgo,sg2042-pcie-host" },
+> +	{},
+> +};
+> +
+> +static struct platform_driver sg2042_pcie_driver = {
+> +	.driver = {
+> +		.name		= "sg2042-pcie",
+> +		.of_match_table	= sg2042_pcie_of_match,
+> +		.pm		= &cdns_pcie_pm_ops,
+> +	},
+> +	.probe		= sg2042_pcie_probe,
+> +	.shutdown	= sg2042_pcie_shutdown,
+> +};
+> +builtin_platform_driver(sg2042_pcie_driver);
+> -- 
+> 2.34.1
+> 
 
