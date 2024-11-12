@@ -1,125 +1,97 @@
-Return-Path: <devicetree+bounces-121172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51E329C5B1A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:59:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50C6C9C5BE2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 16:30:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1209E280EA7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:59:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 390FAB37CF1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:59:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8363E1FF5EB;
-	Tue, 12 Nov 2024 14:55:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE8D1FF7C0;
+	Tue, 12 Nov 2024 14:56:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G3R61XRm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KG/3GkRi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B18A61FF034
-	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 14:55:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30B4F1FF60E;
+	Tue, 12 Nov 2024 14:56:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731423316; cv=none; b=VYCVZKssASpDQ1I6QElB85Vf9z1dah9O4LtVqbsE/o5Q0H7t8vXiV58n6Hv0BXHfFrIu60haPNmGKqdWeH0b5npy12gMkI+cJ0YNRF101fwhOCD6GuB1G9dkq3zJOSCN60PIYlEgC7MYjOIKhxuRL3fav0Gw1gBUOhmlKfvUIv8=
+	t=1731423364; cv=none; b=tiaeJ3ofmBWQ26DZ9DjFT7E4GTL8BbHybbWd+nin183yHgvaLKSDa21yrsYXSwNTTCOnjT4HMlv9lVI6NMK/j15zg8ja3Yk5UbsCuOHyQ1SpnFnKVWcdzHz3WX8CzL/3rwiYA/3z5JNJp5IEMx+8t4zXCbMcPFvj3k5Oqg3Iaz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731423316; c=relaxed/simple;
-	bh=7CgPmKR+pBqeOwpF5GsLSoRZ2dGeu8Y6nrW55fGI7Yw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZcPAaFBAFNlDFp7158zPCiQg6EiQHECfRoHpuilhCLGWSRInZ/Ak8RNFlGlv07MMrOsHaYzte6fCdu2cXkaaWQw020yaUSvEyV6xATifnZjzI0/oUl6hqf8gyLPZePeR3rGzOfEMhqfNqFHhJCsoJyK3cltq3imbSh0PsDxYw1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G3R61XRm; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5cb6ca2a776so8782088a12.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 06:55:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731423313; x=1732028113; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=p7+ge7hJafVQtjpuuqP/E88xzOJBZSOXD8WkyCEkOXo=;
-        b=G3R61XRm5rYDD8As+RXwXivYnECFbBHJ+2lYJVBGqOMhLxGt1cwZ7wGknG0s43bZdB
-         SqOoJ0DFq1bqKUgQAveJJv57aLUDhOUnM7+NRuzwKBUmDFxABOZWh9RHA5uByfF/2NNk
-         CjYRea4wCOmJAtcUSlDwZWNV2rVjEdG6iRMslqrNLBRd7i3lxedJQjbN9hJ+QNGMxU9B
-         RdNy0mUyLHfqfgfpPA9DI4tLziB7zSTzsOof4Oh+l02QDACGs//4O5BwyAifAVNZR42F
-         cjoriRjH2i2l9bhAF4YSRpRxzmbyr6JPcviGXS7h3HeXj2UGnf5dlx8TvG+OvA/k83wZ
-         U89g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731423313; x=1732028113;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=p7+ge7hJafVQtjpuuqP/E88xzOJBZSOXD8WkyCEkOXo=;
-        b=k3AvqYY/PxL1Yr14P/2ArJMLxtNKn36jKtS8MUXYpYWOY1dWoaM/zrm4EpHeL5+Dt3
-         FsRb5isy/HfR3KZvg1J/UgYYdWI4MOJuZkpxiPyhwAfCBPIkvg9NzymIoGvGVt01oJYE
-         A/HwdhNK/Ws8tZtDdiBMrL+IhbJSBbo3iVUsAf2XSjlCFdEb7Xgic2vanm3vhcBATmyj
-         6R5gdmtHDiE/sWxao/p1u7a1O5IlBHd10CNrccthulFC+OHkJbH7W+BOte5V7OfTSpd0
-         QNYE7FOmUHqN9e6dpWYz6WZmSAbBJPenhBl3kt9/fZHqgFHJE2bWz70e7prD5lKXBfbo
-         raEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWmR8e8XG1R/hJiW09V1j2zPaMLHn87dJW2SKfA5j0Qaaf0lijaOAnvTbaPk/yST7mGPv0kkBmAc/oF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/HAkB0j3T6/6no5z3OHCm3B+lyJuN3f8VjXTy0cclMcNrEm1z
-	sUji8ZIMCWBGJdlvkE69q0ulE3p5XFyth82YFKXvSpgn0OXFkiTs59CaBOU+QujXRsB0Lj8kegX
-	/XwqHkq303vpicqtBu6alCkkgEJ1zemmXbQVCLA==
-X-Google-Smtp-Source: AGHT+IG5vgBt7SWz10m4bwHWl3WshDBGFWCRIXZLwIVJzAVLym8qK1LYVQnvPnJBn5988rv5zM1s0M0FA1lslSV8RBI=
-X-Received: by 2002:a05:6402:34cb:b0:5cf:a20:527b with SMTP id
- 4fb4d7f45d1cf-5cf4f3c018emr2916662a12.28.1731423313055; Tue, 12 Nov 2024
- 06:55:13 -0800 (PST)
+	s=arc-20240116; t=1731423364; c=relaxed/simple;
+	bh=sjtOX4U8btZ+pX6YU8B2jICTN2PT+V0pityV9K3OEgc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JwtyoLc5sIeSFjbAvaBPqbVDF+d+ag3b6Rob8QQwzkQLKUcZXA0IsOAIDFJCD1wgjv+hAtQPha+tbIiQpTfTKWAjmhAebiTZu0TgQvpPPwGGgEB9VJKbNq0ZEcChrIpIpClQVJ2zrPMLZxEU0xwl5PxbokZabQTgvCJ9g3Dcz7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KG/3GkRi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C12EC4CED0;
+	Tue, 12 Nov 2024 14:56:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731423363;
+	bh=sjtOX4U8btZ+pX6YU8B2jICTN2PT+V0pityV9K3OEgc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KG/3GkRi+PzBfH0bPRDfobz/mT6+gCk2ZgvEyfYWyaNYDoNZb+9U60lRz9cdNT+e6
+	 nHGX3+wQnkZ+H8qTc+YFS+CzEHgCK/Ls29Bxb4S+iXjJ5ssiJ2XixMHOqrZGSuzbFe
+	 Ksy8hqJ0fytWVXguZLHlZemeCQbrhv7ePNflyzZrpBk3+waNIp9vWKDHeB3jp1P0c9
+	 Yyz3tVLv5kDfVS8jksqk5yiJq3atGT/9huj2YjQf/vvqbshjBQCYyRH4TPOIqQ2Rdn
+	 BKicNTOAMNcj0XpM6nr1j7nDm5T1LJKWb+A5/nEHUysh9o5K6NjtbkonT1Ps8dFfGc
+	 GSUBBhWMM8Jrg==
+Date: Tue, 12 Nov 2024 08:56:01 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	linux-mediatek@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, upstream@airoha.com,
+	"David S. Miller" <davem@davemloft.net>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>, devicetree@vger.kernel.org,
+	Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [net-next PATCH v4 1/3] dt-bindings: net: dsa: Add Airoha AN8855
+ Gigabit Switch documentation
+Message-ID: <173142336068.894176.10211231485154959915.robh@kernel.org>
+References: <20241108132511.18801-1-ansuelsmth@gmail.com>
+ <20241108132511.18801-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1731048987-229149-1-git-send-email-shawn.lin@rock-chips.com> <1731048987-229149-7-git-send-email-shawn.lin@rock-chips.com>
-In-Reply-To: <1731048987-229149-7-git-send-email-shawn.lin@rock-chips.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 12 Nov 2024 15:54:36 +0100
-Message-ID: <CAPDyKFray463L3NcG3QF6Qi7q0cz15Z7sO0gEH1OgB7EK5GcmQ@mail.gmail.com>
-Subject: Re: [PATCH v5 6/7] scsi: ufs: rockchip: initial support for UFS
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>, 
-	"Martin K . Petersen" <martin.petersen@oracle.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
-	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241108132511.18801-2-ansuelsmth@gmail.com>
 
-[...]
 
-> +
-> +#ifdef CONFIG_PM_SLEEP
-> +static int ufs_rockchip_system_suspend(struct device *dev)
-> +{
-> +       struct ufs_hba *hba = dev_get_drvdata(dev);
-> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
-> +       int err;
-> +
-> +       if (hba->spm_lvl < UFS_PM_LVL_5)
-> +               device_set_awake_path(dev);
-> +
-> +       err = ufshcd_system_suspend(dev);
-> +       if (err) {
-> +               dev_err(hba->dev, "system susped failed %d\n", err);
-> +               return err;
-> +       }
-> +
-> +       clk_disable_unprepare(host->ref_out_clk);
+On Fri, 08 Nov 2024 14:24:14 +0100, Christian Marangi wrote:
+> Add Airoha AN8855 5 port Gigabit Switch documentation.
+> 
+> The switch node requires an additional mdio node to describe each internal
+> PHY absolute address on the bus.
+> 
+> Calibration values might be stored in switch EFUSE and internal PHY
+> might need to be calibrated, in such case, airoha,ext-surge needs to be
+> enabled and relative NVMEM cells needs to be defined in nvmem-layout
+> node.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/net/dsa/airoha,an8855.yaml       | 242 ++++++++++++++++++
+>  1 file changed, 242 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/dsa/airoha,an8855.yaml
+> 
 
-I am not sure that the host is always runtime resumed at this point,
-or is there? If not, we need to call pm_runtime_get_sync() somewhere
-here and a corresponding pm_runtime_put* in the ->suspend() callback.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Of course, if you could make use of pm_runtime_force_suspend|resume()
-that would be even better, but then probably need some additional
-re-work in the ufs-core layer first, to make this work, I think.
-
-[...]
-
-Kind regards
-Uffe
 
