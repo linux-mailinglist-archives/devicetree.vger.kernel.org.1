@@ -1,231 +1,122 @@
-Return-Path: <devicetree+bounces-121059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 777869C518D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 10:12:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2DCE9C519E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 10:14:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 077D31F22536
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 09:12:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 971761F22A8F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 09:14:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817B920D4F5;
-	Tue, 12 Nov 2024 09:11:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22A4B20C02B;
+	Tue, 12 Nov 2024 09:14:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="fIWo2cUK"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="N9kq8GSr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92A0520CCF7
-	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 09:11:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C4E209F4A;
+	Tue, 12 Nov 2024 09:14:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731402718; cv=none; b=X39Bel0rE2p0bO9+gX814ciLIek7r2RT3tvPRaJP3lRgujFiLEVQLWmfFlKReik1SEJk2lZzQr7SqAhDgjFWr7FrC1vgmN6Mbj88wRQGHzIFMTm05yqfEHzZKSRIPbCpR4Q564Gxi+95L0c+CLVE2GJK+OM1YkmgrfhcJASso88=
+	t=1731402867; cv=none; b=oMlM0N78e4rWLshNvilDS3NH+mk91rT+kWeE/KO+pX0AatoJFI0YmmkZfareHkVEQYqNdaq3/Kw+L+cU4YHlvhPIgHWOA/JaU9FiTikToCCuPqEcsQj6sarKKpx2CU4FC59e1Lu99JF9BjRraiUwdIqmjw9x7/V3Em8Dy+RJQnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731402718; c=relaxed/simple;
-	bh=ByhGgvdqV4gerAhSZ+0p1VGIZ0e4s+vC2r6OuvedF2E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u23Cbz7kv3HNQ1v+rgQOqWZIejH2r1W4OPb01CZ6aVIwRAgKIc3j8C/rn3GowsD2bwg7H5xrJLnwDNaH3rZhwC2Dy/A5P3bTeMoK5GFyL9gq+8m9nW/P5IbM++zJfYd4TeWPZgC9R/rQ5VDnOrr6elERTX0mE5EzILeRKOfS7Uw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=fIWo2cUK; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a9aa8895facso1005252766b.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 01:11:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1731402715; x=1732007515; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2bT49tEuI3XaNlJGqnWq8uFVJQIUx+wbR1sO+SjK7Ss=;
-        b=fIWo2cUK61O/eAvvX/Q5QXDbekPP2pMR1pylIGUfmKaDmK44ICDn1DdIFq41546HzT
-         IksrdJqumzAeFJ/7xI9NlrxXi6qTjlDyGdgmy7JujvTx9LjRPzZgWkVw5+VNroPTmjvX
-         /bAn/vxPxJs6Dpa3ELNH3ELr/xvsgcGHYClk3+w7y53PG2lk4MoPWVZ1+hIy5hI4Cuso
-         rMkRLOmXH8lNN5wMHcHLZLbR7BYiUQOf/JDkLZqvv6wwjaoe4VVUBYfFuZ/mllU322KW
-         x6fKybqOEu02DKumvjMpoLjRWkWj0A8sNGuryL3zSoCmtxbIsxhuxOCJ6CTU/syye92O
-         6nwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731402715; x=1732007515;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2bT49tEuI3XaNlJGqnWq8uFVJQIUx+wbR1sO+SjK7Ss=;
-        b=MuE3eDOaclRnViWwECle6JfZircaYErxmCAXENS1+cB6ZIFmNa18itm7vAHwqLwSp+
-         IYIrPeU4xehjrnM5bvFrt6JFvLGBkvy+6WarzU9htNNMoJ1b2xJgMiR0vMHv1IXxxTtO
-         GHaOwYIV1j+OeFJGE0yZJvtNo7gBGoSaeWNMrIAYpu5ZkhMbgFSdvbE6Z98BkoV4hiG3
-         qeU7pCscwQ5USVOoetOSgNw9ICMtYJ2snIFs6mpiaG5c5Vg6SvRDSDFBqxW1+nelziug
-         dfl19qAAM4nPseXfi8tM5neG3f48fPxiIOih0hDTtcm+dNBLB1WWMIMQ4OimyrI5JCH9
-         WHsw==
-X-Forwarded-Encrypted: i=1; AJvYcCX6yzI2/IR1Kg2u8CSbKu88ZL+sZIwWI/STHz6XRYa/ipeaPl5/dtiuA26UoWjqwAztZSCgAHviUrn6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoK4XzkYhytLY6nX9o9wb6J0QkJxxSSqm8n6+iJOHewgLDHB9D
-	1Yh4tq5zjTYTgEqPfHZAEmHh9CKgiE59h3IQyGNR4X4o8uo8KncquUmK199sP9Q=
-X-Google-Smtp-Source: AGHT+IFY6ZnIGl+BWNcLVcWN0We3CqKXyiZszP+RpGx14lKsX8/Pc0KElS+H7O02yRwDXvrWjPb4Ng==
-X-Received: by 2002:a17:907:1c11:b0:a9e:4b88:e02a with SMTP id a640c23a62f3a-a9eefcd1ad8mr1505031866b.0.1731402714848;
-        Tue, 12 Nov 2024 01:11:54 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.28])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa1dda672easm63499266b.40.2024.11.12.01.11.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Nov 2024 01:11:54 -0800 (PST)
-Message-ID: <b109e943-7436-42ae-912a-e6f6e20a948e@tuxon.dev>
-Date: Tue, 12 Nov 2024 11:11:50 +0200
+	s=arc-20240116; t=1731402867; c=relaxed/simple;
+	bh=cgVPU+ElEt1Qz+BgS0nbENjuFoej+QbsuA1LIUoEZw0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SAtQYZa2TrbbyXUKzg+URvwDae98xNLXSICBOK/Yr/kuep7sKOgIfbuN1OI1J8E9irJe2YCDj2rIQozZKmiDCU+tpA+iXdmiprp74fCz6Y6+MnjSwcXxHOzy5UGeVaXL5oC2T786bO08AxPj1obQYIC64rU+jelNbGEqvzc6IZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=N9kq8GSr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AC3qGPP002654;
+	Tue, 12 Nov 2024 09:14:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=RMXrrV93Lsc3ernjt8xVBh
+	NsGntP1aDnZC7ZTDMPDAU=; b=N9kq8GSr2RudWZ+rbP+x2KB8Stvrmev5jiztbn
+	5p/0i6AdysgIGNHTbPEthspis30NHj0OUzC2zeOYEmaPkJINxhbhss5jbJKMbC3d
+	rd8SSqtEx0Hmggrb8NyV5c/O5C8GpDYMJZnfcTlVk4anXjmEbYy8be0rfBk4OmOx
+	2mq9ER0SpTLsGgNRr8lKB3EkOz9GzorMJZv3bdNNQpNM0/AZXwjkaWpRhBZTqVjd
+	OXEmofFvd7AMbY6H85MN22JcGSTZcuR1cVl8XrZNQPlkeXsFlES49hKF8E31q89i
+	TN0BZosuvN6sCtLVnXgo77eDQ5kT+cDaBun6JLs+DyxcIBBw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42t0466qme-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 09:14:15 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AC9EEKL004085
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 09:14:14 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 12 Nov 2024 01:14:08 -0800
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <dmitry.baryshkov@linaro.org>,
+        <mantas@8devices.com>, <quic_rohiagar@quicinc.com>,
+        <johan+linaro@kernel.org>, <quic_kriskura@quicinc.com>,
+        <abel.vesa@linaro.org>, <quic_kbajaj@quicinc.com>,
+        <quic_wcheng@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>
+CC: Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v1 0/6] Enable IPQ5424 USB support
+Date: Tue, 12 Nov 2024 14:43:49 +0530
+Message-ID: <20241112091355.2028018-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 24/25] arm64: dts: renesas: rzg3s-smarc: Enable SSI3
-Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
- "perex@perex.cz" <perex@perex.cz>, "tiwai@suse.com" <tiwai@suse.com>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20241108104958.2931943-1-claudiu.beznea.uj@bp.renesas.com>
- <20241108104958.2931943-25-claudiu.beznea.uj@bp.renesas.com>
- <TYCPR01MB113329FE5E9E610BEF45DC001865F2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
- <c15bb621-6cd9-4be3-beec-20fecd411547@tuxon.dev>
- <TY3PR01MB1134600DEBF0096A67950441086582@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <ce074521-7d4b-4514-9b2b-59b246686210@tuxon.dev>
- <TY3PR01MB11346AF4A763ECF2D2F31588C86592@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <TY3PR01MB11346AF4A763ECF2D2F31588C86592@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: LizYFiQw2VOe8qqw0Gw9lFcydlz-pgny
+X-Proofpoint-ORIG-GUID: LizYFiQw2VOe8qqw0Gw9lFcydlz-pgny
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 clxscore=1011 priorityscore=1501 spamscore=0 suspectscore=0
+ mlxlogscore=540 impostorscore=0 adultscore=0 phishscore=0 mlxscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411120075
+
+The IPQ5424 SoC has both USB2.0 and USB3.0 controllers. The USB3.0
+can connect to either of USB2.0 or USB3.0 phy and operate in the
+respective mode.
+
+Varadarajan Narayanan (6):
+  dt-bindings: phy: qcom,qusb2: Document IPQ5424 compatible
+  phy: qcom-qusb2: add QUSB2 support for IPQ5424
+  dt-bindings: phy: qcom,qmp-usb: Add IPQ5424 USB3 PHY
+  phy: qcom: qmp: Enable IPQ5424 support
+  dt-bindings: usb: qcom,dwc3: Add IPQ5424 to USB DWC3 bindings
+  arm64: dts: qcom: Add USB controller and phy nodes for IPQ5424
+
+ .../bindings/phy/qcom,qusb2-phy.yaml          |   1 +
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |   2 +
+ .../devicetree/bindings/usb/qcom,dwc3.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts   |  67 ++++++++
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi         | 153 ++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       |   3 +
+ drivers/phy/qualcomm/phy-qcom-qusb2.c         |  28 ++++
+ 7 files changed, 255 insertions(+)
 
 
+base-commit: 28955f4fa2823e39f1ecfb3a37a364563527afbc
+-- 
+2.34.1
 
-On 12.11.2024 11:03, Biju Das wrote:
-> Hi Claudiu,
-> 
->> -----Original Message-----
->> From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
->> Sent: 12 November 2024 08:31
->> Subject: Re: [PATCH v2 24/25] arm64: dts: renesas: rzg3s-smarc: Enable SSI3
->>
->> Hi, Biju,
->>
->> On 11.11.2024 13:30, Biju Das wrote:
->>> Hi Claudiu,
->>>
->>>> -----Original Message-----
->>>> From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
->>>> Sent: 11 November 2024 11:20
->>>> Subject: Re: [PATCH v2 24/25] arm64: dts: renesas: rzg3s-smarc:
->>>> Enable SSI3
->>>>
->>>> Hi, Biju,
->>>>
->>>> On 10.11.2024 10:54, Biju Das wrote:
->>>>> Hi Claudiu,
->>>>>
->>>>> Thanks for the patch.
->>>>>
->>>>>
->>>>>> -----Original Message-----
->>>>>> From: Claudiu <claudiu.beznea@tuxon.dev>
->>>>>> Sent: 08 November 2024 10:50
->>>>>> Subject: [PATCH v2 24/25] arm64: dts: renesas: rzg3s-smarc: Enable
->>>>>> SSI3
->>>>>>
->>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>>>
->>>>>> Enable SSI3.
->>>>>>
->>>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>>> ---
->>>>>>
->>>>>> Changes in v2:
->>>>>> - none
->>>>>>
->>>>>>  arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi | 26
->>>>>> ++++++++++++++++++++
->>>>>>  1 file changed, 26 insertions(+)
->>>>>>
->>>>>> diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
->>>>>> b/arch/arm64/boot/dts/renesas/rzg3s-
->>>>>> smarc.dtsi
->>>>>> index 4aa99814b808..6dd439e68bd4 100644
->>>>>> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
->>>>>> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
->>>>>> @@ -64,6 +64,11 @@ vccq_sdhi1: regulator-vccq-sdhi1 {
->>>>>>  	};
->>>>>>  };
->>>>>>
->>>>>
->>>>> &audio_clk1 {
->>>>>        assigned-clocks = <&versa3 xx>;
->>>>>        clock-frequency = <11289600>; };
->>>>
->>>> audio_clk1 node is in the RZ/G3S dtsi to keep the compilation happy.
->>>>
->>>> For this board the audio clock1 for the SSI 3 is from <&versa3 2>.
->>>>
->>>> If we fill in the audio_clk1 here it will be useless, there will be
->>>> no consumers for it and it is not available on board.
->>>
->>> As per SSI IP needs external clks AUDIO_CLK1 and AUDIO_CLK2.
->>>
->>> AUDIO_CLK1 is provided by versa3 generator and
->>> AUDIO_CLK2 is provided by Crystal.
->>>
->>> Currently AUDIO_CLK2 it reports a frequency of 12288000 which is a
->>> multiple of 48kHz whereas for AUDIO_CLK1, it reports a frequency of 0.
->>
->> Why? You mentioned above that "AUDIO_CLK1 is provided by versa3 generator".
-> 
-> Output from versa3 generator is connector to AUDIO_CLK1 
-
-According to schematics this is true.
-
-
-> that you described in
-> SoC dtsi node with the entries
-> 
-> +	audio_clk1: audio-clk1 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		/* This value must be overridden by boards that provide it. */
-> +		clock-frequency = <0>;
-> +		status = "disabled";
-> +	};
-
-That is a clock node, placeholder in the DTSI, to make compilation happy.
-
-> 
-> This needs to be overridden by board dts,
-
-Only if used, otherwise is an useless node.
-
-> where versa3 is providing this clk.
-> Currently there is no relation between this SoC device node and versa3 clk output for audio clk1.
-
-I may be wrong or I many not understand what you are trying to say, but
-isn't what this patch does? See this diff from this patch:
-
-+&ssi3 {
-+	clocks = <&cpg CPG_MOD R9A08G045_SSI3_PCLK2>,
-+		 <&cpg CPG_MOD R9A08G045_SSI3_PCLK_SFR>,
-+		 <&versa3 2>, <&audio_clk2>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ssi3_pins>, <&audio_clock_pins>;
-+	status = "okay";
-+};
 
