@@ -1,182 +1,132 @@
-Return-Path: <devicetree+bounces-121129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BAE09C5859
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 13:54:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 961BE9C5806
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 13:41:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B296B33C2A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 12:32:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22A43B302B3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 12:37:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C1F21F77A6;
-	Tue, 12 Nov 2024 12:32:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE1881F77A5;
+	Tue, 12 Nov 2024 12:36:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q8L7J4Uu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W5qsyFyw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E47B1591F0;
-	Tue, 12 Nov 2024 12:32:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A14261CD209;
+	Tue, 12 Nov 2024 12:36:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731414757; cv=none; b=aV5UQ57hG24bjSeTG8fsOvFEd+K8R67jHeFGyV0TGVutzVAQ4Vd/qeVBXwX5A+XlivTDD7zJmm0cNgf+UsfbXYDekeh4yaOsp+cKzV2XC+0eXsFH6bCKYNzIoOOQdW0O6NVFj1VpPQbHneFrz7gdu3/yBCT0QJuZXKaQOOrSaU0=
+	t=1731415018; cv=none; b=fAJ71uzqLWrxz30vYsF941vjGrgwT5cvRkQAjCxsTnvQl22Kp7x4Kw2Kqps/dNdCTQFQ87lJOFyusP+haEZWXqCtWrEsSdhrMAP2hBPMjgKdurIgMYVQ3tJOCB70g2UzpNOx384DNt1RTXUCsWK+d2hfPQlPI0MWGWck6dyse7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731414757; c=relaxed/simple;
-	bh=tBgqVT0kf3DnBE6rWOx3JIn1Zygy5++OjNbPdIAJLF8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UdO98UzGh407rfDAsUqhC6LhwVc3jDYWzRfezzB3NopXC624PRnSMndyMDq8cfvRrBrDGNE725PnL8jicffi/dS2ZoCCnjYpQOfCaa+OKPKQOJaW9zx7oLrgaljo3bzoagduMt+D0GgAIzWHXZmDlLdgyN0Zyg9olwfryd8fBpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q8L7J4Uu; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a9e8522c10bso867250466b.1;
-        Tue, 12 Nov 2024 04:32:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731414754; x=1732019554; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GUb3nok/AqP7r33O+yPL3KeymIM3B7Unh2DohKMeZnI=;
-        b=Q8L7J4UuCJvDFQozSYDP8AOg/Z1x8OQUUrSk58/Ag8L0gi1aY8WphfTxzYa5kZi0wV
-         rkenLUF0AZtH96iksgAnNVw4YAUFBiQ65pwAposBt6BE56LyKDI98Pw3L/7nrLS8wl74
-         cMWbLOgxnEjhcMaroNEuIIvt0tF7wB7JowVPOB6Omus9Z8yuBpsulZogJkqavy8qrnXe
-         7b/6dWn6x22XpOCkcDeXqP3hQQDsKiRL+UoB27FfmMjOVpnFEOBEf5+gYzaXBGSUvSqS
-         kFl4K+2DiE96WPYof/WO47U9Ax6na/vY6xO+F+XXPYZZvD9RRC9ABa8VSMpB1LOmVLDG
-         Tn7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731414754; x=1732019554;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GUb3nok/AqP7r33O+yPL3KeymIM3B7Unh2DohKMeZnI=;
-        b=JLJfRYbWz9RlrSQT116B+mgzl3189plNOB8fFYSc+mkFxDvj994y24EBQy/gxVCwSF
-         AjfUGhRCbWogqe9D1l9ForYsOF8LKplEBxmS11MGFw1ZpVzcsolhRp0FdY8NYV61w2u8
-         Dx/SkXpB012kcJLssig0aKFDGYbxVa3k7qR4jPEQ3u1M8b+YiZL5DHK0gn0UiMleP6MM
-         hag8OCSbipvaDBHOnlBgSVw59ZPI18geUHNaLXOjwxxbRK1YRp85mNgNZ/YlXdWWEJoc
-         WBTtf71YkqkIucu9ndboEM0Q3+6NOP3tOYxtUThQnBpHhIgt3cQ8whS4Sv2KhrEu70gC
-         e6vw==
-X-Forwarded-Encrypted: i=1; AJvYcCU11OdeZ18C7O8fC7NsOvmECF8q6d1hHtokhWOi+VgWLV096XJRGzUEfZw7oQxfmhrjEKngZp2lC6kvScg=@vger.kernel.org, AJvYcCVanlvoavQWR5Npx14do/GQfA+Tj92F96atX0lNnb6D32yKs6N+gg5G6dK8HNGYn+5u0zpcaRkbiEBW@vger.kernel.org, AJvYcCWc8SjTWO7RN4TiPs/6kFpglBcGWfpNQsg9g4fUVwDsbj4XkTVK33J2/gdRrTglEMgPpBDcMi92CqKKILtH@vger.kernel.org, AJvYcCXSV1KkrHB7fOyKaGkO6Irw660Jr+UTMAwrXUiOO8S0eKau3SujqEFfHCbhXnL2/yzmaBAJsD2+JEDe@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxr2bgh6BjGTDcVVyj0ZUviJHjlezrqcpg4XPN2HJHlDUI8MNc5
-	uXCPMUI79MKG1Q1MykJjFqTQUgDGeigkzQ+sz4BqFwgO4fDok3mqj/OPAVws9a42+ZfaU/mnzQ8
-	StGWeo7Xf6B6kxfLqfQGjfbtG0N4=
-X-Google-Smtp-Source: AGHT+IHsekqXC8V0d+CZha3eqodR3E96t9ckKwPOB07f+j+M/7b8jWQS1qzjFRSvfRjwlg4Rl2gJoAnqrU5IZqFd6j0=
-X-Received: by 2002:a17:907:9492:b0:a9a:1575:23e3 with SMTP id
- a640c23a62f3a-a9eefeecbf6mr1635915466b.19.1731414753506; Tue, 12 Nov 2024
- 04:32:33 -0800 (PST)
+	s=arc-20240116; t=1731415018; c=relaxed/simple;
+	bh=Kjm50GlWkADfbPmKO9HpqOyEB9KY9gzdVAbYexdFo5o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YfgaMcVhnmdjSQIGvQEbLHqi0PTgMm7xvhF5SuBt7NjCceBIB/W1w8cB1X5UjUgbwfc0f4dclA1rwJF+jD06jeBjxFV5jVH6DKr4dmeT5OE5NNgIj0MZENX/j3OU7Mxs84/imbsCU+By7hrLOYGTROcpbRdxyqL4zVaNYmyhR/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W5qsyFyw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEF18C4CECD;
+	Tue, 12 Nov 2024 12:36:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731415018;
+	bh=Kjm50GlWkADfbPmKO9HpqOyEB9KY9gzdVAbYexdFo5o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W5qsyFywbupCvXB6XPv88BdVgDCVY8j19r2OBJNz44yyUew+kON1s8Nbj9akYVB+a
+	 t479ehr4IbvuqLJqMmNw0aH1nyhaxOqpkMCOop7Ct7OvWGEKIZYJxJSc5+P1cf9++c
+	 FD62zxAqP8t7wf30/UtHkgHLEQDbXTlpYlXrPn8Uc/KhWTJ4oVbgWrj8b41UCgcQIs
+	 sv4E9B4Evoyjdq42l3Tk30TnzHhXZ8Ish2MogKlOp8w8BJuym0tR+l6ksNdZavsOwW
+	 xE0N1+4XWPf0vr5wkzYj9veuWzOZqc58G7WGRxioBu9e4FEM7SM+MMJKf+qMxTDdXr
+	 lqVmosCZUgf7A==
+Date: Tue, 12 Nov 2024 13:36:51 +0100
+From: Niklas Cassel <cassel@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: frank-w@public-files.de, Andrew Lunn <andrew@lunn.ch>,
+	Frank Wunderlich <linux@fw-web.de>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Hans de Goede <hdegoede@redhat.com>, Jens Axboe <axboe@kernel.dk>,
+	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditional failed
+Message-ID: <ZzNL4_dFxHfMmMcR@ryzen>
+References: <20241109094623.37518-1-linux@fw-web.de>
+ <20241109094623.37518-2-linux@fw-web.de>
+ <e534c723-6d65-433f-8ab5-1c0d424d7367@lunn.ch>
+ <9B1A5D20-3DE5-40C1-8B2D-B1C4F53FA5F4@public-files.de>
+ <CAL_JsqJnOa_9Poz86vOWBCQigvv-Ab4Tt1hrwTxSa5zNraVxXQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241102195037.3013934-3-aren@peacevolution.org>
- <20241102195037.3013934-11-aren@peacevolution.org> <ZyiIcDaANjxwtCz-@smile.fi.intel.com>
- <m7x526sv5krgt4t2whn5ykyktoz5u7ihsxv3qa5yue3ucbk6lb@37spwsmlcylm>
- <ZzEPACoblmcQD9yu@surfacebook.localdomain> <xubjmxig4luag27ifnmqmv3x3bvzhwczwvw34kw6tssaa2d24t@ysnqh5e3g7sz>
- <ZzHSE9Nrf4YySJrq@smile.fi.intel.com> <4ibd5tgpt3uzbmouqdiiv5pvfxebo5qsmgn3xh6rlb73qevatv@cajznxqnlca3>
-In-Reply-To: <4ibd5tgpt3uzbmouqdiiv5pvfxebo5qsmgn3xh6rlb73qevatv@cajznxqnlca3>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 12 Nov 2024 14:31:57 +0200
-Message-ID: <CAHp75Vfm_7Gq5a-v1+=WCq2w0Am0VF+z_NPenHbuvV-Mj+MX4A@mail.gmail.com>
-Subject: Re: [PATCH v4 4/6] iio: light: stk3310: use dev_err_probe where possible
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Aren <aren@peacevolution.org>, Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Kaustabh Chakraborty <kauschluss@disroot.org>, =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>, 
-	Ondrej Jirman <megi@xff.cz>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, Dragan Simic <dsimic@manjaro.org>, 
-	phone-devel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJnOa_9Poz86vOWBCQigvv-Ab4Tt1hrwTxSa5zNraVxXQ@mail.gmail.com>
 
-On Tue, Nov 12, 2024 at 12:15=E2=80=AFPM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@baylibre.com> wrote:
-> On Mon, Nov 11, 2024 at 11:44:51AM +0200, Andy Shevchenko wrote:
-> > On Sun, Nov 10, 2024 at 04:34:30PM -0500, Aren wrote:
-> > > On Sun, Nov 10, 2024 at 09:52:32PM +0200, Andy Shevchenko wrote:
-> > > > Sun, Nov 10, 2024 at 02:14:24PM -0500, Aren kirjoitti:
-> >
-> > You can do it differently
-> >
-> > #define STK3310_REGFIELD(name)                                         =
-               \
-> > do {                                                                   =
-       \
-> >       data->reg_##name =3D                                             =
-         \
-> >               devm_regmap_field_alloc(dev, regmap, stk3310_reg_field_##=
-name); \
-> >       if (IS_ERR(data->reg_##name))                                    =
-       \
-> >               return dev_err_probe(dev, PTR_ERR(data->reg_##name),     =
-       \
-> >                                    "reg field alloc failed.\n");       =
-       \
-> > } while (0)
-> >
-> > > #define STK3310_REGFIELD(name) ({                                    =
-       \
-> > >     data->reg_##name =3D devm_regmap_field_alloc(dev, regmap,        =
-         \
-> > >                                                stk3310_reg_field_##na=
-me);   \
-> > >     if (IS_ERR(data->reg_##name))                                    =
-       \
-> > >             return dev_err_probe(dev, PTR_ERR(data->reg_##name),     =
-       \
-> > >                                  "reg field alloc failed\n");        =
-       \
-> > > })
-> >
-> > I am against unneeded use of GNU extensions.
-> >
-> > > > > replacing "do { } while (0)" with "({ })" and deindenting could m=
-ake
-> > > > > enough room to clean this up the formatting of this macro though.
-> > > >
-> > > > do {} while (0) is C standard, ({}) is not.
+On Mon, Nov 11, 2024 at 10:25:12AM -0600, Rob Herring wrote:
 > > >
-> > > ({ }) is used throughout the kernel, and is documented as such[1]. I
-> > > don't see a reason to avoid it, if it helps readability.
+> > >I don't know the yaml too well, but it is not obvious how adding a few
+> > >status = "disabled"; status = "okay"; fixes a "'anyOf' conditional failed".
+> > >
+> > >Maybe you can expand the explanation a bit?
+> > >
+> > >       Andrew
 > >
-> > I don't see how it makes things better here, and not everybody is famil=
-iar with
-> > the concept even if it's used in the kernel here and there. Also if a t=
-ool is
-> > being used in one case it doesn't mean it's suitable for another.
->
-> Just to throw in my subjective view here: I don't expect anyone with
-> some base level knowledge of C will have doubts about the semantics of
-> ({ ... }) and compared to that I find do { ... } while (0) less optimal,
-> because it's more verbose and when spotting the "do {" part, the
-> semantic only gets clear when you also see the "while (0)".
+> > Hi angelo,
+> >
+> > I guess the dtbs_check only checks required properties from yaml if the node is enabled.
+> 
+> Yes, that is exactly how it works.
+> 
+> Rob
 
-Seems we have to agree on a disagreement.
+Hello Rob,
 
-> Having said
-> that I also dislike the "do" starting on column 0, IMHO the RHS of the
-> #define should be intended.
+If we look at e.g. this binding:
+Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
 
-This argument I kinda accept.
+We can see that it does not define iommu-map in the binding,
+likewise the binding does have:
+unevaluatedProperties: false
 
-> So if you ask me, this is not an unneeded use of an extension. The
-> extension is used to improve readabilty and I blame the C standard to
-> not support this syntax.
 
-Here I agree with you.
+If I apply my patch that adds iommu-map for e.g. the pcie2x1l0 node:
+(the patch does not add anything to the binding above):
+https://lore.kernel.org/linux-rockchip/20241107123732.1160063-2-cassel@kernel.org/
 
-> While I'm in critics mode: I consider hiding a return in a macro bad
-> style.
 
-So, summarizing the discussion we have a split, hence Jonathan is our
-arbiter here to judge.
+If look at the pcie2x1l0 node, it is marked as status = "disabled"
+in arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
 
---=20
-With Best Regards,
-Andy Shevchenko
+but is marked as status = "enabled"
+in arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+
+If I run CHECK_DTBS for this dts/dtb:
+$ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make CHECK_DTBS=y rockchip/rk3588-rock-5b.dtb
+  DTC [C] arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb
+$ 
+
+No warnings.
+
+What am I missing?
+
+Considering the warning in this series where the binding also
+had unevaluatedProperties: false
+I would have expected the same error for the pcie2x1l0 node.
+
+(And if I look at most PCI controler bindings, they actually do define
+iommu-map, so it seems a requirement for it to be defined if used.)
+
+
+Kind regards,
+Niklas
 
