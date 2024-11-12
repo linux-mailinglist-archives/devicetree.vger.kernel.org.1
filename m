@@ -1,141 +1,193 @@
-Return-Path: <devicetree+bounces-120966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 948CE9C4C06
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 02:49:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FABE9C4C27
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 03:01:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A62B1F224D7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 01:49:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF701B22787
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 02:00:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8DC2200C80;
-	Tue, 12 Nov 2024 01:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C56204F70;
+	Tue, 12 Nov 2024 01:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DDxDDeN4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HQC6r/AI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 984AD487A5;
-	Tue, 12 Nov 2024 01:49:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 397382040A8;
+	Tue, 12 Nov 2024 01:59:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731376169; cv=none; b=frmXxk9oOJP895MY4sFXc9hqqseHCYbqaXQcfktewh5wFUy6SnX4G7maXvPU2J6gD3yGNoblL4YkMCxsS0bwpoAJDqGIkiEEzhMKG7dx0EIzUkHc7qj1KSqjfwk31dmlryDn9l3fepeCSk0t0i/n5ZlAMZ8BVMPQ2hnKEjy7L4A=
+	t=1731376797; cv=none; b=QzlMLya1IlUGtLrtMp1+aGyIuwrruyD1v6bKof+DOIwGI+nfoYN14fIiXIyx+gPYxy0avfBFPrIyfLF3iS6p1TkPSe5WKYDErYziRCrqS+XpK9TQH3LrjL1nZx3SeFBhQcsObkBQV6+rXfMo2ULk6A5RSsgpty3vcF6cAYf/f6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731376169; c=relaxed/simple;
-	bh=ByKIsg+PetC3KQaRoDtbKrjNkQjVD4fuhk6Vg3U7JJg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hBWT3oxQmx8oAY+mdZ5EnTHiUwgtI3lBe68N41SmY646t27Tv6n3WUAM37rY37huBu+7k56PdSxDBQxPMApLcln0m86buodIYTzf7OtbE6rKnjPTkBKl36blnzvqRiRX2mK1iwwAwQ0KfvDA5FkJHfUY4c9INrGXgMHc6tKLSJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DDxDDeN4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3348EC4CED9;
-	Tue, 12 Nov 2024 01:49:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731376169;
-	bh=ByKIsg+PetC3KQaRoDtbKrjNkQjVD4fuhk6Vg3U7JJg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=DDxDDeN4mEvU6Kc2yLJX8rrfify0h0aWcVNfF1CMLSZWHg34z2y+fxEbDGf/4bEXj
-	 KqYjJV6P/Q+8CuscNdNFoZqtHu63aLwUhcC+gyseaOQxKZ+oKpi3dTAUK/eXZGbCdw
-	 bKONFMn05p3OtcZQhf/5KQXvIKX2KJxygw73nT9qTqez2IpU4un7e13pTJwu98HZmI
-	 1Vnq1RAqSljFewaHJJwCX0tvMEW7zJXSPvPVDxSgnQCiVmCBU7+lR5INEwNnV3GM6g
-	 KAMG3LxRUTKWsiSD65eRqC911CJm/ESAZUtLSxzL3g6lw871/NKD65r+EAnuBUbqm4
-	 VP0NTHOLnm4OA==
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-37d447de11dso3798957f8f.1;
-        Mon, 11 Nov 2024 17:49:29 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUJzpMwEq31U2c2jC8mh1drCHjNGCuhbyWe+WLnm09oob1DlXDEXjVu1wlQzqITCWIpqmfDGQhGC5Ih@vger.kernel.org, AJvYcCVvGmKihp4puTq6Xnr+93ADkBYoMnYjU3TP5BodGInKZaajtKGfOZq4H/l9engnbn2JBrJ4AcAdwS8bCg==@vger.kernel.org, AJvYcCW99RezUVDysU/zCL9EwjYWNhcgjyvoYbXfAi6xQwkCcwZqQBM7immxQrlukE95CN5Xq1uAGjLwDzxx@vger.kernel.org, AJvYcCXzQvuX4hZ28HZDelqp80Xb+/gD3CrLRtwhON54mWD7e45e15jUYXFUHCZNZFqolKCtaNgrcOsPEPIx/MDa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw97v3kFRXu/Byu2n127UEz+5lFizp6QAUqoZ6rM9RBgUZT+V0P
-	mxHqKE8dr0IYXYSZzclJ/gIISL02ztxWDFfolus2jp5ZmJlvMx/M5DgapfkBz/J3dU4p51A3XSr
-	WeXfAiNBT7P3VFPAMb5rcQgg+jcQ=
-X-Google-Smtp-Source: AGHT+IHkAppdGB9GR9FwSzrOwP4MyzWExRQCh4+xsHRQeI1xYcQFKz01kJl5kYDubLhJev1P+/wAGQeEYzYwz9A8wSk=
-X-Received: by 2002:a5d:6d0c:0:b0:37d:4657:ea7d with SMTP id
- ffacd0b85a97d-381f1835301mr12111736f8f.49.1731376167620; Mon, 11 Nov 2024
- 17:49:27 -0800 (PST)
+	s=arc-20240116; t=1731376797; c=relaxed/simple;
+	bh=aXYZ1wmyao3Lcc2X2UFTZZ/JZa17V3RMqI9Bh2tXkH0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=UQ9Cf2d78I2Vy1QXIw4uUYOqX8eKpjzz6qmS09wdHP2Dm2/EGmMZaGVlTSx6BukO+ZqI1SB8duoPO0nXT/OsySgZeaA8aZM+M3iULyo78nGa47mwzwlVQ5rLBoygLM8mQaem6IbR3CKLpzuT239b7ZBucTiFffQjKcRxTY98fKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HQC6r/AI; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4315eeb2601so64779255e9.2;
+        Mon, 11 Nov 2024 17:59:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731376793; x=1731981593; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=c8v4PHWLECGvbJAUU4tXSsbcNs9XiIiR6lHIjzJ5k2M=;
+        b=HQC6r/AIePQI5O9jO9+n4qj9V1oRRddoTaC4rEMxc/EC5MsCnPyZ9nwnfeKa6Dn9ik
+         PxsnCfJ6jqDjfViP+Q5jC2Qpl3RCkmMu/mmBOq1pklPFpUer3uGM3bss9kpv0Xe50jFN
+         8yZ5fjXzyqr7xTIWiS7l5SXP+8/RCp6YevDFov/X6tdWyykU885KEjVkozONNL0jJsO1
+         CnBvGI1gc9uI9bDs3CMxvIN+hX57qrk7SGFgY0nJNqYvsD0gxOxgynZMXXiMUNOGPgPR
+         eYNdHF2mWvLKy88qiXovvCPcf9jdxSjqKqsOjnWtinhCBAuzQp7acwC2eaqj/Zfj6LvW
+         2i+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731376793; x=1731981593;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=c8v4PHWLECGvbJAUU4tXSsbcNs9XiIiR6lHIjzJ5k2M=;
+        b=gXEC3eGopK4reBr6dnhs1N9sw8rGaMcTATp0SZwoZrpEeKdfkHC1xnlVUCXRwIcViC
+         5ixYrHUX4QQ9cZcQ25lDWGYROB0TpWXz/cdsmta1K2GxKPMBfr6JGs710t+bzU8qLjIk
+         BNaW2ixxWglVz7N4P8UhEiAyXpenBuShJE5lUydX2okEbyLhf088nr01yySOYaOSqYeY
+         BoD3nkdWcNJx/A7mnKnCLiJuvofnpmE1xwWei3HIneQO/rbPmv7yAjGfJwRNiVv11utv
+         JSD8GxQ1HZXJ+sZXJcwqwdBz4Wr4gFa57PWR9E8ExHf+sPjBHU+sufZ0RKdRFKvOMCqO
+         Z+tQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUsokzjpBWA8ZFjQ6zoD0h9vjHaz0cfQatmnNnqPcz1hr8wojuSUJFpb87OEPGiCa1JnkNuVjWMys9ABOdb@vger.kernel.org, AJvYcCVXO64Kt9FPDnT4BJEywhEvvaaWxn3FfmoLVzND5GDvgxgtPipYVxmvFIQdelB+bDQ/lpTt603lMwDwoLQt@vger.kernel.org, AJvYcCWTyCQqmNDCXpZCYhLiTzONrhNitoA0DSDNg/PB3zMOKyW4qpzKeqxYd1EFOm94iaQDNyrVPjwOVT73@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKg4PB/8yHPFwGTvo9OpbR8Mdkt7w4jiQUAqtIl12qVLC2FYZC
+	R5nap0s/q1/cyry4uHBJaw20RaO7jF9snThO3IXHY4X31mlZAD3I
+X-Google-Smtp-Source: AGHT+IH/di55KhvyH/nFAQd0By19c/iW/d+gHvodKaUdHseEE4eBVOofeL+t8Uvg4Omb0BJuQIWJWA==
+X-Received: by 2002:a05:600c:1396:b0:431:5c3d:1700 with SMTP id 5b1f17b1804b1-432b7518e11mr148469195e9.21.1731376793276;
+        Mon, 11 Nov 2024 17:59:53 -0800 (PST)
+Received: from localhost.localdomain (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-432cf2b9fb9sm1783295e9.1.2024.11.11.17.59.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Nov 2024 17:59:52 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Antoine Tenart <atenart@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	llvm@lists.linux.dev,
+	upstream@airoha.com
+Subject: [PATCH v7 0/3] crypto: Add EIP-93 crypto engine support
+Date: Tue, 12 Nov 2024 02:58:57 +0100
+Message-ID: <20241112015920.22564-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241103145153.105097-1-alexghiti@rivosinc.com>
- <20241103145153.105097-14-alexghiti@rivosinc.com> <20241111164259.GA20042@willie-the-truck>
-In-Reply-To: <20241111164259.GA20042@willie-the-truck>
-From: Guo Ren <guoren@kernel.org>
-Date: Tue, 12 Nov 2024 09:49:15 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTTuvmtmKVFMZCTMxEWHrpSpqPE8QO4MC5njPAskGEmpig@mail.gmail.com>
-Message-ID: <CAJF2gTTuvmtmKVFMZCTMxEWHrpSpqPE8QO4MC5njPAskGEmpig@mail.gmail.com>
-Subject: Re: [PATCH v6 13/13] riscv: Add qspinlock support
-To: Will Deacon <will@kernel.org>
-Cc: Alexandre Ghiti <alexghiti@rivosinc.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Andrea Parri <parri.andrea@gmail.com>, 
-	Nathan Chancellor <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
-	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>, Arnd Bergmann <arnd@arndb.de>, 
-	Leonardo Bras <leobras@redhat.com>, linux-doc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-arch@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 12, 2024 at 12:43=E2=80=AFAM Will Deacon <will@kernel.org> wrot=
-e:
->
-> On Sun, Nov 03, 2024 at 03:51:53PM +0100, Alexandre Ghiti wrote:
-> > In order to produce a generic kernel, a user can select
-> > CONFIG_COMBO_SPINLOCKS which will fallback at runtime to the ticket
-> > spinlock implementation if Zabha or Ziccrse are not present.
-> >
-> > Note that we can't use alternatives here because the discovery of
-> > extensions is done too late and we need to start with the qspinlock
-> > implementation because the ticket spinlock implementation would pollute
-> > the spinlock value, so let's use static keys.
->
-> I think the static key toggling takes a mutex (jump_label_lock()) which
-> can take a spinlock (lock->wait_lock) internally, so I don't grok how
-> this works:
->
-> > +static void __init riscv_spinlock_init(void)
-> > +{
-> > +     char *using_ext =3D NULL;
-> > +
-> > +     if (IS_ENABLED(CONFIG_RISCV_TICKET_SPINLOCKS)) {
-> > +             pr_info("Ticket spinlock: enabled\n");
-> > +             return;
-> > +     }
-> > +
-> > +     if (IS_ENABLED(CONFIG_RISCV_ISA_ZABHA) &&
-> > +         IS_ENABLED(CONFIG_RISCV_ISA_ZACAS) &&
-> > +         riscv_isa_extension_available(NULL, ZABHA) &&
-> > +         riscv_isa_extension_available(NULL, ZACAS)) {
-> > +             using_ext =3D "using Zabha";
-> > +     } else if (riscv_isa_extension_available(NULL, ZICCRSE)) {
-> > +             using_ext =3D "using Ziccrse";
-> > +     }
-> > +#if defined(CONFIG_RISCV_COMBO_SPINLOCKS)
-> > +     else {
-> > +             static_branch_disable(&qspinlock_key);
-> > +             pr_info("Ticket spinlock: enabled\n");
-> > +             return;
-> > +     }
-> > +#endif
->
-> i.e. we've potentially already used the qspinlock at this point.
-Yes, I've used qspinlock here. But riscv_spinlock_init is called with
-irq_disabled and smp_off. That means this qspinlock only performs a
-test-set lock behavior by qspinlock fast-path.
+This small series add support for the Inside Secure EIP-93.
+This is a predecessor of the current supported EIP197. It doesn't
+require a firmware but instead it's embedded in the SoC.
 
-The qspinlock is a clean implementation. After qspin_unlock, the lock
-value remains at zero, but the ticket lock makes the value dirty. So
-we use Qspinlock at first or change it to ticket-lock before irq & smp
-up.
+First patch extend guard for spinlock_bh.
 
->
-> Will
+The other actually implement Documentation and Driver.
 
+The Driver pass all the normal selft test for the supported
+algo and also pass the EXTRA test with fuzz_iterations set to 10000.
 
+Changes v7:
+- Fix copypaste error in __eip93_hash_init
+- Rework import/export to actually export the partial hash
+  (we actually unmap DMA on export)
+- Rename no_finalize variable to better partial_hash
+- Rename 3rd commit title and drop Mediatek from title.
+- Add Cover Letter
+- Add Reviewed-by to DT commit
+(cumulative changes from old series that had changelog in each patch)
+Changes v6:
+- Add SoC specific compatible
+- Add now supported entry for compatible with no user
+Changes v5:
+- Add Ack tag to guard patch
+- Comment out compatible with no current user
+- Fix smatch warning (reported by Dan Carpenter)
+Changes v4:
+- Out of RFC
+- Add missing bitfield.h
+- Drop useless header
+Changes v3:
+- Mute warning from Clang about C23
+- Fix not inizialized err
+- Drop unused variable
+- Add SoC compatible with generic one
+Changes v2:
+- Rename all variables from mtk to eip93
+- Move to inside-secure directory
+- Check DMA map errors
+- Use guard API for spinlock
+- Minor improvements to code
+- Add guard patch
+- Change to better compatible
+- Add description for EIP93 models
 
---=20
-Best Regards
- Guo Ren
+Christian Marangi (3):
+  spinlock: extend guard with spinlock_bh variants
+  dt-bindings: crypto: Add Inside Secure SafeXcel EIP-93 crypto engine
+  crypto: Add Inside Secure SafeXcel EIP-93 crypto engine support
+
+ .../crypto/inside-secure,safexcel-eip93.yaml  |   67 ++
+ MAINTAINERS                                   |    7 +
+ drivers/crypto/Kconfig                        |    1 +
+ drivers/crypto/Makefile                       |    1 +
+ drivers/crypto/inside-secure/eip93/Kconfig    |   20 +
+ drivers/crypto/inside-secure/eip93/Makefile   |    5 +
+ .../crypto/inside-secure/eip93/eip93-aead.c   |  710 ++++++++++++
+ .../crypto/inside-secure/eip93/eip93-aead.h   |   38 +
+ .../crypto/inside-secure/eip93/eip93-aes.h    |   16 +
+ .../crypto/inside-secure/eip93/eip93-cipher.c |  413 +++++++
+ .../crypto/inside-secure/eip93/eip93-cipher.h |   60 +
+ .../crypto/inside-secure/eip93/eip93-common.c |  823 ++++++++++++++
+ .../crypto/inside-secure/eip93/eip93-common.h |   23 +
+ .../crypto/inside-secure/eip93/eip93-des.h    |   16 +
+ .../crypto/inside-secure/eip93/eip93-hash.c   | 1012 +++++++++++++++++
+ .../crypto/inside-secure/eip93/eip93-hash.h   |   78 ++
+ .../crypto/inside-secure/eip93/eip93-main.c   |  502 ++++++++
+ .../crypto/inside-secure/eip93/eip93-main.h   |  152 +++
+ .../crypto/inside-secure/eip93/eip93-regs.h   |  335 ++++++
+ include/linux/spinlock.h                      |   13 +
+ 20 files changed, 4292 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+ create mode 100644 drivers/crypto/inside-secure/eip93/Kconfig
+ create mode 100644 drivers/crypto/inside-secure/eip93/Makefile
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-aead.c
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-aead.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-aes.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-cipher.c
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-cipher.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-common.c
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-common.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-des.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-hash.c
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-hash.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-main.c
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-main.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-regs.h
+
+-- 
+2.45.2
+
 
