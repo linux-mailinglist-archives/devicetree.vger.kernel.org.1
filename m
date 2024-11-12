@@ -1,152 +1,131 @@
-Return-Path: <devicetree+bounces-120938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 532D59C4A6D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 01:09:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E22D9C4AA3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 01:25:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A6131F230BC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 00:09:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F3F61F23212
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 00:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACA9633F9;
-	Tue, 12 Nov 2024 00:09:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47DAF1E103B;
+	Tue, 12 Nov 2024 00:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qVaPw2fv"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OeWSpkgO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83FC54A1D;
-	Tue, 12 Nov 2024 00:09:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A6F1CEEB3;
+	Tue, 12 Nov 2024 00:25:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731370191; cv=none; b=YVOOL6p/gIgHEN85jo6HnbOaSyr5Z0trlYtFnY2jUXpmLRs5o1wpJ/wZiK/KQxlc0oXozWhuuTZ+mO4+L+u997bCuBv3FKaIzMOVrg+bOQGmmMBuCE+xPa6c5zXpQFREKCGWtl2L9M+QM43Fu+gsDTuXgJ+GwDZC/OxKE8crkBQ=
+	t=1731371118; cv=none; b=d25Xuz6gEJEqJeGRXHyF2TbPH4mKZirR7y/bpgVjuL8rEfw2F4adSa0wG1nKYEIdMiTCKxbTYjqOLyiB8vJ9ls4/SDG3FFfFiW+KQNfOiefz+h/tmOvDXLcVfXAHdx6FcMl1+ldlMcspSOMSMxaCLyl2gAxgPsdHbhkqMUf7h7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731370191; c=relaxed/simple;
-	bh=jlZDDRZ80YrCEZP6PYAXZ69UYnlvobdXU8ley54UQpI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FFAuTcpXTkcVhD2N5aOh4KzYe7VLQqT3cJcQEWWTBzddq6sB6Kzjs6O/ZbnQ5hgVjXIKdQtKjOePbTNf1PsxLNziYP8Mg+yDW1hBzjw44lYFB5Sh3XfGUHqAsRn9w1o2so7/yWnGiTdpPVcxAWob2ekorWTfBgVFYthUbixQaEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qVaPw2fv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E312C4CECF;
-	Tue, 12 Nov 2024 00:09:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731370191;
-	bh=jlZDDRZ80YrCEZP6PYAXZ69UYnlvobdXU8ley54UQpI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=qVaPw2fvkRToBcVxLLIsxMuauCg2zome8OYWw76HP/s20Dl8eZGruInFOXZD5TNoP
-	 K9b15iy41vRBcb02RgKm7Xl4g7g0vMX1p/eF7bmImn9zsfGaHOhO6NzPFrsSYPNts0
-	 JukCIB6rzrxeRKuxeyFmZSV23Q5fV/Z9M9O2AOQds67dhNaVwwo33plhY9t6sftz14
-	 S0I9x0LPQwXdJf4Qst+hr9HgyjCt+F+xMf5/xA7hV6CHdXNS+xg7NN+EFRA8xwpJJS
-	 uCCYY1pnvQiPANxgqCmvOl/jIE98LfhRJlCw245OCrLlHunjLl9c8G7D+exYmQy1zk
-	 3ug2L1UVuqHYQ==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Tue, 12 Nov 2024 01:08:54 +0100
-Subject: [PATCH RESEND v2 7/7] clk: en7523: map io region in a single block
+	s=arc-20240116; t=1731371118; c=relaxed/simple;
+	bh=fEChIaYJ1wFgeIJbYys10gE6LVwn82w3pvhsVHltYaw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=e8gA26PycfjImrEOdNEH26J3DaIhX56OLOMEDZRb1q7Uwd4YUwmIh/EQlWwo40eqkPNq101ENzzIXkZF/9DqepKADFd4qeNn/F5/4W8nci7w96nfCKa/PEH7jmn87+Kd4k3YYVXrDBZ4uJgEICNUp6DKjJfUgGLocV9q0xe2iZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OeWSpkgO; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ABCeLQR007990;
+	Tue, 12 Nov 2024 00:25:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=TFF3HdEtMPsgT1I3j7c3e+
+	jovgSPjR4JUXJg28PnpUU=; b=OeWSpkgO8kX8ShIM9dFgQVqfiC2mcv8vmSSDch
+	dBDbfQqDLX/m02vtt98rLrSO7y7bTUKB7u4RqRovHy8BA+XTZgbLX+8L4x+62QiP
+	tQVNysetgjLoXgnwswxjkN65KTfOVroEqKiIc0r6hpmh5gtdj+oKH2hDRDACPCsJ
+	XE/mytywF/AYh6oJip8SpG86lD/UsjyB+HloKHNk+3ZZU3w9tbD/2XLoA6fe/3uz
+	3EXwa+4fPkVg5hkNA2DPmft+6ZdDh1IBjLNxS4e2RWpS2aBrDpvSpKD5AN7PFrut
+	EYa/MC2BarMmbf7XBG5lnr6bDsqwni0alqIKoYBgMO6ZB+gw==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42t0wjwfk9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 00:25:10 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AC0P9UG028141
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 00:25:09 GMT
+Received: from hu-molvera-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 11 Nov 2024 16:25:08 -0800
+From: Melody Olvera <quic_molvera@quicinc.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Tingguo Cheng
+	<quic_tingguoc@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>, Luca Weiss
+	<luca@lucaweiss.eu>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>,
+        Bjorn Andersson
+	<quic_bjorande@quicinc.com>,
+        Jishnu Prakash <quic_jprakash@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Satya Durga Srinivasu Prabhala
+	<quic_satyap@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        Melody Olvera
+	<quic_molvera@quicinc.com>
+Subject: [PATCH v2 0/2] pmdomain: qcom: Introduce power domains for SM8750
+Date: Mon, 11 Nov 2024 16:24:42 -0800
+Message-ID: <20241112002444.2802092-1-quic_molvera@quicinc.com>
+X-Mailer: git-send-email 2.46.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241112-clk-en7581-syscon-v2-7-8ada5e394ae4@kernel.org>
-References: <20241112-clk-en7581-syscon-v2-0-8ada5e394ae4@kernel.org>
-In-Reply-To: <20241112-clk-en7581-syscon-v2-0-8ada5e394ae4@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Felix Fietkau <nbd@nbd.name>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- upstream@airoha.com, angelogioacchino.delregno@collabora.com, 
- linux-arm-kernel@lists.infradead.org, lorenzo.bianconi83@gmail.com, 
- ansuelsmth@gmail.com, Lorenzo Bianconi <lorenzo@kernel.org>
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 72nK39HQSS6qAvYpUeJc6PpwgsNSxDL0
+X-Proofpoint-ORIG-GUID: 72nK39HQSS6qAvYpUeJc6PpwgsNSxDL0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ malwarescore=0 mlxlogscore=783 spamscore=0 impostorscore=0 adultscore=0
+ phishscore=0 suspectscore=0 clxscore=1015 bulkscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411120001
 
-Map all clock-controller memory region in a single block.
-This patch does not introduce any backward incompatibility since the dts
-for EN7581 SoC is not upstream yet.
+Add power domains needed for the SM8750 SoC.
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/clk/clk-en7523.c | 32 +++++++++++++-------------------
- 1 file changed, 13 insertions(+), 19 deletions(-)
+The Qualcomm Technologies, Inc. SM8750 SoC is the latest in the line of
+consumer mobile device SoCs. See more at:
+https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/images/company/news-media/media-center/press-kits/snapdragon-summit-2024/day-1/documents/Snapdragon8EliteProductBrief.pdf
 
-diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
-index 60dc938144d75b5fa21c9109ff05ed1083a16678..e52c5460e927f54c6df152c60560f438f89ec928 100644
---- a/drivers/clk/clk-en7523.c
-+++ b/drivers/clk/clk-en7523.c
-@@ -39,8 +39,8 @@
- #define REG_PCIE_XSI1_SEL_MASK		GENMASK(12, 11)
- #define REG_CRYPTO_CLKSRC2		0x20c
- 
--#define REG_RST_CTRL2			0x00
--#define REG_RST_CTRL1			0x04
-+#define REG_RST_CTRL2			0x830
-+#define REG_RST_CTRL1			0x834
- 
- struct en_clk_desc {
- 	int id;
-@@ -645,15 +645,9 @@ static const struct reset_control_ops en7581_reset_ops = {
- 	.status = en7523_reset_status,
- };
- 
--static int en7581_reset_register(struct platform_device *pdev)
-+static int en7581_reset_register(struct device *dev, void __iomem *base)
- {
--	struct device *dev = &pdev->dev;
- 	struct en_rst_data *rst_data;
--	void __iomem *base;
--
--	base = devm_platform_ioremap_resource(pdev, 1);
--	if (IS_ERR(base))
--		return PTR_ERR(base);
- 
- 	rst_data = devm_kzalloc(dev, sizeof(*rst_data), GFP_KERNEL);
- 	if (!rst_data)
-@@ -677,27 +671,27 @@ static int en7581_reset_register(struct platform_device *pdev)
- static int en7581_clk_hw_init(struct platform_device *pdev,
- 			      struct clk_hw_onecell_data *clk_data)
- {
--	void __iomem *np_base;
- 	struct regmap *map;
-+	void __iomem *base;
- 	u32 val;
- 
- 	map = syscon_regmap_lookup_by_compatible("airoha,en7581-chip-scu");
- 	if (IS_ERR(map))
- 		return PTR_ERR(map);
- 
--	np_base = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(np_base))
--		return PTR_ERR(np_base);
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
- 
--	en7581_register_clocks(&pdev->dev, clk_data, map, np_base);
-+	en7581_register_clocks(&pdev->dev, clk_data, map, base);
- 
--	val = readl(np_base + REG_NP_SCU_SSTR);
-+	val = readl(base + REG_NP_SCU_SSTR);
- 	val &= ~(REG_PCIE_XSI0_SEL_MASK | REG_PCIE_XSI1_SEL_MASK);
--	writel(val, np_base + REG_NP_SCU_SSTR);
--	val = readl(np_base + REG_NP_SCU_PCIC);
--	writel(val | 3, np_base + REG_NP_SCU_PCIC);
-+	writel(val, base + REG_NP_SCU_SSTR);
-+	val = readl(base + REG_NP_SCU_PCIC);
-+	writel(val | 3, base + REG_NP_SCU_PCIC);
- 
--	return en7581_reset_register(pdev);
-+	return en7581_reset_register(&pdev->dev, base);
- }
- 
- static int en7523_clk_probe(struct platform_device *pdev)
+Changes in V2:
+- squashed bindings into one patch
 
+Jishnu Prakash (1):
+  pmdomain: qcom: rpmhpd: Add rpmhpd support for SM8750
+
+Taniya Das (1):
+  dt-bindings: power: qcom,rpmpd: document the SM8750 RPMh Power Domains
+
+ .../devicetree/bindings/power/qcom,rpmpd.yaml |  1 +
+ drivers/pmdomain/qcom/rpmhpd.c                | 26 +++++++++++++++++++
+ include/dt-bindings/power/qcom-rpmpd.h        |  2 ++
+ 3 files changed, 29 insertions(+)
+
+
+base-commit: 6d59cab07b8d74d0f0422b750038123334f6ecc2
 -- 
-2.47.0
+2.46.1
 
 
