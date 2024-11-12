@@ -1,173 +1,190 @@
-Return-Path: <devicetree+bounces-121290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815679C62CD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 21:46:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B024B9C62D2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 21:48:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 407C628280E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:46:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40EA01F23933
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:48:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7043D217452;
-	Tue, 12 Nov 2024 20:46:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45B4A219E3B;
+	Tue, 12 Nov 2024 20:48:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="L11buY95"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b4RPj1lD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB35E18BBA2;
-	Tue, 12 Nov 2024 20:46:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7360718BBA2;
+	Tue, 12 Nov 2024 20:48:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731444409; cv=none; b=eQwzPitTRTDXq6D1BWDxwZlTEb3/SfZoPjWDQ2tuv6DseymV3yHWmXal4+tnNzQlN4wbxagMX7f9cx+g+KCeGT752mnYU/3lR1rGh5449jEYLMo3pw4O99dsKHlUlznN9guW36Z7B6M5owJlNs0HBHj4Zuhi8xsfotGPdp9OtGw=
+	t=1731444504; cv=none; b=Vl+SiIA2wK1FTnJ1qpvJJ6mmavV8185AuyV8kcxIMequ1kcq3wuMoRr6wq5c2yP3V+EqT3DEzVbZOPSIzs4D3pxZMJzbOcZSVULkWDXrONk6STAwflOlpJLSjNJznIBtso6kB/3MYFDD1nQRCAQoJ+OiJgFe93dyrU9k4a9DavY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731444409; c=relaxed/simple;
-	bh=+f3YFdCuoxk91H5n50mrNb1K7Ch8HlIIuIwfNYO4IoY=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=i3I5eIqccAHg2wSmrlwNp5CbGpA3hDo43tbF5shAPTE+p69P0akZX5NBSCz0tcIupE5BEplCFls02LLLnMMpbh/Dsr6FY36h+/m0kYzgywVbUvtQUprbWmvBk/0YzLj5ASRZW1ffnZ4fNmv/mmsw7eLydd/lz/KNpko2DvBGGnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=L11buY95; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ACJeR8S019160;
-	Tue, 12 Nov 2024 20:46:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=RvdgDI
-	NoXFhK8K3r+lG+Sv1e/KZonox43PzTJbkP32c=; b=L11buY95J1U3Tt0QuPgC5J
-	tfEVY9YcmRJPO2JIIV4DLXhFcCiF1CMgQzaGw12Hmg/592HDCq7SX490EeMUXC0+
-	IFcJgiH3RTxmnDzoQIrgt9lVhEi/06D3IfxmyyazFn0GMXr5TWJ926TBdoEWWrrP
-	np5bRquGCqqUFtAtp28+vkkDUOs574loFyJhP12GcM832E19QXofyoZdSw5Qa428
-	tBEzW/7nCmTlCEbuXDPo3CWV1q30UWV4cZB2eJnPFkZxpQQcp85QQvZOKml6keM+
-	zvPlDryZn7DubkEOWVkiaiWnlWGhF1x55kQiZBbC1tVl2iLPqS+LR+fvq4VmnHAQ
-	==
-Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 42vdcer6tb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Nov 2024 20:46:28 +0000 (GMT)
-Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma11.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 4ACJKwxV026315;
-	Tue, 12 Nov 2024 20:46:27 GMT
-Received: from smtprelay05.wdc07v.mail.ibm.com ([172.16.1.72])
-	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 42tms14uas-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Nov 2024 20:46:27 +0000
-Received: from smtpav05.dal12v.mail.ibm.com (smtpav05.dal12v.mail.ibm.com [10.241.53.104])
-	by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 4ACKkQsL26804752
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 12 Nov 2024 20:46:26 GMT
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 61D4358052;
-	Tue, 12 Nov 2024 20:46:26 +0000 (GMT)
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 2F09A58056;
-	Tue, 12 Nov 2024 20:46:26 +0000 (GMT)
-Received: from [9.61.176.224] (unknown [9.61.176.224])
-	by smtpav05.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Tue, 12 Nov 2024 20:46:26 +0000 (GMT)
-Message-ID: <01099631-a08a-46cc-a2fa-7ba5b44af0cb@linux.ibm.com>
-Date: Tue, 12 Nov 2024 14:46:24 -0600
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm: dts: aspeed: Blueridge and Rainer: Add VRM presence
- GPIOs
-To: Andrew Jeffery <andrew@codeconstruct.com.au>,
-        linux-aspeed@lists.ozlabs.org
-Cc: joel@jms.id.au, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241108145822.1365072-1-eajames@linux.ibm.com>
- <d4196567fc62a24922794b02adad1b6c47750760.camel@codeconstruct.com.au>
-Content-Language: en-US
-From: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <d4196567fc62a24922794b02adad1b6c47750760.camel@codeconstruct.com.au>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: hKveIcO7WnRc1dvlNG5J8SxPsuEmwEPZ
-X-Proofpoint-ORIG-GUID: hKveIcO7WnRc1dvlNG5J8SxPsuEmwEPZ
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+	s=arc-20240116; t=1731444504; c=relaxed/simple;
+	bh=m3WKM0gAj9+XlDrqQ/5E8nokt5xYruN4gFb9A8Ke7iQ=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=CdQlMHDLSXgbvITn0PI45g6Kjj6nBC47Krt696Fzvf3fuvdNJ5lfkwl8nNIyQcPSC4iBxqvo6/97iZ+nxwMW4pujO6BLxL9AzzRitBkqX2Bitp0s3LpdRvL6Srteh/xPkhOqSli1Twp2x/hYU5KD23R7WFi9I5TUDFV0JjwPVFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b4RPj1lD; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4316a44d1bbso51397255e9.3;
+        Tue, 12 Nov 2024 12:48:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731444501; x=1732049301; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9IEMQPSVtNlCc6/S5SqeKWGzYp+R/DaBjCz0N2sj2Qc=;
+        b=b4RPj1lDB14vA/wA6U86mkK2BtHYtU6LfiAxRttFwl9ycIs5sF9BPjdz9Q2H72J+Ks
+         UHBNbP11YddWdd6qE/L2VBW1nU3gWVhLAODrQO8ARGx7Di2sWSSgURJFPYha1t1NdyEl
+         4b7/nwM6zIEeMRK5oxuLwIwan2cnYAm4bD8IbXSCr7+2H2eCjfnUDT7meiQYLhOh+qLf
+         MjcA+fvB9p59eSKvCaGO8z0wg97/eZUm/f30OcUYjD9fARyV+zGMfrea2Lvo1QiVSBew
+         v14xHNRmnoJhS2JS110arzcscR5kaviAZvecqy48TrQBdjRKG/cwyHm8/wCbfrqrWP3F
+         Z1Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731444501; x=1732049301;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9IEMQPSVtNlCc6/S5SqeKWGzYp+R/DaBjCz0N2sj2Qc=;
+        b=gOeQXwASufDN3ZU3bauDPx5uz6pOis29ItKpsdIPK8TaHXRvyEa7fVoRSDdsc9BQ3u
+         caiLs94TgXZBoIW09LoCAMcOft534f4DfhEQsRhFmqMMPh6nKCZG+Lm5Gh1LuQWtKkhv
+         +HXWfbQ7saObqrrrY5eRtdukU2B3QxWoZQ4Fr6nCA9hoFQ5ytTW3LT0b9V2M5LxA6ZUi
+         TwrTZZf9KutTYblJ92sv8PAM+FftU6/Ae6Bz9e3YgsOBPOQEpaY3OMd1+vXt/Y1dfVbS
+         ntITiiMSV2d830nRsNmlZV7aX0XQ68o0wwLUq7KAUtIZwh8H12ptewIXreVBpKoxHIa0
+         4mDA==
+X-Forwarded-Encrypted: i=1; AJvYcCUUkbxxhKAvCIRdfaYGLXG+O202UlTBWKSE5iXFpCY/UvAkALrM0RvK9ntPOl/AWUR5gMHJVKi+YEZHknNF@vger.kernel.org, AJvYcCW7w4Ser6aDnU+w2IxJ2wDOV6xA7LkIX2pmOroiicmaLlbqDk8hTFfRC30nMTu8TjEO2KjU9cOuIvdt@vger.kernel.org, AJvYcCXJ6BeK/wzCIrHmbFvf3MDzm5OMV7IaeG086RufGjZpWHqSO3FisqN4mBoy4NxuzXkG0dp9uoFC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmMrbj/wUh3LfaVQt4BMLn/R9rU+FXbV21KhDJDlt/UIYIZTzF
+	dhllZZ6ptd/1NQRu/6ze4OSImxgOweNU8yzGdpf9waDSPRnQREyUMDq+9Q==
+X-Google-Smtp-Source: AGHT+IHfMUfl4lLrkGoe+qI2lDcOs0XrtRDrd6/WhdzyPnclivKq+ECLdyn2nrlfubdCh7Cal4/OMQ==
+X-Received: by 2002:a05:600c:5006:b0:431:5c17:d575 with SMTP id 5b1f17b1804b1-432d4aae640mr4349335e9.11.1731444500531;
+        Tue, 12 Nov 2024 12:48:20 -0800 (PST)
+Received: from localhost.localdomain (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-432b05c26e3sm225426715e9.33.2024.11.12.12.48.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Nov 2024 12:48:19 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: [net-next PATCH v5 0/4] net: dsa: Add Airoha AN8855 support
+Date: Tue, 12 Nov 2024 21:47:23 +0100
+Message-ID: <20241112204743.6710-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
- definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- spamscore=0 clxscore=1015 malwarescore=0 mlxlogscore=415
- priorityscore=1501 bulkscore=0 mlxscore=0 impostorscore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411120166
+Content-Transfer-Encoding: 8bit
 
+This small series add the initial support for the Airoha AN8855 Switch.
 
-On 11/10/24 17:45, Andrew Jeffery wrote:
-> On Fri, 2024-11-08 at 08:58 -0600, Eddie James wrote:
->> Add GPIO line names to the GPIO expander to describe DCM and
->> VRM presence detection lines.
->>
->> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->> ---
->>   arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts | 4 ++--
->>   arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts   | 4 ++--
->>   2 files changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
->> b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
->> index 5f9a46c2abb8..d504ae84db89 100644
->> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
->> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
->> @@ -1232,8 +1232,8 @@ led-controller@60 {
->>                  #gpio-cells = <2>;
->>   
->>                  gpio-line-names =
->> -                       "", "", "", "", "", "", "", "",
->> -                       "", "", "", "", "", "", "power-config-full-
->> load", "";
->> +                       "", "", "", "", "", "", "P10_DCM0_PRES",
->> "P10_DCM1_PRES",
->> +                       "", "", "", "", "PRESENT_VRM_DCM0_N",
->> "PRESENT_VRM_DCM1_N", "power-config-full-load", "";
->>          };
-> This ends up generating checkpatch warnings about long lines when I
-> apply it.
->
-> I did a quick, incomplete and random survey of some other devicetrees,
-> and perhaps exploding out like in [1] might help.
->
-> [1]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=d85b2ad35a2ab
+It's a 5 port Gigabit Switch with SGMII/HSGMII upstream port.
 
+This is starting to get in the wild and there are already some router
+having this switch chip.
 
-Oh, oops, sure thing.
+It's conceptually similar to mediatek switch but register and bits
+are different. And there is that massive Hell that is the PCS
+configuration.
+Saddly for that part we have absolutely NO documentation currently.
 
-Thanks,
+There is this special thing where PHY needs to be calibrated with values
+from the switch efuse. (the thing have a whole cpu timer and MCU)
 
-Eddie
+Changes v5:
+- Add devm_dsa_register_switch() patch
+- Add Reviewed-by tag for DT patch
+Changes v4:
+- Set regmap readable_table static (mute compilation warning)
+- Add support for port_bridge flags (LEARNING, FLOOD)
+- Reset fdb struct in fdb_dump
+- Drop support_asym_pause in port_enable
+- Add define for get_phy_flags
+- Fix bug for port not inititially part of a bridge
+  (in an8855_setup the port matrix was always cleared but
+   the CPU port was never initially added)
+- Disable learning and flood for user port by default
+- Set CPU port to flood and learning by default
+- Correctly AND force duplex and flow control in an8855_phylink_mac_link_up
+- Drop RGMII from pcs_config
+- Check ret in "Disable AN if not in autoneg"
+- Use devm_mutex_init
+- Fix typo for AN8855_PORT_CHECK_MODE
+- Better define AN8855_STP_LISTENING = AN8855_STP_BLOCKING
+- Fix typo in AN8855_PHY_EN_DOWN_SHIFT
+- Use paged helper for PHY
+- Skip calibration in config_init if priv not defined
+Changes v3:
+- Out of RFC
+- Switch PHY code to select_page API
+- Better describe masks and bits in PHY driver for ADC register
+- Drop raw values and use define for mii read/write
+- Switch to absolute PHY address
+- Replace raw values with mask and bits for pcs_config
+- Fix typo for ext-surge property name
+- Drop support for relocating Switch base PHY address on the bus
+Changes v2:
+- Drop mutex guard patch
+- Drop guard usage in DSA driver
+- Use __mdiobus_write/read
+- Check return condition and return errors for mii read/write
+- Fix wrong logic for EEE
+- Fix link_down (don't force link down with autoneg)
+- Fix forcing speed on sgmii autoneg
+- Better document link speed for sgmii reg
+- Use standard define for sgmii reg
+- Imlement nvmem support to expose switch EFUSE
+- Rework PHY calibration with the use of NVMEM producer/consumer
+- Update DT with new NVMEM property
+- Move aneg validation for 2500-basex in pcs_config
+- Move r50Ohm table and function to PHY driver
 
+Christian Marangi (4):
+  net: dsa: add devm_dsa_register_switch()
+  dt-bindings: net: dsa: Add Airoha AN8855 Gigabit Switch documentation
+  net: dsa: Add Airoha AN8855 5-Port Gigabit DSA Switch driver
+  net: phy: Add Airoha AN8855 Internal Switch Gigabit PHY
 
->
->>   
->>          led-controller@61 {
->> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
->> b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
->> index a4aec3010456..eefc69d0d032 100644
->> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
->> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
->> @@ -1280,8 +1280,8 @@ pca_pres3: pca9552@60 {
->>                  #gpio-cells = <2>;
->>   
->>                  gpio-line-names =
->> -                       "", "", "", "", "", "", "", "",
->> -                       "", "", "", "", "", "", "power-config-full-
->> load", "";
->> +                       "", "", "", "", "", "", "P10_DCM0_PRES",
->> "P10_DCM1_PRES",
->> +                       "", "", "", "", "PRESENT_VRM_DCM0_N",
->> "PRESENT_VRM_DCM1_N", "power-config-full-load", "";
-> Similarly here.
->
-> Andrew
+ .../bindings/net/dsa/airoha,an8855.yaml       |  242 ++
+ MAINTAINERS                                   |   11 +
+ drivers/net/dsa/Kconfig                       |    9 +
+ drivers/net/dsa/Makefile                      |    1 +
+ drivers/net/dsa/an8855.c                      | 2129 +++++++++++++++++
+ drivers/net/dsa/an8855.h                      |  638 +++++
+ drivers/net/phy/Kconfig                       |    5 +
+ drivers/net/phy/Makefile                      |    1 +
+ drivers/net/phy/air_an8855.c                  |  268 +++
+ include/net/dsa.h                             |    1 +
+ net/dsa/dsa.c                                 |   19 +
+ 11 files changed, 3324 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/airoha,an8855.yaml
+ create mode 100644 drivers/net/dsa/an8855.c
+ create mode 100644 drivers/net/dsa/an8855.h
+ create mode 100644 drivers/net/phy/air_an8855.c
+
+-- 
+2.45.2
+
 
