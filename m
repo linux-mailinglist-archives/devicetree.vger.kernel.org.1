@@ -1,177 +1,204 @@
-Return-Path: <devicetree+bounces-121119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F2E59C5709
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 12:53:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D91C79C5754
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 13:08:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E01D91F22DD5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 11:53:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C739B302F7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 11:12:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC0BB1BCA11;
-	Tue, 12 Nov 2024 11:53:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40A8921CF9A;
+	Tue, 12 Nov 2024 10:48:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f0pLP32P"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="9oMiat9a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E4132309A9;
-	Tue, 12 Nov 2024 11:53:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5776421CF86;
+	Tue, 12 Nov 2024 10:48:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731412398; cv=none; b=AJeLx5uJlQ/LAh3kp+d70gSjafc9DAMkM3DhxVts1Pzo8Ou7DKewQfTXJA957G4v5KnF9drqNFHQiKrUc6JmxHCB3x+IDSFYW31Rr66BWN3hdsXPcTztxqQT25aDR3NnrkFwzqNHuwPTjgQdL+8kEIgo8+xBSv3DioXllNi21QQ=
+	t=1731408528; cv=none; b=qd21qqJmmElRqo8ojXhuW6w60O2LuoOLah6vV4lGTejz7o/ihfBsVPMSM/P6sGMc3UVXmHRqZXFDYcqOGUM6Mquu/bt9q/aqvMI0Lkxt2p9HvwFZx2AFY8Lm1Frnl6inPx3Ag2gw0EIHhF3J8WmMAprPimyzdLpZLMEGqxNfPu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731412398; c=relaxed/simple;
-	bh=TnqPipQg2CpmZLQ4wcu28TkzNcF6HV7w2kDzb759YOQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ytt9CWF3rAoHWeOMBfjkZ4T2XCqLQ9TxLqe+eVeY+TSnu/U/GxhPKccVQSlzMc8Te1bOmodiZlyitQKVGYrj35NghC5p2ls24SLne0wxt9CLjT+32h3MmD4DRki+B/1bJSWSuvAS+99o66MQ8pgABZlpCf4mcYqtxQPj/KFs5DQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f0pLP32P; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-7ee11ff7210so4149882a12.1;
-        Tue, 12 Nov 2024 03:53:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731412396; x=1732017196; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=77BPT0TV3A11R+sNVa9I1JVGIl/YUnzmNjHt+0y5/uY=;
-        b=f0pLP32P6GFCHKpHjWzUNp1pHX+tefhqniTl0vhhXrKDgCSF4q5UsisUZmiApcnQBT
-         PQA74EQTv4IF3ThnX4/PILbBYcNyw+//4xYJzuWmj/dWIaHW7mkyXTLDgi5NOw7+Lo6w
-         nwT0PpzGyx/spzpveRFh3Gr51FjQhQYOyH+etVLK4K6mC2p5fWEHUEo779QeVR8rBTci
-         2lhlzmb7Yzz5IiGPiJ+g5y4aoCDIIj4nxxvVqfFNI6HFn3YQB3TM5HJ9YGNfQ7m0ATXE
-         VGyxvDSUyYp40wtzojLqrrjQCVjmDyHo4vQDwXyrRfdu4RIiX3Ngnoo0OqXReI2u5DAN
-         DTJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731412396; x=1732017196;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=77BPT0TV3A11R+sNVa9I1JVGIl/YUnzmNjHt+0y5/uY=;
-        b=kHh9QlV6bEFu2E7kiy/GXTOJJF38YQEMqdUG2h6fhIFjsy0exib8cApl/fOxn9gi+W
-         ifTZEzIxmFawk1w6/cg0sQ4cc7HKmwm3ffKXpCcBTqZ0bNeWLdMVUJC1Q6KLlsDVy0JZ
-         HgPQw5WDn7fJ46P2Nayzmoq8toaU+oh88kzYx1mnHsq5mR6QBIaSAE43gSVkN9cuAx/o
-         tO+znRwQ0bcD2KS669qgAH67Lu2iO1FVlv7gIvyrGeg30GbU9ZrlhLglIbWR5PxWGyrG
-         O8W/rloqM4K7tZCzL7bLNu2ky3opZJoZtLW4TjhihT/sAkbxIm2QX8WHqEwNlIu1D6Ha
-         0Cyg==
-X-Forwarded-Encrypted: i=1; AJvYcCUZT53bF+NGCXRZz+x+jpQNETdP7d7FklWvVYyAZtHplsqYGoO2At0mPBl4qsnrPQcddOoIqXCL7vwGsT0p@vger.kernel.org, AJvYcCVKaNT5gzaKqjU7CjNXafGKyW03WB8FQCh7TTezr0pNViwL069BPZ23Yxh0qRCbEzqGsplpt+gGTiJzA3c=@vger.kernel.org, AJvYcCVeeOsJioq+uBWAoeAOlX9LElLZXmy51wBZdrJjrOAAFIrWuvLtPCkuwD5jyiG7o9p9O96dAezdkfZs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3TD1OaqY//AvnxVaSmz+vfZWQ5G9Sl88MCkny9l8GLB4RlK/A
-	0AfYiPDB6x3PZ7q2NGe1ZV0lCxTtu+jP6B9Z671BHn/ew2VVJqh1
-X-Google-Smtp-Source: AGHT+IGMAZvN6QZA0lKlxIqEWgUYkYo2wgb3l4Uv9em6gzdM5DvG1g7/whPF59nG27HiAoRwyRtHrg==
-X-Received: by 2002:a17:90b:2ece:b0:2e2:d33b:cc with SMTP id 98e67ed59e1d1-2e9b172e0bemr21513271a91.21.1731412396371;
-        Tue, 12 Nov 2024 03:53:16 -0800 (PST)
-Received: from ux-UP-WHL01 (mailgw01.gttektw.com. [45.117.96.243])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e9b50dcd9bsm8080210a91.21.2024.11.12.03.53.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Nov 2024 03:53:15 -0800 (PST)
-Date: Tue, 12 Nov 2024 19:53:10 +0800
-From: Charles Wang <charles.goodix@gmail.com>
-To: Doug Anderson <dianders@chromium.org>
-Cc: robh@kernel.org, krzk@kernel.org, hbarnor@chromium.org,
-	conor.dooley@microchip.com, dmitry.torokhov@gmail.com,
-	jikos@kernel.org, bentiss@kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] HID: hid-goodix: Add OF supports
-Message-ID: <ZzNBpkwDLgutPJq8@ux-UP-WHL01>
-References: <20241111075000.111509-1-charles.goodix@gmail.com>
- <20241111075000.111509-3-charles.goodix@gmail.com>
- <CAD=FV=WKU2Wwfwg1EACYgJtUKJjYH2OOQn6ELXbBK=B-jzbTZQ@mail.gmail.com>
+	s=arc-20240116; t=1731408528; c=relaxed/simple;
+	bh=Rlz9/2w3HuGHPx/1Dx6dMSeAHh6+zlOAnHthXakqKJ4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=d+wxFEPST5Ua9G2imtY5gPmu/raZSUw7lmZBvPgHQUhG/SMRjxcQKzA//Kzt6f1wTHY+Z2ohooSqsHoW/OuzLTstD66/GmeLrwQFNBgOckKFU/CTS2Q3e8/lQ+ywik9wlXNylXULRWfDcsjiSJe0azdb47AMa7tG3qUtRPQS4Q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=9oMiat9a; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=2m7yLhxfZDBBcaSm+o4e0Z6YDFzbc2KbJ1HEoJJMrgE=; b=9oMiat9aS3OnXG3WvYQ6dodxHB
+	c3IKeiuhoIjkbP/vFCRnyEKdsl90Q82eNInauL9GoJFDN6sN/smTp40tdct7YHbmusIztadZeNmT1
+	cMA32aoHjjpu+yKHPZr3sMJE0SXKKv8n09FgEm6HNwnVZ3xYBr/QG8Q0PEvXAJ60wd2xK7/g/atl1
+	5cidNMeMHYtCv1CxH09N+J4oAvA2DozhbCpxbtemIOZsxhUpKlrGweu3bj2lRyvOONLu+cZs+FZJn
+	0/eXYnZJRXoVFmduzywld+K6DGYhoeTbfRx/GqN6A460Lbv1GK1yxOZxQO8CeeS0eOplhyS4GE/fh
+	v+x5pbSg==;
+Date: Tue, 12 Nov 2024 11:48:18 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Mithil Bavishi <bavishimithil@gmail.com>
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman
+ <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
+ <tony@atomide.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jessica Zhang
+ <quic_jesszhan@quicinc.com>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>, Thierry Reding
+ <thierry.reding@gmail.com>, linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v3 10/10] ARM: dts: ti: omap: samsung-espresso10: Add
+ initial support for Galaxy Tab 2 10.1
+Message-ID: <20241112114818.1eb238e9@akair>
+In-Reply-To: <20241108200440.7562-11-bavishimithil@gmail.com>
+References: <20241108200440.7562-1-bavishimithil@gmail.com>
+	<20241108200440.7562-11-bavishimithil@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=WKU2Wwfwg1EACYgJtUKJjYH2OOQn6ELXbBK=B-jzbTZQ@mail.gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Doug,
+Am Fri,  8 Nov 2024 20:04:39 +0000
+schrieb Mithil Bavishi <bavishimithil@gmail.com>:
 
-On Mon, Nov 11, 2024 at 09:24:39AM -0800, Doug Anderson wrote:
-> Hi,
+> Create a device tree for the 10 inch variants (P5100, P5110, P5113)
 > 
-> On Sun, Nov 10, 2024 at 11:50 PM Charles Wang <charles.goodix@gmail.com> wrote:
-> >
-> > This patch introduces the following changes:
-> > - Adds OF match table.
-> > - Hardcodes hid-report-addr in the driver rather than fetching it
-> >   from the device property.
-> >
-> > Signed-off-by: Charles Wang <charles.goodix@gmail.com>
-> > ---
-> >  drivers/hid/hid-goodix-spi.c | 17 +++++++++++------
-> >  1 file changed, 11 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/hid/hid-goodix-spi.c b/drivers/hid/hid-goodix-spi.c
-> > index 6ae2300a6..80c0288a3 100644
-> > --- a/drivers/hid/hid-goodix-spi.c
-> > +++ b/drivers/hid/hid-goodix-spi.c
-> > @@ -20,6 +20,7 @@
-> >  #define GOODIX_HID_REPORT_DESC_ADDR    0x105AA
-> >  #define GOODIX_HID_SIGN_ADDR           0x10D32
-> >  #define GOODIX_HID_CMD_ADDR            0x10364
-> > +#define GOODIX_HID_REPORT_ADDR         0x22C8C
-> >
-> >  #define GOODIX_HID_GET_REPORT_CMD      0x02
-> >  #define GOODIX_HID_SET_REPORT_CMD      0x03
-> > @@ -701,12 +702,7 @@ static int goodix_spi_probe(struct spi_device *spi)
-> >                 return dev_err_probe(dev, PTR_ERR(ts->reset_gpio),
-> >                                      "failed to request reset gpio\n");
-> >
-> > -       error = device_property_read_u32(dev, "goodix,hid-report-addr",
-> > -                                        &ts->hid_report_addr);
-> > -       if (error)
-> > -               return dev_err_probe(dev, error,
-> > -                                    "failed get hid report addr\n");
-> > -
-> > +       ts->hid_report_addr = GOODIX_HID_REPORT_ADDR;
-> >         error = goodix_dev_confirm(ts);
-> >         if (error)
-> >                 return error;
-> > @@ -790,6 +786,14 @@ static const struct acpi_device_id goodix_spi_acpi_match[] = {
-> >  MODULE_DEVICE_TABLE(acpi, goodix_spi_acpi_match);
-> >  #endif
-> >
-> > +#ifdef CONFIG_OF
-> > +static const struct of_device_id goodix_spi_of_match[] = {
-> > +       { .compatible = "goodix,gt7986u-spifw", },
-> > +       { }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, goodix_spi_of_match);
-> > +#endif
-> > +
-> >  static const struct spi_device_id goodix_spi_ids[] = {
-> >         { "gt7986u" },
-> >         { },
-> > @@ -800,6 +804,7 @@ static struct spi_driver goodix_spi_driver = {
-> >         .driver = {
-> >                 .name = "goodix-spi-hid",
-> >                 .acpi_match_table = ACPI_PTR(goodix_spi_acpi_match),
-> > +               .of_match_table = of_match_ptr(goodix_spi_of_match),
+> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+> ---
+>  .../dts/ti/omap/omap4-samsung-espresso10.dts  | 102 ++++++++++++++++++
+>  1 file changed, 102 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
 > 
-> I can never quite remember what the current preference is in regards
-> to "OF" tables (whether to use #ifdef like you've done or mark them
-> `__maybe_unused`), so maybe someone will request you change it. ...but
-> IMO what you have is fine and looks to be properly guarded with
-> of_match_ptr(). As far as I'm concerned, this patch looks OK.
-> 
-> Oh, I guess the one "nit" is that I would have put "spi" in the
-> subject, making it "HID: hid-goodix-spi: Add OF supports". It might be
-> worth sending a v5 for that (after waiting a day or two) unless a
-> maintainer tells you not to.
->
+> diff --git a/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts b/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
+> new file mode 100644
+> index 000000000..70bbef468
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
+> @@ -0,0 +1,102 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/dts-v1/;
+> +
+> +#include "omap4-samsung-espresso-common.dtsi"
+> +#include <dt-bindings/power/summit,smb347-charger.h>
+> +/ {
+> +	model = "Samsung Galaxy Tab 2 (10 inch)";
+> +	compatible = "samsung,espresso10", "ti,omap4430", "ti,omap4";
+> +
+> +	i2c-gpio-5 {
+> +		smb347: charger@6 {
+> +			compatible = "summit,smb347";
+> +			reg = <0x6>; // 0x0C >> 1
+> +			interrupt-parent = <&gpio2>;
+> +			interrupts = <0 IRQ_TYPE_EDGE_BOTH>;
+> +
+> +			summit,enable-usb-charging;
+> +			summit,enable-charge-control = <SMB3XX_CHG_ENABLE_SW>;
+> +			summit,chip-temperature-threshold-celsius = <120>;
+> +			summit,usb-current-limit-microamp = <1800000>;
+> +		};
+> +	};
+> +
+> +	backlight: backlight {
+> +		compatible = "pwm-backlight";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&backlight_pins>;
+> +		pwms = <&pwm10 0 1600 0>;
+> +		power-supply = <&reg_lcd>;
+> +		enable-gpios = <&gpio3 31 GPIO_ACTIVE_HIGH>;
+> +		brightness-levels = <0 4 8 16 32 64 128 255>;
+> +		default-brightness-level = <7>;
+> +	};
+> +
+> +	panel {
+> +		compatible = "samsung,ltn101al03", "panel-lvds";
+> +		power-supply = <&reg_lcd>;
+> +		width-mm = <223>;
+> +		height-mm = <125>;
+> +		data-mapping = "vesa-24";
+> +		backlight = <&backlight>;
+> +
+> +		panel-timing {
+> +			clock-frequency = <69818000>;
+> +
+> +			hback-porch = <64>;
+> +			hactive = <1280>;
+> +			hfront-porch = <16>;
+> +			hsync-len = <48>;
+> +
+> +			vback-porch = <11>;
+> +			vactive = <800>;
+> +			vfront-porch = <16>;
+> +			vsync-len = <3>;
+> +
+> +			hsync-active = <0>;
+> +			vsync-active = <0>;
+> +			de-active = <1>;
+> +			pixelclk-active = <1>;
+> +		};
+> +
+> +		port {
+> +			panel_in: endpoint {
+> +				remote-endpoint = <&bridge_out>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&i2c3 {
+> +	touchscreen: synaptics-rmi4-i2c@20 {
 
-Ack,
+touchscreen@20
 
-> In any case:
-> 
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> +		compatible = "syna,rmi4-i2c";
+> +		reg = <0x20>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		interrupt-parent = <&gpio2>;
+> +		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&touch_pins>;
+> +
+> +		avdd-supply = <&reg_touch_ldo_en>;
+not known in schema
 
-Thanks,
-Charles
+> +		vdd-supply = <&ldo6>;
+> +
+> +		syna,reset-delay-ms = <200>;
+> +		syna,startup-delay-ms = <200>;
+> +
+> +		touchscreen-size-x = <1279>;
+
+Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml:
+horizontal resolution of touchscreen (maximum x coordinate reported + 1)
+
+So this touchscreen reports max 1278?
+
+> +		touchscreen-size-y = <799>;
+
+same question.
+
+And these things belong below rm4-f11 according to
+Documentation/devicetree/bindings/input/syna,rmi4.yaml
+
+Regards,
+Andreas
 
