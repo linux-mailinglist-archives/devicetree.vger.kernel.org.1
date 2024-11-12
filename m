@@ -1,64 +1,58 @@
-Return-Path: <devicetree+bounces-121262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A6869C5F86
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 18:54:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D58269C5FCB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 19:02:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C384F1F22C50
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:54:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8715A1F25CA4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 18:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B97FF2144C3;
-	Tue, 12 Nov 2024 17:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DFC2144CE;
+	Tue, 12 Nov 2024 17:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lnnh/sKj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xv3yOpqb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83C8A2141D6;
-	Tue, 12 Nov 2024 17:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83EB421442E;
+	Tue, 12 Nov 2024 17:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731434020; cv=none; b=s7Hq+1n1qpeUSu36H2od1y9ObiiOPUuCMC0jDqEBaDWTuDWjNR3MLTzYzuCUTjodBVifnNZb7rPPGWF4WvpixllFQeVSErL8FAHMLYWM2ajcObd9cySVgQoRCRxw65AVpOdK6F8KClD60+EnXoHs5cAXk0QCEXv2EqbEhsXUmhw=
+	t=1731434350; cv=none; b=aeoezTAT0WBW/fNcGDvwa06QVUL/PZ8XyP8PokJv6CSXZO5IGSAHqMIlGKi5WYqM1yh4gsTSJS7R3Nw0qBxgSH1Du+RspHRAx3u95ZNZxMpOvM9R6wa1vJ7m1u5Xtbp2izb1OGv9PFrkj+LC6arLpxKiFUmAlPnYnXPuZWAK5kc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731434020; c=relaxed/simple;
-	bh=mjaZInMpBAbkCA4E5OU9QfNO4D8qD2vAuWT2Q/jQS5g=;
+	s=arc-20240116; t=1731434350; c=relaxed/simple;
+	bh=nBqJQ+9Rz7LqvO8HNtJko2uMGpeDf0A8fllkrbNh13U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NbjpK/iqLLtcVn5MnDT8n6fMmz5XGH3zqF3dFMcJTHx6liPKCOju/UGeyG681nO47bk91pkqOhUQlVcDkvpf+mU+hLosb8xtO6Hyti3UQiyep1BAJpJ12ey8NClFW+OCWHnfA8HRVVopAlIRbk+5RAg47/CveIXO11oNx7oS2x8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lnnh/sKj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5973BC4CECD;
-	Tue, 12 Nov 2024 17:53:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Latpfh7/W7Y2n2n5/sYkDEa2zqXj7024Fp3MchTtKAr5ET+fKFiz1AQ8Zg3qJY+dqkSajK/ES2CCr86gI96UMo0n5DWGh+GMxn7AZNbw8Yyh4fNLagFOOO2Cdpsjw3+KRuYeI2puStsGIX3umDOG60SLfm20uIKoji3OfxLlciE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xv3yOpqb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D73DC4CECD;
+	Tue, 12 Nov 2024 17:59:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731434020;
-	bh=mjaZInMpBAbkCA4E5OU9QfNO4D8qD2vAuWT2Q/jQS5g=;
+	s=k20201202; t=1731434350;
+	bh=nBqJQ+9Rz7LqvO8HNtJko2uMGpeDf0A8fllkrbNh13U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Lnnh/sKjKv+RHS6oskPYA9NGkaNCdP4vd0WXfoFlrUDn84S/nQAlO5NzSz3qwh311
-	 HTwIG0mEMfVsjmOyEvvE3kdYvg0eHb+bOFvdyJlIeDY4wT0oIKprFKrdZbjYUWXSbA
-	 pQUNTWd3v0z9/xNOo4HnvGgxJ9z5QvfKHAR447HGTNI34YnwKJX9cR5UPcNAs94ZXR
-	 0jq+IETui39IiQjL2Djq4PauC+9LZWz7Z534CxkTB/Y6vqpPik5yF8kva4PL7TynfZ
-	 irQ+QhLcsPcvWpw00lPKZwS1+Cv1gHNjOwSnubFg9CR2SdXyUfZxJDsBoX29B6HPR6
-	 ftN8cu6PiN7Hg==
-Date: Tue, 12 Nov 2024 17:53:34 +0000
+	b=Xv3yOpqbU5jc8KCbzcJqp2C9IdPY824gNn7Xn1fLE3gMMO3O6Ku7iYI1DEATDxkXd
+	 /WnJ6ytFAnJ4mkcnKYmlWJT0mBOUk1aweXSDKptnpUY4bL8kFA4AQIcjSeKZUfNhg1
+	 zvM1eX4lJQhfBLJPbuH2ffxaq//pE7JWSUS0aY0yv1n8D5gsKWjhFKR0j/q8gHu2Hu
+	 SlrvrLYHM1sGlUAXVB/d/5c1sIgwPCw4wpsF5Bm+knPeiANlml0PxjQYIiiKCcicZU
+	 fYfhz5UKKQb/TZ1cbF7nAgLmVhfBXpAR3oo2HGlON4aqGWWwP4sGpDqMMLeDx6bw0/
+	 YfnsCKbpv96IA==
+Date: Tue, 12 Nov 2024 17:59:05 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org,
-	andersson@kernel.org, konradybcio@kernel.org,
-	dmitry.baryshkov@linaro.org, mantas@8devices.com,
-	quic_rohiagar@quicinc.com, johan+linaro@kernel.org,
-	quic_kriskura@quicinc.com, abel.vesa@linaro.org,
-	quic_kbajaj@quicinc.com, quic_wcheng@quicinc.com,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org
-Subject: Re: [PATCH v1 1/6] dt-bindings: phy: qcom,qusb2: Document IPQ5424
- compatible
-Message-ID: <20241112-proud-moisten-13900b835e29@spud>
-References: <20241112091355.2028018-1-quic_varada@quicinc.com>
- <20241112091355.2028018-2-quic_varada@quicinc.com>
+To: mjchen <mjchen0829@gmail.com>
+Cc: dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, sudeep.holla@arm.com, peng.fan@nxp.com,
+	arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, mjchen@nuvoton.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
+Message-ID: <20241112-fender-mug-8eb81a6727e0@spud>
+References: <20241112053059.3361-1-mjchen0829@gmail.com>
+ <20241112053059.3361-2-mjchen0829@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,33 +60,151 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HEptGeQSGxI0F2Id"
+	protocol="application/pgp-signature"; boundary="k0rDWj3vLf/SiQCG"
 Content-Disposition: inline
-In-Reply-To: <20241112091355.2028018-2-quic_varada@quicinc.com>
+In-Reply-To: <20241112053059.3361-2-mjchen0829@gmail.com>
 
 
---HEptGeQSGxI0F2Id
+--k0rDWj3vLf/SiQCG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 12, 2024 at 02:43:50PM +0530, Varadarajan Narayanan wrote:
-> Document the compatible string used for the qusb2 phy in IPQ5424.
+On Tue, Nov 12, 2024 at 05:30:58AM +0000, mjchen wrote:
+> Add YAML bindings for MA35D1 SoC keypad.
 >=20
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: mjchen <mjchen0829@gmail.com>
+> ---
+>  .../bindings/input/nuvoton,ma35d1-keypad.yaml | 89 +++++++++++++++++++
+>  1 file changed, 89 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/nuvoton,ma35d=
+1-keypad.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypa=
+d.yaml b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
+> new file mode 100644
+> index 000000000000..71debafc3890
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
+> @@ -0,0 +1,89 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/nuvoton,ma35d1-keypad.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton MA35D1 Keypad
+> +
+> +maintainers:
+> +  - Ming-jen Chen <mjchen0829@gmail.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/input/matrix-keymap.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: nuvoton,ma35d1-kpi
+> +
+> +  debounce-period:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Not a common property, so it needs a vendor prefix.
 
---HEptGeQSGxI0F2Id
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192]
+> +    description: |
+> +      Key debounce period select, specified in terms of keypad IP clock =
+cycles.
+> +      Valid values include 0 (no debounce) and specific clock cycle valu=
+es:
+> +      8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, and 8192.
+> +
+
+> +  nuvoton,key-scan-time:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Set the time it takes to scan each key in the keypad, in clock cyc=
+les of the IP.
+> +      This parameter controls how frequently the keypad is scanned, adju=
+sting the response time.
+> +      The valid range is from 1 to 256 clock cycles.
+> +    minimum: 1
+> +    maximum: 256
+> +
+> +  nuvoton,key-scan-time-div:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Set a divider that adjusts the scan time for each key.
+> +      This value scales the time it takes to scan each key
+> +      by multiplying the key-scan-time by the specified factor.
+> +      For example, if you set key-scan-time to 64 cycles and configure k=
+ey-scan-time-div to 2,
+> +      the scan time for each key will be increased to 128 cycles (64 cyc=
+les * 2). time.
+> +    minimum: 1
+> +    maximum: 256
+
+Why are both of these properties required? Why not just provide a single
+value and let the driver figure it out (and why not use the standard
+input property poll-interval)?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - linux,keymap
+> +  - debounce-period
+> +  - nuvoton,key-scan-time
+> +  - nuvoton,key-scan-time-div
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/input/input.h>
+> +    keypad@404A0000 {
+> +      compatible =3D "nuvoton,ma35d1-kpi";
+> +      reg =3D <0x404A0000 0x10000>;
+> +      interrupts =3D <79>;
+> +      clocks =3D <&clk>;
+> +      keypad,num-rows =3D <2>;
+> +      keypad,num-columns =3D <2>;
+> +
+> +      linux,keymap =3D <
+> +         MATRIX_KEY(0, 0, KEY_ENTER)
+> +         MATRIX_KEY(0, 1, KEY_ENTER)
+> +         MATRIX_KEY(1, 0, KEY_SPACE)
+> +         MATRIX_KEY(1, 1, KEY_Z)
+> +      >;
+> +
+> +      debounce-period =3D <8>;
+> +      nuvoton,key-scan-time =3D <1>;
+> +      nuvoton,key-scan-time-div =3D <24>;
+> +    };
+> --=20
+> 2.25.1
+>=20
+
+--k0rDWj3vLf/SiQCG
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzOWHgAKCRB4tDGHoIJi
-0mTcAQCv3BSj7k0bxTkdDbn6NXaI13elDe2ReD+NRb36KT9RTQEAuViXZO3eWe0i
-l/g+guT1pbcTWXO5vT9c0xpTwap0OAU=
-=lPxM
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzOXaQAKCRB4tDGHoIJi
+0pYPAQDDf02Gop88JjPTAhEapsw6Y2RsUuUw+y3t6GLs5WaYTQD6A9rBf5mY07HN
+IdLXIMBrLZwIVIq8TP0uaaLeB9wcgQI=
+=p5T+
 -----END PGP SIGNATURE-----
 
---HEptGeQSGxI0F2Id--
+--k0rDWj3vLf/SiQCG--
 
