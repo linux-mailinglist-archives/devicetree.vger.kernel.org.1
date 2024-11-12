@@ -1,176 +1,169 @@
-Return-Path: <devicetree+bounces-121185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 469189C5B9F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 16:15:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35A309C5BAE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 16:19:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC8A61F23CC9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:15:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEE8A284D68
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 474AB1FF7DE;
-	Tue, 12 Nov 2024 15:15:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ABCD2003CA;
+	Tue, 12 Nov 2024 15:19:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="As8GlpHy"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="r880ZjN1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 546B71FF053;
-	Tue, 12 Nov 2024 15:15:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14ECF1FF034
+	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 15:19:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731424528; cv=none; b=f85YwdrmpKVVXLuHoNBfaUAE+P+QUwylUd6pl1Ekb0uTX4ZdNxOC55AdSRI9qy3WuxyAlaH1Wb359T0aDOevDUvIk8gfu0GvaV5sH/s/Mx6Qo2clrbuqn5OQy5/0QoC+g+Lkcwg3/1KfYkJWECeBG795/pOErE9/pxRcxt7a+/c=
+	t=1731424786; cv=none; b=HJbRU5mDKFfVbMySvZaLvUqBqLZOX8wocus6WXBzYCMk/jsCJCL95k4wl8P+lQRuw6HTb0omnGnmu5pd330BwjQU3Lk5NpfBECsjo1i0kXIatnbZdrhoStYNI42mZYZSTDqNjEl2Y/pBOd6jEIhpwh68zGxbh1iaWiMavmoIfdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731424528; c=relaxed/simple;
-	bh=uXdhYFsKOE8+PIvdB0XgY62gRQSzT90BvIF3LitsC7Y=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=nQeocNpYiCwg8vBQrGUCN78cg83LoxANC8ugIL+ivQDcqnr0KvtL6yqmURBdSKEcSMgIb/lh9JltrPkmnZiZ0JNEZM5lF8/nD1xSDEOKEgOOhdnUyHxACCzS1Cd0VBV7XN6yPMpO87ou+53nEg4js/rqumJgYbJqBAYRdFSEqAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=As8GlpHy; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1731424786; c=relaxed/simple;
+	bh=VcST2DUlRpkwQVHrrTYbdpK9dzUETeVrbngBLMBL+yk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=r23yMCejgvRueHQ9Tg6KFoC5PsTn+uVUYC871oM/yKcpcw6B9gQY5zVaMCIG2yFUiAGgAJTnAJIFk3uUMsso3lGXwSLqgp2LdekNEXlIkkB+1EeksCGKOlQajvsRyncsMgEyQpFOXHWHKslrhKaritdLWAOyIbWGvDBYuLwWpHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=r880ZjN1; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-37d47b38336so4443446f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 07:19:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1731424781; x=1732029581; darn=vger.kernel.org;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MVQ8k1+GJHVS0OPZNtSMzBKEyDSg8j47tQMzgymLCow=;
+        b=r880ZjN1vVgsjG4doC37tDg7m8yT/362tcO+drf3LMAGtU+W4Zw4XuLTPqe+30iT8y
+         rkprgGMXMhjVJqm+ifrMmo3W1fHcC26cDmk048ZUCUthCAKZilzuFiVd+jFCMPZqa5d4
+         opPATqnd1NVq/OdFOtUKn4nNcg4nqc4DoOJtG0EoJZ21uXhCVf9OqGJG/NPZw4oZoz3W
+         qyTvPDnZHXhbHsU3gZxrLpnOGidJvErwnURij7oQW6xFfzYpxm60wu79Hvmm9jzBW7wj
+         QSGmrw+rrebi5zrA+7GWhsp8RtE2GPVHhTGvA/178oqI9tjPFv+98cuUGbAd0j+6tt6V
+         HwaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731424781; x=1732029581;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=MVQ8k1+GJHVS0OPZNtSMzBKEyDSg8j47tQMzgymLCow=;
+        b=NJYIlOgxZvqtTD6/iNuZjGJb0p5WiXIA+iVZA68D+/6x4h9PaalmrACMzuFkNo+wBj
+         NoqyQwNGAi5BWCd/o3HJuIUEayb3RzamCE/tIrUjBle7CDuroAnorR29oUabt/2qBgAl
+         Bjix6zZ3S3lUAN9Kp4r89d1w/1kzfeH2LUyxFoMI9Hf9T4D2stO8ilJyMZGFvxyxFg5h
+         BUZ3Q3zp6Actek/SBJ30n/QaArCZOEYQBRkXyz/pfY9hB0DCX0lVoomEy5whdMVIu0bK
+         cHzq260xh/A4ERHM2/cCHfbFq/bsT6rv+00BwLyytDqKa/wlyQ24w7PN63xu9xZCLX3Q
+         w1ug==
+X-Forwarded-Encrypted: i=1; AJvYcCUIacHCrecr3QijqvnfQfW2Ajp8VObB9IjVC+IZx3Rc5UmVfSmcqaXWysc+lA+sAHzUidsPApFFI4dd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzxq+xwl5mHA5LlOJ481MSY7mJyk/O6/46Y735UrLBpkjPXsIKW
+	DZI0aqKQ8eLQpPUhT0mh2ZrJOm4e3j3+qkBJ7CwKOvl9Iin3hDjtipmfjo6VxCMiKnHVwgUWxre
+	z
+X-Google-Smtp-Source: AGHT+IHMf24WTrO4WpyXzvZV8UKgh3y3VTD5Esq4U79Ud4jGOPxTux5xkh61tHoiAx1XCvZY9wi66Q==
+X-Received: by 2002:a05:6000:1ac9:b0:374:c640:8596 with SMTP id ffacd0b85a97d-381f186fc60mr14314412f8f.32.1731424781413;
+        Tue, 12 Nov 2024 07:19:41 -0800 (PST)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381fbf416c6sm7330352f8f.54.2024.11.12.07.19.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Nov 2024 07:19:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1731424523;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=I+T4tSwskXOccnMHjrQgT921+1/jkcnTnTZ1NbAhny8=;
-	b=As8GlpHyj4QIfc0wiqwTGXTfMj1WhRthprGtIRGhtbFpPJgGHGutu0qGzKOPHPyJ2vqvnx
-	BrUrIgTd0z/MWaPePRTUFoBdHJex4vZXbl2E0H0YMvPwmJRZcNpjD/hafUsz1rE22v8aKU
-	W9pZz9NHd8ZueTSVpGPGs2WUMKVlyhVZT8WuTF3PXSqQYCCNXMDcIXq0ipy20Ko9/HrZsS
-	NwLf61tktTX/blwvOCLEpg3OuYafMoTsinJ47BinZatfMEcbsKkzgi2yVW62wqnYlD+WhY
-	5x6FhvpOrGNUb6W0UBEYWuTw08t4mB/oMXph8wUKBRZI4nSLxVDgulf5maU0OQ==
-Date: Tue, 12 Nov 2024 16:15:23 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: =?UTF-8?Q?Tam=C3=A1s_Sz=C5=B1cs?= <tszucs@linux.com>
-Cc: Jonas Karlman <jonas@kwiboo.se>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki
- <naoki@radxa.com>, Chukun Pan <amadeus@jmu.edu.cn>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Enable sdmmc2 on rock-3b and
- set it up for SDIO devices
-In-Reply-To: <CA+Gksr+WvS-S+jeYYG=Bo9cemvnJmjsmU4aj9YnD3t8-HY7wbw@mail.gmail.com>
-References: <20241111181807.13211-1-tszucs@linux.com>
- <20241111181807.13211-3-tszucs@linux.com>
- <9fbdf05c-42e6-4ac5-9542-805200bc8c87@kwiboo.se>
- <260af427ae64d6f3b02a1579ee83eb3b@manjaro.org>
- <CA+Gksr+WvS-S+jeYYG=Bo9cemvnJmjsmU4aj9YnD3t8-HY7wbw@mail.gmail.com>
-Message-ID: <303ad3910668e852d6670d1c79dc22e0@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 12 Nov 2024 16:19:40 +0100
+Message-Id: <D5KAUZHYJHFS.1NXF5SVWYL03G@fairphone.com>
+To: "Vedang Nagar" <quic_vnagar@quicinc.com>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@linaro.org>
+Cc: <cros-qcom-dts-watchers@chromium.org>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: enable venus node
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20241004-venus_sc7280-v1-1-4d7d8fd7e95b@quicinc.com>
+ <kezh3lmysij56g2tjwwuas5r26ro5i777yxxitsdcjeg7zp67v@oknrdbkzison>
+ <78e6ff6b-efe1-496c-a1fb-c9a0a4aba2d2@quicinc.com>
+ <CAA8EJpqqZL7xybcbJMsbTQB+ht5-A+ocNs+Sq30j=v1zM3JL9g@mail.gmail.com>
+ <fbba794a-ba04-4790-b5e9-b4df3cba35b2@quicinc.com>
+In-Reply-To: <fbba794a-ba04-4790-b5e9-b4df3cba35b2@quicinc.com>
 
-Hello Tamas,
+Hi Vedang,
 
-On 2024-11-12 15:35, Tamás Szűcs wrote:
-> I think it was totally fine to disable sdmmc2 at first, especially if
-> it couldn’t be tested or wasn’t needed right away. From what I’ve
-> seen, this board works great even at higher clock speeds than what
-> rk356x-base.dtsi suggests. I don’t have access to the RK3568 errata,
-> and there don’t seem to be any limits mentioned in the TRM either.
-> Overall, this board is doing just fine as it is.
+On Tue Nov 12, 2024 at 3:39 PM CET, Vedang Nagar wrote:
+>
+>
+> On 11/12/2024 6:43 PM, Dmitry Baryshkov wrote:
+> > On Tue, 12 Nov 2024 at 08:17, Vedang Nagar <quic_vnagar@quicinc.com> wr=
+ote:
+> >>
+> >>
+> >>
+> >> On 10/7/2024 1:20 AM, Dmitry Baryshkov wrote:
+> >>> On Fri, Oct 04, 2024 at 04:22:31PM GMT, Vedang Nagar wrote:
+> >>>> Enable the venus node on Qualcomm sc7280. It was made disabled
+> >>>> earlier to avoid bootup crash, which is fixed now with [1].
+> >>>
+> >>> NAK, there might be other reasons to keep venus disabled, like the la=
+ck
+> >>> of the vendor-signed firmware for the particular device.
+> >> Can you pls elaborate more on this? Any device with sc7280 SOC can use
+> >> venus.mbn which is already present in linux-firmware git.
+> >=20
+> > Can it though if the device is fused to use vendor keys and to check
+> > the trust chain?
+> Yes, infact the existing ones are signed and works with trustzone authent=
+ication.
 
-Sorry, I'm missing the point of mentioning some clock speeds?  Any
-chances, please, to clarify that a bit?
+No, the venus firmware from linux-firmware does not work on a device
+with secure boot on, like the (QCM6490) Fairphone 5 smartphone.
 
-> Regarding device tree overlays, they would be ideal for implementing
-> secondary functions, such as PCIe endpoint mode for users with
-> specific requirements. However, the primary functions for PCIe on the
-> M2E will be root complex mode, along with SDIO host, etc. In my view,
-> the hardware is well-designed and interconnected. Users have a
-> reasonable expectation that these primary functions should work
-> seamlessly without additional configuration, right out of the box.
+$ rm /lib/firmware/qcom/qcm6490/fairphone5/venus.mbn
+$ cp /lib/firmware/qcom/vpu-2.0/venus.mbn.zst /lib/firmware/qcom/qcm6490/fa=
+irphone5/venus.mbn.zst
 
-That's basically what I referred to in my earlier response, and in my
-previous response regarding the UART.  Users would expect the Bluetooth
-part to work as well, but the error messages I mentioned look nasty, so
-perhaps something should be done about that first.
+leads to
 
-> Dragan, what did you mean by SDIO related power timing requirements?
+[   10.848191] qcom-venus aa00000.video-codec: Adding to iommu group 13
+[   10.863062] qcom-venus aa00000.video-codec: non legacy binding
+[   10.909555] qcom-venus aa00000.video-codec: error -22 initializing firmw=
+are qcom/qcm6490/fairphone5/venus.mbn
+[   10.910099] qcom-venus aa00000.video-codec: fail to load video firmware
+[   10.910849] qcom-venus aa00000.video-codec: probe with driver qcom-venus=
+ failed with error -22
 
-Whenever there's an SDIO module, there's usually some required timing
-of the power rails.  Though, I don't know what's that like with the
-non-standard M.2 SDIO modules that Radxa sells, which are intended to
-be used on Radxa boards with "hybrid" M.2 slots.
+It's the same with e.g. adsp firmware, modem firmware, etc.
 
-Once again, please use inline replying. [*]
+With secure boot off, yes, the hardware will load any firmware
+regardless of the signature.
 
-[*] https://en.wikipedia.org/wiki/Posting_style
+Regards
+Luca
 
-> On Tue, Nov 12, 2024 at 5:41 AM Dragan Simic <dsimic@manjaro.org> 
-> wrote:
->> 
->> Hello Jonas and Tamas,
->> 
->> On 2024-11-11 20:06, Jonas Karlman wrote:
->> > On 2024-11-11 19:17, Tamás Szűcs wrote:
->> >> Enable SDIO on Radxa ROCK 3 Model B M.2 Key E. Add all supported UHS-I
->> >> rates and
->> >> enable 200 MHz maximum clock. Also, allow host wakeup via SDIO IRQ.
->> >>
->> >> Signed-off-by: Tamás Szűcs <tszucs@linux.com>
->> >> ---
->> >>  arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 8 +++++++-
->> >>  1 file changed, 7 insertions(+), 1 deletion(-)
->> >>
->> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
->> >> b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
->> >> index 242af5337cdf..b7527ba418f7 100644
->> >> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
->> >> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
->> >> @@ -688,14 +688,20 @@ &sdmmc2 {
->> >>      cap-sd-highspeed;
->> >>      cap-sdio-irq;
->> >>      keep-power-in-suspend;
->> >> +    max-frequency = <200000000>;
->> >>      mmc-pwrseq = <&sdio_pwrseq>;
->> >>      non-removable;
->> >>      pinctrl-names = "default";
->> >>      pinctrl-0 = <&sdmmc2m0_bus4 &sdmmc2m0_clk &sdmmc2m0_cmd>;
->> >> +    sd-uhs-sdr12;
->> >> +    sd-uhs-sdr25;
->> >> +    sd-uhs-sdr50;
->> >
->> > I thought that lower speeds was implied by uhs-sdr104?
->> 
->> Last time I went through the MMC drivers, they were implied.  IIRC,
->> such backward mode compatibility is actually a requirement made by
->> the MMC specification.
->> 
->> >>      sd-uhs-sdr104;
->> >> +    sd-uhs-ddr50;
->> >>      vmmc-supply = <&vcc3v3_sys2>;
->> >>      vqmmc-supply = <&vcc_1v8>;
->> >> -    status = "disabled";
->> >> +    wakeup-source;
->> >> +    status = "okay";
->> >
->> > This should probably be enabled using an dt-overlay, there is no
->> > SDIO device embedded on the board and the reason I left it disabled
->> > in original board DT submission.
->> 
->> Just went through the ROCK 3B schematic, version 1.51, and I think
->> there should be no need for a separate overlay, because sdmmc2 goes
->> to the M.2 slot on the board, which any user can plug an M.2 module
->> into, and the SDIO interface is kind-of self-discoverable.
->> 
->> Of course, all that unless there are some horribly looking :) error
->> messages emitted to the kernel log when nothing is actually found,
->> in which case the SDIO/MMC driers should be fixed first.  Also, I'm
->> not sure what do we do with the possible SDIO-related power timing
->> requirements?
+> >=20
+> >>
+> >> Regards,
+> >> Vedang Nagar
+> >>>
+> >>>>
+> >>>> [1]
+> >>>> https://lore.kernel.org/linux-media/20231201-sc7280-venus-pas-v3-2-b=
+c132dc5fc30@fairphone.com/
+> >>>>
+> >>>> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
+> >>>> ---
+> >>>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 --
+> >>>>  1 file changed, 2 deletions(-)
+> >>>
+> >=20
+> >=20
+> >=20
+
 
