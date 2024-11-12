@@ -1,97 +1,109 @@
-Return-Path: <devicetree+bounces-121245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C52DD9C6026
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 19:17:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2A339C60FB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:04:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D805B84375
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:24:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67C61BC7195
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:32:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82F1720EA29;
-	Tue, 12 Nov 2024 17:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCAEE2139BC;
+	Tue, 12 Nov 2024 17:29:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KCl/GbkG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eIwU9wI/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5810820D51D;
-	Tue, 12 Nov 2024 17:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A5B22123FD;
+	Tue, 12 Nov 2024 17:29:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731432230; cv=none; b=bbnJJ7YB7I+SuDdY+Le4klsVvqdoPO31drvzKkmqPs2IPRmrS67i4PMGV73Hmqvx9FTSGKb4PwqKliHSmnQWXzATxMq/Z+YB2OM4DSdZC3Esy3/ihrCIJAJkq3qoTNc25bbSXV28+5qoyAg66Ju1g5aex8KCIYLxFzxt6rJwuTw=
+	t=1731432593; cv=none; b=LdGQGyall74LLRFYQEN/szqSZFiyNESzW0rIlMUDqN+NNJdVBYs9bDecVmmBn/XS8dpEMu8iaXr+z/8y6ZCJvEqoOd1agt+bSdXatSVeNf3sf9P89AXOdG537PrqbaTl6ujWB7Q9uQhby99qEGn4bLeT0I/RraV4xWZjWB5uX6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731432230; c=relaxed/simple;
-	bh=jyQE7k/6c/dBc3Apouli7VA/k4uP1aAXmM3lQ9MxKxY=;
+	s=arc-20240116; t=1731432593; c=relaxed/simple;
+	bh=KtuHsvBkXKyb4/BS1eV+SQXhdNFVGLr8frMmDpXLEes=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UmsO2SdpIgwWkky4bGIHzeGdUlTXhZ5+K4ed2a867wQrB8qnl+YeCaq2OKYTbKjrMetdNyKK49FujlCWame3ZcL6Mjn1mJ/O5I5VWAoazRD1TbCCs8LUeln0ReWYjKh4FzRMyzFDKtLgzhjlyt8wMMIAhk6POdeHRuLaxuP6J4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KCl/GbkG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0E4EC4CED5;
-	Tue, 12 Nov 2024 17:23:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XSNbQctPUkKTLb1bzguXJUj9OvAqcxQLNNds3SlNyeKwK/f7PciGblSODvgntkF099VwcCYIr6q+yAXYwd+1OTXO3JZMR3xT5/+Qu7OmU1CJeZcWiewpz/WW9OXvJLSVdfR98GIIY7qxBlKzuXOKLVeYFMIixdBo9qSMJD1yAbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eIwU9wI/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09109C4CECD;
+	Tue, 12 Nov 2024 17:29:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731432229;
-	bh=jyQE7k/6c/dBc3Apouli7VA/k4uP1aAXmM3lQ9MxKxY=;
+	s=k20201202; t=1731432593;
+	bh=KtuHsvBkXKyb4/BS1eV+SQXhdNFVGLr8frMmDpXLEes=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KCl/GbkGFUxoMLIcmnRInE3FKwHueUiQEPbIchPB56YosGF95KhpDv7GuryB3TEdq
-	 BMLCvz0bPpyOG4mQtBSTaqLOrp1zjFLH1k0XBx0i0dmR8er6QPQEDNyuxHavUD101w
-	 BP6ynFrrvZf3exL5B0t2mquFtZ7xv2pVfqnclCi98btYJLA6q+r7chnPtNOrp8GOss
-	 +OyNOQIsHVOqBYJX2bxCaz1qUBdKqXQX3pmuVJ0R2Vm57/vVNDk4atpk3tyYgjRXLR
-	 /kRcu6X7JK2yUkuo9o4iRNkADv3EHXey6w3EHfegV7jprfxoeKY5E6VpnKnSZQojMc
-	 lkshka3cMqa8w==
-Date: Tue, 12 Nov 2024 11:23:47 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	David Airlie <airlied@gmail.com>, Rob Clark <robdclark@gmail.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Mahadevan <quic_mahap@quicinc.com>, freedreno@lists.freedesktop.org,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Sean Paul <sean@poorly.run>, Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: display/msm: qcom,sa8775p-mdss: fix the
- example
-Message-ID: <173143222666.1391520.8375595672068197152.robh@kernel.org>
-References: <20241112-fd-dp-fux-warning-v2-1-8cc4960094bd@linaro.org>
+	b=eIwU9wI/63KEVgKlLB5MPJHrTlsfAgH2RsYY7yKRUbcanp83jQjDd0ro1ZLLICxyo
+	 I2ZoEO6Lll2jXNrlfxCh5MpkCD+hc8uHdRULw5dvtAF2N73qY/Dq7jBFk0quc6ghh8
+	 JovS+ZBSKjIyvJdM1e1rKhlv+gtw4kNZV3s7Cp7IrUvIr5+eOvXRltASoAWm5dnV8+
+	 MMyxs9ZjjF2PputR56oBSXNxOAwRoBjB2yGtmQ5mbXLc4GMDRXwjeo9sOKzgq1Vw7n
+	 z6d8EhY8rcpKGQ9g9iWEacB1krNiB3CI/Q7/bqgYHpHb9+GWR2YHr9KaLrCKr4e1n9
+	 k9Va/SiGaZxyw==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1tAui3-000000007ti-2RDk;
+	Tue, 12 Nov 2024 18:29:48 +0100
+Date: Tue, 12 Nov 2024 18:29:47 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Qiang Yu <quic_qianyu@quicinc.com>
+Cc: manivannan.sadhasivam@linaro.org, vkoul@kernel.org, kishon@kernel.org,
+	robh@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
+	sboyd@kernel.org, abel.vesa@linaro.org, quic_msarkar@quicinc.com,
+	quic_devipriy@quicinc.com, dmitry.baryshkov@linaro.org,
+	kw@linux.com, lpieralisi@kernel.org, neil.armstrong@linaro.org,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	johan+linaro@kernel.org
+Subject: Re: [PATCH v8 5/5] arm64: dts: qcom: x1e80100: Add support for PCIe3
+ on x1e80100
+Message-ID: <ZzOQi0PpRZYts-B0@hovoldconsulting.com>
+References: <20241101030902.579789-1-quic_qianyu@quicinc.com>
+ <20241101030902.579789-6-quic_qianyu@quicinc.com>
+ <ZyjbrLEn8oSJjaZN@hovoldconsulting.com>
+ <de5f40ab-90b7-4c75-b981-dd5824650660@quicinc.com>
+ <c558f9eb-d190-4b77-b5a3-7af6b7de68d8@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241112-fd-dp-fux-warning-v2-1-8cc4960094bd@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c558f9eb-d190-4b77-b5a3-7af6b7de68d8@quicinc.com>
 
+On Mon, Nov 11, 2024 at 11:44:17AM +0800, Qiang Yu wrote:
+> On 11/5/2024 1:28 PM, Qiang Yu wrote:
+> > On 11/4/2024 10:35 PM, Johan Hovold wrote:
+> >> On Thu, Oct 31, 2024 at 08:09:02PM -0700, Qiang Yu wrote:
 
-On Tue, 12 Nov 2024 05:21:24 +0200, Dmitry Baryshkov wrote:
-> Add p1 region to the list of DP registers in the SA8775p example. This
-> fixes the following warning:
-> 
-> Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.example.dtb: displayport-controller@af54000: reg: [[183844864, 260], [183845376, 192], [183848960, 1904], [183853056, 156]] is too short
-> 
-> Fixes: 409685915f00 ("dt-bindings: display/msm: Document MDSS on SA8775P")
-> Reported-by: Rob Herring <robh@kernel.org>
-> Closes: https://lore.kernel.org/dri-devel/CAL_JsqJ0zoyaZAgZtyJ8xMsPY+YzrbF-YG1vPN6tFoFXQaW09w@mail.gmail.com/c
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-> Changes in v2:
-> - EDITME: describe what is new in this series revision.
-> - EDITME: use bulletpoints and terse descriptions.
-> - Link to v1: https://lore.kernel.org/r/20241112-fd-dp-fux-warning-v1-1-705b527f5a63@linaro.org
-> ---
->  Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
+> >>> +            ranges = <0x01000000 0x0 0x00000000 0x0 0x78200000 0x0 
+> >>> 0x100000>,
+> >>> +                 <0x02000000 0x0 0x78300000 0x0 0x78300000 0x0 
+> >>> 0x3d00000>,
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> >> Can you double check the size here so that it is indeed correct and not
+> >> just copied from the other nodes which initially got it wrong:
+> >>
+> >>     https://lore.kernel.org/lkml/20240710-topic-barman-v1-1-5f63fca8d0fc@linaro.org/
 
+> BTW, regions of PCIe6a, PCIe4, PCIe5 are 64MB, 32MB, 32MB, respectively.
+> Why range size is set to 0x1d00000 for PCIe6a, any issue is reported on 
+> PCIe6a?
+
+Thanks for checking. It seems the patch linked to above was broken for
+PCIe6a then.
+
+We did see PCIe5 probe breaking due to the overlap with PCIe4 but the
+patch predates PCIe5 support being posted and merged so it was probably
+just based on inspection.
+
+Could you send a fix for PCIe6a?
+
+Johan
 
