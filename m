@@ -1,54 +1,55 @@
-Return-Path: <devicetree+bounces-121306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A9AE9C65BF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 01:11:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF5839C65A7
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 01:02:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D038AB35947
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 23:01:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B023EB367B1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 23:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC22821A6EC;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BB521B451;
 	Tue, 12 Nov 2024 23:01:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="iodAhEWj"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="HcG30ugS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F146121B427;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F14BF21B42F;
 	Tue, 12 Nov 2024 23:01:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731452477; cv=none; b=bOg0q9dNzwt/UkVUPXpZEfeGjy2UOENFGOneLaIjQjQ5KHSPQlhWtKmrAymYPObvJoXzwxC3ajYzQCvEJuplgA7+SrOxdfO/TgEmRCSdG2wP8tXNBNqss3mkG4xG1SKrqipb9w3GQqVpcm28g9U7exMmLP2V+rShCZ1mHXkj5cE=
+	t=1731452477; cv=none; b=XAvjfTPxaPNFq5EamN8YH5wthxW505t5S3e5yQP7OYkY3eieaahAg2/PPYHwEvvKwIHA/6Izuu3O7sa/Ez9Bithc99ysThJ+oEJoFJhRcmTTKLmykSljc0nm/JyNDVESEH1ODkOee+L8Hngyb+//X9jiKP+2yEjT2bh+ZiONcuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1731452477; c=relaxed/simple;
-	bh=84DyWoendiTxjZK4MJlhCTBE67aF1AwiwuzRg6/FQIk=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lvSZuma4DXhxltZ+3nng/rsZtpKZnI5qQalbTyppZN/NzqI2/qDIdoNWZi2+UsRjr58un0IMzZZVkb5Pl+MLC+UFl8OeiHOoPFhiVp4IqLWH1ZcDhajdygQCxcpidQxwAU6ehosTatYf/8CJjVGz4uvlwL3pCHC+fFfe3bXz74A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=iodAhEWj; arc=none smtp.client-ip=45.89.224.132
+	bh=VRtK1L9MXOutfyyDx+cVSqkmfeMV69EEUT6UlFNsfVQ=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FtaSQzVjghh27FEQieUAQ8duEJeryadg60/FZYPvCYF7QdsC0v95keKUdYfLZNFMzmS3dQJ/9KvI42c0t24qJsRUL55IcM5qD1uCyPdKb6ssH//+9+Cb9ilQiO856pwYL7jPFeX3SZm++8yWZd3ZP4rppMZnhIZLOTfuLYla9O8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=HcG30ugS; arc=none smtp.client-ip=37.18.73.165
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
-Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 1ED1D12000C;
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 9C924100005;
 	Wed, 13 Nov 2024 02:01:03 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 1ED1D12000C
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9C924100005
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
 	s=mail; t=1731452463;
-	bh=gMt6xiNUzbP586OUi3bpRznhicbRyyZqkrZh8cOiBiw=;
+	bh=cXjF/08/uHuNwfsNL3HSBdbEnOMXo3XKzT0FEL1U4H0=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=iodAhEWjWIjWyDbzoAX42ObmnYWHz8n0F7KcKy6V5cPR3Wq8kRNxf3SsgPkelm4v5
-	 23ijXgTZZ0vOFqbuQiiFcbkLpOO77GuMgDnTNyLsonikc4tW4AuSueW1lGbIgKZw8E
-	 E6TiK7A/p5V5gYp41C+Grbq0tK5TqjPqspNrMq0Xc9oVLgNob3yiXaZEox0K7HbReC
-	 XAwVf5chP0q1w7CP5j/FF7l+6lGbH2v/JQl9wJsH7UnHc2UOiRzmXn9Cmot6fNtOCp
-	 KYqvMnz/a/xWywNDNqpskUQtAHjVEDoPFnNTNOMEM8s2gj+Ni6su6Nr9Nuj6ms7v8y
-	 gaiW8ePE9O2KQ==
+	b=HcG30ugSU6t64rj37M6G2AX3xe2/J1fBvwQT5XW2Oyr2gJ6CjWYK0m10IIkNGlTSb
+	 oCc9e4Se7xBpdHqsbH+S7v7jORY/Zy+YBR7ILOg114zXhgDX9QAiJDJpL88iHYFzCK
+	 1DpHobygxLxhLPDfMKU6CbwQpU0sKXRsGuON7NQMHaylma792OaQMOUVkyVVh91zGO
+	 0l2CQw6ZitCSKoPbhMjdiSJZ8vRKrg1GQb/PJm7NEW3vDY6hh/esPPIsaPDiEaKSyf
+	 GJlwErA5Eqh/8FCxjvXZP6E5c9TlHpjPw8vpSDIW7TcN8ya3gQtE/Jey153S1Ckx3e
+	 94FBbCbVBcMew==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 13 Nov 2024 02:01:02 +0300 (MSK)
+	Wed, 13 Nov 2024 02:01:03 +0300 (MSK)
 From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Conor Dooley
 	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>, Jerome Brunet
@@ -58,10 +59,12 @@ To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Conor Dooley
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Neil Armstrong
 	<neil.armstrong@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, "Rob
  Herring" <robh@kernel.org>
-Subject: [PATCH 0/2] Add support for A1 SoC in auxiliary reset driver
-Date: Wed, 13 Nov 2024 02:00:54 +0300
-Message-ID: <20241112230056.1406222-1-jan.dakinevich@salutedevices.com>
+Subject: [PATCH 2/2] reset: amlogic: add support for A1 SoC in auxiliary reset driver
+Date: Wed, 13 Nov 2024 02:00:56 +0300
+Message-ID: <20241112230056.1406222-3-jan.dakinevich@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241112230056.1406222-1-jan.dakinevich@salutedevices.com>
+References: <20241112230056.1406222-1-jan.dakinevich@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,29 +84,58 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 41 0.3.41 623e98d5198769c015c72f45fabbb9f77bdb702b, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, lore.kernel.org:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, {Tracking_white_helo}, FromAlignment: n
+X-KSMG-AntiSpam-Info: LuaCore: 41 0.3.41 623e98d5198769c015c72f45fabbb9f77bdb702b, {Tracking_smtp_not_equal_from}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, {Tracking_white_helo}, FromAlignment: n
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/11/12 21:28:00
-X-KSMG-LinksScanning: Clean, bases: 2024/11/12 22:50:00
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/11/12 21:10:00 #26864167
 X-KSMG-AntiVirus-Status: Clean, skipped
 
-This was a part of series [1]. Comparing to original series, reset functionality
-on top of 'audio-vad' clock controller also is added.
+Add support for the reset controller present in the audio clock
+controller of A1 SoC families, using the auxiliary bus.
 
-Links:
-  [1] https://lore.kernel.org/all/20240913121152.817575-1-jan.dakinevich@salutedevices.com/
+Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+---
+ drivers/reset/amlogic/reset-meson-aux.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-Jan Dakinevich (2):
-  dt-bindings: reset: add bindings for A1 SoC audio reset controller
-  reset: amlogic: add support for A1 SoC in auxiliary reset driver
-
- drivers/reset/amlogic/reset-meson-aux.c       | 18 ++++++++++
- .../reset/amlogic,meson-a1-audio-reset.h      | 36 +++++++++++++++++++
- 2 files changed, 54 insertions(+)
- create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
-
+diff --git a/drivers/reset/amlogic/reset-meson-aux.c b/drivers/reset/amlogic/reset-meson-aux.c
+index dd8453001db9..4b422ae5fcd2 100644
+--- a/drivers/reset/amlogic/reset-meson-aux.c
++++ b/drivers/reset/amlogic/reset-meson-aux.c
+@@ -26,6 +26,18 @@ struct meson_reset_adev {
+ #define to_meson_reset_adev(_adev) \
+ 	container_of((_adev), struct meson_reset_adev, adev)
+ 
++static const struct meson_reset_param meson_a1_audio_param = {
++	.reset_ops	= &meson_reset_toggle_ops,
++	.reset_num	= 32,
++	.level_offset	= 0x28,
++};
++
++static const struct meson_reset_param meson_a1_audio_vad_param = {
++	.reset_ops	= &meson_reset_toggle_ops,
++	.reset_num	= 6,
++	.level_offset	= 0x8,
++};
++
+ static const struct meson_reset_param meson_g12a_audio_param = {
+ 	.reset_ops	= &meson_reset_toggle_ops,
+ 	.reset_num	= 26,
+@@ -40,6 +52,12 @@ static const struct meson_reset_param meson_sm1_audio_param = {
+ 
+ static const struct auxiliary_device_id meson_reset_aux_ids[] = {
+ 	{
++		.name = "a1-audio-clkc.rst-a1",
++		.driver_data = (kernel_ulong_t)&meson_a1_audio_param,
++	}, {
++		.name = "a1-audio-clkc.rst-a1-vad",
++		.driver_data = (kernel_ulong_t)&meson_a1_audio_vad_param,
++	}, {
+ 		.name = "axg-audio-clkc.rst-g12a",
+ 		.driver_data = (kernel_ulong_t)&meson_g12a_audio_param,
+ 	}, {
 -- 
 2.34.1
 
