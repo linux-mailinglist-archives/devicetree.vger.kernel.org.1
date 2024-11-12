@@ -1,72 +1,95 @@
-Return-Path: <devicetree+bounces-121041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A184A9C4FFD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 08:54:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 415529C5043
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 09:05:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 668512880EF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 07:54:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6EA04B2CDFE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 07:57:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EF4820C461;
-	Tue, 12 Nov 2024 07:53:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069F320A5FB;
+	Tue, 12 Nov 2024 07:56:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="xMIXRiN2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LcAa/IQc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4075620A5FB;
-	Tue, 12 Nov 2024 07:53:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FA695234;
+	Tue, 12 Nov 2024 07:56:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731398010; cv=none; b=pmmCnRjm4ITJsVNMoO0IZfor25JKBR5qf6b6zAJdB7VMbfxEqUy+cgQpz8ve6n2bH+2noU+amLsDXkD55ca3YeJYkqtkdGywT8ggpRCYI4k0wY0WpStpOCO936kocx0vPd0SJO0OSx7SGulujM0P6DkXWEOOiKSaMESvqVkYWUE=
+	t=1731398191; cv=none; b=XMuMnbuIs5QWlsVYFN1cpJylI1QUKPHw2DGlzZs7/oTWipzqHAfJkCoORn6FwhYSuJJa7eTIp9KVAY5P/CLaKizfcBNK04l8x8qWS2gwdMBHB0gyrTA90h47lXP+RJvU2dYTj59txrbx8t+u2rrlGEyLo+phpu73DsPEeieVq7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731398010; c=relaxed/simple;
-	bh=Ya9WJPZN2OZYUG7WeVzwc7TbneVeAAM4iyiHiQz6I44=;
+	s=arc-20240116; t=1731398191; c=relaxed/simple;
+	bh=25O1AxlRpWs+3gu/vbg8zcYP/wwTZeoTz8rYqGhb2PU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gGjkXru4BAoRTr10h5LSXMNID5bZnqGRJG/8wvIrr/HZVt0PHYUVRgBwAqcuQB1gugaYmyde49fSlX3rrVFxgGYvMiafz8FxMHZjjK+l2VQmBqkfTzCuMGei1UWaS9V2nkMxgDM6N8yk0T/Y+ST3exwUAls+O1W85bokMVbORko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=xMIXRiN2; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID; bh=+CicQmBbCv29/xiHgnZ+Z8sv1AVWbLap/TSIARQnGHM=; b=xMIXRi
-	N2PIo5n168pq6k9vmSSzzqCHxptA0SI+y5n3L0tCLIZhtm3a3t1ohY6ZTTm5RYUQtvbUWpojGNyPy
-	Gsk8qzVA7l6Ebda2oGm9dFrT3D05OFPq3H5l220kmK2HYpx0jRavWoZUcGTgMvCG/+4J2vLLTRYKg
-	BPGKkLH5kZWG2ZvlVOyX65GHfJnr3bphceIuQDkUnpJtRRNJYYXUqQ7m4BB/84gxp7cQOX0/eBCYP
-	lG5hfGg0b3W3fknLd64sjDeMqhAEpbUA/W8LSMf0sObp1mhJ0a1MwvOBMLakF0BaXoqTgjFXgKqZY
-	mWHody1XGZWgxVUmLN47IAbqDMcA==;
-Received: from sslproxy05.your-server.de ([78.46.172.2])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sean@geanix.com>)
-	id 1tAliH-0004Xm-8l; Tue, 12 Nov 2024 08:53:25 +0100
-Received: from [185.17.218.86] (helo=Seans-MacBook-Pro.local)
-	by sslproxy05.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sean@geanix.com>)
-	id 1tAliG-000LDs-1k;
-	Tue, 12 Nov 2024 08:53:24 +0100
-Date: Tue, 12 Nov 2024 08:53:23 +0100
-From: Sean Nyekjaer <sean@geanix.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] can: tcan4x5x: add option for selecting nWKRQ
- voltage
-Message-ID: <2ioqxdymcgx2tnz6cvcuibom6mwam32sushu7kv6bo4e6vemlf@m53nguyzqlyp>
-References: <20241111-tcan-wkrqv-v2-0-9763519b5252@geanix.com>
- <20241112-bizarre-cuttlefish-of-excellence-ff4e83-mkl@pengutronix.de>
- <lfgpif7zqwr3ojopcnxmktdhfpeui5yjrxp5dbzhlz7h3ewhle@3lbg553ujfgq>
- <20241112-doberman-of-original-discourse-a50070-mkl@pengutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=lAK+B8FDlpwKZv0lW+iGyYLkHdVsn8kJmt8BFuFqk3scM9JKBNNw/YEvwvx3fdhMV/L0hx4A7a/Djo8MDAzktRrz4JW+Nu6YgdwESVpzL0OcO55Y+kKRDSD8PlQwkDWb6F4KBY8kVWK8WupM5oc9QUaMPHz9sdXgRbAD8fo/rUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LcAa/IQc; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-20cd76c513cso44816515ad.3;
+        Mon, 11 Nov 2024 23:56:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731398190; x=1732002990; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=NefPRLN+h9TOgssrrobmBkWbrfPIcMnQcGv5XGBIdzk=;
+        b=LcAa/IQcF6s5r78Xa2x1ThRraghDkaRdIWLg0tlxJbsxuZnw7fq3LHOGVDMBDWII7k
+         ugOZ1caWr9yfKKosPOuw+Y6PRq3y13Vr/4uBbQKv6DCrd8oduk0+7zoWRvc8podWFrHR
+         6ZiyetQWHEZwR15FaF2fV4zSSOfpxvl9oyRRioO4RkL/qvpIrCVRsyehJGPVqiy0/qge
+         prL55ZPtGI2zvvtBBPHzmTCubOmxP4KFtscaE/ym0lM+/xeUuLAeW3/G5X/q6BSR+kL4
+         kUJc3PCbOYdG8barHwA2hSs95++2rMndWx10JF9PW6+ZIB7RVOmkC6Hv2p/C5DpJsZxq
+         LVYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731398190; x=1732002990;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NefPRLN+h9TOgssrrobmBkWbrfPIcMnQcGv5XGBIdzk=;
+        b=DW/2Um4wIPpAuqQCXfqXyNTRWoP5op3nNoD0dmNK5IYvbck+RlRyQXYjwGm3uXDJgY
+         zKSli6iFHfxlUrELjvZo7KRrZL9AdjhfBLrcFtlKKPDOPOob04Amqguq9+GtJ5G8AYNN
+         e6/XsZUuUghGRdA9501U0RVWOu7Q0/nxFz0pA0W+v44mCCCnv/BKXs6QADRAkJm5E0Q2
+         4QJT1BglIqxDEIgHUY7OdOASDwv9YIw+FOSb2ZdIjxK6sYzTWqJlRW3DBRWo9f1ztuIE
+         AyMK8AhEtTCCgOHQl4wsciqrd7cZBjXNrWhVJORc5M25LUs3oYKFzHs5wIVGfFDCLuVR
+         s0HA==
+X-Forwarded-Encrypted: i=1; AJvYcCVRAxJmZ0vs6EFuDlUGQnzMPStuteCzz29MLG1gF9mS528Iw2lFw8UHStf/BEDh6OMs3E6k3qMYjdKgM3luQg==@vger.kernel.org, AJvYcCVzIKTXzjN4aeVzX1alUXNh633P2L8NgngA6EaMj/VI9/C0yu4hIr00bS6JRKqWKeIvvgsEL2wSplvo/A==@vger.kernel.org, AJvYcCX3+q8wrwlsKApwocy7WXCNsZIQ/bTqNI+q2UrrXCrnVSpP6DNzDCW4H07E3JHwrffIJeI4W6eXrGGH@vger.kernel.org, AJvYcCXiGqg7flPVbjR5aab+7FSCCJ1zoJYs0J7VDntXp7TnEuGbj/njD+BaGYQFjB+FaNBgOmE9GS7zu5JnaLWu@vger.kernel.org
+X-Gm-Message-State: AOJu0YyA5d2fCGAPf3b5e5N+tHQVeW32WQzsJr34BYVYy81p+wTjZ5HP
+	M4x/9ICtG05hwPn8H+NTbaIeWCMEH01k/bQxhaPqfsJKZyXKwBpf
+X-Google-Smtp-Source: AGHT+IE0KS2NS7V7DN97gZCWihhMgbFp+BwZ71PDpPLPGgxlj/Wy496iueX09Dw83yU62q37vMBjQw==
+X-Received: by 2002:a17:902:ce91:b0:20c:da98:d752 with SMTP id d9443c01a7336-211ab929e3fmr18904925ad.16.1731398189634;
+        Mon, 11 Nov 2024 23:56:29 -0800 (PST)
+Received: from thinkpad ([117.213.103.248])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177e41717sm85733995ad.122.2024.11.11.23.56.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Nov 2024 23:56:29 -0800 (PST)
+Date: Tue, 12 Nov 2024 13:26:19 +0530
+From: Manivannan Sadhasivam <manisadhasivam.linux@gmail.com>
+To: Xin Liu <quic_liuxin@quicinc.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+	quic_jiegan@quicinc.com, quic_aiquny@quicinc.com,
+	quic_tingweiz@quicinc.com, quic_sayalil@quicinc.com
+Subject: Re: [PATCH v1 2/4] dt-bindings: ufs: qcom: Add UFS Host Controller
+ for QCS615
+Message-ID: <20241112075619.2ilsccnnk4leqmdy@thinkpad>
+References: <20241017042300.872963-1-quic_liuxin@quicinc.com>
+ <20241017042300.872963-3-quic_liuxin@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,36 +98,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241112-doberman-of-original-discourse-a50070-mkl@pengutronix.de>
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27455/Mon Nov 11 10:58:33 2024)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241017042300.872963-3-quic_liuxin@quicinc.com>
 
-Hi Marc,
-
-On Tue, Nov 12, 2024 at 08:52:14AM +0100, Marc Kleine-Budde wrote:
-> On 12.11.2024 08:44:00, Sean Nyekjaer wrote:
-> > Hi Marc,
-> > 
-> > On Tue, Nov 12, 2024 at 08:38:26AM +0100, Marc Kleine-Budde wrote:
-> > > On 11.11.2024 09:54:48, Sean Nyekjaer wrote:
-> > > > This series adds support for setting the nWKRQ voltage.
-> > > 
-> > > IIRC the yaml change should be made before the driver change. Please
-> > > make the yaml changes the 1st patch in the series.
-> > > 
-> > > Marc
-> > > 
-> > 
-> > I know, so I have added, prerequisite-change-id as pr the b4 manual.
+On Thu, Oct 17, 2024 at 12:22:58PM +0800, Xin Liu wrote:
+> From: Sayali Lokhande <quic_sayalil@quicinc.com>	
+> 	
+> Document the Universal Flash Storage(UFS) Host Controller on the Qualcomm
+> QCS615 Platform.
 > 
-> I mean the order of patches in this series. First the yaml patch, then
-> the code change.
+> Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
+> Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
+> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
+
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+- Mani
+
+> ---
+>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> regards,
-> Marc
+> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> index cde334e3206b..a03fff5df5ef 100644
+> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> @@ -26,6 +26,7 @@ properties:
+>            - qcom,msm8994-ufshc
+>            - qcom,msm8996-ufshc
+>            - qcom,msm8998-ufshc
+> +          - qcom,qcs615-ufshc
+>            - qcom,qcs8300-ufshc
+>            - qcom,sa8775p-ufshc
+>            - qcom,sc7180-ufshc
+> @@ -243,6 +244,7 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> +              - qcom,qcs615-ufshc
+>                - qcom,sm6115-ufshc
+>                - qcom,sm6125-ufshc
+>      then:
+> -- 
+> 2.34.1
+> 
 > 
 
-Oh, noted thanks!
-
-/Sean
+-- 
+மணிவண்ணன் சதாசிவம்
 
