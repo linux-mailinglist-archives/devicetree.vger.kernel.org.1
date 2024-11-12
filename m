@@ -1,248 +1,276 @@
-Return-Path: <devicetree+bounces-121090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6300E9C538F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 11:31:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F17079C532E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 11:24:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D491CB2EC9A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 10:22:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 824BA1F264F7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 10:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F41210184;
-	Tue, 12 Nov 2024 10:22:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="JITA7opH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241F72123C8;
+	Tue, 12 Nov 2024 10:23:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010062.outbound.protection.outlook.com [52.101.228.62])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21B2520F5B6;
-	Tue, 12 Nov 2024 10:22:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.62
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731406941; cv=fail; b=ZISCg6Y5QMj0TELpLPP5/cXcfFE/neQXkKSsk6+4zKBgjVtcUDq1JaPG8x4XxbkMBiGCeeaXXRVQmIOTTjqb95Rh+rV0VLIo79vssrTYViZALkx7NCMqQw1XBeM9nWMgKkKxUNf1x2cNuhVAOAcicO5ZtTu1hPorYshP1sVjk6M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731406941; c=relaxed/simple;
-	bh=uuLHv/TPbpyuJSiDvnMB3FkKX1rc4MgscSaNKvIT5RI=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=TpyCjozS12B82awYdRB4GPMwQqGYE52vDMOE4rwIYfLehqQ9v96+mP3zVAw0PcNmduEgR7HP+1Uc+5NrEiydpT4vVandFe1bZIfsyNsudTSkE3Fv5V6C6ndENDU/glTrBkrqIAaRzZkQp1vR4vdmoie4BzVVjqBU+CPONURGJ74=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=JITA7opH; arc=fail smtp.client-ip=52.101.228.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kkNRwlEvpRinMUUP2xIvRlv8lG1e6GuwPqw0qgh2VETF11UWdZ3FIyaJOoWynsLZYkI5LKdrDdaFvoJ6fQaJBduYXNDkMkKmHv4WuPy1AqLJaaSz5orbwR67D90Q8dJf+QcSwMW9o/ErUumsGlObbMB0dTiF3KjuNWsnS5LZ28/HiNmE8u78dPp430jQN4SgNfSDsObB5B5zDUO9u0q5AaHiyoShDbgsQHNBoSz6otg+UfOYKae1BauCqziheRdQXk99VFuhBdMdTnjNDGz3UrEbfFOJNpJ6pO2dY4lz89Ns+izMv6+Oi05jZQteF8ggTZYUpgQx1tAXoi1sk2pKTg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oxJ4RwOEr82XCbEspiLXyjx5a9jdl3H2kZ8mGdsCYv8=;
- b=iOxjewv9KwwA9dnHhCwCvBRsyQO6YllyzGfuaVg0gIRbxY2nw8Gmji66v2snUV18vGLc1Or/ae3vOIpenh/A3jfJv8gW1D/nbj2QoZh4yMX9wDoTYZia14TbNs7encg0XZuwbVTw9c0M/0pGh56JsHZWRrh2jON5kd+LN/KLGdAejPpFhnH/2tHOxnSNAZwtSL0fxv+2CHRdCsg+DY4DgYuHYYhNHnQG6aMhOaeKIi646ZAASuMKDZLCzK31GDoTkY0ys9CQH2h0mqkAAWAiNMDU3n9ZWBn4xjj7Qmw10gQ4jFZKQIOJZ8vFtmmEiHaKJ0/cP6AZnmDlq4aevZj/6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oxJ4RwOEr82XCbEspiLXyjx5a9jdl3H2kZ8mGdsCYv8=;
- b=JITA7opHf0+qEjBO7ehBLdgE1GLUw0bWkZu/S8nDXSMkK0CiJTIpLMyk3fzRiP09FE7K9GIYV1Hay4rc+qk4uHD7v/k2SeqqroE72xY3g+9eEWY4nUr86EqjPbViQrG3FuVOJuiBzZoLNr9Um4sTNXn0uBW3xCbtquQbS2OwD8U=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by TYCPR01MB8552.jpnprd01.prod.outlook.com (2603:1096:400:138::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.29; Tue, 12 Nov
- 2024 10:22:13 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%3]) with mapi id 15.20.8137.027; Tue, 12 Nov 2024
- 10:22:13 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Liu Ying <victor.liu@nxp.com>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-clk@vger.kernel.org"
-	<linux-clk@vger.kernel.org>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>
-CC: "shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de"
-	<s.hauer@pengutronix.de>, "kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>, "robh@kernel.org"
-	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "catalin.marinas@arm.com"
-	<catalin.marinas@arm.com>, "will@kernel.org" <will@kernel.org>,
-	"abelvesa@kernel.org" <abelvesa@kernel.org>, "peng.fan@nxp.com"
-	<peng.fan@nxp.com>, "mturquette@baylibre.com" <mturquette@baylibre.com>,
-	"sboyd@kernel.org" <sboyd@kernel.org>, "andrzej.hajda@intel.com"
-	<andrzej.hajda@intel.com>, "neil.armstrong@linaro.org"
-	<neil.armstrong@linaro.org>, "rfoss@kernel.org" <rfoss@kernel.org>,
-	laurent.pinchart <laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se"
-	<jonas@kwiboo.se>, "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
-	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
-	"mripard@kernel.org" <mripard@kernel.org>, "tzimmermann@suse.de"
-	<tzimmermann@suse.de>, "airlied@gmail.com" <airlied@gmail.com>,
-	"simona@ffwll.ch" <simona@ffwll.ch>, "quic_bjorande@quicinc.com"
-	<quic_bjorande@quicinc.com>, "geert+renesas@glider.be"
-	<geert+renesas@glider.be>, "dmitry.baryshkov@linaro.org"
-	<dmitry.baryshkov@linaro.org>, "arnd@arndb.de" <arnd@arndb.de>,
-	"nfraprado@collabora.com" <nfraprado@collabora.com>, "marex@denx.de"
-	<marex@denx.de>
-Subject: RE: [PATCH v6 7/7] arm64: defconfig: Enable ITE IT6263 driver
-Thread-Topic: [PATCH v6 7/7] arm64: defconfig: Enable ITE IT6263 driver
-Thread-Index: AQHbNOqfdCG8B3DZuESvH2RV/HKqu7KzbykQ
-Date: Tue, 12 Nov 2024 10:22:13 +0000
-Message-ID:
- <TY3PR01MB11346F931EAF9BB82DDDC9A3F86592@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20241112100547.2908497-1-victor.liu@nxp.com>
- <20241112100547.2908497-8-victor.liu@nxp.com>
-In-Reply-To: <20241112100547.2908497-8-victor.liu@nxp.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYCPR01MB8552:EE_
-x-ms-office365-filtering-correlation-id: 50d24a4a-c52e-4e94-f022-08dd0303e009
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|376014|7416014|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?nbDxbJxiT8XptAQtXmHfPAJmkoMzmE7AQXa4/fs3BROIBZcuSHaMY0kKXCvv?=
- =?us-ascii?Q?gqbIQZG5anr/++V5u3ERpmbNyQLnsPlzwTw0o59a1X3pvvuHUl4dgUJGuX6A?=
- =?us-ascii?Q?ni45r6AWzKd8TvHZQQAl+JWbYjRAUvouJCSFSm+sIaWlgQ4aQLZ4MdRbdDcC?=
- =?us-ascii?Q?TFp/2yrhZU+6zvvzZbkRhfc2+YUDAfmEpUH4mApeAv6Yhg+NYGEHg3yWIr3g?=
- =?us-ascii?Q?Vh0Ze0ULoKlqMajEtI4efOoAYxaqAFhVC8lWkGC+yplKeCVPiWuXTiSi7p0E?=
- =?us-ascii?Q?3kGrBM58S0rSORpuVLmgyIj0PiF8C/oDLSTmRyzZSaYnv6hu9NPf8jfiLqeR?=
- =?us-ascii?Q?zRBbPSAwBpYD0+eBXsR6lzOKYkgxRicW2jlZ6zMUlhK/IuG33yHuBwF0omnC?=
- =?us-ascii?Q?+Y+117vVcL7nsCFUNSrGkV12X9BmuHf+NF/s9KbD3tOakAsQpzbgBKwH4JsW?=
- =?us-ascii?Q?HuLZSBUg7TH1hDC3xKKAq0znokcDIGp47tfMbVyaCrEgCbjhSdnfRcfvaPUg?=
- =?us-ascii?Q?04B6qlyyFvin8fc3GIHgEKkhBiS55NMWrhUvAwS7OiEmBGCyYM2ePyPRs8ea?=
- =?us-ascii?Q?1mPw5vfCrS1YcYvbTEvdJqmRsJYObH7Y/N7WS1EyeSv7RPVoWbhxc29deeI6?=
- =?us-ascii?Q?Fxrj/K91VEuFKNt+jwgGGyYWpt9Koqgc6QhTH3Su2aabje4anGUwHyIjI2tZ?=
- =?us-ascii?Q?Gqio40tP3FFptDdXkOZTvwULEo/XYnAzDM4ktUOWmmBOt1zVPLXZYazixSu3?=
- =?us-ascii?Q?Jh8f3Mge4ipod5s3G4rXmsq0sc8BbJIXcGUJf6fIYqRuNs2lxK3YkQfYC2c/?=
- =?us-ascii?Q?NeStvsxI/ZyYxspgxdFEY+zscTt1C+hPjn0HWpvm6OAqjNeJy14anKg2UY6h?=
- =?us-ascii?Q?/V8VQwN0JETHA7cf3GsRZug6dY98Vp1ONeFmzUfnK2KRCFonWWu3DNk+mcyY?=
- =?us-ascii?Q?HipSrtWhkMQlWcQvlUF8yiKiTSMG67jNV5CMkS2Vbf3vhyYBvQbOCWONMnz3?=
- =?us-ascii?Q?+VXFIY99co6YhwfCEvlz55nyGS8NsPVbw/3QXRbGzuB6Lbrz3QZz5zuSbqUg?=
- =?us-ascii?Q?Kq87m0ReS9HiCli0dYas2HmT3AzTgwZPVz4T/tNNR1xl+Z8cmtQ5bsWl0Y+u?=
- =?us-ascii?Q?SmhFK/Uf0QuFO1QoKdVXC3si4CQAMG2O9U8xtcKEZR16Xw8O4c/fQATwLTca?=
- =?us-ascii?Q?djKhC4BsIArcsqg34NpFiWHjSj1YqePdq5Wa7dYtlSXPsc62QLB9MTmNjoiG?=
- =?us-ascii?Q?kn+IoN1LMNeO8loiVQT8UBQAEnzfAUbeK8rj0/Cg4KW8IqrdBGc1TaQ0C+z5?=
- =?us-ascii?Q?eFaZdtS+3bta1LLkACJLQKYA7Vkbw0+xWUx+VptVVJoBAlo7Flpy07uWrB4S?=
- =?us-ascii?Q?uH2r6Yk=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?dkdhoLYUceSSIPm4+pWmfQ6LirkCXieDCvA+Cpi5kdBa5COTnd1TNn9duGNQ?=
- =?us-ascii?Q?A+PK5mYzxTJYGLA0pn5Kl6CqGff0O6GSsjyjuqtJRtP9vQiKZEu99ueBQpDz?=
- =?us-ascii?Q?X4u58IlSkNcAcgXKaUoyJ8xlFX/fHL3gz030Z2ha8dyjFah+OPLW7XYZAQwe?=
- =?us-ascii?Q?tvULfWnSjoQBxtajxMfkrBMkutrDslaVaHw2cLZtjciJHGOO8ywg/kME0KSo?=
- =?us-ascii?Q?iwMJUZx48R8udwNMXd6vnONnO/RfCRP1Oy2TI/vyd8RrS8ga2pIeanDl7tyA?=
- =?us-ascii?Q?peqHj3V512xwuehxoAsRUkGnoQZk49cOg8f3iZbUJog4pYEPILZYfUWnhawb?=
- =?us-ascii?Q?mg68zQAgIRzNFAqQTUt/veTROqfgXRpti5IlsegdyBOcuRb9DkAHXs9FKBqR?=
- =?us-ascii?Q?oWfVeYEAAd7GFZIE1N7pGrLWB3/Gy0bo4CTGKzLCUIAnUZVPeoe9Nd2T6HE9?=
- =?us-ascii?Q?Vn7cX577T0mDjJlquK44xTk+gJ/fheAxaOvtz1DANwE4u13Ju7DVg5GxCBfO?=
- =?us-ascii?Q?Di6UdwrSJc7ODeehyC5bPu7x1oTOySiQLztm2LP4CnR65aMx5f9cXWBjjmR9?=
- =?us-ascii?Q?5IOZTV07YwPPyLbOoqrdfCshVE0DDS7UgsRXRpIqaQ3Ox8lJ9PTKUoUh5OGA?=
- =?us-ascii?Q?NQGb9MxhG5Ei6uMbwDbCHIl1XVwzN5+pbOp+DgSfMyu90ryg+5OlU2sNHv2L?=
- =?us-ascii?Q?MTwQebsoyFyjgfjlOfcgBLuV/yMhaUVh5huqeOPYvXFA35ID2zRqwcpHDnos?=
- =?us-ascii?Q?l+krxY/4kJC/DeT1YEm+6FLcSu5guVgdBifi0vk+/Z5CJnzmp/CFaMwLmt3s?=
- =?us-ascii?Q?m63B0MNAXg6yoambqNU+/vqkmslKd/AuqjwjJXjH1YR32hxo1xDYpW9gV/vN?=
- =?us-ascii?Q?B+syh7ko+aUaulD0whorUW905jda71LExfeE8g9/olCDceU7oBxl6dkxxc6I?=
- =?us-ascii?Q?tM6ChHWI6Ur9i9SzQbpDitUr6C6S7388m0Psd2hiPM9b6+wuBc2XisTE/U24?=
- =?us-ascii?Q?HbBFEVXdP52gJD+kHu6VyyhPQs48ezBK8kzJjoe/9sjfGPd1gxzqt6D51mBR?=
- =?us-ascii?Q?4Qij3voZVKmdr2Qhewh8H4SCgDQpKLPGH0itrQwGem3xMvx8pfDNZvikfisB?=
- =?us-ascii?Q?4SnL+3QZSWmWcWVG7+NUwj7TaLVJ75mSu9x9tc5e+NOl0Arvc30IolRZZRa7?=
- =?us-ascii?Q?VyJWJcEjM7cV2VYaxQNhg0STmYg0qylJyTWjJu8inB4/DKyh0ZUmvgPgg3hx?=
- =?us-ascii?Q?PDiKJahCg+n+C6ovV9y37vx8oMckvlBR4LRxZkLWeSGb5JZ+EbouUYJP727C?=
- =?us-ascii?Q?4qbN3KJFa4XhGBaLxa7RvsNlPsta5nPGfp3BhiXtTt5LqqrabJTaGbsrUTVS?=
- =?us-ascii?Q?z2xFyvGWNMQFdWmoey5lugBnrHM8shm6Z3xxHfVOPiFtOuM0wXpsPeIeQNBL?=
- =?us-ascii?Q?BvVXZMOIx6mMoBsRP10Nz1n7WjB4DY6IfpVuBfBpZP7jqJWrFwtDJ4ipqULD?=
- =?us-ascii?Q?g8LeDgs2gp1XgHDTocVU4aWkyQN7edxFP5D40iaS7O8cP9ZkOHjccKWTm7/R?=
- =?us-ascii?Q?Jvjc1T9GuMAFcPswmLJo/Pb90U3D6fyXDg3DwfS94sJpItR4YfCSpd9+9miv?=
- =?us-ascii?Q?yA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F016921216C;
+	Tue, 12 Nov 2024 10:23:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731407006; cv=none; b=B+Y2jn5IKNv5QyT+aEE1efoiVuYjsxtbkENosQXDkJX7Bx/sB9p6KLlZFtwWpcEa0a8HRZrBuu6xibGUma7NxoyEeaSOQMAsfwtXnAYwyWI/M4nP7ONbRtH/KS1jHJ04rMXDYBJLvm2npXfxJPcusjy/EsXo1u5Z4aEffC3xZIg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731407006; c=relaxed/simple;
+	bh=JiZ5Tc2DIkZvwY2DXbMIpkFJDjwpVLxOSSaar6aI7/4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lDaAIq1/ZA0mF5B0lHuTQsd84GOUmJMAdzvRfBQwDHKydiNU5FJZoezia0PWSiSZnIuEdtrJBCiDBY7jUcPYoEBxm7U/xy+O7HM7hyklAVpNp4ucVkJZGiY/540SmLfllDrygAdvRlRXyZEYAi84ToIz6p3FjAkpySBAVSAqjac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9699AC4CED6;
+	Tue, 12 Nov 2024 10:23:21 +0000 (UTC)
+Message-ID: <7dcf9ca0-4707-4641-905e-c5e1b0a8b7fd@xs4all.nl>
+Date: Tue, 12 Nov 2024 11:23:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 50d24a4a-c52e-4e94-f022-08dd0303e009
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Nov 2024 10:22:13.4987
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 5LatjY0gmUXvT88i+2h0J41sLIMaWWdraBM3T74Af2quLO/5b0OhYubRAMF07VZQ6WGaoTsEzzzHg8YBOPB6sCkWCNByPL08LJQzXYrxBpI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8552
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 12/28] media: iris: implement enum_fmt and
+ enum_frameintervals ioctls
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Sebastian Fricke <sebastian.fricke@collabora.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Nicolas Dufresne <nicolas@ndufresne.ca>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Vedang Nagar <quic_vnagar@quicinc.com>
+References: <20241105-qcom-video-iris-v5-0-a88e7c220f78@quicinc.com>
+ <20241105-qcom-video-iris-v5-12-a88e7c220f78@quicinc.com>
+Content-Language: en-US, nl
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Autocrypt: addr=hverkuil@xs4all.nl; keydata=
+ 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
+In-Reply-To: <20241105-qcom-video-iris-v5-12-a88e7c220f78@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Liu Ying,
+On 05/11/2024 07:55, Dikshita Agarwal wrote:
+> From: Vedang Nagar <quic_vnagar@quicinc.com>
+> 
+> Implement enum_fmt and enum_frameintervals ioctls with necessary hooks.
 
-Thanks for the patch.
+There is a typo in this commit log and in the Subject: you implement framesizes,
+not frameintervals.
 
-> -----Original Message-----
-> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Li=
-u Ying
-> Sent: 12 November 2024 10:06
-> Subject: [PATCH v6 7/7] arm64: defconfig: Enable ITE IT6263 driver
->=20
-> ITE IT6263 LVDS to HDMI converter is populated on NXP IMX-LVDS-HDMI and I=
-MX-DLVDS-HDMI adapter cards.
-> The adapter cards can connect to i.MX8MP EVK base board to support video =
-output through HDMI
-> connectors.
-> Build the ITE IT6263 driver as a module.
->=20
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+Please fix, since this is confusing.
 
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+Regards,
 
-Cheers,
-Biju
+	Hans
 
-
+> 
+> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
+> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
 > ---
-> v6:
-> * No change.
->=20
-> v5:
-> * No change.
->=20
-> v4:
-> * No change.
->=20
-> v3:
-> * No change.
->=20
-> v2:
-> * No change.
->=20
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig =
-index
-> d13218d0c30f..9b20b75f82e2 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -901,6 +901,7 @@ CONFIG_DRM_PANEL_SITRONIX_ST7703=3Dm
->  CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA=3Dm
->  CONFIG_DRM_PANEL_VISIONOX_VTDR6130=3Dm
->  CONFIG_DRM_FSL_LDB=3Dm
-> +CONFIG_DRM_ITE_IT6263=3Dm
->  CONFIG_DRM_LONTIUM_LT8912B=3Dm
->  CONFIG_DRM_LONTIUM_LT9611=3Dm
->  CONFIG_DRM_LONTIUM_LT9611UXC=3Dm
-> --
-> 2.34.1
+>  .../platform/qcom/iris/iris_platform_common.h      |  4 +++
+>  .../platform/qcom/iris/iris_platform_sm8550.c      |  4 +++
+>  drivers/media/platform/qcom/iris/iris_vdec.c       | 17 ++++++++++
+>  drivers/media/platform/qcom/iris/iris_vdec.h       |  1 +
+>  drivers/media/platform/qcom/iris/iris_vidc.c       | 39 ++++++++++++++++++++++
+>  5 files changed, 65 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
+> index e345667dfbf2..54a2d723797b 100644
+> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
+> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
+> @@ -43,6 +43,10 @@ struct ubwc_config_data {
+>  };
+>  
+>  struct platform_inst_caps {
+> +	u32 min_frame_width;
+> +	u32 max_frame_width;
+> +	u32 min_frame_height;
+> +	u32 max_frame_height;
+>  	u32 max_mbpf;
+>  };
+>  struct iris_core_power {
+> diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
+> index bc4769732aad..37c0130d7059 100644
+> --- a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
+> +++ b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
+> @@ -11,6 +11,10 @@
+>  #define VIDEO_ARCH_LX 1
+>  
+>  static struct platform_inst_caps platform_inst_cap_sm8550 = {
+> +	.min_frame_width = 96,
+> +	.max_frame_width = 8192,
+> +	.min_frame_height = 96,
+> +	.max_frame_height = 8192,
+>  	.max_mbpf = (8192 * 4352) / 256,
+>  };
+>  
+> diff --git a/drivers/media/platform/qcom/iris/iris_vdec.c b/drivers/media/platform/qcom/iris/iris_vdec.c
+> index e807decdda2b..b2858c96e859 100644
+> --- a/drivers/media/platform/qcom/iris/iris_vdec.c
+> +++ b/drivers/media/platform/qcom/iris/iris_vdec.c
+> @@ -60,6 +60,23 @@ void iris_vdec_inst_deinit(struct iris_inst *inst)
+>  	kfree(inst->fmt_src);
+>  }
+>  
+> +int iris_vdec_enum_fmt(struct iris_inst *inst, struct v4l2_fmtdesc *f)
+> +{
+> +	switch (f->type) {
+> +	case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
+> +		f->pixelformat = V4L2_PIX_FMT_H264;
+> +		f->flags = V4L2_FMT_FLAG_COMPRESSED | V4L2_FMT_FLAG_DYN_RESOLUTION;
+> +		break;
+> +	case V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE:
+> +		f->pixelformat = V4L2_PIX_FMT_NV12;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  int iris_vdec_try_fmt(struct iris_inst *inst, struct v4l2_format *f)
+>  {
+>  	struct v4l2_pix_format_mplane *pixmp = &f->fmt.pix_mp;
+> diff --git a/drivers/media/platform/qcom/iris/iris_vdec.h b/drivers/media/platform/qcom/iris/iris_vdec.h
+> index 4f2557d15ca2..eb8a1121ae92 100644
+> --- a/drivers/media/platform/qcom/iris/iris_vdec.h
+> +++ b/drivers/media/platform/qcom/iris/iris_vdec.h
+> @@ -10,6 +10,7 @@ struct iris_inst;
+>  
+>  void iris_vdec_inst_init(struct iris_inst *inst);
+>  void iris_vdec_inst_deinit(struct iris_inst *inst);
+> +int iris_vdec_enum_fmt(struct iris_inst *inst, struct v4l2_fmtdesc *f);
+>  int iris_vdec_try_fmt(struct iris_inst *inst, struct v4l2_format *f);
+>  int iris_vdec_s_fmt(struct iris_inst *inst, struct v4l2_format *f);
+>  
+> diff --git a/drivers/media/platform/qcom/iris/iris_vidc.c b/drivers/media/platform/qcom/iris/iris_vidc.c
+> index 6a32fd8d6123..bc77dfc2ba67 100644
+> --- a/drivers/media/platform/qcom/iris/iris_vidc.c
+> +++ b/drivers/media/platform/qcom/iris/iris_vidc.c
+> @@ -217,6 +217,16 @@ int iris_close(struct file *filp)
+>  	return 0;
+>  }
+>  
+> +static int iris_enum_fmt(struct file *filp, void *fh, struct v4l2_fmtdesc *f)
+> +{
+> +	struct iris_inst *inst = iris_get_inst(filp, NULL);
+> +
+> +	if (f->index)
+> +		return -EINVAL;
+> +
+> +	return iris_vdec_enum_fmt(inst, f);
+> +}
+> +
+>  static int iris_try_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format *f)
+>  {
+>  	struct iris_inst *inst = iris_get_inst(filp, NULL);
+> @@ -259,6 +269,32 @@ static int iris_g_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format
+>  	return ret;
+>  }
+>  
+> +static int iris_enum_framesizes(struct file *filp, void *fh,
+> +				struct v4l2_frmsizeenum *fsize)
+> +{
+> +	struct iris_inst *inst = iris_get_inst(filp, NULL);
+> +	struct platform_inst_caps *caps;
+> +
+> +	if (fsize->index)
+> +		return -EINVAL;
+> +
+> +	if (fsize->pixel_format != V4L2_PIX_FMT_H264 &&
+> +	    fsize->pixel_format != V4L2_PIX_FMT_NV12)
+> +		return -EINVAL;
+> +
+> +	caps = inst->core->iris_platform_data->inst_caps;
+> +
+> +	fsize->type = V4L2_FRMSIZE_TYPE_STEPWISE;
+> +	fsize->stepwise.min_width = caps->min_frame_width;
+> +	fsize->stepwise.max_width = caps->max_frame_width;
+> +	fsize->stepwise.step_width = STEP_WIDTH;
+> +	fsize->stepwise.min_height = caps->min_frame_height;
+> +	fsize->stepwise.max_height = caps->max_frame_height;
+> +	fsize->stepwise.step_height = STEP_HEIGHT;
+> +
+> +	return 0;
+> +}
+> +
+>  static int iris_g_selection(struct file *filp, void *fh, struct v4l2_selection *s)
+>  {
+>  	struct iris_inst *inst = iris_get_inst(filp, NULL);
+> @@ -300,12 +336,15 @@ static const struct vb2_ops iris_vb2_ops = {
+>  };
+>  
+>  static const struct v4l2_ioctl_ops iris_v4l2_ioctl_ops = {
+> +	.vidioc_enum_fmt_vid_cap        = iris_enum_fmt,
+> +	.vidioc_enum_fmt_vid_out        = iris_enum_fmt,
+>  	.vidioc_try_fmt_vid_cap_mplane  = iris_try_fmt_vid_mplane,
+>  	.vidioc_try_fmt_vid_out_mplane  = iris_try_fmt_vid_mplane,
+>  	.vidioc_s_fmt_vid_cap_mplane    = iris_s_fmt_vid_mplane,
+>  	.vidioc_s_fmt_vid_out_mplane    = iris_s_fmt_vid_mplane,
+>  	.vidioc_g_fmt_vid_cap_mplane    = iris_g_fmt_vid_mplane,
+>  	.vidioc_g_fmt_vid_out_mplane    = iris_g_fmt_vid_mplane,
+> +	.vidioc_enum_framesizes         = iris_enum_framesizes,
+>  	.vidioc_reqbufs                 = v4l2_m2m_ioctl_reqbufs,
+>  	.vidioc_g_selection             = iris_g_selection,
+>  };
+> 
 
 
