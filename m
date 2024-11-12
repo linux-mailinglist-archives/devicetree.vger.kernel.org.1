@@ -1,94 +1,103 @@
-Return-Path: <devicetree+bounces-121281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70F7D9C61DC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:52:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C26F9C620E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 21:02:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35A0C281D09
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 19:52:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E126A1F2128A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:02:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE2B7219E26;
-	Tue, 12 Nov 2024 19:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEBED219C82;
+	Tue, 12 Nov 2024 20:02:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CQhkcw8t"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="YAriotIG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07F820ADEC;
-	Tue, 12 Nov 2024 19:50:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B621B217472
+	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 20:02:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731441050; cv=none; b=MyMbzHvaxw4lBvm1YFOm6BhbUkI4KeKTxfmnsdRiw1BASUnGlAquK2AmAKK6POjpayhDtDpUkIc5r217Cfz4H8hjAjTNVMhz9IFyHUVq3jKREYShLO2DHZZThXt27kotv1n/Q1jRy2gh8YutrojYFvhe05MxH5lfmkO1PWpH6K8=
+	t=1731441733; cv=none; b=Bb/K0ZZxsXrBirbZYSo1RwTHNE/9OV/8rBkjyded4LKErdTZ9YtdJ4ToGTz/h0kYM8rYUk6KDbQ7on+ZhsP8gKX7EWjN/Q88+nHC9VXXtTb37nROT3WPCBCN9u5IVftyWr6s51Q28mEY2NF1GEGbn7X+auOLxVrlB/kz4DmhHwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731441050; c=relaxed/simple;
-	bh=rJgZSYSkG7dh0RVAe8u1Z+Bh6JGYOaaERx2tsZG25kA=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=MTWvQ4CQd8xojLMniB4aUQvGvcAFX8uf6mjLL2OVEApMDjvfDy+lUBuKksgaKKKwlziJvwPTgTI/5qsybXqLqdEVlNC8YhGdsUfqayBToYP9dUwWJg8X7rGI+wkgynXa1WobMtdLhPUixhQ04Fncm7MBuIRKnYWUCBQlIwURx60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CQhkcw8t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2444AC4CECD;
-	Tue, 12 Nov 2024 19:50:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731441050;
-	bh=rJgZSYSkG7dh0RVAe8u1Z+Bh6JGYOaaERx2tsZG25kA=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=CQhkcw8trB32nAcmYqrDVMDPLyRF3dlktwJv7EIWXgCKJcdl+uXS77b9/GjrHLqaR
-	 DtvcbsUd8YvfQbg0sNv5tFIZM/jIK+Vhq3iR+bXWkkGIRw4pvHvhTWbov39X1TNVKA
-	 QtlXVar3nCOB8r/xX2hw9CWiGCmbSUyjqG1ykocYH1H2lBDQFZ16MxAw93As4jz3We
-	 5j4Mf4zmBupGR1OmV2wayYjrtUis2GKcDw8Qm0D6p20ScK/vHQWBC7iev9K3FdrxHe
-	 x9acF+29ILhb6WGm5cxw2t4jUOZ4hVFk3dgJ2O0BRgXMDiJPCzM7/8ZIhrLBwBY1Vn
-	 vZ+s61S29QBZA==
-Message-ID: <8b6d74e31161c8fadad926fe1c20ce1d.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1731441733; c=relaxed/simple;
+	bh=DsjL5XWtMu7LOlZcx8scvAGiiIKiZ9tDUiuwStI2eok=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=oZrRd++xsdfsVUBVogHkUjX2Z4S3Tp85vRgvRQbWHzuZ6GgsOhNbom8shLHtNtSmCGU+rquwKsD6Rb6s/+kjowN9SbsK//igQOO2KSl6srFJAkJuTApGuqqPqLq3FEdK1+3O3rEPX5ssuDB2F/Kxu248sfZM/Z+lBHkPVBpJCys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=YAriotIG; arc=none smtp.client-ip=209.85.161.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-5ee64d75914so1291636eaf.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 12:02:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731441731; x=1732046531; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=7sig4extPJZ96lJvrKPLyrOLWEJSmKbg3dopfHgQP/c=;
+        b=YAriotIGM8nrz9v9FRsK5UNQhXmJOlV9owUgZnzo5/ga9y2GpqKdgG3kGJn0ZCcJUF
+         GYWLqFIe+AMNbUVQbrEiLnwxgGGhyTj4x7O+z2jUPiHi9hrG71eoVVHV8E1GtMRiWA7q
+         BYybb5C0xac1LAG/Gnp59Ao8+kMP9auQA5Kx9P1jBvUOyWaoBJ9CUolBzERIb3pfQ1Gi
+         3ek+81tQkfCN3rst5W08TeYu2kaCZMgDqPkjDH6GvVgaXlOme/i9iqIraJMPg58LtsMa
+         FpP4+t7b26RXyQCXw3LOnr5CK2fvHfg6/AqBRIWalt26/5oIsluGCBBz9eqOzXlR56Om
+         LE/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731441731; x=1732046531;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7sig4extPJZ96lJvrKPLyrOLWEJSmKbg3dopfHgQP/c=;
+        b=fjSqVJ0W5YLWGyQG3Uw2+efMzWy+oIt3XQjussvZFhirDPcga6ipGGR4UN58cuCbvg
+         bwjKz7V2bAeNJiSs7hKFICor07o6dF3joBsxWuldVCftbSuTKeIrUsc1XBxcXDi6wLmY
+         vYdgxyZjhStZC0A9RWVNlzUuYYa1wd1vSfqQwwUp98b1gQr8aIlCsVIUTIl9o+QDyhkf
+         r/pf8RYQ+Ly3LdaYayZ998bU+UGAYK5gjYVIxmX0xPM2Uhf+HbAFBPEth9tbhhzjFAJu
+         4eMqAxAzyIu3vCljFG9+DWmTEIK16VU2w4cVyI76OClDiVeObANQZoPpqUvkcFfeUQgf
+         imXg==
+X-Forwarded-Encrypted: i=1; AJvYcCVskkMOXAHvrsg9PTLusyS+jmp0+S+kG3QZerDhlRI26b7Emu9aE2+1wbV4lBH+1IQsPydseb17nNMt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyl6hhXlwIuLXOXWWY/bdyGElZtqScniqX2o6KIu+haOQNccNZJ
+	o8w8OFPtQEJMzIdcEnRbtTgu82RdHmzTiealaNK4HLe/aJQ6SvCE3OJxfpPDf5s=
+X-Google-Smtp-Source: AGHT+IHvgnmHiHHXULfY05GGiY7fOLLPMb5a5l/JeZR/daEqHCvkzI6U/0uYYnu+Fc6sEEFJ3gXDJw==
+X-Received: by 2002:a05:6820:4c89:b0:5eb:821c:df23 with SMTP id 006d021491bc7-5ee57b96a9bmr12114816eaf.2.1731441730645;
+        Tue, 12 Nov 2024 12:02:10 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ee494fb9a2sm2503376eaf.1.2024.11.12.12.02.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Nov 2024 12:02:09 -0800 (PST)
+Message-ID: <4b48ae8e-4eba-4d86-af8b-2b749c53639f@baylibre.com>
+Date: Tue, 12 Nov 2024 14:02:07 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241108165532.GA2411452-robh@kernel.org>
-References: <20241016212016.887552-1-sboyd@kernel.org> <20241017203810.GA814469-robh@kernel.org> <38153cbf2616a4a6706412952778eec1.sboyd@kernel.org> <CAMuHMdWp84u66Y-ELtbbRmySYwQch_=2qQiXzWJzrSkGeLZYBA@mail.gmail.com> <20241108165532.GA2411452-robh@kernel.org>
-Subject: Re: [PATCH] of: Allow overlay kunit tests to run CONFIG_OF_OVERLAY=n
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, linux-kernel@vger.kernel.org, patches@lists.linux.dev, devicetree@vger.kernel.org, kunit-dev@googlegroups.com
-To: Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>
-Date: Tue, 12 Nov 2024 11:50:48 -0800
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 8/8] iio: adc: ad4851: add ad485x driver
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pwm@vger.kernel.org
+References: <20241111121203.3699-1-antoniu.miclaus@analog.com>
+ <20241111121203.3699-9-antoniu.miclaus@analog.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20241111121203.3699-9-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Quoting Rob Herring (2024-11-08 08:55:32)
-> On Fri, Nov 08, 2024 at 09:56:15AM +0100, Geert Uytterhoeven wrote:
-> > > > > Fixes: 5c9dd72d8385 ("of: Add a KUnit test for overlays and test =
-managed APIs")
-> > > >
-> > > > Doesn't really seem like a fix.
-> > >
-> > > Ok. Feel free to drop the tag.
-> > >
-> > > > Does this need to go into 6.12?
-> > >
-> > > It's only important for 6.12 if kernel configurators want to build the
-> > > kernel with OF_OVERLAY_KUNIT_TEST enabled and not be forced to enable
-> > > CONFIG_OF_OVERLAY. I don't mind if it waits a while.
-> >=20
-> > I'd say it's a fix, so please keep at last the Fixes tag. Merely
-> > enabling kunit tests (which can be modular) should not increase the
-> > possible attack vector on a product by enabling extra unneeded code.
->=20
-> Not sure I buy that that is an actual problem. However, not worth=20
-> arguing over. I only really care because if there's a Fixes, then this=20
-> really should go to Linus for 6.12 rather than eventually get=20
-> auto-selected from 6.13 to go to stable. So I moved it to send to Linus, =
+On 11/11/24 6:12 AM, Antoniu Miclaus wrote:
+> Add support for the AD485X a fully buffered, 8-channel simultaneous
+> sampling, 16/20-bit, 1 MSPS data acquisition system (DAS) with
+> differential, wide common-mode range inputs.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> changes in v6 (implemented most of the review comments in v5):
+What is the plan for addressing the rest of the comments?
 
-> but I found that CONFIG_OF_OVERLAY is still selected with this patch.=20
-> That's because the clock kunit tests also select CONFIG_OF_OVERLAY.=20
-> That's fixed in next, but it's not queued up for 6.12.
->=20
-
-I was planning to send the clk patch in the next merge window. Are you
-sending the fix now? If you want you can also send the clk side patch
-and I can drop it from the clk tree.
+I don't want to keep making the same comments over and over again.
 
