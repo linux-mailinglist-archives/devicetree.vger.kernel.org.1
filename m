@@ -1,358 +1,151 @@
-Return-Path: <devicetree+bounces-121111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C85A9C56A8
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 12:34:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B63FF9C56CA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 12:40:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 062101F26419
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 11:34:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 766F9281AF5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 11:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562361CD1FC;
-	Tue, 12 Nov 2024 11:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D1A2309AF;
+	Tue, 12 Nov 2024 11:40:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VsRK3XQZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FFD82309AF;
-	Tue, 12 Nov 2024 11:33:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B51E1A76CC
+	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 11:40:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731411187; cv=none; b=aVNAsfI+B+i6x2Elx4ZI3EKr1/orp/4+qjkmGLe/5wq9Y2KvoPaflKA42n1OwYVUiZiChxWQ/46E/NQamr6OT7YKd3TI8obM/5oINQXKLxfzupkdnIrN2hoL+xdoz75+VsBMbUJBMc1XMp9p1rBcEzD9gl1Vs0CJsUFZhX3syqQ=
+	t=1731411628; cv=none; b=PO+KcVfSpKqix1nSJS7vFbDpxxakHkFrfJ4FUtaUca+nvkz7VUjp/vrnqRh6e9QlGMM7SqwHsaiKJ71KvsOKs6ugC8aUpSntjHd4xyK1nRjmimgRje7W/asumsPJldU2dDndGXAZzGpqF1Q1GEY/ndwnIaIWSO50/A1Yss/VJxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731411187; c=relaxed/simple;
-	bh=5+a4R5TcmgohHbER7Saz2ZWCz3pEIuxwitm4bfLiqM8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HG9r41ZmtZ4T0X0+aJv48rSdHwZ4e5qzVa6Ty2RK5EN3BvYabNW1pnqfSLhwee53Kkm0WHnS5HGWgwFrQEoNYWSxaGstW+/pTAMuAst4NwLT9znQo676MO1davobuAsgwtDI0VAKPxbtTFIrj92zCGS3Dv9gRl67iNWKvt4v0Lc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8D60C25E4;
-	Tue, 12 Nov 2024 03:33:27 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 017123F762;
-	Tue, 12 Nov 2024 03:32:54 -0800 (PST)
-Date: Tue, 12 Nov 2024 11:32:51 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Code Kipper <codekipper@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- jernej.skrabec@gmail.com, samuel@sholland.org, wens@csie.org,
- macromorgan@hotmail.com, jszhang@kernel.org, uwu@icenowy.me,
- ryan@testtoast.com, dsimic@manjaro.org, mripard@kernel.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 2/2] arm64: dts: allwinner: Add initial support for the
- X96Q-Pro STB
-Message-ID: <20241112113251.305295db@donnerap.manchester.arm.com>
-In-Reply-To: <CAEKpxB=EE8WC6EETxJz-Qp42TchDSRTp1T+KiGMfQ4Kv9dvG1g@mail.gmail.com>
-References: <20241111162524.46812-1-codekipper@gmail.com>
-	<20241111162524.46812-3-codekipper@gmail.com>
-	<20241111172731.54154a3e@donnerap.manchester.arm.com>
-	<CAEKpxB=EE8WC6EETxJz-Qp42TchDSRTp1T+KiGMfQ4Kv9dvG1g@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1731411628; c=relaxed/simple;
+	bh=KxaQhaDuZiAyO6Feg3AC41pZiyIORCjAtHsmV3pJyWY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nojy6hR4AVEOU0mWm/clzE6DHdGPtkaw3nUVW148h4FqDlQOcyq5ZHHbvENzsr5CRbgoTW6JhjmYfz6N2AATW6vdy6Xo41zn/mUhHB0ETTeia1zZgHIvn4KU+QljzGzTqKIXXEEfEQTi+/lwFJEESX/dztN0K0hdipgn7d+1KOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VsRK3XQZ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AC3fr21019134
+	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 11:40:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xo17J3nDmfhZSPKvOJosq8WjCwZmWfKsAtAkpMIoxoA=; b=VsRK3XQZoV3Qaxiz
+	Q9lfio8zrj/8ir8uVGeIy+9rCcl2W7l264kN3FxJf+bDfbyZatkh/DgR6iPzl/mA
+	qDUoek0Vy8qgSXiEdLklqVMIM3lkYjXecWGQrr/5of+ZB070m34IHzccIUG0al4R
+	br4KpqToeuNee0FG05dThIKR/xrVPkNA/HKfhSSLuvmwCPCa3qHg1IN/T+QHYU4J
+	/S7emzsiISOcxwrDeLV0YPsNxtQLE2UnC1UVZ2aoHQdBTThmtpg0NNoWHMbxAHde
+	nmwdLx8ureSYELUj90pEoln59UKyMZ/5yT2XllBseirFztBQdGcmWX0WrHb0AUm9
+	Wt48eg==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42t0gky1jh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 11:40:25 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6cbf3f7273cso1713296d6.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 03:40:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731411624; x=1732016424;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xo17J3nDmfhZSPKvOJosq8WjCwZmWfKsAtAkpMIoxoA=;
+        b=v0m7E5chNYRla8U+OEDNgPQzC/OwnUFDrSeEBVDaL620cbuBThfyE1AKmh6/dlMCVa
+         iLY47jas3hBPF9/7pqaBsz74W7umElUzzLVItAiaZvYKD37bgT1mwi4QqnZVpp9SV9hU
+         BHFYhW0x3wx7uOgkjo04npuhdpqlyGxCcj8C4IjZfqfIYytnUSQu1OlTW5Ji2LPxTffv
+         VgkPBA1esfuolLI3Sgq4xijGfLv+FJrpigzHRAj2jTet1rTbb3RjjdaXybvr0mRIyVTS
+         Gch1E1SNDqRbsUgEwNba4wvuFGAq0hF2xULwQGaw1vLeRzHXVMBfDKlrFuxWodpQK8by
+         3DKA==
+X-Forwarded-Encrypted: i=1; AJvYcCXC/8122JvZHHagnRgMNMyRmUzVu26qJctfmF25L/oHPkDQnynnU8KTyBzjr6MfRoW9iRuIx7qplK05@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQ1CtyAtuCfpDSPXjxBb7Fc4cCS6r12kLVnbfXvK18IhIbEmh7
+	1WzmMyr7XrpEA4o1vUr3m2nYRYSgYJThUfFPYtprMT3lNlwmwHJ1bKm+w+epA82eMS5APLAqqf3
+	ilhaNq5r4+k7EFUDn64ESIh60nyrujv5PGCBSTs3gdCvuJgY90e8ioOWjxIvV
+X-Received: by 2002:a05:620a:f06:b0:7a9:a6a7:dc32 with SMTP id af79cd13be357-7b331d892damr941126985a.4.1731411624419;
+        Tue, 12 Nov 2024 03:40:24 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHRxOKaLcHVl74+g0IUT+tVyhgvDU6Q9oLj6ryY0QEQY0OtrUF/lw6oAaYZepr4lAutVgAMww==
+X-Received: by 2002:a05:620a:f06:b0:7a9:a6a7:dc32 with SMTP id af79cd13be357-7b331d892damr941125085a.4.1731411624095;
+        Tue, 12 Nov 2024 03:40:24 -0800 (PST)
+Received: from [192.168.123.190] (public-gprs527294.centertel.pl. [31.61.178.255])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9ee0e2eb28sm703671666b.197.2024.11.12.03.40.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Nov 2024 03:40:23 -0800 (PST)
+Message-ID: <2d5a586f-3e46-45cd-a4ef-324f5a94a331@oss.qualcomm.com>
+Date: Tue, 12 Nov 2024 12:40:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/2] pinctrl: qcom: add sm4250 lpi pinctrl
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alexey.klimov@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20240612-sm4250-lpi-v4-0-a0342e47e21b@linaro.org>
+ <CACRpkdZyupZmV+e=L0KR8ospH9P=wdUrMFvBnGXyfhLhW3-=PQ@mail.gmail.com>
+ <65d76651-1956-412f-911a-046f0303a16a@kernel.org>
+ <28ad9f30-7465-47cc-b514-41750a4c41ca@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <28ad9f30-7465-47cc-b514-41750a4c41ca@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: TsXzncpnXv_hAZ4PdXxRCiAI7-jh45r3
+X-Proofpoint-GUID: TsXzncpnXv_hAZ4PdXxRCiAI7-jh45r3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ spamscore=0 clxscore=1015 mlxscore=0 mlxlogscore=751 lowpriorityscore=0
+ impostorscore=0 adultscore=0 priorityscore=1501 malwarescore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411120094
 
-On Tue, 12 Nov 2024 11:42:17 +0100
-Code Kipper <codekipper@gmail.com> wrote:
 
-Hi,
 
-> On Mon, 11 Nov 2024 at 18:27, Andre Przywara <andre.przywara@arm.com> wrote:
-> >
-> > On Mon, 11 Nov 2024 17:25:06 +0100
-> > codekipper@gmail.com wrote:
-> >
-> > Hi Marcus,
-> >
-> > many thanks for sending this!
-> >  
-> > > From: Marcus Cooper <codekipper@gmail.com>
-> > >
-> > > The X96Q-Pro is an STB based on the Allwinner H313 SoC with a SD
-> > > slot, 2 USB-2 ports, a 10/100M ethernet port using the SoC's
-> > > integrated PHY, Wifi via an sdio wifi chip, HDMI, an IR receiver,
-> > > a blue LED display, an audio video connector and an digital S/PDIF
-> > > connector.
-> > >
-> > > Add the devicetree file describing the currently supported features,
-> > > namely IR, LEDs, SD card, PMIC, audio codec, SPDIF and USB.  
-> >
-> > This looks good on a first glance, but seems to miss the DVFS bits? So you
-> > would need to #include "sun50i-h616-cpu-opp.dtsi" and specify the cpu0
-> > power supply rail, otherwise you will be stuck at 1GHz.  
-> Hi Andre,
-> thanks for the speedy review. I'll add the cpu0 rail but I can't get
-> the device to clock more than 1GHz. Isn't that the case with the H313
-> chipset?,
-> your Tanix TX1 device doesn't reference the opp.dtsi,
-> although I do see from the wiki that it's clocked at 1.3GHz
+On 26-Jun-24 17:18, Srinivas Kandagatla wrote:
+> 
+> 
+> On 26/06/2024 16:07, Konrad Dybcio wrote:
+>>
+>>
+>> On 26.06.2024 12:04 PM, Linus Walleij wrote:
+>>> On Sat, Jun 22, 2024 at 6:49 PM Srinivas Kandagatla
+>>> <srinivas.kandagatla@linaro.org> wrote:
+>>>
+>>>> Add support for sm4250 lpi pinctrl.
+>>>>
+>>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>>
+>>> No major protests against v4 so patches applied!
+>>
+>> This was never sent to me..
+>>
+> seems like b4 auto-to-cc does not pick up your email ids from MAINTAINERS.
+> 
+>> We already have a driver for this SoC. 4250 and 6115 are the same
+> No, these are not same,  here are some differences.
+> - muxes for I2S mclk differ.
+> - soundwire muxes are different
+> - Slew rate offsets are different.
+> 
+> I have verified this before sending this new driver out.
 
-It's "do as I say, not do as I do" :-D
-Just kidding, actually many thanks for the heads up: you are right, it's
-missing there! I think it was just the case of both being merged at the
-same time, and the -cpu-opp.dtsi not being in the branch where I based the
-.dts on. Will test and fix it!
+I can't find anything to support what you're saying here
 
-Regarding the OPPs: If you look at the table in
-sun50i_h616_efuse_xlate()[1], and then compare this to those SID numbers collected
-in our wiki[2], you will see that the "bins" are actually the packages:
-All H616s we have seen use 0x5000 (that's the low 16 bits of the first SID
-register value), the H618s uses 0x2000, and presumably all H313s use
-0x5c00, and so on. I think BSP code confirms that.
-So the H313 uses a separate set of OPPs already (set 4), which is indeed
-the worst of them all: is requires higher voltages, and only provides up
-to 1.3GHz. So I *think* we should be covered. But please test this and
-report back if you have any issues.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/cpufreq/sun50i-cpufreq-nvmem.c#n67
-[2] https://linux-sunxi.org/SID_Register_Guide#Currently_known_SID.27s
-
-> > Or is there any issue preventing you doing this?
-> >
-> > Two more things below:
-> >  
-> > > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-> > > ---
-> > >  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
-> > >  .../dts/allwinner/sun50i-h313-x96q-pro.dts    | 176 ++++++++++++++++++
-> > >  2 files changed, 177 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h313-x96q-pro.dts
-> > >
-> > > diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-> > > index 00bed412ee31c..e0bcea1840c1f 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/Makefile
-> > > +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> > > @@ -18,6 +18,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-sopine-baseboard.dtb
-> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-teres-i.dtb
-> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h64-remix-mini-pc.dtb
-> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a100-allwinner-perf1.dtb
-> > > +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h313-x96q-pro.dtb
-> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-bananapi-m2-plus.dtb
-> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-bananapi-m2-plus-v1.2.dtb
-> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-emlid-neutis-n5-devboard.dtb
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h313-x96q-pro.dts b/arch/arm64/boot/dts/allwinner/sun50i-h313-x96q-pro.dts
-> > > new file mode 100644
-> > > index 0000000000000..4427545ea143c
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h313-x96q-pro.dts
-> > > @@ -0,0 +1,176 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> > > +/*
-> > > + */  
-> >
-> > Is this missing some copyright notice here?  
-> Ack
-> >  
-> > > +
-> > > +/dts-v1/;
-> > > +
-> > > +#include "sun50i-h616.dtsi"
-> > > +
-> > > +#include <dt-bindings/gpio/gpio.h>
-> > > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +
-> > > +/ {
-> > > +     model = "X96Q Pro";
-> > > +     compatible = "amediatech,x96q-pro", "allwinner,sun50i-h616";
-> > > +
-> > > +     aliases {
-> > > +             serial0 = &uart0;
-> > > +     };
-> > > +
-> > > +     chosen {
-> > > +             stdout-path = "serial0:115200n8";
-> > > +     };
-> > > +
-> > > +     reg_vcc5v: vcc5v {
-> > > +             /* board wide 5V supply directly from the DC input */
-> > > +             compatible = "regulator-fixed";
-> > > +             regulator-name = "vcc-5v";
-> > > +             regulator-min-microvolt = <5000000>;
-> > > +             regulator-max-microvolt = <5000000>;
-> > > +             regulator-always-on;
-> > > +     };
-> > > +
-> > > +     sound-spdif {
-> > > +             compatible = "simple-audio-card";
-> > > +             simple-audio-card,name = "sun50i-h616-spdif";
-> > > +
-> > > +             simple-audio-card,cpu {
-> > > +                     sound-dai = <&spdif>;
-> > > +             };
-> > > +
-> > > +             simple-audio-card,codec {
-> > > +                     sound-dai = <&spdif_out>;
-> > > +             };
-> > > +     };
-> > > +
-> > > +     spdif_out: spdif-out {
-> > > +             #sound-dai-cells = <0>;
-> > > +             compatible = "linux,spdif-dit";
-> > > +     };
-> > > +};
-> > > +
-> > > +&codec {
-> > > +     allwinner,audio-routing = "Line Out", "LINEOUT";
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&ehci0 {
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&ehci3 {
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&ir {
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&mmc0 {
-> > > +     vmmc-supply = <&reg_dldo1>;
-> > > +     cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;  /* PF6 */
-> > > +     bus-width = <4>;
-> > > +     status = "okay";
-> > > +};  
-> >
-> > Would it make sense to add the mmc1 node here, even if there is no driver
-> > in Linux atm for the WiFi chip? Thanks to SDIO we wouldn't need a
-> > compatible string, I think. This would also then allow us to describe the
-> > connected GPIOs.  
-> Ack
-> >
-> > And does the box have Bluetooth?  
-> No it doesn't just the XR819 for wifi.
-
-Ah, right, bummer, same with the TX1, which is a bit annoying, because
-having BT would make this a bit more useful.
-
-> I'll spin a V2 after a few days,
-
-Thanks!
-
-Cheers,
-Andre
-
-> BR,
-> CK
-> >
-> > Cheers,
-> > Andre
-> >  
-> > > +
-> > > +&mmc2 {
-> > > +     vmmc-supply = <&reg_dldo1>;
-> > > +     vqmmc-supply = <&reg_aldo1>;
-> > > +     bus-width = <8>;
-> > > +     non-removable;
-> > > +     cap-mmc-hw-reset;
-> > > +     mmc-ddr-1_8v;
-> > > +     mmc-hs200-1_8v;
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&ohci0 {
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&ohci3 {
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&pio {
-> > > +     vcc-pc-supply = <&reg_dldo1>;
-> > > +     vcc-pf-supply = <&reg_dldo1>;
-> > > +     vcc-pg-supply = <&reg_aldo1>;
-> > > +     vcc-ph-supply = <&reg_dldo1>;
-> > > +     vcc-pi-supply = <&reg_dldo1>;
-> > > +};
-> > > +
-> > > +&r_i2c {
-> > > +     status = "okay";
-> > > +
-> > > +     axp313: pmic@36 {
-> > > +             compatible = "x-powers,axp313a";
-> > > +             reg = <0x36>;
-> > > +             #interrupt-cells = <1>;
-> > > +             interrupt-controller;
-> > > +             interrupt-parent = <&pio>;
-> > > +             interrupts = <2 9 IRQ_TYPE_LEVEL_LOW>;  /* PC9 */
-> > > +
-> > > +             vin1-supply = <&reg_vcc5v>;
-> > > +             vin2-supply = <&reg_vcc5v>;
-> > > +             vin3-supply = <&reg_vcc5v>;
-> > > +
-> > > +             regulators {
-> > > +                     /* Supplies VCC-PLL, so needs to be always on. */
-> > > +                     reg_aldo1: aldo1 {
-> > > +                             regulator-always-on;
-> > > +                             regulator-min-microvolt = <1800000>;
-> > > +                             regulator-max-microvolt = <1800000>;
-> > > +                             regulator-name = "vcc1v8";
-> > > +                     };
-> > > +
-> > > +                     /* Supplies VCC-IO, so needs to be always on. */
-> > > +                     reg_dldo1: dldo1 {
-> > > +                             regulator-always-on;
-> > > +                             regulator-min-microvolt = <3300000>;
-> > > +                             regulator-max-microvolt = <3300000>;
-> > > +                             regulator-name = "vcc3v3";
-> > > +                     };
-> > > +
-> > > +                     reg_dcdc1: dcdc1 {
-> > > +                             regulator-always-on;
-> > > +                             regulator-min-microvolt = <810000>;
-> > > +                             regulator-max-microvolt = <990000>;
-> > > +                             regulator-name = "vdd-gpu-sys";
-> > > +                     };
-> > > +
-> > > +                     reg_dcdc2: dcdc2 {
-> > > +                             regulator-always-on;
-> > > +                             regulator-min-microvolt = <810000>;
-> > > +                             regulator-max-microvolt = <1100000>;
-> > > +                             regulator-name = "vdd-cpu";
-> > > +                     };
-> > > +
-> > > +                     reg_dcdc3: dcdc3 {
-> > > +                             regulator-always-on;
-> > > +                             regulator-min-microvolt = <1100000>;
-> > > +                             regulator-max-microvolt = <1100000>;
-> > > +                             regulator-name = "vdd-dram";
-> > > +                     };
-> > > +             };
-> > > +     };
-> > > +};
-> > > +
-> > > +&spdif {
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&uart0 {
-> > > +     pinctrl-names = "default";
-> > > +     pinctrl-0 = <&uart0_ph_pins>;
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&usbotg {
-> > > +     dr_mode = "host";       /* USB A type receptable */
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&usbphy {
-> > > +     status = "okay";
-> > > +};  
-> >
-> > d  
-
+Konrad
 
