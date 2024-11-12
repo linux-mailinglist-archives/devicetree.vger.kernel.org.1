@@ -1,63 +1,85 @@
-Return-Path: <devicetree+bounces-121153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD1B89C5A25
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:21:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C17D9C5B98
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 16:14:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BBFEB379C9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 13:50:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F31E9B62CB0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 13:51:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300BC1FBF6E;
-	Tue, 12 Nov 2024 13:50:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBD481FE10A;
+	Tue, 12 Nov 2024 13:50:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="WzN4faAC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Aycbh7Sn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4A51FBF69;
-	Tue, 12 Nov 2024 13:50:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EC841FCF73
+	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 13:50:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731419426; cv=none; b=Ztqhl7lHd+S1X6By3w/KyQp6Hdp8Ybx+Z/HXxNaCsLoczEk/Osu3vk5MAf0wynNspb3okNuYi2ZjpX69r0ln3JiAb+7xbs3ZtFW/Ui304Nf44y7K/HXuex91bfyr5ABHAAcYKxiIvASW/5cT8YJZrza/LUps7rhnlA0Pmu36HMM=
+	t=1731419431; cv=none; b=WMql9vJo17f1695nhJ2rCCAdaIpqH0l+/kOe73lpAdOcqXFjigXwax9fGDdDm6YZ7e6k00ROnRidIUTev0XyyzDtma1IplMh9DW8jMQwjqsUciWGnVMXieWC+EUp4Zjq/yogewPbMzyhIcLkOOI+x3mzPhYznbYWGb3eKTbxLoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731419426; c=relaxed/simple;
-	bh=23YyCjbwBAijNPWYmfJkXL8K/4xOrP3oeVxaL7oa0uI=;
+	s=arc-20240116; t=1731419431; c=relaxed/simple;
+	bh=r57rnXgG4AkYhE9Spqgv17A9y5FNAF3NSxhnociPfTw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C8bcbq1T1bsa0PPXpjObyklcpB3Gg8xoNxN8GuZrZDqQjOPbq6VFHoYw7Q0R+26OSaPWkVHzpspdQ7e2C5/EdXphETCRbi/gy0d2mb0j3HxXWxL6SzvBjagY7paN/IfOO3M2nc8gJo8UnMTUxWV8oo14KGafTvlLNaUrKtOyyLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=WzN4faAC; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=PAZREJW+aSaaTf3gacNdlLm+fyoS5JjUlA9TaeZpbJo=; b=WzN4faACh1+ZeQEAPhIDEd2kKO
-	+D7ac4hJXXnYXfIrXYdmt1q4gRdtAnqZB4nBBahEz77b7OAN0Louzr1tPPi+1X90pEbjBl5F0juTW
-	H0+0dqlxJpxmJefJBjcnJ+ZW71Ptfr3/pv/kfd9YyY4yImvpxrvob7eAy+/irThr0CKs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tArHc-00D2BH-BR; Tue, 12 Nov 2024 14:50:16 +0100
-Date: Tue, 12 Nov 2024 14:50:16 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Tristram.Ha@microchip.com
-Cc: Woojung.Huh@microchip.com, olteanv@gmail.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	marex@denx.de, UNGLinuxDriver@microchip.com,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: dsa: microchip: Add SGMII port support
- to KSZ9477 switch
-Message-ID: <700c326c-d154-4d21-b9d4-d8abf8f2bf33@lunn.ch>
-References: <20241109015633.82638-1-Tristram.Ha@microchip.com>
- <20241109015633.82638-3-Tristram.Ha@microchip.com>
- <784a33e2-c877-4d0e-b3a5-7fe1a04c9217@lunn.ch>
- <DM3PR11MB87360F9E39097E535416838EEC592@DM3PR11MB8736.namprd11.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=nTIyoBhCBu16R9zPNMwS0sSldfaiDvRcmPefF4uRNu6cZ9qg8+rPn4ZlKkkiSYNgJ5cfc2uM+YGedxMh8upj3kMmRhtoxzOAEu9QxgR5sm2O97NabEujGHeL44+XlgX32D5rMK6HfR9deoEomKBbLSAF/drQxPL+shdBn6N03Sc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Aycbh7Sn; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2fb5fa911aaso74099721fa.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 05:50:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731419428; x=1732024228; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nkqISw1cuUKk/RswWCfsbwfb8VGVL06uekkDQG2WNDU=;
+        b=Aycbh7Sn5bl3/RegXiRR0rxSIOuZ33kqaVM9gzCH4EXS5rzWuNTuy/DDOYjs0FPG9E
+         q+bN9TW8rniwdiCeaiZwH0Sv0X4bzicWbhMHAoRBrEkKT3yFZFBYW8u0f4wKZeGGr0Fg
+         YrH1q5Q1ff9Vw3zgLq9lf5r31wpQGW4I7V9ofrXY2ocso08vnnxRc0tyHQcVA4fD3rSx
+         EY3FFCyUgsW27WdAQSYYTGbxN07URUt4dq2/ZPO7KsXT8BmVBt0qDVOve6uqsIm8dQuN
+         TIAjge/9opKPERgARDc/2ppeePc6HHFUos94ewxsGVZlQpdnZr58z/ekOoV0RQbFJsbP
+         03Pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731419428; x=1732024228;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nkqISw1cuUKk/RswWCfsbwfb8VGVL06uekkDQG2WNDU=;
+        b=neZL5z3Jf1LARmpJ8S+yGq63NHKoe5jAlWOM++79x/blzujxRXDmbuSwDJ+9gqMcPn
+         6TRdOIAOn0tQIYnG2+k/fY5wzS/E6PwLfBMiIPR0UNavuY7+g/7z930fmAUEtXBlLLs0
+         hLFMyMJ079pLrjbtWIjOFrXN89lpY6Yqyz9E1btphT827l33AC/PAYj65bpDWPvemo85
+         SzZsITfMFG9ZOLWlpuOQakFLvqOKCK+NlloikuP5p+vdyxOxJdRGtxzAkqbXBxOqFJhB
+         MMoCJvQfTMmUbBtLHAP5sXbLCEMUpPTVIV+voYOpuxhHiPjT2cVrZvURBN0qrl8/sogg
+         K53A==
+X-Forwarded-Encrypted: i=1; AJvYcCW0hcmr/3pzpocAp5gwYhM+Bik9XaXb6t3K2kCp6fqXujOclh7iPl9wqxXu5Om9gjaZlnrYLg23iBLy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7uQZ3g6NpNcw9CZ+t94EjWtFlZ16v+9IV6VQQ8xq+n6NJOaKg
+	/K5E8gffcLMPyRyg1qPixLlDj1GCm3RP7wrTEIsOW28QDh23BNEuKt2ng/JZeXE=
+X-Google-Smtp-Source: AGHT+IHGiQ69XV1c7WSUGoGxDNlI/Le1J4+wr+SQYknI4TQv5yTHViFezgLAJNw6WKj0yT3uRyKEAA==
+X-Received: by 2002:a05:651c:50b:b0:2fb:2a1c:936d with SMTP id 38308e7fff4ca-2ff201859e2mr114929661fa.10.1731419428204;
+        Tue, 12 Nov 2024 05:50:28 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ff178f2daesm20147701fa.31.2024.11.12.05.50.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Nov 2024 05:50:26 -0800 (PST)
+Date: Tue, 12 Nov 2024 15:50:24 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Odelu Kukatla <quic_okukatla@quicinc.com>, Mike Tipton <quic_mdtipton@quicinc.com>
+Subject: Re: [PATCH V4 1/3] dt-bindings: interconnect: Add EPSS L3 compatible
+ for SA8775P
+Message-ID: <tv7gsceomtdjcymma5ximownsxleg2ujuxcwjgkzj5zhmlscr7@wnyx3bfi2cpo>
+References: <20241112075826.28296-1-quic_rlaggysh@quicinc.com>
+ <20241112075826.28296-2-quic_rlaggysh@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,97 +88,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DM3PR11MB87360F9E39097E535416838EEC592@DM3PR11MB8736.namprd11.prod.outlook.com>
+In-Reply-To: <20241112075826.28296-2-quic_rlaggysh@quicinc.com>
 
-On Tue, Nov 12, 2024 at 02:55:29AM +0000, Tristram.Ha@microchip.com wrote:
-> > On Fri, Nov 08, 2024 at 05:56:33PM -0800, Tristram.Ha@microchip.com wrote:
-> > > From: Tristram Ha <tristram.ha@microchip.com>
-> > >
-> > > The SGMII module of KSZ9477 switch can be setup in 3 ways: 0 for direct
-> > > connect, 1 for 1000BaseT/1000BaseX SFP, and 2 for 10/100/1000BaseT SFP.
-> > 
-> > This naming is rather odd. First off, i would drop 'SFP'. It does not
-> > have to be an SFP on the other end, it could be another switch for
-> > example. 1 is PHY_INTERFACE_MODE_1000BASEX and 2 is
-> > PHY_INTERFACE_MODE_SGMII.
-> > 
-> > > SFP is typically used so the default is 1.  The driver can detect
-> > > 10/100/1000BaseT SFP and change the mode to 2.
-> > 
-> > phylink will tell you want mode to use. I would ignore what the
-> > hardware detects, so this driver is just the same as every other
-> > driver, making it easier to maintain.
+On Tue, Nov 12, 2024 at 07:58:24AM +0000, Raviteja Laggyshetty wrote:
+> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on
+> SA8775P SoCs.
 > 
-> There are some issues I found that will need your advises.
+> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> The phylink SFP code categorizes SFP using fiber cable as
-> PHY_INTERFACE_MODE_1000BASEX and SFP using a regular RJ45 connector as 
-> PHY_INTERFACE_MODE_SGMII, which has a PHY that can be accessed through
-> I2C connection with a PHY driver.
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+> index 21dae0b92819..94f7f283787a 100644
+> --- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+> @@ -33,6 +33,7 @@ properties:
+>                - qcom,sm6375-cpucp-l3
+>                - qcom,sm8250-epss-l3
+>                - qcom,sm8350-epss-l3
+> +              - qcom,sa8775p-epss-l3
+>            - const: qcom,epss-l3
 
-Not quite correct, i think. If MDIO over I2C does not work, it will
-still decide on 1000BaseX vs SGMII from the SFP eeprom contents. There
-are some SFPs where the PHY is not accessible, and we have to live
-with however it is configured.
+No, sa8775p isn't compatible with qcom,epss-l3. I asked you to split the
+driver patch, not to change the compatibles.
 
-> Now when SGMII SFP is used the phylink
-> cannot be created because it fails the validation in
-> phylink_sfp_config_phy().
 
-Please stop using 'SGMII SFP'. It should just be SGMII. The MAC should
-not care what is on the other end, it could be a PHY, and SFP, or a
-switch, all using Cisco SGMII.
-
-> The reason is the phydev has empty supported
-> and advertising data fields as it is just created.
-
-Do you mean the phydev for the PHY in the SFP? Or do you have a second
-phydev here? I'm confused.
-
-> I mentioned the SGMII module operates differently for two types of SFP:
-> SGMII and 1000BASEX.  The 1000Base-T SFP operates the same as 1000Base-SX
-> fiber SFP, and the driver would like it to be assigned
-> PHY_INTERFACE_MODE_1000BASEX, but it is always assigned
-> PHY_INTERFACE_MODE_SGMII in sfp_select_interface because 1000baseT_Full
-> is compared before 1000baseX_Full.
-> 
-> Now I am not sure if those SFPs I tested have correct EEPROM.  Some
-> no-brand ones return 0xff value when the PHY driver reads the link status
-> from them and so that driver cannot tell when the link is down.  Other
-> than that those SFPs operate correctly in forwarding traffic.
-
-There is no standardisation of how you access the PHY in an SFP. So
-each manufacture can do their own thing. However, there are a small
-number of PHYs actually used inside SFPs, and we have support for
-those common ones.
-
-> It seems there is no way to assign an interupt to that PHY and so polling
-> is always used.
-
-Correct, the interface between the SFP and the SFP cage does not have
-an interrupt pin the PHY can use.
-
-> The SFP using fiber cable does not have the above issues but has its own
-> issue.  The SFP cage can detect the cable is being plugged in as the
-> light is detected.  The PCS driver is then consulted to confirm the link.
-> However as the cable is not completely plugged in the driver can report
-> the link is not up.  After two calls are done the port can be left into
-> unconnected state forever even after the cable is plugged in.  The driver
-> can detect there is something different about the link value and can try
-> to read it later to get a firm reading.  This just means the driver needs
-> to poll anyway.  But if interrupt is used and the driver uses it to
-> report link this issue is moot.
-
-Have you set pcs.poll? phylink will then poll the PCS every
-second. You can report PCS status any time.
-
-> I just feel the SFP code offered in the phylink model does not help to
-> operate SFP well in the KSZ9477 switch, and it does not need that code to
-> provide basic SGMII port connection.
-
-We need to understand what is different about the KSZ9477 switch that
-phylink does not work for it, yet phylink does work for mv88e6xxx,
-sja1105, rzn1, qca, ocelot, and other MAC drivers.
-
-	Andrew
+-- 
+With best wishes
+Dmitry
 
