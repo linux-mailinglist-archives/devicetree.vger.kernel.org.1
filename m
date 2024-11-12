@@ -1,103 +1,146 @@
-Return-Path: <devicetree+bounces-121282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C26F9C620E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 21:02:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B1289C6227
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 21:07:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E126A1F2128A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:02:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FD4328287D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:07:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEBED219C82;
-	Tue, 12 Nov 2024 20:02:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 078FD2194A1;
+	Tue, 12 Nov 2024 20:07:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="YAriotIG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SUPUz02Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B621B217472
-	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 20:02:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CA84217472;
+	Tue, 12 Nov 2024 20:07:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731441733; cv=none; b=Bb/K0ZZxsXrBirbZYSo1RwTHNE/9OV/8rBkjyded4LKErdTZ9YtdJ4ToGTz/h0kYM8rYUk6KDbQ7on+ZhsP8gKX7EWjN/Q88+nHC9VXXtTb37nROT3WPCBCN9u5IVftyWr6s51Q28mEY2NF1GEGbn7X+auOLxVrlB/kz4DmhHwg=
+	t=1731442069; cv=none; b=k2dOoVks1Rl5K+KzMEfyn2bvuBmtMMqXKn4MXgyUp8eq5rEMZf1i8HrNNo6iCtw4JzoGfI+dRdUe1YKkeb9pfmKx2QKYO+CPloaNHTZaD1+uwa2KBGSIlliuVxlJnHESzWon0Ul5YbDnaCkIv+bcG0qEAHpruaS2KbFmb3IefYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731441733; c=relaxed/simple;
-	bh=DsjL5XWtMu7LOlZcx8scvAGiiIKiZ9tDUiuwStI2eok=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=oZrRd++xsdfsVUBVogHkUjX2Z4S3Tp85vRgvRQbWHzuZ6GgsOhNbom8shLHtNtSmCGU+rquwKsD6Rb6s/+kjowN9SbsK//igQOO2KSl6srFJAkJuTApGuqqPqLq3FEdK1+3O3rEPX5ssuDB2F/Kxu248sfZM/Z+lBHkPVBpJCys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=YAriotIG; arc=none smtp.client-ip=209.85.161.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-5ee64d75914so1291636eaf.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 12:02:11 -0800 (PST)
+	s=arc-20240116; t=1731442069; c=relaxed/simple;
+	bh=rSLmyqeNHuTdR9sMp7gy4kwBp7eWQTFOdqTGs/7XKRk=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=kOQYIYPljgW/dtJcmtsGagzuGdofk8mBkUGSpXSycwvSTGkYE8mES4vvlunes6tkrXhlYKiSSb6wVH3QZL5SWNirk9Q3eJO8dy6J793l7cqK6atnXQjeTIrxJBz0m1urEALWj8pIlLa+SbilWgjHDa7V6cQ0a3zfWLcB19wergE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SUPUz02Y; arc=none smtp.client-ip=209.85.210.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-71822fabf4fso3426995a34.2;
+        Tue, 12 Nov 2024 12:07:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731441731; x=1732046531; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=7sig4extPJZ96lJvrKPLyrOLWEJSmKbg3dopfHgQP/c=;
-        b=YAriotIGM8nrz9v9FRsK5UNQhXmJOlV9owUgZnzo5/ga9y2GpqKdgG3kGJn0ZCcJUF
-         GYWLqFIe+AMNbUVQbrEiLnwxgGGhyTj4x7O+z2jUPiHi9hrG71eoVVHV8E1GtMRiWA7q
-         BYybb5C0xac1LAG/Gnp59Ao8+kMP9auQA5Kx9P1jBvUOyWaoBJ9CUolBzERIb3pfQ1Gi
-         3ek+81tQkfCN3rst5W08TeYu2kaCZMgDqPkjDH6GvVgaXlOme/i9iqIraJMPg58LtsMa
-         FpP4+t7b26RXyQCXw3LOnr5CK2fvHfg6/AqBRIWalt26/5oIsluGCBBz9eqOzXlR56Om
-         LE/w==
+        d=gmail.com; s=20230601; t=1731442067; x=1732046867; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TqXKsycxkRwYLgMO1MGNkvOKvK0HlTP2D8dyd7IQy+s=;
+        b=SUPUz02YfAaiZ+a2uXLdPalwhVqEl4eTnLpkGFQwEt9zHV+CBPL++yoHIlJcjFY016
+         A3QMq6m9ay+j6fLVMXiG41/mQNG3I6a/wV6pSvSCa50Ue26Af70dW9SqAbDAJPaXvPB5
+         HSEbC+YXehzyOHCs/VqJfPgeo9dmvu9YXl5eU4GNR/6Aku77Qwx8MZoAMa+tW37ckZ8D
+         8rvy7c7R03ijh9jBbNEOaJOj5zr4TpMJgha5w53zBhYDao+qibfaaxiMWK/XNiJj4QAD
+         LfyAqRuLDBRr9wZsdT/x6NpKTj7A0pdHPmWIA4Vjj+bkp6isinN2NI7c4jsIzLWH5OxQ
+         QBpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731441731; x=1732046531;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1731442067; x=1732046867;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7sig4extPJZ96lJvrKPLyrOLWEJSmKbg3dopfHgQP/c=;
-        b=fjSqVJ0W5YLWGyQG3Uw2+efMzWy+oIt3XQjussvZFhirDPcga6ipGGR4UN58cuCbvg
-         bwjKz7V2bAeNJiSs7hKFICor07o6dF3joBsxWuldVCftbSuTKeIrUsc1XBxcXDi6wLmY
-         vYdgxyZjhStZC0A9RWVNlzUuYYa1wd1vSfqQwwUp98b1gQr8aIlCsVIUTIl9o+QDyhkf
-         r/pf8RYQ+Ly3LdaYayZ998bU+UGAYK5gjYVIxmX0xPM2Uhf+HbAFBPEth9tbhhzjFAJu
-         4eMqAxAzyIu3vCljFG9+DWmTEIK16VU2w4cVyI76OClDiVeObANQZoPpqUvkcFfeUQgf
-         imXg==
-X-Forwarded-Encrypted: i=1; AJvYcCVskkMOXAHvrsg9PTLusyS+jmp0+S+kG3QZerDhlRI26b7Emu9aE2+1wbV4lBH+1IQsPydseb17nNMt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyl6hhXlwIuLXOXWWY/bdyGElZtqScniqX2o6KIu+haOQNccNZJ
-	o8w8OFPtQEJMzIdcEnRbtTgu82RdHmzTiealaNK4HLe/aJQ6SvCE3OJxfpPDf5s=
-X-Google-Smtp-Source: AGHT+IHvgnmHiHHXULfY05GGiY7fOLLPMb5a5l/JeZR/daEqHCvkzI6U/0uYYnu+Fc6sEEFJ3gXDJw==
-X-Received: by 2002:a05:6820:4c89:b0:5eb:821c:df23 with SMTP id 006d021491bc7-5ee57b96a9bmr12114816eaf.2.1731441730645;
-        Tue, 12 Nov 2024 12:02:10 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ee494fb9a2sm2503376eaf.1.2024.11.12.12.02.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Nov 2024 12:02:09 -0800 (PST)
-Message-ID: <4b48ae8e-4eba-4d86-af8b-2b749c53639f@baylibre.com>
-Date: Tue, 12 Nov 2024 14:02:07 -0600
+        bh=TqXKsycxkRwYLgMO1MGNkvOKvK0HlTP2D8dyd7IQy+s=;
+        b=j0UYowbPC+/qDMEqvVhlWa9mUWRMVInMu3rRIv1BRDWvdpZCLqPNWRgEn6i7ZgYrYd
+         EGnpz/XfG8qBgKTIJbs2YQpfbCWBmsAvW7DqHRpFOiaHGEh00+odNiU1wuw4lYcARVYo
+         +5yHXxVFWOj6Sb+C9cgbVAhsGVsMMJ3Qu2pq3SPjkeiH72Y/f+p9Hdz4EsMRLtwiJUca
+         NH3S8JHQa4OC31Ameo0Q+WXAnBJ223sYTsrSK8rydNKvtO8IHixImVlTQBrqzQLmwa5/
+         QdGsAB/ZHLej3qydqFPK5ewihiDdlzotxpJYn5jWKYLDSJYfnLbA/nIuyGW+aT7l6j+E
+         fc0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVH0gZO4rhDqkIJr5yDm5UMvOfDt1J1OryDTgIPWsAu/dp3XlwLPFjklZa5jV7a3ipU+9flXVYgCFRQ@vger.kernel.org, AJvYcCW438sfO81mCaxG+rRcrlVnvB0zAoKHX77n1fTYv/K3D/1fgFyotALrWSRIbcXrpn6SNhKqCrBZvkW2t2s=@vger.kernel.org, AJvYcCWBZ50bX5drHfFL9iu5UpSZF/qRUkGBRRUNXCTFU1YkOE6UUATt3VtdsDWbzzhuPUyrD7QgyhTC+Ybm@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCz0/3eS47ZvIftEe/PMm259cx5IBgkLNvvZYir+4Ob1p9ihqx
+	O7tWwurwBgAttgwMFjNPO+0CvsOUdUoFOoToZLWxeVegmiooZ2/r
+X-Google-Smtp-Source: AGHT+IGVOU35a+o8MM/vu1VdrdX4QPNA111CfAaQTQQWc5KsdScfPbulyFDV0vtpP2txz/UtR45DNQ==
+X-Received: by 2002:a05:6830:2105:b0:710:ea11:3d34 with SMTP id 46e09a7af769-71a1c1e0cf1mr15784192a34.12.1731442067175;
+        Tue, 12 Nov 2024 12:07:47 -0800 (PST)
+Received: from raspberrypi ([2600:1700:90:4c80::3b])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71a5ffacc08sm45453a34.36.2024.11.12.12.07.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Nov 2024 12:07:46 -0800 (PST)
+Date: Tue, 12 Nov 2024 14:07:44 -0600
+From: Grant Peltier <grantpeltier93@gmail.com>
+To: robh@kernel.org, linux@roeck-us.net, geert+renesas@glider.be,
+	magnus.damm@gmail.com
+Cc: grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: [PATCH v7 0/2] dt-bindings: hwmon: pmbus: add bindings for isl68137
+Message-ID: <cover.1731439797.git.grantpeltier93@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 8/8] iio: adc: ad4851: add ad485x driver
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org
-References: <20241111121203.3699-1-antoniu.miclaus@analog.com>
- <20241111121203.3699-9-antoniu.miclaus@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20241111121203.3699-9-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 11/11/24 6:12 AM, Antoniu Miclaus wrote:
-> Add support for the AD485X a fully buffered, 8-channel simultaneous
-> sampling, 16/20-bit, 1 MSPS data acquisition system (DAS) with
-> differential, wide common-mode range inputs.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> changes in v6 (implemented most of the review comments in v5):
-What is the plan for addressing the rest of the comments?
+Renesas digital multiphase voltage regulators are capable of regulating
+output voltages that exceed the range that their Vsense pins can detect.
+In such applications, users may place a voltage divider between Vout and
+the Vsense pin for a given rail. However, the driver currently has no
+way of knowing if a voltage divider is being used which results in
+erroneous telemetry being reported over hwmon.
 
-I don't want to keep making the same comments over and over again.
+This patch set defines a devicetree bindings schema for Renesas digital
+multiphase voltage regulators that are supported by the isl68137 driver
+to allow users to add voltage divider definitions for any rail powered
+by the device. This patch set also includes the required changes to the
+isl68137 driver to enable scaling Vout/Pout telemetry for rails with a
+defined voltage divider.
+
+v7:
+- Port existing device bindings from trivial-bindings.yaml
+- Rename new bindings file to isil,isl68137.yaml to match pre-existing
+  bindings
+- Style fixes for issues reported by checkpatch --strict
+
+v6:
+- Amend patch commit messages to explain why the vout-voltage-divider
+  property was copied from the max20730 instead of using the iio
+  voltage-divider property
+
+v5:
+- Fix clang compilation errors related to C23 syntax
+
+v4:
+- Revert devicetree property name to "vout-voltage-divider" and refactor
+  property description and driver implementation to match existing
+  vout-voltage-divider implementation in max20730 as no suitable generic
+  voltage divider schema exists.
+- Minor fixes based on Guenter's review of v2.
+- Initialize voltage dividers for all channels to defaults that simplify
+  logic in PMBus word read/write functions.
+
+v3:
+- Report and return errors reading the vout-voltage-divider property from
+  the devicetree when the property is defined
+- Change u64 division/rounding operations to use explicit math64 macros
+
+v2:
+- Fix devicetree bindings schema errors
+- Add "renesas," vendor prefix to "vout-voltage-divider" property
+- Rebase patch series on v6.12-rc1
+
+Grant Peltier (2):
+  hwmon: (pmbus/isl68137) add support for voltage divider on Vout
+  dt-bindings: hwmon: isl68137: add bindings to support voltage dividers
+
+ .../bindings/hwmon/pmbus/isil,isl68137.yaml   | 148 ++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |   6 -
+ drivers/hwmon/pmbus/isl68137.c                | 210 +++++++++++++++++-
+ 3 files changed, 353 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/isil,isl68137.yaml
+
+-- 
+2.39.5
+
 
