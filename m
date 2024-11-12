@@ -1,97 +1,119 @@
-Return-Path: <devicetree+bounces-120999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC07C9C4D85
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 04:57:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 648A99C4DA6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 05:13:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91DEB1F22FAE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 03:57:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26F8C28276D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 04:13:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1C221A0726;
-	Tue, 12 Nov 2024 03:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71417207A35;
+	Tue, 12 Nov 2024 04:13:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m8GOEA2n"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DbuyqWa4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA734C91;
-	Tue, 12 Nov 2024 03:57:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D38DD1DFE4;
+	Tue, 12 Nov 2024 04:13:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731383841; cv=none; b=g7pXel8HwVLWARUkDVYi008gwYtPBnUWdMln/KfDIknohEc791YtkVpj2xc44OFI8cVfh2Ekxpi+E1ZVIE7kcUXFG1GWZMID2hHmhKB3jIh8SNXGNzg1Mzbbz8lbej8cuOdh/Fa9Lxa5TH5aNH4KM2Ep896uMpekkIy7VJOHjfs=
+	t=1731384783; cv=none; b=sXSyMC88vR5xzqirsd4fAdbY65RytWuiMkiwJAnXEPyhxy5lbdGvES14oTDA3eFkaor3cy+taUOldfjEw1ABHCA/6wQJ783Opp5s16Ppqp8VZrGWrnauIdjY/ezKHNqCc4uEfJPtGvoUmOeXaOYjCfl8U1dYcsYCWdM0pGzmapg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731383841; c=relaxed/simple;
-	bh=9KO8cVztzjPZVNEUYaBIYLH2rz+B3tpahGgV0TOH+DI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kREkcYBlHMzaXwgE59Bysnt6ogijteQ6O466fBwwufrf4pzxXzkL3Pa7FlQSdcxaCzr48h7i7m86yKpMZflaeslZ9u9p9nrtFWsufyUI22qH6dmhnb+YM8lt2NQFp3+Ud0C49ausTPUw0OSA8lcBjOAS6K5WgVj/B/6mq7pKSfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m8GOEA2n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 699D3C4CECD;
-	Tue, 12 Nov 2024 03:57:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731383839;
-	bh=9KO8cVztzjPZVNEUYaBIYLH2rz+B3tpahGgV0TOH+DI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m8GOEA2nvns3mdKImNGl7Qgry7ji3Hud9mcem55vZZ/DQwmVeq5mTB9EyZCSRhsRN
-	 KXrasKECd+v3hf4GdZp2NSCyflIf8X+ucN5NnbgrK8ymq/IxW8dfnHw0YpMYIVFoZ2
-	 5Buimf9X5DJTI2iYVMNrS/1+70omOG7PkvEG0jOpsZugw3KTX9StZw1PPuDvq+hvfL
-	 WJneSCRyouAQ7veDVhsA5UltkLHh8zQT7lh6gnyBVwapGU7nY1mfaOUYfP9iLx8YL+
-	 a6QFVahM8b/5gWZhrDvfpnsHIZqbwp2ue3012AP7iy46mxXfTzWeAUy9McbX+sOmph
-	 9TrjgCPXjinuQ==
-Date: Mon, 11 Nov 2024 21:57:16 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Melody Olvera <quic_molvera@quicinc.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Trilok Soni <quic_tsoni@quicinc.com>, 
-	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] pinctrl: qcom: Introduce pinctrl for SM8750
-Message-ID: <kq6kk6gszl7c3nltxt3zihhepqlgm4ziajahnuvngyz4qg72vi@xtnwjnz4st3v>
-References: <20241112002843.2804490-1-quic_molvera@quicinc.com>
+	s=arc-20240116; t=1731384783; c=relaxed/simple;
+	bh=bod04bIz15PbMOHPnaFOteze34TvQOBL9jRIp/KXaIc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=prBAwLDhfNq2TrOGtR+faMXlBG6C2H2gnyncRPtAs7yvfsJeikyG4Uph6c3lOnjOgZ+1XoZ0Q3cioi8+2/nLox85256k/uYSMWtG5WM8bkkiQShmTYyMxRfvXsanLt/UBarLC7vZj8dol+OdgfwqDqS1tizuQ7rvHy81Rx4qVoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DbuyqWa4; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AC1s27E031047;
+	Tue, 12 Nov 2024 04:12:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=KBaqXWk6MxZ9pfru1EUYP2piHQcIQ5aHH5D
+	GUgivxAY=; b=DbuyqWa4fP62sX94i+ikDzQ5n5SMnnHzm4CK1CJ0BR5S6yUWf7T
+	cRrwtj4QFddkfo4Fpwi18OSl8ZHoFS/NRjN3qRsW4ABBfcYX0hyPoyfmHexkzHzR
+	bRjGbQB0LkLFTruV3pM23LTwfTfUR9RPzhAPaPa0HaV1B22VEuDZ2A91ZnjlRgis
+	3JmDl8EQJDvXoilqoc39A/XnPaQA/4LyCoPYokHscrTDDq/HpR8xMqv6G9SEwsjx
+	azroLIUMDLfWXSBA6QPtgpeJ8MT1GmPPehR0h0dKNj/0I+6Y5ybFAt4l0pN8H+H9
+	kEy3hV6UsHr/u1v/kS3wD7MxVuPPJtN/prw==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42syy261vw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 04:12:58 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 4AC4CsMu021100;
+	Tue, 12 Nov 2024 04:12:54 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 42t0tkt7mm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 04:12:54 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4AC4CsFn021095;
+	Tue, 12 Nov 2024 04:12:54 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.97.252])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4AC4CsNl021094
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 04:12:54 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4047106)
+	id B7A1A50D; Tue, 12 Nov 2024 09:42:53 +0530 (+0530)
+From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+To: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com,
+        Viken Dadhaniya <quic_vdadhani@quicinc.com>
+Subject: [PATCH v1] dt-bindings: dma: qcom,gpi: Add QCS8300 compatible
+Date: Tue, 12 Nov 2024 09:42:51 +0530
+Message-Id: <20241112041252.351266-1-quic_vdadhani@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241112002843.2804490-1-quic_molvera@quicinc.com>
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: xlb_VWympCZZUAkPV4scv77HaN8NIYu7
+X-Proofpoint-ORIG-GUID: xlb_VWympCZZUAkPV4scv77HaN8NIYu7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ priorityscore=1501 mlxscore=0 mlxlogscore=787 suspectscore=0
+ lowpriorityscore=0 clxscore=1015 spamscore=0 adultscore=0 impostorscore=0
+ phishscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411120033
 
-On Mon, Nov 11, 2024 at 04:28:41PM -0800, Melody Olvera wrote:
-> Add pinctrl block for the SM8750 SoC.
-> 
-> The Qualcomm Technologies, Inc. SM8750 SoC is the latest in the line of
-> consumer mobile device SoCs. See more at:
-> https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/images/company/news-media/media-center/press-kits/snapdragon-summit-2024/day-1/documents/Snapdragon8EliteProductBrief.pdf
+Document compatible for GPI DMA controller on QCS8300 platform.
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+---
+ Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> 
-> Changes in V2:
-> - corrected example dt node in the bindings
-> - removed reserved gpios (moved to dt)
-> - lowercased letters in hex numbers
-> 
-> Melody Olvera (2):
->   dt-bindings: pinctrl: qcom: Add sm8750 pinctrl
->   pinctrl: qcom: Add sm8750 pinctrl driver
-> 
->  .../bindings/pinctrl/qcom,sm8750-tlmm.yaml    |  138 ++
->  drivers/pinctrl/qcom/Kconfig.msm              |    8 +
->  drivers/pinctrl/qcom/Makefile                 |    1 +
->  drivers/pinctrl/qcom/pinctrl-sm8750.c         | 1729 +++++++++++++++++
->  4 files changed, 1876 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8750-tlmm.yaml
->  create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8750.c
-> 
-> 
-> base-commit: 6d59cab07b8d74d0f0422b750038123334f6ecc2
-> -- 
-> 2.46.1
-> 
+diff --git a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+index 4ad56a409b9c..09243de49ae6 100644
+--- a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
++++ b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+@@ -25,6 +25,7 @@ properties:
+       - items:
+           - enum:
+               - qcom,qcm2290-gpi-dma
++              - qcom,qcs8300-gpi-dma
+               - qcom,qdu1000-gpi-dma
+               - qcom,sar2130p-gpi-dma
+               - qcom,sc7280-gpi-dma
+-- 
+2.34.1
+
 
