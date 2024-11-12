@@ -1,128 +1,152 @@
-Return-Path: <devicetree+bounces-121027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F629C4F12
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 08:01:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C06B9C4F37
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 08:15:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA7BC1F218B3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 07:01:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2840CB2213B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 07:15:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1AED20896D;
-	Tue, 12 Nov 2024 07:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 896E9209F33;
+	Tue, 12 Nov 2024 07:15:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ReATsknb"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="DU+hJHfM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16C2D19EED4
-	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 07:01:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA11F20A5FF;
+	Tue, 12 Nov 2024 07:15:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.156.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731394885; cv=none; b=fTD3H9tOYx8M/DhOcKGmCLvbhgUd6I85wun54snbQhDnnC/KoUu7eLJTw+7L9Xhz/Ampdx2nltfWlV4A8vIvrqsXc6VtLHWR/mnF/NYOP+1v06yynVa5QADitg+f/hYWeoRa1xzquTx1IACt1S4EIbE5ZBcqod/MtXtdqgX0uHU=
+	t=1731395709; cv=none; b=DKfo6Uz6Wu+ScxMR5DxnYFUUf3F4QW8UDvVz3UP4CK9KarStA8kS8if+v0BYRgSKCDA8hKukf248t+27E8B4hWQeHL8kjihNYLT90N5ApyD2UvhTu+SHvvKJJ8a1TmXbjsPO/5lKcmjmmUt1bIm+G2OSxzXHWp/AeTDWJZV58ik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731394885; c=relaxed/simple;
-	bh=1Uzacw4ZWXaBfsEOBKezW2Dbt7/ir/lJdgwfmk4QUAk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JSS22tilQ//alkDiFrqzLTTXaB8o1iCiYZiicPnI/2vlramHtdrs4B9Ah+uPwuUIjW8H+puMANDNPOMYhXCEGlWGmnzVMoIc/vlP6bCvXbNDse1a0NC9bxPFIcn189aIaEoVQQdVTpi7kB/wVsvLIIzgHC6cpYn72URZMd5Xis4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ReATsknb; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-37d4ba20075so3553464f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 23:01:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731394882; x=1731999682; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=e90Eas/uN+CMCjttr3SXpKE5ydwUVfeG05npd83rlog=;
-        b=ReATsknb9BhOXxSf224XsLvqHp+WThHF0nXTIBErpi6tfG5CXjXol7UTCDnK5qsEjL
-         uU+2fVciceduT0SC+gUmSmSMwNz6j2CRQynJwBGic2Dk8boeD6mOPIV09SKRtmqYIQvx
-         /dM5b5PX5/UJDH1YCPr7Z1dLGKp5vGUMLzzCejLZZn3/nRpmd+dAsJAEvJ51Cr//W7FI
-         Yu7jTlLYblRL0PmRgzo6v0vPVv+ET1HHF0ktIXg/X8BQc2X6zkb15MMmmfYGxq9hasql
-         Gg2ITKrRxQhKkEeSnuyFO5RhcvuCihHrcyLkLIiU1vPV7ViaCSqcsVJnL8kRLavo6RRN
-         1pyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731394882; x=1731999682;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e90Eas/uN+CMCjttr3SXpKE5ydwUVfeG05npd83rlog=;
-        b=VDo9YA9TJdtV5f75LTpur7mRjyOfLj/mFQLiMpzgKJlNxJymKVErd6M1qKBnXR4xrh
-         eLoKkb9MDCuC3g9XESEo0GWON6DAmvkxLniRwxmfmoF4uVhPhaSBUTzq3TIVkF2/Bjo8
-         ON6epoHxVCl8QmhnPjjtRiC7fo+iwpnowZnuLHx6dP7Rkhk4hz3KSa6oncIEkygluh58
-         CF6yyF2vmZDKid0Q1v6ZelDEtY3225ydUMd/2Y/pXh4XyrAhsyaUEKV/orexvW5sgiOa
-         s5nwXhgqd4Ruevu2LqOOIeFDCoKZoh/R75cFq3azGmx1Y8wD0zARvcMdZvNzgL9353dj
-         c6UQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWTeegU9LHXEk5YWeGDgHO1eK6IZxucG1lCjKpjkrsGiXJCM49l58W8S5fItSMF1wkkIiPCzL6wvEdn@vger.kernel.org
-X-Gm-Message-State: AOJu0YypBWt0lEJo1ehAsjYWueJPZW+dzTuLX6pPZ7BWt4lbnYETwo3f
-	hPNbf9dfrCLV80pgZzFTz8bSXD9uG5uVTsASnboYFIF9YJU3dp+Tr/8M1qe84X0=
-X-Google-Smtp-Source: AGHT+IGzjqCewg7v6LJsuluGeAw1t5n9E9T4ICaCzkpdT98/eoBBrmLzKDxDD8P1qsH+agtyBhgBiQ==
-X-Received: by 2002:a05:6000:1ace:b0:37c:d11f:c591 with SMTP id ffacd0b85a97d-381f172a8d1mr13824302f8f.17.1731394882338;
-        Mon, 11 Nov 2024 23:01:22 -0800 (PST)
-Received: from [192.168.0.157] ([79.115.63.225])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381ed9f8dfbsm14807593f8f.73.2024.11.11.23.01.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Nov 2024 23:01:21 -0800 (PST)
-Message-ID: <7d5dcd4e-967c-4627-92d5-86232492c7e3@linaro.org>
-Date: Tue, 12 Nov 2024 07:01:19 +0000
+	s=arc-20240116; t=1731395709; c=relaxed/simple;
+	bh=nfcLnmD+D/CfXHBdEVD6YP35dinDuE9CTLoceAXX1lM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=H0N2sSjVBWfyTMsZMbJDcGxyk83dybLmENUik8rbaldRehq5BM5ZL+sMsYVjS1nBlTJYEXscfL2YEIpFuDvJal9BZ5QWtnJlZcIuCj1hCM4mUNt+QhZdqv1/DNaj9vrEePoN3UQlft+AZgOlO2+XyoHgFdcqWHTSC1GuN2lqjkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=DU+hJHfM; arc=none smtp.client-ip=67.231.156.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0431383.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ABLu5fw016704;
+	Mon, 11 Nov 2024 23:13:55 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=pfpt0220; bh=+nvaEIkJi1JKRsX47Bn13It
+	bUtldzj6zpPQcXn6HvLg=; b=DU+hJHfMvUD7n8xtXhOdgiOi89/Db9Pc+i/1WMj
+	XcFwklXYKFNUaYJyi3c+V1lfwL0boqORmWpiQhhmjZkrUIer+NKWykBbeapnSCuK
+	QSm+ZXlC1X+IVN/3IathgJP8C28X3TtSZpQaFpWFSiS6BW3qlDyf2LzYjiNeLRJ7
+	CZGEOi18w+d5e7TIxGjmfNeKcFbxm4YwqUFGXhoeWDR8Y1TQrkORv9s8dnO+5c7V
+	yUrq4nsL0RNhlF1Y9Cv3RbvuUg6spXPvfWJn+nTGFufw36OvIem1oZBvsFsV0eJi
+	8DG6CPVJIbI2piYDB1VfRpKqP7LccCtYaiksliQnMqc3fqw==
+Received: from dc5-exch05.marvell.com ([199.233.59.128])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 42un9d1csv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Nov 2024 23:13:54 -0800 (PST)
+Received: from DC5-EXCH05.marvell.com (10.69.176.209) by
+ DC5-EXCH05.marvell.com (10.69.176.209) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Mon, 11 Nov 2024 23:13:53 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH05.marvell.com
+ (10.69.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Mon, 11 Nov 2024 23:13:53 -0800
+Received: from localhost.localdomain (unknown [10.111.135.16])
+	by maili.marvell.com (Postfix) with ESMTP id 0A18F3F70B2;
+	Mon, 11 Nov 2024 23:13:53 -0800 (PST)
+From: Jenishkumar Maheshbhai Patel <jpatel2@marvell.com>
+To: <andrew@lunn.ch>, <gregory.clement@bootlin.com>,
+        <sebastian.hesselbarth@gmail.com>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <salee@marvell.com>, <dingwei@marvell.com>,
+        Jenishkumar Maheshbhai Patel
+	<jpatel2@marvell.com>
+Subject: [PATCH 1/1] arm64: dts: marvell: use reset controller to reset mac
+Date: Mon, 11 Nov 2024 23:13:50 -0800
+Message-ID: <20241112071350.762111-1-jpatel2@marvell.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v4 2/2] mtd: spi-nor: support vcc-supply regulator
-To: Pratyush Yadav <pratyush@kernel.org>
-Cc: peng.fan@oss.nxp.com, m.felsch@pengutronix.de, mwalle@kernel.org,
- miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-References: <20241029102238.44673-1-tudor.ambarus@linaro.org>
- <20241029102238.44673-2-tudor.ambarus@linaro.org>
- <mafs0zfm57tsy.fsf@kernel.org>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <mafs0zfm57tsy.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: 3ZGkxgAhdUC6TpdclIJI6IyS3PWbiEOt
+X-Proofpoint-ORIG-GUID: 3ZGkxgAhdUC6TpdclIJI6IyS3PWbiEOt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.687,Hydra:6.0.235,FMLib:17.0.607.475
+ definitions=2020-10-13_15,2020-10-13_02,2020-04-07_01
 
+change mac reset and mac reset bits to reset controller
 
+Signed-off-by: Jenishkumar Maheshbhai Patel <jpatel2@marvell.com>
+---
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
 
-On 11/11/24 2:02 PM, Pratyush Yadav wrote:
-> On Tue, Oct 29 2024, Tudor Ambarus wrote:
-> 
->> From: Peng Fan <peng.fan@nxp.com>
->>
->> SPI NOR flashes needs power supply to work properly. The power supply
->> maybe software controllable per board design. So add the support
->> for an vcc-supply regulator.
->>
->> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
->> [ta: move devm_regulator_get_enable() to spi_nor_probe(). Add local dev
->> variable to avoid dereferences.]
->> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> 
-> Reviewed-by: Pratyush Yadav <pratyush@kernel.org>
-> 
+diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+index f5aef6a23f65..f358f9809edd 100644
+--- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+@@ -6,7 +6,7 @@
+  */
+ 
+ #include <dt-bindings/interrupt-controller/mvebu-icu.h>
+-#define CP11X_PCIEx_MAC_RESET_BIT_MASK(n)	(0x1 << 11 + ((n + 2) % 3))
++#define CP11X_PCIEx_MAC_RESET_BIT(n)	(11 + ((n + 2) % 3))
+ #include <dt-bindings/thermal/thermal.h>
+ 
+ #include "armada-common.dtsi"
+@@ -276,6 +276,12 @@ CP11X_LABEL(gpio2): gpio@140 {
+ 			};
+ 		};
+ 
++		CP11X_LABEL(pcie_mac_reset): pcie-mac-reset@0x440268 {
++			compatible = "snps,dw-low-reset";
++			#reset-cells = <1>;
++			reg = <0x440268 0x4>;
++		};
++
+ 		CP11X_LABEL(syscon1): system-controller@400000 {
+ 			compatible = "syscon", "simple-mfd";
+ 			reg = <0x400000 0x1000>;
+@@ -548,8 +554,7 @@ CP11X_LABEL(pcie0): pcie@CP11X_PCIE0_BASE {
+ 		num-lanes = <1>;
+ 		clock-names = "core", "reg";
+ 		clocks = <&CP11X_LABEL(clk) 1 13>, <&CP11X_LABEL(clk) 1 14>;
+-		marvell,system-controller = <&CP11X_LABEL(syscon0)>;
+-		marvell,mac-reset-bit-mask = <CP11X_PCIEx_MAC_RESET_BIT_MASK(0)>;
++		resets = <&CP11X_LABEL(pcie_mac_reset) CP11X_PCIEx_MAC_RESET_BIT(0)>;
+ 		status = "disabled";
+ 	};
+ 
+@@ -575,8 +580,7 @@ CP11X_LABEL(pcie1): pcie@CP11X_PCIE1_BASE {
+ 		num-lanes = <1>;
+ 		clock-names = "core", "reg";
+ 		clocks = <&CP11X_LABEL(clk) 1 11>, <&CP11X_LABEL(clk) 1 14>;
+-		marvell,system-controller = <&CP11X_LABEL(syscon0)>;
+-		marvell,mac-reset-bit-mask = <CP11X_PCIEx_MAC_RESET_BIT_MASK(1)>;
++		resets = <&CP11X_LABEL(pcie_mac_reset) CP11X_PCIEx_MAC_RESET_BIT(1)>;
+ 		status = "disabled";
+ 	};
+ 
+@@ -602,8 +606,7 @@ CP11X_LABEL(pcie2): pcie@CP11X_PCIE2_BASE {
+ 		num-lanes = <1>;
+ 		clock-names = "core", "reg";
+ 		clocks = <&CP11X_LABEL(clk) 1 12>, <&CP11X_LABEL(clk) 1 14>;
+-		marvell,system-controller = <&CP11X_LABEL(syscon0)>;
+-		marvell,mac-reset-bit-mask = <CP11X_PCIEx_MAC_RESET_BIT_MASK(2)>;
++		resets = <&CP11X_LABEL(pcie_mac_reset) CP11X_PCIEx_MAC_RESET_BIT(2)>;
+ 		status = "disabled";
+ 	};
+ };
+-- 
+2.25.1
 
-thanks, Pratyush. I sent a v5 here, where I introduce the temporary
-variable to struct device in its dedicated patch. Would you mind adding
-the R-b tag there?
-https://lore.kernel.org/linux-mtd/20241111111946.9048-1-tudor.ambarus@linaro.org/
-
-btw, I try to keep patchwork in sync, so you can see the status of
-patches there as well:
-
-https://patchwork.ozlabs.org/project/linux-mtd/list/?series=&submitter=&state=&q=spi-nor&archive=&delegate=
-
-Thanks!
 
