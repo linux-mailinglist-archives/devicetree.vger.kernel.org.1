@@ -1,80 +1,63 @@
-Return-Path: <devicetree+bounces-121215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73C8C9C5E97
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 18:17:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4100C9C5D3C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:28:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8F0BB83CEF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 16:29:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C24611F25603
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 16:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29394206059;
-	Tue, 12 Nov 2024 16:28:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AADBB205ABE;
+	Tue, 12 Nov 2024 16:26:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="p8ZQsSzU"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="oWUxLxDY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8BC8205AAC;
-	Tue, 12 Nov 2024 16:28:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1B762038B3;
+	Tue, 12 Nov 2024 16:26:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731428890; cv=none; b=Ssmr6Gpw36paPyr+N6Xtq5HoT+iNUYj2jM5FLpnA4pWa0KsJ2Qvkk+a3Xqwz/bzzAVXI5Y2mmDj0VPQl5iIBy3v8Nsefq46Vefb4bpimWjcurmwwOaSELqlgzxZMYALd936D4b7IugviQ7N3qdmlCwNyHhDdDg32oLtKOPDnhdg=
+	t=1731428801; cv=none; b=kkZHl7y2xwa0e96LS2lh3i0fOEZlfj22X9I/vm9OlrSq6PyG2rQegaYHGJTFe6cINGPJe+HrFIiHcmCCITghT0vW7QOq+QNWB1cBAQ6Xn5T5TfTXjupt62no5MhxXMVc+Dh8YYTqffeNt5Lh7oXvzKfmOtXEPJs30jsuDBIwwso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731428890; c=relaxed/simple;
-	bh=cXOWCoZgbUHjiPx1rOsTN2HEIIyO7cWP4LmNcTI6AB0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lsV6oPYqMwsfX833KmhlLe6zBjWIkgTGS9KXrIrrBuNulJCbB1zyYhHl1zUDg/rZz5QuSxxx6CphBx+NCD8YEkctHC9QP346yNDpt2g5sM9mcftvwrhsX+r1L0FIMWxxLKhR86srREQ+A2uysdOWI3MK9qmWbJv4Fs+6sl+qnQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=p8ZQsSzU; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ACFkHlb019647;
-	Tue, 12 Nov 2024 17:24:42 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	uwZKNWookk4lIC5CFfymDzUSstCH7d0kemwYeVSNYP4=; b=p8ZQsSzU7C/kOWDQ
-	34f21qbE31mcCsqjCoHFIU6xvXnAl/qEOCLem1HvTeZwL+zQSIBqQ+xbk02vdds2
-	OfwmuaT/snHk22EaBo9gB5zHrmUSvsz2WMks4HvX3rQzzlqtmko2BX4bdyvWzDCx
-	y5LmSF9M7O1KckzPve4sEkCxUemm4GigbGh5ruTVTX/y5WkI7ZpiSlZMipkpSKiP
-	J64kAmsv2WS2lYfel3GnpWA5Nnw8XOgNEjTM+p+avT+i955cxvkOqESH/eXSJway
-	2KSVz7LRCkfOUontg2cE7EMYZm5MXKqCEjk51+pYBYj+1KQF0dhcnyVDsKcBHTh1
-	SL1CkQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42sx1knr34-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Nov 2024 17:24:42 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A7A9B4005B;
-	Tue, 12 Nov 2024 17:23:21 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5B3542AC018;
-	Tue, 12 Nov 2024 17:20:30 +0100 (CET)
-Received: from localhost (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 12 Nov
- 2024 17:20:30 +0100
-From: Christian Bruel <christian.bruel@foss.st.com>
-To: <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
-        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>
-CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Christian Bruel <christian.bruel@foss.st.com>
-Subject: [PATCH 4/5] PCI: stm32: Add PCIe endpoint support for STM32MP25
-Date: Tue, 12 Nov 2024 17:19:24 +0100
-Message-ID: <20241112161925.999196-5-christian.bruel@foss.st.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241112161925.999196-1-christian.bruel@foss.st.com>
-References: <20241112161925.999196-1-christian.bruel@foss.st.com>
+	s=arc-20240116; t=1731428801; c=relaxed/simple;
+	bh=IqEczWekzxYl+rUQSLzOwNdhVtKicDZtXRp4rHyUOkk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EyRXf1RwgTA8/CXG18gUvM5IEka2j28oijaJLZqfsKb5xr/liRD1kasGjIjf37FMxeiVC6r4mFO/k39+JoOCm7bSQieSYpgnUi5oK77Tkxu47P0fybcqt0fiqL3hm36Yk/Ug+A1UZKRO49XSjSHOBeF6I0Zai8H9EWpf1ZIIte0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=oWUxLxDY; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=OoRkpTwRzRzvN9NjbJDTBcpLX4syiHChqdr6ee/ygJQ=; b=oWUxLxDYbTgDQLD47pCqbMEyq9
+	uJ+F249SI7GTHT8dyDzqCFi8/1Tqg74UDk5ltVIVCgE7BfoJIBMRNfbhhN9XdVHoSHRDY5SCMyk6Q
+	dold7r8M+zuYyZgq2Cu7Ye41TjMCV60HEGaJCox26OfjlR6Qiv11gvXoNvKJ8ezbjc6iR9OfkX8aE
+	5uyLwDeIug2kYTSMcmQ847Si00n8bamWq8s6fosRdNtvD6ht9Qzp3UHkdl9PBj26tri3g9xrctu1h
+	3C78QGjJOltwyRfcwYmVut/mJLlVLZq/RpB6RCg9ewOoYzWJWWNvhOVcOTd6vXU/HC0xpPV6VaNY5
+	ovwHdtEA==;
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	linux-clk@vger.kernel.org,
+	Andreas Kemnade <andreas@kemnade.info>,
+	linux-omap@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Tony Lindgren <tony@atomide.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Tero Kristo <kristo@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3] dt-bindings: clock: ti: Convert mux.txt to json-schema
+Date: Tue, 12 Nov 2024 17:26:18 +0100
+Message-Id: <20241112162618.400194-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,498 +65,259 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Add driver to configure the STM32MP25 SoC PCIe Gen2 controller based on the
-DesignWare PCIe core in endpoint mode.
-Uses the common reference clock provided by the host.
+Convert the OMAP mux clock device tree binding to json-schema.
+Specify the creator of the original binding as a maintainer.
+Choose GPL-only license because original binding was also GPL.
 
-Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- drivers/pci/controller/dwc/Kconfig         |  12 +
- drivers/pci/controller/dwc/Makefile        |   1 +
- drivers/pci/controller/dwc/pcie-stm32-ep.c | 433 +++++++++++++++++++++
- 3 files changed, 446 insertions(+)
- create mode 100644 drivers/pci/controller/dwc/pcie-stm32-ep.c
+Changes in V3:
+- reordering properties in examples
 
-diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-index 50a014c2dfd0..29b7f45f82c7 100644
---- a/drivers/pci/controller/dwc/Kconfig
-+++ b/drivers/pci/controller/dwc/Kconfig
-@@ -470,4 +470,16 @@ config PCIE_STM32
+Changes in V2:
+- some orthography fixes
+- fix addresses in example
+- no prose for defaults
+- constraints for latch-bit
+
+ .../bindings/clock/ti/composite.txt           |   2 +-
+ .../devicetree/bindings/clock/ti/mux.txt      |  78 -----------
+ .../bindings/clock/ti/ti,mux-clock.yaml       | 125 ++++++++++++++++++
+ 3 files changed, 126 insertions(+), 79 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/ti/mux.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+
+diff --git a/Documentation/devicetree/bindings/clock/ti/composite.txt b/Documentation/devicetree/bindings/clock/ti/composite.txt
+index b02f22490dcb..238e6f7d74f8 100644
+--- a/Documentation/devicetree/bindings/clock/ti/composite.txt
++++ b/Documentation/devicetree/bindings/clock/ti/composite.txt
+@@ -16,7 +16,7 @@ merged to this clock. The component clocks shall be of one of the
+ "ti,*composite*-clock" types.
  
- 	  This driver can also be built as a module. If so, the module
- 	  will be called pcie-stm32.
-+
-+config PCIE_STM32_EP
-+	tristate "STMicroelectronics STM32MP25 PCIe Controller (endpoint mode)"
-+	depends on ARCH_STM32 || COMPILE_TEST
-+	depends on PCI_ENDPOINT
-+	select PCIE_DW_EP
-+	help
-+	  Enables endpoint support for DesignWare core based PCIe controller in found
-+	  in STM32MP25 SoC.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called pcie-stm32-ep.
- endmenu
-diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-index 576d99cb3bc5..caebd98f6dd3 100644
---- a/drivers/pci/controller/dwc/Makefile
-+++ b/drivers/pci/controller/dwc/Makefile
-@@ -29,6 +29,7 @@ obj-$(CONFIG_PCIE_UNIPHIER_EP) += pcie-uniphier-ep.o
- obj-$(CONFIG_PCIE_VISCONTI_HOST) += pcie-visconti.o
- obj-$(CONFIG_PCIE_RCAR_GEN4) += pcie-rcar-gen4.o
- obj-$(CONFIG_PCIE_STM32) += pcie-stm32.o
-+obj-$(CONFIG_PCIE_STM32_EP) += pcie-stm32-ep.o
+ [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+-[2] Documentation/devicetree/bindings/clock/ti/mux.txt
++[2] Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+ [3] Documentation/devicetree/bindings/clock/ti/ti,divider-clock.yaml
+ [4] Documentation/devicetree/bindings/clock/ti/gate.txt
  
- # The following drivers are for devices that use the generic ACPI
- # pci_root.c driver but don't support standard ECAM config access.
-diff --git a/drivers/pci/controller/dwc/pcie-stm32-ep.c b/drivers/pci/controller/dwc/pcie-stm32-ep.c
+diff --git a/Documentation/devicetree/bindings/clock/ti/mux.txt b/Documentation/devicetree/bindings/clock/ti/mux.txt
+deleted file mode 100644
+index cd56d3c1c09f..000000000000
+--- a/Documentation/devicetree/bindings/clock/ti/mux.txt
++++ /dev/null
+@@ -1,78 +0,0 @@
+-Binding for TI mux clock.
+-
+-This binding uses the common clock binding[1].  It assumes a
+-register-mapped multiplexer with multiple input clock signals or
+-parents, one of which can be selected as output.  This clock does not
+-gate or adjust the parent rate via a divider or multiplier.
+-
+-By default the "clocks" property lists the parents in the same order
+-as they are programmed into the register.  E.g:
+-
+-	clocks = <&foo_clock>, <&bar_clock>, <&baz_clock>;
+-
+-results in programming the register as follows:
+-
+-register value		selected parent clock
+-0			foo_clock
+-1			bar_clock
+-2			baz_clock
+-
+-Some clock controller IPs do not allow a value of zero to be programmed
+-into the register, instead indexing begins at 1.  The optional property
+-"index-starts-at-one" modified the scheme as follows:
+-
+-register value		selected clock parent
+-1			foo_clock
+-2			bar_clock
+-3			baz_clock
+-
+-The binding must provide the register to control the mux. Optionally
+-the number of bits to shift the control field in the register can be
+-supplied. If the shift value is missing it is the same as supplying
+-a zero shift.
+-
+-[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+-
+-Required properties:
+-- compatible : shall be "ti,mux-clock" or "ti,composite-mux-clock".
+-- #clock-cells : from common clock binding; shall be set to 0.
+-- clocks : link phandles of parent clocks
+-- reg : register offset for register controlling adjustable mux
+-
+-Optional properties:
+-- clock-output-names : from common clock binding.
+-- ti,bit-shift : number of bits to shift the bit-mask, defaults to
+-  0 if not present
+-- ti,index-starts-at-one : valid input select programming starts at 1, not
+-  zero
+-- ti,set-rate-parent : clk_set_rate is propagated to parent clock,
+-  not supported by the composite-mux-clock subtype
+-- ti,latch-bit : latch the mux value to HW, only needed if the register
+-  access requires this. As an example, dra7x DPLL_GMAC H14 muxing
+-  implements such behavior.
+-
+-Examples:
+-
+-sys_clkin_ck: sys_clkin_ck@4a306110 {
+-	#clock-cells = <0>;
+-	compatible = "ti,mux-clock";
+-	clocks = <&virt_12000000_ck>, <&virt_13000000_ck>, <&virt_16800000_ck>, <&virt_19200000_ck>, <&virt_26000000_ck>, <&virt_27000000_ck>, <&virt_38400000_ck>;
+-	reg = <0x0110>;
+-	ti,index-starts-at-one;
+-};
+-
+-abe_dpll_bypass_clk_mux_ck: abe_dpll_bypass_clk_mux_ck@4a306108 {
+-	#clock-cells = <0>;
+-	compatible = "ti,mux-clock";
+-	clocks = <&sys_clkin_ck>, <&sys_32k_ck>;
+-	ti,bit-shift = <24>;
+-	reg = <0x0108>;
+-};
+-
+-mcbsp5_mux_fck: mcbsp5_mux_fck {
+-	#clock-cells = <0>;
+-	compatible = "ti,composite-mux-clock";
+-	clocks = <&core_96m_fck>, <&mcbsp_clks>;
+-	ti,bit-shift = <4>;
+-	reg = <0x02d8>;
+-};
+diff --git a/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml b/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
 new file mode 100644
-index 000000000000..9fc43046531d
+index 000000000000..485b6aae85d4
 --- /dev/null
-+++ b/drivers/pci/controller/dwc/pcie-stm32-ep.c
-@@ -0,0 +1,433 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * STMicroelectronics STM32MP25 PCIe endpoint driver.
-+ *
-+ * Copyright (C) 2024 STMicroelectronics
-+ * Author: Christian Bruel <christian.bruel@foss.st.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/of_platform.h>
-+#include <linux/of_gpio.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
-+#include "pcie-designware.h"
-+#include "pcie-stm32.h"
-+
-+enum stm32_pcie_ep_link_status {
-+	STM32_PCIE_EP_LINK_DISABLED,
-+	STM32_PCIE_EP_LINK_ENABLED,
-+};
-+
-+struct stm32_pcie {
-+	struct dw_pcie *pci;
-+	struct regmap *regmap;
-+	struct reset_control *rst;
-+	struct phy *phy;
-+	struct clk *clk;
-+	struct gpio_desc *reset_gpio;
-+	enum stm32_pcie_ep_link_status link_status;
-+	unsigned int perst_irq;
-+};
-+
-+static const struct of_device_id stm32_pcie_ep_of_match[] = {
-+	{ .compatible = "st,stm32mp25-pcie-ep" },
-+	{},
-+};
-+
-+static void stm32_pcie_ep_init(struct dw_pcie_ep *ep)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-+	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
-+	enum pci_barno bar;
-+
-+	for (bar = BAR_0; bar <= PCI_STD_NUM_BARS; bar++)
-+		dw_pcie_ep_reset_bar(pci, bar);
-+
-+	/* Defer Completion Requests until link started */
-+	regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
-+			   STM32MP25_PCIECR_REQ_RETRY_EN,
-+			   STM32MP25_PCIECR_REQ_RETRY_EN);
-+}
-+
-+static int stm32_pcie_enable_link(struct dw_pcie *pci)
-+{
-+	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
-+	int ret;
-+
-+	regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
-+			   STM32MP25_PCIECR_LTSSM_EN,
-+			   STM32MP25_PCIECR_LTSSM_EN);
-+
-+	ret = dw_pcie_wait_for_link(pci);
-+	if (ret)
-+		return ret;
-+
-+	regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
-+			   STM32MP25_PCIECR_REQ_RETRY_EN,
-+			   0);
-+
-+	return 0;
-+}
-+
-+static void stm32_pcie_disable_link(struct dw_pcie *pci)
-+{
-+	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
-+
-+	regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
-+			   STM32MP25_PCIECR_REQ_RETRY_EN,
-+			   STM32MP25_PCIECR_REQ_RETRY_EN);
-+
-+	regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR, STM32MP25_PCIECR_LTSSM_EN, 0);
-+}
-+
-+static int stm32_pcie_start_link(struct dw_pcie *pci)
-+{
-+	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
-+	int ret;
-+
-+	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_ENABLED) {
-+		dev_dbg(pci->dev, "Link is already enabled\n");
-+		return 0;
-+	}
-+
-+	ret = stm32_pcie_enable_link(pci);
-+	if (ret) {
-+		dev_err(pci->dev, "PCIe cannot establish link: %d\n", ret);
-+		return ret;
-+	}
-+
-+	stm32_pcie->link_status = STM32_PCIE_EP_LINK_ENABLED;
-+
-+	enable_irq(stm32_pcie->perst_irq);
-+
-+	return 0;
-+}
-+
-+static void stm32_pcie_stop_link(struct dw_pcie *pci)
-+{
-+	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
-+
-+	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_DISABLED) {
-+		dev_dbg(pci->dev, "Link is already disabled\n");
-+		return;
-+	}
-+
-+	disable_irq(stm32_pcie->perst_irq);
-+
-+	stm32_pcie_disable_link(pci);
-+
-+	stm32_pcie->link_status = STM32_PCIE_EP_LINK_DISABLED;
-+}
-+
-+static int stm32_pcie_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
-+				unsigned int type, u16 interrupt_num)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-+
-+	switch (type) {
-+	case PCI_IRQ_INTX:
-+		return dw_pcie_ep_raise_intx_irq(ep, func_no);
-+	case PCI_IRQ_MSI:
-+		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
-+	default:
-+		dev_err(pci->dev, "UNKNOWN IRQ type\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct pci_epc_features stm32_pcie_epc_features = {
-+	.msi_capable = true,
-+	.align = 1 << 16,
-+};
-+
-+static const struct pci_epc_features*
-+stm32_pcie_get_features(struct dw_pcie_ep *ep)
-+{
-+	return &stm32_pcie_epc_features;
-+}
-+
-+static const struct dw_pcie_ep_ops stm32_pcie_ep_ops = {
-+	.init = stm32_pcie_ep_init,
-+	.raise_irq = stm32_pcie_raise_irq,
-+	.get_features = stm32_pcie_get_features,
-+};
-+
-+static const struct dw_pcie_ops dw_pcie_ops = {
-+	.start_link = stm32_pcie_start_link,
-+	.stop_link = stm32_pcie_stop_link,
-+};
-+
-+static int stm32_pcie_enable_resources(struct stm32_pcie *stm32_pcie)
-+{
-+	int ret;
-+
-+	ret = phy_init(stm32_pcie->phy);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_prepare_enable(stm32_pcie->clk);
-+	if (ret)
-+		phy_exit(stm32_pcie->phy);
-+
-+	return ret;
-+}
-+
-+static void stm32_pcie_disable_resources(struct stm32_pcie *stm32_pcie)
-+{
-+	clk_disable_unprepare(stm32_pcie->clk);
-+
-+	phy_exit(stm32_pcie->phy);
-+}
-+
-+static void stm32_pcie_perst_assert(struct dw_pcie *pci)
-+{
-+	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
-+	struct device *dev = pci->dev;
-+
-+	dev_dbg(dev, "PERST asserted by host. Shutting down the PCIe link\n");
-+
-+	/*
-+	 * Do not try to release resources if the PERST# is
-+	 * asserted before the link is started.
-+	 */
-+	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_DISABLED) {
-+		dev_dbg(pci->dev, "Link is already disabled\n");
-+		return;
-+	}
-+
-+	stm32_pcie_disable_link(pci);
-+
-+	stm32_pcie_disable_resources(stm32_pcie);
-+
-+	pm_runtime_put_sync(dev);
-+
-+	stm32_pcie->link_status = STM32_PCIE_EP_LINK_DISABLED;
-+}
-+
-+static void stm32_pcie_perst_deassert(struct dw_pcie *pci)
-+{
-+	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
-+	struct device *dev = pci->dev;
-+	struct dw_pcie_ep *ep = &pci->ep;
-+	int ret;
-+
-+	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_ENABLED) {
-+		dev_dbg(pci->dev, "Link is already enabled\n");
-+		return;
-+	}
-+
-+	dev_dbg(dev, "PERST de-asserted by host. Starting link training\n");
-+
-+	ret = pm_runtime_resume_and_get(dev);
-+	if (ret < 0) {
-+		dev_err(dev, "pm runtime resume failed: %d\n", ret);
-+		return;
-+	}
-+
-+	ret = stm32_pcie_enable_resources(stm32_pcie);
-+	if (ret) {
-+		dev_err(dev, "Failed to enable resources: %d\n", ret);
-+		pm_runtime_put_sync(dev);
-+		return;
-+	}
-+
-+	ret = dw_pcie_ep_init_registers(ep);
-+	if (ret) {
-+		dev_err(dev, "Failed to complete initialization: %d\n", ret);
-+		stm32_pcie_disable_resources(stm32_pcie);
-+		pm_runtime_put_sync(dev);
-+		return;
-+	}
-+
-+	pci_epc_init_notify(ep->epc);
-+
-+	ret = stm32_pcie_enable_link(pci);
-+	if (ret) {
-+		dev_err(dev, "PCIe Cannot establish link: %d\n", ret);
-+		stm32_pcie_disable_resources(stm32_pcie);
-+		pm_runtime_put_sync(dev);
-+		return;
-+	}
-+
-+	stm32_pcie->link_status = STM32_PCIE_EP_LINK_ENABLED;
-+}
-+
-+static irqreturn_t stm32_pcie_ep_perst_irq_thread(int irq, void *data)
-+{
-+	struct stm32_pcie *stm32_pcie = data;
-+	struct dw_pcie *pci = stm32_pcie->pci;
-+	u32 perst;
-+
-+	perst = gpiod_get_value(stm32_pcie->reset_gpio);
-+	if (perst)
-+		stm32_pcie_perst_assert(pci);
-+	else
-+		stm32_pcie_perst_deassert(pci);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int stm32_add_pcie_ep(struct stm32_pcie *stm32_pcie,
-+			     struct platform_device *pdev)
-+{
-+	struct dw_pcie *pci = stm32_pcie->pci;
-+	struct dw_pcie_ep *ep = &pci->ep;
-+	struct device *dev = &pdev->dev;
-+	int ret;
-+
-+	ret = regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
-+				 STM32MP25_PCIECR_TYPE_MASK,
-+				 STM32MP25_PCIECR_EP);
-+	if (ret)
-+		return ret;
-+
-+	ret = pm_runtime_resume_and_get(dev);
-+	if (ret < 0) {
-+		dev_err(dev, "pm runtime resume failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	reset_control_assert(stm32_pcie->rst);
-+	reset_control_deassert(stm32_pcie->rst);
-+
-+	ep->ops = &stm32_pcie_ep_ops;
-+
-+	ret = dw_pcie_ep_init(ep);
-+	if (ret) {
-+		dev_err(dev, "failed to initialize ep: %d\n", ret);
-+		pm_runtime_put_sync(dev);
-+		return ret;
-+	}
-+
-+	ret = stm32_pcie_enable_resources(stm32_pcie);
-+	if (ret) {
-+		dev_err(dev, "failed to enable resources: %d\n", ret);
-+		dw_pcie_ep_deinit(ep);
-+		pm_runtime_put_sync(dev);
-+		return ret;
-+	}
-+
-+	ret = dw_pcie_ep_init_registers(ep);
-+	if (ret) {
-+		dev_err(dev, "Failed to initialize DWC endpoint registers\n");
-+		stm32_pcie_disable_resources(stm32_pcie);
-+		dw_pcie_ep_deinit(ep);
-+		pm_runtime_put_sync(dev);
-+		return ret;
-+	}
-+
-+	pci_epc_init_notify(ep->epc);
-+
-+	return 0;
-+}
-+
-+static int stm32_pcie_probe(struct platform_device *pdev)
-+{
-+	struct stm32_pcie *stm32_pcie;
-+	struct dw_pcie *dw;
-+	struct device *dev = &pdev->dev;
-+	int ret;
-+
-+	stm32_pcie = devm_kzalloc(dev, sizeof(*stm32_pcie), GFP_KERNEL);
-+	if (!stm32_pcie)
-+		return -ENOMEM;
-+
-+	dw = devm_kzalloc(dev, sizeof(*dw), GFP_KERNEL);
-+	if (!dw)
-+		return -ENOMEM;
-+	stm32_pcie->pci = dw;
-+
-+	dw->dev = dev;
-+	dw->ops = &dw_pcie_ops;
-+
-+	stm32_pcie->regmap = syscon_regmap_lookup_by_compatible("st,stm32mp25-syscfg");
-+	if (IS_ERR(stm32_pcie->regmap))
-+		return dev_err_probe(dev, PTR_ERR(stm32_pcie->regmap),
-+				     "No syscfg specified\n");
-+
-+	stm32_pcie->phy = devm_phy_get(dev, "pcie-phy");
-+	if (IS_ERR(stm32_pcie->phy))
-+		return dev_err_probe(dev, PTR_ERR(stm32_pcie->phy),
-+				     "failed to get pcie-phy\n");
-+
-+	stm32_pcie->clk = devm_clk_get(dev, "core");
-+	if (IS_ERR(stm32_pcie->clk))
-+		return dev_err_probe(dev, PTR_ERR(stm32_pcie->clk),
-+				     "Failed to get PCIe clock source\n");
-+
-+	stm32_pcie->rst = devm_reset_control_get_exclusive(dev, "core");
-+	if (IS_ERR(stm32_pcie->rst))
-+		return dev_err_probe(dev, PTR_ERR(stm32_pcie->rst),
-+				     "Failed to get PCIe reset\n");
-+
-+	stm32_pcie->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_IN);
-+	if (IS_ERR(stm32_pcie->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(stm32_pcie->reset_gpio),
-+				     "Failed to get reset GPIO\n");
-+
-+	ret = phy_set_mode(stm32_pcie->phy, PHY_MODE_PCIE);
-+	if (ret)
-+		return ret;
-+
-+	platform_set_drvdata(pdev, stm32_pcie);
-+
-+	ret = devm_pm_runtime_enable(dev);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enable pm runtime %d\n", ret);
-+		return ret;
-+	}
-+
-+	stm32_pcie->perst_irq = gpiod_to_irq(stm32_pcie->reset_gpio);
-+
-+	/* Will be enabled in start_link when device is initialized. */
-+	irq_set_status_flags(stm32_pcie->perst_irq, IRQ_NOAUTOEN);
-+
-+	ret = devm_request_threaded_irq(dev, stm32_pcie->perst_irq, NULL,
-+					stm32_pcie_ep_perst_irq_thread,
-+					IRQF_TRIGGER_RISING |
-+					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-+					"perst_irq", stm32_pcie);
-+	if (ret) {
-+		dev_err(dev, "Failed to request PERST IRQ: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return stm32_add_pcie_ep(stm32_pcie, pdev);
-+}
-+
-+static void stm32_pcie_remove(struct platform_device *pdev)
-+{
-+	struct stm32_pcie *stm32_pcie = platform_get_drvdata(pdev);
-+	struct dw_pcie_ep *ep = &stm32_pcie->pci->ep;
-+
-+	disable_irq(stm32_pcie->perst_irq);
-+
-+	dw_pcie_ep_deinit(ep);
-+
-+	stm32_pcie_disable_resources(stm32_pcie);
-+
-+	pm_runtime_put_sync(&pdev->dev);
-+}
-+
-+static struct platform_driver stm32_pcie_ep_driver = {
-+	.probe = stm32_pcie_probe,
-+	.remove_new = stm32_pcie_remove,
-+	.driver = {
-+		.name = "stm32-ep-pcie",
-+		.of_match_table = stm32_pcie_ep_of_match,
-+	},
-+};
-+
-+module_platform_driver(stm32_pcie_ep_driver);
-+
-+MODULE_AUTHOR("Christian Bruel <christian.bruel@foss.st.com>");
-+MODULE_DESCRIPTION("STM32MP25 PCIe Endpoint Controller driver");
-+MODULE_LICENSE("GPL");
-+MODULE_DEVICE_TABLE(of, stm32_pcie_ep_of_match);
++++ b/Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
+@@ -0,0 +1,125 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/ti/ti,mux-clock.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments mux clock
++
++maintainers:
++  - Tero Kristo <kristo@kernel.org>
++
++description: |
++  This clock assumes a register-mapped multiplexer with multiple inpt clock
++  signals or parents, one of which can be selected as output. This clock does
++  not gate or adjust the parent rate via a divider or multiplier.
++
++  By default the "clocks" property lists the parents in the same order
++  as they are programmed into the register.  E.g:
++
++    clocks = <&foo_clock>, <&bar_clock>, <&baz_clock>;
++
++  Results in programming the register as follows:
++
++  register value   selected parent clock
++  0                foo_clock
++  1                bar_clock
++  2                baz_clock
++
++  Some clock controller IPs do not allow a value of zero to be programmed
++  into the register, instead indexing begins at 1.  The optional property
++  "index-starts-at-one" modified the scheme as follows:
++
++  register value   selected clock parent
++  1                foo_clock
++  2                bar_clock
++  3                baz_clock
++
++  The binding must provide the register to control the mux. Optionally
++  the number of bits to shift the control field in the register can be
++  supplied. If the shift value is missing it is the same as supplying
++  a zero shift.
++
++properties:
++  compatible:
++    enum:
++      - ti,mux-clock
++      - ti,composite-mux-clock
++
++  "#clock-cells":
++    const: 0
++
++  clocks: true
++
++  clock-output-names:
++    maxItems: 1
++
++  reg:
++    maxItems: 1
++
++  ti,bit-shift:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Number of bits to shift the bit-mask
++    maximum: 31
++    default: 0
++
++  ti,index-starts-at-one:
++    type: boolean
++    description:
++      Valid input select programming starts at 1, not zero
++
++  ti,set-rate-parent:
++    type: boolean
++    description:
++      clk_set_rate is propagated to parent clock,
++      not supported by the composite-mux-clock subtype.
++
++  ti,latch-bit:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Latch the mux value to HW, only needed if the register
++      access requires this. As an example, dra7x DPLL_GMAC H14 muxing
++      implements such behavior.
++    maximum: 31
++
++if:
++  properties:
++    compatible:
++      contains:
++        const: ti,composite-mux-clock
++then:
++  properties:
++    ti,set-rate-parent: false
++
++required:
++  - compatible
++  - "#clock-cells"
++  - clocks
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    bus {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      clock-controller@110 {
++        compatible = "ti,mux-clock";
++        reg = <0x0110>;
++        #clock-cells = <0>;
++        clocks = <&virt_12000000_ck>, <&virt_13000000_ck>, <&virt_16800000_ck>;
++        ti,index-starts-at-one;
++        ti,set-rate-parent;
++      };
++
++      clock-controller@120 {
++        compatible = "ti,composite-mux-clock";
++        reg = <0x0120>;
++        #clock-cells = <0>;
++        clocks = <&core_96m_fck>, <&mcbsp_clks>;
++        ti,bit-shift = <4>;
++      };
++    };
 -- 
-2.34.1
+2.39.5
 
 
