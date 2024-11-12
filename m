@@ -1,158 +1,166 @@
-Return-Path: <devicetree+bounces-121264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48B0C9C5FD4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 19:03:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E90B99C5FD7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 19:03:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 096D2287D2C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 18:03:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADE7528870D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 18:03:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCB5B2185A0;
-	Tue, 12 Nov 2024 18:01:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7314C21443A;
+	Tue, 12 Nov 2024 18:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PSE7KSem"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j86D5prC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E78B218310
-	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 18:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 427621A4F21;
+	Tue, 12 Nov 2024 18:03:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731434490; cv=none; b=hrz+wj4QWDe8yQPdRS1fEDsIJWzskYZS+C5sb2on/daW1etVqzh1e2kYq5SyafAKHHkdfesSLfg6nG/8E6cWjNbLkkTG7bIzLPhIsUMntEuUkZ3qwk3lUXfxiqxJO1iOebKRa948GYxXFG5T1TsRQe4ASjGau0vetD19+1M4z/w=
+	t=1731434601; cv=none; b=WADkobK2tX8mm2ZcwSYPi21lLlLajuxNVjVkQVzs1Vvm/qbIe7VXorWnsNLuIzcmgpbsxXe7XjJCO8Iw8akViyihmqki8+yCHWwXjTv6p6KfJV//bdKKMMQALm9M+6/J4EU9LiAn3YOgrty9nFc61eAjw2UCIAUbqHUj0+opKEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731434490; c=relaxed/simple;
-	bh=nOVKKuvXUcR25DPN3l1wOkt2GU1wHgzTIanXM7meNTM=;
+	s=arc-20240116; t=1731434601; c=relaxed/simple;
+	bh=tpLHM8gccjiB9TKd4r6ak7Z24HirrOP9meXzwB/YKZA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DTt7W1tO6VGLqAE+TEaq8Q3lbTA+lqKRvxtjAI8z+p79V9QQfDwFjONz2+qJDQoZBsy5MgIedgXyzLcFyUqbNT26lHT7IZP1SuQf28Yn6sjl15XAUaEnJ0NFxoQoDbTFkrtlbHQH0czz/XO9wI7KPRuVxp+AL3LUm/TYCpa2Jbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PSE7KSem; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2e2ed2230d8so4785401a91.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 10:01:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731434488; x=1732039288; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lbAitaWBPhoWxH4bj4NOaD1/IoLABk7tVUOSRiI/Nhw=;
-        b=PSE7KSemIU1JkTh6CD+6WI+1pP7AeQWo/02O6PMdO28HR2m42z3ImBJM0H5qCFqEUr
-         fyUcsrW2plnv0cRchCwL1Ea/FowMBZoHBYe0m9RLtGLaIeYCneJy916ejCl8v1u0u0ZP
-         Gs5TpE+zbAoQOZnJEC4lxtLzHl/pmmU6vFvOy9BmC5sWcUMw2ZBvthqd1qxO6y62CkO3
-         qc5umQKnjTFhdR9vCQ7M9xbqt0AhePNOyOXAo54yTjkukXpqSjVGzIWgbo4Muap4rTyk
-         8p4/AtVR406MTvq7rTR5IoJ6I9S07SjvJHm8sY9cLTR9b2q7feOYnol9kJU0M/nd4ruv
-         opjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731434488; x=1732039288;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lbAitaWBPhoWxH4bj4NOaD1/IoLABk7tVUOSRiI/Nhw=;
-        b=PfKMPkrV2ZDkHVMQ8YBqaD2+cl+UfYuP7abxeCIiYM+mQ3/5k95ubHQeFRUWUYpowf
-         WxiAZAfccTdG3LDCEyPpttAR/3CjKIj0iSBh2XSW0lIMMoBZK3dLex0GUQj6Hl9FM2vc
-         XUq71RVNGiKos2Zm6X76QfAYZERTCIdKgzbHbBiEjIuVOB4k494c4XPiZFRh5/HDVZ7o
-         lb+rKAoIQIAx8F+S/QiD/OBoA8HxD3aT+0ToAfoO/+Xfoi7oWu2JMBUXcAPVfn9hEjSY
-         SmW7CYszvdMcHhOSwHNoKuW/u2jYTF+rBbxcCDjcP04ZYWpINtOdtzfs6DTUEvDItG8k
-         aCoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX57PXSsACVufoa2oBxYG+VTXAApPTKml2tV9s6Be/yPaPlyvIDS8z3QKghSnHrzgc0B4NQg7JSZd6N@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCwdrYDoFxB6GjS95GnTStAOHfBcWvYhWqirR4iCPwG6mxWm3/
-	XeN/zpqB+eTpb37RfqclCWPdbhYULXES2J4uCldiYlqZxrC8I+skq7+X+ypMPA==
-X-Google-Smtp-Source: AGHT+IGca3hgSODbdD3FEl5POWQHtDbW0nz1PIxvyp10V1YZFiQ1NdV6ppvh4sdUZbzacBs0F6PQjg==
-X-Received: by 2002:a17:90b:4d0f:b0:2e2:e91b:f0d3 with SMTP id 98e67ed59e1d1-2e9b17730f0mr22453864a91.29.1731434486819;
-        Tue, 12 Nov 2024 10:01:26 -0800 (PST)
-Received: from thinkpad ([117.213.103.244])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e99a4f6cacsm12941914a91.10.2024.11.12.10.01.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Nov 2024 10:01:26 -0800 (PST)
-Date: Tue, 12 Nov 2024 23:31:18 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [PATCH 0/3] Allow specifying an S2RAM sleep on
- pre-SYSTEM_SUSPEND PSCI impls
-Message-ID: <20241112180118.pcn7sf6r3mswwwxf@thinkpad>
-References: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=dVbomWZ+9i2k/YhBlRHTNyIVKOZ031XiliW9Ki6znNuUOeemV50A9YXJLAYkaQpaDh2z2kZiDdPpe0MP3yjoU4BXu/qCfCePM9ijSOdGYnT+8iwXdwOiJ5IFy62oWD15IhkDNBps73oXS1EqQUoduOeHxJkjFONKzjjRYCBd2lA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j86D5prC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D05DC4CECD;
+	Tue, 12 Nov 2024 18:03:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731434598;
+	bh=tpLHM8gccjiB9TKd4r6ak7Z24HirrOP9meXzwB/YKZA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=j86D5prCl7y97ZHmVe6LqOL10fpsKI+gwn8KSrIMNXO7taHDN2iLHhMcYBZkXQvw7
+	 RyZfPfyHQyNJeokKsxj3ACb9qLnduUkhFajLl5pMclUQg8EqWWXLkmYJCbTQe4VJ9A
+	 rbhwn1xkFpFEsCI5d2pZROcoIv58b0yspcrtIf4teipc/6VCDwt5S1puGQXWGdZNyE
+	 mkbckZ6xOUV9icV0L+RoCPDLwDPajWAJD0iQE4cTyn9KAd0BSk9yobhkVCwhyq5Dsr
+	 3pFC5gI4M+ix39GLDHVQ/9a4mevaVYsILXh5XVhKSbG4MZc/LzyQLlhffBO5vGu7uO
+	 Nq9OQSJ7hThoQ==
+Date: Tue, 12 Nov 2024 18:03:14 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Troy Mitchell <troymitchell988@gmail.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: i2c: spacemit: add support for K1 SoC
+Message-ID: <20241112-aged-trailing-cffda6af0944@spud>
+References: <20241112-k1-i2c-master-v3-0-5005b70dc208@gmail.com>
+ <20241112-k1-i2c-master-v3-1-5005b70dc208@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="dWgxOHE1CCfc7zNw"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
+In-Reply-To: <20241112-k1-i2c-master-v3-1-5005b70dc208@gmail.com>
 
-On Mon, Oct 28, 2024 at 03:22:56PM +0100, Konrad Dybcio wrote:
-> Certain firmwares expose exactly what PSCI_SYSTEM_SUSPEND does through
-> CPU_SUSPEND instead. Inform Linux about that.
-> Please see the commit messages for a more detailed explanation.
-> 
 
-It is still not PSCI_SYSTEM_SUSPEND though...
+--dWgxOHE1CCfc7zNw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> This is effectively a more educated follow-up to [1].
-> 
-> The ultimate goal is to stop making Linux think that certain states
-> only concern cores/clusters, and consequently setting
-> pm_set_suspend/resume_via_firmware(), so that client drivers (such as
-> NVMe, see related discussion over at [2]) can make informed decisions
-> about assuming the power state of the device they govern.
-> 
-> If this series gets green light, I'll push a follow-up one that wires
-> up said sleep state on Qualcomm SoCs across the board.
-> 
-
-Sorry. I don't think PSCI is the right place for this. Qcom SoCs have a common
-firmware across all segments (mostly), so there is no S2R involved and only
-S2Idle. If you use PSCI to implement suspend_via_firmware(), then all the SoCs
-making use of the PSCI implementation will have the same behavior. I don't think
-we would want that.
-
-For instance, if a Qcom SoC is used in an android tablet with the same firmware,
-then this would allow the NVMe device to be turned off during system suspend all
-the time when user presses the lock button. And this will cause NVMe device to
-wear out faster. The said approach will work fine for non-android usecases
-though.
-
-I have a couple of ideas in mind that I will post to NVMe list itself.
-
-- Mani
-
-> [1] https://lore.kernel.org/linux-arm-kernel/20231227-topic-psci_fw_sus-v1-0-6910add70bf3@linaro.org/
-> [2] https://lore.kernel.org/linux-nvme/20241024-topic-nvmequirk-v1-1-51249999d409@oss.qualcomm.com/
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Tue, Nov 12, 2024 at 11:07:39AM +0800, Troy Mitchell wrote:
+> From: Troy Mitchell <troymitchell988@gmail.com>
+>=20
+> The I2C of K1 supports fast-speed-mode and high-speed-mode,
+> and supports FIFO transmission.
+>=20
+> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
 > ---
-> Konrad Dybcio (3):
->       dt-bindings: arm,psci: Allow S2RAM power_state parameter description
->       firmware/psci: Set pm_set_resume/suspend_via_firmware() for SYSTEM_SUSPEND
->       firmware/psci: Allow specifying an S2RAM state through CPU_SUSPEND
-> 
->  Documentation/devicetree/bindings/arm/psci.yaml |  6 ++++
->  drivers/firmware/psci/psci.c                    | 44 ++++++++++++++++++++++---
->  2 files changed, 46 insertions(+), 4 deletions(-)
-> ---
-> base-commit: a39230ecf6b3057f5897bc4744a790070cfbe7a8
-> change-id: 20241028-topic-cpu_suspend_s2ram-28fc095d0aa4
-> 
-> Best regards,
-> -- 
-> Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
+>  .../devicetree/bindings/i2c/spacemit,k1-i2c.yaml   | 52 ++++++++++++++++=
+++++++
+>  1 file changed, 52 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b=
+/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> new file mode 100644
+> index 000000000000..e8cce360bf03
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/spacemit,k1-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: I2C controller embedded in SpacemiT's K1 SoC
+> +
+> +maintainers:
+> +  - Troy Mitchell <troymitchell988@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: spacemit,k1-i2c
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-frequency:
+> +    description:
+> +      Desired I2C bus clock frequency in Hz.
+> +      K1 supports standard, fast, high-speed modes, from 1 to 3300000.
+> +    default: 100000
+> +    minimum: 1
+> +    maximum: 3300000
 
--- 
-மணிவண்ணன் சதாசிவம்
+It's sufficient to define just default and max btw, the min is set in
+i2c-controller.yaml (in dt-schema itself). Don't respin for that alone.
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c@d4010800 {
+> +        compatible =3D "spacemit,k1-i2c";
+> +        reg =3D <0xd4010800 0x38>;
+> +        interrupt-parent =3D <&plic>;
+> +        interrupts =3D <36>;
+> +        clocks =3D <&ccu 90>;
+> +        clock-frequency =3D <100000>;
+> +    };
+> +
+> +...
+>=20
+> --=20
+> 2.34.1
+>=20
+
+--dWgxOHE1CCfc7zNw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzOYYgAKCRB4tDGHoIJi
+0j7FAQCbUUgxdSJQs+FT/bE1oW0kpoCBE49kCO83l0nOmUPHpAEA85bBZy41ZiTq
+ots9GS42MSa62edsAPDjufaHt6iEggc=
+=L2u2
+-----END PGP SIGNATURE-----
+
+--dWgxOHE1CCfc7zNw--
 
