@@ -1,102 +1,201 @@
-Return-Path: <devicetree+bounces-121108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F9A59C568D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 12:31:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF799C56A5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 12:34:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA6261F261DB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 11:31:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 555E31F26652
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 11:34:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B7672309A0;
-	Tue, 12 Nov 2024 11:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24B1B1B140D;
+	Tue, 12 Nov 2024 11:32:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z8Nc876h"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RFW+jsOT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF1FD23099F;
-	Tue, 12 Nov 2024 11:25:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F23412309A0;
+	Tue, 12 Nov 2024 11:32:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731410712; cv=none; b=jADavnvC/XPNFpY0CcuDJsSoV1wlKMWtPqDSzOm2sLkLrU2mLoFXDXxaV0FxtwlsjiECIZUYHh+vDIoQksDbE8ahr/1kWfTG4/PrL+QrUwphzVU+3BHcRjijRFNmu8qYsh+GEn4IrYuZatOhvYKPi7XLaRLIJUWcBvfrU6uDCwM=
+	t=1731411169; cv=none; b=Tk/DNpF9af0eubIv4m1nemFeLYiZVNKw/u8gtLr3XDF9iTbYuN2GOg7/i5OgIcuO23+yIYb9lbMdwGIhvO5OWqYnBnYdMwYUwaNJMQRK+dzctaOA3M5FziPJPceKIEPtrd5uufHLHYaLRgKrfbCQgA8QAug5qGmprDpfUPv2Pys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731410712; c=relaxed/simple;
-	bh=XlDTTHWw7KeaNRsoKYg7Sq9T/4InzW90Q+1dVA6MOlI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=luTELeXBvibQ0RmzLz3aNnWoSgAk7o1h7MVe0c79NmZHhx8c2jZGjs9encLBL0397ckeyymvuenT+sjevJ8/cAptHIJ+KY/y1iXb2G03xkELgMG0V3tfZSrGEBF3oEsqrTXLt3Jp936Llu+r3wyRaMyitQse9UATeupDHbnhwkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z8Nc876h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BBD3C4CECD;
-	Tue, 12 Nov 2024 11:25:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731410711;
-	bh=XlDTTHWw7KeaNRsoKYg7Sq9T/4InzW90Q+1dVA6MOlI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Z8Nc876hSVMqolsakMd1Gkh6Wccb7p8k4FxLNEAUn97iBGzyhQQ1XeLqago7SmQFO
-	 o/XuH/idG9vB8UO1eEXHxRvYt692/yV5KMVXtAMypS0ipnb1htnYk/gwbon2EEPMNA
-	 CPVqRouPMZUhajExIQaRf4bNQwOu99JaLRuMiZz9Zq1V2TN2MEdr7WwYB+eD9FMLKZ
-	 jbtsNySJ9stKtFoolhLwZF8THKTVlNXDBGXQLvuHAs//ljPw3U9378GMw/35rdkbma
-	 dYSRGGDin3dmI7Wll9nWmPQ1YN624dP6dNz/hGvVMqYC+Tq4nlhEKSGcRTVg+tg8pa
-	 4d24dQDV8TQAA==
-From: Niklas Cassel <cassel@kernel.org>
-To: Damien Le Moal <dlemoal@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Frank Wunderlich <linux@fw-web.de>
-Cc: Niklas Cassel <cassel@kernel.org>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Jens Axboe <axboe@kernel.dk>,
-	linux-ide@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH v1 0/3] fix some binding check errors for marvell
-Date: Tue, 12 Nov 2024 12:24:56 +0100
-Message-ID: <173141034159.1636325.1565605503934630907.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241109094623.37518-1-linux@fw-web.de>
-References: <20241109094623.37518-1-linux@fw-web.de>
+	s=arc-20240116; t=1731411169; c=relaxed/simple;
+	bh=s1MMLAUMQokmBMbhHIrOW9+sDvlm3omQqaMlvypFfmk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hpGyRg5utAXoWLwCO8E791tYglv5Dp2awvN0UaTuHPzN7lJVsX9fREySlfFOsgZX3GFWXko/Ho412Ekzb1tNsBo8L07oC6FagTWce/LdVz4SuIRX2TnaW3QlGSwT2JkLFGm+FCA7OXwUyD2rAWPsH33Hp/zbsgQVWXbf93ygDvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RFW+jsOT; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1731411167; x=1762947167;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=s1MMLAUMQokmBMbhHIrOW9+sDvlm3omQqaMlvypFfmk=;
+  b=RFW+jsOTE3UsJ7/pa27sNQD3Nf3QBBRbNfxJxqmpJP25P1FKBKBhkqaQ
+   ojGxSIu2q/mQ/Dahezqj91ANfixPgCqzWzgH6WKBQqz1GPQUgmtFmOyg+
+   NsOBVLS3ivGdDvZeue9No4gPKhAZDgy+3rY5fmnQo4vA8Zsxgt2uUIwk6
+   TekeVYt0F3PH/OZbfpiUpsLshLgX14+5qozeRGBBkoakRxGHa5fno3s1d
+   X1AZZDjhk4v04qPYYbFnKmm6m2AeRXs1lmgz3hWkydS5Y8CZAPhfyxzQp
+   2Nn0nBHgIImOzjDcZa1wtWgqQTQd7Eau+rBwlbtOrY/Yi3UnTueO5LhIS
+   g==;
+X-CSE-ConnectionGUID: nJIj3J5CQaWm0eje3A2+Fg==
+X-CSE-MsgGUID: eSjSf+sdSwaO4UiA+he2EA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="48694724"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="48694724"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2024 03:32:46 -0800
+X-CSE-ConnectionGUID: OJB+M98WTpi6RipGJ2YXRg==
+X-CSE-MsgGUID: Lw+93KzATU+xQv14PnmTZw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,147,1728975600"; 
+   d="scan'208";a="87577105"
+Received: from lkp-server01.sh.intel.com (HELO bcfed0da017c) ([10.239.97.150])
+  by orviesa006.jf.intel.com with ESMTP; 12 Nov 2024 03:32:42 -0800
+Received: from kbuild by bcfed0da017c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tAp8S-0001Df-1p;
+	Tue, 12 Nov 2024 11:32:40 +0000
+Date: Tue, 12 Nov 2024 19:32:32 +0800
+From: kernel test robot <lkp@intel.com>
+To: mjchen <mjchen0829@gmail.com>, dmitry.torokhov@gmail.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	sudeep.holla@arm.com, peng.fan@nxp.com, arnd@arndb.de,
+	linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	mjchen@nuvoton.com
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v2 2/2] input: keypad: add new keypad driver for MA35D1
+Message-ID: <202411121938.AoeMusUF-lkp@intel.com>
+References: <20241112053059.3361-3-mjchen0829@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=748; i=cassel@kernel.org; h=from:subject:message-id; bh=XlDTTHWw7KeaNRsoKYg7Sq9T/4InzW90Q+1dVA6MOlI=; b=owGbwMvMwCV2MsVw8cxjvkWMp9WSGNKNrTlCF3e+N1BKMmFJVy7sOBErsiZxa9bilTcPbLqfk Fe1pH1HRykLgxgXg6yYIovvD5f9xd3uU44r3rGBmcPKBDKEgYtTACZyI5GR4XHrnfi52/kixS36 nlaWPNE53dO1MDrgXNer1681dlbwTGBkWCB2uSh1spehZXMd1y2P7kmMBck3Pxq4zjjOtzwgMeE ZNwA=
-X-Developer-Key: i=cassel@kernel.org; a=openpgp; fpr=5ADE635C0E631CBBD5BE065A352FE6582ED9B5DA
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241112053059.3361-3-mjchen0829@gmail.com>
 
-On Sat, 09 Nov 2024 10:46:18 +0100, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Thies series fixes some Errors reported by dtbs_check. First part is taken
-> from my old series [1] where i converted sata-platform txt binding to yaml
-> because it wasn't picked up.
-> 
-> [1] https://lore.kernel.org/linux-arm-kernel/20220311210357.222830-1-linux@fw-web.de/
-> 
-> [...]
+Hi mjchen,
 
-Applied to libata/linux.git (for-6.13), thanks!
+kernel test robot noticed the following build errors:
 
-[3/3] dt-bindings: ata: ahci-platform: add missing iommus property
-      https://git.kernel.org/libata/linux/c/e8a2389e
+[auto build test ERROR on dtor-input/next]
+[also build test ERROR on dtor-input/for-linus robh/for-next soc/for-next linus/master v6.12-rc7 next-20241112]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/mjchen/dt-bindings-input-Add-Nuvoton-MA35D1-keypad/20241112-133327
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+patch link:    https://lore.kernel.org/r/20241112053059.3361-3-mjchen0829%40gmail.com
+patch subject: [PATCH v2 2/2] input: keypad: add new keypad driver for MA35D1
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20241112/202411121938.AoeMusUF-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 592c0fe55f6d9a811028b5f3507be91458ab2713)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241112/202411121938.AoeMusUF-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411121938.AoeMusUF-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/input/keyboard/ma35d1_keypad.c:7:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     548 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/input/keyboard/ma35d1_keypad.c:7:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/input/keyboard/ma35d1_keypad.c:7:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   drivers/input/keyboard/ma35d1_keypad.c:83:46: warning: shift count >= width of type [-Wshift-count-overflow]
+      83 |         pressed_keys  = key_event[0] | key_event[1] << 32;
+         |                                                     ^  ~~
+   drivers/input/keyboard/ma35d1_keypad.c:84:46: warning: shift count >= width of type [-Wshift-count-overflow]
+      84 |         released_keys = key_event[2] | key_event[3] << 32;
+         |                                                     ^  ~~
+>> drivers/input/keyboard/ma35d1_keypad.c:130:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     130 |         val |= FIELD_PREP(KCOL, (keypad->kpi_col - 1)) | FIELD_PREP(KROW, (keypad->kpi_row - 1));
+         |                ^
+   8 warnings and 1 error generated.
 
 
-Assuming that patches 1/3 and 2/3 will go via the Marvell tree:
-git://git.kernel.org/pub/scm/linux/kernel/git/gclement/mvebu.git
+vim +/FIELD_PREP +130 drivers/input/keyboard/ma35d1_keypad.c
 
+   123	
+   124	static int ma35d1_keypad_open(struct input_dev *dev)
+   125	{
+   126		struct ma35d1_keypad *keypad = input_get_drvdata(dev);
+   127		unsigned int val, config;
+   128	
+   129		val = RKINTEN | PKINTEN | INTEN | ENKP;
+ > 130		val |= FIELD_PREP(KCOL, (keypad->kpi_col - 1)) | FIELD_PREP(KROW, (keypad->kpi_row - 1));
+   131	
+   132		if (keypad->debounce_val > 0)
+   133			config = FIELD_PREP(PRESCALE, (keypad->pre_scale - 1)) |
+   134				 FIELD_PREP(DB_CLKSEL, keypad->debounce_val);
+   135		else
+   136			config = FIELD_PREP(PRESCALE, (keypad->pre_scale - 1));
+   137	
+   138		val |= config;
+   139	
+   140		writel(val, keypad->mmio_base + KPI_CONF);
+   141		writel((keypad->pre_scale_divider - 1),	keypad->mmio_base + KPI_PRESCALDIV);
+   142	
+   143		return 0;
+   144	}
+   145	
 
-Kind regards,
-Niklas
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
