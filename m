@@ -1,93 +1,125 @@
-Return-Path: <devicetree+bounces-121171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C1389C5AD5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:49:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51E329C5B1A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:59:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5114628512F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:49:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1209E280EA7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:59:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99D051FF025;
-	Tue, 12 Nov 2024 14:48:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8363E1FF5EB;
+	Tue, 12 Nov 2024 14:55:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ityExVVJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G3R61XRm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 627891FCC66;
-	Tue, 12 Nov 2024 14:48:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B18A61FF034
+	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 14:55:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731422916; cv=none; b=ZDvbzPVB2Dr90qWEFS6LDreMigqREDlGA8tiX3VjPNZkBZgeL27vJmI7jUAVCfBGcvolqtOchIjI5HEfZCh3W6Ios7rhyXiK5uXzW6RKdHFS7f87qJOUqZczbm/sLMAvACC1/U+Ly2X2w39pHRCi0d8SdqENAuC6DruQS69Z/g4=
+	t=1731423316; cv=none; b=VYCVZKssASpDQ1I6QElB85Vf9z1dah9O4LtVqbsE/o5Q0H7t8vXiV58n6Hv0BXHfFrIu60haPNmGKqdWeH0b5npy12gMkI+cJ0YNRF101fwhOCD6GuB1G9dkq3zJOSCN60PIYlEgC7MYjOIKhxuRL3fav0Gw1gBUOhmlKfvUIv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731422916; c=relaxed/simple;
-	bh=LaX258tbxjOqEOTGbrNDUKoUkGa+ThGu/PsjRDKKkdQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ALmwTaN0sEps2MMdvSPwMPZd4+voIt3xAJz9MwrYg0Ksh3SWKjynQVpoHF4BDWziDbo+h6Hw0MwZh+78k4pNMyBJYT7sStcZFp9FCEvpqsmjfyk2YC7aSWPlKHJMqC9cMOv/tCNdwFDGNWE27CS0sIHkk25mjNYGZzKvmCBvpUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ityExVVJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A83DC4CECD;
-	Tue, 12 Nov 2024 14:48:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731422916;
-	bh=LaX258tbxjOqEOTGbrNDUKoUkGa+ThGu/PsjRDKKkdQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ityExVVJjDuG4ybSOwEhW0G8PSTWwT15xm7SChbAaxRGzsqELtPi4xC/YRZs9d+0j
-	 VaIAqJQyAOzU3TqjUu+OxDErg2eb76Q6OyQlSgLeXHD9VV2Lt2DEJE+LUQXqOpPxmE
-	 w0JfsmjHnx12YhiTYviaD82ee3Vz9U/Sf865ewvwpxQWqD4CGgBYXrh6d1FfNoi4YO
-	 HZ7uxe/lde53fnMZOvUy43+iMdJO6Hhuggk+9zWt9ohqHUMw/4IGFOHsCAPd2/Ng17
-	 8rB92hfyxXh2hi1vxP/A60CHceoO4KiD0YKVR5rrvSa4v6XtwlZMX9zLcO3+Ih3wf5
-	 kR1hdGVaqzNMQ==
-From: Lee Jones <lee@kernel.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
- Baolin Wang <baolin.wang@linux.alibaba.com>, 
- Chunyan Zhang <zhang.lyra@gmail.com>, Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, 
- linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org
-In-Reply-To: <efd200c3b5b75405e4e450d064b026f10ae2f8e0.1730709384.git.stano.jakubek@gmail.com>
-References: <efd200c3b5b75405e4e450d064b026f10ae2f8e0.1730709384.git.stano.jakubek@gmail.com>
-Subject: Re: (subset) [PATCH v3 1/2] dt-bindings: mfd: sprd,sc2731: convert
- to YAML
-Message-Id: <173142291174.1055133.1779666527306049052.b4-ty@kernel.org>
-Date: Tue, 12 Nov 2024 14:48:31 +0000
+	s=arc-20240116; t=1731423316; c=relaxed/simple;
+	bh=7CgPmKR+pBqeOwpF5GsLSoRZ2dGeu8Y6nrW55fGI7Yw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZcPAaFBAFNlDFp7158zPCiQg6EiQHECfRoHpuilhCLGWSRInZ/Ak8RNFlGlv07MMrOsHaYzte6fCdu2cXkaaWQw020yaUSvEyV6xATifnZjzI0/oUl6hqf8gyLPZePeR3rGzOfEMhqfNqFHhJCsoJyK3cltq3imbSh0PsDxYw1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G3R61XRm; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5cb6ca2a776so8782088a12.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 06:55:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731423313; x=1732028113; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=p7+ge7hJafVQtjpuuqP/E88xzOJBZSOXD8WkyCEkOXo=;
+        b=G3R61XRm5rYDD8As+RXwXivYnECFbBHJ+2lYJVBGqOMhLxGt1cwZ7wGknG0s43bZdB
+         SqOoJ0DFq1bqKUgQAveJJv57aLUDhOUnM7+NRuzwKBUmDFxABOZWh9RHA5uByfF/2NNk
+         CjYRea4wCOmJAtcUSlDwZWNV2rVjEdG6iRMslqrNLBRd7i3lxedJQjbN9hJ+QNGMxU9B
+         RdNy0mUyLHfqfgfpPA9DI4tLziB7zSTzsOof4Oh+l02QDACGs//4O5BwyAifAVNZR42F
+         cjoriRjH2i2l9bhAF4YSRpRxzmbyr6JPcviGXS7h3HeXj2UGnf5dlx8TvG+OvA/k83wZ
+         U89g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731423313; x=1732028113;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p7+ge7hJafVQtjpuuqP/E88xzOJBZSOXD8WkyCEkOXo=;
+        b=k3AvqYY/PxL1Yr14P/2ArJMLxtNKn36jKtS8MUXYpYWOY1dWoaM/zrm4EpHeL5+Dt3
+         FsRb5isy/HfR3KZvg1J/UgYYdWI4MOJuZkpxiPyhwAfCBPIkvg9NzymIoGvGVt01oJYE
+         A/HwdhNK/Ws8tZtDdiBMrL+IhbJSBbo3iVUsAf2XSjlCFdEb7Xgic2vanm3vhcBATmyj
+         6R5gdmtHDiE/sWxao/p1u7a1O5IlBHd10CNrccthulFC+OHkJbH7W+BOte5V7OfTSpd0
+         QNYE7FOmUHqN9e6dpWYz6WZmSAbBJPenhBl3kt9/fZHqgFHJE2bWz70e7prD5lKXBfbo
+         raEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWmR8e8XG1R/hJiW09V1j2zPaMLHn87dJW2SKfA5j0Qaaf0lijaOAnvTbaPk/yST7mGPv0kkBmAc/oF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/HAkB0j3T6/6no5z3OHCm3B+lyJuN3f8VjXTy0cclMcNrEm1z
+	sUji8ZIMCWBGJdlvkE69q0ulE3p5XFyth82YFKXvSpgn0OXFkiTs59CaBOU+QujXRsB0Lj8kegX
+	/XwqHkq303vpicqtBu6alCkkgEJ1zemmXbQVCLA==
+X-Google-Smtp-Source: AGHT+IG5vgBt7SWz10m4bwHWl3WshDBGFWCRIXZLwIVJzAVLym8qK1LYVQnvPnJBn5988rv5zM1s0M0FA1lslSV8RBI=
+X-Received: by 2002:a05:6402:34cb:b0:5cf:a20:527b with SMTP id
+ 4fb4d7f45d1cf-5cf4f3c018emr2916662a12.28.1731423313055; Tue, 12 Nov 2024
+ 06:55:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
+References: <1731048987-229149-1-git-send-email-shawn.lin@rock-chips.com> <1731048987-229149-7-git-send-email-shawn.lin@rock-chips.com>
+In-Reply-To: <1731048987-229149-7-git-send-email-shawn.lin@rock-chips.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 12 Nov 2024 15:54:36 +0100
+Message-ID: <CAPDyKFray463L3NcG3QF6Qi7q0cz15Z7sO0gEH1OgB7EK5GcmQ@mail.gmail.com>
+Subject: Re: [PATCH v5 6/7] scsi: ufs: rockchip: initial support for UFS
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>, 
+	"Martin K . Petersen" <martin.petersen@oracle.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
+	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, 04 Nov 2024 09:48:21 +0100, Stanislav Jakubek wrote:
-> Convert the Spreadtrum SC27xx PMIC bindings to DT schema. Adjust the
-> filename to match the compatible of the only in-tree user, SC2731.
-> Change #interrupt-cells value to 1, as according to [1] that is the
-> correct value.
-> Move partial examples of child nodes in the child node schemas to this new
-> MFD schema to have one complete example.
-> 
-> [...]
+[...]
 
-Applied, thanks!
+> +
+> +#ifdef CONFIG_PM_SLEEP
+> +static int ufs_rockchip_system_suspend(struct device *dev)
+> +{
+> +       struct ufs_hba *hba = dev_get_drvdata(dev);
+> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> +       int err;
+> +
+> +       if (hba->spm_lvl < UFS_PM_LVL_5)
+> +               device_set_awake_path(dev);
+> +
+> +       err = ufshcd_system_suspend(dev);
+> +       if (err) {
+> +               dev_err(hba->dev, "system susped failed %d\n", err);
+> +               return err;
+> +       }
+> +
+> +       clk_disable_unprepare(host->ref_out_clk);
 
-[1/2] dt-bindings: mfd: sprd,sc2731: convert to YAML
-      commit: f9c7529fdb607a255bb648f0a7550813e311b5ba
+I am not sure that the host is always runtime resumed at this point,
+or is there? If not, we need to call pm_runtime_get_sync() somewhere
+here and a corresponding pm_runtime_put* in the ->suspend() callback.
 
---
-Lee Jones [李琼斯]
+Of course, if you could make use of pm_runtime_force_suspend|resume()
+that would be even better, but then probably need some additional
+re-work in the ufs-core layer first, to make this work, I think.
 
+[...]
+
+Kind regards
+Uffe
 
