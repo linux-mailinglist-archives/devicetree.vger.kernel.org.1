@@ -1,199 +1,116 @@
-Return-Path: <devicetree+bounces-121211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D74A9C5CBA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:04:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF8C09C5D4F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:31:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D80651F23B9C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 16:04:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F4471F23FC5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 16:31:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D66520495D;
-	Tue, 12 Nov 2024 15:59:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B18205AB6;
+	Tue, 12 Nov 2024 16:30:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DYOBihfF"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="CYAeaJNI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF9C20409A;
-	Tue, 12 Nov 2024 15:59:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ACC8205AB1;
+	Tue, 12 Nov 2024 16:30:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731427156; cv=none; b=aaNeMedXmHyYlJ2pk8yQ2V4tmx+0G3gBouKmFMMlBJYB4JUvtGwfp1i/p2TTQcqFvWPLHwv5EY/EMNVsdbIn5X1eyit1hLk1/JNmSTsUkm84lIuqBsdDk0W5HYxyNbY7GVZEcC+jGLNPb1iUth6PgmdAStXExd0v3nnStrHRiRM=
+	t=1731429044; cv=none; b=Z0O7ual8QEw/nhMF/KP9b0sIT+tVWf+fxTvOugCwlcbSCiG6OaLfaL2dbmxuxzR5hVip/FQqv77/z/0Sd/A08H+3nu61yt+LseTb/zobw8vooj2NSkrOxe1jnUE27WSkyXj7oZsnXBmx24mv37/3xAmmVQL9tG+86D9rqsG4ayc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731427156; c=relaxed/simple;
-	bh=BleI3g/9Mgelj0hSQNkzA4/4uDaRN4Z/XLhqKzmcEOI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cazjbap+KJlvxcGfuRQUG2BPtDdbi8qHieJmpNgZVK3v8Mh1Q6evJIpBDDE7m66HsCAoshu/F1DNSDVyuThXWMn3NH2YQfPuRdqdhZYz7Ri5+oMcRKqVWL2gkePbtiolTiyeUdUz4mA8jpBb9IMassrE9qPc9ClgemRGO7m6kxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DYOBihfF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6CB1C4CECD;
-	Tue, 12 Nov 2024 15:59:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731427155;
-	bh=BleI3g/9Mgelj0hSQNkzA4/4uDaRN4Z/XLhqKzmcEOI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DYOBihfFEvWfaR9x6HoxpRiixjrLPzdHw3AC7d65JT0zJmFcqRaDU3DqumpVMuP3U
-	 L+dKz61++MfqjLtTY8YrAE+kOlFaGCXB6xfFwbOymCnKB0chgXMfkf9+lPjXgMO5+S
-	 cwZyeqY6VIAYir3vd2tPSscqw9BxZ/kEXtl8m0ZE7gFkcjlNef36otxZHhOX4dsyVl
-	 y8BRMr1SGH7a0VdwTaoU7QGu3Cob6eoURtLb6XqbXddsLah+3aeWxixUn/tyBgIxiT
-	 1mLoTxCaYtAYx9MyyXv4FzmlKk6pu8kBQOtIC8XOE+OciASiGo53fIb9IshrIi4kjj
-	 B9gyxnpKVOfxw==
-Date: Tue, 12 Nov 2024 09:59:13 -0600
-From: Rob Herring <robh@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: kw@linux.com, u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu,
-	arnd@arndb.de, bhelgaas@google.com, unicorn_wang@outlook.com,
-	conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com,
-	krzk+dt@kernel.org, lee@kernel.org, lpieralisi@kernel.org,
-	manivannan.sadhasivam@linaro.org, palmer@dabbelt.com,
-	paul.walmsley@sifive.com, pbrobinson@gmail.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
-	chao.wei@sophgo.com, xiaoguang.xing@sophgo.com,
-	fengchun.li@sophgo.com
-Subject: Re: [PATCH 1/5] dt-bindings: pci: Add Sophgo SG2042 PCIe host
-Message-ID: <20241112155913.GA973575-robh@kernel.org>
-References: <cover.1731303328.git.unicorn_wang@outlook.com>
- <1edbed1276a459a144f0cb0815859a1eb40bfcbf.1731303328.git.unicorn_wang@outlook.com>
+	s=arc-20240116; t=1731429044; c=relaxed/simple;
+	bh=Gqh0NgjmRLJL1MmJQqSXeXTGwLwgL3tcdsbQOFQ3jv4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=N7EFPM9XJLmKoXDJRMXC4KxlcCU/0UMKMCRK1AyD+KpShEt+BriQ57L5fdArnu9I9Zs5vMy0i76USuCjLGeuUU97pBhQ8tKeoFHZFofa/G/E3yHeEiUnZLOHZhX11V8wf9oNFF/jKUNOAZYXC87qgPkNQaBYAxYkXy9UAi4UH2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=CYAeaJNI; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ACDB1KK029351;
+	Tue, 12 Nov 2024 17:22:37 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=grK3TrtRCUh5vGmrMEKFGC
+	hLMBkQA+p427mP9eM/nRQ=; b=CYAeaJNIyVM03AaUJEH9Qb0Pi4LeJevj5Y/GaI
+	sDFMK1XBipiIJ9wlkDipotAYGXr57Hd6r772a+ggyoOaDWlgG4b+JWk1/9Fuwn76
+	7TjHrsnhO7TTwjc89LrH0yLFKdHH4wDT0aKSQ6uMvHbU4YR1kn+g9ZL3ZFdVSiQR
+	Gtld1vrvibknO1nrVKvO5BkV2Q20t7S6W+84DVRKvoYxUC+UYyiAhuMtul4YArl3
+	lg0Mzxl7q0en8xJf1gw8PTnyYTHUZvP8cD/UYyzC8X03ZSNwAy+uTTX28K4fHvbL
+	goTXnmx5YR2oV7fB4UU9eoReTpFvq1VAbXIcenLlhFeGnEpg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42tkjnjs7t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 17:22:37 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 17B1D4002D;
+	Tue, 12 Nov 2024 17:21:11 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 39CDE2C6353;
+	Tue, 12 Nov 2024 17:20:06 +0100 (CET)
+Received: from localhost (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 12 Nov
+ 2024 17:20:05 +0100
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
+        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Christian Bruel <christian.bruel@foss.st.com>
+Subject: [PATCH 0/5] Add STM32MP25 PCIe drivers
+Date: Tue, 12 Nov 2024 17:19:20 +0100
+Message-ID: <20241112161925.999196-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1edbed1276a459a144f0cb0815859a1eb40bfcbf.1731303328.git.unicorn_wang@outlook.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Mon, Nov 11, 2024 at 01:59:37PM +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
-> 
-> Add binding for Sophgo SG2042 PCIe host controller.
-> 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ---
->  .../bindings/pci/sophgo,sg2042-pcie-host.yaml | 88 +++++++++++++++++++
->  1 file changed, 88 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml b/Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml
-> new file mode 100644
-> index 000000000000..d4d2232f354f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/sophgo,sg2042-pcie-host.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sophgo SG2042 PCIe Host (Cadence PCIe Wrapper)
-> +
-> +description: |+
+This patch series adds PCIe drivers STM32MP25 SoC from STMicrolectronics
+and respective yaml schema for the root complex and device modes.
 
-Don't need '|+'
+Christian Bruel (5):
+  dt-bindings: PCI: Add STM32MP25 PCIe root complex bindings
+  PCI: stm32: Add PCIe host support for STM32MP25
+  dt-bindings: PCI: Add STM32MP25 PCIe endpoint bindings
+  PCI: stm32: Add PCIe endpoint support for STM32MP25
+  MAINTAINERS: add entry for ST STM32MP25 PCIe drivers
 
-> +  Sophgo SG2042 PCIe host controller is based on the Cadence PCIe core.
+ .../bindings/pci/st,stm32-pcie-ep.yaml        |  97 ++++
+ .../bindings/pci/st,stm32-pcie-host.yaml      | 149 ++++++
+ MAINTAINERS                                   |   7 +
+ drivers/pci/controller/dwc/Kconfig            |  23 +
+ drivers/pci/controller/dwc/Makefile           |   2 +
+ drivers/pci/controller/dwc/pcie-stm32-ep.c    | 433 +++++++++++++++
+ drivers/pci/controller/dwc/pcie-stm32.c       | 493 ++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-stm32.h       |  24 +
+ 8 files changed, 1228 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32-ep.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32.h
 
-> +  It shares common features with the PCIe core and inherits common properties
-> +  defined in Documentation/devicetree/bindings/pci/cdns-pcie-host.yaml.
+-- 
+2.34.1
 
-That's clear from the $ref. No need to say that in prose.
-
-> +
-> +maintainers:
-> +  - Chen Wang <unicorn_wang@outlook.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: sophgo,sg2042-pcie-host
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: reg
-> +      - const: cfg
-> +
-> +  sophgo,syscon-pcie-ctrl:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Phandle to the SYSCON entry
-
-Please describe what you need to access.
-
-> +
-> +  sophgo,link-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Cadence IP link ID.
-
-Is this an index or related to the syscon? Nak for the former, use 
-linux,pci-domain. For the latter, add an arg to sophgo,syscon-pcie-ctrl.
-
-> +
-> +  sophgo,internal-msi:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: Identifies whether the PCIE node uses internal MSI controller.
-
-Wouldn't 'msi-parent' work for this purpose?
-
-> +
-> +  vendor-id:
-> +    const: 0x1f1c
-> +
-> +  device-id:
-> +    const: 0x2042
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    const: msi
-> +
-> +allOf:
-> +  - $ref: cdns-pcie-host.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - sophgo,syscon-pcie-ctrl
-> +  - sophgo,link-id
-> +  - vendor-id
-> +  - device-id
-> +  - ranges
-
-ranges is already required in the common schemas.
-
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    pcie@62000000 {
-> +      compatible = "sophgo,sg2042-pcie-host";
-> +      device_type = "pci";
-> +      reg = <0x62000000  0x00800000>,
-> +            <0x48000000  0x00001000>;
-> +      reg-names = "reg", "cfg";
-> +      #address-cells = <3>;
-> +      #size-cells = <2>;
-> +      ranges = <0x81000000 0 0x00000000 0xde000000 0 0x00010000>,
-> +               <0x82000000 0 0xd0400000 0xd0400000 0 0x0d000000>;
-> +      bus-range = <0x80 0xbf>;
-> +      vendor-id = <0x1f1c>;
-> +      device-id = <0x2042>;
-> +      cdns,no-bar-match-nbits = <48>;
-> +      sophgo,link-id = <0>;
-> +      sophgo,syscon-pcie-ctrl = <&cdns_pcie1_ctrl>;
-> +      sophgo,internal-msi;
-> +      interrupt-parent = <&intc>;
-> +    };
-> -- 
-> 2.34.1
-> 
 
