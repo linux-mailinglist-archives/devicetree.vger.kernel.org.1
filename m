@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-121014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 904399C4E60
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 06:42:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76C9C9C4EA1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 07:17:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2EA8B27704
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 05:42:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0ECF91F22EF2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 06:17:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B55751A76D2;
-	Tue, 12 Nov 2024 05:42:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D10E205ADF;
+	Tue, 12 Nov 2024 06:17:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JYSpyVlc"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J9875zWw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 190BE5234;
-	Tue, 12 Nov 2024 05:42:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E826E19EED4;
+	Tue, 12 Nov 2024 06:17:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731390130; cv=none; b=tWC56QTf+Q0Q1/XaYepwTHZvKamVxmbLWaQdcGwQJLFrbwtZw5cIImQK9oC4B/mm9+ZCD3x5Aj83CarDthukpIOI4YbEEkh9oNee/uGiK0U3ln+PUH3MKB4XjEI7WBn6KqC04dxzP4lFhzXHIGwcQfqAuSRGA93kOGd96cb+88g=
+	t=1731392271; cv=none; b=FkSUhyOP/mRSw3Yv49rsCZZEV77DNaiLWBiaT5nIBoUGVIAUIdnVZJdkwZR/XDp07WCldZ5yj8Bbm0lPwASkKIkV9tnOytIOyLO6MvmQkDPfGj5rF2ki43swJuSQAK/rnAgS1f0vB0/ue6Xuuo7MlJAzpJr978j1jP17ZheZxks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731390130; c=relaxed/simple;
-	bh=IPrGo1Rro9HU3wBjuo9sLmO/hQAJeJQFAnp24Fiji5M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WaWgv3/JInYIWTArszySYDvgIOcmxaJVD1GyCxcDBqpZz66Ftr5K0LJlR+G+FkeIrn9bdtUcH0CITk6/fbbqjXK7Swv0x5k5s1Ygcw6l3mvAfdJSHu5LRPxR3h6CyXpaOVBUdCGSMg2YnhoniwS0XQk1JANomJkyBlKNpFvTRr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JYSpyVlc; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-539f4d8ef66so7841538e87.1;
-        Mon, 11 Nov 2024 21:42:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731390127; x=1731994927; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wUFmNGkmzzIu35XEOjP9v3YV3HAuqfyHMeeZTNXbTrM=;
-        b=JYSpyVlcEI3iw8Ti1DRfHJzOKAFW/ZrkX5ZnawN35Hg69IHkaRAfNgbE2zjnTIfW87
-         NXcsULuPUPx01sNUm22E9E130TCjM6iEujHZElI9QwDVMTIn6DKDQnfsmosQIH8Cntlk
-         IDbybS+rGc9sXmlYl6S3ZuHBSDoAI7W4hK9DBzs9OoG11xUL+t2l1l+qB8zNYGMMiHBD
-         gQufJD9NhhSf4gh5fnLYdtswjxef8NhxZdsTXqlz9RjtqZrIQJHLxAbOM6cFmlX7UMnK
-         zTGoNVloYdThIRbI+mpJzFYjSouhEQSYHQ5LDp0z3o6dvnl2ocNr/hTA9pLbyJG3LI+k
-         v5gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731390127; x=1731994927;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wUFmNGkmzzIu35XEOjP9v3YV3HAuqfyHMeeZTNXbTrM=;
-        b=Met03iIqGbjdSHHzI6gw4sNeRJRgu+ogBIaYV9aYkeRYUM85BlIckGFaEsvAPIoh6Y
-         nIeSFL/AArqIFPVgBa09Dz33sm4Pe9dPZAC9iwP6ol5mlaJe0QvqzwBOlpRmSmddyKuv
-         qcIWpPtC8t+iQvT/Rc0wyvs7tfTHx9EWhfEaACfOWdHTioUzP8DsHuAEDHIJwsZnag9d
-         BWxS2fw9lWCd/EhtaiwEBg/vYMy2nPrKxUD1yrDiBG5McX0/w3WLAlp02CXwitzNnT7d
-         +eeA07KwGRx7RKq34F1ScNDjIx0YBibCVjuIRqjQAjyvSXhT970BiKTTJrWEL56AeqKa
-         j9KQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV4Joh0J0kWHKOoqwBTfYJcEV/oku/zDU+ky9aGFlp67pvJC6FHCb9bWhMKPhD/28Ugq14MwC4WVUkm@vger.kernel.org, AJvYcCV75AxphraBfEb4Qlqrobp67XWK/tGBu0sfoE5pKO4MDvQe+KlsjJyB2/NtXCx3P3yyER+RmzS2rgMmC51c@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMABwmZVbOKhvVq+/1UAtifym2rtePW/T0C2f42+AU7VplDAJe
-	yakfqny3mH8wlV3TFGv6jMyCbdqBAwvxsEtRXUZdYauBDZ1F19DftRoyRyp3
-X-Google-Smtp-Source: AGHT+IE1N/h5+sac9hxDo/olMe3nglqNNcq1zrWqZURbOMVUpuGd6CVOdX+wDIbp3uLiBXdYKlupfg==
-X-Received: by 2002:a05:6512:1313:b0:539:ed5e:e226 with SMTP id 2adb3069b0e04-53d862cb04amr6680466e87.26.1731390126971;
-        Mon, 11 Nov 2024 21:42:06 -0800 (PST)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53d826a71dasm1779014e87.157.2024.11.11.21.42.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Nov 2024 21:42:06 -0800 (PST)
-Message-ID: <7661b9f9-c301-4eb9-9764-db8b24ad0c08@gmail.com>
-Date: Tue, 12 Nov 2024 07:42:03 +0200
+	s=arc-20240116; t=1731392271; c=relaxed/simple;
+	bh=FjWfuxbaFsptLDDLdKjT29NXwqNi6LmI9HVJ+sz1XRg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=FBfpPkyd74P7MX5qbxKCh47bnk7IqSLJiWZctxwJzysBH+jM+OPzXrmBjwwcVgZ+duC1hYgRlYyRCZJlrmnyHnrDbFE5XVwaNGyeeLvSyZZ5ElrlP34wB1Ub5KMjTyQzu3cMjnWlnFy+wZ6mzEFVjbMS3CGseKNRCMJiunB2jDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=J9875zWw; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AC1vdTm005745;
+	Tue, 12 Nov 2024 06:17:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4b2Dl8YQKJ26ieLnPOJHIP3dB1v1fV6KV5TDF2LPOTQ=; b=J9875zWwz5VU/65U
+	OL8srDVURyPfquSn3rPeC9ngTUpAETREbPLXmiKeEr9vnobTXN24wuv6Y9cx7JtR
+	6mLx9Cncv+ODPQmFd0npk8WNtqOqVXlv4+Wk6xKjNc65zTb9nXSxV+5E6Cgn2EYC
+	nd40xq3y1J7175nMsrsY67P8w4IaGCs3Gveg8+F9D2o93E5qIU00FRW44yS4mbRX
+	s6R2lFCg6vsv1XpFKXXXeTlzZlibgXIkrAaToVV5RYZ/rz32eEk4J4LArBWwL6tW
+	5kPCnkbxhc1qm3yRbHdzs0FLnlxGvjZR4LXQ8/UboQDFBFJhX2f6qb6Fq5RX7gk8
+	0YEUJg==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42uwt5gg4d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 06:17:45 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AC6Hiol015524
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 06:17:44 GMT
+Received: from [10.206.111.70] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 11 Nov
+ 2024 22:17:41 -0800
+Message-ID: <78e6ff6b-efe1-496c-a1fb-c9a0a4aba2d2@quicinc.com>
+Date: Tue, 12 Nov 2024 11:47:09 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,60 +65,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mfd: bd71828: Use charger resistor in mOhm
- instead of MOhm
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Rob Herring <robh@kernel.org>, lee@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, sre@kernel.org
-References: <20241029111112.33386-1-andreas@kemnade.info>
- <20241101192705.GA4062121-robh@kernel.org>
- <bf50b6c0-af1a-4c7f-9c3e-ffbd3da87a80@gmail.com>
- <20241111113117.2392d4d8@akair>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20241111113117.2392d4d8@akair>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: enable venus node
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <cros-qcom-dts-watchers@chromium.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241004-venus_sc7280-v1-1-4d7d8fd7e95b@quicinc.com>
+ <kezh3lmysij56g2tjwwuas5r26ro5i777yxxitsdcjeg7zp67v@oknrdbkzison>
+Content-Language: en-US
+From: Vedang Nagar <quic_vnagar@quicinc.com>
+In-Reply-To: <kezh3lmysij56g2tjwwuas5r26ro5i777yxxitsdcjeg7zp67v@oknrdbkzison>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: gNoc8bsv_U6pjTkxOuoHla7nC6Y2Oyn9
+X-Proofpoint-ORIG-GUID: gNoc8bsv_U6pjTkxOuoHla7nC6Y2Oyn9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=234
+ priorityscore=1501 lowpriorityscore=0 bulkscore=0 clxscore=1011
+ malwarescore=0 impostorscore=0 adultscore=0 suspectscore=0 mlxscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411120049
 
-On 11/11/2024 12:31, Andreas Kemnade wrote:
-> Am Mon, 4 Nov 2024 08:06:53 +0200
-> schrieb Matti Vaittinen <mazziesaccount@gmail.com>:
+
+
+On 10/7/2024 1:20 AM, Dmitry Baryshkov wrote:
+> On Fri, Oct 04, 2024 at 04:22:31PM GMT, Vedang Nagar wrote:
+>> Enable the venus node on Qualcomm sc7280. It was made disabled
+>> earlier to avoid bootup crash, which is fixed now with [1].
 > 
->> On 01/11/2024 21:27, Rob Herring wrote:
->>> On Tue, Oct 29, 2024 at 12:11:12PM +0100, Andreas Kemnade wrote:
->>>> Apparently there was some confusion regarding milliohm vs. megaohm.
->>>> (m/M). Use microohms to be able to properly specify the charger
->>>> resistor like other drivers do. This is not used yet by mainline code
->>>> yet. Specify a current sense resistor in milliohms range rathes then
->>>> megaohms range in the examples.
->>>
->>> milliohms?
->>>
->>> rathes?
->>>    
->>>>
->>>> CC: sre@kernel.org
->>>> Reported-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>>> Closes: https://lore.kernel.org/imx/6dcd724a-a55c-4cba-a45b-21e76b1973b0@gmail.com/T/#mf590875a9f4d3955cd1041d7196ff0c65c0a7e9d
->>>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
->>>> ---
->>>>    .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml  | 13 +++++++------
->>>>    1 file changed, 7 insertions(+), 6 deletions(-)
->>>
->>> Looks like rohm,bd71815-pmic.yaml has the same problem.
+> NAK, there might be other reasons to keep venus disabled, like the lack
+> of the vendor-signed firmware for the particular device.
+Can you pls elaborate more on this? Any device with sc7280 SOC can use
+venus.mbn which is already present in linux-firmware git.
+
+Regards,
+Vedang Nagar
+> 
 >>
->> Yes! Thanks for pointing it out. I'll wait for a while if Andreas wants
->> to fix them both at the same go. I'll send a fix for BD71815 if I've not
->> seen one in a week or so :)
+>> [1]
+>> https://lore.kernel.org/linux-media/20231201-sc7280-venus-pas-v3-2-bc132dc5fc30@fairphone.com/
 >>
-> There is more debris left from an apparently copy-paste-modify process
-> from bd71828. That should be checked. At least there are several
-> occurances of the BD71828 string in there. So a brush is needed.
-
-Thanks for a heads-up Andreas. I'll take a look at it :)
-
-Yours,
-	-- Matti
-
+>> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 --
+>>  1 file changed, 2 deletions(-)
+> 
 
