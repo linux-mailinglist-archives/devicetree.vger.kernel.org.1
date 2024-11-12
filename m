@@ -1,113 +1,98 @@
-Return-Path: <devicetree+bounces-121238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4B8F9C61F0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:57:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C2399C624A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 21:12:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AAACABC2B22
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:09:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8D12B2B39F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:53:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C948E2144CE;
-	Tue, 12 Nov 2024 17:04:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9B6A213EFC;
+	Tue, 12 Nov 2024 17:53:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mTlJSKZx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HZ8phrHB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6333A20C461;
-	Tue, 12 Nov 2024 17:04:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9750E212F05;
+	Tue, 12 Nov 2024 17:53:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731431058; cv=none; b=JVoWeYWksIO2dgVfUkWEMfAzumtX6pyAuZuVsVJfDVJV3Egqz/eV+ttW/OAVURw8knP0v5moS3Jst9521rL2AgROtt33jtE8gIEFvhqs+rdqvhGyOxtpr71MKHUC9vM8xlNsE7edqcReJCXC6/zG0MQ/qdkwEclH0wFd6Ot15D0=
+	t=1731433983; cv=none; b=SCJ5yDiD5Z5CuWl5LTcuvRP2sAwazNcadF8HwcbPWrUlHMTFxIPIL8EZJl3troqzCxbgRf7PGY0OlqSxfDCrUgIpbQPS8WbVszteq4zdDoeB6BMKr7LkZsIcX0W70FU+nfdaA5jwmbqMgBbOwNHhoZQHvJQF2toZV6vHNzb/qaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731431058; c=relaxed/simple;
-	bh=oCR1TRwTXEy0FAzrzB6QX1TyFzAg4HkdrRdVtwlaD0E=;
+	s=arc-20240116; t=1731433983; c=relaxed/simple;
+	bh=XqUNyTnAoGvRFc6NJPZM4dR65hK+xRVPAx60WZKWV8s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QVKeyGMpCR26DgCnHywYpTd8SZ8e9xOxs5zW1rwspOVxBR/jUz4KBwRqcnqs5ArahHR8MDLMVWDLfysa+u+O4xv4PJvTzle+uIaGk7bQ4cHiM8g/1CIAnh3x7c8FDchbPfHlVFo+192KehXmvdv17kXIqNFwLOx1j8cNnaJ0Pdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mTlJSKZx; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-20c767a9c50so58280285ad.1;
-        Tue, 12 Nov 2024 09:04:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731431057; x=1732035857; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3TzAZ2wI/SsBv8e6rWIulIn9M+uufamHvYe7/o5Pmqo=;
-        b=mTlJSKZxx0ZOJ1Aa9DMhFcQPG2VL5eyV8H61NlJKRgai4KE5h6SYE9WGC6/ckH0YO6
-         j3723koFLuHeZnVh7KJVKsYLL67ALXsMEVqEbip+zQPtR5gcAqkUq/5/Qm2pEyRK7vvi
-         YO0l787r8E+Dz2Dtc556AIpEhpg/a3CSdxw5EQ3dwT42Lv6QymOmMVoG+pz4mg+IxohP
-         TT6AJVYWhj+ubmSYZ1W1ISEYUk7uBoq4StJKyiLxNPdsOqGZyQkyQRyuTXzIFuG5maCX
-         zeR1yPGg/uRxOEboFKgXyMK9ken+M07QhT+gneOYgCiHwpfZvXnuXdyRpH8SPxX+zF/J
-         XB9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731431057; x=1732035857;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3TzAZ2wI/SsBv8e6rWIulIn9M+uufamHvYe7/o5Pmqo=;
-        b=XX8ZRcrOw3k9jB+SdArETlBY8AtWs3YrIK8YXLipTZVbkbj4HzVJHGM4dDlu8JLWit
-         oPCdsQ7pVPDXIgQr1tqTVWJ4nXE40IQbtABjsHKwvSz0cXERVKY1JpDD19DmsXE/yZnq
-         uuCR3XdbGCJIxOVr72mYDcaL4UzQKNuIbgzJl2pe5Wti13gM2o7rjkYElnsAbizn6scd
-         8L9mmw7b53N+FLfNfqruVYJSyIuOXuHe+j/Yb17EdIWhmTE2cIzYFuR4QarZSBG/nq2P
-         KWFjS9YVnqc6err3+xnuzgctGC4R+k6Tp9CKce4Anmu+MKwn6gqnUjN5IQwiY67WhnDL
-         DHvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUhtaaI2LZQiUZ7SqffEXx6O0dqP5kv2ZyDDSwPNVVmp2pr5OSx5KQLLNyaGOtkenQbvlCtAECFcHtK@vger.kernel.org, AJvYcCV+n1rr1Ejx8kMccfztAW6csSexdds8HZecEoyjhNi1K6h8s/qN92BtEVjHYp9x+TzoAoYJbywPhKFApY4=@vger.kernel.org, AJvYcCWC5ChYhZPM5NPVuM4iohKAMTRIPyQci5iEkzl30e5PhoaKBkhFGZ/jEa64sKNyGBamnnX9IhdYPP4l@vger.kernel.org, AJvYcCXfwYEdMVh2ENzotWIhhhKyzsIiex8Q7EFMY2w9SiuhS5ri4u1GGG1ZAvItvk1RxQX0TjW7syCf5KIZrbGM@vger.kernel.org
-X-Gm-Message-State: AOJu0YzF8qZmniUcaZx+WWUport0rOGmu+r9BWD3oytUA2CgxW/TNeHL
-	vfPYd1fn97cLbyeAQu+DT5DfNYTVN6Ykk8g6SGpyo8/HIff4Qozc
-X-Google-Smtp-Source: AGHT+IHRVCkPv69Giv9Ck6e8LALo+6Vd8jA6G0f2rPbTFybc2LxVw7NcogCrIEnD2UMIGigrnmpwQg==
-X-Received: by 2002:a17:902:c405:b0:205:4721:19c with SMTP id d9443c01a7336-21183d55b03mr238707535ad.37.1731431056592;
-        Tue, 12 Nov 2024 09:04:16 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177e45839sm95869765ad.143.2024.11.12.09.04.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Nov 2024 09:04:15 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 12 Nov 2024 09:04:14 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Jean Delvare <jdelvare@suse.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzk@kernel.org>, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] hwmon: tmp108: Add helper function
- tmp108_common_probe() to prepare I3C support
-Message-ID: <ec1a3a2c-e1b3-481a-aac6-e0826c570ce6@roeck-us.net>
-References: <20241112-p3t1085-v4-0-a1334314b1e6@nxp.com>
- <20241112-p3t1085-v4-1-a1334314b1e6@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=N58ciHEklMV3LJqv6CPiZBQr2gJBnljlFVFMj+TM4u8ERB1r25Qo0iJ0krvfE9Lq6b+Wj49YfG07gxJK3AcYlygA44cEcQP4T2cATlzFwi7WdHBgVv0+2bTQz62nJ4mE5A3g/daY/bTFp0WTYkUyGzIvxfVIuaXCOW5txTk3vAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HZ8phrHB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31227C4CECD;
+	Tue, 12 Nov 2024 17:52:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731433983;
+	bh=XqUNyTnAoGvRFc6NJPZM4dR65hK+xRVPAx60WZKWV8s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HZ8phrHBXgWmY6Le3uWwD8HAdgijCmsUqHlhDEFOTv2h+sUwCGIKvJeU+Cnm1Dd8s
+	 junEAQHfwv1QFWuPQ/A2AP8Zp/VF7q8NOP40eaeN/5lV9pfUcmSa4k0p72FgvaKDDT
+	 MKQuGnSk/47MqHH4VhUOAOzPjFMl4Hex1sVg3fjVAQ2Gt5peQ9W/4VPWMG08mY7vGo
+	 x0k42M2WmIQ7ugO1t7nWlwzC+D92/xoV56n0IrH8rURnFAkIUubgSko4UMKqJ7ov5r
+	 eN1IMDMt8ctRwYSTNBxfCBgYJw4zLpRzH0SuJGE64sNzETVR42x0ewo3sj16bLDs3C
+	 z4Z83R/RQJXQA==
+Date: Tue, 12 Nov 2024 17:52:56 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org,
+	andersson@kernel.org, konradybcio@kernel.org,
+	dmitry.baryshkov@linaro.org, mantas@8devices.com,
+	quic_rohiagar@quicinc.com, johan+linaro@kernel.org,
+	quic_kriskura@quicinc.com, abel.vesa@linaro.org,
+	quic_kbajaj@quicinc.com, quic_wcheng@quicinc.com,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org
+Subject: Re: [PATCH v1 5/6] dt-bindings: usb: qcom,dwc3: Add IPQ5424 to USB
+ DWC3 bindings
+Message-ID: <20241112-elderly-dole-796d0fdb373c@spud>
+References: <20241112091355.2028018-1-quic_varada@quicinc.com>
+ <20241112091355.2028018-6-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="b67RiRvDG6Y2cJDb"
+Content-Disposition: inline
+In-Reply-To: <20241112091355.2028018-6-quic_varada@quicinc.com>
+
+
+--b67RiRvDG6Y2cJDb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241112-p3t1085-v4-1-a1334314b1e6@nxp.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 12, 2024 at 11:51:59AM -0500, Frank Li wrote:
-> Add help function tmp108_common_probe() to pave road to support i3c for
-> P3T1085(NXP) chip.
-> 
-> Use dev_err_probe() to simple code.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On Tue, Nov 12, 2024 at 02:43:54PM +0530, Varadarajan Narayanan wrote:
+> Update dt-bindings to add IPQ5424 to USB DWC3 controller list.
+>=20
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 
-Applied.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks,
-Guenter
+--b67RiRvDG6Y2cJDb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzOV+AAKCRB4tDGHoIJi
+0hFaAQCvFgly9dNrOCutUGFvxUKQ846YGdIJo7xDmgt0KhovzAEA50rIU3ptcPUJ
+7NP5qXgIXb0vtITBaxLJjOe5F6QwKA4=
+=6Woy
+-----END PGP SIGNATURE-----
+
+--b67RiRvDG6Y2cJDb--
 
