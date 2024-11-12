@@ -1,99 +1,90 @@
-Return-Path: <devicetree+bounces-121289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B71DA9C64DD
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 00:07:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2E59C63F1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 23:03:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED786B3125C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:39:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF8401F228FF
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 22:03:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B0C219E35;
-	Tue, 12 Nov 2024 20:39:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D6F218940;
+	Tue, 12 Nov 2024 22:03:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ff1apUwp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XJg+zzBb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65EC41FC7F8;
-	Tue, 12 Nov 2024 20:39:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EB9DD53C;
+	Tue, 12 Nov 2024 22:03:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731443973; cv=none; b=CoiZQ+WNdpRef9lUHkOjzgEPcRvyfEUt9P1AgXGjn2FyXRT6omUYHGtG1FDsSjgKtCsOa1WMcsJg2teEXV1sJq8sXCRRLqXNd+/0/NQhg4FjJGK0OMzy3wdmuqNizOtDdzyvHaH+T3zLrP/QFDRdSxDOumEFOT6Z2HCnvpMsSrg=
+	t=1731449011; cv=none; b=tei31FdSttuPHKenDrmUtugLNnJFNdbbNtxvLnDXW6VrjrGe0Du3QszbBGHkAIJNqJiZPf/AHyMiO3e1dArVa8d864R4boaBoSkQCTw5G/tfrldF6feF53ZEEIJDKx9rXBSyx8GGkWZ75vlTJCbESbP91iPc1UngWUSxu7hs6GA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731443973; c=relaxed/simple;
-	bh=Cz4bRV94/5MKAskZbYAn+TUSR0LBQP5CIfaO0PQZ+eA=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=sp48npVFD5Gxlt19Y3Ejev9NVAjnj6ZeQfP6uoqHhryeLTZwGhEAEcLnckfTbWwBhy5AWs6VLkMWBSv4ST6nixff5oF/43m0rVHUsRocWy/hebh1baPovuHZnCV44BRPcvrzGQrOrjcIL2D+FeCw5I/LqCJri0qzQkvkXT0gxh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ff1apUwp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A76B9C4CED7;
-	Tue, 12 Nov 2024 20:39:32 +0000 (UTC)
+	s=arc-20240116; t=1731449011; c=relaxed/simple;
+	bh=jADG5RW2/RKMOV71ysIQvjB+TTDj/n5JQO6e3XTjVAM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KQSzP4GxwONhBfPR+5bDXkC6hTvTmv3oU4HNCmVtV3G5lDV3DIQazRAB5mWpRauKsHMM4yYKqFrHWXaR5bYpOSi6FbqOUsjcD6YDw4vIDBrdUMXTQeIRZlWsLWevTw3QhOP0SaHAO6OKzLFToZ9Z4zzhiUeBqg4kUFk0DM7KYrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XJg+zzBb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58367C4CECD;
+	Tue, 12 Nov 2024 22:03:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731443972;
-	bh=Cz4bRV94/5MKAskZbYAn+TUSR0LBQP5CIfaO0PQZ+eA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=Ff1apUwpOiGPDm+i+5r5B3s5dmMB2dJgxctx3edd+b8FqF8Nq3n93rQlg+41y6zOA
-	 EPwhloVc6oGbcSWc3w0fax5DWB8hXhLMxLQJDc4PLLIMp5u3XuwJGwYPr+k0fxj1JN
-	 TvpI1koK8FK9Jz1qa6gsTyhc3PzbzilN2ZW+SDXjPgB15ms1yNhVgTOmpQE8s7gjNQ
-	 CYy8yCHHLYst8fgwZop0vbGlqErCDK4gxLXQdkg4avOvz8LJtuxCVfYTHZF2biblwf
-	 5JfB0NGw1U2oK8kbGhKypOx4xWcXZKafm1zqdSAGge/7VCqmssFPjEgxVbe5+4yk3k
-	 Gp8simaEgiFCg==
-Date: Tue, 12 Nov 2024 14:39:31 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
-	robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, p.zabel@pengutronix.de,
-	cassel@kernel.org, quic_schintav@quicinc.com,
-	fabrice.gasnier@foss.st.com, linux-pci@vger.kernel.org,
+	s=k20201202; t=1731449011;
+	bh=jADG5RW2/RKMOV71ysIQvjB+TTDj/n5JQO6e3XTjVAM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=XJg+zzBbrCZm8BZFClcJI4wcQaqATPEPSAaWhKPKPM6D6yO6Ek/muoDX0ZaE9v9tu
+	 37kwMgbiqXeVsXXDUlcHJu17E0pfBXnStroZC+IxdmQ2WnnTgGnv4xBF3GZippATf6
+	 JdW3qfej3BJAQh/7qIWtvkCe/PyU+bvOkBOGpiuTyealiQOVRpcZn1TaeTJlkwmSUo
+	 z/agt/nBrtjABjJ4B/9uUjZ3TyIHd04zIcPBwbivuNmVuQqOjFJQjM5q+OMTMR7Rf2
+	 opdJFD5htnVZ01E20NRPi7647mGBjo2VlHM50UFGD3zkemVILpbgKn8oHQ9a8wCjOn
+	 Z+NCLMjS0ZDdw==
+From: Bjorn Andersson <andersson@kernel.org>
+To: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/5] MAINTAINERS: add entry for ST STM32MP25 PCIe drivers
-Message-ID: <20241112203931.GA1858001@bhelgaas>
+	linux-kernel@vger.kernel.org,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bryan.Kemp@dell.com,
+	tudor.laurentiu.oss@gmail.com
+Subject: Re: (subset) [PATCH v1 0/1] X1E Dell XPS 9345 Improvements 2
+Date: Tue, 12 Nov 2024 16:03:24 -0600
+Message-ID: <173144900027.331728.17862590936507928028.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241030182153.16256-1-alex.vinarskis@gmail.com>
+References: <20241030182153.16256-1-alex.vinarskis@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241112161925.999196-6-christian.bruel@foss.st.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 12, 2024 at 05:19:25PM +0100, Christian Bruel wrote:
-> Add myself as STM32MP25 PCIe host and PCIe endpoint drivers
 
-s/as STM32MP25/as maintainer of STM32MP25/
-
-> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
-> ---
->  MAINTAINERS | 7 +++++++
->  1 file changed, 7 insertions(+)
+On Wed, 30 Oct 2024 19:19:35 +0100, Aleksandrs Vinarskis wrote:
+> Describe retimers for the said device. At the moment DP alt mode is
+> not working, but this still allows to use USB3.0 in both orientations.
+> Once msm-dp is fixed, DP-alt mode enabling patch will follow.
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 4803908768e8..277e1cc0769e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17912,6 +17912,13 @@ L:	linux-samsung-soc@vger.kernel.org
->  S:	Maintained
->  F:	drivers/pci/controller/dwc/pci-exynos.c
->  
-> +PCI DRIVER FOR STM32MP25
-> +M:	Christian Bruel <christian.bruel@foss.st.com>
-> +L:	linux-pci@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/pci/st,stm32-pcie-*.yaml
-> +F:	drivers/pci/controller/dwc/*stm32*
-> +
->  PCI DRIVER FOR SYNOPSYS DESIGNWARE
->  M:	Jingoo Han <jingoohan1@gmail.com>
->  M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> -- 
-> 2.34.1
+> This patch depends on [1], which is still undergoing reviews. As it
+> appears to be close to its final state, sending this already so it can
+> be reviewed.
 > 
+> [...]
+
+Applied, thanks!
+
+[1/1] arm64: dts: qcom: x1e80100-dell-xps13-9345: Introduce retimer support
+      commit: bd2dbbb1f35af9d53b1eb5facc84c35443562930
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
