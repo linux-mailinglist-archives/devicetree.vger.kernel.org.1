@@ -1,134 +1,94 @@
-Return-Path: <devicetree+bounces-121278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 743839C61B3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:44:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70F7D9C61DC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:52:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 24C36B44AB6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 19:32:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35A0C281D09
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 19:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3982194BA;
-	Tue, 12 Nov 2024 19:32:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE2B7219E26;
+	Tue, 12 Nov 2024 19:50:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kxntRLdD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CQhkcw8t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B18218D7C;
-	Tue, 12 Nov 2024 19:32:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07F820ADEC;
+	Tue, 12 Nov 2024 19:50:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731439941; cv=none; b=XxCxMH2YcjcYFa5WP07idHiy1jfyVDMWEV+TtQvYNYA350XUyLwl0n7SYqXHUpF5Fn6iDCHa4SKYHFEcSKxO0ezPWigvxWzL17vfk9XMsou4otv8fNfq1z3FGwVEi0o/GZvA9BZUVzRmD9Fsbje//i9ceodX6OtdKiZHH3WgiuI=
+	t=1731441050; cv=none; b=MyMbzHvaxw4lBvm1YFOm6BhbUkI4KeKTxfmnsdRiw1BASUnGlAquK2AmAKK6POjpayhDtDpUkIc5r217Cfz4H8hjAjTNVMhz9IFyHUVq3jKREYShLO2DHZZThXt27kotv1n/Q1jRy2gh8YutrojYFvhe05MxH5lfmkO1PWpH6K8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731439941; c=relaxed/simple;
-	bh=epgbS9RtzrCVBFjCyJlrkHDQBSeDAigP9kv3ZSBAFXM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PwNmPRaGyT5dYxHJXBwi1mGH8WYpt03bDixfMuQfhEpoX5F/nQnNc5KykahwGLFN5Jc/7MQ85i2J6pkI7osDjahuh1TU2BiQ8Y+cw6c/9O4narF/UaxT1TXyBQmtuKqaDkjlDpxom4arJONRLdjnnm7fFS4rEywjGflc856v7TA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kxntRLdD; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2e9b4a4182dso7946a91.0;
-        Tue, 12 Nov 2024 11:32:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731439939; x=1732044739; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6/xfqtm3x7QWKepSmfwDgHi7bBcwjVkW2hTBncGzpNI=;
-        b=kxntRLdD5MP6QOiZyZ+6QD9/1bcb4CWw7GldRkALHmFYNw4XQ/HfE+hoyjuWdAuAZV
-         z3qaLoKrcufxexYAWBSfFvUc373F+9ljdjWiJa1NLkpGjWMs8yYFccoO6qylGPT222y3
-         QISr8YY0HR2xGXfzimMwjB2ascIj1MBMYLckj2wguTnsOltfJk737iV9TBqPEVF4s7KM
-         S9SnVh1mI9cEPYHCc3Bj3HtCxnCTE/bTXQbCgC8ieBrC5YkrN4Z0qI8qRYYvnJZ23KS3
-         +z8r4XP9kWLbIpF/FxAtCeMO8sIPBJPX4dMs2ckBXr9YuDlIvK7wXBftXXDmZrow21s9
-         hEgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731439939; x=1732044739;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6/xfqtm3x7QWKepSmfwDgHi7bBcwjVkW2hTBncGzpNI=;
-        b=bhOkxxxBWTz5DZnbsdpd1Nxd1fTqfxetCm8lMF6OFKGTo3ZH6hGdVwsUkqbpjtbVVp
-         iQPW6Se+q16ISXD9tZYA+i5RkSZ0v/H4GZZ6psmeFCukqY4KjX7zLFaox9xt0CPy8fEa
-         FgNPZ9vZgcKm9bUsWyzsjHdrlsJyXbORo4gz+RcJT/OsBXBI7Jn6U8j8+8LAF3yiq7ek
-         hjvVaFtrsnrD96LkJbgt4k5e4DF+66TV4b/gcavY7OPZxUJu10lmD9BLULWtl0ZelreV
-         OMtyef6LuYANoVYJYcHcmUD0fn7SsW8RILzNzHnyFJGL0nVmXQoiRFfcTcUmoMNkXmaU
-         QUBw==
-X-Forwarded-Encrypted: i=1; AJvYcCVG6k6Jz6B2myMJBtaKSNEeGLaOItn9ZXacUMvaRh+t9k4lAgkQCYYBKxUS+2ul+7Ji113KezSIFCEAinXiFFn5MqE=@vger.kernel.org, AJvYcCVplvQeidvSLoXFuoCc/CShCVjKFu1YuWE27SW1LxY729pQQxGO1xhTXjMfzQHo6KQYcfPMlOR4hkKBI4nc@vger.kernel.org, AJvYcCW+C99lejbuTSfdvLWibVibAMLfb2uKo0dtkRfIUqQlOydKWABtcD90s5DbX9llZOTuhgRj1kIcK2+O@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXBImL0h/80IpW2W9MhrB6BEwoCOo7bVpmlmoZXkepIpCZz4xI
-	6jpx/vwuRZ+Po8utpntlXDTfJzn1fqiXnnqTBCgvgAWv40dgu7x+wYE5d6KQc/U=
-X-Google-Smtp-Source: AGHT+IGrqEyJ1d4NsV9KxFv5AMzPEJx8k6S+eQ2baPGh52LTBwbe4AJ9JiDd7LT5bb2AsJe5Y/M1/w==
-X-Received: by 2002:a17:90b:2647:b0:2e2:b719:d582 with SMTP id 98e67ed59e1d1-2e9b1f64ebbmr26275292a91.14.1731439938703;
-        Tue, 12 Nov 2024 11:32:18 -0800 (PST)
-Received: from localhost.localdomain ([38.44.237.182])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e9a5fd17d8sm10988958a91.41.2024.11.12.11.32.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Nov 2024 11:32:18 -0800 (PST)
-From: Denzeel Oliva <wachiturroxd150@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/2] Add support for Samsung Galaxy S20 FE (SM-G780F/r8s) [SoC Exynos990]
-Date: Tue, 12 Nov 2024 19:31:47 +0000
-Message-Id: <20241112193149.1262-1-wachiturroxd150@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1731441050; c=relaxed/simple;
+	bh=rJgZSYSkG7dh0RVAe8u1Z+Bh6JGYOaaERx2tsZG25kA=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=MTWvQ4CQd8xojLMniB4aUQvGvcAFX8uf6mjLL2OVEApMDjvfDy+lUBuKksgaKKKwlziJvwPTgTI/5qsybXqLqdEVlNC8YhGdsUfqayBToYP9dUwWJg8X7rGI+wkgynXa1WobMtdLhPUixhQ04Fncm7MBuIRKnYWUCBQlIwURx60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CQhkcw8t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2444AC4CECD;
+	Tue, 12 Nov 2024 19:50:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731441050;
+	bh=rJgZSYSkG7dh0RVAe8u1Z+Bh6JGYOaaERx2tsZG25kA=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=CQhkcw8trB32nAcmYqrDVMDPLyRF3dlktwJv7EIWXgCKJcdl+uXS77b9/GjrHLqaR
+	 DtvcbsUd8YvfQbg0sNv5tFIZM/jIK+Vhq3iR+bXWkkGIRw4pvHvhTWbov39X1TNVKA
+	 QtlXVar3nCOB8r/xX2hw9CWiGCmbSUyjqG1ykocYH1H2lBDQFZ16MxAw93As4jz3We
+	 5j4Mf4zmBupGR1OmV2wayYjrtUis2GKcDw8Qm0D6p20ScK/vHQWBC7iev9K3FdrxHe
+	 x9acF+29ILhb6WGm5cxw2t4jUOZ4hVFk3dgJ2O0BRgXMDiJPCzM7/8ZIhrLBwBY1Vn
+	 vZ+s61S29QBZA==
+Message-ID: <8b6d74e31161c8fadad926fe1c20ce1d.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241108165532.GA2411452-robh@kernel.org>
+References: <20241016212016.887552-1-sboyd@kernel.org> <20241017203810.GA814469-robh@kernel.org> <38153cbf2616a4a6706412952778eec1.sboyd@kernel.org> <CAMuHMdWp84u66Y-ELtbbRmySYwQch_=2qQiXzWJzrSkGeLZYBA@mail.gmail.com> <20241108165532.GA2411452-robh@kernel.org>
+Subject: Re: [PATCH] of: Allow overlay kunit tests to run CONFIG_OF_OVERLAY=n
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, linux-kernel@vger.kernel.org, patches@lists.linux.dev, devicetree@vger.kernel.org, kunit-dev@googlegroups.com
+To: Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>
+Date: Tue, 12 Nov 2024 11:50:48 -0800
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 
-Hello :),
+Quoting Rob Herring (2024-11-08 08:55:32)
+> On Fri, Nov 08, 2024 at 09:56:15AM +0100, Geert Uytterhoeven wrote:
+> > > > > Fixes: 5c9dd72d8385 ("of: Add a KUnit test for overlays and test =
+managed APIs")
+> > > >
+> > > > Doesn't really seem like a fix.
+> > >
+> > > Ok. Feel free to drop the tag.
+> > >
+> > > > Does this need to go into 6.12?
+> > >
+> > > It's only important for 6.12 if kernel configurators want to build the
+> > > kernel with OF_OVERLAY_KUNIT_TEST enabled and not be forced to enable
+> > > CONFIG_OF_OVERLAY. I don't mind if it waits a while.
+> >=20
+> > I'd say it's a fix, so please keep at last the Fixes tag. Merely
+> > enabling kunit tests (which can be modular) should not increase the
+> > possible attack vector on a product by enabling extra unneeded code.
+>=20
+> Not sure I buy that that is an actual problem. However, not worth=20
+> arguing over. I only really care because if there's a Fixes, then this=20
+> really should go to Linus for 6.12 rather than eventually get=20
+> auto-selected from 6.13 to go to stable. So I moved it to send to Linus, =
 
-I'm a newbie and I started getting interested 1 year ago.
-Well, that's the beginning,
-until I learn more about kernels and the C language,
-which is important in that.
+> but I found that CONFIG_OF_OVERLAY is still selected with this patch.=20
+> That's because the clock kunit tests also select CONFIG_OF_OVERLAY.=20
+> That's fixed in next, but it's not queued up for 6.12.
+>=20
 
-Well, bluntly, here it is:
-
-That Samsung Galaxy S20 FE device is part of the Exynos990 SoC family,
-I saw that Igor supported that processor,
-I took advantage of it.
-
-It has the same functions of:
-
-* CPU
-* pintrl
-* gpio-keys
-* simple-framebuffer
-
-Just enough to reach a shell in an initramfs.
-
-The preferred way to boot the upstream kernel is by using a
-shim bootloader, called uniLoader.
-Changes: - Simply add dts from S20 FE device
-
-Special thanks to Igor for helping me with that :)
-
-Changes in v2:
-- Change author name
-
-Denzeel Oliva (2):
-  dt-bindings: arm: samsung: Add compatible for Samsung Galaxy S20 FE
-    (SM-G780F)
-  arm64: dts: Add initial support for Samsung Galaxy S20 FE (r8s)
-
- .../bindings/arm/samsung/samsung-boards.yaml  |   1 +
- arch/arm64/boot/dts/exynos/Makefile           |   1 +
- arch/arm64/boot/dts/exynos/exynos990-r8s.dts  | 115 ++++++++++++++++++
- 3 files changed, 117 insertions(+)
- create mode 100644 arch/arm64/boot/dts/exynos/exynos990-r8s.dts
-
--- 
-2.34.1
-
+I was planning to send the clk patch in the next merge window. Are you
+sending the fix now? If you want you can also send the clk side patch
+and I can drop it from the clk tree.
 
