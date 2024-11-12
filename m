@@ -1,161 +1,185 @@
-Return-Path: <devicetree+bounces-121317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15F889C6530
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 00:32:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 085049C65BE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 01:11:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1BA11F21DD3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 23:32:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F770B28623
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 22:37:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11147218D6F;
-	Tue, 12 Nov 2024 23:32:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AACBA219C9E;
+	Tue, 12 Nov 2024 22:37:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YYsog4D+"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="SjLdnDGx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D303F61FD7;
-	Tue, 12 Nov 2024 23:32:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6731193092
+	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 22:37:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731454325; cv=none; b=LywXE8mwbB4pOyg+q9+PmIC4p7yYnUvV6JIsdRkl3PxlqdjN6wTVUK/fFSwjg1RIN4CjRo6JMc8iyKOQPiE3TBCSqNTlFhHYdSHjZzayy7wMecntXMMMt48UrkXKAiAC6wIl5Ea5mqND6BiaWImaPq0rtLjiJLkm7LDOpXqgA8Y=
+	t=1731451050; cv=none; b=W3xRUUfivVXiumSob2BWiayCnoxhmTwNvD8YEwySbfHWoVn3r1v8rGJ4fjVXYsVscb7QtKHOA87lzsrjn0yX4ie0tQzY9wX5+vdM1YcGc5svL89DqHyiFRW+BpYiHtn3eH6WJ0SOOdmoRMAEwu+NHAGhCe1Nc/2wmpyvy1vlUhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731454325; c=relaxed/simple;
-	bh=BTvBKA7o2+woAUiRxBLS40rKUjsEcAiQ9VqZLBbUmrE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=ZylUvgtFaK6jSoppVWcNmkN0qhlfA5sSTAVaeUL6+vpw2vj8E2m7uS2+jpgbzeD6Wi7Bdg5ImBhbfuV2OCWxgCqYPN7aR+c1fXn9LA+4JLJlmT4wNGUKQA00zUJd+Hx8uaaT0DM3X7awMsb9mI93Jl6VfGe26qk0edbcN9nIoNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YYsog4D+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4672BC4CECD;
-	Tue, 12 Nov 2024 23:32:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731454324;
-	bh=BTvBKA7o2+woAUiRxBLS40rKUjsEcAiQ9VqZLBbUmrE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=YYsog4D+277jiwZhlVlCacEoGamSkpVNXWnGtbKRpfna7MnsC8HGrc/uTQCQcPbzP
-	 7ADCvdgD3pzncivgfu1/CqIV0s2VFysMw8Ys6ymIKTBdO5e5izvIQqHNqid+aVafFb
-	 xOPG1HF7cR3fDsfWgEuUAWa5XySUyhBOVfa3pfVlh7kn7HCfVIhcTXOZrVUz8gtQET
-	 SJwb4qyLet69DRVK959P1+9OwEPjNarseYJsxSogiLb8zbyeJID5aVxVlLweqYAeHH
-	 73QYm24dVwNBiDE+jCJkO2sJOd9Yk1K6UKjKcSpxvDF6ewuI2Hi86pXvTT2ATR2uNU
-	 OEifPxd/OyFNg==
-Date: Tue, 12 Nov 2024 17:32:02 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: andersson@kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicinc.com,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/6] PCI: dwc: Add support for new pci function op
-Message-ID: <20241112233202.GA1868078@bhelgaas>
+	s=arc-20240116; t=1731451050; c=relaxed/simple;
+	bh=zUM2C5mleR7ltu6OD3ESFOztxEk95mnif2EKMgewdRc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R+tp/kRAwr7pIzjYfXwk3bkexZVp+rmj+kMIe1BMLLHLFJz8pt1mYd5xhFRsLbtz7j4N/hOJ64DlZjvIXiua26aDG3yBuNo7yFAneQBaUyyNtHh0r1z3sUWmNln2gC5OVsyEERZ0Ve8Pg2Sex7jLtOf5Y4Xn2FAOqIE7x3iCeKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=SjLdnDGx; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1731451040;
+ bh=qr1E10NHWK23nMA2ivVLEsm+o2F/x5CKrKT5ga72x0I=;
+ b=SjLdnDGx51puzyqQxY55STmDjYKEtmejc/azXDWAyXbU+obv6ECmBz3GG1aWwqhzHZ/XsotDe
+ FEKSVvTgnKtC71okD+EhRpGbJuxjjHtBqz/LC3biXoffPrjVIRKvcyOLFaWH0Vi/WuaEZVEzvus
+ CyE6gGtiaBju27kydY/BN1SjCCSNdHF4xJLmzeNYCocH7qIuAX/IBb6/WM6Oszmk1yDqxq1p/zX
+ t+wmN2FTJcTIFzxBA0FM8nsPdD9stPibg8XIEwtxes3WsTi5BNlJDgIJ1WRqsuZYq9qxKPSxQz3
+ 9+56pr+4aX2dhpH1OLWTQ5Ca0jptMo94qKBnc9B4IJwg==
+Message-ID: <e9ff5387-b3c1-41a7-b251-a12789d25a70@kwiboo.se>
+Date: Tue, 12 Nov 2024 23:37:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241112-qps615_pwr-v3-4-29a1e98aa2b0@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Add supported UHS-I rates to
+ sdmmc0 on rock-3b
+To: =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@linux.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
+ Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20241111181807.13211-1-tszucs@linux.com>
+ <20241111181807.13211-2-tszucs@linux.com>
+ <c89c2f16-ffb0-4b61-a962-9705f9f1e0e2@kwiboo.se>
+ <CA+GksrJzkxffSQbuseGFL0=2PDxV+TRevX0-NOkc6FNYLmNgYA@mail.gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <CA+GksrJzkxffSQbuseGFL0=2PDxV+TRevX0-NOkc6FNYLmNgYA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 6733d89e9402f7538d197676
 
-On Tue, Nov 12, 2024 at 08:31:36PM +0530, Krishna chaitanya chundru wrote:
-> Add the support for stop_link() and  start_link() function op.
+Hi Tamás,
 
-When you update the series for the build issue, also update the
-subject line here so it's more useful by itself, e.g.,
-
-  PCI: dwc: Implement .start_link(), .stop_link() hooks
-
-Seems like the .host_start_link() bits might be a separate patch?
-They're not mentioned in this commit log and don't look directly
-related.
-
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware-host.c | 18 ++++++++++++++++++
->  drivers/pci/controller/dwc/pcie-designware.h      | 16 ++++++++++++++++
->  2 files changed, 34 insertions(+)
+On 2024-11-12 15:36, Tamás Szűcs wrote:
+> Hi Jonas,
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 3e41865c7290..d7e7f782390a 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -691,10 +691,28 @@ void __iomem *dw_pcie_own_conf_map_bus(struct pci_bus *bus, unsigned int devfn,
->  }
->  EXPORT_SYMBOL_GPL(dw_pcie_own_conf_map_bus);
->  
-> +static int dw_pcie_op_start_link(struct pci_bus *bus)
-> +{
-> +	struct dw_pcie_rp *pp = bus->sysdata;
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +
-> +	return dw_pcie_host_start_link(pci);
-> +}
-> +
-> +static void dw_pcie_op_stop_link(struct pci_bus *bus)
-> +{
-> +	struct dw_pcie_rp *pp = bus->sysdata;
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +
-> +	dw_pcie_host_stop_link(pci);
-> +}
-> +
->  static struct pci_ops dw_pcie_ops = {
->  	.map_bus = dw_pcie_own_conf_map_bus,
->  	.read = pci_generic_config_read,
->  	.write = pci_generic_config_write,
-> +	.start_link = dw_pcie_op_start_link,
-> +	.stop_link = dw_pcie_op_stop_link,
->  };
->  
->  static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 347ab74ac35a..b88b4edafcc3 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -433,6 +433,8 @@ struct dw_pcie_ops {
->  	enum dw_pcie_ltssm (*get_ltssm)(struct dw_pcie *pcie);
->  	int	(*start_link)(struct dw_pcie *pcie);
->  	void	(*stop_link)(struct dw_pcie *pcie);
-> +	int	(*host_start_link)(struct dw_pcie *pcie);
-> +	void	(*host_stop_link)(struct dw_pcie *pcie);
->  };
->  
->  struct dw_pcie {
-> @@ -665,6 +667,20 @@ static inline void dw_pcie_stop_link(struct dw_pcie *pci)
->  		pci->ops->stop_link(pci);
->  }
->  
-> +static inline int dw_pcie_host_start_link(struct dw_pcie *pci)
-> +{
-> +	if (pci->ops && pci->ops->host_start_link)
-> +		return pci->ops->host_start_link(pci);
-> +
-> +	return 0;
-> +}
-> +
-> +static inline void dw_pcie_host_stop_link(struct dw_pcie *pci)
-> +{
-> +	if (pci->ops && pci->ops->host_stop_link)
-> +		pci->ops->host_stop_link(pci);
-> +}
-> +
->  static inline enum dw_pcie_ltssm dw_pcie_get_ltssm(struct dw_pcie *pci)
->  {
->  	u32 val;
+> Thank you for pointing this out! I haven't noticed this before. I've
+> done some testing and I believe I am able to reproduce the issue you
+> described, although I cannot confirm the reason.
+> The only occasion I encounter any problems is when a UHS SD card or
+> SDIO device is connected to sdmmc0 during bootup. Sometimes the device
+> is recognized as HS only. Obviously no tuning value reported. Also,
+> sdmmc2 cuts out completely. I'm booting from eMMC and when the SD card
+> is removed in this state I lose my rootfs. Certainly, this needs more
+> attention but it seems to be unrelated to the changes here.
 > 
-> -- 
-> 2.34.1
+> I need more time to check but are you sure this SD card during bootup
+> issue is gone with UHS-I disabled?
+
+Yes, the issue is that the io voltage domain must be configured to match
+the io signal voltage used, and to use uhs the voltage changes from 3v3
+to 1v8. Causing a miss-match between io voltage domain config and the
+regulator voltage used during initial probe, unless io-domain driver
+happens to be fully loaded before mmc devices are probed.
+
 > 
+> Also, in every other case, when you connect any device to sdmmc0 after
+> bootup, performance and stability is perfect.
+> Interestingly I also don't experience this behavior with an eMMC
+> device and / or an SDIO device connected to sdmmc2 during bootup. Only
+> sdmmc0 is problematic and only during bootup.
+
+Yes, as you have discovered, inserting the sd-card after system has
+booted and io-domain driver has been loaded, everything can work as
+expected with uhs speeds.
+
+Until this probe race condition has been solved booting with a sd-card
+inserted may or may not result in wrong tuning or other related issues.
+
+Because of this I advice not to enable uhs mode for sdmmc0 at this time.
+
+Regards,
+Jonas
+
+> 
+> Any more thoughts on this are very welcome.
+> 
+> Kind regards,
+> Tamas
+> 
+> 
+> 
+> Tamás Szűcs
+> tszucs@linux.com
+> 
+> On Mon, Nov 11, 2024 at 8:00 PM Jonas Karlman <jonas@kwiboo.se> wrote:
+>>
+>> Hi Tamás,
+>>
+>> On 2024-11-11 19:17, Tamás Szűcs wrote:
+>>> Add all supported UHS-I rates to sdmmc0 and allow 200 MHz maximum clock to
+>>> benefit modern SD cards.
+>>>
+>>> Signed-off-by: Tamás Szűcs <tszucs@linux.com>
+>>> ---
+>>>  arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 6 ++++++
+>>>  1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+>>> index 3d0c1ccfaa79..242af5337cdf 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+>>> @@ -670,8 +670,14 @@ &sdmmc0 {
+>>>       bus-width = <4>;
+>>>       cap-sd-highspeed;
+>>>       disable-wp;
+>>> +     max-frequency = <200000000>;
+>>>       pinctrl-names = "default";
+>>>       pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
+>>> +     sd-uhs-sdr12;
+>>> +     sd-uhs-sdr25;
+>>> +     sd-uhs-sdr50;
+>>> +     sd-uhs-sdr104;
+>>> +     sd-uhs-ddr50;
+>>
+>> There is an issue with io-domain driver not always being probed before
+>> mmc driver, this typically result in io-domain being configured wrong,
+>> and mmc tuning happen before io-domain is correctly configured.
+>>
+>> You can usually observe this by looking at the tuning value during boot
+>> and comparing it to the tuning value after removing and re-insering a
+>> sd-card.
+>>
+>> Because of this uhs modes was left out from initial DT submission, some
+>> cards will work others wont, sd-uhs-sdr50 is known to be working with
+>> most cards even with the probe order issue.
+>>
+>> Also I thought that lower speeds where implied?
+>>
+>> Regards,
+>> Jonas
+>>
+>>>       vmmc-supply = <&vcc3v3_sd>;
+>>>       vqmmc-supply = <&vccio_sd>;
+>>>       status = "okay";
+>>
+
 
