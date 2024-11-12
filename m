@@ -1,79 +1,156 @@
-Return-Path: <devicetree+bounces-121188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70D7C9C5DB4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:51:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 328B09C5D62
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:34:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90545B27DB9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:35:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8D75B3CAAC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 15:48:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B89A2010E8;
-	Tue, 12 Nov 2024 15:35:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81886202F64;
+	Tue, 12 Nov 2024 15:48:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IPrgmNK1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jN8uBDPU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D48220102D;
-	Tue, 12 Nov 2024 15:35:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9509202630;
+	Tue, 12 Nov 2024 15:48:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731425704; cv=none; b=rvm7I8+lXmz8di131aIsEGpp3dDNebU7aVtruPefbnVHLEAlpaYLaieN8sOi3sqYeBjkwwzqsxgtpTsby99MHBD2a6T6O8A/PZa8Tx6P6fYOoVXzBvDktUpTNQFIe9rEkqN2G5WuvlF6Qv4v1fS7/feKWPoTUHfujjQgObIL4LM=
+	t=1731426513; cv=none; b=Sio62pu+/BZue5dLQXLIpApn2M73WOSWpukUS9WbbrPuAqqhiUWtrumjNgJrMnGyskvWHvg3OBoAz1tW317QAIj3Kx/noZOdhEBvhdho1fWz5TQBVLpCIDKkLeD6nqhPP0srmDOmhyn4mvzLqXGrNJh0bBCzX0YjPqlKtLHs/uY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731425704; c=relaxed/simple;
-	bh=mdCG+kWQHDbH45+i7pZkYDklgUWwXzoUXEe4UbhQaWA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uDRMvNtSNUM0uHKBvsnvOf18QfsLs5MbmEyS1Wp7Uljb1WJHVMLdXTgaJ9p1I0Ov1k/6AjHr7RjCXQLX+hnGocNZgYW/sn9o0Chhh1woIEpjEzVob/z7S31eeP+1MHLE7bILo/icIX22wJu+JMfKqamNQhXpUCDpLOmXE96y/3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IPrgmNK1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 852AFC4CECD;
-	Tue, 12 Nov 2024 15:35:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731425703;
-	bh=mdCG+kWQHDbH45+i7pZkYDklgUWwXzoUXEe4UbhQaWA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IPrgmNK1XnLgm/dFEGwMCptFUHd3DHoAMXY/0aFMdiRaN20DXGoD9b7uKZHPXYu37
-	 uyi47esmgWUrd6L9vCcOKWQubpHRNi65BzytJ7JJncDxewmvTwisJ+28XIHt5Xgoz2
-	 BQOKNAqQW1rI4ob5Jn4j8VBOZ2jkz8WtYcnNWv5mEYqxPBu7TvV9LBSssrANWMB1lO
-	 1TAMkboXEeggb68ZELwjnzL4zI0DOYjHjKCfKncea1hrj3UMolFNdJDQIQSh9YCTcn
-	 pliCwUAh27Ce1yc4c20X/iuJMX7hIheXyjKTxum0FUMQUUSnWUByd0zGDkIj8B1VMH
-	 jm/gs9hpFOCCA==
-Date: Tue, 12 Nov 2024 09:35:01 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Wasim Nazir <quic_wasimn@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: arm: qcom,ids: add SoC ID for QCS9075
-Message-ID: <173142570122.950070.9518403480763071261.robh@kernel.org>
-References: <20241110145339.3635437-1-quic_wasimn@quicinc.com>
- <20241110145339.3635437-2-quic_wasimn@quicinc.com>
+	s=arc-20240116; t=1731426513; c=relaxed/simple;
+	bh=GwwNhUBLIcPHhWY4SQF05yyn1FVx5ic5AYp/6/AkZLU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=enuu2wmAqosJwiLSTI34+fggxD07sfUTQyPkKds6eki149J7ttdvB/TDbMStnwqQ3wVkcPWyLk+myHO3HbGPwkIBuek3453eqVhsYeH1Vsm/RgNeEUv4yLQk6+Hiz7JYF6vn055ifojq8YC1ldrcETErRe/WYS6HpttLi5f+CrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jN8uBDPU; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ACC517w032123;
+	Tue, 12 Nov 2024 15:48:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	VV0lIDnndbJ3AJw+poTnIcbd8rUqFdwT6PiA3+seiv0=; b=jN8uBDPUGcRFRUnW
+	WGE3C4cD5EQOELjWPzEEZurpJvxu3M2v6jEv7KE3s6zNc43AXCUUOXEv24vVAgev
+	QIFpLw/MbHMJ3azhjDb3pmk/1c/zf7BFFCvzstL84qUATnd7nrKQd9xnu4hVbYE2
+	+sTyydgMOJkhJ2CmXdmjPp/M9VLok49MlmgjYvbFT6bUmfWvWcpE66EKjteXseSw
+	xtuOuWXKXctdl4Yv6ag1j8SOHaPA6q0ecHl+8W2Btv/5SOWLjpgRlViZiLmNYrjd
+	u8vR0O29Bx3sOr53DKmqAef6dJBFsjbRFiwubPaPzBt/BYBTq8mlb+0y9YQFvZXQ
+	oLbQvw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42t0gkynwa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 15:48:21 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ACFlxsv030962
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 15:47:59 GMT
+Received: from [10.216.16.167] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 12 Nov
+ 2024 07:47:54 -0800
+Message-ID: <fb28e81b-2a0d-4a34-a8e6-d4e7812fbcd2@quicinc.com>
+Date: Tue, 12 Nov 2024 21:17:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241110145339.3635437-2-quic_wasimn@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: Add support for usb nodes on
+ QCS8300
+To: Konrad Dybcio <konradybcio@gmail.com>
+CC: <linux-kernel@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
+        Konrad Dybcio <konradybcio@kernel.org>
+References: <20241105164946.2357821-1-quic_kriskura@quicinc.com>
+ <20241105164946.2357821-2-quic_kriskura@quicinc.com>
+ <dbd8ae86-03a5-4b33-b774-846788bf8b89@gmail.com>
+Content-Language: en-US
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+In-Reply-To: <dbd8ae86-03a5-4b33-b774-846788bf8b89@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: MpjBLaDlCipk2odoxYBEjKG9a9Z59SO2
+X-Proofpoint-GUID: MpjBLaDlCipk2odoxYBEjKG9a9Z59SO2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ spamscore=0 clxscore=1011 mlxscore=0 mlxlogscore=836 lowpriorityscore=0
+ impostorscore=0 adultscore=0 priorityscore=1501 malwarescore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411120126
 
 
-On Sun, 10 Nov 2024 20:23:35 +0530, Wasim Nazir wrote:
-> Add the unique ID for Qualcomm QCS9075 SoC.
-> This value is used to differentiate the SoC across qcom targets.
+
+On 11/12/2024 4:34 PM, Konrad Dybcio wrote:
 > 
-> Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
-> ---
->  include/dt-bindings/arm/qcom,ids.h | 1 +
->  1 file changed, 1 insertion(+)
 > 
+> On 11/5/24 17:49, Krishna Kurapati wrote:
+>> Add support for USB controllers on QCS8300. The second
+>> controller is only High Speed capable.
+>>
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>> ---
+> 
+> [...]
+> 
+> (the PHYs look good)
+> 
+>> +        usb_1: usb@a6f8800 {
+>> +            compatible = "qcom,qcs8300-dwc3", "qcom,dwc3";
+>> +            reg = <0x0 0x0a6f8800 0x0 0x400>;
+>> +            #address-cells = <2>;
+>> +            #size-cells = <2>;
+>> +            ranges;
+> 
+> Please match the property style with x1e80100.dtsi's dwc3 node
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Meaning adding the 3 properties to before the starting of dwc3 node ?
 
+> 
+> [...]
+> 
+>> +
+>> +            usb_2_dwc3: usb@a400000 {
+>> +                compatible = "snps,dwc3";
+>> +                reg = <0x0 0x0a400000 0x0 0xe000>;
+>> +                interrupts = <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>;
+>> +                iommus = <&apps_smmu 0x20 0x0>;
+>> +                phys = <&usb_2_hsphy>;
+>> +                phy-names = "usb2-phy";
+>> +                snps,dis-u1-entry-quirk;
+>> +                snps,dis-u2-entry-quirk;
+>> +                snps,dis_u2_susphy_quirk;
+>> +                snps,dis_u3_susphy_quirk;
+>> +                snps,dis_enblslpm_quirk;
+> 
+> maximum-speed = "high-speed"
+
+Ideally this is not needed for the driver to operate. Can I add this 
+property when I send the patch to enable second controller on ride 
+platform ? Only reason I ask is this is not a blocker and it would need 
+another rebase.
+
+Regards,
+Krishna,
 
