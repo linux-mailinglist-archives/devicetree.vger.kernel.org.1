@@ -1,129 +1,135 @@
-Return-Path: <devicetree+bounces-121036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C1E59C4FC6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 08:46:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54DEE9C4FD5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 08:48:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5BA3284AD9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 07:46:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1984D283484
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 07:48:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 762A62141DA;
-	Tue, 12 Nov 2024 07:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D3B120C492;
+	Tue, 12 Nov 2024 07:42:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="DB3s470d"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="j25MIWdG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 548DE2141D3;
-	Tue, 12 Nov 2024 07:41:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C4EF20B7EB
+	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 07:42:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731397264; cv=none; b=iEcZebAfthmIgtPCAJHHQsiQl4S0PL4V0imwM4j7Fu11jrSOuL2T7aiaxGEBdbVV/mZrxmNO5IqZBDKnq7u02nApkSMytcydisk13srJ1pOmO0T6ps+GCUJ6bckfIhVGyK840vuh+xZAM4xDNjfvxAUmbHaTd+zmpnFKNyExWn0=
+	t=1731397328; cv=none; b=vBE/bSN94fu76y6GMrYUKtLUZ2geoJ2t8WIfz8VLQPr9YFucFIWmb2RhVlhmwIAZL3FiK2Pl8fPwxeY0HSqZgRwGTouq1YHPa0Rxj3GZiBsXoKjCh81stooUoSNewxmcEPLBD3y5obOKEbL1eIfKgkf5te4WJ8rOxUiIuidGpHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731397264; c=relaxed/simple;
-	bh=HUPCstSJj8AxNTTkAfFfg8P+gOx/RYusqa+DP+nFCLI=;
+	s=arc-20240116; t=1731397328; c=relaxed/simple;
+	bh=4Zdw5kgKTgwPsGUNYQa35eedlMhMIviirI6Hy+Sd0hg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZQihGP6oOre6pljqzBtcSraTbI9YIc9qwItA8QAj9kOo1ty+PoL4cpQQ6KOWZjMO4ziC2GKsJWuwKe/O0/yM1OzWpcI1z+U2ggvneNGYBV8vgc8uGzbV2qmgzMSflBGkcOu75idx5owLjyjsDMAfOYsvakW2wDsAn2i+qGpiej0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=DB3s470d; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID; bh=GZ+O2Qi+eJgeGlb2DdaYSgi1qSIQP3nEYZ9DvcIGf+g=; b=DB3s47
-	0dOw183BT2XDoM8tXijA5Qjpx3ck/RAx5DF/hyCmXrrCmcdOeng9dFmdXSuJxfzSk0aMzbcHAio7b
-	womTtZxal7BPBNUnhrovxCTGYPrm7CGokOuXLXRj8bfmK3vG6ed21ZBB6TzQoRr+wXjqFpJuXcxWj
-	OyUyTXyN8GWnVR40UGpiUxXSeaaMe622Hj418F2Kw2EEjPMKA+OhMAcivDk8/GI8eY3eRkG1hcUsO
-	767HzJAk8kFd3x3ABX9/3APBXTHz84SeuTJumLNKDfKnyjtC1dPbBbGScsqMiQeVAWZige4BadQ0c
-	fzj1FdLMOylWoq+yEjOFqWpShbRQ==;
-Received: from sslproxy07.your-server.de ([78.47.199.104])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sean@geanix.com>)
-	id 1tAlWD-0002iz-TU; Tue, 12 Nov 2024 08:40:57 +0100
-Received: from [185.17.218.86] (helo=Seans-MacBook-Pro.local)
-	by sslproxy07.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sean@geanix.com>)
-	id 1tAlWD-000P1x-0c;
-	Tue, 12 Nov 2024 08:40:57 +0100
-Date: Tue, 12 Nov 2024 08:40:56 +0100
-From: Sean Nyekjaer <sean@geanix.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: can: tcan4x5x: Document the
- ti,nwkrq-voltage-sel option
-Message-ID: <jd5ausjx726rem4iscupwfxilc2fsfkshw3pim2ps3i5btstge@sz6qnqjfvwx2>
-References: <20241111-tcan-wkrqv-v2-0-9763519b5252@geanix.com>
- <20241111-tcan-wkrqv-v2-2-9763519b5252@geanix.com>
- <20241112-sincere-warm-quetzal-e854ac-mkl@pengutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tc+ENnZniLED+QEYRajCTMyTw4YABHdReSrp9LTDeRRQS3LU7bsk4j+Bivf2FpUfg8rf4jZm+NyRe3jGKdlJ+tSD0OU4t9vQyAV2B1CDKE84tVu6mz2UHkuf3gygdBWgbl4/I4NhWmLEosP5XF029shjLCXxU8VANZTvP7bnRY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=j25MIWdG; arc=none smtp.client-ip=209.85.210.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-71815313303so3225644a34.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2024 23:42:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1731397325; x=1732002125; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mWb+6hjmOAxlNgDc7JKg2yzzLTEdqJ06FfSb5owKkeM=;
+        b=j25MIWdGoDvIVyDNgln+5npG/TeLmJHE8O3Qcv1StG5nkKn1moyBgKUYigN6TNkXod
+         9tEaLdyrKhebdGgw/jTwYyWvSREapa1is/A2o3vq97DoGNC06WM7h8Y/09Rdj6WS5UmD
+         +cRi9NlMwf1M3R8bNsq8eiRjeXPItW+fcJkkE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731397325; x=1732002125;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mWb+6hjmOAxlNgDc7JKg2yzzLTEdqJ06FfSb5owKkeM=;
+        b=WWzpmCVruGW3+6lm9MsJtJ2aEQoDgsRo/TPYIjRp6prMywCgvXSq0F9cXSgURrCuq/
+         yyFjWtnCXYsv+MHeLSLpb1YLSNEetRR/lnebE4Am/Y90QE5z+G+qxZvfUONP2BrPnO3X
+         gHQ0BdjMTt5HRrvocLVAHpHbBS2jkK+32Ht7fJSW+JtZcVRnr9q8qDhEhxGwHiJfXhky
+         ikq7CrE0J/piAK47vKdSW8Lq6Tg7RRR8f7rYioOFbpayGVB2jGmqcD5MVqgeAPupbER+
+         zthX8pfRoaIs+XoS/gjLEPuTh3SmAhXjAzNYSbf2VQgS1fMslUI/AoJ5hbAKOyri/+oh
+         0esQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUf4X4SBAVsv8I9ek5Jg6HA+FX5bQv943LS/DFTRpLbAVsIEegtogXxc1UhMwyLRVY8313ArlGzzv1E@vger.kernel.org
+X-Gm-Message-State: AOJu0YyBVG8wEgWY3A2mkBTSGE+uzEWmMcT/I3KQfVrbzDW01Mk7k4s6
+	gDxSdwhiNw3p6ce6VIX2ygA08nXf8G73MMcSF8InnnFhSChRtzg4Q0UoJjXJMw==
+X-Google-Smtp-Source: AGHT+IHAivkem+e7/fcFL3MNsRfeSzjTTUbqrvF8zF3iiVeiJL0WKCuRtYmXL80k54VkCTs+Wi5+3g==
+X-Received: by 2002:a05:6830:1050:b0:71a:21c9:cd82 with SMTP id 46e09a7af769-71a21c9d013mr9830707a34.0.1731397325430;
+        Mon, 11 Nov 2024 23:42:05 -0800 (PST)
+Received: from google.com ([2401:fa00:1:10:7cd:9f36:34ae:c525])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7f41f67f079sm9823430a12.85.2024.11.11.23.42.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Nov 2024 23:42:04 -0800 (PST)
+Date: Tue, 12 Nov 2024 15:42:01 +0800
+From: "Sung-Chi, Li" <lschyi@chromium.org>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas@weissschuh.net>,
+	Jean Delvare <jdelvare@suse.com>, devicetree@vger.kernel.org,
+	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v2] hwmon: (cros_ec) register thermal sensors to thermal
+ framework
+Message-ID: <ZzMGyaBGX-yLZs8B@google.com>
+References: <20241111074904.1059268-1-lschyi@chromium.org>
+ <20241111095045.1218986-1-lschyi@chromium.org>
+ <4cb3b1c7-86fa-4344-a413-031723f31f1d@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241112-sincere-warm-quetzal-e854ac-mkl@pengutronix.de>
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27455/Mon Nov 11 10:58:33 2024)
+In-Reply-To: <4cb3b1c7-86fa-4344-a413-031723f31f1d@roeck-us.net>
 
-Hi Marc,
-
-On Tue, Nov 12, 2024 at 08:35:43AM +0100, Marc Kleine-Budde wrote:
-> On 11.11.2024 09:54:50, Sean Nyekjaer wrote:
-> > nWKRQ supports an output voltage of either the internal reference voltage
-> > (3.6V) or the reference voltage of the digital interface 0 - 6V.
-> > Add the devicetree option ti,nwkrq-voltage-sel to be able to select
-> > between them.
+On Mon, Nov 11, 2024 at 09:01:33AM -0800, Guenter Roeck wrote:
+> On 11/11/24 01:50, Sung-Chi wrote:
+> > From: "Sung-Chi, Li" <lschyi@chromium.org>
 > > 
-> > Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml | 13 +++++++++++++
-> >  1 file changed, 13 insertions(+)
+> > cros_ec hwmon driver probes available thermal sensors when probing the
+> > driver.  Register these thermal sensors to the thermal framework, such
+> > that thermal framework can adopt these sensors as well.
 > > 
-> > diff --git a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-> > index f1d18a5461e05296998ae9bf09bdfa1226580131..a77c560868d689e92ded08b9deb43e5a2b89bf2b 100644
-> > --- a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-> > +++ b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-> > @@ -106,6 +106,18 @@ properties:
-> >        Must be half or less of "clocks" frequency.
-> >      maximum: 18000000
-> >  
-> > +  ti,nwkrq-voltage-sel:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    description:
-> > +      nWKRQ Pin GPO buffer voltage rail configuration.
-> > +      The option of this properties will tell which
-> > +      voltage rail is used for the nWKRQ Pin.
-> > +    oneOf:
-> > +      - description: Internal voltage rail
-> > +        const: 0
-> > +      - description: VIO voltage rail
-> > +        const: 1
+> > To make cros_ec registrable to thermal framework, the cros_ec dts need
+> > the corresponding changes:
+> > 
+> > &cros_ec {
+> > 	#thermal-sensor-cells = <1>;
+> > };
+> > 
+> > Change-Id: I29b638427c715cb44391496881fc61ad53abccaf
 > 
-> We usually don't want to put register values into the DT. Is 0, i.e. the
-> internal voltage rail the default? Is using a boolean better here?
+> Drop.
 > 
-> regards,
-> Marc
+> > Signed-off-by: Sung-Chi, Li <lschyi@chromium.org>
+> 
+> Detailed explanation will be needed: Why not use HWMON_C_REGISTER_TZ ?
+> Unless I am missing something, this code just duplicates code from the hwmon core.
+> 
+> Please do not send follow-up patch series as response to previous ones.
+> 
+> Guenter
 > 
 
-Thanks for the review :)
+Hi, thank you for pointing out using HWMON_C_REGISTER_TZ. After checking how
+HWMON_C_REGSITER_TZ works, I think I only need to add one line into the
+cros_ec_hwmon_info, and almost all concerns Thomas pointed out in latest reply
+would be resolved automatically (because there would be only one line of change,
+and that change is just a hwmon configuration, so should be a valid way of
+combining with the thermal system).
 
-Can you come up with a sane naming?
-A boolean that equals true when it's set to VIO voltage? Or the other
-way around?
+Thank all for reviewing and giving inputs, and I will soon send out the one
+line patch.
 
-/Sean
+Best,
+Sung-Chi, Li
 
