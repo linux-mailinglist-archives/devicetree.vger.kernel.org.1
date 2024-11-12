@@ -1,207 +1,150 @@
-Return-Path: <devicetree+bounces-121304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D47C9C6430
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 23:22:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A2009C64A8
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 00:01:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34C621F26593
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 22:22:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA1EB28256D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 23:01:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 122A821A4A7;
-	Tue, 12 Nov 2024 22:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D157321B448;
+	Tue, 12 Nov 2024 23:01:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="V31rFO1C"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="tfqIf+D2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E4411EC006
-	for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 22:22:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F140021A71D;
+	Tue, 12 Nov 2024 23:01:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731450139; cv=none; b=uBWBdJHTkCaBgMOFxHDcCGbxZebaugCA2e+7h0iqY0UEKZaU8T7xyWVsjljb4NdSWXyBgTr4E9p6OUJQUeRVJdp5SZ2/DqLUjfeicMQEH0/pvb22FoC9S1C4wEWPrkdgsUWn5Vg1sETM83WSDy6J2bOnhy6XmkkZ6vAoxTXdnao=
+	t=1731452477; cv=none; b=gU7FQ+mFFsrViLtIw54zWS/cO0OZisbVf6AorSkOMg+N9h2fSRRyQi2Kx3KYlmaTHYvXt1U9mwiY6O501IcrgNVnk8rLSP5W78DuhtS1CjRzjBFuFT/SMUpKaDmbyQbaf5Ny9C9/VjhfYdnpgiZ1kT4rK1oaG+D2pemxAZ8LgqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731450139; c=relaxed/simple;
-	bh=XvcRH2z9Mk+KcQ/n1l1PXqkDGa7TDpKW5lJrqcOjVQs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WdNH1JazcJjAaHKARxN+heGPR6fHIJTm4DpJNsXy4oZW0il2k1cFOdxag5QaNMqPtn4Cx09UsOUYVH5Qt/65gSsrwqyFG40GVyM7U/IkZ8yf2VZUF3odAVX48GQYzEDR/8zSFy/TEX1RSUUxPTY4ryz65+MBsvZ8jXsb4QpHTCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=V31rFO1C; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1731450113;
- bh=AuUhsWmnwS3Wq04jwBtV8xlb7rkCU2Qg5LzNdH/FNA4=;
- b=V31rFO1Cs7EX8K1z/q0Z0B+MvegdFxr9jea0Z53oW3CjvNvvaf0N84dNRTFF/ecESeUL4ecU2
- TgUtD12239FwfIO3uJWdKyAwZM3Qzt8x/ix7XlAkK2OPQ/9kOTJvnFRFtEmszlYhV7BBeKW59Du
- tmOIcssHgcwBtTTX7im0mnMmCUO760w0q6/W5YlZhH8si3SyvDURRhIm8WYigKUbYSc3fT/P0aI
- dw0SphJ9zNJ516rAPeYLWy+HBa12R2bdQMdAqyml/7IiiyF/E2HW77KbRS5KGvfo9cRg8Ktc0Oc
- kbB+GXkCv1Pq/zdci3ssnHeVZEWTIhMfOHiohVX9+ECg==
-Message-ID: <79f13cef-1630-491f-8525-b2b44c0d42fb@kwiboo.se>
-Date: Tue, 12 Nov 2024 23:21:44 +0100
+	s=arc-20240116; t=1731452477; c=relaxed/simple;
+	bh=mICNe1S+9LRvNFhhGkvbfiJOntxHxtOYxhrITBJVBeg=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=m0oFITfcr3QRX5bOV9r8mIbiOkJEyui5jyvbejO0Ftfq63KmDY/saASnVkvZlx2/iOeUQu+Ohl8IJSaNKX4ePz11p7DHeq7wLRQl0+V1Zgz/rHhAoL5FqyivN+6akZQrl4U4761ATKjptk/1owE+kYRIhXqJ7Bc7KijO45UKbLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=tfqIf+D2; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 528CC12000F;
+	Wed, 13 Nov 2024 02:01:03 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 528CC12000F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1731452463;
+	bh=R6WWz//nSWu13Rk2hR17kLEi/SWTpz7lU17SkhzgBF0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=tfqIf+D2WV3PG2BjQLgEsODuRAsdpGBhUM4IhaN5AQU3T8LjW83E/gY2p3Psz6HUN
+	 fwEmKGhiAxQczKWcPdoOU/ENwfG1Q+ARivrcnz6OqoNjMw0dmUyTQAQauQxNt6oEWp
+	 SPiBZn5dH6VzJpkhNrCc6UT7GNsdMkj6ahuKPy8LOGnAxa4vU/jabfY9XBx+nJ9QGg
+	 HEuqz/WMQETjC81FAqbYyejehMW3myp7j4uu5cvLlGRsInanmuW7++zhSKjPP0+6hV
+	 ajG5O/X3xqPIDvfMoYCwEhXQXYoM96JHaOT1jLkkuqPABw+WNHux9VK7fcqFGAmtND
+	 YO9QGg/PR84WA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 13 Nov 2024 02:01:03 +0300 (MSK)
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, "Rob
+ Herring" <robh@kernel.org>
+Subject: [PATCH 1/2] dt-bindings: reset: add bindings for A1 SoC audio reset controller
+Date: Wed, 13 Nov 2024 02:00:55 +0300
+Message-ID: <20241112230056.1406222-2-jan.dakinevich@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241112230056.1406222-1-jan.dakinevich@salutedevices.com>
+References: <20241112230056.1406222-1-jan.dakinevich@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Enable UART8 on rock-3b
-To: =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@linux.com>,
- Dragan Simic <dsimic@manjaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- FUKAUMI Naoki <naoki@radxa.com>, Chukun Pan <amadeus@jmu.edu.cn>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241111181807.13211-1-tszucs@linux.com>
- <20241111181807.13211-4-tszucs@linux.com>
- <4ba81dfa-f276-4e05-b46b-92f50dbcfcc4@kwiboo.se>
- <CA+GksrJLpeU8x-kjR1Ng3ySf+giiufCsJuBssng9qoX1PjAunA@mail.gmail.com>
- <9330ebb370780c001fd2aaee49aec9e8@manjaro.org>
- <CA+GksrJjDPve29Vh7ZFhM+JFp058xmXZAPeuLuFth7v=JeiH2w@mail.gmail.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <CA+GksrJjDPve29Vh7ZFhM+JFp058xmXZAPeuLuFth7v=JeiH2w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 6733d4fe9402f7538d196cc3
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
+ p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 189131 [Nov 12 2024]
+X-KSMG-AntiSpam-Version: 6.1.1.7
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 41 0.3.41 623e98d5198769c015c72f45fabbb9f77bdb702b, {Tracking_smtp_not_equal_from}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, {Tracking_white_helo}, FromAlignment: n
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/11/12 21:10:00 #26864167
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Hi Tamás,
+This reset controller is part of audio clock controller and handled by
+auxiliary reset driver. Introduced defines supposed to be used together
+with upcoming device tree nodes for audio clock controller fo A1 SoC.
 
-On 2024-11-12 22:04, Tamás Szűcs wrote:
-> Hi Dragan,
-> 
-> On Tue, Nov 12, 2024 at 4:07 PM Dragan Simic <dsimic@manjaro.org> wrote:
->> Please correct me if I'm wrong, but isn't this UART supposed to be
->> used for the Bluetooth part of an SDIO WiFi + Bluetooth module, in
->> form of a non-standard M.2 module that Radxa sells?
-> 
-> UART8 is supposed to be used for any radio module connected to the M2E
-> connector.
-> It will typically be responsible for Bluetooth or BLE but it could be
-> 802.15.4 or whatever. In any case, all wanting to use it will need the
-> uart8 node enabled.
+Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+---
+ .../reset/amlogic,meson-a1-audio-reset.h      | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
 
-Do you have any specific sdio+uart module you are testing these changes
-with? The pinout for sdio+uart on Radxa's M.2 Key E slot is their own,
-pinout for pcie and usb should be closer to a common standard.
-
-https://dl.radxa.com/accessories/wireless-module/ROCKPi_M2_Wireless_Module_Pinout_v10.xlsx
-
-> 
->>
->> With that in mind, I see very little sense in just enabling the UART,
->> without defining the entire Bluetooth interface, which AFAIK produces
-> 
-> Defining a bluetooth node would hardwire idiosyncrasies of a given
-> radio module's Bluetooth core. Sure you could add a sleep clock, all
-> kind of sideband signals for wakeups, reset, power down, etc. But hey,
-> some will use them, some won't. I think it's undesirable and
-> unnecessary. You can hciattach from here and most will work just like
-> that. Tighter integration or anything special, module specific on top
-> should be handled individially, on a case-by-case basis. This is a dev
-> board after all. I say trick of all trades.
-
-Changing to status=okay for sdmmc2 and uart8 should be fine, it does not
-cause any issue for my pcie wifi module testing with a Radxa A8 module.
-
-Testing with a Radxa A2 module (sdio+uart), the sdio/wifi part is
-automatically discovered, however bluetooth require a DT overlay for
-automatic probe. Something like this seem to work:
-
-diff --git a/rk3568-rock-3b-radxa-a2.dtso b/rk3568-rock-3b-radxa-a2.dtso
+diff --git a/include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h b/include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
 new file mode 100644
-index 000000000000..746b04e601af
+index 000000000000..7693552f1507
 --- /dev/null
-+++ b/dts/rk3568-rock-3b-radxa-a2.dtso
-@@ -0,0 +1,46 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++++ b/include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
+@@ -0,0 +1,36 @@
++/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
 +/*
-+ * DT-overlay for Radxa ROCK Pi Wireless Module A2.
++ * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
++ *
++ * Author: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 + */
 +
-+/dts-v1/;
-+/plugin/;
++#ifndef _DT_BINDINGS_AMLOGIC_MESON_A1_AUDIO_RESET_H
++#define _DT_BINDINGS_AMLOGIC_MESON_A1_AUDIO_RESET_H
 +
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
++#define AUD_RESET_DDRARB	0
++#define AUD_RESET_TDMIN_A	1
++#define AUD_RESET_TDMIN_B	2
++#define AUD_RESET_TDMIN_LB	3
++#define AUD_RESET_LOOPBACK	4
++#define AUD_RESET_TDMOUT_A	5
++#define AUD_RESET_TDMOUT_B	6
++#define AUD_RESET_FRDDR_A	7
++#define AUD_RESET_FRDDR_B	8
++#define AUD_RESET_TODDR_A	9
++#define AUD_RESET_TODDR_B	10
++#define AUD_RESET_SPDIFIN	11
++#define AUD_RESET_RESAMPLE	12
++#define AUD_RESET_EQDRC		13
++#define AUD_RESET_LOCKER	14
++#define AUD_RESET_TOACODEC	30
++#define AUD_RESET_CLKTREE	31
 +
-+&sdmmc2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
++#define AUD_VAD_RESET_DDRARB	0
++#define AUD_VAD_RESET_PDM	1
++#define AUD_VAD_RESET_TDMIN_VAD	2
++#define AUD_VAD_RESET_TODDR_VAD	3
++#define AUD_VAD_RESET_TOVAD	4
++#define AUD_VAD_RESET_CLKTREE	5
 +
-+	wifi@1 {
-+		compatible = "brcm,bcm43456-fmac", "brcm,bcm4329-fmac";
-+		reg = <1>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PD6 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "host-wake";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_wake_host_h>;
-+	};
-+};
-+
-+&uart8 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm4345c5";
-+		clocks = <&rk809 1>;
-+		clock-names = "lpo";
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <RK_PB5 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "host-wakeup";
-+		device-wakeup-gpios = <&gpio4 RK_PB4 GPIO_ACTIVE_HIGH>;
-+		shutdown-gpios = <&gpio4 RK_PB2 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_reg_on_h &bt_wake_host_h &host_wake_bt_h>;
-+		vbat-supply = <&vcc3v3_sys2>;
-+		vddio-supply = <&vcc_1v8>;
-+	};
-+};
-
-With that applied wifi and bt module is detected and firmware loaded
-during startup:
-
-[    4.684687] mmc_host mmc2: Bus speed (slot 0) = 150000000Hz (slot req 150000000Hz, actual 150000000HZ div = 0)
-[    4.699412] dwmmc_rockchip fe000000.mmc: Successfully tuned phase to 360
-[    4.707429] mmc2: new ultra high speed SDR104 SDIO card at address 0001
-[    4.717034] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac43456-sdio for chip BCM4345/9
-[    4.760907] Bluetooth: hci0: BCM: chip id 130
-[    4.763736] Bluetooth: hci0: BCM: features 0x0f
-[    4.787714] Bluetooth: hci0: BCM4345C5
-[    4.788482] Bluetooth: hci0: BCM4345C5 (003.006.006) build 0000
-[   11.417553] Bluetooth: hci0: BCM: features 0x0f
-[   11.441621] Bluetooth: hci0: BCM4345C5 Ampak_CL1 UART 37.4 MHz BT 5.2 [Version: 1039.1086]
-[   11.442423] Bluetooth: hci0: BCM4345C5 (003.006.006) build 1086
-
-Regards,
-Jonas
-
-> 
->> nasty looking error messages in the kernel log when there's actually
->> nothing connected to the UART.
-> 
-> My dmesg is clean as a whistle
-> root@rock-3b:~# dmesg | grep -E 'fe6c0000|ttyS0'
-> [    0.344818] fe6c0000.serial: ttyS0 at MMIO 0xfe6c0000 (irq = 26,
-> base_baud = 1500000) is a 16550A
-> What kind of nasty errors do you recall?
-> 
-> Kind regards,
-> Tamas
++#endif /* _DT_BINDINGS_AMLOGIC_MESON_A1_AUDIO_RESET_H */
+-- 
+2.34.1
 
 
