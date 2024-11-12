@@ -1,366 +1,184 @@
-Return-Path: <devicetree+bounces-121272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01E4A9C60C6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 19:49:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D119C60CD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 19:51:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 857B01F23753
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 18:49:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6935283FC4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 18:51:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B47D3217913;
-	Tue, 12 Nov 2024 18:49:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Xjko5r3q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B10217915;
+	Tue, 12 Nov 2024 18:51:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FE8B201249;
-	Tue, 12 Nov 2024 18:49:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEDD22144D8;
+	Tue, 12 Nov 2024 18:51:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731437366; cv=none; b=MyLgRzVxciSs0aybpwwuB5wamMlGhuJo3QpdjYvFXiqUskg9qL4WBd99edSPn79Ruoxiy5Mk6SAt4ZqXERwX+vdlF2360XOBBvEb0B2jccgP1Qn8+GvjMpvgB4BwrV76wX3RXPkPjTIISTJfjBfRFakBu5yt39bokNhtbVKMu8o=
+	t=1731437514; cv=none; b=jhef3NIUv9xLu4eJfKzez8ojy7y+KNVpvJ50V0CDOYbg57pAQ1GPmNPczjseC/PH/H1AIAVQ+zs85LqZLnL9mwqsEKR6ZWqi4GB/ehzNhL6RiZjwl6O2Vg71OQgK/OsM5QBDCpNOPCx9xh1MJl5YOksQd4o0cwISrXnKoT36UD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731437366; c=relaxed/simple;
-	bh=mEQre+K2Jof7YSqhQzQZt0O46vsmuqIaW/XRDC6I1RI=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=ZJwBo43LSSxepKeAKQE/kEh3RUha+AiwZXfiQ4yq++fMedGyBpD+9PG2wijofFZT9AiQOSRGE9qq63j1wMPnz4hYRSkyeBQSzEyusnhfJVeP919xXpi4/q82EW6rfVB07qwjGNOHUVQs9KCBED8lZJj3TMHk9/citJRMsw6w86o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Xjko5r3q; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-Received: from localhost (docker-mailserver-web-1.docker-mailserver_default [172.22.0.5])
-	by mail.mainlining.org (Postfix) with ESMTPSA id C9B58E45C8;
-	Tue, 12 Nov 2024 18:49:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
-	s=psm; t=1731437358;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=x6fl+REPDaaxq1ljcrPGFk2JX/FX55Eh3bhEKDJ2hSM=;
-	b=Xjko5r3qntRxx+TWuY4S1pEkPQY8AzTMwxgfvNlOdKOx8ytnfgPttkCerD2I4mffnep577
-	anjd/MEqSlHSbb4oWVn79l6XbDIpVm9HqQ7l5jeIcFKecUeA1nW5jJHYSKkrktFXVR8+fT
-	23XEA02Ghw1quLUKJThVWxDplLXg+/72tli9RYBZXQJ4iGP+U68oWerJFZ0qghGwIhQN42
-	5FpGGdXLYFKjmNRQOp6aRnVsd6xhRKy7tUx9xFWoNrbD21aMY8wWx3kdLMTBYvi80YH5og
-	nlQw1BdDe4endHz/dYuDeHJIE96ToH3Z9sbO12YzJGiQFwAoJvYCbI1W+ih6LQ==
+	s=arc-20240116; t=1731437514; c=relaxed/simple;
+	bh=IZb9Qolb6oqweuQOCiBsezlbcxbtYXIsJBMpLCYyCo0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hFhSq9EXxiz2foKB+PZ1FYEsCMLRqrpQfRq0l/xtYZSpz5KetZjf1jvWlNgAxJO4uRDTbTkmfiA6zKD8h40Zb24dLKrNW9hiszsjtIXtZLA4z6LTjRgkkF1lyM9uf/17+JUPPqVREFnpB+6yg7U8V++oYjzaKDCRostUxTMffSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EC1801516;
+	Tue, 12 Nov 2024 10:52:20 -0800 (PST)
+Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8EF473F66E;
+	Tue, 12 Nov 2024 10:51:49 -0800 (PST)
+Message-ID: <33f8430e-0adc-4060-afb5-2cc5c79c8dec@arm.com>
+Date: Tue, 12 Nov 2024 18:51:48 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 12 Nov 2024 19:49:18 +0100
-From: barnabas.czeman@mainlining.org
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Amit Kucheria <amitk@kernel.org>, Thara Gopinath
- <thara.gopinath@gmail.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Daniel
- Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz
- Luba <lukasz.luba@arm.com>, Joerg Roedel <joro@8bytes.org>, Will Deacon
- <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Srinivas Kandagatla
- <srinivas.kandagatla@linaro.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org, iommu@lists.linux.dev,
- =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-Subject: Re: [PATCH v5 08/10] arm64: dts: qcom: Add initial support for
- MSM8917
-In-Reply-To: <ZzOQEgLLhkH-IymV@linaro.org>
-References: <20241112-msm8917-v5-0-3ca34d33191b@mainlining.org>
- <20241112-msm8917-v5-8-3ca34d33191b@mainlining.org>
- <ZzOQEgLLhkH-IymV@linaro.org>
-Message-ID: <0dae1cea420bd335be591e4b1be3d07c@mainlining.org>
-X-Sender: barnabas.czeman@mainlining.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix vdd_gpu voltage constraints on
+ PinePhone Pro
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, stable@vger.kernel.org
+References: <0718feb8e95344a0b615f61e6d909f6e105e3bf9.1731264205.git.dsimic@manjaro.org>
+ <607a731c-41e9-497a-a08c-f718339610ae@arm.com>
+ <fdf58f3e9fcb4c672a4bb114fbdab60d@manjaro.org>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <fdf58f3e9fcb4c672a4bb114fbdab60d@manjaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 2024-11-12 18:27, Stephan Gerhold wrote:
-> On Tue, Nov 12, 2024 at 04:49:38PM +0100, Barnabás Czémán wrote:
->> From: Otto Pflüger <otto.pflueger@abscue.de>
->> 
->> Add initial support for MSM8917 SoC.
->> 
->> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
->> [reword commit, rebase, fix schema errors]
->> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
->> ---
->>  arch/arm64/boot/dts/qcom/msm8917.dtsi | 1974 
->> +++++++++++++++++++++++++++++++++
->>  1 file changed, 1974 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/msm8917.dtsi 
->> b/arch/arm64/boot/dts/qcom/msm8917.dtsi
->> new file mode 100644
->> index 
->> 0000000000000000000000000000000000000000..cf0a0eec1141e11faca0ee9705d6348ab32a0f50
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/msm8917.dtsi
->> @@ -0,0 +1,1974 @@
->> [...]
->> +		domain-idle-states {
->> +			cluster_sleep_0: cluster-sleep-0 {
->> +				compatible = "domain-idle-state";
->> +				arm,psci-suspend-param = <0x41000023>;
->> +				entry-latency-us = <700>;
->> +				exit-latency-us = <650>;
->> +				min-residency-us = <1972>;
->> +			};
->> +
->> +			cluster_sleep_1: cluster-sleep-1 {
->> +				compatible = "domain-idle-state";
->> +				arm,psci-suspend-param = <0x41000043>;
->> +				entry-latency-us = <240>;
->> +				exit-latency-us = <280>;
->> +				min-residency-us = <806>;
->> +			};
+On 12/11/2024 2:36 pm, Dragan Simic wrote:
+> Hello Robin,
 > 
-> I think my comment here is still open:
+> On 2024-11-12 15:19, Robin Murphy wrote:
+>> On 10/11/2024 6:44 pm, Dragan Simic wrote:
+>>> The regulator-{min,max}-microvolt values for the vdd_gpu regulator in 
+>>> the
+>>> PinePhone Pro device dts file are too restrictive, which prevents the 
+>>> highest
+>>> GPU OPP from being used, slowing the GPU down unnecessarily.  Let's 
+>>> fix that
+>>> by making the regulator-{min,max}-microvolt values less strict, using 
+>>> the
+>>> voltage range that the Silergy SYR838 chip used for the vdd_gpu 
+>>> regulator is
+>>> actually capable of producing. [1][2]
+>>
+>> Specifying the absolute limits which the regulator driver necessarily
+>> already knows doesn't seem particularly useful... Moreover, the RK3399
+>> datasheet specifies the operating range for GPU_VDD as 0.80-1.20V, so
+>> at the very least, allowing the regulator to go outside that range
+>> seems inadvisable.
 > 
-> This is strange, the deeper sleep state has lower timings than the
-> previous one?
-I was reordering based on Konrad comments when i have renamed the nodes 
-maybe it is not correct then.
-I am searching for how to validate these levels, i have find these
-https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.10.6.2.c26-01500-89xx.0/arch/arm64/boot/dts/qcom/msm8917-pm.dtsi#L45-91
-Do you know where can i find psci-suspend-param-s? Should I also add wfi 
-level?
+> Indeed, which is why I already mentioned in the patch description
+> that I do plan to update the constraints of all regulators to match
+> the summary of the constraints of their consumers.  Though, I plan
+> to do that later, as a separate directory-wide cleanup, for which
+> I must find and allocate a substantial amount of time, to make sure
+> there will be no mistakes.
+
+Sure, but even if every other DT needs fixing, that still doesn't make 
+it a good idea to deliberately introduce the same mistake to *this* DT 
+and thus create even more work to fix it again. There's no value in 
+being consistently wrong over inconsistently wrong - if there's 
+justification for changing this DT at all, change it to be right.
+
+>> However there's a separate datasheet for the
+>> RK3399-T variant, which does specify this 875-975mV range and a
+>> maximum GPU clock of 600MHz, along with the same 1.5GHz max.
+>> Cortex-A72 clock as advertised for RK3399S, so it seems quite possible
+>> that these GPU constraints here are in fact intentional as well.
+>> Obviously users are free to overclock and overvolt if they wish - I do
+>> for my actively-cooled RK3399 board :) - but it's a different matter
+>> for mainline to force it upon them.
 > 
->> +
->> +			cluster_sleep_2: cluster-sleep-2 {
->> +				compatible = "domain-idle-state";
->> +				arm,psci-suspend-param = <0x41000053>;
->> +				entry-latency-us = <700>;
->> +				exit-latency-us = <1000>;
->> +				min-residency-us = <6500>;
->> +			};
->> +		};
->> +
->> [...]
->> +		restart@4ab000 {
->> +			compatible = "qcom,pshold";
->> +			reg = <0x004ab000 0x4>;
->> +		};
+> Well, maybe the RK3399S is the same in that regard as the RK3399-T,
+> but maybe it actually isn't -- unfortunately, we don't have some
+> official RK3399S datasheet that would provide us with the required
+> information.  As another, somewhat unrelated example, we don't have
+> some official documentation to tell us is the RK3399S supposed not
+> to have working PCI Express interface, which officially isn't present
+> in the RK3399-T variant.
+
+Looking back at the original submission, v2 *was* proposing the RK3399-T 
+OPPs, with the GPU capped at 600MHz, and it was said that those are what 
+PPP *should* be using[1]. It seems there was a semantic objection to 
+having a separate rk3399-t-opp.dtsi at the time, and when the main DTS 
+was reworked for v3 the 800MHz GPU OPP seems to have been overlooked. 
+However, since rk3399-t.dtsi does now exist anyway, it would seem more 
+logical to just use that instead of including rk3399.dtsi and then 
+overriding it to be pretty much equivalent to the T variant anyway.
+
+Thanks,
+Robin.
+
+[1] 
+https://lore.kernel.org/linux-rockchip/CAN1fySWVVTeGHAD=_hFH+ZdcR_AEiBc0wqes9Y4VRzB=zcdvSw@mail.gmail.com/
+
+> However, I fully agree that forcing any kind of an overclock is not
+> what we want to do.  Thus, I'll do my best, as I already noted in this
+> thread, to extract the dtb from the "reference" Android build that
+> Rockchip itself provided for the RK3399S-based PinePhone Pro.  That's
+> closest to the official documentation for the RK3399S variant that we
+> can get our hands on.
 > 
-> This one too:
-> 
-> You have PSCI for shutting down, do you actually need this?
-> 
->> +
->> +		tlmm: pinctrl@1000000 {
->> +			compatible = "qcom,msm8917-pinctrl";
->> +			reg = <0x01000000 0x300000>;
->> +			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
->> +			gpio-controller;
->> +			gpio-ranges = <&tlmm 0 0 134>;
->> +			#gpio-cells = <2>;
->> +			interrupt-controller;
->> +			#interrupt-cells = <2>;
->> +
->> [...]
->> +			sdc1_clk_on: sdc1-clk-on-state {
->> +				pins = "sdc1_clk";
->> +				bias-disable;
->> +				drive-strength = <16>;
->> +			};
->> +
->> +			sdc1_clk_off: sdc1-clk-off-state {
->> +				pins = "sdc1_clk";
->> +				bias-disable;
->> +				drive-strength = <2>;
->> +			};
->> +
->> +			sdc1_cmd_on: sdc1-cmd-on-state {
->> +				pins = "sdc1_cmd";
->> +				bias-disable;
->> +				drive-strength = <10>;
->> +			};
->> +
->> +			sdc1_cmd_off: sdc1-cmd-off-state {
->> +				pins = "sdc1_cmd";
->> +				bias-disable;
->> +				drive-strength = <2>;
->> +			};
->> +
->> +			sdc1_data_on: sdc1-data-on-state {
->> +				pins = "sdc1_data";
->> +				bias-pull-up;
->> +				drive-strength = <10>;
->> +			};
->> +
->> +			sdc1_data_off: sdc1-data-off-state {
->> +				pins = "sdc1_data";
->> +				bias-pull-up;
->> +				drive-strength = <2>;
->> +			};
->> +
->> +			sdc1_rclk_on: sdc1-rclk-on-state {
->> +				pins = "sdc1_rclk";
->> +				bias-pull-down;
->> +			};
->> +
->> +			sdc1_rclk_off: sdc1-rclk-off-state {
->> +				pins = "sdc1_rclk";
->> +				bias-pull-down;
->> +			};
->> +
->> +			sdc2_clk_on: sdc2-clk-on-state {
->> +				pins = "sdc2_clk";
->> +				drive-strength = <16>;
->> +				bias-disable;
->> +			};
->> +
->> +			sdc2_clk_off: sdc2-clk-off-state {
->> +				pins = "sdc2_clk";
->> +				bias-disable;
->> +				drive-strength = <2>;
->> +			};
->> +
->> +			sdc2_cmd_on: sdc2-cmd-on-state {
->> +				pins = "sdc2_cmd";
->> +				bias-pull-up;
->> +				drive-strength = <10>;
->> +			};
->> +
->> +			sdc2_cmd_off: sdc2-cmd-off-state {
->> +				pins = "sdc2_cmd";
->> +				bias-pull-up;
->> +				drive-strength = <2>;
->> +			};
-> 
-> These are not referenced anywhere? Not here in the sdhc_X nodes, and
-> also not in your msm8917-xiaomi-riva.dts. Would also recommend
-> consolidating these to a single node like in msm8916.dtsi, see commit
-> c943e4c58b2f ("arm64: dts: qcom: msm8916/39: Consolidate SDC pinctrl").
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=c943e4c58b2ffb0dcd497f8b12f284f5e8fc477e
-> 
->> +
->> +			sdc2_cd_on: cd-on-state {
->> +				pins = "gpio67";
->> +				function = "gpio";
->> +				drive-strength = <2>;
->> +				bias-pull-up;
->> +			};
->> +
->> +			sdc2_cd_off: cd-off-state {
->> +				pins = "gpio67";
->> +				function = "gpio";
->> +				drive-strength = <2>;
->> +				bias-disable;
->> +			};
-> 
-> It does not make sense to have different on/off states for the card
-> detect (CD) pin of the SD card. It needs to work even when the SD card
-> is suspended so we can detect insertions/removals. Also should be 
-> placed
-> in the board-specific DT part.
-> 
-> See commit dfbda20dabaa ("arm64: dts: qcom: msm8916/39: Fix SD card
-> detect pinctrl").
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=dfbda20dabaa1f284abd550035db5887384c8e4c
-> 
-> 
->> +
->> +			sdc2_data_on: sdc2-data-on-state {
->> +				pins = "sdc2_data";
->> +				bias-pull-up;
->> +				drive-strength = <10>;
->> +			};
->> +
->> +			sdc2_data_off: sdc2-data-off-state {
->> +				pins = "sdc2_data";
->> +				bias-pull-up;
->> +				drive-strength = <2>;
->> +			};
->> +
->> [...]
->> +		blsp1_i2c4: i2c@78b8000 {
->> +			compatible = "qcom,i2c-qup-v2.2.1";
->> +			reg = <0x078b8000 0x500>;
->> +			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>,
->> +				 <&gcc GCC_BLSP1_AHB_CLK>;
->> +			clock-names = "core", "iface";
->> +			dmas = <&blsp1_dma 10>, <&blsp1_dma 11>;
->> +			dma-names = "tx", "rx";
->> +			pinctrl-0 = <&blsp1_i2c4_default>;
->> +			pinctrl-1 = <&blsp1_i2c4_sleep>;
->> +			pinctrl-names = "default", "sleep";
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			status = "disabled";
->> +		};
->> +
->> +		blsp2_i2c5: i2c@7af5000 {
-> 
-> This is actually blsp2_i2c1 if you look at the clock name below:
-> 
->> +			compatible = "qcom,i2c-qup-v2.2.1";
->> +			reg = <0x07af5000 0x600>;
->> +			interrupts = <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&gcc GCC_BLSP2_QUP1_I2C_APPS_CLK>,
-> 
-> here ^
-> 
-> But I realize now that the pinctrl functions are consecutively numbered
-> without the BLSP number. Sorry for the confusion.
-> 
-> Basically:
->   - blsp1_i2c2 == blsp_i2c2
->   - blsp2_i2c1 == blsp_i2c5
-> 
-> Looking at some other examples upstream I guess you can choose between
-> one of the following options:
-> 
->  1. msm8974/msm8976/msm8996/msm8998: Use &blspX_i2cY labels for the 
-> i2c@
->     node and pinctrl and only have the slightly confusing pinctrl
->     function. E.g. this in msm8976.dtsi:
-> 
-> 			/* 4 (not 6!) interfaces per QUP, BLSP2 indexes are numbered (n)+4 
-> */
-> 			blsp2_i2c2_default: blsp2-i2c2-default-state {
-> 				pins = "gpio22", "gpio23";
-> 				function = "blsp_i2c6";
-> 				drive-strength = <2>;
-> 				bias-disable;
-> 			};
-> 
->     Note how blsp2_i2c2 == blsp_i2c6.
-> 
->  2. msm8994: Use &blspX_i2cY labels for the i2c@ node, but keep pinctrl
->     named &i2cN_default. E.g. this in msm8994.dtsi:
-> 
-> 		blsp2_i2c1: i2c@f9963000 {
-> 			/* ... */
-> 			pinctrl-names = "default", "sleep";
-> 			pinctrl-0 = <&i2c7_default>;
-> 			pinctrl-1 = <&i2c7_sleep>;
-> 			/* ... */
-> 		};
-> 
->     Note how blsp2_i2c1 == i2c7_default here.
-> 
->  3. msm8953: Use &i2c_N labels everywhere like on downstream. E.g. this
->     in msm8953.dtsi. This is pretty much what you had originally:
-> 
-> 		i2c_5: i2c@7af5000 {
-> 			/* ... */
-> 			pinctrl-names = "default", "sleep";
-> 			pinctrl-0 = <&i2c_5_default>;
-> 			pinctrl-1 = <&i2c_5_sleep>;
-> 			/* ... */
-> 		};
-> 
-> All of these are fine for me. Feel free to pick the one you prefer. But
-> let's not introduce a new confusing variant of this. :-)
-> 
-> Thanks,
-> Stephan
+>>> This also eliminates the following error messages from the kernel log:
+>>>
+>>>    core: _opp_supported_by_regulators: OPP minuV: 1100000 maxuV: 
+>>> 1150000, not supported by regulator
+>>>    panfrost ff9a0000.gpu: _opp_add: OPP not supported by regulators 
+>>> (800000000)
+>>>
+>>> These changes to the regulator-{min,max}-microvolt values make the 
+>>> PinePhone
+>>> Pro device dts consistent with the dts files for other Rockchip 
+>>> RK3399-based
+>>> boards and devices.  It's possible to be more strict here, by 
+>>> specifying the
+>>> regulator-{min,max}-microvolt values that don't go outside of what 
+>>> the GPU
+>>> actually may use, as the consumer of the vdd_gpu regulator, but those 
+>>> changes
+>>> are left for a later directory-wide regulator cleanup.
+>>>
+>>> [1] 
+>>> https://files.pine64.org/doc/PinePhonePro/PinephonePro-Schematic-V1.0-20211127.pdf
+>>> [2] 
+>>> https://www.t-firefly.com/download/Firefly-RK3399/docs/Chip%20Specifications/DC-DC_SYR837_838.pdf
+>>>
+>>> Fixes: 78a21c7d5952 ("arm64: dts: rockchip: Add initial support for 
+>>> Pine64 PinePhone Pro")
+>>> Cc: stable@vger.kernel.org
+>>> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+>>> ---
+>>>   arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 4 ++--
+>>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts 
+>>> b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+>>> index 1a44582a49fb..956d64f5b271 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+>>> @@ -410,8 +410,8 @@ vdd_gpu: regulator@41 {
+>>>           pinctrl-names = "default";
+>>>           pinctrl-0 = <&vsel2_pin>;
+>>>           regulator-name = "vdd_gpu";
+>>> -        regulator-min-microvolt = <875000>;
+>>> -        regulator-max-microvolt = <975000>;
+>>> +        regulator-min-microvolt = <712500>;
+>>> +        regulator-max-microvolt = <1500000>;
+>>>           regulator-ramp-delay = <1000>;
+>>>           regulator-always-on;
+>>>           regulator-boot-on;
 
