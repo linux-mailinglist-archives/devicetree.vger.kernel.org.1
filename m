@@ -1,128 +1,172 @@
-Return-Path: <devicetree+bounces-121159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72ADC9C5D68
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:36:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 121A79C5D82
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:39:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 408F7B3D47D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:36:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6ED6B35C01
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 14:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9C61FE11C;
-	Tue, 12 Nov 2024 14:35:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PThhpsVR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9749A1FCC66;
+	Tue, 12 Nov 2024 14:36:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E3581FCF55;
-	Tue, 12 Nov 2024 14:35:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D18291FCF6C;
+	Tue, 12 Nov 2024 14:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731422159; cv=none; b=LUYMBPLBZY2AF3FlPVDbCemVzOjtctYP+Rq2T6QDtMLQLPqhv178zRPrApwjzlNagvcu/ermn9CBSd3ldNkdAsnbRwhZeQ5GpUWT1cQytiskbnkoAyKpjjOXdBqu2ZXheWyf1xCcxEu1N7I5NFv7oxNpdpOCSJHiL6dHbLgfPSU=
+	t=1731422176; cv=none; b=AEWOxDfKWxjEOeqUcwSbj6qa33ndnPkeNU8taA8qqVhUeGOKhss56gBNC0jm+RIfuaTlqV8p+5FHuLl9qRKBwNF0PTrISTUdkBQRVU4XmvfDAdAIyhMC/q9671f+3Rjlz2ENrabFuwacy9nyOTuXzNL4iYDqYb7O+N2ej+pRv8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731422159; c=relaxed/simple;
-	bh=Z2NJKOZ80m23Hs6ZpODlXPTw2PK6JAxwWTKiu7L1XNw=;
+	s=arc-20240116; t=1731422176; c=relaxed/simple;
+	bh=Swj4SJsULX+YIa8TLSPmrrh1lNABYWXUZCNeI6pAgC8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QmztT1WSQb6YZrAmMWSx3vthmvvBKN9GJ7jATir9mie8wQixOzYQA/nABkffZByDgvmKPtuIQ5Mz0+AAJtJkAraqT+A/gYhEL1xFOi1aVACeoqUA1jz6ZuNw9ucNCzyBQFog5z2gqpOnTGtQXIq/3IvbInpwsNpwYx9ra4w8298=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PThhpsVR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0157AC4CED0;
-	Tue, 12 Nov 2024 14:35:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731422159;
-	bh=Z2NJKOZ80m23Hs6ZpODlXPTw2PK6JAxwWTKiu7L1XNw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=PThhpsVRXNp9m1870inWzUgadxqlcDbDb2l5xeQ/CvLQJec9dbfmnqbuUa7RLoVC3
-	 bouFA1eMND7HmoShFhH/6BuNj2ZSQ6D5+SFeqDZ6qZ1U63ZtEpJ4gmQmSXvKSzehhR
-	 puAVV+GUuFwbp4fgUSZveLUT6kmXtR+JQHg6edVtwqYp1RwtR9uGgzKeObYoSgskDm
-	 wbqECTvloNFv6vKxXaJ1vJdNFjRpHc7fbiUgTexSCcbh+W5vlAlwEKgBocsUEyyA/P
-	 9pzD2D90SiXvqbDUdfi+7X19gx+6cIr3AjaulUJjmO0lk5fraCM9Cuz6ZoFlF+CD3Y
-	 aSb7mTvr/JJnQ==
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e33a8c84b9aso2075964276.0;
-        Tue, 12 Nov 2024 06:35:58 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVBGsKzVDa7yY5C7hU6o1OAheV1i14RgBtjD0rQGN/I4oLe+Bu4UdezI1nOkFsh7cFuTgZ5j9gyOHVSMhsv@vger.kernel.org, AJvYcCVNBICYNR0n9LG78tezWYHR1quJTf/t0ywuThzBb9yCRqkwRZkOR/6NaIAFwjZLAVNqzBOd43YAYbFa@vger.kernel.org, AJvYcCXlvJXxtzMlA3DyxLjwzb/FIjOo/DhJb8Xd2UyWk02MazMrZC3I2R6A/GArHeJm6etlNFiSCc6OI6zI@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIugYKYFRF1Qyp4xFipcBNlImdr1iF+IQGjDJCA65ig03wvEFe
-	MKuSGJ2vAZ0NSqf8LJBdmnMFdHxitmlKG1IW98pwd5RfNg/6bIKJE8v70/ZtE3e03sZZfka9n19
-	SSsXpTwUfjKfFd/Ecukl+UmNEzg==
-X-Google-Smtp-Source: AGHT+IFI5tDoN6E7Kqk7Gw+xDL7rKQexAuiQ6Yq/THb9/Zw6ePjvaoIFxIHVn5lbaA5+r4C6IEYEi87Hkak2D5U5HD8=
-X-Received: by 2002:a05:6902:3401:b0:e30:b345:9a09 with SMTP id
- 3f1490d57ef6-e337f9054f4mr12761822276.50.1731422158152; Tue, 12 Nov 2024
- 06:35:58 -0800 (PST)
+	 To:Cc:Content-Type; b=ofDxr9m1kuhrYoBrqMLzgQi4hCeteCgYB87n6hb7l/Su4/HlUYqJM2JW61mqyhPfvifg1xD1rP/g82jG1PE7MRJpatxl4nLjklolZocAyh9RwdK0kt16Y0/LlQJ7Fy6eQ6oiJpJsdd4Vq3UdVKf7xjXKTQriAKcaQlcREmsorFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-20cb7139d9dso53249235ad.1;
+        Tue, 12 Nov 2024 06:36:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731422174; x=1732026974;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fU6W7rKC1LDOoPqE+zgv8rY63qL2TykSBZFtxfoHqJQ=;
+        b=b4fG0o/09cBIx8Z6h4prwEcRDFmVomAXLOQC8+FBVg4RDIU1iI6WtVIfqpbzr6aqAt
+         +9eYCkXbWkWUfGbjMPNtMifED+7NJWm7d6sExSUBWg4pfXTYG3GOULVxNYJeqdDE4zFn
+         fBFLo8nlGBLuEmp5H8F9fe1wLwwIeGFCSIcIG4Ur9HiFiWP4rde+iToDhpITnklwqykf
+         XmO5dLnz/ht5BHeZ6wYUcQUZz4ovLsLggZzKd2/9c4chw0cxQBFCsY42RO21jRJx9FeY
+         KHSemnr8JuB4N2cH6X+gpGRTqXVmGOr+VWkWJRD3n29UTJAbgweM0Hps0V0R8LaeGZL7
+         g2ng==
+X-Forwarded-Encrypted: i=1; AJvYcCUKgXyw0OjfYUeFN2UDNDZUi6lfaC6VrY031lvZ9FtNOs2DFepKyL8fLWsTgFn+La0w6wN1hUdXQ8vr@vger.kernel.org, AJvYcCURrRJCinDSGoj1l87h5prVHPB1T3YvXEEcLo1r/LA0ZyFN24SjrUd4si0l23hSBEhqX42smEVQys1dfZeb@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXtTVuaA2tfjHHLznWpMF7A1Yww9lnMcYbW4yvJaFNcd0JPaaQ
+	s9oflgf57+6IwEBY3KpgYQNVzB5iNzIsrxl2+clEtx+xumDAnDAkpfXoASedTeNGwQ==
+X-Google-Smtp-Source: AGHT+IEBldIykjeOMBEw6JcPYD1BWPf3DRE9rWz+yBHxL0qv7kC4+C6xg5z6GXyXJDwsL3vajYna2Q==
+X-Received: by 2002:a17:903:2a8b:b0:20c:cd23:449d with SMTP id d9443c01a7336-21183e1eff6mr220783885ad.46.1731422174169;
+        Tue, 12 Nov 2024 06:36:14 -0800 (PST)
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com. [209.85.216.41])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177e418bfsm94417445ad.169.2024.11.12.06.36.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Nov 2024 06:36:13 -0800 (PST)
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2e2eba31d3aso4337669a91.2;
+        Tue, 12 Nov 2024 06:36:13 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUgvaXPA9XYnoRtoCvbCwh+/grG+Tp865E/nRl+alZIpNGLewv97gjfnrug954E4r9yJan6WglUX1rUbZ+8@vger.kernel.org, AJvYcCVEn1NLIHaw0i14pE/4Eh0imt5OpGkoqiAYfSgZ0Ps9MfpNgb0s9RBxoioqSZHxKLP6H1w92Hdn0cwi@vger.kernel.org
+X-Received: by 2002:a17:90b:3c0e:b0:2e2:dcea:2b8c with SMTP id
+ 98e67ed59e1d1-2e9b16eeb4emr22784902a91.6.1731422173348; Tue, 12 Nov 2024
+ 06:36:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241112072704.767569-1-jpatel2@marvell.com>
-In-Reply-To: <20241112072704.767569-1-jpatel2@marvell.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 12 Nov 2024 08:35:47 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL8JVhWNC4qefysLm+4uHYmR2Arwq3wTumS3XV=ncgU3g@mail.gmail.com>
-Message-ID: <CAL_JsqL8JVhWNC4qefysLm+4uHYmR2Arwq3wTumS3XV=ncgU3g@mail.gmail.com>
-Subject: Re: [PATCH 1/1] dt-bindings: pci: change reset to reset controller phandle
-To: Jenishkumar Maheshbhai Patel <jpatel2@marvell.com>
-Cc: thomas.petazzoni@bootlin.com, lpieralisi@kernel.org, kw@linux.com, 
-	manivannan.sadhasivam@linaro.org, bhelgaas@google.com, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-pci@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, salee@marvell.com, dingwei@marvell.com
+References: <20241111181807.13211-1-tszucs@linux.com> <20241111181807.13211-2-tszucs@linux.com>
+ <c89c2f16-ffb0-4b61-a962-9705f9f1e0e2@kwiboo.se>
+In-Reply-To: <c89c2f16-ffb0-4b61-a962-9705f9f1e0e2@kwiboo.se>
+From: =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@linux.com>
+Date: Tue, 12 Nov 2024 15:36:02 +0100
+X-Gmail-Original-Message-ID: <CA+GksrJzkxffSQbuseGFL0=2PDxV+TRevX0-NOkc6FNYLmNgYA@mail.gmail.com>
+Message-ID: <CA+GksrJzkxffSQbuseGFL0=2PDxV+TRevX0-NOkc6FNYLmNgYA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Add supported UHS-I rates to
+ sdmmc0 on rock-3b
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@linux.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>, 
+	Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 12, 2024 at 1:27=E2=80=AFAM Jenishkumar Maheshbhai Patel
-<jpatel2@marvell.com> wrote:
->
-> replace reset bit mask and system controller
-> with reset controller and reset bit phandle
+Hi Jonas,
 
-The diff tells us "what" already. The commit msg needs to answer "why".
+Thank you for pointing this out! I haven't noticed this before. I've
+done some testing and I believe I am able to reproduce the issue you
+described, although I cannot confirm the reason.
+The only occasion I encounter any problems is when a UHS SD card or
+SDIO device is connected to sdmmc0 during bootup. Sometimes the device
+is recognized as HS only. Obviously no tuning value reported. Also,
+sdmmc2 cuts out completely. I'm booting from eMMC and when the SD card
+is removed in this state I lose my rootfs. Certainly, this needs more
+attention but it seems to be unrelated to the changes here.
 
-The DT is an ABI. You can't just replace property(ies) with a new
-property. There's exceptions if there are no platforms in use or
-similar.
+I need more time to check but are you sure this SD card during bootup
+issue is gone with UHS-I disabled?
 
-This binding needs to be converted to dtschema before adding to it.
+Also, in every other case, when you connect any device to sdmmc0 after
+bootup, performance and stability is perfect.
+Interestingly I also don't experience this behavior with an eMMC
+device and / or an SDIO device connected to sdmmc2 during bootup. Only
+sdmmc0 is problematic and only during bootup.
 
+Any more thoughts on this are very welcome.
+
+Kind regards,
+Tamas
+
+
+
+Tam=C3=A1s Sz=C5=B1cs
+tszucs@linux.com
+
+On Mon, Nov 11, 2024 at 8:00=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se> wro=
+te:
 >
-> Signed-off-by: Jenishkumar Maheshbhai Patel <jpatel2@marvell.com>
-> ---
->  Documentation/devicetree/bindings/pci/pci-armada8k.txt | 10 ++++------
->  1 file changed, 4 insertions(+), 6 deletions(-)
+> Hi Tam=C3=A1s,
 >
-> diff --git a/Documentation/devicetree/bindings/pci/pci-armada8k.txt b/Doc=
-umentation/devicetree/bindings/pci/pci-armada8k.txt
-> index a177b971a9a0..a9a71d77b261 100644
-> --- a/Documentation/devicetree/bindings/pci/pci-armada8k.txt
-> +++ b/Documentation/devicetree/bindings/pci/pci-armada8k.txt
-> @@ -24,10 +24,9 @@ Optional properties:
->  - phy-names: names of the PHYs corresponding to the number of lanes.
->         Must be "cp0-pcie0-x4-lane0-phy", "cp0-pcie0-x4-lane1-phy" for
->         2 PHYs.
-> -- marvell,system-controller: address of system controller needed
-> -       in order to reset MAC used by link-down handle
-> -- marvell,mac-reset-bit-mask: MAC reset bit of system controller
-> -       needed in order to reset MAC used by link-down handle
-> +- resets: phandle reset controller with int reset controller bit.
-> +         needed in order to reset MAC used by link-down handle.
-> +
+> On 2024-11-11 19:17, Tam=C3=A1s Sz=C5=B1cs wrote:
+> > Add all supported UHS-I rates to sdmmc0 and allow 200 MHz maximum clock=
+ to
+> > benefit modern SD cards.
+> >
+> > Signed-off-by: Tam=C3=A1s Sz=C5=B1cs <tszucs@linux.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm=
+64/boot/dts/rockchip/rk3568-rock-3b.dts
+> > index 3d0c1ccfaa79..242af5337cdf 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> > @@ -670,8 +670,14 @@ &sdmmc0 {
+> >       bus-width =3D <4>;
+> >       cap-sd-highspeed;
+> >       disable-wp;
+> > +     max-frequency =3D <200000000>;
+> >       pinctrl-names =3D "default";
+> >       pinctrl-0 =3D <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
+> > +     sd-uhs-sdr12;
+> > +     sd-uhs-sdr25;
+> > +     sd-uhs-sdr50;
+> > +     sd-uhs-sdr104;
+> > +     sd-uhs-ddr50;
 >
->  Example:
+> There is an issue with io-domain driver not always being probed before
+> mmc driver, this typically result in io-domain being configured wrong,
+> and mmc tuning happen before io-domain is correctly configured.
 >
-> @@ -49,6 +48,5 @@ Example:
->                 interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
->                 num-lanes =3D <1>;
->                 clocks =3D <&cpm_syscon0 1 13>;
-> -               marvell,system-controller =3D <&CP11X_LABEL(syscon0)>;
-> -               marvell,mac-reset-bit-mask =3D <CP11X_PCIEx_MAC_RESET_BIT=
-_MASK(1)>;
-> +               resets =3D <&CP11X_LABEL(pcie_mac_reset) CP11X_PCIEx_MAC_=
-RESET_BIT(0)>;
->         };
-> --
-> 2.25.1
+> You can usually observe this by looking at the tuning value during boot
+> and comparing it to the tuning value after removing and re-insering a
+> sd-card.
+>
+> Because of this uhs modes was left out from initial DT submission, some
+> cards will work others wont, sd-uhs-sdr50 is known to be working with
+> most cards even with the probe order issue.
+>
+> Also I thought that lower speeds where implied?
+>
+> Regards,
+> Jonas
+>
+> >       vmmc-supply =3D <&vcc3v3_sd>;
+> >       vqmmc-supply =3D <&vccio_sd>;
+> >       status =3D "okay";
 >
 
