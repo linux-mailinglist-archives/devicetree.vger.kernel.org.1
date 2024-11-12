@@ -1,138 +1,142 @@
-Return-Path: <devicetree+bounces-121134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF689C5848
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 13:51:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EE629C583D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 13:49:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C710CB230CE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 12:47:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D884B2846E3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 12:49:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD02D2309A8;
-	Tue, 12 Nov 2024 12:46:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3969170815;
+	Tue, 12 Nov 2024 12:47:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ck8YQQJV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HwcBxAhX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 808DA13C908;
-	Tue, 12 Nov 2024 12:46:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FC981DA5E;
+	Tue, 12 Nov 2024 12:47:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731415573; cv=none; b=lEOngvzlSrM1t33G/GpzN+nfZLzHOsBMK++doXjXyr9BwUj2mE8Q0XxP/lEv46X/FIl3PUtnDKB7ggxWXD5XT+BMzM+FNzaQziN9A3CwED7dNvUaz84Exqydc4aK+uHvPHbWsKQgaiK0yRI4nxQaXPHs4wkeV4b/T0HSKgDgGFY=
+	t=1731415640; cv=none; b=HKz6kLZSdaVCvRFwNDE7yMbFkgJ8O5t0HROBw/QrvUP58RSZFf4ghT8sOjpdQdTANtLgk3J1bSFrcUI1bIkDAJbBdH7l07o2WfKf5ct7Z7xM49v80FwxkHg8BIuWv6vpVVUsbbHDMlCbM5MMmS9bURaTOwZmlDdgIE9wEuIil5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731415573; c=relaxed/simple;
-	bh=nMAsToNIcVM8JoD6fxjSGbyscGJjSG2b6I49R2ndqy8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JX8DO/K9gsZm0OcTX4zWPaO2ogbtp3jKRqESM2Jot64/OA1qoo/hbBib5HYkcxnP9eT+SkrbE+JQvnZzTYxoWXkcDqzIm+3FSwHfVhZhynT5iGsi9kefOcQ9Ic+09Be46o/QEaQCe69AwVdSmS99xhH47yynX1rUcVyGc06Vmeg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ck8YQQJV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FFECC4CECD;
-	Tue, 12 Nov 2024 12:46:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731415573;
-	bh=nMAsToNIcVM8JoD6fxjSGbyscGJjSG2b6I49R2ndqy8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ck8YQQJVavF0HxwsvFfVoCb4+GhgMju3ccWHOYSso34WQ689bu3iMeMOcfxa1pHWR
-	 /MubC0TWmb/xSzcfnl61EjLghyo+YXana+m0D/HM8cd3bvXXb2vu/BDrd+oVsC+KHa
-	 jiXYA9H7yIXtvJsUesu760tX3deoUxoLGsEVR+L2g7n50CElVCjuuccxO9WLFmFJSs
-	 xrOY7e003xZ+gVeOOTEm1QChAmTa5jbz1UWaquiScIYYbTCtfnQh3owMTmhkOHgpAz
-	 Z6CYgzkEPXJfGTi9iFXsIFmraH5JKb4Sw71hkvr+gZ4EOCPgCiMln6Et0HsoaICOCP
-	 +uJj/KsZ/5FYQ==
-Date: Tue, 12 Nov 2024 13:46:07 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: frank-w@public-files.de, Andrew Lunn <andrew@lunn.ch>,
-	Frank Wunderlich <linux@fw-web.de>,
-	Damien Le Moal <dlemoal@kernel.org>,
+	s=arc-20240116; t=1731415640; c=relaxed/simple;
+	bh=X+jLQfoGRtei2d/QjhR/7M+LmZaJ/zvfk3jtFKfMIh4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Dg8cEkkTdO/6duBVGvfuOD0sj+2n+GSUgXS7AlLhWDYlL09CFeBBqeHxeVliUYEi20syhZUhJXa7zexlkBbP7pnTPzBErsQr3RlTily0cN5t0y+zxR/ANuu6jG4ZKAy8i8biFm/Sz8cQZKHd7HhggJEsoV0UUCFOf58Tzo8PivA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HwcBxAhX; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-539e7e73740so5247528e87.3;
+        Tue, 12 Nov 2024 04:47:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731415636; x=1732020436; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1l/8zIWx9ByG93a85cgLjNVvi5N7DhTgRSp0I+NsBNo=;
+        b=HwcBxAhXHIkvv5RN/yC1dkdVAuGyYPj4mnrY02+UdBi4Lq26f5hHFC0TE6YrI5S7cF
+         V17587vsDKgAoRcix8XYH7JGNRzMBDnPvVAzVE2t1RXXDI6Y6ERYC6U+g+zlTF7bS+Qt
+         9cvgEd2OXdsy45dUa5OVhRoWOTgsrKe1T7TcVoc0lwEo7n9owZtjVgDCfgo1ZIEK/cBW
+         uVzfxhgGOXQELeMCfKt+5t/sMF1bmjdkfrj8bZeB8expU7MqEbkyTnVbjXdQUxnCEVCp
+         EC1EwDf9/O+FZLcmWUDVLJ8arxpIAu7JKZq6iB7u68kQf3NR3hpbESTd3f1+wllgJnw1
+         ZjZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731415636; x=1732020436;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1l/8zIWx9ByG93a85cgLjNVvi5N7DhTgRSp0I+NsBNo=;
+        b=w1DJdm7viEOeEUn4EexmRsb1JdL/Qvra9Z898AYUSaP4eoI9ZNgbQZRmiiSK2k/ZTX
+         vGhLG3gRbtVH2K3k6zPosKCgqPIy80Cmb1ukTAG9bUwZSjvWTBCtpm0vhKUUlJcm5kLO
+         mqNQz0pNrY0HxxE/eL/fQpQ65l1TDiwi3Vyvik+d68CxsJze/7WGODW2u5bUxmcbFR1e
+         4BJcUj8FicXBBO7zaaEJVSNHdhKz0ORi9VLPs3LklzmzsuH0yOhdcgQm5Ht/fj5AJs42
+         j3/1/hFJX5WFle4gf9CaMXb5jf8G+u7WGOIv6NQEx4BB1QOskaeLBS00fk+jUje15irH
+         ODHg==
+X-Forwarded-Encrypted: i=1; AJvYcCUnFvPxbpMNijGoSNUpU4JTyt7cHa7ZeNaTP07xX694kwk2xuIXEkdaRqUc5k5rbZnof/PXw4ZrvaJg@vger.kernel.org, AJvYcCVFZFQIzVOMX/MIlQiAw9JPjMF5kfUflmRA8DUirzCmdUKpUExOinvwXXyPTyoY6iL2kivpgdIDrDneBzWx@vger.kernel.org, AJvYcCW2QAPAP3pbS79GW+WkDh1JS5lDuT8Rys8kvPyr+KZdu7pZDcKYwPs5nDcAwU15Vq7r4U+vC371x3hgFjXPgA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGq+fUbq2vRRgUR+F3VWUdpzR8l+xaevY+hjUBPNcb6Wc2kFQ3
+	duVABDRnoc86gA/PWmqBZ68XVvs/BbH+oIJxWx205qFkv4vOuyAX
+X-Google-Smtp-Source: AGHT+IGlnKKltAFgPKq1ayj+s19oGo3VkeizvwN9Pm+xzjqpVaZGBKH8G8tVYcgFXRl3ErD1m+9Qbw==
+X-Received: by 2002:a05:6512:12c4:b0:539:ebe5:2986 with SMTP id 2adb3069b0e04-53d9a40710amr1412217e87.12.1731415636223;
+        Tue, 12 Nov 2024 04:47:16 -0800 (PST)
+Received: from T15.. ([46.175.113.10])
+        by smtp.googlemail.com with ESMTPSA id 2adb3069b0e04-53d8c3cbf20sm1142577e87.132.2024.11.12.04.47.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Nov 2024 04:47:15 -0800 (PST)
+From: Wojciech Slenska <wojciech.slenska@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Hans de Goede <hdegoede@redhat.com>, Jens Axboe <axboe@kernel.dk>,
-	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditional failed
-Message-ID: <ZzNOD_dpK0e4WFLL@ryzen>
-References: <20241109094623.37518-1-linux@fw-web.de>
- <20241109094623.37518-2-linux@fw-web.de>
- <e534c723-6d65-433f-8ab5-1c0d424d7367@lunn.ch>
- <9B1A5D20-3DE5-40C1-8B2D-B1C4F53FA5F4@public-files.de>
- <CAL_JsqJnOa_9Poz86vOWBCQigvv-Ab4Tt1hrwTxSa5zNraVxXQ@mail.gmail.com>
- <ZzNL4_dFxHfMmMcR@ryzen>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Wojciech Slenska <wojciech.slenska@gmail.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: qcm2290: Add uart3 node
+Date: Tue, 12 Nov 2024 13:46:49 +0100
+Message-Id: <20241112124651.215537-1-wojciech.slenska@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZzNL4_dFxHfMmMcR@ryzen>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 12, 2024 at 01:36:51PM +0100, Niklas Cassel wrote:
-> On Mon, Nov 11, 2024 at 10:25:12AM -0600, Rob Herring wrote:
-> > > >
-> > > >I don't know the yaml too well, but it is not obvious how adding a few
-> > > >status = "disabled"; status = "okay"; fixes a "'anyOf' conditional failed".
-> > > >
-> > > >Maybe you can expand the explanation a bit?
-> > > >
-> > > >       Andrew
-> > >
-> > > Hi angelo,
-> > >
-> > > I guess the dtbs_check only checks required properties from yaml if the node is enabled.
-> > 
-> > Yes, that is exactly how it works.
-> > 
-> > Rob
-> 
-> Hello Rob,
-> 
-> If we look at e.g. this binding:
-> Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> 
-> We can see that it does not define iommu-map in the binding,
-> likewise the binding does have:
-> unevaluatedProperties: false
-> 
-> 
-> If I apply my patch that adds iommu-map for e.g. the pcie2x1l0 node:
-> (the patch does not add anything to the binding above):
-> https://lore.kernel.org/linux-rockchip/20241107123732.1160063-2-cassel@kernel.org/
-> 
-> 
-> If look at the pcie2x1l0 node, it is marked as status = "disabled"
-> in arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
-> 
-> but is marked as status = "enabled"
-> in arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> 
-> If I run CHECK_DTBS for this dts/dtb:
-> $ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make CHECK_DTBS=y rockchip/rk3588-rock-5b.dtb
->   DTC [C] arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb
-> $ 
-> 
-> No warnings.
-> 
-> What am I missing?
-> 
-> Considering the warning in this series where the binding also
-> had unevaluatedProperties: false
-> I would have expected the same error for the pcie2x1l0 node.
-> 
-> (And if I look at most PCI controler bindings, they actually do define
-> iommu-map, so it seems a requirement for it to be defined if used.)
-> 
+Add node to support uart3.
 
-Or perhaps the question should have been, if iommu-map is an exception,
-why isn't iommus also an exception?
+Signed-off-by: Wojciech Slenska <wojciech.slenska@gmail.com>
+---
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+index 79bc42ffb6a1..0fae49d6ff16 100644
+--- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+@@ -550,6 +550,13 @@ qup_uart0_default: qup-uart0-default-state {
+ 				bias-disable;
+ 			};
+ 
++			qup_uart3_default: qup-uart3-default-state {
++				pins = "gpio8", "gpio9", "gpio10", "gpio11";
++				function = "qup3";
++				drive-strength = <2>;
++				bias-disable;
++			};
++
+ 			qup_uart4_default: qup-uart4-default-state {
+ 				pins = "gpio12", "gpio13";
+ 				function = "qup4";
+@@ -1239,6 +1246,23 @@ &qup_virt SLAVE_QUP_CORE_0 RPM_ALWAYS_TAG>,
+ 				status = "disabled";
+ 			};
+ 
++			uart3: serial@4a8c000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x04a8c000 0x0 0x4000>;
++				interrupts = <GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
++				clock-names = "se";
++				pinctrl-0 = <&qup_uart3_default>;
++				pinctrl-names = "default";
++				interconnects = <&qup_virt MASTER_QUP_CORE_0 RPM_ALWAYS_TAG
++						 &qup_virt SLAVE_QUP_CORE_0 RPM_ALWAYS_TAG>,
++						<&bimc MASTER_APPSS_PROC RPM_ALWAYS_TAG
++						 &config_noc MASTER_APPSS_PROC RPM_ALWAYS_TAG>;
++				interconnect-names = "qup-core",
++						     "qup-config";
++				status = "disabled";
++			};
++
+ 			i2c4: i2c@4a90000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0x04a90000 0x0 0x4000>;
+-- 
+2.34.1
 
-Kind regards,
-Niklas
 
