@@ -1,119 +1,134 @@
-Return-Path: <devicetree+bounces-121000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 648A99C4DA6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 05:13:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E98619C4DCB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 05:42:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26F8C28276D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 04:13:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABF3D28312B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 04:42:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71417207A35;
-	Tue, 12 Nov 2024 04:13:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A2D0208222;
+	Tue, 12 Nov 2024 04:42:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DbuyqWa4"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="d/9s8ota"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D38DD1DFE4;
-	Tue, 12 Nov 2024 04:13:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D9AD16CD29;
+	Tue, 12 Nov 2024 04:42:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731384783; cv=none; b=sXSyMC88vR5xzqirsd4fAdbY65RytWuiMkiwJAnXEPyhxy5lbdGvES14oTDA3eFkaor3cy+taUOldfjEw1ABHCA/6wQJ783Opp5s16Ppqp8VZrGWrnauIdjY/ezKHNqCc4uEfJPtGvoUmOeXaOYjCfl8U1dYcsYCWdM0pGzmapg=
+	t=1731386524; cv=none; b=hvqJRM7mvZ7DNWfjoNz7oFbsGQ80u4q5/ZZdAdxKFYGEDk9XcvTKVvDcg0XjM/k41nbK+POC0fXAkjdwuHatBDJ0shRoo1lIwpMD2PK0zXQJcKVssUCJ4kmPEdYyzHaWU9MaZeNVzfEn1NzK+bKKRlMjbp7n8iTfgb3hFK4HOVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731384783; c=relaxed/simple;
-	bh=bod04bIz15PbMOHPnaFOteze34TvQOBL9jRIp/KXaIc=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=prBAwLDhfNq2TrOGtR+faMXlBG6C2H2gnyncRPtAs7yvfsJeikyG4Uph6c3lOnjOgZ+1XoZ0Q3cioi8+2/nLox85256k/uYSMWtG5WM8bkkiQShmTYyMxRfvXsanLt/UBarLC7vZj8dol+OdgfwqDqS1tizuQ7rvHy81Rx4qVoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DbuyqWa4; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AC1s27E031047;
-	Tue, 12 Nov 2024 04:12:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=KBaqXWk6MxZ9pfru1EUYP2piHQcIQ5aHH5D
-	GUgivxAY=; b=DbuyqWa4fP62sX94i+ikDzQ5n5SMnnHzm4CK1CJ0BR5S6yUWf7T
-	cRrwtj4QFddkfo4Fpwi18OSl8ZHoFS/NRjN3qRsW4ABBfcYX0hyPoyfmHexkzHzR
-	bRjGbQB0LkLFTruV3pM23LTwfTfUR9RPzhAPaPa0HaV1B22VEuDZ2A91ZnjlRgis
-	3JmDl8EQJDvXoilqoc39A/XnPaQA/4LyCoPYokHscrTDDq/HpR8xMqv6G9SEwsjx
-	azroLIUMDLfWXSBA6QPtgpeJ8MT1GmPPehR0h0dKNj/0I+6Y5ybFAt4l0pN8H+H9
-	kEy3hV6UsHr/u1v/kS3wD7MxVuPPJtN/prw==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42syy261vw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Nov 2024 04:12:58 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 4AC4CsMu021100;
-	Tue, 12 Nov 2024 04:12:54 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 42t0tkt7mm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Nov 2024 04:12:54 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4AC4CsFn021095;
-	Tue, 12 Nov 2024 04:12:54 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.97.252])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4AC4CsNl021094
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Nov 2024 04:12:54 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4047106)
-	id B7A1A50D; Tue, 12 Nov 2024 09:42:53 +0530 (+0530)
-From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-To: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com,
-        Viken Dadhaniya <quic_vdadhani@quicinc.com>
-Subject: [PATCH v1] dt-bindings: dma: qcom,gpi: Add QCS8300 compatible
-Date: Tue, 12 Nov 2024 09:42:51 +0530
-Message-Id: <20241112041252.351266-1-quic_vdadhani@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1731386524; c=relaxed/simple;
+	bh=8BR1B7xW3ugwsZpshYIh71vVardAV1V+mKSSbuxFrSg=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=KmvXrEXIlk8/ZFTxTlzD5NLupqnRHGmCCrzMmWgdJRw4Bmcwc/19cyS67pUuHpeZiY5TYNtxtQS9OAsMNp8KDUVKmp0prQ/3OV+EsQqBuVziKS2DtDkpM+yKF2mWJeCs0QZ8s0sJrRf/8SyS728nv3TtsJ38EPAPsez92v9unpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=d/9s8ota; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1731386514;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GmMLruJlFWW1LhBjQNO6wKWcTB7EUYEqGpqOf2cF01E=;
+	b=d/9s8ota76JB/qXgmB068WFHiMOhUh9wAhv1nxyPVHrj97xZafR8vomFmhD1/bP0XYhxf3
+	FkKJS6I4dvXI76TVmR9DlmoT4v+5CkajA28AVNjVFikNef/LvO8OM78sV4PxzdO3vaT6s9
+	+u0B2XRClK96AHuJUNgfkkzCpcSL7kAAnG/yqYQC8P2QVyylUgdFGN8N0r+wh6vZugEPoh
+	uOnENSsxfip+1xh/cdXm6U7baYCp20yiMcpwdXSbU3yQnNaje698yT9AwHdIYJWrksZwu5
+	wJUJI/frx56dVgagLJ6bdPpJjAa5P/zngcZeNqaguau7u4t8ISayf3trcN/t/g==
+Date: Tue, 12 Nov 2024 05:41:53 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: =?UTF-8?Q?Tam=C3=A1s_Sz=C5=B1cs?= <tszucs@linux.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki
+ <naoki@radxa.com>, Chukun Pan <amadeus@jmu.edu.cn>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Enable sdmmc2 on rock-3b and
+ set it up for SDIO devices
+In-Reply-To: <9fbdf05c-42e6-4ac5-9542-805200bc8c87@kwiboo.se>
+References: <20241111181807.13211-1-tszucs@linux.com>
+ <20241111181807.13211-3-tszucs@linux.com>
+ <9fbdf05c-42e6-4ac5-9542-805200bc8c87@kwiboo.se>
+Message-ID: <260af427ae64d6f3b02a1579ee83eb3b@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: xlb_VWympCZZUAkPV4scv77HaN8NIYu7
-X-Proofpoint-ORIG-GUID: xlb_VWympCZZUAkPV4scv77HaN8NIYu7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- priorityscore=1501 mlxscore=0 mlxlogscore=787 suspectscore=0
- lowpriorityscore=0 clxscore=1015 spamscore=0 adultscore=0 impostorscore=0
- phishscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411120033
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Document compatible for GPI DMA controller on QCS8300 platform.
+Hello Jonas and Tamas,
 
-Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
----
- Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
- 1 file changed, 1 insertion(+)
+On 2024-11-11 20:06, Jonas Karlman wrote:
+> On 2024-11-11 19:17, Tamás Szűcs wrote:
+>> Enable SDIO on Radxa ROCK 3 Model B M.2 Key E. Add all supported UHS-I 
+>> rates and
+>> enable 200 MHz maximum clock. Also, allow host wakeup via SDIO IRQ.
+>> 
+>> Signed-off-by: Tamás Szűcs <tszucs@linux.com>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 8 +++++++-
+>>  1 file changed, 7 insertions(+), 1 deletion(-)
+>> 
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts 
+>> b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+>> index 242af5337cdf..b7527ba418f7 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+>> @@ -688,14 +688,20 @@ &sdmmc2 {
+>>  	cap-sd-highspeed;
+>>  	cap-sdio-irq;
+>>  	keep-power-in-suspend;
+>> +	max-frequency = <200000000>;
+>>  	mmc-pwrseq = <&sdio_pwrseq>;
+>>  	non-removable;
+>>  	pinctrl-names = "default";
+>>  	pinctrl-0 = <&sdmmc2m0_bus4 &sdmmc2m0_clk &sdmmc2m0_cmd>;
+>> +	sd-uhs-sdr12;
+>> +	sd-uhs-sdr25;
+>> +	sd-uhs-sdr50;
+> 
+> I thought that lower speeds was implied by uhs-sdr104?
 
-diff --git a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-index 4ad56a409b9c..09243de49ae6 100644
---- a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-+++ b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-@@ -25,6 +25,7 @@ properties:
-       - items:
-           - enum:
-               - qcom,qcm2290-gpi-dma
-+              - qcom,qcs8300-gpi-dma
-               - qcom,qdu1000-gpi-dma
-               - qcom,sar2130p-gpi-dma
-               - qcom,sc7280-gpi-dma
--- 
-2.34.1
+Last time I went through the MMC drivers, they were implied.  IIRC,
+such backward mode compatibility is actually a requirement made by
+the MMC specification.
 
+>>  	sd-uhs-sdr104;
+>> +	sd-uhs-ddr50;
+>>  	vmmc-supply = <&vcc3v3_sys2>;
+>>  	vqmmc-supply = <&vcc_1v8>;
+>> -	status = "disabled";
+>> +	wakeup-source;
+>> +	status = "okay";
+> 
+> This should probably be enabled using an dt-overlay, there is no
+> SDIO device embedded on the board and the reason I left it disabled
+> in original board DT submission.
+
+Just went through the ROCK 3B schematic, version 1.51, and I think
+there should be no need for a separate overlay, because sdmmc2 goes
+to the M.2 slot on the board, which any user can plug an M.2 module
+into, and the SDIO interface is kind-of self-discoverable.
+
+Of course, all that unless there are some horribly looking :) error
+messages emitted to the kernel log when nothing is actually found,
+in which case the SDIO/MMC driers should be fixed first.  Also, I'm
+not sure what do we do with the possible SDIO-related power timing
+requirements?
 
