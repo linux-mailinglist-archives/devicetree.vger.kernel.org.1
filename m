@@ -1,95 +1,206 @@
-Return-Path: <devicetree+bounces-121038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F07C79C4FDB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 08:48:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C77149C4FF3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 08:52:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A82611F2159E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 07:48:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5269F1F22144
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 07:52:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFD2220B7F5;
-	Tue, 12 Nov 2024 07:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8015820A5FA;
+	Tue, 12 Nov 2024 07:50:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="U9zeIuSG"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UkAlTon8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A49520ADC0;
-	Tue, 12 Nov 2024 07:44:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F04B1A707D;
+	Tue, 12 Nov 2024 07:50:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731397445; cv=none; b=Kgp2MOXKeOBaLrnd2IB6MdY1QnSkoPlpfCSkxN+U2eutolzQICdc1MxWn4t6Rzsfw/qCnlNWGtWUuHLlgMnnV1dj6wotBawHgy7+HqwBzjKLoB3OWxcIWQVz7vdf4yePA72HtfXRRI54AdIo0tUY51NIFchXuELuo2wevmxrB20=
+	t=1731397809; cv=none; b=LiXXgIxZxAbM+grcRly5qAq3twAxEVYimczyDdyuEvfByJInVKI7C6KRtWCM2NaYos70Wwy5V+oNZmvOk20e4EG5uzymW3ij1EeGTC8BrEejZpyK21J7bKPwtmgFHDabydRoKoQtsgtl5FnMPFFq9pgL1ACQPoBBpntTzmfgIcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731397445; c=relaxed/simple;
-	bh=gYK8Sr5oh64mtihPCqd1kqaMIT1tBWPjHL4NQqEPAb4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UGY/pby93wG0+ENTMSkJKXjdREJhDoEEoUgbPg+swiyg69+mLh4jnLcYlvSDUOuSw3OXo0vIrkXtEdkr74Pmki/rzcj9c77rWG/LvXh2jzwCElo5M+PXkYyEEltX8Bw2aI8FcsfJYVpzQt3ul5uLBS3FwvRfn6nah+SuB+eP3wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=U9zeIuSG; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID; bh=AsWwEEvmw/bdBxEEFaD+tDkgRMXNBIOX6N+pznhzV4k=; b=U9zeIu
-	SGrGXjoQErw2vKerYTqZX06+8gI5WNy1r/v8gY34qXPX/JWYfUwnLiGnC8rPSM7JOW0bPgqNqTWhQ
-	3zPwMMztceWhILwN2makGTOK6iFTQa/ualdVj7eOtyFK4KbKSrqa0CWb2f5DRMNcqgm2E4SsWLCNS
-	gR+wdLYlfwVYZEtB9vKUcEfFz+S5NBYSWXqAT9GPTQKUA2iDU54KN881gNUsxbt7XdxCojJDYdXYc
-	v6gVhqCuVeKp2IJ3wQI6RbAbBn+e9o2TL2H1N2dbcx19Zs+OaAOa+P7KLUKPC3vewxztQb3Fp9e63
-	X6fQ+AZHNU/NFGIOhvV1z5Zp7x2g==;
-Received: from sslproxy07.your-server.de ([78.47.199.104])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sean@geanix.com>)
-	id 1tAlZB-0003Cs-DP; Tue, 12 Nov 2024 08:44:01 +0100
-Received: from [185.17.218.86] (helo=Seans-MacBook-Pro.local)
-	by sslproxy07.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sean@geanix.com>)
-	id 1tAlZA-000PqT-2H;
-	Tue, 12 Nov 2024 08:44:00 +0100
-Date: Tue, 12 Nov 2024 08:44:00 +0100
-From: Sean Nyekjaer <sean@geanix.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] can: tcan4x5x: add option for selecting nWKRQ
- voltage
-Message-ID: <lfgpif7zqwr3ojopcnxmktdhfpeui5yjrxp5dbzhlz7h3ewhle@3lbg553ujfgq>
-References: <20241111-tcan-wkrqv-v2-0-9763519b5252@geanix.com>
- <20241112-bizarre-cuttlefish-of-excellence-ff4e83-mkl@pengutronix.de>
+	s=arc-20240116; t=1731397809; c=relaxed/simple;
+	bh=hguJKXKfkn+RuhgXWLO9Ls0nvSLVVgJ6qw8gcAVi4VI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YfvLLPCNFmz+uD+a1pMi6lAh70dMx4CCqOjQovbAzEDkSZT91lWN01n90j99E5B61uuALHLJqwmnpo2CTkoYP+G/WmHi2eVA/MESHfr1+IqXmjj0nOqEcs+v3jMygs4FA1+Q7owQ+8adOVOeyTxUoHzpuERuL02OJJt+Y4oY3jI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UkAlTon8; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AC33pta029346;
+	Tue, 12 Nov 2024 07:50:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=lzZY4QvJpBx46ng64uGRXj
+	WGVcNQZLrk9uwzNWI1jC0=; b=UkAlTon8J7wTQw+4hLkTr6S9CbVIZ70VEeBjAL
+	OjPm2qN8c41KnMTQPi9s3tyBGSlVXA8whQFmAYKV6I5OFC6H2IiKzLefCLVa0RTv
+	XOxMW2Lp+j1VowfAZeFjwMXCfDiI0cB3jDrG96i+8e0MQUir3BrjsH2XTwSxaIXO
+	NYovFtmDct6IXTtj1a7iv3xQmjgiFmPa+C+XhMdjWZ4juhM7l8SPZWak1yAaIhYS
+	wiWXslgLyT5LB0y3u0rtD0muL3gOnOWU+v0w01q6slMnic09eTcoXWasCY3ERTQ6
+	8j5losgn2/0Uz1S4dpPhiI4p4cZ54QeDkzeWEDjUEU5I/xsw==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42sxr5xhvw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 07:50:03 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AC7o230021614
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Nov 2024 07:50:02 GMT
+Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 11 Nov 2024 23:49:56 -0800
+From: Ling Xu <quic_lxu5@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <quic_kuiw@quicinc.com>, <quic_ekangupt@quicinc.com>, <kernel@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Ling Xu
+	<quic_lxu5@quicinc.com>
+Subject: [PATCH] arm64: qcom: qcs8300: Add ADSP and CDSP0 fastrpc nodes
+Date: Tue, 12 Nov 2024 13:19:45 +0530
+Message-ID: <20241112074945.2615209-1-quic_lxu5@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241112-bizarre-cuttlefish-of-excellence-ff4e83-mkl@pengutronix.de>
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27455/Mon Nov 11 10:58:33 2024)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: eaBECjwlkFFe-LzjAKnj2anXPurraeb7
+X-Proofpoint-GUID: eaBECjwlkFFe-LzjAKnj2anXPurraeb7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ mlxscore=0 malwarescore=0 priorityscore=1501 spamscore=0
+ lowpriorityscore=0 impostorscore=0 suspectscore=0 adultscore=0
+ mlxlogscore=681 clxscore=1011 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2409260000 definitions=main-2411120063
 
-Hi Marc,
+Add ADSP and CDSP0 fastrpc nodes for QCS8300 platform.
 
-On Tue, Nov 12, 2024 at 08:38:26AM +0100, Marc Kleine-Budde wrote:
-> On 11.11.2024 09:54:48, Sean Nyekjaer wrote:
-> > This series adds support for setting the nWKRQ voltage.
-> 
-> IIRC the yaml change should be made before the driver change. Please
-> make the yaml changes the 1st patch in the series.
-> 
-> Marc
-> 
+Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+---
+This patch depends on patch https://lore.kernel.org/all/20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com/#t
+---
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi | 85 +++++++++++++++++++++++++++
+ 1 file changed, 85 insertions(+)
 
-I know, so I have added, prerequisite-change-id as pr the b4 manual.
+diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+index 2c35f96c3f28..af3e9ae2bc48 100644
+--- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+@@ -762,6 +762,35 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+ 
+ 				label = "lpass";
+ 				qcom,remote-pid = <2>;
++
++				fastrpc {
++					compatible = "qcom,fastrpc";
++					qcom,glink-channels = "fastrpcglink-apps-dsp";
++					label = "adsp";
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					compute-cb@3 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <3>;
++						iommus = <&apps_smmu 0x2003 0x0>;
++						dma-coherent;
++					};
++
++					compute-cb@4 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <4>;
++						iommus = <&apps_smmu 0x2004 0x0>;
++						dma-coherent;
++					};
++
++					compute-cb@5 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <5>;
++						iommus = <&apps_smmu 0x2005 0x0>;
++						dma-coherent;
++					};
++				};
+ 			};
+ 		};
+ 
+@@ -1361,6 +1390,62 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+ 
+ 				label = "cdsp";
+ 				qcom,remote-pid = <5>;
++
++				fastrpc {
++					compatible = "qcom,fastrpc";
++					qcom,glink-channels = "fastrpcglink-apps-dsp";
++					label = "cdsp";
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					compute-cb@1 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <1>;
++						iommus = <&apps_smmu 0x19c1 0x0440>,
++							 <&apps_smmu 0x1dc1 0x0440>,
++							 <&apps_smmu 0x1961 0x0400>,
++							 <&apps_smmu 0x1d61 0x0400>,
++							 <&apps_smmu 0x1981 0x0440>,
++							 <&apps_smmu 0x1d81 0x0440>;
++						dma-coherent;
++					};
++
++					compute-cb@2 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <2>;
++						iommus = <&apps_smmu 0x19c2 0x0440>,
++							 <&apps_smmu 0x1dc2 0x0440>,
++							 <&apps_smmu 0x1962 0x0400>,
++							 <&apps_smmu 0x1d62 0x0400>,
++							 <&apps_smmu 0x1982 0x0440>,
++							 <&apps_smmu 0x1d82 0x0440>;
++						dma-coherent;
++					};
++
++					compute-cb@3 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <3>;
++						iommus = <&apps_smmu 0x19c3 0x0440>,
++							 <&apps_smmu 0x1dc3 0x0440>,
++							 <&apps_smmu 0x1963 0x0400>,
++							 <&apps_smmu 0x1d63 0x0400>,
++							 <&apps_smmu 0x1983 0x0440>,
++							 <&apps_smmu 0x1d83 0x0440>;
++						dma-coherent;
++					};
++
++					compute-cb@4 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <4>;
++						iommus = <&apps_smmu 0x19c4 0x0440>,
++							 <&apps_smmu 0x1dc4 0x0440>,
++							 <&apps_smmu 0x1964 0x0400>,
++							 <&apps_smmu 0x1d64 0x0400>,
++							 <&apps_smmu 0x1984 0x0440>,
++							 <&apps_smmu 0x1d84 0x0440>;
++						dma-coherent;
++					};
++				};
+ 			};
+ 		};
+ 	};
+-- 
+2.34.1
 
-/Sean
 
