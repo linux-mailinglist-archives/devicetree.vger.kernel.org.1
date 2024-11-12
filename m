@@ -1,61 +1,92 @@
-Return-Path: <devicetree+bounces-121223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B3839C5FC0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 19:01:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55AE69C610F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 20:11:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26DF8BA0F10
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 16:42:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D94CBC10AA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2024 17:16:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F4120DD76;
-	Tue, 12 Nov 2024 16:40:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF6E9213128;
+	Tue, 12 Nov 2024 17:11:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eCJH36Mi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UAAUzoP7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6145206E6D;
-	Tue, 12 Nov 2024 16:40:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46702213ED1;
+	Tue, 12 Nov 2024 17:11:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731429608; cv=none; b=IP5V1JzJvSSKQC6QeQnzamnYOJL71J3jyoD5ROi0bkg6A+cljHJ/wxAF2k8ZSPDLYVGsEGDS8ZfGLN7xFp8VOuaUoCNlYtaUpKBHLR+YPCF8/9giPmU58UaV476RjN+6+NmqdXQNIFQcFvXOtgwV+zec5mtfpYhoRQLSeTTSvbA=
+	t=1731431484; cv=none; b=qmY7aa6eh9NFeLfKePo2o1txw3J1RjaM2EeE6+/eDF8AVtv++ckmYJNOYCoPTXkiL0cYLG8dysvEyfbmhF5RoeVDcivVG5R7FvSHeiM7zoWAirY7k4cUmJW8nyGlkEipB/90sAEF1uf8nywMInXfm8pp+JLKqoM8iM/JiLzFyzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731429608; c=relaxed/simple;
-	bh=+N04U2p3GcrP7jjyn/1KyLgQIjlLCtQTvmCsowADuRo=;
+	s=arc-20240116; t=1731431484; c=relaxed/simple;
+	bh=9qFLxQuXAwUMz3A693Ta0zMDeVFkOg0P5FQheE/cQmQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PJAhnOEBeMkGoOTHaEGzhvUE1u8rbitlbxseK9Yhvl/SDxJ7CSw/bIte6OV7qM4J08qgPz3kPnkADc1c5TKJPe/Pcy3krEJLI2qM0Qank1LnU7aDxlfUJKwJbmD5oYY1xR04WG96LOGGbokvev6Ynit9iXJXYRsgaSjYjqQkHwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eCJH36Mi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09DF3C4CED0;
-	Tue, 12 Nov 2024 16:40:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731429608;
-	bh=+N04U2p3GcrP7jjyn/1KyLgQIjlLCtQTvmCsowADuRo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eCJH36Mi8e7jO8g+WVpsNKgNfzMbd3yRYCNaY2xVCeVD4usfn5c4OJcB5H4oZJWmd
-	 lvkRtWEcjmPRVSYVx6NYe8Ouz4rkg5wDR7CaA/fyjQ+lnggWpv6lOj8XyxluSUzoj/
-	 j5PUguFa7uYrKSQ29rwcL9/V04vKtmOOvtwMsz4dOjxsfYXUR/95LpJUopZlanXp9o
-	 5CN2clEVAb7QEXil4Q2caH8W5v2GrKuTyx5EuADJcLW1OoAIvIqsiN+jag2QtYgwZD
-	 ExRXqKIX6TRF65F74PBfgjwNK6JPO6++2mfFVVwrXngfW2ySVD10Kod59W/XsAAdqi
-	 n0oOmdtdQArWQ==
-Date: Tue, 12 Nov 2024 10:40:06 -0600
-From: Rob Herring <robh@kernel.org>
-To: Philipp Rosenberger <p.rosenberger@kunbus.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Lino Sanfilippo <l.sanfilippo@kunbus.com>,
-	Thomas =?iso-8859-1?Q?B=F6hler?= <t.boehler@kunbus.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: rtc: pcf2127: Add nxp,battery-backed
- flag
-Message-ID: <20241112164006.GB1151895-robh@kernel.org>
-References: <20241111154144.163604-1-p.rosenberger@kunbus.com>
- <20241111154144.163604-2-p.rosenberger@kunbus.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=EuclZYlKKWoiJP4Msyu/YXvSgDiG1T6ZlQn+g0JbIAeFXD48DQ6gvpkrpoJjyt9t64wj/RaAt4Urnxac2ucMXw+0V07D++q3IffeYWFhdxD6YADSW5d4q1RKbmQBYG6qfcrIIFNf5gIOEScPO9BdMVmaUg22+5NW0+R7xpjt/tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UAAUzoP7; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-720e94d36c8so5887876b3a.1;
+        Tue, 12 Nov 2024 09:11:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731431482; x=1732036282; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5c6OWgQF/ejcqVQp7h08DgprnfycsFPIP9B8O7D4XkA=;
+        b=UAAUzoP7ihnFQHFawDWunmNJTJeq7Hm0I+MMEHZIZZAOF8F8jKh00jnO9dNk8Xt5Ob
+         R0EZz9cwOJgEMVArfcz7nPjg+kdziLaLZ32VOtIDUNJOMXk9iM/XCdKx77mPJSh6CllK
+         l2MK0E+etFQLY17puWsJRhoxmwqGfBlUcFUIeP7Oa9cmmCNxCm5UZJHavimttSD08aqe
+         CMykEdfrxovqncLqauoTsCUmSHmmA0gJSktxSe+dV9gERE8KXpnMZ5mJk3tRBR0nPeSk
+         X6JdBbB9+v3upbrfbpCwFaUhF4mgrB7qx9UHD/ddH9x0cqtNdMiaBgf7oI0IDclghr9I
+         62nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731431482; x=1732036282;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5c6OWgQF/ejcqVQp7h08DgprnfycsFPIP9B8O7D4XkA=;
+        b=e0OJK/JJTcWxNFXOZQbW4owVuuaD9vo+V/mCNvCgN2iRZtcv3+glLMSnrvqzv71Tag
+         JujRcSf9F6ivmXsMOs2ulw1c1hvUMXeP0JfavJ/ZKY8dMDM5F5PTS0/UbvcMYxZmGLAu
+         RNxmFp2xrt4nG+oAMJ8XMxXkAxp57SABNKwJDeQSuJ15tbNiTKU7wW3CrSTnitPmxoUQ
+         1U3lJVzO7tHKobZCmTbnGMybY0xdSrvoonrgAJ+BigALLgoAs6sEHKkPdYlgZaVV9Gk8
+         hEgScjupleCWiGRf7hMX5IiCy6MfIm8ZubfNct6X25c+cRyPkNplkYY+ObFJHJTSKqQi
+         YI4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUK5UIQtyIGqQ8iJ++VK9Hxo8l1TeiRL/lOqwkHCWVl8XMOcR7ztqy0OS5pq8iVQfWhs5iUQB76SJzGN2o=@vger.kernel.org, AJvYcCUiAQrvdzuml+kzSV00oNduYVI4CEK9cT9S04XPaF8U4jS0wG58C7Ivcuffzv5he5EtzYyHS9BTueLe@vger.kernel.org, AJvYcCVVL1ueQBtdgEv4YEzsR4KR1hmc4DCMY+KufA4KdwuBwjUFS+TUAsuOxFX5lCLaKl5vPTKxkXh8Xz/FxHl8@vger.kernel.org, AJvYcCXWkYFH9QBIUQW4102iee+M3jCMkTCa+QgvWoeg+kAexC+4yeLLXxn8KPTBv6XYt6QGQgYnJUWZjX7T@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtMp3QyhjICM+wls+/Pi8Ma+70vqviXcXkeqj2ZktbxxTkdSok
+	QxD0h29NDMqG68r3uo5wgnMMSs7nhTUnwwIXtWR4ltYPdU6AJcBP75oe9A==
+X-Google-Smtp-Source: AGHT+IEB0XmDsy3B10i2uTRC8VzGGRmiDyjY6Ju3LHYSB2QDsh3LoZZxlsq6FBHih7bSCohEPX+QNw==
+X-Received: by 2002:a05:6a20:3944:b0:1d9:19bc:9085 with SMTP id adf61e73a8af0-1dc234afb33mr26913887637.14.1731431482453;
+        Tue, 12 Nov 2024 09:11:22 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72407a189e3sm11424545b3a.136.2024.11.12.09.11.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Nov 2024 09:11:21 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 12 Nov 2024 09:11:20 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Jean Delvare <jdelvare@suse.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzk@kernel.org>, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] hwmon: tmp108: Add support for I3C device
+Message-ID: <860c243a-f6db-44dd-bbba-d4c01dc7f9ac@roeck-us.net>
+References: <20241112-p3t1085-v4-0-a1334314b1e6@nxp.com>
+ <20241112-p3t1085-v4-2-a1334314b1e6@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,42 +95,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241111154144.163604-2-p.rosenberger@kunbus.com>
+In-Reply-To: <20241112-p3t1085-v4-2-a1334314b1e6@nxp.com>
 
-On Mon, Nov 11, 2024 at 04:41:43PM +0100, Philipp Rosenberger wrote:
-> This commit introduces the nxp,battery-backed property to the
-> nxp,pcf2127 Device Tree bindings. This flag indicates that the
-> RTC is battery-backed and forces the driver to enable the
-> battery switch-over function, but only if no other mode is already
-> configured.
+On Tue, Nov 12, 2024 at 11:52:00AM -0500, Frank Li wrote:
+> Add support for I3C device in the tmp108 driver to handle the P3T1085
+> sensor. Register the I3C device driver to enable I3C functionality for the
+> sensor.
 > 
-> With the PCF2131, the battery switch-over is disabled by default.
-> If the battery switch-over is not enabled by the bootloader or
-> firmware, this property ensures that the RTC can function correctly
-> when powered by the battery.
-> 
-> Signed-off-by: Philipp Rosenberger <p.rosenberger@kunbus.com>
-> ---
->  Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> index 2d9fe5a75b06..87ba16346fb4 100644
-> --- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> @@ -30,6 +30,13 @@ properties:
->  
->    reset-source: true
->  
-> +  nxp,battery-backed:
-> +    description: |
-> +      Indicates that the RTC is battery-backed. This property forces
-> +      the driver to enable the battery switch-over function, but only if
-> +      no other mode is already configured.
-> +    $ref: /schemas/types.yaml#/definitions/flag
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Seems like something that would be a common property? I didn't find any 
-prior art though.
+Applied.
 
-Rob
+Thanks,
+Guenter
 
