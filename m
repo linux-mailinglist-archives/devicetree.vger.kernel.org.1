@@ -1,142 +1,184 @@
-Return-Path: <devicetree+bounces-121459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BB229C6D04
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 11:38:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C5269C6D16
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 11:43:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 209A81F23209
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 10:38:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 042661F23A9C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 10:43:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8E0C1FE0F3;
-	Wed, 13 Nov 2024 10:38:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EC0A1FEFA9;
+	Wed, 13 Nov 2024 10:43:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="TP7jCWIz"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="n+iRLP5Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA111FB89A;
-	Wed, 13 Nov 2024 10:38:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ECEE1FEFAB;
+	Wed, 13 Nov 2024 10:43:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731494329; cv=none; b=g3jwqACMea0gympLPBP/mvMcTpPCxVfGOghT0br00FszEutI85giBfMuY2r3SLCc0iyQj1P8f3yaGzdReUoLbPlOEBdWafxuA03OYKPxjmvN4UWOt/OcHbn62cr9Tcilbe/ju1ebL2xb27N5sTTKuAtR7kA254iBUPaQkoLNQuo=
+	t=1731494599; cv=none; b=VNbdl6fNHiQYLwki9nlMAN1RNz/iZWzZq6iJS+AIUBbuIyMG+Qkd3w5eAE9cCnpyUxRfIqhoAj4NqXYUeFJ0zzXwziRRkJINJX9bW6esEu3IuDAYZ3F5HgbxWAWpPNdpyRQSnDu7X9IewzK0p4Zxj2Xq9pn+Eg+fZW7rdFlE+mc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731494329; c=relaxed/simple;
-	bh=XnyK2cUNddDaNwEG52WGnzjL8TynPLpzNBm8cJx3Jmw=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=HDoZ8ejKW16buSmz+P0vZwpbxsy5zf7kDJvjmce12w2GGgkDs6MpDSP8YA78UNppGGBxktWsVBXsDEdHdCTKx3ev13NFSAC3VTrZNwU1xKiKiM7Pi/+R73kD2fcLQgDhDlrtXArm5fjG9DTrwycSBKbP1vnlwWr63bzQRGBEBPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=TP7jCWIz; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1731494599; c=relaxed/simple;
+	bh=h40xhQ46kbUAWQX1WtBL9x9b1UvY110yo1B+sqO7KaA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=cUydEUAm/KXExzkxk5POEs5mcAIV/+FiUY8b6KjV2HgxyHHqDj0D5AtbzhiuBbFJgku3+1XYNSFaScxfkEYjUWv8GLpg4DlblmocqA4n1qpSdsoknLK4Dad+m8vtHdUswBELCwp05XnZBW1/fM20Sx9B5NC1+WKKuP5ITA2D+xs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=n+iRLP5Q; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1B14CFF804;
+	Wed, 13 Nov 2024 10:43:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1731494595;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Ixrjd5uZ9x2LFF0ZoaV1n0QKwuapda4UZQIU/cTO4co=;
+	b=n+iRLP5Q4VlQ32AYwug3P/LoBvB7lIWa4X3UE//5tEFCB72k0eue63oBEUPwsWMMRFoBXZ
+	dL0oSc7UjffMBdrarFA4jMdYfU1MPNMF/WLlAHFp5WIam0v8lvg7yP32x+pTjXvPB2vkMq
+	IWlN6SIub6d1LGUHdsbH95SSPLkLxE4e25/37dDQRydokW4KbKTxFdei0thC7rH91Tt+8C
+	qaqehhKbQZH9dOE2PvBtDXmTM5NYzC8nRz5m4ZKHXTI1ugh6wgjDwik54Tm5ztMmRR4MIo
+	1lS4L0cI/chqhclho1six/yAqvJbhmNwZKtdQO049Tg9Yv/Wz5EXpTFu5lYYgQ==
+From: Thomas Richard <thomas.richard@bootlin.com>
+Date: Wed, 13 Nov 2024 11:43:05 +0100
+Subject: [PATCH] arm64: dts: ti: k3-j784s4: use ti,j7200-padconf compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1731494319;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IF/vepkYLlzPa+ADSxysQyPEUO3lIiqkFDR8yTHUMM4=;
-	b=TP7jCWIzDHOvG6IaVPJw1zfuuw2FKJ1Bh0h2H/+0gswy1ADCLGYi2WQoTvzZ9ssMgdIryY
-	vIu232el3rCYgagbcyYlswLfXcQ2pWLLb7rBWrC6C8tlENyR7M8FHIYXDZvRiG/di/llH4
-	WMgmzq9Wwuq3+IorsKn6hlakinn3tNSpUOaxEAgo8Ow6HqCCo+i7KD/W4XpP2CdfDSQESe
-	qJto4tSlZESB1jp7tTw7La4pvWBCmrwsuagTnmmlYJ7esUk8/7JMfhqJ0HfZvTZXs6r7Wu
-	VKuw19CI5tcn5LNyZfxXC5ty+YjPXelReeTEARGVXGYe/ryfajlFwbt6MnqFNA==
-Date: Wed, 13 Nov 2024 11:38:37 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: =?UTF-8?Q?Tam=C3=A1s_Sz=C5=B1cs?= <tszucs@linux.com>
-Cc: Jonas Karlman <jonas@kwiboo.se>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki
- <naoki@radxa.com>, Chukun Pan <amadeus@jmu.edu.cn>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Enable UART8 on rock-3b
-In-Reply-To: <CA+Gksr+E-tZe4sKVNa8zpATwdTW_DiOQxOf_Jujf5SURzhSPSg@mail.gmail.com>
-References: <20241111181807.13211-1-tszucs@linux.com>
- <20241111181807.13211-4-tszucs@linux.com>
- <4ba81dfa-f276-4e05-b46b-92f50dbcfcc4@kwiboo.se>
- <CA+GksrJLpeU8x-kjR1Ng3ySf+giiufCsJuBssng9qoX1PjAunA@mail.gmail.com>
- <9330ebb370780c001fd2aaee49aec9e8@manjaro.org>
- <CA+GksrJjDPve29Vh7ZFhM+JFp058xmXZAPeuLuFth7v=JeiH2w@mail.gmail.com>
- <0eb19e4daf2cdf3d4a04935876c3d3b0@manjaro.org>
- <CA+Gksr+E-tZe4sKVNa8zpATwdTW_DiOQxOf_Jujf5SURzhSPSg@mail.gmail.com>
-Message-ID: <dc628e6e50239aac65a4424738000612@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241113-j784s4-s2r-pinctrl-v1-1-19aeb62739bc@bootlin.com>
+X-B4-Tracking: v=1; b=H4sIALiCNGcC/x3MQQqDQAxA0atI1gYm01DFq4gLmcaaUkZJRASZu
+ 3fo8i3+v8HFVByG5gaTU123XEFtA2md81tQX9UQQ2Si0OOn69kZPRrumtNhX3zyQ2hOMRAnqOF
+ usuj1n45TKT/vQCOYZAAAAA==
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, gregory.clement@bootlin.com, 
+ thomas.petazzoni@bootlin.com, richard.genoud@bootlin.com, u-kumar1@ti.com, 
+ Thomas Richard <thomas.richard@bootlin.com>
+X-Mailer: b4 0.14.1
+X-GND-Sasl: thomas.richard@bootlin.com
 
-Hello Tamas,
+Like on j7200, pinctrl contexts shall be saved and restored during
+suspend-to-ram.
 
-On 2024-11-13 11:24, Tamás Szűcs wrote:
-> On Wed, Nov 13, 2024 at 12:25 AM Dragan Simic <dsimic@manjaro.org> 
-> wrote:
->> On 2024-11-12 22:04, Tamás Szűcs wrote:
->> > On Tue, Nov 12, 2024 at 4:07 PM Dragan Simic <dsimic@manjaro.org>
->> > wrote:
->> >> Please correct me if I'm wrong, but isn't this UART supposed to be
->> >> used for the Bluetooth part of an SDIO WiFi + Bluetooth module, in
->> >> form of a non-standard M.2 module that Radxa sells?
->> >
->> > UART8 is supposed to be used for any radio module connected to the M2E
->> > connector.
->> > It will typically be responsible for Bluetooth or BLE but it could be
->> > 802.15.4 or whatever. In any case, all wanting to use it will need the
->> > uart8 node enabled.
->> 
->> I see, but I'm still guessing what's the actual use of enabling the
->> UART8 when it will remain pretty much useless without the additional
->> DT configuration, such as in the WiFi+Bluetooth DT overlay that Jonas
->> sent a bit earlier?
-> 
-> The actual use is device enablement.
+So use ti,j7200-padconf compatible.
 
-Hmm, I'll need to think more about how it fits together.
+Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
+---
+Use ti,j7200-padconf compatible to save and restore pinctrl contexts during
+suspend-to-ram.
+---
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi       |  6 +++---
+ arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 12 ++++++------
+ 2 files changed, 9 insertions(+), 9 deletions(-)
 
->> I think that the UART8 should be enabled together with something that
->> actually makes use of it, which in this case unfortunately cannot be
->> automatically detected and configured, so it belongs to a DT overlay.
->> I'll get back to this in my next response.
-> 
-> I agree, bluetooth blocks dedicated to specific modules should belong
-> to DT overlays.
-> 
->> >> With that in mind, I see very little sense in just enabling the UART,
->> >> without defining the entire Bluetooth interface, which AFAIK produces
->> >
->> > Defining a bluetooth node would hardwire idiosyncrasies of a given
->> > radio module's Bluetooth core. Sure you could add a sleep clock, all
->> > kind of sideband signals for wakeups, reset, power down, etc. But hey,
->> > some will use them, some won't. I think it's undesirable and
->> > unnecessary. You can hciattach from here and most will work just like
->> > that. Tighter integration or anything special, module specific on top
->> > should be handled individially, on a case-by-case basis. This is a dev
->> > board after all. I say trick of all trades.
->> >
->> >> nasty looking error messages in the kernel log when there's actually
->> >> nothing connected to the UART.
->> >
->> > My dmesg is clean as a whistle
->> > root@rock-3b:~# dmesg | grep -E 'fe6c0000|ttyS0'
->> > [    0.344818] fe6c0000.serial: ttyS0 at MMIO 0xfe6c0000 (irq = 26,
->> > base_baud = 1500000) is a 16550A
->> > What kind of nasty errors do you recall?
->> 
->> Those would be the kernel error messages produced with the Bluetooth
->> DT configuration in place, but with no SDIO module installed.
-> 
-> These are the kernel messages related to UART8 with the uart8 DT node
-> enabled and an SDIO module installed.
+diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+index e73bb750b09a..b25d9a6aff2c 100644
+--- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+@@ -230,7 +230,7 @@ main_gpio_intr: interrupt-controller@a00000 {
+ 	};
+ 
+ 	main_pmx0: pinctrl@11c000 {
+-		compatible = "pinctrl-single";
++		compatible = "ti,j7200-padconf", "pinctrl-single";
+ 		/* Proxy 0 addressing */
+ 		reg = <0x00 0x11c000 0x00 0x120>;
+ 		#pinctrl-cells = <1>;
+@@ -240,7 +240,7 @@ main_pmx0: pinctrl@11c000 {
+ 
+ 	/* TIMERIO pad input CTRLMMR_TIMER*_CTRL registers */
+ 	main_timerio_input: pinctrl@104200 {
+-		compatible = "pinctrl-single";
++		compatible = "ti,j7200-padconf", "pinctrl-single";
+ 		reg = <0x00 0x104200 0x00 0x50>;
+ 		#pinctrl-cells = <1>;
+ 		pinctrl-single,register-width = <32>;
+@@ -249,7 +249,7 @@ main_timerio_input: pinctrl@104200 {
+ 
+ 	/* TIMERIO pad output CTCTRLMMR_TIMERIO*_CTRL registers */
+ 	main_timerio_output: pinctrl@104280 {
+-		compatible = "pinctrl-single";
++		compatible = "ti,j7200-padconf", "pinctrl-single";
+ 		reg = <0x00 0x104280 0x00 0x20>;
+ 		#pinctrl-cells = <1>;
+ 		pinctrl-single,register-width = <32>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+index 2c97d1c7ebcd..36341665177f 100644
+--- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+@@ -76,7 +76,7 @@ mcu_ram: sram@41c00000 {
+ 	};
+ 
+ 	wkup_pmx0: pinctrl@4301c000 {
+-		compatible = "pinctrl-single";
++		compatible = "ti,j7200-padconf", "pinctrl-single";
+ 		/* Proxy 0 addressing */
+ 		reg = <0x00 0x4301c000 0x00 0x034>;
+ 		#pinctrl-cells = <1>;
+@@ -85,7 +85,7 @@ wkup_pmx0: pinctrl@4301c000 {
+ 	};
+ 
+ 	wkup_pmx1: pinctrl@4301c038 {
+-		compatible = "pinctrl-single";
++		compatible = "ti,j7200-padconf", "pinctrl-single";
+ 		/* Proxy 0 addressing */
+ 		reg = <0x00 0x4301c038 0x00 0x02c>;
+ 		#pinctrl-cells = <1>;
+@@ -94,7 +94,7 @@ wkup_pmx1: pinctrl@4301c038 {
+ 	};
+ 
+ 	wkup_pmx2: pinctrl@4301c068 {
+-		compatible = "pinctrl-single";
++		compatible = "ti,j7200-padconf", "pinctrl-single";
+ 		/* Proxy 0 addressing */
+ 		reg = <0x00 0x4301c068 0x00 0x120>;
+ 		#pinctrl-cells = <1>;
+@@ -103,7 +103,7 @@ wkup_pmx2: pinctrl@4301c068 {
+ 	};
+ 
+ 	wkup_pmx3: pinctrl@4301c190 {
+-		compatible = "pinctrl-single";
++		compatible = "ti,j7200-padconf", "pinctrl-single";
+ 		/* Proxy 0 addressing */
+ 		reg = <0x00 0x4301c190 0x00 0x004>;
+ 		#pinctrl-cells = <1>;
+@@ -125,7 +125,7 @@ wkup_gpio_intr: interrupt-controller@42200000 {
+ 
+ 	/* MCU_TIMERIO pad input CTRLMMR_MCU_TIMER*_CTRL registers */
+ 	mcu_timerio_input: pinctrl@40f04200 {
+-		compatible = "pinctrl-single";
++		compatible = "ti,j7200-padconf", "pinctrl-single";
+ 		reg = <0x00 0x40f04200 0x00 0x28>;
+ 		#pinctrl-cells = <1>;
+ 		pinctrl-single,register-width = <32>;
+@@ -136,7 +136,7 @@ mcu_timerio_input: pinctrl@40f04200 {
+ 
+ 	/* MCU_TIMERIO pad output CTRLMMR_MCU_TIMERIO*_CTRL registers */
+ 	mcu_timerio_output: pinctrl@40f04280 {
+-		compatible = "pinctrl-single";
++		compatible = "ti,j7200-padconf", "pinctrl-single";
+ 		reg = <0x00 0x40f04280 0x00 0x28>;
+ 		#pinctrl-cells = <1>;
+ 		pinctrl-single,register-width = <32>;
 
-Out of curiosity, what M.2 module are you testing it with?
+---
+base-commit: eff6d7cad08c4ce4e3456fd7f8f1d94c81cd2b63
+change-id: 20241108-j784s4-s2r-pinctrl-643e1ac2014c
+
+Best regards,
+-- 
+Thomas Richard <thomas.richard@bootlin.com>
+
 
