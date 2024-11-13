@@ -1,90 +1,88 @@
-Return-Path: <devicetree+bounces-121332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF2C99C6767
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 03:41:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC8809C678A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 04:04:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4492284E1A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 02:41:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A19E92832D2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 03:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86422157494;
-	Wed, 13 Nov 2024 02:40:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBA1A16133C;
+	Wed, 13 Nov 2024 03:04:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="gE7I88bB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fGLBgYjY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06405155308
-	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 02:40:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52E5716130C;
+	Wed, 13 Nov 2024 03:04:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731465637; cv=none; b=B36uE1Wg4w/9RR/rNgdHLlPqr3RPqatFfNRcVD5IcBDhxRzJoW5Ip1Rpz8OMygp9PJVR71RQWkkgB8fCAHVO/woBRcBmrmSjz+bfgUYiPq6lgBR6l51RXLV8OhK+VyxD8013PJ/CZIrhR4FitIxIqjEZsQxoSRR7EeIjHIzMv6c=
+	t=1731467074; cv=none; b=U6kjYBOTf6DEuZnLJrnuJc9CES6StwUf0wI5wUxm+KSNg8tdi7+uYuYZFVdhGlWa0aQWbXsE3AATik4O5sgn+isFkOXNt3LKTq9ncowA462wqzq9dEdFDJ+PR0TZFD98iFj09LQRpeb2bEE59WDMQlG95yZrSHacDuWVmhaEckE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731465637; c=relaxed/simple;
-	bh=8lt7eykDFZw7fIigqij0E5lpK1ubBDThz9WowdmROho=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jl8ubSFDzCQ4OEPrUFlN+RGEaK27E0870sEz7ZJcMW0vYyTDlSArpeunvsEHFKToCyPAXuh6TKzsNYbNTFLYmCdWuUKqSXuVgfDkq7JLGIY2DXGGSO27MeHvZT9bGyQRJw2C7RpI8bx93u4zpbrXjB2KZ3BxU6MVtp7ANcgvg8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=gE7I88bB; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-20cb47387ceso66371325ad.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 18:40:35 -0800 (PST)
+	s=arc-20240116; t=1731467074; c=relaxed/simple;
+	bh=EuxKVNmpNGfrOiahUvynnVXT5qofaDA0cpfjiP0F1SU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=czVc96AfxhQ1KgssaUTIwQrgHD+Ra1MtHyT1x5fk/bPa1vcGfndhcnCc1q7WcAnHjM/as65A4ZtmE5D1xabDldTJNiR4rHOsgf3Gey+ZxVsaDRhFa9w/BjeEXXGdXqLBzn0DEpPPfreCCxNiauQF7b/CkhlNEZpRtsTARt6Iipw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fGLBgYjY; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-71e4244fdc6so5422549b3a.0;
+        Tue, 12 Nov 2024 19:04:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1731465635; x=1732070435; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Vjvrd2avQzhgqp6lHzhNNlW4+aoD1gw3mVGy/cwxKNk=;
-        b=gE7I88bBD0HdWSXQlYMBNj/ZD7ByCp6yeH/JxP8Ln1zfoJL/eypAhjCrZFiO54328r
-         4vH1nXWQ4THu7TS0L4dRRWqukzyIbyQU0ec1sO3NwOWjZ3tN0/DjB+qTFcd5zfMZLr2p
-         L8jenlp0k50FBeqqfWRzsxGWAn3Da5F5yU6Mg=
+        d=gmail.com; s=20230601; t=1731467072; x=1732071872; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P4y2OBEpapBr/wW9aW632V6tkwGQczTUHp3LH8E+LKc=;
+        b=fGLBgYjYDvhrDxWmQxQLENhW87mEFQ2zPbgZs0tqr4ao+mB2ndwp63q7ryMtzJ1av+
+         Wre1Mw1u135m49WBj9ym2ZrHN68smLCQb2gWKAudWswBTD896xJiXBOsOC3KOYBXhj73
+         8r/lK8dHIe9LI2mTFK78Th8l1k0F4bZs7Oo/DlFsNGpgPMNTx9tIwKhYFKLuZDN5Rhg8
+         NNO/Va0PvB5Mr2PhSEhNwX71BLd8eCFLywYSRg1qlAbxHsUPJT33TejHtc1xt3SNFaPg
+         SuZCI23lGmhKgxyCbX9thvAh9XYOEwfEG83E8TuUcblGK60aincQ1ahbYJA3GOMPVw9X
+         wsFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731465635; x=1732070435;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1731467072; x=1732071872;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Vjvrd2avQzhgqp6lHzhNNlW4+aoD1gw3mVGy/cwxKNk=;
-        b=qE8t5mou/M2YwMOZyaYqgUc0fR1ekvqnBPC1EBU9H050sZQomMtyWqViYaJdBRoo73
-         5CtgTdImnCFuFxzwJA2F93XUI9NLhXs0jk95eQFtnk1odpxOtTK3rqjoatcxBEF8FCRh
-         HkqdhAtcM10s9QyHEeEf3CAJ7pKk77wSYMSK/i7KX0OxD8v2BXsCWvfHebTk1MPje8pv
-         ltlnbJOf8ZzYG7uhTCE8VJRf/oHcoDdbHP3YX2n6Tq8ZgAwlj2yI08LGfLrLo1/GWWkT
-         iYFm7D5X21Vf6tVvTOp/PAqZWouS40oPcGtGNS89yW2gpppKGWPL+/xGVWkjr1d9Dzda
-         tcsA==
-X-Forwarded-Encrypted: i=1; AJvYcCXbxqIKFovodRveBCN5zuvIAH1kW+Vxfpnj3E7Y1TIbaS3yC0AEBngbuE7Cn6lK3EyF5bpxY7UY2bY/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWOYTpXUT/K0rOiDs6ON3GIelkWfxJU5/tZilkjbviBDp9E8e2
-	L1BhBRUbEl2n0fhsWou9+Niv9NqXGZe0G/u9MElif1tDGPULyM1CDCNgY++Ukg==
-X-Google-Smtp-Source: AGHT+IHe721yXQHCRZeRjkW+n+uLrfYbkZjFfwy3XKSXli/Bjhg1eEXBQdFZlkHS9zXTLG7hxYMmCQ==
-X-Received: by 2002:a17:903:1cb:b0:20c:bffe:e1e5 with SMTP id d9443c01a7336-21183521d84mr274072955ad.19.1731465635278;
-        Tue, 12 Nov 2024 18:40:35 -0800 (PST)
-Received: from lschyi-p920.tpe.corp.google.com ([2401:fa00:1:10:3dd4:86fa:9696:4236])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177e418d6sm101831325ad.142.2024.11.12.18.40.32
+        bh=P4y2OBEpapBr/wW9aW632V6tkwGQczTUHp3LH8E+LKc=;
+        b=PdLRNfwzRnXYyepTrajuum62l3FpDnft9QBuFtUjJkgWHzdun03Oh0QgGBf30roOaF
+         s0h9e8iNFTYVe9LC+sMh/8Qmru069mea4xW0HMebbyytdXlNSyBj8r8bQcXRAaNMkT1f
+         ZMS0yM9w4YDqhuIb/LGkeDU6PADISLwOtziRvm6Hv5noiNOpvsjfafgO4R8tToS5K6XR
+         kifLc3rQ2KtlJXP+zP2cglea7nVhO3NR8sLyX7g/zLSWgTnE38zNwPDrIfOhnvwNkRel
+         71sN5SVk9ob2kOFLEY6wlB+7iss0rk2NT3Zxxk4SOR/CqHg81bNsv9MSWB03pumPHNaY
+         72Iw==
+X-Forwarded-Encrypted: i=1; AJvYcCUtSFVsdKPyYNzqS3YTPPAhxARjvJ73sY281X9ufvFrKx7SGF+YqqNWOWl7d6URmaHMQgD1TZkLJgHI@vger.kernel.org, AJvYcCWKANJqruDdcZ4mtExpQrnkHB+kPTDShV7+NbLpVVlSWALcXY3+QoljtRueQcHjaP9378a/hRc+ptYihY8=@vger.kernel.org, AJvYcCXG8/lUilbPT+cdLVzMfsSWCk1RUqPP7TJMVntxDTRyVsCUMAK4EH3qQXVwe588mPIcTjaFv6sNiqdjmg1H@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuD3+m3y2DRk3H621y27EtvKebBEgBf4NL/A8pxFuQYTHEWf7f
+	itcEUmF0EpjE35bTJbH3IKd6pr7hlvlgahopbsRZxUIu3RU0NzQe
+X-Google-Smtp-Source: AGHT+IHKHAm+cuL8lFCVMojYZqRqYhNq8Jtwk1CRNj2ESswXVkFPqmbb7UYjGkXkoHENzLQUmPqBbw==
+X-Received: by 2002:a05:6a20:4c17:b0:1db:e9d8:be4f with SMTP id adf61e73a8af0-1dc22af3e51mr18186998637.29.1731467072421;
+        Tue, 12 Nov 2024 19:04:32 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7f41f65aa9csm11213055a12.74.2024.11.12.19.04.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Nov 2024 18:40:34 -0800 (PST)
-From: "Sung-Chi, Li" <lschyi@chromium.org>
-To: 
-Cc: "Sung-Chi, Li" <lschyi@chromium.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+        Tue, 12 Nov 2024 19:04:31 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 12 Nov 2024 19:04:30 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: "Sung-Chi, Li" <lschyi@chromium.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Benson Leung <bleung@chromium.org>,
 	Guenter Roeck <groeck@chromium.org>,
-	=?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <thomas@weissschuh.net>,
-	Jean Delvare <jdelvare@suse.com>,
-	devicetree@vger.kernel.org,
-	chrome-platform@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas@weissschuh.net>,
+	Jean Delvare <jdelvare@suse.com>, devicetree@vger.kernel.org,
+	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
 	linux-hwmon@vger.kernel.org
-Subject: [PATCH v3 2/2] dt-bindings: mfd: Add properties for thermal sensor cells
-Date: Wed, 13 Nov 2024 10:39:52 +0800
-Message-ID: <20241113024000.3327161-2-lschyi@chromium.org>
-X-Mailer: git-send-email 2.47.0.338.g60cca15819-goog
-In-Reply-To: <20241113024000.3327161-1-lschyi@chromium.org>
+Subject: Re: [PATCH v3 1/2] hwmon: (cros_ec) register thermal sensors to
+ thermal framework
+Message-ID: <39ffe084-0bc4-4f6a-9b10-aee6dd493db5@roeck-us.net>
 References: <20241111074904.1059268-1-lschyi@chromium.org>
  <20241113024000.3327161-1-lschyi@chromium.org>
 Precedence: bulk
@@ -93,38 +91,27 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241113024000.3327161-1-lschyi@chromium.org>
 
-The cros_ec supports reading thermal values from thermal sensors
-connect to it. Add the property '#thermal-sensor-cells' bindings, such
-that thermal framework can recognize cros_ec as a valid thermal device.
+On Wed, Nov 13, 2024 at 10:39:51AM +0800, Sung-Chi, Li wrote:
+> cros_ec hwmon driver probes available thermal sensors when probing the
+> driver.  Register these thermal sensors to the thermal framework as well
+> via setting HWMON_C_REGISTER_TZ as a chip info, such that thermal
+> framework can adopt these sensors as well.
+> 
+> To make cros_ec registrable to thermal framework, the cros_ec dts need
+> the corresponding changes:
+> 
+> &cros_ec {
+> 	#thermal-sensor-cells = <1>;
+> };
+> 
+> Signed-off-by: Sung-Chi, Li <lschyi@chromium.org>
 
-Signed-off-by: Sung-Chi, Li <lschyi@chromium.org>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
- Changes in v2:
-   - Add changes for DTS binding.
- Changes in v3:
-   - Remove unneeded Change-Id tag in commit message.
----
- Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Applied.
 
-diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-index aac8819bd00b..c7d63e3aacd2 100644
---- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-+++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-@@ -96,6 +96,9 @@ properties:
-   '#gpio-cells':
-     const: 2
- 
-+  '#thermal-sensor-cells':
-+    const: 1
-+
-   gpio-controller: true
- 
-   typec:
--- 
-2.47.0.338.g60cca15819-goog
-
+Thanks,
+Guenter
 
