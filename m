@@ -1,130 +1,119 @@
-Return-Path: <devicetree+bounces-121501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A870A9C6FC0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 13:53:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 614BF9C6FAB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 13:51:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 302E0B27D19
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 12:39:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25EA12863A4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 12:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CBFC1DF75C;
-	Wed, 13 Nov 2024 12:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D562200C84;
+	Wed, 13 Nov 2024 12:43:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="2SQyVf+h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KfhHWOHA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DEB34C6C;
-	Wed, 13 Nov 2024 12:39:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75A6F1DF25D;
+	Wed, 13 Nov 2024 12:43:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731501588; cv=none; b=tb0Ya6cV+ZAJ7sxS7gkfbDuoVNs47J1tR4zLOHfU5pg1cuP74dWDvYbRrMtJHW15ZQPEG1+Rk3lrkYoWZApm5ilxy2oJVX9fj8pQ2dHXQx9C3CqI/FSPyfuVJboWUp3k9h0A/18JpnhVUM4VFDtQtHsAyjPurW0PN8lOIc0ojhY=
+	t=1731501799; cv=none; b=TKexxeIKWi3JZN5oSCvloCPst+d1ddVx9wdfeDGT7FiGOrkguV6T79KrojjqwVBzoahH1uVGzVlucHwM7jg0D32mMWc1DZxP8J6/dDewTJlq537FItiX1GDnvg7XXkoPNLOmVgYE8NB00+MsUDmGTj1D/gkkpLosEWQAnhtzEAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731501588; c=relaxed/simple;
-	bh=gKqFLRNsIwmH44eV0meSeljeLbEd+mAGQe2+yyq65/s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=V4kwvWP3yi5BgCldnwPqP7O/eYdKw/0OFNdRFkHpWnQQCT9NjTFNriiAqdBH3WIBs9CQUXjpcDT3IPxCUA64o/R4GNIU/+Ao05e6CJ/aRCYvw/FvgRvOZZYo1Y3ua/M6MN5Ry95e7hn/svQME0BQzUj29HIvrRQ3vFjTKFQhOWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=2SQyVf+h; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=KmeKU28bQtzm8XNGcvF30DDJ+SoCDTx1YSZjcXEcLKI=; b=2SQyVf+hPTARrHZbuwXr/dxWZx
-	0CnmRSDkpJ36NC9AriqR4Sw7jSgBsKxRehtKc7D6tTG9eW6NuhlCfkVO8QSRGg2BBgCI5puI6plCW
-	iP5vv2vMXErkCefUx2KyVCSqU21B2pU0fheOT5n2UJdjzsNGf7mKHS2mgwu//nd7qnaQZzqpVo/fk
-	zmclxzYC56fex2+pLaC1uPQOeYWOrLVdlsyRAot+2h1yD5tvfrIVxpj/XEV79UT1JRTYrDQJSBe9a
-	+JCxMChIJBYz1efnoTr8MN1EfXh2pKJQIj5pcUx53Lz6PNYBEaoRBWJRST8R+MG+F0m7pnbFUUxyc
-	9HcAMXpg==;
-Received: from i53875a30.versanet.de ([83.135.90.48] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tBCeh-00033b-66; Wed, 13 Nov 2024 13:39:31 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, quentin.schulz@cherry.de, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject:
- Re: [PATCH v2 2/2] phy: rockchip: Add Samsung CSI/DSI Combo DCPHY driver
-Date: Wed, 13 Nov 2024 13:39:30 +0100
-Message-ID: <2564703.Sgy9Pd6rRy@diego>
-In-Reply-To: <fynyo2amqillioxwfyydvztakba5ecwa2qrtdtuoaffyvwc62c@3vizyubfqvsf>
-References:
- <20241104111121.99274-1-heiko@sntech.de>
- <20241104111121.99274-3-heiko@sntech.de>
- <fynyo2amqillioxwfyydvztakba5ecwa2qrtdtuoaffyvwc62c@3vizyubfqvsf>
+	s=arc-20240116; t=1731501799; c=relaxed/simple;
+	bh=Q4Q4ybEfBqgLRDPVB7Zw53fPxqgmPSshebKB+JwBp8Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LSF+jsgXcrzeFveowPK/BlVDCfhnyzABt7ee03asPUP3FgkjkJQhjhqxm39MAB44/A2To7P3ajBeVDY4aN/sg68IC5uHlRnUeT7MdTqxrpvqDqN0JiUjDpEglmXxueEF7toXZSFHlo59yolrbqUrzpaAIQxfEZKJeG94ELsu4Hc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KfhHWOHA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 759A5C4CECF;
+	Wed, 13 Nov 2024 12:43:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731501799;
+	bh=Q4Q4ybEfBqgLRDPVB7Zw53fPxqgmPSshebKB+JwBp8Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KfhHWOHAWXbfue7LMZwl9fC6h+g3T/79kEYzpLytgqH4lGn9pUAKy8xKvgLwyVLay
+	 a8BmAEX8Lg+DIX61KRWvCDM+LJ33sfY2T2b+bMPcSm4slf8Wn7L5jezibzouJtq/kW
+	 ZURyY9WVzEQoMI1fUkLLK72C6OU9VEM82brwQ2BgGpfi6oPUQ2xMJ9eeTiqzFKmtYt
+	 xPHonkUjE3eWZl9mJxWELMHSVwp6hN4XE/R72q4V+pDD9fRCUnuBMjD/ZU8anv9zU1
+	 7NjRlmzL7hHh52l4gsvtj52tMb3ZmqWPW90KrA+abBvg70mZXPvcgky9ckfT1Ctuid
+	 9DunVmtJCqvHQ==
+Date: Wed, 13 Nov 2024 13:43:13 +0100
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 1/3] dt-bindings: arm,psci: Allow S2RAM power_state
+ parameter description
+Message-ID: <ZzSe4UAyil8KUm85@lpieralisi>
+References: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
+ <20241028-topic-cpu_suspend_s2ram-v1-1-9fdd9a04b75c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241028-topic-cpu_suspend_s2ram-v1-1-9fdd9a04b75c@oss.qualcomm.com>
 
-Hi,
-
-> > +static void samsung_mipi_dcphy_bias_block_enable(struct samsung_mipi_dcphy *samsung)
-> > +{
-> > +	u32 bias_con2 = 0x3223;
-> > +
-> > +	regmap_write(samsung->regmap, BIAS_CON0, 0x0010);
-> > +	regmap_write(samsung->regmap, BIAS_CON1, 0x0110);
-> > +	regmap_write(samsung->regmap, BIAS_CON2, bias_con2);
-> > +
-> > +	/* default output voltage select:
-> > +	 * dphy: 400mv
-> > +	 * cphy: 530mv
-> > +	 */
-> > +	regmap_update_bits(samsung->regmap, BIAS_CON4,
-> > +			   I_MUX_SEL_MASK, I_MUX_SEL_400MV);
-> > +}
-> > +
-> > +static void samsung_mipi_dcphy_bias_block_disable(struct samsung_mipi_dcphy *samsung)
-> > +{
-> > +}
+On Mon, Oct 28, 2024 at 03:22:57PM +0100, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> uhm? :)
-
-When there was still the CSI stuff in here, that function still had
-content ;-) .
-
-But yeah, if and when that comes back, we can re-add things.
-
-
-> > +static int samsung_mipi_dcphy_set_mode(struct phy *phy, enum phy_mode mode,
-> > +				       int submode)
-> > +{
-> > +	return 0;
-> > +}
+> Certain firmware implementations (such as the ones found on Qualcomm
+> SoCs between roughly 2015 and 2023) expose an S3-like S2RAM state
+> through the CPU_SUSPEND call, as opposed to exposing PSCIv1.0's
+> optional PSCI_SYSTEM_SUSPEND.
 > 
-> You can just remove this. phy_set_mode_ext() will return 0 byself if
-> the callback is NULL.
+> This really doesn't work well with the model where we associate all
+> calls to CPU_SUSPEND with cpuidle. Allow specifying a single special
+> CPU_SUSPEND suspend parameter value that is to be treated just like
+> SYSTEM_SUSPEND from the OS's point of view.
 
-But it will not set the mode then.
+For the records, the info above is not relevant.
 
-See the part of
-	ret = phy->ops->set_mode(phy, mode, submode);
-	if (!ret)
-		phy->attrs.mode = mode;
+These are generic firmware bindings for PSCI specifications - how CPUidle
+is implemented in Linux must play no role here.
 
-Without the set_mode callback phy->attrs.mode will not be set.
-And while we don't have anything to do for set_mode itself,
-we do need the mipi_dphy mode to be set.
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/arm/psci.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
+> index cbb012e217ab80c1ca88e611e7acc06c6d56fad0..a6901878697c8e1ec1cbfed62298ae3bc58f2501 100644
+> --- a/Documentation/devicetree/bindings/arm/psci.yaml
+> +++ b/Documentation/devicetree/bindings/arm/psci.yaml
+> @@ -98,6 +98,12 @@ properties:
+>        [1] Kernel documentation - ARM idle states bindings
+>          Documentation/devicetree/bindings/cpu/idle-states.yaml
+>  
+> +  arm,psci-s2ram-param:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      power_state parameter denoting the S2RAM/S3-like system suspend state
+> +    maxItems: 1
 
+NACK
 
-Heiko
+This is nothing that has ever been specified in the PSCI specifications,
+see above.
 
-
+>  patternProperties:
+>    "^power-domain-":
+>      $ref: /schemas/power/power-domain.yaml#
+> 
+> -- 
+> 2.47.0
+> 
 
