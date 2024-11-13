@@ -1,76 +1,63 @@
-Return-Path: <devicetree+bounces-121334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FF609C678F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 04:06:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64F919C67A5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 04:16:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFFA2283858
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 03:06:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2693F2852E9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 03:16:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3034015B0EF;
-	Wed, 13 Nov 2024 03:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED7D61632F6;
+	Wed, 13 Nov 2024 03:15:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MjOBoCjt"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JX1qTyrT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8232014F135;
-	Wed, 13 Nov 2024 03:05:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 350BF7083B;
+	Wed, 13 Nov 2024 03:15:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731467161; cv=none; b=aWCT1uQBBXaTQyEgYPes0pvkcX0DJ8oVpykCEU0KJzA9Lv4mGcbfBHeV/7gYLxQPY+hVTy9DjtMbOlPRftoBFq65wV22jO/TNflYrOp8B/CduwS8gp9iHpAAZsR67GTDi4E4M8DyVYzTYeP8OSV6CBkvupTuioFbyF/9WbPtgEU=
+	t=1731467756; cv=none; b=iNnQtiPKQpYGxqlCc0M2QX+9nU5034PfDwZQmakIKj11ZsCb8limn5dNdvP5zI0d4wN1CcwKrkkN71fXbaOWKjN1VL/ISmHjYzcki1nm+7vxQId5z2Iwy+ySdBcxGmnZmWivNajEGPxxWwLvoet/Upqlv1mptPcm7ht40CoJ4/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731467161; c=relaxed/simple;
-	bh=jgeKZMmVVEHeeeEKCLCb1OdnvvKeX/iz32OKz04+v8A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nep+EB+EcvEVTF1VkRcykCjGBcN/qf3Z1/zaCqS8FMXRrFalmYFXWScOBfuDCj0AgdkHZ1c48JcYV47H05Dbkk2DaVmdZ9pKBEt2K+hBAzOl7urX9VNSig5xavGCY+PBoVMnjlvE40yIc2fDYQ7eAjCBjx82mcSc7nOeCBwxhxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MjOBoCjt; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-71e49ad46b1so5596162b3a.1;
-        Tue, 12 Nov 2024 19:05:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731467159; x=1732071959; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=mGyxITbYswrd6kxCyiPpfT0798sw0dycRR7H9RQ7YQs=;
-        b=MjOBoCjtiVMoopec6otj9VZN8v+Aq2WYO6Au6VGxOF0z20zuPjz88OLxAfD4U2e1ZK
-         Xz4uNXgTlLg30FPg2N622qBMtQRXAOqI5xgySkIKSUBvkYqs7Hys5Zo1jOXU8kuRDYTQ
-         s9Y/jKtgrwzOiVhWQIFvmMUW9rMjgVHXVM7vg9wVZKMfSbBytYmxjAqd5C6BReRkndGA
-         ylyqvzAdEhwg2W8EH8YUL+/13qhb8XbhAQhFVGhVtdwqUtNTJxYbQ55dUmPNIV6f2499
-         QuEFxYyRPRk5FnJo7Dx0CFdW9H2pK3GfaYnAI66kSs9KM9B0UekIoYTFSjtEu7o42yvp
-         sOgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731467159; x=1732071959;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mGyxITbYswrd6kxCyiPpfT0798sw0dycRR7H9RQ7YQs=;
-        b=lRBJhHamLl3XxvaipTpfCHcYx0upBfRTttIHWi5Hc8jAcxC4pfu3eN4YQrTnsYg16F
-         FZZhOHhg5tAPxAhCP2PxY26WC/H8mJUe9+h5JgxG1Z7aS1eBKVk0EzF+sQvHaU0royDp
-         mJO/Qmq++nw1YOw4dVTF1KHT7uq3OHfYZZu7Pqyoe4vpDI5a+n75fK5E1IRsFrth40aS
-         vmj9FYqbsl3A5vsP1uS48107sBdDY5ewjaCCuF4xL/OYDII6Kr9lNWp2QauMXNn60kjk
-         77+lML6tMKJ/ZtmyNx7jO7Z43XCnDVU7c1Xusr8wdQCTsVr3rA/6SnQIBjwMecF+oZtm
-         J75Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW1hzyCJrD6vkSDBucAIOJZjuF3oR8FI13DOUtO2aOvjk5DgrehnoPBZ7e0vtP1V5oOenN9vFc6DLiWLG4=@vger.kernel.org, AJvYcCWdi3T2usDv1UEPrrfJPzE12QyIzAY9b56tvs39Nv929Dw2jjYtegIT8rEF+CowPTNkK0Hdx8EHr9kL5xhs@vger.kernel.org, AJvYcCXxrFy6euny12NtL0ekTx2OtnHXy4b0LQWIQ6/BeO8uYOeyXzFaSxfZzautbx9HXWzmqIWpr5PRYcR8@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBBJmls3zUdyGwR6RXGh3wQ+wHXLxG6oSnUvpcrZ1QZgOJh4zP
-	6VRenEKKwdq2zxpBIPPjeLKSev/VebXx3NQHthnKZDyFMgi26/24
-X-Google-Smtp-Source: AGHT+IEN9o8W+pQFYFSPjfwLZK6aMVXKchC/r/gAKEh+5OaZ0mqzhgqBc0yJ/UNmdm4+vhrQ9gW7qg==
-X-Received: by 2002:a05:6a00:3998:b0:71e:b1dc:f229 with SMTP id d2e1a72fcca58-7241334b18emr25460906b3a.19.1731467158513;
-        Tue, 12 Nov 2024 19:05:58 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7f41f48d611sm9640849a12.13.2024.11.12.19.05.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Nov 2024 19:05:57 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <4efe981f-f7ae-41c7-9c12-2aa3a5d2d046@roeck-us.net>
-Date: Tue, 12 Nov 2024 19:05:51 -0800
+	s=arc-20240116; t=1731467756; c=relaxed/simple;
+	bh=Kvtqt9CB3FwQ88prvtB4P/v91yBTj+PcYS64KOGOY3E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Vm6LoZkIpMLoCNqOFtkzSwDOIlULDIBAKzhLiDdVki5tu89d4FMk+ujKK3h2e/xUOKkj6tuN4idOSjlhi9hi5b/VBT6+nhJvGoPX+jilximrYEweQkuEpOfBoz70VTX2lUHoIAAycZQjfW32XuoeqcncgF5ojYznL7EHK6cRP1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JX1qTyrT; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ACMRgqn020160;
+	Wed, 13 Nov 2024 03:15:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	+0nLDjWPpDSaIUWRpCkibPRwNwq3e9MLwoKzDakWg+w=; b=JX1qTyrT7zAKVhlY
+	RlEkMRqXDsI6mLayZ37Tij6MjkOAABzd7vU7rTN3cRkaAMtIL4s6WtUbLWD2PE41
+	7858slkiUsa/VNI9mseBJ/vZsM51j5zzOL6gRMbxLVFsSnC21GbHiBZA19pMypFi
+	wVibfE9gQv/f7vwkeB8EcGQLETrSTm5Swok5GJdOvMwOhPGg93B3w4FuJTvwrqoc
+	IJbFbvtEZmzwWxFzmzGisGc7nmkxAoaH8Y9SQRuR8ToH+uUtYRj+QDfgPGHU3mxC
+	DLa9HJP/7g5zqt3p00icl279ejEt7J914d7Z0eqJm0PfaA5NANgwcMRi/V44ioIu
+	Ppdidw==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42uc60e0te-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Nov 2024 03:15:45 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AD3FiTU000592
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Nov 2024 03:15:44 GMT
+Received: from [10.239.29.179] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 12 Nov
+ 2024 19:15:38 -0800
+Message-ID: <ef37236d-8856-4981-82fa-c0194d7b3dfc@quicinc.com>
+Date: Wed, 13 Nov 2024 11:15:35 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,107 +65,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] dt-bindings: mfd: Add properties for thermal
- sensor cells
-To: "Sung-Chi, Li" <lschyi@chromium.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>,
- Guenter Roeck <groeck@chromium.org>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
- <thomas@weissschuh.net>, Jean Delvare <jdelvare@suse.com>,
- devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
-References: <20241111074904.1059268-1-lschyi@chromium.org>
- <20241113024000.3327161-1-lschyi@chromium.org>
- <20241113024000.3327161-2-lschyi@chromium.org>
+Subject: Re: [PATCH v8 5/5] arm64: dts: qcom: x1e80100: Add support for PCIe3
+ on x1e80100
+To: Johan Hovold <johan@kernel.org>
+CC: <manivannan.sadhasivam@linaro.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <abel.vesa@linaro.org>,
+        <quic_msarkar@quicinc.com>, <quic_devipriy@quicinc.com>,
+        <dmitry.baryshkov@linaro.org>, <kw@linux.com>, <lpieralisi@kernel.org>,
+        <neil.armstrong@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <johan+linaro@kernel.org>
+References: <20241101030902.579789-1-quic_qianyu@quicinc.com>
+ <20241101030902.579789-6-quic_qianyu@quicinc.com>
+ <ZyjbrLEn8oSJjaZN@hovoldconsulting.com>
+ <de5f40ab-90b7-4c75-b981-dd5824650660@quicinc.com>
+ <c558f9eb-d190-4b77-b5a3-7af6b7de68d8@quicinc.com>
+ <ZzOQi0PpRZYts-B0@hovoldconsulting.com>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20241113024000.3327161-2-lschyi@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Qiang Yu <quic_qianyu@quicinc.com>
+In-Reply-To: <ZzOQi0PpRZYts-B0@hovoldconsulting.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: GcnROkpzv1BlU-MSswyL8At-npoyDzuB
+X-Proofpoint-ORIG-GUID: GcnROkpzv1BlU-MSswyL8At-npoyDzuB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
+ phishscore=0 suspectscore=0 impostorscore=0 mlxlogscore=812 adultscore=0
+ lowpriorityscore=0 priorityscore=1501 clxscore=1015 mlxscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411130027
 
-On 11/12/24 18:39, Sung-Chi, Li wrote:
-> The cros_ec supports reading thermal values from thermal sensors
-> connect to it. Add the property '#thermal-sensor-cells' bindings, such
-> that thermal framework can recognize cros_ec as a valid thermal device.
-> 
-> Signed-off-by: Sung-Chi, Li <lschyi@chromium.org>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->   Changes in v2:
->     - Add changes for DTS binding.
->   Changes in v3:
->     - Remove unneeded Change-Id tag in commit message.
-> ---
 
-I can't apply this one (not in hwmon space), so
-
-Acked-by: Guenter Roeck <linux@roeck-us.net>
-
-with the assumption that Lee will pick it up.
+On 11/13/2024 1:29 AM, Johan Hovold wrote:
+> On Mon, Nov 11, 2024 at 11:44:17AM +0800, Qiang Yu wrote:
+>> On 11/5/2024 1:28 PM, Qiang Yu wrote:
+>>> On 11/4/2024 10:35 PM, Johan Hovold wrote:
+>>>> On Thu, Oct 31, 2024 at 08:09:02PM -0700, Qiang Yu wrote:
+>>>>> +            ranges = <0x01000000 0x0 0x00000000 0x0 0x78200000 0x0
+>>>>> 0x100000>,
+>>>>> +                 <0x02000000 0x0 0x78300000 0x0 0x78300000 0x0
+>>>>> 0x3d00000>,
+>>>> Can you double check the size here so that it is indeed correct and not
+>>>> just copied from the other nodes which initially got it wrong:
+>>>>
+>>>>      https://lore.kernel.org/lkml/20240710-topic-barman-v1-1-5f63fca8d0fc@linaro.org/
+>> BTW, regions of PCIe6a, PCIe4, PCIe5 are 64MB, 32MB, 32MB, respectively.
+>> Why range size is set to 0x1d00000 for PCIe6a, any issue is reported on
+>> PCIe6a?
+> Thanks for checking. It seems the patch linked to above was broken for
+> PCIe6a then.
+>
+> We did see PCIe5 probe breaking due to the overlap with PCIe4 but the
+> patch predates PCIe5 support being posted and merged so it was probably
+> just based on inspection.
+>
+> Could you send a fix for PCIe6a?
+Sure, will send the fix.
 
 Thanks,
-Guenter
-
->   Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> index aac8819bd00b..c7d63e3aacd2 100644
-> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> @@ -96,6 +96,9 @@ properties:
->     '#gpio-cells':
->       const: 2
->   
-> +  '#thermal-sensor-cells':
-> +    const: 1
-> +
->     gpio-controller: true
->   
->     typec:
-
+Qiang Yu
+>
+> Johan
 
