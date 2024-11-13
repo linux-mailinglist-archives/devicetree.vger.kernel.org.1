@@ -1,309 +1,192 @@
-Return-Path: <devicetree+bounces-121504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3DDC9C6FBA
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 13:52:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C37989C6FD9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 13:57:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 645AB1F23234
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 12:52:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5275F1F2121B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 12:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD556200B9B;
-	Wed, 13 Nov 2024 12:50:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D8C1DED5F;
+	Wed, 13 Nov 2024 12:57:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="efIva08s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 978841DD55A;
-	Wed, 13 Nov 2024 12:50:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8EEC6088F;
+	Wed, 13 Nov 2024 12:57:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731502222; cv=none; b=nTuMYAglhbwTYqZE1Ke5Ibtj1uTaiaoFoSuyRGt0SjDjVDWjtqQA9WmYUBhj9GdPp270YzRX++1RUMXh7iu06XxeT/ovwApLdkY+TQbhqybX9saO1BbROP+Soxmyr+odQUjJl9wTyfF2p/bpwG7h4ZVlPl8uWedZgiBSipUD6TE=
+	t=1731502649; cv=none; b=DVea0CmVBcRYPkBAxCUuuhQoBfDgbkNXXfd3G1a8acbcQ7b/YREib3vOjxbnHkKcFJtu0W3rrQzuTYtOg5uYJZi8O50Qs+vG2LShfdLLgyayDVoCYwgKqlOJ3lQsq0S5Pa2vWKl3F2tYAX+rBHMU/Q8UcotSY5jLb6IUis4n6ys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731502222; c=relaxed/simple;
-	bh=p7eBHMwhjhRcbQRsfdiry8DDKwHmaHJ4TFtZppYiEe0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TpRfpUx8TyXOtc53PrHg1BtpKkJmygwGsfO7W/hgoNbfbCfMZyGhm6H1hdtOuw5fGsBmzVeA7rBlN14iHcP9rXN7RrPCPftQEFPPau7lulRwDqBr9YMDVhxAxYYMt9fAp0DaUNmrHvTqUGvGuCcB8tOpEfgoCXGudwPcrNkOgco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 858FEC4CEE0;
-	Wed, 13 Nov 2024 12:50:18 +0000 (UTC)
-Message-ID: <5887ab26-5c95-4e0c-a831-9aa8254b6e85@xs4all.nl>
-Date: Wed, 13 Nov 2024 13:50:16 +0100
+	s=arc-20240116; t=1731502649; c=relaxed/simple;
+	bh=kufeckISsNhYdD+EXqrcRBtcik7Z28DuIhzYM013Ouo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mz0ewgjND3xPD7ezoAQZczdPQ61fu2Y1sl225KdwGSZy2TpkceT8s5saF8OTjN5o7kmZWvW5Llj8nH1eGgm1vKP+xDalhgyu/pHFG/AySjvfjtFWfCCh9S9WwroXMrIYV34Z2eHcBNOoMhlBqjuDzEf8b15wd3gAaSMfRmgnOUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=efIva08s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A587C4CECF;
+	Wed, 13 Nov 2024 12:57:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731502649;
+	bh=kufeckISsNhYdD+EXqrcRBtcik7Z28DuIhzYM013Ouo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=efIva08sMQZ4IhNeVQ3ER804zEMIRhL+uoDBCR5d83GeYtLIDQDA1gLCN+HGNu4HI
+	 QPyiZmlh0sKX++ofC5gJIx3KZHzlbZCxfEfqkf3IuBgIFYNiT3pwr++3Zit+EY+hrC
+	 kBWJzOZpOrj4lUm8H1h68Iity0E7OKMJxadm2vIMP4kAdCiLCIqFEOFo4LBsznYRTP
+	 YZ6t1F0m12tqhosGnO4aW7CbEWYK5isYNxeZuVW9T9NNqR0Ab0wUphrQFCQQbUtZqh
+	 PQhTqOtBmJn2ZC5hhIKTON3EoQIPFH9UxoZrLEYpcQqZfvU1Hq4kY3lQVjABJ0ceo2
+	 AVxwkHGYF2ZKg==
+Date: Wed, 13 Nov 2024 13:57:23 +0100
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 3/3] firmware/psci: Allow specifying an S2RAM state
+ through CPU_SUSPEND
+Message-ID: <ZzSiM6Pn6A9e1QUD@lpieralisi>
+References: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
+ <20241028-topic-cpu_suspend_s2ram-v1-3-9fdd9a04b75c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 09/28] media: iris: implement reqbuf ioctl with
- vb2_queue_setup
-Content-Language: en-US
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Sebastian Fricke <sebastian.fricke@collabora.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Nicolas Dufresne <nicolas@ndufresne.ca>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241105-qcom-video-iris-v5-0-a88e7c220f78@quicinc.com>
- <20241105-qcom-video-iris-v5-9-a88e7c220f78@quicinc.com>
- <96966b66-a93a-4675-8d28-6fe9152644b8@xs4all.nl>
- <0fb27983-e253-3375-1c01-bfad7d05485c@quicinc.com>
- <d4fb8e3e-d19e-4af5-8a16-8b8b53c3530e@xs4all.nl>
- <1360d885-52f1-9dbc-7beb-23ac58ec8ff0@quicinc.com>
- <0afd368a-36ed-4415-977b-abf6d245b754@xs4all.nl>
- <98696180-a40f-deca-13f3-e3636a0d9d16@quicinc.com>
- <ac01378f-1375-45bd-9369-187645657db9@xs4all.nl>
- <fa91d95a-2bcd-5768-02d7-4f80e4e006d9@quicinc.com>
- <567c33a2-9c35-4941-9356-b280c8138009@xs4all.nl>
- <64dbbe4b-fc16-25c9-22ce-e12bc89a7e0a@quicinc.com>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-In-Reply-To: <64dbbe4b-fc16-25c9-22ce-e12bc89a7e0a@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241028-topic-cpu_suspend_s2ram-v1-3-9fdd9a04b75c@oss.qualcomm.com>
 
-On 11/13/24 13:44, Dikshita Agarwal wrote:
+On Mon, Oct 28, 2024 at 03:22:59PM +0100, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
+> Certain firmware implementations (such as the ones found on Qualcomm
+> SoCs between roughly 2015 and 2023) expose an S3-like S2RAM state
+> through the CPU_SUSPEND call.
 > 
-> On 11/13/2024 5:44 PM, Hans Verkuil wrote:
->> On 11/13/24 12:20, Dikshita Agarwal wrote:
->>>
->>>
->>> On 11/13/2024 4:45 PM, Hans Verkuil wrote:
->>>> On 11/13/24 11:32, Dikshita Agarwal wrote:
->>>>>
->>>>>
->>>>> On 11/13/2024 2:52 PM, Hans Verkuil wrote:
->>>>>> On 13/11/2024 10:00, Dikshita Agarwal wrote:
->>>>>>>
->>>>>>>
->>>>>>> On 11/13/2024 1:18 PM, Hans Verkuil wrote:
->>>>>>>> On 13/11/2024 07:19, Dikshita Agarwal wrote:
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> On 11/12/2024 3:20 PM, Hans Verkuil wrote:
->>>>>>>>>> On 05/11/2024 07:55, Dikshita Agarwal wrote:
->>>>>>>>>>> Implement reqbuf IOCTL op and vb2_queue_setup vb2 op in the driver with
->>>>>>>>>>> necessary hooks.
->>>>>>>>>>>
->>>>>>>>>>> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
->>>>>>>>>>> ---
->>>>>>>>
->>>>>>>> <snip>
->>>>>>>>
->>>>>>>>>>> diff --git a/drivers/media/platform/qcom/iris/iris_vb2.c b/drivers/media/platform/qcom/iris/iris_vb2.c
->>>>>>>>>>> new file mode 100644
->>>>>>>>>>> index 000000000000..61033f95cdba
->>>>>>>>>>> --- /dev/null
->>>>>>>>>>> +++ b/drivers/media/platform/qcom/iris/iris_vb2.c
->>>>>>>>>>> @@ -0,0 +1,74 @@
->>>>>>>>>>> +// SPDX-License-Identifier: GPL-2.0-only
->>>>>>>>>>> +/*
->>>>>>>>>>> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->>>>>>>>>>> + */
->>>>>>>>>>> +
->>>>>>>>>>> +#include "iris_buffer.h"
->>>>>>>>>>> +#include "iris_instance.h"
->>>>>>>>>>> +#include "iris_vb2.h"
->>>>>>>>>>> +#include "iris_vpu_buffer.h"
->>>>>>>>>>> +
->>>>>>>>>>> +int iris_vb2_queue_setup(struct vb2_queue *q,
->>>>>>>>>>> +			 unsigned int *num_buffers, unsigned int *num_planes,
->>>>>>>>>>> +			 unsigned int sizes[], struct device *alloc_devs[])
->>>>>>>>>>> +{
->>>>>>>>>>> +	enum iris_buffer_type buffer_type = 0;
->>>>>>>>>>> +	struct iris_buffers *buffers;
->>>>>>>>>>> +	struct iris_inst *inst;
->>>>>>>>>>> +	struct iris_core *core;
->>>>>>>>>>> +	struct v4l2_format *f;
->>>>>>>>>>> +	int ret = 0;
->>>>>>>>>>> +
->>>>>>>>>>> +	inst = vb2_get_drv_priv(q);
->>>>>>>>>>> +
->>>>>>>>>>> +	mutex_lock(&inst->lock);
->>>>>>>>>>> +
->>>>>>>>>>> +	core = inst->core;
->>>>>>>>>>> +	f = V4L2_TYPE_IS_OUTPUT(q->type) ? inst->fmt_src : inst->fmt_dst;
->>>>>>>>>>> +
->>>>>>>>>>> +	if (*num_planes) {
->>>>>>>>>>> +		if (*num_planes != f->fmt.pix_mp.num_planes ||
->>>>>>>>>>> +			sizes[0] < f->fmt.pix_mp.plane_fmt[0].sizeimage)
->>>>>>>>>>> +			ret = -EINVAL;
->>>>>>>>>>> +		goto unlock;
->>>>>>>>>>> +	}
->>>>>>>>>>> +
->>>>>>>>>>> +	buffer_type = iris_v4l2_type_to_driver(q->type);
->>>>>>>>>>> +	if (buffer_type == -EINVAL) {
->>>>>>>>>>
->>>>>>>>>> Can this ever fail?
->>>>>>>>>>
->>>>>>>>> If the q->type passed is not supported by driver then it can fail.
->>>>>>>>
->>>>>>>> But it is the driver that sets q->type when the vb2_queue is initialized.
->>>>>>>> So it makes no sense to test it here, it would be a driver bug if this fails.
->>>>>>>>
->>>>>>> Ok, Will remove this check.
->>>>>>>>>>> +		ret = -EINVAL;
->>>>>>>>>>> +		goto unlock;
->>>>>>>>>>> +	}
->>>>>>>>>>> +
->>>>>>>>>>> +	if (!inst->once_per_session_set) {
->>>>>>>>>>> +		inst->once_per_session_set = true;
->>>>>>>>>>> +
->>>>>>>>>>> +		ret = core->hfi_ops->session_open(inst);
->>>>>>>>>>> +		if (ret) {
->>>>>>>>>>> +			ret = -EINVAL;
->>>>>>>>>>> +			dev_err(core->dev, "session open failed\n");
->>>>>>>>>>> +			goto unlock;
->>>>>>>>>>> +		}
->>>>>>>>>>> +	}
->>>>>>>>>>> +
->>>>>>>>>>> +	buffers = &inst->buffers[buffer_type];
->>>>>>>>>>> +	if (!buffers) {
->>>>>>>>>>
->>>>>>>>>> This definitely can never fail.
->>>>>>>>>>
->>>>>>>>> Right, will remove the check.
->>>>>>>>>>> +		ret = -EINVAL;
->>>>>>>>>>> +		goto unlock;
->>>>>>>>>>> +	}
->>>>>>>>>>> +
->>>>>>>>>>> +	buffers->min_count = iris_vpu_buf_count(inst, buffer_type);
->>>>>>>>>>> +	buffers->actual_count = *num_buffers;
->>>>>>>>>>
->>>>>>>>>> Don't mirror the number of buffers in actual_count, instead just always
->>>>>>>>>> ask for the number of buffers using vb2_get_num_buffers().
->>>>>>>>>>
->>>>>>>>>> This code is wrong anyway, since actual_count isn't updated if more
->>>>>>>>>> buffers are added using VIDIOC_CREATEBUFS.
->>>>>>>>>>
->>>>>>>>> Ok, so below would fix the VIDIOC_CREATEBUFS as well, right?
->>>>>>>>> - buffers->actual_count = *num_buffers;
->>>>>>>>> + buffers->actual_count = vb2_get_num_buffers();
->>>>>>> Does this look good?
->>>>>>
->>>>>> No. You shouldn't have the actual_count field at all, especially since I see that
->>>>>> you set it in several places. vb2_get_num_buffers() reports the current number of
->>>>>> buffers, which can change if userspace calls VIDIOC_CREATE_BUFS or REMOVE_BUFS.
->>>>>>
->>>>>> You shouldn't try to mirror that value yourself. If you need that information,
->>>>>> then call vb2_get_num_buffers().
->>>>>>
->>>>>> There are weird things going on in your driver w.r.t. actual_count and also min_count
->>>>>> (and I saw a count_actual as well, very confusing).
->>>>>>
->>>>>> I'm not sure what you are trying to achieve, but it doesn't look right.
->>>>>>
->>>>> We need to set the value of actual buffers being queued to firmware via a
->>>>> property, for that we are caching the value in actual_count so that we can
->>>>> set it to fw when needed.
->>>>
->>>> So do you need to know the number of allocated buffers, or the number of
->>>> buffers queued to the device instance?
->>>>
->>>> The first is reported by vb2_get_num_buffers(), the second is something
->>>> you can keep track of yourself: a buffer is queued in the buf_queue op and
->>>> dequeued when vb2_buffer_done is called. But this has nothing to do with
->>>> what happens in queue_setup.
->>>>
->>> We need to know the number of allocated buffers, hence using
->>> vb2_get_num_buffers() is fine as you said.
->>
->> Why do you need this? Are the buffer addresses also passed to the fw?
->>
->> Remember that buffer memory is only allocated when using V4L2_MEMORY_MMAP.
->> In the DMABUF case it just allocates vb2_buffer structs, not the actual
->> buffer memory. So a buffer can be dequeued and the corresponding dmabuf
->> closed (so the memory is freed) by the application.
->>
->> In other words, vb2_get_num_buffers() reports the number of allocated
->> vb2_buffer structs, but not the actual number of buffers in memory, that
->> might be different in the DMABUF case.
->>
->> What exactly is the firmware using this number for? What does it expect
->> it contains?
->>
-> Firmware uses this number to create its internal buffer pool of
-> input/output buffers. It should be the maximum numbers of buffers that can
-> be queued by client, which is same as the number of allocated buffers.
-> it doesn't need to match the number of buffers actually being queued.
-
-Since with CREATE_BUFS userspace can add buffers on the fly, and with
-REMOVE_BUFS it can remove buffers on the fly, the number of buffers can
-fluctuate. Can the fw be updated whenever that number changes?
-
-And if the fw just needs the max, can't you just set it to VIDEO_MAX_FRAME
-and be done with it? Or does the fw allocate a lot of internal memory for
-each buffer, so you want it to be a precise number?
-
-Regards,
-
-	Hans
-
+> This works exactly like SYSTEM_SUSPEND. The PSCI spec describes that
+> call as optional (and only introduced in PSCIv1.0), so not all
+> platforms expose it.
 > 
-> Thanks,
-> Dikshita
->> Regards,
->>
->> 	Hans
->>
->>>
->>> But would want to cache this in internal buffer strcuture in queue_setup,
->>> to be able to use later while setting to firmware.
->>>
->>> Thanks,
->>> Dikshita
->>>> Regards,
->>>>
->>>> 	Hans
->>>>
->>>>>
->>>>> count_actual is the variable of the hfi struture being filled to set the
->>>>> property to fw,
->>>>> ---
->>>>> u32 ptype = HFI_PROPERTY_PARAM_BUFFER_COUNT_ACTUAL;
->>>>> struct hfi_buffer_count_actual buf_count;
->>>>> int ret;
->>>>>
->>>>> buf_count.type = HFI_BUFFER_INPUT;
->>>>> buf_count.count_actual = inst->buffers[BUF_INPUT].actual_count;
->>>>> ---
->>>>>
->>>>> Calling vb2_get_num_buffers from HFI layer will violate the current design
->>>>> of driver so will need to cache this info in upper layer, best place to do
->>>>> that seems to be queue_setup which is called from both VIDIOC_REQBUFS and
->>>>> VIDIOC_CREATE_BUFS.
->>>>> Any other suggestions for the same?
->>>>>
->>>>> To avoid the confusion, I can rename the actual_count to count_actual to
->>>>> match with hfi structure.
->>>>> Also, I can cleanup some part of driver where this variable is being
->>>>> updated un-necessarily.
->>>>> This is only needed to set the property to firmware as explained above.
->>>>>
->>>>> min_count holds the min numbers of buffer needed by firmware for the
->>>>> particluar session, it can be changed by firmware if source changes.
->>>>>
->>>>> Thanks,
->>>>> Dikshita
->>>>>> Regards,
->>>>>>
->>>>>> 	Hans
->>>>>>
->>>>>>>
->>>>>>> Thanks,
->>>>>>> Dikshita
->>
+> Marking a DT-described "domain-idle-state" as such isn't currently
+> well accounted for in the PSCI idle topology infrastructure: the
+> cpuidle and genpd framework are deeply intertwined, and trying to
+> separate them would cause more havoc than good.
 
+I don't understand what you mean here please elaborate.
+
+The part of the story I understand is that you have a system (well,
+firmware for an extended set of systems) that does not implement
+SYSTEM_SUSPEND but can reach a S2R like system state through the
+CPU_SUSPEND call. Firmware works in OS-initiated mode, idle-states
+should allow you to define idle states that allow the system to
+enter the S2R state through CPUidle.
+
+Please explain to me what's missing.
+
+> Instead, allow the specifying of a single CPU_SUSPEND sleep param
+> under the /psci node that shall be treated exactly like SYSTEM_SUSPEND
+> from Linux's POV. As a bonus, this way we also don't have to fight
+> with the genpd idle governor to avoid taking the S3-like state into
+> consideration.
+
+That's not acceptable. I want to understand what's preventing this
+system to enter that state through suspend2idle and the mainline code.
+
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>  drivers/firmware/psci/psci.c | 36 +++++++++++++++++++++++++++++++-----
+>  1 file changed, 31 insertions(+), 5 deletions(-)
+
+NACK
+
+> diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
+> index 0e622aa5ad58bbe69dfc3a71bced597618e73f15..20ae6a6d59a9f276db75260b6ca1a5827e443782 100644
+> --- a/drivers/firmware/psci/psci.c
+> +++ b/drivers/firmware/psci/psci.c
+> @@ -78,6 +78,7 @@ struct psci_0_1_function_ids get_psci_0_1_function_ids(void)
+>  
+>  static u32 psci_cpu_suspend_feature;
+>  static bool psci_system_reset2_supported;
+> +static u32 psci_s2ram_suspend_param;
+>  
+>  static inline bool psci_has_ext_power_state(void)
+>  {
+> @@ -519,10 +520,10 @@ static int psci_system_suspend_begin(suspend_state_t state)
+>  	return 0;
+>  }
+>  
+> -static const struct platform_suspend_ops psci_suspend_ops = {
+> -	.valid          = suspend_valid_only_mem,
+> -	.enter          = psci_system_suspend_enter,
+> -	.begin          = psci_system_suspend_begin,
+> +static const struct platform_suspend_ops psci_system_suspend_ops = {
+> +	.valid = suspend_valid_only_mem,
+> +	.enter = psci_system_suspend_enter,
+> +	.begin = psci_system_suspend_begin,
+>  };
+>  
+>  static void __init psci_init_system_reset2(void)
+> @@ -545,7 +546,7 @@ static void __init psci_init_system_suspend(void)
+>  	ret = psci_features(PSCI_FN_NATIVE(1_0, SYSTEM_SUSPEND));
+>  
+>  	if (ret != PSCI_RET_NOT_SUPPORTED)
+> -		suspend_set_ops(&psci_suspend_ops);
+> +		suspend_set_ops(&psci_system_suspend_ops);
+>  }
+>  
+>  static void __init psci_init_cpu_suspend(void)
+> @@ -673,6 +674,17 @@ static int __init psci_probe(void)
+>  
+>  typedef int (*psci_initcall_t)(const struct device_node *);
+>  
+> +static int psci_cpu_suspend_s2ram_enter(suspend_state_t state)
+> +{
+> +	return psci_cpu_suspend_enter(psci_s2ram_suspend_param);
+> +}
+> +
+> +static const struct platform_suspend_ops psci_cpu_suspend_s2ram_ops = {
+> +	.valid = suspend_valid_only_mem,
+> +	.enter = psci_cpu_suspend_s2ram_enter,
+> +	.begin = psci_system_suspend_begin,
+> +};
+> +
+>  /*
+>   * PSCI init function for PSCI versions >=0.2
+>   *
+> @@ -686,6 +698,20 @@ static int __init psci_0_2_init(const struct device_node *np)
+>  	if (err)
+>  		return err;
+>  
+> +	/*
+> +	 * Some firmwares expose S2RAM entry through a custom suspend param.
+> +	 *
+> +	 * If found, register a suspend handler instead of registering the
+> +	 * idle state with cpuidle.
+> +	 */
+> +	err = of_property_read_u32(np, "arm,psci-s2ram-param", &psci_s2ram_suspend_param);
+> +	if (!err) {
+> +		suspend_set_ops(&psci_cpu_suspend_s2ram_ops);
+> +	} else if (err != -EINVAL) {
+> +		pr_err("Couldn't read the S2RAM PSCI suspend param: %d\n",
+> +		       psci_s2ram_suspend_param);
+> +	}
+> +
+>  	/*
+>  	 * Starting with v0.2, the PSCI specification introduced a call
+>  	 * (PSCI_VERSION) that allows probing the firmware version, so
+> 
+> -- 
+> 2.47.0
+> 
 
