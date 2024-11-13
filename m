@@ -1,154 +1,140 @@
-Return-Path: <devicetree+bounces-121491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E49629C6E7B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 13:00:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02FEC9C6E90
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 13:04:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E0AF1F25830
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 12:00:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFEFE1F21F1A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 12:04:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7628A2076AF;
-	Wed, 13 Nov 2024 11:54:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3673201001;
+	Wed, 13 Nov 2024 11:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OXhQj9HM"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MKymMy5E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E9EE20720B;
-	Wed, 13 Nov 2024 11:54:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2792200C94;
+	Wed, 13 Nov 2024 11:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731498846; cv=none; b=SsgC8Fa6jCC/lbDJWiaJJu+mxo7Knw7OGGv9ZuYzJxRTrMYZCX+9rzqEK2RPklObY2BS2L87ozkxjn14Jcgtnua3ilKM8OQbIigD08bVpSk9rL+Uqotu7fPml6Ik5dehGxDkwDDYw68LSmH8hGcUCv4rQbl2F7t3PQRxC1eWDC0=
+	t=1731499154; cv=none; b=NgV79PZ4mLg6nBHVtWpfU90SDjdYUvdQSPh0yqWGOJtAnU02zjBbE35SupfPt8B1VVxgA5mUNBZU1G++7UnI1yFOn9kF6TzxTTRD8SuQuV7ywtVDwXfIinSU+jZKEETTPaCNlsIu1KD5LlhYhp3cLDJVbSUKNHhIXuUry/i/SrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731498846; c=relaxed/simple;
-	bh=cvQlcR5XO0NjDr2OAxyBEQtxccj+XFz3QmMD25xF9dk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=kvC9IbnWd2F0giaA971ds/QKXnbdljcWU+DLKl1J9jGk3C/g/GWKomGWn4YFb238BQ2G3x/gVvrd1wfChLgHCHNj3Md7EBXbZSiBcEvYXzpQbVh5oyCLfEWnc8ZHTjRC5xrpaU3DMkbVIDqDxnc2MZ7TDQZkja4rL0W1o+F77qM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OXhQj9HM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AD9Qt27014572;
-	Wed, 13 Nov 2024 11:53:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JVqtmcxj4OORkQTSjePJL33yk5jd+tHpoRVoq3zp6nQ=; b=OXhQj9HMPte99F/i
-	y90cbCMA/ONpqj3l57kszSWarhPAPbIxbkbQ5koVixeErHR/Sg8isc/lhFFW5sn6
-	0zcInj2CUBXj20xv5eNhIbsZjKS6iEEkKXkQ0kCXXcSEofFHWJWhXmXVoEhYvPHk
-	uckf7pS1XSvU6Ug9DNUXZbSzWERXLaI/bppsHfK20TPki7EB6B7qwMSCXNhnp2kZ
-	JacyfwQocyxXIU/pv3lS2rYEzLAMSsxpkri5dc9eJb4f42mfqLjtjNXXN9e873Rj
-	ei5aB4Nv9QDvMKVDksrgzmSCE4Cn1aVb91Fp9JBlPHSvj81cOUMO6zPwdgLjLutK
-	uyE2vw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42vsg50bx1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Nov 2024 11:53:49 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ADBrmc3030979
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Nov 2024 11:53:48 GMT
-Received: from robotics-lnxbld017.ap.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 13 Nov 2024 03:53:41 -0800
-From: Fange Zhang <quic_fangez@quicinc.com>
-Date: Wed, 13 Nov 2024 19:51:51 +0800
-Subject: [PATCH v2 9/9] arm64: defconfig: Enable SX150X for QCS615 ride
- board
+	s=arc-20240116; t=1731499154; c=relaxed/simple;
+	bh=S2yXI+RpE/4Z6IIWIoXWreQT7e9SUd1QZeV3E85aBM8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cdSkrx7w+4YUo9mGtb5hYiJRb0+zVIJcNrmq9ZQxwaPFysR8dPtKhqD4mopZ46jF2uwyoXNbM80rCn/Ll3vLz5WqQi84fwxcq2zgCAwr/ZtymOLAeH9+OsD1q/E4P7CWcSSi+f3m1fBTRJh1tfSR6fGP1CofejV/UHuMTKwYeow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MKymMy5E; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1731499153; x=1763035153;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=S2yXI+RpE/4Z6IIWIoXWreQT7e9SUd1QZeV3E85aBM8=;
+  b=MKymMy5EVEqpYpC+dCT4KWJ5GQM2SwaobrVXdbKUFjWBCz5BzSIjJOlu
+   szQUsPdf4w4aCPRxTLNudNainTIo+ZYuMdzNOU37mw6ACOccah4cXP2wI
+   TqvIeWwECCtBbcgEvLWzBGF7l93f8b4sOAKLZ+2WJrDAnxqT5heaAjhly
+   syERIulG6w52UYkCpezgtoqs63OUeYfrvyUEtSBWvkUAtwKPyLotntx3X
+   XiiXUbxnbWhTBMD4YnqDg+vel9Ra4RilRAFcBJRGWIFc1R848YbfDOXp6
+   hjc019SE1NOlHhLx4ovM5QfZO32E12c0VyM4G0HrXG5RlZ+pthoqT8Nuj
+   Q==;
+X-CSE-ConnectionGUID: RnN5Be6tSsCk/Vl5mrZdlg==
+X-CSE-MsgGUID: PaRj7UwmQ46Hkj+2hi5bxw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="35314456"
+X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; 
+   d="scan'208";a="35314456"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2024 03:59:11 -0800
+X-CSE-ConnectionGUID: mbuIIPKWTsC2Zo2OOWA+8Q==
+X-CSE-MsgGUID: Drm0ljxqRt6tHanbqPmqGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; 
+   d="scan'208";a="87842391"
+Received: from lkp-server01.sh.intel.com (HELO 80bd855f15b3) ([10.239.97.150])
+  by orviesa009.jf.intel.com with ESMTP; 13 Nov 2024 03:59:05 -0800
+Received: from kbuild by 80bd855f15b3 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tBC1X-0000Kv-0X;
+	Wed, 13 Nov 2024 11:59:03 +0000
+Date: Wed, 13 Nov 2024 19:58:08 +0800
+From: kernel test robot <lkp@intel.com>
+To: Joey Lu <a0987203069@gmail.com>, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+	richardcochran@gmail.com
+Cc: oe-kbuild-all@lists.linux.dev, alexandre.torgue@foss.st.com,
+	joabreu@synopsys.com, ychuang3@nuvoton.com, schung@nuvoton.com,
+	yclu4@nuvoton.com, linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Joey Lu <a0987203069@gmail.com>
+Subject: Re: [PATCH v2 3/3] net: stmmac: dwmac-nuvoton: Add dwmac support for
+ MA35 family
+Message-ID: <202411131946.ozq1D0f2-lkp@intel.com>
+References: <20241113051857.12732-4-a0987203069@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241113-add-display-support-for-qcs615-platform-v2-9-2873eb6fb869@quicinc.com>
-References: <20241113-add-display-support-for-qcs615-platform-v2-0-2873eb6fb869@quicinc.com>
-In-Reply-To: <20241113-add-display-support-for-qcs615-platform-v2-0-2873eb6fb869@quicinc.com>
-To: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, "Li
- Liu" <quic_lliu6@quicinc.com>,
-        Fange Zhang <quic_fangez@quicinc.com>,
-        "Xiangxu Yin" <quic_xiangxuy@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1731498759; l=882;
- i=quic_fangez@quicinc.com; s=20241014; h=from:subject:message-id;
- bh=VdOs56Xri4piaaV5qvYXYFzwm73Lj5QH3tiEDao18/M=;
- b=wlpXoEu4wKIkhxBcrWWpR/RdPm3fWDxwmfrTM4lT4+DK724QYACs+P9RPgcE6zneC+oCIj+OB
- xtLungtJoemAHcG9P6xzGNtUXmXmQDvgmoc9UPaJ46xfXMacJynbmpS
-X-Developer-Key: i=quic_fangez@quicinc.com; a=ed25519;
- pk=tJv8Cz0npA34ynt53o5GaQfBC0ySFhyb2FGj+V2Use4=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Jiw4ogCKbljuSvUnktCEeVCnGHC9xLY1
-X-Proofpoint-ORIG-GUID: Jiw4ogCKbljuSvUnktCEeVCnGHC9xLY1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 phishscore=0 malwarescore=0 lowpriorityscore=0
- mlxscore=0 mlxlogscore=917 impostorscore=0 bulkscore=0 adultscore=0
- suspectscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411130102
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241113051857.12732-4-a0987203069@gmail.com>
 
-From: Li Liu <quic_lliu6@quicinc.com>
+Hi Joey,
 
-For the QCS615 ride board, enable the SX150X to activate the ANX7625
-allowing the DSI to output to the mDP through the external bridge.
-The ANX7625 relies on the SX150X chip to perform reset and HPD.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Li Liu <quic_lliu6@quicinc.com>
-Signed-off-by: Fange Zhang <quic_fangez@quicinc.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on net-next/main net/main linus/master v6.12-rc7 next-20241113]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index c0b8482ac6ad7498487718ba01d11b1c95e7543d..599a339a19435efbee7a5ef80c093b0e8c65f7ff 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -631,6 +631,7 @@ CONFIG_PINCTRL_SM8350=y
- CONFIG_PINCTRL_SM8450=y
- CONFIG_PINCTRL_SM8550=y
- CONFIG_PINCTRL_SM8650=y
-+CONFIG_PINCTRL_SX150X=y
- CONFIG_PINCTRL_X1E80100=y
- CONFIG_PINCTRL_QCOM_SPMI_PMIC=y
- CONFIG_PINCTRL_LPASS_LPI=m
+url:    https://github.com/intel-lab-lkp/linux/commits/Joey-Lu/dt-bindings-net-nuvoton-Add-schema-for-MA35-family-GMAC/20241113-132300
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20241113051857.12732-4-a0987203069%40gmail.com
+patch subject: [PATCH v2 3/3] net: stmmac: dwmac-nuvoton: Add dwmac support for MA35 family
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20241113/202411131946.ozq1D0f2-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241113/202411131946.ozq1D0f2-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411131946.ozq1D0f2-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c:20: warning: expecting prototype for dwmac(). Prototype was for PATHDLY_DEC() instead
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [m]:
+   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
+
+
+vim +20 drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
+
+    19	
+  > 20	#define PATHDLY_DEC         134
+    21	#define TXDLY_OFST          16
+    22	#define TXDLY_MSK           GENMASK(19, 16)
+    23	#define RXDLY_OFST          20
+    24	#define RXDLY_MSK           GENMASK(23, 20)
+    25	
 
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
