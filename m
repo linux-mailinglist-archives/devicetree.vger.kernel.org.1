@@ -1,245 +1,141 @@
-Return-Path: <devicetree+bounces-121404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 276129C6A6A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 09:15:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E13949C6A74
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 09:17:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE8A21F22102
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 08:15:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A54AD28199B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 08:17:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F28618A6B8;
-	Wed, 13 Nov 2024 08:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E067B187553;
+	Wed, 13 Nov 2024 08:16:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gYKN+R0z"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Z8dRLdDi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C98A0188706
-	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 08:15:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CC9217837A
+	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 08:16:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731485712; cv=none; b=Z+xb8vRsIZzshriHS0N8cyxOPlEwWa/uD84B38kRvHlxD3mOcA7gCzb1WUIl6iWB8hGBdj+K4rbjb6bauU9LshO8Tf4ad3VTSjXRz3cu6Ri8Qf+fglHHy5ZQpwbAFKalAOQ/Lpwvf8jHkLX16oVQ+9BKJstvI8eYnoqt0FLhEzw=
+	t=1731485818; cv=none; b=IXJPD7jjfP6uPgxAi+dHIdYKf01+taUw87/sj3hXwMZOHgTGWxXZXnAw+w2jhDjxDBHTYsfv3jV/xmx+2/gIz4yuQ42gjNibgz1R4MHIAZmf2Vi52en7CXL20vXgXz2Gxar8mrZRlXVvEzggjHxKvQgaWwWRCGFC/9Hv1TFhpXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731485712; c=relaxed/simple;
-	bh=8Y0UPyHRHBU3AJ5BIj2LNvoRsdFm7+hymI+IvfPQzM0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LHol58A8obELDZTEwla3ns2M+oXC8uEIVCrvJSKuj4tho3cR/G6Mr4wrEfSL1Ds3FUTvG7XNU3MpeesAjUAXPcViLTXCDRmtSRUtlkSsFZEyHNW4KxWJG8Agap4QRDmdSvi+zO6lDP0Wvd7bclevJuSLpSQ6erL1QbSdAi/rxn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gYKN+R0z; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3807dd08cfcso6186674f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 00:15:10 -0800 (PST)
+	s=arc-20240116; t=1731485818; c=relaxed/simple;
+	bh=D+a0/HfZ9qQqRQETejI0cSOgKGfAeKoNtsNvnoEUGRo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=eMMBh7m5XB9MGlrARRfkrSfsGu3cnE+Jodxv+flvyD7IQ0wT5wpWMc0GrVFcRqcX/XeQ3QtPxoOHReWeN7tl58nsLdd0tTtcGgaIB4+UGUdTHdvnxUuRgNG+qYcoVcHAi759ToSUPP5uXDYUW64GTI2vjNs6CXXzeXUXxKFiqoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Z8dRLdDi; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-20e6981ca77so76380715ad.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 00:16:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731485709; x=1732090509; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=fQbo2SNWl0pl3CFAm+W16lnOLJFykustp1lz60+nR4M=;
-        b=gYKN+R0zXaQl8gIC0e/U1UvIeObn4BCcsyHYqxsp7YBeMZJWwMp13hT2bp+B7taMQP
-         wTt+1TzIYDRLmkZtbu0kpK4EMJtiU/e9JOe2EfJO3Cjx9tXAhgjkzRceTj6auhNntPRz
-         TuxJPN/moJXHkDIn9Jg1WvXBv5xdoTxmOqt10jgUVokcFS+bHO4A/HQiAzq6tmnshpCF
-         sh16EELhrb+TRxcWpfRdGggOXymv6jpfr2/BhED2y9o9dzwKFF1+lZxmw46+s2A/mkHR
-         TV7KwdeQzUAcw8pdMAVtM8p/nrkrcxU0oaLvi4tKdPLCJoJr8Q+Laok+wSrO9WW2FEun
-         7yOg==
+        d=chromium.org; s=google; t=1731485817; x=1732090617; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=L/uGdh4k87UdLsVlqrkIfn4gIIwnutqsKO4ayJkibeU=;
+        b=Z8dRLdDiAilloVItpD+tki66Ju1Sb38pmkcZw+FO3eQ9AkMOzd0X71LmLZyogKUGSN
+         LhmomUv29H7F+DG3COPUnaKReozos+q9HRVf8u1ZDaIkZDziOY8dSaSlYfntL+IkAt3x
+         lwRNcZNzgaaRcFRc6DnciEJHLLkOp3SvZdhx0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731485709; x=1732090509;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fQbo2SNWl0pl3CFAm+W16lnOLJFykustp1lz60+nR4M=;
-        b=NjlYc8Zp3eD6Ea4QNgPaPIiqUMvbTtTKKJGZapIAAk2elsG+fuRrvvULT2HibvlG0y
-         mHkYnjMoFYXK/eg5NzQ+hdQAx4yZSB2VWosuMqRcuV2nsocgLsvQ0AZYikjGTofQ77dy
-         l42MFzgxl8ACSwylCXR7ISK1p08MTesOGLng9EylKGJzqv3y4/u4bDmD18/feyObLot1
-         EWaytanjXId3qYF9Z9uMlXWA2lNtJUsjPY//eQnIk9QtkWLOMOIBZ5hqY3fbyKPmvfe5
-         eEDZtpwbFgAJp5g1vj6UaOLrYZyBLogBY/8Jma7hqBlKJcCqHYMq+IUFwfUA8LRnmtqi
-         c6mg==
-X-Forwarded-Encrypted: i=1; AJvYcCVizaRScgHzcuSelf3kc1YCHB0qAv1UqE8yXR4vJSItZBdDd4LZEL6xkai5lRCZliZtM0Eq9sgmV7QG@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywx0+019j351sT6VMOsb80HmjD7Fx9QLPYD4p1LEZGBQ3xtJZTE
-	v10a0DFdr2XYxrgTZnlP0KsfmE0cixZ1coXA53bZo3gl35JHsMBTdfXKvmB1i1A=
-X-Google-Smtp-Source: AGHT+IFFYloC/8jCwGxKk66s8CV5KsxYaWdZM5UqRntsEzLJT6asKbsQu3Xzl7h4UFRchhvMK6KVFg==
-X-Received: by 2002:a05:6000:178c:b0:382:10dc:594b with SMTP id ffacd0b85a97d-38210dc5c10mr383607f8f.34.1731485708986;
-        Wed, 13 Nov 2024 00:15:08 -0800 (PST)
-Received: from linaro.org ([2a02:2454:ff21:ef80:fca:835c:70ab:eebc])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381ed9ea4f6sm17576494f8f.64.2024.11.13.00.15.08
+        d=1e100.net; s=20230601; t=1731485817; x=1732090617;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=L/uGdh4k87UdLsVlqrkIfn4gIIwnutqsKO4ayJkibeU=;
+        b=Duc/BY/e/rxrDYiWvj5gBTVlRxfTBzCCNVDlE1p4wHGxOpRBEUv+bHTOuhr4wJKlPk
+         rIv7MJKz1/D5ElE/+d0e2eg7OCc4ZK6ep/UJ3rIo/u+xNWG/OuHhVCv6no1H3O027he6
+         YH4xEQf6MO4HVc+XLIpkoOwzSGC5T+HLV6wE9LVTTmMavknOVOaq4YkXNPhGkpv6KjiK
+         582Tedm3LN8GxIrNkXjh2xpbtZblvGUnYpJHJNsVfwcuEi4QhOVlHSjmhuAmYb1qFU3T
+         XY58yrbXb6Z75a9g+UZKRGKBloaVVqo9OYAC4fpiPPl0LSqINm3p36wx3ff8+lNxdfYa
+         Rpjg==
+X-Gm-Message-State: AOJu0YyCSrmsaEsb+YPoUNl/V0N1qVusnLqdHOeqD4RrBV/kKjR2ZjXP
+	L1mQUNvB+SJSku50cbYGpW0qVtw+DFABuUzeKl4YDIi2fA5lW0fGfZyLBTTSjA==
+X-Google-Smtp-Source: AGHT+IHPhYwkzPsxjo/RCUL5hnCpKp45auPZIIYVaYgX0w4KzvUg5iggyNngj3Fzi9Z6NWyiw/1UDw==
+X-Received: by 2002:a17:903:1ca:b0:20c:ce1f:13bd with SMTP id d9443c01a7336-211b5c3f07cmr20960895ad.18.1731485816613;
+        Wed, 13 Nov 2024 00:16:56 -0800 (PST)
+Received: from yuanhsinte-p620-1.tpe.corp.google.com ([2401:fa00:1:10:a280:b47c:f4f6:1c31])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177e69029sm105462645ad.230.2024.11.13.00.16.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Nov 2024 00:15:08 -0800 (PST)
-Date: Wed, 13 Nov 2024 09:15:03 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: barnabas.czeman@mainlining.org
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Amit Kucheria <amitk@kernel.org>,
-	Thara Gopinath <thara.gopinath@gmail.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-pm@vger.kernel.org, iommu@lists.linux.dev,
-	Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
-Subject: Re: [PATCH v5 08/10] arm64: dts: qcom: Add initial support for
- MSM8917
-Message-ID: <ZzRgB_U3qYtV7O0h@linaro.org>
-References: <20241112-msm8917-v5-0-3ca34d33191b@mainlining.org>
- <20241112-msm8917-v5-8-3ca34d33191b@mainlining.org>
- <ZzOQEgLLhkH-IymV@linaro.org>
- <4c34cb8eec5eab92501011e446b5362d@mainlining.org>
+        Wed, 13 Nov 2024 00:16:56 -0800 (PST)
+From: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Date: Wed, 13 Nov 2024 16:16:53 +0800
+Subject: [PATCH RESEND v4] arm64: dts: mt8183: set DMIC one-wire mode on
+ Damu
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4c34cb8eec5eab92501011e446b5362d@mainlining.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241113-damu-v4-1-6911b69610dd@chromium.org>
+X-B4-Tracking: v=1; b=H4sIAHRgNGcC/7WOuw7CMBAEfwW55pBfSWwqCmgpoEQUTnImLhIjB
+ wwI5d8xKZAQNBSUe7qdnTvpMTjsyXxyJwGj653vUpDTCaka0x0QXJ0y4ZRLRqmG2rRnMMJyK2S
+ hJNUkvR4DWncdMTuyWW1X6yXZp7sNvoVTE9C8IFQzCr5DuLiAEDkw4GUpaZ0ZUVm1qJrUced25
+ sPhiW5cf/LhNgpGMQ68u0SREIxrWSlkueL6HfHUiPJbT6ZeoXRZsLLOM55/TP/1f/TKfvfaD8P
+ wAFpDMEK2AQAA
+X-Change-ID: 20241009-damu-a3f2f3478409
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Hsin-Yi Wang <hsinyi@chromium.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Hsin-Te Yuan <yuanhsinte@chromium.org>
+X-Mailer: b4 0.15-dev-2a633
 
-On Tue, Nov 12, 2024 at 06:38:04PM +0100, barnabas.czeman@mainlining.org wrote:
-> On 2024-11-12 18:27, Stephan Gerhold wrote:
-> > On Tue, Nov 12, 2024 at 04:49:38PM +0100, Barnabás Czémán wrote:
-> > > From: Otto Pflüger <otto.pflueger@abscue.de>
-> > > 
-> > > Add initial support for MSM8917 SoC.
-> > > 
-> > > Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
-> > > [reword commit, rebase, fix schema errors]
-> > > Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/msm8917.dtsi | 1974
-> > > +++++++++++++++++++++++++++++++++
-> > >  1 file changed, 1974 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/msm8917.dtsi
-> > > b/arch/arm64/boot/dts/qcom/msm8917.dtsi
-> > > new file mode 100644
-> > > index 0000000000000000000000000000000000000000..cf0a0eec1141e11faca0ee9705d6348ab32a0f50
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/qcom/msm8917.dtsi
-> > > @@ -0,0 +1,1974 @@
-> [...]
-> > > +			sdc1_clk_on: sdc1-clk-on-state {
-> > > +				pins = "sdc1_clk";
-> > > +				bias-disable;
-> > > +				drive-strength = <16>;
-> > > +			};
-> > > +
-> > > +			sdc1_clk_off: sdc1-clk-off-state {
-> > > +				pins = "sdc1_clk";
-> > > +				bias-disable;
-> > > +				drive-strength = <2>;
-> > > +			};
-> > > +
-> > > +			sdc1_cmd_on: sdc1-cmd-on-state {
-> > > +				pins = "sdc1_cmd";
-> > > +				bias-disable;
-> > > +				drive-strength = <10>;
-> > > +			};
-> > > +
-> > > +			sdc1_cmd_off: sdc1-cmd-off-state {
-> > > +				pins = "sdc1_cmd";
-> > > +				bias-disable;
-> > > +				drive-strength = <2>;
-> > > +			};
-> > > +
-> > > +			sdc1_data_on: sdc1-data-on-state {
-> > > +				pins = "sdc1_data";
-> > > +				bias-pull-up;
-> > > +				drive-strength = <10>;
-> > > +			};
-> > > +
-> > > +			sdc1_data_off: sdc1-data-off-state {
-> > > +				pins = "sdc1_data";
-> > > +				bias-pull-up;
-> > > +				drive-strength = <2>;
-> > > +			};
-> > > +
-> > > +			sdc1_rclk_on: sdc1-rclk-on-state {
-> > > +				pins = "sdc1_rclk";
-> > > +				bias-pull-down;
-> > > +			};
-> > > +
-> > > +			sdc1_rclk_off: sdc1-rclk-off-state {
-> > > +				pins = "sdc1_rclk";
-> > > +				bias-pull-down;
-> > > +			};
-> > > +
-> > > +			sdc2_clk_on: sdc2-clk-on-state {
-> > > +				pins = "sdc2_clk";
-> > > +				drive-strength = <16>;
-> > > +				bias-disable;
-> > > +			};
-> > > +
-> > > +			sdc2_clk_off: sdc2-clk-off-state {
-> > > +				pins = "sdc2_clk";
-> > > +				bias-disable;
-> > > +				drive-strength = <2>;
-> > > +			};
-> > > +
-> > > +			sdc2_cmd_on: sdc2-cmd-on-state {
-> > > +				pins = "sdc2_cmd";
-> > > +				bias-pull-up;
-> > > +				drive-strength = <10>;
-> > > +			};
-> > > +
-> > > +			sdc2_cmd_off: sdc2-cmd-off-state {
-> > > +				pins = "sdc2_cmd";
-> > > +				bias-pull-up;
-> > > +				drive-strength = <2>;
-> > > +			};
-> > 
-> > These are not referenced anywhere? Not here in the sdhc_X nodes, and
-> > also not in your msm8917-xiaomi-riva.dts. Would also recommend
-> > consolidating these to a single node like in msm8916.dtsi, see commit
-> > c943e4c58b2f ("arm64: dts: qcom: msm8916/39: Consolidate SDC pinctrl").
-> > 
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=c943e4c58b2ffb0dcd497f8b12f284f5e8fc477e
-> > 
-> > > +
-> > > +			sdc2_cd_on: cd-on-state {
-> > > +				pins = "gpio67";
-> > > +				function = "gpio";
-> > > +				drive-strength = <2>;
-> > > +				bias-pull-up;
-> > > +			};
-> > > +
-> > > +			sdc2_cd_off: cd-off-state {
-> > > +				pins = "gpio67";
-> > > +				function = "gpio";
-> > > +				drive-strength = <2>;
-> > > +				bias-disable;
-> > > +			};
-> > 
-> > It does not make sense to have different on/off states for the card
-> > detect (CD) pin of the SD card. It needs to work even when the SD card
-> > is suspended so we can detect insertions/removals. Also should be placed
-> > in the board-specific DT part.
-> I have made these based on this https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.9.6.2.r1-04800-89xx.0/arch/arm64/boot/dts/qcom/msm8917-pinctrl.dtsi
+From: Hsin-Yi Wang <hsinyi@chromium.org>
 
-Yes, msm8916-pinctrl.dtsi also has this in the downstream sources, but
-as I explain in the commit linked below I don't think this is right. You
-can probably just change it to bias-disable like I did for most of the
-boards. There is usually external pull up that keeps it working even in
-the "cd-off-state".
+Sets DMIC one-wire mode on Damu.
 
-> > 
-> > See commit dfbda20dabaa ("arm64: dts: qcom: msm8916/39: Fix SD card
-> > detect pinctrl").
-> > 
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=dfbda20dabaa1f284abd550035db5887384c8e4c
-> > 
+Fixes: cabc71b08eb5 ("arm64: dts: mt8183: Add kukui-jacuzzi-damu board")
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+---
+Changes in v4:
+- Add Reviewed-by tag back, which is dropped in v3
+- Link to v3: https://lore.kernel.org/r/20241009-damu-v3-1-1294c8e16829@chromium.org
 
-Thanks,
-Stephan
+Changes in v3:
+- Add missing Sign-off-by tag
+- Link to v2: https://lore.kernel.org/r/20240910-one-wire-v2-1-2bb40d5a3cf8@chromium.org
+
+Changes in v2:
+- Add fixes tag 
+- Link to v1: https://lore.kernel.org/r/20240910-one-wire-v1-1-d25486a6ba6d@chromium.org
+---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+index 0b45aee2e29953b6117b462034a00dff2596b9ff..06a689feff52945d141d196d439cba034f25fdf6 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+@@ -26,6 +26,10 @@ &touchscreen {
+ 	hid-descr-addr = <0x0001>;
+ };
+ 
++&mt6358codec {
++	mediatek,dmic-mode = <1>; /* one-wire */
++};
++
+ &qca_wifi {
+ 	qcom,ath10k-calibration-variant = "GO_DAMU";
+ };
+
+---
+base-commit: 75b607fab38d149f232f01eae5e6392b394dd659
+change-id: 20241009-damu-a3f2f3478409
+
+Best regards,
+-- 
+Hsin-Te Yuan <yuanhsinte@chromium.org>
+
 
