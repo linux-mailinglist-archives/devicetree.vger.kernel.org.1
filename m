@@ -1,166 +1,119 @@
-Return-Path: <devicetree+bounces-121406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B539D9C6A8F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 09:30:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A25A9C6A91
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 09:31:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17058B2293E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 08:30:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE16E1F23BBD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 08:31:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B13B189BB2;
-	Wed, 13 Nov 2024 08:30:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 089BC189F33;
+	Wed, 13 Nov 2024 08:31:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="NPlX+dHe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V/ClBW7J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1D42171E55;
-	Wed, 13 Nov 2024 08:30:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D30FB11CBA;
+	Wed, 13 Nov 2024 08:31:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731486610; cv=none; b=Pl0skdcIBIW6zJZpKztupTd+ZlsPeUmp7EL4JJ5/tNVg4gy2zPT7kZSg8Apw9ASifjUtuONne5E7rur6xCoADYpvWEe6KKoifpmszSPghVYsENnuVlQ3LVWTuwuZwizpr++NVS4IhiDGALiPFZlaVYhgRc7Oyfi/51Ie+Al7y2g=
+	t=1731486677; cv=none; b=tmicqV9swm9+UjYyuETJFGaO8TfOFE+9oPxZRwCdtMmRP8SFFVnjf8AQ8AS3eHEWXYlnwywzqJcXpAE90Q/Wz2n5xcH4wO2g7HhP1oaE4oqDUndnquh6nZPldwwtr+keCqoBRivuF0WyGiyKBss0dxCKqjdzlLWAJrHdFK4hirI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731486610; c=relaxed/simple;
-	bh=e/z2cWcu5gDkwr3SH0Npltc8JNgb13UMknCmidcTM9A=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=l80PCUDSpNmeQLkfzmTji4dWb/CLWvJd+WaGzrhlFAgV8zhYTidUbD37LuR2itgdAFXlOO1Ek8azOpH79HI4NBOpD1+E17JIcSbWlj1u5u68melu215y8AHEVNpoaEuKytmiiv4DZT8iGk7o4wYMSSAWiLWqw6W3u8b3NGj/u4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=NPlX+dHe; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AD5T69K030186;
-	Wed, 13 Nov 2024 09:29:47 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=selector1; bh=BytviIzCjIdHXac0v0yYt/
-	+vzHuitYQuY7Dt5RQLAyA=; b=NPlX+dHe4tkFVGYvQyBFxbOeihUyOIsMD0W3B3
-	zxhlb+jFIsLoku5BEdmI7yFUDNBVwmu4PwTGvHNNVrfIrCwvsQ7F7gchmbteQjYz
-	g5LaJItd7ihkizkFL0k4Uo1i+69o3Py2Pv4GPuk9Mq8reWFjOq/ug68WvUtnDNLn
-	JXlC1dx5oTZQUMOC3pjEfad3J26cHL3ge4EHSaOTVxE0ft3slybsdGvnGnl77zBX
-	Io+ao/8RQ1F9QmmWDx/i9I71KZ5xkSaiyplf0aRs2z62nSIj8T/FlIEiizywI0l+
-	c7JlTumbHzhC9QZPWYXVr7gIthn47kGIbGkLRjTHNc+yYPSw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42swr90r7r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Nov 2024 09:29:47 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 61D61400A1;
-	Wed, 13 Nov 2024 09:28:01 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 23DCE26FCFA;
-	Wed, 13 Nov 2024 09:25:19 +0100 (CET)
-Received: from localhost (10.252.5.106) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 13 Nov
- 2024 09:25:18 +0100
-From: Olivier Moysan <olivier.moysan@foss.st.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC: Olivier Moysan <olivier.moysan@foss.st.com>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: st: add i2s support to stm32mp251
-Date: Wed, 13 Nov 2024 09:25:09 +0100
-Message-ID: <20241113082510.2354924-1-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1731486677; c=relaxed/simple;
+	bh=bM0X38UhkBzintoDYGOc67/pd8CabjjLBzBwfbjIAU8=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Wnr5uos7FVseb9t1UjpDPTjFtInrTZvSNlSXTK9OGAe6UdO3XDunTBWgcy5W4QK+vNzwzfIyd/zHibuDlap41IBA8p2fOlMMro8HHhL/S8hhAGNVndYIY6h8++DZA4N9nFcW2LVbaS+5MVpMyHntD/Mo728Qj45IYpMuWKpsdnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V/ClBW7J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21A3CC4CECD;
+	Wed, 13 Nov 2024 08:31:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731486677;
+	bh=bM0X38UhkBzintoDYGOc67/pd8CabjjLBzBwfbjIAU8=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=V/ClBW7JwcDylSEPox1BqKSEFHkB+LEzuBaojbVOGIy5b+8a+S9VJV/1wKjvDGtV0
+	 xIS+YSt/XmC/DGYp82maL5LSjKKKldeiQBG0tt1iO6CR2A8256Q9TW88RcWeKul782
+	 2rPdxf9wR/C6F+3wSKfViRTW3D80A4BN+Xmiwdi7TYtidAqEGeQW02n7FEnXhfXZzu
+	 zVSu/f5IXmlPvHY3FuiOgv4U4g9J1Vq1XWVdJGAXAJv4mciSkwQO8a79YowB403YBf
+	 40kCVTCcm9QaMAS1UuzvQTfhy3XI9dXXXg/iUz+k/JJ5aEa3vZFLo5OLcu+aSP7sud
+	 tjBAAe6yRErhw==
+Date: Wed, 13 Nov 2024 02:31:15 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>, 
+ Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <20241113-a4_pinctrl-v6-1-35ba2401ee35@amlogic.com>
+References: <20241113-a4_pinctrl-v6-0-35ba2401ee35@amlogic.com>
+ <20241113-a4_pinctrl-v6-1-35ba2401ee35@amlogic.com>
+Message-Id: <173148667456.3371316.2229241108190941426.robh@kernel.org>
+Subject: Re: [PATCH v6 1/5] dt-bindings: pinctrl: move gpio-cells property
 
-Add I2S support to STM32MP25 SoCs.
 
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 45 ++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+On Wed, 13 Nov 2024 15:29:39 +0800, Xianwei Zhao wrote:
+> Move #gpio-cells property from common yaml file
+> to lower-level yaml files.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml          | 3 +++
+>  .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml      | 3 ---
+>  .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml  | 3 +++
+>  .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml           | 3 +++
+>  .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml      | 3 +++
+>  .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml       | 3 +++
+>  6 files changed, 15 insertions(+), 3 deletions(-)
+> 
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index 6fe12e3bd7dd..8cc0b64e6a16 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -237,6 +237,21 @@ rifsc: bus@42080000 {
- 			#access-controller-cells = <1>;
- 			ranges;
- 
-+			i2s2: audio-controller@400b0000 {
-+				compatible = "st,stm32mp25-i2s";
-+				reg = <0x400b0000 0x400>;
-+				#sound-dai-cells = <0>;
-+				interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&rcc CK_BUS_SPI2>, <&rcc CK_KER_SPI2>;
-+				clock-names = "pclk", "i2sclk";
-+				resets = <&rcc SPI2_R>;
-+				dmas = <&hpdma 51 0x43 0x12>,
-+				       <&hpdma 52 0x43 0x21>;
-+				dma-names = "rx", "tx";
-+				access-controllers = <&rifsc 23>;
-+				status = "disabled";
-+			};
-+
- 			spi2: spi@400b0000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -252,6 +267,21 @@ spi2: spi@400b0000 {
- 				status = "disabled";
- 			};
- 
-+			i2s3: audio-controller@400c0000 {
-+				compatible = "st,stm32mp25-i2s";
-+				reg = <0x400c0000 0x400>;
-+				#sound-dai-cells = <0>;
-+				interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&rcc CK_BUS_SPI3>, <&rcc CK_KER_SPI3>;
-+				clock-names = "pclk", "i2sclk";
-+				resets = <&rcc SPI3_R>;
-+				dmas = <&hpdma 53 0x43 0x12>,
-+				       <&hpdma 54 0x43 0x21>;
-+				dma-names = "rx", "tx";
-+				access-controllers = <&rifsc 24>;
-+				status = "disabled";
-+			};
-+
- 			spi3: spi@400c0000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -439,6 +469,21 @@ usart6: serial@40220000 {
- 				status = "disabled";
- 			};
- 
-+			i2s1: audio-controller@40230000 {
-+				compatible = "st,stm32mp25-i2s";
-+				reg = <0x40230000 0x400>;
-+				#sound-dai-cells = <0>;
-+				interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&rcc CK_BUS_SPI1>, <&rcc CK_KER_SPI1>;
-+				clock-names = "pclk", "i2sclk";
-+				resets = <&rcc SPI1_R>;
-+				dmas = <&hpdma 49 0x43 0x12>,
-+				       <&hpdma 50 0x43 0x21>;
-+				dma-names = "rx", "tx";
-+				access-controllers = <&rifsc 22>;
-+				status = "disabled";
-+			};
-+
- 			spi1: spi@40230000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--- 
-2.25.1
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml: patternProperties:^bank@[0-9a-f]+$:properties: 'gpio-controller' is a dependency of '#gpio-cells'
+	from schema $id: http://devicetree.org/meta-schemas/gpios.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml: patternProperties:^bank@[0-9a-f]+$:properties: 'gpio-controller' is a dependency of '#gpio-cells'
+	from schema $id: http://devicetree.org/meta-schemas/gpios.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml: patternProperties:^bank@[0-9a-f]+$:properties: 'gpio-controller' is a dependency of '#gpio-cells'
+	from schema $id: http://devicetree.org/meta-schemas/gpios.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml: patternProperties:^bank@[0-9a-f]+$:properties: 'gpio-controller' is a dependency of '#gpio-cells'
+	from schema $id: http://devicetree.org/meta-schemas/gpios.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml: patternProperties:^bank@[0-9a-f]+$:properties: 'gpio-controller' is a dependency of '#gpio-cells'
+	from schema $id: http://devicetree.org/meta-schemas/gpios.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241113-a4_pinctrl-v6-1-35ba2401ee35@amlogic.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
