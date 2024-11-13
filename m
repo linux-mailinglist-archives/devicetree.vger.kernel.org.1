@@ -1,143 +1,134 @@
-Return-Path: <devicetree+bounces-121346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FDE19C6889
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF599C6888
 	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 06:15:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 884CC283714
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 05:15:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B50F01F23CB0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 05:15:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A84DF1714B8;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78C2416EB55;
 	Wed, 13 Nov 2024 05:15:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CzJzVhMH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="exI69GoT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 364DA15B96E;
-	Wed, 13 Nov 2024 05:15:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D064315A858
+	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 05:15:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731474928; cv=none; b=TCvxbt4AoiZFnXx/2pBJ0cVWm5fSdtD0ILlzt6I5PnCTXBKggQouovk4iRKBLhFUFN4xwSWW1M4eSyax5cNDp77dE7+1gx9Gus4gfGPvkZSCAq9igB0DcIs0uzOIVmHSZcGVtQWaWawrKy+BGIJZMduK4OeKuuVyalM5ZxsDK14=
+	t=1731474928; cv=none; b=RbPPD+bHKeAxWE2U++VHyxq0uHo75AZpn3ATUZSwhkQFWvfuoT2P9vKAVLEaSv+cIHMGIM+hqUIQtmDY1YKw8+zl5+cMtCzWkrHDNpX6zgBGMMHMAuBWrjf9WNyr7ErYrphqLtrWEPtnzry2Ze6IQwUU0ygI0rLBHycg8bOezRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1731474928; c=relaxed/simple;
-	bh=HrAP29M4Rx+j5Zod87VFn++vV3j7AelyQeIYTj+iV78=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PwQlyMm/ehpOyC1EOYWH7SCl+d1EGYba+uXLq2hgKjSaq6pq4vAEUiKex0XU6VdfYVAxX77MqhlMAiT6dJLhOKf64j+aS67lGkr1KI0bm/bq2q0C6oVhgqU1aPEonchJPpz7s+Fvp31ESiCMMBt/cIlquP/EGDGWNFzjDO89m/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CzJzVhMH; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ACMRQBW015377;
-	Wed, 13 Nov 2024 05:15:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qmRIIVgg6zNjGIrlNQb47VE1S5ZS4Pf3WVggwBNYdpw=; b=CzJzVhMHVTZfErd7
-	bvooStAOzroP1azlWDHUT7QoqJ7p/d4nbdHflX8HA/C19jdLKy/EtN/lVLeNfOPM
-	743POaVPy+jc5ibRigNHNTCNDTVHmfW+vhvzqAKgyYIfHWqIKZbfmVHo2xfBi9Rz
-	ggay7W1M3dmh8J5/jFWDUKikG24yt8n4mnz1VoTFukQMnyQ2A9S4mjH/0Il++Up1
-	/onm3M2lHFSfweQq+gwPZNaPuoHl7AOdk64SlRbslAG58Kua+zW3lSVotL8otyqe
-	MbdnaKBhfEkHJK7MybkWpqq8kwtwAY7Am2jWWzErRggJJ7N3UWu4965bmynhTBt6
-	54fB+Q==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42t1189mfw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Nov 2024 05:15:17 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AD5FGuP012062
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Nov 2024 05:15:16 GMT
-Received: from [10.50.46.32] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 12 Nov
- 2024 21:15:10 -0800
-Message-ID: <11191c49-3a05-e97c-0d17-592074f5acff@quicinc.com>
-Date: Wed, 13 Nov 2024 10:45:01 +0530
+	bh=wy4+P1aE6KL1b95G5rkLedo4vTwPHTtj+ixFC+cglbA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nUb0P+SCSWgAVNCl+KbTLnuqkfCVMviZF67FevEEQDyDgXzrgRP00NF2Z3jSNLpHrqsjYp2+RlbgJ2eEkWSabM9RwbOL6yHk92nkoayZdEWns60CUAYeaHdhgVaAULiGDroBk8qUq53pQhSvbUSRoPTjfz6ZOmHFRZaPuHzACpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=exI69GoT; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-382026ba43eso1787560f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2024 21:15:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731474925; x=1732079725; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HPN2+ClNY4OUgw2QDwMQ8s5sPEe8deCfdS3jRkvBbD4=;
+        b=exI69GoTzmrMNfoy9Jr/TIKrkkqMFdSSbTI5sFKmDpaAkN1Z+ad57ur55EhiPbTPZY
+         dIZDqB+8F0Ipy+gthO6uYj8dmgPWX9z/jabrDNefeqSkhOE6tGTznQmlwiaEc/kdDerD
+         +91LaiBJud9K1uJ8TqnWfiUa/jS7T2uifdRWYrb+JZ6HAsscBNajKOIT3YIF8ztNu3j4
+         554QUNX0SWksQg7UBTAnrT8xroAjLzaVgs4GkrvVawN5lnPLEkzwb0ipuG1ZoQkpFCD/
+         9rpRVhZXDSyyIIQgh2mURkNThtYF7gn9KtbOnOfqlsJjqYZyT89ODKqotvxoDUOpRNiQ
+         f9MQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731474925; x=1732079725;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HPN2+ClNY4OUgw2QDwMQ8s5sPEe8deCfdS3jRkvBbD4=;
+        b=kvBJj2+ocd1yupMyTXHJEwst9BAp3kamTz+iUQclv1M0eEfGqhgFXffKL2jtjzAyUI
+         dIkvl8iWrfw5gf/e990XCZqZPJLsk9TzzRFrl0tGCREoMJtgf3fyEE1wWhYjFf9w2Qo1
+         5HxrAJZoETqyRphy0/MKMWAlbw1NCAirSBE9vJ1X/HvqFI+iYLNQIzECFTe3NlPaXQwt
+         0MhKza+S3gP7C9CLlCO8LFOa+1KVqpxUz7GuPhY/lwj3g6zodvsOcZhtFmv7Js5PO4iJ
+         yIA97fSGch9Zmjqo++S2WcX80wdAutG1LtfGW7n2TAlRvrsVYrqX9qww1N5syndsRRWk
+         bfeA==
+X-Forwarded-Encrypted: i=1; AJvYcCUNwX7wUljizW7/zgzUucp0pkpJeW6rVV6zENXP/eGL+2spdz+UBFrog3LpRk188ZqYuGpVaSQx2nDh@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVOOREreZH5unlNh01ckLpuOPos3o+2IFeJzjHBpq4VuE+H/YT
+	Jnzjh0NMmgxGOTWH7tcfdJOCFBH8WYSK1PGZ1MoaPxHvxNSxKqy7aWd6FSNerfG202lK61DEF9G
+	2YAKiRk6dTjJKWjuSuj1OLsv02PI=
+X-Google-Smtp-Source: AGHT+IE/zP4IJkvYGPVEb9b5NDmorppeghk3nUxzyj+9tdFlYYh5tXWjzAQV8KoaAiUa27cl7EKOb4TrrKEDwmr4/q4=
+X-Received: by 2002:a05:6000:1ac6:b0:377:6073:48df with SMTP id
+ ffacd0b85a97d-3820834b240mr3709033f8f.58.1731474924898; Tue, 12 Nov 2024
+ 21:15:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v5 03/28] media: iris: implement iris v4l2 file ops
-Content-Language: en-US
-To: Bryan O'Donoghue <pure.logic@nexus-software.ie>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: Hans Verkuil <hverkuil@xs4all.nl>,
-        Sebastian Fricke
-	<sebastian.fricke@collabora.com>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Nicolas Dufresne
-	<nicolas@ndufresne.ca>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?=
-	<u.kleine-koenig@baylibre.com>,
-        Jianhua Lu <lujianhua000@gmail.com>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241105-qcom-video-iris-v5-0-a88e7c220f78@quicinc.com>
- <20241105-qcom-video-iris-v5-3-a88e7c220f78@quicinc.com>
- <841a9469-4fa1-443f-88a6-bfbe11b74487@nexus-software.ie>
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-In-Reply-To: <841a9469-4fa1-443f-88a6-bfbe11b74487@nexus-software.ie>
+References: <20241111045408.1922-1-honyuenkwun@gmail.com> <20241111045408.1922-5-honyuenkwun@gmail.com>
+ <173135828350.1935626.3279818343954125790.robh@kernel.org>
+In-Reply-To: <173135828350.1935626.3279818343954125790.robh@kernel.org>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Tue, 12 Nov 2024 23:15:14 -0600
+Message-ID: <CALWfF7+KdqZT-FRzjAoXD5b1CXLWu-tk4FnSqeRRfuoBWvLzbA@mail.gmail.com>
+Subject: Re: [PATCH 2/3 v3] dt-bindings: arm: rockchip: Add Xunlong Orange Pi
+ 5 Max
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>, 
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ToRnGY8tBdK0HdbcQ9q0rjltLEWWaNpF
-X-Proofpoint-GUID: ToRnGY8tBdK0HdbcQ9q0rjltLEWWaNpF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
- bulkscore=0 mlxlogscore=903 lowpriorityscore=0 malwarescore=0
- clxscore=1011 priorityscore=1501 adultscore=0 suspectscore=0 spamscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411130045
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Nov 11, 2024 at 2:57=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org>=
+ wrote:
+>
+>
+> On Sun, 10 Nov 2024 22:53:25 -0600, Jimmy Hon wrote:
+> > Add devicetree binding for the Xunlong Orange Pi 5 Max board.
+> >
+> > The Orange Pi 5 Max is a single board computer powered by the Rockchip
+> > RK3588 similar to the Orange Pi 5 Plus.
+> >
+> > Signed-off-by: Jimmy Hon <honyuenkwun@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++--
+> >  1 file changed, 4 insertions(+), 2 deletions(-)
+> >
+>
+>
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+>
+> If a tag was not added on purpose, please state why and what changed.
+This v3 version is now sharing a base dtsi with the Orange Pi 5 Plus.
+So it's not a separate entry in the dt-bindings like it was in v2.
 
+I'm eager to hear from the Orange Pi 5 Plus maintainer if this
+approach is good, or if the boards are considered two divergent and
+trying to share a dtsi is going to cause more headaches when enabling
+features that are unique to the Orange Pi 5 Plus.
 
-On 11/10/2024 8:40 AM, Bryan O'Donoghue wrote:
-> On 05/11/2024 06:55, Dikshita Agarwal wrote:
->> Implement open, close and poll ops.
->>
->> Open:
->> Configure the vb2 queue and v4l2 file handler. Allocate a video instance
->> and add the instance to core instance list.
->>
->> Close:
->> Free the instance and remove it from core instance list.
-> 
-> Its a bit odd that you describe the purpose of open and close but not poll,
-> despite listing poll along with open and close at the very top.
-> 
-> Consider adding that text if you do a next version.
-> 
-We didn't describe the poll since we are making use of m2m API for that.
-but sure can describe that as well.
+In this case, it's not as similar as the NanoPi R6C vs R6S or the
+Orange Pi 5 vs Pi 5B.
 
-Thanks,
-Dikshita
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> 
-> ---
-> bod
+So if we decide to use the common approach, I can use Conor's Ack. But
+if we decide to use the separate approach, I can use your Ack from v2.
+
+>
+> Missing tags:
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+>
+>
+
+Jimmy
 
