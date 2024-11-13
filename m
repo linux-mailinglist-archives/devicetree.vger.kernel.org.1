@@ -1,217 +1,167 @@
-Return-Path: <devicetree+bounces-121421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC2A9C6B3B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 10:10:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4505E9C6B48
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 10:16:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDBCA283B11
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 09:10:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 033A128402D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 09:16:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646041BDABE;
-	Wed, 13 Nov 2024 09:10:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EBC81CEE92;
+	Wed, 13 Nov 2024 09:15:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DTQFPpRA"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="LZFSvwpO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D9851BDA8F
-	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 09:10:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67FFE1CDFC9
+	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 09:15:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731489046; cv=none; b=jvDlq85gsbaqTH2akfiq3NP9AcblGM0q8uwpfmzI6k2JNfpraTbuuZWVGFOU6UJA+Lj3GXHdVzr2jg7t2rSUQh1Icl4AwKnk7WnuLs3dKCZzFHNbs0tjv7fTJ5hGCgkIdKm4KchjxRnS0gcZRlpuao/Bo61UMUjSMebkJtlsEtw=
+	t=1731489356; cv=none; b=qfCZJka6HCvIuBx9ZUJnutVheHH0LxR+c0Yjco4dCc6+z55M8vGD/Y7rYf1AnlcuXa40GrkXFo4StnMaDzVGU4Ho93/o7OjZAKMChYxu6CMCPRdZ2Op8frj1LqOOpnkhPMh3B3jmPLLcsmSsgtpoDLub+eRX54jzoxOVJRPS58A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731489046; c=relaxed/simple;
-	bh=41ETKmIi3rZzSC+/rwGhQWVrmi2LCfX+MHv4EyZ+MWk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HFWYJUabLoy6tsLstKrpKl1qGZBOpIeT6dAGNoj6CZbVMFuqtwKL04SU9wT0HPlSRG57Cz63BiorcOB1ZDvQY/hWBpCUR++j3w4j5Qgbz1V0p8AHdYtHsSPqBjw876Qio0msjpTAwIDd360XL7/JhwBgPvuaEn22YNOf3QY+CIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DTQFPpRA; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-381ee2e10dfso3968783f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 01:10:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731489042; x=1732093842; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=LwD4oymmVslGH4NrMAKmK7EULNIhFHBAlUKHIqQhDQk=;
-        b=DTQFPpRAm0DaOnJvlTRGvwR1nEM6Up1gf0+/kf6V9Ij4ZUhJBPcYL6+WMqxX8uXvdL
-         fz5Y+P7tV0gsSraKeVMbk4N09iUsDSK828cutFKvsjHvKS055xKI+QYTRngq7Cdx8CFE
-         bk5syWu4fZYykyTs0V8rSnev9lo5dkBEgo0kWMGfaKWBTlCO+cwcyBdNFCJuHUhhwMR9
-         dZ4dtVmyJLadnAcaGibEr511uuNVzEPN88HdqfmSCSrdOZf3Ix3j+Mif+jcIZDHVjEQy
-         3dC6ruashYgf4WO47hbJIdM4eBbrmwwhQHeKKX1uUWDYwBzBF2lYAabksu5FsqZ8kdCr
-         A/NQ==
+	s=arc-20240116; t=1731489356; c=relaxed/simple;
+	bh=SB7Bfgqn58f7pGUarYoQdJJz2+RISn4Ut5lwKQbEXC8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Fkc7UD5TE5zSvfRbsKrACU/HRzigpjITZ5eDPn/eoEwR/+xCJTvfwWC8XfsrmZkyKNLo70vB2TUu5Yflrwjl6CSmN/3Hz09YtK2g/SheFkZvy1UpB9KXrx7gFtQp9A2tG9DuJZdSa57/1HhLB4V2auu4AHeMTg1zwghFJ3QOLFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=LZFSvwpO; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1731489352;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=quTAJEdlmLiz3O8wMhr6p5bbf6+58IEExsR/WOQUwf0=;
+	b=LZFSvwpO07ggnjydWC7U91iVQTdEpCBSkDPiYWCzZIYwrxevA6QW9e1P5VLXfJdRtNs5pD
+	MUzzLJT31ShX1dA6f8UH4b3hlyB98jCAcVc87riMFoSF+2ZBzSc9uNzVAtoSNROw3ILZei
+	xccdq9KeWSVYUT02UoRwXY2IyeQXx4w=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-108-2bXx2FH0NUKDA0_YcwHXEg-1; Wed, 13 Nov 2024 04:15:51 -0500
+X-MC-Unique: 2bXx2FH0NUKDA0_YcwHXEg-1
+X-Mimecast-MFC-AGG-ID: 2bXx2FH0NUKDA0_YcwHXEg
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6d3742af01eso5146836d6.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 01:15:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731489042; x=1732093842;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LwD4oymmVslGH4NrMAKmK7EULNIhFHBAlUKHIqQhDQk=;
-        b=Qp2q/MZ1e5jKaxbrm51QkSISjb+2ZqWiy3vvP45kH4inoRnaWsMAI5q8J5mwZTdjbG
-         pOacbGOqlo34WhDBjPWXDLiKHYFhvA/+CbsXrRALT9ktiTWEdEB+9i2eZlputL2/Bkgn
-         u4Ps7d75b6KLdECemU60qtZihOnhe9mBvkfQGrMUR9aZapwS0TAE+UqVL4wGQhSWPcCX
-         3HCMXOZvYsFjLFiai6cozbK/aKmGQo8lIDVPoE+lXDihDmHrEBQqbPijdM/fUT77/p8Z
-         qPlZG5YiMc5WNti81qzRFU/16Sl7vaLxKwIeCOGJaGaU78oXG4kKRwC2gqFyobJNf1te
-         ozqg==
-X-Forwarded-Encrypted: i=1; AJvYcCVG6J4XwGKnP1rZ/bvL7VWLuEmT8Ie2BIKqGTf/DQ7XPUfBLLYSniWUW3wKjT7G7lgqTuBt/5R66KA9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrTTu26bVlv37caxForUv9b4/WFLfJm4c/xbyjpG3ruWy3u2X5
-	gFmcIysbYG2hvY9jh7vLhT/3NecZAVpPgZiAK2SwkPY+h1PfgObhS0yCLRym7FA=
-X-Google-Smtp-Source: AGHT+IH09IsTVfhj1/VaTY74Lw93grA6LiugP7EfB7Jnoz9jG2gTVU3pLPEe79lc7dnOhtIBMB/wiw==
-X-Received: by 2002:a5d:648f:0:b0:37d:46fa:d1d3 with SMTP id ffacd0b85a97d-381f186d11amr17375012f8f.34.1731489042505;
-        Wed, 13 Nov 2024 01:10:42 -0800 (PST)
-Received: from linaro.org ([2a02:2454:ff21:ef80:fca:835c:70ab:eebc])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381ed97e206sm17553313f8f.25.2024.11.13.01.10.41
+        d=1e100.net; s=20230601; t=1731489351; x=1732094151;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=quTAJEdlmLiz3O8wMhr6p5bbf6+58IEExsR/WOQUwf0=;
+        b=iMtJNMXb3Vwab7ycdbYXV2JNHnnNvsz1cy7rlZpVCwP0dDcaeOJlliHpVaRw/olFCn
+         21mW4NLyNLqLOKsuXK/yQ41McCay1wc709FDJwGaidZp40L1fley3e7WUXShlpSafCdO
+         Bw5ol87up3w9G/BZy4L/MQsWdlvqzaZqZCSwaN+d4pFh1WXqwcLHa6xeK7nrHPQpWj2X
+         xvP2qmD+evVDwRM6fy38VpLJCMHKYkBDQ1pTwyNZTH/7ArnPoEvtK1/WUms/oFHTzSPi
+         Ry8HeUUUQJc+ZouwirCEn5K2aFw4npEclo0NDJR2B3lHT0cp+2Z4bi70cafkaavs8m0P
+         8l2w==
+X-Forwarded-Encrypted: i=1; AJvYcCXoEVIJLTZ2/hr+ZW5qwnIfq4FhkfPDPL7uzmTgr/Ap6n2+PBQEcAvgnwxHwlD8pbzk2MkYVl/ta0+F@vger.kernel.org
+X-Gm-Message-State: AOJu0YweXzDk/khDiYRXtb455VEESRl+HXMYvBXossrOn6J3sU/4NlSk
+	Y9zlojw/Q/a0MC6RUfZw8y6bWMmTP3Cy+xOdF11xf1uwtcmDoRW99FnQYcEuNuUdUryicIGIWch
+	ecalNclAWSf5Z+fy5UjMNtH1K071OqDicRdHe2hnsPZ7t/3YVQXUzR2YLzcg=
+X-Received: by 2002:a05:6214:5081:b0:6cb:1fad:82b2 with SMTP id 6a1803df08f44-6d39e1125bdmr116776176d6.3.1731489350604;
+        Wed, 13 Nov 2024 01:15:50 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHDwDRfyzmSF24P4AFU+yndsPh2v9vVvenuKF0R+CHcbHTyMz4BPrKKIgvxXN3lhC47OZ8I4A==
+X-Received: by 2002:a05:6214:5081:b0:6cb:1fad:82b2 with SMTP id 6a1803df08f44-6d39e1125bdmr116776076d6.3.1731489350269;
+        Wed, 13 Nov 2024 01:15:50 -0800 (PST)
+Received: from [192.168.1.51] (207.red-83-46-1.dynamicip.rima-tde.net. [83.46.1.207])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6d396630ec5sm81599036d6.101.2024.11.13.01.15.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Nov 2024 01:10:42 -0800 (PST)
-Date: Wed, 13 Nov 2024 10:10:40 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: barnabas.czeman@mainlining.org, Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Amit Kucheria <amitk@kernel.org>,
-	Thara Gopinath <thara.gopinath@gmail.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-pm@vger.kernel.org, iommu@lists.linux.dev,
-	Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
-Subject: Re: [PATCH v5 08/10] arm64: dts: qcom: Add initial support for
- MSM8917
-Message-ID: <ZzRtEHsC4MROxN3v@linaro.org>
-References: <20241112-msm8917-v5-0-3ca34d33191b@mainlining.org>
- <20241112-msm8917-v5-8-3ca34d33191b@mainlining.org>
- <ZzOQEgLLhkH-IymV@linaro.org>
- <0dae1cea420bd335be591e4b1be3d07c@mainlining.org>
+        Wed, 13 Nov 2024 01:15:50 -0800 (PST)
+From: Enric Balletbo i Serra <eballetb@redhat.com>
+Subject: [PATCH v4 0/2] arm64: dts: ti: k3-j784s4: Mark tps659413
+Date: Wed, 13 Nov 2024 10:15:15 +0100
+Message-Id: <20241113-b4-j784s4-tps6594-bootph-v4-0-102ddaa1bdc6@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0dae1cea420bd335be591e4b1be3d07c@mainlining.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACNuNGcC/x3MMQ6DMAxA0asgz1gi4NKEq1QdEjDFHUgUR1Ulx
+ N2JGN/w/wHKWVhhag7I/BOVuFdQ28C8+f3DKEs19F1PxpgBA+H3aUkJS9Lx4QhDjCVtOJDl1dn
+ Ojt5BzVPmVf73+vU+zwvgTedNagAAAA==
+X-Change-ID: 20241113-b4-j784s4-tps6594-bootph-348ef98086a9
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Andrew Halaney <ajhalaney@gmail.com>, 
+ Andrew Halaney <ahalaney@redhat.com>, 
+ Enric Balletbo i Serra <eballetb@redhat.com>, Udit Kumar <u-kumar1@ti.com>, 
+ Beleswar Padhi <b-padhi@ti.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1731489348; l=2452;
+ i=eballetb@redhat.com; s=20241113; h=from:subject:message-id;
+ bh=SB7Bfgqn58f7pGUarYoQdJJz2+RISn4Ut5lwKQbEXC8=;
+ b=HIPKdQzzrXuLuysgHfF7ppw9TUp59s2Aq+m8hqdoYVFBygJxdrz0L3t+09pfJVK5VzLhnkrxS
+ O0rrpwWx/6qDpMWqjAaulpOfII1MTHgoVLOOBPrIk7aXUlZAlB80Xev
+X-Developer-Key: i=eballetb@redhat.com; a=ed25519;
+ pk=xAM6APjLnjm98JkE7JdP1GytrxFUrcDLr+fvzW1Dlyw=
 
-On Tue, Nov 12, 2024 at 07:49:18PM +0100, barnabas.czeman@mainlining.org wrote:
-> On 2024-11-12 18:27, Stephan Gerhold wrote:
-> > On Tue, Nov 12, 2024 at 04:49:38PM +0100, Barnabás Czémán wrote:
-> > > From: Otto Pflüger <otto.pflueger@abscue.de>
-> > > 
-> > > Add initial support for MSM8917 SoC.
-> > > 
-> > > Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
-> > > [reword commit, rebase, fix schema errors]
-> > > Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/msm8917.dtsi | 1974
-> > > +++++++++++++++++++++++++++++++++
-> > >  1 file changed, 1974 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/msm8917.dtsi
-> > > b/arch/arm64/boot/dts/qcom/msm8917.dtsi
-> > > new file mode 100644
-> > > index 0000000000000000000000000000000000000000..cf0a0eec1141e11faca0ee9705d6348ab32a0f50
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/qcom/msm8917.dtsi
-> > > @@ -0,0 +1,1974 @@
-> > > [...]
-> > > +		domain-idle-states {
-> > > +			cluster_sleep_0: cluster-sleep-0 {
-> > > +				compatible = "domain-idle-state";
-> > > +				arm,psci-suspend-param = <0x41000023>;
-> > > +				entry-latency-us = <700>;
-> > > +				exit-latency-us = <650>;
-> > > +				min-residency-us = <1972>;
-> > > +			};
-> > > +
-> > > +			cluster_sleep_1: cluster-sleep-1 {
-> > > +				compatible = "domain-idle-state";
-> > > +				arm,psci-suspend-param = <0x41000043>;
-> > > +				entry-latency-us = <240>;
-> > > +				exit-latency-us = <280>;
-> > > +				min-residency-us = <806>;
-> > > +			};
-> > 
-> > I think my comment here is still open:
-> > 
-> > This is strange, the deeper sleep state has lower timings than the
-> > previous one?
-> I was reordering based on Konrad comments when i have renamed the nodes
-> maybe it is not correct then.
-> I am searching for how to validate these levels, i have find these
-> https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.10.6.2.c26-01500-89xx.0/arch/arm64/boot/dts/qcom/msm8917-pm.dtsi#L45-91
+This series marks tps659413's regulators as bootph-all in order for
+the nodes (and parent nodes) to be accessible during MCU's u-boot SPL.
 
-I think you translated them correctly. It feels like downstream is weird
-or even wrong here. Usually a higher psci-mode (retention = 2, gdhs = 4)
-also implies a deeper idle state. But at some point the
-perf-l2-retention and perf-l2-gdhs state were swapped downstream:
+This in turn is desired since the tps659413 needs its MCU ESM
+state machine setup in order for the watchdog to reset the board.
 
-https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/commit/dea262a17a9e80dacb86b7c2f269bcc7b4df3a13
+This took me a little while to track down, as enabling the ESM, TPS6594,
+etc in u-boot would result in the below boot failure:
 
-I don't know if this is intended or just an oversight. If no one can
-clarify why this change was done I guess we can just choose between the
-following two options:
+    U-Boot SPL 2024.10-rc4-00007-g44b12cbcd1b3-dirty (Sep 06 2024 - 14:25:52 -0500)
+    SYSFW ABI: 3.1 (firmware rev 0x0009 '9.2.4--v09.02.04 (Kool Koala)')
+    Initialized 4 DRAM controllers
+    SPL initial stack usage: 13408 bytes
+    ### ERROR ### Please RESET the board ###
 
- 1. Describe it exactly like it was done downstream. In that case I
-    would suggest swapping the node order back to what you had in v1.
-    Even if that means that a lower idle state has the higher psci-mode
-    (arm,psci-suspend-param). That should match what downstream did.
+Which turns out to actually have failed far earlier in spl_early_init(),
+due to these nodes not being accessible in u-boot. That's hard to tell
+though since console isn't setup until later (and for that reason I
+think spl_early_init()'s return value in j784s4_init.c isn't
+evaluated since a panic() at that point would leave a user with *no*
+information at all).
 
-OR
+I've tested this in conjunction with a u-boot series which I'll link in
+a follow-up response on the k3-j784s4-evm. I'd appreciate someone testing
+on the k3-am69-sk at a minimum, as it should suffer the same fate if things
+aren't setup appropriately.
 
- 2. Omit cluster-sleep-0 and cluster-sleep-1. I doubt anyone will notice
-    the minor difference in power consumption. The most important idle
-    state is the deepest "power collapse" (PC) state.
+Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+Signed-off-by: Enric Balletbo i Serra <eballetb@redhat.com>
+---
+Changes in v4:
+- Rebased on top of ti-k3-dts-next branch
 
-@Konrad: Do you have any opinion here?
+Changes in v3:
+- Added Udit's Tested-by tags
+- Reordered bootph-all to align with dts-coding-style (Beleswar)
+- Link to v2: https://lore.kernel.org/r/20240911-j784s4-tps6594-bootph-v2-0-a83526264ab1@redhat.com
 
-> Do you know where can i find psci-suspend-param-s?
+Changes in v2:
+- Only mark the regulator nodes as bootph-all since parents are implied
+- Link to v1: https://lore.kernel.org/r/20240906-j784s4-tps6594-bootph-v1-0-c5b58d43bf04@redhat.com
 
-You need to translate it like in this code here:
-https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.10.6.2.c26-01500-89xx.0/drivers/cpuidle/lpm-levels.c#L1337-1340
+---
+Andrew Halaney (2):
+      arm64: dts: ti: k3-j784s4-evm: Mark tps659413 regulators as bootph-all
+      arm64: dts: ti: k3-am69-sk: Mark tps659413 regulators as bootph-all
 
-Roughly described:
- - Set BIT(30) if the CPU state has qcom,is-reset
- - Affinity level is the hierarchy level that goes idle.
-   In your case: CPU = 0, L2 cache/cluster = 1.
-   Shift that to bit 24 (1 << 24 for cache/cluster)
- - For the state itself you need to combine the qcom,psci-cpu-mode and
-   qcom,psci-mode according to the qcom,psci-mode-shift.
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts                   | 8 ++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi | 8 ++++++++
+ 2 files changed, 16 insertions(+)
+---
+base-commit: 767b6a0d0900c951e8b42306bd636268481a97ae
+change-id: 20241113-b4-j784s4-tps6594-bootph-348ef98086a9
 
-E.g. for the "perf-l2-pc" state, combined with the deepest CPU state
-("pc"):
+Best regards,
+-- 
+Enric Balletbo i Serra <eballetb@redhat.com>
 
- - BIT(30) is set because of qcom,is-reset
- - (1 << 24) because it's a L2 cache/cluster idle state
- - (qcom,psci-cpu-mode = <3>) << (qcom,psci-mode-shift = <0>) = (3 << 0)
- - (qcom,psci-mode = <5>) << (qcom,psci-mode-shift = <4>) = (5 << 4)
-
-All that combined: BIT(30) | (1 << 24) | (3 << 0) | (5 << 4)
-  = 0x41000053
-
-Which is what you have for cluster-sleep-2. The ones you have look
-correct to me. :-)
-
-> Should I also add wfi level?
-
-I think we usually omit those for the CPU at least. Not sure about the
-cache/cluster one. As I mentioned, at the end the most important idle
-state to have is the deepest ones. Those will get used during suspend
-and when you don't use the device. The others are more minor
-optimization for light usage, which will be less noticeable.
-
-Thanks,
-Stephan
 
