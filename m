@@ -1,165 +1,209 @@
-Return-Path: <devicetree+bounces-121453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 364B09C6C9D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 11:16:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F019C6CEE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 11:33:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B47D92855DE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 10:16:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF7CCB24131
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 10:24:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F431FA247;
-	Wed, 13 Nov 2024 10:16:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7612A1FBF72;
+	Wed, 13 Nov 2024 10:24:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5152B18A6DE;
-	Wed, 13 Nov 2024 10:15:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACD371FBF67;
+	Wed, 13 Nov 2024 10:24:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731492962; cv=none; b=qaK9tKkrn/Tc8jcNu8xdHFEEM7XUyqvUCs2+x8owEYxfZsYfS9mZ6fLV3q2Pg0q+ysBg/JwSujk5kQAMTbeNvn6AdAOEEB1EP1WvnIWAAaE1T23vzGZLWSZSJ62qCRqLJpoKqb88nKERwQgRZzTYxDiECvv+M1qaok3aQa5F20w=
+	t=1731493473; cv=none; b=VvHmbmq2rxv8bzymeISf45/Vof7CrEwcGsqU6p7GjoFfuGXUEcm+ZXoOT9R66oAsQd9z4qkIGgZMpLzqTqAviobQx5/uEUKmo8cCx4YGpmi4ESxzX9v2BWTWS1rRB0QrouNrcrBjrTvArWsPIa+aptHYwMLLxzBSngaUu/MTQ2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731492962; c=relaxed/simple;
-	bh=8zKUrMnMRzDAMBUHJQHzWOsN10KZz08WEg+SvH++MtE=;
+	s=arc-20240116; t=1731493473; c=relaxed/simple;
+	bh=alon8YW/cNgGvR3wXE6+HR5oyAWbb5jQlcuF9r9XmyM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KgUcUjYcPEAJICCX1c8G0JAFhOph2XZtZIGR41XLPqGl8tQRwtPMtyhXCcm8Ejue4NQSrCzIKrLBpUOIoeMkG5izIHNPsaYIwmR0UEUu4iEjt86rNi86T/DwGPgkicNNglDgJZ2j8M9UwrE4ef/m414bmu/s5riwjpXu//q4fhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	 To:Cc:Content-Type; b=EMuzhgPKvmwg6XaFCt4sJOHlnstLJZLJprZmotE2Q4YA5NV2vf+8Ky3c9v1mPX+1rvMWN8DZFAdlPw1cspzeoU10b0PnouVP4LGOY/M3Z2FyABhyArkf8m/mZR851gQq9jRSCSQbU04H5vw3BG/L0Jh1/06ZF5HXpAXDpPdd4Sk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e35e0543b07so1651944276.2;
-        Wed, 13 Nov 2024 02:15:59 -0800 (PST)
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2114214c63eso56994545ad.3;
+        Wed, 13 Nov 2024 02:24:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731492957; x=1732097757;
+        d=1e100.net; s=20230601; t=1731493471; x=1732098271;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=km5VKNF+KUEDoH6tmM2tqgAPxy8fVSjcu9J5PorMtVg=;
-        b=P6IlBB1Iwc+dIHnirek5tygFWX7U0Np/uadQ4zXtzH+Eyo2aCgY5GM/RT5e9e8fcUw
-         rxir/oOonV0x4VIPFLgM/RhWnwYP/Sasg+hTBnuCNTBin5raFNoBa9OIeGYZstVGzP9D
-         EsWqwzRysLA27aumF0U8euGxyHxvpSlQQymo0SMqhoegDFnI5/iEOy94as8qVQkWXypH
-         SiyMqJdc/GWEoNmbziR2xb5nE7p3oVA264Hr6ifwhdIuK6AkRVVSizAhi7EBLsMc09/l
-         bZ3seaXxWkM2NQqGEYiDuj8iyoyR3BZjNLjh7DZhOqfW/A+vwgKwxPlGsO+yYj8J7VeS
-         J6dw==
-X-Forwarded-Encrypted: i=1; AJvYcCVdCXxKLsLoj5Poo9X1eFZIimCSMJdwAdffZxayWw6DZKPG2yvyKkL4b4sN8XdcJ6BX83d0QINS9CnC@vger.kernel.org, AJvYcCWa0TfzM0yEXgWsxLM4hym90cy5bMEnqf19oqtxiEXIcVDd2e83QwhpWPalaCbYcFHDl0DEwcwqlEpfgi5q@vger.kernel.org
-X-Gm-Message-State: AOJu0YylA1ZeUb1djE1YayVMTdhAMMuAtePMOSgd+P+Q2pSW9KL2j6kW
-	P6mRfBtzl0TlB12OYC2PJYbTs5ZKsvzImES4i5rxY+kcGJdbo4U86oN69jdt
-X-Google-Smtp-Source: AGHT+IFKgX06FyGkJf7uyCmYKNh9UI+r324BqO1EXdjX7f3Co+sDRKuRLboQzePPuhFt7mrtvHifJw==
-X-Received: by 2002:a05:690c:9c0a:b0:6e2:7dd:af66 with SMTP id 00721157ae682-6eca4684497mr65436877b3.19.1731492957679;
-        Wed, 13 Nov 2024 02:15:57 -0800 (PST)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6ecb1088369sm4868977b3.90.2024.11.13.02.15.55
+        bh=RJ3bR7NP6yUdrnlMpAZ95ydSaHbPQlqJpHBl9pVaNIQ=;
+        b=NlqES8U2VNKyksvL1Agmp8UZYlHbXK1PTuMf0CuuhTHe4tsXQz1jFHfpU2o+i/xrfx
+         G4JMRUj0lLkay0QXC+R6pOqgaQjjMj5PC8IYP9/2+1/OFIXg8pP8eG4/4wwiMhT39bs9
+         invnEJUkXcdE9W8m9YqF3QMVXgvaPICqt3JV9s/MXeI8eDMeB68MefI5F3CX4J7+456F
+         doCMt770ZebDdWR/Tot0ci61i8FaI3Kpz4MLTVbSKoJt1ya4n6jtxlWpVpKEDE0ET2OD
+         F9+Yzwp1t0Y44ZVRH/iNU3FrOZYpM1cMGUGzEX52mA4m1jA0qD/ZeLA/tSTRAm8C2QC6
+         i7AA==
+X-Forwarded-Encrypted: i=1; AJvYcCUJ/yP1eD6yqbiNeMjpL7lo6ePLdesJvgueMZPw81eEzEAOnW1JyHIDD1CoaSG8F7kafge3ER4p4Yy5q8HI@vger.kernel.org, AJvYcCXLy8kCv8S3FlDoDgrqCFZvXpGlAQHtJILyj0hmSsYsg2CjWGbINK4ClY6ikLuzkzA8eOhH6zWqovOS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDQXupjcIHLfoBpt4z/L3y76DuchLvSSAI8slzRvMWh4UaIozR
+	bnM7EJxOL3t0+hHzD5lywhHBHX7ZYAD2EXF52o7N6ax5a20SNxBcVz7g+9S1
+X-Google-Smtp-Source: AGHT+IGaNkKwif99wBlt/VQEIyEwYdWqDKCnfNmiiRDxp4eA7+txx31kRii49TFcFSDGatfMh1F66w==
+X-Received: by 2002:a17:902:c40b:b0:20d:2848:2bee with SMTP id d9443c01a7336-21183507aa0mr275418625ad.16.1731493470973;
+        Wed, 13 Nov 2024 02:24:30 -0800 (PST)
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com. [209.85.214.177])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177e59dd7sm107797165ad.176.2024.11.13.02.24.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Nov 2024 02:15:55 -0800 (PST)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-6ea7c9226bbso67155427b3.3;
-        Wed, 13 Nov 2024 02:15:55 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU1ZYvu8qTNSv4GmMy+fjG73CitifclQAQMAEndsv5GbQufejIMKaJhqgMazRVDVpPw5v4/ovJj/KNa@vger.kernel.org, AJvYcCXpUZ4x+NpinA0RvXG0ZMhKtYXhwKcP2/0lKijOkkQCZVK9+9m2yP/Y+E2hQda4LFVP3bweo3QMrhsjhXiQ@vger.kernel.org
-X-Received: by 2002:a05:690c:445:b0:6e3:8760:29ba with SMTP id
- 00721157ae682-6eca4c04f0bmr65699147b3.36.1731492955605; Wed, 13 Nov 2024
- 02:15:55 -0800 (PST)
+        Wed, 13 Nov 2024 02:24:30 -0800 (PST)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-20cb47387ceso69983795ad.1;
+        Wed, 13 Nov 2024 02:24:30 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUCHj45TkYtHVJwClD+qnJVeyK1kGoDM3izmoaGl930Niu/cIxuWp+nNYlt448ghRVBzJHCoegOW3Re@vger.kernel.org, AJvYcCXwIPI1CRfN6ukrF1lk8Fr7Cq6M8teJ/X6nLH2FKtmOPR8ZE3flqTF7aEJBHdjEPSKF1EQVK/M0K5HM6151@vger.kernel.org
+X-Received: by 2002:a17:90b:540b:b0:2e1:682b:361a with SMTP id
+ 98e67ed59e1d1-2e9b177fce7mr25968056a91.28.1731493470115; Wed, 13 Nov 2024
+ 02:24:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241112-am64-overlay-bool-v1-0-b9d1faff444e@solid-run.com>
- <CAL_JsqJAQswTo2eWxLw62wqb-2i=_9W84_v_tW+TSW4kgNK3_A@mail.gmail.com> <288deac4-5387-4492-9e9c-cabf77b9c0ba@solid-run.com>
-In-Reply-To: <288deac4-5387-4492-9e9c-cabf77b9c0ba@solid-run.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 13 Nov 2024 11:15:44 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWUJ-nQkD-tm07uWX_TTy5Fy5JLsvedcoJ50Hi7=WnEpg@mail.gmail.com>
-Message-ID: <CAMuHMdWUJ-nQkD-tm07uWX_TTy5Fy5JLsvedcoJ50Hi7=WnEpg@mail.gmail.com>
-Subject: Re: [PATCH 0/2] of: add support for value "false" to of_property_read_bool
-To: Josua Mayer <josua@solid-run.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, Jon Nettleton <jon@solid-run.com>, 
-	Yazan Shhady <yazan.shhady@solid-run.com>, Rabeeh Khoury <rabeeh@solid-run.com>
+References: <20241111181807.13211-1-tszucs@linux.com> <20241111181807.13211-2-tszucs@linux.com>
+ <c89c2f16-ffb0-4b61-a962-9705f9f1e0e2@kwiboo.se> <CA+GksrJzkxffSQbuseGFL0=2PDxV+TRevX0-NOkc6FNYLmNgYA@mail.gmail.com>
+ <e9ff5387-b3c1-41a7-b251-a12789d25a70@kwiboo.se>
+In-Reply-To: <e9ff5387-b3c1-41a7-b251-a12789d25a70@kwiboo.se>
+From: =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@linux.com>
+Date: Wed, 13 Nov 2024 11:24:18 +0100
+X-Gmail-Original-Message-ID: <CA+Gksr+E6_cf46iKEufWLvQwAbsuC15nq6O6N6gP=x2-BVTnSA@mail.gmail.com>
+Message-ID: <CA+Gksr+E6_cf46iKEufWLvQwAbsuC15nq6O6N6gP=x2-BVTnSA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Add supported UHS-I rates to
+ sdmmc0 on rock-3b
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@linux.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>, 
+	Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Josua,
+Hi Jonas,
 
-On Wed, Nov 13, 2024 at 10:41=E2=80=AFAM Josua Mayer <josua@solid-run.com> =
-wrote:
-> Am 12.11.24 um 14:46 schrieb Rob Herring:
-> > On Tue, Nov 12, 2024 at 12:41=E2=80=AFAM Josua Mayer <josua@solid-run.c=
-om> wrote:
-> >> Boolean type properties are usually considered true if present and fal=
-se
-> >> when they do not exist. This works well for many in-tree board dts and
-> >> existing drivers.
-> >>
-> >> When users need to overrride boolean values from included dts,
-> >> /delete-property/ is recommend. This however does not work in overlays
-> >> (addons).
-> > As soon as someone needs to delete a non-boolean property, we're back
-> > to the same problem.
+On Tue, Nov 12, 2024 at 11:37=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se> wr=
+ote:
 >
-> Properties can be reassigned any value, e.g. a driver default if needed.
-> It should never be necessary to delete a property,
-> since a suitable value may be specified instead.
+> Hi Tam=C3=A1s,
 >
-> Booleans have two valid values, true and false,
-> but somehow we cannot assign false, we can just delete the property.
->
-> > If you want to fix it, you need to fix it for any
-> > property.
-> /delete-property/ is a language keyword used during compilation.
-> When inspecting a .dtbo no trace of /delete-property/ is left.
-
-That is the current behavior. But dtc could be modified to emit new
-special __deleted_properties__ and __deleted_nodes__ nodes, just like
-it already creates special __symbols__, __fixups__, and __local_fixups__
-nodes.
-
-> Hence we can't "fix" deleting properties through overlays.
-> We can only "fix" (re-)assigning false to a boolean property.
-
-So nothing prevents adding a way for a .dtbo to contain a list of
-properties and/or nodes to delete...
-
-> >> Geert pointed out [1] that there are several invitations for using
-> >> strings "true" and "false" on boolean properties: [1], [2], [3].
->
-> > There's always bad examples...
+> On 2024-11-12 15:36, Tam=C3=A1s Sz=C5=B1cs wrote:
+> > Hi Jonas,
 > >
-> >> Add support for a string value "false" to be considered false on boole=
-an
-> >> properties by changing of_property_read_bool implementation.
+> > Thank you for pointing this out! I haven't noticed this before. I've
+> > done some testing and I believe I am able to reproduce the issue you
+> > described, although I cannot confirm the reason.
+> > The only occasion I encounter any problems is when a UHS SD card or
+> > SDIO device is connected to sdmmc0 during bootup. Sometimes the device
+> > is recognized as HS only. Obviously no tuning value reported. Also,
+> > sdmmc2 cuts out completely. I'm booting from eMMC and when the SD card
+> > is removed in this state I lose my rootfs. Certainly, this needs more
+> > attention but it seems to be unrelated to the changes here.
+> >
+> > I need more time to check but are you sure this SD card during bootup
+> > issue is gone with UHS-I disabled?
 >
-> > Any existing s/w will treat 'foo =3D "false"' as true. It's an ABI.
+> Yes, the issue is that the io voltage domain must be configured to match
+> the io signal voltage used, and to use uhs the voltage changes from 3v3
+> to 1v8. Causing a miss-match between io voltage domain config and the
+> regulator voltage used during initial probe, unless io-domain driver
+> happens to be fully loaded before mmc devices are probed.
 >
-> I was reading through the device-tree specification, it makes absolutely
-> no mention of a boolean type.
+> >
+> > Also, in every other case, when you connect any device to sdmmc0 after
+> > bootup, performance and stability is perfect.
+> > Interestingly I also don't experience this behavior with an eMMC
+> > device and / or an SDIO device connected to sdmmc2 during bootup. Only
+> > sdmmc0 is problematic and only during bootup.
 >
-> I believe of_property_read_bool should be capable of deriving false
-> from a present property.
+> Yes, as you have discovered, inserting the sd-card after system has
+> booted and io-domain driver has been loaded, everything can work as
+> expected with uhs speeds.
 >
-> What is up to now called bool in the kernel / device-tree,
-> is actually of_property_present, or conversationally of_node_has_flag.
+> Until this probe race condition has been solved booting with a sd-card
+> inserted may or may not result in wrong tuning or other related issues.
+>
+> Because of this I advice not to enable uhs mode for sdmmc0 at this time.
 
-Indeed, so of_property_read_bool() is a misnomer, as it does
-not read the actual value from the property, unlike all other
-of_property_read_*() methods.
+All right, and thank you for the explanation. My hands are full at the
+moment but let me think about this.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
+>
+> Regards,
+> Jonas
+>
+> >
+> > Any more thoughts on this are very welcome.
+> >
+> > Kind regards,
+> > Tamas
+> >
+> >
+> >
+> > Tam=C3=A1s Sz=C5=B1cs
+> > tszucs@linux.com
+> >
+> > On Mon, Nov 11, 2024 at 8:00=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se>=
+ wrote:
+> >>
+> >> Hi Tam=C3=A1s,
+> >>
+> >> On 2024-11-11 19:17, Tam=C3=A1s Sz=C5=B1cs wrote:
+> >>> Add all supported UHS-I rates to sdmmc0 and allow 200 MHz maximum clo=
+ck to
+> >>> benefit modern SD cards.
+> >>>
+> >>> Signed-off-by: Tam=C3=A1s Sz=C5=B1cs <tszucs@linux.com>
+> >>> ---
+> >>>  arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 6 ++++++
+> >>>  1 file changed, 6 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/a=
+rm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> >>> index 3d0c1ccfaa79..242af5337cdf 100644
+> >>> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> >>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> >>> @@ -670,8 +670,14 @@ &sdmmc0 {
+> >>>       bus-width =3D <4>;
+> >>>       cap-sd-highspeed;
+> >>>       disable-wp;
+> >>> +     max-frequency =3D <200000000>;
+> >>>       pinctrl-names =3D "default";
+> >>>       pinctrl-0 =3D <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det=
+>;
+> >>> +     sd-uhs-sdr12;
+> >>> +     sd-uhs-sdr25;
+> >>> +     sd-uhs-sdr50;
+> >>> +     sd-uhs-sdr104;
+> >>> +     sd-uhs-ddr50;
+> >>
+> >> There is an issue with io-domain driver not always being probed before
+> >> mmc driver, this typically result in io-domain being configured wrong,
+> >> and mmc tuning happen before io-domain is correctly configured.
+> >>
+> >> You can usually observe this by looking at the tuning value during boo=
 t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> >> and comparing it to the tuning value after removing and re-insering a
+> >> sd-card.
+> >>
+> >> Because of this uhs modes was left out from initial DT submission, som=
+e
+> >> cards will work others wont, sd-uhs-sdr50 is known to be working with
+> >> most cards even with the probe order issue.
+> >>
+> >> Also I thought that lower speeds where implied?
+> >>
+> >> Regards,
+> >> Jonas
+> >>
+> >>>       vmmc-supply =3D <&vcc3v3_sd>;
+> >>>       vqmmc-supply =3D <&vccio_sd>;
+> >>>       status =3D "okay";
+> >>
+>
 
