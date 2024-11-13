@@ -1,115 +1,202 @@
-Return-Path: <devicetree+bounces-121652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 709939C7D39
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 21:59:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90B119C7D5C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 22:12:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C40E1F22F4D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 20:59:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CA441F239E0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 21:12:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE8D82076BC;
-	Wed, 13 Nov 2024 20:59:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B58C6207203;
+	Wed, 13 Nov 2024 21:12:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ps/yNT5b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A3D015AAC1;
-	Wed, 13 Nov 2024 20:59:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0D61CAAC;
+	Wed, 13 Nov 2024 21:12:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731531544; cv=none; b=uDtAhnkE6g6AV4hyHpTH17WkI8cAViPbQl5D5+3TAtzCf0VYObM8o6YMaE8AVpbbCvrSXJgbOrQGxPihOEl9Ffq6gbK6Zi/iE0288KaJUsIbat70OClakBvCy5OXoq0IG11TTsZDwd+e8o2kxeuTxXr3WzwIBSM6Z6wF/pghFzA=
+	t=1731532327; cv=none; b=DvxYmjuUk/P0NZ++nQr7XMRO+h/kGmJgC6LKxCV6aGzYxCAb33jUGDdHRTI2nVrqNwmADG+uBVHrtA3xSDu8/nrZ2q4AEdeXdOP57XM0UL79s1YUHWXPJ/fhNMWVrQm0BRO/b97VpLA8bVi4aQhw3Xx9TNQy1edAN5OmBr7dk8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731531544; c=relaxed/simple;
-	bh=/3LbvgJd8vYu4lLFq2oufslnPGQfjx/yqOPqMvTNn7Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RU5iKFfJIaSRgFNgFU9nIuNIcoUXEL0ftwzl7b8toMx6FF/WPqUvsESYBGmYcVHfu6gACVwjiJaP2fZw8qvSHOUZNsNEu6Ldr+xb9MhoYFdYb45VbUaCMk07psilqXCAB3hQ5kG4vAyhUS9LSL0NwdLSChgy1h/R7who67eGf7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-71e5a62031aso5869791b3a.1;
-        Wed, 13 Nov 2024 12:59:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731531543; x=1732136343;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9J4zvU9f0X+PlDgNJ1sENPy01zMEXJgST3zN9cLzi1E=;
-        b=JLBz9Ohc+LFLrTLy62VNo0IrSs8//RLSbSs6JhDnfv3p1VJ8x4gT4HJKcFmtpaRqy4
-         CONjdYccQYf1EO2XB0Hk1Bx+7CMUVsYj1nEskAK1gCZuVMUqLBpPr9b9+WvJbaCJfQAt
-         8JOVeIiF7Xp8fw8wM72t/pqjGHyFrQosBkLO6chOod6RjouRfR6Hr4WlRfHelG8//S8C
-         Z/tyU9aIMwQK00/xWmGQBcNk+auQd07jD7E4eljg0NsyHMrRFFgB5/llDDX+zY2aIfVe
-         qgQIClcQKQPJYjuw5sRK+w1ilMPOPGHuXdvxzExZPvh7Evg5SwDmHs3MLC/P7rrNdSCB
-         k2tA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBCh9RuR5S0IzRpNhpZx2iyc4wYZplZv+oBFzMlUhsdEe+979VPacJMRPwJ2Y8tNsrHhjRwf1jZj1l@vger.kernel.org, AJvYcCVuIoDV+8nF8gc9sNl9n4wU12ecne7TUnWJpPUkYEkCd176IflN+MPlOQQqPEcLJKniUN6ef/2qTRXD@vger.kernel.org
-X-Gm-Message-State: AOJu0YztwUy0oyqbLTedwFYXuh1+m+WHkU/sYrX4OqCLyu9Wr7VU8lhR
-	0i3idkxDN/9DiNc/2j/TwR7fQ7E5wr1X9ZTFj8kVmOuMz813uaRW
-X-Google-Smtp-Source: AGHT+IHK77Wl4FhKcRILI7fsi3rFSgXTC8o7l11oge5mtuc26m0bP+byiMu9fj4txKIvj+uVPHcy6Q==
-X-Received: by 2002:a05:6a00:1150:b0:71e:cc7:c507 with SMTP id d2e1a72fcca58-7241338bda9mr30364270b3a.23.1731531542802;
-        Wed, 13 Nov 2024 12:59:02 -0800 (PST)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724078a7ec7sm13607982b3a.55.2024.11.13.12.59.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Nov 2024 12:59:02 -0800 (PST)
-Date: Thu, 14 Nov 2024 05:59:00 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Damien Le Moal <dlemoal@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v5 00/14] Fix and improve the Rockchip endpoint driver
-Message-ID: <20241113205900.GA1184086@rocinante>
-References: <20241017015849.190271-1-dlemoal@kernel.org>
- <117828c6-92c4-4af4-b47e-f049f9c2cb7b@kernel.org>
- <ed723fe1-e243-4a9e-8d1c-f29461d07cb7@kernel.org>
- <20241113175222.eh76hksyj6sptwvo@thinkpad>
+	s=arc-20240116; t=1731532327; c=relaxed/simple;
+	bh=MiOA+h2WEfYvSK6LWO85YbpCELWFRGGFH0WIAFxXeZc=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=LANgu8PShrpqGdhfpy8OIImboBzJFizGJiuHYRdBG1eb4zECVLydfhfNNH8maQ5IEJgIrEZdRkDwTtrcph/ZDqxjXUtl+/FLhC0dPZY87LPG2Vi0rps2V2GOXJKsBW+q5zQJuPB9kHt3ULklullN63Mt8tSh/HiNflgN+Z7yG44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ps/yNT5b; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1731532326; x=1763068326;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=MiOA+h2WEfYvSK6LWO85YbpCELWFRGGFH0WIAFxXeZc=;
+  b=ps/yNT5bfYo9qlc1lHrS0D68/0gIS3pM+Doo+HGKh/LEIctOhdY1AtYM
+   ZLLHx4FzF9LSUMzEiIpIlF/bY0tHNbKkAR/UdAJVioayq3utu9bHJBS65
+   5HBraTNyYFADXhW7Sx1lq2fGudi9p9alB5PxIHICwXcH1ghp4iYFImosk
+   hUabUiTpH8bccdKMiDe/rcQwQ9PDdwcE05SFaZTa7r8BTYiB0zxSoCtja
+   GtY0hGppNrl/+zH4jJUHQwn4Q7y8NS8eIG3NvkS7VawHYGhQkjerxWpTn
+   J1JZ9yEHVMfIGRUosJRxk7Gd9NNltGn8R2y4GOVihv+yshrE4Q4OeBBjX
+   g==;
+X-CSE-ConnectionGUID: KA3skogJTWSLY1V4ky2YAQ==
+X-CSE-MsgGUID: iVpW/84nSha1vD/zEH2PYA==
+X-IronPort-AV: E=Sophos;i="6.12,152,1728975600"; 
+   d="scan'208";a="265427892"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Nov 2024 14:12:04 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 13 Nov 2024 14:11:34 -0700
+Received: from DEN-DL-M70577.microchip.com (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Wed, 13 Nov 2024 14:11:31 -0700
+From: Daniel Machon <daniel.machon@microchip.com>
+Subject: [PATCH net-next v2 0/8] net: lan969x: add RGMII support
+Date: Wed, 13 Nov 2024 22:11:08 +0100
+Message-ID: <20241113-sparx5-lan969x-switch-driver-4-v2-0-0db98ac096d1@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241113175222.eh76hksyj6sptwvo@thinkpad>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOwVNWcC/4WOzQqDMBCEX0X23C1G419PfY/iIca1WahRNmIt4
+ rtXpfceh+Gbb1YIJEwBbtEKQjMHHvwekksE1hn/JOR2z5DEiVYq1hhGI0uGL+OrvFowvHmyDlv
+ hmQQ1tlnVFGUS6zIzsI+MQh0vp+ABnib0tExQ701jAmEjxlt3CHrD/gAch2mQz3loVif2c+f/3
+ LPCGLuiK1KV6zRv2nvPVgbreLzaoYd627YvYI63bfEAAAA=
+To: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, "Lars
+ Povlsen" <lars.povlsen@microchip.com>, Steen Hegelund
+	<Steen.Hegelund@microchip.com>, Horatiu Vultur
+	<horatiu.vultur@microchip.com>, Russell King <linux@armlinux.org.uk>,
+	<jacob.e.keller@intel.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+X-Mailer: b4 0.14-dev
 
-Hello,
+== Description:
 
-> > >> These patches were tested using a Pine Rockpro64 board used as an
-> > >> endpoint with the test endpoint function driver and a prototype nvme
-> > >> endpoint function driver.
-> > > 
-> > > Ping ? If there are no issues, can we get this queued up ?
-> > 
-> > Mani,
-> > 
-> > Ping AGAIN !!!!
-> > 
-> > I do not see anything queued in pci/next. What is the blocker ?
-> > These patches have been sitting on the list for nearly a month now, PLEASE DO
-> > SOMETHING. Comment or apply, but please reply something.
-> > 
-> 
-> Damien,
-> 
-> Sorry for the late reply. Things got a bit hectic due to company onsite meeting.
-> I'm going through my queue now.
+This series is the fourth of a multi-part series, that prepares and adds
+support for the new lan969x switch driver.
 
-Thank you, Mani!  I took this over and pulled this series.
+The upstreaming efforts is split into multiple series (might change a
+bit as we go along):
 
-You and Bjorn can have a look over the changes, if you have a moment.  That
-said, at least to me, the changes looked good.
+        1) Prepare the Sparx5 driver for lan969x (merged)
 
-	Krzysztof
+        2) Add support for lan969x (same basic features as Sparx5
+           provides excl. FDMA and VCAP, merged).
+
+        3) Add lan969x VCAP functionality (merged).
+
+    --> 4) Add RGMII support.
+
+        5) Add FDMA support.
+
+== RGMII support:
+
+The lan969x switch device includes two RGMII interfaces (port 28 and 29)
+supporting data speeds of 1 Gbps, 100 Mbps and 10 Mbps.
+
+Details are in the commit description of the patches.
+
+== Patch breakdown:
+
+Patch #1 does some preparation work.
+
+Patch #2 adds new function: is_port_rgmii() to the match data ops.
+
+Patch #3 uses the is_port_rgmii() in a number of places.
+
+Patch #4 uses the phy_interface_mode_is_rgmii() in a number of places.
+
+Patch #5 adds checks for RGMII PHY modes in sparx5_verify_speeds().
+
+Patch #6 adds registers required to configure RGMII.
+
+Patch #7 adds RGMII implementation.
+
+Patch #8 document RGMII delays.
+
+To: UNGLinuxDriver@microchip.com
+To: Andrew Lunn <andrew+netdev@lunn.ch>
+To: David S. Miller <davem@davemloft.net>
+To: Eric Dumazet <edumazet@google.com>
+To: Jakub Kicinski <kuba@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+To: Lars Povlsen <lars.povlsen@microchip.com>
+To: Steen Hegelund <Steen.Hegelund@microchip.com>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+To: Russell King <linux@armlinux.org.uk>
+To: jacob.e.keller@intel.com
+To: robh@kernel.org
+To: krzk+dt@kernel.org
+To: conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: netdev@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+
+Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+---
+Changes in v2:
+
+  Most changes are in patch #7. RGMII implementation has been moved to
+  it's own file lan969x_rgmii.c.
+
+  Details:
+
+    - Use ETH_P_8021Q and ETH_P_8021AD instead of the Sparx5 provided
+      equivalents (patch #7).
+    - Configure MAC delays through "{rx,tx}-internal-delay-ps"
+      properties (patch #7).
+    - Add selectors for all the phase shifts that the hardware supports
+      (instead of only 2.0 ns, patch #7).
+    - Add selectors for all the port speeds (instead of only 1000 mbps.)
+    - Document RGMII delays in dt-bindings.
+
+  - Link to v1: https://lore.kernel.org/r/20241106-sparx5-lan969x-switch-driver-4-v1-0-f7f7316436bd@microchip.com
+
+---
+Daniel Machon (8):
+      net: sparx5: do some preparation work
+      net: sparx5: add function for RGMII port check
+      net: sparx5: use is_port_rgmii() throughout
+      net: sparx5: use phy_interface_mode_is_rgmii()
+      net: sparx5: verify RGMII speeds
+      net: lan969x: add RGMII registers
+      net: lan969x: add RGMII implementation
+      dt-bindings: net: sparx5: document RGMII MAC delays
+
+ .../bindings/net/microchip,sparx5-switch.yaml      |  20 ++
+ drivers/net/ethernet/microchip/lan969x/Makefile    |   2 +-
+ drivers/net/ethernet/microchip/lan969x/lan969x.c   |   5 +
+ drivers/net/ethernet/microchip/lan969x/lan969x.h   |  10 +
+ .../net/ethernet/microchip/lan969x/lan969x_rgmii.c | 237 +++++++++++++++++++++
+ .../net/ethernet/microchip/sparx5/sparx5_main.c    |  29 ++-
+ .../net/ethernet/microchip/sparx5/sparx5_main.h    |   3 +
+ .../ethernet/microchip/sparx5/sparx5_main_regs.h   | 145 +++++++++++++
+ .../net/ethernet/microchip/sparx5/sparx5_phylink.c |   3 +
+ .../net/ethernet/microchip/sparx5/sparx5_port.c    |  57 +++--
+ .../net/ethernet/microchip/sparx5/sparx5_port.h    |   5 +
+ 11 files changed, 488 insertions(+), 28 deletions(-)
+---
+base-commit: 12079a59ce52e72a342c49cfacf0281213fd6f32
+change-id: 20241104-sparx5-lan969x-switch-driver-4-d59b7820485a
+
+Best regards,
+-- 
+Daniel Machon <daniel.machon@microchip.com>
+
 
