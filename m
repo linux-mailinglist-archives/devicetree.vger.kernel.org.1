@@ -1,124 +1,87 @@
-Return-Path: <devicetree+bounces-121587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27C609C77F6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 16:57:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46A5D9C797C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 18:00:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB79928AAD4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 15:57:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 473F9B45C4D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 15:43:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 047A413B791;
-	Wed, 13 Nov 2024 15:56:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N/96CZy8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFBC47E792;
+	Wed, 13 Nov 2024 15:41:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57E3E13D2B2
-	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 15:56:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ECE77C0BE;
+	Wed, 13 Nov 2024 15:41:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731513411; cv=none; b=isdt3iF7Jq4UKZXjRYqzPiH+MD/GOen0uSMHenHJsmqyTvxM+PS9gEGrxcTJoo0Y+O6ErbML9aExI7EWOEHbgKlPvGkk1aAzOGT1zMUX+zcKK1gkXk7/kTc+jHHn2rBwMD9P3/DOvllL4n9ifSXX3YJCXs5PZrpryS51MzOqB6U=
+	t=1731512485; cv=none; b=SgiegWXbhZp//9467DzSbOOKt+5E+eSLBcprl6YtYkEIb2DyG7utJgcmcIpl8DkNFrJHO92HB+8rpQCGWSZIdMRGE/ePNorOPqqisOgpUMg+G9nYJE6HprfZ4wVmFYq9xyIh2I6iG+3BShlRf/ywlhwHjwnnELPFsGh6E7qNVUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731513411; c=relaxed/simple;
-	bh=512PZ1dnQnEYJzYlH8f7M+VkBeSt4HIVjfj8UfzH2kw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X/4arwblOMfn9KWMGTN/hkXjB1d4q6uDQzc0LudsSrMTby6toohYO9AXiItWNSrhRpjHrSC0T0nkLhKH1h9YiN77oUUeGf+0hafmaLSZvSAU4s1WhdY6+dqaafJQ7mla3BYrKvcOwPV6GwqDU8zybQW9j5VS6w6lQUGObPaG0hM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N/96CZy8; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43169902057so57954535e9.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 07:56:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731513409; x=1732118209; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j7XoIUNDgbIVKqvmpsghumU2FCCPcdZHNjSKRfDqBaQ=;
-        b=N/96CZy8r5NQWz78LFcWMnD/NqRWrqZYXn8emeRe+oYHh0Cgo9LKGYyVKHHK9vIGJk
-         BXVgF1LIaVYoL32GhFqa5EEEAR+tHdbtgfz2DUzCDmEx5DJjwB5ACnkja63PO6YDLtQG
-         0pAfYK49abAm/vU9CTjYBcy/j2c3mmOE6BNBmAmVgZ8SPz8wpXJTStjRem1l/f9dttbR
-         o3opD+wrtJ90/2OxN9Hx509Nx8C6zoZrxueKlZn5UL5q3oC+oCW8tR+1Hvhzg/ZsWYk0
-         hgSA5kHd6ijj5U1gTTvSIfYDfIaQ3lne7KzcLUVA57ezDoKorZXNMaMRJGu3wLWXT7yg
-         b1vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731513409; x=1732118209;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j7XoIUNDgbIVKqvmpsghumU2FCCPcdZHNjSKRfDqBaQ=;
-        b=Tz/DZV1fu2PAjYIPJQPK5TvO04olpTGq8FRNL1NVOqtpo3U9saxVdm2P5eUIj5knDG
-         UHdaxPo+EzAOZDeCC7pMclub0RTZptJP23Y455wNvu60hQS47jLn8f0VcbrtOfAwLlnV
-         9jMXQYLJGhLRVAuNhBkRmlmvsetvVOomw09MzMDo3EF2iDuPRaFuR22ssys1/W450ZIb
-         m56GRGuLxQL2rtdOE5i8IaJkPsKCR6t26E6CdXY2z5bpusa26GA3tT1VuOvNVGZobs3X
-         QuLSjkYn9N01dGRMEtnmoNPYiQq/P+g6ejPUghhdNS7ViEZu/S91y4p8+j+1n1WMrBEQ
-         D53Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVlf7AMR5DzjIkWZBDv0+27ED6BRcT2zHBjnGa8DCrK4cP/wzqZJAwX67rG5o5yNCNvHyntCZhCeBxv@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFBsWiDvq7TP5DE/XQJ4w318bzcEgNTSEIzIM/xxZdFUS6xmoc
-	NY2ovmXXFReSKC5I/y/Ju/8gV9y7oq8DeTjZktiIqH6jyLE1nFtqpQ67sxjAyQw=
-X-Google-Smtp-Source: AGHT+IGRiPY+evblCDCxVkg3CDOQ9hyE0qVJ4e+kMXiZjDE1ryJt8LXVAIOLtdfZSGuqwuFU9EWIWA==
-X-Received: by 2002:a05:600c:4e8d:b0:431:52b7:a485 with SMTP id 5b1f17b1804b1-432cce78a1fmr61686205e9.19.1731513408826;
-        Wed, 13 Nov 2024 07:56:48 -0800 (PST)
-Received: from [192.168.0.48] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381ed97ec9fsm18902490f8f.42.2024.11.13.07.56.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Nov 2024 07:56:48 -0800 (PST)
-Message-ID: <be7b67ce-f601-4c93-a8b6-b5660f0e753e@linaro.org>
-Date: Wed, 13 Nov 2024 15:56:46 +0000
+	s=arc-20240116; t=1731512485; c=relaxed/simple;
+	bh=aCyWqRR7Z4mcUqj/A8Y4MyXMkwJKWTVPKB+KRVX8c8s=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=HihAhxnfLRZW20QR0KzOACXbFgCyW3DHe/N5RuseIM7LKLGtKPO4VDDYHqRSrLCS0IJ+HKSjnrT2XkR+bi/WRi/5DgxvM13DUSuPu8oskvSu3ozlI7uCpqfmNrVIwKEIsmte+OzBww0GPs5pc4k+usUlNSGw6GFtcUif5hSdKwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from Atcsqr.andestech.com (localhost [127.0.0.2] (may be forged))
+	by Atcsqr.andestech.com with ESMTP id 4ADF85Yw090418;
+	Wed, 13 Nov 2024 23:08:05 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
+	by Atcsqr.andestech.com with ESMTPS id 4ADF7akd090250
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+	Wed, 13 Nov 2024 23:07:36 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS34.andestech.com
+ (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 13 Nov
+ 2024 23:07:37 +0800
+From: CL Wang <cl634@andestech.com>
+To: <cl634@andestech.com>, <alexandre.belloni@bootlin.com>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>, <tim609@andestech.com>
+Subject: [PATCH V4 0/3] rtc: atcrtc100: Add Andes ATCRTC100 RTC driver
+Date: Wed, 13 Nov 2024 23:06:50 +0800
+Message-ID: <20241113150653.1793123-1-cl634@andestech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 05/28] media: iris: implement video firmware
- load/unload
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Hans Verkuil <hverkuil@xs4all.nl>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Nicolas Dufresne <nicolas@ndufresne.ca>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241105-qcom-video-iris-v5-0-a88e7c220f78@quicinc.com>
- <20241105-qcom-video-iris-v5-5-a88e7c220f78@quicinc.com>
- <537ee97b-97d9-4ed8-9e11-eb3489eeff26@linaro.org>
- <f16dac0e-aa0f-5984-2cee-3e4e684e93db@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <f16dac0e-aa0f-5984-2cee-3e4e684e93db@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
+ ATCPCS34.andestech.com (10.0.1.134)
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 4ADF85Yw090418
 
-On 13/11/2024 05:20, Dikshita Agarwal wrote:
->>> +err_put_node:
->>> +    of_node_put(node);
->> remove
-> Sure, Will make the change.
-> but are we just trying to avoid using "goto" here?
-> 
-> Thanks,
-> Dikshita
+The Andes ATCRTC100 module includes a real time counter with alarm.
+Add a RTC driver for this function.
 
-Currently you'd be leaking because you only do the put on the error path.
+CL Wang (3):
+  rtc: atcrtc100: Add ATCRTC100 RTC driver
+  dt-bindings: rtc: Add support for ATCRTC100 RTC
+  MAINTAINERS: Add entry for ATCRTC100 RTC driver
 
- > +    rmem = of_reserved_mem_lookup(node);
+ .../bindings/rtc/andestech,atcrtc100.yaml     |  43 ++
+ MAINTAINERS                                   |   6 +
+ drivers/rtc/Kconfig                           |  15 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-atcrtc100.c                   | 524 ++++++++++++++++++
+ 5 files changed, 589 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/andestech,atcrtc100.yaml
+ create mode 100644 drivers/rtc/rtc-atcrtc100.c
 
-of_node_put(node);
+-- 
+2.34.1
 
----
-bod
 
