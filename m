@@ -1,91 +1,79 @@
-Return-Path: <devicetree+bounces-121672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1E1B9C7E89
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 23:59:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 600929C7EB3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 00:14:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99B7D1F22862
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 22:59:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 077051F22C6E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 23:14:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB0C18C346;
-	Wed, 13 Nov 2024 22:58:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61D6218C331;
+	Wed, 13 Nov 2024 23:14:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VeTkZjgD"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="y+PFKmMM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE1C17FAC2;
-	Wed, 13 Nov 2024 22:58:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F75D18BB84;
+	Wed, 13 Nov 2024 23:14:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731538732; cv=none; b=dFAcCnqupRQMqAZ275Q41kwBhJhQDLFnTFFM0mPhn1WRAuqUhhO6Uh7xHd5i63NarBXyvpYMxrFjLtMpSaaQkpynGj6OqLx5mWYSe7PQxsUBY/dO7JUJMdO1T7M56dDWu5zCo4K+2oEU3OWQnBjKtlMN0NA91iHnltRzca2+oZk=
+	t=1731539666; cv=none; b=bSW1yTJN07VV4g+I/Tk+0x3AeH9JJqC57qdnklewzVNZNyMRrDS2A+kN9MtC1WOFtlGVnXQrt66Qm70QBP7ZyIIKRJac09hbG3cXGUsazcDyVgtEJHQCELDXl6M3psb9CadR8FGE3n1s4UbLZ8xJV15zHLoC9+OZldSCD8DkuAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731538732; c=relaxed/simple;
-	bh=Ke/IE1DB3qjY9v7LrQKHXHZu3tcj+cRu/ANYQ0SpihU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KWFXLI3eDClo3TtiAqHZV9+Vj+Hkh7lJQPIkNihGS3/wVqoNanPjUTtkmK8RSN0dt1R0JbSyK1798nwWbrRjwChgeOD4BBGee4jKgvNZM8nfDP3rrOGrAigFaU0eype4m/83BZUqa9R07ULyAioJi1U9j5bEO7FhLPMrDRufXqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VeTkZjgD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B766CC4CEC3;
-	Wed, 13 Nov 2024 22:58:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731538732;
-	bh=Ke/IE1DB3qjY9v7LrQKHXHZu3tcj+cRu/ANYQ0SpihU=;
-	h=From:To:Cc:Subject:Date:From;
-	b=VeTkZjgDYMNrTM1rq86AxU6dTtg9NCv/2bG5ncXnRiUpOW4rgKXXY826dBk/h52lL
-	 +Dhb8MClc33PvOAcMn/pbkvA0W7JbfsD2fGmHrkxPtEda8r/D0qvEQOzXxLkmGJDuW
-	 lRASTLWaUdu9qxWp6wmvOa4SROwpSvYtTWGr5vnFWXu5i4Kq7GvxvPsDlae6ItlgWS
-	 1sfvyM9yTjoe9PRBGtSKVS6m74EzaPm/Hp6rJ6vElosxOuJUU8cPY95CNDIsoIMolc
-	 uBYj1hzN7mCY3rvoCH91NDgRLntLNbiBUj/aSsWIulazE9gyWYOTbV3/ZDb1Sm4bwx
-	 nnd2pA9CKCRFA==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Russell King <linux@armlinux.org.uk>,
+	s=arc-20240116; t=1731539666; c=relaxed/simple;
+	bh=AuibqiTSNi9NWDzjDHjShst4mltVJ4baY9TgjiGj0HA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MekF3DiOlcEv03GBcp2GFqs6Tjo0x3OGCzQ6aPr2Q1xtfjZ1v8+udmUq3+0lTaXwv5isPwLtEA3qxOOsw9aJm3OyZNsN4VO4YlbUNRfnErKyKIXipakkKsjY+yMofijvU4pQSxxdnjpX6nuq23jt7DLJuYG1yRUSbpzQdmPLhoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=y+PFKmMM; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=cHGRqTPhJ9nMEgsdRx3WnAlpB6oRfbvNXgkE4xQuo2Y=; b=y+PFKmMMkLJsOHrLKwgwrwCgPB
+	jMiu6pD4csqvPlZl9HDL9wB5o3+ZZCu2p4/6/sC9RXTvYstviTqQ5/lpzKGneYK8n66mRs64IglqL
+	sGB1PM3Wv2bxoqMXxRtnAlfCxgZsb7RFcAt5hYDt1+X49plqVgC/mFHBCwnV0yeqPOvI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tBMYx-00DDfe-KR; Thu, 14 Nov 2024 00:14:15 +0100
+Date: Thu, 14 Nov 2024 00:14:15 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH net-next] dt-bindings: net: sff,sfp: Fix "interrupts" property typo
-Date: Wed, 13 Nov 2024 16:58:25 -0600
-Message-ID: <20241113225825.1785588-2-robh@kernel.org>
-X-Mailer: git-send-email 2.45.2
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next] dt-bindings: net: mdio-mux-gpio: Drop
+ undocumented "marvell,reg-init"
+Message-ID: <92cabc6c-2124-4fcb-b1aa-c5d9a6adf88e@lunn.ch>
+References: <20241113225713.1784118-2-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241113225713.1784118-2-robh@kernel.org>
 
-The example has "interrupt" property which is not a defined property. It
-should be "interrupts" instead. "interrupts" also should not contain a
-phandle.
+On Wed, Nov 13, 2024 at 04:57:13PM -0600, Rob Herring (Arm) wrote:
+> "marvell,reg-init" is not yet documented by schema. It's irrelevant to
+> the example, so just drop it.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- Documentation/devicetree/bindings/net/sff,sfp.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-diff --git a/Documentation/devicetree/bindings/net/sff,sfp.yaml b/Documentation/devicetree/bindings/net/sff,sfp.yaml
-index 90611b598d2b..15616ad737f5 100644
---- a/Documentation/devicetree/bindings/net/sff,sfp.yaml
-+++ b/Documentation/devicetree/bindings/net/sff,sfp.yaml
-@@ -132,7 +132,7 @@ examples:
-         pinctrl-names = "default";
-         pinctrl-0 = <&cpm_phy0_pins &cps_phy0_pins>;
-         reg = <0>;
--        interrupt = <&cpm_gpio2 18 IRQ_TYPE_EDGE_FALLING>;
-+        interrupts = <18 IRQ_TYPE_EDGE_FALLING>;
-         sfp = <&sfp2>;
-       };
-     };
--- 
-2.45.2
-
+    Andrew
 
