@@ -1,119 +1,97 @@
-Return-Path: <devicetree+bounces-121573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FFC49C781A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 17:02:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C68309C776C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 16:40:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3F05B338FA
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 15:38:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89F5B28138D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 15:40:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A5D92036F4;
-	Wed, 13 Nov 2024 15:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1189A206070;
+	Wed, 13 Nov 2024 15:32:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="w6rF+o4j";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="UVbZIgEQ"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="qanlvIH8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76EE714AD2D;
-	Wed, 13 Nov 2024 15:31:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 658D81632CD;
+	Wed, 13 Nov 2024 15:32:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731511893; cv=none; b=A4JGkdJE2EWBF1Smo84ejwqjESpNHAfoAiX9+r7fNb9ecMFbT6KRjaZhaXp0w4CqSvtk3hOD/hQRfBTXsAWLCQ4cHBI8N0huDtqe9xLOWBy3Ay+UvkMKCES+Hq0KAHOGRF/mXin/haAKaq8bfXbBfhkplfNhdABDXItCYx6lUmI=
+	t=1731511976; cv=none; b=TNHWeOP/LwLXgIfYjBz1SltpB7jIKHi66FKV+paeM3eslZZTNauAHxuxen3Sfnup1t5uGBuTxSi1RTsEL29C2UXldxjAXeKFCDhN/U1rXZm9aS5uTMl42XScowKJ+YzYB/fcdNOYSs9cFg3wUuwvEuETPsAnbrY3RTKN5hr1/FY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731511893; c=relaxed/simple;
-	bh=5zx+ivpU0X8L7BhqDHs0w8O4ysdQnQxpnwn6xEaMrws=;
-	h=From:To:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=jMaMZvYRUfEkG+pSEcx2zbWd62zd9xUlZ0yoCM4XFgfCnI96KrYxhFlGpIsfFOfsHnSYQr7stpZ1dWQlVr9uX0eyXXEsNBgQHcZI+WWO4ZgMKVX8Rw5S70DP/BYMhDrfAwZUzc2THgPQVaaWKR+03bK8Xr1y4GxlSc9xG76bpz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=w6rF+o4j; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=UVbZIgEQ; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1731511889;
+	s=arc-20240116; t=1731511976; c=relaxed/simple;
+	bh=HVF86oa8uPOdeY5CzEJ/p4wFpJYQxUgEkA5QxLg8r2I=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=WZYN9F6CJh+N4BFA2YKxrh7btJ2T9AuShW9jAVTDvGBE3WQi85wy+3Gilo7E222Ix7mDMiGocFmPULycNn9YhA7mNmeJPdTot8LQPZCjDBIvUqApvNnaJH9S4ZDlbje+NL+5SYgBvdsq+lB7CNpqatVobtTJq34WY98PFt1/TDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=qanlvIH8; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from localhost (docker-mailserver-web-1.docker-mailserver_default [172.22.0.5])
+	by mail.mainlining.org (Postfix) with ESMTPSA id 72372E44EA;
+	Wed, 13 Nov 2024 15:32:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1731511972;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=njW3e4/sr8AYqkXvzqK+glp62OVtkPOURqkStAgOtjQ=;
-	b=w6rF+o4jQgg041568o9ZMcMLYeSAWwxvBzFLVqxrJTZFZvNTQ+MBzsR6NLfu/Zze/MOaO6
-	qD6yiKdzJQQROKyN92flHAe/ycJLWzKFjr/uYwGneVMT99pvYajdAUAdUSWGJsH10p56Q1
-	/VUVg1yqiTiSpnqHOUAlnnUrXDiWVOEIwrKPPuHnULhi/PPMcGYy+IEhrG+T+qzF2CsUlv
-	V7R2M/sSb9MFXgIfXCOFikby7SI2TW57Le75dnPE68zTfYidgRuKyfOt7qxLI8hcBfB2Fu
-	fu4qfF5ylj9naIK57HtJjyHQrBVJABs2SHsBrrx2HCWDgRoYhTTNS2ruhC2eNg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1731511889;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=njW3e4/sr8AYqkXvzqK+glp62OVtkPOURqkStAgOtjQ=;
-	b=UVbZIgEQUS/SEuRGDp1iLbyHr4v1jr7KurOynoale65lK8XUgENfNM0rMCmKgSxOTNdMqn
-	JWCayrqphnBvLIAA==
-To: Chen Wang <unicorn_wang@outlook.com>, Chen Wang <unicornxw@gmail.com>,
- u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu, arnd@arndb.de,
- conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com,
- krzk+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
- robh@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, chao.wei@sophgo.com,
- xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com
-Subject: Re: [PATCH 2/3] irqchip: Add the Sophgo SG2042 MSI interrupt
- controller
-In-Reply-To: <PN1P287MB28185C9DA26A773775BDC4C6FE5A2@PN1P287MB2818.INDP287.PROD.OUTLOOK.COM>
-References: <cover.1731296803.git.unicorn_wang@outlook.com>
- <8076fe2af9f2b007a42c986ed193ba50ff674bfa.1731296803.git.unicorn_wang@outlook.com>
- <87cyizmzhf.ffs@tglx>
- <PN1P287MB28185C9DA26A773775BDC4C6FE5A2@PN1P287MB2818.INDP287.PROD.OUTLOOK.COM>
-Date: Wed, 13 Nov 2024 16:31:44 +0100
-Message-ID: <87v7wrkv4v.ffs@tglx>
+	bh=lOqssupN+rXeOt25fdj2J/a1pUDEnX2cpTj+xiEHHj0=;
+	b=qanlvIH8/EIuGp+Cgf86ohGQ0rMdIERH9PTsExQxavQ6gT8Zlaj5eb5UPOKSujqTC7SZsL
+	iCgvGMSUs1cEirL5gp9IoRNCurZOYlvtURyy3fw0RDr+I1veaKTf+khlB0uq+LqAktb8gj
+	A+FVG1CC6NyVzlngiaatpjxgWLPbiHlWFksrbnIJ6pQ+OpZoHcrxAu0xIqbVG7SRfWeq1R
+	JswSoejmut7cxbV1gpAh6HlR80D8by6ThxE83kTJlD2IjmvHHlMSIr4GZfHlnUT+T17aJp
+	5R0nw1XwbBVLMBp3HSBr5RBA1ZyNrrOoresBGFTQTJ4xpvpRmQMxAgySn1d8kA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Date: Wed, 13 Nov 2024 16:32:52 +0100
+From: barnabas.czeman@mainlining.org
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, Robert Foss
+ <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Vladimir Lypak
+ <vladimir.lypak@gmail.com>
+Subject: Re: [PATCH v4 3/3] media: qcom: camss: Add MSM8953 resources
+In-Reply-To: <eda3d0ae-50eb-43b2-a234-93b209fbcdeb@linaro.org>
+References: <20241103-camss-msm8953-v4-0-48d0ec75958d@mainlining.org>
+ <20241103-camss-msm8953-v4-3-48d0ec75958d@mainlining.org>
+ <6833ebc6-9210-471a-8ca6-5f3605155f33@linaro.org>
+ <412b3252f1ca795fbcfaf5e466e94642@mainlining.org>
+ <67d014f1-9424-4b88-b031-096a5596c5c8@linaro.org>
+ <eda3d0ae-50eb-43b2-a234-93b209fbcdeb@linaro.org>
+Message-ID: <ffa2a863c8a9b99582ad6648600d372b@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Nov 13 2024 at 14:43, Chen Wang wrote:
-> On 2024/11/13 14:14, Thomas Gleixner wrote:
->>> +
->>> +	middle_domain =3D irq_domain_create_hierarchy(plic_domain, 0, priv->n=
-um_irqs,
->>> +						    fwnode,
->>> +						    &pch_msi_middle_domain_ops,
->>> +						    priv);
->> So now you have created a domain. How is that supposed to be used by the
->> PCI layer?
->
-> Here I create the domain and attached it to the fwnode. In PCI driver,=20
-> it can set this msi controller as its ""interrupt-parent" and find the=20
-> domain attached as below:
->
-> static int pcie_probe(struct platform_device *pdev)
-> {
->  =C2=A0=C2=A0=C2=A0 struct device *dev =3D &pdev->dev;
->  =C2=A0=C2=A0=C2=A0 parent_node =3D of_irq_find_parent(dev->of_node);
->  =C2=A0=C2=A0=C2=A0 parent_domain =3D irq_find_host(parent_node);
->  =C2=A0=C2=A0=C2=A0 ...
-> }
+On 2024-11-13 16:23, Bryan O'Donoghue wrote:
+> On 13/11/2024 13:28, Vladimir Zapolskiy wrote:
+>> So, we have to rely on the documentation here. Bryan, can you please
+>> check, if VDDA_MIPI_CSI pad on MSM8916 and/or MSM8953 is related to
+>> CSIPHY or CSID power supply? Thank you in advance.
+> 
+> No there's really no indication in the documents I have how the input 
+> gets routed internally, CSID, CSIPHY, both.. not clear.
+> 
+> I think Barnabás is right, the best source of information we have for 
+> this one is the downstream dtsi => CSID.
+I have found the regulator also in downstream msm_csid driver i hope it 
+helps a bit.
+https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.10.6.2.c26-01500-89xx.0/drivers/media/platform/msm/camera_v2/sensor/csid/msm_csid.c#L73
 
-I assume you then want to create a global PCI/MSI domain via
-pci_msi_create_irq_domain(), right?
-
-That's not the preferred way to do that. Any new implementation should
-use the MSI parent model, where each PCI device creates it's own per
-device MSI domain with the MSI interrupt controller as parent
-domain.
-
-There is a library with helper functions, irq-msi-lib.[ch]. See
-gicv2m_allocate_domains() or pch_msi_init_domains() for reference.
-
-Thanks
-
-        tglx
+> 
+> ---
+> bod
 
