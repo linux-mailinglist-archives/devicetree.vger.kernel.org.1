@@ -1,131 +1,232 @@
-Return-Path: <devicetree+bounces-121616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BBBB9C795E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 17:56:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D689C7971
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 17:58:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B00F31F235F8
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 16:56:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94B131F26E85
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 16:58:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A69D420127F;
-	Wed, 13 Nov 2024 16:55:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="E5GH72FM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3BFB1F77BD;
+	Wed, 13 Nov 2024 16:58:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0966E201018
-	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 16:55:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0014570829;
+	Wed, 13 Nov 2024 16:58:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731516932; cv=none; b=eoWbrgl6rzGhBRx6H0J4XYR9gEsGCbuenu00PqaTbFdFLcdt5j9HZvvTgE+IYMVfm1Ra3LpODC7JCO1lDHQ734Wtb3QZ4ECNN3L0hZJbMtwqnPSLrgLvpRbVidPJjBPMDSnKcuJ+qL62V0Mj4iuwFiIWWtn3aFq9ElXpbl0IT7I=
+	t=1731517107; cv=none; b=afXDNf38iF2qiaT4HTh3623rL6+RrvkNaTrJVc0v9Yo+CrS6yxqb2IzRYex4bL1TPQ1yWIcQZHf0jwPo+CHLBylLDDACFhsMK43SRSexICy6joYQgVR/O3+6W7y+591StQe+SAF5s0Ib5/gdKVTOC3w6WnXqlfQgeHw9mQTJC6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731516932; c=relaxed/simple;
-	bh=tJhHuhEOPc+XxXPxuHFH6d3Rhg17ntIx28rsYimScsg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RuN6BSE73CN2PTRJo8kjerjg6tsJCMZ6l02rChiSOR7nAmXEAMRO8RbkmC++hRmYLJN8EP1aLd92yqcnBC4WxYPuqJ6ZXIjx+Rnrzr7D7QhH8upXbGM6hnJPMMBNZ/3ZgNObTJ4XHvIuplPEgLY3g7TCTyejtybDXxTpgdRhQ2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=E5GH72FM; arc=none smtp.client-ip=209.85.160.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-2884910c846so3368799fac.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 08:55:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731516930; x=1732121730; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AGwF3u8hl2KH+X74wkxGcK2CGFXP/y9NLjPy/zZ23Ks=;
-        b=E5GH72FMwSBf79vOmhp5MNcWPDDifDOHlOVkhV1ZOyd+Cg35Bxp99bu9/4+I4QYBPT
-         WbQ7wmBVsSGQKOdGcIJf9UhXvrgRj6ujEH5ZZxsRRkpSNxsThkbgAqEn0GYtfHFyiiMy
-         Ero9POUp86nDo2XkMfKwzYlx9IlGhALFhZHgX0d3AISauaSMg0jMpXQIqI5htRj3bMtt
-         L/wihcMC8tRPIkbkB97CY1CYy8sKhTCBUgqNCl+PhaOkogxAdtw8xC0UeJ+lTHU5KxNj
-         aN+n8suf8v8MpcycaoeTUZgsAI2scq7AA7teXl85qa0z9+mIABqelX+h6DRblp/uY6ES
-         UP5Q==
+	s=arc-20240116; t=1731517107; c=relaxed/simple;
+	bh=gD/sP2apq312NCyFdt+mOE929V1VWqMCLhc5GAaFiOs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Cs1I7gVGDWL2npjYzx4r0ujq9w8B1L64Uqj0iKhFrmQmT0LCth7Fv2VD+wlPe3aJBlCVCj4Vp2w0R98sdKgYKLWo83USg4hRXcILAhVZLkMVg0Lm5rkSNh9j9sd60ogUdKp7MW8IDO9gohehXZmWtD/Sei2iVYH8vJB1CT1WXug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6ea7c9227bfso72139207b3.2;
+        Wed, 13 Nov 2024 08:58:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731516930; x=1732121730;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1731517104; x=1732121904;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=AGwF3u8hl2KH+X74wkxGcK2CGFXP/y9NLjPy/zZ23Ks=;
-        b=R8Aasvb6ElW+sp2HZbKkjP5dCUFPAkakoyHhuDv7po18vJ02+7OkzeBaKwKwaACtNm
-         YSM18bcOAX0PjclVFlCr7dD36X/7Z56lvDNZ5oQWVA0Qa1FWRl6VPHTYzR538vRSv5Ns
-         SXDY+SPQNlMaFYbQBqyq1IictsBaiZHJkZmbDOFrxjKjy6upckuecwJPWfsMtxoxhg3/
-         DsAH38fw5Fm4zC7UJZWs5Z0RiGiInW8eYcg0agaQc2SInirrOEN4MFNjXz347wkd0I7S
-         LJJGf/gEq784/FpgMBlYJJeGvHKX1jUazp/8eAMGIpnyTPni1E3v4dnp03/ohRCb0Mr6
-         pAhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXrSPOaRhLB/Xm7fzuoAf3XNf8qzjuxuFNgKON2JWHuoAt50cAZyhji+eo+Ta8LKHXKPtlvce1NKE1L@vger.kernel.org
-X-Gm-Message-State: AOJu0YzROgQg5vjQz95KYNyddf/swgKlJ8XTmVbg/isRxTBIgqdSlzIc
-	klShR683d7sE4ivBULfBHiqU+6GTE+8vUpmadQZVrGI85HmVPYzXSR6Os4TS41I=
-X-Google-Smtp-Source: AGHT+IGZTsB2S8+H3+Yo8Y32ji6Fa9pcSs0trVZgwEr27F+OXOgWiSX2di5TeK5mA1VMRkRfPOioLQ==
-X-Received: by 2002:a05:6870:9e0c:b0:288:e7f2:e9f9 with SMTP id 586e51a60fabf-295e8d516a4mr3417291fac.11.1731516930191;
-        Wed, 13 Nov 2024 08:55:30 -0800 (PST)
-Received: from [127.0.1.1] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-295e8fe5c61sm873432fac.23.2024.11.13.08.55.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Nov 2024 08:55:28 -0800 (PST)
-From: David Lechner <dlechner@baylibre.com>
-Date: Wed, 13 Nov 2024 10:55:20 -0600
-Subject: [PATCH 2/2] dt-bindings: iio: adc: adi,ad4695: change include path
+        bh=90S5lqnEohvVcnB+BzdzmQ6LdpwxbZFL3C+GHVFnOiE=;
+        b=tJcmZ6WCKv4fN9IFh0f6pKOxbaxmz1hJxkbYFrW3H14kyOAAe46/lhnihO2WUyBvBT
+         RkGjgbwttDR1YxIbyalGWffxvI0gSQvx12C3p/AgE/0onzMHNWTsKWJK5JLfm14v1Iir
+         6PgQ6Vea5w8pRA5sd3E95rbM5wMMb71vCXENPth2B7yHD/t64XiPl5n2loAmoke/eOQk
+         jzgKfbblHDcmNXic+43h9tIaqlNEEH9vhNzv69s4PYrtqGrjPbaHHPTNHkGhRCaWJTwK
+         DXo6lD+KJKvbwtKSlb1Zoa3fpRY4Df/eFyq8eCB6nDgdo/v2i37apBg78GJW1ThUl84o
+         6KpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUUzcaLrXcEUMFLC+gsxGP3aW4sunWdoIMvkf/X6s9NcFYRk6Qx9bR8bPvyox4nmvZ2gYpirIsf+IoW@vger.kernel.org, AJvYcCUabd+eC+58ubvEi77I0tlfBcLAjPYr1c8oa91VlA2/JDy1zJCgS6lNLytqOe5a8Na/wCB6Y/ajNYCLUXIk5IEgYto=@vger.kernel.org, AJvYcCX8r2VTGoKJ4pmLhdUE5MN9Bo7oErMPlx8tbIQcvRe15hmCtMmMVF04+cSEySi0rDLg+15AgKF3ppk=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzQQ56GqBsS57EOVcULZuNfptLvmzat/z3/9UeePiM55MO85zB
+	ez9+KuaC4eHzRFQe7fHXdwtKUx4DrqiD/P3gIu0NwsIOPOMOC7LtOQiz0clI
+X-Google-Smtp-Source: AGHT+IECvKMKdp5KOHb0o5AH7X/YtcLJVvFuwFvrv8YKePwghXkIC2Y9EGGEX7htYwuw7eImtLdpVA==
+X-Received: by 2002:a05:690c:6408:b0:6e2:f61e:8c9 with SMTP id 00721157ae682-6eaddf9751cmr231768527b3.30.1731517103361;
+        Wed, 13 Nov 2024 08:58:23 -0800 (PST)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6eaceb6562fsm32169657b3.84.2024.11.13.08.58.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Nov 2024 08:58:23 -0800 (PST)
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e292926104bso6430940276.0;
+        Wed, 13 Nov 2024 08:58:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV9Cm6WH/U257tsu5sWSXnvxqF2zB8UGM1Xi7otN3F4dvAim3/UKk2V9Nq/AoeOcSzZIxwqTGbQWyE=@vger.kernel.org, AJvYcCX1gVL47iw0g4dZ8jMjl4iLB8K38q4yr/vX2rf0MuJls8SBdh/izTuy0lO1TKOQK06og/Jl4XWg991j@vger.kernel.org, AJvYcCXFjGNDC+LXjNN/3MgNIhZxtKRDVwHhMPnQJY0juzCXfBIn/j6RJrq4NKA2IZj3AORZoXrQuWFiODuI6mBGGT6TIm0=@vger.kernel.org
+X-Received: by 2002:a05:690c:6603:b0:652:5838:54ef with SMTP id
+ 00721157ae682-6eaddfd41ccmr221610017b3.37.1731517102600; Wed, 13 Nov 2024
+ 08:58:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241113-iio-adc-ad4695-move-dt-bindings-header-v1-2-aba1f0f9b628@baylibre.com>
-References: <20241113-iio-adc-ad4695-move-dt-bindings-header-v1-0-aba1f0f9b628@baylibre.com>
-In-Reply-To: <20241113-iio-adc-ad4695-move-dt-bindings-header-v1-0-aba1f0f9b628@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Michael Hennerich <michael.hennerich@analog.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, 
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, David Lechner <dlechner@baylibre.com>
-X-Mailer: b4 0.14.1
+References: <cover.1728377971.git.geert+renesas@glider.be> <CAMuHMdXsmAqQL+2+D_y+u1z4nn8JO+xF-mq6wWJ0pAH58n5Wiw@mail.gmail.com>
+ <b273599f-8653-4e98-ac64-09c91b0a1592@arm.com> <CAMuHMdUYnTRDHRdWYHBdJ3hNBKOXBtRMOsu1NiJFET7P-+zc4g@mail.gmail.com>
+ <96d1f356-b36b-4c14-bdd5-c38836bac418@arm.com> <CAMuHMdW25MC-RoCw72_EJ22e4Ae36N1CM8a-r=r7e=kA2-AgHA@mail.gmail.com>
+In-Reply-To: <CAMuHMdW25MC-RoCw72_EJ22e4Ae36N1CM8a-r=r7e=kA2-AgHA@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 13 Nov 2024 17:58:10 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUoEA0W_1jmUPZ48Zi7N1wbo435-LvAf35O=EvYvO6KDQ@mail.gmail.com>
+Message-ID: <CAMuHMdUoEA0W_1jmUPZ48Zi7N1wbo435-LvAf35O=EvYvO6KDQ@mail.gmail.com>
+Subject: Re: [PATCH/RFC 0/2] arm64: dts: renesas: Re-add voltages to OPP tables
+To: Lukasz Luba <lukasz.luba@arm.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-pm@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Change the include path for the adi,ad4695.h header since it has been
-moved to the include/dt-bindings/iio/adc/ directory.
+Hi Lukasz,
 
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
- Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+On Mon, Nov 4, 2024 at 4:15=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68k=
+.org> wrote:
+> On Mon, Oct 28, 2024 at 2:41=E2=80=AFPM Lukasz Luba <lukasz.luba@arm.com>=
+ wrote:
+> > On 10/28/24 11:34, Geert Uytterhoeven wrote:
+> > > On Fri, Oct 25, 2024 at 5:40=E2=80=AFPM Lukasz Luba <lukasz.luba@arm.=
+com> wrote:
+> > >> On 10/22/24 14:36, Geert Uytterhoeven wrote:
+> > >>> On Tue, Oct 8, 2024 at 11:14=E2=80=AFAM Geert Uytterhoeven
+> > >>> <geert+renesas@glider.be> wrote:
+> > >>>> When CONFIG_ENERGY_MODEL=3Dy, an error is printed on RZ/G2E and R-=
+Car E3:
+> > >>>>
+> > >>>>       cpu cpu0: EM: invalid perf. state: -22
+> > >>>>
+> > >>>> This happens because the Operating Points Parameters tables do not=
+ list
+> > >>>> voltages, as they are all identical.  Previously, it was assumed t=
+hey
+> > >>>> were optional, and unused, when none of the CPU nodes is tied to a
+> > >>>> regulator using the "cpu-supply" property.  This assumption turned=
+ out
+> > >>>> to be incorrect, causing the reported error message.
+> > >>>>
+> > >>>> This RFC patch series fixes this by adding the missing voltages.
+> > >>>>
+> > >>>> Note that the Energy Model calculates energy efficiency by dividin=
+g the
+> > >>>> (estimated) CPU power consumption by CPU core clock frequency.  Wh=
+en all
+> > >>>> voltages have the same value, the former is proportional to clock
+> > >>>> frequency, and energy efficiency becomes a constant.  Hence all
+> > >>>> operating points are considered to have the same efficiency, and t=
+he
+> > >>>> Energy Model always picks the one with the highest clock rate (see=
+ also
+> > >>>> [1]).
+> > >>>>
+> > >>>> Alternatively, the Energy Model could be changed to silently ignor=
+e OPP
+> > >>>> tables with missing frequencies.  IMHO this is not an unusual case=
+.
+> > >>>>
+> > >>>> Which approach should be taken?
+> > >>>> Thanks for your comments!
+> > >>>
+> > >>> Any comments from the Energy Model and PM people?
+> > >>
+> > >> My apologies for delay.
+> > >>
+> > >> So you had issue with bogus Voltage values and removed them.
+> > >>
+> > >> There is another way to setup EM properly, via DT:
+> > >> "opp-microwatt" [1].
+> > >>
+> > >> That micro watt value won't confuse other subsystems, like
+> > >> your regulator fwk. It will only be used by the EM fwk.
+> > >>
+> > >> This would be an alternative to your voltage values.
+> > >> Sounds better to you?
+> > >
+> > > For opp-microwatt, I do need to know the actual power consumption
+> > > of the core, right?
+> >
+> > Correct. You can try to derived that in a way you did and put below.
+> > Although, Dhrystone is a synthetic micro-benchmark with small
+> > impact to data caches, so it will not use much power.
+>
+> Do you have a suggestion for a better load test? stress-ng?
+>
+> > > Full system power consumption while running the in-kernel
+> > > Dhrystones benchmark:
+> > >
+> > > 800 MHz: avg 4972,55 mW, stdef 20,474 mW
+> > > 1000 MHz: avg 5025,93 mW, stdef 18,644 mW
+> > > 1200 MHz: avg 5059,63 mW, stdef 15,425 mW
+> >
+> > Right. From those power values can be try to derive the
+> > 'CPU only power' values - assuming only one core was
+> > running the test.
+> >
+> > AFAIU you don't have proper DVFS due to missing voltage scaling.
+>
+> Indeed.
+>
+> > Therefore...
+> > Out of that I got these CPU power values:
+> > 800MHz -> 174mW
+>
+> =3D> 217.5 =C2=B5W/MHz
+>
+> > 1000MHz -> 212mW
+>
+> =3D> 212 =C2=B5W/MHz
+>
+> > 1200MHz -> 261mW
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml
-index 310f046e139f..7d2229dee444 100644
---- a/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml
-@@ -134,8 +134,9 @@ patternProperties:
-         description:
-           Describes the common mode channel for single channels. 0xFF is REFGND
-           and OxFE is COM. Macros are available for these values in
--          dt-bindings/iio/adi,ad4695.h. Values 1 to 15 correspond to INx inputs.
--          Only odd numbered INx inputs can be used as common mode channels.
-+          dt-bindings/iio/adc/adi,ad4695.h. Values 1 to 15 correspond to INx
-+          inputs. Only odd numbered INx inputs can be used as common mode
-+          channels.
-         enum: [1, 3, 5, 7, 9, 11, 13, 15, 0xFE, 0xFF]
-         default: 0xFF
- 
-@@ -209,7 +210,7 @@ unevaluatedProperties: false
- examples:
-   - |
-     #include <dt-bindings/gpio/gpio.h>
--    #include <dt-bindings/iio/adi,ad4695.h>
-+    #include <dt-bindings/iio/adc/adi,ad4695.h>
- 
-     spi {
-         #address-cells = <1>;
+BTW, how did you get from my avg mW values above to your CPU power mW
+values? I seem to be missing something...
 
--- 
-2.43.0
+>
+> =3D> 217.5 =C2=B5W/MHz.
+>
+> So 1000 MHz seems to be the most power-efficient.
+>
+> > > The system also has test points across a 0.005 Ohm sense resistor in
+> > > the DVFS power supply line, but no on-board measurement sensor (like
+> > > the MAX9611 on Salvator-X(S)), so I haven't measured anything
+> > > there yet.
+>
+> I'll try to do some measurements at these test points.
 
+So I measured the voltage across the sense resistor, and used that to
+calculate the actual power draw:
+  A. Idle (1 or 2 CPU cores online doesn't seem to matter):
+      -  765 mW @  800 MHz,
+      -  786 mW @ 1000 MHz,
+      -  807 mW @ 1200 MHz.
+  B. Maximum seen during "stress-ng -c 10" with 1 CPU core online:
+      -  993 mW @  800 MHz,
+      - 1055 mW @ 1000 MHz,
+      - 1096 mW @ 1200 MHz.
+  C. Maximum seen during "stress-ng -c 10" with 2 CPU cores online:
+      - 1179 mW @  800 MHz,
+      - 1303 mW @ 1000 MHz,
+      - 1386 mW @ 1200 MHz.
+
+As expected, the A-C increase is about the double of the A-B increase,
+due to the use of 2 CPU cores.
+
+Thanks again!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
