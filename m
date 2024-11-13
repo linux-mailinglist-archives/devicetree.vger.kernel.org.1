@@ -1,119 +1,178 @@
-Return-Path: <devicetree+bounces-121570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDD0D9C78E1
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 17:29:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E014C9C79BC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 18:15:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 920DDB3E06E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 15:24:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70428B36980
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 15:48:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18818158DDC;
-	Wed, 13 Nov 2024 15:22:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 860FA1586CB;
+	Wed, 13 Nov 2024 15:48:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZvypvoiL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lK7cZPYj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39846152165
-	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 15:22:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B72F143C4C
+	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 15:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731511346; cv=none; b=MomoAHk2mUKuo55ddygdk7yLTAA6Aybr+34dyYoPmsR7apKVWUq3mJ3Rkksu1iek7VXpVjfSreHbErUUpMLYIOKyYezwfIbWvU7D2PO8xUUzyOQDBBuTAmjIdfaY7lcN/znThfs4/ol/7uxAVl3ip9lruRV2IgWQQF1y16aOQHs=
+	t=1731512920; cv=none; b=jB4aFVChkb9U2nr+6XAuEhhj+YFuvrWQxvE/9NrpxhwEt2q86L2yXa6fKEguB+B8eFyemVLKwZP9zAMru+uuO7qdwMlImEeVAb4E0F8S5NEeofr76bU2VHvfKSEV2KuTpl7X3ETvNdE4kngMT8MOTxDVwAocfQSjV7u9AqD0rOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731511346; c=relaxed/simple;
-	bh=HhOwop9BJOKj5T+Nes36w0KnTxUb3W599pW6+HWRufM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=se5uPmK+JiarzYqxpk55HG68tvZSX7h7qj4CHSO9pFoEDFGOX7fjCNyRZNBtwCG18J8zYNDN9UWE48C4jbCh5vVPoDpXC/tbTHyXWQmk5V9/aSeHCxze5T+xPqI58FOXzerNDgI419AWAhywdTbFqvsgnIvVPXzBVkqvPUMVqw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZvypvoiL; arc=none smtp.client-ip=209.85.221.49
+	s=arc-20240116; t=1731512920; c=relaxed/simple;
+	bh=q5ar/iDTvRrWUmUGLZmHHecZgDsI6qhIEaT2LGKwJWY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HBR3arJv3493uqGWbVs3bq3lGIm42LBDKee4BVl89dWvCl0s2l3LNs0ngI+xGuzzdDI5kGOQkyfC+E3LA/wsW2UBEquXtiBhh4axBPY6pg9uEKRLqrnWW36YnmFJM3YN2zby5RkWsGFLLKdM9Klxyz40Ko+yAf3omo8S0F4ShWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lK7cZPYj; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-37d3ecad390so531276f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 07:22:24 -0800 (PST)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-431695fa98bso57018655e9.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 07:48:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731511342; x=1732116142; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kyz8CAV7UjnZy1sBo5de6wt5Xr9fxxfh9Ju5xZPyESI=;
-        b=ZvypvoiLGObdI4KrWN+1x9ps2JqhAUf1HvISHylTFaTGM+hD6xJQ3JQEjTa9kgZbQY
-         kKYZFhV1jiNqV4yrfToK9XZJwvRSmIqmlrtK2W0zJEu3lSXPBbKvP8SB83qag+dwC0TM
-         xzIbvJPeV3oKe90AUlHit41TVUWwiv8wmlr7xDJa05q93n5a4nAmCjflysbPN40Kx4pl
-         SDTsLcEKzGj8O7ipUyyeZHYW9Rjx5Dj73ZKIIBHxqYhjOWZx2ixvxXernl3iZWNCtSiQ
-         2gISQUDpUP1ZtpNa1hiiMjxHKllwBDxkYQp9cghn4NTlVHumlKmLA/l4n/AiEC77/Z9s
-         mOog==
+        d=linaro.org; s=google; t=1731512917; x=1732117717; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IUw1QAWMH+tzja5s7eVHANVh4+/fXkKybRoiIH2f4Kk=;
+        b=lK7cZPYjHKDvBcnY6yAbhSoQP1zYAyVR2eRczenLzotiDOY5+6A/LlTWZP/BSoq+iF
+         9sdqeOP1t6ikJrodtMHzAgjst2S3q1fmN/LmV5n4PrwmLMQggtV7UfI+YhxZZ26ZuUk5
+         LlkyH3V2e+2uWPUUmpA1a/O2YTKANe9IKsrCqy7eM+hfutmAWjtghBBaVxhFFV/eGrEz
+         jpEYu5whFiI81E4hWEBlgeL5dKcaud9LZj5m9qcKi5YNEr+jss2itmgqge97lu6uREow
+         PyJb8V80QeC0U1BsIJ6ZW077EGL4fmwwFcvv7aCr+s2Vhc+GW3i7JMt8arq/D1ZVghkv
+         TPPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731511342; x=1732116142;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kyz8CAV7UjnZy1sBo5de6wt5Xr9fxxfh9Ju5xZPyESI=;
-        b=WO7W6oX2tWAvX/j5ztsdrY3lxHywP+aCnpnU1TNWtYdlV/+5fL8cATHvKzt5g2+Gqc
-         MSCvV+astjGdOtIlhO9KC3w7RW5dKRKkMq1xGlhKLAOKgXGu/gVCqWBV17wdP7otsLqq
-         3QbOT+3NfbcDEzbL9hyyW0r7pru/OOG/9zy1tU0MaqGQgsbpyAw7auEznompZVkYfSP1
-         VcgGWm91zXNi9XRXOu0Q1RIJWUQ7gFth4HnQSv4o//qWvoqtJEQXqPfB13cJchZRe9v/
-         wOCgd62PHCti/X5eFc501QzWpCOuIO6jiIakxkwt0EZfkqyRoluWWF8iz3/pEB+Q5ufQ
-         SxaA==
-X-Forwarded-Encrypted: i=1; AJvYcCU8BG4UAWETR9RVg8cNLgHyxNmVDGRbIthQstwiC3gImx07YRXH244KeDy9cwobPIVch6XRjh3Nfzcu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyxd5M3emQBMOHAh2ajliKY822ILCjIwwJJhOxsez62kiclBr6K
-	Yvje83n/WH5mKy1HJy5f8sez8POkMohWfhm1O7cqHuCA6+p1rdNEbQGUjp9JEgw=
-X-Google-Smtp-Source: AGHT+IGkBBKScUdnq+eFrrUWl5WZg/WDJVAp06eoD/G82CPwKOfPCXQv+8oY7dXz8ArJe9wVy2UbvQ==
-X-Received: by 2002:a05:6000:1f87:b0:37d:443b:7ca4 with SMTP id ffacd0b85a97d-381f0f5e2ddmr18929643f8f.14.1731511342593;
-        Wed, 13 Nov 2024 07:22:22 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-432d54e2cbesm28265185e9.4.2024.11.13.07.22.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Nov 2024 07:22:22 -0800 (PST)
-Message-ID: <cfe27773-383f-4178-9aea-d92c2bcf8991@linaro.org>
-Date: Wed, 13 Nov 2024 16:22:21 +0100
+        d=1e100.net; s=20230601; t=1731512917; x=1732117717;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IUw1QAWMH+tzja5s7eVHANVh4+/fXkKybRoiIH2f4Kk=;
+        b=ANZVBT0kgNO3jf33+xLSX4sSjQL4/1Nbie+fBIBluIhYQ/ZtRlA5N7RB2Ds0jrC+ag
+         kqHBr3ycF9WnFF9Q0aXmvGxCXc9Gp5hY7VUB2OxOhjcoI7sinTmpKUXqI1Ozovd3lRKK
+         5bBtJC11mGDrCxW9vycww9WlWKiuvjnIYLPI3P/GO58D0oyN9KyVwMg8KbPw5MRpWDEv
+         NOeJbgsPtUwcJxISd9He8dI7dv2cAQDcl1GuyuQnRROaTYiY9uspZ2EyUyVdQpe1mDla
+         Z+tjN4BFI6JOMYPj6Gazgz6XxeP58isMvbGtnjCJdVflVFmhUuHrpKFilS4kJcPswvnI
+         9png==
+X-Forwarded-Encrypted: i=1; AJvYcCUNpPAVY+J3wyosFXURRpsS3In2Ak2n2yaMjTXlQ6e/9ltjO57b33SrWdsxSHQBuiSpHG/TXM1F1fLk@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywth+rgQWUZcvKzSgjn0xBrC0Ng9vLZtnkBLGbINA+JHElsQGfK
+	vnUOBI8uYLW0K3Pwh5vxjGDUwXtpHeOnlXyeLy5AJjLFkiz8oKnA44zXWRQvFdo=
+X-Google-Smtp-Source: AGHT+IH0+AWN4BjMUB0SBHWOf+erLPiGOfP4Vhtzv6UNHG9sRcGrOAMATKFvSgWIXqDkAA6diXrhkg==
+X-Received: by 2002:a05:600c:3b09:b0:431:3bf9:3ebb with SMTP id 5b1f17b1804b1-432b7518365mr174183885e9.24.1731512916955;
+        Wed, 13 Nov 2024 07:48:36 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432d54f772asm28445345e9.18.2024.11.13.07.48.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Nov 2024 07:48:36 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH RFC 0/8] drm/msm: adreno: add support for DDR bandwidth
+ scaling via GMU
+Date: Wed, 13 Nov 2024 16:48:26 +0100
+Message-Id: <20241113-topic-sm8x50-gpu-bw-vote-v1-0-3b8d39737a9b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 05/10] thermal/drivers/qcom/tsens-v1: Add support for
- MSM8937 tsens
-To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Amit Kucheria <amitk@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-pm@vger.kernel.org, iommu@lists.linux.dev,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20241113-msm8917-v6-0-c348fb599fef@mainlining.org>
- <20241113-msm8917-v6-5-c348fb599fef@mainlining.org>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20241113-msm8917-v6-5-c348fb599fef@mainlining.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAErKNGcC/x3MOQqAMBBA0avI1A4kUVFsBQ9gKxYuE51CExI3E
+ O9usHzF/w94ckweyugBRyd7NluAjCMYl36bCXkKBiVUKqVMcDeWR/RrcWcCZ3vgcOFpdkKdkVB
+ KU96nOYTcOtJ8/+sWmrqC7n0/p3iwQG8AAAA=
+X-Change-ID: 20241113-topic-sm8x50-gpu-bw-vote-f5e022fe7a47
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>, 
+ Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, 
+ Stephen Boyd <sboyd@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Connor Abbott <cwabbott0@gmail.com>, linux-pm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2538;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=q5ar/iDTvRrWUmUGLZmHHecZgDsI6qhIEaT2LGKwJWY=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnNMpQHfZA+OfH5dhI3Gcmtq6DXWsnzInwZjcWDscU
+ ZhNgKiOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZzTKUAAKCRB33NvayMhJ0SoqD/
+ 0Wl7nGwBx5diixbfRAKseyZLMQI98FN2EGblsvC/puVSEMBW18WDGREytVJd3yTHuJtPmFzmHyiLJf
+ dLI0WQF51+NXC0ajolKmjb3KxPVgQtUHbj8G8wwdy87tzH6ZB2z2pPzQslSrfxu8mOPvZCYrp3rlRG
+ JinePEUnhGB2j/k4cdSD3MS/ORJooFkaI3XgkpstUMFpkNcIt8WoJTjD+6r7JJocf8SWLVO2v2bExL
+ pjAwc+ZQmPElvskwFp4bAD1vMzNGY32d1g4Pq0T+bWcF5rgLQ2MpiId3mgX/3/omDj6K9pNPgfqoxa
+ ErNrYM0fHk7mxqLgKwCIZBHT8BJ+vETGWg6WR4JTuSyNtjQ9mC8KD8J4ND7xZHYV67ThTQQwZdUoPE
+ jWsnFcw8soPKl9ODMl++OVEav9gJRd7PI5uw6K46CkhgtqHKI3Q0OrDQGVzAI8IgBvvG1dbWPEVhpk
+ CCO5Hwo+8J7QGYqQDQ3I5hkeCOFxkwrKdrnGEKWS1xzH+V4tpoK6PdW8O6pgdXrjSzLQjVWZT+sTFP
+ yW5atSi3PTIf1x//rC7Tfg9W6Jxm16yQ/RypoGo7uHDYdoRfMuBqOXJ1+tmF9+qCE7OpG+r5p683AA
+ w52u68BWH5eDkEAYU+dDzq+srKhru5N6Pb3VmK2qWL9eo8G0NjbEKKZ6TQMA==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On 13/11/2024 16:11, Barnabás Czémán wrote:
-> Add support for tsens v1.4 block what can be found in
-> MSM8937 and MSM8917.
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
-> ---
+The Adreno GMU Management Unit (GMU) can also vote for DDR Bandwidth
+along the Frequency and Power Domain level, but by default we leave the
+OPP core scale the interconnect ddr path.
 
-Applied, thanks
+While scaling the interconnect path was sufficient, newer GPUs
+like the A750 requires specific vote parameters and bandwidth to
+achieve full functionnality.
 
+In order to get the vote values to be used by the GPU Management
+Unit (GMU), we need to parse all the possible OPP Bandwidths and
+create a vote value to be send to the appropriate Bus Control
+Modules (BCMs) declared in the GPU info struct.
+The added dev_pm_opp_get_bandwidth() is used in this case.
+
+The vote array will then be used to dynamically generate the GMU
+bw_table sent during the GMU power-up.
+
+Those entries will then be used by passing the appropriate
+bandwidth level when voting for a GPU frequency.
+
+This will make sure all resources are equally voted for a
+same OPP, whatever decision is done by the GMU, it will
+ensure all resources votes are synchronized.
+
+Tested on SM8650 and SM8550 platforms.
+
+Any feedback is welcome.
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (8):
+      opp: core: implement dev_pm_opp_get_bandwidth
+      drm/msm: adreno: add GMU_BW_VOTE quirk
+      drm/msm: adreno: add plumbing to generate bandwidth vote table for GMU
+      drm/msm: adreno: dynamically generate GMU bw table
+      drm/msm: adreno: find bandwidth index of OPP and set it along freq index
+      drm/msm: adreno: enable GMU bandwidth for A740 and A750
+      arm64: qcom: dts: sm8550: add interconnect and opp-peak-kBps for GPU
+      arm64: qcom: dts: sm8650: add interconnect and opp-peak-kBps for GPU
+
+ arch/arm64/boot/dts/qcom/sm8550.dtsi      |  11 ++
+ arch/arm64/boot/dts/qcom/sm8650.dtsi      |  14 +++
+ drivers/gpu/drm/msm/adreno/a6xx_catalog.c |  26 ++++-
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c     | 180 +++++++++++++++++++++++++++++-
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.h     |  14 ++-
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.h     |   1 +
+ drivers/gpu/drm/msm/adreno/a6xx_hfi.c     |  54 ++++++---
+ drivers/gpu/drm/msm/adreno/adreno_gpu.h   |   1 +
+ drivers/opp/core.c                        |  25 +++++
+ include/linux/pm_opp.h                    |   7 ++
+ 10 files changed, 314 insertions(+), 19 deletions(-)
+---
+base-commit: 86313a9cd152330c634b25d826a281c6a002eb77
+change-id: 20241113-topic-sm8x50-gpu-bw-vote-f5e022fe7a47
+
+Best regards,
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Neil Armstrong <neil.armstrong@linaro.org>
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
