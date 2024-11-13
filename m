@@ -1,200 +1,233 @@
-Return-Path: <devicetree+bounces-121424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A66379C6B4B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 10:16:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B76D89C6B59
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 10:20:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66FEB2822B7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 09:16:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10F6AB22D0D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 09:20:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD8EB1D0786;
-	Wed, 13 Nov 2024 09:15:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3E91F77A9;
+	Wed, 13 Nov 2024 09:20:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="YScggIdP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J248sb7c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C1EF1CF7CE
-	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 09:15:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 328701F778A;
+	Wed, 13 Nov 2024 09:20:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731489359; cv=none; b=tZeTwOuPfgS0c/tmlvyCoG3VHrm5651Oxzif3o5jQ1FXf6X58nK/Xm+I+6hQrQG88ZacwHahHGmRIAsXEWPqU9ZnMJ8SnwhZfqRyMjqeXX4OvAHPrPjkJfFteC46lDb8dweItAZA02bYgVf2qZwFHZBGg66Og0pUoavZrgxFadg=
+	t=1731489626; cv=none; b=Yyh3fgp51l/zUz1uFWAdsHSvmruXbsMtGjURmSmaLiThMUf3DnH5LNm3ZjEp8yupbCwHBiBxCbMdvRwx+YtCmyHDTkVrHc1FVG3vcuHqK4mOYwBX/aD9Ljtecvn0dbG+0CR7xEUdyj3FzN2JmbpWYvAGA9HBk+swBeavOwXKS2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731489359; c=relaxed/simple;
-	bh=z/u1dS7bqU+pERIEwXwPJnV5rEt13+2pmf/a0imcVHo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lZMCPq3KHcMBM4wNh8FV+eDVJ/W3s8VZcHA693CzNLC4E4D+nHHS46bWbuuAovm+lbORv4uJr6x/6vRn/HTvn/LKbRZCXbtei5uDk29wehsiwKkYnphAsLBaYFPGBNo7yoUbSrgjGPQ1XyJpjuWp99MR0V5PfbQ4aEiRqJxhQI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=YScggIdP; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1731489357;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pePq91fMf5htVRE/fsTzHK2L3qy0wyzwWaV988CadX0=;
-	b=YScggIdPaXDizXiI/L3Ic1xPJkRmMuhUdK4ebtfA7tgCwds60mdw5V8KjJm+ybZp64k3S0
-	jZlXI71OKkN7FXBIbKMbYTh7G4YkHRjefrX6cUGjDN5plLZMpDTkw8lgRdcou7bvTOZqRZ
-	jak5IfxCLGl9Vm+VIwq+56D1jHuVIDQ=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-452-ac5KKjf2PS-DjjK51get9A-1; Wed, 13 Nov 2024 04:15:55 -0500
-X-MC-Unique: ac5KKjf2PS-DjjK51get9A-1
-X-Mimecast-MFC-AGG-ID: ac5KKjf2PS-DjjK51get9A
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6cda6fd171bso12698746d6.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 01:15:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731489355; x=1732094155;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pePq91fMf5htVRE/fsTzHK2L3qy0wyzwWaV988CadX0=;
-        b=ILVg+e/hYQ3FQyjjv4xhywcY868RiMwLgTMiWongU/konwLh6f1RV8U1woSAA7MMOM
-         /AQV3t94nzp5Tc9KWjFwyiziAqNa7M42Qy/Sm4XHETiUIFwVdYZyJkXT0escOon/DzOK
-         OVUQwP58aUvNKLh/5ba6rhdc+SBfOqUB5Dj7w+JKThVQlVFxbmRzz8scq8+DOPZbiBJQ
-         OrN3ttjXEoupbdjv/7CjkpWeST1sE7inL2HnE8JvN3bbdIZLAC8CyjFcTphpNkKPJ3zs
-         bB0YIAdhzsdecmOfIkSWSIfY8FD0O10J39s2yN5FEwDrrIfkZT2SzC6zT+V+BqeP69mR
-         YgmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXaSg0qZIV+EafvYjuEASDk6jzD7BxgTLT1vGoXN12ReRGAn2WSPlAcpfecuV9p3W26PL7PINo3i0cj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtB3SmmgPvndw/j3tcI9sGJb9GW8S47VS6QJRWAJk8U+COEBjY
-	Ht14akemgxQ2B79UZGlmM8S393sSAel7H9ZscQ4N6n/8xpEA9p5FYq2JFee0MxaSisno8bIP1dQ
-	2IStuPElXjxpuy+FDknK8VO5lfeo13Y4xy+0p9EgslnfZJmIX4YIza1x6tfo=
-X-Received: by 2002:a05:6214:1bca:b0:6cc:1827:5750 with SMTP id 6a1803df08f44-6d39e117943mr116376476d6.6.1731489355095;
-        Wed, 13 Nov 2024 01:15:55 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHXkduxutfFmovavdzvpkZColmr0+85g14otssbj3k1m3rxX8IZRUy9FgLZXbOcskqZ5EdCIg==
-X-Received: by 2002:a05:6214:1bca:b0:6cc:1827:5750 with SMTP id 6a1803df08f44-6d39e117943mr116376266d6.6.1731489354775;
-        Wed, 13 Nov 2024 01:15:54 -0800 (PST)
-Received: from [192.168.1.51] (207.red-83-46-1.dynamicip.rima-tde.net. [83.46.1.207])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6d396630ec5sm81599036d6.101.2024.11.13.01.15.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Nov 2024 01:15:54 -0800 (PST)
-From: Enric Balletbo i Serra <eballetb@redhat.com>
-Date: Wed, 13 Nov 2024 10:15:17 +0100
-Subject: [PATCH v4 2/2] arm64: dts: ti: k3-am69-sk: Mark tps659413
- regulators as bootph-all
+	s=arc-20240116; t=1731489626; c=relaxed/simple;
+	bh=O5B4rkqoM1HLtJD14rfhXRQ5yGxOyymMiwBeZ8fSqDE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=p75Rce7U/BcUbRrdMs6L8Bx40OL32hoSMxuxxAgcHO+TPFPusqh1lTCsnWPyQWMK5ayWcaUkyhOwRYB4nRL9pxKnrCSAov/TV94i/qKGm4exIFC9+2324/F4v8m9y5J4wmmk0sRoXpup9RIwSZ0Z74VnvNtSDFY32PDGrJoX/Y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=J248sb7c; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AD70dmN019298;
+	Wed, 13 Nov 2024 09:19:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	+jlEdp9U4UAYgw1Y7c/ImZvXJkE28m4D+/dF8fc7XOk=; b=J248sb7cFUl1nTDA
+	sMFNX95fX4RZflfyRqUmFQEcVPvBHI+MFTWFvjkzinGzvEJ2ycnBKcmlXS5EosRj
+	Niqh2WvFC93d00VJgozbYf+aZ0734bjyW3AqHFeNYIYVUoT7/N1S36aVxP7n51vI
+	/ieeHdAawpNACvAQZkCFFW9OH4SixAwAY9d9jt3cWPJdCAvNNvGcvtur65UQ13Ys
+	aQYpyVVDj3zQpSdSTvJKFWmWtNCtERmNRWvc8eIVifoEw1XVGAoTGcMmJIeD3W/S
+	CtbYoEtICLlVZcUiKBw8hCjLGAoP7IwSUGys3/vIdlOj4CbGJS+MFuwW52O3URm/
+	Y/34Sg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42vqbm0bdd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Nov 2024 09:19:59 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AD9Jwvu004597
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Nov 2024 09:19:58 GMT
+Received: from [10.64.68.72] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 13 Nov
+ 2024 01:19:52 -0800
+Message-ID: <28069114-9893-486b-a8d8-4c8b9ada1b0c@quicinc.com>
+Date: Wed, 13 Nov 2024 17:19:49 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241113-b4-j784s4-tps6594-bootph-v4-2-102ddaa1bdc6@redhat.com>
-References: <20241113-b4-j784s4-tps6594-bootph-v4-0-102ddaa1bdc6@redhat.com>
-In-Reply-To: <20241113-b4-j784s4-tps6594-bootph-v4-0-102ddaa1bdc6@redhat.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Andrew Halaney <ajhalaney@gmail.com>, 
- Andrew Halaney <ahalaney@redhat.com>, 
- Enric Balletbo i Serra <eballetb@redhat.com>, Udit Kumar <u-kumar1@ti.com>, 
- Beleswar Padhi <b-padhi@ti.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1731489348; l=2349;
- i=eballetb@redhat.com; s=20241113; h=from:subject:message-id;
- bh=BCtRel6q2GhIghcOmJUAkR2/nR6+u2ZqHw8UA5ZGnE4=;
- b=WxCC1gigyKvqi4EPSikNJ0eWI6e3xd+/wYjiBy6LpTVreKIzonG/vp/Lk08HG1tb8vu8O+M7y
- OFvp/8EKH4zCiXg9c1IMAawbuqbHWG+lvLxJAtQfZdOaXd4h0sOZ78e
-X-Developer-Key: i=eballetb@redhat.com; a=ed25519;
- pk=xAM6APjLnjm98JkE7JdP1GytrxFUrcDLr+fvzW1Dlyw=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 3/4] arm64: dts: qcom: qcs615: add UFS node
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-scsi@vger.kernel.org>, <quic_jiegan@quicinc.com>,
+        <quic_aiquny@quicinc.com>, <quic_tingweiz@quicinc.com>,
+        <quic_sayalil@quicinc.com>
+References: <20241017042300.872963-1-quic_liuxin@quicinc.com>
+ <20241017042300.872963-4-quic_liuxin@quicinc.com>
+ <5fe37609-ed58-4617-bd5f-90edc90f5d8b@oss.qualcomm.com>
+From: Xin Liu <quic_liuxin@quicinc.com>
+In-Reply-To: <5fe37609-ed58-4617-bd5f-90edc90f5d8b@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: bi-SqTW8PKTJtqASsU22B0m18Sor4LXa
+X-Proofpoint-GUID: bi-SqTW8PKTJtqASsU22B0m18Sor4LXa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ phishscore=0 impostorscore=0 priorityscore=1501 mlxlogscore=999
+ spamscore=0 bulkscore=0 suspectscore=0 malwarescore=0 adultscore=0
+ clxscore=1011 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411130081
 
-From: Andrew Halaney <ahalaney@redhat.com>
 
-In order for the MCU domain to access this PMIC, a regulator
-needs to be marked appropriately otherwise it is not seen by SPL and
-therefore not configured.
 
-This is necessary if the MCU domain is to program the TPS6594 MCU ESM
-state machine, which is required to wire up the watchdog in a manner
-that will reset the board.
-
-Tested-by: Udit Kumar <u-kumar1@ti.com>
-Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
-Signed-off-by: Enric Balletbo i Serra <eballetb@redhat.com>
----
- arch/arm64/boot/dts/ti/k3-am69-sk.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-index 1e36965a14032ca07143230855e04b9549f1d0d1..5f24a1608bdc4fef0610e2ba9a210264e3c4917e 100644
---- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-@@ -755,6 +755,7 @@ bucka12: buck12 {
- 				regulator-max-microvolt = <1100000>;
- 				regulator-boot-on;
- 				regulator-always-on;
-+				bootph-all;
- 			};
- 
- 			bucka3: buck3 {
-@@ -763,6 +764,7 @@ bucka3: buck3 {
- 				regulator-max-microvolt = <850000>;
- 				regulator-boot-on;
- 				regulator-always-on;
-+				bootph-all;
- 			};
- 
- 			bucka4: buck4 {
-@@ -771,6 +773,7 @@ bucka4: buck4 {
- 				regulator-max-microvolt = <1800000>;
- 				regulator-boot-on;
- 				regulator-always-on;
-+				bootph-all;
- 			};
- 
- 			bucka5: buck5 {
-@@ -779,6 +782,7 @@ bucka5: buck5 {
- 				regulator-max-microvolt = <850000>;
- 				regulator-boot-on;
- 				regulator-always-on;
-+				bootph-all;
- 			};
- 
- 			ldoa1: ldo1 {
-@@ -787,6 +791,7 @@ ldoa1: ldo1 {
- 				regulator-max-microvolt = <1800000>;
- 				regulator-boot-on;
- 				regulator-always-on;
-+				bootph-all;
- 			};
- 
- 			ldoa2: ldo2 {
-@@ -795,6 +800,7 @@ ldoa2: ldo2 {
- 				regulator-max-microvolt = <3300000>;
- 				regulator-boot-on;
- 				regulator-always-on;
-+				bootph-all;
- 			};
- 
- 			ldoa3: ldo3 {
-@@ -803,6 +809,7 @@ ldoa3: ldo3 {
- 				regulator-max-microvolt = <800000>;
- 				regulator-boot-on;
- 				regulator-always-on;
-+				bootph-all;
- 			};
- 
- 			ldoa4: ldo4 {
-@@ -811,6 +818,7 @@ ldoa4: ldo4 {
- 				regulator-max-microvolt = <1800000>;
- 				regulator-boot-on;
- 				regulator-always-on;
-+				bootph-all;
- 			};
- 		};
- 	};
-
--- 
-2.47.0
+在 2024/10/26 3:24, Konrad Dybcio 写道:
+> On 17.10.2024 6:22 AM, Xin Liu wrote:
+>> From: Sayali Lokhande <quic_sayalil@quicinc.com>	
+>> 	
+>> Add the UFS Host Controller node and its PHY for QCS615 SoC.
+>>
+>> Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
+>> Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
+>> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
+>> ---
+> 
+> + Taniya (see below)
+> 
+>>   arch/arm64/boot/dts/qcom/qcs615.dtsi | 74 ++++++++++++++++++++++++++++
+>>   1 file changed, 74 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>> index fcba83fca7cf..689418466dc2 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>> @@ -458,6 +458,80 @@ mmss_noc: interconnect@1740000 {
+>>   			qcom,bcm-voters = <&apps_bcm_voter>;
+>>   		};
+>>   
+>> +		ufs_mem_hc: ufs@1d84000 {
+> 
+> ufshc@ would be consistent with other files in dts/qcom
+> 
+I referred to qcom files such as sa8775p/sm8550/sm8650 etc.All use ufs@
+> 
+>> +			compatible = "qcom,qcs615-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+>> +			reg = <0x0 0x01d84000 0x0 0x3000>, <0x0 0x01d90000 0x0 0x8000>;
+>> +			reg-names = "std", "ice";
+> 
+> One per line, please
+Thank you, I will fix it next version.
+> 
+>> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+>> +			phys = <&ufs_mem_phy>;
+>> +			phy-names = "ufsphy";
+>> +			lanes-per-direction = <1>;
+>> +			#reset-cells = <1>;
+>> +			resets = <&gcc GCC_UFS_PHY_BCR>;
+>> +			reset-names = "rst";
+>> +
+>> +			power-domains = <&gcc UFS_PHY_GDSC>;
+>> +			required-opps = <&rpmhpd_opp_nom>;
+>> +
+>> +			iommus = <&apps_smmu 0x300 0x0>;
+>> +			dma-coherent;
+>> +
+>> +			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
+>> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+>> +					 &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
+>> +			interconnect-names = "ufs-ddr",
+>> +					     "cpu-ufs";
+>> +
+>> +			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+>> +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+>> +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
+>> +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+>> +				 <&rpmhcc RPMH_CXO_CLK>,
+>> +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+>> +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+>> +				 <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+>> +			clock-names = "core_clk",
+>> +				      "bus_aggr_clk",
+>> +				      "iface_clk",
+>> +				      "core_clk_unipro",
+>> +				      "ref_clk",
+>> +				      "tx_lane0_sync_clk",
+>> +				      "rx_lane0_sync_clk",
+>> +				      "ice_core_clk";
+>> +			freq-table-hz = <50000000 200000000>,
+>> +					<0 0>,
+>> +					<0 0>,
+>> +					<37500000 150000000>,
+>> +					<0 0>,
+>> +					<0 0>,
+>> +					<0 0>,
+>> +					<75000000 300000000>;
+> 
+> Please try to match the order of properties present in sm8650.dtsi
+Thank you, I will fix it next version.
+> 
+> And please use an OPP table instead of freq-table-hz (see sm8*5*50.dtsi)
+Thank you, I will fix it next version.
+> 
+>> +
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		ufs_mem_phy: phy@1d87000 {
+>> +			compatible = "qcom,qcs615-qmp-ufs-phy", "qcom,sm6115-qmp-ufs-phy";
+>> +			reg = <0x0 0x01d87000 0x0 0xe00>;
+> 
+> This register region is a bit longer
+I just confirmed again, there's no problem here.
+> 
+>> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+>> +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
+>> +				 <&gcc GCC_UFS_MEM_CLKREF_CLK>;
+>> +			clock-names = "ref",
+>> +				      "ref_aux",
+>> +				      "qref";
+>> +
+>> +			power-domains = <&gcc UFS_PHY_GDSC>;
+>> +
+>> +			resets = <&ufs_mem_hc 0>;
+>> +			reset-names = "ufsphy";
+>> +
+>> +			#clock-cells = <1>;
+> 
+> The PHY is a clock provider. Normally, it's a parent of
+> gcc_ufs_phy_[rt]x_symbol_n clocks.
+> 
+> Taniya, could you please wire that up in your patchset?
+> 
+> Konrad
 
 
