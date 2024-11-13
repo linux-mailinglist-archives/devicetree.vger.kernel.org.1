@@ -1,326 +1,193 @@
-Return-Path: <devicetree+bounces-121543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC8609C746A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 15:34:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C46D19C74D1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 15:53:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4547AB37117
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 13:59:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30C5EB32C1A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 14:08:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 013631FF035;
-	Wed, 13 Nov 2024 13:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F2FA1FCF6D;
+	Wed, 13 Nov 2024 14:07:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="wy/Kr0mo"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WzBbO2VI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010048.outbound.protection.outlook.com [52.101.229.48])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53F71DF73C;
-	Wed, 13 Nov 2024 13:57:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731506275; cv=fail; b=bhiGKz/Ul8HEKMrRTF/J2hHFLJgfxJzHL1a2gJO87E82CN2VnC4KZYGlfL8a7w567Q+0pPYy96c1j9D5AzXC84rboK9/drxKxAmRSLMFoFzMklOBf2+bJAM6LUIMebbt5NmttU1XlKvs4czZMWtHTu2ujR9J64RVH+wDONvzHr8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731506275; c=relaxed/simple;
-	bh=cxaPOGQFW6f9bSWumZo9yVz9HeB/0mylP+lNGeMIE6c=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=nrWen0q9lEfdNC761FkEDsze0O5SxgS1tBCDYRDZ9SoLlvyffK87ldtq9+sAqlmbOQxm583Wz91NB0X8p/zxgotE+tvPaIHUYj6U4KGwJraEL/yFK43Kfl6LrFC4Nua1BcunC22QOH8I7TwLCjf1oCyUAPeVTDfL469v7wDy1No=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=wy/Kr0mo; arc=fail smtp.client-ip=52.101.229.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uasNUHmo39JthyeutwVqIuwZIXF1gIrvhtr7qhccT95qwh71qahK1YjsRaCF7cdl1y8FdbflpwymNi2B8dYUb4xQvEs9/vJlPtK05mPPH8OQwctxGKA6dvJQTbyiui/vb0EkEG9e6/9RmycbvDgKx+A7CFvbCS6McuJlcvBotoVNLZi8rumgNZmGjwltcSSW6Xx26/WPcXceEitANYlrjpgQf8fucjwaX1AwH7moSRO8Jt0sVekp3vY4ZvvDcnMaGDIkMOvYetZjGY62yySHtVtr1wQH7U3CSOO9mnRMLzqn8naDjHHqqNM4lmEDALfVRzJ1vO+zniO79F67cJe3IQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zVCT6v7ASg0TuJ7+eda/hZarlfXo/qIGuqQrtDUapLI=;
- b=XYoBZXFlb2KWOKj64+busAv6uESUlJpzQQU9+RcPleojGAZqOvSpY0TZFyz5Gey/VYvxagDrn04IFRoEVy1zfrH4kCpZfSeFt0k4bPPIg3J75Nml8GDtP5ov9x1wK+TqseEGJvfkWGFmftXN4T35WP9POkySkaw6AOkRFlF+ecgZu8N3BENUgiaPy6ccO0TY/9zNFrlx6kys3v/7oMWlfjtt4xoQwVKiuZeG/qNpQS3HL5PTzkSxJzfhAY3RzqwHDqS0KO/RMyclCWWM4Y74vdtd4lgZM0oxuJ+3M3ZZa5JX7wfLqDTel0UHB/IaxfiJ8RN3fVCoAk5AuERmG+sd4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zVCT6v7ASg0TuJ7+eda/hZarlfXo/qIGuqQrtDUapLI=;
- b=wy/Kr0motm3b7XkdyMbkB78NxEaETmRR1+R1PyuZuTdfosUuvhXxDUpFLIABZMYrkeXLoBe6tYGePbn4KmIYykNR/RjwpsmVXLYebedZTvWIkd7pY6cZNODcdeKxouyZDKWg9PmVi7MomXmtCu9AYAegMR7DFuPLpNIfY3mS2GI=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by OSCPR01MB12948.jpnprd01.prod.outlook.com (2603:1096:604:33d::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.17; Wed, 13 Nov
- 2024 13:57:50 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%3]) with mapi id 15.20.8158.013; Wed, 13 Nov 2024
- 13:57:50 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Claudiu.Beznea <claudiu.beznea@tuxon.dev>, "geert+renesas@glider.be"
-	<geert+renesas@glider.be>, "mturquette@baylibre.com"
-	<mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Prabhakar
- Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, "lgirdwood@gmail.com"
-	<lgirdwood@gmail.com>, "broonie@kernel.org" <broonie@kernel.org>,
-	"magnus.damm@gmail.com" <magnus.damm@gmail.com>, "linus.walleij@linaro.org"
-	<linus.walleij@linaro.org>, "perex@perex.cz" <perex@perex.cz>,
-	"tiwai@suse.com" <tiwai@suse.com>, "p.zabel@pengutronix.de"
-	<p.zabel@pengutronix.de>
-CC: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, Claudiu.Beznea
-	<claudiu.beznea@tuxon.dev>, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: RE: [PATCH v3 21/25] arm64: dts: renesas: r9a08g045: Add SSI nodes
-Thread-Topic: [PATCH v3 21/25] arm64: dts: renesas: r9a08g045: Add SSI nodes
-Thread-Index: AQHbNdENanMZJWVJh0it+i+AxTKSgrK1PE6A
-Date: Wed, 13 Nov 2024 13:57:50 +0000
-Message-ID:
- <TY3PR01MB11346C711262273318BA18615865A2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com>
- <20241113133540.2005850-22-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241113133540.2005850-22-claudiu.beznea.uj@bp.renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OSCPR01MB12948:EE_
-x-ms-office365-filtering-correlation-id: ec6ca472-e1ba-4f30-f09a-08dd03eb295d
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|376014|7416014|1800799024|38070700018|921020;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?cmvgIVKGcQTz+VRowAL83GPL1q+SvqoZhoKMSBtrKWaesMceI6qq1CgdvvY6?=
- =?us-ascii?Q?+8KjhBOha6QB6Z+HGSRiilZapxb5JF98roYZWmWqEwN/IinvylbJMnxYNB1s?=
- =?us-ascii?Q?UVcoiZRxRIqV8PHKUi3frgUxj09ZIDZ5hEtd1s/VAFNRGcn/C0Xql7+v1rOp?=
- =?us-ascii?Q?ltiPZHda8A2BBepOoc26sRRKL9mL9Mg2jz8kFx+BGH8F6IANT3I4kyQ3MHQv?=
- =?us-ascii?Q?PvOiQad7GI3zLXxQtPr0AzIUu5q2P94yzIM3223EzdP1Ooi0uj2EaSJdv4xZ?=
- =?us-ascii?Q?0wzpzzNfpertMXxJY9BZRY2IqmcHU0JvWRj/QWhDn6gqM6o437JxkeLgVv5A?=
- =?us-ascii?Q?fJrBAo/lazCLIwv1KDS6wWMHRwHiMUDea8yzuJzF0pHjutGvjfrulLkMTkA0?=
- =?us-ascii?Q?P0bQvD+6FvUM1Hk9MeUcynNgrgWkkYJOa1QIKjDZmBcA4BtWgfAG4p2vs/QO?=
- =?us-ascii?Q?stTY9V6zhwebp8L/tjavS++JrjHpaXZR1H/c1r4Gakb7zqFl3PTlshZegMjA?=
- =?us-ascii?Q?rAUwh9Aebhb+Keosa2oznmkKv//H/Ui6gXklhtUHxP477WhUYLGO2Z4VnYfw?=
- =?us-ascii?Q?tDv6ZljbrUXPMrWJQeZP6uMh8d8mFjJGvqiLhODTpZ1nktkRQ4rP+wdnrRs7?=
- =?us-ascii?Q?kuCDQyLDSWuCauXvmJT2qrjku0nJJSqvN4TYSgciyUeJNbOVBLxbS9OOadQr?=
- =?us-ascii?Q?4YSHAB1gApKj3LpBqdj+NB6PkQ1qIpvOU4gwpp3FKLb4i3ZXWqLEJMiJVsaA?=
- =?us-ascii?Q?6pCcMay+z2N4pVF93fvrbRPALXs5jQpVLFrdRpi8vlfWTTpLM/0ItnPuFMEH?=
- =?us-ascii?Q?3ri2TRkc9cY899PSW4kaoJKIIhPzLctYq+ImZ/wkDBKyg88f4P/sTOymFga5?=
- =?us-ascii?Q?xTVfbyeQy2XxOrVB8+wvag6ky8eEIbnwMFNQjJhjy4uwvB5I1WbEYw/ebED8?=
- =?us-ascii?Q?+mxrbushio15PQuir7UBU/zT+1p/+KZW0Up9LQxiJ++MO3KoZicTUNmgVULd?=
- =?us-ascii?Q?c5hcFL+z+bA1p7imZXoF745/6cgAow9CCpmhr8zyIMAUU5XIxYPZb2wyYqeo?=
- =?us-ascii?Q?rfk/0LGubi4l2a+kuTPikNs21SrcsusLqO8wL9KaKVX78Fzot6jE/HeFW2j3?=
- =?us-ascii?Q?FlTsvLHdcS0ZV7glN2flxwGWQ5rM8210a1cuCzQvoL9tJtFJM2Dg3WwsLdmY?=
- =?us-ascii?Q?KRyMkmb/BQ6WGOfF3aqooRcGGXjYQiLpaZvsE6aq0NNaJjdH3frm7mxm6ZRa?=
- =?us-ascii?Q?FqeScYG+x0pZ1o/ugWcIlZBCZGJ3GLl+KPHXj3IrQIZJQhuSeB7T+dFbrd+4?=
- =?us-ascii?Q?+a4Viuqs8EtFqnQdBhWCtANpg/f80kvjWjslNC8UF0u3O5mEDZkHhmRosX/v?=
- =?us-ascii?Q?vlRq7xjEjUfMt3ntwNdWnD2RP8hQ?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700018)(921020);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?JnMiASgb1uVjGx6u5JM4WoEOV5/eq/O5zW6LtxEcBHsgS7UcBrHQIxXUEWLe?=
- =?us-ascii?Q?2Mqrd9iV1/xp/phpjFk4/YWJP/bvn/80cWDu/D7As7Yk0isJcWAuteF0vOga?=
- =?us-ascii?Q?HipBg7QfFjaHshmyBSB9+rDh9AJ12wh2kj3AJefKlkSZYfO3bzTJuyXTpfEi?=
- =?us-ascii?Q?vLguLl3d4bzlGYkttv0xaF6ozdhztupOD3QD49gPMyVWd/Htl7NlwGxvEYTR?=
- =?us-ascii?Q?OMjsspRhoOVige4uDJer3ZAJKd07EoH75Q9RSlo+cwkCb/5edJbtXeJQrCOv?=
- =?us-ascii?Q?TLMiueKwYlaVH2GwicgH3A9jDH1HqHg7x3x5DeJcMbL/L+91dv0Xn3oZfhiP?=
- =?us-ascii?Q?mIGjDHs31rRI1YhXRap9yAlMGeROeSNN+3h/ZfAf8PoIuZuhlLx6pOTVmaHX?=
- =?us-ascii?Q?32Ld5jevzC8WbUJqzsWtjH7qH80GuQZGA/1zWgs9LC3cx/LEs1powUuKc8HX?=
- =?us-ascii?Q?gmHEiXWi/bI4vVjOQL4JTBhzBkmN8Y+ivIMyyPqkfQLTicBNihE+HqXVor0d?=
- =?us-ascii?Q?vGs7zqpI6h3hjSr0t62/X3RD5LNAXp5QZ6U172lWyDuFeXZvxRGFU8tXG5yk?=
- =?us-ascii?Q?+2WEGih4bvOiLDZ9rVkGlT0Qx5gBkxi0uudSbU0fPHzycJkglWg+A7EFfyft?=
- =?us-ascii?Q?td+WcvnNnltL2tAFw5ghJQjNfHkn8n+B1+8bEQOARfvmPULsaBttp1eJBqzj?=
- =?us-ascii?Q?L2BJQwSQMm/5TwMVEmJRDY6HOnP6eUyw+jkqinLSkTsMT6ZdSvZGOAm1p0TS?=
- =?us-ascii?Q?woDDOR2VoEauYYiR3yAWGM/+7DsBcaU/USTVai7ds7cn6+RuOMtacSt7gHZY?=
- =?us-ascii?Q?3L9+zxdTDq0Z/fW+o3WnNtAtp4HOHAKsfWB5QNQ4SMysl2U2IpJKeEt7oS19?=
- =?us-ascii?Q?pZPdCP76lr7OTVXilAHQTYxhygh5YFLpoiKIvcwXpGCMqtJcft/Jtp7VrwF/?=
- =?us-ascii?Q?uej31OeWlaIzF/sFTMjdbiJiE/m+P0LA9hqiDraWlhygpd669uc3yDSxumPV?=
- =?us-ascii?Q?ctd/rPkQUbvvEB6pzjYCADa0T7sHR4wgFKk5IUTuCvPECilPOLix4yEA2gVX?=
- =?us-ascii?Q?Dewx0TTme7oOJtQd0OKO+gakK61pN3/ary+U/dJ4ssr5HBlAwIvyj+KVniSW?=
- =?us-ascii?Q?qlafy99zhPrK9+fk8DfRzJk1qlrFd8P10Dxwb1LJM13tYugVTiRMSzDEKTgP?=
- =?us-ascii?Q?AxqEqh6nZhaeJUDXZSIOZmlkh4OhZpDzqDA/GbaILIX34XdRlmJhQ5Cs9MnO?=
- =?us-ascii?Q?X/hoj0MyHjSTDMbM1B6FEix6cB4KE2+R9XFNbrBj/seFS1r5k4lvbJHlSrle?=
- =?us-ascii?Q?CWb6uDZVzkbgPIui64T+1mZvOxjrqHMnJHdj7ynZ3xbg9RB0ilLRd0zzUAW/?=
- =?us-ascii?Q?rFjkzA0yFEoEQ0iJVigZjgnb4WRwedsMmpKDhqO5QQfk+5BxRUTgqb1sohPx?=
- =?us-ascii?Q?Uzu/LO34nKo5KGZ2HNJth9TkDKupwUeBzNpC1g06y2qj9yyAIP0370PNXJsj?=
- =?us-ascii?Q?CfvIlecFtwJqmwnpMgTwEldNU8BSUDPVPxllwSbKZ8bTpsjn52/fs4QpfYe0?=
- =?us-ascii?Q?KfUdjzS904XXBbLvwmfKNw8HeLCfF7N6GP2MWJ4ECddcYvl/z4cfE1v3abfO?=
- =?us-ascii?Q?4Q=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E86331FBF63;
+	Wed, 13 Nov 2024 14:07:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731506822; cv=none; b=ThcLl1G7rfexP9sbddK/O0Xkqm165kjbADk1V37viaDbBCNK9YwZCeHup6JdDmeRXMxk9fFgg8qFe8q0bTDhfnk6EKROSPCTWVi2p7hZU9lakso44vKmrN1GZLH+W9bya4gfTtzeYlkJhTAyEPtKEq69BB3TMRHaA0jtgfqBmg8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731506822; c=relaxed/simple;
+	bh=81gVhZLDeH12ryvB6MW4Q+Z4Vn7jfe/J6OxxynrZgeA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=DkEnE2a1RUhAM3AwPtYU+hZkf7p50mMLHXndjOggMYtMB8UVzVeJ9QlM3ctSV1VfWDLDMQIyWqVbXJWHiggstdLnXyDT5yhN7irc9r3IeH9jh3DppWqVCCVtP1Bjpu4OGvrd4++BbFO8nS96t+iRB/8NQ1uJD//PG1a6BnMEd38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WzBbO2VI; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AD7us1G030530;
+	Wed, 13 Nov 2024 14:06:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	BnMAQG37qz6zwBUEbI4q4FGmrgT6ktJqYQFwfZwePPs=; b=WzBbO2VIHS4txfE6
+	aW112Myw4ZcnBhifbFwlPLJo4PJ4U9TFktzTcw5nF58Pn9E8nzsCVy8djYvh4iwP
+	+AGfuLyTRfpdhug+pqOwGdLZeDHXed7UY9fYoCHtlLltwIkpgGUnCypoibazrlvP
+	EYN+BDHNSMRBjDyKv+o6p+PxESOhUsNnCv6hSJiOzNH2mqqb5Bei+Nix8PP3Kwz1
+	6Dxg25IZ2XU4tEKyEZni4pi0aN/5pAtLStFLQpbedofSlKfsj/yNn9zr6YZ0rDcG
+	Ncg8CcOFbyp4IgPnHa5JhiIlx5ZK7yxrTPAOkLJaj6+PAC7azt2+tHHz22Bk0zAm
+	LWttbg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42vr5y0wb8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Nov 2024 14:06:41 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ADE6eRi015303
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Nov 2024 14:06:40 GMT
+Received: from [10.217.217.28] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 13 Nov
+ 2024 06:06:32 -0800
+Message-ID: <aab228cf-d209-48a8-8daf-99df75f8b460@quicinc.com>
+Date: Wed, 13 Nov 2024 19:36:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec6ca472-e1ba-4f30-f09a-08dd03eb295d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Nov 2024 13:57:50.2119
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kAjxO9sUfPPLwUr91hqC48x0xmYxgQHDu67orPA2on0K8N4hwq6Ac/kXECTlJu93PoRUSvuKprERWXs7kngDW/0JF8CXBh9R0TCkR/ZL1Fo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSCPR01MB12948
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4 3/4] iio: adc: Add support for QCOM PMIC5 Gen3 ADC
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <jic23@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <agross@kernel.org>, <andersson@kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <konrad.dybcio@linaro.org>,
+        <daniel.lezcano@linaro.org>, <sboyd@kernel.org>,
+        <quic_subbaram@quicinc.com>, <quic_collinsd@quicinc.com>,
+        <quic_amelende@quicinc.com>, <quic_kamalw@quicinc.com>,
+        <amitk@kernel.org>
+CC: <lee@kernel.org>, <rafael@kernel.org>, <rui.zhang@intel.com>,
+        <lukasz.luba@arm.com>, <lars@metafoo.de>, <quic_skakitap@quicinc.com>,
+        <neil.armstrong@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>
+References: <20241030185854.4015348-1-quic_jprakash@quicinc.com>
+ <20241030185854.4015348-4-quic_jprakash@quicinc.com>
+ <d0511a78-8eca-4342-949b-9dea293e064f@linaro.org>
+Content-Language: en-US
+From: Jishnu Prakash <quic_jprakash@quicinc.com>
+In-Reply-To: <d0511a78-8eca-4342-949b-9dea293e064f@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: sygkL2jZDiEXDNkAJWesywvqBVYpHxIb
+X-Proofpoint-GUID: sygkL2jZDiEXDNkAJWesywvqBVYpHxIb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ adultscore=0 clxscore=1015 suspectscore=0 lowpriorityscore=0 bulkscore=0
+ mlxlogscore=999 malwarescore=0 spamscore=0 impostorscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411130120
 
-Hi Claudiu,
+Hi Krzysztof,
 
-> -----Original Message-----
-> From: Claudiu <claudiu.beznea@tuxon.dev>
-> Sent: 13 November 2024 13:36
-> Subject: [PATCH v3 21/25] arm64: dts: renesas: r9a08g045: Add SSI nodes
->=20
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->=20
-> Add DT nodes for the SSI IPs available on the Renesas RZ/G3S SoC. Along w=
-ith it external audio clocks
-> were added. Board device tree could use it and update the frequencies.
->=20
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 10/31/2024 4:33 PM, Krzysztof Kozlowski wrote:
+> On 30/10/2024 19:58, Jishnu Prakash wrote:
+>> +
+>> +static int adc5_gen3_read(struct adc5_device_data *adc, unsigned int sdam_index,
+>> +			  u16 offset, u8 *data, int len)
+>> +{
+>> +	return regmap_bulk_read(adc->regmap, adc->base[sdam_index].base_addr + offset, data, len);
+>> +}
+>> +
+>> +static int adc5_gen3_write(struct adc5_device_data *adc, unsigned int sdam_index,
+>> +			   u16 offset, u8 *data, int len)
+>> +{
+>> +	return regmap_bulk_write(adc->regmap, adc->base[sdam_index].base_addr + offset, data, len);
+>> +}
+>> +
+>> +/*
+>> + * Worst case delay from PBS in readying handshake bit
+>> + * can be up to 15ms, when PBS is busy running other
+>> + * simultaneous transactions, while in the best case, it is
+>> + * already ready at this point. Assigning polling delay and
+>> + * retry count accordingly.
+>> + */
+>> +
+>> +#define ADC5_GEN3_HS_DELAY_MIN_US		100
+>> +#define ADC5_GEN3_HS_DELAY_MAX_US		110
+>> +#define ADC5_GEN3_HS_RETRY_COUNT		150
+>> +
+>> +static int adc5_gen3_poll_wait_hs(struct adc5_device_data *adc,
+>> +				  unsigned int sdam_index)
+>> +{
+>> +	u8 conv_req = ADC5_GEN3_CONV_REQ_REQ;
+>> +	int ret, count;
+>> +	u8 status = 0;
+>> +
+>> +	for (count = 0; count < ADC5_GEN3_HS_RETRY_COUNT; count++) {
+>> +		ret = adc5_gen3_read(adc, sdam_index, ADC5_GEN3_HS, &status, 1);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		if (status == ADC5_GEN3_HS_READY) {
+>> +			ret = adc5_gen3_read(adc, sdam_index, ADC5_GEN3_CONV_REQ,
+>> +					     &conv_req, 1);
+>> +			if (ret)
+>> +				return ret;
+>> +
+>> +			if (!conv_req)
+>> +				return 0;
+>> +		}
+>> +
+>> +		usleep_range(ADC5_GEN3_HS_DELAY_MIN_US, ADC5_GEN3_HS_DELAY_MAX_US);
+>> +	}
+>> +
+>> +	pr_err("Setting HS ready bit timed out, sdam_index:%d, status:%#x\n", sdam_index, status);
+>> +	return -ETIMEDOUT;
+>> +}
+>> +
+>> +static void adc5_gen3_update_dig_param(struct adc5_channel_common_prop *prop, u8 *data)
+>> +{
+>> +	/* Update calibration select and decimation ratio select */
+>> +	*data &= ~(ADC5_GEN3_DIG_PARAM_CAL_SEL_MASK | ADC5_GEN3_DIG_PARAM_DEC_RATIO_SEL_MASK);
+>> +	*data |= FIELD_PREP(ADC5_GEN3_DIG_PARAM_CAL_SEL_MASK, prop->cal_method);
+>> +	*data |= FIELD_PREP(ADC5_GEN3_DIG_PARAM_DEC_RATIO_SEL_MASK, prop->decimation);
+>> +}
+>> +
+>> +static int adc5_gen3_status_clear(struct adc5_device_data *adc,
+>> +				  int sdam_index, u16 offset, u8 *val, int len)
+>> +{
+> 
+> Wait, what? Why are you defining functions in header causing multiple
+> copies of them? And even if: why this is not inline? But regardless:
+> this is a strong NAK from me.
+
+This was meant to hold macros and some helper functions used in both main and auxiliary driver files.
+I see what you mean - I'll move the function definitions into a new .c file and mark them inline.
+
+Thanks,
+Jishnu
 
 
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Cheers,
-Biju
-> ---
->=20
-> Changes in v3:
-> - none
->=20
-> Changes in v2:
-> - none
->=20
->  arch/arm64/boot/dts/renesas/r9a08g045.dtsi | 96 ++++++++++++++++++++++
->  1 file changed, 96 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi b/arch/arm64/boot=
-/dts/renesas/r9a08g045.dtsi
-> index be8a0a768c65..24c6388cd0d5 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> @@ -14,6 +14,22 @@ / {
->  	#address-cells =3D <2>;
->  	#size-cells =3D <2>;
->=20
-> +	audio_clk1: audio-clk1 {
-> +		compatible =3D "fixed-clock";
-> +		#clock-cells =3D <0>;
-> +		/* This value must be overridden by boards that provide it. */
-> +		clock-frequency =3D <0>;
-> +		status =3D "disabled";
-> +	};
-> +
-> +	audio_clk2: audio-clk2 {
-> +		compatible =3D "fixed-clock";
-> +		#clock-cells =3D <0>;
-> +		/* This value must be overridden by boards that provide it. */
-> +		clock-frequency =3D <0>;
-> +		status =3D "disabled";
-> +	};
-> +
->  	cpus {
->  		#address-cells =3D <1>;
->  		#size-cells =3D <0>;
-> @@ -187,6 +203,86 @@ i2c3: i2c@10090c00 {
->  			status =3D "disabled";
->  		};
->=20
-> +		ssi0: ssi@100a8000 {
-> +			compatible =3D "renesas,r9a08g045-ssi",
-> +				     "renesas,rz-ssi";
-> +			reg =3D <0 0x100a8000 0 0x400>;
-> +			interrupts =3D <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 241 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 242 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names =3D "int_req", "dma_rx", "dma_tx";
-> +			clocks =3D <&cpg CPG_MOD R9A08G045_SSI0_PCLK2>,
-> +				 <&cpg CPG_MOD R9A08G045_SSI0_PCLK_SFR>,
-> +				 <&audio_clk1>, <&audio_clk2>;
-> +			clock-names =3D "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
-> +			resets =3D <&cpg R9A08G045_SSI0_RST_M2_REG>;
-> +			dmas =3D <&dmac 0x2665>, <&dmac 0x2666>;
-> +			dma-names =3D "tx", "rx";
-> +			power-domains =3D <&cpg>;
-> +			#sound-dai-cells =3D <0>;
-> +			status =3D "disabled";
-> +		};
-> +
-> +		ssi1: ssi@100a8400 {
-> +			compatible =3D "renesas,r9a08g045-ssi",
-> +				     "renesas,rz-ssi";
-> +			reg =3D <0 0x100a8400 0 0x400>;
-> +			interrupts =3D <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 244 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 245 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names =3D "int_req", "dma_rx", "dma_tx";
-> +			clocks =3D <&cpg CPG_MOD R9A08G045_SSI1_PCLK2>,
-> +				 <&cpg CPG_MOD R9A08G045_SSI1_PCLK_SFR>,
-> +				 <&audio_clk1>, <&audio_clk2>;
-> +			clock-names =3D "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
-> +			resets =3D <&cpg R9A08G045_SSI1_RST_M2_REG>;
-> +			dmas =3D <&dmac 0x2669>, <&dmac 0x266a>;
-> +			dma-names =3D "tx", "rx";
-> +			power-domains =3D <&cpg>;
-> +			#sound-dai-cells =3D <0>;
-> +			status =3D "disabled";
-> +		};
-> +
-> +		ssi2: ssi@100a8800 {
-> +			compatible =3D "renesas,r9a08g045-ssi",
-> +				     "renesas,rz-ssi";
-> +			reg =3D <0 0x100a8800 0 0x400>;
-> +			interrupts =3D <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 247 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 248 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names =3D "int_req", "dma_rx", "dma_tx";
-> +			clocks =3D <&cpg CPG_MOD R9A08G045_SSI2_PCLK2>,
-> +				 <&cpg CPG_MOD R9A08G045_SSI2_PCLK_SFR>,
-> +				 <&audio_clk1>, <&audio_clk2>;
-> +			clock-names =3D "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
-> +			resets =3D <&cpg R9A08G045_SSI2_RST_M2_REG>;
-> +			dmas =3D <&dmac 0x266d>, <&dmac 0x266e>;
-> +			dma-names =3D "tx", "rx";
-> +			power-domains =3D <&cpg>;
-> +			#sound-dai-cells =3D <0>;
-> +			status =3D "disabled";
-> +		};
-> +
-> +		ssi3: ssi@100a8c00 {
-> +			compatible =3D "renesas,r9a08g045-ssi",
-> +				     "renesas,rz-ssi";
-> +			reg =3D <0 0x100a8c00 0 0x400>;
-> +			interrupts =3D <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 250 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 251 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names =3D "int_req", "dma_rx", "dma_tx";
-> +			clocks =3D <&cpg CPG_MOD R9A08G045_SSI3_PCLK2>,
-> +				 <&cpg CPG_MOD R9A08G045_SSI3_PCLK_SFR>,
-> +				 <&audio_clk1>, <&audio_clk2>;
-> +			clock-names =3D "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
-> +			resets =3D <&cpg R9A08G045_SSI3_RST_M2_REG>;
-> +			dmas =3D <&dmac 0x2671>, <&dmac 0x2672>;
-> +			dma-names =3D "tx", "rx";
-> +			power-domains =3D <&cpg>;
-> +			#sound-dai-cells =3D <0>;
-> +			status =3D "disabled";
-> +		};
-> +
->  		cpg: clock-controller@11010000 {
->  			compatible =3D "renesas,r9a08g045-cpg";
->  			reg =3D <0 0x11010000 0 0x10000>;
-> --
-> 2.39.2
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
