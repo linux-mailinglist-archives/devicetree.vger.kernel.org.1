@@ -1,315 +1,281 @@
-Return-Path: <devicetree+bounces-121371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97CEF9C699E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 08:02:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 749A09C69C1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 08:16:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DDD6283E97
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 07:02:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33E882843D5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 07:16:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ADDD17C215;
-	Wed, 13 Nov 2024 07:02:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67039173347;
+	Wed, 13 Nov 2024 07:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="m2WpGeDg"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="VVoIPpu4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from PNZPR01CU001.outbound.protection.outlook.com (mail-centralindiaazolkn19011037.outbound.protection.outlook.com [52.103.68.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E703230996;
-	Wed, 13 Nov 2024 07:02:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731481328; cv=none; b=IFuAHbcFQq7xlIbWwho4DhZpTd+4wclKT8MeAFPBIdik3dZ5vJ34qfhFUi6KbTJIxzJVtAWwY+ALYPJsV40GgpIhElxbfcHChYWH1oajJ/iGFWZL2qmAeGvvz0eSOS0cCzHD0gNaJK/cMN3x+amuFQ3Y4qZaoc271TIJM23VKkU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731481328; c=relaxed/simple;
-	bh=UdoAME4GN59VqM33vpVWFh5bPZvi2bHRijA3qBsysFE=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K98RBBSo68le0/0sy0swgK6rZlcK+dD9xpeDkZDyglXXGFpZuWl1g4bIfLs2PeL1nWEHnM4/k72WswNIecQEsEK/LBxkJKQxpbwB+S2OR96PkttZL7yJMABilu+XfQQcucFp+a2WSTG/yxqUtYVR51S/PXyTFruoeCfd9UgHgw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=m2WpGeDg; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ACMS6RV019322;
-	Wed, 13 Nov 2024 07:01:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=VvV/bpHM+sl/aBVkRsDepmI3
-	ENDt94Z7ytMRVdSGL0s=; b=m2WpGeDgK3R6+dBSOE2HIxnkgV+gi6Mvyd2zShjo
-	XDXWQEKj9s5poiSkYNafDQqv8GVZ2PM/I5EM9jwS5pUQPilmVefabos4lxEho7/b
-	tPU7r7zx2wHH7p12qOx/X05P7NV0LbUEh8G2M5jYH1yEu2b58fJUa4CMy35r5DZC
-	WDYTMWcz4m/Pdbj0Y/xwVtHuFPcxv3ZfybyCi3py0lgB/0LVzSaLYHFBQbUg5BbP
-	3bYk55bfTpQd6Zx39xyL5KQ7jNBYS2dnuJppVkKg0LHd1CZucdntfQFJsNsiZmPj
-	jxfDWaNVagBdkd7VlKEmKkn6N9fpCesus4F8onMKgK57/g==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42v4kqu37r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Nov 2024 07:01:57 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AD71utn000633
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Nov 2024 07:01:56 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 12 Nov 2024 23:01:50 -0800
-Date: Wed, 13 Nov 2024 12:31:46 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-CC: <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <gregkh@linuxfoundation.org>,
-        <robh@kernel.org>, <abel.vesa@linaro.org>, <johan+linaro@kernel.org>,
-        <dmitry.baryshkov@linaro.org>, <mantas@8devices.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <quic_kbajaj@quicinc.com>,
-        <linux-kernel@vger.kernel.org>, <quic_wcheng@quicinc.com>,
-        <vkoul@kernel.org>, <linux-usb@vger.kernel.org>,
-        <andersson@kernel.org>, <kishon@kernel.org>, <konradybcio@kernel.org>
-Subject: Re: [PATCH v1 6/6] arm64: dts: qcom: Add USB controller and phy
- nodes for IPQ5424
-Message-ID: <ZzRO2uXHCRVqqq08@hu-varada-blr.qualcomm.com>
-References: <20241112091355.2028018-1-quic_varada@quicinc.com>
- <20241112091355.2028018-7-quic_varada@quicinc.com>
- <e541fd10-7037-4cbf-b07a-6cac8a7a9452@quicinc.com>
- <ZzNEecwbh63soh5J@hu-varada-blr.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3396C230987;
+	Wed, 13 Nov 2024 07:16:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.68.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731482211; cv=fail; b=sCYAXhspT4lVtxP9sHvM3kUxiqqgbxIRonA588M4os7pYOJ95NUkdan+fq3QNvLZk8JTH4RqHhvGljyq2+QNwbWIEs0Y+huDXj1jXttNLdYJDEMfxr0BcyvLOeKYRsP8l2PxoQ0fGu3LyYcrxRncTUJ8AdnXA/mgq4sYqHI2QrM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731482211; c=relaxed/simple;
+	bh=2kLy/z9+bzB+R7Q0Vr0+mS6oDfVqFWTmbkNdlTB06bU=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=F66zJ83eLyTrLOelz8orWYHad3wNml7Oz/DxxdmgU+ZG3/Ew3feG+Kd8rGjjipRrFgv9J4u4tXINdYn12nlvkXMIZq4/JPyBb0/BmgbRwProuAZYedN4sxakjdDF4+/P4+347wajYloZU70JMB/NHGquIW+dK3DxjlEgrhx8TWo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=VVoIPpu4; arc=fail smtp.client-ip=52.103.68.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=izT/rWeizQnFSDOLhDzayTOnW/ta1/mgQk2rZEWjP8b9I+y1umz1LZarR/NG3DWkREC2Yb1abAvLLdJzXwzGiZtzYkhEi/QpO7TgP8krEjg7KtT82TWijRazIU4sXdVPCNWxebn9OdTVeFP2+Fu+WYAux/rsQ7nMOw6Iz8C9/443YgQT6KVZV/G87oT8TOC5wMI+zpSDic9FnCBq6Kyv5wa2LRGAtH2fCdkkVDLqI7ZcVHpA/7i0g1ZSufI0QGRwOpw+qcZSI1DRfgJj8ZxLiv7la4dnp7MMs9LJj3k9iNWEGbHE775ZA0a/WwQ7eqd1r+bpAN2MSh6wPmgECjpXFw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/BYUgN95uMmJVoFmFEchk+HigNMgilEkwMryJEZXBSY=;
+ b=MdQahm/ppqpiiooEtj1TQLPFUNfBvPqF1hVMkFDe+bqk941ouJrNm9VWPlk90Qt9qBSyn7ZgJg8ZXBKTo7LqGPu5aiO9qZKPHhnCz+9ir3ZpRwypfYo3+TxVCMiyEL238YI/QMKm0exgbbXRgH5W+rr9htjnlUcg80AVz2HWzlHKXIQw75h7EhoijZQ7dumRtiweZX4iEZS9Ih/sbRKnWY1vKhERp1jnKoxQX/mb9SSTcEoQwfxkxsZ/nh1zZeYA0tILJV1z20Q8sc+DGvqWdNvv3OGiqlSNP3U0Uqjhc7cFPOWf1YUhnsyYbF3pXGoZxaGdujWXET/5kzAxA3BiQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/BYUgN95uMmJVoFmFEchk+HigNMgilEkwMryJEZXBSY=;
+ b=VVoIPpu4qF4vn3KtspPrA6vMa2zMiI5piMzIryGBtSUdOpDbxnJCbKYDREj4O7Jy5thI8HcB0kOAMIaJhMv2TvDM50pec6sIromdK0PZ0hOxYjFBOKml3yNjWPlq1XOvCR+hlewM4sjRd4kcLCe17DmyLf8NhOI4FVzpPQNzltNe80QwFZK7jRRK60prIvHbdgYwk6J7ZjUuM2mLUEeOFsmi3rt1mDxl7RE56mEBqwCQqRCeuQEIyAKzlqn7yG5oCjJZWYK7Tu7pkRS827MbJRZf9JDytNdDF6CqFrx8IL/ieLVZ7fo72WzE2LU2HsCQoe0ghoEpMKRjHKG/h+CRGw==
+Received: from PN1P287MB2818.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:214::7)
+ by PN3P287MB1814.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:199::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.17; Wed, 13 Nov
+ 2024 07:16:41 +0000
+Received: from PN1P287MB2818.INDP287.PROD.OUTLOOK.COM
+ ([fe80::5a8a:9e40:a4e8:3e2d]) by PN1P287MB2818.INDP287.PROD.OUTLOOK.COM
+ ([fe80::5a8a:9e40:a4e8:3e2d%4]) with mapi id 15.20.8137.027; Wed, 13 Nov 2024
+ 07:16:41 +0000
+Message-ID:
+ <PN1P287MB281846EC1E6448397E17CC1DFE5A2@PN1P287MB2818.INDP287.PROD.OUTLOOK.COM>
+Date: Wed, 13 Nov 2024 15:16:37 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: interrupt-controller: Add Sophgo SG2042
+ MSI
+To: Rob Herring <robh@kernel.org>, Chen Wang <unicornxw@gmail.com>
+Cc: u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu, arnd@arndb.de,
+ conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com,
+ krzk+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
+ tglx@linutronix.de, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com
+References: <cover.1731296803.git.unicorn_wang@outlook.com>
+ <5186bb9c7feebb87136eb5e5e117fb1142dba4c2.1731296803.git.unicorn_wang@outlook.com>
+ <20241112155240.GA956207-robh@kernel.org>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20241112155240.GA956207-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR03CA0129.apcprd03.prod.outlook.com
+ (2603:1096:4:91::33) To PN1P287MB2818.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:214::7)
+X-Microsoft-Original-Message-ID:
+ <6e1c65fc-5059-4c37-a747-877b9778acfa@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZzNEecwbh63soh5J@hu-varada-blr.qualcomm.com>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: mOsWURAirdCvSrraPqNZiNyzC3qRAdMs
-X-Proofpoint-GUID: mOsWURAirdCvSrraPqNZiNyzC3qRAdMs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- adultscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
- malwarescore=0 spamscore=0 clxscore=1015 mlxscore=0 mlxlogscore=963
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411130061
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PN1P287MB2818:EE_|PN3P287MB1814:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5d1b1821-32e0-4f99-c156-08dd03b31f24
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199028|8060799006|5072599009|6090799003|19110799003|7092599003|15080799006|10035399004|3412199025|4302099013|440099028|1602099012;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?a1BQM3kxNk0xVmU3cUtQcUE5a0FhV0pPN1dhbXpzYkFCZm0xVFVxNGJkNGg5?=
+ =?utf-8?B?QW5NN3FML25ac1hkNFJ2ZDZoUkpYeTB3QnJUTG41cGZMZXMwM21iWFFoRFRW?=
+ =?utf-8?B?cU9oODFoUGJYa3MwVzBYT3ZoVjNpNUUzaWUvZ1ByN01aa3J1ZWVDbmQ0Z0JG?=
+ =?utf-8?B?dVhReUtkVDhSRzJ2dENrc1FuK09LZ2hSTFMwZmlXYXB3WkI1aVFCdERNcFlJ?=
+ =?utf-8?B?N2JpZklsd216TWVyRkVId1hRY0dzTjA0ckMwY1E3RzY3Wi9GTG1ST1EwZmZG?=
+ =?utf-8?B?UktzWTBkM1NkT2dNU1Y3UXNsS0x0RDhGMnFwM1k3SW9wdG9vY1FJbXRkaHIy?=
+ =?utf-8?B?MUpvMDdNekNlM0t5eDJNSWxEWDFVYUZBWkJRVGJjSkN3VFl4MG8xL3EwaG5i?=
+ =?utf-8?B?NlQ3K0tjcDZZYzlsTHJzU2sxL29CejU4Njl5L1Z3UVJkZ1JLLzBhSHpmd01L?=
+ =?utf-8?B?RWdkNHJ6TEg5TzZuVGZhYU4rODN2TDVpYU9JbzhWbzM3TFVZRk85NnlodmQ3?=
+ =?utf-8?B?V3paWW1ndUI0ZEVWZmNUNGdpZ1F2RkF1Z3RsNnRsR2NMVVRDMVFoMC9XRUpy?=
+ =?utf-8?B?aWpNM29xTENDaE80Q1BWTm1uMWFGbXdvenV4M2l2d0twVU84LzlIYTA0K3Qr?=
+ =?utf-8?B?RGJ3K2FOMlE1VHhwWTZ3eGlDS1FMS0lmakkrMVVnOU9kblE1dWVmSEovS0hh?=
+ =?utf-8?B?N1N0cW8zRTB3dWtrRTBXbWJ5aDY4UGVQODkxb3I0MUdSeE9iampqcTE5aVVw?=
+ =?utf-8?B?NmNnWnExT2VPQVFZajIxTkFta2crVWQ0STBGamx3bEFWdGZ3ZC9QYUNBcFln?=
+ =?utf-8?B?UlFCWXV0eGI4WS9iWnlldHptVkxyajRwMFhmWU9VMzl5RzR5cURRZk4zWDdH?=
+ =?utf-8?B?T2c4UDFic3lsZEp0Yy8vQml4NjJjaXJXRVU3ZXZjNGg1RHZ6eGMxeitEM3dk?=
+ =?utf-8?B?bk9QRXNmMHJ5cE93VzVkL2pLNEF3bnNCWFhoV1JqZ0lvSFBSa0laUENCVVBm?=
+ =?utf-8?B?SjRjODR2d1liWjVRdTlPeUpiVGp5Z3hyWk5ZelozYXloUnNkQVViZnJhTmtU?=
+ =?utf-8?B?OUhzL2JjNUxBOGxjTms0Y0MxMExPMkJCdUdpVW5hTGI4TWZXVHRLRFdENTZm?=
+ =?utf-8?B?OHNUdjIyTTVQbmh5Ti9MZmdvNkI5RjIyWUh0YnVTWWNGeGVKMWtrZkJKRHBi?=
+ =?utf-8?B?RWxyblA5OTNCM0IySzY2Y1RRT1NuTWZNSEF2aHQzSW0yS0JUUjA4eVAvMmJ0?=
+ =?utf-8?B?Q3g0SHZua2p1SnNxa1d3ZnQ3emJUT0kwL0tWeStWYlBMNXgrVGcvUlhCc3Nl?=
+ =?utf-8?B?TE5CR25UbXdXRU1CdzA4b3Q2RHJnbUJIZXdxb2o0UWdiTnFCSkRmTVB1QmlE?=
+ =?utf-8?B?eHpjb051RXQxczg4cCtIRkFvTEIzYTZNOTE2cVdKK1hsT1hGM2VwQmJhMnpX?=
+ =?utf-8?B?dEV1L0JWVDdmeUZEY3RkbFhyc2IrN3dNSWkxRnJnMFo1aElTZEZoOXc0cVhu?=
+ =?utf-8?B?YjYrOHM0RkFnQy9NVVhCa1JkY1YxaHVKU3ZMREx2OVhhTWs1eG53T1J2WDNQ?=
+ =?utf-8?Q?ZZVrBcKQfpw8nSI1kbwbubIKvtUXhdUBfEZ5lb7KSNv0ob?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?MldJaHBCcVUzMGtZNFloQkN2VHhLZ3Y3aVRMTzVwdXNIRnBpMlZiRGhRb3di?=
+ =?utf-8?B?QVgvamxTdmhZVXBueUp1V2VvNU1rR29wZkc1R2RoQ0xNTFVNLzFDODloTkI3?=
+ =?utf-8?B?WE1MdTdLaXdZYmVKdnJ4UVFJR3BVejE2L3owRGFIc0xCQU9DdytWZ2duOStm?=
+ =?utf-8?B?Wk5tSHh0Skd1K2Rqazk5SW43VjlyOGp4Mm5pRVJrYnZnSkl6ZzU1VXBSK2w3?=
+ =?utf-8?B?TnhHcGtkcVFkWEY0VURLbVc1N0tjYWhnR25Obi9lYzZDektQbSt5MjlwU3FV?=
+ =?utf-8?B?dWYyczZZZWk4TGxoZVVjdVd5eklkTWsydnE4Z1ZMUVdqRWowV3hCTlpSTWN2?=
+ =?utf-8?B?bGliYlVxbmxBd1NrbEZ2TGhZQ24yM2FOREV3WE53U1JBUFp5cTdNYmVzdmcy?=
+ =?utf-8?B?MHVYM05vUC91SHV1S1pGckg1amNNQ2toWWU1MkJrMFd6cjNveFZtak5SalFy?=
+ =?utf-8?B?L1loalJ5UkRhNlRQTTBoZ245RVA5NTY1aXBkZjc5WkxycnVueXhHVW5tRkdN?=
+ =?utf-8?B?ZW5NalNMczIrUFl6VjRUQ2cvZlNGbG9pd3FEcHhQMGpzVEI2dkVqYVBlN21k?=
+ =?utf-8?B?M1lVWnZEU0JoVitwbk5iSnVmemtESExWOUgwbFdHZHFUVHdrdDhUNU5JWUY5?=
+ =?utf-8?B?U3RiY2JLV00wbFkremNoTkN3cDJ0Y1ZLRDFJcEMzclExQ2twdGdiMTdxeGtC?=
+ =?utf-8?B?UHBaTjllcUxkNnJuVVlNalZ1RTRyVFIyZ3pZWWxWTzFOT1g2REVoS1FjUkhv?=
+ =?utf-8?B?MXMzVWo0Nm9zdFFPM1M2RlQwd0ptWjR4ZUtMR0FneGlzZkZ2UGNxYllZL0Ny?=
+ =?utf-8?B?TmhOdG9NcDhCUzhxRFJaV1EwK3Vvdm9lNFd0bERya2RpUnlBc01ENVcxdGZz?=
+ =?utf-8?B?bEhYRE13eUgyQ2dlWU5LL05zYUVnUVBoMDJZVlg0b3cyL1pHZG1wRGlxQ0pK?=
+ =?utf-8?B?elpGem9NWlJidUVTWWFFTk1Kb3cvNHM2YWxFSXkxMCtpVFQ4cWdxak9UQ251?=
+ =?utf-8?B?a08zOUFWbWlLb3ByQzJJbTR0b1Y1MjNmQW92SnFmbFY2V0ZDM29nWTNSVm02?=
+ =?utf-8?B?S2s0VW9GZisrZGdMT0Jzc3UxaWdoRERodDc5RnQzZXRmeWZQQjJtamFpS0Zz?=
+ =?utf-8?B?U3BwQm9ZUlFBeTRZNjdUVDZMS3VaVlVoK204d1pZQjlrL2laTFdtQ0k5eXBl?=
+ =?utf-8?B?Z2FxMG5qNjE4K2tmcm1NUWFQc0NRZ0xIcldLWC9tSmJPMlhPc29RTGFMMExv?=
+ =?utf-8?B?SWdiZDg5anpTMk5aYjVTR0diQ1l3QWo0Z1JZSmFHZC9xVFNuTm9EMGM2dVRm?=
+ =?utf-8?B?L0JGWlhxQnNJNEpUR251UFNxQjZURWVKMGcxbTlENnNtWjN5R2FYVlBsREVJ?=
+ =?utf-8?B?c0VwRW51dGJxVUlOL3QzcXN0V045RTlDZVBDNko0U3cwbm9CVXI2SXpkMmp1?=
+ =?utf-8?B?TVg3MVYraFArV1BLeVNwblR3NzhkSmcvM3BOalpXcWdmVlB0bElWQ3QrSEdy?=
+ =?utf-8?B?UGxwRVpJVVhBTjA1RnJ1ejBJa2xRaVg4VzhiM1N0cFpTenV1b05OenRUTmdi?=
+ =?utf-8?B?TkYzK0tnSExFaHNUNitKdS9lMzc1eVBvUTNPR1RXUGUzbytlVGY3VUc2NHUv?=
+ =?utf-8?B?NGphbFdITW9IeXZwYVhVTDZNYVZhQURVSUhUY3IyRjhCbmlQWEJjd3NoSmFP?=
+ =?utf-8?Q?KLYT09Qx3pJfcrRDCkV1?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d1b1821-32e0-4f99-c156-08dd03b31f24
+X-MS-Exchange-CrossTenant-AuthSource: PN1P287MB2818.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2024 07:16:41.6005
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB1814
 
-On Tue, Nov 12, 2024 at 05:35:13PM +0530, Varadarajan Narayanan wrote:
-> On Tue, Nov 12, 2024 at 03:05:57PM +0530, Krishna Kurapati wrote:
-> >
-> >
-> > On 11/12/2024 2:43 PM, Varadarajan Narayanan wrote:
-> > > The IPQ5424 SoC has both USB2.0 and USB3.0 controllers. The USB3.0
-> > > can connect to either of USB2.0 or USB3.0 phy and operate in the
-> > > respective mode.
-> > >
-> > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts |  67 +++++++++
-> > >   arch/arm64/boot/dts/qcom/ipq5424.dtsi       | 153 ++++++++++++++++++++
-> > >   2 files changed, 220 insertions(+)
-> > >
-> >
-> > [...]
-> >
-> > > diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-> > > index 5e219f900412..d8c045a311c2 100644
-> > > --- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-> > > @@ -233,6 +233,159 @@ intc: interrupt-controller@f200000 {
-> > >   			msi-controller;
-> > >   		};
-> > > +		qusb_phy_1: phy@71000 {
-> > > +			compatible = "qcom,ipq5424-qusb2-phy";
-> > > +			reg = <0 0x00071000 0 0x180>;
-> > > +			#phy-cells = <0>;
-> > > +
-> > > +			clocks = <&gcc GCC_USB1_PHY_CFG_AHB_CLK>,
-> > > +				<&xo_board>;
-> > > +			clock-names = "cfg_ahb", "ref";
-> > > +
-> > > +			resets = <&gcc GCC_QUSB2_1_PHY_BCR>;
-> > > +			status = "disabled";
-> > > +		};
-> > > +
-> > > +		usb2: usb2@1e00000 {
-> > > +			compatible = "qcom,ipq5424-dwc3", "qcom,dwc3";
-> > > +			reg = <0 0x01ef8800 0 0x400>;
-> > > +			#address-cells = <2>;
-> > > +			#size-cells = <2>;
-> > > +			ranges;
-> > > +
-> > > +			clocks = <&gcc GCC_USB1_MASTER_CLK>,
-> > > +				 <&gcc GCC_USB1_SLEEP_CLK>,
-> > > +				 <&gcc GCC_USB1_MOCK_UTMI_CLK>,
-> > > +				 <&gcc GCC_USB1_PHY_CFG_AHB_CLK>,
-> > > +				 <&gcc GCC_CNOC_USB_CLK>;
-> > > +
-> > > +			clock-names = "core",
-> > > +				      "sleep",
-> > > +				      "mock_utmi",
-> > > +				      "iface",
-> > > +				      "cfg_noc";
-> > > +
-> > > +			assigned-clocks = <&gcc GCC_USB1_MASTER_CLK>,
-> > > +					  <&gcc GCC_USB1_MOCK_UTMI_CLK>;
-> > > +			assigned-clock-rates = <200000000>,
-> > > +					       <24000000>; > +
-> >
-> > Shouldn't this be 19.2MHz ?
->
-> XO is 24MHz in this SoC.
->
-> > > +			interrupts-extended = <&intc GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>,
-> > > +					      <&intc GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH>,
-> > > +					      <&intc GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>,
-> > > +					      <&intc GIC_SPI 388 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			interrupt-names = "pwr_event",
-> > > +					  "qusb2_phy",
-> > > +					  "dm_hs_phy_irq",
-> > > +					  "dp_hs_phy_irq";
-> > > +
-> >
-> > Please check the hs_phy_irq as well and add it if its present.
->
-> Will add.
 
-Checked with HW team, there is no hs_phy_irq in this case.
+On 2024/11/12 23:52, Rob Herring wrote:
+> On Mon, Nov 11, 2024 at 12:01:36PM +0800, Chen Wang wrote:
+>> From: Chen Wang <unicorn_wang@outlook.com>
+>>
+>> Add binding for Sophgo SG2042 MSI controller.
+>>
+>> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+>> ---
+>>   .../sophgo,sg2042-msi.yaml                    | 78 +++++++++++++++++++
+>>   1 file changed, 78 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/interrupt-controller/sophgo,sg2042-msi.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sophgo,sg2042-msi.yaml b/Documentation/devicetree/bindings/interrupt-controller/sophgo,sg2042-msi.yaml
+>> new file mode 100644
+>> index 000000000000..9fe99b74c211
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/interrupt-controller/sophgo,sg2042-msi.yaml
+>> @@ -0,0 +1,78 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/interrupt-controller/sophgo,sg2042-msi.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Sophgo SG2042 MSI Controller
+>> +
+>> +maintainers:
+>> +  - Chen Wang <unicorn_wang@outlook.com>
+>> +
+>> +description:
+>> +  This interrupt controller is in Sophgo SG2042 for transforming interrupts from
+>> +  PCIe MSI to PLIC interrupts.
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/interrupts.yaml#
+>> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: sophgo,sg2042-msi
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: clear register
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: clr
+>> +
+>> +  sophgo,msi-doorbell-addr:
+>> +    description:
+>> +      u64 value of the MSI doorbell address
+>> +    $ref: /schemas/types.yaml#/definitions/uint64
+> Why not use a 'reg' entry?
+>
+> In any case, this should be a translatable address (i.e. honor
+> #address-cells/#size-cells and ranges).
+This is just a address to write MSI data, but not a register for driver 
+access. So I think it seems better to configure it separately, rather 
+than as other registers. This address does not need ioremap.
 
-> > > +			resets = <&gcc GCC_USB1_BCR>;
-> > > +			qcom,select-utmi-as-pipe-clk;
-> > > +			status = "disabled";
-> > > +
-> > > +			dwc_1: usb@1e00000 {
-> > > +				compatible = "snps,dwc3";
-> > > +				reg = <0 0x01e00000 0 0xe000>;
-> > > +				clocks = <&gcc GCC_USB1_MOCK_UTMI_CLK>;
-> > > +				clock-names = "ref";
-> >
-> > Another clock in dwc3 node ?
+What do you think? I would like to hear your opinion.
 
-Not sure if I understand the above comment. Per bindings [1] a
-clock entry is expected in this node.
+Regards
 
-1 - https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/usb/snps,dwc3.yaml#n57
+Chen
 
-Thanks
-Varada
-
-> > > +				interrupts = <GIC_SPI 396 IRQ_TYPE_LEVEL_HIGH>;
-> > > +				phys = <&qusb_phy_1>;
-> > > +				phy-names = "usb2-phy";
-> > > +				tx-fifo-resize;
-> > > +				snps,is-utmi-l1-suspend;
-> > > +				snps,hird-threshold = /bits/ 8 <0x0>;
-> > > +				snps,dis_u2_susphy_quirk;
-> > > +				snps,dis_u3_susphy_quirk;
-> > > +			};
-> > > +		};
-> > > +
-> > > +		qusb_phy_0: phy@7b000 {
-> > > +			compatible = "qcom,ipq5424-qusb2-phy";
-> > > +			reg = <0 0x0007b000 0 0x180>;
-> > > +			#phy-cells = <0>;
-> > > +
-> > > +			clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
-> > > +				<&xo_board>;
-> > > +			clock-names = "cfg_ahb", "ref";
-> > > +
-> > > +			resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
-> > > +			status = "disabled";
-> > > +		};
-> > > +
-> > > +		ssphy_0: phy@7d000 {
-> > > +			compatible = "qcom,ipq5424-qmp-usb3-phy";
-> > > +			reg = <0 0x0007d000 0 0xa00>;
-> > > +			#phy-cells = <0>;
-> > > +
-> > > +			clocks = <&gcc GCC_USB0_AUX_CLK>,
-> > > +				 <&xo_board>,
-> > > +				 <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
-> > > +				 <&gcc GCC_USB0_PIPE_CLK>;
-> > > +			clock-names = "aux",
-> > > +				      "ref",
-> > > +				      "cfg_ahb",
-> > > +				      "pipe";
-> > > +
-> > > +			resets = <&gcc GCC_USB0_PHY_BCR>,
-> > > +				 <&gcc GCC_USB3PHY_0_PHY_BCR>;
-> > > +			reset-names = "phy",
-> > > +				      "phy_phy";
-> > > +
-> > > +			#clock-cells = <0>;
-> > > +			clock-output-names = "usb0_pipe_clk";
-> > > +
-> > > +			status = "disabled";
-> > > +		};
-> > > +
-> > > +		usb3: usb3@8a00000 {
-> > > +			compatible = "qcom,ipq5424-dwc3", "qcom,dwc3";
-> > > +			reg = <0 0x08af8800 0 0x400>;
-> > > +
-> > > +			#address-cells = <2>;
-> > > +			#size-cells = <2>;
-> > > +			ranges;
-> > > +
-> > > +			clocks = <&gcc GCC_USB0_MASTER_CLK>,
-> > > +				 <&gcc GCC_USB0_SLEEP_CLK>,
-> > > +				 <&gcc GCC_USB0_MOCK_UTMI_CLK>,
-> > > +				 <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
-> > > +				 <&gcc GCC_CNOC_USB_CLK>;
-> > > +
-> > > +			clock-names = "core",
-> > > +				      "sleep",
-> > > +				      "mock_utmi",
-> > > +				      "iface",
-> > > +				      "cfg_noc";
-> > > +
-> > > +			assigned-clocks = <&gcc GCC_USB0_MASTER_CLK>,
-> > > +					  <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> > > +			assigned-clock-rates = <200000000>,
-> > > +					       <24000000>;
-> > > +
-> >
-> > same comment as above, isn't this supposed to be 19.2MHz ?
->
-> XO is 24MHz in this SoC.
->
-> > > +			interrupts-extended = <&intc GIC_SPI 412 IRQ_TYPE_LEVEL_HIGH>,
-> > > +					      <&intc GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			interrupt-names = "pwr_event",
-> > > +					  "qusb2_phy";
-> > > +
-> >
-> > DP/ DM interrupts ?
->
-> Will add.
->
-> > > +			resets = <&gcc GCC_USB_BCR>;
-> > > +			status = "disabled";
-> > > +
-> > > +			dwc_0: usb@8a00000 {
-> > > +				compatible = "snps,dwc3";
-> > > +				reg = <0 0x08a00000 0 0xcd00>;
-> > > +				clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> > > +				clock-names = "ref";
-> > > +				interrupts = <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>;
-> > > +				phys = <&qusb_phy_0>, <&ssphy_0>;
-> > > +				phy-names = "usb2-phy", "usb3-phy";
-> > > +				tx-fifo-resize;
-> > > +				snps,is-utmi-l1-suspend;
-> > > +				snps,hird-threshold = /bits/ 8 <0x0>;
-> > > +				snps,dis_u2_susphy_quirk;
-> > > +				snps,dis_u3_susphy_quirk;
-> >
-> > Disable u1/u2 entry as well please.
->
-> Will add.
->
-> Thanks
-> Varada
->
+>> +
+>> +  sophgo,msi-base-vec:
+>> +    description:
+>> +      u32 value of the base of parent PLIC vector allocated
+>> +      to MSI.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 64
+>> +    maximum: 95
+>> +
+>> +  sophgo,msi-num-vecs:
+>> +    description:
+>> +      u32 value of the number of parent PLIC vectors allocated
+>> +      to MSI.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 1
+>> +    maximum: 32
+> Use 'msi-ranges' for these.
+Got, will fix this and thanks.
+>> +
+>> +  msi-controller: true
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reg-names
+>> +  - msi-controller
+>> +  - sophgo,msi-doorbell-addr
+>> +  - sophgo,msi-base-vec
+>> +  - sophgo,msi-num-vecs
+>> +
+>> +additionalProperties: true
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +    msi: msi-controller@30000000 {
+>> +      compatible = "sophgo,sg2042-msi";
+>> +      reg = <0x30000000 0x4>;
+>> +      reg-names = "clr";
+>> +      msi-controller;
+>> +      sophgo,msi-doorbell-addr = <0x00000070 0x30010300>;
+>> +      sophgo,msi-base-vec = <64>;
+>> +      sophgo,msi-num-vecs = <32>;
+>> +      interrupt-parent = <&plic>;
+>> +    };
+>> -- 
+>> 2.34.1
+>>
 
