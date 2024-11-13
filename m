@@ -1,111 +1,142 @@
-Return-Path: <devicetree+bounces-121458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73FF09C6D07
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 11:39:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BB229C6D04
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 11:38:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BDADEB229E5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 10:35:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 209A81F23209
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 10:38:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15DB61FDFBC;
-	Wed, 13 Nov 2024 10:35:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8E0C1FE0F3;
+	Wed, 13 Nov 2024 10:38:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="fj4IeXX4"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="TP7jCWIz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F03F35885
-	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 10:35:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA111FB89A;
+	Wed, 13 Nov 2024 10:38:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731494149; cv=none; b=NwZzhKcvi6Z4JVz9HukPOPG5tDvc6G6UWxMTWwkGNJmqE6AR6/itL9M81f/StCvr/e6cAMxyNBeJKH86MUJ7BgjiyjrHH6873S1zsK8/faN8HTzVL8LIhmI8pfpSWAoGWP83285Fic2XGzWuDDtRWcACn5VirnaRKensG8UObhw=
+	t=1731494329; cv=none; b=g3jwqACMea0gympLPBP/mvMcTpPCxVfGOghT0br00FszEutI85giBfMuY2r3SLCc0iyQj1P8f3yaGzdReUoLbPlOEBdWafxuA03OYKPxjmvN4UWOt/OcHbn62cr9Tcilbe/ju1ebL2xb27N5sTTKuAtR7kA254iBUPaQkoLNQuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731494149; c=relaxed/simple;
-	bh=tvSQveL4ZNKaT17R19YRy4ou5GvUrxgvspZno4PsLPI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=I5hgXhPsLGEoLF2C+qrUoPNTsaR6Xb5hsw8r1hhavHzBZStznybNr3hfqEeIRYWYZEpoKY5yDDgDn4Bko2GomQyK/iRcFGLjJYFy/sQ5ZqHHaBwjr1aBoxuQnriICGdPLsGVe37G+vaJknT9tck/F/fzNJ8Rs8abqKa9Fud7z0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=fj4IeXX4; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2fb584a8f81so60544781fa.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 02:35:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1731494145; x=1732098945; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tvSQveL4ZNKaT17R19YRy4ou5GvUrxgvspZno4PsLPI=;
-        b=fj4IeXX4XiBLvuA2rPdndYu80VmdUg09rbAnv+dcr7MGhyAwjSLzWInBkUUJld+HEK
-         WuboBVHh2ZgcyFGs1A720iiqtC5roOZwoBeg66N5NwlnYH1hjR03t/X9oAglYlE/+fLX
-         D8GAvSXCRg/AMRvs3Xal0PTTM+ZYOj2uPZPbPviTuViLpkdyAzcFSMFesj0haErXCn5Z
-         beDfu1GgfOCY1a7zevuQjC5O/0Yy2BLW3Eyl3mCMbn3PZIAIYJ4PZLu+Lxh1mVz+gSO6
-         qdsGzbmk9XqCDBEAEdUYaPntBsuDY72/GFsgnSOqIxZv97WGvHWCL4REpf5DTHpTq68G
-         bhFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731494145; x=1732098945;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tvSQveL4ZNKaT17R19YRy4ou5GvUrxgvspZno4PsLPI=;
-        b=TGQCMTnB9eeC/ZxUNvjDbzXCZaNn9ffGGI6Z8B9kCavqnZPu0k9wmqCVfp8HbVcMTw
-         dzxCMo1JDE+4IA0eSvFP0GBn8cHPN7qiuogDBd+3FnbODnHHYzScKICYisaiZHUSaVSI
-         6pUXqqDxRYiN015U6+RT8LEwcHrC+kmrR5DzuCKfaZqDNlSXnm4qJRHfPkU0IEQd4dol
-         ApbgK9SLYv+clFa0JeLvgO5llzu1xEcCuajmXjZ+66e1Bt+YCyZHLy8nf4GfMra7TcMz
-         i46XCQiFbd0LPwKaMXCBBjJIATk5CZKfbZR1QMldGJ0kBwSeOjRJ8Aw/pi2tSStGwl9i
-         Ko7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXFuxxBcD+a7/0o3T2Y+2oN9ic4uzMaYXeerU+WTcJ/yL/rbIu4kxIgM030gluxAky4xhyDHR63RMnp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6Td1rPmRHfMKXciC60W/oID66NQGgihflfMvM5GIb3fXv1U6M
-	MY30xcUKPpuSpm1c/y9l87Q0M4ncBugvBrNvAB5hmCOwWlLki3DmnXDlanE5q4AbZxhc1TOoxVk
-	FUNuR5fODkY8i5QRXrhQqr19p0ikGUcuaSkuAgQ==
-X-Google-Smtp-Source: AGHT+IGO61t/piOQ54Ce2aHGK+yl3sQvYvS7vWigZwnBMLRlsxtH474c/h1XAYOCKrPLFzb2ccMr1lF7r/2+NuZ2ju8=
-X-Received: by 2002:a2e:a913:0:b0:2fb:5d2c:7509 with SMTP id
- 38308e7fff4ca-2ff201824damr96451511fa.14.1731494145249; Wed, 13 Nov 2024
- 02:35:45 -0800 (PST)
+	s=arc-20240116; t=1731494329; c=relaxed/simple;
+	bh=XnyK2cUNddDaNwEG52WGnzjL8TynPLpzNBm8cJx3Jmw=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=HDoZ8ejKW16buSmz+P0vZwpbxsy5zf7kDJvjmce12w2GGgkDs6MpDSP8YA78UNppGGBxktWsVBXsDEdHdCTKx3ev13NFSAC3VTrZNwU1xKiKiM7Pi/+R73kD2fcLQgDhDlrtXArm5fjG9DTrwycSBKbP1vnlwWr63bzQRGBEBPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=TP7jCWIz; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241112-sa8775p_cpuidle-v1-1-66ff3ba72464@quicinc.com>
-In-Reply-To: <20241112-sa8775p_cpuidle-v1-1-66ff3ba72464@quicinc.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 13 Nov 2024 11:35:34 +0100
-Message-ID: <CAMRc=McEjDbhuUV9zEBfT+OUHLS3ARYFvSMau=eXsomh2yiavg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: Add CPUs to psci power domain
-To: Maulik Shah <quic_mkshah@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	quic_lsrao@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1731494319;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IF/vepkYLlzPa+ADSxysQyPEUO3lIiqkFDR8yTHUMM4=;
+	b=TP7jCWIzDHOvG6IaVPJw1zfuuw2FKJ1Bh0h2H/+0gswy1ADCLGYi2WQoTvzZ9ssMgdIryY
+	vIu232el3rCYgagbcyYlswLfXcQ2pWLLb7rBWrC6C8tlENyR7M8FHIYXDZvRiG/di/llH4
+	WMgmzq9Wwuq3+IorsKn6hlakinn3tNSpUOaxEAgo8Ow6HqCCo+i7KD/W4XpP2CdfDSQESe
+	qJto4tSlZESB1jp7tTw7La4pvWBCmrwsuagTnmmlYJ7esUk8/7JMfhqJ0HfZvTZXs6r7Wu
+	VKuw19CI5tcn5LNyZfxXC5ty+YjPXelReeTEARGVXGYe/ryfajlFwbt6MnqFNA==
+Date: Wed, 13 Nov 2024 11:38:37 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: =?UTF-8?Q?Tam=C3=A1s_Sz=C5=B1cs?= <tszucs@linux.com>
+Cc: Jonas Karlman <jonas@kwiboo.se>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki
+ <naoki@radxa.com>, Chukun Pan <amadeus@jmu.edu.cn>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Enable UART8 on rock-3b
+In-Reply-To: <CA+Gksr+E-tZe4sKVNa8zpATwdTW_DiOQxOf_Jujf5SURzhSPSg@mail.gmail.com>
+References: <20241111181807.13211-1-tszucs@linux.com>
+ <20241111181807.13211-4-tszucs@linux.com>
+ <4ba81dfa-f276-4e05-b46b-92f50dbcfcc4@kwiboo.se>
+ <CA+GksrJLpeU8x-kjR1Ng3ySf+giiufCsJuBssng9qoX1PjAunA@mail.gmail.com>
+ <9330ebb370780c001fd2aaee49aec9e8@manjaro.org>
+ <CA+GksrJjDPve29Vh7ZFhM+JFp058xmXZAPeuLuFth7v=JeiH2w@mail.gmail.com>
+ <0eb19e4daf2cdf3d4a04935876c3d3b0@manjaro.org>
+ <CA+Gksr+E-tZe4sKVNa8zpATwdTW_DiOQxOf_Jujf5SURzhSPSg@mail.gmail.com>
+Message-ID: <dc628e6e50239aac65a4424738000612@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Tue, Nov 12, 2024 at 12:22=E2=80=AFPM Maulik Shah <quic_mkshah@quicinc.c=
-om> wrote:
->
-> Commit 4f79d0deae37 ("arm64: dts: qcom: sa8775p: add CPU idle states")
-> already added cpu and cluster idle-states but have not added CPU devices
-> to psci power domain without which idle states do not get detected.
->
-> Add CPUs to psci power domain.
->
-> Fixes: 4f79d0deae37 ("arm64: dts: qcom: sa8775p: add CPU idle states")
-> Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
-> ---
+Hello Tamas,
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 2024-11-13 11:24, Tamás Szűcs wrote:
+> On Wed, Nov 13, 2024 at 12:25 AM Dragan Simic <dsimic@manjaro.org> 
+> wrote:
+>> On 2024-11-12 22:04, Tamás Szűcs wrote:
+>> > On Tue, Nov 12, 2024 at 4:07 PM Dragan Simic <dsimic@manjaro.org>
+>> > wrote:
+>> >> Please correct me if I'm wrong, but isn't this UART supposed to be
+>> >> used for the Bluetooth part of an SDIO WiFi + Bluetooth module, in
+>> >> form of a non-standard M.2 module that Radxa sells?
+>> >
+>> > UART8 is supposed to be used for any radio module connected to the M2E
+>> > connector.
+>> > It will typically be responsible for Bluetooth or BLE but it could be
+>> > 802.15.4 or whatever. In any case, all wanting to use it will need the
+>> > uart8 node enabled.
+>> 
+>> I see, but I'm still guessing what's the actual use of enabling the
+>> UART8 when it will remain pretty much useless without the additional
+>> DT configuration, such as in the WiFi+Bluetooth DT overlay that Jonas
+>> sent a bit earlier?
+> 
+> The actual use is device enablement.
 
-Which reminds me there's this comment from Konrad that needs
-addressing too[1]. I'll try to make time for it this week.
+Hmm, I'll need to think more about how it fits together.
 
-Bart
+>> I think that the UART8 should be enabled together with something that
+>> actually makes use of it, which in this case unfortunately cannot be
+>> automatically detected and configured, so it belongs to a DT overlay.
+>> I'll get back to this in my next response.
+> 
+> I agree, bluetooth blocks dedicated to specific modules should belong
+> to DT overlays.
+> 
+>> >> With that in mind, I see very little sense in just enabling the UART,
+>> >> without defining the entire Bluetooth interface, which AFAIK produces
+>> >
+>> > Defining a bluetooth node would hardwire idiosyncrasies of a given
+>> > radio module's Bluetooth core. Sure you could add a sleep clock, all
+>> > kind of sideband signals for wakeups, reset, power down, etc. But hey,
+>> > some will use them, some won't. I think it's undesirable and
+>> > unnecessary. You can hciattach from here and most will work just like
+>> > that. Tighter integration or anything special, module specific on top
+>> > should be handled individially, on a case-by-case basis. This is a dev
+>> > board after all. I say trick of all trades.
+>> >
+>> >> nasty looking error messages in the kernel log when there's actually
+>> >> nothing connected to the UART.
+>> >
+>> > My dmesg is clean as a whistle
+>> > root@rock-3b:~# dmesg | grep -E 'fe6c0000|ttyS0'
+>> > [    0.344818] fe6c0000.serial: ttyS0 at MMIO 0xfe6c0000 (irq = 26,
+>> > base_baud = 1500000) is a 16550A
+>> > What kind of nasty errors do you recall?
+>> 
+>> Those would be the kernel error messages produced with the Bluetooth
+>> DT configuration in place, but with no SDIO module installed.
+> 
+> These are the kernel messages related to UART8 with the uart8 DT node
+> enabled and an SDIO module installed.
 
-[1] https://lore.kernel.org/all/06895dff-bdbf-4dfd-8f00-ee850297ec12@kernel=
-.org/
+Out of curiosity, what M.2 module are you testing it with?
 
